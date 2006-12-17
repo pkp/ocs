@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * LogConstants.inc.php
+ *
+ * Copyright (c) 2003-2007 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @package log
+ *
+ * Log constants.
+ * Contains descriptive constants for paper and conference event logs.
+ *
+ * $Id$
+ */
+
+// Log levels
+define('LOG_LEVEL_INFO', 'I');
+define('LOG_LEVEL_NOTICE', 'N');
+define('LOG_LEVEL_WARNING', 'W');
+define('LOG_LEVEL_ERROR', 'E');
+
+// Log entry associative types. All types must be defined here
+define('LOG_TYPE_DEFAULT', 			0);
+define('LOG_TYPE_AUTHOR', 			0x01);
+define('LOG_TYPE_EDITOR', 			0x02);
+define('LOG_TYPE_REVIEW', 			0x03);
+
+?>

@@ -1,0 +1,296 @@
+<?php
+
+/**
+ * EditAssignmentsDAO.inc.php
+ *
+ * Copyright (c) 2003-2007 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @package submission
+ *
+ * Class for DAO relating editors to papers.
+ *
+ * $Id$
+ */
+
+import('submission.editAssignment.EditAssignment');
+
+class EditAssignmentDAO extends DAO {
+	/**
+	 * Constructor.
+	 */
+	function EditAssignmentDAO() {
+		parent::DAO();
+	}
+	
+	/**
+	 * Retrieve an edit assignment by id.
+	 * @param $editId int
+	 * @return EditAssignment
+	 */
+	function &getEditAssignment($editId) {
+		$result = &$this->retrieve(
+			'SELECT e.*,
+				u.first_name,
+				u.last_name,
+				u.email,
+				u.initials,
+				r.role_id AS editor_role_id
+			FROM papers p,
+				edit_assignments e
+				LEFT JOIN users u ON (e.editor_id = u.user_id)
+				LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ')
+			WHERE (r.event_id = p.event_id OR r.event_id IS NULL) AND e.edit_id = ? AND p.paper_id = e.paper_id',
+			$editId
+			);
+
+		$returner = null;
+		if ($result->RecordCount() != 0) {
+			$returner = &$this->_returnEditAssignmentFromRow($result->GetRowAssoc(false));
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+	
+	/**
+	 * Retrieve edit assignments by paper id.
+	 * @param $paperId int
+	 * @return EditAssignment
+	 */
+	function &getEditAssignmentsByPaperId($paperId) {
+		$result = &$this->retrieve(
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id
+			FROM papers p, edit_assignments e LEFT JOIN users u ON (e.editor_id = u.user_id)
+			LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ')
+			WHERE e.paper_id = ?
+				AND (r.event_id IS NULL OR r.event_id = p.event_id)
+				AND p.paper_id = e.paper_id ORDER BY e.date_notified ASC',
+			$paperId
+			);
+
+		$returner = &new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve those edit assignments that relate to full editors.
+	 * @param $paperId int
+	 * @return EditAssignment
+	 */
+	function &getEditorAssignmentsByPaperId($paperId) {
+		$result = &$this->retrieve(
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id FROM papers a, edit_assignments e, users u, roles r WHERE r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND e.paper_id = ? AND r.event_id = a.event_id AND a.paper_id = e.paper_id AND e.editor_id = u.user_id ORDER BY e.date_notified ASC',
+			$paperId
+			);
+
+		$returner = &new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve those edit assignments that relate to track editors with
+	 * review access.
+	 * @param $paperId int
+	 * @return EditAssignment
+	 */
+	function &getReviewingTrackEditorAssignmentsByPaperId($paperId) {
+		$result = &$this->retrieve(
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id FROM papers a, edit_assignments e LEFT JOIN users u ON (e.editor_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ') WHERE e.paper_id = ? AND (r.event_id IS NULL OR r.event_id = a.event_id) AND a.paper_id = e.paper_id AND r.role_id IS NULL AND e.can_review = 1 ORDER BY e.date_notified ASC',
+			$paperId
+			);
+
+		$returner = &new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve those edit assignments that relate to track editors with
+	 * editing access.
+	 * @param $paperId int
+	 * @return EditAssignment
+	 */
+	function &getEditingTrackEditorAssignmentsByPaperId($paperId) {
+		$result = &$this->retrieve(
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id FROM papers a, edit_assignments e LEFT JOIN users u ON (e.editor_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ') WHERE e.paper_id = ? AND (r.insetance_id IS NULL OR r.event_id = a.event_id) AND a.paper_id = e.paper_id AND r.role_id IS NULL AND e.can_edit = 1 ORDER BY e.date_notified ASC',
+			$paperId
+			);
+
+		$returner = &new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve edit assignments by user id.
+	 * @param $paperId int
+	 * @return EditAssignment
+	 */
+	function &getEditAssignmentsByUserId($userId) {
+		$result = &$this->retrieve(
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id FROM papers a, edit_assignments e LEFT JOIN users u ON (e.editor_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ') WHERE e.editor_id = ? AND (r.event_id IS NULL OR r.event_id = a.event_id) AND a.paper_id = e.paper_id ORDER BY e.date_notified ASC',
+			$userId
+			);
+
+		$returner = &new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		return $returner;
+	}
+
+	/**
+	 * Internal function to return an edit assignment object from a row.
+	 * @param $row array
+	 * @return EditAssignment
+	 */
+	function &_returnEditAssignmentFromRow(&$row) {
+		$editAssignment = &new EditAssignment();
+		$editAssignment->setEditId($row['edit_id']);
+		$editAssignment->setPaperId($row['paper_id']);
+		$editAssignment->setEditorId($row['editor_id']);
+		$editAssignment->setCanReview($row['can_review']);
+		$editAssignment->setCanEdit($row['can_edit']);
+		$editAssignment->setEditorFullName($row['first_name'].' '.$row['last_name']);
+		$editAssignment->setEditorFirstName($row['first_name']);
+		$editAssignment->setEditorLastName($row['last_name']);
+		$editAssignment->setEditorInitials($row['initials']);
+		$editAssignment->setEditorEmail($row['email']);
+		$editAssignment->setIsEditor($row['editor_role_id']==ROLE_ID_EDITOR?1:0);
+		$editAssignment->setDateUnderway($this->datetimeFromDB($row['date_underway']));
+		$editAssignment->setDateNotified($this->datetimeFromDB($row['date_notified']));
+
+		HookRegistry::call('EditAssignmentDAO::_returnEditAssignmentFromRow', array(&$editAssignment, &$row));
+
+		return $editAssignment;
+	}
+	
+	/**
+	 * Insert a new EditAssignment.
+	 * @param $editAssignment EditAssignment
+	 */	
+	function insertEditAssignment(&$editAssignment) {
+		$this->update(
+			sprintf('INSERT INTO edit_assignments
+				(paper_id, editor_id, can_edit, can_review, date_notified, date_underway)
+				VALUES
+				(?, ?, ?, ?, %s, %s)',
+				$this->datetimeToDB($editAssignment->getDateNotified()),
+				$this->datetimeToDB($editAssignment->getDateUnderway())),
+			array(
+				$editAssignment->getPaperId(),
+				$editAssignment->getEditorId(),
+				$editAssignment->getCanEdit()?1:0,
+				$editAssignment->getCanReview()?1:0
+			)
+		);
+		
+		$editAssignment->setEditId($this->getInsertEditId());
+		return $editAssignment->getEditId();
+	}
+	
+	/**
+	 * Update an existing edit assignment.
+	 * @param $editAssignment EditAssignment
+	 */
+	function updateEditAssignment(&$editAssignment) {
+		return $this->update(
+			sprintf('UPDATE edit_assignments
+				SET	paper_id = ?,
+					editor_id = ?,
+					can_review = ?,
+					can_edit = ?,
+					date_notified = %s,
+					date_underway = %s
+				WHERE edit_id = ?',
+				$this->datetimeToDB($editAssignment->getDateNotified()),
+				$this->datetimeToDB($editAssignment->getDateUnderway())),
+			array(
+				$editAssignment->getPaperId(),
+				$editAssignment->getEditorId(),
+				$editAssignment->getCanReview() ? 1:0,
+				$editAssignment->getCanEdit() ? 1:0,
+				$editAssignment->getEditId()
+			)
+		);
+	}
+	
+	/**
+	 * Delete edit assignment.
+	 * @param $reviewId int
+	 */
+	function deleteEditAssignmentById($editId) {
+		return $this->update(
+			'DELETE FROM edit_assignments WHERE edit_id = ?',
+			$editId
+		);
+	}
+	
+	/**
+	 * Delete edit assignments by paper.
+	 * @param $paperId int
+	 */
+	function deleteEditAssignmentsByPaper($paperId) {
+		return $this->update(
+			'DELETE FROM edit_assignments WHERE paper_id = ?',
+			$paperId
+		);
+	}
+
+	/**
+	 * Get the ID of the last inserted edit assignment.
+	 * @return int
+	 */
+	function getInsertEditId() {
+		return $this->getInsertId('edit_assignments', 'edit_id');
+	}
+	
+	/**
+	 * Get the assignment counts and last assigned date for all editors in the given conference.
+	 * @return array
+	 */
+	function getEditorStatistics($eventId) {
+		$statistics = Array();
+
+		// Get counts of completed submissions
+		$result = &$this->retrieve(
+			'SELECT
+				ea.editor_id AS editor_id,
+				COUNT(ea.paper_id) AS complete
+			FROM
+				edit_assignments ea,
+				papers p,
+				published_papers pa
+			WHERE ea.paper_id=p.paper_id
+				AND pa.paper_id = p.paper_id
+				AND p.event_id=?
+			GROUP BY ea.editor_id', $eventId);
+			
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
+			$statistics[$row['editor_id']]['complete'] = $row['complete'];
+			$result->MoveNext();
+		}
+		$result->Close();
+		unset($result);
+
+		// Get counts of incomplete submissions
+		$result = &$this->retrieve('
+			SELECT ea.editor_id AS editor_id,
+				COUNT(ea.paper_id) AS incomplete
+			FROM edit_assignments ea,	papers p
+				LEFT JOIN published_papers pa ON (pa.paper_id = p.paper_id)
+			WHERE pa.paper_id IS NULL AND ea.paper_id=p.paper_id AND p.event_id=? GROUP BY ea.editor_id', $eventId);
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
+			$statistics[$row['editor_id']]['incomplete'] = $row['incomplete'];
+			$result->MoveNext();
+		}
+		$result->Close();
+		unset($result);
+
+		return $statistics;
+	}
+}
+
+?>

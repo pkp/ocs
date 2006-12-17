@@ -1,0 +1,248 @@
+Upgrading an OCS Installation
+-----------------------------
+
+Note: backing up your current data files and database is strongly recommended
+prior to upgrading OCS.
+
+If you are using PHP Safe Mode, please ensure that the max_execution_time
+directive in your php.ini configuration file is set to a high limit. If this
+or any other time limit (e.g. Apache's "Timeout" directive) is reached and
+the upgrade process is interrupted, manual intervention will be required.
+
+
+======================
+Upgrading from OCS 2.x
+======================
+
+Upgrading to the latest version of OCS involves two steps:
+
+    - Obtaining the latest OCS code
+    - Upgrading the OCS database
+
+It is highly recommended that you also review the release notes (docs/RELEASE)
+and other documentation in the docs directory before performing an upgrade.
+
+New in OCS 2.0
+--------------
+
+OCS 2.0 is the first release in the OCS 2.x series.
+
+
+Obtaining the latest OCS code
+-----------------------------
+
+The OCS source code is available in three forms: as patches against older
+releases of OCS, from an anonymous CVS repository, and as a complete
+standalone package.
+
+Patching or updating from CVS is the recommended approach if you have made local
+modifications to the system.
+
+1. Patch
+
+Patch files for older releases of OCS can be downloaded from the OCS web site.
+
+To update by patching, download the appropriate patch file for your current
+version of OCS and run the following command from your OCS directory:
+
+    $ patch -p1 < PATCH_FILE
+
+"PATCH_FILE" should be replaced with the path to the decompressed patch file
+that was downloaded, e.g. "ocs-2.0.0_to_2.0.1.patch".
+
+Alternatively, OCS 2.0 provides a command-line tool to automatically download
+and apply the appropriate patch to upgrade to the latest release. To use this
+tool run the following command from your OCS directory:
+
+    $ php tools/upgrade.php patch
+
+
+2. CVS
+
+If your instance of OCS was checked out from the PKP anonymous CVS repository
+(see docs/README-CVS), you can update the OCS code using a CVS client.
+
+To update the OCS code from a CVS check-out, run the following command from
+your OCS directory:
+
+    $ cvs update -r TAG
+
+"TAG" should be replaced with the CVS tag corresponding to the new release.
+OCS release version tags are of the form "ocs-MAJOR_MINOR_REVSION-BUILD".
+For example, the tag for the initial release of OCS 2.0.0 is "ocs-2_0_0-0".
+
+Consult the README of the latest OCS package or the OCS web site for the
+tag corresponding to the latest available OCS release.
+
+Note that attempting to update to an unreleased version (e.g., using the HEAD
+tag to obtain the bleeding-edge OCS code) is not recommended for anyone other
+than OCS or third-party developers; using experimental code on a production
+deployment is strongly discouraged and will not be supported in any way by
+the OCS team.
+
+
+3. Full Package
+
+It is also possible to upgrade by downloading the complete package for the
+latest release of OCS:
+
+    - Download and decompress the package from the OCS web site
+    - Make a copy of the config.inc.php provided in the new package
+    - Move or copy the following files and directories from your current OCS
+      installation:
+        - config.inc.php
+        - public/
+        - Your uploaded files directory ("files_dir" in config.inc.php), if it
+          resides within your OCS directory
+    - Replace the current OCS directory with the new OCS directory, moving the
+      old one to a safe location as a backup
+    - Be sure to review the Configuration Changes section of the release notes
+      in docs/release-notes/README-(version) for all versions between your
+      original version and the new version. You may need to manually add
+      new items to your config.inc.php file.
+
+
+
+Upgrading the OCS database
+--------------------------
+
+After obtaining the latest OCS code, an additional script must be run to
+complete the upgrade process by upgrading the OCS database and potentially
+executing additional upgrade code.
+
+This script can be executed from the command-line or via the OCS web interface.
+
+1. Command-line
+
+If you have the CLI version of PHP installed (e.g., /usr/bin/php), you can
+upgrade the database by running the following command from the OCS directory:
+
+    $ php tools/upgrade.php upgrade
+
+
+2. Web
+
+If you do not have the PHP CLI installed, you can also upgrade by running a
+web-based script. To do so:
+
+    - Edit config.inc.php and change "installed = On" to "installed = Off"
+    - Open a web browser to your OCS site; you should be redirected to the
+      installation and upgrade page
+    - Select the "Upgrade" link and follow the on-screen instructions
+    - Re-edit config.inc.php and change "installed = Off" back to
+       "installed = On"
+
+
+
+
+======================
+Migrating from OCS 1.x
+======================
+
+OCS 2 represents a complete re-design and re-implementation of the Open Conference 
+Systems project, and as such, it is not possible to directly upgrade a 1.x
+system to 2.x.
+
+Instead, a migration utility has been provided to allow content from OCS 1.x to
+be imported into an installed 2.x system -- including most conference settings and
+all user, issue, and paper data.
+
+To migrate data from OCS 1.x to a 2.x system:
+
+    - Install the latest release of OCS 2 onto the same server as the current
+      OCS 1 installation
+    - Run the migration command-line or web-based utility to import data
+
+
+The migration utility can be used to either create a new OCS 2 conference with all
+settings and data from an OCS 1 conference, or to import just users, issues, and
+articles into an already existing OCS 2 conference.
+
+Note that, depending on the amount of content in the conference to be imported, it
+may take a long time for the migration utility to complete -- especially if your
+system is configured to index full-text files.
+
+1. Using the migration command-line tool:
+
+    $ php tools/migrate.php [conference_path] [event_path] [ocs1_path] [options]
+    
+   Options:
+   
+    conference_path  Conference path to create (E.g., "ocs")
+                  If path already exists, all content except conference settings
+                  will be imported into the existing conference
+
+    event_path    Event path to create (E.g., "2007")
+                  If path already exists, all content except event settings
+                  will be imported into the existing event
+                  
+    ocs1_path     Complete local filesystem path to the OCS 1 installation
+                  (E.g., "/var/www/ocs")
+                  
+    options       importSubscriptions - import subscription type and subscriber
+                  data
+                  verbose - print additional debugging information
+                  
+   Examples:
+   
+    To import all data from "/var/www/ocs" into a new conference "import1" and
+    event "2007":
+
+        $ php tools/migrate.php import1 2007 /var/www/ocs importSubscriptions
+    
+    To import just users, issues, and articles from "/var/www/ocs" into an
+    existing conference "import2" and event "2007":     
+
+        $ php tools/migrate.php import2 2007 /var/www/ocs
+   
+   WARNING: If the CLI tool is executed as a different user than the Apache
+   user, you will need to chown or chmod the public and uploaded files
+   directories before (for the user running the tool) and afterwards (to
+   Apache) to set the correct ownership/permissions.
+
+
+2. Using the migration web-based tool:
+
+   The web-based migration utility can be found under:
+   
+        Site Administration > Hosted Conferences > Import From OCS 1
+
+   The web-based tool is used nearly identically to the CLI tool.
+
+
+Additional notes regarding migration:
+
+    - After using the migration tool, edit and save the hosted conference settings
+      under Site Administration, and proceed through and complete all Conference
+      Setup steps under Conference Management and Event Management -- there are
+      a number of new and modified settings in OCS 2 compared to OCS 1
+    - Any number of OCS 1.x conferences can be imported into a single OCS 2
+      instance (OCS 2 is designed as a multiple conference system)
+    - In addition to hosting multiple conferences, OCS 2 introduces "events"
+      which may be associated with a recurring conference. For example, an
+      annual conference would host one event per year, typically named for the
+      year in which it occurs.
+    - OCS 2 requires both user usernames and email addresses to be unique (OCS
+      1 did not enforce the latter restriction):
+        - If a user already exists with the same username as an imported
+          user, all imported data will be associated with the existing user
+        - If a user already exists with the same email address as an
+          imported user, the email address of the imported user will be
+          prefixed with "ocs-<username>+" to ensure uniqueness -- such users
+          can then be updated manually post-migration
+    - Modified email templates and RST versions are not migrated due to the
+      numerous revisions and enhancements to these components in OCS 2
+    - Migrated subscription types are given a 12-month duration and public
+      visibility by default -- these settings can be modified post-migration
+
+
+OCS 1.x features that are currently not supported in 2.x:
+
+    - OCS 2 currently only includes an English localization (see the README for
+      information on producing a translation for other languages)
+    - LOCKSS support is currently unavailable, but will likely appear in a
+      future release
+    - The conference statistics component is currently not implemented, but will be
+      added to a future release
+    - Room and session scheduling is not currently implemented, and will be
+      added in the near future.

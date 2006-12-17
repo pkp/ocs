@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE install SYSTEM "dtd/install.dtd">
+
+<!--
+  * install.xml
+  *
+  * Copyright (c) 2003-2005 The Public Knowledge Project
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Installation descriptor file.
+  *
+  * $Id$
+  -->
+
+<install version="2.0.0.0">
+	<code function="createDirectories"/>
+	<code function="createDatabase"/>
+	<schema file="ocs_schema.xml"/>
+	<data file="data/email_templates.xml"/>
+	<data file="data/locale/{$installedLocale}/email_templates_data.xml"/>
+	<data file="data/currencies.xml"/>
+	<code function="createData"/>
+	<code function="createConfig"/>
+</install>

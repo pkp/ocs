@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  * eventSettings.xml
+  *
+  * Copyright (c) 2003-2005 The Public Knowledge Project
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Default event settings.
+  *
+  * $Id$
+  -->
+
+<!DOCTYPE event_settings [
+	<!ELEMENT event_settings (setting+)>
+	<!ELEMENT setting (name, value)>
+	<!ATTLIST setting type (int|string|object) #REQUIRED>
+	<!ELEMENT name (#PCDATA)>
+	<!ELEMENT value (#PCDATA | array)*>
+	<!ELEMENT element (#PCDATA | array)*>
+	<!ATTLIST element key CDATA #IMPLIED>
+	<!ELEMENT array (element+)>
+]>
+
+<event_settings>
+
+	<!-- Default state -->
+	<setting type="int">
+		<name>submissionState</name>
+		<value>0</value>
+	</setting>
+	<setting type="int">
+		<name>publicationState</name>
+		<value>0</value>
+	</setting>
+	<setting type="bool">
+		<name>autoShowCFP</name>
+		<value>false</value>
+	</setting>
+	<setting type="bool">
+		<name>autoAccept</name>
+		<value>false</value>
+	</setting>
+	<setting type="int">
+		<name>autoRemindAuthorsDays</name>
+		<value>5</value>
+	</setting>
+	<setting type="bool">
+		<name>autoRemindAuthors</name>
+		<value>true</value>
+	</setting>
+	<setting type="bool">
+		<name>autoArchiveIncompleteSubmissions</name>
+		<value>false</value>
+	</setting>
+	<setting type="bool">
+		<name>autoReleaseToParticipants</name>
+		<value>false</value>
+	</setting>
+	<setting type="bool">
+		<name>autoReleaseToPublic</name>
+		<value>false</value>
+	</setting>
+	
+
+	<!-- Review settings -->
+	<setting type="int">
+		<name>numWeeksPerReview</name>
+		<value>4</value>
+	</setting>
+
+
+</event_settings>

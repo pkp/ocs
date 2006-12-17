@@ -1,0 +1,124 @@
+{**
+ * selectMergeUser.tpl
+ *
+ * Copyright (c) 2003-2006 The Public Knowledge Project
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * List enrolled users so the manager can choose users to merge.
+ *
+ * $Id$
+ *}
+
+{assign var="pageTitle" value="director.people.mergeUsers"}
+{include file="common/header.tpl"}
+
+<p>{if $oldUserId != ''}{translate key="director.people.mergeUsers.into.description"}{else}{translate key="director.people.mergeUsers.from.description"}{/if}</p>
+
+<h3>{translate key=$roleName}</h3>
+<form method="post" action="{url path=$roleSymbolic oldUserId=$oldUserId}">
+	<select name="roleSymbolic" class="selectMenu">
+		<option {if $roleSymbolic=='all'}selected="selected" {/if}value="all">{translate key="director.people.allUsers"}</option>
+
+		<option {if $roleSymbolic=='directors'}selected="selected" {/if}value="directors">{translate key="user.role.directors"}</option>
+		<option {if $roleSymbolic=='registrationManagers'}selected="selected" {/if}value="registrationManagers">{translate key="user.role.registrationManagers"}</option>
+		{*<option {if $roleSymbolic=='schedulingManagers'}selected="selected" {/if}value="schedulingManagers">{translate key="user.role.schedulingManagers"}</option>*}
+
+		<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
+		<option {if $roleSymbolic=='trackEditors'}selected="selected" {/if}value="trackEditors">{translate key="user.role.trackEditors"}</option>
+		<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
+
+		<option {if $roleSymbolic=='authors'}selected="selected" {/if}value="authors">{translate key="user.role.authors"}</option>
+		{*<option {if $roleSymbolic=='invitedAuthors'}selected="selected" {/if}value="invitedAuthors">{translate key="user.role.invitedAuthors"}</option>*}
+
+		{*<option {if $roleSymbolic=='discussants'}selected="selected" {/if}value="discussants">{translate key="user.role.discussants"}</option>
+		<option {if $roleSymbolic=='registrants'}selected="selected" {/if}value="registrants">{translate key="user.role.registrants"}</option>*}
+		<option {if $roleSymbolic=='readers'}selected="selected" {/if}value="readers">{translate key="user.role.readers"}</option>
+	</select>
+	<select name="searchField" size="1" class="selectMenu">
+		{html_options_translate options=$fieldOptions selected=$searchField}
+	</select>
+	<select name="searchMatch" size="1" class="selectMenu">
+		<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
+		<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
+	</select>
+	<input type="text" size="10" name="search" class="textField" value="{$search|escape}" />&nbsp;<input type="submit" value="{translate key="common.search"}" class="button" />
+</form>
+
+<p>{foreach from=$alphaList item=letter}<a href="{url path=$roleSymbolic oldUserId=$oldUserId searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter}</strong>{else}{$letter}{/if}</a> {/foreach}<a href="{url path=$roleSymbolic oldUserId=$oldUserId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
+
+{if not $roleId}
+<ul>
+	<li><a href="{url path="directors" oldUserId=$oldUserId}">{translate key="user.role.directors"}</a></li>
+	<li><a href="{url path="registrationManagers" oldUserId=$oldUserId}">{translate key="user.role.registrationManagers"}</a></li>
+	{*<li><a href="{url path="schedulingManagers" oldUserId=$oldUserId}">{translate key="user.role.schedulingManagers"}</a></li>*}
+	<li><a href="{url path="editors" oldUserId=$oldUserId}">{translate key="user.role.editors"}</a></li>
+	<li><a href="{url path="trackEditors" oldUserId=$oldUserId}">{translate key="user.role.trackEditors"}</a></li>
+	<li><a href="{url path="reviewers" oldUserId=$oldUserId}">{translate key="user.role.reviewers"}</a></li>
+	<li><a href="{url path="authors" oldUserId=$oldUserId}">{translate key="user.role.authors"}</a></li>
+	{*<li><a href="{url path="invitedAuthors" oldUserId=$oldUserId}">{translate key="user.role.invitedAuthors"}</a></li>*}
+	{*<li><a href="{url path="discussants" oldUserId=$oldUserId}">{translate key="user.role.discussants"}</a></li>
+	<li><a href="{url path="registrants" oldUserId=$oldUserId}">{translate key="user.role.registrants"}</a></li>*}
+	<li><a href="{url path="readers" oldUserId=$oldUserId}">{translate key="user.role.readers"}</a></li>
+</ul>
+
+<br />
+{else}
+<p><a href="{url path="all" oldUserId=$oldUserId}" class="action">{translate key="director.people.allUsers"}</a></p>
+{/if}
+
+<table width="100%" class="listing">
+	<tr>
+		<td colspan="4" class="headseparator">&nbsp;</td>
+	</tr>
+	<tr class="heading" valign="bottom">
+		<td width="29%">{translate key="user.username"}</td>
+		<td width="29%">{translate key="user.name"}</td>
+		<td width="29%">{translate key="user.email"}</td>
+		<td width="13%" align="right">{translate key="common.action"}</td>
+	</tr>
+	<tr>
+		<td colspan="4" class="headseparator">&nbsp;</td>
+	</tr>
+	{iterate from=users item=user}
+	{assign var=userExists value=1}
+	<tr valign="top">
+		<td><a class="action" href="{url op="userProfile" path=$user->getUserId()}">{$user->getUsername()|escape|wordwrap:15:" ":true}</a></td>
+		<td>{$user->getFullName()|escape}</td>
+		<td class="nowrap">
+			{assign var=emailString value="`$user->getFullName()` <`$user->getEmail()`>"}
+			{url|assign:"redirectUrl" path=$roleSymbolic}
+			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$redirectUrl}
+			{$user->getEmail()|truncate:15:"..."|escape}&nbsp;{icon name="mail" url=$url}
+		</td>
+		<td align="right">
+			{if $thisUser->getUserId() != $user->getUserId()}
+				{if $oldUserId != ''}
+					{if $oldUserId != $user->getUserId()}
+						<a href="#" onclick="confirmAction('{url oldUserId=$oldUserId newUserId=$user->getUserId()}', '{translate|escape:"htmlall" key="director.people.mergeUsers.confirm" oldUsername=$oldUsername newUsername=$user->getUsername()}')" class="action">{translate key="director.people.mergeUser"}</a>
+					{/if}
+				{else}
+					<a href="{url oldUserId=$user->getUserId()}" class="action">{translate key="director.people.mergeUser"}</a>
+				{/if}
+			{/if}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4" class="{if $users->eof()}end{/if}separator">&nbsp;</td>
+	</tr>
+{/iterate}
+{if $users->wasEmpty()}
+	<tr>
+		<td colspan="4" class="nodata">{translate key="director.people.noneEnrolled"}</td>
+	</tr>
+	<tr>
+		<td colspan="4" class="endseparator">&nbsp;</td>
+	</tr>
+{else}
+	<tr>
+		<td colspan="2" align="left">{page_info iterator=$users}</td>
+		<td colspan="2" align="right">{page_links name="users" iterator=$users searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth roleSymbolic=$roleSymbolic oldUserId=$oldUserId}</td>
+	</tr>
+{/if}
+</table>
+
+{include file="common/footer.tpl"}

@@ -1,0 +1,350 @@
+<?php
+
+/**
+ * AuthorDAO.inc.php
+ *
+ * Copyright (c) 2003-2007 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @package paper
+ *
+ * Class for Author DAO.
+ * Operations for retrieving and modifying Author objects.
+ *
+ * $Id$
+ */
+
+import('paper.Author');
+
+class AuthorDAO extends DAO {
+
+	/**
+	 * Constructor.
+	 */
+	function AuthorDAO() {
+		parent::DAO();
+	}
+	
+	/**
+	 * Retrieve an author by ID.
+	 * @param $authorId int
+	 * @return Author
+	 */
+	function &getAuthor($authorId) {
+		$result = &$this->retrieve(
+			'SELECT * FROM paper_authors WHERE author_id = ?', $authorId
+		);
+
+		$returner = null;
+		if ($result->RecordCount() != 0) {
+			$returner = &$this->_returnAuthorFromRow($result->GetRowAssoc(false));
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+	
+	/**
+	 * Retrieve all authors for an paper.
+	 * @param $paperId int
+	 * @return array Authors ordered by sequence
+	 */
+	function &getAuthorsByPaper($paperId) {
+		$authors = array();
+		
+		$result = &$this->retrieve(
+			'SELECT * FROM paper_authors WHERE paper_id = ? ORDER BY seq',
+			$paperId
+		);
+		
+		while (!$result->EOF) {
+			$authors[] = &$this->_returnAuthorFromRow($result->GetRowAssoc(false));
+			$result->moveNext();
+		}
+
+		$result->Close();
+		unset($result);
+	
+		return $authors;
+	}
+
+	/**
+	 * Retrieve all published papers associated with authors with
+	 * the given first name, middle name, last name, and affiliation.
+	 * @param $eventId int (null if no restriction desired)
+	 * @param firstName string
+	 * @param middleName string
+	 * @param lastName string
+	 * @param affiliation string
+	 */
+	function &getPublishedPapersForAuthor($eventId, $firstName, $middleName, $lastName, $affiliation) {
+		$publishedPapers = array();
+		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$params = array($firstName, $middleName, $lastName, $affiliation);
+		if ($eventId !== null) $params[] = $eventId;
+
+		$result = &$this->retrieve(
+			'SELECT DISTINCT aa.paper_id FROM paper_authors aa
+				LEFT JOIN papers a ON (aa.paper_id = a.paper_id)
+				WHERE aa.first_name = ? AND (aa.middle_name = ?' . (empty($middleName)?' OR aa.middle_name IS NULL':'') .  ')
+					AND aa.last_name = ? AND (aa.affiliation = ?' . (empty($affiliation)?' OR aa.affiliation IS NULL':'') . ')' .
+				($eventId!==null?(' AND a.event_id = ?'):''),
+			$params
+		);
+
+		while (!$result->EOF) {
+			$row = &$result->getRowAssoc(false);
+			$publishedPaper = &$publishedPaperDao->getPublishedPaperByPaperId($row['paper_id']);
+			if ($publishedPaper) {
+				$publishedPapers[] = &$publishedPaper;
+			}
+			$result->moveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $publishedPapers;
+	}
+
+	/**
+	 * Retrieve all published authors for a event in an associative array by
+	 * the first letter of the last name, for example:
+	 * $returnedArray['S'] gives array($misterSmithObject, $misterSmytheObject, ...)
+	 * Keys will appear in sorted order. Note that if eventId is null,
+	 * alphabetized authors for all events are returned.
+	 * @param $eventId int
+	 * @param $initial An initial the last names must begin with
+	 * @return array Authors ordered by sequence
+	 */
+	function &getAuthorsAlphabetizedByEvent($eventId = null, $initial = null, $rangeInfo = null) {
+		$authors = array();
+		$params = array();
+
+		if (isset($eventId)) $params[] = $eventId;
+		if (isset($initial)) {
+			$params[] = String::strtolower($initial) . '%';
+			$initialSql = ' AND LOWER(aa.last_name) LIKE LOWER(?)';
+		} else {
+			$initialSql = '';
+		}
+
+		$result = &$this->retrieveRange(
+			'SELECT DISTINCT NULL AS url,
+				NULL AS author_id,
+				NULL AS paper_id,
+				NULL AS email,
+				NULL AS biography,
+				NULL AS primary_contact,
+				NULL AS seq,
+				aa.first_name AS first_name,
+				aa.middle_name AS middle_name,
+				aa.last_name AS last_name,
+				aa.affiliation AS affiliation,
+				aa.country FROM paper_authors aa,
+				papers a,
+				published_papers pa,
+				events e
+			WHERE e.event_id = pa.event_id
+				AND e.enabled = 1
+				AND aa.paper_id = a.paper_id ' .
+				(isset($eventId)?'AND a.event_id = ? ':'') .
+				'AND pa.paper_id = a.paper_id
+				AND (aa.last_name IS NOT NULL
+				AND aa.last_name <> \'\')' . $initialSql . ' ORDER BY aa.last_name, aa.first_name',
+			empty($params)?false:$params,
+			$rangeInfo
+		);
+		
+		$returner = &new DAOResultFactory($result, $this, '_returnAuthorFromRow');
+		return $returner;
+	}
+	
+	/**
+	 * Retrieve the IDs of all authors for an paper.
+	 * @param $paperId int
+	 * @return array int ordered by sequence
+	 */
+	function &getAuthorIdsByPaper($paperId) {
+		$authors = array();
+		
+		$result = &$this->retrieve(
+			'SELECT author_id FROM paper_authors WHERE paper_id = ? ORDER BY seq',
+			$paperId
+		);
+		
+		while (!$result->EOF) {
+			$authors[] = $result->fields[0];
+			$result->moveNext();
+		}
+
+		$result->Close();
+		unset($result);
+	
+		return $authors;
+	}
+	
+	/**
+	 * Internal function to return an Author object from a row.
+	 * @param $row array
+	 * @return Author
+	 */
+	function &_returnAuthorFromRow(&$row) {
+		$author = &new Author();
+		$author->setAuthorId($row['author_id']);
+		$author->setPaperId($row['paper_id']);
+		$author->setFirstName($row['first_name']);
+		$author->setMiddleName($row['middle_name']);
+		$author->setLastName($row['last_name']);
+		$author->setAffiliation($row['affiliation']);
+		$author->setCountry($row['country']);
+		$author->setEmail($row['email']);
+		$author->setUrl($row['url']);
+		$author->setBiography($row['biography']);
+		$author->setPrimaryContact($row['primary_contact']);
+		$author->setSequence($row['seq']);
+		
+		HookRegistry::call('AuthorDAO::_returnAuthorFromRow', array(&$author, &$row));
+
+		return $author;
+	}
+
+	/**
+	 * Insert a new Author.
+	 * @param $author Author
+	 */	
+	function insertAuthor(&$author) {
+		$this->update(
+			'INSERT INTO paper_authors
+				(paper_id, first_name, middle_name, last_name, affiliation, country, email, url, biography, primary_contact, seq)
+				VALUES
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+			array(
+				$author->getPaperId(),
+				$author->getFirstName(),
+				$author->getMiddleName() . '', // make non-null
+				$author->getLastName(),
+				$author->getAffiliation() . '', // make non-null
+				$author->getCountry(),
+				$author->getEmail(),
+				$author->getUrl(),
+				$author->getBiography(),
+				$author->getPrimaryContact(),
+				$author->getSequence()
+			)
+		);
+		$author->setAuthorId($this->getInsertAuthorId());
+		return $author->getAuthorId();
+	}
+	
+	/**
+	 * Update an existing Author.
+	 * @param $author Author
+	 */
+	function updateAuthor(&$author) {
+		return $this->update(
+			'UPDATE paper_authors
+				SET
+					first_name = ?,
+					middle_name = ?,
+					last_name = ?,
+					affiliation = ?,
+					country = ?,
+					email = ?,
+					url = ?,
+					biography = ?,
+					primary_contact = ?,
+					seq = ?
+				WHERE author_id = ?',
+			array(
+				$author->getFirstName(),
+				$author->getMiddleName() . '', // make non-null
+				$author->getLastName(),
+				$author->getAffiliation() . '', // make non-null
+				$author->getCountry(),
+				$author->getEmail(),
+				$author->getUrl(),
+				$author->getBiography(),
+				$author->getPrimaryContact(),
+				$author->getSequence(),
+				$author->getAuthorId()
+			)
+		);
+	}
+	
+	/**
+	 * Delete an Author.
+	 * @param $author Author
+	 */
+	function deleteAuthor(&$author) {
+		return $this->deleteAuthorById($author->getAuthorId());
+	}
+	
+	/**
+	 * Delete an author by ID.
+	 * @param $authorId int
+	 * @param $paperId int optional
+	 */
+	function deleteAuthorById($authorId, $paperId = null) {
+		if (isset($paperId)) {
+			return $this->update(
+				'DELETE FROM paper_authors WHERE author_id = ? AND paper_id = ?',
+				array($authorId, $paperId)
+			);
+		
+		} else {
+			return $this->update(
+				'DELETE FROM paper_authors WHERE author_id = ?', $authorId
+			);
+		}
+	}
+	
+	/**
+	 * Delete authors by paper.
+	 * @param $paperId int
+	 */
+	function deleteAuthorsByPaper($paperId) {
+		return $this->update(
+			'DELETE FROM paper_authors WHERE paper_id = ?', $paperId
+		);
+	}
+	
+	/**
+	 * Sequentially renumber an paper's authors in their sequence order.
+	 * @param $paperId int
+	 */
+	function resequenceAuthors($paperId) {
+		$result = &$this->retrieve(
+			'SELECT author_id FROM paper_authors WHERE paper_id = ? ORDER BY seq', $paperId
+		);
+		
+		for ($i=1; !$result->EOF; $i++) {
+			list($authorId) = $result->fields;
+			$this->update(
+				'UPDATE paper_authors SET seq = ? WHERE author_id = ?',
+				array(
+					$i,
+					$authorId
+				)
+			);
+			
+			$result->moveNext();
+		}
+
+		$result->close();
+		unset($result);
+	}
+	
+	/**
+	 * Get the ID of the last inserted author.
+	 * @return int
+	 */
+	function getInsertAuthorId() {
+		return $this->getInsertId('paper_authors', 'author_id');
+	}
+	
+}
+
+?>

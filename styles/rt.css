@@ -1,0 +1,54 @@
+/**
+ * rt.css
+ *
+ * Copyright (c) 2003-2006 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * Stylesheet for reading tools
+ *
+ * $Id$
+ */
+
+#headerTitle {
+	width: 660px;
+}
+
+#header h1 {
+	font-size: 1.2em;
+	padding: 0.25em 0em 0.25em 0em;
+	text-align: right;
+}
+
+#body {
+	width: 660px;
+}
+
+#footer {
+	clear: both;
+	padding: 0;
+	background-color: #ABA;
+	text-align: center;
+}
+
+#footerContent {
+	width: 660px;
+}
+
+#main {
+	margin: 0;
+	width: 660px;
+}
+
+#main h2 {
+	font-size: 1.5em;
+	margin: 0em 1em 0.25em 0em;
+	padding-top: 0;
+}
+
+#content h3 {
+	font-size: 1.5em;
+}
+
+#main h6 {
+	margin-bottom: -0.5em;
+}
