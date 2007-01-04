@@ -759,7 +759,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="director.events.eventTitle">Event Title</message>
 	<message key="director.events.eventStartDate">Start Date</message>
 	<message key="director.events.eventEndDate">End Date</message>
-	<message key="director.events.create">Create Events</message>
+	<message key="director.events.create">Create Event</message>
 	<message key="director.events.createInstructions">You will automatically be enrolled as the director of this event. After creating an event, enter it as an Event Director to continue with its setup and user enrollment.</message>
 	<message key="director.events.urlWillBe">The event's URL will be {$sampleUrl}</message>
 	<message key="director.events.form.titleRequired">A title is required.</message>
