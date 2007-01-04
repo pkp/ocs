@@ -262,6 +262,14 @@ class TrackSubmissionHandler extends AuthorHandler {
 		// metadata.
 		if ($submission->getReviewProgress() != REVIEW_PROGRESS_ABSTRACT) {
 			Request::redirect(null, null, null, 'submission', $paperId);
+
+		} else {
+
+			if(AuthorAction::saveMetadata($submission)) {
+				Request::redirect(null, null, null, 'submission', $paperId);
+			} else {
+				AuthorAction::viewMetadata($submission, ROLE_ID_AUTHOR);
+			}
 		}
 	}
 

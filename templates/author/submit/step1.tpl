@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="author.submit.step1"}
 {include file="author/submit/submitHeader.tpl"}
 
-<p>{translate key="author.submit.howToSubmitReviewModel`$eventSettings.reviewModel`"
+<p>{translate key="author.submit.howToSubmit"
 	supportName=$eventSettings.supportName
 	supportEmail=$eventSettings.supportEmail
 	supportPhone=$eventSettings.supportPhone}</p>
