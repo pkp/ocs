@@ -197,7 +197,7 @@ Thank you,
 			<field name="subject">Paper Review Request</field>
 			<field name="body">{$reviewerName}:
 
-I believe that you would serve as an excellent reviewer of the manuscript, "{$paperTitle}," which has been submitted to {$conferenceName}. The submission's extract is inserted below, and I hope that you will consider undertaking this important task for us.
+I believe that you would serve as an excellent reviewer of the proposal, "{$paperTitle}," which has been submitted to {$conferenceName}. The submission's extract is inserted below, and I hope that you will consider undertaking this important task for us.
 
 Please log into the conference web site by {$weekLaterDate} to indicate whether you will undertake the review or not, as well as to access the submission and to record your review and recommendation. The web site is {$conferenceUrl}
 

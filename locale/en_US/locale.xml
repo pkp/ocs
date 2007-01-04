@@ -760,7 +760,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="director.events.eventStartDate">Start Date</message>
 	<message key="director.events.eventEndDate">End Date</message>
 	<message key="director.events.create">Create Event</message>
-	<message key="director.events.createInstructions">You will automatically be enrolled as the director of this event. After creating an event, enter it as an Event Director to continue with its setup and user enrollment.</message>
+	<message key="director.events.createInstructions">A scheduled instance of the conference is created by entering a title (for example, if it is an annual conference, the name of the conference plus the year) and a URL path. You will be made a Conference Director and can designate other Conference Directors, who are able to manage the details of this event, beginning with the scheduling of the conference in Conference Timeline.</message>
 	<message key="director.events.urlWillBe">The event's URL will be {$sampleUrl}</message>
 	<message key="director.events.form.titleRequired">A title is required.</message>
 	<message key="director.events.form.pathRequired">A path is required.</message>
@@ -895,7 +895,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<!-- Conference Setup Step 1: Details -->
 	<message key="director.setup.gettingDownTheDetails">Step 1. Getting Down the Details</message>
-	<message key="director.setup.conferenceSetupNotes"><![CDATA[Information in the following pages is common to all events of this conference. Wherever possible, you should describe the conference (e.g. My Conference), rather than an event of it (e.g. My Conference 2006).<br /><br/ >You will be given the opportunity to enter event-specific data (e.g. event dates and details) when you create an event of this conference.]]></message>
+	<message key="director.setup.conferenceSetupNotes"><![CDATA[Conferences are set up in two stages. The first stage is concerned with the conference in general, whether it is held only once, run annually, or run as a series. The second set of steps, which are completed after these initial steps are in place, concerns the specific and scheduled instances of the conference. This permits a website to be run for the conference in general, with many instances of it available to readers (e.g., My Conference, with My Conference 2007; My Conference 2008, etc.) Conference Managers set up the general conference site, while Conference Directors set up the scheduled instances of the conference.]]></message>
 	<message key="director.setup.generalInformation">General Information</message>
 	<message key="director.setup.conferenceAcronym">Conference acronym</message>
 	<message key="director.setup.conferenceDescription">Conference Description</message>
@@ -947,7 +947,7 @@ Setting up LOCKSS support for Open Conference Systems does not need to take plac
 	<message key="director.setup.lockssLicenses"><![CDATA[See <a href="http://lockss.stanford.edu/publishers/publishers.htm" target="_blank">other versions of a LOCKSS license</a>.]]></message>
 
 	<message key="director.setup.securitySettings">Security/Access Settings</message>
-	<message key="director.setup.securitySettingsDescription">OCS provides a number of security-related options that can be used to restrict access to the conference's contents, and maintain additional information about submissions for auditing purposes.</message>
+	<message key="director.setup.securitySettingsDescription">OCS provides a number of security-related options that can be used to restrict access to the conference's contents (including the contents of past conferences), and maintain additional information about submissions for auditing purposes. In addition, Conference Directors are able to control access to active instances of scheduled conferences in Scheduled Conference Setup.</message>
 	<message key="director.setup.userRegistration">User Registration</message>
 	<message key="director.setup.enableUserRegistration">Allow users to register with the conference site as:</message>
 	<message key="director.setup.disableUserRegistration">Disable user registration. Users will have to be manually created by a conference director.</message>
@@ -1037,9 +1037,9 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<!--<message key="director.setup.issuePerVolume">Issues per volume</message>-->
 	<message key="director.setup.publicIdentifier">Identification of Conference Content</message>
 	<message key="director.setup.uniqueIdentifier">Unique Identifier</message>
-	<message key="director.setup.uniqueIdentifierDescription">Papers can be tagged with an identification number or string, employing a registration system such as the Digital Object Identifier System (DOI).</message>
-	<message key="director.setup.enablePublicPaperId">Custom identifiers will be used to identify published items.</message>-->
-	<message key="director.setup.enablePublicSuppFileId">Custom identifiers will be used to identify supplemental article files.</message>
+	<message key="director.setup.uniqueIdentifierDescription">Papers can be tagged with an identification number or string, if the conference is using an item registration system such as the Digital Object Identifier System (DOI).</message>
+	<message key="director.setup.enablePublicPaperId">Custom identifiers will be used to identify posted papers.</message>-->
+	<message key="director.setup.enablePublicSuppFileId">Custom identifiers will be used to identify supplemental files submitted with papers.</message>
 	<message key="director.setup.onlineAccessManagement">Online Access Management</message>
 	<message key="director.setup.openAccess">Provide open access to the conference's contents as each issue or item is published.</message>
 	<message key="director.setup.openAccessPolicy">Open Access Policy (to appear in About the Conference)</message>
@@ -1119,11 +1119,11 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="eventDirector.setup.locationDescription">The location (institution, department, and mailing address) at which the conference will be held.</message>
 	<message key="eventDirector.setup.eventSetup">Event Setup</message>
 
-	<message key="eventDirector.setup.stepsToEvent">Six Steps to an Event</message>
-	<message key="eventDirector.setup.details">Event Details</message>
-	<message key="eventDirector.setup.details.description">Conference title, introduction &amp; overview, dates, contacts, sponsors &amp; supporters, and location.</message>
+	<message key="eventDirector.setup.stepsToEvent">These steps are designed to set up a specific instance of the conference. Once a conference is set up in this way, the setup content will be copied to the next instance of the conference as the default setup that can be edited by the current conference directors.</message>
+	<message key="eventDirector.setup.details">Details</message>
+	<message key="eventDirector.setup.details.description">Conference title, introduction &amp; overview, contacts, and sponsors.</message>
 	<message key="eventDirector.setup.submissions">Submissions</message>
-	<message key="eventDirector.setup.submissions.description">Submission details.</message>
+	<message key="eventDirector.setup.submissions.description">Presenter registration, submissions, and presenter notification.</message>
 	<message key="eventDirector.setup.review">Review</message>
 	<message key="eventDirector.setup.review.description">Review model.</message>
 	<message key="eventDirector.setup.participation">Participation</message>
@@ -1135,18 +1135,18 @@ Select a model for handling these aspects of the editorial process. (To designat
 
 	<!-- Event Setup Step 1 -->
 	<message key="eventDirector.setup.description">Event Description</message>
-	<message key="eventDirector.setup.eventIntroduction">Event Introduction</message>
+	<message key="eventDirector.setup.eventIntroduction">Introduction</message>
 	<message key="eventDirector.setup.eventIntroductionDescription">An introduction provides participants with a concise synopsis of the event. Typically, introductions do not exceed 100 words. The introduction is used when a longer overview is not appropriate.</message>
-	<message key="eventDirector.setup.eventOverview">Event Overview</message>
+	<message key="eventDirector.setup.eventOverview">Overview</message>
 	<message key="eventDirector.setup.eventOverviewDescription">An overview details the whole of the event. It includes such items as direction, topics, and structure.</message>
 	<message key="eventDirector.setup.eventSetup">Event Setup</message>
-	<message key="eventDirector.setup.title">Event title</message>
+	<message key="eventDirector.setup.title">Scheduled conference title</message>
 	<message key="eventDirector.setup.acronym">Event acronym</message>
 	<message key="eventDirector.setup.startDate">Start date</message>
 	<message key="eventDirector.setup.startDateDescription">The first day of conference activities.</message>
 	<message key="eventDirector.setup.endDate">End date</message>
 	<message key="eventDirector.setup.endDateDescription">The final day of conference activities.</message>
-	<message key="eventDirector.setup.description">Event Description</message>
+	<message key="eventDirector.setup.description">Scheduled conference description</message>
 	<message key="eventDirector.setup.program">Event Program</message>
 	<message key="eventDirector.setup.programDescription">Lay out the program by date, time, location, and event. Update this information as you begin to finalize your list of presenters and presentation titles.</message>
 	<message key="eventDirector.setup.note">Note</message>
@@ -1165,7 +1165,7 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="eventDirector.setup.authorRegistrationDescription"><![CDATA[If desired, OCS may permit users to register themselves as authors for this event. If these options are disabled, the Event Director must manually register users as authors via the Event Management pages.]]></message>
 	<message key="eventDirector.setup.openRegAuthorOn">Permit users to register as authors starting on</message>
 	<message key="eventDirector.setup.closeRegAuthorOn">Close author registration on</message>
-	<message key="eventDirector.setup.submissionContents">Submission Contents</message>
+	<message key="eventDirector.setup.submissionContents">Submissions</message>
 	<message key="eventDirector.setup.submissionsDescription"><![CDATA[Conference submissions may consist of several items: an abstract, and perhaps a paper and supplemental materials. In this section, the items to be collected as parts of a submission are specified.]]></message>
 	<message key="eventDirector.setup.acceptPapers">Collect papers</message>
 	<message key="eventDirector.setup.acceptSupplementaryReviewMaterials">Accept supplementary materials to accompany the submission during review</message>
@@ -1178,7 +1178,7 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="eventDirector.setup.reminders.submissionDeadlineWarnDisabled"><![CDATA[<strong>Note:</strong> The submission deadline warning email is currently disabled. To use this feature, enable the SUBMISSION_DEADLINE_WARN email in <a class="action" href="{$preparedEmailsUrl}">Prepared Emails</a>.]]></message>
 	<message key="eventDirector.setup.submissionReview">Step 3. Reviewing Submissions</message>
 	<message key="eventDirector.setup.submissionAndReview">Paper Submission and Review</message>
-	<message key="eventDirector.setup.reviewModel">Peer Review Model</message>
+	<message key="eventDirector.setup.reviewModel">Peer Review Process</message>
 	<message key="eventDirector.setup.reviewPapers">Subject papers to peer review after the abstracts have been reviewed and accepted</message>
 	<message key="eventDirector.setup.submitSimultaneous">Abstracts and papers will be collected and reviewed at the same time.</message>
 	<message key="eventDirector.setup.submitSequential">Papers will be collected only after abstracts are reviewed.
@@ -1187,13 +1187,13 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="eventDirector.setup.reviewOptions.numWeeksPerReview">The typical period of time allowed for reviews</message>
 	<message key="eventDirector.setup.reviewOptions.noteOnModification">Can be modified during the review process.</message>
 	<message key="eventDirector.setup.reviewOptions.reviewerReminders">Reviewer Reminders</message>
-	<message key="eventDirector.setup.reviewOptions.automatedReminders">Automated email reminders (available in OCS's default Emails) can be sent to reviewers at two points (while the editor can always email the reviewer directly as well)</message>
+	<message key="eventDirector.setup.reviewOptions.automatedReminders">Automated email reminders (available in OCS's Prepared Emails) can be sent to reviewers at two points (while the editor can always email the reviewer directly as well)</message>
 	<message key="eventDirector.setup.reviewOptions.remindForInvite1">If reviewer has not responded to a review request within</message>
 	<message key="eventDirector.setup.reviewOptions.remindForInvite2">days.</message>
 	<message key="eventDirector.setup.reviewOptions.remindForSubmit1">If reviewer has not submitted a recommendation within</message>
 	<message key="eventDirector.setup.reviewOptions.remindForSubmit2">days after review's due date.</message>
 	<message key="eventDirector.setup.reviewOptions.reviewerRatings">Reviewer Ratings</message>
-	<message key="eventDirector.setup.reviewOptions.onQuality">The editor will rate reviewers on a five-point quality scale after each review.</message>
+	<message key="eventDirector.setup.reviewOptions.onQuality">The editor will rate reviewers on a five-point quality scale after each review. The ratings will be available to Conference Directors for future conferences.</message>
 	<message key="eventDirector.setup.reviewOptions.reviewerAccess">Reviewer Access</message>
 	<message key="eventDirector.setup.reviewOptions.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
 	<message key="eventDirector.setup.reviewOptions.reviewerAccessKeysEnabled">Enable one-click reviewer access.</message>
@@ -1288,11 +1288,7 @@ including the right to place it in an open access archive. In addition, <a href=
 	<!-- Timeline management -->
 	<message key="director.timeline.eventTimeline">Event Timeline</message>
 	<message key="director.timeline.description"><![CDATA[
-		Every conference is closely associated with a schedule, which roughly specifies when different sorts of activities are permitted. For example, at a certain date, authors are allowed to submit their papers. Later, perhaps, users are allowed to register as conference participants.<br />
-		<br />
-		This management page allows each facet of the conference's schedule to be modified.<br />
-		<br />
-		Dates and times, were specified, are relative to the default time zone ({$defaultTimeZone}), where it is currently {$currentTimeDefaultTimeZone}.]]></message>
+		Conferences are organized around well-managed schedules, which set out when activities are permitted and take place. This page turns on and off certain capacities within the website, and all posted materials about the conference (e.g. Call for Papers, Announcements, etc.) should reflect these dates. You can return to this page and modify dates at any point.]]></message>
 	<message key="director.timeline.warnScheduledTasks"><![CDATA[
 		<span class="highlight">Warning:</span> This installation of OCS 2 does not appear to have scheduled tasks enabled. A large part of the functionality on this page requires it, and will be disabled. You are strongly encouraged to contact your site administrator to see if it is possible to enable scheduled tasks.]]></message>
 
@@ -2727,7 +2723,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 {$conferenceName} {$eventName}
 {$indexUrl}/{$conferencePath}/{$journalPath}
 ]]></message>
-	<message key="default.conferenceSettings.forReaders"><![CDATA[We encourage readers to sign up for the publishing notification service for this conference. Use the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/user/register">Register</a> link at the top of the homepage for the conference. This list allows the conference to claim a certain level of support or readership. See the conference's <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about/submissions#privacyStatement">Privacy Statement</a> which assures readers that their name and email address will not be used for other purposes.]]></message>
+	<message key="default.conferenceSettings.forReaders"><![CDATA[We encourage readers to sign up for notification of papers posted for this conference. Use the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/user/register">Register</a> link at the top of the homepage for the conference. This list allows the conference to claim a certain level of support or readership. See the conference's <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about/submissions#privacyStatement">Privacy Statement</a> which assures readers that their name and email address will not be used for other purposes.]]></message>
 	<message key="default.conferenceSettings.forAuthors"><![CDATA[Interested in submitting to this conference? We recommend that you review the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about">About the Conference</a> page for the conference's track policies, as well as the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about/submissions#authorGuidelines">Author Guidelines</a>. Authors need to <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/user/register">register</a> with the conference prior to submitting, or if already registered can simply <a href="{$indexUrl}/index/index/login">log in</a> and begin the 5 step process.]]></message>
 	<message key="default.conferenceSettings.lockssLicense"><![CDATA[This conference utilizes the LOCKSS system to create a distributed archiving system among participating libraries and permits those libraries to create permanent archives of the conference for purposes of preservation and restoration. <a href="http://lockss.stanford.edu/">More...</a>]]></message>
 

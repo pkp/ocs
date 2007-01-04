@@ -55,7 +55,6 @@ class ConferenceSetupStep1Form extends ConferenceSetupForm {
 
 		$conference = Request::getConference();
 		$this->_data['conferenceTitle'] = $conference->getTitle();
-		$this->_data['conferenceAcronym'] = $conference->getPath();
 	}
 
 	function readInputData() {

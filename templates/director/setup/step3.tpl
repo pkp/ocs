@@ -15,28 +15,7 @@
 <form method="post" action="{url op="saveSetup" path="3"}">
 {include file="common/formErrors.tpl"}
 
-<h3>3.1 {translate key="director.setup.conferenceArchiving"}</h3>
-
-<p>{translate key="director.setup.lockssDescription"}</p>
-
-{url|assign:"lockssExistingArchiveUrl" page="director" op="email" template="LOCKSS_EXISTING_ARCHIVE"}
-{url|assign:"lockssNewArchiveUrl" page="director" op="email" template="LOCKSS_NEW_ARCHIVE"}
-<p>{translate key="director.setup.lockssRegister" lockssExistingArchiveUrl=$lockssExistingArchiveUrl lockssNewArchiveUrl=$lockssNewArchiveUrl}</p>
-
-{url|assign:"lockssUrl" page="gateway" op="lockss"}
-<p><input type="checkbox" name="enableLockss" id="enableLockss" value="1"{if $enableLockss} checked="checked"{/if} /> <label for="enableLockss">{translate key="director.setup.lockssEnable" lockssUrl=$lockssUrl}</label></p>
-
-<p>
-	<textarea name="lockssLicense" id="lockssLicense" rows="6" cols="60" class="textArea">{$lockssLicense|escape}</textarea>
-	<br />
-	<span class="instruct">{translate key="director.setup.lockssLicenses"}</span>
-</p>
-
-
-<div class="separator"></div>
-
-
-<h3>3.2 {translate key="director.setup.securitySettings"}</h3>
+<h3>3.1 {translate key="director.setup.securitySettings"}</h3>
 
 <p>{translate key="director.setup.securitySettingsDescription"}</p>
 
@@ -96,6 +75,28 @@
 
 
 <div class="separator"></div>
+
+
+<h3>3.2 {translate key="director.setup.conferenceArchiving"}</h3>
+
+<p>{translate key="director.setup.lockssDescription"}</p>
+
+{url|assign:"lockssExistingArchiveUrl" page="director" op="email" template="LOCKSS_EXISTING_ARCHIVE"}
+{url|assign:"lockssNewArchiveUrl" page="director" op="email" template="LOCKSS_NEW_ARCHIVE"}
+<p>{translate key="director.setup.lockssRegister" lockssExistingArchiveUrl=$lockssExistingArchiveUrl lockssNewArchiveUrl=$lockssNewArchiveUrl}</p>
+
+{url|assign:"lockssUrl" page="gateway" op="lockss"}
+<p><input type="checkbox" name="enableLockss" id="enableLockss" value="1"{if $enableLockss} checked="checked"{/if} /> <label for="enableLockss">{translate key="director.setup.lockssEnable" lockssUrl=$lockssUrl}</label></p>
+
+<p>
+	<textarea name="lockssLicense" id="lockssLicense" rows="6" cols="60" class="textArea">{$lockssLicense|escape}</textarea>
+	<br />
+	<span class="instruct">{translate key="director.setup.lockssLicenses"}</span>
+</p>
+
+
+<div class="separator"></div>
+
 
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>
 
