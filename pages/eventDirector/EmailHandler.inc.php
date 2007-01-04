@@ -28,7 +28,20 @@ class EmailHandler extends EventDirectorHandler {
 			$event ? $event->getEventId() : 0);
 		
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, null), 'director.conferenceManagement')));
+		
+		// The bread crumbs depends on whether we're doing event or conference
+		// management. FIXME: this is going to be a common situation, and this isn't
+		// an elegant way of testing for it.
+		if(Request::getRequestedPage() === 'director') {
+			$templateMgr->assign('pageHierarchy', array(
+				array(Request::url(null, 'index', 'director'), 'director.conferenceManagement')
+				));
+		} else {
+			$templateMgr->assign('pageHierarchy', array(
+				array(Request::url(null, null, 'eventDirector'), 'director.eventManagement')
+				));
+		}
+		
 		$templateMgr->assign_by_ref('emailTemplates', $emailTemplates);
 		$templateMgr->assign('helpTopicId','conference.managementPages.emails');
 		$templateMgr->display('eventDirector/emails/emails.tpl');
