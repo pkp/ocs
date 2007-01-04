@@ -95,6 +95,7 @@ class RegistrationTypeForm extends Form {
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign('dateExtentFuture', REGISTRATION_TYPE_YEAR_OFFSET_FUTURE);
 		$templateMgr->assign('typeId', $this->typeId);
 		$templateMgr->assign('validCurrencies', $this->validCurrencies);
 		//$templateMgr->assign('validFormats', $this->validFormats);

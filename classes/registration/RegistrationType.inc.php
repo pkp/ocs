@@ -17,10 +17,11 @@
 /**
  * Registration type formats
  */
-define('REGISTRATION_TYPE_FORMAT_ONLINE',		0x01); 
-define('REGISTRATION_TYPE_FORMAT_PRINT',		0x10);
-define('REGISTRATION_TYPE_FORMAT_PRINT_ONLINE',	0x11);
+//define('REGISTRATION_TYPE_FORMAT_ONLINE',		0x01); 
+//define('REGISTRATION_TYPE_FORMAT_PRINT',		0x10);
+//define('REGISTRATION_TYPE_FORMAT_PRINT_ONLINE',	0x11);
 
+define('REGISTRATION_TYPE_YEAR_OFFSET_FUTURE',	'+10');
 
 class RegistrationType extends DataObject {
 

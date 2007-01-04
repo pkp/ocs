@@ -26,7 +26,7 @@
 			<input type="checkbox" name="openRegReviewer" id="openRegReviewer" value="1" {if $openRegReviewer}checked="checked"{/if} />
 			{fieldLabel name="openRegReviewer" key="eventDirector.setup.openRegReviewerOn"}
 			<nobr>
-				{html_select_date prefix="openRegReviewerDate" time=$openRegReviewerDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
+				{html_select_date prefix="openRegReviewerDate" time=$openRegReviewerDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 			</nobr>
 		</td>
 	</tr>
@@ -36,7 +36,7 @@
 			<input type="checkbox" name="closeRegReviewer" id="closeRegReviewer" value="1" {if $closeRegReviewer}checked="checked"{/if} />
 			{fieldLabel name="closeRegReviewer" key="eventDirector.setup.closeRegReviewerOn"}
 			<nobr>
-				{html_select_date prefix="closeRegReviewerDate" time=$closeRegReviewerDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
+				{html_select_date prefix="closeRegReviewerDate" time=$closeRegReviewerDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 			</nobr>
 		</td>
 	</tr>

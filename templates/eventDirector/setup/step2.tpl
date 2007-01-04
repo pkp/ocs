@@ -26,7 +26,7 @@
 			<input type="checkbox" name="openRegAuthor" id="openRegAuthor" value="1" {if $openRegAuthor}checked="checked"{/if} />
 			{fieldLabel name="openRegAuthor" key="eventDirector.setup.openRegAuthorOn"}
 			<nobr>
-				{html_select_date prefix="openRegAuthorDate" time=$openRegAuthorDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
+				{html_select_date prefix="openRegAuthorDate" time=$openRegAuthorDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 			</nobr>
 		</td>
 	</tr>
@@ -36,7 +36,7 @@
 			<input type="checkbox" name="closeRegAuthor" id="closeRegAuthor" value="1" {if $closeRegAuthor}checked="checked"{/if} />
 			{fieldLabel name="closeRegAuthor" key="eventDirector.setup.closeRegAuthorOn"}
 			<nobr>
-				{html_select_date prefix="closeRegAuthorDate" time=$closeRegAuthorDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
+				{html_select_date prefix="closeRegAuthorDate" time=$closeRegAuthorDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 			</nobr>
 		</td>
 	</tr>

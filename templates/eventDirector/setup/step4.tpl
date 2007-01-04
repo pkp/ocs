@@ -26,7 +26,7 @@
 			<input type="checkbox" name="openRegReader" id="openRegReader" value="1" {if $openRegReader}checked="checked"{/if} />
 			{fieldLabel name="openRegReader" key="eventDirector.setup.openRegReaderOn"}
 			<nobr>
-				{html_select_date prefix="openRegReaderDate" time=$openRegReaderDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
+				{html_select_date prefix="openRegReaderDate" time=$openRegReaderDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 			</nobr>
 		</td>
 	</tr>
@@ -36,7 +36,7 @@
 			<input type="checkbox" name="closeRegReader" id="closeRegReader" value="1" {if $closeRegReader}checked="checked"{/if} />
 			{fieldLabel name="closeRegReader" key="eventDirector.setup.closeRegReaderOn"}
 			<nobr>
-				{html_select_date prefix="closeRegReaderDate" time=$closeRegReaderDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
+				{html_select_date prefix="closeRegReaderDate" time=$closeRegReaderDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 			</nobr>
 		</td>
 	</tr>

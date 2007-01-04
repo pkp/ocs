@@ -720,7 +720,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="admin.conferences.conferenceSettings">Conference Settings</message>
 	<message key="admin.conferences.noneCreated">No conferences have been created.</message>
 	<message key="admin.conferences.confirmDelete">Are you sure you want to permanently delete this conference and all of its contents?</message>
-	<message key="admin.conferences.create">Create Conferences</message>
+	<message key="admin.conferences.create">Create Conference</message>
 	<message key="admin.conferences.createInstructions">You will automatically be enrolled as the director of this conference. After creating a new conference, enter it as a director to continue with its setup and user enrollment.</message>
 	<message key="admin.conferences.urlWillBe">The conference's URL will be {$sampleUrl}</message>
 	<message key="admin.conferences.form.titleRequired">A title is required.</message>
@@ -2713,7 +2713,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	 * DEFAULT - Default settings for setup items.
 	 *
 	-->
-	<message key="default.conferenceSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another onference for consideration (or an explanation has been provided in Comments to the Editor).</message>
+	<message key="default.conferenceSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another conference for consideration (or an explanation has been provided in Comments to the Editor).</message>
 	<message key="default.conferenceSettings.checklist.fileFormat">The submission file is in Microsoft Word, RTF, or WordPerfect document file format.</message>-->
 	<message key="default.conferenceSettings.checklist.addressesLinked"><![CDATA[All URL addresses in the text (e.g., <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) are activated and ready to click.]]></message>
 	<message key="default.conferenceSettings.checklist.submissionAppearance">The text is single-spaced; uses a 12-point font; employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end.</message>
