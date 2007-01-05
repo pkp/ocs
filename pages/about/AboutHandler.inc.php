@@ -34,7 +34,7 @@ class AboutHandler extends Handler {
 			$customAboutItems = &$settings['customAboutItems'];
 
 			foreach (AboutHandler::getPublicStatisticsNames() as $name) {
-				if ($settings[$name]) {
+				if (isset($settings[$name])) {
 					$templateMgr->assign('publicStatisticsEnabled', true);
 					break;
 				} 
