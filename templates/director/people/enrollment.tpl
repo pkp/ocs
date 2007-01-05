@@ -49,20 +49,26 @@ function confirmAndPrompt(userId) {
 
 		{if $isConferenceManagement}
 			<option {if $roleSymbolic=='directors'}selected="selected" {/if}value="directors">{translate key="user.role.directors"}</option>
+			<option {if $roleSymbolic=='eventDirectors'}selected="selected" {/if}value="eventDirectors">{translate key="user.role.eventDirectors"}</option>
 		{/if}
-		<option {if $roleSymbolic=='registrationManagers'}selected="selected" {/if}value="registrationManagers">{translate key="user.role.registrationManagers"}</option>
-		{*<option {if $roleSymbolic=='schedulingManagers'}selected="selected" {/if}value="schedulingManagers">{translate key="user.role.schedulingManagers"}</option>*}
+		{if $isEventManagement}
+			{if $isRegistrationEnabled}
+				<option {if $roleSymbolic=='registrationManagers'}selected="selected" {/if}value="registrationManagers">{translate key="user.role.registrationManagers"}</option>
+			{/if}
 
-		<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
-		<option {if $roleSymbolic=='trackEditors'}selected="selected" {/if}value="trackEditors">{translate key="user.role.trackEditors"}</option>
-		<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
+			<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
+			<option {if $roleSymbolic=='trackEditors'}selected="selected" {/if}value="trackEditors">{translate key="user.role.trackEditors"}</option>
+			<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
 
-		<option {if $roleSymbolic=='authors'}selected="selected" {/if}value="authors">{translate key="user.role.authors"}</option>
-		{*<option {if $roleSymbolic=='invitedAuthors'}selected="selected" {/if}value="invitedAuthors">{translate key="user.role.invitedAuthors"}</option>*}
+			<option {if $roleSymbolic=='authors'}selected="selected" {/if}value="authors">{translate key="user.role.authors"}</option>
+			{*<option {if $roleSymbolic=='invitedAuthors'}selected="selected" {/if}value="invitedAuthors">{translate key="user.role.invitedAuthors"}</option>*}
 
-		{*<option {if $roleSymbolic=='discussants'}selected="selected" {/if}value="discussants">{translate key="user.role.discussants"}</option>*}
-		{*<option {if $roleSymbolic=='registrants'}selected="selected" {/if}value="registrants">{translate key="user.role.registrants"}</option>*}
-		<option {if $roleSymbolic=='readers'}selected="selected" {/if}value="readers">{translate key="user.role.readers"}</option>
+			{*<option {if $roleSymbolic=='discussants'}selected="selected" {/if}value="discussants">{translate key="user.role.discussants"}</option>*}
+			{if $isRegistrationEnabled}
+				{*<option {if $roleSymbolic=='registrants'}selected="selected" {/if}value="registrants">{translate key="user.role.registrants"}</option>*}
+			{/if}
+			<option {if $roleSymbolic=='readers'}selected="selected" {/if}value="readers">{translate key="user.role.readers"}</option>
+		{/if}
 	</select>
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
@@ -80,10 +86,12 @@ function confirmAndPrompt(userId) {
 <ul>
 	{if $isConferenceManagement}
 		<li><a href="{url path="directors"}">{translate key="user.role.directors"}</a></li>
+		<li><a href="{url path="eventDirectors"}">{translate key="user.role.eventDirectors"}</a></li>
 	{/if}
 	{if $isEventManagement}
-		<li><a href="{url path="registrationManagers"}">{translate key="user.role.registrationManagers"}</a></li>
-		{*<li><a href="{url path="schedulingManagers"}">{translate key="user.role.schedulingManagers"}</a></li>*}
+		{if $isRegistrationEnabled}
+			<li><a href="{url path="registrationManagers"}">{translate key="user.role.registrationManagers"}</a></li>
+		{/if}
 	
 		<li><a href="{url path="editors"}">{translate key="user.role.editors"}</a></li>
 		<li><a href="{url path="trackEditors"}">{translate key="user.role.trackEditors"}</a></li>
@@ -92,8 +100,10 @@ function confirmAndPrompt(userId) {
 		<li><a href="{url path="authors"}">{translate key="user.role.authors"}</a></li>
 		{*<li><a href="{url path="invitedAuthors"}">{translate key="user.role.invitedAuthors"}</a></li>*}
 	
-		{*<li><a href="{url path="discussants"}">{translate key="user.role.discussants"}</a></li>
-		<li><a href="{url path="registrants"}">{translate key="user.role.registrants"}</a></li>*}
+		{*<li><a href="{url path="discussants"}">{translate key="user.role.discussants"}</a></li>*}
+		{if $isRegistrationEnabled}
+			{*<li><a href="{url path="registrants"}">{translate key="user.role.registrants"}</a></li>*}
+		{/if}
 		<li><a href="{url path="readers"}">{translate key="user.role.readers"}</a></li>
 	{/if}
 </ul>

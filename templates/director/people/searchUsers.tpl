@@ -53,14 +53,22 @@ function confirmAndPrompt(userId) {
 	<p>
 	{translate key="director.people.enrollUserAs"} <select name="roleId" size="1"  class="selectMenu">
 		<option value=""></option>
-		<option value="{$smarty.const.ROLE_ID_CONFERENCE_DIRECTOR}">{translate key="user.role.director"}</option>
-		<option value="{$smarty.const.ROLE_ID_EDITOR}">{translate key="user.role.editor"}</option>
-		<option value="{$smarty.const.ROLE_ID_TRACK_EDITOR}">{translate key="user.role.trackEditor"}</option>
-		<option value="{$smarty.const.ROLE_ID_REVIEWER}">{translate key="user.role.reviewer"}</option>
-		<option value="{$smarty.const.ROLE_ID_REGISTRATION_MANAGER}">{translate key="user.role.subscriptionManager"}</option>
-		<option value="{$smarty.const.ROLE_ID_AUTHOR}">{translate key="user.role.author"}</option>
-		{*<option value="{$smarty.const.ROLE_ID_INVITED_AUTHOR}">{translate key="user.role.invitedAuthor"}</option>*}
-		<option value="{$smarty.const.ROLE_ID_READER}">{translate key="user.role.reader"}</option>
+		{if $isConferenceManagement}
+			<option value="{$smarty.const.ROLE_ID_CONFERENCE_DIRECTOR}">{translate key="user.role.director"}</option>
+			<option value="{$smarty.const.ROLE_ID_EVENT_DIRECTOR}">{translate key="user.role.eventDirector"}</option>
+		{/if}
+		{if $isEventManagement}
+			<option value="{$smarty.const.ROLE_ID_CONFERENCE_DIRECTOR}">{translate key="user.role.director"}</option>
+			<option value="{$smarty.const.ROLE_ID_EDITOR}">{translate key="user.role.editor"}</option>
+			<option value="{$smarty.const.ROLE_ID_TRACK_EDITOR}">{translate key="user.role.trackEditor"}</option>
+			<option value="{$smarty.const.ROLE_ID_REVIEWER}">{translate key="user.role.reviewer"}</option>
+			{if $isRegistrationEnabled}
+				<option value="{$smarty.const.ROLE_ID_REGISTRATION_MANAGER}">{translate key="user.role.registrationManager"}</option>
+			{/if}
+			<option value="{$smarty.const.ROLE_ID_AUTHOR}">{translate key="user.role.author"}</option>
+			{*<option value="{$smarty.const.ROLE_ID_INVITED_AUTHOR}">{translate key="user.role.invitedAuthor"}</option>*}
+			<option value="{$smarty.const.ROLE_ID_READER}">{translate key="user.role.reader"}</option>
+		{/if}
 	</select>
 	</p>
 	<script type="text/javascript">

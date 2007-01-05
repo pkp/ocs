@@ -75,9 +75,6 @@ class PeopleHandler extends DirectorHandler {
 				case ROLE_ID_REGISTRATION_MANAGER:
 					$helpTopicId = 'conference.roles.registrationManager';
 					break;
-//				case ROLE_ID_SCHEDULING_MANAGER:
-//					$helpTopicId = 'conference.roles.schedulingManager';
-//					break;
 				case ROLE_ID_EDITOR:
 					$helpTopicId = 'conference.roles.editor';
 					break;
@@ -140,6 +137,7 @@ class PeopleHandler extends DirectorHandler {
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
 		$templateMgr->assign('isEventManagement', Request::getRequestedPage() == ROLE_PATH_EVENT_DIRECTOR);
 		$templateMgr->assign('isConferenceManagement', Request::getRequestedPage() == ROLE_PATH_CONFERENCE_DIRECTOR);
+		$templateMgr->assign('isRegistrationEnabled', ($event? $event->getSetting('enableRegistration', true) : false));
 		$templateMgr->display('director/people/enrollment.tpl');
 	}
 	
@@ -181,6 +179,10 @@ class PeopleHandler extends DirectorHandler {
 
 		$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
 		
+		$templateMgr->assign('isEventManagement', Request::getRequestedPage() == ROLE_PATH_EVENT_DIRECTOR);
+		$templateMgr->assign('isConferenceManagement', Request::getRequestedPage() == ROLE_PATH_CONFERENCE_DIRECTOR);
+		$templateMgr->assign('isRegistrationEnabled', ($event? $event->getSetting('enableRegistration', true) : false));
+
 		$templateMgr->assign('searchField', $searchType);
 		$templateMgr->assign('searchMatch', $searchMatch);
 		$templateMgr->assign('search', $search);
@@ -211,6 +213,7 @@ class PeopleHandler extends DirectorHandler {
 		// Get a list of users to enroll -- either from the
 		// submitted array 'users', or the single user ID in
 		// 'userId'
+		$users = Request::getUserVar('users');
 		if (!isset($users) && Request::getUserVar('userId') != null) {
 			$users = array(Request::getUserVar('userId'));
 		}
@@ -241,13 +244,15 @@ class PeopleHandler extends DirectorHandler {
 					$isEventDirector &&
 					$rolePath != ROLE_PATH_CONFERENCE_DIRECTOR &&
 					$rolePath != ROLE_PATH_EVENT_DIRECTOR))) {
+
+			$eventId = ($event? $event->getEventId() : 0);
 					
 			for ($i=0; $i<count($users); $i++) {
-				if (!$roleDao->roleExists($conference->getConferenceId(), $event->getEventId(), $users[$i], $roleId)) {
+				if (!$roleDao->roleExists($conference->getConferenceId(), $eventId, $users[$i], $roleId)) {
 					$role = &new Role();
 					$role->setConferenceId($conference->getConferenceId());
 					if ($event) {
-						$role->setEventId($event->getEventId());
+						$role->setEventId($eventId);
 					} else {
 						$role->setEventId(0);
 					}
