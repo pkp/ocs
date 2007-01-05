@@ -34,7 +34,7 @@ class EmailHandler extends EventDirectorHandler {
 		// an elegant way of testing for it.
 		if(Request::getRequestedPage() === 'director') {
 			$templateMgr->assign('pageHierarchy', array(
-				array(Request::url(null, 'index', 'director'), 'director.conferenceManagement')
+				array(Request::url(null, 'index', 'director'), 'director.conferenceSiteManagement')
 				));
 		} else {
 			$templateMgr->assign('pageHierarchy', array(

@@ -25,7 +25,7 @@ class FilesHandler extends DirectorHandler {
 		import('file.FileManager');
 		
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'director'), 'director.conferenceManagement')));
+		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'director'), 'director.conferenceSiteManagement')));
 
 		FilesHandler::parseDirArg($args, $currentDir, $parentDir);
 		$currentPath = FilesHandler::getRealFilesDir($currentDir);

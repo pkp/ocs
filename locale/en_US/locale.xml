@@ -763,9 +763,9 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="director.events.form.pathExists">The selected path is already in use in this conference.</message>
 
 	<!-- Conference Management -->
-	<message key="director.conferenceManagement">Conference Management</message>
-	<message key="director.conferenceSetup">Conference Setup</message>
-	<message key="director.hostedEvents">Hosted Events</message>
+	<message key="director.conferenceSiteManagement">Conference Site Management</message>
+	<message key="director.conferenceSiteSetup">Conference Site Setup</message>
+	<message key="director.scheduledConferences">Scheduled Conferences</message>
 	<message key="director.emails">Prepared Emails</message>
 	<message key="director.statistics">Stats &amp; Reports</message>
 	<message key="director.readingTools">Reading Tools</message>
@@ -882,7 +882,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="director.setup.finalStepSavedNotes">
 		<![CDATA[
 			<p>Almost Done!</p>
-			<p>You have successfully created a conference. In order to launch your OCS site, you must now <a href="{$eventSetupUrl}">create an event</a> of this conference. You will need to specify dates, locations, tracks, and other details specific to a particular event of a conference.</p>
+			<p>A conference has now been set up, which may entail a single event, an annual conference, or a series of events, all of which can be managed from this conference site. In order to schedule a specific instance of this conference, go to <a href="{$eventSetupUrl}">Scheduled Conferences</a>. You may access this page at any time via the Conference Manager's homepage.</p>
 			<p>You can return to these five pages at any time by following the links to "User Home > Conference Director > Setup".</p>
 			<p>You can manage events through "User Home > Event Director > Setup"</p>
 			]]></message>

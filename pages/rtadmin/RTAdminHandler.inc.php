@@ -250,7 +250,7 @@ class RTAdminHandler extends Handler {
 	function setupTemplate($subclass = false, $version = null, $context = null, $search = null) {
 		$templateMgr = &TemplateManager::getManager();
 
-		$pageHierarchy = array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'director'), 'director.conferenceManagement'));
+		$pageHierarchy = array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'director'), 'director.conferenceSiteManagement'));
 
 		if ($subclass) $pageHierarchy[] = array(Request::url(null, null, 'rtadmin'), 'rt.readingTools');
 

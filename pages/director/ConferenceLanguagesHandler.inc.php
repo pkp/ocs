@@ -50,7 +50,7 @@ class ConferenceLanguagesHandler extends DirectorHandler {
 				'pageTitle' => 'common.languages',
 				'message' => 'common.changesSaved',
 				'backLink' => Request::url(null, null, Request::getRequestedPage()),
-				'backLinkLabel' => 'director.conferenceManagement'
+				'backLinkLabel' => 'director.conferenceSiteManagement'
 			));
 			$templateMgr->display('common/message.tpl');
 			
