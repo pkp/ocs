@@ -97,7 +97,7 @@ class EventDirectorSetupHandler extends EventDirectorHandler {
 						$setupForm->setData('contributors', $contributors);
 					}
 					break;
-				case 6:	
+				case 5:	
 					if (Request::getUserVar('uploadHomeHeaderTitleImage')) {
 						if ($setupForm->uploadImage('homeHeaderTitleImage')) {
 							$editData = true;
@@ -240,8 +240,9 @@ class EventDirectorSetupHandler extends EventDirectorHandler {
 					} else if (Request::getUserVar('deleteHomepageImage')) {
 						$editData = true;
 						$setupForm->deleteImage('homepageImage');
+
 					} else if (Request::getUserVar('uploadConferenceStyleSheet')) {
-						if ($setupForm->uploadStyleSheet('conferenceStyleSheet')) {
+						if ($setupForm->uploadStyleSheet('eventStyleSheet')) {
 							$editData = true;
 						} else {
 							$setupForm->addError('conferenceStyleSheet', 'director.setup.conferenceStyleSheetInvalid');

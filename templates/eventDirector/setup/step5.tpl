@@ -370,12 +370,12 @@
 <table width="100%" class="data">
 <tr>
 	<td width="20%" class="label">{translate key="director.setup.useConferenceStyleSheet"}</td>
-	<td width="80%" class="value"><input type="file" name="conferenceStyleSheet" class="uploadField" /> <input type="submit" name="uploadConferenceStyleSheet" value="{translate key="common.upload"}" class="button" /></td>
+	<td width="80%" class="value"><input type="file" name="eventStyleSheet" class="uploadField" /> <input type="submit" name="uploadConferenceStyleSheet" value="{translate key="common.upload"}" class="button" /></td>
 </tr>
 </table>
 
-{if $conferenceStyleSheet}
-{translate key="common.fileName"}: <a href="{$publicFilesDir}/{$conferenceStyleSheet.uploadName}" class="file">{$conferenceStyleSheet.name}</a> {$conferenceStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteConferenceStyleSheet" value="{translate key="common.delete"}" class="button" />
+{if $eventStyleSheet}
+{translate key="common.fileName"}: <a href="{$publicFilesDir}/{$eventStyleSheet.uploadName}" class="file">{$eventStyleSheet.name}</a> {$eventStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteConferenceStyleSheet" value="{translate key="common.delete"}" class="button" />
 {/if}
 
 <div class="separator"></div>
