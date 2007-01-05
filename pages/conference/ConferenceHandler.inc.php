@@ -39,17 +39,8 @@ class ConferenceHandler extends Handler {
 		$templateMgr->assign('conferenceTitle', $conference->getTitle());
 
 		$eventDao = &DAORegistry::getDAO('EventDAO');
-		$displayCurrentEvent = $conference->getSetting('displayCurrentEvent');
-		$currentEvent = &$eventDao->getCurrentEvent($conference->getConferenceId());
-			
-		if ($displayCurrentEvent && $currentEvent) {
-			import('pages.event.EventHandler');
-			// The current event TOC/cover page should be displayed below the custom home page.
-			EventHandler::setupEventTemplate($conference, $event);
-		} else {
-			$events = &$eventDao->getEnabledEvents($conference->getConferenceId());
-			$templateMgr->assign_by_ref('events', $events);
-		}
+		$events = &$eventDao->getEnabledEvents($conference->getConferenceId());
+		$templateMgr->assign_by_ref('events', $events);
 
 		$enableAnnouncements = $conference->getSetting('enableAnnouncements');
 		if ($enableAnnouncements) {
