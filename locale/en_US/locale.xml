@@ -214,8 +214,8 @@
 	<message key="navigation.conferenceContent">Conference Content</message>
 	<message key="navigation.browse">Browse</message>
 	<message key="navigation.browseByEvent">By Event</message>
-	-<message key="navigation.browseByAuthor">By Author</message>
-	-<message key="navigation.browseByTitle">By Title</message>
+	<message key="navigation.browseByAuthor">By Author</message>
+	<message key="navigation.browseByTitle">By Title</message>
 	<message key="navigation.info">Information</message>
 	<message key="navigation.infoForAuthors">For Authors</message>
 	<message key="navigation.infoForReaders">For Readers</message>
@@ -242,8 +242,8 @@
 	<!--<message key="common.queue.short.submissionsInScheduling">Scheduling</message>-->
 	<message key="common.queue.long.submissionsArchives">Archives</message>
 	<message key="common.queue.short.submissionsArchives">Archives</message>
-	-<message key="common.queue.long.active">Active Submissions</message>
-	-<message key="common.queue.short.active">Active</message>
+	<message key="common.queue.long.active">Active Submissions</message>
+	<message key="common.queue.short.active">Active</message>
 	<message key="common.queue.long.completed">Archive</message>
 	<message key="common.queue.short.completed">Archive</message>
 
@@ -408,7 +408,7 @@
 	<message key="submission.notes.confirmDelete">Remove This Submission Note?</message>
 	<message key="submission.notes.editNote">Edit Note</message>
 	<message key="submission.notes.attachedFile">File Attachment</message>
-	-<message key="submission.notes.confirmDeleteAll">Remove All Submission Notes?</message>
+	<message key="submission.notes.confirmDeleteAll">Remove All Submission Notes?</message>
 	<message key="submission.notes.collapseNotes">Collapse Notes</message>
 	<message key="submission.notes.backToSubmissionNotes">Back To Submission Notes</message>
 	<message key="submission.notes.removeUploadedFile">Remove Uploaded File</message>
@@ -1343,7 +1343,7 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="director.groups.title">Title</message>
 	<message key="director.groups.confirmDelete">Are you sure you wish to delete this group?</message>
 	<message key="director.groups.noneCreated">No editorial team positions have been created.</message>
-	-<message key="director.groups.create">Create Editorial Team Title</message>
+	<message key="director.groups.create">Create Editorial Team Title</message>
 	<message key="director.groups.form.groupTitleRequired">A group title is required.</message>
 
 	<message key="director.groups.enableBoard.description"><![CDATA[For the <a href="{$aboutOrganizingTeamUrl}">Organizing Team</a> in About the Conference:]]></message>
@@ -1412,8 +1412,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="director.people.signInAs">Log In As</message>
 	<!--<message key="director.people.syncUsers">Synchronize User Enrollment</message>-->
 	<!--<message key="director.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified journal into the same role in this journal. This function allows a common set of users (e.g., Reviewers) to be synchronized between journals.</message>-->
-	-<message key="director.people.enrollSync">Sync Enrollment</message>
-	-<message key="director.people.enrollSyncRole">Synchronize role</message>
+	<message key="director.people.enrollSync">Sync Enrollment</message>
+	<message key="director.people.enrollSyncRole">Synchronize role</message>
 	<!--<message key="director.people.enrollSyncJournal">With journal</message>-->
 
 	<!-- Email Management -->
