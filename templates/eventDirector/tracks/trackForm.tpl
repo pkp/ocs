@@ -123,13 +123,13 @@
 </tr>
 {if $alternateLocale1}
 <tr valign="top">
-	<td class="label">{fieldLabel name="abbrevAlt1" required="true" key="track.abbreviation"}&nbsp;({$languageToggleLocales.$alternateLocale1|escape})</td>
+	<td class="label">{fieldLabel name="abbrevAlt1" key="track.abbreviation"}&nbsp;({$languageToggleLocales.$alternateLocale1|escape})</td>
 	<td class="value"><input type="text" name="abbrevAlt1" id="abbrevAlt1" value="{$abbrevAlt1|escape}" size="20" maxlength="20" class="textField" /></td>
 </tr>
 {/if}
 {if $alternateLocale2}
 <tr valign="top">
-	<td class="label">{fieldLabel name="abbrevAlt2" required="true" key="track.abbreviation"}&nbsp;({$languageToggleLocales.$alternateLocale2|escape})</td>
+	<td class="label">{fieldLabel name="abbrevAlt2" key="track.abbreviation"}&nbsp;({$languageToggleLocales.$alternateLocale2|escape})</td>
 	<td class="value"><input type="text" name="abbrevAlt2" id="abbrevAlt2" value="{$abbrevAlt2|escape}" size="20" maxlength="20" class="textField" /></td>
 </tr>
 {/if}
@@ -138,7 +138,20 @@
 	<td class="value"><textarea name="policy" rows="4" cols="40" id="policy" class="textArea">{$policy|escape}</textarea></td>
 </tr>
 <tr valign="top">
-	<td rowspan="3" class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
+	<td rowspan="4" class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
+	<td class="value">
+		{translate key="director.tracks.submissionsToThisTrack"}<br/>
+		<input type="checkbox" name="metaReviewed" id="metaReviewed" value="1" {if $metaReviewed}checked="checked"{/if} />
+		{fieldLabel name="metaReviewed" key="director.tracks.submissionReview"}
+	</td>
+</tr>
+<tr valign="top">
+	<td class="value">
+		<input type="checkbox" name="abstractsDisabled" id="abstractsDisabled" value="1" {if $abstractsDisabled}checked="checked"{/if} />
+		{fieldLabel name="abstractsDisabled" key="director.tracks.abstractsDisabled"}
+	</td>
+</tr>
+<tr valign="top">
 	<td class="value">
 		<input type="checkbox" name="metaIndexed" id="metaIndexed" value="1" {if $metaIndexed}checked="checked"{/if} />
 		{fieldLabel name="metaIndexed" key="director.tracks.submissionIndexing"}
@@ -159,17 +172,24 @@
 	</td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="hideTitle" key="issue.toc"}</td>
+	<td class="label">{fieldLabel name="hideTitle" key="event.proceedings"}</td>
 	<td class="value">
 		<input type="checkbox" name="hideTitle" id="hideTitle" value="1" {if $hideTitle}checked="checked"{/if} />
 		{fieldLabel name="hideTitle" key="director.tracks.hideTocTitle"}
+	</td>
+</tr>
+<tr valign="top">
+	<td class="label">{fieldLabel name="hideAbout" key="navigation.about"}</td>
+	<td class="value">
+		<input type="checkbox" name="hideAbout" id="hideAbout" value="1" {if $hideAbout}checked="checked"{/if} />
+		{fieldLabel name="hideAbout" key="director.tracks.hideAbout"}
 	</td>
 </tr>
 </table>
 <div class="separator"></div>
 
 <h3>{translate key="user.role.trackEditors"}</h3>
-<p><span class="instruct">{translate key="director.track.trackEditorInstructions"}</span></p>
+<p><span class="instruct">{translate key="director.tracks.trackEditorInstructions"}</span></p>
 <table class="data" width="100%">
 <tr valign="top">
 	<td width="20%">&nbsp;</td>

@@ -417,24 +417,28 @@
 	<message key="submission.notes.createNewNote">Create New Note</message>
 
 	<!-- Common Conference Terms -->
-	<!--<message key="conference.currentEvent">Current Event</message>-->
 	<message key="conference.conferences">Conferences</message>
 	<message key="conference.conference">Conference</message>
 
 	<!-- Common Event Terms -->
 	<message key="event.events">Events</message>
+	<message key="event.noEvents">No Events</message>
 	<message key="event.event">Event</message>
 	<message key="event.contents">Table of Contents</message>
 	<message key="event.overview">Overview</message>
 	<message key="event.program">Program</message>
 	<message key="event.cfp">Call for Papers</message>
-	<message key="event.submissions">Abstract &amp; Paper Submission</message>
 	<message key="event.papers">Presenters, Abstracts, &amp; Papers</message>
 	<message key="event.discussion">Discussion</message>
 	<message key="event.registration">Registration, Accomodation &amp; Travel</message>
 	<message key="event.supporters">Conference Organizers &amp; Key Partners</message>
 	<message key="event.schedule">Conference Schedule</message>
 	<message key="event.links">Related Links</message>
+	<message key="event.proceedings">Proceedings</message>
+	<message key="event.abstract">Abstract</message>
+	<message key="event.submission">Submission</message>
+	<message key="event.submissions">Submissions</message>
+
 
 	<!-- User -->
 	<message key="user.userHome">User Home</message>
@@ -507,14 +511,6 @@
 	<!--<message key="user.role.registrants">Registrants</message>-->
 	<!--<message key="user.role.discussants">Discussants</message>-->
 	<message key="user.role.readers">Readers</message>
-
-	<!-- Common Event Terms -->
-	<message key="event.event">Event</message>
-	<message key="event.noEvents">No Events</message>
-	<message key="event.proceedings">Proceedings</message>
-	<message key="event.abstract">Abstract</message>
-	<message key="event.submission">Submission</message>
-	<message key="event.submissions">Submissions</message>
 
 	<!--
 	 *
@@ -1273,17 +1269,20 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="director.tracks.unassignEditor">Un-assign Editor</message>
 	<message key="director.tracks.form.titleRequired">A title is required for the track.</message>
 	<message key="director.tracks.form.abbrevRequired">An abbreviated title is required for the track</message>
-	<message key="director.track.trackEditorInstructions">Select from among the available Track Editors and "Assign Editor" to this track.</message>
-	<message key="director.tracks.submissionIndexing">Items in this track are to be included in the indexed content of conference.</message>
+	<message key="director.tracks.trackEditorInstructions">Select from among the available Track Editors and "Assign Editor" to this track.</message>
+	<message key="director.tracks.submissionsToThisTrack">Submissions made to this conference track</message>
+	<message key="director.tracks.submissionIndexing">Will not be included in the proceedings of the conference</message>
+	<message key="director.tracks.submissionReview">Will not be peer-reviewed</message>
 	<message key="director.tracks.editorRestriction">Items can only be submitted by Editors and Track Editors.</message>
 	<message key="director.tracks.hideTocTitle">Omit the title of this track from the event's proceedings.</message>
+	<message key="director.tracks.hideAbout">Omit this track from About the Conference.</message>
 	<message key="director.tracks.readingTools">Reading Tools</message>
 	<message key="director.tracks.indexed">Indexed</message>
 	<message key="director.tracks.open">Open Submissions</message>
 	<message key="director.tracks.policy">Track Policy</message>
 	<message key="director.tracks.identifyType">In their metadata, identify items in this track as</message>
 	<message key="director.tracks.identifyTypeExamples">(For example, "Peer-reviewed Paper", "Non-refereed Paper", "Invited Paper", etc.)</message>
-	<!--<message key="director.tracks.abstractsDisabled">Items published in this Section will not have abstracts.</message>-->
+	<message key="director.tracks.abstractsDisabled">Items published in this track will not have abstracts.</message>
 
 	<!-- Timeline management -->
 	<message key="director.timeline.eventTimeline">Event Timeline</message>

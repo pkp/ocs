@@ -144,7 +144,7 @@ class TrackForm extends Form {
 		$track->setAbbrevAlt2($this->getData('abbrevAlt2'));
 		$track->setMetaIndexed($this->getData('metaIndexed') ? 1 : 0);
 		$track->setIdentifyType($this->getData('identifyType'));
-		////$track->setEditorRestricted($this->getData('editorRestriction') ? 1 : 0);
+		$track->setEditorRestricted($this->getData('editorRestriction') ? 1 : 0);
 		$track->setHideTitle($this->getData('hideTitle') ? 1 : 0);
 		$track->setPolicy($this->getData('policy'));
 		
