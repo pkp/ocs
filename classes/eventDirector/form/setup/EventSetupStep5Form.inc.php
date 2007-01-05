@@ -37,7 +37,7 @@ class EventSetupStep5Form extends EventSetupForm {
 				'pageHeaderTitleTypeAlt2' => 'int',
 				'pageHeaderTitleAlt2' => 'string',
 				'readerInformation' => 'string',
-				'authorInformation' => 'string',
+				'presenterInformation' => 'string',
 				'librarianInformation' => 'string',
 				'conferencePageHeader' => 'string',
 				'conferencePageFooter' => 'string',
@@ -75,7 +75,7 @@ class EventSetupStep5Form extends EventSetupForm {
 			'homepageImage' => $event->getSetting('homepageImage'),
 			'eventStyleSheet' => $event->getSetting('eventStyleSheet'),
 			'readerInformation' => $event->getSetting('readerInformation'),
-			'authorInformation' => $event->getSetting('authorInformation'),
+			'presenterInformation' => $event->getSetting('presenterInformation'),
 			'librarianInformation' => $event->getSetting('librarianInformation')
 		));
 		

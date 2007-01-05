@@ -388,9 +388,9 @@
 
 <p><textarea name="readerInformation" id="readerInformation" rows="12" cols="60" class="textArea">{$readerInformation|escape}</textarea></p>
 
-<h4>{translate key="director.setup.information.forAuthors"}</h4>
+<h4>{translate key="director.setup.information.forPresenters"}</h4>
 
-<p><textarea name="authorInformation" id="authorInformation" rows="12" cols="60" class="textArea">{$authorInformation|escape}</textarea></p>
+<p><textarea name="presenterInformation" id="presenterInformation" rows="12" cols="60" class="textArea">{$presenterInformation|escape}</textarea></p>
 
 <div class="separator"></div>
 

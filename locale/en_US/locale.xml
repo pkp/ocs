@@ -217,10 +217,10 @@
 	<message key="navigation.browseByAuthor">By Author</message>
 	<message key="navigation.browseByTitle">By Title</message>
 	<message key="navigation.info">Information</message>
-	<message key="navigation.infoForAuthors">For Authors</message>
+	<message key="navigation.infoForPresenters">For Authors</message>
 	<message key="navigation.infoForReaders">For Readers</message>
 	<message key="navigation.infoForReviewers">For Reviewers</message>
-	<message key="navigation.infoForAuthors.long">Information For Authors</message>
+	<message key="navigation.infoForPresenters.long">Information For Authors</message>
 	<message key="navigation.infoForReaders.long">Information For Readers</message>
 	<message key="navigation.infoForReviewers.long">Information For Reviewers</message>
 	<message key="navigation.previousStep">Previous Step</message>
@@ -951,11 +951,11 @@ Setting up LOCKSS support for Open Conference Systems does not need to take plac
 	<message key="director.setup.noRestrictSiteAccess">Unregistered users can view the conference site.</message>
 	<message key="director.setup.restrictSiteAccess">Users must log in to view the conference site.</message>
 	<message key="director.setup.paperAccess">Paper Access</message>
-	<message key="director.setup.noRestrictPaperAccess">Unregistered users can view the full text of published papers.</message>
-	<message key="director.setup.restrictPaperAccess">Users must log in to view the full text of published papers.</message>
+	<message key="director.setup.noRestrictPaperAccess">Unregistered users can view all posted abstracts and presentations associated with this conference.</message>
+	<message key="director.setup.restrictPaperAccess">Users must log in to view posted materials associated with this conference.</message>
 
 	<message key="director.setup.comments">Reader Comments</message>
-	<message key="director.setup.comments.disable">Reader comments are disabled.</message>
+	<message key="director.setup.comments.disable">Reader comments on conference abstracts and presentations are disabled.</message>
 	<message key="director.setup.comments.authenticated">Registered users can post; anonymous posting is disabled.</message>
 	<message key="director.setup.comments.anonymous">Users can post anonymously, but must be registered.</message>
 	<message key="director.setup.comments.unauthenticated">Allow anyone to post anonymously.</message>
@@ -1107,7 +1107,7 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="director.setup.information">Information</message>
 	<message key="director.setup.information.description">Brief descriptions of the conference for prospective authors and readers are available in the "Information" section of the sidebar.</message>
 	<message key="director.setup.information.forReaders">For Readers</message>
-	<message key="director.setup.information.forAuthors">For Authors</message>
+	<message key="director.setup.information.forPresenters">For Presenters</message>
 	<!--<message key="director.setup.information.forLibrarians">For Librarians</message>-->
 
 	<!-- Event Setup -->
@@ -2721,7 +2721,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 {$indexUrl}/{$conferencePath}/{$journalPath}
 ]]></message>
 	<message key="default.conferenceSettings.forReaders"><![CDATA[We encourage readers to sign up for notification of papers posted for this conference. Use the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/user/register">Register</a> link at the top of the homepage for the conference. This list allows the conference to claim a certain level of support or readership. See the conference's <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about/submissions#privacyStatement">Privacy Statement</a> which assures readers that their name and email address will not be used for other purposes.]]></message>
-	<message key="default.conferenceSettings.forAuthors"><![CDATA[Interested in submitting to this conference? We recommend that you review the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about">About the Conference</a> page for the conference's track policies, as well as the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about/submissions#authorGuidelines">Author Guidelines</a>. Authors need to <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/user/register">register</a> with the conference prior to submitting, or if already registered can simply <a href="{$indexUrl}/index/index/login">log in</a> and begin the 5 step process.]]></message>
+	<message key="default.conferenceSettings.forPresenters"><![CDATA[Interested in submitting to this conference? We recommend that you review the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about">About the Conference</a> page for the conference's track policies, as well as the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about/submissions#authorGuidelines">Author Guidelines</a>. Authors need to <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/user/register">register</a> with the conference prior to submitting, or if already registered can simply <a href="{$indexUrl}/index/index/login">log in</a> and begin the submission process.]]></message>
 	<message key="default.conferenceSettings.lockssLicense"><![CDATA[This conference utilizes the LOCKSS system to create a distributed archiving system among participating libraries and permits those libraries to create permanent archives of the conference for purposes of preservation and restoration. <a href="http://lockss.stanford.edu/">More...</a>]]></message>
 
 </locale>

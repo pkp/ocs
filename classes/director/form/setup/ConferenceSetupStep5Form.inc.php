@@ -40,7 +40,7 @@ class ConferenceSetupStep5Form extends ConferenceSetupForm {
 				'pageHeaderTitleAlt2' => 'string',
 				'navItems' => 'object',
 				'readerInformation' => 'string',
-				'authorInformation' => 'string',
+				'presenterInformation' => 'string',
 				'conferencePageHeader' => 'string',
 				'conferencePageFooter' => 'string',
 				'itemsPerPage' => 'int',
@@ -73,7 +73,7 @@ class ConferenceSetupStep5Form extends ConferenceSetupForm {
 			'homepageImage' => $conference->getSetting('homepageImage'),
 			'conferenceStyleSheet' => $conference->getSetting('conferenceStyleSheet'),
 			'readerInformation' => $conference->getSetting('readerInformation'),
-			'authorInformation' => $conference->getSetting('authorInformation')
+			'presenterInformation' => $conference->getSetting('presenterInformation')
 		));
 		
 		parent::display();	   

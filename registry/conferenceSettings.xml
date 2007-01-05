@@ -56,8 +56,8 @@
 		<value>{translate key="default.conferenceSettings.forReaders"}</value>
 	</setting>
 	<setting type="string">
-		<name>authorInformation</name>
-		<value>{translate key="default.conferenceSettings.forAuthors"}</value>
+		<name>presenterInformation</name>
+		<value>{translate key="default.conferenceSettings.forPresenters"}</value>
 	</setting>
 	<setting type="string">
 		<name>lockssLicense</name>

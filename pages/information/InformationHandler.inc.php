@@ -33,10 +33,10 @@ class InformationHandler extends Handler {
 				$pageTitle = 'navigation.infoForReaders.long';
 				$pageCrumbTitle = 'navigation.infoForReaders';
 				break;
-			case 'authors':
-				$content = $conference->getSetting('authorInformation');
-				$pageTitle = 'navigation.infoForAuthors.long';
-				$pageCrumbTitle = 'navigation.infoForAuthors';
+			case 'presenters':
+				$content = $conference->getSetting('presenterInformation');
+				$pageTitle = 'navigation.infoForPresenters.long';
+				$pageCrumbTitle = 'navigation.infoForPresenters';
 				break;
 			default:
 				Request::redirect($conference->getPath());
@@ -54,8 +54,8 @@ class InformationHandler extends Handler {
 		InformationHandler::index(array('readers'));
 	}
 
-	function authors() {
-		InformationHandler::index(array('authors'));
+	function presenters() {
+		InformationHandler::index(array('presenters'));
 	}
 }
 
