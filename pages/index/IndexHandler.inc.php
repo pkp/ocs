@@ -38,7 +38,7 @@ class IndexHandler extends Handler {
 
 			if($displayCurrentEvent && $currentEvent) {
 				import('pages.event.EventHandler');
-				EventHandler::view(array($currentEvent->getEventId()));
+				Request::redirect(null, $currentEvent->getPath());
 			} else {
 				import('pages.conference.ConferenceHandler');
 				ConferenceHandler::view(array($conference->getConferenceId()));
