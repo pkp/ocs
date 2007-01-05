@@ -22,8 +22,6 @@ class EventSetupStep1Form extends EventSetupForm {
 			1,
 			array(
 				'eventTitle' => 'string',
-				'startDate' => 'date',
-				'endDate' => 'date',
 				'eventOverview' => 'string',
 				'eventIntroduction' => 'string',
 				'location' => 'string',
@@ -45,15 +43,11 @@ class EventSetupStep1Form extends EventSetupForm {
 
 		$event = &Request::getEvent();
 		$this->_data['eventTitle'] = $event->getTitle();
-		$this->_data['startDate'] = $event->getStartDate();
-		$this->_data['endDate'] = $event->getEndDate();
 	}
 
 	function readInputData() {
 		parent::readInputData();
 		$this->_data['eventTitle'] = Request::getUserVar('eventTitle');
-		$this->_data['startDate'] = Request::getUserDateVar('startDate');
-		$this->_data['endDate'] = Request::getUserDateVar('endDate');
 	}
 
 	function execute() {

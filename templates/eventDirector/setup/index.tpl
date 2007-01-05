@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="eventDirector.setup.eventSetup"}
 {include file="common/header.tpl"}
 
-<h3>{translate key="eventDirector.setup.stepsToEvent"}</h3>
+<span class="instruct">{translate key="eventDirector.setup.stepsToEvent"}</span>
 
 <ol>
 	<li>

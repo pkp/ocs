@@ -21,23 +21,6 @@
 		<td width="20%" class="label">{fieldLabel name="eventTitle" required="true" key="eventDirector.setup.title"}</td>
 		<td width="80%" class="value"><input type="text" name="eventTitle" id="eventTitle" value="{$eventTitle|escape}" size="40" maxlength="120" class="textField" /></td>
 	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="startDate" key="eventDirector.setup.startDate"}</td>
-		<td class="value">
-			{html_select_date prefix="startDate" all_extra="class=\"selectMenu\"" end_year="$yearOffsetFuture" year_empty="" month_empty="" day_empty="" time="$startDate"}
-			<br />
-			<span class="instruct">{translate key="eventDirector.setup.startDateDescription"}</span>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="endDate" key="eventDirector.setup.endDate"}</td>
-		<td class="value">
-			{html_select_date prefix="endDate" all_extra="class=\"selectMenu\"" end_year="$yearOffsetFuture" year_empty="" month_empty="" day_empty="" time="$endDate"}
-			<br />
-			<span class="instruct">{translate key="eventDirector.setup.endDateDescription"}</span>
-		</td>
-	</tr>
-
 </table>
 
 <div class="separator"></div>
