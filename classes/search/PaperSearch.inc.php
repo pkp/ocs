@@ -267,7 +267,7 @@ class PaperSearch {
 				if (!isset($eventCache[$eventId])) {
 					$eventCache[$eventId] = &$event;
 					import('event.EventAction');
-					$eventAvailabilityCache[$eventId] = !EventAction::registrationRequired($event) || EventAction::registeredUser($eventCache[$eventId]) || EventAction::subscribedDomain($eventCache[$eventId]);
+					$eventAvailabilityCache[$eventId] = !EventAction::registrationRequired($event) || EventAction::registeredUser($eventCache[$eventId]) || EventAction::registeredDomain($eventCache[$eventId]);
 				}
 
 				// Store the retrieved objects in the result array.

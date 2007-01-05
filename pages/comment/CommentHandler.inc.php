@@ -22,7 +22,7 @@ class CommentHandler extends Handler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$commentId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $issue, $paper) = CommentHandler::validate($paperId);
+		list($conference, $event, $paper) = CommentHandler::validate($paperId);
 
 		$user = &Request::getUser();
 		$userId = isset($user)?$user->getUserId():null;
@@ -31,7 +31,8 @@ class CommentHandler extends Handler {
 		$comment = &$commentDao->getComment($commentId, $paperId, 2);
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$isDirector = $roleDao->roleExists($conference->getConferenceId(), FIXME event, $userId, ROLE_ID_CONFERENCE_DIRECTOR);
+		$isDirector = Validation::isConferenceDirector($conference->getConferenceId()) ||
+			Validation::isEventDirector($conference->getConferenceId(), $event->getEventId());
 
 		if (!$comment) $comments = &$commentDao->getRootCommentsByPaperId($paperId, 1);
 		else $comments = &$comment->getChildren();
@@ -57,7 +58,7 @@ class CommentHandler extends Handler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$parentId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $issue, $paper) = CommentHandler::validate($paperId);
+		list($conference, $event, $paper) = CommentHandler::validate($paperId);
 
 		// Bring in comment constants
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
@@ -105,14 +106,14 @@ class CommentHandler extends Handler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$commentId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $issue, $paper) = CommentHandler::validate($paperId);
+		list($conference, $event, $paper) = CommentHandler::validate($paperId);
 		$user = &Request::getUser();
 		$userId = isset($user)?$user->getUserId():null;
 
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		if (!$roleDao->roleExists($conference->getConferenceId(), FIXME event, $userId, ROLE_ID_CONFERENCE_DIRECTOR)) {
+		if (!$roleDao->roleExists($conference->getConferenceId(), $event->getEventId(), $userId, ROLE_ID_EVENT_DIRECTOR)) {
 			Request::redirect(null, null, 'index');
 		}
 
@@ -130,38 +131,34 @@ class CommentHandler extends Handler {
 		parent::validate();
 
 		$conference = &Request::getConference();
-		$conferenceId = $conference->getConferenceId();
-		$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+		$event = &Request::getEvent();
 
 		// Bring in comment constants
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
-		$enableComments = $conference->getSetting('enableComments');
+		$enableComments = $event->getSetting('enableComments', true);
 
-		if (!Validation::isLoggedIn() && $conferenceSettingsDao->getSetting($conferenceId,'restrictPaperAccess') || ($enableComments != COMMENTS_ANONYMOUS && $enableComments != COMMENTS_AUTHENTICATED && $enableComments != COMMENTS_UNAUTHENTICATED)) {
+		if (!Validation::isLoggedIn() && $event->getSetting('restrictPaperAccess', true) || ($enableComments != COMMENTS_ANONYMOUS && $enableComments != COMMENTS_AUTHENTICATED && $enableComments != COMMENTS_UNAUTHENTICATED)) {
 			Validation::redirectLogin();
 		}
 
-		// Subscription Access
-		$issueDao = &DAORegistry::getDAO('IssueDAO');
-		$issue = &$issueDao->getIssueByPaperId($paperId);
-
+		// Registration Access
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$paper = &$publishedPaperDao->getPublishedPaperByPaperId($paperId);
 
-		if (isset($issue) && isset($paper)) {
-			import('issue.IssueAction');
-			$subscriptionRequired = IssueAction::subscriptionRequired($issue);
-			$subscribedUser = IssueAction::subscribedUser($conference);
+		if (isset($paper)) {
+			import('event.EventAction');
+			$registrationRequired = EventAction::registrationRequired($event);
+			$subscribedUser = EventAction::subscribedUser($event);
 
-			if (!(!$subscriptionRequired || $paper->getAccessStatus() || $subscribedUser)) {
+			if (!(!$registrationRequired || $paper->getAccessStatus() || $subscribedUser)) {
 				Request::redirect(null, null, 'index');
 			}
 		} else {
 			Request::redirect(null, null, 'index');
 		}
 
-		return array(&$conference, &$issue, &$paper);
+		return array(&$conference, &$event, &$paper);
 	}
 
 	function setupTemplate($paper, $galleyId, $comment = null) {

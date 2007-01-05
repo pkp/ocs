@@ -9,10 +9,10 @@ Content-Transfer-Encoding: quoted-printable
 {$issue->getIssueIdentification()}
 {translate key="issue.toc"}
 
-{foreach name=sections from=$publishedPapers item=section key=sectionId}
-{if $section.title}{$section.title}{/if}
+{foreach name=tracks from=$publishedPapers item=track key=trackId}
+{if $track.title}{$track.title}{/if}
 --------
-{foreach from=$section.papers item=paper}
+{foreach from=$track.papers item=paper}
 {$paper->getPaperTitle()|strip_tags}{if $paper->getPages()} ({$paper->getPages()}){/if}
 
 {foreach from=$paper->getAuthors() item=author name=authorList}
@@ -44,15 +44,15 @@ Content-Transfer-Encoding: quoted-printable
 	<p>{$body|escape|nl2br}</p>
 
 		<h3>{$issue->getIssueIdentification()}<br />{translate key="issue.toc"}</h3>
-		{foreach name=sections from=$publishedPapers item=section key=sectionId}
-			{if $section.title}<h4>{$section.title|escape}</h4>{/if}
+		{foreach name=tracks from=$publishedPapers item=track key=trackId}
+			{if $track.title}<h4>{$track.title|escape}</h4>{/if}
 
-			{foreach from=$section.papers item=paper}
+			{foreach from=$track.papers item=paper}
 				<table width="100%">
 					<tr>
 						<td>{$paper->getPaperTitle()|strip_unsafe_html}</td>
 						<td align="right">
-							<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentEvent)}" class="file">{if $section.abstractsDisabled}{translate key="paper.details"}{else}{translate key="paper.abstract"}{/if}</a>
+							<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentEvent)}" class="file">{if $track.abstractsDisabled}{translate key="paper.details"}{else}{translate key="paper.abstract"}{/if}</a>
 							{if (!$registrationRequired || $paper->getAccessStatus() || $registeredUser)}
 								{foreach from=$paper->getGalleys() item=galley name=galleyList}
 									&nbsp;
@@ -71,7 +71,7 @@ Content-Transfer-Encoding: quoted-printable
 						</tr>
 					</table>
 				{/foreach}
-			{if !$smarty.foreach.sections.last}
+			{if !$smarty.foreach.tracks.last}
 				<div class="separator"></div>
 			{/if}
 		{/foreach}

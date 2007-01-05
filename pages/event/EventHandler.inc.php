@@ -237,7 +237,7 @@ class EventHandler extends Handler {
 			import('event.EventAction');
 			$templateMgr->assign('registrationRequired', EventAction::registrationRequired($event));
 			$templateMgr->assign('registeredUser', EventAction::registeredUser($event));
-			$templateMgr->assign('subscribedDomain', EventAction::registeredDomain($event));
+			$templateMgr->assign('registeredDomain', EventAction::registeredDomain($event));
 
 		} else {
 			Request::redirect(null, 'index');

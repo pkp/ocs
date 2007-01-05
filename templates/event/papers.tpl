@@ -20,19 +20,13 @@
 			<tr valign="top">
 				<td width="75%">{$paper->getPaperTitle()|strip_unsafe_html}</td>
 				<td align="right" width="25%">
-					{if $track.abstractsDisabled || $paper->getAbstract() == ""}
-						{assign var=abstractLabel value="paper.details"}
-					{else}
-						{assign var=abstractLabel value="paper.abstract"}
-					{/if}
-	
-					{if (!$subscriptionRequired || $paper->getAccessStatus() || $subscribedUser || $subscribedDomain)}
+					{if (!$registrationRequired || $paper->getAccessStatus() || $registeredUser || $registeredDomain)}
 						{assign var=hasAccess value=1}
 					{else}
 						{assign var=hasAccess value=0}
 					{/if}
 
-					{if !$hasAccess || $paper->getAbstract() != ""}<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}" class="file">{translate key=$abstractLabel}</a>{/if}
+					{if !$hasAccess || $paper->getAbstract() != ""}<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}" class="file">{translate key="paper.abstract"}</a>{/if}
 
 					{if $hasAccess}
 					{foreach from=$paper->getGalleys() item=galley name=galleyList}
