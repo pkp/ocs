@@ -12,24 +12,20 @@
 {assign var="pageTitle" value="user.register"}
 {include file="common/header.tpl"}
 
+{translate key="user.register.selectEvent"}:
+<ul>
 {iterate from=events item=event}
-	{if !$notFirstEvent}
-		{translate key="user.register.selectEvent"}:
-		<ul>
-		{assign var=notFirstevent value=1}
-	{/if}
 	<li>
 		{if $source}
 			<a href="{url event=$event->getPath() page="user" op="register" source=$source|escape}">{$event->getFullTitle()|escape}</a>
 		{else}
 			<a href="{url event=$event->getPath() page="user" op="register"}">{$event->getFullTitle()|escape}</a>
 		{/if}
-	</li}
+	</li>
 {/iterate}
+</ul>
 {if $events->wasEmpty()}
 	{translate key="user.register.noEvents"}
-{else}
-	</ul>
 {/if}
 
 {include file="common/footer.tpl"}
