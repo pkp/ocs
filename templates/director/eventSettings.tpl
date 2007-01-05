@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="director.events.eventSettings"}
+{assign var="pageTitle" value="director.events.schedulingAConference"}
 {include file="common/header.tpl"}
 
 <br />

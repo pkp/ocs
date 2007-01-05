@@ -217,10 +217,10 @@
 	<message key="navigation.browseByAuthor">By Author</message>
 	<message key="navigation.browseByTitle">By Title</message>
 	<message key="navigation.info">Information</message>
-	<message key="navigation.infoForPresenters">For Authors</message>
+	<message key="navigation.infoForPresenters">For Presenters</message>
 	<message key="navigation.infoForReaders">For Readers</message>
 	<message key="navigation.infoForReviewers">For Reviewers</message>
-	<message key="navigation.infoForPresenters.long">Information For Authors</message>
+	<message key="navigation.infoForPresenters.long">Information For Presenters</message>
 	<message key="navigation.infoForReaders.long">Information For Readers</message>
 	<message key="navigation.infoForReviewers.long">Information For Reviewers</message>
 	<message key="navigation.previousStep">Previous Step</message>
@@ -421,8 +421,8 @@
 	<message key="conference.conference">Conference</message>
 
 	<!-- Common Event Terms -->
-	<message key="event.events">Events</message>
-	<message key="event.noEvents">No Events</message>
+	<message key="event.scheduledConferences">Scheduled Conferences</message>
+	<message key="event.noScheduledConferences">No Scheduled Conferences</message>
 	<message key="event.event">Event</message>
 	<message key="event.contents">Table of Contents</message>
 	<message key="event.overview">Overview</message>
@@ -746,16 +746,16 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<!-- Event Management -->
 	<message key="director.events">Events</message>
-	<message key="director.eventSetup">Event Setup</message>
-	<message key="director.eventManagement">Event Management</message>
+	<message key="director.eventSetup">Scheduled Conference Setup</message>
+	<message key="director.eventManagement">Scheduled Conference Management</message>
 	<message key="director.eventManagement.description">You are registered as an Event Manager for the following events:</message>
-	<message key="director.events.eventSettings">Event Settings</message>
+	<message key="director.events.schedulingAConference">Scheduling a Conference</message>
 	<message key="director.events.noneCreated">No events have been created.</message>
-	<message key="director.events.confirmDelete">Are you sure you want to permanently delete this event and all of its contents?</message>
+	<message key="director.events.confirmDelete">Are you sure you want to permanently delete this scheduled conference and all of its contents?</message>
 	<message key="director.events.eventTitle">Event Title</message>
 	<message key="director.events.eventStartDate">Start Date</message>
 	<message key="director.events.eventEndDate">End Date</message>
-	<message key="director.events.create">Create Event</message>
+	<message key="director.events.create">Create a Scheduled Conference</message>
 	<message key="director.events.createInstructions">A scheduled instance of the conference is created by entering a title (for example, if it is an annual conference, the name of the conference plus the year) and a URL path. You will be made a Conference Director and can designate other Conference Directors, who are able to manage the details of this event, beginning with the scheduling of the conference in Conference Timeline.</message>
 	<message key="director.events.urlWillBe">The event's URL will be {$sampleUrl}</message>
 	<message key="director.events.form.titleRequired">A title is required.</message>
@@ -2250,8 +2250,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<!-- Archive index -->
 	<message key="archive.archives">Events</message>
 	<message key="archive.browse">Browse through events</message>
-	<!--<message key="archive.issueUnavailable">Issue Unavailable</message>-->
-	<message key="event.noEvents">This conference has not released any information on events.</message>
 
 	<!-- Event page -->
 	<message key="event.cfp">Call For Papers</message>
@@ -2262,7 +2260,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="proceedings.subscribersOnly"><![CDATA[The proceedings of this conference are available only to registrants.]]></message>
 	<message key="proceedings.notReleasedYet"><![CDATA[The proceedings of this conference have not yet been released.]]></message>
 	<message key="proceedings.trackEmpty"><![CDATA[No papers are available in this track.]]></message>
-	<message key="proceedings.eventEmpty"><![CDATA[This event has not yet published any papers.]]></message>
+	<message key="proceedings.eventEmpty"><![CDATA[The proceedings of this conference are not yet available.]]></message>
 	
 	<!-- About The Conference -->
 	<message key="about.aboutSite">About the Site</message>

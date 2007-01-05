@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="event.events"}
+{assign var="pageTitle" value="event.scheduledConferences"}
 {include file="common/header.tpl"}
 
 <br />

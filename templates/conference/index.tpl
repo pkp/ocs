@@ -42,7 +42,7 @@
 	<h3>{$event->getName()|escape}</h3>
 	{include file="event/view.tpl"}
 {else}
-	<center><h3>{translate key="event.events"}</h3></center>
+	<center><h3>{translate key="event.scheduledConferences"}</h3></center>
 	<div class="separator"></div>
 	{if not $events->eof()}
 		{iterate from=events item=event}
@@ -52,7 +52,7 @@
 			{/if}
 		{/iterate}
 	{else}
-		<center align="center">{translate key="event.noEvents"}</center>
+		<center align="center">{translate key="event.noScheduledConferences"}</center>
 	{/if}
 	<div class="separator"></div>
 {/if}

@@ -115,7 +115,7 @@
 		<span class="blockTitle">{translate key="navigation.info"}</span>
 		<ul>
 			<li><a href="{url page="information" op="readers"}">{translate key="navigation.infoForReaders"}</a></li>
-			<li><a href="{url page="information" op="authors"}">{translate key="navigation.infoForAuthors"}</a></li>
+			<li><a href="{url page="information" op="authors"}">{translate key="navigation.infoForPresenters"}</a></li>
 		</ul>
 	</div>
 	{/if}

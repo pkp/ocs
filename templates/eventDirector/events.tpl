@@ -23,7 +23,7 @@
 		</ul>
 	{/iterate}
 {else}
-	{translate key="event.noEvents"}
+	{translate key="event.noScheduledConferences"}
 {/if}
 
 <div class="separator"></div>
