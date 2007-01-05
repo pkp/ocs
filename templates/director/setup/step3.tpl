@@ -73,7 +73,7 @@
 	</tr>
 </table>
 
-
+{*
 <div class="separator"></div>
 
 
@@ -93,7 +93,7 @@
 	<br />
 	<span class="instruct">{translate key="director.setup.lockssLicenses"}</span>
 </p>
-
+*}
 
 <div class="separator"></div>
 
