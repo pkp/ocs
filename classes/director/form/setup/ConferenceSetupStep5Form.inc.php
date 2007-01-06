@@ -30,7 +30,6 @@ class ConferenceSetupStep5Form extends ConferenceSetupForm {
 				'homeHeaderTitleAlt1' => 'string',
 				'homeHeaderTitleTypeAlt2' => 'int',
 				'homeHeaderTitleAlt2' => 'string',
-				'displayCurrentEvent' => 'bool',
 				'additionalHomeContent' => 'string',
 				'pageHeaderTitleType' => 'int',
 				'pageHeaderTitle' => 'string',

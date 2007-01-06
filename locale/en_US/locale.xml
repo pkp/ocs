@@ -206,9 +206,9 @@
 	<message key="navigation.register">Register</message>
 	<message key="navigation.user">User</message>
 	<message key="navigation.archives">Events</message>
-	<message key="navigation.current">Current Event</message>
+	<message key="navigation.current">Current Events</message>
 	<message key="navigation.search">Search</message>
-	<!--<message key="navigation.otherJournals">Other Journals</message>-->
+	<message key="navigation.otherConferences">Other Conferences</message>
 	<message key="navigation.myProfile">My Profile</message>
 	<message key="navigation.myConferences">My Conferences</message>
 	<message key="navigation.conferenceContent">Conference Content</message>
@@ -749,10 +749,11 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="director.eventSetup">Scheduled Conference Setup</message>
 	<message key="director.eventManagement">Scheduled Conference Management</message>
 	<message key="director.eventManagement.description">You are registered as an Event Manager for the following events:</message>
+	<message key="director.events.eventTitle">Event Title</message>
 	<message key="director.events.schedulingAConference">Scheduling a Conference</message>
 	<message key="director.events.noneCreated">No events have been created.</message>
 	<message key="director.events.confirmDelete">Are you sure you want to permanently delete this scheduled conference and all of its contents?</message>
-	<message key="director.events.eventTitle">Event Title</message>
+	<message key="director.events.scheduledConference">Scheduled Conference</message>
 	<message key="director.events.eventStartDate">Start Date</message>
 	<message key="director.events.eventEndDate">End Date</message>
 	<message key="director.events.create">Create a Scheduled Conference</message>
@@ -765,7 +766,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<!-- Conference Management -->
 	<message key="director.conferenceSiteManagement">Conference Site Management</message>
 	<message key="director.conferenceSiteSetup">Conference Site Setup</message>
-	<message key="director.scheduledConferences">Scheduled Conferences</message>
+	<message key="director.scheduledConferences">Scheduled Instances of the Conference</message>
 	<message key="director.emails">Prepared Emails</message>
 	<message key="director.statistics">Stats &amp; Reports</message>
 	<message key="director.readingTools">Reading Tools</message>
@@ -1083,13 +1084,11 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="director.setup.conferenceDescriptionDescription">Add a brief 20-25 word description in text/HTML which will appear just below the navigation links.</message>-->
 	<message key="director.setup.homepageImageDescription">Add an image or graphic file to the middle of the page.</message>
 	<message key="director.setup.homepageImage">Homepage image</message>
-	<message key="director.setup.currentEvent">Current event</message>
 	<message key="director.setup.additionalContent">Additional Content</message>
 	<message key="director.setup.additionalContentDescription">Add the following content, using text/HTML, which will appear below the homepage image, if one is uploaded.</message>
 	<message key="director.setup.navigationBarDescription">Add or remove additional navigation bar items.</message>
 	<message key="director.setup.navItemIsLiteral">The label value is a literal string (e.g., "Conference Setup") rather than a localization message key (e.g., "director.setup")</message>
 	<message key="director.setup.navItemIsAbsolute">URL is an absolute URL (e.g., "http://www.example.com") rather than a path relative to the site (e.g., "/director/setup")</message>
-	<message key="director.setup.displayCurrentEvent">Add the contents for the current event (if available).</message>
 	<message key="director.setup.homeTitleImageInvalid">Invalid homepage header title image format. Accepted formats are .gif, .jpg, or .png.</message>
 	<message key="director.setup.homeHeaderImageInvalid">Invalid homepage header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
 	<message key="director.setup.pageHeaderTitleImageInvalid">Invalid page header title image format. Accepted formats are .gif, .jpg, or .png.</message>
@@ -1155,8 +1154,11 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="eventDirector.setup.contributor">Contributor</message>
 	<message key="eventDirector.setup.addContributor">Add Contributor</message>
 
-		<!-- Event Setup Step 2 -->
+	<!-- Event Setup Step 2 -->
 	<message key="eventDirector.setup.guidingSubmissions">Step 2. Guiding Submissions</message>
+	<message key="eventDirector.setup.callForPapers">Call for Papers (CFP)</message>
+	<message key="eventDirector.setup.cfpMessage">CFP message</message>
+	<message key="eventDirector.setup.cfpMessageDescription"><![CDATA[This information is displayed in the "call-for-papers" link on this conference's home page.]]></message>
 	<message key="eventDirector.setup.authorRegistration">Author Registration</message>
 	<message key="eventDirector.setup.authorRegistrationDescription"><![CDATA[If desired, OCS may permit users to register themselves as authors for this event. If these options are disabled, the Event Director must manually register users as authors via the Event Management pages.]]></message>
 	<message key="eventDirector.setup.openRegAuthorOn">Permit users to register as authors starting on</message>
@@ -2241,20 +2243,17 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="site.eventView">View Event</message>
 	<message key="site.eventCurrent">Current Event</message>
 
-
-	<!-- Current index -->
-	<message key="current.current">Current</message>
-	<message key="current.noCurrentEvent">No Current Event</message>
-	<message key="current.noCurrentEventDesc">This conference has not released any information on events.</message>
-
 	<!-- Archive index -->
 	<message key="archive.archives">Events</message>
 	<message key="archive.browse">Browse through events</message>
 
+	<!-- Conference page -->
+	<message key="conference.currentConferences">Current Conferences</message>
+	<message key="conference.noCurrentConferences">No conferences are currently active. Please check the archives for past events.</message>
+
 	<!-- Event page -->
 	<message key="event.cfp">Call For Papers</message>
-	<message key="event.cfpMessage">Submissions will be accepted from {$submissionOpenDate} to {$submissionCloseDate}.</message>
-	<message key="event.cfpExpiredMessage">The submission deadline has passed. Submissions are no longer being accepted.</message>
+	<message key="event.proposalSubmission">Proposal Submission</message>
 
 	<!-- Conference Proceedings -->
 	<message key="proceedings.subscribersOnly"><![CDATA[The proceedings of this conference are available only to registrants.]]></message>
@@ -2716,7 +2715,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="default.conferenceSettings.authorSelfArchivePolicy">Authors are permitted to post their articles on personal or institutional websites prior to and after publication by this conference (while providing the bibliographic details of that publication).</message>
 	<message key="default.conferenceSettings.emailSignature"><![CDATA[________________________________________________________________________
 {$conferenceName} {$eventName}
-{$indexUrl}/{$conferencePath}/{$journalPath}
+{$indexUrl}/{$conferencePath}/{$eventPath}
 ]]></message>
 	<message key="default.conferenceSettings.forReaders"><![CDATA[We encourage readers to sign up for notification of papers posted for this conference. Use the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/user/register">Register</a> link at the top of the homepage for the conference. This list allows the conference to claim a certain level of support or readership. See the conference's <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about/submissions#privacyStatement">Privacy Statement</a> which assures readers that their name and email address will not be used for other purposes.]]></message>
 	<message key="default.conferenceSettings.forPresenters"><![CDATA[Interested in submitting to this conference? We recommend that you review the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about">About the Conference</a> page for the conference's track policies, as well as the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about/submissions#authorGuidelines">Author Guidelines</a>. Authors need to <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/user/register">register</a> with the conference prior to submitting, or if already registered can simply <a href="{$indexUrl}/index/index/login">log in</a> and begin the submission process.]]></message>

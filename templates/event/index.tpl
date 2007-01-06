@@ -19,41 +19,11 @@
 {assign var="pageTitleTranslated" value=$event->getFullTitle()}
 {include file="common/header.tpl"}
 
-<div>{$eventIntroduction|nl2br}</div>
+<div>{$event->getSetting("eventIntroduction")|nl2br}</div>
 
 <br />
 
-
-{if $showCFP or $showCFPExpired}
-	<br />
-	<center><h3>{translate key="event.cfp"}</h3></center>
-	{url|assign:cfpUrl page="author" op="submit" loginMessage="author.submit.authorSubmitLoginMessage"}
-
-	<table width="100%" class="listing">
-		<tr>
-			<td class="headseparator">&nbsp;</td>
-		</tr>
-		<tr valign="top">
-			<td>
-				{translate key="event.cfpMessage" submissionOpenDate=$submissionOpenDate submissionCloseDate=$submissionCloseDate}
-					{if $showSubmissionLink}
-						<br />
-						<a href={$cfpUrl}>{translate key="author.submit.startHere"}</a>
-					{/if}
-			</td>
-		</tr>
-		{if $showCFPExpired}
-			<tr valign="top">
-				<td>
-					{translate key="event.cfpExpiredMessage"}
-				</td>
-			</tr>
-		{/if}
-		<tr>
-			<td class="endseparator">&nbsp;</td>
-		</tr>
-		</table>
-{/if}
+<h2>{$event->getSetting("location")|nl2br}</h2>
 
 {if $enableAnnouncementsHomepage}
 	{* Display announcements *}
@@ -79,9 +49,10 @@
 
 <ul class="plain">
 	<li>&#187; <a href="{url page="event" op="overview"}">{translate key="event.overview"}</a></li>
+	<li>&#187; <a href="{url page="event" op="cfp"}">{translate key="event.cfp"}</a> ({$submissionOpenDate|date_format:$dateFormatLong} - {$submissionCloseDate|date_format:$dateFormatLong})</li>
+	{if $showSubmissionLink}<li>&#187; <a href="{url page="author" op="submit"}">{translate key="event.proposalSubmission"}</a></li>{/if}
 	<li>&#187; <a href="{url page="event" op="program"}">{translate key="event.program"}</a></li>
 	<li>&#187; <a href="{url page="event" op="proceedings"}">{translate key="event.proceedings"}</a></li>
-	<li>&#187; <a href="{url page="event" op="cfp"}">{translate key="event.cfp"}</a></li>
 {*	<li>&#187; <a href="{url page="event" op="submissions"}">{translate key="event.submissions"}</a></li>
 	<li>&#187; <a href="{url page="event" op="papers"}">{translate key="event.papers"}</a></li>
 	<li>&#187; <a href="{url page="event" op="discussion"}">{translate key="event.discussion"}</a></li>*}

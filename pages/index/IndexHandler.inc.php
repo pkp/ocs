@@ -31,18 +31,9 @@ class IndexHandler extends Handler {
 
 		} elseif($conference) {
 
-			// If the conference prefers that the current event be shown, do it.
-			$eventDao = &DAORegistry::getDAO('EventDAO');
-			$displayCurrentEvent = $conference->getSetting('displayCurrentEvent');
-			$currentEvent = &$eventDao->getCurrentEvent($conference->getConferenceId());
-
-			if($displayCurrentEvent && $currentEvent) {
-				import('pages.event.EventHandler');
-				Request::redirect(null, $currentEvent->getPath());
-			} else {
-				import('pages.conference.ConferenceHandler');
-				ConferenceHandler::view(array($conference->getConferenceId()));
-			}
+			// An event was specified; display it.
+			import('pages.conference.ConferenceHandler');
+			ConferenceHandler::view(array($conference->getConferenceId()));
 
 		} else {
 		

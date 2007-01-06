@@ -337,9 +337,11 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
-		<field name="current" type="I1">
+		<field name="start_date" type="T">
 			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="end_date" type="T">
+			<NOTNULL/>
 		</field>
 		<descr>Events and basic event settings.</descr>
 		<index name="events__path">
@@ -347,6 +349,10 @@
 		</index>
 		<index name="events_conference_id">
 			<col>conference_id</col>
+		</index>
+		<index name="events_start_end_date">
+			<col>start_date</col>
+			<col>end_date</col>
 		</index>
 	</table>
 	

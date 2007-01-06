@@ -19,8 +19,8 @@
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr valign="top" class="heading">
-		<td width="35%">{translate key="director.events.eventTitle"}</td>
-		<td width="35%">{translate key="common.path"}</td>
+		<td width="35%">{translate key="director.events.scheduledConference"}</td>
+		<td width="35%">{translate key="director.events.eventStartDate"}</td>
 		<td width="10%">{translate key="common.order"}</td>
 		<td width="20%" align="right">{translate key="common.action"}</td>
 	</tr>
@@ -30,7 +30,7 @@
 	{iterate from=events item=event}
 	<tr valign="top">
 		<td><a class="action" href="{url event=$event->getPath() page="eventDirector"}">{$event->getTitle()|escape}</a></td>
-		<td>{$event->getPath()|escape}</td>
+		<td>{$event->getStartDate()|date_format:$dateFormatShort}</td>
 		<td><a href="{url op="moveEvent" d=u eventId=$event->getEventId()}">&uarr;</a> <a href="{url op="moveEvent" d=d eventId=$event->getEventId()}">&darr;</a></td>
 
 		<td align="right">

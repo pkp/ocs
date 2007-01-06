@@ -26,22 +26,6 @@ class EventHandler extends Handler {
 	}
 
 	/**
-	 * Display current event page.
-	 */
-	function current($args) {
-		list($conference, $event) = parent::validate(true, false);
-
-		$eventDao = &DAORegistry::getDAO('EventDAO');
-		$event = &$eventDao->getCurrentEvent($conference->getConferenceId());
-			
-		if (!$event) {
-			Request::Redirect(null, 'index', 'index');
-		}
-
-		Request::Redirect($conference->getPath(), $event->getPath(), null);
-	}
-
-	/**
 	 * Display event view page.
 	 */
 	function view($args) {
@@ -67,7 +51,9 @@ class EventHandler extends Handler {
 			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
 			array(Request::url(null, null, 'index'), $event->getTitle(), true)));
 		EventHandler::setupEventTemplate($conference,$event);
-		
+
+		$templateMgr->assign('eventOverview', $event->getSetting('eventOverview'));
+
 		$templateMgr->assign('helpTopicId', 'event.overview');
 		$templateMgr->display('event/overview.tpl');
 	}
@@ -84,8 +70,9 @@ class EventHandler extends Handler {
 			array(Request::url(null, null, 'index'), $event->getTitle(), true)));
 		EventHandler::setupEventTemplate($conference,$event);
 		
+		$templateMgr->assign('cfpMessage', $event->getSetting('cfpMessage', false));
+
 		$templateMgr->assign('helpTopicId', 'event.cfp');
-		$templateMgr->assign('cfp', $event->getSetting('cfp', false));
 		$templateMgr->display('event/cfp.tpl');
 	}
 
@@ -100,7 +87,9 @@ class EventHandler extends Handler {
 			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
 			array(Request::url(null, null, 'index'), $event->getTitle(), true)));
 		EventHandler::setupEventTemplate($conference,$event);
+
 		$templateMgr->assign('eventProgram', $event->getSetting('eventProgram', false));
+
 		$templateMgr->assign('helpTopicId', 'event.program');
 		$templateMgr->display('event/program.tpl');
 	}
@@ -215,10 +204,6 @@ class EventHandler extends Handler {
 			$templateMgr->assign('cfpExpireDate', TimeZone::formatLocalTime(TZ_DATE_FORMAT_DATEONLY, $closeDate, null));
 			
 			$templateMgr->assign_by_ref('event', $event);
-			$templateMgr->assign('conferenceOverview', $event->getSetting('conferenceOverview', true));
-			$templateMgr->assign('conferenceIntroduction', $event->getSetting('conferenceIntroduction', true));
-			$templateMgr->assign('eventOverview', $event->getSetting('eventOverview', true));
-			$templateMgr->assign('eventIntroduction', $event->getSetting('eventIntroduction', true));
 			$templateMgr->assign('additionalHomeContent', $event->getSetting('additionalHomeContent', true));
 
 			$enableAnnouncements = $event->getSetting('enableAnnouncements', true);

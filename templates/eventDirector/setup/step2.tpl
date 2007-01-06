@@ -15,7 +15,20 @@
 <form method="post" action="{url op="saveSetup" path="2"}">
 {include file="common/formErrors.tpl"}
 
-<h3>2.1 {translate key="eventDirector.setup.authorRegistration"}</h3>
+<h3>2.1 {translate key="eventDirector.setup.callForPapers"}</h3>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="10%" class="label">{fieldLabel name="cfpMessage" key="eventDirector.setup.cfpMessage"}</td>
+		<td width="90%" class="value">
+			<textarea name="cfpMessage" id="cfpMessage" rows="5" cols="60" class="textArea">{$cfpMessage|escape}</textarea>
+			<br />
+			<span class="instruct">{translate key="eventDirector.setup.cfpMessageDescription"}</span>
+		</td>
+	</tr>
+</table>
+
+<h3>2.2 {translate key="eventDirector.setup.authorRegistration"}</h3>
 
 <p>{translate key="eventDirector.setup.authorRegistrationDescription"}</p>
 
@@ -42,7 +55,7 @@
 	</tr>
 </table>
 
-<h3>2.2 {translate key="eventDirector.setup.submissionContents"}</h3>
+<h3>2.3 {translate key="eventDirector.setup.submissionContents"}</h3>
 
 <p>{translate key="eventDirector.setup.submissionsDescription"}</p>
 
@@ -120,7 +133,7 @@
 
 <div class="separator"></div>
 
-<h3>2.3 {translate key="eventDirector.setup.notifications"}</h3>
+<h3>2.4 {translate key="eventDirector.setup.notifications"}</h3>
 
 <p>{translate key="eventDirector.setup.notifications.description"}</p>
 

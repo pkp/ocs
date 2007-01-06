@@ -37,27 +37,20 @@
 
 {$additionalHomeContent}
 
-{if $event}
-	{* Display the table of contents or cover page of the current issue. *}
-	<h3>{$event->getName()|escape}</h3>
-	{include file="event/view.tpl"}
+{* Display current events. *}
+<h3>{translate key="conference.currentConferences"}</h3>
+{if not $currentEvents->eof()}
+	{iterate from=currentEvents item=event}
+		<h4><a href="{url event=$event->getPath()}">{$event->getFullTitle()|escape}</a></h4>
+		<p>{$event->getSetting('location')|nl2br}</p>
+		{if $event->getSetting('eventIntroduction')}
+			<p>{$event->getSetting('eventIntroduction')|nl2br}</p>
+		{/if}
+		<p><a href="{url event=$event->getPath()}" class="action">{translate key="site.eventView"}</a> | <a href="{url event=$event->getPath() page="user" op="register"}" class="action">{translate key="site.conferenceRegister"}</a></p>
+	{/iterate}
 {else}
-	<center><h3>{translate key="event.scheduledConferences"}</h3></center>
-	<div class="separator"></div>
-	{if not $events->eof()}
-		{iterate from=events item=event}
-			<h3><a href="{url event=$event->getPath()}">{$event->getFullTitle()|escape}</a></h3>
-			{if $event->getSetting('eventIntroduction')}
-				<p>{$event->getSetting('eventIntroduction')|nl2br}</p>
-			{/if}
-		{/iterate}
-	{else}
-		<center align="center">{translate key="event.noScheduledConferences"}</center>
-	{/if}
-	<div class="separator"></div>
+	{translate key="conference.noCurrentConferences"}
 {/if}
 
-{if $isAcceptingSubmissions}
-{/if}
 
 {include file="common/footer.tpl"}

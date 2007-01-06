@@ -19,6 +19,7 @@ class EventSetupStep2Form extends EventSetupForm {
 	
 	function EventSetupStep2Form() {
 		$settings = array(
+			'cfpMessage' => 'string',
 			'openRegAuthor' => 'bool',
 			'openRegAuthorDate' => 'date',
 			'closeRegAuthor' => 'bool',

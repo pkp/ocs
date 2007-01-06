@@ -152,15 +152,6 @@
 <img src="{$publicConferenceFilesDir}/{$homepageImage.uploadName}" width="{$homepageImage.width}" height="{$homepageImage.height}" border="0" alt="" />
 {/if}
 
-<h4>{translate key="director.setup.currentEvent"}</h4>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="displayCurrentEvent" id="displayCurrentEvent" value="1" {if $displayCurrentEvent} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="displayCurrentEvent">{translate key="director.setup.displayCurrentEvent"}</label></td>
-	</tr>
-</table>
-
 <h4>{translate key="director.setup.additionalContent"}</h4>
 
 <p>{translate key="director.setup.additionalContentDescription"}</p>

@@ -126,17 +126,15 @@ class EventSiteSettingsForm extends Form {
 		$event->setPath($this->getData('path'));
 		$event->setTitle($this->getData('title'));
 		$event->setEnabled($this->getData('enabled'));
+		$event->setStartDate($this->getData('startDate'));
+		$event->setEndDate($this->getData('endDate'));
 
 		if ($event->getEventId() != null) {
 			$eventDao->updateEvent($event);
 			$event->updateSetting('eventIntroduction', $this->getData('description'));
-			$event->setStartDate($this->getData('startDate'));
-			$event->setEndDate($this->getData('endDate'));
 		} else {
 			$eventId = $eventDao->insertEvent($event);
 			$event->updateSetting('eventIntroduction', $this->getData('description'));
-			$event->setStartDate($this->getData('startDate'));
-			$event->setEndDate($this->getData('endDate'));
 			$eventDao->resequenceEvents();
 
 			// Make this user the event manager
@@ -187,12 +185,7 @@ class EventSiteSettingsForm extends Form {
 			$track->setHideTitle(false);
 			$trackDao->insertTrack($track);
 		}
-		
-		// Mark the event as 'current'
-		$event->setCurrent(true);
-		$eventDao->updateCurrentEvent($event->getConferenceId(), $event);
 	}
-	
 }
 
 ?>

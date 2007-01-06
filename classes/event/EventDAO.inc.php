@@ -85,7 +85,8 @@ class EventDAO extends DAO {
 		$event->setSequence($row['seq']);
 		$event->setEnabled($row['enabled']);
 		$event->setConferenceId($row['conference_id']);
-		$event->setCurrent($row['current']);
+		$event->setStartDate($this->datetimeFromDB($row['start_date']));
+		$event->setEndDate($this->datetimeFromDB($row['end_date']));
 		
 		HookRegistry::call('EventDAO::_returnEventFromRow', array(&$event, &$row));
 
@@ -98,17 +99,18 @@ class EventDAO extends DAO {
 	 */	
 	function insertEvent(&$event) {
 		$this->update(
-			'INSERT INTO events
-				(conference_id, title, path, seq, enabled, current)
+			sprintf('INSERT INTO events
+				(conference_id, title, path, seq, enabled, start_date, end_date)
 				VALUES
-				(?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, %s, %s)',
+				$this->datetimeToDB($event->getStartDate()),
+				$this->datetimeToDB($event->getEndDate())),
 			array(
 				$event->getConferenceId(),
 				$event->getTitle(),
 				$event->getPath(),
 				$event->getSequence() == null ? 0 : $event->getSequence(),
-				$event->getEnabled() ? 1 : 0,
-				$event->getCurrent() ? 1 : 0
+				$event->getEnabled() ? 1 : 0
 			)
 		);
 		
@@ -122,22 +124,24 @@ class EventDAO extends DAO {
 	 */
 	function updateEvent(&$event) {
 		return $this->update(
-			'UPDATE events
+			sprintf('UPDATE events
 				SET
 					conference_id = ?,
 					title = ?,
 					path = ?,
 					seq = ?,
 					enabled = ?,
-					current = ?
+					start_date = %s,
+					end_date = %s
 				WHERE event_id = ?',
+				$this->datetimeToDB($event->getStartDate()),
+				$this->datetimeToDB($event->getEndDate())),
 			array(
 				$event->getConferenceId(),
 				$event->getTitle(),
 				$event->getPath(),
 				$event->getSequence(),
 				$event->getEnabled() ? 1 : 0,
-				$event->getCurrent() ? 1 : 0,
 				$event->getEventId()
 			)
 		);
@@ -353,28 +357,21 @@ class EventDAO extends DAO {
 	 * Retrieve most recent enabled event of a given conference
 	 * @return array Events ordered by sequence
 	 */
-	function &getCurrentEvent($conferenceId) {
-		$result = &$this->retrieve(
-		'SELECT * FROM events WHERE current = 1');
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnEventFromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		unset($result);
-		return $returner;
-	}
-	
-	/**
-	 * Update current event pointer
-	 * @param conferenceId int
-	 * @return Event object
-	 */
-	function updateCurrentEvent($conferenceId, $event = null) {
-		$this->update(
-			'UPDATE events SET current = 0 WHERE conference_id = ? AND current = 1', $conferenceId);
-		if ($event) $this->updateEvent($event);
+	 function &getCurrentEvents($conferenceId) 
+	 {
+		$result = &$this->retrieve('
+			SELECT i.* FROM events i
+				LEFT JOIN conferences c ON (i.conference_id = c.conference_id)
+			WHERE i.enabled=1
+				AND c.enabled = 1
+				AND i.conference_id = ?
+				AND i.start_date < now()
+				AND i.end_date > now()
+			ORDER BY c.seq, i.seq',
+			$conferenceId);
+		
+		$resultFactory = &new DAOResultFactory($result, $this, '_returnEventFromRow');
+		return $resultFactory;
 	}
 }
 

@@ -39,8 +39,11 @@ class ConferenceHandler extends Handler {
 		$templateMgr->assign('conferenceTitle', $conference->getTitle());
 
 		$eventDao = &DAORegistry::getDAO('EventDAO');
-		$events = &$eventDao->getEnabledEvents($conference->getConferenceId());
-		$templateMgr->assign_by_ref('events', $events);
+		$currentEvents = &$eventDao->getCurrentEvents($conference->getConferenceId());
+		$pastEvents = &$eventDao->getEnabledEvents($conference->getConferenceId());
+
+		$templateMgr->assign_by_ref('currentEvents', $currentEvents);
+		$templateMgr->assign_by_ref('pastEvents', $pastEvents);
 
 		$enableAnnouncements = $conference->getSetting('enableAnnouncements');
 		if ($enableAnnouncements) {

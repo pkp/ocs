@@ -163,6 +163,42 @@ class Event extends DataObject {
 	}
 
 	//
+	// Event start/end date functions
+	//
+	
+	/**
+	 * Get start date of event.
+	 * @return date
+	 */
+	function getStartDate() {
+		return $this->getData('startDate');
+	}
+	
+	/**
+	 * Set start date of event.
+	 * @param $startDate date
+	 */
+	function setStartDate($startDate) {
+		return $this->setData('startDate', $startDate);
+	}
+	
+	/**
+	 * Get end date of event.
+	 * @return date
+	 */
+	function getEndDate() {
+		return $this->getData('endDate');
+	}
+	
+	/**
+	 * Set end date of event.
+	 * @param $endDate date
+	 */
+	function setEndDate($endDate) {
+		return $this->setData('endDate', $endDate);
+	}
+	
+	//
 	// Helper functions making use of both the Event
 	// and Conference.
 	//
@@ -313,42 +349,6 @@ class Event extends DataObject {
 	 */
 	function getStyleFilename() {
 		return $this->getSetting('eventStyleSheet');
-	}
-	
-	//
-	// Event start/end date functions
-	//
-	
-	/**
-	 * Get start date of event.
-	 * @return date
-	 */
-	function getStartDate() {
-		return $this->getSetting('startDate');
-	}
-	
-	/**
-	 * Set start date of event.
-	 * @param $startDate date
-	 */
-	function setStartDate($startDate) {
-		return $this->updateSetting('startDate', $startDate, 'date');
-	}
-	
-	/**
-	 * Get end date of event.
-	 * @return date
-	 */
-	function getEndDate() {
-		return $this->getSetting('endDate');
-	}
-	
-	/**
-	 * Set end date of event.
-	 * @param $endDate date
-	 */
-	function setEndDate($endDate) {
-		return $this->updateSetting('endDate', $endDate, 'date');
 	}
 	
 	//

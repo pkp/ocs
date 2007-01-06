@@ -210,6 +210,8 @@ class TimelineForm extends Form {
 			$event->setAutoReleaseToPublic($this->_data['autoReleaseToPublic']);
 		if($event->getAutoReleaseToPublic() && $event->getAutoReleaseToPublicDate() != $this->_data['autoReleaseToPublicDate'])
 			$event->setAutoReleaseToPublicDate($this->_data['autoReleaseToPublicDate']);
+
+		$eventDao->updateEvent($event);
 	}
 	
 }
