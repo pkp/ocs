@@ -316,15 +316,34 @@ class AboutHandler extends Handler {
 
 		AboutHandler::setupTemplate(true);
 
-		$conferenceOrEvent = &Request::getEvent();
-		if(!$conferenceOrEvent)
-			$conferenceOrEvent = &Request::getConference();
-
+		$conference =& Request::getConference();
+		$event = &Request::getEvent();
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign_by_ref('contributorNote', $conferenceOrEvent->getSetting('contributorNote', true));
-		$templateMgr->assign_by_ref('contributors', $conferenceOrEvent->getSetting('contributors', true));
-		$templateMgr->assign('sponsorNote', $conferenceOrEvent->getSetting('sponsorNote', true));
-		$templateMgr->assign_by_ref('sponsors', $conferenceOrEvent->getSetting('sponsors', true));
+
+		$contributors = array();
+		$sponsors = array();
+		
+		if($conference) {
+			$contributorNote = $conference->getSetting('contributorNote');
+			$contributors = $conference->getSetting('contributors');
+
+			$sponsorNote = $conference->getSetting('sponsorNote');
+			$sponsors = $conference->getSetting('sponsors');
+		}
+
+		if($event) {
+			$contributorNote = $event->getSetting('contributorNote', true);
+			$contributors = array_merge($contributors, $event->getSetting('contributors', false));
+
+			$sponsorNote = $event->getSetting('sponsorNote', true);
+			$sponsors = array_merge($sponsors, $event->getSetting('sponsors', false));
+		}
+
+		$templateMgr->assign_by_ref('contributorNote', $contributorNote);
+		$templateMgr->assign_by_ref('contributors', $contributors);
+		$templateMgr->assign('sponsorNote', $sponsorNote);
+		$templateMgr->assign_by_ref('sponsors', $sponsors);
+		
 		$templateMgr->display('about/conferenceSponsorship.tpl');
 	}
 	

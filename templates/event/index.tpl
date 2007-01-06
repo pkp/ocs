@@ -57,7 +57,7 @@
 	<li>&#187; <a href="{url page="event" op="papers"}">{translate key="event.papers"}</a></li>
 	<li>&#187; <a href="{url page="event" op="discussion"}">{translate key="event.discussion"}</a></li>*}
 	<li>&#187; <a href="{url page="event" op="registration"}">{translate key="event.registration"}</a></li>
-	<li>&#187; <a href="{url page="event" op="supporters"}">{translate key="event.supporters"}</a></li>
+	<li>&#187; <a href="{url page="about" op="conferenceSponsorship"}">{translate key="event.supporters"}</a></li>
 {*	<li>&#187; <a href="{url page="event" op="schedule"}">{translate key="event.schedule"}</a></li> *}
 	<li>&#187; <a href="{url page="event" op="links"}">{translate key="event.links"}</a></li>
 </ul>
