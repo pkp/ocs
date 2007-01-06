@@ -373,6 +373,40 @@ class EventDAO extends DAO {
 		$resultFactory = &new DAOResultFactory($result, $this, '_returnEventFromRow');
 		return $resultFactory;
 	}
+
+	/**
+	 * Check if one or more archived events exist for a conference.
+	 * @param $conferenceId the conference owning the event
+	 * @return boolean
+	 */
+	function archivedEventsExist($conferenceId) {
+		$result = &$this->retrieve(
+			'SELECT COUNT(*) FROM events WHERE conference_id = ? AND end_date < now()', $conferenceId
+		);
+		$returner = isset($result->fields[0]) && $result->fields[0] >= 1 ? true : false;
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
+	 * Check if one or more archived events exist for a conference.
+	 * @param $conferenceId the conference owning the event
+	 * @return boolean
+	 */
+	function currentEventsExist($conferenceId) {
+		$result = &$this->retrieve(
+			'SELECT COUNT(*) FROM events WHERE conference_id = ? AND start_date < now() AND end_date > now()', $conferenceId
+		);
+		$returner = isset($result->fields[0]) && $result->fields[0] >= 1 ? true : false;
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
 }
 
 ?>

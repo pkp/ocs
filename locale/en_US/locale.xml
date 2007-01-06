@@ -205,8 +205,8 @@
 	<message key="navigation.login">Log In</message>
 	<message key="navigation.register">Register</message>
 	<message key="navigation.user">User</message>
-	<message key="navigation.archives">Events</message>
-	<message key="navigation.current">Current Events</message>
+	<message key="navigation.archive">Archive</message>
+	<message key="navigation.current">Current Conferences</message>
 	<message key="navigation.search">Search</message>
 	<message key="navigation.otherConferences">Other Conferences</message>
 	<message key="navigation.myProfile">My Profile</message>

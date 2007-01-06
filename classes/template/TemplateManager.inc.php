@@ -87,6 +87,12 @@ class TemplateManager extends Smarty {
 			
 			if (isset($conference)) {
 
+				$eventDao =& DAORegistry::getDAO('EventDAO');
+				$archivedEventsExist = $eventDao->archivedEventsExist($conference->getConferenceId());
+				$currentEventsExist = $eventDao->currentEventsExist($conference->getConferenceId());
+				$this->assign('archivedEventsExist', $archivedEventsExist);
+				$this->assign('currentEventsExist', $currentEventsExist);
+
 				$this->assign_by_ref('currentConference', $conference);
 				$conferenceTitle = $conference->getTitle();
 
