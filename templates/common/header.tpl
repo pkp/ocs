@@ -80,8 +80,8 @@
 		{/if}
 		<li><a href="{url page="search"}">{translate key="navigation.search"}</a></li>
 		{if $currentConference}
-			{if $currentEventsExist}<li><a href="{url event="index" page="index"}">{translate key="navigation.current"}</a></li>{/if}
-			{if $archivedEventsExist}<li><a href="{url event="index" page="archive"}">{translate key="navigation.archive"}</a></li>{/if}
+			{if $currentEventsExist}<li><a href="{url event="index" page="events" op="current"}">{translate key="navigation.current"}</a></li>{/if}
+			{if $archivedEventsExist}<li><a href="{url event="index" page="events" op="archive"}">{translate key="navigation.archive"}</a></li>{/if}
 			{if $enableAnnouncements}
 				<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
 			{/if}

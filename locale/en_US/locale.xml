@@ -2252,6 +2252,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<!-- Conference page -->
 	<message key="conference.currentConferences">Current Conferences</message>
 	<message key="conference.noCurrentConferences">No conferences are currently active. Please check the archives for past events.</message>
+	<message key="conference.archive">Conference Archives</message>
 
 	<!-- Event page -->
 	<message key="event.cfp">Call For Papers</message>
