@@ -302,7 +302,7 @@
 <br />
 
 <p>
-	<input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" />
+	<input type="submit" value="{translate key="common.save"}" class="button defaultButton" />
 	<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="timeline" escape=false}'" /></p>
 </p>
 
