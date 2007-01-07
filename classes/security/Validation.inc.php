@@ -280,19 +280,6 @@ class Validation {
 	}
 	
 	/**
-	 * Shortcut for checking authorization as an event director.
-	 * @param $eventId int
-	 * @return boolean
-	 */
-	function isEventDirector($conferenceId = -1, $eventId = -1) {
-		if($eventId === null || $eventId === -1)
-			return Validation::isAuthorized(ROLE_ID_EVENT_DIRECTOR, $conferenceId, 0);
-			
-		return (Validation::isAuthorized(ROLE_ID_EVENT_DIRECTOR, $conferenceId, $eventId) ||
-			Validation::isAuthorized(ROLE_ID_EVENT_DIRECTOR, $conferenceId, 0));
-	}
-	
-	/**
 	 * Shortcut for checking authorization as editor.
 	 * @param $conferenceId int
 	 * @return boolean
@@ -365,7 +352,6 @@ class Validation {
 	 */
 	function canAdminister($conferenceId, $eventId, $userId) {
 
-		$isEventDirector = Validation::isEventDirector($conferenceId, $eventId);
 		$isConferenceDirector = Validation::isConferenceDirector($conferenceId);
 		
 		if (Validation::isSiteAdmin()) {
@@ -373,7 +359,7 @@ class Validation {
 			return true;
 		}
 		
-		if ($isConferenceDirector || $isEventDirector) {
+		if ($isConferenceDirector) {
 		
 			// Check for roles in other conferences that this user
 			// doesn't have administrative rights over.
@@ -397,20 +383,9 @@ class Validation {
 
 				} else {
 					// Other conferences: We must have admin privileges there too
-					if (!Validation::isConferenceDirector($role->getConferenceId()) &&
-						!Validation::isEventDirector($role->getConferenceId(), $role->getEventId())) {
+					if (!Validation::isConferenceDirector($role->getConferenceId())) {
 						
 						return false;
-					}
-					
-					// If we're event director there, they must be of lower rights there.
-					if (Validation::isEventDirector($role->getConferenceId(), $role->getEventId())) {
-	
-						if($role->getRoleId() == ROLE_ID_CONFERENCE_DIRECTOR ||
-							$role->getRoleId() == ROLE_ID_EVENT_DIRECTOR) {
-							
-							return false;
-						}
 					}
 				}
 			}

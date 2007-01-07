@@ -21,22 +21,16 @@ define('ROLE_PATH_SITE_ADMIN',					'admin');
 define('ROLE_ID_CONFERENCE_DIRECTOR',		0x00000010);
 define('ROLE_PATH_CONFERENCE_DIRECTOR', 'director');
 
-define('ROLE_ID_EVENT_DIRECTOR',			0x00000020);
-define('ROLE_PATH_EVENT_DIRECTOR',		'eventDirector');
-
-define('ROLE_ID_REGISTRATION_MANAGER',	0x00000040);
+define('ROLE_ID_REGISTRATION_MANAGER',	0x00000020);
 define('ROLE_PATH_REGISTRATION_MANAGER','registrationManager');
 
-//define('ROLE_ID_SCHEDULING_MANAGER',		0x00000080);
-//define('ROLE_PATH_SCHEDULING_MANAGER',	'schedulingManager');
-
-define('ROLE_ID_EDITOR',								0x00000100);
+define('ROLE_ID_EDITOR',								0x00000040);
 define('ROLE_PATH_EDITOR', 							'editor');
 
-define('ROLE_ID_TRACK_EDITOR',					0x00000200);
+define('ROLE_ID_TRACK_EDITOR',					0x00000080);
 define('ROLE_PATH_TRACK_EDITOR', 				'trackEditor');
 
-define('ROLE_ID_REVIEWER',							0x00000400);
+define('ROLE_ID_REVIEWER',							0x00000100);
 define('ROLE_PATH_REVIEWER',						'reviewer');
 
 define('ROLE_ID_AUTHOR',			 					0x00001000);
@@ -51,7 +45,7 @@ define('ROLE_PATH_AUTHOR',							'author');
 //define('ROLE_ID_REGISTRANT',						0x00020000);
 //define('ROLE_PATH_REGISTRANT',					'registrant');
 
-define('ROLE_ID_READER',								0x00040000);
+define('ROLE_ID_READER',								0x00008000);
 define('ROLE_PATH_READER',							'reader');
 
 class Role extends DataObject {

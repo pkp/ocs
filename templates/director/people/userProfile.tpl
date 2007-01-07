@@ -107,7 +107,7 @@
 	<li>
 		{translate key=$userRoles[role]->getRoleName()}
 		{if ($isConferenceManagement) ||
-				($isEventManagement && $userRoles[role]->getRolePath() != 'director' && $userRoles[role]->getRolePath() != 'eventDirector')}
+				($isEventManagement && $userRoles[role]->getRolePath() != 'director')}
 			<a href="{url 
 					op="unEnroll"
 					path=$userRoles[role]->getRoleId()

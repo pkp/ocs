@@ -30,6 +30,25 @@
 </ul>
 
 
+<h3>{translate key="director.currentConferences"}</h3>
+{iterate from=events item=event}
+	<h4>{$event->getFullTitle()}</h4>
+	<ul class="plain">
+		{if $announcementsEnabled}
+			<li>&#187; <a href="{url op="announcements"}">{translate key="director.announcements"}</a></li>
+		{/if}
+		<li>&#187; <a href="{url event=$event->getPath() page="director" op="tracks"}">{translate key="track.tracks"}</a></li>
+		<li>&#187; <a href="{url event=$event->getPath() page="director" op="groups"}">{translate key="director.groups"}</a></li>
+		<li>&#187; <a href="{url event=$event->getPath() page="director" op="eventSetup"}">{translate key="director.eventSetup"}</a></li>
+		<li>&#187; <a href="{url event=$event->getPath() page="director" op="statistics"}">{translate key="director.statistics"}</a></li>
+		{if $registrationEnabled}
+			<li>&#187; <a href="{url event=$event->getPath() page="director" op="registration"}">{translate key="director.registration"}</a></li>
+		{/if}
+		{call_hook name="Templates::Director::Index::EventManagementPages"}
+	</ul>
+{/iterate}
+
+
 <h3>{translate key="director.users"}</h3>
 
 <ul class="plain">
@@ -44,7 +63,6 @@
 
 <ul class="plain">
 	<li>&#187; <a href="{url op="people" path="directors"}">{translate key="user.role.directors"}</a></li>
-	<li>&#187; <a href="{url op="people" path="eventDirectors"}">{translate key="user.role.eventDirectors"}</a></li>
 	{call_hook name="Templates::Director::Index::Roles"}
 </ul>
 

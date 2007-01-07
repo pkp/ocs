@@ -49,7 +49,6 @@ function confirmAndPrompt(userId) {
 
 		{if $isConferenceManagement}
 			<option {if $roleSymbolic=='directors'}selected="selected" {/if}value="directors">{translate key="user.role.directors"}</option>
-			<option {if $roleSymbolic=='eventDirectors'}selected="selected" {/if}value="eventDirectors">{translate key="user.role.eventDirectors"}</option>
 		{/if}
 		{if $isEventManagement}
 			{if $isRegistrationEnabled}
@@ -86,7 +85,6 @@ function confirmAndPrompt(userId) {
 <ul>
 	{if $isConferenceManagement}
 		<li><a href="{url path="directors"}">{translate key="user.role.directors"}</a></li>
-		<li><a href="{url path="eventDirectors"}">{translate key="user.role.eventDirectors"}</a></li>
 	{/if}
 	{if $isEventManagement}
 		{if $isRegistrationEnabled}

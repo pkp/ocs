@@ -55,7 +55,6 @@ function confirmAndPrompt(userId) {
 		<option value=""></option>
 		{if $isConferenceManagement}
 			<option value="{$smarty.const.ROLE_ID_CONFERENCE_DIRECTOR}">{translate key="user.role.director"}</option>
-			<option value="{$smarty.const.ROLE_ID_EVENT_DIRECTOR}">{translate key="user.role.eventDirector"}</option>
 		{/if}
 		{if $isEventManagement}
 			<option value="{$smarty.const.ROLE_ID_CONFERENCE_DIRECTOR}">{translate key="user.role.director"}</option>

@@ -137,23 +137,6 @@ class EventSiteSettingsForm extends Form {
 			$event->updateSetting('eventIntroduction', $this->getData('description'));
 			$eventDao->resequenceEvents();
 
-			// Make this user the event manager
-			$sessionManager = &SessionManager::getManager();
-			$userSession = &$sessionManager->getUserSession();
-			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($eventId)) {
-				$roleDao = &DAORegistry::getDAO('RoleDAO');
-
-				// Don't create event director role on this event it's already granted on the whole conference
-				if (!$roleDao->roleExists($event->getConferenceId(), 0, $userSession->getUserId(), ROLE_ID_EVENT_DIRECTOR)) {
-					$role = &new Role();
-					$role->setEventId($eventId);
-					$role->setConferenceId($event->getConferenceId());
-					$role->setUserId($userSession->getUserId());
-					$role->setRoleId(ROLE_ID_EVENT_DIRECTOR);
-					$roleDao->insertRole($role);
-				}
-			}
-			
 			// Make the file directories for the event
 			import('file.FileManager');
 			$conferenceId = $event->getConferenceId();

@@ -158,9 +158,7 @@ class EventHandler extends Handler {
 		if (isset($event) &&
 				($event->getEnabled() ||
 				 Validation::isEditor($conference->getConferenceId()) ||
-				 Validation::isConferenceDirector($conference->getConferenceId()) ||
-				 Validation::isEventDirector($conference->getConferenceId(), $event->getEventId())) &&
-				 $event->getConferenceId() == $conference->getConferenceId()) {
+				 Validation::isConferenceDirector($conference->getConferenceId())) {
 
 			$eventTitle = $event->getTitle();
 

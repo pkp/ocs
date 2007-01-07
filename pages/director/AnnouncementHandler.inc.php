@@ -13,7 +13,7 @@
  * $Id$
  */
 
-class AnnouncementHandler extends EventDirectorHandler {
+class AnnouncementHandler extends DirectorHandler {
 
 	function index() {
 		AnnouncementHandler::announcements();

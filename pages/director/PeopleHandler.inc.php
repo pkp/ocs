@@ -13,9 +13,6 @@
  * $Id$
  */
 
-/* In case we're coming from eventDirector pages... */
-import('pages.director.DirectorHandler');
-
 class PeopleHandler extends DirectorHandler {
 
 	/**
@@ -228,11 +225,6 @@ class PeopleHandler extends DirectorHandler {
 		$rolePath = $roleDao->getRolePath($roleId);
 
 		$isConferenceDirector = Validation::isConferenceDirector($conference->getConferenceId());
-		if(isset($event) && $event) {
-			$isEventDirector = Validation::isEventDirector($conference->getConferenceId(), $event->getEventId());
-		} else {
-			$isEventDirector = false;
-		}
 
 		// Don't allow event directors (who can end up here) to enroll
 		// conference directors or event directors.
@@ -240,10 +232,7 @@ class PeopleHandler extends DirectorHandler {
 				is_array($users) &&
 				$rolePath != '' &&
 				$rolePath != ROLE_PATH_SITE_ADMIN &&
-				($isConferenceDirector || (
-					$isEventDirector &&
-					$rolePath != ROLE_PATH_CONFERENCE_DIRECTOR &&
-					$rolePath != ROLE_PATH_EVENT_DIRECTOR))) {
+				$isConferenceDirector) {
 
 			$eventId = ($event? $event->getEventId() : 0);
 					
@@ -281,22 +270,12 @@ class PeopleHandler extends DirectorHandler {
 		$event = &$eventDao->getEventByPath(Request::getRequestedEventPath());
 
 		$isConferenceDirector = Validation::isConferenceDirector($conference->getConferenceId());
-		if(isset($event) && $event) {
-			$isEventDirector = Validation::isEventDirector($conference->getConferenceId(), $event->getEventId());
-		} else {
-			$isEventDirector = false;
-		}
 		
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 
 		// Don't allow event directors to unenroll event directors or
 		// conference directors
-		if ($roleId != ROLE_ID_SITE_ADMIN &&
-				($isConferenceDirector || (
-					$isEventDirector &&
-					$roleId != ROLE_ID_CONFERENCE_DIRECTOR &&
-					$roleId != ROLE_ID_EVENT_DIRECTOR))) {
-		
+		if ($roleId != ROLE_ID_SITE_ADMIN && $isConferenceDirector) {
 			$roleDao->deleteRoleByUserId(Request::getUserVar('userId'), $conference->getConferenceId(), $roleId);
 		}
 		

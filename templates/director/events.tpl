@@ -29,7 +29,7 @@
 	</tr>
 	{iterate from=events item=event}
 	<tr valign="top">
-		<td><a class="action" href="{url event=$event->getPath() page="eventDirector"}">{$event->getTitle()|escape}</a></td>
+		<td><a class="action" href="{url event=$event->getPath() page="director"}">{$event->getTitle()|escape}</a></td>
 		<td>{$event->getStartDate()|date_format:$dateFormatShort}</td>
 		<td><a href="{url op="moveEvent" d=u eventId=$event->getEventId()}">&uarr;</a> <a href="{url op="moveEvent" d=d eventId=$event->getEventId()}">&darr;</a></td>
 

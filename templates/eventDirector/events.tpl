@@ -19,7 +19,7 @@
 {if not $events->eof()}
 	{iterate from=events item=event}
 		<ul class="plain">
-			<li>&#187; <a href="{url event=$event->getPath() page="eventDirector"}" class="action">{$event->getTitle()|escape}</a></li>
+			<li>&#187; <a href="{url event=$event->getPath() page="director"}" class="action">{$event->getTitle()|escape}</a></li>
 		</ul>
 	{/iterate}
 {else}

@@ -480,8 +480,8 @@ class AboutHandler extends Handler {
 	}
 
 	function getPublicStatisticsNames() {
-		import ('pages.eventDirector.EventDirectorHandler');
-		import ('pages.eventDirector.StatisticsHandler');
+		import ('pages.director.DirectorHandler');
+		import ('pages.director.StatisticsHandler');
 		return StatisticsHandler::getPublicStatisticsNames();
 	}
 

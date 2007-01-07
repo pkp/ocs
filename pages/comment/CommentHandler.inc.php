@@ -31,8 +31,7 @@ class CommentHandler extends Handler {
 		$comment = &$commentDao->getComment($commentId, $paperId, 2);
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$isDirector = Validation::isConferenceDirector($conference->getConferenceId()) ||
-			Validation::isEventDirector($conference->getConferenceId(), $event->getEventId());
+		$isDirector = Validation::isConferenceDirector($conference->getConferenceId());
 
 		if (!$comment) $comments = &$commentDao->getRootCommentsByPaperId($paperId, 1);
 		else $comments = &$comment->getChildren();

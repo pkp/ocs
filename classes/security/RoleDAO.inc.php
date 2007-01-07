@@ -391,8 +391,6 @@ class RoleDAO extends DAO {
 
 			case ROLE_ID_CONFERENCE_DIRECTOR:
 				return 'user.role.director' . ($plural ? 's' : '');
-			case ROLE_ID_EVENT_DIRECTOR:
-				return 'user.role.eventDirector' . ($plural ? 's' : '');
 
 			case ROLE_ID_REGISTRATION_MANAGER:
 				return 'user.role.registrationManager' . ($plural ? 's' : '');
@@ -434,8 +432,6 @@ class RoleDAO extends DAO {
 
 			case ROLE_ID_CONFERENCE_DIRECTOR:
 				return ROLE_PATH_CONFERENCE_DIRECTOR;
-			case ROLE_ID_EVENT_DIRECTOR:
-				return ROLE_PATH_EVENT_DIRECTOR;
 
 			case ROLE_ID_REGISTRATION_MANAGER:
 				return ROLE_PATH_REGISTRATION_MANAGER;
@@ -477,8 +473,6 @@ class RoleDAO extends DAO {
 
 			case ROLE_PATH_CONFERENCE_DIRECTOR:
 				return ROLE_ID_CONFERENCE_DIRECTOR;
-			case ROLE_PATH_EVENT_DIRECTOR:
-				return ROLE_ID_EVENT_DIRECTOR;
 				
 			case ROLE_PATH_REGISTRATION_MANAGER:
 				return ROLE_ID_REGISTRATION_MANAGER;
