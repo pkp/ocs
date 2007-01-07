@@ -663,7 +663,7 @@ class Event extends DataObject {
 		if($this->getSetting('openRegAuthor') && time() > $this->getSetting('openRegAuthorDate')) {
 			$allowRegAuthor = true;
 		}
-		if($this->getSetting('closeRegAuthor') && time() > $this->getSetting('closeRegAuthorDate')) {
+		if(time() > $this->getSetting('closeRegAuthorDate')) {
 			$allowRegAuthor = false;
 		}
 		return $allowRegAuthor;

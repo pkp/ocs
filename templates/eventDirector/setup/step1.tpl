@@ -48,7 +48,7 @@
 
 <div class="separator"></div>
 
-<h3>1.2 {translate key="eventDirector.setup.location"}</h3>
+<h3>1.3 {translate key="eventDirector.setup.location"}</h3>
 
 <p>{translate key="eventDirector.setup.locationDescription"}</p>
 
@@ -63,7 +63,7 @@
 
 <div class="separator"></div>
 
-<h3>1.3 {translate key="eventDirector.setup.sponsors"}</h3>
+<h3>1.4 {translate key="eventDirector.setup.sponsors"}</h3>
 
 <p>{translate key="eventDirector.setup.sponsorsDescription"}</p>
 
@@ -120,7 +120,7 @@
 <div class="separator"></div>
 
 
-<h3>1.4 {translate key="eventDirector.setup.contributors"}</h3>
+<h3>1.5 {translate key="eventDirector.setup.contributors"}</h3>
 
 <p>{translate key="eventDirector.setup.contributorsDescription"}</p>
 

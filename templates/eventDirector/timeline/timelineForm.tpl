@@ -59,6 +59,36 @@
 
 <br/>
 
+<h4>{translate key="director.timeline.userTimeline"}</h4>
+
+<span class="instruct">{translate key="director.timeline.userTimelineDescription"}</span><br /><br />
+
+{if $showAuthorSelfRegister}
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="25%" class="label">
+			{translate key="director.timeline.openRegAuthorOn"}
+		</td>
+		<td width="75%" class="value">
+			<nobr>
+				{html_select_date prefix="openRegAuthorDate" time=$openRegAuthorDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
+			</nobr>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="25%" class="label">
+			{translate key="director.timeline.closeRegAuthorOn"}
+		</td>
+		<td width="75%" class="value">
+			<nobr>
+				{html_select_date prefix="closeRegAuthorDate" time=$closeRegAuthorDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
+			</nobr>
+		</td>
+	</tr>
+</table>
+{/if}
+
+
 <h4>{translate key="director.timeline.submissionTimeline"}</h4>
 
 <span class="instruct">{translate key="director.timeline.submissionTimelineDescription"}</span><br /><br />
@@ -87,6 +117,7 @@
 		// -->
 		{/literal}
 	</script>
+
 
 {* "Submissions are currently..." *}
 

@@ -50,8 +50,10 @@ class TimelineForm extends Form {
 
 		$templateMgr->assign('showAbstractDueDate',!$event->getCollectPapersWithAbstracts());
 		$templateMgr->assign('showPaperDueDate', $event->getAcceptPapers());
-		$templateMgr->assign('showSubmissionDueDate', $event->getCollectPapersWithAbstracts());		
-
+		$templateMgr->assign('showSubmissionDueDate', $event->getCollectPapersWithAbstracts());
+		
+		$templateMgr->assign('showAuthorSelfRegister', $event->getSetting('openRegAuthor') == true ? true:false);
+		
 		$defaultTimeZone = TimeZone::getDefaultTimeZone();
 		
 		$templateMgr->assign('defaultTimeZone', $defaultTimeZone);
@@ -75,6 +77,9 @@ class TimelineForm extends Form {
 			'autoShowCFP' => $event->getAutoShowCFP(),
 			'showCFPDate' => $event->getShowCFPDate(),
 			
+			'openRegAuthorDate' => $event->getSetting('openRegAuthorDate'),
+			'closeRegAuthorDate' => $event->getSetting('closeRegAuthorDate'),
+
 			'submissionState' => $event->getSubmissionState(),
 			'publicationState' => $event->getPublicationState(),
 			'registrationState' => $event->getRegistrationState(),
@@ -117,6 +122,9 @@ class TimelineForm extends Form {
 
 		$this->_data['autoReleaseToParticipantsDate'] = Request::getUserDateVar('autoReleaseToParticipantsDate');
 		$this->_data['autoReleaseToPublicDate'] = Request::getUserDateVar('autoReleaseToPublicDate');
+
+		$this->_data['openRegAuthorDate'] = Request::getUserDateVar('openRegAuthorDate');
+		$this->_data['closeRegAuthorDate'] = Request::getUserDateVar('closeRegAuthorDate');
 	}
 	
 	/**
@@ -136,6 +144,17 @@ class TimelineForm extends Form {
 		if($event->getEndDate() != $this->_data['endDate'])
 			$event->setEndDate($this->_data['endDate']);
 		
+		// User registration dates
+		if($event->getSetting('openRegAuthor')) {
+			if($event->getSetting('openRegAuthorDate') != $this->_data['openRegAuthorDate']) {
+				$event->updateSetting('openRegAuthorDate', $this->_data['openRegAuthorDate'], 'date');
+			}
+
+			if($event->getSetting('closeRegAuthorDate') != $this->_data['closeRegAuthorDate']) {
+				$event->updateSetting('closeRegAuthorDate', $this->_data['closeRegAuthorDate'], 'date');
+			}
+		}
+			
 		// CFP logic
 		if($event->getSubmissionState() != $this->_data['submissionState']) {
 			ConferenceLog::logEvent(

@@ -21,36 +21,22 @@
 	<tr valign="top">
 		<td width="10%" class="label">{fieldLabel name="cfpMessage" key="eventDirector.setup.cfpMessage"}</td>
 		<td width="90%" class="value">
-			<textarea name="cfpMessage" id="cfpMessage" rows="5" cols="60" class="textArea">{$cfpMessage|escape}</textarea>
+			<textarea name="cfpMessage" id="cfpMessage" rows="10" cols="80" class="textArea">{$cfpMessage|escape}</textarea>
 			<br />
 			<span class="instruct">{translate key="eventDirector.setup.cfpMessageDescription"}</span>
 		</td>
 	</tr>
 </table>
 
-<h3>2.2 {translate key="eventDirector.setup.authorRegistration"}</h3>
-
-<p>{translate key="eventDirector.setup.authorRegistrationDescription"}</p>
+<h3>2.2 {translate key="eventDirector.setup.presenterRegistration"}</h3>
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="10%" />
-		<td width="90%">
+		<td width="5%" class="label">
 			<input type="checkbox" name="openRegAuthor" id="openRegAuthor" value="1" {if $openRegAuthor}checked="checked"{/if} />
-			{fieldLabel name="openRegAuthor" key="eventDirector.setup.openRegAuthorOn"}
-			<nobr>
-				{html_select_date prefix="openRegAuthorDate" time=$openRegAuthorDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
-			</nobr>
 		</td>
-	</tr>
-	<tr valign="top">
-		<td width="10%" />
-		<td width="90%">
-			<input type="checkbox" name="closeRegAuthor" id="closeRegAuthor" value="1" {if $closeRegAuthor}checked="checked"{/if} />
-			{fieldLabel name="closeRegAuthor" key="eventDirector.setup.closeRegAuthorOn"}
-			<nobr>
-				{html_select_date prefix="closeRegAuthorDate" time=$closeRegAuthorDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
-			</nobr>
+		<td width="95%" class="value">
+			{fieldLabel name="openRegAuthor" key="eventDirector.setup.openRegAuthor"}
 		</td>
 	</tr>
 </table>

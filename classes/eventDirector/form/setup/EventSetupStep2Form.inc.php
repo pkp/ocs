@@ -21,9 +21,6 @@ class EventSetupStep2Form extends EventSetupForm {
 		$settings = array(
 			'cfpMessage' => 'string',
 			'openRegAuthor' => 'bool',
-			'openRegAuthorDate' => 'date',
-			'closeRegAuthor' => 'bool',
-			'closeRegAuthorDate' => 'date',
 			'acceptPapers' => 'bool',
 			'collectPapersWithAbstracts' => 'bool',
 			'reviewPapers' => 'bool',
@@ -42,8 +39,6 @@ class EventSetupStep2Form extends EventSetupForm {
 	function readInputData() {
 		parent::readInputData();
 
-		$this->_data['openRegAuthorDate'] = Request::getUserDateVar('openRegAuthorDate');
-		$this->_data['closeRegAuthorDate'] = Request::getUserDateVar('closeRegAuthorDate');
 	}
 
 	function display() {

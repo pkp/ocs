@@ -1109,12 +1109,12 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="director.setup.information.forPresenters">For Presenters</message>
 	<!--<message key="director.setup.information.forLibrarians">For Librarians</message>-->
 
-	<!-- Event Setup -->
-	<message key="eventDirector.setup.location">Event Location</message>
-	<message key="eventDirector.setup.locationDescription">The location (institution, department, and mailing address) at which the conference will be held.</message>
-	<message key="eventDirector.setup.eventSetup">Event Setup</message>
-
+	<!-- Scheduled Conference Setup -->
+	<message key="eventDirector.setup.eventSetup">Scheduled Conference Setup</message>
 	<message key="eventDirector.setup.stepsToEvent">These steps are designed to set up a specific instance of the conference. Once a conference is set up in this way, the setup content will be copied to the next instance of the conference as the default setup that can be edited by the current conference directors.</message>
+
+	<message key="eventDirector.setup.location">Scheduled Conference Location</message>
+	<message key="eventDirector.setup.locationDescription">The location (institution, department, and mailing address) at which the conference will be held.</message>
 	<message key="eventDirector.setup.details">Details</message>
 	<message key="eventDirector.setup.details.description">Conference title, introduction &amp; overview, contacts, and sponsors.</message>
 	<message key="eventDirector.setup.submissions">Submissions</message>
@@ -1134,7 +1134,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="eventDirector.setup.eventIntroductionDescription">An introduction provides participants with a concise synopsis of the event. Typically, introductions do not exceed 100 words. The introduction is used when a longer overview is not appropriate.</message>
 	<message key="eventDirector.setup.eventOverview">Overview</message>
 	<message key="eventDirector.setup.eventOverviewDescription">An overview details the whole of the event. It includes such items as direction, topics, and structure.</message>
-	<message key="eventDirector.setup.eventSetup">Event Setup</message>
 	<message key="eventDirector.setup.title">Scheduled conference title</message>
 	<message key="eventDirector.setup.acronym">Event acronym</message>
 	<message key="eventDirector.setup.startDate">Start date</message>
@@ -1159,10 +1158,8 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="eventDirector.setup.callForPapers">Call for Papers (CFP)</message>
 	<message key="eventDirector.setup.cfpMessage">CFP message</message>
 	<message key="eventDirector.setup.cfpMessageDescription"><![CDATA[This information is displayed in the "call-for-papers" link on this conference's home page.]]></message>
-	<message key="eventDirector.setup.authorRegistration">Author Registration</message>
-	<message key="eventDirector.setup.authorRegistrationDescription"><![CDATA[If desired, OCS may permit users to register themselves as authors for this event. If these options are disabled, the Event Director must manually register users as authors via the Event Management pages.]]></message>
-	<message key="eventDirector.setup.openRegAuthorOn">Permit users to register as authors starting on</message>
-	<message key="eventDirector.setup.closeRegAuthorOn">Close author registration on</message>
+	<message key="eventDirector.setup.presenterRegistration">Presenter Registration</message>
+	<message key="eventDirector.setup.openRegAuthor">Open presenter self-registration (set dates in Conference Timeline)</message>
 	<message key="eventDirector.setup.submissionContents">Submissions</message>
 	<message key="eventDirector.setup.submissionsDescription"><![CDATA[Conference submissions may consist of several items: an abstract, and perhaps a paper and supplemental materials. In this section, the items to be collected as parts of a submission are specified.]]></message>
 	<message key="eventDirector.setup.acceptPapers">Collect papers</message>
@@ -1301,6 +1298,11 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="director.timeline.endDate">Event End Date</message>
 	<message key="director.timeline.eventEndsOn">This event ends on:</message>
 	
+	<message key="director.timeline.userTimeline">User Registration</message>
+	<message key="director.timeline.userTimelineDescription">These settings determine when users may register for access to this conference.</message>
+	<message key="director.timeline.openRegAuthorOn">Allow presenter registration on</message>
+	<message key="director.timeline.closeRegAuthorOn">Close presenter registration on</message>
+
 	<message key="director.timeline.submissionTimeline">Submission Timeline</message>
 	<message key="director.timeline.submissionTimelineDescription">These settings determine when submissions are accepted and reviewed.</message>
 	
