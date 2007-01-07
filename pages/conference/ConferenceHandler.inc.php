@@ -16,13 +16,11 @@
 class ConferenceHandler extends Handler {
 
 	/**
-	 * If an event in a conference is specified, display it.
-	 * If no event is specified, display a list of this conference's events.
-	 * If no conference is specified, display list of conferences.
+	 * Display the home page for the current conference.
 	 */
-	function view($args) {
+	function index($args) {
 		list($conference, $event) = parent::validate(true, false);
-
+		
 		$templateMgr = &TemplateManager::getManager();
 
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');

@@ -70,7 +70,7 @@
 <div id="main">
 <div id="navbar">
 	<ul class="menu">
-		<li><a href="{url event="index"}">{translate key="navigation.home"}</a></li>
+		<li><a href="{url event=""}">{translate key="navigation.home"}</a></li>
 		<li><a href="{url page="about"}">{translate key="navigation.about"}</a></li>
 		{if $isUserLoggedIn}
 			<li><a href="{url page="user"}">{translate key="navigation.userHome"}</a></li>

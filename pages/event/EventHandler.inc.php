@@ -18,17 +18,9 @@ import ('event.EventAction');
 class EventHandler extends Handler {
 
 	/**
-	 * Display event index page.
-	 */
-	function index($args) {
-		list($conference, $event) = parent::validate(true, true);
-		EventHandler::view($args);
-	}
-
-	/**
 	 * Display event view page.
 	 */
-	function view($args) {
+	function index($args) {
 		list($conference, $event) = parent::validate(true, true);
 
 		$templateMgr = &TemplateManager::getManager();

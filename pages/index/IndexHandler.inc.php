@@ -27,13 +27,13 @@ class IndexHandler extends Handler {
 
 			// An event was specified; display it.
 			import('pages.event.EventHandler');
-			EventHandler::view(array($event->getEventId()));
+			EventHandler::index($args);
 
 		} elseif($conference) {
 
 			// An event was specified; display it.
 			import('pages.conference.ConferenceHandler');
-			ConferenceHandler::view(array($conference->getConferenceId()));
+			ConferenceHandler::index($args);
 
 		} else {
 		

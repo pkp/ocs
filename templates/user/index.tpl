@@ -31,11 +31,11 @@
 
 	{* Iterate over conference roles *}
 	
-	{section name=role loop=$userRoles[$conferenceId]}
-		{if $userRoles[$conferenceId][role]->getRolePath() != 'reader'}
-			<li>&#187; <a href="{url conference=$conference->getPath() event=index page=$userRoles[$conferenceId][role]->getRolePath()}">{translate key=$userRoles[$conferenceId][role]->getRoleName()}</a></li>
+	{foreach item=role from=$userRoles[$conferenceId]}
+		{if $role->getRolePath() != 'reader'}
+			<li>&#187; <a href="{url conference=$conference->getPath() event="index" page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
 		{/if}
-	{/section}
+	{/foreach}
 
 	{* Iterate over event roles *}
 	
@@ -43,11 +43,11 @@
 		{assign var="eventId" value=$event->getEventId()}
 		<h5><a href="{url conference=$conference->getPath() event=$event->getPath() page="user"}">{$event->getTitle()|escape}</a></h5>
 
-		{section name=role loop=$userEventRoles[$eventId]}
-			{if $userEventRoles[$eventId][role]->getRolePath() != 'reader'}
-				<li>&#187; <a href="{url conference=$conference->getPath() event=$event->getPath() page=$userEventRoles[$eventId][role]->getRolePath()}">{translate key=$userEventRoles[$eventId][role]->getRoleName()}</a></li>
+		{foreach item=role from=$userEventRoles[$eventId]}
+			{if $role->getRolePath() != 'reader'}
+				<li>&#187; <a href="{url conference=$conference->getPath() event=$event->getPath() page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
 			{/if}
-		{/section}
+		{/foreach}
 
 	{/foreach}
 
@@ -66,11 +66,11 @@
 
 	{* Iterate over conference roles *}
 	
-	{section name=role loop=$userRoles[$conferenceId]}
-		{if $userRoles[$conferenceId][role]->getRolePath() != 'reader'}
-			<li>&#187; <a href="{url conference=$userConference->getPath() event=index page=$userRoles[$conferenceId][role]->getRolePath()}">{translate key=$userRoles[$conferenceId][role]->getRoleName()}</a></li>
+	{foreach item=role from=$userRoles[$conferenceId]}
+		{if $role->getRolePath() != 'reader'}
+			<li>&#187; <a href="{url conference=$userConference->getPath() event=index page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
 		{/if}
-	{/section}
+	{/foreach}
 
 	{* Iterate over event roles *}
 	
@@ -78,18 +78,18 @@
 		{assign var="eventId" value=$event->getEventId()}
 		<h5><a href="{url conference=$userConference->getPath() event=$event->getPath() page="user"}">{$event->getTitle()|escape}</a></h5>
 
-		{section name=role loop=$userEventRoles[$eventId]}
-			{if $userEventRoles[$eventId][role]->getRolePath() != 'reader'}
+		{foreach item=role from=$userEventRoles[$eventId]}
+			{if $role->getRolePath() != 'reader'}
 				<li>&#187;
 					<a href="{url
 							conference=$userConference->getPath() 
 							event=$event->getPath()
-							page=$userEventRoles[$eventId][role]->getRolePath()}">
-						{translate key=$userEventRoles[$eventId][role]->getRoleName()}
+							page=$role->getRolePath()}">
+						{translate key=$role->getRoleName()}
 					</a>
 				</li>
 			{/if}
-		{/section}
+		{/foreach}
 
 	{/foreach}
 </ul>

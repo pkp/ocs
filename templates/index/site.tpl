@@ -26,7 +26,7 @@
 <p>{$conference->getSetting('conferenceIntroduction')|nl2br}</p>
 {/if}
 
-<p><a href="{url conference=$conference->getPath()}" class="action">{translate key="site.conferenceView"}</a></p>
+<p><a href="{url conference=$conference->getPath() event=""}" class="action">{translate key="site.conferenceView"}</a></p>
 {/iterate}
 
 {include file="common/footer.tpl"}

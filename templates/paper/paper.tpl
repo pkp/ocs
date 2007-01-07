@@ -37,7 +37,7 @@
 
 <div id="navbar">
 	<ul class="menu">
-		<li><a href="{url event="index"}" target="_parent">{translate key="navigation.home"}</a></li>
+		<li><a href="{url event=""}" target="_parent">{translate key="navigation.home"}</a></li>
 		<li><a href="{url page="about"}" target="_parent">{translate key="navigation.about"}</a></li>
 		{if $isUserLoggedIn}
 			<li><a href="{url page="user"}" target="_parent">{translate key="navigation.userHome"}</a></li>
@@ -62,7 +62,7 @@
 
 <div id="breadcrumb">
 	<a href="{url page="index"}" target="_parent">{translate key="navigation.home"}</a> &gt;
-	<a href="{url event="index"}" target="_parent">{$conference->getTitle()|escape}</a> &gt;
+	<a href="{url event=""}" target="_parent">{$conference->getTitle()|escape}</a> &gt;
 	<a href="{url page="index"}" target="_parent">{$event->getTitle()|escape}</a> &gt;
 	<a href="{url page="event" op="proceedings"}" target="_parent">{$track->getTrackTitle()|escape}</a> &gt;
 	<a href="{url page="paper" op="view" path=$paperId|to_array:$galleyId}" class="current" target="_parent">{$paper->getFirstAuthor(true)|escape}</a>

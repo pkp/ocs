@@ -612,7 +612,7 @@ class Request {
 			$conferencePath = 'index';
 			$eventPath = 'index';
 		} else {
-			if ($conferencePath) {
+			if (isset($conferencePath)) {
 				$conferencePath = rawurlencode($conferencePath);
 				$conferencePathProvided = true;
 			} else {
@@ -621,7 +621,7 @@ class Request {
 				else $conferencePath = 'index';
 			}
 
-			if($eventPath) {
+			if(isset($eventPath)) {
 				$eventPath = rawurlencode($eventPath);
 				$eventPathProvided = true;
 			} else {
