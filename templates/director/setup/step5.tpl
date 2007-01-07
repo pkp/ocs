@@ -218,7 +218,7 @@
 {if $pageHeaderTitleImageAlt1}
 {translate key="common.fileName"}: {$pageHeaderTitleImageAlt1.name} {$pageHeaderTitleImageAlt1.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePageHeaderTitleImageAlt1" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicConfgerenceFilesDir}/{$pageHeaderTitleImageAlt1.uploadName}" width="{$pageHeaderTitleImageAlt1.width}" height="{$pageHeaderTitleImageAlt1.height}" border="0" alt="" />
+<img src="{$publicConferenceFilesDir}/{$pageHeaderTitleImageAlt1.uploadName}" width="{$pageHeaderTitleImageAlt1.width}" height="{$pageHeaderTitleImageAlt1.height}" border="0" alt="" />
 {/if}
 
 <h4>{translate key="director.setup.conferenceLogo"} ({$languageToggleLocales.$alternateLocale1})</h4>
@@ -233,7 +233,7 @@
 {if $pageHeaderLogoImageAlt1}
 {translate key="common.fileName"}: {$pageHeaderLogoImageAlt1.name} {$pageHeaderLogoImageAlt1.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePageHeaderLogoImageAlt1" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicConfgerenceFilesDir}/{$pageHeaderLogoImageAlt1.uploadName}" width="{$pageHeaderLogoImageAlt1.width}" height="{$pageHeaderLogoImageAlt1.height}" border="0" alt="" />
+<img src="{$publicConferenceFilesDir}/{$pageHeaderLogoImageAlt1.uploadName}" width="{$pageHeaderLogoImageAlt1.width}" height="{$pageHeaderLogoImageAlt1.height}" border="0" alt="" />
 {/if}
 {/if}
 
@@ -255,7 +255,7 @@
 {if $pageHeaderTitleImageAlt2}
 {translate key="common.fileName"}: {$pageHeaderTitleImageAlt2.name} {$pageHeaderTitleImageAlt2.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePageHeaderTitleImageAlt2" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicConfgerenceFilesDir}/{$pageHeaderTitleImageAlt2.uploadName}" width="{$pageHeaderTitleImageAlt2.width}" height="{$pageHeaderTitleImageAlt2.height}" border="0" alt="" />
+<img src="{$publicConferenceFilesDir}/{$pageHeaderTitleImageAlt2.uploadName}" width="{$pageHeaderTitleImageAlt2.width}" height="{$pageHeaderTitleImageAlt2.height}" border="0" alt="" />
 {/if}
 
 <h4>{translate key="director.setup.conferenceLogo"} ({$languageToggleLocales.$alternateLocale2})</h4>
@@ -270,7 +270,7 @@
 {if $pageHeaderLogoImageAlt2}
 {translate key="common.fileName"}: {$pageHeaderLogoImageAlt2.name} {$pageHeaderLogoImageAlt2.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePageHeaderLogoImageAlt2" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicConfgerenceFilesDir}/{$pageHeaderLogoImageAlt2.uploadName}" width="{$pageHeaderLogoImageAlt2.width}" height="{$pageHeaderLogoImageAlt2.height}" border="0" alt="" />
+<img src="{$publicConferenceFilesDir}/{$pageHeaderLogoImageAlt2.uploadName}" width="{$pageHeaderLogoImageAlt2.width}" height="{$pageHeaderLogoImageAlt2.height}" border="0" alt="" />
 {/if}
 {/if}
 
@@ -375,7 +375,7 @@
 </table>
 
 {if $conferenceStyleSheet}
-{translate key="common.fileName"}: <a href="{$publicConfgerenceFilesDir}/{$conferenceStyleSheet.uploadName}" class="file">{$conferenceStyleSheet.name}</a> {$conferenceStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteConferenceStyleSheet" value="{translate key="common.delete"}" class="button" />
+{translate key="common.fileName"}: <a href="{$publicConferenceFilesDir}/{$conferenceStyleSheet.uploadName}" class="file">{$conferenceStyleSheet.name}</a> {$conferenceStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteConferenceStyleSheet" value="{translate key="common.delete"}" class="button" />
 {/if}
 
 <div class="separator"></div>
