@@ -262,22 +262,6 @@ class Track extends DataObject {
 	}
 	
 	/**
-	 * Return boolean indicating if title should be hidden in issue ToC.
-	 * @return boolean
-	 */
-	function getHideTitle() {
-		return $this->getData('hideTitle');
-	}
-	
-	/**
-	 * Set if title should be hidden in issue ToC.
-	 * @param $hideTitle boolean
-	 */
-	function setHideTitle($hideTitle) {
-		return $this->setData('hideTitle', $hideTitle);
-	}
-	
-	/**
 	 * Get policy.
 	 * @return string
 	 */

@@ -182,7 +182,6 @@ class EventSiteSettingsForm extends Form {
 			$track->setMetaIndexed(true);
 			$track->setPolicy(Locale::translate('track.default.policy'));
 			$track->setEditorRestricted(false);
-			$track->setHideTitle(false);
 			$trackDao->insertTrack($track);
 		}
 	}

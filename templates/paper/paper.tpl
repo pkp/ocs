@@ -37,21 +37,25 @@
 
 <div id="navbar">
 	<ul class="menu">
-		<li><a href="{url page="index"}" target="_parent">{translate key="navigation.home"}</a></li>
+		<li><a href="{url event="index"}" target="_parent">{translate key="navigation.home"}</a></li>
 		<li><a href="{url page="about"}" target="_parent">{translate key="navigation.about"}</a></li>
 		{if $isUserLoggedIn}
-		<li><a href="{url page="user"}" target="_parent">{translate key="navigation.userHome"}</a></li>
+			<li><a href="{url page="user"}" target="_parent">{translate key="navigation.userHome"}</a></li>
 		{else}
-		<li><a href="{url page="login"}" target="_parent">{translate key="navigation.login"}</a></li>
-		<li><a href="{url page="user" op="register"}" target="_parent">{translate key="navigation.register"}</a></li>
+			<li><a href="{url page="login"}" target="_parent">{translate key="navigation.login"}</a></li>
+			<li><a href="{url page="user" op="register"}" target="_parent">{translate key="navigation.register"}</a></li>
 		{/if}
 		<li><a href="{url page="search"}" target="_parent">{translate key="navigation.search"}</a></li>
 		{if $currentConference}
-		<li><a href="{url page="event" op="current"}" target="_parent">{translate key="navigation.current"}</a></li>
-		<li><a href="{url event="index"}" target="_parent">{translate key="navigation.archives"}</a></li>
+			{if $currentEventsExist}<li><a href="{url event="index" page="index"}" target="_parent">{translate key="navigation.current"}</a></li>{/if}
+			{if $archivedEventsExist}<li><a href="{url event="index" page="archive"}" target="_parent">{translate key="navigation.archive"}</a></li>{/if}
+			{if $enableAnnouncements}
+				<li><a href="{url page="announcement"}" target="_parent">{translate key="announcement.announcements"}</a></li>
+			{/if}
+			{call_hook name="Templates::Common::Header::Navbar::CurrentConference"}
 		{/if}
 		{foreach from=$navMenuItems item=navItem}
-		<li><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{url page=$requestedPage}{$navItem.url|escape}{/if}" target="_parent">{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name}{/if}</a></li>
+			<li><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{$navItem.url|escape}{/if}" target="_parent">{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name}{/if}</a></li>
 		{/foreach}
 	</ul>
 </div>

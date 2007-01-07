@@ -23,13 +23,21 @@ class AboutHandler extends Handler {
 		
 		$templateMgr = &TemplateManager::getManager();
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
+		$eventDao = &DAORegistry::getDAO('EventDAO');
 		$conferencePath = Request::getRequestedConferencePath();
 				
 		if ($conferencePath != 'index' && $conferenceDao->conferenceExistsByPath($conferencePath)) {
 			$event =& Request::getEvent();
 			$conference =& Request::getConference();
 			
-			$settings = ($event? $event->getSettings(true):$conference->getSettings());
+			if($event) {
+				$templateMgr->assign('showAboutEvent', true);
+				$settings = $event->getSettings(true);
+			} else {
+				$templateMgr->assign('showAboutEvent', false);
+				$settings = $conference->getSettings();
+				$templateMgr->assign_by_ref('currentEvents', $eventDao->getCurrentEvents($conference->getConferenceId()));
+			}
 			
 			$customAboutItems = &$settings['customAboutItems'];
 

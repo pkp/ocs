@@ -21,7 +21,7 @@
 	{/if}
 	<li>&#187; <a href="{url op="tracks"}">{translate key="track.tracks"}</a></li>
 	<li>&#187; <a href="{url op="groups"}">{translate key="director.groups"}</a></li>
-	<li>&#187; <a href="{url op="emails"}">{translate key="director.emails"}</a></li>
+	{*<li>&#187; <a href="{url op="emails"}">{translate key="director.emails"}</a></li>*}
 	<li>&#187; <a href="{url op="setup"}">{translate key="director.eventSetup"}</a></li>
 	<li>&#187; <a href="{url op="statistics"}">{translate key="director.statistics"}</a></li>
 	{if $registrationEnabled}

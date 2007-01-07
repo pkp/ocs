@@ -139,7 +139,7 @@ class PaperHandler extends Handler {
 			import('event.EventAction');
 			$templateMgr->assign('registrationRequired', EventAction::registrationRequired($event));
 			$templateMgr->assign('registeredUser', EventAction::registeredUser($event));
-			//$templateMgr->assign('registeredDomain', EventAction::registeredDomain($event));
+			$templateMgr->assign('registeredDomain', EventAction::registeredDomain($event));
 
 			// Increment the published paper's abstract views count
 			$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
@@ -330,7 +330,7 @@ class PaperHandler extends Handler {
 				Validation::redirectLogin();
 			}
 	
-			if ( (!EventAction::registeredDomain($conference) && $registrationRequired) &&
+			if ( (!EventAction::registeredDomain($event) && $registrationRequired) &&
 			     (isset($galleyId) && $galleyId!=0) ) {
 				
 				// Registration Access

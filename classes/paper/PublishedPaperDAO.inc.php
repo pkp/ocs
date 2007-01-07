@@ -177,14 +177,12 @@ class PublishedPaperDAO extends DAO {
 				s.abbrev AS track_abbrev,
 				s.abbrev_alt1 AS track_abbrev_alt1,
 				s.abbrev_alt2 AS track_abbrev_alt2,
-				s.hide_title AS track_hide_title,
 				t2.title AS secondary_track_title,
 				t2.title_alt1 AS secondary_track_title_alt1,
 				t2.title_alt2 AS secondary_track_title_alt2,
 				t2.abbrev AS secondary_track_abbrev,
 				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
 				t2.abbrev_alt2 AS secondary_track_abbrev_alt2,
-				t2.hide_title AS secondary_track_hide_title,
 				COALESCE(o.seq, s.seq) AS track_seq,
 				pa.seq
 			FROM published_papers pa,
@@ -208,10 +206,7 @@ class PublishedPaperDAO extends DAO {
 					'papers'=> array(),
 					'title' => ''
 				);
-
-				if (!$row['track_hide_title']) {
-					$publishedPapers[$currTrackId]['title'] = $publishedPaper->getTrackTitle();
-				}
+				$publishedPapers[$currTrackId]['title'] = $publishedPaper->getTrackTitle();
 			}
 			$publishedPapers[$currTrackId]['papers'][] = $publishedPaper;
 			$result->moveNext();
@@ -245,8 +240,7 @@ class PublishedPaperDAO extends DAO {
 				t2.title_alt2 AS secondary_track_title_alt2,
 				t2.abbrev AS secondary_track_abbrev,
 				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2,
-				t2.hide_title AS secondary_track_hide_title,
+				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
 			FROM published_papers pa,
 				papers a,
 				tracks s,
@@ -322,8 +316,7 @@ class PublishedPaperDAO extends DAO {
 				t2.title_alt2 AS secondary_track_title_alt2,
 				t2.abbrev AS secondary_track_abbrev,
 				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2,
-				t2.hide_title AS secondary_track_hide_title
+				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
 			FROM published_papers pa,
 				papers a
 			LEFT JOIN tracks s ON s.track_id = a.track_id
@@ -362,14 +355,13 @@ class PublishedPaperDAO extends DAO {
 				s.title_alt2 AS track_title_alt2,
 				s.abbrev AS track_abbrev,
 				s.abbrev_alt1 AS track_abbrev_alt1,
-				s.abbrev_alt2 AS track_abbrev_alt2
+				s.abbrev_alt2 AS track_abbrev_alt2,
 				t2.title AS secondary_track_title,
 				t2.title_alt1 AS secondary_track_title_alt1,
 				t2.title_alt2 AS secondary_track_title_alt2,
 				t2.abbrev AS secondary_track_abbrev,
 				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2,
-				t2.hide_title AS secondary_track_hide_title,
+				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
 			FROM published_papers pa,
 				papers a
 			LEFT JOIN tracks s ON s.track_id = a.track_id

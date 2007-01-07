@@ -14,4 +14,6 @@
 
 <div>{$cfpMessage|nl2br}</div>
 
+<a href="{url page="author" op="submit"}">{translate key="event.cfp.submitHere"}</a>
+
 {include file="common/footer.tpl"}

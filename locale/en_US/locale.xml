@@ -766,7 +766,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<!-- Conference Management -->
 	<message key="director.conferenceSiteManagement">Conference Site Management</message>
 	<message key="director.conferenceSiteSetup">Conference Site Setup</message>
-	<message key="director.scheduledConferences">Scheduled Instances of the Conference</message>
+	<message key="director.scheduledConferences">Scheduled Conferences</message>
 	<message key="director.emails">Prepared Emails</message>
 	<message key="director.statistics">Stats &amp; Reports</message>
 	<message key="director.readingTools">Reading Tools</message>
@@ -1243,6 +1243,7 @@ including the right to place it in an open access archive. In addition, <a href=
 	<!-- Event Setup Step 5 -->
 	<message key="eventDirector.setup.customizingTheLook">Step 5. Customizing the Look</message>
 	<message key="eventDirector.setup.eventLookSetupInstructions"><![CDATA[If these settings are left unconfigured, this event will default to the look and feel of the conference it belongs to. In order to change the look and feel of the entire conference, the Conference Manager must modify the <a href="{$conferenceLookSetupUrl}">Conference Setup pages</a>.]]></message>
+	<message key="eventDirector.setup.conferenceHomepageContentDescription">The scheduled conference's homepage includes by default the conference's name, dates, location, and introduction, and main topics with links (Overview; Call for Papers; Featured Speakers; Program and Presentations; Registration, Accomodation and Travel; Conference Organizers and Key Partners; Related Links).</message>
 
 	<!-- Languages -->
 	<message key="director.languages.languageInstructions"><![CDATA[OCS can be made available to users in any of several supported languages. As well, OCS can operate as a partially multilingual system, providing users with an ability to toggle between languages on each page, and allowing certain data to be entered in up to two additional languages.<br /><br/>If a language supported by OCS is not listed below, ask your site administrator to install the language from the site administration interface. For instructions on adding support for new languages, please consult the OCS documentation.]]></message>
@@ -1273,7 +1274,6 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="director.tracks.submissionIndexing">Will not be included in the proceedings of the conference</message>
 	<message key="director.tracks.submissionReview">Will not be peer-reviewed</message>
 	<message key="director.tracks.editorRestriction">Items can only be submitted by Editors and Track Editors.</message>
-	<message key="director.tracks.hideTocTitle">Omit the title of this track from the event's proceedings.</message>
 	<message key="director.tracks.hideAbout">Omit this track from About the Conference.</message>
 	<message key="director.tracks.readingTools">Reading Tools</message>
 	<message key="director.tracks.indexed">Indexed</message>
@@ -2257,6 +2257,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="event.cfp">Call For Papers</message>
 	<message key="event.proposalSubmission">Proposal Submission</message>
 
+	<!-- Call-for-Papers (CFP) page -->
+	<message key="event.cfp.submitHere">Start here to submit a proposal to this conference.</message>
 	<!-- Conference Proceedings -->
 	<message key="proceedings.subscribersOnly"><![CDATA[The proceedings of this conference are available only to registrants.]]></message>
 	<message key="proceedings.notReleasedYet"><![CDATA[The proceedings of this conference have not yet been released.]]></message>
@@ -2305,6 +2307,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.conferenceSponsorship">Conference Sponsorship</message>
 	<message key="about.siteMap">Site Map</message>
 	<message key="about.aboutThisPublishingSystem">About this Publishing System</message>
+	<message key="about.currentConferences">Current Conferences</message>
 	<message key="about.people">People</message>
 	<message key="about.policies">Policies</message>
 	<message key="about.other">Other</message>

@@ -172,13 +172,6 @@
 	</td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="hideTitle" key="event.proceedings"}</td>
-	<td class="value">
-		<input type="checkbox" name="hideTitle" id="hideTitle" value="1" {if $hideTitle}checked="checked"{/if} />
-		{fieldLabel name="hideTitle" key="director.tracks.hideTocTitle"}
-	</td>
-</tr>
-<tr valign="top">
 	<td class="label">{fieldLabel name="hideAbout" key="navigation.about"}</td>
 	<td class="value">
 		<input type="checkbox" name="hideAbout" id="hideAbout" value="1" {if $hideAbout}checked="checked"{/if} />

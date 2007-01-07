@@ -133,7 +133,7 @@
 
 <h3>5.2 {translate key="director.setup.conferenceHomepageContent"}</h3>
 
-<p>{translate key="director.setup.conferenceHomepageContentDescription"}</p>
+<p>{translate key="eventDirector.setup.conferenceHomepageContentDescription"}</p>
 
 <h4>{translate key="director.setup.homepageImage"}</h4>
 

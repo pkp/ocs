@@ -132,7 +132,6 @@ class TrackDAO extends DAO {
 		$track->setMetaIndexed($row['meta_indexed']);
 		$track->setIdentifyType($row['identify_type']);
 		$track->setEditorRestricted($row['editor_restricted']);
-		$track->setHideTitle($row['hide_title']);
 		$track->setPolicy($row['policy']);
 		
 		HookRegistry::call('TrackDAO::_returnTrackFromRow', array(&$track, &$row));
@@ -147,9 +146,9 @@ class TrackDAO extends DAO {
 	function insertTrack(&$track) {
 		$this->update(
 			'INSERT INTO tracks
-				(event_id, title, title_alt1, title_alt2, abbrev, abbrev_alt1, abbrev_alt2, seq, meta_indexed, identify_type, policy, editor_restricted, hide_title)
+				(event_id, title, title_alt1, title_alt2, abbrev, abbrev_alt1, abbrev_alt2, seq, meta_indexed, identify_type, policy, editor_restricted)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$track->getEventId(),
 				$track->getTitle(),
@@ -162,8 +161,7 @@ class TrackDAO extends DAO {
 				$track->getMetaIndexed() ? 1 : 0,
 				$track->getIdentifyType(),
 				$track->getPolicy(),
-				$track->getEditorRestricted() ? 1 : 0,
-				$track->getHideTitle() ? 1 : 0
+				$track->getEditorRestricted() ? 1 : 0
 			)
 		);
 		
@@ -189,8 +187,7 @@ class TrackDAO extends DAO {
 					meta_indexed = ?,
 					identify_type = ?,
 					policy = ?,
-					editor_restricted = ?,
-					hide_title = ?
+					editor_restricted = ?
 				WHERE track_id = ?',
 			array(
 				$track->getTitle(),
@@ -204,7 +201,6 @@ class TrackDAO extends DAO {
 				$track->getIdentifyType(),
 				$track->getPolicy(),
 				$track->getEditorRestricted(),
-				$track->getHideTitle(),
 				$track->getTrackId()
 			)
 		);
@@ -348,9 +344,9 @@ class TrackDAO extends DAO {
 		$tracks = array();
 		
 		$result = &$this->retrieve(
-//			($submittableOnly?
-//			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE event_id = ? AND editor_restricted = 0 ORDER BY seq':
-			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE event_id = ? ORDER BY seq',//),
+			($submittableOnly?
+			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE event_id = ? AND editor_restricted = 0 ORDER BY seq':
+			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE event_id = ? ORDER BY seq'),
 			$eventId
 		);
 
