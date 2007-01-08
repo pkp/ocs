@@ -37,10 +37,19 @@ if [ ! -z "$XMLKEYS" ]; then
 fi
 echo "None"
 
+# This is a bit kludge-y right now. Templates use locales mostly in 3 ways:
+# in {translate} tags, in {fieldlabel} tags, and in {assign var} tags for
+# page titles. Since scanning templates is a reasonably quick process, doing
+# it three times is redundant but doesn't substantially add to the script's
+# run time.
+
 echo "Finding keys used in templates..."
 TEMPLATEKEYS_TRANSLATE=`sed -n 's/translate/\ntranslate/gp' \`find "$2" -name \*.tpl 2>/dev/null\` | sed -n 's/translate key\="\([^"]*\)".*/\1/p' | sort | uniq`;
-TEMPLATEKEYS_FIELDLABEL=`sed -n 's/fieldLabel/\nfieldLabel/gp' \`find "." -name \*.tpl 2>/dev/null\` | sed -n 's/fieldLabel [^}]*key\="\([^"]*\)".*/\1/p' | sort | uniq`;
-TEMPLATEKEYS=`echo $TEMPLATEKEYS_TRANSLATE $TEMPLATEKEYS_FIELDLABEL | sort | uniq`
+TEMPLATEKEYS_FIELDLABEL=`sed -n 's/fieldLabel/\nfieldLabel/gp' \`find "$2" -name \*.tpl 2>/dev/null\` | sed -n 's/fieldLabel [^}]*key\="\([^"]*\)".*/\1/p' | sort | uniq`;
+TEMPLATEKEYS_PAGETITLE=`sed -n 's/assign var="pageTitle"/\nassign var="pageTitle"/gp' \`find "$2" -name \*.tpl 2>/dev/null\` | sed -n 's/assign var="pageTitle" [^}]*value\="\([^"]*\)".*/\1/p' | sort | uniq`;
+TEMPLATEKEYS_PAGEID=`sed -n 's/assign var="pageId"/\nassign var="pageId"/gp' \`find "$2" -name \*.tpl 2>/dev/null\` | sed -n 's/assign var="pageId" value\="\([^"]*\)".*/\1/p' | sort | uniq`;
+
+TEMPLATEKEYS=`echo $TEMPLATEKEYS_TRANSLATE $TEMPLATEKEYS_FIELDLABEL $TEMPLATEKEYS_PAGETITLE $TEMPLATEKEYS_PAGEID| sort | uniq`;
 
 echo "Finding keys used in PHP..."
 PHPKEYS=`sed -n 's/Locale::translate/\nLocale::translate/gp' \`find "$2" -name \*.php 2>/dev/null\` | sed -n 's/Locale::translate[ ]\?(['\''"]\([^'\''"]*\)['\''"])/\1\n/gp' | sort | uniq`;
