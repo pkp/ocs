@@ -16,7 +16,7 @@
 <br/>
 
 <form action="{url op="setBoardEnabled"}" method="post">
-	{url|assign:"aboutOrganizingTeamUrl" page="about" op="editorialTeam"}
+	{url|assign:"aboutOrganizingTeamUrl" page="about" op="organizingTeam"}
 	{url|assign:"peopleManagementUrl" page="director" op="people" path="all"}
 	{translate key="director.groups.enableBoard.description" aboutOrganizingTeamUrl=$aboutOrganizingTeamUrl}<br/>
 	<input type="radio" id="boardEnabledOff" {if !$boardEnabled}checked="checked" {/if}name="boardEnabled" value="0"/>&nbsp;<label for="boardEnabledOff">{translate key="director.groups.disableBoard"}</label><br/>

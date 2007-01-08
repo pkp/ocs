@@ -458,7 +458,7 @@
 	<message key="user.affiliations">Affiliations</message>
 	<message key="user.email">Email</message>
 	<message key="user.url">URL</message>
-	<message key="user.url.description">This will appear as a hyperlinked URL at the bottom of the bio statement on the "About the author" pop-up and "Editorial team" page.</message>
+	<message key="user.url.description">This will appear as a hyperlinked URL at the bottom of the bio statement on the "About the author" pop-up and "Organizing team" page.</message>
 	<message key="user.phone">Phone</message>
 	<message key="user.fax">Fax</message>
 	<message key="user.interests">Reviewing interests</message>
@@ -1321,17 +1321,17 @@ including the right to place it in an open access archive. In addition, <a href=
 	<!-- Import/Export -->
 	<message key="director.importExport">Import/Export Data</message>
 
-	<!-- Groups / Editorial Team -->
+	<!-- Groups / Organizing Team -->
 	<message key="director.groups.editTitle">Edit Title</message>
 	<message key="director.groups.createTitle">Create Title</message>
 	<message key="director.groups.title">Title</message>
 	<message key="director.groups.confirmDelete">Are you sure you wish to delete this group?</message>
-	<message key="director.groups.noneCreated">No editorial team positions have been created.</message>
-	<message key="director.groups.create">Create Editorial Team Title</message>
+	<message key="director.groups.noneCreated">No organizing team positions have been created.</message>
+	<message key="director.groups.create">Create Organizing Team Title</message>
 	<message key="director.groups.form.groupTitleRequired">A group title is required.</message>
 
 	<message key="director.groups.enableBoard.description"><![CDATA[For the <a href="{$aboutOrganizingTeamUrl}">Organizing Team</a> in About the Conference:]]></message>
-	<message key="director.groups.enableBoard">The Conference Director will create editorial team titles, and add the appropriate people under each title.</message>
+	<message key="director.groups.enableBoard">The Conference Director will create organizing team titles, and add the appropriate people under each title.</message>
 	<message key="director.groups.disableBoard">The system will generate a list of people under their assigned roles (Conference Director, Reviewer, etc.)</message>
 
 	<message key="director.groups.membership">Membership</message>
@@ -2217,7 +2217,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.statistics">Statistics</message>
 	<message key="about.conferenceContact">Conference Contact</message>
 	<message key="about.aboutTheConference">About the Conference</message>
-	<message key="about.editorialTeam">Editorial Team</message>
+	<message key="about.organizingTeam">Organizing Team</message>
 	<message key="about.editorialPolicies">Editorial Policies</message>
 	<message key="about.trackPolicies">Track Policies</message>
 	<message key="about.submissions">Submissions</message>

@@ -8,7 +8,7 @@
  *
  * @package pages.director
  *
- * Handle requests for editorial team management functions. 
+ * Handle requests for organizing team management functions. 
  *
  * $Id$
  */

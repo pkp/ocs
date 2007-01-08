@@ -1,10 +1,10 @@
 {**
- * editorialTeamBio.tpl
+ * organizingTeamBio.tpl
  *
  * Copyright (c) 2003-2005 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * View the biography of an editorial team member.
+ * View the biography of an organizing team member.
  *
  * $Id$
  *}
@@ -14,7 +14,7 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<title>{translate key="about.editorialTeam"}</title>
+	<title>{translate key="about.organizingTeam"}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset}" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -41,7 +41,7 @@
 
 <div id="header">
 <div id="headerTitle">
-<h1>{translate key="about.editorialTeam"}</h1>
+<h1>{translate key="about.organizingTeam"}</h1>
 </div>
 </div>
 

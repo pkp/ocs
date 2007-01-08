@@ -94,9 +94,9 @@ class AboutHandler extends Handler {
 	}
 	
 	/**
-	 * Display editorialTeam page.
+	 * Display organizingTeam page.
 	 */
-	function editorialTeam() {
+	function organizingTeam() {
 		parent::validate(true);
 		AboutHandler::setupTemplate(true);
 
@@ -120,8 +120,8 @@ class AboutHandler extends Handler {
 		// FIXME: This is pretty inefficient; should probably be cached.
 
 		if ($settings['boardEnabled'] != true) {
-			// Don't use the Editorial Team feature. Generate
-			// Editorial Team information using Role info.
+			// Don't use the Organizing Team feature. Generate
+			// Organizing Team information using Role info.
 			$roleDao = &DAORegistry::getDAO('RoleDAO');
 
 			$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId());
@@ -132,9 +132,9 @@ class AboutHandler extends Handler {
 		
 			$templateMgr->assign_by_ref('editors', $editors);
 			$templateMgr->assign_by_ref('trackEditors', $trackEditors);
-			$templateMgr->display('about/editorialTeam.tpl');
+			$templateMgr->display('about/organizingTeam.tpl');
 		} else {
-			// The Editorial Team feature has been enabled.
+			// The Organizing Team feature has been enabled.
 			// Generate information using Group data.
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
@@ -156,20 +156,19 @@ class AboutHandler extends Handler {
 
 			$templateMgr->assign_by_ref('groups', $groups);
 			$templateMgr->assign_by_ref('teamInfo', $teamInfo);
-			$templateMgr->display('about/editorialTeamBoard.tpl');
+			$templateMgr->display('about/organizingTeamBoard.tpl');
 		}
 	}
 
 	/**
-	 * Display a biography for an editorial team member.
+	 * Display a biography for an organizing team member.
 	 */
-	function editorialTeamBio($args) {
-		parent::validate(true);
+	function organizingTeamBio($args) {
+		list($conference, $event) = parent::validate(true);
 		
 		AboutHandler::setupTemplate(true);
 		
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$conference = &Request::getConference();
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -181,6 +180,14 @@ class AboutHandler extends Handler {
 		// that might not necessarily be public.
 
 		// FIXME: This is pretty inefficient. Should be cached.
+		
+		if($event) {
+			$settings = $event->getSettings(true);
+			$eventId = $event->getEventId();
+		} else {
+			$settings = $conference->getSettings();
+			$eventId = 0;
+		}
 
 		$user = null;
 		if ($settings['boardEnabled'] != true) {
@@ -200,7 +207,7 @@ class AboutHandler extends Handler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 
-			$allGroups =& $groupDao->getGroups($conference->getConferenceId());
+			$allGroups =& $groupDao->getGroups($conference->getConferenceId(), $eventId);
 			while ($group =& $allGroups->next()) {
 				if (!$group->getAboutDisplayed()) continue;
 				$allMemberships =& $groupMembershipDao->getMemberships($group->getGroupId());
@@ -213,7 +220,7 @@ class AboutHandler extends Handler {
 			}
 		}
 
-		if (!$user) Request::redirect(null, null, null, 'about', 'editorialTeam');
+		if (!$user) Request::redirect(null, null, null, 'about', 'organizingTeam');
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		if ($user && $user->getCountry() != '') {
@@ -222,7 +229,7 @@ class AboutHandler extends Handler {
 		}
 
 		$templateMgr->assign_by_ref('user', $user);
-		$templateMgr->display('about/editorialTeamBio.tpl');
+		$templateMgr->display('about/organizingTeamBio.tpl');
 	}
 
 	/**

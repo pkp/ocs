@@ -28,7 +28,7 @@
 		<li>&#187; <a href="{url op="contact"}">{translate key="about.contact"}</a></li>
 	{/if}
 	{if $showAboutEvent}
-		<li>&#187; <a href="{url op="editorialTeam"}">{translate key="about.editorialTeam"}</a></li>
+		<li>&#187; <a href="{url op="organizingTeam"}">{translate key="about.organizingTeam"}</a></li>
 	{/if}
 	{call_hook name="Templates::About::Index::People"}
 </ul>
