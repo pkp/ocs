@@ -44,7 +44,7 @@ class TimelineForm extends Form {
 		import('event.EventConstants');
 		$templateMgr = &TemplateManager::getManager();
 
-		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'eventDirector'), 'director.eventManagement')));
+		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'editor'), 'user.role.editor')));
 		$templateMgr->assign('helpTopicId','conference.managementPages.timeline');
 		$templateMgr->assign('scheduledTasksEnabled', Config::getVar('general', 'scheduled_tasks'));
 

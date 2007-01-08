@@ -112,7 +112,7 @@ class CommentHandler extends Handler {
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		if (!$roleDao->roleExists($conference->getConferenceId(), $event->getEventId(), $userId, ROLE_ID_EVENT_DIRECTOR)) {
+		if (!$roleDao->roleExists($conference->getConferenceId(), $event->getEventId(), $userId, ROLE_ID_CONFERENCE_DIRECTOR)) {
 			Request::redirect(null, null, 'index');
 		}
 

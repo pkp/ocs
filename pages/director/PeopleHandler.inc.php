@@ -132,8 +132,8 @@ class PeopleHandler extends DirectorHandler {
 		$templateMgr->assign('rolePath', $roleDao->getRolePath($roleId));
 		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
-		$templateMgr->assign('isEventManagement', Request::getRequestedPage() == ROLE_PATH_EVENT_DIRECTOR);
-		$templateMgr->assign('isConferenceManagement', Request::getRequestedPage() == ROLE_PATH_CONFERENCE_DIRECTOR);
+		$templateMgr->assign('isEventManagement', $event ? true : false);
+		$templateMgr->assign('isConferenceManagement', $event ? false : true);
 		$templateMgr->assign('isRegistrationEnabled', ($event? $event->getSetting('enableRegistration', true) : false));
 		$templateMgr->display('director/people/enrollment.tpl');
 	}

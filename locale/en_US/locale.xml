@@ -482,7 +482,6 @@
 	<!-- Roles -->
 	<message key="user.role.siteAdmin">Site Administrator</message>
 	<message key="user.role.director">Conference Director</message>
-	<message key="user.role.eventDirector">Event Director</message>
 	<message key="user.role.registrationManager">Registration Manager</message>
 	<!--<message key="user.role.schedulingManager">Scheduling Manager</message>-->
 
@@ -772,7 +771,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="director.readingTools">Reading Tools</message>
 	<message key="director.people">People</message>
 	<message key="director.filesBrowser">Files Browser</message>
-	<message key="director.timeline">Conference Timeline</message>
 	<message key="director.groups">Organizing Team</message>
 	<message key="director.managementPages">Management Pages</message>
 	<message key="director.plugins">System Plugins</message>
@@ -1617,6 +1615,7 @@ You may optionally provide the user with a reason for disabling their account.</
 
 	<!-- Editor -->
 	<message key="editor.home">Editor Home</message>
+	<message key="editor.timeline">Conference Timeline</message>
 	<message key="editor.submissionsAndPublishing">Submissions and Publishing</message>
 	<message key="editor.submissionQueue">Submission Queue</message>
 	<message key="editor.submissionArchive">Submission Archive</message>

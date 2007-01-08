@@ -74,7 +74,7 @@ class DirectorHandler extends Handler {
 				}
 				if (count($email->getRecipients())==0) $email->addRecipient($user->getEmail(), $user->getFullName());
 			}
-			$email->displayEditForm(Request::url(null, null, null, 'email'), array(), ROLE_PATH_EVENT_DIRECTOR . '/people/email.tpl');
+			$email->displayEditForm(Request::url(null, null, null, 'email'), array(), 'director/people/email.tpl');
 		}
 	}
 
@@ -99,19 +99,11 @@ class DirectorHandler extends Handler {
 	 */
 	function setupTemplate($subclass = false) {
 
-		// PeopleHandler calls this from both director and eventDirector contexts;
-		// it must play nicely with both.
-		$roleDao = DAORegistry::getDAO("RoleDAO");
-		
-		$rolePath = Request::getRequestedPage();
-		$roleId = $roleDao->getRoleIdFromPath($rolePath);
-		$roleName = $roleDao->getRoleName($roleId);
-
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy',
 			$subclass ? array(
 					array(Request::url(null, null, 'user'), 'navigation.user'),
-					array(Request::url(null, null, $rolePath), $roleName))
+					array(Request::url(null, 'index', 'director'), 'user.role.director'))
 				: array(array(Request::url(null, null, 'user'), 'navigation.user'))
 		);
 	}

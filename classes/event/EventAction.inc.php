@@ -76,7 +76,6 @@ class EventAction {
 			$roleDao = &DAORegistry::getDAO('RoleDAO');
 			$registrationAssumedRoles = array(
 				ROLE_ID_CONFERENCE_DIRECTOR,
-				ROLE_ID_EVENT_DIRECTOR,
 				ROLE_ID_EDITOR,
 				ROLE_ID_TRACK_EDITOR,
 				ROLE_ID_REGISTRATION_MANAGER

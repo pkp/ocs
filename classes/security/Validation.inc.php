@@ -352,45 +352,24 @@ class Validation {
 	 */
 	function canAdminister($conferenceId, $eventId, $userId) {
 
-		$isConferenceDirector = Validation::isConferenceDirector($conferenceId);
+		if (Validation::isSiteAdmin()) return true;
+		if (!Validation::isConferenceDirector($conferenceId)) return false;
 		
-		if (Validation::isSiteAdmin()) {
-			// Site admins can do anything.
-			return true;
-		}
-		
-		if ($isConferenceDirector) {
-		
-			// Check for roles in other conferences that this user
-			// doesn't have administrative rights over.
-			$roleDao = &DAORegistry::getDAO('RoleDAO');
-			$roles = &$roleDao->getRolesByUserId($userId);
-			foreach ($roles as $role) {
-
-				// Other user cannot be site admin
-				if ($role->getRoleId() == ROLE_ID_SITE_ADMIN) {
+		// Check for roles in other conferences that this user
+		// doesn't have administrative rights over.
+		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roles = &$roleDao->getRolesByUserId($userId);
+		foreach ($roles as $role) {
+			// Other user cannot be site admin
+			if ($role->getRoleId() == ROLE_ID_SITE_ADMIN) return false;
+			
+			if($role->getConferenceId() != $conferenceId) {
+				// Other conferences: We must have admin privileges there too
+				if (!Validation::isConferenceDirector($role->getConferenceId())) {
 					return false;
-				}
-								
-				if($role->getConferenceId() == $conferenceId) {
-					// Roles for this conference: other user can't be of higher privileges
-					if(!$isConferenceDirector && (
-						$role->getRoleId() == ROLE_ID_CONFERENCE_DIRECTOR ||
-						$role->getRoleId() == ROLE_ID_EVENT_DIRECTOR)) {
-						
-						return false;
-					}
-
-				} else {
-					// Other conferences: We must have admin privileges there too
-					if (!Validation::isConferenceDirector($role->getConferenceId())) {
-						
-						return false;
-					}
 				}
 			}
 		}
-		
 		return true;
 	}
 }

@@ -30,7 +30,7 @@
 </ul>
 
 
-<h3>{translate key="director.currentConferences"}</h3>
+<h3>{translate key="director.scheduledConferences"}</h3>
 {iterate from=events item=event}
 	<h4>{$event->getFullTitle()}</h4>
 	<ul class="plain">
@@ -44,6 +44,7 @@
 		{if $registrationEnabled}
 			<li>&#187; <a href="{url event=$event->getPath() page="director" op="registration"}">{translate key="director.registration"}</a></li>
 		{/if}
+		<li>&#187; <a href="{url event=$event->getPath() page="director" op="people"}">{translate key="director.roles"}</a></li>
 		{call_hook name="Templates::Director::Index::EventManagementPages"}
 	</ul>
 {/iterate}

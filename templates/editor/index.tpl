@@ -23,5 +23,10 @@
 	{call_hook name="Templates::Editor::Index::Submissions"}
 </ul>
 
+<br />
+
+<ul class="plain">
+	<li>&#187; <a href="{url op="timeline"}">{translate key="editor.timeline"}</a></li>
+</ul>
 
 {include file="common/footer.tpl"}
