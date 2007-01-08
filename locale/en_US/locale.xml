@@ -1077,8 +1077,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="director.setup.noStyleSheetUploaded">No style sheet uploaded.</message>
 	<message key="director.setup.conferenceHomepageContent">Conference Homepage Content</message>
 	<message key="director.setup.conferenceHomepageContentDescription">By default, the homepage consists of navigation links. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
-	<!--<message key="director.setup.conferenceDescription">Journal Description</message>
-	<message key="director.setup.conferenceDescriptionDescription">Add a brief 20-25 word description in text/HTML which will appear just below the navigation links.</message>-->
 	<message key="director.setup.homepageImageDescription">Add an image or graphic file to the middle of the page.</message>
 	<message key="director.setup.homepageImage">Homepage image</message>
 	<message key="director.setup.additionalContent">Additional Content</message>
@@ -1126,7 +1124,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="eventDirector.setup.look.description">Homepage header, content, conference header, footer, navigation bar, and style sheet.</message>
 
 	<!-- Event Setup Step 1 -->
-	<message key="eventDirector.setup.description">Event Description</message>
 	<message key="eventDirector.setup.eventIntroduction">Introduction</message>
 	<message key="eventDirector.setup.eventIntroductionDescription">An introduction provides participants with a concise synopsis of the event. Typically, introductions do not exceed 100 words. The introduction is used when a longer overview is not appropriate.</message>
 	<message key="eventDirector.setup.eventOverview">Overview</message>
@@ -2253,7 +2250,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="conference.archive">Conference Archives</message>
 
 	<!-- Event page -->
-	<message key="event.cfp">Call For Papers</message>
 	<message key="event.proposalSubmission">Proposal Submission</message>
 
 	<!-- Call-for-Papers (CFP) page -->

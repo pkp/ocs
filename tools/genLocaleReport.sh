@@ -38,7 +38,9 @@ fi
 echo "None"
 
 echo "Finding keys used in templates..."
-TEMPLATEKEYS=`sed -n 's/translate/\ntranslate/gp' \`find "$2" -name \*.tpl 2>/dev/null\` | sed -n 's/translate key\="\([^"]*\)".*/\1/p' | sort | uniq`;
+TEMPLATEKEYS_TRANSLATE=`sed -n 's/translate/\ntranslate/gp' \`find "$2" -name \*.tpl 2>/dev/null\` | sed -n 's/translate key\="\([^"]*\)".*/\1/p' | sort | uniq`;
+TEMPLATEKEYS_FIELDLABEL=`sed -n 's/fieldLabel/\nfieldLabel/gp' \`find "." -name \*.tpl 2>/dev/null\` | sed -n 's/fieldLabel [^}]*key\="\([^"]*\)".*/\1/p' | sort | uniq`;
+TEMPLATEKEYS=`echo $TEMPLATEKEYS_TRANSLATE $TEMPLATEKEYS_FIELDLABEL | sort | uniq`
 
 echo "Finding keys used in PHP..."
 PHPKEYS=`sed -n 's/Locale::translate/\nLocale::translate/gp' \`find "$2" -name \*.php 2>/dev/null\` | sed -n 's/Locale::translate[ ]\?(['\''"]\([^'\''"]*\)['\''"])/\1\n/gp' | sort | uniq`;

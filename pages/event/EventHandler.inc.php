@@ -155,10 +155,9 @@ class EventHandler extends Handler {
 		$templateMgr = &TemplateManager::getManager();
 
 		// Ensure the user is entitled to view the event...
-		if (isset($event) &&
-				($event->getEnabled() ||
-				 Validation::isEditor($conference->getConferenceId()) ||
-				 Validation::isConferenceDirector($conference->getConferenceId())) {
+		if (isset($event) && ($event->getEnabled() || (
+				Validation::isEditor($conference->getConferenceId()) ||
+				Validation::isConferenceDirector($conference->getConferenceId())))) {
 
 			$eventTitle = $event->getTitle();
 

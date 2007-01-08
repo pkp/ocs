@@ -30,7 +30,7 @@
 			<li><a href="{url page="user" op="profile"}">{translate key="navigation.myProfile"}</a></li>
 			<li><a href="{url page="login" op="signOut"}">{translate key="navigation.logout"}</a></li>
 		{if $userSession->getSessionVar('signedInAs')}
-			<li><a href="{url page="manager" op="signOutAsUser"}">{translate key="manager.people.signOutAsUser"}</a></li>
+			<li><a href="{url page="manager" op="signOutAsUser"}">{translate key="director.people.signOutAsUser"}</a></li>
 		{/if}
 		</ul>
 		{else}
