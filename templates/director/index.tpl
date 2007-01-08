@@ -55,7 +55,7 @@
 <ul class="plain">
 	<li>&#187; <a href="{url op="people" path="all"}">{translate key="director.people.allUsers"}</a></li>
 	<li>&#187; <a href="{url op="createUser"}">{translate key="director.people.createUser"}</a></li>
-	<li>&#187; <a href="{url op="mergeUsers"}">{translate key="director.people.mergeUsers"}</a></li>
+	{*<li>&#187; <a href="{url op="mergeUsers"}">{translate key="director.people.mergeUsers"}</a></li>*}
 	{call_hook name="Templates::Director::Index::Users"}
 </ul>
 
