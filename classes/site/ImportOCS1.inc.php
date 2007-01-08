@@ -455,7 +455,7 @@ class ImportOCS1 {
 			'pageHeaderTitleImage' => array('object', $pageHeaderTitleImage),
 			'homepageImage' => array('object', $homepageImage),
 			'readerInformation' => array('string', Locale::translate('default.conferenceSettings.forReaders', $translateParams)),
-			'authorInformation' => array('string', Locale::translate('default.conferenceSettings.forAuthors', $translateParams)),
+			'presenterInformation' => array('string', Locale::translate('default.conferenceSettings.forPresenters', $translateParams)),
 			'librarianInformation' => array('string', Locale::translate('default.conferenceSettings.forLibrarians', $translateParams)),
 			'conferencePageHeader' => array('string', $this->trans($this->conferenceInfo['chHeader'])),
 			'conferencePageFooter' => array('string', $this->trans($this->conferenceInfo['chFooter'])),
