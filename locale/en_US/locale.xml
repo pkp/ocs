@@ -720,23 +720,23 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="admin.conferences.urlWillBe">The conference's URL will be {$sampleUrl}</message>
 	<message key="admin.conferences.form.titleRequired">A title is required.</message>
 	<message key="admin.conferences.form.pathRequired">A path is required.</message>
-	<!--<message key="admin.journals.form.pathAlphaNumeric">The path can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>-->
+	<message key="admin.conferences.form.pathAlphaNumeric">The path can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
 	<message key="admin.conferences.form.pathExists">The selected path is already in use by another conference.</message>
 	<message key="admin.conferences.enableConferenceInstructions">Enable this conference to appear publicly on the site</message>
 	<message key="admin.conferences.conferenceDescription">Conference description</message>
 	<message key="admin.conferences.conferenceDescriptionInstructions">The conference description identifies the ongoing mission of this conference. It appears on the main conference page, as well as all of the conference's convention pages.</message>
 	<message key="admin.conferences.importOCS1">Import from OCS 1</message>
-	<!--<message key="admin.journals.importOCS1.editMigratedJournal">Edit Migrated Journal</message>-->
-	<!--<message key="admin.journals.importOCS1.conflict.desc">Some user accounts had conflicting information. OCS 1.x allows multiple user accounts to share the same email address, while OCS 2.x does not. In the list below, the second account listed has had a temporary email account assigned to it. These should be corrected by hand, either by assigning a different email account, or by merging accounts.</message>-->
-	<!--<message key="admin.journals.importOCS1.conflict">{$firstUsername} ({$firstName}) and {$secondUsername} ({$secondName})</message>-->
-	<!--<message key="admin.journals.importOCS1Instructions">Consult the UPGRADE document distributed with OCS for detailed information on migrating data from OCS 1 to OCS 2.</message>-->
-	<!--<message key="admin.journal.pathImportInstructions">Existing journal path or path to create (e.g., "ocs").</message>-->
-	<!--<message key="admin.journal.importPath">OCS 1 path</message>-->
-	<!--<message key="admin.journal.importPathInstructions">Complete local filesystem path to the OCS 1 installation (e.g., "/var/www/ocs").</message>-->
-	<!--<message key="admin.journals.importSubscriptions">Import subscriptions</message>-->
-	<!--<message key="admin.journals.transcode">Transcode article metadata from ISO8859-1</message>-->
-	<!--<message key="admin.journals.form.importPathRequired">The import path is required.</message>-->
-	<!--<message key="admin.journals.importErrors">Importing failed to complete successfully</message>-->
+	<!--<message key="admin.conferences.importOCS1.editMigratedConference">Edit Migrated Conference</message>-->
+	<!--<message key="admin.conferences.importOCS1.conflict.desc">Some user accounts had conflicting information. OCS 1.x allows multiple user accounts to share the same email address, while OCS 2.x does not. In the list below, the second account listed has had a temporary email account assigned to it. These should be corrected by hand, either by assigning a different email account, or by merging accounts.</message>-->
+	<!--<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) and {$secondUsername} ({$secondName})</message>-->
+	<!--<message key="admin.conferences.importOCS1Instructions">Consult the UPGRADE document distributed with OCS for detailed information on migrating data from OCS 1 to OCS 2.</message>-->
+	<!--<message key="admin.conference.pathImportInstructions">Existing conference path or path to create (e.g., "ocs").</message>-->
+	<!--<message key="admin.conference.importPath">OCS 1 path</message>-->
+	<!--<message key="admin.conference.importPathInstructions">Complete local filesystem path to the OCS 1 installation (e.g., "/var/www/ocs").</message>-->
+	<!--<message key="admin.conferences.importSubscriptions">Import subscriptions</message>-->
+	<!--<message key="admin.conferences.transcode">Transcode article metadata from ISO8859-1</message>-->
+	<!--<message key="admin.conferences.form.importPathRequired">The import path is required.</message>-->
+	<!--<message key="admin.conferences.importErrors">Importing failed to complete successfully</message>-->
 
 	<message key="director.events.enableEventInstructions">Enable this event to appear publicly on the site</message>
 
@@ -1006,29 +1006,23 @@ Note that if your site administrator has already registered this site with the P
 
 	<!-- Conference Setup Step 4 -->
 	<message key="director.setup.managingTheConference">Step 4. Managing the Conference</message>
-	<!--<message key="director.setup.appearInAboutJournal">(To appear in About the Journal) </message>-->
+	<!--<message key="director.setup.appearInAboutConference">(To appear in About the Conference) </message>-->
 	<!--<message key="director.setup.managementOfBasicEditorialSteps">Management of Basic Editorial Steps</message>-->
 	<!--<message key="director.setup.basicEditorialStepsDescription"><![CDATA[Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Scheduling Queue &gt; Table of Contents.<br /><br />
-Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Section Editors, go to Editors in Journal Management.)]]></message>-->
+Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Section Editors, go to Editors in Conference Management.)]]></message>-->
 	<!--<message key="director.setup.editorialProcess1">One or more editors handle the basic steps without designated roles.</message>-->
 	<!--<message key="director.setup.editorialProcess2">Managing Editor handles Submission Queue, Scheduling Queue, and Table of Contents, while Section Editors handle Submission Review and Submission Editing.</message>-->
 	<!--<message key="director.setup.editorialProcess3">Managing Editor handles Submission Queue, Submission Editing, Scheduling Queue, and Table of Contents, while the Section Editors handle Submission Review.</message>-->
 	<!--<message key="director.setup.layoutAndGalleys">Layout Editors</message>-->
-	<!--<message key="director.setup.useLayoutEditors">The journal will designate Layout Editors to prepare the galleys in HTML, PDF, PS, etc., file formats for electronic publication.</message>-->
+	<!--<message key="director.setup.useLayoutEditors">The conference will designate Layout Editors to prepare the galleys in HTML, PDF, PS, etc., file formats for electronic publication.</message>-->
 	<!--<message key="director.setup.noUseLayoutEditors">The editors will prepare the galleys in the appropriate format for electronic publication.</message>-->
 	<!--<message key="director.setup.layoutInstructions">Layout Instructions</message>-->
-	<!--<message key="director.setup.layoutInstructionsDescription">Layout Instructions can be prepared for the formatting of publishing items in the journal and be entered below in HTML or plain text. They will be made available to  the Layout Editor and Section Editor on the Editing page of each submission. (As each journal may employ its own file formats, bibliographic standards, style sheets, etc., a default set of instructions is not provided.)</message>-->
+	<!--<message key="director.setup.layoutInstructionsDescription">Layout Instructions can be prepared for the formatting of publishing items in the conference and be entered below in HTML or plain text. They will be made available to  the Layout Editor and Section Editor on the Editing page of each submission. (As each conference may employ its own file formats, bibliographic standards, style sheets, etc., a default set of instructions is not provided.)</message>-->
 	<!--<message key="director.setup.layoutTemplates">Layout Templates</message>-->
-	<!--<message key="director.setup.layoutTemplatesDescription">Templates can be uploaded to appear in Layout for each of the standard formats published in the journal (e.g., article, book review, etc.) using any file format (e.g., pdf, doc, etc.) with annotations added specifying font, size, margins, etc. to serve as a guide for Layout Editors and Proofreaders.</message>-->
+	<!--<message key="director.setup.layoutTemplatesDescription">Templates can be uploaded to appear in Layout for each of the standard formats published in the conference (e.g., article, book review, etc.) using any file format (e.g., pdf, doc, etc.) with annotations added specifying font, size, margins, etc. to serve as a guide for Layout Editors and Proofreaders.</message>-->
 	<!--<message key="director.setup.layoutTemplates.title">Title</message>-->
 	<!--<message key="director.setup.layoutTemplates.file">Template File</message>-->
 	<!--<message key="director.setup.proofreading">Proofreaders</message>-->
-	<!--<message key="director.setup.useProofreaders">The journal will designate Proofreaders who will (along with the authors) check galleys.</message>-->
-	<!--<message key="director.setup.noUseProofreaders">The editors and authors will proofread the galleys.</message>-->
-	<!--<message key="director.setup.proofingInstructions">Proofing Instructions</message>-->
-	<!--<message key="director.setup.proofingInstructionsDescription">The Proofreading Instructions will be made available to Proofreaders, Authors, Layout Editors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be edited or replaced by the Journal Director at any point (in HTML or plain text).</message>-->
-	<!--<message key="director.setup.volumePerYear">Volumes per year</message>-->
-	<!--<message key="director.setup.issuePerVolume">Issues per volume</message>-->
 	<message key="director.setup.publicIdentifier">Identification of Conference Content</message>
 	<message key="director.setup.uniqueIdentifier">Unique Identifier</message>
 	<message key="director.setup.uniqueIdentifierDescription">Papers can be tagged with an identification number or string, if the conference is using an item registration system such as the Digital Object Identifier System (DOI).</message>
@@ -1247,8 +1241,8 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="director.languages.alternateLocale2">Alternate Locale #2</message>
 	<!--<message key="director.languages.alternateLocaleInstructions">This system optionally allows certain critical information to be entered in up to two additional languages. To use this feature, select one or two alternate locales and choose from the options listed below.</message>-->
 	<!--<message key="director.languages.alternativeLanguageOptions">Language options</message>-->
-	<!--<message key="director.languages.journalTitleAltLanguages">Title image, page header, etc. will be uploaded in each of the journal's languages.</message>-->
-	<!--<message key="director.languages.articleAltLanguages">Authors should be asked to provide titles and abstracts in the other language(s), with the option of having this done by journal staff.</message>-->
+	<!--<message key="director.languages.conferenceTitleAltLanguages">Title image, page header, etc. will be uploaded in each of the conference's languages.</message>-->
+	<!--<message key="director.languages.articleAltLanguages">Authors should be asked to provide titles and abstracts in the other language(s), with the option of having this done by conference staff.</message>-->
 	<message key="director.languages.noneAvailable">Sorry, no additional languages are available. Contact your site administrator if you wish to use additional languages with this conference.</message>
 
 
@@ -1369,10 +1363,10 @@ including the right to place it in an open access archive. In addition, <a href=
 	<!--<message key="director.people.mergeUsers.from.description">Select a user to merge into another account. The account you select here will be deleted and any submissions, editing assignments, etc. will be attributed to another account.</message>-->
 	<!--<message key="director.people.mergeUsers.into.description">Select a user to whom to attribute the previous user's authorships, editing assignments, etc.</message>-->
 	<!--<message key="director.people.mergeUsers.confirm">Are you sure you wish to merge the account with the username "{$oldUsername}" into the account with the username "{$newUsername}"? The account with the username "{$oldUsername}" will not exist afterwards. This action is not reversible.</message>-->
-	<!--<message key="director.people.confirmRemove">Remove this user from this journal? This action will unenroll the user from all roles within this journal.</message>-->
-	<!--<message key="director.people.confirmDisable">Disable this user? This will prevent the user from logging into the system.
+	<message key="director.people.confirmRemove">Remove this user from this conference? This action will unenroll the user from all roles within this conference.</message>
+	<message key="director.people.confirmDisable">Disable this user? This will prevent the user from logging into the system.
 
-You may optionally provide the user with a reason for disabling their account.</message>-->
+You may optionally provide the user with a reason for disabling their account.</message>
 	<message key="director.people.noneEnrolled">No enrolled users.</message>
 	<message key="director.people.enrollSelected">Enroll Selected Users</message>
 	<message key="director.people.noMatchingUsers">No matching users.</message>
@@ -1409,10 +1403,10 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="director.people.signOutAsUser">Log Out as User</message>
 	<message key="director.people.signInAs">Log In As</message>
 	<!--<message key="director.people.syncUsers">Synchronize User Enrollment</message>-->
-	<!--<message key="director.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified journal into the same role in this journal. This function allows a common set of users (e.g., Reviewers) to be synchronized between journals.</message>-->
+	<!--<message key="director.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified conference into the same role in this conference. This function allows a common set of users (e.g., Reviewers) to be synchronized between conferences.</message>-->
 	<message key="director.people.enrollSync">Sync Enrollment</message>
 	<message key="director.people.enrollSyncRole">Synchronize role</message>
-	<!--<message key="director.people.enrollSyncJournal">With journal</message>-->
+	<!--<message key="director.people.enrollSyncConference">With conference</message>-->
 
 	<!-- Email Management -->
 	<message key="director.emails.emailKey">Email Key</message>
@@ -1627,8 +1621,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="editor.submissionReview.notes">Due indicates number of weeks remaining until the review's due date or (-) weeks that it is overdue. It is filled in when a reviewer accepts the request to review.</message>
 	<!--<message key="editor.notifyUsers">Notify Users</message>-->
 	<!--<message key="editor.usersNotified">Users Notified</message>-->
-	<!--<message key="editor.notifyUsers.allUsers">Send this message to all users associated with this journal ({$count} users)</message>-->
-	<!--<message key="editor.notifyUsers.interestedUsers">Send this message to the users associated with this journal who have indicated that they wish to receive updates ({$count} users)</message>-->
+	<!--<message key="editor.notifyUsers.allUsers">Send this message to all users associated with this conference ({$count} users)</message>-->
+	<!--<message key="editor.notifyUsers.interestedUsers">Send this message to the users associated with this conference who have indicated that they wish to receive updates ({$count} users)</message>-->
 	<!--<message key="editor.notifyUsers.includeToc">Include the table of contents from this issue:</message>-->
 
 	<!-- Scheduling Queue -->
@@ -2174,7 +2168,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.register.passwordLengthRestriction">The password must be at least {$length} characters.</message>
 	<message key="user.register.form.passwordLengthTooShort">The password you entered is not long enough.</message>
 	<message key="user.register.readerDescription">Notified by email on publication of proceedings of this conference.</message>-->
-	<!--<message key="user.register.openAccessNotificationDescription">Notified by email when an issue of the journal is made open access.</message>-->
+	<!--<message key="user.register.openAccessNotificationDescription">Notified by email when an issue of the conference is made open access.</message>-->
 	<message key="user.register.authorDescription">Able to submit items to the conference.</message>
 	<message key="user.register.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the conference.</message>
 	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the conference. Identify reviewing interests (substantive areas and research methods).</message>
@@ -2272,9 +2266,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.conferenceContact">Conference Contact</message>
 	<message key="about.aboutTheConference">About the Conference</message>
 	<message key="about.editorialTeam">Editorial Team</message>
-	<message key="about.editorialTeam.biography">Biography</message>
 	<message key="about.editorialPolicies">Editorial Policies</message>
-	<!--<message key="about.focusAndScope">Focus and Scope</message>-->
 	<message key="about.trackPolicies">Track Policies</message>
 	<message key="about.submissions">Submissions</message>
 	<message key="about.sponsors">Sponsors</message>
