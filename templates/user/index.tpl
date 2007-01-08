@@ -41,7 +41,7 @@
 	
 	{foreach from=$userEvents[$conferenceId] item=event}
 		{assign var="eventId" value=$event->getEventId()}
-		<h5><a href="{url conference=$conference->getPath() event=$event->getPath() page="user"}">{$event->getTitle()|escape}</a></h5>
+		<h5>{$event->getTitle()|escape}</h5>
 
 		{foreach item=role from=$userEventRoles[$eventId]}
 			{if $role->getRolePath() != 'reader'}
@@ -76,7 +76,7 @@
 	
 	{foreach from=$userEvents[$conferenceId] item=event}
 		{assign var="eventId" value=$event->getEventId()}
-		<h5><a href="{url conference=$userConference->getPath() event=$event->getPath() page="user"}">{$event->getTitle()|escape}</a></h5>
+		<h5>{$event->getTitle()|escape}</h5>
 
 		{foreach item=role from=$userEventRoles[$eventId]}
 			{if $role->getRolePath() != 'reader'}

@@ -747,7 +747,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="director.events">Events</message>
 	<message key="director.eventSetup">Scheduled Conference Setup</message>
 	<message key="director.eventManagement">Scheduled Conference Management</message>
-	<message key="director.eventManagement.description">You are registered as an Event Manager for the following events:</message>
 	<message key="director.events.eventTitle">Event Title</message>
 	<message key="director.events.schedulingAConference">Scheduling a Conference</message>
 	<message key="director.events.noneCreated">No events have been created.</message>
