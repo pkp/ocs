@@ -56,16 +56,16 @@ class ImportExportPlugin extends Plugin {
 				'navigation.user'
 			),
 			array(
-				Request::url(null, null, 'manager'),
-				'user.role.manager'
+				Request::url(null, null, 'director'),
+				'user.role.director'
 			),
 			array (
-				Request::url(null, null, 'manager', 'importexport'),
-				'manager.importExport'
+				Request::url(null, null, 'director', 'importexport'),
+				'director.importExport'
 			)
 		);
 		if ($isSubclass) $pageCrumbs[] = array(
-			Request::url(null, null, 'manager', 'importexport', array('plugin', $this->getName())),
+			Request::url(null, null, 'director', 'importexport', array('plugin', $this->getName())),
 			$this->getDisplayName(),
 			true
 		);
@@ -121,7 +121,7 @@ class ImportExportPlugin extends Plugin {
 		return array(
 			array(
 				'importexport',
-				Locale::translate('manager.importExport')
+				Locale::translate('director.importExport')
 			)
 		);
 	}
@@ -131,7 +131,7 @@ class ImportExportPlugin extends Plugin {
 	 */
 	function manage($verb, $args) {
 		if ($verb === 'importexport') {
-			Request::redirect(null, null, 'manager', 'importexport', array('plugin', $this->getName()));
+			Request::redirect(null, null, 'director', 'importexport', array('plugin', $this->getName()));
 		}
 		return false;
 	}

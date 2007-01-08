@@ -19,7 +19,7 @@
 		<li>&#187; <a href="{url op="announcements"}">{translate key="director.announcements"}</a></li>
 	{/if}
 	<li>&#187; <a href="{url op="files"}">{translate key="director.filesBrowser"}</a></li>
-	<li>&#187; <a href="{url op="importexport"}">{translate key="director.importExport"}</a></li>
+	{*<li>&#187; <a href="{url op="importexport"}">{translate key="director.importExport"}</a></li>*}
 	<li>&#187; <a href="{url op="languages"}">{translate key="common.languages"}</a></li>
 	<li>&#187; <a href="{url op="emails"}">{translate key="director.emails"}</a></li>
 	<li>&#187; <a href="{url page="rtadmin"}">{translate key="director.readingTools"}</a></li>
