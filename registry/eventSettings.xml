@@ -69,5 +69,18 @@
 		<value>4</value>
 	</setting>
 
+	<!-- Policy and default settings -->
+	<setting type="string">
+		<name>emailSignature</name>
+		<value>{translate key="default.eventSettings.emailSignature"}</value>
+	</setting>
+	<setting type="string">
+		<name>readerInformation</name>
+		<value>{translate key="default.eventSettings.forReaders"}</value>
+	</setting>
+	<setting type="string">
+		<name>presenterInformation</name>
+		<value>{translate key="default.eventSettings.forPresenters"}</value>
+	</setting>
 
 </event_settings>

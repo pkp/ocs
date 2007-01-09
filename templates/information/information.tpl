@@ -11,6 +11,12 @@
 
 {include file="common/header.tpl"}
 
-<p>{$content|nl2br}</p>
+<h2>{$conferenceTitle}</h2>
+
+<p>{$conferenceContent|nl2br}</p>
+
+<h2>{$eventTitle}</h2>
+
+<p>{$eventContent|nl2br}</p>
 
 {include file="common/footer.tpl"}
