@@ -146,13 +146,11 @@ class PeopleHandler extends DirectorHandler {
 		parent::validate();
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$eventDao = &DAORegistry::getDAO('EventDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
 
 		$roleId = (int)(isset($args[0])?$args[0]:Request::getUserVar('roleId'));
-		$conference = &$conferenceDao->getConferenceByPath(Request::getRequestedConferencePath());
-		$event = &$eventDao->getEventByPath(Request::getRequestedEventPath());
+		$conference =& Request::getConference();
+		$event =& Request::getEvent();
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -176,8 +174,8 @@ class PeopleHandler extends DirectorHandler {
 
 		$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
 		
-		$templateMgr->assign('isEventManagement', Request::getRequestedPage() == ROLE_PATH_EVENT_DIRECTOR);
-		$templateMgr->assign('isConferenceManagement', Request::getRequestedPage() == ROLE_PATH_CONFERENCE_DIRECTOR);
+		$templateMgr->assign('isEventManagement', $event ? true : false);
+		$templateMgr->assign('isConferenceManagement', $event ? false : true);
 		$templateMgr->assign('isRegistrationEnabled', ($event? $event->getSetting('enableRegistration', true) : false));
 
 		$templateMgr->assign('searchField', $searchType);
@@ -215,11 +213,8 @@ class PeopleHandler extends DirectorHandler {
 			$users = array(Request::getUserVar('userId'));
 		}
 		
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$conference = &$conferenceDao->getConferenceByPath(Request::getRequestedConferencePath());
-
-		$eventDao = &DAORegistry::getDAO('EventDAO');
-		$event = &$eventDao->getEventByPath(Request::getRequestedEventPath());
+		$conference =& Request::getConference();
+		$event =& Request::getEvent();
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$rolePath = $roleDao->getRolePath($roleId);
@@ -263,11 +258,8 @@ class PeopleHandler extends DirectorHandler {
 		$roleId = isset($args[0])?$args[0]:0;
 		parent::validate();
 			
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$conference = &$conferenceDao->getConferenceByPath(Request::getRequestedConferencePath());
-
-		$eventDao = &DAORegistry::getDAO('EventDAO');
-		$event = &$eventDao->getEventByPath(Request::getRequestedEventPath());
+		$conference =& Request::getConference();
+		$event =& Request::getEvent();
 
 		$isConferenceDirector = Validation::isConferenceDirector($conference->getConferenceId());
 		
@@ -777,8 +769,8 @@ class PeopleHandler extends DirectorHandler {
 			}
 			$templateMgr->assign('country', $country);
 
-			$templateMgr->assign('isEventManagement', (Request::getRequestedPage() === ROLE_PATH_EVENT_DIRECTOR));
-			$templateMgr->assign('isConferenceManagement', (Request::getRequestedPage() === ROLE_PATH_CONFERENCE_DIRECTOR));
+		$templateMgr->assign('isEventManagement', $event ? true : false);
+		$templateMgr->assign('isConferenceManagement', $event ? false : true);
 
 			$templateMgr->assign_by_ref('user', $user);
 			$templateMgr->assign_by_ref('userRoles', $roles);
