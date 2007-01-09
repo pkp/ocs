@@ -19,11 +19,11 @@
 {assign var="pageTitleTranslated" value=$event->getFullTitle()}
 {include file="common/header.tpl"}
 
-<div>{$event->getSetting("eventIntroduction")|nl2br}</div>
+<h2>{$event->getSetting("location")|nl2br}</h2>
 
 <br />
 
-<h2>{$event->getSetting("location")|nl2br}</h2>
+<div>{$event->getSetting("eventIntroduction")|nl2br}</div>
 
 {if $enableAnnouncementsHomepage}
 	{* Display announcements *}
@@ -56,10 +56,10 @@
 {*	<li>&#187; <a href="{url page="event" op="submissions"}">{translate key="event.submissions"}</a></li>
 	<li>&#187; <a href="{url page="event" op="papers"}">{translate key="event.papers"}</a></li>
 	<li>&#187; <a href="{url page="event" op="discussion"}">{translate key="event.discussion"}</a></li>*}
-	<li>&#187; <a href="{url page="event" op="registration"}">{translate key="event.registration"}</a></li>
+{*	<li>&#187; <a href="{url page="event" op="registration"}">{translate key="event.registration"}</a></li>*}
 	<li>&#187; <a href="{url page="about" op="conferenceSponsorship"}">{translate key="event.supporters"}</a></li>
 {*	<li>&#187; <a href="{url page="event" op="schedule"}">{translate key="event.schedule"}</a></li> *}
-	<li>&#187; <a href="{url page="event" op="links"}">{translate key="event.links"}</a></li>
+{*	<li>&#187; <a href="{url page="event" op="links"}">{translate key="event.links"}</a></li>*}
 </ul>
 
 {$additionalHomeContent}
