@@ -140,13 +140,8 @@ class FilesHandler extends DirectorHandler {
 	
 	function getRealFilesDir($currentDir) {
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
-		
 		$base = '/conferences/' . $conference->getConferenceId();
 
-		if($event)
-			$base .= '/events/' . $event->getEventId();
-			
 		return Config::getVar('files', 'files_dir') . $base .'/' . $currentDir;
 	}
 	
