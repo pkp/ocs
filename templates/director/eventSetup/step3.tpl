@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="eventDirector.setup.submissionReview}
 {include file="director/eventSetup/setupHeader.tpl"}
 
-<form method="post" action="{url op="saveSetup" path="3"}">
+<form method="post" action="{url op="saveEventSetup" path="3"}">
 {include file="common/formErrors.tpl"}
 
 <h3>3.1 {translate key="eventDirector.setup.reviewerRegistration"}</h3>

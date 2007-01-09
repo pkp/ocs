@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="eventDirector.setup.guidingSubmissions}
 {include file="director/eventSetup/setupHeader.tpl"}
 
-<form method="post" action="{url op="saveSetup" path="2"}">
+<form method="post" action="{url op="saveEventSetup" path="2"}">
 {include file="common/formErrors.tpl"}
 
 <h3>2.1 {translate key="eventDirector.setup.callForPapers"}</h3>

@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="director.setup.customizingTheLook}
 {include file="director/eventSetup/setupHeader.tpl"}
 
-<form method="post" action="{url op="saveSetup" path="5"}" enctype="multipart/form-data">
+<form method="post" action="{url op="saveEventSetup" path="5"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
 <h3>5.1 {translate key="director.setup.conferenceHomepageHeader"}</h3>

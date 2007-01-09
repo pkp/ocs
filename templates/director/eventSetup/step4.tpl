@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="director.setup.managingTheConference}
 {include file="director/eventSetup/setupHeader.tpl"}
 
-<form method="post" action="{url op="saveSetup" path="4"}" enctype="multipart/form-data">
+<form method="post" action="{url op="saveEventSetup" path="4"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
 <h3>4.1 {translate key="eventDirector.setup.readerRegistration"}</h3>
