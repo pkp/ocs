@@ -144,6 +144,7 @@ class EmailTemplateDAO extends DAO {
 	 * @param $emailKey string
 	 * @param $locale string
 	 * @param $conferenceId int
+	 * @param $eventId int optional
 	 * @return EmailTemplate
 	 */
 	function &getEmailTemplate($emailKey, $locale, $conferenceId, $eventId = 0) {
