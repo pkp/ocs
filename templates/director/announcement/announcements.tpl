@@ -23,7 +23,7 @@
 </table>
 <table width="100%" class="listing">
 	<tr>
-		<td colspan="4" class="headseparator">&nbsp;</td>
+		<td colspan="5" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr class="heading" valign="bottom">
 		<td width="10%">{translate key="director.announcements.dateExpire"}</td>
@@ -33,7 +33,7 @@
 		<td width="15%">{translate key="common.action"}</td>
 	</tr>
 	<tr>
-		<td colspan="4" class="headseparator">&nbsp;</td>
+		<td colspan="5" class="headseparator">&nbsp;</td>
 	</tr>
 {iterate from=announcements item=announcement}
 	{assign var=eventId value=$announcement->getEventId()}
@@ -45,19 +45,19 @@
 		<td><a href="{url op="editAnnouncement" path=$announcement->getAnnouncementId()}" class="action">{translate key="common.edit"}</a> <a href="{url op="deleteAnnouncement" path=$announcement->getAnnouncementId()}" onclick="return confirm('{translate|escape:"javascript" key="director.announcements.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
 	<tr>
-		<td colspan="4" class="{if $announcements->eof()}end{/if}separator">&nbsp;</td>
+		<td colspan="5" class="{if $announcements->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
 {/iterate}
 {if $announcements->wasEmpty()}
 	<tr>
-		<td colspan="4" class="nodata">{translate key="director.announcements.noneCreated"}</td>
+		<td colspan="5" class="nodata">{translate key="director.announcements.noneCreated"}</td>
 	</tr>
 	<tr>
-		<td colspan="4" class="endseparator">&nbsp;</td>
+		<td colspan="5" class="endseparator">&nbsp;</td>
 	</tr>
 {else}
 	<tr>
-		<td colspan="2" align="left">{page_info iterator=$announcements}</td>
+		<td colspan="3" align="left">{page_info iterator=$announcements}</td>
 		<td colspan="2" align="right">{page_links name="announcements" iterator=$announcements}</td>
 	</tr>
 {/if}
