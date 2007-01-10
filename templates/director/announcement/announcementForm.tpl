@@ -39,6 +39,15 @@
 	</select></td>
 </tr>
 <tr valign="top">
+	<td width="20%" class="label">{fieldLabel name="eventId" key="director.announcements.form.eventId"}</td>
+	<td width="80%" class="value"><select name="eventId" id="eventId" class="selectMenu" />
+		<option value="0">{translate key="common.all"}</option>
+		{iterate from=events item=event}
+		<option value="{$event->getEventId()}"{if $eventId == $event->getEventId()} selected="selected"{/if}>{$event->getTitle()|escape}</option>
+		{/iterate} 
+	</select></td>
+</tr>
+<tr valign="top">
 	<td class="label">{fieldLabel name="title" required="true" key="director.announcements.form.title"}</td>
 	<td class="value"><input type="text" name="title" value="{$title|escape}" size="40" id="title" maxlength="255" class="textField" /></td>
 </tr>

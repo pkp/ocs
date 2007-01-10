@@ -1718,6 +1718,9 @@
 		<field name="conference_id" type="I8">
 			<NOTNULL/>
 		</field>
+		<field name="event_id" type="I8">
+			<NOTNULL/>
+		</field>
 		<field name="type_id" type="I8"/>
 		<field name="title" type="C2" size="255">
 			<NOTNULL/>

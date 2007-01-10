@@ -47,19 +47,30 @@ class GroupDAO extends DAO {
 	/**
 	 * Get all groups for a conference.
 	 * @param $conferenceId int
+	 * @param $eventId int
 	 * @param $rangeInfo object RangeInfo object (optional)
 	 * @return array
 	 */
 	function &getGroups($conferenceId, $eventId, $rangeInfo = null) {
-		if($eventId == -1) {
+		if($conferenceId !== -1 && $eventId !== -1) {
+			$result = &$this->retrieve(
+				'SELECT * FROM groups WHERE conference_id = ? AND event_id = ? ORDER BY seq',
+				array($conferenceId, $eventId), $rangeInfo
+			);
+		} elseif($conferenceId !== -1) {
 			$result = &$this->retrieve(
 				'SELECT * FROM groups WHERE conference_id = ? ORDER BY seq',
 				$conferenceId, $rangeInfo
 			);
+		} elseif($eventId !== -1) {
+			$result = &$this->retrieve(
+				'SELECT * FROM groups WHERE event_id = ? ORDER BY seq',
+				$eventId, $rangeInfo
+			);
 		} else {
 			$result = &$this->retrieve(
-				'SELECT * FROM groups WHERE conference_id = ? AND event_id = ? ORDER BY seq',
-				array($conferenceId, $eventId), $rangeInfo
+				'SELECT * FROM groups ORDER BY seq',
+				$eventId, $rangeInfo
 			);
 		}
 
@@ -179,7 +190,7 @@ class GroupDAO extends DAO {
 	 * @param $eventId int
 	 */
 	function deleteGroupsByEventId($eventId) {
-		$groups =& $this->getGroups($conferenceId, $eventId);
+		$groups =& $this->getGroups(-1, $eventId);
 		while ($group =& $groups->next()) {
 			$this->deleteGroup($group);
 		}

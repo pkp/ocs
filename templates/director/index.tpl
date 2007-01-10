@@ -34,9 +34,6 @@
 {iterate from=events item=event}
 	<h4>{$event->getFullTitle()}</h4>
 	<ul class="plain">
-		{if $announcementsEnabled}
-			<li>&#187; <a href="{url op="announcements"}">{translate key="director.announcements"}</a></li>
-		{/if}
 		<li>&#187; <a href="{url event=$event->getPath() page="director" op="tracks"}">{translate key="track.tracks"}</a></li>
 		<li>&#187; <a href="{url event=$event->getPath() page="director" op="groups"}">{translate key="director.groups"}</a></li>
 		<li>&#187; <a href="{url event=$event->getPath() page="director" op="eventSetup"}">{translate key="director.eventSetup"}</a></li>

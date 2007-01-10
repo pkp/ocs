@@ -209,12 +209,12 @@ class EventDAO extends DAO {
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$roleDao->deleteRoleByEventId($eventId);
-/*
+
 		$groupDao = &DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroupsByEventId($eventId);
-*/
-/*		$pluginSettingsDao = &DAORegistry::getDAO('PluginSettingsDAO');
-		$pluginSettingsDao->deleteSettingsByEventId($eventId);*/
+
+		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
+		$announcementDao->deleteAnnouncementsByEvent($eventId);
 
 		return $this->update(
 			'DELETE FROM events WHERE event_id = ?', $eventId

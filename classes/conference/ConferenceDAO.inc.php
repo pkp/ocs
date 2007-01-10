@@ -150,12 +150,15 @@ class ConferenceDAO extends DAO {
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$roleDao->deleteRoleByConferenceId($conferenceId);
-/*
+
 		$groupDao = &DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroupsByConferenceId($conferenceId);
-*/
+
 		$pluginSettingsDao = &DAORegistry::getDAO('PluginSettingsDAO');
 		$pluginSettingsDao->deleteSettingsByConferenceId($conferenceId);
+
+		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
+		$announcementDao->deleteAnnouncementsByConference($conferenceId);
 
 		$eventDao = &DAORegistry::getDAO('EventDAO');
 		$eventDao->deleteEventsByConferenceId($conferenceId);

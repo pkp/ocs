@@ -201,7 +201,7 @@ class EventHandler extends Handler {
 				if ($enableAnnouncementsHomepage) {
 					$numAnnouncementsHomepage = $event->getSetting('numAnnouncementsHomepage', true);
 					$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-					$announcements = &$announcementDao->getNumAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), 	$numAnnouncementsHomepage);
+					$announcements = &$announcementDao->getNumAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $event->getEventId(), $numAnnouncementsHomepage);
 					$templateMgr->assign('announcements', $announcements);
 					$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
 				}

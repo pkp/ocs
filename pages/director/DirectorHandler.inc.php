@@ -19,7 +19,7 @@ class DirectorHandler extends Handler {
 	 * Display conference management index page.
 	 */
 	function index() {
-		list($conference, $event) = Handler::validate(true, false);
+		list($conference, $event) = DirectorHandler::validate(true, false);
 		DirectorHandler::setupTemplate();
 
 		$templateMgr = &TemplateManager::getManager();
@@ -28,6 +28,9 @@ class DirectorHandler extends Handler {
 		$events =& $eventDao->getEventsByConferenceId($conference->getConferenceId());
 		$templateMgr->assign_by_ref('events', $events);
 		
+		$announcementsEnabled = $conference->getSetting('enableAnnouncements');
+		$templateMgr->assign('announcementsEnabled', $announcementsEnabled);
+
 		$templateMgr->assign('helpTopicId','conference.index');
 		$templateMgr->display(ROLE_PATH_CONFERENCE_DIRECTOR . '/index.tpl');
 	}

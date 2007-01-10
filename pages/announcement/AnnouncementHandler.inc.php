@@ -22,13 +22,22 @@ class AnnouncementHandler extends Handler {
 		AnnouncementHandler::setupTemplate();
 
 		$conference = &Request::getConference();
+		$event = &Request::getEvent();
+		
 		$announcementsEnabled = $conference->getSetting('enableAnnouncements');
 
 		if ($announcementsEnabled) {
 			$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
 			$rangeInfo = &Handler::getRangeInfo('announcements');
-			$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $rangeInfo);
-			$announcementsIntroduction = $conference->getSetting('announcementsIntroduction');
+
+			if($event) {
+				$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $event->getEventId(), $rangeInfo);
+				$announcementsIntroduction = $event->getSetting('announcementsIntroduction',true);
+			} else {
+				$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), 0, $rangeInfo);
+				$announcementsIntroduction = $conference->getSetting('announcementsIntroduction');
+			}
+			
 
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('announcements', $announcements);
@@ -48,6 +57,7 @@ class AnnouncementHandler extends Handler {
 		AnnouncementHandler::setupTemplate();
 
 		$conference = &Request::getConference();
+		
 		$announcementsEnabled = $conference->getSetting('enableAnnouncements');
 		$announcementId = !isset($args) || empty($args) ? null : (int) $args[0];
 		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');

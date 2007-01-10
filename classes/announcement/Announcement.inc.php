@@ -60,6 +60,22 @@ class Announcement extends DataObject {
 	}
 
 	/**
+	 * Get the event ID of the announcement.
+	 * @return int
+	 */
+	function getEventId() {
+		return $this->getData('eventId');
+	}
+	
+	/**
+	 * Set the event ID of the announcement.
+	 * @param $eventId int
+	 */
+	function setEventId($eventId) {
+		return $this->setData('eventId', $eventId);
+	}
+
+	/**
 	 * Get the announcement type of the announcement.
 	 * @return int
 	 */

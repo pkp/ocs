@@ -34,6 +34,9 @@ class AnnouncementForm extends Form {
 		// If provided, announcement type is valid 
 		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'director.announcements.form.typeIdValid', create_function('$typeId, $conferenceId', '$announcementTypeDao = &DAORegistry::getDAO(\'AnnouncementTypeDAO\'); return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, $conferenceId);'), array($conference->getConferenceId())));
 
+		// If supplied, the event exists and belongs to the conference
+		$this->addCheck(new FormValidatorCustom($this, 'eventId', 'required', 'director.announcements.form.eventIdValid', create_function('$eventId, $conferenceId', 'if ($eventId == 0) return true; $eventDao = &DAORegistry::getDAO(\'EventDAO\'); $event =& $eventDao->getEvent($eventId); if(!$event) return false; return ($event->getConferenceId() == $conferenceId);'), array($conference->getConferenceId())));
+
 		// Title is provided
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'director.announcements.form.titleRequired'));
 
@@ -87,6 +90,7 @@ class AnnouncementForm extends Form {
 			if ($announcement != null) {
 				$this->_data = array(
 					'typeId' => $announcement->getTypeId(),
+					'eventId' => $announcement->getEventId(),
 					'title' => $announcement->getTitle(),
 					'descriptionShort' => $announcement->getDescriptionShort(),
 					'description' => $announcement->getDescription(),
@@ -103,7 +107,7 @@ class AnnouncementForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('typeId', 'title', 'descriptionShort', 'description', 'dateExpireYear', 'dateExpireMonth', 'dateExpireDay'));
+		$this->readUserVars(array('typeId', 'eventId', 'title', 'descriptionShort', 'description', 'dateExpireYear', 'dateExpireMonth', 'dateExpireDay'));
 		$this->_data['dateExpire'] = $this->_data['dateExpireYear'] . '-' . $this->_data['dateExpireMonth'] . '-' . $this->_data['dateExpireDay'];
 	
 	}
@@ -124,6 +128,7 @@ class AnnouncementForm extends Form {
 		}
 		
 		$announcement->setConferenceId($conference->getConferenceId());
+		$announcement->setEventId($this->getData('eventId'));
 		$announcement->setTitle($this->getData('title'));
 		$announcement->setDescriptionShort($this->getData('descriptionShort'));
 		$announcement->setDescription($this->getData('description'));

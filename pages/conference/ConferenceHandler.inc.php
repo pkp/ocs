@@ -49,7 +49,7 @@ class ConferenceHandler extends Handler {
 			if ($enableAnnouncementsHomepage) {
 				$numAnnouncementsHomepage = $conference->getSetting('numAnnouncementsHomepage');
 				$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-				$announcements = &$announcementDao->getNumAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), 	$numAnnouncementsHomepage);
+				$announcements = &$announcementDao->getNumAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), 0, $numAnnouncementsHomepage);
 				$templateMgr->assign('announcements', $announcements);
 				$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
 			}

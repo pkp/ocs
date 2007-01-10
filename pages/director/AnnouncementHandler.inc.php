@@ -23,16 +23,23 @@ class AnnouncementHandler extends DirectorHandler {
 	 * Display a list of announcements for the current conference.
 	 */
 	function announcements() {
-		parent::validate();
+		list($conference, $event) = parent::validate();
 		AnnouncementHandler::setupTemplate();
 
-		$conference = &Request::getConference();
 		$rangeInfo = &Handler::getRangeInfo('announcements');
 		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-		$announcements = &$announcementDao->getAnnouncementsByConferenceId($conference->getConferenceId(), $rangeInfo);
+		$announcements = &$announcementDao->getAnnouncementsByConferenceId($conference->getConferenceId(), -1, $rangeInfo);
+
+		$eventDao = &DAORegistry::getDAO('EventDAO');
+		$events = &$eventDao->getEventsByConferenceId($conference->getConferenceId());
+		$eventNames = array(0 => Locale::translate('common.all'));
+		foreach($events->toArray() as $event) {
+			$eventNames[$event->getEventId()] = $event->getTitle();
+		}
 
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('announcements', $announcements);
+		$templateMgr->assign_by_ref('announcements', $announcements);
+		$templateMgr->assign_by_ref('eventNames', $eventNames);
 		$templateMgr->assign('helpTopicId', 'conference.managementPages.announcements');
 		$templateMgr->display('director/announcement/announcements.tpl');
 	}
@@ -83,6 +90,10 @@ class AnnouncementHandler extends DirectorHandler {
 			} else {
 				$templateMgr->assign('announcementTitle', 'director.announcements.editTitle');	
 			}
+
+			$eventDao = &DAORegistry::getDAO('EventDAO');
+			$events = &$eventDao->getEventsByConferenceId($conference->getConferenceId());
+			$templateMgr->assign('events', $events);
 
 			$announcementForm = &new AnnouncementForm($announcementId);
 			$announcementForm->initData();

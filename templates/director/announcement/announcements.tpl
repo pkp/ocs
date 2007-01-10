@@ -26,8 +26,9 @@
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr class="heading" valign="bottom">
-		<td width="15%">{translate key="director.announcements.dateExpire"}</td>
-		<td width="15%">{translate key="director.announcements.type"}</td>
+		<td width="10%">{translate key="director.announcements.dateExpire"}</td>
+		<td width="10%">{translate key="director.announcements.type"}</td>
+		<td width="10%">{translate key="director.announcements.event"}</td>
 		<td width="55%">{translate key="director.announcements.title"}</td>
 		<td width="15%">{translate key="common.action"}</td>
 	</tr>
@@ -35,9 +36,11 @@
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
 {iterate from=announcements item=announcement}
+	{assign var=eventId value=$announcement->getEventId()}
 	<tr valign="top">
 		<td>{$announcement->getDateExpire()|date_format:$dateFormatShort}</td>
 		<td>{$announcement->getTypeName()}</td>
+		<td>{$eventNames[$eventId]}</td>
 		<td>{$announcement->getTitle()|escape}</td>
 		<td><a href="{url op="editAnnouncement" path=$announcement->getAnnouncementId()}" class="action">{translate key="common.edit"}</a> <a href="{url op="deleteAnnouncement" path=$announcement->getAnnouncementId()}" onclick="return confirm('{translate|escape:"javascript" key="director.announcements.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
