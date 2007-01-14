@@ -79,8 +79,8 @@ class TimelineForm extends Form {
 			'regRegistrantOpenDate' => $event->getSetting('regRegistrantOpenDate'),
 			'regRegistrantCloseDate' => $event->getSetting('regRegistrantCloseDate'),
 
-			'postPresentations' => $event->getSetting('postPresentations'),
-			'postPresentationsDate' => $event->getSetting('postPresentationsDate'),
+			//'postPresentations' => $event->getSetting('postPresentations'),
+			//'postPresentationsDate' => $event->getSetting('postPresentationsDate'),
 			'postAbstracts' => $event->getSetting('postAbstracts'),
 			'postAbstractsDate' => $event->getSetting('postAbstractsDate'),
 			'postPapers' => $event->getSetting('postPapers'),
@@ -90,6 +90,17 @@ class TimelineForm extends Form {
 			'closeComments' => $event->getSetting('closeComments'),
 			'closeCommentsDate' => $event->getSetting('closeCommentsDate')
 		);
+		
+		if($event->getSetting('collectPapersWithAbstracts')) {
+			$this->_data['showSubmissionsOpenDate'] = true;
+			$this->_data['showSubmissionsCloseDate'] = true;
+		} else {
+			$this->_data['showProposalsOpenDate'] = true;
+			$this->_data['showProposalsCloseDate'] = true;
+			if ($event->getSetting('acceptPapers')) {
+				$this->_data['showSubmissionsCloseDate'] = true;
+			}
+		}
 	}
 	
 	/**
@@ -100,10 +111,12 @@ class TimelineForm extends Form {
 			'siteStartDate', 'siteEndDate',
 			'startDate', 'endDate',
 			'regAuthorOpenDate', 'regAuthorCloseDate',
-			'showCFPDate', 'proposalsOpenDate', 'proposalsCloseDate', 'submissionsCloseDate',
+			'showCFPDate',
+			'proposalsOpenDate', 'proposalsCloseDate',
+			'submissionsOpenDate', 'submissionsCloseDate',
 			'regReviewerOpenDate', 'regReviewerCloseDate', 'closeReviewProcessDate',
 			'regRegistrantOpenDate', 'regRegistrantCloseDate',
-			'postPresentationsDate',
+			//'postPresentationsDate',
 			'postAbstractsDate',
 			'postPapersDate',
 			'delayOpenAccessDate',
@@ -111,7 +124,7 @@ class TimelineForm extends Form {
 		));
 
 		$this->readUserVars(array(
-			'postPresentations',
+			//'postPresentations',
 			'postAbstracts',
 			'postPapers',
 			'delayOpenAccess',
@@ -203,7 +216,24 @@ class TimelineForm extends Form {
 					'newShowCFPDate' => $this->_data['showCFPDate']));
 			$event->updateSetting('showCFPDate', $this->_data['showCFPDate'], 'date');
 		}
-		if($event->getSetting('proposalsOpenDate') != $this->_data['proposalsOpenDate']) {
+
+		// Abstract and submission due dates depend on the submission and review
+		// model, so they're not quite as straightforward as the rest.
+		
+		if($event->getSetting('collectPapersWithAbstracts')) {
+			$proposalsOpenDate = $submissionsOpenDate = $this->_data['submissionsOpenDate'];
+			$proposalsCloseDate = $submissionsCloseDate = $this->_data['submissionsCloseDate'];
+		} else {
+			$proposalsOpenDate = $submissionsOpenDate = $this->_data['proposalsOpenDate'];
+			$proposalsCloseDate = $this->_data['proposalsCloseDate'];
+			if ($event->getSetting('acceptPapers')) {
+				$submissionsCloseDate = $this->_data['submissionsCloseDate'];
+			} else {
+				$submissionsCloseDate = $proposalsCloseDate;
+			}
+		}
+
+		if($event->getSetting('proposalsOpenDate') != $proposalsOpenDate) {
 			ConferenceLog::logEvent(
 				$event->getConferenceId(),
 				$event->getEventId(),
@@ -211,10 +241,10 @@ class TimelineForm extends Form {
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.proposalsOpenDateChanged',
 				array('oldProposalsOpenDate' => $event->getSetting('proposalsOpenDate'),
-					'newProposalsOpenDate' => $this->_data['proposalsOpenDate']));
-			$event->updateSetting('proposalsOpenDate', $this->_data['proposalsOpenDate'], 'date');
+					'newProposalsOpenDate' => $proposalsOpenDate));
+			$event->updateSetting('proposalsOpenDate', $proposalsOpenDate, 'date');
 		}
-		if($event->getSetting('proposalsCloseDate') != $this->_data['proposalsCloseDate']) {
+		if($event->getSetting('proposalsCloseDate') != $proposalsCloseDate) {
 			ConferenceLog::logEvent(
 				$event->getConferenceId(),
 				$event->getEventId(),
@@ -222,10 +252,21 @@ class TimelineForm extends Form {
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.proposalsCloseDateChanged',
 				array('oldProposalsCloseDate' => $event->getSetting('proposalsCloseDate'),
-					'newProposalsCloseDate' => $this->_data['proposalsCloseDate']));
-			$event->updateSetting('proposalsCloseDate', $this->_data['proposalsCloseDate'], 'date');
+					'newProposalsCloseDate' => $proposalsCloseDate));
+			$event->updateSetting('proposalsCloseDate', $proposalsCloseDate, 'date');
 		}
-		if($event->getSetting('submissionsCloseDate') != $this->_data['submissionsCloseDate']) {
+		if($event->getSetting('submissionsOpenDate') != $submissionsOpenDate) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.submissionsOpenDateChanged',
+				array('oldSubmissionsOpenDate' => $event->getSetting('submissionsOpenDate'),
+					'newSubmissionsOpenDate' => $submissionsOpenDate));
+			$event->updateSetting('submissionsOpenDate', $submissionsOpenDate, 'date');
+		}
+		if($event->getSetting('submissionsCloseDate') != $submissionsCloseDate) {
 			ConferenceLog::logEvent(
 				$event->getConferenceId(),
 				$event->getEventId(),
@@ -233,8 +274,8 @@ class TimelineForm extends Form {
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.submissionsCloseDateChanged',
 				array('oldSubmissionsCloseDate' => $event->getSetting('submissionsCloseDate'),
-					'newSubmissionsCloseDate' => $this->_data['submissionsCloseDate']));
-			$event->updateSetting('submissionsCloseDate', $this->_data['submissionsCloseDate'], 'date');
+					'newSubmissionsCloseDate' => $submissionsCloseDate));
+			$event->updateSetting('submissionsCloseDate', $submissionsCloseDate, 'date');
 		}
 		if($event->getSetting('regReviewerOpenDate') != $this->_data['regReviewerOpenDate']) {
 			ConferenceLog::logEvent(
@@ -291,7 +332,7 @@ class TimelineForm extends Form {
 					'newRegRegistrantCloseDate' => $this->_data['regRegistrantCloseDate']));
 			$event->updateSetting('regRegistrantCloseDate', $this->_data['regRegistrantCloseDate'], 'date');
 		}
-		if($event->getSetting('postPresentationsDate') != $this->_data['postPresentationsDate']) {
+		/*if($event->getSetting('postPresentationsDate') != $this->_data['postPresentationsDate']) {
 			ConferenceLog::logEvent(
 				$event->getConferenceId(),
 				$event->getEventId(),
@@ -312,7 +353,7 @@ class TimelineForm extends Form {
 				array('oldPostPresentations' => $event->getSetting('postPresentations'),
 					'newPostPresentations' => $this->_data['postPresentations']));
 			$event->updateSetting('postPresentations', $this->_data['postPresentations'], 'bool');
-		}
+		}*/
 		if($event->getSetting('postAbstractsDate') != $this->_data['postAbstractsDate']) {
 			ConferenceLog::logEvent(
 				$event->getConferenceId(),

@@ -214,7 +214,7 @@
 	<message key="navigation.conferenceContent">Conference Content</message>
 	<message key="navigation.browse">Browse</message>
 	<message key="navigation.browseByEvent">By Event</message>
-	<message key="navigation.browseByAuthor">By Author</message>
+	<message key="navigation.browseByAuthor">By Presenter</message>
 	<message key="navigation.browseByTitle">By Title</message>
 	<message key="navigation.info">Information</message>
 	<message key="navigation.infoForPresenters">For Presenters</message>
@@ -270,7 +270,7 @@
 	<message key="paper.papers">Papers</message>
 	<message key="paper.submissionId">Submission ID</message>
 	<message key="paper.title">Title</message>
-	<message key="paper.authors">Authors</message>
+	<message key="paper.authors">Presenters</message>
 	<!--<message key="paper.indexingInformation">Indexing Information</message>-->
 	<!--<message key="paper.metadata">Metadata</message>-->
 	<message key="paper.conferenceTrack">Conference Track</message>
@@ -288,7 +288,7 @@
 	<message key="paper.type">Type, method or approach</message>
 	<message key="paper.language">Language</message>
 	<message key="paper.trackEditor">TE</message>
-	<message key="paper.commentsToEditor">Author comments</message>
+	<message key="paper.commentsToEditor">Presenter comments</message>
 	<message key="paper.submission">Submission</message>
 	<message key="paper.submissions">Submissions</message>
 	<message key="paper.abstract">Abstract</message>
@@ -337,14 +337,14 @@
 	<message key="submission.editorDecision">Editor Decision</message>
 	<message key="submission.round">Round&amp;nbsp;{$round}</message>
 	<message key="submission.editorReview">Editor Review</message>
-	<message key="submission.notifyAuthor">Notify Author</message>
+	<message key="submission.notifyAuthor">Notify Presenter</message>
 	<message key="submission.notifyEditor">Notify Editor</message>
-	<message key="submission.editorAuthorRecord">Editor/Author Email Record</message>
+	<message key="submission.editorAuthorRecord">Editor/Presenter Email Record</message>
 	<!--<message key="submission.reviewersVersion">Reviewer's annotated version of file</message>-->
 	<!--<message key="submission.postReviewVersion">Post-review version of file</message>-->
 	<message key="submission.editorVersion">Editor Version</message>
-	<message key="submission.authorsRevisedVersion">Author's revised version of file</message>
-	<message key="submission.authorVersion">Author Version</message>
+	<message key="submission.authorsRevisedVersion">Presenter's revised version of file</message>
+	<message key="submission.authorVersion">Presenter Version</message>
 	<message key="submission.layout">Layout</message>
 	<message key="submission.files">Files</message>
 	<message key="submission.viewMetadata">View Metadata</message>
@@ -373,7 +373,7 @@
 	<message key="submissions.declined">Declined</message>
 	<message key="submissions.queued">Queued</message>
 	<!--<message key="submissions.initial">Initial</message>-->
-	<!--<message key="submissions.postAuthor">Post-Author</message>-->
+	<!--<message key="submissions.postAuthor">Post-Presenter</message>-->
 	<message key="submissions.reviewRound">Review Round</message>
 	<message key="submissions.reviewType">Review Type</message>
 	<message key="submissions.incomplete">Incomplete</message>
@@ -488,8 +488,8 @@
 	<message key="user.role.trackEditor">Track Editor</message>
 	<message key="user.role.layoutEditor">Layout Editor</message>
 	<message key="user.role.reviewer">Reviewer</message>
-	<message key="user.role.author">Author</message>
-	<!--<message key="user.role.invitedAuthor">Invited Author</message>-->
+	<message key="user.role.author">Presenter</message>
+	<!--<message key="user.role.invitedAuthor">Invited Presenter</message>-->
 
 	<!--<message key="user.role.registrant">Registrant</message>-->
 	<!--<message key="user.role.discussant">Discussant</message>-->
@@ -505,8 +505,8 @@
 	<message key="user.role.trackEditors">Track Editors</message>
 	<message key="user.role.layoutEditors">Layout Editors</message>
 	<message key="user.role.reviewers">Reviewers</message>
-	<message key="user.role.authors">Authors</message>
-	<!--<message key="user.role.invitedAuthors">Invited Authors</message>-->
+	<message key="user.role.authors">Presenters</message>
+	<!--<message key="user.role.invitedAuthors">Invited Presenters</message>-->
 
 	<!--<message key="user.role.registrants">Registrants</message>-->
 	<!--<message key="user.role.discussants">Discussants</message>-->
@@ -519,7 +519,7 @@
 	-->
 	
 	<message key="event.logType.paper">Paper</message>
-	<message key="event.logType.author">Author</message>
+	<message key="event.logType.author">Presenter</message>
 	<message key="event.logType.editor">Editor</message>
 	<message key="event.logType.review">Review</message>
 
@@ -542,9 +542,9 @@
 	<!--<message key="submission.event.general.issueAssigned">Submission assigned to issue</message>-->
 	<!--<message key="submission.event.general.articlePublished">Article published</message>-->
 
-	<message key="submission.event.author.authorRevision">Author revision submitted</message>
+	<message key="submission.event.author.authorRevision">Presenter revision submitted</message>
 
-	<message key="submission.event.general.authorRevision">Author revision file updated</message>
+	<message key="submission.event.general.authorRevision">Presenter revision file updated</message>
 
 	<message key="submission.event.editor.editorAssigned">Editor assigned to submission</message>
 	<message key="submission.event.editor.editorUnassigned">Editor unassigned from submission</message>
@@ -819,7 +819,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="director.statistics.reports.generate">Generate Report</message>
 	<message key="director.statistics.reports.status">Status (Accepted, declined, other)</message>
 	<message key="director.statistics.reports.dateDecided">Date Decided</message>
-	<message key="director.statistics.reports.author">Author #{$num}</message>
+	<message key="director.statistics.reports.author">Presenter #{$num}</message>
 	<message key="director.statistics.reports.affiliation">Affiliation #{$num}</message>
 	<message key="director.statistics.reports.country">Country #{$num}</message>
 	<message key="director.statistics.reports.reviewer">Reviewer #{$num}</message>
@@ -868,7 +868,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="director.setup.policies">Policies</message>
 	<message key="director.setup.policies.description">Guidelines, review policy, and privacy statement.</message>
 	<message key="director.setup.access">Access</message>
-	<message key="director.setup.access.description">Access controls; author and participant self-registration; logging.</message>
+	<message key="director.setup.access.description">Access controls; presenter and participant self-registration; logging.</message>
 	<message key="director.setup.indexing">Indexing</message>
 	<message key="director.setup.indexing.description">Content categories and metadata.</message>
 	<message key="director.setup.look">The Look</message>
@@ -899,7 +899,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="director.setup.principalContact">Principal Contact</message>
 	<message key="director.setup.principalContactDescription">This position, which can be treated as a principal editorship, managing editorship, or administrative staff position, will be listed on the homepage of the conference under Contact, along with the Technical Support Contact.</message>
 	<message key="director.setup.technicalSupportContact">Technical Support Contact</message>
-	<message key="director.setup.technicalSupportContactDescription">This person will be listed on the conference's Contact page for the use of authors and reviewers, and should have experience working through the system from the perspective of all of its roles. As this conference system requires very little technical support, this should be seen as a part-time assignment. There may be occasions, for example, when authors and reviewers have difficulties with the instructions or file formats, or there's a need to ensure that the conference is regularly backed up on the server.</message>
+	<message key="director.setup.technicalSupportContactDescription">This person will be listed on the conference's Contact page for the use of presenters and reviewers, and should have experience working through the system from the perspective of all of its roles. As this conference system requires very little technical support, this should be seen as a part-time assignment. There may be occasions, for example, when presenters and reviewers have difficulties with the instructions or file formats, or there's a need to ensure that the conference is regularly backed up on the server.</message>
 	<message key="director.setup.emails">Email Identification</message>
 	<message key="director.setup.emailBounceAddress">Bounce Address</message>
 	<message key="director.setup.emailBounceAddressDescription">Any undeliverable emails will result in an error message to this address.</message>
@@ -920,11 +920,11 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<!-- Conference Setup Step 2: Policy -->
 	<message key="director.setup.conferencePolicies">Step 2. Conference Policies</message>
 	<message key="director.setup.reviewPolicy">Review Policy</message>
-	<message key="director.setup.reviewDescription">Outline the conference's review policy and processes for readers and authors, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Conference.</message>
+	<message key="director.setup.reviewDescription">Outline the conference's review policy and processes for readers and presenters, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Conference.</message>
 	<message key="director.setup.reviewGuidelines">Review Guidelines</message>
 	<message key="director.setup.reviewGuidelinesDescription">The Review Guidelines provide reviewers with criteria for judging a submission's suitability for acceptance to the conference, as well as any special instructions for preparing an effective and helpful review.</message>
 	<message key="director.setup.privacyStatement">Privacy Statement</message>
-	<message key="director.setup.privacyStatementDescription">This statement will appear in About the Conference, as well as on the Author Submission and Notification sign-up pages. Below is a recommended privacy policy, which can be revised at any point.</message>
+	<message key="director.setup.privacyStatementDescription">This statement will appear in About the Conference, as well as on the Presenter Submission and Notification sign-up pages. Below is a recommended privacy policy, which can be revised at any point.</message>
 	<message key="director.setup.addItemtoAboutConference">Add Item to Appear in "About the Conference"</message>
 	<message key="director.setup.aboutItemContent">Content</message>
 	<message key="director.setup.addAboutItem">Add About Item</message>
@@ -964,10 +964,10 @@ Setting up LOCKSS support for Open Conference Systems does not need to take plac
 
 	<!-- Conference Setup Step 4: Indexing -->
 	<message key="director.setup.indexingAndMetadata">Step 4. Indexing and Metadata</message>
-	<message key="director.setup.forAuthorsToIndexTheirWork">For Authors to Index Their Work</message>
-	<message key="director.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[OCS adheres to the <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting, which is the emerging standard for providing well-indexed access to electronic research resources on a global scale. The authors will use a similar template to provide metadata for their submission. The Conference Director should select the categories for indexing and present authors with relevant examples to assist them in indexing their work, separating terms with a semi-colon (e.g., term1; term2). The entries should be introduced as examples by using "E.g.," or "For example,".]]></message>
+	<message key="director.setup.forAuthorsToIndexTheirWork">For Presenters to Index Their Work</message>
+	<message key="director.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[OCS adheres to the <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting, which is the emerging standard for providing well-indexed access to electronic research resources on a global scale. The presenters will use a similar template to provide metadata for their submission. The Conference Director should select the categories for indexing and present presenters with relevant examples to assist them in indexing their work, separating terms with a semi-colon (e.g., term1; term2). The entries should be introduced as examples by using "E.g.," or "For example,".]]></message>
 	<message key="director.setup.discipline">Academic Discipline and Sub-Disciplines</message>
-	<message key="director.setup.disciplineDescription">Useful when conference crosses disciplinary boundaries and/or authors submit multidisciplinary items.</message>
+	<message key="director.setup.disciplineDescription">Useful when conference crosses disciplinary boundaries and/or presenters submit multidisciplinary items.</message>
 	<message key="director.setup.disciplineProvideExamples">Provide examples of relevant academic disciplines for this conference</message>
 	<message key="director.setup.disciplineExamples">(E.g., History; Education; Sociology; Psychology; Cultural Studies; Law)</message>
 	<message key="director.setup.subjectClassification">Subject Classification</message>
@@ -975,7 +975,7 @@ Setting up LOCKSS support for Open Conference Systems does not need to take plac
 Title of classification system]]></message>
 	<message key="director.setup.subjectClassificationExamples">(E.g., Mathematics Subject Classification; Library of Congress Classification)</message>
 	<message key="director.setup.subjectKeywordTopic">Keywords</message>
-	<message key="director.setup.subjectProvideExamples">Provide examples of keywords or topics as a guide for authors</message>
+	<message key="director.setup.subjectProvideExamples">Provide examples of keywords or topics as a guide for presenters</message>
 	<message key="director.setup.subjectExamples">(E.g., Photosynthesis; Black Holes; Four-Color Map Problem; Bayesian Theory)</message>
 	<message key="director.setup.coverage">Coverage</message>
 	<message key="director.setup.coverageDescription">Refers to geo-spatial location, chronological or historical coverage, and/or characteristics of research sample.</message>
@@ -1091,7 +1091,7 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="director.setup.homepageImageInvalid">Invalid homepage image format. Accepted formats are .gif, .jpg, or .png.</message>-->
 	<message key="director.setup.conferenceStyleSheetInvalid">Invalid conference stylesheet format. Accepted format is .css.</message>-->
 	<message key="director.setup.information">Information</message>
-	<message key="director.setup.information.description">Brief descriptions of the conference for prospective authors and readers are available in the "Information" section of the sidebar.</message>
+	<message key="director.setup.information.description">Brief descriptions of the conference for prospective presenters and readers are available in the "Information" section of the sidebar.</message>
 	<message key="director.setup.information.forReaders">For Readers</message>
 	<message key="director.setup.information.forPresenters">For Presenters</message>
 	<!--<message key="director.setup.information.forLibrarians">For Librarians</message>-->
@@ -1152,9 +1152,9 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="eventDirector.setup.acceptSupplementaryReviewMaterials">Accept supplementary materials to accompany the submission during review</message>
 	<message key="eventDirector.setup.acceptSupplementaryPublishedMaterials">Accept supplementary materials to accompany the submission when published</message>
 
-	<message key="eventDirector.setup.reminders">Reminders for Authors</message>
-	<message key="eventDirector.setup.reminders.description">Submissions must be completed by certain deadlines. If desired, a few days before these deadlines, authors may be sent a warning e-mail (which can be viewed and edited in Prepared Emails).</message>
-	<message key="eventDirector.setup.reminders.remindPaperDue">Remind authors with incomplete submissions before their submission deadline passes.</message>
+	<message key="eventDirector.setup.reminders">Reminders for Presenters</message>
+	<message key="eventDirector.setup.reminders.description">Submissions must be completed by certain deadlines. If desired, a few days before these deadlines, presenters may be sent a warning e-mail (which can be viewed and edited in Prepared Emails).</message>
+	<message key="eventDirector.setup.reminders.remindPaperDue">Remind presenters with incomplete submissions before their submission deadline passes.</message>
 	<message key="eventDirector.setup.reminders.numDaysBeforeDeadlineReminder">Time before deadline that reminders are sent</message>
 	<message key="eventDirector.setup.reminders.submissionDeadlineWarnDisabled"><![CDATA[<strong>Note:</strong> The submission deadline warning email is currently disabled. To use this feature, enable the SUBMISSION_DEADLINE_WARN email in <a class="action" href="{$preparedEmailsUrl}">Prepared Emails</a>.]]></message>
 	<message key="eventDirector.setup.submissionReview">Step 3. Reviewing Submissions</message>
@@ -1179,20 +1179,20 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="eventDirector.setup.reviewOptions.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
 	<message key="eventDirector.setup.reviewOptions.reviewerAccessKeysEnabled">Enable one-click reviewer access.</message>
 	<message key="eventDirector.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> The email invitation to reviewers will contain a special URL that takes invited reviewers directly to the Review page for the submission (with access to any other pages requiring them to log in). For security reasons with this option, editors are not able to modify email addresses or add CCs or BCCs prior to sending invitations to reviewers.]]></message>
-	<message key="eventDirector.setup.authorGuidelines">Author Guidelines</message>
-	<message key="eventDirector.setup.authorGuidelinesDescription"><![CDATA[Set out for authors the bibliographic and formatting standards used for items submitted to the conference (e.g., <i>Publication Manual of the American Psychological Association</i>, 5th edition, 2001). It is often helpful to provide examples of the common citation formats for journals and books to be used in submissions. Also identify the types of appropriate Supplementary Files (e.g., data-sets, research instruments, etc.) which authors should be encouraged to upload, in addition to their submission, to enhance readers' engagement with their work.]]></message>
+	<message key="eventDirector.setup.authorGuidelines">Presenter Guidelines</message>
+	<message key="eventDirector.setup.authorGuidelinesDescription"><![CDATA[Set out for presenters the bibliographic and formatting standards used for items submitted to the conference (e.g., <i>Publication Manual of the American Psychological Association</i>, 5th edition, 2001). It is often helpful to provide examples of the common citation formats for journals and books to be used in submissions. Also identify the types of appropriate Supplementary Files (e.g., data-sets, research instruments, etc.) which presenters should be encouraged to upload, in addition to their submission, to enhance readers' engagement with their work.]]></message>
 	<message key="eventDirector.setup.submissionGuidelines">Submission guidelines</message>
 	<message key="eventDirector.setup.submissionPreparationChecklist">Submission Preparation Checklist</message>
-	<message key="eventDirector.setup.submissionPreparationChecklistDescription">On making a submission to the conference, authors are first asked to check each item on the Submission Preparation Checklist as completed, before proceeding. The checklist also appears in the Author Guidelines, under About the Conference. The list can be edited below, but all items on the list will require a checkmark before authors can proceed with their submission.</message>
+	<message key="eventDirector.setup.submissionPreparationChecklistDescription">On making a submission to the conference, presenters are first asked to check each item on the Submission Preparation Checklist as completed, before proceeding. The checklist also appears in the Presenter Guidelines, under About the Conference. The list can be edited below, but all items on the list will require a checkmark before presenters can proceed with their submission.</message>
 	<message key="eventDirector.setup.addChecklistItem">Add Checklist Item</message>
 	<message key="eventDirector.setup.addItem">Add Item</message>
 	<message key="eventDirector.setup.authorCopyrightNotice">Copyright Notice</message>
-	<message key="eventDirector.setup.authorCopyrightNoticeDescription"><![CDATA[This Copyright Notice will appear in About the Conference and in each published item's metadata. Authors can retain copyright, while granting the conference right of first publication. Alternatively, authors can transfer copyright to the conference, which then permits authors non-commercial use of the work,
+	<message key="eventDirector.setup.authorCopyrightNoticeDescription"><![CDATA[This Copyright Notice will appear in About the Conference and in each published item's metadata. Presenters can retain copyright, while granting the conference right of first publication. Alternatively, presenters can transfer copyright to the conference, which then permits presenters non-commercial use of the work,
 including the right to place it in an open access archive. In addition, <a href="http://www.creativecommons.org" target="_blank">Creative Commons</a> can be consulted for flexible copyright licenses.]]></message>
-	<message key="eventDirector.setup.authorCopyrightNoticeAgree">Require authors to agree to Copyright Notice as part of the submission process.</message>
+	<message key="eventDirector.setup.authorCopyrightNoticeAgree">Require presenters to agree to Copyright Notice as part of the submission process.</message>
 	<message key="eventDirector.setup.copyrightNotice">Copyright notice</message>
-	<message key="eventDirector.setup.notifications">Notification of Author Submission</message>
-	<message key="eventDirector.setup.notifications.description">On completing the submission process, authors are automatically sent an acknowledgement email (which can be viewed and edited in Prepared Emails). In addition, a copy of the acknowledgement email can be sent as follows:</message>
+	<message key="eventDirector.setup.notifications">Notification of Presenter Submission</message>
+	<message key="eventDirector.setup.notifications.description">On completing the submission process, presenters are automatically sent an acknowledgement email (which can be viewed and edited in Prepared Emails). In addition, a copy of the acknowledgement email can be sent as follows:</message>
 	<message key="eventDirector.setup.notifications.copyPrimaryContact">Send a copy to the conference's primary contact, identified in Setup Step 1.</message>
 	<message key="eventDirector.setup.notifications.copySpecifiedAddress">Send a copy to this email address:</message>
 	<message key="eventDirector.setup.notifications.submissionAckDisabled"><![CDATA[<strong>Note:</strong> The submission acknowledgement email is currently disabled. To use this feature, enable the SUBMISSION_ACK email in <a class="action" href="{$preparedEmailsUrl}">Prepared Emails</a>.]]></message>
@@ -1242,7 +1242,7 @@ including the right to place it in an open access archive. In addition, <a href=
 	<!--<message key="director.languages.alternateLocaleInstructions">This system optionally allows certain critical information to be entered in up to two additional languages. To use this feature, select one or two alternate locales and choose from the options listed below.</message>-->
 	<!--<message key="director.languages.alternativeLanguageOptions">Language options</message>-->
 	<!--<message key="director.languages.conferenceTitleAltLanguages">Title image, page header, etc. will be uploaded in each of the conference's languages.</message>-->
-	<!--<message key="director.languages.articleAltLanguages">Authors should be asked to provide titles and abstracts in the other language(s), with the option of having this done by conference staff.</message>-->
+	<!--<message key="director.languages.articleAltLanguages">Presenters should be asked to provide titles and abstracts in the other language(s), with the option of having this done by conference staff.</message>-->
 	<message key="director.languages.noneAvailable">Sorry, no additional languages are available. Contact your site administrator if you wish to use additional languages with this conference.</message>
 
 
@@ -1285,11 +1285,12 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="director.timeline.eventArchivedOn">Move to Conference Archive</message>
 
 	<message key="director.timeline.submissions">Submissions</message>
-	<message key="director.timeline.openRegAuthor">Author registration opened</message>
-	<message key="director.timeline.closeRegAuthor">Author registration closed</message>
+	<message key="director.timeline.openRegAuthor">Presenter registration opened</message>
+	<message key="director.timeline.closeRegAuthor">Presenter registration closed</message>
 	<message key="director.timeline.showCFP">Call for Papers posted</message>
-	<message key="director.timeline.proposalsOpen">Proposals accepted</message>
-	<message key="director.timeline.proposalsClosed">Proposals due</message>
+	<message key="director.timeline.proposalsOpen">Abstracts accepted</message>
+	<message key="director.timeline.proposalsClosed">Abstracts due</message>
+	<message key="director.timeline.submissionsOpen">Submissions accepted</message>
 	<message key="director.timeline.submissionsClosed">Submissions due</message>
 
 	<message key="director.timeline.reviews">Reviews</message>
@@ -1417,7 +1418,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="director.registrationPolicies.registrationAdditionalInformationDescription">The Registration Types and fee structure will be automatically placed under Registrations on the About the Conference page, along with the name and contact information for the Registration Manager. Additional information about registrations, such as methods of payment or support for subscribers in developing countries, can be added here.</message>
 	<!--<message key="director.registrationPolicies.htmlInstructions"><![CDATA[HTML can be used in textarea (for font size, color, etc.), with "returns" treated as <tt>&lt;br&gt;</tt>; HTML editor works with Firefox browsers.]]></message>-->
 	<!--<message key="director.registrationPolicies.openAccessOptions">Open Access Options For Registration Conferences</message>-->
-	<!--<message key="director.registrationPolicies.openAccessOptionsDescription">Registration conferences can provide "delayed open access" and/or "author self-archiving" (which increase readership and citation of content). The selected policies will appear in About the Conference.</message>-->
+	<!--<message key="director.registrationPolicies.openAccessOptionsDescription">Registration conferences can provide "delayed open access" and/or "presenter self-archiving" (which increase readership and citation of content). The selected policies will appear in About the Conference.</message>-->
 	<!--<message key="director.registrationPolicies.delayedOpenAccess">Delayed Open Access</message>-->
 	<!--<message key="director.registrationPolicies.delayedOpenAccessDescription">With delayed open access, editors are still able to designate specific articles within an issue for immediate open access.</message>-->
 	<!--<message key="director.registrationPolicies.delayedOpenAccessDescription1">The back issues of this conference will be available in an open access format</message>-->
@@ -1426,7 +1427,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<!--<message key="director.registrationPolicies.openAccessNotificationDescription">Registered readers will have the option of receiving the table of contents by email when an issue becomes open access.</message>-->
 	<!--<message key="director.registrationPolicies.delayedOpenAccessPolicyDescription">The following statement will be posted in About the Conference under Delayed Open Access.</message>-->
 	<!--<message key="director.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OJS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OJS documentation.]]></message>-->
-	<!--<message key="director.registrationPolicies.authorSelfArchive">Author Self-Archiving Policy</message>-->
+	<!--<message key="director.registrationPolicies.authorSelfArchive">Presenter Self-Archiving Policy</message>-->
 	<!--<message key="director.registrationPolicies.authorSelfArchiveDescription">The following policy will be included in About the Conference.</message>-->
 	<!--<message key="director.registrationPolicies.registrationPoliciesSaved">Your registration policy settings have been updated.</message>-->
 	<!--<message key="director.registrationPolicies.expiryReminders">Registration Expiry Reminders</message>
@@ -1691,7 +1692,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="editor.paper.designateReviewVersion">Designate the original file as the Review Version</message>
 	<message key="editor.paper.uploadReviewVersion">Upload a revised file to serve as the Review Version</message>
 	<message key="editor.paper.uploadEditorVersion">Upload Editor Version</message>
-	<message key="editor.paper.roundDisabled">It's not yet possible to perform this review. Either the abstract review is not yet complete, or the author has not yet provided a paper for review.</message>
+	<message key="editor.paper.roundDisabled">It's not yet possible to perform this review. Either the abstract review is not yet complete, or the presenter has not yet provided a paper for review.</message>
 	<!--<message key="editor.paper.showSuppFile">Present file to reviewers</message>-->
 	<!--<message key="editor.paper.layoutAndProof">Layout &amp; Proof</message>-->
 	<message key="editor.paper.clear">Clear</message>-->
@@ -1721,14 +1722,14 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<!--<message key="editor.paper.noEditorSelected">No editor selected.</message>-->
 	<message key="editor.paper.recordDecision">Record Decision</message>
 	<message key="editor.paper.cannotRecord">Before a decision can be recorded, a submission must be assigned to a Track Editor. The Review Version becomes, by default, the Editor Version.</message>
-	<!--<message key="editor.paper.reviewersSeeAuthorsVersion">Reviewers to see author version</message>-->
+	<!--<message key="editor.paper.reviewersSeeAuthorsVersion">Reviewers to see presenter version</message>-->
 	<message key="editor.paper.designateDueDate">Designate a Due Date</message>
 	<message key="editor.paper.designateDueDateDescription">To change the due date for this Reviewer, enter another date or delete the date and enter the number of weeks until the review is due.</message>
 	<message key="editor.paper.todaysDate">Today's Date</message>
 	<message key="editor.paper.requestedByDate">Requested By Date</message>
 	<message key="editor.paper.dueDateFormat">Format: YYYY-MM-DD</message>
 	<message key="editor.paper.numberOfWeeks">Number of Weeks</message>
-	<message key="editor.paper.showAuthor">Let author view file</message>
+	<message key="editor.paper.showAuthor">Let presenter view file</message>
 	<message key="editor.paper.rateReviewer">Rate Reviewer</message>
 	<message key="editor.paper.reviewerRating.veryGood">5 High</message>
 	<message key="editor.paper.reviewerRating.good">4</message>
@@ -1740,9 +1741,9 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="editor.paper.commentsRequired">The comments field is required.</message>
 	<!--<message key="editor.paper.saveRating">Save Rating</message>-->
 	<!--<message key="editor.paper.noneSelected">None Selected</message>-->
-	<!--<message key="editor.paper.authorProofing">Author Proofing</message>-->
+	<!--<message key="editor.paper.authorProofing">Presenter Proofing</message>-->
 	<message key="editor.paper.archiveSubmission">Archive Submission</message>
-	<!--<message key="editor.paper.emailAuthorOnArchive">Email author about the archiving of this submission?</message>-->
+	<!--<message key="editor.paper.emailAuthorOnArchive">Email presenter about the archiving of this submission?</message>-->
 	<message key="editor.paper.restoreToQueue">Restore to Active List</message>
 	<message key="editor.paper.assignTrackEditor">Add Track Editor</message>
 	<message key="editor.paper.assignEditor">Add Editor</message>
@@ -1756,7 +1757,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<!--<message key="editor.paper.resubmitFileForPeerReview">Resubmit selected file for peer review</message>-->
 	<message key="editor.paper.completeReview">Mark review as completed</message>
 
-	<!--<message key="editor.paper.authorComments">Author Comments</message>-->
+	<!--<message key="editor.paper.authorComments">Presenter Comments</message>-->
 	<!--<message key="editor.paper.scheduleSubmission">Send</message>-->
 
 	<message key="editor.submissions.showBy">Show By</message>
@@ -1773,7 +1774,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<!--<message key="sectionEditor.activeEditorialAssignments">Active Editorial Assignments</message>-->
 	<!--<message key="sectionEditor.completedEditorialAssignments">Completed Editorial Assignments</message>-->
 	<!--<message key="sectionEditor.noneAssigned">No submissions assigned.</message>-->
-	<!--<message key="sectionEditor.author.confirmRenotify">Notifying this author again will restart their assignment. Are you sure you wish to do this?</message>-->
+	<!--<message key="sectionEditor.author.confirmRenotify">Notifying this presenter again will restart their assignment. Are you sure you wish to do this?</message>-->
 	<!--<message key="sectionEditor.layout.confirmRenotify">Notifying this layout editor again will restart their assignment. Are you sure you wish to do this?</message>-->
 	<!--<message key="sectionEditor.proofreader.confirmRenotify">Notifying this proofreader again will restart their assignment. Are you sure you wish to do this?</message>-->
 
@@ -1844,7 +1845,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="reviewer.paper.reviewerInstruction3Submission">Click on file names to download and review (on screen or by printing) the files associated with this submission.</message>
 	<message key="reviewer.paper.reviewerInstruction4a">Click on icon to enter (or paste) your review of this submission.</message>
 	<message key="reviewer.paper.reviewerInstruction4b">following Reviewer Guidelines below.</message>
-	<message key="reviewer.paper.reviewerInstruction5">In addition, you can upload files for the editor and/or author to consult.</message>
+	<message key="reviewer.paper.reviewerInstruction5">In addition, you can upload files for the editor and/or presenter to consult.</message>
 	<message key="reviewer.paper.reviewerInstruction6">Select a recommendation and submit the review to complete the process. You must enter a review or upload a file before selecting a recommendation.</message>
 	<message key="reviewer.paper.mustSelectDecision">No recommendation was selected. You must choose a recommendation to submit.</message>
 	<message key="reviewer.paper.confirmDecision">Once you have recorded a decision you will no longer be able to make changes to this review. Are you sure you wish to continue?</message>
@@ -1866,7 +1867,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="author.submit.upload">3. Upload Submission</message>
 	<message key="author.submit.supplementaryFiles">4. Upload Supplementary Files</message>
 	<message key="author.submit.confirmation">5. Confirmation</message>
-	<!--<message key="author.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>-->
+	<!--<message key="author.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Presenter home.</message>-->
 	<message key="author.submit.notAcceptingYet">This conference has not yet started accepting submissions.</message>
 	<message key="author.submit.submissionDeadlinePassed">The submission deadline for this conference has passed.</message>
 
@@ -1875,7 +1876,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="author.submissions.noSubmissions">No submissions.</message>
 
 	<!-- Article Submission Step 1 -->
-	<message key="author.submit.howToSubmit"><![CDATA[Authors submit items to this conference through this web site in a multi-step process for uploading the relevant information (some conferences allow the author to upload, as well, supplementary files, such as research data and instruments). If difficulties are encountered in this process, contact <a href="mailto:{$supportEmail}">{$supportName}</a> by email or phone {$supportPhone} for assistance.]]></message>
+	<message key="author.submit.howToSubmit"><![CDATA[Presenters submit items to this conference through this web site in a multi-step process for uploading the relevant information (some conferences allow the presenter to upload, as well, supplementary files, such as research data and instruments). If difficulties are encountered in this process, contact <a href="mailto:{$supportEmail}">{$supportName}</a> by email or phone {$supportPhone} for assistance.]]></message>
 	<message key="author.submit.conferenceTrack">Conference Track</message>-->
 	<message key="author.submit.conferenceTrackDescription"><![CDATA[Select the appropriate track for this submission (see Sections and Policies in <a href="{$aboutUrl}">About</a> the Conference).]]></message>
 	<message key="author.submit.selectTrack">Please select a track...</message>
@@ -1883,7 +1884,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="author.submit.submissionChecklist">Submission Checklist</message>
 	<message key="author.submit.submissionChecklistDescription">Indicate that this submission is ready to be considered by this conference by checking off the following (comments to the editor can be added below).</message>
 	<message key="author.submit.verifyChecklist">You must make sure all items in the submission checklist are satisfied before continuing.</message>
-	<message key="author.submit.copyrightNoticeAgree">The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this conference (comments to the editor can be added below).</message>
+	<message key="author.submit.copyrightNoticeAgree">The presenters agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this conference (comments to the editor can be added below).</message>
 	<message key="author.submit.copyrightNoticeAgreeRequired">You must agreee to the terms of the Copyright Notice before continuing.</message>
 	<message key="author.submit.commentsForEditor">Comments for the Editor</message>
 	<message key="author.submit.comments">Enter text (optional)</message>
@@ -1893,12 +1894,12 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<!-- Article Submission Step 2 -->
 	<message key="author.submit.metadataDescription">This conference gathers metadata about each submission, according to the standards set by the Open Archives Initiative, which is the emerging online standard for identifying research resources. This enables collective and accurate searching across OAI databases, increasing the likelihood that readers will find submissions such as this one. Editors may insist that metadata be provided before initiating the editorial process.</message>
 	<message key="author.submit.privacyStatement">Conference's Privacy Statement</message>
-	<message key="author.submit.authorsDescription">For submissions with more than one author, order authors as they are to appear on citation.</message>
-	<message key="author.submit.reorderAuthorName">Reorder author's name</message>
-	<message key="author.submit.reorderInstructions">Use arrows to change the order in which the authors names are to appear with the submission.</message>
+	<message key="author.submit.authorsDescription">For submissions with more than one presenter, order presenters as they are to appear on citation.</message>
+	<message key="author.submit.reorderAuthorName">Reorder presenter's name</message>
+	<message key="author.submit.reorderInstructions">Use arrows to change the order in which the presenters' names are to appear with the submission.</message>
 	<message key="author.submit.selectPrincipalContact">Principal contact for editorial correspondence.</message>
-	<message key="author.submit.addAuthor">Add Author</message>
-	<message key="author.submit.deleteAuthor">Delete Author</message>
+	<message key="author.submit.addAuthor">Add Presenter</message>
+	<message key="author.submit.deleteAuthor">Delete Presenter</message>
 	<message key="author.submit.submissionIndexingDescription">Choose terms that best describe the submission's content following the categories used by this conference, and examples provided by the editor. Separate terms with a semi-colon (term1; term2; term3).</message>
 	<message key="author.submit.submissionSupportingAgencies">Supporting Agencies</message>
 	<message key="author.submit.submissionSupportingAgenciesDescription">Identify agencies that provided funding or support for the work presented in this submission.</message>
@@ -1906,8 +1907,8 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<!--<message key="author.submit.coverageInstructions">Refers to geo-spatial location, chronological or historical coverage, and/or characteristics of research sample.</message>-->
 	<!--<message key="author.submit.subjectClassInstructions">Use the hyperlinked classification system to select classification terms and, if appropriate, numbers.</message>-->
 	<message key="author.submit.languageInstructions"><![CDATA[English=en; French=fr; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">Additional codes</a>.]]></message>
-	<message key="author.submit.form.authorRequired">At least one author is required.</message>
-	<message key="author.submit.form.authorRequiredFields">The first name, last name, and email address of each author is required.</message>
+	<message key="author.submit.form.authorRequired">At least one presenter is required.</message>
+	<message key="author.submit.form.authorRequiredFields">The first name, last name, and email address of each presenter is required.</message>
 	<message key="author.submit.form.titleRequired">Please enter the title of your paper.</message>
 
 	<!-- Article Submission Step 3 -->
@@ -1930,7 +1931,7 @@ The file can be viewed by clicking on the file name. A new or revised file can b
 	<message key="author.submit.noSubmissionConfirm">Are you sure you wish to continue without uploading a submission file?</message>
 
 	<!-- Article Submission Step 4 -->
-	<message key="author.submit.supplementaryFilesInstructions">This optional step in the submission process allows authors to add files to the submission which improve the contribution which the submission makes. Supplementary Files might include (a) research instruments, (b) data sets, which comply with the terms of the study's research ethics review, (c) sources that otherwise would be unavailable to readers, or (d) figures or tables that cannot be integrated into the text itself. These files are also indexed by the author, identifying their relation to the submission, as well as their ownership. Supplementary Files can be uploaded in any file format and will be made available to readers in their original format. They can be shared with peer reviewers, if they do not compromise the blind review.</message>
+	<message key="author.submit.supplementaryFilesInstructions">This optional step in the submission process allows presenters to add files to the submission which improve the contribution which the submission makes. Supplementary Files might include (a) research instruments, (b) data sets, which comply with the terms of the study's research ethics review, (c) sources that otherwise would be unavailable to readers, or (d) figures or tables that cannot be integrated into the text itself. These files are also indexed by the presenter, identifying their relation to the submission, as well as their ownership. Supplementary Files can be uploaded in any file format and will be made available to readers in their original format. They can be shared with peer reviewers, if they do not compromise the blind review.</message>
 	<message key="author.submit.noSupplementaryFiles">No supplementary files have been added to this submission.</message>
 	<message key="author.submit.backToSupplementaryFiles">Back to Supplementary Files</message>
 	<message key="author.submit.confirmDeleteSuppFile">Are you sure you want to delete this supplementary file?</message>
@@ -1979,8 +1980,8 @@ The file can be viewed by clicking on the file name. A new or revised file can b
 
 	<!-- Used in submission review / editing -->
 	<!--<message key="submission.review.mustUploadFileForReview">Request email cannot be sent until a Review Version is in place.</message>-->s
-	<message key="author.paper.uploadAuthorVersion">Upload Author Version</message>
-	<!--<message key="author.paper.authorRevisedFile">Author File</message>-->
+	<message key="author.paper.uploadAuthorVersion">Upload Presenter Version</message>
+	<!--<message key="author.paper.authorRevisedFile">Presenter File</message>-->
 
 	<!-- Submission Tracking - Layout Specific -->
 	<message key="submission.layout.noLayoutFile">None (Upload final copyedit version as Layout Version prior to sending request)</message>
@@ -2041,14 +2042,14 @@ The file can be viewed by clicking on the file name. A new or revised file can b
 	<!-- Submission Comments -->
 	<message key="submission.comments.comments">Comments</message>
 	<message key="submission.comments.review">Review</message>
-	<message key="submission.comments.editorAuthorCorrespondence">Editor/Author Correspondence</message>
+	<message key="submission.comments.editorAuthorCorrespondence">Editor/Presenter Correspondence</message>
 	<message key="submission.comments.corrections">Corrections</message>
 	<message key="submission.comments.noComments">No Comments</message>
 	<message key="submission.comments.noReviews">No Reviews</message>
 	<message key="submission.comments.subject">Subject</message>
-	<message key="submission.comments.viewableDescription"><![CDATA[These comments can be shared with the author.<br />
+	<message key="submission.comments.viewableDescription"><![CDATA[These comments can be shared with the presenter.<br />
 (After saving, further comments can be added.)]]></message>
-	<message key="submission.comments.canShareWithAuthor">For author and editor</message>
+	<message key="submission.comments.canShareWithAuthor">For presenter and editor</message>
 	<message key="submission.comments.cannotShareWithAuthor">For editor</message>
 	<message key="submission.comments.addComment">Add Comment</message>
 	<message key="submission.comments.editComment">Edit Comment</message>
@@ -2056,10 +2057,10 @@ The file can be viewed by clicking on the file name. A new or revised file can b
 	<message key="submission.comments.importPeerReviews">Import Peer Reviews</message>
 	<message key="submission.comments.blindCcReviewers">After sending, present a blind carbon copy of editorial decision for emailing to reviewers.</message>
 	<message key="submission.comments.importPeerReviews.reviewerLetter">Reviewer {$reviewerLetter}:</message>
-	<message key="submission.comments.forAuthorEditor">For author and editor</message>
+	<message key="submission.comments.forAuthorEditor">For presenter and editor</message>
 	<message key="submission.comments.forEditor">For editor</message>
 	<message key="submission.comments.sendDecisionToReviewers">Send Reviewers editorial decision</message>
-	<message key="submission.comments.saveAndEmailAuthor">Save and Email Author</message>
+	<message key="submission.comments.saveAndEmailAuthor">Save and Email Presenter</message>
 	<message key="submission.comments.saveAndEmailEditor">Save and Email Editor</message>
 
 	<!-- Login -->
@@ -2128,11 +2129,11 @@ current password.<br /><br />Enter your email address below to reset your passwo
 
 
 	<!-- Search -->
-	<message key="search.browseAuthorIndex">Browse Author Index</message>
+	<message key="search.browseAuthorIndex">Browse Presenter Index</message>
 	<message key="search.searchFor">Search articles for</message>
 	<message key="search.inField">In</message>
 	<message key="search.allFields">All</message>
-	<message key="search.author">Authors</message>
+	<message key="search.author">Presenters</message>
 	<message key="search.title">Title</message>
 	<message key="search.abstract">Abstract</message>
 	<message key="search.fullText">Full Text</message>
@@ -2149,9 +2150,9 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="search.typeMethodApproach">Type (method/approach)</message>
 	<message key="search.coverage">Coverage</message>
 	<message key="search.matchAll">Match all categories</message>
-	<message key="search.authorIndex">Browse Author Index</message>
+	<message key="search.authorIndex">Browse Presenter Index</message>
 	<message key="search.titleIndex">Browse Title Index</message>
-	<message key="search.authorDetails">Author Details</message>
+	<message key="search.authorDetails">Presenter Details</message>
 	<message key="search.searchResults">Search Results</message>
 	<message key="search.reviseSearch">Revise Search</message>
 	<message key="search.noResults">No Results</message>
@@ -2223,7 +2224,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.onlineSubmissions.needAccount">Need a Username/Password?</message>
 	<message key="about.onlineSubmissions.registration">Go to Registration</message>
 	<message key="about.onlineSubmissions.registrationRequired">Registration and login are required to submit items online and to check the status of current submissions.</message>
-	<message key="about.authorGuidelines">Author Guidelines</message>
+	<message key="about.authorGuidelines">Presenter Guidelines</message>
 	<message key="about.submissionPreparationChecklist">Submission Preparation Checklist</message>
 	<message key="about.copyrightNotice">Copyright Notice</message>
 	<message key="about.privacyStatement">Privacy Statement</message>
@@ -2232,7 +2233,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.delayedOpenAccess">Delayed Open Access</message>
 	<message key="about.delayedOpenAccessDescription1">The contents of this conference will be available in an open access format</message>
 	<message key="about.delayedOpenAccessDescription2">month(s) after the event is released to participants.</message>
-	<!--<message key="about.authorSelfArchive">Author Self-Archiving</message>-->
+	<!--<message key="about.authorSelfArchive">Presenter Self-Archiving</message>-->
 	<!--<message key="about.archiving">Archiving</message>-->
 	<message key="about.registration">Registration</message>
 	<message key="about.registrationContact">Registration Contact</message>
@@ -2461,13 +2462,13 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="rt.admin.settings.disableRelatedItems">Disable Related Items</message>
 	<message key="rt.admin.settings.bibFormat">Bibliographic format</message>
 	<message key="rt.admin.settings.captureCite">How to cite item (provides bibliographic detail for item).</message>
-	<message key="rt.admin.settings.viewMetadata">Indexing metadata (displays item's indexing metadata provided by author and system).</message>
-	<message key="rt.admin.settings.supplementaryFiles">Supplementary files (displays list of files author included with submission).</message>
+	<message key="rt.admin.settings.viewMetadata">Indexing metadata (displays item's indexing metadata provided by presenter and system).</message>
+	<message key="rt.admin.settings.supplementaryFiles">Supplementary files (displays list of files presenter included with submission).</message>
 	<message key="rt.admin.settings.printerFriendly">Print version (Leads to a printer-friendly version of an item).</message>
-	<message key="rt.admin.settings.authorBio">About the author (displays the bio statements entered by the author).</message>
+	<message key="rt.admin.settings.authorBio">About the presenter (displays the bio statements entered by the presenter).</message>
 	<message key="rt.admin.settings.defineTerms">Look up terms (enables readers to double-click on any word in an item and send the word to a dictionary).</message>
 	<message key="rt.admin.settings.addComment">Add comment (enables readers to post comments, which Conference Directors can delete. Reader Comments must be enabled in Setup, step 2).</message>
-	<message key="rt.admin.settings.emailAuthor">Email the author (leads to an email template with author's email).</message>
+	<message key="rt.admin.settings.emailAuthor">Email the presenter (leads to an email template with presenter's email).</message>
 	<message key="rt.admin.settings.emailOthers">Notify a colleague (leads to an email template with link to item).</message>
 
 	<!-- RT Versions -->
@@ -2486,8 +2487,8 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="rt.admin.contexts.confirmDelete">Are you sure you wish to delete this Context and all associated Searches?</message>
 	<message key="rt.admin.contexts.metadata">Metadata</message>
 	<message key="rt.admin.contexts.options">Options</message>
-	<message key="rt.admin.contexts.options.citedBy">Use author names as default search terms and describe the context as a search for citations to the article.</message>
-	<message key="rt.admin.contexts.options.authorTerms">Use author names as default search terms to enable users to find other works by the authors for this item (e.g., for an "Other Works" context)</message>
+	<message key="rt.admin.contexts.options.citedBy">Use presenter names as default search terms and describe the context as a search for citations to the article.</message>
+	<message key="rt.admin.contexts.options.authorTerms">Use presenter names as default search terms to enable users to find other works by the presenters for this item (e.g., for an "Other Works" context)</message>
 	<message key="rt.admin.contexts.options.geoTerms">Use geographical indexing data as default search terms.</message>
 	<message key="rt.admin.contexts.options.defineTerms"><![CDATA[Use the word highlighted by the reader as default search term or be left blank if none has been selected for this item (e.g., for a "Definition of terms" context). The "Definition of terms" option must be enabled in the <a href="{$settingsUrl}">RST Settings</a> to allow double-clicking on words to open this context.]]></message>
 
@@ -2530,7 +2531,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="rt.search.searchPost">Post data</message>
 	<message key="rt.search.suggest">Suggest a source</message>
 
-	<message key="rt.authorBio">About the author</message>
+	<message key="rt.authorBio">About the presenter</message>
 
 	<message key="rt.viewMetadata">Indexing metadata</message>
 	<message key="rt.metadata.dublinCore">Dublin Core</message>
@@ -2553,7 +2554,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="rt.metadata.dublinCore.rights">Rights</message>
 
 	<message key="rt.metadata.pkp.title">Title of document</message>
-	<message key="rt.metadata.pkp.primaryAuthor">Author's name, affiliation, country</message>
+	<message key="rt.metadata.pkp.primaryAuthor">Presenter's name, affiliation, country</message>
 	<message key="rt.metadata.pkp.discipline">Discipline(s)</message>
 	<message key="rt.metadata.pkp.subject">Keyword(s)</message>
 	<message key="rt.metadata.pkp.subjectClass">Subject classification</message>
@@ -2590,7 +2591,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="rt.lookUp">Look up terms</message>
 	<message key="rt.colleague">Notify colleague</message>
 	<message key="rt.addComment">Add comment</message>
-	<message key="rt.emailAuthor">Email the author</message>
+	<message key="rt.emailAuthor">Email the presenter</message>
 	<message key="rt.beNotifiedWhen">Be notified when...</message>
 
 	<message key="rt.relatedItems">Related items</message>
@@ -2601,10 +2602,10 @@ Validation may fail on search URLs that require posted form data.]]></message>
 
 	<message key="rt.context.searchTerms">Search Terms</message>
 	<message key="rt.context.termToDefine">Word to define</message>
-	<message key="rt.context.searchDescription">The search terms have been selected by the author(s). They can be altered or deleted by the reader, as two or three short, precise terms or phrases produced the best Boolean (AND) searches. To learn more about the resources searched, click on ABOUT. These resources have been selected for their relevance and open (free) access to all or part of their contents.</message>
+	<message key="rt.context.searchDescription">The search terms have been selected by the presenter(s). They can be altered or deleted by the reader, as two or three short, precise terms or phrases produced the best Boolean (AND) searches. To learn more about the resources searched, click on ABOUT. These resources have been selected for their relevance and open (free) access to all or part of their contents.</message>
 	<message key="rt.context.defineTermsDescription">If the item is a HTML file (rather than a PDF), double clicking on any word in the text will make it appear in the Word-to-Define box. Otherwise, words can be typed or pasted in the box. To learn more about the resource searched, click on ABOUT. These resources have been selected because of their relevance and their open (free) access to all or part of their contents.</message>
-	<message key="rt.context.authorTermsDescription">For items with more than one author, leave all names checked to search for similarly co-authored work, or search one at a time by checking only a single name. To learn more about the resource searched, click on ABOUT. These resources have been selected because of their relevance and their open (free) access to all or part of their contents.</message>
-	<message key="rt.context.citesContextDescription">If the article is indexed in Google Scholar, it may be accompanied by a "Cited by X" link, which leads to a list of works that cite it. As well, Google Scholar will list all items quoting the title and author. To access online resources that are only available through your research library, you may be able to go to Scholar Preferences in Google Scholar and activate the Library Links for your institution.</message>
+	<message key="rt.context.authorTermsDescription">For items with more than one presenter, leave all names checked to search for similarly co-presented work, or search one at a time by checking only a single name. To learn more about the resource searched, click on ABOUT. These resources have been selected because of their relevance and their open (free) access to all or part of their contents.</message>
+	<message key="rt.context.citesContextDescription">If the article is indexed in Google Scholar, it may be accompanied by a "Cited by X" link, which leads to a list of works that cite it. As well, Google Scholar will list all items quoting the title and presenter. To access online resources that are only available through your research library, you may be able to go to Scholar Preferences in Google Scholar and activate the Library Links for your institution.</message>
 
 	<message key="rt.context.and">AND</message>
 
@@ -2645,12 +2646,12 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="default.conferenceSettings.checklist.fileFormat">The submission file is in Microsoft Word, RTF, or WordPerfect document file format.</message>-->
 	<message key="default.conferenceSettings.checklist.addressesLinked"><![CDATA[All URL addresses in the text (e.g., <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) are activated and ready to click.]]></message>
 	<message key="default.conferenceSettings.checklist.submissionAppearance">The text is single-spaced; uses a 12-point font; employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end.</message>
-	<message key="default.conferenceSettings.checklist.bibliographicRequirements"><![CDATA[The text adheres to the stylistic and bibliographic requirements outlined in the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}about/submissions#authorGuidelines">Author Guidelines</a>, which is found in About the Conference.]]></message>
-	<message key="default.conferenceSettings.checklist.anonymous">If submitting to a peer-reviewed section of the conference, authors' names are removed from submission, with "Author" and year used in the bibliography and footnotes, instead of authors' name, paper title, etc.</message>
+	<message key="default.conferenceSettings.checklist.bibliographicRequirements"><![CDATA[The text adheres to the stylistic and bibliographic requirements outlined in the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}about/submissions#authorGuidelines">Presenter Guidelines</a>, which is found in About the Conference.]]></message>
+	<message key="default.conferenceSettings.checklist.anonymous">If submitting to a peer-reviewed section of the conference, presenters' names are removed from submission, with "Presenter" and year used in the bibliography and footnotes, instead of presenters' name, paper title, etc.</message>
 	<message key="default.conferenceSettings.checklist.personalInformationRemoved">If submitting to peer review, all Microsoft Office documents (including Supplementary Files) have been saved by going to File and selecting Save As; clicking Tools (or Options in a Mac); clicking Security; selecting "Remove personal information from file properties on save"; clicking Save.</message>
 	<message key="default.conferenceSettings.privacyStatement">The names and email addresses entered in this conference site will be used exclusively for the stated purposes of this conference and will not be made available for any other purpose or to any other party.</message>
 	<message key="default.conferenceSettings.openAccessPolicy">This conference provides immediate open access to its content on the principle that making research freely available to the public supports a greater global exchange of knowledge.</message>
-	<message key="default.conferenceSettings.authorSelfArchivePolicy">Authors are permitted to post their articles on personal or institutional websites prior to and after publication by this conference (while providing the bibliographic details of that publication).</message>
+	<message key="default.conferenceSettings.authorSelfArchivePolicy">Presenters are permitted to post their articles on personal or institutional websites prior to and after publication by this conference (while providing the bibliographic details of that publication).</message>
 	<message key="default.conferenceSettings.emailSignature"><![CDATA[________________________________________________________________________
 {$conferenceName}
 {$indexUrl}/{$conferencePath}
@@ -2664,6 +2665,6 @@ Validation may fail on search URLs that require posted form data.]]></message>
 {$indexUrl}/{$conferencePath}/{$eventPath}
 ]]></message>
 	<message key="default.eventSettings.forReaders"><![CDATA[We encourage readers to sign up for notification of papers posted for this conference. Use the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/user/register">Register</a> link at the top of the homepage for the conference. This list allows the conference to claim a certain level of support or readership. See the conference's <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about/submissions#privacyStatement">Privacy Statement</a> which assures readers that their name and email address will not be used for other purposes.]]></message>
-	<message key="default.eventSettings.forPresenters"><![CDATA[Interested in submitting to this conference? We recommend that you review the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about">About the Conference</a> page for the conference's track policies, as well as the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about/submissions#authorGuidelines">Author Guidelines</a>. Authors need to <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/user/register">register</a> with the conference prior to submitting, or if already registered can simply <a href="{$indexUrl}/index/index/login">log in</a> and begin the submission process.]]></message>
+	<message key="default.eventSettings.forPresenters"><![CDATA[Interested in submitting to this conference? We recommend that you review the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about">About the Conference</a> page for the conference's track policies, as well as the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/about/submissions#authorGuidelines">Presenter Guidelines</a>. Presenters need to <a href="{$indexUrl}/{$conferencePath}/{$eventPath}/user/register">register</a> with the conference prior to submitting, or if already registered can simply <a href="{$indexUrl}/index/index/login">log in</a> and begin the submission process.]]></message>
 
 </locale>
