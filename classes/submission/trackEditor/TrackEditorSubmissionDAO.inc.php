@@ -311,10 +311,10 @@ class TrackEditorSubmissionDAO extends DAO {
 				$params[] = $params[] = $params[] = $search;
 				break;
 			case SUBMISSION_FIELD_AUTHOR:
-				$first_last = $this->_dataSource->Concat('ap.first_name', '\' \'', 'ap.last_name');
-				$first_middle_last = $this->_dataSource->Concat('ap.first_name', '\' \'', 'ap.middle_name', '\' \'', 'ap.last_name');
-				$last_comma_first = $this->_dataSource->Concat('ap.last_name', '\', \'', 'ap.first_name');
-				$last_comma_first_middle = $this->_dataSource->Concat('ap.last_name', '\', \'', 'ap.first_name', '\' \'', 'ap.middle_name');
+				$first_last = $this->_dataSource->Concat('pa.first_name', '\' \'', 'pa.last_name');
+				$first_middle_last = $this->_dataSource->Concat('pa.first_name', '\' \'', 'pa.middle_name', '\' \'', 'pa.last_name');
+				$last_comma_first = $this->_dataSource->Concat('pa.last_name', '\', \'', 'pa.first_name');
+				$last_comma_first_middle = $this->_dataSource->Concat('pa.last_name', '\', \'', 'pa.first_name', '\' \'', 'pa.middle_name');
 
 				if ($searchMatch === 'is') {
 					$searchSql = " AND (LOWER(aa.last_name) = LOWER(?) OR LOWER($first_last) = LOWER(?) OR LOWER($first_middle_last) = LOWER(?) OR LOWER($last_comma_first) = LOWER(?) OR LOWER($last_comma_first_middle) = LOWER(?))";
@@ -811,7 +811,7 @@ class TrackEditorSubmissionDAO extends DAO {
 		}
 
 		$result = &$this->retrieveRange('
-			SELECT DISTINCT u.*, p.review_id as review_id
+			SELECT DISTINCT u.*, a.review_id as review_id
 			FROM users u
 			NATURAL JOIN roles r
 			LEFT JOIN review_assignments a ON
@@ -850,7 +850,7 @@ class TrackEditorSubmissionDAO extends DAO {
 		$users = array();
 
 		$result = &$this->retrieve(
-			'SELECT u.* FROM users u NATURAL JOIN roles r LEFT JOIN review_assignments a ON (p.reviewer_id = u.user_id AND p.paper_id = ?) WHERE r.event_id = ? AND r.role_id = ? AND p.paper_id IS NULL ORDER BY last_name, first_name',
+			'SELECT u.* FROM users u NATURAL JOIN roles r LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND a.paper_id = ?) WHERE r.event_id = ? AND r.role_id = ? AND a.paper_id IS NULL ORDER BY last_name, first_name',
 			array($paperId, $eventId, RoleDAO::getRoleIdFromPath('reviewer'))
 		);
 
@@ -866,52 +866,6 @@ class TrackEditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get the assignment counts and last assigned date for all layout editors of the given conference.
-	 * @return array
-	 */
-	function getLayoutEditorStatistics($eventId) {
-		$statistics = Array();
-
-		// Get counts of completed submissions
-		$result = &$this->retrieve('select la.editor_id as editor_id, count(la.paper_id) as complete from layouted_assignments la, papers a where la.paper_id=p.paper_id and la.date_completed is not null and p.event_id=? group by la.editor_id', $eventId);
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
-			$statistics[$row['editor_id']]['complete'] = $row['complete'];
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		// Get counts of incomplete submissions
-		$result = &$this->retrieve('select la.editor_id as editor_id, count(la.paper_id) as incomplete from layouted_assignments la, papers a where la.paper_id=p.paper_id and la.date_completed is null and p.event_id=? group by la.editor_id', $eventId);
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
-			$statistics[$row['editor_id']]['incomplete'] = $row['incomplete'];
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		// Get last assignment date
-		$result = &$this->retrieve('select la.editor_id as editor_id, max(la.date_notified) as last_assigned from layouted_assignments la, papers a where la.paper_id=p.paper_id and p.event_id=? group by la.editor_id', $eventId);
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
-			$statistics[$row['editor_id']]['last_assigned'] = $this->datetimeFromDB($row['last_assigned']);
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $statistics;
-	}
-
-	/**
 	 * Get the last assigned and last completed dates for all reviewers of the given conference.
 	 * @return array
 	 */
@@ -919,7 +873,7 @@ class TrackEditorSubmissionDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result = &$this->retrieve('select rp.reviewer_id as editor_id, max(rp.date_notified) as last_notified from review_assignments ra, papers p where rp.paper_id=p.paper_id and p.event_id=? group by rp.reviewer_id', $eventId);
+		$result = &$this->retrieve('select ra.reviewer_id as editor_id, max(ra.date_notified) as last_notified from review_assignments ra, papers p where ra.paper_id=p.paper_id and p.event_id=? group by ra.reviewer_id', $eventId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
