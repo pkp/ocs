@@ -148,11 +148,15 @@ class TimelineForm extends Form {
 		
 		// Website start date and end date.
 		
-		if($event->getStartDate() != $this->_data['siteStartDate'])
+		if($event->getStartDate() != $this->_data['siteStartDate']) {
 			$event->setStartDate($this->_data['siteStartDate']);
+			$eventDao->updateEvent($event);
+		}
 
-		if($event->getEndDate() != $this->_data['siteEndDate'])
+		if($event->getEndDate() != $this->_data['siteEndDate']) {
 			$event->setEndDate($this->_data['siteEndDate']);
+			$eventDao->updateEvent($event);
+		}
 		
 		//
 		// Log the rest.
