@@ -32,6 +32,7 @@
 					<option value="director">{translate key="user.role.director"}</option>
 					<option value="editor">{translate key="user.role.editor"}</option>
 					<option value="trackEditor">{translate key="user.role.trackEditor"}</option>
+					<option value="layoutEditor">{translate key="user.role.layoutEditor"}</option>
 					<option value="reviewer">{translate key="user.role.reviewer"}</option>
 					{*<option value="invitedAuthor">{translate key="user.role.invitedAuthor"}</option>*}
 					<option value="author">{translate key="user.role.author"}</option>

@@ -57,66 +57,26 @@ class Plugin {
 	}
 
 	function addLocaleData($locale = null) {
-		HookRegistry::register('Locale::_cacheMiss', array($this, 'loadLocale'));
+		if ($locale == '') $locale = Locale::getLocale();
+		Locale::registerLocaleFile($locale, $this->getLocaleFilename($locale));
 		return true;
 	}
 
-	function &_getCache($locale) {
-		static $caches;
-
-		if (!isset($caches)) {
-			$caches = array();
-		}
-
-		if (!isset($caches[$locale])) {
-			import('cache.CacheManager');
-			$cacheManager =& CacheManager::getManager();
-			$caches[$locale] =& $cacheManager->getCache(
-				'locale-' . $this->getName(), $locale,
-				array($this, '_cacheMiss')
-			);
-			$cacheTime = $caches[$locale]->getCacheTime();
-			if ($cacheTime !== null && $cacheTime < filemtime($this->getLocaleFilename($locale))) {
-				// This cache is out of date; flush it.
-				$caches[$locale]->flush();
-			}
-		}
-		return $caches[$locale];
-	}
-
 	function getLocaleFilename($locale) {
-		return $this->getPluginPath() . "/locale/$locale/locale.xml";
+		return $this->getPluginPath() . DIRECTORY_SEPARATOR . 'locale' . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . 'locale.xml';
 	}
 
-	function _cacheMiss(&$cache, $id) {
-		static $pluginLocales;
-		$locale = $cache->getCacheId();
-
-		if (!isset($pluginLocales)) {
-			$pluginLocales = array();
-		}
-
-		if (!isset($pluginLocales[$locale])) {
-			$pluginLocales[$locale] =& Locale::loadLocale($locale, $this->getLocaleFilename($locale));
-			$cache->setEntireCache($pluginLocales[$locale]);
-		}
-
-		return isset($pluginLocales[$locale][$id])?$pluginLocales[$locale][$id]:null;
+	function addHelpData($locale = null) {
+		if ($locale == '') $locale = Locale::getLocale();
+		$help =& Help::getHelp();
+		import('help.PluginHelpMappingFile');
+		$pluginHelpMapping =& new PluginHelpMappingFile($this);
+		$help->addMappingFile($pluginHelpMapping);
+		return true;
 	}
 
-	function loadLocale($hookName, $params) {
-		$key =& $params[0];
-		$locale =& $params[1];
-		$value =& $params[2];
-
-		$cache =& $this->_getCache($locale);
-		$possibleValue = $cache->get($key);
-
-		if (!empty($possibleValue)) {
-			$value = $possibleValue;
-			return true;
-		}
-		return false;
+	function getHelpMappingFilename() {
+		return $this->getPluginPath() . DIRECTORY_SEPARATOR . 'help.xml';
 	}
 
 	/**
@@ -188,5 +148,21 @@ class Plugin {
 	function manage($verb, $args) {
 		return false;
 	}
+
+	/**
+	 * Extend the {url ...} smarty to support plugins.
+	 */
+	function smartyPluginUrl($params, &$smarty) {
+		$path = array($this->getCategory(), $this->getName());
+		if (is_array($params['path'])) {
+			$params['path'] = array_merge($path, $params['path']);
+		} elseif (!empty($params['path'])) {
+			$params['path'] = array_merge($path, array($params['path']));
+		} else {
+			$params['path'] = $path;
+		}
+		return $smarty->smartyUrl($params, $smarty);
+	}
+
 }
 ?>

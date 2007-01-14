@@ -82,10 +82,10 @@ class RegistrationHandler extends UserHandler {
 				$templateMgr->assign('backLinkLabel', 'user.login');
 				$templateMgr->display('common/error.tpl');
 			}
-			if(Request::getUserVar('source'))
-				Request::redirectUrl(Request::getUserVar('source'));
-			else
-				Request::redirect(null, null, null, 'login');
+			if($source = Request::getUserVar('source'))
+				Request::redirectUrl($source);
+
+			else Request::redirect(null, null, 'login');
 			
 		} else {
 			parent::setupTemplate(true);

@@ -101,6 +101,7 @@ class ProfileForm extends Form {
 			'userUrl' => $user->getUrl(),
 			'phone' => $user->getPhone(),
 			'fax' => $user->getFax(),
+			'signature' => $user->getSignature(),
 			'mailingAddress' => $user->getMailingAddress(),
 			'country' => $user->getCountry(),
 			'timeZone' => $user->getTimeZone(),
@@ -126,6 +127,7 @@ class ProfileForm extends Form {
 			'userUrl',
 			'phone',
 			'fax',
+			'signature',
 			'mailingAddress',
 			'country',
 			'timeZone',
@@ -149,6 +151,7 @@ class ProfileForm extends Form {
 		$user->setMiddleName($this->getData('middleName'));
 		$user->setInitials($this->getData('initials'));
 		$user->setLastName($this->getData('lastName'));
+		$user->setSignature($this->getData('signature'));
 		$user->setAffiliation($this->getData('affiliation'));
 		$user->setEmail($this->getData('email'));
 		$user->setUrl($this->getData('userUrl'));

@@ -51,6 +51,8 @@ class CommentForm extends Form {
 		$this->assocId = $assocId == null ? $paper->getPaperId() : $assocId;
 		
 		$this->user = &Request::getUser();
+
+		$this->addCheck(new FormValidator($this, 'comments', 'required', 'editor.paper.commentsRequired'));
 	}
 
 	/**

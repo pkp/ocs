@@ -19,9 +19,7 @@ define('PAPER_EMAIL_TYPE_DEFAULT', 		0);
 define('PAPER_EMAIL_TYPE_AUTHOR', 		0x01);
 define('PAPER_EMAIL_TYPE_EDITOR', 		0x02);
 define('PAPER_EMAIL_TYPE_REVIEW', 		0x03);
-define('PAPER_EMAIL_TYPE_COPYEDIT', 		0x04);
 define('PAPER_EMAIL_TYPE_LAYOUT', 		0x05);
-define('PAPER_EMAIL_TYPE_PROOFREAD', 		0x06);
 
 // General events 				0x10000000
 

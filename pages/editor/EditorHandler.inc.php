@@ -87,6 +87,10 @@ class EditorHandler extends TrackEditorHandler {
 				$functionName = 'getEditorSubmissionsUnassigned';
 				$helpTopicId = 'editorial.editorsRole.submissions.unassigned';
 				break;
+			case 'submissionsInEditing':
+				$functionName = 'getEditorSubmissionsInEditing';
+				$helpTopicId = 'editorial.editorsRole.submissions.inEditing';
+				break;
 			case 'submissionsAccepted':
 				$functionName = 'getEditorSubmissionsAccepted';
 				$helpTopicId = 'editorial.editorsRole.submissions.accepted';
@@ -141,9 +145,11 @@ class EditorHandler extends TrackEditorHandler {
 			SUBMISSION_FIELD_AUTHOR => 'user.role.author',
 			SUBMISSION_FIELD_EDITOR => 'user.role.editor',
 			SUBMISSION_FIELD_REVIEWER => 'user.role.reviewer',
+			SUBMISSION_FIELD_LAYOUTEDITOR => 'user.role.layoutEditor',
 		));
 		$templateMgr->assign('dateFieldOptions', Array(
 			SUBMISSION_FIELD_DATE_SUBMITTED => 'submissions.submitted',
+			SUBMISSION_FIELD_DATE_LAYOUT_COMPLETE => 'submissions.layoutComplete',
 		));
 
 		$templateMgr->assign('helpTopicId', $helpTopicId);

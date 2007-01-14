@@ -87,6 +87,7 @@
 			<DEFAULT VALUE="0"/>
 			<descr>Allow users to select their working languages in their user profile.</descr>
 		</field>
+		<field name="original_style_file_name" type="C2" size="255"/>
 		<descr>Common site settings.</descr>
 	</table>
 	
@@ -99,9 +100,7 @@
 		<field name="class_name" type="C2" size="255">
 			<KEY/>
 		</field>
-		<field name="last_run" type="T">
-			<NOTNULL/>
-		</field>
+		<field name="last_run" type="T" />
 		<descr>The last run times of all scheduled tasks.</descr>
 	</table>
 
@@ -128,6 +127,7 @@
 		<field name="last_name" type="C2" size="90">
 			<NOTNULL/>
 		</field>
+		<field name="signature" type="X"/>
 		<field name="initials" type="C2" size="5"/>
 		<field name="affiliation" type="C2" size="255"/>
 		<field name="email" type="C2" size="90">
@@ -584,7 +584,6 @@
 			<NOTNULL/>
 		</field>
 		<field name="track_id" type="I8"/>
-		<field name="secondary_track_id" type="I8"/>
 		<field name="title" type="C2" size="255">
 			<NOTNULL/>
 		</field>
@@ -1053,6 +1052,37 @@
 		</index>
 		<index name="review_assignments_reviewer_id">
 			<col>reviewer_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE layouted_assignments
+	  *
+	  -->
+	<table name="layouted_assignments">
+		<field name="layouted_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="editor_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_notified" type="T"/>
+		<field name="date_underway" type="T"/>
+		<field name="date_completed" type="T"/>
+		<field name="date_acknowledged" type="T"/>
+		<field name="layout_file_id" type="I8"/>
+		<descr>Layout editing assignments.</descr>
+		<index name="layouted_assignments_paper_id">
+			<col>paper_id</col>
+			<UNIQUE/>
+		</index>
+		<index name="layouted_assignments_editor_id">
+			<col>editor_id</col>
 		</index>
 	</table>
 	
@@ -1741,6 +1771,27 @@
 		<index name="announcements_conference_id">
 			<col>conference_id</col>
 		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE captchas
+	  *
+	  -->
+	<table name="captchas">
+		<field name="captcha_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="session_id" type="C2" size="32">
+			<NOTNULL/>
+		</field>
+		<field name="value" type="C2" size="20">
+			<NOTNULL/>
+		</field>
+		<field name="date_created" type="T">
+			<NOTNULL/>
+		</field>
 	</table>
 
 	<!--

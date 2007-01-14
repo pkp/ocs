@@ -71,8 +71,19 @@
 					<td width="20%" rowspan="{$authorFiles|@count}" class="label">{translate key="submission.authorVersion"}</td>
 				{/if}
 				<td width="80%" class="value" colspan="3">
-					{if $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT}<input type="radio" name="editorDecisionFile" value="{$authorFile->getFileId()},{$authorFile->getRevision()}" /> {/if}<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()}</a>&nbsp;&nbsp;
-					{$authorFile->getDateModified()|date_format:$dateFormatShort}
+					{if $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT}
+						<tr>
+							<td width="20%">&nbsp;</td>
+							<td width="80%">
+								{translate key="editor.paper.resubmitFileForPeerReview"}
+								<input type="submit" name="resubmit" {if !($editorRevisionExists or $authorRevisionExists)}disabled="disabled" {/if}value="{translate key="form.resubmit"}" class="button" />
+							</td>
+						</tr>
+					{elseif $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT}
+						<input type="radio" name="editorDecisionFile" value="{$authorFile->getFileId()},{$authorFile->getRevision()}" />
+					{/if}
+					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()}</a>&nbsp;&nbsp;
+						{$authorFile->getDateModified()|date_format:$dateFormatShort}
 				</td>
 			</tr>
 		{foreachelse}
@@ -109,13 +120,5 @@
 	</div>
 	{/if}
 {/if}
-
-<div class="separator"></div>
-
-{if $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT}
-{translate key="editor.paper.completeReview"}
-<input type="submit" {if !$allowCompleteReview}disabled="disabled" {/if}name="completeReview" value="{translate key="form.submit"}" class="button" />
-{/if}
-
 
 </form>

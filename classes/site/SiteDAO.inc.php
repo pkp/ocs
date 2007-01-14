@@ -60,6 +60,7 @@ class SiteDAO extends DAO {
 		$site->setContactEmail($row['contact_email']);
 		$site->setMinPasswordLength($row['min_password_length']);
 		$site->setLocale($row['locale']);
+		$site->setOriginalStyleFilename($row['original_style_file_name']);
 		$site->setInstalledLocales(isset($row['installed_locales']) && !empty($row['installed_locales']) ? explode(':', $row['installed_locales']) : array());
 		$site->setSupportedLocales(isset($row['supported_locales']) && !empty($row['supported_locales']) ? explode(':', $row['supported_locales']) : array());
 		$site->setProfileLocalesEnabled($row['profile_locales']);
@@ -78,7 +79,7 @@ class SiteDAO extends DAO {
 			'INSERT INTO site
 				(title, intro, about, conference_redirect, contact_name, contact_email, min_password_length, locale, installed_locales, supported_locales, profile_locales)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$site->getTitle(),
 				$site->getIntro(),
@@ -90,7 +91,8 @@ class SiteDAO extends DAO {
 				$site->getLocale(),
 				join(':', $site->getInstalledLocales()),
 				join(':', $site->getSupportedLocales()),
-				$site->getProfileLocalesEnabled() == null ? 0 : $site->getProfileLocalesEnabled()
+				$site->getProfileLocalesEnabled() == null ? 0 : $site->getProfileLocalesEnabled(),
+				$site->getOriginalStyleFilename()
 			)
 		);
 	}
@@ -113,7 +115,8 @@ class SiteDAO extends DAO {
 					locale = ?,
 					installed_locales = ?,
 					supported_locales = ?,
-					profile_locales = ?',
+					profile_locales = ?,
+					original_style_file_name = ?',
 			array(
 				$site->getTitle(),
 				$site->getIntro(),
@@ -125,7 +128,8 @@ class SiteDAO extends DAO {
 				$site->getLocale(),
 				join(':', $site->getInstalledLocales()),
 				join(':', $site->getSupportedLocales()),
-				$site->getProfileLocalesEnabled() == null ? 0 : $site->getProfileLocalesEnabled()
+				$site->getProfileLocalesEnabled() == null ? 0 : $site->getProfileLocalesEnabled(),
+				$site->getOriginalStyleFilename()
 			)
 		);
 	}

@@ -35,12 +35,12 @@ class DAORegistry {
 	 *    name, if one was already registered; null otherwise
 	 */
 	function &registerDAO($name, &$dao) {
+		$daos = &DAORegistry::getDAOs();
 		if (isset($daos[$name])) {
 			$returner = &$daos[$name];
 		} else {
 			$returner = null;
 		}
-		$daos = &DAORegistry::getDAOs();
 		$daos[$name] = &$dao;
 		return $returner;
 	}
@@ -111,14 +111,10 @@ class DAORegistry {
 			case 'SiteDAO': return 'site.SiteDAO';
 			case 'VersionDAO': return 'site.VersionDAO';
 			case 'AuthorSubmissionDAO': return 'submission.author.AuthorSubmissionDAO';
-			//case 'CopyAssignmentDAO': return 'submission.copyAssignment.CopyAssignmentDAO';
-			//case 'CopyeditorSubmissionDAO': return 'submission.copyeditor.CopyeditorSubmissionDAO';
 			case 'EditAssignmentDAO': return 'submission.editAssignment.EditAssignmentDAO';
 			case 'EditorSubmissionDAO': return 'submission.editor.EditorSubmissionDAO';
-			//case 'LayoutAssignmentDAO': return 'submission.layoutAssignment.LayoutAssignmentDAO';
-			//case 'LayoutEditorSubmissionDAO': return 'submission.layoutEditor.LayoutEditorSubmissionDAO';
-			//case 'ProofAssignmentDAO': return 'submission.proofAssignment.ProofAssignmentDAO';
-			//case 'ProofreaderSubmissionDAO': return 'submission.proofreader.ProofreaderSubmissionDAO';
+			case 'LayoutAssignmentDAO': return 'submission.layoutAssignment.LayoutAssignmentDAO';
+			case 'LayoutEditorSubmissionDAO': return 'submission.layoutEditor.LayoutEditorSubmissionDAO';
 			case 'ReviewAssignmentDAO': return 'submission.reviewAssignment.ReviewAssignmentDAO';
 			case 'ReviewerSubmissionDAO': return 'submission.reviewer.ReviewerSubmissionDAO';
 			case 'TrackEditorSubmissionDAO': return 'submission.trackEditor.TrackEditorSubmissionDAO';
@@ -137,6 +133,7 @@ class DAORegistry {
 			case 'PluginSettingsDAO': return 'plugins.PluginSettingsDAO';
 			case 'GroupDAO': return 'group.GroupDAO';
 			case 'GroupMembershipDAO': return 'group.GroupMembershipDAO';
+			case 'CaptchaDAO': return 'captcha.CaptchaDAO';
 			default: fatalError('Unrecognized DAO ' . $name);
 		}
 		return null;

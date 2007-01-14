@@ -9,7 +9,6 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="user.register"}
 {include file="common/header.tpl"}
 
 {iterate from=conferences item=conference}

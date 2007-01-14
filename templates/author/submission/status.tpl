@@ -26,7 +26,7 @@
 				{else}
 					{translate key="submissions.queuedAbstractReview"}
 				{/if}
-			{elseif $status==SUBMISSION_STATUS_ACCEPTED}{translate key="submissions.accepted"}
+			{elseif $status==SUBMISSION_STATUS_PUBLISHED}{translate key="submissions.published"}
 			{elseif $status==SUBMISSION_STATUS_DECLINED}{translate key="submissions.declined"}
 			{/if}
 		</td>

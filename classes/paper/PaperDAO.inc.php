@@ -41,16 +41,9 @@ class PaperDAO extends DAO {
 				t.title_alt2 AS track_title_alt2,
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
+				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
-				LEFT JOIN tracks t2 ON t2.track_id = p.secondary_track_id
 			WHERE paper_id = ?', $paperId
 		);
 
@@ -91,7 +84,6 @@ class PaperDAO extends DAO {
 		$paper->setUserId($row['user_id']);
 		$paper->setEventId($row['event_id']);
 		$paper->setTrackId($row['track_id']);
-		$paper->setSecondaryTrackId($row['secondary_track_id']);
 
 		// Localize track title & abbreviation.
 		static $alternateLocaleNum;
@@ -115,7 +107,6 @@ class PaperDAO extends DAO {
 		$paper->setTrackTitle($trackTitle);
 		$paper->setTrackAbbrev($trackAbbrev);
 
-		$paper->setSecondaryTrackTitle($row['secondary_track_title']);
 		$paper->setTitle($row['title']);
 		$paper->setTitleAlt1($row['title_alt1']);
 		$paper->setTitleAlt2($row['title_alt2']);
@@ -162,7 +153,6 @@ class PaperDAO extends DAO {
 				(user_id,
 				 event_id,
 				 track_id,
-				 secondary_track_id,
 				 title,
 				 title_alt1,
 				 title_alt2,
@@ -193,13 +183,12 @@ class PaperDAO extends DAO {
 				 pages,
 				 date_reminded)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified())),
 			array(
 				$paper->getUserId(),
 				$paper->getEventId(),
 				$paper->getTrackId(),
-				$paper->getSecondaryTrackId(),
 				$paper->getTitle() === null ? '' : $paper->getTitle(),
 				$paper->getTitleAlt1(),
 				$paper->getTitleAlt2(),
@@ -252,7 +241,6 @@ class PaperDAO extends DAO {
 				SET
 					user_id = ?,
 					track_id = ?,
-					secondary_track_id = ?,
 					title = ?,
 					title_alt1 = ?,
 					title_alt2 = ?,
@@ -287,7 +275,6 @@ class PaperDAO extends DAO {
 			array(
 				$paper->getUserId(),
 				$paper->getTrackId(),
-				$paper->getSecondaryTrackId(),
 				$paper->getTitle(),
 				$paper->getTitleAlt1(),
 				$paper->getTitleAlt2(),
@@ -372,20 +359,14 @@ class PaperDAO extends DAO {
 		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignmentDao->deleteEditAssignmentsByPaper($paperId);
 
-		/*$copyAssignmentDao = &DAORegistry::getDAO('CopyAssignmentDAO');
-		$copyAssignmentDao->deleteCopyAssignmentsByPaper($paperId);
-
 		$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
 		$layoutAssignmentDao->deleteLayoutAssignmentsByPaper($paperId);
-
-		$proofAssignmentDao = &DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignmentDao->deleteProofAssignmentsByPaper($paperId);*/
 
 		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
 		$paperCommentDao->deletePaperComments($paperId);
 
-		/*$paperGalleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-		$paperGalleyDao->deleteGalleysByPaper($paperId);*/
+		$paperGalleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
+		$paperGalleyDao->deleteGalleysByPaper($paperId);
 
 		$paperSearchDao = &DAORegistry::getDAO('PaperSearchDAO');
 		$paperSearchDao->deletePaperKeywords($paperId);
@@ -435,16 +416,9 @@ class PaperDAO extends DAO {
 				t.title_alt2 AS track_title_alt2,
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
+				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
-				LEFT JOIN tracks t2 ON t2.track_id = p.secondary_track_id
 				WHERE p.event_id = ?' .
 				($trackId ? ' AND p.track_id = ?' : ''),
 				($trackId ? array($eventId, $trackId) : $eventId));
@@ -482,16 +456,9 @@ class PaperDAO extends DAO {
 				t.title_alt2 AS track_title_alt2,
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
+				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
-				LEFT JOIN tracks t2 ON t2.track_id = p.secondary_track_id
 			WHERE p.user_id = ?', (isset($eventId)?' AND p.event_id = ?':''),
 				isset($eventId)?array($userId, $eventId):$userId
 		);

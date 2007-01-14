@@ -44,24 +44,19 @@ class AuthorHandler extends Handler {
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign_by_ref('submissions', $submissions);
 
-		$submissionState = $event->getSubmissionState();
+		$submissionsOpenDate = $event->getSetting('proposalsOpenDate', false);
+		$submissionsCloseDate = $event->getSetting('proposalsCloseDate', false);
 
-		switch($submissionState) {
-
-			case SUBMISSION_STATE_NOTYET:
-				// Too soon
-				$acceptingSubmissions = false;
-				$notAcceptingSubmissionsMessage = Locale::translate('author.submit.notAcceptingYet');
-				break;
-
-			case SUBMISSION_STATE_ACCEPT:
-				$acceptingSubmissions = true;
-				break;
-
-			case SUBMISSION_STATE_CLOSED:
-					$acceptingSubmissions = false;
-					$notAcceptingSubmissionsMessage = Locale::translate('author.submit.submissionDeadlinePassed');
-				break;
+		if(!$submissionsOpenDate || !$submissionsCloseDate || time() < $submissionsOpenDate) {
+			// Too soon
+			$acceptingSubmissions = false;
+			$notAcceptingSubmissionsMessage = Locale::translate('author.submit.notAcceptingYet');
+		} elseif (time() > $submissionsCloseDate) {
+			// Too late
+			$acceptingSubmissions = false;
+			$notAcceptingSubmissionsMessage = Locale::translate('author.submit.submissionDeadlinePassed');
+		} else {
+			$acceptingSubmissions = true;
 		}
 				
 		$templateMgr->assign('acceptingSubmissions', $acceptingSubmissions);
@@ -75,26 +70,14 @@ class AuthorHandler extends Handler {
 	 * Validate that user has author permissions in the selected conference and
 	 * event. Redirects to login page if not properly authenticated.
 	 */
-	function validate() {
+	function validate($reason = null) {
 		parent::validate();
 
 		$conference = &Request::getConference();
 		$event = &Request::getEvent();
 
-		if (!isset($conference) || !isset($event)) {
-			Request::redirect(null, null, 'about');
-		}
-
-		if(!Validation::isAuthor($conference->getConferenceId(), $event->getEventId())) {
-
-			// If the user isn't an author here, but we'll allow authors to sign up,
-			// be graceful and give an opportunity to enrol.
-			if (Validation::isLoggedIn() && $event->getAllowRegAuthor()) {
-				Request::redirect(null, null, 'user', 'register', null,
-					array('existingUser' => 1, 'registrationMessage' => 'user.register.authorRegistrationMessage'));
-			} else {
-				Validation::redirectLogin();
-			}
+		if (!$conference || !$event || !Validation::isAuthor($conference->getConferenceId(), $event->getEventId())) {
+			Validation::redirectLogin($reason);
 		}
 
 		return array(&$conference, &$event);
@@ -259,6 +242,16 @@ class AuthorHandler extends Handler {
 		SubmissionCommentsHandler::emailEditorDecisionComment();
 	}
 
+	function viewLayoutComments($args) {
+		import('pages.author.SubmissionCommentsHandler');
+		SubmissionCommentsHandler::viewLayoutComments($args);
+	}
+
+	function postLayoutComment() {
+		import('pages.author.SubmissionCommentsHandler');
+		SubmissionCommentsHandler::postLayoutComment();
+	}
+	
 	function editComment($args) {
 		import('pages.author.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::editComment($args);

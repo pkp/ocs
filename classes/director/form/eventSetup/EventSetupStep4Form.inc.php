@@ -21,12 +21,8 @@ class EventSetupStep4Form extends EventSetupForm {
 		parent::EventSetupForm(
 			4,
 			array(
-				'openRegReader' => 'bool',
-				'openRegReaderDate' => 'date',
-				'closeRegReader' => 'bool',
-				'closeRegReaderDate' => 'date',
-				'openAccessPolicy' => 'string',
 				'enableRegistration' => 'bool',
+				'openAccessPolicy' => 'string',
 				'registrationName' => 'string',
 				'registrationEmail' => 'string',
 				'registrationPhone' => 'string',
@@ -36,11 +32,33 @@ class EventSetupStep4Form extends EventSetupForm {
 		);
 	}
 
+	function initData() {
+		parent::initData();
+
+		$event = &Request::getEvent();
+
+		$this->_data['requireRegReader'] = !$event->getSetting('openAccessVisitor', false);
+	}
+
 	function readInputData() {
 		parent::readInputData();
+		
+		if($this->_data['enableRegistration']) {
+			$this->_data['openAccessReader'] = false;
+			$this->_data['openAccessVisitor'] = false;
+		} else {
+			$this->_data['openAccessReader'] = true;
+			$this->_data['openAccessVisitor'] = !Request::getUserVar('requireRegReader');
+		}
+	}
 
-		$this->_data['openRegReaderDate'] = Request::getUserDateVar('openRegReaderDate');
-		$this->_data['closeRegReaderDate'] = Request::getUserDateVar('closeRegReaderDate');
+	function execute() {
+		$event = Request::getEvent();
+
+		$event->updateSetting('openAccessReader', $this->_data['openAccessReader'], 'bool');
+		$event->updateSetting('openAccessVisitor', $this->_data['openAccessVisitor'], 'bool');
+
+		parent::execute();
 	}
 }
 

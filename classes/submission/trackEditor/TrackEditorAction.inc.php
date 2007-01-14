@@ -42,19 +42,6 @@ class TrackEditorAction extends Action {
 	}
 	 
 	/**
-	 * Changes the secondary track of a paper.
-	 * @param $trackEditorSubmission int
-	 * @param $trackId int
-	 */
-	function changeSecondaryTrack($trackEditorSubmission, $trackId) {
-		if (!HookRegistry::call('TrackEditorAction::changeSecondaryTrack', array(&$trackEditorSubmission, $trackId))) {
-			$trackEditorSubmissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');
-			$trackEditorSubmission->setSecondaryTrackId($trackId);
-			$trackEditorSubmissionDao->updateTrackEditorSubmission($trackEditorSubmission);
-		}
-	}
-	 
-	/**
 	 * Records an editor's submission decision.
 	 * @param $trackEditorSubmission object
 	 * @param $decision int
@@ -90,6 +77,10 @@ class TrackEditorAction extends Action {
 			import('paper.log.PaperEventLogEntry');
 			PaperLog::logEvent($trackEditorSubmission->getPaperId(), PAPER_LOG_EDITOR_DECISION, LOG_TYPE_EDITOR, $user->getUserId(), 'log.editor.decision', array('editorName' => $user->getFullName(), 'paperId' => $trackEditorSubmission->getPaperId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
+		
+		if($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+			TrackEditorAction::completeReview($trackEditorSubmission);
+		}
 	}
 	
 	/**
@@ -100,135 +91,69 @@ class TrackEditorAction extends Action {
 	 * @param $trackEditorSubmission object
 	 * @param $decision int
 	 */
-	function completeReview($event, $trackEditorSubmission) {
-
-		$decisions = $trackEditorSubmission->getDecisions(null, null);
-		$decision = array_pop(array_pop($decisions));
+	function completeReview($trackEditorSubmission) {
+		$event =& Request::getEvent();
 		
-		if ($decision == SUBMISSION_EDITOR_DECISION_DECLINE) {
+		if($event->getCollectPapersWithAbstracts() ||
+				!$event->getAcceptPapers()) {
 
-			$trackEditorSubmission->setStatus(SUBMISSION_STATUS_DECLINED);
+			// Only one review was necessary; the submission is complete.
+			$trackEditorSubmission->setReviewProgress(REVIEW_PROGRESS_COMPLETE);
+			$trackEditorSubmission->setStatus(SUBMISSION_STATUS_PUBLISHED);
 
 		} else {
+			// two-stage submission; paper required
+			// The submission is incomplete, and needs the author to submit
+			// more materials (potentially for another round of reviews)
 
-			if($event->getCollectPapersWithAbstracts() ||
-				!$event->getAcceptPapers()) {
-			
-				// Only one review was necessary; the submission is complete.
-				$trackEditorSubmission->setReviewProgress(REVIEW_PROGRESS_COMPLETE);
-				$trackEditorSubmission->setStatus(SUBMISSION_STATUS_ACCEPTED);
+			if($trackEditorSubmission->getReviewProgress() == REVIEW_PROGRESS_ABSTRACT) {
 
-			} else { // two-stage submission; paper required
-		
-				// The submission is incomplete, and needs the author to submit
-				// more materials (potentially for another round of reviews)
-			
-				if($trackEditorSubmission->getReviewProgress() == REVIEW_PROGRESS_ABSTRACT) {
+				$oldRound = $trackEditorSubmission->getCurrentRound();
 
-					$oldRound = $trackEditorSubmission->getCurrentRound();
-				
-					// We've just completed reviewing the abstract. If the paper needs
-					// a separate review progress, flag it as such and move it back
-					// to review round 1.
-					if($event->getReviewPapers()) {
-						$trackEditorSubmission->setReviewProgress(REVIEW_PROGRESS_PAPER);
-						$trackEditorSubmission->setCurrentRound(1);
-					} else {
-						$trackEditorSubmission->setReviewProgress(REVIEW_PROGRESS_COMPLETE);
-					}
-
-					// The paper itself needs to be collected. Flag it so the author
-					// may complete it.
-					$trackEditorSubmission->setSubmissionProgress(3);
-					
-					// TODO: notify the author the submission must be completed.
-					// Q: should the editor be given this option explicitly?
-
-					// Now, reassign all reviewers that submitted a review for the last
-					// round of reviews.
-					foreach ($trackEditorSubmission->getReviewAssignments(REVIEW_PROGRESS_ABSTRACT, $oldRound) as $reviewAssignment) {
-						if ($reviewAssignment->getRecommendation() != null) {
-							// This reviewer submitted a review; reassign them
-							TrackEditorAction::addReviewer($trackEditorSubmission, $reviewAssignment->getReviewerId(), REVIEW_PROGRESS_PAPER, 1);
-						}
-					}
-					
-				} else { // REVIEW_PROGRESS_PAPER
-
-					// Mark the review as complete
+				// We've just completed reviewing the abstract. If the paper needs
+				// a separate review progress, flag it as such and move it back
+				// to review round 1.
+				if($event->getReviewPapers()) {
+					$trackEditorSubmission->setReviewProgress(REVIEW_PROGRESS_PAPER);
+					$trackEditorSubmission->setCurrentRound(1);
+				} else {
 					$trackEditorSubmission->setReviewProgress(REVIEW_PROGRESS_COMPLETE);
-					$trackEditorSubmission->setStatus(SUBMISSION_STATUS_ACCEPTED);
-
-					// TODO: log? notify authors?
-					
 				}
-			}
-		
-			$trackEditorSubmissionDao =& DAORegistry::getDao('TrackEditorSubmissionDAO');
-			$trackEditorSubmissionDao->updateTrackEditorSubmission($trackEditorSubmission);
-		}
 
-		// If the review is complete, regardless of the review model, we need
-		// to create a galley object with the submission and/or abstract.
-		
-		if($trackEditorSubmission->getStatus() == SUBMISSION_STATUS_ACCEPTED &&
-				$trackEditorSubmission->getReviewProgress() == REVIEW_PROGRESS_COMPLETE) {
+				// The paper itself needs to be collected. Flag it so the author
+				// may complete it.
+				$trackEditorSubmission->setSubmissionProgress(3);
 
-			// The paper has been accepted... create a PublishedPaper object for it.
+				// TODO: notify the author the submission must be completed.
+				// Q: should the editor be given this option explicitly?
 
-			// This code is from OJS2's EditorHandler.inc.php. The remarks there about
-			// bug #2111 apply here as well.
-			
-			$paperId = $trackEditorSubmission->getPaperId();
-			
-			$publishedPaperDao = &DAORegistry::getDao('PublishedPaperDAO');
-			$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId);
-			if (!$publishedPaper) {
-				$publishedPaper = &new PublishedPaper();
-			}
-			$publishedPaper->setPaperId($paperId);
-			$publishedPaper->setEventId($event->getEventId());
-			$publishedPaper->setDatePublished(Core::getCurrentDate());
-			$publishedPaper->setSeq(0);
-			$publishedPaper->setViews(0);
-			$publishedPaper->setAccessStatus(0);
+				// Now, reassign all reviewers that submitted a review for the last
+				// round of reviews.
+				foreach ($trackEditorSubmission->getReviewAssignments(REVIEW_PROGRESS_ABSTRACT, $oldRound) as $reviewAssignment) {
+					if ($reviewAssignment->getRecommendation() != null) {
+						// This reviewer submitted a review; reassign them
+						TrackEditorAction::addReviewer($trackEditorSubmission, $reviewAssignment->getReviewerId(), REVIEW_PROGRESS_PAPER, 1);
+					}
+				}
 
-			// See above note on bug #2111.
-			if ($publishedPaper->getPubId()) {
-				$publishedPaperDao->updatePublishedPaper($publishedPaper);
-			} else {
-				$publishedPaperDao->insertPublishedPaper($publishedPaper);
-			}
-			
-			if ($trackEditorSubmission->getEditorFileId()) {
+			} else { // REVIEW_PROGRESS_PAPER
 
-				// If a submission file exists, create a galley for it.
-				$paperGalleyDao = &DAORegistry::getDao('PaperGalleyDAO');
-				$paperFileDao = &DAORegistry::getDao('PaperFileDAO');
+				// Mark the review as complete
+				$trackEditorSubmission->setReviewProgress(REVIEW_PROGRESS_COMPLETE);
+				$trackEditorSubmission->setStatus(SUBMISSION_STATUS_PUBLISHED);
 
-				// Create new galley for the submission
-				$fileId = $trackEditorSubmission->getEditorFileId();
-				$file = $paperFileDao->getPaperFile($fileId);
-			
-				$galley = &new PaperGalley();
+				// TODO: log? notify authors?
 
-				$galley->setPaperId($trackEditorSubmission->getPaperId());
-				$galley->setFileId($fileId);
-				$galley->setLabel($file->getFileType());
-
-				// Insert new galley
-				$galleyId = $paperGalleyDao->insertGalley($galley);
-				$galley->setGalleyId($galleyId);
 			}
 		}
+
+		$trackEditorSubmissionDao =& DAORegistry::getDao('TrackEditorSubmissionDAO');
+		$trackEditorSubmissionDao->updateTrackEditorSubmission($trackEditorSubmission);
+		$trackEditorSubmission->stampStatusModified();
 
 		// Commit the paper changes
-		$trackEditorSubmission->stampStatusModified();
 		$paperDao = &DAORegistry::getDao('PaperDAO');
 		$paperDao->updatePaper($trackEditorSubmission);
-
-		// TODO log!
-
 	}
 	
 	/**
@@ -569,62 +494,6 @@ class TrackEditorAction extends Action {
 	}
 	
 	/**
-	 * Acknowledges that a review is now underway.
-	 * @param $trackEditorSubmission object
-	 * @param $reviewId int
-	 * @return boolean true iff no error was encountered
-	 */
-	function acknowledgeReviewerUnderway($trackEditorSubmission, $reviewId, $send = false) {
-		$trackEditorSubmissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-			
-		$conference = &Request::getConference();
-		$user = &Request::getUser();
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-
-		import('mail.PaperMailTemplate');
-		$email = &new PaperMailTemplate($trackEditorSubmission, 'REVIEW_CONFIRM_ACK');
-
-		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('TrackEditorAction::acknowledgeReviewerUnderway', array(&$trackEditorSubmission, &$reviewAssignment, &$email));
-			$email->setAssoc(PAPER_EMAIL_REVIEW_CONFIRM_ACK, PAPER_EMAIL_TYPE_REVIEW, $reviewId);
-
-			$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
-
-			if ($email->isEnabled()) $email->send();
-			return true;
-		} elseif ($reviewAssignment->getPaperId() == $trackEditorSubmission->getPaperId()) {
-			$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
-		
-			if (!Request::getUserVar('continued')) {
-				if (!isset($reviewer)) return true;
-				$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
-
-				$submissionUrl = Request::url(null, null, 'reviewer', 'submission', $reviewId);
-				
-				$paramArray = array(
-					'reviewerName' => $reviewer->getFullName(),
-					'reviewDueDate' => date('Y-m-d', strtotime($reviewAssignment->getDateDue())),
-					'editorialContactSignature' => $user->getContactSignature()
-				);
-				$email->assignParams($paramArray);
-	
-			}
-			$email->displayEditForm(
-				Request::url(null, null, null, 'acknowledgeReviewerUnderway', 'send'),
-				array(
-					'reviewerId' => $reviewer->getUserId(),
-					'paperId' => $trackEditorSubmission->getPaperId(),
-					'reviewId' => $reviewId
-				)
-			);
-			return false;
-		}
-		return true;
-	}
-	
-	/**
 	 * Thanks a reviewer for completing a review assignment.
 	 * @param $trackEditorSubmission object
 	 * @param $reviewId int
@@ -891,6 +760,65 @@ class TrackEditorAction extends Action {
 	}	 
 	 
 	/**
+	 * Resubmit the file for review.
+	 * @param $trackEditorSubmission object
+	 * @param $fileId int
+	 * @param $revision int
+	 * TODO: SECURITY!
+	 */
+	function resubmitFile($trackEditorSubmission, $fileId, $revision) {
+		import('file.PaperFileManager');
+		$paperFileManager = &new PaperFileManager($trackEditorSubmission->getPaperId());
+		$trackEditorSubmissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');
+		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$user = &Request::getUser();
+		
+		if (!HookRegistry::call('TrackEditorAction::resubmitFile', array(&$trackEditorSubmission, &$fileId, &$revision))) {
+			// Increment the round
+			$currentRound = $trackEditorSubmission->getCurrentRound();
+			$trackEditorSubmission->setCurrentRound($currentRound + 1);
+			$trackEditorSubmission->stampStatusModified();
+		
+			// Copy the file from the editor decision file folder to the review file folder
+			$newFileId = $paperFileManager->copyToReviewFile($fileId, $revision, $trackEditorSubmission->getReviewFileId());
+			$newReviewFile = $paperFileDao->getPaperFile($newFileId);
+			$newReviewFile->setRound($trackEditorSubmission->getCurrentRound());
+			$paperFileDao->updatePaperFile($newReviewFile);
+
+			// Copy the file from the editor decision file folder to the next-round editor file
+			// $editorFileId may or may not be null after assignment
+			$editorFileId = $trackEditorSubmission->getEditorFileId() != null ? $trackEditorSubmission->getEditorFileId() : null;
+
+			// $editorFileId definitely will not be null after assignment
+			$editorFileId = $paperFileManager->copyToEditorFile($newFileId, null, $editorFileId);
+			$newEditorFile = $paperFileDao->getPaperFile($editorFileId);
+			$newEditorFile->setRound($trackEditorSubmission->getCurrentRound());
+			$paperFileDao->updatePaperFile($newEditorFile);
+
+			// The review revision is the highest revision for the review file.
+			$reviewRevision = $paperFileDao->getRevisionNumber($newFileId);
+			$trackEditorSubmission->setReviewRevision($reviewRevision);
+		
+			$trackEditorSubmissionDao->updateTrackEditorSubmission($trackEditorSubmission);
+
+			// Now, reassign all reviewers that submitted a review for this new round of reviews.
+			$previousRound = $trackEditorSubmission->getCurrentRound() - 1;
+			foreach ($trackEditorSubmission->getReviewAssignments($previousRound) as $reviewAssignment) {
+				if ($reviewAssignment->getRecommendation() != null) {
+					// Then this reviewer submitted a review.
+					TrackEditorAction::addReviewer($trackEditorSubmission, $reviewAssignment->getReviewerId(), $trackEditorSubmission->getCurrentRound());
+				}
+			}
+		
+		
+			// Add log
+			import('paper.log.PaperLog');
+			import('paper.log.PaperEventLogEntry');
+			PaperLog::logEvent($trackEditorSubmission->getPaperId(), ARTICLE_LOG_REVIEW_RESUBMIT, ARTICLE_LOG_TYPE_EDITOR, $user->getUserId(), 'log.review.resubmit', array('paperId' => $trackEditorSubmission->getPaperId()));
+		}
+	}
+	
+	/**
 	 * Upload the review version of an paper.
 	 * @param $trackEditorSubmission object
 	 */
@@ -944,6 +872,48 @@ class TrackEditorAction extends Action {
 
 			$trackEditorSubmissionDao->updateTrackEditorSubmission($trackEditorSubmission);
 			
+			// Set initial layout version to final copyedit version
+			$layoutDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
+			$layoutAssignment = &$layoutDao->getLayoutAssignmentByPaperId($trackEditorSubmission->getPaperId());
+
+			if (isset($layoutAssignment) && !$layoutAssignment->getLayoutFileId()) {
+				import('file.PaperFileManager');
+				$paperFileManager = &new PaperFileManager($trackEditorSubmission->getPaperId());
+				if ($layoutFileId = $paperFileManager->copyToLayoutFile($fileId)) {
+					$layoutAssignment->setLayoutFileId($layoutFileId);
+					$layoutDao->updateLayoutAssignment($layoutAssignment);
+				}
+			}
+		
+			// Add a publishedpaper object
+			$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+			if(($publishedPaper = $publishedPaperDao->getPublishedPaperByPaperId($trackEditorSubmission->getPaperId())) == null) {
+				$eventId = $trackEditorSubmission->getEventId();
+
+				$publishedPaper =& new PublishedPaper();
+				$publishedPaper->setPaperId($trackEditorSubmission->getPaperId());
+				$publishedPaper->setEventId($eventId);
+				$publishedPaper->setDatePublished(Core::getCurrentDate());
+				$publishedPaper->setSeq(100000); // KLUDGE: End of list
+				$publishedPaper->setViews(0);
+				$publishedPaper->setAccessStatus(0);
+
+				$publishedPaperDao->insertPublishedPaper($publishedPaper);
+
+				// Resequence the papers.
+				$publishedPaperDao->resequencePublishedPapers($trackEditorSubmission->getTrackId(), $eventId);
+
+				// If we're using custom track ordering, and if this is the first
+				// paper published in a track, make sure we enter a custom ordering
+				// for it. (Default at the end of the list.)
+				$trackDao =& DAORegistry::getDAO('TrackDAO');
+				if ($trackDao->customTrackOrderingExists($eventId)) {
+					if ($trackDao->getCustomTrackOrder($eventId, $submission->getTrackId()) === null) {
+						$trackDao->insertCustomTrackOrder($eventId, $submission->getTrackId(), 10000); // KLUDGE: End of list
+						$trackDao->resequenceCustomTrackOrders($eventId);
+					}
+				}
+			}		
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
@@ -981,6 +951,17 @@ class TrackEditorAction extends Action {
 
 		$trackEditorSubmissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');
 
+		// Determine which queue to return the paper to: the
+		// scheduling queue or the editing queue.
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($trackEditorSubmission->getPaperId());
+		if ($publishedPaper) {
+			$trackEditorSubmission->setStatus(SUBMISSION_STATUS_PUBLISHED);
+		} else {
+			$trackEditorSubmission->setStatus(SUBMISSION_STATUS_QUEUED);
+		}
+		unset($publishedPaper);
+
 		$trackEditorSubmission->stampStatusModified();
 		
 		$trackEditorSubmissionDao->updateTrackEditorSubmission($trackEditorSubmission);
@@ -991,32 +972,150 @@ class TrackEditorAction extends Action {
 		PaperLog::logEvent($trackEditorSubmission->getPaperId(), PAPER_LOG_EDITOR_RESTORE, LOG_TYPE_EDITOR, $trackEditorSubmission->getPaperId(), 'log.editor.restored', array('paperId' => $trackEditorSubmission->getPaperId()));
 	}
 	
+	//
+	// Layout Editing
+	//
+	
 	/**
-	 * Changes the track.
+	 * Upload the layout version of an paper.
 	 * @param $submission object
-	 * @param $trackId int
 	 */
-	function updateTrack($submission, $trackId) {
-		if (HookRegistry::call('TrackEditorAction::updateTrack', array(&$submission, &$trackId))) return;
-
+	function uploadLayoutVersion($submission) {
+		import('file.PaperFileManager');
+		$paperFileManager = &new PaperFileManager($submission->getPaperId());
 		$submissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');
-		$submission->setTrackId($trackId); // FIXME validate this ID?
-		$submissionDao->updateTrackEditorSubmission($submission);
+		
+		$layoutAssignment = &$submission->getLayoutAssignment();
+		
+		$fileName = 'layoutFile';
+		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackEditorAction::uploadLayoutVersion', array(&$submission, &$layoutAssignment))) {
+			$layoutFileId = $paperFileManager->uploadLayoutFile($fileName, $layoutAssignment->getLayoutFileId());
+		
+			$layoutAssignment->setLayoutFileId($layoutFileId);
+			$submissionDao->updateTrackEditorSubmission($submission);
+		}
 	}
 	
 	/**
-	 * Changes the secondary track.
+	 * Assign a layout editor to a submission.
 	 * @param $submission object
-	 * @param $trackId int
+	 * @param $editorId int user ID of the new layout editor
 	 */
-	function updateSecondaryTrack($submission, $trackId) {
-		if (HookRegistry::call('TrackEditorAction::updateSecondaryTrack', array(&$submission, &$trackId))) return;
+	function assignLayoutEditor($submission, $editorId) {
+		if (HookRegistry::call('TrackEditorAction::assignLayoutEditor', array(&$submission, &$editorId))) return;
 
-		$submissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');
-		$submission->setSecondaryTrackId($trackId); // FIXME validate this ID?
-		$submissionDao->updateTrackEditorSubmission($submission);
+		$layoutAssignment = &$submission->getLayoutAssignment();
+		
+		import('paper.log.PaperLog');
+		import('paper.log.PaperEventLogEntry');
+
+		if ($layoutAssignment->getEditorId()) {
+			PaperLog::logEvent($submission->getPaperId(), ARTICLE_LOG_LAYOUT_UNASSIGN, ARTICLE_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorUnassigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'paperId' => $submission->getPaperId()));
+		}
+		
+		$layoutAssignment->setEditorId($editorId);
+		$layoutAssignment->setDateNotified(null);
+		$layoutAssignment->setDateUnderway(null);
+		$layoutAssignment->setDateCompleted(null);
+		$layoutAssignment->setDateAcknowledged(null);
+		
+		$layoutDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
+		$layoutDao->updateLayoutAssignment($layoutAssignment);
+		$layoutAssignment =& $layoutDao->getLayoutAssignmentById($layoutAssignment->getLayoutId());
+		
+		PaperLog::logEvent($submission->getPaperId(), ARTICLE_LOG_LAYOUT_ASSIGN, ARTICLE_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorAssigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'paperId' => $submission->getPaperId()));
 	}
 	
+	/**
+	 * Notifies the current layout editor about an assignment.
+	 * @param $submission object
+	 * @param $send boolean
+	 * @return boolean true iff ready for redirect
+	 */
+	function notifyLayoutEditor($submission, $send = false) {
+		$submissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');
+		$userDao = &DAORegistry::getDAO('UserDAO');
+		$user = &Request::getUser();
+		
+		import('mail.PaperMailTemplate');
+		$email = &new PaperMailTemplate($submission, 'LAYOUT_REQUEST');
+		$layoutAssignment = &$submission->getLayoutAssignment();
+		$layoutEditor = &$userDao->getUser($layoutAssignment->getEditorId());
+		if (!isset($layoutEditor)) return true;
+		
+		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
+			HookRegistry::call('TrackEditorAction::notifyLayoutEditor', array(&$submission, &$layoutEditor, &$layoutAssignment, &$email));
+			if ($email->isEnabled()) {
+				$email->setAssoc(ARTICLE_EMAIL_LAYOUT_NOTIFY_EDITOR, ARTICLE_EMAIL_TYPE_LAYOUT, $layoutAssignment->getLayoutId());
+				$email->send();
+			}
+			
+			$layoutAssignment->setDateNotified(Core::getCurrentDate());
+			$layoutAssignment->setDateUnderway(null);
+			$layoutAssignment->setDateCompleted(null);
+			$layoutAssignment->setDateAcknowledged(null);
+			$submissionDao->updateTrackEditorSubmission($submission);
+			
+		} else {
+			if (!Request::getUserVar('continued')) {
+				$email->addRecipient($layoutEditor->getEmail(), $layoutEditor->getFullName());
+				$paramArray = array(
+					'layoutEditorName' => $layoutEditor->getFullName(),
+					'layoutEditorUsername' => $layoutEditor->getUsername(),
+					'editorialContactSignature' => $user->getContactSignature(),
+					'submissionLayoutUrl' => Request::url(null, 'layoutEditor', 'submission', $submission->getPaperId())
+				);
+				$email->assignParams($paramArray);
+			}
+			$email->displayEditForm(Request::url(null, null, 'notifyLayoutEditor', 'send'), array('paperId' => $submission->getPaperId()));
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Sends acknowledgement email to the current layout editor.
+	 * @param $submission object
+	 * @param $send boolean
+	 * @return boolean true iff ready for redirect
+	 */
+	function thankLayoutEditor($submission, $send = false) {
+		$submissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');
+		$userDao = &DAORegistry::getDAO('UserDAO');
+		$user = &Request::getUser();
+		
+		import('mail.PaperMailTemplate');
+		$email = &new PaperMailTemplate($submission, 'LAYOUT_ACK');
+
+		$layoutAssignment = &$submission->getLayoutAssignment();
+		$layoutEditor = &$userDao->getUser($layoutAssignment->getEditorId());
+		if (!isset($layoutEditor)) return true;
+		
+		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
+			HookRegistry::call('TrackEditorAction::thankLayoutEditor', array(&$submission, &$layoutEditor, &$layoutAssignment, &$email));
+			if ($email->isEnabled()) {
+				$email->setAssoc(ARTICLE_EMAIL_LAYOUT_THANK_EDITOR, ARTICLE_EMAIL_TYPE_LAYOUT, $layoutAssignment->getLayoutId());
+				$email->send();
+			}
+			
+			$layoutAssignment->setDateAcknowledged(Core::getCurrentDate());
+			$submissionDao->updateTrackEditorSubmission($submission);
+			
+		} else {
+			if (!Request::getUserVar('continued')) {
+				$email->addRecipient($layoutEditor->getEmail(), $layoutEditor->getFullName());
+				$paramArray = array(
+					'layoutEditorName' => $layoutEditor->getFullName(),
+					'editorialContactSignature' => $user->getContactSignature()
+				);
+				$email->assignParams($paramArray);
+			}
+			$email->displayEditForm(Request::url(null, null, 'thankLayoutEditor', 'send'), array('paperId' => $submission->getPaperId()));
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * Change the sequence order of a galley.
 	 * @param $paper object
@@ -1075,6 +1174,28 @@ class TrackEditorAction extends Action {
 		}
 	}
 
+	/**
+	 * Delete an image from an paper galley.
+	 * @param $submission object
+	 * @param $fileId int
+	 * @param $revision int (optional)
+	 */
+	function deletePaperImage($submission, $fileId, $revision) {
+		import('file.PaperFileManager');
+		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		if (HookRegistry::call('TrackEditorAction::deletePaperImage', array(&$submission, &$fileId, &$revision))) return;
+		foreach ($submission->getGalleys() as $galley) {
+			$images =& $paperGalleyDao->getGalleyImages($galley->getGalleyId());
+			foreach ($images as $imageFile) {
+				if ($imageFile->getPaperId() == $submission->getPaperId() && $fileId == $imageFile->getFileId() && $imageFile->getRevision() == $revision) {
+					$paperFileManager = &new PaperFileManager($submission->getPaperId());
+					$paperFileManager->deleteFile($imageFile->getFileId(), $imageFile->getRevision());
+				}
+			}
+			unset($images);
+		}
+	}
+	
 	/**
 	 * Add Submission Note
 	 * @param $paperId int
@@ -1235,9 +1356,10 @@ class TrackEditorAction extends Action {
 			}
 			
 		} else {
-			parent::setupTemplate(true);
 			$commentForm->display();
+			return true;
 		}
+		return false;
 	}
 	
 	/**
@@ -1274,9 +1396,10 @@ class TrackEditorAction extends Action {
 				$commentForm->email();
 			}
 		} else {
-			parent::setupTemplate(true);
 			$commentForm->display();
+			return true;
 		}
+		return false;
 	}
 	
 	/**
@@ -1339,7 +1462,9 @@ class TrackEditorAction extends Action {
 							}
 							$body .= "------------------------------------------------------\n\n";
 						}
-					$email->setBody($body);
+					$oldBody = $email->getBody();
+					if (!empty($oldBody)) $oldBody .= "\n";
+					$email->setBody($oldBody . $body);
 					}
 				}
 			}
@@ -1403,18 +1528,57 @@ class TrackEditorAction extends Action {
 	}
 	
 	/**
+	 * View layout comments.
+	 * @param $paper object
+	 */
+	function viewLayoutComments($paper) {
+		if (HookRegistry::call('TrackEditorAction::viewLayoutComments', array(&$paper))) return;
+
+		import('submission.form.comment.LayoutCommentForm');
+		
+		$commentForm = &new LayoutCommentForm($paper, ROLE_ID_EDITOR);
+		$commentForm->initData();
+		$commentForm->display();
+	}
+	
+	/**
+	 * Post layout comment.
+	 * @param $paper object
+	 * @param $emailComment boolean
+	 */
+	function postLayoutComment($paper, $emailComment) {
+		if (HookRegistry::call('TrackEditorAction::postLayoutComment', array(&$paper, &$emailComment))) return;
+
+		import('submission.form.comment.LayoutCommentForm');
+		
+		$commentForm = &new LayoutCommentForm($paper, ROLE_ID_EDITOR);
+		$commentForm->readInputData();
+		
+		if ($commentForm->validate()) {
+			$commentForm->execute();
+			
+			if ($emailComment) {
+				$commentForm->email();
+			}
+			
+		} else {
+			$commentForm->display();
+			return false;
+		}
+		return true;
+	}	/**
 	 * Accepts the review assignment on behalf of its reviewer.
 	 * @param $reviewId int
 	 */
-	function acceptReviewForReviewer($reviewId) {
+	function confirmReviewForReviewer($reviewId) {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
-                $user = &Request::getUser();
+		$user = &Request::getUser();
 
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId(), true);
 		
-		if (HookRegistry::call('TrackEditorAction::acceptReviewForReviewer', array(&$reviewAssignment, &$reviewer))) return;
+		if (HookRegistry::call('TrackEditorAction::confirmReviewForReviewer', array(&$reviewAssignment, &$reviewer))) return;
 
 		// Only confirm the review for the reviewer if 
 		// he has not previously done so.
@@ -1448,7 +1612,7 @@ class TrackEditorAction extends Action {
 	function uploadReviewForReviewer($reviewId) {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
-                $user = &Request::getUser();
+		$user = &Request::getUser();
 
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId(), true);

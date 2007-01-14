@@ -9,6 +9,8 @@
  * $Id$
  *}
 
+<a name="submissions"></a>
+
 <table width="100%" class="listing">
 	<tr>
 		<td colspan="6" class="headseparator">&nbsp;</td>
@@ -28,7 +30,6 @@
 	{iterate from=submissions item=submission}
 	{assign var="paperId" value=$submission->getPaperId()}
 	{assign var="layoutAssignment" value=$submission->getLayoutAssignment()}
-	{assign var="proofAssignment" value=$submission->getProofAssignment()}
 	<tr valign="top">
 		<td>{$paperId}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatShort}</td>
@@ -39,8 +40,8 @@
 			{assign var="status" value=$submission->getStatus()}
 			{if $status == SUBMISSION_STATUS_ARCHIVED}
 				{translate key="submissions.archived"}&nbsp;&nbsp;<a href="{url op="deleteSubmission" path=$paperId}" onclick="return confirm('{translate|escape:"javascript" key="editor.submissionArchive.confirmDelete"}')" class="action">{translate key="common.delete"}</a>
-			{elseif $status == SUBMISSION_STATUS_ACCEPTED}
-				{translate key="submissions.accepted"}
+			{elseif $status == SUBMISSION_STATUS_PUBLISHED}
+				{translate key="submissions.published"}
 			{elseif $status == SUBMISSION_STATUS_DECLINED}
 				{translate key="submissions.declined"}&nbsp;&nbsp;<a href="{url op="deleteSubmission" path=$paperId}" onclick="return confirm('{translate|escape:"javascript" key="editor.submissionArchive.confirmDelete"}')" class="action">{translate key="common.delete"}</a>
 			{/if}
@@ -60,7 +61,7 @@
 {else}
 	<tr>
 		<td colspan="4" align="left">{page_info iterator=$submissions}</td>
-		<td colspan="2" align="right">{page_links name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth track=$track}</td>
+		<td colspan="2" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth track=$track}</td>
 	</tr>
 {/if}
 </table>

@@ -77,7 +77,7 @@ class IncompleteSubmissionsTask extends ScheduledTask {
 				$event = $eventDao->getEvent($eventId);
 				$conference = &$event->getConference();
 			}
-			
+/*			
 			// Check hard deadlines and reminder dates
 			if(isset($event) && isset($conference)) {
 				$reviewModel = $event->getReviewModel();
@@ -85,7 +85,7 @@ class IncompleteSubmissionsTask extends ScheduledTask {
 				$paperReminderEnabled = $event->getAutoRemindAuthors();
 				$paperReminderDays = $event->getAutoRemindAuthorsDays();
 
-				$dueDate = $event->getPaperDueDate();
+				$dueDate = $event->getSetting('submissionsCloseDate');
 				$reminderDate = strtotime("-" . (int) $paperReminderDays . " days", $dueDate);
 
 				// If paper reminder is overdue...
@@ -104,7 +104,7 @@ class IncompleteSubmissionsTask extends ScheduledTask {
 					$incompleteSubmission->setStatus(SUBMISSION_STATUS_EXPIRED);
 					$paperDao->updatePaper($incompleteSubmission);
 				}
-			}
+			}*/
 		}
 	}
 }

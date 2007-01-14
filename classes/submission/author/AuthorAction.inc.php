@@ -42,10 +42,8 @@ class AuthorAction extends Action {
 			$submissionFile =& $authorSubmission->getSubmissionFile();
 			if ($submissionFile) {
 				$reviewFileId = $paperFileManager->copyToReviewFile($submissionFile->getFileId());
-				$editorFileId = $paperFileManager->copyToEditorFile($reviewFileId, null, null);
 
 				$authorSubmission->setReviewFileId($reviewFileId);
-				$authorSubmission->setEditorFileId($editorFileId);
 			
 				$authorSubmissionDao->updateAuthorSubmission($authorSubmission);
 
@@ -155,9 +153,10 @@ class AuthorAction extends Action {
 				}
 			
 			} else {
-				parent::setupTemplate(true);
 				$commentForm->display();
+				return false;
 			}
+			return true;
 		}
 	}
 	
@@ -230,85 +229,6 @@ class AuthorAction extends Action {
 		}
 	}
 	
-	/**
-	 * View copyedit comments.
-	 * @param $paper object
-	 */
-	function viewCopyeditComments($paper) {
-		if (!HookRegistry::call('AuthorAction::viewCopyeditComments', array(&$paper))) {
-			import("submission.form.comment.CopyeditCommentForm");
-		
-			$commentForm = &new CopyeditCommentForm($paper, ROLE_ID_AUTHOR);
-			$commentForm->initData();
-			$commentForm->display();
-		}
-	}
-	
-	/**
-	 * Post copyedit comment.
-	 * @param $paper object
-	 */
-	function postCopyeditComment($paper, $emailComment) {
-		if (!HookRegistry::call('AuthorAction::postCopyeditComment', array(&$paper, &$emailComment))) {
-			import("submission.form.comment.CopyeditCommentForm");
-		
-			$commentForm = &new CopyeditCommentForm($paper, ROLE_ID_AUTHOR);
-			$commentForm->readInputData();
-		
-			if ($commentForm->validate()) {
-				$commentForm->execute();
-			
-				if ($emailComment) {
-					$commentForm->email();
-				}
-			
-			} else {
-				parent::setupTemplate(true);
-				$commentForm->display();
-			}
-		}
-	}
-
-	/**
-	 * View proofread comments.
-	 * @param $paper object
-	 */
-	function viewProofreadComments($paper) {
-		if (!HookRegistry::call('AuthorAction::viewProofreadComments', array(&$paper))) {
-			import("submission.form.comment.ProofreadCommentForm");
-		
-			$commentForm = &new ProofreadCommentForm($paper, ROLE_ID_AUTHOR);
-			$commentForm->initData();
-			$commentForm->display();
-		}
-	}
-	
-	/**
-	 * Post proofread comment.
-	 * @param $paper object
-	 * @param $emailComment boolean
-	 */
-	function postProofreadComment($paper, $emailComment) {
-		if (!HookRegistry::call('AuthorAction::postProofreadComment', array(&$paper, &$emailComment))) {
-			import("submission.form.comment.ProofreadCommentForm");
-		
-			$commentForm = &new ProofreadCommentForm($paper, ROLE_ID_AUTHOR);
-			$commentForm->readInputData();
-		
-			if ($commentForm->validate()) {
-				$commentForm->execute();
-			
-				if ($emailComment) {
-					$commentForm->email();
-				}
-			
-			} else {
-				parent::setupTemplate(true);
-				$commentForm->display();
-			}
-		}
-	}
-	
 	//
 	// Misc
 	//
@@ -342,6 +262,8 @@ class AuthorAction extends Action {
 		if ($submission->getSubmissionFileId() == $fileId) {
 			$canDownload = true;
 		} else if ($submission->getRevisedFileId() == $fileId) {
+			$canDownload = true;
+		} else if ($layoutAssignment->getLayoutFileId() == $fileId) {
 			$canDownload = true;
 		} else {
 			// Check reviewer files

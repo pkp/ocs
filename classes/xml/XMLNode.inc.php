@@ -159,10 +159,12 @@ class XMLNode {
 		if ($this->parent === null) {
 			// This is the root node. Output information about the document.
 			$out .= "<?xml version=\"" . $this->getAttribute('version') . "\" encoding=\"UTF-8\"?>\n";
-			if ($this->getAttribute('url') != '') {
-				$out .= "<!DOCTYPE " . $this->getAttribute('type') . " PUBLIC \"" . $this->getAttribute('dtd') . "\" \"" . $this->getAttribute('url') . "\">";
-			} else {
-				$out .= "<!DOCTYPE " . $this->getAttribute('type') . " SYSTEM \"" . $this->getAttribute('dtd') . "\">";
+			if ($this->getAttribute('type') != '') {
+				if ($this->getAttribute('url') != '') {
+					$out .= "<!DOCTYPE " . $this->getAttribute('type') . " PUBLIC \"" . $this->getAttribute('dtd') . "\" \"" . $this->getAttribute('url') . "\">";
+				} else {
+					$out .= "<!DOCTYPE " . $this->getAttribute('type') . " SYSTEM \"" . $this->getAttribute('dtd') . "\">";
+				}
 			}
 		}
 
@@ -193,16 +195,7 @@ class XMLNode {
 	}
 
 	function xmlentities($string, $quote_style=ENT_QUOTES) {
-		// from tmp1000 at fastmail dot deleteme dot fm and duke at redump dot de;
-		// see http://ca3.php.net/htmlentities
-
-		static $trans;
-		if (!isset($trans)) {
-		 	$trans = get_html_translation_table(HTML_ENTITIES, $quote_style);
-		 	foreach ($trans as $key => $value)
-			  	$trans[$key] = '&#'.ord($key).';';
-		}
-		return strtr($string, $trans);
+		return htmlspecialchars($string, $quote_style, 'UTF-8');
 	}
 
 }

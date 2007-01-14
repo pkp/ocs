@@ -9,6 +9,8 @@
  * $Id$
  *}
 
+<a name="submissions"></a>
+
 <table class="listing" width="100%">
 	<tr><td class="headseparator" colspan="6">&nbsp;</td></tr>
 	<tr valign="bottom" class="heading">
@@ -37,9 +39,8 @@
 				{if $submission->getReviewProgress()==REVIEW_PROGRESS_PAPER}{translate key="submissions.queuedPaperReview"}
 				{else}{translate key="submissions.queuedAbstractReview"}
 				{/if}
-			{elseif $status==SUBMISSION_STATUS_ACCEPTED}{translate key="submissions.accepted"}
+			{elseif $status==SUBMISSION_STATUS_PUBLISHED}{translate key="submissions.published"}
 			{elseif $status==SUBMISSION_STATUS_DECLINED}{translate key="submissions.declined"}
-			{elseif $status==SUBMISSION_STATUS_EXPIRED}{translate key="submissions.expired"}
 			{/if}
 		</td>
 	</tr>
@@ -58,7 +59,7 @@
 {else}
 	<tr>
 		<td colspan="4" align="left">{page_info iterator=$submissions}</td>
-		<td colspan="2" align="right">{page_links name="submissions" iterator=$submissions}</td>
+		<td colspan="2" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions}</td>
 	</tr>
 {/if}
 </table>

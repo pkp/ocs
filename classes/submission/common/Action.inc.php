@@ -16,15 +16,18 @@
 /* These constants correspond to editing decision "decision codes". */
 define('SUBMISSION_EDITOR_DECISION_ACCEPT', 1);
 define('SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS', 2);
-define('SUBMISSION_EDITOR_DECISION_DECLINE', 3);
+define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 3);
+define('SUBMISSION_EDITOR_DECISION_DECLINE', 4);
 
 /* These constants are used as search fields for the various submission lists */
 define('SUBMISSION_FIELD_AUTHOR', 1);
 define('SUBMISSION_FIELD_EDITOR', 2);
 define('SUBMISSION_FIELD_TITLE', 3);
 define('SUBMISSION_FIELD_REVIEWER', 4);
+define('SUBMISSION_FIELD_LAYOUTEDITOR', 6);
 
 define('SUBMISSION_FIELD_DATE_SUBMITTED', 5);
+define('SUBMISSION_FIELD_DATE_LAYOUT_COMPLETE', 6);
 
 class Action {
 
@@ -164,6 +167,36 @@ class Action {
 		import('file.PaperFileManager');
 		$paperFileManager = &new PaperFileManager($paperId);
 		return $paperFileManager->viewFile($fileId, $revision);
+	}
+	
+	/**
+	 *
+	 * @param $type string the type of instructions (layout).
+	 */
+	function instructions($type, $allowed = array('layout')) {
+		$event = &Request::getEvent();
+		$templateMgr = &TemplateManager::getManager();
+		
+		if (!HookRegistry::call('Action::instructions', array(&$type, &$allowed))) {
+			if (!in_array($type, $allowed)) {
+				return false;
+			}
+		
+			switch ($type) {
+				case 'layout':
+					$title = 'submission.layout.instructions';
+					$instructions = $event->getSetting('layoutInstructions');
+					break;
+				default:
+					return false;
+			}
+		}
+
+		$templateMgr->assign('pageTitle', $title);
+		$templateMgr->assign('instructions', $instructions);
+		$templateMgr->display('submission/instructions.tpl');
+		
+		return true;
 	}
 	
 	/**

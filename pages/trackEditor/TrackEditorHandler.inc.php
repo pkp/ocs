@@ -51,6 +51,10 @@ class TrackEditorHandler extends Handler {
 				$functionName = 'getTrackEditorSubmissionsInEditing';
 				$helpTopicId = 'editorial.trackEditorsRole.submissions.inEditing';
 				break;
+			case 'submissionsAccepted':
+				$functionName = 'getTrackEditorSubmissionsAccepted';
+				$helpTopicId = 'editorial.trackEditorsRole.submissions.accepted';
+				break;
 			case 'submissionsArchives':
 				$functionName = 'getTrackEditorSubmissionsArchives';
 				$helpTopicId = 'editorial.trackEditorsRole.submissions.archives';
@@ -105,7 +109,8 @@ class TrackEditorHandler extends Handler {
 			SUBMISSION_FIELD_EDITOR => 'user.role.editor'
 		));
 		$templateMgr->assign('dateFieldOptions', Array(
-			SUBMISSION_FIELD_DATE_SUBMITTED => 'submissions.submitted'
+			SUBMISSION_FIELD_DATE_SUBMITTED => 'submissions.submitted',
+			SUBMISSION_FIELD_DATE_LAYOUT_COMPLETE => 'submissions.layoutComplete',
 		));
 
 		$templateMgr->display('trackEditor/index.tpl');
@@ -177,8 +182,8 @@ class TrackEditorHandler extends Handler {
 	 * @param $args (type)
 	 */
 	function instructions($args) {
-		import('submission.trackEditor.TrackEditorAction');
-		if (!isset($args[0]) || !TrackEditorAction::instructions($args[0])) {
+		import('submission.common.Action');
+		if (!isset($args[0]) || !Action::instructions($args[0])) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 	}
@@ -272,11 +277,6 @@ class TrackEditorHandler extends Handler {
 		SubmissionEditHandler::remindReviewer($args);
 	}
 
-	function acknowledgeReviewerUnderway($args) {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::acknowledgeReviewerUnderway($args);
-	}
-
 	function thankReviewer($args) {
 		import('pages.trackEditor.SubmissionEditHandler');
 		SubmissionEditHandler::thankReviewer($args);
@@ -287,9 +287,9 @@ class TrackEditorHandler extends Handler {
 		SubmissionEditHandler::rateReviewer();
 	}
 	
-	function acceptReviewForReviewer($args) {
+	function confirmReviewForReviewer($args) {
 		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::acceptReviewForReviewer($args);
+		SubmissionEditHandler::confirmReviewForReviewer($args);
 	}
 	
 	function uploadReviewForReviewer($args) {
@@ -382,20 +382,40 @@ class TrackEditorHandler extends Handler {
 		SubmissionEditHandler::restoreToQueue($args);
 	}
 	
-	function updateTrack($args) {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::updateTrack($args);
-	}
-
-	function updateSecondaryTrack($args) {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::updateSecondaryTrack($args);
-	}
-	
 	
 	//
 	// Layout Editing
 	//
+	
+	function deleteArticleImage($args) {
+		import('pages.trackEditor.SubmissionEditHandler');
+		SubmissionEditHandler::deleteArticleImage($args);
+	}
+	
+	function uploadLayoutFile() {
+		import('pages.trackEditor.SubmissionEditHandler');
+		SubmissionEditHandler::uploadLayoutFile();
+	}
+	
+	function uploadLayoutVersion() {
+		import('pages.trackEditor.SubmissionEditHandler');
+		SubmissionEditHandler::uploadLayoutVersion();
+	}
+	
+	function assignLayoutEditor($args) {
+		import('pages.trackEditor.SubmissionEditHandler');
+		SubmissionEditHandler::assignLayoutEditor($args);
+	}
+	
+	function notifyLayoutEditor($args) {
+		import('pages.trackEditor.SubmissionEditHandler');
+		SubmissionEditHandler::notifyLayoutEditor($args);
+	}
+	
+	function thankLayoutEditor($args) {
+		import('pages.trackEditor.SubmissionEditHandler');
+		SubmissionEditHandler::thankLayoutEditor($args);
+	}
 	
 	function uploadGalley() {
 		import('pages.trackEditor.SubmissionEditHandler');
@@ -421,6 +441,21 @@ class TrackEditorHandler extends Handler {
 		import('pages.trackEditor.SubmissionEditHandler');
 		SubmissionEditHandler::deleteGalley($args);
 	}
+	
+	function proofGalley($args) {
+		import('pages.trackEditor.SubmissionEditHandler');
+		SubmissionEditHandler::proofGalley($args);
+	}
+	
+	function proofGalleyTop($args) {
+		import('pages.trackEditor.SubmissionEditHandler');
+		SubmissionEditHandler::proofGalleyTop($args);
+	}
+	
+	function proofGalleyFile($args) {
+		import('pages.trackEditor.SubmissionEditHandler');
+		SubmissionEditHandler::proofGalleyFile($args);
+	}	
 	
 	function uploadSuppFile() {
 		import('pages.trackEditor.SubmissionEditHandler');
@@ -551,16 +586,6 @@ class TrackEditorHandler extends Handler {
 		SubmissionCommentsHandler::postLayoutComment();
 	}
 	
-	function viewProofreadComments($args) {
-		import('pages.trackEditor.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::viewProofreadComments($args);
-	}
-	
-	function postProofreadComment() {
-		import('pages.trackEditor.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::postProofreadComment();
-	}
-		
 	function editComment($args) {
 		import('pages.trackEditor.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::editComment($args);
@@ -576,47 +601,7 @@ class TrackEditorHandler extends Handler {
 		SubmissionCommentsHandler::deleteComment($args);
 	}
 	
-	/** Proof Assignment Functions */
-	function selectProofreader($args) {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::selectProofreader($args);
-	}
-
-	function queueForScheduling($args) {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::queueForScheduling($args);
-	}
-
-	function notifyAuthorProofreader($args) {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::notifyAuthorProofreader($args);
-	}
-
-	function thankAuthorProofreader($args) {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::thankAuthorProofreader($args);	
-	}
-
-	function editorInitiateProofreader() {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::editorInitiateProofreader();
-	}
-
-	function editorCompleteProofreader() {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::editorCompleteProofreader();
-	}
-
-	function notifyProofreader($args) {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::notifyProofreader($args);
-	}
-
-	function thankProofreader($args) {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::thankProofreader($args);
-	}
-
+	/** Layout Assignment Functions */
 	function editorInitiateLayoutEditor() {
 		import('pages.trackEditor.SubmissionEditHandler');
 		SubmissionEditHandler::editorInitiateLayoutEditor();
@@ -626,17 +611,6 @@ class TrackEditorHandler extends Handler {
 		import('pages.trackEditor.SubmissionEditHandler');
 		SubmissionEditHandler::editorCompleteLayoutEditor();
 	}
-
-	function notifyLayoutEditorProofreader($args) {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::notifyLayoutEditorProofreader($args);
-	}
-
-	function thankLayoutEditorProofreader($args) {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::thankLayoutEditorProofreader($args);
-	}
-
 }
 
 ?>

@@ -69,9 +69,16 @@ class MailTemplate extends Mail {
 			$emailTemplate = &$emailTemplateDao->getEmailTemplate($this->emailKey, $this->locale, $conference == null ? 0 : $conference->getConferenceId());
 		}
 
+		$userSig = '';
+		$user =& Request::getUser();
+		if ($user) {
+			$userSig = $user->getSignature();
+			if (!empty($userSig)) $userSig = "\n" . $userSig;
+		}
+
 		if (isset($emailTemplate) && Request::getUserVar('subject')==null && Request::getUserVar('body')==null) {
 			$this->setSubject($emailTemplate->getSubject());
-			$this->setBody($emailTemplate->getBody());
+			$this->setBody($emailTemplate->getBody() . $userSig);
 			$this->enabled = $emailTemplate->getEnabled();
 
 			if (Request::getUserVar('usePostedAddresses')) {
@@ -90,7 +97,9 @@ class MailTemplate extends Mail {
 			}
 		} else {
 			$this->setSubject(Request::getUserVar('subject'));
-			$this->setBody(Request::getUserVar('body'));
+			$body = Request::getUserVar('body');
+			if (empty($body)) $this->setBody($userSig);
+			else $this->setBody($body);
 			$this->skip = (($tmp = Request::getUserVar('send')) && is_array($tmp) && isset($tmp['skip']));
 			$this->enabled = true;
 
@@ -112,12 +121,13 @@ class MailTemplate extends Mail {
 		$user = &Request::getUser();
 		if ($user) {
 			$this->setFrom($user->getEmail(), $user->getFullName());
-		} elseif ($conference == null) {
+		} elseif ($event) {
+			$this->setFrom($event->getSetting('contactEmail', true), $event->getSetting('contactName', true));
+		} elseif ($conference) {
+			$this->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
+		} else {
 			$site = &Request::getSite();
 			$this->setFrom($site->getContactEmail(), $site->getContactName());
-			
-		} else {
-			$this->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 		}
 
 		if ($conference && !Request::getUserVar('continued')) {
@@ -285,8 +295,9 @@ class MailTemplate extends Mail {
 	 * Send the email.
 	 * Aside from calling the parent method, this actually attaches
 	 * the persistent attachments if they are used.
+	 * @param $clearAttachments boolean Whether to delete attachments after
 	 */
-	function send() {
+	function send($clearAttachments = true) {
 		$conference = &Request::getConference();
 		$event = &Request::getEvent();
 		
@@ -298,7 +309,7 @@ class MailTemplate extends Mail {
 			$emailSignature = $conference->getSetting('emailSignature');
 		}
 		
-		if (isset($envelopeSender)) {
+		if (isset($emailSignature)) {
 			//If {$templateSignature} exists in the body of the
 			// message, replace it with the conference signature;
 			// otherwise just append it. This is here to
@@ -336,7 +347,7 @@ class MailTemplate extends Mail {
 			$result = parent::send();
 		}
 
-		if ($this->attachmentsEnabled) {
+		if ($clearAttachments && $this->attachmentsEnabled) {
 			$this->_clearAttachments($user->getUserId());
 		}
 
@@ -419,6 +430,11 @@ class MailTemplate extends Mail {
 
 			$this->persistAttachments[] = $temporaryFileManager->handleUpload('newAttachment', $user->getUserId());
 		}
+	}
+
+	function getAttachmentFiles() {
+		if ($this->attachmentsEnabled) return $this->persistAttachments;
+		return array();
 	}
 
 	/**

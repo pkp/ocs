@@ -21,7 +21,7 @@ class EventHandler extends Handler {
 	 * Display event view page.
 	 */
 	function index($args) {
-		list($conference, $event) = parent::validate(true, true);
+		list($conference, $event) = EventHandler::validate(true, true);
 
 		$templateMgr = &TemplateManager::getManager();
 		EventHandler::setupEventTemplate($conference, $event);
@@ -36,7 +36,7 @@ class EventHandler extends Handler {
 	 * Display conference overview page
 	 */
 	function overview() {
-		list($conference, $event) = parent::validate(true, true);
+		list($conference, $event) = EventHandler::validate(true, true);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
@@ -54,7 +54,7 @@ class EventHandler extends Handler {
 	 * Display conference CFP page
 	 */
 	function cfp() {
-		list($conference, $event) = parent::validate(true, true);
+		list($conference, $event) = EventHandler::validate(true, true);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
@@ -72,7 +72,7 @@ class EventHandler extends Handler {
 	 * Display conference program page
 	 */
 	function program() {
-		list($conference, $event) = parent::validate(true, true);
+		list($conference, $event) = EventHandler::validate(true, true);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
@@ -90,54 +90,28 @@ class EventHandler extends Handler {
 	 * Display the proceedings
 	 */
 	function proceedings() {
-		list($conference, $event) = parent::validate(true, true);
-
-		// Determine whether this event's proceedings are visible for this user
-		$publicationState = $event->getPublicationState();
-		$allowed = false;
-		$releasedToParticipants = false;
-		$releasedToPublic = false;
+		list($conference, $event) = EventHandler::validate(true, true);
 
 		import('event.EventAction');
 
-		switch($publicationState) {
-
-			case PUBLICATION_STATE_NOTYET:
-				// Require an appropriate role.
-				$allowed = EventAction::entitledUser($event);
-				break;
-
-			case PUBLICATION_STATE_PARTICIPANTS:
-				// Require a valid registration.
-				$allowed = EventAction::registeredUser($event);
-				$releasedToParticipants = true;
-				break;
-
-			case PUBLICATION_STATE_PUBLIC:
-				$allowed = true;
-				$releasedToParticipants = true;
-				$releasedToPublic = true;
-				break;
-		}
+		$mayViewProceedings = EventAction::mayViewProceedings($event);
+		$mayViewPapers = EventAction::mayViewPapers($event);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, null, 'proceedings'), 'event.proceedings')));
 		$templateMgr->assign('helpTopicId', 'FIXME');
 		$templateMgr->assign_by_ref('event', $event);
 
-		$templateMgr->assign('releasedToParticipants', $releasedToParticipants);
-		$templateMgr->assign('releasedToPublic', $releasedToPublic);
-	
-		if($allowed) {
+		$templateMgr->assign('mayViewProceedings', $mayViewProceedings);
+		$templateMgr->assign('mayViewPapers', $mayViewPapers);
+		
+		if($mayViewProceedings) {
 			$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 			$rangeInfo = Handler::getRangeInfo('publishedPapers');
 
 			$publishedPapers = &$publishedPaperDao->getPublishedPapersInTracks($event->getEventId(), true);
 
 			$templateMgr->assign_by_ref('publishedPapers', $publishedPapers);
-
-		} else {
-			$templateMgr->assign('notPermitted', true);
 		}
 
 		$templateMgr->display('event/papers.tpl');
@@ -161,36 +135,30 @@ class EventHandler extends Handler {
 
 			$eventTitle = $event->getTitle();
 
-			$submissionState = $event->getSubmissionState();
-
-			$openDate = $event->getAcceptSubmissionsDate();
-			$closeDate = $event->getAbstractDueDate();
-
-			if( ($event->getAutoShowCFP() && time() > $event->getShowCFPDate() && $submissionState == SUBMISSION_STATE_NOTYET) ||
-					($submissionState == SUBMISSION_STATE_ACCEPT))
-				$showCFP = true;
-			else
-				$showCFP = false;
+			$openDate = $event->getSetting('proposalsOpenDate');
+			$closeDate = $event->getSetting('propsalsCloseDate');
+			$showCFPDate = $event->getSetting('showCFPDate');
 			
-			if($event->getAutoShowCFP() && time() > $event->getShowCFPDate() && $submissionState == SUBMISSION_STATE_CLOSED)
-				$showCFPExpired = true;
-			else
-				$showCFPExpired = false;
+			if($showCFPDate && $closeDate &&
+					($time() > $showCFPDate) && (time() < $closeDate)) {
+
+				$templateMgr->assign('showCFP', true);
+			}
+			
+			if((time() > $event->getSetting('proposalsOpenDate') &&
+					(time() < $event->getSetting('proposalsCloseDate')))) {
+
+				$templateMgr->assign('showSubmissionLink', true);
+			}
 			
 			// Assign header and content for home page
 			$templateMgr->assign('displayPageHeaderTitle', $event->getPageHeaderTitle(true));
 			$templateMgr->assign('displayPageHeaderLogo', $event->getPageHeaderLogo(true));
 			$templateMgr->assign('displayConferencePageHeaderTitle', $conference->getPageHeaderTitle(true));
 			$templateMgr->assign('displayConferencePageHeaderLogo', $conference->getPageHeaderLogo(true));
-
-			$templateMgr->assign('showCFP', $showCFP);
-			$templateMgr->assign('showCFPExpired', $showCFPExpired);
-			$templateMgr->assign('showSubmissionLink', ($submissionState == SUBMISSION_STATE_ACCEPT));
 					
-			$templateMgr->assign('submissionOpenDate', TimeZone::formatLocalTime(null, $openDate, null));
-			$templateMgr->assign('submissionCloseDate', TimeZone::formatLocalTime(null, $closeDate, null));
-			$templateMgr->assign('cfpDate', TimeZone::formatLocalTime(TZ_DATE_FORMAT_DATEONLY, $event->getSetting('showCFPDate'), null));
-			$templateMgr->assign('cfpExpireDate', TimeZone::formatLocalTime(TZ_DATE_FORMAT_DATEONLY, $closeDate, null));
+			$templateMgr->assign('submissionOpenDate', $openDate);
+			$templateMgr->assign('submissionCloseDate', $closeDate);
 			
 			$templateMgr->assign_by_ref('event', $event);
 			$templateMgr->assign('additionalHomeContent', $event->getSetting('additionalHomeContent', true));
@@ -206,13 +174,6 @@ class EventHandler extends Handler {
 					$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
 				}
 			} 
-
-			// Registration Access
-			import('event.EventAction');
-			$templateMgr->assign('registrationRequired', EventAction::registrationRequired($event));
-			$templateMgr->assign('registeredUser', EventAction::registeredUser($event));
-			$templateMgr->assign('registeredDomain', EventAction::registeredDomain($event));
-
 		} else {
 			Request::redirect(null, 'index');
 		}
@@ -228,6 +189,15 @@ class EventHandler extends Handler {
 		$templateMgr->assign('eventTitle', $eventTitle);
 	}
 
+	function validate() {
+		list($conference, $event) = parent::validate(true, true);
+
+		if(!EventAction::mayViewEvent($event)) {
+			Request::redirect(null, 'index');
+		}
+
+		return array($conference, $event);
+	}
 }
 
 ?>

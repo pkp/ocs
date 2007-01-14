@@ -9,19 +9,26 @@
  * $Id$
  *}
 
+<a name="submissions"></a>
+
 <table class="listing" width="100%">
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
+	<assign var="cols" value=6>
+	{if $eventSettings.reviewPapers}
+		{assign var="cols" value=$cols+1}
+	{/if}
+	<tr><td colspan="{$cols}" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
 		<td width="5%">{translate key="common.id"}</td>
 		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="common.assigned"}</td>
 		<td width="5%">{translate key="submissions.track"}</td>
-		<td width="70%">{translate key="paper.title"}</td>
+		<td width="60%">{translate key="paper.title"}</td>
 		<td width="5%">{translate key="submission.due"}</td>
 		{if $eventSettings.reviewPapers}
 			<td width="10%">{translate key="submissions.reviewType"}</td>
 		{/if}
+		<td width="10%">{translate key="submissions.reviewRound"}</td>
 	</tr>
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
+	<tr><td colspan="{$cols}" class="headseparator">&nbsp;</td></tr>
 
 {iterate from=submissions item=submission}
 	{assign var="paperId" value=$submission->getPaperId()}
@@ -42,22 +49,23 @@
 				{/if}
 			</td>
 		{/if}
+		<td>{$submission->getRound()}</td>
 	</tr>
 	<tr>
-		<td colspan="6" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
+		<td colspan="{$cols}" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
 {/iterate}
 {if $submissions->wasEmpty()}
 <tr>
-		<td colspan="6" class="nodata">{translate key="submissions.noSubmissions"}</td>
+		<td colspan="{$cols}" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
 	<tr>
-		<td colspan="6" class="endseparator">&nbsp;</td>
+		<td colspan="{$cols}" class="endseparator">&nbsp;</td>
 	</tr>
 {else}
 	<tr>
 		<td colspan="3" align="left">{page_info iterator=$submissions}</td>
-		<td colspan="3" align="right">{page_links name="submissions" iterator=$submissions}</td>
+		<td colspan="3" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions}</td>
 	</tr>
 {/if}
 </table>

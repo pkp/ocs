@@ -39,7 +39,13 @@
 				{translate key="common.none"}
 			{/foreach}
 		</td>
-		<td width="50%" class="value"><a href="{url op="addSuppFile" path=$submission->getPaperId()}" class="action">{translate key="submission.addSuppFile"}</a></td>
+		<td width="50%" class="value">
+			{if $submission->getStatus() != STATUS_PUBLISHED && $submission->getStatus() != STATUS_ARCHIVED}
+				<a href="{url op="addSuppFile" path=$submission->getPaperId()}" class="action">{translate key="submission.addSuppFile"}</a>
+			{else}
+				&nbsp;
+			{/if}
+		</td>
 	</tr>
 	<tr>
 		<td class="label">{translate key="submission.submitter"}</td>
@@ -65,10 +71,18 @@
 			{foreach from=$editAssignments item=editAssignment}
 				{assign var=emailString value="`$editAssignment->getEditorFullName()` <`$editAssignment->getEditorEmail()`>"}
 				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getPaperTitle|strip_tags paperId=$submission->getPaperId()}
-				{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}<br/>
-                        {foreachelse}
-                                {translate key="common.noneAssigned"}
-                        {/foreach}
+				{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}
+				{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
+					{if $editAssignment->getCanEdit()}
+						({translate key="submission.editing"})
+					{else}
+						({translate key="submission.review"})
+					{/if}
+				{/if}
+				<br/>
+			{foreachelse}
+				{translate key="common.noneAssigned"}
+			{/foreach}
 		</td>
 	</tr>
 	{if $submission->getCommentsToEditor()}

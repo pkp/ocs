@@ -24,10 +24,8 @@ class AuthorSubmissionDAO extends DAO {
 	var $reviewAssignmentDao;
 	var $paperFileDao;
 	var $suppFileDao;
-	var $copyeditorSubmissionDao;
 	var $paperCommentDao;
 	var $layoutAssignmentDao;
-	var $proofAssignmentDao;
 	var $galleyDao;
 
 	/**
@@ -43,6 +41,7 @@ class AuthorSubmissionDAO extends DAO {
 		$this->paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 		$this->paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
+		$this->layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
 		$this->galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 	}
 	
@@ -60,16 +59,9 @@ class AuthorSubmissionDAO extends DAO {
 				t.title_alt2 AS track_title_alt2,
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
+				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM papers p
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				LEFT JOIN tracks t2 ON (t2.track_id = p.secondary_track_id)
 				WHERE p.paper_id = ?', $paperId);
 
 		$returner = null;
@@ -112,6 +104,7 @@ class AuthorSubmissionDAO extends DAO {
 
 		// Comments
 		$authorSubmission->setMostRecentEditorDecisionComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_EDITOR_DECISION, $row['paper_id']));
+		$authorSubmission->setMostRecentLayoutComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_LAYOUT, $row['paper_id']));
 		
 		// Files
 		$authorSubmission->setSubmissionFile($this->paperFileDao->getPaperFile($row['submission_file_id']));
@@ -124,6 +117,9 @@ class AuthorSubmissionDAO extends DAO {
 			$authorSubmission->setEditorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['editor_file_id'], $i), $i);
 		}
 		$authorSubmission->setGalleys($this->galleyDao->getGalleysByPaper($row['paper_id']));
+
+		// Layout Assignment
+		$authorSubmission->setLayoutAssignment($this->layoutAssignmentDao->getLayoutAssignmentByPaperId($row['paper_id']));
 
 		HookRegistry::call('AuthorSubmissionDAO::_returnAuthorSubmissionFromRow', array(&$authorSubmission, &$row));
 
@@ -165,16 +161,9 @@ class AuthorSubmissionDAO extends DAO {
 				t.title_alt2 AS track_title_alt2,
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
+				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM papers p
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				LEFT JOIN tracks t2 ON (t2.track_id = p.secondary_track_id)
 				WHERE p.submission_progress != 0 AND p.status = ' . (int)SUBMISSION_STATUS_QUEUED;
 
 		$result = &$this->retrieveRange($sql);
@@ -197,23 +186,16 @@ class AuthorSubmissionDAO extends DAO {
 				t.title_alt2 AS track_title_alt2,
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
+				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM papers p
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				LEFT JOIN tracks t2 ON (t2.track_id = p.secondary_track_id)
 				WHERE p.event_id = ? AND p.user_id = ?';
 
 		if ($active) {
 			$sql .= ' AND p.status = 1';
 		} else {
 			$sql .= ' AND ((p.status <> ' . (int) SUBMISSION_STATUS_QUEUED . ' AND p.submission_progress = 0) OR
-				(p.status = ' . (int) SUBMISSION_STATUS_EXPIRED . '))'; 
+				(p.status = ' . (int) SUBMISSION_STATUS_ARCHIVED . '))'; 
 		}
 
 		$result = &$this->retrieveRange($sql, array($eventId, $authorId), $rangeInfo);

@@ -21,7 +21,7 @@ class EditorAction extends TrackEditorAction {
 	 * Constructor.
 	 */
 	function EditorAction() {
-		Parent::TrackEditorAction();
+
 	}
 
 	/**

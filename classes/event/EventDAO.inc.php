@@ -365,8 +365,8 @@ class EventDAO extends DAO {
 			WHERE i.enabled=1
 				AND c.enabled = 1
 				AND i.conference_id = ?
-				AND i.start_date < now()
-				AND i.end_date > now()
+				AND i.start_date < NOW()
+				AND i.end_date > NOW()
 			ORDER BY c.seq, i.seq',
 			$conferenceId);
 		

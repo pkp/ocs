@@ -49,17 +49,10 @@ class EditorSubmissionDAO extends DAO {
 				t.title_alt2 AS track_title_alt2,
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
+				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM
 				papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
-				LEFT JOIN tracks t2 ON t2.track_id = p.secondary_track_id
 			WHERE
 				p.paper_id = ?', $paperId
 		);
@@ -198,11 +191,12 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
 	 * @param $dateFrom String date to search from
 	 * @param $dateTo String date to search to
+	 * @param $status boolean whether to return active or not
 	 * @param $rangeInfo object
 	 * @return array result
 	 */
 	function &getUnfilteredEditorSubmissions($eventId, $trackId = 0, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, $status, $rangeInfo = null) {
-		$params = array($eventId, $status);
+		$params = array($eventId);
 		$searchSql = '';
 
 		if (!empty($search)) switch ($searchField) {
@@ -224,6 +218,9 @@ class EditorSubmissionDAO extends DAO {
 			case SUBMISSION_FIELD_REVIEWER:
 				$searchSql = $this->_generateUserNameSearchSQL($search, $searchMatch, 're.', $params);
 				break;
+			case SUBMISSION_FIELD_LAYOUTEDITOR:
+				$searchSql = $this->_generateUserNameSearchSQL($search, $searchMatch, 'le.', $params);
+				break;
 		}
 		if (!empty($dateFrom) || !empty($dateTo)) switch($dateField) {
 			case SUBMISSION_FIELD_DATE_SUBMITTED:
@@ -232,6 +229,14 @@ class EditorSubmissionDAO extends DAO {
 				}
 				if (!empty($dateTo)) {
 					$searchSql .= ' AND p.date_submitted <= ' . $this->datetimeToDB($dateTo);
+				}
+				break;
+			case SUBMISSION_FIELD_DATE_LAYOUT_COMPLETE:
+				if (!empty($dateFrom)) {
+					$searchSql .= ' AND l.date_completed >= ' . $this->datetimeToDB($dateFrom);
+				}
+				if (!empty($dateTo)) {
+					$searchSql .= ' AND l.date_completed <= ' . $this->datetimeToDB($dateTo);
 				}
 				break;
 		}
@@ -243,32 +248,33 @@ class EditorSubmissionDAO extends DAO {
 				t.title_alt2 AS track_title_alt2,
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
+				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM
 				papers p
 			INNER JOIN paper_authors pa ON (pa.paper_id = p.paper_id)
 			LEFT JOIN tracks t ON (t.track_id = p.track_id)
-			LEFT JOIN tracks t2 ON (t2.track_id = p.secondary_track_id)
 			LEFT JOIN edit_assignments ea ON (ea.paper_id = p.paper_id)
 			LEFT JOIN users ed ON (ea.editor_id = ed.user_id)
+			LEFT JOIN layouted_assignments l ON (l.paper_id = p.paper_id)
+			LEFT JOIN users le ON (le.user_id = l.editor_id)
 			LEFT JOIN review_assignments ra ON (ra.paper_id = p.paper_id)
 			LEFT JOIN users re ON (re.user_id = ra.reviewer_id AND cancelled = 0)
 			WHERE
-				p.event_id = ? AND p.status = ?';
+				p.event_id = ?';
 
+		// "Active" submissions have a status of SUBMISSION_STATUS_QUEUED and
+		// the layout editor has not yet been acknowledged.
+		if ($status === true) $sql .= ' AND (p.status = ' . SUBMISSION_STATUS_QUEUED . ')';
+		else $sql .= ' AND (p.status <> ' . SUBMISSION_STATUS_QUEUED . ')';
+		
 		if ($trackId) {
 			$searchSql .= ' AND p.track_id = ?';
 			$params[] = $trackId;
 		}
 
 		$result = &$this->retrieveRange(
-			$sql . ' ' . $searchSql . ' ORDER BY paper_id ASC', $params,
+			$sql . ' ' . $searchSql . ' ORDER BY paper_id ASC',
+			(count($params)>1 ? $params : array_shift($params)),
 			$rangeInfo
 		);
 		return $result;
@@ -309,7 +315,7 @@ class EditorSubmissionDAO extends DAO {
 		$editorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, SUBMISSION_STATUS_QUEUED);
+		$result = $this->getUnfilteredEditorSubmissions($eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
 			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
@@ -318,8 +324,9 @@ class EditorSubmissionDAO extends DAO {
 			$editAssignments =& $editorSubmission->getEditAssignments();
 
 			if (empty($editAssignments) && !$editorSubmission->getSubmissionProgress()) {
-				$editorSubmissions[] = $editorSubmission;
+				$editorSubmissions[] =& $editorSubmission;
 			}
+			unset($editorSubmission);
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -350,7 +357,7 @@ class EditorSubmissionDAO extends DAO {
 		$editorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, SUBMISSION_STATUS_QUEUED);
+		$result = $this->getUnfilteredEditorSubmissions($eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		while (!$result->EOF) {
@@ -381,8 +388,9 @@ class EditorSubmissionDAO extends DAO {
 			$editAssignments =& $editorSubmission->getEditAssignments();
 
 			if (!empty($editAssignments) && $inReview && !$editorSubmission->getSubmissionProgress()) {
-				$editorSubmissions[] = $editorSubmission;
+				$editorSubmissions[] =& $editorSubmission;
 			}
+			unset($editorSubmission);
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -409,15 +417,40 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getEditorSubmissionsAccepted($eventId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getEditorSubmissionsInEditing($eventId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, SUBMISSION_STATUS_ACCEPTED);
+		$result = $this->getUnfilteredEditorSubmissions($eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
 			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
-			$editorSubmissions[] = $editorSubmission;
+			$paperId = $editorSubmission->getPaperId();
+
+			// get layout assignment data
+			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
+			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByPaperId($paperId);
+			$editorSubmission->setLayoutAssignment($layoutAssignment);
+
+			// check if submission is still in review
+			$inEditing = false;
+			$decisions = $editorSubmission->getDecisions();
+			$types = array_pop($decisions);
+			$decision = array_pop($types);
+			if (!empty($decision)) {
+				$latestDecision = array_pop($decision);
+				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+					$inEditing = true;			
+				}
+			}
+
+			// used to check if editor exists for this submission
+			$editAssignments = $editorSubmission->getEditAssignments();
+
+			if ($inEditing && !empty($editAssignments)) {
+				$editorSubmissions[] =& $editorSubmission;
+			}
+			unset($editorSubmission);
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -448,24 +481,76 @@ class EditorSubmissionDAO extends DAO {
 		$editorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, SUBMISSION_STATUS_EXPIRED);
+		$result = $this->getUnfilteredEditorSubmissions($eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
 		while (!$result->EOF) {
 			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 			$paperId = $editorSubmission->getPaperId();
 
-			if (!$editorSubmission->getSubmissionProgress()) {
-				$editorSubmissions[] = $editorSubmission;
+			// get layout assignment data
+			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
+			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByPaperId($paperId);
+			$editorSubmission->setLayoutAssignment($layoutAssignment);
+
+			if ($editorSubmission->getStatus() == SUBMISSION_STATUS_ARCHIVED) {
+				$editorSubmissions[] =& $editorSubmission;
+				unset($editorSubmission);
 			}
 			$result->MoveNext();
 		}
-		$result->Close();
-		unset($result);
-		
 		if (isset($rangeInfo) && $rangeInfo->isValid()) {
 			$returner = &new ArrayItemIterator($editorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
 		} else {
 			$returner = &new ArrayItemIterator($editorSubmissions);
 		}
+
+		$result->Close();
+		unset($result);
+		
+		return $returner;
+	}
+
+	/**
+	 * Get all submissions accepted for an event.
+	 * @param $eventId int
+	 * @param $trackId int
+	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
+	 * @param $searchMatch string "is" or "contains"
+	 * @param $search String to look in $searchField for
+	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
+	 * @param $dateFrom String date to search from
+	 * @param $dateTo String date to search to
+	 * @param $rangeInfo object
+	 * @return array EditorSubmission
+	 */
+	function &getEditorSubmissionsAccepted($eventId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$editorSubmissions = array();
+	
+		// FIXME Does not pass $rangeInfo else we only get partial results
+		$result = $this->getUnfilteredEditorSubmissions($eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
+		while (!$result->EOF) {
+			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$paperId = $editorSubmission->getPaperId();
+
+			// get layout assignment data
+			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
+			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByPaperId($paperId);
+			$editorSubmission->setLayoutAssignment($layoutAssignment);
+
+			if ($editorSubmission->getStatus() == SUBMISSION_STATUS_PUBLISHED) {
+				$editorSubmissions[] =& $editorSubmission;
+				unset($editorSubmission);
+			}
+			$result->MoveNext();
+		}
+		if (isset($rangeInfo) && $rangeInfo->isValid()) {
+			$returner = &new ArrayItemIterator($editorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
+		} else {
+			$returner = &new ArrayItemIterator($editorSubmissions);
+		}
+
+		$result->Close();
+		unset($result);
+		
 		return $returner;
 	}
 
@@ -488,23 +573,16 @@ class EditorSubmissionDAO extends DAO {
 			$submissionsCount[$i] = 0;
 		}
 
-		$sql = 'SELECT a.*,
+		$sql = 'SELECT p.*,
 				t.title AS track_title,
 				t.title_alt1 AS track_title_alt1,
 				t.title_alt2 AS track_title_alt2,
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
-			FROM papers a
-				LEFT JOIN tracks t ON (t.track_id = a.track_id)
-				LEFT JOIN tracks t2 ON (t2.track_id = a.secondary_track_id)
-				WHERE a.event_id = ? AND (a.status = ' . SUBMISSION_STATUS_QUEUED . ')
+				t.abbrev_alt2 AS track_abbrev_alt2
+			FROM papers p
+				LEFT JOIN tracks t ON (t.track_id = p.track_id)
+				WHERE p.event_id = ? AND (p.status = ' . SUBMISSION_STATUS_QUEUED . ')
 			ORDER BY paper_id ASC';
 		$result = &$this->retrieve($sql, $eventId);
 

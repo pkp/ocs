@@ -21,10 +21,6 @@ class EventSetupStep3Form extends EventSetupForm {
 		parent::EventSetupForm(
 			3,
 			array(
-				'openRegReviewer' => 'bool',
-				'openRegReviewerDate' => 'date',
-				'closeRegReviewer' => 'bool',
-				'closeRegReviewerDate' => 'date',
 				'numWeeksPerReview' => 'int',
 				'remindForInvite' => 'int',
 				'remindForSubmit' => 'int',
@@ -41,9 +37,6 @@ class EventSetupStep3Form extends EventSetupForm {
 	
 	function readInputData() {
 		parent::readInputData();
-
-		$this->_data['openRegReviewerDate'] = Request::getUserDateVar('openRegReviewerDate');
-		$this->_data['closeRegReviewerDate'] = Request::getUserDateVar('closeRegReviewerDate');
 	}
 
 	/**

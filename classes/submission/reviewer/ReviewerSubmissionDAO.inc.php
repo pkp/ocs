@@ -59,17 +59,10 @@ class ReviewerSubmissionDAO extends DAO {
 				t.title_alt2 AS track_title_alt2,
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
+				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM papers p
 				LEFT JOIN review_assignments r ON (p.paper_id = r.paper_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				LEFT JOIN tracks t2 ON (t2.track_id = p.secondary_track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_rounds r2 ON (p.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type)
 			WHERE r.review_id = ?',
@@ -205,17 +198,10 @@ class ReviewerSubmissionDAO extends DAO {
 				t.title_alt2 AS track_title_alt2,
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
+				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM papers p
 				LEFT JOIN review_assignments r ON (p.paper_id = r.paper_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				LEFT JOIN tracks t2 ON (t2.track_id = p.secondary_track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_rounds r2 ON (r.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type)
 			WHERE p.event_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';

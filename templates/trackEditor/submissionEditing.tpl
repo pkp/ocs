@@ -35,8 +35,4 @@
 
 {include file="trackEditor/submission/layout.tpl"}
 
-{*<div class="separator"></div>
-
-{include file="trackEditor/submission/proofread.tpl"*}
-
 {include file="common/footer.tpl"}

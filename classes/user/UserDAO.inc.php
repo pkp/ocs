@@ -126,6 +126,7 @@ class UserDAO extends DAO {
 		$user = &new User();
 		$user->setUserId($row['user_id']);
 		$user->setUsername($row['username']);
+		$user->setSignature($row['signature']);
 		$user->setPassword($row['password']);
 		$user->setFirstName($row['first_name']);
 		$user->setMiddleName($row['middle_name']);
@@ -167,12 +168,13 @@ class UserDAO extends DAO {
 		}
 		$this->update(
 			sprintf('INSERT INTO users
-				(username, password, first_name, middle_name, initials, last_name, affiliation, email, url, phone, fax, mailing_address, country, time_zone, biography, interests, locales, date_registered, date_last_login, must_change_password, disabled, disabled_reason, auth_id)
+				(username, signature, password, first_name, middle_name, initials, last_name, affiliation, email, url, phone, fax, mailing_address, country, time_zone, biography, interests, locales, date_registered, date_last_login, must_change_password, disabled, disabled_reason, auth_id)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?)',
 				$this->datetimeToDB($user->getDateRegistered()), $this->datetimeToDB($user->getDateLastLogin())),
 			array(
 				$user->getUsername(),
+				$user->getSignature(),
 				$user->getPassword(),
 				$user->getFirstName(),
 				$user->getMiddleName(),
@@ -212,6 +214,7 @@ class UserDAO extends DAO {
 			sprintf('UPDATE users
 				SET
 					username = ?,
+					signature = ?,
 					password = ?,
 					first_name = ?,
 					middle_name = ?,
@@ -237,6 +240,7 @@ class UserDAO extends DAO {
 				$this->datetimeToDB($user->getDateLastLogin())),
 			array(
 				$user->getUsername(),
+				$user->getSignature(),
 				$user->getPassword(),
 				$user->getFirstName(),
 				$user->getMiddleName(),

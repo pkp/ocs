@@ -53,17 +53,10 @@ class PublishedPaperDAO extends DAO {
 					s.abbrev AS track_abbrev,
 					s.abbrev_alt1 AS track_abbrev_alt1,
 					s.abbrev_alt2 AS track_abbrev_alt2,
-					t2.title AS secondary_track_title,
-					t2.title_alt1 AS secondary_track_title_alt1,
-					t2.title_alt2 AS secondary_track_title_alt2,
-					t2.abbrev AS secondary_track_abbrev,
-					t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-					t2.abbrev_alt2 AS secondary_track_abbrev_alt2,
 					COALESCE(o.seq, s.seq) AS track_seq, pa.seq
 				FROM published_papers pa,
 					papers p
 				LEFT JOIN tracks s ON s.track_id = p.track_id
-				LEFT JOIN tracks t2 ON t2.track_id = p.secondary_track_id
 				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.event_id = ?)
 				WHERE pa.paper_id = p.paper_id
 					AND pa.event_id = ?
@@ -80,18 +73,11 @@ class PublishedPaperDAO extends DAO {
 					s.abbrev AS track_abbrev,
 					s.abbrev_alt1 AS track_abbrev_alt1,
 					s.abbrev_alt2 AS track_abbrev_alt2,
-					t2.title AS secondary_track_title,
-					t2.title_alt1 AS secondary_track_title_alt1,
-					t2.title_alt2 AS secondary_track_title_alt2,
-					t2.abbrev AS secondary_track_abbrev,
-					t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-					t2.abbrev_alt2 AS secondary_track_abbrev_alt2,
 					COALESCE(o.seq, s.seq) AS track_seq,
 					pa.seq
 				FROM published_papers pa,
 					papers p
 				LEFT JOIN tracks s ON s.track_id = p.track_id
-				LEFT JOIN tracks t2 ON s.track_id = p.secondary_track_id
 				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.event_id = ?)
 				WHERE pa.paper_id = p.paper_id
 					AND pa.event_id = ?
@@ -139,16 +125,9 @@ class PublishedPaperDAO extends DAO {
 				s.abbrev AS track_abbrev,
 				s.abbrev_alt1 AS track_abbrev_alt1,
 				s.abbrev_alt2 AS track_abbrev_alt2
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2,
 			FROM published_papers pa,
 				papers a
 			LEFT JOIN tracks s ON s.track_id = a.track_id
-			LEFT JOIN tracks t2 ON t2.track_id = a.secondary_track_id
 			WHERE pa.paper_id = a.paper_id
 				AND a.event_id = ?
 				AND a.status <> ' . SUBMISSION_STATUS_ARCHIVED,
@@ -177,18 +156,11 @@ class PublishedPaperDAO extends DAO {
 				s.abbrev AS track_abbrev,
 				s.abbrev_alt1 AS track_abbrev_alt1,
 				s.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2,
 				COALESCE(o.seq, s.seq) AS track_seq,
 				pa.seq
 			FROM published_papers pa,
 				papers a
 			LEFT JOIN tracks s ON s.track_id = a.track_id
-			LEFT JOIN tracks t2 ON t2.track_id = a.secondary_track_id
 			LEFT JOIN custom_track_orders o ON (a.track_id = o.track_id AND o.event_id = ?)
 			WHERE pa.paper_id = a.paper_id
 				AND pa.event_id = ?
@@ -235,18 +207,11 @@ class PublishedPaperDAO extends DAO {
 				s.abbrev AS track_abbrev,
 				s.abbrev_alt1 AS track_abbrev_alt1,
 				s.abbrev_alt2 AS track_abbrev_alt2
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
 			FROM published_papers pa,
 				papers a,
 				tracks s,
 				tracks t2
 			WHERE a.track_id = s.track_id
-				AND a.secondary_track_id = t2.track_id
 				AND pa.paper_id = a.paper_id
 				AND a.track_id = ?
 				AND pa.event_id = ?
@@ -310,17 +275,10 @@ class PublishedPaperDAO extends DAO {
 				s.title_alt2 AS track_title_alt2,
 				s.abbrev AS track_abbrev,
 				s.abbrev_alt1 AS track_abbrev_alt1,
-				s.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
+				s.abbrev_alt2 AS track_abbrev_alt2
 			FROM published_papers pa,
 				papers a
 			LEFT JOIN tracks s ON s.track_id = a.track_id
-			LEFT JOIN tracks t2 ON t2.track_id = a.secondary_track_id
 			WHERE pa.paper_id = a.paper_id
 				AND a.paper_id = ?' . (isset($eventId)?'
 				AND a.event_id = ?':''),
@@ -355,17 +313,10 @@ class PublishedPaperDAO extends DAO {
 				s.title_alt2 AS track_title_alt2,
 				s.abbrev AS track_abbrev,
 				s.abbrev_alt1 AS track_abbrev_alt1,
-				s.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2
+				s.abbrev_alt2 AS track_abbrev_alt2
 			FROM published_papers pa,
 				papers a
 			LEFT JOIN tracks s ON s.track_id = a.track_id
-			LEFT JOIN tracks t2 ON t2.track_id = a.secondary_track_id
 			WHERE pa.paper_id = a.paper_id
 				AND pa.public_paper_id = ?
 				AND a.event_id = ?',

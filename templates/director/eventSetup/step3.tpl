@@ -15,34 +15,7 @@
 <form method="post" action="{url op="saveEventSetup" path="3"}">
 {include file="common/formErrors.tpl"}
 
-<h3>3.1 {translate key="eventDirector.setup.reviewerRegistration"}</h3>
-
-<p>{translate key="eventDirector.setup.reviewerRegistrationDescription"}</p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="10%" />
-		<td width="90%">
-			<input type="checkbox" name="openRegReviewer" id="openRegReviewer" value="1" {if $openRegReviewer}checked="checked"{/if} />
-			{fieldLabel name="openRegReviewer" key="eventDirector.setup.openRegReviewerOn"}
-			<nobr>
-				{html_select_date prefix="openRegReviewerDate" time=$openRegReviewerDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
-			</nobr>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="10%" />
-		<td width="90%">
-			<input type="checkbox" name="closeRegReviewer" id="closeRegReviewer" value="1" {if $closeRegReviewer}checked="checked"{/if} />
-			{fieldLabel name="closeRegReviewer" key="eventDirector.setup.closeRegReviewerOn"}
-			<nobr>
-				{html_select_date prefix="closeRegReviewerDate" time=$closeRegReviewerDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
-			</nobr>
-		</td>
-	</tr>
-</table>
-
-<h3>3.2 {translate key="eventDirector.setup.reviewModel"}</h3>
+<h3>3.1 {translate key="eventDirector.setup.reviewModel"}</h3>
 
 {*<p>{translate key="eventDirector.setup.reviewModelDescription"}</p>*}
 

@@ -11,7 +11,7 @@
 
 {include file="event/header.tpl"}
 
-{if not $notPermitted}
+{if $mayViewProceedings}
 	{foreach name=tracks from=$publishedPapers item=track key=trackId}
 		{if $track.title}<h4>{$track.title|escape}</h4>{/if}
 
@@ -20,15 +20,10 @@
 			<tr valign="top">
 				<td width="75%">{$paper->getPaperTitle()|strip_unsafe_html}</td>
 				<td align="right" width="25%">
-					{if (!$registrationRequired || $paper->getAccessStatus() || $registeredUser || $registeredDomain)}
-						{assign var=hasAccess value=1}
-					{else}
-						{assign var=hasAccess value=0}
-					{/if}
 
-					{if !$hasAccess || $paper->getAbstract() != ""}<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}" class="file">{translate key="paper.abstract"}</a>{/if}
+					{if !$mayViewAbstracts || $paper->getAbstract() != ""}<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}" class="file">{translate key="paper.abstract"}</a>{/if}
 
-					{if $hasAccess}
+					{if $mayViewPapers}
 					{foreach from=$paper->getGalleys() item=galley name=galleyList}
 						<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>
 					{/foreach}
@@ -55,11 +50,7 @@
 		{translate key="proceedings.eventEmpty"}
 	{/foreach}
 {else} {* notPermitted *}
-	{if $releasedToParticipants}
-		{translate key="proceedings.subscribersOnly"}
-	{else}
-		{translate key="proceedings.notReleasedYet"}
-	{/if}
+	{translate key="proceedings.notPermitted"}
 {/if}
 
 {include file="common/footer.tpl"}

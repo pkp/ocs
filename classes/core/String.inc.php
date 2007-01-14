@@ -142,7 +142,7 @@ class String {
 	
 	function encode_mime_header($string) {
 		if (defined('ENABLE_MBSTRING')) {
-			return mb_encode_mimeheader($string);
+			return mb_encode_mimeheader($string, ini_get('mbstring.internal_encoding'), 'B', MAIL_EOL);
 		}  else {
 			return $string;
 		}
@@ -227,7 +227,7 @@ class String {
 		// Parts of this implementation were taken from Horde:
 		// see http://cvs.horde.org/co.php/framework/MIME/MIME/Viewer/html.php.
 
-		static $allowedHtmlTags = '<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd> <b> <i> <u> <img>';
+		static $allowedHtmlTags = '<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd> <b> <i> <u> <img> <sup> <sub>';
 		$html = strip_tags($input, $allowedHtmlTags);
 
 		// Change space entities to space characters
@@ -275,6 +275,50 @@ class String {
 		$html = preg_replace($pattern, $replace, $html);
 
 		return $html;
+	}
+
+	/**
+	 * Convert UTF-8 encoded characters in a string to escaped HTML entities
+	 * This is a helper function for transcoding HTML (perhaps move to core?)
+	 * @param $input string input string
+	 * @return string
+	 */
+	function utf2html ($str) {
+		$ret = "";
+		$max = strlen($str);
+		$last = 0;  // keeps the index of the last regular character
+		
+   for ($i=0; $i<$max; $i++) {
+       $c = $str{$i};
+       $c1 = ord($c);
+       if ($c1>>5 == 6) {  // 110x xxxx, 110 prefix for 2 bytes unicode
+           $ret .= substr($str, $last, $i-$last); // append all the regular characters we've passed
+           $c1 &= 31; // remove the 3 bit two bytes prefix
+           $c2 = ord($str{++$i}); // the next byte
+           $c2 &= 63;  // remove the 2 bit trailing byte prefix
+           $c2 |= (($c1 & 3) << 6); // last 2 bits of c1 become first 2 of c2
+           $c1 >>= 2; // c1 shifts 2 to the right
+           $ret .= "&#" . ($c1 * 0x100 + $c2) . ";"; // this is the fastest string concatenation
+           $last = $i+1;     
+       }
+       elseif ($c1>>4 == 14) {  // 1110 xxxx, 110 prefix for 3 bytes unicode
+           $ret .= substr($str, $last, $i-$last); // append all the regular characters we've passed
+           $c2 = ord($str{++$i}); // the next byte
+           $c3 = ord($str{++$i}); // the third byte
+           $c1 &= 15; // remove the 4 bit three bytes prefix
+           $c2 &= 63;  // remove the 2 bit trailing byte prefix
+           $c3 &= 63;  // remove the 2 bit trailing byte prefix
+           $c3 |= (($c2 & 3) << 6); // last 2 bits of c2 become first 2 of c3
+           $c2 >>=2; //c2 shifts 2 to the right
+           $c2 |= (($c1 & 15) << 4); // last 4 bits of c1 become first 4 of c2
+           $c1 >>= 4; // c1 shifts 4 to the right
+           $ret .= '&#' . (($c1 * 0x10000) + ($c2 * 0x100) + $c3) . ';'; // this is the fastest string concatenation
+           $last = $i+1;     
+       }
+   }
+		$str=$ret . substr($str, $last, $i); // append the last batch of regular characters
+
+		return $str;   
 	}
 
 }

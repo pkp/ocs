@@ -9,6 +9,8 @@
  * $Id$
  *}
 
+<a name="submissions"></a>
+
 <table class="listing" width="100%">
 	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
@@ -44,8 +46,7 @@
 					{else}
 						<a href="{url op="submissionReview" path=$paperId}" class="action">{translate key="submissions.queuedAbstractReview"}</a>
 					{/if}
-				{elseif $status==SUBMISSION_STATUS_QUEUED_PAPER_REVIEW}<a href="{url op="submissionReview" path=$paperId}" class="action">{translate key="submissions.queuedPaperReview"}</a>
-				{elseif $status==SUBMISSION_STATUS_ACCEPTED}{translate key="submissions.accepted"}
+				{elseif $status==SUBMISSION_STATUS_PUBLISHED}{translate key="submissions.published"}
 				{elseif $status==SUBMISSION_STATUS_DECLINED}{translate key="submissions.declined"}
 				{/if}
 			</td>
@@ -78,7 +79,7 @@
 {else}
 	<tr>
 		<td colspan="4" align="left">{page_info iterator=$submissions}</td>
-		<td colspan="2" align="right">{page_links name="submissions" iterator=$submissions}</td>
+		<td colspan="2" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions}</td>
 	</tr>
 {/if}
 </table>

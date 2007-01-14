@@ -36,6 +36,10 @@
 	<td class="value">{$user->getAffiliation()|escape}</td>
 </tr>
 <tr valign="top">
+	<td class="label">{translate key="user.signature"}:</td>
+	<td class="value">{$user->getSignature()|escape|nl2br}</td>
+</tr>
+<tr valign="top">
 	<td class="label">{translate key="user.email"}:</td>
 	<td class="value">
 		{$user->getEmail()|escape} 
@@ -62,7 +66,7 @@
 </tr>
 <tr valign="top">
 	<td class="label">{translate key="common.mailingAddress"}:</td>
-	<td class="value">{$user->getMailingAddress()|escape|nl2br}</td>
+	<td class="value">{$user->getMailingAddress()|strip_unsafe_html|nl2br}</td>
 </tr>
 <tr valign="top">
 	<td class="label">{translate key="user.biography"}:</td>

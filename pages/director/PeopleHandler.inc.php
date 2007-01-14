@@ -78,6 +78,9 @@ class PeopleHandler extends DirectorHandler {
 				case ROLE_ID_TRACK_EDITOR:
 					$helpTopicId = 'conference.roles.trackEditor';
 					break;
+				case ROLE_ID_LAYOUT_EDITOR:
+					$helpTopicId = 'conference.roles.layoutEditor';
+					break;
 				case ROLE_ID_REVIEWER:
 					$helpTopicId = 'conference.roles.reviewer';
 					break;
@@ -769,8 +772,8 @@ class PeopleHandler extends DirectorHandler {
 			}
 			$templateMgr->assign('country', $country);
 
-		$templateMgr->assign('isEventManagement', $event ? true : false);
-		$templateMgr->assign('isConferenceManagement', $event ? false : true);
+			$templateMgr->assign('isEventManagement', Request::getEvent() ? true : false);
+			$templateMgr->assign('isConferenceManagement', Request::getEvent() ? false : true);
 
 			$templateMgr->assign_by_ref('user', $user);
 			$templateMgr->assign_by_ref('userRoles', $roles);

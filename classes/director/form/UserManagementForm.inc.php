@@ -131,6 +131,7 @@ class UserManagementForm extends Form {
 					'country' => $user->getCountry(),
 					'biography' => $user->getBiography(),
 					'interests' => $user->getInterests(),
+					'signature' => $user->getSignature(),
 					'userLocales' => $user->getLocales()
 				);
 
@@ -153,7 +154,7 @@ class UserManagementForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('authId', 'enrollAs', 'password', 'password2', 'firstName', 'middleName', 'lastName', 'initials', 'affiliation', 'email', 'phone', 'fax', 'mailingAddress', 'country', 'biography', 'interests', 'userLocales', 'generatePassword', 'sendNotify', 'mustChangePassword'));
+		$this->readUserVars(array('authId', 'enrollAs', 'password', 'password2', 'firstName', 'middleName', 'lastName', 'initials', 'affiliation', 'email', 'phone', 'fax', 'mailingAddress', 'country', 'biography', 'interests', 'signature', 'userLocales', 'generatePassword', 'sendNotify', 'mustChangePassword'));
 		if ($this->userId == null) {
 			$this->readUserVars(array('username'));
 		}
@@ -196,6 +197,7 @@ class UserManagementForm extends Form {
 		$user->setCountry($this->getData('country'));
 		$user->setBiography($this->getData('biography'));
 		$user->setInterests($this->getData('interests'));
+		$user->setSignature($this->getData('signature'));
 		$user->setMustChangePassword($this->getData('mustChangePassword') ? 1 : 0);
 		$user->setAuthId((int) $this->getData('authId'));
 		

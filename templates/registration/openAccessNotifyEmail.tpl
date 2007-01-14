@@ -53,7 +53,7 @@ Content-Transfer-Encoding: quoted-printable
 						<td>{$paper->getPaperTitle()|strip_unsafe_html}</td>
 						<td align="right">
 							<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentEvent)}" class="file">{if $track.abstractsDisabled}{translate key="paper.details"}{else}{translate key="paper.abstract"}{/if}</a>
-							{if (!$registrationRequired || $paper->getAccessStatus() || $registeredUser)}
+							{if $mayViewPaper || $paper->getAccessStatus()}
 								{foreach from=$paper->getGalleys() item=galley name=galleyList}
 									&nbsp;
 									<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentEvent)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>

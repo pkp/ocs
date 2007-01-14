@@ -24,7 +24,7 @@ class TimelineForm extends Form {
 	function TimelineForm() {
 		parent::Form('editor/timeline/timelineForm.tpl');
 
-		$this->addCheck(new FormValidatorCustom($this, 'endDate', 'required', 'director.timeline.form.badEndDate',
+		/*$this->addCheck(new FormValidatorCustom($this, 'endDate', 'required', 'director.timeline.form.badEndDate',
 			create_function('$endDate,$form',
 			'return ($endDate > $form->getData(\'startDate\'));'),
 			array(&$this)));
@@ -33,7 +33,7 @@ class TimelineForm extends Form {
 			create_function('$autoRemindAuthorDays,$form',
 			'if($form->getData(\'autoRemindAuthors\') == false) return true;
 				return ($autoRemindAuthorDays >= 1 && $autoRemindAuthorDays <= 99) ? true : false;'),
-			array(&$this)));
+			array(&$this)));*/
 	}
 	
 	/**
@@ -41,24 +41,11 @@ class TimelineForm extends Form {
 	 */
 	function display() {
 		$event =& Request::getEvent();
-		import('event.EventConstants');
 		$templateMgr = &TemplateManager::getManager();
 
 		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'editor'), 'user.role.editor')));
 		$templateMgr->assign('helpTopicId','conference.managementPages.timeline');
-		$templateMgr->assign('scheduledTasksEnabled', Config::getVar('general', 'scheduled_tasks'));
 
-		$templateMgr->assign('showAbstractDueDate',!$event->getCollectPapersWithAbstracts());
-		$templateMgr->assign('showPaperDueDate', $event->getAcceptPapers());
-		$templateMgr->assign('showSubmissionDueDate', $event->getCollectPapersWithAbstracts());
-		
-		$templateMgr->assign('showAuthorSelfRegister', $event->getSetting('openRegAuthor') == true ? true:false);
-		
-		$defaultTimeZone = TimeZone::getDefaultTimeZone();
-		
-		$templateMgr->assign('defaultTimeZone', $defaultTimeZone);
-		$templateMgr->assign('currentTimeDefaultTimeZone', TimeZone::formatLocalTime(null, null, $defaultTimeZone));
-		
 		$templateMgr->assign('yearOffsetFuture', EVENT_DATE_YEAR_OFFSET_FUTURE);
 
 		parent::display();
@@ -71,32 +58,37 @@ class TimelineForm extends Form {
 		$event =& Request::getEvent();
 
 		$this->_data = array(
-			'startDate' => $event->getStartDate(),
-			'endDate' => $event->getEndDate(),
+			'siteStartDate' => $event->getStartDate(),
+			'siteEndDate' => $event->getEndDate(),
 
-			'autoShowCFP' => $event->getAutoShowCFP(),
-			'showCFPDate' => $event->getShowCFPDate(),
+			'startDate' => $event->getSetting('startDate'),
+			'endDate' => $event->getSetting('endDate'),
+
+			'regAuthorOpenDate' => $event->getSetting('regAuthorOpenDate'),
+			'regAuthorCloseDate' => $event->getSetting('regAuthorCloseDate'),
+			'showCFPDate' => $event->getSetting('showCFPDate'),
+			'proposalsOpenDate' => $event->getSetting('proposalsOpenDate'),
+			'proposalsCloseDate' => $event->getSetting('proposalsCloseDate'),
+			'submissionsCloseDate' => $event->getSetting('submissionsCloseDate'),
 			
-			'openRegAuthorDate' => $event->getSetting('openRegAuthorDate'),
-			'closeRegAuthorDate' => $event->getSetting('closeRegAuthorDate'),
+			'regReviewerOpenDate' => $event->getSetting('regReviewerOpenDate'),
+			'regReviewerCloseDate' => $event->getSetting('regReviewerCloseDate'),
+			'closeReviewProcessDate' => $event->getSetting('closeReviewProcessDate'),
+			'secondRoundDueDate' => $event->getSetting('secondRoundDueDate'),
 
-			'submissionState' => $event->getSubmissionState(),
-			'publicationState' => $event->getPublicationState(),
-			'registrationState' => $event->getRegistrationState(),
+			'regRegistrantOpenDate' => $event->getSetting('regRegistrantOpenDate'),
+			'regRegistrantCloseDate' => $event->getSetting('regRegistrantCloseDate'),
 
-			'acceptSubmissionsDate' => $event->getAcceptSubmissionsDate(),
-			'abstractDueDate' => $event->getAbstractDueDate(),
-			'paperDueDate' => $event->getPaperDueDate(),
-
-			'autoRemindAuthors' => $event->getAutoRemindAuthors(),
-			'autoRemindAuthorsDays' => $event->getAutoRemindAuthorsDays(),
-			'autoArchiveIncompleteSubmissions' => $event->getAutoArchiveIncompleteSubmissions(),
-			
-			'autoReleaseToParticipants' => $event->getAutoReleaseToParticipants(),
-			'autoReleaseToParticipantsDate' => $event->getAutoReleaseToParticipantsDate(),
-
-			'autoReleaseToPublic' => $event->getAutoReleaseToPublic(),
-			'autoReleaseToPublicDate' => $event->getAutoReleaseToPublicDate(),
+			'postPresentations' => $event->getSetting('postPresentations'),
+			'postPresentationsDate' => $event->getSetting('postPresentationsDate'),
+			'postAbstracts' => $event->getSetting('postAbstracts'),
+			'postAbstractsDate' => $event->getSetting('postAbstractsDate'),
+			'postPapers' => $event->getSetting('postPapers'),
+			'postPapersDate' => $event->getSetting('postPapersDate'),
+			'delayOpenAccess' => $event->getSetting('delayOpenAccess'),
+			'delayOpenAccessDate' => $event->getSetting('delayOpenAccessDate'),
+			'closeComments' => $event->getSetting('closeComments'),
+			'closeCommentsDate' => $event->getSetting('closeCommentsDate')
 		);
 	}
 	
@@ -104,27 +96,27 @@ class TimelineForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
+		$this->readUserDateVars(array(
+			'siteStartDate', 'siteEndDate',
+			'startDate', 'endDate',
+			'regAuthorOpenDate', 'regAuthorCloseDate',
+			'showCFPDate', 'proposalsOpenDate', 'proposalsCloseDate', 'submissionsCloseDate',
+			'regReviewerOpenDate', 'regReviewerCloseDate', 'closeReviewProcessDate',
+			'regRegistrantOpenDate', 'regRegistrantCloseDate',
+			'postPresentationsDate',
+			'postAbstractsDate',
+			'postPapersDate',
+			'delayOpenAccessDate',
+			'closeCommentsDate'
+		));
+
 		$this->readUserVars(array(
-			'submissionState', 'autoShowCFP',
-			'autoAccept', 'autoRemindAuthors', 'autoRemindAuthorsDays',
-			'autoArchiveIncompleteSubmissions', 'autoReleaseToParticipants',
-			'autoReleaseToPublic', 'publicationState'));
-
-		$this->_data['startDate'] = Request::getUserDateVar('startDate');
-		$this->_data['endDate'] = Request::getUserDateVar('endDate');
-		
-		$this->_data['showCFPDate'] = Request::getUserDateVar('showCFPDate');
-		$this->_data['acceptSubmissionsDate'] = Request::getUserDateVar('acceptSubmissionsDate');
-
-		$this->_data['submissionDueDate'] = Request::getUserDateVar('submissionDueDate');
-		$this->_data['abstractDueDate'] = Request::getUserDateVar('abstractDueDate');
-		$this->_data['paperDueDate'] = Request::getUserDateVar('paperDueDate');
-
-		$this->_data['autoReleaseToParticipantsDate'] = Request::getUserDateVar('autoReleaseToParticipantsDate');
-		$this->_data['autoReleaseToPublicDate'] = Request::getUserDateVar('autoReleaseToPublicDate');
-
-		$this->_data['openRegAuthorDate'] = Request::getUserDateVar('openRegAuthorDate');
-		$this->_data['closeRegAuthorDate'] = Request::getUserDateVar('closeRegAuthorDate');
+			'postPresentations',
+			'postAbstracts',
+			'postPapers',
+			'delayOpenAccess',
+			'closeComments'
+		));
 	}
 	
 	/**
@@ -137,102 +129,279 @@ class TimelineForm extends Form {
 		import('conference.log.ConferenceLog');
 		import('conference.log.ConferenceEventLogEntry');
 
-		// Start date and end date
-		if($event->getStartDate() != $this->_data['startDate'])
-			$event->setStartDate($this->_data['startDate']);
-
-		if($event->getEndDate() != $this->_data['endDate'])
-			$event->setEndDate($this->_data['endDate']);
+		//
+		// Don't log these, since they aren't particularly nefarious.
+		//
 		
-		// User registration dates
-		if($event->getSetting('openRegAuthor')) {
-			if($event->getSetting('openRegAuthorDate') != $this->_data['openRegAuthorDate']) {
-				$event->updateSetting('openRegAuthorDate', $this->_data['openRegAuthorDate'], 'date');
-			}
+		// Website start date and end date.
+		
+		if($event->getStartDate() != $this->_data['siteStartDate'])
+			$event->setStartDate($this->_data['siteStartDate']);
 
-			if($event->getSetting('closeRegAuthorDate') != $this->_data['closeRegAuthorDate']) {
-				$event->updateSetting('closeRegAuthorDate', $this->_data['closeRegAuthorDate'], 'date');
-			}
-		}
-			
-		// CFP logic
-		if($event->getSubmissionState() != $this->_data['submissionState']) {
+		if($event->getEndDate() != $this->_data['siteEndDate'])
+			$event->setEndDate($this->_data['siteEndDate']);
+		
+		//
+		// Log the rest.
+		//
+		
+		// Physical event start date and end date
+		if($event->getSetting('startDate') != $this->_data['startDate']) {
 			ConferenceLog::logEvent(
 				$event->getConferenceId(),
 				$event->getEventId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
-				0, 'log.timeline.submissionStateChanged',
-				array('oldSubmissionState' => $event->getSubmissionState(),
-					'newSubmissionState' => $this->_data['submissionState']));
-
-			$event->setSubmissionState($this->_data['submissionState']);
+				0, 'log.timeline.startDateChanged',
+				array('oldStartDate' => $event->getSetting('startDate'),
+					'newStartDate' => $this->_data['startDate']));
+			$event->updateSetting('startDate', $this->_data['startDate'], 'date');
 		}
 
-		if($event->getSubmissionState() == SUBMISSION_STATE_NOTYET) {
-			// These are disabled if the submission state is anything else. Don't
-			// clobber them.
-			if($event->getAutoShowCFP() != $this->_data['autoShowCFP'])
-				$event->setAutoShowCFP($this->_data['autoShowCFP']);
-			if($event->getShowCFPDate() != $this->_data['showCFPDate'])
-				$event->setShowCFPDate($this->_data['showCFPDate']);
-			if($event->getAcceptSubmissionsDate() != $this->_data['acceptSubmissionsDate'])
-				$event->setAcceptSubmissionsDate($this->_data['acceptSubmissionsDate']);
-		}
-
-		// Depending on the review model, not all of these may be populated. Even
-		// though clobbering isn't a problem unless the review model is changed,
-		// it can be annoying to users expecting irrelevant data to be preserved.		
-		if($event->getCollectPapersWithAbstracts()) {
-			if($event->getAbstractDueDate() != $this->_data['submissionDueDate']) {
-				$event->setAbstractDueDate($this->_data['submissionDueDate']);
-				$event->setPaperDueDate($this->_data['submissionDueDate']);
-			}
-		} else {
-			if($event->getAbstractDueDate() != $this->_data['abstractDueDate'])
-				$event->setAbstractDueDate($this->_data['abstractDueDate']);
-			if($event->getAcceptPapers()) {
-				if($event->getPaperDueDate() != $this->_data['paperDueDate'])
-					$event->setPaperDueDate($this->_data['paperDueDate']);
-			}
-		}
-
-		// Incomplete submissions logic
-		// paperDueDate is taken care of above
-		if($event->getAutoRemindAuthors() != $this->_data['autoRemindAuthors']) {
-			$event->setAutoRemindAuthors($this->_data['autoRemindAuthors']);
-			$event->setAutoRemindAuthorsDays($this->_data['autoRemindAuthorsDays']);
-		}
-		if($event->getAutoArchiveIncompleteSubmissions() != $this->_data['autoArchiveIncompleteSubmissions'])
-			$event->setAutoArchiveIncompleteSubmissions($this->_data['autoArchiveIncompleteSubmissions']);
-			
-		// Publication state logic
-		if($event->getPublicationState() != $this->_data['publicationState']) {
+		if($event->getSetting('endDate') != $this->_data['endDate']) {
 			ConferenceLog::logEvent(
 				$event->getConferenceId(),
 				$event->getEventId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
-				0, 'log.timeline.publicationStateChanged',
-				array('oldPublicationState' => $event->getPublicationState(),
-					'newPublicationState' => $this->_data['publicationState']));
-
-			$event->setPublicationState($this->_data['publicationState']);
+				0, 'log.timeline.endDateChanged',
+				array('oldEndDate' => $event->getSetting('endDate'),
+					'newEndDate' => $this->_data['endDate']));
+			$event->updateSetting('endDate', $this->_data['endDate'], 'date');
 		}
 
-		if($event->getAutoReleaseToParticipants() != $this->_data['autoReleaseToParticipants'])
-			$event->setAutoReleaseToParticipants($this->_data['autoReleaseToParticipants']);
-		if($event->getAutoReleaseToParticipants() && $event->getAutoReleaseToParticipantsDate() != $this->_data['autoReleaseToParticipantsDate'])
-			$event->setAutoReleaseToParticipantsDate($this->_data['autoReleaseToParticipantsDate']);
-		
-		if($event->getAutoReleaseToPublic() != $this->_data['autoReleaseToPublic'])
-			$event->setAutoReleaseToPublic($this->_data['autoReleaseToPublic']);
-		if($event->getAutoReleaseToPublic() && $event->getAutoReleaseToPublicDate() != $this->_data['autoReleaseToPublicDate'])
-			$event->setAutoReleaseToPublicDate($this->_data['autoReleaseToPublicDate']);
-
-		$eventDao->updateEvent($event);
+		if($event->getSetting('regAuthorOpenDate') != $this->_data['regAuthorOpenDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.regAuthorOpenDateChanged',
+				array('oldRegAuthorOpenDate' => $event->getSetting('regAuthorOpenDate'),
+					'newRegAuthorOpenDate' => $this->_data['regAuthorOpenDate']));
+			$event->updateSetting('regAuthorOpenDate', $this->_data['regAuthorOpenDate'], 'date');
+		}
+		if($event->getSetting('regAuthorCloseDate') != $this->_data['regAuthorCloseDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.regAuthorCloseDateChanged',
+				array('oldRegAuthorCloseDate' => $event->getSetting('regAuthorCloseDate'),
+					'newRegAuthorCloseDate' => $this->_data['regAuthorCloseDate']));
+			$event->updateSetting('regAuthorCloseDate', $this->_data['regAuthorCloseDate'], 'date');
+		}
+		if($event->getSetting('showCFPDate') != $this->_data['showCFPDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.showCFPDateChanged',
+				array('oldShowCFPDate' => $event->getSetting('showCFPDate'),
+					'newShowCFPDate' => $this->_data['showCFPDate']));
+			$event->updateSetting('showCFPDate', $this->_data['showCFPDate'], 'date');
+		}
+		if($event->getSetting('proposalsOpenDate') != $this->_data['proposalsOpenDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.proposalsOpenDateChanged',
+				array('oldProposalsOpenDate' => $event->getSetting('proposalsOpenDate'),
+					'newProposalsOpenDate' => $this->_data['proposalsOpenDate']));
+			$event->updateSetting('proposalsOpenDate', $this->_data['proposalsOpenDate'], 'date');
+		}
+		if($event->getSetting('proposalsCloseDate') != $this->_data['proposalsCloseDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.proposalsCloseDateChanged',
+				array('oldProposalsCloseDate' => $event->getSetting('proposalsCloseDate'),
+					'newProposalsCloseDate' => $this->_data['proposalsCloseDate']));
+			$event->updateSetting('proposalsCloseDate', $this->_data['proposalsCloseDate'], 'date');
+		}
+		if($event->getSetting('submissionsCloseDate') != $this->_data['submissionsCloseDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.submissionsCloseDateChanged',
+				array('oldSubmissionsCloseDate' => $event->getSetting('submissionsCloseDate'),
+					'newSubmissionsCloseDate' => $this->_data['submissionsCloseDate']));
+			$event->updateSetting('submissionsCloseDate', $this->_data['submissionsCloseDate'], 'date');
+		}
+		if($event->getSetting('regReviewerOpenDate') != $this->_data['regReviewerOpenDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.regReviewerOpenDateChanged',
+				array('oldRegReviewerOpenDate' => $event->getSetting('regReviewerOpenDate'),
+					'newRegReviewerOpenDate' => $this->_data['regReviewerOpenDate']));
+			$event->updateSetting('regReviewerOpenDate', $this->_data['regReviewerOpenDate'], 'date');
+		}
+		if($event->getSetting('regReviewerCloseDate') != $this->_data['regReviewerCloseDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.regReviewerCloseDateChanged',
+				array('oldRegReviewerCloseDate' => $event->getSetting('regReviewerCloseDate'),
+					'newRegReviewerCloseDate' => $this->_data['regReviewerCloseDate']));
+			$event->updateSetting('regReviewerCloseDate', $this->_data['regReviewerCloseDate'], 'date');
+		}
+		if($event->getSetting('closeReviewProcessDate') != $this->_data['closeReviewProcessDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.closeReviewProcessDateChanged',
+				array('oldCloseReviewProcessDate' => $event->getSetting('closeReviewProcessDate'),
+					'newCloseReviewProcessDate' => $this->_data['closeReviewProcessDate']));
+			$event->updateSetting('closeReviewProcessDate', $this->_data['closeReviewProcessDate'], 'date');
+		}
+		if($event->getSetting('regRegistrantOpenDate') != $this->_data['regRegistrantOpenDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.regRegistrantOpenDateChanged',
+				array('oldRegRegistrantOpenDate' => $event->getSetting('regRegistrantOpenDate'),
+					'newRegRegistrantOpenDate' => $this->_data['regRegistrantOpenDate']));
+			$event->updateSetting('regRegistrantOpenDate', $this->_data['regRegistrantOpenDate'], 'date');
+		}
+		if($event->getSetting('regRegistrantCloseDate') != $this->_data['regRegistrantCloseDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.regRegistrantCloseDateChanged',
+				array('oldRegRegistrantCloseDate' => $event->getSetting('regRegistrantCloseDate'),
+					'newRegRegistrantCloseDate' => $this->_data['regRegistrantCloseDate']));
+			$event->updateSetting('regRegistrantCloseDate', $this->_data['regRegistrantCloseDate'], 'date');
+		}
+		if($event->getSetting('postPresentationsDate') != $this->_data['postPresentationsDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.postPresentationsDateChanged',
+				array('oldPostPresentationsDate' => $event->getSetting('postPresentationsDate'),
+					'newPostPresentationsDate' => $this->_data['postPresentationsDate']));
+			$event->updateSetting('postPresentationsDate', $this->_data['postPresentationsDate'], 'date');
+		}
+		if($event->getSetting('postPresentations') != $this->_data['postPresentations']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.postPresentationsChanged',
+				array('oldPostPresentations' => $event->getSetting('postPresentations'),
+					'newPostPresentations' => $this->_data['postPresentations']));
+			$event->updateSetting('postPresentations', $this->_data['postPresentations'], 'bool');
+		}
+		if($event->getSetting('postAbstractsDate') != $this->_data['postAbstractsDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.postAbstractsDateChanged',
+				array('oldPostAbstractsDate' => $event->getSetting('postAbstractsDate'),
+					'newPostAbstractsDate' => $this->_data['postAbstractsDate']));
+			$event->updateSetting('postAbstractsDate', $this->_data['postAbstractsDate'], 'date');
+		}
+		if($event->getSetting('postAbstracts') != $this->_data['postAbstracts']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.postAbstractsChanged',
+				array('oldPostAbstracts' => $event->getSetting('postAbstracts'),
+					'newPostAbstracts' => $this->_data['postAbstracts']));
+			$event->updateSetting('postAbstracts', $this->_data['postAbstracts'], 'bool');
+		}
+		if($event->getSetting('postPapersDate') != $this->_data['postPapersDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.postPapersDateChanged',
+				array('oldPostPapersDate' => $event->getSetting('postPapersDate'),
+					'newPostPapersDate' => $this->_data['postPapersDate']));
+			$event->updateSetting('postPapersDate', $this->_data['postPapersDate'], 'date');
+		}
+		if($event->getSetting('postPapers') != $this->_data['postPapers']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.postPapersChanged',
+				array('oldPostPapers' => $event->getSetting('postPapers'),
+					'newPostPapers' => $this->_data['postPapers']));
+			$event->updateSetting('postPapers', $this->_data['postPapers'], 'bool');
+		}
+		if($event->getSetting('delayOpenAccessDate') != $this->_data['delayOpenAccessDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.delayOpenAccessDateChanged',
+				array('oldDelayOpenAccessDate' => $event->getSetting('delayOpenAccessDate'),
+					'newDelayOpenAccessDate' => $this->_data['delayOpenAccessDate']));
+			$event->updateSetting('delayOpenAccessDate', $this->_data['delayOpenAccessDate'], 'date');
+		}
+		if($event->getSetting('delayOpenAccess') != $this->_data['delayOpenAccess']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.delayOpenAccessChanged',
+				array('oldDelayOpenAccess' => $event->getSetting('delayOpenAccess'),
+					'newDelayOpenAccess' => $this->_data['delayOpenAccess']));
+			$event->updateSetting('delayOpenAccess', $this->_data['delayOpenAccess'], 'bool');
+		}
+		if($event->getSetting('closeCommentsDate') != $this->_data['closeCommentsDate']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.closeCommentsDateChanged',
+				array('oldCloseCommentsDate' => $event->getSetting('closeCommentsDate'),
+					'newCloseCommentsDate' => $this->_data['closeCommentsDate']));
+			$event->updateSetting('closeCommentsDate', $this->_data['closeCommentsDate'], 'date');
+		}
+		if($event->getSetting('closeComments') != $this->_data['closeComments']) {
+			ConferenceLog::logEvent(
+				$event->getConferenceId(),
+				$event->getEventId(),
+				CONFERENCE_LOG_CONFIGURATION,
+				LOG_TYPE_DEFAULT,
+				0, 'log.timeline.closeCommentsChanged',
+				array('oldCloseComments' => $event->getSetting('closeComments'),
+					'newCloseComments' => $this->_data['closeComments']));
+			$event->updateSetting('closeComments', $this->_data['closeComments'], 'bool');
+		}
 	}
-	
 }
 
 ?>

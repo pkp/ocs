@@ -147,10 +147,9 @@ class CommentHandler extends Handler {
 
 		if (isset($paper)) {
 			import('event.EventAction');
-			$registrationRequired = EventAction::registrationRequired($event);
-			$subscribedUser = EventAction::subscribedUser($event);
+			$allowed = EventAction::mayViewPaper($event);
 
-			if (!(!$registrationRequired || $paper->getAccessStatus() || $subscribedUser)) {
+			if (!$allowed && !$paper->getAccessStatus()) {
 				Request::redirect(null, null, 'index');
 			}
 		} else {

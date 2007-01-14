@@ -295,11 +295,16 @@ class SubmitHandler extends AuthorHandler {
 			if($step !== false && $step > $paper->getSubmissionProgress()) {
 				Request::redirect(null, null, null, 'submit');
 			}
+
 		} else {
+
 			// If the paper does not exist, require that the submission window be open.
+			$submissionsOpenDate = $event->getSetting('proposalsOpenDate', false);
+			$submissionsCloseDate = $event->getSetting('proposalsCloseDate', false);
 			
-			$submissionState = $event->getSubmissionState();
-			if($submissionState != SUBMISSION_STATE_ACCEPT) {
+			if(!$submissionsOpenDate || !$submissionsCloseDate ||
+					time() < $submissionsOpenDate || time() > $submissionsCloseDate) {
+				
 				Request::redirect(null, null, 'author', 'index');
 			}
 		}

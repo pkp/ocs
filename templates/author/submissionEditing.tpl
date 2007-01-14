@@ -30,4 +30,8 @@
 
 {include file="author/submission/summary.tpl"}
 
+<div class="separator"></div>
+
+{include file="author/submission/layout.tpl"}
+
 {include file="common/footer.tpl"}

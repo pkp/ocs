@@ -138,15 +138,6 @@ class EditCommentForm extends Form {
 			}
 		}
 		
-		// Get proofreader
-		$proofAssignmentDao = &DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment = &$proofAssignmentDao->getProofAssignmentByPaperId($this->paper->getPaperId());
-		if ($proofAssignment != null && $proofAssignment->getProofreaderId() > 0) {
-			$proofreader = &$userDao->getUser($proofAssignment->getProofreaderId());
-		} else {
-			$proofreader = null;
-		}
-	
 		// Get layout editor
 		$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
 		$layoutAssignment = &$layoutAssignmentDao->getLayoutAssignmentByPaperId($this->paper->getPaperId());
@@ -156,15 +147,6 @@ class EditCommentForm extends Form {
 			$layoutEditor = null;
 		}
 
-		// Get copyeditor
-		$copyAssignmentDao = &DAORegistry::getDAO('CopyAssignmentDAO');
-		$copyAssignment = &$copyAssignmentDao->getCopyAssignmentByPaperId($this->paper->getPaperId());
-		if ($copyAssignment != null && $copyAssignment->getCopyeditorId() > 0) {
-			$copyeditor = &$userDao->getUser($copyAssignment->getCopyeditorId());
-		} else {
-			$copyeditor = null;
-		}
-		
 		// Get reviewer
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($this->comment->getAssocId());
@@ -197,30 +179,6 @@ class EditCommentForm extends Form {
 			}
 			break;
 
-		case COMMENT_TYPE_COPYEDIT:
-			if ($this->roleId == ROLE_ID_EDITOR) {
-				// Then add copyeditor and author
-				if ($copyeditor != null) {
-					$recipients = array_merge($recipients, array($copyeditor->getEmail() => $copyeditor->getFullName()));
-				}
-				
-				$recipients = array_merge($recipients, array($author->getEmail() => $author->getFullName()));
-			
-			} else if ($this->roleId == ROLE_ID_COPYEDITOR) {
-				// Then add editors and author
-				$recipients = array_merge($recipients, $editorAddresses);
-			
-				if (isset($author)) $recipients = array_merge($recipients, array($author->getEmail() => $author->getFullName()));
-			
-			} else {
-				// Then add editors and copyeditor
-				$recipients = array_merge($recipients, $editorAddresses);
-				
-				if ($copyeditor != null) {
-					$recipients = array_merge($recipients, array($copyeditor->getEmail() => $copyeditor->getFullName()));
-				}
-			}
-			break;
 		case COMMENT_TYPE_LAYOUT:
 			if ($this->roleId == ROLE_ID_EDITOR) {
 				// Then add layout editor
@@ -232,52 +190,6 @@ class EditCommentForm extends Form {
 			} else {
 				// Then add editors
 				$recipients = array_merge($recipients, $editorAddresses);
-			}
-			break;
-		case COMMENT_TYPE_PROOFREAD:
-			if ($this->roleId == ROLE_ID_EDITOR) {
-				// Then add layout editor, proofreader and author
-				if ($layoutEditor != null) {
-					$recipients = array_merge($recipients, array($layoutEditor->getEmail() => $layoutEditor->getFullName()));
-				}
-				
-				if ($proofreader != null) {
-					$recipients = array_merge($recipients, array($proofreader->getEmail() => $proofreader->getFullName()));
-				}
-				
-				if (isset($author)) $recipients = array_merge($recipients, array($author->getEmail() => $author->getFullName()));
-			
-			} else if ($this->roleId == ROLE_ID_LAYOUT_EDITOR) {
-				// Then add editors, proofreader and author
-				$recipients = array_merge($recipients, $editorAddresses);
-				
-				if ($proofreader != null) {
-					$recipients = array_merge($recipients, array($proofreader->getEmail() => $proofreader->getFullName()));
-				}
-			
-				if (isset($author)) $recipients = array_merge($recipients, array($author->getEmail() => $author->getFullName()));
-			
-			} else if ($this->roleId == ROLE_ID_PROOFREADER) {
-				// Then add editors, layout editor, and author
-				$recipients = array_merge($recipients, $editorAddresses);
-				
-				if ($layoutEditor != null) {
-					$recipients = array_merge($recipients, array($layoutEditor->getEmail() => $layoutEditor->getFullName()));
-				}
-				
-				if (isset($author)) $recipients = array_merge($recipients, array($author->getEmail() => $author->getFullName()));
-			
-			} else {
-				// Then add editors, layout editor, and proofreader
-				$recipients = array_merge($recipients, $editorAddresses);
-				
-				if ($layoutEditor != null) {
-					$recipients = array_merge($recipients, array($layoutEditor->getEmail() => $layoutEditor->getFullName()));
-				}
-				
-				if ($proofreader != null) {
-					$recipients = array_merge($recipients, array($proofreader->getEmail() => $proofreader->getFullName()));
-				}
 			}
 			break;
 		}

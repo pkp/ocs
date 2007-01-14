@@ -25,6 +25,7 @@
 
 		<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
 		<option {if $roleSymbolic=='trackEditors'}selected="selected" {/if}value="trackEditors">{translate key="user.role.trackEditors"}</option>
+		<option {if $roleSymbolic=='layoutEditors'}selected="selected" {/if}value="layoutEditors">{translate key="user.role.layoutEditors"}</option>
 		<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
 
 		<option {if $roleSymbolic=='authors'}selected="selected" {/if}value="authors">{translate key="user.role.authors"}</option>
@@ -53,6 +54,7 @@
 	{*<li><a href="{url path="schedulingManagers" oldUserId=$oldUserId}">{translate key="user.role.schedulingManagers"}</a></li>*}
 	<li><a href="{url path="editors" oldUserId=$oldUserId}">{translate key="user.role.editors"}</a></li>
 	<li><a href="{url path="trackEditors" oldUserId=$oldUserId}">{translate key="user.role.trackEditors"}</a></li>
+	<li><a href="{url path="layoutEditors" oldUserId=$oldUserId}">{translate key="user.role.layoutEditors"}</a></li>
 	<li><a href="{url path="reviewers" oldUserId=$oldUserId}">{translate key="user.role.reviewers"}</a></li>
 	<li><a href="{url path="authors" oldUserId=$oldUserId}">{translate key="user.role.authors"}</a></li>
 	{*<li><a href="{url path="invitedAuthors" oldUserId=$oldUserId}">{translate key="user.role.invitedAuthors"}</a></li>*}
@@ -65,6 +67,8 @@
 {else}
 <p><a href="{url path="all" oldUserId=$oldUserId}" class="action">{translate key="director.people.allUsers"}</a></p>
 {/if}
+
+<a name="users"></a>
 
 <table width="100%" class="listing">
 	<tr>
@@ -116,7 +120,7 @@
 {else}
 	<tr>
 		<td colspan="2" align="left">{page_info iterator=$users}</td>
-		<td colspan="2" align="right">{page_links name="users" iterator=$users searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth roleSymbolic=$roleSymbolic oldUserId=$oldUserId}</td>
+		<td colspan="2" align="right">{page_links anchor="users" name="users" iterator=$users searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth roleSymbolic=$roleSymbolic oldUserId=$oldUserId}</td>
 	</tr>
 {/if}
 </table>

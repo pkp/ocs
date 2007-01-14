@@ -16,10 +16,8 @@
 // Submission status constants
 define('SUBMISSION_STATUS_ARCHIVED', 0);
 define('SUBMISSION_STATUS_QUEUED', 1);
-define('SUBMISSION_STATUS_ACCEPTED', 2);
 define('SUBMISSION_STATUS_PUBLISHED', 3);
 define('SUBMISSION_STATUS_DECLINED', 4);
-define('SUBMISSION_STATUS_EXPIRED', 5); // submission deadline passed
 
 // AuthorSubmission::getSubmissionStatus will return one of these in place of QUEUED:
 define ('SUBMISSION_STATUS_QUEUED_UNASSIGNED', 6);
@@ -271,14 +269,6 @@ class Paper extends DataObject {
 	}
 	
 	/**
-	 * Get ID of paper's secondary track.
-	 * @return int
-	 */
-	function getSecondaryTrackId() {
-		return $this->getData('secondaryTrackId');
-	}
-
-	/**
 	 * Set ID of paper's track.
 	 * @param $trackId int
 	 */
@@ -286,14 +276,6 @@ class Paper extends DataObject {
 		return $this->setData('trackId', $trackId);
 	}
 
-	/**
-	 * Set ID of paper's secondary track.
-	 * @param $trackId int
-	 */
-	function setSecondaryTrackId($trackId) {
-		return $this->setData('secondaryTrackId', $trackId);
-	}
-	
 	/**
 	 * Get title of paper's track.
 	 * @return string
@@ -308,22 +290,6 @@ class Paper extends DataObject {
 	 */
 	function setTrackTitle($trackTitle) {
 		return $this->setData('trackTitle', $trackTitle);
-	}
-
-	/**
-	 * Get title of paper's secondary track.
-	 * @return string
-	 */
-	function getSecondaryTrackTitle() {
-		return $this->getData('secondaryTrackTitle');
-	}
-	
-	/**
-	 * Set title of paper's secondary track.
-	 * @param $secondaryTrackTitle string
-	 */
-	function setSecondaryTrackTitle($secondaryTrackTitle) {
-		return $this->setData('secondaryTrackTitle', $secondaryTrackTitle);
 	}
 
 	/**

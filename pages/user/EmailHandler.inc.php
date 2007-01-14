@@ -25,6 +25,16 @@ class EmailHandler extends UserHandler {
 
 		$user = &Request::getUser();
 
+		// See if this is the Editor or Director and an email template has been chosen
+		$template = Request::getUserVar('template');
+		if (empty($template) || (
+			!Validation::isConferenceDirector() &&
+			!Validation::isEditor() &&
+			!Validation::isTrackEditor())
+		)) {
+			$template = null;
+		}
+
 		$email = null;
 		if ($paperId = Request::getUserVar('paperId')) {
 			// This message is in reference to an paper.
@@ -45,11 +55,16 @@ class EmailHandler extends UserHandler {
 			while ($editAssignment =& $editAssignments->next()) {
 				if ($editAssignment->getEditorId() === $user->getUserId()) $hasAccess = true;
 			}
+			if (Validation::isEditor()) $hasAccess = true;
 			// 3. User is reviewer
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			foreach ($reviewAssignmentDao->getReviewAssignmentsByPaperId($paperId) as $reviewAssignment) {
 				if ($reviewAssignment->getReviewerId() === $user->getUserId()) $hasAccess = true;
 			}
+			// 5. User is layout editor
+			$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
+			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByPaperId($paperId);
+			if ($layoutAssignment && $layoutAssignment->getEditorId() === $user->getUserId()) $hasAccess = true;
 
 			// Last, "deal-breakers" -- access is not allowed.
 			if ($paper && $paper->getEventId() !== $event->getEventId()) $hasAccess = false;
@@ -67,7 +82,9 @@ class EmailHandler extends UserHandler {
 		
 		if (Request::getUserVar('send') && !$email->hasErrors()) {
 			$email->send();
-			Request::redirectUrl(Request::getUserVar('redirectUrl'));
+			$redirectUrl = Request::getUserVar('redirectUrl');
+			if (empty($redirectUrl)) $redirectUrl = Request::url(null, null, 'user');
+			Request::redirectUrl($redirectUrl);
 		} else {
 			if (!Request::getUserVar('continued')) {
 				// Check for special cases.

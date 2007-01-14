@@ -79,10 +79,8 @@ class VersionCheck {
 			'version' => Version::fromString($data['release'][0]['value'])
 		);
 		
-		if(isset($data['patch'])) {
-			foreach ($data['patch'] as $patch) {
-				$versionInfo['patch'][$patch['attributes']['from']] = $patch['value'];
-			}
+		foreach ($data['patch'] as $patch) {
+			$versionInfo['patch'][$patch['attributes']['from']] = $patch['value'];
 		}
 		
 		return $versionInfo;

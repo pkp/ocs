@@ -20,6 +20,7 @@
 {include file="common/header.tpl"}
 
 <h2>{$event->getSetting("location")|nl2br}</h2>
+<h2>{$event->getSetting('startDate')|date_format:$dateFormatLong} &ndash; {$event->getSetting('endDate')|date_format:$dateFormatLong}</h2>
 
 <br />
 
@@ -49,7 +50,9 @@
 
 <ul class="plain">
 	<li>&#187; <a href="{url page="event" op="overview"}">{translate key="event.overview"}</a></li>
-	<li>&#187; <a href="{url page="event" op="cfp"}">{translate key="event.cfp"}</a> ({$submissionOpenDate|date_format:$dateFormatLong} - {$submissionCloseDate|date_format:$dateFormatLong})</li>
+	{if $showCFP}
+		<li>&#187; <a href="{url page="event" op="cfp"}">{translate key="event.cfp"}</a> ({$submissionOpenDate|date_format:$dateFormatLong} - {$submissionCloseDate|date_format:$dateFormatLong})</li>
+	{/if}
 	{if $showSubmissionLink}<li>&#187; <a href="{url page="author" op="submit"}">{translate key="event.proposalSubmission"}</a></li>{/if}
 	<li>&#187; <a href="{url page="event" op="program"}">{translate key="event.program"}</a></li>
 	<li>&#187; <a href="{url page="event" op="proceedings"}">{translate key="event.proceedings"}</a></li>

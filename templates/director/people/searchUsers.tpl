@@ -60,6 +60,7 @@ function confirmAndPrompt(userId) {
 			<option value="{$smarty.const.ROLE_ID_CONFERENCE_DIRECTOR}">{translate key="user.role.director"}</option>
 			<option value="{$smarty.const.ROLE_ID_EDITOR}">{translate key="user.role.editor"}</option>
 			<option value="{$smarty.const.ROLE_ID_TRACK_EDITOR}">{translate key="user.role.trackEditor"}</option>
+			<option value="{$smarty.const.ROLE_ID_LAYOUT_EDITOR}">{translate key="user.role.layoutEditor"}</option>
 			<option value="{$smarty.const.ROLE_ID_REVIEWER}">{translate key="user.role.reviewer"}</option>
 			{if $isRegistrationEnabled}
 				<option value="{$smarty.const.ROLE_ID_REGISTRATION_MANAGER}">{translate key="user.role.registrationManager"}</option>
@@ -81,6 +82,8 @@ function confirmAndPrompt(userId) {
 	// -->
 	</script>
 {/if}
+
+<a name="users"></a>
 
 <table width="100%" class="listing">
 <tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
@@ -129,7 +132,7 @@ function confirmAndPrompt(userId) {
 {else}
 	<tr>
 		<td colspan="3" align="left">{page_info iterator=$users}</td>
-		<td colspan="2" align="right">{page_links name="users" iterator=$users searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth}</td>
+		<td colspan="2" align="right">{page_links anchor="users" name="users" iterator=$users searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth}</td>
 	</tr>
 {/if}
 </table>

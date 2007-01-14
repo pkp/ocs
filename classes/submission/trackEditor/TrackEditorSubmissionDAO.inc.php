@@ -25,12 +25,12 @@ class TrackEditorSubmissionDAO extends DAO {
 	var $userDao;
 	var $editAssignmentDao;
 	var $reviewAssignmentDao;
+	var $layoutAssignmentDao;
 	var $paperFileDao;
 	var $suppFileDao;
 	var $galleyDao;
 	var $paperEmailLogDao;
 	var $paperCommentDao;
-	var $proofAssignmentDao;
 
 	/**
 	 * Constructor.
@@ -42,12 +42,12 @@ class TrackEditorSubmissionDAO extends DAO {
 		$this->userDao = &DAORegistry::getDAO('UserDAO');
 		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$this->reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		$this->layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
 		$this->paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 		$this->galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 		$this->paperEmailLogDao = &DAORegistry::getDAO('PaperEmailLogDAO');
 		$this->paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
-		//$this->proofAssignmentDao = &DAORegistry::getDAO('ProofAssignmentDAO');
 	}
 
 	/**
@@ -57,25 +57,18 @@ class TrackEditorSubmissionDAO extends DAO {
 	 */
 	function &getTrackEditorSubmission($paperId) {
 		$result = &$this->retrieve(
-			'SELECT a.*,
+			'SELECT p.*,
 				t.title AS track_title,
 				t.title_alt1 AS track_title_alt1,
 				t.title_alt2 AS track_title_alt2,
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
 				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2,
 				r2.review_revision
-				FROM papers a
-					LEFT JOIN tracks t ON (t.track_id = a.track_id)
-					LEFT JOIN tracks t2 ON (t2.track_id = a.secondary_track_id) '.
-					'LEFT JOIN review_rounds r2 ON (a.paper_id = r2.paper_id AND a.current_round = r2.round AND a.review_progress = r2.type)
-				WHERE a.paper_id = ?', $paperId
+				FROM papers p
+					LEFT JOIN tracks t ON (t.track_id = p.track_id)
+					LEFT JOIN review_rounds r2 ON (p.paper_id = r2.paper_id AND p.current_round = r2.round AND p.review_progress = r2.type)
+				WHERE p.paper_id = ?', $paperId
 		);
 
 		$returner = null;
@@ -113,6 +106,7 @@ class TrackEditorSubmissionDAO extends DAO {
 
 		// Comments
 		$trackEditorSubmission->setMostRecentEditorDecisionComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_EDITOR_DECISION, $row['paper_id']));
+		$trackEditorSubmission->setMostRecentLayoutComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_LAYOUT, $row['paper_id']));
 
 		// Files
 		$trackEditorSubmission->setSubmissionFile($this->paperFileDao->getPaperFile($row['submission_file_id']));
@@ -135,6 +129,8 @@ class TrackEditorSubmissionDAO extends DAO {
 				$trackEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByPaperId($row['paper_id'], $i, $j), $i, $j);
 
 		// Layout Editing
+		$trackEditorSubmission->setLayoutAssignment($this->layoutAssignmentDao->getLayoutAssignmentByPaperId($row['paper_id']));
+
 		$trackEditorSubmission->setGalleys($this->galleyDao->getGalleysByPaper($row['paper_id']));
 
 		HookRegistry::call('TrackEditorSubmissionDAO::_returnTrackEditorSubmissionFromRow', array(&$trackEditorSubmission, &$row));
@@ -219,6 +215,16 @@ class TrackEditorSubmissionDAO extends DAO {
 			$this->reviewAssignmentDao->deleteReviewAssignmentById($removedReviewAssignments[$i]);
 		}
 
+		// Update layout editing assignment
+		$layoutAssignment =& $trackEditorSubmission->getLayoutAssignment();
+		if (isset($layoutAssignment)) {
+			if ($layoutAssignment->getLayoutId() > 0) {
+				$this->layoutAssignmentDao->updateLayoutAssignment($layoutAssignment);
+			} else {
+				$this->layoutAssignmentDao->insertLayoutAssignment($layoutAssignment);
+			}
+		}
+		
 		// Update paper
 		if ($trackEditorSubmission->getPaperId()) {
 
@@ -226,7 +232,6 @@ class TrackEditorSubmissionDAO extends DAO {
 
 			// Only update fields that can actually be edited.
 			$paper->setTrackId($trackEditorSubmission->getTrackId());
-			$paper->setSecondaryTrackId($trackEditorSubmission->getSecondaryTrackId());
 			$paper->setReviewProgress($trackEditorSubmission->getReviewProgress());
 			$paper->setCurrentRound($trackEditorSubmission->getCurrentRound());
 			$paper->setReviewFileId($trackEditorSubmission->getReviewFileId());
@@ -261,25 +266,18 @@ class TrackEditorSubmissionDAO extends DAO {
 		$trackEditorSubmissions = array();
 
 		$result = &$this->retrieve(
-			'SELECT a.*,
+			'SELECT p.*,
 			t.title AS track_title,
 			t.title_alt1 AS track_title_alt1,
 			t.title_alt2 AS track_title_alt2,
 			t.abbrev AS track_abbrev,
 			t.abbrev_alt1 AS track_abbrev_alt1,
 			t.abbrev_alt2 AS track_abbrev_alt2,
-			t2.title AS secondary_track_title,
-			t2.title_alt1 AS secondary_track_title_alt1,
-			t2.title_alt2 AS secondary_track_title_alt2,
-			t2.abbrev AS secondary_track_abbrev,
-			t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-			t2.abbrev_alt2 AS secondary_track_abbrev_alt2,
 			r2.review_revision
-			FROM papers a LEFT JOIN edit_assignments e ON (e.paper_id = a.paper_id)
-				LEFT JOIN tracks t ON (t.track_id = a.track_id)
-				LEFT JOIN tracks t2 ON (t2.track_id = a.secondary_track_id)
-				LEFT JOIN review_rounds r2 ON (a.paper_id = r2.paper_id AND a.review_progress = r2.type AND a.current_round = r2.round)
-			WHERE a.event_id = ? AND e.editor_id = ? AND a.status = ?',
+			FROM papers p LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
+				LEFT JOIN tracks t ON (t.track_id = p.track_id)
+				LEFT JOIN review_rounds r2 ON (p.paper_id = r2.paper_id AND p.review_progress = r2.type AND p.current_round = r2.round)
+			WHERE p.event_id = ? AND e.editor_id = ? AND p.status = ?',
 			array($eventId, $trackEditorId, $status)
 		);
 
@@ -305,18 +303,18 @@ class TrackEditorSubmissionDAO extends DAO {
 		if (!empty($search)) switch ($searchField) {
 			case SUBMISSION_FIELD_TITLE:
 				if ($searchMatch === 'is') {
-					$searchSql = ' AND (LOWER(a.title) = LOWER(?) OR LOWER(a.title_alt1) = LOWER(?) OR LOWER(a.title_alt2) = LOWER(?))';
+					$searchSql = ' AND (LOWER(p.title) = LOWER(?) OR LOWER(p.title_alt1) = LOWER(?) OR LOWER(p.title_alt2) = LOWER(?))';
 				} else {
-					$searchSql = ' AND (LOWER(a.title) LIKE LOWER(?) OR LOWER(a.title_alt1) LIKE LOWER(?) OR LOWER(a.title_alt2) LIKE LOWER(?))';
+					$searchSql = ' AND (LOWER(p.title) LIKE LOWER(?) OR LOWER(p.title_alt1) LIKE LOWER(?) OR LOWER(p.title_alt2) LIKE LOWER(?))';
 					$search = '%' . $search . '%';
 				}
 				$params[] = $params[] = $params[] = $search;
 				break;
 			case SUBMISSION_FIELD_AUTHOR:
-				$first_last = $this->_dataSource->Concat('aa.first_name', '\' \'', 'aa.last_name');
-				$first_middle_last = $this->_dataSource->Concat('aa.first_name', '\' \'', 'aa.middle_name', '\' \'', 'aa.last_name');
-				$last_comma_first = $this->_dataSource->Concat('aa.last_name', '\', \'', 'aa.first_name');
-				$last_comma_first_middle = $this->_dataSource->Concat('aa.last_name', '\', \'', 'aa.first_name', '\' \'', 'aa.middle_name');
+				$first_last = $this->_dataSource->Concat('ap.first_name', '\' \'', 'ap.last_name');
+				$first_middle_last = $this->_dataSource->Concat('ap.first_name', '\' \'', 'ap.middle_name', '\' \'', 'ap.last_name');
+				$last_comma_first = $this->_dataSource->Concat('ap.last_name', '\', \'', 'ap.first_name');
+				$last_comma_first_middle = $this->_dataSource->Concat('ap.last_name', '\', \'', 'ap.first_name', '\' \'', 'ap.middle_name');
 
 				if ($searchMatch === 'is') {
 					$searchSql = " AND (LOWER(aa.last_name) = LOWER(?) OR LOWER($first_last) = LOWER(?) OR LOWER($first_middle_last) = LOWER(?) OR LOWER($last_comma_first) = LOWER(?) OR LOWER($last_comma_first_middle) = LOWER(?))";
@@ -344,10 +342,18 @@ class TrackEditorSubmissionDAO extends DAO {
 		if (!empty($dateFrom) || !empty($dateTo)) switch($dateField) {
 			case SUBMISSION_FIELD_DATE_SUBMITTED:
 				if (!empty($dateFrom)) {
-					$searchSql .= ' AND a.date_submitted >= ' . $this->datetimeToDB($dateFrom);
+					$searchSql .= ' AND p.date_submitted >= ' . $this->datetimeToDB($dateFrom);
 				}
 				if (!empty($dateTo)) {
-					$searchSql .= ' AND a.date_submitted <= ' . $this->datetimeToDB($dateTo);
+					$searchSql .= ' AND p.date_submitted <= ' . $this->datetimeToDB($dateTo);
+				}
+				break;
+			case SUBMISSION_FIELD_DATE_LAYOUT_COMPLETE:
+				if (!empty($dateFrom)) {
+					$searchSql .= ' AND l.date_completed >= ' . $this->datetimeToDB($dateFrom);
+				}
+				if (!empty($dateTo)) {
+					$searchSql .= ' AND l.date_completed <= ' . $this->datetimeToDB($dateTo);
 				}
 				break;
 		}
@@ -362,12 +368,6 @@ class TrackEditorSubmissionDAO extends DAO {
 				t.abbrev AS track_abbrev,
 				t.abbrev_alt1 AS track_abbrev_alt1,
 				t.abbrev_alt2 AS track_abbrev_alt2,
-				t2.title AS secondary_track_title,
-				t2.title_alt1 AS secondary_track_title_alt1,
-				t2.title_alt2 AS secondary_track_title_alt2,
-				t2.abbrev AS secondary_track_abbrev,
-				t2.abbrev_alt1 AS secondary_track_abbrev_alt1,
-				t2.abbrev_alt2 AS secondary_track_abbrev_alt2,
 				r2.review_revision
 			FROM
 				papers p
@@ -375,13 +375,15 @@ class TrackEditorSubmissionDAO extends DAO {
 			LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
 			LEFT JOIN users ed ON (e.editor_id = ed.user_id)
 			LEFT JOIN tracks t ON (t.track_id = p.track_id)
-			LEFT JOIN tracks t2 ON (t2.track_id = p.secondary_track_id)
 			LEFT JOIN review_rounds r2 ON (p.paper_id = r2.paper_id and p.current_round = r2.round AND p.review_progress = r2.type)
+			LEFT JOIN layouted_assignments l ON (l.paper_id = p.paper_id) LEFT JOIN users le ON (le.user_id = l.editor_id)
 			WHERE
 				p.event_id = ? AND e.editor_id = ?';
 
-		if ($status) $sql .= ' AND p.status = 1';
-		else $sql .= ' AND p.status <> 1';
+		// "Active" submissions have a status of SUBMISSION_STATUS_QUEUED and
+		// the layout editor has not yet been acknowledged.
+		if ($status === true) $sql .= ' AND (p.status = ' . SUBMISSION_STATUS_QUEUED . ')';
+		else $sql .= ' AND (p.status <> ' . SUBMISSION_STATUS_QUEUED . ')';
 
 		if ($trackId) {
 			$params[] = $trackId;
@@ -433,9 +435,10 @@ class TrackEditorSubmissionDAO extends DAO {
 				}
 			}
 
-			if ($row['can_review'] && $inReview && !$submission->getSubmissionProgress()) {
-				$submissions[] = $submission;
+			if ($inReview && !$submission->getSubmissionProgress()) {
+				$submissions[] =& $submission;
 			}
+			unset($submission);
 			$result->MoveNext();
 		}
 
@@ -476,19 +479,20 @@ class TrackEditorSubmissionDAO extends DAO {
 			$submission = &$this->_returnTrackEditorSubmissionFromRow($row);
 
 			// check if submission is still in review
-			$notInReview = false;
+			$inReview = true;
 			$decisions = $submission->getDecisions();
 			$decision = array_pop($decisions);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
 				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_DECLINE) {
-					$notInReview = true;
+					$inReview = false;
 				}
 			}
 
-			if ($row['can_edit'] && $notInReview && !$submission->getSubmissionProgress()) {
-				$submissions[] = $submission;
+			if (!$inReview && !$submission->getSubmissionProgress()) {
+				$submissions[] =& $submission;
 			}
+			unset($submission);
 			$result->MoveNext();
 		}
 
@@ -526,20 +530,64 @@ class TrackEditorSubmissionDAO extends DAO {
 		while (!$result->EOF) {
 			$submission = &$this->_returnTrackEditorSubmissionFromRow($result->GetRowAssoc(false));
 
-			if (!$submission->getSubmissionProgress()) {
-				$submissions[] = $submission;
+			if ($submission->getStatus() == SUBMISSION_STATUS_ARCHIVED) {
+				$submissions[] =& $submission;
 			}
+			unset($submission);
 			$result->MoveNext();
+		}
+
+		if (isset($rangeInfo) && $rangeInfo->isValid()) {
+			$returner = &new VirtualArrayIterator($submissions, $rangeInfo->getPage(), $rangeInfo->getCount());
+		} else {
+			$returner = &new ArrayItemIterator($submissions);
 		}
 
 		$result->Close();
 		unset($result);
 
+		return $returner;
+	}
+
+	/**
+	 * Get all submissions accepted to a conference.
+	 * @param $trackEditorId int
+	 * @param $eventId int
+	 * @param $trackId int
+	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
+	 * @param $searchMatch string "is" or "contains"
+	 * @param $search String to look in $searchField for
+	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
+	 * @param $dateFrom String date to search from
+	 * @param $dateTo String date to search to
+	 * @param $rangeInfo object
+	 * @return array EditorSubmission
+	 */
+	function &getTrackEditorSubmissionsAccepted($trackEditorId, $eventId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$submissions = array();
+
+		// FIXME Does not pass $rangeInfo else we only get partial results
+		$result = $this->getUnfilteredTrackEditorSubmissions($trackEditorId, $eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false);
+
+		while (!$result->EOF) {
+			$submission = &$this->_returnTrackEditorSubmissionFromRow($result->GetRowAssoc(false));
+
+			if ($submission->getStatus() == SUBMISSION_STATUS_PUBLISHED) {
+				$submissions[] =& $submission;
+			}
+			unset($submission);
+			$result->MoveNext();
+		}
+
 		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new ArrayItemIterator($submissions, $rangeInfo->getPage(), $rangeInfo->getCount());
+			$returner = &new VirtualArrayIterator($submissions, $rangeInfo->getPage(), $rangeInfo->getCount());
 		} else {
 			$returner = &new ArrayItemIterator($submissions);
 		}
+
+		$result->Close();
+		unset($result);
+
 		return $returner;
 	}
 
@@ -587,7 +635,7 @@ class TrackEditorSubmissionDAO extends DAO {
 					}
 				}
 			}
-
+			unset($trackEditorDecision);
 			$result->MoveNext();
 		}
 
@@ -763,15 +811,15 @@ class TrackEditorSubmissionDAO extends DAO {
 		}
 
 		$result = &$this->retrieveRange('
-			SELECT DISTINCT u.*, a.review_id as review_id
+			SELECT DISTINCT u.*, p.review_id as review_id
 			FROM users u
 			NATURAL JOIN roles r
 			LEFT JOIN review_assignments a ON
-				(a.reviewer_id = u.user_id
-				 AND a.cancelled = 0
-				 AND a.paper_id = ?
-				 AND a.type = ?
-				 AND a.round = ?)
+				(p.reviewer_id = u.user_id
+				 AND p.cancelled = 0
+				 AND p.paper_id = ?
+				 AND p.type = ?
+				 AND p.round = ?)
 			WHERE u.user_id = r.user_id
 				AND r.event_id = ?
 				AND r.role_id = ? ' . $searchSql . '
@@ -802,7 +850,7 @@ class TrackEditorSubmissionDAO extends DAO {
 		$users = array();
 
 		$result = &$this->retrieve(
-			'SELECT u.* FROM users u NATURAL JOIN roles r LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND a.paper_id = ?) WHERE r.event_id = ? AND r.role_id = ? AND a.paper_id IS NULL ORDER BY last_name, first_name',
+			'SELECT u.* FROM users u NATURAL JOIN roles r LEFT JOIN review_assignments a ON (p.reviewer_id = u.user_id AND p.paper_id = ?) WHERE r.event_id = ? AND r.role_id = ? AND p.paper_id IS NULL ORDER BY last_name, first_name',
 			array($paperId, $eventId, RoleDAO::getRoleIdFromPath('reviewer'))
 		);
 
@@ -818,6 +866,52 @@ class TrackEditorSubmissionDAO extends DAO {
 	}
 
 	/**
+	 * Get the assignment counts and last assigned date for all layout editors of the given conference.
+	 * @return array
+	 */
+	function getLayoutEditorStatistics($eventId) {
+		$statistics = Array();
+
+		// Get counts of completed submissions
+		$result = &$this->retrieve('select la.editor_id as editor_id, count(la.paper_id) as complete from layouted_assignments la, papers a where la.paper_id=p.paper_id and la.date_completed is not null and p.event_id=? group by la.editor_id', $eventId);
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
+			$statistics[$row['editor_id']]['complete'] = $row['complete'];
+			$result->MoveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		// Get counts of incomplete submissions
+		$result = &$this->retrieve('select la.editor_id as editor_id, count(la.paper_id) as incomplete from layouted_assignments la, papers a where la.paper_id=p.paper_id and la.date_completed is null and p.event_id=? group by la.editor_id', $eventId);
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
+			$statistics[$row['editor_id']]['incomplete'] = $row['incomplete'];
+			$result->MoveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		// Get last assignment date
+		$result = &$this->retrieve('select la.editor_id as editor_id, max(la.date_notified) as last_assigned from layouted_assignments la, papers a where la.paper_id=p.paper_id and p.event_id=? group by la.editor_id', $eventId);
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
+			$statistics[$row['editor_id']]['last_assigned'] = $this->datetimeFromDB($row['last_assigned']);
+			$result->MoveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $statistics;
+	}
+
+	/**
 	 * Get the last assigned and last completed dates for all reviewers of the given conference.
 	 * @return array
 	 */
@@ -825,7 +919,7 @@ class TrackEditorSubmissionDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result = &$this->retrieve('select ra.reviewer_id as editor_id, max(ra.date_notified) as last_notified from review_assignments ra, papers a where ra.paper_id=a.paper_id and a.event_id=? group by ra.reviewer_id', $eventId);
+		$result = &$this->retrieve('select rp.reviewer_id as editor_id, max(rp.date_notified) as last_notified from review_assignments ra, papers p where rp.paper_id=p.paper_id and p.event_id=? group by rp.reviewer_id', $eventId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -837,7 +931,7 @@ class TrackEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get completion status
-		$result = &$this->retrieve('select r.reviewer_id as reviewer_id, COUNT(*) AS incomplete from review_assignments r, papers a where r.paper_id=a.paper_id and r.date_notified is not null and r.date_completed is null and r.cancelled = 0 and a.event_id = ? group by r.reviewer_id', $eventId);
+		$result = &$this->retrieve('select r.reviewer_id as reviewer_id, COUNT(*) AS incomplete from review_assignments r, papers p where r.paper_id=p.paper_id and r.date_notified is not null and r.date_completed is null and r.cancelled = 0 and p.event_id = ? group by r.reviewer_id', $eventId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
@@ -849,7 +943,7 @@ class TrackEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Calculate time taken for completed reviews
-		$result = &$this->retrieve('select r.reviewer_id as reviewer_id, r.date_notified as date_notified, r.date_completed as date_completed from review_assignments r, papers a where r.paper_id=a.paper_id and r.date_notified is not null and r.date_completed is not null and a.event_id = ?', $eventId);
+		$result = &$this->retrieve('select r.reviewer_id as reviewer_id, r.date_notified as date_notified, r.date_completed as date_completed from review_assignments r, papers p where r.paper_id=p.paper_id and r.date_notified is not null and r.date_completed is not null and p.event_id = ?', $eventId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();

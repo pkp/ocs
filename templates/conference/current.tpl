@@ -19,6 +19,7 @@
 	{iterate from=events item=event}
 		<h4><a href="{url event=$event->getPath()}">{$event->getFullTitle()|escape}</a></h4>
 		<p>{$event->getSetting('location')|nl2br}</p>
+		<p>{$event->getSetting('startDate')|date_format:$dateFormatLong} &ndash; {$event->getSetting('endDate')|date_format:$dateFormatLong}</p>
 		{if $event->getSetting('eventIntroduction')}
 			<p>{$event->getSetting('eventIntroduction')|nl2br}</p>
 		{/if}

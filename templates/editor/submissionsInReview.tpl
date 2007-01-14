@@ -9,6 +9,8 @@
  * $Id$
  *}
 
+<a name="submissions"></a>
+
 <table width="100%" class="listing">
 	<tr>
 		<td colspan="8" class="headseparator">&nbsp;</td>
@@ -63,7 +65,8 @@
 						{/if}
 					{foreachelse}
 						<tr valign="top">
-							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
+							{assign var="type" value=$submission->getReviewProgress()}
+							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{$reviewType[$type]}</td>
 							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
 							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
 							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
@@ -72,7 +75,8 @@
 					{/foreach}
 				{foreachelse}
 					<tr valign="top">
-						<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
+						{assign var="type" value=$submission->getReviewProgress()}
+						<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{$reviewType[$type]}</td>
 						<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
 						<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
 						<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
@@ -81,7 +85,8 @@
 				{/foreach}
 			{foreachelse}
 				<tr valign="top">
-					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
+					{assign var="type" value=$submission->getReviewProgress()}
+					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{$reviewType[$type]}</td>
 					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
 					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
 					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
@@ -122,7 +127,7 @@
 {else}
 	<tr>
 		<td colspan="5" align="left">{page_info iterator=$submissions}</td>
-		<td colspan="3" align="right">{page_links name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth track=$track}</td>
+		<td colspan="3" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth track=$track}</td>
 	</tr>
 {/if}
 </table>

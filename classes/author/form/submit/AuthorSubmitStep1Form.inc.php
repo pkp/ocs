@@ -55,10 +55,6 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 		$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($event->getEventId(), !$isEditor));
 
-		$templateMgr->assign('secondaryTrackOptions',
-			array(
-				'0' => Locale::translate('common.none')) +
-				$trackDao->getTrackTitles($event->getEventId(), !$isEditor));
 		parent::display();
 	}
 	
@@ -69,7 +65,6 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		if (isset($this->paper)) {
 			$this->_data = array(
 				'trackId' => $this->paper->getTrackId(),
-				'secondaryTrackId' => $this->paper->getSecondaryTrackId(),
 				'commentsToEditor' => $this->paper->getCommentsToEditor()
 			);
 		}
@@ -79,11 +74,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('submissionChecklist', 'copyrightNoticeAgree', 'trackId', 'commentsToEditor', 'secondaryTrackId'));
-
-		if($this->getData('secondaryTrackId') == 0) {
-			$this->setData('secondaryTrackId', null);
-		}
+		$this->readUserVars(array('submissionChecklist', 'copyrightNoticeAgree', 'trackId', 'commentsToEditor'));
 	}
 	
 	/**
@@ -96,7 +87,6 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		if (isset($this->paper)) {
 			// Update existing paper
 			$this->paper->setTrackId($this->getData('trackId'));
-			$this->paper->setSecondaryTrackId($this->getData('secondaryTrackId'));
 			$this->paper->setCommentsToEditor($this->getData('commentsToEditor'));
 			if ($this->paper->getSubmissionProgress() <= $this->step) {
 				$this->paper->stampStatusModified();
@@ -113,7 +103,6 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->paper->setUserId($user->getUserId());
 			$this->paper->setEventId($event->getEventId());
 			$this->paper->setTrackId($this->getData('trackId'));
-			$this->paper->setSecondaryTrackId($this->getData('secondaryTrackId'));
 			$this->paper->stampStatusModified();
 			$this->paper->setSubmissionProgress($this->step + 1);
 			$this->paper->setLanguage('');

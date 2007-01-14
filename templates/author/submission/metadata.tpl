@@ -12,7 +12,7 @@
 <a name="metadata"></a>
 <h3>{translate key="submission.metadata"}</h3>
 
-{if !$submission->getCopyeditorDateCompleted()}<p><a href="{url op="viewMetadata" path=$submission->getPaperId()}" class="action">{translate key="submission.editMetadata"}</a></p>{/if}
+{if $submission->getReviewProgress() != $smarty.const.REVIEW_PROGRESS_PAPER}<p><a href="{url op="viewMetadata" path=$submission->getPaperId()}" class="action">{translate key="submission.editMetadata"}</a></p>{/if}
 
 
 <h4>{translate key="paper.authors"}</h4>
@@ -29,6 +29,10 @@
 	<tr valign="top">
 		<td class="label">{translate key="user.affiliation"}</td>
 		<td class="value">{$author->getAffiliation()|escape|default:"&mdash;"}</td>
+	</tr>
+	<tr valign="top">
+		<td class="label">{translate key="common.country"}</td>
+		<td class="value">{$author->getCountryLocalized()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.biography"}</td>

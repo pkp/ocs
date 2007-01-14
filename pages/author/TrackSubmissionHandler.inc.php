@@ -94,11 +94,12 @@ class TrackSubmissionHandler extends AuthorHandler {
 		import('paper.Paper'); // for REVIEW_PROGRESS constants
 		$user = &Request::getUser();
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$type = (isset($args[1]) ? $args[1] : REVIEW_PROGRESS_ABSTRACT); // which item is currently under review
-		$round = (isset($args[2]) ? $args[2] : 1);
 
 		list($conference, $event, $authorSubmission) = TrackSubmissionHandler::validate($paperId);
 		parent::setupTemplate(true, $paperId);
+
+		$type = (isset($args[1]) ? $args[1] : $authorSubmission->getReviewProgress());
+		$round = (isset($args[2]) ? $args[2] : 1);
 
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewModifiedByRound = $reviewAssignmentDao->getLastModifiedByRound($paperId, $type);
@@ -106,7 +107,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($paperId);
 		$authorViewableFilesByRound = &$reviewAssignmentDao->getAuthorViewableFilesByRound($paperId,$type);
 
-		$editorDecisions = $authorSubmission->getDecisions($authorSubmission->getReviewProgress(), $authorSubmission->getCurrentRound());
+		$editorDecisions = $authorSubmission->getDecisions($type, $authorSubmission->getCurrentRound());
 		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1] : null;
 
 		$templateMgr = &TemplateManager::getManager();
@@ -228,6 +229,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('eventSettings', $event->getSettings(true));
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
+		$templateMgr->assign('useLayoutEditors', $event->getSetting('useLayoutEditors'));
 		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.editing');
 		$templateMgr->display('author/submissionEditing.tpl');
 	}

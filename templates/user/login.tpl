@@ -49,11 +49,7 @@
 </table>
 
 <p>
-{if $source}
 &#187; <a href="{url page="user" op="register" source=$source|escape}">{translate key="user.login.registerNewAccount"}</a><br />
-{else}
-&#187; <a href="{url page="user" op="register"}">{translate key="user.login.registerNewAccount"}</a><br />
-{/if}
 &#187; <a href="{url page="login" op="lostPassword"}">{translate key="user.login.forgotPassword"}</a>
 </p>
 

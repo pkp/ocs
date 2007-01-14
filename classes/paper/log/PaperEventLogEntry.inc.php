@@ -59,24 +59,6 @@ define('PAPER_LOG_REVIEW_ACCEPT_BY_PROXY', 	0x40000015);
 define('PAPER_LOG_REVIEW_RECOMMENDATION_BY_PROXY', 	0x40000016);
 define('PAPER_LOG_REVIEW_FILE_BY_PROXY', 	0x40000017);
 
-// Copyeditor events 				0x50000000
-define('PAPER_LOG_COPYEDIT_ASSIGN', 		0x50000001);
-define('PAPER_LOG_COPYEDIT_UNASSIGN',	 	0x50000002);
-define('PAPER_LOG_COPYEDIT_INITIATE', 	0x50000003);
-define('PAPER_LOG_COPYEDIT_REVISION', 	0x50000004);
-define('PAPER_LOG_COPYEDIT_INITIAL', 		0x50000005);
-define('PAPER_LOG_COPYEDIT_FINAL', 		0x50000006);
-define('PAPER_LOG_COPYEDIT_SET_FILE',		0x50000007);
-define('PAPER_LOG_COPYEDIT_COPYEDIT_FILE',		0x50000008);
-define('PAPER_LOG_COPYEDIT_COPYEDITOR_FILE',		0x50000009);
-
-// Proofreader events 				0x60000000
-define('PAPER_LOG_PROOFREAD_ASSIGN', 		0x60000001);
-define('PAPER_LOG_PROOFREAD_UNASSIGN', 	0x60000002);
-define('PAPER_LOG_PROOFREAD_INITIATE', 	0x60000003);
-define('PAPER_LOG_PROOFREAD_REVISION', 	0x60000004);
-define('PAPER_LOG_PROOFREAD_COMPLETE', 	0x60000005);
-
 // Layout events 				0x70000000
 define('PAPER_LOG_LAYOUT_ASSIGN', 		0x70000001);
 define('PAPER_LOG_LAYOUT_UNASSIGN', 		0x70000002);
@@ -351,34 +333,6 @@ class PaperEventLogEntry extends DataObject {
 				return 'submission.event.reviewer.reviewDueDate';
 			case PAPER_LOG_REVIEW_FILE:
 				return 'submission.event.reviewer.reviewFile';
-			
-			// Copyeditor events
-			case PAPER_LOG_COPYEDIT_ASSIGN:
-				return 'submission.event.copyedit.copyeditorAssigned';
-			case PAPER_LOG_COPYEDIT_UNASSIGN:
-				return 'submission.event.copyedit.copyeditorUnassigned';
-			case PAPER_LOG_COPYEDIT_INITIATE:
-				return 'submission.event.copyedit.copyeditInitiated';
-			case PAPER_LOG_COPYEDIT_REVISION:
-				return 'submission.event.copyedit.copyeditRevision';
-			case PAPER_LOG_COPYEDIT_INITIAL:
-				return 'submission.event.copyedit.copyeditInitialCompleted';
-			case PAPER_LOG_COPYEDIT_FINAL:
-				return 'submission.event.copyedit.copyeditFinalCompleted';
-			case PAPER_LOG_COPYEDIT_SET_FILE:
-				return 'submission.event.copyedit.copyeditSetFile';
-			
-			// Proofreader events
-			case PAPER_LOG_PROOFREAD_ASSIGN:
-				return 'submission.event.proofread.proofreaderAssigned';
-			case PAPER_LOG_PROOFREAD_UNASSIGN:
-				return 'submission.event.proofread.proofreaderUnassigned';
-			case PAPER_LOG_PROOFREAD_INITIATE:
-				return 'submission.event.proofread.proofreadInitiated';
-			case PAPER_LOG_PROOFREAD_REVISION:
-				return 'submission.event.proofread.proofreadRevision';
-			case PAPER_LOG_PROOFREAD_COMPLETE:
-				return 'submission.event.proofread.proofreadCompleted';
 			
 			// Layout events
 			case PAPER_LOG_LAYOUT_ASSIGN:

@@ -32,9 +32,6 @@ class TrackEditorSubmission extends Paper {
 	/** @var array the revisions of the author file */
 	var $authorFileRevisions;
 
-	/** @var array the revisions of the revised copyedit file */
-	var $copyeditFileRevisions;
-
 	/**
 	 * Constructor.
 	 */
@@ -148,9 +145,9 @@ class TrackEditorSubmission extends Paper {
 	 */
 	function getSubmissionStatus() {
 		$status = $this->getStatus();
-		if ($status == SUBMISSION_STATUS_ARCHIVED || $status == SUBMISSION_STATUS_ACCEPTED ||
-		    $status == SUBMISSION_STATUS_DECLINED ||
-		    $status == SUBMISSION_STATUS_EXPIRED) return $status;
+		if ($status == SUBMISSION_STATUS_ARCHIVED ||
+				$status == SUBMISSION_STATUS_PUBLISHED ||
+		    $status == SUBMISSION_STATUS_DECLINED) return $status;
 
 		// The submission is SUBMISSION_STATUS_QUEUED or the author's submission was SUBMISSION_STATUS_INCOMPLETE.
 		if ($this->getSubmissionProgress()) return (SUBMISSION_STATUS_INCOMPLETE);
@@ -340,22 +337,6 @@ class TrackEditorSubmission extends Paper {
 	}
 	
 	/**
-	 * Get all copyedit file revisions.
-	 * @return array PaperFiles
-	 */
-	function getCopyeditFileRevisions() {
-		return $this->copyeditFileRevisions;
-	}
-	
-	/**
-	 * Set all copyedit file revisions.
-	 * @param $copyeditFileRevisions array PaperFiles
-	 */
-	function setCopyeditFileRevisions($copyeditFileRevisions) {
-		return $this->copyeditFileRevisions = $copyeditFileRevisions;
-	}
-	
-	/**
 	 * Get all editor file revisions.
 	 * @return array PaperFiles
 	 */
@@ -412,79 +393,6 @@ class TrackEditorSubmission extends Paper {
 		return $this->setData('editorFile', $editorFile);
 	}
 	
-	/**
-	 * Get copyedit file.
-	 * @return PaperFile
-	 */
-	function &getCopyeditFile() {
-		$returner =& $this->getData('copyeditFile');
-		return $returner;
-	}
-	
-
-	/**
-	 * Set copyedit file.
-	 * @param $copyeditFile PaperFile
-	 */
-	function setCopyeditFile($copyeditFile) {
-		return $this->setData('copyeditFile', $copyeditFile);
-	}
-	
-	/**
-	 * Get initial copyedit file.
-	 * @return PaperFile
-	 */
-	function &getInitialCopyeditFile() {
-		$returner =& $this->getData('initialCopyeditFile');
-		return $returner;
-	}
-	
-
-	/**
-	 * Set initial copyedit file.
-	 * @param $initialCopyeditFile PaperFile
-	 */
-	function setInitialCopyeditFile($initialCopyeditFile) {
-		return $this->setData('initialCopyeditFile', $initialCopyeditFile);
-	}
-	
-	/**
-	 * Get editor author copyedit file.
-	 * @return PaperFile
-	 */
-	function &getEditorAuthorCopyeditFile() {
-		$returner =& $this->getData('editorAuthorCopyeditFile');
-		return $returner;
-	}
-	
-
-	/**
-	 * Set editor author copyedit file.
-	 * @param $editorAuthorCopyeditFile PaperFile
-	 */
-	function setEditorAuthorCopyeditFile($editorAuthorCopyeditFile) {
-		return $this->setData('editorAuthorCopyeditFile', $editorAuthorCopyeditFile);
-	}
-	
-	/**
-	 * Get final copyedit file.
-	 * @return PaperFile
-	 */
-	function &getFinalCopyeditFile() {
-		$returner =& $this->getData('finalCopyeditFile');
-		return $returner;
-	}
-	
-
-	/**
-	 * Set final copyedit file.
-	 * @param $finalCopyeditFile PaperFile
-	 */
-	function setFinalCopyeditFile($finalCopyeditFile) {
-		return $this->setData('finalCopyeditFile', $finalCopyeditFile);
-	}
-
-
 	//
 	// Review Rounds
 	//
@@ -526,6 +434,39 @@ class TrackEditorSubmission extends Paper {
 	}
 	
 	/**
+	 * Get most recent layout comment.
+	 * @return PaperComment
+	 */
+	function getMostRecentLayoutComment() {
+		return $this->getData('mostRecentLayoutComment');
+	}
+	
+	/**
+	 * Set most recent layout comment.
+	 * @param $mostRecentLayoutComment PaperComment
+	 */
+	function setMostRecentLayoutComment($mostRecentLayoutComment) {
+		return $this->setData('mostRecentLayoutComment', $mostRecentLayoutComment);
+	}
+	
+	/**
+	 * Get the layout assignment for an paper.
+	 * @return LayoutAssignment
+	 */
+	function &getLayoutAssignment() {
+		$layoutAssignment = &$this->getData('layoutAssignment');
+		return $layoutAssignment;
+	}
+	
+	/**
+	 * Set the layout assignment for an paper.
+	 * @param $layoutAssignment LayoutAssignment
+	 */
+	function setLayoutAssignment(&$layoutAssignment) {
+		return $this->setData('layoutAssignment', $layoutAssignment);
+	}
+	
+	/**
 	 * Get the galleys for an paper.
 	 * @return array PaperGalley
 	 */
@@ -552,6 +493,7 @@ class TrackEditorSubmission extends Paper {
 			'' => 'common.chooseOne',
 			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.paper.decision.accept',
 			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.paper.decision.pendingRevisions',
+			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.paper.decision.resubmit',
 			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.paper.decision.decline'
 		);
 		return $editorDecisionOptions;

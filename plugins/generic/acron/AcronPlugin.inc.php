@@ -38,53 +38,56 @@ class AcronPlugin extends GenericPlugin {
 	}
 
 	function callback($hookName, $args) {
-		$taskDao =& DAORegistry::getDao('ScheduledTaskDAO');
+		$isEnabled = $this->getSetting(0, 'enabled');
+		if($isEnabled) {
+			$taskDao =& DAORegistry::getDao('ScheduledTaskDAO');
 
-		// Grab the scheduled event tree
-		$scheduledTasks = $this->getSetting(0, 'crontab');
-		if(!$scheduledTasks) {
-			$this->parseCrontab();
+			// Grab the scheduled event tree
 			$scheduledTasks = $this->getSetting(0, 'crontab');
-		}
-		
-		$tasks = $this->getSetting(0, 'crontab');
-		
-		foreach($tasks as $task) {
-
-			$lastRuntime = $taskDao->getLastRunTime($task['className']);
-			
-			if (isset($task['frequency'])) {
-				$canExecute = $this->checkFrequency($task['className'], $task['frequency'], $lastRuntime);
-			} else {
-				// WARNING: tasks without 'frequency' entries will run ON EVERY REQUEST.
-				// This can incur a serious performance hit.
-				$canExecute = true;
+			if(!$scheduledTasks) {
+				$this->parseCrontab();
+				$scheduledTasks = $this->getSetting(0, 'crontab');
 			}
-			
-			if ($canExecute) {
-				// Strip off the package name(s) to get the base class name
-				$className = $task['className'];
-				
-				$pos = strrpos($className, '.');
-				if ($pos === false) {
-					$baseClassName = $className;
-				} else {
-					$baseClassName = substr($className, $pos+1);
-				}
-				
-				// There's a race here. Several requests may come in closely spaced.
-				// Each may decide it's time to run scheduled tasks, and more than one
-				// can happily go ahead and do it before the "last run" time is updated.
-
-				// By updating the last run time as soon as feasible, we can minimize
-				// the race window. TODO: there ought to be a safer way of doing this.
-				
-				$taskDao->updateLastRunTime($className, $lastRuntime);
 		
-				// Load and execute the task
-				import($className);
-				$task = &new $baseClassName($args);
-				$task->execute();
+			$tasks = $this->getSetting(0, 'crontab');
+		
+			foreach($tasks as $task) {
+
+				$lastRuntime = $taskDao->getLastRunTime($task['className']);
+			
+				if (isset($task['frequency'])) {
+					$canExecute = $this->checkFrequency($task['className'], $task['frequency'], $lastRuntime);
+				} else {
+					// WARNING: tasks without 'frequency' entries will run ON EVERY REQUEST.
+					// This can incur a serious performance hit.
+					$canExecute = true;
+				}
+			
+				if ($canExecute) {
+					// Strip off the package name(s) to get the base class name
+					$className = $task['className'];
+				
+					$pos = strrpos($className, '.');
+					if ($pos === false) {
+						$baseClassName = $className;
+					} else {
+						$baseClassName = substr($className, $pos+1);
+					}
+				
+					// There's a race here. Several requests may come in closely spaced.
+					// Each may decide it's time to run scheduled tasks, and more than one
+					// can happily go ahead and do it before the "last run" time is updated.
+
+					// By updating the last run time as soon as feasible, we can minimize
+					// the race window. TODO: there ought to be a safer way of doing this.
+				
+					$taskDao->updateLastRunTime($className, $lastRuntime);
+		
+					// Load and execute the task
+					import($className);
+					$task = &new $baseClassName($args);
+					$task->execute();
+				}
 			}
 		}
 			

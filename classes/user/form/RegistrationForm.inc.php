@@ -76,9 +76,9 @@ class RegistrationForm extends Form {
 		$templateMgr->assign('privacyStatement', $event->getSetting('privacyStatement', true));
 		$templateMgr->assign('enableRegistration', $event->getSetting('enableRegistration', true)==1?1:0);
 		$templateMgr->assign('enableOpenAccessNotification', $event->getSetting('enableOpenAccessNotification', true)==1?1:0);
-		$templateMgr->assign('allowRegReader', $event->getAllowRegReader());
-		$templateMgr->assign('allowRegAuthor', $event->getAllowRegAuthor());
-		$templateMgr->assign('allowRegReviewer', $event->getAllowRegReviewer());
+		$templateMgr->assign('allowRegReader', EventAction::allowRegReader($event));
+		$templateMgr->assign('allowRegAuthor', EventAction::allowRegAuthor($event));
+		$templateMgr->assign('allowRegReviewer', EventAction::allowRegReviewer($event));
 		$templateMgr->assign('profileLocalesEnabled', $this->profileLocalesEnabled);
 		$templateMgr->assign('source', Request::getUserVar('source'));
 		$templateMgr->assign('registrationMessage', Request::getUserVar('registrationMessage'));
@@ -203,13 +203,13 @@ class RegistrationForm extends Form {
 		// Roles users are allowed to register themselves in
 		$allowedRoles = array('reader' => 'registerAsReader', 'author' => 'registerAsAuthor', 'reviewer' => 'registerAsReviewer');
 
-		if (!$event->getAllowRegReader()) {
+		if (!EventAction::allowRegReader($event)) {
 			unset($allowedRoles['reader']);
 		}
-		if (!$event->getAllowRegAuthor()) {
+		if (!EventAction::allowRegAuthor($event)) {
 			unset($allowedRoles['author']);
 		}
-		if (!$event->getAllowRegReviewer()) {
+		if (!EventAction::allowRegReviewer($event)) {
 			unset($allowedRoles['reviewer']);
 		}
 		

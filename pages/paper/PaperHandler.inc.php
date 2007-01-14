@@ -137,7 +137,7 @@ class PaperHandler extends Handler {
 			// Get the registration status if displaying the abstract;
 			// if access is open, we can display links to the full text.
 			import('event.EventAction');
-			$templateMgr->assign('registrationRequired', EventAction::registrationRequired($event));
+			$templateMgr->assign('mayViewPaper', EventAction::mayViewPapers($event));
 			$templateMgr->assign('registeredUser', EventAction::registeredUser($event));
 			$templateMgr->assign('registeredDomain', EventAction::registeredDomain($event));
 
@@ -322,25 +322,22 @@ class PaperHandler extends Handler {
 				$paper->getEventId() == $event->getEventId() &&
 				$event->getConferenceId() == $conference->getConferenceId()) {
 
-			import('event.EventAction');
-			$registrationRequired = EventAction::registrationRequired($event);
-			
 			// Check if login is required for viewing.
 			if (!Validation::isLoggedIn() && $event->getSetting('restrictPaperAccess', true)) {
 				Validation::redirectLogin();
 			}
 	
-			if ( (!EventAction::registeredDomain($event) && $registrationRequired) &&
-			     (isset($galleyId) && $galleyId!=0) ) {
-				
-				// Registration Access
-				$registeredUser = EventAction::registeredUser($event);
-	
-				if (!(!$registrationRequired || $paper->getAccessStatus() || $registeredUser)) {
-					if (!isset($galleyId) || $galleyId) {
-						Request::redirect(null, null, null, 'index');	
-					}
-				}
+			import('event.EventAction');
+			$mayViewPaper = EventAction::mayViewPapers($event);
+			
+			// Bar access to paper?
+			if ((isset($galleyId) && $galleyId!=0) && !EventAction::mayViewPapers($event) && !$paper->getAccessStatus()) {
+				Request::redirect(null, null, null, 'index');	
+			}
+			
+			// Bar access to abstract?
+			if ((!isset($galleyId) || $galleyId==0) && !EventAction::mayViewProceedings($event) && !$paper->getAccessStatus()) {
+				Request::redirect(null, null, null, 'index');	
 			}
 		} else {
 			Request::redirect(null, null, null, 'index');

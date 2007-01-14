@@ -9,6 +9,8 @@
  * $Id$
  *}
 
+<a name="submissions"></a>
+
 <table class="listing" width="100%">
 	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
@@ -63,6 +65,8 @@
 					{translate key="editor.paper.decision.accept"}
 				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS}
 					{translate key="editor.paper.decision.pendingRevisions"}
+				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_EDITOR_DECISION_RESUBMIT}
+					{translate key="editor.paper.decision.resubmit"}
 				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_EDITOR_DECISION_DECLINE}
 					{translate key="editor.paper.decision.decline"}
 				{/if}
@@ -87,7 +91,7 @@
 {else}
 	<tr>
 		<td colspan="4" align="left">{page_info iterator=$submissions}</td>
-		<td colspan="3" align="right">{page_links name="submissions" iterator=$submissions}</td>
+		<td colspan="3" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions}</td>
 	</tr>
 {/if}
 </table>

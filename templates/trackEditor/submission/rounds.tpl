@@ -38,15 +38,7 @@
 				{translate key="common.cancelled"}
 			{/if}
 		</td>
-		{if $sequentialReviewModel}
-			<td>
-			{if $cancelOrRegret->getRound() == 1}
-				{translate key="submission.abstract"}
-			{else}
-				{translate key="submission.paper"} 
-			{/if}
-			</td>
-		{/if}
+		<td>{$cancelOrRegret->getRound()}</td>
 	</tr>
 	<tr>
 		<td colspan="4" class="{if $smarty.foreach.cancelsAndRegrets.last}end{/if}separator">&nbsp;</td>

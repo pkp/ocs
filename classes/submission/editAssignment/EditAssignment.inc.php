@@ -76,7 +76,7 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Get flag indicating whether this section editor can review this paper. (Irrelevant if this is an editor.)
+	 * Get flag indicating whether this track editor can review this paper. (Irrelevant if this is an editor.)
 	 * @return boolean
 	 */
 	function getCanReview() {
@@ -84,7 +84,7 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Set flag indicating whether this section editor can review this paper. (Irrelevant if this is an editor.)
+	 * Set flag indicating whether this track editor can review this paper. (Irrelevant if this is an editor.)
 	 * @param $canReview boolean
 	 */
 	function setCanReview($canReview) {
@@ -92,7 +92,7 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Get flag indicating whether this section editor can edit this paper. (Irrelevant if this is an editor.)
+	 * Get flag indicating whether this track editor can edit this paper. (Irrelevant if this is an editor.)
 	 * @return boolean
 	 */
 	function getCanEdit() {
@@ -100,7 +100,7 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Set flag indicating whether this section editor can edit this paper. (Irrelevant if this is an editor.)
+	 * Set flag indicating whether this track editor can edit this paper. (Irrelevant if this is an editor.)
 	 * @param $canEdit boolean
 	 */
 	function setCanEdit($canEdit) {
@@ -108,7 +108,7 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Get flag indicating whether this entry is for an editor or a section editor.
+	 * Get flag indicating whether this entry is for an editor or a track editor.
 	 * @return boolean
 	 */
 	function getIsEditor() {
@@ -116,7 +116,7 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Set flag indicating whether this entry is for an editor or a section editor.
+	 * Set flag indicating whether this entry is for an editor or a track editor.
 	 * @param $isEditor boolean
 	 */
 	function setIsEditor($isEditor) {

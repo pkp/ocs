@@ -30,10 +30,10 @@ class MetadataForm extends Form {
 	 */
 	function MetadataForm($paper) {
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$roleId = $roleDao->getRoleIdFromPath(Request::getRequestedPage());
 
 		$event = &Request::getEvent();
 		$user = &Request::getUser();
+		$roleId = $roleDao->getRoleIdFromPath(Request::getRequestedPage());
 		
 		// If the user is an editor of this paper, make the form editable.
 		$this->canEdit = false;
@@ -99,6 +99,8 @@ class MetadataForm extends Form {
 						'middleName' => $authors[$i]->getMiddleName(),
 						'lastName' => $authors[$i]->getLastName(),
 						'affiliation' => $authors[$i]->getAffiliation(),
+						'country' => $authors[$i]->getCountry(),
+						'countryLocalized' => $authors[$i]->getCountryLocalized(),
 						'email' => $authors[$i]->getEmail(),
 						'url' => $authors[$i]->getUrl(),
 						'biography' => $authors[$i]->getBiography()
@@ -118,12 +120,14 @@ class MetadataForm extends Form {
 		$event = &Request::getEvent();
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', isset($this->paper)?$this->paper->getPaperId():null);
 		$templateMgr->assign('eventSettings', $event->getSettings(true));
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('canViewAuthors', $this->canViewAuthors);
+		$templateMgr->assign('countries', $countryDao->getCountries());
 		$templateMgr->assign('helpTopicId','submission.indexingAndMetadata');
 		if ($this->paper) {
 			$templateMgr->assign_by_ref('track', $trackDao->getTrack($this->paper->getTrackId()));
@@ -211,6 +215,7 @@ class MetadataForm extends Form {
 				$author->setMiddleName($authors[$i]['middleName']);
 				$author->setLastName($authors[$i]['lastName']);
 				$author->setAffiliation($authors[$i]['affiliation']);
+				$author->setCountry($authors[$i]['country']);
 				$author->setEmail($authors[$i]['email']);
 				$author->setUrl($authors[$i]['url']);
 				$author->setBiography($authors[$i]['biography']);

@@ -45,7 +45,10 @@ class FileWrapper {
 	 */
 	function contents() {
 		$contents = '';
-		if ($this->open()) {
+		if ($retval = $this->open()) {
+			if (is_object($retval)) { // It may be a redirect
+				return $retval->contents();
+			}
 			while (!$this->eof())
 				$contents .= $this->read();
 			$this->close();
@@ -61,7 +64,7 @@ class FileWrapper {
 	function open($mode = 'r') {
 		$this->fp = null;
 		$this->fp = fopen($this->url, $mode);
-		return $this->fp;
+		return ($this->fp !== false);
 	}
 	
 	/**
@@ -134,12 +137,24 @@ class HTTPFileWrapper extends FileWrapper {
 	var $defaultPort;
 	var $defaultHost;
 	var $defaultPath;
+	var $redirects;
 
-	function HTTPFileWrapper($url, &$info) {
+	var $proxyHost;
+	var $proxyPort;
+	var $proxyUsername;
+	var $proxyPassword;
+
+	function HTTPFileWrapper($url, &$info, $redirects = 5) {
 		parent::FileWrapper($url, $info);
 		$this->setDefaultPort(80);
 		$this->setDefaultHost('localhost');
 		$this->setDefaultPath('/');
+		$this->redirects = 5;
+
+		$this->proxyHost = Config::getVar('proxy', 'http_host');
+		$this->proxyPort = Config::getVar('proxy', 'http_port');
+		$this->proxyUsername = Config::getVar('proxy', 'proxy_username');
+		$this->proxyPassword = Config::getVar('proxy', 'proxy_password');
 	}
 
 	function setDefaultPort($port) {
@@ -166,7 +181,15 @@ class HTTPFileWrapper extends FileWrapper {
 		$port = isset($this->info['port']) ? (int)$this->info['port'] : $this->defaultPort;
 		$path = isset($this->info['path']) ? $this->info['path'] : $this->defaultPath;
 		if (isset($this->info['query'])) $path .= '?' . $this->info['query'];
-		
+
+		if (!empty($this->proxyHost)) {
+			$host = $this->proxyHost;
+			$port = $this->proxyPort;
+			if (!empty($this->proxyUsername)) {
+				$this->headers['Proxy-Authorization'] = 'Basic ' . base64_encode($this->proxyUsername . ':' . $this->proxyPassword);
+			}
+		}
+
 		if (!($this->fp = fsockopen($host, $port, $errno, $errstr)))
 			return false;
 
@@ -175,7 +198,7 @@ class HTTPFileWrapper extends FileWrapper {
 			$additionalHeadersString .= "$name: $value\r\n";
 		}
 
-		$request = "GET $path HTTP/1.0\r\n" .
+		$request = 'GET ' . (empty($this->proxyHost)?$path:$this->url) . " HTTP/1.0\r\n" .
 			"Host: $host\r\n" .
 			$additionalHeadersString .
 			"Connection: Close\r\n\r\n";
@@ -188,8 +211,39 @@ class HTTPFileWrapper extends FileWrapper {
 			while(fgets($this->fp, 4096) !== "\r\n");
 			return true;
 		}
+		if(preg_match('!^3\d\d$!', $rc) && $this->redirects >= 1) {
+			for($response = '', $time = time(); !feof($this->fp) && $time >= time() - 15; ) $response .= fgets($this->fp, 128);
+			if (preg_match('!^(?:(?:Location)|(?:URI)|(?:location)): ([^\s]+)[\r\n]!m', $response, $matches)) {
+				$this->close();
+				$location = $matches[1];
+				if (preg_match('!^[a-z]+://!', $location)) {
+					$this->url = $location;
+				} else {
+					$newPath = ($this->info['path'] !== '' && strpos($location, '/') !== 0  ? dirname($this->info['path']) . '/' : (strpos($location, '/') === 0 ? '' : '/')) . $location;
+					$this->info['path'] = $newPath;
+					$this->url = $this->glue_url($this->info);
+				}
+				$returner =& FileWrapper::wrapper($this->url);
+				$returner->redirects = $this->redirects - 1;
+				return $returner;
+			}
+		}
 		$this->close();
 		return false;
+	}
+
+	function glue_url ($parsed) {
+		// Thanks to php dot net at NOSPAM dot juamei dot com
+		// See http://www.php.net/manual/en/function.parse-url.php
+		if (! is_array($parsed)) return false;
+		$uri = isset($parsed['scheme']) ? $parsed['scheme'].':'.((strtolower($parsed['scheme']) == 'mailto') ? '':'//'): '';
+		$uri .= isset($parsed['user']) ? $parsed['user'].($parsed['pass']? ':'.$parsed['pass']:'').'@':'';
+		$uri .= isset($parsed['host']) ? $parsed['host'] : '';
+		$uri .= isset($parsed['port']) ? ':'.$parsed['port'] : '';
+		$uri .= isset($parsed['path']) ? $parsed['path'] : '';
+		$uri .= isset($parsed['query']) ? '?'.$parsed['query'] : '';
+		$uri .= isset($parsed['fragment']) ? '#'.$parsed['fragment'] : '';
+		return $uri;
 	}
 }
 

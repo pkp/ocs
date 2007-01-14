@@ -105,11 +105,6 @@ function checkSubmissionChecklist() {
 	<td width="20%" class="label">{fieldLabel name="trackId" required="true" key="track.track"}</td>
 	<td width="80%" class="value"><select name="trackId" id="trackId" size="1" class="selectMenu">{html_options options=$trackOptions selected=$trackId}</select></td>
 </tr>
-<tr valign="top">	
-	<td width="20%" class="label">{fieldLabel name="secondaryTrackId" key="track.secondaryTrack"}</td>
-	<td width="80%" class="value"><select name="secondaryTrackId" id="secondaryTrackId" size="1" class="selectMenu">{html_options options=$secondaryTrackOptions selected=$secondaryTrackId}</select></td>
-</tr>
-	
 </table>
 
 <div class="separator"></div>

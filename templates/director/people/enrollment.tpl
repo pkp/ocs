@@ -57,6 +57,7 @@ function confirmAndPrompt(userId) {
 
 			<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
 			<option {if $roleSymbolic=='trackEditors'}selected="selected" {/if}value="trackEditors">{translate key="user.role.trackEditors"}</option>
+			<option {if $roleSymbolic=='layoutEditors'}selected="selected" {/if}value="layoutEditors">{translate key="user.role.layoutEditors"}</option>
 			<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
 
 			<option {if $roleSymbolic=='authors'}selected="selected" {/if}value="authors">{translate key="user.role.authors"}</option>
@@ -93,6 +94,7 @@ function confirmAndPrompt(userId) {
 	
 		<li><a href="{url path="editors"}">{translate key="user.role.editors"}</a></li>
 		<li><a href="{url path="trackEditors"}">{translate key="user.role.trackEditors"}</a></li>
+		<li><a href="{url path="layoutEditors"}">{translate key="user.role.layoutEditors"}</a></li>
 		<li><a href="{url path="reviewers"}">{translate key="user.role.reviewers"}</a></li>
 	
 		<li><a href="{url path="authors"}">{translate key="user.role.authors"}</a></li>
@@ -113,6 +115,9 @@ function confirmAndPrompt(userId) {
 
 <form name="people" action="{url page="user" op="email"}" method="post">
 <input type="hidden" name="redirectUrl" value="{url path=$roleSymbolic}"/>
+
+<a name="users"></a>
+
 <table width="100%" class="listing">
 	<tr>
 		<td colspan="5" class="headseparator">&nbsp;</td>
@@ -169,7 +174,7 @@ function confirmAndPrompt(userId) {
 {else}
 	<tr>
 		<td colspan="4" align="left">{page_info iterator=$users}</td>
-		<td align="right">{page_links name="users" iterator=$users searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth roleSymbolic=$roleSymbolic searchInitial=$searchInitial}</td>
+		<td align="right">{page_links anchor="users" name="users" iterator=$users searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth roleSymbolic=$roleSymbolic searchInitial=$searchInitial}</td>
 	</tr>
 {/if}
 </table>

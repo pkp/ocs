@@ -31,72 +31,6 @@ class SubmissionCommentsHandler extends AuthorHandler {
 	}
 	
 	/**
-	 * View copyedit comments.
-	 */
-	function viewCopyeditComments($args) {
-		AuthorHandler::validate();
-		AuthorHandler::setupTemplate(true);
-		
-		$paperId = $args[0];
-		
-		list($conference, $event, $authorSubmission) = TrackSubmissionHandler::validate($paperId);
-		AuthorAction::viewCopyeditComments($authorSubmission);
-	
-	}
-	
-	/**
-	 * Post copyedit comment.
-	 */
-	function postCopyeditComment() {
-		AuthorHandler::validate();
-		AuthorHandler::setupTemplate(true);
-		
-		$paperId = Request::getUserVar('paperId');
-
-		// If the user pressed the "Save and email" button, then email the comment.
-		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
-		
-		list($conference, $event, $authorSubmission) = TrackSubmissionHandler::validate($paperId);
-		AuthorAction::postCopyeditComment($authorSubmission, $emailComment);
-		
-		AuthorAction::viewCopyeditComments($authorSubmission);
-	
-	}
-	
-	/**
-	 * View proofread comments.
-	 */
-	function viewProofreadComments($args) {
-		AuthorHandler::validate();
-		AuthorHandler::setupTemplate(true);
-		
-		$paperId = $args[0];
-		
-		list($conference, $event, $authorSubmission) = TrackSubmissionHandler::validate($paperId);
-		AuthorAction::viewProofreadComments($authorSubmission);
-	
-	}
-	
-	/**
-	 * Post proofread comment.
-	 */
-	function postProofreadComment() {
-		AuthorHandler::validate();
-		AuthorHandler::setupTemplate(true);
-		
-		$paperId = Request::getUserVar('paperId');
-		
-		// If the user pressed the "Save and email" button, then email the comment.
-		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
-		
-		list($conference, $event, $authorSubmission) = TrackSubmissionHandler::validate($paperId);
-		AuthorAction::postProofreadComment($authorSubmission, $emailComment);
-		
-		AuthorAction::viewProofreadComments($authorSubmission);
-	
-	}
-
-	/**
 	 * View layout comments.
 	 */
 	function viewLayoutComments($args) {
@@ -123,10 +57,9 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 		
 		list($conference, $event, $authorSubmission) = TrackSubmissionHandler::validate($paperId);
-		AuthorAction::postLayoutComment($authorSubmission, $emailComment);
-		
-		AuthorAction::viewLayoutComments($authorSubmission);
-	
+		if (AuthorAction::postLayoutComment($authorSubmission, $emailComment)) {
+			AuthorAction::viewLayoutComments($authorSubmission);
+		}
 	}
 
 	/**
@@ -193,12 +126,8 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
 			Request::redirect(null, null, null, 'viewEditorDecisionComments', $paperId);
-		} else if ($comment->getCommentType() == COMMENT_TYPE_COPYEDIT) {
-			Request::redirect(null, null, null, 'viewCopyeditComments', $paperId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
 			Request::redirect(null, null, null, 'viewLayoutComments', $paperId);
-		} else if ($comment->getCommentType() == COMMENT_TYPE_PROOFREAD) {
-			Request::redirect(null, null, null, 'viewProofreadComments', $paperId);
 		}
 	}
 	
@@ -222,12 +151,8 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
 			Request::redirect(null, null, null, 'viewEditorDecisionComments', $paperId);
-		} else if ($comment->getCommentType() == COMMENT_TYPE_COPYEDIT) {
-			Request::redirect(null, null, null, 'viewCopyeditComments', $paperId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
 			Request::redirect(null, null, null, 'viewLayoutComments', $paperId);
-		} else if ($comment->getCommentType() == COMMENT_TYPE_PROOFREAD) {
-			Request::redirect(null, null, null, 'viewProofreadComments', $paperId);
 		}
 	}
 	

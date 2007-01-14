@@ -14,11 +14,6 @@
 
 <form method="post" action="{url op="registerUser"}">
 
-{if $registrationMessage}
-	<span class="instruct">{translate key="$registrationMessage"}</span>
-	<br />
-{/if}
-
 <p>{translate key="user.register.completeForm"}</p>
 
 {if !$existingUser}
@@ -67,7 +62,17 @@
 	<td class="label">{fieldLabel name="password2" required="true" key="user.register.repeatPassword"}</td>
 	<td class="value"><input type="password" name="password2" id="password2" value="{$password2|escape}" size="20" maxlength="32" class="textField" /></td>
 </tr>
-	
+
+{if $captchaEnabled}
+	<td class="label" valign="top">{fieldLabel name="captcha" required="true" key="common.captchaField"}</td>
+	<td class="value">
+		<img src="{url page="user" op="viewCaptcha" path=$captchaId}" alt="" /><br />
+		<span class="instruct">{translate key="common.captchaField.description"}</span><br />
+		<input name="captcha" id="captcha" value="" size="20" maxlength="32" class="textField" />
+		<input type="hidden" name="captchaId" value="{$captchaId|escape:"quoted"}" />
+	</td>
+{/if}
+
 <tr valign="top">
 	<td class="label">{fieldLabel name="firstName" required="true" key="user.firstName"}</td>
 	<td class="value"><input type="text" id="firstName" name="firstName" value="{$firstName|escape}" size="20" maxlength="40" class="textField" /></td>
@@ -92,12 +97,17 @@
 	<td class="label">{fieldLabel name="affiliation" key="user.affiliation"}</td>
 	<td class="value"><input type="text" id="affiliation" name="affiliation" value="{$affiliation|escape}" size="30" maxlength="255" class="textField" /></td>
 </tr>
-	
+
+<tr valign="top">
+	<td class="label">{fieldLabel name="signature" key="user.signature"}</td>
+	<td class="value"><textarea name="signature" id="signature" rows="5" cols="40" class="textArea">{$signature|escape}</textarea></td>
+</tr>
+
 <tr valign="top">
 	<td class="label">{fieldLabel name="email" required="true" key="user.email"}</td>
 	<td class="value"><input type="text" id="email" name="email" value="{$email|escape}" size="30" maxlength="90" class="textField" /></td>
 </tr>
-	
+
 <tr valign="top">
 	<td class="label">{fieldLabel name="userUrl" key="user.url"}</td>
 	<td class="value"><input type="text" id="userUrl" name="userUrl" value="{$userUrl|escape}" size="30" maxlength="90" class="textField" /></td>
@@ -119,9 +129,26 @@
 </tr>
 	
 <tr valign="top">
+	<td class="label">{fieldLabel name="country" key="common.country"}</td>
+	<td class="value">
+		<select name="country" id="country" class="selectMenu">
+			<option value=""></option>
+			{html_options options=$countries selected=$country}
+		</select>
+	</td>
+</tr>
+
+<tr valign="top">
 	<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
 	<td class="value"><textarea name="biography" id="biography" rows="5" cols="40" class="textArea">{$biography|escape}</textarea></td>
 </tr>
+
+<tr valign="top">
+	<td class="label">{fieldLabel name="sendPassword" key="user.sendPassword"}</td>
+	<td class="value">
+		<input type="checkbox" name="sendPassword" id="sendPassword" value="1"{if $sendPassword} checked="checked"{/if} /> <label for="sendPassword">{translate key="user.sendPassword.description"}</label>
+	</td>
+</td>
 
 {if $profileLocalesEnabled && count($availableLocales) > 1}
 <tr valign="top">

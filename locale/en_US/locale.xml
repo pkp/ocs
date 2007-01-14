@@ -236,10 +236,12 @@
 	<message key="common.queue.short.submissionsUnassigned">Unassigned</message>
 	<message key="common.queue.long.submissionsInReview">Submissions in Review</message>
 	<message key="common.queue.short.submissionsInReview">In Review</message>
-	<message key="common.queue.long.submissionsAccepted">Accepted</message>
-	<message key="common.queue.short.submissionsAccepted">Accepted</message>
+	<message key="common.queue.long.submissionsInEditing">Submissions in Editing</message>
+	<message key="common.queue.short.submissionsInEditing">In Editing</message>
 	<!--<message key="common.queue.long.submissionsInScheduling">Schedule Submissions</message>-->
 	<!--<message key="common.queue.short.submissionsInScheduling">Scheduling</message>-->
+	<message key="common.queue.long.submissionsAccepted">Accepted</message>
+	<message key="common.queue.short.submissionsAccepted">Accepted</message>
 	<message key="common.queue.long.submissionsArchives">Archives</message>
 	<message key="common.queue.short.submissionsArchives">Archives</message>
 	<message key="common.queue.long.active">Active Submissions</message>
@@ -256,7 +258,6 @@
 
 	<!-- Common Track Terms -->
 	<message key="track.track">Track</message>-->
-	<message key="track.secondaryTrack">Secondary Track</message>-->
 	<message key="track.tracks">Conference Tracks</message>
 	<message key="track.title">Track title</message>
 	<message key="track.abbreviation">Abbreviation</message>
@@ -349,7 +350,7 @@
 	<message key="submission.viewMetadata">View Metadata</message>
 	<message key="submission.editMetadata">Edit Metadata</message>
 	<message key="submission.reviewMetadata">Review Metadata</message>
-	<!--<message key="submission.backToSubmissionEditing">Back to Submission Editing</message>-->
+	<message key="submission.backToSubmissionEditing">Back to Submission Editing</message>
 	<message key="submission.titleAndAbstract">Title and Abstract</message>
 	<message key="submission.indexing">Indexing</message>
 	<message key="submission.restrictions">Restrictions</message>
@@ -367,7 +368,7 @@
 	<message key="submissions.queuedPaperReview">Paper in review</message>
 	<message key="submissions.archived">Archived</message>
 	<!--<message key="submissions.scheduled">Scheduled</message>-->
-	<!--<message key="submissions.published">Published</message>-->
+	<message key="submissions.published">Published</message>
 	<message key="submissions.accepted">Accepted</message>
 	<message key="submissions.declined">Declined</message>
 	<message key="submissions.queued">Queued</message>
@@ -454,6 +455,7 @@
 	<message key="user.initialsExample">Joan Alice Smith = JAS</message>
 	<message key="user.lastName">Last name</message>
 	<message key="user.title">Title</message>
+	<message key="user.signature">Signature</message>
 	<message key="user.affiliation">Affiliation</message>
 	<message key="user.affiliations">Affiliations</message>
 	<message key="user.email">Email</message>
@@ -484,6 +486,7 @@
 
 	<message key="user.role.editor">Editor</message>
 	<message key="user.role.trackEditor">Track Editor</message>
+	<message key="user.role.layoutEditor">Layout Editor</message>
 	<message key="user.role.reviewer">Reviewer</message>
 	<message key="user.role.author">Author</message>
 	<!--<message key="user.role.invitedAuthor">Invited Author</message>-->
@@ -500,6 +503,7 @@
 
 	<message key="user.role.editors">Editors</message>
 	<message key="user.role.trackEditors">Track Editors</message>
+	<message key="user.role.layoutEditors">Layout Editors</message>
 	<message key="user.role.reviewers">Reviewers</message>
 	<message key="user.role.authors">Authors</message>
 	<!--<message key="user.role.invitedAuthors">Invited Authors</message>-->
@@ -742,7 +746,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<!-- Event Management -->
 	<message key="director.events">Events</message>
-	<message key="director.eventSetup">Scheduled Conference Setup</message>
+	<message key="director.eventSetup">Setup</message>
 	<message key="director.eventManagement">Scheduled Conference Management</message>
 	<message key="director.events.eventTitle">Event Title</message>
 	<message key="director.events.schedulingAConference">Scheduling a Conference</message>
@@ -1004,15 +1008,15 @@ Note that if your site administrator has already registered this site with the P
 	<!--<message key="director.setup.appearInAboutConference">(To appear in About the Conference) </message>-->
 	<!--<message key="director.setup.managementOfBasicEditorialSteps">Management of Basic Editorial Steps</message>-->
 	<!--<message key="director.setup.basicEditorialStepsDescription"><![CDATA[Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Scheduling Queue &gt; Table of Contents.<br /><br />
-Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Section Editors, go to Editors in Conference Management.)]]></message>-->
+Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Track Editors, go to Editors in Conference Management.)]]></message>-->
 	<!--<message key="director.setup.editorialProcess1">One or more editors handle the basic steps without designated roles.</message>-->
-	<!--<message key="director.setup.editorialProcess2">Managing Editor handles Submission Queue, Scheduling Queue, and Table of Contents, while Section Editors handle Submission Review and Submission Editing.</message>-->
-	<!--<message key="director.setup.editorialProcess3">Managing Editor handles Submission Queue, Submission Editing, Scheduling Queue, and Table of Contents, while the Section Editors handle Submission Review.</message>-->
+	<!--<message key="director.setup.editorialProcess2">Managing Editor handles Submission Queue, Scheduling Queue, and Table of Contents, while Track Editors handle Submission Review and Submission Editing.</message>-->
+	<!--<message key="director.setup.editorialProcess3">Managing Editor handles Submission Queue, Submission Editing, Scheduling Queue, and Table of Contents, while the Track Editors handle Submission Review.</message>-->
 	<!--<message key="director.setup.layoutAndGalleys">Layout Editors</message>-->
 	<!--<message key="director.setup.useLayoutEditors">The conference will designate Layout Editors to prepare the galleys in HTML, PDF, PS, etc., file formats for electronic publication.</message>-->
 	<!--<message key="director.setup.noUseLayoutEditors">The editors will prepare the galleys in the appropriate format for electronic publication.</message>-->
 	<!--<message key="director.setup.layoutInstructions">Layout Instructions</message>-->
-	<!--<message key="director.setup.layoutInstructionsDescription">Layout Instructions can be prepared for the formatting of publishing items in the conference and be entered below in HTML or plain text. They will be made available to  the Layout Editor and Section Editor on the Editing page of each submission. (As each conference may employ its own file formats, bibliographic standards, style sheets, etc., a default set of instructions is not provided.)</message>-->
+	<!--<message key="director.setup.layoutInstructionsDescription">Layout Instructions can be prepared for the formatting of publishing items in the conference and be entered below in HTML or plain text. They will be made available to  the Layout Editor and Track Editor on the Editing page of each submission. (As each conference may employ its own file formats, bibliographic standards, style sheets, etc., a default set of instructions is not provided.)</message>-->
 	<!--<message key="director.setup.layoutTemplates">Layout Templates</message>-->
 	<!--<message key="director.setup.layoutTemplatesDescription">Templates can be uploaded to appear in Layout for each of the standard formats published in the conference (e.g., article, book review, etc.) using any file format (e.g., pdf, doc, etc.) with annotations added specifying font, size, margins, etc. to serve as a guide for Layout Editors and Proofreaders.</message>-->
 	<!--<message key="director.setup.layoutTemplates.title">Title</message>-->
@@ -1217,10 +1221,12 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="eventDirector.setup.closeRegReviewerOn">Close reviewer registration on</message>
 
 	<!-- Event Setup Step 4 -->
-	<message key="eventDirector.setup.readerRegistration">Reader Registration</message>
-	<message key="eventDirector.setup.readerRegistrationDescription"><![CDATA[If desired, OCS may permit users to register themselves as readers for this event. If these options are disabled, the Event Director must manually register users as readers via the Event Management pages.]]></message>
-	<message key="eventDirector.setup.openRegReaderOn">Permit users to register as readers starting on</message>
-	<message key="eventDirector.setup.closeRegReaderOn">Close readers registration on</message>
+	<message key="director.setup.readerAccess">Visitors to the conference website have open access to the conference's abstracts and presentations (see Website Posting for dates).</message>
+	<message key="director.setup.requireRegReader">Require website registration as Reader at no charge (see Security/Access).</message>
+	<message key="director.setup.registrantAccess">Conference registrants alone have access to abstracts and presentations.</message>
+
+	<message key="director.setup.conferenceRegistration">Conference Registration</message>
+	<message key="director.setup.conferenceRegistrationDescription">The Conference Manager can activate Registration Management, which is to be set up and managed by the registered Registration Manager. The contact information for this user should be listed below and will appear in the conference's About the Conference page as the primary contact for registration.</message>
 
 	<!-- Event Setup Step 5 -->
 	<message key="eventDirector.setup.customizingTheLook">Step 5. Customizing the Look</message>
@@ -1266,57 +1272,41 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="director.tracks.abstractsDisabled">Items published in this track will not have abstracts.</message>
 
 	<!-- Timeline management -->
-	<message key="director.timeline.eventTimeline">Event Timeline</message>
+	<message key="director.timeline.conferenceTimeline">Conference Timeline</message>
 	<message key="director.timeline.description"><![CDATA[
-		Conferences are organized around well-managed schedules, which set out when activities are permitted and take place. This page turns on and off certain capacities within the website, and all posted materials about the conference (e.g. Call for Papers, Announcements, etc.) should reflect these dates. You can return to this page and modify dates at any point.]]></message>
+		Enter the dates when acivities are to take place for this scheduled conference, and then notify the relevant users with the prepared email at the indicated dates.]]></message>
 
-	<message key="director.timeline.overallTimeline">Basic Timeline</message>
-	<message key="director.timeline.overallTimelineDescription">These settings determine the basic conference status.</message>
+	<message key="director.timeline.conference">Conference</message>
+	<message key="director.timeline.eventStartsOn">First day of conference</message>
+	<message key="director.timeline.eventEndsOn">Last day of conference</message>
+	
+	<message key="director.timeline.website">Website</message>
+	<message key="director.timeline.eventAppearsOn">List in Current Conferences</message>
+	<message key="director.timeline.eventArchivedOn">Move to Conference Archive</message>
 
-	<message key="director.timeline.startDate">Event Start Date</message>
-	<message key="director.timeline.eventStartsOn">This event starts on:</message>
-	<message key="director.timeline.endDate">Event End Date</message>
-	<message key="director.timeline.eventEndsOn">This event ends on:</message>
-	
-	<message key="director.timeline.userTimeline">User Registration</message>
-	<message key="director.timeline.userTimelineDescription">These settings determine when users may register for access to this conference.</message>
-	<message key="director.timeline.openRegAuthorOn">Allow presenter registration on</message>
-	<message key="director.timeline.closeRegAuthorOn">Close presenter registration on</message>
+	<message key="director.timeline.submissions">Submissions</message>
+	<message key="director.timeline.openRegAuthor">Author registration opened</message>
+	<message key="director.timeline.closeRegAuthor">Author registration closed</message>
+	<message key="director.timeline.showCFP">Call for Papers posted</message>
+	<message key="director.timeline.proposalsOpen">Proposals accepted</message>
+	<message key="director.timeline.proposalsClosed">Proposals due</message>
+	<message key="director.timeline.submissionsClosed">Submissions due</message>
 
-	<message key="director.timeline.submissionTimeline">Submission Timeline</message>
-	<message key="director.timeline.submissionTimelineDescription">These settings determine when submissions are accepted and reviewed.</message>
+	<message key="director.timeline.reviews">Reviews</message>
+	<message key="director.timeline.openRegReviewer">Reviewer registration opened</message>
+	<message key="director.timeline.closeRegReviewer">Reviewer registration closed</message>
+	<message key="director.timeline.closeReviewProcess">Review process closed</message>
 	
-	<message key="director.timeline.CFP">Call for Papers (CFP)</message>
-	<message key="director.timeline.submissionsCurrently">Submissions are:</message>
-	<message key="director.timeline.submissions.areNotAcceptedYet">Not being accepted yet.</message>
-	<message key="director.timeline.submissions.areAccepted">Accepted.</message>
-	<message key="director.timeline.submissions.areNoLongerAccepted">No longer being accepted.</message>
-	<message key="director.timeline.submissions.autoAccept">Accept submissions on</message>
-	<message key="director.timeline.submissions.autoShowCFP">Show call-for-papers on</message>
-	<message key="director.timeline.acceptSubmissionsDate">Accept submissions on</message>
-	<message key="director.timeline.abstractDueDate">Abstracts are due on</message>
-	<message key="director.timeline.paperDueDate">Papers are due on:</message>
-	<message key="director.timeline.submissionDueDate">Submissions are due on:</message>
-	
-	<message key="director.timeline.incompleteSubmissionHandling">Handling Incomplete Submissions</message>
-	<message key="director.timeline.incomplete.remindAuthorsPre">Remind authors with incomplete submissions</message>
-	<message key="director.timeline.incomplete.remindAuthorsPost">days before the deadline.</message>
-	<message key="director.timeline.incomplete.autoArchiveIncompleteSubmissions">Automatically archive incomplete submissions when the deadline passes.</message>
+	<message key="director.timeline.registration">Registration</message>
+	<message key="director.timeline.openRegRegistrant">Open</message>
+	<message key="director.timeline.closeRegRegistrant">Closed</message>
 
-	<message key="director.timeline.publicationTimeline">Publication Timeline</message>
-	<message key="director.timeline.publicationTimelineDescription">These settings determine when conference materials are released to conference participants and other stakeholders.</message>
-	
-	<message key="director.timeline.publicationStatus">Publication Status</message>
-	
-	<message key="director.timeline.publicationCurrently">Proceedings are currently:</message>
-	<message key="director.timeline.publication.notReleased">Not released.</message>
-	<message key="director.timeline.publication.internallyReleased">Released to registered conference participants.</message>
-	<message key="director.timeline.publication.publiclyReleased">Released to the public.</message>
-	<message key="director.timeline.publication.autoReleaseToParticipants">Release to participants on</message>
-	<message key="director.timeline.publication.autoReleaseToPublic">Release to public on</message>
-	
-	<message key="director.timeline.form.badEndDate">End date occurs after start date.</message>
-	<message key="director.timeline.form.badReminderDays">Please specify a number of days for the reminders to preceed the deadline for incomplete entries.</message>
+	<message key="director.timeline.websitePosting">Website Posting</message>
+	<message key="director.timeline.postPresentations">Accepted abstracts/presentations</message>
+	<message key="director.timeline.postAbstracts">Accepted abstracts</message>
+	<message key="director.timeline.postPapers">Accepted papers</message>
+	<message key="director.timeline.delayOpenAccess">Delay open access until</message>
+	<message key="director.timeline.closeComments">Close comments</message>
 	
 	<!-- Import/Export -->
 	<message key="director.importExport">Import/Export Data</message>
@@ -1692,7 +1682,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<!--<message key="editor.issues.pages">Pages</message>-->
 
 	<!-- Navigation sidebar menu -->
-	<!--<message key="editor.navigation.issues">Issues</message>-->
+	<message key="editor.navigation.management">Management</message>
 	<!--<message key="editor.navigation.futureIssues">Future Issues</message>-->
 	<!--<message key="editor.navigation.createIssue">Create Issue</message>-->
 	<!--<message key="editor.navigation.issueArchive">Back Issues</message>-->
@@ -1730,7 +1720,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="editor.paper.decision">Decision</message>
 	<!--<message key="editor.paper.noEditorSelected">No editor selected.</message>-->
 	<message key="editor.paper.recordDecision">Record Decision</message>
-	<message key="editor.paper.cannotRecord">Before a decision can be recorded, a submission must be assigned to a Section Editor. The Review Version becomes, by default, the Editor Version.</message>
+	<message key="editor.paper.cannotRecord">Before a decision can be recorded, a submission must be assigned to a Track Editor. The Review Version becomes, by default, the Editor Version.</message>
 	<!--<message key="editor.paper.reviewersSeeAuthorsVersion">Reviewers to see author version</message>-->
 	<message key="editor.paper.designateDueDate">Designate a Due Date</message>
 	<message key="editor.paper.designateDueDateDescription">To change the due date for this Reviewer, enter another date or delete the date and enter the number of weeks until the review is due.</message>
@@ -1747,18 +1737,20 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="editor.paper.reviewerRating.veryPoor">1 Low</message>
 	<message key="editor.paper.quality">Rating</message>
 	<message key="editor.paper.comments">Comments</message>
+	<message key="editor.paper.commentsRequired">The comments field is required.</message>
 	<!--<message key="editor.paper.saveRating">Save Rating</message>-->
 	<!--<message key="editor.paper.noneSelected">None Selected</message>-->
 	<!--<message key="editor.paper.authorProofing">Author Proofing</message>-->
-	<!--<message key="editor.paper.archiveSubmission">Archive Submission</message>-->
+	<message key="editor.paper.archiveSubmission">Archive Submission</message>
 	<!--<message key="editor.paper.emailAuthorOnArchive">Email author about the archiving of this submission?</message>-->
-	<!--<message key="editor.paper.restoreToQueue">Restore to Active List</message>-->
+	<message key="editor.paper.restoreToQueue">Restore to Active List</message>
 	<message key="editor.paper.assignTrackEditor">Add Track Editor</message>
 	<message key="editor.paper.assignEditor">Add Editor</message>
 	<message key="editor.paper.selectEditor">Select {$roleName}</message>
 	<message key="editor.paper.selectDecision">Select decision</message>
 	<message key="editor.paper.decision.accept">Accept Submission</message>
 	<message key="editor.paper.decision.pendingRevisions">Revisions Required</message>
+	<message key="editor.paper.decision.resubmit">Resubmit for Review</message>
 	<message key="editor.paper.decision.decline">Decline Submission</message>
 	<!--<message key="editor.paper.reviewSubmission">Review Submission</message>-->
 	<!--<message key="editor.paper.resubmitFileForPeerReview">Resubmit selected file for peer review</message>-->
@@ -1777,7 +1769,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="editor.submissions.averageTime">Weeks</message>
 	<message key="editor.submissions.lastCompleted">Last Complete</message>
 
-	<!-- Section Editor -->
+	<!-- Track Editor -->
 	<!--<message key="sectionEditor.activeEditorialAssignments">Active Editorial Assignments</message>-->
 	<!--<message key="sectionEditor.completedEditorialAssignments">Completed Editorial Assignments</message>-->
 	<!--<message key="sectionEditor.noneAssigned">No submissions assigned.</message>-->
@@ -1991,37 +1983,38 @@ The file can be viewed by clicking on the file name. A new or revised file can b
 	<!--<message key="author.paper.authorRevisedFile">Author File</message>-->
 
 	<!-- Submission Tracking - Layout Specific -->
-	<!--<message key="submission.layout.mustUploadFileForLayout">Request email cannot be sent until a Layout Version is in place.</message>-->
-	<!--<message key="submission.layout.layoutVersion">Layout Version</message>-->
-	<!--<message key="submission.layout.layoutFile">Layout File</message>-->
-	<!--<message key="submission.layout.galleys">Galleys</message>-->
-	<!--<message key="submission.layout.newGalley">Create New Galley</message>-->
-	<!--<message key="submission.layout.assignLayoutEditor">Assign Layout Editor</message>-->
-	<!--<message key="submission.layout.replaceLayoutEditor">Replace Layout Editor</message>-->
-	<!--<message key="submission.layout.initialGalleyCreation">Initial Galley Creation</message>-->
-	<!--<message key="submission.layout.supplementaryFiles">Supplementary File Review</message>-->
-	<!--<message key="submission.layout.layoutComments">Layout Comments</message>-->
-	<!--<message key="submission.layout.galleyLabelRequired">A galley label is required.</message>-->
-	<!--<message key="submission.layout.confirmDeleteGalley">Are you sure you want to permanently delete this galley?</message>-->
-	<!--<message key="submission.layout.newSupplementaryFile">Upload New Supplementary File</message>-->
-	<!--<message key="submission.layout.confirmDeleteSupplementaryFile">Are you sure you want to permanently delete this supplementary file?</message>-->
+	<message key="submission.layout.noLayoutFile">None (Upload final copyedit version as Layout Version prior to sending request)</message>
+	<message key="submission.layout.mustUploadFileForLayout">Request email cannot be sent until a Layout Version is in place.</message>
+	<message key="submission.layout.layoutVersion">Layout Version</message>
+	<message key="submission.layout.layoutFile">Layout File</message>
+	<message key="submission.layout.galleys">Galleys</message>
+	<message key="submission.layout.newGalley">Create New Galley</message>
+	<message key="submission.layout.assignLayoutEditor">Assign Layout Editor</message>
+	<message key="submission.layout.replaceLayoutEditor">Replace Layout Editor</message>
+	<message key="submission.layout.initialGalleyCreation">Initial Galley Creation</message>
+	<message key="submission.layout.supplementaryFiles">Supplementary File Review</message>
+	<message key="submission.layout.layoutComments">Layout Comments</message>
+	<message key="submission.layout.galleyLabelRequired">A galley label is required.</message>
+	<message key="submission.layout.confirmDeleteGalley">Are you sure you want to permanently delete this galley?</message>
+	<message key="submission.layout.newSupplementaryFile">Upload New Supplementary File</message>
+	<message key="submission.layout.confirmDeleteSupplementaryFile">Are you sure you want to permanently delete this supplementary file?</message>
 	<message key="submission.layout.editGalley">Edit a Layout Galley</message>
 	<message key="submission.layout.addGalley">Add a Layout Galley</message>
 	<message key="submission.layout.galleyFileData">Galley File Information</message>
 	<message key="submission.layout.galleyLabel">Label</message>
 	<message key="submission.layout.galleyLabelInstructions">The galley label is used to identify the item's file format (e.g. HTML, PDF, etc.).</message>
-	<!--<message key="submission.layout.galleyHTMLData">HTML Galley Files</message>-->
-	<!--<message key="submission.layout.galleyStylesheet">Stylesheet File</message>-->
-	<!--<message key="submission.layout.noStyleFile">No stylesheet file has been added to this galley.</message>-->
-	<!--<message key="submission.layout.deleteGalleyStylesheet">Delete this stylesheet.</message>-->
-	<!--<message key="submission.layout.galleyImages">Images</message>-->
-	<!--<message key="submission.layout.galleyNoImages">No images have been added to this galley.</message>-->
-	<!--<message key="submission.layout.confirmDeleteGalleyImage">Are you sure you want to remove this image from the galley?</message>-->
-	<!--<message key="submission.layout.galleyStyle">Style</message>-->
-	<!--<message key="submission.layout.viewingGalley">Viewing Submission Galley</message>-->
+	<message key="submission.layout.galleyHTMLData">HTML Galley Files</message>
+	<message key="submission.layout.galleyStylesheet">Stylesheet File</message>
+	<message key="submission.layout.noStyleFile">No stylesheet file has been added to this galley.</message>
+	<message key="submission.layout.deleteGalleyStylesheet">Delete this stylesheet.</message>
+	<message key="submission.layout.galleyImages">Images</message>
+	<message key="submission.layout.galleyNoImages">No images have been added to this galley.</message>
+	<message key="submission.layout.confirmDeleteGalleyImage">Are you sure you want to remove this image from the galley?</message>
+	<message key="submission.layout.galleyStyle">Style</message>
+	<message key="submission.layout.viewingGalley">Viewing Submission Galley</message>
 	<message key="submission.layout.galleyFormat">Galley Format</message>
 	<message key="submission.layout.viewProof">View Proof</message>
-	<!--<message key="submission.layout.instructions">Layout Instructions</message>-->
+	<message key="submission.layout.instructions">Layout Instructions</message>
 
 
 	<!-- Submission History -->
@@ -2203,8 +2196,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<!-- Call-for-Papers (CFP) page -->
 	<message key="event.cfp.submitHere">Start here to submit a proposal to this conference.</message>
 	<!-- Conference Proceedings -->
-	<message key="proceedings.subscribersOnly"><![CDATA[The proceedings of this conference are available only to registrants.]]></message>
-	<message key="proceedings.notReleasedYet"><![CDATA[The proceedings of this conference have not yet been released.]]></message>
+	<message key="proceedings.notPermitted"><![CDATA[You do not yet have access to the proceedings of this conference.]]></message>
 	<message key="proceedings.trackEmpty"><![CDATA[No papers are available in this track.]]></message>
 	<message key="proceedings.eventEmpty"><![CDATA[The proceedings of this conference are not yet available.]]></message>
 	

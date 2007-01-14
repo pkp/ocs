@@ -61,6 +61,14 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 			
 		$paperDao->updatePaper($paper);
 
+		$layoutDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
+		if(!$layoutDao->getLayoutAssignmentByPaperId($paper->getPaperId())) {
+			$layoutAssignment = &new LayoutAssignment();
+			$layoutAssignment->setPaperId($paper->getPaperId());
+			$layoutAssignment->setEditorId(0);
+			$layoutDao->insertLayoutAssignment($layoutAssignment);
+		}
+
 		// Designate this as the review version by default.
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($paper->getPaperId());

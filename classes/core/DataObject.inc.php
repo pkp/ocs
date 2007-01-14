@@ -19,11 +19,17 @@ class DataObject {
 	/** Array of object data */
 	var $_data;
 	
+	/** Fields modified since object creation */
+	/* var $_modified_data; */
+	
 	/**
 	 * Constructor.
 	 */
 	function DataObject($callHooks = true) {
 		$this->_data = array();
+		/*
+		$this->_modified_data = array();
+		*/
 	}
 	
 	/**
@@ -46,7 +52,24 @@ class DataObject {
 	 */
 	function setData($key, $value) {
 		$this->_data[$key] = $value;
+		/*
+		if (!in_array($key, $this->_modified_data))
+		{
+			$this->_modified_data[] = $key;
+		}
+		*/
 	}
+	
+	/* Unused. Might be useful to keep track of modified fields for more efficient update operations?
+	function resetModifiedData() {
+		$this->_modified_data = array();
+	}
+	
+	function isModifiedData($key) {
+		return in_array($key, $this->_modified_data);
+	}
+	*/
+	
 }
 
 ?>

@@ -123,15 +123,14 @@ class Validation {
 	/**
 	 * Redirect to the login page, appending the current URL as the source.
 	 */
-	function redirectLogin() {
+	function redirectLogin($message = null) {
 		$args = array();
 
-		// TODO: check to make sure it's always good to chop off request arguments
-		if($_SERVER['REQUEST_URI'])
-			$args['source'] = array_shift(explode('?',$_SERVER['REQUEST_URI']));
-
-		if(Request::getUserVar('loginMessage')) {
-			$args['loginMessage'] = Request::getUserVar('loginMessage');
+		if (isset($_SERVER['REQUEST_URI'])) {
+			$args['source'] = $_SERVER['REQUEST_URI'];
+		}
+		if ($message !== null) {
+			$args['loginMessage'] = $message;
 		}
 
 		Request::redirect(null, null, 'login', null, null, $args);
@@ -178,13 +177,13 @@ class Validation {
 		if ($conferenceId === -1) {
 			// Get conference ID from request
 			$conference = &Request::getConference();
-			$conferenceId = $conference == null ? 0 : $conference->getConferenceId();
+			$conferenceId = $conference ? $conference->getConferenceId() : 0;
 		}
 
 		if ($eventId === -1) {
 			// Get event ID from request
 			$event = &Request::getEvent();
-			$eventId = $event == null ? 0 : $event->getEventId();
+			$eventId = $event ? $event->getEventId() : 0;
 		}
 		
 		$sessionManager = &SessionManager::getManager();
@@ -267,7 +266,7 @@ class Validation {
 	 * @return boolean
 	 */
 	function isSiteAdmin() {
-		return Validation::isAuthorized(ROLE_ID_SITE_ADMIN);
+		return Validation::isAuthorized(ROLE_ID_SITE_ADMIN, 0, 0);
 	}
 	
 	/**
@@ -276,7 +275,7 @@ class Validation {
 	 * @return boolean
 	 */
 	function isConferenceDirector($conferenceId = -1) {
-		return Validation::isAuthorized(ROLE_ID_CONFERENCE_DIRECTOR, $conferenceId);
+		return Validation::isAuthorized(ROLE_ID_CONFERENCE_DIRECTOR, $conferenceId, 0);
 	}
 	
 	/**
@@ -285,11 +284,7 @@ class Validation {
 	 * @return boolean
 	 */
 	function isEditor($conferenceId = -1, $eventId = -1) {
-		if($eventId === null)
-			return Validation::isAuthorized(ROLE_ID_EDITOR, $conferenceId);
-
-		return Validation::isAuthorized(ROLE_ID_EDITOR, $conferenceId, 0) ||
-			Validation::isAuthorized(ROLE_ID_EDITOR, $conferenceId, $eventId);
+		return Validation::isAuthorized(ROLE_ID_EDITOR, $conferenceId, $eventId);
 	}
 	
 	/**
@@ -298,11 +293,16 @@ class Validation {
 	 * @return boolean
 	 */
 	function isTrackEditor($conferenceId = -1, $eventId = -1) {
-		if($eventId === null || $eventId === -1)
-			return Validation::isAuthorized(ROLE_ID_TRACK_EDITOR, $conferenceId);
-
-		return Validation::isAuthorized(ROLE_ID_TRACK_EDITOR, $conferenceId, 0) ||
-			Validation::isAuthorized(ROLE_ID_TRACK_EDITOR, $conferenceId, $eventId);
+		return Validation::isAuthorized(ROLE_ID_TRACK_EDITOR, $conferenceId, $eventId);
+	}
+	
+	/**
+	 * Shortcut for checking authorization as layout editor.
+	 * @param $journalId int
+	 * @return boolean
+	 */
+	function isLayoutEditor($conferenceId = -1, $eventId = -1) {
+		return Validation::isAuthorized(ROLE_ID_LAYOUT_EDITOR, $conferenceId, $eventId);
 	}
 	
 	/**
@@ -311,8 +311,7 @@ class Validation {
 	 * @return boolean
 	 */
 	function isReviewer($conferenceId = -1, $eventId = -1) {
-		return Validation::isAuthorized(ROLE_ID_REVIEWER, $conferenceId, $eventId) ||
-			Validation::isAuthorized(ROLE_ID_REVIEWER, $conferenceId, 0);
+		return Validation::isAuthorized(ROLE_ID_REVIEWER, $conferenceId, $eventId);
 	}
 	
 	/**
@@ -321,8 +320,7 @@ class Validation {
 	 * @return boolean
 	 */
 	function isAuthor($conferenceId = -1, $eventId = -1) {
-		return Validation::isAuthorized(ROLE_ID_AUTHOR, $conferenceId, 0) ||
-			Validation::isAuthorized(ROLE_ID_AUTHOR, $conferenceId, $eventId);
+		return Validation::isAuthorized(ROLE_ID_AUTHOR, $conferenceId, $eventId);
 	}
 	
 	/**
@@ -330,8 +328,8 @@ class Validation {
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function isReader($conferenceId = -1) {
-		return Validation::isAuthorized(ROLE_ID_READER, $conferenceId);
+	function isReader($conferenceId = -1, $eventId = -1) {
+		return Validation::isAuthorized(ROLE_ID_READER, $conferenceId, $eventId);
 	}
 
 	/**
