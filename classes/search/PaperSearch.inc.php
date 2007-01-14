@@ -267,7 +267,7 @@ class PaperSearch {
 				if (!isset($eventCache[$eventId])) {
 					$eventCache[$eventId] = &$event;
 					import('event.EventAction');
-					$eventAvailabilityCache[$eventId] = EventAction::mayViewPaper($event);
+					$eventAvailabilityCache[$eventId] = EventAction::mayViewPapers($event);
 				}
 
 				// Store the retrieved objects in the result array.

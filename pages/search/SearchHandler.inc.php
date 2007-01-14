@@ -90,7 +90,7 @@ class SearchHandler extends Handler {
 					import('event.EventAction');
 					$event = &$eventDao->getEvent($eventId);
 					$events[$eventId] = &$event;
-					$eventsUnavailable[$eventId] = EventAction::registrationRequired($event) && (!EventAction::registeredUser($event) && !EventAction::registeredDomain($event));
+					$eventsUnavailable[$eventId] = EventAction::mayViewProceedings($event);
 				}
 				if (!isset($tracks[$trackId])) $tracks[$trackId] = &$trackDao->getTrack($trackId);
 			}
@@ -172,6 +172,7 @@ class SearchHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('results', $results);
+		$templateMgr->assign('mayViewPapers', EventAction::mayViewPapers($event));
 		$templateMgr->display('search/eventIndex.tpl');
 	}
 	
