@@ -213,7 +213,7 @@
 	<message key="navigation.myConferences">My Conferences</message>
 	<message key="navigation.conferenceContent">Conference Content</message>
 	<message key="navigation.browse">Browse</message>
-	<message key="navigation.browseByEvent">By Event</message>
+	<message key="navigation.browseByConference">By Conference</message>
 	<message key="navigation.browseByAuthor">By Presenter</message>
 	<message key="navigation.browseByTitle">By Title</message>
 	<message key="navigation.info">Information</message>

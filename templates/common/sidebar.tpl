@@ -93,7 +93,7 @@
 		{if $currentConference}
 		<span class="blockSubtitle">{translate key="navigation.browse"}</span>
 		<ul>
-			<li><a href="{url page="search" op="events"}">{translate key="navigation.browseByEvent"}</a></li>
+			<li><a href="{url page="search" op="events"}">{translate key="navigation.browseByConference"}</a></li>
 			<li><a href="{url page="search" op="authors"}">{translate key="navigation.browseByAuthor"}</a></li>
 			<li><a href="{url page="search" op="titles"}">{translate key="navigation.browseByTitle"}</a></li>
 			{if $hasOtherConferences}
