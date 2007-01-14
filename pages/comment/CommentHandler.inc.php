@@ -46,7 +46,7 @@ class CommentHandler extends Handler {
 		$templateMgr->assign_by_ref('comments', $comments);
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
-		$templateMgr->assign('enableComments', $conference->getSetting('enableComments'));
+		$templateMgr->assign('enableComments', $event->getSetting('enableComments', true));
 		$templateMgr->assign('isDirector', $isDirector);
 
 		$templateMgr->display('comment/comments.tpl');
@@ -62,7 +62,7 @@ class CommentHandler extends Handler {
 		// Bring in comment constants
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
-		$enableComments = $conference->getSetting('enableComments');
+		$enableComments = $event->getSetting('enableComments', true);
 		switch ($enableComments) {
 			case COMMENTS_UNAUTHENTICATED:
 				break;

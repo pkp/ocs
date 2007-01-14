@@ -14,6 +14,9 @@ import('classes.plugins.GenericPlugin');
 // dumb), decide when earliest possible run for each event is, and store that
 // timestamp for quick reference along with the other entry parameters.
 
+// Alternately, store a PluginSetting containing the last time Acron actually
+// considered scheduled tasks, and limit the run frequency to (e.g.) 30 minutes.
+
 // TODO: Error handling. If a scheduled task encounters an error...?
 
 class AcronPlugin extends GenericPlugin {

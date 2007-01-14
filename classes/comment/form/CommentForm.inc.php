@@ -3,7 +3,7 @@
 /**
  * CommentForm.inc.php
  *
- * Copyright (c) 2003-2007 John Willinsky
+ * Copyright (c) 2003-2006 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package rt.ocs.form
@@ -19,6 +19,9 @@ class CommentForm extends Form {
 	
 	/** @var int the ID of the comment */
 	var $commentId;
+
+	/** @var boolean Whether or not Captcha support is enabled */
+	var $captchaEnabled;
 
 	/** @var int the ID of the paper */
 	var $paperId;
@@ -43,12 +46,20 @@ class CommentForm extends Form {
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 		$this->comment = &$commentDao->getComment($commentId, $paperId);
 
+		import('captcha.CaptchaManager');
+		$captchaManager =& new CaptchaManager();
+		$this->captchaEnabled = ($captchaManager->isEnabled() && Config::getVar('captcha', 'captcha_on_comments'))?true:false;
+
 		if (isset($this->comment)) {
 			$this->commentId = $commentId;
 		}
 
 		$this->parentId = $parentId;
 		$this->galleyId = $galleyId;
+
+		if ($this->captchaEnabled) {
+			$this->addCheck(new FormValidatorCaptcha($this, 'captcha', 'captchaId', 'common.captchaField.badCaptcha'));
+		}
 	}
 	
 	/**
@@ -77,7 +88,7 @@ class CommentForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$conference = Request::getConference();
+		$event = Request::getEvent();
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -92,10 +103,20 @@ class CommentForm extends Form {
 			$templateMgr->assign('userEmail', $user->getEmail());
 		}
 
+		if ($this->captchaEnabled) {
+			import('captcha.CaptchaManager');
+			$captchaManager =& new CaptchaManager();
+			$captcha =& $captchaManager->createCaptcha();
+			if ($captcha) {
+				$templateMgr->assign('captchaEnabled', $this->captchaEnabled);
+				$this->setData('captchaId', $captcha->getCaptchaId());
+			}
+		}
+
 		$templateMgr->assign('parentId', $this->parentId);
 		$templateMgr->assign('paperId', $this->paperId);
-//FIXME		$templateMgr->assign('galleyId', $this->galleyId);
-		$templateMgr->assign('enableComments', $conference->getSetting('enableComments'));
+		$templateMgr->assign('galleyId', $this->galleyId);
+		$templateMgr->assign('enableComments', $event->getSetting('enableComments', true));
 
 		parent::display();
 	}
@@ -105,14 +126,18 @@ class CommentForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(
-			array(
-				'body',
-				'title',
-				'posterName',
-				'posterEmail'
-			)
+		$userVars = array(
+			'body',
+			'title',
+			'posterName',
+			'posterEmail'
 		);
+		if ($this->captchaEnabled) {
+			$userVars[] = 'captchaId';
+			$userVars[] = 'captcha';
+		}
+
+		$this->readUserVars($userVars);
 	}
 
 	/**
@@ -120,8 +145,8 @@ class CommentForm extends Form {
 	 * @return int the comment ID
 	 */
 	function execute() {
-		$conference = &Request::getConference();
-		$enableComments = $conference->getSetting('enableComments');
+		$event = &Request::getEvent();
+		$enableComments = $event->getSetting('enableComments', true);
 
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 		
