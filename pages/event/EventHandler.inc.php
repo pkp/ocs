@@ -136,11 +136,11 @@ class EventHandler extends Handler {
 			$eventTitle = $event->getTitle();
 
 			$openDate = $event->getSetting('proposalsOpenDate');
-			$closeDate = $event->getSetting('propsalsCloseDate');
+			$closeDate = $event->getSetting('proposalsCloseDate');
 			$showCFPDate = $event->getSetting('showCFPDate');
 			
 			if($showCFPDate && $closeDate &&
-					($time() > $showCFPDate) && (time() < $closeDate)) {
+					(time() > $showCFPDate) && (time() < $closeDate)) {
 
 				$templateMgr->assign('showCFP', true);
 			}
