@@ -815,11 +815,11 @@ class TrackEditorSubmissionDAO extends DAO {
 			FROM users u
 			NATURAL JOIN roles r
 			LEFT JOIN review_assignments a ON
-				(p.reviewer_id = u.user_id
-				 AND p.cancelled = 0
-				 AND p.paper_id = ?
-				 AND p.type = ?
-				 AND p.round = ?)
+				(a.reviewer_id = u.user_id
+				 AND a.cancelled = 0
+				 AND a.paper_id = ?
+				 AND a.type = ?
+				 AND a.round = ?)
 			WHERE u.user_id = r.user_id
 				AND r.event_id = ?
 				AND r.role_id = ? ' . $searchSql . '

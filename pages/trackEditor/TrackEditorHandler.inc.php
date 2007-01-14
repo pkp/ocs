@@ -189,6 +189,20 @@ class TrackEditorHandler extends Handler {
 	}
 
 	//
+	// Timeline Management
+	//
+	
+	function timeline($args) {
+		import('pages.trackEditor.TimelineHandler');
+		TimelineHandler::timeline($args);
+	}
+
+	function updateTimeline($args) {
+		import('pages.trackEditor.TimelineHandler');
+		TimelineHandler::updateTimeline($args);
+	}
+
+	//
 	// Submission Tracking
 	//
 

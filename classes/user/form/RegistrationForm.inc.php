@@ -71,6 +71,8 @@ class RegistrationForm extends Form {
 		$conference = &Request::getConference();
 		$event = &Request::getEvent();
 		$templateMgr = &TemplateManager::getManager();
+		
+		import('event.EventAction');
 
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
 		$templateMgr->assign('privacyStatement', $event->getSetting('privacyStatement', true));
@@ -203,6 +205,7 @@ class RegistrationForm extends Form {
 		// Roles users are allowed to register themselves in
 		$allowedRoles = array('reader' => 'registerAsReader', 'author' => 'registerAsAuthor', 'reviewer' => 'registerAsReviewer');
 
+		import('event.EventAction');
 		if (!EventAction::allowRegReader($event)) {
 			unset($allowedRoles['reader']);
 		}

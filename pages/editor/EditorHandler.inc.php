@@ -39,20 +39,6 @@ class EditorHandler extends TrackEditorHandler {
 		$templateMgr->display('editor/index.tpl');
 	}
 
-	//
-	// Timeline Management
-	//
-	
-	function timeline($args) {
-		import('pages.editor.TimelineHandler');
-		TimelineHandler::timeline($args);
-	}
-
-	function updateTimeline($args) {
-		import('pages.editor.TimelineHandler');
-		TimelineHandler::updateTimeline($args);
-	}
-
 	/**
 	 * Display editor submission queue pages.
 	 */

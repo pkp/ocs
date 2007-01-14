@@ -13,7 +13,7 @@
  * $Id$
  */
 
-class TimelineHandler extends EditorHandler {
+class TimelineHandler extends TrackEditorHandler {
 
 	/**
 	 * Display a list of the tracks within the current conference.

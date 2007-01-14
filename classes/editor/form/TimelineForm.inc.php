@@ -17,12 +17,24 @@ import('form.Form');
 
 class TimelineForm extends Form {
 
+	/** @var boolean can edit metadata */
+	var $canEdit;
+	
 	/**
 	 * Constructor.
 	 * @param $trackId int omit for a new track
 	 */
 	function TimelineForm() {
-		parent::Form('editor/timeline/timelineForm.tpl');
+		$this->canEdit = false;
+		if (Validation::isEditor() || Validation::isConferenceDirector()) {
+			$this->canEdit = true;
+		}
+
+		if($this->canEdit) {
+			parent::Form('trackEditor/timelineEdit.tpl');
+		} else {
+			parent::Form('trackEditor/timelineView.tpl');
+		}
 
 		/*$this->addCheck(new FormValidatorCustom($this, 'endDate', 'required', 'director.timeline.form.badEndDate',
 			create_function('$endDate,$form',
