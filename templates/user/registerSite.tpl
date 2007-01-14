@@ -9,14 +9,12 @@
  * $Id$
  *}
 
+{assign var="pageTitle" value="user.register"}
 {include file="common/header.tpl"}
 
+{translate key="user.register.selectConference"}:
+<ul>
 {iterate from=conferences item=conference}
-	{if !$notFirstConference}
-		{translate key="user.register.selectConference"}:
-		<ul>
-		{assign var=notFirstconference value=1}
-	{/if}
 	<li>
 		{if $source}
 			<a href="{url conference=$conference->getPath() page="user" op="register" source=$source|escape}">{$conference->getTitle()|escape}</a>
@@ -25,10 +23,9 @@
 		{/if}
 	</li>
 {/iterate}
+</ul>
 {if $conferences->wasEmpty()}
 	{translate key="user.register.noConferences"}
-{else}
-	</ul>
 {/if}
 
 {include file="common/footer.tpl"}
