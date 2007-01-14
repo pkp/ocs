@@ -88,7 +88,7 @@
 		</select>
 	</td>
 </tr>
-{if $currentEvent}
+{if $allowRegReader || $allowRegAuthor || $allowRegReviewer}
 	<tr valign="top">
 		<td class="label">{translate key="user.roles"}</td>
 		<td class="value">

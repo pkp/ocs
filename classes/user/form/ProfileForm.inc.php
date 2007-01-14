@@ -32,7 +32,6 @@ class ProfileForm extends Form {
 		$this->profileLocalesEnabled = $site->getProfileLocalesEnabled();
 		
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'timeZone', 'required', 'user.profile.form.TimeZoneRequired'));
 		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'user.profile.form.firstNameRequired'));
 		$this->addCheck(new FormValidator($this, 'lastName', 'required', 'user.profile.form.lastNameRequired'));
 		$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
@@ -79,6 +78,19 @@ class ProfileForm extends Form {
 		$templateMgr->assign_by_ref('eventNotifications', $eventNotifications);
 		$templateMgr->assign('helpTopicId', 'user.registerAndProfile');		
 
+		$event =& Request::getEvent();
+		if ($event) {
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $event->getEventId());
+			$roleNames = array();
+			foreach ($roles as $role) $roleNames[$role->getRolePath()] = $role->getRoleName();
+			import('event.EventAction');
+			$templateMgr->assign('allowRegReviewer', EventAction::allowRegReviewer($event));
+			$templateMgr->assign('allowRegAuthor', EventAction::allowRegAuthor($event));
+			$templateMgr->assign('allowRegReader', EventAction::allowRegReader($event));
+			$templateMgr->assign('roles', $roleNames);
+		}
+		
 		$timeZones = TimeZone::getTimeZones();
 		$templateMgr->assign_by_ref('timeZones', $timeZones);
 		
@@ -97,17 +109,20 @@ class ProfileForm extends Form {
 			'initials' => $user->getInitials(),
 			'lastName' => $user->getLastName(),
 			'affiliation' => $user->getAffiliation(),
+			'signature' => $user->getSignature(),
 			'email' => $user->getEmail(),
 			'userUrl' => $user->getUrl(),
 			'phone' => $user->getPhone(),
 			'fax' => $user->getFax(),
-			'signature' => $user->getSignature(),
 			'mailingAddress' => $user->getMailingAddress(),
 			'country' => $user->getCountry(),
 			'timeZone' => $user->getTimeZone(),
 			'biography' => $user->getBiography(),
 			'interests' => $user->getInterests(),
-			'userLocales' => $user->getLocales()
+			'userLocales' => $user->getLocales(),
+			'isAuthor' => Validation::isAuthor(),
+			'isReader' => Validation::isReader(),
+			'isReviewer' => Validation::isReviewer()
 		);
 		
 		
@@ -123,17 +138,20 @@ class ProfileForm extends Form {
 			'lastName',
 			'initials',
 			'affiliation',
+			'signature',
 			'email',
 			'userUrl',
 			'phone',
 			'fax',
-			'signature',
 			'mailingAddress',
 			'country',
 			'timeZone',
 			'biography',
 			'interests',
-			'userLocales'
+			'userLocales',
+			'readerRole',
+			'authorRole',
+			'reviewerRole'
 		));
 		
 		if ($this->getData('userLocales') == null || !is_array($this->getData('userLocales'))) {
@@ -151,8 +169,8 @@ class ProfileForm extends Form {
 		$user->setMiddleName($this->getData('middleName'));
 		$user->setInitials($this->getData('initials'));
 		$user->setLastName($this->getData('lastName'));
-		$user->setSignature($this->getData('signature'));
 		$user->setAffiliation($this->getData('affiliation'));
+		$user->setSignature($this->getData('signature'));
 		$user->setEmail($this->getData('email'));
 		$user->setUrl($this->getData('userUrl'));
 		$user->setPhone($this->getData('phone'));
@@ -183,6 +201,37 @@ class ProfileForm extends Form {
 		$eventDao = &DAORegistry::getDAO('EventDAO');
 		$notificationStatusDao = &DAORegistry::getDAO('NotificationStatusDAO');
 
+		// Roles
+		$event =& Request::getEvent();
+		if ($event) {
+			import('event.EventAction');
+			$role =& new Role();
+			$role->setUserId($user->getUserId());
+			$role->setConferenceId($event->getConferenceId());
+			$role->setEventId($event->getEventId());
+			if (EventAction::allowRegReviewer($event)) {
+				$role->setRoleId(ROLE_ID_REVIEWER);
+				$hasRole = Validation::isReviewer();
+				$wantsRole = Request::getUserVar('reviewerRole');
+				if ($hasRole && !$wantsRole) $roleDao->deleteRole($role);
+				if (!$hasRole && $wantsRole) $roleDao->insertRole($role);
+			}
+			if (EventAction::allowRegAuthor($event)) {
+				$role->setRoleId(ROLE_ID_AUTHOR);
+				$hasRole = Validation::isAuthor();
+				$wantsRole = Request::getUserVar('authorRole');
+				if ($hasRole && !$wantsRole) $roleDao->deleteRole($role);
+				if (!$hasRole && $wantsRole) $roleDao->insertRole($role);
+			}
+			if (EventAction::allowRegReader($event)) {
+				$role->setRoleId(ROLE_ID_READER);
+				$hasRole = Validation::isReader();
+				$wantsRole = Request::getUserVar('readerRole');
+				if ($hasRole && !$wantsRole) $roleDao->deleteRole($role);
+				if (!$hasRole && $wantsRole) $roleDao->insertRole($role);
+			}
+		}
+		
 		$events = &$eventDao->getEvents();
 		$events = &$events->toArray();
 		$eventNotifications = $notificationStatusDao->getEventNotifications($user->getUserId());
