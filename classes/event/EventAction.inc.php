@@ -70,7 +70,8 @@ class EventAction {
 	 * @return bool
 	 */
 	function mayViewEvent(&$event) {
-		return true;
+		$conference =& $event->getConference();
+		return $event->getEnabled() && $conference->getEnabled();
 	}
 
 	/**

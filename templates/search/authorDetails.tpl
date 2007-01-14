@@ -20,13 +20,13 @@
 	{assign var=eventUnavailable value=$eventsUnavailable.$eventId}
 	{assign var=trackId value=$paper->getTrackId()}
 	{assign var=track value=$tracks[$trackId]}
-	{if $event->getEnabled()}
+	{if $event->getEnabled() && !$eventUnavailable}
 	<li>
 
 		<i><a href="{url event=$event->getPath()}">{$event->getFullTitle()|escape}</a> - {$track->getTitle()|escape}</i><br />
 		{$paper->getPaperTitle()|strip_unsafe_html}<br/>
 		<a href="{url event=$event->getPath() page="paper" op="view" path=$paper->getBestPaperId()}" class="file">{translate key="paper.abstract"}</a>
-		{if (!$eventUnavailable || $paper->getAccessStatus())}
+		{if $paper->getAccessStatus()}
 		{foreach from=$paper->getGalleys() item=galley name=galleyList}
 			&nbsp;<a href="{url event=$event->getPath() page="paper" op="view" path=$paper->getBestPaperId()|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>
 		{/foreach}

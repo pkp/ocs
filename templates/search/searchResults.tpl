@@ -65,6 +65,8 @@ function ensureKeyword() {
 	{assign var=numCols value=4}
 {/if}
 
+<a name="results"></a>
+
 <table width="100%" class="listing">
 <tr><td colspan="{$numCols}" class="headseparator">&nbsp;</td></tr>
 <tr class="heading" valign="bottom">
@@ -86,7 +88,7 @@ function ensureKeyword() {
 	<td><a href="{url conference=$conference->getPath() event=$event->getPath()}">{$event->getTitle()|escape}</a></td>
 	<td width="30%">{$paper->getPaperTitle()|strip_unsafe_html}</td>
 	<td width="30%" align="right">
-		<a href="{url conference=$conference->getPath() event=$event->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>{if $publishedPaper->getAccessStatus() || $eventAvailable}{foreach from=$publishedPaper->getGalleys() item=galley name=galleyList}&nbsp;<a href="{url conference=$conference->getPath() event=$event->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>{/foreach}{/if}
+		<a href="{url conference=$conference->getPath() event=$event->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>{if $publishedPaper->getAccessStatus()}{foreach from=$publishedPaper->getGalleys() item=galley name=galleyList}&nbsp;<a href="{url conference=$conference->getPath() event=$event->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>{/foreach}{/if}
 	</td>
 </tr>
 <tr>
@@ -98,7 +100,7 @@ function ensureKeyword() {
 </tr>
 <tr><td colspan="{$numCols}" class="{if $results->eof()}end{/if}separator">&nbsp;</td></tr>
 {/iterate}
-{if $results->wasEmpty()}
+{if !$results || $results->wasEmpty()}
 <tr>
 <td colspan="{$numCols}" class="nodata">{translate key="search.noResults"}</td>
 </tr>
@@ -107,9 +109,9 @@ function ensureKeyword() {
 	<tr>
 		<td {if !$currentConference}colspan="2" {/if}align="left">{page_info iterator=$results}</td>
 		{if $basicQuery}
-			<td colspan="2" align="right">{page_links iterator=$results name="search" query=$basicQuery searchField=$searchField}</td>
+			<td colspan="2" align="right">{page_links anchor="results" iterator=$results name="search" query=$basicQuery searchField=$searchField}</td>
 		{else}
-			<td colspan="2" align="right">{page_links iterator=$results name="search" query=$query searchConference=$searchConference author=$author title=$title fullText=$fullText supplementaryFiles=$supplementaryFiles discipline=$discipline subject=$subject type=$type coverage=$coverage dateFromMonth=$dateFromMonth dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateToMonth=$dateToMonth dateToDay=$dateToDay dateToYear=$dateToYear}</td>
+			<td colspan="2" align="right">{page_links anchor="results" iterator=$results name="search" query=$query searchConference=$searchConference author=$author title=$title fullText=$fullText supplementaryFiles=$supplementaryFiles discipline=$discipline subject=$subject type=$type coverage=$coverage dateFromMonth=$dateFromMonth dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateToMonth=$dateToMonth dateToDay=$dateToDay dateToYear=$dateToYear}</td>
 		{/if}
 	</tr>
 {/if}

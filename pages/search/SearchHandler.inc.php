@@ -72,7 +72,13 @@ class SearchHandler extends Handler {
 			$lastName = Request::getUserVar('lastName');
 			$affiliation = Request::getUserVar('affiliation');
 
-			$publishedPapers = $authorDao->getPublishedPapersForAuthor($event?$event->getEventId():null, $firstName, $middleName, $lastName, $affiliation);
+			$publishedPapers = $authorDao->getPublishedPapersForAuthor(
+				$event?$event->getEventId():null,
+				$firstName,
+				$middleName,
+				$lastName,
+				$affiliation
+			);
 
 			// Load information associated with each paper.
 			$events = array();
@@ -90,7 +96,7 @@ class SearchHandler extends Handler {
 					import('event.EventAction');
 					$event = &$eventDao->getEvent($eventId);
 					$events[$eventId] = &$event;
-					$eventsUnavailable[$eventId] = EventAction::mayViewProceedings($event);
+					$eventsUnavailable[$eventId] = !EventAction::mayViewProceedings($event);
 				}
 				if (!isset($tracks[$trackId])) $tracks[$trackId] = &$trackDao->getTrack($trackId);
 			}
@@ -136,12 +142,37 @@ class SearchHandler extends Handler {
 		SearchHandler::setupTemplate(true);
 
 		$conference =& Request::getConference();
+		$event =& Request::getEvent();
+		import('event.EventAction');
 
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$eventDao =& DAORegistry::getDAO('EventDAO');
 
 		$rangeInfo = Handler::getRangeInfo('search');
 
-		$paperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedByTitle(isset($event)?$event->getConferenceId():null, $rangeInfo);
+		$allPaperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedByTitle(
+			$conference? $conference->getConferenceId():-1,
+			$event?$event->getEventId():-1,
+			$rangeInfo);
+
+		// FIXME: this is horribly inefficient.
+		// Prune papers from events that aren't available.
+		$paperIds = array();
+		$eventPermissions = array();
+		foreach($allPaperIds as $paperId) {
+			$publishedPaper =& $publishedPaperDao->getPublishedPaperById($paperId);
+			$eventId = $publishedPaper->getEventId();
+
+			if(!isset($eventPermissions[$eventId])) {
+				$event = &$eventDao->getEvent($eventId);
+				$eventPermissions[$eventId] = EventAction::mayViewProceedings($event);
+			}
+
+			if($eventPermissions[$eventId]) {
+				$paperIds[] = $paperId;
+			}
+		}
+		
 		$totalResults = count($paperIds);
 		$paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
 		$results = &new VirtualArrayIterator(PaperSearch::formatResults($paperIds), $totalResults, $rangeInfo->getPage(), $rangeInfo->getCount());
@@ -157,21 +188,46 @@ class SearchHandler extends Handler {
 	function events($args) {
 		parent::validate();
 		SearchHandler::setupTemplate(true);
-
+		
 		$conference =& Request::getConference();
 		$event =& Request::getEvent();
+		import('event.EventAction');
 
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$eventDao = &DAORegistry::getDAO('EventDAO');
 
 		$rangeInfo = Handler::getRangeInfo('search');
 
-		$paperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedByEvent(isset($event)?$event->getEventId():null, $rangeInfo);
+		$allPaperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedByEvent(
+			$conference? $conference->getConferenceId():-1,
+			$event?$event->getEventId():-1,
+			$rangeInfo);
+		
+		// FIXME: this is horribly inefficient.
+		// Prune papers from events that aren't available.
+		$paperIds = array();
+		$eventPermissions = array();
+		foreach($allPaperIds as $paperId) {
+			$publishedPaper =& $publishedPaperDao->getPublishedPaperById($paperId);
+			$eventId = $publishedPaper->getEventId();
+
+			if(!isset($eventPermissions[$eventId])) {
+				$event = &$eventDao->getEvent($eventId);
+				$eventPermissions[$eventId] = EventAction::mayViewProceedings($event);
+			}
+
+			if($eventPermissions[$eventId]) {
+				$paperIds[] = $paperId;
+			}
+		}
+
 		$totalResults = count($paperIds);
 		$paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
 		$results = &new VirtualArrayIterator(PaperSearch::formatResults($paperIds), $totalResults, $rangeInfo->getPage(), $rangeInfo->getCount());
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('results', $results);
+		import('event.EventAction');
 		$templateMgr->assign('mayViewPapers', EventAction::mayViewPapers($event));
 		$templateMgr->display('search/eventIndex.tpl');
 	}
@@ -199,7 +255,7 @@ class SearchHandler extends Handler {
 		// Load the keywords array with submitted values
 		$keywords = array($searchType => PaperSearch::parseQuery(Request::getUserVar('query')));
 
-		$results = &PaperSearch::retrieveResults($conference, $keywords, null, null, $rangeInfo);
+		$rawResults = &PaperSearch::retrieveResults($conference, $keywords, null, null, $rangeInfo);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('results', $results);

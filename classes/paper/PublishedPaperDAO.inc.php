@@ -355,13 +355,32 @@ class PublishedPaperDAO extends DAO {
 	 * @param $eventId int
 	 * @return Array
 	 */
-	function &getPublishedPaperIdsAlphabetizedByTitle($eventId = null, $rangeInfo = null) {
+	function &getPublishedPaperIdsAlphabetizedByTitle($conferenceId = -1, $eventId = -1, $rangeInfo = null) {
 		$paperIds = array();
 		
-		$result = &$this->retrieveCached(
-			'SELECT a.paper_id AS pub_id FROM published_papers pa, papers a LEFT JOIN tracks s ON s.track_id = a.track_id WHERE pa.paper_id = a.paper_id' . (isset($eventId)?' AND a.event_id = ?':'') . ' ORDER BY a.title',
-			isset($eventId)?$eventId:false
-		);
+		if($eventId !== -1) {
+			$result = &$this->retrieveCached(
+				'SELECT a.paper_id AS pub_id
+				FROM published_papers pa, papers a
+				WHERE pa.paper_id = a.paper_id
+					AND a.event_id = ?
+				ORDER BY a.title', $eventId);
+		} elseif ($conferenceId !== -1) {
+			$result = &$this->retrieveCached(
+				'SELECT a.paper_id AS pub_id
+				FROM published_papers pa, papers a
+				LEFT JOIN events e ON e.event_id = a.event_id
+				WHERE pa.paper_id = a.paper_id
+					AND e.conference_id = ?
+				ORDER BY a.title', $conferenceId);
+		} else {
+			$result = &$this->retrieveCached(
+				'SELECT a.paper_id AS pub_id
+				FROM published_papers pa, papers a
+				LEFT JOIN tracks s ON s.track_id = a.track_id
+				WHERE pa.paper_id = a.paper_id
+				ORDER BY a.title', false);
+		}
 		
 		while (!$result->EOF) {
 			$row = $result->getRowAssoc(false);
@@ -383,13 +402,32 @@ class PublishedPaperDAO extends DAO {
 	 * @param $eventId int
 	 * @return Array
 	 */
-	function &getPublishedPaperIdsAlphabetizedByEvent($eventId = null, $rangeInfo = null) {
+	function &getPublishedPaperIdsAlphabetizedByEvent($conferenceId, $eventId = -1, $rangeInfo = null) {
 		$paperIds = array();
 		
-		$result = &$this->retrieveCached(
-			'SELECT a.paper_id AS pub_id FROM published_papers pa, papers a LEFT JOIN tracks s ON s.track_id = a.track_id WHERE pa.paper_id = a.paper_id' . (isset($eventId)?' AND a.event_id = ?':'') . ' ORDER BY a.event_id, a.title',
-			isset($eventId)?$eventId:false
-		);
+		if($eventId !== -1) {
+			$result = &$this->retrieveCached(
+				'SELECT a.paper_id AS pub_id
+				FROM published_papers pa, papers a
+				WHERE pa.paper_id = a.paper_id
+					AND a.event_id = ?
+				ORDER BY a.event_id, a.title', $eventId);
+		} elseif ($conferenceId !== -1) {
+			$result = &$this->retrieveCached(
+				'SELECT a.paper_id AS pub_id
+				FROM published_papers pa, papers a
+				LEFT JOIN events e ON e.event_id = a.event_id
+				WHERE pa.paper_id = a.paper_id
+					AND e.conference_id = ?
+				ORDER BY a.event_id, a.title', $conferenceId);
+		} else {
+			$result = &$this->retrieveCached(
+				'SELECT a.paper_id AS pub_id
+				FROM published_papers pa, papers a
+				LEFT JOIN tracks s ON s.track_id = a.track_id
+				WHERE pa.paper_id = a.paper_id
+				ORDER BY a.event_id, a.title', false);
+		}
 		
 		while (!$result->EOF) {
 			$row = $result->getRowAssoc(false);

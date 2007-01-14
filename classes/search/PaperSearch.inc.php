@@ -271,14 +271,16 @@ class PaperSearch {
 				}
 
 				// Store the retrieved objects in the result array.
-				$returner[] = array(
-					'paper' => &$paper,
-					'publishedPaper' => &$publishedPaperCache[$paperId],
-					'event' => &$eventCache[$eventId],
-					'conference' => &$conferenceCache[$conferenceId],
-					'eventAvailable' => $eventAvailabilityCache[$eventId],
-					'track' => &$trackCache[$trackId]
-				);
+				if($eventAvailabilityCache[$eventId]) {
+					$returner[] = array(
+						'paper' => &$paper,
+						'publishedPaper' => &$publishedPaperCache[$paperId],
+						'event' => &$eventCache[$eventId],
+						'conference' => &$conferenceCache[$conferenceId],
+						'eventAvailable' => $eventAvailabilityCache[$eventId],
+						'track' => &$trackCache[$trackId]
+					);
+				}
 			}
 		}
 		return $returner;
