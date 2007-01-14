@@ -77,7 +77,7 @@ class SiteDAO extends DAO {
 	function insertSite(&$site) {
 		return $this->update(
 			'INSERT INTO site
-				(title, intro, about, conference_redirect, contact_name, contact_email, min_password_length, locale, installed_locales, supported_locales, profile_locales)
+				(title, intro, about, conference_redirect, contact_name, contact_email, min_password_length, locale, installed_locales, supported_locales, profile_locales, original_style_file_name)
 				VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
