@@ -104,7 +104,7 @@ class AboutHandler extends Handler {
 		$event =& Request::getEvent();
 		
 		$conferenceId = $conference->getConferenceId();
-		$eventId = ($event? $event->getEventId():0);
+		$eventId = ($event? $event->getEventId():-1);
 
 		if($event)
 			$settings = $event->getSettings(true);
@@ -124,10 +124,10 @@ class AboutHandler extends Handler {
 			// Organizing Team information using Role info.
 			$roleDao = &DAORegistry::getDAO('RoleDAO');
 
-			$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId());
+			$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId(), $eventId);
 			$editors = &$editors->toArray();
 
-			$trackEditors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_EDITOR, $conference->getConferenceId());
+			$trackEditors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_EDITOR, $conference->getConferenceId(), $eventId);
 			$trackEditors = &$trackEditors->toArray();
 		
 			$templateMgr->assign_by_ref('editors', $editors);
