@@ -291,7 +291,7 @@ class TrackDAO extends DAO {
 
 	/**
 	 * Retrieve all tracks in which papers are currently published in
-	 * the given issue.
+	 * the given event.
 	 * @return array
 	 */
 	function &getTracksByEventId($eventId) {
@@ -420,33 +420,33 @@ class TrackDAO extends DAO {
 	}
 
 	/**
-	 * Delete the custom ordering of an issue's tracks.
-	 * @param $issueId int
+	 * Delete the custom ordering of an event's tracks.
+	 * @param $eventId int
 	 */
-	function deleteCustomTrackOrdering($issueId) {
+	function deleteCustomTrackOrdering($eventId) {
 		return $this->update(
-			'DELETE FROM custom_track_orders WHERE issue_id = ?', $issueId
+			'DELETE FROM custom_track_orders WHERE event_id = ?', $eventId
 		);
 	}
 
 	/**
 	 * Sequentially renumber custom track orderings in their sequence order.
-	 * @param $issueId int
+	 * @param $eventId int
 	 */
-	function resequenceCustomTrackOrders($issueId) {
+	function resequenceCustomTrackOrders($eventId) {
 		$result = &$this->retrieve(
-			'SELECT track_id FROM custom_track_orders WHERE issue_id = ? ORDER BY seq',
-			$issueId
+			'SELECT track_id FROM custom_track_orders WHERE event_id = ? ORDER BY seq',
+			$eventId
 		);
 		
 		for ($i=1; !$result->EOF; $i++) {
 			list($trackId) = $result->fields;
 			$this->update(
-				'UPDATE custom_track_orders SET seq = ? WHERE track_id = ? AND issue_id = ?',
+				'UPDATE custom_track_orders SET seq = ? WHERE track_id = ? AND event_id = ?',
 				array(
 					$i,
 					$trackId,
-					$issueId
+					$eventId
 				)
 			);
 			
@@ -458,14 +458,14 @@ class TrackDAO extends DAO {
 	}
 	
 	/**
-	 * Check if an issue has custom track ordering.
-	 * @param $issueId int
+	 * Check if an event has custom track ordering.
+	 * @param $eventId int
 	 * @return boolean
 	 */
-	function customTrackOrderingExists($issueId) {
+	function customTrackOrderingExists($eventId) {
 		$result = &$this->retrieve(
-			'SELECT COUNT(*) FROM custom_track_orders WHERE issue_id = ?',
-			$issueId
+			'SELECT COUNT(*) FROM custom_track_orders WHERE event_id = ?',
+			$eventId
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 0 ? false : true;
 
@@ -477,14 +477,14 @@ class TrackDAO extends DAO {
 
 	/**
 	 * Get the custom track order of a track.
-	 * @param $issueId int
+	 * @param $eventId int
 	 * @param $trackId int
 	 * @return int
 	 */
-	function getCustomTrackOrder($issueId, $trackId) {
+	function getCustomTrackOrder($eventId, $trackId) {
 		$result = &$this->retrieve(
-			'SELECT seq FROM custom_track_orders WHERE issue_id = ? AND track_id = ?',
-			array($issueId, $trackId)
+			'SELECT seq FROM custom_track_orders WHERE event_id = ? AND track_id = ?',
+			array($eventId, $trackId)
 		);
 		
 		$returner = null;
@@ -498,19 +498,19 @@ class TrackDAO extends DAO {
 	}
 
 	/**
-	 * Import the current track orders into the specified issue as custom
-	 * issue orderings.
-	 * @param $issueId int
+	 * Import the current track orders into the specified event as custom
+	 * event orderings.
+	 * @param $eventId int
 	 */
-	function setDefaultCustomTrackOrders($issueId) {
+	function setDefaultCustomTrackOrders($eventId) {
 		$result = &$this->retrieve(
-			'SELECT s.track_id FROM tracks s, issues i WHERE i.event_id = s.event_id AND i.issue_id = ? ORDER BY seq',
-			$issueId
+			'SELECT s.track_id FROM tracks s, events i WHERE i.event_id = s.event_id AND i.event_id = ? ORDER BY seq',
+			$eventId
 		);
 		
 		for ($i=1; !$result->EOF; $i++) {
 			list($trackId) = $result->fields;
-			$this->_insertCustomTrackOrder($issueId, $trackId, $i);
+			$this->_insertCustomTrackOrder($eventId, $trackId, $i);
 			$result->moveNext();
 		}
 		
@@ -520,34 +520,34 @@ class TrackDAO extends DAO {
 
 	/**
 	 * INTERNAL USE ONLY: Insert a custom track ordering
-	 * @param $issueId int
+	 * @param $eventId int
 	 * @param $trackId int
 	 * @param $seq int
 	 */
-	function _insertCustomTrackOrder($issueId, $trackId, $seq) {
+	function _insertCustomTrackOrder($eventId, $trackId, $seq) {
 		$this->update(
-			'INSERT INTO custom_track_orders (track_id, issue_id, seq) VALUES (?, ?, ?)',
+			'INSERT INTO custom_track_orders (track_id, event_id, seq) VALUES (?, ?, ?)',
 			array(
 				$trackId,
-				$issueId,
+				$eventId,
 				$seq
 			)
 		);
 	}
 
 	/**
-	 * Move a custom issue ordering up or down, resequencing as necessary.
-	 * @param $issueId int
+	 * Move a custom event ordering up or down, resequencing as necessary.
+	 * @param $eventId int
 	 * @param $trackId int
 	 * @param $newPos int The new position (0-based) of this track
 	 * @param $up boolean Whether we're moving the track up or down
 	 */
-	function moveCustomTrackOrder($issueId, $trackId, $newPos, $up) {
+	function moveCustomTrackOrder($eventId, $trackId, $newPos, $up) {
 		$this->update(
-			'UPDATE custom_track_orders SET seq = ? ' . ($up?'-':'+') . ' 0.5 WHERE issue_id = ? AND track_id = ?',
-			array($newPos, $issueId, $trackId)
+			'UPDATE custom_track_orders SET seq = ? ' . ($up?'-':'+') . ' 0.5 WHERE event_id = ? AND track_id = ?',
+			array($newPos, $eventId, $trackId)
 		);
-		$this->resequenceCustomTrackOrders($issueId);
+		$this->resequenceCustomTrackOrders($eventId);
 	}
 }
 

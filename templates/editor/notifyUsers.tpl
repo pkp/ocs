@@ -71,7 +71,7 @@
 
 <br/>
 
-<h3>{translate key="issue.issue"}</h3>
+<h3>{translate key="event.event"}</h3>
 <table class="data" width="100%">
 <tr valign="top">
 	<td width="5%">
@@ -79,9 +79,9 @@
 	</td>
 	<td width="75%" class="label">
 		<label for="includeToc">{translate key="editor.notifyUsers.includeToc"}</label>&nbsp;
-		<select name="issue" id="issue" class="selectMenu">
-			{iterate from=issues item=issue}
-				<option {if $issue->getCurrent()}checked {/if}value="{$issue->getIssueId()}">{$issue->getIssueIdentification()|escape}</option>
+		<select name="event" id="event" class="selectMenu">
+			{iterate from=events item=event}
+				<option {if $event->getCurrent()}checked {/if}value="{$event->getEventId()}">{$event->getEventIdentification()|escape}</option>
 			{/iterate}
 		</select>
 	</td>

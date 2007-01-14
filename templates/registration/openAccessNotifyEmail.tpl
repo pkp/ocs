@@ -6,8 +6,8 @@ Content-Transfer-Encoding: quoted-printable
 
 {$body}
 
-{$issue->getIssueIdentification()}
-{translate key="issue.toc"}
+{$event->getEventIdentification()}
+{translate key="event.toc"}
 
 {foreach name=tracks from=$publishedPapers item=track key=trackId}
 {if $track.title}{$track.title}{/if}
@@ -43,7 +43,7 @@ Content-Transfer-Encoding: quoted-printable
 
 	<p>{$body|escape|nl2br}</p>
 
-		<h3>{$issue->getIssueIdentification()}<br />{translate key="issue.toc"}</h3>
+		<h3>{$event->getEventIdentification()}<br />{translate key="event.toc"}</h3>
 		{foreach name=tracks from=$publishedPapers item=track key=trackId}
 			{if $track.title}<h4>{$track.title|escape}</h4>{/if}
 

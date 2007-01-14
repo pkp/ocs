@@ -1,9 +1,9 @@
 {$body}
 
 {$conference->getTitle()}
-{$issue->getIssueIdentification()}
-{translate key="issue.toc"}
-{url page="issue" op="view" path=$issue->getBestIssueId()}
+{$event->getEventIdentification()}
+{translate key="event.toc"}
+{url page="event" op="view" path=$event->getBestEventId()}
 
 {foreach name=tracks from=$publishedPapers item=track key=trackId}
 {if $track.title}{$track.title}{/if}

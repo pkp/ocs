@@ -19,7 +19,7 @@ AU  - {$author->getFullName(true)|escape}
 {/foreach}
 PY  - {$paper->getDatePublished()|date_format:"%Y"}
 TI  - {$paper->getPaperTitle()|strip_tags}
-JF  - {$conference->getTitle()}; {$issue->getIssueIdentification()}
+JF  - {$conference->getTitle()}; {$event->getEventIdentification()}
 Y2  - {$paper->getDatePublished()|date_format:"%Y"}
 KW  - {$paper->getSubject()|escape}
 N2  - {$paper->getPaperAbstract()|strip_tags|replace:"\n":" "|replace:"\r":" "}
