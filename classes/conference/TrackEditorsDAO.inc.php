@@ -126,7 +126,7 @@ class TrackEditorsDAO extends DAO {
 				
 		$result = &$this->retrieve(
 			'SELECT u.* FROM users AS u NATURAL JOIN roles r LEFT JOIN track_editors AS e ON e.user_id = u.user_id AND e.event_id = r.event_id AND e.track_id = ? WHERE r.event_id = ? AND r.role_id = ? AND e.track_id IS NULL ORDER BY last_name, first_name',
-			array($trackId, $eventId, ROLE_ID_REVIEWER)
+			array($trackId, $eventId, ROLE_ID_TRACK_EDITOR)
 		);
 		
 		while (!$result->EOF) {

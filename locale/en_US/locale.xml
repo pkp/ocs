@@ -1283,7 +1283,7 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="director.timeline.eventEndsOn">Last day of conference</message>
 	
 	<message key="director.timeline.website">Website</message>
-	<message key="director.timeline.eventAppearsOn">List in Current Conferences</message>
+	<message key="director.timeline.eventAppearsOn">Go Live (as a Current Conference)</message>
 	<message key="director.timeline.eventArchivedOn">Move to Conference Archive</message>
 
 	<message key="director.timeline.submissions">Submissions</message>

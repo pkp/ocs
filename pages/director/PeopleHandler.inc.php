@@ -350,7 +350,6 @@ class PeopleHandler extends DirectorHandler {
 
 		$conference = &Request::getConference();
 		$event = &Request::getEvent();
-		$event = &Request::getEvent();
 		
 		if($event) {
 			$eventId = $event->getEventId();
