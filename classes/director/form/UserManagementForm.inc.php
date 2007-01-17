@@ -57,6 +57,8 @@ class UserManagementForm extends Form {
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
 		$site = &Request::getSite();
+		$event = &Request::getEvent();
+
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
 		$templateMgr->assign('userId', $this->userId);
 		if (isset($this->userId)) {
@@ -67,22 +69,31 @@ class UserManagementForm extends Form {
 		} else {
 			$helpTopicId = 'conference.users.createNewUser';
 		}
-		$templateMgr->assign('roleOptions',
-			array(
-				'' => 'director.people.doNotEnroll',
-				'director' => 'user.role.director',
-				'registrationManager' => 'user.role.registrationManager',
-//				'schedulingManager' => 'user.role.schedulingManager',
-				'editor' => 'user.role.editor',
-				'trackEditor' => 'user.role.trackEditor',
-				'reviewer' => 'user.role.reviewer',
-				'author' => 'user.role.author',
-//				'invitedAuthor' => 'user.role.invitedAuthor',
-//				'discussant' => 'user.role.discussant',
-//				'registrant' => 'user.role.registrant',
-				'reader' => 'user.role.reader'
-			)
-		);
+		
+		if($event) {
+			$templateMgr->assign('roleOptions',
+				array(
+					'' => 'director.people.doNotEnroll',
+					'registrationManager' => 'user.role.registrationManager',
+					'editor' => 'user.role.editor',
+					'trackEditor' => 'user.role.trackEditor',
+					'layoutEditor' => 'user.role.layoutEditor',
+					'reviewer' => 'user.role.reviewer',
+					'author' => 'user.role.author',
+//					'invitedAuthor' => 'user.role.invitedAuthor',
+//					'discussant' => 'user.role.discussant',
+//					'registrant' => 'user.role.registrant',
+					'reader' => 'user.role.reader'
+				)
+			);
+		} else {
+			$templateMgr->assign('roleOptions',
+				array(
+					'' => 'director.people.doNotEnroll',
+					'director' => 'user.role.director',
+				)
+			);
+		}
 		$templateMgr->assign('profileLocalesEnabled', $this->profileLocalesEnabled);
 		if ($this->profileLocalesEnabled) {
 			$site = &Request::getSite();
@@ -175,6 +186,7 @@ class UserManagementForm extends Form {
 	function execute() {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$conference = &Request::getConference();
+		$event = &Request::getEvent();
 		
 		if (isset($this->userId)) {
 			$user = &$userDao->getUser($this->userId);
@@ -266,6 +278,7 @@ class UserManagementForm extends Form {
 					if ($roleId != null) {
 						$role = &new Role();
 						$role->setConferenceId($conference->getConferenceId());
+						$role->setEventId($event?$event->getEventId():0);
 						$role->setUserId($userId);
 						$role->setRoleId($roleId);
 						$roleDao->insertRole($role);
