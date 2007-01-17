@@ -323,6 +323,22 @@ class FileManager {
 	}
 
 	/**
+	 * Returns file extension associated with the given document type,
+	 * or false if the type does not belong to a recognized document type.
+	 * @param $type string
+	 */
+	function getDocumentExtension($type) {
+		switch ($type) {
+			case 'application/pdf':
+				return '.pdf';
+			case 'application/word':
+				return'.doc';
+			default:
+				return false;
+		}
+	}
+
+	/**
 	 * Parse file extension from file name.
 	 * @param string a valid file name
 	 * @return string extension

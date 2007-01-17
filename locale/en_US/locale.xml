@@ -1229,6 +1229,14 @@ including the right to place it in an open access archive. In addition, <a href=
 
 	<message key="director.setup.conferenceRegistration">Conference Registration</message>
 	<message key="director.setup.conferenceRegistrationDescription">The Conference Manager can activate Registration Management, which is to be set up and managed by the registered Registration Manager. The contact information for this user should be listed below and will appear in the conference's About the Conference page as the primary contact for registration.</message>
+	<message key="director.setup.programFileInvalid">Invalid program file.</message>
+
+	<message key="director.setup.conferenceProgram">Conference Program</message>
+	<message key="director.setup.conferenceProgramDescription">Layout the program by date, time, location, and event. Update this information as you begin to finalize your list of presenters and presentation titles.</message>
+	<message key="director.setup.programFile">Program File</message>
+	<message key="director.setup.programFileDescription">If the program is available as a file, you may upload it here.</message>
+	<message key="director.setup.programText">Plain Text Program</message>
+	<message key="director.setup.programTextDescription">Enter a text-based version of your conference program here. Even if a program file is provided above, a text-based program is recomended since it allows easier indexing by search engines and can be viewed without browser plug-ins.</message>
 
 	<!-- Event Setup Step 5 -->
 	<message key="eventDirector.setup.customizingTheLook">Step 5. Customizing the Look</message>
@@ -2202,6 +2210,10 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="proceedings.notPermitted"><![CDATA[You do not yet have access to the proceedings of this conference.]]></message>
 	<message key="proceedings.trackEmpty"><![CDATA[No papers are available in this track.]]></message>
 	<message key="proceedings.eventEmpty"><![CDATA[The proceedings of this conference are not yet available.]]></message>
+	
+	<!-- Program page -->
+	<message key="event.program.programFileInstructions">The program for this conference is available via the following link.</message>
+	<message key="event.program.viewProgramFile">View the program</message>
 	
 	<!-- About The Conference -->
 	<message key="about.aboutSite">About the Site</message>

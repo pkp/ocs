@@ -80,7 +80,8 @@ class EventHandler extends Handler {
 			array(Request::url(null, null, 'index'), $event->getTitle(), true)));
 		EventHandler::setupEventTemplate($conference,$event);
 
-		$templateMgr->assign('eventProgram', $event->getSetting('eventProgram', false));
+		$templateMgr->assign('program', $event->getSetting('program', false));
+		$templateMgr->assign('programFile', $event->getSetting('programFile', false));
 
 		$templateMgr->assign('helpTopicId', 'event.program');
 		$templateMgr->display('event/program.tpl');

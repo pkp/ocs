@@ -97,6 +97,19 @@ class EventDirectorSetupHandler extends DirectorHandler {
 						$setupForm->setData('contributors', $contributors);
 					}
 					break;
+				case 4:
+					if (Request::getUserVar('uploadProgramFile')) {
+						if ($setupForm->uploadDocument('programFile')) {
+							$editData = true;
+						} else {
+							$setupForm->addError('programFile', 'director.setup.programFileInvalid');
+						}
+
+					} else if (Request::getUserVar('deleteProgramFile')) {
+						$editData = true;
+						$setupForm->deleteDocument('programFile');
+					}
+					break;
 				case 5:	
 					if (Request::getUserVar('uploadHomeHeaderTitleImage')) {
 						if ($setupForm->uploadImage('homeHeaderTitleImage')) {

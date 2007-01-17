@@ -112,6 +112,36 @@
 <div class="separator"></div>
 
 
+<h3>4.3 {translate key="director.setup.conferenceProgram"}</h3>
+
+<p>{translate key="director.setup.conferenceProgramDescription"}</p>
+
+<h4>{translate key="director.setup.programFile"}</h4>
+
+<p>{translate key="director.setup.programFileDescription"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{translate key="director.setup.programFile"}</td>
+		<td width="80%" class="value"><input type="file" name="programFile" class="uploadField" /> <input type="submit" name="uploadProgramFile" value="{translate key="common.upload"}" class="button" /></td>
+	</tr>
+</table>
+
+{if $programFile}
+{translate key="common.fileName"}: <a href="{$publicFilesDir}/{$programFile.uploadName}" target="_blank" alt="">{$programFile.name}</a> {$programFile.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteProgramFile" value="{translate key="common.delete"}" class="button" />
+<br />
+{/if}
+
+<h4>{translate key="director.setup.programText"}</h4>
+
+<p>{translate key="director.setup.programTextDescription"}</p>
+
+<p><textarea name="program" id="program" rows="12" cols="60" class="textArea">{$program|escape}</textarea></p>
+
+
+<div class="separator"></div>
+
+
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="eventSetup" escape=false}'" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
