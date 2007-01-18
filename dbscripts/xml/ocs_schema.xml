@@ -1672,14 +1672,14 @@
 		</field>
 		<field name="date_paid" type="D"/>
 		<field name="special_requests" type="C2" size="255"/>
+		<field name="domain" type="C2" size="255"/>
+		<field name="ip_range" type="C2" size="255"/>
 		<descr>Conference registrations.</descr>
 		<index name="registration_event_id">
 			<col>event_id</col>
 			<col>user_id</col>
 			<UNIQUE/>
 		</index>
-		<field name="domain" type="C2" size="255"/>
-		<field name="ip_range" type="C2" size="255"/>
 		<index name="registration_domain">
 			<col>domain</col>
 		</index>

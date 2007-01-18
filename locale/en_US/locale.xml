@@ -257,7 +257,7 @@
 	-->
 
 	<!-- Common Track Terms -->
-	<message key="track.track">Track</message>-->
+	<message key="track.track">Track</message>
 	<message key="track.tracks">Conference Tracks</message>
 	<message key="track.title">Track title</message>
 	<message key="track.abbreviation">Abbreviation</message>
@@ -1026,7 +1026,7 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="director.setup.publicIdentifier">Identification of Conference Content</message>
 	<message key="director.setup.uniqueIdentifier">Unique Identifier</message>
 	<message key="director.setup.uniqueIdentifierDescription">Papers can be tagged with an identification number or string, if the conference is using an item registration system such as the Digital Object Identifier System (DOI).</message>
-	<message key="director.setup.enablePublicPaperId">Custom identifiers will be used to identify posted papers.</message>-->
+	<message key="director.setup.enablePublicPaperId">Custom identifiers will be used to identify posted papers.</message>
 	<message key="director.setup.enablePublicSuppFileId">Custom identifiers will be used to identify supplemental files submitted with papers.</message>
 	<message key="director.setup.onlineAccessManagement">Online Access Management</message>
 	<message key="director.setup.openAccess">Provide open access to the conference's contents as each issue or item is published.</message>
@@ -1090,8 +1090,8 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="director.setup.homeHeaderLogoImageAlt2Invalid">Invalid second alternate homepage header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
 	<message key="director.setup.pageHeaderTitleImageAlt2Invalid">Invalid second alternate page header title image format. Accepted formats are .gif, .jpg, or .png.</message>
 	<message key="director.setup.pageHeaderLogoImageAlt2Invalid">Invalid second alternate page header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="director.setup.homepageImageInvalid">Invalid homepage image format. Accepted formats are .gif, .jpg, or .png.</message>-->
-	<message key="director.setup.conferenceStyleSheetInvalid">Invalid conference stylesheet format. Accepted format is .css.</message>-->
+	<message key="director.setup.homepageImageInvalid">Invalid homepage image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="director.setup.conferenceStyleSheetInvalid">Invalid conference stylesheet format. Accepted format is .css.</message>
 	<message key="director.setup.information">Information</message>
 	<message key="director.setup.information.description">Brief descriptions of the conference for prospective presenters and readers are available in the "Information" section of the sidebar.</message>
 	<message key="director.setup.information.forReaders">For Readers</message>
@@ -1164,7 +1164,7 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="eventDirector.setup.reviewModel">Peer Review Process</message>
 	<message key="eventDirector.setup.reviewPapers">Subject papers to peer review after the abstracts have been reviewed and accepted</message>
 	<message key="eventDirector.setup.submitSimultaneous">Abstracts and papers will be collected and reviewed at the same time.</message>
-	<message key="eventDirector.setup.submitSequential">Papers will be collected only after abstracts are reviewed.
+	<message key="eventDirector.setup.submitSequential">Papers will be collected only after abstracts are reviewed.</message>
 	<message key="eventDirector.setup.reviewOptions">Review Options</message>
 	<message key="eventDirector.setup.reviewOptions.reviewTime">Review Time</message>
 	<message key="eventDirector.setup.reviewOptions.numWeeksPerReview">The typical period of time allowed for reviews</message>
@@ -1422,7 +1422,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="director.emails.editTestExample">Edit Email Test Example</message>
 
 	<!-- Registration Policy Management -->
-	<message key="director.registrationPolicies.registrationContact">Registration Manager</message>-->
+	<message key="director.registrationPolicies.registrationContact">Registration Manager</message>
 	<message key="director.registrationPolicies.registrationContactDescription">The contact listed under Registrations in About the Conference.</message>
 	<message key="director.registrationPolicies.registrationAdditionalInformation">Registration Information</message>
 	<message key="director.registrationPolicies.registrationAdditionalInformationDescription">The Registration Types and fee structure will be automatically placed under Registrations on the About the Conference page, along with the name and contact information for the Registration Manager. Additional information about registrations, such as methods of payment or support for subscribers in developing countries, can be added here.</message>
@@ -1705,7 +1705,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="editor.paper.roundDisabled">It's not yet possible to perform this review. Either the abstract review is not yet complete, or the presenter has not yet provided a paper for review.</message>
 	<!--<message key="editor.paper.showSuppFile">Present file to reviewers</message>-->
 	<!--<message key="editor.paper.layoutAndProof">Layout &amp; Proof</message>-->
-	<message key="editor.paper.clear">Clear</message>-->
+	<message key="editor.paper.clear">Clear</message>
 	<message key="editor.paper.clearReviewer">Clear reviewer</message>
 	<message key="editor.paper.changeSection">Change Section</message>
 	<message key="editor.paper.setDueDate">Set Due Date</message>
@@ -1887,7 +1887,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 
 	<!-- Article Submission Step 1 -->
 	<message key="author.submit.howToSubmit"><![CDATA[Presenters submit items to this conference through this web site in a multi-step process for uploading the relevant information (some conferences allow the presenter to upload, as well, supplementary files, such as research data and instruments). If difficulties are encountered in this process, contact <a href="mailto:{$supportEmail}">{$supportName}</a> by email or phone {$supportPhone} for assistance.]]></message>
-	<message key="author.submit.conferenceTrack">Conference Track</message>-->
+	<message key="author.submit.conferenceTrack">Conference Track</message>
 	<message key="author.submit.conferenceTrackDescription"><![CDATA[Select the appropriate track for this submission (see Sections and Policies in <a href="{$aboutUrl}">About</a> the Conference).]]></message>
 	<message key="author.submit.selectTrack">Please select a track...</message>
 
@@ -1989,7 +1989,7 @@ The file can be viewed by clicking on the file name. A new or revised file can b
 	<message key="author.submit.expedite"><![CDATA[If this submission is in a format that is ready to be published, without further review or editing work, it can be sent directly to the Proceedings page by <a href="{$expediteUrl}" class="action">Clicking here</a>. (Note: Only conference editors have this option for their submissions.)]]></message>
 
 	<!-- Used in submission review / editing -->
-	<!--<message key="submission.review.mustUploadFileForReview">Request email cannot be sent until a Review Version is in place.</message>-->s
+	<!--<message key="submission.review.mustUploadFileForReview">Request email cannot be sent until a Review Version is in place.</message>-->
 	<message key="author.paper.uploadAuthorVersion">Upload Presenter Version</message>
 	<!--<message key="author.paper.authorRevisedFile">Presenter File</message>-->
 
@@ -2129,7 +2129,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.register.usernameRestriction">The username must contain only lowercase letters, numbers, and hyphens/underscores.</message>
 	<message key="user.register.passwordLengthRestriction">The password must be at least {$length} characters.</message>
 	<message key="user.register.form.passwordLengthTooShort">The password you entered is not long enough.</message>
-	<message key="user.register.readerDescription">Notified by email on publication of proceedings of this conference.</message>-->
+	<message key="user.register.readerDescription">Notified by email on publication of proceedings of this conference.</message>
 	<!--<message key="user.register.openAccessNotificationDescription">Notified by email when an issue of the conference is made open access.</message>-->
 	<message key="user.register.authorDescription">Able to submit items to the conference.</message>
 	<message key="user.register.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the conference.</message>
@@ -2259,8 +2259,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.people">People</message>
 	<message key="about.policies">Policies</message>
 	<message key="about.other">Other</message>
-	<message key="about.aboutOCSConference"><![CDATA[This conference uses Open Conference Systems {$ocsVersion}, which is open source conference management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>-->
-	<message key="about.aboutOCSSite"><![CDATA[This site uses Open Conference Systems {$ocsVersion}, which is open source conference management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>-->
+	<message key="about.aboutOCSConference"><![CDATA[This conference uses Open Conference Systems {$ocsVersion}, which is open source conference management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
+	<message key="about.aboutOCSSite"><![CDATA[This site uses Open Conference Systems {$ocsVersion}, which is open source conference management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
 
 	<!-- Announcement -->
 	<message key="announcement.announcements">Announcements</message>
@@ -2657,7 +2657,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	 *
 	-->
 	<message key="default.conferenceSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another conference for consideration (or an explanation has been provided in Comments to the Editor).</message>
-	<message key="default.conferenceSettings.checklist.fileFormat">The submission file is in Microsoft Word, RTF, or WordPerfect document file format.</message>-->
+	<message key="default.conferenceSettings.checklist.fileFormat">The submission file is in Microsoft Word, RTF, or WordPerfect document file format.</message>
 	<message key="default.conferenceSettings.checklist.addressesLinked"><![CDATA[All URL addresses in the text (e.g., <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) are activated and ready to click.]]></message>
 	<message key="default.conferenceSettings.checklist.submissionAppearance">The text is single-spaced; uses a 12-point font; employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end.</message>
 	<message key="default.conferenceSettings.checklist.bibliographicRequirements"><![CDATA[The text adheres to the stylistic and bibliographic requirements outlined in the <a href="{$indexUrl}/{$conferencePath}/{$eventPath}about/submissions#authorGuidelines">Presenter Guidelines</a>, which is found in About the Conference.]]></message>
