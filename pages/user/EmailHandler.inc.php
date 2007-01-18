@@ -30,8 +30,7 @@ class EmailHandler extends UserHandler {
 		if (empty($template) || (
 			!Validation::isConferenceDirector() &&
 			!Validation::isEditor() &&
-			!Validation::isTrackEditor())
-		)) {
+			!Validation::isTrackEditor())) {
 			$template = null;
 		}
 
