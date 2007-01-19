@@ -462,7 +462,7 @@
 	<message key="user.affiliations">Affiliations</message>
 	<message key="user.email">Email</message>
 	<message key="user.url">URL</message>
-	<message key="user.url.description">This will appear as a hyperlinked URL at the bottom of the bio statement on the "About the author" pop-up and "Organizing team" page.</message>
+	<message key="user.url.description">This will appear as a hyperlinked URL at the bottom of the bio statement on the "About the presenter" pop-up and "Organizing team" page.</message>
 	<message key="user.phone">Phone</message>
 	<message key="user.fax">Fax</message>
 	<message key="user.interests">Reviewing interests</message>
@@ -1354,7 +1354,7 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="director.people.unenroll">Unenroll</message>
 	<message key="director.people.confirmUnenroll">Unenroll this user?</message>
 	<!--<message key="director.people.mergeUsers.from.description">Select a user to merge into another account. The account you select here will be deleted and any submissions, editing assignments, etc. will be attributed to another account.</message>-->
-	<!--<message key="director.people.mergeUsers.into.description">Select a user to whom to attribute the previous user's authorships, editing assignments, etc.</message>-->
+	<!--<message key="director.people.mergeUsers.into.description">Select a user to whom to attribute the previous user's presentations, editing assignments, etc.</message>-->
 	<!--<message key="director.people.mergeUsers.confirm">Are you sure you wish to merge the account with the username "{$oldUsername}" into the account with the username "{$newUsername}"? The account with the username "{$oldUsername}" will not exist afterwards. This action is not reversible.</message>-->
 	<message key="director.people.confirmRemove">Remove this user from this conference? This action will unenroll the user from all roles within this conference.</message>
 	<message key="director.people.confirmDisable">Disable this user? This will prevent the user from logging into the system.
@@ -2134,7 +2134,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.register.authorDescription">Able to submit items to the conference.</message>
 	<message key="user.register.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the conference.</message>
 	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the conference. Identify reviewing interests (substantive areas and research methods).</message>
-	<message key="user.register.authorRegistrationMessage">Although you have a user account on this site, you are not currently registered as an author in this conference.</message>
+	<message key="user.register.authorRegistrationMessage">Although you have a user account on this site, you are not currently registered as a presenter in this conference.</message>
 
 
 
