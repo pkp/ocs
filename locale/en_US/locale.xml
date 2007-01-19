@@ -1888,7 +1888,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<!-- Article Submission Step 1 -->
 	<message key="author.submit.howToSubmit"><![CDATA[Presenters submit items to this conference through this web site in a multi-step process for uploading the relevant information (some conferences allow the presenter to upload, as well, supplementary files, such as research data and instruments). If difficulties are encountered in this process, contact <a href="mailto:{$supportEmail}">{$supportName}</a> by email or phone {$supportPhone} for assistance.]]></message>
 	<message key="author.submit.conferenceTrack">Conference Track</message>
-	<message key="author.submit.conferenceTrackDescription"><![CDATA[Select the appropriate track for this submission (see Sections and Policies in <a href="{$aboutUrl}">About</a> the Conference).]]></message>
+	<message key="author.submit.conferenceTrackDescription"><![CDATA[Select the appropriate track for this submission (see Track Policies in <a href="{$aboutUrl}" target="_new">About</a> the Conference).]]></message>
 	<message key="author.submit.selectTrack">Please select a track...</message>
 
 	<message key="author.submit.submissionChecklist">Submission Checklist</message>
