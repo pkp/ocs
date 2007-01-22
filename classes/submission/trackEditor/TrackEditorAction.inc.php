@@ -69,8 +69,6 @@ class TrackEditorAction extends Action {
 			}
 		
 			$trackEditorSubmission->addDecision($editorDecision, $trackEditorSubmission->getReviewProgress(), $trackEditorSubmission->getCurrentRound());
-			$trackEditorSubmissionDao->updateTrackEditorSubmission($trackEditorSubmission);
-
 			$decisions = TrackEditorSubmission::getEditorDecisionOptions();
 			// Add log
 			import('paper.log.PaperLog');
@@ -79,7 +77,12 @@ class TrackEditorAction extends Action {
 		}
 		
 		if($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+			// completeReview will take care of updating the
+			// submission with the new decision.
 			TrackEditorAction::completeReview($trackEditorSubmission);
+		} else {
+			// Insert the new decision.
+			$trackEditorSubmissionDao->updateTrackEditorSubmission($trackEditorSubmission);
 		}
 	}
 	
