@@ -29,7 +29,7 @@
 <tr valign="top">
 	<td class="label">{translate key="editor.paper.decision"}</td>
 	<td class="value" colspan="2">
-		{foreach from=$submission->getDecisions($round) item=editorDecision key=decisionKey}
+		{foreach from=$editorDecisions item=editorDecision key=decisionKey}
 			{if $decisionKey neq 0} | {/if}
 			{assign var="decision" value=$editorDecision.decision}
 			{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{$editorDecision.dateDecided|date_format:$dateFormatShort}
