@@ -35,15 +35,16 @@
 {assign var=paper value=$result.paper}
 {assign var=section value=$result.section}
 {assign var=event value=$result.event}
+{assign var=eventId value=$event->getEventId}
 {assign var=eventAvailable value=$result.eventAvailable}
 {assign var=conference value=$result.conference}
 <tr valign="top">
 	{if !$currentConference}<td><a href="{url conference=$conference->getPath()}">{$conference->getTitle()|escape}</a></td>{/if}
-	<td><a href="{url conference=$conference->getPath() page="event" op="view"}">{$event->getTitle()|escape}{if $mayViewPapers}</a>{/if}</td>
+	<td><a href="{url conference=$conference->getPath() page="event" op="view"}">{$event->getTitle()|escape}</td>
 	<td width="35%">{$paper->getPaperTitle()|strip_unsafe_html}</td>
 	<td width="25%" align="right">
 			<a href="{url conference=$conference->getPath() event=$event->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>
-		{if $mayViewPapers}
+		{if $eventPaperPermissions[$eventId]}
 		{foreach from=$publishedPaper->getGalleys() item=galley name=galleyList}
 			&nbsp;
 			<a href="{url conference=$conference->getPath() event=$event->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>

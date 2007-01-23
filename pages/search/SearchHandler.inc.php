@@ -158,17 +158,17 @@ class SearchHandler extends Handler {
 		// FIXME: this is horribly inefficient.
 		// Prune papers from events that aren't available.
 		$paperIds = array();
-		$eventPermissions = array();
+		$eventAbstractPermissions = array();
 		foreach($allPaperIds as $paperId) {
 			$publishedPaper =& $publishedPaperDao->getPublishedPaperById($paperId);
 			$eventId = $publishedPaper->getEventId();
 
-			if(!isset($eventPermissions[$eventId])) {
+			if(!isset($eventAbstractPermissions[$eventId])) {
 				$event = &$eventDao->getEvent($eventId);
-				$eventPermissions[$eventId] = EventAction::mayViewProceedings($event);
+				$eventAbstractPermissions[$eventId] = EventAction::mayViewProceedings($event);
 			}
 
-			if($eventPermissions[$eventId]) {
+			if($eventAbstractPermissions[$eventId]) {
 				$paperIds[] = $paperId;
 			}
 		}
@@ -206,17 +206,19 @@ class SearchHandler extends Handler {
 		// FIXME: this is horribly inefficient.
 		// Prune papers from events that aren't available.
 		$paperIds = array();
-		$eventPermissions = array();
+		$eventAbstractPermissions = array();
+		$eventPaperPermissions = array();
 		foreach($allPaperIds as $paperId) {
 			$publishedPaper =& $publishedPaperDao->getPublishedPaperById($paperId);
 			$eventId = $publishedPaper->getEventId();
 
-			if(!isset($eventPermissions[$eventId])) {
+			if(!isset($eventAbstractPermissions[$eventId])) {
 				$event = &$eventDao->getEvent($eventId);
-				$eventPermissions[$eventId] = EventAction::mayViewProceedings($event);
+				$eventAbstractPermissions[$eventId] = EventAction::mayViewProceedings($event);
+				$eventPaperPermissions[$eventId] = EventAction::mayViewPapers($event);
 			}
 
-			if($eventPermissions[$eventId]) {
+			if($eventAbstractPermissions[$eventId]) {
 				$paperIds[] = $paperId;
 			}
 		}
@@ -227,8 +229,7 @@ class SearchHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('results', $results);
-		import('event.EventAction');
-		$templateMgr->assign('mayViewPapers', EventAction::mayViewPapers($event));
+		$templateMgr->assign_by_ref('eventPaperPermissions', $eventPaperPermissions);
 		$templateMgr->display('search/eventIndex.tpl');
 	}
 	
