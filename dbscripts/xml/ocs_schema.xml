@@ -1771,6 +1771,9 @@
 		<index name="announcements_conference_id">
 			<col>conference_id</col>
 		</index>
+		<index name="announcements_event_id">
+			<col>event_id</col>
+		</index>
 	</table>
 
 	<!--
