@@ -153,12 +153,14 @@ class TrackEditorSubmissionDAO extends DAO {
 			}
 		}
 
-		// Update editor decisions
+		// Update editor decisions; hacked necessarily to iterate by reference.
 		for ($i = 1; $i <= $trackEditorSubmission->getReviewProgress(); $i++) {
 			for ($j = 1; $j <= $trackEditorSubmission->getCurrentRound(); $j++) {
 				$editorDecisions = $trackEditorSubmission->getDecisions($i, $j);
+				$insertedDecision = false;
 				if (is_array($editorDecisions)) {
-					foreach ($editorDecisions as $editorDecision) {
+					for ($k = 0; $k < count($editorDecisions); $k++) {
+						$editorDecision =& $editorDecisions[$k];
 						if ($editorDecision['editDecisionId'] == null) {
 							$this->update(
 								sprintf('INSERT INTO edit_decisions
@@ -170,8 +172,15 @@ class TrackEditorSubmissionDAO extends DAO {
 									$j,
 									$editorDecision['editorId'], $editorDecision['decision'])
 							);
+							$insertId = $this->getInsertId('edit_decisions', 'edit_decision_id');
+							$editorDecision['editDecisionId'] = $insertId;
+							$insertedDecision = true;
 						}
+						unset($editorDecision);
 					}
+				}
+				if ($insertedDecision) {
+					$trackEditorSubmission->setDecisions($editorDecisions, $i, $j);
 				}
 			}
 		}
