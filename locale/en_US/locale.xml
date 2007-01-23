@@ -1820,7 +1820,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="reviewer.paper.notifyTheEditor">Notify The Editor</message>
 	<message key="reviewer.paper.canDoReview">Will do the review</message>
 	<message key="reviewer.paper.cannotDoReview">Unable to do the review</message>
-	<message key="reviewer.paper.restrictedFileAccess">Files can only be viewed if the review is undertaken</message>
+	<message key="reviewer.paper.restrictedFileAccess">The submission can only be viewed if the review is undertaken.</message>
 	<message key="reviewer.paper.submissionEditor">Submission Editor</message>
 	<message key="reviewer.paper.reviewerCommentsDescription">Type or paste in review comments here</message>
 	<message key="reviewer.paper.editorToEnter">Editor To Enter</message>
@@ -1852,7 +1852,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="reviewer.paper.reviewerInstruction1b">as to whether you will undertake the review.</message>
 	<message key="reviewer.paper.reviewerInstruction2">If you are going to do the review, consult Reviewer Guidelines below.</message>
 	<message key="reviewer.paper.reviewerInstruction3AbstractOnly">Review the abstract (shown above) provided with the submission.</message>
-	<message key="reviewer.paper.reviewerInstruction3Submission">Click on file names to download and review (on screen or by printing) the files associated with this submission.</message>
+	<message key="reviewer.paper.reviewerInstruction3Submission">Review the submission.</message>
 	<message key="reviewer.paper.reviewerInstruction4a">Click on icon to enter (or paste) your review of this submission.</message>
 	<message key="reviewer.paper.reviewerInstruction4b">following Reviewer Guidelines below.</message>
 	<message key="reviewer.paper.reviewerInstruction5">In addition, you can upload files for the editor and/or presenter to consult.</message>
