@@ -1851,7 +1851,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="reviewer.paper.reviewerInstruction1a">Notify the submission's editor</message>
 	<message key="reviewer.paper.reviewerInstruction1b">as to whether you will undertake the review.</message>
 	<message key="reviewer.paper.reviewerInstruction2">If you are going to do the review, consult Reviewer Guidelines below.</message>
-	<message key="reviewer.paper.reviewerInstruction3AbstractOnly">Review the abstract (shown above) provided with the submission.</message>
+	<message key="reviewer.paper.reviewerInstruction3AbstractOnly">Review the abstract provided with the submission.</message>
 	<message key="reviewer.paper.reviewerInstruction3Submission">Review the submission.</message>
 	<message key="reviewer.paper.reviewerInstruction4a">Click on icon to enter (or paste) your review of this submission.</message>
 	<message key="reviewer.paper.reviewerInstruction4b">following Reviewer Guidelines below.</message>

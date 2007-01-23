@@ -163,6 +163,8 @@ class TrackEditorAction extends Action {
 	 * Assigns a reviewer to a submission.
 	 * @param $trackEditorSubmission object
 	 * @param $reviewerId int
+	 * @param $type int
+	 * @param $round int
 	 */
 	function addReviewer($trackEditorSubmission, $reviewerId, $type, $round) {
 		$trackEditorSubmissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');

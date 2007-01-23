@@ -45,7 +45,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$templateMgr->assign_by_ref('reviewGuidelines', $event->getSetting('reviewGuidelines', true));
 
 		// The reviewer instructions differ depending on what is reviewed, and when.
-		if($submission->getReviewProgress()==REVIEW_PROGRESS_ABSTRACT && !$event->getCollectPapersWithAbstracts())
+		if($reviewAssignment->getType()==REVIEW_PROGRESS_ABSTRACT && !$event->getCollectPapersWithAbstracts())
 			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.reviewerInstruction3AbstractOnly');
 		else
 			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.reviewerInstruction3Submission');

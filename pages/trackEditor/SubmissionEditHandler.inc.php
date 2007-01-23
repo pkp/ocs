@@ -171,6 +171,7 @@ class SubmissionEditHandler extends TrackEditorHandler {
 			)
 		);
 		$templateMgr->assign_by_ref('lastDecision', $lastDecision);
+		$templateMgr->assign_by_ref('editorDecisions', $editorDecisions);
 
 		import('submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());

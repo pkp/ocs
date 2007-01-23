@@ -156,7 +156,7 @@ function confirmSubmissionCheck() {
 	<td>
 		<table width="100%" class="data">
 			{if ($confirmedStatus and not $declined) or not $event->getSetting('restrictReviewerFileAccess', true)}
-				{if $submission->getReviewProgress() == REVIEW_PROGRESS_ABSTRACT}
+				{if $reviewAssignment->getType() == REVIEW_PROGRESS_ABSTRACT}
 					<tr valign="top">
 						<td width="30%" class="label">
 							{translate key="submission.abstract"}

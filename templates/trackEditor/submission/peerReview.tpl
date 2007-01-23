@@ -298,7 +298,7 @@
 				<td class="label">{translate key="reviewer.paper.editorToEnter"}</td>
 				<td>
 					{if !$reviewAssignment->getDateConfirmed()}
-						<a href="{url op="acceptReviewForReviewer" path=$submission->getPaperId()|to_array:$reviewAssignment->getReviewId()}" class="action">{translate key="submission.acceptance"}</a><br />
+						<a href="{url op="confirmReviewForReviewer" path=$submission->getPaperId()|to_array:$reviewAssignment->getReviewId() accept=1}" class="action">{translate key="reviewer.paper.canDoReview"}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="confirmReviewForReviewer" path=$submission->getPaperId()|to_array:$reviewAssignment->getReviewId() accept=0}" class="action">{translate key="reviewer.paper.cannotDoReview"}</a><br />
 					{/if}
 					<form method="post" action="{url op="uploadReviewForReviewer"}" enctype="multipart/form-data">
 						{translate key="editor.paper.uploadReviewForReviewer"}

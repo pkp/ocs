@@ -30,7 +30,7 @@ class AuthSourcesHandler extends AdminHandler {
 		
 		$plugins = &PluginRegistry::loadCategory(AUTH_PLUGIN_CATEGORY);
 		$pluginOptions = array();
-		foreach ($plugins as $plugin) {
+		if (is_array($plugins)) foreach ($plugins as $plugin) {
 			$pluginOptions[$plugin->getName()] = $plugin->getDisplayName();
 		}
 		
