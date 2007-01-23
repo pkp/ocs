@@ -156,39 +156,50 @@ function confirmSubmissionCheck() {
 	<td>
 		<table width="100%" class="data">
 			{if ($confirmedStatus and not $declined) or not $event->getSetting('restrictReviewerFileAccess', true)}
-			<tr valign="top">
-				<td width="30%" class="label">
-					{translate key="submission.submissionManuscript"}
-				</td>
-				<td class="value" width="70%">
-					{if $reviewFile}
-					{if $submission->getDateConfirmed() or not $event->getSetting('restrictReviewerAccessToFile', true)}
-						<a href="{url op="downloadFile" path=$submission->getReviewId()|to_array:$submission->getPaperId():$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>
-					{else}{$reviewFile->getFileName()|escape}{/if}
-					&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
-					{else}
-					{translate key="common.none"}
-					{/if}
-				</td>
-			</tr>
-			<tr valign="top">
-				<td class="label">
-					{translate key="paper.suppFiles"}
-				</td>
-				<td class="value">
-					{assign var=sawSuppFile value=0}
-					{foreach from=$suppFiles item=suppFile}
-						{if $suppFile->getShowReviewers() }
-							{assign var=sawSuppFile value=1}
-							<a href="{url op="downloadFile" path=$submission->getReviewId()|to_array:$submission->getPaperId():$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a><br />
-						{/if}
-					{/foreach}
-
-					{if !$sawSuppFile}
-						{translate key="common.none"}
-					{/if}
-				</td>
-			</tr>
+				{if $submission->getReviewProgress() == REVIEW_PROGRESS_ABSTRACT}
+					<tr valign="top">
+						<td width="30%" class="label">
+							{translate key="submission.abstract"}
+						</td>
+						<td class="value" width="70%">
+							{$submission->getPaperAbstract()|strip_unsafe_html|nl2br}
+						</td>
+					</tr>
+				{else}
+					<tr valign="top">
+						<td width="30%" class="label">
+							{translate key="submission.submissionManuscript"}
+						</td>
+						<td class="value" width="70%">
+							{if $reviewFile}
+							{if $submission->getDateConfirmed() or not $event->getSetting('restrictReviewerAccessToFile', true)}
+								<a href="{url op="downloadFile" path=$submission->getReviewId()|to_array:$submission->getPaperId():$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>
+							{else}{$reviewFile->getFileName()|escape}{/if}
+							&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
+							{else}
+							{translate key="common.none"}
+							{/if}
+						</td>
+					</tr>
+					<tr valign="top">
+						<td class="label">
+							{translate key="paper.suppFiles"}
+						</td>
+						<td class="value">
+							{assign var=sawSuppFile value=0}
+							{foreach from=$suppFiles item=suppFile}
+								{if $suppFile->getShowReviewers() }
+									{assign var=sawSuppFile value=1}
+									<a href="{url op="downloadFile" path=$submission->getReviewId()|to_array:$submission->getPaperId():$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a><br />
+								{/if}
+							{/foreach}
+		
+							{if !$sawSuppFile}
+								{translate key="common.none"}
+							{/if}
+						</td>
+					</tr>
+				{/if}
 			{else}
 			<tr><td class="nodata">{translate key="reviewer.paper.restrictedFileAccess"}</td></tr>
 			{/if}
