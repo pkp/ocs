@@ -1703,7 +1703,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="editor.paper.uploadReviewVersion">Upload a revised file to serve as the Review Version</message>
 	<message key="editor.paper.uploadEditorVersion">Upload Editor Version</message>
 	<message key="editor.paper.roundDisabled">It's not yet possible to perform this review. Either the abstract review is not yet complete, or the presenter has not yet provided a paper for review.</message>
-	<!--<message key="editor.paper.showSuppFile">Present file to reviewers</message>-->
+	<message key="editor.paper.showSuppFile">Present file to reviewers</message>
 	<!--<message key="editor.paper.layoutAndProof">Layout &amp; Proof</message>-->
 	<message key="editor.paper.clear">Clear</message>
 	<message key="editor.paper.clearReviewer">Clear reviewer</message>
