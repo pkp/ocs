@@ -594,7 +594,8 @@ class EditorSubmissionDAO extends DAO {
 			$notDeclined = true;
 			$decisions = $editorSubmission->getDecisions($finalReviewType);
 			if($decisions) {
-				$decision = array_pop($decisions);
+				$types = array_pop($decisions);
+				$decision = is_array($types)?array_pop($types):null;
 				if (!empty($decision)) {
 					$latestDecision = array_pop($decision);
 					if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
