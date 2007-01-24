@@ -490,7 +490,8 @@ class TrackEditorSubmissionDAO extends DAO {
 			// check if submission is still in review
 			$inReview = true;
 			$decisions = $submission->getDecisions();
-			$decision = array_pop($decisions);
+			$types = array_pop($decisions);
+			$decision = array_pop($types);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
 				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_DECLINE) {
