@@ -383,7 +383,7 @@ class TrackEditorAction extends Action {
 					// Add log
 					import('paper.log.PaperLog');
 					import('paper.log.PaperEventLogEntry');
-					PaperLog::logEvent($trackEditorSubmission->getPaperId(), PAPER_LOG_REVIEW_CANCEL, LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCancelled', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $trackEditorSubmission->getPaperId(), 'round' => $reviewAssignment->getCurrentRound()));
+					PaperLog::logEvent($trackEditorSubmission->getPaperId(), PAPER_LOG_REVIEW_CANCEL, LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCancelled', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $trackEditorSubmission->getPaperId(), 'round' => $reviewAssignment->getRound()));
 				} else {
 					if (!Request::getUserVar('continued')) {
 						$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
@@ -1660,7 +1660,7 @@ class TrackEditorAction extends Action {
 			$entry->setUserId($user->getUserId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(PAPER_LOG_REVIEW_FILE_BY_PROXY);
-			$entry->setLogMessage('log.review.reviewFileByProxy', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'round' => $reviewAssignment->getCurrentRound(), 'userName' => $user->getFullName()));
+			$entry->setLogMessage('log.review.reviewFileByProxy', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'round' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
 			$entry->setAssocType(LOG_TYPE_REVIEW);
 			$entry->setAssocId($reviewAssignment->getReviewId());
 
