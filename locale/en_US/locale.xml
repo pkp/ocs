@@ -1735,6 +1735,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="editor.paper.decision">Decision</message>
 	<!--<message key="editor.paper.noEditorSelected">No editor selected.</message>-->
 	<message key="editor.paper.recordDecision">Record Decision</message>
+	<message key="editor.paper.cannotRecord">Section editor not yet recorded.</message>
 	<message key="editor.paper.cannotRecordYet">Before a decision can be recorded, a submission must be assigned to a Track Editor. The Review Version becomes, by default, the Editor Version.</message>
 	<message key="editor.paper.cannotRecordTooLate">The submission has already completed this review stage. You can no longer change this decision.</message>
 	<!--<message key="editor.paper.reviewersSeeAuthorsVersion">Reviewers to see presenter version</message>-->
