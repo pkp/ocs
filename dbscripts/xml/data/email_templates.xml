@@ -68,7 +68,7 @@
 			<field name="can_edit">1</field>
 			<field name="can_disable">1</field>
 			<field name="to_role_id">4096<!-- Author --></field>
-			<field name="from_role_id">512<!-- Track Editor --></field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
 		</row>
 		<row>
 			<field name="email_key">SUBMISSION_COMMENT</field>
@@ -79,14 +79,14 @@
 			<field name="email_key">SUBMISSION_DECISION_REVIEWERS</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-			<field name="from_role_id">512<!-- Track Editor --></field>
-			<field name="to_role_id">1024<!-- Reviewer --></field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
+			<field name="to_role_id">256<!-- Reviewer --></field>
 		</row>
 		<row>
 			<field name="email_key">SUBMISSION_DEADLINE_WARN</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">1</field>
-			<field name="from_role_id">256<!-- Editor --></field>
+			<field name="from_role_id">64<!-- Editor --></field>
 			<field name="to_role_id">4096<!-- Author --></field>
 		</row>
 
@@ -99,8 +99,8 @@
 			<field name="email_key">EDITOR_ASSIGN</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">1</field>
-			<field name="from_role_id">256<!-- Editor --></field>
-			<field name="to_role_id">512<!-- Track Editor --></field>
+			<field name="from_role_id">64<!-- Editor --></field>
+			<field name="to_role_id">128<!-- Track Editor --></field>
 		</row>
 
 
@@ -113,90 +113,90 @@
 			<field name="email_key">REVIEW_CANCEL</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">1</field>
-			<field name="from_role_id">512<!-- Track Editor --></field>
-			<field name="to_role_id">1024<!-- Reviewer --></field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
+			<field name="to_role_id">256<!-- Reviewer --></field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_REQUEST</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">1</field>
-			<field name="from_role_id">512<!-- Track Editor --></field>
-			<field name="to_role_id">1024<!-- Reviewer --></field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
+			<field name="to_role_id">256<!-- Reviewer --></field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_REQUEST_ONECLICK</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">1</field>
-			<field name="from_role_id">512<!-- Track Editor --></field>
-			<field name="to_role_id">1024<!-- Reviewer --></field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
+			<field name="to_role_id">256<!-- Reviewer --></field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_REQUEST_ATTACHED</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-			<field name="from_role_id">512<!-- Track Editor --></field>
-			<field name="to_role_id">1024<!-- Reviewer --></field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
+			<field name="to_role_id">256<!-- Reviewer --></field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_CONFIRM</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">1</field>
-			<field name="from_role_id">1024<!-- Reviewer --></field>
-			<field name="to_role_id">512<!-- Track Editor --></field>
+			<field name="from_role_id">256<!-- Reviewer --></field>
+			<field name="to_role_id">128<!-- Track Editor --></field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_CONFIRM_ACK</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">1</field>
-			<field name="to_role_id">1024<!-- Reviewer --></field>
-			<field name="from_role_id">512<!-- Track Editor --></field>
+			<field name="to_role_id">256<!-- Reviewer --></field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_DECLINE</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">1</field>
-			<field name="from_role_id">1024<!-- Reviewer --></field>
-			<field name="to_role_id">512<!-- Track Editor --></field>
+			<field name="from_role_id">256<!-- Reviewer --></field>
+			<field name="to_role_id">128<!-- Track Editor --></field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_COMPLETE</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">1</field>
-			<field name="from_role_id">1024<!-- Reviewer --></field>
-			<field name="to_role_id">512<!-- Track Editor --></field>
+			<field name="from_role_id">256<!-- Reviewer --></field>
+			<field name="to_role_id">128<!-- Track Editor --></field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_ACK</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">1</field>
-			<field name="from_role_id">512<!-- Track Editor --></field>
-			<field name="to_role_id">1024<!-- Reviewer --></field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
+			<field name="to_role_id">256<!-- Reviewer --></field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_REMIND</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-			<field name="from_role_id">512<!-- Track Editor --></field>
-			<field name="to_role_id">1024<!-- Reviewer --></field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
+			<field name="to_role_id">256<!-- Reviewer --></field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_REMIND_AUTO</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-			<field name="to_role_id">1024<!-- Reviewer --></field>
+			<field name="to_role_id">256<!-- Reviewer --></field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_REMIND_ONECLICK</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-			<field name="from_role_id">512<!-- Track Editor --></field>
-			<field name="to_role_id">1024<!-- Reviewer --></field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
+			<field name="to_role_id">256<!-- Reviewer --></field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_REMIND_AUTO_ONECLICK</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-			<field name="to_role_id">1024<!-- Reviewer --></field>
+			<field name="to_role_id">256<!-- Reviewer --></field>
 		</row>
 
 
@@ -209,7 +209,7 @@
 			<field name="email_key">EDITOR_REVIEW</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-			<field name="from_role_id">512<!-- Track Editor --></field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
 			<field name="to_role_id">4096<!-- Author --></field>
 		</row>
 
@@ -219,36 +219,35 @@
 		  * Subscriptions 
 		  *
 		  -->
-		<!-- NOTE! THESE ROLES HAVE NOT BEEN UPDATED FROM OCS2 -> OJS2 -->
-		<!--<row>
-			<field name="email_key">SUBSCRIPTION_NOTIFY</field>
+		<row>
+			<field name="email_key">REGISTRATION_NOTIFY</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-			<field name="to_role_id">1048576</field>
-		</row>-->
+			<field name="to_role_id">32768</field>
+		</row>
 		<!--<row>
 			<field name="email_key">OPEN_ACCESS_NOTIFY</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-			<field name="to_role_id">1048576</field>
+			<field name="to_role_id">32768</field>
 		</row>-->
 		<!--<row>
 			<field name="email_key">SUBSCRIPTION_BEFORE_EXPIRY</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-			<field name="to_role_id">1048576</field>
+			<field name="to_role_id">32768</field>
 		</row>-->
 		<!--<row>
 			<field name="email_key">SUBSCRIPTION_AFTER_EXPIRY</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-			<field name="to_role_id">1048576</field>
+			<field name="to_role_id">32768</field>
 		</row>-->
 		<!--<row>
 			<field name="email_key">SUBSCRIPTION_AFTER_EXPIRY_LAST</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-			<field name="to_role_id">1048576</field>
+			<field name="to_role_id">32768</field>
 		</row>-->
 	</table>
 </data>
