@@ -1362,9 +1362,9 @@ class TrackEditorAction extends Action {
 			
 		} else {
 			$commentForm->display();
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
 	/**
@@ -1402,9 +1402,9 @@ class TrackEditorAction extends Action {
 			}
 		} else {
 			$commentForm->display();
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
 	/**

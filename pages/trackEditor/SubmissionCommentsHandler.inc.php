@@ -46,8 +46,8 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 		
 		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
-		if (SectionEditorAction::postPeerReviewComment($submission, $reviewId, $emailComment)) {
-			SectionEditorAction::viewPeerReviewComments($submission, $reviewId);
+		if (TrackEditorAction::postPeerReviewComment($submission, $reviewId, $emailComment)) {
+			TrackEditorAction::viewPeerReviewComments($submission, $reviewId);
 		}
 	}
 	
@@ -78,8 +78,8 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 		
 		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
-		if (SectionEditorAction::postEditorDecisionComment($submission, $emailComment)) {
-			SectionEditorAction::viewEditorDecisionComments($submission);
+		if (TrackEditorAction::postEditorDecisionComment($submission, $emailComment)) {
+			TrackEditorAction::viewEditorDecisionComments($submission);
 		}
 	}
 	
