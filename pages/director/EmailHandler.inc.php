@@ -172,6 +172,8 @@ class EmailHandler extends DirectorHandler {
 					
 					if($emailTemplate->getEventId() == null && $event) {
 						$emailTemplate->setEventId($eventId);
+					} else {
+						$emailTemplate->setEventId(0);
 					}
 			
 					if ($emailTemplate->getEmailId() != null) {
