@@ -276,7 +276,7 @@ class RegistrationManagerHandler extends Handler {
 			import('registration.form.RegistrationTypeForm');
 
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'director', 'registrationTypes'), 'director.registrationTypes'));
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager', 'registrationTypes'), 'director.registrationTypes'));
 
 			if ($registrationTypeId == null) {
 				$templateMgr->assign('registrationTypeTitle', 'director.registrationTypes.createTitle');
