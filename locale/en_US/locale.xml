@@ -1794,7 +1794,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<!--<message key="sectionEditor.layout.confirmRenotify">Notifying this layout editor again will restart their assignment. Are you sure you wish to do this?</message>-->
 	<!--<message key="sectionEditor.proofreader.confirmRenotify">Notifying this proofreader again will restart their assignment. Are you sure you wish to do this?</message>-->
 
-	<message key="sectionEditor.regrets.breadcrumb">Regrets</message>
+	<message key="trackEditor.regrets.breadcrumb">Regrets</message>
 	<message key="trackEditor.regrets.title">#{$paperId} Reviewer Regrets &amp; Cancellations</message>
 	<message key="trackEditor.regrets">Regrets</message>
 	<message key="trackEditor.regrets.link">View Regrets, Cancels</message>
