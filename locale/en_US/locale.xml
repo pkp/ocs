@@ -394,6 +394,7 @@
 
 	<!-- Submission list search engine -->
 	<message key="submissions.submitted">Submitted</message>
+	<message key="submissions.layoutComplete">Layout edited</message>
 
 	<!-- Submission Notes -->
 	<message key="submission.notes">Submission Notes</message>
