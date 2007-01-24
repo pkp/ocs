@@ -78,8 +78,8 @@
 	</td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="format" required="true" key="director.registrationTypes.form.format"}</td>
-	<td><select id="format" name="format" class="selectMenu" />{html_options options=$validFormats selected=$format}</select></td>
+	<td class="label">{fieldLabel name="access" required="true" key="director.registrationTypes.form.access"}</td>
+	<td><select id="access" name="access" class="selectMenu" />{html_options options=$validAccessTypes selected=$access}</select></td>
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>

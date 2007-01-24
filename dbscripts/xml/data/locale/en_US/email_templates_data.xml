@@ -420,7 +420,7 @@ If you have any questions, please contact me.
 		  *
 		  -->
 		<row>
-			<field name="email_key">SUBSCRIPTION_NOTIFY</field>
+			<field name="email_key">REGISTRATION_NOTIFY</field>
 			<field name="subject">Registration Notification</field>
 			<field name="body">{$registrantName}:
 
@@ -450,7 +450,7 @@ Thanks for the continuing interest in our work,
 {$editorialContactSignature}</field>
 			<field name="description">This email is sent to registered readers who have requested to receive a notification email when an issue becomes open access.</field>
 		</row>
-		<row>
+		<!--<row>
 			<field name="email_key">SUBSCRIPTION_BEFORE_EXPIRY</field>
 			<field name="subject">Notice of Registration Expiry</field>
 			<field name="body">{$registrantName}:
@@ -466,8 +466,8 @@ If you have any questions, please feel free to contact me.
 
 {$registrationContactSignature}</field>
 			<field name="description">This email notifies a registrant that their registration will soon expire. It provides the conference's URL along with instructions for access.</field>
-		</row>
-		<row>
+		</row>-->
+		<!--<row>
 			<field name="email_key">SUBSCRIPTION_AFTER_EXPIRY</field>
 			<field name="subject">Registration Expired</field>
 			<field name="body">{$registrantName}:
@@ -483,8 +483,8 @@ If you have any questions, please feel free to contact me.
 
 {$registrationContactSignature}</field>
 			<field name="description">This email notifies a registrant that their registration has expired. It provides the conference's URL along with instructions for access.</field>
-		</row>
-		<row>
+		</row>-->
+		<!--<row>
 			<field name="email_key">SUBSCRIPTION_AFTER_EXPIRY_LAST</field>
 			<field name="subject">Registration Expired - Final Reminder</field>
 			<field name="body">{$registrantName}:
@@ -501,6 +501,6 @@ If you have any questions, please feel free to contact me.
 
 {$registrationContactSignature}</field>
 			<field name="description">This email notifies a registrant that their registration has expired. It provides the conference's URL along with instructions for access.</field>
-		</row>
+		</row>-->
 	</table>
 </data>

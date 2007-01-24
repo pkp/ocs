@@ -47,7 +47,6 @@ class RegistrationForm extends Form {
 		$this->addCheck(new FormValidator($this, 'typeId', 'required', 'director.registrations.form.typeIdRequired'));
 		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'required', 'director.registrations.form.typeIdValid', create_function('$typeId, $eventId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->registrationTypeExistsByTypeId($typeId, $eventId);'), array($event->getEventId())));
 
-		/*
 		// If provided, domain is valid
 		$this->addCheck(new FormValidatorRegExp($this, 'domain', 'optional', 'director.registrations.form.domainValid', '/^' .
 				'[A-Z0-9]+([\-_\.][A-Z0-9]+)*' .
@@ -65,7 +64,7 @@ class RegistrationForm extends Form {
 				'((([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}((\s)*[' . REGISTRATION_IP_RANGE_RANGE . '](\s)*([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}){0,1})|(([0-9]{1,3})([.]([0-9]{1,3})){3}([\/](([3][0-2]{0,1})|([1-2]{0,1}[0-9])))))' .
 				')*' .
 			'$/i'));
-		*/
+		
 		// Notify email flag is valid value
 		$this->addCheck(new FormValidatorInSet($this, 'notifyEmail', 'optional', 'director.registrations.form.notifyEmailValid', array('1')));
 	}
@@ -105,10 +104,11 @@ class RegistrationForm extends Form {
 			if ($registration != null) {
 				$this->_data = array(
 					'userId' => $registration->getUserId(),
-					'typeId' => $registration->getTypeId()
-					/*'membership' => $registration->getMembership(),
+					'typeId' => $registration->getTypeId(),
+					'membership' => $registration->getMembership(),
 					'domain' => $registration->getDomain(),
-					'ipRange' => $registration->getIPRange()*/
+					'ipRange' => $registration->getIPRange(),
+					'specialRequests' => $registration->getSpecialRequests()
 				);
 
 			} else {
@@ -121,10 +121,10 @@ class RegistrationForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('userId', 'typeId', 'notifyEmail'));
+		$this->readUserVars(array('userId', 'typeId', 'membership', 'domain', 'ipRange', 'notifyEmail', 'specialRequests'));
 
 		// If registration type requires it, membership is provided
-		/*$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 		$needMembership = $registrationTypeDao->getRegistrationTypeMembership($this->getData('typeId'));
 
 		if ($needMembership) { 
@@ -136,7 +136,7 @@ class RegistrationForm extends Form {
 
 		if ($isInstitutional) { 
 			$this->addCheck(new FormValidatorCustom($this, 'domain', 'required', 'director.registrations.form.domainIPRangeRequired', create_function('$domain, $ipRange', 'return $domain != \'\' || $ipRange != \'\' ? true : false;'), array($this->getData('ipRange'))));
-		}*/
+		}
 
 		// If notify email is requested, ensure registration contact name and email exist.
 		if ($this->_data['notifyEmail'] == 1) {
@@ -162,11 +162,10 @@ class RegistrationForm extends Form {
 		$registration->setEventId($event->getEventId());
 		$registration->setUserId($this->getData('userId'));
 		$registration->setTypeId($this->getData('typeId'));
-		/*$registration->setDateStart($this->getData('dateStartYear') . '-' . $this->getData('dateStartMonth'). '-' . $this->getData('dateStartDay'));
-		$registration->setDateEnd($this->getData('dateEndYear') . '-' . $this->getData('dateEndMonth'). '-' . $this->getData('dateEndDay'));
 		$registration->setMembership($this->getData('membership') ? $this->getData('membership') : null);
 		$registration->setDomain($this->getData('domain') ? $this->getData('domain') : null);
-		$registration->setIPRange($this->getData('ipRange') ? $this->getData('ipRange') : null);*/
+		$registration->setIPRange($this->getData('ipRange') ? $this->getData('ipRange') : null);
+		$registration->setSpecialRequests($this->getData('specialRequests') ? $this->getData('specialRequests') : null);
 		$registration->setDateRegistered(time());
 
 		// FIXME: integrate payment module...

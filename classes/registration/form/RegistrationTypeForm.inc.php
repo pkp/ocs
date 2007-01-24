@@ -20,8 +20,8 @@ class RegistrationTypeForm extends Form {
 	/** @var typeId int the ID of the registration type being edited */
 	var $typeId;
 
-	/** @var validFormats array keys are valid registration type formats */
-	//var $validFormats;
+	/** @var validAccesses array keys are valid registration access types */
+	var $validAccessTypes;
 
 	/** @var validCurrencies array keys are valid registration type currencies */	
 	var $validCurrencies;
@@ -32,11 +32,11 @@ class RegistrationTypeForm extends Form {
 	 */
 	function RegistrationTypeForm($typeId = null) {
 
-		/*$this->validFormats = array (
-			REGISTRATION_TYPE_FORMAT_ONLINE => Locale::translate('director.registrationTypes.format.online'),
-			REGISTRATION_TYPE_FORMAT_PRINT => Locale::translate('director.registrationTypes.format.print'),
-			REGISTRATION_TYPE_FORMAT_PRINT_ONLINE => Locale::translate('director.registrationTypes.format.printOnline')
-		);*/
+		$this->validAccessTypes = array (
+			REGISTRATION_TYPE_ACCESS_ONLINE => Locale::translate('director.registrationTypes.access.online'),
+			REGISTRATION_TYPE_ACCESS_PHYSICAL => Locale::translate('director.registrationTypes.access.physical'),
+			REGISTRATION_TYPE_ACCESS_BOTH => Locale::translate('director.registrationTypes.access.both')
+		);
 
 		$currencyDao = &DAORegistry::getDAO('CurrencyDAO');
 		$currencies = &$currencyDao->getCurrencies();
@@ -76,15 +76,15 @@ class RegistrationTypeForm extends Form {
 		/*$this->addCheck(new FormValidator($this, 'closeDate', 'required', 'director.registrationTypes.form.closeDateRequired'));	
 		$this->addCheck(new FormValidatorCustom($this, 'closeDate', 'required', 'director.registrationTypes.form.durationNumeric', create_function('$duration', 'return (is_numeric($duration) && $duration >= 0);')));*/
 
-		// Format is provided and is valid value
-		/*$this->addCheck(new FormValidator($this, 'format', 'required', 'director.registrationTypes.form.formatRequired'));	
-		$this->addCheck(new FormValidatorInSet($this, 'format', 'required', 'director.registrationTypes.form.formatValid', array_keys($this->validFormats)));*/
+		// Access type is provided and is valid value
+		$this->addCheck(new FormValidator($this, 'access', 'required', 'director.registrationTypes.form.accessRequired'));	
+		$this->addCheck(new FormValidatorInSet($this, 'access', 'required', 'director.registrationTypes.form.accessValid', array_keys($this->validAccessTypes)));
 
 		// Institutional flag is valid value
-		//$this->addCheck(new FormValidatorInSet($this, 'institutional', 'optional', 'director.registrationTypes.form.institutionalValid', array('1')));
+		$this->addCheck(new FormValidatorInSet($this, 'institutional', 'optional', 'director.registrationTypes.form.institutionalValid', array('1')));
 
 		// Membership flag is valid value
-		//$this->addCheck(new FormValidatorInSet($this, 'membership', 'optional', 'director.registrationTypes.form.membershipValid', array('1')));
+		$this->addCheck(new FormValidatorInSet($this, 'membership', 'optional', 'director.registrationTypes.form.membershipValid', array('1')));
 
 		// Public flag is valid value
 		$this->addCheck(new FormValidatorInSet($this, 'public', 'optional', 'director.registrationTypes.form.publicValid', array('1')));
@@ -98,7 +98,7 @@ class RegistrationTypeForm extends Form {
 		$templateMgr->assign('dateExtentFuture', REGISTRATION_TYPE_YEAR_OFFSET_FUTURE);
 		$templateMgr->assign('typeId', $this->typeId);
 		$templateMgr->assign('validCurrencies', $this->validCurrencies);
-		//$templateMgr->assign('validFormats', $this->validFormats);
+		$templateMgr->assign('validAccessTypes', $this->validAccessTypes);
 		$templateMgr->assign('helpTopicId', 'event.managementPages.registrations');
 	
 		parent::display();
@@ -121,9 +121,9 @@ class RegistrationTypeForm extends Form {
 					'openDate' => $registrationType->getOpeningDate(),
 					'closeDate' => $registrationType->getClosingDate(),
 					'expiryDate' => $registrationType->getExpiryDate(),
-					//'format' => $registrationType->getFormat(),
-					//'institutional' => $registrationType->getInstitutional(),
-					//'membership' => $registrationType->getMembership(),
+					'access' => $registrationType->getAccess(),
+					'institutional' => $registrationType->getInstitutional(),
+					'membership' => $registrationType->getMembership(),
 					'public' => $registrationType->getPublic()
 				);
 
@@ -137,7 +137,7 @@ class RegistrationTypeForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('typeName', 'description', 'cost', 'currency', /*'format',*/ 'institutional', 'membership', 'public'));
+		$this->readUserVars(array('typeName', 'description', 'cost', 'currency', 'access', 'institutional', 'membership', 'public'));
 		$this->_data['openDate'] = Request::getUserDateVar('openDate');
 		$this->_data['closeDate'] = Request::getUserDateVar('closeDate');
 		$this->_data['expiryDate'] = Request::getUserDateVar('expiryDate');
@@ -166,7 +166,7 @@ class RegistrationTypeForm extends Form {
 		$registrationType->setOpeningDate($this->getData('openDate'));
 		$registrationType->setClosingDate($this->getData('closeDate'));
 		$registrationType->setExpiryDate($this->getData('expiryDate'));
-		//$registrationType->setFormat($this->getData('format'));
+		$registrationType->setAccess($this->getData('access'));
 		$registrationType->setInstitutional($this->getData('institutional') == null ? 0 : $this->getData('institutional'));
 		$registrationType->setMembership($this->getData('membership') == null ? 0 : $this->getData('membership'));
 		$registrationType->setPublic($this->getData('public') == null ? 0 : $this->getData('public'));

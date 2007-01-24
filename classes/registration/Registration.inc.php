@@ -165,65 +165,65 @@ class Registration extends DataObject {
 	 * Get registration membership.
 	 * @return string
 	 */
-	/*function getMembership() {
+	function getMembership() {
 		return $this->getData('membership');
-	}*/
+	}
 	
 	/**
 	 * Set registration membership.
 	 * @param $membership string
 	 */
-	/*function setMembership($membership) {
+	function setMembership($membership) {
 		return $this->setData('membership', $membership);
-	}*/
+	}
 
 	/**
 	 * Get registration domain string.
 	 * @return string
 	 */
-	/*function getDomain() {
+	function getDomain() {
 		return $this->getData('domain');
-	}*/
+	}
 	
 	/**
 	 * Set registration domain string.
 	 * @param $domain string
 	 */
-	/*function setDomain($domain) {
+	function setDomain($domain) {
 		return $this->setData('domain', $domain);
-	}*/
+	}
 
 	/**
 	 * Get registration ip range string.
 	 * @return string
 	 */
-	/*function getIPRange() {
+	function getIPRange() {
 		return $this->getData('ipRange');
-	}*/
+	}
 	
 	/**
 	 * Set registration ip range string.
 	 * @param $ipRange string
 	 */
-	/*function setIPRange($ipRange) {
+	function setIPRange($ipRange) {
 		return $this->setData('ipRange', $ipRange);
-	}*/
+	}
 
 	/**
 	 * Get registration ip ranges.
 	 * @return array 
 	 */
-	/*function getIPRanges() {
+	function getIPRanges() {
 		return explode(REGISTRATION_IP_RANGE_SEPERATOR, $this->getData('ipRange'));
-	}*/
+	}
 
 	/**
 	 * Set registration ip ranges.
 	 * @param ipRanges array 
 	 */
-	/*function setIPRanges($ipRanges) {
+	function setIPRanges($ipRanges) {
 		return $this->setData(implode(REGISTRATION_IP_RANGE_SEPERATOR, $ipRanges));
-	}*/
+	}
 
 }
 

@@ -45,14 +45,6 @@
 	</select></td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="dateStart" required="true" key="director.registrations.form.dateStart"}</td>
-	<td class="value">{html_select_date prefix="dateStart" all_extra="class=\"selectMenu\"" start_year="$yearOffsetPast" end_year="$yearOffsetFuture" time="$dateStart"}</td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="dateEnd" required="true" key="director.registrations.form.dateEnd"}</td>
-	<td class="value">{html_select_date prefix="dateEnd" start_year="$yearOffsetPast" all_extra="class=\"selectMenu\"" end_year="$yearOffsetFuture" time="$dateEnd"}</td>
-</tr>
-<tr valign="top">
 	<td>&nbsp;</td>
 	<td class="value">
 		<table width="100%">
@@ -85,6 +77,14 @@
 		<input type="text" id="ipRange" name="ipRange" value="{$ipRange|escape}" size="40" maxlength="255" class="textField" />
 		<br />
 		<span class="instruct">{translate key="director.registrations.form.ipRangeInstructions"}</span>
+	</td>
+</tr>
+<tr valign="top">
+	<td class="label">{fieldLabel name="specialRequests" key="director.registrations.form.specialRequests"}</td>
+	<td class="value">
+		<input type="text" id="specialRequests" name="specialRequests" value="{$specialRequests|escape}" size="40" maxlength="255" class="textField" />
+		<br />
+		<span class="instruct">{translate key="director.registrations.form.specialRequestsInstructions"}</span>
 	</td>
 </tr>
 </table>

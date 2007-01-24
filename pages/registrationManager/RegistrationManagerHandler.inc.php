@@ -76,7 +76,7 @@ class RegistrationManagerHandler extends Handler {
 			import('registration.form.RegistrationForm');
 
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'director', 'registrations'), 'director.registrations'));
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager'), 'registrationManager.registrationManagement'));
 
 			if ($registrationId == null) {
 				$templateMgr->assign('registrationTitle', 'director.registrations.createTitle');
@@ -107,7 +107,7 @@ class RegistrationManagerHandler extends Handler {
 		RegistrationManagerHandler::validate();
 		$templateMgr = &TemplateManager::getManager();
 		RegistrationManagerHandler::setupTemplate();
-		$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'director', 'registrations'), 'director.registrations'));
+		$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager'), 'registrationManager.registrationManagement'));
 
 		$userDao = &DAORegistry::getDAO('UserDAO');
 
@@ -179,7 +179,7 @@ class RegistrationManagerHandler extends Handler {
 				RegistrationManagerHandler::setupTemplate();
 
 				$templateMgr = &TemplateManager::getManager();
-				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'director', 'registrations'), 'director.registrations'));
+				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager'), 'registrationManager.registrationManagement'));
 
 				if ($registrationId == null) {
 					$templateMgr->assign('registrationTitle', 'director.registrations.createTitle');
@@ -324,7 +324,7 @@ class RegistrationManagerHandler extends Handler {
 					RegistrationManagerHandler::setupTemplate(true);
 
 					$templateMgr = &TemplateManager::getManager();
-					$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'director', 'registrationTypes'), 'director.registrationTypes'));
+					$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager', 'registrationTypes'), 'director.registrationTypes'));
 					$templateMgr->assign('registrationTypeTitle', 'director.registrationTypes.createTitle');
 					$templateMgr->assign('registrationTypeCreated', '1');
 
@@ -340,7 +340,7 @@ class RegistrationManagerHandler extends Handler {
 				RegistrationManagerHandler::setupTemplate(true);
 
 				$templateMgr = &TemplateManager::getManager();
-				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'director', 'registrationTypes'), 'director.registrationTypes'));
+				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager', 'registrationTypes'), 'director.registrationTypes'));
 
 				if ($registrationTypeId == null) {
 					$templateMgr->assign('registrationTypeTitle', 'director.registrationTypes.createTitle');

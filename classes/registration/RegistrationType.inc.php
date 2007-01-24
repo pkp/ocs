@@ -15,11 +15,11 @@
  */
 
 /**
- * Registration type formats
+ * Registration access types
  */
-//define('REGISTRATION_TYPE_FORMAT_ONLINE',		0x01); 
-//define('REGISTRATION_TYPE_FORMAT_PRINT',		0x10);
-//define('REGISTRATION_TYPE_FORMAT_PRINT_ONLINE',	0x11);
+define('REGISTRATION_TYPE_ACCESS_ONLINE', 0x01); 
+define('REGISTRATION_TYPE_ACCESS_PHYSICAL', 0x10);
+define('REGISTRATION_TYPE_ACCESS_BOTH', 0x11);
 
 define('REGISTRATION_TYPE_YEAR_OFFSET_FUTURE',	'+10');
 
@@ -234,37 +234,37 @@ class RegistrationType extends DataObject {
 	}
 
 	/**
-	 * Get registration type format.
+	 * Get registration access type.
 	 * @return int
 	 */
-	/*function getFormat() {
-		return $this->getData('format');
-	}*/
+	function getAccess() {
+		return $this->getData('access');
+	}
 	
 	/**
-	 * Set registration type format.
-	 * @param $format int
+	 * Set registration access type.
+	 * @param $access int
 	 */
-	/*function setFormat($format) {
-		return $this->setData('format', $format);
-	}*/
+	function setAccess($access) {
+		return $this->setData('access', $access);
+	}
 
 	/**
-	 * Get registration type format locale key.
+	 * Get registration access type locale key.
 	 * @return int
 	 */
-	/*function getFormatString() {
-		switch ($this->getData('format')) {
-			case REGISTRATION_TYPE_FORMAT_ONLINE:
-				return 'director.registrationTypes.format.online';
-			case REGISTRATION_TYPE_FORMAT_PRINT:
-				return 'director.registrationTypes.format.print';
-			case REGISTRATION_TYPE_FORMAT_PRINT_ONLINE:
-				return 'director.registrationTypes.format.printOnline';
+	function getAccessString() {
+		switch ($this->getData('access')) {
+			case REGISTRATION_TYPE_ACCESS_ONLINE:
+				return 'director.registrationTypes.access.online';
+			case REGISTRATION_TYPE_ACCESS_PHYSICAL:
+				return 'director.registrationTypes.access.physical';
+			case REGISTRATION_TYPE_ACCESS_BOTH:
+				return 'director.registrationTypes.access.both';
 			default:
-				return 'director.registrationTypes.format';
+				return 'director.registrationTypes.access';
 		}
-	}*/
+	}
 
 	/**
 	 * Check if this registration type is for an institution.

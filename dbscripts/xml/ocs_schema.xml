@@ -1623,9 +1623,9 @@
 		<field name="expiry_date" type="D">
 			<NOTNULL/>
 		</field>
-		<!--<field name="format" type="I2">
+		<field name="access" type="I2">
 			<NOTNULL/>
-		</field>-->
+		</field>
 		<field name="institutional" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
@@ -1671,9 +1671,10 @@
 			<NOTNULL/>
 		</field>
 		<field name="date_paid" type="D"/>
-		<field name="special_requests" type="C2" size="255"/>
+		<field name="membership" type="C2" size="40"/>
 		<field name="domain" type="C2" size="255"/>
 		<field name="ip_range" type="C2" size="255"/>
+		<field name="special_requests" type="C2" size="255"/>
 		<descr>Conference registrations.</descr>
 		<index name="registration_event_id">
 			<col>event_id</col>

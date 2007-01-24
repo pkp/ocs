@@ -128,10 +128,10 @@ class RegistrationDAO extends DAO {
 		$registration->setTypeId($row['type_id']);
 		$registration->setDateRegistered($this->dateFromDB($row['date_registered']));
 		$registration->setDatePaid($this->dateFromDB($row['date_paid']));
+		$registration->setMembership($row['membership']);
+		$registration->setDomain($row['domain']);
+		$registration->setIPRange($row['ip_range']);
 		$registration->setSpecialRequests($row['special_requests']);
-		//$registration->setMembership($row['membership']);
-		//$registration->setDomain($row['domain']);
-		//$registration->setIPRange($row['ip_range']);
 		
 		HookRegistry::call('RegistrationDAO::_returnRegistrationFromRow', array(&$registration, &$row));
 
@@ -146,14 +146,17 @@ class RegistrationDAO extends DAO {
 	function insertRegistration(&$registration) {
 		$ret = $this->update(
 			sprintf('INSERT INTO registrations
-				(event_id, user_id, type_id, date_registered, date_paid, special_requests)
+				(event_id, user_id, type_id, date_registered, date_paid, membership, domain, iprange, special_requests)
 				VALUES
-				(?, ?, ?, %s, %s, ?)',
+				(?, ?, ?, %s, %s, ?, ?, ?, ?)',
 				$this->dateToDB($registration->getDateRegistered()), $this->dateToDB($registration->getDatePaid())),
 			array(
 				$registration->getEventId(),
 				$registration->getUserId(),
 				$registration->getTypeId(),
+				$registration->getMembership(),
+				$registration->getDomain(),
+				$registration->getIPRange(),
 				$registration->getSpecialRequests()
 			)
 		);
@@ -175,6 +178,9 @@ class RegistrationDAO extends DAO {
 					type_id = ?,
 					date_registered = %s,
 					date_paid = %s,
+					membership = ?,
+					domain = ?,
+					ip_range = ?,
 					special_requests = ?
 				WHERE registration_id = ?',
 				$this->dateToDB($registration->getDateRegistered()), $this->dateToDB($registration->getDatePaid())),
@@ -182,6 +188,9 @@ class RegistrationDAO extends DAO {
 				$registration->getEventId(),
 				$registration->getUserId(),
 				$registration->getTypeId(),
+				$registration->getMembership(),
+				$registration->getDomain(),
+				$registration->getIPRange(),
 				$registration->getSpecialRequests(),
 				$registration->getRegistrationId()
 			)

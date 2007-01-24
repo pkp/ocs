@@ -227,7 +227,7 @@ class RegistrationTypeDAO extends DAO {
 		$registrationType->setOpeningDate($this->dateFromDB($row['opening_date']));
 		$registrationType->setClosingDate($this->dateFromDB($row['closing_date']));
 		$registrationType->setExpiryDate($this->dateFromDB($row['expiry_date']));
-		//$registrationType->setFormat($row['format']);
+		$registrationType->setAccess($row['access']);
 		$registrationType->setInstitutional($row['institutional']);
 		$registrationType->setMembership($row['membership']);
 		$registrationType->setPublic($row['pub']);
@@ -246,9 +246,9 @@ class RegistrationTypeDAO extends DAO {
 	function insertRegistrationType(&$registrationType) {
 		$ret = $this->update(
 			sprintf('INSERT INTO registration_types
-				(event_id, type_name, description, cost, currency_code_alpha, opening_date, closing_date, expiry_date, institutional, membership, pub, seq)
+				(event_id, type_name, description, cost, currency_code_alpha, opening_date, closing_date, expiry_date, access, institutional, membership, pub, seq)
 				VALUES
-				(?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?)',
 				$this->dateToDB($registrationType->getOpeningDate()),
 				$this->dateToDB($registrationType->getClosingDate()),
 				$this->dateToDB($registrationType->getExpiryDate())),
@@ -258,7 +258,7 @@ class RegistrationTypeDAO extends DAO {
 				$registrationType->getDescription(),
 				$registrationType->getCost(),
 				$registrationType->getCurrencyCodeAlpha(),
-				//$registrationType->getFormat(),
+				$registrationType->getAccess(),
 				$registrationType->getInstitutional(),
 				$registrationType->getMembership(),
 				$registrationType->getPublic(),
@@ -287,6 +287,7 @@ class RegistrationTypeDAO extends DAO {
 					opening_date = %s,
 					closing_date = %s,
 					expiry_date = %s,
+					access = ?,
 					institutional = ?,
 					membership = ?,
 					pub = ?,
@@ -301,7 +302,7 @@ class RegistrationTypeDAO extends DAO {
 				$registrationType->getDescription(),
 				$registrationType->getCost(),
 				$registrationType->getCurrencyCodeAlpha(),
-				//$registrationType->getFormat(),
+				$registrationType->getAccess(),
 				$registrationType->getInstitutional(),
 				$registrationType->getMembership(),
 				$registrationType->getPublic(),

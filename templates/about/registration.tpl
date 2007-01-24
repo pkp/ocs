@@ -38,28 +38,30 @@
 <p>
 <table width="100%" class="listing">
 	<tr>
-		<td colspan="5" class="headseparator">&nbsp;</td>
+		<td colspan="6" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr class="heading" valign="bottom">
 		<td width="40%">{translate key="director.registrationTypes.name"}</td>
-		<td width="15%">{translate key="director.registrationTypes.openDate"}</td>
-		<td width="15%">{translate key="director.registrationTypes.closeDate"}</td>
-		<td width="15%">{translate key="director.registrationTypes.expiryDate"}</td>
-		<td width="15%">{translate key="director.registrationTypes.cost"}</td>
+		<td width="12%">{translate key="director.registrationTypes.access"}</td>
+		<td width="12%">{translate key="director.registrationTypes.openDate"}</td>
+		<td width="12%">{translate key="director.registrationTypes.closeDate"}</td>
+		<td width="12%">{translate key="director.registrationTypes.expiryDate"}</td>
+		<td width="12%">{translate key="director.registrationTypes.cost"}</td>
 	</tr>
 	<tr>
-		<td colspan="5" class="headseparator">&nbsp;</td>
+		<td colspan="6" class="headseparator">&nbsp;</td>
 	</tr>
 {iterate from=registrationTypes item=registrationType}
 	{if !$registrationType->getPublic()}
 		<tr valign="top">
 			<td>{$registrationType->getTypeName()|escape}<br />{$registrationType->getDescription()|escape|nl2br}</td>
+			<td>{translate key=$registrationType->getAccessString()}</td>
 			<td>{$registrationType->getOpeningDate()}</td>
 			<td>{$registrationType->getClosingDate()}</td>
 			<td>{$registrationType->getExpiryDate()}</td>
 			<td>{$registrationType->getCost()|string_format:"%.2f"}&nbsp;({$registrationType->getCurrencyStringShort()|escape})</td>
 		</tr>
-		<tr><td colspan="5" class="{if $registrationTypes->eof()}end{/if}separator">&nbsp;</td></tr>
+		<tr><td colspan="6" class="{if $registrationTypes->eof()}end{/if}separator">&nbsp;</td></tr>
 	{/if}
 {/iterate}
 </table>
