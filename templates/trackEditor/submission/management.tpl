@@ -64,7 +64,7 @@
 	<tr>
 		<td class="label">{translate key="track.track"}</td>
 		<td class="value">{$submission->getTrackTitle()|escape}</td>
-		<td class="value"><form action="{url op="changeTrack" path=$submission->getPaperId()}" method="post">{translate key="submission.changeTrack"} <select name="track" size="1" class="selectMenu">{html_options options=$tracks selected=$submission->getTrackId()}</select> <input type="submit" value="{translate key="common.record"}" class="button" /></form></td>
+		<td class="value"><form action="{url op="changeTrack" paperId=$submission->getPaperId()}" method="post">{translate key="submission.changeTrack"} <select name="trackId" size="1" class="selectMenu">{html_options options=$tracks selected=$submission->getTrackId()}</select> <input type="submit" value="{translate key="common.record"}" class="button" /></form></td>
 	</tr>
 	{if $submission->getCommentsToEditor()}
 	<tr valign="top">
