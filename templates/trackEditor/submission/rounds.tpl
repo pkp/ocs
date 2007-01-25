@@ -53,13 +53,24 @@
 {/foreach}
 </table>
 
-{section name=round loop=$numRounds-1}
+{foreach from=$reviewAssignmentTypes item=reviewAssignments key=type}
+
+{assign var=numRounds value=$reviewAssignments|@count}
+{section name=round loop=$numRounds}
 {assign var=round value=$smarty.section.round.index}
 {assign var=roundPlusOne value=$round+1}
 {assign var=roundAssignments value=$reviewAssignments[$roundPlusOne]}
-{assign var=roundDecisions value=$editorDecisions[$roundPlusOne]}
+{assign var=roundDecisions value=$editorDecisions[$type][$roundPlusOne]}
+{assign var=needsTypeHeading value=1}
 
-<h3>{translate key="trackEditor.regrets.reviewRound" round=$roundPlusOne}</h3>
+{if $submission->getReviewProgress() != $type || $submission->getCurrentRound() != $roundPlusOne}
+
+{if $needsTypeHeading}
+	<h3>{if $type == REVIEW_PROGRESS_ABSTRACT}{translate key="submission.abstractReview"}{else}{translate key="submission.paperReview"}{/if}</h3>
+	{assign var=needsTypeHeading value=0}
+{/if}
+
+<h4>{translate key="trackEditor.regrets.reviewRound" round=$roundPlusOne}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
@@ -81,7 +92,7 @@
 
 {if !$reviewAssignment->getCancelled()}
 <div class="separator"></div>
-<h4>{translate key="user.role.reviewer"} {$reviewKey+$start|chr} {$reviewAssignment->getReviewerFullName()|escape}</h4>
+<h5>{translate key="user.role.reviewer"} {$reviewKey+$start|chr} {$reviewAssignment->getReviewerFullName()|escape}</h5>
 
 <table width="100%" class="listing">
 	<tr valign="top">
@@ -177,7 +188,7 @@ name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if
 
 <div class="separator"></div>
 
-<h3>{translate key="trackEditor.regrets.decisionRound" round=$roundPlusOne}</h3>
+<h4>{translate key="trackEditor.regrets.decisionRound" round=$roundPlusOne}</h4>
 
 {assign var=authorFiles value=$submission->getAuthorFileRevisions($roundPlusOne)}
 {assign var=editorFiles value=$submission->getEditorFileRevisions($roundPlusOne)}
@@ -240,6 +251,9 @@ name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if
 
 <div class="separator"></div>
 
+{/if} {* End check to see that this is actually a past review, not the current one *}
 
-{/section}
+{/section} {* End section to loop through all rounds *}
+
+{/foreach} {* End foreach to loop through review types *}
 

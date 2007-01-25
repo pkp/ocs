@@ -1798,8 +1798,8 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="trackEditor.regrets.title">#{$paperId} Reviewer Regrets &amp; Cancellations</message>
 	<message key="trackEditor.regrets">Regrets</message>
 	<message key="trackEditor.regrets.link">View Regrets, Cancels</message>
-	<!--<message key="trackEditor.regrets.reviewRound">Peer Review, Round {$round}</message>-->
-	<!--<message key="trackEditor.regrets.decisionRound">Editor Decision, Round {$round}</message>-->
+	<message key="trackEditor.regrets.reviewRound">Peer Review, Round {$round}</message>
+	<message key="trackEditor.regrets.decisionRound">Editor Decision, Round {$round}</message>
 	<message key="trackEditor.regrets.regretsAndCancels">Reviewer Regrets &amp; Cancellations</message>
 	<message key="trackEditor.regrets.regret">Regret</message>
 	<message key="trackEditor.regrets.result">Result</message>

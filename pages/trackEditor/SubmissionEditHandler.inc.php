@@ -68,20 +68,17 @@ class SubmissionEditHandler extends TrackEditorHandler {
 		$cancelsAndRegrets = $reviewAssignmentDao->getCancelsAndRegrets($paperId);
 		$reviewFilesByRound = $reviewAssignmentDao->getReviewFilesByRound($paperId);
 
-		$reviewAssignments =& $submission->getReviewAssignments();
+		$types =& $submission->getReviewAssignments();
+		
 		$editorDecisions = $submission->getDecisions();
-		$numRounds = $submission->getCurrentRound();
 
 		$templateMgr = &TemplateManager::getManager();
-
 		$templateMgr->assign_by_ref('eventSettings', $event->getSettings(true));
-
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('reviewAssignments', $reviewAssignments);
+		$templateMgr->assign_by_ref('reviewAssignmentTypes', $types);
 		$templateMgr->assign_by_ref('cancelsAndRegrets', $cancelsAndRegrets);
 		$templateMgr->assign_by_ref('reviewFilesByRound', $reviewFilesByRound);
 		$templateMgr->assign_by_ref('editorDecisions', $editorDecisions);
-		$templateMgr->assign('numRounds', $numRounds);
 		$templateMgr->assign('rateReviewerOnQuality', $event->getSetting('rateReviewerOnQuality', true));
 		
 		$templateMgr->assign_by_ref('editorDecisionOptions', TrackEditorSubmission::getEditorDecisionOptions());

@@ -197,7 +197,7 @@ class TrackEditorSubmission extends Paper {
 	 * Get review assignments for this paper.
 	 * @return array ReviewAssignments
 	 */
-	function getReviewAssignments($type, $round) {
+	function getReviewAssignments($type = null, $round = null) {
 		if($type == null)
 			return $this->reviewAssignments;
 		
