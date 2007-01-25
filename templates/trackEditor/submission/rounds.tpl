@@ -72,6 +72,7 @@
 
 <h4>{translate key="trackEditor.regrets.reviewRound" round=$roundPlusOne}</h4>
 
+{if $type != REVIEW_PROGRESS_ABSTRACT}
 <table width="100%" class="data">
 	<tr valign="top">
 		<td class="label" width="20%">{translate key="submission.reviewVersion"}</td>
@@ -85,6 +86,7 @@
 		</td>
 	</tr>
 </table>
+{/if}
 
 {assign var="start" value="A"|ord}
 

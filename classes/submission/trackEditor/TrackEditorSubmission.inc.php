@@ -89,31 +89,20 @@ class TrackEditorSubmission extends Paper {
 	 * @return boolean review assignment was removed
 	 */
 	function removeReviewAssignment($reviewId) {
-		$found = false;
+		if ($reviewId == 0) return false;
 
-		if ($reviewId != 0) {
-			// FIXME this is kind of a mess
-			
-			foreach($this->reviewAssignments as $typekey => $type) {
-				foreach($type as $roundkey => $round) {
-					foreach($round as $reviewkey => $review) {
-						if($review->getReviewId() == $reviewId) {
-
-							if(!isset($this->removedReviewAssignments[$typekey]))
-								$this->removedReviewAssignments[$typekey] = array();
-							if(!isset($this->removedReviewAssignments[$typekey][$roundkey]))
-								$this->removedReviewAssignments[$typekey][$roundkey] = array();
-
-							$this->removedReviewAssignments[$typekey][$roundkey][$reviewkey] = $this->removedAssignments[$typekey][$roundkey][$reviewkey];
-							$this->reviewAssignments[$typekey][$roundkey][$reviewkey] = null;
-							$found = true;
-							break;
-						}
+		foreach($this->reviewAssignments as $typekey => $type) {
+			foreach($type as $roundkey => $round) {
+				foreach($round as $reviewkey => $review) {
+					if($review->getReviewId() == $reviewId) {
+						$this->removedReviewAssignments[] =& $this->reviewAssignments[$typekey][$roundkey][$reviewkey];
+						unset($this->reviewAssignments[$typekey][$roundkey][$reviewkey]);
+						return true;
 					}
 				}
 			}
 		}
-		return $found;
+		return false;
 	}
 	
 	/**
