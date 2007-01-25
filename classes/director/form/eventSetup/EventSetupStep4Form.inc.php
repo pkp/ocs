@@ -45,7 +45,7 @@ class EventSetupStep4Form extends EventSetupForm {
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$type = $fileManager->getUploadedFileType($settingName);
 			$extension = $fileManager->getDocumentExtension($type);
-			if (!$extension) {die('bonk');
+			if (!$extension) {
 				return false;
 			}
 			
