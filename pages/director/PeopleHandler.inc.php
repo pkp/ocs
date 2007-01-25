@@ -236,6 +236,16 @@ class PeopleHandler extends DirectorHandler {
 					
 			for ($i=0; $i<count($users); $i++) {
 				if (!$roleDao->roleExists($conference->getConferenceId(), $eventId, $users[$i], $roleId)) {
+					if ($eventId == 0) {
+						// In case they're enrolled in individual events and we want to enrol
+						// them in the whole conference, ensure they don't have multiple roles
+						$roleDao->deleteRoleByUserId($users[$i], $conference->getConferenceId(), $roleId);
+					} else if ($roleDao->roleExists($conference->getConferenceId(), 0, $users[$i], $roleId)) {
+						// If they're enrolled in the whole conference, this individual
+						// enrollment isn't valuable.a
+						return;
+					}
+
 					$role = &new Role();
 					$role->setConferenceId($conference->getConferenceId());
 					if ($event) {
@@ -245,7 +255,6 @@ class PeopleHandler extends DirectorHandler {
 					}
 					$role->setUserId($users[$i]);
 					$role->setRoleId($roleId);
-				
 					$roleDao->insertRole($role);
 				}
 			}
