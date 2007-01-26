@@ -11,12 +11,14 @@
 
 {include file="common/header.tpl"}
 
-<h2>{$conferenceTitle}</h2>
+{if !empty($conferenceContent)}
+	<h2>{$conferenceTitle}</h2>
+	<p>{$conferenceContent|nl2br}</p>
+{/if}
 
-<p>{$conferenceContent|nl2br}</p>
-
-<h2>{$eventTitle}</h2>
-
-<p>{$eventContent|nl2br}</p>
+{if !empty($eventContent)}
+	<h2>{$eventTitle}</h2>
+	<p>{$eventContent|nl2br}</p>
+{/if}
 
 {include file="common/footer.tpl"}

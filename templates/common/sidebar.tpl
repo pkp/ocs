@@ -111,12 +111,20 @@
 	</div>
 
 	{if $currentConference}
-	<div class="block">
-		<span class="blockTitle">{translate key="navigation.info"}</span>
-		<ul>
-			<li><a href="{url page="information" op="readers"}">{translate key="navigation.infoForReaders"}</a></li>
-			<li><a href="{url page="information" op="presenters"}">{translate key="navigation.infoForPresenters"}</a></li>
-		</ul>
-	</div>
+	{assign var=forReadersConference value=$currentConference->getSetting('readerInformation')}
+	{assign var=forPresentersConference value=$currentConference->getSetting('presenterInformation')}
+	{if $currentEvent}
+		{assign var=forReadersEvent value=$currentEvent->getSetting('readerInformation')}
+		{assign var=forPresentersEvent value=$currentEvent->getSetting('presenterInformation')}
+	{/if}
+	{if !empty($forReadersConference) && !empty($forPresentersConference) || !empty($forReadersEvent) || !empty($forPresentersEvent)}
+		<div class="block">
+			<span class="blockTitle">{translate key="navigation.info"}</span>
+			<ul>
+				{if !empty($forReadersConference) || !empty($forReadersEvent)}<li><a href="{url page="information" op="readers"}">{translate key="navigation.infoForReaders"}</a></li>{/if}
+				{if !empty($forPresentersConference) || !empty($forPresentersEvent)}<li><a href="{url page="information" op="presenters"}">{translate key="navigation.infoForPresenters"}</a></li>{/if}
+			</ul>
+		</div>
+	{/if}
 	{/if}
 </div>
