@@ -106,7 +106,7 @@ class DirectorHandler extends Handler {
 		$templateMgr->assign('pageHierarchy',
 			$subclass ? array(
 					array(Request::url(null, null, 'user'), 'navigation.user'),
-					array(Request::url(null, 'index', 'director'), 'user.role.director'))
+					array(Request::url(null, 'index', 'director'), 'director.conferenceSiteManagement'))
 				: array(array(Request::url(null, null, 'user'), 'navigation.user'))
 		);
 	}
