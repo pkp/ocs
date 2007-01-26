@@ -341,17 +341,21 @@ class AboutHandler extends Handler {
 		if($conference) {
 			$contributorNote = $conference->getSetting('contributorNote');
 			$contributors = $conference->getSetting('contributors');
+			if (!is_array($contributors)) $contributors = array();
 
 			$sponsorNote = $conference->getSetting('sponsorNote');
 			$sponsors = $conference->getSetting('sponsors');
+			if (!is_array($sponsors)) $sponsors = array();
 		}
 
 		if($event) {
 			$contributorNote = $event->getSetting('contributorNote', true);
 			$contributors = array_merge($contributors, $event->getSetting('contributors', false));
+			if (!is_array($contributors)) $contributors = array();
 
 			$sponsorNote = $event->getSetting('sponsorNote', true);
 			$sponsors = array_merge($sponsors, $event->getSetting('sponsors', false));
+			if (!is_array($sponsors)) $sponsors = array();
 		}
 
 		$templateMgr->assign_by_ref('contributorNote', $contributorNote);
