@@ -196,7 +196,7 @@ class TrackEditorAction extends Action {
 		
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($trackEditorSubmission->getPaperId(), $reviewerId, $type, $round);
 
-			$event = &Request::getConference();
+			$event = &Request::getEvent();
 			if ($event->getSetting('numWeeksPerReview', true) != null)
 				TrackEditorAction::setDueDate($trackEditorSubmission->getPaperId(), $reviewAssignment->getReviewId(), null, $event->getSetting('numWeeksPerReview',true));
 			
@@ -245,6 +245,7 @@ class TrackEditorAction extends Action {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		
 		$conference = &Request::getConference();
+		$event = &Request::getEvent();
 		$user = &Request::getUser();
 		
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
@@ -280,7 +281,7 @@ class TrackEditorAction extends Action {
 						$accessKeyManager =& new AccessKeyManager();
 
 						// Key lifetime is the typical review period plus four weeks
-						$keyLifetime = ($conference->getSetting('numWeeksPerReview') + 4) * 7;
+						$keyLifetime = ($event->getSetting('numWeeksPerReview') + 4) * 7;
 
 						$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime));
 					}
@@ -305,7 +306,8 @@ class TrackEditorAction extends Action {
 					if ($reviewAssignment->getDateDue() != null) {
 						$reviewDueDate = date('Y-m-d', strtotime($reviewAssignment->getDateDue()));
 					} else {
-						$reviewDueDate = date('Y-m-d', strtotime('+2 week'));
+						$numWeeks = max((int) $event->getSetting('numWeeksPerReview'), 2);
+						$reviewDueDate = date('Y-m-d', strtotime('+' . $numWeeks . ' week'));
 					}
 
 					$submissionUrl = Request::url(null, null, 'reviewer', 'submission', $reviewId, $reviewerAccessKeysEnabled?array('key' => 'ACCESS_KEY'):array());
@@ -416,6 +418,7 @@ class TrackEditorAction extends Action {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 			
 		$conference = &Request::getConference();
+		$event = &Request::getEvent();
 		$user = &Request::getUser();
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$reviewerAccessKeysEnabled = $conference->getSetting('reviewerAccessKeysEnabled');
@@ -445,7 +448,7 @@ class TrackEditorAction extends Action {
 				$accessKeyManager =& new AccessKeyManager();
 
 				// Key lifetime is the typical review period plus four weeks
-				$keyLifetime = ($conference->getSetting('numWeeksPerReview') + 4) * 7;
+				$keyLifetime = ($event->getSetting('numWeeksPerReview') + 4) * 7;
 				$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime));
 			}
 
