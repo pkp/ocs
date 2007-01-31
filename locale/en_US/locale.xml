@@ -654,7 +654,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="admin.languages.primaryLocaleInstructions">This will be the default language for the site and any hosted conferences.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Select all locales to support on the site. The selected locales will be available for use by all conferences hosted on the site, and also appear in a language select menu to appear on each site page (which can be overridden on conference-specific pages). If multiple locales are not selected, the language toggle menu will not appear and extended language settings will not be available to conferences.</message>
 	<message key="admin.languages.languageOptions">Language options</message>
-	<message key="admin.languages.profileLocales">In registering people (managers, editors, reviewers, etc.), working languages should be included in their User Profiles for the benefit of conference editors.</message>
+	<message key="admin.languages.profileLocales">In registering people (directors, editors, reviewers, etc.), working languages should be included in their User Profiles for the benefit of conference editors.</message>
 	<message key="admin.languages.installedLocales">Installed Locales</message>
 	<message key="admin.languages.reload">Reload Locale</message>
 	<message key="admin.languages.confirmReload">Are you sure you want to reload this locale? This will erase any existing locale-specific data such as customized email templates.</message>
@@ -835,7 +835,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<!-- Plugin Management -->
 	<message key="director.plugins.pluginManagement">Plugin Management</message>
-	<message key="director.plugins.sitePlugin">This is a site-wide plugin. Only the Site Manager may manage this plugin.</message>
+	<message key="director.plugins.sitePlugin">This is a site-wide plugin. Only the Site Administrator may manage this plugin.</message>
 	<message key="director.plugins.action">Action:</message>
 	<message key="director.plugins.disable">Disable</message>
 	<message key="director.plugins.enable">Enable</message>
@@ -882,7 +882,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="director.setup.finalStepSavedNotes">
 		<![CDATA[
 			<p>Almost Done!</p>
-			<p>A conference has now been set up, which may entail a single event, an annual conference, or a series of events, all of which can be managed from this conference site. In order to schedule a specific instance of this conference, go to <a href="{$eventSetupUrl}">Scheduled Conferences</a>. You may access this page at any time via the Conference Manager's homepage.</p>
+			<p>A conference has now been set up, which may entail a single event, an annual conference, or a series of events, all of which can be managed from this conference site. In order to schedule a specific instance of this conference, go to <a href="{$eventSetupUrl}">Scheduled Conferences</a>. You may access this page at any time via the Conference Director's homepage.</p>
 			<p>You can return to these five pages at any time by following the links to "User Home > Conference Director > Setup".</p>
 			<p>You can manage events through "User Home > Event Director > Setup"</p>
 			]]></message>
@@ -891,7 +891,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<!-- Conference Setup Step 1: Details -->
 	<message key="director.setup.gettingDownTheDetails">Step 1. Getting Down the Details</message>
-	<message key="director.setup.conferenceSetupNotes"><![CDATA[Conferences are set up in two stages. The first stage is concerned with the conference in general, whether it is held only once, run annually, or run as a series. The second set of steps, which are completed after these initial steps are in place, concerns the specific and scheduled instances of the conference. This permits a website to be run for the conference in general, with many instances of it available to readers (e.g., My Conference, with My Conference 2007; My Conference 2008, etc.) Conference Managers set up the general conference site, while Conference Directors set up the scheduled instances of the conference.]]></message>
+	<message key="director.setup.conferenceSetupNotes"><![CDATA[Conferences are set up in two stages. The first stage is concerned with the conference in general, whether it is held only once, run annually, or run as a series. The second set of steps, which are completed after these initial steps are in place, concerns the specific and scheduled instances of the conference. This permits a website to be run for the conference in general, with many instances of it available to readers (e.g., My Conference, with My Conference 2007; My Conference 2008, etc.) Conference Directors set up the general conference site, while Conference Directors set up the scheduled instances of the conference.]]></message>
 	<message key="director.setup.generalInformation">General Information</message>
 	<message key="director.setup.conferenceAcronym">Conference acronym</message>
 	<message key="director.setup.conferenceDescription">Conference Description</message>
@@ -1229,7 +1229,7 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="director.setup.registrantAccess">Conference registrants alone have access to abstracts and presentations.</message>
 
 	<message key="director.setup.conferenceRegistration">Conference Registration</message>
-	<message key="director.setup.conferenceRegistrationDescription">The Conference Manager can activate Registration Management, which is to be set up and managed by the registered Registration Manager. The contact information for this user should be listed below and will appear in the conference's About the Conference page as the primary contact for registration.</message>
+	<message key="director.setup.conferenceRegistrationDescription">The Conference Director can activate Registration Management, which is to be set up and managed by the registered Registration Manager. The contact information for this user should be listed below and will appear in the conference's About the Conference page as the primary contact for registration.</message>
 	<message key="director.setup.programFileInvalid">Invalid program file.</message>
 
 	<message key="director.setup.conferenceProgram">Conference Program</message>
@@ -1241,7 +1241,7 @@ including the right to place it in an open access archive. In addition, <a href=
 
 	<!-- Event Setup Step 5 -->
 	<message key="eventDirector.setup.customizingTheLook">Step 5. Customizing the Look</message>
-	<message key="eventDirector.setup.eventLookSetupInstructions"><![CDATA[If these settings are left unconfigured, this event will default to the look and feel of the conference it belongs to. In order to change the look and feel of the entire conference, the Conference Manager must modify the <a href="{$conferenceLookSetupUrl}">Conference Setup pages</a>.]]></message>
+	<message key="eventDirector.setup.eventLookSetupInstructions"><![CDATA[If these settings are left unconfigured, this event will default to the look and feel of the conference it belongs to. In order to change the look and feel of the entire conference, the Conference Director must modify the <a href="{$conferenceLookSetupUrl}">Conference Setup pages</a>.]]></message>
 	<message key="eventDirector.setup.conferenceHomepageContentDescription">The scheduled conference's homepage includes by default the conference's name, dates, location, and introduction, and main topics with links (Overview; Call for Papers; Featured Speakers; Program and Presentations; Registration, Accomodation and Travel; Conference Organizers and Key Partners; Related Links).</message>
 
 	<!-- Languages -->
@@ -1442,7 +1442,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<!--<message key="director.registrationPolicies.authorSelfArchiveDescription">The following policy will be included in About the Conference.</message>-->
 	<!--<message key="director.registrationPolicies.registrationPoliciesSaved">Your registration policy settings have been updated.</message>-->
 	<!--<message key="director.registrationPolicies.expiryReminders">Registration Expiry Reminders</message>
-	<message key="director.registrationPolicies.expiryRemindersDescription">Automated email reminders (available for editing by Conference Managers in OJS's Prepared Emails) can be sent to subscribers both before and after a registration has expired.</message>-->
+	<message key="director.registrationPolicies.expiryRemindersDescription">Automated email reminders (available for editing by Conference Directors in OJS's Prepared Emails) can be sent to subscribers both before and after a registration has expired.</message>-->
 	<!--<message key="director.registrationPolicies.expiryRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OJS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OJS documentation.]]></message>-->
 	<!--<message key="director.registrationPolicies.expiryReminderBeforeMonths1">Notify subscribers by email</message>-->
 	<!--<message key="director.registrationPolicies.expiryReminderBeforeMonths2">month(s) before registration expiry.</message>-->
