@@ -37,52 +37,52 @@
 	</tr>
 
 	<tr valign="top">
-		<td width="20%" class="label"><input type="checkbox" name="statItemsPublished" {if $statItemsPublished}checked {/if}/>{translate key="director.statistics.statistics.itemsPublished"}</td>
+		<td width="20%" class="label"><input type="checkbox" id="statItemsPublished" name="statItemsPublished" {if $statItemsPublished}checked {/if}/><label for="statItemsPublished">{translate key="director.statistics.statistics.itemsPublished"}</label></td>
 		<td width="80%" colspan="2" class="value">{$paperStatistics.numPublishedSubmissions}</td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label"><input type="checkbox" name="statNumSubmissions" {if $statNumSubmissions}checked {/if}/>{translate key="director.statistics.statistics.numSubmissions"}</td>
+		<td width="20%" class="label"><input type="checkbox" id="statNumSubmissions" name="statNumSubmissions" {if $statNumSubmissions}checked {/if}/><label for="statNumSubmissions">{translate key="director.statistics.statistics.numSubmissions"}</label></td>
 		<td width="80%" colspan="2" class="value">{$paperStatistics.numSubmissions}</td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label"><input type="checkbox" name="statPeerReviewed" {if $statPeerReviewed}checked {/if}/>{translate key="director.statistics.statistics.peerReviewed"}</td>
+		<td width="20%" class="label"><input type="checkbox" id="statPeerReviewed" name="statPeerReviewed" {if $statPeerReviewed}checked {/if}/><label for="statPeerReviewed">{translate key="director.statistics.statistics.peerReviewed"}</label></td>
 		<td width="80%" colspan="2" class="value">{$reviewerStatistics.reviewedSubmissionsCount}</td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label"><input type="checkbox" name="statCountAccept" {if $statCountAccept}checked {/if}/>&nbsp;&nbsp;{translate key="director.statistics.statistics.count.accept"}</td>
-		<td width="80%" colspan="2" class="value">{translate key="director.statistics.statistics.count.value" count=$limitedPaperStatistics.submissionsAccept percentage=$limitedPaperStatistics.submissionsAcceptPercent}</td>
+		<td width="20%" class="label"><input type="checkbox" id="statCountAccept" name="statCountAccept" {if $statCountAccept}checked {/if}/>&nbsp;&nbsp;<label for="statCountAccept">{translate key="director.statistics.statistics.count.accept"}</label></td>
+		<td width="80%" colspan="2" class="value">{translate key="director.statistics.statistics.count.value" count=$limitedPaperStatistics.submissionsAccept percentage=$limitedPaperStatistics.submissionsAcceptPercent}</label></td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label"><input type="checkbox" name="statCountDecline" {if $statCountDecline}checked {/if}/>&nbsp;&nbsp;{translate key="director.statistics.statistics.count.decline"}</td>
+		<td width="20%" class="label"><input type="checkbox" id="statCountDecline" name="statCountDecline" {if $statCountDecline}checked {/if}/>&nbsp;&nbsp;<label for="statCountDecline">{translate key="director.statistics.statistics.count.decline"}</label></td>
 		<td width="80%" colspan="2" class="value">{translate key="director.statistics.statistics.count.value" count=$limitedPaperStatistics.submissionsDecline percentage=$limitedPaperStatistics.submissionsDeclinePercent}</td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label"><input type="checkbox" name="statCountRevise" {if $statCountRevise}checked {/if}/>&nbsp;&nbsp;{translate key="director.statistics.statistics.count.revise"}</td>
+		<td width="20%" class="label"><input type="checkbox" id="statCountRevise" name="statCountRevise" {if $statCountRevise}checked {/if}/>&nbsp;&nbsp;<label for="statCountRevise">{translate key="director.statistics.statistics.count.revise"}</label></td>
 		<td width="80%" colspan="2" class="value">{translate key="director.statistics.statistics.count.value" count=$limitedPaperStatistics.submissionsRevise percentage=$limitedPaperStatistics.submissionsRevisePercent}</td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label"><input type="checkbox" name="statDaysPerReview" {if $statDaysPerReview}checked {/if}/>&nbsp;&nbsp;{translate key="director.statistics.statistics.daysPerReview"}</td>
+		<td width="20%" class="label"><input type="checkbox" id="statDaysPerReview" name="statDaysPerReview" {if $statDaysPerReview}checked {/if}/>&nbsp;&nbsp;<label for="statDaysPerReview">{translate key="director.statistics.statistics.daysPerReview"}</label></td>
 		<td colspan="2" class="value">
 			{assign var=daysPerReview value=$reviewerStatistics.daysPerReview}
 			{math equation="round($daysPerReview)"}
 		</td>
 	</tr>
 	{*<tr valign="top">
-		<td width="20%" class="label"><input type="checkbox" name="statDaysToPublication" {if $statDaysToPublication}checked {/if}/>&nbsp;&nbsp;{translate key="director.statistics.statistics.daysToPublication"}</td>
+		<td width="20%" class="label"><input type="checkbox" id="statDaysToPublication" name="statDaysToPublication" {if $statDaysToPublication}checked {/if}/>&nbsp;&nbsp;<label for="statDaysToPublication">{translate key="director.statistics.statistics.daysToPublication"}</label></td>
 		<td colspan="2" class="value">{$limitedPaperStatistics.daysToPublication}</td>
 	</tr>*}
 	<tr valign="top">
-		<td width="20%" class="label"><input type="checkbox" name="statRegisteredUsers" {if $statRegisteredUsers}checked {/if}/>{translate key="director.statistics.statistics.registeredUsers"}</td>
+		<td width="20%" class="label"><input type="checkbox" id="statRegisteredUsers" name="statRegisteredUsers" {if $statRegisteredUsers}checked {/if}/><label for="statRegisteredUsers">{translate key="director.statistics.statistics.registeredUsers"}</label></td>
 		<td colspan="2" class="value">{translate key="director.statistics.statistics.totalNewValue" numTotal=$allUserStatistics.totalUsersCount numNew=$userStatistics.totalUsersCount}</td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label"><input type="checkbox" name="statRegisteredReaders" {if $statRegisteredReaders}checked {/if}/>{translate key="director.statistics.statistics.registeredReaders"}</td>
+		<td width="20%" class="label"><input type="checkbox" id="statRegisteredReaders" name="statRegisteredReaders" {if $statRegisteredReaders}checked {/if}/><label for="statRegisteredReaders">{translate key="director.statistics.statistics.registeredReaders"}</label></td>
 		<td colspan="2" class="value">{translate key="director.statistics.statistics.totalNewValue" numTotal=$allUserStatistics.reader|default:"0" numNew=$userStatistics.reader|default:"0"}</td>
 	</tr>
 
 	{if $enableSubscriptions}
 		<tr valign="top">
-			<td colspan="3" class="label"><input type="checkbox" name="statSubscriptions" {if $statSubscriptions}checked {/if}/>{translate key="director.statistics.statistics.subscriptions"}</td>
+			<td colspan="3" class="label"><input type="checkbox" id="statSubscriptions" name="statSubscriptions" {if $statSubscriptions}checked {/if}/><label for="statSubscriptions">{translate key="director.statistics.statistics.subscriptions"}</label></td>
 		</tr>
 		{foreach from=$allSubscriptionStatistics key=type_id item=stats}
 		<tr valign="top">

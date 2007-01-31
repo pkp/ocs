@@ -24,6 +24,8 @@ class StatisticsHandler extends DirectorHandler {
 		parent::setupTemplate(true);
 
 		$event = &Request::getEvent();
+		if (!$event) Request::redirect(null, 'index');
+
 		$templateMgr = &TemplateManager::getManager();
 
 		$statisticsYear = Request::getUserVar('statisticsYear');
@@ -100,6 +102,7 @@ class StatisticsHandler extends DirectorHandler {
 		parent::validate();
 
 		$event = &Request::getEvent();
+		if (!$event) Request::redirect(null, 'index');
 
 		$trackIds = Request::getUserVar('trackIds');
 		if (!is_array($trackIds)) {
@@ -108,7 +111,7 @@ class StatisticsHandler extends DirectorHandler {
 		}
 
 		$event->updateSetting('statisticsTrackIds', $trackIds);
-		Request::redirect(null, null, 'statistics', null, array('statisticsYear' => Request::getUserVar('statisticsYear')));
+		Request::redirect(null, null, 'director', 'statistics', null, array('statisticsYear' => Request::getUserVar('statisticsYear')));
 	}
 
 	function getPublicStatisticsNames() {
@@ -131,10 +134,12 @@ class StatisticsHandler extends DirectorHandler {
 		parent::validate();
 
 		$event =& Request::getEvent();
+		if (!$event) Request::redirect(null, 'index');
+
 		foreach (StatisticsHandler::getPublicStatisticsNames() as $name) {
 			$event->updateSetting($name, Request::getUserVar($name)?true:false);
 		}
-		Request::redirect(null, null, 'statistics', null, array('statisticsYear' => Request::getUserVar('statisticsYear')));
+		Request::redirect(null, null, 'director', 'statistics', null, array('statisticsYear' => Request::getUserVar('statisticsYear')));
 	}
 	
 	function csvEscape($value) {
@@ -142,9 +147,12 @@ class StatisticsHandler extends DirectorHandler {
 		return '"' . $value . '"';
 	}
 
+	/* --- Deferred for now ---
 	function reportGenerator($args) {
 		parent::validate();
+
 		$event =& Request::getEvent();
+		if (!$event) Request::redirect(null, 'index');
 
 		$fromDate = Request::getUserDateVar('dateFrom', 1, 1);
 		if ($fromDate !== null) $fromDate = date('Y-m-d H:i:s', $fromDate);
@@ -267,7 +275,7 @@ class StatisticsHandler extends DirectorHandler {
 			echo $separator . StatisticsHandler::csvEscape($row['daysToPublication']);
 			echo "\n";
 		}
-	}
+	} */
 }
 
 ?>

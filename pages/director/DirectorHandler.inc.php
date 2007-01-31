@@ -576,10 +576,12 @@ class DirectorHandler extends Handler {
 		StatisticsHandler::savePublicStatisticsList();
 	}
 
+	/* --- Deferred for now --- 
 	function reportGenerator($args) {
 		import('pages.director.StatisticsHandler');
 		StatisticsHandler::reportGenerator($args);
 	}
+	--- */
 
 
 	//

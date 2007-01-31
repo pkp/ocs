@@ -32,3 +32,4 @@
 <input type="submit" class="button defaultButton" value="{translate key="director.statistics.reports.generate"}"/>
 
 </form>
+

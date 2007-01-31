@@ -15,10 +15,14 @@
 
 {include file="director/statistics/statistics.tpl"}
 
+{* --- Reports deferred for this release ---
+
 <div class="separator">&nbsp;</div>
 
 <br/>
 
 {include file="director/statistics/reportGenerator.tpl"}
+
+--- *}
 
 {include file="common/footer.tpl"}
