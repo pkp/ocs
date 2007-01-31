@@ -83,8 +83,9 @@ class ReviewerAction extends Action {
 				return true;
 			} else {
 				if (!Request::getUserVar('continued')) {
-					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getPaperId());
 					$reviewingTrackEditors = $email->toAssignedReviewingTrackEditors($reviewerSubmission->getPaperId());
+					if (!empty($reviewingTrackEditors)) $assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getPaperId());
+					else $assignedEditors = $email->toAssignedEditors($reviewerSubmission->getPaperId());
 					if (empty($assignedEditors) && empty($reviewingTrackEditors)) {
 						$conference = &Request::getConference();
 						$email->addRecipient($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));

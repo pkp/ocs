@@ -163,6 +163,18 @@ class PaperMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
+	function toAssignedEditors($paperId) {
+		$returner = array();
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignments =& $editAssignmentDao->getEditorAssignmentsByPaperId($paperId);
+		while ($editAssignment =& $editAssignments->next()) {
+			$this->addRecipient($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
+			$returner[] =& $editAssignment;
+			unset($editAssignment);
+		}
+		return $returner;
+	}
+
 	function toAssignedReviewingTrackEditors($paperId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
