@@ -437,7 +437,7 @@ Please note that if you have an institutional registration, there is no need for
 If you have any questions, please feel free to contact me.
 
 {$registrationContactSignature}</field>
-			<field name="description">This email notifies a registered reader that the Manager has created a registration for them. It provides the conference's URL along with instructions for access.</field>
+			<field name="description">This email notifies a registered reader that the Director has created a registration for them. It provides the conference's URL along with instructions for access.</field>
 		</row>
 		<row>
 			<field name="email_key">OPEN_ACCESS_NOTIFY</field>
