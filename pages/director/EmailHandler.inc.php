@@ -231,7 +231,7 @@ class EmailHandler extends DirectorHandler {
 		// If the user is a Conference Director, but has specified an Event,
 		// redirect so no event is present (otherwise they would end up managing
 		// event e-mails.)
-		if($event && !Validation::isDirector()) {
+		if($event && !Validation::isConferenceDirector()) {
 			Request::redirect(null, 'index', Request::getRequestedPage(), Request::getRequestedOp());
 		}
 		
