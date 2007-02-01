@@ -394,7 +394,7 @@ Please confirm your ability to complete this vital contribution to the work of t
 		  *
 		  -->
 		<row>
-			<field name="email_key">SUBMISSION_ACCEPT</field>
+			<field name="email_key">SUBMISSION_ABSTRACT_ACCEPT</field>
 			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$authorName}:
 
@@ -405,7 +405,7 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 		</row>
 
 		<row>
-			<field name="email_key">SUBMISSION_DECLINE</field>
+			<field name="email_key">SUBMISSION_ABSTRACT_DECLINE</field>
 			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$authorName}:
 
@@ -416,7 +416,7 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 		</row>
 
 		<row>
-			<field name="email_key">SUBMISSION_REVISE</field>
+			<field name="email_key">SUBMISSION_ABSTRACT_REVISE</field>
 			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$authorName}:
 
@@ -427,7 +427,51 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 		</row>
 
 		<row>
-			<field name="email_key">SUBMISSION_RESUBMIT</field>
+			<field name="email_key">SUBMISSION_ABSTRACT_RESUBMIT</field>
+			<field name="subject">Editorial Decision on Paper</field>
+			<field name="body">{$authorName}:
+
+We have now completed the review of your submission "{$paperTitle}." As a result...
+
+{$editorialContactSignature}</field>
+			<field name="description">This email is sent by a Track Editor to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_ACCEPT</field>
+			<field name="subject">Editorial Decision on Paper</field>
+			<field name="body">{$authorName}:
+
+We have now completed the review of your submission "{$paperTitle}." As a result...
+
+{$editorialContactSignature}</field>
+			<field name="description">This email is sent by a Track Editor to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_DECLINE</field>
+			<field name="subject">Editorial Decision on Paper</field>
+			<field name="body">{$authorName}:
+
+We have now completed the review of your submission "{$paperTitle}." As a result...
+
+{$editorialContactSignature}</field>
+			<field name="description">This email is sent by a Track Editor to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_REVISE</field>
+			<field name="subject">Editorial Decision on Paper</field>
+			<field name="body">{$authorName}:
+
+We have now completed the review of your submission "{$paperTitle}." As a result...
+
+{$editorialContactSignature}</field>
+			<field name="description">This email is sent by a Track Editor to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_RESUBMIT</field>
 			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$authorName}:
 

@@ -695,68 +695,6 @@ class TrackEditorAction extends Action {
 	}
 
 	/**
-	 * Notifies an author about the editor review.
-	 * @param $trackEditorSubmission object
-	 * FIXME: Still need to add Reviewer Comments
-	 */
-	function notifyAuthor($trackEditorSubmission, $send = false) {
-		$trackEditorSubmissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		
-		$conference = &Request::getConference();
-		$user = &Request::getUser();
-
-		$types = $trackEditorSubmission->getDecisions();
-		$templateName = null;
-		if (is_array($types)) {
-			$decisions = array_pop($types);
-			if (is_array($decisions)) {
-				$lastDecision = array_pop($decisions);
-				switch ($lastDecision.decision) {
-					case SUBMISSION_EDITOR_DECISION_ACCEPT:
-						$templateName = 'SUBMISSION_ACCEPT';
-						break;
-					case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
-						$templateName = 'SUBMISSION_REVISE';
-						break;
-					case SUBMISSION_EDITOR_DECISION_ACCEPT_RESUBMIT:
-						$templateName = 'SUBMISSION_RESUBMIT';
-						break;
-					case SUBMISSION_EDITOR_DECISION_ACCEPT_DECLINE:
-						$templateName = 'SUBMISSION_DECLINE';
-						break;
-				}
-			}
-		}
-
-		import('mail.PaperMailTemplate');
-		$email = &new PaperMailTemplate($trackEditorSubmission, $templateName);
-
-		$author = &$userDao->getUser($trackEditorSubmission->getUserId());
-		if (!isset($author)) return true;
-
-		if ($send && !$email->hasErrors()) {
-			HookRegistry::call('TrackEditorAction::notifyAuthor', array(&$trackEditorSubmission, &$author, &$email));
-			$email->setAssoc(PAPER_EMAIL_EDITOR_NOTIFY_AUTHOR, PAPER_EMAIL_TYPE_EDITOR, $trackEditorSubmission->getPaperId());
-			$email->send();
-			
-		} else {
-			if (!Request::getUserVar('continued')) {
-				$email->addRecipient($author->getEmail(), $author->getFullName());
-				$paramArray = array(
-					'authorName' => $author->getFullName(),
-					'authorUsername' => $author->getUsername(),
-					'authorPassword' => $author->getPassword(),
-					'editorialContactSignature' => $user->getContactSignature(),
-					'submissionUrl' => Request::url(null, null, 'author', 'submissionEditing', $trackEditorSubmission->getPaperId())
-				);
-				$email->assignParams($paramArray);
-			}
-			$email->displayEditForm(Request::url(null, null, null, 'notifyAuthor'), array('paperId' => $trackEditorSubmission->getPaperId()));
-		}
-	}
-	 
-	/**
 	 * Sets the reviewer recommendation for a review assignment.
 	 * Also concatenates the reviewer and editor comments from Peer Review and adds them to Editor Review.
 	 * @param $paperId int
@@ -1445,27 +1383,30 @@ class TrackEditorAction extends Action {
 
 		$templateName = null;
 		$types = $trackEditorSubmission->getDecisions();
-		if (is_array($types)) $rounds = array_pop($types);
+		if (is_array($types)) {
+			$isAbstract = array_pop(array_keys($types)) == REVIEW_PROGRESS_ABSTRACT;
+			$rounds = array_pop($types);
+		}
 		if (isset($rounds) && is_array($rounds)) $decisions = array_pop($rounds);
 		if (isset($decisions) && is_array($decisions)) $lastDecision = array_pop($decisions);
 		if (isset($lastDecision) && is_array($lastDecision)) switch ($lastDecision['decision']) {
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
-				$templateName = 'SUBMISSION_ACCEPT';
+				$templateName = $isAbstract?'SUBMISSION_ABSTRACT_ACCEPT':'SUBMISSION_PAPER_ACCEPT';
 				break;
 			case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
-				$templateName = 'SUBMISSION_REVISE';
+				$templateName = $isAbstract?'SUBMISSION_ABSTRACT_REVISE':'SUBMISSION_PAPER_REVISE';
 				break;
 			case SUBMISSION_EDITOR_DECISION_ACCEPT_RESUBMIT:
-				$templateName = 'SUBMISSION_RESUBMIT';
+				$templateName = $isAbstract?'SUBMISSION_ABSTRACT_RESUBMIT':'SUBMISSION_PAPER_RESUBMIT';
 				break;
 			case SUBMISSION_EDITOR_DECISION_ACCEPT_DECLINE:
-				$templateName = 'SUBMISSION_DECLINE';
+				$templateName = $isAbstract?'SUBMISSION_ABSTRACT_DECLINE':'SUBMISSION_PAPER_DECLINE';
 				break;
 		}
 
 		$user = &Request::getUser();
 		import('mail.PaperMailTemplate');
-		$email = &new PaperMailTemplate($trackEditorSubmission, ?$templateName);
+		$email = &new PaperMailTemplate($trackEditorSubmission, $templateName);
 	
 		if ($send && !$email->hasErrors()) {
 			HookRegistry::call('TrackEditorAction::emailEditorDecisionComment', array(&$trackEditorSubmission, &$send));
