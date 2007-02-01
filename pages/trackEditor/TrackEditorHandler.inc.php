@@ -341,11 +341,6 @@ class TrackEditorHandler extends Handler {
 		SubmissionEditHandler::editorReview();
 	}
 
-	function notifyAuthor($args) {
-		import('pages.trackEditor.SubmissionEditHandler');
-		SubmissionEditHandler::notifyAuthor($args);
-	}
-
 	function uploadReviewVersion() {
 		import('pages.trackEditor.SubmissionEditHandler');
 		SubmissionEditHandler::uploadReviewVersion();

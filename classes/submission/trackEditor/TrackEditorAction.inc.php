@@ -705,9 +705,32 @@ class TrackEditorAction extends Action {
 		
 		$conference = &Request::getConference();
 		$user = &Request::getUser();
-		
+
+		$types = $trackEditorSubmission->getDecisions();
+		$templateName = null;
+		if (is_array($types)) {
+			$decisions = array_pop($types);
+			if (is_array($decisions)) {
+				$lastDecision = array_pop($decisions);
+				switch ($lastDecision.decision) {
+					case SUBMISSION_EDITOR_DECISION_ACCEPT:
+						$templateName = 'SUBMISSION_ACCEPT';
+						break;
+					case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
+						$templateName = 'SUBMISSION_REVISE';
+						break;
+					case SUBMISSION_EDITOR_DECISION_ACCEPT_RESUBMIT:
+						$templateName = 'SUBMISSION_RESUBMIT';
+						break;
+					case SUBMISSION_EDITOR_DECISION_ACCEPT_DECLINE:
+						$templateName = 'SUBMISSION_DECLINE';
+						break;
+				}
+			}
+		}
+
 		import('mail.PaperMailTemplate');
-		$email = &new PaperMailTemplate($trackEditorSubmission, 'EDITOR_REVIEW');
+		$email = &new PaperMailTemplate($trackEditorSubmission, $templateName);
 
 		$author = &$userDao->getUser($trackEditorSubmission->getUserId());
 		if (!isset($author)) return true;
@@ -1420,9 +1443,29 @@ class TrackEditorAction extends Action {
 		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
 		$conference = &Request::getConference();
 
+		$templateName = null;
+		$types = $trackEditorSubmission->getDecisions();
+		if (is_array($types)) $rounds = array_pop($types);
+		if (isset($rounds) && is_array($rounds)) $decisions = array_pop($rounds);
+		if (isset($decisions) && is_array($decisions)) $lastDecision = array_pop($decisions);
+		if (isset($lastDecision) && is_array($lastDecision)) switch ($lastDecision['decision']) {
+			case SUBMISSION_EDITOR_DECISION_ACCEPT:
+				$templateName = 'SUBMISSION_ACCEPT';
+				break;
+			case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
+				$templateName = 'SUBMISSION_REVISE';
+				break;
+			case SUBMISSION_EDITOR_DECISION_ACCEPT_RESUBMIT:
+				$templateName = 'SUBMISSION_RESUBMIT';
+				break;
+			case SUBMISSION_EDITOR_DECISION_ACCEPT_DECLINE:
+				$templateName = 'SUBMISSION_DECLINE';
+				break;
+		}
+
 		$user = &Request::getUser();
 		import('mail.PaperMailTemplate');
-		$email = &new PaperMailTemplate($trackEditorSubmission);
+		$email = &new PaperMailTemplate($trackEditorSubmission, ?$templateName);
 	
 		if ($send && !$email->hasErrors()) {
 			HookRegistry::call('TrackEditorAction::emailEditorDecisionComment', array(&$trackEditorSubmission, &$send));

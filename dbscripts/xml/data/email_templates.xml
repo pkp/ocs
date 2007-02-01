@@ -35,21 +35,16 @@
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
 		</row>
-		<!--<row>
-			<field name="email_key">PUBLISH_NOTIFY</field>
-			<field name="can_edit">1</field>
-			<field name="can_disable">0</field>
-		</row>-->
-		<!--<row>
+		<!--row>
 			<field name="email_key">LOCKSS_EXISTING_ARCHIVE</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-		</row>-->
-		<!--<row>
+		</row>
+		<row>
 			<field name="email_key">LOCKSS_NEW_ARCHIVE</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
-		</row>-->
+		</row-->
 
 
 		<!--
@@ -206,7 +201,28 @@
 		  *
 		  -->
 		<row>
-			<field name="email_key">EDITOR_REVIEW</field>
+			<field name="email_key">SUBMISSION_ACCEPT</field>
+			<field name="can_edit">1</field>
+			<field name="can_disable">0</field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
+			<field name="to_role_id">4096<!-- Author --></field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_DECLINE</field>
+			<field name="can_edit">1</field>
+			<field name="can_disable">0</field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
+			<field name="to_role_id">4096<!-- Author --></field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_REVISE</field>
+			<field name="can_edit">1</field>
+			<field name="can_disable">0</field>
+			<field name="from_role_id">128<!-- Track Editor --></field>
+			<field name="to_role_id">4096<!-- Author --></field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_RESUBMIT</field>
 			<field name="can_edit">1</field>
 			<field name="can_disable">0</field>
 			<field name="from_role_id">128<!-- Track Editor --></field>
@@ -225,29 +241,5 @@
 			<field name="can_disable">0</field>
 			<field name="to_role_id">32768</field>
 		</row>
-		<!--<row>
-			<field name="email_key">OPEN_ACCESS_NOTIFY</field>
-			<field name="can_edit">1</field>
-			<field name="can_disable">0</field>
-			<field name="to_role_id">32768</field>
-		</row>-->
-		<!--<row>
-			<field name="email_key">SUBSCRIPTION_BEFORE_EXPIRY</field>
-			<field name="can_edit">1</field>
-			<field name="can_disable">0</field>
-			<field name="to_role_id">32768</field>
-		</row>-->
-		<!--<row>
-			<field name="email_key">SUBSCRIPTION_AFTER_EXPIRY</field>
-			<field name="can_edit">1</field>
-			<field name="can_disable">0</field>
-			<field name="to_role_id">32768</field>
-		</row>-->
-		<!--<row>
-			<field name="email_key">SUBSCRIPTION_AFTER_EXPIRY_LAST</field>
-			<field name="can_edit">1</field>
-			<field name="can_disable">0</field>
-			<field name="to_role_id">32768</field>
-		</row>-->
 	</table>
 </data>

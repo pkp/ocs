@@ -724,18 +724,6 @@ class SubmissionEditHandler extends TrackEditorHandler {
 		Request::redirect(null, null, null, $redirectTarget, $redirectArgs);
 	}
 
-	function notifyAuthor($args = array()) {
-		$paperId = Request::getUserVar('paperId');
-		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
-
-		$send = Request::getUserVar('send')?true:false;
-		parent::setupTemplate(true, $paperId, 'editing');
-
-		if (TrackEditorAction::notifyAuthor($submission, $send)) {
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
-		}
-	}
-
 	function uploadReviewVersion() {
 		$paperId = Request::getUserVar('paperId');
 		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);

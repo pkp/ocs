@@ -394,20 +394,44 @@ Please confirm your ability to complete this vital contribution to the work of t
 		  *
 		  -->
 		<row>
-			<field name="email_key">EDITOR_REVIEW</field>
-			<field name="subject">Editorial Review of Paper</field>
+			<field name="email_key">SUBMISSION_ACCEPT</field>
+			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$authorName}:
 
-We have now completed the review of your submission "{$paperTitle}." Our decision is to...
+We have now completed the review of your submission "{$paperTitle}." As a result...
 
-{$comments}.
+{$editorialContactSignature}</field>
+			<field name="description">This email is sent by a Track Editor to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
+		</row>
 
-Additional comments on the paper, based on the editorial and peer review, are found by logging in to the conference web site:
+		<row>
+			<field name="email_key">SUBMISSION_DECLINE</field>
+			<field name="subject">Editorial Decision on Paper</field>
+			<field name="body">{$authorName}:
 
-Submission URL: {$submissionUrl}
-Username: {$authorUsername}
+We have now completed the review of your submission "{$paperTitle}." As a result...
 
-If you have any questions, please contact me.
+{$editorialContactSignature}</field>
+			<field name="description">This email is sent by a Track Editor to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_REVISE</field>
+			<field name="subject">Editorial Decision on Paper</field>
+			<field name="body">{$authorName}:
+
+We have now completed the review of your submission "{$paperTitle}." As a result...
+
+{$editorialContactSignature}</field>
+			<field name="description">This email is sent by a Track Editor to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_RESUBMIT</field>
+			<field name="subject">Editorial Decision on Paper</field>
+			<field name="body">{$authorName}:
+
+We have now completed the review of your submission "{$paperTitle}." As a result...
 
 {$editorialContactSignature}</field>
 			<field name="description">This email is sent by a Track Editor to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
