@@ -353,6 +353,16 @@ class FileManager {
 	}
 	
 	/**
+	 * Truncate a filename to fit in the specified length.
+	 */
+	function truncateFileName($fileName, $length = 127) {
+		if (String::strlen($fileName) <= $length) return $fileName;
+		$ext = FileManager::getExtension($fileName);
+		$truncated = String::substr($fileName, 0, $length - 1 - String::strlen($ext)) . '.' . $ext;
+		return String::substr($truncated, 0, $length);
+	}
+
+	/**
 	 * Return pretty file size string (in B, KB, MB, or GB units).
 	 * @param $size int file size in bytes
 	 * @return string
