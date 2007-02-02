@@ -244,7 +244,8 @@ class AuthorAction extends Action {
 	function downloadAuthorFile($paper, $fileId, $revision = null) {
 		$authorSubmissionDao = &DAORegistry::getDAO('AuthorSubmissionDAO');		
 
-		$submission = &$authorSubmissionDao->getAuthorSubmission($paper->getPaperId());
+		$submission =& $authorSubmissionDao->getAuthorSubmission($paper->getPaperId());
+		$layoutAssignment =& $submission->getLayoutAssignment();
 
 		$canDownload = false;
 		
