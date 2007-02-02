@@ -152,7 +152,7 @@ class EventSiteSettingsForm extends Form {
 			$eventSettingsDao->installSettings($eventId, 'registry/eventSettings.xml', array(
 				'indexUrl' => Request::getIndexUrl(),
 				'conferencePath' => $conference->getPath(),
-				'conferenceName' => $conference->getName(),
+				'conferenceName' => $conference->getTitle(),
 				'eventPath' => $this->getData('path'),
 				'eventName' => $this->getData('title')
 			));
