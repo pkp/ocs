@@ -1545,7 +1545,7 @@ class SubmissionEditHandler extends TrackEditorHandler {
 				// Since this user is an editor, both are available.
 				$templateMgr->assign('canReview', true);
 				$templateMgr->assign('canEdit', true);
-			} else {die('foo');
+			} else {
 				// If this user isn't the submission's editor, they don't have access.
 				$editAssignments =& $trackEditorSubmission->getEditAssignments();
 				$wasFound = false;
