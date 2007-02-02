@@ -1317,10 +1317,6 @@ class SubmissionEditHandler extends TrackEditorHandler {
 		$templateMgr->assign('isEditor', Validation::isEditor());
 		$templateMgr->assign_by_ref('submission', $submission);
 
-		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
-		import('file.PaperFileManager');
-		$templateMgr->assign('attachments', $paperFileDao->getPaperFilesByAssocId($logId, ARTICLE_FILE_ATTACHMENT));
-		
 		if ($logId) {
 			$logDao = &DAORegistry::getDAO('PaperEmailLogDAO');
 			$logEntry = &$logDao->getLogEntry($logId, $paperId);
