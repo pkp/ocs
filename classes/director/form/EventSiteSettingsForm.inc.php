@@ -142,10 +142,10 @@ class EventSiteSettingsForm extends Form {
 			$conferenceId = $event->getConferenceId();
 			$privateBasePath = Config::getVar('files','files_dir') . '/conferences/' . $conferenceId . '/events/' . $eventId;
 			$publicBasePath = Config::getVar('files','public_files_dir') . '/conferences/' . $conferenceId . '/events/' . $eventId;
-			FileManager::mkdir($privateBasePath);
-			FileManager::mkdir($privateBasePath . '/papers');
-			FileManager::mkdir($privateBasePath . '/tracks');
-			FileManager::mkdir($publicBasePath);
+			FileManager::mkdirtree($privateBasePath);
+			FileManager::mkdirtree($privateBasePath . '/papers');
+			FileManager::mkdirtree($privateBasePath . '/tracks');
+			FileManager::mkdirtree($publicBasePath);
 
 			// Install default event settings
 			$eventSettingsDao = &DAORegistry::getDAO('EventSettingsDAO');
