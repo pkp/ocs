@@ -170,6 +170,7 @@ input.defaultButton {
 	padding-top: 0.5em;
 	font-family: Georgia,'Times New Roman',Times,serif;
 	font-weight: normal;
+	line-height: 100%;
 }
 
 #main h3 {
