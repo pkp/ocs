@@ -102,10 +102,10 @@ class TemplateManager extends Smarty {
 				$this->assign('alternateLocale1', $conference->getSetting('alternateLocale1'));
 				$this->assign('alternateLocale2', $conference->getSetting('alternateLocale2'));
 				
+				$this->assign('publicConferenceFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
 				if (isset($event)) {
 
 					// This will be needed if inheriting public conference files from the event.
-					$this->assign('publicConferenceFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
 					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getEventFilesPath($event->getEventId()));
 
 					$this->assign_by_ref('currentEvent', $event);
