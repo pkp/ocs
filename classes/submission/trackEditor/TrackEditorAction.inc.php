@@ -250,7 +250,6 @@ class TrackEditorAction extends Action {
 		
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
-		$isEmailBasedReview = $conference->getSetting('mailSubmissionsToReviewers')==1?true:false;
 		$reviewerAccessKeysEnabled = $conference->getSetting('reviewerAccessKeysEnabled');
 
 		// If we're using access keys, disable the address fields
@@ -261,7 +260,7 @@ class TrackEditorAction extends Action {
 
 		import('mail.PaperMailTemplate');
 
-		$email = &new PaperMailTemplate($trackEditorSubmission, $isEmailBasedReview?'REVIEW_REQUEST_ATTACHED':($reviewerAccessKeysEnabled?'REVIEW_REQUEST_ONECLICK':'REVIEW_REQUEST'), null, $isEmailBasedReview?true:null);
+		$email = &new PaperMailTemplate($trackEditorSubmission, $reviewerAccessKeysEnabled?'REVIEW_REQUEST_ONECLICK':'REVIEW_REQUEST');
 
 		if ($preventAddressChanges) {
 			$email->setAddressFieldsEnabled(false);
@@ -325,17 +324,6 @@ class TrackEditorAction extends Action {
 					);
 					$email->assignParams($paramArray);
 					$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
-					if ($isEmailBasedReview) {
-						// An email-based review process was selected. Attach
-						// the current review version.
-						import('file.TemporaryFileManager');
-						$temporaryFileManager = &new TemporaryFileManager();
-						$reviewVersion =& $trackEditorSubmission->getReviewFile();
-						if ($reviewVersion) {
-							$temporaryFile = $temporaryFileManager->paperToTemporaryFile($reviewVersion, $user->getUserId());
-							$email->addPersistAttachment($temporaryFile);
-						}
-					}
 				}
 				$email->displayEditForm(Request::url(null, null, null, 'notifyReviewer'), array('reviewId' => $reviewId, 'paperId' => $trackEditorSubmission->getPaperId()));
 				return false;

@@ -217,7 +217,7 @@ Thank you for considering this request.
 
 Abstract
 {$paperAbstract}</field>
-			<field name="description">This email from the Track Editor to a Reviewer requests that the reviewer accept or decline the task of reviewing a submission. It provides information about the submission such as the title and abstract, a review due date, and how to access the submission itself. This message is used when the Standard Review Process is selected in Conference Setup, Step 2. (Otherwise see REVIEW_REQUEST_ATTACHED.)</field>
+			<field name="description">This email from the Track Editor to a Reviewer requests that the reviewer accept or decline the task of reviewing a submission. It provides information about the submission such as the title and abstract, a review due date, and how to access the submission itself.</field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_REQUEST_ONECLICK</field>
@@ -243,26 +243,6 @@ Thank you for considering this request.
 Abstract
 {$paperAbstract}</field>
 			<field name="description">This email from the Track Editor to a Reviewer requests that the reviewer accept or decline the task of reviewing a submission. It provides information about the submission such as the title and abstract, a review due date, and how to access the submission itself. This message is used when the Standard Review Process is selected in Conference Setup, Step 2, and one-click reviewer access is enabled.</field>
-		</row>
-		<row>
-			<field name="email_key">REVIEW_REQUEST_ATTACHED</field>
-			<field name="subject">Paper Review Request</field>
-			<field name="body">{$reviewerName}:
-
-I believe that you would serve as an excellent reviewer of the manuscript, "{$paperTitle}," and I am asking that you consider undertaking this important task for us. The Review Guidelines for this conference are appended below, and the submission is attached to this email. Your review of the submission, along with your recommendation, should be emailed to me by {$reviewDueDate}.
-
-Please indicate in a return email by {$weekLaterDate} whether you are able and willing to do the review.
-
-Thank you for considering this request.
-
-{$editorialContactSignature}
-
-
-Review Guidelines
-
-{$reviewGuidelines}
-</field>
-			<field name="description">This email is sent by the Track Editor to a Reviewer to request that they accept or decline the task of reviewing a submission. It includes the submission as an attachment. This message is used when the Email-Attachment Review Process is selected in Conference Setup, Step 2. (Otherwise see REVIEW_REQUEST.)</field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_CANCEL</field>
