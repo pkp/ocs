@@ -101,6 +101,7 @@ class TrackForm extends Form {
 					'abbrevAlt1' => $track->getAbbrevAlt1(),
 					'abbrevAlt2' => $track->getAbbrevAlt2(),
 					'metaIndexed' => $track->getMetaIndexed(),
+					'metaReviewed' => $track->getMetaReviewed(),
 					'identifyType' => $track->getIdentifyType(),
 					'editorRestriction' => $track->getEditorRestricted(),
 					'policy' => $track->getPolicy()
@@ -113,7 +114,7 @@ class TrackForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'titleAlt1', 'titleAlt2', 'abbrev', 'abbrevAlt1', 'abbrevAlt2', 'metaIndexed', 'identifyType', 'editorRestriction', 'policy'));
+		$this->readUserVars(array('title', 'titleAlt1', 'titleAlt2', 'abbrev', 'abbrevAlt1', 'abbrevAlt2', 'metaReviewed', 'metaIndexed', 'identifyType', 'editorRestriction', 'policy'));
 	}
 	
 	/**
@@ -141,6 +142,7 @@ class TrackForm extends Form {
 		$track->setAbbrev($this->getData('abbrev'));
 		$track->setAbbrevAlt1($this->getData('abbrevAlt1'));
 		$track->setAbbrevAlt2($this->getData('abbrevAlt2'));
+		$track->setMetaReviewed($this->getData('metaReviewed') ? 1 : 0);
 		$track->setMetaIndexed($this->getData('metaIndexed') ? 1 : 0);
 		$track->setIdentifyType($this->getData('identifyType'));
 		$track->setEditorRestricted($this->getData('editorRestriction') ? 1 : 0);

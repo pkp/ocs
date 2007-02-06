@@ -230,6 +230,22 @@ class Track extends DataObject {
 	}
 	
 	/**
+	 * Get peer review setting of track.
+	 * @return boolean
+	 */
+	function getMetaReviewed() {
+		return $this->getData('metaReviewed');
+	}
+	
+	/**
+	 * Set peer review setting of track.
+	 * @param $metaReviewed boolean
+	 */
+	function setMetaReviewed($metaReviewed) {
+		return $this->setData('metaReviewed', $metaReviewed);
+	}
+	
+	/**
 	 * Get string identifying type of items in this track.
 	 * @return string
 	 */
