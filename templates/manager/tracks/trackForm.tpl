@@ -181,8 +181,8 @@
 </table>
 <div class="separator"></div>
 
-<h3>{translate key="user.role.trackEditors"}</h3>
-<p><span class="instruct">{translate key="manager.tracks.trackEditorInstructions"}</span></p>
+<h3>{translate key="user.role.trackDirectors"}</h3>
+<p><span class="instruct">{translate key="manager.tracks.trackDirectorInstructions"}</span></p>
 <table class="data" width="100%">
 <tr valign="top">
 	<td width="20%">&nbsp;</td>

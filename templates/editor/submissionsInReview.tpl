@@ -34,7 +34,7 @@
 			</table>
 		</td>
 		<td width="5%">{translate key="submissions.ruling"}</td>
-		<td width="5%">{translate key="paper.trackEditor"}</td>
+		<td width="5%">{translate key="paper.trackDirector"}</td>
 	</tr>
 	<tr>
 		<td colspan="8" class="headseparator">&nbsp;</td>

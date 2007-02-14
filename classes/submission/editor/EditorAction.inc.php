@@ -13,9 +13,9 @@
  * $Id$
  */
 
-import('submission.trackEditor.TrackEditorAction');
+import('submission.trackDirector.TrackDirectorAction');
 
-class EditorAction extends TrackEditorAction {
+class EditorAction extends TrackDirectorAction {
 
 	/**
 	 * Constructor.
@@ -29,11 +29,11 @@ class EditorAction extends TrackEditorAction {
 	 */
 	 
 	/**
-	 * Assigns a track editor to a submission.
+	 * Assigns a track director to a submission.
 	 * @param $paperId int
 	 * @return boolean true iff ready for redirect
 	 */
-	function assignEditor($paperId, $trackEditorId, $send = false) {
+	function assignEditor($paperId, $trackDirectorId, $send = false) {
 		$editorSubmissionDao = &DAORegistry::getDAO('EditorSubmissionDAO');
 		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
@@ -42,16 +42,16 @@ class EditorAction extends TrackEditorAction {
 		$conference = &Request::getConference();
 
 		$editorSubmission = &$editorSubmissionDao->getEditorSubmission($paperId);
-		$trackEditor = &$userDao->getUser($trackEditorId);
-		if (!isset($trackEditor)) return true;
+		$trackDirector = &$userDao->getUser($trackDirectorId);
+		if (!isset($trackDirector)) return true;
 
 		import('mail.PaperMailTemplate');
 		$email = &new PaperMailTemplate($editorSubmission, 'EDITOR_ASSIGN');
 
-		if ($user->getUserId() === $trackEditorId || !$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('EditorAction::assignEditor', array(&$editorSubmission, &$trackEditor, &$email));
-			if ($email->isEnabled() && $user->getUserId() !== $trackEditorId) {
-				$email->setAssoc(PAPER_EMAIL_EDITOR_ASSIGN, PAPER_EMAIL_TYPE_EDITOR, $trackEditor->getUserId());
+		if ($user->getUserId() === $trackDirectorId || !$email->isEnabled() || ($send && !$email->hasErrors())) {
+			HookRegistry::call('EditorAction::assignEditor', array(&$editorSubmission, &$trackDirector, &$email));
+			if ($email->isEnabled() && $user->getUserId() !== $trackDirectorId) {
+				$email->setAssoc(PAPER_EMAIL_EDITOR_ASSIGN, PAPER_EMAIL_TYPE_EDITOR, $trackDirector->getUserId());
 				$email->send();
 			}
 
@@ -61,7 +61,7 @@ class EditorAction extends TrackEditorAction {
 			$editAssignment->setCanReview(1);
 		
 			// Make the selected editor the new editor
-			$editAssignment->setEditorId($trackEditorId);
+			$editAssignment->setEditorId($trackDirectorId);
 			$editAssignment->setDateNotified(Core::getCurrentDate());
 			$editAssignment->setDateUnderway(null);
 		
@@ -74,22 +74,22 @@ class EditorAction extends TrackEditorAction {
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($paperId, PAPER_LOG_EDITOR_ASSIGN, LOG_TYPE_EDITOR, $trackEditorId, 'log.editor.editorAssigned', array('editorName' => $trackEditor->getFullName(), 'paperId' => $paperId));
+			PaperLog::logEvent($paperId, PAPER_LOG_EDITOR_ASSIGN, LOG_TYPE_EDITOR, $trackDirectorId, 'log.editor.editorAssigned', array('editorName' => $trackDirector->getFullName(), 'paperId' => $paperId));
 			return true;
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$email->addRecipient($trackEditor->getEmail(), $trackEditor->getFullName());
+				$email->addRecipient($trackDirector->getEmail(), $trackDirector->getFullName());
 				$paramArray = array(
-					'editorialContactName' => $trackEditor->getFullName(),
-					'editorUsername' => $trackEditor->getUsername(),
-					'editorPassword' => $trackEditor->getPassword(),
+					'editorialContactName' => $trackDirector->getFullName(),
+					'editorUsername' => $trackDirector->getUsername(),
+					'editorPassword' => $trackDirector->getPassword(),
 					'editorialContactSignature' => $user->getContactSignature(),
-					'submissionUrl' => Request::url(null, null, 'trackEditor', 'submissionReview', $paperId),
-					'submissionEditingUrl' => Request::url(null, null, 'trackEditor', 'submissionReview', $paperId)
+					'submissionUrl' => Request::url(null, null, 'trackDirector', 'submissionReview', $paperId),
+					'submissionEditingUrl' => Request::url(null, null, 'trackDirector', 'submissionReview', $paperId)
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, null, 'assignEditor', 'send'), array('paperId' => $paperId, 'editorId' => $trackEditorId));
+			$email->displayEditForm(Request::url(null, null, null, 'assignEditor', 'send'), array('paperId' => $paperId, 'editorId' => $trackDirectorId));
 			return false;
 		}
 	}
@@ -103,13 +103,13 @@ class EditorAction extends TrackEditorAction {
 		$user =& Request::getUser();
 
 		import('submission.editor.EditorAction');
-		import('submission.trackEditor.TrackEditorAction');
+		import('submission.trackDirector.TrackDirectorAction');
 		import('submission.proofreader.ProofreaderAction');
 
-		$trackEditorSubmissionDao =& DAORegistry::getDAO('TrackEditorSubmissionDAO');
-		$trackEditorSubmission =& $trackEditorSubmissionDao->getTrackEditorSubmission($paper->getPaperId());
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($paper->getPaperId());
 
-		$submissionFile = $trackEditorSubmission->getSubmissionFile();
+		$submissionFile = $trackDirectorSubmission->getSubmissionFile();
 
 		// Add a long entry before doing anything.
 		import('paper.log.PaperLog');
@@ -117,27 +117,27 @@ class EditorAction extends TrackEditorAction {
 		PaperLog::logEvent($paper->getPaperId(), PAPER_LOG_EDITOR_EXPEDITE, LOG_TYPE_EDITOR, $user->getUserId(), 'log.editor.submissionExpedited', array('editorName' => $user->getFullName(), 'paperId' => $paper->getPaperId()));
 
 		// 1. Ensure that an editor is assigned.
-		$editAssignments =& $trackEditorSubmission->getEditAssignments();
+		$editAssignments =& $trackDirectorSubmission->getEditAssignments();
 		if (empty($editAssignments)) {
 			// No editors are currently assigned; assign self.
 			EditorAction::assignEditor($paper->getPaperId(), $user->getUserId());
 		}
 
 		// 2. Accept the submission and send to copyediting.
-		$trackEditorSubmission =& $trackEditorSubmissionDao->getTrackEditorSubmission($paper->getPaperId());
-		if (!$trackEditorSubmission->getCopyeditFile()) {
-			TrackEditorAction::recordDecision($trackEditorSubmission, SUBMISSION_EDITOR_DECISION_ACCEPT);
-			$editorFile = $trackEditorSubmission->getEditorFile();
-			TrackEditorAction::setCopyeditFile($trackEditorSubmission, $editorFile->getFileId(), $editorFile->getRevision());
+		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($paper->getPaperId());
+		if (!$trackDirectorSubmission->getCopyeditFile()) {
+			TrackDirectorAction::recordDecision($trackDirectorSubmission, SUBMISSION_EDITOR_DECISION_ACCEPT);
+			$editorFile = $trackDirectorSubmission->getEditorFile();
+			TrackDirectorAction::setCopyeditFile($trackDirectorSubmission, $editorFile->getFileId(), $editorFile->getRevision());
 		}
 
 		// 3. Add a galley.
-		$trackEditorSubmission =& $trackEditorSubmissionDao->getTrackEditorSubmission($paper->getPaperId());
-		$galleys =& $trackEditorSubmission->getGalleys();
+		$trackDirectorSubmission =& $trackDirectorSubmissionDao->getTrackDirectorSubmission($paper->getPaperId());
+		$galleys =& $trackDirectorSubmission->getGalleys();
 		if (empty($galleys)) {
 			// No galley present -- use copyediting file.
 			import('file.PaperFileManager');
-			$copyeditFile =& $trackEditorSubmission->getCopyeditFile();
+			$copyeditFile =& $trackDirectorSubmission->getCopyeditFile();
 			$fileType = $copyeditFile->getFileType();
 			$paperFileManager =& new PaperFileManager($paper->getPaperId());
 			$fileId = $paperFileManager->copyPublicFile($copyeditFile->getFilePath(), $fileType);
@@ -169,7 +169,7 @@ class EditorAction extends TrackEditorAction {
 		}
 
 		// 4. Send to scheduling
-		ProofreaderAction::queueForScheduling($trackEditorSubmission);
+		ProofreaderAction::queueForScheduling($trackDirectorSubmission);
 	}
 	*/
 }

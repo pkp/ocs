@@ -175,10 +175,10 @@ class PaperMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function toAssignedReviewingTrackEditors($paperId) {
+	function toAssignedReviewingTrackDirectors($paperId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getReviewingTrackEditorAssignmentsByPaperId($paperId);
+		$editAssignments =& $editAssignmentDao->getReviewingTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addRecipient($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
 			$returner[] =& $editAssignment;
@@ -187,10 +187,10 @@ class PaperMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function toAssignedEditingTrackEditors($paperId) {
+	function toAssignedEditingTrackDirectors($paperId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditingTrackEditorAssignmentsByPaperId($paperId);
+		$editAssignments =& $editAssignmentDao->getEditingTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addRecipient($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
 			$returner[] =& $editAssignment;
@@ -199,10 +199,10 @@ class PaperMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function ccAssignedReviewingTrackEditors($paperId) {
+	function ccAssignedReviewingTrackDirectors($paperId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getReviewingTrackEditorAssignmentsByPaperId($paperId);
+		$editAssignments =& $editAssignmentDao->getReviewingTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addCc($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
 			$returner[] =& $editAssignment;
@@ -211,10 +211,10 @@ class PaperMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function ccAssignedEditingTrackEditors($paperId) {
+	function ccAssignedEditingTrackDirectors($paperId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditingTrackEditorAssignmentsByPaperId($paperId);
+		$editAssignments =& $editAssignmentDao->getEditingTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addCc($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
 			$returner[] =& $editAssignment;

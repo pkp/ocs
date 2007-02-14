@@ -47,8 +47,8 @@ class PresenterAction extends Action {
 			
 				$presenterSubmissionDao->updatePresenterSubmission($presenterSubmission);
 
-				$trackEditorSubmissionDao =& DAORegistry::getDAO('TrackEditorSubmissionDAO');
-				$trackEditorSubmissionDao->createReviewRound($presenterSubmission->getPaperId(), 1, 1, 1);
+				$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+				$trackDirectorSubmissionDao->createReviewRound($presenterSubmission->getPaperId(), 1, 1, 1);
 			}
 		}
 	}

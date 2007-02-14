@@ -56,7 +56,7 @@ function confirmAndPrompt(userId) {
 			{/if}
 
 			<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
-			<option {if $roleSymbolic=='trackEditors'}selected="selected" {/if}value="trackEditors">{translate key="user.role.trackEditors"}</option>
+			<option {if $roleSymbolic=='trackDirectors'}selected="selected" {/if}value="trackDirectors">{translate key="user.role.trackDirectors"}</option>
 			<option {if $roleSymbolic=='layoutEditors'}selected="selected" {/if}value="layoutEditors">{translate key="user.role.layoutEditors"}</option>
 			<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
 
@@ -93,7 +93,7 @@ function confirmAndPrompt(userId) {
 		{/if}
 	
 		<li><a href="{url path="editors"}">{translate key="user.role.editors"}</a></li>
-		<li><a href="{url path="trackEditors"}">{translate key="user.role.trackEditors"}</a></li>
+		<li><a href="{url path="trackDirectors"}">{translate key="user.role.trackDirectors"}</a></li>
 		<li><a href="{url path="layoutEditors"}">{translate key="user.role.layoutEditors"}</a></li>
 		<li><a href="{url path="reviewers"}">{translate key="user.role.reviewers"}</a></li>
 	

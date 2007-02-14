@@ -179,8 +179,8 @@ class ConferenceReportIterator extends DBRowIterator {
 		$lastDecision = array_pop($editorDecisions);
 
 		if ($lastDecision) {
-			import('submission.trackEditor.TrackEditorSubmission');
-			$decisionOptions =& TrackEditorSubmission::getEditorDecisionOptions();
+			import('submission.trackDirector.TrackDirectorSubmission');
+			$decisionOptions =& TrackDirectorSubmission::getEditorDecisionOptions();
 			$ret['decision'] = Locale::translate($decisionOptions[$lastDecision['decision']]);
 			$ret['dateDecided'] = $lastDecision['dateDecided'];
 

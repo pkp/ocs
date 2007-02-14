@@ -76,7 +76,7 @@ class PeopleHandler extends ManagerHandler {
 					$helpTopicId = 'conference.roles.editor';
 					break;
 				case ROLE_ID_TRACK_EDITOR:
-					$helpTopicId = 'conference.roles.trackEditor';
+					$helpTopicId = 'conference.roles.trackDirector';
 					break;
 				case ROLE_ID_LAYOUT_EDITOR:
 					$helpTopicId = 'conference.roles.layoutEditor';
@@ -515,8 +515,8 @@ class PeopleHandler extends ManagerHandler {
 			$notificationStatusDao->deleteNotificationStatusByUserId($oldUserId);
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 			$groupMembershipDao->deleteMembershipByUserId($oldUserId);
-			$sectionEditorsDao =& DAORegistry::getDAO('SectionEditorsDAO');
-			$sectionEditorsDao->deleteEditorsByUserId($oldUserId);
+			$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
+			$trackDirectorsDao->deleteEditorsByUserId($oldUserId);
 			$roleDao->deleteRoleByUserId($oldUserId);
 			$userDao->deleteUserById($oldUserId);
 

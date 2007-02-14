@@ -125,8 +125,8 @@ class ReviewerHandler extends Handler {
 		$pageHierarchy = $subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'reviewer'), 'user.role.reviewer'))
 				: array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'reviewer'), 'user.role.reviewer'));
 
-		import('submission.trackEditor.TrackEditorAction');
-		$submissionCrumb = TrackEditorAction::submissionBreadcrumb($paperId, $parentPage, 'reviewer');
+		import('submission.trackDirector.TrackDirectorAction');
+		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'reviewer');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
 		}

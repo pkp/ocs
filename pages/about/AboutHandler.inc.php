@@ -127,11 +127,11 @@ class AboutHandler extends Handler {
 			$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId(), $schedConfId);
 			$editors = &$editors->toArray();
 
-			$trackEditors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_EDITOR, $conference->getConferenceId(), $schedConfId);
-			$trackEditors = &$trackEditors->toArray();
+			$trackDirectors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_EDITOR, $conference->getConferenceId(), $schedConfId);
+			$trackDirectors = &$trackDirectors->toArray();
 		
 			$templateMgr->assign_by_ref('editors', $editors);
-			$templateMgr->assign_by_ref('trackEditors', $trackEditors);
+			$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
 			$templateMgr->display('about/organizingTeam.tpl');
 		} else {
 			// The Organizing Team feature has been enabled.
@@ -197,8 +197,8 @@ class AboutHandler extends Handler {
 					$user =& $potentialUser;
 			}
 
-			$trackEditors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_EDITOR, $conference->getConferenceId());
-			while ($potentialUser =& $trackEditors->next()) {
+			$trackDirectors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_EDITOR, $conference->getConferenceId());
+			while ($potentialUser =& $trackDirectors->next()) {
 				if ($potentialUser->getUserId() == $userId)
 					$user =& $potentialUser;
 			}
@@ -241,7 +241,7 @@ class AboutHandler extends Handler {
 		AboutHandler::setupTemplate(true);
 		
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$trackEditorsDao = &DAORegistry::getDAO('TrackEditorsDAO');
+		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
 		$conference =& Request::getConference();
@@ -258,11 +258,11 @@ class AboutHandler extends Handler {
 		}
 		$templateMgr->assign_by_ref('tracks', $tracks);
 		
-		$trackEditors = array();
+		$trackDirectors = array();
 		foreach ($tracks as $track) {
-			$trackEditors[$track->getTrackId()] = &$trackEditorsDao->getEditorsByTrackId($conference->getConferenceId(), $track->getTrackId());
+			$trackDirectors[$track->getTrackId()] = &$trackDirectorsDao->getEditorsByTrackId($conference->getConferenceId(), $track->getTrackId());
 		}
-		$templateMgr->assign_by_ref('trackEditors', $trackEditors);
+		$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
 
 		$templateMgr->display('about/editorialPolicies.tpl');
 	}

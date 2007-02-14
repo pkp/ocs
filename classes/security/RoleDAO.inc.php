@@ -400,7 +400,7 @@ class RoleDAO extends DAO {
 			case ROLE_ID_EDITOR:
 				return 'user.role.editor' . ($plural ? 's' : '');
 			case ROLE_ID_TRACK_EDITOR:
-				return 'user.role.trackEditor' . ($plural ? 's' : '');
+				return 'user.role.trackDirector' . ($plural ? 's' : '');
 			case ROLE_ID_LAYOUT_EDITOR:
 				return 'user.role.layoutEditor' . ($plural ? 's' : '');
 			case ROLE_ID_REVIEWER:

@@ -48,7 +48,7 @@ class TrackForm extends Form {
 			
 			$userDao = &DAORegistry::getDAO('UserDAO');
 			
-			// Get track editors not assigned to this track
+			// Get track directors not assigned to this track
 			$unassignedEditors = array();
 			foreach ($unassignedEditorIds as $edUserId) {
 				if (!empty($edUserId)) {
@@ -56,7 +56,7 @@ class TrackForm extends Form {
 				}
 			}
 			
-			// Get track editors assigned to this track
+			// Get track directors assigned to this track
 			$assignedEditors = array();
 			foreach ($assignedEditorIds as $edUserId) {
 				if (!empty($edUserId)) {
@@ -66,13 +66,13 @@ class TrackForm extends Form {
 			
 		} else {
 			$schedConf = &Request::getSchedConf();
-			$trackEditorsDao = &DAORegistry::getDAO('TrackEditorsDAO');
+			$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
 			
-			// Get track editors not assigned to this track
-			$unassignedEditors = &$trackEditorsDao->getEditorsNotInTrack($schedConf->getSchedConfId(), $this->trackId);
+			// Get track directors not assigned to this track
+			$unassignedEditors = &$trackDirectorsDao->getEditorsNotInTrack($schedConf->getSchedConfId(), $this->trackId);
 			
-			// Get track editors assigned to this track
-			$assignedEditors = &$trackEditorsDao->getEditorsByTrackId($schedConf->getSchedConfId(), $this->trackId);
+			// Get track directors assigned to this track
+			$assignedEditors = &$trackDirectorsDao->getEditorsByTrackId($schedConf->getSchedConfId(), $this->trackId);
 		}
 		
 		$templateMgr->assign('unassignedEditors', $unassignedEditors);
@@ -157,12 +157,12 @@ class TrackForm extends Form {
 		}
 		
 		// Save assigned editors
-		$trackEditorsDao = &DAORegistry::getDAO('TrackEditorsDAO');
-		$trackEditorsDao->deleteEditorsByTrackId($trackId, $schedConf->getSchedConfId());
+		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDirectorsDao->deleteEditorsByTrackId($trackId, $schedConf->getSchedConfId());
 		$editors = explode(':', Request::getUserVar('assignedEditors'));
 		foreach ($editors as $edUserId) {
 			if (!empty($edUserId)) {
-				$trackEditorsDao->insertEditor($schedConf->getSchedConfId(), $trackId, $edUserId);
+				$trackDirectorsDao->insertEditor($schedConf->getSchedConfId(), $trackId, $edUserId);
 			}
 		}
 	}

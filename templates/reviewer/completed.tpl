@@ -33,7 +33,7 @@
 		<td>{if !$submission->getDeclined()}<a href="{url op="submission" path=$reviewId}" class="action">{/if}{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}{if !$submission->getDeclined()}</a>{/if}</td>
 		<td>
 			{if $submission->getDeclined()}
-				{translate key="trackEditor.regrets"}
+				{translate key="trackDirector.regrets"}
 			{else}
 				{assign var=recommendation value=$submission->getRecommendation()}
 				{if $recommendation == SUBMISSION_REVIEWER_RECOMMENDATION_ACCEPT}

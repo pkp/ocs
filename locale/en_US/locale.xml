@@ -287,7 +287,7 @@
 	<message key="paper.coverageSample"> Research sample characteristics</message>
 	<message key="paper.type">Type, method or approach</message>
 	<message key="paper.language">Language</message>
-	<message key="paper.trackEditor">TE</message>
+	<message key="paper.trackDirector">TE</message>
 	<message key="paper.commentsToEditor">Presenter comments</message>
 	<message key="paper.submission">Submission</message>
 	<message key="paper.submissions">Submissions</message>
@@ -488,7 +488,7 @@
 	<!--<message key="user.role.schedulingManager">Scheduling Manager</message>-->
 
 	<message key="user.role.editor">Editor</message>
-	<message key="user.role.trackEditor">Track Editor</message>
+	<message key="user.role.trackDirector">Track Director</message>
 	<message key="user.role.layoutEditor">Layout Editor</message>
 	<message key="user.role.reviewer">Reviewer</message>
 	<message key="user.role.presenter">Presenter</message>
@@ -504,7 +504,7 @@
 	<!--<message key="user.role.schedulingManagers">Scheduling Managers</message>-->
 
 	<message key="user.role.editors">Editors</message>
-	<message key="user.role.trackEditors">Track Editors</message>
+	<message key="user.role.trackDirectors">Track Directors</message>
 	<message key="user.role.layoutEditors">Layout Editors</message>
 	<message key="user.role.reviewers">Reviewers</message>
 	<message key="user.role.presenters">Presenters</message>
@@ -1010,15 +1010,15 @@ Note that if your site administrator has already registered this site with the P
 	<!--<message key="manager.setup.appearInAboutConference">(To appear in About the Conference) </message>-->
 	<!--<message key="manager.setup.managementOfBasicEditorialSteps">Management of Basic Editorial Steps</message>-->
 	<!--<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Scheduling Queue &gt; Table of Contents.<br /><br />
-Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Track Editors, go to Editors in Conference Management.)]]></message>-->
+Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Track Directors, go to Editors in Conference Management.)]]></message>-->
 	<!--<message key="manager.setup.editorialProcess1">One or more editors handle the basic steps without designated roles.</message>-->
-	<!--<message key="manager.setup.editorialProcess2">Managing Editor handles Submission Queue, Scheduling Queue, and Table of Contents, while Track Editors handle Submission Review and Submission Editing.</message>-->
-	<!--<message key="manager.setup.editorialProcess3">Managing Editor handles Submission Queue, Submission Editing, Scheduling Queue, and Table of Contents, while the Track Editors handle Submission Review.</message>-->
+	<!--<message key="manager.setup.editorialProcess2">Managing Editor handles Submission Queue, Scheduling Queue, and Table of Contents, while Track Directors handle Submission Review and Submission Editing.</message>-->
+	<!--<message key="manager.setup.editorialProcess3">Managing Editor handles Submission Queue, Submission Editing, Scheduling Queue, and Table of Contents, while the Track Directors handle Submission Review.</message>-->
 	<!--<message key="manager.setup.layoutAndGalleys">Layout Editors</message>-->
 	<!--<message key="manager.setup.useLayoutEditors">The conference will designate Layout Editors to prepare the galleys in HTML, PDF, PS, etc., file formats for electronic publication.</message>-->
 	<!--<message key="manager.setup.noUseLayoutEditors">The editors will prepare the galleys in the appropriate format for electronic publication.</message>-->
 	<!--<message key="manager.setup.layoutInstructions">Layout Instructions</message>-->
-	<!--<message key="manager.setup.layoutInstructionsDescription">Layout Instructions can be prepared for the formatting of publishing items in the conference and be entered below in HTML or plain text. They will be made available to  the Layout Editor and Track Editor on the Editing page of each submission. (As each conference may employ its own file formats, bibliographic standards, style sheets, etc., a default set of instructions is not provided.)</message>-->
+	<!--<message key="manager.setup.layoutInstructionsDescription">Layout Instructions can be prepared for the formatting of publishing items in the conference and be entered below in HTML or plain text. They will be made available to  the Layout Editor and Track Director on the Editing page of each submission. (As each conference may employ its own file formats, bibliographic standards, style sheets, etc., a default set of instructions is not provided.)</message>-->
 	<!--<message key="manager.setup.layoutTemplates">Layout Templates</message>-->
 	<!--<message key="manager.setup.layoutTemplatesDescription">Templates can be uploaded to appear in Layout for each of the standard formats published in the conference (e.g., article, book review, etc.) using any file format (e.g., pdf, doc, etc.) with annotations added specifying font, size, margins, etc. to serve as a guide for Layout Editors and Proofreaders.</message>-->
 	<!--<message key="manager.setup.layoutTemplates.title">Title</message>-->
@@ -1261,17 +1261,17 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="manager.tracks.confirmDelete">Are you sure you want to permanently delete this track?</message>
 	<message key="manager.tracks.create">Create Track</message>
 	<message key="manager.tracks.editors">Track editors</message>
-	<message key="manager.tracks.unassigned">Available Track Editors</message>
+	<message key="manager.tracks.unassigned">Available Track Directors</message>
 	<message key="manager.tracks.assigned">This Track's Editors</message>
 	<message key="manager.tracks.assignEditor">Assign Editor</message>
 	<message key="manager.tracks.unassignEditor">Un-assign Editor</message>
 	<message key="manager.tracks.form.titleRequired">A title is required for the track.</message>
 	<message key="manager.tracks.form.abbrevRequired">An abbreviated title is required for the track</message>
-	<message key="manager.tracks.trackEditorInstructions">Select from among the available Track Editors and "Assign Editor" to this track.</message>
+	<message key="manager.tracks.trackDirectorInstructions">Select from among the available Track Directors and "Assign Editor" to this track.</message>
 	<message key="manager.tracks.submissionsToThisTrack">Submissions made to this conference track</message>
 	<message key="manager.tracks.submissionIndexing">Will not be included in the proceedings of the conference</message>
 	<message key="manager.tracks.submissionReview">Will not be peer-reviewed</message>
-	<message key="manager.tracks.editorRestriction">Items can only be submitted by Editors and Track Editors.</message>
+	<message key="manager.tracks.editorRestriction">Items can only be submitted by Editors and Track Directors.</message>
 	<message key="manager.tracks.hideAbout">Omit this track from About the Conference.</message>
 	<message key="manager.tracks.readingTools">Reading Tools</message>
 	<message key="manager.tracks.indexed">Indexed</message>
@@ -1515,7 +1515,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registrations.create">Create New Registration</message>
 	<message key="manager.registrations.select">Enroll Registrant</message>
 	<message key="manager.registrations.selectRegistrant">Select Registrant</message>
-	<message key="manager.registrations.selectRegistrant.desc">Registration access privileges are automatically granted to the conference's Conference Directors, Editors, and Track Editors.</message>
+	<message key="manager.registrations.selectRegistrant.desc">Registration access privileges are automatically granted to the conference's Conference Directors, Editors, and Track Directors.</message>
 	<message key="manager.registrations.register">Enroll</message>
 	<message key="manager.registrations.confirmDelete">Are you sure you want to delete this registration?</message>
 	<message key="manager.registrations.noneCreated">No registrations have been created.</message>
@@ -1734,7 +1734,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<!--<message key="editor.paper.noEditorSelected">No editor selected.</message>-->
 	<message key="editor.paper.recordDecision">Record Decision</message>
 	<message key="editor.paper.cannotRecord">Section editor not yet recorded.</message>
-	<message key="editor.paper.cannotRecordYet">Before a decision can be recorded, a submission must be assigned to a Track Editor. The Review Version becomes, by default, the Editor Version.</message>
+	<message key="editor.paper.cannotRecordYet">Before a decision can be recorded, a submission must be assigned to a Track Director. The Review Version becomes, by default, the Editor Version.</message>
 	<message key="editor.paper.cannotRecordTooLate">The submission has already completed this review stage. You can no longer change this decision.</message>
 	<!--<message key="editor.paper.reviewersSeePresentersVersion">Reviewers to see presenter version</message>-->
 	<message key="editor.paper.designateDueDate">Designate a Due Date</message>
@@ -1759,7 +1759,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="editor.paper.archiveSubmission">Archive Submission</message>
 	<!--<message key="editor.paper.emailPresenterOnArchive">Email presenter about the archiving of this submission?</message>-->
 	<message key="editor.paper.restoreToQueue">Restore to Active List</message>
-	<message key="editor.paper.assignTrackEditor">Add Track Editor</message>
+	<message key="editor.paper.assignTrackDirector">Add Track Director</message>
 	<message key="editor.paper.assignEditor">Add Editor</message>
 	<message key="editor.paper.selectEditor">Select {$roleName}</message>
 	<message key="editor.paper.selectDecision">Select decision</message>
@@ -1784,25 +1784,25 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="editor.submissions.averageTime">Weeks</message>
 	<message key="editor.submissions.lastCompleted">Last Complete</message>
 
-	<!-- Track Editor -->
-	<!--<message key="sectionEditor.activeEditorialAssignments">Active Editorial Assignments</message>-->
-	<!--<message key="sectionEditor.completedEditorialAssignments">Completed Editorial Assignments</message>-->
-	<!--<message key="sectionEditor.noneAssigned">No submissions assigned.</message>-->
-	<!--<message key="sectionEditor.presenter.confirmRenotify">Notifying this presenter again will restart their assignment. Are you sure you wish to do this?</message>-->
-	<!--<message key="sectionEditor.layout.confirmRenotify">Notifying this layout editor again will restart their assignment. Are you sure you wish to do this?</message>-->
-	<!--<message key="sectionEditor.proofreader.confirmRenotify">Notifying this proofreader again will restart their assignment. Are you sure you wish to do this?</message>-->
+	<!-- Track Director -->
+	<!--<message key="trackDirector.activeEditorialAssignments">Active Editorial Assignments</message>-->
+	<!--<message key="trackDirector.completedEditorialAssignments">Completed Editorial Assignments</message>-->
+	<!--<message key="trackDirector.noneAssigned">No submissions assigned.</message>-->
+	<!--<message key="trackDirector.presenter.confirmRenotify">Notifying this presenter again will restart their assignment. Are you sure you wish to do this?</message>-->
+	<!--<message key="trackDirector.layout.confirmRenotify">Notifying this layout editor again will restart their assignment. Are you sure you wish to do this?</message>-->
+	<!--<message key="trackDirector.proofreader.confirmRenotify">Notifying this proofreader again will restart their assignment. Are you sure you wish to do this?</message>-->
 
-	<message key="trackEditor.regrets.breadcrumb">Regrets</message>
-	<message key="trackEditor.regrets.title">#{$paperId} Reviewer Regrets &amp; Cancellations</message>
-	<message key="trackEditor.regrets">Regrets</message>
-	<message key="trackEditor.regrets.link">View Regrets, Cancels</message>
-	<message key="trackEditor.regrets.reviewRound">Peer Review, Round {$round}</message>
-	<message key="trackEditor.regrets.decisionRound">Editor Decision, Round {$round}</message>
-	<message key="trackEditor.regrets.regretsAndCancels">Reviewer Regrets &amp; Cancellations</message>
-	<message key="trackEditor.regrets.regret">Regret</message>
-	<message key="trackEditor.regrets.result">Result</message>
-	<message key="trackEditor.review.enrollReviewer">Enroll Existing User As Reviewer</message>
-	<message key="trackEditor.review.createReviewer">Create New Reviewer</message>
+	<message key="trackDirector.regrets.breadcrumb">Regrets</message>
+	<message key="trackDirector.regrets.title">#{$paperId} Reviewer Regrets &amp; Cancellations</message>
+	<message key="trackDirector.regrets">Regrets</message>
+	<message key="trackDirector.regrets.link">View Regrets, Cancels</message>
+	<message key="trackDirector.regrets.reviewRound">Peer Review, Round {$round}</message>
+	<message key="trackDirector.regrets.decisionRound">Editor Decision, Round {$round}</message>
+	<message key="trackDirector.regrets.regretsAndCancels">Reviewer Regrets &amp; Cancellations</message>
+	<message key="trackDirector.regrets.regret">Regret</message>
+	<message key="trackDirector.regrets.result">Result</message>
+	<message key="trackDirector.review.enrollReviewer">Enroll Existing User As Reviewer</message>
+	<message key="trackDirector.review.createReviewer">Create New Reviewer</message>
 
 	<!-- Layout Editor -->
 	<!--<message key="layoutEditor.activeEditorialAssignments">Active Editorial Assignments</message>-->

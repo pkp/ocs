@@ -46,14 +46,14 @@
 		{/if}
 	
 		{assign var="hasEditors" value=0}
-		{foreach from=$trackEditors item=trackTrackEditors key=key}
+		{foreach from=$trackDirectors item=trackTrackDirectors key=key}
 			{if $key == $track->getTrackId()}
-				{foreach from=$trackTrackEditors item=trackEditor}
+				{foreach from=$trackTrackDirectors item=trackDirector}
 					{if 0 == $hasEditors++}
 					{translate key="user.role.editors"}
 					<ul class="plain">
 					{/if}
-					<li>{$trackEditor->getFirstName()|escape} {$trackEditor->getLastName()|escape}{if strlen($trackEditor->getAffiliation()) > 0}, {$trackEditor->getAffiliation()|escape}{/if}</li>
+					<li>{$trackDirector->getFirstName()|escape} {$trackDirector->getLastName()|escape}{if strlen($trackDirector->getAffiliation()) > 0}, {$trackDirector->getAffiliation()|escape}{/if}</li>
 				{/foreach}
 			{/if}
 		{/foreach}

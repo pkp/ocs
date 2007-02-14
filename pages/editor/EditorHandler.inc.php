@@ -13,14 +13,14 @@
  * $Id$
  */
 
-import('trackEditor.TrackEditorHandler');
+import('trackDirector.TrackDirectorHandler');
 
 define('EDITOR_TRACK_HOME', 0);
 define('EDITOR_TRACK_SUBMISSIONS', 1);
 
 import ('submission.editor.EditorAction');
 
-class EditorHandler extends TrackEditorHandler {
+class EditorHandler extends TrackDirectorHandler {
 
 	/**
 	 * Displays the editor role selection page.
@@ -219,7 +219,7 @@ class EditorHandler extends TrackEditorHandler {
 			$roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $editorId, ROLE_ID_EDITOR) ||
 			$roleDao->roleExists($schedConf->getConferenceId(), 0, $editorId, ROLE_ID_TRACK_EDITOR) ||
 			$roleDao->roleExists($schedConf->getConferenceId(), 0, $editorId, ROLE_ID_EDITOR))) {
-			// A valid track editor has already been chosen;
+			// A valid track director has already been chosen;
 			// either prompt with a modifiable email or, if this
 			// has been done, send the email and store the editor
 			// selection.
@@ -231,7 +231,7 @@ class EditorHandler extends TrackEditorHandler {
 				Request::redirect(null, null, null, 'submission', $paperId);
 			}
 		} else {
-			// Allow the user to choose a track editor or editor.
+			// Allow the user to choose a track director or editor.
 			EditorHandler::setupTemplate(EDITOR_TRACK_SUBMISSIONS, true, $paperId, 'summary');
 
 			$searchType = null;
@@ -255,8 +255,8 @@ class EditorHandler extends TrackEditorHandler {
 				$roleName = 'user.role.editor';
 				$editors = &$editorSubmissionDao->getUsersNotAssignedToPaper($schedConf->getSchedConfId(), $paperId, RoleDAO::getRoleIdFromPath('editor'), $searchType, $search, $searchMatch, $rangeInfo);
 			} else {
-				$roleName = 'user.role.trackEditor';
-				$editors = &$editorSubmissionDao->getUsersNotAssignedToPaper($schedConf->getSchedConfId(), $paperId, RoleDAO::getRoleIdFromPath('trackEditor'), $searchType, $search, $searchMatch, $rangeInfo);
+				$roleName = 'user.role.trackDirector';
+				$editors = &$editorSubmissionDao->getUsersNotAssignedToPaper($schedConf->getSchedConfId(), $paperId, RoleDAO::getRoleIdFromPath('trackDirector'), $searchType, $search, $searchMatch, $rangeInfo);
 			}
 
 			$templateMgr = &TemplateManager::getManager();
@@ -266,12 +266,12 @@ class EditorHandler extends TrackEditorHandler {
 			$templateMgr->assign('paperId', $paperId);
 
 			$trackDao = &DAORegistry::getDAO('TrackDAO');
-			$trackEditorTracks = &$trackDao->getEditorTracks($schedConf->getSchedConfId());
+			$trackDirectorTracks = &$trackDao->getEditorTracks($schedConf->getSchedConfId());
 
 			$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 			$editorStatistics = $editAssignmentDao->getEditorStatistics($schedConf->getSchedConfId());
 
-			$templateMgr->assign_by_ref('editorTracks', $trackEditorTracks);
+			$templateMgr->assign_by_ref('editorTracks', $trackDirectorTracks);
 			$templateMgr->assign('editorStatistics', $editorStatistics);
 
 			$templateMgr->assign('searchField', $searchType);
@@ -287,7 +287,7 @@ class EditorHandler extends TrackEditorHandler {
 			));
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary.submissionManagement');
-			$templateMgr->display('editor/selectTrackEditor.tpl');
+			$templateMgr->display('editor/selectTrackDirector.tpl');
 		}
 	}
 
@@ -350,8 +350,8 @@ class EditorHandler extends TrackEditorHandler {
 		if ($level==EDITOR_TRACK_HOME) $pageHierarchy = array(array(Request::url(null, null, 'user'), 'navigation.user'));
 		else if ($level==EDITOR_TRACK_SUBMISSIONS) $pageHierarchy = array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'editor'), 'user.role.editor'), array(Request::url(null, null, 'editor', 'submissions'), 'paper.submissions'));
 
-		import('submission.trackEditor.TrackEditorAction');
-		$submissionCrumb = TrackEditorAction::submissionBreadcrumb($paperId, $parentPage, 'editor');
+		import('submission.trackDirector.TrackDirectorAction');
+		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'editor');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
 		}

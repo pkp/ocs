@@ -25,15 +25,15 @@
 {/foreach}
 {/if}
 
-{if count($trackEditors) > 0}
-	{if count($trackEditors) == 1}
-		<h4>{translate key="user.role.trackEditor"}</h4>
+{if count($trackDirectors) > 0}
+	{if count($trackDirectors) == 1}
+		<h4>{translate key="user.role.trackDirector"}</h4>
 	{else}
-		<h4>{translate key="user.role.trackEditors"}</h4>
+		<h4>{translate key="user.role.trackDirectors"}</h4>
 	{/if}
 
-{foreach from=$trackEditors item=trackEditor}
-	<a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$trackEditor->getUserId()}')">{$trackEditor->getFullName()|escape}</a>{if $trackEditor->getAffiliation()}, {$trackEditor->getAffiliation()|escape}{/if}{if $trackEditor->getCountry()}{assign var=countryCode value=$trackEditor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country}{/if}
+{foreach from=$trackDirectors item=trackDirector}
+	<a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$trackDirector->getUserId()}')">{$trackDirector->getFullName()|escape}</a>{if $trackDirector->getAffiliation()}, {$trackDirector->getAffiliation()|escape}{/if}{if $trackDirector->getCountry()}{assign var=countryCode value=$trackDirector->getCountry()}{assign var=country value=$countries.$countryCode}, {$country}{/if}
 	<br/>
 {/foreach}
 {/if}

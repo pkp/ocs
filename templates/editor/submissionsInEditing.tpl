@@ -19,7 +19,7 @@
 		<td width="5%">{translate key="submissions.track"}</td>
 		<td width="15%">{translate key="paper.presenters"}</td>
 		<td width="25%">{translate key="paper.title"}</td>
-		<td width="5%">{translate key="paper.trackEditor"}</td>
+		<td width="5%">{translate key="paper.trackDirector"}</td>
 	</tr>
 	<tr>
 		<td colspan="9" class="headseparator">&nbsp;</td>

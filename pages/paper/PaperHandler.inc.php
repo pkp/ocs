@@ -253,9 +253,9 @@ class PaperHandler extends Handler {
 			}
 		}
 
-		// reuse track editor's view file function
-		import('submission.trackEditor.TrackEditorAction');
-		TrackEditorAction::viewFile($paper->getPaperId(), $fileId);
+		// reuse track director's view file function
+		import('submission.trackDirector.TrackDirectorAction');
+		TrackDirectorAction::viewFile($paper->getPaperId(), $fileId);
 	}
 
 	/**

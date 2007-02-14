@@ -24,7 +24,7 @@
 		{*<option {if $roleSymbolic=='schedulingManagers'}selected="selected" {/if}value="schedulingManagers">{translate key="user.role.schedulingManagers"}</option>*}
 
 		<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
-		<option {if $roleSymbolic=='trackEditors'}selected="selected" {/if}value="trackEditors">{translate key="user.role.trackEditors"}</option>
+		<option {if $roleSymbolic=='trackDirectors'}selected="selected" {/if}value="trackDirectors">{translate key="user.role.trackDirectors"}</option>
 		<option {if $roleSymbolic=='layoutEditors'}selected="selected" {/if}value="layoutEditors">{translate key="user.role.layoutEditors"}</option>
 		<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
 
@@ -53,7 +53,7 @@
 	<li><a href="{url path="registrationManagers" oldUserId=$oldUserId}">{translate key="user.role.registrationManagers"}</a></li>
 	{*<li><a href="{url path="schedulingManagers" oldUserId=$oldUserId}">{translate key="user.role.schedulingManagers"}</a></li>*}
 	<li><a href="{url path="editors" oldUserId=$oldUserId}">{translate key="user.role.editors"}</a></li>
-	<li><a href="{url path="trackEditors" oldUserId=$oldUserId}">{translate key="user.role.trackEditors"}</a></li>
+	<li><a href="{url path="trackDirectors" oldUserId=$oldUserId}">{translate key="user.role.trackDirectors"}</a></li>
 	<li><a href="{url path="layoutEditors" oldUserId=$oldUserId}">{translate key="user.role.layoutEditors"}</a></li>
 	<li><a href="{url path="reviewers" oldUserId=$oldUserId}">{translate key="user.role.reviewers"}</a></li>
 	<li><a href="{url path="presenters" oldUserId=$oldUserId}">{translate key="user.role.presenters"}</a></li>

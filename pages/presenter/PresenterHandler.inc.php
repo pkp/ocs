@@ -93,8 +93,8 @@ class PresenterHandler extends Handler {
 		$pageHierarchy = $subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'presenter'), 'user.role.presenter'), array(Request::url(null, null, 'presenter'), 'paper.submissions'))
 			: array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'presenter'), 'user.role.presenter'));
 
-		import('submission.trackEditor.TrackEditorAction');
-		$submissionCrumb = TrackEditorAction::submissionBreadcrumb($paperId, $parentPage, 'presenter');
+		import('submission.trackDirector.TrackDirectorAction');
+		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'presenter');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
 		}

@@ -100,7 +100,7 @@ class DAORegistry {
 			case 'SchedConfSettingsDAO': return 'schedConf.SchedConfSettingsDAO';
 			case 'ConferenceSettingsDAO': return 'conference.ConferenceSettingsDAO';
 			case 'TrackDAO': return 'conference.TrackDAO';
-			case 'TrackEditorsDAO': return 'conference.TrackEditorsDAO';
+			case 'TrackDirectorsDAO': return 'conference.TrackDirectorsDAO';
 			case 'NotificationStatusDAO': return 'conference.NotificationStatusDAO';
 			case 'EmailTemplateDAO': return 'mail.EmailTemplateDAO';
 			//case 'OAIDAO': return 'oai.ocs.OAIDAO';
@@ -117,7 +117,7 @@ class DAORegistry {
 			case 'LayoutEditorSubmissionDAO': return 'submission.layoutEditor.LayoutEditorSubmissionDAO';
 			case 'ReviewAssignmentDAO': return 'submission.reviewAssignment.ReviewAssignmentDAO';
 			case 'ReviewerSubmissionDAO': return 'submission.reviewer.ReviewerSubmissionDAO';
-			case 'TrackEditorSubmissionDAO': return 'submission.trackEditor.TrackEditorSubmissionDAO';
+			case 'TrackDirectorSubmissionDAO': return 'submission.trackDirector.TrackDirectorSubmissionDAO';
 			case 'UserDAO': return 'user.UserDAO';
 			case 'UserSettingsDAO': return 'user.UserSettingsDAO';
 			case 'RTDAO': return 'rt.ocs.RTDAO';

@@ -13,15 +13,15 @@
  * $Id$
  */
 
-import('submission.trackEditor.TrackEditorSubmission');
+import('submission.trackDirector.TrackDirectorSubmission');
 
-class EditorSubmission extends TrackEditorSubmission {
+class EditorSubmission extends TrackDirectorSubmission {
 
 	/**
 	 * Constructor.
 	 */
 	function EditorSubmission() {
-		parent::TrackEditorSubmission();
+		parent::TrackDirectorSubmission();
 	}
 }
 

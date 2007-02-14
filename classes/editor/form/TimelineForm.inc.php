@@ -31,9 +31,9 @@ class TimelineForm extends Form {
 		}
 
 		if($this->canEdit) {
-			parent::Form('trackEditor/timelineEdit.tpl');
+			parent::Form('trackDirector/timelineEdit.tpl');
 		} else {
-			parent::Form('trackEditor/timelineView.tpl');
+			parent::Form('trackDirector/timelineView.tpl');
 		}
 
 		/*$this->addCheck(new FormValidatorCustom($this, 'endDate', 'required', 'manager.timeline.form.badEndDate',

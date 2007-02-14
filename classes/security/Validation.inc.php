@@ -292,7 +292,7 @@ class Validation {
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function isTrackEditor($conferenceId = -1, $schedConfId = -1) {
+	function isTrackDirector($conferenceId = -1, $schedConfId = -1) {
 		return Validation::isAuthorized(ROLE_ID_TRACK_EDITOR, $conferenceId, $schedConfId);
 	}
 	

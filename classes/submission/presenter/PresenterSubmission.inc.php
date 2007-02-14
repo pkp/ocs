@@ -175,7 +175,7 @@ class PresenterSubmission extends Paper {
 	 * SUBMISSION_STATUS_QUEUED_REVIEW, or SUBMISSION_STATUS_QUEUED_EDITING). Note that this function never returns
 	 * a value of SUBMISSION_STATUS_QUEUED -- the three SUBMISSION_STATUS_QUEUED_... constants indicate a queued
 	 * submission. NOTE that this code is similar to getSubmissionStatus in
-	 * the TrackEditorSubmission class and changes here should be propagated.
+	 * the TrackDirectorSubmission class and changes here should be propagated.
 	 */
 	function getSubmissionStatus() {
 		$schedConf = &Request::getSchedConf();

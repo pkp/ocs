@@ -171,13 +171,13 @@ class LayoutEditorAction extends Action {
 		} else {
 			$user = &Request::getUser();
 			if (!Request::getUserVar('continued')) {
-				$assignedSectionEditors = $email->toAssignedEditingSectionEditors($submission->getPaperId());
+				$assignedTrackDirectors = $email->toAssignedEditingTrackDirectors($submission->getPaperId());
 				$assignedEditors = $email->ccAssignedEditors($submission->getPaperId());
-				if (empty($assignedSectionEditors) && empty($assignedEditors)) {
+				if (empty($assignedTrackDirectors) && empty($assignedEditors)) {
 					$email->addRecipient($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 					$editorialContactName = $schedConf->getSetting('contactName');
 				} else {
-					$editorialContact = array_shift($assignedSectionEditors);
+					$editorialContact = array_shift($assignedTrackDirectors);
 					if (!$editorialContact) $editorialContact = array_shift($assignedEditors);
 					$editorialContactName = $editorialContact->getEditorFullName();
 				}

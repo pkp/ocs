@@ -349,9 +349,9 @@ class PaperDAO extends DAO {
 		$paperNoteDao = &DAORegistry::getDAO('PaperNoteDAO');
 		$paperNoteDao->clearAllPaperNotes($paperId);
 
-		$trackEditorSubmissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');
-		$trackEditorSubmissionDao->deleteDecisionsByPaper($paperId);
-		$trackEditorSubmissionDao->deleteReviewRoundsByPaper($paperId);
+		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmissionDao->deleteDecisionsByPaper($paperId);
+		$trackDirectorSubmissionDao->deleteReviewRoundsByPaper($paperId);
 
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignmentDao->deleteReviewAssignmentsByPaper($paperId);

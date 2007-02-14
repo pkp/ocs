@@ -83,15 +83,15 @@ class ReviewerAction extends Action {
 				return true;
 			} else {
 				if (!Request::getUserVar('continued')) {
-					$reviewingTrackEditors = $email->toAssignedReviewingTrackEditors($reviewerSubmission->getPaperId());
-					if (!empty($reviewingTrackEditors)) $assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getPaperId());
+					$reviewingTrackDirectors = $email->toAssignedReviewingTrackDirectors($reviewerSubmission->getPaperId());
+					if (!empty($reviewingTrackDirectors)) $assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getPaperId());
 					else $assignedEditors = $email->toAssignedEditors($reviewerSubmission->getPaperId());
-					if (empty($assignedEditors) && empty($reviewingTrackEditors)) {
+					if (empty($assignedEditors) && empty($reviewingTrackDirectors)) {
 						$conference = &Request::getConference();
 						$email->addRecipient($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 						$editorialContactName = $conference->getSetting('contactName');
 					} else {
-						if (!empty($reviewingTrackEditors)) $editorialContact = array_shift($reviewingTrackEditors);
+						if (!empty($reviewingTrackDirectors)) $editorialContact = array_shift($reviewingTrackDirectors);
 						else $editorialContact = array_shift($assignedEditors);
 						$editorialContactName = $editorialContact->getEditorFullName();
 					}
@@ -165,13 +165,13 @@ class ReviewerAction extends Action {
 			} else {
 				if (!Request::getUserVar('continued')) {
 					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getPaperId());
-					$reviewingTrackEditors = $email->toAssignedReviewingTrackEditors($reviewerSubmission->getPaperId());
-					if (empty($assignedEditors) && empty($reviewingTrackEditors)) {
+					$reviewingTrackDirectors = $email->toAssignedReviewingTrackDirectors($reviewerSubmission->getPaperId());
+					if (empty($assignedEditors) && empty($reviewingTrackDirectors)) {
 						$conference = &Request::getConference();
 						$email->addRecipient($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 						$editorialContactName = $conference->getSetting('contactName');
 					} else {
-						if (!empty($reviewingTrackEditors)) $editorialContact = array_shift($reviewingTrackEditors);
+						if (!empty($reviewingTrackDirectors)) $editorialContact = array_shift($reviewingTrackDirectors);
 						else $editorialContact = array_shift($assignedEditors);
 						$editorialContactName = $editorialContact->getEditorFullName();
 					}

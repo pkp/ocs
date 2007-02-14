@@ -860,7 +860,7 @@ class ImportOCS1 {
 		}
 		
 		$sectionDao = &DAORegistry::getDAO('TrackDAO');
-		$sectionEditorDao = &DAORegistry::getDAO('TrackEditorsDAO');
+		$trackDirectorDao = &DAORegistry::getDAO('TrackDirectorsDAO');
 		
 		$result = &$this->importDao->retrieve('SELECT * FROM tblsections ORDER BY nRank');
 		$count = 0;
@@ -888,7 +888,7 @@ class ImportOCS1 {
 			$row = &$result->fields;
 			
 			if (isset($this->sectionMap[$row['fkTrackID']]) && isset($this->userMap[$row['nUserID']])) {
-				$sectionEditorDao->insertEditor($this->conferenceId, $this->sectionMap[$row['fkTrackID']], $this->userMap[$row['nUserID']]);
+				$trackDirectorDao->insertEditor($this->conferenceId, $this->sectionMap[$row['fkTrackID']], $this->userMap[$row['nUserID']]);
 			}
 			
 			$result->MoveNext();

@@ -224,8 +224,8 @@ class TrackDAO extends DAO {
 	 * @param $schedConfId int optional
 	 */
 	function deleteTrackById($trackId, $schedConfId = null) {
-		$trackEditorsDao = &DAORegistry::getDAO('TrackEditorsDAO');
-		$trackEditorsDao->deleteEditorsByTrackId($trackId, $schedConfId);
+		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDirectorsDao->deleteEditorsByTrackId($trackId, $schedConfId);
 
 		// Remove papers from this track
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
@@ -255,8 +255,8 @@ class TrackDAO extends DAO {
 	 * @param $schedConfId int
 	 */
 	function deleteTracksBySchedConf($schedConfId) {
-		$trackEditorsDao = &DAORegistry::getDAO('TrackEditorsDAO');
-		$trackEditorsDao->deleteEditorsBySchedConfId($schedConfId);
+		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDirectorsDao->deleteEditorsBySchedConfId($schedConfId);
 
 		return $this->update(
 			'DELETE FROM tracks WHERE sched_conf_id = ?', $schedConfId
@@ -264,7 +264,7 @@ class TrackDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve an array associating all track editor IDs with 
+	 * Retrieve an array associating all track director IDs with 
 	 * arrays containing the tracks they edit.
 	 * @return array editorId => array(tracks they edit)
 	 */

@@ -31,7 +31,7 @@
 					<option value="all">{translate key="manager.people.allUsers"}</option>
 					<option value="manager">{translate key="user.role.manager"}</option>
 					<option value="editor">{translate key="user.role.editor"}</option>
-					<option value="trackEditor">{translate key="user.role.trackEditor"}</option>
+					<option value="trackDirector">{translate key="user.role.trackDirector"}</option>
 					<option value="layoutEditor">{translate key="user.role.layoutEditor"}</option>
 					<option value="reviewer">{translate key="user.role.reviewer"}</option>
 					{*<option value="invitedPresenter">{translate key="user.role.invitedPresenter"}</option>*}

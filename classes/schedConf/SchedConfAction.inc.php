@@ -80,7 +80,7 @@ class SchedConfAction {
 	 * @return bool
 	 */
 	function mayViewProceedings(&$schedConf) {
-		if(Validation::isSiteAdmin() || Validation::isConferenceManager() || Validation::isEditor() || Validation::isTrackEditor()) {
+		if(Validation::isSiteAdmin() || Validation::isConferenceManager() || Validation::isEditor() || Validation::isTrackDirector()) {
 			return true;
 		}
 
@@ -115,7 +115,7 @@ class SchedConfAction {
 	 * @return bool
 	 */
 	function mayViewPapers(&$schedConf) {
-		if(Validation::isSiteAdmin() || Validation::isConferenceManager() || Validation::isEditor() || Validation::isTrackEditor()) {
+		if(Validation::isSiteAdmin() || Validation::isConferenceManager() || Validation::isEditor() || Validation::isTrackDirector()) {
 			return true;
 		}
 
