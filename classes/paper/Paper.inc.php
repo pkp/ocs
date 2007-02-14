@@ -19,7 +19,7 @@ define('SUBMISSION_STATUS_QUEUED', 1);
 define('SUBMISSION_STATUS_PUBLISHED', 3);
 define('SUBMISSION_STATUS_DECLINED', 4);
 
-// AuthorSubmission::getSubmissionStatus will return one of these in place of QUEUED:
+// PresenterSubmission::getSubmissionStatus will return one of these in place of QUEUED:
 define ('SUBMISSION_STATUS_QUEUED_UNASSIGNED', 6);
 define ('SUBMISSION_STATUS_QUEUED_REVIEW', 7);
 define ('SUBMISSION_STATUS_QUEUED_EDITING', 8);
@@ -31,55 +31,55 @@ define ('REVIEW_PROGRESS_COMPLETE', 3);
 
 class Paper extends DataObject {
 
-	/** @var array Authors of this paper */
-	var $authors;
+	/** @var array Presenters of this paper */
+	var $presenters;
 
-	/** @var array IDs of Authors removed from this paper */
-	var $removedAuthors;
+	/** @var array IDs of Presenters removed from this paper */
+	var $removedPresenters;
 
 	/**
 	 * Constructor.
 	 */
 	function Paper() {
 		parent::DataObject();
-		$this->authors = array();
-		$this->removedAuthors = array();
+		$this->presenters = array();
+		$this->removedPresenters = array();
 	}
 	
 	/**
-	 * Add an author.
-	 * @param $author Author
+	 * Add an presenter.
+	 * @param $presenter Presenter
 	 */
-	function addAuthor($author) {
-		if ($author->getPaperId() == null) {
-			$author->setPaperId($this->getPaperId());
+	function addPresenter($presenter) {
+		if ($presenter->getPaperId() == null) {
+			$presenter->setPaperId($this->getPaperId());
 		}
-		if ($author->getSequence() == null) {
-			$author->setSequence(count($this->authors) + 1);
+		if ($presenter->getSequence() == null) {
+			$presenter->setSequence(count($this->presenters) + 1);
 		}
-		array_push($this->authors, $author);
+		array_push($this->presenters, $presenter);
 	}
 	
 	/**
-	 * Remove an author.
-	 * @param $authorId ID of the author to remove
-	 * @return boolean author was removed
+	 * Remove an presenter.
+	 * @param $presenterId ID of the presenter to remove
+	 * @return boolean presenter was removed
 	 */
-	function removeAuthor($authorId) {
+	function removePresenter($presenterId) {
 		$found = false;
 		
-		if ($authorId != 0) {
-			// FIXME maintain a hash of ID to author for quicker get/remove
-			$authors = array();
-			for ($i=0, $count=count($this->authors); $i < $count; $i++) {
-				if ($this->authors[$i]->getAuthorId() == $authorId) {
-					array_push($this->removedAuthors, $authorId);
+		if ($presenterId != 0) {
+			// FIXME maintain a hash of ID to presenter for quicker get/remove
+			$presenters = array();
+			for ($i=0, $count=count($this->presenters); $i < $count; $i++) {
+				if ($this->presenters[$i]->getPresenterId() == $presenterId) {
+					array_push($this->removedPresenters, $presenterId);
 					$found = true;
 				} else {
-					array_push($authors, $this->authors[$i]);
+					array_push($presenters, $this->presenters[$i]);
 				}
 			}
-			$this->authors = $authors;
+			$this->presenters = $presenters;
 		}
 		return $found;
 	}
@@ -130,14 +130,14 @@ class Paper extends DataObject {
 	}
 	
 	/**
-	 * Return string of author names, separated by the specified token
+	 * Return string of presenter names, separated by the specified token
 	 * @param $lastOnly boolean return list of lastnames only (default false)
 	 * @param $separator string separator for names (default comma+space)
 	 * @return string
 	 */
-	function getAuthorString($lastOnly = false, $separator = ', ') {
+	function getPresenterString($lastOnly = false, $separator = ', ') {
 		$str = '';
-		foreach ($this->authors as $a) {
+		foreach ($this->presenters as $a) {
 			if (!empty($str)) {
 				$str .= $separator;
 			}
@@ -147,13 +147,13 @@ class Paper extends DataObject {
 	}
 
 	/**
-	 * Return first author
+	 * Return first presenter
 	 * @param $lastOnly boolean return lastname only (default false)
 	 * @return string
 	 */
-	function getFirstAuthor($lastOnly = false) {
-		$author = $this->authors[0];
-		return $lastOnly ? $author->getLastName() : $author->getFullName();
+	function getFirstPresenter($lastOnly = false) {
+		$presenter = $this->presenters[0];
+		return $lastOnly ? $presenter->getLastName() : $presenter->getFullName();
 	}
 
 	
@@ -162,45 +162,45 @@ class Paper extends DataObject {
 	//
 	
 	/**
-	 * Get all authors of this paper.
-	 * @return array Authors
+	 * Get all presenters of this paper.
+	 * @return array Presenters
 	 */
-	function &getAuthors() {
-		return $this->authors;
+	function &getPresenters() {
+		return $this->presenters;
 	}
 	
 	/**
-	 * Get a specific author of this paper.
-	 * @param $authorId int
-	 * @return array Authors
+	 * Get a specific presenter of this paper.
+	 * @param $presenterId int
+	 * @return array Presenters
 	 */
-	function &getAuthor($authorId) {
-		$author = null;
+	function &getPresenter($presenterId) {
+		$presenter = null;
 		
-		if ($authorId != 0) {
-			for ($i=0, $count=count($this->authors); $i < $count && $author == null; $i++) {
-				if ($this->authors[$i]->getAuthorId() == $authorId) {
-					$author = &$this->authors[$i];
+		if ($presenterId != 0) {
+			for ($i=0, $count=count($this->presenters); $i < $count && $presenter == null; $i++) {
+				if ($this->presenters[$i]->getPresenterId() == $presenterId) {
+					$presenter = &$this->presenters[$i];
 				}
 			}
 		}
-		return $author;
+		return $presenter;
 	}
 	
 	/**
-	 * Get the IDs of all authors removed from this paper.
+	 * Get the IDs of all presenters removed from this paper.
 	 * @return array int
 	 */
-	function &getRemovedAuthors() {
-		return $this->removedAuthors;
+	function &getRemovedPresenters() {
+		return $this->removedPresenters;
 	}
 	
 	/**
-	 * Set authors of this paper.
-	 * @param $authors array Authors
+	 * Set presenters of this paper.
+	 * @param $presenters array Presenters
 	 */
-	function setAuthors($authors) {
-		return $this->authors = $authors;
+	function setPresenters($presenters) {
+		return $this->presenters = $presenters;
 	}
 	
 	/**
@@ -245,19 +245,19 @@ class Paper extends DataObject {
 	}
 	
 	/**
-	 * Get ID of event.
+	 * Get ID of scheduled conference.
 	 * @return int
 	 */
-	function getEventId() {
-		return $this->getData('eventId');
+	function getSchedConfId() {
+		return $this->getData('schedConfId');
 	}
 	
 	/**
-	 * Set ID of event.
-	 * @param $eventId int
+	 * Set ID of scheduled conference.
+	 * @param $schedConfId int
 	 */
-	function setEventId($eventId) {
-		return $this->setData('eventId', $eventId);
+	function setSchedConfId($schedConfId) {
+		return $this->setData('schedConfId', $schedConfId);
 	}
 	
 	/**

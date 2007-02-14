@@ -121,28 +121,28 @@ class ConferenceSiteSettingsForm extends Form {
 
 				$role = &new Role();
 				$role->setConferenceId($conferenceId);
-				$role->setEventId(0);
+				$role->setSchedConfId(0);
 				$role->setUserId($userSession->getUserId());
-				$role->setRoleId(ROLE_ID_CONFERENCE_DIRECTOR);
+				$role->setRoleId(ROLE_ID_CONFERENCE_MANAGER);
 				$roleDao->insertRole($role);
 			}
 			
 			// Make the file directories for the conference
 			import('file.FileManager');
 			FileManager::mkdir(Config::getVar('files', 'files_dir') . '/conferences/' . $conferenceId);
-			FileManager::mkdir(Config::getVar('files', 'files_dir') . '/conferences/' . $conferenceId . '/events');
+			FileManager::mkdir(Config::getVar('files', 'files_dir') . '/conferences/' . $conferenceId . '/schedConfs');
 			FileManager::mkdir(Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId);
-			FileManager::mkdir(Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId . '/events');
+			FileManager::mkdir(Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId . '/schedConfs');
 
 			// Install default conference settings
 			$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
 			$conferenceSettingsDao->installSettings($conferenceId, 'registry/conferenceSettings.xml', array(
-				'authorGuidelinesUrl' => Request::url($this->getData('path'), 'index', 'about', 'submissions', null, null, 'authorGuidelines'),
+				'presenterGuidelinesUrl' => Request::url($this->getData('path'), 'index', 'about', 'submissions', null, null, 'presenterGuidelines'),
 				'privacyStatementUrl' => Request::url($this->getData('path'), 'index', 'about', 'submissions', null, null, 'privacyStatement'),
 				'loginUrl' => Request::url('index', 'index', 'login'),
 				'conferenceUrl' => Request::url($this->getData('path'), null),
 				'aboutUrl' => Request::url($this->getData('path'), 'index', 'about', null),
-				'eventUrl' => Request::url($this->getData('path'), 'index', 'index'),
+				'schedConfUrl' => Request::url($this->getData('path'), 'index', 'index'),
 				'registerUrl' => Request::url($this->getData('path'), 'index', 'user', 'register'),
 				'conferenceName' => $this->getData('title')
 			));

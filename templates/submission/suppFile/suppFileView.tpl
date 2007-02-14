@@ -13,7 +13,7 @@
 {assign var="pageCrumbTitle" value="submission.supplementaryFiles"}
 {include file="common/header.tpl"}
 
-<h3>{translate key="author.submit.supplementaryFileData"}</h3>
+<h3>{translate key="presenter.submit.supplementaryFileData"}</h3>
 
 <table width="100%" class="data">
 	<tr valign="top">
@@ -21,7 +21,7 @@
 		<td width="80%" class="value">{$suppFile->getTitle()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{translate key="author.submit.suppFile.createrOrOwner"}</td>
+		<td class="label">{translate key="presenter.submit.suppFile.createrOrOwner"}</td>
 		<td class="value">{$suppFile->getCreator()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
@@ -33,7 +33,7 @@
 		<td class="value">{$suppFile->getType()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{translate key="author.submit.suppFile.briefDescription"}</td>
+		<td class="label">{translate key="presenter.submit.suppFile.briefDescription"}</td>
 		<td class="value">{$suppFile->getDescription()|escape|nl2br|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
@@ -41,7 +41,7 @@
 		<td class="value">{$suppFile->getPublisher()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{translate key="author.submit.suppFile.contributorOrSponsor"}</td>
+		<td class="label">{translate key="presenter.submit.suppFile.contributorOrSponsor"}</td>
 		<td class="value">{$suppFile->getSponsor()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
@@ -62,7 +62,7 @@
 <div class="separator"></div>
 
 
-<h3>{translate key="author.submit.supplementaryFileUpload"}</h3>
+<h3>{translate key="presenter.submit.supplementaryFileUpload"}</h3>
 
 <table width="100%" class="data">
 {if $suppFile}
@@ -85,7 +85,7 @@
 	</table>
 {else}
 	<tr valign="top">
-		<td colspan="2" class="noResults">{translate key="author.submit.suppFile.noFile"}</td>
+		<td colspan="2" class="noResults">{translate key="presenter.submit.suppFile.noFile"}</td>
 	</tr>
 {/if}
 </table>

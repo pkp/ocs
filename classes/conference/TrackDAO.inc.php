@@ -51,10 +51,10 @@ class TrackDAO extends DAO {
 	 * @param $trackAbbrev string
 	 * @return Track
 	 */
-	function &getTrackByAbbrev($trackAbbrev, $eventId) {
+	function &getTrackByAbbrev($trackAbbrev, $schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT * FROM tracks WHERE abbrev = ? AND event_id = ?',
-			array($trackAbbrev, $eventId)
+			'SELECT * FROM tracks WHERE abbrev = ? AND sched_conf_id = ?',
+			array($trackAbbrev, $schedConfId)
 		);
 
 		$returner = null;
@@ -73,10 +73,10 @@ class TrackDAO extends DAO {
 	 * @param $trackTitle string
 	 * @return Track
 	 */
-	function &getTrackByTitle($trackTitle, $eventId) {
+	function &getTrackByTitle($trackTitle, $schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT * FROM tracks WHERE (title = ? OR title_alt1 = ? OR title_alt2 = ?) AND event_id = ?',
-			array($trackTitle, $trackTitle, $trackTitle, $eventId)
+			'SELECT * FROM tracks WHERE (title = ? OR title_alt1 = ? OR title_alt2 = ?) AND sched_conf_id = ?',
+			array($trackTitle, $trackTitle, $trackTitle, $schedConfId)
 		);
 
 		$returner = null;
@@ -96,10 +96,10 @@ class TrackDAO extends DAO {
 	 * @param $trackAbbrev string
 	 * @return Track
 	 */
-	function &getTrackByTitleAndAbbrev($trackTitle, $trackAbbrev, $eventId) {
+	function &getTrackByTitleAndAbbrev($trackTitle, $trackAbbrev, $schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT * FROM tracks WHERE (title = ? OR title_alt1 = ? OR title_alt2 = ?) AND (abbrev = ? OR abbrev_alt1 = ? OR abbrev_alt2 = ?) AND event_id = ?',
-			array($trackTitle, $trackTitle, $trackTitle, $trackAbbrev, $trackAbbrev, $trackAbbrev, $eventId)
+			'SELECT * FROM tracks WHERE (title = ? OR title_alt1 = ? OR title_alt2 = ?) AND (abbrev = ? OR abbrev_alt1 = ? OR abbrev_alt2 = ?) AND sched_conf_id = ?',
+			array($trackTitle, $trackTitle, $trackTitle, $trackAbbrev, $trackAbbrev, $trackAbbrev, $schedConfId)
 		);
 
 		$returner = null;
@@ -121,7 +121,7 @@ class TrackDAO extends DAO {
 	function &_returnTrackFromRow(&$row) {
 		$track = &new Track();
 		$track->setTrackId($row['track_id']);
-		$track->setEventId($row['event_id']);
+		$track->setSchedConfId($row['sched_conf_id']);
 		$track->setTitle($row['title']);
 		$track->setTitleAlt1($row['title_alt1']);
 		$track->setTitleAlt2($row['title_alt2']);
@@ -147,11 +147,11 @@ class TrackDAO extends DAO {
 	function insertTrack(&$track) {
 		$this->update(
 			'INSERT INTO tracks
-				(event_id, title, title_alt1, title_alt2, abbrev, abbrev_alt1, abbrev_alt2, seq, meta_reviewed, meta_indexed, identify_type, policy, editor_restricted)
+				(sched_conf_id, title, title_alt1, title_alt2, abbrev, abbrev_alt1, abbrev_alt2, seq, meta_reviewed, meta_indexed, identify_type, policy, editor_restricted)
 				VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
-				$track->getEventId(),
+				$track->getSchedConfId(),
 				$track->getTitle(),
 				$track->getTitleAlt1(),
 				$track->getTitleAlt2(),
@@ -215,17 +215,17 @@ class TrackDAO extends DAO {
 	 * @param $track Track
 	 */
 	function deleteTrack(&$track) {
-		return $this->deleteTrackById($track->getTrackId(), $track->getEventId());
+		return $this->deleteTrackById($track->getTrackId(), $track->getSchedConfId());
 	}
 	
 	/**
 	 * Delete a track by ID.
 	 * @param $trackId int
-	 * @param $eventId int optional
+	 * @param $schedConfId int optional
 	 */
-	function deleteTrackById($trackId, $eventId = null) {
+	function deleteTrackById($trackId, $schedConfId = null) {
 		$trackEditorsDao = &DAORegistry::getDAO('TrackEditorsDAO');
-		$trackEditorsDao->deleteEditorsByTrackId($trackId, $eventId);
+		$trackEditorsDao->deleteEditorsByTrackId($trackId, $schedConfId);
 
 		// Remove papers from this track
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
@@ -236,9 +236,9 @@ class TrackDAO extends DAO {
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaperDao->deletePublishedPapersByTrackId($trackId);
 
-		if (isset($eventId)) {
+		if (isset($schedConfId)) {
 			return $this->update(
-				'DELETE FROM tracks WHERE track_id = ? AND event_id = ?', array($trackId, $eventId)
+				'DELETE FROM tracks WHERE track_id = ? AND sched_conf_id = ?', array($trackId, $schedConfId)
 			);
 		
 		} else {
@@ -249,17 +249,17 @@ class TrackDAO extends DAO {
 	}
 	
 	/**
-	 * Delete tracks by event ID
+	 * Delete tracks by sched conf ID
 	 * NOTE: This does not delete dependent entries EXCEPT from track_editors. It is intended
-	 * to be called only when deleting a event.
-	 * @param $eventId int
+	 * to be called only when deleting a scheduled conference.
+	 * @param $schedConfId int
 	 */
-	function deleteTracksByEvent($eventId) {
+	function deleteTracksBySchedConf($schedConfId) {
 		$trackEditorsDao = &DAORegistry::getDAO('TrackEditorsDAO');
-		$trackEditorsDao->deleteEditorsByEventId($eventId);
+		$trackEditorsDao->deleteEditorsBySchedConfId($schedConfId);
 
 		return $this->update(
-			'DELETE FROM tracks WHERE event_id = ?', $eventId
+			'DELETE FROM tracks WHERE sched_conf_id = ?', $schedConfId
 		);
 	}
 
@@ -268,12 +268,12 @@ class TrackDAO extends DAO {
 	 * arrays containing the tracks they edit.
 	 * @return array editorId => array(tracks they edit)
 	 */
-	function &getEditorTracks($eventId) {
+	function &getEditorTracks($schedConfId) {
 		$returner = array();
 		
 		$result = &$this->retrieve(
-			'SELECT s.*, se.user_id AS editor_id FROM track_editors se, tracks s WHERE se.track_id = s.track_id AND s.event_id = se.event_id AND s.event_id = ?',
-			$eventId
+			'SELECT s.*, se.user_id AS editor_id FROM track_editors se, tracks s WHERE se.track_id = s.track_id AND s.sched_conf_id = se.sched_conf_id AND s.sched_conf_id = ?',
+			$schedConfId
 		);
 		
 		while (!$result->EOF) {
@@ -295,20 +295,20 @@ class TrackDAO extends DAO {
 
 	/**
 	 * Retrieve all tracks in which papers are currently published in
-	 * the given event.
+	 * the given scheduled conference.
 	 * @return array
 	 */
-	function &getTracksByEventId($eventId) {
+	function &getTracksBySchedConfId($schedConfId) {
 		$returner = array();
 		
 		$result = &$this->retrieve(
 			'SELECT DISTINCT s.*,
 				COALESCE(o.seq, s.seq) AS track_seq
 			FROM tracks s, papers a
-			LEFT JOIN events i ON (a.event_id = i.event_id) AND (i.event_id = ?)
-			LEFT JOIN custom_track_orders o ON (a.track_id = o.track_id AND o.event_id = i.event_id)
+			LEFT JOIN sched_confs i ON (a.sched_conf_id = i.sched_conf_id) AND (i.sched_conf_id = ?)
+			LEFT JOIN custom_track_orders o ON (a.track_id = o.track_id AND o.sched_conf_id = i.sched_conf_id)
 			WHERE s.track_id = a.track_id ORDER BY track_seq',
-			array($eventId)
+			array($schedConfId)
 		);
 		
 		while (!$result->EOF) {
@@ -324,13 +324,13 @@ class TrackDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve all tracks for a event.
+	 * Retrieve all tracks for a scheduled conference.
 	 * @return DAOResultFactory containing Tracks ordered by sequence
 	 */
-	function &getEventTracks($eventId, $rangeInfo = null) {
+	function &getSchedConfTracks($schedConfId, $rangeInfo = null) {
 		$result = &$this->retrieveRange(
-			'SELECT * FROM tracks WHERE event_id = ? ORDER BY seq',
-			$eventId, $rangeInfo
+			'SELECT * FROM tracks WHERE sched_conf_id = ? ORDER BY seq',
+			$schedConfId, $rangeInfo
 		);
 		
 		$returner = &new DAOResultFactory($result, $this, '_returnTrackFromRow');
@@ -338,23 +338,23 @@ class TrackDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve the IDs and titles of the tracks for a event in an associative array.
+	 * Retrieve the IDs and titles of the tracks for a scheduled conference in an associative array.
 	 * @return array
 	 */
-	function &getTrackTitles($eventId, $submittableOnly = false) {
-		$eventDao = DAORegistry::getDAO('EventDAO');
-		$event = $eventDao->getEvent($eventId);
+	function &getTrackTitles($schedConfId, $submittableOnly = false) {
+		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
+		$schedConf = $schedConfDao->getSchedConf($schedConfId);
 
 		$tracks = array();
 		
 		$result = &$this->retrieve(
 			($submittableOnly?
-			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE event_id = ? AND editor_restricted = 0 ORDER BY seq':
-			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE event_id = ? ORDER BY seq'),
-			$eventId
+			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE sched_conf_id = ? AND editor_restricted = 0 ORDER BY seq':
+			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE sched_conf_id = ? ORDER BY seq'),
+			$schedConfId
 		);
 
-		$localeNumber = Locale::isAlternateConferenceLocale($event->getConferenceId());
+		$localeNumber = Locale::isAlternateConferenceLocale($schedConf->getConferenceId());
 
 		while (!$result->EOF) {
 			$trackTitle = $result->fields[$localeNumber + 1];
@@ -372,13 +372,13 @@ class TrackDAO extends DAO {
 	/**
 	 * Check if a track exists with the specified ID.
 	 * @param $trackId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return boolean
 	 */
-	function trackExists($trackId, $eventId) {
+	function trackExists($trackId, $schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT COUNT(*) FROM tracks WHERE track_id = ? AND event_id = ?',
-			array($trackId, $eventId)
+			'SELECT COUNT(*) FROM tracks WHERE track_id = ? AND sched_conf_id = ?',
+			array($trackId, $schedConfId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
@@ -390,12 +390,12 @@ class TrackDAO extends DAO {
 
 	/**
 	 * Sequentially renumber tracks in their sequence order.
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 */
-	function resequenceTracks($eventId) {
+	function resequenceTracks($schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT track_id FROM tracks WHERE event_id = ? ORDER BY seq',
-			$eventId
+			'SELECT track_id FROM tracks WHERE sched_conf_id = ? ORDER BY seq',
+			$schedConfId
 		);
 		
 		for ($i=1; !$result->EOF; $i++) {
@@ -424,33 +424,33 @@ class TrackDAO extends DAO {
 	}
 
 	/**
-	 * Delete the custom ordering of an event's tracks.
-	 * @param $eventId int
+	 * Delete the custom ordering of an scheduled conference's tracks.
+	 * @param $schedConfId int
 	 */
-	function deleteCustomTrackOrdering($eventId) {
+	function deleteCustomTrackOrdering($schedConfId) {
 		return $this->update(
-			'DELETE FROM custom_track_orders WHERE event_id = ?', $eventId
+			'DELETE FROM custom_track_orders WHERE sched_conf_id = ?', $schedConfId
 		);
 	}
 
 	/**
 	 * Sequentially renumber custom track orderings in their sequence order.
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 */
-	function resequenceCustomTrackOrders($eventId) {
+	function resequenceCustomTrackOrders($schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT track_id FROM custom_track_orders WHERE event_id = ? ORDER BY seq',
-			$eventId
+			'SELECT track_id FROM custom_track_orders WHERE sched_conf_id = ? ORDER BY seq',
+			$schedConfId
 		);
 		
 		for ($i=1; !$result->EOF; $i++) {
 			list($trackId) = $result->fields;
 			$this->update(
-				'UPDATE custom_track_orders SET seq = ? WHERE track_id = ? AND event_id = ?',
+				'UPDATE custom_track_orders SET seq = ? WHERE track_id = ? AND sched_conf_id = ?',
 				array(
 					$i,
 					$trackId,
-					$eventId
+					$schedConfId
 				)
 			);
 			
@@ -462,14 +462,14 @@ class TrackDAO extends DAO {
 	}
 	
 	/**
-	 * Check if an event has custom track ordering.
-	 * @param $eventId int
+	 * Check if a scheduled conference has custom track ordering.
+	 * @param $schedConfId int
 	 * @return boolean
 	 */
-	function customTrackOrderingExists($eventId) {
+	function customTrackOrderingExists($schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT COUNT(*) FROM custom_track_orders WHERE event_id = ?',
-			$eventId
+			'SELECT COUNT(*) FROM custom_track_orders WHERE sched_conf_id = ?',
+			$schedConfId
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 0 ? false : true;
 
@@ -481,14 +481,14 @@ class TrackDAO extends DAO {
 
 	/**
 	 * Get the custom track order of a track.
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @return int
 	 */
-	function getCustomTrackOrder($eventId, $trackId) {
+	function getCustomTrackOrder($schedConfId, $trackId) {
 		$result = &$this->retrieve(
-			'SELECT seq FROM custom_track_orders WHERE event_id = ? AND track_id = ?',
-			array($eventId, $trackId)
+			'SELECT seq FROM custom_track_orders WHERE sched_conf_id = ? AND track_id = ?',
+			array($schedConfId, $trackId)
 		);
 		
 		$returner = null;
@@ -502,19 +502,19 @@ class TrackDAO extends DAO {
 	}
 
 	/**
-	 * Import the current track orders into the specified event as custom
-	 * event orderings.
-	 * @param $eventId int
+	 * Import the current track orders into the specified scheduled conference as custom
+	 * scheduled conference orderings.
+	 * @param $schedConfId int
 	 */
-	function setDefaultCustomTrackOrders($eventId) {
+	function setDefaultCustomTrackOrders($schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT s.track_id FROM tracks s, events i WHERE i.event_id = s.event_id AND i.event_id = ? ORDER BY seq',
-			$eventId
+			'SELECT s.track_id FROM tracks s, sched_confs i WHERE i.sched_conf_id = s.sched_conf_id AND i.sched_conf_id = ? ORDER BY seq',
+			$schedConfId
 		);
 		
 		for ($i=1; !$result->EOF; $i++) {
 			list($trackId) = $result->fields;
-			$this->_insertCustomTrackOrder($eventId, $trackId, $i);
+			$this->_insertCustomTrackOrder($schedConfId, $trackId, $i);
 			$result->moveNext();
 		}
 		
@@ -524,34 +524,34 @@ class TrackDAO extends DAO {
 
 	/**
 	 * INTERNAL USE ONLY: Insert a custom track ordering
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @param $seq int
 	 */
-	function _insertCustomTrackOrder($eventId, $trackId, $seq) {
+	function _insertCustomTrackOrder($schedConfId, $trackId, $seq) {
 		$this->update(
-			'INSERT INTO custom_track_orders (track_id, event_id, seq) VALUES (?, ?, ?)',
+			'INSERT INTO custom_track_orders (track_id, sched_conf_id, seq) VALUES (?, ?, ?)',
 			array(
 				$trackId,
-				$eventId,
+				$schedConfId,
 				$seq
 			)
 		);
 	}
 
 	/**
-	 * Move a custom event ordering up or down, resequencing as necessary.
-	 * @param $eventId int
+	 * Move a custom scheduled conference ordering up or down, resequencing as necessary.
+	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @param $newPos int The new position (0-based) of this track
 	 * @param $up boolean Whether we're moving the track up or down
 	 */
-	function moveCustomTrackOrder($eventId, $trackId, $newPos, $up) {
+	function moveCustomTrackOrder($schedConfId, $trackId, $newPos, $up) {
 		$this->update(
-			'UPDATE custom_track_orders SET seq = ? ' . ($up?'-':'+') . ' 0.5 WHERE event_id = ? AND track_id = ?',
-			array($newPos, $eventId, $trackId)
+			'UPDATE custom_track_orders SET seq = ? ' . ($up?'-':'+') . ' 0.5 WHERE sched_conf_id = ? AND track_id = ?',
+			array($newPos, $schedConfId, $trackId)
 		);
-		$this->resequenceCustomTrackOrders($eventId);
+		$this->resequenceCustomTrackOrders($schedConfId);
 	}
 }
 

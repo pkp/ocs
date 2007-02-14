@@ -160,8 +160,8 @@ class ConferenceDAO extends DAO {
 		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
 		$announcementDao->deleteAnnouncementsByConference($conferenceId);
 
-		$eventDao = &DAORegistry::getDAO('EventDAO');
-		$eventDao->deleteEventsByConferenceId($conferenceId);
+		$schedConfDao = &DAORegistry::getDAO('schedConfDAO');
+		$schedConfDao->deleteSchedConfsByConferenceId($conferenceId);
 		
 		return $this->update(
 			'DELETE FROM conferences WHERE conference_id = ?', $conferenceId

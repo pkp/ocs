@@ -6,7 +6,7 @@
  * Copyright (c) 2003-2006 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Handle requests for event management functions. 
+ * Handle requests for scheduled conference management functions. 
  *
  * $Id$
  */

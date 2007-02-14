@@ -6,25 +6,25 @@
  * Copyright (c) 2003-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package event
+ * @package conference
  *
- * Operations for retrieving and modifying users' event notification status.
+ * Operations for retrieving and modifying users' sched conf notification status.
  *
  * $Id$
  */
 
 class NotificationStatusDAO extends DAO {
-	function &getEventNotifications($userId) {
+	function &getSchedConfNotifications($userId) {
 		$returner = array();
 		
 		$result = &$this->retrieve(
-			'SELECT j.event_id AS event_id, n.event_id AS notification FROM events j LEFT JOIN notification_status n ON j.event_id = n.event_id AND n.user_id = ? ORDER BY j.seq',
+			'SELECT j.sched_conf_id AS sched_conf_id, n.sched_conf_id AS notification FROM sched_confs j LEFT JOIN notification_status n ON j.sched_conf_id = n.sched_conf_id AND n.user_id = ? ORDER BY j.seq',
 			$userId
 		);
 		
 		while (!$result->EOF) {
 			$row = &$result->GetRowAssoc(false);
-			$returner[$row['event_id']] = $row['notification'];
+			$returner[$row['sched_conf_id']] = $row['notification'];
 			$result->moveNext();
 		}
 
@@ -35,26 +35,26 @@ class NotificationStatusDAO extends DAO {
 	}
 	
 	/**
-	 * Changes whether or not a user will receive email notifications about a given event.
-	 * @param $eventId int
+	 * Changes whether or not a user will receive email notifications about a given sched conf.
+	 * @param $schedConfId int
 	 * @param $userId int
 	 * @param $notificationStatus bool
 	 */
-	function setEventNotifications($eventId, $userId, $notificationStatus) {
+	function setSchedConfNotifications($schedConfId, $userId, $notificationStatus) {
 		return $this->update(
-			($notificationStatus?'INSERT INTO notification_status (user_id, event_id) VALUES (?, ?)':
-			'DELETE FROM notification_status WHERE user_id = ? AND event_id = ?'),
-			array($userId, $eventId)
+			($notificationStatus?'INSERT INTO notification_status (user_id, sched_conf_id) VALUES (?, ?)':
+			'DELETE FROM notification_status WHERE user_id = ? AND sched_conf_id = ?'),
+			array($userId, $schedConfId)
 		);
 	}
 
 	/**
-	 * Delete notification status entries by event ID
-	 * @param $eventId int
+	 * Delete notification status entries by schedConf ID
+	 * @param $schedConfId int
 	 */
-	function deleteNotificationStatusByEvent($eventId) {
+	function deleteNotificationStatusBySchedConf($schedConfId) {
 		return $this->update(
-			'DELETE FROM notification_status WHERE event_id = ?', $eventId
+			'DELETE FROM notification_status WHERE sched_conf_id = ?', $schedConfId
 		);
 	}
 
@@ -69,16 +69,16 @@ class NotificationStatusDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve a list of users who wish to receive updates about the specified event.
-	 * @param $eventId int
+	 * Retrieve a list of users who wish to receive updates about the specified sched conf.
+	 * @param $schedConfId int
 	 * @return DAOResultFactory matching Users
 	 */
-	function &getNotifiableUsersByEventId($eventId) {
+	function &getNotifiableUsersBySchedConfId($schedConfId) {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 				
 		$result = &$this->retrieve(
-			'SELECT u.* FROM users u, notification_status n WHERE u.user_id = n.user_id AND n.event_id = ?',
-			$eventId
+			'SELECT u.* FROM users u, notification_status n WHERE u.user_id = n.user_id AND n.sched_conf_id = ?',
+			$schedConfId
 		);
 
 		$returner = &new DAOResultFactory($result, $userDao, '_returnUserFromRow');
@@ -86,16 +86,16 @@ class NotificationStatusDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve the number of users who wish to receive updates about the specified event.
-	 * @param $eventId int
+	 * Retrieve the number of users who wish to receive updates about the specified schedConf.
+	 * @param $schedConfId int
 	 * @return int
 	 */
-	function getNotifiableUsersCount($eventId) {
+	function getNotifiableUsersCount($schedConfId) {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 				
 		$result = &$this->retrieve(
-			'SELECT count(*) FROM notification_status n WHERE n.event_id = ?',
-			$eventId
+			'SELECT count(*) FROM notification_status n WHERE n.sched_conf_id = ?',
+			$schedConfId
 		);
 
 		$returner = $result->fields[0];

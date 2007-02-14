@@ -11,7 +11,7 @@
 import('classes.plugins.GenericPlugin');
 
 // TODO: Rather than parsing the crontab on each request (which is slow and
-// dumb), decide when earliest possible run for each event is, and store that
+// dumb), decide when earliest possible run for each scheduled conference is, and store that
 // timestamp for quick reference along with the other entry parameters.
 
 // Alternately, store a PluginSetting containing the last time Acron actually
@@ -45,7 +45,7 @@ class AcronPlugin extends GenericPlugin {
 		if($isEnabled) {
 			$taskDao =& DAORegistry::getDao('ScheduledTaskDAO');
 
-			// Grab the scheduled event tree
+			// Grab the scheduled scheduled conference tree
 			$scheduledTasks = $this->getSetting(0, 'crontab');
 			if(!$scheduledTasks) {
 				$this->parseCrontab();
@@ -266,7 +266,7 @@ class AcronPlugin extends GenericPlugin {
 		$verbs = array();
 		$verbs[] = array(
 			($isEnabled?'disable':'enable'),
-			Locale::translate($isEnabled?'director.plugins.disable':'director.plugins.enable')
+			Locale::translate($isEnabled?'manager.plugins.disable':'manager.plugins.enable')
 		);
 		$verbs[] = array(
 			'reload', Locale::translate('plugins.generic.acron.reload')

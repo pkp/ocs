@@ -14,7 +14,7 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<title>{$paper->getFirstAuthor(true)|escape}</title>
+	<title>{$paper->getFirstPresenter(true)|escape}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset}" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -33,11 +33,11 @@
 
 <div id="main">
 
-<h2>{$siteTitle|escape},&nbsp;{$event->getFullTitle()|escape}</h2>
+<h2>{$siteTitle|escape},&nbsp;{$schedConf->getFullTitle()|escape}</h2>
 
 <div id="navbar">
 	<ul class="menu">
-		<li><a href="{url event=""}" target="_parent">{translate key="navigation.home"}</a></li>
+		<li><a href="{url schedConf=""}" target="_parent">{translate key="navigation.home"}</a></li>
 		<li><a href="{url page="about"}" target="_parent">{translate key="navigation.about"}</a></li>
 		{if $isUserLoggedIn}
 			<li><a href="{url page="user"}" target="_parent">{translate key="navigation.userHome"}</a></li>
@@ -47,8 +47,8 @@
 		{/if}
 		<li><a href="{url page="search"}" target="_parent">{translate key="navigation.search"}</a></li>
 		{if $currentConference}
-			{if $currentEventsExist}<li><a href="{url event="index" page="events" op="current"}">{translate key="navigation.current"}</a></li>{/if}
-			{if $archivedEventsExist}<li><a href="{url event="index" page="events" op="archive"}">{translate key="navigation.archive"}</a></li>{/if}
+			{if $currentSchedConfsExist}<li><a href="{url schedConf="index" page="schedConfs" op="current"}">{translate key="navigation.current"}</a></li>{/if}
+			{if $archivedSchedConfsExist}<li><a href="{url schedConf="index" page="schedConfs" op="archive"}">{translate key="navigation.archive"}</a></li>{/if}
 			{if $enableAnnouncements}
 				<li><a href="{url page="announcement"}" target="_parent">{translate key="announcement.announcements"}</a></li>
 			{/if}
@@ -62,10 +62,10 @@
 
 <div id="breadcrumb">
 	<a href="{url page="index"}" target="_parent">{translate key="navigation.home"}</a> &gt;
-	<a href="{url event=""}" target="_parent">{$conference->getTitle()|escape}</a> &gt;
-	<a href="{url page="index"}" target="_parent">{$event->getTitle()|escape}</a> &gt;
-	<a href="{url page="event" op="proceedings"}" target="_parent">{$track->getTrackTitle()|escape}</a> &gt;
-	<a href="{url page="paper" op="view" path=$paperId|to_array:$galleyId}" class="current" target="_parent">{$paper->getFirstAuthor(true)|escape}</a>
+	<a href="{url schedConf=""}" target="_parent">{$conference->getTitle()|escape}</a> &gt;
+	<a href="{url page="index"}" target="_parent">{$schedConf->getTitle()|escape}</a> &gt;
+	<a href="{url page="schedConf" op="proceedings"}" target="_parent">{$track->getTrackTitle()|escape}</a> &gt;
+	<a href="{url page="paper" op="view" path=$paperId|to_array:$galleyId}" class="current" target="_parent">{$paper->getFirstPresenter(true)|escape}</a>
 </div>
 
 <div id="content">
@@ -74,7 +74,7 @@
 {else}
 
 	<h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
-	<div><i>{$paper->getAuthorString()|escape}</i></div>
+	<div><i>{$paper->getPresenterString()|escape}</i></div>
 	<br />
 
 	<h4>{translate key="paper.abstract"}</h4>

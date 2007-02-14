@@ -15,41 +15,41 @@
  */
 
 /** ID codes for all user roles */
-define('ROLE_ID_SITE_ADMIN',						0x00000001);
-define('ROLE_PATH_SITE_ADMIN',					'admin');
+define('ROLE_ID_SITE_ADMIN',			0x00000001);
+define('ROLE_PATH_SITE_ADMIN',			'admin');
 
-define('ROLE_ID_CONFERENCE_DIRECTOR',		0x00000010);
-define('ROLE_PATH_CONFERENCE_DIRECTOR', 'director');
+define('ROLE_ID_CONFERENCE_MANAGER',		0x00000010);
+define('ROLE_PATH_CONFERENCE_MANAGER',		'manager');
 
-define('ROLE_ID_REGISTRATION_MANAGER',	0x00000020);
-define('ROLE_PATH_REGISTRATION_MANAGER','registrationManager');
+define('ROLE_ID_REGISTRATION_MANAGER',		0x00000020);
+define('ROLE_PATH_REGISTRATION_MANAGER',	'registrationManager');
 
-define('ROLE_ID_EDITOR',								0x00000040);
-define('ROLE_PATH_EDITOR', 							'editor');
+define('ROLE_ID_EDITOR',			0x00000040);
+define('ROLE_PATH_EDITOR', 			'editor');
 
-define('ROLE_ID_TRACK_EDITOR',					0x00000080);
-define('ROLE_PATH_TRACK_EDITOR', 				'trackEditor');
+define('ROLE_ID_TRACK_EDITOR',			0x00000080);
+define('ROLE_PATH_TRACK_EDITOR', 		'trackEditor');
 
-define('ROLE_ID_LAYOUT_EDITOR',		0x00000300);
-define('ROLE_PATH_LAYOUT_EDITOR', 				'layoutEditor');
+define('ROLE_ID_LAYOUT_EDITOR',			0x00000300);
+define('ROLE_PATH_LAYOUT_EDITOR', 		'layoutEditor');
 
-define('ROLE_ID_REVIEWER',							0x00000100);
-define('ROLE_PATH_REVIEWER',						'reviewer');
+define('ROLE_ID_REVIEWER',			0x00000100);
+define('ROLE_PATH_REVIEWER',			'reviewer');
 
-define('ROLE_ID_AUTHOR',			 					0x00001000);
-define('ROLE_PATH_AUTHOR',							'author');
+define('ROLE_ID_PRESENTER',			0x00001000);
+define('ROLE_PATH_PRESENTER',			'presenter');
 
-//define('ROLE_ID_INVITED_AUTHOR',				0x00001001);
-//define('ROLE_PATH_INVITED_AUTHOR',			'invitedAuthor');
+//define('ROLE_ID_INVITED_PRESENTER',		0x00001001);
+//define('ROLE_PATH_INVITED_PRESENTER',		'invitedPresenter');
 
-//define('ROLE_ID_DISCUSSANT',						0x00010000);
-//define('ROLE_PATH_DISCUSSANT',					'discussant');
+//define('ROLE_ID_DISCUSSANT',			0x00010000);
+//define('ROLE_PATH_DISCUSSANT',		'discussant');
 
-//define('ROLE_ID_REGISTRANT',						0x00020000);
-//define('ROLE_PATH_REGISTRANT',					'registrant');
+//define('ROLE_ID_REGISTRANT',			0x00020000);
+//define('ROLE_PATH_REGISTRANT',		'registrant');
 
-define('ROLE_ID_READER',								0x00008000);
-define('ROLE_PATH_READER',							'reader');
+define('ROLE_ID_READER',			0x00008000);
+define('ROLE_PATH_READER',			'reader');
 
 class Role extends DataObject {
 
@@ -97,19 +97,19 @@ class Role extends DataObject {
 	}
 	
 	/**
-	 * Get event ID associated with role.
+	 * Get scheduled conference ID associated with role.
 	 * @return int
 	 */
-	function getEventId() {
-		return $this->getData('eventId');
+	function getSchedConfId() {
+		return $this->getData('schedConfId');
 	}
 	
 	/**
-	 * Set event ID associated with role.
+	 * Set scheduled conference ID associated with role.
 	 * @param $conferenceId int
 	 */
-	function setEventId($eventId) {
-		return $this->setData('eventId', $eventId);
+	function setSchedConfId($schedConfId) {
+		return $this->setData('schedConfId', $schedConfId);
 	}
 	
 	/**

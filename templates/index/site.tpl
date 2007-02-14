@@ -5,7 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * This template is for the site index, which is displayed when neither
- * a conference nor an event are specified.
+ * a conference nor an scheduled conference are specified.
  *
  * $Id$
  *}
@@ -26,7 +26,7 @@
 <p>{$conference->getSetting('conferenceIntroduction')|nl2br}</p>
 {/if}
 
-<p><a href="{url conference=$conference->getPath() event=""}" class="action">{translate key="site.conferenceView"}</a></p>
+<p><a href="{url conference=$conference->getPath() schedConf=""}" class="action">{translate key="site.conferenceView"}</a></p>
 {/iterate}
 
 {include file="common/footer.tpl"}

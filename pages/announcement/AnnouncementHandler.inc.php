@@ -22,7 +22,7 @@ class AnnouncementHandler extends Handler {
 		AnnouncementHandler::setupTemplate();
 
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		
 		$announcementsEnabled = $conference->getSetting('enableAnnouncements');
 
@@ -30,9 +30,9 @@ class AnnouncementHandler extends Handler {
 			$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
 			$rangeInfo = &Handler::getRangeInfo('announcements');
 
-			if($event) {
-				$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $event->getEventId(), $rangeInfo);
-				$announcementsIntroduction = $event->getSetting('announcementsIntroduction',true);
+			if($schedConf) {
+				$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $schedConf->getSchedConfId(), $rangeInfo);
+				$announcementsIntroduction = $schedConf->getSetting('announcementsIntroduction',true);
 			} else {
 				$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), 0, $rangeInfo);
 				$announcementsIntroduction = $conference->getSetting('announcementsIntroduction');

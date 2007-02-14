@@ -4,8 +4,8 @@
  * Copyright (c) 2003-2004 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Conference index page. Displayed when a conference, but not an event,
- * has been selected.
+ * Conference index page. Displayed when a conference, but not a scheduled
+ * conference, has been selected.
  *
  * $Id$
  *}
@@ -37,17 +37,17 @@
 
 {$additionalHomeContent}
 
-{* Display current events. *}
+{* Display current scheduled conferences. *}
 <h3>{translate key="conference.currentConferences"}</h3>
-{if not $currentEvents->eof()}
-	{iterate from=currentEvents item=event}
-		<h4><a href="{url event=$event->getPath()}">{$event->getFullTitle()|escape}</a></h4>
-		<p>{$event->getSetting('location')|nl2br}</p>
-		<p>{$event->getSetting('startDate')|date_format:$dateFormatLong} &ndash; {$event->getSetting('endDate')|date_format:$dateFormatLong}</p>
-		{if $event->getSetting('eventIntroduction')}
-			<p>{$event->getSetting('eventIntroduction')|nl2br}</p>
+{if not $currentSchedConfs->eof()}
+	{iterate from=currentSchedConfs item=schedConf}
+		<h4><a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getFullTitle()|escape}</a></h4>
+		<p>{$schedConf->getSetting('location')|nl2br}</p>
+		<p>{$schedConf->getSetting('startDate')|date_format:$dateFormatLong} &ndash; {$schedConf->getSetting('endDate')|date_format:$dateFormatLong}</p>
+		{if $schedConf->getSetting('schedConfIntroduction')}
+			<p>{$schedConf->getSetting('schedConfIntroduction')|nl2br}</p>
 		{/if}
-		<p><a href="{url event=$event->getPath()}" class="action">{translate key="site.eventView"}</a> | <a href="{url event=$event->getPath() page="user" op="register"}" class="action">{translate key="site.conferenceRegister"}</a></p>
+		<p><a href="{url schedConf=$schedConf->getPath()}" class="action">{translate key="site.schedConfView"}</a> | <a href="{url schedConf=$schedConf->getPath() page="user" op="register"}" class="action">{translate key="site.conferenceRegister"}</a></p>
 	{/iterate}
 {else}
 	{translate key="conference.noCurrentConferences"}

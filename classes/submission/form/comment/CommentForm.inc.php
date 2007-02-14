@@ -26,7 +26,7 @@ class CommentForm extends Form {
 	/** @var Paper current paper */
 	var $paper;
 
-	/** @var User comment author */
+	/** @var User comment presenter */
 	var $user;
 	
 	/** @var int the ID of the comment after insertion */
@@ -124,12 +124,12 @@ class CommentForm extends Form {
 	function email($recipients, $insertedComments = null) {
 		$paper = $this->paper;
 		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		
 		$user = &Request::getUser();
 		import('mail.PaperMailTemplate');
 		$email = &new PaperMailTemplate($paper, 'SUBMISSION_COMMENT');
-		$email->setFrom($event->getSetting('contactEmail', true), $event->getSetting('contactName', true));
+		$email->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
 
 		// For Reviews, comments can actually be a compound of two comments.
 		// If this is the case, then concatenate them before sending.

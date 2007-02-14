@@ -12,12 +12,12 @@
  * Requests are assumed to be in the format:
  *    http://host.tld/index.php
  *                   /<conference_id>
- *                   /<event_id>
+ *                   /<sched_conf_id>
  *                   /<page_name>
  *                   /<operation_name>
  *                   /<arguments...>
  * <conference_id> is assumed to be "index" for top-level site requests.
- *                 ditto for <event_id>
+ *                 ditto for <sched_conf_id>
  *
  * $Id$
  */
@@ -44,16 +44,16 @@ class Request {
 	/**
 	 * Redirect to the specified page within OCS. Shorthand for a common call to Request::redirect(Request::url(...)).
 	 * @param $conferencePath string The path of the conference to redirect to.
-	 * @param $eventPath string The path of the conference to redirect to.
+	 * @param $schedConfPath string The path of the conference to redirect to.
 	 * @param $page string The name of the op to redirect to.
 	 * @param $op string optional The name of the op to redirect to.
 	 * @param $path mixed string or array containing path info for redirect.
 	 * @param $params array Map of name => value pairs for additional parameters
 	 * @param $anchor string Name of desired anchor on the target page
 	 */
-	function redirect($conferencePath = null, $eventPath = null, $page = null,
+	function redirect($conferencePath = null, $schedConfPath = null, $page = null,
 			$op = null, $path = null, $params = null, $anchor = null) {
-		Request::redirectUrl(Request::url($conferencePath, $eventPath, $page,
+		Request::redirectUrl(Request::url($conferencePath, $schedConfPath, $page,
 			$op, $path, $params, $anchor));
 	}
 
@@ -324,30 +324,30 @@ class Request {
 	}
 	
 	/**
-	 * Get the event path requested in the URL ("index" for top-level site requests).
+	 * Get the scheduled conference path requested in the URL ("index" for top-level site requests).
 	 * @return string 
 	 */
-	function getRequestedEventPath() {
-		static $event;
+	function getRequestedSchedConfPath() {
+		static $schedConf;
 		
-		if (!isset($event)) {
+		if (!isset($schedConf)) {
 			if (Request::isPathInfoEnabled()) {
-				$event = '';
+				$schedConf = '';
 				if (isset($_SERVER['PATH_INFO'])) {
 					$vars = explode('/', $_SERVER['PATH_INFO']);
 					if (count($vars) >= 3) {
-						$event = Core::cleanFileVar($vars[2]);
+						$schedConf = Core::cleanFileVar($vars[2]);
 					}
 				}
 			} else {
-				$event = Request::getUserVar('event');
+				$schedConf = Request::getUserVar('schedConf');
 			}
 
-			$event = empty($event) ? 'index' : $event;
-			HookRegistry::call('Request::getRequestedEventPath', array(&$event));
+			$schedConf = empty($schedConf) ? 'index' : $schedConf;
+			HookRegistry::call('Request::getRequestedSchedConfPath', array(&$schedConf));
 		}
 		
-		return $event;
+		return $schedConf;
 	}
 	
 	/**
@@ -415,21 +415,21 @@ class Request {
 	 }
 
 	/**
-	 * Get the event associated with the current request.
-	 * @return Event
+	 * Get the scheduled conference associated with the current request.
+	 * @return schedConf object
 	 */
-	 function &getEvent() {
-	 	static $event;
+	 function &getSchedConf() {
+	 	static $schedConf;
 	 	
-	 	if (!isset($event)) {
-	 		$path = Request::getRequestedEventPath();
+	 	if (!isset($schedConf)) {
+	 		$path = Request::getRequestedSchedConfPath();
 	 		if ($path != 'index') {
-		 		$eventDao = &DAORegistry::getDAO('EventDAO');
-		 		$event = $eventDao->getEventByPath(Request::getRequestedEventPath());
+		 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		 		$schedConf = $schedConfDao->getSchedConfByPath(Request::getRequestedSchedConfPath());
 		 	}
 	 	}
 	 	
-	 	return $event;
+	 	return $schedConf;
 	 }
 
 	/**
@@ -601,7 +601,7 @@ class Request {
 	/**
 	 * Build a URL into OCS.
 	 * @param $conferencePath string Optional path for conference to use
-	 * @param $eventPath string Optional path for event to use
+	 * @param $schedConfPath string Optional path for scheduled conference to use
 	 * @param $page string Optional name of page to invoke
 	 * @param $op string Optional name of operation to invoke
 	 * @param $path mixed Optional string or array of args to pass to handler
@@ -609,7 +609,7 @@ class Request {
 	 * @param $anchor string Optional name of anchor to add to URL
 	 * @param $escape boolean Whether or not to escape ampersands for this URL; default false.
 	 */
-	function url($conferencePath = null, $eventPath = null, $page = null,
+	function url($conferencePath = null, $schedConfPath = null, $page = null,
 			$op = null, $path = null, $params = null, $anchor = null, $escape = false) {
 		$pathInfoDisabled = !Request::isPathInfoEnabled();
 
@@ -622,7 +622,7 @@ class Request {
 
 		if($page == 'install') {
 			$conferencePath = 'index';
-			$eventPath = 'index';
+			$schedConfPath = 'index';
 		} else {
 			if (isset($conferencePath)) {
 				$conferencePath = rawurlencode($conferencePath);
@@ -633,19 +633,19 @@ class Request {
 				else $conferencePath = 'index';
 			}
 
-			if(isset($eventPath)) {
-				$eventPath = rawurlencode($eventPath);
-				$eventPathProvided = true;
+			if(isset($schedConfPath)) {
+				$schedConfPath = rawurlencode($schedConfPath);
+				$schedConfPathProvided = true;
 			} else {
-				$event =& Request::getEvent();
-				if ($event) $eventPath = $event->getPath();
-				else $eventPath = 'index';
+				$schedConf =& Request::getSchedConf();
+				if ($schedConf) $schedConfPath = $schedConf->getPath();
+				else $schedConfPath = 'index';
 			}
 		}
 
-		// If a conference and event have been specified, don't supply default
+		// If a conference and scheduled conference have been specified, don't supply default
 		// page or op.
-		if(isset($eventPathProvided) || isset($conferencePathProvided)) {
+		if(isset($schedConfPathProvided) || isset($conferencePathProvided)) {
 			$defaultPage = null;
 			$defaultOp = null;
 		}
@@ -692,7 +692,7 @@ class Request {
 		if ($pathInfoDisabled) {
 			$joiner = $amp . 'path[]=';
 			if (!empty($path)) $pathString = $joiner . implode($joiner, $path);
-			if (empty($overriddenBaseUrl)) $baseParams = "?conference=$conferencePath&event=$eventPath";
+			if (empty($overriddenBaseUrl)) $baseParams = "?conference=$conferencePath&schedConf=$schedConfPath";
 			else $baseParams = '';
 
 			if (!empty($page) || !empty($overriddenBaseUrl)) {
@@ -703,7 +703,7 @@ class Request {
 			}
 		} else {
 			if (!empty($path)) $pathString = '/' . implode('/', $path);
-			if (empty($overriddenBaseUrl)) $baseParams = "/$conferencePath/$eventPath";
+			if (empty($overriddenBaseUrl)) $baseParams = "/$conferencePath/$schedConfPath";
 			else $baseParams = '';
 
 			if (!empty($page)) {

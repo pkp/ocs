@@ -91,7 +91,7 @@
 {/iterate}
 {if $reviewers->wasEmpty()}
 <tr>
-<td colspan="{$numCols}" class="nodata">{translate key="director.people.noneEnrolled"}</td>
+<td colspan="{$numCols}" class="nodata">{translate key="manager.people.noneEnrolled"}</td>
 </tr>
 <tr><td colspan="{$numCols}" class="endseparator">&nbsp;</td></tr>
 {else}

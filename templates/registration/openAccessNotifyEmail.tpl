@@ -6,8 +6,8 @@ Content-Transfer-Encoding: quoted-printable
 
 {$body}
 
-{$event->getEventIdentification()}
-{translate key="event.toc"}
+{$schedConf->getSchedConfIdentification()}
+{translate key="schedConf.toc"}
 
 {foreach name=tracks from=$publishedPapers item=track key=trackId}
 {if $track.title}{$track.title}{/if}
@@ -15,8 +15,8 @@ Content-Transfer-Encoding: quoted-printable
 {foreach from=$track.papers item=paper}
 {$paper->getPaperTitle()|strip_tags}{if $paper->getPages()} ({$paper->getPages()}){/if}
 
-{foreach from=$paper->getAuthors() item=author name=authorList}
-	{$author->getFullName()}{if !$smarty.foreach.authorList.last},{/if}{/foreach}
+{foreach from=$paper->getPresenters() item=presenter name=presenterList}
+	{$presenter->getFullName()}{if !$smarty.foreach.presenterList.last},{/if}{/foreach}
 
 {/foreach}
 
@@ -43,7 +43,7 @@ Content-Transfer-Encoding: quoted-printable
 
 	<p>{$body|escape|nl2br}</p>
 
-		<h3>{$event->getEventIdentification()}<br />{translate key="event.toc"}</h3>
+		<h3>{$schedConf->getSchedConfIdentification()}<br />{translate key="schedConf.toc"}</h3>
 		{foreach name=tracks from=$publishedPapers item=track key=trackId}
 			{if $track.title}<h4>{$track.title|escape}</h4>{/if}
 
@@ -52,19 +52,19 @@ Content-Transfer-Encoding: quoted-printable
 					<tr>
 						<td>{$paper->getPaperTitle()|strip_unsafe_html}</td>
 						<td align="right">
-							<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentEvent)}" class="file">{if $track.abstractsDisabled}{translate key="paper.details"}{else}{translate key="paper.abstract"}{/if}</a>
+							<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentSchedConf)}" class="file">{if $track.abstractsDisabled}{translate key="paper.details"}{else}{translate key="paper.abstract"}{/if}</a>
 							{if $mayViewPaper || $paper->getAccessStatus()}
 								{foreach from=$paper->getGalleys() item=galley name=galleyList}
 									&nbsp;
-									<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentEvent)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>
+									<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentSchedConf)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>
 								{/foreach}
 							{/if}
 						</td>
 					</tr>
 					<tr>
 						<td style="padding-left: 30px;font-style: italic;">
-							{foreach from=$paper->getAuthors() item=author name=authorList}
-								{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
+							{foreach from=$paper->getPresenters() item=presenter name=presenterList}
+								{$presenter->getFullName()|escape}{if !$smarty.foreach.presenterList.last},{/if}
 							{/foreach}
 						</td>
 						<td align="right">{if $paper->getPages()}{$paper->getPages()|escape}{else}&nbsp;{/if}</td>

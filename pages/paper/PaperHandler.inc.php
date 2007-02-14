@@ -25,7 +25,7 @@ class PaperHandler extends Handler {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		list($conference, $event, $paper) = PaperHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
@@ -59,7 +59,7 @@ class PaperHandler extends Handler {
 	function viewPDFInterstitial($args, $galley = null) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $event, $paper) = PaperHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
 
 		if (!$galley) {
 			$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
@@ -81,7 +81,7 @@ class PaperHandler extends Handler {
 	function viewDownloadInterstitial($args, $galley = null) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $event, $paper) = PaperHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
 
 		if (!$galley) {
 			$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
@@ -103,7 +103,7 @@ class PaperHandler extends Handler {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		list($conference, $event, $paper) = PaperHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
@@ -123,7 +123,7 @@ class PaperHandler extends Handler {
 		}
 
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
-		$enableComments = $event->getSetting('enableComments', true);
+		$enableComments = $schedConf->getSetting('enableComments', true);
 		if ($enableComments == COMMENTS_AUTHENTICATED || $enableComments == COMMENTS_UNAUTHENTICATED || $enableComments == COMMENTS_ANONYMOUS) {
 			$comments = &$commentDao->getRootCommentsByPaperId($paper->getPaperId());
 		}
@@ -136,10 +136,10 @@ class PaperHandler extends Handler {
 		if (!$galley) {
 			// Get the registration status if displaying the abstract;
 			// if access is open, we can display links to the full text.
-			import('event.EventAction');
-			$templateMgr->assign('mayViewPaper', EventAction::mayViewPapers($event));
-			$templateMgr->assign('registeredUser', EventAction::registeredUser($event));
-			$templateMgr->assign('registeredDomain', EventAction::registeredDomain($event));
+			import('schedConf.SchedConfAction');
+			$templateMgr->assign('mayViewPaper', SchedConfAction::mayViewPapers($schedConf));
+			$templateMgr->assign('registeredUser', SchedConfAction::registeredUser($schedConf));
+			$templateMgr->assign('registeredDomain', SchedConfAction::registeredDomain($schedConf));
 
 			// Increment the published paper's abstract views count
 			$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
@@ -158,7 +158,7 @@ class PaperHandler extends Handler {
 			}
 		}
 
-		$templateMgr->assign_by_ref('event', $event);
+		$templateMgr->assign_by_ref('schedConf', $schedConf);
 		$templateMgr->assign_by_ref('conference', $conference);
 		$templateMgr->assign_by_ref('paper', $paper);
 		$templateMgr->assign_by_ref('galley', $galley);
@@ -183,7 +183,7 @@ class PaperHandler extends Handler {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		list($conference, $event, $paper) = PaperHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
@@ -197,7 +197,7 @@ class PaperHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 
-		$templateMgr->assign_by_ref('event', $event);
+		$templateMgr->assign_by_ref('schedConf', $schedConf);
 		$templateMgr->assign_by_ref('paper', $paper);
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
@@ -208,7 +208,7 @@ class PaperHandler extends Handler {
 		// Bring in comment constants.
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
-		$enableComments = $event->getSetting('enableComments', true);
+		$enableComments = $schedConf->getSetting('enableComments', true);
 		$templateMgr->assign('postingAllowed', (
 			$enableComments == COMMENTS_UNAUTHENTICATED ||
 			(($enableComments == COMMENTS_AUTHENTICATED ||
@@ -237,7 +237,7 @@ class PaperHandler extends Handler {
 		$galleyId = isset($args[1]) ? $args[1] : 0;
 		$fileId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $event, $paper) = PaperHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
 
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 		$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
@@ -264,7 +264,7 @@ class PaperHandler extends Handler {
 	function download($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int)$args[1] : 0;
-		list($conference, $event, $paper) = PaperHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
 
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 		$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
@@ -280,10 +280,10 @@ class PaperHandler extends Handler {
 	function downloadSuppFile($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$suppId = isset($args[1]) ? $args[1] : 0;
-		list($conference, $event, $paper) = PaperHandler::validate($paperId);
+		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId);
 
 		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-		if ($event->getSetting('enablePublicSuppFileId', true)) {
+		if ($schedConf->getSetting('enablePublicSuppFileId', true)) {
 			$suppFile = &$suppFileDao->getSuppFileByBestSuppFileId($paper->getPaperId(), $suppId);
 		} else {
 			$suppFile = &$suppFileDao->getSuppFile((int) $suppId, $paper->getPaperId());
@@ -305,44 +305,44 @@ class PaperHandler extends Handler {
 	 */
 	function validate($paperId, $galleyId = null) {
 
-		list($conference, $event) = parent::validate(true, true);
+		list($conference, $schedConf) = parent::validate(true, true);
 
 		$conferenceId = $conference->getConferenceId();
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 
-		if ($event->getSetting('enablePublicPaperId', true)) {
-			$paper = &$publishedPaperDao->getPublishedPaperByBestPaperId($event->getEventId(), $paperId);
+		if ($schedConf->getSetting('enablePublicPaperId', true)) {
+			$paper = &$publishedPaperDao->getPublishedPaperByBestPaperId($schedConf->getSchedConfId(), $paperId);
 		} else {
 			$paper = &$publishedPaperDao->getPublishedPaperByPaperId((int) $paperId);
 		}
 
 		// if issue or paper do not exist, are not published, or are
 		// not parts of the same conference, redirect to index.
-		if (isset($event) && isset($paper) && isset($conference) &&
-				$paper->getEventId() == $event->getEventId() &&
-				$event->getConferenceId() == $conference->getConferenceId()) {
+		if (isset($schedConf) && isset($paper) && isset($conference) &&
+				$paper->getSchedConfId() == $schedConf->getSchedConfId() &&
+				$schedConf->getConferenceId() == $conference->getConferenceId()) {
 
 			// Check if login is required for viewing.
-			if (!Validation::isLoggedIn() && $event->getSetting('restrictPaperAccess', true)) {
+			if (!Validation::isLoggedIn() && $schedConf->getSetting('restrictPaperAccess', true)) {
 				Validation::redirectLogin();
 			}
 	
-			import('event.EventAction');
-			$mayViewPaper = EventAction::mayViewPapers($event);
+			import('schedConf.SchedConfAction');
+			$mayViewPaper = SchedConfAction::mayViewPapers($schedConf);
 			
 			// Bar access to paper?
-			if ((isset($galleyId) && $galleyId!=0) && !EventAction::mayViewPapers($event) && !$paper->getAccessStatus()) {
+			if ((isset($galleyId) && $galleyId!=0) && !SchedConfAction::mayViewPapers($schedConf) && !$paper->getAccessStatus()) {
 				Request::redirect(null, null, null, 'index');	
 			}
 			
 			// Bar access to abstract?
-			if ((!isset($galleyId) || $galleyId==0) && !EventAction::mayViewProceedings($event) && !$paper->getAccessStatus()) {
+			if ((!isset($galleyId) || $galleyId==0) && !SchedConfAction::mayViewProceedings($schedConf) && !$paper->getAccessStatus()) {
 				Request::redirect(null, null, null, 'index');	
 			}
 		} else {
 			Request::redirect(null, null, null, 'index');
 		}
-		return array($conference, $event, $paper);
+		return array($conference, $schedConf, $paper);
 	}
 
 }

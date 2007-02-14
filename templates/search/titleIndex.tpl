@@ -25,7 +25,7 @@
 <tr><td colspan="{$numCols}" class="headseparator">&nbsp;</td></tr>
 <tr class="heading" valign="bottom">
 	{if !$currentConference}<td width="20%">{translate key="conference.conference"}</td>{/if}
-	<td width="20%">{translate key="event.event"}</td>
+	<td width="20%">{translate key="schedConf.schedConf"}</td>
 	<td width="{if !$currentConference}60%{else}80%{/if}" colspan="2">{translate key="paper.title"}</td>
 </tr>
 <tr><td colspan="{$numCols}" class="headseparator">&nbsp;</td></tr>
@@ -34,27 +34,27 @@
 {assign var=publishedPaper value=$result.publishedPaper}
 {assign var=paper value=$result.paper}
 {assign var=section value=$result.section}
-{assign var=event value=$result.event}
-{assign var=eventAvailable value=$result.eventAvailable}
+{assign var=schedConf value=$result.schedConf}
+{assign var=schedConfAvailable value=$result.schedConfAvailable}
 {assign var=conference value=$result.conference}
 <tr valign="top">
 	{if !$currentConference}<td><a href="{url conference=$conference->getPath()}">{$conference->getTitle()|escape}</a></td>{/if}
-	<td><a href="{url conference=$conference->getPath() page="event" op="view"}">{$event->getTitle()|escape}</a></td>
+	<td><a href="{url conference=$conference->getPath() page="schedConf" op="view"}">{$schedConf->getTitle()|escape}</a></td>
 	<td width="35%">{$paper->getPaperTitle()|strip_unsafe_html}</td>
 	<td width="25%" align="right">
-			<a href="{url conference=$conference->getPath() event=$event->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>
-		{if ($eventAvailable)}
+			<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>
+		{if ($schedConfAvailable)}
 		{foreach from=$publishedPaper->getGalleys() item=galley name=galleyList}
 			&nbsp;
-			<a href="{url conference=$conference->getPath() event=$event->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>
+			<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>
 		{/foreach}
 		{/if}
 	</td>
 </tr>
 <tr>
 	<td colspan="{$numCols}" style="padding-left: 30px;font-style: italic;">
-		{foreach from=$paper->getAuthors() item=author name=authorList}
-			{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
+		{foreach from=$paper->getPresenters() item=presenter name=presenterList}
+			{$presenter->getFullName()|escape}{if !$smarty.foreach.presenterList.last},{/if}
 		{/foreach}
 	</td>
 </tr>

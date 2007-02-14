@@ -16,7 +16,7 @@
 
 <ul class="plain">
 {foreach from=$conferences item=conference}
-<li>&#187; <a href="{url conference=$conference->getPath() event="index" page="rtadmin"}">{$conference->getTitle()|escape}</a></li>
+<li>&#187; <a href="{url conference=$conference->getPath() schedConf="index" page="rtadmin"}">{$conference->getTitle()|escape}</a></li>
 {/foreach}
 </ul>
 

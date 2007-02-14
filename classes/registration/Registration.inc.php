@@ -48,19 +48,19 @@ class Registration extends DataObject {
 	}
 
 	/**
-	 * Get the event ID of the registration.
+	 * Get the scheduled conference ID of the registration.
 	 * @return int
 	 */
-	function getEventId() {
-		return $this->getData('eventId');
+	function getSchedConfId() {
+		return $this->getData('schedConfId');
 	}
 	
 	/**
-	 * Set the event ID of the registration.
-	 * @param $eventId int
+	 * Set the scheduled conference ID of the registration.
+	 * @param $schedConfId int
 	 */
-	function setEventId($eventId) {
-		return $this->setData('eventId', $eventId);
+	function setSchedConfId($schedConfId) {
+		return $this->setData('schedConfId', $schedConfId);
 	}
 
 	/**

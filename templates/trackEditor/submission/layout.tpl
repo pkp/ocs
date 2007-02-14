@@ -167,7 +167,7 @@
 	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getPaperId()}');" class="icon">{icon name="comment"}</a>
 {/if}
 
-{if $currentEvent->getSetting('layoutInstructions', true)}
+{if $currentSchedConf->getSetting('layoutInstructions', true)}
 &nbsp;&nbsp;
 <a href="javascript:openHelp('{url op="instructions" path="layout"}')" class="action">{translate key="submission.layout.instructions"}</a>
 {/if}

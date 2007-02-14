@@ -17,40 +17,40 @@
 	</tr>
 </table>
 
-<h4>{translate key="paper.authors"}</h4>
+<h4>{translate key="paper.presenters"}</h4>
 	
 <table width="100%" class="data">
-	{foreach name=authors from=$authors item=author}
+	{foreach name=presenters from=$presenters item=presenter}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.name"}</td>
 		<td width="80%" class="value">
-			{assign var=emailString value="`$author->getFullName()` <`$author->getEmail()`>"}
+			{assign var=emailString value="`$presenter->getFullName()` <`$presenter->getEmail()`>"}
 			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getPaperTitle|strip_tags paperId=$submission->getPaperId()}
-			{$author->getFullName()|escape} {icon name="mail" url=$url}
+			{$presenter->getFullName()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
-	{if $author->getEmail()}<tr valign="top">
+	{if $presenter->getEmail()}<tr valign="top">
 		<td class="label">{translate key="user.url"}</td>
-		<td class="value"><a href="{$author->getUrl()|escape:"quotes"}">{$author->getUrl()|escape}</a></td>
+		<td class="value"><a href="{$presenter->getUrl()|escape:"quotes"}">{$presenter->getUrl()|escape}</a></td>
 	</tr>{/if}
 	<tr valign="top">
 		<td class="label">{translate key="user.affiliation"}</td>
-		<td class="value">{$author->getAffiliation()|escape|default:"&mdash;"}</td>
+		<td class="value">{$presenter->getAffiliation()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="common.country"}</td>
-		<td class="value">{$author->getCountryLocalized()|escape|default:"&mdash;"}</td>
+		<td class="value">{$presenter->getCountryLocalized()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.biography"}</td>
-		<td class="value">{$author->getBiography()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
+		<td class="value">{$presenter->getBiography()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
-	{if $author->getPrimaryContact()}
+	{if $presenter->getPrimaryContact()}
 	<tr valign="top">
-		<td colspan="2" class="label">{translate key="author.submit.selectPrincipalContact"}</td>
+		<td colspan="2" class="label">{translate key="presenter.submit.selectPrincipalContact"}</td>
 	</tr>
 	{/if}
-	{if !$smarty.foreach.authors.last}
+	{if !$smarty.foreach.presenters.last}
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
@@ -171,7 +171,7 @@
 	
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="author.submit.agencies"}</td>
+		<td width="20%" class="label">{translate key="presenter.submit.agencies"}</td>
 		<td width="80%" class="value">{$submission->getSponsor()|escape|default:"&mdash;"}</td>
 	</tr>
 </table>

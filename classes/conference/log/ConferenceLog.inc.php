@@ -19,12 +19,12 @@ class ConferenceLog {
 	/**
 	 * Add an event log entry to this conference.
 	 * @param $conferenceId int
-	 * @param $eventId int optional
+	 * @param $schedConfId int optional
 	 * @param $entry ConferenceEventLogEntry
 	 */
-	function logEventEntry($conferenceId, $eventId = null, &$entry) {
+	function logEventEntry($conferenceId, $schedConfId = null, &$entry) {
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$eventDao = &DAORegistry::getDAO('EventDAO');
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		
 		$conference = $conferenceDao->getConference($conferenceId);
 		if(!$conference) {
@@ -32,11 +32,11 @@ class ConferenceLog {
 			return false;
 		}
 		
-		$event = null;
-		if($eventId != null)
-			$event = $eventDao->getEvent($eventId);
+		$schedConf = null;
+		if($schedConfId != null)
+			$schedConf = $schedConfDao->getSchedConf($schedConfId);
 		
-		if(($event && !$event->getSetting('conferenceEventLog', true)) ||
+		if(($schedConf && !$schedConf->getSetting('conferenceEventLog', true)) ||
 			($conference && !$conference->getSetting('conferenceEventLog'))) {
 			// Event logging is disabled
 			return false;
@@ -44,7 +44,7 @@ class ConferenceLog {
 
 		// Add the entry
 		$entry->setConferenceId($conferenceId);
-		$entry->setEventId($eventId);
+		$entry->setSchedConfId($schedConfId);
 		
 		if ($entry->getUserId() == null) {
 			$user = &Request::getUser();
@@ -58,21 +58,21 @@ class ConferenceLog {
 	/**
 	 * Add a new event log entry with the specified parameters, at the default log level
 	 * @param $conferenceId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $eventType int
 	 * @param $assocType int
 	 * @param $assocId int
 	 * @param $messageKey string
 	 * @param $messageParams array
 	 */
-	function logEvent($conferenceId, $eventId = null, $eventType, $assocType = 0, $assocId = 0, $messageKey = null, $messageParams = array()) {
-		return ConferenceLog::logEventLevel($conferenceId, $eventId, LOG_LEVEL_NOTICE, $eventType, $assocType, $assocId, $messageKey, $messageParams);
+	function logEvent($conferenceId, $schedConfId = null, $eventType, $assocType = 0, $assocId = 0, $messageKey = null, $messageParams = array()) {
+		return ConferenceLog::logEventLevel($conferenceId, $schedConfId, LOG_LEVEL_NOTICE, $eventType, $assocType, $assocId, $messageKey, $messageParams);
 	}
 	
 	/**
 	 * Add a new event log entry with the specified parameters, including log level.
 	 * @param $conferenceId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $logLevel char
 	 * @param $eventType int
 	 * @param $assocType int
@@ -80,7 +80,7 @@ class ConferenceLog {
 	 * @param $messageKey string
 	 * @param $messageParams array
 	 */
-	function logEventLevel($conferenceId, $eventId, $logLevel, $eventType, $assocType = 0, $assocId = 0, $messageKey = null, $messageParams = array()) {
+	function logEventLevel($conferenceId, $schedConfId, $logLevel, $eventType, $assocType = 0, $assocId = 0, $messageKey = null, $messageParams = array()) {
 		$entry = &new ConferenceEventLogEntry();
 		$entry->setLogLevel($logLevel);
 		$entry->setEventType($eventType);
@@ -91,18 +91,18 @@ class ConferenceLog {
 			$entry->setLogMessage($messageKey, $messageParams);
 		}
 		
-		return ConferenceLog::logEventEntry($conferenceId, $eventId, $entry);
+		return ConferenceLog::logEventEntry($conferenceId, $schedConfId, $entry);
 	}
 	
 	/**
 	 * Get all event log entries for a conference.
 	 * @param $conferenceId int
-	 * @param $eventId int optional
+	 * @param $schedConfId int optional
 	 * @return array ConferenceEventLogEntry
 	 */
-	function &getEventLogEntries($conferenceId, $eventId = null, $rangeInfo = null) {
+	function &getEventLogEntries($conferenceId, $schedConfId = null, $rangeInfo = null) {
 		$logDao = &DAORegistry::getDAO('ConferenceEventLogDAO');
-		$returner = &$logDao->getConferenceLogEntries($conferenceId, $eventId, $rangeInfo);
+		$returner = &$logDao->getConferenceLogEntries($conferenceId, $schedConfId, $rangeInfo);
 		return $returner;
 	}
 }

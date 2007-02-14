@@ -83,7 +83,7 @@ class PaperHTMLGalley extends PaperGalley {
 					$url = Request::url(null, 'paper', 'view', $urlParts[1]);
 				}
 				break;
-			case 'event':
+			case 'schedConf':
 				if (isset($urlParts[1])) {
 					$url = Request::url(null, null, 'view', $urlParts[1]);
 				} else {
@@ -103,10 +103,10 @@ class PaperHTMLGalley extends PaperGalley {
 				break;
 			case 'public':
 					array_shift($urlParts);
-					$event = &Request::getEvent();
+					$schedConf = &Request::getSchedConf();
 					import ('file.PublicFileManager');
 					$publicFileManager = &new PublicFileManager();
-					$url = Request::getBaseUrl() . '/' . $publicFileManager->getEventFilesPath($event->getEventId()) . '/' . implode('/', $urlParts);
+					$url = Request::getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getSchedConfId()) . '/' . implode('/', $urlParts);
 				break;
 		}
 		return $matchArray[1] . $url . $matchArray[3];

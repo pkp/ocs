@@ -12,7 +12,7 @@
 {if $op=="emailColleague"}
 	{assign var="pageTitle" value="rt.colleague"}
 {else}
-	{assign var="pageTitle" value="rt.emailAuthor"}
+	{assign var="pageTitle" value="rt.emailPresenter"}
 {/if}
 
 {include file="rt/header.tpl"}

@@ -65,7 +65,7 @@ class AnnouncementDAO extends DAO {
 		$announcement = &new Announcement();
 		$announcement->setAnnouncementId($row['announcement_id']);
 		$announcement->setConferenceId($row['conference_id']);
-		$announcement->setEventId($row['event_id']);
+		$announcement->setSchedConfId($row['sched_conf_id']);
 		$announcement->setTypeId($row['type_id']);
 		$announcement->setTitle($row['title']);
 		$announcement->setDescriptionShort($row['description_short']);
@@ -84,13 +84,13 @@ class AnnouncementDAO extends DAO {
 	function insertAnnouncement(&$announcement) {
 		$ret = $this->update(
 			sprintf('INSERT INTO announcements
-				(conference_id, event_id, type_id, title, description_short, description, date_expire, date_posted)
+				(conference_id, sched_conf_id, type_id, title, description_short, description, date_expire, date_posted)
 				VALUES
 				(?, ?, ?, ?, ?, ?, %s, %s)',
 				$this->dateToDB($announcement->getDateExpire()), $this->dateToDB($announcement->getDatePosted())),
 			array(
 				$announcement->getConferenceId(),
-				$announcement->getEventId(),
+				$announcement->getSchedConfId(),
 				$announcement->getTypeId(),
 				$announcement->getTitle(),
 				$announcement->getDescriptionShort(),
@@ -111,7 +111,7 @@ class AnnouncementDAO extends DAO {
 			sprintf('UPDATE announcements
 				SET
 					conference_id = ?,
-					event_id = ?,
+					sched_conf_id = ?,
 					type_id = ?,
 					title = ?,
 					description_short = ?,
@@ -121,7 +121,7 @@ class AnnouncementDAO extends DAO {
 				$this->dateToDB($announcement->getDateExpire())),
 			array(
 				$announcement->getConferenceId(),
-				$announcement->getEventId(),
+				$announcement->getSchedConfId(),
 				$announcement->getTypeId(),
 				$announcement->getTitle(),
 				$announcement->getDescriptionShort(),
@@ -174,13 +174,13 @@ class AnnouncementDAO extends DAO {
 	}
 
 	/**
-	 * Delete announcements by event ID.
+	 * Delete announcements by sched conf ID.
 	 * @param $conferenceId int
 	 */
-	function deleteAnnouncementsByEvent($eventId) {
+	function deleteAnnouncementsBySchedConf($schedConfId) {
 		return $this->update(
-			'DELETE FROM announcements WHERE event_id = ?',
-			$eventId
+			'DELETE FROM announcements WHERE sched_conf_id = ?',
+			$schedConfId
 		);
 	}
 
@@ -189,17 +189,17 @@ class AnnouncementDAO extends DAO {
 	 * @param $conferenceId int
 	 * @return object DAOResultFactory containing matching Announcements
 	 */
-	function &getAnnouncementsByConferenceId($conferenceId, $eventId = 0, $rangeInfo = null) {
+	function &getAnnouncementsByConferenceId($conferenceId, $schedConfId = 0, $rangeInfo = null) {
 		$args = $conferenceId;
-		if($eventId !== -1) {
-			$args = array($args, $eventId);
+		if($schedConfId !== -1) {
+			$args = array($args, $schedConfId);
 		}
 
 		$result = &$this->retrieveRange(
 			'SELECT *
 			FROM announcements
 			WHERE conference_id = ?' .
-				($eventId !== -1 ? ' AND (event_id = ? OR event_id = 0)':'') .
+				($schedConfId !== -1 ? ' AND (sched_conf_id = ? OR sched_conf_id = 0)':'') .
 			'ORDER BY announcement_id DESC',
 			$args,
 			$rangeInfo
@@ -214,14 +214,14 @@ class AnnouncementDAO extends DAO {
 	 * @param $conferenceId int
 	 * @return object DAOResultFactory containing matching Announcements
 	 */
-	function &getNumAnnouncementsByConferenceId($conferenceId, $eventId, $numAnnouncements, $rangeInfo = null) {
+	function &getNumAnnouncementsByConferenceId($conferenceId, $schedConfId, $numAnnouncements, $rangeInfo = null) {
 		$result = &$this->retrieveRange(
 			'SELECT *
 			FROM announcements
 			WHERE conference_id = ?
-				AND (event_id = ? OR event_id = 0)
+				AND (sched_conf_id = ? OR sched_conf_id = 0)
 			ORDER BY announcement_id DESC LIMIT ?',
-			array($conferenceId, $eventId, $numAnnouncements),
+			array($conferenceId, $schedConfId, $numAnnouncements),
 			$rangeInfo
 		);
 
@@ -234,15 +234,15 @@ class AnnouncementDAO extends DAO {
 	 * @param $conferenceId int
 	 * @return object DAOResultFactory containing matching Announcements
 	 */
-	function &getAnnouncementsNotExpiredByConferenceId($conferenceId, $eventId, $rangeInfo = null) {
+	function &getAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId, $rangeInfo = null) {
 		$result = &$this->retrieveRange(
 			'SELECT *
 			FROM announcements
 			WHERE conference_id = ?
-				AND (event_id = ? OR event_id = 0)
+				AND (sched_conf_id = ? OR sched_conf_id = 0)
 				AND (date_expire IS NULL OR date_expire > CURRENT_DATE)
 			ORDER BY announcement_id DESC',
-			array($conferenceId, $eventId),
+			array($conferenceId, $schedConfId),
 			$rangeInfo
 		);
 
@@ -255,15 +255,15 @@ class AnnouncementDAO extends DAO {
 	 * @param $conferenceId int
 	 * @return object DAOResultFactory containing matching Announcements
 	 */
-	function &getNumAnnouncementsNotExpiredByConferenceId($conferenceId, $eventId, $numAnnouncements, $rangeInfo = null) {
+	function &getNumAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId, $numAnnouncements, $rangeInfo = null) {
 		$result = &$this->retrieveRange(
 			'SELECT *
 			FROM announcements
 			WHERE conference_id = ?
-				AND (event_id = ? OR event_id = 0)
+				AND (sched_conf_id = ? OR sched_conf_id = 0)
 				AND (date_expire IS NULL OR date_expire > CURRENT_DATE)
 			ORDER BY announcement_id DESC LIMIT ?',
-			array($conferenceId, $eventId, $numAnnouncements), $rangeInfo
+			array($conferenceId, $schedConfId, $numAnnouncements), $rangeInfo
 		);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');

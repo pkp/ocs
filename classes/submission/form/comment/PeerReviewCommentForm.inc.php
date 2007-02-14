@@ -67,7 +67,7 @@ class PeerReviewCommentForm extends CommentForm {
 		$this->readUserVars(
 			array(
 				'commentTitle',
-				'authorComments',
+				'presenterComments',
 				'comments'
 			)
 		);
@@ -92,9 +92,9 @@ class PeerReviewCommentForm extends CommentForm {
 		$comment->setCommentTitle($this->getData('commentTitle'));
 		$comment->setDatePosted(Core::getCurrentDate());
 		
-		// If comments "For authors and editor" submitted
-		if ($this->getData('authorComments') != null) {
-			$comment->setComments($this->getData('authorComments'));
+		// If comments "For presenters and editor" submitted
+		if ($this->getData('presenterComments') != null) {
+			$comment->setComments($this->getData('presenterComments'));
 			$comment->setViewable(1);
 			array_push($this->insertedComments, $commentDao->insertPaperComment($comment));
 		}		

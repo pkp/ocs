@@ -24,7 +24,7 @@ class TrackEditorHandler extends Handler {
 		TrackEditorHandler::validate();
 		TrackEditorHandler::setupTemplate();
 
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$user = &Request::getUser();
 
 		$rangeInfo = Handler::getRangeInfo('submissions');
@@ -44,7 +44,7 @@ class TrackEditorHandler extends Handler {
 		$trackEditorSubmissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
-		$tracks = &$trackDao->getTrackTitles($event->getEventId());
+		$tracks = &$trackDao->getTrackTitles($schedConf->getSchedConfId());
 
 		switch($page) {
 			case 'submissionsInEditing':
@@ -67,7 +67,7 @@ class TrackEditorHandler extends Handler {
 
 		$submissions = &$trackEditorSubmissionDao->$functionName(
 			$user->getUserId(),
-			$event->getEventId(),
+			$schedConf->getSchedConfId(),
 			Request::getUserVar('track'),
 			$searchField,
 			$searchMatch,
@@ -105,7 +105,7 @@ class TrackEditorHandler extends Handler {
 		$templateMgr->assign('dateTo', $toDate);
 		$templateMgr->assign('fieldOptions', Array(
 			SUBMISSION_FIELD_TITLE => 'paper.title',
-			SUBMISSION_FIELD_AUTHOR => 'user.role.author',
+			SUBMISSION_FIELD_PRESENTER => 'user.role.presenter',
 			SUBMISSION_FIELD_EDITOR => 'user.role.editor'
 		));
 		$templateMgr->assign('dateFieldOptions', Array(
@@ -123,19 +123,19 @@ class TrackEditorHandler extends Handler {
 	function validate() {
 		parent::validate();
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 
 		$page = Request::getRequestedPage();
 
-		if (!isset($conference) || !isset($event)) {
+		if (!isset($conference) || !isset($schedConf)) {
 			Validation::redirectLogin();
 		}
 		
-		if($page == ROLE_PATH_TRACK_EDITOR && !Validation::isTrackEditor($conference->getConferenceId(), $event->getEventId())) {
+		if($page == ROLE_PATH_TRACK_EDITOR && !Validation::isTrackEditor($conference->getConferenceId(), $schedConf->getSchedConfId())) {
 			Validation::redirectLogin();
 		}
 		
-		if($page == ROLE_PATH_EDITOR && !Validation::isEditor($conference->getConferenceId(), $event->getEventId())) {
+		if($page == ROLE_PATH_EDITOR && !Validation::isEditor($conference->getConferenceId(), $schedConf->getSchedConfId())) {
 			Validation::redirectLogin();
 		}
 	}
@@ -167,11 +167,11 @@ class TrackEditorHandler extends Handler {
 
 			if ($showSidebar) {
 				$templateMgr->assign('sidebarTemplate', 'trackEditor/navsidebar.tpl');
-				$event = &Request::getEvent();
+				$schedConf = &Request::getSchedConf();
 				$user = &Request::getUser();
 
 				$trackEditorSubmissionDao = &DAORegistry::getDAO('TrackEditorSubmissionDAO');
-				$submissionsCount = &$trackEditorSubmissionDao->getTrackEditorSubmissionsCount($user->getUserId(), $event->getEventId());
+				$submissionsCount = &$trackEditorSubmissionDao->getTrackEditorSubmissionsCount($user->getUserId(), $schedConf->getSchedConfId());
 				$templateMgr->assign('submissionsCount', $submissionsCount);
 			}
 		}

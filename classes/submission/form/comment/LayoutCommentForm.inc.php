@@ -63,7 +63,7 @@ class LayoutCommentForm extends CommentForm {
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 	
 		// Create list of recipients:
 		
@@ -96,7 +96,7 @@ class LayoutCommentForm extends CommentForm {
 			// If no editors are currently assigned to this paper,
 			// send the email to all editors for the conference
 			if (empty($editorAddresses)) {
-				$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId(), $event->getEventId());
+				$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId(), $schedConf->getSchedConfId());
 				while (!$editors->eof()) {
 					$editor = &$editors->next();
 					$editorAddresses[$editor->getEmail()] = $editor->getFullName();

@@ -33,19 +33,19 @@
 	
 	{foreach item=role from=$userRoles[$conferenceId]}
 		{if $role->getRolePath() != 'reader'}
-			<li>&#187; <a href="{url conference=$conference->getPath() event="index" page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
+			<li>&#187; <a href="{url conference=$conference->getPath() schedConf="index" page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
 		{/if}
 	{/foreach}
 
-	{* Iterate over event roles *}
+	{* Iterate over scheduled conference roles *}
 	
-	{foreach from=$userEvents[$conferenceId] item=event}
-		{assign var="eventId" value=$event->getEventId()}
-		<h5>{$event->getTitle()|escape}</h5>
+	{foreach from=$userSchedConfs[$conferenceId] item=schedConf}
+		{assign var="schedConfId" value=$schedConf->getSchedConfId()}
+		<h5>{$schedConf->getTitle()|escape}</h5>
 
-		{foreach item=role from=$userEventRoles[$eventId]}
+		{foreach item=role from=$userSchedConfRoles[$schedConfId]}
 			{if $role->getRolePath() != 'reader'}
-				<li>&#187; <a href="{url conference=$conference->getPath() event=$event->getPath() page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
+				<li>&#187; <a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
 			{/if}
 		{/foreach}
 
@@ -59,7 +59,7 @@
 <h3>{$userConference->getTitle()}</h3>
 <ul class="plain">
 {if $isSiteAdmin && !$hasOtherConferences}
-	<li>&#187; <a href="{url conference="index" event="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
+	<li>&#187; <a href="{url conference="index" schedConf="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
 {/if}
 	
 	{assign var="conferenceId" value=$userConference->getConferenceId()}
@@ -68,22 +68,22 @@
 	
 	{foreach item=role from=$userRoles[$conferenceId]}
 		{if $role->getRolePath() != 'reader'}
-			<li>&#187; <a href="{url conference=$userConference->getPath() event=index page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
+			<li>&#187; <a href="{url conference=$userConference->getPath() schedConf=index page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
 		{/if}
 	{/foreach}
 
-	{* Iterate over event roles *}
+	{* Iterate over scheduled conference roles *}
 	
-	{foreach from=$userEvents[$conferenceId] item=event}
-		{assign var="eventId" value=$event->getEventId()}
-		<h5>{$event->getTitle()|escape}</h5>
+	{foreach from=$userSchedConfs[$conferenceId] item=schedConf}
+		{assign var="schedConfId" value=$schedConf->getSchedConfId()}
+		<h5>{$schedConf->getTitle()|escape}</h5>
 
-		{foreach item=role from=$userEventRoles[$eventId]}
+		{foreach item=role from=$userSchedConfRoles[$schedConfId]}
 			{if $role->getRolePath() != 'reader'}
 				<li>&#187;
 					<a href="{url
 							conference=$userConference->getPath() 
-							event=$event->getPath()
+							schedConf=$schedConf->getPath()
 							page=$role->getRolePath()}">
 						{translate key=$role->getRoleName()}
 					</a>

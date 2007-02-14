@@ -12,32 +12,32 @@
 {assign var="pageTitle" value="submission.viewMetadata"}
 {include file="common/header.tpl"}
 
-{if $canViewAuthors}
-<h3>{translate key="paper.authors"}</h3>
+{if $canViewPresenters}
+<h3>{translate key="paper.presenters"}</h3>
 	
 <table width="100%" class="data">
-	{foreach name=authors from=$authors key=authorIndex item=author}
+	{foreach name=presenters from=$presenters key=presenterIndex item=presenter}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.name"}</td>
 		<td width="80%" class="value">
-			{assign var=emailString value="`$author.firstName` `$author.middleName` `$author.lastName` <`$author.email`>"}
+			{assign var=emailString value="`$presenter.firstName` `$presenter.middleName` `$presenter.lastName` <`$presenter.email`>"}
 			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl paperId=$paperId}
-			{$author.firstName|escape} {$author.middleName|escape} {$author.lastName|escape} {icon name="mail" url=$url}
+			{$presenter.firstName|escape} {$presenter.middleName|escape} {$presenter.lastName|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.url"}</td>
-		<td class="value">{$author.url|escape|default:"&mdash;"}</td>
+		<td class="value">{$presenter.url|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.affiliation"}</td>
-		<td class="value">{$author.affiliation|escape|default:"&mdash;"}</td>
+		<td class="value">{$presenter.affiliation|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.biography"}</td>
-		<td class="value">{$author.biography|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
+		<td class="value">{$presenter.biography|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
-	{if !$smarty.foreach.authors.last}
+	{if !$smarty.foreach.presenters.last}
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
@@ -98,7 +98,7 @@
 <h3>{translate key="submission.indexing"}</h3>
 	
 <table width="100%" class="data">
-	{if $eventSettings.metaDiscipline}
+	{if $schedConfSettings.metaDiscipline}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.discipline"}</td>
 		<td width="80%" class="value">{$discipline|escape|default:"&mdash;"}</td>
@@ -107,9 +107,9 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $eventSettings.metaSubjectClass}
+	{if $schedConfSettings.metaSubjectClass}
 	<tr valign="top">
-		<td colspan="2" class="label"><a href="{$eventSettings.metaSubjectClassUrl}" target="_blank">{$eventSettings.metaSubjectClassTitle|escape}</a></td>
+		<td colspan="2" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl}" target="_blank">{$schedConfSettings.metaSubjectClassTitle|escape}</a></td>
 	</tr>
 	<tr valign="top">
 		<td width="20%"class="label">{translate key="paper.subjectClassification"}</td>
@@ -119,7 +119,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $eventSettings.metaSubject}
+	{if $schedConfSettings.metaSubject}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.subject"}</td>
 		<td width="80%" class="value">{$subject|escape|default:"&mdash;"}</td>
@@ -128,7 +128,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $eventSettings.metaCoverage}
+	{if $schedConfSettings.metaCoverage}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.coverageGeo"}</td>
 		<td width="80%" class="value">{$coverageGeo|escape|default:"&mdash;"}</td>
@@ -151,7 +151,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $eventSettings.metaType}
+	{if $schedConfSettings.metaType}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.type"}</td>
 		<td width="80%" class="value">{$type|escape|default:"&mdash;"}</td>
@@ -174,7 +174,7 @@
 	
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="author.submit.agencies"}</td>
+		<td width="20%" class="label">{translate key="presenter.submit.agencies"}</td>
 		<td width="80%" class="value">{$sponsor|escape|default:"&mdash;"}</td>
 	</tr>
 </table>

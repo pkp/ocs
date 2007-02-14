@@ -18,14 +18,14 @@ import('paper.Paper');
 
 class PaperDAO extends DAO {
 
-	var $authorDao;
+	var $presenterDao;
 
 	/**
 	 * Constructor.
 	 */
 	function PaperDAO() {
 		parent::DAO();
-		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
+		$this->presenterDao = &DAORegistry::getDAO('PresenterDAO');
 	}
 	
 	/**
@@ -75,14 +75,14 @@ class PaperDAO extends DAO {
 	 * @param $row array input row
 	 */
 	function _paperFromRow(&$paper, &$row) {
-		$eventId = $row['event_id'];
-		$eventDao = &DAORegistry::getDAO('EventDAO');
-		$event = &$eventDao->getEvent($eventId);
-		$conferenceId = $event->getConferenceId();
+		$schedConfId = $row['sched_conf_id'];
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$schedConf = &$schedConfDao->getSchedConf($schedConfId);
+		$conferenceId = $schedConf->getConferenceId();
 		
 		$paper->setPaperId($row['paper_id']);
 		$paper->setUserId($row['user_id']);
-		$paper->setEventId($row['event_id']);
+		$paper->setSchedConfId($row['sched_conf_id']);
 		$paper->setTrackId($row['track_id']);
 
 		// Localize track title & abbreviation.
@@ -137,7 +137,7 @@ class PaperDAO extends DAO {
 		$paper->setEditorFileId($row['editor_file_id']);
 		$paper->setPages($row['pages']);
 		
-		$paper->setAuthors($this->authorDao->getAuthorsByPaper($row['paper_id']));
+		$paper->setPresenters($this->presenterDao->getPresentersByPaper($row['paper_id']));
 		HookRegistry::call('PaperDAO::_returnPaperFromRow', array(&$paper, &$row));
 		
 	}
@@ -151,7 +151,7 @@ class PaperDAO extends DAO {
 		$this->update(
 			sprintf('INSERT INTO papers
 				(user_id,
-				 event_id,
+				 sched_conf_id,
 				 track_id,
 				 title,
 				 title_alt1,
@@ -187,7 +187,7 @@ class PaperDAO extends DAO {
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified())),
 			array(
 				$paper->getUserId(),
-				$paper->getEventId(),
+				$paper->getSchedConfId(),
 				$paper->getTrackId(),
 				$paper->getTitle() === null ? '' : $paper->getTitle(),
 				$paper->getTitleAlt1(),
@@ -220,11 +220,11 @@ class PaperDAO extends DAO {
 		
 		$paper->setPaperId($this->getInsertPaperId());
 		
-		// Insert authors for this paper
-		$authors = &$paper->getAuthors();
-		for ($i=0, $count=count($authors); $i < $count; $i++) {
-			$authors[$i]->setPaperId($paper->getPaperId());
-			$this->authorDao->insertAuthor($authors[$i]);
+		// Insert presenters for this paper
+		$presenters = &$paper->getPresenters();
+		for ($i=0, $count=count($presenters); $i < $count; $i++) {
+			$presenters[$i]->setPaperId($paper->getPaperId());
+			$this->presenterDao->insertPresenter($presenters[$i]);
 		}
 		
 		return $paper->getPaperId();
@@ -305,24 +305,24 @@ class PaperDAO extends DAO {
 			)
 		);
 		
-		// update authors for this paper
-		$authors = &$paper->getAuthors();
-		for ($i=0, $count=count($authors); $i < $count; $i++) {
-			if ($authors[$i]->getAuthorId() > 0) {
-				$this->authorDao->updateAuthor($authors[$i]);
+		// update presenters for this paper
+		$presenters = &$paper->getPresenters();
+		for ($i=0, $count=count($presenters); $i < $count; $i++) {
+			if ($presenters[$i]->getPresenterId() > 0) {
+				$this->presenterDao->updatePresenter($presenters[$i]);
 			} else {
-				$this->authorDao->insertAuthor($authors[$i]);
+				$this->presenterDao->insertPresenter($presenters[$i]);
 			}
 		}
 		
-		// Remove deleted authors
-		$removedAuthors = $paper->getRemovedAuthors();
-		for ($i=0, $count=count($removedAuthors); $i < $count; $i++) {
-			$this->authorDao->deleteAuthorById($removedAuthors[$i], $paper->getPaperId());
+		// Remove deleted presenters
+		$removedPresenters = $paper->getRemovedPresenters();
+		for ($i=0, $count=count($removedPresenters); $i < $count; $i++) {
+			$this->presenterDao->deletePresenterById($removedPresenters[$i], $paper->getPaperId());
 		}
 		
-		// Update author sequence numbers
-		$this->authorDao->resequenceAuthors($paper->getPaperId());
+		// Update presenter sequence numbers
+		$this->presenterDao->resequencePresenters($paper->getPaperId());
 	}
 	
 	/**
@@ -338,7 +338,7 @@ class PaperDAO extends DAO {
 	 * @param $paperId int
 	 */
 	function deletePaperById($paperId) {
-		$this->authorDao->deleteAuthorsByPaper($paperId);
+		$this->presenterDao->deletePresentersByPaper($paperId);
 
 		/*$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaperDao->deletePublishedPaperByPaperId($paperId);*/
@@ -401,12 +401,12 @@ class PaperDAO extends DAO {
 	}
 	
 	/**
-	 * Get all papers for a event.
+	 * Get all papers for a scheduled conference.
 	 * @param $userId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return DAOResultFactory containing matching Papers
 	 */
-	function &getPapersByEventId($eventId, $trackId = null) {
+	function &getPapersBySchedConfId($schedConfId, $trackId = null) {
 		$papers = array();
 		
 		$result = &$this->retrieve(
@@ -419,20 +419,20 @@ class PaperDAO extends DAO {
 				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
-				WHERE p.event_id = ?' .
+				WHERE p.sched_conf_id = ?' .
 				($trackId ? ' AND p.track_id = ?' : ''),
-				($trackId ? array($eventId, $trackId) : $eventId));
+				($trackId ? array($schedConfId, $trackId) : $schedConfId));
 		
 		$returner = &new DAOResultFactory($result, $this, '_returnPaperFromRow');
 		return $returner;
 	}
 
 	/**
-	 * Delete all papers by event ID.
-	 * @param $eventId int
+	 * Delete all papers by scheduled conference ID.
+	 * @param $schedConfId int
 	 */
-	function deletePapersByEventId($eventId) {
-		$papers = $this->getPapersByEventId($eventId);
+	function deletePapersBySchedConfId($schedConfId) {
+		$papers = $this->getPapersBySchedConfId($schedConfId);
 		
 		while (!$papers->eof()) {
 			$paper = &$papers->next();
@@ -443,10 +443,10 @@ class PaperDAO extends DAO {
 	/**
 	 * Get all papers for a user.
 	 * @param $userId int
-	 * @param $eventId int optional
+	 * @param $schedConfId int optional
 	 * @return array Papers
 	 */
-	function &getPapersByUserId($userId, $eventId = null) {
+	function &getPapersByUserId($userId, $schedConfId = null) {
 		$papers = array();
 		
 		$result = &$this->retrieve(
@@ -459,8 +459,8 @@ class PaperDAO extends DAO {
 				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
-			WHERE p.user_id = ?', (isset($eventId)?' AND p.event_id = ?':''),
-				isset($eventId)?array($userId, $eventId):$userId
+			WHERE p.user_id = ?', (isset($schedConfId)?' AND p.sched_conf_id = ?':''),
+				isset($schedConfId)?array($userId, $schedConfId):$userId
 		);
 		
 		while (!$result->EOF) {
@@ -475,13 +475,13 @@ class PaperDAO extends DAO {
 	}
 	
 	/**
-	 * Get the ID of the event an paper is in.
+	 * Get the ID of the scheduled conference a paper is in.
 	 * @param $paperId int
 	 * @return int
 	 */
-	function getPaperEventId($paperId) {
+	function getPaperSchedConfId($paperId) {
 		$result = &$this->retrieve(
-			'SELECT event_id FROM papers WHERE paper_id = ?', $paperId
+			'SELECT sched_conf_id FROM papers WHERE paper_id = ?', $paperId
 		);
 		$returner = isset($result->fields[0]) ? $result->fields[0] : false;
 
@@ -495,13 +495,13 @@ class PaperDAO extends DAO {
 	 * Check if the specified incomplete submission exists.
 	 * @param $paperId int
 	 * @param $userId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return int the submission progress
 	 */
-	function incompleteSubmissionExists($paperId, $userId, $eventId) {
+	function incompleteSubmissionExists($paperId, $userId, $schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT submission_progress FROM papers WHERE paper_id = ? AND user_id = ? AND event_id = ? AND date_submitted IS NULL',
-			array($paperId, $userId, $eventId)
+			'SELECT submission_progress FROM papers WHERE paper_id = ? AND user_id = ? AND sched_conf_id = ? AND date_submitted IS NULL',
+			array($paperId, $userId, $schedConfId)
 		);
 		$returner = isset($result->fields[0]) ? $result->fields[0] : false;
 

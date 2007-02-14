@@ -32,32 +32,32 @@
 	</tr>
 	<tr>
 		<td width="2%">1.</td>
-		<td width="26%">{translate key="user.role.author"}</td>
+		<td width="26%">{translate key="user.role.presenter"}</td>
 		<td>
-			{url|assign:"url" op="notifyAuthorProofreader" paperId=$submission->getPaperId()}
-			{if $proofAssignment->getDateAuthorUnderway()}
-				{translate|escape:"javascript"|assign:"confirmText" key="trackEditor.author.confirmRenotify"}
+			{url|assign:"url" op="notifyPresenterProofreader" paperId=$submission->getPaperId()}
+			{if $proofAssignment->getDatePresenterUnderway()}
+				{translate|escape:"javascript"|assign:"confirmText" key="trackEditor.presenter.confirmRenotify"}
 				{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
 			{else}
 				{icon name="mail" url=$url}
 			{/if}
 
-			{$proofAssignment->getDateAuthorNotified()|date_format:$dateFormatShort|default:""}
+			{$proofAssignment->getDatePresenterNotified()|date_format:$dateFormatShort|default:""}
 		</td>
 		<td>
-				{$proofAssignment->getDateAuthorUnderway()|date_format:$dateFormatShort|default:"&mdash;"}
+				{$proofAssignment->getDatePresenterUnderway()|date_format:$dateFormatShort|default:"&mdash;"}
 		</td>
 		<td>
-			{$proofAssignment->getDateAuthorCompleted()|date_format:$dateFormatShort|default:"&mdash;"}
+			{$proofAssignment->getDatePresenterCompleted()|date_format:$dateFormatShort|default:"&mdash;"}
 		</td>
 		<td>
-			{if $proofAssignment->getDateAuthorCompleted() && !$proofAssignment->getDateAuthorAcknowledged()}
-				{url|assign:"url" op="thankAuthorProofreader" paperId=$submission->getPaperId()}
+			{if $proofAssignment->getDatePresenterCompleted() && !$proofAssignment->getDatePresenterAcknowledged()}
+				{url|assign:"url" op="thankPresenterProofreader" paperId=$submission->getPaperId()}
 				{icon name="mail" url=$url}
 			{else}
 				{icon name="mail" disabled="disable"}
 			{/if}
-			{$proofAssignment->getDateAuthorAcknowledged()|date_format:$dateFormatShort|default:""}
+			{$proofAssignment->getDatePresenterAcknowledged()|date_format:$dateFormatShort|default:""}
 		</td>
 	</tr>
 	<tr>
@@ -65,7 +65,7 @@
 		<td>{translate key="user.role.proofreader"}</td>
 		<td>
 			{if $useProofreaders}
-				{if $proofAssignment->getProofreaderId() && $proofAssignment->getDateAuthorCompleted()}
+				{if $proofAssignment->getProofreaderId() && $proofAssignment->getDatePresenterCompleted()}
 					{url|assign:"url" op="notifyProofreader" paperId=$submission->getPaperId()}
 					{if $proofAssignment->getDateProofreaderUnderway()}
 						{translate|escape:"javascript"|assign:"confirmText" key="trackEditor.proofreader.confirmRenotify"}

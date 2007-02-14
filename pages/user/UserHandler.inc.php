@@ -25,7 +25,7 @@ class UserHandler extends Handler {
 		$session = &$sessionManager->getUserSession();
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$eventDao = &DAORegistry::getDAO('EventDAO');
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 
 		UserHandler::setupTemplate();
 		$templateMgr = &TemplateManager::getManager();
@@ -33,8 +33,8 @@ class UserHandler extends Handler {
 		$conference = &Request::getConference();
 		$templateMgr->assign('helpTopicId', 'user.userHome');
 
-		$eventsToDisplay = array();
-		$eventRolesToDisplay = array();
+		$schedConfsToDisplay = array();
+		$schedConfRolesToDisplay = array();
 
 		$rolesToDisplay = array();
 
@@ -57,15 +57,15 @@ class UserHandler extends Handler {
 					$rolesToDisplay[$conference->getConferenceId()] = &$roles;
 				}
 
-				// Second, event-specific roles
-				// TODO: don't display event roles if granted at conference level too?
-				$events = &$eventDao->getEventsByConferenceId($conference->getConferenceId());
-				$eventsArray = &$events->toArray();
-				foreach($eventsArray as $event) {
-					$eventRoles = &$roleDao->getRolesByUserId($session->getUserId(), $conference->getConferenceId(), $event->getEventId());
-					if(!empty($eventRoles)) {
-						$eventRolesToDisplay[$event->getEventId()] = &$eventRoles;
-						$eventsToDisplay[$conference->getConferenceId()] = &$eventsArray;
+				// Second, scheduled conference-specific roles
+				// TODO: don't display scheduled conference roles if granted at conference level too?
+				$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
+				$schedConfsArray = &$schedConfs->toArray();
+				foreach($schedConfsArray as $schedConf) {
+					$schedConfRoles = &$roleDao->getRolesByUserId($session->getUserId(), $conference->getConferenceId(), $schedConf->getSchedConfId());
+					if(!empty($schedConfRoles)) {
+						$schedConfRolesToDisplay[$schedConf->getSchedConfId()] = &$schedConfRoles;
+						$schedConfsToDisplay[$conference->getConferenceId()] = &$schedConfsArray;
 					}
 				}
 			}
@@ -80,17 +80,17 @@ class UserHandler extends Handler {
 				$rolesToDisplay[$conference->getConferenceId()] = &$roles;
 			}
 
-			$events = &$eventDao->getEventsByConferenceId($conference->getConferenceId());
-			$eventsArray = &$events->toArray();
-			foreach($eventsArray as $event) {
-				$eventRoles = &$roleDao->getRolesByUserId($session->getUserId(), $conference->getConferenceId(), $event->getEventId());
-				if(!empty($eventRoles)) {
-					$eventRolesToDisplay[$event->getEventId()] = &$eventRoles;
-					$eventsToDisplay[$conference->getConferenceId()] = &$eventsArray;
+			$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
+			$schedConfsArray = &$schedConfs->toArray();
+			foreach($schedConfsArray as $schedConf) {
+				$schedConfRoles = &$roleDao->getRolesByUserId($session->getUserId(), $conference->getConferenceId(), $schedConf->getSchedConfId());
+				if(!empty($schedConfRoles)) {
+					$schedConfRolesToDisplay[$schedConf->getSchedConfId()] = &$schedConfRoles;
+					$schedConfsToDisplay[$conference->getConferenceId()] = &$schedConfsArray;
 				}
 			}
 
-			if (empty($roles) && empty($eventsToDisplay)) {
+			if (empty($roles) && empty($schedConfsToDisplay)) {
 				Request::redirect('index', 'index', 'user');
 			}
 
@@ -99,8 +99,8 @@ class UserHandler extends Handler {
 
 		$templateMgr->assign('isSiteAdmin', $roleDao->getRole(0, 0, $session->getUserId(), ROLE_ID_SITE_ADMIN));
 		$templateMgr->assign('userRoles', $rolesToDisplay);
-		$templateMgr->assign('userEvents', $eventsToDisplay);
-		$templateMgr->assign('userEventRoles', $eventRolesToDisplay);
+		$templateMgr->assign('userSchedConfs', $schedConfsToDisplay);
+		$templateMgr->assign('userSchedConfRoles', $schedConfRolesToDisplay);
 		$templateMgr->display('user/index.tpl');
 	}
 
@@ -143,13 +143,13 @@ class UserHandler extends Handler {
 	 * @param $loginCheck boolean check if user is logged in
 	 */
 	function validate($loginCheck = true) {
-		list($conference, $event) = parent::validate();
+		list($conference, $schedConf) = parent::validate();
 		
 		if ($loginCheck && !Validation::isLoggedIn()) {
 			Validation::redirectLogin();
 		}
 		
-		return array($conference, $event);
+		return array($conference, $schedConf);
 	}
 
 	/**

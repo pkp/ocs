@@ -236,11 +236,11 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get all author-viewable reviewer files for an paper for each round.
+	 * Get all presenter-viewable reviewer files for an paper for each round.
 	 * @param $paperId int
 	 * @return array returned[round][reviewer_index] = array of PaperFiles
 	 */
-	function &getAuthorViewableFilesByRound($paperId,$type) {
+	function &getPresenterViewableFilesByRound($paperId,$type) {
 		$files = array();
 		
 		$result = &$this->retrieve(
@@ -512,14 +512,14 @@ class ReviewAssignmentDAO extends DAO {
 	}
 	
 	/**
-	 * Get the average quality ratings and number of ratings for all users of an event.
+	 * Get the average quality ratings and number of ratings for all users of a scheduled conference.
 	 * @return array
 	 */
-	function getAverageQualityRatings($eventId) {
+	function getAverageQualityRatings($schedConfId) {
 		$averageQualityRatings = Array();
 		$result = &$this->retrieve(
-			'SELECT R.reviewer_id, AVG(R.quality) AS average, COUNT(R.quality) AS count FROM review_assignments R, papers A WHERE R.paper_id = A.paper_id AND A.event_id = ? GROUP BY R.reviewer_id',
-			$eventId
+			'SELECT R.reviewer_id, AVG(R.quality) AS average, COUNT(R.quality) AS count FROM review_assignments R, papers A WHERE R.paper_id = A.paper_id AND A.sched_conf_id = ? GROUP BY R.reviewer_id',
+			$schedConfId
 			);
 
 		while (!$result->EOF) {
@@ -535,15 +535,15 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get the average quality ratings and number of ratings for all users of an event.
+	 * Get the average quality ratings and number of ratings for all users of a scheduled conference.
 	 * @return array
 	 */
-	function getCompletedReviewCounts($eventId) {
+	function getCompletedReviewCounts($schedConfId) {
 		$returner = Array();
 		$result = &$this->retrieve(
-			'SELECT r.reviewer_id, COUNT(r.review_id) AS count FROM review_assignments r, papers a WHERE r.paper_id = a.paper_id AND a.event_id = ? AND r.date_completed IS NOT NULL GROUP BY r.reviewer_id',
-			$eventId
-			);
+			'SELECT r.reviewer_id, COUNT(r.review_id) AS count FROM review_assignments r, papers a WHERE r.paper_id = a.paper_id AND a.sched_conf_id = ? AND r.date_completed IS NOT NULL GROUP BY r.reviewer_id',
+			$schedConfId
+		);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);

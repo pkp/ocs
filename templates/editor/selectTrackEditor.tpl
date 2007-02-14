@@ -71,7 +71,7 @@
 {/iterate}
 {if $editors->wasEmpty()}
 <tr>
-<td colspan="5" class="nodata">{translate key="director.people.noneEnrolled"}</td>
+<td colspan="5" class="nodata">{translate key="manager.people.noneEnrolled"}</td>
 </tr>
 <tr><td colspan="5" class="{if $editors->eof()}end{/if}separator">&nbsp;</td></tr>
 {else}

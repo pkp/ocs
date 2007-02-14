@@ -311,11 +311,11 @@
 	
 	<!--
 	  *
-	  * TABLE events
+	  * TABLE sched_confs
 	  *
 	  -->
-	<table name="events">
-		<field name="event_id" type="I8">
+	<table name="sched_confs">
+		<field name="sched_conf_id" type="I8">
 			<KEY/>
 			<AUTOINCREMENT/>
 		</field>
@@ -343,14 +343,14 @@
 		<field name="end_date" type="T">
 			<NOTNULL/>
 		</field>
-		<descr>Events and basic event settings.</descr>
-		<index name="events__path">
+		<descr>Scheduled conferences and basic scheduled conference settings.</descr>
+		<index name="sched_conf_path">
 			<col>path</col>
 		</index>
-		<index name="events_conference_id">
+		<index name="sched_conf_conference_id">
 			<col>conference_id</col>
 		</index>
-		<index name="events_start_end_date">
+		<index name="sched_confs_start_end_date">
 			<col>start_date</col>
 			<col>end_date</col>
 		</index>
@@ -358,11 +358,11 @@
 	
 	<!--
 	  *
-	  * TABLE event_settings
+	  * TABLE sched_conf_settings
 	  *
 	  -->
-	<table name="event_settings">
-		<field name="event_id" type="I8">
+	<table name="sched_conf_settings">
+		<field name="sched_conf_id" type="I8">
 			<KEY/>
 		</field>
 		<field name="setting_name" type="C2" size="255">
@@ -373,9 +373,9 @@
 			<NOTNULL/>
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
-		<descr>Event settings.</descr>
-		<index name="event_settings_event_id">
-			<col>event_id</col>
+		<descr>Scheduled conference settings.</descr>
+		<index name="sched_conf_settings_sched_conf_id">
+			<col>sched_conf_id</col>
 		</index>
 	</table>
 	
@@ -389,7 +389,7 @@
 			<KEY/>
 			<AUTOINCREMENT/>
 		</field>
-		<field name="event_id" type="I8"/>
+		<field name="sched_conf_id" type="I8"/>
 		<field name="conference_id" type="I8">
 			<NOTNULL/>
 		</field>
@@ -407,11 +407,11 @@
 		<field name="assoc_type" type="I8"/>
 		<field name="assoc_id" type="I8"/>
 		<field name="message" type="X"/>
-		<descr>A log of all events associated with a conference or event.</descr>
-		<index name="paper_event_log_event_id">
-			<col>event_id</col>
+		<descr>A log of all events associated with a conference or scheduled conference.</descr>
+		<index name="conference_event_log_sched_conf_id">
+			<col>sched_conf_id</col>
 		</index>
-		<index name="paper_event_log_conference_id">
+		<index name="conference_event_log_conference_id">
 			<col>conference_id</col>
 		</index>
 	</table>
@@ -451,7 +451,7 @@
 		<field name="conference_id" type="I8">
 			<KEY/>
 		</field>
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<KEY/>
 		</field>
 		<field name="user_id" type="I8">
@@ -464,8 +464,8 @@
 		<index name="roles_conference_id">
 			<col>conference_id</col>
 		</index>
-		<index name="roles_event_id">
-			<col>event_id</col>
+		<index name="roles_sched_conf_id">
+			<col>sched_conf_id</col>
 		</index>
 		<index name="roles_user_id">
 			<col>user_id</col>
@@ -476,7 +476,7 @@
 	</table>
 
 	<table name="notification_status">
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<KEY/>
 		</field>
 		<field name="user_id" type="I8">
@@ -495,7 +495,7 @@
 			<KEY/>
 			<AUTOINCREMENT/>
 		</field>
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="title" type="C2" size="120">
@@ -520,9 +520,9 @@
 		</field>
 		<field name="identify_type" type="C2" size="60"/>
 		<field name="policy" type="X"/>
-		<descr>Event tracks.</descr>
-		<index name="tracks_event_id">
-			<col>event_id</col>
+		<descr>Scheduled conference tracks.</descr>
+		<index name="tracks_sched_conf_id">
+			<col>sched_conf_id</col>
 		</index>
 	</table>
 	
@@ -532,7 +532,7 @@
 	  *
 	  -->
 	<table name="track_editors">
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<KEY/>
 		</field>
 		<field name="track_id" type="I8">
@@ -542,8 +542,8 @@
 			<KEY/>
 		</field>
 		<descr>Assignments of track editors to tracks.</descr>
-		<index name="track_editors_event_id">
-			<col>event_id</col>
+		<index name="track_editors_sched_conf_id">
+			<col>sched_conf_id</col>
 		</index>
 		<index name="track_editors_track_id">
 			<col>track_id</col>
@@ -554,7 +554,7 @@
 	</table>
 
 	<table name="custom_track_orders">
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<KEY/>
 		</field>
 		<field name="track_id" type="I8">
@@ -564,7 +564,7 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<descr>Custom sequencing information by event, when available.</descr>
+		<descr>Custom sequencing information by scheduled conference, when available.</descr>
 	</table>
 
 	<!--
@@ -580,7 +580,7 @@
 		<field name="user_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="track_id" type="I8"/>
@@ -633,8 +633,8 @@
 		<index name="papers_user_id">
 			<col>user_id</col>
 		</index>
-		<index name="papers_event_id">
-			<col>event_id</col>
+		<index name="papers_sched_conf_id">
+			<col>sched_conf_id</col>
 		</index>
 		<index name="papers_track_id">
 			<col>track_id</col>
@@ -654,7 +654,7 @@
 		<field name="paper_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="date_published" type="T">
@@ -678,8 +678,8 @@
 			<col>paper_id</col>
 			<UNIQUE/>
 		</index>
-		<index name="published_papers_event_id">
-			<col>event_id</col>
+		<index name="published_papers_sched_conf_id">
+			<col>sched_conf_id</col>
 		</index>
 		<index name="published_papers_public_paper_id">
 			<col>public_paper_id</col>
@@ -724,11 +724,11 @@
 
 	<!--
 	  *
-	  * TABLE paper_authors
+	  * TABLE paper_presenters
 	  *
 	  -->
-	<table name="paper_authors">
-		<field name="author_id" type="I8">
+	<table name="paper_presenters">
+		<field name="presenter_id" type="I8">
 			<KEY/>
 			<AUTOINCREMENT/>
 		</field>
@@ -757,8 +757,8 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<descr>Author metadata for papers.</descr>
-		<index name="paper_authors_paper_id">
+		<descr>Presenter metadata for papers.</descr>
+		<index name="paper_presenters_paper_id">
 			<col>paper_id</col>
 		</index>
 	</table>
@@ -1346,7 +1346,7 @@
 		<field name="conference_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="enabled" type="I1">
@@ -1357,14 +1357,14 @@
 		<index name="email_templates_email_key">
 			<col>email_key</col>
 			<col>conference_id</col>
-			<col>event_id</col>
+			<col>sched_conf_id</col>
 			<UNIQUE/>
 		</index>
 		<index name="email_templates_conference_id">
 			<col>conference_id</col>
 		</index>
-		<index name="email_templates_event_id">
-			<col>event_id</col>
+		<index name="email_templates_sched_conf_id">
+			<col>sched_conf_id</col>
 		</index>
 	</table>
 	
@@ -1385,7 +1385,7 @@
 		<field name="conference_id" type="I8">
 			<KEY/>
 		</field>
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<KEY/>
 		</field>
 		<field name="subject" type="C2" size="120">
@@ -1603,7 +1603,7 @@
 			<KEY/>
 			<AUTOINCREMENT/>
 		</field>
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="type_name" type="C2" size="80">
@@ -1641,8 +1641,8 @@
 			<NOTNULL/>
 		</field>
 		<descr>Registration types.</descr>
-		<index name="registration_types_event_id">
-			<col>event_id</col>
+		<index name="registration_types_sched_conf_id">
+			<col>sched_conf_id</col>
 			<col>type_name</col>
 			<UNIQUE/>
 		</index>
@@ -1658,7 +1658,7 @@
 			<KEY/>
 			<AUTOINCREMENT/>
 		</field>
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="user_id" type="I8">
@@ -1676,8 +1676,8 @@
 		<field name="ip_range" type="C2" size="255"/>
 		<field name="special_requests" type="C2" size="255"/>
 		<descr>Conference registrations.</descr>
-		<index name="registration_event_id">
-			<col>event_id</col>
+		<index name="registration_sched_conf_id">
+			<col>sched_conf_id</col>
 			<col>user_id</col>
 			<UNIQUE/>
 		</index>
@@ -1749,7 +1749,7 @@
 		<field name="conference_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="type_id" type="I8"/>
@@ -1772,8 +1772,8 @@
 		<index name="announcements_conference_id">
 			<col>conference_id</col>
 		</index>
-		<index name="announcements_event_id">
-			<col>event_id</col>
+		<index name="announcements_sched_conf_id">
+			<col>sched_conf_id</col>
 		</index>
 	</table>
 
@@ -1876,7 +1876,7 @@
 		<field name="conference_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="event_id" type="I8">
+		<field name="sched_conf_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="title" type="C2" size="255">
@@ -1895,8 +1895,8 @@
 		<index name="groups_conference_id">
 			<col>conference_id</col>
 		</index>
-		<index name="groups_event_id">
-			<col>event_id</col>
+		<index name="groups_sched_conf_id">
+			<col>sched_conf_id</col>
 		</index>
 	</table>
 

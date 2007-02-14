@@ -109,12 +109,12 @@ class PaperSearchDAO extends DAO {
 				COUNT(*) AS count
 			FROM
 				published_papers pa,
-				events i,
+				sched_confs i,
 				paper_search_objects o
 			NATURAL JOIN ' . $sqlFrom . '
 			WHERE
 				pa.paper_id = o.paper_id AND
-				i.event_id = pa.event_id AND
+				i.sched_conf_id = pa.sched_conf_id AND
 				i.enabled = 1 AND ' . $sqlWhere . '
 			GROUP BY o.paper_id
 			ORDER BY count DESC

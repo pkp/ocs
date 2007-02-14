@@ -70,7 +70,7 @@
 <div id="main">
 <div id="navbar">
 	<ul class="menu">
-		<li><a href="{url event=""}">{translate key="navigation.home"}</a></li>
+		<li><a href="{url schedConf=""}">{translate key="navigation.home"}</a></li>
 		<li><a href="{url page="about"}">{translate key="navigation.about"}</a></li>
 		{if $isUserLoggedIn}
 			<li><a href="{url page="user"}">{translate key="navigation.userHome"}</a></li>
@@ -80,8 +80,8 @@
 		{/if}
 		<li><a href="{url page="search"}">{translate key="navigation.search"}</a></li>
 		{if $currentConference}
-			{if $currentEventsExist}<li><a href="{url event="index" page="events" op="current"}">{translate key="navigation.current"}</a></li>{/if}
-			{if $archivedEventsExist}<li><a href="{url event="index" page="events" op="archive"}">{translate key="navigation.archive"}</a></li>{/if}
+			{if $currentSchedConfsExist}<li><a href="{url schedConf="index" page="schedConfs" op="current"}">{translate key="navigation.current"}</a></li>{/if}
+			{if $archivedSchedConfsExist}<li><a href="{url schedConf="index" page="schedConfs" op="archive"}">{translate key="navigation.archive"}</a></li>{/if}
 			{if $enableAnnouncements}
 				<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
 			{/if}

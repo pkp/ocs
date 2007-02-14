@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{include file="event/header.tpl"}
+{include file="schedConf/header.tpl"}
 
 {if $mayViewProceedings}
 	{foreach name=tracks from=$publishedPapers item=track key=trackId}
@@ -32,8 +32,8 @@
 			</tr>
 			<tr>
 				<td style="padding-left: 30px;font-style: italic;">
-					{foreach from=$paper->getAuthors() item=author name=authorList}
-						{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
+					{foreach from=$paper->getPresenters() item=presenter name=presenterList}
+						{$presenter->getFullName()|escape}{if !$smarty.foreach.presenterList.last},{/if}
 					{/foreach}
 				</td>
 				<td align="right">{$paper->getPages()|escape}</td>
@@ -47,7 +47,7 @@
 			<div class="separator"></div>
 		{/if}
 	{foreachelse}
-		{translate key="proceedings.eventEmpty"}
+		{translate key="proceedings.schedConfEmpty"}
 	{/foreach}
 {else} {* notPermitted *}
 	{translate key="proceedings.notPermitted"}

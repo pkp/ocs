@@ -134,7 +134,7 @@ function confirmSubmissionCheck() {
 <tr>
 	<td colspan="2">&nbsp;</td>
 </tr>
-{if $event->getSetting('reviewGuidelines', true)}
+{if $schedConf->getSetting('reviewGuidelines', true)}
 {assign var="haveGuide" value=true}
 <tr valign="top">
         <td>2.</td>
@@ -150,12 +150,12 @@ function confirmSubmissionCheck() {
 	<td>{if $haveGuide}3{else}2{/if}.</td>
 	<td><span class="instruct">{translate key="$reviewerInstruction3"}</span></td>
 </tr>
-{if $event->getAcceptPapers()}
+{if $schedConf->getAcceptPapers()}
 <tr valign="top">
 	<td>&nbsp;</td>
 	<td>
 		<table width="100%" class="data">
-			{if ($confirmedStatus and not $declined) or not $event->getSetting('restrictReviewerFileAccess', true)}
+			{if ($confirmedStatus and not $declined) or not $schedConf->getSetting('restrictReviewerFileAccess', true)}
 				{if $reviewAssignment->getType() == REVIEW_PROGRESS_ABSTRACT}
 					<tr valign="top">
 						<td width="30%" class="label">
@@ -172,7 +172,7 @@ function confirmSubmissionCheck() {
 						</td>
 						<td class="value" width="70%">
 							{if $reviewFile}
-							{if $submission->getDateConfirmed() or not $event->getSetting('restrictReviewerAccessToFile', true)}
+							{if $submission->getDateConfirmed() or not $schedConf->getSetting('restrictReviewerAccessToFile', true)}
 								<a href="{url op="downloadFile" path=$submission->getReviewId()|to_array:$submission->getPaperId():$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>
 							{else}{$reviewFile->getFileName()|escape}{/if}
 							&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
@@ -217,7 +217,7 @@ function confirmSubmissionCheck() {
 <tr valign="top">
 	<td>&nbsp;</td>
 	<td>
-		{translate key="event.logType.review"} 
+		{translate key="schedConf.logType.review"} 
 		{if $confirmedStatus and not $declined}
 			<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$submission->getPaperId()|to_array:$submission->getReviewId()}');" class="icon">{icon name="comment"}</a>
 		{else}
@@ -312,7 +312,7 @@ function confirmSubmissionCheck() {
 {if $haveGuide}
 <div class="separator"></div>
 <h3>{translate key="reviewer.paper.reviewerGuidelines"}</h3>
-<p>{$event->getSetting('reviewGuidelines', true)|nl2br}</p>
+<p>{$schedConf->getSetting('reviewGuidelines', true)|nl2br}</p>
 {/if}
 
 {include file="common/footer.tpl"}

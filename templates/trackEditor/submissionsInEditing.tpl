@@ -17,7 +17,7 @@
 		<td width="5%">{translate key="common.id"}</td>
 		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="submissions.submit"}</td>
 		<td width="5%">{translate key="submissions.track"}</td>
-		<td width="20%">{translate key="paper.authors"}</td>
+		<td width="20%">{translate key="paper.presenters"}</td>
 		<td width="25%">{translate key="paper.title"}</td>
 		<td width="10%">{translate key="submission.layout"}</td>
 	</tr>
@@ -31,7 +31,7 @@
 		<td>{$submission->getPaperId()}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
-		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
+		<td>{$submission->getPresenterString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionEditing" path=$paperId}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td>{$layoutAssignment->getDateCompleted()|date_format:$dateFormatTrunc|default:"&mdash;"}</td>
 	</tr>

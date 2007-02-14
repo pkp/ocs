@@ -14,7 +14,7 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<title>{$paper->getFirstAuthor(true)|escape}</title>
+	<title>{$paper->getFirstPresenter(true)|escape}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset}" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -33,7 +33,7 @@
 
 <div id="main">
 
-<h2>{$siteTitle|escape},&nbsp;{$event->getFullTitle()|escape}</h2>
+<h2>{$siteTitle|escape},&nbsp;{$schedConf->getFullTitle()|escape}</h2>
 
 <div id="content">
 {if $galley}
@@ -41,7 +41,7 @@
 {else}
 
 	<h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
-	<div><i>{$paper->getAuthorString()|escape}</i></div>
+	<div><i>{$paper->getPresenterString()|escape}</i></div>
 	<br />
 	<h4>{translate key="paper.abstract"}</h4>
 	<br />

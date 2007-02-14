@@ -10,7 +10,7 @@
  *
  *}
 
-{assign var="pageTitle" value="director.people.enrollment"}
+{assign var="pageTitle" value="manager.people.enrollment"}
 {include file="common/header.tpl"}
 
 <form name="submit" method="post" action="{url op="enrollSearch" path=$paperId}">
@@ -47,7 +47,7 @@
 	<td><a class="action" href="{url op="userProfile" path=$userid}">{$user->getUsername()|escape}</a></td>
 	<td>{$user->getFullName(true)|escape}</td>
 	<td>{$user->getEmail(true)|escape}</td>
-	<td><a href="{url op="enroll" path=$paperId userId=$user->getUserId()}" class="action">{translate key="director.people.enroll"}</a></td>
+	<td><a href="{url op="enroll" path=$paperId userId=$user->getUserId()}" class="action">{translate key="manager.people.enroll"}</a></td>
 </tr>
 <tr><td colspan="5" class="{if $users->eof()}end{/if}separator">&nbsp;</td></tr>
 {/iterate}
@@ -64,7 +64,7 @@
 {/if}
 </table>
 
-<input type="submit" value="{translate key="director.people.enrollSelected"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="director" escape=false}'" />
+<input type="submit" value="{translate key="manager.people.enrollSelected"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="manager" escape=false}'" />
 
 </form>
 

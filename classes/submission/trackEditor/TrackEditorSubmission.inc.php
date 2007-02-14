@@ -29,8 +29,8 @@ class TrackEditorSubmission extends Paper {
 	/** @var array the revisions of the editor file */
 	var $editorFileRevisions;
 	
-	/** @var array the revisions of the author file */
-	var $authorFileRevisions;
+	/** @var array the revisions of the presenter file */
+	var $presenterFileRevisions;
 
 	/**
 	 * Constructor.
@@ -130,7 +130,7 @@ class TrackEditorSubmission extends Paper {
 	 * a value of SUBMISSION_STATUS_QUEUED -- the three SUBMISSION_STATUS_QUEUED_... constants
 	 * indicate a queued submission.
 	 * NOTE that this code is similar to getSubmissionStatus in
-	 * the AuthorSubmission class and changes should be made there as well.
+	 * the PresenterSubmission class and changes should be made there as well.
 	 */
 	function getSubmissionStatus() {
 		$status = $this->getStatus();
@@ -138,7 +138,7 @@ class TrackEditorSubmission extends Paper {
 				$status == SUBMISSION_STATUS_PUBLISHED ||
 		    $status == SUBMISSION_STATUS_DECLINED) return $status;
 
-		// The submission is SUBMISSION_STATUS_QUEUED or the author's submission was SUBMISSION_STATUS_INCOMPLETE.
+		// The submission is SUBMISSION_STATUS_QUEUED or the presenter's submission was SUBMISSION_STATUS_INCOMPLETE.
 		if ($this->getSubmissionProgress()) return (SUBMISSION_STATUS_INCOMPLETE);
 
 		// The submission is SUBMISSION_STATUS_QUEUED. Find out where it's queued.
@@ -346,23 +346,23 @@ class TrackEditorSubmission extends Paper {
 	}
 	
 	/**
-	 * Get all author file revisions.
+	 * Get all presenter file revisions.
 	 * @return array PaperFiles
 	 */
-	function getAuthorFileRevisions($round = null) {
+	function getPresenterFileRevisions($round = null) {
 		if ($round == null) {
-			return $this->authorFileRevisions;
+			return $this->presenterFileRevisions;
 		} else {
-			return $this->authorFileRevisions[$round];
+			return $this->presenterFileRevisions[$round];
 		}
 	}
 	
 	/**
-	 * Set all author file revisions.
-	 * @param $authorFileRevisions array PaperFiles
+	 * Set all presenter file revisions.
+	 * @param $presenterFileRevisions array PaperFiles
 	 */
-	function setAuthorFileRevisions($authorFileRevisions, $round) {
-		return $this->authorFileRevisions[$round] = $authorFileRevisions;
+	function setPresenterFileRevisions($presenterFileRevisions, $round) {
+		return $this->presenterFileRevisions[$round] = $presenterFileRevisions;
 	}
 	
 	/**

@@ -24,7 +24,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperId = $args[0];
 		$reviewId = $args[1];
 
-		list($event, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
+		list($schedConf, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
 		ReviewerHandler::setupTemplate(true);
 		ReviewerAction::viewPeerReviewComments($user, $submission, $reviewId);
 	
@@ -40,7 +40,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 		
-		list($event, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
+		list($schedConf, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
 
 		ReviewerHandler::setupTemplate(true);
 		if (ReviewerAction::postPeerReviewComment($user, $submission, $reviewId, $emailComment)) {
@@ -59,7 +59,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$paper = $paperDao->getPaper($paperId);
 
-		list($event, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
+		list($schedConf, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
 		list($comment) = SubmissionCommentsHandler::validate($user, $commentId);
 
 		ReviewerHandler::setupTemplate(true);
@@ -78,7 +78,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$paper = $paperDao->getPaper($paperId);
 
-		list($event, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
+		list($schedConf, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
 		list($comment) = SubmissionCommentsHandler::validate($user, $commentId);
 
 		// If the user pressed the "Save and email" button, then email the comment.
@@ -106,7 +106,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$commentId = $args[1];
 		$reviewId = Request::getUserVar('reviewId');
 		
-		list($event, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
+		list($schedConf, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
 		list($comment) = SubmissionCommentsHandler::validate($user, $commentId);
 
 		ReviewerHandler::setupTemplate(true);
@@ -124,7 +124,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 	//
 	
 	/**
-	 * Validate that the user is the author of the comment.
+	 * Validate that the user is the presenter of the comment.
 	 */
 	function validate($user, $commentId) {
 		$isValid = true;

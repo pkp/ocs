@@ -88,15 +88,15 @@
 		</select>
 	</td>
 </tr>
-{if $allowRegReader || $allowRegAuthor || $allowRegReviewer}
+{if $allowRegReader || $allowRegPresenter || $allowRegReviewer}
 	<tr valign="top">
 		<td class="label">{translate key="user.roles"}</td>
 		<td class="value">
 			{if $allowRegReader}
 				<input type="checkbox" id="readerRole" name="readerRole" {if $isReader}checked="true" {/if}>&nbsp;{fieldLabel name="readerRole" key="user.role.reader"}<br/>
 			{/if}
-			{if $allowRegAuthor}
-				<input type="checkbox" id="authorRole" name="authorRole" {if $isAuthor}checked="true" {/if}>&nbsp;{fieldLabel name="authorRole" key="user.role.author"}<br/>
+			{if $allowRegPresenter}
+				<input type="checkbox" id="presenterRole" name="presenterRole" {if $isPresenter}checked="true" {/if}>&nbsp;{fieldLabel name="presenterRole" key="user.role.presenter"}<br/>
 			{/if}
 			{if $allowRegReviewer}
 				<input type="checkbox" id="reviewerRole" name="reviewerRole" {if $isReviewer}checked="true" {/if}>&nbsp;{fieldLabel name="reviewerRole" key="user.role.reviewer"}<br/>
@@ -117,43 +117,43 @@
 </tr>
 {/if}
 
-{foreach from=$events name=eventNotifications key=thisEventId item=thisEvent}
-	{assign var=thisEventId value=$thisEvent->getEventId()}
-	{assign var=notificationEnabled value=`$eventNotifications.$thisEventId`}
-	{if !$notFirstEvent}
-		{assign var=notFirstEvent value=1}
+{foreach from=$schedConfs name=schedConfNotifications key=thisSchedConfId item=thisSchedConf}
+	{assign var=thisSchedConfId value=$thisSchedConf->getSchedConfId()}
+	{assign var=notificationEnabled value=`$schedConfNotifications.$thisSchedConfId`}
+	{if !$notFirstSchedConf}
+		{assign var=notFirstSchedConf value=1}
 		<tr valign="top">
 			<td class="label">{translate key="user.profile.form.publishedNotifications"}</td>
 			<td class="value">
 	{/if}
 
-			<input type="checkbox" name="eventNotify[]" {if $notificationEnabled}checked="checked" {/if}id="eventNotify-{$thisEventId}" value="{$thisEventId}" /> <label for="eventNotify-{$thisEventId}">{$thisEvent->getFullTitle()|escape}</label><br/>
+			<input type="checkbox" name="schedConfNotify[]" {if $notificationEnabled}checked="checked" {/if}id="schedConfNotify-{$thisSchedConfId}" value="{$thisSchedConfId}" /> <label for="schedConfNotify-{$thisSchedConfId}">{$thisSchedConf->getFullTitle()|escape}</label><br/>
 
-	{if $smarty.foreach.eventNotifications.last}
+	{if $smarty.foreach.schedConfNotifications.last}
 			</td>
 		</tr>
 	{/if}
 {/foreach}
 
 {if $displayOpenAccessNotification}
-	{assign var=notFirstEvent value=0}
-	{foreach from=$events name=eventOpenAccessNotifications key=thisEventId item=thisEvent}
-		{assign var=thisEventId value=$thisEvent->getEventId()}
-		{assign var=enableRegistration value=$thisEvent->getSetting('enableRegistration')}
-		{assign var=enableOpenAccessNotification value=$thisEvent->getSetting('enableOpenAccessNotification')}
-		{assign var=notificationEnabled value=$user->getSetting('openAccessNotification', $thisEventId)}
-		{if !$notFirstEvent}
-			{assign var=notFirstEvent value=1}
+	{assign var=notFirstSchedConf value=0}
+	{foreach from=$schedConfs name=schedConfOpenAccessNotifications key=thisSchedConfId item=thisSchedConf}
+		{assign var=thisSchedConfId value=$thisSchedConf->getSchedConfId()}
+		{assign var=enableRegistration value=$thisSchedConf->getSetting('enableRegistration')}
+		{assign var=enableOpenAccessNotification value=$thisSchedConf->getSetting('enableOpenAccessNotification')}
+		{assign var=notificationEnabled value=$user->getSetting('openAccessNotification', $thisSchedConfId)}
+		{if !$notFirstSchedConf}
+			{assign var=notFirstSchedConf value=1}
 			<tr valign="top">
 				<td class="label">{translate key="user.profile.form.openAccessNotifications"}</td>
 				<td class="value">
 		{/if}
 
 		{if $enableRegistration && $enableOpenAccessNotification}
-			<input type="checkbox" name="openAccessNotify[]" {if $notificationEnabled}checked="checked" {/if}id="openAccessNotify-{$thisEventId}" value="{$thisEventId}" /> <label for="openAccessNotify-{$thisEventId}">{$thisEvent->getFullTitle()|escape}</label><br/>
+			<input type="checkbox" name="openAccessNotify[]" {if $notificationEnabled}checked="checked" {/if}id="openAccessNotify-{$thisSchedConfId}" value="{$thisSchedConfId}" /> <label for="openAccessNotify-{$thisSchedConfId}">{$thisSchedConf->getFullTitle()|escape}</label><br/>
 		{/if}
 
-		{if $smarty.foreach.eventOpenAccessNotifications.last}
+		{if $smarty.foreach.schedConfOpenAccessNotifications.last}
 				</td>
 			</tr>
 		{/if}

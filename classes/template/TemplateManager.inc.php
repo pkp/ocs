@@ -64,7 +64,7 @@ class TemplateManager extends Smarty {
 		$this->assign('currentLocale', Locale::getLocale());
 		$this->assign('paperSearchByOptions', array(
 			'' => 'search.allFields',
-			PAPER_SEARCH_AUTHOR => 'search.author',
+			PAPER_SEARCH_PRESENTER => 'search.presenter',
 			PAPER_SEARCH_TITLE => 'paper.title',
 			PAPER_SEARCH_ABSTRACT => 'search.abstract',
 			PAPER_SEARCH_INDEX_TERMS => 'search.indexTerms',
@@ -82,18 +82,18 @@ class TemplateManager extends Smarty {
 			$this->assign('loggedInUsername', $session->getSessionVar('username'));
 			
 			$conference = &Request::getConference();
-			$event = &Request::getEvent();
+			$schedConf = &Request::getSchedConf();
 			$site = &Request::getSite();
 			
 			$siteStyleFilename = PublicFileManager::getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
 			if (file_exists($siteStyleFilename)) $this->addStyleSheet(Request::getBaseUrl() . '/' . $siteStyleFilename);
 			if (isset($conference)) {
 
-				$eventDao =& DAORegistry::getDAO('EventDAO');
-				$archivedEventsExist = $eventDao->archivedEventsExist($conference->getConferenceId());
-				$currentEventsExist = $eventDao->currentEventsExist($conference->getConferenceId());
-				$this->assign('archivedEventsExist', $archivedEventsExist);
-				$this->assign('currentEventsExist', $currentEventsExist);
+				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+				$archivedSchedConfsExist = $schedConfDao->archivedSchedConfsExist($conference->getConferenceId());
+				$currentSchedConfsExist = $schedConfDao->currentSchedConfsExist($conference->getConferenceId());
+				$this->assign('archivedSchedConfsExist', $archivedSchedConfsExist);
+				$this->assign('currentSchedConfsExist', $currentSchedConfsExist);
 
 				$this->assign_by_ref('currentConference', $conference);
 				$conferenceTitle = $conference->getTitle();
@@ -103,36 +103,36 @@ class TemplateManager extends Smarty {
 				$this->assign('alternateLocale2', $conference->getSetting('alternateLocale2'));
 				
 				$this->assign('publicConferenceFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
-				if (isset($event)) {
+				if (isset($schedConf)) {
 
-					// This will be needed if inheriting public conference files from the event.
-					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getEventFilesPath($event->getEventId()));
+					// This will be needed if inheriting public conference files from the scheduled conference.
+					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
 
-					$this->assign_by_ref('currentEvent', $event);
-					$eventTitle = $event->getTitle();
+					$this->assign_by_ref('currentSchedConf', $schedConf);
+					$schedConfTitle = $schedConf->getTitle();
 
 					// Assign additional navigation bar items
-					$navMenuItems = &$event->getSetting('navItems', true);
+					$navMenuItems = &$schedConf->getSetting('navItems', true);
 					$this->assign_by_ref('navMenuItems', $navMenuItems);
 
-					// If the conference has title images, and the event doesn't, we'll
+					// If the conference has title images, and the scheduled conference doesn't, we'll
 					// inherit them here. They're assigned to different variables since the
 					// public files path for each is different.
 					$this->assign('displayConferencePageHeaderTitle', $conference->getPageHeaderTitle());
 					$this->assign('displayConferencePageHeaderLogo', $conference->getPageHeaderLogo());
 
-					// Assign event page header
-					$this->assign('displayPageHeaderTitle', $event->getPageHeaderTitle());
-					$this->assign('displayPageHeaderLogo', $event->getPageHeaderLogo());
-					$this->assign('alternatePageHeader', $event->getSetting('conferencePageHeader', true));
-					$this->assign('metaSearchDescription', $event->getSetting('searchDescription', true));
-					$this->assign('metaSearchKeywords', $event->getSetting('searchKeywords', true));
-					$this->assign('metaCustomHeaders', $event->getSetting('customHeaders', true));
-					$this->assign('numPageLinks', $event->getSetting('numPageLinks', true));
-					$this->assign('itemsPerPage', $event->getSetting('itemsPerPage', true));
-					$this->assign('enableAnnouncements', $event->getSetting('enableAnnouncements', true));
+					// Assign scheduled conference page header
+					$this->assign('displayPageHeaderTitle', $schedConf->getPageHeaderTitle());
+					$this->assign('displayPageHeaderLogo', $schedConf->getPageHeaderLogo());
+					$this->assign('alternatePageHeader', $schedConf->getSetting('conferencePageHeader', true));
+					$this->assign('metaSearchDescription', $schedConf->getSetting('searchDescription', true));
+					$this->assign('metaSearchKeywords', $schedConf->getSetting('searchKeywords', true));
+					$this->assign('metaCustomHeaders', $schedConf->getSetting('customHeaders', true));
+					$this->assign('numPageLinks', $schedConf->getSetting('numPageLinks', true));
+					$this->assign('itemsPerPage', $schedConf->getSetting('itemsPerPage', true));
+					$this->assign('enableAnnouncements', $schedConf->getSetting('enableAnnouncements', true));
 				
-					$this->assign('pageFooter', $event->getSetting('conferencePageFooter', true));
+					$this->assign('pageFooter', $schedConf->getSetting('conferencePageFooter', true));
 
 				} else {
 
@@ -164,13 +164,13 @@ class TemplateManager extends Smarty {
 					'/' . $conferenceStyleSheet['uploadName']);
 				}
 
-				// Assign event stylesheet and footer (after conference stylesheet!)
-				if($event) {
-					$eventStyleSheet = $event->getSetting('eventStyleSheet', false);
-					if ($eventStyleSheet) {
+				// Assign scheduled conference stylesheet and footer (after conference stylesheet!)
+				if($schedConf) {
+					$schedConfStyleSheet = $schedConf->getSetting('schedConfStyleSheet', false);
+					if ($schedConfStyleSheet) {
 						$this->addStyleSheet(Request::getBaseUrl() .
-						'/' .	PublicFileManager::getEventFilesPath($event->getEventId()) .
-						'/' . $eventStyleSheet['uploadName']);
+						'/' .	PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()) .
+						'/' . $schedConfStyleSheet['uploadName']);
 					}
 				}
 				
@@ -573,7 +573,7 @@ class TemplateManager extends Smarty {
 		// Extract the variables named in $paramList, and remove them
 		// from the params array. Variables remaining in params will be
 		// passed along to Request::url as extra parameters.
-		$paramList = array('conference', 'event', 'page', 'op', 'path', 'anchor', 'escape');
+		$paramList = array('conference', 'schedConf', 'page', 'op', 'path', 'anchor', 'escape');
 		foreach ($paramList as $param) {
 			if (isset($params[$param])) {
 				$$param = $params[$param];
@@ -583,7 +583,7 @@ class TemplateManager extends Smarty {
 			}
 		}
 
-		return Request::url($conference, $event, $page, $op, $path, $params, $anchor, !isset($escape) || $escape);
+		return Request::url($conference, $schedConf, $page, $op, $path, $params, $anchor, !isset($escape) || $escape);
 	}
 
 	/**

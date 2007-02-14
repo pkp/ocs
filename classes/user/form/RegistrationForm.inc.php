@@ -82,7 +82,7 @@ class RegistrationForm extends Form {
 		$site = &Request::getSite();
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		
 		if ($this->captchaEnabled) {
 			import('captcha.CaptchaManager');
@@ -98,20 +98,20 @@ class RegistrationForm extends Form {
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
-		import('event.EventAction');
+		import('schedConf.SchedConfAction');
 
-		$templateMgr->assign('privacyStatement', $event->getSetting('privacyStatement', true));
-		$templateMgr->assign('enableRegistration', $event->getSetting('enableRegistration', true)==1?1:0);
-		$templateMgr->assign('enableOpenAccessNotification', $event->getSetting('enableOpenAccessNotification', true)==1?1:0);
-		$templateMgr->assign('allowRegReader', EventAction::allowRegReader($event));
-		$templateMgr->assign('allowRegAuthor', EventAction::allowRegAuthor($event));
-		$templateMgr->assign('allowRegReviewer', EventAction::allowRegReviewer($event));
+		$templateMgr->assign('privacyStatement', $schedConf->getSetting('privacyStatement', true));
+		$templateMgr->assign('enableRegistration', $schedConf->getSetting('enableRegistration', true)==1?1:0);
+		$templateMgr->assign('enableOpenAccessNotification', $schedConf->getSetting('enableOpenAccessNotification', true)==1?1:0);
+		$templateMgr->assign('allowRegReader', SchedConfAction::allowRegReader($schedConf));
+		$templateMgr->assign('allowRegPresenter', SchedConfAction::allowRegPresenter($schedConf));
+		$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
 		$templateMgr->assign('profileLocalesEnabled', $this->profileLocalesEnabled);
 		$templateMgr->assign('source', Request::getUserVar('source'));
 		$templateMgr->assign('registrationMessage', Request::getUserVar('registrationMessage'));
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
-			array(Request::url(null, null, 'index'), $event->getTitle(), true)));
+			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
 		if ($this->profileLocalesEnabled) {
 			$site = &Request::getSite();
 			$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
@@ -139,7 +139,7 @@ class RegistrationForm extends Form {
 			'firstName', 'middleName', 'lastName', 'initials', 'country',
 			'affiliation', 'email', 'userUrl', 'phone', 'fax', 'signature',
 			'mailingAddress', 'biography', 'interests', 'userLocales',
-			'registerAsReader', 'openAccessNotification', 'registerAsAuthor',
+			'registerAsReader', 'openAccessNotification', 'registerAsPresenter',
 			'registerAsReviewer', 'existingUser', 'sendPassword'
 		);
 		if ($this->captchaEnabled) {
@@ -230,30 +230,30 @@ class RegistrationForm extends Form {
 		}
 
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		
 		// Roles users are allowed to register themselves in
-		$allowedRoles = array('reader' => 'registerAsReader', 'author' => 'registerAsAuthor', 'reviewer' => 'registerAsReviewer');
+		$allowedRoles = array('reader' => 'registerAsReader', 'presenter' => 'registerAsPresenter', 'reviewer' => 'registerAsReviewer');
 
-		import('event.EventAction');
-		if (!EventAction::allowRegReader($event)) {
+		import('schedConf.SchedConfAction');
+		if (!SchedConfAction::allowRegReader($schedConf)) {
 			unset($allowedRoles['reader']);
 		}
-		if (!EventAction::allowRegAuthor($event)) {
-			unset($allowedRoles['author']);
+		if (!SchedConfAction::allowRegPresenter($schedConf)) {
+			unset($allowedRoles['presenter']);
 		}
-		if (!EventAction::allowRegReviewer($event)) {
+		if (!SchedConfAction::allowRegReviewer($schedConf)) {
 			unset($allowedRoles['reviewer']);
 		}
 		
 		foreach ($allowedRoles as $k => $v) {
 			$roleId = $roleDao->getRoleIdFromPath($k);
-			if ($this->getData($v) && !$roleDao->roleExists($conference->getConferenceId(), $event->getEventId(), $userId, $roleId)) {
+			if ($this->getData($v) && !$roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $userId, $roleId)) {
 				$role = &new Role();
 				$role->setConferenceId($conference->getConferenceId());
-				$role->setEventId($event->getEventId());
+				$role->setSchedConfId($schedConf->getSchedConfId());
 				$role->setUserId($userId);
 				$role->setRoleId($roleId);
 				$roleDao->insertRole($role);
@@ -277,8 +277,8 @@ class RegistrationForm extends Form {
 		// left over from a previous role.)
 		if (isset($allowedRoles['reader']) && $this->getData($allowedRoles['reader'])) {
 			$notificationStatusDao = &DAORegistry::getDAO('NotificationStatusDAO');
-			$notificationStatusDao->setEventNotifications($event->getEventId(), $userId, false);
-			$notificationStatusDao->setEventNotifications($event->getEventId(), $userId, true);
+			$notificationStatusDao->setSchedConfNotifications($schedConf->getSchedConfId(), $userId, false);
+			$notificationStatusDao->setSchedConfNotifications($schedConf->getSchedConfId(), $userId, true);
 		}
 
 		if (isset($allowedRoles['reader']) && $this->getData('openAccessNotification')) {

@@ -14,12 +14,12 @@
 	{url|assign:"paperUrl" page="paper" op="view" path=$paperId}
 {/if}
 TY  - JOUR
-{foreach from=$paper->getAuthors() item=author}
-AU  - {$author->getFullName(true)|escape}
+{foreach from=$paper->getPresenters() item=presenter}
+AU  - {$presenter->getFullName(true)|escape}
 {/foreach}
 PY  - {$paper->getDatePublished()|date_format:"%Y"}
 TI  - {$paper->getPaperTitle()|strip_tags}
-JF  - {$conference->getTitle()}; {$event->getEventIdentification()}
+JF  - {$conference->getTitle()}; {$schedConf->getSchedConfIdentification()}
 Y2  - {$paper->getDatePublished()|date_format:"%Y"}
 KW  - {$paper->getSubject()|escape}
 N2  - {$paper->getPaperAbstract()|strip_tags|replace:"\n":" "|replace:"\r":" "}

@@ -4,18 +4,18 @@
  * Copyright (c) 2003-2005 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Show submission event log page.
+ * Show submission scheduled conference log page.
  *
  *
  * $Id$
  *}
 
-{assign var="pageTitle" value="event.eventLog"}
+{assign var="pageTitle" value="schedConf.eventLog"}
 {include file="common/header.tpl"}
 
 <ul class="menu">
 	<li><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>
-	{if $eventSettings.reviewPapers and $canReview}
+	{if $schedConfSettings.reviewPapers and $canReview}
 		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:1}">
 			{translate key="submission.abstractReview"}</a>
 		</li>

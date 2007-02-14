@@ -14,7 +14,7 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<title>{$paper->getFirstAuthor(true)|escape}</title>
+	<title>{$paper->getFirstPresenter(true)|escape}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset}" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -31,16 +31,16 @@
 <div id="container">
 <div id="main" style="width: 150px; font-size: 0.7em; padding-top: 1.5em; padding-left: 1em">
 
-<h5>{$conference->getTitle()|escape}<br />{$event->getTitle()|escape}</h5>
+<h5>{$conference->getTitle()|escape}<br />{$schedConf->getTitle()|escape}</h5>
 
-<p><a href="{url page="proceedings"}" target="_parent" class="rtAction">{translate key="event.proceedings"}</a></p>
+<p><a href="{url page="proceedings"}" target="_parent" class="rtAction">{translate key="schedConf.proceedings"}</a></p>
 
 <h5>{translate key="rt.readingTools"}</h5>
 
 <div class="rtSeparator"></div>
 
 <h6>{$paper->getPaperTitle()|strip_unsafe_html|truncate:20:"...":true}</h6>
-<p><i>{$paper->getAuthorString(true)|escape}</i></p>
+<p><i>{$paper->getPresenterString(true)|escape}</i></p>
 
 <div class="rtSeparator"></div>
 
@@ -51,7 +51,7 @@
 	<ul>
 		{if $conferenceRt->getAbstract() && $galley}<li><a href="{url page="paper" op="view" path=$paperId}" target="_parent">{translate key="paper.abstract"}</a></li>{/if}
 		<li><a href="{url page="about" op="editorialPolicies" anchor="peerReviewProcess"}" target="_parent">{translate key="rt.reviewPolicy"}</a></li>
-		{if $conferenceRt->getAuthorBio()}<li><a href="javascript:openRTWindow('{url page="rt" op="bio" path=$paperId|to_array:$galleyId}');">{translate key="rt.authorBio"}</a></li>{/if}
+		{if $conferenceRt->getPresenterBio()}<li><a href="javascript:openRTWindow('{url page="rt" op="bio" path=$paperId|to_array:$galleyId}');">{translate key="rt.presenterBio"}</a></li>{/if}
 		{if $conferenceRt->getCaptureCite()}<li><a href="javascript:openRTWindow('{url page="rt" op="captureCite" path=$paperId|to_array:$galleyId}');">{translate key="rt.captureCite"}</a></li>{/if}
 		{if $conferenceRt->getViewMetadata()}<li><a href="javascript:openRTWindow('{url page="rt" op="metadata" path=$paperId|to_array:$galleyId}');">{translate key="rt.viewMetadata"}</a></li>{/if}
 		{if $conferenceRt->getSupplementaryFiles() && $paper->getSuppFiles()}<li><a href="javascript:openRTWindow('{url page="rt" op="suppFiles" path=$paperId|to_array:$galleyId}');">{translate key="rt.suppFiles"}</a></li>{/if}
@@ -73,12 +73,12 @@
 				{/if}
 			</li>
 		{/if}
-		{if $conferenceRt->getEmailAuthor()}
+		{if $conferenceRt->getEmailPresenter()}
 			<li>
 				{if $isUserLoggedIn}
-					<a href="javascript:openRTWindow('{url page="rt" op="emailAuthor" path=$paperId|to_array:$galleyId}');">{translate key="rt.emailAuthor"}</a>
+					<a href="javascript:openRTWindow('{url page="rt" op="emailPresenter" path=$paperId|to_array:$galleyId}');">{translate key="rt.emailPresenter"}</a>
 				{else}
-					{translate key="rt.emailAuthor"}*
+					{translate key="rt.emailPresenter"}*
 					{assign var=needsLoginNote value=1}
 				{/if}
 			</li>

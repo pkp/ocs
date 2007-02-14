@@ -16,9 +16,9 @@
 	<p>{$conferenceContent|nl2br}</p>
 {/if}
 
-{if !empty($eventContent)}
-	<h2>{$eventTitle}</h2>
-	<p>{$eventContent|nl2br}</p>
+{if !empty($schedConfContent)}
+	<h2>{$schedConfTitle}</h2>
+	<p>{$schedConfContent|nl2br}</p>
 {/if}
 
 {include file="common/footer.tpl"}

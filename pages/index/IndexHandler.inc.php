@@ -16,22 +16,22 @@
 class IndexHandler extends Handler {
 
 	/**
-	 * If an event in a conference is specified, display it.
-	 * If no event is specified, display a list of this conference's events.
+	 * If a scheduled conference in a conference is specified, display it.
+	 * If no scheduled conference is specified, display a list of scheduled conferences.
 	 * If no conference is specified, display list of conferences.
 	 */
 	function index($args) {
-		list($conference, $event) = parent::validate(false, false);
+		list($conference, $schedConf) = parent::validate(false, false);
 
-		if($event && $conference) {
+		if($schedConf && $conference) {
 
-			// An event was specified; display it.
-			import('pages.event.EventHandler');
-			EventHandler::index($args);
+			// A scheduled conference was specified; display it.
+			import('pages.schedConf.SchedConfHandler');
+			SchedConfHandler::index($args);
 
 		} elseif($conference) {
 
-			// An event was specified; display it.
+			// A scheduled conference was specified; display it.
 			import('pages.conference.ConferenceHandler');
 			ConferenceHandler::index($args);
 

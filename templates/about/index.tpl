@@ -13,11 +13,11 @@
 {include file="common/header.tpl"}
 
 {* Show list of current conferences if one wasn't supplied *}
-{if not $showAboutEvent and not $currentEvents->eof()}
+{if not $showAboutSchedConf and not $currentSchedConfs->eof()}
 	<h3>{translate key="about.currentConferences"}</h3>
 	<ul class="plain">
-		{iterate from=currentEvents item=event}
-			<li>&#187; <a href="{url event="$event->getPath()"}">{$event->getFullTitle()}</a></li>
+		{iterate from=currentSchedConfs item=schedConf}
+			<li>&#187; <a href="{url schedConf="$schedConf->getPath()"}">{$schedConf->getFullTitle()}</a></li>
 		{/iterate}
 	</ul>
 {/if}
@@ -27,7 +27,7 @@
 	{if not (empty($conferenceSettings.mailingAddress) && empty($conferenceSettings.contactName) && empty($conferenceSettings.contactAffiliation) && empty($conferenceSettings.contactMailingAddress) && empty($conferenceSettings.contactPhone) && empty($conferenceSettings.contactFax) && empty($conferenceSettings.contactEmail) && empty($conferenceSettings.supportName) && empty($conferenceSettings.supportPhone) && empty($conferenceSettings.supportEmail))}
 		<li>&#187; <a href="{url op="contact"}">{translate key="about.contact"}</a></li>
 	{/if}
-	{if $showAboutEvent}
+	{if $showAboutSchedConf}
 		<li>&#187; <a href="{url op="organizingTeam"}">{translate key="about.organizingTeam"}</a></li>
 	{/if}
 	{call_hook name="Templates::About::Index::People"}
@@ -39,7 +39,7 @@
 	<li>&#187; <a href="{url op="editorialPolicies" anchor="trackPolicies"}">{translate key="about.trackPolicies"}</a></li>
 	{if !empty($conferenceSettings.reviewPolicy)}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if !empty($conferenceSettings.pubFreqPolicy)}<li>&#187; <a href="{url op="editorialPolicies" anchor="publicationFrequency"}">{translate key="about.publicationFrequency"}</a></li>{/if}
-	{if !empty($conferenceSettings.openAccessPolicy) || !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enableAuthorSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
+	{if !empty($conferenceSettings.openAccessPolicy) || !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{if $conferenceSettings.enableLockss && !empty($conferenceSettings.lockssLicense)}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiving"}">{translate key="about.archiving"}</a></li>{/if}
 	{if !empty($conferenceSettings.enableRegistration)}
 		<li>&#187; <a href="{url op="registration"}">{translate key="about.registration"}</a></li>
@@ -50,11 +50,11 @@
 	{call_hook name="Templates::About::Index::Policies"}
 </ul>
 
-{if $showAboutEvent}
+{if $showAboutSchedConf}
 	<h3>{translate key="about.submissions"}</h3>
 	<ul class="plain">
 		<li>&#187; <a href="{url op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
-		{if !empty($conferenceSettings.authorGuidelines)}<li>&#187; <a href="{url op="submissions" anchor="authorGuidelines"}">{translate key="about.authorGuidelines"}</a></li>{/if}
+		{if !empty($conferenceSettings.presenterGuidelines)}<li>&#187; <a href="{url op="submissions" anchor="presenterGuidelines"}">{translate key="about.presenterGuidelines"}</a></li>{/if}
 		{if !empty($conferenceSettings.copyrightNotice)}<li>&#187; <a href="{url op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
 		{if !empty($conferenceSettings.privacyStatement)}<li>&#187; <a href="{url op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
 		{call_hook name="Templates::About::Index::Submissions"}

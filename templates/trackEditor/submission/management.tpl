@@ -17,10 +17,10 @@
 
 <table width="100%" class="data">
 	<tr>
-		<td width="20%" class="label">{translate key="paper.authors"}</td>
+		<td width="20%" class="label">{translate key="paper.presenters"}</td>
 		<td width="80%" colspan="2" class="value">
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl authorsPaperId=$submission->getPaperId() paperId=$submission->getPaperId()}
-			{$submission->getAuthorString()|escape} {icon name="mail" url=$url}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl presentersPaperId=$submission->getPaperId() paperId=$submission->getPaperId()}
+			{$submission->getPresenterString()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
 	<tr>

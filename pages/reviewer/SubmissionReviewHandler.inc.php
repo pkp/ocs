@@ -18,7 +18,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	function submission($args) {
 		$reviewId = $args[0];
 
-		list($event, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
+		list($schedConf, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
 		
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = $reviewAssignmentDao->getReviewAssignmentById($reviewId);
@@ -41,11 +41,11 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$templateMgr->assign_by_ref('reviewFile', $reviewAssignment->getReviewFile());
 		$templateMgr->assign_by_ref('reviewerFile', $submission->getReviewerFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
-		$templateMgr->assign_by_ref('event', $event);
-		$templateMgr->assign_by_ref('reviewGuidelines', $event->getSetting('reviewGuidelines', true));
+		$templateMgr->assign_by_ref('schedConf', $schedConf);
+		$templateMgr->assign_by_ref('reviewGuidelines', $schedConf->getSetting('reviewGuidelines', true));
 
 		// The reviewer instructions differ depending on what is reviewed, and when.
-		if($reviewAssignment->getType()==REVIEW_PROGRESS_ABSTRACT && !$event->getCollectPapersWithAbstracts())
+		if($reviewAssignment->getType()==REVIEW_PROGRESS_ABSTRACT && !$schedConf->getCollectPapersWithAbstracts())
 			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.reviewerInstruction3AbstractOnly');
 		else
 			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.reviewerInstruction3Submission');
@@ -63,7 +63,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		
 		$reviewerSubmissionDao = &DAORegistry::getDAO('ReviewerSubmissionDAO');
 
-		list($event, $reviewerSubmission, $user) = SubmissionReviewHandler::validate($reviewId);
+		list($schedConf, $reviewerSubmission, $user) = SubmissionReviewHandler::validate($reviewId);
 
 		ReviewerHandler::setupTemplate();
 
@@ -82,7 +82,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$reviewId = Request::getUserVar('reviewId');
 		$recommendation = Request::getUserVar('recommendation');
 
-		list($event, $reviewerSubmission, $user) = SubmissionReviewHandler::validate($reviewId);
+		list($schedConf, $reviewerSubmission, $user) = SubmissionReviewHandler::validate($reviewId);
 
 		ReviewerHandler::setupTemplate(true);
 
@@ -99,7 +99,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$reviewId = $args[0];
 		$paperId = $args[1];
 		
-		list($event, $reviewerSubmission) = SubmissionReviewHandler::validate($reviewId);
+		list($schedConf, $reviewerSubmission) = SubmissionReviewHandler::validate($reviewId);
 
 		parent::setupTemplate(true, $paperId, 'review');
 
@@ -112,7 +112,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	function uploadReviewerVersion() {
 		$reviewId = Request::getUserVar('reviewId');
 		
-		list($event, $reviewerSubmission) = SubmissionReviewHandler::validate($reviewId);
+		list($schedConf, $reviewerSubmission) = SubmissionReviewHandler::validate($reviewId);
 
 		ReviewerHandler::setupTemplate(true);
 		ReviewerAction::uploadReviewerVersion($reviewId);
@@ -127,7 +127,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$fileId = isset($args[1]) ? (int) $args[1] : 0;
 		$revision = isset($args[2]) ? (int) $args[2] : null;
 		
-		list($event, $reviewerSubmission) = SubmissionReviewHandler::validate($reviewId);
+		list($schedConf, $reviewerSubmission) = SubmissionReviewHandler::validate($reviewId);
 
 		if (!$reviewerSubmission->getCancelled()) ReviewerAction::deleteReviewerVersion($reviewId, $fileId, $revision);
 		Request::redirect(null, null, null, 'submission', $reviewId);
@@ -147,7 +147,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$fileId = isset($args[2]) ? $args[2] : 0;
 		$revision = isset($args[3]) ? $args[3] : null;
 
-		list($event, $reviewerSubmission) = SubmissionReviewHandler::validate($reviewId);
+		list($schedConf, $reviewerSubmission) = SubmissionReviewHandler::validate($reviewId);
 		if (!ReviewerAction::downloadReviewerFile($reviewId, $reviewerSubmission, $fileId, $revision)) {
 			Request::redirect(null, null, null, 'submission', $reviewId);
 		}
@@ -164,7 +164,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 */
 	function validate($reviewId) {
 		$reviewerSubmissionDao = &DAORegistry::getDAO('ReviewerSubmissionDAO');
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$user = &Request::getUser();
 		
 		$isValid = true;
@@ -172,7 +172,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		
 		$reviewerSubmission = &$reviewerSubmissionDao->getReviewerSubmission($reviewId);
 		
-		if (!$reviewerSubmission || $reviewerSubmission->getEventId() != $event->getEventId()) {
+		if (!$reviewerSubmission || $reviewerSubmission->getSchedConfId() != $schedConf->getSchedConfId()) {
 			$isValid = false;
 		} elseif ($user && empty($newKey)) {
 			if ($reviewerSubmission->getReviewerId() != $user->getUserId()) {
@@ -187,7 +187,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
-		return array($event, $reviewerSubmission, $user);
+		return array($schedConf, $reviewerSubmission, $user);
 	}
 }
 ?>

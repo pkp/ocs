@@ -88,17 +88,17 @@ class TrackEditorAction extends Action {
 	
 	/**
 	 * After a decision has been recorded, bumps the paper to the next stage.
-	 * If the submission requires completion, it's sent back to the author.
+	 * If the submission requires completion, it's sent back to the presenter.
 	 * If not, review is complete, and the paper can be released.
-	 * @param $event object
+	 * @param $schedConf object
 	 * @param $trackEditorSubmission object
 	 * @param $decision int
 	 */
 	function completeReview($trackEditorSubmission) {
-		$event =& Request::getEvent();
+		$schedConf =& Request::getSchedConf();
 		
-		if($event->getCollectPapersWithAbstracts() ||
-				!$event->getAcceptPapers()) {
+		if($schedConf->getCollectPapersWithAbstracts() ||
+				!$schedConf->getAcceptPapers()) {
 
 			// Only one review was necessary; the submission is complete.
 			$trackEditorSubmission->setReviewProgress(REVIEW_PROGRESS_COMPLETE);
@@ -106,7 +106,7 @@ class TrackEditorAction extends Action {
 
 		} else {
 			// two-stage submission; paper required
-			// The submission is incomplete, and needs the author to submit
+			// The submission is incomplete, and needs the presenter to submit
 			// more materials (potentially for another round of reviews)
 
 			if($trackEditorSubmission->getReviewProgress() == REVIEW_PROGRESS_ABSTRACT) {
@@ -116,18 +116,18 @@ class TrackEditorAction extends Action {
 				// We've just completed reviewing the abstract. If the paper needs
 				// a separate review progress, flag it as such and move it back
 				// to review round 1.
-				if($event->getReviewPapers()) {
+				if($schedConf->getReviewPapers()) {
 					$trackEditorSubmission->setReviewProgress(REVIEW_PROGRESS_PAPER);
 					$trackEditorSubmission->setCurrentRound(1);
 				} else {
 					$trackEditorSubmission->setReviewProgress(REVIEW_PROGRESS_COMPLETE);
 				}
 
-				// The paper itself needs to be collected. Flag it so the author
+				// The paper itself needs to be collected. Flag it so the presenter
 				// may complete it.
 				$trackEditorSubmission->setSubmissionProgress(3);
 
-				// TODO: notify the author the submission must be completed.
+				// TODO: notify the presenter the submission must be completed.
 				// Q: should the editor be given this option explicitly?
 
 				// Now, reassign all reviewers that submitted a review for the last
@@ -145,7 +145,7 @@ class TrackEditorAction extends Action {
 				$trackEditorSubmission->setReviewProgress(REVIEW_PROGRESS_COMPLETE);
 				$trackEditorSubmission->setStatus(SUBMISSION_STATUS_PUBLISHED);
 
-				// TODO: log? notify authors?
+				// TODO: log? notify presenters?
 
 			}
 		}
@@ -196,9 +196,9 @@ class TrackEditorAction extends Action {
 		
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($trackEditorSubmission->getPaperId(), $reviewerId, $type, $round);
 
-			$event = &Request::getEvent();
-			if ($event->getSetting('numWeeksPerReview', true) != null)
-				TrackEditorAction::setDueDate($trackEditorSubmission->getPaperId(), $reviewAssignment->getReviewId(), null, $event->getSetting('numWeeksPerReview',true));
+			$schedConf = &Request::getSchedConf();
+			if ($schedConf->getSetting('numWeeksPerReview', true) != null)
+				TrackEditorAction::setDueDate($trackEditorSubmission->getPaperId(), $reviewAssignment->getReviewId(), null, $schedConf->getSetting('numWeeksPerReview',true));
 			
 			// Add log
 			import('paper.log.PaperLog');
@@ -245,7 +245,7 @@ class TrackEditorAction extends Action {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$user = &Request::getUser();
 		
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
@@ -280,7 +280,7 @@ class TrackEditorAction extends Action {
 						$accessKeyManager =& new AccessKeyManager();
 
 						// Key lifetime is the typical review period plus four weeks
-						$keyLifetime = ($event->getSetting('numWeeksPerReview') + 4) * 7;
+						$keyLifetime = ($schedConf->getSetting('numWeeksPerReview') + 4) * 7;
 
 						$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime));
 					}
@@ -305,7 +305,7 @@ class TrackEditorAction extends Action {
 					if ($reviewAssignment->getDateDue() != null) {
 						$reviewDueDate = date('Y-m-d', strtotime($reviewAssignment->getDateDue()));
 					} else {
-						$numWeeks = max((int) $event->getSetting('numWeeksPerReview'), 2);
+						$numWeeks = max((int) $schedConf->getSetting('numWeeksPerReview'), 2);
 						$reviewDueDate = date('Y-m-d', strtotime('+' . $numWeeks . ' week'));
 					}
 
@@ -406,7 +406,7 @@ class TrackEditorAction extends Action {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 			
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$user = &Request::getUser();
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$reviewerAccessKeysEnabled = $conference->getSetting('reviewerAccessKeysEnabled');
@@ -436,7 +436,7 @@ class TrackEditorAction extends Action {
 				$accessKeyManager =& new AccessKeyManager();
 
 				// Key lifetime is the typical review period plus four weeks
-				$keyLifetime = ($event->getSetting('numWeeksPerReview') + 4) * 7;
+				$keyLifetime = ($schedConf->getSetting('numWeeksPerReview') + 4) * 7;
 				$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime));
 			}
 
@@ -574,7 +574,7 @@ class TrackEditorAction extends Action {
 	}
 	
 	/**
-	 * Makes a reviewer's annotated version of an paper available to the author.
+	 * Makes a reviewer's annotated version of an paper available to the presenter.
 	 * @param $paperId int
 	 * @param $reviewId int
 	 * @param $viewable boolean
@@ -643,7 +643,7 @@ class TrackEditorAction extends Action {
 	 }
 	 
 	/**
-	 * Notifies an author that a submission was unsuitable.
+	 * Notifies an presenter that a submission was unsuitable.
 	 * @param $trackEditorSubmission object
 	 * @return boolean true iff ready for redirect
 	 */
@@ -654,16 +654,16 @@ class TrackEditorAction extends Action {
 		$conference = &Request::getConference();
 		$user = &Request::getUser();
 
-		$author = &$userDao->getUser($trackEditorSubmission->getUserId());
-		if (!isset($author)) return true;
+		$presenter = &$userDao->getUser($trackEditorSubmission->getUserId());
+		if (!isset($presenter)) return true;
 		
 		import('mail.PaperMailTemplate');
 		$email = &new PaperMailTemplate($trackEditorSubmission, 'SUBMISSION_UNSUITABLE');
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('TrackEditorAction::unsuitableSubmission', array(&$trackEditorSubmission, &$author, &$email));
+			HookRegistry::call('TrackEditorAction::unsuitableSubmission', array(&$trackEditorSubmission, &$presenter, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(PAPER_EMAIL_EDITOR_NOTIFY_AUTHOR_UNSUITABLE, PAPER_EMAIL_TYPE_EDITOR, $user->getUserId());
+				$email->setAssoc(PAPER_EMAIL_EDITOR_NOTIFY_PRESENTER_UNSUITABLE, PAPER_EMAIL_TYPE_EDITOR, $user->getUserId());
 				$email->send();
 			}
 			TrackEditorAction::archiveSubmission($trackEditorSubmission);
@@ -672,10 +672,10 @@ class TrackEditorAction extends Action {
 			if (!Request::getUserVar('continued')) {
 				$paramArray = array(
 					'editorialContactSignature' => $user->getContactSignature(),
-					'authorName' => $author->getFullName()
+					'presenterName' => $presenter->getFullName()
 				);
 				$email->assignParams($paramArray);
-				$email->addRecipient($author->getEmail(), $author->getFullName());
+				$email->addRecipient($presenter->getEmail(), $presenter->getFullName());
 			}
 			$email->displayEditForm(Request::url(null, null, null, 'unsuitableSubmission'), array('paperId' => $trackEditorSubmission->getPaperId()));
 			return false;
@@ -845,11 +845,11 @@ class TrackEditorAction extends Action {
 			// Add a publishedpaper object
 			$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 			if(($publishedPaper = $publishedPaperDao->getPublishedPaperByPaperId($trackEditorSubmission->getPaperId())) == null) {
-				$eventId = $trackEditorSubmission->getEventId();
+				$schedConfId = $trackEditorSubmission->getSchedConfId();
 
 				$publishedPaper =& new PublishedPaper();
 				$publishedPaper->setPaperId($trackEditorSubmission->getPaperId());
-				$publishedPaper->setEventId($eventId);
+				$publishedPaper->setSchedConfId($schedConfId);
 				$publishedPaper->setDatePublished(Core::getCurrentDate());
 				$publishedPaper->setSeq(100000); // KLUDGE: End of list
 				$publishedPaper->setViews(0);
@@ -858,16 +858,16 @@ class TrackEditorAction extends Action {
 				$publishedPaperDao->insertPublishedPaper($publishedPaper);
 
 				// Resequence the papers.
-				$publishedPaperDao->resequencePublishedPapers($trackEditorSubmission->getTrackId(), $eventId);
+				$publishedPaperDao->resequencePublishedPapers($trackEditorSubmission->getTrackId(), $schedConfId);
 
 				// If we're using custom track ordering, and if this is the first
 				// paper published in a track, make sure we enter a custom ordering
 				// for it. (Default at the end of the list.)
 				$trackDao =& DAORegistry::getDAO('TrackDAO');
-				if ($trackDao->customTrackOrderingExists($eventId)) {
-					if ($trackDao->getCustomTrackOrder($eventId, $submission->getTrackId()) === null) {
-						$trackDao->insertCustomTrackOrder($eventId, $submission->getTrackId(), 10000); // KLUDGE: End of list
-						$trackDao->resequenceCustomTrackOrders($eventId);
+				if ($trackDao->customTrackOrderingExists($schedConfId)) {
+					if ($trackDao->getCustomTrackOrder($schedConfId, $submission->getTrackId()) === null) {
+						$trackDao->insertCustomTrackOrder($schedConfId, $submission->getTrackId(), 10000); // KLUDGE: End of list
+						$trackDao->resequenceCustomTrackOrders($schedConfId);
 					}
 				}
 			}		
@@ -1415,9 +1415,9 @@ class TrackEditorAction extends Action {
 			return true;
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$authorUser =& $userDao->getUser($trackEditorSubmission->getUserId());
+				$presenterUser =& $userDao->getUser($trackEditorSubmission->getUserId());
 				$email->setSubject($trackEditorSubmission->getPaperTitle());
-				$email->addRecipient($authorUser->getEmail(), $authorUser->getFullName());
+				$email->addRecipient($presenterUser->getEmail(), $presenterUser->getFullName());
 			} else {
 				if (Request::getUserVar('importPeerReviews')) {
 					$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -1434,7 +1434,7 @@ class TrackEditorAction extends Action {
 							$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n";
 							if (is_array($paperComments)) {
 								foreach ($paperComments as $comment) {
-									// If the comment is viewable by the author, then add the comment.
+									// If the comment is viewable by the presenter, then add the comment.
 									if ($comment->getViewable()) {
 										$body .= $comment->getComments() . "\n\n";
 									}

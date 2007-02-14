@@ -164,7 +164,7 @@ system is configured to index full-text files.
 
 1. Using the migration command-line tool:
 
-    $ php tools/migrate.php [conference_path] [event_path] [ocs1_path] [options]
+    $ php tools/migrate.php [conference_path] [sched_conf_path] [ocs1_path] [options]
     
    Options:
    
@@ -172,9 +172,10 @@ system is configured to index full-text files.
                   If path already exists, all content except conference settings
                   will be imported into the existing conference
 
-    event_path    Event path to create (E.g., "2007")
-                  If path already exists, all content except event settings
-                  will be imported into the existing event
+    sched_conf_path  Scheduled conference path to create (E.g., "2007")
+                  If path already exists, all content except scheduled
+		  conference settings will be imported into the existing
+		  scheduled conference
                   
     ocs1_path     Complete local filesystem path to the OCS 1 installation
                   (E.g., "/var/www/ocs")
@@ -186,12 +187,12 @@ system is configured to index full-text files.
    Examples:
    
     To import all data from "/var/www/ocs" into a new conference "import1" and
-    event "2007":
+    scheduled conference "2007":
 
         $ php tools/migrate.php import1 2007 /var/www/ocs importSubscriptions
     
     To import just users, issues, and articles from "/var/www/ocs" into an
-    existing conference "import2" and event "2007":     
+    existing conference "import2" and scheduled conference "2007":     
 
         $ php tools/migrate.php import2 2007 /var/www/ocs
    
@@ -214,14 +215,14 @@ Additional notes regarding migration:
 
     - After using the migration tool, edit and save the hosted conference settings
       under Site Administration, and proceed through and complete all Conference
-      Setup steps under Conference Management and Event Management -- there are
-      a number of new and modified settings in OCS 2 compared to OCS 1
+      Setup steps under Conference Management -- there are a number of new and
+      modified settings in OCS 2 compared to OCS 1
     - Any number of OCS 1.x conferences can be imported into a single OCS 2
       instance (OCS 2 is designed as a multiple conference system)
-    - In addition to hosting multiple conferences, OCS 2 introduces "events"
-      which may be associated with a recurring conference. For example, an
-      annual conference would host one event per year, typically named for the
-      year in which it occurs.
+    - In addition to hosting multiple conferences, OCS 2 introduces "scheduled
+      conferences" which may be associated with a recurring conference. For
+      example, an annual conference would host one scheduled conference per
+      year, typically named for the year in which it occurs.
     - OCS 2 requires both user usernames and email addresses to be unique (OCS
       1 did not enforce the latter restriction):
         - If a user already exists with the same username as an imported

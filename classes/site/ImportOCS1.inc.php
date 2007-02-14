@@ -29,11 +29,11 @@ import('paper.PaperFile');
 import('paper.PaperGalley');
 import('paper.PaperHTMLGalley');
 import('paper.PaperNote');
-import('paper.Author');
+import('paper.Presenter');
 import('paper.PublishedPaper');
 import('paper.SuppFile');
 import('submission.common/Action');
-import('submission.author.AuthorSubmission');
+import('submission.presenter.PresenterSubmission');
 import('submission.reviewer.ReviewerSubmission');
 import('issue.Issue');
 import('submission.copyAssignment.CopyAssignment');
@@ -263,7 +263,7 @@ class ImportOCS1 {
 			$role = &new Role();
 			$role->setConferenceId($this->conferenceId);
 			$role->setUserId($admin->getUserId());
-			$role->setRoleId(ROLE_ID_CONFERENCE_DIRECTOR);
+			$role->setRoleId(ROLE_ID_CONFERENCE_MANAGER);
 			$roleDao->insertRole($role);
 		}
 		
@@ -378,14 +378,14 @@ class ImportOCS1 {
 			'reviewPolicy' => array('string', $this->trans($this->conferenceInfo['chReviewProcess'])),
 			'mailSubmissionsToReviewers' => array('int', isset($this->conferenceInfo['bReviewerMailSubmission']) ? $this->conferenceInfo['bReviewerMailSubmission'] : 0),
 			'reviewGuidelines' => array('string', $this->trans($this->conferenceInfo['chReviewerGuideline'])),
-			'authorSelectsEditor' => array('int', isset($this->conferenceInfo['bAuthorSelectEditor']) ? $this->conferenceInfo['bAuthorSelectEditor'] : 0),
+			'presenterSelectsEditor' => array('int', isset($this->conferenceInfo['bPresenterSelectEditor']) ? $this->conferenceInfo['bPresenterSelectEditor'] : 0),
 			'privacyStatement' => array('string', $this->trans($this->conferenceInfo['chPrivacyStatement'])),
 			'openAccessPolicy' => array('string', $this->trans($this->conferenceInfo['chOpenAccess'])),
 		//	'envelopeSender' => array('string', ''),
 			'emailSignature' => array('string', Locale::translate('default.conferenceSettings.emailSignature', $translateParams)),
 		//	'disableUserReg' => array('bool', ''),
 		//	'allowRegReader' => array('bool', ''),
-		//	'allowRegAuthor' => array('bool', ''),
+		//	'allowRegPresenter' => array('bool', ''),
 		//	'allowRegReviewer' => array('bool', ''),
 		//	'restrictSiteAccess' => array('bool', ''),
 		//	'restrictPaperAccess' => array('bool', ''),
@@ -396,7 +396,7 @@ class ImportOCS1 {
 			'enableLockss' => array('bool', isset($this->conferenceInfo['bEnableLOCKSS']) ? $this->conferenceInfo['bEnableLOCKSS'] : 0),
 			'lockssLicense' => array('string', isset($this->conferenceInfo['chLOCKSSLicense']) ? $this->trans($this->conferenceInfo['chLOCKSSLicense']) : Locale::translate('default.conferenceSettings.lockssLicense')),
 			
-			'authorGuidelines' => array('string', $this->trans($this->conferenceInfo['chAuthorGuideline'])),
+			'presenterGuidelines' => array('string', $this->trans($this->conferenceInfo['chPresenterGuideline'])),
 			'submissionChecklist' => array('object', $submissionChecklist),
 			'copyrightNotice' => array('string', $this->trans($this->conferenceInfo['chCopyrightNotice'])),
 			'metaDiscipline' => array('bool', $this->conferenceInfo['bMetaDiscipline']),
@@ -507,10 +507,10 @@ class ImportOCS1 {
 		$rt->setViewMetadata($row['bViewMetadata']);
 		$rt->setSupplementaryFiles($row['bSuppFiles']);
 		$rt->setPrinterFriendly($row['bPrintVersion']);
-		$rt->setAuthorBio($row['bAuthorBios']);
+		$rt->setPresenterBio($row['bPresenterBios']);
 		$rt->setDefineTerms($row['bDefineTerms']);
 		$rt->setAddComment($row['bAddComment']);
-		$rt->setEmailAuthor($row['bEmailAuthor']);
+		$rt->setEmailPresenter($row['bEmailPresenter']);
 		$rt->setEmailOthers($row['bEmailOthers']);
 		$rt->setBibFormat($this->conferenceInfo['chCitationStyle']);
 
@@ -618,7 +618,7 @@ class ImportOCS1 {
 						$role->setRoleId(ROLE_ID_TRACK_EDITOR);
 						break;
 					case 2:
-						$role->setRoleId(ROLE_ID_CONFERENCE_DIRECTOR);
+						$role->setRoleId(ROLE_ID_CONFERENCE_MANAGER);
 						break;
 					case 3:
 						$role->setRoleId(ROLE_ID_LAYOUT_EDITOR);
@@ -626,17 +626,17 @@ class ImportOCS1 {
 						break;
 				}
 				
-				if (!$existingUser || !$roleDao->roleExists($role->getConferenceId(), $role->getEventId(), $role->getUserId(), $role->getRoleId())) {
+				if (!$existingUser || !$roleDao->roleExists($role->getConferenceId(), $role->getSchedConfId(), $role->getUserId(), $role->getRoleId())) {
 					$roleDao->insertRole($role);
 				}
 			}
 			
-			if ($row['fkAuthorID']) {
+			if ($row['fkPresenterID']) {
 				$role = &new Role();
 				$role->setConferenceId($this->conferenceId);
 				$role->setUserId($userId);
-				$role->setRoleId(ROLE_ID_AUTHOR);
-				if (!$existingUser || !$roleDao->roleExists($role->getConferenceId(), $role->getEventId(), $role->getUserId(), $role->getRoleId())) {
+				$role->setRoleId(ROLE_ID_PRESENTER);
+				if (!$existingUser || !$roleDao->roleExists($role->getConferenceId(), $role->getSchedConfId(), $role->getUserId(), $role->getRoleId())) {
 					$roleDao->insertRole($role);
 				}
 			}
@@ -646,7 +646,7 @@ class ImportOCS1 {
 				$role->setConferenceId($this->conferenceId);
 				$role->setUserId($userId);
 				$role->setRoleId(ROLE_ID_REVIEWER);
-				if (!$existingUser || !$roleDao->roleExists($role->getConferenceId(), $role->getEventId(), $role->getUserId(), $role->getRoleId())) {
+				if (!$existingUser || !$roleDao->roleExists($role->getConferenceId(), $role->getSchedConfId(), $role->getUserId(), $role->getRoleId())) {
 					$roleDao->insertRole($role);
 				}
 			}
@@ -656,7 +656,7 @@ class ImportOCS1 {
 				$role->setConferenceId($this->conferenceId);
 				$role->setUserId($userId);
 				$role->setRoleId(ROLE_ID_COPYEDITOR);
-				if (!$existingUser || !$roleDao->roleExists($role->getConferenceId(), $role->getEventId(), $role->getUserId(), $role->getRoleId())) {
+				if (!$existingUser || !$roleDao->roleExists($role->getConferenceId(), $role->getSchedConfId(), $role->getUserId(), $role->getRoleId())) {
 					$roleDao->insertRole($role);
 				}
 			}
@@ -666,7 +666,7 @@ class ImportOCS1 {
 				$role->setConferenceId($this->conferenceId);
 				$role->setUserId($userId);
 				$role->setRoleId(ROLE_ID_PROOFREADER);
-				if (!$existingUser || !$roleDao->roleExists($role->getConferenceId(), $role->getEventId(), $role->getUserId(), $role->getRoleId())) {
+				if (!$existingUser || !$roleDao->roleExists($role->getConferenceId(), $role->getSchedConfId(), $role->getUserId(), $role->getRoleId())) {
 					$roleDao->insertRole($role);
 				}
 			}
@@ -676,7 +676,7 @@ class ImportOCS1 {
 				$role->setConferenceId($this->conferenceId);
 				$role->setUserId($userId);
 				$role->setRoleId(ROLE_ID_READER);
-				if (!$existingUser || !$roleDao->roleExists($role->getConferenceId(), $role->getEventId(), $role->getUserId(), $role->getRoleId())) {
+				if (!$existingUser || !$roleDao->roleExists($role->getConferenceId(), $role->getSchedConfId(), $role->getUserId(), $role->getRoleId())) {
 					$roleDao->insertRole($role);
 				}
 			}
@@ -960,9 +960,9 @@ class ImportOCS1 {
 			$paper->setCoverageGeo($this->trans($row['chMetaCoverageGeo']));
 			$paper->setCoverageChron($this->trans($row['chMetaCoverageChron']));
 			$paper->setCoverageSample($this->trans($row['chMetaCoverageSample']));
-			$paper->setType($this->trans($row['chMetaType_Author']));
+			$paper->setType($this->trans($row['chMetaType_Presenter']));
 			$paper->setLanguage($this->trans($row['chMetaLanguage']));
-			$paper->setSponsor($this->trans($row['chMetaSponsor_Author']));
+			$paper->setSponsor($this->trans($row['chMetaSponsor_Presenter']));
 			$paper->setCommentsToEditor($this->trans($row['chNotesToEditor']));
 			$paper->setDateSubmitted($row['dtDateSubmitted']);
 			$paper->setDateStatusModified($row['dtDateSubmitted']);
@@ -972,28 +972,28 @@ class ImportOCS1 {
 			$paper->setCurrentRound(1);
 			$paper->setPages('');
 			
-			// Add paper authors
-			$authorResult = &$this->importDao->retrieve('SELECT nUserID, tblmetaauthors.* FROM tblmetaauthors LEFT JOIN tblusers ON tblmetaauthors.fkAuthorID = tblusers.fkAuthorID WHERE fkPaperID = ? ORDER BY nRank', $row['nPaperID']);
-			while (!$authorResult->EOF) {
-				$authorRow = &$authorResult->fields;
+			// Add paper presenters
+			$presenterResult = &$this->importDao->retrieve('SELECT nUserID, tblmetapresenters.* FROM tblmetapresenters LEFT JOIN tblusers ON tblmetapresenters.fkPresenterID = tblusers.fkPresenterID WHERE fkPaperID = ? ORDER BY nRank', $row['nPaperID']);
+			while (!$presenterResult->EOF) {
+				$presenterRow = &$presenterResult->fields;
 				
-				$author = &new Author();
-				$author->setFirstName($this->trans($authorRow['chFirstName']));
-				$author->setMiddleName($this->trans($authorRow['chMiddleInitial']));
-				$author->setLastName($this->trans($authorRow['chSurname']));
-				$author->setAffiliation($this->trans($authorRow['chAffiliation']));
-				$author->setEmail($this->trans($authorRow['chEmail']));
-				$author->setBiography($this->trans($authorRow['chBiography']));
-				$author->setPrimaryContact($authorRow['bPrimaryContact']);
+				$presenter = &new Presenter();
+				$presenter->setFirstName($this->trans($presenterRow['chFirstName']));
+				$presenter->setMiddleName($this->trans($presenterRow['chMiddleInitial']));
+				$presenter->setLastName($this->trans($presenterRow['chSurname']));
+				$presenter->setAffiliation($this->trans($presenterRow['chAffiliation']));
+				$presenter->setEmail($this->trans($presenterRow['chEmail']));
+				$presenter->setBiography($this->trans($presenterRow['chBiography']));
+				$presenter->setPrimaryContact($presenterRow['bPrimaryContact']);
 				
-				if ($authorRow['bPrimaryContact'] && isset($this->userMap[$authorRow['nUserID']])) {
-					$paper->setUserId($this->userMap[$authorRow['nUserID']]);
+				if ($presenterRow['bPrimaryContact'] && isset($this->userMap[$presenterRow['nUserID']])) {
+					$paper->setUserId($this->userMap[$presenterRow['nUserID']]);
 				}
 				
-				$paper->addAuthor($author);
-				$authorResult->MoveNext();
+				$paper->addPresenter($presenter);
+				$presenterResult->MoveNext();
 			}
-			$authorResult->Close();
+			$presenterResult->Close();
 			
 			$paperDao->insertPaper($paper);
 			$paperId = $paper->getPaperId();
@@ -1001,7 +1001,7 @@ class ImportOCS1 {
 			$this->paperCount++;
 			
 			$paperUsers[$paperId] = array(
-				'authorId' => $paper->getUserId(),
+				'presenterId' => $paper->getUserId(),
 				'editorId' => isset($this->userMap[$row['nEditorUserID']]) ? $this->userMap[$row['nEditorUserID']] : $paper->getUserId(),
 				'proofId' => 0,
 				'reviewerId' => array(),
@@ -1131,16 +1131,16 @@ class ImportOCS1 {
 					$copyAssignment->setDateUnderway($copyRow['dtDateNotified_CEd']);
 					$copyAssignment->setDateCompleted($copyRow['dtDateCompleted_CEd']);
 					$copyAssignment->setDateAcknowledged($copyRow['dtDateAcknowledged_CEd']);
-					$copyAssignment->setDateAuthorNotified($copyRow['dtDateNotified_Author']);
-					$copyAssignment->setDateAuthorUnderway($copyRow['dtDateNotified_Author']);
-					$copyAssignment->setDateAuthorCompleted($copyRow['dtDateCompleted_Author']);
-					$copyAssignment->setDateAuthorAcknowledged($copyRow['dtDateAcknowledged_Author']);
+					$copyAssignment->setDatePresenterNotified($copyRow['dtDateNotified_Presenter']);
+					$copyAssignment->setDatePresenterUnderway($copyRow['dtDateNotified_Presenter']);
+					$copyAssignment->setDatePresenterCompleted($copyRow['dtDateCompleted_Presenter']);
+					$copyAssignment->setDatePresenterAcknowledged($copyRow['dtDateAcknowledged_Presenter']);
 					$copyAssignment->setDateFinalNotified($copyRow['dtDateNotified_Final']);
 					$copyAssignment->setDateFinalUnderway($copyRow['dtDateNotified_Final']);
 					$copyAssignment->setDateFinalCompleted($copyRow['dtDateCompleted_Final']);
 					$copyAssignment->setDateFinalAcknowledged($copyRow['dtDateAcknowledged_Final']);
 					$copyAssignment->setInitialRevision(1);
-					$copyAssignment->setEditorAuthorRevision(1);
+					$copyAssignment->setEditorPresenterRevision(1);
 					$copyAssignment->setFinalRevision(1);
 				} else {
 					$copyAssignment->setCopyeditorId(0);
@@ -1166,10 +1166,10 @@ class ImportOCS1 {
 					
 					$proofAssignment->setProofreaderId($this->userMap[$proofRow['nUserID']]);
 					$proofAssignment->setDateSchedulingQueue($proofRow['dtDateSchedule']);
-					$proofAssignment->setDateAuthorNotified($proofRow['dtDateNotified_Author']);
-					$proofAssignment->setDateAuthorUnderway($proofRow['dtDateNotified_Author']);
-					$proofAssignment->setDateAuthorCompleted($proofRow['dtDateCompleted_Author']);
-					$proofAssignment->setDateAuthorAcknowledged($proofRow['dtDateAcknowledged_Author']);
+					$proofAssignment->setDatePresenterNotified($proofRow['dtDateNotified_Presenter']);
+					$proofAssignment->setDatePresenterUnderway($proofRow['dtDateNotified_Presenter']);
+					$proofAssignment->setDatePresenterCompleted($proofRow['dtDateCompleted_Presenter']);
+					$proofAssignment->setDatePresenterAcknowledged($proofRow['dtDateAcknowledged_Presenter']);
 					$proofAssignment->setDateProofreaderNotified($proofRow['dtDateNotified_Proof']);
 					$proofAssignment->setDateProofreaderUnderway($proofRow['dtDateNotified_Proof']);
 					$proofAssignment->setDateProofreaderCompleted($proofRow['dtDateCompleted_Proof']);
@@ -1284,13 +1284,13 @@ class ImportOCS1 {
 			$row = &$result->fields;
 			
 			if (!empty($row['chAffiliation'])) {
-				$row['chAuthor'] .= ', ' . $this->trans($row['chAffiliation']);
+				$row['chPresenter'] .= ', ' . $this->trans($row['chAffiliation']);
 			}
 			
 			$comment = &new Comment();
 			$comment->setPaperId($this->paperMap[$row['fkPaperID']]);
 			$comment->setPosterIP('');
-			$comment->setPosterName($this->trans($row['chAuthor']));
+			$comment->setPosterName($this->trans($row['chPresenter']));
 			$comment->setPosterEmail($this->trans($row['chEmail']));
 			$comment->setTitle($this->trans($row['chCommentTitle']));
 			$comment->setBody($this->trans($row['chComments']));
@@ -1320,9 +1320,9 @@ class ImportOCS1 {
 			
 			// Stupidly these strings are localized so this won't necessarily work if using non-English or modified localization
 			switch ($row['chFrom']) {
-				case 'Author':
-					$authorId = $paperUsers[$this->paperMap[$row['fkPaperID']]]['authorId'];
-					$roleId = ROLE_ID_AUTHOR;
+				case 'Presenter':
+					$authorId = $paperUsers[$this->paperMap[$row['fkPaperID']]]['presenterId'];
+					$roleId = ROLE_ID_PRESENTER;
 					break;
 				case 'Proofreader':
 					$authorId = $paperUsers[$this->paperMap[$row['fkPaperID']]]['proofId'];

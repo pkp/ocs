@@ -31,7 +31,7 @@ class EditorDecisionCommentForm extends CommentForm {
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('pageTitle', 'submission.comments.editorAuthorCorrespondence');
+		$templateMgr->assign('pageTitle', 'submission.comments.editorPresenterCorrespondence');
 		$templateMgr->assign('paperId', $this->paper->getPaperId());
 		$templateMgr->assign('commentAction', 'postEditorDecisionComment');
 		$templateMgr->assign('hiddenFormParams', 
@@ -75,12 +75,12 @@ class EditorDecisionCommentForm extends CommentForm {
 		
 		// Create list of recipients:
 		
-		// Editor Decision comments are to be sent to the editor or author,
+		// Editor Decision comments are to be sent to the editor or presenter,
 		// the opposite of whomever wrote the comment.
 		$recipients = array();
 		
 		if ($this->roleId == ROLE_ID_EDITOR) {
-			// Then add author
+			// Then add presenter
 			$user = &$userDao->getUser($this->paper->getUserId());
 			
 			if ($user) $recipients = array_merge($recipients, array($user->getEmail() => $user->getFullName()));

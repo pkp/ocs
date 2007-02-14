@@ -29,17 +29,17 @@ class EmailTemplateDAO extends DAO {
 	 * Retrieve a base email template by key.
 	 * @param $emailKey string
 	 * @param $conferenceId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return BaseEmailTemplate
 	 */
-	function &getBaseEmailTemplate($emailKey, $conferenceId, $eventId = 0) {
+	function &getBaseEmailTemplate($emailKey, $conferenceId, $schedConfId = 0) {
 		$result = &$this->retrieve(
 			'SELECT d.email_key, d.can_edit, d.can_disable, COALESCE(e.enabled, 1) AS enabled,
-			e.email_id, e.conference_id, e.event_id, d.from_role_id, d.to_role_id
+			e.email_id, e.conference_id, e.sched_conf_id, d.from_role_id, d.to_role_id
 			FROM email_templates_default AS d
-			LEFT JOIN email_templates AS e ON (d.email_key = e.email_key AND e.conference_id = ? AND e.event_id = ?)
+			LEFT JOIN email_templates AS e ON (d.email_key = e.email_key AND e.conference_id = ? AND e.sched_conf_id = ?)
 			WHERE d.email_key = ?',
-			array($conferenceId, $eventId, $emailKey)
+			array($conferenceId, $schedConfId, $emailKey)
 		);
 
 		$returner = null;
@@ -57,24 +57,24 @@ class EmailTemplateDAO extends DAO {
 	 * Retrieve localized email template by key.
 	 * @param $emailKey string
 	 * @param $conferenceId int
-	 * @param $eventId int optional
+	 * @param $schedConfId int optional
 	 * @param $allowConferenceTemplates bool
 	 * @return LocaleEmailTemplate
 	 */
-	function &getLocaleEmailTemplate($emailKey, $conferenceId, $eventId = 0, $allowConferenceTemplates = true) {
-		if($allowConferenceTemplates && $eventId != 0) {
+	function &getLocaleEmailTemplate($emailKey, $conferenceId, $schedConfId = 0, $allowConferenceTemplates = true) {
+		if($allowConferenceTemplates && $schedConfId != 0) {
 			$result = &$this->retrieve(
 				'SELECT d.email_key, d.can_edit, d.can_disable,
 				COALESCE(e.enabled, e2.enabled, 1) AS enabled,
 				COALESCE(e.email_id, e2.email_id) AS email_id,
 				COALESCE(e.conference_id,e2.conference_id) AS conference_id,
-				COALESCE(e.event_id,e2.event_id) AS event_id,
+				COALESCE(e.sched_conf_id,e2.sched_conf_id) AS sched_conf_id,
 				d.from_role_id, d.to_role_id
 				FROM email_templates_default AS d
-				LEFT JOIN email_templates AS e ON (d.email_key = e.email_key AND e.conference_id = ? AND e.event_id = ?)
-				LEFT JOIN email_templates AS e2 ON (d.email_key = e2.email_key AND e2.conference_id = ? AND e2.event_id = 0)
+				LEFT JOIN email_templates AS e ON (d.email_key = e.email_key AND e.conference_id = ? AND e.sched_conf_id = ?)
+				LEFT JOIN email_templates AS e2 ON (d.email_key = e2.email_key AND e2.conference_id = ? AND e2.sched_conf_id = 0)
 				WHERE d.email_key = ?',
-				array($conferenceId, $eventId, $conferenceId, $emailKey)
+				array($conferenceId, $schedConfId, $conferenceId, $emailKey)
 			);
 		} else {
 			$result = &$this->retrieve(
@@ -82,12 +82,12 @@ class EmailTemplateDAO extends DAO {
 					e.enabled AS enabled,
 					e.email_id AS email_id,
 					e.conference_id AS conference_id,
-					e.event_id AS event_id,
+					e.sched_conf_id AS sched_conf_id,
 					d.from_role_id, d.to_role_id
 				FROM email_templates_default AS d
-				LEFT JOIN email_templates AS e ON (d.email_key = e.email_key AND e.conference_id = ? AND e.event_id = ?)
+				LEFT JOIN email_templates AS e ON (d.email_key = e.email_key AND e.conference_id = ? AND e.sched_conf_id = ?)
 				WHERE d.email_key = ?',
-				array($conferenceId, $eventId, $emailKey)
+				array($conferenceId, $schedConfId, $emailKey)
 			);
 		}
 		
@@ -101,29 +101,29 @@ class EmailTemplateDAO extends DAO {
 			// Check to see if there's a custom email template. This is done in PHP to avoid
 			// having to do a full outer join or union in SQL.
 			$result = &$this->retrieve(
-				'SELECT e.email_key, 1 AS can_edit, 1 AS can_disable, e.enabled, e.email_id, e.conference_id, e.event_id,
+				'SELECT e.email_key, 1 AS can_edit, 1 AS can_disable, e.enabled, e.email_id, e.conference_id, e.sched_conf_id,
 				NULL AS from_role_id, NULL AS to_role_id
 				FROM email_templates AS e LEFT JOIN email_templates_default AS d ON (e.email_key = d.email_key)
-				WHERE d.email_key IS NULL AND e.conference_id = ? AND e.event_id = ? AND e.email_key = ?',
-				array($conferenceId, $eventId, $emailKey)
+				WHERE d.email_key IS NULL AND e.conference_id = ? AND e.sched_conf_id = ? AND e.email_key = ?',
+				array($conferenceId, $schedConfId, $emailKey)
 			);
 			if ($result->RecordCount() != 0) {
 				$returner = &$this->_returnLocaleEmailTemplateFromRow($result->GetRowAssoc(false));
 			} else {
 			
-				// If we failed to find an event template, check to see if the conference
+				// If we failed to find a scheduled conference template, check to see if the conference
 				// has a custom e-mail template.
-				if($eventId != 0 && $allowConferenceTemplates) {
+				if($schedConfId != 0 && $allowConferenceTemplates) {
 					$result->Close();
 					unset($result);
 				
 					// Check to see if there's a custom email template. This is done in PHP to avoid
 					// having to do a full outer join or union in SQL.
 					$result = &$this->retrieve(
-						'SELECT e.email_key, 1 AS can_edit, 1 AS can_disable, e.enabled, e.email_id, e.conference_id, e.event_id,
+						'SELECT e.email_key, 1 AS can_edit, 1 AS can_disable, e.enabled, e.email_id, e.conference_id, e.sched_conf_id,
 						NULL AS from_role_id, NULL AS to_role_id
 						FROM email_templates AS e LEFT JOIN email_templates_default AS d ON (e.email_key = d.email_key)
-						WHERE d.email_key IS NULL AND e.conference_id = ? AND e.event_id = 0 AND e.email_key = ?',
+						WHERE d.email_key IS NULL AND e.conference_id = ? AND e.sched_conf_id = 0 AND e.email_key = ?',
 						array($conferenceId, $emailKey)
 					);
 					if ($result->RecordCount() != 0) {
@@ -144,19 +144,19 @@ class EmailTemplateDAO extends DAO {
 	 * @param $emailKey string
 	 * @param $locale string
 	 * @param $conferenceId int
-	 * @param $eventId int optional
+	 * @param $schedConfId int optional
 	 * @return EmailTemplate
 	 */
-	function &getEmailTemplate($emailKey, $locale, $conferenceId, $eventId = 0) {
+	function &getEmailTemplate($emailKey, $locale, $conferenceId, $schedConfId = 0) {
 		$result = &$this->retrieve(
 			'SELECT COALESCE(ed.subject, dd.subject) AS subject, COALESCE(ed.body, dd.body) AS body, COALESCE(e.enabled, 1) AS enabled,
-			d.email_key, d.can_edit, d.can_disable, e.conference_id, e.event_id, e.email_id, dd.locale,
+			d.email_key, d.can_edit, d.can_disable, e.conference_id, e.sched_conf_id, e.email_id, dd.locale,
 			d.from_role_id, d.to_role_id
 			FROM email_templates_default AS d NATURAL JOIN email_templates_default_data AS dd
-			LEFT JOIN email_templates AS e ON (d.email_key = e.email_key AND e.conference_id = ? AND e.event_id = ?)
-			LEFT JOIN email_templates_data AS ed ON (ed.email_key = e.email_key AND ed.conference_id = e.conference_id AND ed.event_id = e.event_id AND ed.locale = dd.locale)
+			LEFT JOIN email_templates AS e ON (d.email_key = e.email_key AND e.conference_id = ? AND e.sched_conf_id = ?)
+			LEFT JOIN email_templates_data AS ed ON (ed.email_key = e.email_key AND ed.conference_id = e.conference_id AND ed.sched_conf_id = e.sched_conf_id AND ed.locale = dd.locale)
 			WHERE d.email_key = ? AND dd.locale = ?',
-			array($conferenceId, $eventId, $emailKey, $locale)
+			array($conferenceId, $schedConfId, $emailKey, $locale)
 		);
 
 		$returner = null;
@@ -171,12 +171,12 @@ class EmailTemplateDAO extends DAO {
 			// having to do a full outer join or union in SQL.
 			$result = &$this->retrieve(
 				'SELECT ed.subject, ed.body, 1 AS enabled, e.email_key, 1 AS can_edit, 0 AS can_disable,
-				e.conference_id, e.event_id, e.email_id, ed.locale, NULL AS from_role_id, NULL AS to_role_id
+				e.conference_id, e.sched_conf_id, e.email_id, ed.locale, NULL AS from_role_id, NULL AS to_role_id
 				FROM email_templates AS e
-				LEFT JOIN email_templates_data ed ON (ed.email_key = e.email_key AND ed.conference_id = e.conference_id AND ed.event_id = e.event_id)
+				LEFT JOIN email_templates_data ed ON (ed.email_key = e.email_key AND ed.conference_id = e.conference_id AND ed.sched_conf_id = e.sched_conf_id)
 				LEFT JOIN email_templates_default AS d ON (e.email_key = d.email_key)
-				WHERE d.email_key IS NULL AND e.conference_id = ? AND e.event_id = ? AND e.email_key = ? AND ed.locale = ?',
-				array($conferenceId, $eventId, $emailKey, $locale)
+				WHERE d.email_key IS NULL AND e.conference_id = ? AND e.sched_conf_id = ? AND e.email_key = ? AND ed.locale = ?',
+				array($conferenceId, $schedConfId, $emailKey, $locale)
 			);
 			if ($result->RecordCount() != 0) {
 				$returner = &$this->_returnEmailTemplateFromRow($result->GetRowAssoc(false));
@@ -199,7 +199,7 @@ class EmailTemplateDAO extends DAO {
 		$emailTemplate = &new BaseEmailTemplate();
 		$emailTemplate->setEmailId($row['email_id']);
 		$emailTemplate->setConferenceId($row['conference_id']);
-		$emailTemplate->setEventId($row['event_id']);
+		$emailTemplate->setSchedConfId($row['sched_conf_id']);
 		$emailTemplate->setEmailKey($row['email_key']);
 		$emailTemplate->setEnabled($row['enabled'] == null ? 1 : $row['enabled']);
 		$emailTemplate->setCanDisable($row['can_disable']);
@@ -220,7 +220,7 @@ class EmailTemplateDAO extends DAO {
 		$emailTemplate = &new LocaleEmailTemplate();
 		$emailTemplate->setEmailId($row['email_id']);
 		$emailTemplate->setConferenceId($row['conference_id']);
-		$emailTemplate->setEventId($row['event_id']);
+		$emailTemplate->setSchedConfId($row['sched_conf_id']);
 		$emailTemplate->setEmailKey($row['email_key']);
 		$emailTemplate->setEnabled($row['enabled'] == null ? 1 : $row['enabled']);
 		$emailTemplate->setCanDisable($row['can_disable']);
@@ -233,9 +233,9 @@ class EmailTemplateDAO extends DAO {
 			$result = &$this->retrieve(
 				'SELECT dd.locale, dd.description, COALESCE(ed.subject, dd.subject) AS subject, COALESCE(ed.body, dd.body) AS body
 				FROM email_templates_default_data AS dd
-				LEFT JOIN email_templates_data AS ed ON (dd.email_key = ed.email_key AND dd.locale = ed.locale AND ed.conference_id = ? AND ed.event_id = ?)
+				LEFT JOIN email_templates_data AS ed ON (dd.email_key = ed.email_key AND dd.locale = ed.locale AND ed.conference_id = ? AND ed.sched_conf_id = ?)
 				WHERE dd.email_key = ?',
-				array($row['conference_id'], $row['event_id'], $row['email_key'])
+				array($row['conference_id'], $row['sched_conf_id'], $row['email_key'])
 			);
 		
 			while (!$result->EOF) {
@@ -255,8 +255,8 @@ class EmailTemplateDAO extends DAO {
 				'SELECT ed.locale, ed.subject, ed.body
 				FROM email_templates_data AS ed
 				LEFT JOIN email_templates_default_data AS dd ON (ed.email_key = dd.email_key AND dd.locale = ed.locale)
-				WHERE ed.conference_id = ? AND ed.event_id = ? AND ed.email_key = ? AND dd.email_key IS NULL',
-				array($row['conference_id'], $row['event_id'], $row['email_key'])
+				WHERE ed.conference_id = ? AND ed.sched_conf_id = ? AND ed.email_key = ? AND dd.email_key IS NULL',
+				array($row['conference_id'], $row['sched_conf_id'], $row['email_key'])
 			);
 
 			while (!$result->EOF) {
@@ -285,7 +285,7 @@ class EmailTemplateDAO extends DAO {
 		$emailTemplate = &new EmailTemplate();
 		$emailTemplate->setEmailId($row['email_id']);
 		$emailTemplate->setConferenceId($row['conference_id']);
-		$emailTemplate->setEventId($row['event_id']);
+		$emailTemplate->setSchedConfId($row['sched_conf_id']);
 		$emailTemplate->setEmailKey($row['email_key']);
 		$emailTemplate->setLocale($row['locale']);
 		$emailTemplate->setSubject($row['subject']);
@@ -311,12 +311,12 @@ class EmailTemplateDAO extends DAO {
 	function insertBaseEmailTemplate(&$emailTemplate) {
 		return $this->update(
 			'INSERT INTO email_templates
-				(conference_id, event_id, email_key, enabled)
+				(conference_id, sched_conf_id, email_key, enabled)
 				VALUES
 				(?, ?, ?, ?)',
 			array(
 				$emailTemplate->getConferenceId(),
-				$emailTemplate->getEventId(),
+				$emailTemplate->getSchedConfId(),
 				$emailTemplate->getEmailKey(),
 				$emailTemplate->getEnabled() == null ? 0 : 1
 			)
@@ -367,17 +367,17 @@ class EmailTemplateDAO extends DAO {
 		foreach ($emailTemplate->getLocales() as $locale) {
 			$result = &$this->retrieve(
 				'SELECT COUNT(*) FROM email_templates_data
-				WHERE email_key = ? AND locale = ? AND conference_id = ? AND event_id = ?',
-				array($emailTemplate->getEmailKey(), $locale, $emailTemplate->getConferenceId(), $emailTemplate->getEventId())
+				WHERE email_key = ? AND locale = ? AND conference_id = ? AND sched_conf_id = ?',
+				array($emailTemplate->getEmailKey(), $locale, $emailTemplate->getConferenceId(), $emailTemplate->getSchedConfId())
 			);
 			
 			if ($result->fields[0] == 0) {
 				$this->update(
 					'INSERT INTO email_templates_data
-					(email_key, locale, conference_id, event_id, subject, body)
+					(email_key, locale, conference_id, sched_conf_id, subject, body)
 					VALUES
 					(?, ?, ?, ?, ?, ?)',
-					array($emailTemplate->getEmailKey(), $locale, $emailTemplate->getConferenceId(), $emailTemplate->getEventId(), $emailTemplate->getSubject($locale), $emailTemplate->getBody($locale))
+					array($emailTemplate->getEmailKey(), $locale, $emailTemplate->getConferenceId(), $emailTemplate->getSchedConfId(), $emailTemplate->getSubject($locale), $emailTemplate->getBody($locale))
 				);
 				
 			} else {
@@ -385,8 +385,8 @@ class EmailTemplateDAO extends DAO {
 					'UPDATE email_templates_data
 					SET subject = ?,
 						body = ?
-					WHERE email_key = ? AND locale = ? AND conference_id = ? AND event_id = ?',
-					array($emailTemplate->getSubject($locale), $emailTemplate->getBody($locale), $emailTemplate->getEmailKey(), $locale, $emailTemplate->getConferenceId(), $emailTemplate->getEventId())
+					WHERE email_key = ? AND locale = ? AND conference_id = ? AND sched_conf_id = ?',
+					array($emailTemplate->getSubject($locale), $emailTemplate->getBody($locale), $emailTemplate->getEmailKey(), $locale, $emailTemplate->getConferenceId(), $emailTemplate->getSchedConfId())
 				);
 			}
 
@@ -400,14 +400,14 @@ class EmailTemplateDAO extends DAO {
 	 * @param $emailKey string
 	 * @param $conferenceId int
 	 */
-	function deleteEmailTemplateByKey($emailKey, $conferenceId, $eventId = 0) {
+	function deleteEmailTemplateByKey($emailKey, $conferenceId, $schedConfId = 0) {
 		$this->update(
-			'DELETE FROM email_templates_data WHERE email_key = ? AND conference_id = ? AND event_id = ?',
-			array($emailKey, $conferenceId, $eventId)
+			'DELETE FROM email_templates_data WHERE email_key = ? AND conference_id = ? AND sched_conf_id = ?',
+			array($emailKey, $conferenceId, $schedConfId)
 		);
 		return $this->update(
-			'DELETE FROM email_templates WHERE email_key = ? AND conference_id = ? AND event_id = ?',
-			array($emailKey, $conferenceId, $eventId)
+			'DELETE FROM email_templates WHERE email_key = ? AND conference_id = ? AND sched_conf_id = ?',
+			array($emailKey, $conferenceId, $schedConfId)
 		);
 	}
 	
@@ -415,21 +415,21 @@ class EmailTemplateDAO extends DAO {
 	 * Retrieve all email templates.
 	 * @param $locale string
 	 * @param $conferenceId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return array Conferences ordered by sequence
 	 */
-	function &getEmailTemplates($locale, $conferenceId, $eventId = 0) {
+	function &getEmailTemplates($locale, $conferenceId, $schedConfId = 0) {
 		$emailTemplates = array();
 		
 		$result = &$this->retrieve(
 			'SELECT COALESCE(ed.subject, dd.subject) AS subject, COALESCE(ed.body, dd.body) AS body, COALESCE(e.enabled, 1) AS enabled,
-		 	d.email_key, d.can_edit, d.can_disable, e.conference_id, e.event_id, e.email_id, dd.locale,
+		 	d.email_key, d.can_edit, d.can_disable, e.conference_id, e.sched_conf_id, e.email_id, dd.locale,
 			d.from_role_id, d.to_role_id
 		 	FROM email_templates_default AS d NATURAL JOIN email_templates_default_data AS dd
-		 	LEFT JOIN email_templates AS e ON (d.email_key = e.email_key AND e.conference_id = ? AND e.event_id = ?)
-			LEFT JOIN email_templates_data AS ed ON (ed.email_key = e.email_key AND ed.conference_id = e.conference_id AND ed.event_id = e.event_id AND ed.locale = dd.locale)
+		 	LEFT JOIN email_templates AS e ON (d.email_key = e.email_key AND e.conference_id = ? AND e.sched_conf_id = ?)
+			LEFT JOIN email_templates_data AS ed ON (ed.email_key = e.email_key AND ed.conference_id = e.conference_id AND ed.sched_conf_id = e.sched_conf_id AND ed.locale = dd.locale)
 		 	WHERE dd.locale = ?',
-			array($conferenceId, $eventId, $locale)
+			array($conferenceId, $schedConfId, $locale)
 		);
 		
 		while (!$result->EOF) {
@@ -443,12 +443,12 @@ class EmailTemplateDAO extends DAO {
 		// to avoid a union or full outer join call in SQL.
 		$result = &$this->retrieve(
 			'SELECT ed.subject AS subject, ed.body AS body, e.enabled AS enabled, e.email_key,
-			1 AS can_edit, 1 AS can_disable, e.conference_id, e.event_id, e.email_id, ed.locale,
+			1 AS can_edit, 1 AS can_disable, e.conference_id, e.sched_conf_id, e.email_id, ed.locale,
 			NULL AS from_role_id, NULL AS to_role_id
-			FROM email_templates AS e LEFT JOIN email_templates_data AS ed ON (e.email_key = ed.email_key AND ed.conference_id = e.conference_id AND ed.event_id = e.event_id AND ed.locale = ?)
+			FROM email_templates AS e LEFT JOIN email_templates_data AS ed ON (e.email_key = ed.email_key AND ed.conference_id = e.conference_id AND ed.sched_conf_id = e.sched_conf_id AND ed.locale = ?)
 			LEFT JOIN email_templates_default AS d ON (e.email_key = d.email_key)
-			WHERE e.conference_id = ? AND e.event_id = ? AND d.email_key IS NULL',
-			array($locale, $conferenceId, $eventId)
+			WHERE e.conference_id = ? AND e.sched_conf_id = ? AND d.email_key IS NULL',
+			array($locale, $conferenceId, $schedConfId)
 		);
 
 		while (!$result->EOF) {
@@ -488,17 +488,17 @@ class EmailTemplateDAO extends DAO {
 	}
 
 	/**
-	 * Delete all email templates for a specific event.
+	 * Delete all email templates for a specific scheduled conference.
 	 * @param $conferenceId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 */
-	function deleteEmailTemplatesByEvent($eventId) {
+	function deleteEmailTemplatesBySchedConf($schedConfId) {
 		$this->update(
-			'DELETE FROM email_templates_data WHERE event_id = ?',
-			$eventId);
+			'DELETE FROM email_templates_data WHERE sched_conf_id = ?',
+			$schedConfId);
 		return $this->update(
-			'DELETE FROM email_templates WHERE event_id = ?',
-			$eventId);
+			'DELETE FROM email_templates WHERE sched_conf_id = ?',
+			$schedConfId);
 	}
 
 	/**
@@ -527,11 +527,11 @@ class EmailTemplateDAO extends DAO {
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function templateExistsByKey($emailKey, $conferenceId, $eventId = -1) {
+	function templateExistsByKey($emailKey, $conferenceId, $schedConfId = -1) {
 		$params = array($emailKey, $conferenceId);
 		
-		if($eventId != -1) {
-			$params[] = $eventId;
+		if($schedConfId != -1) {
+			$params[] = $schedConfId;
 		}
 		
 		$result = &$this->retrieve(
@@ -539,7 +539,7 @@ class EmailTemplateDAO extends DAO {
 				FROM email_templates
 				WHERE email_key = ?
 				AND   conference_id = ?' .
-				($eventId == -1 ? '' : ' AND event_id = ?'),
+				($schedConfId == -1 ? '' : ' AND sched_conf_id = ?'),
 			$params);
 		if (isset($result->fields[0]) && $result->fields[0] != 0) {
 			$result->Close();
@@ -572,19 +572,19 @@ class EmailTemplateDAO extends DAO {
 	 * Check if a custom template exists with the given email key for a conference.
 	 * @param $emailKey string
 	 * @param $conferenceId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return boolean
 	 */
-	function customTemplateExistsByKey($emailKey, $conferenceId, $eventId = -1) {
+	function customTemplateExistsByKey($emailKey, $conferenceId, $schedConfId = -1) {
 		$params = array($emailKey, $conferenceId);
-		if($eventId != -1) {
-			$params[] = $eventId;
+		if($schedConfId != -1) {
+			$params[] = $schedConfId;
 		}
 		$result = &$this->retrieve(
 			'SELECT COUNT(*)
 				FROM email_templates e LEFT JOIN email_templates_default d ON (e.email_key = d.email_key)
 				WHERE e.email_key = ? AND d.email_key IS NULL AND e.conference_id = ?' .
-				($eventId == -1 ? '' : ' AND e.event_id = ?'),
+				($schedConfId == -1 ? '' : ' AND e.sched_conf_id = ?'),
 				$params);
 		$returner = (isset($result->fields[0]) && $result->fields[0] != 0);
 

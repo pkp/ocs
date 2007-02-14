@@ -76,8 +76,8 @@
 		<descr>Send reminders and remove incomplete submissions.</descr>
 		<frequency hour="0"/>
 	</task>-->
-	<!--<task class="tasks.EventDeadlineTask">
-		<descr>Update event status when deadlines occur.</descr>
+	<!--<task class="tasks.SchedConfDeadlineTask">
+		<descr>Update scheduled conference status when deadlines occur.</descr>
 		<frequency hour="0"/>
 	</task>-->
 	<!--<task class="tasks.SubscriptionExpiryReminder">

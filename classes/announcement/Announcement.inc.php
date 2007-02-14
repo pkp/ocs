@@ -60,19 +60,19 @@ class Announcement extends DataObject {
 	}
 
 	/**
-	 * Get the event ID of the announcement.
+	 * Get the sched conf ID of the announcement.
 	 * @return int
 	 */
-	function getEventId() {
-		return $this->getData('eventId');
+	function getSchedConfId() {
+		return $this->getData('schedConfId');
 	}
 	
 	/**
-	 * Set the event ID of the announcement.
-	 * @param $eventId int
+	 * Set the sched conf ID of the announcement.
+	 * @param $schedConfId int
 	 */
-	function setEventId($eventId) {
-		return $this->setData('eventId', $eventId);
+	function setSchedConfId($schedConfId) {
+		return $this->setData('schedConfId', $schedConfId);
 	}
 
 	/**

@@ -24,7 +24,7 @@ class ReviewerHandler extends Handler {
 		ReviewerHandler::validate();
 		ReviewerHandler::setupTemplate();
 
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$user = &Request::getUser();
 		$reviewerSubmissionDao = &DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$rangeInfo = Handler::getRangeInfo('submissions');
@@ -39,12 +39,12 @@ class ReviewerHandler extends Handler {
 				$active = true;
 		}
 
-		$submissions = $reviewerSubmissionDao->getReviewerSubmissionsByReviewerId($user->getUserId(), $event->getEventId(), $active, $rangeInfo);
+		$submissions = $reviewerSubmissionDao->getReviewerSubmissionsByReviewerId($user->getUserId(), $schedConf->getSchedConfId(), $active, $rangeInfo);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign_by_ref('submissions', $submissions);
-		$templateMgr->assign_by_ref('event', $event);
+		$templateMgr->assign_by_ref('schedConf', $schedConf);
 
 		import('submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
@@ -60,9 +60,9 @@ class ReviewerHandler extends Handler {
 	 */
 	function validate() {
 		parent::validate();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 
-		if (!isset($event) || !Validation::isReviewer($event->getConferenceId(), $event->getEventId())) {
+		if (!isset($schedConf) || !Validation::isReviewer($schedConf->getConferenceId(), $schedConf->getSchedConfId())) {
 			Validation::redirectLogin();
 		}
 	}
@@ -75,8 +75,8 @@ class ReviewerHandler extends Handler {
 	 * @return object Valid user object if the key was valid; otherwise NULL.
 	 */
 	function &validateAccessKey($userId, $reviewId, $newKey = null) {
-		$event =& Request::getEvent();
-		if (!$event || !$event->getSetting('reviewerAccessKeysEnabled', true)) {
+		$schedConf =& Request::getSchedConf();
+		if (!$schedConf || !$schedConf->getSetting('reviewerAccessKeysEnabled', true)) {
 			$accessKey = false;
 			return $accessKey;
 		}
@@ -135,11 +135,11 @@ class ReviewerHandler extends Handler {
 		if ($showSidebar) {
 			$templateMgr->assign('sidebarTemplate', 'reviewer/navsidebar.tpl');
 
-			$event = &Request::getEvent();
+			$schedConf = &Request::getSchedConf();
 			$user = &Request::getUser();
 			if ($user) {
 				$reviewerSubmissionDao = &DAORegistry::getDAO('ReviewerSubmissionDAO');
-				$submissionsCount = $reviewerSubmissionDao->getSubmissionsCount($user->getUserId(), $event->getEventId());
+				$submissionsCount = $reviewerSubmissionDao->getSubmissionsCount($user->getUserId(), $schedConf->getSchedConfId());
 				$templateMgr->assign('submissionsCount', $submissionsCount);
 			}
 		}

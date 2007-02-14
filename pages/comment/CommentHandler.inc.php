@@ -22,7 +22,7 @@ class CommentHandler extends Handler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$commentId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $event, $paper) = CommentHandler::validate($paperId);
+		list($conference, $schedConf, $paper) = CommentHandler::validate($paperId);
 
 		$user = &Request::getUser();
 		$userId = isset($user)?$user->getUserId():null;
@@ -31,7 +31,7 @@ class CommentHandler extends Handler {
 		$comment = &$commentDao->getComment($commentId, $paperId, 2);
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$isDirector = Validation::isConferenceDirector($conference->getConferenceId());
+		$isManager = Validation::isConferenceManager($conference->getConferenceId());
 
 		if (!$comment) $comments = &$commentDao->getRootCommentsByPaperId($paperId, 1);
 		else $comments = &$comment->getChildren();
@@ -46,8 +46,8 @@ class CommentHandler extends Handler {
 		$templateMgr->assign_by_ref('comments', $comments);
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
-		$templateMgr->assign('enableComments', $event->getSetting('enableComments', true));
-		$templateMgr->assign('isDirector', $isDirector);
+		$templateMgr->assign('enableComments', $schedConf->getSetting('enableComments', true));
+		$templateMgr->assign('isManager', $isManager);
 
 		$templateMgr->display('comment/comments.tpl');
 	}
@@ -57,12 +57,12 @@ class CommentHandler extends Handler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$parentId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $event, $paper) = CommentHandler::validate($paperId);
+		list($conference, $schedConf, $paper) = CommentHandler::validate($paperId);
 
 		// Bring in comment constants
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
-		$enableComments = $event->getSetting('enableComments', true);
+		$enableComments = $schedConf->getSetting('enableComments', true);
 		switch ($enableComments) {
 			case COMMENTS_UNAUTHENTICATED:
 				break;
@@ -105,14 +105,14 @@ class CommentHandler extends Handler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$commentId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $event, $paper) = CommentHandler::validate($paperId);
+		list($conference, $schedConf, $paper) = CommentHandler::validate($paperId);
 		$user = &Request::getUser();
 		$userId = isset($user)?$user->getUserId():null;
 
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		if (!$roleDao->roleExists($conference->getConferenceId(), $event->getEventId(), $userId, ROLE_ID_CONFERENCE_DIRECTOR)) {
+		if (!$roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $userId, ROLE_ID_CONFERENCE_MANAGER)) {
 			Request::redirect(null, null, 'index');
 		}
 
@@ -130,14 +130,14 @@ class CommentHandler extends Handler {
 		parent::validate();
 
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 
 		// Bring in comment constants
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
-		$enableComments = $event->getSetting('enableComments', true);
+		$enableComments = $schedConf->getSetting('enableComments', true);
 
-		if (!Validation::isLoggedIn() && $event->getSetting('restrictPaperAccess', true) || ($enableComments != COMMENTS_ANONYMOUS && $enableComments != COMMENTS_AUTHENTICATED && $enableComments != COMMENTS_UNAUTHENTICATED)) {
+		if (!Validation::isLoggedIn() && $schedConf->getSetting('restrictPaperAccess', true) || ($enableComments != COMMENTS_ANONYMOUS && $enableComments != COMMENTS_AUTHENTICATED && $enableComments != COMMENTS_UNAUTHENTICATED)) {
 			Validation::redirectLogin();
 		}
 
@@ -146,8 +146,8 @@ class CommentHandler extends Handler {
 		$paper = &$publishedPaperDao->getPublishedPaperByPaperId($paperId);
 
 		if (isset($paper)) {
-			import('event.EventAction');
-			$allowed = EventAction::mayViewPaper($event);
+			import('schedConf.SchedConfAction');
+			$allowed = SchedConfAction::mayViewPaper($schedConf);
 
 			if (!$allowed && !$paper->getAccessStatus()) {
 				Request::redirect(null, null, 'index');
@@ -156,7 +156,7 @@ class CommentHandler extends Handler {
 			Request::redirect(null, null, 'index');
 		}
 
-		return array(&$conference, &$event, &$paper);
+		return array(&$conference, &$schedConf, &$paper);
 	}
 
 	function setupTemplate($paper, $galleyId, $comment = null) {

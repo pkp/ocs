@@ -47,13 +47,13 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve registration event ID by registration ID.
+	 * Retrieve registration scheduled conference ID by registration ID.
 	 * @param $registrationId int
 	 * @return int
 	 */
-	function getRegistrationEventId($registrationId) {
+	function getRegistrationSchedConfId($registrationId) {
 		$result = &$this->retrieve(
-			'SELECT event_id FROM registrations WHERE registration_id = ?', $registrationId
+			'SELECT sched_conf_id FROM registrations WHERE registration_id = ?', $registrationId
 		);
 		
 		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;	
@@ -67,18 +67,18 @@ class RegistrationDAO extends DAO {
 	/**
 	 * Retrieve registration ID by user ID.
 	 * @param $userId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return int
 	 */
-	function getRegistrationIdByUser($userId, $eventId) {
+	function getRegistrationIdByUser($userId, $schedConfId) {
 		$result = &$this->retrieve(
 			'SELECT registration_id
 				FROM registrations
 				WHERE user_id = ?
-				AND event_id = ?',
+				AND sched_conf_id = ?',
 			array(
 				$userId,
-				$eventId
+				$schedConfId
 			)
 		);
 		
@@ -91,20 +91,20 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
-	 * Check if a registration exists for a given user and event.
+	 * Check if a registration exists for a given user and scheduled conf.
 	 * @param $userId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return boolean
 	 */
-	function registrationExistsByUser($userId, $eventId) {
+	function registrationExistsByUser($userId, $schedConfId) {
 		$result = &$this->retrieve(
 			'SELECT COUNT(*)
 				FROM registrations
 				WHERE user_id = ?
-				AND   event_id = ?',
+				AND   sched_conf_id = ?',
 			array(
 				$userId,
-				$eventId
+				$schedConfId
 			)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] != 0 ? true : false;
@@ -123,7 +123,7 @@ class RegistrationDAO extends DAO {
 	function &_returnRegistrationFromRow(&$row) {
 		$registration = &new Registration();
 		$registration->setRegistrationId($row['registration_id']);
-		$registration->setEventId($row['event_id']);
+		$registration->setSchedConfId($row['sched_conf_id']);
 		$registration->setUserId($row['user_id']);
 		$registration->setTypeId($row['type_id']);
 		$registration->setDateRegistered($this->dateFromDB($row['date_registered']));
@@ -146,12 +146,12 @@ class RegistrationDAO extends DAO {
 	function insertRegistration(&$registration) {
 		$ret = $this->update(
 			sprintf('INSERT INTO registrations
-				(event_id, user_id, type_id, date_registered, date_paid, membership, domain, iprange, special_requests)
+				(sched_conf_id, user_id, type_id, date_registered, date_paid, membership, domain, iprange, special_requests)
 				VALUES
 				(?, ?, ?, %s, %s, ?, ?, ?, ?)',
 				$this->dateToDB($registration->getDateRegistered()), $this->dateToDB($registration->getDatePaid())),
 			array(
-				$registration->getEventId(),
+				$registration->getSchedConfId(),
 				$registration->getUserId(),
 				$registration->getTypeId(),
 				$registration->getMembership(),
@@ -173,7 +173,7 @@ class RegistrationDAO extends DAO {
 		return $this->update(
 			sprintf('UPDATE registrations
 				SET
-					event_id = ?,
+					sched_conf_id = ?,
 					user_id = ?,
 					type_id = ?,
 					date_registered = %s,
@@ -185,7 +185,7 @@ class RegistrationDAO extends DAO {
 				WHERE registration_id = ?',
 				$this->dateToDB($registration->getDateRegistered()), $this->dateToDB($registration->getDatePaid())),
 			array(
-				$registration->getEventId(),
+				$registration->getSchedConfId(),
 				$registration->getUserId(),
 				$registration->getTypeId(),
 				$registration->getMembership(),
@@ -209,12 +209,12 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
-	 * Delete registrations by event ID.
-	 * @param $eventId int
+	 * Delete registrations by scheduled conference ID.
+	 * @param $schedConfId int
 	 */
-	function deleteRegistrationsByEvent($eventId) {
+	function deleteRegistrationsBySchedConf($schedConfId) {
 		return $this->update(
-			'DELETE FROM registrations WHERE event_id = ?', $eventId
+			'DELETE FROM registrations WHERE sched_conf_id = ?', $schedConfId
 		);
 	}
 
@@ -240,13 +240,13 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve an array of registrations matching a particular event ID.
-	 * @param $eventId int
+	 * Retrieve an array of registrations matching a particular scheduled conference ID.
+	 * @param $schedConfId int
 	 * @return object DAOResultFactory containing matching Registrations
 	 */
-	function &getRegistrationsByEventId($eventId, $rangeInfo = null) {
+	function &getRegistrationsBySchedConfId($schedConfId, $rangeInfo = null) {
 		$result = &$this->retrieveRange(
-			'SELECT * FROM registrations WHERE event_id = ?', $eventId, $rangeInfo
+			'SELECT * FROM registrations WHERE sched_conf_id = ?', $schedConfId, $rangeInfo
 		);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationFromRow');
@@ -255,12 +255,12 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve an array of registrations matching a particular end date and event ID.
+	 * Retrieve an array of registrations matching a particular end date and scheduled conference ID.
 	 * @param $dateEnd date (YYYY-MM-DD)
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return object DAOResultFactory containing matching Registrations
 	 */
-	/*function &getRegistrationsByDateEnd($dateEnd, $eventId, $rangeInfo = null) {
+	/*function &getRegistrationsByDateEnd($dateEnd, $schedConfId, $rangeInfo = null) {
 		$dateEnd = explode('-', $dateEnd);
 
 		$result = &$this->retrieveRange(
@@ -268,12 +268,12 @@ class RegistrationDAO extends DAO {
 				WHERE EXTRACT(YEAR FROM date_end) = ?
 				AND   EXTRACT(MONTH FROM date_end) = ?
 				AND   EXTRACT(DAY FROM date_end) = ?
-				AND   event_id = ?',
+				AND   sched_conf_id = ?',
 			array(
 				$dateEnd[0],
 				$dateEnd[1],
 				$dateEnd[2],
-				$eventId
+				$schedConfId
 			), $rangeInfo
 		);
 
@@ -283,51 +283,51 @@ class RegistrationDAO extends DAO {
 	}*/
 
 	/**
-	 * Check whether there is a valid registration for a given event.
+	 * Check whether there is a valid registration for a given scheduled conference.
 	 * @param $domain string
 	 * @param $IP string
 	 * @param $userId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return boolean
 	 */
-	function isValidRegistration($domain, $IP, $userId, $eventId) {
+	function isValidRegistration($domain, $IP, $userId, $schedConfId) {
 		$valid = false;
 
 		if ($domain != null) {
-			$valid = $this->isValidRegistrationByDomain($domain, $eventId);
+			$valid = $this->isValidRegistrationByDomain($domain, $schedConfId);
 			if ($valid) { return true; }
 		}	
 
 		if ($IP != null) {
-			$valid = $this->isValidRegistrationByIP($IP, $eventId);
+			$valid = $this->isValidRegistrationByIP($IP, $schedConfId);
 			if ($valid) { return true; }
 		}
 
 		if ($userId != null) {
-			return $this->isValidRegistrationByUser($userId, $eventId);
+			return $this->isValidRegistrationByUser($userId, $schedConfId);
 		}
 
 		return false;
     }
 
 	/**
-	 * Check whether user with ID has a valid registration for a given event.
+	 * Check whether user with ID has a valid registration for a given scheduled conference.
 	 * @param $userId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return boolean
 	 */
-	function isValidRegistrationByUser($userId, $eventId) {
+	function isValidRegistrationByUser($userId, $schedConfId) {
 		$result = &$this->retrieve(
 			'SELECT EXTRACT(DAY FROM expiry_date) AS expiry_day,
 					EXTRACT(MONTH FROM expiry_date) AS expiry_month,
 					EXTRACT(YEAR FROM expiry_date) AS expiry_year
 			FROM registrations, registration_types
 			WHERE registrations.user_id = ?
-			AND   registrations.event_id = ?
+			AND   registrations.sched_conf_id = ?
 			AND   registrations.type_id = registration_types.type_id',
 			array(
 				$userId,
-				$eventId
+				$schedConfId
 			));
 
 		$returner = false;
@@ -356,12 +356,12 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
-	 * Check whether there is a valid registration with given domain for a event.
+	 * Check whether there is a valid registration with given domain for a scheduled conference.
 	 * @param $domain string
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return boolean
 	 */
-	function isValidRegistrationByDomain($domain, $eventId) {
+	function isValidRegistrationByDomain($domain, $schedConfId) {
 		$result = &$this->retrieve(
 			'SELECT EXTRACT(DAY FROM expiry_date) AS expiry_day,
 					EXTRACT(MONTH FROM expiry_date) AS expiry_month,
@@ -369,13 +369,13 @@ class RegistrationDAO extends DAO {
 					POSITION(UPPER(domain) IN UPPER(?)) AS domain_position
 			FROM registrations, registration_types
 			WHERE POSITION(UPPER(domain) IN UPPER(?)) != 0   
-			AND   registrations.event_id = ?
+			AND   registrations.sched_conf_id = ?
 			AND   registrations.type_id = registration_types.type_id
 			AND   registration_types.institutional = 1',
 			array(
 				$domain,
 				$domain,
-				$eventId
+				$schedConfId
 			));
 
 		$returner = false;
@@ -418,12 +418,12 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
-	 * Check whether there is a valid registration for the given IP for a event.
+	 * Check whether there is a valid registration for the given IP for a sc heduled conference.
 	 * @param $IP string
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return boolean
 	 */
-	function isValidRegistrationByIP($IP, $eventId) {
+	function isValidRegistrationByIP($IP, $schedConfId) {
 		$result = &$this->retrieve(
 			'SELECT EXTRACT(DAY FROM expiry_date) AS expiry_day,
 					EXTRACT(MONTH FROM expiry_date) AS expiry_month,
@@ -431,10 +431,10 @@ class RegistrationDAO extends DAO {
 					ip_range 
 			FROM registrations, registration_types
 			WHERE ip_range IS NOT NULL   
-			AND   registrations.event_id = ?
+			AND   registrations.sched_conf_id = ?
 			AND   registrations.type_id = registration_types.type_id
 			AND   registration_types.institutional = 1',
-			$eventId
+			$schedConfId
 			);
 
 		$returner = false;

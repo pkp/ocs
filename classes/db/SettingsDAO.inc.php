@@ -62,7 +62,7 @@ class SettingsDAO extends DAO {
 
 	/**
 	 * Install conference settings from an XML file.
-	 * @param $id int ID of event/conference for settings to apply to
+	 * @param $id int ID of scheduled conference/conference for settings to apply to
 	 * @param $filename string Name of XML file to parse and install
 	 * @param $paramArray array Optional parameters for variable replacement in settings
 	 */

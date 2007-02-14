@@ -88,7 +88,7 @@ class CommentForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$event = Request::getEvent();
+		$schedConf = Request::getSchedConf();
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -116,7 +116,7 @@ class CommentForm extends Form {
 		$templateMgr->assign('parentId', $this->parentId);
 		$templateMgr->assign('paperId', $this->paperId);
 		$templateMgr->assign('galleyId', $this->galleyId);
-		$templateMgr->assign('enableComments', $event->getSetting('enableComments', true));
+		$templateMgr->assign('enableComments', $schedConf->getSetting('enableComments', true));
 
 		parent::display();
 	}
@@ -145,8 +145,8 @@ class CommentForm extends Form {
 	 * @return int the comment ID
 	 */
 	function execute() {
-		$event = &Request::getEvent();
-		$enableComments = $event->getSetting('enableComments', true);
+		$schedConf = &Request::getSchedConf();
+		$enableComments = $schedConf->getSetting('enableComments', true);
 
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 		

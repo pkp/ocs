@@ -15,7 +15,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset}" />
-	<title>{$eventTitle}{if $event && !$event->getEnabled()} {translate key="editor.events.preview"}{/if}</title>
+	<title>{$schedConfTitle}{if $schedConf && !$schedConf->getEnabled()} {translate key="editor.schedConfs.preview"}{/if}</title>
 	<meta name="description" content="{$metaSearchDescription}" />
 	<meta name="keywords" content="{$metaSearchKeywords}" />
 	{$metaCustomHeaders}
@@ -70,8 +70,8 @@
 		{/if}
 		<li><a href="{url page="search"}">{translate key="navigation.search"}</a></li>
 		{if $currentJournal}
-		<li><a href="{url page="event" op="current"}">{translate key="navigation.current"}</a></li>
-		<li><a href="{url page="event" op="archive"}">{translate key="navigation.archives"}</a></li>
+		<li><a href="{url page="schedConf" op="current"}">{translate key="navigation.current"}</a></li>
+		<li><a href="{url page="schedConf" op="archive"}">{translate key="navigation.archives"}</a></li>
 		{/if}
 		{foreach from=$navMenuItems item=navItem}
 		<li><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{$navItem.url|escape}{/if}">{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name}{/if}</a></li>
@@ -84,13 +84,13 @@
 	{foreach from=$pageHierarchy item=hierarchyLink}
 		<a href="{$hierarchyLink[0]}" class="hierarchyLink">{if not $hierarchyLink[2]}{translate key=$hierarchyLink[1]}{else}{$hierarchyLink[1]}{/if}</a> &gt;
 	{/foreach}
-	<a href="{$currentUrl}" class="current">{$event->getTitle()}</a>
+	<a href="{$currentUrl}" class="current">{$schedConf->getTitle()}</a>
 </div>
 
-<h2>{$eventTitle}{if $event && !$event->getEnabled()} {translate key="editor.events.preview"}{/if}</h2>
+<h2>{$schedConfTitle}{if $schedConf && !$schedConf->getEnabled()} {translate key="editor.schedConfs.preview"}{/if}</h2>
 
-{if $event}
-	<h3>{$event->getFullTitle()}</h3>
+{if $schedConf}
+	<h3>{$schedConf->getFullTitle()}</h3>
 {/if}
 
 <div id="content">

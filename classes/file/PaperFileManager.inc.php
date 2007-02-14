@@ -54,10 +54,10 @@ class PaperFileManager extends FileManager {
 		$this->paperId = $paperId;
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$this->paper = &$paperDao->getPaper($paperId);
-		$eventId = $this->paper->getEventId();
-		$eventDao = &DAORegistry::getDAO('EventDAO');
-		$event = &$eventDao->getEvent($eventId);
-		$this->filesDir = Config::getVar('files', 'files_dir') . '/conferences/' . $event->getConferenceId() . '/events/' . $eventId .
+		$schedConfId = $this->paper->getSchedConfId();
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$schedConf = &$schedConfDao->getSchedConf($schedConfId);
+		$this->filesDir = Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId .
 		'/papers/' . $paperId . '/';
 	}
 	

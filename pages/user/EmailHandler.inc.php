@@ -15,7 +15,7 @@
 
 class EmailHandler extends UserHandler {
 	function email($args) {
-		list($conference, $event) = parent::validate();
+		list($conference, $schedConf) = parent::validate();
 
 		parent::setupTemplate(true);
 
@@ -25,10 +25,10 @@ class EmailHandler extends UserHandler {
 
 		$user = &Request::getUser();
 
-		// See if this is the Editor or Director and an email template has been chosen
+		// See if this is the Editor or Manager and an email template has been chosen
 		$template = Request::getUserVar('template');
 		if (empty($template) || (
-			!Validation::isConferenceDirector() &&
+			!Validation::isConferenceManager() &&
 			!Validation::isEditor() &&
 			!Validation::isTrackEditor())) {
 			$template = null;
@@ -66,7 +66,7 @@ class EmailHandler extends UserHandler {
 			if ($layoutAssignment && $layoutAssignment->getEditorId() === $user->getUserId()) $hasAccess = true;
 
 			// Last, "deal-breakers" -- access is not allowed.
-			if ($paper && $paper->getEventId() !== $event->getEventId()) $hasAccess = false;
+			if ($paper && $paper->getSchedConfId() !== $schedConf->getSchedConfId()) $hasAccess = false;
 
 			if ($hasAccess) {
 				import('mail.PaperMailTemplate');
@@ -88,16 +88,16 @@ class EmailHandler extends UserHandler {
 			if (!Request::getUserVar('continued')) {
 				// Check for special cases.
 
-				// 1. If the parameter authorsPaperId is set, preload
-				// the template with all the authors of the specified
+				// 1. If the parameter presentersPaperId is set, preload
+				// the template with all the presenters of the specified
 				// paper ID as recipients and use the paper title
 				// as a subject.
-				if (Request::getUserVar('authorsPaperId')) {
+				if (Request::getUserVar('presentersPaperId')) {
 					$paperDao = &DAORegistry::getDAO('PaperDAO');
-					$paper = $paperDao->getPaper(Request::getUserVar('authorsPaperId'));
+					$paper = $paperDao->getPaper(Request::getUserVar('presentersPaperId'));
 					if (isset($paper) && $paper != null) {
-						foreach ($paper->getAuthors() as $author) {
-							$email->addRecipient($author->getEmail(), $author->getFullName());
+						foreach ($paper->getPresenters() as $presenter) {
+							$email->addRecipient($presenter->getEmail(), $presenter->getFullName());
 						}
 						$email->setSubject($email->getSubject() . strip_tags($paper->getPaperTitle()));
 					}

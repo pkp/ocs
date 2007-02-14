@@ -41,7 +41,7 @@ function ensureKeyword() {
 	<form name="revise" action="{url op="advanced"}" method="post">
 		<input type="hidden" name="query" value="{$query|escape}"/>
 		<input type="hidden" name="searchConference" value="{$searchConference|escape}"/>
-		<input type="hidden" name="author" value="{$author|escape}"/>
+		<input type="hidden" name="presenter" value="{$presenter|escape}"/>
 		<input type="hidden" name="title" value="{$title|escape}"/>
 		<input type="hidden" name="fullText" value="{$fullText|escape}"/>
 		<input type="hidden" name="supplementaryFiles" value="{$supplementaryFiles|escape}"/>
@@ -71,7 +71,7 @@ function ensureKeyword() {
 <tr><td colspan="{$numCols}" class="headseparator">&nbsp;</td></tr>
 <tr class="heading" valign="bottom">
 	{if !$currentConference}<td width="20%">{translate key="conference.conference"}</td>{/if}
-	<td width="{if !$currentConference}20%{else}40%{/if}">{translate key="event.event"}</td>
+	<td width="{if !$currentConference}20%{else}40%{/if}">{translate key="schedConf.schedConf"}</td>
 	<td width="60%" colspan="2">{translate key="paper.title"}</td>
 </tr>
 <tr><td colspan="{$numCols}" class="headseparator">&nbsp;</td></tr>
@@ -79,22 +79,22 @@ function ensureKeyword() {
 {iterate from=results item=result}
 {assign var=publishedPaper value=$result.publishedPaper}
 {assign var=paper value=$result.paper}
-{assign var=event value=$result.event}
-{assign var=eventAvailable value=$result.eventAvailable}
+{assign var=schedConf value=$result.schedConf}
+{assign var=schedConfAvailable value=$result.schedConfAvailable}
 {assign var=conference value=$result.conference}
 {assign var=section value=$result.section}
 <tr valign="top">
 	{if !$currentConference}<td><a href="{url conference=$conference->getPath()}">{$conference->getTitle()|escape}</a></td>{/if}
-	<td><a href="{url conference=$conference->getPath() event=$event->getPath()}">{$event->getTitle()|escape}</a></td>
+	<td><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath()}">{$schedConf->getTitle()|escape}</a></td>
 	<td width="30%">{$paper->getPaperTitle()|strip_unsafe_html}</td>
 	<td width="30%" align="right">
-		<a href="{url conference=$conference->getPath() event=$event->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>{if $publishedPaper->getAccessStatus()}{foreach from=$publishedPaper->getGalleys() item=galley name=galleyList}&nbsp;<a href="{url conference=$conference->getPath() event=$event->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>{/foreach}{/if}
+		<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>{if $publishedPaper->getAccessStatus()}{foreach from=$publishedPaper->getGalleys() item=galley name=galleyList}&nbsp;<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>{/foreach}{/if}
 	</td>
 </tr>
 <tr>
 	<td colspan="{$numCols}" style="padding-left: 30px;font-style: italic;">
-		{foreach from=$paper->getAuthors() item=authorItem name=authorList}
-			{$authorItem->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
+		{foreach from=$paper->getPresenters() item=presenterItem name=presenterList}
+			{$presenterItem->getFullName()|escape}{if !$smarty.foreach.presenterList.last},{/if}
 		{/foreach}
 	</td>
 </tr>
@@ -111,7 +111,7 @@ function ensureKeyword() {
 		{if $basicQuery}
 			<td colspan="2" align="right">{page_links anchor="results" iterator=$results name="search" query=$basicQuery searchField=$searchField}</td>
 		{else}
-			<td colspan="2" align="right">{page_links anchor="results" iterator=$results name="search" query=$query searchConference=$searchConference author=$author title=$title fullText=$fullText supplementaryFiles=$supplementaryFiles discipline=$discipline subject=$subject type=$type coverage=$coverage dateFromMonth=$dateFromMonth dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateToMonth=$dateToMonth dateToDay=$dateToDay dateToYear=$dateToYear}</td>
+			<td colspan="2" align="right">{page_links anchor="results" iterator=$results name="search" query=$query searchConference=$searchConference presenter=$presenter title=$title fullText=$fullText supplementaryFiles=$supplementaryFiles discipline=$discipline subject=$subject type=$type coverage=$coverage dateFromMonth=$dateFromMonth dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateToMonth=$dateToMonth dateToDay=$dateToDay dateToYear=$dateToYear}</td>
 		{/if}
 	</tr>
 {/if}

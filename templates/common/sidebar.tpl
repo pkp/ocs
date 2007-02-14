@@ -30,7 +30,7 @@
 			<li><a href="{url page="user" op="profile"}">{translate key="navigation.myProfile"}</a></li>
 			<li><a href="{url page="login" op="signOut"}">{translate key="navigation.logout"}</a></li>
 		{if $userSession->getSessionVar('signedInAs')}
-			<li><a href="{url page="director" op="signOutAsUser"}">{translate key="director.people.signOutAsUser"}</a></li>
+			<li><a href="{url page="manager" op="signOutAsUser"}">{translate key="manager.people.signOutAsUser"}</a></li>
 		{/if}
 		</ul>
 		{else}
@@ -93,8 +93,8 @@
 		{if $currentConference}
 		<span class="blockSubtitle">{translate key="navigation.browse"}</span>
 		<ul>
-			<li><a href="{url page="search" op="events"}">{translate key="navigation.browseByConference"}</a></li>
-			<li><a href="{url page="search" op="authors"}">{translate key="navigation.browseByAuthor"}</a></li>
+			<li><a href="{url page="search" op="schedConfs"}">{translate key="navigation.browseByConference"}</a></li>
+			<li><a href="{url page="search" op="presenters"}">{translate key="navigation.browseByPresenter"}</a></li>
 			<li><a href="{url page="search" op="titles"}">{translate key="navigation.browseByTitle"}</a></li>
 			{if $hasOtherConferences}
 			<li><a href="{url conference="index"}">{translate key="navigation.otherConferences"}</a></li>
@@ -113,16 +113,16 @@
 	{if $currentConference}
 	{assign var=forReadersConference value=$currentConference->getSetting('readerInformation')}
 	{assign var=forPresentersConference value=$currentConference->getSetting('presenterInformation')}
-	{if $currentEvent}
-		{assign var=forReadersEvent value=$currentEvent->getSetting('readerInformation')}
-		{assign var=forPresentersEvent value=$currentEvent->getSetting('presenterInformation')}
+	{if $currentSchedConf}
+		{assign var=forReadersSchedConf value=$currentSchedConf->getSetting('readerInformation')}
+		{assign var=forPresentersSchedConf value=$currentSchedConf->getSetting('presenterInformation')}
 	{/if}
-	{if !empty($forReadersConference) && !empty($forPresentersConference) || !empty($forReadersEvent) || !empty($forPresentersEvent)}
+	{if !empty($forReadersConference) && !empty($forPresentersConference) || !empty($forReadersSchedConf) || !empty($forPresentersSchedConf)}
 		<div class="block">
 			<span class="blockTitle">{translate key="navigation.info"}</span>
 			<ul>
-				{if !empty($forReadersConference) || !empty($forReadersEvent)}<li><a href="{url page="information" op="readers"}">{translate key="navigation.infoForReaders"}</a></li>{/if}
-				{if !empty($forPresentersConference) || !empty($forPresentersEvent)}<li><a href="{url page="information" op="presenters"}">{translate key="navigation.infoForPresenters"}</a></li>{/if}
+				{if !empty($forReadersConference) || !empty($forReadersSchedConf)}<li><a href="{url page="information" op="readers"}">{translate key="navigation.infoForReaders"}</a></li>{/if}
+				{if !empty($forPresentersConference) || !empty($forPresentersSchedConf)}<li><a href="{url page="information" op="presenters"}">{translate key="navigation.infoForPresenters"}</a></li>{/if}
 			</ul>
 		</div>
 	{/if}

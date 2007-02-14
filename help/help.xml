@@ -60,13 +60,13 @@
 	<topic key="journal.roles.copyeditor" id="journal/topic/000019"></topic>
 	<topic key="journal.roles.proofreader" id="journal/topic/000020"></topic>
 	<topic key="journal.roles.reviewer" id="journal/topic/000021"></topic>
-	<topic key="journal.roles.author" id="journal/topic/000022"></topic>
+	<topic key="journal.roles.presenter" id="journal/topic/000022"></topic>
 	<topic key="journal.roles.reader" id="journal/topic/000023"></topic>
 	<topic key="journal.roles.subscriptionManager" id="journal/topic/000032"></topic>-->
 
 	<!-- Submission Process
 	<topic key="submission.index" id="submission/topic/000000"></topic>
-	<topic key="submission.authorGuidelines" id="submission/topic/000001"></topic>
+	<topic key="submission.presenterGuidelines" id="submission/topic/000001"></topic>
 	<topic key="submission.submissionRequirements" id="submission/topic/000002"></topic>
 	<topic key="submission.indexingAndMetadata" id="submission/topic/000003"></topic>
 	<topic key="submission.supplementaryFiles" id="submission/topic/000004"></topic>-->
@@ -102,14 +102,14 @@
 	<topic key="editorial.reviewersRole.submissions" id="editorial/topic/000030"></topic>
 	<topic key="editorial.reviewersRole.review" id="editorial/topic/000031"></topic>
 
-	<topic key="editorial.authorsRole" id="editorial/topic/000009"></topic>
-	<topic key="editorial.authorsRole.submissions" id="editorial/topic/000032"></topic>
-	<topic key="editorial.authorsRole.review" id="editorial/topic/000010"></topic>
-	<topic key="editorial.authorsRole.review.peerReview" id="editorial/topic/000033"></topic>
-	<topic key="editorial.authorsRole.review.editorDecision" id="editorial/topic/000034"></topic>
-	<topic key="editorial.authorsRole.editing" id="editorial/topic/000011"></topic>
-	<topic key="editorial.authorsRole.editing.copyediting" id="editorial/topic/000035"></topic>
-	<topic key="editorial.authorsRole.editing.proofreading" id="editorial/topic/000036"></topic>
+	<topic key="editorial.presentersRole" id="editorial/topic/000009"></topic>
+	<topic key="editorial.presentersRole.submissions" id="editorial/topic/000032"></topic>
+	<topic key="editorial.presentersRole.review" id="editorial/topic/000010"></topic>
+	<topic key="editorial.presentersRole.review.peerReview" id="editorial/topic/000033"></topic>
+	<topic key="editorial.presentersRole.review.editorDecision" id="editorial/topic/000034"></topic>
+	<topic key="editorial.presentersRole.editing" id="editorial/topic/000011"></topic>
+	<topic key="editorial.presentersRole.editing.copyediting" id="editorial/topic/000035"></topic>
+	<topic key="editorial.presentersRole.editing.proofreading" id="editorial/topic/000036"></topic>
 
 	<topic key="editorial.copyeditorsRole" id="editorial/topic/000012"></topic>
 	<topic key="editorial.copyeditorsRole.submissions" id="editorial/topic/000037"></topic>

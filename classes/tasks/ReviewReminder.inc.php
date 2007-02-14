@@ -22,7 +22,7 @@ class ReviewReminder extends ScheduledTask {
 		$this->ScheduledTask();
 	}
 
-	function sendReminder ($reviewAssignment, $paper, $conference, $event) {
+	function sendReminder ($reviewAssignment, $paper, $conference, $schedConf) {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$reviewId = $reviewAssignment->getReviewId();
@@ -32,12 +32,12 @@ class ReviewReminder extends ScheduledTask {
 
 		import('mail.PaperMailTemplate');
 
-		$reviewerAccessKeysEnabled = $event->getSetting('reviewerAccessKeysEnabled',true);
+		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled',true);
 
-		$email = &new PaperMailTemplate($paper, $reviewerAccessKeysEnabled?'REVIEW_REMIND_AUTO_ONECLICK':'REVIEW_REMIND_AUTO', null, false, $conference, $event);
+		$email = &new PaperMailTemplate($paper, $reviewerAccessKeysEnabled?'REVIEW_REMIND_AUTO_ONECLICK':'REVIEW_REMIND_AUTO', null, false, $conference, $schedConf);
 		$email->setConference($conference);
-		$email->setEvent($event);
-		$email->setFrom($event->getSetting('contactEmail',true), $event->getSetting('contactName',true));
+		$email->setSchedConf($schedConf);
+		$email->setFrom($schedConf->getSetting('contactEmail',true), $schedConf->getSetting('contactName',true));
 		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 		$email->setAssoc(PAPER_EMAIL_REVIEW_REMIND, PAPER_EMAIL_TYPE_REVIEW, $reviewId);
 
@@ -50,20 +50,20 @@ class ReviewReminder extends ScheduledTask {
 			$accessKeyManager =& new AccessKeyManager();
 
 			// Key lifetime is the typical review period plus four weeks
-			$keyLifetime = ($event->getSetting('numWeeksPerReview',true) + 4) * 7;
+			$keyLifetime = ($schedConf->getSetting('numWeeksPerReview',true) + 4) * 7;
 			$urlParams['key'] = $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime);
 		}
-		$submissionReviewUrl = Request::url($conference->getPath(), $event->getPath(), 'reviewer', 'submission', $reviewId, $urlParams);
+		$submissionReviewUrl = Request::url($conference->getPath(), $schedConf->getPath(), 'reviewer', 'submission', $reviewId, $urlParams);
 
 		$paramArray = array(
 			'reviewerName' => $reviewer->getFullName(),
 			'reviewerUsername' => $reviewer->getUsername(),
 			'conferenceUrl' => $conference->getUrl(),
-			'eventUrl' => $event->getUrl(),
+			'schedConfUrl' => $schedConf->getUrl(),
 			'reviewerPassword' => $reviewer->getPassword(),
 			'reviewDueDate' => date('Y-m-d', strtotime($reviewAssignment->getDateDue())),
-			'editorialContactSignature' => $event->getSetting('contactName',true) . "\n" . $event->getFullTitle(),
-			'passwordResetUrl' => Request::url($conference->getPath(), $event->getPath(), 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId()))),
+			'editorialContactSignature' => $schedConf->getSetting('contactName',true) . "\n" . $schedConf->getFullTitle(),
+			'passwordResetUrl' => Request::url($conference->getPath(), $schedConf->getPath(), 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId()))),
 			'submissionReviewUrl' => $submissionReviewUrl
 		);
 		$email->assignParams($paramArray);
@@ -79,29 +79,29 @@ class ReviewReminder extends ScheduledTask {
 	function execute() {
 		$paper = null;
 		$conference = null;
-		$event = null;
+		$schedConf = null;
 
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$eventDao = &DAORegistry::getDAO('EventDAO');
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 
 		$incompleteAssignments = &$reviewAssignmentDao->getIncompleteReviewAssignments();
 		foreach ($incompleteAssignments as $reviewAssignment) {
-			// Fetch the Paper and the Event if necessary.
+			// Fetch the Paper and the Sched Conf if necessary.
 			if ($paper == null || $paper->getPaperId() != $reviewAssignment->getPaperId()) {
 				$paper = &$paperDao->getPaper($reviewAssignment->getPaperId());
-				if ($event == null || $event->getEventId() != $paper->getEventId()) {
-					$event = &$eventDao->getEvent($paper->getEventId());
+				if ($schedConf == null || $schedConf->getSchedConfId() != $paper->getSchedConfId()) {
+					$schedConf = &$schedConfDao->getSchedConf($paper->getSchedConfId());
 
-					$inviteReminderEnabled = $event->getSetting('remindForInvite', true);
-					$submitReminderEnabled = $event->getSetting('remindForSubmit', true);
-					$inviteReminderDays = $event->getSetting('numDaysBeforeInviteReminder', true);
-					$submitReminderDays = $event->getSetting('numDaysBeforeSubmitReminder', true);
+					$inviteReminderEnabled = $schedConf->getSetting('remindForInvite', true);
+					$submitReminderEnabled = $schedConf->getSetting('remindForSubmit', true);
+					$inviteReminderDays = $schedConf->getSetting('numDaysBeforeInviteReminder', true);
+					$submitReminderDays = $schedConf->getSetting('numDaysBeforeSubmitReminder', true);
 				}
 			}
 
-			// $paper, $event, $...ReminderEnabled, $...ReminderDays, and $reviewAssignment
+			// $paper, $schedConf, $...ReminderEnabled, $...ReminderDays, and $reviewAssignment
 			// are initialized by this point. $conference is NOT necessarily correct.
 			$shouldRemind = false;
 			if ($inviteReminderEnabled==1 && $reviewAssignment->getDateConfirmed() == null) {
@@ -123,10 +123,10 @@ class ReviewReminder extends ScheduledTask {
 
 			if ($shouldRemind) {
 				// We may still have to look up the conference.
-				if(!$conference || $event->getConferenceId() != $conference->getConferenceId()) {
-					$conference = &$conferenceDao->getConference($event->getConferenceId());
+				if(!$conference || $schedConf->getConferenceId() != $conference->getConferenceId()) {
+					$conference = &$conferenceDao->getConference($schedConf->getConferenceId());
 				}
-				$this->sendReminder ($reviewAssignment, $paper, $conference, $event);
+				$this->sendReminder ($reviewAssignment, $paper, $conference, $schedConf);
 			}
 		}
 	}

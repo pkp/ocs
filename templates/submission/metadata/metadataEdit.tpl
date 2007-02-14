@@ -16,132 +16,132 @@
 <input type="hidden" name="paperId" value="{$paperId}" />
 {include file="common/formErrors.tpl"}
 
-{if $canViewAuthors}
+{if $canViewPresenters}
 {literal}
 <script type="text/javascript">
 <!--
-// Move author up/down
-function moveAuthor(dir, authorIndex) {
+// Move presenter up/down
+function movePresenter(dir, presenterIndex) {
 	var form = document.metadata;
-	form.moveAuthor.value = 1;
-	form.moveAuthorDir.value = dir;
-	form.moveAuthorIndex.value = authorIndex;
+	form.movePresenter.value = 1;
+	form.movePresenterDir.value = dir;
+	form.movePresenterIndex.value = presenterIndex;
 	form.submit();
 }
 // -->
 </script>
 {/literal}
 
-<h3>{translate key="paper.authors"}</h3>
+<h3>{translate key="paper.presenters"}</h3>
 
-<input type="hidden" name="deletedAuthors" value="{$deletedAuthors|escape}" />
-<input type="hidden" name="moveAuthor" value="0" />
-<input type="hidden" name="moveAuthorDir" value="" />
-<input type="hidden" name="moveAuthorIndex" value="" />
+<input type="hidden" name="deletedPresenters" value="{$deletedPresenters|escape}" />
+<input type="hidden" name="movePresenter" value="0" />
+<input type="hidden" name="movePresenterDir" value="" />
+<input type="hidden" name="movePresenterIndex" value="" />
 
 <table width="100%" class="data">
-	{foreach name=authors from=$authors key=authorIndex item=author}
+	{foreach name=presenters from=$presenters key=presenterIndex item=presenter}
 	<tr valign="top">
 		<td width="20%" class="label">
-			<input type="hidden" name="authors[{$authorIndex}][authorId]" value="{$author.authorId|escape}" />
-			<input type="hidden" name="authors[{$authorIndex}][seq]" value="{$authorIndex+1}" />
-			{if $smarty.foreach.authors.total <= 1}
-				<input type="hidden" name="primaryContact" value="{$authorIndex}" />
+			<input type="hidden" name="presenters[{$presenterIndex}][presenterId]" value="{$presenter.presenterId|escape}" />
+			<input type="hidden" name="presenters[{$presenterIndex}][seq]" value="{$presenterIndex+1}" />
+			{if $smarty.foreach.presenters.total <= 1}
+				<input type="hidden" name="primaryContact" value="{$presenterIndex}" />
 			{/if}
-			{fieldLabel name="authors-$authorIndex-firstName" required="true" key="user.firstName"}
+			{fieldLabel name="presenters-$presenterIndex-firstName" required="true" key="user.firstName"}
 		</td>
-		<td width="80%" class="value"><input type="text" name="authors[{$authorIndex}][firstName]" id="authors-{$authorIndex}-firstName" value="{$author.firstName|escape}" size="20" maxlength="40" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" name="presenters[{$presenterIndex}][firstName]" id="presenters-{$presenterIndex}-firstName" value="{$presenter.firstName|escape}" size="20" maxlength="40" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-$authorIndex-middleName" key="user.middleName"}</td>
-		<td class="value"><input type="text" name="authors[{$authorIndex}][middleName]" id="authors-{$authorIndex}-middleName" value="{$author.middleName|escape}" size="20" maxlength="40" class="textField" /></td>
+		<td class="label">{fieldLabel name="presenters-$presenterIndex-middleName" key="user.middleName"}</td>
+		<td class="value"><input type="text" name="presenters[{$presenterIndex}][middleName]" id="presenters-{$presenterIndex}-middleName" value="{$presenter.middleName|escape}" size="20" maxlength="40" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-$authorIndex-lastName" required="true" key="user.lastName"}</td>
-		<td class="value"><input type="text" name="authors[{$authorIndex}][lastName]" id="authors-{$authorIndex}-lastName" value="{$author.lastName|escape}" size="20" maxlength="90" class="textField" /></td>
+		<td class="label">{fieldLabel name="presenters-$presenterIndex-lastName" required="true" key="user.lastName"}</td>
+		<td class="value"><input type="text" name="presenters[{$presenterIndex}][lastName]" id="presenters-{$presenterIndex}-lastName" value="{$presenter.lastName|escape}" size="20" maxlength="90" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-$authorIndex-affiliation" key="user.affiliation"}</td>
-		<td class="value"><input type="text" name="authors[{$authorIndex}][affiliation]" id="authors-{$authorIndex}-affiliation" value="{$author.affiliation|escape}" size="30" maxlength="255" class="textField" /></td>
+		<td class="label">{fieldLabel name="presenters-$presenterIndex-affiliation" key="user.affiliation"}</td>
+		<td class="value"><input type="text" name="presenters[{$presenterIndex}][affiliation]" id="presenters-{$presenterIndex}-affiliation" value="{$presenter.affiliation|escape}" size="30" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-$authorIndex-country" key="common.country"}</td>
+		<td class="label">{fieldLabel name="presenters-$presenterIndex-country" key="common.country"}</td>
 		<td class="value">
-			<select name="authors[{$authorIndex}][country]" id="authors-{$authorIndex}-country" class="selectMenu">
+			<select name="presenters[{$presenterIndex}][country]" id="presenters-{$presenterIndex}-country" class="selectMenu">
 				<option value=""></option>
-				{html_options options=$countries selected=$author.country|escape}
+				{html_options options=$countries selected=$presenter.country|escape}
 			</select>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-$authorIndex-email" required="true" key="user.email"}</td>
-		<td class="value"><input type="text" name="authors[{$authorIndex}][email]" id="authors-{$authorIndex}-email" value="{$author.email|escape}" size="30" maxlength="90" class="textField" /></td>
+		<td class="label">{fieldLabel name="presenters-$presenterIndex-email" required="true" key="user.email"}</td>
+		<td class="value"><input type="text" name="presenters[{$presenterIndex}][email]" id="presenters-{$presenterIndex}-email" value="{$presenter.email|escape}" size="30" maxlength="90" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-$authorIndex-url" key="user.url"}</td>
-		<td class="value"><input type="text" name="authors[{$authorIndex}][url]" id="authors-{$authorIndex}-url" value="{$author.url|escape}" size="30" maxlength="90" class="textField" /></td>
+		<td class="label">{fieldLabel name="presenters-$presenterIndex-url" key="user.url"}</td>
+		<td class="value"><input type="text" name="presenters[{$presenterIndex}][url]" id="presenters-{$presenterIndex}-url" value="{$presenter.url|escape}" size="30" maxlength="90" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-$authorIndex-biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-		<td class="value"><textarea name="authors[{$authorIndex}][biography]" id="authors-{$authorIndex}-biography" rows="5" cols="40" class="textArea">{$author.biography|escape}</textarea></td>
+		<td class="label">{fieldLabel name="presenters-$presenterIndex-biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
+		<td class="value"><textarea name="presenters[{$presenterIndex}][biography]" id="presenters-{$presenterIndex}-biography" rows="5" cols="40" class="textArea">{$presenter.biography|escape}</textarea></td>
 	</tr>
-	{if $smarty.foreach.authors.total > 1}
+	{if $smarty.foreach.presenters.total > 1}
 	<tr valign="top">
-		<td class="label">Reorder author's name</td>
-		<td class="value"><a href="javascript:moveAuthor('u', '{$authorIndex}')" class="action plain">&uarr;</a> <a href="javascript:moveAuthor('d', '{$authorIndex}')" class="action plain">&darr;</a></td>
+		<td class="label">Reorder presenter's name</td>
+		<td class="value"><a href="javascript:movePresenter('u', '{$presenterIndex}')" class="action plain">&uarr;</a> <a href="javascript:movePresenter('d', '{$presenterIndex}')" class="action plain">&darr;</a></td>
 	</tr>
 	<tr valign="top">
 		<td>&nbsp;</td>
-		<td class="label"><input type="radio" name="primaryContact" id="primaryContact-{$authorIndex}" value="{$authorIndex}"{if $primaryContact == $authorIndex} checked="checked"{/if} /> <label for="primaryContact-{$authorIndex}">{translate key="author.submit.selectPrincipalContact"}</label></td>
+		<td class="label"><input type="radio" name="primaryContact" id="primaryContact-{$presenterIndex}" value="{$presenterIndex}"{if $primaryContact == $presenterIndex} checked="checked"{/if} /> <label for="primaryContact-{$presenterIndex}">{translate key="presenter.submit.selectPrincipalContact"}</label></td>
 		<td class="labelRightPlain">&nbsp;</td>
 	</tr>
 	<tr valign="top">
 		<td>&nbsp;</td>
-		<td class="value"><input type="submit" name="delAuthor[{$authorIndex}]" value="{translate key="author.submit.deleteAuthor"}" class="button" /></td>
+		<td class="value"><input type="submit" name="delPresenter[{$presenterIndex}]" value="{translate key="presenter.submit.deletePresenter"}" class="button" /></td>
 	</tr>
 	{/if}
-	{if !$smarty.foreach.authors.last}
+	{if !$smarty.foreach.presenters.last}
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
 
 	{foreachelse}
-	<input type="hidden" name="authors[0][authorId]" value="0" />
+	<input type="hidden" name="presenters[0][presenterId]" value="0" />
 	<input type="hidden" name="primaryContact" value="0" />
-	<input type="hidden" name="authors[0][seq]" value="1" />
+	<input type="hidden" name="presenters[0][seq]" value="1" />
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="authors-0-firstName" required="true" key="user.firstName"}</td>
-		<td width="80%" class="value"><input type="text" name="authors[0][firstName]" id="authors-0-firstName" size="20" maxlength="40" class="textField" /></td>
+		<td width="20%" class="label">{fieldLabel name="presenters-0-firstName" required="true" key="user.firstName"}</td>
+		<td width="80%" class="value"><input type="text" name="presenters[0][firstName]" id="presenters-0-firstName" size="20" maxlength="40" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-0-middleName" key="user.middleName"}</td>
-		<td class="value"><input type="text" name="authors[0][middleName]" id="authors-0-middleName" size="20" maxlength="40" class="textField" /></td>
+		<td class="label">{fieldLabel name="presenters-0-middleName" key="user.middleName"}</td>
+		<td class="value"><input type="text" name="presenters[0][middleName]" id="presenters-0-middleName" size="20" maxlength="40" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-0-lastName" required="true" key="user.lastName"}</td>
-		<td class="value"><input type="text" name="authors[0][lastName]" id="authors-0-lastName" size="20" maxlength="90" class="textField" /></td>
+		<td class="label">{fieldLabel name="presenters-0-lastName" required="true" key="user.lastName"}</td>
+		<td class="value"><input type="text" name="presenters[0][lastName]" id="presenters-0-lastName" size="20" maxlength="90" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-0-affiliation" key="user.affiliation"}</td>
-		<td class="value"><input type="text" id="authors-0-affiliation" name="authors[0][affiliation]" size="30" maxlength="255" class="textField" /></td>
+		<td class="label">{fieldLabel name="presenters-0-affiliation" key="user.affiliation"}</td>
+		<td class="value"><input type="text" id="presenters-0-affiliation" name="presenters[0][affiliation]" size="30" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-0-email" required="true" key="user.email"}</td>
-		<td class="value"><input type="text" name="authors[0][email]" id="authors-0-email" size="30" maxlength="90" class="textField" /></td>
+		<td class="label">{fieldLabel name="presenters-0-email" required="true" key="user.email"}</td>
+		<td class="value"><input type="text" name="presenters[0][email]" id="presenters-0-email" size="30" maxlength="90" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-0-url" key="user.url"}</td>
-		<td class="value"><input type="text" name="authors[0][url]" id="authors-0-url" size="30" maxlength="90" class="textField" /></td>
+		<td class="label">{fieldLabel name="presenters-0-url" key="user.url"}</td>
+		<td class="value"><input type="text" name="presenters[0][url]" id="presenters-0-url" size="30" maxlength="90" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="authors-0-biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-		<td class="value"><textarea name="authors[0][biography]" id="authors-0-biography" rows="5" cols="40" class="textArea"></textarea></td>
+		<td class="label">{fieldLabel name="presenters-0-biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
+		<td class="value"><textarea name="presenters[0][biography]" id="presenters-0-biography" rows="5" cols="40" class="textArea"></textarea></td>
 	</tr>
 	{/foreach}
 </table>
 
-<p><input type="submit" class="button" name="addAuthor" value="{translate key="author.submit.addAuthor"}" /></p>
+<p><input type="submit" class="button" name="addPresenter" value="{translate key="presenter.submit.addPresenter"}" /></p>
 
 
 <div class="separator"></div>
@@ -195,17 +195,17 @@ function moveAuthor(dir, authorIndex) {
 
 <h3>{translate key="submission.indexing"}</h3>
 
-<p>{translate key="author.submit.submissionIndexingDescription"}</p>
+<p>{translate key="presenter.submit.submissionIndexingDescription"}</p>
 
 <table width="100%" class="data">
-	{if $eventSettings.metaDiscipline}
+	{if $schedConfSettings.metaDiscipline}
 	<tr valign="top">
 		<td class="label">{fieldLabel name="discipline" key="paper.discipline"}</td>
 		<td class="value">
 			<input type="text" name="discipline" id="discipline" value="{$discipline|escape}" size="40" maxlength="255" class="textField" />
-			{if $eventSettings.metaDisciplineExamples}
+			{if $schedConfSettings.metaDisciplineExamples}
 			<br />
-			<span class="instruct">{$eventSettings.metaDisciplineExamples|escape}</span>
+			<span class="instruct">{$schedConfSettings.metaDisciplineExamples|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -213,30 +213,30 @@ function moveAuthor(dir, authorIndex) {
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $eventSettings.metaSubjectClass}
+	{if $schedConfSettings.metaSubjectClass}
 	<tr valign="top">
-		<td colspan="2" class="label"><a href="{$eventSettings.metaSubjectClassUrl}" target="_blank">{$eventSettings.metaSubjectClassTitle}</a></td>
+		<td colspan="2" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl}" target="_blank">{$schedConfSettings.metaSubjectClassTitle}</a></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="subjectClass" key="paper.subjectClassification"}</td>
 		<td class="value">
 			<input type="text" name="subjectClass" id="subjectClass" value="{$subjectClass|escape}" size="40" maxlength="255" class="textField" />
 			<br />
-			<span class="instruct">{translate key="author.submit.subjectClassInstructions"}</span>
+			<span class="instruct">{translate key="presenter.submit.subjectClassInstructions"}</span>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $eventSettings.metaSubject}
+	{if $schedConfSettings.metaSubject}
 	<tr valign="top">
 		<td class="label">{fieldLabel name="subject" key="paper.subject"}</td>
 		<td class="value">
 			<input type="text" name="subject" id="subject" value="{$subject|escape}" size="40" maxlength="255" class="textField" />
-			{if $eventSettings.metaSubjectExamples}
+			{if $schedConfSettings.metaSubjectExamples}
 			<br />
-			<span class="instruct">{$eventSettings.metaSubjectExamples|escape}</span>
+			<span class="instruct">{$schedConfSettings.metaSubjectExamples|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -244,14 +244,14 @@ function moveAuthor(dir, authorIndex) {
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $eventSettings.metaCoverage}
+	{if $schedConfSettings.metaCoverage}
 	<tr valign="top">
 		<td class="label">{fieldLabel name="coverageGeo" key="paper.coverageGeo"}</td>
 		<td class="value">
 			<input type="text" name="coverageGeo" id="coverageGeo" value="{$coverageGeo|escape}" size="40" maxlength="255" class="textField" />
-			{if $eventSettings.metaCoverageGeoExamples}
+			{if $schedConfSettings.metaCoverageGeoExamples}
 			<br />
-			<span class="instruct">{$eventSettings.metaCoverageGeoExamples|escape}</span>
+			<span class="instruct">{$schedConfSettings.metaCoverageGeoExamples|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -262,9 +262,9 @@ function moveAuthor(dir, authorIndex) {
 		<td class="label">{fieldLabel name="coverageChron" key="paper.coverageChron"}</td>
 		<td class="value">
 			<input type="text" name="coverageChron" id="coverageChron" value="{$coverageChron|escape}" size="40" maxlength="255" class="textField" />
-			{if $eventSettings.metaCoverageChronExamples}
+			{if $schedConfSettings.metaCoverageChronExamples}
 			<br />
-			<span class="instruct">{$eventSettings.metaCoverageChronExamples|escape}</span>
+			<span class="instruct">{$schedConfSettings.metaCoverageChronExamples|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -275,9 +275,9 @@ function moveAuthor(dir, authorIndex) {
 		<td class="label">{fieldLabel name="coverageSample" key="paper.coverageSample"}</td>
 		<td class="value">
 			<input type="text" name="coverageSample" id="coverageSample" value="{$coverageSample|escape}" size="40" maxlength="255" class="textField" />
-			{if $eventSettings.metaCoverageResearchSampleExamples}
+			{if $schedConfSettings.metaCoverageResearchSampleExamples}
 			<br />
-			<span class="instruct">{$eventSettings.metaCoverageResearchSampleExamples|escape}</span>
+			<span class="instruct">{$schedConfSettings.metaCoverageResearchSampleExamples|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -285,7 +285,7 @@ function moveAuthor(dir, authorIndex) {
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $eventSettings.metaType}
+	{if $schedConfSettings.metaType}
 	<tr valign="top">
 		<td class="label">{fieldLabel name="type" key="paper.type"}</td>
 		<td class="value">
@@ -301,7 +301,7 @@ function moveAuthor(dir, authorIndex) {
 		<td width="80%" class="value">
 			<input type="text" name="language" id="language" value="{$language|escape}" size="5" maxlength="10" class="textField" />
 			<br />
-			<span class="instruct">{translate key="author.submit.languageInstructions"}</span>
+			<span class="instruct">{translate key="presenter.submit.languageInstructions"}</span>
 		</td>
 	</tr>
 </table>
@@ -312,11 +312,11 @@ function moveAuthor(dir, authorIndex) {
 
 <h3>{translate key="submission.supportingAgencies"}</h3>
 
-<p>{translate key="author.submit.submissionSupportingAgenciesDescription"}</p>
+<p>{translate key="presenter.submit.submissionSupportingAgenciesDescription"}</p>
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="sponsor" key="author.submit.agencies"}</td>
+		<td width="20%" class="label">{fieldLabel name="sponsor" key="presenter.submit.agencies"}</td>
 		<td width="80%" class="value">
 			<input type="text" name="sponsor" id="sponsor" value="{$sponsor|escape}" size="60" maxlength="255" class="textField" />
 		</td>

@@ -39,12 +39,12 @@
 	</td>
 </tr>
 <tr valign="top">
-	<td class="label">{translate key="submission.notifyAuthor"}</td>
+	<td class="label">{translate key="submission.notifyPresenter"}</td>
 	<td class="value" colspan="2">
-		{url|assign:"notifyAuthorUrl" op="emailEditorDecisionComment" paperId=$submission->getPaperId()}
-		{icon name="mail" url=$notifyAuthorUrl}
+		{url|assign:"notifyPresenterUrl" op="emailEditorDecisionComment" paperId=$submission->getPaperId()}
+		{icon name="mail" url=$notifyPresenterUrl}
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		{translate key="submission.editorAuthorRecord"}
+		{translate key="submission.editorPresenterRecord"}
 		{if $submission->getMostRecentEditorDecisionComment()}
 			{assign var="comment" value=$submission->getMostRecentEditorDecisionComment()}
 			<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getPaperId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a>&nbsp;&nbsp;{$comment->getDatePosted()|date_format:$dateFormatShort}
@@ -57,18 +57,18 @@
 
 <form method="post" action="{url op="editorReview"}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
-{assign var=authorFiles value=$submission->getAuthorFileRevisions($round)}
+{assign var=presenterFiles value=$submission->getPresenterFileRevisions($round)}
 {assign var=editorFiles value=$submission->getEditorFileRevisions($round)}
-{assign var="authorRevisionExists" value=false}
+{assign var="presenterRevisionExists" value=false}
 {assign var="editorRevisionExists" value=false}
 
 {if not $reviewingAbstractOnly}
 	<table class="data" width="100%">
-		{foreach from=$authorFiles item=authorFile key=key}
+		{foreach from=$presenterFiles item=presenterFile key=key}
 			<tr valign="top">
-				{if !$authorRevisionExists}
-					{assign var="authorRevisionExists" value=true}
-					<td width="20%" rowspan="{$authorFiles|@count}" class="label">{translate key="submission.authorVersion"}</td>
+				{if !$presenterRevisionExists}
+					{assign var="presenterRevisionExists" value=true}
+					<td width="20%" rowspan="{$presenterFiles|@count}" class="label">{translate key="submission.presenterVersion"}</td>
 				{/if}
 				<td width="80%" class="value" colspan="3">
 					{if $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT}
@@ -76,19 +76,19 @@
 							<td width="20%">&nbsp;</td>
 							<td width="80%">
 								{translate key="editor.paper.resubmitFileForPeerReview"}
-								<input type="submit" name="resubmit" {if !($editorRevisionExists or $authorRevisionExists)}disabled="disabled" {/if}value="{translate key="form.resubmit"}" class="button" />
+								<input type="submit" name="resubmit" {if !($editorRevisionExists or $presenterRevisionExists)}disabled="disabled" {/if}value="{translate key="form.resubmit"}" class="button" />
 							</td>
 						</tr>
 					{elseif $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT}
-						<input type="radio" name="editorDecisionFile" value="{$authorFile->getFileId()},{$authorFile->getRevision()}" />
+						<input type="radio" name="editorDecisionFile" value="{$presenterFile->getFileId()},{$presenterFile->getRevision()}" />
 					{/if}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()}</a>&nbsp;&nbsp;
-						{$authorFile->getDateModified()|date_format:$dateFormatShort}
+					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$presenterFile->getFileId():$presenterFile->getRevision()}" class="file">{$presenterFile->getFileName()}</a>&nbsp;&nbsp;
+						{$presenterFile->getDateModified()|date_format:$dateFormatShort}
 				</td>
 			</tr>
 		{foreachelse}
 			<tr valign="top">
-				<td width="20%" class="label">{translate key="submission.authorVersion"}</td>
+				<td width="20%" class="label">{translate key="submission.presenterVersion"}</td>
 				<td width="80%" colspan="3" class="nodata">{translate key="common.none"}</td>
 			</tr>
 		{/foreach}

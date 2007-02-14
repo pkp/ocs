@@ -15,7 +15,7 @@
 
 <table class="listing" width="100%">
 	<assign var="cols" value=6>
-	{if $eventSettings.reviewPapers}
+	{if $schedConfSettings.reviewPapers}
 		{assign var="cols" value=$cols+1}
 	{/if}
 	<tr><td colspan="{$cols}" class="headseparator">&nbsp;</td></tr>
@@ -25,7 +25,7 @@
 		<td width="5%">{translate key="submissions.track"}</td>
 		<td width="60%">{translate key="paper.title"}</td>
 		<td width="5%">{translate key="submission.due"}</td>
-		{if $eventSettings.reviewPapers}
+		{if $schedConfSettings.reviewPapers}
 			<td width="10%">{translate key="submissions.reviewType"}</td>
 		{/if}
 		<td width="10%">{translate key="submissions.reviewRound"}</td>
@@ -42,7 +42,7 @@
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td><a href="{url op="submission" path=$reviewId}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td class="nowrap">{$submission->getDateDue()|date_format:$dateFormatTrunc}</td>
-		{if $eventSettings.reviewPapers}
+		{if $schedConfSettings.reviewPapers}
 			<td>
 				{if $submission->getCurrentRound()==1}{* Reviewing abstract *}
 					{translate key="submission.abstract"}

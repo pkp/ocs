@@ -44,8 +44,8 @@ class CreateReviewerForm extends Form {
 		// Provide a default for sendNotify: If we're using one-click
 		// reviewer access, it's not necessary;
 		// otherwise, it should default to on.
-		$event =& Request::getEvent();
-		$reviewerAccessKeysEnabled = $event->getSetting('reviewerAccessKeysEnabled', true);
+		$schedConf =& Request::getSchedConf();
+		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled', true);
 		$this->setData('sendNotify', $reviewerAccessKeysEnabled?false:true);
 	}
 	
@@ -142,10 +142,10 @@ class CreateReviewerForm extends Form {
 		$userId = $userDao->insertUser($user);
 			
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$role = &new Role();
-		$role->setConferenceId($event->getConferenceId());
-		$role->setEventId($event->getEventId());
+		$role->setConferenceId($schedConf->getConferenceId());
+		$role->setSchedConfId($schedConf->getSchedConfId());
 		$role->setUserId($userId);
 		$role->setRoleId(ROLE_ID_REVIEWER);
 		$roleDao->insertRole($role);
@@ -154,7 +154,7 @@ class CreateReviewerForm extends Form {
 			// Send welcome email to user
 			import('mail.MailTemplate');
 			$mail = &new MailTemplate('USER_REGISTER');
-			$mail->setFrom($event->getSetting('contactEmail', true), $event->getSetting('contactName', true));
+			$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
 			$mail->assignParams(array('username' => $this->getData('username'), 'password' => $password));
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 			$mail->send();

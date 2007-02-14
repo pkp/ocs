@@ -38,8 +38,8 @@ class RT {
 	/** @var $printerFriendly boolean */
 	var $printerFriendly;
 
-	/** @var $authorBio boolean */
-	var $authorBio;
+	/** @var $presenterBio boolean */
+	var $presenterBio;
 
 	/** @var $defineTerms boolean */
 	var $defineTerms;
@@ -47,8 +47,8 @@ class RT {
 	/** @var $addComment boolean */
 	var $addComment;
 
-	/** @var $emailAuthor boolean */
-	var $emailAuthor;
+	/** @var $emailPresenter boolean */
+	var $emailPresenter;
 
 	/** @var $emailOthers boolean */
 	var $emailOthers;
@@ -125,12 +125,12 @@ class RT {
 		return $this->printerFriendly;
 	}
 
-	function setAuthorBio($authorBio) {
-		$this->authorBio = $authorBio;
+	function setPresenterBio($presenterBio) {
+		$this->presenterBio = $presenterBio;
 	}
 
-	function getAuthorBio() {
-		return $this->authorBio;
+	function getPresenterBio() {
+		return $this->presenterBio;
 	}
 
 	function setDefineTerms($defineTerms) {
@@ -149,12 +149,12 @@ class RT {
 		return $this->addComment;
 	}
 
-	function setEmailAuthor($emailAuthor) {
-		$this->emailAuthor = $emailAuthor;
+	function setEmailPresenter($emailPresenter) {
+		$this->emailPresenter = $emailPresenter;
 	}
 
-	function getEmailAuthor() {
-		return $this->emailAuthor;
+	function getEmailPresenter() {
+		return $this->emailPresenter;
 	}
 
 	function setEmailOthers($emailOthers) {

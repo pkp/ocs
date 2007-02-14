@@ -53,10 +53,10 @@ class RTSetupHandler extends RTAdminHandler {
 			$templateMgr->assign('viewMetadata', $rt->getViewMetadata());
 			$templateMgr->assign('supplementaryFiles', $rt->getSupplementaryFiles());
 			$templateMgr->assign('printerFriendly', $rt->getPrinterFriendly());
-			$templateMgr->assign('authorBio', $rt->getAuthorBio());
+			$templateMgr->assign('presenterBio', $rt->getPresenterBio());
 			$templateMgr->assign('defineTerms', $rt->getDefineTerms());
 			$templateMgr->assign('addComment', $rt->getAddComment());
-			$templateMgr->assign('emailAuthor', $rt->getEmailAuthor());
+			$templateMgr->assign('emailPresenter', $rt->getEmailPresenter());
 			$templateMgr->assign('emailOthers', $rt->getEmailOthers());
 			$templateMgr->assign('bibFormat', $rt->getBibFormat());
 
@@ -84,10 +84,10 @@ class RTSetupHandler extends RTAdminHandler {
 			$rt->setViewMetadata(Request::getUserVar('viewMetadata')==true);
 			$rt->setSupplementaryFiles(Request::getUserVar('supplementaryFiles')==true);
 			$rt->setPrinterFriendly(Request::getUserVar('printerFriendly')==true);
-			$rt->setAuthorBio(Request::getUserVar('authorBio')==true);
+			$rt->setPresenterBio(Request::getUserVar('presenterBio')==true);
 			$rt->setDefineTerms(Request::getUserVar('defineTerms')==true);
 			$rt->setAddComment(Request::getUserVar('addComment')==true);
-			$rt->setEmailAuthor(Request::getUserVar('emailAuthor')==true);
+			$rt->setEmailPresenter(Request::getUserVar('emailPresenter')==true);
 			$rt->setEmailOthers(Request::getUserVar('emailOthers')==true);
 			$rt->setBibFormat(Request::getUserVar('bibFormat'));
 

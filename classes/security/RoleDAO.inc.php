@@ -33,12 +33,12 @@ class RoleDAO extends DAO {
 	 * @param $roleId int
 	 * @return Role
 	 */
-	function &getRole($conferenceId, $eventId, $userId, $roleId) {
+	function &getRole($conferenceId, $schedConfId, $userId, $roleId) {
 		$result = &$this->retrieve(
-			'SELECT * FROM roles WHERE conference_id = ? AND event_id = ? AND user_id = ? AND role_id = ?',
+			'SELECT * FROM roles WHERE conference_id = ? AND sched_conf_id = ? AND user_id = ? AND role_id = ?',
 			array(
 				(int) $conferenceId,
-				(int) $eventId,
+				(int) $schedConfId,
 				(int) $userId,
 				(int) $roleId
 			)
@@ -63,7 +63,7 @@ class RoleDAO extends DAO {
 	function &_returnRoleFromRow(&$row) {
 		$role = &new Role();
 		$role->setConferenceId($row['conference_id']);
-		$role->setEventId($row['event_id']);
+		$role->setSchedConfId($row['sched_conf_id']);
 		$role->setUserId($row['user_id']);
 		$role->setRoleId($row['role_id']);
 		
@@ -79,12 +79,12 @@ class RoleDAO extends DAO {
 	function insertRole(&$role) {
 		return $this->update(
 			'INSERT INTO roles
-				(conference_id, event_id, user_id, role_id)
+				(conference_id, sched_conf_id, user_id, role_id)
 				VALUES
 				(?, ?, ?, ?)',
 			array(
 				(int) $role->getConferenceId(),
-				(int) $role->getEventId(),
+				(int) $role->getSchedConfId(),
 				(int) $role->getUserId(),
 				(int) $role->getRoleId()
 			)
@@ -97,10 +97,10 @@ class RoleDAO extends DAO {
 	 */
 	function deleteRole(&$role) {
 		return $this->update(
-			'DELETE FROM roles WHERE conference_id = ? AND event_id = ? AND user_id = ? AND role_id = ?',
+			'DELETE FROM roles WHERE conference_id = ? AND sched_conf_id = ? AND user_id = ? AND role_id = ?',
 			array(
 				(int) $role->getConferenceId(),
-				(int) $role->getEventId(),
+				(int) $role->getSchedConfId(),
 				(int) $role->getUserId(),
 				(int) $role->getRoleId()
 			)
@@ -111,20 +111,20 @@ class RoleDAO extends DAO {
 	 * Retrieve a list of all roles for a specified user.
 	 * @param $userId int
 	 * @param $conferenceId int optional, include roles only in this conference
-	 * @param $eventId int optional, include roles only in this event
+	 * @param $schedConfId int optional, include roles only in this scheduled conference
 	 * @return array matching Roles
 	 */
-	function &getRolesByUserId($userId, $conferenceId = null, $eventId = null) {
+	function &getRolesByUserId($userId, $conferenceId = null, $schedConfId = null) {
 		$roles = array();
 		$params = array();
 		
 		$params[] = $userId;
 		if(isset($conferenceId)) $params[] = $conferenceId;
-		if(isset($eventId)) $params[] = $eventId;
+		if(isset($schedConfId)) $params[] = $schedConfId;
 		
 		$result = &$this->retrieve('SELECT * FROM roles WHERE user_id = ?' .
 				(isset($conferenceId) ? ' AND conference_id = ?' : '') .
-				(isset($eventId) ? ' AND event_id = ?' : ''),
+				(isset($schedConfId) ? ' AND sched_conf_id = ?' : ''),
 			(count($params) == 1 ? array_shift($params) : $params));
 		
 		while (!$result->EOF) {
@@ -142,14 +142,14 @@ class RoleDAO extends DAO {
 	 * Retrieve a list of users in a specified role.
 	 * @param $roleId int optional (can leave as null to get all users in conference)
 	 * @param $conferenceId int optional, include users only in this conference
-	 * @param $eventId int optional, include users only in this conference
+	 * @param $schedConfId int optional, include users only in this conference
 	 * @param $searchType int optional, which field to search
 	 * @param $search string optional, string to match
 	 * @param $searchMatch string optional, type of match ('is' vs. 'contains')
 	 * @param $dbRangeInfo object DBRangeInfo object describing range of results to return
 	 * @return array matching Users
 	 */
-	function &getUsersByRoleId($roleId = null, $conferenceId = null, $eventId = null,
+	function &getUsersByRoleId($roleId = null, $conferenceId = null, $schedConfId = null,
 			$searchType = null, $search = null, $searchMatch = null, $dbResultRange = null) {
 			
 		$users = array();
@@ -157,9 +157,9 @@ class RoleDAO extends DAO {
 		$paramArray = array();
 		if (isset($roleId)) $paramArray[] = (int) $roleId;
 		if (isset($conferenceId)) $paramArray[] = (int) $conferenceId;
-		if (isset($eventId)) $paramArray[] = (int) $eventId;
+		if (isset($schedConfId)) $paramArray[] = (int) $schedConfId;
 
-		// For security / resource usage reasons, a role, event, or conference
+		// For security / resource usage reasons, a role, scheduled conference, or conference
 		// must be specified. Don't allow calls supplying none.
 		if (empty($paramArray)) return null;
 
@@ -202,7 +202,7 @@ class RoleDAO extends DAO {
 			'SELECT DISTINCT u.* FROM users AS u, roles AS r WHERE u.user_id = r.user_id ' .
 				(isset($roleId)?'AND r.role_id = ?':'') .
 				(isset($conferenceId) ? ' AND r.conference_id = ?' : '') .
-				(isset($eventId) ? ' AND r.event_id = ?' : '') .
+				(isset($schedConfId) ? ' AND r.sched_conf_id = ?' : '') .
 				' ' . $searchSql,
 			(count($paramArray)==1? array_shift($paramArray) : $paramArray),
 			$dbResultRange
@@ -329,12 +329,12 @@ class RoleDAO extends DAO {
 	}
 	
 	/**
-	 * Delete all roles for a specified event.
-	 * @param $eventId int
+	 * Delete all roles for a specified scheduled conference.
+	 * @param $schedConfId int
 	 */
-	function deleteRoleByEventId($eventId) {
+	function deleteRoleBySchedConfId($schedConfId) {
 		return $this->update(
-			'DELETE FROM roles WHERE event_id = ?', (int) $eventId
+			'DELETE FROM roles WHERE sched_conf_id = ?', (int) $schedConfId
 		);
 	}
 	
@@ -344,18 +344,18 @@ class RoleDAO extends DAO {
 	 * @param $conferenceId int optional, include roles only in this conference
 	 * @param $roleId int optional, include only this role
 	 */
-	function deleteRoleByUserId($userId, $conferenceId  = null, $roleId = null, $eventId = null) {
+	function deleteRoleByUserId($userId, $conferenceId  = null, $roleId = null, $schedConfId = null) {
 	
 		$args = array((int)$userId);
 		if(isset($conferenceId)) $args[] = (int)$conferenceId;
 		if(isset($roleId)) $args[] = (int)$roleId;
-		if(isset($eventId)) $args[] = (int)$eventId;
+		if(isset($schedConfId)) $args[] = (int)$schedConfId;
 		
 		return $this->update(
 			'DELETE FROM roles WHERE user_id = ?' .
 				(isset($conferenceId) ? ' AND conference_id = ?' : '') .
 				(isset($roleId) ? ' AND role_id = ?' : '') .
-				(isset($eventId) ? ' AND event_id = ?' : ''),
+				(isset($schedConfId) ? ' AND sched_conf_id = ?' : ''),
 			(count($args) ? $args : shift($args)));
 	}
 	
@@ -366,9 +366,9 @@ class RoleDAO extends DAO {
 	 * @param $roleId int
 	 * @return boolean
 	 */
-	function roleExists($conferenceId, $eventId, $userId, $roleId) {
+	function roleExists($conferenceId, $schedConfId, $userId, $roleId) {
 		$result = &$this->retrieve(
-			'SELECT COUNT(*) FROM roles WHERE conference_id = ? AND event_id = ? AND user_id = ? AND role_id = ?', array((int) $conferenceId, (int)$eventId, (int) $userId, (int) $roleId)
+			'SELECT COUNT(*) FROM roles WHERE conference_id = ? AND sched_conf_id = ? AND user_id = ? AND role_id = ?', array((int) $conferenceId, (int)$schedConfId, (int) $userId, (int) $roleId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
@@ -389,8 +389,8 @@ class RoleDAO extends DAO {
 			case ROLE_ID_SITE_ADMIN:
 				return 'user.role.siteAdmin' . ($plural ? 's' : '');
 
-			case ROLE_ID_CONFERENCE_DIRECTOR:
-				return 'user.role.director' . ($plural ? 's' : '');
+			case ROLE_ID_CONFERENCE_MANAGER:
+				return 'user.role.manager' . ($plural ? 's' : '');
 
 			case ROLE_ID_REGISTRATION_MANAGER:
 				return 'user.role.registrationManager' . ($plural ? 's' : '');
@@ -406,10 +406,10 @@ class RoleDAO extends DAO {
 			case ROLE_ID_REVIEWER:
 				return 'user.role.reviewer' . ($plural ? 's' : '');
 
-			case ROLE_ID_AUTHOR:
-				return 'user.role.author' . ($plural ? 's' : '');
-//			case ROLE_ID_INVITED_AUTHOR:
-//				return 'user.role.invitedAuthor' . ($plural ? 's' : '');
+			case ROLE_ID_PRESENTER:
+				return 'user.role.presenter' . ($plural ? 's' : '');
+//			case ROLE_ID_INVITED_PRESENTER:
+//				return 'user.role.invitedPresenter' . ($plural ? 's' : '');
 
 //			case ROLE_ID_DISCUSSANT:
 //				return 'user.role.discussant' . ($plural ? 's' : '');
@@ -432,8 +432,8 @@ class RoleDAO extends DAO {
 			case ROLE_ID_SITE_ADMIN:
 				return ROLE_PATH_SITE_ADMIN;
 
-			case ROLE_ID_CONFERENCE_DIRECTOR:
-				return ROLE_PATH_CONFERENCE_DIRECTOR;
+			case ROLE_ID_CONFERENCE_MANAGER:
+				return ROLE_PATH_CONFERENCE_MANAGER;
 
 			case ROLE_ID_REGISTRATION_MANAGER:
 				return ROLE_PATH_REGISTRATION_MANAGER;
@@ -449,10 +449,10 @@ class RoleDAO extends DAO {
 			case ROLE_ID_REVIEWER:
 				return ROLE_PATH_REVIEWER;
 
-			case ROLE_ID_AUTHOR:
-				return ROLE_PATH_AUTHOR;
-//			case ROLE_ID_INVITED_AUTHOR:
-//				return ROLE_PATH_INVITED_AUTHOR;
+			case ROLE_ID_PRESENTER:
+				return ROLE_PATH_PRESENTER;
+//			case ROLE_ID_INVITED_PRESENTER:
+//				return ROLE_PATH_INVITED_PRESENTER;
 
 //			case ROLE_ID_DISCUSSANT:
 //				return ROLE_PATH_DISCUSSANT;
@@ -475,8 +475,8 @@ class RoleDAO extends DAO {
 			case ROLE_PATH_SITE_ADMIN:
 				return ROLE_ID_SITE_ADMIN;
 
-			case ROLE_PATH_CONFERENCE_DIRECTOR:
-				return ROLE_ID_CONFERENCE_DIRECTOR;
+			case ROLE_PATH_CONFERENCE_MANAGER:
+				return ROLE_ID_CONFERENCE_MANAGER;
 				
 			case ROLE_PATH_REGISTRATION_MANAGER:
 				return ROLE_ID_REGISTRATION_MANAGER;
@@ -492,10 +492,10 @@ class RoleDAO extends DAO {
 			case ROLE_PATH_REVIEWER:
 				return ROLE_ID_REVIEWER;
 
-			case ROLE_PATH_AUTHOR:
-				return ROLE_ID_AUTHOR;
-//			case ROLE_PATH_INVITED_AUTHOR:
-//				return ROLE_ID_INVITED_AUTHOR;
+			case ROLE_PATH_PRESENTER:
+				return ROLE_ID_PRESENTER;
+//			case ROLE_PATH_INVITED_PRESENTER:
+//				return ROLE_ID_INVITED_PRESENTER;
 
 //			case ROLE_PATH_DISCUSSANT:
 //				return ROLE_ID_DISCUSSANT;

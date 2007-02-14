@@ -29,14 +29,14 @@
 		<br />
 		<div class="commentNote">
 			{if $comment->getViewable()}
-				{translate key="submission.comments.canShareWithAuthor"}
+				{translate key="submission.comments.canShareWithPresenter"}
 			{else}
-				{translate key="submission.comments.cannotShareWithAuthor"}
+				{translate key="submission.comments.cannotShareWithPresenter"}
 			{/if}
 		</div>
 	</td>
 	<td width="75%">
-		{if $comment->getAuthorId() eq $userId and not $isLocked}
+		{if $comment->getPresenterId() eq $userId and not $isLocked}
 			<div style="float: right"><a href="{if $reviewId}{url op="editComment" path=$paperId|to_array:$comment->getCommentId() reviewId=$reviewId}{else}{url op="editComment" path=$paperId|to_array:$comment->getCommentId()}{/if}" class="action">{translate key="common.edit"}</a> <a href="{if $reviewId}{url op="deleteComment" path=$paperId|to_array:$comment->getCommentId() reviewId=$reviewId}{else}{url op="deleteComment" path=$paperId|to_array:$comment->getCommentId()}{/if}" onclick="return confirm('{translate|escape:"javascript" key="submission.comments.confirmDelete"}')" class="action">{translate key="common.delete"}</a></div>
 		{/if}
 		<a name="{$comment->getCommentId()}"></a>
@@ -74,8 +74,8 @@
 	<td class="value"><input type="text" name="commentTitle" id="commentTitle" value="{$commentTitle|escape}" size="50" maxlength="100" class="textField" /></td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="authorComments"}{translate key="submission.comments.forAuthorEditor"}</td>
-	<td class="value"><textarea id="authorComments" name="authorComments" rows="10" cols="50" class="textArea">{$authorComments|escape}</textarea></td>
+	<td class="label">{fieldLabel name="presenterComments"}{translate key="submission.comments.forPresenterEditor"}</td>
+	<td class="value"><textarea id="presenterComments" name="presenterComments" rows="10" cols="50" class="textArea">{$presenterComments|escape}</textarea></td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="comments"}{translate key="submission.comments.forEditor"}</td>

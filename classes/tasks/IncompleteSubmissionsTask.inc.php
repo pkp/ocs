@@ -24,34 +24,34 @@ class IncompleteSubmissionsTask extends ScheduledTask {
 		$this->ScheduledTask();
 	}
 
-	function sendReminder ($submission, $conference, $event) {
+	function sendReminder ($submission, $conference, $schedConf) {
 		import('mail.PaperMailTemplate');
 
-		$authors = $submission->getAuthors();
+		$presenters = $submission->getPresenters();
 		$paperId = $submission->getPaperId();
 
 		$email = &new PaperMailTemplate($submission, 'SUBMISSION_DEADLINE_WARN', null, false, $conference);
 		$email->setConference($conference);
-		$email->setEvent($event);
-		$email->setFrom($event->getSetting('contactEmail', true), $event->getSetting('contactName', true));
-		foreach($authors as $author) {
-			$email->addRecipient($author->getEmail(), $author->getFullName());
+		$email->setSchedConf($schedConf);
+		$email->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+		foreach($presenters as $presenter) {
+			$email->addRecipient($presenter->getEmail(), $presenter->getFullName());
 		}
-		$email->setAssoc(PAPER_EMAIL_EDITOR_NOTIFY_AUTHOR_EXPIRED, PAPER_EMAIL_TYPE_EDITOR, $paperId);
+		$email->setAssoc(PAPER_EMAIL_EDITOR_NOTIFY_PRESENTER_EXPIRED, PAPER_EMAIL_TYPE_EDITOR, $paperId);
 
 		$email->setSubject($email->getSubject($conference->getLocale()));
 		$email->setBody($email->getBody($conference->getLocale()));
 
 		$urlParams = array();
-		$submissionReviewUrl = Request::url($conference->getPath(), $event->getPath(), 'author', 'submission', $paperId, $urlParams);
+		$submissionReviewUrl = Request::url($conference->getPath(), $schedConf->getPath(), 'presenter', 'submission', $paperId, $urlParams);
 
 		$paramArray = array(
-			'authorNames' => $submission->getAuthorString(),
-			'editorialContactSignature' => $event->getSetting('contactName', true) . "\n" . $event->getFullTitle(),
-			'submissionUrl' => Request::url(null, null, 'author', 'submission', $submission->getPaperId()),
+			'presenterNames' => $submission->getPresenterString(),
+			'editorialContactSignature' => $schedConf->getSetting('contactName', true) . "\n" . $schedConf->getFullTitle(),
+			'submissionUrl' => Request::url(null, null, 'presenter', 'submission', $submission->getPaperId()),
 			'paperTitle' => $submission->getTitle(),
 			'conferenceName' => $conference->getTitle(),
-			'eventName' => $event->getTitle()
+			'schedConfName' => $schedConf->getTitle()
 		);
 		$email->assignParams($paramArray);
 
@@ -61,36 +61,36 @@ class IncompleteSubmissionsTask extends ScheduledTask {
 	function execute() {
 		$paper = null;
 		$conference = null;
-		$event = null;
+		$schedConf = null;
 
-		$authorSubmissionDao = &DAORegistry::getDAO('AuthorSubmissionDAO');
+		$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$eventDao = &DAORegistry::getDAO('EventDAO');
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 
-		$incompleteSubmissions = &$authorSubmissionDao->getIncompleteSubmissions();
+		$incompleteSubmissions = &$presenterSubmissionDao->getIncompleteSubmissions();
 		foreach ($incompleteSubmissions as $incompleteSubmission) {
 
-			// Fetch the Event if possible.
-			$eventId = $incompleteSubmission->getEventId();
-			if($eventId) {
-				$event = $eventDao->getEvent($eventId);
-				$conference = &$event->getConference();
+			// Fetch the Scheduled Conference if possible.
+			$schedConfId = $incompleteSubmission->getSchedConfId();
+			if($schedConfId) {
+				$schedConf = $schedConfDao->getSchedConf($schedConfId);
+				$conference = &$schedConf->getConference();
 			}
 /*			
 			// Check hard deadlines and reminder dates
-			if(isset($event) && isset($conference)) {
-				$reviewModel = $event->getReviewModel();
+			if(isset($schedConf) && isset($conference)) {
+				$reviewModel = $schedConf->getReviewModel();
 
-				$paperReminderEnabled = $event->getAutoRemindAuthors();
-				$paperReminderDays = $event->getAutoRemindAuthorsDays();
+				$paperReminderEnabled = $schedConf->getAutoRemindPresenters();
+				$paperReminderDays = $schedConf->getAutoRemindPresentersDays();
 
-				$dueDate = $event->getSetting('submissionsCloseDate');
+				$dueDate = $schedConf->getSetting('submissionsCloseDate');
 				$reminderDate = strtotime("-" . (int) $paperReminderDays . " days", $dueDate);
 
 				// If paper reminder is overdue...
 				if($paperReminderEnabled && time() > $reminderDate) {
-					$this->sendReminder ($incompleteSubmission, $conference, $event);
+					$this->sendReminder ($incompleteSubmission, $conference, $schedConf);
 					$incompleteSubmission->setDateReminded(Core::getCurrentDate());
 					$paperDao->updatePaper($incompleteSubmission);
 

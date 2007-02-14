@@ -11,18 +11,18 @@
  *}
 
 {if $registrationId}
-	{assign var="pageTitle" value="director.registrations.selectRegistrant"}
+	{assign var="pageTitle" value="manager.registrations.selectRegistrant"}
 {else}
-	{assign var="pageTitle" value="director.registrations.select"}
+	{assign var="pageTitle" value="manager.registrations.select"}
 {/if}
 
 {include file="common/header.tpl"}
 
 {if $registrationCreated}
-<br/>{translate key="director.registrations.registrationCreatedSuccessfully"}<br/>
+<br/>{translate key="manager.registrations.registrationCreatedSuccessfully"}<br/>
 {/if}
 
-<p>{translate key="director.registrations.selectRegistrant.desc"}</p>
+<p>{translate key="manager.registrations.selectRegistrant.desc"}</p>
 <form method="post" name="submit" action="{if $registrationId}{url op="selectRegistrant" registrationId=$registrationId}{else}{url op="selectRegistrant" registrationId=$registrationId}{/if}">
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
@@ -50,7 +50,7 @@
 {iterate from=users item=user}
 {assign var="userid" value=$user->getUserId()}
 <tr valign="top">
-	<td>{if $isEventManager}<a class="action" href="{url op="userProfile" path=$userid}">{/if}{$user->getUsername()}{if $isEventManager}</a>{/if}</td>
+	<td>{if $isSchedConfManager}<a class="action" href="{url op="userProfile" path=$userid}">{/if}{$user->getUsername()}{if $isSchedConfManager}</a>{/if}</td>
 	<td>{$user->getFullName(true)|escape}</td>
 	<td class="nowrap">
 		{assign var=emailString value="`$user->getFullName()` <`$user->getEmail()`>"}
@@ -58,7 +58,7 @@
 		{$user->getEmail()|truncate:20:"..."|escape}&nbsp;{icon name="mail" url=$url}
 	</td>
 	<td align="right" class="nowrap">
-		<a href="{if $registrationId}{url op="editRegistration" path=$registrationId userId=$user->getUserId()}{else}{url op="createRegistration" userId=$user->getUserId()}{/if}" class="action">{translate key="director.registrations.register"}</a>
+		<a href="{if $registrationId}{url op="editRegistration" path=$registrationId userId=$user->getUserId()}{else}{url op="createRegistration" userId=$user->getUserId()}{/if}" class="action">{translate key="manager.registrations.register"}</a>
 	</td>
 </tr>
 <tr><td colspan="4" class="{if $users->eof()}end{/if}separator">&nbsp;</td></tr>

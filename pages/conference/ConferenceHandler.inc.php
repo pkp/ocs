@@ -19,7 +19,7 @@ class ConferenceHandler extends Handler {
 	 * Display the home page for the current conference.
 	 */
 	function index($args) {
-		list($conference, $event) = parent::validate(true, false);
+		list($conference, $schedConf) = parent::validate(true, false);
 		
 		$templateMgr = &TemplateManager::getManager();
 
@@ -36,12 +36,12 @@ class ConferenceHandler extends Handler {
 		$templateMgr->assign('conferenceOverview', $conference->getSetting('conferenceOverview'));
 		$templateMgr->assign('conferenceTitle', $conference->getTitle());
 
-		$eventDao = &DAORegistry::getDAO('EventDAO');
-		$currentEvents = &$eventDao->getCurrentEvents($conference->getConferenceId());
-		$pastEvents = &$eventDao->getEnabledEvents($conference->getConferenceId());
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$currentSchedConfs = &$schedConfDao->getCurrentSchedConfs($conference->getConferenceId());
+		$pastSchedConfs = &$schedConfDao->getEnabledSchedConfs($conference->getConferenceId());
 
-		$templateMgr->assign_by_ref('currentEvents', $currentEvents);
-		$templateMgr->assign_by_ref('pastEvents', $pastEvents);
+		$templateMgr->assign_by_ref('currentSchedConfs', $currentSchedConfs);
+		$templateMgr->assign_by_ref('pastSchedConfs', $pastSchedConfs);
 
 		$enableAnnouncements = $conference->getSetting('enableAnnouncements');
 		if ($enableAnnouncements) {

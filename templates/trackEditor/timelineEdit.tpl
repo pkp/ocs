@@ -28,13 +28,13 @@
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.eventStartsOn"}</td>
+		<td width="50%" class="label">{translate key="director.timeline.schedConfStartsOn"}</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="startDate" time=$startDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.eventEndsOn"}</td>
+		<td width="50%" class="label">{translate key="director.timeline.schedConfEndsOn"}</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="endDate" time=$endDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 		</td>
@@ -47,13 +47,13 @@
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.eventAppearsOn"}</td>
+		<td width="50%" class="label">{translate key="director.timeline.schedConfAppearsOn"}</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="siteStartDate" time=$siteStartDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.eventArchivedOn"}</td>
+		<td width="50%" class="label">{translate key="director.timeline.schedConfArchivedOn"}</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="siteEndDate" time=$siteEndDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 		</td>
@@ -66,15 +66,15 @@
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.openRegAuthor"}</td>
+		<td width="50%" class="label">{translate key="director.timeline.openRegPresenter"}</td>
 		<td width="50%" class="value">
-			{html_select_date prefix="regAuthorOpenDate" time=$regAuthorOpenDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
+			{html_select_date prefix="regPresenterOpenDate" time=$regPresenterOpenDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.closeRegAuthor"}</td>
+		<td width="50%" class="label">{translate key="director.timeline.closeRegPresenter"}</td>
 		<td width="50%" class="value">
-			{html_select_date prefix="regAuthorCloseDate" time=$regAuthorCloseDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
+			{html_select_date prefix="regPresenterCloseDate" time=$regPresenterCloseDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 		</td>
 	<tr valign="top">
 		<td width="50%" class="label">{translate key="director.timeline.showCFP"}</td>

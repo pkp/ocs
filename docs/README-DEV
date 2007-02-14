@@ -36,7 +36,7 @@ For code that is intended for inclusion in the main codebase:
 * The development team is happy to review contributed patches, but we have a
   limited amount of time to spend integrating patches with the codebase or
   modifying contributed code. If aspects of the code need work, we would rather
-  inform the author and have them perform the modifications.
+  inform the presenter and have them perform the modifications.
 
 For contributions that are distributed separately as patches or plugins:
 * If contributors haven't met all the conditions above, they are welcome to
@@ -253,7 +253,7 @@ Authorization
 * Use methods in Validation class to check user credentials.
 * For example:
 	Validation::isLoggedIn();
-	Validation::isAuthorized(ROLE_ID_CONFERENCE_MANAGER, $conferenceId, $eventId);
+	Validation::isAuthorized(ROLE_ID_CONFERENCE_MANAGER, $conferenceId, $schedConfId);
 	Validation::isConferenceManager($conferenceId); [ preferred to isAuthorized() ]
 
 
@@ -277,7 +277,7 @@ Input Validation
 * Retrieving user input:
 	$foo = Request::getUserVar('foo');
 * Escaping habits in order of precedence:
-  - Director's Step 5 text fields: No escaping performed
+  - Manager's Step 5 text fields: No escaping performed
   - Abstracts, notes, comments, emails: {$field|strip_unsafe_html|nl2br}
   - Database IDs safely fetched from DB: no escaping necessary.
   - Mailing Address fields: {$mailingAddress|escape|nl2br}

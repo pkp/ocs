@@ -22,31 +22,31 @@
 <h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
 
 {if $bibFormat == 'MLA'}
-	{assign var=authors value=$paper->getAuthors()}
-	{assign var=authorCount value=$authors|@count}
-	{foreach from=$authors item=author name=authors key=i}
-		{assign var=firstName value=$author->getFirstName()}
-		{$author->getLastName()|escape}, {$firstName|escape}{if $i==$authorCount-2}, {translate key="rt.context.and"} {elseif $i<$authorCount-1}, {else}.{/if}
+	{assign var=presenters value=$paper->getPresenters()}
+	{assign var=presenterCount value=$presenters|@count}
+	{foreach from=$presenters item=presenter name=presenters key=i}
+		{assign var=firstName value=$presenter->getFirstName()}
+		{$presenter->getLastName()|escape}, {$firstName|escape}{if $i==$presenterCount-2}, {translate key="rt.context.and"} {elseif $i<$presenterCount-1}, {else}.{/if}
 	{/foreach}
 
 	"{$paper->getPaperTitle()|strip_unsafe_html}" <i>{$conference->getTitle()|escape}</i> [{translate key="rt.captureCite.online"}],  {$paper->getDatePublished()|date_format:'%e %b %Y'}
 
 {elseif $bibFormat == 'Turabian'}
-	{assign var=authors value=$paper->getAuthors()}
-	{assign var=authorCount value=$authors|@count}
-	{foreach from=$authors item=author name=authors key=i}
-		{assign var=firstName value=$author->getFirstName()}
-		{$author->getLastName()|escape}, {$firstName|escape}{if $i==$authorCount-2}, {translate key="rt.context.and"} {elseif $i<$authorCount-1}, {else}.{/if}
+	{assign var=presenters value=$paper->getPresenters()}
+	{assign var=presenterCount value=$presenters|@count}
+	{foreach from=$presenters item=presenter name=presenters key=i}
+		{assign var=firstName value=$presenter->getFirstName()}
+		{$presenter->getLastName()|escape}, {$firstName|escape}{if $i==$presenterCount-2}, {translate key="rt.context.and"} {elseif $i<$presenterCount-1}, {else}.{/if}
 	{/foreach}
 
-	"{$paper->getPaperTitle()|strip_unsafe_html}" <i>{$event->getTitle()|escape}</i> [{translate key="rt.captureCite.online"}],  ({$paper->getDatePublished()|date_format:'%e %B %Y'|trim})
+	"{$paper->getPaperTitle()|strip_unsafe_html}" <i>{$schedConf->getTitle()|escape}</i> [{translate key="rt.captureCite.online"}],  ({$paper->getDatePublished()|date_format:'%e %B %Y'|trim})
 
 {elseif $bibFormat == 'CBE'}
-	{assign var=authors value=$paper->getAuthors()}
-	{assign var=authorCount value=$authors|@count}
-	{foreach from=$authors item=author name=authors key=i}
-		{assign var=firstName value=$author->getFirstName()}
-		{$author->getLastName()|escape}, {$firstName[0]|escape}.{if $i==$authorCount-2}, &amp; {elseif $i<$authorCount-1}, {/if}
+	{assign var=presenters value=$paper->getPresenters()}
+	{assign var=presenterCount value=$presenters|@count}
+	{foreach from=$presenters item=presenter name=presenters key=i}
+		{assign var=firstName value=$presenter->getFirstName()}
+		{$presenter->getLastName()|escape}, {$firstName[0]|escape}.{if $i==$presenterCount-2}, &amp; {elseif $i<$presenterCount-1}, {/if}
 	{/foreach}
 
 	{$paper->getDatePublished()|date_format:'%Y %b %e'}. {$paper->getPaperTitle()|strip_unsafe_html}. {$conference->getTitle()|escape}. [{translate key="rt.captureCite.online"}] 
@@ -55,7 +55,7 @@
 
 {literal}
 <pre style="font-size: 1.5em;">@paper{{{/literal}{$conference->getSetting('conferenceAcronym')|escape}{literal}}{{/literal}{$paperId|escape}{literal}},
-	author = {{/literal}{assign var=authors value=$paper->getAuthors()}{foreach from=$authors item=author name=authors key=i}{$author->getLastName()|escape}, {assign var=firstName value=$author->getFirstName()}{assign var=authorCount value=$authors|@count}{$firstName[0]|escape}.{if $i<$authorCount-1}, {/if}{/foreach}{literal}},
+	presenter = {{/literal}{assign var=presenters value=$paper->getPresenters()}{foreach from=$presenters item=presenter name=presenters key=i}{$presenter->getLastName()|escape}, {assign var=firstName value=$presenter->getFirstName()}{assign var=presenterCount value=$presenters|@count}{$firstName[0]|escape}.{if $i<$presenterCount-1}, {/if}{/foreach}{literal}},
 	title = {{/literal}{$paper->getPaperTitle()|strip_unsafe_html}{literal}},
 	conference = {{/literal}{$conference->getTitle()|escape}{literal}},
 	year = {{/literal}{$paper->getDatePublished()|date_format:'%Y'}{literal}},
@@ -67,21 +67,21 @@
 
 {elseif $bibFormat == 'ABNT'}
 
-	{assign var=authors value=$paper->getAuthors()}
-	{assign var=authorCount value=$authors|@count}
-	{foreach from=$authors item=author name=authors key=i}
-		{assign var=firstName value=$author->getFirstName()}
-		{$author->getLastName()|escape}, {$firstName[0]|escape}.{if $i<$authorCount-1}; {/if}{/foreach}.
+	{assign var=presenters value=$paper->getPresenters()}
+	{assign var=presenterCount value=$presenters|@count}
+	{foreach from=$presenters item=presenter name=presenters key=i}
+		{assign var=firstName value=$presenter->getFirstName()}
+		{$presenter->getLastName()|escape}, {$firstName[0]|escape}.{if $i<$presenterCount-1}; {/if}{/foreach}.
 	{$paper->getPaperTitle()|strip_unsafe_html}.
 	<b>{$conference->getTitle()|escape}</b>, {translate key="rt.captureCite.acaoLocation"}
 	{$paper->getDatePublished()|date_format:'%e %m %Y'}.
 
 {else}
-	{assign var=authors value=$paper->getAuthors()}
-	{assign var=authorCount value=$authors|@count}
-	{foreach from=$authors item=author name=authors key=i}
-		{assign var=firstName value=$author->getFirstName()}
-		{$author->getLastName()|escape}, {$firstName[0]|escape}.{if $i==$authorCount-2}, &amp; {elseif $i<$authorCount-1}, {/if}
+	{assign var=presenters value=$paper->getPresenters()}
+	{assign var=presenterCount value=$presenters|@count}
+	{foreach from=$presenters item=presenter name=presenters key=i}
+		{assign var=firstName value=$presenter->getFirstName()}
+		{$presenter->getLastName()|escape}, {$firstName[0]|escape}.{if $i==$presenterCount-2}, &amp; {elseif $i<$presenterCount-1}, {/if}
 	{/foreach}
 
 	{$paper->getDatePublished()|date_format:'%Y %b %e'}.

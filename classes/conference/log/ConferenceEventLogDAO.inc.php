@@ -30,19 +30,19 @@ class ConferenceEventLogDAO extends DAO {
 	 * @param $paperId int optional
 	 * @return ConferenceEventLogEntry
 	 */
-	function &getLogEntry($logId, $conferenceId = null, $eventId = null) {
+	function &getLogEntry($logId, $conferenceId = null, $schedConfId = null) {
 		$args = array(log_id);
 		
 		if (isset($conferenceId))
 			$args[] = $conferenceId;
 		
-		if (isset($eventId))
-			$args[] = $eventId;
+		if (isset($schedConfId))
+			$args[] = $schedConfId;
 
 		$result = &$this->retrieve(
 			'SELECT * FROM conference_event_log WHERE log_id = ?' .
 				(isset($conferenceId) ? ' AND conference_id = ?' : '') .
-				(isset($eventId) ? ' AND event_id = ?' : ''),
+				(isset($schedConfId) ? ' AND sched_conf_id = ?' : ''),
 				(count($args)>1 ? $args : pop($args)));
 
 		$returner = null;
@@ -59,29 +59,29 @@ class ConferenceEventLogDAO extends DAO {
 	/**
 	 * Retrieve all log entries for a conference.
 	 * @param $conferenceId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return DAOResultFactory containing matching ConferenceEventLogEntry ordered by sequence
 	 */
-	function &getConferenceLogEntries($conferenceId, $eventId = null, $rangeInfo = null) {
-		$returner = &$this->getConferenceLogEntriesByAssoc($conferenceId, $eventId, null, null, $rangeInfo);
+	function &getConferenceLogEntries($conferenceId, $schedConfId = null, $rangeInfo = null) {
+		$returner = &$this->getConferenceLogEntriesByAssoc($conferenceId, $schedConfId, null, null, $rangeInfo);
 		return $returner;
 	}
 	
 	/**
 	 * Retrieve all log entries for a conference matching the specified association.
 	 * @param $conferenceId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $assocType int
 	 * @param $assocId int
 	 * @param $limit int limit the number of entries retrieved (default false)
 	 * @param $recentFirst boolean order with most recent entries first (default true)
 	 * @return DAOResultFactory containing matching ConferenceEventLogEntry ordered by sequence
 	 */
-	function &getPaperLogEntriesByAssoc($conferenceId, $eventId = null, $assocType = null, $assocId = null, $rangeInfo = null) {
+	function &getPaperLogEntriesByAssoc($conferenceId, $schedConfId = null, $assocType = null, $assocId = null, $rangeInfo = null) {
 		$params = array($conferenceId);
 		
-		if (isset($eventId))
-			$params[] = $eventId;
+		if (isset($schedConfId))
+			$params[] = $schedConfId;
 
 		if (isset($assocType)) {
 			$params[] = $assocType;
@@ -92,7 +92,7 @@ class ConferenceEventLogDAO extends DAO {
 		$result = &$this->retrieveRange(
 			'SELECT * FROM conference_event_log
 				WHERE conference_id = ?' .
-				(isset($eventId) ? ' AND event_id = ? ':'') .
+				(isset($schedConfId) ? ' AND sched_conf_id = ? ':'') .
 				(isset($assocType) ? ' AND assoc_type = ?' . (isset($assocId) ? ' AND assoc_id = ?' : '') : '') .
 				' ORDER BY log_id DESC',
 			$params, $rangeInfo
@@ -111,7 +111,7 @@ class ConferenceEventLogDAO extends DAO {
 		$entry = &new ConferenceEventLogEntry();
 		$entry->setLogId($row['log_id']);
 		$entry->setConferenceId($row['conference_id']);
-		$entry->setEventId($row['event_id']);
+		$entry->setSchedConfId($row['sched_conf_id']);
 		$entry->setUserId($row['user_id']);
 		$entry->setDateLogged($this->datetimeFromDB($row['date_logged']));
 		$entry->setIPAddress($row['ip_address']);
@@ -139,13 +139,13 @@ class ConferenceEventLogDAO extends DAO {
 		}
 		$this->update(
 			sprintf('INSERT INTO conference_event_log
-				(conference_id, event_id, user_id, date_logged, ip_address, log_level, event_type, assoc_type, assoc_id, message)
+				(conference_id, sched_conf_id, user_id, date_logged, ip_address, log_level, event_type, assoc_type, assoc_id, message)
 				VALUES
 				(?, ?, ?, %s, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($entry->getDateLogged())),
 			array(
 				$entry->getConferenceId(),
-				$entry->getEventId(),
+				$entry->getSchedConfId(),
 				$entry->getUserId(),
 				$entry->getIPAddress(),
 				$entry->getLogLevel(),
@@ -164,17 +164,17 @@ class ConferenceEventLogDAO extends DAO {
 	 * Delete a single log entry for a conference.
 	 * @param $logId int
 	 * @param $conferenceId int
-	 * @param $eventId int optional
+	 * @param $schedConfId int optional
 	 */
-	function deleteLogEntry($logId, $conferenceId, $eventId = null) {
+	function deleteLogEntry($logId, $conferenceId, $schedConfId = null) {
 		$args = array($conferenceId);
-		if(isset($eventId))
-			$args[] = $eventId;
+		if(isset($schedConfId))
+			$args[] = $schedConfId;
 		
 		return $this->update(
 			'DELETE FROM conference_event_log WHERE log_id = ?
 				AND conference_id = ?' .
-			(isset($eventId)? ' AND event_id = ?' : ''),
+			(isset($schedConfId)? ' AND sched_conf_id = ?' : ''),
 			$args);
 	}
 	
@@ -182,15 +182,15 @@ class ConferenceEventLogDAO extends DAO {
 	 * Delete all log entries for an paper.
 	 * @param $paperId int
 	 */
-	function deleteConferenceLogEntries($conferenceId, $eventId = null) {
+	function deleteConferenceLogEntries($conferenceId, $schedConfId = null) {
 		$args = array($conferenceId);
 		
-		if(isset($eventId))
-			$args[] = $eventId;
+		if(isset($schedConfId))
+			$args[] = $schedConfId;
 		
 		return $this->update(
 			'DELETE FROM conference_event_log WHERE conference_id = ?' .
-			(isset($eventId) ? ' AND event_id = ?' : ''),
+			(isset($schedConfId) ? ' AND sched_conf_id = ?' : ''),
 			(count($args)>1 ? $args : array_shift($args)));
 	}
 	

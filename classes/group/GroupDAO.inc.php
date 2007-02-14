@@ -47,30 +47,30 @@ class GroupDAO extends DAO {
 	/**
 	 * Get all groups for a conference.
 	 * @param $conferenceId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $rangeInfo object RangeInfo object (optional)
 	 * @return array
 	 */
-	function &getGroups($conferenceId, $eventId, $rangeInfo = null) {
-		if($conferenceId !== -1 && $eventId !== -1) {
+	function &getGroups($conferenceId, $schedConfId, $rangeInfo = null) {
+		if($conferenceId !== -1 && $schedConfId !== -1) {
 			$result = &$this->retrieve(
-				'SELECT * FROM groups WHERE conference_id = ? AND event_id = ? ORDER BY seq',
-				array($conferenceId, $eventId), $rangeInfo
+				'SELECT * FROM groups WHERE conference_id = ? AND sched_conf_id = ? ORDER BY seq',
+				array($conferenceId, $schedConfId), $rangeInfo
 			);
 		} elseif($conferenceId !== -1) {
 			$result = &$this->retrieve(
 				'SELECT * FROM groups WHERE conference_id = ? ORDER BY seq',
 				$conferenceId, $rangeInfo
 			);
-		} elseif($eventId !== -1) {
+		} elseif($schedConfId !== -1) {
 			$result = &$this->retrieve(
-				'SELECT * FROM groups WHERE event_id = ? ORDER BY seq',
-				$eventId, $rangeInfo
+				'SELECT * FROM groups WHERE sched_conf_id = ? ORDER BY seq',
+				$schedConfId, $rangeInfo
 			);
 		} else {
 			$result = &$this->retrieve(
 				'SELECT * FROM groups ORDER BY seq',
-				$eventId, $rangeInfo
+				$schedConfId, $rangeInfo
 			);
 		}
 
@@ -92,7 +92,7 @@ class GroupDAO extends DAO {
 		$group->setAboutDisplayed($row['about_displayed']);
 		$group->setSequence($row['seq']);
 		$group->setConferenceId($row['conference_id']);
-		$group->setEventId($row['event_id']);
+		$group->setSchedConfId($row['sched_conf_id']);
 		
 		HookRegistry::call('GroupDAO::_returnGroupFromRow', array(&$group, &$row));
 
@@ -106,7 +106,7 @@ class GroupDAO extends DAO {
 	function insertGroup(&$group) {
 		$this->update(
 			'INSERT INTO groups
-				(title, title_alt1, title_alt2, seq, conference_id, event_id, about_displayed)
+				(title, title_alt1, title_alt2, seq, conference_id, sched_conf_id, about_displayed)
 				VALUES
 				(?, ?, ?, ?, ?, ?, ?)',
 			array(
@@ -115,7 +115,7 @@ class GroupDAO extends DAO {
 				$group->getTitleAlt2(),
 				$group->getSequence() == null ? 0 : $group->getSequence(),
 				$group->getConferenceId(),
-				$group->getEventId(),
+				$group->getSchedConfId(),
 				$group->getAboutDisplayed()
 			)
 		);
@@ -137,7 +137,7 @@ class GroupDAO extends DAO {
 					title_alt2 = ?,
 					seq = ?,
 					conference_id = ?,
-					event_id = ?,
+					sched_conf_id = ?,
 					about_displayed = ?
 				WHERE group_id = ?',
 			array(
@@ -146,7 +146,7 @@ class GroupDAO extends DAO {
 				$group->getTitleAlt2(),
 				$group->getSequence(),
 				$group->getConferenceId(),
-				$group->getEventId(),
+				$group->getSchedConfId(),
 				$group->getAboutDisplayed(),
 				$group->getGroupId()
 			)
@@ -186,11 +186,11 @@ class GroupDAO extends DAO {
 	}
 	
 	/**
-	 * Delete board groups by event ID, including membership info
-	 * @param $eventId int
+	 * Delete board groups by scheduled conference ID, including membership info
+	 * @param $schedConfId int
 	 */
-	function deleteGroupsByEventId($eventId) {
-		$groups =& $this->getGroups(-1, $eventId);
+	function deleteGroupsBySchedConfId($schedConfId) {
+		$groups =& $this->getGroups(-1, $schedConfId);
 		while ($group =& $groups->next()) {
 			$this->deleteGroup($group);
 		}

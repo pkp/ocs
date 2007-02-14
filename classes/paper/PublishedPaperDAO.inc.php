@@ -19,7 +19,7 @@ import('paper.PublishedPaper');
 class PublishedPaperDAO extends DAO {
 
 	var $paperDao;
-	var $authorDao;
+	var $presenterDao;
 	var $galleyDao;
 	var $suppFileDao;
 
@@ -29,18 +29,18 @@ class PublishedPaperDAO extends DAO {
 	function PublishedPaperDAO() {
 		parent::DAO();
 		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
+		$this->presenterDao = &DAORegistry::getDAO('PresenterDAO');
 		$this->galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 	}
 
 	/**
-	 * Retrieve Published Papers by event id.  Limit provides number of records to retrieve
-	 * @param $eventId int
+	 * Retrieve Published Papers by scheduled conference id.  Limit provides number of records to retrieve
+	 * @param $schedConfId int
 	 * @param $limit int, default NULL
 	 * @return PublishedPaper objects array
 	 */
-	function &getPublishedPapers($eventId, $limit = NULL) {
+	function &getPublishedPapers($schedConfId, $limit = NULL) {
 		$publishedPapers = array();
 
 		if (isset($limit)) {
@@ -57,11 +57,11 @@ class PublishedPaperDAO extends DAO {
 				FROM published_papers pa,
 					papers p
 				LEFT JOIN tracks s ON s.track_id = p.track_id
-				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.event_id = ?)
+				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = ?)
 				WHERE pa.paper_id = p.paper_id
-					AND pa.event_id = ?
+					AND pa.sched_conf_id = ?
 					AND p.status <> ' . SUBMISSION_STATUS_ARCHIVED . '
-				ORDER BY track_seq ASC, pa.seq ASC', array($eventId, $eventId), $limit
+				ORDER BY track_seq ASC, pa.seq ASC', array($schedConfId, $schedConfId), $limit
 			);
 		} else {
 			$result = &$this->retrieve(
@@ -78,11 +78,11 @@ class PublishedPaperDAO extends DAO {
 				FROM published_papers pa,
 					papers p
 				LEFT JOIN tracks s ON s.track_id = p.track_id
-				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.event_id = ?)
+				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = ?)
 				WHERE pa.paper_id = p.paper_id
-					AND pa.event_id = ?
+					AND pa.sched_conf_id = ?
 					AND p.status <> ' . SUBMISSION_STATUS_ARCHIVED . '
-				ORDER BY track_seq ASC, pa.seq ASC', array($eventId, $eventId)
+				ORDER BY track_seq ASC, pa.seq ASC', array($schedConfId, $schedConfId)
 			);
 		}
 
@@ -98,12 +98,12 @@ class PublishedPaperDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve a count of published papers in a event.
+	 * Retrieve a count of published papers in a scheduled conference.
 	 */
-	function getPublishedPaperCountByEventId($eventId) {
+	function getPublishedPaperCountBySchedConfId($schedConfId) {
 		$result =& $this->retrieve(
-			'SELECT count(*) FROM published_papers pa, papers a WHERE pa.paper_id = a.paper_id AND a.event_id = ? AND a.status <> ' . SUBMISSION_STATUS_ARCHIVED,
-			$eventId
+			'SELECT count(*) FROM published_papers pa, papers a WHERE pa.paper_id = a.paper_id AND a.sched_conf_id = ? AND a.status <> ' . SUBMISSION_STATUS_ARCHIVED,
+			$schedConfId
 		);
 		list($count) = $result->fields;
 		$result->Close();
@@ -111,11 +111,11 @@ class PublishedPaperDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all published papers in a event.
-	 * @param $eventId int
+	 * Retrieve all published papers in a scheduled conference.
+	 * @param $schedConfId int
 	 * @param $rangeInfo object
 	 */
-	function &getPublishedPapersByEventId($eventId, $rangeInfo = null) {
+	function &getPublishedPapersBySchedConfId($schedConfId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
 			'SELECT pa.*,
 				a.*,
@@ -129,9 +129,9 @@ class PublishedPaperDAO extends DAO {
 				papers a
 			LEFT JOIN tracks s ON s.track_id = a.track_id
 			WHERE pa.paper_id = a.paper_id
-				AND a.event_id = ?
+				AND a.sched_conf_id = ?
 				AND a.status <> ' . SUBMISSION_STATUS_ARCHIVED,
-			$eventId,
+			$schedConfId,
 			$rangeInfo
 		);
 
@@ -140,11 +140,11 @@ class PublishedPaperDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve Published Papers by event id
-	 * @param $eventId int
+	 * Retrieve Published Papers by scheduled conference id
+	 * @param $schedConfId int
 	 * @return PublishedPaper objects array
 	 */
-	function &getPublishedPapersInTracks($eventId) {
+	function &getPublishedPapersInTracks($schedConfId) {
 		$publishedPapers = array();
 
 		$result = &$this->retrieve(
@@ -161,11 +161,11 @@ class PublishedPaperDAO extends DAO {
 			FROM published_papers pa,
 				papers a
 			LEFT JOIN tracks s ON s.track_id = a.track_id
-			LEFT JOIN custom_track_orders o ON (a.track_id = o.track_id AND o.event_id = ?)
+			LEFT JOIN custom_track_orders o ON (a.track_id = o.track_id AND o.sched_conf_id = ?)
 			WHERE pa.paper_id = a.paper_id
-				AND pa.event_id = ?
+				AND pa.sched_conf_id = ?
 				AND a.status <> ' . SUBMISSION_STATUS_ARCHIVED . '
-			ORDER BY track_seq ASC, pa.seq ASC', array($eventId, $eventId)
+			ORDER BY track_seq ASC, pa.seq ASC', array($schedConfId, $schedConfId)
 		);
 
 		$currTrackId = 0;
@@ -195,7 +195,7 @@ class PublishedPaperDAO extends DAO {
 	 * @param $trackId int
 	 * @return PublishedPaper objects array
 	 */
-	function &getPublishedPapersByTrackId($trackId, $eventId) {
+	function &getPublishedPapersByTrackId($trackId, $schedConfId) {
 		$publishedPapers = array();
 
 		$result = &$this->retrieve(
@@ -214,9 +214,9 @@ class PublishedPaperDAO extends DAO {
 			WHERE a.track_id = s.track_id
 				AND pa.paper_id = a.paper_id
 				AND a.track_id = ?
-				AND pa.event_id = ?
+				AND pa.sched_conf_id = ?
 				AND a.status <> ' . SUBMISSION_STATUS_ARCHIVED . '
-			ORDER BY pa.seq ASC', array($trackId, $eventId)
+			ORDER BY pa.seq ASC', array($trackId, $schedConfId)
 		);
 
 		$currTrackId = 0;
@@ -246,7 +246,7 @@ class PublishedPaperDAO extends DAO {
 		$publishedPaper = &new PublishedPaper();
 		$publishedPaper->setPubId($row['pub_id']);
 		$publishedPaper->setPaperId($row['paper_id']);
-		$publishedPaper->setEventId($row['event_id']);
+		$publishedPaper->setSchedConfId($row['sched_conf_id']);
 		$publishedPaper->setDatePublished($this->datetimeFromDB($row['date_published']));
 		$publishedPaper->setSeq($row['seq']);
 		$publishedPaper->setViews($row['views']);
@@ -263,10 +263,10 @@ class PublishedPaperDAO extends DAO {
 	/**
 	 * Retrieve published paper by paper id
 	 * @param $paperId int
-	 * @param $eventId int optional
+	 * @param $schedConfId int optional
 	 * @return PublishedPaper object
 	 */
-	function &getPublishedPaperByPaperId($paperId, $eventId = null) {
+	function &getPublishedPaperByPaperId($paperId, $schedConfId = null) {
 		$result = &$this->retrieve(
 			'SELECT pa.*,
 				a.*,
@@ -280,10 +280,10 @@ class PublishedPaperDAO extends DAO {
 				papers a
 			LEFT JOIN tracks s ON s.track_id = a.track_id
 			WHERE pa.paper_id = a.paper_id
-				AND a.paper_id = ?' . (isset($eventId)?'
-				AND a.event_id = ?':''),
-			isset($eventId)?
-				array($paperId, $eventId):
+				AND a.paper_id = ?' . (isset()$schedConfId?'
+				AND a.sched_conf_id = ?':''),
+			isset($schedConfId)?
+				array($paperId, $schedConfId):
 				$paperId
 		);
 
@@ -300,11 +300,11 @@ class PublishedPaperDAO extends DAO {
 
 	/**
 	 * Retrieve published paper by public paper id
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $publicPaperId string
 	 * @return PublishedPaper object
 	 */
-	function &getPublishedPaperByPublicPaperId($eventId, $publicPaperId) {
+	function &getPublishedPaperByPublicPaperId($schedConfId, $publicPaperId) {
 		$result = &$this->retrieve(
 			'SELECT pa.*,
 				a.*,
@@ -319,8 +319,8 @@ class PublishedPaperDAO extends DAO {
 			LEFT JOIN tracks s ON s.track_id = a.track_id
 			WHERE pa.paper_id = a.paper_id
 				AND pa.public_paper_id = ?
-				AND a.event_id = ?',
-			array($publicPaperId, $eventId)
+				AND a.sched_conf_id = ?',
+			array($publicPaperId, $schedConfId)
 		);
 
 		$publishedPaper = null;
@@ -337,39 +337,39 @@ class PublishedPaperDAO extends DAO {
 	/**
 	 * Retrieve published paper by public paper id or, failing that,
 	 * internal paper ID; public paper ID takes precedence.
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $paperId string
 	 * @return PublishedPaper object
 	 */
-	function &getPublishedPaperByBestPaperId($eventId, $paperId) {
-		$paper = &$this->getPublishedPaperByPublicPaperId($eventId, $paperId);
-		if (!isset($paper)) $paper = &$this->getPublishedPaperByPaperId((int) $paperId, $eventId);
+	function &getPublishedPaperByBestPaperId($schedConfId, $paperId) {
+		$paper = &$this->getPublishedPaperByPublicPaperId($schedConfId, $paperId);
+		if (!isset($paper)) $paper = &$this->getPublishedPaperByPaperId((int) $paperId, $schedConfId);
 		return $paper;
 	}
 
 	/**
-	 * Retrieve "paper_id"s for published papers for a event, sorted
-	 * alphabetically.
-	 * Note that if eventId is null, alphabetized paper IDs for all
-	 * events are returned.
-	 * @param $eventId int
+	 * Retrieve "paper_id"s for published papers for a scheduled conference,
+	 * sorted alphabetically.
+	 * Note that if schedConfId is null, alphabetized paper IDs for all
+	 * scheduled conferences are returned.
+	 * @param $schedConfId int
 	 * @return Array
 	 */
-	function &getPublishedPaperIdsAlphabetizedByTitle($conferenceId = -1, $eventId = -1, $rangeInfo = null) {
+	function &getPublishedPaperIdsAlphabetizedByTitle($conferenceId = -1, $schedConfId = -1, $rangeInfo = null) {
 		$paperIds = array();
 		
-		if($eventId !== -1) {
+		if($schedConfId !== -1) {
 			$result = &$this->retrieveCached(
 				'SELECT a.paper_id AS pub_id
 				FROM published_papers pa, papers a
 				WHERE pa.paper_id = a.paper_id
-					AND a.event_id = ?
-				ORDER BY a.title', $eventId);
+					AND a.sched_conf_id = ?
+				ORDER BY a.title', $schedConfId);
 		} elseif ($conferenceId !== -1) {
 			$result = &$this->retrieveCached(
 				'SELECT a.paper_id AS pub_id
 				FROM published_papers pa, papers a
-				LEFT JOIN events e ON e.event_id = a.event_id
+				LEFT JOIN sched_confs e ON e.sched_conf_id = a.sched_conf_id
 				WHERE pa.paper_id = a.paper_id
 					AND e.conference_id = ?
 				ORDER BY a.title', $conferenceId);
@@ -395,38 +395,38 @@ class PublishedPaperDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve "paper_id"s for published papers for a event, sorted
-	 * by event.
-	 * Note that if eventId is null, alphabetized paper IDs for all
-	 * events are returned.
-	 * @param $eventId int
+	 * Retrieve "paper_id"s for published papers for a scheduled conference,
+	 * sorted by scheduled conference.
+	 * Note that if schedConfId is null, alphabetized paper IDs for all
+	 * scheduled conferences are returned.
+	 * @param $schedConfId int
 	 * @return Array
 	 */
-	function &getPublishedPaperIdsAlphabetizedByEvent($conferenceId, $eventId = -1, $rangeInfo = null) {
+	function &getPublishedPaperIdsAlphabetizedBySchedConf($conferenceId, $schedConfId = -1, $rangeInfo = null) {
 		$paperIds = array();
 		
-		if($eventId !== -1) {
+		if($schedConfId !== -1) {
 			$result = &$this->retrieveCached(
 				'SELECT a.paper_id AS pub_id
 				FROM published_papers pa, papers a
 				WHERE pa.paper_id = a.paper_id
-					AND a.event_id = ?
-				ORDER BY a.event_id, a.title', $eventId);
+					AND a.sched_conf_id = ?
+				ORDER BY a.sched_conf_id, a.title', $schedConfId);
 		} elseif ($conferenceId !== -1) {
 			$result = &$this->retrieveCached(
 				'SELECT a.paper_id AS pub_id
 				FROM published_papers pa, papers a
-				LEFT JOIN events e ON e.event_id = a.event_id
+				LEFT JOIN sched_confs e ON e.sched_conf_id = a.sched_conf_id
 				WHERE pa.paper_id = a.paper_id
 					AND e.conference_id = ?
-				ORDER BY a.event_id, a.title', $conferenceId);
+				ORDER BY a.sched_conf_id, a.title', $conferenceId);
 		} else {
 			$result = &$this->retrieveCached(
 				'SELECT a.paper_id AS pub_id
 				FROM published_papers pa, papers a
 				LEFT JOIN tracks s ON s.track_id = a.track_id
 				WHERE pa.paper_id = a.paper_id
-				ORDER BY a.event_id, a.title', false);
+				ORDER BY a.sched_conf_id, a.title', false);
 		}
 		
 		while (!$result->EOF) {
@@ -449,7 +449,7 @@ class PublishedPaperDAO extends DAO {
 	function &_returnPublishedPaperFromRow($row) {
 		$publishedPaper = &new PublishedPaper();
 		$publishedPaper->setPubId($row['pub_id']);
-		$publishedPaper->setEventId($row['event_id']);
+		$publishedPaper->setSchedConfId($row['sched_conf_id']);
 		$publishedPaper->setDatePublished($this->datetimeFromDB($row['date_published']));
 		$publishedPaper->setSeq($row['seq']);
 		$publishedPaper->setViews($row['views']);
@@ -477,13 +477,13 @@ class PublishedPaperDAO extends DAO {
 	function insertPublishedPaper(&$publishedPaper) {
 		$this->update(
 			sprintf('INSERT INTO published_papers
-				(paper_id, event_id, date_published, seq, access_status, public_paper_id)
+				(paper_id, sched_conf_id, date_published, seq, access_status, public_paper_id)
 				VALUES
 				(?, ?, %s, ?, ?, ?)',
 				$this->datetimeToDB($publishedPaper->getDatePublished())),
 			array(
 				$publishedPaper->getPaperId(),
-				$publishedPaper->getEventId(),
+				$publishedPaper->getSchedConfId(),
 				$publishedPaper->getSeq(),
 				$publishedPaper->getAccessStatus(),
 				$publishedPaper->getPublicPaperId()
@@ -544,12 +544,12 @@ class PublishedPaperDAO extends DAO {
 	}
 
 	/**
-	 * Delete published papers by event ID
-	 * @param $eventId int
+	 * Delete published papers by scheduled conference ID
+	 * @param $schedConfId int
 	 */
-	function deletePublishedPapersByEventId($eventId) {
+	function deletePublishedPapersBySchedConfId($schedConfId) {
 		return $this->update(
-			'DELETE FROM published_papers WHERE event_id = ?', $eventId
+			'DELETE FROM published_papers WHERE sched_conf_id = ?', $schedConfId
 		);
 	}
 
@@ -562,7 +562,7 @@ class PublishedPaperDAO extends DAO {
 			sprintf('UPDATE published_papers
 				SET
 					paper_id = ?,
-					event_id = ?,
+					sched_conf_id = ?,
 					date_published = %s,
 					seq = ?,
 					access_status = ?,
@@ -571,7 +571,7 @@ class PublishedPaperDAO extends DAO {
 				$this->datetimeToDB($publishedPaper->getDatePublished())),
 			array(
 				$publishedPaper->getPaperId(),
-				$publishedPaper->getEventId(),
+				$publishedPaper->getSchedConfId(),
 				$publishedPaper->getSeq(),
 				$publishedPaper->getAccessStatus(),
 				$publishedPaper->getPublicPaperId(),
@@ -595,10 +595,10 @@ class PublishedPaperDAO extends DAO {
 	/**
 	 * Sequentially renumber published papers in their sequence order.
 	 */
-	function resequencePublishedPapers($trackId, $eventId) {
+	function resequencePublishedPapers($trackId, $schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT pa.pub_id FROM published_papers pa, papers a WHERE a.track_id = ? AND a.paper_id = pa.paper_id AND pa.event_id = ? ORDER BY pa.seq',
-			array($trackId, $eventId)
+			'SELECT pa.pub_id FROM published_papers pa, papers a WHERE a.track_id = ? AND a.paper_id = pa.paper_id AND pa.sched_conf_id = ? ORDER BY pa.seq',
+			array($trackId, $schedConfId)
 		);
 
 		for ($i=1; !$result->EOF; $i++) {
@@ -616,37 +616,37 @@ class PublishedPaperDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all authors from published papers
-	 * @param $eventId int
-	 * @return $authors array Author Objects
+	 * Retrieve all presenters from published papers
+	 * @param $schedConfId int
+	 * @return $presenters array Presenter Objects
 	 */
-	function getPublishedPaperAuthors($eventId) {
-		$authors = array();
+	function getPublishedPaperPresenters($schedConfId) {
+		$presenters = array();
 		$result = &$this->retrieve(
-			'SELECT aa.* FROM paper_authors aa, published_papers pa WHERE aa.paper_id = pa.paper_id AND pa.event_id = ? ORDER BY pa.event_id', $eventId
+			'SELECT aa.* FROM paper_presenters aa, published_papers pa WHERE aa.paper_id = pa.paper_id AND pa.sched_conf_id = ? ORDER BY pa.sched_conf_id', $schedConfId
 		);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$author = &new Author();
-			$author->setAuthorId($row['author_id']);
-			$author->setPaperId($row['paper_id']);
-			$author->setFirstName($row['first_name']);
-			$author->setMiddleName($row['middle_name']);
-			$author->setLastName($row['last_name']);
-			$author->setAffiliation($row['affiliation']);
-			$author->setEmail($row['email']);
-			$author->setBiography($row['biography']);
-			$author->setPrimaryContact($row['primary_contact']);
-			$author->setSequence($row['seq']);
-			$authors[] = $author;
+			$presenter = &new Presenter();
+			$presenter->setPresenterId($row['presenter_id']);
+			$presenter->setPaperId($row['paper_id']);
+			$presenter->setFirstName($row['first_name']);
+			$presenter->setMiddleName($row['middle_name']);
+			$presenter->setLastName($row['last_name']);
+			$presenter->setAffiliation($row['affiliation']);
+			$presenter->setEmail($row['email']);
+			$presenter->setBiography($row['biography']);
+			$presenter->setPrimaryContact($row['primary_contact']);
+			$presenter->setSequence($row['seq']);
+			$presenters[] = $presenter;
 			$result->moveNext();
 		}
 
 		$result->Close();
 		unset($result);
 
-		return $authors;
+		return $presenters;
 	}
 
 	/**
@@ -662,13 +662,15 @@ class PublishedPaperDAO extends DAO {
 
 	/**
 	 * Checks if public identifier exists
-	 * @param $publicEventId string
+	 * @param $publicPaperId string
+	 * @param $paperId int
+	 * @param $schedConfId int
 	 * @return boolean
 	 */
-	function publicPaperIdExists($publicPaperId, $paperId, $eventId) {
+	function publicPaperIdExists($publicPaperId, $paperId, $schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT COUNT(*) FROM published_papers pa, papers a WHERE pa.paper_id = a.paper_id AND a.event_id = ? AND pa.public_paper_id = ? AND pa.paper_id <> ?',
-			array($eventId, $publicPaperId, $paperId)
+			'SELECT COUNT(*) FROM published_papers pa, papers a WHERE pa.paper_id = a.paper_id AND a.sched_conf_id = ? AND pa.public_paper_id = ? AND pa.paper_id <> ?',
+			array($schedConfId, $publicPaperId, $paperId)
 		);
 		$returner = $result->fields[0] ? true : false;
 

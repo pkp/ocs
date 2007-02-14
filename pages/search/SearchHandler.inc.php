@@ -54,26 +54,26 @@ class SearchHandler extends Handler {
 	}
 	
 	/**
-	 * Show index of published papers by author.
+	 * Show index of published papers by presenter.
 	 */
-	function authors($args) {
+	function presenters($args) {
 		parent::validate();
 		SearchHandler::setupTemplate(true);
 
 		$conference =& Request::getConference();
-		$event =& Request::getEvent();
+		$schedConf =& Request::getSchedConf();
 
-		$authorDao = &DAORegistry::getDAO('AuthorDAO');
+		$presenterDao = &DAORegistry::getDAO('PresenterDAO');
 
 		if (isset($args[0]) && $args[0] == 'view') {
-			// View a specific author
+			// View a specific presenter
 			$firstName = Request::getUserVar('firstName');
 			$middleName = Request::getUserVar('middleName');
 			$lastName = Request::getUserVar('lastName');
 			$affiliation = Request::getUserVar('affiliation');
 
-			$publishedPapers = $authorDao->getPublishedPapersForAuthor(
-				$event?$event->getEventId():null,
+			$publishedPapers = $presenterDao->getPublishedPapersForPresenter(
+				$schedConf?$schedConf->getSchedConfId():null,
 				$firstName,
 				$middleName,
 				$lastName,
@@ -81,22 +81,22 @@ class SearchHandler extends Handler {
 			);
 
 			// Load information associated with each paper.
-			$events = array();
+			$schedConfs = array();
 			$tracks = array();
-			$eventsUnavailable = array();
+			$schedConfsUnavailable = array();
 
 			$trackDao = &DAORegistry::getDAO('TrackDAO');
-			$eventDao = &DAORegistry::getDAO('EventDAO');
+			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 
 			foreach ($publishedPapers as $paper) {
 				$trackId = $paper->getTrackId();
-				$eventId = $paper->getEventId();
+				$schedConfId = $paper->getSchedConfId();
 				
-				if (!isset($events[$eventId])) {
-					import('event.EventAction');
-					$event = &$eventDao->getEvent($eventId);
-					$events[$eventId] = &$event;
-					$eventsUnavailable[$eventId] = !EventAction::mayViewProceedings($event);
+				if (!isset($schedConfs[$schedConfId])) {
+					import('schedConf.SchedConfAction');
+					$schedConf = &$schedConfDao->getSchedConf($schedConfId);
+					$schedConfs[$schedConfId] = &$schedConf;
+					$schedConfsUnavailable[$schedConfId] = !SchedConfAction::mayViewProceedings($schedConf);
 				}
 				if (!isset($tracks[$trackId])) $tracks[$trackId] = &$trackDao->getTrack($trackId);
 			}
@@ -107,21 +107,21 @@ class SearchHandler extends Handler {
 
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign_by_ref('publishedPapers', $publishedPapers);
-			$templateMgr->assign_by_ref('events', $events);
-			$templateMgr->assign('eventsUnavailable', $eventsUnavailable);
+			$templateMgr->assign_by_ref('schedConfs', $schedConfs);
+			$templateMgr->assign('schedConfsUnavailable', $schedConfsUnavailable);
 			$templateMgr->assign_by_ref('tracks', $tracks);
 			$templateMgr->assign('firstName', $firstName);
 			$templateMgr->assign('middleName', $middleName);
 			$templateMgr->assign('lastName', $lastName);
 			$templateMgr->assign('affiliation', $affiliation);
-			$templateMgr->display('search/authorDetails.tpl');
+			$templateMgr->display('search/presenterDetails.tpl');
 		} else {
-			// Show the author index
+			// Show the presenter index
 			$searchInitial = Request::getUserVar('searchInitial');
-			$rangeInfo = Handler::getRangeInfo('authors');
+			$rangeInfo = Handler::getRangeInfo('presenters');
 
-			$authors = &$authorDao->getAuthorsAlphabetizedByEvent(
-				isset($event)?$event->getEventId():null,
+			$presenters = &$presenterDao->getPresentersAlphabetizedBySchedConf(
+				isset($schedConf)?$schedConf->getSchedConfId():null,
 				$searchInitial,
 				$rangeInfo
 			);
@@ -129,8 +129,8 @@ class SearchHandler extends Handler {
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('searchInitial', $searchInitial);
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
-			$templateMgr->assign_by_ref('authors', $authors);
-			$templateMgr->display('search/authorIndex.tpl');
+			$templateMgr->assign_by_ref('presenters', $presenters);
+			$templateMgr->display('search/presenterIndex.tpl');
 		}
 	}
 	
@@ -142,33 +142,33 @@ class SearchHandler extends Handler {
 		SearchHandler::setupTemplate(true);
 
 		$conference =& Request::getConference();
-		$event =& Request::getEvent();
-		import('event.EventAction');
+		$schedConf =& Request::getSchedConf();
+		import('schedConf.SchedConfAction');
 
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
-		$eventDao =& DAORegistry::getDAO('EventDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 
 		$rangeInfo = Handler::getRangeInfo('search');
 
 		$allPaperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedByTitle(
 			$conference? $conference->getConferenceId():-1,
-			$event?$event->getEventId():-1,
+			$schedConf?$schedConf->getSchedConfId():-1,
 			$rangeInfo);
 
 		// FIXME: this is horribly inefficient.
-		// Prune papers from events that aren't available.
+		// Prune papers from scheduled conferences that aren't available.
 		$paperIds = array();
-		$eventAbstractPermissions = array();
+		$schedConfAbstractPermissions = array();
 		foreach($allPaperIds as $paperId) {
 			$publishedPaper =& $publishedPaperDao->getPublishedPaperById($paperId);
-			$eventId = $publishedPaper->getEventId();
+			$schedConfId = $publishedPaper->getSchedConfId();
 
-			if(!isset($eventAbstractPermissions[$eventId])) {
-				$event = &$eventDao->getEvent($eventId);
-				$eventAbstractPermissions[$eventId] = EventAction::mayViewProceedings($event);
+			if(!isset($schedConfAbstractPermissions[$schedConfId])) {
+				$schedConf = &$schedConfDao->getSchedConf($schedConfId);
+				$schedConfAbstractPermissions[$schedConfId] = SchedConfAction::mayViewProceedings($schedConf);
 			}
 
-			if($eventAbstractPermissions[$eventId]) {
+			if($schedConfAbstractPermissions[$schedConfId]) {
 				$paperIds[] = $paperId;
 			}
 		}
@@ -183,42 +183,42 @@ class SearchHandler extends Handler {
 	}
 
 	/**
-	 * Show index of published papers by event.
+	 * Show index of published papers by scheduled conference.
 	 */
-	function events($args) {
+	function schedConfs($args) {
 		parent::validate();
 		SearchHandler::setupTemplate(true);
 		
 		$conference =& Request::getConference();
-		$event =& Request::getEvent();
-		import('event.EventAction');
+		$schedConf =& Request::getSchedConf();
+		import('schedConf.SchedConfAction');
 
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
-		$eventDao = &DAORegistry::getDAO('EventDAO');
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 
 		$rangeInfo = Handler::getRangeInfo('search');
 
-		$allPaperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedByEvent(
+		$allPaperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedBySchedConf(
 			$conference? $conference->getConferenceId():-1,
-			$event?$event->getEventId():-1,
+			$schedConf?$schedConf->getSchedConfId():-1,
 			$rangeInfo);
 		
 		// FIXME: this is horribly inefficient.
-		// Prune papers from events that aren't available.
+		// Prune papers from scheduled conferences that aren't available.
 		$paperIds = array();
-		$eventAbstractPermissions = array();
-		$eventPaperPermissions = array();
+		$schedConfAbstractPermissions = array();
+		$schedConfPaperPermissions = array();
 		foreach($allPaperIds as $paperId) {
 			$publishedPaper =& $publishedPaperDao->getPublishedPaperById($paperId);
-			$eventId = $publishedPaper->getEventId();
+			$schedConfId = $publishedPaper->getSchedConfId();
 
-			if(!isset($eventAbstractPermissions[$eventId])) {
-				$event = &$eventDao->getEvent($eventId);
-				$eventAbstractPermissions[$eventId] = EventAction::mayViewProceedings($event);
-				$eventPaperPermissions[$eventId] = EventAction::mayViewPapers($event);
+			if(!isset($schedConfAbstractPermissions[$schedConfId])) {
+				$schedConf = &$schedConfDao->getSchedConf($schedConfId);
+				$schedConfAbstractPermissions[$schedConfId] = SchedConfAction::mayViewProceedings($schedConf);
+				$schedConfPaperPermissions[$schedConfId] = SchedConfAction::mayViewPapers($schedConf);
 			}
 
-			if($eventAbstractPermissions[$eventId]) {
+			if($schedConfAbstractPermissions[$schedConfId]) {
 				$paperIds[] = $paperId;
 			}
 		}
@@ -229,8 +229,8 @@ class SearchHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('results', $results);
-		$templateMgr->assign_by_ref('eventPaperPermissions', $eventPaperPermissions);
-		$templateMgr->display('search/eventIndex.tpl');
+		$templateMgr->assign_by_ref('schedConfPaperPermissions', $schedConfPaperPermissions);
+		$templateMgr->display('search/schedConfIndex.tpl');
 	}
 	
 	/**
@@ -284,7 +284,7 @@ class SearchHandler extends Handler {
 
 		// Load the keywords array with submitted values
 		$keywords = array(null => PaperSearch::parseQuery(Request::getUserVar('query')));
-		$keywords[PAPER_SEARCH_AUTHOR] = PaperSearch::parseQuery(Request::getUserVar('author'));
+		$keywords[PAPER_SEARCH_PRESENTER] = PaperSearch::parseQuery(Request::getUserVar('presenter'));
 		$keywords[PAPER_SEARCH_TITLE] = PaperSearch::parseQuery(Request::getUserVar('title'));
 		$keywords[PAPER_SEARCH_DISCIPLINE] = PaperSearch::parseQuery(Request::getUserVar('discipline'));
 		$keywords[PAPER_SEARCH_SUBJECT] = PaperSearch::parseQuery(Request::getUserVar('subject'));
@@ -324,7 +324,7 @@ class SearchHandler extends Handler {
 	function assignAdvancedSearchParameters(&$templateMgr) {
 		$templateMgr->assign('query', Request::getUserVar('query'));
 		$templateMgr->assign('searchConference', Request::getUserVar('searchConference'));
-		$templateMgr->assign('author', Request::getUserVar('author'));
+		$templateMgr->assign('presenter', Request::getUserVar('presenter'));
 		$templateMgr->assign('title', Request::getUserVar('title'));
 		$templateMgr->assign('fullText', Request::getUserVar('fullText'));
 		$templateMgr->assign('supplementaryFiles', Request::getUserVar('supplementaryFiles'));

@@ -21,7 +21,7 @@ class InformationHandler extends Handler {
 	function index($args) {
 		parent::validate();
 		$conference =& Request::getConference();
-		$event =& Request::getEvent();
+		$schedConf =& Request::getSchedConf();
 
 		if ($conference == null) {
 			Request::redirect('index');
@@ -31,16 +31,16 @@ class InformationHandler extends Handler {
 		switch(isset($args[0])?$args[0]:null) {
 			case 'readers':
 				$conferenceContent = $conference->getSetting('readerInformation');
-				if($event) {
-					$eventContent = $event->getSetting('readerInformation', true);
+				if($schedConf) {
+					$schedConfContent = $schedConf->getSetting('readerInformation', true);
 				}
 				$pageTitle = 'navigation.infoForReaders.long';
 				$pageCrumbTitle = 'navigation.infoForReaders';
 				break;
 			case 'presenters':
 				$conferenceContent = $conference->getSetting('presenterInformation');
-				if($event) {
-					$eventContent = $event->getSetting('presenterInformation', true);
+				if($schedConf) {
+					$schedConfContent = $schedConf->getSetting('presenterInformation', true);
 				}
 				$pageTitle = 'navigation.infoForPresenters.long';
 				$pageCrumbTitle = 'navigation.infoForPresenters';
@@ -52,15 +52,15 @@ class InformationHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 
-		if($event) {
-			$templateMgr->assign('eventTitle', $event->getFullTitle());
+		if($schedConf) {
+			$templateMgr->assign('schedConfTitle', $schedConf->getFullTitle());
 		}
 		$templateMgr->assign('conferenceTitle', $conference->getTitle());
 
 		$templateMgr->assign('pageCrumbTitle', $pageCrumbTitle);
 		$templateMgr->assign('pageTitle', $pageTitle);
 		$templateMgr->assign('conferenceContent', $conferenceContent);
-		$templateMgr->assign('eventContent', $eventContent);
+		$templateMgr->assign('schedConfContent', $schedConfContent);
 		$templateMgr->display('information/information.tpl');
 	}
 

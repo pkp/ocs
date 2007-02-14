@@ -31,9 +31,9 @@ class EditorHandler extends TrackEditorHandler {
 		EditorHandler::setupTemplate(EDITOR_TRACK_HOME, false);
 
 		$templateMgr = &TemplateManager::getManager();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$editorSubmissionDao = &DAORegistry::getDAO('EditorSubmissionDAO');
-		$submissionsCount = &$editorSubmissionDao->getEditorSubmissionsCount($event->getEventId());
+		$submissionsCount = &$editorSubmissionDao->getEditorSubmissionsCount($schedConf->getSchedConfId());
 		$templateMgr->assign('submissionsCount', $submissionsCount);
 		$templateMgr->assign('helpTopicId', 'editorial.editorsRole');
 		$templateMgr->display('editor/index.tpl');
@@ -46,14 +46,14 @@ class EditorHandler extends TrackEditorHandler {
 		EditorHandler::validate();
 		EditorHandler::setupTemplate(EDITOR_TRACK_SUBMISSIONS, true);
 
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$user = &Request::getUser();
 
 		$editorSubmissionDao = &DAORegistry::getDAO('EditorSubmissionDAO');
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
-		$tracks = &$trackDao->getTrackTitles($event->getEventId());
+		$tracks = &$trackDao->getTrackTitles($schedConf->getSchedConfId());
 
 		// Get the user's search conditions, if any
 		$searchField = Request::getUserVar('searchField');
@@ -92,7 +92,7 @@ class EditorHandler extends TrackEditorHandler {
 		}
 
 		$submissions = &$editorSubmissionDao->$functionName(
-			$event->getEventId(),
+			$schedConf->getSchedConfId(),
 			Request::getUserVar('track'),
 			$searchField,
 			$searchMatch,
@@ -128,7 +128,7 @@ class EditorHandler extends TrackEditorHandler {
 		$templateMgr->assign('dateTo', $toDate);
 		$templateMgr->assign('fieldOptions', Array(
 			SUBMISSION_FIELD_TITLE => 'paper.title',
-			SUBMISSION_FIELD_AUTHOR => 'user.role.author',
+			SUBMISSION_FIELD_PRESENTER => 'user.role.presenter',
 			SUBMISSION_FIELD_EDITOR => 'user.role.editor',
 			SUBMISSION_FIELD_REVIEWER => 'user.role.reviewer',
 			SUBMISSION_FIELD_LAYOUTEDITOR => 'user.role.layoutEditor',
@@ -152,13 +152,13 @@ class EditorHandler extends TrackEditorHandler {
 	function setEditorFlags($args) {
 		EditorHandler::validate();
 
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$paperId = (int) Request::getUserVar('paperId');
 
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$paper =& $paperDao->getPaper($paperId);
 
-		if ($paper && $paper->getEventId() === $event->getEventId()) {
+		if ($paper && $paper->getSchedConfId() === $schedConf->getSchedConfId()) {
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($paperId);
 
@@ -184,7 +184,7 @@ class EditorHandler extends TrackEditorHandler {
 	function deleteEditAssignment($args) {
 		EditorHandler::validate();
 
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$editId = (int) (isset($args[0])?$args[0]:0);
 
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
@@ -194,7 +194,7 @@ class EditorHandler extends TrackEditorHandler {
 			$paperDao =& DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($editAssignment->getPaperId());
 
-			if ($paper && $paper->getEventId() === $event->getEventId()) {
+			if ($paper && $paper->getSchedConfId() === $schedConf->getSchedConfId()) {
 				$editAssignmentDao->deleteEditAssignmentById($editAssignment->getEditId());
 				Request::redirect(null, null, null, 'submission', $paper->getPaperId());
 			}
@@ -209,16 +209,16 @@ class EditorHandler extends TrackEditorHandler {
 	function assignEditor($args) {
 		EditorHandler::validate();
 
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$paperId = Request::getUserVar('paperId');
 		$editorId = Request::getUserVar('editorId');
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 
 		if (isset($editorId) && $editorId != null && (
-			$roleDao->roleExists($event->getConferenceId(), $event->getEventId(), $editorId, ROLE_ID_TRACK_EDITOR) ||
-			$roleDao->roleExists($event->getConferenceId(), $event->getEventId(), $editorId, ROLE_ID_EDITOR) ||
-			$roleDao->roleExists($event->getConferenceId(), 0, $editorId, ROLE_ID_TRACK_EDITOR) ||
-			$roleDao->roleExists($event->getConferenceId(), 0, $editorId, ROLE_ID_EDITOR))) {
+			$roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $editorId, ROLE_ID_TRACK_EDITOR) ||
+			$roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $editorId, ROLE_ID_EDITOR) ||
+			$roleDao->roleExists($schedConf->getConferenceId(), 0, $editorId, ROLE_ID_TRACK_EDITOR) ||
+			$roleDao->roleExists($schedConf->getConferenceId(), 0, $editorId, ROLE_ID_EDITOR))) {
 			// A valid track editor has already been chosen;
 			// either prompt with a modifiable email or, if this
 			// has been done, send the email and store the editor
@@ -253,10 +253,10 @@ class EditorHandler extends TrackEditorHandler {
 
 			if (isset($args[0]) && $args[0] === 'editor') {
 				$roleName = 'user.role.editor';
-				$editors = &$editorSubmissionDao->getUsersNotAssignedToPaper($event->getEventId(), $paperId, RoleDAO::getRoleIdFromPath('editor'), $searchType, $search, $searchMatch, $rangeInfo);
+				$editors = &$editorSubmissionDao->getUsersNotAssignedToPaper($schedConf->getSchedConfId(), $paperId, RoleDAO::getRoleIdFromPath('editor'), $searchType, $search, $searchMatch, $rangeInfo);
 			} else {
 				$roleName = 'user.role.trackEditor';
-				$editors = &$editorSubmissionDao->getUsersNotAssignedToPaper($event->getEventId(), $paperId, RoleDAO::getRoleIdFromPath('trackEditor'), $searchType, $search, $searchMatch, $rangeInfo);
+				$editors = &$editorSubmissionDao->getUsersNotAssignedToPaper($schedConf->getSchedConfId(), $paperId, RoleDAO::getRoleIdFromPath('trackEditor'), $searchType, $search, $searchMatch, $rangeInfo);
 			}
 
 			$templateMgr = &TemplateManager::getManager();
@@ -266,10 +266,10 @@ class EditorHandler extends TrackEditorHandler {
 			$templateMgr->assign('paperId', $paperId);
 
 			$trackDao = &DAORegistry::getDAO('TrackDAO');
-			$trackEditorTracks = &$trackDao->getEditorTracks($event->getEventId());
+			$trackEditorTracks = &$trackDao->getEditorTracks($schedConf->getSchedConfId());
 
 			$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-			$editorStatistics = $editAssignmentDao->getEditorStatistics($event->getEventId());
+			$editorStatistics = $editAssignmentDao->getEditorStatistics($schedConf->getSchedConfId());
 
 			$templateMgr->assign_by_ref('editorTracks', $trackEditorTracks);
 			$templateMgr->assign('editorStatistics', $editorStatistics);
@@ -299,14 +299,14 @@ class EditorHandler extends TrackEditorHandler {
 		EditorHandler::validate($paperId);
 		parent::setupTemplate(true);
 
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$paper = &$paperDao->getPaper($paperId);
 
 		$status = $paper->getStatus();
 
-		if ($paper->getEventId() == $event->getEventId() && ($status == SUBMISSION_STATUS_DECLINED || $status == SUBMISSION_STATUS_ARCHIVED)) {
+		if ($paper->getSchedConfId() == $schedConf->getSchedConfId() && ($status == SUBMISSION_STATUS_DECLINED || $status == SUBMISSION_STATUS_ARCHIVED)) {
 			// Delete paper files
 			import('file.PaperFileManager');
 			$paperFileManager = &new PaperFileManager($paperId);
@@ -320,22 +320,22 @@ class EditorHandler extends TrackEditorHandler {
 	}
 
 	/**
-	 * Validate that user is an editor in the selected event.
+	 * Validate that user is an editor in the selected conferences.
 	 * Redirects to user index page if not properly authenticated.
 	 */
 	function validate() {
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 
-		if(!isset($event) || !isset($conference)) {
+		if(!isset($schedConf) || !isset($conference)) {
 			Validation::redirectLogin();
 		}
 
-		if($event->getConferenceId() != $conference->getConferenceId()) {
+		if($schedConf->getConferenceId() != $conference->getConferenceId()) {
 			Validation::redirectLogin();
 		}
 
-		if (!Validation::isEditor($conference->getConferenceId(), $event->getEventId())) {
+		if (!Validation::isEditor($conference->getConferenceId(), $schedConf->getSchedConfId())) {
 			Validation::redirectLogin();
 		}
 	}
@@ -360,9 +360,9 @@ class EditorHandler extends TrackEditorHandler {
 		if ($showSidebar) {
 			$templateMgr->assign('sidebarTemplate', 'editor/navsidebar.tpl');
 
-			$event = &Request::getEvent();
+			$schedConf = &Request::getSchedConf();
 			$editorSubmissionDao = &DAORegistry::getDAO('EditorSubmissionDAO');
-			$submissionsCount = &$editorSubmissionDao->getEditorSubmissionsCount($event->getEventId());
+			$submissionsCount = &$editorSubmissionDao->getEditorSubmissionsCount($schedConf->getSchedConfId());
 			$templateMgr->assign('submissionsCount', $submissionsCount);
 		}
 	}

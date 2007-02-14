@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="director.people"}
+{assign var="pageTitle" value="manager.people"}
 {include file="common/header.tpl"}
 
 <h3>{translate key="user.profile"}: {$user->getFullName()|escape}</h3>

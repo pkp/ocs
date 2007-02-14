@@ -15,7 +15,7 @@
 
 <ul class="menu">
 	<li><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>
-	{if $eventSettings.reviewPapers}
+	{if $schedConfSettings.reviewPapers}
 		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:1}">
 			{translate key="submission.abstractReview"}</a>
 		</li>

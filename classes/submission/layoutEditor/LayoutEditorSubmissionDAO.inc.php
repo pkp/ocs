@@ -45,14 +45,14 @@ class LayoutEditorSubmissionDAO extends DAO {
 	 * @param $paperId int
 	 * @return LayoutEditorSubmission
 	 */
-	function &getSubmission($paperId, $eventId =  null) {
-		if (isset($eventId)) {
+	function &getSubmission($paperId, $schedConfId =  null) {
+		if (isset($schedConfId)) {
 			$result = &$this->retrieve(
 				'SELECT a.*, s.title AS track_title, s.title_alt1 AS track_title_alt1, s.title_alt2 AS track_title_alt2, s.abbrev AS track_abbrev, s.abbrev_alt1 AS track_abbrev_alt1, s.abbrev_alt2 AS track_abbrev_alt2
 				FROM papers a
 				LEFT JOIN tracks s ON s.track_id = a.track_id
-				WHERE paper_id = ? AND a.event_id = ?',
-				array($paperId, $eventId)
+				WHERE paper_id = ? AND a.sched_conf_id = ?',
+				array($paperId, $schedConfId)
 			);
 			
 		} else {
@@ -114,7 +114,7 @@ class LayoutEditorSubmissionDAO extends DAO {
 	/**
 	 * Get set of layout editing assignments assigned to the specified layout editor.
 	 * @param $editorId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $searchField int SUBMISSION_FIELD_... constant
 	 * @param $searchMatch String 'is' or 'contains'
 	 * @param $search String Search string
@@ -124,8 +124,8 @@ class LayoutEditorSubmissionDAO extends DAO {
 	 * @param $active boolean true to select active assignments, false to select completed assignments
 	 * @return array LayoutEditorSubmission
 	 */
-	function &getSubmissions($editorId, $eventId = null, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $active = true, $rangeInfo = null) {
-		if (isset($eventId)) $params = array($editorId, $eventId);
+	function &getSubmissions($editorId, $schedConfId = null, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $active = true, $rangeInfo = null) {
+		if (isset($schedConfId)) $params = array($editorId, $schedConfId);
 		else $params = array($editorId);
 
 		$searchSql = '';
@@ -140,7 +140,7 @@ class LayoutEditorSubmissionDAO extends DAO {
 				}
 				$params[] = $params[] = $params[] = $search;
 				break;
-			case SUBMISSION_FIELD_AUTHOR:
+			case SUBMISSION_FIELD_PRESENTER:
 				$first_last = $this->_dataSource->Concat('aa.first_name', '\' \'', 'aa.last_name');
 				$first_middle_last = $this->_dataSource->Concat('aa.first_name', '\' \'', 'aa.middle_name', '\' \'', 'aa.last_name');
 				$last_comma_first = $this->_dataSource->Concat('aa.last_name', '\', \'', 'aa.first_name');
@@ -199,14 +199,14 @@ class LayoutEditorSubmissionDAO extends DAO {
 				s.abbrev_alt2 AS track_abbrev_alt2
 			FROM
 				papers a
-			INNER JOIN paper_authors aa ON (aa.paper_id = a.paper_id)
+			INNER JOIN paper_presenters aa ON (aa.paper_id = a.paper_id)
 			INNER JOIN layouted_assignments l ON (l.paper_id = a.paper_id)
 			LEFT JOIN tracks s ON s.track_id = a.track_id
 			LEFT JOIN edit_assignments e ON (e.paper_id = a.paper_id)
 			LEFT JOIN users ed ON (e.editor_id = ed.user_id)
 			WHERE
 				l.editor_id = ? AND
-				' . (isset($eventId)?'a.event_id = ? AND':'') . '
+				' . (isset($schedConfId)?'a.sched_conf_id = ? AND':'') . '
 				l.date_notified IS NOT NULL';
 		
 		if ($active) {
@@ -228,16 +228,16 @@ class LayoutEditorSubmissionDAO extends DAO {
 	/**
 	 * Get count of active and complete assignments
 	 * @param editorId int
-	 * @param eventId int
+	 * @param schedConfId int
 	 */
-	function getSubmissionsCount($editorId, $eventId) {
+	function getSubmissionsCount($editorId, $schedConfId) {
 		$submissionsCount = array();
 		$submissionsCount[0] = 0;
 		$submissionsCount[1] = 0;
 
-		$sql = 'SELECT l.date_completed FROM papers a NATURAL JOIN layouted_assignments l LEFT JOIN tracks s ON s.track_id = a.track_id WHERE l.editor_id = ? AND a.event_id = ? AND l.date_notified IS NOT NULL';
+		$sql = 'SELECT l.date_completed FROM papers a NATURAL JOIN layouted_assignments l LEFT JOIN tracks s ON s.track_id = a.track_id WHERE l.editor_id = ? AND a.sched_conf_id = ? AND l.date_notified IS NOT NULL';
 
-		$result = &$this->retrieve($sql, array($editorId, $eventId));
+		$result = &$this->retrieve($sql, array($editorId, $schedConfId));
 		while (!$result->EOF) {
 			if ($result->fields['date_completed'] == null) {
 				$submissionsCount[0] += 1;

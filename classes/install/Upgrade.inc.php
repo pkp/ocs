@@ -54,16 +54,16 @@ class Upgrade extends Installer {
 	function designateReviewVersions() {
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-		import('submission.author.AuthorAction');
+		$presenterSubmissionDao =& DAORegistry::getDAO('PresenterSubmissionDAO');
+		import('submission.presenter.PresenterAction');
 
 		$conferences =& $conferenceDao->getConferences();
 		while ($conference =& $conferences->next()) {
 			$papers =& $paperDao->getPapersByConferenceId($conference->getConferenceId());
 			while ($paper =& $papers->next()) {
 				if (!$paper->getReviewFileId() && $paper->getSubmissionProgress() == 0) {
-					$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($paper->getPaperId());
-					AuthorAction::designateReviewVersion($authorSubmission, true);
+					$presenterSubmission =& $presenterSubmissionDao->getPresenterSubmission($paper->getPaperId());
+					PresenterAction::designateReviewVersion($presenterSubmission, true);
 				}
 				unset($paper);
 			}
@@ -90,10 +90,10 @@ class Upgrade extends Installer {
 			$rt->setViewMetadata($row['view_metadata']);
 			$rt->setSupplementaryFiles($row['supplementary_files']);
 			$rt->setPrinterFriendly($row['printer_friendly']);
-			$rt->setAuthorBio($row['author_bio']);
+			$rt->setPresenterBio($row['presenter_bio']);
 			$rt->setDefineTerms($row['define_terms']);
 			$rt->setAddComment($row['add_comment']);
-			$rt->setEmailAuthor($row['email_author']);
+			$rt->setEmailPresenter($row['email_presenter']);
 			$rt->setEmailOthers($row['email_others']);
 			$rtDao->updateConferenceRT($rt);
 			unset($rt);

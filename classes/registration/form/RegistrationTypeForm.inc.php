@@ -8,7 +8,7 @@
  *
  * @package registration.form
  *
- * Form for event directors to create/edit registration types.
+ * Form for scheduled conference managers to create/edit registration types.
  *
  * $Id$
  */
@@ -33,9 +33,9 @@ class RegistrationTypeForm extends Form {
 	function RegistrationTypeForm($typeId = null) {
 
 		$this->validAccessTypes = array (
-			REGISTRATION_TYPE_ACCESS_ONLINE => Locale::translate('director.registrationTypes.access.online'),
-			REGISTRATION_TYPE_ACCESS_PHYSICAL => Locale::translate('director.registrationTypes.access.physical'),
-			REGISTRATION_TYPE_ACCESS_BOTH => Locale::translate('director.registrationTypes.access.both')
+			REGISTRATION_TYPE_ACCESS_ONLINE => Locale::translate('manager.registrationTypes.access.online'),
+			REGISTRATION_TYPE_ACCESS_PHYSICAL => Locale::translate('manager.registrationTypes.access.physical'),
+			REGISTRATION_TYPE_ACCESS_BOTH => Locale::translate('manager.registrationTypes.access.both')
 		);
 
 		$currencyDao = &DAORegistry::getDAO('CurrencyDAO');
@@ -46,48 +46,48 @@ class RegistrationTypeForm extends Form {
 		}
 
 		$this->typeId = isset($typeId) ? (int) $typeId : null;
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 
 		parent::Form('registration/registrationTypeForm.tpl');
 	
 		// Type name is provided
-		$this->addCheck(new FormValidator($this, 'typeName', 'required', 'director.registrationTypes.form.typeNameRequired'));
+		$this->addCheck(new FormValidator($this, 'typeName', 'required', 'manager.registrationTypes.form.typeNameRequired'));
 
-		// Type name does not already exist for this event
+		// Type name does not already exist for this scheduled conference
 		if ($this->typeId == null) {
-			$this->addCheck(new FormValidatorCustom($this, 'typeName', 'required', 'director.registrationTypes.form.typeNameExists', array(DAORegistry::getDAO('RegistrationTypeDAO'), 'registrationTypeExistsByTypeName'), array($event->getEventId()), true));
+			$this->addCheck(new FormValidatorCustom($this, 'typeName', 'required', 'manager.registrationTypes.form.typeNameExists', array(DAORegistry::getDAO('RegistrationTypeDAO'), 'registrationTypeExistsByTypeName'), array($schedConf->getSchedConfId()), true));
 		} else {
-			$this->addCheck(new FormValidatorCustom($this, 'typeName', 'required', 'director.registrationTypes.form.typeNameExists', create_function('$typeName, $eventId, $typeId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); $checkId = $registrationTypeDao->getRegistrationTypeByTypeName($typeName, $eventId); return ($checkId == 0 || $checkId == $typeId) ? true : false;'), array($event->getEventId(), $this->typeId)));
+			$this->addCheck(new FormValidatorCustom($this, 'typeName', 'required', 'manager.registrationTypes.form.typeNameExists', create_function('$typeName, $schedConfId, $typeId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); $checkId = $registrationTypeDao->getRegistrationTypeByTypeName($typeName, $schedConfId); return ($checkId == 0 || $checkId == $typeId) ? true : false;'), array($schedConf->getSchedConfId(), $this->typeId)));
 		}
 
 		// Cost	is provided and is numeric and positive	
-		$this->addCheck(new FormValidator($this, 'cost', 'required', 'director.registrationTypes.form.costRequired'));	
-		$this->addCheck(new FormValidatorCustom($this, 'cost', 'required', 'director.registrationTypes.form.costNumeric', create_function('$cost', 'return (is_numeric($cost) && $cost >= 0);')));
+		$this->addCheck(new FormValidator($this, 'cost', 'required', 'manager.registrationTypes.form.costRequired'));	
+		$this->addCheck(new FormValidatorCustom($this, 'cost', 'required', 'manager.registrationTypes.form.costNumeric', create_function('$cost', 'return (is_numeric($cost) && $cost >= 0);')));
 
 		// Currency is provided and is valid value
-		$this->addCheck(new FormValidator($this, 'currency', 'required', 'director.registrationTypes.form.currencyRequired'));	
-		$this->addCheck(new FormValidatorInSet($this, 'currency', 'required', 'director.registrationTypes.form.currencyValid', array_keys($this->validCurrencies)));
+		$this->addCheck(new FormValidator($this, 'currency', 'required', 'manager.registrationTypes.form.currencyRequired'));	
+		$this->addCheck(new FormValidatorInSet($this, 'currency', 'required', 'manager.registrationTypes.form.currencyValid', array_keys($this->validCurrencies)));
 
 		// TODO: Opening date is valid
-		/*$this->addCheck(new FormValidator($this, 'openDate', 'required', 'director.registrationTypes.form.openDateRequired'));	
-		$this->addCheck(new FormValidatorCustom($this, 'openDate', 'required', 'director.registrationTypes.form.durationNumeric', create_function('$duration', 'return (is_numeric($duration) && $duration >= 0);')));*/
+		/*$this->addCheck(new FormValidator($this, 'openDate', 'required', 'manager.registrationTypes.form.openDateRequired'));	
+		$this->addCheck(new FormValidatorCustom($this, 'openDate', 'required', 'manager.registrationTypes.form.durationNumeric', create_function('$duration', 'return (is_numeric($duration) && $duration >= 0);')));*/
 
 		// TODO: Closing date is valid and occurs after the opening date
-		/*$this->addCheck(new FormValidator($this, 'closeDate', 'required', 'director.registrationTypes.form.closeDateRequired'));	
-		$this->addCheck(new FormValidatorCustom($this, 'closeDate', 'required', 'director.registrationTypes.form.durationNumeric', create_function('$duration', 'return (is_numeric($duration) && $duration >= 0);')));*/
+		/*$this->addCheck(new FormValidator($this, 'closeDate', 'required', 'manager.registrationTypes.form.closeDateRequired'));	
+		$this->addCheck(new FormValidatorCustom($this, 'closeDate', 'required', 'manager.registrationTypes.form.durationNumeric', create_function('$duration', 'return (is_numeric($duration) && $duration >= 0);')));*/
 
 		// Access type is provided and is valid value
-		$this->addCheck(new FormValidator($this, 'access', 'required', 'director.registrationTypes.form.accessRequired'));	
-		$this->addCheck(new FormValidatorInSet($this, 'access', 'required', 'director.registrationTypes.form.accessValid', array_keys($this->validAccessTypes)));
+		$this->addCheck(new FormValidator($this, 'access', 'required', 'manager.registrationTypes.form.accessRequired'));	
+		$this->addCheck(new FormValidatorInSet($this, 'access', 'required', 'manager.registrationTypes.form.accessValid', array_keys($this->validAccessTypes)));
 
 		// Institutional flag is valid value
-		$this->addCheck(new FormValidatorInSet($this, 'institutional', 'optional', 'director.registrationTypes.form.institutionalValid', array('1')));
+		$this->addCheck(new FormValidatorInSet($this, 'institutional', 'optional', 'manager.registrationTypes.form.institutionalValid', array('1')));
 
 		// Membership flag is valid value
-		$this->addCheck(new FormValidatorInSet($this, 'membership', 'optional', 'director.registrationTypes.form.membershipValid', array('1')));
+		$this->addCheck(new FormValidatorInSet($this, 'membership', 'optional', 'manager.registrationTypes.form.membershipValid', array('1')));
 
 		// Public flag is valid value
-		$this->addCheck(new FormValidatorInSet($this, 'public', 'optional', 'director.registrationTypes.form.publicValid', array('1')));
+		$this->addCheck(new FormValidatorInSet($this, 'public', 'optional', 'manager.registrationTypes.form.publicValid', array('1')));
 	}
 	
 	/**
@@ -99,7 +99,7 @@ class RegistrationTypeForm extends Form {
 		$templateMgr->assign('typeId', $this->typeId);
 		$templateMgr->assign('validCurrencies', $this->validCurrencies);
 		$templateMgr->assign('validAccessTypes', $this->validAccessTypes);
-		$templateMgr->assign('helpTopicId', 'event.managementPages.registrations');
+		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
 	
 		parent::display();
 	}
@@ -148,7 +148,7 @@ class RegistrationTypeForm extends Form {
 	 */
 	function execute() {
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 	
 		if (isset($this->typeId)) {
 			$registrationType = &$registrationTypeDao->getRegistrationType($this->typeId);
@@ -158,7 +158,7 @@ class RegistrationTypeForm extends Form {
 			$registrationType = &new RegistrationType();
 		}
 		
-		$registrationType->setEventId($event->getEventId());
+		$registrationType->setSchedConfId($schedConf->getSchedConfId());
 		$registrationType->setTypeName($this->getData('typeName'));
 		$registrationType->setDescription($this->getData('description'));
 		$registrationType->setCost(round($this->getData('cost'), 2));
@@ -181,7 +181,7 @@ class RegistrationTypeForm extends Form {
 			$registrationTypeDao->insertRegistrationType($registrationType);
 
 			// Re-order the registration types so the new one is at the end of the list.
-			$registrationTypeDao->resequenceRegistrationTypes($registrationType->getEventId());
+			$registrationTypeDao->resequenceRegistrationTypes($registrationType->getSchedConfId());
 		}
 	}
 	

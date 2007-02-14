@@ -78,19 +78,19 @@ class ConferenceEventLogEntry extends DataObject {
 	}
 	
 	/**
-	 * Get ID of event.
+	 * Get ID of sched conf.
 	 * @return int
 	 */
-	function getEventId() {
-		return $this->getData('eventId');
+	function getSchedConfId() {
+		return $this->getData('schedConfId');
 	}
 	
 	/**
-	 * Set ID of event.
-	 * @param $eventId int
+	 * Set ID of sched conf.
+	 * @param $schedConfId int
 	 */
-	function setEventId($eventId) {
-		return $this->setData('eventId', $eventId);
+	function setSchedConfId($schedConfId) {
+		return $this->setData('schedConfId', $schedConfId);
 	}
 	
 	/**
@@ -293,7 +293,7 @@ class ConferenceEventLogEntry extends DataObject {
 	 */
 	function getAssocTypeString() {
 		switch ($this->getData('assocType')) {
-			case LOG_TYPE_AUTHOR:
+			case LOG_TYPE_PRESENTER:
 				return 'AUT';
 			case LOG_TYPE_EDITOR:
 				return 'EDR';
@@ -310,8 +310,8 @@ class ConferenceEventLogEntry extends DataObject {
 	 */
 	function getAssocTypeLongString() {
 		switch ($this->getData('assocType')) {
-			case LOG_TYPE_AUTHOR:
-				return 'event.logType.author';
+			case LOG_TYPE_PRESENTER:
+				return 'event.logType.presenter';
 			case LOG_TYPE_EDITOR:
 				return 'event.logType.editor';
 			case LOG_TYPE_REVIEW:

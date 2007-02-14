@@ -23,20 +23,20 @@ class AboutHandler extends Handler {
 		
 		$templateMgr = &TemplateManager::getManager();
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$eventDao = &DAORegistry::getDAO('EventDAO');
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$conferencePath = Request::getRequestedConferencePath();
 				
 		if ($conferencePath != 'index' && $conferenceDao->conferenceExistsByPath($conferencePath)) {
-			$event =& Request::getEvent();
+			$schedConf =& Request::getSchedConf();
 			$conference =& Request::getConference();
 			
-			if($event) {
-				$templateMgr->assign('showAboutEvent', true);
-				$settings = $event->getSettings(true);
+			if($schedConf) {
+				$templateMgr->assign('showAboutSchedConf', true);
+				$settings = $schedConf->getSettings(true);
 			} else {
-				$templateMgr->assign('showAboutEvent', false);
+				$templateMgr->assign('showAboutSchedConf', false);
 				$settings = $conference->getSettings();
-				$templateMgr->assign_by_ref('currentEvents', $eventDao->getCurrentEvents($conference->getConferenceId()));
+				$templateMgr->assign_by_ref('currentSchedConfs', $schedConfDao->getCurrentSchedConfs($conference->getConferenceId()));
 			}
 			
 			$customAboutItems = &$settings['customAboutItems'];
@@ -83,10 +83,10 @@ class AboutHandler extends Handler {
 		
 		AboutHandler::setupTemplate(true);
 		
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$conference =& Request::getConference();
 		
-		$settings = ($event? $event->getSettings(true):$conference->getSettings());	
+		$settings = ($schedConf? $schedConf->getSettings(true):$conference->getSettings());	
 		$templateMgr = &TemplateManager::getManager();
 		
 		$templateMgr->assign_by_ref('conferenceSettings', $settings);
@@ -101,13 +101,13 @@ class AboutHandler extends Handler {
 		AboutHandler::setupTemplate(true);
 
 		$conference =& Request::getConference();
-		$event =& Request::getEvent();
+		$schedConf =& Request::getSchedConf();
 		
 		$conferenceId = $conference->getConferenceId();
-		$eventId = ($event? $event->getEventId():-1);
+		$schedConfId = ($schedConf? $schedConf->getSchedConfId():-1);
 
-		if($event)
-			$settings = $event->getSettings(true);
+		if($schedConf)
+			$settings = $schedConf->getSettings(true);
 		else
 			$settings =& $conference->getSettings();
 
@@ -124,10 +124,10 @@ class AboutHandler extends Handler {
 			// Organizing Team information using Role info.
 			$roleDao = &DAORegistry::getDAO('RoleDAO');
 
-			$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId(), $eventId);
+			$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId(), $schedConfId);
 			$editors = &$editors->toArray();
 
-			$trackEditors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_EDITOR, $conference->getConferenceId(), $eventId);
+			$trackEditors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_EDITOR, $conference->getConferenceId(), $schedConfId);
 			$trackEditors = &$trackEditors->toArray();
 		
 			$templateMgr->assign_by_ref('editors', $editors);
@@ -139,7 +139,7 @@ class AboutHandler extends Handler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 
-			$allGroups =& $groupDao->getGroups($conference->getConferenceId(), $event->getEventId());
+			$allGroups =& $groupDao->getGroups($conference->getConferenceId(), $schedConf->getSchedConfId());
 			$teamInfo = array();
 			$groups = array();
 			while ($group =& $allGroups->next()) {
@@ -164,7 +164,7 @@ class AboutHandler extends Handler {
 	 * Display a biography for an organizing team member.
 	 */
 	function organizingTeamBio($args) {
-		list($conference, $event) = parent::validate(true);
+		list($conference, $schedConf) = parent::validate(true);
 		
 		AboutHandler::setupTemplate(true);
 		
@@ -181,12 +181,12 @@ class AboutHandler extends Handler {
 
 		// FIXME: This is pretty inefficient. Should be cached.
 		
-		if($event) {
-			$settings = $event->getSettings(true);
-			$eventId = $event->getEventId();
+		if($schedConf) {
+			$settings = $schedConf->getSettings(true);
+			$schedConfId = $schedConf->getSchedConfId();
 		} else {
 			$settings = $conference->getSettings();
-			$eventId = 0;
+			$schedConfId = 0;
 		}
 
 		$user = null;
@@ -207,7 +207,7 @@ class AboutHandler extends Handler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 
-			$allGroups =& $groupDao->getGroups($conference->getConferenceId(), $eventId);
+			$allGroups =& $groupDao->getGroups($conference->getConferenceId(), $schedConfId);
 			while ($group =& $allGroups->next()) {
 				if (!$group->getAboutDisplayed()) continue;
 				$allMemberships =& $groupMembershipDao->getMemberships($group->getGroupId());
@@ -243,15 +243,15 @@ class AboutHandler extends Handler {
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$trackEditorsDao = &DAORegistry::getDAO('TrackEditorsDAO');
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$conference =& Request::getConference();
 				
 		$templateMgr = &TemplateManager::getManager();
-		$settings = ($event? $event->getSettings(true): $conference->getSettings());
+		$settings = ($schedConf? $schedConf->getSettings(true): $conference->getSettings());
 		
 		$templateMgr->assign_by_ref('conferenceSettings', $settings);
-		if($event) {
-			$tracks = &$trackDao->getEventTracks($event->getConferenceId());
+		if($schedConf) {
+			$tracks = &$trackDao->getSchedConfTracks($schedConf->getConferenceId());
 			$tracks = &$tracks->toArray();
 		} else {
 			$tracks = array();
@@ -278,16 +278,16 @@ class AboutHandler extends Handler {
 		$conferenceDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$conference = &Request::getConference();
 
-		$registrationName = &$event->getSetting('registrationName', true);
-		$registrationEmail = &$event->getSetting('registrationEmail', true);
-		$registrationPhone = &$event->getSetting('registrationPhone', true);
-		$registrationFax = &$event->getSetting('registrationFax', true);
-		$registrationMailingAddress = &$event->getSetting('registrationMailingAddress', true);
-		$registrationAdditionalInformation = &$event->getSetting('registrationAdditionalInformation', true);
-		$registrationTypes = &$registrationTypeDao->getRegistrationTypesByEventId($event->getEventId());
+		$registrationName = &$schedConf->getSetting('registrationName', true);
+		$registrationEmail = &$schedConf->getSetting('registrationEmail', true);
+		$registrationPhone = &$schedConf->getSetting('registrationPhone', true);
+		$registrationFax = &$schedConf->getSetting('registrationFax', true);
+		$registrationMailingAddress = &$schedConf->getSetting('registrationMailingAddress', true);
+		$registrationAdditionalInformation = &$schedConf->getSetting('registrationAdditionalInformation', true);
+		$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('registrationName', $registrationName);
@@ -309,9 +309,9 @@ class AboutHandler extends Handler {
 		AboutHandler::setupTemplate(true);
 
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		
-		$settings = ($event? $event->getSettings(true):$conference->getSettings());
+		$settings = ($schedConf? $schedConf->getSettings(true):$conference->getSettings());
 				
 		$templateMgr = &TemplateManager::getManager();
 		if (isset($settings['submissionChecklist']) && count($settings['submissionChecklist']) > 0) {
@@ -319,7 +319,7 @@ class AboutHandler extends Handler {
 			reset($settings['submissionChecklist']);
 		}
 		$templateMgr->assign_by_ref('conferenceSettings', $settings);
-		$templateMgr->assign('helpTopicId','submission.authorGuidelines');
+		$templateMgr->assign('helpTopicId','submission.presenterGuidelines');
 		$templateMgr->display('about/submissions.tpl');
 	}
 
@@ -332,7 +332,7 @@ class AboutHandler extends Handler {
 		AboutHandler::setupTemplate(true);
 
 		$conference =& Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$templateMgr = &TemplateManager::getManager();
 
 		$contributors = array();
@@ -348,13 +348,13 @@ class AboutHandler extends Handler {
 			if (!is_array($sponsors)) $sponsors = array();
 		}
 
-		if($event) {
-			$contributorNote = $event->getSetting('contributorNote', true);
-			$contributors = array_merge($contributors, $event->getSetting('contributors', false));
+		if($schedConf) {
+			$contributorNote = $schedConf->getSetting('contributorNote', true);
+			$contributors = array_merge($contributors, $schedConf->getSetting('contributors', false));
 			if (!is_array($contributors)) $contributors = array();
 
-			$sponsorNote = $event->getSetting('sponsorNote', true);
-			$sponsors = array_merge($sponsors, $event->getSetting('sponsors', false));
+			$sponsorNote = $schedConf->getSetting('sponsorNote', true);
+			$sponsors = array_merge($sponsors, $schedConf->getSetting('sponsors', false));
 			if (!is_array($sponsors)) $sponsors = array();
 		}
 
@@ -464,7 +464,7 @@ class AboutHandler extends Handler {
 		$issueStatistics = $conferenceStatisticsDao->getIssueStatistics($conference->getConferenceId(), $fromDate, $toDate);
 		$templateMgr->assign('issueStatistics', $issueStatistics);
 
-		$reviewerStatistics = $conferenceStatisticsDao->getReviewerStatistics($event->getEventId(), $trackIds, $fromDate, $toDate);
+		$reviewerStatistics = $conferenceStatisticsDao->getReviewerStatistics($schedConf->getSchedConfId(), $trackIds, $fromDate, $toDate);
 		$templateMgr->assign('reviewerStatistics', $reviewerStatistics);
 
 		$allUserStatistics = $conferenceStatisticsDao->getUserStatistics($conference->getConferenceId(), null, $toDate);
@@ -491,8 +491,8 @@ class AboutHandler extends Handler {
 	}
 
 	function getPublicStatisticsNames() {
-		import ('pages.director.DirectorHandler');
-		import ('pages.director.StatisticsHandler');
+		import ('pages.manager.ManagerHandler');
+		import ('pages.manager.StatisticsHandler');
 		return StatisticsHandler::getPublicStatisticsNames();
 	}
 

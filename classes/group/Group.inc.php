@@ -124,19 +124,19 @@ class Group extends DataObject {
 	}
 	
 	/**
-	 * Get ID of event this group belongs to.
+	 * Get ID of scheduled conference this group belongs to.
 	 * @return int
 	 */
-	function getEventId() {
-		return $this->getData('eventId');
+	function getSchedConfId() {
+		return $this->getData('schedConfId');
 	}
 	
 	/**
-	 * Set ID of event this group belongs to.
-	 * @param $eventId int
+	 * Set ID of scheduled conference this group belongs to.
+	 * @param $schedConfId int
 	 */
-	function setEventId($eventId) {
-		return $this->setData('eventId', $eventId);
+	function setSchedConfId($schedConfId) {
+		return $this->setData('schedConfId', $schedConfId);
 	}
 	
 	/**

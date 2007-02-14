@@ -24,13 +24,13 @@
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.eventStartsOn"}</td>
+		<td width="50%" class="label">{translate key="director.timeline.schedConfStartsOn"}</td>
 		<td width="50%" class="value">
 			{$startDate|date_format:$dateFormatLong}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.eventEndsOn"}</td>
+		<td width="50%" class="label">{translate key="director.timeline.schedConfEndsOn"}</td>
 		<td width="50%" class="value">
 			{$endDate|date_format:$dateFormatLong}
 		</td>
@@ -43,13 +43,13 @@
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.eventAppearsOn"}</td>
+		<td width="50%" class="label">{translate key="director.timeline.schedConfAppearsOn"}</td>
 		<td width="50%" class="value">
 			{$siteStartDate|date_format:$dateFormatLong}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.eventArchivedOn"}</td>
+		<td width="50%" class="label">{translate key="director.timeline.schedConfArchivedOn"}</td>
 		<td width="50%" class="value">
 			{$siteEndDate|date_format:$dateFormatLong}
 		</td>
@@ -62,15 +62,15 @@
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.openRegAuthor"}</td>
+		<td width="50%" class="label">{translate key="director.timeline.openRegPresenter"}</td>
 		<td width="50%" class="value">
-			{$regAuthorOpenDate|date_format:$dateFormatLong}
+			{$regPresenterOpenDate|date_format:$dateFormatLong}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.closeRegAuthor"}</td>
+		<td width="50%" class="label">{translate key="director.timeline.closeRegPresenter"}</td>
 		<td width="50%" class="value">
-			{$regAuthorCloseDate|date_format:$dateFormatLong}
+			{$regPresenterCloseDate|date_format:$dateFormatLong}
 		</td>
 	<tr valign="top">
 		<td width="50%" class="label">{translate key="director.timeline.showCFP"}</td>

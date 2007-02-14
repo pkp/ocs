@@ -24,12 +24,12 @@ class RTHandler extends PaperHandler {
 	function bio($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $event, $paper) = RTHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
 
-		if (!$conferenceRt || $conferenceRt->getVersion()==null || !$conferenceRt->getAuthorBio()) {
+		if (!$conferenceRt || $conferenceRt->getVersion()==null || !$conferenceRt->getPresenterBio()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -43,7 +43,7 @@ class RTHandler extends PaperHandler {
 	function metadata($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $event, $paper) = RTHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
@@ -60,10 +60,10 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign_by_ref('conferenceRt', $conferenceRt);
 		$templateMgr->assign_by_ref('paper', $paper);
-		$templateMgr->assign_by_ref('event', $event);
+		$templateMgr->assign_by_ref('schedConf', $schedConf);
 		$templateMgr->assign_by_ref('track', $track);
-		if($event)
-			$templateMgr->assign_by_ref('conferenceSettings', $event->getSettings(true));
+		if($schedConf)
+			$templateMgr->assign_by_ref('conferenceSettings', $schedConf->getSettings(true));
 		else
 			$templateMgr->assign_by_ref('conferenceSettings', $conference->getSettings());
 		$templateMgr->display('rt/metadata.tpl');
@@ -74,7 +74,7 @@ class RTHandler extends PaperHandler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$contextId = Isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $event, $paper) = RTHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
@@ -91,7 +91,7 @@ class RTHandler extends PaperHandler {
 		// with a minimum of client-side processing.
 		$searches = array();
 		// Some searches use parameters other than the "default" for
-		// the search (i.e. keywords, author name, etc). If additional
+		// the search (i.e. keywords, presenter name, etc). If additional
 		// parameters are used, they should be displayed as part of the
 		// form for ALL searches in that context.
 		$searchParams = array();
@@ -121,8 +121,8 @@ class RTHandler extends PaperHandler {
 		$searchValues = array();
 
 		foreach ($searchParams as $key => $param) switch ($param) {
-			case 'author':
-				$searchValues[$param] = $paper->getAuthorString();
+			case 'presenter':
+				$searchValues[$param] = $paper->getPresenterString();
 				break;
 			case 'coverageGeo':
 				$searchValues[$param] = $paper->getCoverageGeo();
@@ -157,7 +157,7 @@ class RTHandler extends PaperHandler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$citeType = isset($args[2]) ? $args[2] : null;
 
-		list($conference, $event, $paper) = RTHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
@@ -171,7 +171,7 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign_by_ref('conferenceRt', $conferenceRt);
 		$templateMgr->assign_by_ref('conference', $conference);
-		$templateMgr->assign_by_ref('event', $event);
+		$templateMgr->assign_by_ref('schedConf', $schedConf);
 		$templateMgr->assign_by_ref('paper', $paper);
 		$templateMgr->assign('bibFormat', $conferenceRt->getBibFormat());
 		$templateMgr->assign_by_ref('conferenceSettings', $conference->getSettings());
@@ -199,7 +199,7 @@ class RTHandler extends PaperHandler {
 	function printerFriendly($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $event, $paper) = RTHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
@@ -218,7 +218,7 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign_by_ref('galley', $galley);
 		$templateMgr->assign_by_ref('paper', $paper);
 		$templateMgr->assign_by_ref('track', $track);
-		$templateMgr->assign_by_ref('event', $event);
+		$templateMgr->assign_by_ref('schedConf', $schedConf);
 		$templateMgr->assign_by_ref('conference', $conference);
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
@@ -229,7 +229,7 @@ class RTHandler extends PaperHandler {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		list($conference, $event, $paper) = RTHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
@@ -249,14 +249,14 @@ class RTHandler extends PaperHandler {
 			$templateMgr->display('rt/sent.tpl');
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$primaryAuthor = $paper->getAuthors();
-				$primaryAuthor = $primaryAuthor[0];
+				$primaryPresenter = $paper->getPresenters();
+				$primaryPresenter = $primaryPresenter[0];
 
 				$email->setSubject('[' . $conference->getSetting('conferenceAcronym') . '] ' . strip_tags($paper->getPaperTitle()));
 				$email->assignParams(array(
 					'paperTitle' => strip_tags($paper->getPaperTitle()),
-					'event' => $event->getTitle(),
-					'authorName' => $primaryAuthor->getFullName(),
+					'schedConf' => $schedConf->getTitle(),
+					'presenterName' => $primaryPresenter->getFullName(),
 					'paperUrl' => Request::url(null, null, 'paper', 'view', $paper->getBestPaperId())
 				));
 			}
@@ -264,18 +264,18 @@ class RTHandler extends PaperHandler {
 		}
 	}
 
-	function emailAuthor($args) {
+	function emailPresenter($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
-		list($conference, $event, $paper) = RTHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
 		$user = &Request::getUser();
 
 		// FIXME: no RT versions, but RT enabled -- this dies...?
-		if (!$conferenceRt || $conferenceRt->getVersion()==null || !$conferenceRt->getEmailAuthor() || !$user) {
+		if (!$conferenceRt || $conferenceRt->getVersion()==null || !$conferenceRt->getEmailPresenter() || !$user) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -290,11 +290,11 @@ class RTHandler extends PaperHandler {
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->setSubject('[' . $conference->getSetting('conferenceAcronym') . '] ' . strip_tags($paper->getPaperTitle()));
-				$authors = &$paper->getAuthors();
-				$author = &$authors[0];
-				$email->addRecipient($author->getEmail(), $author->getFullName());
+				$presenters = &$paper->getPresenters();
+				$presenter = &$presenters[0];
+				$email->addRecipient($presenter->getEmail(), $presenter->getFullName());
 			}
-			$email->displayEditForm(Request::url(null, null, null, 'emailAuthor', array($paperId, $galleyId)), null, 'rt/email.tpl', array('op' => 'emailAuthor'));
+			$email->displayEditForm(Request::url(null, null, null, 'emailPresenter', array($paperId, $galleyId)), null, 'rt/email.tpl', array('op' => 'emailPresenter'));
 		}
 	}
 
@@ -304,7 +304,7 @@ class RTHandler extends PaperHandler {
 	function suppFiles($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $event, $paper) = RTHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
@@ -326,7 +326,7 @@ class RTHandler extends PaperHandler {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$suppFileId = isset($args[2]) ? (int) $args[2] : 0;
-		list($conference, $event, $paper) = RTHandler::validate($paperId, $galleyId);
+		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);

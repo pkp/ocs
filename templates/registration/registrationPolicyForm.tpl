@@ -9,19 +9,19 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="director.registrationPolicies"}
-{assign var="pageId" value="director.registrationPolicies"}
+{assign var="pageTitle" value="manager.registrationPolicies"}
+{assign var="pageId" value="manager.registrationPolicies"}
 {include file="common/header.tpl"}
 
 <ul class="menu">
-	<li><a href="{url op="registrations"}">{translate key="director.registrations"}</a></li>
-	<li><a href="{url op="registrationTypes"}">{translate key="director.registrationTypes"}</a></li>
-	<li class="current"><a href="{url op="registrationPolicies"}">{translate key="director.registrationPolicies"}</a></li>
+	<li><a href="{url op="registrations"}">{translate key="manager.registrations"}</a></li>
+	<li><a href="{url op="registrationTypes"}">{translate key="manager.registrationTypes"}</a></li>
+	<li class="current"><a href="{url op="registrationPolicies"}">{translate key="manager.registrationPolicies"}</a></li>
 </ul>
 
 {if $registrationPoliciesSaved}
 <br/>
-{translate key="director.registrationPolicies.registrationPoliciesSaved"}<br />
+{translate key="manager.registrationPolicies.registrationPoliciesSaved"}<br />
 {/if}
 
 <form method="post" action="{url op="saveRegistrationPolicies"}">
@@ -49,8 +49,8 @@
 		{/literal}
 	</script>
 
-<h3>{translate key="director.registrationPolicies.registrationContact"}</h3>
-<p>{translate key="director.registrationPolicies.registrationContactDescription"}</p>
+<h3>{translate key="manager.registrationPolicies.registrationContact"}</h3>
+<p>{translate key="manager.registrationPolicies.registrationContactDescription"}</p>
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="registrationName" key="user.name"}</td>
@@ -78,90 +78,90 @@
 <div class="separator"></div>
 
 
-<h3>{translate key="director.registrationPolicies.registrationAdditionalInformation"}</h3>
-<p>{translate key="director.registrationPolicies.registrationAdditionalInformationDescription"}</p>
+<h3>{translate key="manager.registrationPolicies.registrationAdditionalInformation"}</h3>
+<p>{translate key="manager.registrationPolicies.registrationAdditionalInformationDescription"}</p>
 <p>
 	<textarea name="registrationAdditionalInformation" id="registrationAdditionalInformation" rows="12" cols="60" class="textArea">{$registrationAdditionalInformation|escape}</textarea>
 	<br />
-	<span class="instruct">{translate key="director.registrationPolicies.htmlInstructions"}</span>
+	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 </p>
 
 
 <div class="separator"></div>
 
 
-<h3>{translate key="director.registrationPolicies.expiryReminders"}</h3>
-<p>{translate key="director.registrationPolicies.expiryRemindersDescription"}</p>
+<h3>{translate key="manager.registrationPolicies.expiryReminders"}</h3>
+<p>{translate key="manager.registrationPolicies.expiryRemindersDescription"}</p>
 
 <p>
 	<input type="checkbox" name="enableRegistrationExpiryReminderBeforeMonths" id="enableRegistrationExpiryReminderBeforeMonths" value="1" onclick="toggleAllowSetBeforeMonthsReminder(this.form)"{if !$scheduledTasksEnabled} disabled="disabled" {elseif $enableRegistrationExpiryReminderBeforeMonths} checked="checked"{/if} />&nbsp;
-	<label for="enableRegistrationExpiryReminderBeforeMonths">{translate key="director.registrationPolicies.expiryReminderBeforeMonths1"}</label>
+	<label for="enableRegistrationExpiryReminderBeforeMonths">{translate key="manager.registrationPolicies.expiryReminderBeforeMonths1"}</label>
 	<select name="numMonthsBeforeRegistrationExpiryReminder" id="numMonthsBeforeRegistrationExpiryReminder" class="selectMenu"{if not $enableRegistrationExpiryReminderBeforeMonths || !$scheduledTasksEnabled} disabled="disabled"{/if} />{html_options options=$validNumMonthsBeforeExpiry selected=$numMonthsBeforeRegistrationExpiryReminder}</select>
-	{translate key="director.registrationPolicies.expiryReminderBeforeMonths2"}
+	{translate key="manager.registrationPolicies.expiryReminderBeforeMonths2"}
 </p>
 <p>
 	<input type="checkbox" name="enableRegistrationExpiryReminderBeforeWeeks" id="enableRegistrationExpiryReminderBeforeWeeks" value="1" onclick="toggleAllowSetBeforeWeeksReminder(this.form)"{if !$scheduledTasksEnabled} disabled="disabled" {elseif $enableRegistrationExpiryReminderBeforeWeeks} checked="checked"{/if} />&nbsp;
-	<label for="enableRegistrationExpiryReminderBeforeWeeks">{translate key="director.registrationPolicies.expiryReminderBeforeWeeks1"}</label>
+	<label for="enableRegistrationExpiryReminderBeforeWeeks">{translate key="manager.registrationPolicies.expiryReminderBeforeWeeks1"}</label>
 	<select name="numWeeksBeforeRegistrationExpiryReminder" id="numWeeksBeforeRegistrationExpiryReminder" class="selectMenu"{if not $enableRegistrationExpiryReminderBeforeWeeks || !$scheduledTasksEnabled} disabled="disabled"{/if} />{html_options options=$validNumWeeksBeforeExpiry selected=$numWeeksBeforeRegistrationExpiryReminder}</select>
-	{translate key="director.registrationPolicies.expiryReminderBeforeWeeks2"}
+	{translate key="manager.registrationPolicies.expiryReminderBeforeWeeks2"}
 </p>
 <p>
 	<input type="checkbox" name="enableRegistrationExpiryReminderAfterWeeks" id="enableRegistrationExpiryReminderAfterWeeks" value="1" onclick="toggleAllowSetAfterWeeksReminder(this.form)"{if !$scheduledTasksEnabled} disabled="disabled" {elseif $enableRegistrationExpiryReminderAfterWeeks} checked="checked"{/if} />&nbsp;
-	<label for="enableRegistrationExpiryReminderAfterWeeks">{translate key="director.registrationPolicies.expiryReminderAfterWeeks1"}</label>
+	<label for="enableRegistrationExpiryReminderAfterWeeks">{translate key="manager.registrationPolicies.expiryReminderAfterWeeks1"}</label>
 	<select name="numWeeksAfterRegistrationExpiryReminder" id="numWeeksAfterRegistrationExpiryReminder" class="selectMenu"{if not $enableRegistrationExpiryReminderAfterWeeks || !$scheduledTasksEnabled} disabled="disabled"{/if} />{html_options options=$validNumWeeksAfterExpiry selected=$numWeeksAfterRegistrationExpiryReminder}</select>
-	{translate key="director.registrationPolicies.expiryReminderAfterWeeks2"}
+	{translate key="manager.registrationPolicies.expiryReminderAfterWeeks2"}
 </p>
 <p>
 	<input type="checkbox" name="enableRegistrationExpiryReminderAfterMonths" id="enableRegistrationExpiryReminderAfterMonths" value="1" onclick="toggleAllowSetAfterMonthsReminder(this.form)"{if !$scheduledTasksEnabled} disabled="disabled" {elseif $enableRegistrationExpiryReminderAfterMonths} checked="checked"{/if} />&nbsp;
-	<label for="enableRegistrationExpiryReminderAfterMonths">{translate key="director.registrationPolicies.expiryReminderAfterMonths1"}</label>
+	<label for="enableRegistrationExpiryReminderAfterMonths">{translate key="manager.registrationPolicies.expiryReminderAfterMonths1"}</label>
 	<select name="numMonthsAfterRegistrationExpiryReminder" id="numMonthsAfterRegistrationExpiryReminder" class="selectMenu"{if not $enableRegistrationExpiryReminderAfterMonths || !$scheduledTasksEnabled} disabled="disabled"{/if} />{html_options options=$validNumMonthsAfterExpiry selected=$numMonthsAfterRegistrationExpiryReminder}</select>
-	{translate key="director.registrationPolicies.expiryReminderAfterMonths2"}
+	{translate key="manager.registrationPolicies.expiryReminderAfterMonths2"}
 </p>
 
 {if !$scheduledTasksEnabled}
 	<br/>
-	{translate key="director.registrationPolicies.expiryRemindersDisabled"}
+	{translate key="manager.registrationPolicies.expiryRemindersDisabled"}
 {/if}
 
 
 <div class="separator"></div>
 
 
-<h3>{translate key="director.registrationPolicies.openAccessOptions"}</h3>
-<p>{translate key="director.registrationPolicies.openAccessOptionsDescription"}</p>
+<h3>{translate key="manager.registrationPolicies.openAccessOptions"}</h3>
+<p>{translate key="manager.registrationPolicies.openAccessOptionsDescription"}</p>
 
-	<h4>{translate key="director.registrationPolicies.delayedOpenAccess"}</h4>
-	<p>{translate key="director.registrationPolicies.delayedOpenAccessDescription"}</p>
+	<h4>{translate key="manager.registrationPolicies.delayedOpenAccess"}</h4>
+	<p>{translate key="manager.registrationPolicies.delayedOpenAccessDescription"}</p>
 	<input type="checkbox" name="enableDelayedOpenAccess" id="enableDelayedOpenAccess" value="1" onclick="toggleAllowSetDelayedOpenAccessDuration(this.form)" {if $enableDelayedOpenAccess} checked="checked"{/if} />&nbsp;
-	<label for="enableDelayedOpenAccess">{translate key="director.registrationPolicies.delayedOpenAccessDescription1"}</label>
+	<label for="enableDelayedOpenAccess">{translate key="manager.registrationPolicies.delayedOpenAccessDescription1"}</label>
 	<select name="delayedOpenAccessDuration" id="delayedOpenAccessDuration" class="selectMenu" {if not $enableDelayedOpenAccess} disabled="disabled"{/if} />{html_options options=$validDuration selected=$delayedOpenAccessDuration}</select>
-	{translate key="director.registrationPolicies.delayedOpenAccessDescription2"}
+	{translate key="manager.registrationPolicies.delayedOpenAccessDescription2"}
 
 	<p>
 	<input type="checkbox" name="enableOpenAccessNotification" id="enableOpenAccessNotification" value="1"{if !$scheduledTasksEnabled} disabled="disabled" {elseif $enableOpenAccessNotification} checked="checked"{/if} />&nbsp;
-	<label for="enableOpenAccessNotification">{translate key="director.registrationPolicies.openAccessNotificationDescription"}</label>
+	<label for="enableOpenAccessNotification">{translate key="manager.registrationPolicies.openAccessNotificationDescription"}</label>
 	{if !$scheduledTasksEnabled}
 		<br/>
-		{translate key="director.registrationPolicies.openAccessNotificationDisabled"}
+		{translate key="manager.registrationPolicies.openAccessNotificationDisabled"}
 	{/if}
 	</p>
 
-	<p>{translate key="director.registrationPolicies.delayedOpenAccessPolicyDescription"}</p>
+	<p>{translate key="manager.registrationPolicies.delayedOpenAccessPolicyDescription"}</p>
 	<p>
 	<textarea name="delayedOpenAccessPolicy" id="delayedOpenAccessPolicy" rows="12" cols="60" class="textArea">{$delayedOpenAccessPolicy|escape}</textarea>
 	<br />
-	<span class="instruct">{translate key="director.registrationPolicies.htmlInstructions"}</span>
+	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 	</p>
 
 <p>
-	<h4>{translate key="director.registrationPolicies.authorSelfArchive"}</h4>
-	<input type="checkbox" name="enableAuthorSelfArchive" id="enableAuthorSelfArchive" value="1"{if $enableAuthorSelfArchive} checked="checked"{/if} />&nbsp;
-	<label for="enableAuthorSelfArchive">{translate key="director.registrationPolicies.authorSelfArchiveDescription"}</label>
+	<h4>{translate key="manager.registrationPolicies.presenterSelfArchive"}</h4>
+	<input type="checkbox" name="enablePresenterSelfArchive" id="enablePresenterSelfArchive" value="1"{if $enablePresenterSelfArchive} checked="checked"{/if} />&nbsp;
+	<label for="enablePresenterSelfArchive">{translate key="manager.registrationPolicies.presenterSelfArchiveDescription"}</label>
 </p>
 <p>
-	<textarea name="authorSelfArchivePolicy" id="authorSelfArchivePolicy" rows="12" cols="60" class="textArea">{$authorSelfArchivePolicy|escape}</textarea>
+	<textarea name="presenterSelfArchivePolicy" id="presenterSelfArchivePolicy" rows="12" cols="60" class="textArea">{$presenterSelfArchivePolicy|escape}</textarea>
 	<br />
-	<span class="instruct">{translate key="director.registrationPolicies.htmlInstructions"}</span>
+	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 </p>
 
 

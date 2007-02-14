@@ -138,7 +138,7 @@ class LayoutEditorAction extends Action {
 	function completeLayoutEditing($submission, $send = false) {
 		$submissionDao = &DAORegistry::getDAO('LayoutEditorSubmissionDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		
 		$layoutAssignment = &$submission->getLayoutAssignment();
 		if ($layoutAssignment->getDateCompleted() != null) {
@@ -174,8 +174,8 @@ class LayoutEditorAction extends Action {
 				$assignedSectionEditors = $email->toAssignedEditingSectionEditors($submission->getPaperId());
 				$assignedEditors = $email->ccAssignedEditors($submission->getPaperId());
 				if (empty($assignedSectionEditors) && empty($assignedEditors)) {
-					$email->addRecipient($event->getSetting('contactEmail'), $event->getSetting('contactName'));
-					$editorialContactName = $event->getSetting('contactName');
+					$email->addRecipient($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
+					$editorialContactName = $schedConf->getSetting('contactName');
 				} else {
 					$editorialContact = array_shift($assignedSectionEditors);
 					if (!$editorialContact) $editorialContact = array_shift($assignedEditors);

@@ -27,7 +27,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">&nbsp;</td>
-		<td class="value"><input type="checkbox" name="sendNotify" id="sendNotify" value="1"{if $sendNotify} checked="checked"{/if} /> <label for="sendNotify">{translate key="director.people.createUserSendNotify"}</label></td>
+		<td class="value"><input type="checkbox" name="sendNotify" id="sendNotify" value="1"{if $sendNotify} checked="checked"{/if} /> <label for="sendNotify">{translate key="manager.people.createUserSendNotify"}</label></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="firstName" required="true" key="user.firstName"}</td>

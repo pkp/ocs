@@ -16,20 +16,20 @@
 
 // Email associative types. All types must be defined here
 define('PAPER_EMAIL_TYPE_DEFAULT', 		0);
-define('PAPER_EMAIL_TYPE_AUTHOR', 		0x01);
+define('PAPER_EMAIL_TYPE_PRESENTER', 		0x01);
 define('PAPER_EMAIL_TYPE_EDITOR', 		0x02);
 define('PAPER_EMAIL_TYPE_REVIEW', 		0x03);
 define('PAPER_EMAIL_TYPE_LAYOUT', 		0x05);
 
 // General events 				0x10000000
 
-// Author events 				0x20000000
+// Presenter events 				0x20000000
 
 // Editor events 				0x30000000
-define('PAPER_EMAIL_EDITOR_NOTIFY_AUTHOR', 		0x30000001);
+define('PAPER_EMAIL_EDITOR_NOTIFY_PRESENTER', 		0x30000001);
 define('PAPER_EMAIL_EDITOR_ASSIGN',		0x30000002);
-define('PAPER_EMAIL_EDITOR_NOTIFY_AUTHOR_UNSUITABLE',	0x30000003);
-define('PAPER_EMAIL_EDITOR_NOTIFY_AUTHOR_EXPIRED',	0x30000004);
+define('PAPER_EMAIL_EDITOR_NOTIFY_PRESENTER_UNSUITABLE',	0x30000003);
+define('PAPER_EMAIL_EDITOR_NOTIFY_PRESENTER_EXPIRED',	0x30000004);
 
 // Reviewer events 				0x40000000
 define('PAPER_EMAIL_REVIEW_NOTIFY_REVIEWER', 		0x40000001);
@@ -218,7 +218,7 @@ class PaperEmailLogEntry extends DataObject {
 	 */
 	function getAssocTypeString() {
 		switch ($this->getData('assocType')) {
-			case LOG_TYPE_AUTHOR:
+			case LOG_TYPE_PRESENTER:
 				return 'AUT';
 			case LOG_TYPE_EDITOR:
 				return 'EDR';
@@ -235,8 +235,8 @@ class PaperEmailLogEntry extends DataObject {
 	 */
 	function getAssocTypeLongString() {
 		switch ($this->getData('assocType')) {
-			case LOG_TYPE_AUTHOR:
-				return 'event.logType.author';
+			case LOG_TYPE_PRESENTER:
+				return 'event.logType.presenter';
 			case LOG_TYPE_EDITOR:
 				return 'event.logType.editor';
 			case LOG_TYPE_REVIEW:

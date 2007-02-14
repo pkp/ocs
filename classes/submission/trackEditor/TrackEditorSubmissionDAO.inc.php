@@ -15,13 +15,13 @@
  */
 
 import('submission.trackEditor.TrackEditorSubmission');
-import('submission.author.AuthorSubmission'); // Bring in editor decision constants
+import('submission.presenter.PresenterSubmission'); // Bring in editor decision constants
 import('submission.reviewer.ReviewerSubmission'); // Bring in editor decision constants
 
 class TrackEditorSubmissionDAO extends DAO {
 
 	var $paperDao;
-	var $authorDao;
+	var $presenterDao;
 	var $userDao;
 	var $editAssignmentDao;
 	var $reviewAssignmentDao;
@@ -38,7 +38,7 @@ class TrackEditorSubmissionDAO extends DAO {
 	function TrackEditorSubmissionDAO() {
 		parent::DAO();
 		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
+		$this->presenterDao = &DAORegistry::getDAO('PresenterDAO');
 		$this->userDao = &DAORegistry::getDAO('UserDAO');
 		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$this->reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -117,7 +117,7 @@ class TrackEditorSubmissionDAO extends DAO {
 
 		for ($i = 1; $i <= $row['current_round']; $i++) {
 			$trackEditorSubmission->setEditorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['editor_file_id'], $i), $i);
-			$trackEditorSubmission->setAuthorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['revised_file_id'], $i), $i);
+			$trackEditorSubmission->setPresenterFileRevisions($this->paperFileDao->getPaperFileRevisions($row['revised_file_id'], $i), $i);
 		}
 
 		// Review Rounds
@@ -267,11 +267,11 @@ class TrackEditorSubmissionDAO extends DAO {
 	/**
 	 * Get all track editor submissions for a track editor.
 	 * @param $trackEditorId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $status boolean true if active, false if completed.
 	 * @return array TrackEditorSubmission
 	 */
-	function &getTrackEditorSubmissions($trackEditorId, $eventId, $status = true) {
+	function &getTrackEditorSubmissions($trackEditorId, $schedConfId, $status = true) {
 		$trackEditorSubmissions = array();
 
 		$result = &$this->retrieve(
@@ -286,8 +286,8 @@ class TrackEditorSubmissionDAO extends DAO {
 			FROM papers p LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN review_rounds r2 ON (p.paper_id = r2.paper_id AND p.review_progress = r2.type AND p.current_round = r2.round)
-			WHERE p.event_id = ? AND e.editor_id = ? AND p.status = ?',
-			array($eventId, $trackEditorId, $status)
+			WHERE p.sched_conf_id = ? AND e.editor_id = ? AND p.status = ?',
+			array($schedConfId, $trackEditorId, $status)
 		);
 
 		while (!$result->EOF) {
@@ -304,8 +304,8 @@ class TrackEditorSubmissionDAO extends DAO {
 	/**
 	 * Retrieve unfiltered track editor submissions
 	 */
-	function &getUnfilteredTrackEditorSubmissions($trackEditorId, $eventId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $rangeInfo = null) {
-		$params = array($eventId, $trackEditorId);
+	function &getUnfilteredTrackEditorSubmissions($trackEditorId, $schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $rangeInfo = null) {
+		$params = array($schedConfId, $trackEditorId);
 
 		$searchSql = '';
 
@@ -319,7 +319,7 @@ class TrackEditorSubmissionDAO extends DAO {
 				}
 				$params[] = $params[] = $params[] = $search;
 				break;
-			case SUBMISSION_FIELD_AUTHOR:
+			case SUBMISSION_FIELD_PRESENTER:
 				$first_last = $this->_dataSource->Concat('pa.first_name', '\' \'', 'pa.last_name');
 				$first_middle_last = $this->_dataSource->Concat('pa.first_name', '\' \'', 'pa.middle_name', '\' \'', 'pa.last_name');
 				$last_comma_first = $this->_dataSource->Concat('pa.last_name', '\', \'', 'pa.first_name');
@@ -380,14 +380,14 @@ class TrackEditorSubmissionDAO extends DAO {
 				r2.review_revision
 			FROM
 				papers p
-			INNER JOIN paper_authors pa ON (pa.paper_id = p.paper_id)
+			INNER JOIN paper_presenters pa ON (pa.paper_id = p.paper_id)
 			LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
 			LEFT JOIN users ed ON (e.editor_id = ed.user_id)
 			LEFT JOIN tracks t ON (t.track_id = p.track_id)
 			LEFT JOIN review_rounds r2 ON (p.paper_id = r2.paper_id and p.current_round = r2.round AND p.review_progress = r2.type)
 			LEFT JOIN layouted_assignments l ON (l.paper_id = p.paper_id) LEFT JOIN users le ON (le.user_id = l.editor_id)
 			WHERE
-				p.event_id = ? AND e.editor_id = ?';
+				p.sched_conf_id = ? AND e.editor_id = ?';
 
 		// "Active" submissions have a status of SUBMISSION_STATUS_QUEUED and
 		// the layout editor has not yet been acknowledged.
@@ -410,7 +410,7 @@ class TrackEditorSubmissionDAO extends DAO {
 	/**
 	 * Get all submissions in review for a conference.
 	 * @param $trackEditorId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
@@ -421,11 +421,11 @@ class TrackEditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getTrackEditorSubmissionsInReview($trackEditorId, $eventId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getTrackEditorSubmissionsInReview($trackEditorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackEditorSubmissions($trackEditorId, $eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredTrackEditorSubmissions($trackEditorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -466,7 +466,7 @@ class TrackEditorSubmissionDAO extends DAO {
 	/**
 	 * Get all submissions in editing for a conference.
 	 * @param $trackEditorId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
@@ -477,11 +477,11 @@ class TrackEditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getTrackEditorSubmissionsInEditing($trackEditorId, $eventId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getTrackEditorSubmissionsInEditing($trackEditorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackEditorSubmissions($trackEditorId, $eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredTrackEditorSubmissions($trackEditorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -520,7 +520,7 @@ class TrackEditorSubmissionDAO extends DAO {
 	/**
 	 * Get all submissions in archives for a conference.
 	 * @param $trackEditorId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
@@ -531,11 +531,11 @@ class TrackEditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getTrackEditorSubmissionsArchives($trackEditorId, $eventId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getTrackEditorSubmissionsArchives($trackEditorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackEditorSubmissions($trackEditorId, $eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false);
+		$result = $this->getUnfilteredTrackEditorSubmissions($trackEditorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false);
 
 		while (!$result->EOF) {
 			$submission = &$this->_returnTrackEditorSubmissionFromRow($result->GetRowAssoc(false));
@@ -562,7 +562,7 @@ class TrackEditorSubmissionDAO extends DAO {
 	/**
 	 * Get all submissions accepted to a conference.
 	 * @param $trackEditorId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
@@ -573,11 +573,11 @@ class TrackEditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getTrackEditorSubmissionsAccepted($trackEditorId, $eventId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getTrackEditorSubmissionsAccepted($trackEditorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackEditorSubmissions($trackEditorId, $eventId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false);
+		$result = $this->getUnfilteredTrackEditorSubmissions($trackEditorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false);
 
 		while (!$result->EOF) {
 			$submission = &$this->_returnTrackEditorSubmissionFromRow($result->GetRowAssoc(false));
@@ -604,14 +604,14 @@ class TrackEditorSubmissionDAO extends DAO {
 	/**
 	 * Function used for counting purposes for right nav bar
 	 */
-	function &getTrackEditorSubmissionsCount($trackEditorId, $eventId) {
+	function &getTrackEditorSubmissionsCount($trackEditorId, $schedConfId) {
 
 		$submissionsCount = array();
 		for($i = 0; $i < 4; $i++) {
 			$submissionsCount[$i] = 0;
 		}
 
-		$result = $this->getUnfilteredTrackEditorSubmissions($trackEditorId, $eventId);
+		$result = $this->getUnfilteredTrackEditorSubmissions($trackEditorId, $schedConfId);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -780,12 +780,12 @@ class TrackEditorSubmissionDAO extends DAO {
 
 	/**
 	 * Retrieve a list of all reviewers along with information about their current status with respect to an paper's current round.
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $paperId int
 	 * @return DAOResultFactory containing matching Users
 	 */
-	function &getReviewersForPaper($eventId, $paperId, $type, $round, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null) {
-		$paramArray = array($paperId, $type, $round, $eventId, RoleDAO::getRoleIdFromPath('reviewer'));
+	function &getReviewersForPaper($schedConfId, $paperId, $type, $round, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null) {
+		$paramArray = array($paperId, $type, $round, $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'));
 		$searchSql = '';
 
 		if (isset($search)) switch ($searchType) {
@@ -831,7 +831,7 @@ class TrackEditorSubmissionDAO extends DAO {
 				 AND a.type = ?
 				 AND a.round = ?)
 			WHERE u.user_id = r.user_id
-				AND r.event_id = ?
+				AND r.sched_conf_id = ?
 				AND r.role_id = ? ' . $searchSql . '
 			ORDER BY last_name, first_name',
 			$paramArray, $rangeInfo
@@ -852,16 +852,16 @@ class TrackEditorSubmissionDAO extends DAO {
 
 	/**
 	 * Retrieve a list of all reviewers not assigned to the specified paper.
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $paperId int
 	 * @return array matching Users
 	 */
-	function &getReviewersNotAssignedToPaper($eventId, $paperId) {
+	function &getReviewersNotAssignedToPaper($schedConfId, $paperId) {
 		$users = array();
 
 		$result = &$this->retrieve(
-			'SELECT u.* FROM users u NATURAL JOIN roles r LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND a.paper_id = ?) WHERE r.event_id = ? AND r.role_id = ? AND a.paper_id IS NULL ORDER BY last_name, first_name',
-			array($paperId, $eventId, RoleDAO::getRoleIdFromPath('reviewer'))
+			'SELECT u.* FROM users u NATURAL JOIN roles r LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND a.paper_id = ?) WHERE r.sched_conf_id = ? AND r.role_id = ? AND a.paper_id IS NULL ORDER BY last_name, first_name',
+			array($paperId, $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'))
 		);
 
 		while (!$result->EOF) {
@@ -879,11 +879,11 @@ class TrackEditorSubmissionDAO extends DAO {
 	 * Get the last assigned and last completed dates for all reviewers of the given conference.
 	 * @return array
 	 */
-	function getReviewerStatistics($eventId) {
+	function getReviewerStatistics($schedConfId) {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result = &$this->retrieve('select ra.reviewer_id as editor_id, max(ra.date_notified) as last_notified from review_assignments ra, papers p where ra.paper_id=p.paper_id and p.event_id=? group by ra.reviewer_id', $eventId);
+		$result = &$this->retrieve('select ra.reviewer_id as editor_id, max(ra.date_notified) as last_notified from review_assignments ra, papers p where ra.paper_id=p.paper_id and p.sched_conf_id=? group by ra.reviewer_id', $schedConfId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -895,7 +895,7 @@ class TrackEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get completion status
-		$result = &$this->retrieve('select r.reviewer_id as reviewer_id, COUNT(*) AS incomplete from review_assignments r, papers p where r.paper_id=p.paper_id and r.date_notified is not null and r.date_completed is null and r.cancelled = 0 and p.event_id = ? group by r.reviewer_id', $eventId);
+		$result = &$this->retrieve('select r.reviewer_id as reviewer_id, COUNT(*) AS incomplete from review_assignments r, papers p where r.paper_id=p.paper_id and r.date_notified is not null and r.date_completed is null and r.cancelled = 0 and p.sched_conf_id = ? group by r.reviewer_id', $schedConfId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
@@ -907,7 +907,7 @@ class TrackEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Calculate time taken for completed reviews
-		$result = &$this->retrieve('select r.reviewer_id as reviewer_id, r.date_notified as date_notified, r.date_completed as date_completed from review_assignments r, papers p where r.paper_id=p.paper_id and r.date_notified is not null and r.date_completed is not null and p.event_id = ?', $eventId);
+		$result = &$this->retrieve('select r.reviewer_id as reviewer_id, r.date_notified as date_notified, r.date_completed as date_completed from review_assignments r, papers p where r.paper_id=p.paper_id and r.date_notified is not null and r.date_completed is not null and p.sched_conf_id = ?', $schedConfId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();

@@ -32,14 +32,14 @@
 	<td>{translate key="rt.metadata.pkp.title"}</td>
 	<td>{$paper->getPaperTitle()|strip_unsafe_html}</td>
 </tr>
-{foreach from=$paper->getAuthors() item=author}
+{foreach from=$paper->getPresenters() item=presenter}
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>
 <tr valign="top">
 	<td>2.</td>
-	<td width="25%">{translate key="rt.metadata.dublinCore.primaryAuthor"}</td>
-	<td>{translate key="rt.metadata.pkp.primaryAuthor"}</td>
+	<td width="25%">{translate key="rt.metadata.dublinCore.primaryPresenter"}</td>
+	<td>{translate key="rt.metadata.pkp.primaryPresenter"}</td>
 	<td>
-		{$author->getFullName()|escape}{if $author->getAffiliation()}; {$author->getAffiliation()|escape}{/if}{if $author->getCountry()}; {$author->getCountryLocalized()|escape}{/if}
+		{$presenter->getFullName()|escape}{if $presenter->getAffiliation()}; {$presenter->getAffiliation()|escape}{/if}{if $presenter->getCountry()}; {$presenter->getCountryLocalized()|escape}{/if}
 		</td>
 </tr>
 {/foreach}
@@ -130,7 +130,7 @@
 	<td>11.</td>
 	<td>{translate key="rt.metadata.dublinCore.source"}</td>
 	<td>{translate key="rt.metadata.pkp.source"}</td>
-	<td>{$currentConference->getTitle()|escape}; {$event->getTitle()|escape}</td>
+	<td>{$currentConference->getTitle()|escape}; {$schedConf->getTitle()|escape}</td>
 </tr>
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>
 <tr valign="top">
@@ -166,7 +166,7 @@
 	<td>15.</td>
 	<td>{translate key="rt.metadata.dublinCore.rights"}</td>
 	<td>{translate key="rt.metadata.pkp.copyright"}</td>
-	<td>{$conferenceOrEventSettings.copyrightNotice|nl2br}</td>
+	<td>{$conferenceOrSchedConfSettings.copyrightNotice|nl2br}</td>
 </tr>
 </table>
 

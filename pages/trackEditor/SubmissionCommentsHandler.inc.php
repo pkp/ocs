@@ -27,7 +27,7 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 		$paperId = $args[0];
 		$reviewId = $args[1];
 		
-		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		TrackEditorAction::viewPeerReviewComments($submission, $reviewId);
 	
 	}
@@ -45,7 +45,7 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 		
-		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		if (TrackEditorAction::postPeerReviewComment($submission, $reviewId, $emailComment)) {
 			TrackEditorAction::viewPeerReviewComments($submission, $reviewId);
 		}
@@ -60,7 +60,7 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 		
 		$paperId = $args[0];
 		
-		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		TrackEditorAction::viewEditorDecisionComments($submission);
 	
 	}
@@ -77,7 +77,7 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 		
-		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		if (TrackEditorAction::postEditorDecisionComment($submission, $emailComment)) {
 			TrackEditorAction::viewEditorDecisionComments($submission);
 		}
@@ -88,7 +88,7 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 	 */
 	function blindCcReviewsToReviewers($args = array()) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 
 		$send = Request::getUserVar('send')?true:false;
 		$inhibitExistingEmail = Request::getUserVar('blindCcReviewers')?true:false;
@@ -108,7 +108,7 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 		
 		$paperId = $args[0];
 		
-		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		TrackEditorAction::viewLayoutComments($submission);
 
 	}
@@ -125,7 +125,7 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 		
-		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		if (TrackEditorAction::postLayoutComment($submission, $emailComment)) {
 			TrackEditorAction::viewLayoutComments($submission);
 		}	
@@ -136,7 +136,7 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 	 */
 	function emailEditorDecisionComment() {
 		$paperId = (int) Request::getUserVar('paperId');
-		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 
 		parent::setupTemplate(true);		
 		if (TrackEditorAction::emailEditorDecisionComment($submission, Request::getUserVar('send'))) {
@@ -158,7 +158,7 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 		$paperId = $args[0];
 		$commentId = $args[1];
 		
-		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		list($comment) = SubmissionCommentsHandler::validate($commentId);
 
 		if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
@@ -183,7 +183,7 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 		
-		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		list($comment) = SubmissionCommentsHandler::validate($commentId);
 		
 		if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
@@ -217,7 +217,7 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 		$paperId = $args[0];
 		$commentId = $args[1];
 		
-		list($conference, $event, $submission) = SubmissionEditHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		list($comment) = SubmissionCommentsHandler::validate($commentId);
 		TrackEditorAction::deleteComment($commentId);
 		
@@ -237,7 +237,7 @@ class SubmissionCommentsHandler extends TrackEditorHandler {
 	//
 	
 	/**
-	 * Validate that the user is the author of the comment.
+	 * Validate that the user is the presenter of the comment.
 	 */
 	function validate($commentId) {
 		parent::validate();

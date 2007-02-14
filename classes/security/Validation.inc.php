@@ -169,7 +169,7 @@ class Validation {
 	 * @param $conferenceId optional (e.g., for global site admin role), the ID of the conference
 	 * @return boolean
 	 */
-	function isAuthorized($roleId, $conferenceId = 0, $eventId = 0) {
+	function isAuthorized($roleId, $conferenceId = 0, $schedConfId = 0) {
 		if (!Validation::isLoggedIn()) {
 			return false;
 		}
@@ -180,10 +180,10 @@ class Validation {
 			$conferenceId = $conference ? $conference->getConferenceId() : 0;
 		}
 
-		if ($eventId === -1) {
-			// Get event ID from request
-			$event = &Request::getEvent();
-			$eventId = $event ? $event->getEventId() : 0;
+		if ($schedConfId === -1) {
+			// Get scheduled conference ID from request
+			$schedConf = &Request::getSchedConf();
+			$schedConfId = $schedConf ? $schedConf->getSchedConfId() : 0;
 		}
 		
 		$sessionManager = &SessionManager::getManager();
@@ -191,7 +191,7 @@ class Validation {
 		$user = &$session->getUser();
 		
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		return $roleDao->roleExists($conferenceId, $eventId, $user->getUserId(), $roleId);
+		return $roleDao->roleExists($conferenceId, $schedConfId, $user->getUserId(), $roleId);
 	}
 	
 	/**
@@ -262,7 +262,7 @@ class Validation {
 	}
 	
 	/**
-	 * Shortcut for checking authorization as site admin.
+	 * Shortcut for checking Authorization as site admin.
 	 * @return boolean
 	 */
 	function isSiteAdmin() {
@@ -270,21 +270,21 @@ class Validation {
 	}
 	
 	/**
-	 * Shortcut for checking authorization as conference director.
+	 * Shortcut for checking authorization as conference manager.
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function isConferenceDirector($conferenceId = -1) {
-		return Validation::isAuthorized(ROLE_ID_CONFERENCE_DIRECTOR, $conferenceId, 0);
+	function isConferenceManager($conferenceId = -1) {
+		return Validation::isAuthorized(ROLE_ID_CONFERENCE_MANAGER, $conferenceId, 0);
 	}
 	
 	/**
-	 * Shortcut for checking authorization as editor.
+	 * Shortcut for checking Authorization as editor.
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function isEditor($conferenceId = -1, $eventId = -1) {
-		return Validation::isAuthorized(ROLE_ID_EDITOR, $conferenceId, $eventId);
+	function isEditor($conferenceId = -1, $schedConfId = -1) {
+		return Validation::isAuthorized(ROLE_ID_EDITOR, $conferenceId, $schedConfId);
 	}
 	
 	/**
@@ -292,8 +292,8 @@ class Validation {
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function isTrackEditor($conferenceId = -1, $eventId = -1) {
-		return Validation::isAuthorized(ROLE_ID_TRACK_EDITOR, $conferenceId, $eventId);
+	function isTrackEditor($conferenceId = -1, $schedConfId = -1) {
+		return Validation::isAuthorized(ROLE_ID_TRACK_EDITOR, $conferenceId, $schedConfId);
 	}
 	
 	/**
@@ -301,8 +301,8 @@ class Validation {
 	 * @param $journalId int
 	 * @return boolean
 	 */
-	function isLayoutEditor($conferenceId = -1, $eventId = -1) {
-		return Validation::isAuthorized(ROLE_ID_LAYOUT_EDITOR, $conferenceId, $eventId);
+	function isLayoutEditor($conferenceId = -1, $schedConfId = -1) {
+		return Validation::isAuthorized(ROLE_ID_LAYOUT_EDITOR, $conferenceId, $schedConfId);
 	}
 	
 	/**
@@ -310,17 +310,17 @@ class Validation {
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function isReviewer($conferenceId = -1, $eventId = -1) {
-		return Validation::isAuthorized(ROLE_ID_REVIEWER, $conferenceId, $eventId);
+	function isReviewer($conferenceId = -1, $schedConfId = -1) {
+		return Validation::isAuthorized(ROLE_ID_REVIEWER, $conferenceId, $schedConfId);
 	}
 	
 	/**
-	 * Shortcut for checking authorization as author.
+	 * Shortcut for checking authorization as presenter.
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function isAuthor($conferenceId = -1, $eventId = -1) {
-		return Validation::isAuthorized(ROLE_ID_AUTHOR, $conferenceId, $eventId);
+	function isPresenter($conferenceId = -1, $schedConfId = -1) {
+		return Validation::isAuthorized(ROLE_ID_PRESENTER, $conferenceId, $schedConfId);
 	}
 	
 	/**
@@ -328,8 +328,8 @@ class Validation {
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function isReader($conferenceId = -1, $eventId = -1) {
-		return Validation::isAuthorized(ROLE_ID_READER, $conferenceId, $eventId);
+	function isReader($conferenceId = -1, $schedConfId = -1) {
+		return Validation::isAuthorized(ROLE_ID_READER, $conferenceId, $schedConfId);
 	}
 
 	/**
@@ -337,9 +337,9 @@ class Validation {
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function isRegistrationManager($conferenceId = -1, $eventId = -1) {
+	function isRegistrationManager($conferenceId = -1, $schedConfId = -1) {
 		return Validation::isAuthorized(ROLE_ID_REGISTRATION_MANAGER, $conferenceId, 0) ||
-			Validation::isAuthorized(ROLE_ID_REGISTRATION_MANAGER, $conferenceId, $eventId);
+			Validation::isAuthorized(ROLE_ID_REGISTRATION_MANAGER, $conferenceId, $schedConfId);
 	}
 	
 	/**
@@ -348,10 +348,10 @@ class Validation {
 	 * @param $userId int
 	 * @return boolean
 	 */
-	function canAdminister($conferenceId, $eventId, $userId) {
+	function canAdminister($conferenceId, $schedConfId, $userId) {
 
 		if (Validation::isSiteAdmin()) return true;
-		if (!Validation::isConferenceDirector($conferenceId)) return false;
+		if (!Validation::isConferenceManager($conferenceId)) return false;
 		
 		// Check for roles in other conferences that this user
 		// doesn't have administrative rights over.
@@ -363,7 +363,7 @@ class Validation {
 			
 			if($role->getConferenceId() != $conferenceId) {
 				// Other conferences: We must have admin privileges there too
-				if (!Validation::isConferenceDirector($role->getConferenceId())) {
+				if (!Validation::isConferenceManager($role->getConferenceId())) {
 					return false;
 				}
 			}

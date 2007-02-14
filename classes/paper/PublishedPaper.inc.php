@@ -57,23 +57,23 @@ class PublishedPaper extends Paper {
 	}
 	
 	/**
-	 * Get ID of the event this paper is in.
+	 * Get ID of the scheduled conference this paper is in.
 	 * @return int
 	 */
-	function getEventId() {
-		return $this->getData('eventId');
+	function getSchedConfId() {
+		return $this->getData('schedConfId');
 	}
 	
 	/**
-	 * Set ID of the event this paper is in.
-	 * @param $eventId int
+	 * Set ID of the scheduled conference this paper is in.
+	 * @param $schedConfId int
 	 */
-	function setEventId($eventId) {
-		return $this->setData('eventId', $eventId);
+	function setSchedConfId($schedConfId) {
+		return $this->setData('schedConfId', $schedConfId);
 	}
 
 	/**
-	 * Get track ID of the event this paper is in.
+	 * Get track ID of the scheduled conference this paper is in.
 	 * @return int
 	 */
 	function getTrackId() {
@@ -81,7 +81,7 @@ class PublishedPaper extends Paper {
 	}
 	
 	/**
-	 * Set track ID of the event this paper is in.
+	 * Set track ID of the scheduled conference this paper is in.
 	 * @param $trackId int
 	 */
 	function setTrackId($trackId) {
@@ -214,12 +214,12 @@ class PublishedPaper extends Paper {
 	 */
 	function getBestPaperId($conference = null) {
 		// Retrieve the conference, if necessary.
-		if (!isset($event)) {
-			$eventDao = &DAORegistry::getDAO('EventDAO');
-			$event = $eventDao->getEvent($this->getEventId());
+		if (!isset($schedConf)) {
+			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+			$schedConf = $schedConfDao->getSchedConf($this->getSchedConfId());
 		}
 
-		if ($event->getSetting('enablePublicPaperId', true)) {
+		if ($schedConf->getSetting('enablePublicPaperId', true)) {
 			$publicPaperId = $this->getPublicPaperId();
 			if (!empty($publicPaperId)) return $publicPaperId;
 		}

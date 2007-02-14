@@ -41,12 +41,12 @@
 		<td colspan="6" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr class="heading" valign="bottom">
-		<td width="40%">{translate key="director.registrationTypes.name"}</td>
-		<td width="12%">{translate key="director.registrationTypes.access"}</td>
-		<td width="12%">{translate key="director.registrationTypes.openDate"}</td>
-		<td width="12%">{translate key="director.registrationTypes.closeDate"}</td>
-		<td width="12%">{translate key="director.registrationTypes.expiryDate"}</td>
-		<td width="12%">{translate key="director.registrationTypes.cost"}</td>
+		<td width="40%">{translate key="manager.registrationTypes.name"}</td>
+		<td width="12%">{translate key="manager.registrationTypes.access"}</td>
+		<td width="12%">{translate key="manager.registrationTypes.openDate"}</td>
+		<td width="12%">{translate key="manager.registrationTypes.closeDate"}</td>
+		<td width="12%">{translate key="manager.registrationTypes.expiryDate"}</td>
+		<td width="12%">{translate key="manager.registrationTypes.cost"}</td>
 	</tr>
 	<tr>
 		<td colspan="6" class="headseparator">&nbsp;</td>

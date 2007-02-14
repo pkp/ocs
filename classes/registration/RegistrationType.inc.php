@@ -50,19 +50,19 @@ class RegistrationType extends DataObject {
 	}
 
 	/**
-	 * Get the event ID of the registration type.
+	 * Get the scheduled conference ID of the registration type.
 	 * @return int
 	 */
-	function getEventId() {
-		return $this->getData('eventId');
+	function getSchedConfId() {
+		return $this->getData('schedConfId');
 	}
 	
 	/**
-	 * Set the event ID of the registration type.
-	 * @param $eventId int
+	 * Set the scheduled conference ID of the registration type.
+	 * @param $schedConfId int
 	 */
-	function setEventId($eventId) {
-		return $this->setData('eventId', $eventId);
+	function setSchedConfId($schedConfId) {
+		return $this->setData('schedConfId', $schedConfId);
 	}
 	
 	/**
@@ -140,7 +140,7 @@ class RegistrationType extends DataObject {
 		if ($currency != null) {
 			return $currency->getName();
 		} else {
-			return 'director.registrationTypes.currency';
+			return 'manager.registrationTypes.currency';
 		}
 	}
 
@@ -155,7 +155,7 @@ class RegistrationType extends DataObject {
 		if ($currency != null) {
 			return $currency->getCodeAlpha();
 		} else {
-			return 'director.registrationTypes.currency';
+			return 'manager.registrationTypes.currency';
 		}
 	}
 
@@ -217,17 +217,17 @@ class RegistrationType extends DataObject {
 		$yearsMonths = '';
 
 		if ($years == 1) {
-			$yearsMonths = '1 ' . Locale::Translate('director.registrationTypes.year');
+			$yearsMonths = '1 ' . Locale::Translate('manager.registrationTypes.year');
 		} elseif ($years > 1) {
-			$yearsMonths = $years . ' ' . Locale::Translate('director.registrationTypes.years');
+			$yearsMonths = $years . ' ' . Locale::Translate('manager.registrationTypes.years');
 		}
 
 		if ($months == 1) {
 			$yearsMonths .= $yearsMonths == ''  ? '1 ' : ' 1 ';
-			$yearsMonths .= Locale::Translate('director.registrationTypes.month'); 
+			$yearsMonths .= Locale::Translate('manager.registrationTypes.month'); 
 		} elseif ($months > 1){
 			$yearsMonths .= $yearsMonths == ''  ? $months . ' ' : ' ' . $months . ' ';
-			$yearsMonths .= Locale::Translate('director.registrationTypes.months');
+			$yearsMonths .= Locale::Translate('manager.registrationTypes.months');
 		}
 
 		return $yearsMonths;
@@ -256,13 +256,13 @@ class RegistrationType extends DataObject {
 	function getAccessString() {
 		switch ($this->getData('access')) {
 			case REGISTRATION_TYPE_ACCESS_ONLINE:
-				return 'director.registrationTypes.access.online';
+				return 'manager.registrationTypes.access.online';
 			case REGISTRATION_TYPE_ACCESS_PHYSICAL:
-				return 'director.registrationTypes.access.physical';
+				return 'manager.registrationTypes.access.physical';
 			case REGISTRATION_TYPE_ACCESS_BOTH:
-				return 'director.registrationTypes.access.both';
+				return 'manager.registrationTypes.access.both';
 			default:
-				return 'director.registrationTypes.access';
+				return 'manager.registrationTypes.access';
 		}
 	}
 

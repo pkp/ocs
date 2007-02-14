@@ -26,8 +26,8 @@ class ConferenceReportIterator extends DBRowIterator {
 	/** @var $conferenceStatisticsDao object */
 	var $conferenceStatisticsDao;
 
-	/** @var $authorDao object */
-	var $authorDao;
+	/** @var $presenterDao object */
+	var $presenterDao;
 
 	/** @var $userDao object */
 	var $userDao;
@@ -35,14 +35,14 @@ class ConferenceReportIterator extends DBRowIterator {
 	/** @var $countryDao object */
 	var $countryDao;
 
-	/** @var $authorSubmissionDao object */
-	var $authorSubmissionDao;
+	/** @var $presenterSubmissionDao object */
+	var $presenterSubmissionDao;
 
 	/** @var $editAssignmentDao object */
 	var $editAssignmentDao;
 
-	/** @var $maxAuthorCount int The most authors that can be expected for an paper. */
-	var $maxAuthorCount;
+	/** @var $maxPresenterCount int The most presenters that can be expected for an paper. */
+	var $maxPresenterCount;
 
 	/** @var $maxReviewerCount int The most reviewers that can be expected for a submission. */
 	var $maxReviewerCount;
@@ -63,8 +63,8 @@ class ConferenceReportIterator extends DBRowIterator {
 	 * @param $reportType int REPORT_TYPE_...
 	 */
 	function ConferenceReportIterator($conferenceId, &$records, $dateStart, $dateEnd, $reportType) {
-		$this->authorDao =& DAORegistry::getDao('AuthorDAO');
-		$this->authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+		$this->presenterDao =& DAORegistry::getDao('PresenterDAO');
+		$this->presenterSubmissionDao =& DAORegistry::getDAO('PresenterSubmissionDAO');
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
 		$this->conferenceStatisticsDao =& DAORegistry::getDAO('ConferenceStatisticsDAO');
 		$this->countryDao =& DAORegistry::getDAO('CountryDAO');
@@ -76,7 +76,7 @@ class ConferenceReportIterator extends DBRowIterator {
 		$this->altLocaleNum = Locale::isAlternateConferenceLocale($conferenceId);
 		$this->type = $reportType;
 
-		$this->maxAuthorCount = $this->conferenceStatisticsDao->getMaxAuthorCount($conferenceId, $dateStart, $dateEnd);
+		$this->maxPresenterCount = $this->conferenceStatisticsDao->getMaxPresenterCount($conferenceId, $dateStart, $dateEnd);
 		$this->maxReviewerCount = $this->conferenceStatisticsDao->getMaxReviewerCount($conferenceId, $dateStart, $dateEnd);
 		if ($this->type !== REPORT_TYPE_EDITOR) {
 			$this->maxEditorCount = $this->conferenceStatisticsDao->getMaxEditorCount($conferenceId, $dateStart, $dateEnd);
@@ -105,22 +105,22 @@ class ConferenceReportIterator extends DBRowIterator {
 		}
 		if (empty($ret['track'])) $ret['track'] = $row['track_title'];
 
-		// Author Names & Affiliations
-		$maxAuthors = $this->getMaxAuthors();
-		$ret['authors'] = $maxAuthors==0?array():array_fill(0, $maxAuthors, '');
-		$ret['affiliations'] = $maxAuthors==0?array():array_fill(0, $maxAuthors, '');
-		$ret['countries'] = $maxAuthors==0?array():array_fill(0, $maxAuthors, '');
-		$authors =& $this->authorDao->getAuthorsByPaper($row['paper_id']);
-		$authorIndex = 0;
-		foreach ($authors as $author) {
-			$ret['authors'][$authorIndex] = $author->getFullName();
-			$ret['affiliations'][$authorIndex] = $author->getAffiliation();
+		// Presenter Names & Affiliations
+		$maxPresenters = $this->getMaxPresenters();
+		$ret['presenters'] = $maxPresenters==0?array():array_fill(0, $maxPresenters, '');
+		$ret['affiliations'] = $maxPresenters==0?array():array_fill(0, $maxPresenters, '');
+		$ret['countries'] = $maxPresenters==0?array():array_fill(0, $maxPresenters, '');
+		$presenters =& $this->presenterDao->getPresentersByPaper($row['paper_id']);
+		$presenterIndex = 0;
+		foreach ($presenters as $presenter) {
+			$ret['presenters'][$presenterIndex] = $presenter->getFullName();
+			$ret['affiliations'][$presenterIndex] = $presenter->getAffiliation();
 			
-			$country = $author->getCountry();
+			$country = $presenter->getCountry();
 			if (!empty($country)) {
-				$ret['countries'][$authorIndex] = $this->countryDao->getCountry($country);
+				$ret['countries'][$presenterIndex] = $this->countryDao->getCountry($country);
 			}
-			$authorIndex++;
+			$presenterIndex++;
 		}
 
 		if ($this->type === REPORT_TYPE_EDITOR) {
@@ -175,7 +175,7 @@ class ConferenceReportIterator extends DBRowIterator {
 		}
 
 		// Fetch the last editorial decision for this paper.
-		$editorDecisions = $this->authorSubmissionDao->getEditorDecisions($row['paper_id']);
+		$editorDecisions = $this->presenterSubmissionDao->getEditorDecisions($row['paper_id']);
 		$lastDecision = array_pop($editorDecisions);
 
 		if ($lastDecision) {
@@ -230,11 +230,11 @@ class ConferenceReportIterator extends DBRowIterator {
 	}
 
 	/**
-	 * Return the maximum number of authors that can be expected for a
+	 * Return the maximum number of presenters that can be expected for a
 	 * single paper in this report.
 	 */
-	function getMaxAuthors() {
-		return $this->maxAuthorCount;
+	function getMaxPresenters() {
+		return $this->maxPresenterCount;
 	}
 
 	/**

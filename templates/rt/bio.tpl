@@ -4,28 +4,28 @@
  * Copyright (c) 2003-2004 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Paper reading tools -- author bio page.
+ * Paper reading tools -- presenter bio page.
  *
  * $Id$
  *}
 
-{assign var=pageTitle value="rt.authorBio"}
+{assign var=pageTitle value="rt.presenterBio"}
 
 {include file="rt/header.tpl"}
 
 <h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
 
-{foreach from=$paper->getAuthors() item=author name=authors}
+{foreach from=$paper->getPresenters() item=presenter name=presenters}
 <p>
-	<i>{$author->getFullName()|escape}</i><br />
-	{if $author->getUrl()}<a href="{$author->getUrl()|escape:"quotes"}">{$author->getUrl()|escape}</a><br/>{/if}
-	{if $author->getAffiliation()}{$author->getAffiliation()|escape}{/if}
-	{if $author->getCountry()}<br/>{$author->getCountryLocalized()|escape}{/if}
+	<i>{$presenter->getFullName()|escape}</i><br />
+	{if $presenter->getUrl()}<a href="{$presenter->getUrl()|escape:"quotes"}">{$presenter->getUrl()|escape}</a><br/>{/if}
+	{if $presenter->getAffiliation()}{$presenter->getAffiliation()|escape}{/if}
+	{if $presenter->getCountry()}<br/>{$presenter->getCountryLocalized()|escape}{/if}
 </p>
 
-<p>{$author->getBiography()|strip_unsafe_html|nl2br}</p>
+<p>{$presenter->getBiography()|strip_unsafe_html|nl2br}</p>
 
-{if !$smarty.foreach.authors.last}<div class="separator"></div>{/if}
+{if !$smarty.foreach.presenters.last}<div class="separator"></div>{/if}
 
 {/foreach}
 

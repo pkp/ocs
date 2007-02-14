@@ -40,7 +40,7 @@
 		<a href="{url op="add" path=$paperId|to_array:$galleyId:$comment->getCommentId()}" class="action">{translate key="comments.postReply"}</a>&nbsp;&nbsp;
 	{/if}
 
-	{if $isDirector}
+	{if $isManager}
 		<a href="{url op="delete" path=$paperId|to_array:$galleyId:$comment->getCommentId()}" {if $comment->getChildCommentCount()!=0}onclick="return confirm('{translate|escape:"javascript" key="comments.confirmDeleteChildren"}')" {/if}class="action">{translate key="comments.delete"}</a>
 	{/if}
 
@@ -71,7 +71,7 @@
 {if $enableComments==COMMENTS_UNAUTHENTICATED || (($enableComments==COMMENTS_AUTHENTICATED || $enableComments==COMMENTS_ANONYMOUS) && $isUserLoggedIn)}
 	<a href="{url op="add" path=$paperId|to_array:$galleyId:$childId}" class="action">{translate key="comments.postReply"}</a>&nbsp;&nbsp;
 {/if}
-{if $isDirector}
+{if $isManager}
 	<a href="{url op="delete" path=$paperId|to_array:$galleyId:$child->getCommentId()}" {if $child->getChildCommentCount()!=0}onclick="return confirm('{translate|escape:"javascript" key="comments.confirmDeleteChildren"}')" {/if}class="action">{translate key="comments.delete"}</a>
 {/if}
 <br />

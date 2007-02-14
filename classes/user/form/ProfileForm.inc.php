@@ -53,41 +53,41 @@ class ProfileForm extends Form {
 		}
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$eventDao = &DAORegistry::getDAO('EventDAO');
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$notificationStatusDao = &DAORegistry::getDAO('NotificationStatusDAO');
 		$userSettingsDao = &DAORegistry::getDAO('UserSettingsDAO');
 
-		$events = &$eventDao->getEvents();
-		$events = &$events->toArray();
+		$schedConfs = &$schedConfDao->getSchedConfs();
+		$schedConfs = &$schedConfs->toArray();
 
-		foreach ($events as $thisEvent) {
-			if ($thisEvent->getSetting('enableRegistration') == true && $thisEvent->getSetting('enableOpenAccessNotification') == true) {
+		foreach ($schedConfs as $thisSchedConf) {
+			if ($thisSchedConf->getSetting('enableRegistration') == true && $thisSchedConf->getSetting('enableOpenAccessNotification') == true) {
 				$templateMgr->assign('displayOpenAccessNotification', true);
 				$templateMgr->assign_by_ref('user', $user);
 				break;
 			}
 		}
 
-		$eventNotifications = &$notificationStatusDao->getEventNotifications($user->getUserId());
+		$schedConfNotifications = &$notificationStatusDao->getSchedConfNotifications($user->getUserId());
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 
-		$templateMgr->assign_by_ref('events', $events);
+		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 		$templateMgr->assign_by_ref('countries', $countries);
-		$templateMgr->assign_by_ref('eventNotifications', $eventNotifications);
+		$templateMgr->assign_by_ref('schedConfNotifications', $schedConfNotifications);
 		$templateMgr->assign('helpTopicId', 'user.registerAndProfile');		
 
-		$event =& Request::getEvent();
-		if ($event) {
+		$schedConf =& Request::getSchedConf();
+		if ($schedConf) {
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $event->getEventId());
+			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $schedConf->getSchedConfId());
 			$roleNames = array();
 			foreach ($roles as $role) $roleNames[$role->getRolePath()] = $role->getRoleName();
-			import('event.EventAction');
-			$templateMgr->assign('allowRegReviewer', EventAction::allowRegReviewer($event));
-			$templateMgr->assign('allowRegAuthor', EventAction::allowRegAuthor($event));
-			$templateMgr->assign('allowRegReader', EventAction::allowRegReader($event));
+			import('schedConf.SchedConfAction');
+			$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
+			$templateMgr->assign('allowRegPresenter', SchedConfAction::allowRegPresenter($schedConf));
+			$templateMgr->assign('allowRegReader', SchedConfAction::allowRegReader($schedConf));
 			$templateMgr->assign('roles', $roleNames);
 		}
 		
@@ -120,7 +120,7 @@ class ProfileForm extends Form {
 			'biography' => $user->getBiography(),
 			'interests' => $user->getInterests(),
 			'userLocales' => $user->getLocales(),
-			'isAuthor' => Validation::isAuthor(),
+			'isPresenter' => Validation::isPresenter(),
 			'isReader' => Validation::isReader(),
 			'isReviewer' => Validation::isReviewer()
 		);
@@ -150,7 +150,7 @@ class ProfileForm extends Form {
 			'interests',
 			'userLocales',
 			'readerRole',
-			'authorRole',
+			'presenterRole',
 			'reviewerRole'
 		));
 		
@@ -198,32 +198,32 @@ class ProfileForm extends Form {
 		$userDao->updateUser($user);
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$eventDao = &DAORegistry::getDAO('EventDAO');
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$notificationStatusDao = &DAORegistry::getDAO('NotificationStatusDAO');
 
 		// Roles
-		$event =& Request::getEvent();
-		if ($event) {
-			import('event.EventAction');
+		$schedConf =& Request::getSchedConf();
+		if ($schedConf) {
+			import('schedConf.SchedConfAction');
 			$role =& new Role();
 			$role->setUserId($user->getUserId());
-			$role->setConferenceId($event->getConferenceId());
-			$role->setEventId($event->getEventId());
-			if (EventAction::allowRegReviewer($event)) {
+			$role->setConferenceId($schedConf->getConferenceId());
+			$role->setSchedConfId($schedConf->getSchedConfId());
+			if (SchedConfAction::allowRegReviewer($schedConf)) {
 				$role->setRoleId(ROLE_ID_REVIEWER);
 				$hasRole = Validation::isReviewer();
 				$wantsRole = Request::getUserVar('reviewerRole');
 				if ($hasRole && !$wantsRole) $roleDao->deleteRole($role);
 				if (!$hasRole && $wantsRole) $roleDao->insertRole($role);
 			}
-			if (EventAction::allowRegAuthor($event)) {
-				$role->setRoleId(ROLE_ID_AUTHOR);
-				$hasRole = Validation::isAuthor();
-				$wantsRole = Request::getUserVar('authorRole');
+			if (SchedConfAction::allowRegPresenter($schedConf)) {
+				$role->setRoleId(ROLE_ID_PRESENTER);
+				$hasRole = Validation::isPresenter();
+				$wantsRole = Request::getUserVar('presenterRole');
 				if ($hasRole && !$wantsRole) $roleDao->deleteRole($role);
 				if (!$hasRole && $wantsRole) $roleDao->insertRole($role);
 			}
-			if (EventAction::allowRegReader($event)) {
+			if (SchedConfAction::allowRegReader($schedConf)) {
 				$role->setRoleId(ROLE_ID_READER);
 				$hasRole = Validation::isReader();
 				$wantsRole = Request::getUserVar('readerRole');
@@ -232,33 +232,33 @@ class ProfileForm extends Form {
 			}
 		}
 		
-		$events = &$eventDao->getEvents();
-		$events = &$events->toArray();
-		$eventNotifications = $notificationStatusDao->getEventNotifications($user->getUserId());
+		$schedConfs = &$schedConfDao->getSchedConfs();
+		$schedConfs = &$schedConfs->toArray();
+		$schedConfNotifications = $notificationStatusDao->getSchedConfNotifications($user->getUserId());
 
-		$readerNotify = Request::getUserVar('eventNotify');
+		$readerNotify = Request::getUserVar('schedConfNotify');
 
-		foreach ($events as $thisEvent) {
-			$thisEventId = $thisEvent->getEventId();
-			$currentlyReceives = !empty($eventNotifications[$thisEventId]);
-			$shouldReceive = !empty($readerNotify) && in_array($thisEvent->getEventId(), $readerNotify);
+		foreach ($schedConfs as $thisSchedConf) {
+			$thisSchedConfId = $thisSchedConf->getSchedConfId();
+			$currentlyReceives = !empty($schedConfNotifications[$thisSchedConfId]);
+			$shouldReceive = !empty($readerNotify) && in_array($thisSchedConf->getSchedConfId(), $readerNotify);
 			if ($currentlyReceives != $shouldReceive) {
-				$notificationStatusDao->setEventNotifications($thisEventId, $user->getUserId(), $shouldReceive);
+				$notificationStatusDao->setSchedConfNotifications($thisSchedConfId, $user->getUserId(), $shouldReceive);
 			}
 		}
 
 		$openAccessNotify = Request::getUserVar('openAccessNotify');
 
 		$userSettingsDao = &DAORegistry::getDAO('UserSettingsDAO');
-		$events = &$eventDao->getEvents();
-		$events = &$events->toArray();
+		$schedConfs = &$schedConfDao->getSchedConfs();
+		$schedConfs = &$schedConfs->toArray();
 
-		foreach ($events as $thisEvent) {
-			if (($thisEvent->getSetting('enableRegistration') == true) && ($thisEvent->getSetting('enableOpenAccessNotification') == true)) {
-				$currentlyReceives = $user->getSetting('openAccessNotification', $thisEvent->getEventId());
-				$shouldReceive = !empty($openAccessNotify) && in_array($thisEvent->getEventId(), $openAccessNotify);
+		foreach ($schedConfs as $thisSchedConf) {
+			if (($thisSchedConf->getSetting('enableRegistration') == true) && ($thisSchedConf->getSetting('enableOpenAccessNotification') == true)) {
+				$currentlyReceives = $user->getSetting('openAccessNotification', $thisSchedConf->getSchedConfId());
+				$shouldReceive = !empty($openAccessNotify) && in_array($thisSchedConf->getSchedConfId(), $openAccessNotify);
 				if ($currentlyReceives != $shouldReceive) {
-					$userSettingsDao->updateSetting($user->getUserId(), 'openAccessNotification', $shouldReceive, 'bool', $thisEvent->getEventId());
+					$userSettingsDao->updateSetting($user->getUserId(), 'openAccessNotification', $shouldReceive, 'bool', $thisSchedConf->getSchedConfId());
 				}
 			}
 		}

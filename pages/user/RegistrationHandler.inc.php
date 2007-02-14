@@ -19,12 +19,12 @@ class RegistrationHandler extends UserHandler {
 	 * Display registration form for new users.
 	 */
 	function register() {
-		list($conference, $event) = RegistrationHandler::validate();
+		list($conference, $schedConf) = RegistrationHandler::validate();
 		parent::setupTemplate(true);
 		
-		if ($conference != null && $event != null && $event->getEnabled()) {
+		if ($conference != null && $schedConf != null && $schedConf->getEnabled()) {
 
-			// We're trying to register for a specific event
+			// We're trying to register for a specific scheduled conference
 			import('user.form.RegistrationForm');
 		
 			$regForm = &new RegistrationForm();
@@ -33,20 +33,20 @@ class RegistrationHandler extends UserHandler {
 
 		} elseif ($conference != null) {
 
-			// We have the conference, but need to select an event
-			$eventsDao = &DAORegistry::getDAO('EventDAO');
-			$events = &$eventsDao->getEnabledEvents($conference->getConferenceId());
+			// We have the conference, but need to select a scheduled conference
+			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+			$schedConfs = &$schedConfDao->getEnabledSchedConfs($conference->getConferenceId());
 
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('pageHierarchy', array(
 				array(Request::url(null, 'index', 'index'), $conference->getTitle(), true)));
 			$templateMgr->assign('source', Request::getUserVar('source'));
-			$templateMgr->assign_by_ref('events', $events);
+			$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 			$templateMgr->display('user/registerConference.tpl');
 
 		} else {
 		
-			// We have neither conference nor event; start by selecting a
+			// We have neither conference nor scheduled conference; start by selecting a
 			// conference and we'll end up above after a redirect.
 			
 			$conferencesDao = &DAORegistry::getDAO('ConferenceDAO');
@@ -111,7 +111,7 @@ class RegistrationHandler extends UserHandler {
 	 * Checks if conference allows user registration.
 	 */	
 	function validate() {
-		list($conference, $event) = parent::validate(false);
+		list($conference, $schedConf) = parent::validate(false);
 
 		if ($conference != null) {
 			$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
@@ -122,7 +122,7 @@ class RegistrationHandler extends UserHandler {
 			}
 		}
 		
-		return array($conference, $event);
+		return array($conference, $schedConf);
 	}
 	
 }

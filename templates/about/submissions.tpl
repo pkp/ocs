@@ -14,7 +14,7 @@
 
 <ul class="plain">
 	<li>&#187; <a href="{url page="about" op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
-	{if !empty($conferenceSettings.authorGuidelines)}<li>&#187; <a href="{url page="about" op="submissions" anchor="authorGuidelines"}">{translate key="about.authorGuidelines"}</a></li>{/if}
+	{if !empty($conferenceSettings.presenterGuidelines)}<li>&#187; <a href="{url page="about" op="submissions" anchor="presenterGuidelines"}">{translate key="about.presenterGuidelines"}</a></li>{/if}
 	{if !empty($conferenceSettings.copyrightNotice)}<li>&#187; <a href="{url page="about" op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
 	{if !empty($conferenceSettings.privacyStatement)}<li>&#187; <a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
 </ul>
@@ -32,9 +32,9 @@
 
 <div class="separator">&nbsp;</div>
 
-{if !empty($conferenceSettings.authorGuidelines)}
-<a name="authorGuidelines"></a><h3>{translate key="about.authorGuidelines"}</h3>
-<p>{$conferenceSettings.authorGuidelines|nl2br}</p>
+{if !empty($conferenceSettings.presenterGuidelines)}
+<a name="presenterGuidelines"></a><h3>{translate key="about.presenterGuidelines"}</h3>
+<p>{$conferenceSettings.presenterGuidelines|nl2br}</p>
 
 <div class="separator">&nbsp;</div>
 {/if}

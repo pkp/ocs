@@ -19,20 +19,20 @@ class RegistrationManagerHandler extends Handler {
 	}
 
 	/**
-	 * Display a list of registrations for the current event.
+	 * Display a list of registrations for the current scheduled conference.
 	 */
 	function registrations() {
 		RegistrationManagerHandler::validate();
 		RegistrationManagerHandler::setupTemplate();
 
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$rangeInfo = &Handler::getRangeInfo('registrations');
 		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
-		$registrations = &$registrationDao->getRegistrationsByEventId($event->getEventId(), $rangeInfo);
+		$registrations = &$registrationDao->getRegistrationsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('registrations', $registrations);
-		$templateMgr->assign('helpTopicId', 'event.managementPages.registrations');
+		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
 		$templateMgr->display('registration/registrations.tpl');
 	}
 
@@ -44,13 +44,13 @@ class RegistrationManagerHandler extends Handler {
 		RegistrationManagerHandler::validate();
 		
 		if (isset($args) && !empty($args)) {
-			$event = &Request::getEvent();
+			$schedConf = &Request::getSchedConf();
 			$registrationId = (int) $args[0];
 		
 			$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
 
-			// Ensure registration is for this event
-			if ($registrationDao->getRegistrationEventId($registrationId) == $event->getEventId()) {
+			// Ensure registration is for this scheduled conference
+			if ($registrationDao->getRegistrationSchedConfId($registrationId) == $schedConf->getSchedConfId()) {
 				$registrationDao->deleteRegistrationById($registrationId);
 			}
 		}
@@ -66,22 +66,22 @@ class RegistrationManagerHandler extends Handler {
 		RegistrationManagerHandler::validate();
 		RegistrationManagerHandler::setupTemplate();
 
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$registrationId = !isset($args) || empty($args) ? null : (int) $args[0];
 		$userId = Request::getUserVar('userId');
 		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
 
-		// Ensure registration is valid and for this event
-		if (($registrationId != null && $registrationDao->getRegistrationEventId($registrationId) == $event->getEventId()) || ($registrationId == null && $userId)) {
+		// Ensure registration is valid and for this scheduled conference
+		if (($registrationId != null && $registrationDao->getRegistrationSchedConfId($registrationId) == $schedConf->getSchedConfId()) || ($registrationId == null && $userId)) {
 			import('registration.form.RegistrationForm');
 
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager'), 'registrationManager.registrationManagement'));
 
 			if ($registrationId == null) {
-				$templateMgr->assign('registrationTitle', 'director.registrations.createTitle');
+				$templateMgr->assign('registrationTitle', 'manager.registrations.createTitle');
 			} else {
-				$templateMgr->assign('registrationTitle', 'director.registrations.editTitle');	
+				$templateMgr->assign('registrationTitle', 'manager.registrations.editTitle');	
 			}
 
 			$registrationForm = &new RegistrationForm($registrationId, $userId);
@@ -134,7 +134,7 @@ class RegistrationManagerHandler extends Handler {
 		$templateMgr->assign('search', $searchQuery);
 		$templateMgr->assign('searchInitial', $searchInitial);
 
-		$templateMgr->assign('isEventManager', false);
+		$templateMgr->assign('isSchedConfManager', false);
 
 		$templateMgr->assign('fieldOptions', Array(
 			USER_FIELD_FIRSTNAME => 'user.firstName',
@@ -143,7 +143,7 @@ class RegistrationManagerHandler extends Handler {
 			USER_FIELD_EMAIL => 'user.email'
 		));
 		$templateMgr->assign_by_ref('users', $users);
-		$templateMgr->assign('helpTopicId', 'event.managementPages.registrations');
+		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
 		$templateMgr->assign('registrationId', Request::getUserVar('registrationId'));
 		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 		$templateMgr->display('registration/users.tpl');
@@ -157,11 +157,11 @@ class RegistrationManagerHandler extends Handler {
 		
 		import('registration.form.RegistrationForm');
 		
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$registrationId = Request::getUserVar('registrationId') == null ? null : (int) Request::getUserVar('registrationId');
 		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
 
-		if (($registrationId != null && $registrationDao->getRegistrationEventId($registrationId) == $event->getEventId()) || $registrationId == null) {
+		if (($registrationId != null && $registrationDao->getRegistrationSchedConfId($registrationId) == $schedConf->getSchedConfId()) || $registrationId == null) {
 
 			$registrationForm = &new RegistrationForm($registrationId);
 			$registrationForm->readInputData();
@@ -182,9 +182,9 @@ class RegistrationManagerHandler extends Handler {
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager'), 'registrationManager.registrationManagement'));
 
 				if ($registrationId == null) {
-					$templateMgr->assign('registrationTitle', 'director.registrations.createTitle');
+					$templateMgr->assign('registrationTitle', 'manager.registrations.createTitle');
 				} else {
-					$templateMgr->assign('registrationTitle', 'director.registrations.editTitle');	
+					$templateMgr->assign('registrationTitle', 'manager.registrations.editTitle');	
 				}
 
 				$registrationForm->display();
@@ -196,20 +196,20 @@ class RegistrationManagerHandler extends Handler {
 	}
 
 	/**
-	 * Display a list of registration types for the current event.
+	 * Display a list of registration types for the current scheduled conference.
 	 */
 	function registrationTypes() {
 		RegistrationManagerHandler::validate();
 		RegistrationManagerHandler::setupTemplate(true);
 
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$rangeInfo = &Handler::getRangeInfo('registrationTypes');
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
-		$registrationTypes = &$registrationTypeDao->getRegistrationTypesByEventId($event->getEventId(), $rangeInfo);
+		$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('registrationTypes', $registrationTypes);
-		$templateMgr->assign('helpTopicId', 'event.managementPages.registrations');
+		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
 
 		$templateMgr->display('registration/registrationTypes.tpl');
 	}
@@ -221,16 +221,16 @@ class RegistrationManagerHandler extends Handler {
 		RegistrationManagerHandler::validate();
 
 		$registrationTypeId = isset($args[0])?$args[0]:0;
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationType = &$registrationTypeDao->getRegistrationType($registrationTypeId);
 
-		if ($registrationType && $registrationType->getEventId() == $event->getEventId()) {
+		if ($registrationType && $registrationType->getSchedConfId() == $schedConf->getSchedConfId()) {
 			$isDown = Request::getUserVar('dir')=='d';
 			$registrationType->setSequence($registrationType->getSequence()+($isDown?1.5:-1.5));
 			$registrationTypeDao->updateRegistrationType($registrationType);
-			$registrationTypeDao->resequenceRegistrationTypes($registrationType->getEventId());
+			$registrationTypeDao->resequenceRegistrationTypes($registrationType->getSchedConfId());
 		}
 
 		Request::redirect(null, null, null, 'registrationTypes');
@@ -244,13 +244,13 @@ class RegistrationManagerHandler extends Handler {
 		RegistrationManagerHandler::validate();
 		
 		if (isset($args) && !empty($args)) {
-			$event = &Request::getEvent();
+			$schedConf = &Request::getSchedConf();
 			$registrationTypeId = (int) $args[0];
 		
 			$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 
-			// Ensure registration type is for this event
-			if ($registrationTypeDao->getRegistrationTypeEventId($registrationTypeId) == $event->getEventId()) {
+			// Ensure registration type is for this scheduled conference
+			if ($registrationTypeDao->getRegistrationTypeSchedConfId($registrationTypeId) == $schedConf->getSchedConfId()) {
 				$registrationTypeDao->deleteRegistrationTypeById($registrationTypeId);
 			}
 		}
@@ -266,22 +266,22 @@ class RegistrationManagerHandler extends Handler {
 		RegistrationManagerHandler::validate();
 		RegistrationManagerHandler::setupTemplate(true);
 
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$registrationTypeId = !isset($args) || empty($args) ? null : (int) $args[0];
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 
-		// Ensure registration type is valid and for this event
-		if (($registrationTypeId != null && $registrationTypeDao->getRegistrationTypeEventId($registrationTypeId) == $event->getEventId()) || $registrationTypeId == null) {
+		// Ensure registration type is valid and for this scheduled conference
+		if (($registrationTypeId != null && $registrationTypeDao->getRegistrationTypeSchedConfId($registrationTypeId) == $schedConf->getSchedConfId()) || $registrationTypeId == null) {
 
 			import('registration.form.RegistrationTypeForm');
 
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager', 'registrationTypes'), 'director.registrationTypes'));
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager', 'registrationTypes'), 'manager.registrationTypes'));
 
 			if ($registrationTypeId == null) {
-				$templateMgr->assign('registrationTypeTitle', 'director.registrationTypes.createTitle');
+				$templateMgr->assign('registrationTypeTitle', 'manager.registrationTypes.createTitle');
 			} else {
-				$templateMgr->assign('registrationTypeTitle', 'director.registrationTypes.editTitle');	
+				$templateMgr->assign('registrationTypeTitle', 'manager.registrationTypes.editTitle');	
 			}
 
 			$registrationTypeForm = &new RegistrationTypeForm($registrationTypeId);
@@ -308,11 +308,11 @@ class RegistrationManagerHandler extends Handler {
 		
 		import('registration.form.RegistrationTypeForm');
 		
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$registrationTypeId = Request::getUserVar('typeId') == null ? null : (int) Request::getUserVar('typeId');
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 
-		if (($registrationTypeId != null && $registrationTypeDao->getRegistrationTypeEventId($registrationTypeId) == $event->getEventId()) || $registrationTypeId == null) {
+		if (($registrationTypeId != null && $registrationTypeDao->getRegistrationTypeSchedConfId($registrationTypeId) == $schedConf->getSchedConfId()) || $registrationTypeId == null) {
 
 			$registrationTypeForm = &new RegistrationTypeForm($registrationTypeId);
 			$registrationTypeForm->readInputData();
@@ -324,8 +324,8 @@ class RegistrationManagerHandler extends Handler {
 					RegistrationManagerHandler::setupTemplate(true);
 
 					$templateMgr = &TemplateManager::getManager();
-					$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager', 'registrationTypes'), 'director.registrationTypes'));
-					$templateMgr->assign('registrationTypeTitle', 'director.registrationTypes.createTitle');
+					$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager', 'registrationTypes'), 'manager.registrationTypes'));
+					$templateMgr->assign('registrationTypeTitle', 'manager.registrationTypes.createTitle');
 					$templateMgr->assign('registrationTypeCreated', '1');
 
 					$registrationTypeForm = &new RegistrationTypeForm($registrationTypeId);
@@ -340,12 +340,12 @@ class RegistrationManagerHandler extends Handler {
 				RegistrationManagerHandler::setupTemplate(true);
 
 				$templateMgr = &TemplateManager::getManager();
-				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager', 'registrationTypes'), 'director.registrationTypes'));
+				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'registrationManager', 'registrationTypes'), 'manager.registrationTypes'));
 
 				if ($registrationTypeId == null) {
-					$templateMgr->assign('registrationTypeTitle', 'director.registrationTypes.createTitle');
+					$templateMgr->assign('registrationTypeTitle', 'manager.registrationTypes.createTitle');
 				} else {
-					$templateMgr->assign('registrationTypeTitle', 'director.registrationTypes.editTitle');	
+					$templateMgr->assign('registrationTypeTitle', 'manager.registrationTypes.editTitle');	
 				}
 
 				$registrationTypeForm->display();
@@ -357,7 +357,7 @@ class RegistrationManagerHandler extends Handler {
 	}
 
 	/**
-	 * Display registration policies for the current event.
+	 * Display registration policies for the current scheduled conference.
 	 */
 	function registrationPolicies() {
 		RegistrationManagerHandler::validate();
@@ -366,7 +366,7 @@ class RegistrationManagerHandler extends Handler {
 		import('registration.form.RegistrationPolicyForm');
 
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('helpTopicId', 'event.managementPages.registrations');
+		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
 
 		if (Config::getVar('general', 'scheduled_tasks')) {
 			$templateMgr->assign('scheduledTasksEnabled', true);
@@ -378,7 +378,7 @@ class RegistrationManagerHandler extends Handler {
 	}
 	
 	/**
-	 * Save registration policies for the current event.
+	 * Save registration policies for the current scheduled conference.
 	 */
 	function saveRegistrationPolicies($args = array()) {
 		RegistrationManagerHandler::validate();
@@ -394,7 +394,7 @@ class RegistrationManagerHandler extends Handler {
 			RegistrationManagerHandler::setupTemplate(true);
 
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->assign('helpTopicId', 'event.managementPages.registrations');
+			$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
 			$templateMgr->assign('registrationPoliciesSaved', '1');
 
 			if (Config::getVar('general', 'scheduled_tasks')) {
@@ -406,7 +406,7 @@ class RegistrationManagerHandler extends Handler {
 			RegistrationManagerHandler::setupTemplate(true);
 
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->assign('helpTopicId', 'event.managementPages.registrations');
+			$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
 			//$templateMgr->assign('registrationPoliciesSaved', '1');
 
 			if (Config::getVar('general', 'scheduled_tasks')) {
@@ -419,14 +419,14 @@ class RegistrationManagerHandler extends Handler {
 
 	/**
 	 * Validate that user has permissions to manage registrations for the
-	 * selected event. Redirects to user index page if not properly
+	 * selected scheduled conference. Redirects to user index page if not properly
 	 * authenticated.
 	 */
 	function validate() {
 		parent::validate();
-		$event =& Request::getEvent();
+		$schedConf =& Request::getSchedConf();
 		$conference =& Request::getConference();
-		if (!$event || !Validation::isRegistrationManager($conference->getConferenceId(), $event->getEventId())) {
+		if (!$schedConf || !Validation::isRegistrationManager($conference->getConferenceId(), $schedConf->getSchedConfId())) {
 			Validation::redirectLogin();
 		}
 	}

@@ -23,15 +23,15 @@ class PaperLog {
 	 */
 	function logEventEntry($paperId, &$entry) {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$eventId = $paperDao->getPaperEventId($paperId);
+		$schedConfId = $paperDao->getPaperSchedConfId($paperId);
 		
-		if (!$eventId) {
+		if (!$schedConfId) {
 			// Invalid paper
 			return false;
 		}
 		
-		$settingsDao = &DAORegistry::getDAO('EventSettingsDAO');
-		if (!$settingsDao->getSetting($eventId, 'paperEventLog', true)) {
+		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		if (!$settingsDao->getSetting($schedConfId, 'paperEventLog', true)) {
 			// Event logging is disabled
 			return false;
 		}
@@ -103,15 +103,15 @@ class PaperLog {
 	 */
 	function logEmailEntry($paperId, &$entry) {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$eventId = $paperDao->getPaperEventId($paperId);
+		$schedConfId = $paperDao->getPaperSchedConfId($paperId);
 		
-		if (!$eventId) {
+		if (!$schedConfId) {
 			// Invalid paper
 			return false;
 		}
 		
-		$settingsDao = &DAORegistry::getDAO('EventSettingsDAO');
-		if (!$settingsDao->getSetting($eventId, 'paperEmailLog', true)) {
+		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		if (!$settingsDao->getSetting($schedConfId, 'paperEmailLog', true)) {
 			// Email logging is disabled
 			return false;
 		}

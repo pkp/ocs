@@ -55,14 +55,14 @@ class PublicFileManager extends FileManager {
 	}
 	
 	/**
-	 * Get the path to an event's public files directory.
-	 * @param $eventId int
+	 * Get the path to a scheduled conference's public files directory.
+	 * @param $schedConfId int
 	 * @return string
 	 */
-	function getEventFilesPath($eventId) {
-		$eventDao =& DAORegistry::getDAO('EventDAO');
-		$event =& $eventDao->getEvent($eventId);
-		return Config::getVar('files', 'public_files_dir') . '/conferences/' . $event->getConferenceId() . '/events/' . $eventId;
+	function getSchedConfFilesPath($schedConfId) {
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+		return Config::getVar('files', 'public_files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId;
 	}
 	
 	/**
@@ -109,46 +109,46 @@ class PublicFileManager extends FileManager {
  	}
  	
 	/**
-	 * Upload a file to a events's public directory.
-	 * @param $eventId int
+	 * Upload a file to a scheduled conference's public directory.
+	 * @param $schedConfId int
 	 * @param $fileName string the name of the file in the upload form
 	 * @param $destFileName string the destination file name
 	 * @return boolean
 	 */
- 	function uploadEventFile($eventId, $fileName, $destFileName) {
- 		return $this->uploadFile($fileName, $this->getEventFilesPath($eventId) . '/' . $destFileName);
+ 	function uploadSchedConfFile($schedConfId, $fileName, $destFileName) {
+ 		return $this->uploadFile($fileName, $this->getSchedConfFilesPath($schedConfId) . '/' . $destFileName);
  	}
  	
 	/**
-	 * Write a file to a events's public directory.
-	 * @param $eventId int
+	 * Write a file to a scheduled conference's public directory.
+	 * @param $schedConfId int
 	 * @param $destFileName string the destination file name
 	 * @param $contents string the contents to write to the file
 	 * @return boolean
 	 */
- 	function writeEventFile($eventId, $destFileName, &$contents) {
- 		return $this->writeFile($this->getEventFilesPath($eventId) . '/' . $destFileName, $contents);
+ 	function writeSchedConfFile($schedConfId, $destFileName, &$contents) {
+ 		return $this->writeFile($this->getSchedConfFilesPath($schedConfId) . '/' . $destFileName, $contents);
  	}
  	
 	/**
-	 * Copy a file to a events's public directory.
-	 * @param $eventId int
+	 * Copy a file to a scheduled conference's public directory.
+	 * @param $schedConfId int
 	 * @param $sourceFile string the source of the file to copy
 	 * @param $destFileName string the destination file name
 	 * @return boolean
 	 */
- 	function copyEventFile($eventId, $sourceFile, $destFileName) {
- 		return $this->copyFile($sourceFile, $this->getEventFilesPath($eventId) . '/' . $destFileName);
+ 	function copySchedConfFile($schedConfId, $sourceFile, $destFileName) {
+ 		return $this->copyFile($sourceFile, $this->getSchedConfFilesPath($schedConfId) . '/' . $destFileName);
  	}
 
  	/**
-	 * Delete a file from a event's public directory.
- 	 * @param $eventId int
+	 * Delete a file from a scheduled conference's public directory.
+ 	 * @param $schedConfId int
  	 * @param $fileName string the target file name
 	 * @return boolean
  	 */
- 	function removeEventFile($eventId, $fileName) {
- 		return $this->deleteFile($this->getEventFilesPath($eventId) . '/' . $fileName);
+ 	function removeSchedConfFile($schedConfId, $fileName) {
+ 		return $this->deleteFile($this->getSchedConfFilesPath($schedConfId) . '/' . $fileName);
  	}
  	
 }

@@ -25,8 +25,8 @@ class PaperMailTemplate extends MailTemplate {
 	/** @var object the associated conference */
 	var $conference;
 
-	/** @var object the associated event */
-	var $event;
+	/** @var object the associated scheduled conference */
+	var $schedConf;
 
 	/** @var int Event type of this email */
 	var $eventType;
@@ -44,25 +44,25 @@ class PaperMailTemplate extends MailTemplate {
 	 * @param $locale string optional
 	 * @param $enableAttachments boolean optional
 	 * @param $conference object optional
-	 * @param $event object optional
+	 * @param $schedConf object optional
 	 * @see MailTemplate::MailTemplate()
 	 */
-	function PaperMailTemplate($paper, $emailKey = null, $locale = null, $enableAttachments = null, $conference = null, $event = null) {
-		parent::MailTemplate($emailKey, $locale, $enableAttachments, $conference, $event);
+	function PaperMailTemplate($paper, $emailKey = null, $locale = null, $enableAttachments = null, $conference = null, $schedConf = null) {
+		parent::MailTemplate($emailKey, $locale, $enableAttachments, $conference, $schedConf);
 		$this->paper = $paper;
 	}
 
 	function assignParams($paramArray = array()) {
 		$paper = &$this->paper;
 		$conference = isset($this->conference)?$this->conference:Request::getConference();
-		$event = isset($this->event)?$this->event:Request::getEvent();
+		$schedConf = isset($this->schedConf)?$this->schedConf:Request::getSchedConf();
 		
 		$paramArray['paperTitle'] = strip_tags($paper->getPaperTitle());
 		$paramArray['conferenceName'] = strip_tags($conference->getTitle());
-		$paramArray['eventName'] = strip_tags($event->getTitle());
+		$paramArray['schedConfName'] = strip_tags($schedConf->getTitle());
 		$paramArray['trackName'] = strip_tags($paper->getTrackTitle());
 		$paramArray['paperAbstract'] = strip_tags($paper->getPaperAbstract());
-		$paramArray['authorString'] = strip_tags($paper->getAuthorString());
+		$paramArray['presenterString'] = strip_tags($paper->getPresenterString());
 
 		parent::assignParams($paramArray);
 	}
@@ -118,11 +118,11 @@ class PaperMailTemplate extends MailTemplate {
 	}
 
 	/**
-	 * Set the event this message is associated with.
-	 * @param $event object
+	 * Set the scheduled conference this message is associated with.
+	 * @param $schedConf object
 	 */
-	function setEvent($event) {
-		$this->event = $event;
+	function setSchedConf($schedConf) {
+		$this->schedConf = $schedConf;
 	}
 
 	/**

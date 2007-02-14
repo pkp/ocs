@@ -19,7 +19,7 @@ import('submission.reviewer.ReviewerSubmission');
 class ReviewerSubmissionDAO extends DAO {
 
 	var $paperDao;
-	var $authorDao;
+	var $presenterDao;
 	var $userDao;
 	var $reviewAssignmentDao;
 	var $editAssignmentDao;
@@ -33,7 +33,7 @@ class ReviewerSubmissionDAO extends DAO {
 	function ReviewerSubmissionDAO() {
 		parent::DAO();
 		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
+		$this->presenterDao = &DAORegistry::getDAO('PresenterDAO');
 		$this->userDao = &DAORegistry::getDAO('UserDAO');
 		$this->reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
@@ -183,11 +183,11 @@ class ReviewerSubmissionDAO extends DAO {
 	/**
 	 * Get all submissions for a reviewer of a conference.
 	 * @param $reviewerId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @param $rangeInfo object
 	 * @return array ReviewerSubmissions
 	 */
-	function &getReviewerSubmissionsByReviewerId($reviewerId, $eventId, $active = true, $rangeInfo = null) {
+	function &getReviewerSubmissionsByReviewerId($reviewerId, $schedConfId, $active = true, $rangeInfo = null) {
 		$sql = 'SELECT p.*,
 				r.*,
 				r2.review_revision,
@@ -204,7 +204,7 @@ class ReviewerSubmissionDAO extends DAO {
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_rounds r2 ON (r.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type)
-			WHERE p.event_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';
+			WHERE p.sched_conf_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';
 
 		if ($active) {
 			$sql .=  ' AND r.date_completed IS NULL AND r.declined <> 1 AND (r.cancelled = 0 OR r.cancelled IS NULL)';
@@ -212,7 +212,7 @@ class ReviewerSubmissionDAO extends DAO {
 			$sql .= ' AND (r.date_completed IS NOT NULL OR r.cancelled = 1 OR r.declined = 1)';
 		}
 
-		$result = &$this->retrieveRange($sql, array($eventId, $reviewerId), $rangeInfo);
+		$result = &$this->retrieveRange($sql, array($schedConfId, $reviewerId), $rangeInfo);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnReviewerSubmissionFromRow');
 		return $returner;
@@ -221,9 +221,9 @@ class ReviewerSubmissionDAO extends DAO {
 	/**
 	 * Get count of active and complete assignments
 	 * @param reviewerId int
-	 * @param eventId int
+	 * @param schedConfId int
 	 */
-	function getSubmissionsCount($reviewerId, $eventId) {
+	function getSubmissionsCount($reviewerId, $schedConfId) {
 		$submissionsCount = array();
 		$submissionsCount[0] = 0;
 		$submissionsCount[1] = 0;
@@ -235,9 +235,9 @@ class ReviewerSubmissionDAO extends DAO {
 				LEFT JOIN tracks s ON (s.track_id = a.track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_rounds r2 ON (r.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type)
-			WHERE a.event_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';
+			WHERE a.sched_conf_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';
 
-		$result = &$this->retrieve($sql, array($eventId, $reviewerId));
+		$result = &$this->retrieve($sql, array($schedConfId, $reviewerId));
 
 		while (!$result->EOF) {
 			if ($result->fields['date_completed'] == null && $result->fields['declined'] != 1 && $result->fields['cancelled'] != 1) {

@@ -8,7 +8,7 @@
  *
  * @package registration.form
  *
- * Form for event directors to create/edit registrations.
+ * Form for conference managers to create/edit registrations.
  *
  * $Id$
  */
@@ -28,34 +28,34 @@ class RegistrationForm extends Form {
 
 		$this->registrationId = isset($registrationId) ? (int) $registrationId : null;
 		$this->userId = isset($userId) ? (int) $userId : null;
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 
 		parent::Form('registration/registrationForm.tpl');
 	
 		// User is provided and valid
-		$this->addCheck(new FormValidator($this, 'userId', 'required', 'director.registrations.form.userIdRequired'));
-		$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'director.registrations.form.userIdValid', create_function('$userId', '$userDao = &DAORegistry::getDAO(\'UserDAO\'); return $userDao->userExistsById($userId);')));
+		$this->addCheck(new FormValidator($this, 'userId', 'required', 'manager.registrations.form.userIdRequired'));
+		$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'manager.registrations.form.userIdValid', create_function('$userId', '$userDao = &DAORegistry::getDAO(\'UserDAO\'); return $userDao->userExistsById($userId);')));
 
-		// Ensure that user does not already have a registration for this event
+		// Ensure that user does not already have a registration for this scheduled conference
 		if ($this->registrationId == null) {
-			$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'director.registrations.form.registrationExists', array(DAORegistry::getDAO('RegistrationDAO'), 'registrationExistsByUser'), array($event->getEventId()), true));
+			$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'manager.registrations.form.registrationExists', array(DAORegistry::getDAO('RegistrationDAO'), 'registrationExistsByUser'), array($schedConf->getSchedConfId()), true));
 		} else {
-			$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'director.registrations.form.registrationExists', create_function('$userId, $eventId, $registrationId', '$registrationDao = &DAORegistry::getDAO(\'RegistrationDAO\'); $checkId = $registrationDao->getRegistrationIdByUser($userId, $eventId); return ($checkId == 0 || $checkId == $registrationId) ? true : false;'), array($event->getEventId(), $this->registrationId)));
+			$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'manager.registrations.form.registrationExists', create_function('$userId, $schedConfId, $registrationId', '$registrationDao = &DAORegistry::getDAO(\'RegistrationDAO\'); $checkId = $registrationDao->getRegistrationIdByUser($userId, $schedConfId); return ($checkId == 0 || $checkId == $registrationId) ? true : false;'), array($schedConf->getSchedConfId(), $this->registrationId)));
 		}
 
 		// Registration type is provided and valid
-		$this->addCheck(new FormValidator($this, 'typeId', 'required', 'director.registrations.form.typeIdRequired'));
-		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'required', 'director.registrations.form.typeIdValid', create_function('$typeId, $eventId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->registrationTypeExistsByTypeId($typeId, $eventId);'), array($event->getEventId())));
+		$this->addCheck(new FormValidator($this, 'typeId', 'required', 'manager.registrations.form.typeIdRequired'));
+		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'required', 'manager.registrations.form.typeIdValid', create_function('$typeId, $schedConfId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->registrationTypeExistsByTypeId($typeId, $schedConfId);'), array($schedConf->getSchedConfId())));
 
 		// If provided, domain is valid
-		$this->addCheck(new FormValidatorRegExp($this, 'domain', 'optional', 'director.registrations.form.domainValid', '/^' .
+		$this->addCheck(new FormValidatorRegExp($this, 'domain', 'optional', 'manager.registrations.form.domainValid', '/^' .
 				'[A-Z0-9]+([\-_\.][A-Z0-9]+)*' .
 				'\.' .
 				'[A-Z]{2,4}' .
 			'$/i'));
 
 		// If provided, IP range has IP address format; IP addresses may contain wildcards
-		$this->addCheck(new FormValidatorRegExp($this, 'ipRange', 'optional', 'director.registrations.form.ipRangeValid','/^' .
+		$this->addCheck(new FormValidatorRegExp($this, 'ipRange', 'optional', 'manager.registrations.form.ipRangeValid','/^' .
 				// IP4 address (with or w/o wildcards) or IP4 address range (with or w/o wildcards) or CIDR IP4 address
 				'((([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}((\s)*[' . REGISTRATION_IP_RANGE_RANGE . '](\s)*([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}){0,1})|(([0-9]{1,3})([.]([0-9]{1,3})){3}([\/](([3][0-2]{0,1})|([1-2]{0,1}[0-9])))))' .
 				// followed by 0 or more delimited IP4 addresses (with or w/o wildcards) or IP4 address ranges
@@ -66,7 +66,7 @@ class RegistrationForm extends Form {
 			'$/i'));
 		
 		// Notify email flag is valid value
-		$this->addCheck(new FormValidatorInSet($this, 'notifyEmail', 'optional', 'director.registrations.form.notifyEmailValid', array('1')));
+		$this->addCheck(new FormValidatorInSet($this, 'notifyEmail', 'optional', 'manager.registrations.form.notifyEmailValid', array('1')));
 	}
 	
 	/**
@@ -74,7 +74,7 @@ class RegistrationForm extends Form {
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 
 		$templateMgr->assign('registrationId', $this->registrationId);
 		$templateMgr->assign('yearOffsetPast', REGISTRATION_YEAR_OFFSET_PAST);
@@ -86,9 +86,9 @@ class RegistrationForm extends Form {
 		$templateMgr->assign_by_ref('user', $user);
 
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
-		$registrationTypes = &$registrationTypeDao->getRegistrationTypesByEventId($event->getEventId());
+		$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
 		$templateMgr->assign('registrationTypes', $registrationTypes);
-		$templateMgr->assign('helpTopicId', 'event.managementPages.registrations');
+		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
 	
 		parent::display();
 	}
@@ -128,19 +128,19 @@ class RegistrationForm extends Form {
 		$needMembership = $registrationTypeDao->getRegistrationTypeMembership($this->getData('typeId'));
 
 		if ($needMembership) { 
-			$this->addCheck(new FormValidator($this, 'membership', 'required', 'director.registrations.form.membershipRequired'));
+			$this->addCheck(new FormValidator($this, 'membership', 'required', 'manager.registrations.form.membershipRequired'));
 		}
 
 		// If registration type requires it, domain and/or IP range is provided
 		$isInstitutional = $registrationTypeDao->getRegistrationTypeInstitutional($this->getData('typeId'));
 
 		if ($isInstitutional) { 
-			$this->addCheck(new FormValidatorCustom($this, 'domain', 'required', 'director.registrations.form.domainIPRangeRequired', create_function('$domain, $ipRange', 'return $domain != \'\' || $ipRange != \'\' ? true : false;'), array($this->getData('ipRange'))));
+			$this->addCheck(new FormValidatorCustom($this, 'domain', 'required', 'manager.registrations.form.domainIPRangeRequired', create_function('$domain, $ipRange', 'return $domain != \'\' || $ipRange != \'\' ? true : false;'), array($this->getData('ipRange'))));
 		}
 
 		// If notify email is requested, ensure registration contact name and email exist.
 		if ($this->_data['notifyEmail'] == 1) {
-			$this->addCheck(new FormValidatorCustom($this, 'notifyEmail', 'required', 'director.registrations.form.registrationContactRequired', create_function('', '$event = &Request::getEvent(); $eventSettingsDao = &DAORegistry::getDAO(\'EventSettingsDAO\'); $registrationName = $eventSettingsDao->getSetting($event->getEventId(), \'registrationName\'); $registrationEmail = $eventSettingsDao->getSetting($event->getEventId(), \'registrationEmail\'); return $registrationName != \'\' && $registrationEmail != \'\' ? true : false;'), array()));
+			$this->addCheck(new FormValidatorCustom($this, 'notifyEmail', 'required', 'manager.registrations.form.registrationContactRequired', create_function('', '$schedConf = &Request::getSchedConf(); $schedConfSettingsDao = &DAORegistry::getDAO(\'SchedConfSettingsDAO\'); $registrationName = $schedConfSettingsDao->getSetting($schedConf->getSchedConfId(), \'registrationName\'); $registrationEmail = $schedConfSettingsDao->getSetting($schedConf->getSchedConfId(), \'registrationEmail\'); return $registrationName != \'\' && $registrationEmail != \'\' ? true : false;'), array()));
 		}
 	}
 	
@@ -149,7 +149,7 @@ class RegistrationForm extends Form {
 	 */
 	function execute() {
 		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 	
 		if (isset($this->registrationId)) {
 			$registration = &$registrationDao->getRegistration($this->registrationId);
@@ -159,7 +159,7 @@ class RegistrationForm extends Form {
 			$registration = &new Registration();
 		}
 		
-		$registration->setEventId($event->getEventId());
+		$registration->setSchedConfId($schedConf->getSchedConfId());
 		$registration->setUserId($this->getData('userId'));
 		$registration->setTypeId($this->getData('typeId'));
 		$registration->setMembership($this->getData('membership') ? $this->getData('membership') : null);
@@ -182,18 +182,18 @@ class RegistrationForm extends Form {
 			// Send user registration notification email
 			$userDao = &DAORegistry::getDAO('UserDAO');
 			$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
-			$eventSettingsDao = &DAORegistry::getDAO('EventSettingsDAO');
+			$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
 
-			$eventName = $event->getTitle();
-			$eventId = $event->getEventId();
+			$schedConfName = $schedConf->getTitle();
+			$schedConfId = $schedConf->getSchedConfId();
 			$user = &$userDao->getUser($this->getData('userId'));
 			$registrationType = &$registrationTypeDao->getRegistrationType($this->getData('typeId'));
 
-			$registrationName = $eventSettingsDao->getSetting($eventId, 'registrationName');
-			$registrationEmail = $eventSettingsDao->getSetting($eventId, 'registrationEmail');
-			$registrationPhone = $eventSettingsDao->getSetting($eventId, 'registrationPhone');
-			$registrationFax = $eventSettingsDao->getSetting($eventId, 'registrationFax');
-			$registrationMailingAddress = $eventSettingsDao->getSetting($eventId, 'registrationMailingAddress');
+			$registrationName = $schedConfSettingsDao->getSetting($schedConfId, 'registrationName');
+			$registrationEmail = $schedConfSettingsDao->getSetting($schedConfId, 'registrationEmail');
+			$registrationPhone = $schedConfSettingsDao->getSetting($schedConfId, 'registrationPhone');
+			$registrationFax = $schedConfSettingsDao->getSetting($schedConfId, 'registrationFax');
+			$registrationMailingAddress = $schedConfSettingsDao->getSetting($schedConfId, 'registrationMailingAddress');
 			$registrationContactSignature = $registrationName;
 
 			if ($registrationMailingAddress != '') {
@@ -210,7 +210,7 @@ class RegistrationForm extends Form {
 
 			$paramArray = array(
 				'registrantName' => $user->getFullName(),
-				'eventName' => $eventName,
+				'schedConfName' => $schedConfName,
 				'registrationType' => $registrationType->getSummaryString(),
 				'username' => $user->getUsername(),
 				'registrationContactSignature' => $registrationContactSignature 

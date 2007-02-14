@@ -21,7 +21,7 @@
 	{if !empty($tracks)}<li>&#187; <a href="{url op="editorialPolicies" anchor="trackPolicies"}">{translate key="about.trackPolicies"}</a></li>{/if}
 	{if !empty($conferenceSettings.reviewPolicy)}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if !empty($conferenceSettings.pubFreqPolicy)}<li>&#187; <a href="{url op="editorialPolicies" anchor="publicationFrequency"}">{translate key="about.publicationFrequency"}</a></li>{/if}
-	{if !empty($conferenceSettings.openAccessPolicy) || !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enableAuthorSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
+	{if !empty($conferenceSettings.openAccessPolicy) || !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{if $conferenceSettings.enableLockss && !empty($conferenceSettings.lockssLicense)}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiving"}">{translate key="about.archiving"}</a></li>{/if}
 	{foreach key=key from=$conferenceSettings.customAboutItems item=customAboutItem}
 		{if !empty($customAboutItem.title)}
@@ -61,8 +61,8 @@
 	
 		<table class="plain" width="60%">
 			<tr>
-				<td width="50%">{if !$track->getEditorRestricted()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="director.tracks.open"}</td>
-				<td width="50%">{if $track->getMetaIndexed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="director.tracks.indexed"}</td>
+				<td width="50%">{if !$track->getEditorRestricted()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.tracks.open"}</td>
+				<td width="50%">{if $track->getMetaIndexed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.tracks.indexed"}</td>
 			</tr>
 		</table>
 	{/foreach}
@@ -83,7 +83,7 @@
 <div class="separator">&nbsp;</div>
 {/if}
 
-{if !empty($conferenceSettings.openAccessPolicy) || !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enableAuthorSelfArchive)}
+{if !empty($conferenceSettings.openAccessPolicy) || !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}
 <a name="openAccessPolicy"></a><h3>{translate key="about.openAccessPolicy"}</h3>
 	{if empty($conferenceSettings.enableSubscriptions) && !empty($conferenceSettings.openAccessPolicy)} 
 		<p>{$conferenceSettings.openAccessPolicy|nl2br}</p>
@@ -92,9 +92,9 @@
 		<h4>{translate key="about.delayedOpenAccess"}</h4> 
 		<p>{translate key="about.delayedOpenAccessDescription1"} {$conferenceSettings.delayedOpenAccessDuration} {translate key="about.delayedOpenAccessDescription2"}</p>
 	{/if}
-	{if !empty($conferenceSettings.enableSubscriptions) && !empty($conferenceSettings.enableAuthorSelfArchive)} 
-		<h4>{translate key="about.authorSelfArchive"}</h4> 
-		<p>{$conferenceSettings.authorSelfArchivePolicy|nl2br}</p>
+	{if !empty($conferenceSettings.enableSubscriptions) && !empty($conferenceSettings.enablePresenterSelfArchive)} 
+		<h4>{translate key="about.presenterSelfArchive"}</h4> 
+		<p>{$conferenceSettings.presenterSelfArchivePolicy|nl2br}</p>
 	{/if}
 
 <div class="separator">&nbsp;</div>

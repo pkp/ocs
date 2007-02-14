@@ -114,7 +114,7 @@ class RTContext {
 	/** @var $description string context description */
 	var $description;
 	
-	/** @var $authorTerms boolean default search terms to author names */
+	/** @var $authorTerms boolean default search terms to presenter names */
 	var $authorTerms = false;
 	
 	/** @var $geoTerms boolean default search terms to geo indexing data */

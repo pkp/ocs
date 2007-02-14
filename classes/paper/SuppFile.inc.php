@@ -302,21 +302,21 @@ class SuppFile extends PaperFile {
 	
 	/**
 	 * Return the "best" supp file ID -- If a public ID is set,
-	 * use it; otherwise use the internal Id. (Checks the event
+	 * use it; otherwise use the internal Id. (Checks the sched conf
 	 * settings to ensure that the public ID feature is enabled.)
-	 * @param $event Object the event this paper is in
+	 * @param $schedConf Object the sched conf this paper is in
 	 * @return string
 	 */
-	function getBestSuppFileId($event = null) {
-		// Retrieve the event, if necessary.
-		if (!isset($event)) {
+	function getBestSuppFileId($schedConf = null) {
+		// Retrieve the sched conf, if necessary.
+		if (!isset($schedConf)) {
 			$paperDao = &DAORegistry::getDAO('PaperDAO');
 			$paper = &$paperDao->getPaperById($this->getPaperId());
-			$eventDao = &DAORegistry::getDAO('EventDAO');
-			$event = &$eventDao->getEvent($paper->getEventId());
+			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+			$schedConf = &$schedConfDao->getSchedConf($paper->getSchedConfId());
 		}
 
-		if ($event->getSetting('enablePublicSuppFileId', true)) {
+		if ($schedConf->getSetting('enablePublicSuppFileId', true)) {
 			$publicSuppFileId = $this->getPublicSuppFileId();
 			if (!empty($publicSuppFileId)) return $publicSuppFileId;
 		}

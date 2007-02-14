@@ -29,11 +29,11 @@ class PaperFile extends DataObject {
 	function getFilePath() {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$paper = &$paperDao->getPaper($this->getPaperId());
-		$eventId = $paper->getEventId();
-		$eventDao = &DAORegistry::getDAO('EventDAO');
-		$event =& $eventDao->getEvent($eventId);
+		$paperId = $paper->getSchedConfId();
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf($paperId);
 
-		return Config::getVar('files', 'files_dir') . 'conferences' . $event->getConferenceId() . '/events/' . $eventId .
+		return Config::getVar('files', 'files_dir') . 'conferences' . $schedConf->getConferenceId() . '/schedConfs/' . $paperId .
 		'/papers/' . $this->getPaperId() . '/' . $this->getType() . '/' . $this->getFileName();
 	}
 

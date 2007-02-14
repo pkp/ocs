@@ -53,7 +53,7 @@ class MailTemplate extends Mail {
 	 * @param $enableAttachments boolean optional Whether or not to enable paper attachments in the template
 	 * @param $conference object optional The conference this message relates to
 	 */
-	function MailTemplate($emailKey = null, $locale = null, $enableAttachments = null, $conference = null, $event = null) {
+	function MailTemplate($emailKey = null, $locale = null, $enableAttachments = null, $conference = null, $schedConf = null) {
 		$this->emailKey = isset($emailKey) ? $emailKey : null;
 
 		
@@ -62,7 +62,7 @@ class MailTemplate extends Mail {
 		
 		// If a conference wasn't specified, use the current request.
 		if ($conference === null) $conference = &Request::getConference();
-		if ($event == null) $event = &Request::getEvent();
+		if ($schedConf == null) $schedConf = &Request::getSchedConf();
 		
 		if (isset($this->emailKey)) {
 			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
@@ -121,8 +121,8 @@ class MailTemplate extends Mail {
 		$user = &Request::getUser();
 		if ($user) {
 			$this->setFrom($user->getEmail(), $user->getFullName());
-		} elseif ($event) {
-			$this->setFrom($event->getSetting('contactEmail', true), $event->getSetting('contactName', true));
+		} elseif ($schedConf) {
+			$this->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
 		} elseif ($conference) {
 			$this->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 		} else {
@@ -196,7 +196,7 @@ class MailTemplate extends Mail {
 			$site = &Request::getSite();
 			$paramArray['principalContactSignature'] = $site->getContactName();
 		}
-		if (!isset($paramArray['conferenceUrl'])) $paramArray['conferenceUrl'] = Request::url(Request::getRequestedConferencePath(), Request::getRequestedEventPath());
+		if (!isset($paramArray['conferenceUrl'])) $paramArray['conferenceUrl'] = Request::url(Request::getRequestedConferencePath(), Request::getRequestedSchedConfPath());
 
 		// Replace variables in message with values
 		foreach ($paramArray as $key => $value) {
@@ -299,11 +299,11 @@ class MailTemplate extends Mail {
 	 */
 	function send($clearAttachments = true) {
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		
-		if($event) {
-			$envelopeSender = $event->getSetting('envelopeSender',true);
-			$emailSignature = $event->getSetting('emailSignature',true);
+		if($schedConf) {
+			$envelopeSender = $schedConf->getSetting('envelopeSender',true);
+			$emailSignature = $schedConf->getSetting('emailSignature',true);
 		} elseif ($conference) {
 			$envelopeSender = $conference->getSetting('envelopeSender');
 			$emailSignature = $conference->getSetting('emailSignature');

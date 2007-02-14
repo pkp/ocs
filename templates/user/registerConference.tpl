@@ -12,20 +12,20 @@
 {assign var="pageTitle" value="user.register"}
 {include file="common/header.tpl"}
 
-{translate key="user.register.selectEvent"}:
+{translate key="user.register.selectSchedConf"}:
 <ul>
-{iterate from=events item=event}
+{iterate from=schedConfs item=schedConf}
 	<li>
 		{if $source}
-			<a href="{url event=$event->getPath() page="user" op="register" source=$source|escape}">{$event->getFullTitle()|escape}</a>
+			<a href="{url schedConf=$schedConf->getPath() page="user" op="register" source=$source|escape}">{$schedConf->getFullTitle()|escape}</a>
 		{else}
-			<a href="{url event=$event->getPath() page="user" op="register"}">{$event->getFullTitle()|escape}</a>
+			<a href="{url schedConf=$schedConf->getPath() page="user" op="register"}">{$schedConf->getFullTitle()|escape}</a>
 		{/if}
 	</li>
 {/iterate}
 </ul>
-{if $events->wasEmpty()}
-	{translate key="user.register.noEvents"}
+{if $schedConfs->wasEmpty()}
+	{translate key="user.register.noSchedConfs"}
 {/if}
 
 {include file="common/footer.tpl"}

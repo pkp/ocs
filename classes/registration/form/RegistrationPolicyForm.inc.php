@@ -8,7 +8,7 @@
  *
  * @package registration.form
  *
- * Form for directors to setup registration policies.
+ * Form for managers to setup registration policies.
  *
  * $Id$
  */
@@ -72,22 +72,22 @@ class RegistrationPolicyForm extends Form {
 		parent::Form('registration/registrationPolicyForm.tpl');
 
 		// If provided, registration contact email is valid
-		$this->addCheck(new FormValidatorEmail($this, 'registrationEmail', 'optional', 'director.registrationPolicies.registrationContactEmailValid'));
+		$this->addCheck(new FormValidatorEmail($this, 'registrationEmail', 'optional', 'manager.registrationPolicies.registrationContactEmailValid'));
 
 		// If provided delayed open access duration is valid value
-		$this->addCheck(new FormValidatorInSet($this, 'delayedOpenAccessDuration', 'optional', 'director.registrationPolicies.delayedOpenAccessDurationValid', array_keys($this->validDuration)));
+		$this->addCheck(new FormValidatorInSet($this, 'delayedOpenAccessDuration', 'optional', 'manager.registrationPolicies.delayedOpenAccessDurationValid', array_keys($this->validDuration)));
 
 		// If provided expiry reminder months before value is valid value
-		$this->addCheck(new FormValidatorInSet($this, 'numMonthsBeforeRegistrationExpiryReminder', 'optional', 'director.registrationPolicies.numMonthsBeforeRegistrationExpiryReminderValid', array_keys($this->validNumMonthsBeforeExpiry)));
+		$this->addCheck(new FormValidatorInSet($this, 'numMonthsBeforeRegistrationExpiryReminder', 'optional', 'manager.registrationPolicies.numMonthsBeforeRegistrationExpiryReminderValid', array_keys($this->validNumMonthsBeforeExpiry)));
 
 		// If provided expiry reminder weeks before value is valid value
-		$this->addCheck(new FormValidatorInSet($this, 'numWeeksBeforeRegistrationExpiryReminder', 'optional', 'director.registrationPolicies.numWeeksBeforeRegistrationExpiryReminderValid', array_keys($this->validNumWeeksBeforeExpiry)));
+		$this->addCheck(new FormValidatorInSet($this, 'numWeeksBeforeRegistrationExpiryReminder', 'optional', 'manager.registrationPolicies.numWeeksBeforeRegistrationExpiryReminderValid', array_keys($this->validNumWeeksBeforeExpiry)));
 
 		// If provided expiry reminder months after value is valid value
-		$this->addCheck(new FormValidatorInSet($this, 'numMonthsAfterRegistrationExpiryReminder', 'optional', 'director.registrationPolicies.numMonthsAfterRegistrationExpiryReminderValid', array_keys($this->validNumMonthsAfterExpiry)));
+		$this->addCheck(new FormValidatorInSet($this, 'numMonthsAfterRegistrationExpiryReminder', 'optional', 'manager.registrationPolicies.numMonthsAfterRegistrationExpiryReminderValid', array_keys($this->validNumMonthsAfterExpiry)));
 
 		// If provided expiry reminder weeks after value is valid value
-		$this->addCheck(new FormValidatorInSet($this, 'numWeeksAfterRegistrationExpiryReminder', 'optional', 'director.registrationPolicies.numWeeksAfterRegistrationExpiryReminderValid', array_keys($this->validNumWeeksAfterExpiry)));
+		$this->addCheck(new FormValidatorInSet($this, 'numWeeksAfterRegistrationExpiryReminder', 'optional', 'manager.registrationPolicies.numWeeksAfterRegistrationExpiryReminderValid', array_keys($this->validNumWeeksAfterExpiry)));
 	}
 	
 	/**
@@ -108,31 +108,31 @@ class RegistrationPolicyForm extends Form {
 	 * Initialize form data from current registration policies.
 	 */
 	function initData() {
-		$eventSettingsDao = &DAORegistry::getDAO('EventSettingsDAO');
-		$event = &Request::getEvent();
-		$eventId = $event->getEventId();
+		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConf = &Request::getSchedConf();
+		$schedConfId = $schedConf->getSchedConfId();
 
 		$this->_data = array(
-			'registrationName' => $eventSettingsDao->getSetting($eventId, 'registrationName'),
-			'registrationEmail' => $eventSettingsDao->getSetting($eventId, 'registrationEmail'),
-			'registrationPhone' => $eventSettingsDao->getSetting($eventId, 'registrationPhone'),
-			'registrationFax' => $eventSettingsDao->getSetting($eventId, 'registrationFax'),
-			'registrationMailingAddress' => $eventSettingsDao->getSetting($eventId, 'registrationMailingAddress'),
-			'registrationAdditionalInformation' => $eventSettingsDao->getSetting($eventId, 'registrationAdditionalInformation'),
-			'enableDelayedOpenAccess' => $eventSettingsDao->getSetting($eventId, 'enableDelayedOpenAccess'),
-			'delayedOpenAccessDuration' => $eventSettingsDao->getSetting($eventId, 'delayedOpenAccessDuration'),
-			'delayedOpenAccessPolicy' => $eventSettingsDao->getSetting($eventId, 'delayedOpenAccessPolicy'),
-			'enableOpenAccessNotification' => $eventSettingsDao->getSetting($eventId, 'enableOpenAccessNotification'),
-			'enableAuthorSelfArchive' => $eventSettingsDao->getSetting($eventId, 'enableAuthorSelfArchive'),
-			'authorSelfArchivePolicy' => $eventSettingsDao->getSetting($eventId, 'authorSelfArchivePolicy'),
-			'enableRegistrationExpiryReminderBeforeMonths' => $eventSettingsDao->getSetting($eventId, 'enableRegistrationExpiryReminderBeforeMonths'),
-			'numMonthsBeforeRegistrationExpiryReminder' => $eventSettingsDao->getSetting($eventId, 'numMonthsBeforeRegistrationExpiryReminder'),
-			'enableRegistrationExpiryReminderBeforeWeeks' => $eventSettingsDao->getSetting($eventId, 'enableRegistrationExpiryReminderBeforeWeeks'),
-			'numWeeksBeforeRegistrationExpiryReminder' => $eventSettingsDao->getSetting($eventId, 'numWeeksBeforeRegistrationExpiryReminder'),
-			'enableRegistrationExpiryReminderAfterMonths' => $eventSettingsDao->getSetting($eventId, 'enableRegistrationExpiryReminderAfterMonths'),
-			'numMonthsAfterRegistrationExpiryReminder' => $eventSettingsDao->getSetting($eventId, 'numMonthsAfterRegistrationExpiryReminder'),
-			'enableRegistrationExpiryReminderAfterWeeks' => $eventSettingsDao->getSetting($eventId, 'enableRegistrationExpiryReminderAfterWeeks'),
-			'numWeeksAfterRegistrationExpiryReminder' => $eventSettingsDao->getSetting($eventId, 'numWeeksAfterRegistrationExpiryReminder')
+			'registrationName' => $schedConfSettingsDao->getSetting($schedConfId, 'registrationName'),
+			'registrationEmail' => $schedConfSettingsDao->getSetting($schedConfId, 'registrationEmail'),
+			'registrationPhone' => $schedConfSettingsDao->getSetting($schedConfId, 'registrationPhone'),
+			'registrationFax' => $schedConfSettingsDao->getSetting($schedConfId, 'registrationFax'),
+			'registrationMailingAddress' => $schedConfSettingsDao->getSetting($schedConfId, 'registrationMailingAddress'),
+			'registrationAdditionalInformation' => $schedConfSettingsDao->getSetting($schedConfId, 'registrationAdditionalInformation'),
+			'enableDelayedOpenAccess' => $schedConfSettingsDao->getSetting($schedConfId, 'enableDelayedOpenAccess'),
+			'delayedOpenAccessDuration' => $schedConfSettingsDao->getSetting($schedConfId, 'delayedOpenAccessDuration'),
+			'delayedOpenAccessPolicy' => $schedConfSettingsDao->getSetting($schedConfId, 'delayedOpenAccessPolicy'),
+			'enableOpenAccessNotification' => $schedConfSettingsDao->getSetting($schedConfId, 'enableOpenAccessNotification'),
+			'enablePresenterSelfArchive' => $schedConfSettingsDao->getSetting($schedConfId, 'enablePresenterSelfArchive'),
+			'presenterSelfArchivePolicy' => $schedConfSettingsDao->getSetting($schedConfId, 'presenterSelfArchivePolicy'),
+			'enableRegistrationExpiryReminderBeforeMonths' => $schedConfSettingsDao->getSetting($schedConfId, 'enableRegistrationExpiryReminderBeforeMonths'),
+			'numMonthsBeforeRegistrationExpiryReminder' => $schedConfSettingsDao->getSetting($schedConfId, 'numMonthsBeforeRegistrationExpiryReminder'),
+			'enableRegistrationExpiryReminderBeforeWeeks' => $schedConfSettingsDao->getSetting($schedConfId, 'enableRegistrationExpiryReminderBeforeWeeks'),
+			'numWeeksBeforeRegistrationExpiryReminder' => $schedConfSettingsDao->getSetting($schedConfId, 'numWeeksBeforeRegistrationExpiryReminder'),
+			'enableRegistrationExpiryReminderAfterMonths' => $schedConfSettingsDao->getSetting($schedConfId, 'enableRegistrationExpiryReminderAfterMonths'),
+			'numMonthsAfterRegistrationExpiryReminder' => $schedConfSettingsDao->getSetting($schedConfId, 'numMonthsAfterRegistrationExpiryReminder'),
+			'enableRegistrationExpiryReminderAfterWeeks' => $schedConfSettingsDao->getSetting($schedConfId, 'enableRegistrationExpiryReminderAfterWeeks'),
+			'numWeeksAfterRegistrationExpiryReminder' => $schedConfSettingsDao->getSetting($schedConfId, 'numWeeksAfterRegistrationExpiryReminder')
 		);
 	}
 	
@@ -140,31 +140,31 @@ class RegistrationPolicyForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('registrationName', 'registrationEmail', 'registrationPhone', 'registrationFax', 'registrationMailingAddress', 'registrationAdditionalInformation', 'enableDelayedOpenAccess', 'delayedOpenAccessDuration', 'delayedOpenAccessPolicy', 'enableOpenAccessNotification', 'enableAuthorSelfArchive', 'authorSelfArchivePolicy', 'enableRegistrationExpiryReminderBeforeMonths', 'numMonthsBeforeRegistrationExpiryReminder', 'enableRegistrationExpiryReminderBeforeWeeks', 'numWeeksBeforeRegistrationExpiryReminder', 'enableRegistrationExpiryReminderAfterWeeks', 'numWeeksAfterRegistrationExpiryReminder', 'enableRegistrationExpiryReminderAfterMonths', 'numMonthsAfterRegistrationExpiryReminder'));
+		$this->readUserVars(array('registrationName', 'registrationEmail', 'registrationPhone', 'registrationFax', 'registrationMailingAddress', 'registrationAdditionalInformation', 'enableDelayedOpenAccess', 'delayedOpenAccessDuration', 'delayedOpenAccessPolicy', 'enableOpenAccessNotification', 'enablePresenterSelfArchive', 'presenterSelfArchivePolicy', 'enableRegistrationExpiryReminderBeforeMonths', 'numMonthsBeforeRegistrationExpiryReminder', 'enableRegistrationExpiryReminderBeforeWeeks', 'numWeeksBeforeRegistrationExpiryReminder', 'enableRegistrationExpiryReminderAfterWeeks', 'numWeeksAfterRegistrationExpiryReminder', 'enableRegistrationExpiryReminderAfterMonths', 'numMonthsAfterRegistrationExpiryReminder'));
 
 		// If delayed open access selected, ensure a valid duration is provided
 		if ($this->_data['enableDelayedOpenAccess'] == 1) {
-			$this->addCheck(new FormValidatorInSet($this, 'delayedOpenAccessDuration', 'required', 'director.registrationPolicies.delayedOpenAccessDurationValid', array_keys($this->validDuration)));
+			$this->addCheck(new FormValidatorInSet($this, 'delayedOpenAccessDuration', 'required', 'manager.registrationPolicies.delayedOpenAccessDurationValid', array_keys($this->validDuration)));
 		}
 
 		// If expiry reminder before months is selected, ensure a valid month value is provided
 		if ($this->_data['enableRegistrationExpiryReminderBeforeMonths'] == 1) {
-			$this->addCheck(new FormValidatorInSet($this, 'numMonthsBeforeRegistrationExpiryReminder', 'required', 'director.registrationPolicies.numMonthsBeforeRegistrationExpiryReminderValid', array_keys($this->validNumMonthsBeforeExpiry)));
+			$this->addCheck(new FormValidatorInSet($this, 'numMonthsBeforeRegistrationExpiryReminder', 'required', 'manager.registrationPolicies.numMonthsBeforeRegistrationExpiryReminderValid', array_keys($this->validNumMonthsBeforeExpiry)));
 		}
 
 		// If expiry reminder before weeks is selected, ensure a valid week value is provided
 		if ($this->_data['enableRegistrationExpiryReminderBeforeWeeks'] == 1) {
-			$this->addCheck(new FormValidatorInSet($this, 'numWeeksBeforeRegistrationExpiryReminder', 'required', 'director.registrationPolicies.numWeeksBeforeRegistrationExpiryReminderValid', array_keys($this->validNumWeeksBeforeExpiry)));
+			$this->addCheck(new FormValidatorInSet($this, 'numWeeksBeforeRegistrationExpiryReminder', 'required', 'manager.registrationPolicies.numWeeksBeforeRegistrationExpiryReminderValid', array_keys($this->validNumWeeksBeforeExpiry)));
 		}
 
 		// If expiry reminder after months is selected, ensure a valid month value is provided
 		if ($this->_data['enableRegistrationExpiryReminderAfterMonths'] == 1) {
-			$this->addCheck(new FormValidatorInSet($this, 'numMonthsAfterRegistrationExpiryReminder', 'required', 'director.registrationPolicies.numMonthsAfterRegistrationExpiryReminderValid', array_keys($this->validNumMonthsAfterExpiry)));
+			$this->addCheck(new FormValidatorInSet($this, 'numMonthsAfterRegistrationExpiryReminder', 'required', 'manager.registrationPolicies.numMonthsAfterRegistrationExpiryReminderValid', array_keys($this->validNumMonthsAfterExpiry)));
 		}
 
 		// If expiry reminder after weeks is selected, ensure a valid week value is provided
 		if ($this->_data['enableRegistrationExpiryReminderAfterWeeks'] == 1) {
-			$this->addCheck(new FormValidatorInSet($this, 'numWeeksAfterRegistrationExpiryReminder', 'required', 'director.registrationPolicies.numWeeksAfterRegistrationExpiryReminderValid', array_keys($this->validNumWeeksAfterExpiry)));
+			$this->addCheck(new FormValidatorInSet($this, 'numWeeksAfterRegistrationExpiryReminder', 'required', 'manager.registrationPolicies.numWeeksAfterRegistrationExpiryReminderValid', array_keys($this->validNumWeeksAfterExpiry)));
 		}
 	}
 	
@@ -172,30 +172,30 @@ class RegistrationPolicyForm extends Form {
 	 * Save registration policies. 
 	 */
 	function execute() {
-		$eventSettingsDao = &DAORegistry::getDAO('EventSettingsDAO');
-		$event = &Request::getEvent();
-		$eventId = $event->getEventId();
+		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConf = &Request::getSchedConf();
+		$schedConfId = $schedConf->getSchedConfId();
 	
-		$eventSettingsDao->updateSetting($eventId, 'registrationName', $this->getData('registrationName'), 'string');
-		$eventSettingsDao->updateSetting($eventId, 'registrationEmail', $this->getData('registrationEmail'), 'string');
-		$eventSettingsDao->updateSetting($eventId, 'registrationPhone', $this->getData('registrationPhone'), 'string');
-		$eventSettingsDao->updateSetting($eventId, 'registrationFax', $this->getData('registrationFax'), 'string');
-		$eventSettingsDao->updateSetting($eventId, 'registrationMailingAddress', $this->getData('registrationMailingAddress'), 'string');
-		$eventSettingsDao->updateSetting($eventId, 'registrationAdditionalInformation', $this->getData('registrationAdditionalInformation'), 'string');
-		$eventSettingsDao->updateSetting($eventId, 'enableDelayedOpenAccess', $this->getData('enableDelayedOpenAccess') == null ? 0 : $this->getData('enableDelayedOpenAccess'), 'bool');
-		$eventSettingsDao->updateSetting($eventId, 'delayedOpenAccessDuration', $this->getData('delayedOpenAccessDuration'), 'int');
-		$eventSettingsDao->updateSetting($eventId, 'delayedOpenAccessPolicy', $this->getData('delayedOpenAccessPolicy'), 'string');
-		$eventSettingsDao->updateSetting($eventId, 'enableOpenAccessNotification', $this->getData('enableOpenAccessNotification') == null ? 0 : $this->getData('enableOpenAccessNotification'), 'bool');
-		$eventSettingsDao->updateSetting($eventId, 'enableAuthorSelfArchive', $this->getData('enableAuthorSelfArchive') == null ? 0 : $this->getData('enableAuthorSelfArchive'), 'bool');
-		$eventSettingsDao->updateSetting($eventId, 'authorSelfArchivePolicy', $this->getData('authorSelfArchivePolicy'), 'string');
-		$eventSettingsDao->updateSetting($eventId, 'enableRegistrationExpiryReminderBeforeMonths', $this->getData('enableRegistrationExpiryReminderBeforeMonths') == null ? 0 : $this->getData('enableRegistrationExpiryReminderBeforeMonths'), 'bool');
-		$eventSettingsDao->updateSetting($eventId, 'numMonthsBeforeRegistrationExpiryReminder', $this->getData('numMonthsBeforeRegistrationExpiryReminder'), 'int');
-		$eventSettingsDao->updateSetting($eventId, 'enableRegistrationExpiryReminderBeforeWeeks', $this->getData('enableRegistrationExpiryReminderBeforeWeeks') == null ? 0 : $this->getData('enableRegistrationExpiryReminderBeforeWeeks'), 'bool');
-		$eventSettingsDao->updateSetting($eventId, 'numWeeksBeforeRegistrationExpiryReminder', $this->getData('numWeeksBeforeRegistrationExpiryReminder'), 'int');
-		$eventSettingsDao->updateSetting($eventId, 'enableRegistrationExpiryReminderAfterMonths', $this->getData('enableRegistrationExpiryReminderAfterMonths') == null ? 0 : $this->getData('enableRegistrationExpiryReminderAfterMonths'), 'bool');
-		$eventSettingsDao->updateSetting($eventId, 'numMonthsAfterRegistrationExpiryReminder', $this->getData('numMonthsAfterRegistrationExpiryReminder'), 'int');
-		$eventSettingsDao->updateSetting($eventId, 'enableRegistrationExpiryReminderAfterWeeks', $this->getData('enableRegistrationExpiryReminderAfterWeeks') == null ? 0 : $this->getData('enableRegistrationExpiryReminderAfterWeeks'), 'bool');
-		$eventSettingsDao->updateSetting($eventId, 'numWeeksAfterRegistrationExpiryReminder', $this->getData('numWeeksAfterRegistrationExpiryReminder'), 'int');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationName', $this->getData('registrationName'), 'string');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationEmail', $this->getData('registrationEmail'), 'string');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationPhone', $this->getData('registrationPhone'), 'string');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationFax', $this->getData('registrationFax'), 'string');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationMailingAddress', $this->getData('registrationMailingAddress'), 'string');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationAdditionalInformation', $this->getData('registrationAdditionalInformation'), 'string');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'enableDelayedOpenAccess', $this->getData('enableDelayedOpenAccess') == null ? 0 : $this->getData('enableDelayedOpenAccess'), 'bool');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'delayedOpenAccessDuration', $this->getData('delayedOpenAccessDuration'), 'int');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'delayedOpenAccessPolicy', $this->getData('delayedOpenAccessPolicy'), 'string');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'enableOpenAccessNotification', $this->getData('enableOpenAccessNotification') == null ? 0 : $this->getData('enableOpenAccessNotification'), 'bool');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'enablePresenterSelfArchive', $this->getData('enablePresenterSelfArchive') == null ? 0 : $this->getData('enablePresenterSelfArchive'), 'bool');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'presenterSelfArchivePolicy', $this->getData('presenterSelfArchivePolicy'), 'string');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'enableRegistrationExpiryReminderBeforeMonths', $this->getData('enableRegistrationExpiryReminderBeforeMonths') == null ? 0 : $this->getData('enableRegistrationExpiryReminderBeforeMonths'), 'bool');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'numMonthsBeforeRegistrationExpiryReminder', $this->getData('numMonthsBeforeRegistrationExpiryReminder'), 'int');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'enableRegistrationExpiryReminderBeforeWeeks', $this->getData('enableRegistrationExpiryReminderBeforeWeeks') == null ? 0 : $this->getData('enableRegistrationExpiryReminderBeforeWeeks'), 'bool');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'numWeeksBeforeRegistrationExpiryReminder', $this->getData('numWeeksBeforeRegistrationExpiryReminder'), 'int');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'enableRegistrationExpiryReminderAfterMonths', $this->getData('enableRegistrationExpiryReminderAfterMonths') == null ? 0 : $this->getData('enableRegistrationExpiryReminderAfterMonths'), 'bool');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'numMonthsAfterRegistrationExpiryReminder', $this->getData('numMonthsAfterRegistrationExpiryReminder'), 'int');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'enableRegistrationExpiryReminderAfterWeeks', $this->getData('enableRegistrationExpiryReminderAfterWeeks') == null ? 0 : $this->getData('enableRegistrationExpiryReminderAfterWeeks'), 'bool');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'numWeeksAfterRegistrationExpiryReminder', $this->getData('numWeeksAfterRegistrationExpiryReminder'), 'int');
 	}
 	
 }

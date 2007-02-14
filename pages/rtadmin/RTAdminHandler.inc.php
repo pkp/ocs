@@ -52,7 +52,7 @@ class RTAdminHandler extends Handler {
 			$allConferences = &$allConferences->toArray();
 
 			foreach ($allConferences as $conference) {
-				if ($roleDao->roleExists($conference->getConferenceId(), 0, $user->getUserId(), ROLE_ID_CONFERENCE_DIRECTOR)) {
+				if ($roleDao->roleExists($conference->getConferenceId(), 0, $user->getUserId(), ROLE_ID_CONFERENCE_MANAGER)) {
 					$conferences[] = $conference;
 				}
 			}
@@ -73,7 +73,7 @@ class RTAdminHandler extends Handler {
 	 */
 	function validate() {
 		parent::validate(true);
-		if (!Validation::isConferenceDirector()) {
+		if (!Validation::isConferenceManager()) {
 			Validation::redirectLogin();
 		}
 	}
@@ -250,7 +250,7 @@ class RTAdminHandler extends Handler {
 	function setupTemplate($subclass = false, $version = null, $context = null, $search = null) {
 		$templateMgr = &TemplateManager::getManager();
 
-		$pageHierarchy = array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'director'), 'director.conferenceSiteManagement'));
+		$pageHierarchy = array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'manager'), 'manager.conferenceSiteManagement'));
 
 		if ($subclass) $pageHierarchy[] = array(Request::url(null, null, 'rtadmin'), 'rt.readingTools');
 

@@ -16,13 +16,13 @@
  */
 
 // Search types
-define('PAPER_SEARCH_AUTHOR',			0x00000001);
+define('PAPER_SEARCH_PRESENTER',		0x00000001);
 define('PAPER_SEARCH_TITLE',			0x00000002);
-define('PAPER_SEARCH_ABSTRACT',		0x00000004);
+define('PAPER_SEARCH_ABSTRACT',			0x00000004);
 define('PAPER_SEARCH_DISCIPLINE',		0x00000008);
-define('PAPER_SEARCH_SUBJECT',		0x00000010);
+define('PAPER_SEARCH_SUBJECT',			0x00000010);
 define('PAPER_SEARCH_TYPE',			0x00000020);
-define('PAPER_SEARCH_COVERAGE',		0x00000040);
+define('PAPER_SEARCH_COVERAGE',			0x00000040);
 define('PAPER_SEARCH_GALLEY_FILE',		0x00000080);
 define('PAPER_SEARCH_SUPPLEMENTARY_FILE',	0x00000100);
 define('PAPER_SEARCH_INDEX_TERMS',		0x00000078);
@@ -227,14 +227,14 @@ class PaperSearch {
 	function &formatResults(&$results) {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
-		$eventDao = &DAORegistry::getDAO('EventDAO');
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 
 		$publishedPaperCache = array();
 		$paperCache = array();
-		$eventCache = array();
-		$eventAvailabilityCache = array();
+		$schedConfCache = array();
+		$schedConfAvailabilityCache = array();
 		$conferenceCache = array();
 		$trackCache = array();
 
@@ -256,28 +256,28 @@ class PaperSearch {
 
 			if ($publishedPaper && $paper) {
 				// Get the conference, storing in cache if necessary.
-				$eventId = $publishedPaper->getEventId();
-				$event =& $eventDao->getEvent($eventId);
-				$conferenceId = $event->getConferenceId();
+				$schedConfId = $publishedPaper->getSchedConfId();
+				$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+				$conferenceId = $schedConf->getConferenceId();
 				if (!isset($conferenceCache[$conferenceId])) {
 					$conferenceCache[$conferenceId] = $conferenceDao->getConference($conferenceId);
 				}
 
-				// Get the event, storing in cache if necessary.
-				if (!isset($eventCache[$eventId])) {
-					$eventCache[$eventId] = &$event;
-					import('event.EventAction');
-					$eventAvailabilityCache[$eventId] = EventAction::mayViewPapers($event);
+				// Get the scheduled conference, storing in cache if necessary.
+				if (!isset($schedConfCache[$schedConfId])) {
+					$schedConfCache[$schedConfId] = &$schedConf;
+					import('schedConf.SchedConfAction');
+					$schedConfAvailabilityCache[$schedConfId] = SchedConfAction::mayViewPapers($schedConf);
 				}
 
 				// Store the retrieved objects in the result array.
-				if($eventAvailabilityCache[$eventId]) {
+				if($schedConfAvailabilityCache[$schedConfId]) {
 					$returner[] = array(
 						'paper' => &$paper,
 						'publishedPaper' => &$publishedPaperCache[$paperId],
-						'event' => &$eventCache[$eventId],
+						'schedConf' => &$schedConfCache[$schedConfId],
 						'conference' => &$conferenceCache[$conferenceId],
-						'eventAvailable' => $eventAvailabilityCache[$eventId],
+						'schedConfAvailable' => $schedConfAvailabilityCache[$schedConfId],
 						'track' => &$trackCache[$trackId]
 					);
 				}
@@ -290,7 +290,7 @@ class PaperSearch {
 	 * Return an array of search results matching the supplied
 	 * keyword IDs in decreasing order of match quality.
 	 * Keywords are supplied in an array of the following format:
-	 * $keywords[PAPER_SEARCH_AUTHOR] = array('John', 'Doe');
+	 * $keywords[PAPER_SEARCH_PRESENTER] = array('John', 'Doe');
 	 * $keywords[PAPER_SEARCH_...] = array(...);
 	 * $keywords[null] = array('Matches', 'All', 'Fields');
 	 * @param $conference object The conference to search

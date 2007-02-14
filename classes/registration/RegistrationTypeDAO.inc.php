@@ -47,13 +47,13 @@ class RegistrationTypeDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve registration type event ID by ID.
+	 * Retrieve registration type scheduled conference ID by ID.
 	 * @param $typeId int
 	 * @return int
 	 */
-	function getRegistrationTypeEventId($typeId) {
+	function getRegistrationTypeSchedConfId($typeId) {
 		$result = &$this->retrieve(
-			'SELECT event_id FROM registration_types WHERE type_id = ?', $typeId
+			'SELECT sched_conf_id FROM registration_types WHERE type_id = ?', $typeId
 		);
 		
 		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;	
@@ -137,20 +137,20 @@ class RegistrationTypeDAO extends DAO {
 	}
 
 	/**
-	 * Check if a registration type exists with the given type id for a event.
+	 * Check if a registration type exists with the given type id for a scheduled conference.
 	 * @param $typeId int
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return boolean
 	 */
-	function registrationTypeExistsByTypeId($typeId, $eventId) {
+	function registrationTypeExistsByTypeId($typeId, $schedConfId) {
 		$result = &$this->retrieve(
 			'SELECT COUNT(*)
 				FROM registration_types
 				WHERE type_id = ?
-				AND   event_id = ?',
+				AND   sched_conf_id = ?',
 			array(
 				$typeId,
-				$eventId
+				$schedConfId
 			)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] != 0 ? true : false;
@@ -162,20 +162,20 @@ class RegistrationTypeDAO extends DAO {
 	}
 
 	/**
-	 * Check if a registration type exists with the given type name for a event.
+	 * Check if a registration type exists with the given type name for a scheduled conference.
 	 * @param $typeName string
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return boolean
 	 */
-	function registrationTypeExistsByTypeName($typeName, $eventId) {
+	function registrationTypeExistsByTypeName($typeName, $schedConfId) {
 		$result = &$this->retrieve(
 			'SELECT COUNT(*)
 				FROM registration_types
 				WHERE type_name = ?
-				AND   event_id = ?',
+				AND   sched_conf_id = ?',
 			array(
 				$typeName,
-				$eventId
+				$schedConfId
 			)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] != 0 ? true : false;
@@ -187,20 +187,20 @@ class RegistrationTypeDAO extends DAO {
 	}
 
 	/**
-	 * Return registration type ID based on a type name for a event.
+	 * Return registration type ID based on a type name for a scheduled conference.
 	 * @param $typeName string
-	 * @param $eventId int
+	 * @param $schedConfId int
 	 * @return int
 	 */
-	function getRegistrationTypeByTypeName($typeName, $eventId) {
+	function getRegistrationTypeByTypeName($typeName, $schedConfId) {
 		$result = &$this->retrieve(
 			'SELECT type_id
 				FROM registration_types
 				WHERE type_name = ?
-				AND   event_id = ?',
+				AND   sched_conf_id = ?',
 			array(
 				$typeName,
-				$eventId
+				$schedConfId
 			)
 		);
 		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;
@@ -219,7 +219,7 @@ class RegistrationTypeDAO extends DAO {
 	function &_returnRegistrationTypeFromRow(&$row) {
 		$registrationType = &new RegistrationType();
 		$registrationType->setTypeId($row['type_id']);
-		$registrationType->setEventId($row['event_id']);
+		$registrationType->setSchedConfId($row['sched_conf_id']);
 		$registrationType->setTypeName($row['type_name']);
 		$registrationType->setDescription($row['description']);
 		$registrationType->setCost($row['cost']);
@@ -246,14 +246,14 @@ class RegistrationTypeDAO extends DAO {
 	function insertRegistrationType(&$registrationType) {
 		$ret = $this->update(
 			sprintf('INSERT INTO registration_types
-				(event_id, type_name, description, cost, currency_code_alpha, opening_date, closing_date, expiry_date, access, institutional, membership, pub, seq)
+				(sched_conf_id, type_name, description, cost, currency_code_alpha, opening_date, closing_date, expiry_date, access, institutional, membership, pub, seq)
 				VALUES
 				(?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?)',
 				$this->dateToDB($registrationType->getOpeningDate()),
 				$this->dateToDB($registrationType->getClosingDate()),
 				$this->dateToDB($registrationType->getExpiryDate())),
 			array(
-				$registrationType->getEventId(),
+				$registrationType->getSchedConfId(),
 				$registrationType->getTypeName(),
 				$registrationType->getDescription(),
 				$registrationType->getCost(),
@@ -279,7 +279,7 @@ class RegistrationTypeDAO extends DAO {
 		return $this->update(
 			sprintf('UPDATE registration_types
 				SET
-					event_id = ?,
+					sched_conf_id = ?,
 					type_name = ?,
 					description = ?,
 					cost = ?,
@@ -297,7 +297,7 @@ class RegistrationTypeDAO extends DAO {
 				$this->dateToDB($registrationType->getClosingDate()),
 				$this->dateToDB($registrationType->getExpiryDate())),
 			array(
-				$registrationType->getEventId(),
+				$registrationType->getSchedConfId(),
 				$registrationType->getTypeName(),
 				$registrationType->getDescription(),
 				$registrationType->getCost(),
@@ -343,14 +343,14 @@ class RegistrationTypeDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve an array of registration types matching a particular event ID.
-	 * @param $eventId int
+	 * Retrieve an array of registration types matching a particular scheduled conference ID.
+	 * @param $schedConfId int
 	 * @return object DAOResultFactory containing matching RegistrationTypes
 	 */
-	function &getRegistrationTypesByEventId($eventId, $rangeInfo = null) {
+	function &getRegistrationTypesBySchedConfId($schedConfId, $rangeInfo = null) {
 		$result = &$this->retrieveRange(
-			'SELECT * FROM registration_types WHERE event_id = ? ORDER BY seq',
-			 $eventId, $rangeInfo
+			'SELECT * FROM registration_types WHERE sched_conf_id = ? ORDER BY seq',
+			 $schedConfId, $rangeInfo
 		);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationTypeFromRow');
@@ -368,10 +368,10 @@ class RegistrationTypeDAO extends DAO {
 	/**
 	 * Sequentially renumber registration types in their sequence order.
 	 */
-	function resequenceRegistrationTypes($eventId) {
+	function resequenceRegistrationTypes($schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT type_id FROM registration_types WHERE event_id = ? ORDER BY seq',
-			$eventId
+			'SELECT type_id FROM registration_types WHERE sched_conf_id = ? ORDER BY seq',
+			$schedConfId
 		);
 		
 		for ($i=1; !$result->EOF; $i++) {

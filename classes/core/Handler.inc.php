@@ -27,14 +27,14 @@ class Handler {
 	 * Perform request access validation based on security settings.
 	 * @param $requiresConference boolean
 	 */
-	function validate($requiresConference = false, $requiresEvent = false) {
+	function validate($requiresConference = false, $requiresSchedConf = false) {
 		if (Config::getVar('security', 'force_ssl') && Request::getProtocol() != 'https') {
 			// Force SSL connections site-wide
 			Request::redirectSSL();
 		}
 		
 		$conference = &Request::getConference();
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 
 		if($requiresConference) {
 			if ($conference == null) {
@@ -43,9 +43,9 @@ class Handler {
 			}
 		}
 
-		if($requiresEvent) {
-			if ($event == null) {
-				// Requested page is only allowed when an event is provided
+		if($requiresSchedConf) {
+			if ($schedConf == null) {
+				// Requested page is only allowed when a scheduled conference is provided
 				Request::redirect(null, null, 'about');
 			}
 		}
@@ -64,12 +64,12 @@ class Handler {
 		}
 		
 		// Extraneous checks, just to make sure we aren't being fooled
-		if ($conference && $event) {
-			if($event->getConferenceId() != $conference->getConferenceId())
+		if ($conference && $schedConf) {
+			if($schedConf->getConferenceId() != $conference->getConferenceId())
 				Request::redirect(null, null, 'about');
 		}
 		
-		return array($conference, $event);
+		return array($conference, $schedConf);
 	}
 
 	/**

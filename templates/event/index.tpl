@@ -4,8 +4,8 @@
  * Copyright (c) 2003-2004 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Event index page. Displayed when both a conference and an event
- * have been specified.
+ * Scheduled conference index page. Displayed when both a conference and a
+ * scheduled conference have been specified.
  *
  * $Id$
  *}
@@ -15,16 +15,16 @@
  * the conference title, but the page title doesn't.
  *}
  
-{assign var="pageCrumbTitleTranslated" value=$event->getTitle()}
-{assign var="pageTitleTranslated" value=$event->getFullTitle()}
+{assign var="pageCrumbTitleTranslated" value=$schedConf->getTitle()}
+{assign var="pageTitleTranslated" value=$schedConf->getFullTitle()}
 {include file="common/header.tpl"}
 
-<h2>{$event->getSetting("location")|nl2br}</h2>
-<h2>{$event->getSetting('startDate')|date_format:$dateFormatLong} &ndash; {$event->getSetting('endDate')|date_format:$dateFormatLong}</h2>
+<h2>{$schedConf->getSetting("location")|nl2br}</h2>
+<h2>{$schedConf->getSetting('startDate')|date_format:$dateFormatLong} &ndash; {$schedConf->getSetting('endDate')|date_format:$dateFormatLong}</h2>
 
 <br />
 
-<div>{$event->getSetting("eventIntroduction")|nl2br}</div>
+<div>{$schedConf->getSetting("schedConfIntroduction")|nl2br}</div>
 
 {if $enableAnnouncementsHomepage}
 	{* Display announcements *}
@@ -46,23 +46,23 @@
 <div align="center"><img src="{$publicFilesDir}/{$homepageImage.uploadName|escape}" width="{$homepageImage.width}" height="{$homepageImage.height}" border="0" alt="" /></div>
 {/if}
 
-<h3>{translate key="event.contents"}</h3>
+<h3>{translate key="schedConf.contents"}</h3>
 
 <ul class="plain">
-	<li>&#187; <a href="{url page="event" op="overview"}">{translate key="event.overview"}</a></li>
+	<li>&#187; <a href="{url page="schedConf" op="overview"}">{translate key="schedConf.overview"}</a></li>
 	{if $showCFP}
-		<li>&#187; <a href="{url page="event" op="cfp"}">{translate key="event.cfp"}</a> ({$submissionOpenDate|date_format:$dateFormatLong} - {$submissionCloseDate|date_format:$dateFormatLong})</li>
+		<li>&#187; <a href="{url page="schedConf" op="cfp"}">{translate key="schedConf.cfp"}</a> ({$submissionOpenDate|date_format:$dateFormatLong} - {$submissionCloseDate|date_format:$dateFormatLong})</li>
 	{/if}
-	{if $showSubmissionLink}<li>&#187; <a href="{url page="author" op="submit"}">{translate key="event.proposalSubmission"}</a></li>{/if}
-	<li>&#187; <a href="{url page="event" op="program"}">{translate key="event.program"}</a></li>
-	<li>&#187; <a href="{url page="event" op="proceedings"}">{translate key="event.proceedings"}</a></li>
-{*	<li>&#187; <a href="{url page="event" op="submissions"}">{translate key="event.submissions"}</a></li>
-	<li>&#187; <a href="{url page="event" op="papers"}">{translate key="event.papers"}</a></li>
-	<li>&#187; <a href="{url page="event" op="discussion"}">{translate key="event.discussion"}</a></li>*}
-{*	<li>&#187; <a href="{url page="event" op="registration"}">{translate key="event.registration"}</a></li>*}
-	<li>&#187; <a href="{url page="about" op="conferenceSponsorship"}">{translate key="event.supporters"}</a></li>
-{*	<li>&#187; <a href="{url page="event" op="schedule"}">{translate key="event.schedule"}</a></li> *}
-{*	<li>&#187; <a href="{url page="event" op="links"}">{translate key="event.links"}</a></li>*}
+	{if $showSubmissionLink}<li>&#187; <a href="{url page="presenter" op="submit"}">{translate key="schedConf.proposalSubmission"}</a></li>{/if}
+	<li>&#187; <a href="{url page="schedConf" op="program"}">{translate key="schedConf.program"}</a></li>
+	<li>&#187; <a href="{url page="schedConf" op="proceedings"}">{translate key="schedConf.proceedings"}</a></li>
+{*	<li>&#187; <a href="{url page="schedConf" op="submissions"}">{translate key="schedConf.submissions"}</a></li>
+	<li>&#187; <a href="{url page="schedConf" op="papers"}">{translate key="schedConf.papers"}</a></li>
+	<li>&#187; <a href="{url page="schedConf" op="discussion"}">{translate key="schedConf.discussion"}</a></li>*}
+{*	<li>&#187; <a href="{url page="schedConf" op="registration"}">{translate key="schedConf.registration"}</a></li>*}
+	<li>&#187; <a href="{url page="about" op="conferenceSponsorship"}">{translate key="schedConf.supporters"}</a></li>
+{*	<li>&#187; <a href="{url page="schedConf" op="schedule"}">{translate key="schedConf.schedule"}</a></li> *}
+{*	<li>&#187; <a href="{url page="schedConf" op="links"}">{translate key="schedConf.links"}</a></li>*}
 </ul>
 
 {$additionalHomeContent}

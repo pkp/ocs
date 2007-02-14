@@ -6,9 +6,9 @@
  * Copyright (c) 2003-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package director.form
+ * @package manager.form
  *
- * Form for creating and modifying event tracks.
+ * Form for creating and modifying scheduled conference tracks.
  *
  * $Id$
  */
@@ -26,7 +26,7 @@ class TimelineForm extends Form {
 	 */
 	function TimelineForm() {
 		$this->canEdit = false;
-		if (Validation::isEditor() || Validation::isConferenceDirector()) {
+		if (Validation::isEditor() || Validation::isConferenceManager()) {
 			$this->canEdit = true;
 		}
 
@@ -36,15 +36,15 @@ class TimelineForm extends Form {
 			parent::Form('trackEditor/timelineView.tpl');
 		}
 
-		/*$this->addCheck(new FormValidatorCustom($this, 'endDate', 'required', 'director.timeline.form.badEndDate',
+		/*$this->addCheck(new FormValidatorCustom($this, 'endDate', 'required', 'manager.timeline.form.badEndDate',
 			create_function('$endDate,$form',
 			'return ($endDate > $form->getData(\'startDate\'));'),
 			array(&$this)));
 
-		$this->addCheck(new FormValidatorCustom($this, 'autoRemindAuthorsDays', 'required', 'director.timeline.form.badReminderDays',
-			create_function('$autoRemindAuthorDays,$form',
-			'if($form->getData(\'autoRemindAuthors\') == false) return true;
-				return ($autoRemindAuthorDays >= 1 && $autoRemindAuthorDays <= 99) ? true : false;'),
+		$this->addCheck(new FormValidatorCustom($this, 'autoRemindPresentersDays', 'required', 'manager.timeline.form.badReminderDays',
+			create_function('$autoRemindPresenterDays,$form',
+			'if($form->getData(\'autoRemindPresenters\') == false) return true;
+				return ($autoRemindPresenterDays >= 1 && $autoRemindPresenterDays <= 99) ? true : false;'),
 			array(&$this)));*/
 	}
 	
@@ -52,13 +52,13 @@ class TimelineForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$event =& Request::getEvent();
+		$schedConf =& Request::getSchedConf();
 		$templateMgr = &TemplateManager::getManager();
 
 		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'editor'), 'user.role.editor')));
 		$templateMgr->assign('helpTopicId','conference.managementPages.timeline');
 
-		$templateMgr->assign('yearOffsetFuture', EVENT_DATE_YEAR_OFFSET_FUTURE);
+		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
 
 		parent::display();
 	}
@@ -67,49 +67,49 @@ class TimelineForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		$event =& Request::getEvent();
+		$schedConf =& Request::getSchedConf();
 
 		$this->_data = array(
-			'siteStartDate' => $event->getStartDate(),
-			'siteEndDate' => $event->getEndDate(),
+			'siteStartDate' => $schedConf->getStartDate(),
+			'siteEndDate' => $schedConf->getEndDate(),
 
-			'startDate' => $event->getSetting('startDate'),
-			'endDate' => $event->getSetting('endDate'),
+			'startDate' => $schedConf->getSetting('startDate'),
+			'endDate' => $schedConf->getSetting('endDate'),
 
-			'regAuthorOpenDate' => $event->getSetting('regAuthorOpenDate'),
-			'regAuthorCloseDate' => $event->getSetting('regAuthorCloseDate'),
-			'showCFPDate' => $event->getSetting('showCFPDate'),
-			'proposalsOpenDate' => $event->getSetting('proposalsOpenDate'),
-			'proposalsCloseDate' => $event->getSetting('proposalsCloseDate'),
-			'submissionsCloseDate' => $event->getSetting('submissionsCloseDate'),
+			'regPresenterOpenDate' => $schedConf->getSetting('regPresenterOpenDate'),
+			'regPresenterCloseDate' => $schedConf->getSetting('regPresenterCloseDate'),
+			'showCFPDate' => $schedConf->getSetting('showCFPDate'),
+			'proposalsOpenDate' => $schedConf->getSetting('proposalsOpenDate'),
+			'proposalsCloseDate' => $schedConf->getSetting('proposalsCloseDate'),
+			'submissionsCloseDate' => $schedConf->getSetting('submissionsCloseDate'),
 			
-			'regReviewerOpenDate' => $event->getSetting('regReviewerOpenDate'),
-			'regReviewerCloseDate' => $event->getSetting('regReviewerCloseDate'),
-			'closeReviewProcessDate' => $event->getSetting('closeReviewProcessDate'),
-			'secondRoundDueDate' => $event->getSetting('secondRoundDueDate'),
+			'regReviewerOpenDate' => $schedConf->getSetting('regReviewerOpenDate'),
+			'regReviewerCloseDate' => $schedConf->getSetting('regReviewerCloseDate'),
+			'closeReviewProcessDate' => $schedConf->getSetting('closeReviewProcessDate'),
+			'secondRoundDueDate' => $schedConf->getSetting('secondRoundDueDate'),
 
-			'regRegistrantOpenDate' => $event->getSetting('regRegistrantOpenDate'),
-			'regRegistrantCloseDate' => $event->getSetting('regRegistrantCloseDate'),
+			'regRegistrantOpenDate' => $schedConf->getSetting('regRegistrantOpenDate'),
+			'regRegistrantCloseDate' => $schedConf->getSetting('regRegistrantCloseDate'),
 
-			//'postPresentations' => $event->getSetting('postPresentations'),
-			//'postPresentationsDate' => $event->getSetting('postPresentationsDate'),
-			'postAbstracts' => $event->getSetting('postAbstracts'),
-			'postAbstractsDate' => $event->getSetting('postAbstractsDate'),
-			'postPapers' => $event->getSetting('postPapers'),
-			'postPapersDate' => $event->getSetting('postPapersDate'),
-			'delayOpenAccess' => $event->getSetting('delayOpenAccess'),
-			'delayOpenAccessDate' => $event->getSetting('delayOpenAccessDate'),
-			'closeComments' => $event->getSetting('closeComments'),
-			'closeCommentsDate' => $event->getSetting('closeCommentsDate')
+			//'postPresentations' => $schedConf->getSetting('postPresentations'),
+			//'postPresentationsDate' => $schedConf->getSetting('postPresentationsDate'),
+			'postAbstracts' => $schedConf->getSetting('postAbstracts'),
+			'postAbstractsDate' => $schedConf->getSetting('postAbstractsDate'),
+			'postPapers' => $schedConf->getSetting('postPapers'),
+			'postPapersDate' => $schedConf->getSetting('postPapersDate'),
+			'delayOpenAccess' => $schedConf->getSetting('delayOpenAccess'),
+			'delayOpenAccessDate' => $schedConf->getSetting('delayOpenAccessDate'),
+			'closeComments' => $schedConf->getSetting('closeComments'),
+			'closeCommentsDate' => $schedConf->getSetting('closeCommentsDate')
 		);
 		
-		if($event->getSetting('collectPapersWithAbstracts')) {
+		if($schedConf->getSetting('collectPapersWithAbstracts')) {
 			$this->_data['showSubmissionsOpenDate'] = true;
 			$this->_data['showSubmissionsCloseDate'] = true;
 		} else {
 			$this->_data['showProposalsOpenDate'] = true;
 			$this->_data['showProposalsCloseDate'] = true;
-			if ($event->getSetting('acceptPapers')) {
+			if ($schedConf->getSetting('acceptPapers')) {
 				$this->_data['showSubmissionsCloseDate'] = true;
 			}
 		}
@@ -122,7 +122,7 @@ class TimelineForm extends Form {
 		$this->readUserDateVars(array(
 			'siteStartDate', 'siteEndDate',
 			'startDate', 'endDate',
-			'regAuthorOpenDate', 'regAuthorCloseDate',
+			'regPresenterOpenDate', 'regPresenterCloseDate',
 			'showCFPDate',
 			'proposalsOpenDate', 'proposalsCloseDate',
 			'submissionsOpenDate', 'submissionsCloseDate',
@@ -148,8 +148,8 @@ class TimelineForm extends Form {
 	 * Save track.
 	 */
 	function execute() {
-		$eventDao =& DAORegistry::getDao('EventDAO');
-		$event = &Request::getEvent();
+		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
+		$schedConf = &Request::getSchedConf();
 		
 		import('conference.log.ConferenceLog');
 		import('conference.log.ConferenceEventLogEntry');
@@ -160,303 +160,303 @@ class TimelineForm extends Form {
 		
 		// Website start date and end date.
 		
-		if($event->getStartDate() != $this->_data['siteStartDate']) {
-			$event->setStartDate($this->_data['siteStartDate']);
-			$eventDao->updateEvent($event);
+		if($schedConf->getStartDate() != $this->_data['siteStartDate']) {
+			$schedConf->setStartDate($this->_data['siteStartDate']);
+			$schedConfDao->updateSchedConf($schedConf);
 		}
 
-		if($event->getEndDate() != $this->_data['siteEndDate']) {
-			$event->setEndDate($this->_data['siteEndDate']);
-			$eventDao->updateEvent($event);
+		if($schedConf->getEndDate() != $this->_data['siteEndDate']) {
+			$schedConf->setEndDate($this->_data['siteEndDate']);
+			$schedConfDao->updateSchedConf($schedConf);
 		}
 		
 		//
 		// Log the rest.
 		//
 		
-		// Physical event start date and end date
-		if($event->getSetting('startDate') != $this->_data['startDate']) {
+		// Physical scheduled conference start date and end date
+		if($schedConf->getSetting('startDate') != $this->_data['startDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.startDateChanged',
-				array('oldStartDate' => $event->getSetting('startDate'),
+				array('oldStartDate' => $schedConf->getSetting('startDate'),
 					'newStartDate' => $this->_data['startDate']));
-			$event->updateSetting('startDate', $this->_data['startDate'], 'date');
+			$schedConf->updateSetting('startDate', $this->_data['startDate'], 'date');
 		}
 
-		if($event->getSetting('endDate') != $this->_data['endDate']) {
+		if($schedConf->getSetting('endDate') != $this->_data['endDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.endDateChanged',
-				array('oldEndDate' => $event->getSetting('endDate'),
+				array('oldEndDate' => $schedConf->getSetting('endDate'),
 					'newEndDate' => $this->_data['endDate']));
-			$event->updateSetting('endDate', $this->_data['endDate'], 'date');
+			$schedConf->updateSetting('endDate', $this->_data['endDate'], 'date');
 		}
 
-		if($event->getSetting('regAuthorOpenDate') != $this->_data['regAuthorOpenDate']) {
+		if($schedConf->getSetting('regPresenterOpenDate') != $this->_data['regPresenterOpenDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
-				0, 'log.timeline.regAuthorOpenDateChanged',
-				array('oldRegAuthorOpenDate' => $event->getSetting('regAuthorOpenDate'),
-					'newRegAuthorOpenDate' => $this->_data['regAuthorOpenDate']));
-			$event->updateSetting('regAuthorOpenDate', $this->_data['regAuthorOpenDate'], 'date');
+				0, 'log.timeline.regPresenterOpenDateChanged',
+				array('oldRegPresenterOpenDate' => $schedConf->getSetting('regPresenterOpenDate'),
+					'newRegPresenterOpenDate' => $this->_data['regPresenterOpenDate']));
+			$schedConf->updateSetting('regPresenterOpenDate', $this->_data['regPresenterOpenDate'], 'date');
 		}
-		if($event->getSetting('regAuthorCloseDate') != $this->_data['regAuthorCloseDate']) {
+		if($schedConf->getSetting('regPresenterCloseDate') != $this->_data['regPresenterCloseDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
-				0, 'log.timeline.regAuthorCloseDateChanged',
-				array('oldRegAuthorCloseDate' => $event->getSetting('regAuthorCloseDate'),
-					'newRegAuthorCloseDate' => $this->_data['regAuthorCloseDate']));
-			$event->updateSetting('regAuthorCloseDate', $this->_data['regAuthorCloseDate'], 'date');
+				0, 'log.timeline.regPresenterCloseDateChanged',
+				array('oldRegPresenterCloseDate' => $schedConf->getSetting('regPresenterCloseDate'),
+					'newRegPresenterCloseDate' => $this->_data['regPresenterCloseDate']));
+			$schedConf->updateSetting('regPresenterCloseDate', $this->_data['regPresenterCloseDate'], 'date');
 		}
-		if($event->getSetting('showCFPDate') != $this->_data['showCFPDate']) {
+		if($schedConf->getSetting('showCFPDate') != $this->_data['showCFPDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.showCFPDateChanged',
-				array('oldShowCFPDate' => $event->getSetting('showCFPDate'),
+				array('oldShowCFPDate' => $schedConf->getSetting('showCFPDate'),
 					'newShowCFPDate' => $this->_data['showCFPDate']));
-			$event->updateSetting('showCFPDate', $this->_data['showCFPDate'], 'date');
+			$schedConf->updateSetting('showCFPDate', $this->_data['showCFPDate'], 'date');
 		}
 
 		// Abstract and submission due dates depend on the submission and review
 		// model, so they're not quite as straightforward as the rest.
 		
-		if($event->getSetting('collectPapersWithAbstracts')) {
+		if($schedConf->getSetting('collectPapersWithAbstracts')) {
 			$proposalsOpenDate = $submissionsOpenDate = $this->_data['submissionsOpenDate'];
 			$proposalsCloseDate = $submissionsCloseDate = $this->_data['submissionsCloseDate'];
 		} else {
 			$proposalsOpenDate = $submissionsOpenDate = $this->_data['proposalsOpenDate'];
 			$proposalsCloseDate = $this->_data['proposalsCloseDate'];
-			if ($event->getSetting('acceptPapers')) {
+			if ($schedConf->getSetting('acceptPapers')) {
 				$submissionsCloseDate = $this->_data['submissionsCloseDate'];
 			} else {
 				$submissionsCloseDate = $proposalsCloseDate;
 			}
 		}
 
-		if($event->getSetting('proposalsOpenDate') != $proposalsOpenDate) {
+		if($schedConf->getSetting('proposalsOpenDate') != $proposalsOpenDate) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.proposalsOpenDateChanged',
-				array('oldProposalsOpenDate' => $event->getSetting('proposalsOpenDate'),
+				array('oldProposalsOpenDate' => $schedConf->getSetting('proposalsOpenDate'),
 					'newProposalsOpenDate' => $proposalsOpenDate));
-			$event->updateSetting('proposalsOpenDate', $proposalsOpenDate, 'date');
+			$schedConf->updateSetting('proposalsOpenDate', $proposalsOpenDate, 'date');
 		}
-		if($event->getSetting('proposalsCloseDate') != $proposalsCloseDate) {
+		if($schedConf->getSetting('proposalsCloseDate') != $proposalsCloseDate) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.proposalsCloseDateChanged',
-				array('oldProposalsCloseDate' => $event->getSetting('proposalsCloseDate'),
+				array('oldProposalsCloseDate' => $schedConf->getSetting('proposalsCloseDate'),
 					'newProposalsCloseDate' => $proposalsCloseDate));
-			$event->updateSetting('proposalsCloseDate', $proposalsCloseDate, 'date');
+			$schedConf->updateSetting('proposalsCloseDate', $proposalsCloseDate, 'date');
 		}
-		if($event->getSetting('submissionsOpenDate') != $submissionsOpenDate) {
+		if($schedConf->getSetting('submissionsOpenDate') != $submissionsOpenDate) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.submissionsOpenDateChanged',
-				array('oldSubmissionsOpenDate' => $event->getSetting('submissionsOpenDate'),
+				array('oldSubmissionsOpenDate' => $schedConf->getSetting('submissionsOpenDate'),
 					'newSubmissionsOpenDate' => $submissionsOpenDate));
-			$event->updateSetting('submissionsOpenDate', $submissionsOpenDate, 'date');
+			$schedConf->updateSetting('submissionsOpenDate', $submissionsOpenDate, 'date');
 		}
-		if($event->getSetting('submissionsCloseDate') != $submissionsCloseDate) {
+		if($schedConf->getSetting('submissionsCloseDate') != $submissionsCloseDate) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.submissionsCloseDateChanged',
-				array('oldSubmissionsCloseDate' => $event->getSetting('submissionsCloseDate'),
+				array('oldSubmissionsCloseDate' => $schedConf->getSetting('submissionsCloseDate'),
 					'newSubmissionsCloseDate' => $submissionsCloseDate));
-			$event->updateSetting('submissionsCloseDate', $submissionsCloseDate, 'date');
+			$schedConf->updateSetting('submissionsCloseDate', $submissionsCloseDate, 'date');
 		}
-		if($event->getSetting('regReviewerOpenDate') != $this->_data['regReviewerOpenDate']) {
+		if($schedConf->getSetting('regReviewerOpenDate') != $this->_data['regReviewerOpenDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.regReviewerOpenDateChanged',
-				array('oldRegReviewerOpenDate' => $event->getSetting('regReviewerOpenDate'),
+				array('oldRegReviewerOpenDate' => $schedConf->getSetting('regReviewerOpenDate'),
 					'newRegReviewerOpenDate' => $this->_data['regReviewerOpenDate']));
-			$event->updateSetting('regReviewerOpenDate', $this->_data['regReviewerOpenDate'], 'date');
+			$schedConf->updateSetting('regReviewerOpenDate', $this->_data['regReviewerOpenDate'], 'date');
 		}
-		if($event->getSetting('regReviewerCloseDate') != $this->_data['regReviewerCloseDate']) {
+		if($schedConf->getSetting('regReviewerCloseDate') != $this->_data['regReviewerCloseDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.regReviewerCloseDateChanged',
-				array('oldRegReviewerCloseDate' => $event->getSetting('regReviewerCloseDate'),
+				array('oldRegReviewerCloseDate' => $schedConf->getSetting('regReviewerCloseDate'),
 					'newRegReviewerCloseDate' => $this->_data['regReviewerCloseDate']));
-			$event->updateSetting('regReviewerCloseDate', $this->_data['regReviewerCloseDate'], 'date');
+			$schedConf->updateSetting('regReviewerCloseDate', $this->_data['regReviewerCloseDate'], 'date');
 		}
-		if($event->getSetting('closeReviewProcessDate') != $this->_data['closeReviewProcessDate']) {
+		if($schedConf->getSetting('closeReviewProcessDate') != $this->_data['closeReviewProcessDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.closeReviewProcessDateChanged',
-				array('oldCloseReviewProcessDate' => $event->getSetting('closeReviewProcessDate'),
+				array('oldCloseReviewProcessDate' => $schedConf->getSetting('closeReviewProcessDate'),
 					'newCloseReviewProcessDate' => $this->_data['closeReviewProcessDate']));
-			$event->updateSetting('closeReviewProcessDate', $this->_data['closeReviewProcessDate'], 'date');
+			$schedConf->updateSetting('closeReviewProcessDate', $this->_data['closeReviewProcessDate'], 'date');
 		}
-		if($event->getSetting('regRegistrantOpenDate') != $this->_data['regRegistrantOpenDate']) {
+		if($schedConf->getSetting('regRegistrantOpenDate') != $this->_data['regRegistrantOpenDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.regRegistrantOpenDateChanged',
-				array('oldRegRegistrantOpenDate' => $event->getSetting('regRegistrantOpenDate'),
+				array('oldRegRegistrantOpenDate' => $schedConf->getSetting('regRegistrantOpenDate'),
 					'newRegRegistrantOpenDate' => $this->_data['regRegistrantOpenDate']));
-			$event->updateSetting('regRegistrantOpenDate', $this->_data['regRegistrantOpenDate'], 'date');
+			$schedConf->updateSetting('regRegistrantOpenDate', $this->_data['regRegistrantOpenDate'], 'date');
 		}
-		if($event->getSetting('regRegistrantCloseDate') != $this->_data['regRegistrantCloseDate']) {
+		if($schedConf->getSetting('regRegistrantCloseDate') != $this->_data['regRegistrantCloseDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.regRegistrantCloseDateChanged',
-				array('oldRegRegistrantCloseDate' => $event->getSetting('regRegistrantCloseDate'),
+				array('oldRegRegistrantCloseDate' => $schedConf->getSetting('regRegistrantCloseDate'),
 					'newRegRegistrantCloseDate' => $this->_data['regRegistrantCloseDate']));
-			$event->updateSetting('regRegistrantCloseDate', $this->_data['regRegistrantCloseDate'], 'date');
+			$schedConf->updateSetting('regRegistrantCloseDate', $this->_data['regRegistrantCloseDate'], 'date');
 		}
-		/*if($event->getSetting('postPresentationsDate') != $this->_data['postPresentationsDate']) {
+		/*if($schedConf->getSetting('postPresentationsDate') != $this->_data['postPresentationsDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postPresentationsDateChanged',
-				array('oldPostPresentationsDate' => $event->getSetting('postPresentationsDate'),
+				array('oldPostPresentationsDate' => $schedConf->getSetting('postPresentationsDate'),
 					'newPostPresentationsDate' => $this->_data['postPresentationsDate']));
-			$event->updateSetting('postPresentationsDate', $this->_data['postPresentationsDate'], 'date');
+			$schedConf->updateSetting('postPresentationsDate', $this->_data['postPresentationsDate'], 'date');
 		}
-		if($event->getSetting('postPresentations') != $this->_data['postPresentations']) {
+		if($schedConf->getSetting('postPresentations') != $this->_data['postPresentations']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postPresentationsChanged',
-				array('oldPostPresentations' => $event->getSetting('postPresentations'),
+				array('oldPostPresentations' => $schedConf->getSetting('postPresentations'),
 					'newPostPresentations' => $this->_data['postPresentations']));
-			$event->updateSetting('postPresentations', $this->_data['postPresentations'], 'bool');
+			$schedConf->updateSetting('postPresentations', $this->_data['postPresentations'], 'bool');
 		}*/
-		if($event->getSetting('postAbstractsDate') != $this->_data['postAbstractsDate']) {
+		if($schedConf->getSetting('postAbstractsDate') != $this->_data['postAbstractsDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postAbstractsDateChanged',
-				array('oldPostAbstractsDate' => $event->getSetting('postAbstractsDate'),
+				array('oldPostAbstractsDate' => $schedConf->getSetting('postAbstractsDate'),
 					'newPostAbstractsDate' => $this->_data['postAbstractsDate']));
-			$event->updateSetting('postAbstractsDate', $this->_data['postAbstractsDate'], 'date');
+			$schedConf->updateSetting('postAbstractsDate', $this->_data['postAbstractsDate'], 'date');
 		}
-		if($event->getSetting('postAbstracts') != $this->_data['postAbstracts']) {
+		if($schedConf->getSetting('postAbstracts') != $this->_data['postAbstracts']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postAbstractsChanged',
-				array('oldPostAbstracts' => $event->getSetting('postAbstracts'),
+				array('oldPostAbstracts' => $schedConf->getSetting('postAbstracts'),
 					'newPostAbstracts' => $this->_data['postAbstracts']));
-			$event->updateSetting('postAbstracts', $this->_data['postAbstracts'], 'bool');
+			$schedConf->updateSetting('postAbstracts', $this->_data['postAbstracts'], 'bool');
 		}
-		if($event->getSetting('postPapersDate') != $this->_data['postPapersDate']) {
+		if($schedConf->getSetting('postPapersDate') != $this->_data['postPapersDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postPapersDateChanged',
-				array('oldPostPapersDate' => $event->getSetting('postPapersDate'),
+				array('oldPostPapersDate' => $schedConf->getSetting('postPapersDate'),
 					'newPostPapersDate' => $this->_data['postPapersDate']));
-			$event->updateSetting('postPapersDate', $this->_data['postPapersDate'], 'date');
+			$schedConf->updateSetting('postPapersDate', $this->_data['postPapersDate'], 'date');
 		}
-		if($event->getSetting('postPapers') != $this->_data['postPapers']) {
+		if($schedConf->getSetting('postPapers') != $this->_data['postPapers']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postPapersChanged',
-				array('oldPostPapers' => $event->getSetting('postPapers'),
+				array('oldPostPapers' => $schedConf->getSetting('postPapers'),
 					'newPostPapers' => $this->_data['postPapers']));
-			$event->updateSetting('postPapers', $this->_data['postPapers'], 'bool');
+			$schedConf->updateSetting('postPapers', $this->_data['postPapers'], 'bool');
 		}
-		if($event->getSetting('delayOpenAccessDate') != $this->_data['delayOpenAccessDate']) {
+		if($schedConf->getSetting('delayOpenAccessDate') != $this->_data['delayOpenAccessDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.delayOpenAccessDateChanged',
-				array('oldDelayOpenAccessDate' => $event->getSetting('delayOpenAccessDate'),
+				array('oldDelayOpenAccessDate' => $schedConf->getSetting('delayOpenAccessDate'),
 					'newDelayOpenAccessDate' => $this->_data['delayOpenAccessDate']));
-			$event->updateSetting('delayOpenAccessDate', $this->_data['delayOpenAccessDate'], 'date');
+			$schedConf->updateSetting('delayOpenAccessDate', $this->_data['delayOpenAccessDate'], 'date');
 		}
-		if($event->getSetting('delayOpenAccess') != $this->_data['delayOpenAccess']) {
+		if($schedConf->getSetting('delayOpenAccess') != $this->_data['delayOpenAccess']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.delayOpenAccessChanged',
-				array('oldDelayOpenAccess' => $event->getSetting('delayOpenAccess'),
+				array('oldDelayOpenAccess' => $schedConf->getSetting('delayOpenAccess'),
 					'newDelayOpenAccess' => $this->_data['delayOpenAccess']));
-			$event->updateSetting('delayOpenAccess', $this->_data['delayOpenAccess'], 'bool');
+			$schedConf->updateSetting('delayOpenAccess', $this->_data['delayOpenAccess'], 'bool');
 		}
-		if($event->getSetting('closeCommentsDate') != $this->_data['closeCommentsDate']) {
+		if($schedConf->getSetting('closeCommentsDate') != $this->_data['closeCommentsDate']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.closeCommentsDateChanged',
-				array('oldCloseCommentsDate' => $event->getSetting('closeCommentsDate'),
+				array('oldCloseCommentsDate' => $schedConf->getSetting('closeCommentsDate'),
 					'newCloseCommentsDate' => $this->_data['closeCommentsDate']));
-			$event->updateSetting('closeCommentsDate', $this->_data['closeCommentsDate'], 'date');
+			$schedConf->updateSetting('closeCommentsDate', $this->_data['closeCommentsDate'], 'date');
 		}
-		if($event->getSetting('closeComments') != $this->_data['closeComments']) {
+		if($schedConf->getSetting('closeComments') != $this->_data['closeComments']) {
 			ConferenceLog::logEvent(
-				$event->getConferenceId(),
-				$event->getEventId(),
+				$schedConf->getConferenceId(),
+				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.closeCommentsChanged',
-				array('oldCloseComments' => $event->getSetting('closeComments'),
+				array('oldCloseComments' => $schedConf->getSetting('closeComments'),
 					'newCloseComments' => $this->_data['closeComments']));
-			$event->updateSetting('closeComments', $this->_data['closeComments'], 'bool');
+			$schedConf->updateSetting('closeComments', $this->_data['closeComments'], 'bool');
 		}
 	}
 }

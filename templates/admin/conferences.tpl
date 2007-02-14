@@ -19,7 +19,7 @@
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr valign="top" class="heading">
-		<td width="35%">{translate key="director.setup.conferenceTitle"}</td>
+		<td width="35%">{translate key="manager.setup.conferenceTitle"}</td>
 		<td width="35%">{translate key="common.path"}</td>
 		<td width="10%">{translate key="common.order"}</td>
 		<td width="20%" align="right">{translate key="common.action"}</td>
@@ -29,7 +29,7 @@
 	</tr>
 	{iterate from=conferences item=conference}
 	<tr valign="top">
-		<td><a class="action" href="{url conference=$conference->getPath() page="director"}">{$conference->getTitle()|escape}</a></td>
+		<td><a class="action" href="{url conference=$conference->getPath() page="manager"}">{$conference->getTitle()|escape}</a></td>
 		<td>{$conference->getPath()|escape}</td>
 		<td><a href="{url op="moveConference" d=u conferenceId=$conference->getConferenceId()}">&uarr;</a> <a href="{url op="moveConference" d=d conferenceId=$conference->getConferenceId()}">&darr;</a></td>
 		<td align="right"><a href="{url op="editConference" path=$conference->getConferenceId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a class="action" href="{url op="deleteConference" path=$conference->getConferenceId()}" onclick="return confirm('{translate|escape:"javascript" key="admin.conferences.confirmDelete"}')">{translate key="common.delete"}</a></td>

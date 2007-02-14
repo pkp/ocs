@@ -14,10 +14,10 @@
 
 <table width="100%" class="data">
 	<tr>
-		<td width="20%" class="label">{translate key="paper.authors"}</td>
+		<td width="20%" class="label">{translate key="paper.presenters"}</td>
 		<td width="80%">
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl authorsPaperId=$submission->getPaperId() paperId=$submission->getPaperId()}
-			{$submission->getAuthorString()|escape} {icon name="mail" url=$url}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl presentersPaperId=$submission->getPaperId() paperId=$submission->getPaperId()}
+			{$submission->getPresenterString()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
 	<tr>
@@ -272,13 +272,13 @@
 						{foreach from=$reviewAssignment->getReviewerFileRevisions() item=reviewerFile key=key}
 						<tr valign="top">
 							<td valign="middle">
-								<form name="authorView{$reviewAssignment->getReviewId()}" method="post" action="{url op="makeReviewerFileViewable"}">
+								<form name="presenterView{$reviewAssignment->getReviewId()}" method="post" action="{url op="makeReviewerFileViewable"}">
 									<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}" class="file">{$reviewerFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewerFile->getDateModified()|date_format:$dateFormatShort}
 									<input type="hidden" name="reviewId" value="{$reviewAssignment->getReviewId()}" />
 									<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 									<input type="hidden" name="fileId" value="{$reviewerFile->getFileId()}" />
 									<input type="hidden" name="revision" value="{$reviewerFile->getRevision()}" />
-									{translate key="editor.paper.showAuthor"} <input type="checkbox" name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if} />
+									{translate key="editor.paper.showPresenter"} <input type="checkbox" name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if} />
 									<input type="submit" value="{translate key="common.record"}" class="button" />
 								</form>
 							</td>

@@ -35,10 +35,10 @@ class RTDAO extends DAO {
 		$rt->setViewMetadata($conference->getSetting('rtViewMetadata')?true:false);
 		$rt->setSupplementaryFiles($conference->getSetting('rtSupplementaryFiles')?true:false);
 		$rt->setPrinterFriendly($conference->getSetting('rtPrinterFriendly')?true:false);
-		$rt->setAuthorBio($conference->getSetting('rtAuthorBio')?true:false);
+		$rt->setPresenterBio($conference->getSetting('rtPresenterBio')?true:false);
 		$rt->setDefineTerms($conference->getSetting('rtDefineTerms')?true:false);
 		$rt->setAddComment($conference->getSetting('rtAddComment')?true:false);
-		$rt->setEmailAuthor($conference->getSetting('rtEmailAuthor')?true:false);
+		$rt->setEmailPresenter($conference->getSetting('rtEmailPresenter')?true:false);
 		$rt->setEmailOthers($conference->getSetting('rtEmailOthers')?true:false);
 		$rt->setBibFormat($conference->getSetting('rtBibFormat'));
 		return $rt;
@@ -55,10 +55,10 @@ class RTDAO extends DAO {
 		$conference->updateSetting('rtViewMetadata', $rt->getViewMetadata(), 'bool');
 		$conference->updateSetting('rtSupplementaryFiles', $rt->getSupplementaryFiles(), 'bool');
 		$conference->updateSetting('rtPrinterFriendly', $rt->getPrinterFriendly(), 'bool');
-		$conference->updateSetting('rtAuthorBio', $rt->getAuthorBio(), 'bool');
+		$conference->updateSetting('rtPresenterBio', $rt->getPresenterBio(), 'bool');
 		$conference->updateSetting('rtDefineTerms', $rt->getDefineTerms(), 'bool');
 		$conference->updateSetting('rtAddComment', $rt->getAddComment(), 'bool');
-		$conference->updateSetting('rtEmailAuthor', $rt->getEmailAuthor(), 'bool');
+		$conference->updateSetting('rtEmailPresenter', $rt->getEmailPresenter(), 'bool');
 		$conference->updateSetting('rtEmailOthers', $rt->getEmailOthers(), 'bool');
 		$conference->updateSetting('rtBibFormat', $rt->getBibFormat());
 		return true;
@@ -216,10 +216,10 @@ class RTDAO extends DAO {
 		$rt->setViewMetadata($row['view_metadata']);
 		$rt->setSupplementaryFiles($row['supplementary_files']);
 		$rt->setPrinterFriendly($row['printer_friendly']);
-		$rt->setAuthorBio($row['author_bio']);
+		$rt->setPresenterBio($row['presenter_bio']);
 		$rt->setDefineTerms($row['define_terms']);
 		$rt->setAddComment($row['add_comment']);
-		$rt->setEmailAuthor($row['email_author']);
+		$rt->setEmailPresenter($row['email_presenter']);
 		$rt->setEmailOthers($row['email_others']);
 		$rt->setBibFormat($row['bib_format']);
 

@@ -44,8 +44,8 @@
 		<value>{translate key="default.conferenceSettings.openAccessPolicy"}</value>
 	</setting>
 	<setting type="string">
-		<name>authorSelfArchivePolicy</name>
-		<value>{translate key="default.conferenceSettings.authorSelfArchivePolicy"}</value>
+		<name>presenterSelfArchivePolicy</name>
+		<value>{translate key="default.conferenceSettings.presenterSelfArchivePolicy"}</value>
 	</setting>
 	<setting type="string">
 		<name>emailSignature</name>
@@ -140,7 +140,7 @@
 		<value>true</value>
 	</setting>
 	<setting type="bool">
-		<name>rtAuthorBio</name>
+		<name>rtPresenterBio</name>
 		<value>true</value>
 	</setting>
 	<setting type="bool">
@@ -152,7 +152,7 @@
 		<value>true</value>
 	</setting>
 	<setting type="bool">
-		<name>rtEmailAuthor</name>
+		<name>rtEmailPresenter</name>
 		<value>true</value>
 	</setting>
 	<setting type="bool">

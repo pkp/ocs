@@ -20,7 +20,7 @@ define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 3);
 define('SUBMISSION_EDITOR_DECISION_DECLINE', 4);
 
 /* These constants are used as search fields for the various submission lists */
-define('SUBMISSION_FIELD_AUTHOR', 1);
+define('SUBMISSION_FIELD_PRESENTER', 1);
 define('SUBMISSION_FIELD_EDITOR', 2);
 define('SUBMISSION_FIELD_TITLE', 3);
 define('SUBMISSION_FIELD_REVIEWER', 4);
@@ -70,61 +70,61 @@ class Action {
 			}
 
 			// Check for any special cases before trying to save
-			if (Request::getUserVar('addAuthor')) {
-				// Add an author
+			if (Request::getUserVar('addPresenter')) {
+				// Add an presenter
 				$editData = true;
-				$authors = $metadataForm->getData('authors');
-				array_push($authors, array());
-				$metadataForm->setData('authors', $authors);
+				$presenters = $metadataForm->getData('presenters');
+				array_push($presenters, array());
+				$metadataForm->setData('presenters', $presenters);
 			
-			} else if (($delAuthor = Request::getUserVar('delAuthor')) && count($delAuthor) == 1) {
-				// Delete an author
+			} else if (($delPresenter = Request::getUserVar('delPresenter')) && count($delPresenter) == 1) {
+				// Delete an presenter
 				$editData = true;
-				list($delAuthor) = array_keys($delAuthor);
-				$delAuthor = (int) $delAuthor;
-				$authors = $metadataForm->getData('authors');
-				if (isset($authors[$delAuthor]['authorId']) && !empty($authors[$delAuthor]['authorId'])) {
-					$deletedAuthors = explode(':', $metadataForm->getData('deletedAuthors'));
-					array_push($deletedAuthors, $authors[$delAuthor]['authorId']);
-					$metadataForm->setData('deletedAuthors', join(':', $deletedAuthors));
+				list($delPresenter) = array_keys($delPresenter);
+				$delPresenter = (int) $delPresenter;
+				$presenters = $metadataForm->getData('presenters');
+				if (isset($presenters[$delPresenter]['presenterId']) && !empty($presenters[$delPresenter]['presenterId'])) {
+					$deletedPresenters = explode(':', $metadataForm->getData('deletedPresenters'));
+					array_push($deletedPresenters, $presenters[$delPresenter]['presenterId']);
+					$metadataForm->setData('deletedPresenters', join(':', $deletedPresenters));
 				}
-				array_splice($authors, $delAuthor, 1);
-				$metadataForm->setData('authors', $authors);
+				array_splice($presenters, $delPresenter, 1);
+				$metadataForm->setData('presenters', $presenters);
 					
-				if ($metadataForm->getData('primaryContact') == $delAuthor) {
+				if ($metadataForm->getData('primaryContact') == $delPresenter) {
 					$metadataForm->setData('primaryContact', 0);
 				}
 					
-			} else if (Request::getUserVar('moveAuthor')) {
-				// Move an author up/down
+			} else if (Request::getUserVar('movePresenter')) {
+				// Move an presenter up/down
 				$editData = true;
-				$moveAuthorDir = Request::getUserVar('moveAuthorDir');
-				$moveAuthorDir = $moveAuthorDir == 'u' ? 'u' : 'd';
-				$moveAuthorIndex = (int) Request::getUserVar('moveAuthorIndex');
-				$authors = $metadataForm->getData('authors');
+				$movePresenterDir = Request::getUserVar('movePresenterDir');
+				$movePresenterDir = $movePresenterDir == 'u' ? 'u' : 'd';
+				$movePresenterIndex = (int) Request::getUserVar('movePresenterIndex');
+				$presenters = $metadataForm->getData('presenters');
 			
-				if (!(($moveAuthorDir == 'u' && $moveAuthorIndex <= 0) || ($moveAuthorDir == 'd' && $moveAuthorIndex >= count($authors) - 1))) {
-					$tmpAuthor = $authors[$moveAuthorIndex];
+				if (!(($movePresenterDir == 'u' && $movePresenterIndex <= 0) || ($movePresenterDir == 'd' && $movePresenterIndex >= count($presenters) - 1))) {
+					$tmpPresenter = $presenters[$movePresenterIndex];
 					$primaryContact = $metadataForm->getData('primaryContact');
-					if ($moveAuthorDir == 'u') {
-						$authors[$moveAuthorIndex] = $authors[$moveAuthorIndex - 1];
-						$authors[$moveAuthorIndex - 1] = $tmpAuthor;
-						if ($primaryContact == $moveAuthorIndex) {
-							$metadataForm->setData('primaryContact', $moveAuthorIndex - 1);
-						} else if ($primaryContact == ($moveAuthorIndex - 1)) {
-							$metadataForm->setData('primaryContact', $moveAuthorIndex);
+					if ($movePresenterDir == 'u') {
+						$presenters[$movePresenterIndex] = $presenters[$movePresenterIndex - 1];
+						$presenters[$movePresenterIndex - 1] = $tmpPresenter;
+						if ($primaryContact == $movePresenterIndex) {
+							$metadataForm->setData('primaryContact', $movePresenterIndex - 1);
+						} else if ($primaryContact == ($movePresenterIndex - 1)) {
+							$metadataForm->setData('primaryContact', $movePresenterIndex);
 						}
 					} else {
-						$authors[$moveAuthorIndex] = $authors[$moveAuthorIndex + 1];
-						$authors[$moveAuthorIndex + 1] = $tmpAuthor;
-						if ($primaryContact == $moveAuthorIndex) {
-							$metadataForm->setData('primaryContact', $moveAuthorIndex + 1);
-						} else if ($primaryContact == ($moveAuthorIndex + 1)) {
-							$metadataForm->setData('primaryContact', $moveAuthorIndex);
+						$presenters[$movePresenterIndex] = $presenters[$movePresenterIndex + 1];
+						$presenters[$movePresenterIndex + 1] = $tmpPresenter;
+						if ($primaryContact == $movePresenterIndex) {
+							$metadataForm->setData('primaryContact', $movePresenterIndex + 1);
+						} else if ($primaryContact == ($movePresenterIndex + 1)) {
+							$metadataForm->setData('primaryContact', $movePresenterIndex);
 						}
 					}
 				}
-				$metadataForm->setData('authors', $authors);
+				$metadataForm->setData('presenters', $presenters);
 			}
 		
 			if (isset($editData)) {
@@ -174,7 +174,7 @@ class Action {
 	 * @param $type string the type of instructions (layout).
 	 */
 	function instructions($type, $allowed = array('layout')) {
-		$event = &Request::getEvent();
+		$schedConf = &Request::getSchedConf();
 		$templateMgr = &TemplateManager::getManager();
 		
 		if (!HookRegistry::call('Action::instructions', array(&$type, &$allowed))) {
@@ -185,7 +185,7 @@ class Action {
 			switch ($type) {
 				case 'layout':
 					$title = 'submission.layout.instructions';
-					$instructions = $event->getSetting('layoutInstructions');
+					$instructions = $schedConf->getSetting('layoutInstructions');
 					break;
 				default:
 					return false;

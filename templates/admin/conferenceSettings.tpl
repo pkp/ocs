@@ -27,7 +27,7 @@
 
 <table class="data" width="100%">
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="title" key="director.setup.conferenceTitle" required="true"}</td>
+		<td width="20%" class="label">{fieldLabel name="title" key="manager.setup.conferenceTitle" required="true"}</td>
 		<td width="80%" class="value"><input type="text" id="title" name="title" value="{$title|escape}" size="40" maxlength="120" class="textField" /></td>
 	</tr>
 	<tr valign="top">
@@ -44,7 +44,7 @@
 			<input type="text" id="path" name="path" value="{$path|escape}" size="16" maxlength="32" class="textField" />
 			<br />
 			{translate|assign:"sampleEllipsis" key="common.ellipsis"}
-			{url|assign:"sampleUrl" conference="path" event="$sampleEllipsis"}
+			{url|assign:"sampleUrl" conference="path" schedConf="$sampleEllipsis"}
 			<span class="instruct">{translate key="admin.conferences.urlWillBe" sampleUrl=$sampleUrl}</span>
 		</td>
 	</tr>
