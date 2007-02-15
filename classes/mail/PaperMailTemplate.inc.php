@@ -151,24 +151,24 @@ class PaperMailTemplate extends MailTemplate {
 		PaperLog::logEmailEntry($paper->getPaperId(), $entry);
 	}
 
-	function ccAssignedEditors($paperId) {
+	function ccAssignedDirectors($paperId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditorAssignmentsByPaperId($paperId);
+		$editAssignments =& $editAssignmentDao->getDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
-			$this->addCc($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
+			$this->addCc($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
 			$returner[] =& $editAssignment;
 			unset($editAssignment);
 		}
 		return $returner;
 	}
 
-	function toAssignedEditors($paperId) {
+	function toAssignedDirectors($paperId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditorAssignmentsByPaperId($paperId);
+		$editAssignments =& $editAssignmentDao->getDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
-			$this->addRecipient($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
+			$this->addRecipient($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
 			$returner[] =& $editAssignment;
 			unset($editAssignment);
 		}
@@ -180,7 +180,7 @@ class PaperMailTemplate extends MailTemplate {
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getReviewingTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
-			$this->addRecipient($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
+			$this->addRecipient($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
 			$returner[] =& $editAssignment;
 			unset($editAssignment);
 		}
@@ -192,7 +192,7 @@ class PaperMailTemplate extends MailTemplate {
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getEditingTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
-			$this->addRecipient($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
+			$this->addRecipient($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
 			$returner[] =& $editAssignment;
 			unset($editAssignment);
 		}
@@ -204,7 +204,7 @@ class PaperMailTemplate extends MailTemplate {
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getReviewingTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
-			$this->addCc($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
+			$this->addCc($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
 			$returner[] =& $editAssignment;
 			unset($editAssignment);
 		}
@@ -216,7 +216,7 @@ class PaperMailTemplate extends MailTemplate {
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getEditingTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
-			$this->addCc($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
+			$this->addCc($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
 			$returner[] =& $editAssignment;
 			unset($editAssignment);
 		}

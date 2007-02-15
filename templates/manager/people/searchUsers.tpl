@@ -58,8 +58,8 @@ function confirmAndPrompt(userId) {
 		{/if}
 		{if $isSchedConfManagement}
 			<option value="{$smarty.const.ROLE_ID_CONFERENCE_MANAGER}">{translate key="user.role.manager"}</option>
-			<option value="{$smarty.const.ROLE_ID_EDITOR}">{translate key="user.role.editor"}</option>
-			<option value="{$smarty.const.ROLE_ID_TRACK_EDITOR}">{translate key="user.role.trackDirector"}</option>
+			<option value="{$smarty.const.ROLE_ID_DIRECTOR}">{translate key="user.role.director"}</option>
+			<option value="{$smarty.const.ROLE_ID_TRACK_DIRECTOR}">{translate key="user.role.trackDirector"}</option>
 			<option value="{$smarty.const.ROLE_ID_LAYOUT_EDITOR}">{translate key="user.role.layoutEditor"}</option>
 			<option value="{$smarty.const.ROLE_ID_REVIEWER}">{translate key="user.role.reviewer"}</option>
 			{if $isRegistrationEnabled}

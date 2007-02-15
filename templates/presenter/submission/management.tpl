@@ -65,13 +65,13 @@
 		<td width="80%" colspan="2" class="data">{$submission->getTrackTitle()|escape}</td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="user.role.editor"}</td>
+		<td width="20%" class="label">{translate key="user.role.director"}</td>
 		{assign var="editAssignments" value=$submission->getEditAssignments()}
 		<td width="80%" colspan="2" class="data">
 			{foreach from=$editAssignments item=editAssignment}
-				{assign var=emailString value="`$editAssignment->getEditorFullName()` <`$editAssignment->getEditorEmail()`>"}
+				{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
 				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getPaperTitle|strip_tags paperId=$submission->getPaperId()}
-				{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}
+				{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
 				{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
 					{if $editAssignment->getCanEdit()}
 						({translate key="submission.editing"})
@@ -85,10 +85,10 @@
 			{/foreach}
 		</td>
 	</tr>
-	{if $submission->getCommentsToEditor()}
+	{if $submission->getCommentsToDirector()}
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="paper.commentsToEditor"}</td>
-		<td width="80%" colspan="2" class="data">{$submission->getCommentsToEditor()|strip_unsafe_html|nl2br}</td>
+		<td width="20%" class="label">{translate key="paper.commentsToDirector"}</td>
+		<td width="80%" colspan="2" class="data">{$submission->getCommentsToDirector()|strip_unsafe_html|nl2br}</td>
 	</tr>
 	{/if}
 </table>

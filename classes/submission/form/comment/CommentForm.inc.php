@@ -39,8 +39,8 @@ class CommentForm extends Form {
 	function CommentForm($paper, $commentType, $roleId, $assocId = null) {
 		if ($commentType == COMMENT_TYPE_PEER_REVIEW) {
 			parent::Form('submission/comment/peerReviewComment.tpl');
-		} else if ($commentType == COMMENT_TYPE_EDITOR_DECISION) {
-			parent::Form('submission/comment/editorDecisionComment.tpl');
+		} else if ($commentType == COMMENT_TYPE_DIRECTOR_DECISION) {
+			parent::Form('submission/comment/directorDecisionComment.tpl');
 		} else {
 			parent::Form('submission/comment/comment.tpl');
 		}
@@ -52,7 +52,7 @@ class CommentForm extends Form {
 		
 		$this->user = &Request::getUser();
 
-		if ($commentType != COMMENT_TYPE_PEER_REVIEW) $this->addCheck(new FormValidator($this, 'comments', 'required', 'editor.paper.commentsRequired'));
+		if ($commentType != COMMENT_TYPE_PEER_REVIEW) $this->addCheck(new FormValidator($this, 'comments', 'required', 'director.paper.commentsRequired'));
 	}
 
 	/**

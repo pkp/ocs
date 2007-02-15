@@ -23,11 +23,11 @@ class TrackDirectorSubmission extends Paper {
 	/** @var array IDs of ReviewAssignments removed from this paper */
 	var $removedReviewAssignments;
 
-	/** @var array the editor decisions of this paper */
-	var $editorDecisions;
+	/** @var array the director decisions of this paper */
+	var $directorDecisions;
 
-	/** @var array the revisions of the editor file */
-	var $editorFileRevisions;
+	/** @var array the revisions of the director file */
+	var $directorFileRevisions;
 	
 	/** @var array the revisions of the presenter file */
 	var $presenterFileRevisions;
@@ -66,21 +66,21 @@ class TrackDirectorSubmission extends Paper {
 	
 	/**
 	 * Add an editorial decision for this paper.
-	 * @param $editorDecision array
+	 * @param $directorDecision array
 	 * @param $type int
 	 * @param $round int
 	 */
-	function addDecision($editorDecision, $type, $round) {
-		if(!is_array($this->editorDecisions))
-			$this->editorDecisions = array();
+	function addDecision($directorDecision, $type, $round) {
+		if(!is_array($this->directorDecisions))
+			$this->directorDecisions = array();
 			
-		if(!isset($this->editorDecisions[$type]))
-			$this->editorDecisions[$type] = array();
+		if(!isset($this->directorDecisions[$type]))
+			$this->directorDecisions[$type] = array();
 
-		if(!isset($this->editorDecisions[$type][$round]))
-			$this->editorDecisions[$type][$round] = array();
+		if(!isset($this->directorDecisions[$type][$round]))
+			$this->directorDecisions[$type][$round] = array();
 
-		array_push($this->editorDecisions[$type][$round], $editorDecision);
+		array_push($this->directorDecisions[$type][$round], $directorDecision);
 	}		
 	
 	/**
@@ -150,7 +150,7 @@ class TrackDirectorSubmission extends Paper {
 		$decision = array_pop($decisions);
 		if (!empty($decision)) {
 			$latestDecision = array_pop($decision);
-			if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_DECLINE) {
+			if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
 				return SUBMISSION_STATUS_QUEUED_EDITING;
 			}
 		}
@@ -219,38 +219,38 @@ class TrackDirectorSubmission extends Paper {
 	}
 	
 	//
-	// Editor Decisions
+	// Director Decisions
 	//
 
 	/**
-	 * Get editor decisions.
+	 * Get director decisions.
 	 * @return array
 	 */
 	function getDecisions($type = null, $round = null) {
 		if ($type == null)
-			return $this->editorDecisions;
+			return $this->directorDecisions;
 
-		if(!isset($this->editorDecisions[$type]))
+		if(!isset($this->directorDecisions[$type]))
 			return null;
 		
 		if ($round == null)
-			return $this->editorDecisions[$type];
+			return $this->directorDecisions[$type];
 
-		if(!isset($this->editorDecisions[$type][$round]))
+		if(!isset($this->directorDecisions[$type][$round]))
 			return null;
 
-		return $this->editorDecisions[$type][$round];
+		return $this->directorDecisions[$type][$round];
 	}
 	
 	/**
-	 * Set editor decisions.
-	 * @param $editorDecisions array
+	 * Set director decisions.
+	 * @param $directorDecisions array
 	 * @param $type int
 	 * @param $round int
 	 */
-	function setDecisions($editorDecisions, $type, $round) {
+	function setDecisions($directorDecisions, $type, $round) {
 		$this->stampStatusModified();
-		return $this->editorDecisions[$type][$round] = $editorDecisions;
+		return $this->directorDecisions[$type][$round] = $directorDecisions;
 	}
 	
 	// 
@@ -326,23 +326,23 @@ class TrackDirectorSubmission extends Paper {
 	}
 	
 	/**
-	 * Get all editor file revisions.
+	 * Get all director file revisions.
 	 * @return array PaperFiles
 	 */
-	function getEditorFileRevisions($round = null) {
+	function getDirectorFileRevisions($round = null) {
 		if ($round == null) {
-			return $this->editorFileRevisions;
+			return $this->directorFileRevisions;
 		} else {
-			return $this->editorFileRevisions[$round];
+			return $this->directorFileRevisions[$round];
 		}
 	}
 	
 	/**
-	 * Set all editor file revisions.
-	 * @param $editorFileRevisions array PaperFiles
+	 * Set all director file revisions.
+	 * @param $directorFileRevisions array PaperFiles
 	 */
-	function setEditorFileRevisions($editorFileRevisions, $round) {
-		return $this->editorFileRevisions[$round] = $editorFileRevisions;
+	function setDirectorFileRevisions($directorFileRevisions, $round) {
+		return $this->directorFileRevisions[$round] = $directorFileRevisions;
 	}
 	
 	/**
@@ -369,17 +369,17 @@ class TrackDirectorSubmission extends Paper {
 	 * Get post-review file.
 	 * @return PaperFile
 	 */
-	function &getEditorFile() {
-		$returner =& $this->getData('editorFile');
+	function &getDirectorFile() {
+		$returner =& $this->getData('directorFile');
 		return $returner;
 	}
 	
 	/**
 	 * Set post-review file.
-	 * @param $editorFile PaperFile
+	 * @param $directorFile PaperFile
 	 */
-	function setEditorFile($editorFile) {
-		return $this->setData('editorFile', $editorFile);
+	function setDirectorFile($directorFile) {
+		return $this->setData('directorFile', $directorFile);
 	}
 	
 	//
@@ -407,19 +407,19 @@ class TrackDirectorSubmission extends Paper {
 	//
 	
 	/**
-	 * Get most recent editor decision comment.
+	 * Get most recent director decision comment.
 	 * @return PaperComment
 	 */
-	function getMostRecentEditorDecisionComment() {
-		return $this->getData('mostRecentEditorDecisionComment');
+	function getMostRecentDirectorDecisionComment() {
+		return $this->getData('mostRecentDirectorDecisionComment');
 	}
 	
 	/**
-	 * Set most recent editor decision comment.
-	 * @param $mostRecentEditorDecisionComment PaperComment
+	 * Set most recent director decision comment.
+	 * @param $mostRecentDirectorDecisionComment PaperComment
 	 */
-	function setMostRecentEditorDecisionComment($mostRecentEditorDecisionComment) {
-		return $this->setData('mostRecentEditorDecisionComment', $mostRecentEditorDecisionComment);
+	function setMostRecentDirectorDecisionComment($mostRecentDirectorDecisionComment) {
+		return $this->setData('mostRecentDirectorDecisionComment', $mostRecentDirectorDecisionComment);
 	}
 	
 	/**
@@ -473,19 +473,19 @@ class TrackDirectorSubmission extends Paper {
 	}
 
 	/**
-	 * Return array mapping editor decision constants to their locale strings.
+	 * Return array mapping director decision constants to their locale strings.
 	 * (Includes default mapping '' => "Choose One".)
 	 * @return array decision => localeString
 	 */
-	function &getEditorDecisionOptions() {
-		static $editorDecisionOptions = array(
+	function &getDirectorDecisionOptions() {
+		static $directorDecisionOptions = array(
 			'' => 'common.chooseOne',
-			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.paper.decision.accept',
-			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.paper.decision.pendingRevisions',
-			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.paper.decision.resubmit',
-			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.paper.decision.decline'
+			SUBMISSION_DIRECTOR_DECISION_ACCEPT => 'director.paper.decision.accept',
+			SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS => 'director.paper.decision.pendingRevisions',
+			SUBMISSION_DIRECTOR_DECISION_RESUBMIT => 'director.paper.decision.resubmit',
+			SUBMISSION_DIRECTOR_DECISION_DECLINE => 'director.paper.decision.decline'
 		);
-		return $editorDecisionOptions;
+		return $directorDecisionOptions;
 	}
 }
 

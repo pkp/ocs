@@ -18,16 +18,16 @@ import('pages.presenter.TrackSubmissionHandler');
 class SubmissionCommentsHandler extends PresenterHandler {
 	
 	/**
-	 * View editor decision comments.
+	 * View director decision comments.
 	 */
-	function viewEditorDecisionComments($args) {
+	function viewDirectorDecisionComments($args) {
 		PresenterHandler::validate();
 		PresenterHandler::setupTemplate(true);
 		
 		$paperId = $args[0];
 		
 		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId);
-		PresenterAction::viewEditorDecisionComments($presenterSubmission);
+		PresenterAction::viewDirectorDecisionComments($presenterSubmission);
 	}
 	
 	/**
@@ -63,14 +63,14 @@ class SubmissionCommentsHandler extends PresenterHandler {
 	}
 
 	/**
-	 * Email an editor decision comment.
+	 * Email a director decision comment.
 	 */
-	function emailEditorDecisionComment() {
+	function emailDirectorDecisionComment() {
 		$paperId = (int) Request::getUserVar('paperId');
 		list($conference, $schedConf, $submission) = TrackSubmissionHandler::validate($paperId);
 
 		parent::setupTemplate(true);		
-		if (PresenterAction::emailEditorDecisionComment($submission, Request::getUserVar('send'))) {
+		if (PresenterAction::emailDirectorDecisionComment($submission, Request::getUserVar('send'))) {
 			Request::redirect(null, null, null, 'submissionReview', array($paperId));
 		}
 	}
@@ -88,8 +88,8 @@ class SubmissionCommentsHandler extends PresenterHandler {
 		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId);
 		list($comment) = SubmissionCommentsHandler::validate($commentId);
 
-		if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
-			// Cannot edit an editor decision comment.
+		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
+			// Cannot edit a director decision comment.
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -113,8 +113,8 @@ class SubmissionCommentsHandler extends PresenterHandler {
 		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId);
 		list($comment) = SubmissionCommentsHandler::validate($commentId);
 
-		if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
-			// Cannot edit an editor decision comment.
+		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
+			// Cannot edit a director decision comment.
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -124,8 +124,8 @@ class SubmissionCommentsHandler extends PresenterHandler {
 		$comment = &$paperCommentDao->getPaperCommentById($commentId);
 		
 		// Redirect back to initial comments page
-		if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
-			Request::redirect(null, null, null, 'viewEditorDecisionComments', $paperId);
+		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
+			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
 			Request::redirect(null, null, null, 'viewLayoutComments', $paperId);
 		}
@@ -149,8 +149,8 @@ class SubmissionCommentsHandler extends PresenterHandler {
 		PresenterAction::deleteComment($commentId);
 		
 		// Redirect back to initial comments page
-		if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
-			Request::redirect(null, null, null, 'viewEditorDecisionComments', $paperId);
+		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
+			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
 			Request::redirect(null, null, null, 'viewLayoutComments', $paperId);
 		}

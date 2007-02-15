@@ -549,19 +549,19 @@ class Paper extends DataObject {
 	}
 	
 	/**
-	 * Get comments to editor.
+	 * Get comments to director.
 	 * @return string
 	 */
-	function getCommentsToEditor() {
-		return $this->getData('commentsToEditor');
+	function getCommentsToDirector() {
+		return $this->getData('commentsToDirector');
 	}
 	
 	/**
-	 * Set comments to editor.
-	 * @param $commentsToEditor string
+	 * Set comments to director.
+	 * @param $commentsToDirector string
 	 */
-	function setCommentsToEditor($commentsToEditor) {
-		return $this->setData('commentsToEditor', $commentsToEditor);
+	function setCommentsToDirector($commentsToDirector) {
+		return $this->setData('commentsToDirector', $commentsToDirector);
 	}
 	
 	/**
@@ -755,19 +755,19 @@ class Paper extends DataObject {
 	}
 	
 	/**
-	 * Get editor file id.
+	 * Get director file id.
 	 * @return int
 	 */
-	function getEditorFileId() {
-		return $this->getData('editorFileId');
+	function getDirectorFileId() {
+		return $this->getData('directorFileId');
 	}
 	
 	/**
-	 * Set editor file id.
-	 * @param $editorFileId int
+	 * Set director file id.
+	 * @param $directorFileId int
 	 */
-	function setEditorFileId($editorFileId) {
-		return $this->setData('editorFileId', $editorFileId);
+	function setDirectorFileId($directorFileId) {
+		return $this->setData('directorFileId', $directorFileId);
 	}
 	
 	/**

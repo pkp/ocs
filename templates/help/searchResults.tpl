@@ -30,10 +30,10 @@
 			<h5>{translate key="help.matchesFound" matches=$searchResults|@count}</h5>
 			<ul>
 			{foreach name=results from=$searchResults item=result}
-				{assign var=sections value=$result.topic->getSections()}
+				{assign var=tracks value=$result.topic->getTracks()}
 				<li>
 					<a href="{url op="view" path=$result.topic->getId()|explode:"/"}">{$result.topic->getTitle()}</a>
-					{eval var=$sections[0]->getContent()|strip_tags|truncate:200}
+					{eval var=$tracks[0]->getContent()|strip_tags|truncate:200}
 					<div class="searchBreadcrumb">
 						<a href="{url op="view" path="index"|to_array:"topic":"000000"}">{translate key="navigation.home"}</a>
 						{foreach name=breadcrumbs from=$result.toc->getBreadcrumbs() item=breadcrumb key=key}

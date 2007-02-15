@@ -16,7 +16,7 @@
 
 define('REPORT_TYPE_CONFERENCE',	0x00001);
 define('REPORT_TYPE_SCHED_CONF',	0x00002);
-define('REPORT_TYPE_EDITOR',		0x00003);
+define('REPORT_TYPE_DIRECTOR',		0x00003);
 define('REPORT_TYPE_REVIEWER',		0x00004);
 define('REPORT_TYPE_TRACK',		0x00005);
 
@@ -80,7 +80,7 @@ class SchedConfStatisticsDAO extends DAO {
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 
-			// For each paper, pick the most recent editor
+			// For each paper, pick the most recent director
 			// decision only and ignore the rest. Depends on sort
 			// order. FIXME -- there must be a better way of doing
 			// this that's database independent.
@@ -103,14 +103,14 @@ class SchedConfStatisticsDAO extends DAO {
 
 				import('submission.common.Action');
 				switch ($row['decision']) {
-					case SUBMISSION_EDITOR_DECISION_ACCEPT:
+					case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
 						$returner['submissionsAccept']++;
 						break;
-					case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
-					case SUBMISSION_EDITOR_DECISION_RESUBMIT:
+					case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
+					case SUBMISSION_DIRECTOR_DECISION_RESUBMIT:
 						$returner['submissionsRevise']++;
 						break;
-					case SUBMISSION_EDITOR_DECISION_DECLINE:
+					case SUBMISSION_DIRECTOR_DECISION_DECLINE:
 						$returner['submissionsDecline']++;
 						break;
 					default:
@@ -435,7 +435,7 @@ class SchedConfStatisticsDAO extends DAO {
 			$schedConfId
 		);
 		import('schedConf.SchedConfReportIterator');
-		$report =& new SchedConfReportIterator($schedConfId, $result, $dateStart, $dateEnd, REPORT_TYPE_SECTION);
+		$report =& new SchedConfReportIterator($schedConfId, $result, $dateStart, $dateEnd, REPORT_TYPE_TRACK);
 		return $report;
 	}
 
@@ -468,14 +468,14 @@ class SchedConfStatisticsDAO extends DAO {
 	}
 
 	/**
-	 * Generate an Editor Report between the given dates (optional)
+	 * Generate a Director Report between the given dates (optional)
 	 * @param $schedConfId int The scheduled conference to report on
 	 * @param $dateStart string The start date
 	 * @param $dateEnd string The end date
 	 */
-	function &getEditorReport($schedConfId, $dateStart = null, $dateEnd = null) {
+	function &getDirectorReport($schedConfId, $dateStart = null, $dateEnd = null) {
 		$result = &$this->retrieve(
-			'SELECT ee.editor_id, a.paper_id AS paper_id, a.title AS paper_title, ' .
+			'SELECT ee.director_id, a.paper_id AS paper_id, a.title AS paper_title, ' .
 			'pa.pub_id AS pub_id, pa.date_published AS date_published, ' .
 			's.title AS track_title, s.title_alt1 AS track_title_alt1, s.title_alt2 AS track_title_alt2, ' .
 			'a.date_submitted AS date_submitted, a.status AS status ' .
@@ -487,11 +487,11 @@ class SchedConfStatisticsDAO extends DAO {
 			'WHERE a.sched_conf_id = ? ' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
-			' ORDER BY ee.editor_id, a.date_submitted',
+			' ORDER BY ee.director_id, a.date_submitted',
 			$schedConfId
 		);
 		import('schedConf.schedConfReportIterator');
-		$report =& new SchedConfReportIterator($schedConfId, $result, $dateStart, $dateEnd, REPORT_TYPE_EDITOR);
+		$report =& new SchedConfReportIterator($schedConfId, $result, $dateStart, $dateEnd, REPORT_TYPE_DIRECTOR);
 		return $report;
 	}
 
@@ -567,14 +567,14 @@ class SchedConfStatisticsDAO extends DAO {
 
 	/**
 	 * Determine, within a given scheduled conference and date range (optional),
-	 * the maximum number of editors that a single submission has.
+	 * the maximum number of directors that a single submission has.
 	 * @param $schedConfId int
 	 * @param $dateStart string
 	 * @param $dateEnd string
 	 */
-	function getMaxEditorCount($schedConfId, $dateStart, $dateEnd) {
+	function getMaxDirectorCount($schedConfId, $dateStart, $dateEnd) {
 		$result = &$this->retrieve(
-			'SELECT COUNT(e.editor_id) ' .
+			'SELECT COUNT(e.director_id) ' .
 			'FROM ' .
 			'papers a, ' .
 			'edit_assignments e ' .

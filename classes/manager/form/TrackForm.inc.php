@@ -41,26 +41,26 @@ class TrackForm extends Form {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('trackId', $this->trackId);
 		
-		if (Request::getUserVar('assignedEditors') != null) {
-			// Reloading edit form -- get editors from form data
-			$unassignedEditorIds = explode(':', Request::getUserVar('unassignedEditors'));
-			$assignedEditorIds = explode(':', Request::getUserVar('assignedEditors'));
+		if (Request::getUserVar('assignedDirectors') != null) {
+			// Reloading edit form -- get directors from form data
+			$unassignedDirectorIds = explode(':', Request::getUserVar('unassignedDirectors'));
+			$assignedDirectorIds = explode(':', Request::getUserVar('assignedDirectors'));
 			
 			$userDao = &DAORegistry::getDAO('UserDAO');
 			
 			// Get track directors not assigned to this track
-			$unassignedEditors = array();
-			foreach ($unassignedEditorIds as $edUserId) {
+			$unassignedDirectors = array();
+			foreach ($unassignedDirectorIds as $edUserId) {
 				if (!empty($edUserId)) {
-					$unassignedEditors[] = &$userDao->getUser($edUserId);
+					$unassignedDirectors[] = &$userDao->getUser($edUserId);
 				}
 			}
 			
 			// Get track directors assigned to this track
-			$assignedEditors = array();
-			foreach ($assignedEditorIds as $edUserId) {
+			$assignedDirectors = array();
+			foreach ($assignedDirectorIds as $edUserId) {
 				if (!empty($edUserId)) {
-					$assignedEditors[] = &$userDao->getUser($edUserId);
+					$assignedDirectors[] = &$userDao->getUser($edUserId);
 				}
 			}
 			
@@ -69,14 +69,14 @@ class TrackForm extends Form {
 			$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
 			
 			// Get track directors not assigned to this track
-			$unassignedEditors = &$trackDirectorsDao->getEditorsNotInTrack($schedConf->getSchedConfId(), $this->trackId);
+			$unassignedDirectors = &$trackDirectorsDao->getDirectorsNotInTrack($schedConf->getSchedConfId(), $this->trackId);
 			
 			// Get track directors assigned to this track
-			$assignedEditors = &$trackDirectorsDao->getEditorsByTrackId($schedConf->getSchedConfId(), $this->trackId);
+			$assignedDirectors = &$trackDirectorsDao->getDirectorsByTrackId($schedConf->getSchedConfId(), $this->trackId);
 		}
 		
-		$templateMgr->assign('unassignedEditors', $unassignedEditors);
-		$templateMgr->assign('assignedEditors', $assignedEditors);
+		$templateMgr->assign('unassignedDirectors', $unassignedDirectors);
+		$templateMgr->assign('assignedDirectors', $assignedDirectors);
 		$templateMgr->assign('helpTopicId','conference.managementPages.tracks');
 		
 		parent::display();
@@ -103,7 +103,7 @@ class TrackForm extends Form {
 					'metaIndexed' => $track->getMetaIndexed(),
 					'metaReviewed' => $track->getMetaReviewed(),
 					'identifyType' => $track->getIdentifyType(),
-					'editorRestriction' => $track->getEditorRestricted(),
+					'directorRestriction' => $track->getDirectorRestricted(),
 					'policy' => $track->getPolicy()
 				);
 			}
@@ -114,7 +114,7 @@ class TrackForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'titleAlt1', 'titleAlt2', 'abbrev', 'abbrevAlt1', 'abbrevAlt2', 'metaReviewed', 'metaIndexed', 'identifyType', 'editorRestriction', 'policy'));
+		$this->readUserVars(array('title', 'titleAlt1', 'titleAlt2', 'abbrev', 'abbrevAlt1', 'abbrevAlt2', 'metaReviewed', 'metaIndexed', 'identifyType', 'directorRestriction', 'policy'));
 	}
 	
 	/**
@@ -145,7 +145,7 @@ class TrackForm extends Form {
 		$track->setMetaReviewed($this->getData('metaReviewed') ? 1 : 0);
 		$track->setMetaIndexed($this->getData('metaIndexed') ? 1 : 0);
 		$track->setIdentifyType($this->getData('identifyType'));
-		$track->setEditorRestricted($this->getData('editorRestriction') ? 1 : 0);
+		$track->setDirectorRestricted($this->getData('directorRestriction') ? 1 : 0);
 		$track->setPolicy($this->getData('policy'));
 		
 		if ($track->getTrackId() != null) {
@@ -156,13 +156,13 @@ class TrackForm extends Form {
 			$trackDao->resequenceTracks($schedConf->getSchedConfId());
 		}
 		
-		// Save assigned editors
+		// Save assigned directors
 		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
-		$trackDirectorsDao->deleteEditorsByTrackId($trackId, $schedConf->getSchedConfId());
-		$editors = explode(':', Request::getUserVar('assignedEditors'));
-		foreach ($editors as $edUserId) {
+		$trackDirectorsDao->deleteDirectorsByTrackId($trackId, $schedConf->getSchedConfId());
+		$directors = explode(':', Request::getUserVar('assignedDirectors'));
+		foreach ($directors as $edUserId) {
 			if (!empty($edUserId)) {
-				$trackDirectorsDao->insertEditor($schedConf->getSchedConfId(), $trackId, $edUserId);
+				$trackDirectorsDao->insertDirector($schedConf->getSchedConfId(), $trackId, $edUserId);
 			}
 		}
 	}

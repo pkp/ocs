@@ -26,7 +26,7 @@ class TimelineForm extends Form {
 	 */
 	function TimelineForm() {
 		$this->canEdit = false;
-		if (Validation::isEditor() || Validation::isConferenceManager()) {
+		if (Validation::isDirector() || Validation::isConferenceManager()) {
 			$this->canEdit = true;
 		}
 
@@ -55,7 +55,7 @@ class TimelineForm extends Form {
 		$schedConf =& Request::getSchedConf();
 		$templateMgr = &TemplateManager::getManager();
 
-		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'editor'), 'user.role.editor')));
+		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'director'), 'user.role.director')));
 		$templateMgr->assign('helpTopicId','conference.managementPages.timeline');
 
 		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);

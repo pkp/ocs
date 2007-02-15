@@ -60,7 +60,7 @@
 {assign var=round value=$smarty.section.round.index}
 {assign var=roundPlusOne value=$round+1}
 {assign var=roundAssignments value=$reviewAssignments[$roundPlusOne]}
-{assign var=roundDecisions value=$editorDecisions[$type][$roundPlusOne]}
+{assign var=roundDecisions value=$directorDecisions[$type][$roundPlusOne]}
 {assign var=needsTypeHeading value=1}
 
 {if $submission->getReviewProgress() != $type || $submission->getCurrentRound() != $roundPlusOne}
@@ -170,7 +170,7 @@
 							<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 							<input type="hidden" name="fileId" value="{$reviewerFile->getFileId()}" />
 							<input type="hidden" name="revision" value="{$reviewerFile->getRevision()}" />
-							{translate key="editor.paper.showPresenter"} <input type="checkbox"
+							{translate key="director.paper.showPresenter"} <input type="checkbox"
 name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if} />
 							<input type="submit" value="{translate key="common.record"}" class="button" />
 						</form>
@@ -193,16 +193,16 @@ name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if
 <h4>{translate key="trackDirector.regrets.decisionRound" round=$roundPlusOne}</h4>
 
 {assign var=presenterFiles value=$submission->getPresenterFileRevisions($roundPlusOne)}
-{assign var=editorFiles value=$submission->getEditorFileRevisions($roundPlusOne)}
+{assign var=directorFiles value=$submission->getDirectorFileRevisions($roundPlusOne)}
 
 <table class="data" width="100%">
 	<tr valign="top">
-		<td class="label" width="20%">{translate key="editor.paper.decision"}</td>
+		<td class="label" width="20%">{translate key="director.paper.decision"}</td>
 		<td class="value" width="80%">
-			{foreach from=$roundDecisions item=editorDecision key=decisionKey}
+			{foreach from=$roundDecisions item=directorDecision key=decisionKey}
 				{if $decisionKey neq 0} | {/if}
-				{assign var="decision" value=$editorDecision.decision}
-				{translate key=$editorDecisionOptions.$decision} {$editorDecision.dateDecided|date_format:$dateFormatShort}
+				{assign var="decision" value=$directorDecision.decision}
+				{translate key=$directorDecisionOptions.$decision} {$directorDecision.dateDecided|date_format:$dateFormatShort}
 			{foreachelse}
 				{translate key="common.none"}
 			{/foreach}
@@ -211,12 +211,12 @@ name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if
 	<tr valign="top">
 		<td class="label" width="20%">{translate key="submission.notifyPresenter"}</td>
 		<td class="value" width="80%">
-			{translate key="submission.editorPresenterRecord"}
-			{if $submission->getMostRecentEditorDecisionComment()}
-				{assign var="comment" value=$submission->getMostRecentEditorDecisionComment()}
-				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getPaperId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}
+			{translate key="submission.directorPresenterRecord"}
+			{if $submission->getMostRecentDirectorDecisionComment()}
+				{assign var="comment" value=$submission->getMostRecentDirectorDecisionComment()}
+				<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}
 			{else}
-				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getPaperId()}');" class="icon">{icon name="comment"}</a>
+				<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId()}');" class="icon">{icon name="comment"}</a>
 			{/if}
 		</td>
 	</tr>
@@ -234,18 +234,18 @@ name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if
 			<td width="80%" colspan="4" class="nodata">{translate key="common.none"}</td>
 		</tr>
 	{/foreach}
-	{foreach from=$editorFiles item=editorFile key=key}
+	{foreach from=$directorFiles item=directorFile key=key}
 		<tr valign="top">
-			{if !$editorRevisionExists}
-				{assign var="editorRevisionExists" value=true}
-				<td width="20%" class="label" rowspan="{$editorFiles|@count}" class="label">{translate key="submission.editorVersion"}</td>
+			{if !$directorRevisionExists}
+				{assign var="directorRevisionExists" value=true}
+				<td width="20%" class="label" rowspan="{$directorFiles|@count}" class="label">{translate key="submission.directorVersion"}</td>
 			{/if}
 
-			<td width="30%"><a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$editorFile->getFileId():$editorFile->getRevision()}" class="file">{$editorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$editorFile->getDateModified()|date_format:$dateFormatShort}</td>
+			<td width="30%"><a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$directorFile->getDateModified()|date_format:$dateFormatShort}</td>
 		</tr>
 	{foreachelse}
 		<tr valign="top">
-			<td width="20%" class="label">{translate key="submission.editorVersion"}</td>
+			<td width="20%" class="label">{translate key="submission.directorVersion"}</td>
 			<td width="80%" colspan="4" class="nodata">{translate key="common.none"}</td>
 		</tr>
 	{/foreach}

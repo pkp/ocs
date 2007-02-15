@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="submission.recommendation"}
 {include file="common/header.tpl"}
 
-<h3>{translate key="editor.paper.enterReviewerRecommendation"}</h3>
+<h3>{translate key="director.paper.enterReviewerRecommendation"}</h3>
 
 <br />
 
@@ -21,7 +21,7 @@
 <input type="hidden" name="reviewId" value="{$reviewId|escape}" />
 <table width="100%" class="data">
 <tr valign="top">
-	<td width="20%" class="label">{translate key="editor.paper.recommendation"}</td>
+	<td width="20%" class="label">{translate key="director.paper.recommendation"}</td>
 	<td width="80%" class="value">
 		<select name="recommendation" size="1" class="selectMenu">
 			{html_options_translate options=$reviewerRecommendationOptions}

@@ -15,8 +15,8 @@
  */
 
 import('submission.trackDirector.TrackDirectorSubmission');
-import('submission.presenter.PresenterSubmission'); // Bring in editor decision constants
-import('submission.reviewer.ReviewerSubmission'); // Bring in editor decision constants
+import('submission.presenter.PresenterSubmission'); // Bring in director decision constants
+import('submission.reviewer.ReviewerSubmission'); // Bring in director decision constants
 
 class TrackDirectorSubmissionDAO extends DAO {
 
@@ -53,7 +53,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	/**
 	 * Retrieve a track director submission by paper ID.
 	 * @param $paperId int
-	 * @return EditorSubmission
+	 * @return DirectorSubmission
 	 */
 	function &getTrackDirectorSubmission($paperId) {
 		$result = &$this->retrieve(
@@ -93,19 +93,19 @@ class TrackDirectorSubmissionDAO extends DAO {
 		// Paper attributes
 		$this->paperDao->_paperFromRow($trackDirectorSubmission, $row);
 
-		// Editor Assignment
+		// Director Assignment
 		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByPaperId($row['paper_id']);
 		$trackDirectorSubmission->setEditAssignments($editAssignments->toArray());
 
-		// Editor Decisions
+		// Director Decisions
 		for ($i = 1; $i <= $row['review_progress']; $i++) {
 			for ($j = 1; $j <= $row['current_round']; $j++) {
-				$trackDirectorSubmission->setDecisions($this->getEditorDecisions($row['paper_id'], $i, $j), $i, $j);
+				$trackDirectorSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i, $j), $i, $j);
 			}
 		}
 
 		// Comments
-		$trackDirectorSubmission->setMostRecentEditorDecisionComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_EDITOR_DECISION, $row['paper_id']));
+		$trackDirectorSubmission->setMostRecentDirectorDecisionComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_DIRECTOR_DECISION, $row['paper_id']));
 		$trackDirectorSubmission->setMostRecentLayoutComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_LAYOUT, $row['paper_id']));
 
 		// Files
@@ -113,10 +113,10 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$trackDirectorSubmission->setRevisedFile($this->paperFileDao->getPaperFile($row['revised_file_id']));
 		$trackDirectorSubmission->setReviewFile($this->paperFileDao->getPaperFile($row['review_file_id']));
 		$trackDirectorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByPaper($row['paper_id']));
-		$trackDirectorSubmission->setEditorFile($this->paperFileDao->getPaperFile($row['editor_file_id']));
+		$trackDirectorSubmission->setDirectorFile($this->paperFileDao->getPaperFile($row['director_file_id']));
 
 		for ($i = 1; $i <= $row['current_round']; $i++) {
-			$trackDirectorSubmission->setEditorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['editor_file_id'], $i), $i);
+			$trackDirectorSubmission->setDirectorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['director_file_id'], $i), $i);
 			$trackDirectorSubmission->setPresenterFileRevisions($this->paperFileDao->getPaperFileRevisions($row['revised_file_id'], $i), $i);
 		}
 
@@ -153,34 +153,34 @@ class TrackDirectorSubmissionDAO extends DAO {
 			}
 		}
 
-		// Update editor decisions; hacked necessarily to iterate by reference.
+		// Update director decisions; hacked necessarily to iterate by reference.
 		for ($i = 1; $i <= $trackDirectorSubmission->getReviewProgress(); $i++) {
 			for ($j = 1; $j <= $trackDirectorSubmission->getCurrentRound(); $j++) {
-				$editorDecisions = $trackDirectorSubmission->getDecisions($i, $j);
+				$directorDecisions = $trackDirectorSubmission->getDecisions($i, $j);
 				$insertedDecision = false;
-				if (is_array($editorDecisions)) {
-					for ($k = 0; $k < count($editorDecisions); $k++) {
-						$editorDecision =& $editorDecisions[$k];
-						if ($editorDecision['editDecisionId'] == null) {
+				if (is_array($directorDecisions)) {
+					for ($k = 0; $k < count($directorDecisions); $k++) {
+						$directorDecision =& $directorDecisions[$k];
+						if ($directorDecision['editDecisionId'] == null) {
 							$this->update(
 								sprintf('INSERT INTO edit_decisions
-									(paper_id, type, round, editor_id, decision, date_decided)
+									(paper_id, type, round, director_id, decision, date_decided)
 									VALUES (?, ?, ?, ?, ?, %s)',
-									$this->datetimeToDB($editorDecision['dateDecided'])),
+									$this->datetimeToDB($directorDecision['dateDecided'])),
 								array($trackDirectorSubmission->getPaperId(),
 									$i,
 									$j,
-									$editorDecision['editorId'], $editorDecision['decision'])
+									$directorDecision['directorId'], $directorDecision['decision'])
 							);
 							$insertId = $this->getInsertId('edit_decisions', 'edit_decision_id');
-							$editorDecision['editDecisionId'] = $insertId;
+							$directorDecision['editDecisionId'] = $insertId;
 							$insertedDecision = true;
 						}
-						unset($editorDecision);
+						unset($directorDecision);
 					}
 				}
 				if ($insertedDecision) {
-					$trackDirectorSubmission->setDecisions($editorDecisions, $i, $j);
+					$trackDirectorSubmission->setDecisions($directorDecisions, $i, $j);
 				}
 			}
 		}
@@ -244,7 +244,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$paper->setReviewProgress($trackDirectorSubmission->getReviewProgress());
 			$paper->setCurrentRound($trackDirectorSubmission->getCurrentRound());
 			$paper->setReviewFileId($trackDirectorSubmission->getReviewFileId());
-			$paper->setEditorFileId($trackDirectorSubmission->getEditorFileId());
+			$paper->setDirectorFileId($trackDirectorSubmission->getDirectorFileId());
 			$paper->setStatus($trackDirectorSubmission->getStatus());
 			$paper->setDateStatusModified($trackDirectorSubmission->getDateStatusModified());
 			$paper->setLastModified($trackDirectorSubmission->getLastModified());
@@ -286,7 +286,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			FROM papers p LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN review_rounds r2 ON (p.paper_id = r2.paper_id AND p.review_progress = r2.type AND p.current_round = r2.round)
-			WHERE p.sched_conf_id = ? AND e.editor_id = ? AND p.status = ?',
+			WHERE p.sched_conf_id = ? AND e.director_id = ? AND p.status = ?',
 			array($schedConfId, $trackDirectorId, $status)
 		);
 
@@ -333,7 +333,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				}
 				$params[] = $params[] = $params[] = $params[] = $params[] = $search;
 				break;
-			case SUBMISSION_FIELD_EDITOR:
+			case SUBMISSION_FIELD_DIRECTOR:
 				$first_last = $this->_dataSource->Concat('ed.first_name', '\' \'', 'ed.last_name');
 				$first_middle_last = $this->_dataSource->Concat('ed.first_name', '\' \'', 'ed.middle_name', '\' \'', 'ed.last_name');
 				$last_comma_first = $this->_dataSource->Concat('ed.last_name', '\', \'', 'ed.first_name');
@@ -382,12 +382,12 @@ class TrackDirectorSubmissionDAO extends DAO {
 				papers p
 			INNER JOIN paper_presenters pa ON (pa.paper_id = p.paper_id)
 			LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
-			LEFT JOIN users ed ON (e.editor_id = ed.user_id)
+			LEFT JOIN users ed ON (e.director_id = ed.user_id)
 			LEFT JOIN tracks t ON (t.track_id = p.track_id)
 			LEFT JOIN review_rounds r2 ON (p.paper_id = r2.paper_id and p.current_round = r2.round AND p.review_progress = r2.type)
 			LEFT JOIN layouted_assignments l ON (l.paper_id = p.paper_id) LEFT JOIN users le ON (le.user_id = l.editor_id)
 			WHERE
-				p.sched_conf_id = ? AND e.editor_id = ?';
+				p.sched_conf_id = ? AND e.director_id = ?';
 
 		// "Active" submissions have a status of SUBMISSION_STATUS_QUEUED and
 		// the layout editor has not yet been acknowledged.
@@ -419,7 +419,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $dateFrom String date to search from
 	 * @param $dateTo String date to search to
 	 * @param $rangeInfo object
-	 * @return array EditorSubmission
+	 * @return array DirectorSubmission
 	 */
 	function &getTrackDirectorSubmissionsInReview($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$submissions = array();
@@ -439,7 +439,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$decision = array_pop($type);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_DECLINE) {
+				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
 					$inReview = false;
 				}
 			}
@@ -475,7 +475,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $dateFrom String date to search from
 	 * @param $dateTo String date to search to
 	 * @param $rangeInfo object
-	 * @return array EditorSubmission
+	 * @return array DirectorSubmission
 	 */
 	function &getTrackDirectorSubmissionsInEditing($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$submissions = array();
@@ -494,7 +494,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$decision = array_pop($types);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_DECLINE) {
+				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
 					$inReview = false;
 				}
 			}
@@ -529,7 +529,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $dateFrom String date to search from
 	 * @param $dateTo String date to search to
 	 * @param $rangeInfo object
-	 * @return array EditorSubmission
+	 * @return array DirectorSubmission
 	 */
 	function &getTrackDirectorSubmissionsArchives($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$submissions = array();
@@ -571,7 +571,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $dateFrom String date to search from
 	 * @param $dateTo String date to search to
 	 * @param $rangeInfo object
-	 * @return array EditorSubmission
+	 * @return array DirectorSubmission
 	 */
 	function &getTrackDirectorSubmissionsAccepted($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$submissions = array();
@@ -625,9 +625,9 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$decision = array_pop($type);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
 					$inReview = false;
-				} elseif ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_DECLINE) {
+				} elseif ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
 					$notDeclined = false;
 				}
 			}
@@ -682,12 +682,12 @@ class TrackDirectorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get the editor decisions for a review round of an paper.
+	 * Get the director decisions for a review round of an paper.
 	 * @param $paperId int
 	 * @param $round int
 	 * @param $type int
 	 */
-	function getEditorDecisions($paperId, $type, $round) {
+	function getDirectorDecisions($paperId, $type, $round) {
 		$decisions = array();
 		
 		$params = array($paperId);
@@ -695,7 +695,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		if($round != null) $params[] = $round;
 		
 		$result = &$this->retrieve('
-			SELECT edit_decision_id, editor_id, decision, date_decided
+			SELECT edit_decision_id, director_id, decision, date_decided
 				FROM edit_decisions
 				WHERE paper_id = ?'
 					. ($type == NULL ? '' : ' AND type = ?')
@@ -706,7 +706,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		while (!$result->EOF) {
 			$decisions[] = array(
 				'editDecisionId' => $result->fields['edit_decision_id'],
-				'editorId' => $result->fields['editor_id'],
+				'directorId' => $result->fields['director_id'],
 				'decision' => $result->fields['decision'],
 				'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
 			);
@@ -883,11 +883,11 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result = &$this->retrieve('select ra.reviewer_id as editor_id, max(ra.date_notified) as last_notified from review_assignments ra, papers p where ra.paper_id=p.paper_id and p.sched_conf_id=? group by ra.reviewer_id', $schedConfId);
+		$result = &$this->retrieve('select ra.reviewer_id as director_id, max(ra.date_notified) as last_notified from review_assignments ra, papers p where ra.paper_id=p.paper_id and p.sched_conf_id=? group by ra.reviewer_id', $schedConfId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
-			$statistics[$row['editor_id']]['last_notified'] = $this->datetimeFromDB($row['last_notified']);
+			if (!isset($statistics[$row['director_id']])) $statistics[$row['director_id']] = array();
+			$statistics[$row['director_id']]['last_notified'] = $this->datetimeFromDB($row['last_notified']);
 			$result->MoveNext();
 		}
 

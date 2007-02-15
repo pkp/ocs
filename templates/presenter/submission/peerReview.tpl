@@ -17,7 +17,7 @@
 {assign var="round" value=$smarty.section.round.index+1}
 {assign var="roundIndex" value=$smarty.section.round.index}
 {assign var=presenterFiles value=$submission->getPresenterFileRevisions($round)}
-{assign var=editorFiles value=$submission->getEditorFileRevisions($round)}
+{assign var=directorFiles value=$submission->getDirectorFileRevisions($round)}
 {assign var="viewableFiles" value=$presenterViewableFilesByRound[$round]}
 
 <h4>{translate key="submission.round" round=$round}</h4>
@@ -79,11 +79,11 @@
 	{if !$smarty.section.round.last}
 		<tr valign="top">
 			<td class="label" width="20%">
-				{translate key="submission.editorVersion"}
+				{translate key="submission.directorVersion"}
 			</td>
 			<td class="value" width="80%">
-				{foreach from=$editorFiles item=editorFile key=key}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$editorFile->getFileId():$editorFile->getRevision()}" class="file">{$editorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$editorFile->getDateModified()|date_format:$dateFormatShort}<br />
+				{foreach from=$directorFiles item=directorFile key=key}
+					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$directorFile->getDateModified()|date_format:$dateFormatShort}<br />
 				{foreachelse}
 					{translate key="common.none"}
 				{/foreach}

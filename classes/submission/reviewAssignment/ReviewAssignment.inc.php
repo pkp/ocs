@@ -585,11 +585,11 @@ class ReviewAssignment extends DataObject {
 	 */
 	function &getReviewerRatingOptions() {
 		static $reviewerRatingOptions = array(
-			SUBMISSION_REVIEWER_RATING_VERY_GOOD => 'editor.paper.reviewerRating.veryGood',
-			SUBMISSION_REVIEWER_RATING_GOOD => 'editor.paper.reviewerRating.good',
-			SUBMISSION_REVIEWER_RATING_AVERAGE => 'editor.paper.reviewerRating.average',
-			SUBMISSION_REVIEWER_RATING_POOR => 'editor.paper.reviewerRating.poor',
-			SUBMISSION_REVIEWER_RATING_VERY_POOR => 'editor.paper.reviewerRating.veryPoor'
+			SUBMISSION_REVIEWER_RATING_VERY_GOOD => 'director.paper.reviewerRating.veryGood',
+			SUBMISSION_REVIEWER_RATING_GOOD => 'director.paper.reviewerRating.good',
+			SUBMISSION_REVIEWER_RATING_AVERAGE => 'director.paper.reviewerRating.average',
+			SUBMISSION_REVIEWER_RATING_POOR => 'director.paper.reviewerRating.poor',
+			SUBMISSION_REVIEWER_RATING_VERY_POOR => 'director.paper.reviewerRating.veryPoor'
 		);
 		return $reviewerRatingOptions;
 	}

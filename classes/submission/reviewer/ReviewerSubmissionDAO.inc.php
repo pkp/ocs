@@ -88,7 +88,7 @@ class ReviewerSubmissionDAO extends DAO {
 	function &_returnReviewerSubmissionFromRow(&$row) {
 		$reviewerSubmission = &new ReviewerSubmission();
 
-		// Editor Assignment
+		// Director Assignment
 		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByPaperId($row['paper_id']);
 		$reviewerSubmission->setEditAssignments($editAssignments->toArray());
 
@@ -103,10 +103,10 @@ class ReviewerSubmissionDAO extends DAO {
 		// Comments
 		$reviewerSubmission->setMostRecentPeerReviewComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 		
-		// Editor Decisions
+		// Director Decisions
 		for ($i = 1; $i <= $row['review_progress']; $i++) {
 			for ($j = 1; $j <= $row['current_round']; $j++) {
-				$reviewerSubmission->setDecisions($this->getEditorDecisions($row['paper_id'], $i, $j), $i, $j);
+				$reviewerSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i, $j), $i, $j);
 			}
 		}
 		
@@ -255,12 +255,12 @@ class ReviewerSubmissionDAO extends DAO {
 	}
 	
 	/**
-	 * Get the editor decisions for a review round of an paper.
+	 * Get the director decisions for a review round of an paper.
 	 * @param $paperId int
 	 * @param $round int
 	 * @param $type int
 	 */
-	function getEditorDecisions($paperId, $round = null, $type = null) {
+	function getDirectorDecisions($paperId, $round = null, $type = null) {
 		$decisions = array();
 	
 		$args = array($paperId);
@@ -272,7 +272,7 @@ class ReviewerSubmissionDAO extends DAO {
 		}
 		
 		$result = &$this->retrieve('
-			SELECT edit_decision_id, editor_id, decision, date_decided
+			SELECT edit_decision_id, director_id, decision, date_decided
 			FROM edit_decisions
 			WHERE paper_id = ?'
 				. ($round?' AND round = ?':'')
@@ -283,7 +283,7 @@ class ReviewerSubmissionDAO extends DAO {
 		while (!$result->EOF) {
 			$decisions[] = array(
 				'editDecisionId' => $result->fields['edit_decision_id'],
-				'editorId' => $result->fields['editor_id'],
+				'directorId' => $result->fields['director_id'],
 				'decision' => $result->fields['decision'],
 				'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
 			);

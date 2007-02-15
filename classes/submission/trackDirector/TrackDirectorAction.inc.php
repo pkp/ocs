@@ -42,7 +42,7 @@ class TrackDirectorAction extends Action {
 	}
 	 
 	/**
-	 * Records an editor's submission decision.
+	 * Records a director's submission decision.
 	 * @param $trackDirectorSubmission object
 	 * @param $decision int
 	 */
@@ -52,15 +52,15 @@ class TrackDirectorAction extends Action {
 
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$user = &Request::getUser();
-		$editorDecision = array(
+		$directorDecision = array(
 			'editDecisionId' => null,
-			'editorId' => $user->getUserId(),
+			'directorId' => $user->getUserId(),
 			'decision' => $decision,
 			'dateDecided' => date(Core::getCurrentDate())
 		);
 
-		if (!HookRegistry::call('TrackDirectorAction::recordDecision', array(&$trackDirectorSubmission, $editorDecision))) {
-			if ($decision == SUBMISSION_EDITOR_DECISION_DECLINE) {
+		if (!HookRegistry::call('TrackDirectorAction::recordDecision', array(&$trackDirectorSubmission, $directorDecision))) {
+			if ($decision == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
 				$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_DECLINED);
 				$trackDirectorSubmission->stampStatusModified();
 			} else {
@@ -68,15 +68,15 @@ class TrackDirectorAction extends Action {
 				$trackDirectorSubmission->stampStatusModified();
 			}
 		
-			$trackDirectorSubmission->addDecision($editorDecision, $trackDirectorSubmission->getReviewProgress(), $trackDirectorSubmission->getCurrentRound());
-			$decisions = TrackDirectorSubmission::getEditorDecisionOptions();
+			$trackDirectorSubmission->addDecision($directorDecision, $trackDirectorSubmission->getReviewProgress(), $trackDirectorSubmission->getCurrentRound());
+			$decisions = TrackDirectorSubmission::getDirectorDecisionOptions();
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_EDITOR_DECISION, LOG_TYPE_EDITOR, $user->getUserId(), 'log.editor.decision', array('editorName' => $user->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'decision' => Locale::translate($decisions[$decision])));
+			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_DECISION, LOG_TYPE_DIRECTOR, $user->getUserId(), 'log.director.decision', array('directorName' => $user->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
 		
-		if($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+		if($decision == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
 			// completeReview will take care of updating the
 			// submission with the new decision.
 			TrackDirectorAction::completeReview($trackDirectorSubmission);
@@ -128,7 +128,7 @@ class TrackDirectorAction extends Action {
 				$trackDirectorSubmission->setSubmissionProgress(3);
 
 				// TODO: notify the presenter the submission must be completed.
-				// Q: should the editor be given this option explicitly?
+				// Q: should the director be given this option explicitly?
 
 				// Now, reassign all reviewers that submitted a review for the last
 				// round of reviews.
@@ -663,7 +663,7 @@ class TrackDirectorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('TrackDirectorAction::unsuitableSubmission', array(&$trackDirectorSubmission, &$presenter, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(PAPER_EMAIL_EDITOR_NOTIFY_PRESENTER_UNSUITABLE, PAPER_EMAIL_TYPE_EDITOR, $user->getUserId());
+				$email->setAssoc(PAPER_EMAIL_DIRECTOR_NOTIFY_PRESENTER_UNSUITABLE, PAPER_EMAIL_TYPE_DIRECTOR, $user->getUserId());
 				$email->send();
 			}
 			TrackDirectorAction::archiveSubmission($trackDirectorSubmission);
@@ -684,7 +684,7 @@ class TrackDirectorAction extends Action {
 
 	/**
 	 * Sets the reviewer recommendation for a review assignment.
-	 * Also concatenates the reviewer and editor comments from Peer Review and adds them to Editor Review.
+	 * Also concatenates the reviewer and director comments from Peer Review and adds them to Director Review.
 	 * @param $paperId int
 	 * @param $reviewId int
 	 * @param $recommendation int
@@ -712,7 +712,7 @@ class TrackDirectorAction extends Action {
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($paperId, PAPER_LOG_REVIEW_RECOMMENDATION_BY_PROXY, LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewRecommendationSetByProxy', array('editorName' => $user->getFullName(), 'reviewerName' => $reviewer->getFullName(), 'paperId' => $paperId, 'round' => $reviewAssignment->getRound(), 'type' => $reviewAssignment->getType()));
+			PaperLog::logEvent($paperId, PAPER_LOG_REVIEW_RECOMMENDATION_BY_PROXY, LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewRecommendationSetByProxy', array('directorName' => $user->getFullName(), 'reviewerName' => $reviewer->getFullName(), 'paperId' => $paperId, 'round' => $reviewAssignment->getRound(), 'type' => $reviewAssignment->getType()));
 		}
 	}	 
 	 
@@ -736,21 +736,21 @@ class TrackDirectorAction extends Action {
 			$trackDirectorSubmission->setCurrentRound($currentRound + 1);
 			$trackDirectorSubmission->stampStatusModified();
 		
-			// Copy the file from the editor decision file folder to the review file folder
+			// Copy the file from the director decision file folder to the review file folder
 			$newFileId = $paperFileManager->copyToReviewFile($fileId, $revision, $trackDirectorSubmission->getReviewFileId());
 			$newReviewFile = $paperFileDao->getPaperFile($newFileId);
 			$newReviewFile->setRound($trackDirectorSubmission->getCurrentRound());
 			$paperFileDao->updatePaperFile($newReviewFile);
 
-			// Copy the file from the editor decision file folder to the next-round editor file
-			// $editorFileId may or may not be null after assignment
-			$editorFileId = $trackDirectorSubmission->getEditorFileId() != null ? $trackDirectorSubmission->getEditorFileId() : null;
+			// Copy the file from the director decision file folder to the next-round director file
+			// $directorFileId may or may not be null after assignment
+			$directorFileId = $trackDirectorSubmission->getDirectorFileId() != null ? $trackDirectorSubmission->getDirectorFileId() : null;
 
-			// $editorFileId definitely will not be null after assignment
-			$editorFileId = $paperFileManager->copyToEditorFile($newFileId, null, $editorFileId);
-			$newEditorFile = $paperFileDao->getPaperFile($editorFileId);
-			$newEditorFile->setRound($trackDirectorSubmission->getCurrentRound());
-			$paperFileDao->updatePaperFile($newEditorFile);
+			// $directorFileId definitely will not be null after assignment
+			$directorFileId = $paperFileManager->copyToDirectorFile($newFileId, null, $directorFileId);
+			$newDirectorFile = $paperFileDao->getPaperFile($directorFileId);
+			$newDirectorFile->setRound($trackDirectorSubmission->getCurrentRound());
+			$paperFileDao->updatePaperFile($newDirectorFile);
 
 			// The review revision is the highest revision for the review file.
 			$reviewRevision = $paperFileDao->getRevisionNumber($newFileId);
@@ -771,7 +771,7 @@ class TrackDirectorAction extends Action {
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), ARTICLE_LOG_REVIEW_RESUBMIT, ARTICLE_LOG_TYPE_EDITOR, $user->getUserId(), 'log.review.resubmit', array('paperId' => $trackDirectorSubmission->getPaperId()));
+			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), ARTICLE_LOG_REVIEW_RESUBMIT, ARTICLE_LOG_TYPE_DIRECTOR, $user->getUserId(), 'log.review.resubmit', array('paperId' => $trackDirectorSubmission->getPaperId()));
 		}
 	}
 	
@@ -794,12 +794,12 @@ class TrackDirectorAction extends Action {
 				$reviewFileId = $paperFileManager->uploadReviewFile($fileName);
 				$trackDirectorSubmission->setReviewRevision(1);
 			}
-			$editorFileId = $paperFileManager->copyToEditorFile($reviewFileId, $trackDirectorSubmission->getReviewRevision(), $trackDirectorSubmission->getEditorFileId());
+			$directorFileId = $paperFileManager->copyToDirectorFile($reviewFileId, $trackDirectorSubmission->getReviewRevision(), $trackDirectorSubmission->getDirectorFileId());
 		}
 		
-		if (isset($reviewFileId) && $reviewFileId != 0 && isset($editorFileId) && $editorFileId != 0) {
+		if (isset($reviewFileId) && $reviewFileId != 0 && isset($directorFileId) && $directorFileId != 0) {
 			$trackDirectorSubmission->setReviewFileId($reviewFileId);
-			$trackDirectorSubmission->setEditorFileId($editorFileId);
+			$trackDirectorSubmission->setDirectorFileId($directorFileId);
 	
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 		}
@@ -809,23 +809,23 @@ class TrackDirectorAction extends Action {
 	 * Upload the post-review version of an paper.
 	 * @param $trackDirectorSubmission object
 	 */
-	function uploadEditorVersion($trackDirectorSubmission) {
+	function uploadDirectorVersion($trackDirectorSubmission) {
 		import('file.PaperFileManager');
 		$paperFileManager = &new PaperFileManager($trackDirectorSubmission->getPaperId());
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$user = &Request::getUser();
 		
 		$fileName = 'upload';
-		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadEditorVersion', array(&$trackDirectorSubmission))) {
-			if ($trackDirectorSubmission->getEditorFileId() != null) {
-				$fileId = $paperFileManager->uploadEditorDecisionFile($fileName, $trackDirectorSubmission->getEditorFileId());
+		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadDirectorVersion', array(&$trackDirectorSubmission))) {
+			if ($trackDirectorSubmission->getDirectorFileId() != null) {
+				$fileId = $paperFileManager->uploadDirectorDecisionFile($fileName, $trackDirectorSubmission->getDirectorFileId());
 			} else {
-				$fileId = $paperFileManager->uploadEditorDecisionFile($fileName);
+				$fileId = $paperFileManager->uploadDirectorDecisionFile($fileName);
 			}
 		}
 		
 		if (isset($fileId) && $fileId != 0) {
-			$trackDirectorSubmission->setEditorFileId($fileId);
+			$trackDirectorSubmission->setDirectorFileId($fileId);
 
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 			
@@ -874,7 +874,7 @@ class TrackDirectorAction extends Action {
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_EDITOR_FILE, LOG_TYPE_EDITOR, $trackDirectorSubmission->getEditorFileId(), 'log.editor.editorFile');
+			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_FILE, LOG_TYPE_DIRECTOR, $trackDirectorSubmission->getDirectorFileId(), 'log.director.directorFile');
 		}
 	}
 	
@@ -896,7 +896,7 @@ class TrackDirectorAction extends Action {
 		// Add log
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');
-		PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_EDITOR_ARCHIVE, LOG_TYPE_EDITOR, $trackDirectorSubmission->getPaperId(), 'log.editor.archived', array('paperId' => $trackDirectorSubmission->getPaperId()));
+		PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_ARCHIVE, LOG_TYPE_DIRECTOR, $trackDirectorSubmission->getPaperId(), 'log.director.archived', array('paperId' => $trackDirectorSubmission->getPaperId()));
 	}
 	
 	/**
@@ -926,7 +926,7 @@ class TrackDirectorAction extends Action {
 		// Add log
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');
-		PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_EDITOR_RESTORE, LOG_TYPE_EDITOR, $trackDirectorSubmission->getPaperId(), 'log.editor.restored', array('paperId' => $trackDirectorSubmission->getPaperId()));
+		PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_RESTORE, LOG_TYPE_DIRECTOR, $trackDirectorSubmission->getPaperId(), 'log.director.restored', array('paperId' => $trackDirectorSubmission->getPaperId()));
 	}
 	
 	//
@@ -1123,7 +1123,7 @@ class TrackDirectorAction extends Action {
 	 */
 	function deletePaperFile($submission, $fileId, $revision) {
 		import('file.PaperFileManager');
-		$file =& $submission->getEditorFile();
+		$file =& $submission->getDirectorFile();
 		
 		if (isset($file) && $file->getFileId() == $fileId && !HookRegistry::call('TrackDirectorAction::deletePaperFile', array(&$submission, &$fileId, &$revision))) {
 			$paperFileManager = &new PaperFileManager($submission->getPaperId());
@@ -1286,7 +1286,7 @@ class TrackDirectorAction extends Action {
 
 		import('submission.form.comment.PeerReviewCommentForm');
 		
-		$commentForm = &new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_EDITOR);
+		$commentForm = &new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_DIRECTOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -1302,7 +1302,7 @@ class TrackDirectorAction extends Action {
 
 		import('submission.form.comment.PeerReviewCommentForm');
 		
-		$commentForm = &new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_EDITOR);
+		$commentForm = &new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_DIRECTOR);
 		$commentForm->readInputData();
 		
 		if ($commentForm->validate()) {
@@ -1320,30 +1320,30 @@ class TrackDirectorAction extends Action {
 	}
 	
 	/**
-	 * View editor decision comments.
+	 * View director decision comments.
 	 * @param $paper object
 	 */
-	function viewEditorDecisionComments($paper) {
-		if (HookRegistry::call('TrackDirectorAction::viewEditorDecisionComments', array(&$paper))) return;
+	function viewDirectorDecisionComments($paper) {
+		if (HookRegistry::call('TrackDirectorAction::viewDirectorDecisionComments', array(&$paper))) return;
 
-		import('submission.form.comment.EditorDecisionCommentForm');
+		import('submission.form.comment.DirectorDecisionCommentForm');
 		
-		$commentForm = &new EditorDecisionCommentForm($paper, ROLE_ID_EDITOR);
+		$commentForm = &new DirectorDecisionCommentForm($paper, ROLE_ID_DIRECTOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
 	
 	/**
-	 * Post editor decision comment.
+	 * Post director decision comment.
 	 * @param $paper int
 	 * @param $emailComment boolean
 	 */
-	function postEditorDecisionComment($paper, $emailComment) {
-		if (HookRegistry::call('TrackDirectorAction::postEditorDecisionComment', array(&$paper, &$emailComment))) return;
+	function postDirectorDecisionComment($paper, $emailComment) {
+		if (HookRegistry::call('TrackDirectorAction::postDirectorDecisionComment', array(&$paper, &$emailComment))) return;
 
-		import('submission.form.comment.EditorDecisionCommentForm');
+		import('submission.form.comment.DirectorDecisionCommentForm');
 		
-		$commentForm = &new EditorDecisionCommentForm($paper, ROLE_ID_EDITOR);
+		$commentForm = &new DirectorDecisionCommentForm($paper, ROLE_ID_DIRECTOR);
 		$commentForm->readInputData();
 		
 		if ($commentForm->validate()) {
@@ -1360,11 +1360,11 @@ class TrackDirectorAction extends Action {
 	}
 	
 	/**
-	 * Email editor decision comment.
+	 * Email director decision comment.
 	 * @param $trackDirectorSubmission object
 	 * @param $send boolean
 	 */
-	function emailEditorDecisionComment($trackDirectorSubmission, $send) {
+	function emailDirectorDecisionComment($trackDirectorSubmission, $send) {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
 		$conference = &Request::getConference();
@@ -1378,16 +1378,16 @@ class TrackDirectorAction extends Action {
 		if (isset($rounds) && is_array($rounds)) $decisions = array_pop($rounds);
 		if (isset($decisions) && is_array($decisions)) $lastDecision = array_pop($decisions);
 		if (isset($lastDecision) && is_array($lastDecision)) switch ($lastDecision['decision']) {
-			case SUBMISSION_EDITOR_DECISION_ACCEPT:
+			case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
 				$templateName = $isAbstract?'SUBMISSION_ABSTRACT_ACCEPT':'SUBMISSION_PAPER_ACCEPT';
 				break;
-			case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
+			case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
 				$templateName = $isAbstract?'SUBMISSION_ABSTRACT_REVISE':'SUBMISSION_PAPER_REVISE';
 				break;
-			case SUBMISSION_EDITOR_DECISION_ACCEPT_RESUBMIT:
+			case SUBMISSION_DIRECTOR_DECISION_ACCEPT_RESUBMIT:
 				$templateName = $isAbstract?'SUBMISSION_ABSTRACT_RESUBMIT':'SUBMISSION_PAPER_RESUBMIT';
 				break;
-			case SUBMISSION_EDITOR_DECISION_ACCEPT_DECLINE:
+			case SUBMISSION_DIRECTOR_DECISION_ACCEPT_DECLINE:
 				$templateName = $isAbstract?'SUBMISSION_ABSTRACT_DECLINE':'SUBMISSION_PAPER_DECLINE';
 				break;
 		}
@@ -1397,12 +1397,12 @@ class TrackDirectorAction extends Action {
 		$email = &new PaperMailTemplate($trackDirectorSubmission, $templateName);
 	
 		if ($send && !$email->hasErrors()) {
-			HookRegistry::call('TrackDirectorAction::emailEditorDecisionComment', array(&$trackDirectorSubmission, &$send));
+			HookRegistry::call('TrackDirectorAction::emailDirectorDecisionComment', array(&$trackDirectorSubmission, &$send));
 			$email->send();
 
 			$paperComment =& new PaperComment();
-			$paperComment->setCommentType(COMMENT_TYPE_EDITOR_DECISION);
-			$paperComment->setRoleId(Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_TRACK_EDITOR);
+			$paperComment->setCommentType(COMMENT_TYPE_DIRECTOR_DECISION);
+			$paperComment->setRoleId(Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 			$paperComment->setPaperId($trackDirectorSubmission->getPaperId());
 			$paperComment->setAuthorId($trackDirectorSubmission->getUserId());
 			$paperComment->setCommentTitle($email->getSubject());
@@ -1449,7 +1449,7 @@ class TrackDirectorAction extends Action {
 				}
 			}
 
-			$email->displayEditForm(Request::url(null, null, null, 'emailEditorDecisionComment', 'send'), array('paperId' => $trackDirectorSubmission->getPaperId()), 'submission/comment/editorDecisionEmail.tpl', array('isAnEditor' => true));
+			$email->displayEditForm(Request::url(null, null, null, 'emailDirectorDecisionComment', 'send'), array('paperId' => $trackDirectorSubmission->getPaperId()), 'submission/comment/directorDecisionEmail.tpl', array('isADirector' => true));
 
 			return false;
 		}
@@ -1468,7 +1468,7 @@ class TrackDirectorAction extends Action {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$conference = &Request::getConference();
 		
-		$comments = &$commentDao->getPaperComments($paper->getPaperId(), COMMENT_TYPE_EDITOR_DECISION);
+		$comments = &$commentDao->getPaperComments($paper->getPaperId(), COMMENT_TYPE_DIRECTOR_DECISION);
 		$reviewAssignments = &$reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getPaperId(), $paper->getReviewProgress(), $paper->getCurrentRound());
 		
 		$commentsText = "";
@@ -1516,7 +1516,7 @@ class TrackDirectorAction extends Action {
 
 		import('submission.form.comment.LayoutCommentForm');
 		
-		$commentForm = &new LayoutCommentForm($paper, ROLE_ID_EDITOR);
+		$commentForm = &new LayoutCommentForm($paper, ROLE_ID_DIRECTOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -1531,7 +1531,7 @@ class TrackDirectorAction extends Action {
 
 		import('submission.form.comment.LayoutCommentForm');
 		
-		$commentForm = &new LayoutCommentForm($paper, ROLE_ID_EDITOR);
+		$commentForm = &new LayoutCommentForm($paper, ROLE_ID_DIRECTOR);
 		$commentForm->readInputData();
 		
 		if ($commentForm->validate()) {
@@ -1670,7 +1670,7 @@ class TrackDirectorAction extends Action {
 					$parent = array(Request::url(null, null, $track, 'submissionHistory', $paperId), 'submission.history');
 					break;
 			}
-			if ($track != 'editor' && $track != 'trackDirector') {
+			if ($track != 'director' && $track != 'trackDirector') {
 				$parent[0] = Request::url(null, null, $track, 'submission', $paperId);
 			}
 			$breadcrumb[] = $parent;

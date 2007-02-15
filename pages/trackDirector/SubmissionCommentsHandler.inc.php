@@ -52,23 +52,23 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	}
 	
 	/**
-	 * View editor decision comments.
+	 * View director decision comments.
 	 */
-	function viewEditorDecisionComments($args) {
+	function viewDirectorDecisionComments($args) {
 		TrackDirectorHandler::validate();
 		TrackDirectorHandler::setupTemplate(true);
 		
 		$paperId = $args[0];
 		
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
-		TrackDirectorAction::viewEditorDecisionComments($submission);
+		TrackDirectorAction::viewDirectorDecisionComments($submission);
 	
 	}
 	
 	/**
 	 * Post peer review comments.
 	 */
-	function postEditorDecisionComment() {
+	function postDirectorDecisionComment() {
 		TrackDirectorHandler::validate();
 		TrackDirectorHandler::setupTemplate(true);
 		
@@ -78,8 +78,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 		
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
-		if (TrackDirectorAction::postEditorDecisionComment($submission, $emailComment)) {
-			TrackDirectorAction::viewEditorDecisionComments($submission);
+		if (TrackDirectorAction::postDirectorDecisionComment($submission, $emailComment)) {
+			TrackDirectorAction::viewDirectorDecisionComments($submission);
 		}
 	}
 	
@@ -132,14 +132,14 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	}
 	
 	/**
-	 * Email an editor decision comment.
+	 * Email a director decision comment.
 	 */
-	function emailEditorDecisionComment() {
+	function emailDirectorDecisionComment() {
 		$paperId = (int) Request::getUserVar('paperId');
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 
 		parent::setupTemplate(true);		
-		if (TrackDirectorAction::emailEditorDecisionComment($submission, Request::getUserVar('send'))) {
+		if (TrackDirectorAction::emailDirectorDecisionComment($submission, Request::getUserVar('send'))) {
 			if (Request::getUserVar('blindCcReviewers')) {
 				SubmissionCommentsHandler::blindCcReviewsToReviewers();
 			} else {
@@ -161,8 +161,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		list($comment) = SubmissionCommentsHandler::validate($commentId);
 
-		if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
-			// Cannot edit an editor decision comment.
+		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
+			// Cannot edit a director decision comment.
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -186,8 +186,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		list($comment) = SubmissionCommentsHandler::validate($commentId);
 		
-		if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
-			// Cannot edit an editor decision comment.
+		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
+			// Cannot edit a director decision comment.
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -200,8 +200,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW) {
 			Request::redirect(null, null, null, 'viewPeerReviewComments', array($paperId, $comment->getAssocId()));
-		} else if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
-			Request::redirect(null, null, null, 'viewEditorDecisionComments', $paperId);
+		} else if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
+			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
 			Request::redirect(null, null, null, 'viewLayoutComments', $paperId);
 		}
@@ -224,8 +224,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW) {
 			Request::redirect(null, null, null, 'viewPeerReviewComments', array($paperId, $comment->getAssocId()));
-		} else if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
-			Request::redirect(null, null, null, 'viewEditorDecisionComments', $paperId);
+		} else if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
+			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
 			Request::redirect(null, null, null, 'viewLayoutComments', $paperId);
 		}

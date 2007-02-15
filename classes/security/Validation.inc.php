@@ -279,21 +279,21 @@ class Validation {
 	}
 	
 	/**
-	 * Shortcut for checking Authorization as editor.
+	 * Shortcut for checking Authorization as director.
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function isEditor($conferenceId = -1, $schedConfId = -1) {
-		return Validation::isAuthorized(ROLE_ID_EDITOR, $conferenceId, $schedConfId);
+	function isDirector($conferenceId = -1, $schedConfId = -1) {
+		return Validation::isAuthorized(ROLE_ID_DIRECTOR, $conferenceId, $schedConfId);
 	}
 	
 	/**
-	 * Shortcut for checking authorization as track editor.
+	 * Shortcut for checking authorization as track director.
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
 	function isTrackDirector($conferenceId = -1, $schedConfId = -1) {
-		return Validation::isAuthorized(ROLE_ID_TRACK_EDITOR, $conferenceId, $schedConfId);
+		return Validation::isAuthorized(ROLE_ID_TRACK_DIRECTOR, $conferenceId, $schedConfId);
 	}
 	
 	/**

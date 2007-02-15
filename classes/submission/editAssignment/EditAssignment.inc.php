@@ -60,23 +60,23 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Get ID of editor.
+	 * Get ID of director.
 	 * @return int
 	 */
-	function getEditorId() {
-		return $this->getData('editorId');
+	function getDirectorId() {
+		return $this->getData('directorId');
 	}
 	
 	/**
-	 * Set ID of editor.
-	 * @param $editorId int
+	 * Set ID of director.
+	 * @param $directorId int
 	 */
-	function setEditorId($editorId) {
-		return $this->setData('editorId', $editorId);
+	function setDirectorId($directorId) {
+		return $this->setData('directorId', $directorId);
 	}
 	
 	/**
-	 * Get flag indicating whether this track editor can review this paper. (Irrelevant if this is an editor.)
+	 * Get flag indicating whether this track director can review this paper. (Irrelevant if this is a director.)
 	 * @return boolean
 	 */
 	function getCanReview() {
@@ -84,7 +84,7 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Set flag indicating whether this track editor can review this paper. (Irrelevant if this is an editor.)
+	 * Set flag indicating whether this track director can review this paper. (Irrelevant if this is a director.)
 	 * @param $canReview boolean
 	 */
 	function setCanReview($canReview) {
@@ -92,7 +92,7 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Get flag indicating whether this track editor can edit this paper. (Irrelevant if this is an editor.)
+	 * Get flag indicating whether this track director can edit this paper. (Irrelevant if this is a director.)
 	 * @return boolean
 	 */
 	function getCanEdit() {
@@ -100,7 +100,7 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Set flag indicating whether this track editor can edit this paper. (Irrelevant if this is an editor.)
+	 * Set flag indicating whether this track director can edit this paper. (Irrelevant if this is a director.)
 	 * @param $canEdit boolean
 	 */
 	function setCanEdit($canEdit) {
@@ -108,23 +108,23 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Get flag indicating whether this entry is for an editor or a track editor.
+	 * Get flag indicating whether this entry is for a director or a track director.
 	 * @return boolean
 	 */
-	function getIsEditor() {
-		return $this->getData('isEditor');
+	function getIsDirector() {
+		return $this->getData('isDirector');
 	}
 	
 	/**
-	 * Set flag indicating whether this entry is for an editor or a track editor.
-	 * @param $isEditor boolean
+	 * Set flag indicating whether this entry is for a director or a track director.
+	 * @param $isDirector boolean
 	 */
-	function setIsEditor($isEditor) {
-		return $this->setData('isEditor', $isEditor);
+	function setIsDirector($isDirector) {
+		return $this->setData('isDirector', $isDirector);
 	}
 
 	/**
-	 * Get date editor notified.
+	 * Get date director notified.
 	 * @return timestamp
 	 */
 	function getDateNotified() {
@@ -132,7 +132,7 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Set date editor notified.
+	 * Set date director notified.
 	 * @param $dateNotified timestamp
 	 */
 	function setDateNotified($dateNotified) {
@@ -140,7 +140,7 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Get date editor underway.
+	 * Get date director underway.
 	 * @return timestamp
 	 */
 	function getDateUnderway() {
@@ -148,7 +148,7 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Set date editor underway.
+	 * Set date director underway.
 	 * @param $dateUnderway timestamp
 	 */
 	function setDateUnderway($dateUnderway) {
@@ -156,87 +156,87 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Get full name of editor.
+	 * Get full name of director.
 	 * @return string
 	 */
-	function getEditorFullName() {
-		return $this->getData('editorFullName');
+	function getDirectorFullName() {
+		return $this->getData('directorFullName');
 	}
 	
 	/**
-	 * Set full name of editor.
-	 * @param $editorFullName string
+	 * Set full name of director.
+	 * @param $directorFullName string
 	 */
-	function setEditorFullName($editorFullName) {
-		return $this->setData('editorFullName', $editorFullName);
+	function setDirectorFullName($directorFullName) {
+		return $this->setData('directorFullName', $directorFullName);
 	}
 
 	/**
-	 * Get first name of editor.
+	 * Get first name of director.
 	 * @return string
 	 */
-	function getEditorFirstName() {
-		return $this->getData('editorFirstName');
+	function getDirectorFirstName() {
+		return $this->getData('directorFirstName');
 	}
 	
 	/**
-	 * Set first name of editor.
-	 * @param $editorFirstName string
+	 * Set first name of director.
+	 * @param $directorFirstName string
 	 */
-	function setEditorFirstName($editorFirstName) {
-		return $this->setData('editorFirstName', $editorFirstName);
+	function setDirectorFirstName($directorFirstName) {
+		return $this->setData('directorFirstName', $directorFirstName);
 	}
 
 	/**
-	 * Get last name of editor.
+	 * Get last name of director.
 	 * @return string
 	 */
-	function getEditorLastName() {
-		return $this->getData('editorLastName');
+	function getDirectorLastName() {
+		return $this->getData('directorLastName');
 	}
 	
 	/**
-	 * Set last name of editor.
-	 * @param $editorLastName string
+	 * Set last name of director.
+	 * @param $directorLastName string
 	 */
-	function setEditorLastName($editorLastName) {
-		return $this->setData('editorLastName', $editorLastName);
+	function setDirectorLastName($directorLastName) {
+		return $this->setData('directorLastName', $directorLastName);
 	}
 	
 	/**
-	 * Get initials of editor.
+	 * Get initials of director.
 	 * @return string
 	 */
-	function getEditorInitials() {
-		if ($this->getData('editorInitials')) {
-			return $this->getData('editorInitials');
+	function getDirectorInitials() {
+		if ($this->getData('directorInitials')) {
+			return $this->getData('directorInitials');
 		} else {
-			return substr($this->getEditorFirstName(), 0, 1) . substr($this->getEditorLastName(), 0, 1);
+			return substr($this->getDirectorFirstName(), 0, 1) . substr($this->getDirectorLastName(), 0, 1);
 		}
 	}
 	
 	/**
-	 * Set initials of editor.
-	 * @param $editorInitials string
+	 * Set initials of director.
+	 * @param $directorInitials string
 	 */
-	function setEditorInitials($editorInitials) {
-		return $this->setData('editorInitials', $editorInitials);
+	function setDirectorInitials($directorInitials) {
+		return $this->setData('directorInitials', $directorInitials);
 	}
 	
 	/**
-	 * Get email of editor.
+	 * Get email of director.
 	 * @return string
 	 */
-	function getEditorEmail() {
-		return $this->getData('editorEmail');
+	function getDirectorEmail() {
+		return $this->getData('directorEmail');
 	}
 	
 	/**
-	 * Set full name of editor.
-	 * @param $editorEmail string
+	 * Set full name of director.
+	 * @param $directorEmail string
 	 */
-	function setEditorEmail($editorEmail) {
-		return $this->setData('editorEmail', $editorEmail);
+	function setDirectorEmail($directorEmail) {
+		return $this->setData('directorEmail', $directorEmail);
 	}
 }
 

@@ -14,12 +14,12 @@
 {url|assign:"currentUser" op="tracks"}
 {include file="common/header.tpl"}
 
-<form name="track" method="post" action="{url op="updateTrack"}" onsubmit="return saveSelectedEditors()">
+<form name="track" method="post" action="{url op="updateTrack"}" onsubmit="return saveSelectedDirectors()">
 {if $trackId}
 <input type="hidden" name="trackId" value="{$trackId}" />
 {/if}
-<input type="hidden" name="assignedEditors" value="" />
-<input type="hidden" name="unassignedEditors" value="" />
+<input type="hidden" name="assignedDirectors" value="" />
+<input type="hidden" name="unassignedDirectors" value="" />
 
 {literal}
 <script type="text/javascript">
@@ -70,8 +70,8 @@
 		}
 	}
 	
-	// Save IDs of selected editors in hidden field
-	function saveSelectedEditors() {
+	// Save IDs of selected directors in hidden field
+	function saveSelectedDirectors() {
 		var assigned = document.track.assigned;
 		var assignedIds = '';
 		for (var i = 0; i < assigned.options.length; i++) {
@@ -80,7 +80,7 @@
 			}
 			assignedIds += assigned.options[i].value;
 		}
-		document.track.assignedEditors.value = assignedIds;
+		document.track.assignedDirectors.value = assignedIds;
 		
 		var unassigned = document.track.unassigned;
 		var unassignedIds = '';
@@ -90,7 +90,7 @@
 			}
 			unassignedIds += unassigned.options[i].value;
 		}
-		document.track.unassignedEditors.value = unassignedIds;
+		document.track.unassignedDirectors.value = unassignedIds;
 		
 		return true;
 	}
@@ -167,8 +167,8 @@
 <tr valign="top">
 	<td class="label">{fieldLabel suppressId="true" key="submission.restrictions"}</td>
 	<td class="value">
-		<input type="checkbox" name="editorRestriction" id="editorRestriction" value="1" {if $editorRestriction}checked="checked"{/if} />
-		{fieldLabel name="editorRestriction" key="manager.tracks.editorRestriction"}
+		<input type="checkbox" name="directorRestriction" id="directorRestriction" value="1" {if $directorRestriction}checked="checked"{/if} />
+		{fieldLabel name="directorRestriction" key="manager.tracks.directorRestriction"}
 	</td>
 </tr>
 <tr valign="top">
@@ -193,18 +193,18 @@
 <tr valign="top">
 	<td width="20%">&nbsp;</td>
 	<td><select name="unassigned" size="15" style="width: 150px" class="selectMenu">
-		{foreach from=$unassignedEditors item=editor}
-			<option value="{$editor->getUserId()}">{$editor->getFullName()|escape}</option>
+		{foreach from=$unassignedDirectors item=director}
+			<option value="{$director->getUserId()}">{$director->getFullName()|escape}</option>
 		{foreachelse}
 			<option value="" disabled="disabled">{translate key="common.none"}</option>
 		{/foreach}
 	</select></td>
-	<td><input type="button" value="{translate key="manager.tracks.assignEditor"} &gt;&gt;" onclick="moveSelectItem(this.form.unassigned, this.form.assigned)" class="button" />
+	<td><input type="button" value="{translate key="manager.tracks.assignDirector"} &gt;&gt;" onclick="moveSelectItem(this.form.unassigned, this.form.assigned)" class="button" />
 		<br /><br />
-		<input type="button" value="&lt;&lt; {translate key="manager.tracks.unassignEditor"}" onclick="moveSelectItem(this.form.assigned, this.form.unassigned)" class="button" /></td>
+		<input type="button" value="&lt;&lt; {translate key="manager.tracks.unassignDirector"}" onclick="moveSelectItem(this.form.assigned, this.form.unassigned)" class="button" /></td>
 	<td><select name="assigned" size="15" style="width: 150px" class="selectMenu">
-		{foreach from=$assignedEditors item=editor}
-			<option value="{$editor->getUserId()}">{$editor->getFullName()|escape}</option>
+		{foreach from=$assignedDirectors item=director}
+			<option value="{$director->getUserId()}">{$director->getFullName()|escape}</option>
 		{foreachelse}
 			<option value="" disabled="disabled">{translate key="common.none"}</option>
 		{/foreach}

@@ -46,8 +46,8 @@ class PeerReviewCommentForm extends CommentForm {
 		$templateMgr->assign('commentAction', 'postPeerReviewComment');
 		$templateMgr->assign('commentTitle', strip_tags($this->paper->getPaperTitle()));
 		$templateMgr->assign('isLocked', isset($reviewAssignment) && $reviewAssignment->getDateCompleted() != null);
-		$templateMgr->assign('canEmail', false); // Previously, editors could always email.
-		$templateMgr->assign('showReviewLetters', $this->roleId == ROLE_ID_EDITOR ? true : false);
+		$templateMgr->assign('canEmail', false); // Previously, directors could always email.
+		$templateMgr->assign('showReviewLetters', $this->roleId == ROLE_ID_DIRECTOR ? true : false);
 		$templateMgr->assign('reviewLetters', $reviewLetters);
 		$templateMgr->assign('reviewer', ROLE_ID_REVIEWER);
 		$templateMgr->assign('hiddenFormParams', 
@@ -92,14 +92,14 @@ class PeerReviewCommentForm extends CommentForm {
 		$comment->setCommentTitle($this->getData('commentTitle'));
 		$comment->setDatePosted(Core::getCurrentDate());
 		
-		// If comments "For presenters and editor" submitted
+		// If comments "For presenters and director" submitted
 		if ($this->getData('presenterComments') != null) {
 			$comment->setComments($this->getData('presenterComments'));
 			$comment->setViewable(1);
 			array_push($this->insertedComments, $commentDao->insertPaperComment($comment));
 		}		
 		
-		// If comments "For editor" submitted
+		// If comments "For director" submitted
 		if ($this->getData('comments') != null) {
 			$comment->setComments($this->getData('comments'));
 			$comment->setViewable(null);
@@ -113,11 +113,11 @@ class PeerReviewCommentForm extends CommentForm {
 	function email() {
 		// Create list of recipients:
 		
-		// Peer Review comments are to be sent to the editor or reviewer;
+		// Peer Review comments are to be sent to the director or reviewer;
 		// the opposite of whomever posted the comment.
 		$recipients = array();
 		
-		if ($this->roleId == ROLE_ID_EDITOR) {
+		if ($this->roleId == ROLE_ID_DIRECTOR) {
 			// Then add reviewer
 			$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 			$userDao = &DAORegistry::getDAO('UserDAO');

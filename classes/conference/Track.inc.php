@@ -262,19 +262,19 @@ class Track extends DataObject {
 	}
 	
 	/**
-	 * Return boolean indicating whether or not submissions are restricted to [track]Editors.
+	 * Return boolean indicating whether or not submissions are restricted to [track] directors.
 	 * @return boolean
 	 */
-	function getEditorRestricted() {
-		return $this->getData('editorRestricted');
+	function getDirectorRestricted() {
+		return $this->getData('directorRestricted');
 	}
 	
 	/**
-	 * Set whether or not submissions are restricted to [track]Editors.
-	 * @param $editorRestricted boolean
+	 * Set whether or not submissions are restricted to [track] directors.
+	 * @param $directorRestricted boolean
 	 */
-	function setEditorRestricted($editorRestricted) {
-		return $this->setData('editorRestricted', $editorRestricted);
+	function setDirectorRestricted($directorRestricted) {
+		return $this->setData('directorRestricted', $directorRestricted);
 	}
 	
 	/**

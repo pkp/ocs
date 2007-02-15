@@ -67,11 +67,11 @@ class LayoutCommentForm extends CommentForm {
 	
 		// Create list of recipients:
 		
-		// Layout comments are to be sent to the editor or layout editor;
+		// Layout comments are to be sent to the director or layout editor;
 		// the opposite of whomever posted the comment.
 		$recipients = array();
 		
-		if ($this->roleId == ROLE_ID_EDITOR) {
+		if ($this->roleId == ROLE_ID_DIRECTOR) {
 			// Then add layout editor
 			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
 			$layoutAssignment = &$layoutAssignmentDao->getLayoutAssignmentByPaperId($this->paper->getPaperId());
@@ -83,26 +83,26 @@ class LayoutCommentForm extends CommentForm {
 				if ($user) $recipients = array_merge($recipients, array($user->getEmail() => $user->getFullName()));
 			}
 		} else {
-			// Then add editor
+			// Then add director
 			$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments = &$editAssignmentDao->getEditAssignmentsByPaperId($this->paper->getPaperId());
-			$editorAddresses = array();
+			$directorAddresses = array();
 			while (!$editAssignments->eof()) {
 				$editAssignment =& $editAssignments->next();
-				if ($editAssignment->getCanEdit()) $editorAddresses[$editAssignment->getEditorEmail()] = $editAssignment->getEditorFullName();
+				if ($editAssignment->getCanEdit()) $directorAddresses[$editAssignment->getDirectorEmail()] = $editAssignment->getDirectorFullName();
 				unset($editAssignment);
 			}
 
-			// If no editors are currently assigned to this paper,
-			// send the email to all editors for the conference
-			if (empty($editorAddresses)) {
-				$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId(), $schedConf->getSchedConfId());
-				while (!$editors->eof()) {
-					$editor = &$editors->next();
-					$editorAddresses[$editor->getEmail()] = $editor->getFullName();
+			// If no directors are currently assigned to this paper,
+			// send the email to all directors for the conference
+			if (empty($directorAddresses)) {
+				$directors = &$roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId(), $schedConf->getSchedConfId());
+				while (!$directors->eof()) {
+					$director = &$directors->next();
+					$directorAddresses[$director->getEmail()] = $director->getFullName();
 				}
 			}
-			$recipients = array_merge($recipients, $editorAddresses);
+			$recipients = array_merge($recipients, $directorAddresses);
 		}
 		
 		parent::email($recipients);

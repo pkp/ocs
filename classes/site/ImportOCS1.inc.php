@@ -60,7 +60,7 @@ class ImportOCS1 {
 	
 	var $userMap = array();
 	var $issueMap = array();
-	var $sectionMap = array();
+	var $trackMap = array();
 	var $paperMap = array();
 	var $fileMap = array();
 	
@@ -378,7 +378,7 @@ class ImportOCS1 {
 			'reviewPolicy' => array('string', $this->trans($this->conferenceInfo['chReviewProcess'])),
 			'mailSubmissionsToReviewers' => array('int', isset($this->conferenceInfo['bReviewerMailSubmission']) ? $this->conferenceInfo['bReviewerMailSubmission'] : 0),
 			'reviewGuidelines' => array('string', $this->trans($this->conferenceInfo['chReviewerGuideline'])),
-			'presenterSelectsEditor' => array('int', isset($this->conferenceInfo['bPresenterSelectEditor']) ? $this->conferenceInfo['bPresenterSelectEditor'] : 0),
+			'presenterSelectsDirector' => array('int', isset($this->conferenceInfo['bPresenterSelectEditor']) ? $this->conferenceInfo['bPresenterSelectEditor'] : 0),
 			'privacyStatement' => array('string', $this->trans($this->conferenceInfo['chPrivacyStatement'])),
 			'openAccessPolicy' => array('string', $this->trans($this->conferenceInfo['chOpenAccess'])),
 		//	'envelopeSender' => array('string', ''),
@@ -550,7 +550,7 @@ class ImportOCS1 {
 			if ($row['fkEditorID']) {
 				$tmpResult = &$this->importDao->retrieve('SELECT chInitials, nEditorRole FROM tbleditors WHERE nEditorID = ?', $row['fkEditorID']);
 				$initials = $this->trans($tmpResult->fields[0]);
-				$editorRole = $this->trans($tmpResult->fields[1]);
+				$directorRole = $this->trans($tmpResult->fields[1]);
 				$tmpResult->Close();
 			}
 			
@@ -610,12 +610,12 @@ class ImportOCS1 {
 				$role = &new Role();
 				$role->setConferenceId($this->conferenceId);
 				$role->setUserId($userId);
-				switch ($editorRole) {
+				switch ($directorRole) {
 					case 0:
-						$role->setRoleId(ROLE_ID_EDITOR);
+						$role->setRoleId(ROLE_ID_DIRECTOR);
 						break;
 					case 1:
-						$role->setRoleId(ROLE_ID_TRACK_EDITOR);
+						$role->setRoleId(ROLE_ID_TRACK_DIRECTOR);
 						break;
 					case 2:
 						$role->setRoleId(ROLE_ID_CONFERENCE_MANAGER);
@@ -833,18 +833,18 @@ class ImportOCS1 {
 			$result->Close();			
 		}
 
-		// Import custom section ordering
+		// Import custom track ordering
 		$count = 0;
-		$sectionDao = &DAORegistry::getDAO('TrackDAO');
-		$result = &$this->importDao->retrieve('SELECT * FROM tblissuestosections ORDER BY nTrackRank');
+		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$result = &$this->importDao->retrieve('SELECT * FROM tblissuestotracks ORDER BY nTrackRank');
 		while (!$result->EOF) {
 			$row = &$result->fields;
 
-			$sectionId = isset($this->sectionMap[$row['fkTrackID']])?$this->sectionMap[$row['fkTrackID']]:null;
+			$trackId = isset($this->trackMap[$row['fkTrackID']])?$this->trackMap[$row['fkTrackID']]:null;
 			$issueId = isset($this->issueMap[$row['fkIssueID']])?$this->issueMap[$row['fkIssueID']]:null;
 
-			if (isset($sectionId) && isset($issueId)) {
-				$sectionDao->_insertCustomTrackOrder($issueId, $sectionId, $count);
+			if (isset($trackId) && isset($issueId)) {
+				$trackDao->_insertCustomTrackOrder($issueId, $trackId, $count);
 			}
 			$result->MoveNext();
 		}
@@ -852,32 +852,32 @@ class ImportOCS1 {
 	}
 	
 	/**
-	 * Import sections.
+	 * Import tracks.
 	 */
 	function importTracks() {
 		if ($this->hasOption('verbose')) {
-			printf("Importing sections\n");
+			printf("Importing tracks\n");
 		}
 		
-		$sectionDao = &DAORegistry::getDAO('TrackDAO');
+		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$trackDirectorDao = &DAORegistry::getDAO('TrackDirectorsDAO');
 		
-		$result = &$this->importDao->retrieve('SELECT * FROM tblsections ORDER BY nRank');
+		$result = &$this->importDao->retrieve('SELECT * FROM tbltracks ORDER BY nRank');
 		$count = 0;
 		while (!$result->EOF) {
 			$row = &$result->fields;
 			
-			$section = &new Track();
-			$section->setConferenceId($this->conferenceId);
-			$section->setTitle($this->trans($row['chTitle']));
-			$section->setAbbrev($this->trans($row['chAbbrev']));
-			$section->setSequence(++$count);
-			$section->setMetaIndexed($row['bMetaIndex']);
-			$section->setEditorRestricted($row['bAcceptSubmissions'] ? 0 : 1);
-			$section->setPolicy($this->trans($row['chPolicies']));
+			$track = &new Track();
+			$track->setConferenceId($this->conferenceId);
+			$track->setTitle($this->trans($row['chTitle']));
+			$track->setAbbrev($this->trans($row['chAbbrev']));
+			$track->setSequence(++$count);
+			$track->setMetaIndexed($row['bMetaIndex']);
+			$track->setDirectorRestricted($row['bAcceptSubmissions'] ? 0 : 1);
+			$track->setPolicy($this->trans($row['chPolicies']));
 			
-			$sectionId = $sectionDao->insertTrack($section);
-			$this->sectionMap[$row['nTrackID']] = $sectionId;
+			$trackId = $trackDao->insertTrack($track);
+			$this->trackMap[$row['nTrackID']] = $trackId;
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -887,8 +887,8 @@ class ImportOCS1 {
 		while (!$result->EOF) {
 			$row = &$result->fields;
 			
-			if (isset($this->sectionMap[$row['fkTrackID']]) && isset($this->userMap[$row['nUserID']])) {
-				$trackDirectorDao->insertEditor($this->conferenceId, $this->sectionMap[$row['fkTrackID']], $this->userMap[$row['nUserID']]);
+			if (isset($this->trackMap[$row['fkTrackID']]) && isset($this->userMap[$row['nUserID']])) {
+				$trackDirectorDao->insertDirector($this->conferenceId, $this->trackMap[$row['fkTrackID']], $this->userMap[$row['nUserID']]);
 			}
 			
 			$result->MoveNext();
@@ -947,7 +947,7 @@ class ImportOCS1 {
 			$paper = &new Paper();
 			$paper->setUserId(1);
 			$paper->setConferenceId($this->conferenceId);
-			$paper->setTrackId(isset($this->sectionMap[$row['fkTrackID']]) ? $this->sectionMap[$row['fkTrackID']] : 0);
+			$paper->setTrackId(isset($this->trackMap[$row['fkTrackID']]) ? $this->trackMap[$row['fkTrackID']] : 0);
 			$paper->setTitle($this->trans($row['chMetaTitle']));
 			$paper->setTitleAlt1('');
 			$paper->setTitleAlt2('');
@@ -963,7 +963,7 @@ class ImportOCS1 {
 			$paper->setType($this->trans($row['chMetaType_Presenter']));
 			$paper->setLanguage($this->trans($row['chMetaLanguage']));
 			$paper->setSponsor($this->trans($row['chMetaSponsor_Presenter']));
-			$paper->setCommentsToEditor($this->trans($row['chNotesToEditor']));
+			$paper->setCommentsToDirector($this->trans($row['chNotesToEditor']));
 			$paper->setDateSubmitted($row['dtDateSubmitted']);
 			$paper->setDateStatusModified($row['dtDateSubmitted']);
 			$paper->setLastModified($row['dtDateSubmitted']);
@@ -1002,7 +1002,7 @@ class ImportOCS1 {
 			
 			$paperUsers[$paperId] = array(
 				'presenterId' => $paper->getUserId(),
-				'editorId' => isset($this->userMap[$row['nEditorUserID']]) ? $this->userMap[$row['nEditorUserID']] : $paper->getUserId(),
+				'directorId' => isset($this->userMap[$row['nEditorUserID']]) ? $this->userMap[$row['nEditorUserID']] : $paper->getUserId(),
 				'proofId' => 0,
 				'reviewerId' => array(),
 				'reviewId' => array()
@@ -1019,7 +1019,7 @@ class ImportOCS1 {
 				$publishedPaper->setDatePublished($row['dtDatePublished'] ? $row['dtDatePublished'] : $row['dtDateSubmitted']);
 				$publishedPaper->setSeq((int)$row['nOrder']);
 				$publishedPaper->setViews($row['nHitCounter']);
-				$publishedPaper->setTrackId(isset($this->sectionMap[$row['fkTrackID']]) ? $this->sectionMap[$row['fkTrackID']] : 0);
+				$publishedPaper->setTrackId(isset($this->trackMap[$row['fkTrackID']]) ? $this->trackMap[$row['fkTrackID']] : 0);
 				$publishedPaper->setAccessStatus(isset($row['fkPublishStatusID']) && $row['fkPublishStatusID'] == 2 ? SUBSCRIPTION : OPEN_ACCESS);
 				
 				$publishedPaperDao->insertPublishedPaper($publishedPaper);
@@ -1031,12 +1031,12 @@ class ImportOCS1 {
 				$paper->setSubmissionFileId($fileId);
 			}
 			if ($row['fkFileRevisionsID']) {
-				$fileId = $this->addPaperFile($paperId, $row['fkFileRevisionsID'], PAPER_FILE_EDITOR);
+				$fileId = $this->addPaperFile($paperId, $row['fkFileRevisionsID'], PAPER_FILE_DIRECTOR);
 				$paper->setRevisedFileId($fileId);
 			}
 			if ($row['fkFileEditorID']) {
-				$fileId = $this->addPaperFile($paperId, $row['fkFileEditorID'], PAPER_FILE_EDITOR);
-				$paper->setEditorFileId($fileId);
+				$fileId = $this->addPaperFile($paperId, $row['fkFileEditorID'], PAPER_FILE_DIRECTOR);
+				$paper->setDirectorFileId($fileId);
 			}
 			
 			if ($row['dtDateSubmitted']) {
@@ -1046,18 +1046,18 @@ class ImportOCS1 {
 					// Copy submission file to review version (not separate in OCS 1.x)
 					$fileId = $fileManager->copyToReviewFile($paper->getSubmissionFileId());
 					$paper->setReviewFileId($fileId);
-					if (!$paper->getEditorFileId()) {
-						$fileId = $fileManager->copyToEditorFile($fileId);
-						$paper->setEditorFileId($fileId);
+					if (!$paper->getDirectorFileId()) {
+						$fileId = $fileManager->copyToDirectorFile($fileId);
+						$paper->setDirectorFileId($fileId);
 					}
 				}
 				
-				// Add editor decision and review round (only one round in OCS 1.x)
+				// Add director decision and review round (only one round in OCS 1.x)
 				if ($row['dtDateEdDec']) {
 					$paperDao->update('INSERT INTO edit_decisions
-							(paper_id, round, editor_id, decision, date_decided)
+							(paper_id, round, director_id, decision, date_decided)
 							VALUES (?, ?, ?, ?, ?)',
-							array($paperId, 1, isset($this->userMap[$row['nEditorUserID']]) ? $this->userMap[$row['nEditorUserID']] : 0, $row['nStatus'] == 3 ? SUBMISSION_EDITOR_DECISION_DECLINE : SUBMISSION_EDITOR_DECISION_ACCEPT, $paperDao->datetimeToDB($row['dtDateEdDec'])));
+							array($paperId, 1, isset($this->userMap[$row['nEditorUserID']]) ? $this->userMap[$row['nEditorUserID']] : 0, $row['nStatus'] == 3 ? SUBMISSION_DIRECTOR_DECISION_DECLINE : SUBMISSION_DIRECTOR_DECISION_ACCEPT, $paperDao->datetimeToDB($row['dtDateEdDec'])));
 				}
 				
 				$paperDao->update('INSERT INTO review_rounds
@@ -1103,10 +1103,10 @@ class ImportOCS1 {
 			
 				// Create submission management assignment records
 				if ($row['nEditorUserID']) {
-					// Editor assignment
+					// Director assignment
 					$editAssignment = &new EditAssignment();
 					$editAssignment->setPaperId($paperId);
-					$editAssignment->setEditorId($this->userMap[$row['nEditorUserID']]);
+					$editAssignment->setDirectorId($this->userMap[$row['nEditorUserID']]);
 					$editAssignment->setCanEdit(1);
 					$editAssignment->setCanReview(1);
 					$editAssignment->setDateNotified($row['dtDateEditorNotified']);
@@ -1140,7 +1140,7 @@ class ImportOCS1 {
 					$copyAssignment->setDateFinalCompleted($copyRow['dtDateCompleted_Final']);
 					$copyAssignment->setDateFinalAcknowledged($copyRow['dtDateAcknowledged_Final']);
 					$copyAssignment->setInitialRevision(1);
-					$copyAssignment->setEditorPresenterRevision(1);
+					$copyAssignment->setDirectorPresenterRevision(1);
 					$copyAssignment->setFinalRevision(1);
 				} else {
 					$copyAssignment->setCopyeditorId(0);
@@ -1309,7 +1309,7 @@ class ImportOCS1 {
 		
 		$commentTypes = array(
 			'reviewer' => COMMENT_TYPE_PEER_REVIEW,
-			'editorrev' => COMMENT_TYPE_EDITOR_DECISION,
+			'editorrev' => COMMENT_TYPE_DIRECTOR_DECISION,
 			'proof' => COMMENT_TYPE_PROOFREAD
 		);
 		
@@ -1336,15 +1336,15 @@ class ImportOCS1 {
 					break;
 				case 'Editor':
 				default:
-					$authorId = $paperUsers[$this->paperMap[$row['fkPaperID']]]['editorId'];
-					$roleId = ROLE_ID_EDITOR;
+					$authorId = $paperUsers[$this->paperMap[$row['fkPaperID']]]['directorId'];
+					$roleId = ROLE_ID_DIRECTOR;
 					break;
 			}
 			
 			if (!isset($authorId)) {
 				// Assume "Editor" by default
-				$authorId = $paperUsers[$this->paperMap[$row['fkPaperID']]]['editorId'];
-				$roleId = ROLE_ID_EDITOR;
+				$authorId = $paperUsers[$this->paperMap[$row['fkPaperID']]]['directorId'];
+				$roleId = ROLE_ID_DIRECTOR;
 			}
 			
 			$paperComment = &new PaperComment();

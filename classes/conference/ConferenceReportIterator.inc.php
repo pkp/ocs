@@ -47,8 +47,8 @@ class ConferenceReportIterator extends DBRowIterator {
 	/** @var $maxReviewerCount int The most reviewers that can be expected for a submission. */
 	var $maxReviewerCount;
 
-	/** @var $maxEditorCount int The most editors that can be expected for a submission. */
-	var $maxEditorCount;
+	/** @var $maxDirectorCount int The most directors that can be expected for a submission. */
+	var $maxDirectorCount;
 
 	/** @var $reportType int The report type (REPORT_TYPE_...) */
 	var $type;
@@ -78,8 +78,8 @@ class ConferenceReportIterator extends DBRowIterator {
 
 		$this->maxPresenterCount = $this->conferenceStatisticsDao->getMaxPresenterCount($conferenceId, $dateStart, $dateEnd);
 		$this->maxReviewerCount = $this->conferenceStatisticsDao->getMaxReviewerCount($conferenceId, $dateStart, $dateEnd);
-		if ($this->type !== REPORT_TYPE_EDITOR) {
-			$this->maxEditorCount = $this->conferenceStatisticsDao->getMaxEditorCount($conferenceId, $dateStart, $dateEnd);
+		if ($this->type !== REPORT_TYPE_DIRECTOR) {
+			$this->maxDirectorCount = $this->conferenceStatisticsDao->getMaxDirectorCount($conferenceId, $dateStart, $dateEnd);
 		}
 	}
 
@@ -123,18 +123,18 @@ class ConferenceReportIterator extends DBRowIterator {
 			$presenterIndex++;
 		}
 
-		if ($this->type === REPORT_TYPE_EDITOR) {
+		if ($this->type === REPORT_TYPE_DIRECTOR) {
 			$user = null;
-			if ($row['editor_id']) $user =& $this->userDao->getUser($row['editor_id']);
-			$ret['editor'] = $user?$user->getFullName():'';
+			if ($row['director_id']) $user =& $this->userDao->getUser($row['director_id']);
+			$ret['director'] = $user?$user->getFullName():'';
 		} else {
 			$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByPaperId($row['paper_id']);
-			$maxEditors = $this->getMaxEditors();
-			$ret['editors'] = $maxEditors==0?array():array_fill(0, $maxEditors, '');
+			$maxDirectors = $this->getMaxDirectors();
+			$ret['directors'] = $maxDirectors==0?array():array_fill(0, $maxDirectors, '');
 
-			$editorIndex = 0;
+			$directorIndex = 0;
 			while ($editAssignment =& $editAssignments->next()) {
-				$ret['editors'][$editorIndex++] = $editAssignment->getEditorFullName();
+				$ret['directors'][$directorIndex++] = $editAssignment->getDirectorFullName();
 			}
 		}
 
@@ -174,13 +174,13 @@ class ConferenceReportIterator extends DBRowIterator {
 			}
 		}
 
-		// Fetch the last editorial decision for this paper.
-		$editorDecisions = $this->presenterSubmissionDao->getEditorDecisions($row['paper_id']);
-		$lastDecision = array_pop($editorDecisions);
+		// Fetch the last director decision for this paper.
+		$directorDecisions = $this->presenterSubmissionDao->getDirectorDecisions($row['paper_id']);
+		$lastDecision = array_pop($directorDecisions);
 
 		if ($lastDecision) {
 			import('submission.trackDirector.TrackDirectorSubmission');
-			$decisionOptions =& TrackDirectorSubmission::getEditorDecisionOptions();
+			$decisionOptions =& TrackDirectorSubmission::getDirectorDecisionOptions();
 			$ret['decision'] = Locale::translate($decisionOptions[$lastDecision['decision']]);
 			$ret['dateDecided'] = $lastDecision['dateDecided'];
 
@@ -246,12 +246,12 @@ class ConferenceReportIterator extends DBRowIterator {
 	}
 
 	/**
-	 * Return the maximum number of editors that can be expected for a
+	 * Return the maximum number of directors that can be expected for a
 	 * single paper in this report. This call can be used for all
-	 * report types EXCEPT, of course, REPORT_TYPE_EDITOR.
+	 * report types EXCEPT, of course, REPORT_TYPE_DIRECTOR.
 	 */
-	function getMaxEditors() {
-		return $this->maxEditorCount;
+	function getMaxDirectors() {
+		return $this->maxDirectorCount;
 	}
 }
 

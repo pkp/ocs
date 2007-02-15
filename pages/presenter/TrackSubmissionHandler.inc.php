@@ -81,7 +81,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 
 		import('submission.trackDirector.TrackDirectorSubmission');
-		$templateMgr->assign_by_ref('editorDecisionOptions', TrackDirectorSubmission::getEditorDecisionOptions());
+		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
 
 		$templateMgr->assign('helpTopicId','editorial.presentersRole');
 		$templateMgr->display('presenter/submission.tpl');
@@ -107,8 +107,8 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($paperId);
 		$presenterViewableFilesByRound = &$reviewAssignmentDao->getPresenterViewableFilesByRound($paperId,$type);
 
-		$editorDecisions = $presenterSubmission->getDecisions($type, $presenterSubmission->getCurrentRound());
-		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1] : null;
+		$directorDecisions = $presenterSubmission->getDecisions($type, $presenterSubmission->getCurrentRound());
+		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1] : null;
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $presenterSubmission);
@@ -123,13 +123,13 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$templateMgr->assign_by_ref('submissionFile', $presenterSubmission->getSubmissionFile());
 		$templateMgr->assign_by_ref('revisedFile', $presenterSubmission->getRevisedFile());
 		$templateMgr->assign_by_ref('suppFiles', $presenterSubmission->getSuppFiles());
-		$templateMgr->assign('lastEditorDecision', $lastDecision);
-		$templateMgr->assign('editorDecisionOptions',
+		$templateMgr->assign('lastDirectorDecision', $lastDecision);
+		$templateMgr->assign('directorDecisionOptions',
 			array(
 				'' => 'common.chooseOne',
-				SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.paper.decision.accept',
-				SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.paper.decision.pendingRevisions',
-				SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.paper.decision.decline'
+				SUBMISSION_DIRECTOR_DECISION_ACCEPT => 'director.paper.decision.accept',
+				SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS => 'director.paper.decision.pendingRevisions',
+				SUBMISSION_DIRECTOR_DECISION_DECLINE => 'director.paper.decision.decline'
 			)
 		);
 		$templateMgr->assign('helpTopicId', 'editorial.presentersRole.review');

@@ -6,7 +6,7 @@
  *
  * Show the reviewer administration page.
  *
- * FIXME: At "Notify The Editor", fix the date.
+ * FIXME: At "Notify The Director", fix the date.
  *
  * $Id$
  *}
@@ -50,12 +50,12 @@ function confirmSubmissionCheck() {
 	{if !$notFirstEditAssignment}
 		{assign var=notFirstEditAssignment value=1}
 		<tr valign="top">
-			<td class="label">{translate key="reviewer.paper.submissionEditor"}</td>
+			<td class="label">{translate key="reviewer.paper.submissionDirector"}</td>
 			<td class="value">
 	{/if}
-			{assign var=emailString value="`$editAssignment->getEditorFullName()` <`$editAssignment->getEditorEmail()`>"}
+			{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
 			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getPaperTitle()|strip_tags paperId=$submission->getPaperId()}
-			{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}
+			{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
 			{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
 				{if $editAssignment->getCanEdit()}
 					({translate key="submission.editing"})
@@ -105,7 +105,7 @@ function confirmSubmissionCheck() {
 	{* FIXME: Should be able to assign primary editorial contact *}
 	{if $editAssignments[0]}{assign var=firstEditAssignment value=$editAssignments[0]}{/if}
 	<td width="3%">1.</td>
-	<td width="97%"><span class="instruct">{translate key="reviewer.paper.reviewerInstruction1a"}{if $firstEditAssignment}, {$firstEditAssignment->getEditorFullName()},{/if} {translate key="reviewer.paper.reviewerInstruction1b"}</span></td>
+	<td width="97%"><span class="instruct">{translate key="reviewer.paper.reviewerInstruction1a"}{if $firstEditAssignment}, {$firstEditAssignment->getDirectorFullName()},{/if} {translate key="reviewer.paper.reviewerInstruction1b"}</span></td>
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>

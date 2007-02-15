@@ -132,7 +132,7 @@ class TrackDAO extends DAO {
 		$track->setMetaIndexed($row['meta_indexed']);
 		$track->setMetaReviewed($row['meta_reviewed']);
 		$track->setIdentifyType($row['identify_type']);
-		$track->setEditorRestricted($row['editor_restricted']);
+		$track->setDirectorRestricted($row['director_restricted']);
 		$track->setPolicy($row['policy']);
 		
 		HookRegistry::call('TrackDAO::_returnTrackFromRow', array(&$track, &$row));
@@ -147,7 +147,7 @@ class TrackDAO extends DAO {
 	function insertTrack(&$track) {
 		$this->update(
 			'INSERT INTO tracks
-				(sched_conf_id, title, title_alt1, title_alt2, abbrev, abbrev_alt1, abbrev_alt2, seq, meta_reviewed, meta_indexed, identify_type, policy, editor_restricted)
+				(sched_conf_id, title, title_alt1, title_alt2, abbrev, abbrev_alt1, abbrev_alt2, seq, meta_reviewed, meta_indexed, identify_type, policy, director_restricted)
 				VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
@@ -163,7 +163,7 @@ class TrackDAO extends DAO {
 				$track->getMetaIndexed() ? 1 : 0,
 				$track->getIdentifyType(),
 				$track->getPolicy(),
-				$track->getEditorRestricted() ? 1 : 0
+				$track->getDirectorRestricted() ? 1 : 0
 			)
 		);
 		
@@ -190,7 +190,7 @@ class TrackDAO extends DAO {
 					meta_indexed = ?,
 					identify_type = ?,
 					policy = ?,
-					editor_restricted = ?
+					director_restricted = ?
 				WHERE track_id = ?',
 			array(
 				$track->getTitle(),
@@ -204,7 +204,7 @@ class TrackDAO extends DAO {
 				$track->getMetaIndexed(),
 				$track->getIdentifyType(),
 				$track->getPolicy(),
-				$track->getEditorRestricted(),
+				$track->getDirectorRestricted(),
 				$track->getTrackId()
 			)
 		);
@@ -225,7 +225,7 @@ class TrackDAO extends DAO {
 	 */
 	function deleteTrackById($trackId, $schedConfId = null) {
 		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
-		$trackDirectorsDao->deleteEditorsByTrackId($trackId, $schedConfId);
+		$trackDirectorsDao->deleteDirectorsByTrackId($trackId, $schedConfId);
 
 		// Remove papers from this track
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
@@ -250,13 +250,13 @@ class TrackDAO extends DAO {
 	
 	/**
 	 * Delete tracks by sched conf ID
-	 * NOTE: This does not delete dependent entries EXCEPT from track_editors. It is intended
+	 * NOTE: This does not delete dependent entries EXCEPT from track_directors. It is intended
 	 * to be called only when deleting a scheduled conference.
 	 * @param $schedConfId int
 	 */
 	function deleteTracksBySchedConf($schedConfId) {
 		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
-		$trackDirectorsDao->deleteEditorsBySchedConfId($schedConfId);
+		$trackDirectorsDao->deleteDirectorsBySchedConfId($schedConfId);
 
 		return $this->update(
 			'DELETE FROM tracks WHERE sched_conf_id = ?', $schedConfId
@@ -266,23 +266,23 @@ class TrackDAO extends DAO {
 	/**
 	 * Retrieve an array associating all track director IDs with 
 	 * arrays containing the tracks they edit.
-	 * @return array editorId => array(tracks they edit)
+	 * @return array directorId => array(tracks they edit)
 	 */
-	function &getEditorTracks($schedConfId) {
+	function &getDirectorTracks($schedConfId) {
 		$returner = array();
 		
 		$result = &$this->retrieve(
-			'SELECT s.*, se.user_id AS editor_id FROM track_editors se, tracks s WHERE se.track_id = s.track_id AND s.sched_conf_id = se.sched_conf_id AND s.sched_conf_id = ?',
+			'SELECT s.*, se.user_id AS director_id FROM track_directors se, tracks s WHERE se.track_id = s.track_id AND s.sched_conf_id = se.sched_conf_id AND s.sched_conf_id = ?',
 			$schedConfId
 		);
 		
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			$track = &$this->_returnTrackFromRow($row);
-			if (!isset($returner[$row['editor_id']])) {
-				$returner[$row['editor_id']] = array($track);
+			if (!isset($returner[$row['director_id']])) {
+				$returner[$row['director_id']] = array($track);
 			} else {
-				$returner[$row['editor_id']][] = $track;
+				$returner[$row['director_id']][] = $track;
 			}
 			$result->moveNext();
 		}
@@ -349,7 +349,7 @@ class TrackDAO extends DAO {
 		
 		$result = &$this->retrieve(
 			($submittableOnly?
-			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE sched_conf_id = ? AND editor_restricted = 0 ORDER BY seq':
+			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE sched_conf_id = ? AND director_restricted = 0 ORDER BY seq':
 			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE sched_conf_id = ? ORDER BY seq'),
 			$schedConfId
 		);

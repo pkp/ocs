@@ -6,9 +6,9 @@
  * Copyright (c) 2003-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.editor
+ * @package pages.director
  *
- * Handle requests for editor functions. 
+ * Handle requests for director functions. 
  *
  * $Id$
  */
@@ -124,13 +124,13 @@ class AboutHandler extends Handler {
 			// Organizing Team information using Role info.
 			$roleDao = &DAORegistry::getDAO('RoleDAO');
 
-			$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId(), $schedConfId);
-			$editors = &$editors->toArray();
+			$directors = &$roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId(), $schedConfId);
+			$directors = &$directors->toArray();
 
-			$trackDirectors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_EDITOR, $conference->getConferenceId(), $schedConfId);
+			$trackDirectors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getConferenceId(), $schedConfId);
 			$trackDirectors = &$trackDirectors->toArray();
 		
-			$templateMgr->assign_by_ref('editors', $editors);
+			$templateMgr->assign_by_ref('directors', $directors);
 			$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
 			$templateMgr->display('about/organizingTeam.tpl');
 		} else {
@@ -191,13 +191,13 @@ class AboutHandler extends Handler {
 
 		$user = null;
 		if ($settings['boardEnabled'] != true) {
-			$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId());
-			while ($potentialUser =& $editors->next()) {
+			$directors = &$roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
+			while ($potentialUser =& $directors->next()) {
 				if ($potentialUser->getUserId() == $userId)
 					$user =& $potentialUser;
 			}
 
-			$trackDirectors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_EDITOR, $conference->getConferenceId());
+			$trackDirectors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getConferenceId());
 			while ($potentialUser =& $trackDirectors->next()) {
 				if ($potentialUser->getUserId() == $userId)
 					$user =& $potentialUser;
@@ -260,7 +260,7 @@ class AboutHandler extends Handler {
 		
 		$trackDirectors = array();
 		foreach ($tracks as $track) {
-			$trackDirectors[$track->getTrackId()] = &$trackDirectorsDao->getEditorsByTrackId($conference->getConferenceId(), $track->getTrackId());
+			$trackDirectors[$track->getTrackId()] = &$trackDirectorsDao->getDirectorsByTrackId($conference->getConferenceId(), $track->getTrackId());
 		}
 		$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
 

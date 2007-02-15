@@ -510,7 +510,7 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<field name="editor_restricted" type="I1">
+		<field name="director_restricted" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
@@ -528,10 +528,10 @@
 	
 	<!--
 	  *
-	  * TABLE track_editors
+	  * TABLE track_directors
 	  *
 	  -->
-	<table name="track_editors">
+	<table name="track_directors">
 		<field name="sched_conf_id" type="I8">
 			<KEY/>
 		</field>
@@ -541,14 +541,14 @@
 		<field name="user_id" type="I8">
 			<KEY/>
 		</field>
-		<descr>Assignments of track editors to tracks.</descr>
-		<index name="track_editors_sched_conf_id">
+		<descr>Assignments of track directors to tracks.</descr>
+		<index name="track_directors_sched_conf_id">
 			<col>sched_conf_id</col>
 		</index>
-		<index name="track_editors_track_id">
+		<index name="track_directors_track_id">
 			<col>track_id</col>
 		</index>
-		<index name="track_editors_user_id">
+		<index name="track_directors_user_id">
 			<col>user_id</col>
 		</index>
 	</table>
@@ -603,7 +603,7 @@
 			<DEFAULT VALUE="en"/>
 		</field>
 		<field name="sponsor" type="C2" size="255"/>
-		<field name="comments_to_ed" type="X"/>
+		<field name="comments_to_dr" type="X"/>
 		<field name="date_submitted" type="T"/>
 		<field name="date_reminded" type="T"/>
 		<field name="last_modified" type="T"/>
@@ -627,7 +627,7 @@
 		<field name="submission_file_id" type="I8"/>
 		<field name="revised_file_id" type="I8"/>
 		<field name="review_file_id" type="I8"/>
-		<field name="editor_file_id" type="I8"/>
+		<field name="director_file_id" type="I8"/>
 		<field name="pages" type="C2" size="255"/>
 		<descr>Conference papers.</descr>
 		<index name="papers_user_id">
@@ -887,7 +887,7 @@
 		<field name="file_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<descr>Article submission notes added by editors to each submission</descr>
+		<descr>Article submission notes added by directors to each submission</descr>
 		<index name="paper_notes_paper_id">
 			<col>paper_id</col>
 		</index>
@@ -912,7 +912,7 @@
 		<field name="paper_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="editor_id" type="I8">
+		<field name="director_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="can_edit" type="I1">
@@ -930,8 +930,8 @@
 		<index name="edit_assignments_paper_id">
 			<col>paper_id</col>
 		</index>
-		<index name="edit_assignments_editor_id">
-			<col>editor_id</col>
+		<index name="edit_assignments_director_id">
+			<col>director_id</col>
 		</index>
 	</table>
 	
@@ -954,7 +954,7 @@
 		<field name="round" type="I1">
 			<NOTNULL/>
 		</field>
-		<field name="editor_id" type="I8">
+		<field name="director_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="decision" type="I1">
@@ -963,12 +963,12 @@
 		<field name="date_decided" type="T">
 			<NOTNULL/>
 		</field>
-		<descr>Editor decisions.</descr>
+		<descr>Director decisions.</descr>
 		<index name="edit_decisions_paper_id">
 			<col>paper_id</col>
 		</index>
-		<index name="edit_decisions_editor_id">
-			<col>editor_id</col>
+		<index name="edit_decisions_director_id">
+			<col>director_id</col>
 		</index>
 	</table>
 	

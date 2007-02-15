@@ -90,7 +90,7 @@
 		<td class="value">{$logEntry->getBody()|strip_unsafe_html|nl2br}</td>
 	</tr>
 </table>
-{if $isEditor}
+{if $isDirector}
 	<a href="{url op="clearSubmissionEmailLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" onclick="return confirm('{translate|escape:"javascript" key="submission.email.confirmDeleteLogEntry"}')" class="action">{translate key="submission.email.deleteLogEntry"}</a><br/>
 {/if}
 

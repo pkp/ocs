@@ -1,23 +1,23 @@
 <?php
 
 /**
- * EditorSubmissionDAO.inc.php
+ * DirectorSubmissionDAO.inc.php
  *
  * Copyright (c) 2003-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package submission
  *
- * Class for EditorSubmission DAO.
- * Operations for retrieving and modifying EditorSubmission objects.
+ * Class for DirectorSubmission DAO.
+ * Operations for retrieving and modifying DirectorSubmission objects.
  *
  * $Id$
  */
 
-import('submission.editor.EditorSubmission');
-import('submission.presenter.PresenterSubmission'); // Bring in editor decision constants
+import('submission.director.DirectorSubmission');
+import('submission.presenter.PresenterSubmission'); // Bring in director decision constants
 
-class EditorSubmissionDAO extends DAO {
+class DirectorSubmissionDAO extends DAO {
 
 	var $paperDao;
 	var $presenterDao;
@@ -27,7 +27,7 @@ class EditorSubmissionDAO extends DAO {
 	/**
 	 * Constructor.
 	 */
-	function EditorSubmissionDAO() {
+	function DirectorSubmissionDAO() {
 		parent::DAO();
 		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
 		$this->presenterDao = &DAORegistry::getDAO('PresenterDAO');
@@ -36,11 +36,11 @@ class EditorSubmissionDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve an editor submission by paper ID.
+	 * Retrieve a director submission by paper ID.
 	 * @param $paperId int
-	 * @return EditorSubmission
+	 * @return DirectorSubmission
 	 */
-	function &getEditorSubmission($paperId) {
+	function &getDirectorSubmission($paperId) {
 		$result = &$this->retrieve(
 			'SELECT
 				p.*,
@@ -59,7 +59,7 @@ class EditorSubmissionDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$returner = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -69,68 +69,68 @@ class EditorSubmissionDAO extends DAO {
 	}
 	
 	/**
-	 * Internal function to return an EditorSubmission object from a row.
+	 * Internal function to return a DirectorSubmission object from a row.
 	 * @param $row array
-	 * @return EditorSubmission
+	 * @return DirectorSubmission
 	 */
-	function &_returnEditorSubmissionFromRow(&$row) {
-		$editorSubmission = &new EditorSubmission();
+	function &_returnDirectorSubmissionFromRow(&$row) {
+		$directorSubmission = &new DirectorSubmission();
 
 		// Paper attributes
-		$this->paperDao->_paperFromRow($editorSubmission, $row);
+		$this->paperDao->_paperFromRow($directorSubmission, $row);
 		
-		// Editor Assignment
+		// Director Assignment
 		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByPaperId($row['paper_id']);
-		$editorSubmission->setEditAssignments($editAssignments->toArray());
+		$directorSubmission->setEditAssignments($editAssignments->toArray());
 		
-		// Editor Decisions
+		// Director Decisions
 		for ($i = 1; $i <= $row['review_progress']; $i++) {
 			for ($j = 1; $j <= $row['current_round']; $j++) {
-				$editorSubmission->setDecisions($this->getEditorDecisions($row['paper_id'], $i, $j), $i, $j);
+				$directorSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i, $j), $i, $j);
 			}
 		}
 		
-		HookRegistry::call('EditorSubmissionDAO::_returnEditorSubmissionFromRow', array(&$editorSubmission, &$row));
+		HookRegistry::call('DirectorSubmissionDAO::_returnDirectorSubmissionFromRow', array(&$directorSubmission, &$row));
 
-		return $editorSubmission;
+		return $directorSubmission;
 	}
 
 	/**
-	 * Insert a new EditorSubmission.
-	 * @param $editorSubmission EditorSubmission
+	 * Insert a new DirectorSubmission.
+	 * @param $directorSubmission DirectorSubmission
 	 */	
-	function insertEditorSubmission(&$editorSubmission) {
+	function insertDirectorSubmission(&$directorSubmission) {
 		$this->update(
 			sprintf('INSERT INTO edit_assignments
-				(paper_id, editor_id, date_notified, date_completed, date_acknowledged)
+				(paper_id, director_id, date_notified, date_completed, date_acknowledged)
 				VALUES
 				(?, ?, %s, %s, %s)',
-				$this->datetimeToDB($editorSubmission->getDateNotified()), $this->datetimeToDB($editorSubmission->getDateCompleted()), $this->datetimeToDB($editorSubmission->getDateAcknowledged())),
+				$this->datetimeToDB($directorSubmission->getDateNotified()), $this->datetimeToDB($directorSubmission->getDateCompleted()), $this->datetimeToDB($directorSubmission->getDateAcknowledged())),
 			array(
-				$editorSubmission->getPaperId(),
-				$editorSubmission->getEditorId()
+				$directorSubmission->getPaperId(),
+				$directorSubmission->getDirectorId()
 			)
 		);
 		
-		$editorSubmission->setEditId($this->getInsertEditId());
+		$directorSubmission->setEditId($this->getInsertEditId());
 		
 		// Insert review assignments.
-		$reviewAssignments = &$editorSubmission->getReviewAssignments();
+		$reviewAssignments = &$directorSubmission->getReviewAssignments();
 		for ($i=0, $count=count($reviewAssignments); $i < $count; $i++) {
-			$reviewAssignments[$i]->setPaperId($editorSubmission->getPaperId());
+			$reviewAssignments[$i]->setPaperId($directorSubmission->getPaperId());
 			$this->reviewAssignmentDao->insertReviewAssignment($reviewAssignments[$i]);
 		}
 		
-		return $editorSubmission->getEditId();
+		return $directorSubmission->getEditId();
 	}
 	
 	/**
 	 * Update an existing paper.
 	 * @param $paper Paper
 	 */
-	function updateEditorSubmission(&$editorSubmission) {
+	function updateDirectorSubmission(&$directorSubmission) {
 		// update edit assignments
-		$editAssignments = $editorSubmission->getEditAssignments();
+		$editAssignments = $directorSubmission->getEditAssignments();
 		foreach ($editAssignments as $editAssignment) {
 			if ($editAssignment->getEditId() > 0) {
 				$this->editAssignmentDao->updateEditAssignment($editAssignment);
@@ -144,9 +144,9 @@ class EditorSubmissionDAO extends DAO {
 	 * Get all submissions for a scheduled conference.
 	 * @param $schedConfId int
 	 * @param $status boolean true if queued, false if archived.
-	 * @return array EditorSubmission
+	 * @return array DirectorSubmission
 	 */
-	function &getEditorSubmissions($schedConfId, $status = true, $trackId = 0, $rangeInfo = null) {
+	function &getDirectorSubmissions($schedConfId, $status = true, $trackId = 0, $rangeInfo = null) {
 		if (!$trackId) {
 			$result = &$this->retrieveRange(
 					'SELECT p.*,
@@ -177,7 +177,7 @@ class EditorSubmissionDAO extends DAO {
 					$rangeInfo
 			);	
 		}
-		$returner = &new DAOResultFactory($result, $this, '_returnEditorSubmissionFromRow');
+		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
 	}
 
@@ -195,7 +195,7 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array result
 	 */
-	function &getUnfilteredEditorSubmissions($schedConfId, $trackId = 0, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, $status, $rangeInfo = null) {
+	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, $status, $rangeInfo = null) {
 		$params = array($schedConfId);
 		$searchSql = '';
 
@@ -212,7 +212,7 @@ class EditorSubmissionDAO extends DAO {
 			case SUBMISSION_FIELD_PRESENTER:
 				$searchSql = $this->_generateUserNameSearchSQL($search, $searchMatch, 'aa.', $params);
 				break;
-			case SUBMISSION_FIELD_EDITOR:
+			case SUBMISSION_FIELD_DIRECTOR:
 				$searchSql = $this->_generateUserNameSearchSQL($search, $searchMatch, 'ed.', $params);
 				break;
 			case SUBMISSION_FIELD_REVIEWER:
@@ -254,9 +254,9 @@ class EditorSubmissionDAO extends DAO {
 			INNER JOIN paper_presenters pa ON (pa.paper_id = p.paper_id)
 			LEFT JOIN tracks t ON (t.track_id = p.track_id)
 			LEFT JOIN edit_assignments ea ON (ea.paper_id = p.paper_id)
-			LEFT JOIN users ed ON (ea.editor_id = ed.user_id)
+			LEFT JOIN users ed ON (ea.director_id = ed.user_id)
 			LEFT JOIN layouted_assignments l ON (l.paper_id = p.paper_id)
-			LEFT JOIN users le ON (le.user_id = l.editor_id)
+			LEFT JOIN users le ON (le.user_id = l.director_id)
 			LEFT JOIN review_assignments ra ON (ra.paper_id = p.paper_id)
 			LEFT JOIN users re ON (re.user_id = ra.reviewer_id AND cancelled = 0)
 			WHERE
@@ -309,33 +309,33 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $dateFrom String date to search from
 	 * @param $dateTo String date to search to
 	 * @param $rangeInfo object
-	 * @return array EditorSubmission
+	 * @return array DirectorSubmission
 	 */
-	function &getEditorSubmissionsUnassigned($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
-		$editorSubmissions = array();
+	function &getDirectorSubmissionsUnassigned($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$directorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
-			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 
-			// used to check if editor exists for this submission
-			$editAssignments =& $editorSubmission->getEditAssignments();
+			// used to check if director exists for this submission
+			$editAssignments =& $directorSubmission->getEditAssignments();
 
-			if (empty($editAssignments) && !$editorSubmission->getSubmissionProgress()) {
-				$editorSubmissions[] =& $editorSubmission;
+			if (empty($editAssignments) && !$directorSubmission->getSubmissionProgress()) {
+				$directorSubmissions[] =& $directorSubmission;
 			}
-			unset($editorSubmission);
+			unset($directorSubmission);
 			$result->MoveNext();
 		}
 		$result->Close();
 		unset($result);
 
 		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new ArrayItemIterator($editorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
+			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
 		} else {
-			$returner = &new ArrayItemIterator($editorSubmissions);
+			$returner = &new ArrayItemIterator($directorSubmissions);
 		}
 		return $returner;
 	}
@@ -351,55 +351,55 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $dateFrom String date to search from
 	 * @param $dateTo String date to search to
 	 * @param $rangeInfo object
-	 * @return array EditorSubmission
+	 * @return array DirectorSubmission
 	 */
-	function &getEditorSubmissionsInReview($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
-		$editorSubmissions = array();
+	function &getDirectorSubmissionsInReview($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$directorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		while (!$result->EOF) {
-			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
-			$paperId = $editorSubmission->getPaperId();
-			for ($i = 1; $i <= $editorSubmission->getReviewProgress(); $i++) {
-				for ($j = 1; $j <= $editorSubmission->getCurrentRound(); $j++) {
+			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
+			$paperId = $directorSubmission->getPaperId();
+			for ($i = 1; $i <= $directorSubmission->getReviewProgress(); $i++) {
+				for ($j = 1; $j <= $directorSubmission->getCurrentRound(); $j++) {
 					$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paperId, $i, $j);
 					if (!empty($reviewAssignment)) {
-						$editorSubmission->setReviewAssignments($reviewAssignment, $i, $j);
+						$directorSubmission->setReviewAssignments($reviewAssignment, $i, $j);
 					}
 				}
 			}
 
 			// check if submission is still in review
 			$inReview = true;
-			$decisions = $editorSubmission->getDecisions();
+			$decisions = $directorSubmission->getDecisions();
 			$types = array_pop($decisions);
 			$decision = array_pop($types);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_DECLINE) {
+				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
 					$inReview = false;			
 				}
 			}
 
-			// used to check if editor exists for this submission
-			$editAssignments =& $editorSubmission->getEditAssignments();
+			// used to check if director exists for this submission
+			$editAssignments =& $directorSubmission->getEditAssignments();
 
-			if (!empty($editAssignments) && $inReview && !$editorSubmission->getSubmissionProgress()) {
-				$editorSubmissions[] =& $editorSubmission;
+			if (!empty($editAssignments) && $inReview && !$directorSubmission->getSubmissionProgress()) {
+				$directorSubmissions[] =& $directorSubmission;
 			}
-			unset($editorSubmission);
+			unset($directorSubmission);
 			$result->MoveNext();
 		}
 		$result->Close();
 		unset($result);
 		
 		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new ArrayItemIterator($editorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
+			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
 		} else {
-			$returner = &new ArrayItemIterator($editorSubmissions);
+			$returner = &new ArrayItemIterator($directorSubmissions);
 		}
 		return $returner;
 	}
@@ -415,51 +415,51 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $dateFrom String date to search from
 	 * @param $dateTo String date to search to
 	 * @param $rangeInfo object
-	 * @return array EditorSubmission
+	 * @return array DirectorSubmission
 	 */
-	function &getEditorSubmissionsInEditing($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
-		$editorSubmissions = array();
+	function &getDirectorSubmissionsInEditing($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$directorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
-			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
-			$paperId = $editorSubmission->getPaperId();
+			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
+			$paperId = $directorSubmission->getPaperId();
 
 			// get layout assignment data
 			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
 			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByPaperId($paperId);
-			$editorSubmission->setLayoutAssignment($layoutAssignment);
+			$directorSubmission->setLayoutAssignment($layoutAssignment);
 
 			// check if submission is still in review
 			$inEditing = false;
-			$decisions = $editorSubmission->getDecisions();
+			$decisions = $directorSubmission->getDecisions();
 			$types = array_pop($decisions);
 			$decision = array_pop($types);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
 					$inEditing = true;			
 				}
 			}
 
-			// used to check if editor exists for this submission
-			$editAssignments = $editorSubmission->getEditAssignments();
+			// used to check if director exists for this submission
+			$editAssignments = $directorSubmission->getEditAssignments();
 
 			if ($inEditing && !empty($editAssignments)) {
-				$editorSubmissions[] =& $editorSubmission;
+				$directorSubmissions[] =& $directorSubmission;
 			}
-			unset($editorSubmission);
+			unset($directorSubmission);
 			$result->MoveNext();
 		}
 		$result->Close();
 		unset($result);
 		
 		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new ArrayItemIterator($editorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
+			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
 		} else {
-			$returner = &new ArrayItemIterator($editorSubmissions);
+			$returner = &new ArrayItemIterator($directorSubmissions);
 		}
 		return $returner;
 	}
@@ -475,32 +475,32 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $dateFrom String date to search from
 	 * @param $dateTo String date to search to
 	 * @param $rangeInfo object
-	 * @return array EditorSubmission
+	 * @return array DirectorSubmission
 	 */
-	function &getEditorSubmissionsArchives($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
-		$editorSubmissions = array();
+	function &getDirectorSubmissionsArchives($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$directorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
 		while (!$result->EOF) {
-			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
-			$paperId = $editorSubmission->getPaperId();
+			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
+			$paperId = $directorSubmission->getPaperId();
 
 			// get layout assignment data
 			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
 			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByPaperId($paperId);
-			$editorSubmission->setLayoutAssignment($layoutAssignment);
+			$directorSubmission->setLayoutAssignment($layoutAssignment);
 
-			if ($editorSubmission->getStatus() == SUBMISSION_STATUS_ARCHIVED) {
-				$editorSubmissions[] =& $editorSubmission;
-				unset($editorSubmission);
+			if ($directorSubmission->getStatus() == SUBMISSION_STATUS_ARCHIVED) {
+				$directorSubmissions[] =& $directorSubmission;
+				unset($directorSubmission);
 			}
 			$result->MoveNext();
 		}
 		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new ArrayItemIterator($editorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
+			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
 		} else {
-			$returner = &new ArrayItemIterator($editorSubmissions);
+			$returner = &new ArrayItemIterator($directorSubmissions);
 		}
 
 		$result->Close();
@@ -520,32 +520,32 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $dateFrom String date to search from
 	 * @param $dateTo String date to search to
 	 * @param $rangeInfo object
-	 * @return array EditorSubmission
+	 * @return array DirectorSubmission
 	 */
-	function &getEditorSubmissionsAccepted($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
-		$editorSubmissions = array();
+	function &getDirectorSubmissionsAccepted($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$directorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
 		while (!$result->EOF) {
-			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
-			$paperId = $editorSubmission->getPaperId();
+			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
+			$paperId = $directorSubmission->getPaperId();
 
 			// get layout assignment data
 			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
 			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByPaperId($paperId);
-			$editorSubmission->setLayoutAssignment($layoutAssignment);
+			$directorSubmission->setLayoutAssignment($layoutAssignment);
 
-			if ($editorSubmission->getStatus() == SUBMISSION_STATUS_PUBLISHED) {
-				$editorSubmissions[] =& $editorSubmission;
-				unset($editorSubmission);
+			if ($directorSubmission->getStatus() == SUBMISSION_STATUS_PUBLISHED) {
+				$directorSubmissions[] =& $directorSubmission;
+				unset($directorSubmission);
 			}
 			$result->MoveNext();
 		}
 		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new ArrayItemIterator($editorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
+			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
 		} else {
-			$returner = &new ArrayItemIterator($editorSubmissions);
+			$returner = &new ArrayItemIterator($directorSubmissions);
 		}
 
 		$result->Close();
@@ -557,7 +557,7 @@ class EditorSubmissionDAO extends DAO {
 	/**
 	 * Function used for counting purposes for right nav bar
 	 */
-	function &getEditorSubmissionsCount($schedConfId) {
+	function &getDirectorSubmissionsCount($schedConfId) {
 
 		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
@@ -587,33 +587,33 @@ class EditorSubmissionDAO extends DAO {
 		$result = &$this->retrieve($sql, $schedConfId);
 
 		while (!$result->EOF) {
-			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 
 			// check if submission is still in review
 			$inReview = true;
 			$notDeclined = true;
-			$decisions = $editorSubmission->getDecisions($finalReviewType);
+			$decisions = $directorSubmission->getDecisions($finalReviewType);
 			if($decisions) {
 				$types = array_pop($decisions);
 				$decision = is_array($types)?array_pop($types):null;
 				if (!empty($decision)) {
 					$latestDecision = array_pop($decision);
-					if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
 						$inReview = false;
-					} elseif ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_DECLINE) {
+					} elseif ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
 						$notDeclined = false;
 					}
 				}
 			}
 
-			// used to check if editor exists for this submission
-			$editAssignments = $editorSubmission->getEditAssignments();
+			// used to check if director exists for this submission
+			$editAssignments = $directorSubmission->getEditAssignments();
 
-			if (!$editorSubmission->getSubmissionProgress()) {
+			if (!$directorSubmission->getSubmissionProgress()) {
 				if (empty($editAssignments)) {
 					// unassigned submissions
 					$submissionsCount[0] += 1;
-				} elseif ($editorSubmission->getStatus() == SUBMISSION_STATUS_QUEUED) {
+				} elseif ($directorSubmission->getStatus() == SUBMISSION_STATUS_QUEUED) {
 					if ($inReview) {
 						if ($notDeclined) {
 							// in review submissions
@@ -639,11 +639,11 @@ class EditorSubmissionDAO extends DAO {
 	//
 	
 	/**
-	 * Get the editor decisions for a review round of an paper.
+	 * Get the director decisions for a review round of an paper.
 	 * @param $paperId int
 	 * @param $round int
 	 */
-	function getEditorDecisions($paperId, $type = null, $round = null) {
+	function getDirectorDecisions($paperId, $type = null, $round = null) {
 		$decisions = array();
 		$args = array($paperId);
 		if($type) {
@@ -654,7 +654,7 @@ class EditorSubmissionDAO extends DAO {
 		}
 	
 		$result = &$this->retrieve(
-			'SELECT edit_decision_id, editor_id, decision, date_decided
+			'SELECT edit_decision_id, director_id, decision, date_decided
 			FROM edit_decisions
 			WHERE paper_id = ? ' .
 			($type?' AND type = ?' :'') .
@@ -666,7 +666,7 @@ class EditorSubmissionDAO extends DAO {
 		while (!$result->EOF) {
 			$decisions[] = array(
 				'editDecisionId' => $result->fields['edit_decision_id'],
-				'editorId' => $result->fields['editor_id'],
+				'directorId' => $result->fields['director_id'],
 				'decision' => $result->fields['decision'],
 				'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
 			);
@@ -680,18 +680,18 @@ class EditorSubmissionDAO extends DAO {
 	}
 	
 	/**
-	 * Get the editor decisions for an editor.
+	 * Get the director decisions for a director.
 	 * @param $userId int
 	 */
-	function transferEditorDecisions($oldUserId, $newUserId) {
+	function transferDirectorDecisions($oldUserId, $newUserId) {
 		$this->update(
-			'UPDATE edit_decisions SET editor_id = ? WHERE editor_id = ?',
+			'UPDATE edit_decisions SET director_id = ? WHERE director_id = ?',
 			array($newUserId, $oldUserId)
 		);
 	}
 	
 	/**
-	 * Retrieve a list of all users in the specified role not assigned as editors to the specified paper.
+	 * Retrieve a list of all users in the specified role not assigned as directors to the specified paper.
 	 * @param $schedConfId int
 	 * @param $paperId int
 	 * @param $roleId int
@@ -736,7 +736,7 @@ class EditorSubmissionDAO extends DAO {
 		}
 		
 		$result = &$this->retrieveRange(
-			'SELECT DISTINCT u.* FROM users u NATURAL JOIN roles r LEFT JOIN edit_assignments e ON (e.editor_id = u.user_id AND e.paper_id = ?) WHERE r.sched_conf_id = ? AND r.role_id = ? AND (e.paper_id IS NULL) ' . $searchSql . ' ORDER BY last_name, first_name',
+			'SELECT DISTINCT u.* FROM users u NATURAL JOIN roles r LEFT JOIN edit_assignments e ON (e.director_id = u.user_id AND e.paper_id = ?) WHERE r.sched_conf_id = ? AND r.role_id = ? AND (e.paper_id IS NULL) ' . $searchSql . ' ORDER BY last_name, first_name',
 			$paramArray, $rangeInfo
 		);
 		
@@ -745,7 +745,7 @@ class EditorSubmissionDAO extends DAO {
 	}
 	
 	/**
-	 * Get the ID of the last inserted editor assignment.
+	 * Get the ID of the last inserted director assignment.
 	 * @return int
 	 */
 	function getInsertEditId() {

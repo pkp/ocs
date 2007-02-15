@@ -145,9 +145,9 @@ class SubmitHandler extends PresenterHandler {
 
 				$templateMgr = &TemplateManager::getManager();
 				$templateMgr->assign_by_ref('conference', $conference);
-				// If this is an editor and there is a
+				// If this is a director and there is a
 				// submission file, paper can be expedited.
-				if (Validation::isEditor($conference->getConferenceId()) && $paper->getSubmissionFileId()) {
+				if (Validation::isDirector($conference->getConferenceId()) && $paper->getSubmissionFileId()) {
 					$templateMgr->assign('canExpedite', true);
 				}
 				$templateMgr->assign('paperId', $paperId);
@@ -257,11 +257,11 @@ class SubmitHandler extends PresenterHandler {
 		$paperId = (int) Request::getUserVar('paperId');
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId);
 
-		// The presenter must also be an editor to perform this task.
-		if (Validation::isEditor($conference->getConferenceId()) && $paper->getSubmissionFileId()) {
-			import('submission.editor.EditorAction');
-			EditorAction::expediteSubmission($paper);
-			Request::redirect(null, null, 'editor', 'schedulingQueue');
+		// The presenter must also be a director to perform this task.
+		if (Validation::isDirector($conference->getConferenceId()) && $paper->getSubmissionFileId()) {
+			import('submission.director.DirectorAction');
+			DirectorAction::expediteSubmission($paper);
+			Request::redirect(null, null, 'director', 'schedulingQueue');
 		}
 
 		Request::redirect(null, null, null, 'track');

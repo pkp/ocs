@@ -80,7 +80,7 @@ class SchedConfAction {
 	 * @return bool
 	 */
 	function mayViewProceedings(&$schedConf) {
-		if(Validation::isSiteAdmin() || Validation::isConferenceManager() || Validation::isEditor() || Validation::isTrackDirector()) {
+		if(Validation::isSiteAdmin() || Validation::isConferenceManager() || Validation::isDirector() || Validation::isTrackDirector()) {
 			return true;
 		}
 
@@ -115,7 +115,7 @@ class SchedConfAction {
 	 * @return bool
 	 */
 	function mayViewPapers(&$schedConf) {
-		if(Validation::isSiteAdmin() || Validation::isConferenceManager() || Validation::isEditor() || Validation::isTrackDirector()) {
+		if(Validation::isSiteAdmin() || Validation::isConferenceManager() || Validation::isDirector() || Validation::isTrackDirector()) {
 			return true;
 		}
 
@@ -159,13 +159,13 @@ class SchedConfAction {
 		$user = &Request::getUser();
 
 		if (isset($user) && isset($schedConf)) {
-			// If the user is a conference manager, editor, track editor, or layout editor,
+			// If the user is a conference manager, director, track director, or layout editor,
 			// it is assumed that they are allowed to view the scheduled conference as a registrant.
 			$roleDao = &DAORegistry::getDAO('RoleDAO');
 			$registrationAssumedRoles = array(
 				ROLE_ID_CONFERENCE_MANAGER,
-				ROLE_ID_EDITOR,
-				ROLE_ID_TRACK_EDITOR,
+				ROLE_ID_DIRECTOR,
+				ROLE_ID_TRACK_DIRECTOR,
 				ROLE_ID_REGISTRATION_MANAGER
 			);
 

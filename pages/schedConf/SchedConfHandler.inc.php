@@ -131,7 +131,7 @@ class SchedConfHandler extends Handler {
 
 		// Ensure the user is entitled to view the scheduled conference...
 		if (isset($schedConf) && ($schedConf->getEnabled() || (
-				Validation::isEditor($conference->getConferenceId()) ||
+				Validation::isDirector($conference->getConferenceId()) ||
 				Validation::isConferenceManager($conference->getConferenceId())))) {
 
 			$schedConfTitle = $schedConf->getTitle();

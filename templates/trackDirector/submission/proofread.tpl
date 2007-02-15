@@ -17,7 +17,7 @@
 	<tr>
 		<td width="20%" class="label">{translate key="user.role.proofreader"}</td>
 		{if $proofAssignment->getProofreaderId()}<td class="value" width="20%">{$proofAssignment->getProofreaderFullName()|escape}</td>{/if}
-		<td class="value"><a href="{url op="selectProofreader" path=$submission->getPaperId()}" class="action">{translate key="editor.paper.selectProofreader"}</a></td>
+		<td class="value"><a href="{url op="selectProofreader" path=$submission->getPaperId()}" class="action">{translate key="director.paper.selectProofreader"}</a></td>
 	</tr>
 </table>
 {/if}
@@ -78,7 +78,7 @@
 				{/if}
 			{else}
 				{if !$proofAssignment->getDateProofreaderNotified()}
-					<a href="{url op="editorInitiateProofreader" paperId=$submission->getPaperId()}" class="action">{translate key="common.initiate"}</a>
+					<a href="{url op="directorInitiateProofreader" paperId=$submission->getPaperId()}" class="action">{translate key="common.initiate"}</a>
 				{/if}
 			{/if}
 			{$proofAssignment->getDateProofreaderNotified()|date_format:$dateFormatShort|default:""}
@@ -92,7 +92,7 @@
 		</td>
 		<td>
 			{if !$useProofreaders && !$proofAssignment->getDateProofreaderCompleted() && $proofAssignment->getDateProofreaderNotified()}
-				<a href="{url op="editorCompleteProofreader" paperId=$submission->getPaperId()}" class="action">{translate key="common.complete"}</a>
+				<a href="{url op="directorCompleteProofreader" paperId=$submission->getPaperId()}" class="action">{translate key="common.complete"}</a>
 			{else}
 				{$proofAssignment->getDateProofreaderCompleted()|date_format:$dateFormatShort|default:"&mdash;"}
 			{/if}
@@ -129,7 +129,7 @@
 				{/if}
 			{else}
 				{if !$proofAssignment->getDateLayoutEditorNotified()}
-					<a href="{url op="editorInitiateLayoutEditor" paperId=$submission->getPaperId()}" class="action">{translate key="common.initiate"}</a>
+					<a href="{url op="directorInitiateLayoutEditor" paperId=$submission->getPaperId()}" class="action">{translate key="common.initiate"}</a>
 				{/if}
 			{/if}
 				{$proofAssignment->getDateLayoutEditorNotified()|date_format:$dateFormatShort|default:""}
@@ -147,7 +147,7 @@
 			{elseif $proofAssignment->getDateLayoutEditorCompleted()}
 				{$proofAssignment->getDateLayoutEditorCompleted()|date_format:$dateFormatShort}
 			{elseif $proofAssignment->getDateLayoutEditorNotified()}
-				<a href="{url op="editorCompleteLayoutEditor" paperId=$submission->getPaperId()}" class="action">{translate key="common.complete"}</a>
+				<a href="{url op="directorCompleteLayoutEditor" paperId=$submission->getPaperId()}" class="action">{translate key="common.complete"}</a>
 			{else}
 				&mdash;
 			{/if}
@@ -188,10 +188,10 @@
 <div class="separator"></div>
 
 {if $proofAssignment->getDateSchedulingQueue()}
-{translate key="editor.paper.placeSubmissionInSchedulingQueue"} {$proofAssignment->getDateSchedulingQueue()|date_format:$dateFormatShort}
+{translate key="director.paper.placeSubmissionInSchedulingQueue"} {$proofAssignment->getDateSchedulingQueue()|date_format:$dateFormatShort}
 {else}
 <form method="post" action="{url op="queueForScheduling" path=$submission->getPaperId()}">
-{translate key="editor.paper.placeSubmissionInSchedulingQueue"} 
-<input type="submit" value="{translate key="editor.paper.scheduleSubmission"}"{if !$submissionAccepted} disabled="disabled"{/if} class="button defaultButton" />
+{translate key="director.paper.placeSubmissionInSchedulingQueue"} 
+<input type="submit" value="{translate key="director.paper.scheduleSubmission"}"{if !$submissionAccepted} disabled="disabled"{/if} class="button defaultButton" />
 </form>
 {/if}

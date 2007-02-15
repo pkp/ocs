@@ -32,7 +32,7 @@
 	<td width="30%">{translate key="user.name"}</td>
 	<td width="20%">{translate key="submissions.completed}</td>
 	<td width="20%">{translate key="submissions.active"}</td>
-	<td width="20%">{translate key="editor.submissions.lastAssigned"}</td>
+	<td width="20%">{translate key="director.submissions.lastAssigned"}</td>
 	<td width="10%">{translate key="common.action"}</td>
 </tr>
 <tr><td colspan="5" class="headseparator">&nbsp;</td></tr>

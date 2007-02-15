@@ -82,7 +82,7 @@ function ensureKeyword() {
 {assign var=schedConf value=$result.schedConf}
 {assign var=schedConfAvailable value=$result.schedConfAvailable}
 {assign var=conference value=$result.conference}
-{assign var=section value=$result.section}
+{assign var=track value=$result.track}
 <tr valign="top">
 	{if !$currentConference}<td><a href="{url conference=$conference->getPath()}">{$conference->getTitle()|escape}</a></td>{/if}
 	<td><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath()}">{$schedConf->getTitle()|escape}</a></td>

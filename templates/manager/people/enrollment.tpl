@@ -55,7 +55,7 @@ function confirmAndPrompt(userId) {
 				<option {if $roleSymbolic=='registrationManagers'}selected="selected" {/if}value="registrationManagers">{translate key="user.role.registrationManagers"}</option>
 			{/if}
 
-			<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
+			<option {if $roleSymbolic=='directors'}selected="selected" {/if}value="directors">{translate key="user.role.directors"}</option>
 			<option {if $roleSymbolic=='trackDirectors'}selected="selected" {/if}value="trackDirectors">{translate key="user.role.trackDirectors"}</option>
 			<option {if $roleSymbolic=='layoutEditors'}selected="selected" {/if}value="layoutEditors">{translate key="user.role.layoutEditors"}</option>
 			<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
@@ -92,7 +92,7 @@ function confirmAndPrompt(userId) {
 			<li><a href="{url path="registrationManagers"}">{translate key="user.role.registrationManagers"}</a></li>
 		{/if}
 	
-		<li><a href="{url path="editors"}">{translate key="user.role.editors"}</a></li>
+		<li><a href="{url path="directors"}">{translate key="user.role.directors"}</a></li>
 		<li><a href="{url path="trackDirectors"}">{translate key="user.role.trackDirectors"}</a></li>
 		<li><a href="{url path="layoutEditors"}">{translate key="user.role.layoutEditors"}</a></li>
 		<li><a href="{url path="reviewers"}">{translate key="user.role.reviewers"}</a></li>

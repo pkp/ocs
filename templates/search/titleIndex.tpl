@@ -33,7 +33,7 @@
 {iterate from=results item=result}
 {assign var=publishedPaper value=$result.publishedPaper}
 {assign var=paper value=$result.paper}
-{assign var=section value=$result.section}
+{assign var=track value=$result.track}
 {assign var=schedConf value=$result.schedConf}
 {assign var=schedConfAvailable value=$result.schedConfAvailable}
 {assign var=conference value=$result.conference}

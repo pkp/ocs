@@ -122,7 +122,7 @@ class PaperDAO extends DAO {
 		$paper->setType($row['type']);
 		$paper->setLanguage($row['language']);
 		$paper->setSponsor($row['sponsor']);
-		$paper->setCommentsToEditor($row['comments_to_ed']);
+		$paper->setCommentsToDirector($row['comments_to_dr']);
 		$paper->setDateSubmitted($this->datetimeFromDB($row['date_submitted']));
 		$paper->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
 		$paper->setLastModified($this->datetimeFromDB($row['last_modified']));
@@ -134,7 +134,7 @@ class PaperDAO extends DAO {
 		$paper->setSubmissionFileId($row['submission_file_id']);
 		$paper->setRevisedFileId($row['revised_file_id']);
 		$paper->setReviewFileId($row['review_file_id']);
-		$paper->setEditorFileId($row['editor_file_id']);
+		$paper->setDirectorFileId($row['director_file_id']);
 		$paper->setPages($row['pages']);
 		
 		$paper->setPresenters($this->presenterDao->getPresentersByPaper($row['paper_id']));
@@ -168,7 +168,7 @@ class PaperDAO extends DAO {
 				 type,
 				 language,
 				 sponsor,
-				 comments_to_ed,
+				 comments_to_dr,
 				 date_submitted,
 				 date_status_modified,
 				 last_modified,
@@ -179,7 +179,7 @@ class PaperDAO extends DAO {
 				 submission_file_id,
 				 revised_file_id,
 				 review_file_id,
-				 editor_file_id,
+				 director_file_id,
 				 pages,
 				 date_reminded)
 				VALUES
@@ -204,7 +204,7 @@ class PaperDAO extends DAO {
 				$paper->getType(),
 				$paper->getLanguage(),
 				$paper->getSponsor(),
-				$paper->getCommentsToEditor(),
+				$paper->getCommentsToDirector(),
 				$paper->getStatus() === null ? SUBMISSION_STATUS_QUEUED : $paper->getStatus(),
 				$paper->getSubmissionProgress() === null ? 1 : $paper->getSubmissionProgress(),
 				$paper->getReviewProgress() === null ? 1 : $paper->getReviewProgress(),
@@ -212,7 +212,7 @@ class PaperDAO extends DAO {
 				$paper->getSubmissionFileId(),
 				$paper->getRevisedFileId(),
 				$paper->getReviewFileId(),
-				$paper->getEditorFileId(),
+				$paper->getDirectorFileId(),
 				$paper->getPages(),
 				$paper->getDateReminded()
 			)
@@ -256,7 +256,7 @@ class PaperDAO extends DAO {
 					type = ?,
 					language = ?,
 					sponsor = ?,
-					comments_to_ed = ?,
+					comments_to_dr = ?,
 					date_submitted = %s,
 					date_status_modified = %s,
 					last_modified = %s,
@@ -267,7 +267,7 @@ class PaperDAO extends DAO {
 					submission_file_id = ?,
 					revised_file_id = ?,
 					review_file_id = ?,
-					editor_file_id = ?,
+					director_file_id = ?,
 					pages = ?,
 					date_reminded = ?
 				WHERE paper_id = ?',
@@ -290,7 +290,7 @@ class PaperDAO extends DAO {
 				$paper->getType(),
 				$paper->getLanguage(),
 				$paper->getSponsor(),
-				$paper->getCommentsToEditor(),
+				$paper->getCommentsToDirector(),
 				$paper->getStatus(),
 				$paper->getSubmissionProgress(),
 				$paper->getReviewProgress(),
@@ -298,7 +298,7 @@ class PaperDAO extends DAO {
 				$paper->getSubmissionFileId(),
 				$paper->getRevisedFileId(),
 				$paper->getReviewFileId(),
-				$paper->getEditorFileId(),
+				$paper->getDirectorFileId(),
 				$paper->getPages(),
 				$paper->getDateReminded(),
 				$paper->getPaperId()

@@ -35,6 +35,6 @@
 
 <div class="separator"></div>
 
-{include file="trackDirector/submission/editorDecision.tpl"}
+{include file="trackDirector/submission/directorDecision.tpl"}
 
 {include file="common/footer.tpl"}

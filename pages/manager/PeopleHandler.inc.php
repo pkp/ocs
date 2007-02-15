@@ -72,10 +72,10 @@ class PeopleHandler extends ManagerHandler {
 				case ROLE_ID_REGISTRATION_MANAGER:
 					$helpTopicId = 'conference.roles.registrationManager';
 					break;
-				case ROLE_ID_EDITOR:
-					$helpTopicId = 'conference.roles.editor';
+				case ROLE_ID_DIRECTOR:
+					$helpTopicId = 'conference.roles.director';
 					break;
-				case ROLE_ID_TRACK_EDITOR:
+				case ROLE_ID_TRACK_DIRECTOR:
 					$helpTopicId = 'conference.roles.trackDirector';
 					break;
 				case ROLE_ID_LAYOUT_EDITOR:
@@ -446,13 +446,13 @@ class PeopleHandler extends ManagerHandler {
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments =& $editAssignmentDao->getEditAssignmentsByUserId($oldUserId);
 			while ($editAssignment =& $editAssignments->next()) {
-				$editAssignment->setEditorId($newUserId);
+				$editAssignment->setDirectorId($newUserId);
 				$editAssignmentDao->updateEditAssignment($editAssignment);
 				unset($editAssignment);
 			}
 
-			$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
-			$editorSubmissionDao->transferEditorDecisions($oldUserId, $newUserId);
+			$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
+			$directorSubmissionDao->transferDirectorDecisions($oldUserId, $newUserId);
 
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			foreach ($reviewAssignmentDao->getReviewAssignmentsByUserId($oldUserId) as $reviewAssignment) {
@@ -516,7 +516,7 @@ class PeopleHandler extends ManagerHandler {
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 			$groupMembershipDao->deleteMembershipByUserId($oldUserId);
 			$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
-			$trackDirectorsDao->deleteEditorsByUserId($oldUserId);
+			$trackDirectorsDao->deleteDirectorsByUserId($oldUserId);
 			$roleDao->deleteRoleByUserId($oldUserId);
 			$userDao->deleteUserById($oldUserId);
 

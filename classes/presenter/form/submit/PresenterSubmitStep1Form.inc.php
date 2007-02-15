@@ -44,16 +44,16 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 		// Get tracks for this conference
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 
-		// If this user is a track editor or an editor, they are allowed
-		// to submit to tracks flagged as "editor-only" for submissions.
+		// If this user is a track director or a director, they are allowed
+		// to submit to tracks flagged as "director-only" for submissions.
 		// Otherwise, display only tracks they are allowed to submit to.
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getUserId(), ROLE_ID_EDITOR) ||
-			$roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getUserId(), ROLE_ID_TRACK_EDITOR) ||
-			$roleDao->roleExists($conference->getConferenceId(), 0, $user->getUserId(), ROLE_ID_EDITOR) ||
-			$roleDao->roleExists($conference->getConferenceId(), 0, $user->getUserId(), ROLE_ID_TRACK_EDITOR);
+		$isDirector = $roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getUserId(), ROLE_ID_DIRECTOR) ||
+			$roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getUserId(), ROLE_ID_TRACK_DIRECTOR) ||
+			$roleDao->roleExists($conference->getConferenceId(), 0, $user->getUserId(), ROLE_ID_DIRECTOR) ||
+			$roleDao->roleExists($conference->getConferenceId(), 0, $user->getUserId(), ROLE_ID_TRACK_DIRECTOR);
 
-		$templateMgr->assign('trackOptions', array('0' => Locale::translate('presenter.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getSchedConfId(), !$isEditor));
+		$templateMgr->assign('trackOptions', array('0' => Locale::translate('presenter.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getSchedConfId(), !$isDirector));
 
 		parent::display();
 	}
@@ -65,7 +65,7 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 		if (isset($this->paper)) {
 			$this->_data = array(
 				'trackId' => $this->paper->getTrackId(),
-				'commentsToEditor' => $this->paper->getCommentsToEditor()
+				'commentsToDirector' => $this->paper->getCommentsToDirector()
 			);
 		}
 	}
@@ -74,7 +74,7 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('submissionChecklist', 'copyrightNoticeAgree', 'trackId', 'commentsToEditor'));
+		$this->readUserVars(array('submissionChecklist', 'copyrightNoticeAgree', 'trackId', 'commentsToDirector'));
 	}
 	
 	/**
@@ -87,7 +87,7 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 		if (isset($this->paper)) {
 			// Update existing paper
 			$this->paper->setTrackId($this->getData('trackId'));
-			$this->paper->setCommentsToEditor($this->getData('commentsToEditor'));
+			$this->paper->setCommentsToDirector($this->getData('commentsToDirector'));
 			if ($this->paper->getSubmissionProgress() <= $this->step) {
 				$this->paper->stampStatusModified();
 				$this->paper->setSubmissionProgress($this->step + 1);
@@ -106,7 +106,7 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 			$this->paper->stampStatusModified();
 			$this->paper->setSubmissionProgress($this->step + 1);
 			$this->paper->setLanguage('');
-			$this->paper->setCommentsToEditor($this->getData('commentsToEditor'));
+			$this->paper->setCommentsToDirector($this->getData('commentsToDirector'));
 		
 			// Set user to initial presenter
 			$user = &Request::getUser();

@@ -29,13 +29,13 @@
 		<td>{$submission->getTrackTitle()|escape}</td>
 	</tr>
 	<tr>
-		<td class="label">{translate key="user.role.editor"}</td>
+		<td class="label">{translate key="user.role.director"}</td>
 		<td>
 			{assign var=editAssignments value=$submission->getEditAssignments()}
 			{foreach from=$editAssignments item=editAssignment}
-				{assign var=emailString value="`$editAssignment->getEditorFullName()` <`$editAssignment->getEditorEmail()`>"}
+				{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
 				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getPaperTitle()|strip_tags paperId=$submission->getPaperId()}
-				{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}
+				{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
 				{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
 					{if $editAssignment->getCanEdit()}
 						({translate key="submission.editing"})

@@ -23,7 +23,7 @@ define('LOG_LEVEL_ERROR', 'E');
 // Log entry associative types. All types must be defined here
 define('LOG_TYPE_DEFAULT', 			0);
 define('LOG_TYPE_PRESENTER', 			0x01);
-define('LOG_TYPE_EDITOR', 			0x02);
+define('LOG_TYPE_DIRECTOR', 			0x02);
 define('LOG_TYPE_REVIEW', 			0x03);
 
 ?>

@@ -232,14 +232,14 @@ class PresenterHandler extends Handler {
 	// Submission Comments
 	//
 
-	function viewEditorDecisionComments($args) {
+	function viewDirectorDecisionComments($args) {
 		import('pages.presenter.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::viewEditorDecisionComments($args);
+		SubmissionCommentsHandler::viewDirectorDecisionComments($args);
 	}
 
-	function emailEditorDecisionComment() {
+	function emailDirectorDecisionComment() {
 		import('pages.presenter.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::emailEditorDecisionComment();
+		SubmissionCommentsHandler::emailDirectorDecisionComment();
 	}
 
 	function viewLayoutComments($args) {

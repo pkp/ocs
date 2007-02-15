@@ -74,7 +74,7 @@
 		</td>
 	</tr>
 </table>
-{if $isEditor}
+{if $isDirector}
 	<a href="{url op="clearSubmissionEventLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" onclick="return confirm('{translate|escape:"javascript" key="submission.event.confirmDeleteLogEntry"}')" class="action">{translate key="submission.event.deleteLogEntry"}</a><br/>
 {/if}
 

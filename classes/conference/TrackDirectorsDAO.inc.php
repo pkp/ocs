@@ -8,7 +8,7 @@
  *
  * @package conference
  *
- * Class for DAO relating tracks to editors.
+ * Class for DAO relating tracks to directors.
  *
  * $Id$
  */
@@ -23,14 +23,14 @@ class TrackDirectorsDAO extends DAO {
 	}
 	
 	/**
-	 * Insert a new track editor.
+	 * Insert a new track director.
 	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @param $userId int
 	 */
-	function insertEditor($schedConfId, $trackId, $userId) {
+	function insertDirector($schedConfId, $trackId, $userId) {
 		return $this->update(
-			'INSERT INTO track_editors
+			'INSERT INTO track_directors
 				(sched_conf_id, track_id, user_id)
 				VALUES
 				(?, ?, ?)',
@@ -43,14 +43,14 @@ class TrackDirectorsDAO extends DAO {
 	}
 	
 	/**
-	 * Delete a track editor.
+	 * Delete a track director.
 	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @param $userId int
 	 */
-	function deleteEditor($schedConfId, $trackId, $userId) {
+	function deleteDirector($schedConfId, $trackId, $userId) {
 		return $this->update(
-			'DELETE FROM track_editors WHERE sched_conf_id = ? AND track_id = ? AND user_id = ?',
+			'DELETE FROM track_directors WHERE sched_conf_id = ? AND track_id = ? AND user_id = ?',
 			array(
 				$schedConfId,
 				$trackId,
@@ -71,7 +71,7 @@ class TrackDirectorsDAO extends DAO {
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 				
 		$result = &$this->retrieve(
-			'SELECT s.* FROM tracks AS s, track_editors AS e WHERE s.track_id = e.track_id AND s.sched_conf_id = ? AND e.user_id = ?',
+			'SELECT s.* FROM tracks AS s, track_directors AS e WHERE s.track_id = e.track_id AND s.sched_conf_id = ? AND e.user_id = ?',
 			array($schedConfId, $userId)
 		);
 		
@@ -87,18 +87,18 @@ class TrackDirectorsDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve a list of all track editors assigned to the specified track.
+	 * Retrieve a list of all track directors assigned to the specified track.
 	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @return array matching Users
 	 */
-	function &getEditorsByTrackId($schedConfId, $trackId) {
+	function &getDirectorsByTrackId($schedConfId, $trackId) {
 		$users = array();
 		
 		$userDao = &DAORegistry::getDAO('UserDAO');
 				
 		$result = &$this->retrieve(
-			'SELECT u.* FROM users AS u, track_editors AS e WHERE u.user_id = e.user_id AND e.sched_conf_id = ? AND e.track_id = ? ORDER BY last_name, first_name',
+			'SELECT u.* FROM users AS u, track_directors AS e WHERE u.user_id = e.user_id AND e.sched_conf_id = ? AND e.track_id = ? ORDER BY last_name, first_name',
 			array($schedConfId, $trackId)
 		);
 		
@@ -114,19 +114,19 @@ class TrackDirectorsDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve a list of all track editors not assigned to the specified track.
+	 * Retrieve a list of all track directors not assigned to the specified track.
 	 * @param $schedConfId int
 	 * @param $trackId int
 	 * @return array matching Users
 	 */
-	function &getEditorsNotInTrack($schedConfId, $trackId) {
+	function &getDirectorsNotInTrack($schedConfId, $trackId) {
 		$users = array();
 		
 		$userDao = &DAORegistry::getDAO('UserDAO');
 				
 		$result = &$this->retrieve(
-			'SELECT u.* FROM users AS u NATURAL JOIN roles r LEFT JOIN track_editors AS e ON e.user_id = u.user_id AND e.sched_conf_id = r.sched_conf_id AND e.track_id = ? WHERE r.sched_conf_id = ? AND r.role_id = ? AND e.track_id IS NULL ORDER BY last_name, first_name',
-			array($trackId, $schedConfId, ROLE_ID_TRACK_EDITOR)
+			'SELECT u.* FROM users AS u NATURAL JOIN roles r LEFT JOIN track_directors AS e ON e.user_id = u.user_id AND e.sched_conf_id = r.sched_conf_id AND e.track_id = ? WHERE r.sched_conf_id = ? AND r.role_id = ? AND e.track_id IS NULL ORDER BY last_name, first_name',
+			array($trackId, $schedConfId, ROLE_ID_TRACK_DIRECTOR)
 		);
 		
 		while (!$result->EOF) {
@@ -141,28 +141,28 @@ class TrackDirectorsDAO extends DAO {
 	}
 	
 	/**
-	 * Delete all track editors for a specified track in a scheduled conference.
+	 * Delete all track directors for a specified track in a scheduled conference.
 	 * @param $trackId int
 	 * @param $schedConfId int
 	 */
-	function deleteEditorsByTrackId($trackId, $schedConfId = null) {
+	function deleteDirectorsByTrackId($trackId, $schedConfId = null) {
 		if (isset($schedConfId)) return $this->update(
-			'DELETE FROM track_editors WHERE sched_conf_id = ? AND track_id = ?',
+			'DELETE FROM track_directors WHERE sched_conf_id = ? AND track_id = ?',
 			array($schedConfId, $trackId)
 		);
 		else return $this->update(
-			'DELETE FROM track_editors WHERE track_id = ?',
+			'DELETE FROM track_directors WHERE track_id = ?',
 			$trackId
 		);
 	}
 	
 	/**
-	 * Delete all track editors for a specified scheduled conference.
+	 * Delete all track directors for a specified scheduled conference.
 	 * @param $schedConfId int
 	 */
-	function deleteEditorsBySchedConfId($schedConfId) {
+	function deleteDirectorsBySchedConfId($schedConfId) {
 		return $this->update(
-			'DELETE FROM track_editors WHERE sched_conf_id = ?', $schedConfId
+			'DELETE FROM track_directors WHERE sched_conf_id = ?', $schedConfId
 		);
 	}
 	
@@ -172,9 +172,9 @@ class TrackDirectorsDAO extends DAO {
 	 * @param $schedConfId int optional, include assignments only in this scheduled conference
 	 * @param $trackId int optional, include only this track
 	 */
-	function deleteEditorsByUserId($userId, $schedConfId  = null, $trackId = null) {
+	function deleteDirectorsByUserId($userId, $schedConfId  = null, $trackId = null) {
 		return $this->update(
-			'DELETE FROM track_editors WHERE user_id = ?' . (isset($schedConfId) ? ' AND sched_conf_id = ?' : '') . (isset($trackId) ? ' AND track_id = ?' : ''),
+			'DELETE FROM track_directors WHERE user_id = ?' . (isset($schedConfId) ? ' AND sched_conf_id = ?' : '') . (isset($trackId) ? ' AND track_id = ?' : ''),
 			isset($schedConfId) && isset($trackId) ? array($userId, $schedConfId, $trackId)
 			: (isset($schedConfId) ? array($userId, $schedConfId)
 			: (isset($trackId) ? array($userId, $trackId) : $userId))
@@ -188,9 +188,9 @@ class TrackDirectorsDAO extends DAO {
 	 * @param $userId int
 	 * @return boolean
 	 */
-	function editorExists($schedConfId, $trackId, $userId) {
+	function directorExists($schedConfId, $trackId, $userId) {
 		$result = &$this->retrieve(
-			'SELECT COUNT(*) FROM track_editors WHERE sched_conf_id = ? AND track_id = ? AND user_id = ?', array($schedConfId, $trackId, $userId)
+			'SELECT COUNT(*) FROM track_directors WHERE sched_conf_id = ? AND track_id = ? AND user_id = ?', array($schedConfId, $trackId, $userId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 

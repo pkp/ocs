@@ -119,22 +119,22 @@ class EditCommentForm extends Form {
 		
 		$recipients = array();
 		
-		// Get editors for paper
+		// Get directors for paper
 		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments = &$editAssignmentDao->getEditAssignmentsByPaperId($this->paper->getPaperId());
 		$editAssignments =& $editAssignments->toArray();
-		$editorAddresses = array();
+		$directorAddresses = array();
 		foreach ($editAssignments as $editAssignment) {
-			$editorAddresses[$editAssignment->getEditorEmail()] = $editAssignment->getEditorFullName();
+			$directorAddresses[$editAssignment->getDirectorEmail()] = $editAssignment->getDirectorFullName();
 		}
 
-		// If no editors are currently assigned, send this message to
-		// all of the conference's editors.
-		if (empty($editorAddresses)) {
-			$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId());
-			while (!$editors->eof()) {
-				$editor = &$editors->next();
-				$editorAddresses[$editor->getEmail()] = $editor->getFullName();
+		// If no directors are currently assigned, send this message to
+		// all of the conference's directors.
+		if (empty($directorAddresses)) {
+			$directors = &$roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
+			while (!$directors->eof()) {
+				$director = &$directors->next();
+				$directorAddresses[$director->getEmail()] = $director->getFullName();
 			}
 		}
 		
@@ -161,7 +161,7 @@ class EditCommentForm extends Form {
 	
 		switch ($this->comment->getCommentType()) {
 		case COMMENT_TYPE_PEER_REVIEW:
-			if ($this->roleId == ROLE_ID_EDITOR) {
+			if ($this->roleId == ROLE_ID_DIRECTOR) {
 				// Then add reviewer
 				if ($reviewer != null) {
 					$recipients = array_merge($recipients, array($reviewer->getEmail() => $reviewer->getFullName()));
@@ -169,18 +169,18 @@ class EditCommentForm extends Form {
 			}
 			break;
 
-		case COMMENT_TYPE_EDITOR_DECISION:
-			if ($this->roleId == ROLE_ID_EDITOR) {
+		case COMMENT_TYPE_DIRECTOR_DECISION:
+			if ($this->roleId == ROLE_ID_DIRECTOR) {
 				// Then add presenter
 				if (isset($presenter)) $recipients = array_merge($recipients, array($presenter->getEmail() => $presenter->getFullName()));
 			} else {
-				// Then add editors
-				$recipients = array_merge($recipients, $editorAddresses);
+				// Then add directors
+				$recipients = array_merge($recipients, $directorAddresses);
 			}
 			break;
 
 		case COMMENT_TYPE_LAYOUT:
-			if ($this->roleId == ROLE_ID_EDITOR) {
+			if ($this->roleId == ROLE_ID_DIRECTOR) {
 				// Then add layout editor
 				
 				// Check to ensure that there is a layout editor assigned to this paper.
@@ -188,8 +188,8 @@ class EditCommentForm extends Form {
 					$recipients = array_merge($recipients, array($layoutEditor->getEmail() => $layoutEditor->getFullName()));
 				}
 			} else {
-				// Then add editors
-				$recipients = array_merge($recipients, $editorAddresses);
+				// Then add directors
+				$recipients = array_merge($recipients, $directorAddresses);
 			}
 			break;
 		}

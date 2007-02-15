@@ -24,11 +24,11 @@ define('ROLE_PATH_CONFERENCE_MANAGER',		'manager');
 define('ROLE_ID_REGISTRATION_MANAGER',		0x00000020);
 define('ROLE_PATH_REGISTRATION_MANAGER',	'registrationManager');
 
-define('ROLE_ID_EDITOR',			0x00000040);
-define('ROLE_PATH_EDITOR', 			'editor');
+define('ROLE_ID_DIRECTOR',			0x00000040);
+define('ROLE_PATH_DIRECTOR', 			'director');
 
-define('ROLE_ID_TRACK_EDITOR',			0x00000080);
-define('ROLE_PATH_TRACK_EDITOR', 		'trackDirector');
+define('ROLE_ID_TRACK_DIRECTOR',		0x00000080);
+define('ROLE_PATH_TRACK_DIRECTOR', 		'trackDirector');
 
 define('ROLE_ID_LAYOUT_EDITOR',			0x00000300);
 define('ROLE_PATH_LAYOUT_EDITOR', 		'layoutEditor');

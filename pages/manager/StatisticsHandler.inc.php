@@ -85,7 +85,7 @@ class StatisticsHandler extends ManagerHandler {
 		$templateMgr->assign('reportTypes', array(
 			REPORT_TYPE_CONFERENCE => 'manager.statistics.reports.type.conference',
 			REPORT_TYPE_SCHED_CONF => 'manager.statistics.reports.type.schedConf',
-			REPORT_TYPE_EDITOR => 'manager.statistics.reports.type.editor',
+			REPORT_TYPE_DIRECTOR => 'manager.statistics.reports.type.director',
 			REPORT_TYPE_REVIEWER => 'manager.statistics.reports.type.reviewer',
 			REPORT_TYPE_TRACK => 'manager.statistics.reports.type.track'
 		));
@@ -164,8 +164,8 @@ class StatisticsHandler extends ManagerHandler {
 		$reportType = (int) Request::getUserVar('reportType');
 
 		switch ($reportType) {
-			case REPORT_TYPE_EDITOR:
-				$report =& $schedConfStatisticsDao->getEditorReport($schedConf->getSchedConfId(), $fromDate, $toDate);
+			case REPORT_TYPE_DIRECTOR:
+				$report =& $schedConfStatisticsDao->getDirectorReport($schedConf->getSchedConfId(), $fromDate, $toDate);
 				break;
 			case REPORT_TYPE_REVIEWER:
 				$report =& $schedConfStatisticsDao->getReviewerReport($schedConf->getSchedConfId(), $fromDate, $toDate);
@@ -188,8 +188,8 @@ class StatisticsHandler extends ManagerHandler {
 
 		// Display the heading row.
 		switch ($reportType) {
-			case REPORT_TYPE_EDITOR:
-				echo Locale::translate('user.role.editor') . $separator;
+			case REPORT_TYPE_DIRECTOR:
+				echo Locale::translate('user.role.director') . $separator;
 				break;
 			case REPORT_TYPE_REVIEWER:
 				echo Locale::translate('user.role.reviewer') . $separator;
@@ -213,8 +213,8 @@ class StatisticsHandler extends ManagerHandler {
 
 		echo $separator . Locale::translate('submissions.submitted');
 
-		if ($reportType !== REPORT_TYPE_EDITOR) for ($i=0; $i<$report->getMaxEditors(); $i++) {
-			echo $separator . Locale::translate('manager.statistics.reports.editor', array('num' => $i+1));
+		if ($reportType !== REPORT_TYPE_DIRECTOR) for ($i=0; $i<$report->getMaxDirectors(); $i++) {
+			echo $separator . Locale::translate('manager.statistics.reports.director', array('num' => $i+1));
 		}
 
 		if ($reportType !== REPORT_TYPE_REVIEWER) for ($i=0; $i<$report->getMaxReviewers(); $i++) {
@@ -223,7 +223,7 @@ class StatisticsHandler extends ManagerHandler {
 			echo $separator . Locale::translate('manager.statistics.reports.recommendation', array('num' => $i+1));
 		}
 
-		echo $separator . Locale::translate('editor.paper.decision');
+		echo $separator . Locale::translate('director.paper.decision');
 		echo $separator . Locale::translate('manager.statistics.reports.daysToDecision');
 		echo $separator . Locale::translate('manager.statistics.reports.daysToPublication');
 
@@ -233,8 +233,8 @@ class StatisticsHandler extends ManagerHandler {
 		$dateFormatShort = Config::getVar('general', 'date_format_short');
 		while ($row =& $report->next()) {
 			switch ($reportType) {
-				case REPORT_TYPE_EDITOR:
-					echo $row['editor'] . $separator;
+				case REPORT_TYPE_DIRECTOR:
+					echo $row['director'] . $separator;
 					break;
 				case REPORT_TYPE_REVIEWER:
 					echo $row['reviewer'] . $separator;
@@ -260,8 +260,8 @@ class StatisticsHandler extends ManagerHandler {
 
 			echo $separator . $row['dateSubmitted'];
 
-			if ($reportType !== REPORT_TYPE_EDITOR) for ($i=0; $i<$report->getMaxEditors(); $i++) {
-				echo $separator . StatisticsHandler::csvEscape($row['editors'][$i]);
+			if ($reportType !== REPORT_TYPE_DIRECTOR) for ($i=0; $i<$report->getMaxDirectors(); $i++) {
+				echo $separator . StatisticsHandler::csvEscape($row['directors'][$i]);
 			}
 
 			if ($reportType !== REPORT_TYPE_REVIEWER) for ($i=0; $i<$report->getMaxReviewers(); $i++) {

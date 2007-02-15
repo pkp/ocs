@@ -19,7 +19,7 @@
 		<td width="10%">{translate key="submissions.track"}</td>
 		<td width="35%">{translate key="paper.title"}</td>
 		<td width="20%">{translate key="submission.review"}</td>
-		<td width="20%">{translate key="submission.editorDecision"}</td>
+		<td width="20%">{translate key="submission.directorDecision"}</td>
 	</tr>
 	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
 {iterate from=submissions item=submission}
@@ -57,18 +57,18 @@
 			{if $submission->getCancelled() || $submission->getDeclined()}
 				&mdash;
 			{else}
-			{* Display the most recent editor decision *}
+			{* Display the most recent director decision *}
 			{assign var=round value=$submission->getRound()}
 			{assign var=decisions value=$submission->getDecisions($round)}
 			{foreach from=$decisions item=decision name=lastDecisionFinder}
-				{if $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_EDITOR_DECISION_ACCEPT}
-					{translate key="editor.paper.decision.accept"}
-				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS}
-					{translate key="editor.paper.decision.pendingRevisions"}
-				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_EDITOR_DECISION_RESUBMIT}
-					{translate key="editor.paper.decision.resubmit"}
-				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_EDITOR_DECISION_DECLINE}
-					{translate key="editor.paper.decision.decline"}
+				{if $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
+					{translate key="director.paper.decision.accept"}
+				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS}
+					{translate key="director.paper.decision.pendingRevisions"}
+				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_RESUBMIT}
+					{translate key="director.paper.decision.resubmit"}
+				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_DECLINE}
+					{translate key="director.paper.decision.decline"}
 				{/if}
 			{foreachelse}
 				&mdash;

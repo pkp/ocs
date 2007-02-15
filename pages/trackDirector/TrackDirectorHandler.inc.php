@@ -80,7 +80,7 @@ class TrackDirectorHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', $helpTopicId);
-		$templateMgr->assign('trackOptions', array(0 => Locale::Translate('editor.allTracks')) + $tracks);
+		$templateMgr->assign('trackOptions', array(0 => Locale::Translate('director.allTracks')) + $tracks);
 		$templateMgr->assign_by_ref('submissions', $submissions);
 		$templateMgr->assign('track', Request::getUserVar('track'));
 		$templateMgr->assign('pageToDisplay', $page);
@@ -106,7 +106,7 @@ class TrackDirectorHandler extends Handler {
 		$templateMgr->assign('fieldOptions', Array(
 			SUBMISSION_FIELD_TITLE => 'paper.title',
 			SUBMISSION_FIELD_PRESENTER => 'user.role.presenter',
-			SUBMISSION_FIELD_EDITOR => 'user.role.editor'
+			SUBMISSION_FIELD_DIRECTOR => 'user.role.director'
 		));
 		$templateMgr->assign('dateFieldOptions', Array(
 			SUBMISSION_FIELD_DATE_SUBMITTED => 'submissions.submitted',
@@ -131,11 +131,11 @@ class TrackDirectorHandler extends Handler {
 			Validation::redirectLogin();
 		}
 		
-		if($page == ROLE_PATH_TRACK_EDITOR && !Validation::isTrackDirector($conference->getConferenceId(), $schedConf->getSchedConfId())) {
+		if($page == ROLE_PATH_TRACK_DIRECTOR && !Validation::isTrackDirector($conference->getConferenceId(), $schedConf->getSchedConfId())) {
 			Validation::redirectLogin();
 		}
 		
-		if($page == ROLE_PATH_EDITOR && !Validation::isEditor($conference->getConferenceId(), $schedConf->getSchedConfId())) {
+		if($page == ROLE_PATH_DIRECTOR && !Validation::isDirector($conference->getConferenceId(), $schedConf->getSchedConfId())) {
 			Validation::redirectLogin();
 		}
 	}
@@ -146,17 +146,17 @@ class TrackDirectorHandler extends Handler {
 	 */
 	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null, $showSidebar = true) {
 		$templateMgr = &TemplateManager::getManager();
-		$isEditor = Validation::isEditor();
+		$isDirector = Validation::isDirector();
 
-		if (Request::getRequestedPage() == 'editor') {
-			EditorHandler::setupTemplate(EDITOR_TRACK_SUBMISSIONS, $showSidebar, $paperId, $parentPage);
-			$templateMgr->assign('helpTopicId', 'editorial.editorsRole');
+		if (Request::getRequestedPage() == 'director') {
+			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $showSidebar, $paperId, $parentPage);
+			$templateMgr->assign('helpTopicId', 'editorial.directorsRole');
 			
 		} else {
 			$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole');
 
-			$pageHierarchy = $subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, $isEditor?'editor':'trackDirector'), $isEditor?'user.role.editor':'user.role.trackDirector'), array(Request::url(null, null, $isEditor?'editor':'trackDirector'), 'paper.submissions'))
-				: array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, $isEditor?'editor':'trackDirector'), $isEditor?'user.role.editor':'user.role.trackDirector'));
+			$pageHierarchy = $subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector'), array(Request::url(null, null, $isDirector?'director':'trackDirector'), 'paper.submissions'))
+				: array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector'));
 
 			import('submission.trackDirector.TrackDirectorAction');
 			$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'trackDirector');
@@ -336,9 +336,9 @@ class TrackDirectorHandler extends Handler {
 		SubmissionEditHandler::saveMetadata();
 	}
 
-	function editorReview() {
+	function directorReview() {
 		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::editorReview();
+		SubmissionEditHandler::directorReview();
 	}
 
 	function uploadReviewVersion() {
@@ -565,9 +565,9 @@ class TrackDirectorHandler extends Handler {
 		SubmissionCommentsHandler::postPeerReviewComment();
 	}
 	
-	function viewEditorDecisionComments($args) {
+	function viewDirectorDecisionComments($args) {
 		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::viewEditorDecisionComments($args);
+		SubmissionCommentsHandler::viewDirectorDecisionComments($args);
 	}
 	
 	function blindCcReviewsToReviewers($args) {
@@ -575,14 +575,14 @@ class TrackDirectorHandler extends Handler {
 		SubmissionCommentsHandler::blindCcReviewsToReviewers($args);
 	}
 	
-	function postEditorDecisionComment() {
+	function postDirectorDecisionComment() {
 		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::postEditorDecisionComment();
+		SubmissionCommentsHandler::postDirectorDecisionComment();
 	}
 	
-	function emailEditorDecisionComment() {
+	function emailDirectorDecisionComment() {
 		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::emailEditorDecisionComment();
+		SubmissionCommentsHandler::emailDirectorDecisionComment();
 	}
 	
 	function viewLayoutComments($args) {
@@ -611,14 +611,14 @@ class TrackDirectorHandler extends Handler {
 	}
 	
 	/** Layout Assignment Functions */
-	function editorInitiateLayoutEditor() {
+	function directorInitiateLayoutEditor() {
 		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::editorInitiateLayoutEditor();
+		SubmissionEditHandler::directorInitiateLayoutEditor();
 	}
 
-	function editorCompleteLayoutEditor() {
+	function directorCompleteLayoutEditor() {
 		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::editorCompleteLayoutEditor();
+		SubmissionEditHandler::directorCompleteLayoutEditor();
 	}
 }
 

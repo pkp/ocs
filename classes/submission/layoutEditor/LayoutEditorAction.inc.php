@@ -172,14 +172,14 @@ class LayoutEditorAction extends Action {
 			$user = &Request::getUser();
 			if (!Request::getUserVar('continued')) {
 				$assignedTrackDirectors = $email->toAssignedEditingTrackDirectors($submission->getPaperId());
-				$assignedEditors = $email->ccAssignedEditors($submission->getPaperId());
-				if (empty($assignedTrackDirectors) && empty($assignedEditors)) {
+				$assignedDirectors = $email->ccAssignedDirectors($submission->getPaperId());
+				if (empty($assignedTrackDirectors) && empty($assignedDirectors)) {
 					$email->addRecipient($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 					$editorialContactName = $schedConf->getSetting('contactName');
 				} else {
 					$editorialContact = array_shift($assignedTrackDirectors);
-					if (!$editorialContact) $editorialContact = array_shift($assignedEditors);
-					$editorialContactName = $editorialContact->getEditorFullName();
+					if (!$editorialContact) $editorialContact = array_shift($assignedDirectors);
+					$editorialContactName = $editorialContact->getDirectorFullName();
 				}
 				$paramArray = array(
 					'editorialContactName' => $editorialContactName,

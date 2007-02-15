@@ -16,7 +16,7 @@
  * [paper id]/submission
  * [paper id]/submission/original
  * [paper id]/submission/review
- * [paper id]/submission/editor
+ * [paper id]/submission/director
  * [paper id]/submission/layout
  * [paper id]/supp
  *
@@ -28,7 +28,7 @@ import('file.FileManager');
 /* File type suffixes */
 define('PAPER_FILE_SUBMISSION',	'SM');
 define('PAPER_FILE_REVIEW',		'RV');
-define('PAPER_FILE_EDITOR',		'ED');
+define('PAPER_FILE_DIRECTOR',		'DR');
 define('PAPER_FILE_LAYOUT',		'LE');
 define('PAPER_FILE_PUBLIC',		'PB');
 define('PAPER_FILE_SUPP',		'SP');
@@ -82,17 +82,17 @@ class PaperFileManager extends FileManager {
 	}
 
 	/**
-	 * Upload a file to the editor decision file folder.
+	 * Upload a file to the director decision file folder.
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $fileId int
 	 * @return int file ID, is false if failure
 	 */
-	function uploadEditorDecisionFile($fileName, $fileId = null) {
-		return $this->handleUpload($fileName, PAPER_FILE_EDITOR, $fileId);
+	function uploadDirectorDecisionFile($fileName, $fileId = null) {
+		return $this->handleUpload($fileName, PAPER_FILE_DIRECTOR, $fileId);
 	}
 
 	/**
-	 * Upload a track editor's layout editing file.
+	 * Upload a track director's layout editing file.
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $fileId int
 	 * @param $overwrite boolean
@@ -287,14 +287,14 @@ class PaperFileManager extends FileManager {
 	}
 	
 	/**
-	 * Copies an existing file to create an editor decision file.
+	 * Copies an existing file to create a director decision file.
 	 * @param $fileId int the file id of the review file.
 	 * @param $revision int the revision of the review file.
 	 * @param $destFileId int file ID to copy to
 	 * @return int the file id of the new file.
 	 */
-	function copyToEditorFile($fileId, $revision = null, $destFileId = null) {
-		return $this->copyAndRenameFile($fileId, $revision, PAPER_FILE_EDITOR, $destFileId);
+	function copyToDirectorFile($fileId, $revision = null, $destFileId = null) {
+		return $this->copyAndRenameFile($fileId, $revision, PAPER_FILE_DIRECTOR, $destFileId);
 	}
 	
 	/**
@@ -318,7 +318,7 @@ class PaperFileManager extends FileManager {
 			case PAPER_FILE_SUPP: return 'supp';
 			case PAPER_FILE_NOTE: return 'note';
 			case PAPER_FILE_REVIEW: return 'submission/review';
-			case PAPER_FILE_EDITOR: return 'submission/editor';
+			case PAPER_FILE_DIRECTOR: return 'submission/director';
 			case PAPER_FILE_LAYOUT: return 'submission/layout';
 			case PAPER_FILE_SUBMISSION: default: return 'submission/original';
 		}

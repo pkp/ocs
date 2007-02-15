@@ -66,10 +66,10 @@
 		<td class="value">{$submission->getTrackTitle()|escape}</td>
 		<td class="value"><form action="{url op="changeTrack" paperId=$submission->getPaperId()}" method="post">{translate key="submission.changeTrack"} <select name="trackId" size="1" class="selectMenu">{html_options options=$tracks selected=$submission->getTrackId()}</select> <input type="submit" value="{translate key="common.record"}" class="button" /></form></td>
 	</tr>
-	{if $submission->getCommentsToEditor()}
+	{if $submission->getCommentsToDirector()}
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="paper.commentsToEditor"}</td>
-		<td width="80%" colspan="2" class="data">{$submission->getCommentsToEditor()|strip_unsafe_html|nl2br}</td>
+		<td width="20%" class="label">{translate key="paper.commentsToDirector"}</td>
+		<td width="80%" colspan="2" class="data">{$submission->getCommentsToDirector()|strip_unsafe_html|nl2br}</td>
 	</tr>
 	{/if}
 	{if $publishedPaper}

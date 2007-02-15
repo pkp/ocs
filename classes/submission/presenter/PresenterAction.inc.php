@@ -97,9 +97,9 @@ class PresenterAction extends Action {
 		if ($paperFileManager->uploadedFileExists($fileName)) {
 			HookRegistry::call('PresenterAction::uploadRevisedVersion', array(&$presenterSubmission));
 			if ($presenterSubmission->getRevisedFileId() != null) {
-				$fileId = $paperFileManager->uploadEditorDecisionFile($fileName, $presenterSubmission->getRevisedFileId());
+				$fileId = $paperFileManager->uploadDirectorDecisionFile($fileName, $presenterSubmission->getRevisedFileId());
 			} else {
-				$fileId = $paperFileManager->uploadEditorDecisionFile($fileName);
+				$fileId = $paperFileManager->uploadDirectorDecisionFile($fileName);
 			}
 		}
 		
@@ -127,7 +127,7 @@ class PresenterAction extends Action {
 	function viewLayoutComments($paper) {
 		if (!HookRegistry::call('PresenterAction::viewLayoutComments', array(&$paper))) {
 			import("submission.form.comment.LayoutCommentForm");
-			$commentForm = &new LayoutCommentForm($paper, ROLE_ID_EDITOR);
+			$commentForm = &new LayoutCommentForm($paper, ROLE_ID_DIRECTOR);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -161,25 +161,25 @@ class PresenterAction extends Action {
 	}
 	
 	/**
-	 * View editor decision comments.
+	 * View director decision comments.
 	 * @param $paper object
 	 */
-	function viewEditorDecisionComments($paper) {
-		if (!HookRegistry::call('PresenterAction::viewEditorDecisionComments', array(&$paper))) {
-			import("submission.form.comment.EditorDecisionCommentForm");
+	function viewDirectorDecisionComments($paper) {
+		if (!HookRegistry::call('PresenterAction::viewDirectorDecisionComments', array(&$paper))) {
+			import("submission.form.comment.DirectorDecisionCommentForm");
 
-			$commentForm = &new EditorDecisionCommentForm($paper, ROLE_ID_PRESENTER);
+			$commentForm = &new DirectorDecisionCommentForm($paper, ROLE_ID_PRESENTER);
 			$commentForm->initData();
 			$commentForm->display();
 		}
 	}
 	
 	/**
-	 * Email editor decision comment.
+	 * Email director decision comment.
 	 * @param $presenterSubmission object
 	 * @param $send boolean
 	 */
-	function emailEditorDecisionComment($presenterSubmission, $send) {
+	function emailDirectorDecisionComment($presenterSubmission, $send) {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$conference = &Request::getConference();
 
@@ -188,18 +188,18 @@ class PresenterAction extends Action {
 		$email = &new PaperMailTemplate($presenterSubmission);
 	
 		$editAssignments = $presenterSubmission->getEditAssignments();
-		$editors = array();
+		$directors = array();
 		foreach ($editAssignments as $editAssignment) {
-			array_push($editors, $userDao->getUser($editAssignment->getEditorId()));
+			array_push($directors, $userDao->getUser($editAssignment->getDirectorId()));
 		}
 
 		if ($send && !$email->hasErrors()) {
-			HookRegistry::call('PresenterAction::emailEditorDecisionComment', array(&$presenterSubmission, &$email));
+			HookRegistry::call('PresenterAction::emailDirectorDecisionComment', array(&$presenterSubmission, &$email));
 			$email->send();
 
 			$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
 			$paperComment =& new PaperComment();
-			$paperComment->setCommentType(COMMENT_TYPE_EDITOR_DECISION);
+			$paperComment->setCommentType(COMMENT_TYPE_DIRECTOR_DECISION);
 			$paperComment->setRoleId(ROLE_ID_PRESENTER);
 			$paperComment->setPaperId($presenterSubmission->getPaperId());
 			$paperComment->setAuthorId($presenterSubmission->getUserId());
@@ -214,16 +214,16 @@ class PresenterAction extends Action {
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->setSubject($presenterSubmission->getPaperTitle());
-				if (!empty($editors)) {
-					foreach ($editors as $editor) {
-						$email->addRecipient($editor->getEmail(), $editor->getFullName());
+				if (!empty($directors)) {
+					foreach ($directors as $director) {
+						$email->addRecipient($director->getEmail(), $director->getFullName());
 					}
 				} else {
 					$email->addRecipient($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 				}
 			}
 
-			$email->displayEditForm(Request::url(null, null, null, 'emailEditorDecisionComment', 'send'), array('paperId' => $presenterSubmission->getPaperId()), 'submission/comment/editorDecisionEmail.tpl');
+			$email->displayEditForm(Request::url(null, null, null, 'emailDirectorDecisionComment', 'send'), array('paperId' => $presenterSubmission->getPaperId()), 'submission/comment/directorDecisionEmail.tpl');
 
 			return false;
 		}
@@ -252,13 +252,13 @@ class PresenterAction extends Action {
 		// Presenters have access to:
 		// 1) The original submission file.
 		// 2) Any files uploaded by the reviewers that are "viewable",
-		//    although only after a decision has been made by the editor.
+		//    although only after a decision has been made by the director.
 		// 4) Any of the presenter-revised files.
 		// 5) The layout version of the file.
 		// 6) Any supplementary file
 		// 7) Any galley file
 		// 8) All review versions of the file
-		// 9) Current editor versions of the file
+		// 9) Current director versions of the file
 		// THIS LIST SHOULD NOW BE COMPLETE.
 		if ($submission->getSubmissionFileId() == $fileId) {
 			$canDownload = true;
@@ -306,10 +306,10 @@ class PresenterAction extends Action {
 				$canDownload = true;
 			}
 
-			// Check editor version
-			$editorFiles = $submission->getEditorFileRevisions($paper->getCurrentRound());
-			foreach ($editorFiles as $editorFile) {
-				if ($editorFile->getFileId() == $fileId) {
+			// Check director version
+			$directorFiles = $submission->getDirectorFileRevisions($paper->getCurrentRound());
+			foreach ($directorFiles as $directorFile) {
+				if ($directorFile->getFileId() == $fileId) {
 					$canDownload = true;
 				}
 			}

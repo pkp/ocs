@@ -32,14 +32,14 @@ define('PAPER_LOG_PAPER_EXPIRE',		0x10000008);
 // Presenter events 				0x20000000
 define('PAPER_LOG_PRESENTER_REVISION', 		0x20000001);
 
-// Editor events 				0x30000000
-define('PAPER_LOG_EDITOR_ASSIGN', 		0x30000001);
-define('PAPER_LOG_EDITOR_UNASSIGN',	 	0x30000002);
-define('PAPER_LOG_EDITOR_DECISION', 		0x30000003);
-define('PAPER_LOG_EDITOR_FILE', 		0x30000004);
-define('PAPER_LOG_EDITOR_ARCHIVE', 		0x30000005);
-define('PAPER_LOG_EDITOR_RESTORE', 		0x30000006);
-define('PAPER_LOG_EDITOR_EXPEDITE', 		0x30000007);
+// Director events 				0x30000000
+define('PAPER_LOG_DIRECTOR_ASSIGN', 		0x30000001);
+define('PAPER_LOG_DIRECTOR_UNASSIGN',	 	0x30000002);
+define('PAPER_LOG_DIRECTOR_DECISION', 		0x30000003);
+define('PAPER_LOG_DIRECTOR_FILE', 		0x30000004);
+define('PAPER_LOG_DIRECTOR_ARCHIVE', 		0x30000005);
+define('PAPER_LOG_DIRECTOR_RESTORE', 		0x30000006);
+define('PAPER_LOG_DIRECTOR_EXPEDITE', 		0x30000007);
 
 // Reviewer events 				0x40000000
 define('PAPER_LOG_REVIEW_ASSIGN', 		0x40000001);
@@ -292,19 +292,19 @@ class PaperEventLogEntry extends DataObject {
 			case PAPER_LOG_PRESENTER_REVISION:
 				return 'submission.event.presenter.presenterRevision';
 			
-			// Editor events
-			case PAPER_LOG_EDITOR_ASSIGN:
-				return 'submission.event.editor.editorAssigned';
-			case PAPER_LOG_EDITOR_UNASSIGN:
-				return 'submission.event.editor.editorUnassigned';
-			case PAPER_LOG_EDITOR_DECISION:
-				return 'submission.event.editor.editorDecision';
-			case PAPER_LOG_EDITOR_FILE:
-				return 'submission.event.editor.editorFile';
-			case PAPER_LOG_EDITOR_ARCHIVE:
-				return 'submission.event.editor.submissionArchived';
-			case PAPER_LOG_EDITOR_RESTORE:
-				return 'submission.event.editor.submissionRestored';
+			// Director events
+			case PAPER_LOG_DIRECTOR_ASSIGN:
+				return 'submission.event.director.directorAssigned';
+			case PAPER_LOG_DIRECTOR_UNASSIGN:
+				return 'submission.event.director.directorUnassigned';
+			case PAPER_LOG_DIRECTOR_DECISION:
+				return 'submission.event.director.directorDecision';
+			case PAPER_LOG_DIRECTOR_FILE:
+				return 'submission.event.director.directorFile';
+			case PAPER_LOG_DIRECTOR_ARCHIVE:
+				return 'submission.event.director.submissionArchived';
+			case PAPER_LOG_DIRECTOR_RESTORE:
+				return 'submission.event.director.submissionRestored';
 				
 			// Reviewer events
 			case PAPER_LOG_REVIEW_ASSIGN:
@@ -389,8 +389,8 @@ class PaperEventLogEntry extends DataObject {
 		switch ($this->getData('assocType')) {
 			case LOG_TYPE_PRESENTER:
 				return 'AUT';
-			case LOG_TYPE_EDITOR:
-				return 'EDR';
+			case LOG_TYPE_DIRECTOR:
+				return 'DIR';
 			case LOG_TYPE_REVIEW:
 				return 'REV';
 			default:
@@ -406,8 +406,8 @@ class PaperEventLogEntry extends DataObject {
 		switch ($this->getData('assocType')) {
 			case LOG_TYPE_PRESENTER:
 				return 'event.logType.presenter';
-			case LOG_TYPE_EDITOR:
-				return 'event.logType.editor';
+			case LOG_TYPE_DIRECTOR:
+				return 'event.logType.director';
 			case LOG_TYPE_REVIEW:
 				return 'event.logType.review';
 			default:

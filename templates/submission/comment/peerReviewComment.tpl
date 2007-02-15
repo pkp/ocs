@@ -74,11 +74,11 @@
 	<td class="value"><input type="text" name="commentTitle" id="commentTitle" value="{$commentTitle|escape}" size="50" maxlength="100" class="textField" /></td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="presenterComments"}{translate key="submission.comments.forPresenterEditor"}</td>
+	<td class="label">{fieldLabel name="presenterComments"}{translate key="submission.comments.forPresenterDirector"}</td>
 	<td class="value"><textarea id="presenterComments" name="presenterComments" rows="10" cols="50" class="textArea">{$presenterComments|escape}</textarea></td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="comments"}{translate key="submission.comments.forEditor"}</td>
+	<td class="label">{fieldLabel name="comments"}{translate key="submission.comments.forDirector"}</td>
 	<td class="value"><textarea id="comments" name="comments" rows="10" cols="50" class="textArea">{$comments|escape}</textarea></td>
 </tr>
 </table>

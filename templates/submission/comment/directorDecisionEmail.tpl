@@ -1,10 +1,10 @@
 {**
- * editorDecisionEmail.tpl
+ * directorDecisionEmail.tpl
  *
  * Copyright (c) 2003-2005 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Editor Decision email template form
+ * Director Decision email template form
  *
  * $Id$
  *}
@@ -137,7 +137,7 @@ function deleteAttachment(fileId) {
 	</td>
 </tr>
 {/if}
-{if $isAnEditor}
+{if $isADirector}
 	<tr valign="top">
 		<td colspan="2">&nbsp;</td>
 	</tr>
@@ -165,7 +165,7 @@ function deleteAttachment(fileId) {
 </tr>
 </table>
 
-{if $isAnEditor}<input type="checkbox" name="blindCcReviewers" value="1" id="blindCcReviewers"/>&nbsp;&nbsp;<label for="blindCcReviewers">{translate key="submission.comments.blindCcReviewers"}</label>{/if}
+{if $isADirector}<input type="checkbox" name="blindCcReviewers" value="1" id="blindCcReviewers"/>&nbsp;&nbsp;<label for="blindCcReviewers">{translate key="submission.comments.blindCcReviewers"}</label>{/if}
 
 <p><input name="send" type="submit" value="{translate key="email.send"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="history.go(-1)" />{if !$disableSkipButton} <input name="send[skip]" type="submit" value="{translate key="email.skip"}" class="button" />{/if}</p>
 </form>

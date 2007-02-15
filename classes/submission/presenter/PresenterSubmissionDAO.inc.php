@@ -86,14 +86,14 @@ class PresenterSubmissionDAO extends DAO {
 		// Paper attributes
 		$this->paperDao->_paperFromRow($presenterSubmission, $row);
 		
-		// Editor Assignment
+		// Director Assignment
 		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByPaperId($row['paper_id']);
 		$presenterSubmission->setEditAssignments($editAssignments->toArray());
 		
-		// Editor Decisions
+		// Director Decisions
 		for ($i = 1; $i <= $row['review_progress']; $i++) {
 			for ($j = 1; $j <= $row['current_round']; $j++) {
-				$presenterSubmission->setDecisions($this->getEditorDecisions($row['paper_id'], $i, $j), $i, $j);
+				$presenterSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i, $j), $i, $j);
 			}
 		}
 				
@@ -103,7 +103,7 @@ class PresenterSubmissionDAO extends DAO {
 				$presenterSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByPaperId($row['paper_id'], $i, $j), $i, $j);
 
 		// Comments
-		$presenterSubmission->setMostRecentEditorDecisionComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_EDITOR_DECISION, $row['paper_id']));
+		$presenterSubmission->setMostRecentDirectorDecisionComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_DIRECTOR_DECISION, $row['paper_id']));
 		$presenterSubmission->setMostRecentLayoutComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_LAYOUT, $row['paper_id']));
 		
 		// Files
@@ -114,7 +114,7 @@ class PresenterSubmissionDAO extends DAO {
 			$presenterSubmission->setPresenterFileRevisions($this->paperFileDao->getPaperFileRevisions($row['revised_file_id'], $i), $i);
 		}
 		for ($i = 1; $i <= $row['current_round']; $i++) {
-			$presenterSubmission->setEditorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['editor_file_id'], $i), $i);
+			$presenterSubmission->setDirectorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['director_file_id'], $i), $i);
 		}
 		$presenterSubmission->setGalleys($this->galleyDao->getGalleysByPaper($row['paper_id']));
 
@@ -143,7 +143,7 @@ class PresenterSubmissionDAO extends DAO {
 			// original as the review version, but they are probably
 			// best not exposed like this.
 			$paper->setReviewFileId($presenterSubmission->getReviewFileId());
-			$paper->setEditorFileId($presenterSubmission->getEditorFileId());
+			$paper->setDirectorFileId($presenterSubmission->getDirectorFileId());
 			
 			$this->paperDao->updatePaper($paper);
 		}
@@ -209,11 +209,11 @@ class PresenterSubmissionDAO extends DAO {
 	//
 	
 	/**
-	 * Get the editor decisions for a review round of an paper.
+	 * Get the director decisions for a review round of an paper.
 	 * @param $paperId int
 	 * @param $round int
 	 */
-	function getEditorDecisions($paperId, $type = null, $round = null) {
+	function getDirectorDecisions($paperId, $type = null, $round = null) {
 		$decisions = array();
 		$args = array($paperId);
 		if($type) {
@@ -224,7 +224,7 @@ class PresenterSubmissionDAO extends DAO {
 		}
 	
 		$result = &$this->retrieve(
-			'SELECT edit_decision_id, editor_id, decision, date_decided
+			'SELECT edit_decision_id, director_id, decision, date_decided
 			FROM edit_decisions
 			WHERE paper_id = ? ' .
 			($type?' AND type = ?' :'') .
@@ -236,7 +236,7 @@ class PresenterSubmissionDAO extends DAO {
 		while (!$result->EOF) {
 			$decisions[] = array(
 				'editDecisionId' => $result->fields['edit_decision_id'],
-				'editorId' => $result->fields['editor_id'],
+				'directorId' => $result->fields['director_id'],
 				'decision' => $result->fields['decision'],
 				'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
 			);

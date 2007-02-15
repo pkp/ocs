@@ -14,14 +14,14 @@
  */
 
 /* These constants correspond to editing decision "decision codes". */
-define('SUBMISSION_EDITOR_DECISION_ACCEPT', 1);
-define('SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS', 2);
-define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 3);
-define('SUBMISSION_EDITOR_DECISION_DECLINE', 4);
+define('SUBMISSION_DIRECTOR_DECISION_ACCEPT', 1);
+define('SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS', 2);
+define('SUBMISSION_DIRECTOR_DECISION_RESUBMIT', 3);
+define('SUBMISSION_DIRECTOR_DECISION_DECLINE', 4);
 
 /* These constants are used as search fields for the various submission lists */
 define('SUBMISSION_FIELD_PRESENTER', 1);
-define('SUBMISSION_FIELD_EDITOR', 2);
+define('SUBMISSION_FIELD_DIRECTOR', 2);
 define('SUBMISSION_FIELD_TITLE', 3);
 define('SUBMISSION_FIELD_REVIEWER', 4);
 define('SUBMISSION_FIELD_LAYOUTEDITOR', 6);
@@ -138,7 +138,7 @@ class Action {
 				$user = &Request::getUser();
 				import('paper.log.PaperLog');
 				import('paper.log.PaperEventLogEntry');
-				PaperLog::logEvent($paper->getPaperId(), PAPER_LOG_METADATA_UPDATE, LOG_TYPE_DEFAULT, 0, 'log.editor.metadataModified', Array('editorName' => $user->getFullName()));
+				PaperLog::logEvent($paper->getPaperId(), PAPER_LOG_METADATA_UPDATE, LOG_TYPE_DEFAULT, 0, 'log.director.metadataModified', Array('directorName' => $user->getFullName()));
 
 				return true;
 			}

@@ -17,7 +17,7 @@
 // Email associative types. All types must be defined here
 define('PAPER_EMAIL_TYPE_DEFAULT', 		0);
 define('PAPER_EMAIL_TYPE_PRESENTER', 		0x01);
-define('PAPER_EMAIL_TYPE_EDITOR', 		0x02);
+define('PAPER_EMAIL_TYPE_DIRECTOR', 		0x02);
 define('PAPER_EMAIL_TYPE_REVIEW', 		0x03);
 define('PAPER_EMAIL_TYPE_LAYOUT', 		0x05);
 
@@ -25,11 +25,11 @@ define('PAPER_EMAIL_TYPE_LAYOUT', 		0x05);
 
 // Presenter events 				0x20000000
 
-// Editor events 				0x30000000
-define('PAPER_EMAIL_EDITOR_NOTIFY_PRESENTER', 		0x30000001);
-define('PAPER_EMAIL_EDITOR_ASSIGN',		0x30000002);
-define('PAPER_EMAIL_EDITOR_NOTIFY_PRESENTER_UNSUITABLE',	0x30000003);
-define('PAPER_EMAIL_EDITOR_NOTIFY_PRESENTER_EXPIRED',	0x30000004);
+// Director events 				0x30000000
+define('PAPER_EMAIL_DIRECTOR_NOTIFY_PRESENTER',	0x30000001);
+define('PAPER_EMAIL_DIRECTOR_ASSIGN',		0x30000002);
+define('PAPER_EMAIL_DIRECTOR_NOTIFY_PRESENTER_UNSUITABLE',	0x30000003);
+define('PAPER_EMAIL_DIRECTOR_NOTIFY_PRESENTER_EXPIRED',		0x30000004);
 
 // Reviewer events 				0x40000000
 define('PAPER_EMAIL_REVIEW_NOTIFY_REVIEWER', 		0x40000001);
@@ -220,8 +220,8 @@ class PaperEmailLogEntry extends DataObject {
 		switch ($this->getData('assocType')) {
 			case LOG_TYPE_PRESENTER:
 				return 'AUT';
-			case LOG_TYPE_EDITOR:
-				return 'EDR';
+			case LOG_TYPE_DIRECTOR:
+				return 'DIR';
 			case LOG_TYPE_REVIEW:
 				return 'REV';
 			default:
@@ -237,8 +237,8 @@ class PaperEmailLogEntry extends DataObject {
 		switch ($this->getData('assocType')) {
 			case LOG_TYPE_PRESENTER:
 				return 'event.logType.presenter';
-			case LOG_TYPE_EDITOR:
-				return 'event.logType.editor';
+			case LOG_TYPE_DIRECTOR:
+				return 'event.logType.director';
 			case LOG_TYPE_REVIEW:
 				return 'event.logType.review';
 			default:

@@ -397,9 +397,9 @@ class RoleDAO extends DAO {
 //			case ROLE_ID_SCHEDULING_MANAGER:
 //				return 'user.role.schedulingManager' . ($plural ? 's' : '');
 
-			case ROLE_ID_EDITOR:
-				return 'user.role.editor' . ($plural ? 's' : '');
-			case ROLE_ID_TRACK_EDITOR:
+			case ROLE_ID_DIRECTOR:
+				return 'user.role.director' . ($plural ? 's' : '');
+			case ROLE_ID_TRACK_DIRECTOR:
 				return 'user.role.trackDirector' . ($plural ? 's' : '');
 			case ROLE_ID_LAYOUT_EDITOR:
 				return 'user.role.layoutEditor' . ($plural ? 's' : '');
@@ -440,10 +440,10 @@ class RoleDAO extends DAO {
 //			case ROLE_ID_SCHEDULING_MANAGER:
 //				return ROLE_PATH_SCHEDULING_MANAGER;
 
-			case ROLE_ID_EDITOR:
-				return ROLE_PATH_EDITOR;
-			case ROLE_ID_TRACK_EDITOR:
-				return ROLE_PATH_TRACK_EDITOR;
+			case ROLE_ID_DIRECTOR:
+				return ROLE_PATH_DIRECTOR;
+			case ROLE_ID_TRACK_DIRECTOR:
+				return ROLE_PATH_TRACK_DIRECTOR;
 			case ROLE_ID_LAYOUT_EDITOR:
 				return ROLE_PATH_LAYOUT_EDITOR;
 			case ROLE_ID_REVIEWER:
@@ -483,10 +483,10 @@ class RoleDAO extends DAO {
 //			case ROLE_PATH_SCHEDULING_MANAGER:
 //				return ROLE_ID_SCHEDULING_MANAGER;
 
-			case ROLE_PATH_EDITOR:
-				return ROLE_ID_EDITOR;
-			case ROLE_PATH_TRACK_EDITOR:
-				return ROLE_ID_TRACK_EDITOR;
+			case ROLE_PATH_DIRECTOR:
+				return ROLE_ID_DIRECTOR;
+			case ROLE_PATH_TRACK_DIRECTOR:
+				return ROLE_ID_TRACK_DIRECTOR;
 			case ROLE_PATH_LAYOUT_EDITOR:
 				return ROLE_ID_LAYOUT_EDITOR;
 			case ROLE_PATH_REVIEWER:

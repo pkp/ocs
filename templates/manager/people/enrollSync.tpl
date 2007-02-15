@@ -30,7 +30,7 @@
 					<option value=""></option>
 					<option value="all">{translate key="manager.people.allUsers"}</option>
 					<option value="manager">{translate key="user.role.manager"}</option>
-					<option value="editor">{translate key="user.role.editor"}</option>
+					<option value="director">{translate key="user.role.director"}</option>
 					<option value="trackDirector">{translate key="user.role.trackDirector"}</option>
 					<option value="layoutEditor">{translate key="user.role.layoutEditor"}</option>
 					<option value="reviewer">{translate key="user.role.reviewer"}</option>

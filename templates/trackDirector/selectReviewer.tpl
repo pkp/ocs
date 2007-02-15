@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="user.role.reviewers"}
 {include file="common/header.tpl"}
 
-<h3>{translate key="editor.paper.selectReviewer"}</h3>
+<h3>{translate key="director.paper.selectReviewer"}</h3>
 <form name="submit" method="post" action="{url op="selectReviewer" path=$paperId}">
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
@@ -43,8 +43,8 @@
 		<td width="7%">{translate key="reviewer.averageQuality"}</td>
 	{/if}
 	<td width="7%">{translate key="reviewer.completedReviews"}</td>
-	<td width="7%">{translate key="editor.submissions.averageTime"}</td>
-	<td width="13%">{translate key="editor.submissions.lastAssigned"}</td>
+	<td width="7%">{translate key="director.submissions.averageTime"}</td>
+	<td width="13%">{translate key="director.submissions.lastAssigned"}</td>
 	<td width="5%">{translate key="common.active"}</td>
 	<td width="7%" class="heading">{translate key="common.action"}</td>
 </tr>
@@ -103,6 +103,6 @@
 </table>
 
 <h4>{translate key="common.notes"}</h4>
-<p>{translate key="editor.paper.selectReviewerNotes"}</p>
+<p>{translate key="director.paper.selectReviewerNotes"}</p>
 
 {include file="common/footer.tpl"}

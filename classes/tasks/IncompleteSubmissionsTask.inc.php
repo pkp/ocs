@@ -37,7 +37,7 @@ class IncompleteSubmissionsTask extends ScheduledTask {
 		foreach($presenters as $presenter) {
 			$email->addRecipient($presenter->getEmail(), $presenter->getFullName());
 		}
-		$email->setAssoc(PAPER_EMAIL_EDITOR_NOTIFY_PRESENTER_EXPIRED, PAPER_EMAIL_TYPE_EDITOR, $paperId);
+		$email->setAssoc(PAPER_EMAIL_DIRECTOR_NOTIFY_PRESENTER_EXPIRED, PAPER_EMAIL_TYPE_DIRECTOR, $paperId);
 
 		$email->setSubject($email->getSubject($conference->getLocale()));
 		$email->setBody($email->getBody($conference->getLocale()));

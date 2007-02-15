@@ -295,8 +295,8 @@ class ConferenceEventLogEntry extends DataObject {
 		switch ($this->getData('assocType')) {
 			case LOG_TYPE_PRESENTER:
 				return 'AUT';
-			case LOG_TYPE_EDITOR:
-				return 'EDR';
+			case LOG_TYPE_DIRECTOR:
+				return 'DIR';
 			case LOG_TYPE_REVIEW:
 				return 'REV';
 			default:
@@ -312,8 +312,8 @@ class ConferenceEventLogEntry extends DataObject {
 		switch ($this->getData('assocType')) {
 			case LOG_TYPE_PRESENTER:
 				return 'event.logType.presenter';
-			case LOG_TYPE_EDITOR:
-				return 'event.logType.editor';
+			case LOG_TYPE_DIRECTOR:
+				return 'event.logType.director';
 			case LOG_TYPE_REVIEW:
 				return 'event.logType.review';
 			default:

@@ -22,7 +22,7 @@ class TimelineHandler extends TrackDirectorHandler {
 		parent::validate();
 		parent::setupTemplate(true);
 		
-		import('editor.form.TimelineForm');
+		import('director.form.TimelineForm');
 		
 		$timelineForm = &new TimelineForm();
 		$timelineForm->initData();
@@ -33,7 +33,7 @@ class TimelineHandler extends TrackDirectorHandler {
 	function updateTimeline($args) {
 		parent::validate();
 		
-		import('editor.form.TimelineForm');
+		import('director.form.TimelineForm');
 		
 		$timelineForm = &new TimelineForm();
 		$timelineForm->readInputData();

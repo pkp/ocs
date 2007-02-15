@@ -112,7 +112,7 @@ class DAORegistry {
 			case 'VersionDAO': return 'site.VersionDAO';
 			case 'PresenterSubmissionDAO': return 'submission.presenter.PresenterSubmissionDAO';
 			case 'EditAssignmentDAO': return 'submission.editAssignment.EditAssignmentDAO';
-			case 'EditorSubmissionDAO': return 'submission.editor.EditorSubmissionDAO';
+			case 'DirectorSubmissionDAO': return 'submission.director.DirectorSubmissionDAO';
 			case 'LayoutAssignmentDAO': return 'submission.layoutAssignment.LayoutAssignmentDAO';
 			case 'LayoutEditorSubmissionDAO': return 'submission.layoutEditor.LayoutEditorSubmissionDAO';
 			case 'ReviewAssignmentDAO': return 'submission.reviewAssignment.ReviewAssignmentDAO';

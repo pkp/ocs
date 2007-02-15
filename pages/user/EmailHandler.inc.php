@@ -25,11 +25,11 @@ class EmailHandler extends UserHandler {
 
 		$user = &Request::getUser();
 
-		// See if this is the Editor or Manager and an email template has been chosen
+		// See if this is the Director or Manager and an email template has been chosen
 		$template = Request::getUserVar('template');
 		if (empty($template) || (
 			!Validation::isConferenceManager() &&
-			!Validation::isEditor() &&
+			!Validation::isDirector() &&
 			!Validation::isTrackDirector())) {
 			$template = null;
 		}
@@ -48,13 +48,13 @@ class EmailHandler extends UserHandler {
 			// First, conditions where access is OK.
 			// 1. User is submitter
 			if ($paper && $paper->getUserId() == $user->getUserId()) $hasAccess = true;
-			// 2. User is editor
+			// 2. User is director
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($paperId);
 			while ($editAssignment =& $editAssignments->next()) {
-				if ($editAssignment->getEditorId() === $user->getUserId()) $hasAccess = true;
+				if ($editAssignment->getDirectorId() === $user->getUserId()) $hasAccess = true;
 			}
-			if (Validation::isEditor()) $hasAccess = true;
+			if (Validation::isDirector()) $hasAccess = true;
 			// 3. User is reviewer
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			foreach ($reviewAssignmentDao->getReviewAssignmentsByPaperId($paperId) as $reviewAssignment) {

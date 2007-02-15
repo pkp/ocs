@@ -203,7 +203,7 @@ class LayoutEditorSubmissionDAO extends DAO {
 			INNER JOIN layouted_assignments l ON (l.paper_id = a.paper_id)
 			LEFT JOIN tracks s ON s.track_id = a.track_id
 			LEFT JOIN edit_assignments e ON (e.paper_id = a.paper_id)
-			LEFT JOIN users ed ON (e.editor_id = ed.user_id)
+			LEFT JOIN users ed ON (e.director_id = ed.user_id)
 			WHERE
 				l.editor_id = ? AND
 				' . (isset($schedConfId)?'a.sched_conf_id = ? AND':'') . '

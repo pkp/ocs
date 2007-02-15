@@ -12,15 +12,15 @@
 {assign var="pageTitle" value="about.organizingTeam"}
 {include file="common/header.tpl"}
 
-{if count($editors) > 0}
-	{if count($editors) == 1}
-		<h4>{translate key="user.role.editor"}</h4>
+{if count($directors) > 0}
+	{if count($directors) == 1}
+		<h4>{translate key="user.role.director"}</h4>
 	{else}
-		<h4>{translate key="user.role.editors"}</h4>
+		<h4>{translate key="user.role.directors"}</h4>
 	{/if}
 
-{foreach from=$editors item=editor}
-	<a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$editor->getUserId()}')">{$editor->getFullName()|escape}</a>{if $editor->getAffiliation()}, {$editor->getAffiliation()|escape}{/if}{if $editor->getCountry()}{assign var=countryCode value=$editor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country}{/if}
+{foreach from=$directors item=director}
+	<a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$director->getUserId()}')">{$director->getFullName()|escape}</a>{if $director->getAffiliation()}, {$director->getAffiliation()|escape}{/if}{if $director->getCountry()}{assign var=countryCode value=$director->getCountry()}{assign var=country value=$countries.$countryCode}, {$country}{/if}
 	<br/>
 {/foreach}
 {/if}

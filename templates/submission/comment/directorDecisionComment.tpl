@@ -1,5 +1,5 @@
 {**
- * editorDecisionComment.tpl
+ * directorDecisionComment.tpl
  *
  * Copyright (c) 2003-2004 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -40,7 +40,7 @@
 <br />
 <br />
 
-{if not $isLocked and $isEditor}
+{if not $isLocked and $isDirector}
 
 <form method="post" action="{url op=$commentAction}">
 {if $hiddenFormParams}

@@ -19,9 +19,9 @@
 		<li><a href="{url op="index" path="submissionsArchives"}">{translate key="common.queue.short.submissionsArchives"}</a></li>
 	</ul>
 
-	<span class="blockSubtitle">{translate key="editor.navigation.management"}</span>
+	<span class="blockSubtitle">{translate key="director.navigation.management"}</span>
 
 	<ul>
-		<li><a href="{url op="timeline"}">{translate key="editor.timeline"}</a></li>
+		<li><a href="{url op="timeline"}">{translate key="director.timeline"}</a></li>
 	</ul>
 </div>

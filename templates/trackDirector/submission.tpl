@@ -33,7 +33,7 @@
 
 <div class="separator"></div>
 
-{include file="trackDirector/submission/editors.tpl"}
+{include file="trackDirector/submission/directors.tpl"}
 
 <div class="separator"></div>
 

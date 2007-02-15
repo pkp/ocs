@@ -109,12 +109,12 @@ function checkSubmissionChecklist() {
 
 <div class="separator"></div>
 
-<h3>{translate key="presenter.submit.commentsForEditor"}</h3>
+<h3>{translate key="presenter.submit.commentsForDirector"}</h3>
 <table width="100%" class="data">
 
 <tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="commentsToEditor" key="presenter.submit.comments"}</td>
-	<td width="80%" class="value"><textarea name="commentsToEditor" id="commentsToEditor" rows="3" cols="40" class="textArea">{$commentsToEditor|escape}</textarea></td>
+	<td width="20%" class="label">{fieldLabel name="commentsToDirector" key="presenter.submit.comments"}</td>
+	<td width="80%" class="value"><textarea name="commentsToDirector" id="commentsToDirector" rows="3" cols="40" class="textArea">{$commentsToDirector|escape}</textarea></td>
 </tr>
 
 </table>

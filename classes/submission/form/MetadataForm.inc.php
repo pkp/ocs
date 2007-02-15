@@ -35,9 +35,9 @@ class MetadataForm extends Form {
 		$user = &Request::getUser();
 		$roleId = $roleDao->getRoleIdFromPath(Request::getRequestedPage());
 		
-		// If the user is an editor of this paper, make the form editable.
+		// If the user is a director of this paper, make the form editable.
 		$this->canEdit = false;
-		if ($roleId != null && ($roleId == ROLE_ID_EDITOR || $roleId == ROLE_ID_TRACK_EDITOR)) {
+		if ($roleId != null && ($roleId == ROLE_ID_DIRECTOR || $roleId == ROLE_ID_TRACK_DIRECTOR)) {
 			$this->canEdit = true;
 		}
 

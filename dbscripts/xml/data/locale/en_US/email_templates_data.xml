@@ -65,7 +65,7 @@ Thank you,
 
 Thanks for the continuing interest in our work,
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent to registered readers via the "Notify Users" link in the Editor's User Home. It notifies readers of a new issue and invites them to visit the conference at a supplied URL.</field>
+			<field name="description">This email is sent to registered readers via the "Notify Users" link in the Director's User Home. It notifies readers of a new issue and invites them to visit the conference at a supplied URL.</field>
 		</row>-->
 		<!--<row>
 			<field name="email_key">LOCKSS_EXISTING_ARCHIVE</field>
@@ -168,22 +168,22 @@ If you have any questions, please feel free to contact me.
 
 		<!--
 		  *
-		  * Editor
+		  * Director
 		  *
 		  -->
 		<row>
-			<field name="email_key">EDITOR_ASSIGN</field>
-			<field name="subject">Editorial Assignment</field>
+			<field name="email_key">DIRECTOR_ASSIGN</field>
+			<field name="subject">Director Assignment</field>
 			<field name="body">{$editorialContactName}:
 
-The submission, "{$paperTitle}," to {$conferenceName} has been assigned to you to see through the editorial process in your role as Track Editor.  
+The submission, "{$paperTitle}," to {$conferenceName} has been assigned to you to see through the editorial process in your role as Track Director.  
 
 Submission URL: {$submissionUrl}
-Username: {$editorUsername}
+Username: {$directorUsername}
 
 Thank you,
 {$editorialContactSignature}</field>
-			<field name="description">This email notifies a Track Editor that the Editor has assigned them the task of overseeing a submission through the editing process. It provides information about the submission and how to access the conference site.</field>
+			<field name="description">This email notifies a Track Director that the Director has assigned them the task of overseeing a submission through the editing process. It provides information about the submission and how to access the conference site.</field>
 		</row>
 
 
@@ -217,7 +217,7 @@ Thank you for considering this request.
 
 Abstract
 {$paperAbstract}</field>
-			<field name="description">This email from the Track Editor to a Reviewer requests that the reviewer accept or decline the task of reviewing a submission. It provides information about the submission such as the title and abstract, a review due date, and how to access the submission itself.</field>
+			<field name="description">This email from the Track Director to a Reviewer requests that the reviewer accept or decline the task of reviewing a submission. It provides information about the submission such as the title and abstract, a review due date, and how to access the submission itself.</field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_REQUEST_ONECLICK</field>
@@ -242,7 +242,7 @@ Thank you for considering this request.
 
 Abstract
 {$paperAbstract}</field>
-			<field name="description">This email from the Track Editor to a Reviewer requests that the reviewer accept or decline the task of reviewing a submission. It provides information about the submission such as the title and abstract, a review due date, and how to access the submission itself. This message is used when the Standard Review Process is selected in Conference Setup, Step 2, and one-click reviewer access is enabled.</field>
+			<field name="description">This email from the Track Director to a Reviewer requests that the reviewer accept or decline the task of reviewing a submission. It provides information about the submission such as the title and abstract, a review due date, and how to access the submission itself. This message is used when the Standard Review Process is selected in Conference Setup, Step 2, and one-click reviewer access is enabled.</field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_CANCEL</field>
@@ -254,7 +254,7 @@ We have decided at this point to cancel our request for you to review the submis
 If you have any questions, please contact me.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by the Track Editor to a Reviewer who has a submission review in progress to notify them that the review has been cancelled.</field>
+			<field name="description">This email is sent by the Track Director to a Reviewer who has a submission review in progress to notify them that the review has been cancelled.</field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_CONFIRM</field>
@@ -264,7 +264,7 @@ If you have any questions, please contact me.
 I am able and willing to review the submission, "{$paperTitle}," for {$conferenceName}. Thank you for thinking of me, and I plan to have the review completed by its due date, {$reviewDueDate}, if not before.
 
 {$reviewerName}</field>
-			<field name="description">This email is sent by a Reviewer to the Track Editor in response to a review request to notify the Track Editor that the review request has been accepted and will be completed by the specified date.</field>
+			<field name="description">This email is sent by a Reviewer to the Track Director in response to a review request to notify the Track Director that the review request has been accepted and will be completed by the specified date.</field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_CONFIRM_ACK</field>
@@ -274,7 +274,7 @@ I am able and willing to review the submission, "{$paperTitle}," for {$conferenc
 Thank you for agreeing to review the manuscript "{$paperTitle}" for {$conferenceName} by {$reviewDueDate}.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent from the Track Editor to the Reviewer to acknowledge their acceptance of a review or encourage them to complete the review.</field>
+			<field name="description">This email is sent from the Track Director to the Reviewer to acknowledge their acceptance of a review or encourage them to complete the review.</field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_DECLINE</field>
@@ -284,7 +284,7 @@ Thank you for agreeing to review the manuscript "{$paperTitle}" for {$conference
 I am afraid that at this time I am unable to review the submission, "{$paperTitle}," for {$conferenceName}. Thank you for thinking of me, and another time feel free to call on me.
 
 {$reviewerName}</field>
-			<field name="description">This email is sent by a Reviewer to the Track Editor in response to a review request to notify the Track Editor that the review request has been declined.</field>
+			<field name="description">This email is sent by a Reviewer to the Track Director in response to a review request to notify the Track Director that the review request has been declined.</field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_COMPLETE</field>
@@ -294,7 +294,7 @@ I am afraid that at this time I am unable to review the submission, "{$paperTitl
 I have now completed my review of "{$paperTitle}" for {$conferenceName}, and submitted my recommendation, "{$recommendation}."
 
 {$reviewerName}</field>
-			<field name="description">This email is sent by a Reviewer to the Track Editor to notify them that a review has been completed and the comments and recommendations have been recorded on the conference web site.</field>
+			<field name="description">This email is sent by a Reviewer to the Track Director to notify them that a review has been completed and the comments and recommendations have been recorded on the conference web site.</field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_ACK</field>
@@ -304,7 +304,7 @@ I have now completed my review of "{$paperTitle}" for {$conferenceName}, and sub
 Thank you for completing the review of the submission, "{$paperTitle}," for {$conferenceName}. We appreciate your contribution to the quality of the work that we publish.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Editor to confirm receipt of a completed review and thank the reviewer for their contributions.</field>
+			<field name="description">This email is sent by a Track Director to confirm receipt of a completed review and thank the reviewer for their contributions.</field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_REMIND</field>
@@ -320,7 +320,7 @@ Submission URL: {$submissionReviewUrl}
 Please confirm your ability to complete this vital contribution to the work of the conference. I look forward to hearing from you.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Editor to remind a reviewer that their review is due.</field>
+			<field name="description">This email is sent by a Track Director to remind a reviewer that their review is due.</field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_REMIND_ONECLICK</field>
@@ -334,7 +334,7 @@ Submission URL: {$submissionReviewUrl}
 Please confirm your ability to complete this vital contribution to the work of the conference. I look forward to hearing from you.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Editor to remind a reviewer that their review is due.</field>
+			<field name="description">This email is sent by a Track Director to remind a reviewer that their review is due.</field>
 		</row>
 		<row>
 			<field name="email_key">REVIEW_REMIND_AUTO</field>
@@ -370,7 +370,7 @@ Please confirm your ability to complete this vital contribution to the work of t
 
 		<!--
 		  *
-		  * Editor Review
+		  * Director Review
 		  *
 		  -->
 		<row>
@@ -381,7 +381,7 @@ Please confirm your ability to complete this vital contribution to the work of t
 We have now completed the review of your submission "{$paperTitle}." As a result...
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Editor to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 		<row>
@@ -392,7 +392,7 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 We have now completed the review of your submission "{$paperTitle}." As a result...
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Editor to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 		<row>
@@ -403,7 +403,7 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 We have now completed the review of your submission "{$paperTitle}." As a result...
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Editor to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 		<row>
@@ -414,7 +414,7 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 We have now completed the review of your submission "{$paperTitle}." As a result...
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Editor to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 		<row>
@@ -425,7 +425,7 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 We have now completed the review of your submission "{$paperTitle}." As a result...
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Editor to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 		<row>
@@ -436,7 +436,7 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 We have now completed the review of your submission "{$paperTitle}." As a result...
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Editor to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 		<row>
@@ -447,7 +447,7 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 We have now completed the review of your submission "{$paperTitle}." As a result...
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Editor to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 		<row>
@@ -458,7 +458,7 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 We have now completed the review of your submission "{$paperTitle}." As a result...
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Editor to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 

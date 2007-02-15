@@ -13,8 +13,8 @@
  * $Id$
  */
 
-define('TRACK_EDITOR_ACCESS_EDIT', 0x00001);
-define('TRACK_EDITOR_ACCESS_REVIEW', 0x00002);
+define('TRACK_DIRECTOR_ACCESS_EDIT', 0x00001);
+define('TRACK_DIRECTOR_ACCESS_REVIEW', 0x00002);
 
 class SubmissionEditHandler extends TrackDirectorHandler {
 
@@ -26,7 +26,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$user = &Request::getUser();
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getUserId(), ROLE_ID_EDITOR);
+		$isDirector = $roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getUserId(), ROLE_ID_DIRECTOR);
 
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$track = &$trackDao->getTrack($submission->getTrackId());
@@ -41,7 +41,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
 		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
 		$templateMgr->assign('userId', $user->getUserId());
-		$templateMgr->assign('isEditor', $isEditor);
+		$templateMgr->assign('isDirector', $isDirector);
 
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$templateMgr->assign_by_ref('tracks', $trackDao->getTrackTitles($schedConf->getSchedConfId()));
@@ -52,7 +52,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign_by_ref('publishedPaper', $publishedPaper);
 		}
 		
-		if ($isEditor) {
+		if ($isDirector) {
 			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
 		}
 
@@ -70,7 +70,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$types =& $submission->getReviewAssignments();
 		
-		$editorDecisions = $submission->getDecisions();
+		$directorDecisions = $submission->getDecisions();
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
@@ -78,10 +78,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('reviewAssignmentTypes', $types);
 		$templateMgr->assign_by_ref('cancelsAndRegrets', $cancelsAndRegrets);
 		$templateMgr->assign_by_ref('reviewFilesByRound', $reviewFilesByRound);
-		$templateMgr->assign_by_ref('editorDecisions', $editorDecisions);
+		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
 		$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality', true));
 		
-		$templateMgr->assign_by_ref('editorDecisionOptions', TrackDirectorSubmission::getEditorDecisionOptions());
+		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
 
 		import('submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRatingOptions', ReviewAssignment::getReviewerRatingOptions());
@@ -93,7 +93,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function submissionReview($args) {
 		$paperId = (isset($args[0]) ? $args[0] : null);
 
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$type = (isset($args[1]) ? $args[1] : $submission->getReviewProgress());
 		$round = (isset($args[2]) ? $args[2] : 1);
@@ -108,11 +108,11 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$showPeerReviewOptions = $round == $submission->getCurrentRound() && $submission->getReviewFile() != null ? true : false;
 
-		$editorDecisions = $submission->getDecisions($type, $round);
-		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;
+		$directorDecisions = $submission->getDecisions($type, $round);
+		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1]['decision'] : null;
 
 		$editAssignments =& $submission->getEditAssignments();
-		$allowResubmit = $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT && $trackDirectorSubmissionDao->getMaxReviewRound($paperId, $type) == $round ? true : false;
+		$allowResubmit = $lastDecision == SUBMISSION_DIRECTOR_DECISION_RESUBMIT && $trackDirectorSubmissionDao->getMaxReviewRound($paperId, $type) == $round ? true : false;
 
 
 		$isCurrent = ($round == $submission->getCurrentRound() && $type == $submission->getReviewProgress());
@@ -154,21 +154,21 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
-		$templateMgr->assign_by_ref('editorFile', $submission->getEditorFile());
+		$templateMgr->assign_by_ref('directorFile', $submission->getDirectorFile());
 		$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality', true));
 		$templateMgr->assign('showPeerReviewOptions', $showPeerReviewOptions);
 		$templateMgr->assign_by_ref('tracks', $tracks->toArray());
-		$templateMgr->assign('editorDecisionOptions',
+		$templateMgr->assign('directorDecisionOptions',
 			array(
 				'' => 'common.chooseOne',
-				SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.paper.decision.accept',
-				SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.paper.decision.pendingRevisions',
-				SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.paper.decision.resubmit',
-				SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.paper.decision.decline'
+				SUBMISSION_DIRECTOR_DECISION_ACCEPT => 'director.paper.decision.accept',
+				SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS => 'director.paper.decision.pendingRevisions',
+				SUBMISSION_DIRECTOR_DECISION_RESUBMIT => 'director.paper.decision.resubmit',
+				SUBMISSION_DIRECTOR_DECISION_DECLINE => 'director.paper.decision.decline'
 			)
 		);
 		$templateMgr->assign_by_ref('lastDecision', $lastDecision);
-		$templateMgr->assign_by_ref('editorDecisions', $editorDecisions);
+		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
 
 		import('submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
@@ -187,7 +187,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function submissionEditing($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		parent::setupTemplate(true, $paperId);
 
 		$useLayoutEditors = $schedConf->getSetting('useLayoutEditors', true);
@@ -195,9 +195,9 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		// check if submission is accepted
 		$type = isset($args[1]) ? $args[1] : $submission->getReviewProgress();
 		$round = isset($args[2]) ? $args[2] : $submission->getCurrentRound();
-		$editorDecisions = $submission->getDecisions($type, $round);
-		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;
-		$submissionAccepted = ($lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT) ? true : false;
+		$directorDecisions = $submission->getDecisions($type, $round);
+		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1]['decision'] : null;
+		$submissionAccepted = ($lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT) ? true : false;
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -245,7 +245,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
 
-		$templateMgr->assign('isEditor', Validation::isEditor());
+		$templateMgr->assign('isDirector', Validation::isDirector());
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('eventLogEntries', $eventLogEntries);
 		$templateMgr->assign_by_ref('emailLogEntries', $emailLogEntries);
@@ -267,7 +267,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function recordDecision() {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$round = $submission->getCurrentRound();
 		$type = $submission->getReviewProgress();
@@ -275,10 +275,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$decision = Request::getUserVar('decision');
 
 		switch ($decision) {
-			case SUBMISSION_EDITOR_DECISION_ACCEPT:
-			case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
-			case SUBMISSION_EDITOR_DECISION_RESUBMIT:
-			case SUBMISSION_EDITOR_DECISION_DECLINE:
+			case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
+			case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
+			case SUBMISSION_DIRECTOR_DECISION_RESUBMIT:
+			case SUBMISSION_DIRECTOR_DECISION_DECLINE:
 				TrackDirectorAction::recordDecision($submission, $decision);
 				break;
 		}
@@ -292,7 +292,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function selectReviewer($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
@@ -358,7 +358,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 */
 	function createReviewer($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		import('trackDirector.form.CreateReviewerForm');
 		$createReviewerForm =& new CreateReviewerForm($paperId);
@@ -385,7 +385,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 */
 	function enrollSearch($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath('reviewer');
@@ -436,7 +436,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function enroll($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath('reviewer');
@@ -461,7 +461,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function notifyReviewer($args = array()) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$reviewId = Request::getUserVar('reviewId');
 
@@ -475,7 +475,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function clearReview($args) {
 		$paperId = isset($args[0])?$args[0]:0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$reviewId = $args[1];
 
@@ -486,7 +486,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function cancelReview($args) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$reviewId = Request::getUserVar('reviewId');
 
@@ -500,7 +500,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function remindReviewer($args = null) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$reviewId = Request::getUserVar('reviewId');
 		parent::setupTemplate(true, $paperId, 'review');
@@ -512,7 +512,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function thankReviewer($args = array()) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$reviewId = Request::getUserVar('reviewId');
 
@@ -526,7 +526,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function rateReviewer() {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		parent::setupTemplate(true, $paperId, 'review');
 
 		$reviewId = Request::getUserVar('reviewId');
@@ -540,7 +540,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function confirmReviewForReviewer($args) {
 		$paperId = (int) isset($args[0])?$args[0]:0;
 		$accept = Request::getUserVar('accept')?true:false;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$reviewId = (int) isset($args[1])?$args[1]:0;
 
@@ -550,7 +550,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function uploadReviewForReviewer($args) {
 		$paperId = (int) Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$reviewId = (int) Request::getUserVar('reviewId');
 
@@ -560,7 +560,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function makeReviewerFileViewable() {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$reviewId = Request::getUserVar('reviewId');
 		$fileId = Request::getUserVar('fileId');
@@ -574,7 +574,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function setDueDate($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$reviewId = isset($args[1]) ? $args[1] : 0;
 		$dueDate = Request::getUserVar('dueDate');
@@ -612,7 +612,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function enterReviewerRecommendation($args) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$reviewId = Request::getUserVar('reviewId');
 
@@ -679,7 +679,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		parent::setupTemplate(true, $paperId, 'summary');
 
-		TrackDirectorAction::viewMetadata($submission, ROLE_ID_TRACK_EDITOR);
+		TrackDirectorAction::viewMetadata($submission, ROLE_ID_TRACK_DIRECTOR);
 	}
 
 	function saveMetadata() {
@@ -693,16 +693,16 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	}
 
 	//
-	// Editor Review
+	// Director Review
 	//
 
-	function editorReview() {
+	function directorReview() {
 		import('paper.Paper');
 
 		$type = (isset($args[1]) ? $args[1] : REVIEW_PROGRESS_ABSTRACT); // which item is currently under review
 		$round = (isset($args[2]) ? $args[2] : 1);
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$redirectTarget = 'submissionReview';
 		$redirectArgs = array($paperId, $type, $round);
@@ -710,12 +710,12 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		// If the Upload button was pressed.
 		$submit = Request::getUserVar('submit');
 		if ($submit != null) {
-			TrackDirectorAction::uploadEditorVersion($submission);
+			TrackDirectorAction::uploadDirectorVersion($submission);
 		}
 		
 		if (Request::getUserVar('resubmit')) {
 			// If the Resubmit button was pressed
-			$file = explode(',', Request::getUserVar('editorDecisionFile'));
+			$file = explode(',', Request::getUserVar('directorDecisionFile'));
 			if (isset($file[0]) && isset($file[1])) {
 				TrackDirectorAction::resubmitFile($submission, $file[0], $file[1]);
 			}
@@ -726,7 +726,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	function uploadReviewVersion() {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		TrackDirectorAction::uploadReviewVersion($submission);
 
@@ -812,7 +812,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	}
 
 	/**
-	 * Delete an editor version file.
+	 * Delete a director version file.
 	 * @param $args array ($paperId, $fileId)
 	 */
 	function deletePaperFile($args) {
@@ -820,7 +820,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$fileId = isset($args[1]) ? (int) $args[1] : 0;
 		$revisionId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_REVIEW);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 		TrackDirectorAction::deletePaperFile($submission, $fileId, $revisionId);
 
 		Request::redirect(null, null, null, 'submissionReview', $paperId);
@@ -899,7 +899,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 */
 	function uploadLayoutVersion() {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		TrackDirectorAction::uploadLayoutVersion($submission);
 
@@ -916,7 +916,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$fileId = isset($args[2]) ? (int) $args[2] : 0;
 		$revisionId = isset($args[3]) ? (int) $args[3] : 0;
 
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		TrackDirectorAction::deletePaperImage($submission, $fileId, $revisionId);
 		
 		Request::redirect(null, null, 'editGalley', array($paperId, $galleyId));
@@ -929,7 +929,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function assignLayoutEditor($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$editorId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		
@@ -967,7 +967,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 			
 			$templateMgr->assign('pageTitle', 'user.role.layoutEditors');
-			$templateMgr->assign('pageSubTitle', 'editor.paper.selectLayoutEditor');
+			$templateMgr->assign('pageSubTitle', 'director.paper.selectLayoutEditor');
 			$templateMgr->assign('actionHandler', 'assignLayoutEditor');
 			$templateMgr->assign('paperId', $paperId);
 			$templateMgr->assign_by_ref('users', $layoutEditors);
@@ -994,7 +994,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 */
 	function notifyLayoutEditor($args) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		$send = Request::getUserVar('send')?true:false;
 		parent::setupTemplate(true, $paperId, 'editing');
@@ -1009,7 +1009,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 */
 	function thankLayoutEditor($args) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		$send = Request::getUserVar('send')?true:false;
 		parent::setupTemplate(true, $paperId, 'editing');
@@ -1024,7 +1024,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 */
 	function uploadGalley($fileName = null) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		import('submission.form.PaperGalleyForm');
 
@@ -1041,7 +1041,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function editGalley($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		parent::setupTemplate(true, $paperId, 'editing');
 
@@ -1060,7 +1060,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function saveGalley($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		import('submission.form.PaperGalleyForm');
 
@@ -1108,7 +1108,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 */
 	function orderGalley() {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		TrackDirectorAction::orderGalley($submission, Request::getUserVar('galleyId'), Request::getUserVar('d'));
 
@@ -1122,7 +1122,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function deleteGalley($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		TrackDirectorAction::deleteGalley($submission, $galleyId);
 
@@ -1136,7 +1136,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function proofGalley($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
@@ -1151,7 +1151,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function proofGalleyTop($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
@@ -1167,7 +1167,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function proofGalleyFile($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_EDITOR_ACCESS_EDIT);
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 		$galley = &$galleyDao->getGalley($galleyId, $paperId);
@@ -1236,7 +1236,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$templateMgr = &TemplateManager::getManager();
 
-		$templateMgr->assign('isEditor', Validation::isEditor());
+		$templateMgr->assign('isDirector', Validation::isDirector());
 		$templateMgr->assign_by_ref('submission', $submission);
 
 		if ($logId) {
@@ -1277,7 +1277,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr = &TemplateManager::getManager();
 
 		$templateMgr->assign('showBackLink', true);
-		$templateMgr->assign('isEditor', Validation::isEditor());
+		$templateMgr->assign('isDirector', Validation::isDirector());
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('eventLogEntries', $eventLogEntries);
 		$templateMgr->display('trackDirector/submissionEventLog.tpl');
@@ -1314,7 +1314,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$templateMgr = &TemplateManager::getManager();
 
-		$templateMgr->assign('isEditor', Validation::isEditor());
+		$templateMgr->assign('isDirector', Validation::isDirector());
 		$templateMgr->assign_by_ref('submission', $submission);
 
 		if ($logId) {
@@ -1355,7 +1355,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr = &TemplateManager::getManager();
 
 		$templateMgr->assign('showBackLink', true);
-		$templateMgr->assign('isEditor', Validation::isEditor());
+		$templateMgr->assign('isDirector', Validation::isDirector());
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('emailLogEntries', $emailLogEntries);
 		$templateMgr->display('trackDirector/submissionEmailLog.tpl');
@@ -1512,10 +1512,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	/**
 	 * Validate that the user is the assigned track director for
-	 * the paper, or is a managing editor.
+	 * the paper, or is a managing director.
 	 * Redirects to trackDirector index page if validation fails.
 	 * @param $paperId int Paper ID to validate
-	 * @param $access int Optional name of access level required -- see TRACK_EDITOR_ACCESS_... constants
+	 * @param $access int Optional name of access level required -- see TRACK_DIRECTOR_ACCESS_... constants
 	 */
 	function validate($paperId, $access = null) {
 		parent::validate();
@@ -1540,26 +1540,26 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		} else {
 			$templateMgr =& TemplateManager::getManager();
-			if (Validation::isEditor()) {
+			if (Validation::isDirector()) {
 				// Make canReview and canEdit available to templates.
-				// Since this user is an editor, both are available.
+				// Since this user is a director, both are available.
 				$templateMgr->assign('canReview', true);
 				$templateMgr->assign('canEdit', true);
 			} else {
-				// If this user isn't the submission's editor, they don't have access.
+				// If this user isn't the submission's director, they don't have access.
 				$editAssignments =& $trackDirectorSubmission->getEditAssignments();
 				$wasFound = false;
 				foreach ($editAssignments as $editAssignment) {
-					if ($editAssignment->getEditorId() == $user->getUserId()) {
+					if ($editAssignment->getDirectorId() == $user->getUserId()) {
 						$templateMgr->assign('canReview', $editAssignment->getCanReview());
 						$templateMgr->assign('canEdit', $editAssignment->getCanEdit());
 						switch ($access) {
-							case TRACK_EDITOR_ACCESS_EDIT:
+							case TRACK_DIRECTOR_ACCESS_EDIT:
 								if ($editAssignment->getCanEdit()) {
 									$wasFound = true;
 								}
 								break;
-							case TRACK_EDITOR_ACCESS_REVIEW:
+							case TRACK_DIRECTOR_ACCESS_REVIEW:
 								if ($editAssignment->getCanReview()) {
 									$wasFound = true;
 								}
@@ -1584,7 +1584,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments = &$trackDirectorSubmission->getEditAssignments();
 		foreach ($editAssignments as $editAssignment) {
-			if ($editAssignment->getEditorId() == $user->getUserId() && $editAssignment->getDateUnderway() === null) {
+			if ($editAssignment->getDirectorId() == $user->getUserId() && $editAssignment->getDateUnderway() === null) {
 				$editAssignment->setDateUnderway(Core::getCurrentDate());
 				$editAssignmentDao->updateEditAssignment($editAssignment);
 			}

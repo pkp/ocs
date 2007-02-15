@@ -4,24 +4,24 @@
  * Copyright (c) 2003-2005 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Subtemplate defining the presenter's editor decision table.
+ * Subtemplate defining the presenter's director decision table.
  *
  * $Id$
  *}
 
-<a name="editorDecision"></a>
-<h3>{translate key="submission.editorDecision"}</h3>
+<a name="directorDecision"></a>
+<h3>{translate key="submission.directorDecision"}</h3>
 
 {assign var=presenterFiles value=$submission->getPresenterFileRevisions($submission->getCurrentRound())}
-{assign var=editorFiles value=$submission->getEditorFileRevisions($submission->getCurrentRound())}
+{assign var=directorFiles value=$submission->getDirectorFileRevisions($submission->getCurrentRound())}
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td class="label">{translate key="editor.paper.decision"}</td>
+		<td class="label">{translate key="director.paper.decision"}</td>
 		<td>
-			{if $lastEditorDecision}
-				{assign var="decision" value=$lastEditorDecision.decision}
-				{translate key=$editorDecisionOptions.$decision} {$lastEditorDecision.dateDecided|date_format:$dateFormatShort}
+			{if $lastDirectorDecision}
+				{assign var="decision" value=$lastDirectorDecision.decision}
+				{translate key=$directorDecisionOptions.$decision} {$lastDirectorDecision.dateDecided|date_format:$dateFormatShort}
 			{else}
 				&mdash;
 			{/if}
@@ -29,28 +29,28 @@
 	</tr>
 	<tr valign="top">
 		<td class="label" width="20%">
-			{translate key="submission.notifyEditor"}
+			{translate key="submission.notifyDirector"}
 		</td>
 		<td class="value" width="80%">
-			{url|assign:"notifyPresenterUrl" op="emailEditorDecisionComment" paperId=$submission->getPaperId()}
+			{url|assign:"notifyPresenterUrl" op="emailDirectorDecisionComment" paperId=$submission->getPaperId()}
 			{icon name="mail" url=$notifyPresenterUrl}
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			{translate key="submission.editorPresenterRecord"}
-			{if $submission->getMostRecentEditorDecisionComment()}
-				{assign var="comment" value=$submission->getMostRecentEditorDecisionComment()}
-				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getPaperId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}
+			{translate key="submission.directorPresenterRecord"}
+			{if $submission->getMostRecentDirectorDecisionComment()}
+				{assign var="comment" value=$submission->getMostRecentDirectorDecisionComment()}
+				<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}
 			{else}
-				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getPaperId()}');" class="icon">{icon name="comment"}</a>
+				<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId()}');" class="icon">{icon name="comment"}</a>
 			{/if}
 		</td>
 	</tr>
 	<tr valign="top">
 		<td class="label" width="20%">
-			{translate key="submission.editorVersion"}
+			{translate key="submission.directorVersion"}
 		</td>
 		<td class="value" width="80%">
-			{foreach from=$editorFiles item=editorFile key=key}
-				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$editorFile->getFileId():$editorFile->getRevision()}" class="file">{$editorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$editorFile->getDateModified()|date_format:$dateFormatShort}<br />
+			{foreach from=$directorFiles item=directorFile key=key}
+				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$directorFile->getDateModified()|date_format:$dateFormatShort}<br />
 			{foreachelse}
 				{translate key="common.none"}
 			{/foreach}

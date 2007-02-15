@@ -32,9 +32,9 @@
 		</td>
 		<td width="50%" class="value">
 			{if $status != SUBMISSION_STATUS_ARCHIVED}
-				<a href="{url op="unsuitableSubmission" paperId=$submission->getPaperId()}" class="action">{translate key="editor.paper.archiveSubmission"}</a>
+				<a href="{url op="unsuitableSubmission" paperId=$submission->getPaperId()}" class="action">{translate key="director.paper.archiveSubmission"}</a>
 			{else}
-				<a href="{url op="restoreToQueue" path=$submission->getPaperId()}" class="action">{translate key="editor.paper.restoreToQueue"}</a>
+				<a href="{url op="restoreToQueue" path=$submission->getPaperId()}" class="action">{translate key="director.paper.restoreToQueue"}</a>
 			{/if}
 		</td>
 	</tr>

@@ -1,14 +1,14 @@
 <?php
 
 /**
- * EditorDecisionCommentForm.inc.php
+ * DirectorDecisionCommentForm.inc.php
  *
  * Copyright (c) 2003-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package submission.form
  *
- * EditorDecisionComment form.
+ * DirectorDecisionComment form.
  *
  * $Id$
  *
@@ -16,14 +16,14 @@
  
 import("submission.form.comment.CommentForm");
 
-class EditorDecisionCommentForm extends CommentForm {
+class DirectorDecisionCommentForm extends CommentForm {
 
 	/**
 	 * Constructor.
 	 * @param $paper object
 	 */
-	function EditorDecisionCommentForm($paper, $roleId) {
-		parent::CommentForm($paper, COMMENT_TYPE_EDITOR_DECISION, $roleId, $paper->getPaperId());
+	function DirectorDecisionCommentForm($paper, $roleId) {
+		parent::CommentForm($paper, COMMENT_TYPE_DIRECTOR_DECISION, $roleId, $paper->getPaperId());
 	}
 	
 	/**
@@ -31,17 +31,17 @@ class EditorDecisionCommentForm extends CommentForm {
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('pageTitle', 'submission.comments.editorPresenterCorrespondence');
+		$templateMgr->assign('pageTitle', 'submission.comments.directorPresenterCorrespondence');
 		$templateMgr->assign('paperId', $this->paper->getPaperId());
-		$templateMgr->assign('commentAction', 'postEditorDecisionComment');
+		$templateMgr->assign('commentAction', 'postDirectorDecisionComment');
 		$templateMgr->assign('hiddenFormParams', 
 			array(
 				'paperId' => $this->paper->getPaperId()
 			)
 		);
 		
-		$isEditor = $this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_TRACK_EDITOR ? true : false;
-		$templateMgr->assign('isEditor', $isEditor);
+		$isDirector = $this->roleId == ROLE_ID_DIRECTOR || $this->roleId == ROLE_ID_TRACK_DIRECTOR ? true : false;
+		$templateMgr->assign('isDirector', $isDirector);
 		
 		parent::display();
 	}
@@ -75,35 +75,35 @@ class EditorDecisionCommentForm extends CommentForm {
 		
 		// Create list of recipients:
 		
-		// Editor Decision comments are to be sent to the editor or presenter,
+		// Director Decision comments are to be sent to the director or presenter,
 		// the opposite of whomever wrote the comment.
 		$recipients = array();
 		
-		if ($this->roleId == ROLE_ID_EDITOR) {
+		if ($this->roleId == ROLE_ID_DIRECTOR) {
 			// Then add presenter
 			$user = &$userDao->getUser($this->paper->getUserId());
 			
 			if ($user) $recipients = array_merge($recipients, array($user->getEmail() => $user->getFullName()));
 		} else {
-			// Then add editor
+			// Then add director
 			$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments = &$editAssignmentDao->getEditAssignmentsByPaperId($this->paper->getPaperId());
-			$editorAddresses = array();
+			$directorAddresses = array();
 			while (!$editAssignments->eof()) {
 				$editAssignment =& $editAssignments->next();
-				$editorAddresses[$editAssignment->getEditorEmail()] = $editAssignment->getEditorFullName();
+				$directorAddresses[$editAssignment->getDirectorEmail()] = $editAssignment->getDirectorFullName();
 			}
 
-			// If no editors are currently assigned to this paper,
-			// send the email to all editors for the conference
-			if (empty($editorAddresses)) {
-				$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $conference->getConferenceId());
-				while (!$editors->eof()) {
-					$editor = &$editors->next();
-					$editorAddresses[$editor->getEmail()] = $editor->getFullName();
+			// If no directors are currently assigned to this paper,
+			// send the email to all directors for the conference
+			if (empty($directorAddresses)) {
+				$directors = &$roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
+				while (!$directors->eof()) {
+					$director = &$directors->next();
+					$directorAddresses[$director->getEmail()] = $director->getFullName();
 				}
 			}
-			$recipients = array_merge($recipients, $editorAddresses);
+			$recipients = array_merge($recipients, $directorAddresses);
 		}
 		
 		parent::email($recipients);	

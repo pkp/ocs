@@ -37,6 +37,6 @@
 
 <div class="separator"></div>
 
-{include file="presenter/submission/editorDecision.tpl"}
+{include file="presenter/submission/directorDecision.tpl"}
 
 {include file="common/footer.tpl"}

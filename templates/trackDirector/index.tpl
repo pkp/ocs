@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2005 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Track editor index.
+ * Track director index.
  *
  * $Id$
  *}
@@ -57,13 +57,13 @@
 {include file="trackDirector/$pageToDisplay.tpl"}
 
 <form action="#">
-{translate key="track.track"}: <select name="track" class="selectMenu" onchange="location.href='{url path=$pageToDisplay track="SECTION_ID" searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth escape=false}'.replace('SECTION_ID', this.options[this.selectedIndex].value)" size="1">{html_options options=$trackOptions selected=$track}</select>
+{translate key="track.track"}: <select name="track" class="selectMenu" onchange="location.href='{url path=$pageToDisplay track="TRACK_ID" searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth escape=false}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1">{html_options options=$trackOptions selected=$track}</select>
 </form>
 
 {if ($pageToDisplay == "submissionsInReview")}
 <br />
 <h4>{translate key="common.notes"}</h4>
-<p>{translate key="editor.submissionReview.notes"}</p>
+<p>{translate key="director.submissionReview.notes"}</p>
 {/if}
 
 {include file="common/footer.tpl"}

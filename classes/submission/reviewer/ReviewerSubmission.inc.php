@@ -30,8 +30,8 @@ class ReviewerSubmission extends Paper {
 	/** @var array PaperComments peer review comments of this paper */
 	var $peerReviewComments;
 
-	/** @var array the editor decisions of this paper */
-	var $editorDecisions;
+	/** @var array the director decisions of this paper */
+	var $directorDecisions;
 
 	/**
 	 * Constructor.
@@ -126,34 +126,34 @@ class ReviewerSubmission extends Paper {
 	}
 	
 	/**
-	 * Get editor decisions.
+	 * Get director decisions.
 	 * @return array
 	 */
 	function getDecisions($type = null, $round = null) {
 		if ($type == null)
-			return $this->editorDecisions;
+			return $this->directorDecisions;
 
-		if(!isset($this->editorDecisions[$type]))
+		if(!isset($this->directorDecisions[$type]))
 			return null;
 		
 		if ($round == null)
-			return $this->editorDecisions[$type];
+			return $this->directorDecisions[$type];
 
-		if(!isset($this->editorDecisions[$type][$round]))
+		if(!isset($this->directorDecisions[$type][$round]))
 			return null;
 
-		return $this->editorDecisions[$type][$round];
+		return $this->directorDecisions[$type][$round];
 	}
 	
 	/**
-	 * Set editor decisions.
-	 * @param $editorDecisions array
+	 * Set director decisions.
+	 * @param $directorDecisions array
 	 * @param $type int
 	 * @param $round int
 	 */
-	function setDecisions($editorDecisions, $type, $round) {
+	function setDecisions($directorDecisions, $type, $round) {
 		$this->stampStatusModified();
-		return $this->editorDecisions[$type][$round] = $editorDecisions;
+		return $this->directorDecisions[$type][$round] = $directorDecisions;
 	}
 	
 	/**

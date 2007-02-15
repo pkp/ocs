@@ -20,14 +20,14 @@ class PresenterSubmission extends Paper {
 	/** @var array ReviewAssignments of this paper */
 	var $reviewAssignments;
 
-	/** @var array the editor decisions of this paper */
-	var $editorDecisions;
+	/** @var array the director decisions of this paper */
+	var $directorDecisions;
 	
 	/** @var array the revisions of the presenter file */
 	var $presenterFileRevisions;
 	
-	/** @var array the revisions of the editor file */
-	var $editorFileRevisions;
+	/** @var array the revisions of the director file */
+	var $directorFileRevisions;
 
 	/**
 	 * Constructor.
@@ -134,38 +134,38 @@ class PresenterSubmission extends Paper {
 	}
 	
 	//
-	// Editor Decisions
+	// Director Decisions
 	//
 
 	/**
-	 * Get editor decisions.
+	 * Get director decisions.
 	 * @return array
 	 */
 	function getDecisions($type = null, $round = null) {
 		if ($type == null)
-			return $this->editorDecisions;
+			return $this->directorDecisions;
 
-		if(!isset($this->editorDecisions[$type]))
+		if(!isset($this->directorDecisions[$type]))
 			return null;
 		
 		if ($round == null)
-			return $this->editorDecisions[$type];
+			return $this->directorDecisions[$type];
 
-		if(!isset($this->editorDecisions[$type][$round]))
+		if(!isset($this->directorDecisions[$type][$round]))
 			return null;
 
-		return $this->editorDecisions[$type][$round];
+		return $this->directorDecisions[$type][$round];
 	}
 	
 	/**
-	 * Set editor decisions.
-	 * @param $editorDecisions array
+	 * Set director decisions.
+	 * @param $directorDecisions array
 	 * @param $type int
 	 * @param $round int
 	 */
-	function setDecisions($editorDecisions, $type, $round) {
+	function setDecisions($directorDecisions, $type, $round) {
 		$this->stampStatusModified();
-		return $this->editorDecisions[$type][$round] = $editorDecisions;
+		return $this->directorDecisions[$type][$round] = $directorDecisions;
 	}
 
 	/**
@@ -197,7 +197,7 @@ class PresenterSubmission extends Paper {
 		$decision = array_pop($decisions);
 		if (!empty($decision)) {
 			$latestDecision = array_pop($decision);
-			if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_DECLINE) {
+			if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
 				return SUBMISSION_STATUS_QUEUED_EDITING;
 			}
 		}
@@ -280,23 +280,23 @@ class PresenterSubmission extends Paper {
 	}
 	
 	/**
-	 * Get all editor file revisions.
+	 * Get all director file revisions.
 	 * @return array PaperFiles
 	 */
-	function getEditorFileRevisions($round = null) {
+	function getDirectorFileRevisions($round = null) {
 		if ($round == null) {
-			return $this->editorFileRevisions;
+			return $this->directorFileRevisions;
 		} else {
-			return $this->editorFileRevisions[$round];
+			return $this->directorFileRevisions[$round];
 		}
 	}
 	
 	/**
-	 * Set all editor file revisions.
-	 * @param $editorFileRevisions array PaperFiles
+	 * Set all director file revisions.
+	 * @param $directorFileRevisions array PaperFiles
 	 */
-	function setEditorFileRevisions($editorFileRevisions, $round) {
-		return $this->editorFileRevisions[$round] = $editorFileRevisions;
+	function setDirectorFileRevisions($directorFileRevisions, $round) {
+		return $this->directorFileRevisions[$round] = $directorFileRevisions;
 	}
 	
 	/**
@@ -321,19 +321,19 @@ class PresenterSubmission extends Paper {
 	//
 	
 	/**
-	 * Get most recent editor decision comment.
+	 * Get most recent director decision comment.
 	 * @return PaperComment
 	 */
-	function getMostRecentEditorDecisionComment() {
-		return $this->getData('mostRecentEditorDecisionComment');
+	function getMostRecentDirectorDecisionComment() {
+		return $this->getData('mostRecentDirectorDecisionComment');
 	}
 	
 	/**
-	 * Set most recent editor decision comment.
-	 * @param $mostRecentEditorDecisionComment PaperComment
+	 * Set most recent director decision comment.
+	 * @param $mostRecentDirectorDecisionComment PaperComment
 	 */
-	function setMostRecentEditorDecisionComment($mostRecentEditorDecisionComment) {
-		return $this->setData('mostRecentEditorDecisionComment', $mostRecentEditorDecisionComment);
+	function setMostRecentDirectorDecisionComment($mostRecentDirectorDecisionComment) {
+		return $this->setData('mostRecentDirectorDecisionComment', $mostRecentDirectorDecisionComment);
 	}
 	
 	/**
