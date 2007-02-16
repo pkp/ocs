@@ -350,12 +350,12 @@ class AboutHandler extends Handler {
 
 		if($schedConf) {
 			$contributorNote = $schedConf->getSetting('contributorNote', true);
-			$contributors = array_merge($contributors, $schedConf->getSetting('contributors', false));
-			if (!is_array($contributors)) $contributors = array();
+			$eventContributors = $schedConf->getSetting('contributors', false);
+			if (is_array($eventContributors)) $contributors = array_merge($contributors, $eventContributors);
 
 			$sponsorNote = $schedConf->getSetting('sponsorNote', true);
-			$sponsors = array_merge($sponsors, $schedConf->getSetting('sponsors', false));
-			if (!is_array($sponsors)) $sponsors = array();
+			$eventSponsors = $schedConf->getSetting('sponsors', false);
+			if (is_array($eventSponsors)) $sponsors = array_merge($sponsors, $eventSponsors);
 		}
 
 		$templateMgr->assign_by_ref('contributorNote', $contributorNote);

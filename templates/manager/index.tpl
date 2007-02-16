@@ -60,7 +60,7 @@
 <h3>{translate key="manager.roles"}</h3>
 
 <ul class="plain">
-	<li>&#187; <a href="{url op="people" path="manager"}">{translate key="user.role.manager"}</a></li>
+	<li>&#187; <a href="{url op="people" path="managers"}">{translate key="user.role.managers"}</a></li>
 	{call_hook name="Templates::Manager::Index::Roles"}
 </ul>
 

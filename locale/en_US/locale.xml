@@ -1394,11 +1394,11 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.people.signInAsUser">Log In as User</message>
 	<message key="manager.people.signOutAsUser">Log Out as User</message>
 	<message key="manager.people.signInAs">Log In As</message>
-	<!--<message key="manager.people.syncUsers">Synchronize User Enrollment</message>-->
-	<!--<message key="manager.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified conference into the same role in this conference. This function allows a common set of users (e.g., Reviewers) to be synchronized between conferences.</message>-->
+	<message key="manager.people.syncUsers">Synchronize User Enrollment</message>
+	<message key="manager.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified conference into the same role in this conference. This function allows a common set of users (e.g., Reviewers) to be synchronized between conferences.</message>
 	<message key="manager.people.enrollSync">Sync Enrollment</message>
 	<message key="manager.people.enrollSyncRole">Synchronize role</message>
-	<!--<message key="manager.people.enrollSyncConference">With conference</message>-->
+	<message key="manager.people.enrollSyncConference">With conference</message>
 
 	<!-- Email Management -->
 	<message key="manager.emails.emailKey">Email Key</message>
