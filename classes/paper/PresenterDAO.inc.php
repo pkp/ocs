@@ -83,7 +83,7 @@ class PresenterDAO extends DAO {
 		$publishedPapers = array();
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$params = array($firstName, $middleName, $lastName, $affiliation);
-		if ($schedConfId !== null) $params[] = ;
+		if ($schedConfId !== null) $params[] = $schedConfId;
 
 		$result = &$this->retrieve(
 			'SELECT DISTINCT aa.paper_id FROM paper_presenters aa
@@ -123,7 +123,7 @@ class PresenterDAO extends DAO {
 		$presenters = array();
 		$params = array();
 
-		if (isset()) $params[] = $schedConfId;
+		if (isset($schedConfId)) $params[] = $schedConfId;
 		if (isset($initial)) {
 			$params[] = String::strtolower($initial) . '%';
 			$initialSql = ' AND LOWER(aa.last_name) LIKE LOWER(?)';

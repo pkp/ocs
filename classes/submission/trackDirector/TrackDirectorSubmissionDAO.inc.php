@@ -883,11 +883,11 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result = &$this->retrieve('select ra.reviewer_id as director_id, max(ra.date_notified) as last_notified from review_assignments ra, papers p where ra.paper_id=p.paper_id and p.sched_conf_id=? group by ra.reviewer_id', $schedConfId);
+		$result = &$this->retrieve('select ra.reviewer_id as reviewer_id, max(ra.date_notified) as last_notified from review_assignments ra, papers p where ra.paper_id=p.paper_id and p.sched_conf_id=? group by ra.reviewer_id', $schedConfId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if (!isset($statistics[$row['director_id']])) $statistics[$row['director_id']] = array();
-			$statistics[$row['director_id']]['last_notified'] = $this->datetimeFromDB($row['last_notified']);
+			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
+			$statistics[$row['reviewer_id']]['last_notified'] = $this->datetimeFromDB($row['last_notified']);
 			$result->MoveNext();
 		}
 
