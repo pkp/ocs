@@ -23,14 +23,14 @@
 	<li>&#187; <a href="{url op="languages"}">{translate key="common.languages"}</a></li>
 	<li>&#187; <a href="{url op="emails"}">{translate key="manager.emails"}</a></li>
 	<li>&#187; <a href="{url page="rtadmin"}">{translate key="manager.readingTools"}</a></li>
-	<li>&#187; <a href="{url op="schedConfs"}">{translate key="manager.scheduledConferences"}</a></li>
+	<li>&#187; <a href="{url op="schedConfs"}">{translate key="manager.schedConfs"}</a></li>
 	<li>&#187; <a href="{url op="setup"}">{translate key="manager.conferenceSiteSetup"}</a></li>
 	<li>&#187; <a href="{url op="plugins"}">{translate key="manager.plugins"}</a></li>
 	{call_hook name="Templates::Manager::Index::ManagementPages"}
 </ul>
 
 
-<h3>{translate key="manager.scheduledConferences"}</h3>
+<h3>{translate key="manager.currentConferences"}</h3>
 {iterate from=schedConfs item=schedConf}
 	<h4>{$schedConf->getFullTitle()}</h4>
 	<ul class="plain">
@@ -42,8 +42,20 @@
 			<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="registration"}">{translate key="manager.registration"}</a></li>
 		{/if}
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people"}">{translate key="manager.roles"}</a></li>
-		{call_hook name="Templates::Manager::Index::SchedConfManagementPages"}
-	</ul>
+		<li>
+			<h4>{translate key="manager.roles"}</h4>
+
+			<ul class="plain">
+				<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people" path="directors"}">{translate key="user.role.directors"}</a></li>
+				<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people" path="trackDirectors"}">{translate key="user.role.trackDirectors"}</a></li>
+				<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people" path="reviewers"}">{translate key="user.role.reviewers"}</a></li>
+				<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people" path="presenters"}">{translate key="user.role.presenters"}</a></li>
+				<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people" path="readers"}">{translate key="user.role.readers"}</a></li>
+				{call_hook name="Templates::Manager::Index::SchedConfRoles"}
+			</ul>
+		</li>
+		{call_hook name="Templates::Manager::Index::SchedConfFuncs"}
+</ul>
 {/iterate}
 
 
@@ -52,7 +64,7 @@
 <ul class="plain">
 	<li>&#187; <a href="{url op="people" path="all"}">{translate key="manager.people.allUsers"}</a></li>
 	<li>&#187; <a href="{url op="createUser"}">{translate key="manager.people.createUser"}</a></li>
-	{*<li>&#187; <a href="{url op="mergeUsers"}">{translate key="manager.people.mergeUsers"}</a></li>*}
+	<li>&#187; <a href="{url op="mergeUsers"}">{translate key="manager.people.mergeUsers"}</a></li>
 	{call_hook name="Templates::Manager::Index::Users"}
 </ul>
 
@@ -61,6 +73,7 @@
 
 <ul class="plain">
 	<li>&#187; <a href="{url op="people" path="managers"}">{translate key="user.role.managers"}</a></li>
+	<li>&#187; <a href="{url op="people" path="registrationManagers"}">{translate key="user.role.registrationManagers"}</a></li>
 	{call_hook name="Templates::Manager::Index::Roles"}
 </ul>
 

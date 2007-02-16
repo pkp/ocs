@@ -767,14 +767,14 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<!-- Conference Management -->
 	<message key="manager.conferenceSiteManagement">Conference Site Management</message>
 	<message key="manager.conferenceSiteSetup">Conference Site Setup</message>
-	<message key="manager.scheduledConferences">Scheduled Conferences</message>
+	<message key="manager.currentConferences">Current Conferences</message>
 	<message key="manager.emails">Prepared Emails</message>
 	<message key="manager.statistics">Stats &amp; Reports</message>
 	<message key="manager.readingTools">Reading Tools</message>
 	<message key="manager.people">People</message>
 	<message key="manager.filesBrowser">Files Browser</message>
 	<message key="manager.groups">Organizing Team</message>
-	<message key="manager.managementPages">Management Pages</message>
+	<message key="manager.managementPages">General Management</message>
 	<message key="manager.plugins">System Plugins</message>
 	<message key="manager.users">Users</message>
 	<message key="manager.roles">Roles</message>
@@ -866,7 +866,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<message key="manager.setup.stepsToConferenceSite">Five Steps to a Conference Web Site</message>
 	<message key="manager.setup.details">Details</message>
-	<message key="manager.setup.details.description">Conference title, introduction &amp; overview, dates, contacts, sponsors &amp; supporters, and location.</message>
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Guidelines, review policy, and privacy statement.</message>
 	<message key="manager.setup.access">Access</message>
@@ -1070,7 +1069,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="manager.setup.useConferenceStyleSheet">Conference style sheet</message>
 	<message key="manager.setup.noStyleSheetUploaded">No style sheet uploaded.</message>
 	<message key="manager.setup.conferenceHomepageContent">Conference Homepage Content</message>
-	<message key="manager.setup.conferenceHomepageContentDescription">By default, the homepage consists of navigation links. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
 	<message key="manager.setup.homepageImageDescription">Add an image or graphic file to the middle of the page.</message>
 	<message key="manager.setup.homepageImage">Homepage image</message>
 	<message key="manager.setup.additionalContent">Additional Content</message>
@@ -1104,7 +1102,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 
 	<message key="manager.setup.location">Scheduled Conference Location</message>
 	<message key="manager.setup.locationDescription">The location (institution, department, and mailing address) at which the conference will be held.</message>
-	<message key="manager.setup.details">Details</message>
 	<message key="manager.setup.details.description">Conference title, introduction &amp; overview, contacts, and sponsors.</message>
 	<message key="manager.setup.submissions">Submissions</message>
 	<message key="manager.setup.submissions.description">Presenter registration, submissions, and presenter notification.</message>
@@ -1114,8 +1111,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="manager.setup.participation.description">Reader registration &amp; access to proceedings.</message>
 	<message key="manager.setup.publication">Publication</message>
 	<message key="manager.setup.publication.description">Access to proceedings and indexing.</message>
-	<message key="manager.setup.look">The Look</message>
-	<message key="manager.setup.look.description">Homepage header, content, conference header, footer, navigation bar, and style sheet.</message>
 
 	<!-- Scheduled Conference Setup Step 1 -->
 	<message key="manager.setup.schedConfIntroduction">Introduction</message>
@@ -1239,7 +1234,6 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="manager.setup.programTextDescription">Enter a text-based version of your conference program here. Even if a program file is provided above, a text-based program is recomended since it allows easier indexing by search engines and can be viewed without browser plug-ins.</message>
 
 	<!-- Scheduled Conference Setup Step 5 -->
-	<message key="manager.setup.customizingTheLook">Step 5. Customizing the Look</message>
 	<message key="manager.setup.schedConfLookSetupInstructions"><![CDATA[If these settings are left unconfigured, this scheduled conference will default to the look and feel of the conference it belongs to. In order to change the look and feel of the entire conference, the Conference Director must modify the <a href="{$conferenceLookSetupUrl}">Conference Setup pages</a>.]]></message>
 	<message key="manager.setup.conferenceHomepageContentDescription">The scheduled conference's homepage includes by default the conference's name, dates, location, and introduction, and main topics with links (Overview; Call for Papers; Featured Speakers; Program and Presentations; Registration, Accomodation and Travel; Conference Organizers and Key Partners; Related Links).</message>
 
