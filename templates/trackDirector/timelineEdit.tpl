@@ -226,7 +226,7 @@
 
 <p>
 	<input type="submit" value="{translate key="common.save"}" class="button defaultButton" />
-	<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="timeline" escape=false}'" /></p>
+	<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="index" escape=false}'" /></p>
 </p>
 
 

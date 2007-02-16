@@ -40,7 +40,7 @@ class TimelineHandler extends TrackDirectorHandler {
 		
 		if ($timelineForm->validate()) {
 			$timelineForm->execute();
-			Request::redirect(null, null, null, 'timeline');
+			Request::redirect(null, null, null, 'index');
 		} else {
 			parent::setupTemplate(true);
 			$timelineForm->display();
