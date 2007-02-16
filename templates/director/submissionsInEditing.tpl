@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2005 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Show editor's submissions in editing.
+ * Show director's submissions in editing.
  *
  * $Id$
  *}
@@ -34,7 +34,7 @@
 		<td><a href="{url op="submissionEditing" path=$submission->getPaperId()}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
 		<td>
 			{assign var="editAssignments" value=$submission->getEditAssignments()}
-			{foreach from=$editAssignments item=editAssignment}{$editAssignment->getEditorInitials()} {/foreach}
+			{foreach from=$editAssignments item=editAssignment}{$editAssignment->getDirectorInitials()} {/foreach}
 		</td>
 	</tr>
 	<tr>

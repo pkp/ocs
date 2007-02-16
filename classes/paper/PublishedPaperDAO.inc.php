@@ -280,7 +280,7 @@ class PublishedPaperDAO extends DAO {
 				papers a
 			LEFT JOIN tracks s ON s.track_id = a.track_id
 			WHERE pa.paper_id = a.paper_id
-				AND a.paper_id = ?' . (isset()$schedConfId?'
+				AND a.paper_id = ?' . (isset($schedConfId)?'
 				AND a.sched_conf_id = ?':''),
 			isset($schedConfId)?
 				array($paperId, $schedConfId):

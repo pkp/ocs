@@ -10,7 +10,7 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="schedConf.eventLog"}
+{assign var="pageTitle" value="event.eventLog"}
 {include file="common/header.tpl"}
 
 <ul class="menu">

@@ -256,7 +256,7 @@ class DirectorSubmissionDAO extends DAO {
 			LEFT JOIN edit_assignments ea ON (ea.paper_id = p.paper_id)
 			LEFT JOIN users ed ON (ea.director_id = ed.user_id)
 			LEFT JOIN layouted_assignments l ON (l.paper_id = p.paper_id)
-			LEFT JOIN users le ON (le.user_id = l.director_id)
+			LEFT JOIN users le ON (le.user_id = l.editor_id)
 			LEFT JOIN review_assignments ra ON (ra.paper_id = p.paper_id)
 			LEFT JOIN users re ON (re.user_id = ra.reviewer_id AND cancelled = 0)
 			WHERE

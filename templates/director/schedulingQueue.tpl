@@ -9,24 +9,24 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="editor.schedulingQueue"}
+{assign var="pageTitle" value="director.schedulingQueue"}
 {url|assign:"currentUrl" op="schedulingQueue"}
 {include file="common/header.tpl"}
 
 <ul class="menu">
-	<li><a href="{url op="createIssue"}">{translate key="editor.navigation.createIssue"}</a></li>
+	<li><a href="{url op="createIssue"}">{translate key="director.navigation.createIssue"}</a></li>
 	<li class="current"><a href="{url op="schedulingQueue"}">{translate key="common.queue.short.submissionsInScheduling"}</a></li>
-	<li><a href="{url op="futureIssues"}">{translate key="editor.navigation.futureIssues"}</a></li>
-	<li><a href="{url op="backIssues"}">{translate key="editor.navigation.issueArchive"}</a></li>
+	<li><a href="{url op="futureIssues"}">{translate key="director.navigation.futureIssues"}</a></li>
+	<li><a href="{url op="backIssues"}">{translate key="director.navigation.issueArchive"}</a></li>
 </ul>
 
 <br/>
 
-<form action="#">{translate key="track.track"}:&nbsp;<select name="track" onchange="location.href='{url track="SECTION_ID" escape=false}'.replace('SECTION_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$trackOptions selected=$track}</select></form>
+<form action="#">{translate key="track.track"}:&nbsp;<select name="track" onchange="location.href='{url track="TRACK_ID" escape=false}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$trackOptions selected=$track}</select></form>
 
 <br />
 
-<form method="post" action="{url op="updateSchedulingQueue"}" onsubmit="return confirm('{translate|escape:"javascript" key="editor.schedulingQueue.saveChanges"}')">
+<form method="post" action="{url op="updateSchedulingQueue"}" onsubmit="return confirm('{translate|escape:"javascript" key="director.schedulingQueue.saveChanges"}')">
 
 <table class="listing" width="100%">
 	<tr>
@@ -38,7 +38,7 @@
 		<td width="5%">{translate key="submissions.track"}</td>
 		<td width="20%">{translate key="paper.presenters"}</td>
 		<td width="35%">{translate key="paper.title"}</td>
-		<td width="20%">{translate key="editor.schedulingQueue.schedule"}</td>
+		<td width="20%">{translate key="director.schedulingQueue.schedule"}</td>
 		<td width="10%">{translate key="common.remove"}</td>
 	</tr>
 	<tr>

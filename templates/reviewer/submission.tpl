@@ -217,7 +217,7 @@ function confirmSubmissionCheck() {
 <tr valign="top">
 	<td>&nbsp;</td>
 	<td>
-		{translate key="schedConf.logType.review"} 
+		{translate key="submission.review"} 
 		{if $confirmedStatus and not $declined}
 			<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$submission->getPaperId()|to_array:$submission->getReviewId()}');" class="icon">{icon name="comment"}</a>
 		{else}

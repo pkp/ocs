@@ -44,7 +44,7 @@
 <h3>{translate key="submission.history.submissionEmailLog"}</h3>
 
 <table width="100%" class="listing">
-	<tr><td class="headseparator" colspan="5">&nbsp;</td></tr>
+	<tr><td class="headseparator" colspan="6">&nbsp;</td></tr>
 	<tr valign="top" class="heading">
 		<td width="7%">{translate key="common.date"}</td>
 		<td width="5%">{translate key="common.type"}</td>
@@ -53,7 +53,7 @@
 		<td>{translate key="common.subject"}</td>
 		<td width="60" align="right">{translate key="common.action"}</td>
 	</tr>
-	<tr><td class="headseparator" colspan="5">&nbsp;</td></tr>
+	<tr><td class="headseparator" colspan="6">&nbsp;</td></tr>
 {iterate from=emailLogEntries item=logEntry}
 	<tr valign="top">
 		<td>{$logEntry->getDateSent()|date_format:$dateFormatShort}</td>
@@ -64,15 +64,15 @@
 		<td align="right">{if $logEntry->getAssocType()}<a href="{url op="submissionEmailLogType" path=$submission->getPaperId()|to_array:$logEntry->getAssocType():$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="submissionEmailLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>{if $isDirector}&nbsp;|&nbsp;<a href="{url op="clearSubmissionEmailLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" onclick="return confirm('{translate|escape:"javascript" key="submission.email.confirmDeleteLogEntry"}')" class="action">{translate key="common.delete"}</a>{/if}</td>
 	</tr>
 	<tr valign="top">
-		<td colspan="5" class="{if $emailLogEntries->eof()}end{/if}separator">&nbsp;</td>
+		<td colspan="6" class="{if $emailLogEntries->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
 {/iterate}
 {if $emailLogEntries->wasEmpty()}
 	<tr valign="top">
-		<td colspan="5" class="nodata">{translate key="submission.history.noLogEntries"}</td>
+		<td colspan="6" class="nodata">{translate key="submission.history.noLogEntries"}</td>
 	</tr>
 	<tr valign="top">
-		<td colspan="5" class="endseparator">&nbsp;</td>
+		<td colspan="6" class="endseparator">&nbsp;</td>
 	</tr>
 {else}
 	<tr>

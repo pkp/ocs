@@ -47,7 +47,7 @@
 		<input checked type="radio" name="whichUsers" id="interestedUsers" value="interestedUsers"/>
 	</td>
 	<td width="75%" class="label">
-		<label for="interestedUsers">{translate key="editor.notifyUsers.interestedUsers" count=$notifiableCount}</label>
+		<label for="interestedUsers">{translate key="director.notifyUsers.interestedUsers" count=$notifiableCount}</label>
 	</td>
 </tr>
 <tr valign="top">
@@ -55,7 +55,7 @@
 		<input type="radio" id="allUsers" name="whichUsers" value="allUsers"/>
 	</td>
 	<td width="95%" class="label">
-		<label for="allUsers">{translate key="editor.notifyUsers.allUsers" count=$allUsersCount}</label>
+		<label for="allUsers">{translate key="director.notifyUsers.allUsers" count=$allUsersCount}</label>
 	</td>
 </tr>
 {if $senderEmail}
@@ -78,7 +78,7 @@
 		<input type="checkbox" name="includeToc" id="includeToc" value="1"/>
 	</td>
 	<td width="75%" class="label">
-		<label for="includeToc">{translate key="editor.notifyUsers.includeToc"}</label>&nbsp;
+		<label for="includeToc">{translate key="director.notifyUsers.includeToc"}</label>&nbsp;
 		<select name="schedConf" id="schedConf" class="selectMenu">
 			{iterate from=schedConfs item=schedConf}
 				<option {if $schedConf->getCurrent()}checked {/if}value="{$schedConf->getSchedConfId()}">{$schedConf->getSchedConfIdentification()|escape}</option>

@@ -4,14 +4,14 @@
  * Copyright (c) 2003-2004 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Editor navigation sidebar.
- * Lists active assignments and editor functions.
+ * Director navigation sidebar.
+ * Lists active assignments and director functions.
  *
  * $Id$
  *}
 
 <div class="block">
-	<span class="blockTitle">{translate key="user.role.editor"}</span>
+	<span class="blockTitle">{translate key="user.role.director"}</span>
 	
 	<span class="blockSubtitle">{translate key="paper.submissions"}</span>
 	<ul>
@@ -22,9 +22,9 @@
 		<li><a href="{url op="submissions" path="submissionsArchives"}">{translate key="common.queue.short.submissionsArchives"}</a></li>
 	</ul>
 
-	<span class="blockSubtitle">{translate key="editor.navigation.management"}</span>
+	<span class="blockSubtitle">{translate key="director.navigation.management"}</span>
 
 	<ul>
-		<li><a href="{url op="timeline"}">{translate key="editor.timeline"}</a></li>
+		<li><a href="{url op="timeline"}">{translate key="director.timeline"}</a></li>
 	</ul>
 </div>

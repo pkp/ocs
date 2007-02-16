@@ -22,6 +22,7 @@ class InformationHandler extends Handler {
 		parent::validate();
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
+		$schedConfContent = null;
 
 		if ($conference == null) {
 			Request::redirect('index');

@@ -755,8 +755,8 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.schedConfs.noneCreated">No events have been created.</message>
 	<message key="manager.schedConfs.confirmDelete">Are you sure you want to permanently delete this scheduled conference and all of its contents?</message>
 	<message key="manager.schedConfs.scheduledConference">Scheduled Conference</message>
-	<message key="manager.schedConfs.eventStartDate">Start Date</message>
-	<message key="manager.schedConfs.eventEndDate">End Date</message>
+	<message key="manager.schedConfs.schedConfStartDate">Start Date</message>
+	<message key="manager.schedConfs.schedConfEndDate">End Date</message>
 	<message key="manager.schedConfs.create">Create a Scheduled Conference</message>
 	<message key="manager.schedConfs.createInstructions">A scheduled instance of the conference is created by entering a title (for example, if it is an annual conference, the name of the conference plus the year) and a URL path. You will be made a Conference Director and can designate other Conference Directors, who are able to manage the details of this event, beginning with the scheduling of the conference in Conference Timeline.</message>
 	<message key="manager.schedConfs.urlWillBe">The event's URL will be {$sampleUrl}</message>

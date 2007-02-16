@@ -34,9 +34,7 @@
 		<td><a href="{url op="moveSchedConf" d=u schedConfId=$schedConf->getSchedConfId()}">&uarr;</a> <a href="{url op="moveSchedConf" d=d schedConfId=$schedConf->getSchedConfId()}">&darr;</a></td>
 
 		<td align="right">
-			<a href="{url op="editSchedConf" path=$conference->getConferenceId()|to_array:$schedConf->getSchedConfId()}" class="action">
-				{translate key="common.edit"}
-			</a>
+			<a href="{url op="editSchedConf" path=$conference->getConferenceId()|to_array:$schedConf->getSchedConfId()}" class="action">{translate key="common.edit"}</a>
 			&nbsp;|&nbsp;
 			<a class="action" href="{url op="deleteSchedConf" path=$schedConf->getSchedConfId()}" onclick="return confirm('{translate|escape:"javascript" key="manager.schedConfs.confirmDelete"}')">
 				{translate key="common.delete"}

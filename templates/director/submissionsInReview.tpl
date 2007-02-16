@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2005 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Show editor's submissions in review.
+ * Show director's submissions in review.
  *
  * $Id$
  *}
@@ -110,7 +110,7 @@
 		</td>
 		<td>
 			{assign var="editAssignments" value=$submission->getEditAssignments()}
-			{foreach from=$editAssignments item=editAssignment}{$editAssignment->getEditorInitials()|escape} {/foreach}
+			{foreach from=$editAssignments item=editAssignment}{$editAssignment->getDirectorInitials()|escape} {/foreach}
 		</td>
 	</tr>
 	<tr>
