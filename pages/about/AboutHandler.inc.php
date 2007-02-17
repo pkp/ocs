@@ -240,30 +240,13 @@ class AboutHandler extends Handler {
 		
 		AboutHandler::setupTemplate(true);
 		
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
-		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
 		$conference =& Request::getConference();
-				
+
 		$templateMgr = &TemplateManager::getManager();
 		$settings = ($schedConf? $schedConf->getSettings(true): $conference->getSettings());
 		
-		$templateMgr->assign_by_ref('conferenceSettings', $settings);
-		if($schedConf) {
-			$tracks = &$trackDao->getSchedConfTracks($schedConf->getConferenceId());
-			$tracks = &$tracks->toArray();
-		} else {
-			$tracks = array();
-		}
-		$templateMgr->assign_by_ref('tracks', $tracks);
-		
-		$trackDirectors = array();
-		foreach ($tracks as $track) {
-			$trackDirectors[$track->getTrackId()] = &$trackDirectorsDao->getDirectorsByTrackId($conference->getConferenceId(), $track->getTrackId());
-		}
-		$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
-
 		$templateMgr->display('about/editorialPolicies.tpl');
 	}
 

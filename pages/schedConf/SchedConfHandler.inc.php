@@ -33,6 +33,34 @@ class SchedConfHandler extends Handler {
 	}
 
 	/**
+	 * Display track policies
+	 */
+	function trackPolicies() {
+		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+
+		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign('pageHierarchy', array(
+			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
+		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
+
+		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
+		$tracks = array();
+		$tracks = &$trackDao->getSchedConfTracks($schedConf->getConferenceId());
+		$tracks = &$tracks->toArray();
+		$templateMgr->assign_by_ref('tracks', $tracks);
+		$trackDirectors = array();
+		foreach ($tracks as $track) {
+			$trackDirectors[$track->getTrackId()] = &$trackDirectorsDao->getDirectorsByTrackId($conference->getConferenceId(), $track->getTrackId());
+		}
+		$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
+
+		$templateMgr->assign('helpTopicId', 'schedConf.trackPolicies');
+		$templateMgr->display('schedConf/trackPolicies.tpl');
+	}
+
+	/**
 	 * Display conference overview page
 	 */
 	function overview() {

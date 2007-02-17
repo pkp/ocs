@@ -6,10 +6,6 @@
  *
  * About the Conference / Editorial Policies.
  * 
- * TODO: - Crosses and checkmarks for the track properties are currently just
- * 		text. Replace with images.
- *		 - Director Bio link doesn't exist yet.
- *
  * $Id$
  *}
 
@@ -18,7 +14,6 @@
 
 <ul class="plain">
 	{if !empty($conferenceSettings.focusScopeDesc)}<li>&#187; <a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}
-	{if !empty($tracks)}<li>&#187; <a href="{url op="editorialPolicies" anchor="trackPolicies"}">{translate key="about.trackPolicies"}</a></li>{/if}
 	{if !empty($conferenceSettings.reviewPolicy)}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if !empty($conferenceSettings.pubFreqPolicy)}<li>&#187; <a href="{url op="editorialPolicies" anchor="publicationFrequency"}">{translate key="about.publicationFrequency"}</a></li>{/if}
 	{if !empty($conferenceSettings.openAccessPolicy) || !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
@@ -35,39 +30,6 @@
 <p>{$conferenceSettings.focusScopeDesc|nl2br}</p>
 
 <div class="separator">&nbsp;</div>
-{/if}
-
-{if !empty($tracks)}
-	<a name="trackPolicies"></a><h3>{translate key="about.trackPolicies"}</h3>
-	{foreach from=$tracks item=track}
-		<h4>{$track->getTrackTitle()}</h4>
-		{if strlen($track->getPolicy()) > 0}
-			<p>{$track->getPolicy()|nl2br}</p>
-		{/if}
-	
-		{assign var="hasDirectors" value=0}
-		{foreach from=$trackDirectors item=trackTrackDirectors key=key}
-			{if $key == $track->getTrackId()}
-				{foreach from=$trackTrackDirectors item=trackDirector}
-					{if 0 == $hasDirectors++}
-					{translate key="user.role.directors"}
-					<ul class="plain">
-					{/if}
-					<li>{$trackDirector->getFirstName()|escape} {$trackDirector->getLastName()|escape}{if strlen($trackDirector->getAffiliation()) > 0}, {$trackDirector->getAffiliation()|escape}{/if}</li>
-				{/foreach}
-			{/if}
-		{/foreach}
-		{if $hasDirectors}</ul>{/if}
-	
-		<table class="plain" width="60%">
-			<tr>
-				<td width="50%">{if !$track->getDirectorRestricted()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.tracks.open"}</td>
-				<td width="50%">{if $track->getMetaIndexed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.tracks.indexed"}</td>
-			</tr>
-		</table>
-	{/foreach}
-
-	<div class="separator">&nbsp;</div>
 {/if}
 
 {if !empty($conferenceSettings.reviewPolicy)}<a name="peerReviewProcess"></a><h3>{translate key="about.peerReviewProcess"}</h3>

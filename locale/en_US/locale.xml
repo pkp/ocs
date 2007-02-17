@@ -425,6 +425,7 @@
 	<message key="schedConf.schedConf">Scheduled Conference</message>
 	<message key="schedConf.contents">Table of Contents</message>
 	<message key="schedConf.overview">Overview</message>
+	<message key="schedConf.trackPolicies">Track Policies</message>
 	<message key="schedConf.program">Program</message>
 	<message key="schedConf.cfp">Call for Papers</message>
 	<message key="schedConf.papers">Presenters, Abstracts, &amp; Papers</message>
@@ -2226,7 +2227,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.aboutTheConference">About the Conference</message>
 	<message key="about.organizingTeam">Organizing Team</message>
 	<message key="about.editorialPolicies">Editorial Policies</message>
-	<message key="about.trackPolicies">Track Policies</message>
 	<message key="about.submissions">Submissions</message>
 	<message key="about.sponsors">Sponsors</message>
 	<message key="about.contributors">Sources of Support</message>
