@@ -37,8 +37,9 @@
 
 	<table class="plain" width="60%">
 		<tr>
-			<td width="50%">{if !$track->getDirectorRestricted()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.tracks.open"}</td>
-			<td width="50%">{if $track->getMetaIndexed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.tracks.indexed"}</td>
+			<td width="33%">{if !$track->getDirectorRestricted()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.tracks.open"}</td>
+			<td width="33%">{if $track->getMetaIndexed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.tracks.indexed"}</td>
+			<td width="34%">{if $track->getMetaReviewed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.tracks.peerReviewed"}</td>
 		</tr>
 	</table>
 {/foreach}

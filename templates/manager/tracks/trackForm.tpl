@@ -141,8 +141,8 @@
 	<td rowspan="4" class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
 	<td class="value">
 		{translate key="manager.tracks.submissionsToThisTrack"}<br/>
-		<input type="checkbox" name="metaReviewed" id="metaReviewed" value="1" {if $metaReviewed}checked="checked"{/if} />
-		{fieldLabel name="metaReviewed" key="manager.tracks.submissionReview"}
+		<input type="checkbox" name="metaNotReviewed" id="metaNotReviewed" value="1" {if $metaNotReviewed}checked="checked"{/if} />
+		{fieldLabel name="metaNotReviewed" key="manager.tracks.submissionNotReviewed"}
 	</td>
 </tr>
 <tr valign="top">
