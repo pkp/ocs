@@ -41,9 +41,9 @@ class MetadataForm extends Form {
 			$this->canEdit = true;
 		}
 
-		// If the abstract hasn't yet been accepted, allow the presenter to modify it.
+		// Check if the presenter can modify metadata.
 		if ($roleId == ROLE_ID_PRESENTER) {
-			if($paper->getReviewProgress() == REVIEW_PROGRESS_ABSTRACT) {
+			if(PresenterAction::mayEditMetadata($paper)) {
 				$this->canEdit = true;
 			}
 		}

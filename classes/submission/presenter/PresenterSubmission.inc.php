@@ -178,7 +178,14 @@ class PresenterSubmission extends Paper {
 	 * the TrackDirectorSubmission class and changes here should be propagated.
 	 */
 	function getSubmissionStatus() {
+		// Optimization: Use the Request scheduled conference object
+		// if available and if it's the same as the paper's sched conf
 		$schedConf = &Request::getSchedConf();
+		if (!$schedConf || $this->getSchedConfId() != $schedConf->getSchedConfId()) {
+			unset($schedConf);
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConf =& $schedConfDao->getSchedConf($this->getSchedConfId());
+		}
 		
 		$status = $this->getStatus();
 		if ($status == SUBMISSION_STATUS_ARCHIVED ||

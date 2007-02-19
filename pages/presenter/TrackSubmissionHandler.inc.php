@@ -66,6 +66,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$round = isset($args[2]) ? $args[2] : $submission->getCurrentRound();
 
 		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign('mayEditMetadata', PresenterAction::mayEditMetadata($submission));
 
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$track = &$trackDao->getTrack($submission->getTrackId());
@@ -260,11 +261,9 @@ class TrackSubmissionHandler extends PresenterHandler {
 		list($conference, $schedConf, $submission) = TrackSubmissionHandler::validate($paperId);
 		parent::setupTemplate(true, $paperId);
 
-		// If abstract review is complete, disallow the presenter from changing the
-		// metadata.
-		if ($submission->getReviewProgress() != REVIEW_PROGRESS_ABSTRACT) {
+		// If submissions are closed, the author may not edit metadata.
+		if (!PresenterAction::mayEditMetadata($submission)) {
 			Request::redirect(null, null, null, 'submission', $paperId);
-
 		} else {
 
 			if(PresenterAction::saveMetadata($submission)) {

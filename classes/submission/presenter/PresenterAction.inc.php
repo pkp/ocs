@@ -325,6 +325,18 @@ class PresenterAction extends Action {
 		}
 		return $result;
 	}
+
+	function mayEditMetadata(&$presenterSubmission) {
+		$schedConf =& Request::getSchedConf();
+		if (!$schedConf || $schedConf->getSchedConfId() != $presenterSubmission->getSchedConfId()) {
+			unset($schedConf);
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
+		}
+		$submissionsClose = (int) $schedConf->getSetting('submissionsCloseDate');
+		// If submissions haven't closed, the author may edit metadata.
+		return (time() <= $submissionsClose);
+	}
 }
 
 ?>
