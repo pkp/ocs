@@ -333,16 +333,6 @@ class Validation {
 	}
 
 	/**
-	 * Shortcut for checking authorization as REGISTRATION manager.
-	 * @param $conferenceId int
-	 * @return boolean
-	 */
-	function isRegistrationManager($conferenceId = -1, $schedConfId = -1) {
-		return Validation::isAuthorized(ROLE_ID_REGISTRATION_MANAGER, $conferenceId, 0) ||
-			Validation::isAuthorized(ROLE_ID_REGISTRATION_MANAGER, $conferenceId, $schedConfId);
-	}
-	
-	/**
 	 * Check whether a user is allowed to administer another user.
 	 * @param $conferenceId int
 	 * @param $userId int

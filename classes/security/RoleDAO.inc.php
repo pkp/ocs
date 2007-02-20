@@ -388,15 +388,8 @@ class RoleDAO extends DAO {
 		switch ($roleId) {
 			case ROLE_ID_SITE_ADMIN:
 				return 'user.role.siteAdmin' . ($plural ? 's' : '');
-
 			case ROLE_ID_CONFERENCE_MANAGER:
 				return 'user.role.manager' . ($plural ? 's' : '');
-
-			case ROLE_ID_REGISTRATION_MANAGER:
-				return 'user.role.registrationManager' . ($plural ? 's' : '');
-//			case ROLE_ID_SCHEDULING_MANAGER:
-//				return 'user.role.schedulingManager' . ($plural ? 's' : '');
-
 			case ROLE_ID_DIRECTOR:
 				return 'user.role.director' . ($plural ? 's' : '');
 			case ROLE_ID_TRACK_DIRECTOR:
@@ -405,16 +398,8 @@ class RoleDAO extends DAO {
 				return 'user.role.layoutEditor' . ($plural ? 's' : '');
 			case ROLE_ID_REVIEWER:
 				return 'user.role.reviewer' . ($plural ? 's' : '');
-
 			case ROLE_ID_PRESENTER:
 				return 'user.role.presenter' . ($plural ? 's' : '');
-//			case ROLE_ID_INVITED_PRESENTER:
-//				return 'user.role.invitedPresenter' . ($plural ? 's' : '');
-
-//			case ROLE_ID_DISCUSSANT:
-//				return 'user.role.discussant' . ($plural ? 's' : '');
-//			case ROLE_ID_REGISTRANT:
-//				return 'user.role.registrant' . ($plural ? 's' : '');
 			case ROLE_ID_READER:
 				return 'user.role.reader' . ($plural ? 's' : '');
 			default:
@@ -431,15 +416,8 @@ class RoleDAO extends DAO {
 		switch ($roleId) {
 			case ROLE_ID_SITE_ADMIN:
 				return ROLE_PATH_SITE_ADMIN;
-
 			case ROLE_ID_CONFERENCE_MANAGER:
 				return ROLE_PATH_CONFERENCE_MANAGER;
-
-			case ROLE_ID_REGISTRATION_MANAGER:
-				return ROLE_PATH_REGISTRATION_MANAGER;
-//			case ROLE_ID_SCHEDULING_MANAGER:
-//				return ROLE_PATH_SCHEDULING_MANAGER;
-
 			case ROLE_ID_DIRECTOR:
 				return ROLE_PATH_DIRECTOR;
 			case ROLE_ID_TRACK_DIRECTOR:
@@ -448,16 +426,8 @@ class RoleDAO extends DAO {
 				return ROLE_PATH_LAYOUT_EDITOR;
 			case ROLE_ID_REVIEWER:
 				return ROLE_PATH_REVIEWER;
-
 			case ROLE_ID_PRESENTER:
 				return ROLE_PATH_PRESENTER;
-//			case ROLE_ID_INVITED_PRESENTER:
-//				return ROLE_PATH_INVITED_PRESENTER;
-
-//			case ROLE_ID_DISCUSSANT:
-//				return ROLE_PATH_DISCUSSANT;
-//			case ROLE_ID_REGISTRANT:
-//				return ROLE_PATH_REGISTRANT;
 			case ROLE_ID_READER:
 				return ROLE_PATH_READER;
 			default:
@@ -474,15 +444,8 @@ class RoleDAO extends DAO {
 		switch ($rolePath) {
 			case ROLE_PATH_SITE_ADMIN:
 				return ROLE_ID_SITE_ADMIN;
-
 			case ROLE_PATH_CONFERENCE_MANAGER:
 				return ROLE_ID_CONFERENCE_MANAGER;
-				
-			case ROLE_PATH_REGISTRATION_MANAGER:
-				return ROLE_ID_REGISTRATION_MANAGER;
-//			case ROLE_PATH_SCHEDULING_MANAGER:
-//				return ROLE_ID_SCHEDULING_MANAGER;
-
 			case ROLE_PATH_DIRECTOR:
 				return ROLE_ID_DIRECTOR;
 			case ROLE_PATH_TRACK_DIRECTOR:
@@ -491,16 +454,8 @@ class RoleDAO extends DAO {
 				return ROLE_ID_LAYOUT_EDITOR;
 			case ROLE_PATH_REVIEWER:
 				return ROLE_ID_REVIEWER;
-
 			case ROLE_PATH_PRESENTER:
 				return ROLE_ID_PRESENTER;
-//			case ROLE_PATH_INVITED_PRESENTER:
-//				return ROLE_ID_INVITED_PRESENTER;
-
-//			case ROLE_PATH_DISCUSSANT:
-//				return ROLE_ID_DISCUSSANT;
-//			case ROLE_PATH_REGISTRANT:
-//				return ROLE_ID_REGISTRANT;
 			case ROLE_PATH_READER:
 				return ROLE_ID_READER;
 			default:

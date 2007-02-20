@@ -37,7 +37,6 @@
 					{*<option value="invitedPresenter">{translate key="user.role.invitedPresenter"}</option>*}
 					<option value="presenter">{translate key="user.role.presenter"}</option>
 					<option value="reader">{translate key="user.role.reader"}</option>
-					<option value="registrationManager">{translate key="user.role.registrationManager"}</option>
 				</select>
 			{/if}
 		</td>

@@ -38,7 +38,7 @@
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="groups"}">{translate key="manager.groups"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="schedConfSetup"}">{translate key="manager.schedConfSetup"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="statistics"}">{translate key="manager.statistics"}</a></li>
-		{if $registrationEnabled}
+		{if $schedConf->getSetting('enableRegistration')}
 			<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="registration"}">{translate key="manager.registration"}</a></li>
 		{/if}
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people"}">{translate key="manager.roles"}</a></li>
@@ -73,7 +73,6 @@
 
 <ul class="plain">
 	<li>&#187; <a href="{url op="people" path="managers"}">{translate key="user.role.managers"}</a></li>
-	<li>&#187; <a href="{url op="people" path="registrationManagers"}">{translate key="user.role.registrationManagers"}</a></li>
 	{call_hook name="Templates::Manager::Index::Roles"}
 </ul>
 

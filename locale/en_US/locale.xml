@@ -485,34 +485,20 @@
 	<!-- Roles -->
 	<message key="user.role.siteAdmin">Site Administrator</message>
 	<message key="user.role.manager">Conference Manager</message>
-	<message key="user.role.registrationManager">Registration Manager</message>
-	<!--<message key="user.role.schedulingManager">Scheduling Manager</message>-->
-
 	<message key="user.role.director">Director</message>
 	<message key="user.role.trackDirector">Track Director</message>
 	<message key="user.role.layoutEditor">Layout Editor</message>
 	<message key="user.role.reviewer">Reviewer</message>
 	<message key="user.role.presenter">Presenter</message>
-	<!--<message key="user.role.invitedPresenter">Invited Presenter</message>-->
-
-	<!--<message key="user.role.registrant">Registrant</message>-->
-	<!--<message key="user.role.discussant">Discussant</message>-->
 	<message key="user.role.reader">Reader</message>
 
 	<message key="user.role.siteAdmins">Site Administrators</message>
 	<message key="user.role.managers">Conference Managers</message>
-	<message key="user.role.registrationManagers">Registration Managers</message>
-	<!--<message key="user.role.schedulingManagers">Scheduling Managers</message>-->
-
 	<message key="user.role.directors">Directors</message>
 	<message key="user.role.trackDirectors">Track Directors</message>
 	<message key="user.role.layoutEditors">Layout Editors</message>
 	<message key="user.role.reviewers">Reviewers</message>
 	<message key="user.role.presenters">Presenters</message>
-	<!--<message key="user.role.invitedPresenters">Invited Presenters</message>-->
-
-	<!--<message key="user.role.registrants">Registrants</message>-->
-	<!--<message key="user.role.discussants">Discussants</message>-->
 	<message key="user.role.readers">Readers</message>
 
 	<!--
@@ -745,7 +731,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.schedConfs.enableSchedConfInstructions">Enable this scheduled conference to appear publicly on the site</message>
 
 	<!-- Registration Management -->
-	<message key="registrationManager.registrationManagement">Registration Management</message>
+	<message key="manager.registrationManagement">Registration Management</message>
 
 	<!-- Scheduled Conference Management -->
 	<message key="manager.schedConfs">Scheduled Conferences</message>

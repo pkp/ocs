@@ -18,21 +18,12 @@
 <form method="post" action="{url path=$roleSymbolic oldUserId=$oldUserId}">
 	<select name="roleSymbolic" class="selectMenu">
 		<option {if $roleSymbolic=='all'}selected="selected" {/if}value="all">{translate key="manager.people.allUsers"}</option>
-
 		<option {if $roleSymbolic=='managers'}selected="selected" {/if}value="managers">{translate key="user.role.managers"}</option>
-		<option {if $roleSymbolic=='registrationManagers'}selected="selected" {/if}value="registrationManagers">{translate key="user.role.registrationManagers"}</option>
-		{*<option {if $roleSymbolic=='schedulingManagers'}selected="selected" {/if}value="schedulingManagers">{translate key="user.role.schedulingManagers"}</option>*}
-
 		<option {if $roleSymbolic=='directors'}selected="selected" {/if}value="directors">{translate key="user.role.directors"}</option>
 		<option {if $roleSymbolic=='trackDirectors'}selected="selected" {/if}value="trackDirectors">{translate key="user.role.trackDirectors"}</option>
 		<option {if $roleSymbolic=='layoutEditors'}selected="selected" {/if}value="layoutEditors">{translate key="user.role.layoutEditors"}</option>
 		<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
-
 		<option {if $roleSymbolic=='presenters'}selected="selected" {/if}value="presenters">{translate key="user.role.presenters"}</option>
-		{*<option {if $roleSymbolic=='invitedPresenters'}selected="selected" {/if}value="invitedPresenters">{translate key="user.role.invitedPresenters"}</option>*}
-
-		{*<option {if $roleSymbolic=='discussants'}selected="selected" {/if}value="discussants">{translate key="user.role.discussants"}</option>
-		<option {if $roleSymbolic=='registrants'}selected="selected" {/if}value="registrants">{translate key="user.role.registrants"}</option>*}
 		<option {if $roleSymbolic=='readers'}selected="selected" {/if}value="readers">{translate key="user.role.readers"}</option>
 	</select>
 	<select name="searchField" size="1" class="selectMenu">
@@ -50,16 +41,11 @@
 {if not $roleId}
 <ul>
 	<li><a href="{url path="managers" oldUserId=$oldUserId}">{translate key="user.role.managers"}</a></li>
-	<li><a href="{url path="registrationManagers" oldUserId=$oldUserId}">{translate key="user.role.registrationManagers"}</a></li>
-	{*<li><a href="{url path="schedulingManagers" oldUserId=$oldUserId}">{translate key="user.role.schedulingManagers"}</a></li>*}
 	<li><a href="{url path="directors" oldUserId=$oldUserId}">{translate key="user.role.directors"}</a></li>
 	<li><a href="{url path="trackDirectors" oldUserId=$oldUserId}">{translate key="user.role.trackDirectors"}</a></li>
 	<li><a href="{url path="layoutEditors" oldUserId=$oldUserId}">{translate key="user.role.layoutEditors"}</a></li>
 	<li><a href="{url path="reviewers" oldUserId=$oldUserId}">{translate key="user.role.reviewers"}</a></li>
 	<li><a href="{url path="presenters" oldUserId=$oldUserId}">{translate key="user.role.presenters"}</a></li>
-	{*<li><a href="{url path="invitedPresenters" oldUserId=$oldUserId}">{translate key="user.role.invitedPresenters"}</a></li>*}
-	{*<li><a href="{url path="discussants" oldUserId=$oldUserId}">{translate key="user.role.discussants"}</a></li>
-	<li><a href="{url path="registrants" oldUserId=$oldUserId}">{translate key="user.role.registrants"}</a></li>*}
 	<li><a href="{url path="readers" oldUserId=$oldUserId}">{translate key="user.role.readers"}</a></li>
 </ul>
 

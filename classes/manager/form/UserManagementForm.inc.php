@@ -74,15 +74,11 @@ class UserManagementForm extends Form {
 			$templateMgr->assign('roleOptions',
 				array(
 					'' => 'manager.people.doNotEnroll',
-					'registrationManager' => 'user.role.registrationManager',
 					'director' => 'user.role.director',
 					'trackDirector' => 'user.role.trackDirector',
 					'layoutEditor' => 'user.role.layoutEditor',
 					'reviewer' => 'user.role.reviewer',
 					'presenter' => 'user.role.presenter',
-//					'invitedPresenter' => 'user.role.invitedPresenter',
-//					'discussant' => 'user.role.discussant',
-//					'registrant' => 'user.role.registrant',
 					'reader' => 'user.role.reader'
 				)
 			);

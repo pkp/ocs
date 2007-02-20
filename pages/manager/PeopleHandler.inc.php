@@ -69,9 +69,6 @@ class PeopleHandler extends ManagerHandler {
 				case ROLE_ID_CONFERENCE_MANAGER:
 					$helpTopicId = 'conference.roles.conferenceManager';
 					break;
-				case ROLE_ID_REGISTRATION_MANAGER:
-					$helpTopicId = 'conference.roles.registrationManager';
-					break;
 				case ROLE_ID_DIRECTOR:
 					$helpTopicId = 'conference.roles.director';
 					break;
@@ -84,18 +81,9 @@ class PeopleHandler extends ManagerHandler {
 				case ROLE_ID_REVIEWER:
 					$helpTopicId = 'conference.roles.reviewer';
 					break;
-//				case ROLE_ID_INVITEDPRESENTER:
-//					$helpTopicId = 'conference.roles.invitedPresenter';
-//					break;
 				case ROLE_ID_PRESENTER:
 					$helpTopicId = 'conference.roles.presenter';
 					break;
-//				case ROLE_ID_DISCUSSANT:
-//					$helpTopicId = 'conference.roles.discussant';
-//					break;
-//				case ROLE_ID_REGISTRANT:
-//					$helpTopicId = 'conference.roles.registrant';
-//					break;
 				case ROLE_ID_READER:
 					$helpTopicId = 'conference.roles.reader';
 					break;

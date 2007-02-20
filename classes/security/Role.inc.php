@@ -21,9 +21,6 @@ define('ROLE_PATH_SITE_ADMIN',			'admin');
 define('ROLE_ID_CONFERENCE_MANAGER',		0x00000010);
 define('ROLE_PATH_CONFERENCE_MANAGER',		'manager');
 
-define('ROLE_ID_REGISTRATION_MANAGER',		0x00000020);
-define('ROLE_PATH_REGISTRATION_MANAGER',	'registrationManager');
-
 define('ROLE_ID_DIRECTOR',			0x00000040);
 define('ROLE_PATH_DIRECTOR', 			'director');
 
