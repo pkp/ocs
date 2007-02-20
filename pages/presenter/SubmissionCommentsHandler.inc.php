@@ -31,38 +31,6 @@ class SubmissionCommentsHandler extends PresenterHandler {
 	}
 	
 	/**
-	 * View layout comments.
-	 */
-	function viewLayoutComments($args) {
-		PresenterHandler::validate();
-		PresenterHandler::setupTemplate(true);
-
-		$paperId = $args[0];
-
-		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId);
-		PresenterAction::viewLayoutComments($presenterSubmission);
-
-	}
-
-	/**
-	 * Post layout comment.
-	 */
-	function postLayoutComment() {
-		PresenterHandler::validate();
-		PresenterHandler::setupTemplate(true);
-		
-		$paperId = Request::getUserVar('paperId');
-		
-		// If the user pressed the "Save and email" button, then email the comment.
-		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
-		
-		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId);
-		if (PresenterAction::postLayoutComment($presenterSubmission, $emailComment)) {
-			PresenterAction::viewLayoutComments($presenterSubmission);
-		}
-	}
-
-	/**
 	 * Email a director decision comment.
 	 */
 	function emailDirectorDecisionComment() {
@@ -126,8 +94,6 @@ class SubmissionCommentsHandler extends PresenterHandler {
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
-		} else if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
-			Request::redirect(null, null, null, 'viewLayoutComments', $paperId);
 		}
 	}
 	
@@ -151,8 +117,6 @@ class SubmissionCommentsHandler extends PresenterHandler {
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
-		} else if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
-			Request::redirect(null, null, null, 'viewLayoutComments', $paperId);
 		}
 	}
 	

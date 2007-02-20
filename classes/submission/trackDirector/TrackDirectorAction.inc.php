@@ -827,21 +827,18 @@ class TrackDirectorAction extends Action {
 		if (isset($fileId) && $fileId != 0) {
 			$trackDirectorSubmission->setDirectorFileId($fileId);
 
-			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 			
 			// Set initial layout version to final copyedit version
-			$layoutDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment = &$layoutDao->getLayoutAssignmentByPaperId($trackDirectorSubmission->getPaperId());
-
-			if (isset($layoutAssignment) && !$layoutAssignment->getLayoutFileId()) {
+			if (!$trackDirectorSubmission->getLayoutFileId()) {
 				import('file.PaperFileManager');
 				$paperFileManager = &new PaperFileManager($trackDirectorSubmission->getPaperId());
 				if ($layoutFileId = $paperFileManager->copyToLayoutFile($fileId)) {
-					$layoutAssignment->setLayoutFileId($layoutFileId);
-					$layoutDao->updateLayoutAssignment($layoutAssignment);
+					$trackDirectorSubmission->setLayoutFileId($layoutFileId);
 				}
 			}
-		
+
+			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
+
 			// Add a publishedpaper object
 			$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 			if(($publishedPaper = $publishedPaperDao->getPublishedPaperByPaperId($trackDirectorSubmission->getPaperId())) == null) {
@@ -942,137 +939,15 @@ class TrackDirectorAction extends Action {
 		$paperFileManager = &new PaperFileManager($submission->getPaperId());
 		$submissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		
-		$layoutAssignment = &$submission->getLayoutAssignment();
-		
 		$fileName = 'layoutFile';
-		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadLayoutVersion', array(&$submission, &$layoutAssignment))) {
-			$layoutFileId = $paperFileManager->uploadLayoutFile($fileName, $layoutAssignment->getLayoutFileId());
+		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadLayoutVersion', array(&$submission))) {
+			$layoutFileId = $paperFileManager->uploadLayoutFile($fileName, $submission->getLayoutFileId());
 		
-			$layoutAssignment->setLayoutFileId($layoutFileId);
+			$submission->setLayoutFileId($layoutFileId);
 			$submissionDao->updateTrackDirectorSubmission($submission);
 		}
 	}
 	
-	/**
-	 * Assign a layout editor to a submission.
-	 * @param $submission object
-	 * @param $editorId int user ID of the new layout editor
-	 */
-	function assignLayoutEditor($submission, $editorId) {
-		if (HookRegistry::call('TrackDirectorAction::assignLayoutEditor', array(&$submission, &$editorId))) return;
-
-		$layoutAssignment = &$submission->getLayoutAssignment();
-		
-		import('paper.log.PaperLog');
-		import('paper.log.PaperEventLogEntry');
-
-		if ($layoutAssignment->getEditorId()) {
-			PaperLog::logEvent($submission->getPaperId(), ARTICLE_LOG_LAYOUT_UNASSIGN, ARTICLE_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorUnassigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'paperId' => $submission->getPaperId()));
-		}
-		
-		$layoutAssignment->setEditorId($editorId);
-		$layoutAssignment->setDateNotified(null);
-		$layoutAssignment->setDateUnderway(null);
-		$layoutAssignment->setDateCompleted(null);
-		$layoutAssignment->setDateAcknowledged(null);
-		
-		$layoutDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-		$layoutDao->updateLayoutAssignment($layoutAssignment);
-		$layoutAssignment =& $layoutDao->getLayoutAssignmentById($layoutAssignment->getLayoutId());
-		
-		PaperLog::logEvent($submission->getPaperId(), ARTICLE_LOG_LAYOUT_ASSIGN, ARTICLE_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorAssigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'paperId' => $submission->getPaperId()));
-	}
-	
-	/**
-	 * Notifies the current layout editor about an assignment.
-	 * @param $submission object
-	 * @param $send boolean
-	 * @return boolean true iff ready for redirect
-	 */
-	function notifyLayoutEditor($submission, $send = false) {
-		$submissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &Request::getUser();
-		
-		import('mail.PaperMailTemplate');
-		$email = &new PaperMailTemplate($submission, 'LAYOUT_REQUEST');
-		$layoutAssignment = &$submission->getLayoutAssignment();
-		$layoutEditor = &$userDao->getUser($layoutAssignment->getEditorId());
-		if (!isset($layoutEditor)) return true;
-		
-		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('TrackDirectorAction::notifyLayoutEditor', array(&$submission, &$layoutEditor, &$layoutAssignment, &$email));
-			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_LAYOUT_NOTIFY_EDITOR, ARTICLE_EMAIL_TYPE_LAYOUT, $layoutAssignment->getLayoutId());
-				$email->send();
-			}
-			
-			$layoutAssignment->setDateNotified(Core::getCurrentDate());
-			$layoutAssignment->setDateUnderway(null);
-			$layoutAssignment->setDateCompleted(null);
-			$layoutAssignment->setDateAcknowledged(null);
-			$submissionDao->updateTrackDirectorSubmission($submission);
-			
-		} else {
-			if (!Request::getUserVar('continued')) {
-				$email->addRecipient($layoutEditor->getEmail(), $layoutEditor->getFullName());
-				$paramArray = array(
-					'layoutEditorName' => $layoutEditor->getFullName(),
-					'layoutEditorUsername' => $layoutEditor->getUsername(),
-					'editorialContactSignature' => $user->getContactSignature(),
-					'submissionLayoutUrl' => Request::url(null, 'layoutEditor', 'submission', $submission->getPaperId())
-				);
-				$email->assignParams($paramArray);
-			}
-			$email->displayEditForm(Request::url(null, null, 'notifyLayoutEditor', 'send'), array('paperId' => $submission->getPaperId()));
-			return false;
-		}
-		return true;
-	}
-	
-	/**
-	 * Sends acknowledgement email to the current layout editor.
-	 * @param $submission object
-	 * @param $send boolean
-	 * @return boolean true iff ready for redirect
-	 */
-	function thankLayoutEditor($submission, $send = false) {
-		$submissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &Request::getUser();
-		
-		import('mail.PaperMailTemplate');
-		$email = &new PaperMailTemplate($submission, 'LAYOUT_ACK');
-
-		$layoutAssignment = &$submission->getLayoutAssignment();
-		$layoutEditor = &$userDao->getUser($layoutAssignment->getEditorId());
-		if (!isset($layoutEditor)) return true;
-		
-		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('TrackDirectorAction::thankLayoutEditor', array(&$submission, &$layoutEditor, &$layoutAssignment, &$email));
-			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_LAYOUT_THANK_EDITOR, ARTICLE_EMAIL_TYPE_LAYOUT, $layoutAssignment->getLayoutId());
-				$email->send();
-			}
-			
-			$layoutAssignment->setDateAcknowledged(Core::getCurrentDate());
-			$submissionDao->updateTrackDirectorSubmission($submission);
-			
-		} else {
-			if (!Request::getUserVar('continued')) {
-				$email->addRecipient($layoutEditor->getEmail(), $layoutEditor->getFullName());
-				$paramArray = array(
-					'layoutEditorName' => $layoutEditor->getFullName(),
-					'editorialContactSignature' => $user->getContactSignature()
-				);
-				$email->assignParams($paramArray);
-			}
-			$email->displayEditForm(Request::url(null, null, 'thankLayoutEditor', 'send'), array('paperId' => $submission->getPaperId()));
-			return false;
-		}
-		return true;
-	}
-
 	/**
 	 * Change the sequence order of a galley.
 	 * @param $paper object
@@ -1080,8 +955,13 @@ class TrackDirectorAction extends Action {
 	 * @param $direction char u = up, d = down
 	 */
 	function orderGalley($paper, $galleyId, $direction) {
-		import('submission.layoutEditor.LayoutEditorAction');
-		LayoutEditorAction::orderGalley($paper, $galleyId, $direction);
+		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
+		$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
+		if (isset($galley)) {
+			$galley->setSequence($galley->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
+			$galleyDao->updateGalley($galley);
+			$galleyDao->resequenceGalleys($paper->getPaperId());
+		}
 	}
 	
 	/**
@@ -1090,8 +970,29 @@ class TrackDirectorAction extends Action {
 	 * @param $galleyId int
 	 */
 	function deleteGalley($paper, $galleyId) {
-		import('submission.layoutEditor.LayoutEditorAction');
-		LayoutEditorAction::deleteGalley($paper, $galleyId);
+import('file.PaperFileManager');
+
+		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
+		$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
+
+		if (isset($galley) && !HookRegistry::call('TrackDirectorAction::deleteGalley', array(&$paper, &$galley))) {
+			$paperFileManager = &new PaperFileManager($paper->getPaperId());
+
+			if ($galley->getFileId()) {
+				$paperFileManager->deleteFile($galley->getFileId());
+				import('search.PaperSearchIndex');
+				PaperSearchIndex::deleteTextIndex($paper->getPaperId(), PAPER_SEARCH_GALLEY_FILE, $galley->getFileId());
+			}
+			if ($galley->isHTMLGalley()) {
+				if ($galley->getStyleFileId()) {
+					$paperFileManager->deleteFile($galley->getStyleFileId());
+				}
+				foreach ($galley->getImageFiles() as $image) {
+					$paperFileManager->deleteFile($image->getFileId());
+				}
+			}
+			$galleyDao->deleteGalley($galley);
+		}
 	}
 	
 	/**
@@ -1101,8 +1002,13 @@ class TrackDirectorAction extends Action {
 	 * @param $direction char u = up, d = down
 	 */
 	function orderSuppFile($paper, $suppFileId, $direction) {
-		import('submission.layoutEditor.LayoutEditorAction');
-		LayoutEditorAction::orderSuppFile($paper, $suppFileId, $direction);
+		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$suppFile = &$suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
+		if (isset($suppFile)) {
+			$suppFile->setSequence($suppFile->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
+			$suppFileDao->updateSuppFile($suppFile);
+			$suppFileDao->resequenceSuppFiles($paper->getPaperId());
+		}
 	}
 	
 	/**
@@ -1111,8 +1017,20 @@ class TrackDirectorAction extends Action {
 	 * @param $suppFileId int
 	 */
 	function deleteSuppFile($paper, $suppFileId) {
-		import('submission.layoutEditor.LayoutEditorAction');
-		LayoutEditorAction::deleteSuppFile($paper, $suppFileId);
+		import('file.PaperFileManager');
+
+		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+
+		$suppFile = &$suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
+		if (isset($suppFile) && !HookRegistry::call('TrackDirectorAction::deleteSuppFile', array(&$paper, &$suppFile))) {
+			if ($suppFile->getFileId()) {
+				$paperFileManager = &new PaperFileManager($paper->getPaperId());
+				$paperFileManager->deleteFile($suppFile->getFileId());
+				import('search.PaperSearchIndex');
+				PaperSearchIndex::deleteTextIndex($paper->getPaperId(), PAPER_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
+			}
+			$suppFileDao->deleteSuppFile($suppFile);
+		}
 	}
 	
 	/**
@@ -1508,45 +1426,6 @@ class TrackDirectorAction extends Action {
 	}
 	
 	/**
-	 * View layout comments.
-	 * @param $paper object
-	 */
-	function viewLayoutComments($paper) {
-		if (HookRegistry::call('TrackDirectorAction::viewLayoutComments', array(&$paper))) return;
-
-		import('submission.form.comment.LayoutCommentForm');
-		
-		$commentForm = &new LayoutCommentForm($paper, ROLE_ID_DIRECTOR);
-		$commentForm->initData();
-		$commentForm->display();
-	}
-	
-	/**
-	 * Post layout comment.
-	 * @param $paper object
-	 * @param $emailComment boolean
-	 */
-	function postLayoutComment($paper, $emailComment) {
-		if (HookRegistry::call('TrackDirectorAction::postLayoutComment', array(&$paper, &$emailComment))) return;
-
-		import('submission.form.comment.LayoutCommentForm');
-		
-		$commentForm = &new LayoutCommentForm($paper, ROLE_ID_DIRECTOR);
-		$commentForm->readInputData();
-		
-		if ($commentForm->validate()) {
-			$commentForm->execute();
-			
-			if ($emailComment) {
-				$commentForm->email();
-			}
-			
-		} else {
-			$commentForm->display();
-			return false;
-		}
-		return true;
-	}	/**
 	 * Accepts the review assignment on behalf of its reviewer.
 	 * @param $reviewId int
 	 */

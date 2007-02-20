@@ -138,15 +138,6 @@ class EditCommentForm extends Form {
 			}
 		}
 		
-		// Get layout editor
-		$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-		$layoutAssignment = &$layoutAssignmentDao->getLayoutAssignmentByPaperId($this->paper->getPaperId());
-		if ($layoutAssignment != null && $layoutAssignment->getEditorId() > 0) {
-			$layoutEditor = &$userDao->getUser($layoutAssignment->getEditorId());
-		} else {
-			$layoutEditor = null;
-		}
-
 		// Get reviewer
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($this->comment->getAssocId());
@@ -173,20 +164,6 @@ class EditCommentForm extends Form {
 			if ($this->roleId == ROLE_ID_DIRECTOR) {
 				// Then add presenter
 				if (isset($presenter)) $recipients = array_merge($recipients, array($presenter->getEmail() => $presenter->getFullName()));
-			} else {
-				// Then add directors
-				$recipients = array_merge($recipients, $directorAddresses);
-			}
-			break;
-
-		case COMMENT_TYPE_LAYOUT:
-			if ($this->roleId == ROLE_ID_DIRECTOR) {
-				// Then add layout editor
-				
-				// Check to ensure that there is a layout editor assigned to this paper.
-				if ($layoutEditor != null) {
-					$recipients = array_merge($recipients, array($layoutEditor->getEmail() => $layoutEditor->getFullName()));
-				}
 			} else {
 				// Then add directors
 				$recipients = array_merge($recipients, $directorAddresses);

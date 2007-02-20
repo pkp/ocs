@@ -166,14 +166,6 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 				$paper->stampStatusModified();
 				$paper->setSubmissionProgress(0);
 				$paper->setReviewProgress(REVIEW_PROGRESS_ABSTRACT);
-
-				$layoutDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-				if(!$layoutDao->getLayoutAssignmentByPaperId($paper->getPaperId())) {
-					$layoutAssignment = &new LayoutAssignment();
-					$layoutAssignment->setPaperId($paper->getPaperId());
-					$layoutAssignment->setEditorId(0);
-					$layoutDao->insertLayoutAssignment($layoutAssignment);
-				}
 			} else {
 				$paper->setSubmissionProgress($this->step + 1);
 			}

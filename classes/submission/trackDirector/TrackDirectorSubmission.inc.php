@@ -326,6 +326,23 @@ class TrackDirectorSubmission extends Paper {
 	}
 	
 	/**
+	 * Get layout file.
+	 * @return PaperFile
+	 */
+	function &getLayoutFile() {
+		$returner =& $this->getData('layoutFile');
+		return $returner;
+	}
+	
+	/**
+	 * Set layout file.
+	 * @param $layoutFile PaperFile
+	 */
+	function setLayoutFile($layoutFile) {
+		return $this->setData('layoutFile', $layoutFile);
+	}
+	
+	/**
 	 * Get all director file revisions.
 	 * @return array PaperFiles
 	 */
@@ -420,39 +437,6 @@ class TrackDirectorSubmission extends Paper {
 	 */
 	function setMostRecentDirectorDecisionComment($mostRecentDirectorDecisionComment) {
 		return $this->setData('mostRecentDirectorDecisionComment', $mostRecentDirectorDecisionComment);
-	}
-	
-	/**
-	 * Get most recent layout comment.
-	 * @return PaperComment
-	 */
-	function getMostRecentLayoutComment() {
-		return $this->getData('mostRecentLayoutComment');
-	}
-	
-	/**
-	 * Set most recent layout comment.
-	 * @param $mostRecentLayoutComment PaperComment
-	 */
-	function setMostRecentLayoutComment($mostRecentLayoutComment) {
-		return $this->setData('mostRecentLayoutComment', $mostRecentLayoutComment);
-	}
-	
-	/**
-	 * Get the layout assignment for an paper.
-	 * @return LayoutAssignment
-	 */
-	function &getLayoutAssignment() {
-		$layoutAssignment = &$this->getData('layoutAssignment');
-		return $layoutAssignment;
-	}
-	
-	/**
-	 * Set the layout assignment for an paper.
-	 * @param $layoutAssignment LayoutAssignment
-	 */
-	function setLayoutAssignment(&$layoutAssignment) {
-		return $this->setData('layoutAssignment', $layoutAssignment);
 	}
 	
 	/**

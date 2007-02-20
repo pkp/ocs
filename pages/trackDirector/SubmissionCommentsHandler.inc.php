@@ -100,38 +100,6 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	}
 	
 	/**
-	 * View layout comments.
-	 */
-	function viewLayoutComments($args) {
-		TrackDirectorHandler::validate();
-		TrackDirectorHandler::setupTemplate(true);
-		
-		$paperId = $args[0];
-		
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
-		TrackDirectorAction::viewLayoutComments($submission);
-
-	}
-	
-	/**
-	 * Post layout comment.
-	 */
-	function postLayoutComment() {
-		TrackDirectorHandler::validate();
-		TrackDirectorHandler::setupTemplate(true);
-		
-		$paperId = Request::getUserVar('paperId');
-		
-		// If the user pressed the "Save and email" button, then email the comment.
-		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
-		
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
-		if (TrackDirectorAction::postLayoutComment($submission, $emailComment)) {
-			TrackDirectorAction::viewLayoutComments($submission);
-		}	
-	}
-	
-	/**
 	 * Email a director decision comment.
 	 */
 	function emailDirectorDecisionComment() {
@@ -202,8 +170,6 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 			Request::redirect(null, null, null, 'viewPeerReviewComments', array($paperId, $comment->getAssocId()));
 		} else if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
-		} else if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
-			Request::redirect(null, null, null, 'viewLayoutComments', $paperId);
 		}
 	}
 	
@@ -226,8 +192,6 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 			Request::redirect(null, null, null, 'viewPeerReviewComments', array($paperId, $comment->getAssocId()));
 		} else if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
-		} else if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
-			Request::redirect(null, null, null, 'viewLayoutComments', $paperId);
 		}
 
 	}

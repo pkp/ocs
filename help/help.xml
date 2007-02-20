@@ -56,7 +56,6 @@
 	<topic key="journal.roles.journalManager" id="journal/topic/000015"></topic>
 	<topic key="journal.roles.director" id="journal/topic/000016"></topic>
 	<topic key="journal.roles.trackDirector" id="journal/topic/000017"></topic>
-	<topic key="journal.roles.layoutEditor" id="journal/topic/000018"></topic>
 	<topic key="journal.roles.copyeditor" id="journal/topic/000019"></topic>
 	<topic key="journal.roles.proofreader" id="journal/topic/000020"></topic>
 	<topic key="journal.roles.reviewer" id="journal/topic/000021"></topic>
@@ -115,10 +114,6 @@
 	<topic key="editorial.copyeditorsRole.submissions" id="editorial/topic/000037"></topic>
 	<topic key="editorial.copyeditorsRole.copyediting" id="editorial/topic/000038"></topic>
 
-	<topic key="editorial.layoutEditorsRole" id="editorial/topic/000013"></topic>
-	<topic key="editorial.layoutEditorsRole.submissions" id="editorial/topic/000039"></topic>
-	<topic key="editorial.layoutEditorsRole.layout" id="editorial/topic/000040"></topic>
-	<topic key="editorial.layoutEditorsRole.proofreading" id="editorial/topic/000041"></topic>
 
 	<topic key="editorial.proofreadersRole" id="editorial/topic/000014"></topic>
 	<topic key="editorial.proofreadersRole.submissions" id="editorial/topic/000042"></topic>

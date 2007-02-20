@@ -755,6 +755,22 @@ class Paper extends DataObject {
 	}
 	
 	/**
+	 * Get layout file id.
+	 * @return int
+	 */
+	function getLayoutFileId() {
+		return $this->getData('layoutFileId');
+	}
+	
+	/**
+	 * Set layout file id.
+	 * @param $layoutFileId int
+	 */
+	function setLayoutFileId($layoutFileId) {
+		return $this->setData('layoutFileId', $layoutFileId);
+	}
+
+	/**
 	 * Get director file id.
 	 * @return int
 	 */

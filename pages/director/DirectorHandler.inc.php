@@ -130,12 +130,10 @@ class DirectorHandler extends TrackDirectorHandler {
 			SUBMISSION_FIELD_TITLE => 'paper.title',
 			SUBMISSION_FIELD_PRESENTER => 'user.role.presenter',
 			SUBMISSION_FIELD_DIRECTOR => 'user.role.director',
-			SUBMISSION_FIELD_REVIEWER => 'user.role.reviewer',
-			SUBMISSION_FIELD_LAYOUTEDITOR => 'user.role.layoutEditor',
+			SUBMISSION_FIELD_REVIEWER => 'user.role.reviewer'
 		));
 		$templateMgr->assign('dateFieldOptions', Array(
-			SUBMISSION_FIELD_DATE_SUBMITTED => 'submissions.submitted',
-			SUBMISSION_FIELD_DATE_LAYOUT_COMPLETE => 'submissions.layoutComplete',
+			SUBMISSION_FIELD_DATE_SUBMITTED => 'submissions.submitted'
 		));
 
 		$templateMgr->assign('helpTopicId', $helpTopicId);

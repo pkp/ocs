@@ -25,7 +25,6 @@ class PresenterSubmissionDAO extends DAO {
 	var $paperFileDao;
 	var $suppFileDao;
 	var $paperCommentDao;
-	var $layoutAssignmentDao;
 	var $galleyDao;
 
 	/**
@@ -41,7 +40,6 @@ class PresenterSubmissionDAO extends DAO {
 		$this->paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 		$this->paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
-		$this->layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
 		$this->galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 	}
 	
@@ -104,7 +102,6 @@ class PresenterSubmissionDAO extends DAO {
 
 		// Comments
 		$presenterSubmission->setMostRecentDirectorDecisionComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_DIRECTOR_DECISION, $row['paper_id']));
-		$presenterSubmission->setMostRecentLayoutComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_LAYOUT, $row['paper_id']));
 		
 		// Files
 		$presenterSubmission->setSubmissionFile($this->paperFileDao->getPaperFile($row['submission_file_id']));
@@ -117,9 +114,6 @@ class PresenterSubmissionDAO extends DAO {
 			$presenterSubmission->setDirectorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['director_file_id'], $i), $i);
 		}
 		$presenterSubmission->setGalleys($this->galleyDao->getGalleysByPaper($row['paper_id']));
-
-		// Layout Assignment
-		$presenterSubmission->setLayoutAssignment($this->layoutAssignmentDao->getLayoutAssignmentByPaperId($row['paper_id']));
 
 		HookRegistry::call('PresenterSubmissionDAO::_returnPresenterSubmissionFromRow', array(&$presenterSubmission, &$row));
 

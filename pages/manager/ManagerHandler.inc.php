@@ -126,11 +126,6 @@ class ManagerHandler extends Handler {
 		ManagerSetupHandler::saveSetup($args);
 	}
 
-	function downloadLayoutTemplate($args) {
-		import('pages.manager.ManagerSetupHandler');
-		ManagerSetupHandler::downloadLayoutTemplate($args);
-	}
-	
 	//
 	// Scheduled Conference Setup
 	//

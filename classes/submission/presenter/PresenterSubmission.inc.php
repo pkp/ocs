@@ -342,39 +342,6 @@ class PresenterSubmission extends Paper {
 	function setMostRecentDirectorDecisionComment($mostRecentDirectorDecisionComment) {
 		return $this->setData('mostRecentDirectorDecisionComment', $mostRecentDirectorDecisionComment);
 	}
-	
-	/**
-	 * Get most recent layout comment.
-	 * @return PaperComment
-	 */
-	function getMostRecentLayoutComment() {
-		return $this->getData('mostRecentLayoutComment');
-	}
-	
-	/**
-	 * Set most recent layout comment.
-	 * @param $mostRecentLayoutComment PaperComment
-	 */
-	function setMostRecentLayoutComment($mostRecentLayoutComment) {
-		return $this->setData('mostRecentLayoutComment', $mostRecentLayoutComment);
-	}
-		
-	/**
-	 * Get layout assignment.
-	 * @return layoutAssignment object
-	 */
-	function &getLayoutAssignment() {
-		$layoutAssignment = &$this->getData('layoutAssignment');
-		return $layoutAssignment;
-	}
-
-	/**
-	 * Set layout assignment.
-	 * @param $layoutAssignment
-	 */
-	function setLayoutAssignment($layoutAssignment) {
-		return $this->setData('layoutAssignment', $layoutAssignment);
-	}
 }
 
 ?>

@@ -25,7 +25,6 @@ class TrackDirectorSubmissionDAO extends DAO {
 	var $userDao;
 	var $editAssignmentDao;
 	var $reviewAssignmentDao;
-	var $layoutAssignmentDao;
 	var $paperFileDao;
 	var $suppFileDao;
 	var $galleyDao;
@@ -42,7 +41,6 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$this->userDao = &DAORegistry::getDAO('UserDAO');
 		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$this->reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
 		$this->paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 		$this->galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
@@ -106,7 +104,6 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 		// Comments
 		$trackDirectorSubmission->setMostRecentDirectorDecisionComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_DIRECTOR_DECISION, $row['paper_id']));
-		$trackDirectorSubmission->setMostRecentLayoutComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_LAYOUT, $row['paper_id']));
 
 		// Files
 		$trackDirectorSubmission->setSubmissionFile($this->paperFileDao->getPaperFile($row['submission_file_id']));
@@ -114,6 +111,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$trackDirectorSubmission->setReviewFile($this->paperFileDao->getPaperFile($row['review_file_id']));
 		$trackDirectorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByPaper($row['paper_id']));
 		$trackDirectorSubmission->setDirectorFile($this->paperFileDao->getPaperFile($row['director_file_id']));
+		$trackDirectorSubmission->setLayoutFile($this->paperFileDao->getPaperFile($row['layout_file_id']));
 
 		for ($i = 1; $i <= $row['current_round']; $i++) {
 			$trackDirectorSubmission->setDirectorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['director_file_id'], $i), $i);
@@ -127,9 +125,6 @@ class TrackDirectorSubmissionDAO extends DAO {
 		for ($i = 1; $i <= $row['review_progress']; $i++)
 			for ($j = 1; $j <= $row['current_round']; $j++)
 				$trackDirectorSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByPaperId($row['paper_id'], $i, $j), $i, $j);
-
-		// Layout Editing
-		$trackDirectorSubmission->setLayoutAssignment($this->layoutAssignmentDao->getLayoutAssignmentByPaperId($row['paper_id']));
 
 		$trackDirectorSubmission->setGalleys($this->galleyDao->getGalleysByPaper($row['paper_id']));
 
@@ -224,16 +219,6 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$this->reviewAssignmentDao->deleteReviewAssignmentById($removedReviewAssignments[$i]->getReviewId());
 		}
 
-		// Update layout editing assignment
-		$layoutAssignment =& $trackDirectorSubmission->getLayoutAssignment();
-		if (isset($layoutAssignment)) {
-			if ($layoutAssignment->getLayoutId() > 0) {
-				$this->layoutAssignmentDao->updateLayoutAssignment($layoutAssignment);
-			} else {
-				$this->layoutAssignmentDao->insertLayoutAssignment($layoutAssignment);
-			}
-		}
-		
 		// Update paper
 		if ($trackDirectorSubmission->getPaperId()) {
 
@@ -244,6 +229,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$paper->setReviewProgress($trackDirectorSubmission->getReviewProgress());
 			$paper->setCurrentRound($trackDirectorSubmission->getCurrentRound());
 			$paper->setReviewFileId($trackDirectorSubmission->getReviewFileId());
+			$paper->setLayoutFileId($trackDirectorSubmission->getLayoutFileId());
 			$paper->setDirectorFileId($trackDirectorSubmission->getDirectorFileId());
 			$paper->setStatus($trackDirectorSubmission->getStatus());
 			$paper->setDateStatusModified($trackDirectorSubmission->getDateStatusModified());
@@ -357,14 +343,6 @@ class TrackDirectorSubmissionDAO extends DAO {
 					$searchSql .= ' AND p.date_submitted <= ' . $this->datetimeToDB($dateTo);
 				}
 				break;
-			case SUBMISSION_FIELD_DATE_LAYOUT_COMPLETE:
-				if (!empty($dateFrom)) {
-					$searchSql .= ' AND l.date_completed >= ' . $this->datetimeToDB($dateFrom);
-				}
-				if (!empty($dateTo)) {
-					$searchSql .= ' AND l.date_completed <= ' . $this->datetimeToDB($dateTo);
-				}
-				break;
 		}
 
 		$sql = 'SELECT DISTINCT
@@ -385,12 +363,9 @@ class TrackDirectorSubmissionDAO extends DAO {
 			LEFT JOIN users ed ON (e.director_id = ed.user_id)
 			LEFT JOIN tracks t ON (t.track_id = p.track_id)
 			LEFT JOIN review_rounds r2 ON (p.paper_id = r2.paper_id and p.current_round = r2.round AND p.review_progress = r2.type)
-			LEFT JOIN layouted_assignments l ON (l.paper_id = p.paper_id) LEFT JOIN users le ON (le.user_id = l.editor_id)
 			WHERE
 				p.sched_conf_id = ? AND e.director_id = ?';
 
-		// "Active" submissions have a status of SUBMISSION_STATUS_QUEUED and
-		// the layout editor has not yet been acknowledged.
 		if ($status === true) $sql .= ' AND (p.status = ' . SUBMISSION_STATUS_QUEUED . ')';
 		else $sql .= ' AND (p.status <> ' . SUBMISSION_STATUS_QUEUED . ')';
 

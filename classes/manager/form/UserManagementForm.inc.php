@@ -76,7 +76,6 @@ class UserManagementForm extends Form {
 					'' => 'manager.people.doNotEnroll',
 					'director' => 'user.role.director',
 					'trackDirector' => 'user.role.trackDirector',
-					'layoutEditor' => 'user.role.layoutEditor',
 					'reviewer' => 'user.role.reviewer',
 					'presenter' => 'user.role.presenter',
 					'reader' => 'user.role.reader'

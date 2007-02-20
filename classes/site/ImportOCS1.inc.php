@@ -38,7 +38,6 @@ import('submission.reviewer.ReviewerSubmission');
 import('issue.Issue');
 import('submission.copyAssignment.CopyAssignment');
 import('submission.editAssignment.EditAssignment');
-import('submission.layoutAssignment.LayoutAssignment');
 import('submission.proofAssignment.ProofAssignment');
 import('submission.reviewAssignment.ReviewAssignment');
 import('comment.Comment');
@@ -71,7 +70,6 @@ class ImportOCS1 {
 	var $importConference;
 	var $conferenceConfigInfo;
 	var $conferenceInfo;
-	var $conferenceLayoutUserId = 0;
 	var $issueLabelFormat;
 	
 	var $userCount = 0;
@@ -420,10 +418,7 @@ class ImportOCS1 {
 			'pubFreqPolicy' => array('string', $this->trans($this->conferenceInfo['chFreqPublication'])),
 			'useCopyeditors' => array('bool', $this->conferenceInfo['bCopyEditor']),
 			'copyeditInstructions' => array('string', $this->trans($this->conferenceInfo['chCopyeditInstructions'])),
-			'useLayoutEditors' => array('bool', $this->conferenceInfo['bLayoutEditor']),
-		//	'layoutInstructions' => array('string', ''),
 			'useProofreaders' => array('bool', $this->conferenceInfo['bProofReader']),
-			'proofInstructions' => array('string', $this->trans($this->conferenceInfo['chProofingInstructions'])),
 			'enableRegistration' => array('bool', isset($this->conferenceInfo['bRegistrations']) ? $this->conferenceInfo['bRegistrations'] : 0),
 			'registrationName' => array('string', $this->trans($this->conferenceInfo['chContactName'])),
 			'registrationEmail' => array('string', $this->trans($this->conferenceInfo['chContactEmail'])),
@@ -619,10 +614,6 @@ class ImportOCS1 {
 						break;
 					case 2:
 						$role->setRoleId(ROLE_ID_CONFERENCE_MANAGER);
-						break;
-					case 3:
-						$role->setRoleId(ROLE_ID_LAYOUT_EDITOR);
-						$this->conferenceLayoutUserId = $userId; // Assume one LE per conference, as per OCS 1.x semantics
 						break;
 				}
 				
@@ -909,7 +900,6 @@ class ImportOCS1 {
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$copyAssignmentDao = &DAORegistry::getDAO('CopyeditorSubmissionDAO');
-		$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
 		$proofAssignmentDao = &DAORegistry::getDAO('ProofAssignmentDAO');
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		
@@ -1148,9 +1138,6 @@ class ImportOCS1 {
 				$copyResult->Close();
 				$copyAssignmentDao->insertCopyeditorSubmission($copyAssignment);
 				
-				$layoutAssignment = &new LayoutAssignment();
-				$layoutAssignment->setPaperId($paperId);
-		
 				// Proofreading assignment
 				$proofAssignment = &new ProofAssignment();
 				$proofAssignment->setPaperId($paperId);
@@ -1161,7 +1148,6 @@ class ImportOCS1 {
 					if ($proofRow['fkFileProofID']) {
 						// Treat proofreader file as layout file
 						$fileId = $this->addPaperFile($paperId, $proofRow['fkFileProofID'], PAPER_FILE_LAYOUT);
-						$layoutAssignment->setLayoutFileId($fileId);
 					}
 					
 					$proofAssignment->setProofreaderId($this->userMap[$proofRow['nUserID']]);
@@ -1174,23 +1160,11 @@ class ImportOCS1 {
 					$proofAssignment->setDateProofreaderUnderway($proofRow['dtDateNotified_Proof']);
 					$proofAssignment->setDateProofreaderCompleted($proofRow['dtDateCompleted_Proof']);
 					$proofAssignment->setDateProofreaderAcknowledged($proofRow['dtDateAcknowledged_Proof']);
-					$proofAssignment->setDateLayoutEditorNotified(null); // Not applicable to 1.x
-					$proofAssignment->setDateLayoutEditorUnderway(null);
-					$proofAssignment->setDateLayoutEditorCompleted(null);
-					$proofAssignment->setDateLayoutEditorAcknowledged(null);
 				} else {
 					$proofAssignment->setProofreaderId(0);
 				}
 				$proofResult->Close();
 				$proofAssignmentDao->insertProofAssignment($proofAssignment);
-				
-				// Layout editing assignment
-				$layoutAssignment->setEditorId($this->conferenceLayoutUserId);
-				$layoutAssignment->setDateNotified($row['dtDateRequestGalleys']);
-				$layoutAssignment->setDateUnderway($row['dtDateRequestGalleys']);
-				$layoutAssignment->setDateCompleted($row['dtDateGalleysCompleted']);
-				$layoutAssignment->setDateAcknowledged($row['dtDateGalleysCompleted']);
-				$layoutAssignmentDao->insertLayoutAssignment($layoutAssignment);
 				
 				$reviewerOrder = 1;
 				$reviewResult = &$this->importDao->retrieve('SELECT tblreviews.*, tblpapersassigned.*, nUserID FROM tblreviews, tblpapersassigned, tblusers, tblpapers WHERE tblreviews.fkPaperID = tblpapers.nPaperID AND tblreviews.fkPaperID = tblpapersassigned.fkPaperID AND tblusers.fkReviewerID = tblpapersassigned.fkReviewerID AND tblreviews.fkReviewerID = tblpapersassigned.fkReviewerID AND tblpapersassigned.nOrder IS NOT NULL AND tblreviews.fkPaperID = ? ORDER BY nOrder', $row['nPaperID']);

@@ -29,7 +29,6 @@
 	
 	{iterate from=submissions item=submission}
 	{assign var="paperId" value=$submission->getPaperId()}
-	{assign var="layoutAssignment" value=$submission->getLayoutAssignment()}
 	<tr valign="top">
 		<td>{$paperId}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatShort}</td>

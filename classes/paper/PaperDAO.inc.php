@@ -134,6 +134,7 @@ class PaperDAO extends DAO {
 		$paper->setSubmissionFileId($row['submission_file_id']);
 		$paper->setRevisedFileId($row['revised_file_id']);
 		$paper->setReviewFileId($row['review_file_id']);
+		$paper->setLayoutFileId($row['layout_file_id']);
 		$paper->setDirectorFileId($row['director_file_id']);
 		$paper->setPages($row['pages']);
 		
@@ -179,11 +180,12 @@ class PaperDAO extends DAO {
 				 submission_file_id,
 				 revised_file_id,
 				 review_file_id,
+				 layout_file_id,
 				 director_file_id,
 				 pages,
 				 date_reminded)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified())),
 			array(
 				$paper->getUserId(),
@@ -212,6 +214,7 @@ class PaperDAO extends DAO {
 				$paper->getSubmissionFileId(),
 				$paper->getRevisedFileId(),
 				$paper->getReviewFileId(),
+				$paper->getLayoutFileId(),
 				$paper->getDirectorFileId(),
 				$paper->getPages(),
 				$paper->getDateReminded()
@@ -267,6 +270,7 @@ class PaperDAO extends DAO {
 					submission_file_id = ?,
 					revised_file_id = ?,
 					review_file_id = ?,
+					layout_file_id = ?,
 					director_file_id = ?,
 					pages = ?,
 					date_reminded = ?
@@ -298,6 +302,7 @@ class PaperDAO extends DAO {
 				$paper->getSubmissionFileId(),
 				$paper->getRevisedFileId(),
 				$paper->getReviewFileId(),
+				$paper->getLayoutFileId(),
 				$paper->getDirectorFileId(),
 				$paper->getPages(),
 				$paper->getDateReminded(),
@@ -358,9 +363,6 @@ class PaperDAO extends DAO {
 
 		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignmentDao->deleteEditAssignmentsByPaper($paperId);
-
-		$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-		$layoutAssignmentDao->deleteLayoutAssignmentsByPaper($paperId);
 
 		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
 		$paperCommentDao->deletePaperComments($paperId);

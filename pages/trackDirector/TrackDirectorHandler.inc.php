@@ -109,8 +109,7 @@ class TrackDirectorHandler extends Handler {
 			SUBMISSION_FIELD_DIRECTOR => 'user.role.director'
 		));
 		$templateMgr->assign('dateFieldOptions', Array(
-			SUBMISSION_FIELD_DATE_SUBMITTED => 'submissions.submitted',
-			SUBMISSION_FIELD_DATE_LAYOUT_COMPLETE => 'submissions.layoutComplete',
+			SUBMISSION_FIELD_DATE_SUBMITTED => 'submissions.submitted'
 		));
 
 		$templateMgr->display('trackDirector/index.tpl');
@@ -411,21 +410,6 @@ class TrackDirectorHandler extends Handler {
 		SubmissionEditHandler::uploadLayoutVersion();
 	}
 	
-	function assignLayoutEditor($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::assignLayoutEditor($args);
-	}
-	
-	function notifyLayoutEditor($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::notifyLayoutEditor($args);
-	}
-	
-	function thankLayoutEditor($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::thankLayoutEditor($args);
-	}
-	
 	function uploadGalley() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::uploadGalley();
@@ -585,16 +569,6 @@ class TrackDirectorHandler extends Handler {
 		SubmissionCommentsHandler::emailDirectorDecisionComment();
 	}
 	
-	function viewLayoutComments($args) {
-		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::viewLayoutComments($args);
-	}
-	
-	function postLayoutComment() {
-		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::postLayoutComment();
-	}
-	
 	function editComment($args) {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::editComment($args);
@@ -608,17 +582,6 @@ class TrackDirectorHandler extends Handler {
 	function deleteComment($args) {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::deleteComment($args);
-	}
-	
-	/** Layout Assignment Functions */
-	function directorInitiateLayoutEditor() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::directorInitiateLayoutEditor();
-	}
-
-	function directorCompleteLayoutEditor() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::directorCompleteLayoutEditor();
 	}
 }
 

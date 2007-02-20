@@ -75,9 +75,6 @@ class PeopleHandler extends ManagerHandler {
 				case ROLE_ID_TRACK_DIRECTOR:
 					$helpTopicId = 'conference.roles.trackDirector';
 					break;
-				case ROLE_ID_LAYOUT_EDITOR:
-					$helpTopicId = 'conference.roles.layoutEditor';
-					break;
 				case ROLE_ID_REVIEWER:
 					$helpTopicId = 'conference.roles.reviewer';
 					break;
@@ -455,16 +452,6 @@ class PeopleHandler extends ManagerHandler {
 				$copyeditorSubmission->setCopyeditorId($newUserId);
 				$copyeditorSubmissionDao->updateCopyeditorSubmission($copyeditorSubmission);
 				unset($copyeditorSubmission);
-			}
-
-			$layoutEditorSubmissionDao =& DAORegistry::getDAO('LayoutEditorSubmissionDAO');
-			$layoutEditorSubmissions =& $layoutEditorSubmissionDao->getSubmissions($oldUserId);
-			while ($layoutEditorSubmission =& $layoutEditorSubmissions->next()) {
-				$layoutAssignment =& $layoutEditorSubmission->getLayoutAssignment();
-				$layoutAssignment->setEditorId($newUserId);
-				$layoutEditorSubmissionDao->updateSubmission($layoutEditorSubmission);
-				unset($layoutAssignment);
-				unset($layoutEditorSubmission);
 			}
 
 			$proofreaderSubmissionDao =& DAORegistry::getDAO('ProofreaderSubmissionDAO');

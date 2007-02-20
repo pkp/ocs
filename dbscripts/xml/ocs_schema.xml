@@ -627,6 +627,7 @@
 		<field name="submission_file_id" type="I8"/>
 		<field name="revised_file_id" type="I8"/>
 		<field name="review_file_id" type="I8"/>
+		<field name="layout_file_id" type="I8"/>
 		<field name="director_file_id" type="I8"/>
 		<field name="pages" type="C2" size="255"/>
 		<descr>Conference papers.</descr>
@@ -1052,37 +1053,6 @@
 		</index>
 		<index name="review_assignments_reviewer_id">
 			<col>reviewer_id</col>
-		</index>
-	</table>
-	
-	<!--
-	  *
-	  * TABLE layouted_assignments
-	  *
-	  -->
-	<table name="layouted_assignments">
-		<field name="layouted_id" type="I8">
-			<KEY/>
-			<AUTOINCREMENT/>
-		</field>
-		<field name="paper_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<field name="editor_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<field name="date_notified" type="T"/>
-		<field name="date_underway" type="T"/>
-		<field name="date_completed" type="T"/>
-		<field name="date_acknowledged" type="T"/>
-		<field name="layout_file_id" type="I8"/>
-		<descr>Layout editing assignments.</descr>
-		<index name="layouted_assignments_paper_id">
-			<col>paper_id</col>
-			<UNIQUE/>
-		</index>
-		<index name="layouted_assignments_editor_id">
-			<col>editor_id</col>
 		</index>
 	</table>
 	

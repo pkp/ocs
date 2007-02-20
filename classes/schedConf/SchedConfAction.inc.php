@@ -159,7 +159,7 @@ class SchedConfAction {
 		$user = &Request::getUser();
 
 		if (isset($user) && isset($schedConf)) {
-			// If the user is a conference manager, director, track director, or layout editor,
+			// If the user is a conference manager, director, or track director,
 			// it is assumed that they are allowed to view the scheduled conference as a registrant.
 			$roleDao = &DAORegistry::getDAO('RoleDAO');
 			$registrationAssumedRoles = array(

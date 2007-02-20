@@ -27,9 +27,6 @@ define('ROLE_PATH_DIRECTOR', 			'director');
 define('ROLE_ID_TRACK_DIRECTOR',		0x00000080);
 define('ROLE_PATH_TRACK_DIRECTOR', 		'trackDirector');
 
-define('ROLE_ID_LAYOUT_EDITOR',			0x00000300);
-define('ROLE_PATH_LAYOUT_EDITOR', 		'layoutEditor');
-
 define('ROLE_ID_REVIEWER',			0x00000100);
 define('ROLE_PATH_REVIEWER',			'reviewer');
 

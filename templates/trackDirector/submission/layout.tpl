@@ -9,20 +9,9 @@
  * $Id$
  *}
 
-{assign var=layoutAssignment value=$submission->getLayoutAssignment()}
-{assign var=layoutFile value=$layoutAssignment->getLayoutFile()}
+{assign var=layoutFile value=$submissionAssignment->getLayoutFile()}
 <a name="layout"></a>
 <h3>{translate key="submission.layout"}</h3>
-
-{if $useLayoutEditors}
-<table class="data" width="100%">
-	<tr>
-		<td width="20%" class="label">{translate key="user.role.layoutEditor"}</td>
-		{if $layoutAssignment->getEditorId()}<td width="20%" class="value">{$layoutAssignment->getEditorFullName()|escape}</td>{/if}
-		<td class="value"><a href="{url op="assignLayoutEditor" path=$submission->getPaperId()}" class="action">{translate key="submission.layout.assignLayoutEditor"}</a></td>
-	</tr>
-</table>
-{/if}
 
 <table width="100%" class="info">
 	<tr>
@@ -31,56 +20,6 @@
 		<td width="16%" class="heading">{translate key="submission.underway"}</td>
 		<td width="16%" class="heading">{translate key="submission.complete"}</td>
 		<td width="22%" colspan="2" class="heading">{translate key="submission.acknowledge"}</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			{translate key="submission.layout.layoutVersion"}
-		</td>
-		<td>
-			{if $useLayoutEditors}
-				{if $layoutAssignment->getEditorId() && $layoutFile}
-					{url|assign:"url" op="notifyLayoutEditor" paperId=$submission->getPaperId()}
-					{if $layoutAssignment->getDateUnderway()}
-                                        	{translate|escape:"javascript"|assign:"confirmText" key="trackDirector.layout.confirmRenotify"}
-                                        	{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
-                                	{else}
-                                        	{icon name="mail" url=$url}
-                                	{/if}
-				{else}
-					{icon name="mail" disabled="disable"}
-				{/if}
-				{$layoutAssignment->getDateNotified()|date_format:$dateFormatShort|default:""}
-			{else}
-				{translate key="common.notApplicableShort"}
-			{/if}
-		</td>
-		<td>
-			{if $useLayoutEditors}
-				{$layoutAssignment->getDateUnderway()|date_format:$dateFormatShort|default:"&mdash;"}
-			{else}
-				{translate key="common.notApplicableShort"}
-			{/if}
-		</td>
-		<td>
-			{if $useLayoutEditors}
-				{$layoutAssignment->getDateCompleted()|date_format:$dateFormatShort|default:"&mdash;"}
-			{else}
-				{translate key="common.notApplicableShort"}
-			{/if}
-		</td>
-		<td colspan="2">
-			{if $useLayoutEditors}
-				{if $layoutAssignment->getEditorId() &&  $layoutAssignment->getDateCompleted() && !$layoutAssignment->getDateAcknowledged()}
-					{url|assign:"url" op="thankLayoutEditor" paperId=$submission->getPaperId()}
-					{icon name="mail" url=$url}
-				{else}
-					{icon name="mail" disabled="disable"}
-				{/if}
-				{$layoutAssignment->getDateAcknowledged()|date_format:$dateFormatShort|default:""}
-			{else}
-				{translate key="common.notApplicableShort"}
-			{/if}
-		</td>
 	</tr>
 	<tr valign="top">
 		<td colspan="6">
@@ -158,16 +97,3 @@
 	<input type="file" name="layoutFile" size="10" class="uploadField" />
 	<input type="submit" value="{translate key="common.upload"}" class="button" />
 </form>
-
-{translate key="submission.layout.layoutComments"}
-{if $submission->getMostRecentLayoutComment()}
-	{assign var="comment" value=$submission->getMostRecentLayoutComment()}
-	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getPaperId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
-{else}
-	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getPaperId()}');" class="icon">{icon name="comment"}</a>
-{/if}
-
-{if $currentSchedConf->getSetting('layoutInstructions', true)}
-&nbsp;&nbsp;
-<a href="javascript:openHelp('{url op="instructions" path="layout"}')" class="action">{translate key="submission.layout.instructions"}</a>
-{/if}

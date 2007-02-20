@@ -21,7 +21,6 @@
 		<option {if $roleSymbolic=='managers'}selected="selected" {/if}value="managers">{translate key="user.role.managers"}</option>
 		<option {if $roleSymbolic=='directors'}selected="selected" {/if}value="directors">{translate key="user.role.directors"}</option>
 		<option {if $roleSymbolic=='trackDirectors'}selected="selected" {/if}value="trackDirectors">{translate key="user.role.trackDirectors"}</option>
-		<option {if $roleSymbolic=='layoutEditors'}selected="selected" {/if}value="layoutEditors">{translate key="user.role.layoutEditors"}</option>
 		<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
 		<option {if $roleSymbolic=='presenters'}selected="selected" {/if}value="presenters">{translate key="user.role.presenters"}</option>
 		<option {if $roleSymbolic=='readers'}selected="selected" {/if}value="readers">{translate key="user.role.readers"}</option>
@@ -43,7 +42,6 @@
 	<li><a href="{url path="managers" oldUserId=$oldUserId}">{translate key="user.role.managers"}</a></li>
 	<li><a href="{url path="directors" oldUserId=$oldUserId}">{translate key="user.role.directors"}</a></li>
 	<li><a href="{url path="trackDirectors" oldUserId=$oldUserId}">{translate key="user.role.trackDirectors"}</a></li>
-	<li><a href="{url path="layoutEditors" oldUserId=$oldUserId}">{translate key="user.role.layoutEditors"}</a></li>
 	<li><a href="{url path="reviewers" oldUserId=$oldUserId}">{translate key="user.role.reviewers"}</a></li>
 	<li><a href="{url path="presenters" oldUserId=$oldUserId}">{translate key="user.role.presenters"}</a></li>
 	<li><a href="{url path="readers" oldUserId=$oldUserId}">{translate key="user.role.readers"}</a></li>

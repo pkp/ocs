@@ -51,13 +51,6 @@
 		<td>{$proofAssignment->getDateProofreaderCompleted()|date_format:$dateFormatShort|default:"&mdash;"}</td>
 	</tr>
 	<tr>
-		<td>3.</td>
-		<td>{translate key="user.role.layoutEditor"}</td>
-		<td>{$proofAssignment->getDateLayoutEditorNotified()|date_format:$dateFormatShort|default:"&mdash;"}</td>
-		<td>{$proofAssignment->getDateLayoutEditorUnderway()|date_format:$dateFormatShort|default:"&mdash;"}</td>
-		<td>{$proofAssignment->getDateLayoutEditorCompleted()|date_format:$dateFormatShort|default:"&mdash;"}</td>
-	</tr>
-	<tr>
 		<td colspan="5" class="separator">&nbsp;</td>
 	</tr>
 </table>
@@ -68,9 +61,4 @@
         <a href="javascript:openComments('{url op="viewProofreadComments" path=$submission->getPaperId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
 {else}
         <a href="javascript:openComments('{url op="viewProofreadComments" path=$submission->getPaperId()}');" class="icon">{icon name="comment"}</a>
-{/if}
-
-{if $currentConference->getSetting('proofInstructions')}
-&nbsp;&nbsp;
-<a href="javascript:openHelp('{url op="instructions" path="proof"}')" class="action">{translate key="submission.proofread.instructions"}</a>
 {/if}

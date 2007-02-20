@@ -60,10 +60,6 @@ class EmailHandler extends UserHandler {
 			foreach ($reviewAssignmentDao->getReviewAssignmentsByPaperId($paperId) as $reviewAssignment) {
 				if ($reviewAssignment->getReviewerId() === $user->getUserId()) $hasAccess = true;
 			}
-			// 5. User is layout editor
-			$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByPaperId($paperId);
-			if ($layoutAssignment && $layoutAssignment->getEditorId() === $user->getUserId()) $hasAccess = true;
 
 			// Last, "deal-breakers" -- access is not allowed.
 			if ($paper && $paper->getSchedConfId() !== $schedConf->getSchedConfId()) $hasAccess = false;

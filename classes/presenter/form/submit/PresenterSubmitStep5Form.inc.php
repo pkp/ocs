@@ -61,14 +61,6 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 			
 		$paperDao->updatePaper($paper);
 
-		$layoutDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-		if(!$layoutDao->getLayoutAssignmentByPaperId($paper->getPaperId())) {
-			$layoutAssignment = &new LayoutAssignment();
-			$layoutAssignment->setPaperId($paper->getPaperId());
-			$layoutAssignment->setEditorId(0);
-			$layoutDao->insertLayoutAssignment($layoutAssignment);
-		}
-
 		// Designate this as the review version by default.
 		$presenterSubmissionDao =& DAORegistry::getDAO('PresenterSubmissionDAO');
 		$presenterSubmission =& $presenterSubmissionDao->getPresenterSubmission($paper->getPaperId());

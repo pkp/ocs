@@ -112,41 +112,6 @@ class ManagerSetupHandler extends ManagerHandler {
 						$setupForm->setData('submissionChecklist', $checklist);
 					}
 					break;
-
-				case 4:
-					$conference =& Request::getConference();
-					$templates = $conference->getSetting('templates');
-					import('file.ConferenceFileManager');
-					$conferenceFileManager =& new ConferenceFileManager($conference);
-					if (Request::getUserVar('addTemplate')) {
-						// Add a layout template
-						$editData = true;
-						if (!is_array($templates)) $templates = array();
-						$templateId = count($templates);
-						$originalFilename = $_FILES['template-file']['name'];
-						$fileType = $_FILES['template-file']['type'];
-						$filename = "template-$templateId." . $conferenceFileManager->parseFileExtension($originalFilename);
-						$conferenceFileManager->uploadFile('template-file', $filename);
-						$templates[$templateId] = array(
-							'originalFilename' => $originalFilename,
-							'fileType' => $fileType,
-							'filename' => $filename,
-							'title' => Request::getUserVar('template-title')
-						);
-						$conference->updateSetting('templates', $templates);
-					} else if (($delTemplate = Request::getUserVar('delTemplate')) && count($delTemplate) == 1) {
-						// Delete a template
-						$editData = true;
-						list($delTemplate) = array_keys($delTemplate);
-						$delTemplate = (int) $delTemplate;
-						$template = $templates[$delTemplate];
-						$filename = "template-$delTemplate." . $conferenceFileManager->parseFileExtension($template['originalFilename']);
-						$conferenceFileManager->deleteFile($filename);
-						array_splice($templates, $delTemplate, 1);
-						$conference->updateSetting('templates', $templates);
-					}
-					$setupForm->setData('templates', $templates);
-					break;
 				case 5:	
 					if (Request::getUserVar('uploadHomeHeaderTitleImage')) {
 						if ($setupForm->uploadImage('homeHeaderTitleImage')) {
@@ -343,20 +308,6 @@ class ManagerSetupHandler extends ManagerHandler {
 		} else {
 			Request::redirect();
 		}
-	}
-	
-	function downloadLayoutTemplate($args) {
-		parent::validate();
-		$conference =& Request::getConference();
-		$templates = $conference->getSetting('templates');
-		import('file.ConferenceFileManager');
-		$conferenceFileManager =& new ConferenceFileManager($conference);
-		$templateId = (int) array_shift($args);
-		if ($templateId >= count($templates) || $templateId < 0) Request::redirect(null, null, null, 'setup');
-		$template =& $templates[$templateId];
-
-		$filename = "template-$templateId." . $conferenceFileManager->parseFileExtension($template['originalFilename']);
-		$conferenceFileManager->downloadFile($filename, $template['fileType']);
 	}
 }
 ?>

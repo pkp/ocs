@@ -52,7 +52,7 @@
 </tr>
 
 <tr valign="top">
-	<td class="label">{if $galleyId}{fieldLabel name="galleyFile" key="layoutEditor.galley.replaceGalley"}{else}{fieldLabel name="galleyFile" key="common.upload"}{/if}</td>
+	<td class="label">{if $galleyId}{fieldLabel name="galleyFile" key="trackDirector.galley.replaceGalley"}{else}{fieldLabel name="galleyFile" key="common.upload"}{/if}</td>
 	<td class="value">
 		<input type="file" name="galleyFile" id="galleyFile" class="uploadField" />&nbsp;&nbsp;{translate key="form.saveToUpload"}
 	</td>

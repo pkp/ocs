@@ -19,7 +19,6 @@ define('PAPER_EMAIL_TYPE_DEFAULT', 		0);
 define('PAPER_EMAIL_TYPE_PRESENTER', 		0x01);
 define('PAPER_EMAIL_TYPE_DIRECTOR', 		0x02);
 define('PAPER_EMAIL_TYPE_REVIEW', 		0x03);
-define('PAPER_EMAIL_TYPE_LAYOUT', 		0x05);
 
 // General events 				0x10000000
 

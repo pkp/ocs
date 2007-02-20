@@ -190,8 +190,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		parent::setupTemplate(true, $paperId);
 
-		$useLayoutEditors = $schedConf->getSetting('useLayoutEditors', true);
-
 		// check if submission is accepted
 		$type = isset($args[1]) ? $args[1] : $submission->getReviewProgress();
 		$round = isset($args[2]) ? $args[2] : $submission->getCurrentRound();
@@ -208,9 +206,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($submission->getPaperId());
 		$templateMgr->assign_by_ref('publishedPaper', $publishedPaper);
-
-		$templateMgr->assign('useLayoutEditors', $useLayoutEditors);
-		$templateMgr->assign_by_ref('layoutAssignment', $submission->getLayoutAssignment());
 
 		$templateMgr->assign('submissionAccepted', $submissionAccepted);
 
@@ -920,103 +915,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		TrackDirectorAction::deletePaperImage($submission, $fileId, $revisionId);
 		
 		Request::redirect(null, null, 'editGalley', array($paperId, $galleyId));
-	}
-	
-	/**
-	 * Assign/reassign a layout editor to the submission.
-	 * @param $args array ($paperId, [$userId])
-	 */
-	function assignLayoutEditor($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$editorId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
-		
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		
-		if ($editorId && $roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $editorId, ROLE_ID_LAYOUT_EDITOR)) {
-			TrackDirectorAction::assignLayoutEditor($submission, $editorId);
-			Request::redirect(null, null, 'submissionEditing', $paperId);
-		} else {
-			$searchType = null;
-			$searchMatch = null;
-			$search = $searchQuery = Request::getUserVar('search');
-			$searchInitial = Request::getUserVar('searchInitial');
-			if (isset($search)) {
-				$searchType = Request::getUserVar('searchField');
-				$searchMatch = Request::getUserVar('searchMatch');
-				
-			} else if (isset($searchInitial)) {
-				$searchInitial = String::strtoupper($searchInitial);
-				$searchType = USER_FIELD_INITIAL;
-				$search = $searchInitial;
-			}
-
-			$layoutEditors = $roleDao->getUsersByRoleId(ROLE_ID_LAYOUT_EDITOR, $conference->getConferenceId(), $schedConf->getSchedConfId(), $searchType, $search, $searchMatch);
-
-			$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-			$layoutEditorStatistics = $trackDirectorSubmissionDao->getLayoutEditorStatistics($schedConf->getSchedConfId());
-
-			parent::setupTemplate(true, $paperId, 'editing');
-
-			$templateMgr = &TemplateManager::getManager();
-
-			$templateMgr->assign('searchField', $searchType);
-			$templateMgr->assign('searchMatch', $searchMatch);
-			$templateMgr->assign('search', $searchQuery);
-			$templateMgr->assign('searchInitial', $searchInitial);
-			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
-			
-			$templateMgr->assign('pageTitle', 'user.role.layoutEditors');
-			$templateMgr->assign('pageSubTitle', 'director.paper.selectLayoutEditor');
-			$templateMgr->assign('actionHandler', 'assignLayoutEditor');
-			$templateMgr->assign('paperId', $paperId);
-			$templateMgr->assign_by_ref('users', $layoutEditors);
-
-			$layoutAssignment = &$submission->getLayoutAssignment();
-			if ($layoutAssignment) {
-				$templateMgr->assign('currentUser', $layoutAssignment->getEditorId());
-			}
-
-			$templateMgr->assign('fieldOptions', Array(
-				USER_FIELD_FIRSTNAME => 'user.firstName',
-				USER_FIELD_LASTNAME => 'user.lastName',
-				USER_FIELD_USERNAME => 'user.username',
-				USER_FIELD_EMAIL => 'user.email'
-			));
-			$templateMgr->assign('statistics', $layoutEditorStatistics);
-			$templateMgr->assign('helpTopicId', 'conference.roles.layoutEditor');
-			$templateMgr->display('trackDirector/selectUser.tpl');
-		}
-	}
-	
-	/**
-	 * Notify the layout editor.
-	 */
-	function notifyLayoutEditor($args) {
-		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
-
-		$send = Request::getUserVar('send')?true:false;
-		parent::setupTemplate(true, $paperId, 'editing');
-
-		if (TrackDirectorAction::notifyLayoutEditor($submission, $send)) {
-			Request::redirect(null, null, 'submissionEditing', $paperId);
-		}
-	}
-	
-	/**
-	 * Thank the layout editor.
-	 */
-	function thankLayoutEditor($args) {
-		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
-
-		$send = Request::getUserVar('send')?true:false;
-		parent::setupTemplate(true, $paperId, 'editing');
-
-		if (TrackDirectorAction::thankLayoutEditor($submission, $send)) {
-			Request::redirect(null, null, 'submissionEditing', $paperId);
-		}
 	}
 	
 	/**

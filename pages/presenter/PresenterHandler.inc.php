@@ -242,16 +242,6 @@ class PresenterHandler extends Handler {
 		SubmissionCommentsHandler::emailDirectorDecisionComment();
 	}
 
-	function viewLayoutComments($args) {
-		import('pages.presenter.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::viewLayoutComments($args);
-	}
-
-	function postLayoutComment() {
-		import('pages.presenter.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::postLayoutComment();
-	}
-	
 	function editComment($args) {
 		import('pages.presenter.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::editComment($args);

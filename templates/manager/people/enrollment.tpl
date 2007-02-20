@@ -53,16 +53,8 @@ function confirmAndPrompt(userId) {
 		{if $isSchedConfManagement}
 			<option {if $roleSymbolic=='directors'}selected="selected" {/if}value="directors">{translate key="user.role.directors"}</option>
 			<option {if $roleSymbolic=='trackDirectors'}selected="selected" {/if}value="trackDirectors">{translate key="user.role.trackDirectors"}</option>
-			<option {if $roleSymbolic=='layoutEditors'}selected="selected" {/if}value="layoutEditors">{translate key="user.role.layoutEditors"}</option>
 			<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
-
 			<option {if $roleSymbolic=='presenters'}selected="selected" {/if}value="presenters">{translate key="user.role.presenters"}</option>
-			{*<option {if $roleSymbolic=='invitedPresenters'}selected="selected" {/if}value="invitedPresenters">{translate key="user.role.invitedPresenters"}</option>*}
-
-			{*<option {if $roleSymbolic=='discussants'}selected="selected" {/if}value="discussants">{translate key="user.role.discussants"}</option>*}
-			{if $isRegistrationEnabled}
-				{*<option {if $roleSymbolic=='registrants'}selected="selected" {/if}value="registrants">{translate key="user.role.registrants"}</option>*}
-			{/if}
 			<option {if $roleSymbolic=='readers'}selected="selected" {/if}value="readers">{translate key="user.role.readers"}</option>
 		{/if}
 	</select>
@@ -86,16 +78,8 @@ function confirmAndPrompt(userId) {
 	{if $isSchedConfManagement}
 		<li><a href="{url path="directors"}">{translate key="user.role.directors"}</a></li>
 		<li><a href="{url path="trackDirectors"}">{translate key="user.role.trackDirectors"}</a></li>
-		<li><a href="{url path="layoutEditors"}">{translate key="user.role.layoutEditors"}</a></li>
 		<li><a href="{url path="reviewers"}">{translate key="user.role.reviewers"}</a></li>
-	
 		<li><a href="{url path="presenters"}">{translate key="user.role.presenters"}</a></li>
-		{*<li><a href="{url path="invitedPresenters"}">{translate key="user.role.invitedPresenters"}</a></li>*}
-	
-		{*<li><a href="{url path="discussants"}">{translate key="user.role.discussants"}</a></li>*}
-		{if $isRegistrationEnabled}
-			{*<li><a href="{url path="registrants"}">{translate key="user.role.registrants"}</a></li>*}
-		{/if}
 		<li><a href="{url path="readers"}">{translate key="user.role.readers"}</a></li>
 	{/if}
 </ul>

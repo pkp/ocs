@@ -218,9 +218,6 @@ class DirectorSubmissionDAO extends DAO {
 			case SUBMISSION_FIELD_REVIEWER:
 				$searchSql = $this->_generateUserNameSearchSQL($search, $searchMatch, 're.', $params);
 				break;
-			case SUBMISSION_FIELD_LAYOUTEDITOR:
-				$searchSql = $this->_generateUserNameSearchSQL($search, $searchMatch, 'le.', $params);
-				break;
 		}
 		if (!empty($dateFrom) || !empty($dateTo)) switch($dateField) {
 			case SUBMISSION_FIELD_DATE_SUBMITTED:
@@ -229,14 +226,6 @@ class DirectorSubmissionDAO extends DAO {
 				}
 				if (!empty($dateTo)) {
 					$searchSql .= ' AND p.date_submitted <= ' . $this->datetimeToDB($dateTo);
-				}
-				break;
-			case SUBMISSION_FIELD_DATE_LAYOUT_COMPLETE:
-				if (!empty($dateFrom)) {
-					$searchSql .= ' AND l.date_completed >= ' . $this->datetimeToDB($dateFrom);
-				}
-				if (!empty($dateTo)) {
-					$searchSql .= ' AND l.date_completed <= ' . $this->datetimeToDB($dateTo);
 				}
 				break;
 		}
@@ -255,15 +244,12 @@ class DirectorSubmissionDAO extends DAO {
 			LEFT JOIN tracks t ON (t.track_id = p.track_id)
 			LEFT JOIN edit_assignments ea ON (ea.paper_id = p.paper_id)
 			LEFT JOIN users ed ON (ea.director_id = ed.user_id)
-			LEFT JOIN layouted_assignments l ON (l.paper_id = p.paper_id)
 			LEFT JOIN users le ON (le.user_id = l.editor_id)
 			LEFT JOIN review_assignments ra ON (ra.paper_id = p.paper_id)
 			LEFT JOIN users re ON (re.user_id = ra.reviewer_id AND cancelled = 0)
 			WHERE
 				p.sched_conf_id = ?';
 
-		// "Active" submissions have a status of SUBMISSION_STATUS_QUEUED and
-		// the layout editor has not yet been acknowledged.
 		if ($status === true) $sql .= ' AND (p.status = ' . SUBMISSION_STATUS_QUEUED . ')';
 		else $sql .= ' AND (p.status <> ' . SUBMISSION_STATUS_QUEUED . ')';
 		
@@ -427,11 +413,6 @@ class DirectorSubmissionDAO extends DAO {
 			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 			$paperId = $directorSubmission->getPaperId();
 
-			// get layout assignment data
-			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByPaperId($paperId);
-			$directorSubmission->setLayoutAssignment($layoutAssignment);
-
 			// check if submission is still in review
 			$inEditing = false;
 			$decisions = $directorSubmission->getDecisions();
@@ -486,11 +467,6 @@ class DirectorSubmissionDAO extends DAO {
 			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 			$paperId = $directorSubmission->getPaperId();
 
-			// get layout assignment data
-			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByPaperId($paperId);
-			$directorSubmission->setLayoutAssignment($layoutAssignment);
-
 			if ($directorSubmission->getStatus() == SUBMISSION_STATUS_ARCHIVED) {
 				$directorSubmissions[] =& $directorSubmission;
 				unset($directorSubmission);
@@ -530,11 +506,6 @@ class DirectorSubmissionDAO extends DAO {
 		while (!$result->EOF) {
 			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 			$paperId = $directorSubmission->getPaperId();
-
-			// get layout assignment data
-			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByPaperId($paperId);
-			$directorSubmission->setLayoutAssignment($layoutAssignment);
 
 			if ($directorSubmission->getStatus() == SUBMISSION_STATUS_PUBLISHED) {
 				$directorSubmissions[] =& $directorSubmission;

@@ -297,15 +297,6 @@ class Validation {
 	}
 	
 	/**
-	 * Shortcut for checking authorization as layout editor.
-	 * @param $journalId int
-	 * @return boolean
-	 */
-	function isLayoutEditor($conferenceId = -1, $schedConfId = -1) {
-		return Validation::isAuthorized(ROLE_ID_LAYOUT_EDITOR, $conferenceId, $schedConfId);
-	}
-	
-	/**
 	 * Shortcut for checking authorization as reviewer.
 	 * @param $conferenceId int
 	 * @return boolean

@@ -394,7 +394,6 @@
 
 	<!-- Submission list search engine -->
 	<message key="submissions.submitted">Submitted</message>
-	<message key="submissions.layoutComplete">Layout edited</message>
 
 	<!-- Submission Notes -->
 	<message key="submission.notes">Submission Notes</message>
@@ -487,7 +486,6 @@
 	<message key="user.role.manager">Conference Manager</message>
 	<message key="user.role.director">Director</message>
 	<message key="user.role.trackDirector">Track Director</message>
-	<message key="user.role.layoutEditor">Layout Editor</message>
 	<message key="user.role.reviewer">Reviewer</message>
 	<message key="user.role.presenter">Presenter</message>
 	<message key="user.role.reader">Reader</message>
@@ -496,7 +494,6 @@
 	<message key="user.role.managers">Conference Managers</message>
 	<message key="user.role.directors">Directors</message>
 	<message key="user.role.trackDirectors">Track Directors</message>
-	<message key="user.role.layoutEditors">Layout Editors</message>
 	<message key="user.role.reviewers">Reviewers</message>
 	<message key="user.role.presenters">Presenters</message>
 	<message key="user.role.readers">Readers</message>
@@ -1000,15 +997,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<!--<message key="manager.setup.editorialProcess1">One or more directors handle the basic steps without designated roles.</message>-->
 	<!--<message key="manager.setup.editorialProcess2">Managing Director handles Submission Queue, Scheduling Queue, and Table of Contents, while Track Directors handle Submission Review and Submission Editing.</message>-->
 	<!--<message key="manager.setup.editorialProcess3">Managing Director handles Submission Queue, Submission Editing, Scheduling Queue, and Table of Contents, while the Track Directors handle Submission Review.</message>-->
-	<!--<message key="manager.setup.layoutAndGalleys">Layout Editors</message>-->
-	<!--<message key="manager.setup.useLayoutEditors">The conference will designate Layout Editors to prepare the galleys in HTML, PDF, PS, etc., file formats for electronic publication.</message>-->
-	<!--<message key="manager.setup.noUseLayoutEditors">The directors will prepare the galleys in the appropriate format for electronic publication.</message>-->
-	<!--<message key="manager.setup.layoutInstructions">Layout Instructions</message>-->
-	<!--<message key="manager.setup.layoutInstructionsDescription">Layout Instructions can be prepared for the formatting of publishing items in the conference and be entered below in HTML or plain text. They will be made available to  the Layout Editor and Track Director on the Editing page of each submission. (As each conference may employ its own file formats, bibliographic standards, style sheets, etc., a default set of instructions is not provided.)</message>-->
-	<!--<message key="manager.setup.layoutTemplates">Layout Templates</message>-->
-	<!--<message key="manager.setup.layoutTemplatesDescription">Templates can be uploaded to appear in Layout for each of the standard formats published in the conference (e.g., article, book review, etc.) using any file format (e.g., pdf, doc, etc.) with annotations added specifying font, size, margins, etc. to serve as a guide for Layout Editors and Proofreaders.</message>-->
-	<!--<message key="manager.setup.layoutTemplates.title">Title</message>-->
-	<!--<message key="manager.setup.layoutTemplates.file">Template File</message>-->
 	<message key="manager.setup.publicIdentifier">Identification of Conference Content</message>
 	<message key="manager.setup.uniqueIdentifier">Unique Identifier</message>
 	<message key="manager.setup.uniqueIdentifierDescription">Papers can be tagged with an identification number or string, if the conference is using an item registration system such as the Digital Object Identifier System (DOI).</message>
@@ -1688,7 +1676,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="director.paper.uploadDirectorVersion">Upload Director Version</message>
 	<message key="director.paper.roundDisabled">It's not yet possible to perform this review. Either the abstract review is not yet complete, or the presenter has not yet provided a paper for review.</message>
 	<message key="director.paper.showSuppFile">Present file to reviewers</message>
-	<!--<message key="director.paper.layoutAndProof">Layout &amp; Proof</message>-->
 	<message key="director.paper.clear">Clear</message>
 	<message key="director.paper.clearReviewer">Clear reviewer</message>
 	<message key="director.paper.changeTrack">Change Track</message>
@@ -1771,8 +1758,6 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<!--<message key="trackDirector.completedEditorialAssignments">Completed Editorial Assignments</message>-->
 	<!--<message key="trackDirector.noneAssigned">No submissions assigned.</message>-->
 	<!--<message key="trackDirector.presenter.confirmRenotify">Notifying this presenter again will restart their assignment. Are you sure you wish to do this?</message>-->
-	<!--<message key="trackDirector.layout.confirmRenotify">Notifying this layout editor again will restart their assignment. Are you sure you wish to do this?</message>-->
-	<!--<message key="trackDirector.proofreader.confirmRenotify">Notifying this proofreader again will restart their assignment. Are you sure you wish to do this?</message>-->
 
 	<message key="trackDirector.regrets.breadcrumb">Regrets</message>
 	<message key="trackDirector.regrets.title">#{$paperId} Reviewer Regrets &amp; Cancellations</message>
@@ -1785,16 +1770,6 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="trackDirector.regrets.result">Result</message>
 	<message key="trackDirector.review.enrollReviewer">Enroll Existing User As Reviewer</message>
 	<message key="trackDirector.review.createReviewer">Create New Reviewer</message>
-
-	<!-- Layout Editor -->
-	<!--<message key="layoutEditor.activeEditorialAssignments">Active Editorial Assignments</message>-->
-	<!--<message key="layoutEditor.completedEditorialAssignments">Completed Editorial Assignments</message>-->
-	<!--<message key="layoutEditor.noActiveAssignments">No active editorial assignments.</message>-->
-	<!--<message key="layoutEditor.layoutEditingAssignments">Layout Editing Assignments</message>-->
-	<!--<message key="layoutEditor.galley.uploadGalleyFormat">Upload galley format</message>-->
-	<message key="layoutEditor.galley.replaceGalley">Replace File</message>
-	<!--<message key="layoutEditor.galley.uploadSuppFile">Upload supplementary file</message>-->
-	<!--<message key="submission.layout.galleryNoImages">No images</message>-->
 
 	<!-- Reviewer -->
 	<message key="reviewer.pendingReviews">Articles Pending Review</message>
@@ -1981,16 +1956,12 @@ The file can be viewed by clicking on the file name. A new or revised file can b
 
 	<!-- Submission Tracking - Layout Specific -->
 	<message key="submission.layout.noLayoutFile">None (Upload final copyedit version as Layout Version prior to sending request)</message>
-	<message key="submission.layout.mustUploadFileForLayout">Request email cannot be sent until a Layout Version is in place.</message>
 	<message key="submission.layout.layoutVersion">Layout Version</message>
 	<message key="submission.layout.layoutFile">Layout File</message>
 	<message key="submission.layout.galleys">Galleys</message>
 	<message key="submission.layout.newGalley">Create New Galley</message>
-	<message key="submission.layout.assignLayoutEditor">Assign Layout Editor</message>
-	<message key="submission.layout.replaceLayoutEditor">Replace Layout Editor</message>
 	<message key="submission.layout.initialGalleyCreation">Initial Galley Creation</message>
 	<message key="submission.layout.supplementaryFiles">Supplementary File Review</message>
-	<message key="submission.layout.layoutComments">Layout Comments</message>
 	<message key="submission.layout.galleyLabelRequired">A galley label is required.</message>
 	<message key="submission.layout.confirmDeleteGalley">Are you sure you want to permanently delete this galley?</message>
 	<message key="submission.layout.newSupplementaryFile">Upload New Supplementary File</message>
@@ -2011,7 +1982,6 @@ The file can be viewed by clicking on the file name. A new or revised file can b
 	<message key="submission.layout.viewingGalley">Viewing Submission Galley</message>
 	<message key="submission.layout.galleyFormat">Galley Format</message>
 	<message key="submission.layout.viewProof">View Proof</message>
-	<message key="submission.layout.instructions">Layout Instructions</message>
 
 
 	<!-- Submission History -->

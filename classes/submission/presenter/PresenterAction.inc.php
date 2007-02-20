@@ -121,46 +121,6 @@ class PresenterAction extends Action {
 	//
 	
 	/**
-	 * View layout comments.
-	 * @param $paper object
-	 */
-	function viewLayoutComments($paper) {
-		if (!HookRegistry::call('PresenterAction::viewLayoutComments', array(&$paper))) {
-			import("submission.form.comment.LayoutCommentForm");
-			$commentForm = &new LayoutCommentForm($paper, ROLE_ID_DIRECTOR);
-			$commentForm->initData();
-			$commentForm->display();
-		}
-	}
-	
-	/**
-	 * Post layout comment.
-	 * @param $paper object
-	 * @param $emailComment boolean
-	 */
-	function postLayoutComment($paper, $emailComment) {
-		if (!HookRegistry::call('PresenterAction::postLayoutComment', array(&$paper, &$emailComment))) {
-			import("submission.form.comment.LayoutCommentForm");
-
-			$commentForm = &new LayoutCommentForm($paper, ROLE_ID_PRESENTER);
-			$commentForm->readInputData();
-		
-			if ($commentForm->validate()) {
-				$commentForm->execute();
-				
-				if ($emailComment) {
-					$commentForm->email();
-				}
-			
-			} else {
-				$commentForm->display();
-				return false;
-			}
-			return true;
-		}
-	}
-	
-	/**
 	 * View director decision comments.
 	 * @param $paper object
 	 */
@@ -245,7 +205,6 @@ class PresenterAction extends Action {
 		$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');		
 
 		$submission =& $presenterSubmissionDao->getPresenterSubmission($paper->getPaperId());
-		$layoutAssignment =& $submission->getLayoutAssignment();
 
 		$canDownload = false;
 		
@@ -264,7 +223,7 @@ class PresenterAction extends Action {
 			$canDownload = true;
 		} else if ($submission->getRevisedFileId() == $fileId) {
 			$canDownload = true;
-		} else if ($layoutAssignment->getLayoutFileId() == $fileId) {
+		} else if ($submission->getLayoutFileId() == $fileId) {
 			$canDownload = true;
 		} else {
 			// Check reviewer files

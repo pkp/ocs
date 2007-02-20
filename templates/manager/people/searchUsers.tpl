@@ -60,7 +60,6 @@ function confirmAndPrompt(userId) {
 			<option value="{$smarty.const.ROLE_ID_CONFERENCE_MANAGER}">{translate key="user.role.manager"}</option>
 			<option value="{$smarty.const.ROLE_ID_DIRECTOR}">{translate key="user.role.director"}</option>
 			<option value="{$smarty.const.ROLE_ID_TRACK_DIRECTOR}">{translate key="user.role.trackDirector"}</option>
-			<option value="{$smarty.const.ROLE_ID_LAYOUT_EDITOR}">{translate key="user.role.layoutEditor"}</option>
 			<option value="{$smarty.const.ROLE_ID_REVIEWER}">{translate key="user.role.reviewer"}</option>
 			<option value="{$smarty.const.ROLE_ID_PRESENTER}">{translate key="user.role.presenter"}</option>
 			<option value="{$smarty.const.ROLE_ID_READER}">{translate key="user.role.reader"}</option>

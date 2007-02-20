@@ -112,61 +112,6 @@
 		</td>
 	</tr>
 	<tr>
-		<td>3.</td>
-		<td>{translate key="user.role.layoutEditor"}</td>
-		<td>
-			{if $useLayoutEditors}
-				{if $layoutAssignment->getEditorId() && $proofAssignment->getDateProofreaderCompleted()}
-					{url|assign:"url" op="notifyLayoutEditorProofreader" paperId=$submission->getPaperId()}
-					{if $proofAssignment->getDateLayoutEditorUnderway()}
-						{translate|escape:"javascript"|assign:"confirmText" key="trackDirector.layout.confirmRenotify"}
-						{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
-					{else}
-						{icon name="mail" url=$url}
-					{/if}
-				{else}
-					{icon name="mail" disabled="disable"}
-				{/if}
-			{else}
-				{if !$proofAssignment->getDateLayoutEditorNotified()}
-					<a href="{url op="directorInitiateLayoutEditor" paperId=$submission->getPaperId()}" class="action">{translate key="common.initiate"}</a>
-				{/if}
-			{/if}
-				{$proofAssignment->getDateLayoutEditorNotified()|date_format:$dateFormatShort|default:""}
-		</td>
-		<td>
-			{if $useLayoutEditors}
-				{$proofAssignment->getDateLayoutEditorUnderway()|date_format:$dateFormatShort|default:"&mdash;"}
-			{else}
-				{translate key="common.notApplicableShort"}
-			{/if}
-		</td>
-		<td>
-			{if $useLayoutEditors}
-				{$proofAssignment->getDateLayoutEditorCompleted()|date_format:$dateFormatShort|default:"&mdash;"}
-			{elseif $proofAssignment->getDateLayoutEditorCompleted()}
-				{$proofAssignment->getDateLayoutEditorCompleted()|date_format:$dateFormatShort}
-			{elseif $proofAssignment->getDateLayoutEditorNotified()}
-				<a href="{url op="directorCompleteLayoutEditor" paperId=$submission->getPaperId()}" class="action">{translate key="common.complete"}</a>
-			{else}
-				&mdash;
-			{/if}
-		</td>
-		<td>
-			{if $useLayoutEditors}
-				{if $proofAssignment->getDateLayoutEditorCompleted() && !$proofAssignment->getDateLayoutEditorAcknowledged()}
-					{url|assign:"url" op="thankLayoutEditorProofreader" paperId=$submission->getPaperId()}
-					{icon name="mail" url=$url}
-				{else}
-					{icon name="mail" disabled="disable"}
-				{/if}
-				{$proofAssignment->getDateLayoutEditorAcknowledged()|date_format:$dateFormatShort|default:""}
-			{else}
-				{translate key="common.notApplicableShort"}
-			{/if}
-		</td>
-	</tr>
-	<tr>
 		<td colspan="6" class="separator">&nbsp;</td>
 	</tr>
 </table>
@@ -178,12 +123,6 @@
 {else}
 	<a href="javascript:openComments('{url op="viewProofreadComments" path=$submission->getPaperId()}');" class="icon">{icon name="comment"}</a>
 {/if}
-
-{if $currentConference->getSetting('proofInstructions')}
-&nbsp;&nbsp;
-<a href="javascript:openHelp('{url op="instructions" path="proof"}')" class="action">{translate key="submission.proofread.instructions"}</a>
-{/if}
-
 
 <div class="separator"></div>
 

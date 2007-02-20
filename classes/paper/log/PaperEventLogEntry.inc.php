@@ -60,12 +60,7 @@ define('PAPER_LOG_REVIEW_RECOMMENDATION_BY_PROXY', 	0x40000016);
 define('PAPER_LOG_REVIEW_FILE_BY_PROXY', 	0x40000017);
 
 // Layout events 				0x70000000
-define('PAPER_LOG_LAYOUT_ASSIGN', 		0x70000001);
-define('PAPER_LOG_LAYOUT_UNASSIGN', 		0x70000002);
-define('PAPER_LOG_LAYOUT_INITIATE', 		0x70000003);
 define('PAPER_LOG_LAYOUT_GALLEY', 		0x70000004);
-define('PAPER_LOG_LAYOUT_COMPLETE', 		0x70000005);
-
 
 class PaperEventLogEntry extends DataObject {
 
@@ -335,16 +330,8 @@ class PaperEventLogEntry extends DataObject {
 				return 'submission.event.reviewer.reviewFile';
 			
 			// Layout events
-			case PAPER_LOG_LAYOUT_ASSIGN:
-				return 'submission.event.layout.layoutEditorAssigned';
-			case PAPER_LOG_LAYOUT_UNASSIGN:
-				return 'submission.event.layout.layoutEditorUnassigned';
-			case PAPER_LOG_LAYOUT_INITIATE:
-				return 'submission.event.layout.layoutInitiated';
 			case PAPER_LOG_LAYOUT_GALLEY:
 				return 'submission.event.layout.layoutGalleyCreated';
-			case PAPER_LOG_LAYOUT_COMPLETE:
-				return 'submission.event.layout.layoutComplete';
 				
 			default:
 				return 'event.general.defaultEvent';

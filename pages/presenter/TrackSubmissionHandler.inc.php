@@ -230,7 +230,6 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
-		$templateMgr->assign('useLayoutEditors', $schedConf->getSetting('useLayoutEditors'));
 		$templateMgr->assign('helpTopicId', 'editorial.presentersRole.editing');
 		$templateMgr->display('presenter/submissionEditing.tpl');
 	}
