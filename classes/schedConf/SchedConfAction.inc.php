@@ -165,8 +165,7 @@ class SchedConfAction {
 			$registrationAssumedRoles = array(
 				ROLE_ID_CONFERENCE_MANAGER,
 				ROLE_ID_DIRECTOR,
-				ROLE_ID_TRACK_DIRECTOR,
-				ROLE_ID_REGISTRATION_MANAGER
+				ROLE_ID_TRACK_DIRECTOR
 			);
 
 			// First check for scheduled conference roles
