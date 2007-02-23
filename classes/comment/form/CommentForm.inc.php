@@ -117,6 +117,8 @@ class CommentForm extends Form {
 		$templateMgr->assign('paperId', $this->paperId);
 		$templateMgr->assign('galleyId', $this->galleyId);
 		$templateMgr->assign('enableComments', $schedConf->getSetting('enableComments', true));
+		$templateMgr->assign('commentsRequireRegistration', $schedConf->getSetting('commentsRequireRegistration', true));
+		$templateMgr->assign('commentsAllowAnonymous', $schedConf->getSetting('commentsAllowAnonymous', true));
 
 		parent::display();
 	}
@@ -147,6 +149,8 @@ class CommentForm extends Form {
 	function execute() {
 		$schedConf = &Request::getSchedConf();
 		$enableComments = $schedConf->getSetting('enableComments', true);
+		$commentsRequireRegistration = $schedConf->getSetting('commentsRequireRegistration', true);
+		$commentsAllowAnonymous = $schedConf->getSetting('commentsAllowAnonymous', true);
 
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 		
@@ -160,7 +164,7 @@ class CommentForm extends Form {
 		$comment->setTitle($this->getData('title'));
 		$comment->setBody($this->getData('body'));
 
-		if (($enableComments == COMMENTS_ANONYMOUS || $enableComments == COMMENTS_UNAUTHENTICATED) && (Request::getUserVar('anonymous') || $user == null)) {
+		if (($commentsAllowAnonymous || !$commentsRequireRegistration) && (Request::getUserVar('anonymous') || $user == null)) {
 			$comment->setPosterName($this->getData('posterName'));
 			$comment->setPosterEmail($this->getData('posterEmail'));
 			$comment->setUser(null);

@@ -124,7 +124,10 @@ class PaperHandler extends Handler {
 
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 		$enableComments = $schedConf->getSetting('enableComments', true);
-		if ($enableComments == COMMENTS_AUTHENTICATED || $enableComments == COMMENTS_UNAUTHENTICATED || $enableComments == COMMENTS_ANONYMOUS) {
+		$commentsRequireRegistration = $schedConf->getSetting('commentsRequireRegistration', true);
+		$commentsAllowAnonymous = $schedConf->getSetting('commentsAllowAnonymous', true);
+
+		if ($enableComments) {
 			$comments = &$commentDao->getRootCommentsByPaperId($paper->getPaperId());
 		}
 
@@ -164,12 +167,7 @@ class PaperHandler extends Handler {
 		$templateMgr->assign_by_ref('galley', $galley);
 		$templateMgr->assign_by_ref('track', $track);
 		$templateMgr->assign('paperId', $paperId);
-		$templateMgr->assign('postingAllowed', (
-			$enableComments == COMMENTS_UNAUTHENTICATED ||
-			(($enableComments == COMMENTS_AUTHENTICATED ||
-			$enableComments == COMMENTS_ANONYMOUS) &&
-			Validation::isLoggedIn())
-		));
+		$templateMgr->assign('postingAllowed', $commentsEnabled && (!$commentsRequireRegistration || Validation::isLoggedIn()));
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign('defineTermsContextId', isset($defineTermsContextId)?$defineTermsContextId:null);
 		$templateMgr->assign('comments', isset($comments)?$comments:null);
@@ -209,13 +207,10 @@ class PaperHandler extends Handler {
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
 		$enableComments = $schedConf->getSetting('enableComments', true);
-		$templateMgr->assign('postingAllowed', (
-			$enableComments == COMMENTS_UNAUTHENTICATED ||
-			(($enableComments == COMMENTS_AUTHENTICATED ||
-			$enableComments == COMMENTS_ANONYMOUS) &&
-			Validation::isLoggedIn())
-		));
-		$templateMgr->assign('postingDisabled', $enableComments == COMMENTS_DISABLED);
+		$commentsRequireRegistration = $schedConf->getSetting('commentsRequireRegistration', true);
+		$commentsAllowAnonymous = $schedConf->getSetting('commentsAllowAnonymous', true);
+		$templateMgr->assign('postingAllowed', $commentsEnabled && (!$commentsRequireRegistration || Validation::isLoggedIn()));
+		$templateMgr->assign('postingDisabled', !$enableComments);
 
 		$templateMgr->assign_by_ref('conferenceRt', $conferenceRt);
 		if ($conferenceRt->getEnabled()) {

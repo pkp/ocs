@@ -335,10 +335,6 @@ class ImportOCS1 {
 		
 		$translateParams = array('indexUrl' => $this->indexUrl, 'conferencePath' => $this->conferencePath, 'conferenceName' => $this->trans($this->conferenceInfo['chTitle']));
 
-		// Load the paper comments DAO to bring in the related
-		// constants (COMMENTS_DISABLED, etc.)
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
-
 		// Conference settings
 		// NOTE: Commented out settings do not have an equivalent in OCS 1.x
 		$conferenceSettings = array(
@@ -390,7 +386,7 @@ class ImportOCS1 {
 		//	'paperEventLog' => array('bool', ''),
 		//	'paperEmailLog' => array('bool', ''),
 			'customAboutItems' => array('object', $customAboutItems),
-			'enableComments' => array('int', $this->conferenceInfo['bComments'] ? COMMENTS_UNAUTHENTICATED : COMMENTS_DISABLED),
+		//	'enableComments' => array('int', $this->conferenceInfo['bComments'] ? COMMENTS_UNAUTHENTICATED : COMMENTS_DISABLED),
 			'enableLockss' => array('bool', isset($this->conferenceInfo['bEnableLOCKSS']) ? $this->conferenceInfo['bEnableLOCKSS'] : 0),
 			'lockssLicense' => array('string', isset($this->conferenceInfo['chLOCKSSLicense']) ? $this->trans($this->conferenceInfo['chLOCKSSLicense']) : Locale::translate('default.conferenceSettings.lockssLicense')),
 			

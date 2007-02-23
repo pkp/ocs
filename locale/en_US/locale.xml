@@ -972,10 +972,21 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.layout."></message>
 
 	<!-- Conference setup page 4 -->
-	<message key="manager.setup.styleSheet."></message>
+	<message key="manager.setup.styleSheet.conferenceStyleSheet.description">By default conferences and the site use a common style sheet (located in the "styles" subdirectory of the site). The default style rules can be overridden by uploading a conference-specific cascading style sheet.</message>
+	<message key="manager.setup.styleSheet.useConferenceStyleSheet">Conference style sheet</message>
 
 	<!-- Conference setup page 5 -->
-	<message key="manager.setup.access."></message>
+	<message key="manager.setup.access.securitySettings">Access Settings for Conference Archives</message>
+	<message key="manager.setup.access.restrictSiteAccess">Visitors must register as Readers to view conference archives.</message>
+	<message key="manager.setup.access.comments">Reader Comments</message>
+	<message key="manager.setup.access.comments.enable">Permit commenting on archived presentations</message>
+	<message key="manager.setup.access.comments.requireRegistration">Only registered users can comment on archived presentations.</message>
+	<message key="manager.setup.access.comments.allowAnonymous">Anonymous commenting is permitted.</message>
+	<message key="manager.setup.access.loggingAndAuditing">Logging and Auditing</message>
+	<message key="manager.setup.access.loggingAndAuditing.description">Maintain a log of the following actions and materials for all conferences.</message>
+	<message key="manager.setup.access.submissionEventLogging">Submission-related actions, recorded on submission's "History" page.</message>
+	<message key="manager.setup.access.submissionEmailLogging">Submission-related emails, recorded on submission's "History" page.</message>
+	<message key="manager.setup.access.conferenceEventLogging">Conference event logging.</message>
 
 	<!-- Conference setup page 6 -->
 	<message key="manager.setup.indexing."></message>
@@ -1046,28 +1057,14 @@ Setting up LOCKSS support for Open Conference Systems does not need to take plac
 	<message key="manager.setup.lockssEnable"><![CDATA[Enable LOCKSS to store and distribute conference content at participating libraries via a LOCKSS <a href="{$lockssUrl}" target="_blank">Publisher Manifest</a> page. A LOCKSS license will appear in About the Conference under Archiving:]]></message>
 	<message key="manager.setup.lockssLicenses"><![CDATA[See <a href="http://lockss.stanford.edu/publishers/publishers.htm" target="_blank">other versions of a LOCKSS license</a>.]]></message>
 
-	<message key="manager.setup.securitySettings">Security/Access Settings</message>
-	<message key="manager.setup.securitySettingsDescription">OCS provides a number of security-related options that can be used to restrict access to the conference's contents (including the contents of past conferences), and maintain additional information about submissions for auditing purposes. In addition, Conference Managers are able to control access to active instances of scheduled conferences in Scheduled Conference Setup.</message>
 	<message key="manager.setup.userRegistration">User Registration</message>
 	<message key="manager.setup.enableUserRegistration">Allow users to register with the conference site as:</message>
 	<message key="manager.setup.disableUserRegistration">Disable user registration. Users will have to be manually created by a conference manager.</message>
 	<message key="manager.setup.siteAccess">Site Access</message>
-	<message key="manager.setup.noRestrictSiteAccess">Unregistered users can view the conference site.</message>
-	<message key="manager.setup.restrictSiteAccess">Users must log in to view the conference site.</message>
 	<message key="manager.setup.paperAccess">Paper Access</message>
 	<message key="manager.setup.noRestrictPaperAccess">Unregistered users can view all posted abstracts and presentations associated with this conference.</message>
 	<message key="manager.setup.restrictPaperAccess">Users must log in to view posted materials associated with this conference.</message>
 
-	<message key="manager.setup.comments">Reader Comments</message>
-	<message key="manager.setup.comments.disable">Reader comments on conference abstracts and presentations are disabled.</message>
-	<message key="manager.setup.comments.authenticated">Registered users can post; anonymous posting is disabled.</message>
-	<message key="manager.setup.comments.anonymous">Users can post anonymously, but must be registered.</message>
-	<message key="manager.setup.comments.unauthenticated">Allow anyone to post anonymously.</message>
-
-	<message key="manager.setup.loggingAndAuditing">Logging and Auditing</message>
-	<message key="manager.setup.submissionEventLogging">Enable submission event logging, which maintains a log of all actions on a submission (accessible via each submission's "History" page).</message>
-	<message key="manager.setup.submissionEmailLogging">Enable submission email logging, which maintains a log of all emails sent out related to a submission (accessible via each submission's "History" page).</message>
-	<message key="manager.setup.conferenceEventLogging">Enable conference event logging, which maintains a log of automated actions effecting the conference or its scheduled conferences.</message>
 
 	<!-- Conference Setup Step 4: Indexing -->
 	<message key="manager.setup.indexingAndMetadata">Step 4. Indexing and Metadata</message>
@@ -1117,8 +1114,6 @@ Note that if your site administrator has already registered this site with the P
 
 	<!-- Conference Setup Step 5 -->
 	<message key="manager.setup.conferenceStyleSheet">Conference Style Sheet</message>
-	<message key="manager.setup.conferenceStyleSheetDescription">By default conferences and the site use a common style sheet (located in the "styles" subdirectory of the site). The default style rules can be overridden by uploading a conference-specific cascading style sheet.</message>
-	<message key="manager.setup.useConferenceStyleSheet">Conference style sheet</message>
 	<message key="manager.setup.noStyleSheetUploaded">No style sheet uploaded.</message>
 	<message key="manager.setup.conferenceHomepageContent">Conference Homepage Content</message>
 
@@ -2670,7 +2665,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	 *
 	-->
 	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Presenters who submit to this conference agree to the following terms:<br/>
-<b>a)</b>&nbsp;Presenters retain copyright over their work, while allowing the conference to place this unpublished work under a Creative Commons License (Attribution Non-commercial No Derivatives) which allows others to freely access, use, and share the work for non-commercial purposes, without altering it, and with an acknowledgement of the work’s authorship and its initial presentation at this conference.<br/>
+<b>a)</b>&nbsp;Presenters retain copyright over their work, while allowing the conference to place this unpublished work under a Creative Commons License (Attribution Non-commercial No Derivatives) which allows others to freely access, use, and share the work for non-commercial purposes, without altering it, and with an acknowledgement of the work's authorship and its initial presentation at this conference.<br/>
 <b>b)</b>&nbsp;Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution and subsequent publication of this work (e.g., publish a revised version in a journal, post it to an institutional repository or publish it in a book), with an acknowledgement of its initial presentation at this conference.<br/>
 <b>c)</b>&nbsp;In addition, authors are encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process.]]></message>
 

@@ -15,11 +15,11 @@
 <form method="post" action="{url op="saveSetup" path="4"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
-<p>{translate key="manager.setup.conferenceStyleSheetDescription"}</p>
+<p>{translate key="manager.setup.styleSheet.conferenceStyleSheet.description"}</p>
 
 <table width="100%" class="data">
 <tr>
-	<td width="20%" class="label">{translate key="manager.setup.useConferenceStyleSheet"}</td>
+	<td width="20%" class="label">{translate key="manager.setup.styleSheet.useConferenceStyleSheet"}</td>
 	<td width="80%" class="value"><input type="file" name="conferenceStyleSheet" class="uploadField" /> <input type="submit" name="uploadConferenceStyleSheet" value="{translate key="common.upload"}" class="button" /></td>
 </tr>
 </table>

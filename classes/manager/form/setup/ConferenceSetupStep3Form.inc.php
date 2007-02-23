@@ -72,22 +72,6 @@ class ConferenceSetupStep3Form extends ConferenceSetupForm {
 		
 		parent::display();	   
 	}
-	
-/*	function display() {
-		$templateMgr = &TemplateManager::getManager();
-
-		// Bring in the comments constants.
-		$commentDao = &DAORegistry::getDao('CommentDAO');
-
-		$templateMgr->assign('commentsOptions', array(
-			COMMENTS_DISABLED => 'manager.setup.comments.disable',
-			COMMENTS_AUTHENTICATED => 'manager.setup.comments.authenticated',
-			COMMENTS_ANONYMOUS => 'manager.setup.comments.anonymous',
-			COMMENTS_UNAUTHENTICATED => 'manager.setup.comments.unauthenticated'
-		));
-
-	parent::display();
-	} */
 }
 
 ?>
