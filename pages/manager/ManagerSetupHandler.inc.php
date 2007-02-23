@@ -92,12 +92,6 @@ class ManagerSetupHandler extends ManagerHandler {
 					} else if (Request::getUserVar('deleteHomepageImage')) {
 						$editData = true;
 						$setupForm->deleteImage('homepageImage');
-					} else if (Request::getUserVar('uploadConferenceStyleSheet')) {
-						if ($setupForm->uploadStyleSheet('conferenceStyleSheet')) {
-							$editData = true;
-						} else {
-							$setupForm->addError('conferenceStyleSheet', 'manager.setup.conferenceStyleSheetInvalid');
-						}
 					}
 					break;
 					/* if (Request::getUserVar('addChecklist')) {
@@ -282,7 +276,13 @@ class ManagerSetupHandler extends ManagerHandler {
 					}
 					break;
 				case '4':
-					if (Request::getUserVar('deleteConferenceStyleSheet')) {
+					if (Request::getUserVar('uploadConferenceStyleSheet')) {
+						if ($setupForm->uploadStyleSheet('conferenceStyleSheet')) {
+							$editData = true;
+						} else {
+							$setupForm->addError('conferenceStyleSheet', 'manager.setup.conferenceStyleSheetInvalid');
+						}
+					} else if (Request::getUserVar('deleteConferenceStyleSheet')) {
 						$editData = true;
 						$setupForm->deleteImage('conferenceStyleSheet');
 					}

@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="manager.setup.layout.title}
 {include file="manager/setup/setupHeader.tpl"}
 
-<form method="post" action="{url op="saveSetup" path="3"}">
+<form method="post" action="{url op="saveSetup" path="3"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
 <h3>3.1 {translate key="manager.setup.layout.homepageHeader"}</h3>
