@@ -165,7 +165,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 				$paper->setDateSubmitted(Core::getCurrentDate());
 				$paper->stampStatusModified();
 				$paper->setSubmissionProgress(0);
-				$paper->setReviewProgress(REVIEW_PROGRESS_ABSTRACT);
+				$paper->setCurrentStage(REVIEW_PROGRESS_ABSTRACT);
 			} else {
 				$paper->setSubmissionProgress($this->step + 1);
 			}

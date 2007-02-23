@@ -78,7 +78,7 @@
 				<td width="80%" class="nodata">{translate key="common.none"}</td>
 			{/if}
 		</tr>
-		{if not $isRoundDisabled}
+		{if not $isStageDisabled}
 		<tr valign="top">
 			<td colspan="2">
 				<form method="post" action="{url op="uploadReviewVersion"}" enctype="multipart/form-data">
@@ -122,14 +122,14 @@
 
 <a name="peerReview"></a>
 
-{if $isRoundDisabled}
+{if $isStageDisabled}
 
 	<table class="data" width="100%">
 		<tr valign="middle">
 			<td><h3>{translate key="submission.peerReview"}</h3></td>
 		</tr>
 		<tr>
-			<td><span class="instruct">{translate key="director.paper.roundDisabled"}</span></td>
+			<td><span class="instruct">{translate key="director.paper.stageDisabled"}</span></td>
 		</tr>
 	</table>
 
@@ -137,22 +137,19 @@
 
 	<table class="data" width="100%">
 		<tr valign="middle">
-			<td width="22%"><h3>{translate key="submission.peerReview"}</h3></td>
-			<td width="78%" class="nowrap">
+			<td width="30%">
+				{if $submission->getCurrentStage() == REVIEW_PROGRESS_ABSTRACT}
+					<h3>{translate key="submission.abstractReview"}</h3>
+				{else}{* REVIEW_PROGRESS_PAPER *}
+					<h3>{translate key="submission.paperReview"}</h3>
+				{/if}
+			</td>
+			<td width="70%" class="nowrap">
 				<a href="{url op="selectReviewer" path=$submission->getPaperId()}" class="action">{translate key="director.paper.selectReviewer"}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="{url op="submissionRegrets" path=$submission->getPaperId()}" class="action">{translate|escape key="trackDirector.regrets.link"}</a>
+				<a href="{url op="submissionRegrets" path=$submission->getPaperId()}" class="action">{translate|escape key="trackDirector.regrets.link"}</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			</td>
 		</tr>
 	</table>
-
-	{* Determine whether any review assignments are available to initiate
-	   so that we know whether or not to display the Initiate All Reviews button *}
-	{assign var=reviewAvailable value=0}
-	{foreach from=$reviewAssignments item=reviewAssignment}
-		{if !$reviewAssignment->getCancelled() && $reviewAssignment->getReviewFileId()}
-			{assign var=reviewAvailable value=1}
-		{/if}
-	{/foreach}
 
 	{assign var="start" value="A"|ord}
 	{foreach from=$reviewAssignments item=reviewAssignment key=reviewKey}
@@ -190,7 +187,9 @@
 					<tr valign="top">
 						<td>
 							{url|assign:"reviewUrl" op="notifyReviewer" reviewId=$reviewAssignment->getReviewId() paperId=$submission->getPaperId()}
-							{if $reviewAssignment->getDateNotified()}
+							{if !$allowRecommendation}
+								{icon name="mail" url=$reviewUrl disabled="true"}
+							{elseif $reviewAssignment->getDateNotified()}
 								{$reviewAssignment->getDateNotified()|date_format:$dateFormatShort}
 								{if !$reviewAssignment->getDateCompleted()}
 									{icon name="mail" url=$reviewUrl}

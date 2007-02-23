@@ -396,35 +396,19 @@ class ReviewAssignment extends DataObject {
 	}
 	
 	/**
-	 * Get type.
+	 * Get stage.
 	 * @return int
 	 */
-	function getType() {
-		return $this->getData('type');
+	function getStage() {
+		return $this->getData('stage');
 	}
 	
 	/**
-	 * Set type.
-	 * @param $type int
+	 * Set stage.
+	 * @param $stage int
 	 */
-	function setType($type) {
-		return $this->setData('type', $type);
-	}
-	
-	/**
-	 * Get round.
-	 * @return int
-	 */
-	function getRound() {
-		return $this->getData('round');
-	}
-	
-	/**
-	 * Set round.
-	 * @param $round int
-	 */
-	function setRound($round) {
-		return $this->setData('round', $round);
+	function setStage($stage) {
+		return $this->setData('stage', $stage);
 	}
 	
 	/**

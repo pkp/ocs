@@ -107,7 +107,6 @@ class SchedConfStatisticsDAO extends DAO {
 						$returner['submissionsAccept']++;
 						break;
 					case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
-					case SUBMISSION_DIRECTOR_DECISION_RESUBMIT:
 						$returner['submissionsRevise']++;
 						break;
 					case SUBMISSION_DIRECTOR_DECISION_DECLINE:

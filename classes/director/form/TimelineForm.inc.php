@@ -82,17 +82,11 @@ class TimelineForm extends Form {
 			'proposalsOpenDate' => $schedConf->getSetting('proposalsOpenDate'),
 			'proposalsCloseDate' => $schedConf->getSetting('proposalsCloseDate'),
 			'submissionsCloseDate' => $schedConf->getSetting('submissionsCloseDate'),
-			
 			'regReviewerOpenDate' => $schedConf->getSetting('regReviewerOpenDate'),
 			'regReviewerCloseDate' => $schedConf->getSetting('regReviewerCloseDate'),
 			'closeReviewProcessDate' => $schedConf->getSetting('closeReviewProcessDate'),
-			'secondRoundDueDate' => $schedConf->getSetting('secondRoundDueDate'),
-
 			'regRegistrantOpenDate' => $schedConf->getSetting('regRegistrantOpenDate'),
 			'regRegistrantCloseDate' => $schedConf->getSetting('regRegistrantCloseDate'),
-
-			//'postPresentations' => $schedConf->getSetting('postPresentations'),
-			//'postPresentationsDate' => $schedConf->getSetting('postPresentationsDate'),
 			'postAbstracts' => $schedConf->getSetting('postAbstracts'),
 			'postAbstractsDate' => $schedConf->getSetting('postAbstractsDate'),
 			'postPapers' => $schedConf->getSetting('postPapers'),

@@ -23,7 +23,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 	
-		if ($submission->getDateConfirmed() == null) {
+		if ($reviewAssignment->getDateConfirmed() == null) {
 			$confirmedStatus = 0;
 		} else {
 			$confirmedStatus = 1;
@@ -45,7 +45,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$templateMgr->assign_by_ref('reviewGuidelines', $schedConf->getSetting('reviewGuidelines', true));
 
 		// The reviewer instructions differ depending on what is reviewed, and when.
-		if($reviewAssignment->getType()==REVIEW_PROGRESS_ABSTRACT && !$schedConf->getCollectPapersWithAbstracts())
+		if($reviewAssignment->getStage()==REVIEW_PROGRESS_ABSTRACT && !$schedConf->getCollectPapersWithAbstracts())
 			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.reviewerInstruction3AbstractOnly');
 		else
 			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.reviewerInstruction3Submission');

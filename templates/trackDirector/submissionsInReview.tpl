@@ -24,7 +24,7 @@
 			<table width="100%">
 				<tr valign="top">
 					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submissions.reviewType"}</td>
-					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submissions.reviewRound"}</td>
+					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submissions.reviewStage"}</td>
 					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submission.ask"}</td>
 					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submission.due"}</td>
 					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submission.done"}</td>
@@ -43,51 +43,34 @@
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getPresenterString(true)|truncate:40:"..."|escape}</td>
-		<td><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$submission->getReviewProgress()}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
+		<td><a href="{url op="submissionReview" path=$submission->getPaperId()}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
 		<td>
 		<table width="100%">
-			{foreach from=$submission->getReviewAssignments(null, null) item=reviewAssignmentTypes}
-				{foreach from=$reviewAssignmentTypes item=reviewAssignments}
-					{foreach from=$reviewAssignments item=assignment name=assignmentList}
-						{if !$assignment->getCancelled()}
-						<tr valign="top">
-							{assign var="type" value=$assignment->getType()}
-							{assign var="round" value=$assignment->getRound()}
-							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{$reviewType[$type]}</td>
-							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{$round}</td>
-							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{if $assignment->getDateNotified()}{$assignment->getDateNotified()|date_format:$dateFormatTrunc}{else}&mdash;{/if}</td>
-							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{if $assignment->getDateCompleted() || !$assignment->getDateConfirmed()}&mdash;{else}{$assignment->getWeeksDue()}{/if}</td>
-							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{if $assignment->getDateCompleted()}{$assignment->getDateCompleted()|date_format:$dateFormatTrunc}{else}&mdash;{/if}</td>
-						</tr>
-						{/if}
-					{foreachelse}
-						<tr valign="top">
-							{assign var="type" value=$submission->getReviewProgress()}
-							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{$reviewType[$type]}</td>
-							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-							<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-							<td width="20%" style="padding: 0 0 0 0; font-size:1.0em">&mdash;</td>
-						</tr>
-					{/foreach}
+			{foreach from=$submission->getReviewAssignments(null) item=reviewAssignmentTypes}
+				{foreach from=$reviewAssignments item=assignment name=assignmentList}
+					{if !$assignment->getCancelled()}
+					<tr valign="top">
+						{assign var="stage" value=$assignment->getStage()}
+						<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">{$stage}</td>
+						<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">{if $assignment->getDateNotified()}{$assignment->getDateNotified()|date_format:$dateFormatTrunc}{else}&mdash;{/if}</td>
+						<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">{if $assignment->getDateCompleted() || !$assignment->getDateConfirmed()}&mdash;{else}{$assignment->getWeeksDue()}{/if}</td>
+						<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">{if $assignment->getDateCompleted()}{$assignment->getDateCompleted()|date_format:$dateFormatTrunc}{else}&mdash;{/if}</td>
+					</tr>
+					{/if}
 				{foreachelse}
 					<tr valign="top">
-						{assign var="type" value=$submission->getReviewProgress()}
-						<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{$reviewType[$type]}</td>
-						<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-						<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-						<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-						<td width="20%" style="padding: 0 0 0 0; font-size:1.0em">&mdash;</td>
+						<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
+						<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
+						<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
+						<td width="25%" style="padding: 0 0 0 0; font-size:1.0em">&mdash;</td>
 					</tr>
 				{/foreach}
 			{foreachelse}
 				<tr valign="top">
-					{assign var="type" value=$submission->getReviewProgress()}
-					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{$reviewType[$type]}</td>
-					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-					<td width="20%" style="padding: 0 0 0 0; font-size:1.0em">&mdash;</td>
+					<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
+					<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
+					<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
+					<td width="25%" style="padding: 0 0 0 0; font-size:1.0em">&mdash;</td>
 				</tr>
 			{/foreach}
 		</table>

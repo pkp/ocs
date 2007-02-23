@@ -65,7 +65,7 @@ class PresenterSubmitForm extends Form {
 
 		// Determine which submission steps should be shown
 		
-		$progress = isset($this->paper) ? $this->paper->getReviewProgress() : REVIEW_PROGRESS_ABSTRACT;
+		$progress = isset($this->paper) ? $this->paper->getCurrentStage() : REVIEW_PROGRESS_ABSTRACT;
 
 		$showAbstractSteps = $progress == REVIEW_PROGRESS_ABSTRACT;
 		$showPaperSteps = $progress == REVIEW_PROGRESS_PAPER || $schedConf->getCollectPapersWithAbstracts();

@@ -616,11 +616,7 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
-		<field name="current_round" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
-		</field>
-		<field name="review_progress" type="I1">
+		<field name="current_stage" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
@@ -793,6 +789,7 @@
 		<field name="type" type="C2" size="40">
 			<NOTNULL/>
 		</field>
+		<field name="stage" type="C2" size="I8"/>
 		<field name="status" type="C2" size="40">
 			<NOTNULL/>
 		</field>
@@ -801,9 +798,6 @@
 			<NOTNULL/>
 		</field>
 		<field name="date_modified" type="T">
-			<NOTNULL/>
-		</field>
-		<field name="round" type="I1">
 			<NOTNULL/>
 		</field>
 		<descr>Files associated with papers. Includes submission files, supplementary files, etc.</descr>
@@ -952,7 +946,7 @@
 		<field name="type" type="I1">
 			<NOTNULL/>
 		</field>
-		<field name="round" type="I1">
+		<field name="stage" type="I1">
 			<NOTNULL/>
 		</field>
 		<field name="director_id" type="I8">
@@ -975,22 +969,19 @@
 	
 	<!--
 	  *
-	  * TABLE review_rounds
+	  * TABLE review_stages
 	  *
 	  -->
-	<table name="review_rounds">
+	<table name="review_stages">
 		<field name="paper_id" type="I8">
 			<KEY/>
 		</field>
-		<field name="round" type="I1">
-			<KEY/>
-		</field>
-		<field name="type" type="I1">
+		<field name="stage" type="I1">
 			<KEY/>
 		</field>
 		<field name="review_revision" type="I8" />
-		<descr>Review rounds.</descr>
-		<index name="review_rounds_paper_id">
+		<descr>Review stages.</descr>
+		<index name="review_stages_paper_id">
 			<col>paper_id</col>
 		</index>
 	</table>
@@ -1039,11 +1030,7 @@
 		<field name="date_rated" type="T"/>
 		<field name="date_reminded" type="T"/>
 		<field name="quality" type="I1"/>
-		<field name="round" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
-		</field>
-		<field name="type" type="I1">
+		<field name="stage" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>

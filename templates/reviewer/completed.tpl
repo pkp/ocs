@@ -58,15 +58,17 @@
 				&mdash;
 			{else}
 			{* Display the most recent director decision *}
-			{assign var=round value=$submission->getRound()}
-			{assign var=decisions value=$submission->getDecisions($round)}
+			{assign var=stage value=$submission->getStage()}
+			{assign var=decisions value=$submission->getDecisions($stage)}
 			{foreach from=$decisions item=decision name=lastDecisionFinder}
 				{if $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
-					{translate key="director.paper.decision.accept"}
+					{if $stage == REVIEW_PROGRESS_ABSTRACT}
+						{translate key="director.paper.decision.invitePresentation"}
+					{else}
+						{translate key="director.paper.decision.accept"}
+					{/if}
 				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS}
 					{translate key="director.paper.decision.pendingRevisions"}
-				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_RESUBMIT}
-					{translate key="director.paper.decision.resubmit"}
 				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_DECLINE}
 					{translate key="director.paper.decision.decline"}
 				{/if}

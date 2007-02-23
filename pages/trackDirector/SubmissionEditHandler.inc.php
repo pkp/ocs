@@ -66,18 +66,18 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$cancelsAndRegrets = $reviewAssignmentDao->getCancelsAndRegrets($paperId);
-		$reviewFilesByRound = $reviewAssignmentDao->getReviewFilesByRound($paperId);
+		$reviewFilesByStage = $reviewAssignmentDao->getReviewFilesByStage($paperId);
 
-		$types =& $submission->getReviewAssignments();
+		$stages =& $submission->getReviewAssignments();
 		
 		$directorDecisions = $submission->getDecisions();
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('reviewAssignmentTypes', $types);
+		$templateMgr->assign_by_ref('reviewAssignmentStages', $stages);
 		$templateMgr->assign_by_ref('cancelsAndRegrets', $cancelsAndRegrets);
-		$templateMgr->assign_by_ref('reviewFilesByRound', $reviewFilesByRound);
+		$templateMgr->assign_by_ref('reviewFilesByStage', $reviewFilesByStage);
 		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
 		$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality', true));
 		
@@ -95,8 +95,16 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
-		$type = (isset($args[1]) ? $args[1] : $submission->getReviewProgress());
-		$round = (isset($args[2]) ? $args[2] : 1);
+		$stage = (isset($args[1]) ? (int) $args[1] : 1);
+		switch ($stage) {
+			case REVIEW_PROGRESS_ABSTRACT:
+				break;
+			case REVIEW_PROGRESS_PAPER:
+				if ($schedConf->getSetting('reviewPapers')) break;
+			default:
+				$stage = $submission->getCurrentStage();
+				break;
+		}
 
 		parent::setupTemplate(true, $paperId);
 
@@ -106,27 +114,25 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$tracks = &$trackDao->getSchedConfTracks($schedConf->getSchedConfId());
 
-		$showPeerReviewOptions = $round == $submission->getCurrentRound() && $submission->getReviewFile() != null ? true : false;
+		$showPeerReviewOptions = $stage == $submission->getCurrentStage() && $submission->getReviewFile() != null ? true : false;
 
-		$directorDecisions = $submission->getDecisions($type, $round);
+		$directorDecisions = $submission->getDecisions($stage);
 		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1]['decision'] : null;
 
 		$editAssignments =& $submission->getEditAssignments();
-		$allowResubmit = $lastDecision == SUBMISSION_DIRECTOR_DECISION_RESUBMIT && $trackDirectorSubmissionDao->getMaxReviewRound($paperId, $type) == $round ? true : false;
 
-
-		$isCurrent = ($round == $submission->getCurrentRound() && $type == $submission->getReviewProgress());
+		$isCurrent = ($stage == $submission->getCurrentStage());
 		$allowRecommendation = $isCurrent &&
-			($submission->getReviewFileId() || $type != REVIEW_PROGRESS_PAPER) &&
+			($submission->getReviewFileId() || $stage != REVIEW_PROGRESS_PAPER) &&
 			!empty($editAssignments);
 
-		$reviewingAbstractOnly = ($schedConf->getReviewPapers() && $type == REVIEW_PROGRESS_ABSTRACT) ||
+		$reviewingAbstractOnly = ($schedConf->getReviewPapers() && $stage == REVIEW_PROGRESS_ABSTRACT) ||
 			!$schedConf->getAcceptPapers();
 
 		// Prepare an array to store the 'Notify Reviewer' email logs
 		$notifyReviewerLogs = array();
-		if($submission->getReviewAssignments($type, $round)) {
-			foreach ($submission->getReviewAssignments($type, $round) as $reviewAssignment) {
+		if($submission->getReviewAssignments($stage)) {
+			foreach ($submission->getReviewAssignments($stage) as $reviewAssignment) {
 				$notifyReviewerLogs[$reviewAssignment->getReviewId()] = array();
 			}
 		}
@@ -145,10 +151,9 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr = &TemplateManager::getManager();
 
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForRound($paperId, $type, $round));
-		$templateMgr->assign('round', $round);
-		$templateMgr->assign('type', $type);
-		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($type, $round));
+		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForStage($paperId, $stage));
+		$templateMgr->assign('stage', $stage);
+		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($stage));
 		$templateMgr->assign_by_ref('notifyReviewerLogs', $notifyReviewerLogs);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
@@ -158,15 +163,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality', true));
 		$templateMgr->assign('showPeerReviewOptions', $showPeerReviewOptions);
 		$templateMgr->assign_by_ref('tracks', $tracks->toArray());
-		$templateMgr->assign('directorDecisionOptions',
-			array(
-				'' => 'common.chooseOne',
-				SUBMISSION_DIRECTOR_DECISION_ACCEPT => 'director.paper.decision.accept',
-				SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS => 'director.paper.decision.pendingRevisions',
-				SUBMISSION_DIRECTOR_DECISION_RESUBMIT => 'director.paper.decision.resubmit',
-				SUBMISSION_DIRECTOR_DECISION_DECLINE => 'director.paper.decision.decline'
-			)
-		);
+		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions($schedConf, $submission));
 		$templateMgr->assign_by_ref('lastDecision', $lastDecision);
 		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
 
@@ -176,7 +173,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$templateMgr->assign('isCurrent', $isCurrent);
 		$templateMgr->assign('allowRecommendation', $allowRecommendation);
-		$templateMgr->assign('allowResubmit', $allowResubmit);
 
 		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
 		$templateMgr->assign('reviewingAbstractOnly', $reviewingAbstractOnly);
@@ -191,9 +187,8 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		parent::setupTemplate(true, $paperId);
 
 		// check if submission is accepted
-		$type = isset($args[1]) ? $args[1] : $submission->getReviewProgress();
-		$round = isset($args[2]) ? $args[2] : $submission->getCurrentRound();
-		$directorDecisions = $submission->getDecisions($type, $round);
+		$stage = isset($args[1]) ? $args[1] : $submission->getCurrentStage();
+		$directorDecisions = $submission->getDecisions($stage);
 		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1]['decision'] : null;
 		$submissionAccepted = ($lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT) ? true : false;
 
@@ -264,21 +259,19 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$paperId = Request::getUserVar('paperId');
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
-		$round = $submission->getCurrentRound();
-		$type = $submission->getReviewProgress();
+		$stage = $submission->getCurrentStage();
 
 		$decision = Request::getUserVar('decision');
 
 		switch ($decision) {
 			case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
 			case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
-			case SUBMISSION_DIRECTOR_DECISION_RESUBMIT:
 			case SUBMISSION_DIRECTOR_DECISION_DECLINE:
 				TrackDirectorAction::recordDecision($submission, $decision);
 				break;
 		}
 
-		Request::redirect(null, null, null, 'submissionReview', array($paperId, $type, $round));
+		Request::redirect(null, null, null, 'submissionReview', array($paperId, $stage));
 	}
 
 	//
@@ -293,7 +286,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		if (isset($args[1]) && $args[1] != null) {
 			// Assign reviewer to paper
-			TrackDirectorAction::addReviewer($submission, $args[1], $submission->getReviewProgress(), $submission->getCurrentRound());
+			TrackDirectorAction::addReviewer($submission, (int) $args[1], $submission->getCurrentStage());
 			Request::redirect(null, null, null, 'submissionReview', $paperId);
 
 			// FIXME: Prompt for due date.
@@ -317,7 +310,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			}
 
 			$rangeInfo = &Handler::getRangeInfo('reviewers');
-			$reviewers = $trackDirectorSubmissionDao->getReviewersForPaper($schedConf->getSchedConfId(), $paperId, $submission->getReviewProgress(), $submission->getCurrentRound(), $searchType, $search, $searchMatch, $rangeInfo);
+			$reviewers = $trackDirectorSubmissionDao->getReviewersForPaper($schedConf->getSchedConfId(), $paperId, $submission->getCurrentStage(), $searchType, $search, $searchMatch, $rangeInfo);
 
 			$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 
@@ -694,13 +687,12 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function directorReview() {
 		import('paper.Paper');
 
-		$type = (isset($args[1]) ? $args[1] : REVIEW_PROGRESS_ABSTRACT); // which item is currently under review
-		$round = (isset($args[2]) ? $args[2] : 1);
+		$stage = (isset($args[1]) ? $args[1] : REVIEW_PROGRESS_ABSTRACT);
 		$paperId = Request::getUserVar('paperId');
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$redirectTarget = 'submissionReview';
-		$redirectArgs = array($paperId, $type, $round);
+		$redirectArgs = array($paperId, $stage);
 
 		// If the Upload button was pressed.
 		$submit = Request::getUserVar('submit');
@@ -708,14 +700,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			TrackDirectorAction::uploadDirectorVersion($submission);
 		}
 		
-		if (Request::getUserVar('resubmit')) {
-			// If the Resubmit button was pressed
-			$file = explode(',', Request::getUserVar('directorDecisionFile'));
-			if (isset($file[0]) && isset($file[1])) {
-				TrackDirectorAction::resubmitFile($submission, $file[0], $file[1]);
-			}
-		}
-
 		Request::redirect(null, null, null, $redirectTarget, $redirectArgs);
 	}
 

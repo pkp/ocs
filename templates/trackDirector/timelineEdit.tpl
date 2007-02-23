@@ -133,20 +133,6 @@
 			{html_select_date prefix="regReviewerCloseDate" time=$regReviewerCloseDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 		</td>
 	</tr>
-	{*
-	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.closeReviewProcess"}</td>
-		<td width="50%" class="value">
-			{html_select_date prefix="closeReviewProcessDate" time=$closeReviewProcessDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
-		</td>
-	</tr>
-	*}
-	{*<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.secondRoundDue"}</td>
-		<td width="50%" class="value">
-			{html_select_date prefix="secondRoundDueDate" time=$secondRoundDueDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
-		</td>
-	</tr>*}
 </table>
 
 <br/>

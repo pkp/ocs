@@ -13,36 +13,33 @@
 <h3>{translate key="submission.peerReview"}</h3>
 
 {assign var=start value="A"|ord}
-{section name="round" loop=$submission->getCurrentRound()}
-{assign var="round" value=$smarty.section.round.index+1}
-{assign var="roundIndex" value=$smarty.section.round.index}
-{assign var=presenterFiles value=$submission->getPresenterFileRevisions($round)}
-{assign var=directorFiles value=$submission->getDirectorFileRevisions($round)}
-{assign var="viewableFiles" value=$presenterViewableFilesByRound[$round]}
-
-<h4>{translate key="submission.round" round=$round}</h4>
+{assign var=presenterFiles value=$submission->getPresenterFileRevisions($stage)}
+{assign var="directorFiles" value=$submission->getDirectorFileRevisions($stage)}
+{assign var="viewableFiles" value=$presenterViewableFilesByStage[$stage]}
 
 <table class="data" width="100%">
-	<tr valign="top">
-		<td class="label" width="20%">
-			{translate key="submission.reviewVersion"}
-		</td>
-		<td class="value" width="80%">
-			{assign var="reviewFile" value=$reviewFilesByRound[$round]}
-			{if $reviewFile}
-				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
-			{else}
-				{translate key="common.none"}
-			{/if}
-		</td>
-	</tr>
+	{if $stage == REVIEW_PROGRESS_PAPER}
+		<tr valign="top">
+			<td class="label" width="20%">
+				{translate key="submission.reviewVersion"}
+			</td>
+			<td class="value" width="80%">
+				{assign var="reviewFile" value=$reviewFilesByStage[$stage]}
+				{if $reviewFile}
+					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
+				{else}
+					{translate key="common.none"}
+				{/if}
+			</td>
+		</tr>
+	{/if}
 	<tr valign="top">
 		<td class="label" width="20%">
 			{translate key="submission.initiated"}
 		</td>
 		<td class="value" width="80%">
-			{if $reviewEarliestNotificationByRound[$round]}
-				{$reviewEarliestNotificationByRound[$round]|date_format:$dateFormatShort}
+			{if $reviewEarliestNotificationByStage[$stage]}
+				{$reviewEarliestNotificationByStage[$stage]|date_format:$dateFormatShort}
 			{else}
 				&mdash;
 			{/if}
@@ -53,30 +50,30 @@
 			{translate key="submission.lastModified"}
 		</td>
 		<td class="value" width="80%">
-			{if $reviewModifiedByRound[$round]}
-				{$reviewModifiedByRound[$round]|date_format:$dateFormatShort}
+			{if $reviewModifiedByStage[$stage]}
+				{$reviewModifiedByStage[$stage]|date_format:$dateFormatShort}
 			{else}
 				&mdash;
 			{/if}
 		</td>
 	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">
-			{translate key="common.uploadedFile"}
-		</td>
-		<td class="value" width="80%">
-			{foreach from=$viewableFiles item=reviewerFiles key=reviewer}
-				{foreach from=$reviewerFiles item=viewableFile key=key}
-					{assign var=thisReviewer value=$start+$reviewer|chr}
-					{translate key="user.role.reviewer"} {$thisReviewer}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$viewableFile->getFileId():$viewableFile->getRevision()}" class="file">{$viewableFile->getFileName()|escape}</a>&nbsp;&nbsp;{$viewableFile->getDateModified()|date_format:$dateFormatShort}<br />
+	{if $stage == REVIEW_PROGRESS_PAPER}
+		<tr valign="top">
+			<td class="label" width="20%">
+				{translate key="common.uploadedFile"}
+			</td>
+			<td class="value" width="80%">
+				{foreach from=$viewableFiles item=reviewerFiles key=reviewer}
+					{foreach from=$reviewerFiles item=viewableFile key=key}
+						{assign var=thisReviewer value=$start+$reviewer|chr}
+						{translate key="user.role.reviewer"} {$thisReviewer}
+						<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$viewableFile->getFileId():$viewableFile->getRevision()}" class="file">{$viewableFile->getFileName()|escape}</a>&nbsp;&nbsp;{$viewableFile->getDateModified()|date_format:$dateFormatShort}<br />
+					{/foreach}
+				{foreachelse}
+					{translate key="common.none"}
 				{/foreach}
-			{foreachelse}
-				{translate key="common.none"}
-			{/foreach}
-		</td>
-	</tr>
-	{if !$smarty.section.round.last}
+			</td>
+		</tr>
 		<tr valign="top">
 			<td class="label" width="20%">
 				{translate key="submission.directorVersion"}
@@ -104,8 +101,3 @@
 	{/if}
 </table>
 
-{if !$smarty.section.round.last}
-	<div class="separator"></div>
-{/if}
-
-{/section}

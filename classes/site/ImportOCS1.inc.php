@@ -959,7 +959,6 @@ class ImportOCS1 {
 			$paper->setLastModified($row['dtDateSubmitted']);
 			$paper->setStatus($status);
 			$paper->setSubmissionProgress($row['dtDateSubmitted'] ? 0 : $row['nSubmissionProgress']);
-			$paper->setCurrentRound(1);
 			$paper->setPages('');
 			
 			// Add paper presenters
@@ -1042,16 +1041,16 @@ class ImportOCS1 {
 					}
 				}
 				
-				// Add director decision and review round (only one round in OCS 1.x)
+				// Add director decision and review stage (only one stage in OCS 1.x)
 				if ($row['dtDateEdDec']) {
 					$paperDao->update('INSERT INTO edit_decisions
-							(paper_id, round, director_id, decision, date_decided)
+							(paper_id, stage, director_id, decision, date_decided)
 							VALUES (?, ?, ?, ?, ?)',
 							array($paperId, 1, isset($this->userMap[$row['nEditorUserID']]) ? $this->userMap[$row['nEditorUserID']] : 0, $row['nStatus'] == 3 ? SUBMISSION_DIRECTOR_DECISION_DECLINE : SUBMISSION_DIRECTOR_DECISION_ACCEPT, $paperDao->datetimeToDB($row['dtDateEdDec'])));
 				}
 				
-				$paperDao->update('INSERT INTO review_rounds
-					(paper_id, round, review_revision)
+				$paperDao->update('INSERT INTO review_stages
+					(paper_id, stage, review_revision)
 					VALUES
 					(?, ?, ?)',
 					array($paperId, 1, 1)
@@ -1195,7 +1194,7 @@ class ImportOCS1 {
 					$reviewAssignment->setDateRated(null);
 					$reviewAssignment->setDateReminded($reviewRow['dtDateReminded']);
 					$reviewAssignment->setReminderWasAutomatic(0);
-					$reviewAssignment->setRound(1);
+					$reviewAssignment->setStage(1);
 					
 					$reviewAssignmentDao->insertReviewAssignment($reviewAssignment);
 					
@@ -1427,7 +1426,7 @@ class ImportOCS1 {
 		$paperFile->setStatus('');
 		$paperFile->setDateUploaded($row['dtDateUploaded']);
 		$paperFile->setDateModified($row['dtDateUploaded']);
-		$paperFile->setRound(1);
+		$paperFile->setStage(1);
 		$paperFile->setRevision(1);
 		
 		$fileId = $paperFileDao->insertPaperFile($paperFile);
@@ -1494,7 +1493,7 @@ class ImportOCS1 {
 			$paperFile->setStatus('');
 			$paperFile->setDateUploaded(date('Y-m-d', filemtime($oldPath)));
 			$paperFile->setDateModified($paperFile->getDateUploaded());
-			$paperFile->setRound(1);
+			$paperFile->setStage(1);
 			$paperFile->setRevision(1);
 			
 			$fileId = $paperFileDao->insertPaperFile($paperFile);

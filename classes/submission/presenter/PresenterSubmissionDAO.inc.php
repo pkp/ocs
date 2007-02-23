@@ -89,16 +89,13 @@ class PresenterSubmissionDAO extends DAO {
 		$presenterSubmission->setEditAssignments($editAssignments->toArray());
 		
 		// Director Decisions
-		for ($i = 1; $i <= $row['review_progress']; $i++) {
-			for ($j = 1; $j <= $row['current_round']; $j++) {
-				$presenterSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i, $j), $i, $j);
-			}
+		for ($i = 1; $i <= $row['current_stage']; $i++) {
+			$presenterSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i), $i);
 		}
 				
 		// Review Assignments
-		for ($i = 1; $i <= $row['review_progress']; $i++)
-			for ($j = 1; $j <= $row['current_round']; $j++)
-				$presenterSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByPaperId($row['paper_id'], $i, $j), $i, $j);
+		for ($i = 1; $i <= $row['current_stage']; $i++)
+			$presenterSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByPaperId($row['paper_id'], $i), $i);
 
 		// Comments
 		$presenterSubmission->setMostRecentDirectorDecisionComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_DIRECTOR_DECISION, $row['paper_id']));
@@ -107,10 +104,10 @@ class PresenterSubmissionDAO extends DAO {
 		$presenterSubmission->setSubmissionFile($this->paperFileDao->getPaperFile($row['submission_file_id']));
 		$presenterSubmission->setRevisedFile($this->paperFileDao->getPaperFile($row['revised_file_id']));
 		$presenterSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByPaper($row['paper_id']));
-		for ($i = 1; $i <= $row['current_round']; $i++) {
+		for ($i = 1; $i <= $row['current_stage']; $i++) {
 			$presenterSubmission->setPresenterFileRevisions($this->paperFileDao->getPaperFileRevisions($row['revised_file_id'], $i), $i);
 		}
-		for ($i = 1; $i <= $row['current_round']; $i++) {
+		for ($i = 1; $i <= $row['current_stage']; $i++) {
 			$presenterSubmission->setDirectorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['director_file_id'], $i), $i);
 		}
 		$presenterSubmission->setGalleys($this->galleyDao->getGalleysByPaper($row['paper_id']));
@@ -203,26 +200,22 @@ class PresenterSubmissionDAO extends DAO {
 	//
 	
 	/**
-	 * Get the director decisions for a review round of an paper.
+	 * Get the director decisions for a review stage of an paper.
 	 * @param $paperId int
-	 * @param $round int
+	 * @param $stage int
 	 */
-	function getDirectorDecisions($paperId, $type = null, $round = null) {
+	function getDirectorDecisions($paperId, $stage = null) {
 		$decisions = array();
 		$args = array($paperId);
-		if($type) {
-			$args[] = $type;
-		}
-		if($round) {
-			$args[] = $round;
+		if($stage) {
+			$args[] = $stage;
 		}
 	
 		$result = &$this->retrieve(
 			'SELECT edit_decision_id, director_id, decision, date_decided
 			FROM edit_decisions
 			WHERE paper_id = ? ' .
-			($type?' AND type = ?' :'') .
-			($round?' AND round = ?':'') .
+			($stage?' AND stage = ?':'') .
 			' ORDER BY date_decided ASC',
 			(count($args)==1?shift($args):$args)
 		);

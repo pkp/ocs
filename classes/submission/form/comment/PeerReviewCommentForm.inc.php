@@ -38,7 +38,7 @@ class PeerReviewCommentForm extends CommentForm {
 	function display() {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($this->reviewId);
-		$reviewLetters = &$reviewAssignmentDao->getReviewIndexesForRound($this->paper->getPaperId(), $this->paper->getReviewProgress(), $this->paper->getCurrentRound());
+		$reviewLetters = &$reviewAssignmentDao->getReviewIndexesForStage($this->paper->getPaperId(), $this->paper->getCurrentStage());
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('commentType', 'peerReview');

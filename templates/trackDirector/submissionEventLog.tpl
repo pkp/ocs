@@ -16,10 +16,10 @@
 <ul class="menu">
 	<li><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>
 	{if $schedConfSettings.reviewPapers and $canReview}
-		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:1}">
+		<li><a href="{url op="submissionReview" path=$submission->getPaperId()}">
 			{translate key="submission.abstractReview"}</a>
 		</li>
-		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:2}">
+		<li><a href="{url op="submissionReview" path=$submission->getPaperId()}">
 			{translate key="submission.paperReview"}</a>
 		</li>
 	{elseif $canReview}

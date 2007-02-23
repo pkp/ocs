@@ -11,8 +11,13 @@
  * $Id$
  *}
 
-{translate|assign:"pageTitleTranslated" key="submission.page.review" id=$submission->getPaperId()}
-{assign var="pageCrumbTitle" value="submission.review"}
+{if $reviewAssignment->getStage() == REVIEW_PROGRESS_ABSTRACT}
+	{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$submission->getPaperId()}
+	{assign var="pageCrumbTitle" value="submission.abstractReview"}
+{else}
+	{translate|assign:"pageTitleTranslated" key="submission.page.paperReview" id=$submission->getPaperId()}
+	{assign var="pageCrumbTitle" value="submission.paperReview"}
+{/if}
 
 {include file="common/header.tpl"}
 
@@ -101,11 +106,8 @@ function confirmSubmissionCheck() {
 
 <table width="100%" class="data">
 <tr valign="top">
-	{assign var=editAssignments value=$submission->getEditAssignments}
-	{* FIXME: Should be able to assign primary editorial contact *}
-	{if $editAssignments[0]}{assign var=firstEditAssignment value=$editAssignments[0]}{/if}
 	<td width="3%">1.</td>
-	<td width="97%"><span class="instruct">{translate key="reviewer.paper.reviewerInstruction1a"}{if $firstEditAssignment}, {$firstEditAssignment->getDirectorFullName()},{/if} {translate key="reviewer.paper.reviewerInstruction1b"}</span></td>
+	<td width="97%"><span class="instruct">{translate key="reviewer.paper.reviewerInstruction1a"}{if $editAssignment}, {$editAssignment->getDirectorFullName()},{/if} {translate key="reviewer.paper.reviewerInstruction1b"}</span></td>
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>
@@ -156,7 +158,7 @@ function confirmSubmissionCheck() {
 	<td>
 		<table width="100%" class="data">
 			{if ($confirmedStatus and not $declined) or not $schedConf->getSetting('restrictReviewerFileAccess', true)}
-				{if $reviewAssignment->getType() == REVIEW_PROGRESS_ABSTRACT}
+				{if $reviewAssignment->getStage() == REVIEW_PROGRESS_ABSTRACT}
 					<tr valign="top">
 						<td width="30%" class="label">
 							{translate key="submission.abstract"}

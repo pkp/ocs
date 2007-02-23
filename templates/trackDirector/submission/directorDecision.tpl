@@ -57,8 +57,8 @@
 
 <form method="post" action="{url op="directorReview"}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
-{assign var=presenterFiles value=$submission->getPresenterFileRevisions($round)}
-{assign var=directorFiles value=$submission->getDirectorFileRevisions($round)}
+{assign var=presenterFiles value=$submission->getPresenterFileRevisions($stage)}
+{assign var=directorFiles value=$submission->getDirectorFileRevisions($stage)}
 {assign var="presenterRevisionExists" value=false}
 {assign var="directorRevisionExists" value=false}
 
@@ -71,15 +71,7 @@
 					<td width="20%" rowspan="{$presenterFiles|@count}" class="label">{translate key="submission.presenterVersion"}</td>
 				{/if}
 				<td width="80%" class="value" colspan="3">
-					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_RESUBMIT}
-						<tr>
-							<td width="20%">&nbsp;</td>
-							<td width="80%">
-								{translate key="director.paper.resubmitFileForPeerReview"}
-								<input type="submit" name="resubmit" {if !($directorRevisionExists or $presenterRevisionExists)}disabled="disabled" {/if}value="{translate key="form.resubmit"}" class="button" />
-							</td>
-						</tr>
-					{elseif $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
+					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
 						<input type="radio" name="directorDecisionFile" value="{$presenterFile->getFileId()},{$presenterFile->getRevision()}" />
 					{/if}
 					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$presenterFile->getFileId():$presenterFile->getRevision()}" class="file">{$presenterFile->getFileName()}</a>&nbsp;&nbsp;

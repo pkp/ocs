@@ -37,14 +37,13 @@ class ReviewAssignmentDAO extends DAO {
 	 * Retrieve a review assignment by reviewer and paper.
 	 * @param $paperId int
 	 * @param $reviewerId int
-	 * @param $type int
-	 * @param $round int
+	 * @param $stage int
 	 * @return ReviewAssignment
 	 */
-	function &getReviewAssignment($paperId, $reviewerId, $type, $round) {
+	function &getReviewAssignment($paperId, $reviewerId, $stage) {
 		$result = &$this->retrieve(
-			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type) LEFT JOIN papers a ON (r.paper_id = a.paper_id) WHERE r.paper_id = ? AND r.reviewer_id = ? AND r.cancelled <> 1 AND r.type = ? AND r.round = ?',
-			array($paperId, $reviewerId, $type, $round)
+			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage) LEFT JOIN papers a ON (r.paper_id = a.paper_id) WHERE r.paper_id = ? AND r.reviewer_id = ? AND r.cancelled <> 1 AND r.stage = ?',
+			array($paperId, $reviewerId, $stage)
 			);
 
 		$returner = null;
@@ -65,7 +64,7 @@ class ReviewAssignmentDAO extends DAO {
 	 */
 	function &getReviewAssignmentById($reviewId) {
 		$result = &$this->retrieve(
-			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type) LEFT JOIN papers a ON (r.paper_id = a.paper_id) WHERE r.review_id = ?',
+			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage) LEFT JOIN papers a ON (r.paper_id = a.paper_id) WHERE r.review_id = ?',
 			$reviewId
 			);
 
@@ -81,17 +80,17 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Determine the order of active reviews for the given round of the given paper
+	 * Determine the order of active reviews for the given stage of the given paper
 	 * @param $paperId int
-	 * @param $round int
+	 * @param $stage int
 	 * @return array associating review ID with number; ie if review ID 26 is first, returned['26']=0
 	 */
-	function &getReviewIndexesForRound($paperId, $type, $round) {
+	function &getReviewIndexesForStage($paperId, $stage) {
 		$returner = array();
 		$index = 0;
 		$result = &$this->retrieve(
-			'SELECT review_id FROM review_assignments WHERE paper_id = ? and type = ? AND round = ? AND (cancelled = 0 OR cancelled IS NULL) ORDER BY review_id',
-			array($paperId, $type, $round)
+			'SELECT review_id FROM review_assignments WHERE paper_id = ? AND stage = ? AND (cancelled = 0 OR cancelled IS NULL) ORDER BY review_id',
+			array($paperId, $stage)
 			);
 		
 		while (!$result->EOF) {
@@ -116,7 +115,7 @@ class ReviewAssignmentDAO extends DAO {
 		$reviewAssignments = array();
 		
 		$result = &$this->retrieve(
-			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type) LEFT JOIN papers a ON (r.paper_id = a.paper_id) WHERE (r.cancelled IS NULL OR r.cancelled = 0) AND r.date_notified IS NOT NULL AND r.date_completed IS NULL ORDER BY r.paper_id'
+			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage) LEFT JOIN papers a ON (r.paper_id = a.paper_id) WHERE (r.cancelled IS NULL OR r.cancelled = 0) AND r.date_notified IS NOT NULL AND r.date_completed IS NULL ORDER BY r.paper_id'
 		);
 		
 		while (!$result->EOF) {
@@ -135,10 +134,10 @@ class ReviewAssignmentDAO extends DAO {
 	 * @param $paperId int
 	 * @return array ReviewAssignments
 	 */
-	function &getReviewAssignmentsByPaperId($paperId, $type = null, $round = null) {
+	function &getReviewAssignmentsByPaperId($paperId, $stage = null) {
 		$reviewAssignments = array();
 
-		$args = array_diff(array($paperId, $type, $round), array(null));
+		$args = array_diff(array($paperId, $stage), array(null));
 
 		$result = &$this->retrieve('
 			SELECT r.*,
@@ -148,12 +147,11 @@ class ReviewAssignmentDAO extends DAO {
 				u.last_name
 			FROM review_assignments r
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (r.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type)
+				LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage)
 				LEFT JOIN papers a ON (r.paper_id = a.paper_id)
 			WHERE r.paper_id = ? '
-				. ($type ? ' AND r.type = ?':'')
-				. ($round ? ' AND r.round = ?':'')
-			. ' ORDER BY ' . ($type?'':' type,') . ($round?'':' round,') . 'review_id',
+				. ($stage ? ' AND r.stage = ?':'')
+			. ' ORDER BY ' . ($stage?'':' stage,') . 'review_id',
 			((count($args)==1)?array_shift($args):$args));
 		
 		while (!$result->EOF) {
@@ -183,9 +181,9 @@ class ReviewAssignmentDAO extends DAO {
 				u.last_name
 			FROM review_assignments r
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (r.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type)
+				LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage)
 				LEFT JOIN papers a ON (r.paper_id = a.paper_id) WHERE r.reviewer_id = ?
-			ORDER BY round, review_id',
+			ORDER BY stage, review_id',
 			$userId
 		);
 		
@@ -201,17 +199,17 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get a review file for a paper for each round.
+	 * Get a review file for a paper for each stage.
 	 * @param $paperId int
 	 * @return array PaperFiles
 	 */
-	function &getReviewFilesByRound($paperId) {
+	function &getReviewFilesByStage($paperId) {
 		$returner = array();
 		
 		$result = &$this->retrieve('
 			SELECT a.*,
-				r.round as round
-			FROM review_rounds r,
+				r.stage as stage
+			FROM review_stages r,
 				paper_files a,
 				papers art
 			WHERE art.paper_id=r.paper_id
@@ -225,7 +223,7 @@ class ReviewAssignmentDAO extends DAO {
 		
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$returner[$row['round']] = &$this->paperFileDao->_returnPaperFileFromRow($row);
+			$returner[$row['stage']] = &$this->paperFileDao->_returnPaperFileFromRow($row);
 			$result->MoveNext();
 		}
 
@@ -236,11 +234,11 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get all presenter-viewable reviewer files for an paper for each round.
+	 * Get all presenter-viewable reviewer files for an paper for each stage.
 	 * @param $paperId int
-	 * @return array returned[round][reviewer_index] = array of PaperFiles
+	 * @return array returned[stage][reviewer_index] = array of PaperFiles
 	 */
-	function &getPresenterViewableFilesByRound($paperId,$type) {
+	function &getPresenterViewableFilesByStage($paperId) {
 		$files = array();
 		
 		$result = &$this->retrieve(
@@ -251,15 +249,14 @@ class ReviewAssignmentDAO extends DAO {
 			WHERE reviewer_file_id = file_id
 				AND viewable=1
 				AND a.paper_id=?
-				AND a.type=?
-			ORDER BY a.round, a.reviewer_id, a.review_id', 
-			array($paperId,$type)
+			ORDER BY a.stage, a.reviewer_id, a.review_id', 
+			array($paperId)
 		);
 		
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if (!isset($files[$row['round']]) || !is_array($files[$row['round']])) {
-				$files[$row['round']] = array();
+			if (!isset($files[$row['stage']]) || !is_array($files[$row['stage']])) {
+				$files[$row['stage']] = array();
 				$this_reviewer_id = $row['reviewer_id'];
 				$reviewer_index = 0;
 			}
@@ -268,11 +265,11 @@ class ReviewAssignmentDAO extends DAO {
 				$reviewer_index++;
 			}
 
-			if (!isset($files[$row['round']][$reviewer_index]) || !is_array($files[$row['round']][$reviewer_index])) {
-				$files[$row['round']][$reviewer_index] = array();
+			if (!isset($files[$row['stage']][$reviewer_index]) || !is_array($files[$row['stage']][$reviewer_index])) {
+				$files[$row['stage']][$reviewer_index] = array();
 			}
 			$thisPaperFile = &$this->paperFileDao->_returnPaperFileFromRow($row);
-			$files[$row['round']][$reviewer_index][] = $thisPaperFile;
+			$files[$row['stage']][$reviewer_index][] = $thisPaperFile;
 			$result->MoveNext();
 		}
 
@@ -283,22 +280,22 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get the most recent last modified date for all review assignments for each round of a submission.
+	 * Get the most recent last modified date for all review assignments for each stage of a submission.
 	 * @param $paperId int
-	 * @param $round int
-	 * @return array associating round with most recent last modified date
+	 * @param $stage int
+	 * @return array associating stage with most recent last modified date
 	 */
-	function &getLastModifiedByRound($paperId, $type) {
+	function &getLastModifiedByStage($paperId) {
 		$returner = array();
 
 		$result = &$this->retrieve(
-			'SELECT round, MAX(last_modified) as last_modified FROM review_assignments WHERE paper_id=? AND type=? GROUP BY round', 
-			array($paperId,$type)
+			'SELECT stage, MAX(last_modified) as last_modified FROM review_assignments WHERE paper_id=? GROUP BY stage', 
+			array($paperId)
 		);
 		
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$returner[$row['round']] = $this->datetimeFromDB($row['last_modified']);
+			$returner[$row['stage']] = $this->datetimeFromDB($row['last_modified']);
 			$result->MoveNext();
 		}
 
@@ -309,22 +306,22 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get the first notified date from all review assignments for a round of a submission.
+	 * Get the first notified date from all review assignments for a stage of a submission.
 	 * @param $paperId int
-	 * @param $round int
-	 * @return array Associative array of ($round_num => $earliest_date_of_notification)*
+	 * @param $stage int
+	 * @return array Associative array of ($stage_num => $earliest_date_of_notification)*
 	 */
-	function &getEarliestNotificationByRound($paperId, $type) {
+	function &getEarliestNotificationByStage($paperId) {
 		$returner = array();
 
 		$result = &$this->retrieve(
-			'SELECT round, MIN(date_notified) as earliest_date FROM review_assignments WHERE paper_id=? AND type=? GROUP BY round', 
-			array($paperId,$type)
+			'SELECT stage, MIN(date_notified) as earliest_date FROM review_assignments WHERE paper_id=? GROUP BY stage', 
+			array($paperId)
 		);
 		
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$returner[$row['round']] = $this->datetimeFromDB($row['earliest_date']);
+			$returner[$row['stage']] = $this->datetimeFromDB($row['earliest_date']);
 			$result->MoveNext();
 		}
 
@@ -343,7 +340,7 @@ class ReviewAssignmentDAO extends DAO {
 		$reviewAssignments = array();
 		
 		$result = &$this->retrieve(
-			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type) LEFT JOIN papers a ON (r.paper_id = a.paper_id) WHERE r.paper_id = ? AND (r.cancelled = 1 OR r.declined = 1) ORDER BY round, review_id',
+			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage) LEFT JOIN papers a ON (r.paper_id = a.paper_id) WHERE r.paper_id = ? AND (r.cancelled = 1 OR r.declined = 1) ORDER BY stage, review_id',
 			$paperId
 		);
 		
@@ -385,8 +382,7 @@ class ReviewAssignmentDAO extends DAO {
 		$reviewAssignment->setDateRated($this->datetimeFromDB($row['date_rated']));
 		$reviewAssignment->setDateReminded($this->datetimeFromDB($row['date_reminded']));
 		$reviewAssignment->setReminderWasAutomatic($row['reminder_was_automatic']);
-		$reviewAssignment->setRound($row['round']);
-		$reviewAssignment->setType($row['type']);
+		$reviewAssignment->setStage($row['stage']);
 		$reviewAssignment->setReviewFileId($row['review_file_id']);
 		$reviewAssignment->setReviewRevision($row['review_revision']);
 		
@@ -412,15 +408,14 @@ class ReviewAssignmentDAO extends DAO {
 	function insertReviewAssignment(&$reviewAssignment) {
 		$this->update(
 			sprintf('INSERT INTO review_assignments
-				(paper_id, reviewer_id, round, type, recommendation, declined, replaced, cancelled, date_assigned, date_notified, date_confirmed, date_completed, date_acknowledged, date_due, reviewer_file_id, quality, date_rated, last_modified, date_reminded, reminder_was_automatic)
+				(paper_id, reviewer_id, stage, recommendation, declined, replaced, cancelled, date_assigned, date_notified, date_confirmed, date_completed, date_acknowledged, date_due, reviewer_file_id, quality, date_rated, last_modified, date_reminded, reminder_was_automatic)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, ?, ?, %s, %s, %s, ?)',
+				(?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, ?, ?, %s, %s, %s, ?)',
 				$this->datetimeToDB($reviewAssignment->getDateAssigned()), $this->datetimeToDB($reviewAssignment->getDateNotified()), $this->datetimeToDB($reviewAssignment->getDateConfirmed()), $this->datetimeToDB($reviewAssignment->getDateCompleted()), $this->datetimeToDB($reviewAssignment->getDateAcknowledged()), $this->datetimeToDB($reviewAssignment->getDateDue()), $this->datetimeToDB($reviewAssignment->getDateRated()), $this->datetimeToDB($reviewAssignment->getLastModified()), $this->datetimeToDB($reviewAssignment->getDateReminded())),
 			array(
 				$reviewAssignment->getPaperId(),
 				$reviewAssignment->getReviewerId(),
-				$reviewAssignment->getRound() === null ? 1 : $reviewAssignment->getRound(),
-				$reviewAssignment->getType() === null ? 1 : $reviewAssignment->getType(),
+				$reviewAssignment->getStage() === null ? 1 : $reviewAssignment->getStage(),
 				$reviewAssignment->getRecommendation(),
 				$reviewAssignment->getDeclined() === null ? 0 : $reviewAssignment->getDeclined(),
 				$reviewAssignment->getReplaced() === null ? 0 : $reviewAssignment->getReplaced(),
@@ -444,8 +439,7 @@ class ReviewAssignmentDAO extends DAO {
 			sprintf('UPDATE review_assignments
 				SET	paper_id = ?,
 					reviewer_id = ?,
-					round = ?,
-					type = ?,
+					stage = ?,
 					recommendation = ?,
 					declined = ?,
 					replaced = ?,
@@ -467,8 +461,7 @@ class ReviewAssignmentDAO extends DAO {
 			array(
 				$reviewAssignment->getPaperId(),
 				$reviewAssignment->getReviewerId(),
-				$reviewAssignment->getRound(),
-				$reviewAssignment->getType(),
+				$reviewAssignment->getStage(),
 				$reviewAssignment->getRecommendation(),
 				$reviewAssignment->getDeclined(),
 				$reviewAssignment->getReplaced(),

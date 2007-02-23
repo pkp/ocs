@@ -1,15 +1,15 @@
 {**
- * rounds.tpl
+ * stages.tpl
  *
  * Copyright (c) 2003-2005 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Subtemplate displaying past rounds for a submission.
+ * Subtemplate displaying past stages for a submission.
  *
  * $Id$
  *}
 
-<a name="rounds"></a>
+<a name="stages"></a>
 <h3>{translate|escape key="trackDirector.regrets.regretsAndCancels"}</h3>
 
 <table width="100%" class="listing">
@@ -38,7 +38,7 @@
 				{translate key="common.cancelled"}
 			{/if}
 		</td>
-		<td>{$cancelOrRegret->getRound()}</td>
+		<td>{$cancelOrRegret->getStage()}</td>
 	</tr>
 	<tr>
 		<td colspan="4" class="{if $smarty.foreach.cancelsAndRegrets.last}end{/if}separator">&nbsp;</td>
@@ -53,31 +53,23 @@
 {/foreach}
 </table>
 
-{foreach from=$reviewAssignmentTypes item=reviewAssignments key=type}
+{assign var=numStages value=$reviewAssignmentStages|@count}
+{section name=stage loop=$numStages}
+{assign var=stage value=$smarty.section.stage.index}
+{assign var=stagePlusOne value=$stage+1}
+{assign var=stageAssignments value=$reviewAssignmentStages[$stagePlusOne]}
+{assign var=stageDecisions value=$directorDecisions[$stagePlusOne]}
 
-{assign var=numRounds value=$reviewAssignments|@count}
-{section name=round loop=$numRounds}
-{assign var=round value=$smarty.section.round.index}
-{assign var=roundPlusOne value=$round+1}
-{assign var=roundAssignments value=$reviewAssignments[$roundPlusOne]}
-{assign var=roundDecisions value=$directorDecisions[$type][$roundPlusOne]}
-{assign var=needsTypeHeading value=1}
+{if $submission->getCurrentStage() != $stagePlusOne}
 
-{if $submission->getReviewProgress() != $type || $submission->getCurrentRound() != $roundPlusOne}
+<h4>{translate key="trackDirector.regrets.reviewStage" stage=$stagePlusOne}</h4>
 
-{if $needsTypeHeading}
-	<h3>{if $type == REVIEW_PROGRESS_ABSTRACT}{translate key="submission.abstractReview"}{else}{translate key="submission.paperReview"}{/if}</h3>
-	{assign var=needsTypeHeading value=0}
-{/if}
-
-<h4>{translate key="trackDirector.regrets.reviewRound" round=$roundPlusOne}</h4>
-
-{if $type != REVIEW_PROGRESS_ABSTRACT}
+{if $stage != REVIEW_PROGRESS_ABSTRACT}
 <table width="100%" class="data">
 	<tr valign="top">
 		<td class="label" width="20%">{translate key="submission.reviewVersion"}</td>
 		<td class="value" width="80%">
-			{assign var="reviewFile" value=$reviewFilesByRound[$roundPlusOne]}
+			{assign var="reviewFile" value=$reviewFilesByStage[$stagePlusOne]}
 			{if $reviewFile}
 				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
 			{else}
@@ -90,7 +82,7 @@
 
 {assign var="start" value="A"|ord}
 
-{foreach from=$roundAssignments item=reviewAssignment key=reviewKey}
+{foreach from=$stageAssignments item=reviewAssignment key=reviewKey}
 
 {if !$reviewAssignment->getCancelled()}
 <div class="separator"></div>
@@ -170,8 +162,7 @@
 							<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 							<input type="hidden" name="fileId" value="{$reviewerFile->getFileId()}" />
 							<input type="hidden" name="revision" value="{$reviewerFile->getRevision()}" />
-							{translate key="director.paper.showPresenter"} <input type="checkbox"
-name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if} />
+							{translate key="director.paper.showPresenter"} <input type="checkbox" name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if} />
 							<input type="submit" value="{translate key="common.record"}" class="button" />
 						</form>
 					</td>
@@ -190,16 +181,16 @@ name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if
 
 <div class="separator"></div>
 
-<h4>{translate key="trackDirector.regrets.decisionRound" round=$roundPlusOne}</h4>
+<h4>{translate key="trackDirector.regrets.decisionStage" stage=$stagePlusOne}</h4>
 
-{assign var=presenterFiles value=$submission->getPresenterFileRevisions($roundPlusOne)}
-{assign var=directorFiles value=$submission->getDirectorFileRevisions($roundPlusOne)}
+{assign var=presenterFiles value=$submission->getPresenterFileRevisions($stagePlusOne)}
+{assign var=directorFiles value=$submission->getDirectorFileRevisions($stagePlusOne)}
 
 <table class="data" width="100%">
 	<tr valign="top">
 		<td class="label" width="20%">{translate key="director.paper.decision"}</td>
 		<td class="value" width="80%">
-			{foreach from=$roundDecisions item=directorDecision key=decisionKey}
+			{foreach from=$stageDecisions item=directorDecision key=decisionKey}
 				{if $decisionKey neq 0} | {/if}
 				{assign var="decision" value=$directorDecision.decision}
 				{translate key=$directorDecisionOptions.$decision} {$directorDecision.dateDecided|date_format:$dateFormatShort}
@@ -255,7 +246,4 @@ name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if
 
 {/if} {* End check to see that this is actually a past review, not the current one *}
 
-{/section} {* End section to loop through all rounds *}
-
-{/foreach} {* End foreach to loop through review types *}
-
+{/section} {* End section to loop through all stages *}

@@ -129,31 +129,24 @@ class ReviewerSubmission extends Paper {
 	 * Get director decisions.
 	 * @return array
 	 */
-	function getDecisions($type = null, $round = null) {
-		if ($type == null)
+	function getDecisions($stage = null) {
+		if ($stage == null)
 			return $this->directorDecisions;
 
-		if(!isset($this->directorDecisions[$type]))
-			return null;
-		
-		if ($round == null)
-			return $this->directorDecisions[$type];
-
-		if(!isset($this->directorDecisions[$type][$round]))
+		if(!isset($this->directorDecisions[$stage]))
 			return null;
 
-		return $this->directorDecisions[$type][$round];
+		return $this->directorDecisions[$stage];
 	}
 	
 	/**
 	 * Set director decisions.
 	 * @param $directorDecisions array
-	 * @param $type int
-	 * @param $round int
+	 * @param $stage int
 	 */
-	function setDecisions($directorDecisions, $type, $round) {
+	function setDecisions($directorDecisions, $stage) {
 		$this->stampStatusModified();
-		return $this->directorDecisions[$type][$round] = $directorDecisions;
+		return $this->directorDecisions[$stage] = $directorDecisions;
 	}
 	
 	/**
@@ -350,19 +343,19 @@ class ReviewerSubmission extends Paper {
 	
 	
 	/**
-	 * Get round.
+	 * Get stage.
 	 * @return int
 	 */
-	function getRound() {
-		return $this->getData('round');
+	function getStage() {
+		return $this->getData('stage');
 	}
 	
 	/**
-	 * Set round.
-	 * @param $round int
+	 * Set stage.
+	 * @param $stage int
 	 */
-	function setRound($round) {
-		return $this->setData('round', $round);
+	function setStage($stage) {
+		return $this->setData('stage', $stage);
 	}
 	
 	/**

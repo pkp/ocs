@@ -48,7 +48,7 @@ class PresenterAction extends Action {
 				$presenterSubmissionDao->updatePresenterSubmission($presenterSubmission);
 
 				$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-				$trackDirectorSubmissionDao->createReviewRound($presenterSubmission->getPaperId(), 1, 1, 1);
+				$trackDirectorSubmissionDao->createReviewStage($presenterSubmission->getPaperId(), 1, 1);
 			}
 		}
 	}
@@ -73,8 +73,8 @@ class PresenterAction extends Action {
 		// Ensure that this is actually an presenter file.
 		if (isset($paperFile)) {
 			HookRegistry::call('PresenterAction::deletePaperFile', array(&$paperFile, &$presenterRevisions));
-			foreach ($presenterRevisions as $round) {
-				foreach ($round as $revision) {
+			foreach ($presenterRevisions as $stage) {
+				foreach ($stage as $revision) {
 					if ($revision->getFileId() == $paperFile->getFileId() &&
 					    $revision->getRevision() == $paperFile->getRevision()) {
 						$paperFileManager->deleteFile($paperFile->getFileId(), $paperFile->getRevision());
@@ -227,17 +227,15 @@ class PresenterAction extends Action {
 			$canDownload = true;
 		} else {
 			// Check reviewer files
-			foreach ($submission->getReviewAssignments(null, null) as $typeReviewAssignments) {
-				foreach($typeReviewAssignments as $roundReviewAssignments) {
-					foreach ($roundReviewAssignments as $reviewAssignment) {
-						if ($reviewAssignment->getReviewerFileId() == $fileId) {
-							$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-						
-							$paperFile = &$paperFileDao->getPaperFile($fileId, $revision);
-						
-							if ($paperFile != null && $paperFile->getViewable()) {
-								$canDownload = true;
-							}
+			foreach ($submission->getReviewAssignments(null) as $stageReviewAssignments) {
+				foreach ($stageReviewAssignments as $reviewAssignment) {
+					if ($reviewAssignment->getReviewerFileId() == $fileId) {
+						$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+					
+						$paperFile = &$paperFileDao->getPaperFile($fileId, $revision);
+					
+						if ($paperFile != null && $paperFile->getViewable()) {
+							$canDownload = true;
 						}
 					}
 				}
@@ -259,14 +257,14 @@ class PresenterAction extends Action {
 
 			// Check current review version
 			$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($paper->getPaperId());
-			$reviewFile = @$reviewFilesByRound[$paper->getCurrentRound()];
+			$reviewFilesByStage =& $reviewAssignmentDao->getReviewFilesByStage($paper->getPaperId());
+			$reviewFile = @$reviewFilesByStage[$paper->getCurrentStage()];
 			if ($reviewFile && $fileId == $reviewFile->getFileId()) {
 				$canDownload = true;
 			}
 
 			// Check director version
-			$directorFiles = $submission->getDirectorFileRevisions($paper->getCurrentRound());
+			$directorFiles = $submission->getDirectorFileRevisions($paper->getCurrentStage());
 			foreach ($directorFiles as $directorFile) {
 				if ($directorFile->getFileId() == $fileId) {
 					$canDownload = true;

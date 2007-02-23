@@ -153,6 +153,22 @@ class PaperFile extends DataObject {
 	}
 
 	/**
+	 * Get review stage of the file.
+	 * @ return int
+	 */
+	function getStage() {
+		return $this->getData('stage');
+	}
+
+	/**
+	 * Set stage of the file.
+	 * @param $stage string
+	 */
+	function setStage($stage) {
+		return $this->setData('stage', $stage);
+	}
+
+	/**
 	 * Get status of the file.
 	 * @return string
 	 */
@@ -232,25 +248,6 @@ class PaperFile extends DataObject {
 
 	function getNiceFileSize() {
 		return FileManager::getNiceFileSize($this->getData('fileSize'));
-	}
-
-	/**
-	 * Get round.
-	 * @return int
-	 */
-
-	function getRound() {
-		return $this->getData('round');
-	}
-
-
-	/**
-	 * Set round.
-	 * @param $round int
-	 */
-
-	function setRound($round) {
-		return $this->SetData('round', $round);
 	}
 
 	/**

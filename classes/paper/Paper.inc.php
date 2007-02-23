@@ -675,35 +675,19 @@ class Paper extends DataObject {
 	}
 	
 	/**
-	 * Get current round.
+	 * Get current stage.
 	 * @return int
 	 */
-	function getCurrentRound() {
-		return $this->getData('currentRound');
+	function getCurrentStage() {
+		return $this->getData('currentStage');
 	}
 	
 	/**
-	 * Set current round.
-	 * @param $currentRound int
+	 * Set current stage.
+	 * @param $currentStage int
 	 */
-	function setCurrentRound($currentRound) {
-		return $this->setData('currentRound', $currentRound);
-	}
-	
-	/**
-	 * Get review progress.
-	 * @return int
-	 */
-	function getReviewProgress() {
-		return $this->getData('reviewProgress');
-	}
-	
-	/**
-	 * Set review progress.
-	 * @param $reviewProgress int
-	 */
-	function setReviewProgress($reviewProgress) {
-		return $this->setData('reviewProgress', $reviewProgress);
+	function setCurrentStage($currentStage) {
+		return $this->setData('currentStage', $currentStage);
 	}
 	
 	/**

@@ -50,37 +50,29 @@ class TrackDirectorSubmission extends Paper {
 			$reviewAssignment->setPaperId($this->getPaperId());
 		}
 
-		$type = $reviewAssignment->getType();
-		$round = $reviewAssignment->getRound();
+		$stage = $reviewAssignment->getStage();
 		
-		if(!isset($this->reviewAssignments[$type]))
-			$this->reviewAssignments[$type] = array();
+		if(!isset($this->reviewAssignments[$stage]))
+			$this->reviewAssignments[$stage] = array();
 		
-		if(!isset($this->reviewAssignments[$type][$round]))
-			$this->reviewAssignments[$type][$round] = array();
+		$this->reviewAssignments[$stage][] = $reviewAssignment;
 		
-		$this->reviewAssignments[$type][$round][] = $reviewAssignment;
-		
-		return $this->reviewAssignments[$type][$round];
+		return $this->reviewAssignments[$stage];
 	}
 	
 	/**
 	 * Add an editorial decision for this paper.
 	 * @param $directorDecision array
-	 * @param $type int
-	 * @param $round int
+	 * @param $stage int
 	 */
-	function addDecision($directorDecision, $type, $round) {
+	function addDecision($directorDecision, $stage) {
 		if(!is_array($this->directorDecisions))
 			$this->directorDecisions = array();
 			
-		if(!isset($this->directorDecisions[$type]))
-			$this->directorDecisions[$type] = array();
+		if(!isset($this->directorDecisions[$stage]))
+			$this->directorDecisions[$stage] = array();
 
-		if(!isset($this->directorDecisions[$type][$round]))
-			$this->directorDecisions[$type][$round] = array();
-
-		array_push($this->directorDecisions[$type][$round], $directorDecision);
+		array_push($this->directorDecisions[$stage], $directorDecision);
 	}		
 	
 	/**
@@ -91,15 +83,11 @@ class TrackDirectorSubmission extends Paper {
 	function removeReviewAssignment($reviewId) {
 		if ($reviewId == 0) return false;
 
-		foreach($this->reviewAssignments as $typekey => $type) {
-			foreach($type as $roundkey => $round) {
-				foreach($round as $reviewkey => $review) {
-					if($review->getReviewId() == $reviewId) {
-						$this->removedReviewAssignments[] =& $this->reviewAssignments[$typekey][$roundkey][$reviewkey];
-						unset($this->reviewAssignments[$typekey][$roundkey][$reviewkey]);
-						return true;
-					}
-				}
+		foreach($this->getReviewAssignments() as $reviewkey => $review) {
+			if($review->getReviewId() == $reviewId) {
+				$this->removedReviewAssignments[] =& $this->reviewAssignments[$stagekey][$reviewkey];
+				unset($this->reviewAssignments[$stagekey][$reviewkey]);
+				return true;
 			}
 		}
 		return false;
@@ -111,15 +99,15 @@ class TrackDirectorSubmission extends Paper {
 	 */
 	function updateReviewAssignment($reviewAssignment) {
 		$reviewAssignments = array();
-		$roundReviewAssignments = $this->reviewAssignments[$reviewAssignment->getType()][$reviewAssignment->getRound()];
-		for ($i=0, $count=count($roundReviewAssignments); $i < $count; $i++) {
-			if ($roundReviewAssignments[$i]->getReviewId() == $reviewAssignment->getReviewId()) {
+		$stageReviewAssignments = $this->reviewAssignments[$reviewAssignment->getStage()];
+		for ($i=0, $count=count($stageReviewAssignments); $i < $count; $i++) {
+			if ($stageReviewAssignments[$i]->getReviewId() == $reviewAssignment->getReviewId()) {
 				array_push($reviewAssignments, $reviewAssignment);
 			} else {
-				array_push($reviewAssignments, $roundReviewAssignments[$i]);
+				array_push($reviewAssignments, $stageReviewAssignments[$i]);
 			}
 		}
-		$this->reviewAssignments[$reviewAssignment->getType()][$reviewAssignment->getRound()] = $reviewAssignments;
+		$this->reviewAssignments[$reviewAssignment->getStage()] = $reviewAssignments;
 	}
 
 	/**
@@ -186,28 +174,22 @@ class TrackDirectorSubmission extends Paper {
 	 * Get review assignments for this paper.
 	 * @return array ReviewAssignments
 	 */
-	function getReviewAssignments($type = null, $round = null) {
-		if($type == null)
+	function getReviewAssignments($stage = null) {
+		if($stage == null)
 			return $this->reviewAssignments;
 		
-		if(!isset($this->reviewAssignments[$type]))
+		if(!isset($this->reviewAssignments[$stage]))
 			return null;
 		
-		if($round == null)
-			return $this->reviewAssignments[$type];
-		
-		if(!isset($this->reviewAssignments[$type][$round]))
-			return null;
-		
-		return $this->reviewAssignments[$type][$round];
+		return $this->reviewAssignments[$stage];
 	}
 	
 	/**
 	 * Set review assignments for this paper.
 	 * @param $reviewAssignments array ReviewAssignments
 	 */
-	function setReviewAssignments($reviewAssignments, $type, $round) {
-		return $this->reviewAssignments[$type][$round] = $reviewAssignments;
+	function setReviewAssignments($reviewAssignments, $stage) {
+		return $this->reviewAssignments[$stage] = $reviewAssignments;
 	}
 	
 	/**
@@ -226,31 +208,24 @@ class TrackDirectorSubmission extends Paper {
 	 * Get director decisions.
 	 * @return array
 	 */
-	function getDecisions($type = null, $round = null) {
-		if ($type == null)
+	function getDecisions($stage = null) {
+		if ($stage == null)
 			return $this->directorDecisions;
 
-		if(!isset($this->directorDecisions[$type]))
-			return null;
-		
-		if ($round == null)
-			return $this->directorDecisions[$type];
-
-		if(!isset($this->directorDecisions[$type][$round]))
+		if(!isset($this->directorDecisions[$stage]))
 			return null;
 
-		return $this->directorDecisions[$type][$round];
+		return $this->directorDecisions[$stage];
 	}
 	
 	/**
 	 * Set director decisions.
 	 * @param $directorDecisions array
-	 * @param $type int
-	 * @param $round int
+	 * @param $stage int
 	 */
-	function setDecisions($directorDecisions, $type, $round) {
+	function setDecisions($directorDecisions, $stage) {
 		$this->stampStatusModified();
-		return $this->directorDecisions[$type][$round] = $directorDecisions;
+		return $this->directorDecisions[$stage] = $directorDecisions;
 	}
 	
 	// 
@@ -346,11 +321,11 @@ class TrackDirectorSubmission extends Paper {
 	 * Get all director file revisions.
 	 * @return array PaperFiles
 	 */
-	function getDirectorFileRevisions($round = null) {
-		if ($round == null) {
+	function getDirectorFileRevisions($stage = null) {
+		if ($stage == null) {
 			return $this->directorFileRevisions;
 		} else {
-			return $this->directorFileRevisions[$round];
+			return $this->directorFileRevisions[$stage];
 		}
 	}
 	
@@ -358,19 +333,19 @@ class TrackDirectorSubmission extends Paper {
 	 * Set all director file revisions.
 	 * @param $directorFileRevisions array PaperFiles
 	 */
-	function setDirectorFileRevisions($directorFileRevisions, $round) {
-		return $this->directorFileRevisions[$round] = $directorFileRevisions;
+	function setDirectorFileRevisions($directorFileRevisions, $stage) {
+		return $this->directorFileRevisions[$stage] = $directorFileRevisions;
 	}
 	
 	/**
 	 * Get all presenter file revisions.
 	 * @return array PaperFiles
 	 */
-	function getPresenterFileRevisions($round = null) {
-		if ($round == null) {
+	function getPresenterFileRevisions($stage = null) {
+		if ($stage == null) {
 			return $this->presenterFileRevisions;
 		} else {
-			return $this->presenterFileRevisions[$round];
+			return $this->presenterFileRevisions[$stage];
 		}
 	}
 	
@@ -378,8 +353,8 @@ class TrackDirectorSubmission extends Paper {
 	 * Set all presenter file revisions.
 	 * @param $presenterFileRevisions array PaperFiles
 	 */
-	function setPresenterFileRevisions($presenterFileRevisions, $round) {
-		return $this->presenterFileRevisions[$round] = $presenterFileRevisions;
+	function setPresenterFileRevisions($presenterFileRevisions, $stage) {
+		return $this->presenterFileRevisions[$stage] = $presenterFileRevisions;
 	}
 	
 	/**
@@ -400,7 +375,7 @@ class TrackDirectorSubmission extends Paper {
 	}
 	
 	//
-	// Review Rounds
+	// Review Stages
 	//
 	
 	/**
@@ -461,14 +436,13 @@ class TrackDirectorSubmission extends Paper {
 	 * (Includes default mapping '' => "Choose One".)
 	 * @return array decision => localeString
 	 */
-	function &getDirectorDecisionOptions() {
-		static $directorDecisionOptions = array(
-			'' => 'common.chooseOne',
-			SUBMISSION_DIRECTOR_DECISION_ACCEPT => 'director.paper.decision.accept',
-			SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS => 'director.paper.decision.pendingRevisions',
-			SUBMISSION_DIRECTOR_DECISION_RESUBMIT => 'director.paper.decision.resubmit',
-			SUBMISSION_DIRECTOR_DECISION_DECLINE => 'director.paper.decision.decline'
-		);
+	function &getDirectorDecisionOptions($schedConf, &$paper) {
+		$directorDecisionOptions = array('' => 'common.chooseOne');
+		if ($schedConf && $paper && $paper->getCurrentStage() == REVIEW_PROGRESS_ABSTRACT && $schedConf->getReviewPapers() && !$schedConf->getCollectPapersWithAbstracts()) $directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_ACCEPT] = 'director.paper.decision.invitePresentation';
+		else $directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_ACCEPT] = 'director.paper.decision.accept';
+
+		$directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS] = 'director.paper.decision.pendingRevisions';
+		$directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_DECLINE] = 'director.paper.decision.decline';
 		return $directorDecisionOptions;
 	}
 }

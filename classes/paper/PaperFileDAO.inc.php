@@ -88,25 +88,22 @@ class PaperFileDAO extends DAO {
 	 * @param $paperId int
 	 * @return PaperFile
 	 */
-	function &getPaperFileRevisions($fileId, $round = null) {
+	function &getPaperFileRevisions($fileId, $stage = null) {
 		if ($fileId === null) {
 			$returner = null;
 			return $returner;
 		}
 		$paperFiles = array();
-		
-		// FIXME If "round" is review-specific, it shouldn't be in this table
-		if ($round == null) {
-			$result = &$this->retrieve(
-				'SELECT a.* FROM paper_files a WHERE file_id = ? ORDER BY revision',
-				$fileId
-			);
-		} else {
-			$result = &$this->retrieve(
-				'SELECT a.* FROM paper_files a WHERE file_id = ? AND round = ? ORDER BY revision',
-				array($fileId, $round)
-			);
-		}
+
+		$params = array($fileId);
+		if ($stage !== null) $params[] = $stage;
+
+		$result = &$this->retrieve(
+			'SELECT a.* FROM paper_files a WHERE file_id = ? ' .
+			($stage!==null?' AND a.stage = ?':'') .
+			'ORDER BY revision',
+			array($params)
+		);
 		
 		while (!$result->EOF) {
 			$paperFiles[] = &$this->_returnPaperFileFromRow($result->GetRowAssoc(false));
@@ -222,9 +219,9 @@ class PaperFileDAO extends DAO {
 		$paperFile->setOriginalFileName($row['original_file_name']);
 		$paperFile->setType($row['type']);
 		$paperFile->setStatus($row['status']);
+		$paperFile->setStage($row['stage']);
 		$paperFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 		$paperFile->setDateModified($this->datetimeFromDB($row['date_modified']));
-		$paperFile->setRound($row['round']);
 		$paperFile->setViewable($row['viewable']);
 		HookRegistry::call('PaperFileDAO::_returnPaperFileFromRow', array(&$paperFile, &$row));
 		return $paperFile;
@@ -245,8 +242,8 @@ class PaperFileDAO extends DAO {
 			$paperFile->getFileSize(),
 			$paperFile->getOriginalFileName(),
 			$paperFile->getType(),
+			$paperFile->getStage(),
 			$paperFile->getStatus(),
-			$paperFile->getRound(),
 			$paperFile->getViewable()
 		);
 		
@@ -256,9 +253,9 @@ class PaperFileDAO extends DAO {
 		
 		$this->update(
 			sprintf('INSERT INTO paper_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, paper_id, file_name, file_type, file_size, original_file_name, type, status, date_uploaded, date_modified, round, viewable)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, paper_id, file_name, file_type, file_size, original_file_name, type, stage, status, date_uploaded, date_modified, viewable)
 				VALUES
-				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?)',
+				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?)',
 				$this->datetimeToDB($paperFile->getDateUploaded()), $this->datetimeToDB($paperFile->getDateModified())),
 			$params
 		);
@@ -285,9 +282,9 @@ class PaperFileDAO extends DAO {
 					original_file_name = ?,
 					type = ?,
 					status = ?,
+					stage = ?,
 					date_uploaded = %s,
 					date_modified = %s,
-					round = ?,
 					viewable = ?
 				WHERE file_id = ? AND revision = ?',
 				$this->datetimeToDB($paperFile->getDateUploaded()), $this->datetimeToDB($paperFile->getDateModified())),
@@ -299,7 +296,7 @@ class PaperFileDAO extends DAO {
 				$paperFile->getOriginalFileName(),
 				$paperFile->getType(),
 				$paperFile->getStatus(),
-				$paperFile->getRound(),
+				$paperFile->getStage(),
 				$paperFile->getViewable(),
 				$paperFile->getFileId(),
 				$paperFile->getRevision()

@@ -25,8 +25,8 @@
 
 {iterate from=submissions item=submission}
 	{assign var="paperId" value=$submission->getPaperId()}
+	{assign var="currentStage" value=$submission->getCurrentStage()}
 	{assign var="submissionProgress" value=$submission->getSubmissionProgress()}
-	{assign var="reviewProgress" value=$submission->getReviewProgress()}
 	{assign var="status" value=$submission->getSubmissionStatus()}
 
 	<tr valign="top">
@@ -34,31 +34,34 @@
 		<td>{if $submission->getDateSubmitted()}{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}{else}&mdash;{/if}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getPresenterString(true)|truncate:40:"..."|escape}</td>
-		{if $submissionProgress==0}
+		{if $submissionProgress == 0}
 			<td><a href="{url op="submission" path=$paperId}" class="action">{if $submission->getPaperTitle()}{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
 			<td align="right">
 				{if $status==SUBMISSION_STATUS_ARCHIVED}{translate key="submissions.archived"}
 				{elseif $status==SUBMISSION_STATUS_QUEUED_UNASSIGNED}{translate key="submissions.queuedUnassigned"}
 				{elseif $status==SUBMISSION_STATUS_QUEUED_EDITING}<a href="{url op="submissionEditing" path=$paperId}" class="action">{translate key="submissions.queuedEditing"}</a>
 				{elseif $status==SUBMISSION_STATUS_QUEUED_REVIEW}
-					{if $reviewProgress==REVIEW_PROGRESS_PAPER}
-						<a href="{url op="submissionReview" path=$paperId}" class="action">{translate key="submissions.queuedPaperReview"}</a>
+					{if $currentStage==REVIEW_PROGRESS_PAPER}
+						<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">{translate key="submissions.queuedPaperReview"}</a>
 					{else}
-						<a href="{url op="submissionReview" path=$paperId}" class="action">{translate key="submissions.queuedAbstractReview"}</a>
+						<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">{translate key="submissions.queuedAbstractReview"}</a>
 					{/if}
 				{elseif $status==SUBMISSION_STATUS_PUBLISHED}{translate key="submissions.published"}
 				{elseif $status==SUBMISSION_STATUS_DECLINED}{translate key="submissions.declined"}
 				{/if}
 			</td>
 		{else}
-			<td><a href="{url op="submit" path=$submissionProgress paperId=$paperId}" class="action">{if $submission->getPaperTitle()}{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
+			{url|assign:"submitUrl" op="submit" path=$submission->getSubmissionProgress() paperId=$paperId}
+			<td><a href="{$submitUrl}" class="action">{if $submission->getPaperTitle()}{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
 			<td align="right">
-				{translate key="submissions.incomplete"}
-				{if $reviewProgress==REVIEW_PROGRESS_ABSTRACT}
+				{if $currentStage==REVIEW_PROGRESS_ABSTRACT}
+					{translate key="submissions.incomplete"}
 					<br />
 					<a href="{url op="deleteSubmission" path=$paperId}" class="action" onclick="return confirm('{translate|escape:"javascript" key="presenter.submissions.confirmDelete"}')">
 						{translate key="common.delete"}
 					</a>
+				{else}
+					<a class="action" href="{$submitUrl}">{translate key="submissions.pendingPresentation"}</a>
 				{/if}
 			</td>
 		{/if}

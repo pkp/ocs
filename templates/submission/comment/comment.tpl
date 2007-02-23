@@ -20,7 +20,7 @@
 		<div class="commentDate">{$comment->getDatePosted()|date_format:$datetimeFormatShort}</div>
 	</td>
 	<td width="75%">
-		{if $comment->getPresenterId() eq $userId and not $isLocked}
+		{if $comment->getAuthorId() eq $userId and not $isLocked}
 			<div style="float: right"><a href="{url op="editComment" path=$paperId|to_array:$comment->getCommentId()}" class="action">{translate key="common.edit"}</a> <a href="{url op="deleteComment" path=$paperId|to_array:$comment->getCommentId()}" onclick="return confirm('{translate|escape:"javascript" key="submission.comments.confirmDelete"}')" class="action">{translate key="common.delete"}</a></div>
 		{/if}
 		<a name="{$comment->getCommentId()}"></a>

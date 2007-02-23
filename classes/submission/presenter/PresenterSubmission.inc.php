@@ -67,18 +67,14 @@ class PresenterSubmission extends Paper {
 			$reviewAssignment->setPaperId($this->getPaperId());
 		}
 		
-		$type = $reviewAssignment->getType();
-		$round = $reviewAssignment->getRound();
+		$stage = $reviewAssignment->getStage();
 		
-		if(!isset($this->reviewAssignments[$type]))
-			$this->reviewAssignments[$type] = array();
+		if(!isset($this->reviewAssignments[$stage]))
+			$this->reviewAssignments[$stage] = array();
 		
-		if(!isset($this->reviewAssignments[$type][$round]))
-			$this->reviewAssignments[$type][$round] = array();
+		$this->reviewAssignments[$stage][] = $reviewAssignment;
 		
-		$this->reviewAssignments[$type][$round][] = $reviewAssignment;
-		
-		return $this->reviewAssignments[$type][$round];
+		return $this->reviewAssignments[$stage];
 	}
 	
 	/**
@@ -109,28 +105,22 @@ class PresenterSubmission extends Paper {
 	 * Get review assignments for this paper.
 	 * @return array ReviewAssignments
 	 */
-	function getReviewAssignments($type, $round) {
-		if($type == null)
+	function getReviewAssignments($stage) {
+		if($stage == null)
 			return $this->reviewAssignments;
 		
-		if(!isset($this->reviewAssignments[$type]))
+		if(!isset($this->reviewAssignments[$stage]))
 			return null;
 		
-		if($round == null)
-			return $this->reviewAssignments[$type];
-		
-		if(!isset($this->reviewAssignments[$type][$round]))
-			return null;
-		
-		return $this->reviewAssignments[$type][$round];
+		return $this->reviewAssignments[$stage];
 	}
 	
 	/**
 	 * Set review assignments for this paper.
 	 * @param $reviewAssignments array ReviewAssignments
 	 */
-	function setReviewAssignments($reviewAssignments, $type, $round) {
-		return $this->reviewAssignments[$type][$round] = $reviewAssignments;
+	function setReviewAssignments($reviewAssignments, $stage) {
+		return $this->reviewAssignments[$stage] = $reviewAssignments;
 	}
 	
 	//
@@ -141,31 +131,24 @@ class PresenterSubmission extends Paper {
 	 * Get director decisions.
 	 * @return array
 	 */
-	function getDecisions($type = null, $round = null) {
-		if ($type == null)
+	function getDecisions($stage = null) {
+		if ($stage == null)
 			return $this->directorDecisions;
 
-		if(!isset($this->directorDecisions[$type]))
-			return null;
-		
-		if ($round == null)
-			return $this->directorDecisions[$type];
-
-		if(!isset($this->directorDecisions[$type][$round]))
+		if(!isset($this->directorDecisions[$stage]))
 			return null;
 
-		return $this->directorDecisions[$type][$round];
+		return $this->directorDecisions[$stage];
 	}
 	
 	/**
 	 * Set director decisions.
 	 * @param $directorDecisions array
-	 * @param $type int
-	 * @param $round int
+	 * @param $stage int
 	 */
-	function setDecisions($directorDecisions, $type, $round) {
+	function setDecisions($directorDecisions, $stage) {
 		$this->stampStatusModified();
-		return $this->directorDecisions[$type][$round] = $directorDecisions;
+		return $this->directorDecisions[$stage] = $directorDecisions;
 	}
 
 	/**
@@ -270,11 +253,11 @@ class PresenterSubmission extends Paper {
 	 * Get all presenter file revisions.
 	 * @return array PaperFiles
 	 */
-	function getPresenterFileRevisions($round = null) {
-		if ($round == null) {
+	function getPresenterFileRevisions($stage = null) {
+		if ($stage == null) {
 			return $this->presenterFileRevisions;
 		} else {
-			return $this->presenterFileRevisions[$round];
+			return $this->presenterFileRevisions[$stage];
 		}
 	}
 	
@@ -282,19 +265,19 @@ class PresenterSubmission extends Paper {
 	 * Set all presenter file revisions.
 	 * @param $presenterFileRevisions array PaperFiles
 	 */
-	function setPresenterFileRevisions($presenterFileRevisions, $round) {
-		return $this->presenterFileRevisions[$round] = $presenterFileRevisions;
+	function setPresenterFileRevisions($presenterFileRevisions, $stage) {
+		return $this->presenterFileRevisions[$stage] = $presenterFileRevisions;
 	}
 	
 	/**
 	 * Get all director file revisions.
 	 * @return array PaperFiles
 	 */
-	function getDirectorFileRevisions($round = null) {
-		if ($round == null) {
+	function getDirectorFileRevisions($stage = null) {
+		if ($stage == null) {
 			return $this->directorFileRevisions;
 		} else {
-			return $this->directorFileRevisions[$round];
+			return $this->directorFileRevisions[$stage];
 		}
 	}
 	
@@ -302,8 +285,8 @@ class PresenterSubmission extends Paper {
 	 * Set all director file revisions.
 	 * @param $directorFileRevisions array PaperFiles
 	 */
-	function setDirectorFileRevisions($directorFileRevisions, $round) {
-		return $this->directorFileRevisions[$round] = $directorFileRevisions;
+	function setDirectorFileRevisions($directorFileRevisions, $stage) {
+		return $this->directorFileRevisions[$stage] = $directorFileRevisions;
 	}
 	
 	/**

@@ -21,7 +21,7 @@
 			{elseif $status==SUBMISSION_STATUS_QUEUED_UNASSIGNED}{translate key="submissions.queuedUnassigned"}
 			{elseif $status==SUBMISSION_STATUS_QUEUED_EDITING}{translate key="submissions.queuedEditing"}
 			{elseif $status==SUBMISSION_STATUS_QUEUED_REVIEW}
-				{if $submission->getReviewProgress()==REVIEW_PROGRESS_PAPER}
+				{if $submission->getCurrentStage()==REVIEW_PROGRESS_PAPER}
 					{translate key="submissions.queuedPaperReview"}
 				{else}
 					{translate key="submissions.queuedAbstractReview"}

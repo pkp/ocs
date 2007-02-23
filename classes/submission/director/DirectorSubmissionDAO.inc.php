@@ -84,10 +84,8 @@ class DirectorSubmissionDAO extends DAO {
 		$directorSubmission->setEditAssignments($editAssignments->toArray());
 		
 		// Director Decisions
-		for ($i = 1; $i <= $row['review_progress']; $i++) {
-			for ($j = 1; $j <= $row['current_round']; $j++) {
-				$directorSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i, $j), $i, $j);
-			}
+		for ($i = 1; $i <= $row['current_stage']; $i++) {
+			$directorSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i), $i);
 		}
 		
 		HookRegistry::call('DirectorSubmissionDAO::_returnDirectorSubmissionFromRow', array(&$directorSubmission, &$row));
@@ -244,7 +242,6 @@ class DirectorSubmissionDAO extends DAO {
 			LEFT JOIN tracks t ON (t.track_id = p.track_id)
 			LEFT JOIN edit_assignments ea ON (ea.paper_id = p.paper_id)
 			LEFT JOIN users ed ON (ea.director_id = ed.user_id)
-			LEFT JOIN users le ON (le.user_id = l.editor_id)
 			LEFT JOIN review_assignments ra ON (ra.paper_id = p.paper_id)
 			LEFT JOIN users re ON (re.user_id = ra.reviewer_id AND cancelled = 0)
 			WHERE
@@ -309,7 +306,7 @@ class DirectorSubmissionDAO extends DAO {
 			// used to check if director exists for this submission
 			$editAssignments =& $directorSubmission->getEditAssignments();
 
-			if (empty($editAssignments) && !$directorSubmission->getSubmissionProgress()) {
+			if (empty($editAssignments) && $directorSubmission->getSubmissionProgress() == 0) {
 				$directorSubmissions[] =& $directorSubmission;
 			}
 			unset($directorSubmission);
@@ -349,31 +346,28 @@ class DirectorSubmissionDAO extends DAO {
 		while (!$result->EOF) {
 			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 			$paperId = $directorSubmission->getPaperId();
-			for ($i = 1; $i <= $directorSubmission->getReviewProgress(); $i++) {
-				for ($j = 1; $j <= $directorSubmission->getCurrentRound(); $j++) {
-					$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paperId, $i, $j);
-					if (!empty($reviewAssignment)) {
-						$directorSubmission->setReviewAssignments($reviewAssignment, $i, $j);
-					}
+			for ($i = 1; $i <= $directorSubmission->getCurrentStage(); $i++) {
+				$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paperId, $i);
+				if (!empty($reviewAssignment)) {
+					$directorSubmission->setReviewAssignments($reviewAssignment, $i);
 				}
 			}
 
 			// check if submission is still in review
 			$inReview = true;
 			$decisions = $directorSubmission->getDecisions();
-			$types = array_pop($decisions);
-			$decision = array_pop($types);
+			$decision = array_pop($decisions);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
 				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
-					$inReview = false;			
+					$inReview = false;
 				}
 			}
 
 			// used to check if director exists for this submission
 			$editAssignments =& $directorSubmission->getEditAssignments();
 
-			if (!empty($editAssignments) && $inReview && !$directorSubmission->getSubmissionProgress()) {
+			if (!empty($editAssignments) && $inReview) {
 				$directorSubmissions[] =& $directorSubmission;
 			}
 			unset($directorSubmission);
@@ -416,8 +410,7 @@ class DirectorSubmissionDAO extends DAO {
 			// check if submission is still in review
 			$inEditing = false;
 			$decisions = $directorSubmission->getDecisions();
-			$types = array_pop($decisions);
-			$decision = array_pop($types);
+			$decision = array_pop($decisions);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
 				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
@@ -565,8 +558,7 @@ class DirectorSubmissionDAO extends DAO {
 			$notDeclined = true;
 			$decisions = $directorSubmission->getDecisions($finalReviewType);
 			if($decisions) {
-				$types = array_pop($decisions);
-				$decision = is_array($types)?array_pop($types):null;
+				$decision = is_array($decisions)?array_pop($decisions):null;
 				if (!empty($decision)) {
 					$latestDecision = array_pop($decision);
 					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
@@ -580,20 +572,18 @@ class DirectorSubmissionDAO extends DAO {
 			// used to check if director exists for this submission
 			$editAssignments = $directorSubmission->getEditAssignments();
 
-			if (!$directorSubmission->getSubmissionProgress()) {
-				if (empty($editAssignments)) {
-					// unassigned submissions
-					$submissionsCount[0] += 1;
-				} elseif ($directorSubmission->getStatus() == SUBMISSION_STATUS_QUEUED) {
-					if ($inReview) {
-						if ($notDeclined) {
-							// in review submissions
-							$submissionsCount[1] += 1;
-						}
-					} else {
-						// in editing submissions
-						$submissionsCount[2] += 1;					
+			if ($directorSubmission->getSubmissionProgress() == 0 && empty($editAssignments)) {
+				// unassigned submissions
+				$submissionsCount[0] += 1;
+			} elseif ($directorSubmission->getStatus() == SUBMISSION_STATUS_QUEUED) {
+				if ($inReview) {
+					if ($notDeclined) {
+						// in review submissions
+						$submissionsCount[1] += 1;
 					}
+				} else {
+					// in editing submissions
+					$submissionsCount[2] += 1;					
 				}
 			}
 
@@ -610,26 +600,22 @@ class DirectorSubmissionDAO extends DAO {
 	//
 	
 	/**
-	 * Get the director decisions for a review round of an paper.
+	 * Get the director decisions for a review stage of an paper.
 	 * @param $paperId int
-	 * @param $round int
+	 * @param $stage int
 	 */
-	function getDirectorDecisions($paperId, $type = null, $round = null) {
+	function getDirectorDecisions($paperId, $stage = null) {
 		$decisions = array();
 		$args = array($paperId);
-		if($type) {
-			$args[] = $type;
-		}
-		if($round) {
-			$args[] = $round;
+		if($stage) {
+			$args[] = $stage;
 		}
 	
 		$result = &$this->retrieve(
 			'SELECT edit_decision_id, director_id, decision, date_decided
 			FROM edit_decisions
 			WHERE paper_id = ? ' .
-			($type?' AND type = ?' :'') .
-			($round?' AND round = ?':'') .
+			($stage?' AND stage = ?':'') .
 			' ORDER BY date_decided ASC',
 			(count($args)==1?shift($args):$args)
 		);

@@ -24,7 +24,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		parent::setupTemplate(true);
 
 		// If the submission is incomplete, allow the presenter to delete it.
-		if ($presenterSubmission->getSubmissionProgress()!=0 && $presenterSubmission->getReviewProgress()==REVIEW_PROGRESS_ABSTRACT) {
+		if ($presenterSubmission->getSubmissionProgress()!=0 && $presenterSubmission->getCurrentStage()==REVIEW_PROGRESS_ABSTRACT) {
 			import('file.PaperFileManager');
 			$paperFileManager = &new PaperFileManager($paperId);
 			$paperFileManager->deletePaperTree();
@@ -61,9 +61,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		list($conference, $schedConf, $submission) = TrackSubmissionHandler::validate($paperId);
 		parent::setupTemplate(true, $paperId);
 
-		// Set the round and current review type.
-		$type = isset($args[1]) ? $args[1] : $submission->getReviewProgress();
-		$round = isset($args[2]) ? $args[2] : $submission->getCurrentRound();
+		$stage = isset($args[1]) ? $args[1] : $submission->getCurrentStage();
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('mayEditMetadata', PresenterAction::mayEditMetadata($submission));
@@ -74,15 +72,14 @@ class TrackSubmissionHandler extends PresenterHandler {
 
 		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($type, $round));
-		$templateMgr->assign('round', $round);
-		$templateMgr->assign('type', $type);
+		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($stage));
+		$templateMgr->assign('stage', $stage);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 
 		import('submission.trackDirector.TrackDirectorSubmission');
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
+		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions($schedConf, $submission));
 
 		$templateMgr->assign('helpTopicId','editorial.presentersRole');
 		$templateMgr->display('presenter/submission.tpl');
@@ -99,40 +96,41 @@ class TrackSubmissionHandler extends PresenterHandler {
 		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId);
 		parent::setupTemplate(true, $paperId);
 
-		$type = (isset($args[1]) ? $args[1] : $presenterSubmission->getReviewProgress());
-		$round = (isset($args[2]) ? $args[2] : 1);
+		$stage = (isset($args[1]) ? (int) $args[1] : 1);
+		switch ($stage) {
+			case REVIEW_PROGRESS_ABSTRACT:
+				break;
+			case REVIEW_PROGRESS_PAPER:
+				if ($schedConf->getSetting('reviewPapers')) break;
+			default:
+				$stage = $presenterSubmission->getCurrentStage();
+				break;
+		}
 
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewModifiedByRound = $reviewAssignmentDao->getLastModifiedByRound($paperId, $type);
-		$reviewEarliestNotificationByRound = $reviewAssignmentDao->getEarliestNotificationByRound($paperId,$type);
-		$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($paperId);
-		$presenterViewableFilesByRound = &$reviewAssignmentDao->getPresenterViewableFilesByRound($paperId,$type);
+		$reviewModifiedByStage = $reviewAssignmentDao->getLastModifiedByStage($paperId);
+		$reviewEarliestNotificationByStage = $reviewAssignmentDao->getEarliestNotificationByStage($paperId);
+		$reviewFilesByStage =& $reviewAssignmentDao->getReviewFilesByStage($paperId);
+		$presenterViewableFilesByStage = &$reviewAssignmentDao->getPresenterViewableFilesByStage($paperId);
 
-		$directorDecisions = $presenterSubmission->getDecisions($type, $presenterSubmission->getCurrentRound());
+		$directorDecisions = $presenterSubmission->getDecisions($presenterSubmission->getCurrentStage());
 		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1] : null;
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $presenterSubmission);
 		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
-		$templateMgr->assign('reviewType', $type);
-		$templateMgr->assign_by_ref('reviewAssignments', $presenterSubmission->getReviewAssignments($type, $round));
-		$templateMgr->assign_by_ref('reviewFilesByRound', $reviewFilesByRound);
-		$templateMgr->assign_by_ref('reviewFilesByRound', $reviewFilesByRound);
-		$templateMgr->assign_by_ref('presenterViewableFilesByRound', $presenterViewableFilesByRound);
-		$templateMgr->assign_by_ref('reviewModifiedByRound', $reviewModifiedByRound);
-		$templateMgr->assign('reviewEarliestNotificationByRound', $reviewEarliestNotificationByRound);
+		$templateMgr->assign_by_ref('reviewAssignments', $presenterSubmission->getReviewAssignments($stage));
+		$templateMgr->assign('stage', $stage);
+		$templateMgr->assign_by_ref('reviewFilesByStage', $reviewFilesByStage);
+		$templateMgr->assign_by_ref('reviewFilesByStage', $reviewFilesByStage);
+		$templateMgr->assign_by_ref('presenterViewableFilesByStage', $presenterViewableFilesByStage);
+		$templateMgr->assign_by_ref('reviewModifiedByStage', $reviewModifiedByStage);
+		$templateMgr->assign('reviewEarliestNotificationByStage', $reviewEarliestNotificationByStage);
 		$templateMgr->assign_by_ref('submissionFile', $presenterSubmission->getSubmissionFile());
 		$templateMgr->assign_by_ref('revisedFile', $presenterSubmission->getRevisedFile());
 		$templateMgr->assign_by_ref('suppFiles', $presenterSubmission->getSuppFiles());
 		$templateMgr->assign('lastDirectorDecision', $lastDecision);
-		$templateMgr->assign('directorDecisionOptions',
-			array(
-				'' => 'common.chooseOne',
-				SUBMISSION_DIRECTOR_DECISION_ACCEPT => 'director.paper.decision.accept',
-				SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS => 'director.paper.decision.pendingRevisions',
-				SUBMISSION_DIRECTOR_DECISION_DECLINE => 'director.paper.decision.decline'
-			)
-		);
+		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions($schedConf, $submission));
 		$templateMgr->assign('helpTopicId', 'editorial.presentersRole.review');
 		$templateMgr->display('presenter/submissionReview.tpl');
 	}

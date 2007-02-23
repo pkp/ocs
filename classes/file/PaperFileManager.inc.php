@@ -365,7 +365,6 @@ class PaperFileManager extends FileManager {
 		$paperFile->setStatus($sourcePaperFile->getStatus());
 		$paperFile->setDateUploaded(Core::getCurrentDate());
 		$paperFile->setDateModified(Core::getCurrentDate());
-		$paperFile->setRound($this->paper->getCurrentRound()); // FIXME This field is only applicable for review files?
 		$paperFile->setRevision($revision);
 		
 		$fileId = $paperFileDao->insertPaperFile($paperFile);
@@ -404,7 +403,6 @@ class PaperFileManager extends FileManager {
 		$paperFile->setStatus('temp');
 		$paperFile->setDateUploaded(Core::getCurrentDate());
 		$paperFile->setDateModified(Core::getCurrentDate());
-		$paperFile->setRound(0);
 		$paperFile->setRevision(1);
 		
 		$paperFile->setFileId($paperFileDao->insertPaperFile($paperFile));
@@ -472,7 +470,6 @@ class PaperFileManager extends FileManager {
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($_FILES[$fileName]['name'], 127));
 		$paperFile->setType($typePath);
 		$paperFile->setStatus(''); // FIXME wtf is this for?
-		$paperFile->setRound($this->paper->getCurrentRound());
 
 		$newFileName = $this->generateFilename($paperFile, $type, $this->getUploadedFileName($fileName));
 
@@ -526,7 +523,6 @@ class PaperFileManager extends FileManager {
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($fileName, 127));
 		$paperFile->setType($typePath);
 		$paperFile->setStatus(''); // FIXME wtf is this for?
-		$paperFile->setRound($this->paper->getCurrentRound());
 
 		$newFileName = $this->generateFilename($paperFile, $type, $fileName);
 
@@ -578,7 +574,6 @@ class PaperFileManager extends FileManager {
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName(basename($url), 127));
 		$paperFile->setType($typePath);
 		$paperFile->setStatus(''); // FIXME wtf is this for?
-		$paperFile->setRound($this->paper->getCurrentRound());
 
 		$newFileName = $this->generateFilename($paperFile, $type, $paperFile->getOriginalFileName());
 

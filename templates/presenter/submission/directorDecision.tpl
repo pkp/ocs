@@ -12,8 +12,8 @@
 <a name="directorDecision"></a>
 <h3>{translate key="submission.directorDecision"}</h3>
 
-{assign var=presenterFiles value=$submission->getPresenterFileRevisions($submission->getCurrentRound())}
-{assign var=directorFiles value=$submission->getDirectorFileRevisions($submission->getCurrentRound())}
+{assign var=presenterFiles value=$submission->getPresenterFileRevisions($submission->getCurrentStage())}
+{assign var=directorFiles value=$submission->getDirectorFileRevisions($submission->getCurrentStage())}
 
 <table width="100%" class="data">
 	<tr valign="top">

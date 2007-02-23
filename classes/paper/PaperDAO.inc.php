@@ -129,8 +129,7 @@ class PaperDAO extends DAO {
 		$paper->setDateReminded($this->datetimeFromDB($row['date_reminded']));
 		$paper->setStatus($row['status']);
 		$paper->setSubmissionProgress($row['submission_progress']);
-		$paper->setReviewProgress($row['review_progress']);
-		$paper->setCurrentRound($row['current_round']);
+		$paper->setCurrentStage($row['current_stage']);
 		$paper->setSubmissionFileId($row['submission_file_id']);
 		$paper->setRevisedFileId($row['revised_file_id']);
 		$paper->setReviewFileId($row['review_file_id']);
@@ -175,8 +174,7 @@ class PaperDAO extends DAO {
 				 last_modified,
 				 status,
 				 submission_progress,
-				 review_progress,
-				 current_round,
+				 current_stage,
 				 submission_file_id,
 				 revised_file_id,
 				 review_file_id,
@@ -185,7 +183,7 @@ class PaperDAO extends DAO {
 				 pages,
 				 date_reminded)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified())),
 			array(
 				$paper->getUserId(),
@@ -209,8 +207,7 @@ class PaperDAO extends DAO {
 				$paper->getCommentsToDirector(),
 				$paper->getStatus() === null ? SUBMISSION_STATUS_QUEUED : $paper->getStatus(),
 				$paper->getSubmissionProgress() === null ? 1 : $paper->getSubmissionProgress(),
-				$paper->getReviewProgress() === null ? 1 : $paper->getReviewProgress(),
-				$paper->getCurrentRound() === null ? 1 : $paper->getCurrentRound(),
+				$paper->getCurrentStage(),
 				$paper->getSubmissionFileId(),
 				$paper->getRevisedFileId(),
 				$paper->getReviewFileId(),
@@ -265,8 +262,7 @@ class PaperDAO extends DAO {
 					last_modified = %s,
 					status = ?,
 					submission_progress = ?,
-					review_progress = ?,
-					current_round = ?,
+					current_stage = ?,
 					submission_file_id = ?,
 					revised_file_id = ?,
 					review_file_id = ?,
@@ -297,8 +293,7 @@ class PaperDAO extends DAO {
 				$paper->getCommentsToDirector(),
 				$paper->getStatus(),
 				$paper->getSubmissionProgress(),
-				$paper->getReviewProgress(),
-				$paper->getCurrentRound(),
+				$paper->getCurrentStage(),
 				$paper->getSubmissionFileId(),
 				$paper->getRevisedFileId(),
 				$paper->getReviewFileId(),
@@ -356,7 +351,7 @@ class PaperDAO extends DAO {
 
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$trackDirectorSubmissionDao->deleteDecisionsByPaper($paperId);
-		$trackDirectorSubmissionDao->deleteReviewRoundsByPaper($paperId);
+		$trackDirectorSubmissionDao->deleteReviewStagesByPaper($paperId);
 
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignmentDao->deleteReviewAssignmentsByPaper($paperId);

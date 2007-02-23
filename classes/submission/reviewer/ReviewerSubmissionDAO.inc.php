@@ -64,7 +64,7 @@ class ReviewerSubmissionDAO extends DAO {
 				LEFT JOIN review_assignments r ON (p.paper_id = r.paper_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (p.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type)
+				LEFT JOIN review_stages r2 ON (p.paper_id = r2.paper_id AND r.stage = r2.stage)
 			WHERE r.review_id = ?',
 			$reviewId
 		);
@@ -104,10 +104,8 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setMostRecentPeerReviewComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 		
 		// Director Decisions
-		for ($i = 1; $i <= $row['review_progress']; $i++) {
-			for ($j = 1; $j <= $row['current_round']; $j++) {
-				$reviewerSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i, $j), $i, $j);
-			}
+		for ($i = 1; $i <= $row['current_stage']; $i++) {
+			$reviewerSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i), $i);
 		}
 		
 		// Review Assignment 
@@ -126,8 +124,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setCancelled($row['cancelled']==1?1:0);
 		$reviewerSubmission->setReviewerFileId($row['reviewer_file_id']);
 		$reviewerSubmission->setQuality($row['quality']);
-		$reviewerSubmission->setRound($row['round']);
-		$reviewerSubmission->setType($row['type']);
+		$reviewerSubmission->setStage($row['stage']);
 		$reviewerSubmission->setReviewFileId($row['review_file_id']);
 		$reviewerSubmission->setReviewRevision($row['review_revision']);
 
@@ -148,8 +145,7 @@ class ReviewerSubmissionDAO extends DAO {
 			sprintf('UPDATE review_assignments
 				SET	paper_id = ?,
 					reviewer_id = ?,
-					round = ?,
-					type = ?,
+					stage = ?,
 					recommendation = ?,
 					declined = ?,
 					replaced = ?,
@@ -167,8 +163,7 @@ class ReviewerSubmissionDAO extends DAO {
 			array(
 				$reviewerSubmission->getPaperId(),
 				$reviewerSubmission->getReviewerId(),
-				$reviewerSubmission->getRound(),
-				$reviewerSubmission->getType(),
+				$reviewerSubmission->getStage(),
 				$reviewerSubmission->getRecommendation(),
 				$reviewerSubmission->getDeclined(),
 				$reviewerSubmission->getReplaced(),
@@ -203,7 +198,7 @@ class ReviewerSubmissionDAO extends DAO {
 				LEFT JOIN review_assignments r ON (p.paper_id = r.paper_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (r.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type)
+				LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage)
 			WHERE p.sched_conf_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';
 
 		if ($active) {
@@ -234,7 +229,7 @@ class ReviewerSubmissionDAO extends DAO {
 				LEFT JOIN review_assignments r ON (a.paper_id = r.paper_id)
 				LEFT JOIN tracks s ON (s.track_id = a.track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (r.paper_id = r2.paper_id AND r.round = r2.round AND r.type = r2.type)
+				LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage)
 			WHERE a.sched_conf_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';
 
 		$result = &$this->retrieve($sql, array($schedConfId, $reviewerId));
@@ -255,28 +250,23 @@ class ReviewerSubmissionDAO extends DAO {
 	}
 	
 	/**
-	 * Get the director decisions for a review round of an paper.
+	 * Get the director decisions for a review stage of an paper.
 	 * @param $paperId int
-	 * @param $round int
-	 * @param $type int
+	 * @param $stage int
 	 */
-	function getDirectorDecisions($paperId, $round = null, $type = null) {
+	function getDirectorDecisions($paperId, $stage = null) {
 		$decisions = array();
 	
 		$args = array($paperId);
-		if($round) {
-			$args[] = $round;
-		}
-		if($type) {
-			$args[] = $type;
+		if($stage) {
+			$args[] = $stage;
 		}
 		
 		$result = &$this->retrieve('
 			SELECT edit_decision_id, director_id, decision, date_decided
 			FROM edit_decisions
 			WHERE paper_id = ?'
-				. ($round?' AND round = ?':'')
-				. ($type?' AND type = ?':'')
+				. ($stage?' AND stage = ?':'')
 			. ' ORDER BY edit_decision_id ASC',
 			count($args)==1?shift($args):$args);
 		

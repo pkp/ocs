@@ -129,20 +129,6 @@
 			{$regReviewerCloseDate|date_format:$dateFormatLong}
 		</td>
 	</tr>
-	{*
-	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.closeReviewProcess"}</td>
-		<td width="50%" class="value">
-			{$closeReviewProcessDate|date_format:$dateFormatLong}
-		</td>
-	</tr>
-	*}
-	{*<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.secondRoundDue"}</td>
-		<td width="50%" class="value">
-			{$secondRoundDueDate|date_format:$dateFormatLong}
-		</td>
-	</tr>*}
 </table>
 
 <br/>

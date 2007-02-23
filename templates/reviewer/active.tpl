@@ -20,15 +20,14 @@
 	{/if}
 	<tr><td colspan="{$cols}" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
-		<td width="5%">{translate key="common.id"}</td>
-		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="common.assigned"}</td>
-		<td width="5%">{translate key="submissions.track"}</td>
-		<td width="60%">{translate key="paper.title"}</td>
-		<td width="5%">{translate key="submission.due"}</td>
+		<td width="7%">{translate key="common.id"}</td>
+		<td width="7%"><span class="disabled">MM-DD</span><br />{translate key="common.assigned"}</td>
+		<td width="8%">{translate key="submissions.track"}</td>
+		<td>{translate key="paper.title"}</td>
+		<td width="8%">{translate key="submission.due"}</td>
 		{if $schedConfSettings.reviewPapers}
 			<td width="10%">{translate key="submissions.reviewType"}</td>
 		{/if}
-		<td width="10%">{translate key="submissions.reviewRound"}</td>
 	</tr>
 	<tr><td colspan="{$cols}" class="headseparator">&nbsp;</td></tr>
 
@@ -44,14 +43,13 @@
 		<td class="nowrap">{$submission->getDateDue()|date_format:$dateFormatTrunc}</td>
 		{if $schedConfSettings.reviewPapers}
 			<td>
-				{if $submission->getCurrentRound()==1}{* Reviewing abstract *}
+				{if $submission->getCurrentStage()==REVIEW_PROGRESS_ABSTRACT}{* Reviewing abstract *}
 					{translate key="submission.abstract"}
 				{else}
 					{translate key="submission.paper"}
 				{/if}
 			</td>
 		{/if}
-		<td>{$submission->getRound()}</td>
 	</tr>
 	<tr>
 		<td colspan="{$cols}" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
