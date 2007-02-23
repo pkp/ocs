@@ -132,7 +132,7 @@ class ManagerSetupHandler extends ManagerHandler {
 						$setupForm->setData('submissionChecklist', $checklist);
 					}
 					break; */
-				case 5:	
+				case 3:	
 					if (Request::getUserVar('uploadHomeHeaderTitleImage')) {
 						if ($setupForm->uploadImage('homeHeaderTitleImage')) {
 							$editData = true;
@@ -264,11 +264,6 @@ class ManagerSetupHandler extends ManagerHandler {
 					} else if (Request::getUserVar('deletePageHeaderLogoImageAlt2')) {
 						$editData = true;
 						$setupForm->deleteImage('pageHeaderLogoImageAlt2');
-						
-					} else if (Request::getUserVar('deleteConferenceStyleSheet')) {
-						$editData = true;
-						$setupForm->deleteImage('conferenceStyleSheet');
-						
 					} else if (Request::getUserVar('addNavItem')) {
 						// Add a navigation bar item
 						$editData = true;
@@ -284,6 +279,12 @@ class ManagerSetupHandler extends ManagerHandler {
 						$navItems = $setupForm->getData('navItems');
 						array_splice($navItems, $delNavItem, 1);		
 						$setupForm->setData('navItems', $navItems);
+					}
+					break;
+				case '4':
+					if (Request::getUserVar('deleteConferenceStyleSheet')) {
+						$editData = true;
+						$setupForm->deleteImage('conferenceStyleSheet');
 					}
 					break;
 			}

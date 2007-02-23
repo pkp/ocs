@@ -24,23 +24,6 @@ class ConferenceSetupStep5Form extends ConferenceSetupForm {
 		parent::ConferenceSetupForm(
 			5,
 			array(
-				'homeHeaderTitleType' => 'int',
-				'homeHeaderTitle' => 'string',
-				'homeHeaderTitleTypeAlt1' => 'int',
-				'homeHeaderTitleAlt1' => 'string',
-				'homeHeaderTitleTypeAlt2' => 'int',
-				'homeHeaderTitleAlt2' => 'string',
-				'pageHeaderTitleType' => 'int',
-				'pageHeaderTitle' => 'string',
-				'pageHeaderTitleTypeAlt1' => 'int',
-				'pageHeaderTitleAlt1' => 'string',
-				'pageHeaderTitleTypeAlt2' => 'int',
-				'pageHeaderTitleAlt2' => 'string',
-				'navItems' => 'object',
-				'conferencePageHeader' => 'string',
-				'conferencePageFooter' => 'string',
-				'itemsPerPage' => 'int',
-				'numPageLinks' => 'int'
 			)
 		);
 	}

@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="manager.setup.gettingDownTheDetails}
+{assign var="pageTitle" value="manager.setup.aboutConference.title}
 {include file="manager/setup/setupHeader.tpl"}
 
 <br /><span class="instruct">{translate key="manager.setup.conferenceSetupNotes"}</span>

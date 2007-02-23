@@ -849,6 +849,26 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<!--
 	     ***
+	     *** Generic setup locale keys
+	     ***
+	-->
+	<message key="manager.setup.homepageImageInvalid">Invalid homepage image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.homeTitleImageInvalid">Invalid homepage header title image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.homeHeaderImageInvalid">Invalid homepage header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.pageHeaderTitleImageInvalid">Invalid page header title image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.pageHeaderLogoImageInvalid">Invalid page header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.homeHeaderTitleImageAlt1Invalid">Invalid alternate homepage header title image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.homeHeaderLogoImageAlt1Invalid">Invalid alternate homepage header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.pageHeaderTitleImageAlt1Invalid">Invalid alternate page header title image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.pageHeaderLogoImageAlt1Invalid">Invalid alternate page header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.homeHeaderTitleImageAlt2Invalid">Invalid second alternate homepage header title image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.homeHeaderLogoImageAlt2Invalid">Invalid second alternate homepage header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.pageHeaderTitleImageAlt2Invalid">Invalid second alternate page header title image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.pageHeaderLogoImageAlt2Invalid">Invalid second alternate page header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
+	<message key="manager.setup.conferenceStyleSheetInvalid">Invalid conference stylesheet format. Accepted format is .css.</message>
+
+	<!--
+	     ***
 	     *** Website Management (a.k.a. Conference Setup)
 	     ***
 	-->
@@ -859,6 +879,13 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.styleSheet">Conference Stylesheet</message>
 	<message key="manager.setup.access">Site Access and Auditing</message>
 	<message key="manager.setup.indexing">Conference Indexing</message>
+
+	<message key="manager.setup.aboutConference.title">Step 1. About the Conference</message>
+	<message key="manager.setup.additionalContent.title">Step 2. Additional Website Content</message>
+	<message key="manager.setup.layout.title">Step 3. Website Headers, Footers, Lists and Navigation Bar</message>
+	<message key="manager.setup.styleSheet.title">Step 4. Conference Stylesheet</message>
+	<message key="manager.setup.access.title">Step 5. Site Access and Auditing</message>
+	<message key="manager.setup.indexing.title">Step 6. Conference Indexing</message>
 
 	<message key="manager.setup.aboutConference.brief">About</message>
 	<message key="manager.setup.additionalContent.brief">Additional Content</message>
@@ -917,6 +944,31 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.additionalContent."></message>
 
 	<!-- Conference setup page 3 -->
+	<message key="manager.setup.layout.homepageTitle">Conference Homepage Title</message>
+	<message key="manager.setup.layout.useTextTitle">Title text</message>
+	<message key="manager.setup.layout.useImageTitle">Title image</message>
+	<message key="manager.setup.layout.homepageHeader">Conference Homepage Header</message>
+	<message key="manager.setup.layout.homepageHeader.description">A graphic version of the conference's title and logo (as a .gif, .jpg, or .png file) can be uploaded for the homepage, which will replace the text version that otherwise appears.</message>
+	<message key="manager.setup.layout.conferenceTitle">Conference Title</message>
+	<message key="manager.setup.layout.conferenceLogo">Conference Logo</message>
+	<message key="manager.setup.layout.lists">Lists</message>
+	<message key="manager.setup.layout.lists.description">Enter the maximum number of items (for example, submissions, users, or editing assignments) that appear on each page of a list, and the number of pages links to display on each page.</message>
+	<message key="manager.setup.layout.itemsPerPage">Items per page</message>
+	<message key="manager.setup.layout.numPageLinks">Page links</message>
+	<message key="manager.setup.layout.useImageLogo">Logo image</message>
+	<message key="manager.setup.layout.noImageFileUploaded">No image file uploaded.</message>
+	<message key="manager.setup.layout.navigationBar">Navigation Bar</message>
+	<message key="manager.setup.layout.itemsDescription">Navigation bar items can be added to the current set (Home, About, User Home, etc.) that appear at the top of the page.</message>
+	<message key="manager.setup.layout.labelName">Label name</message>
+	<message key="manager.setup.layout.addNavItem">Add Item</message>
+	<message key="manager.setup.layout.navItemIsLiteral">The label value is a literal string (e.g., "Conference Setup") rather than a localization message key (e.g., "manager.setup")</message>
+	<message key="manager.setup.layout.navItemIsAbsolute">URL is an absolute URL (e.g., "http://www.example.com") rather than a path relative to the site (e.g., "/manager/setup")</message>
+	<message key="manager.setup.layout.conferencePageHeader">Website Header</message>
+	<message key="manager.setup.layout.conferencePageHeader.description">A graphic version of the conference's title and logo (.gif, .jpg, or .png file), possibly a smaller version of the one used on the homepage</message>
+	<message key="manager.setup.layout.alternateHeader">Alternate Header</message>
+	<message key="manager.setup.layout.alternateHeaderDescription">Instead of title and logo, an HTML version of the header can be inserted.</message>
+	<message key="manager.setup.layout.conferencePageFooter">Website Footer</message>
+	<message key="manager.setup.layout.conferencePageFooterDescription">This is the footer of your conference. To change or update the footer, paste the HTML code in the textbox below. Examples could be another navigation bar, a counter, etc. This footer will appear on every page.</message>
 	<message key="manager.setup.layout."></message>
 
 	<!-- Conference setup page 4 -->
@@ -929,9 +981,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.indexing."></message>
 
 	<!-- THE STUFF BELOW MAY BE UNUSED -->
-
-	<message key="manager.setup.additionalContent.useTextTitle">Title text</message>
-	<message key="manager.setup.additionalContent.useImageTitle">Title image</message>
 
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Guidelines, review policy, and privacy statement.</message>
@@ -1067,48 +1116,11 @@ Note that if your site administrator has already registered this site with the P
 	<message key="manager.setup.registrationContactDescription">If subscription management has been enabled, this person will be listed on the conference's About page as the primary contact for subscriptions.</message>
 
 	<!-- Conference Setup Step 5 -->
-	<message key="manager.setup.customizingTheLook">Step 5. Customizing the Look</message>
-	<message key="manager.setup.conferenceHomepageHeader">Conference Homepage Header</message>
-	<message key="manager.setup.conferenceHomepageHeaderDescription">A graphic version of the conference's title and logo (as a .gif, .jpg, or .png file) can be uploaded for the homepage, which will replace the text version that otherwise appears.</message>
-	<message key="manager.setup.conferenceLogo">Conference Logo</message>
-	<message key="manager.setup.lists">Lists</message>
-	<message key="manager.setup.listsDescription">Enter the maximum number of items (for example, submissions, users, or editing assignments) that appear on each page of a list, and the number of pages links to display on each page.</message>
-	<message key="manager.setup.itemsPerPage">Items per page</message>
-	<message key="manager.setup.numPageLinks">Page links</message>
-	<message key="manager.setup.useImageLogo">Logo image</message>
-	<message key="manager.setup.noImageFileUploaded">No image file uploaded.</message>
-	<message key="manager.setup.navigationBar">Navigation Bar</message>
-	<message key="manager.setup.itemsDescription">Navigation bar items can be added to the current set (Home, About, User Home, etc.) that appear at the top of the page.</message>
-	<message key="manager.setup.labelName">Label name</message>
-	<message key="manager.setup.addNavItem">Add Item</message>
-	<message key="manager.setup.conferencePageHeader">Conference Page Header</message>
-	<message key="manager.setup.conferencePageHeaderDescription">A graphic version of the conference's title and logo (.gif, .jpg, or .png file), possibly a smaller version of the one used on the homepage, can be uploaded to appear as a header on conference pages, which will replace the text version that otherwise appears.</message>
-	<message key="manager.setup.alternateHeader">Alternate Header</message>
-	<message key="manager.setup.alternateHeaderDescription">Alternately, instead of title and logo, an HTML version of the header can be inserted into the text box below. Leave textbox blank if not required.</message>
-	<message key="manager.setup.conferencePageFooter">Conference Page Footer</message>
-	<message key="manager.setup.conferencePageFooterDescription">This is the footer of your conference. To change or update the footer, paste the HTML code in the textbox below. Examples could be another navigation bar, a counter, etc. This footer will appear on every page.</message>
 	<message key="manager.setup.conferenceStyleSheet">Conference Style Sheet</message>
 	<message key="manager.setup.conferenceStyleSheetDescription">By default conferences and the site use a common style sheet (located in the "styles" subdirectory of the site). The default style rules can be overridden by uploading a conference-specific cascading style sheet.</message>
 	<message key="manager.setup.useConferenceStyleSheet">Conference style sheet</message>
 	<message key="manager.setup.noStyleSheetUploaded">No style sheet uploaded.</message>
 	<message key="manager.setup.conferenceHomepageContent">Conference Homepage Content</message>
-	<message key="manager.setup.navigationBarDescription">Add or remove additional navigation bar items.</message>
-	<message key="manager.setup.navItemIsLiteral">The label value is a literal string (e.g., "Conference Setup") rather than a localization message key (e.g., "manager.setup")</message>
-	<message key="manager.setup.navItemIsAbsolute">URL is an absolute URL (e.g., "http://www.example.com") rather than a path relative to the site (e.g., "/manager/setup")</message>
-	<message key="manager.setup.homeTitleImageInvalid">Invalid homepage header title image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.homeHeaderImageInvalid">Invalid homepage header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.pageHeaderTitleImageInvalid">Invalid page header title image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.pageHeaderLogoImageInvalid">Invalid page header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.homeHeaderTitleImageAlt1Invalid">Invalid alternate homepage header title image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.homeHeaderLogoImageAlt1Invalid">Invalid alternate homepage header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.pageHeaderTitleImageAlt1Invalid">Invalid alternate page header title image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.pageHeaderLogoImageAlt1Invalid">Invalid alternate page header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.homeHeaderTitleImageAlt2Invalid">Invalid second alternate homepage header title image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.homeHeaderLogoImageAlt2Invalid">Invalid second alternate homepage header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.pageHeaderTitleImageAlt2Invalid">Invalid second alternate page header title image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.pageHeaderLogoImageAlt2Invalid">Invalid second alternate page header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.homepageImageInvalid">Invalid homepage image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.conferenceStyleSheetInvalid">Invalid conference stylesheet format. Accepted format is .css.</message>
 
 	<!-- 
 	     ***

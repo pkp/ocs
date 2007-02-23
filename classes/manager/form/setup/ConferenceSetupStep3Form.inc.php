@@ -21,14 +21,23 @@ class ConferenceSetupStep3Form extends ConferenceSetupForm {
 		parent::ConferenceSetupForm(
 			3,
 			array(
-				'enableLockss' => 'bool',
-				'lockssLicense' => 'string',
-				'restrictSiteAccess' => 'bool',
-				'restrictPaperAccess' => 'bool',
-				'enableComments' => 'int',
-				'paperEventLog' => 'bool',
-				'paperEmailLog' => 'bool',
-				'conferenceEventLog' => 'bool'
+				'homeHeaderTitleType' => 'int',
+				'homeHeaderTitle' => 'string',
+				'homeHeaderTitleTypeAlt1' => 'int',
+				'homeHeaderTitleAlt1' => 'string',
+				'homeHeaderTitleTypeAlt2' => 'int',
+				'homeHeaderTitleAlt2' => 'string',
+				'pageHeaderTitleType' => 'int',
+				'pageHeaderTitle' => 'string',
+				'pageHeaderTitleTypeAlt1' => 'int',
+				'pageHeaderTitleAlt1' => 'string',
+				'pageHeaderTitleTypeAlt2' => 'int',
+				'pageHeaderTitleAlt2' => 'string',
+				'navItems' => 'object',
+				'conferencePageHeader' => 'string',
+				'conferencePageFooter' => 'string',
+				'itemsPerPage' => 'int',
+				'numPageLinks' => 'int'
 			)
 		);
 	}
@@ -37,7 +46,34 @@ class ConferenceSetupStep3Form extends ConferenceSetupForm {
 		parent::readInputData();
 	}
 
+	/**
+	 * Display the form.
+	 */
 	function display() {
+		$conference = &Request::getConference();
+
+		// Ensure upload file settings are reloaded when the form is displayed.
+		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign(array(
+			'homeHeaderTitleImage' => $conference->getSetting('homeHeaderTitleImage'),
+			'homeHeaderLogoImage'=> $conference->getSetting('homeHeaderLogoImage'),
+			'homeHeaderTitleImageAlt1' => $conference->getSetting('homeHeaderTitleImageAlt1'),
+			'homeHeaderLogoImageAlt1'=> $conference->getSetting('homeHeaderLogoImageAlt1'),
+			'homeHeaderTitleImageAlt2' => $conference->getSetting('homeHeaderTitleImageAlt2'),
+			'homeHeaderLogoImageAlt2'=> $conference->getSetting('homeHeaderLogoImageAlt2'),
+			'pageHeaderTitleImage' => $conference->getSetting('pageHeaderTitleImage'),
+			'pageHeaderLogoImage' => $conference->getSetting('pageHeaderLogoImage'),
+			'pageHeaderTitleImageAlt1' => $conference->getSetting('pageHeaderTitleImageAlt1'),
+			'pageHeaderLogoImageAlt1' => $conference->getSetting('pageHeaderLogoImageAlt1'),
+			'pageHeaderTitleImageAlt2' => $conference->getSetting('pageHeaderTitleImageAlt2'),
+			'pageHeaderLogoImageAlt2' => $conference->getSetting('pageHeaderLogoImageAlt2'),
+			'homepageImage' => $conference->getSetting('homepageImage')
+		));
+		
+		parent::display();	   
+	}
+	
+/*	function display() {
 		$templateMgr = &TemplateManager::getManager();
 
 		// Bring in the comments constants.
@@ -51,7 +87,7 @@ class ConferenceSetupStep3Form extends ConferenceSetupForm {
 		));
 
 	parent::display();
-	}
+	} */
 }
 
 ?>
