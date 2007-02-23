@@ -32,7 +32,7 @@ class SchedConfsHandler extends Handler {
 		$templateMgr->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo(true));
 		$templateMgr->assign('additionalHomeContent', $conference->getSetting('additionalHomeContent'));
 		$templateMgr->assign('homepageImage', $conference->getSetting('homepageImage'));
-		$templateMgr->assign('conferenceIntroduction', $conference->getSetting('conferenceIntroduction'));
+		$templateMgr->assign('conferenceDescription', $conference->getSetting('conferenceDescription'));
 		$templateMgr->assign('conferenceOverview', $conference->getSetting('conferenceOverview'));
 		$templateMgr->assign('conferenceTitle', $conference->getTitle());
 
@@ -61,7 +61,7 @@ class SchedConfsHandler extends Handler {
 		$templateMgr->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo(true));
 		$templateMgr->assign('additionalHomeContent', $conference->getSetting('additionalHomeContent'));
 		$templateMgr->assign('homepageImage', $conference->getSetting('homepageImage'));
-		$templateMgr->assign('conferenceIntroduction', $conference->getSetting('conferenceIntroduction'));
+		$templateMgr->assign('conferenceDescription', $conference->getSetting('conferenceDescription'));
 		$templateMgr->assign('conferenceOverview', $conference->getSetting('conferenceOverview'));
 		$templateMgr->assign('conferenceTitle', $conference->getTitle());
 

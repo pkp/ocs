@@ -12,114 +12,86 @@
 {assign var="pageTitle" value="manager.setup.conferencePolicies}
 {include file="manager/setup/setupHeader.tpl"}
 
-<form method="post" action="{url op="saveSetup" path="2"}">
+<form method="post" action="{url op="saveSetup" path="2"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
-<h3>2.1 {translate key="manager.setup.reviewPolicy"}</h3>
+<h3>2.1 {translate key="manager.setup.additionalContent.homepage"}</h3>
 
-<p>{translate key="manager.setup.reviewDescription"}</p>
+<h4>{translate key="manager.setup.additionalContent.homepageImage"}</h4>
 
-<h4>{translate key="manager.setup.reviewPolicy"}</h4>
-
-<p><textarea name="reviewPolicy" id="reviewPolicy" rows="12" cols="60" class="textArea">{$reviewPolicy|escape}</textarea></p>
-
-
-<h4>{translate key="manager.setup.reviewGuidelines"}</h4>
-
-<p>{translate key="manager.setup.reviewGuidelinesDescription"}</p>
-
-<p><textarea name="reviewGuidelines" id="reviewGuidelines" rows="12" cols="60" class="textArea">{$reviewGuidelines|escape}</textarea></p>
-
-<div class="separator"></div>
-
-
-<h3>2.2 {translate key="manager.setup.presenterGuidelines"}</h3>
-
-<p>{translate key="manager.setup.presenterGuidelinesDescription"}</p>
-
-<p>
-	<textarea name="presenterGuidelines" id="presenterGuidelines" rows="12" cols="60" class="textArea">{$presenterGuidelines|escape}</textarea>
-	<br />
-	<span class="instruct">{translate key="manager.setup.htmlSetupInstructions"}</span>
-</p>
-
-<h4>{translate key="manager.setup.submissionPreparationChecklist"}</h4>
-
-<p>{translate key="manager.setup.submissionPreparationChecklistDescription"}</p>
-
-{foreach name=checklist from=$submissionChecklist key=checklistId item=checklistItem}
-	{if !$notFirstChecklistItem}
-		{assign var=notFirstChecklistItem value=1}
-		<table width="100%" class="data">
-			<tr valign="top">
-				<td width="5%">{translate key="common.order"}</td>
-				<td width="95%" colspan="2">&nbsp;</td>
-			</tr>
-	{/if}
-
-	<tr valign="top">
-		<td width="5%" class="label"><input type="text" name="submissionChecklist[{$checklistId}][order]" value="{$checklistItem.order|escape}" size="3" maxlength="2" class="textField" /></td>
-		<td class="value"><textarea name="submissionChecklist[{$checklistId}][content]" rows="3" cols="40" class="textArea">{$checklistItem.content|escape}</textarea></td>
-		<td width="100%"><input type="submit" name="delChecklist[{$checklistId}]" value="{translate key="common.delete"}" class="button" /></td>
-	</tr>
-{/foreach}
-</table>
-
-<p><input type="submit" name="addChecklist" value="{translate key="manager.setup.addChecklistItem"}" class="button" /></p>
-
-
-<div class="separator"></div>
-
-<h3>2.3 {translate key="manager.setup.presenterCopyrightNotice"}</h3>
-
-<p>{translate key="manager.setup.presenterCopyrightNoticeDescription"}</p>
-
-<p><textarea name="copyrightNotice" id="copyrightNotice" rows="12" cols="60" class="textArea">{$copyrightNotice|escape}</textarea></p>
-
-<p><input type="checkbox" name="copyrightNoticeAgree" id="copyrightNoticeAgree" value="1"{if $copyrightNoticeAgree} checked="checked"{/if} /> <label for="copyrightNoticeAgree">{translate key="manager.setup.presenterCopyrightNoticeAgree"}</label></p>
-
-
-<div class="separator"></div>
-
-
-<h3>2.4 {translate key="manager.setup.privacyStatement"}</h3>
-
-<p><textarea name="privacyStatement" id="privacyStatement" rows="12" cols="60" class="textArea">{$privacyStatement|escape}</textarea></p>
-
-
-<div class="separator"></div>
-
-
-<h3>2.5 {translate key="manager.setup.addItemtoAboutConference"}</h3>
+<p>{translate key="manager.setup.additionalContent.homepageImage.description"}</p>
 
 <table width="100%" class="data">
-{foreach name=customAboutItems from=$customAboutItems key=aboutId item=aboutItem}
 	<tr valign="top">
-		<td width="5%" class="label">{fieldLabel name="customAboutItems-$aboutId-title" key="common.title"}</td>
-		<td width="95%" class="value"><input type="text" name="customAboutItems[{$aboutId}][title]" id="customAboutItems-{$aboutId}-title" value="{$aboutItem.title|escape}" size="40" maxlength="255" class="textField" />{if $smarty.foreach.customAboutItems.total > 1} <input type="submit" name="delCustomAboutItem[{$aboutId}]" value="{translate key="common.delete"}" class="button" />{/if}</td>
+		<td width="20%" class="label">{translate key="manager.setup.additionalContent.homepageImage"}</td>
+		<td width="80%" class="value"><input type="file" name="homepageImage" class="uploadField" /> <input type="submit" name="uploadHomepageImage" value="{translate key="common.upload"}" class="button" /></td>
 	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="customAboutItems-$aboutId-content" key="manager.setup.aboutItemContent"}</td>
-		<td width="80%" class="value"><textarea name="customAboutItems[{$aboutId}][content]" id="customAboutItems-{$aboutId}-content" rows="12" cols="40" class="textArea">{$aboutItem.content|escape}</textarea></td>
-	</tr>
-	{if !$smarty.foreach.customAboutItems.last}
-	<tr valign="top">
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	{/if}
-{foreachelse}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-title" key="common.title"}</td>
-		<td width="80%" class="value"><input type="text" name="customAboutItems[0][title]" id="customAboutItems-0-title" value="" size="40" maxlength="255" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-content" key="manager.setup.aboutItemContent"}</td>
-		<td width="80%" class="value"><textarea name="customAboutItems[0][content]" id="customAboutItems-0-content" rows="12" cols="40" class="textArea"></textarea></td>
-	</tr>
-{/foreach}
 </table>
 
-<p><input type="submit" name="addCustomAboutItem" value="{translate key="manager.setup.addAboutItem"}" class="button" /></p>
+{if $homepageImage}
+{translate key="common.fileName"}: {$homepageImage.name} {$homepageImage.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteHomepageImage" value="{translate key="common.delete"}" class="button" />
+<br />
+<img src="{$publicConferenceFilesDir}/{$homepageImage.uploadName}" width="{$homepageImage.width}" height="{$homepageImage.height}" border="0" alt="" />
+{/if}
+
+<h4>{translate key="manager.setup.additionalContent.additionalContent"}</h4>
+
+<p>{translate key="manager.setup.additionalContent.additionalContent.description"}</p>
+
+<p><textarea name="additionalHomeContent" id="additionalHomeContent" rows="12" cols="60" class="textArea">{$additionalHomeContent|escape}</textarea></p>
+
+<div class="separator"></div>
+
+<h3>2.2 {translate key="manager.setup.additionalContent.information"}</h3>
+
+<p>{translate key="manager.setup.additionalContent.information.description"}</p>
+
+<h4>{translate key="manager.setup.additionalContent.information.forReaders"}</h4>
+
+<p><textarea name="readerInformation" id="readerInformation" rows="12" cols="60" class="textArea">{$readerInformation|escape}</textarea></p>
+
+<h4>{translate key="manager.setup.additionalContent.information.forPresenters"}</h4>
+
+<p><textarea name="presenterInformation" id="presenterInformation" rows="12" cols="60" class="textArea">{$presenterInformation|escape}</textarea></p>
+
+<div class="separator"></div>
+
+<h3>2.3 {translate key="manager.setup.additionalContent.announcements"}</h3>
+
+<p>{translate key="manager.setup.additionalContent.announcementsDescription"}</p>
+
+	<script type="text/javascript">
+		{literal}
+		<!--
+			function toggleEnableAnnouncementsHomepage(form) {
+				form.numAnnouncementsHomepage.disabled = !form.numAnnouncementsHomepage.disabled;
+			}
+		// -->
+		{/literal}
+	</script>
+
+<p>
+	<input type="checkbox" name="enableAnnouncements" id="enableAnnouncements" value="1" {if $enableAnnouncements} checked="checked"{/if} />&nbsp;
+	<label for="enableAnnouncements">{translate key="manager.setup.additionalContent.enableAnnouncements"}</label>
+</p>
+
+<p>
+	<input type="checkbox" name="enableAnnouncementsHomepage" id="enableAnnouncementsHomepage" value="1" onclick="toggleEnableAnnouncementsHomepage(this.form)"{if $enableAnnouncementsHomepage} checked="checked"{/if} />&nbsp;
+	<label for="enableAnnouncementsHomepage">{translate key="manager.setup.additionalContent.enableAnnouncementsHomepage1"}</label>
+	<select name="numAnnouncementsHomepage" size="1" class="selectMenu" {if not $enableAnnouncementsHomepage}disabled="disabled"{/if}>
+		{section name="numAnnouncementsHomepageOptions" start=1 loop=11}
+		<option value="{$smarty.section.numAnnouncementsHomepageOptions.index}"{if $numAnnouncementsHomepage eq $smarty.section.numAnnouncementsHomepageOptions.index or ($smarty.section.numAnnouncementsHomepageOptions.index eq 1 and not $numAnnouncementsHomepage)} selected="selected"{/if}>{$smarty.section.numAnnouncementsHomepageOptions.index}</option>
+		{/section}
+	</select>
+	{translate key="manager.setup.additionalContent.enableAnnouncementsHomepage2"}
+</p>
+
+<h4>{translate key="manager.setup.additionalContent.announcementsIntroduction"}</h4>
+
+<p>{translate key="manager.setup.additionalContent.announcementsIntroductionDescription"}</p>
+
+<p><textarea name="announcementsIntroduction" id="announcementsIntroduction" rows="12" cols="60" class="textArea">{$announcementsIntroduction|escape}</textarea></p>
+
 
 <div class="separator"></div>
 

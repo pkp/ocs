@@ -36,6 +36,10 @@
 		<value>25</value>
 	</setting>
 	<setting type="string">
+		<name>copyrightNotice</name>
+		<value>{translate key="default.conferenceSettings.copyrightNotice"}</value>
+	</setting>
+	<setting type="string">
 		<name>privacyStatement</name>
 		<value>{translate key="default.conferenceSettings.privacyStatement"}</value>
 	</setting>

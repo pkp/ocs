@@ -752,7 +752,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<!-- Conference Management -->
 	<message key="manager.conferenceSiteManagement">Conference Site Management</message>
-	<message key="manager.conferenceSiteSetup">Conference Site Setup</message>
+	<message key="manager.websiteManagement">Website Management</message>
 	<message key="manager.currentConferences">Current Conferences</message>
 	<message key="manager.emails">Prepared Emails</message>
 	<message key="manager.statistics">Stats &amp; Reports</message>
@@ -847,11 +847,92 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.files.confirmDelete">Delete this file or directory? Note that a directory must be empty before it can be deleted.</message>
 	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a conference to be viewed and manipulated directly.</message>
 
-	<!-- Conference Setup -->
-	<message key="manager.setup.conferenceSetup">Conference Setup</message>
+	<!--
+	     ***
+	     *** Website Management (a.k.a. Conference Setup)
+	     ***
+	-->
+
+	<message key="manager.setup.aboutConference">About the Conference</message>
+	<message key="manager.setup.additionalContent">Additional Website Content</message>
+	<message key="manager.setup.layout">Website Headers, Footers, Lists and Navigation Bar</message>
+	<message key="manager.setup.styleSheet">Conference Stylesheet</message>
+	<message key="manager.setup.access">Site Access and Auditing</message>
+	<message key="manager.setup.indexing">Conference Indexing</message>
+
+	<message key="manager.setup.aboutConference.brief">About</message>
+	<message key="manager.setup.additionalContent.brief">Additional Content</message>
+	<message key="manager.setup.layout.brief">Headers, Footers, etc.</message>
+	<message key="manager.setup.styleSheet.brief">Stylesheet</message>
+	<message key="manager.setup.access.brief">Access and Auditing</message>
+	<message key="manager.setup.indexing.brief">Indexing</message>
+
+	<message key="manager.setup.aboutConference.description">Conference description, principal contact, copyright notice, etc.</message>
+	<message key="manager.setup.additionalContent.description">Homepage content, user information, and announcements</message>
+	<message key="manager.setup.layout.description">Titles and logos, headers, footers, etc.</message>
+	<message key="manager.setup.styleSheet.description">Cascading Style Sheet for conference pages</message>
+	<message key="manager.setup.access.description">Commenting, logging, auditing, etc.</message>
+	<message key="manager.setup.indexing.description">Search engines and metadata harvesting</message>
 
 	<message key="manager.setup.stepsToConferenceSite">Five Steps to a Conference Web Site</message>
-	<message key="manager.setup.details">Details</message>
+
+	<!-- Conference setup page 1 -->
+	<message key="manager.setup.aboutConference.conferenceDescription">Conference Description</message>
+	<message key="manager.setup.aboutConference.conferenceDescription.description">This description outlines the overall scope and focus of the conferences scheduled on this site.</message>
+	<message key="manager.setup.aboutConference.principalContact">Principal Contact for Conference Website</message>
+	<message key="manager.setup.aboutConference.copyrightNotice">Copyright Notice</message>
+	<message key="manager.setup.aboutConference.copyrightNotice.description"><![CDATA[The Copyright Notice will also appear in the metadata accompanying posted conference materials and as a statement that presenters need to agree to on submitting to the conference. The Public Knowledge Project recommends the use of a <a href="http://creativecommons.org">Creative Commons</a> license, and provides a sample Copyright Notice below.]]></message>
+	<message key="manager.setup.aboutConference.copyrightNoticeAgree">Require presenters to agree to Copyright Notice as part of the submission process.</message>
+	<message key="manager.setup.aboutConference.postCreativeCommons">Post the Creative Commons license logo on the conference website.</message>
+	<message key="manager.setup.aboutConference.privacyStatement">Privacy Statement</message>
+
+	<message key="manager.setup.aboutConference.addItemtoAboutConference">Add Item to Appear in "About the Conference"</message>
+	<message key="manager.setup.aboutConference.aboutItemContent">Content</message>
+	<message key="manager.setup.aboutConference.addAboutItem">Add About Item</message>
+
+	<!-- Conference setup page 2 -->
+	<message key="manager.setup.additionalContent.homepage">Homepage</message>
+	<message key="manager.setup.additionalContent.homepageImage">Homepage Image</message>
+	<message key="manager.setup.additionalContent.homepageImage.description"></message>
+	<message key="manager.setup.additionalContent.additionalContent">Additional Content</message>
+	<message key="manager.setup.additionalContent.additionalContent.description">Add the following content, using text/HTML, which will appear below the homepage image, if one is uploaded.</message>
+	<message key="manager.setup.additionalContent.information">Information for Users</message>
+	<message key="manager.setup.additionalContent.information.description">Brief descriptions of the conference for prospective presenters and readers are available in the "Information" section of the sidebar.</message>
+	<message key="manager.setup.additionalContent.information.forReaders">For Readers</message>
+	<message key="manager.setup.additionalContent.information.forPresenters">For Presenters</message>
+	<message key="manager.setup.additionalContent.announcements">Announcements</message>
+	<message key="manager.setup.additionalContent.announcementsDescription">Announcements may be published to inform readers of conference news and events. Published announcements will appear on the Announcements page.</message>
+	<message key="manager.setup.additionalContent.enableAnnouncements">Enable Conference Managers to add conference announcements.</message>
+	<message key="manager.setup.additionalContent.enableAnnouncementsHomepage1">Display</message>
+	<message key="manager.setup.additionalContent.enableAnnouncementsHomepage2">of the most recent announcements on the conference homepage.</message>
+	<message key="manager.setup.additionalContent.announcementsIntroduction">Additional Information</message>
+	<message key="manager.setup.additionalContent.announcementsIntroductionDescription">Enter any additional information that should be displayed to readers on the Announcements page.</message>
+	<message key="manager.setup.additionalContent."></message>
+	<message key="manager.setup.additionalContent."></message>
+	<message key="manager.setup.additionalContent."></message>
+	<message key="manager.setup.additionalContent."></message>
+	<message key="manager.setup.additionalContent."></message>
+	<message key="manager.setup.additionalContent."></message>
+	<message key="manager.setup.additionalContent."></message>
+	<message key="manager.setup.additionalContent."></message>
+
+	<!-- Conference setup page 3 -->
+	<message key="manager.setup.layout."></message>
+
+	<!-- Conference setup page 4 -->
+	<message key="manager.setup.styleSheet."></message>
+
+	<!-- Conference setup page 5 -->
+	<message key="manager.setup.access."></message>
+
+	<!-- Conference setup page 6 -->
+	<message key="manager.setup.indexing."></message>
+
+	<!-- THE STUFF BELOW MAY BE UNUSED -->
+
+	<message key="manager.setup.additionalContent.useTextTitle">Title text</message>
+	<message key="manager.setup.additionalContent.useImageTitle">Title image</message>
+
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Guidelines, review policy, and privacy statement.</message>
 	<message key="manager.setup.access">Access</message>
@@ -860,7 +941,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.indexing.description">Content categories and metadata.</message>
 	<message key="manager.setup.look">The Look</message>
 	<message key="manager.setup.look.description">Homepage header, content, conference header, footer, navigation bar, and style sheet.</message>
-	<message key="manager.setup.conferenceTitle">Conference title</message>
 	<message key="manager.setup.conferenceSetupUpdated">Your conference setup has been updated.</message>
 	<message key="manager.setup.selectOne">Select one</message>
 	<message key="manager.setup.finalStepSavedNotes">
@@ -897,24 +977,15 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.searchEngineIndexingDescription">To assist the users of search engines in discovering this conference, provide a brief description of the conference and relevant keywords (separated by semicolons).</message>
 	<message key="manager.setup.customTags">Custom tags</message>
 	<message key="manager.setup.customTagsDescription">Custom HTML header tags to be inserted in the header of every page (e.g., META tags).</message>
-	<message key="manager.setup.form.conferenceTitleRequired">The conference title is required.</message>
+	<!-- message key="manager.setup.form.conferenceTitleRequired">The conference title is required.</message>
 	<message key="manager.setup.form.conferenceAcronymRequired">The conference acronym is required.</message>
 	<message key="manager.setup.form.contactNameRequired">The primary contact name is required.</message>
 	<message key="manager.setup.form.contactEmailRequired">The primary contact email is required.</message>
 	<message key="manager.setup.form.supportNameRequired">The support name is required.</message>
-	<message key="manager.setup.form.supportEmailRequired">The support email is required.</message>
+	<message key="manager.setup.form.supportEmailRequired">The support email is required.</message -->
 
 	<!-- Conference Setup Step 2: Policy -->
 	<message key="manager.setup.conferencePolicies">Step 2. Conference Policies</message>
-	<message key="manager.setup.reviewPolicy">Review Policy</message>
-	<message key="manager.setup.reviewDescription">Outline the conference's review policy and processes for readers and presenters, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Conference.</message>
-	<message key="manager.setup.reviewGuidelines">Review Guidelines</message>
-	<message key="manager.setup.reviewGuidelinesDescription">The Review Guidelines provide reviewers with criteria for judging a submission's suitability for acceptance to the conference, as well as any special instructions for preparing an effective and helpful review.</message>
-	<message key="manager.setup.privacyStatement">Privacy Statement</message>
-	<message key="manager.setup.privacyStatementDescription">This statement will appear in About the Conference, as well as on the Presenter Submission and Notification sign-up pages. Below is a recommended privacy policy, which can be revised at any point.</message>
-	<message key="manager.setup.addItemtoAboutConference">Add Item to Appear in "About the Conference"</message>
-	<message key="manager.setup.aboutItemContent">Content</message>
-	<message key="manager.setup.addAboutItem">Add About Item</message>
 
 	<!-- Conference Setup Step 3: Access -->
 	<message key="manager.setup.accessAndPermissions">Step 3. Access and Permissions</message>
@@ -982,23 +1053,7 @@ Note that if your site administrator has already registered this site with the P
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <b>Site URL</b>, and <span class="highlight">{$oaiUrl}</span> under <b>Base URL for OAI Archive</b>.]]></message>
 
-	<!-- Conference Setup Step 5: Look -->
-
-
-	<!-- Conference Setup Step 2 -->
-
-
-	<!-- Conference Setup Step 3 -->
-
-	<!-- Conference Setup Step 4 -->
 	<message key="manager.setup.managingTheConference">Step 4. Managing the Conference</message>
-	<!--<message key="manager.setup.appearInAboutConference">(To appear in About the Conference) </message>-->
-	<!--<message key="manager.setup.managementOfBasicEditorialSteps">Management of Basic Editorial Steps</message>-->
-	<!--<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Scheduling Queue &gt; Table of Contents.<br /><br />
-Select a model for handling these aspects of the editorial process. (To designate a Director and Track Directors, go to Directors in Conference Management.)]]></message>-->
-	<!--<message key="manager.setup.editorialProcess1">One or more directors handle the basic steps without designated roles.</message>-->
-	<!--<message key="manager.setup.editorialProcess2">Managing Director handles Submission Queue, Scheduling Queue, and Table of Contents, while Track Directors handle Submission Review and Submission Editing.</message>-->
-	<!--<message key="manager.setup.editorialProcess3">Managing Director handles Submission Queue, Submission Editing, Scheduling Queue, and Table of Contents, while the Track Directors handle Submission Review.</message>-->
 	<message key="manager.setup.publicIdentifier">Identification of Conference Content</message>
 	<message key="manager.setup.uniqueIdentifier">Unique Identifier</message>
 	<message key="manager.setup.uniqueIdentifierDescription">Papers can be tagged with an identification number or string, if the conference is using an item registration system such as the Digital Object Identifier System (DOI).</message>
@@ -1010,13 +1065,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="manager.setup.registration">Restrict access to the conference's contents to registrants.</message>
 	<message key="manager.setup.registrationDescription">The Registration Management module is operated by the Registration Director and includes additional open access, self-archiving, and email notification options.</message>
 	<message key="manager.setup.registrationContactDescription">If subscription management has been enabled, this person will be listed on the conference's About page as the primary contact for subscriptions.</message>
-	<message key="manager.setup.announcements">Announcements</message>
-	<message key="manager.setup.announcementsDescription">Announcements may be published to inform readers of conference news and events. Published announcements will appear on the Announcements page.</message>
-	<message key="manager.setup.enableAnnouncements">Enable Conference Managers to add conference announcements.</message>
-	<message key="manager.setup.enableAnnouncementsHomepage1">Display</message>
-	<message key="manager.setup.enableAnnouncementsHomepage2">of the most recent announcements on the conference homepage.</message>
-	<message key="manager.setup.announcementsIntroduction">Additional Information</message>
-	<message key="manager.setup.announcementsIntroductionDescription">Enter any additional information that should be displayed to readers on the Announcements page.</message>
 
 	<!-- Conference Setup Step 5 -->
 	<message key="manager.setup.customizingTheLook">Step 5. Customizing the Look</message>
@@ -1027,8 +1075,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="manager.setup.listsDescription">Enter the maximum number of items (for example, submissions, users, or editing assignments) that appear on each page of a list, and the number of pages links to display on each page.</message>
 	<message key="manager.setup.itemsPerPage">Items per page</message>
 	<message key="manager.setup.numPageLinks">Page links</message>
-	<message key="manager.setup.useTextTitle">Title text</message>
-	<message key="manager.setup.useImageTitle">Title image</message>
 	<message key="manager.setup.useImageLogo">Logo image</message>
 	<message key="manager.setup.noImageFileUploaded">No image file uploaded.</message>
 	<message key="manager.setup.navigationBar">Navigation Bar</message>
@@ -1046,10 +1092,6 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="manager.setup.useConferenceStyleSheet">Conference style sheet</message>
 	<message key="manager.setup.noStyleSheetUploaded">No style sheet uploaded.</message>
 	<message key="manager.setup.conferenceHomepageContent">Conference Homepage Content</message>
-	<message key="manager.setup.homepageImageDescription">Add an image or graphic file to the middle of the page.</message>
-	<message key="manager.setup.homepageImage">Homepage image</message>
-	<message key="manager.setup.additionalContent">Additional Content</message>
-	<message key="manager.setup.additionalContentDescription">Add the following content, using text/HTML, which will appear below the homepage image, if one is uploaded.</message>
 	<message key="manager.setup.navigationBarDescription">Add or remove additional navigation bar items.</message>
 	<message key="manager.setup.navItemIsLiteral">The label value is a literal string (e.g., "Conference Setup") rather than a localization message key (e.g., "manager.setup")</message>
 	<message key="manager.setup.navItemIsAbsolute">URL is an absolute URL (e.g., "http://www.example.com") rather than a path relative to the site (e.g., "/manager/setup")</message>
@@ -1067,23 +1109,23 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="manager.setup.pageHeaderLogoImageAlt2Invalid">Invalid second alternate page header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
 	<message key="manager.setup.homepageImageInvalid">Invalid homepage image format. Accepted formats are .gif, .jpg, or .png.</message>
 	<message key="manager.setup.conferenceStyleSheetInvalid">Invalid conference stylesheet format. Accepted format is .css.</message>
-	<message key="manager.setup.information">Information</message>
-	<message key="manager.setup.information.description">Brief descriptions of the conference for prospective presenters and readers are available in the "Information" section of the sidebar.</message>
-	<message key="manager.setup.information.forReaders">For Readers</message>
-	<message key="manager.setup.information.forPresenters">For Presenters</message>
-	<!--<message key="manager.setup.information.forLibrarians">For Librarians</message>-->
 
-	<!-- Scheduled Conference Setup -->
+	<!-- 
+	     ***
+	     *** Scheduled Conference Setup
+	     ***
+	-->
 	<message key="manager.setup.schedConfSetup">Scheduled Conference Setup</message>
-	<message key="manager.setup.stepsToSchedConf">These steps are designed to set up a specific instance of the conference. Once a conference is set up in this way, the setup content will be copied to the next instance of the conference as the default setup that can be edited by the current conference managers.</message>
+	<message key="manager.schedConfSetup.details">Details</message>
+	<message key="manager.schedConfSetup.details.description">Conference title, introduction &amp; overview, contacts, and sponsors.</message>
+	<message key="manager.schedConfSetup.stepsToSchedConf">These steps are designed to set up a specific instance of the conference. Once a conference is set up in this way, the setup content will be copied to the next instance of the conference as the default setup that can be edited by the current conference managers.</message>
 
-	<message key="manager.setup.location">Scheduled Conference Location</message>
-	<message key="manager.setup.locationDescription">The location (institution, department, and mailing address) at which the conference will be held.</message>
-	<message key="manager.setup.details.description">Conference title, introduction &amp; overview, contacts, and sponsors.</message>
-	<message key="manager.setup.submissions">Submissions</message>
-	<message key="manager.setup.submissions.description">Presenter registration, submissions, and presenter notification.</message>
-	<message key="manager.setup.review">Review</message>
-	<message key="manager.setup.review.description">Review model.</message>
+	<message key="manager.schedConfSetup.location">Scheduled Conference Location</message>
+	<message key="manager.schedConfSetup.locationDescription">The location (institution, department, and mailing address) at which the conference will be held.</message>
+	<message key="manager.schedConfSetup.submissions">Submissions</message>
+	<message key="manager.schedConfSetup.submissions.description">Presenter registration, submissions, and presenter notification.</message>
+	<message key="manager.schedConfSetup.review">Review</message>
+	<message key="manager.schedConfSetup.review.description">Review model.</message>
 	<message key="manager.setup.participation">Participation</message>
 	<message key="manager.setup.participation.description">Reader registration &amp; access to proceedings.</message>
 	<message key="manager.setup.publication">Publication</message>
@@ -1114,6 +1156,10 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="manager.setup.addContributor">Add Contributor</message>
 
 	<!-- Scheduled Conference Setup Step 2 -->
+	<message key="manager.schedConfSetup.reviewPolicy">Review Policy</message>
+	<message key="manager.schedConfSetup.reviewDescription">Outline the conference's review policy and processes for readers and presenters, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Conference.</message>
+	<message key="manager.schedConfSetup.reviewGuidelines">Review Guidelines</message>
+	<message key="manager.schedConfSetup.reviewGuidelinesDescription">The Review Guidelines provide reviewers with criteria for judging a submission's suitability for acceptance to the conference, as well as any special instructions for preparing an effective and helpful review.</message>
 	<message key="manager.setup.guidingSubmissions">Step 2. Guiding Submissions</message>
 	<message key="manager.setup.callForPapers">Call for Papers (CFP)</message>
 	<message key="manager.setup.cfpMessage">CFP message</message>
@@ -1133,26 +1179,26 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="manager.setup.reminders.submissionDeadlineWarnDisabled"><![CDATA[<strong>Note:</strong> The submission deadline warning email is currently disabled. To use this feature, enable the SUBMISSION_DEADLINE_WARN email in <a class="action" href="{$preparedEmailsUrl}">Prepared Emails</a>.]]></message>
 	<message key="manager.setup.submissionReview">Step 3. Reviewing Submissions</message>
 	<message key="manager.setup.submissionAndReview">Paper Submission and Review</message>
-	<message key="manager.setup.reviewModel">Peer Review Process</message>
-	<message key="manager.setup.reviewPapers">Subject papers to peer review after the abstracts have been reviewed and accepted</message>
+	<message key="manager.schedConfSetup.reviewModel">Peer Review Process</message>
+	<message key="manager.schedConfSetup.reviewPapers">Subject papers to peer review after the abstracts have been reviewed and accepted</message>
 	<message key="manager.setup.submitSimultaneous">Abstracts and papers will be collected and reviewed at the same time.</message>
 	<message key="manager.setup.submitSequential">Papers will be collected only after abstracts are reviewed.</message>
-	<message key="manager.setup.reviewOptions">Review Options</message>
-	<message key="manager.setup.reviewOptions.reviewTime">Review Time</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerReview">The typical period of time allowed for reviews</message>
-	<message key="manager.setup.reviewOptions.noteOnModification">Can be modified during the review process.</message>
-	<message key="manager.setup.reviewOptions.reviewerReminders">Reviewer Reminders</message>
-	<message key="manager.setup.reviewOptions.automatedReminders">Automated email reminders (available in OCS's Prepared Emails) can be sent to reviewers at two points (while the director can always email the reviewer directly as well)</message>
-	<message key="manager.setup.reviewOptions.remindForInvite1">If reviewer has not responded to a review request within</message>
-	<message key="manager.setup.reviewOptions.remindForInvite2">days.</message>
-	<message key="manager.setup.reviewOptions.remindForSubmit1">If reviewer has not submitted a recommendation within</message>
-	<message key="manager.setup.reviewOptions.remindForSubmit2">days after review's due date.</message>
-	<message key="manager.setup.reviewOptions.reviewerRatings">Reviewer Ratings</message>
-	<message key="manager.setup.reviewOptions.onQuality">The director will rate reviewers on a five-point quality scale after each review. The ratings will be available to Conference Directors for future conferences.</message>
-	<message key="manager.setup.reviewOptions.reviewerAccess">Reviewer Access</message>
-	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Enable one-click reviewer access.</message>
-	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> The email invitation to reviewers will contain a special URL that takes invited reviewers directly to the Review page for the submission (with access to any other pages requiring them to log in). For security reasons with this option, directors are not able to modify email addresses or add CCs or BCCs prior to sending invitations to reviewers.]]></message>
+	<message key="manager.schedConfSetup.reviewOptions">Review Options</message>
+	<message key="manager.schedConfSetup.reviewOptions.reviewTime">Review Time</message>
+	<message key="manager.schedConfSetup.reviewOptions.numWeeksPerReview">The typical period of time allowed for reviews</message>
+	<message key="manager.schedConfSetup.reviewOptions.noteOnModification">Can be modified during the review process.</message>
+	<message key="manager.schedConfSetup.reviewOptions.reviewerReminders">Reviewer Reminders</message>
+	<message key="manager.schedConfSetup.reviewOptions.automatedReminders">Automated email reminders (available in OCS's Prepared Emails) can be sent to reviewers at two points (while the director can always email the reviewer directly as well)</message>
+	<message key="manager.schedConfSetup.reviewOptions.remindForInvite1">If reviewer has not responded to a review request within</message>
+	<message key="manager.schedConfSetup.reviewOptions.remindForInvite2">days.</message>
+	<message key="manager.schedConfSetup.reviewOptions.remindForSubmit1">If reviewer has not submitted a recommendation within</message>
+	<message key="manager.schedConfSetup.reviewOptions.remindForSubmit2">days after review's due date.</message>
+	<message key="manager.schedConfSetup.reviewOptions.reviewerRatings">Reviewer Ratings</message>
+	<message key="manager.schedConfSetup.reviewOptions.onQuality">The director will rate reviewers on a five-point quality scale after each review. The ratings will be available to Conference Directors for future conferences.</message>
+	<message key="manager.schedConfSetup.reviewOptions.reviewerAccess">Reviewer Access</message>
+	<message key="manager.schedConfSetup.reviewOptions.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
+	<message key="manager.schedConfSetup.reviewOptions.reviewerAccessKeysEnabled">Enable one-click reviewer access.</message>
+	<message key="manager.schedConfSetup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> The email invitation to reviewers will contain a special URL that takes invited reviewers directly to the Review page for the submission (with access to any other pages requiring them to log in). For security reasons with this option, directors are not able to modify email addresses or add CCs or BCCs prior to sending invitations to reviewers.]]></message>
 	<message key="manager.setup.presenterGuidelines">Presenter Guidelines</message>
 	<message key="manager.setup.presenterGuidelinesDescription"><![CDATA[Set out for presenters the bibliographic and formatting standards used for items submitted to the conference (e.g., <i>Publication Manual of the American Psychological Association</i>, 5th edition, 2001). It is often helpful to provide examples of the common citation formats for journals and books to be used in submissions. Also identify the types of appropriate Supplementary Files (e.g., data-sets, research instruments, etc.) which presenters should be encouraged to upload, in addition to their submission, to enhance readers' engagement with their work.]]></message>
 	<message key="manager.setup.submissionGuidelines">Submission guidelines</message>
@@ -1161,10 +1207,7 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<message key="manager.setup.addChecklistItem">Add Checklist Item</message>
 	<message key="manager.setup.addItem">Add Item</message>
 	<message key="manager.setup.presenterCopyrightNotice">Copyright Notice</message>
-	<message key="manager.setup.presenterCopyrightNoticeDescription"><![CDATA[This Copyright Notice will appear in About the Conference and in each published item's metadata. Presenters can retain copyright, while granting the conference right of first publication. Alternatively, presenters can transfer copyright to the conference, which then permits presenters non-commercial use of the work,
-including the right to place it in an open access archive. In addition, <a href="http://www.creativecommons.org" target="_blank">Creative Commons</a> can be consulted for flexible copyright licenses.]]></message>
 	<message key="manager.setup.presenterCopyrightNoticeAgree">Require presenters to agree to Copyright Notice as part of the submission process.</message>
-	<message key="manager.setup.copyrightNotice">Copyright notice</message>
 	<message key="manager.setup.notifications">Notification of Presenter Submission</message>
 	<message key="manager.setup.notifications.description">On completing the submission process, presenters are automatically sent an acknowledgement email (which can be viewed and edited in Prepared Emails). In addition, a copy of the acknowledgement email can be sent as follows:</message>
 	<message key="manager.setup.notifications.copyPrimaryContact">Send a copy to the conference's primary contact, identified in Setup Step 1.</message>
@@ -1189,8 +1232,8 @@ including the right to place it in an open access archive. In addition, <a href=
 	<message key="manager.setup.schedConfSetup2.publicPublishSubmissionsDate">Submissions released to the public on</message>
 
 	<!-- Scheduled Conference Setup Step 3 -->
-	<message key="manager.setup.reviewerRegistration">Reviewer Registration</message>
-	<message key="manager.setup.reviewerRegistrationDescription"><![CDATA[If desired, OCS may permit users to register themselves as reviewers for this scheduled conference. If these options are disabled, the Conference Manager must manually register users as reviewers via the Conference Management pages.]]></message>
+	<message key="manager.schedConfSetup.reviewerRegistration">Reviewer Registration</message>
+	<message key="manager.schedConfSetup.reviewerRegistrationDescription"><![CDATA[If desired, OCS may permit users to register themselves as reviewers for this scheduled conference. If these options are disabled, the Conference Manager must manually register users as reviewers via the Conference Management pages.]]></message>
 	<message key="manager.setup.openRegReviewerOn">Permit users to register as reviewers starting on</message>
 	<message key="manager.setup.closeRegReviewerOn">Close reviewer registration on</message>
 
@@ -2614,6 +2657,11 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	 * DEFAULT - Default settings for setup items.
 	 *
 	-->
+	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Presenters who submit to this conference agree to the following terms:<br/>
+<b>a)</b>&nbsp;Presenters retain copyright over their work, while allowing the conference to place this unpublished work under a Creative Commons License (Attribution Non-commercial No Derivatives) which allows others to freely access, use, and share the work for non-commercial purposes, without altering it, and with an acknowledgement of the work’s authorship and its initial presentation at this conference.<br/>
+<b>b)</b>&nbsp;Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution and subsequent publication of this work (e.g., publish a revised version in a journal, post it to an institutional repository or publish it in a book), with an acknowledgement of its initial presentation at this conference.<br/>
+<b>c)</b>&nbsp;In addition, authors are encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process.]]></message>
+
 	<message key="default.conferenceSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another conference for consideration (or an explanation has been provided in Comments to the Director).</message>
 	<message key="default.conferenceSettings.checklist.fileFormat">The submission file is in Microsoft Word, RTF, or WordPerfect document file format.</message>
 	<message key="default.conferenceSettings.checklist.addressesLinked"><![CDATA[All URL addresses in the text (e.g., <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) are activated and ready to click.]]></message>

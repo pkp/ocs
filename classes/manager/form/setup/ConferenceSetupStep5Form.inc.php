@@ -30,7 +30,6 @@ class ConferenceSetupStep5Form extends ConferenceSetupForm {
 				'homeHeaderTitleAlt1' => 'string',
 				'homeHeaderTitleTypeAlt2' => 'int',
 				'homeHeaderTitleAlt2' => 'string',
-				'additionalHomeContent' => 'string',
 				'pageHeaderTitleType' => 'int',
 				'pageHeaderTitle' => 'string',
 				'pageHeaderTitleTypeAlt1' => 'int',
@@ -38,8 +37,6 @@ class ConferenceSetupStep5Form extends ConferenceSetupForm {
 				'pageHeaderTitleTypeAlt2' => 'int',
 				'pageHeaderTitleAlt2' => 'string',
 				'navItems' => 'object',
-				'readerInformation' => 'string',
-				'presenterInformation' => 'string',
 				'conferencePageHeader' => 'string',
 				'conferencePageFooter' => 'string',
 				'itemsPerPage' => 'int',
@@ -78,61 +75,6 @@ class ConferenceSetupStep5Form extends ConferenceSetupForm {
 		parent::display();	   
 	}
 	
-	/**
-	 * Uploads a conference image.
-	 * @param $settingName string setting key associated with the file
-	 */
-	function uploadImage($settingName) {
-		$conference = &Request::getConference();
-		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
-		
-		import('file.PublicFileManager');
-		$fileManager = &new PublicFileManager();
-		if ($fileManager->uploadedFileExists($settingName)) {
-			$type = $fileManager->getUploadedFileType($settingName);
-			$extension = $fileManager->getImageExtension($type);
-			if (!$extension) {
-				return false;
-			}
-			
-			$uploadName = $settingName . $extension;
-			if ($fileManager->uploadConferenceFile($conference->getConferenceId(), $settingName, $uploadName)) {
-				// Get image dimensions
-				$filePath = $fileManager->getConferenceFilesPath($conference->getConferenceId());
-				list($width, $height) = getimagesize($filePath . '/' . $settingName.$extension);
-				
-				$value = array(
-					'name' => $fileManager->getUploadedFileName($settingName),
-					'uploadName' => $uploadName,
-					'width' => $width,
-					'height' => $height,
-					'dateUploaded' => Core::getCurrentDate()
-				);
-				
-				return $settingsDao->updateSetting($conference->getConferenceId(), $settingName, $value, 'object');
-			}
-		}
-		
-		return false;
-	}
-
-	/**
-	 * Deletes a conference image.
-	 * @param $settingName string setting key associated with the file
-	 */
-	function deleteImage($settingName) {
-		$conference = &Request::getConference();
-		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
-		$setting = $settingsDao->getSetting($conference->getConferenceId(), $settingName);
-		
-		import('file.PublicFileManager');
-		$fileManager = &new PublicFileManager();
-	 	if ($fileManager->removeConferenceFile($conference->getConferenceId(), $setting['uploadName'])) {
-			return $settingsDao->deleteSetting($conference->getConferenceId(), $settingName);
-		} else {
-			return false;
-		}
-	}
 	
 	/**
 	 * Uploads conference custom stylesheet.

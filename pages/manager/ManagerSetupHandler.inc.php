@@ -63,7 +63,7 @@ class ManagerSetupHandler extends ManagerHandler {
 			
 			// Check for any special cases before trying to save
 			switch ($step) {
-				case 2:
+				case 1:
 					if (Request::getUserVar('addCustomAboutItem')) {
 						// Add a custom about item
 						$editData = true;
@@ -79,8 +79,28 @@ class ManagerSetupHandler extends ManagerHandler {
 						$customAboutItems = $setupForm->getData('customAboutItems');
 						array_splice($customAboutItems, $delCustomAboutItem, 1);
 						$setupForm->setData('customAboutItems', $customAboutItems);
+					}
+					break;
+				case 2:
+					if (Request::getUserVar('uploadHomepageImage')) {
+						if ($setupForm->uploadImage('homepageImage')) {
+							$editData = true;
+						} else {
+							$setupForm->addError('homepageImage', 'manager.setup.homepageImageInvalid');
+						}
 
-					} else if (Request::getUserVar('addChecklist')) {
+					} else if (Request::getUserVar('deleteHomepageImage')) {
+						$editData = true;
+						$setupForm->deleteImage('homepageImage');
+					} else if (Request::getUserVar('uploadConferenceStyleSheet')) {
+						if ($setupForm->uploadStyleSheet('conferenceStyleSheet')) {
+							$editData = true;
+						} else {
+							$setupForm->addError('conferenceStyleSheet', 'manager.setup.conferenceStyleSheetInvalid');
+						}
+					}
+					break;
+					/* if (Request::getUserVar('addChecklist')) {
 						// Add a checklist item
 						$editData = true;
 						$checklist = $setupForm->getData('submissionChecklist');
@@ -111,7 +131,7 @@ class ManagerSetupHandler extends ManagerHandler {
 						}
 						$setupForm->setData('submissionChecklist', $checklist);
 					}
-					break;
+					break; */
 				case 5:	
 					if (Request::getUserVar('uploadHomeHeaderTitleImage')) {
 						if ($setupForm->uploadImage('homeHeaderTitleImage')) {
@@ -245,23 +265,6 @@ class ManagerSetupHandler extends ManagerHandler {
 						$editData = true;
 						$setupForm->deleteImage('pageHeaderLogoImageAlt2');
 						
-					} else if (Request::getUserVar('uploadHomepageImage')) {
-						if ($setupForm->uploadImage('homepageImage')) {
-							$editData = true;
-						} else {
-							$setupForm->addError('homepageImage', 'manager.setup.homepageImageInvalid');
-						}
-
-					} else if (Request::getUserVar('deleteHomepageImage')) {
-						$editData = true;
-						$setupForm->deleteImage('homepageImage');
-					} else if (Request::getUserVar('uploadConferenceStyleSheet')) {
-						if ($setupForm->uploadStyleSheet('conferenceStyleSheet')) {
-							$editData = true;
-						} else {
-							$setupForm->addError('conferenceStyleSheet', 'manager.setup.conferenceStyleSheetInvalid');
-						}
-
 					} else if (Request::getUserVar('deleteConferenceStyleSheet')) {
 						$editData = true;
 						$setupForm->deleteImage('conferenceStyleSheet');

@@ -12,22 +12,22 @@
 {assign var="pageTitle" value="manager.setup.schedConfSetup"}
 {include file="common/header.tpl"}
 
-<span class="instruct">{translate key="manager.setup.stepsToSchedConf"}</span>
+<span class="instruct">{translate key="manager.schedConfSetup.stepsToSchedConf"}</span>
 
 <ol>
 	<li>
-		<h4><a href="{url op="schedConfSetup" path="1"}">{translate key="manager.setup.details"}</a></h4>
-		{translate key="manager.setup.details.description"}<br/>
+		<h4><a href="{url op="schedConfSetup" path="1"}">{translate key="manager.schedConfSetup.details"}</a></h4>
+		{translate key="manager.schedConfSetup.details.description"}<br/>
 		&nbsp;
 	</li>
 	<li>
-		<h4><a href="{url op="schedConfSetup" path="2"}">{translate key="manager.setup.submissions"}</a></h4>
-		{translate key="manager.setup.submissions.description"}<br/>
+		<h4><a href="{url op="schedConfSetup" path="2"}">{translate key="manager.schedConfSetup.submissions"}</a></h4>
+		{translate key="manager.schedConfSetup.submissions.description"}<br/>
 		&nbsp;
 	</li>
 	<li>
-		<h4><a href="{url op="schedConfSetup" path="3"}">{translate key="manager.setup.review"}</a></h4>
-		{translate key="manager.setup.review.description"}<br/>
+		<h4><a href="{url op="schedConfSetup" path="3"}">{translate key="manager.schedConfSetup.review"}</a></h4>
+		{translate key="manager.schedConfSetup.review.description"}<br/>
 		&nbsp;
 	</li>
 	<li>

@@ -17,51 +17,14 @@
 <form method="post" action="{url op="saveSetup" path="1"}">
 {include file="common/formErrors.tpl"}
 
-<h3>1.1 {translate key="manager.setup.generalInformation"}</h3>
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="conferenceTitle" required="true" key="manager.setup.conferenceTitle"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="conferenceTitle" id="conferenceTitle" value="{$conferenceTitle|escape}" size="40" maxlength="120" class="textField" />
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="conferenceAcronym" required="true" key="manager.setup.conferenceAcronym"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="conferenceAcronym" id="conferenceAcronym" value="{$conferenceAcronym|escape}" size="8" maxlength="16" class="textField" />
-		</td>
-	</tr>
-</table>
+<h3><label for="conferenceDescription">1.1 {translate key="manager.setup.aboutConference.conferenceDescription"}</label></h3>
+<span class="instruct">{translate key="manager.setup.aboutConference.conferenceDescription.description"}</span>
+
+<textarea name="conferenceDescription" id="conferenceDescription" rows="5" cols="80" class="textArea">{$conferenceDescription|escape}</textarea>
 
 <div class="separator"></div>
 
-<h3>1.2 {translate key="manager.setup.conferenceDescription"}</h3>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="conferenceIntroduction" key="manager.setup.conferenceIntroduction"}</td>
-		<td width="80%" class="value">
-			<textarea name="conferenceIntroduction" id="conferenceIntroduction" rows="5" cols="60" class="textArea">{$conferenceIntroduction|escape}</textarea>
-			<br />
-			<span class="instruct">{translate key="manager.setup.conferenceIntroductionDescription"}</span>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="conferenceOverview" key="manager.setup.conferenceOverview"}</td>
-		<td width="80%" class="value">
-			<textarea name="conferenceOverview" id="conferenceOverview" rows="15" cols="60" class="textArea">{$conferenceOverview|escape}</textarea>
-			<br />
-			<span class="instruct">{translate key="manager.setup.conferenceOverviewDescription"}</span>
-		</td>
-	</tr>
-</table>
-
-<div class="separator"></div>
-
-
-<h3>1.3 {translate key="manager.setup.principalContact"}</h3>
-
-<p>{translate key="manager.setup.principalContactDescription"}</p>
+<h3>1.2 {translate key="manager.setup.aboutConference.principalContact"}</h3>
 
 <table width="100%" class="data">
 	<tr valign="top">
@@ -94,57 +57,56 @@
 	</tr>
 </table>
 
+<div class="separator"></div>
+
+<h3><label for="copyrightNotice">1.3 {translate key="manager.setup.aboutConference.copyrightNotice"}</label></h3>
+<p>{translate key="manager.setup.aboutConference.copyrightNotice.description"}</p>
+
+<p><textarea name="copyrightNotice" id="copyrightNotice" rows="10" cols="80" class="textArea">{$copyrightNotice|escape}</textarea></p>
+
+<p><input type="checkbox" name="copyrightNoticeAgree" id="copyrightNoticeAgree" value="1"{if $copyrightNoticeAgree} checked="checked"{/if} /> <label for="copyrightNoticeAgree">{translate key="manager.setup.aboutConference.copyrightNoticeAgree"}</label><br/>
+<input type="checkbox" name="postCreativeCommons" id="postCreativeCommons" value="1"{if $postCreativeCommons} checked="checked"{/if} /> <label for="postCreativeCommons">{translate key="manager.setup.aboutConference.postCreativeCommons"}</label><br/></p>
 
 <div class="separator"></div>
 
+<h3>1.4 {translate key="manager.setup.aboutConference.privacyStatement"}</h3>
 
-<h3>1.4 {translate key="manager.setup.technicalSupportContact"}</h3>
+<p><textarea name="privacyStatement" id="privacyStatement" rows="10" cols="80" class="textArea">{$privacyStatement|escape}</textarea></p>
 
-<p>{translate key="manager.setup.technicalSupportContactDescription"}</p>
+<div class="separator"></div>
+
+<h3>1.5 {translate key="manager.setup.aboutConference.addItemtoAboutConference"}</h3>
 
 <table width="100%" class="data">
+{foreach name=customAboutItems from=$customAboutItems key=aboutId item=aboutItem}
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="supportName" key="user.name" required="true"}</td>
-		<td width="80%" class="value"><input type="text" name="supportName" id="supportName" value="{$supportName|escape}" size="30" maxlength="60" class="textField" /></td>
+		<td width="5%" class="label">{fieldLabel name="customAboutItems-$aboutId-title" key="common.title"}</td>
+		<td width="95%" class="value"><input type="text" name="customAboutItems[{$aboutId}][title]" id="customAboutItems-{$aboutId}-title" value="{$aboutItem.title|escape}" size="40" maxlength="255" class="textField" />{if $smarty.foreach.customAboutItems.total > 1} <input type="submit" name="delCustomAboutItem[{$aboutId}]" value="{translate key="common.delete"}" class="button" />{/if}</td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="supportEmail" key="user.email" required="true"}</td>
-		<td width="80%" class="value"><input type="text" name="supportEmail" id="supportEmail" value="{$supportEmail|escape}" size="30" maxlength="90" class="textField" /></td>
+		<td width="20%" class="label">{fieldLabel name="customAboutItems-$aboutId-content" key="manager.setup.aboutConference.aboutItemContent"}</td>
+		<td width="80%" class="value"><textarea name="customAboutItems[{$aboutId}][content]" id="customAboutItems-{$aboutId}-content" rows="12" cols="40" class="textArea">{$aboutItem.content|escape}</textarea></td>
+	</tr>
+	{if !$smarty.foreach.customAboutItems.last}
+	<tr valign="top">
+		<td colspan="2" class="separator">&nbsp;</td>
+	</tr>
+	{/if}
+{foreachelse}
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-title" key="common.title"}</td>
+		<td width="80%" class="value"><input type="text" name="customAboutItems[0][title]" id="customAboutItems-0-title" value="" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="supportPhone" key="user.phone"}</td>
-		<td width="80%" class="value"><input type="text" name="supportPhone" id="supportPhone" value="{$supportPhone|escape}" size="15" maxlength="24" class="textField" /></td>
+		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-content" key="manager.setup.aboutConference.aboutItemContent"}</td>
+		<td width="80%" class="value"><textarea name="customAboutItems[0][content]" id="customAboutItems-0-content" rows="12" cols="40" class="textArea"></textarea></td>
 	</tr>
+{/foreach}
 </table>
 
-<div class="separator"></div>
-
-<h3>1.5 {translate key="manager.setup.emails"}</h3>
-<table width="100%" class="data">
-	<tr valign="top"><td colspan="2">{translate key="manager.setup.emailSignatureDescription"}<br />&nbsp;</td></tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="emailSignature" key="manager.setup.emailSignature"}</td>
-		<td class="value">
-			<textarea name="emailSignature" id="emailSignature" rows="3" cols="60" class="textArea">{$emailSignature|escape}</textarea>
-		</td>
-	</tr>
-	<tr valign="top"><td colspan="2">&nbsp;</td></tr>
-	<tr valign="top"><td colspan="2">{translate key="manager.setup.emailBounceAddressDescription"}<br />&nbsp;</td></tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="envelopeSender" key="manager.setup.emailBounceAddress"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="envelopeSender" id="envelopeSender" size="40" maxlength="255" class="textField" {if !$envelopeSenderEnabled}disabled="disabled" value=""{else}value="{$envelopeSender|escape}"{/if} />
-			{if !$envelopeSenderEnabled}
-			<br />
-			<span class="instruct">{translate key="manager.setup.emailBounceAddressDisabled"}</span>
-			{/if}
-		</td>
-	</tr>
-</table>
-
+<p><input type="submit" name="addCustomAboutItem" value="{translate key="manager.setup.aboutConference.addAboutItem"}" class="button" /></p>
 
 <div class="separator"></div>
-
 
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>
 

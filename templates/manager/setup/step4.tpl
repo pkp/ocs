@@ -223,44 +223,6 @@
 <div class="separator"></div>
 
 
-<h3>4.5 {translate key="manager.setup.announcements"}</h3>
-
-<p>{translate key="manager.setup.announcementsDescription"}</p>
-
-	<script type="text/javascript">
-		{literal}
-		<!--
-			function toggleEnableAnnouncementsHomepage(form) {
-				form.numAnnouncementsHomepage.disabled = !form.numAnnouncementsHomepage.disabled;
-			}
-		// -->
-		{/literal}
-	</script>
-
-<p>
-	<input type="checkbox" name="enableAnnouncements" id="enableAnnouncements" value="1" {if $enableAnnouncements} checked="checked"{/if} />&nbsp;
-	<label for="enableAnnouncements">{translate key="manager.setup.enableAnnouncements"}</label>
-</p>
-
-<p>
-	<input type="checkbox" name="enableAnnouncementsHomepage" id="enableAnnouncementsHomepage" value="1" onclick="toggleEnableAnnouncementsHomepage(this.form)"{if $enableAnnouncementsHomepage} checked="checked"{/if} />&nbsp;
-	<label for="enableAnnouncementsHomepage">{translate key="manager.setup.enableAnnouncementsHomepage1"}</label>
-	<select name="numAnnouncementsHomepage" size="1" class="selectMenu" {if not $enableAnnouncementsHomepage}disabled="disabled"{/if}>
-		{section name="numAnnouncementsHomepageOptions" start=1 loop=11}
-		<option value="{$smarty.section.numAnnouncementsHomepageOptions.index}"{if $numAnnouncementsHomepage eq $smarty.section.numAnnouncementsHomepageOptions.index or ($smarty.section.numAnnouncementsHomepageOptions.index eq 1 and not $numAnnouncementsHomepage)} selected="selected"{/if}>{$smarty.section.numAnnouncementsHomepageOptions.index}</option>
-		{/section}
-	</select>
-	{translate key="manager.setup.enableAnnouncementsHomepage2"}
-</p>
-
-<h4>{translate key="manager.setup.announcementsIntroduction"}</h4>
-
-<p>{translate key="manager.setup.announcementsIntroductionDescription"}</p>
-
-<p><textarea name="announcementsIntroduction" id="announcementsIntroduction" rows="12" cols="60" class="textArea">{$announcementsIntroduction|escape}</textarea></p>
-
-
-<div class="separator"></div>
 
 
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>

@@ -48,9 +48,9 @@
 
 <div class="separator"></div>
 
-<h3>1.3 {translate key="manager.setup.location"}</h3>
+<h3>1.3 {translate key="manager.schedConfSetup.location"}</h3>
 
-<p>{translate key="manager.setup.locationDescription"}</p>
+<p>{translate key="manager.schedConfSetup.locationDescription"}</p>
 
 <table width="100%" class="data">
 	<tr valign="top">

@@ -38,11 +38,7 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 				'metaType' => 'bool',
 				'metaTypeExamples' => 'string',
 				'enablePublicPaperId' => 'bool',
-				'enablePublicSuppFileId' => 'bool',
-				'enableAnnouncements' => 'bool',
-				'enableAnnouncementsHomepage' => 'bool',
-				'numAnnouncementsHomepage' => 'int',
-				'announcementsIntroduction' => 'string'
+				'enablePublicSuppFileId' => 'bool'
 			)
 		);
 	}

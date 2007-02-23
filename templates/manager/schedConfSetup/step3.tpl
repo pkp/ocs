@@ -15,11 +15,11 @@
 <form method="post" action="{url op="saveSchedConfSetup" path="3"}">
 {include file="common/formErrors.tpl"}
 
-<h3>3.1 {translate key="manager.setup.reviewModel"}</h3>
+<h3>3.1 {translate key="manager.schedConfSetup.reviewModel"}</h3>
 
-{*<p>{translate key="manager.setup.reviewModelDescription"}</p>*}
+{*<p>{translate key="manager.schedConfSetup.reviewModelDescription"}</p>*}
 
-<h4>{translate key="manager.setup.reviewOptions"}</h4>
+<h4>{translate key="manager.schedConfSetup.reviewOptions"}</h4>
 
 	<script type="text/javascript">
 		{literal}
@@ -35,47 +35,47 @@
 	</script>
 
 <p>
-	<strong>{translate key="manager.setup.reviewOptions.reviewTime"}</strong><br/>
-	{translate key="manager.setup.reviewOptions.numWeeksPerReview"}: <input type="text" name="numWeeksPerReview" id="numWeeksPerReview" value="{$numWeeksPerReview|escape}" size="2" maxlength="8" class="textField" /> {translate key="common.weeks"}<br/>
-	{translate key="common.note"}: {translate key="manager.setup.reviewOptions.noteOnModification"}
+	<strong>{translate key="manager.schedConfSetup.reviewOptions.reviewTime"}</strong><br/>
+	{translate key="manager.schedConfSetup.reviewOptions.numWeeksPerReview"}: <input type="text" name="numWeeksPerReview" id="numWeeksPerReview" value="{$numWeeksPerReview|escape}" size="2" maxlength="8" class="textField" /> {translate key="common.weeks"}<br/>
+	{translate key="common.note"}: {translate key="manager.schedConfSetup.reviewOptions.noteOnModification"}
 </p>
 
 	<p>
-		<strong>{translate key="manager.setup.reviewOptions.reviewerReminders"}</strong><br/>
-		{translate key="manager.setup.reviewOptions.automatedReminders"}:<br/>
+		<strong>{translate key="manager.schedConfSetup.reviewOptions.reviewerReminders"}</strong><br/>
+		{translate key="manager.schedConfSetup.reviewOptions.automatedReminders"}:<br/>
 		<input type="checkbox" name="remindForInvite" id="remindForInvite" value="1" onclick="toggleAllowSetInviteReminder(this.form)"{if $remindForInvite} checked="checked"{/if} />&nbsp;
-		<label for="remindForInvite">{translate key="manager.setup.reviewOptions.remindForInvite1"}</label>
+		<label for="remindForInvite">{translate key="manager.schedConfSetup.reviewOptions.remindForInvite1"}</label>
 		<select name="numDaysBeforeInviteReminder" size="1" class="selectMenu"{if not $remindForInvite} disabled="disabled"{/if}>
 			{section name="inviteDayOptions" start=3 loop=11}
 			<option value="{$smarty.section.inviteDayOptions.index}"{if $numDaysBeforeInviteReminder eq $smarty.section.inviteDayOptions.index or ($smarty.section.inviteDayOptions.index eq 5 and not $remindForInvite)} selected="selected"{/if}>{$smarty.section.inviteDayOptions.index}</option>
 			{/section}
 		</select>
-		{translate key="manager.setup.reviewOptions.remindForInvite2"}
+		{translate key="manager.schedConfSetup.reviewOptions.remindForInvite2"}
 		<br/>
 
 		<input type="checkbox" name="remindForSubmit" id="remindForSubmit" value="1" onclick="toggleAllowSetSubmitReminder(this.form)"{if $remindForSubmit} checked="checked"{/if} />&nbsp;
-		<label for="remindForSubmit">{translate key="manager.setup.reviewOptions.remindForSubmit1"}</label>
+		<label for="remindForSubmit">{translate key="manager.schedConfSetup.reviewOptions.remindForSubmit1"}</label>
 		<select name="numDaysBeforeSubmitReminder" size="1" class="selectMenu"{if not $remindForSubmit} disabled="disabled"{/if}>
 			{section name="submitDayOptions" start=0 loop=11}
 				<option value="{$smarty.section.submitDayOptions.index}"{if $numDaysBeforeSubmitReminder eq $smarty.section.submitDayOptions.index} selected="selected"{/if}>{$smarty.section.submitDayOptions.index}</option>
 		{/section}
 		</select>
-		{translate key="manager.setup.reviewOptions.remindForSubmit2"}
+		{translate key="manager.schedConfSetup.reviewOptions.remindForSubmit2"}
 	</p>
 
 <p>
-	<strong>{translate key="manager.setup.reviewOptions.reviewerRatings"}</strong><br/>
+	<strong>{translate key="manager.schedConfSetup.reviewOptions.reviewerRatings"}</strong><br/>
 	<input type="checkbox" name="rateReviewerOnQuality" id="rateReviewerOnQuality" value="1"{if $rateReviewerOnQuality} checked="checked"{/if} />&nbsp;
-	<label for="rateReviewerOnQuality">{translate key="manager.setup.reviewOptions.onQuality"}</label>
+	<label for="rateReviewerOnQuality">{translate key="manager.schedConfSetup.reviewOptions.onQuality"}</label>
 </p>
 
 <p>
-	<strong>{translate key="manager.setup.reviewOptions.reviewerAccess"}</strong><br/>
+	<strong>{translate key="manager.schedConfSetup.reviewOptions.reviewerAccess"}</strong><br/>
 	<input type="checkbox" name="reviewerAccessKeysEnabled" id="reviewerAccessKeysEnabled" value="1"{if $reviewerAccessKeysEnabled} checked="checked"{/if} />&nbsp;
-	<label for="reviewerAccessKeysEnabled">{translate key="manager.setup.reviewOptions.reviewerAccessKeysEnabled"}</label><br/>
-	<span class="instruct">{translate key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"}</span><br/>
+	<label for="reviewerAccessKeysEnabled">{translate key="manager.schedConfSetup.reviewOptions.reviewerAccessKeysEnabled"}</label><br/>
+	<span class="instruct">{translate key="manager.schedConfSetup.reviewOptions.reviewerAccessKeysEnabled.description"}</span><br/>
 	<input type="checkbox" name="restrictReviewerFileAccess" id="restrictReviewerFileAccess" value="1"{if $restrictReviewerFileAccess} checked="checked"{/if} />&nbsp;
-	<label for="restrictReviewerFileAccess">{translate key="manager.setup.reviewOptions.restrictReviewerFileAccess"}</label>
+	<label for="restrictReviewerFileAccess">{translate key="manager.schedConfSetup.reviewOptions.restrictReviewerFileAccess"}</label>
 </p>
 
 <div class="separator"></div>

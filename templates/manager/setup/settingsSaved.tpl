@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="manager.setup.conferenceSetup"}
+{assign var="pageTitle" value="manager.websiteManagement"}
 {include file="manager/setup/setupHeader.tpl"}
 
 {if $showSetupHints}

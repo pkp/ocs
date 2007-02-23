@@ -15,19 +15,15 @@
 <form method="post" action="{url op="saveSetup" path="5"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
-<h3>5.1 {translate key="manager.setup.conferenceHomepageHeader"}</h3>
-
-<p>{translate key="manager.setup.conferenceHomepageHeaderDescription"}</p>
-
-<h4>{translate key="manager.setup.conferenceTitle"}</h4>
+<h4>{translate key="manager.setup.additionalContent.homepageImage"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label"><input type="radio" name="homeHeaderTitleType" id="homeHeaderTitleType-0" value="0"{if not $homeHeaderTitleType} checked="checked"{/if} /> {fieldLabel name="homeHeaderTitleType-0" key="manager.setup.useTextTitle"}</td>
+		<td width="20%" class="label"><input type="radio" name="homeHeaderTitleType" id="homeHeaderTitleType-0" value="0"{if not $homeHeaderTitleType} checked="checked"{/if} /> {fieldLabel name="homeHeaderTitleType-0" key="manager.setup.additionalContent.useTextTitle"}</td>
 		<td width="80%" class="value"><input type="text" name="homeHeaderTitle" value="{$homeHeaderTitle|escape}" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label"><input type="radio" name="homeHeaderTitleType" id="homeHeaderTitleType-1" value="1"{if $homeHeaderTitleType} checked="checked"{/if} /> {fieldLabel name="homeHeaderTitleType-1" key="manager.setup.useImageTitle"}</td>
+		<td width="20%" class="label"><input type="radio" name="homeHeaderTitleType" id="homeHeaderTitleType-1" value="1"{if $homeHeaderTitleType} checked="checked"{/if} /> {fieldLabel name="homeHeaderTitleType-1" key="manager.setup.additionalContent.useImageTitle"}</td>
 		<td width="80%" class="value"><input type="file" name="homeHeaderTitleImage" class="uploadField" /> <input type="submit" name="uploadHomeHeaderTitleImage" value="{translate key="common.upload"}" class="button" /></td>
 	</tr>
 </table>
@@ -37,6 +33,8 @@
 <br />
 <img src="{$publicConferenceFilesDir}/{$homeHeaderTitleImage.uploadName}" width="{$homeHeaderTitleImage.width}" height="{$homeHeaderTitleImage.height}" border="0" alt="" />
 {/if}
+
+<h3>5.1 {translate key="manager.setup.conferenceHomepageHeader"}</h3>
 
 <h4>{translate key="manager.setup.conferenceLogo"}</h4>
 
@@ -126,37 +124,6 @@
 <img src="{$publicConferenceFilesDir}/{$homeHeaderLogoImageAlt2.uploadName}" width="{$homeHeaderLogoImageAlt2.width}" height="{$homeHeaderLogoImageAlt2.height}" border="0" alt="" />
 {/if}
 {/if}
-
-
-<div class="separator"></div>
-
-
-<h3>5.2 {translate key="manager.setup.conferenceHomepageContent"}</h3>
-
-<p>{translate key="manager.setup.conferenceHomepageContentDescription"}</p>
-
-<h4>{translate key="manager.setup.homepageImage"}</h4>
-
-<p>{translate key="manager.setup.homepageImageDescription"}</p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="manager.setup.homepageImage"}</td>
-		<td width="80%" class="value"><input type="file" name="homepageImage" class="uploadField" /> <input type="submit" name="uploadHomepageImage" value="{translate key="common.upload"}" class="button" /></td>
-	</tr>
-</table>
-
-{if $homepageImage}
-{translate key="common.fileName"}: {$homepageImage.name} {$homepageImage.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteHomepageImage" value="{translate key="common.delete"}" class="button" />
-<br />
-<img src="{$publicConferenceFilesDir}/{$homepageImage.uploadName}" width="{$homepageImage.width}" height="{$homepageImage.height}" border="0" alt="" />
-{/if}
-
-<h4>{translate key="manager.setup.additionalContent"}</h4>
-
-<p>{translate key="manager.setup.additionalContentDescription"}</p>
-
-<p><textarea name="additionalHomeContent" id="additionalHomeContent" rows="12" cols="60" class="textArea">{$additionalHomeContent|escape}</textarea></p>
 
 
 <div class="separator"></div>
@@ -377,20 +344,6 @@
 {if $conferenceStyleSheet}
 {translate key="common.fileName"}: <a href="{$publicConferenceFilesDir}/{$conferenceStyleSheet.uploadName}" class="file">{$conferenceStyleSheet.name}</a> {$conferenceStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteConferenceStyleSheet" value="{translate key="common.delete"}" class="button" />
 {/if}
-
-<div class="separator"></div>
-
-<h3>5.7 {translate key="manager.setup.information"}</h3>
-
-<p>{translate key="manager.setup.information.description"}</p>
-
-<h4>{translate key="manager.setup.information.forReaders"}</h4>
-
-<p><textarea name="readerInformation" id="readerInformation" rows="12" cols="60" class="textArea">{$readerInformation|escape}</textarea></p>
-
-<h4>{translate key="manager.setup.information.forPresenters"}</h4>
-
-<p><textarea name="presenterInformation" id="presenterInformation" rows="12" cols="60" class="textArea">{$presenterInformation|escape}</textarea></p>
 
 <div class="separator"></div>
 

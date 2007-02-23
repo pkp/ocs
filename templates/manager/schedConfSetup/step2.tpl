@@ -43,7 +43,7 @@
 
 <h3>2.3 {translate key="manager.setup.submissionContents"}</h3>
 
-<p>{translate key="manager.setup.submissionsDescription"}</p>
+<p>{translate key="manager.schedConfSetup.submissionsDescription"}</p>
 
 	<script type="text/javascript">
 		{literal}
@@ -93,7 +93,7 @@
 					<td width="5%">
 						<input type="checkbox" name="reviewPapers" id="reviewPapers" value="1" onclick="toggleReviewPapers(this.form)" {if !$acceptPapers || $collectPapersWithAbstracts}disabled="disabled"{/if} {if $reviewPapers}checked="checked"{/if} />
 					</td>
-					<td width="95%"><label for="reviewPapers">{translate key="manager.setup.reviewPapers"}</label></td>
+					<td width="95%"><label for="reviewPapers">{translate key="manager.schedConfSetup.reviewPapers"}</label></td>
 				</tr>
 			</td>
 		</table>

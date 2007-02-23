@@ -789,7 +789,7 @@
 		<field name="type" type="C2" size="40">
 			<NOTNULL/>
 		</field>
-		<field name="stage" type="C2" size="I8"/>
+		<field name="stage" type="I1"/>
 		<field name="status" type="C2" size="40">
 			<NOTNULL/>
 		</field>

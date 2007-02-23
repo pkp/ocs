@@ -22,17 +22,32 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 		parent::ConferenceSetupForm(
 			2,
 			array(
-				'reviewPolicy' => 'string',
-				'reviewGuidelines' => 'string',
-				'presenterGuidelines' => 'string',
-				'submissionChecklist' => 'object',
-				'copyrightNotice' => 'string',
-				'copyrightNoticeAgree' => 'bool',
-				'privacyStatement' => 'string',
-				'customAboutItems' => 'object'
+				'additionalHomeContent' => 'string',
+				'readerInformation' => 'string',
+				'presenterInformation' => 'string',
+				'enableAnnouncements' => 'bool',
+				'enableAnnouncementsHomepage' => 'bool',
+				'numAnnouncementsHomepage' => 'int',
+				'announcementsIntroduction' => 'string'
 			)
 		);
 	}
+
+	/**
+	 * Display the form.
+	 */
+	function display() {
+		$conference = &Request::getConference();
+
+		// Ensure upload file settings are reloaded when the form is displayed.
+		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign(array(
+			'homepageImage' => $conference->getSetting('homepageImage')
+		));
+		
+		parent::display();	   
+	}
+	
 }
 
 ?>

@@ -58,7 +58,7 @@ class ConferenceSiteSettingsForm extends Form {
 			if ($conference != null) {
 				$this->_data = array(
 					'title' => $conference->getTitle(),
-					'description' => $conference->getSetting('conferenceIntroduction'),
+					'description' => $conference->getSetting('conferenceDescription'),
 					'path' => $conference->getPath(),
 					'enabled' => $conference->getEnabled()
 				);
@@ -108,7 +108,7 @@ class ConferenceSiteSettingsForm extends Form {
 
 		if ($conference->getConferenceId() != null) {
 			$conferenceDao->updateConference($conference);
-		$conference->updateSetting('conferenceIntroduction', $this->getData('description'));
+		$conference->updateSetting('conferenceDescription', $this->getData('description'));
 		} else {
 			$conferenceId = $conferenceDao->insertConference($conference);
 			$conferenceDao->resequenceConferences();
@@ -147,7 +147,7 @@ class ConferenceSiteSettingsForm extends Form {
 				'conferenceName' => $this->getData('title')
 			));
 			
-			$conference->updateSetting('conferenceIntroduction', $this->getData('description'));
+			$conference->updateSetting('conferenceDescription', $this->getData('description'));
 			
 			// Install the default RT versions.
 			import('rt.ocs.ConferenceRTAdmin');
