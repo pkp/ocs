@@ -26,7 +26,7 @@ class ManagerSetupHandler extends ManagerHandler {
 		
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 		
-		if ($step >= 1 && $step <= 5) {
+		if ($step >= 1 && $step <= 6) {
 			
 			$formClass = "ConferenceSetupStep{$step}Form";
 			import("manager.form.setup.$formClass");
@@ -51,7 +51,7 @@ class ManagerSetupHandler extends ManagerHandler {
 		
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 		
-		if ($step >= 1 && $step <= 5) {
+		if ($step >= 1 && $step <= 6) {
 
 			parent::setupTemplate(true);
 			
@@ -296,7 +296,7 @@ class ManagerSetupHandler extends ManagerHandler {
 				$templateMgr->assign('setupStep', $step);
 				$templateMgr->assign('helpTopicId', 'conference.managementPages.setup');
 
-				if($step == 5) {
+				if($step == 6) {
 					$conference =& Request::getConference();
 
 					if($conference->getSetting('showSetupHints')) {

@@ -934,14 +934,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.additionalContent.enableAnnouncementsHomepage2">of the most recent announcements on the conference homepage.</message>
 	<message key="manager.setup.additionalContent.announcementsIntroduction">Additional Information</message>
 	<message key="manager.setup.additionalContent.announcementsIntroductionDescription">Enter any additional information that should be displayed to readers on the Announcements page.</message>
-	<message key="manager.setup.additionalContent."></message>
-	<message key="manager.setup.additionalContent."></message>
-	<message key="manager.setup.additionalContent."></message>
-	<message key="manager.setup.additionalContent."></message>
-	<message key="manager.setup.additionalContent."></message>
-	<message key="manager.setup.additionalContent."></message>
-	<message key="manager.setup.additionalContent."></message>
-	<message key="manager.setup.additionalContent."></message>
 
 	<!-- Conference setup page 3 -->
 	<message key="manager.setup.layout.homepageTitle">Conference Homepage Title</message>
@@ -969,7 +961,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.layout.alternateHeaderDescription">Instead of title and logo, an HTML version of the header can be inserted.</message>
 	<message key="manager.setup.layout.conferencePageFooter">Website Footer</message>
 	<message key="manager.setup.layout.conferencePageFooterDescription">This is the footer of your conference. To change or update the footer, paste the HTML code in the textbox below. Examples could be another navigation bar, a counter, etc. This footer will appear on every page.</message>
-	<message key="manager.setup.layout."></message>
 
 	<!-- Conference setup page 4 -->
 	<message key="manager.setup.styleSheet.conferenceStyleSheet.description">By default conferences and the site use a common style sheet (located in the "styles" subdirectory of the site). The default style rules can be overridden by uploading a conference-specific cascading style sheet.</message>
@@ -989,6 +980,17 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.access.conferenceEventLogging">Conference event logging.</message>
 
 	<!-- Conference setup page 6 -->
+	<message key="manager.setup.indexing.searchEngineIndexing">Search Engine Indexing</message>
+	<message key="manager.setup.indexing.searchEngineIndexing.description">To assist the users of search engines in discovering this conference, provide a brief description of the conference and relevant keywords (separated by semicolons).</message>
+	<message key="manager.setup.indexing.customTags">Custom tags</message>
+	<message key="manager.setup.indexing.customTagsDescription">Custom HTML header tags to be inserted in the header of every page (e.g., META tags).</message>
+	<message key="manager.setup.indexing.registerConferenceForIndexing">Register Conference for Indexing (Metadata Harvesting)</message>
+	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[To have the contents of this conference indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your conference's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this conference, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+<br /><br />
+Note that if your site administrator has already registered this site with the PKP Harvester, your conference will be indexed automatically and you do not need to register your conference.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <b>Site URL</b>, and <span class="highlight">{$oaiUrl}</span> under <b>Base URL for OAI Archive</b>.]]></message>
+
 	<message key="manager.setup.indexing."></message>
 
 	<!-- THE STUFF BELOW MAY BE UNUSED -->
@@ -1033,10 +1035,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>allow_envelope_sender</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
 	<message key="manager.setup.emailSignature">Signature</message>
 	<message key="manager.setup.emailSignatureDescription">The prepared emails that are sent by the system on behalf of the conference will have the following signature added to the end. The body of the prepared emails are available for editing under Conference Management.</message>
-	<message key="manager.setup.searchEngineIndexing">Search Engine Indexing</message>
-	<message key="manager.setup.searchEngineIndexingDescription">To assist the users of search engines in discovering this conference, provide a brief description of the conference and relevant keywords (separated by semicolons).</message>
-	<message key="manager.setup.customTags">Custom tags</message>
-	<message key="manager.setup.customTagsDescription">Custom HTML header tags to be inserted in the header of every page (e.g., META tags).</message>
 	<!-- message key="manager.setup.form.conferenceTitleRequired">The conference title is required.</message>
 	<message key="manager.setup.form.conferenceAcronymRequired">The conference acronym is required.</message>
 	<message key="manager.setup.form.contactNameRequired">The primary contact name is required.</message>
@@ -1092,13 +1090,6 @@ Title of classification system]]></message>
 	<message key="manager.setup.typeMethodApproach">Type (Method/Approach)</message>
 	<message key="manager.setup.typeProvideExamples">Provide examples of relevant research types, methods, and approaches for this field</message>
 	<message key="manager.setup.typeExamples">(E.g., Historical Inquiry; Quasi-Experimental; Literary Analysis; Survey/Interview)</message>
-	<message key="manager.setup.registerConferenceForIndexing">Register Conference for Indexing (Metadata Harvesting)</message>
-	<message key="manager.setup.registerConferenceForIndexingDescription"><![CDATA[To have the contents of this conference indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your conference's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this conference, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
-<br /><br />
-Note that if your site administrator has already registered this site with the PKP Harvester, your conference will be indexed automatically and you do not need to register your conference.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <b>Site URL</b>, and <span class="highlight">{$oaiUrl}</span> under <b>Base URL for OAI Archive</b>.]]></message>
-
 	<message key="manager.setup.managingTheConference">Step 4. Managing the Conference</message>
 	<message key="manager.setup.publicIdentifier">Identification of Conference Content</message>
 	<message key="manager.setup.uniqueIdentifier">Unique Identifier</message>
