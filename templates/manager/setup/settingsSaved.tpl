@@ -32,7 +32,11 @@
 <div><a href="{url op="setup" path="3"}">&lt;&lt; {translate key="navigation.previousStep"}</a> | <a href="{url op="setup" path="5"}">{translate key="navigation.nextStep"} &gt;&gt;</a></div>
 
 {elseif $setupStep == 5}
-<div><a href="{url op="setup" path="4"}">&lt;&lt; {translate key="navigation.previousStep"}</a> | <span class="disabled">{translate key="navigation.nextStep"} &gt;&gt;</span></div>
+<div><a href="{url op="setup" path="4"}">&lt;&lt; {translate key="navigation.previousStep"}</a> | <a href="{url op="setup" path="6"}">{translate key="navigation.nextStep"} &gt;&gt;</a></div>
+{/if}
+
+{elseif $setupStep == 6}
+<div><a href="{url op="setup" path="5"}">&lt;&lt; {translate key="navigation.previousStep"}</a> | <span class="disabled">{translate key="navigation.nextStep"} &gt;&gt;</span></div>
 {/if}
 
 {include file="common/footer.tpl"}

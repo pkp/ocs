@@ -44,10 +44,8 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 		$templateMgr->assign(array(
 			'homepageImage' => $conference->getSetting('homepageImage')
 		));
-		
 		parent::display();	   
 	}
-	
 }
 
 ?>

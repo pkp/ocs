@@ -40,13 +40,6 @@ class ConferenceSetupStep1Form extends ConferenceSetupForm {
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'contactName', 'required', 'manager.setup.form.contactNameRequired'));
 		$this->addCheck(new FormValidator($this, 'contactEmail', 'required', 'manager.setup.form.contactEmailRequired'));
-
-/* --- The following checks were previously on page 1 but the fields were moved
-		$this->addCheck(new FormValidator($this, 'conferenceTitle', 'required', 'manager.setup.form.conferenceTitleRequired'));
-		$this->addCheck(new FormValidator($this, 'conferenceAcronym', 'required', 'manager.setup.form.conferenceAcronymRequired'));
-		$this->addCheck(new FormValidator($this, 'supportName', 'required', 'manager.setup.form.supportNameRequired'));
-		$this->addCheck(new FormValidator($this, 'supportEmail', 'required', 'manager.setup.form.supportEmailRequired'));
-		$this->addCheck(new FormValidatorEmail($this, 'envelopeSender', 'optional', 'user.profile.form.emailRequired')); */
 	}
 
 	function initData() {
@@ -60,13 +53,6 @@ class ConferenceSetupStep1Form extends ConferenceSetupForm {
 		parent::readInputData();
 		$this->_data['conferenceTitle'] = Request::getUserVar('conferenceTitle');
 	}
-
-	/* function display() {
-		$templateMgr = &TemplateManager::getManager();
-		if (Config::getVar('email', 'allow_envelope_sender'))
-			$templateMgr->assign('envelopeSenderEnabled', true);
-		parent::display();
-	} */
 }
 
 ?>
