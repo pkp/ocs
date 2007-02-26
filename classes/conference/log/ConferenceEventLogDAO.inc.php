@@ -179,7 +179,7 @@ class ConferenceEventLogDAO extends DAO {
 	}
 	
 	/**
-	 * Delete all log entries for an paper.
+	 * Delete all log entries for a paper.
 	 * @param $paperId int
 	 */
 	function deleteConferenceLogEntries($conferenceId, $schedConfId = null) {

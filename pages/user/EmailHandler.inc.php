@@ -36,7 +36,7 @@ class EmailHandler extends UserHandler {
 
 		$email = null;
 		if ($paperId = Request::getUserVar('paperId')) {
-			// This message is in reference to an paper.
+			// This message is in reference to a paper.
 			// Determine whether the current user has access
 			// to the paper in some form, and if so, use an
 			// PaperMailTemplate.

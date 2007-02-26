@@ -54,7 +54,7 @@ class PaperEventLogDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve all log entries for an paper.
+	 * Retrieve all log entries for a paper.
 	 * @param $paperId int
 	 * @return DAOResultFactory containing matching PaperEventLogEntry PaperEventLogEntry ordered by sequence
 	 */
@@ -64,7 +64,7 @@ class PaperEventLogDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve all log entries for an paper matching the specified association.
+	 * Retrieve all log entries for a paper matching the specified association.
 	 * @param $paperId int
 	 * @param $assocType int
 	 * @param $assocId int
@@ -147,7 +147,7 @@ class PaperEventLogDAO extends DAO {
 	}
 	
 	/**
-	 * Delete a single log entry for an paper.
+	 * Delete a single log entry for a paper.
 	 * @param $logId int
 	 * @param $paperId int optional
 	 */
@@ -166,7 +166,7 @@ class PaperEventLogDAO extends DAO {
 	}
 	
 	/**
-	 * Delete all log entries for an paper.
+	 * Delete all log entries for a paper.
 	 * @param $paperId int
 	 */
 	function deletePaperLogEntries($paperId) {

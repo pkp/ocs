@@ -233,7 +233,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 	}
 
 	/**
-	 * Upload the presenter's revised version of an paper.
+	 * Upload the presenter's revised version of a paper.
 	 */
 	function uploadRevisedVersion() {
 		$paperId = Request::getUserVar('paperId');

@@ -250,7 +250,7 @@ class ReviewerSubmissionDAO extends DAO {
 	}
 	
 	/**
-	 * Get the director decisions for a review stage of an paper.
+	 * Get the director decisions for a review stage of a paper.
 	 * @param $paperId int
 	 * @param $stage int
 	 */

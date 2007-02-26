@@ -9,7 +9,7 @@
  * @package paper
  *
  * PaperGalley class.
- * A galley is a final presentation version of the full-text of an paper.
+ * A galley is a final presentation version of the full-text of a paper.
  *
  * $Id$
  */

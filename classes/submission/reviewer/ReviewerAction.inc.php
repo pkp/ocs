@@ -196,7 +196,7 @@ class ReviewerAction extends Action {
 	}
 	
 	/**
-	 * Upload the annotated version of an paper.
+	 * Upload the annotated version of a paper.
 	 * @param $reviewId int
 	 */
 	function uploadReviewerVersion($reviewId) {
@@ -245,7 +245,7 @@ class ReviewerAction extends Action {
 	}
 
 	/**
-	* Delete an annotated version of an paper.
+	* Delete an annotated version of a paper.
 	* @param $reviewId int
 	* @param $fileId int
 	* @param $revision int If null, then all revisions are deleted.

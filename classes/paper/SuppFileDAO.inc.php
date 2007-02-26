@@ -79,7 +79,7 @@ class SuppFileDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve all supplementary files for an paper.
+	 * Retrieve all supplementary files for a paper.
 	 * @param $paperId int
 	 * @return array SuppFiles
 	 */
@@ -285,7 +285,7 @@ class SuppFileDAO extends DAO {
 	}
 	
 	/**
-	 * Sequentially renumber supplementary files for an paper in their sequence order.
+	 * Sequentially renumber supplementary files for a paper in their sequence order.
 	 * @param $paperId int
 	 */
 	function resequenceSuppFiles($paperId) {
@@ -308,7 +308,7 @@ class SuppFileDAO extends DAO {
 	}
 	
 	/**
-	 * Get the the next sequence number for an paper's supplementary files (i.e., current max + 1).
+	 * Get the the next sequence number for a paper's supplementary files (i.e., current max + 1).
 	 * @param $paperId int
 	 * @return int
 	 */

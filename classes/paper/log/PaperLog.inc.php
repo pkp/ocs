@@ -86,7 +86,7 @@ class PaperLog {
 	}
 	
 	/**
-	 * Get all event log entries for an paper.
+	 * Get all event log entries for a paper.
 	 * @param $paperId int
 	 * @return array PaperEventLogEntry
 	 */
@@ -129,7 +129,7 @@ class PaperLog {
 	}
 	
 	/**
-	 * Get all email log entries for an paper.
+	 * Get all email log entries for a paper.
 	 * @param $paperId int
 	 * @return array PaperEmailLogEntry
 	 */

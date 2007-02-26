@@ -40,7 +40,7 @@ class Action {
 	 */
 	 
 	/**
-	 * View metadata of an paper.
+	 * View metadata of a paper.
 	 * @param $paper object
 	 */
 	function viewMetadata($paper, $roleId) {

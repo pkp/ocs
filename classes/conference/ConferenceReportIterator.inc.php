@@ -41,7 +41,7 @@ class ConferenceReportIterator extends DBRowIterator {
 	/** @var $editAssignmentDao object */
 	var $editAssignmentDao;
 
-	/** @var $maxPresenterCount int The most presenters that can be expected for an paper. */
+	/** @var $maxPresenterCount int The most presenters that can be expected for a paper. */
 	var $maxPresenterCount;
 
 	/** @var $maxReviewerCount int The most reviewers that can be expected for a submission. */

@@ -646,7 +646,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get the director decisions for a review stage of an paper.
+	 * Get the director decisions for a review stage of a paper.
 	 * @param $paperId int
 	 * @param $stage int
 	 */
@@ -739,7 +739,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve a list of all reviewers along with information about their current status with respect to an paper's current stage.
+	 * Retrieve a list of all reviewers along with information about their current status with respect to a paper's current stage.
 	 * @param $schedConfId int
 	 * @param $paperId int
 	 * @return DAOResultFactory containing matching Users

@@ -70,7 +70,7 @@ class PaperGalleyDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve all galleys for an paper.
+	 * Retrieve all galleys for a paper.
 	 * @param $paperId int
 	 * @return array PaperGalleys
 	 */
@@ -265,7 +265,7 @@ class PaperGalleyDAO extends DAO {
 	}
 	
 	/**
-	 * Sequentially renumber galleys for an paper in their sequence order.
+	 * Sequentially renumber galleys for a paper in their sequence order.
 	 * @param $paperId int
 	 */
 	function resequenceGalleys($paperId) {
@@ -288,7 +288,7 @@ class PaperGalleyDAO extends DAO {
 	}
 	
 	/**
-	 * Get the the next sequence number for an paper's galleys (i.e., current max + 1).
+	 * Get the the next sequence number for a paper's galleys (i.e., current max + 1).
 	 * @param $paperId int
 	 * @return int
 	 */

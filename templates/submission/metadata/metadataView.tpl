@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2005 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * View (but not edit) metadata of an paper.
+ * View (but not edit) metadata of a paper.
  *
  * $Id$
  *}

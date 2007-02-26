@@ -128,7 +128,7 @@ class PaperSearchDAO extends DAO {
 	}
 	
 	/**
-	 * Delete all keywords for an paper object.
+	 * Delete all keywords for a paper object.
 	 * @param $paperId int
 	 * @param $type int optional
 	 * @param $assocId int optional
@@ -159,7 +159,7 @@ class PaperSearchDAO extends DAO {
 	}
 	
 	/**
-	 * Add an paper object to the index (if already exists, indexed keywords are cleared).
+	 * Add a paper object to the index (if already exists, indexed keywords are cleared).
 	 * @param $paperId int
 	 * @param $type int
 	 * @param $assocId int

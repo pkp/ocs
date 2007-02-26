@@ -569,7 +569,7 @@ class TrackDirectorAction extends Action {
 	}
 	
 	/**
-	 * Makes a reviewer's annotated version of an paper available to the presenter.
+	 * Makes a reviewer's annotated version of a paper available to the presenter.
 	 * @param $paperId int
 	 * @param $reviewId int
 	 * @param $viewable boolean
@@ -712,7 +712,7 @@ class TrackDirectorAction extends Action {
 	}	 
 	 
 	/**
-	 * Upload the review version of an paper.
+	 * Upload the review version of a paper.
 	 * @param $trackDirectorSubmission object
 	 */
 	function uploadReviewVersion($trackDirectorSubmission) {
@@ -742,7 +742,7 @@ class TrackDirectorAction extends Action {
 	}
 
 	/**
-	 * Upload the post-review version of an paper.
+	 * Upload the post-review version of a paper.
 	 * @param $trackDirectorSubmission object
 	 */
 	function uploadDirectorVersion($trackDirectorSubmission) {
@@ -867,7 +867,7 @@ class TrackDirectorAction extends Action {
 	//
 	
 	/**
-	 * Upload the layout version of an paper.
+	 * Upload the layout version of a paper.
 	 * @param $submission object
 	 */
 	function uploadLayoutVersion($submission) {
@@ -970,7 +970,7 @@ import('file.PaperFileManager');
 	}
 	
 	/**
-	 * Delete a file from an paper.
+	 * Delete a file from a paper.
 	 * @param $submission object
 	 * @param $fileId int
 	 * @param $revision int (optional)
@@ -986,7 +986,7 @@ import('file.PaperFileManager');
 	}
 
 	/**
-	 * Delete an image from an paper galley.
+	 * Delete an image from a paper galley.
 	 * @param $submission object
 	 * @param $fileId int
 	 * @param $revision int (optional)

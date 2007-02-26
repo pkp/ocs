@@ -32,7 +32,7 @@ class PaperFileDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve an paper by ID.
+	 * Retrieve a paper by ID.
 	 * @param $fileId int
 	 * @param $revision int optional, if omitted latest revision is used
 	 * @param $paperId int optional
@@ -84,7 +84,7 @@ class PaperFileDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve all revisions of an paper file.
+	 * Retrieve all revisions of a paper file.
 	 * @param $paperId int
 	 * @return PaperFile
 	 */
@@ -117,7 +117,7 @@ class PaperFileDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve revisions of an paper file in a range.
+	 * Retrieve revisions of a paper file in a range.
 	 * @param $paperId int
 	 * @return PaperFile
 	 */
@@ -180,7 +180,7 @@ class PaperFileDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve all paper files for an paper.
+	 * Retrieve all paper files for a paper.
 	 * @param $paperId int
 	 * @return array PaperFiles
 	 */
@@ -308,7 +308,7 @@ class PaperFileDAO extends DAO {
 	}
 	
 	/**
-	 * Delete an paper file.
+	 * Delete a paper file.
 	 * @param $paper PaperFile
 	 */
 	function deletePaperFile(&$paperFile) {
@@ -316,7 +316,7 @@ class PaperFileDAO extends DAO {
 	}
 	
 	/**
-	 * Delete an paper file by ID.
+	 * Delete a paper file by ID.
 	 * @param $paperId int
 	 * @param $revision int
 	 */
@@ -333,7 +333,7 @@ class PaperFileDAO extends DAO {
 	}
 	
 	/**
-	 * Delete all paper files for an paper.
+	 * Delete all paper files for a paper.
 	 * @param $paperId int
 	 */
 	function deletePaperFiles($paperId) {

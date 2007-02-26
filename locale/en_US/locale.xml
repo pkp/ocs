@@ -867,6 +867,18 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.pageHeaderTitleImageAlt2Invalid">Invalid second alternate page header title image format. Accepted formats are .gif, .jpg, or .png.</message>
 	<message key="manager.setup.pageHeaderLogoImageAlt2Invalid">Invalid second alternate page header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
 	<message key="manager.setup.conferenceStyleSheetInvalid">Invalid conference stylesheet format. Accepted format is .css.</message>
+	<message key="manager.setup.conferenceSetupUpdated">Your conference setup has been updated.</message>
+	<message key="manager.setup.selectOne">Select one</message>
+	<message key="manager.setup.finalStepSavedNotes">
+		<![CDATA[
+			<p>Almost Done!</p>
+			<p>A conference has now been set up, which may entail a single scheduled conference, an annual conference, or a series of scheduled conferences, all of which can be managed from this conference site. In order to schedule a specific instance of this conference, go to <a href="{$schedConfSetupUrl}">Scheduled Conferences</a>. You may access this page at any time via the Conference Manager's homepage.</p>
+			<p>You can return to these five pages at any time by following the links to "User Home > Conference Manager > Setup".</p>
+			<p>You can manage scheduled conferences through "User Home > Conference Manager > Setup"</p>
+			]]></message>
+
+	<message key="manager.setup.htmlSetupInstructions"><![CDATA[If using HTML in Setup text boxes (for font size, bold, color, etc.), note that "returns" in the text are automatically treated as <tt>&lt;br&gt;</tt>.]]></message>
+
 
 	<!--
 	     ***
@@ -992,29 +1004,7 @@ Note that if your site administrator has already registered this site with the P
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <b>Site URL</b>, and <span class="highlight">{$oaiUrl}</span> under <b>Base URL for OAI Archive</b>.]]></message>
 
-	<message key="manager.setup.indexing."></message>
-
 	<!-- THE STUFF BELOW MAY BE UNUSED -->
-
-	<message key="manager.setup.policies">Policies</message>
-	<message key="manager.setup.policies.description">Guidelines, review policy, and privacy statement.</message>
-	<message key="manager.setup.access">Access</message>
-	<message key="manager.setup.access.description">Access controls; presenter and participant self-registration; logging.</message>
-	<message key="manager.setup.indexing">Indexing</message>
-	<message key="manager.setup.indexing.description">Content categories and metadata.</message>
-	<message key="manager.setup.look">The Look</message>
-	<message key="manager.setup.look.description">Homepage header, content, conference header, footer, navigation bar, and style sheet.</message>
-	<message key="manager.setup.conferenceSetupUpdated">Your conference setup has been updated.</message>
-	<message key="manager.setup.selectOne">Select one</message>
-	<message key="manager.setup.finalStepSavedNotes">
-		<![CDATA[
-			<p>Almost Done!</p>
-			<p>A conference has now been set up, which may entail a single scheduled conference, an annual conference, or a series of scheduled conferences, all of which can be managed from this conference site. In order to schedule a specific instance of this conference, go to <a href="{$schedConfSetupUrl}">Scheduled Conferences</a>. You may access this page at any time via the Conference Manager's homepage.</p>
-			<p>You can return to these five pages at any time by following the links to "User Home > Conference Manager > Setup".</p>
-			<p>You can manage scheduled conferences through "User Home > Conference Manager > Setup"</p>
-			]]></message>
-
-	<message key="manager.setup.htmlSetupInstructions"><![CDATA[If using HTML in Setup text boxes (for font size, bold, color, etc.), note that "returns" in the text are automatically treated as <tt>&lt;br&gt;</tt>.]]></message>
 
 	<!-- Conference Setup Step 1: Details -->
 	<message key="manager.setup.gettingDownTheDetails">Step 1. Getting Down the Details</message>

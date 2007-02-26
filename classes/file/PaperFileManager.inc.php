@@ -241,7 +241,7 @@ class PaperFileManager extends FileManager {
 	}
 
 	/**
-	 * Delete the entire tree of files belonging to an paper.
+	 * Delete the entire tree of files belonging to a paper.
 	 */
 	function deletePaperTree() {
 		parent::rmtree($this->filesDir);
@@ -424,7 +424,7 @@ class PaperFileManager extends FileManager {
 	}
 
 	/**
-	 * PRIVATE routine to generate a filename for an paper file. Sets the filename
+	 * PRIVATE routine to generate a filename for a paper file. Sets the filename
 	 * field in the paperFile to the generated value.
 	 * @param $paperFile The paper to generate a filename for
 	 * @param $type The type of the paper (e.g. as supplied to handleUpload)
@@ -489,7 +489,7 @@ class PaperFileManager extends FileManager {
 	}
 
 	/**
-	 * PRIVATE routine to write an paper file and add it to the database.
+	 * PRIVATE routine to write a paper file and add it to the database.
 	 * @param $fileName original filename of the file
 	 * @param $contents string contents of the file to write
 	 * @param $mimeType string the mime type of the file
@@ -542,7 +542,7 @@ class PaperFileManager extends FileManager {
 	}
 
 	/**
-	 * PRIVATE routine to copy an paper file and add it to the database.
+	 * PRIVATE routine to copy a paper file and add it to the database.
 	 * @param $url original filename/url of the file
 	 * @param $mimeType string the mime type of the file
 	 * @param $type string identifying type

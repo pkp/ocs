@@ -1389,7 +1389,7 @@ class ImportOCS1 {
 	}
 	
 	/**
-	 * Copy an paper file.
+	 * Copy a paper file.
 	 * @param $paperId int
 	 * @param $oldFileId int
 	 * @param $fileType string
@@ -1444,7 +1444,7 @@ class ImportOCS1 {
 	}
 	
 	/**
-	 * Copy all image files for an paper's HTML galley.
+	 * Copy all image files for a paper's HTML galley.
 	 * @param $galley PaperHTMLGalley
 	 * @param $prefix string image file prefix, e.g. "<abbrev>-<year>-<id>"
 	 */

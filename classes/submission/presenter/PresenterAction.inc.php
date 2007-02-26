@@ -85,7 +85,7 @@ class PresenterAction extends Action {
 	}
 
 	/**
-	 * Upload the revised version of an paper.
+	 * Upload the revised version of a paper.
 	 * @param $presenterSubmission object
 	 */
 	function uploadRevisedVersion($presenterSubmission) {

@@ -107,7 +107,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	}
 	
 	/**
-	 * Upload the reviewer's annotated version of an paper.
+	 * Upload the reviewer's annotated version of a paper.
 	 */
 	function uploadReviewerVersion() {
 		$reviewId = Request::getUserVar('reviewId');
@@ -120,7 +120,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	}
 
 	/*
-	 * Delete one of the reviewer's annotated versions of an paper.
+	 * Delete one of the reviewer's annotated versions of a paper.
 	 */
 	function deleteReviewerVersion($args) {		
                 $reviewId = isset($args[0]) ? (int) $args[0] : 0;

@@ -156,7 +156,7 @@ class PublishedPaper extends Paper {
 	}
 
 	/**
-	 * Get the galleys for an paper.
+	 * Get the galleys for a paper.
 	 * @return array PaperGalley
 	 */
 	function &getGalleys() {
@@ -165,7 +165,7 @@ class PublishedPaper extends Paper {
 	}
 	
 	/**
-	 * Set the galleys for an paper.
+	 * Set the galleys for a paper.
 	 * @param $galleys array PaperGalley
 	 */
 	function setGalleys(&$galleys) {

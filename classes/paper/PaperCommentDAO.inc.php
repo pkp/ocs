@@ -144,7 +144,7 @@ class PaperCommentDAO extends DAO {
 	}	
 	
 	/**
-	 * Creates and returns an paper comment object from a row
+	 * Creates and returns a paper comment object from a row
 	 * @param $row array
 	 * @return PaperComment object
 	 */
@@ -204,7 +204,7 @@ class PaperCommentDAO extends DAO {
 	}	
 
 	/**
-	 * removes an paper comment from paper_comments table
+	 * removes a paper comment from paper_comments table
 	 * @param PaperComment object
 	 */
 	function deletePaperComment($paperComment) {
@@ -212,7 +212,7 @@ class PaperCommentDAO extends DAO {
 	}
 
 	/**
-	 * removes an paper note by id
+	 * removes a paper note by id
 	 * @param noteId int
 	 */
 	function deletePaperCommentById($commentId) {
@@ -222,7 +222,7 @@ class PaperCommentDAO extends DAO {
 	}
 	
 	/**
-	 * Delete all comments for an paper.
+	 * Delete all comments for a paper.
 	 * @param $paperId int
 	 */
 	function deletePaperComments($paperId) {
@@ -232,7 +232,7 @@ class PaperCommentDAO extends DAO {
 	}
 	
 	/**
-	 * updates an paper comment
+	 * updates a paper comment
 	 * @param PaperComment object
 	 */
 	function updatePaperComment($paperComment) {

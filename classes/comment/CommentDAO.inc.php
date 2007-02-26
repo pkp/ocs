@@ -112,7 +112,7 @@ class CommentDAO extends DAO {
 	}	
 	
 	/**
-	 * Creates and returns an paper comment object from a row
+	 * Creates and returns a paper comment object from a row
 	 * @param $row array
 	 * @return Comment object
 	 */
@@ -201,7 +201,7 @@ class CommentDAO extends DAO {
 	}
 
 	/**
-	 * removes an paper comment from paper_comments table
+	 * removes a paper comment from paper_comments table
 	 * @param Comment object
 	 */
 	function deleteComment(&$comment, $isRecursing = false) {

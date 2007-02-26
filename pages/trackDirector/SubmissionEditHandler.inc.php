@@ -886,7 +886,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	}
 
 	/**
-	 * Delete an paper image.
+	 * Delete a paper image.
 	 * @param $args array ($paperId, $fileId)
 	 */
 	function deletePaperImage($args) {

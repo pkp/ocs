@@ -71,7 +71,7 @@ class PaperNoteDAO extends DAO {
 	}	
 	
 	/**
-	 * creates and returns an paper note object from a row
+	 * creates and returns a paper note object from a row
 	 * @param $row array
 	 * @return PaperNote object
 	 */
@@ -128,7 +128,7 @@ class PaperNoteDAO extends DAO {
 	}	
 
 	/**
-	 * removes an paper note by id
+	 * removes a paper note by id
 	 * @param noteId int
 	 */
 	function deletePaperNoteById($noteId) {
@@ -138,7 +138,7 @@ class PaperNoteDAO extends DAO {
 	}
 	
 	/**
-	 * updates an paper note
+	 * updates a paper note
 	 * @param PaperNote object
 	 */
 	function updatePaperNote($paperNote) {

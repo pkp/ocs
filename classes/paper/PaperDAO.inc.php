@@ -29,7 +29,7 @@ class PaperDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve an paper by ID.
+	 * Retrieve a paper by ID.
 	 * @param $paperId int
 	 * @return Paper
 	 */
@@ -326,7 +326,7 @@ class PaperDAO extends DAO {
 	}
 	
 	/**
-	 * Delete an paper.
+	 * Delete a paper.
 	 * @param $paper Paper
 	 */
 	function deletePaper(&$paper) {
@@ -334,7 +334,7 @@ class PaperDAO extends DAO {
 	}
 	
 	/**
-	 * Delete an paper by ID.
+	 * Delete a paper by ID.
 	 * @param $paperId int
 	 */
 	function deletePaperById($paperId) {

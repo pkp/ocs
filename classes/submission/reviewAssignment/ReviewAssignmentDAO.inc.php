@@ -80,7 +80,7 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Determine the order of active reviews for the given stage of the given paper
+	 * Determine the order of active reviews for the given stage of the give paper
 	 * @param $paperId int
 	 * @param $stage int
 	 * @return array associating review ID with number; ie if review ID 26 is first, returned['26']=0
@@ -130,7 +130,7 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get all review assignments for an paper.
+	 * Get all review assignments for a paper.
 	 * @param $paperId int
 	 * @return array ReviewAssignments
 	 */
@@ -234,7 +234,7 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get all presenter-viewable reviewer files for an paper for each stage.
+	 * Get all presenter-viewable reviewer files for a paper for each stage.
 	 * @param $paperId int
 	 * @return array returned[stage][reviewer_index] = array of PaperFiles
 	 */
@@ -332,7 +332,7 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get all cancelled/declined review assignments for an paper.
+	 * Get all cancelled/declined review assignments for a paper.
 	 * @param $paperId int
 	 * @return array ReviewAssignments
 	 */

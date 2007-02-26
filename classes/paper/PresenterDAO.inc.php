@@ -47,7 +47,7 @@ class PresenterDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve all presenters for an paper.
+	 * Retrieve all presenters for a paper.
 	 * @param $paperId int
 	 * @return array Presenters ordered by sequence
 	 */
@@ -163,7 +163,7 @@ class PresenterDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve the IDs of all presenters for an paper.
+	 * Retrieve the IDs of all presenters for a paper.
 	 * @param $paperId int
 	 * @return array int ordered by sequence
 	 */
@@ -312,7 +312,7 @@ class PresenterDAO extends DAO {
 	}
 	
 	/**
-	 * Sequentially renumber an paper's presenters in their sequence order.
+	 * Sequentially renumber a paper's presenters in their sequence order.
 	 * @param $paperId int
 	 */
 	function resequencePresenters($paperId) {

@@ -151,7 +151,7 @@ class TemporaryFileManager extends FileManager {
 	}
 
 	/**
-	 * Create a new temporary file from an paper file.
+	 * Create a new temporary file from a paper file.
 	 * @param $paperFile object
 	 * @param $userId int
 	 * @return object The new TemporaryFile or false on failure

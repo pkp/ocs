@@ -86,7 +86,7 @@ class SearchFileParser {
 	//
 	
 	/**
-	 * Create a text parser for an paper file.
+	 * Create a text parser for a paper file.
 	 * @param $file PaperFile
 	 * @return SearchFileParser
 	 */

@@ -113,7 +113,7 @@ class SchedConfStatisticsDAO extends DAO {
 						$returner['submissionsDecline']++;
 						break;
 					default:
-						// If an paper is published
+						// If a paper is published
 						// but no decision recorded,
 						// assume it was accepted
 						if (isset($row['pub_id'])) {
