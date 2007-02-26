@@ -749,6 +749,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.schedConfs.form.titleRequired">A title is required.</message>
 	<message key="manager.schedConfs.form.pathRequired">A path is required.</message>
 	<message key="manager.schedConfs.form.pathExists">The selected path is already in use in this conference.</message>
+	<message key="manager.schedConfs.form.pathAlphaNumeric">The path can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
 
 	<!-- Conference Management -->
 	<message key="manager.conferenceSiteManagement">Conference Site Management</message>

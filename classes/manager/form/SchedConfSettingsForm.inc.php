@@ -36,6 +36,7 @@ class SchedConfSettingsForm extends Form {
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'manager.schedConfs.form.titleRequired'));
 		$this->addCheck(new FormValidator($this, 'path', 'required', 'manager.schedConfs.form.pathRequired'));
 		$this->addCheck(new FormValidatorAlphaNum($this, 'path', 'required', 'manager.schedConfs.form.pathAlphaNumeric'));
+		$this->addCheck(new FormValidatorCustom($this, 'path', 'required', 'manager.schedConfs.form.pathExists', create_function('$path,$form,$schedConfDao', 'return !$schedConfDao->schedConfExistsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('SchedConfDAO'))));
 	}
 	
 	/**
@@ -135,7 +136,7 @@ class SchedConfSettingsForm extends Form {
 		} else {
 			$schedConfId = $schedConfDao->insertSchedConf($schedConf);
 			$schedConf->updateSetting('schedConfIntroduction', $this->getData('description'));
-			$schedConfDao->resequencSchedConfs();
+			$schedConfDao->resequenceSchedConfs();
 
 			// Make the file directories for the scheduled conference
 			import('file.FileManager');

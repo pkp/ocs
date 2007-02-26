@@ -514,6 +514,10 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
+		<field name="meta_reviewed" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<field name="meta_indexed" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
