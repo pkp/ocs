@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="manager.setup.submissionReview}
+{assign var="pageTitle" value="manager.schedConfSetup.review.title"}
 {include file="manager/schedConfSetup/setupHeader.tpl"}
 
 <form method="post" action="{url op="saveSchedConfSetup" path="3"}">

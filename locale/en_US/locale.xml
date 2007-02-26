@@ -1007,25 +1007,15 @@ Note that if your site administrator has already registered this site with the P
 	<!-- THE STUFF BELOW MAY BE UNUSED -->
 
 	<!-- Conference Setup Step 1: Details -->
-	<message key="manager.setup.gettingDownTheDetails">Step 1. Getting Down the Details</message>
 	<message key="manager.setup.conferenceSetupNotes"><![CDATA[Conferences are set up in two stages. The first stage is concerned with the conference in general, whether it is held only once, run annually, or run as a series. The second set of steps, which are completed after these initial steps are in place, concerns the specific and scheduled instances of the conference. This permits a website to be run for the conference in general, with many instances of it available to readers (e.g., My Conference, with My Conference 2007; My Conference 2008, etc.) Conference Managers set up the general conference site.]]></message>
 	<message key="manager.setup.generalInformation">General Information</message>
 	<message key="manager.setup.conferenceAcronym">Conference acronym</message>
 	<message key="manager.setup.conferenceDescription">Conference Description</message>
 	<message key="manager.setup.conferenceIntroduction">Conference Introduction</message>
 	<message key="manager.setup.conferenceIntroductionDescription">An introduction provides participants with a concise synopsis of the conference. Typically, introductions do not exceed 100 words. The introduction is used when a longer overview is not appropriate.</message>
-	<message key="manager.setup.conferenceOverview">Conference Overview</message>
-	<message key="manager.setup.conferenceOverviewDescription">An overview details the whole of the conference. It includes such items as direction, topics, and structure.</message>
 	<message key="manager.setup.principalContact">Principal Contact</message>
 	<message key="manager.setup.principalContactDescription">This position, which can be treated as a principal editorship, managing editorship, or administrative staff position, will be listed on the homepage of the conference under Contact, along with the Technical Support Contact.</message>
-	<message key="manager.setup.technicalSupportContact">Technical Support Contact</message>
-	<message key="manager.setup.technicalSupportContactDescription">This person will be listed on the conference's Contact page for the use of presenters and reviewers, and should have experience working through the system from the perspective of all of its roles. As this conference system requires very little technical support, this should be seen as a part-time assignment. There may be occasions, for example, when presenters and reviewers have difficulties with the instructions or file formats, or there's a need to ensure that the conference is regularly backed up on the server.</message>
 	<message key="manager.setup.emails">Email Identification</message>
-	<message key="manager.setup.emailBounceAddress">Bounce Address</message>
-	<message key="manager.setup.emailBounceAddressDescription">Any undeliverable emails will result in an error message to this address.</message>
-	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>allow_envelope_sender</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
-	<message key="manager.setup.emailSignature">Signature</message>
-	<message key="manager.setup.emailSignatureDescription">The prepared emails that are sent by the system on behalf of the conference will have the following signature added to the end. The body of the prepared emails are available for editing under Conference Management.</message>
 	<!-- message key="manager.setup.form.conferenceTitleRequired">The conference title is required.</message>
 	<message key="manager.setup.form.conferenceAcronymRequired">The conference acronym is required.</message>
 	<message key="manager.setup.form.contactNameRequired">The primary contact name is required.</message>
@@ -1033,12 +1023,8 @@ Note that if your site administrator has already registered this site with the P
 	<message key="manager.setup.form.supportNameRequired">The support name is required.</message>
 	<message key="manager.setup.form.supportEmailRequired">The support email is required.</message -->
 
-	<!-- Conference Setup Step 2: Policy -->
-	<message key="manager.setup.conferencePolicies">Step 2. Conference Policies</message>
-
 	<!-- Conference Setup Step 3: Access -->
-	<message key="manager.setup.accessAndPermissions">Step 3. Access and Permissions</message>
-		<message key="manager.setup.conferenceArchiving">Conference Archiving</message>
+	<message key="manager.setup.conferenceArchiving">Conference Archiving</message>
 	<message key="manager.setup.lockssDescription"><![CDATA[Open Conference Systems supports the <a href="http://lockss.stanford.edu/" target="_blank">LOCKSS</a> (Lots of Copies Keep Stuff Safe) system to ensure a secure and permanent archive for the conference. LOCKSS is open source software developed at Stanford University Library that enables libraries to preserve selected web conferences by regularly polling registered conference websites for newly published content and archiving it. Each archive is continually validated against other library caches, and if content is found to be corrupted or lost, the other caches or the conference is used to restore it.
 <br /><br />
 Setting up LOCKSS support for Open Conference Systems does not need to take place until after publishing is fully underway, at which point follow these two steps:]]></message>
@@ -1056,7 +1042,6 @@ Setting up LOCKSS support for Open Conference Systems does not need to take plac
 
 
 	<!-- Conference Setup Step 4: Indexing -->
-	<message key="manager.setup.indexingAndMetadata">Step 4. Indexing and Metadata</message>
 	<message key="manager.setup.forPresentersToIndexTheirWork">For Presenters to Index Their Work</message>
 	<message key="manager.setup.forPresentersToIndexTheirWorkDescription"><![CDATA[OCS adheres to the <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting, which is the emerging standard for providing well-indexed access to electronic research resources on a global scale. The presenters will use a similar template to provide metadata for their submission. The Conference Manager should select the categories for indexing and present presenters with relevant examples to assist them in indexing their work, separating terms with a semi-colon (e.g., term1; term2). The entries should be introduced as examples by using "E.g.," or "For example,".]]></message>
 	<message key="manager.setup.discipline">Academic Discipline and Sub-Disciplines</message>
@@ -1104,17 +1089,60 @@ Title of classification system]]></message>
 	     *** Scheduled Conference Setup
 	     ***
 	-->
-	<message key="manager.setup.schedConfSetup">Scheduled Conference Setup</message>
-	<message key="manager.schedConfSetup.details">Details</message>
-	<message key="manager.schedConfSetup.details.description">Conference title, introduction &amp; overview, contacts, and sponsors.</message>
-	<message key="manager.schedConfSetup.stepsToSchedConf">These steps are designed to set up a specific instance of the conference. Once a conference is set up in this way, the setup content will be copied to the next instance of the conference as the default setup that can be edited by the current conference managers.</message>
+	<message key="manager.schedConfSetup.stepsToSchedConf">These steps are designed to set up a scheduled instance of the conference. Once a conference is set up, it is copied to the next instance of the conference, and can be edited by the conference directors.</message>
+	<message key="manager.schedConfSetup.schedConfSetup">Scheduled Conference Setup</message>
 
-	<message key="manager.schedConfSetup.location">Scheduled Conference Location</message>
-	<message key="manager.schedConfSetup.locationDescription">The location (institution, department, and mailing address) at which the conference will be held.</message>
+	<message key="manager.schedConfSetup.details">Details</message>
 	<message key="manager.schedConfSetup.submissions">Submissions</message>
-	<message key="manager.schedConfSetup.submissions.description">Presenter registration, submissions, and presenter notification.</message>
 	<message key="manager.schedConfSetup.review">Review</message>
-	<message key="manager.schedConfSetup.review.description">Review model.</message>
+
+	<message key="manager.schedConfSetup.details.description">Description, location, contacts, email identification, and sponsors.</message>
+	<message key="manager.schedConfSetup.submissions.description">Submission process and types, call for papers, guidelines, indexing, and identification.</message>
+	<message key="manager.schedConfSetup.review.description">Review policies, models, and guidelines.</message>
+
+	<message key="manager.schedConfSetup.details.title">Step 1. Details</message>
+	<message key="manager.schedConfSetup.submissions.title">Step 2. Submissions</message>
+	<message key="manager.schedConfSetup.review.title">Step 3. Review Process</message>
+
+	<!-- Scheduled Conference Setup Step 1 -->
+	<message key="manager.schedConfSetup.details.description">Scheduled Conference Description</message>
+	<message key="manager.schedConfSetup.details.description.description">A brief description of the conference that can be used to publicize the event.</message>
+	<message key="manager.schedConfSetup.details.overview.description">An overview of the theme, scope, and focus.</message>
+	<message key="manager.schedConfSetup.details.location">Scheduled Conference Location</message>
+	<message key="manager.schedConfSetup.details.location.description">The location (institution, department, and mailing address) at which the conference will be held.</message>
+	<message key="manager.schedConfSetup.details.principalContact">Principal Contact for Scheduled Conference</message>
+	<message key="manager.schedConfSetup.details.technicalSupportContact">Technical Support Contact</message>
+	<message key="manager.schedConfSetup.details.technicalSupportContact.description">This person will be listed on the scheduled conference's Contact page for the use of presenters and reviewers, and should have experience working through the system from the perspective of all of its roles. As this conference system requires very little technical support, this should be seen as a part-time assignment. There may be occasions, for example, when presenters and reviewers have difficulties with the instructions or file formats, or there's a need to ensure that the conference is regularly backed up on the server.</message>
+	<message key="manager.schedConfSetup.details.emails">Email Identification</message>
+	<message key="manager.schedConfSetup.details.emailSignature">Signature</message>
+	<message key="manager.schedConfSetup.details.emailSignature.description">The prepared emails that are sent by the system on behalf of the conference will have the following signature added to the end. The body of the prepared emails are available for editing under Conference Management.</message>
+	<message key="manager.schedConfSetup.details.emailBounceAddress">Bounce Address</message>
+	<message key="manager.schedConfSetup.details.emailBounceAddress.description">Any undeliverable emails will result in an error message to this address.</message>
+	<message key="manager.schedConfSetup.details.emailBounceAddressDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>allow_envelope_sender</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
+	<message key="manager.schedConfSetup.details.sponsors">Sponsoring Organizations</message>
+	<message key="manager.schedConfSetup.details.sponsors.description">The name of the organizations (e.g., scholarly associations, university department, etc.) sponsoring the conference, to appear on the conference homepage and may be accompanied by a note of acknowledgement.</message>
+	<message key="manager.schedConfSetup.details.addSponsor">Add Sponsoring Organization</message>
+	<message key="manager.schedConfSetup.details.institution">Institution</message>
+	<message key="manager.schedConfSetup.details.contributors">Sources of Support</message>
+	<message key="manager.schedConfSetup.details.contributors.description">Additional agencies or organizations that provide financial or in-kind support for the conference will appear on the conference homepage and may be accompanied by a note of acknowledgement.</message>
+	<message key="manager.schedConfSetup.details.contributor">Contributor</message>
+	<message key="manager.schedConfSetup.details.addContributor">Add Contributor</message>
+	<message key="manager.schedConfSetup.details.note">Note</message>
+	<message key="manager.schedConfSetup.details.contactNameRequired">The primary contact name is required.</message>
+	<message key="manager.schedConfSetup.details.contactEmailRequired">The primary contact email is required.</message>
+	<message key="manager.schedConfSetup.details.supportNameRequired">The support name is required.</message>
+	<message key="manager.schedConfSetup.details.supportEmailRequired">The support email is required.</message>
+
+	<!-- Scheduled Conference Setup Step 2 -->
+	<message key="manager.schedConfSetup.submissions."></message>
+
+	<!-- Scheduled Conference Setup Step 3 -->
+	<message key="manager.schedConfSetup.review."></message>
+
+
+	<!-- BELOW HERE MAY BE UNUSED -->
+
+
 	<message key="manager.setup.participation">Participation</message>
 	<message key="manager.setup.participation.description">Reader registration &amp; access to proceedings.</message>
 	<message key="manager.setup.publication">Publication</message>
@@ -1134,15 +1162,6 @@ Title of classification system]]></message>
 	<message key="manager.setup.description">Scheduled conference description</message>
 	<message key="manager.setup.program">Scheduled Conference Program</message>
 	<message key="manager.setup.programDescription">Lay out the program by date, time, location, and event. Update this information as you begin to finalize your list of presenters and presentation titles.</message>
-	<message key="manager.setup.note">Note</message>
-	<message key="manager.setup.sponsors">Sponsoring Organizations</message>
-	<message key="manager.setup.sponsorsDescription">The name of the organizations (e.g., scholarly associations, university departments, cooperatives, etc.) sponsoring the conference will appear on the conference homepage and may be accompanied by a note of acknowledgement.</message>
-	<message key="manager.setup.addSponsor">Add Sponsoring Organization</message>
-	<message key="manager.setup.institution">Institution</message>
-	<message key="manager.setup.contributors">Sources of Support</message>
-	<message key="manager.setup.contributorsDescription">Additional agencies or organizations that provide financial or in-kind support for the conference will appear on the conference homepage and may be accompanied by a note of acknowledgement.</message>
-	<message key="manager.setup.contributor">Contributor</message>
-	<message key="manager.setup.addContributor">Add Contributor</message>
 
 	<!-- Scheduled Conference Setup Step 2 -->
 	<message key="manager.schedConfSetup.reviewPolicy">Review Policy</message>

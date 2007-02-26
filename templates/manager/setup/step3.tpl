@@ -245,7 +245,7 @@
 
 <p>{translate key="manager.setup.layout.alternateHeaderDescription"}</p>
 
-<p><textarea name="conferencePageHeader" id="conferencePageHeader" rows="12" cols="60" class="textArea">{$conferencePageHeader|escape}</textarea></p>
+<p><textarea name="conferencePageHeader" id="conferencePageHeader" rows="10" cols="60" class="textArea">{$conferencePageHeader|escape}</textarea></p>
 
 
 <div class="separator"></div>
@@ -255,7 +255,7 @@
 
 <p>{translate key="manager.setup.layout.conferencePageFooterDescription"}</p>
 
-<p><textarea name="conferencePageFooter" id="conferencePageFooter" rows="12" cols="60" class="textArea">{$conferencePageFooter|escape}</textarea></p>
+<p><textarea name="conferencePageFooter" id="conferencePageFooter" rows="10" cols="60" class="textArea">{$conferencePageFooter|escape}</textarea></p>
 
 
 <div class="separator"></div>

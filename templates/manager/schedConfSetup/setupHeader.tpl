@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{assign var="pageCrumbTitle" value="manager.setup.schedConfSetup"}
+{assign var="pageCrumbTitle" value="manager.schedConfSetup.schedConfSetup"}
 {url|assign:"currentUrl" op="schedConfSetup"}
 {include file="common/header.tpl"}
 
@@ -18,7 +18,5 @@
 	<li{if $setupStep == 1} class="current"{/if}><a href="{url op="schedConfSetup" path="1"}">1. {translate key="manager.schedConfSetup.details"}</a></li>
 	<li{if $setupStep == 2} class="current"{/if}><a href="{url op="schedConfSetup" path="2"}">2. {translate key="manager.schedConfSetup.submissions"}</a></li>
 	<li{if $setupStep == 3} class="current"{/if}><a href="{url op="schedConfSetup" path="3"}">3. {translate key="manager.schedConfSetup.review"}</a></li>
-	<li{if $setupStep == 4} class="current"{/if}><a href="{url op="schedConfSetup" path="4"}">4. {translate key="manager.setup.participation"}</a></li>
-	<li{if $setupStep == 5} class="current"{/if}><a href="{url op="schedConfSetup" path="5"}">5. {translate key="manager.setup.look"}</a></li>
 </ul>
 

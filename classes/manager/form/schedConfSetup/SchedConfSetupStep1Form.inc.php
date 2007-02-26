@@ -21,43 +21,39 @@ class SchedConfSetupStep1Form extends SchedConfSetupForm {
 		parent::SchedConfSetupForm(
 			1,
 			array(
-				'schedConfTitle' => 'string',
+				'schedConfDescription' => 'string',
 				'schedConfOverview' => 'string',
-				'schedConfIntroduction' => 'string',
 				'location' => 'string',
+				'contactName' => 'string',
+				'contactTitle' => 'string',
+				'contactAffiliation' => 'string',
+				'contactEmail' => 'string',
+				'contactPhone' => 'string',
+				'contactFax' => 'string',
+				'contactMailingAddress' => 'string',
+				'supportName' => 'string',
+				'supportEmail' => 'string',
+				'supportPhone' => 'string',
+				'emailSignature' => 'string',
+				'envelopeSender' => 'string',
 				'sponsorNote' => 'string',
 				'sponsors' => 'object',
 				'contributorNote' => 'string',
 				'contributors' => 'object'
 			)
 		);
-		
-		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'schedConfTitle', 'required', 'schedConfManager.setup.form.schedConfTitleRequired'));
 
-		// TODO: Validation checks for scheduled conference start and end date
+		$this->addCheck(new FormValidator($this, 'contactName', 'required', 'manager.schedConfSetup.details.contactNameRequired'));
+		$this->addCheck(new FormValidatorEmail($this, 'contactEmail', 'required', 'manager.schedConfSetup.details.contactEmailRequired'));
+		$this->addCheck(new FormValidator($this, 'supportName', 'required', 'manager.schedConfSetup.details.supportNameRequired'));
+		$this->addCheck(new FormValidatorEmail($this, 'supportEmail', 'required', 'manager.schedConfSetup.details.supportEmailRequired'));
 	}
 
-	function initData() {
-		parent::initData();
-
-		$schedConf = &Request::getSchedConf();
-		$this->_data['schedConfTitle'] = $schedConf->getTitle();
-	}
-
-	function readInputData() {
-		parent::readInputData();
-		$this->_data['schedConfTitle'] = Request::getUserVar('schedConfTitle');
-	}
-
-	function execute() {
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$schedConf = Request::getSchedConf();
-
-		$schedConf->setTitle($this->_data['schedConfTitle']);
-		$schedConfDao->updateSchedConf($schedConf);
-
-		parent::execute();
+	function display() {
+		$templateMgr = &TemplateManager::getManager();
+		if (Config::getVar('email', 'allow_envelope_sender'))
+			$templateMgr->assign('envelopeSenderEnabled', true);
+		parent::display();
 	}
 }
 

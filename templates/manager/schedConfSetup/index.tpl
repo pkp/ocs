@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="manager.setup.schedConfSetup"}
+{assign var="pageTitle" value="manager.schedConfSetup.schedConfSetup"}
 {include file="common/header.tpl"}
 
 <span class="instruct">{translate key="manager.schedConfSetup.stepsToSchedConf"}</span>
@@ -28,16 +28,6 @@
 	<li>
 		<h4><a href="{url op="schedConfSetup" path="3"}">{translate key="manager.schedConfSetup.review"}</a></h4>
 		{translate key="manager.schedConfSetup.review.description"}<br/>
-		&nbsp;
-	</li>
-	<li>
-		<h4><a href="{url op="schedConfSetup" path="4"}">{translate key="manager.setup.participation"}</a></h4>
-		{translate key="manager.setup.participation.description"}<br/>
-		&nbsp;
-	</li>
-	<li>
-		<h4><a href="{url op="schedConfSetup" path="5"}">{translate key="manager.setup.look"}</a></h4>
-		{translate key="manager.setup.look.description"}<br/>
 		&nbsp;
 	</li>
 </ol>

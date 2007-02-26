@@ -38,7 +38,7 @@
 
 <p>{translate key="manager.setup.additionalContent.additionalContent.description"}</p>
 
-<p><textarea name="additionalHomeContent" id="additionalHomeContent" rows="12" cols="60" class="textArea">{$additionalHomeContent|escape}</textarea></p>
+<p><textarea name="additionalHomeContent" id="additionalHomeContent" rows="10" cols="60" class="textArea">{$additionalHomeContent|escape}</textarea></p>
 
 <div class="separator"></div>
 
@@ -48,11 +48,11 @@
 
 <h4>{translate key="manager.setup.additionalContent.information.forReaders"}</h4>
 
-<p><textarea name="readerInformation" id="readerInformation" rows="12" cols="60" class="textArea">{$readerInformation|escape}</textarea></p>
+<p><textarea name="readerInformation" id="readerInformation" rows="10" cols="60" class="textArea">{$readerInformation|escape}</textarea></p>
 
 <h4>{translate key="manager.setup.additionalContent.information.forPresenters"}</h4>
 
-<p><textarea name="presenterInformation" id="presenterInformation" rows="12" cols="60" class="textArea">{$presenterInformation|escape}</textarea></p>
+<p><textarea name="presenterInformation" id="presenterInformation" rows="10" cols="60" class="textArea">{$presenterInformation|escape}</textarea></p>
 
 <div class="separator"></div>
 
@@ -90,7 +90,7 @@
 
 <p>{translate key="manager.setup.additionalContent.announcementsIntroductionDescription"}</p>
 
-<p><textarea name="announcementsIntroduction" id="announcementsIntroduction" rows="12" cols="60" class="textArea">{$announcementsIntroduction|escape}</textarea></p>
+<p><textarea name="announcementsIntroduction" id="announcementsIntroduction" rows="10" cols="60" class="textArea">{$announcementsIntroduction|escape}</textarea></p>
 
 
 <div class="separator"></div>

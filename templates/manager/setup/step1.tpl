@@ -20,7 +20,7 @@
 <h3><label for="conferenceDescription">1.1 {translate key="manager.setup.aboutConference.conferenceDescription"}</label></h3>
 <span class="instruct">{translate key="manager.setup.aboutConference.conferenceDescription.description"}</span>
 
-<textarea name="conferenceDescription" id="conferenceDescription" rows="5" cols="80" class="textArea">{$conferenceDescription|escape}</textarea>
+<textarea name="conferenceDescription" id="conferenceDescription" rows="5" cols="60" class="textArea">{$conferenceDescription|escape}</textarea>
 
 <div class="separator"></div>
 
@@ -62,7 +62,7 @@
 <h3><label for="copyrightNotice">1.3 {translate key="manager.setup.aboutConference.copyrightNotice"}</label></h3>
 <p>{translate key="manager.setup.aboutConference.copyrightNotice.description"}</p>
 
-<p><textarea name="copyrightNotice" id="copyrightNotice" rows="10" cols="80" class="textArea">{$copyrightNotice|escape}</textarea></p>
+<p><textarea name="copyrightNotice" id="copyrightNotice" rows="10" cols="60" class="textArea">{$copyrightNotice|escape}</textarea></p>
 
 <p><input type="checkbox" name="copyrightNoticeAgree" id="copyrightNoticeAgree" value="1"{if $copyrightNoticeAgree} checked="checked"{/if} /> <label for="copyrightNoticeAgree">{translate key="manager.setup.aboutConference.copyrightNoticeAgree"}</label><br/>
 <input type="checkbox" name="postCreativeCommons" id="postCreativeCommons" value="1"{if $postCreativeCommons} checked="checked"{/if} /> <label for="postCreativeCommons">{translate key="manager.setup.aboutConference.postCreativeCommons"}</label><br/></p>
@@ -71,7 +71,7 @@
 
 <h3>1.4 {translate key="manager.setup.aboutConference.privacyStatement"}</h3>
 
-<p><textarea name="privacyStatement" id="privacyStatement" rows="10" cols="80" class="textArea">{$privacyStatement|escape}</textarea></p>
+<p><textarea name="privacyStatement" id="privacyStatement" rows="10" cols="60" class="textArea">{$privacyStatement|escape}</textarea></p>
 
 <div class="separator"></div>
 
@@ -85,7 +85,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="customAboutItems-$aboutId-content" key="manager.setup.aboutConference.aboutItemContent"}</td>
-		<td width="80%" class="value"><textarea name="customAboutItems[{$aboutId}][content]" id="customAboutItems-{$aboutId}-content" rows="12" cols="40" class="textArea">{$aboutItem.content|escape}</textarea></td>
+		<td width="80%" class="value"><textarea name="customAboutItems[{$aboutId}][content]" id="customAboutItems-{$aboutId}-content" rows="10" cols="40" class="textArea">{$aboutItem.content|escape}</textarea></td>
 	</tr>
 	{if !$smarty.foreach.customAboutItems.last}
 	<tr valign="top">
@@ -99,7 +99,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-content" key="manager.setup.aboutConference.aboutItemContent"}</td>
-		<td width="80%" class="value"><textarea name="customAboutItems[0][content]" id="customAboutItems-0-content" rows="12" cols="40" class="textArea"></textarea></td>
+		<td width="80%" class="value"><textarea name="customAboutItems[0][content]" id="customAboutItems-0-content" rows="10" cols="40" class="textArea"></textarea></td>
 	</tr>
 {/foreach}
 </table>
