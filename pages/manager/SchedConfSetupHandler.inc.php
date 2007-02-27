@@ -97,6 +97,39 @@ class SchedConfSetupHandler extends ManagerHandler {
 						$setupForm->setData('contributors', $contributors);
 					}
 					break;
+				case 2:
+					if (Request::getUserVar('addChecklist')) {
+						// Add a checklist item
+						$editData = true;
+						$checklist = $setupForm->getData('submissionChecklist');
+						if (!is_array($checklist)) {
+							$checklist = array();
+							$lastOrder = 0;
+						} else {
+							$lastOrder = $checklist[count($checklist)-1]['order'];
+						}
+						array_push($checklist, array('order' => $lastOrder+1));
+						$setupForm->setData('submissionChecklist', $checklist);
+						
+					} else if (($delChecklist = Request::getUserVar('delChecklist')) && count($delChecklist) == 1) {
+						// Delete a checklist item
+						$editData = true;
+						list($delChecklist) = array_keys($delChecklist);
+						$delChecklist = (int) $delChecklist;
+						$checklist = $setupForm->getData('submissionChecklist');
+						array_splice($checklist, $delChecklist, 1);
+						$setupForm->setData('submissionChecklist', $checklist);
+					}
+					
+					if (!isset($editData)) {
+						// Reorder checklist items
+						$checklist = $setupForm->getData('submissionChecklist');
+						if (is_array($checklist)) {
+							usort($checklist, create_function('$a,$b','return $a[\'order\'] == $b[\'order\'] ? 0 : ($a[\'order\'] < $b[\'order\'] ? -1 : 1);'));
+						}
+						$setupForm->setData('submissionChecklist', $checklist);
+					}
+					break;
 				case 4:
 					if (Request::getUserVar('uploadProgramFile')) {
 						if ($setupForm->uploadDocument('programFile')) {

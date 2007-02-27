@@ -1042,36 +1042,7 @@ Setting up LOCKSS support for Open Conference Systems does not need to take plac
 
 
 	<!-- Conference Setup Step 4: Indexing -->
-	<message key="manager.setup.forPresentersToIndexTheirWork">For Presenters to Index Their Work</message>
-	<message key="manager.setup.forPresentersToIndexTheirWorkDescription"><![CDATA[OCS adheres to the <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting, which is the emerging standard for providing well-indexed access to electronic research resources on a global scale. The presenters will use a similar template to provide metadata for their submission. The Conference Manager should select the categories for indexing and present presenters with relevant examples to assist them in indexing their work, separating terms with a semi-colon (e.g., term1; term2). The entries should be introduced as examples by using "E.g.," or "For example,".]]></message>
-	<message key="manager.setup.discipline">Academic Discipline and Sub-Disciplines</message>
-	<message key="manager.setup.disciplineDescription">Useful when conference crosses disciplinary boundaries and/or presenters submit multidisciplinary items.</message>
-	<message key="manager.setup.disciplineProvideExamples">Provide examples of relevant academic disciplines for this conference</message>
-	<message key="manager.setup.disciplineExamples">(E.g., History; Education; Sociology; Psychology; Cultural Studies; Law)</message>
-	<message key="manager.setup.subjectClassification">Subject Classification</message>
-	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Conference will use a subject classification system available on the web.<br />
-Title of classification system]]></message>
-	<message key="manager.setup.subjectClassificationExamples">(E.g., Mathematics Subject Classification; Library of Congress Classification)</message>
-	<message key="manager.setup.subjectKeywordTopic">Keywords</message>
-	<message key="manager.setup.subjectProvideExamples">Provide examples of keywords or topics as a guide for presenters</message>
-	<message key="manager.setup.subjectExamples">(E.g., Photosynthesis; Black Holes; Four-Color Map Problem; Bayesian Theory)</message>
-	<message key="manager.setup.coverage">Coverage</message>
-	<message key="manager.setup.coverageDescription">Refers to geo-spatial location, chronological or historical coverage, and/or characteristics of research sample.</message>
-	<message key="manager.setup.coverageGeoProvideExamples">Provide examples of relevant geo-spatial or geographical terms for this field</message>
-	<message key="manager.setup.coverageGeoExamples">(E.g., Iberian Peninsula; Stratosphere; Boreal Forest; etc.)</message>
-	<message key="manager.setup.coverageChronProvideExamples">Provide examples of relevant chronological or historical terms for this field</message>
-	<message key="manager.setup.coverageChronExamples">(E.g., European Renaissance; Jurassic Period; Third Trimester; etc.)</message>
-	<message key="manager.setup.coverageResearchSampleProvideExamples">Provide examples of research sample characteristics for this field</message>
-	<message key="manager.setup.coverageResearchSampleExamples">(E.g., Age; Gender; Ethnicity; etc.)</message>
-	<message key="manager.setup.typeMethodApproach">Type (Method/Approach)</message>
-	<message key="manager.setup.typeProvideExamples">Provide examples of relevant research types, methods, and approaches for this field</message>
-	<message key="manager.setup.typeExamples">(E.g., Historical Inquiry; Quasi-Experimental; Literary Analysis; Survey/Interview)</message>
 	<message key="manager.setup.managingTheConference">Step 4. Managing the Conference</message>
-	<message key="manager.setup.publicIdentifier">Identification of Conference Content</message>
-	<message key="manager.setup.uniqueIdentifier">Unique Identifier</message>
-	<message key="manager.setup.uniqueIdentifierDescription">Papers can be tagged with an identification number or string, if the conference is using an item registration system such as the Digital Object Identifier System (DOI).</message>
-	<message key="manager.setup.enablePublicPaperId">Custom identifiers will be used to identify posted papers.</message>
-	<message key="manager.setup.enablePublicSuppFileId">Custom identifiers will be used to identify supplemental files submitted with papers.</message>
 	<message key="manager.setup.onlineAccessManagement">Online Access Management</message>
 	<message key="manager.setup.openAccess">Provide open access to the conference's contents as each issue or item is published.</message>
 	<message key="manager.setup.openAccessPolicy">Open Access Policy (to appear in About the Conference)</message>
@@ -1134,7 +1105,58 @@ Title of classification system]]></message>
 	<message key="manager.schedConfSetup.details.supportEmailRequired">The support email is required.</message>
 
 	<!-- Scheduled Conference Setup Step 2 -->
-	<message key="manager.schedConfSetup.submissions."></message>
+	<message key="manager.schedConfSetup.submissions.submissionProcess">Submission Process</message>
+	<message key="manager.schedConfSetup.submissions.description"><![CDATA[Presenters can submit abstracts (short descriptions of the proposed presentation) and/or presentations (e.g., papers, PowerPoint slides, etc.) for review and/or posting on the conference website. Single or individual presentations can be submitted, as can multiple or panel presentations, submitted by a panel organizer. In addition, presenters can include supplementary files (e.g., data sets, source materials, related paper) with their abstracts and/or presentations.]]></message>
+	<message key="manager.schedConfSetup.submissions.presentationMaterials">Presentation Materials</message>
+	<message key="manager.schedConfSetup.submissions.abstractsAlone">Abstracts alone.</message>
+	<message key="manager.schedConfSetup.submissions.presentationsAlone">Presentations alone.</message>
+	<message key="manager.schedConfSetup.submissions.bothTogether">Abstracts and presentations together.</message>
+	<message key="manager.schedConfSetup.submissions.bothSequential">Abstracts followed by presentations.</message>
+	<message key="manager.schedConfSetup.submissions.allowIndividualSubmissions">Individual presentations, submitted by presenter.</message>
+	<message key="manager.schedConfSetup.submissions.allowPanelSubmissions">Multiple presentations, submitted by panel organizer.</message>
+	<message key="manager.schedConfSetup.submissions.suppFiles">Supplementary Materials</message>
+	<message key="manager.schedConfSetup.submissions.acceptSupplementaryReviewMaterials">Supplementary files can be submitted with abstracts and presentations.</message>
+	<message key="manager.schedConfSetup.notifications">Submission Notification</message>
+	<message key="manager.schedConfSetup.submissions.notifications.description">Copies of acknowledgement email to submitter should go to the following:</message>
+	<message key="manager.schedConfSetup.submissions.notifications.copyPrimaryContact">The conference’s primary contact.</message>
+	<message key="manager.schedConfSetup.submissions.notifications.copySpecifiedAddress">This email address</message>
+	<message key="manager.schedConfSetup.submissions.notifications.submissionAckDisabled"><![CDATA[<strong>Note:</strong> The submission acknowledgement email is currently disabled. To use this feature, enable the SUBMISSION_ACK email in <a class="action" href="{$preparedEmailsUrl}">Prepared Emails</a>.]]></message>
+	<message key="manager.schedConfSetup.submissions.callForPapers">Call for Papers (CFP)</message>
+	<message key="manager.schedConfSetup.submissions.cfpMessage">CFP message</message>
+	<message key="manager.schedConfSetup.submissions.cfpMessageDescription"><![CDATA[This information is displayed in the "call-for-papers" link on this conference's home page.]]></message>
+	<message key="manager.schedConfSetup.submissions.presenterGuidelines">Presenter Guidelines</message>
+	<message key="manager.schedConfSetup.submissions.presenterGuidelinesDescription"><![CDATA[Set out for presenters bibliographic and formatting standards for submitting materials to the conference, with examples as required. If supplementary files are permitted, suggest types (e.g., data-sets, research instruments, etc.) which presenters should be encouraged to upload to enhance readers' engagement with their work.]]></message>
+	<message key="manager.schedConfSetup.submissions.preparationChecklist">Submission Preparation Checklist</message>
+	<message key="manager.schedConfSetup.submissions.preparationChecklist.description">On making a submission to the conference, presenters are required to check off items on the Submission Preparation Checklist. The checklist also appears in the Presenter Guidelines. The list below can be edited. All items on the list must be checked by presenter before submission will be accepted.</message>
+	<message key="manager.schedConfSetup.submissions.addChecklistItem">Add Checklist Item</message>
+	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWork">Submission Indexing</message>
+	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWorkDescription"><![CDATA[OCS adheres to the <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting, which is the emerging standard for providing well-indexed access to electronic research resources on a global scale. The presenters will use a similar template to provide metadata for their submission. The Conference Manager should select the categories for indexing and present presenters with relevant examples to assist them in indexing their work, separating terms with a semi-colon (e.g., term1; term2). The entries should be introduced as examples by using "E.g.," or "For example,".]]></message>
+	<message key="manager.schedConfSetup.submissions.discipline">Academic Discipline and Sub-Disciplines</message>
+	<message key="manager.schedConfSetup.submissions.disciplineDescription">Useful when conference crosses disciplinary boundaries and/or presenters submit multidisciplinary items.</message>
+	<message key="manager.schedConfSetup.submissions.disciplineProvideExamples">Provide examples of relevant academic disciplines for this conference</message>
+	<message key="manager.schedConfSetup.submissions.disciplineExamples">(E.g., History; Education; Sociology; Psychology; Cultural Studies; Law)</message>
+	<message key="manager.schedConfSetup.submissions.subjectClassification">Subject Classification</message>
+	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[[Conference will use a subject classification system available on the web.<br />
+Title of classification system]]></message>
+	<message key="manager.schedConfSetup.submissions.subjectClassificationExamples">(E.g., Mathematics Subject Classification; Library of Congress Classification)</message>
+	<message key="manager.schedConfSetup.submissions.subjectKeywordTopic">Keywords</message>
+	<message key="manager.schedConfSetup.submissions.subjectProvideExamples">Provide examples of keywords or topics as a guide for presenters</message>
+	<message key="manager.schedConfSetup.submissions.subjectExamples">(E.g., Photosynthesis; Black Holes; Four-Color Map Problem; Bayesian Theory)</message>
+	<message key="manager.schedConfSetup.submissions.coverage">Coverage</message>
+	<message key="manager.schedConfSetup.submissions.coverageDescription">Refers to geo-spatial location, chronological or historical coverage, and/or characteristics of research sample.</message>
+	<message key="manager.schedConfSetup.submissions.coverageGeoProvideExamples">Provide examples of relevant geo-spatial or geographical terms for this field</message>
+	<message key="manager.schedConfSetup.submissions.coverageGeoExamples">(E.g., Iberian Peninsula; Stratosphere; Boreal Forest; etc.)</message>
+	<message key="manager.schedConfSetup.submissions.coverageChronProvideExamples">Provide examples of relevant chronological or historical terms for this field</message>
+	<message key="manager.schedConfSetup.submissions.coverageChronExamples">(E.g., European Renaissance; Jurassic Period; Third Trimester; etc.)</message>
+	<message key="manager.schedConfSetup.submissions.coverageResearchSampleProvideExamples">Provide examples of research sample characteristics for this field</message>
+	<message key="manager.schedConfSetup.submissions.coverageResearchSampleExamples">(E.g., Age; Gender; Ethnicity; etc.)</message>
+	<message key="manager.schedConfSetup.submissions.typeMethodApproach">Type (Method/Approach)</message>
+	<message key="manager.schedConfSetup.submissions.typeProvideExamples">Provide examples of relevant research types, methods, and approaches for this field</message>
+	<message key="manager.schedConfSetup.submissions.typeExamples">(E.g., Historical Inquiry; Quasi-Experimental; Literary Analysis; Survey/Interview)</message>
+	<message key="manager.schedConfSetup.submissions.publicIdentifier">Identification of Conference Content</message>
+	<message key="manager.schedConfSetup.submissions.uniqueIdentifierDescription">Papers can be tagged with an identification number or string, if the conference is using an item registration system such as the Digital Object Identifier System (DOI).</message>
+	<message key="manager.schedConfSetup.submissions.enablePublicPaperId">Identifiers will be added to accepted presentations.</message>
+	<message key="manager.schedConfSetup.submissions.enablePublicSuppFileId">Identifiers will be added to supplemental files with accepted presentations.</message>
 
 	<!-- Scheduled Conference Setup Step 3 -->
 	<message key="manager.schedConfSetup.review."></message>
@@ -1169,16 +1191,8 @@ Title of classification system]]></message>
 	<message key="manager.schedConfSetup.reviewGuidelines">Review Guidelines</message>
 	<message key="manager.schedConfSetup.reviewGuidelinesDescription">The Review Guidelines provide reviewers with criteria for judging a submission's suitability for acceptance to the conference, as well as any special instructions for preparing an effective and helpful review.</message>
 	<message key="manager.setup.guidingSubmissions">Step 2. Guiding Submissions</message>
-	<message key="manager.setup.callForPapers">Call for Papers (CFP)</message>
-	<message key="manager.setup.cfpMessage">CFP message</message>
-	<message key="manager.setup.cfpMessageDescription"><![CDATA[This information is displayed in the "call-for-papers" link on this conference's home page.]]></message>
 	<message key="manager.setup.presenterRegistration">Presenter Registration</message>
 	<message key="manager.setup.openRegPresenter">Open presenter self-registration (set dates in Conference Timeline)</message>
-	<message key="manager.setup.submissionContents">Submissions</message>
-	<message key="manager.setup.submissionsDescription"><![CDATA[Conference submissions may consist of several items: an abstract, and perhaps a paper and supplemental materials. In this section, the items to be collected as parts of a submission are specified.]]></message>
-	<message key="manager.setup.acceptPapers">Collect papers</message>
-	<message key="manager.setup.acceptSupplementaryReviewMaterials">Accept supplementary materials to accompany the submission during review</message>
-	<message key="manager.setup.acceptSupplementaryPublishedMaterials">Accept supplementary materials to accompany the submission when published</message>
 
 	<message key="manager.setup.reminders">Reminders for Presenters</message>
 	<message key="manager.setup.reminders.description">Submissions must be completed by certain deadlines. If desired, a few days before these deadlines, presenters may be sent a warning e-mail (which can be viewed and edited in Prepared Emails).</message>
@@ -1189,8 +1203,6 @@ Title of classification system]]></message>
 	<message key="manager.setup.submissionAndReview">Paper Submission and Review</message>
 	<message key="manager.schedConfSetup.reviewModel">Peer Review Process</message>
 	<message key="manager.schedConfSetup.reviewPapers">Subject papers to peer review after the abstracts have been reviewed and accepted</message>
-	<message key="manager.setup.submitSimultaneous">Abstracts and papers will be collected and reviewed at the same time.</message>
-	<message key="manager.setup.submitSequential">Papers will be collected only after abstracts are reviewed.</message>
 	<message key="manager.schedConfSetup.reviewOptions">Review Options</message>
 	<message key="manager.schedConfSetup.reviewOptions.reviewTime">Review Time</message>
 	<message key="manager.schedConfSetup.reviewOptions.numWeeksPerReview">The typical period of time allowed for reviews</message>
@@ -1207,20 +1219,10 @@ Title of classification system]]></message>
 	<message key="manager.schedConfSetup.reviewOptions.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
 	<message key="manager.schedConfSetup.reviewOptions.reviewerAccessKeysEnabled">Enable one-click reviewer access.</message>
 	<message key="manager.schedConfSetup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> The email invitation to reviewers will contain a special URL that takes invited reviewers directly to the Review page for the submission (with access to any other pages requiring them to log in). For security reasons with this option, directors are not able to modify email addresses or add CCs or BCCs prior to sending invitations to reviewers.]]></message>
-	<message key="manager.setup.presenterGuidelines">Presenter Guidelines</message>
-	<message key="manager.setup.presenterGuidelinesDescription"><![CDATA[Set out for presenters the bibliographic and formatting standards used for items submitted to the conference (e.g., <i>Publication Manual of the American Psychological Association</i>, 5th edition, 2001). It is often helpful to provide examples of the common citation formats for journals and books to be used in submissions. Also identify the types of appropriate Supplementary Files (e.g., data-sets, research instruments, etc.) which presenters should be encouraged to upload, in addition to their submission, to enhance readers' engagement with their work.]]></message>
 	<message key="manager.setup.submissionGuidelines">Submission guidelines</message>
-	<message key="manager.setup.submissionPreparationChecklist">Submission Preparation Checklist</message>
-	<message key="manager.setup.submissionPreparationChecklistDescription">On making a submission to the conference, presenters are first asked to check each item on the Submission Preparation Checklist as completed, before proceeding. The checklist also appears in the Presenter Guidelines, under About the Conference. The list can be edited below, but all items on the list will require a checkmark before presenters can proceed with their submission.</message>
-	<message key="manager.setup.addChecklistItem">Add Checklist Item</message>
 	<message key="manager.setup.addItem">Add Item</message>
 	<message key="manager.setup.presenterCopyrightNotice">Copyright Notice</message>
 	<message key="manager.setup.presenterCopyrightNoticeAgree">Require presenters to agree to Copyright Notice as part of the submission process.</message>
-	<message key="manager.setup.notifications">Notification of Presenter Submission</message>
-	<message key="manager.setup.notifications.description">On completing the submission process, presenters are automatically sent an acknowledgement email (which can be viewed and edited in Prepared Emails). In addition, a copy of the acknowledgement email can be sent as follows:</message>
-	<message key="manager.setup.notifications.copyPrimaryContact">Send a copy to the conference's primary contact, identified in Setup Step 1.</message>
-	<message key="manager.setup.notifications.copySpecifiedAddress">Send a copy to this email address:</message>
-	<message key="manager.setup.notifications.submissionAckDisabled"><![CDATA[<strong>Note:</strong> The submission acknowledgement email is currently disabled. To use this feature, enable the SUBMISSION_ACK email in <a class="action" href="{$preparedEmailsUrl}">Prepared Emails</a>.]]></message>
 
 
 	<!--<message key="manager.setup.form.numReviewersPerSubmission">The number of reviewers per submission is required.</message>-->

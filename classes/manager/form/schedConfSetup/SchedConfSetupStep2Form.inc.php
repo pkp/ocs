@@ -19,16 +19,31 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 	
 	function SchedConfSetupStep2Form() {
 		$settings = array(
-			'cfpMessage' => 'string',
-			'openRegPresenter' => 'bool',
-			'acceptPapers' => 'bool',
-			'collectPapersWithAbstracts' => 'bool',
-			'reviewPapers' => 'bool',
+			'reviewMode' => 'int',
+			'allowIndividualSubmissions' => 'bool',
+			'allowPanelSubmissions' => 'bool',
 			'acceptSupplementaryReviewMaterials' => 'bool',
-			'acceptSupplementaryPublishedMaterials' => 'bool',
 			'copySubmissionAckPrimaryContact' => 'bool',
 			'copySubmissionAckSpecified' => 'bool',
-			'copySubmissionAckAddress' => 'string'
+			'copySubmissionAckAddress' => 'string',
+			'cfpMessage' => 'string',
+			'presenterGuidelines' => 'string',
+			'submissionChecklist' => 'object',
+			'metaDiscipline' => 'bool',
+			'metaDisciplineExamples' => 'string',
+			'metaSubjectClass' => 'bool',
+			'metaSubjectClassTitle' => 'string',
+			'metaSubjectClassUrl' => 'string',
+			'metaSubject' => 'bool',
+			'metaSubjectExamples' => 'string',
+			'metaCoverage' => 'bool',
+			'metaCoverageGeoExamples' => 'string',
+			'metaCoverageChronExamples' => 'string',
+			'metaCoverageResearchSampleExamples' => 'string',
+			'metaType' => 'bool',
+			'metaTypeExamples' => 'string',
+			'enablePublicPaperId' => 'bool',
+			'enablePublicSuppFileId' => 'bool'
 		);
 		
 		$this->addCheck(new FormValidatorEmail($this, 'copySubmissionAckAddress', 'optional', 'user.profile.form.emailRequired'));
