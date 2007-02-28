@@ -35,13 +35,5 @@
 		<name>emailSignature</name>
 		<value>{translate key="default.schedConfSettings.emailSignature"}</value>
 	</setting>
-	<setting type="string">
-		<name>readerInformation</name>
-		<value>{translate key="default.schedConfSettings.forReaders"}</value>
-	</setting>
-	<setting type="string">
-		<name>presenterInformation</name>
-		<value>{translate key="default.schedConfSettings.forPresenters"}</value>
-	</setting>
 
 </sched_conf_settings>

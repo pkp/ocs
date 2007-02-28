@@ -190,7 +190,7 @@ class SchedConfHandler extends Handler {
 			$templateMgr->assign('submissionCloseDate', $closeDate);
 			
 			$templateMgr->assign_by_ref('schedConf', $schedConf);
-			$templateMgr->assign('additionalHomeContent', $schedConf->getSetting('additionalHomeContent', true));
+			$templateMgr->assign('additionalHomeContent', $conference->getSetting('additionalHomeContent'));
 
 			$enableAnnouncements = $schedConf->getSetting('enableAnnouncements', true);
 			if ($enableAnnouncements) {

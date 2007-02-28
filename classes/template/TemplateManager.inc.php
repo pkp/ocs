@@ -101,7 +101,13 @@ class TemplateManager extends Smarty {
 				$locales = &$conference->getSupportedLocaleNames();
 				$this->assign('alternateLocale1', $conference->getSetting('alternateLocale1'));
 				$this->assign('alternateLocale2', $conference->getSetting('alternateLocale2'));
-				
+				$this->assign('numPageLinks', $conference->getSetting('numPageLinks'));
+				$this->assign('itemsPerPage', $conference->getSetting('itemsPerPage'));
+
+				// Assign additional navigation bar items
+				$navMenuItems = &$conference->getSetting('navItems');
+				$this->assign_by_ref('navMenuItems', $navMenuItems);
+
 				$this->assign('publicConferenceFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
 				if (isset($schedConf)) {
 
@@ -110,10 +116,6 @@ class TemplateManager extends Smarty {
 
 					$this->assign_by_ref('currentSchedConf', $schedConf);
 					$schedConfTitle = $schedConf->getTitle();
-
-					// Assign additional navigation bar items
-					$navMenuItems = &$schedConf->getSetting('navItems', true);
-					$this->assign_by_ref('navMenuItems', $navMenuItems);
 
 					// If the conference has title images, and the scheduled conference doesn't, we'll
 					// inherit them here. They're assigned to different variables since the
@@ -128,8 +130,6 @@ class TemplateManager extends Smarty {
 					$this->assign('metaSearchDescription', $schedConf->getSetting('searchDescription', true));
 					$this->assign('metaSearchKeywords', $schedConf->getSetting('searchKeywords', true));
 					$this->assign('metaCustomHeaders', $schedConf->getSetting('customHeaders', true));
-					$this->assign('numPageLinks', $schedConf->getSetting('numPageLinks', true));
-					$this->assign('itemsPerPage', $schedConf->getSetting('itemsPerPage', true));
 					$this->assign('enableAnnouncements', $schedConf->getSetting('enableAnnouncements', true));
 				
 					$this->assign('pageFooter', $schedConf->getSetting('conferencePageFooter', true));
@@ -138,10 +138,6 @@ class TemplateManager extends Smarty {
 
 					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
 	
-					// Assign additional navigation bar items
-					$navMenuItems = &$conference->getSetting('navItems');
-					$this->assign_by_ref('navMenuItems', $navMenuItems);
-
 					// Assign conference page header
 					$this->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle());
 					$this->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo());
@@ -149,8 +145,6 @@ class TemplateManager extends Smarty {
 					$this->assign('metaSearchDescription', $conference->getSetting('searchDescription'));
 					$this->assign('metaSearchKeywords', $conference->getSetting('searchKeywords'));
 					$this->assign('metaCustomHeaders', $conference->getSetting('customHeaders'));
-					$this->assign('numPageLinks', $conference->getSetting('numPageLinks'));
-					$this->assign('itemsPerPage', $conference->getSetting('itemsPerPage'));
 					$this->assign('enableAnnouncements', $conference->getSetting('enableAnnouncements'));
 				
 					$this->assign('pageFooter', $conference->getSetting('conferencePageFooter'));	

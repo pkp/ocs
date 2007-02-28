@@ -32,17 +32,11 @@ class InformationHandler extends Handler {
 		switch(isset($args[0])?$args[0]:null) {
 			case 'readers':
 				$conferenceContent = $conference->getSetting('readerInformation');
-				if($schedConf) {
-					$schedConfContent = $schedConf->getSetting('readerInformation', true);
-				}
 				$pageTitle = 'navigation.infoForReaders.long';
 				$pageCrumbTitle = 'navigation.infoForReaders';
 				break;
 			case 'presenters':
 				$conferenceContent = $conference->getSetting('presenterInformation');
-				if($schedConf) {
-					$schedConfContent = $schedConf->getSetting('presenterInformation', true);
-				}
 				$pageTitle = 'navigation.infoForPresenters.long';
 				$pageCrumbTitle = 'navigation.infoForPresenters';
 				break;
