@@ -1159,7 +1159,22 @@ Title of classification system]]></message>
 	<message key="manager.schedConfSetup.submissions.enablePublicSuppFileId">Identifiers will be added to supplemental files with accepted presentations.</message>
 
 	<!-- Scheduled Conference Setup Step 3 -->
-	<message key="manager.schedConfSetup.review."></message>
+	<message key="manager.schedConfSetup.review.reviewPolicy">Review Policy</message>
+	<message key="manager.schedConfSetup.review.reviewDescription">Outline the conference's review policy and processes for readers and presenters, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Conference.</message>
+	<message key="manager.schedConfSetup.review.peerReview">Peer Review</message>
+	<message key="manager.schedConfSetup.review.reviewGuidelinesDescription">The Review Guidelines provide reviewers with criteria for judging a submission's suitability for acceptance to the conference, as well as any special instructions for preparing an effective and helpful review.</message>
+	<message key="manager.schedConfSetup.review.numWeeksPerReview1">Allow reviewers</message>
+	<message key="manager.schedConfSetup.review.numWeeksPerReview2">weeks to review submissions.</message>
+	<message key="manager.schedConfSetup.review.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
+	<message key="manager.schedConfSetup.review.reviewerAccessKeysEnabled">Enable one-click reviewer access.</message>
+	<message key="manager.schedConfSetup.review.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> With this option, in which reviewers do not need to log in to the site, directors are not able for security reasons to modify email addresses or add CCs or BCCs prior to sending request to reviewers.]]></message>
+	<message key="manager.schedConfSetup.review.reviewerReminders">Reviewer Reminders</message>
+	<message key="manager.schedConfSetup.review.automatedReminders">Automated email reminders are sent to reviewers</message>
+	<message key="manager.schedConfSetup.review.remindForInvite1">Who have not responded to a review request within</message>
+	<message key="manager.schedConfSetup.review.remindForInvite2">days.</message>
+	<message key="manager.schedConfSetup.review.remindForSubmit1">Who have not submitted a review within</message>
+	<message key="manager.schedConfSetup.review.remindForSubmit2">days after its due date.</message>
+	<message key="manager.schedConfSetup.review.onQuality">Directors are able to rate reviewers on a five-point scale.</message>
 
 
 	<!-- BELOW HERE MAY BE UNUSED -->
@@ -1186,10 +1201,6 @@ Title of classification system]]></message>
 	<message key="manager.setup.programDescription">Lay out the program by date, time, location, and event. Update this information as you begin to finalize your list of presenters and presentation titles.</message>
 
 	<!-- Scheduled Conference Setup Step 2 -->
-	<message key="manager.schedConfSetup.reviewPolicy">Review Policy</message>
-	<message key="manager.schedConfSetup.reviewDescription">Outline the conference's review policy and processes for readers and presenters, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Conference.</message>
-	<message key="manager.schedConfSetup.reviewGuidelines">Review Guidelines</message>
-	<message key="manager.schedConfSetup.reviewGuidelinesDescription">The Review Guidelines provide reviewers with criteria for judging a submission's suitability for acceptance to the conference, as well as any special instructions for preparing an effective and helpful review.</message>
 	<message key="manager.setup.guidingSubmissions">Step 2. Guiding Submissions</message>
 	<message key="manager.setup.presenterRegistration">Presenter Registration</message>
 	<message key="manager.setup.openRegPresenter">Open presenter self-registration (set dates in Conference Timeline)</message>
@@ -1205,22 +1216,6 @@ Title of classification system]]></message>
 	<message key="manager.schedConfSetup.reviewPapers">Subject papers to peer review after the abstracts have been reviewed and accepted</message>
 	<message key="manager.schedConfSetup.reviewOptions">Review Options</message>
 	<message key="manager.schedConfSetup.reviewOptions.reviewTime">Review Time</message>
-	<message key="manager.schedConfSetup.reviewOptions.numWeeksPerReview">The typical period of time allowed for reviews</message>
-	<message key="manager.schedConfSetup.reviewOptions.noteOnModification">Can be modified during the review process.</message>
-	<message key="manager.schedConfSetup.reviewOptions.reviewerReminders">Reviewer Reminders</message>
-	<message key="manager.schedConfSetup.reviewOptions.automatedReminders">Automated email reminders (available in OCS's Prepared Emails) can be sent to reviewers at two points (while the director can always email the reviewer directly as well)</message>
-	<message key="manager.schedConfSetup.reviewOptions.remindForInvite1">If reviewer has not responded to a review request within</message>
-	<message key="manager.schedConfSetup.reviewOptions.remindForInvite2">days.</message>
-	<message key="manager.schedConfSetup.reviewOptions.remindForSubmit1">If reviewer has not submitted a recommendation within</message>
-	<message key="manager.schedConfSetup.reviewOptions.remindForSubmit2">days after review's due date.</message>
-	<message key="manager.schedConfSetup.reviewOptions.reviewerRatings">Reviewer Ratings</message>
-	<message key="manager.schedConfSetup.reviewOptions.onQuality">The director will rate reviewers on a five-point quality scale after each review. The ratings will be available to Conference Directors for future conferences.</message>
-	<message key="manager.schedConfSetup.reviewOptions.reviewerAccess">Reviewer Access</message>
-	<message key="manager.schedConfSetup.reviewOptions.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
-	<message key="manager.schedConfSetup.reviewOptions.reviewerAccessKeysEnabled">Enable one-click reviewer access.</message>
-	<message key="manager.schedConfSetup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> The email invitation to reviewers will contain a special URL that takes invited reviewers directly to the Review page for the submission (with access to any other pages requiring them to log in). For security reasons with this option, directors are not able to modify email addresses or add CCs or BCCs prior to sending invitations to reviewers.]]></message>
-	<message key="manager.setup.submissionGuidelines">Submission guidelines</message>
-	<message key="manager.setup.addItem">Add Item</message>
 	<message key="manager.setup.presenterCopyrightNotice">Copyright Notice</message>
 	<message key="manager.setup.presenterCopyrightNoticeAgree">Require presenters to agree to Copyright Notice as part of the submission process.</message>
 

@@ -21,6 +21,8 @@ class SchedConfSetupStep3Form extends SchedConfSetupForm {
 		parent::SchedConfSetupForm(
 			3,
 			array(
+				'reviewPolicy' => 'string',
+				'reviewGuidelines' => 'string',
 				'numWeeksPerReview' => 'int',
 				'remindForInvite' => 'int',
 				'remindForSubmit' => 'int',
