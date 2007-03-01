@@ -17,9 +17,9 @@
 
 <h3>1.1 {translate key="manager.schedConfSetup.details.description"}</h3>
 
-<p><label for="schedConfDescription">{translate key="manager.schedConfSetup.details.description.description"}</label></p>
+<p><label for="schedConfIntroduction">{translate key="manager.schedConfSetup.details.introduction.description"}</label></p>
 
-<p><textarea name="schedConfDescription" id="schedConfDescription" rows="10" cols="60" class="textArea">{$schedConfDescription|escape}</textarea></p>
+<p><textarea name="schedConfIntroduction" id="schedConfIntroduction" rows="10" cols="60" class="textArea">{$schedConfIntroduction|escape}</textarea></p>
 
 <p><label for="schedConfOverview">{translate key="manager.schedConfSetup.details.overview.description"}</label></p>
 

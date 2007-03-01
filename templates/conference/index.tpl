@@ -27,8 +27,6 @@
 	</table>
 {/if}
 
-<div>{$conferenceOverview|nl2br}</div>
-
 {if $homepageImage}
 <div align="center"><img src="{$publicFilesDir}/{$homepageImage.uploadName|escape}" width="{$homepageImage.width}" height="{$homepageImage.height}" border="0" alt="" /></div>
 {/if}

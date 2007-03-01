@@ -21,7 +21,7 @@ class SchedConfSetupStep1Form extends SchedConfSetupForm {
 		parent::SchedConfSetupForm(
 			1,
 			array(
-				'schedConfDescription' => 'string',
+				'schedConfIntroduction' => 'string',
 				'schedConfOverview' => 'string',
 				'location' => 'string',
 				'contactName' => 'string',

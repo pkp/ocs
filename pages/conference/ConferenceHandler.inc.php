@@ -33,7 +33,6 @@ class ConferenceHandler extends Handler {
 		$templateMgr->assign('additionalHomeContent', $conference->getSetting('additionalHomeContent'));
 		$templateMgr->assign('homepageImage', $conference->getSetting('homepageImage'));
 		$templateMgr->assign('conferenceDescription', $conference->getSetting('conferenceDescription'));
-		$templateMgr->assign('conferenceOverview', $conference->getSetting('conferenceOverview'));
 		$templateMgr->assign('conferenceTitle', $conference->getTitle());
 
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');

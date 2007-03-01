@@ -1077,7 +1077,7 @@ Setting up LOCKSS support for Open Conference Systems does not need to take plac
 
 	<!-- Scheduled Conference Setup Step 1 -->
 	<message key="manager.schedConfSetup.details.description">Scheduled Conference Description</message>
-	<message key="manager.schedConfSetup.details.description.description">A brief description of the conference that can be used to publicize the event.</message>
+	<message key="manager.schedConfSetup.details.introduction.description">A brief description of the conference that can be used to publicize the event.</message>
 	<message key="manager.schedConfSetup.details.overview.description">An overview of the theme, scope, and focus.</message>
 	<message key="manager.schedConfSetup.details.location">Scheduled Conference Location</message>
 	<message key="manager.schedConfSetup.details.location.description">The location (institution, department, and mailing address) at which the conference will be held.</message>
@@ -1203,8 +1203,6 @@ Title of classification system]]></message>
 	<!-- Scheduled Conference Setup Step 2 -->
 	<message key="manager.setup.guidingSubmissions">Step 2. Guiding Submissions</message>
 	<message key="manager.setup.presenterRegistration">Presenter Registration</message>
-	<message key="manager.setup.openRegPresenter">Open presenter self-registration (set dates in Conference Timeline)</message>
-
 	<message key="manager.setup.reminders">Reminders for Presenters</message>
 	<message key="manager.setup.reminders.description">Submissions must be completed by certain deadlines. If desired, a few days before these deadlines, presenters may be sent a warning e-mail (which can be viewed and edited in Prepared Emails).</message>
 	<message key="manager.setup.reminders.remindPaperDue">Remind presenters with incomplete submissions before their submission deadline passes.</message>
