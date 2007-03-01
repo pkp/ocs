@@ -285,7 +285,14 @@ class UserManagementForm extends Form {
 				// Send welcome email to user
 				import('mail.MailTemplate');
 				$mail = &new MailTemplate('USER_REGISTER');
-				$mail->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
+
+				if ($schedConf) $mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+				elseif ($conference) $mail->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
+				} else {
+					$site =& Request::getSite();
+					$mail->setFrom($site->getContactEmail(), $site->getContactName());
+				}
+
 				$mail->assignParams(array('username' => $this->getData('username'), 'password' => $password));
 				$mail->addRecipient($user->getEmail(), $user->getFullName());
 				$mail->send();

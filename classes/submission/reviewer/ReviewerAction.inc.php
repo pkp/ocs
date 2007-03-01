@@ -87,9 +87,9 @@ class ReviewerAction extends Action {
 					if (!empty($reviewingTrackDirectors)) $assignedDirectors = $email->ccAssignedDirectors($reviewerSubmission->getPaperId());
 					else $assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getPaperId());
 					if (empty($assignedDirectors) && empty($reviewingTrackDirectors)) {
-						$conference = &Request::getConference();
-						$email->addRecipient($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
-						$editorialContactName = $conference->getSetting('contactName');
+						$schedConf = &Request::getSchedConf();
+						$email->addRecipient($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+						$editorialContactName = $schedConf->getSetting('contactName', true);
 					} else {
 						if (!empty($reviewingTrackDirectors)) $editorialContact = array_shift($reviewingTrackDirectors);
 						else $editorialContact = array_shift($assignedDirectors);
@@ -167,9 +167,9 @@ class ReviewerAction extends Action {
 					$assignedDirectors = $email->ccAssignedDirectors($reviewerSubmission->getPaperId());
 					$reviewingTrackDirectors = $email->toAssignedReviewingTrackDirectors($reviewerSubmission->getPaperId());
 					if (empty($assignedDirectors) && empty($reviewingTrackDirectors)) {
-						$conference = &Request::getConference();
-						$email->addRecipient($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
-						$editorialContactName = $conference->getSetting('contactName');
+						$schedConf = &Request::getSchedConf();
+						$email->addRecipient($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+						$editorialContactName = $schedConf->getSetting('contactName', true);
 					} else {
 						if (!empty($reviewingTrackDirectors)) $editorialContact = array_shift($reviewingTrackDirectors);
 						else $editorialContact = array_shift($assignedDirectors);

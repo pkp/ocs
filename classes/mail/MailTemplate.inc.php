@@ -123,8 +123,6 @@ class MailTemplate extends Mail {
 			$this->setFrom($user->getEmail(), $user->getFullName());
 		} elseif ($schedConf) {
 			$this->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
-		} elseif ($conference) {
-			$this->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 		} else {
 			$site = &Request::getSite();
 			$this->setFrom($site->getContactEmail(), $site->getContactName());
@@ -188,13 +186,18 @@ class MailTemplate extends Mail {
 
 		// Add commonly-used variables to the list
 		$conference = &Request::getConference();
-		if (isset($conference)) {
-			// FIXME Include affiliation, title, etc. in signature?
-			$paramArray['conferenceName'] = $conference->getTitle();
-			$paramArray['principalContactSignature'] = $conference->getSetting('contactName');
+		$schedConf =& Request::getSchedConf();
+
+		if ($schedConf) {
+			$paramArray['principalContactSignature'] = $schedConf->getSetting('contactName', true);
 		} else {
 			$site = &Request::getSite();
 			$paramArray['principalContactSignature'] = $site->getContactName();
+		}
+
+		if (isset($conference)) {
+			// FIXME Include affiliation, title, etc. in signature?
+			$paramArray['conferenceName'] = $conference->getTitle();
 		}
 		if (!isset($paramArray['conferenceUrl'])) $paramArray['conferenceUrl'] = Request::url(Request::getRequestedConferencePath(), Request::getRequestedSchedConfPath());
 
@@ -298,15 +301,11 @@ class MailTemplate extends Mail {
 	 * @param $clearAttachments boolean Whether to delete attachments after
 	 */
 	function send($clearAttachments = true) {
-		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
 		
 		if($schedConf) {
-			$envelopeSender = $schedConf->getSetting('envelopeSender',true);
-			$emailSignature = $schedConf->getSetting('emailSignature',true);
-		} elseif ($conference) {
-			$envelopeSender = $conference->getSetting('envelopeSender');
-			$emailSignature = $conference->getSetting('emailSignature');
+			$envelopeSender = $schedConf->getSetting('envelopeSender');
+			$emailSignature = $schedConf->getSetting('emailSignature');
 		}
 		
 		if (isset($emailSignature)) {

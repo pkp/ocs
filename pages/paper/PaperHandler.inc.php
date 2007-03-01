@@ -278,7 +278,7 @@ class PaperHandler extends Handler {
 		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId);
 
 		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-		if ($schedConf->getSetting('enablePublicSuppFileId', true)) {
+		if ($schedConf->getSetting('enablePublicSuppFileId')) {
 			$suppFile = &$suppFileDao->getSuppFileByBestSuppFileId($paper->getPaperId(), $suppId);
 		} else {
 			$suppFile = &$suppFileDao->getSuppFile((int) $suppId, $paper->getPaperId());
@@ -305,7 +305,7 @@ class PaperHandler extends Handler {
 		$conferenceId = $conference->getConferenceId();
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 
-		if ($schedConf->getSetting('enablePublicPaperId', true)) {
+		if ($schedConf->getSetting('enablePublicPaperId')) {
 			$paper = &$publishedPaperDao->getPublishedPaperByBestPaperId($schedConf->getSchedConfId(), $paperId);
 		} else {
 			$paper = &$publishedPaperDao->getPublishedPaperByPaperId((int) $paperId);

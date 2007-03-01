@@ -52,10 +52,6 @@
 		<value>{translate key="default.conferenceSettings.presenterSelfArchivePolicy"}</value>
 	</setting>
 	<setting type="string">
-		<name>emailSignature</name>
-		<value>{translate key="default.conferenceSettings.emailSignature"}</value>
-	</setting>
-	<setting type="string">
 		<name>readerInformation</name>
 		<value>{translate key="default.conferenceSettings.forReaders"}</value>
 	</setting>
@@ -71,56 +67,6 @@
 	<setting type="string">
 		<name>primaryLocale</name>
 		<value>{$primaryLocale}</value>
-	</setting>
-
-	<setting type="object">
-		<name>submissionChecklist</name>
-		<value>
-			<array>
-				<element>
-					<array>
-						<element key="content">{translate key="default.conferenceSettings.checklist.notPreviouslyPublished"}</element>
-						<element key="order">1</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="content">{translate key="default.conferenceSettings.checklist.fileFormat"}</element>
-						<element key="order">2</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="content">{translate key="default.conferenceSettings.checklist.addressesLinked"}</element>
-						<element key="order">3</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="content">{translate key="default.conferenceSettings.checklist.submissionAppearance"}</element>
-						<element key="order">4</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="content">{translate key="default.conferenceSettings.checklist.bibliographicRequirements"}</element>
-						<element key="order">5</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="content">{translate key="default.conferenceSettings.checklist.anonymous"}</element>
-						<element key="order">6</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="content">{translate key="default.conferenceSettings.checklist.personalInformationRemoved"}</element>
-						<element key="order">7</element>
-					</array>
-				</element>
-			</array>
-		</value>
 	</setting>
 
 	<setting type="bool">

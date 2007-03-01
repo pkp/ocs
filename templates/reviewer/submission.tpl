@@ -136,7 +136,7 @@ function confirmSubmissionCheck() {
 <tr>
 	<td colspan="2">&nbsp;</td>
 </tr>
-{if $schedConf->getSetting('reviewGuidelines', true)}
+{if $schedConf->getSetting('reviewGuidelines')}
 {assign var="haveGuide" value=true}
 <tr valign="top">
         <td>2.</td>
@@ -314,7 +314,7 @@ function confirmSubmissionCheck() {
 {if $haveGuide}
 <div class="separator"></div>
 <h3>{translate key="reviewer.paper.reviewerGuidelines"}</h3>
-<p>{$schedConf->getSetting('reviewGuidelines', true)|nl2br}</p>
+<p>{$schedConf->getSetting('reviewGuidelines')|nl2br}</p>
 {/if}
 
 {include file="common/footer.tpl"}

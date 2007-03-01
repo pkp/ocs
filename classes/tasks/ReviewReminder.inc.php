@@ -37,7 +37,7 @@ class ReviewReminder extends ScheduledTask {
 		$email = &new PaperMailTemplate($paper, $reviewerAccessKeysEnabled?'REVIEW_REMIND_AUTO_ONECLICK':'REVIEW_REMIND_AUTO', null, false, $conference, $schedConf);
 		$email->setConference($conference);
 		$email->setSchedConf($schedConf);
-		$email->setFrom($schedConf->getSetting('contactEmail',true), $schedConf->getSetting('contactName',true));
+		$email->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
 		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 		$email->setAssoc(PAPER_EMAIL_REVIEW_REMIND, PAPER_EMAIL_TYPE_REVIEW, $reviewId);
 
@@ -62,7 +62,7 @@ class ReviewReminder extends ScheduledTask {
 			'schedConfUrl' => $schedConf->getUrl(),
 			'reviewerPassword' => $reviewer->getPassword(),
 			'reviewDueDate' => date('Y-m-d', strtotime($reviewAssignment->getDateDue())),
-			'editorialContactSignature' => $schedConf->getSetting('contactName',true) . "\n" . $schedConf->getFullTitle(),
+			'editorialContactSignature' => $schedConf->getSetting('contactName', true) . "\n" . $schedConf->getFullTitle(),
 			'passwordResetUrl' => Request::url($conference->getPath(), $schedConf->getPath(), 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId()))),
 			'submissionReviewUrl' => $submissionReviewUrl
 		);

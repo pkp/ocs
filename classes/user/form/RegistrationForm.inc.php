@@ -265,7 +265,7 @@ class RegistrationForm extends Form {
 			// Send welcome email to user
 			import('mail.MailTemplate');
 			$mail = &new MailTemplate('USER_REGISTER');
-			$mail->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
+			$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
 			$mail->assignParams(array('username' => $this->getData('username'), 'password' => $this->getData('password')));
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 			$mail->send();

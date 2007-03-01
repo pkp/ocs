@@ -42,7 +42,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$templateMgr->assign_by_ref('reviewerFile', $submission->getReviewerFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
-		$templateMgr->assign_by_ref('reviewGuidelines', $schedConf->getSetting('reviewGuidelines', true));
+		$templateMgr->assign_by_ref('reviewGuidelines', $schedConf->getSetting('reviewGuidelines'));
 
 		// The reviewer instructions differ depending on what is reviewed, and when.
 		if($reviewAssignment->getStage()==REVIEW_PROGRESS_ABSTRACT && !$schedConf->getCollectPapersWithAbstracts())

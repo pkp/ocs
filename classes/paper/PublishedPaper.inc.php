@@ -219,7 +219,7 @@ class PublishedPaper extends Paper {
 			$schedConf = $schedConfDao->getSchedConf($this->getSchedConfId());
 		}
 
-		if ($schedConf->getSetting('enablePublicPaperId', true)) {
+		if ($schedConf->getSetting('enablePublicPaperId')) {
 			$publicPaperId = $this->getPublicPaperId();
 			if (!empty($publicPaperId)) return $publicPaperId;
 		}

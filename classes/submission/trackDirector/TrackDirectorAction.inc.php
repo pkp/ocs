@@ -313,7 +313,7 @@ class TrackDirectorAction extends Action {
 						'reviewerUsername' => $reviewer->getUsername(),
 						'reviewerPassword' => $reviewer->getPassword(),
 						'editorialContactSignature' => $user->getContactSignature(),
-						'reviewGuidelines' => $conference->getSetting('reviewGuidelines'),
+						'reviewGuidelines' => $schedConf->getSetting('reviewGuidelines'),
 						'submissionReviewUrl' => $submissionUrl,
 						'passwordResetUrl' => Request::url(null, null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId())))
 					);

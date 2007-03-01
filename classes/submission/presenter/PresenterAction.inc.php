@@ -142,6 +142,7 @@ class PresenterAction extends Action {
 	function emailDirectorDecisionComment($presenterSubmission, $send) {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$conference = &Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$user = &Request::getUser();
 		import('mail.PaperMailTemplate');
@@ -179,7 +180,7 @@ class PresenterAction extends Action {
 						$email->addRecipient($director->getEmail(), $director->getFullName());
 					}
 				} else {
-					$email->addRecipient($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
+					$email->addRecipient($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
 				}
 			}
 

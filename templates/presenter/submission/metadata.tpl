@@ -103,7 +103,7 @@
 <h4>{translate key="submission.indexing"}</h4>
 	
 <table width="100%" class="data">
-	{if $conferenceSettings.metaDiscipline}
+	{if $schedConfSettings.metaDiscipline}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.discipline"}</td>
 		<td width="80%" class="value">{$submission->getDiscipline()|escape|default:"&mdash;"}</td>
@@ -112,7 +112,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $conferenceSettings.metaSubjectClass}
+	{if $schedConfSettings.metaSubjectClass}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.subjectClassification"}</td>
 		<td width="80%" class="value">{$submission->getSubjectClass()|escape|default:"&mdash;"}</td>
@@ -121,7 +121,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $conferenceSettings.metaSubject}
+	{if $schedConfSettings.metaSubject}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.subject"}</td>
 		<td width="80%" class="value">{$submission->getSubject()|escape|default:"&mdash;"}</td>
@@ -130,7 +130,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $conferenceSettings.metaCoverage}
+	{if $schedConfSettings.metaCoverage}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.coverageGeo"}</td>
 		<td width="80%" class="value">{$submission->getCoverageGeo()|escape|default:"&mdash;"}</td>
@@ -153,7 +153,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $conferenceSettings.metaType}
+	{if $schedConfSettings.metaType}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.type"}</td>
 		<td width="80%" class="value">{$submission->getType()|escape|default:"&mdash;"}</td>

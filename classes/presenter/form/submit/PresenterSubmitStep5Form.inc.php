@@ -85,14 +85,14 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 		// Send presenter notification email
 		import('mail.PaperMailTemplate');
 		$mail = &new PaperMailTemplate($paper, 'SUBMISSION_ACK');
-		$mail->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
+		$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
 		if ($mail->isEnabled()) {
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 			// If necessary, BCC the acknowledgement to someone.
 			if($conference->getSetting('copySubmissionAckPrimaryContact')) {
 				$mail->addBcc(
-					$conference->getSetting('contactEmail'),
-					$conference->getSetting('contactName')
+					$schedConf->getSetting('contactEmail', true),
+					$schedConf->getSetting('contactName', true)
 				);
 			}
 			if($conference->getSetting('copySubmissionAckSpecified')) {
@@ -103,7 +103,7 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 			$mail->assignParams(array(
 				'presenterName' => $user->getFullName(),
 				'presenterUsername' => $user->getUsername(),
-				'editorialContactSignature' => $conference->getSetting('contactName') . "\n" . $conference->getTitle(),
+				'editorialContactSignature' => $schedConf->getSetting('contactName', true) . "\n" . $conference->getTitle(),
 				'submissionUrl' => Request::url(null, null, 'presenter', 'submission', $paper->getPaperId())
 			));
 			$mail->send();

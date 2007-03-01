@@ -20,16 +20,16 @@ class AboutHandler extends Handler {
 	 */
 	function index() {
 		parent::validate();
-		
+
 		$templateMgr = &TemplateManager::getManager();
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$conferencePath = Request::getRequestedConferencePath();
-				
+
 		if ($conferencePath != 'index' && $conferenceDao->conferenceExistsByPath($conferencePath)) {
 			$schedConf =& Request::getSchedConf();
 			$conference =& Request::getConference();
-			
+
 			if($schedConf) {
 				$templateMgr->assign('showAboutSchedConf', true);
 				$settings = $schedConf->getSettings(true);
@@ -38,7 +38,7 @@ class AboutHandler extends Handler {
 				$settings = $conference->getSettings();
 				$templateMgr->assign_by_ref('currentSchedConfs', $schedConfDao->getCurrentSchedConfs($conference->getConferenceId()));
 			}
-			
+
 			$customAboutItems = &$settings['customAboutItems'];
 
 			foreach (AboutHandler::getPublicStatisticsNames() as $name) {
@@ -56,13 +56,13 @@ class AboutHandler extends Handler {
 			$site = &Request::getSite();
 			$about = $site->getAbout();
 			$templateMgr->assign('about', $about);
-			
+
 			$conferences = &$conferenceDao->getEnabledConferences(); //Enabled Added
 			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->display('about/site.tpl');
 		}
 	}
-	
+
 
 	/**
 	 * Setup common template variables.
@@ -70,29 +70,29 @@ class AboutHandler extends Handler {
 	 */
 	function setupTemplate($subclass = false) {
 		parent::validate();
-		
+
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'about'), 'about.aboutTheConference')));
 	}
-	
+
 	/**
 	 * Display contact page.
 	 */
 	function contact() {
 		parent::validate(true);
-		
+
 		AboutHandler::setupTemplate(true);
-		
+
 		$schedConf = &Request::getSchedConf();
 		$conference =& Request::getConference();
-		
-		$settings = ($schedConf? $schedConf->getSettings(true):$conference->getSettings());	
+
+		$settings = ($schedConf? $schedConf->getSettings(true):$conference->getSettings());
 		$templateMgr = &TemplateManager::getManager();
-		
+
 		$templateMgr->assign_by_ref('conferenceSettings', $settings);
 		$templateMgr->display('about/contact.tpl');
 	}
-	
+
 	/**
 	 * Display organizingTeam page.
 	 */
@@ -102,7 +102,7 @@ class AboutHandler extends Handler {
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		
+
 		$conferenceId = $conference->getConferenceId();
 		$schedConfId = ($schedConf? $schedConf->getSchedConfId():-1);
 
@@ -129,7 +129,7 @@ class AboutHandler extends Handler {
 
 			$trackDirectors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getConferenceId(), $schedConfId);
 			$trackDirectors = &$trackDirectors->toArray();
-		
+
 			$templateMgr->assign_by_ref('directors', $directors);
 			$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
 			$templateMgr->display('about/organizingTeam.tpl');
@@ -165,9 +165,9 @@ class AboutHandler extends Handler {
 	 */
 	function organizingTeamBio($args) {
 		list($conference, $schedConf) = parent::validate(true);
-		
+
 		AboutHandler::setupTemplate(true);
-		
+
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 
 		$templateMgr = &TemplateManager::getManager();
@@ -180,7 +180,7 @@ class AboutHandler extends Handler {
 		// that might not necessarily be public.
 
 		// FIXME: This is pretty inefficient. Should be cached.
-		
+
 		if($schedConf) {
 			$settings = $schedConf->getSettings(true);
 			$schedConfId = $schedConf->getSchedConfId();
@@ -237,16 +237,16 @@ class AboutHandler extends Handler {
 	 */
 	function editorialPolicies() {
 		parent::validate(true);
-		
+
 		AboutHandler::setupTemplate(true);
-		
+
 		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
 		$schedConf = &Request::getSchedConf();
 		$conference =& Request::getConference();
 
 		$templateMgr = &TemplateManager::getManager();
 		$settings = ($schedConf? $schedConf->getSettings(true): $conference->getSettings());
-		
+
 		$templateMgr->display('about/editorialPolicies.tpl');
 	}
 
@@ -288,14 +288,14 @@ class AboutHandler extends Handler {
 	 */
 	function submissions() {
 		parent::validate(true);
-		
+
 		AboutHandler::setupTemplate(true);
 
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
-		
+
 		$settings = ($schedConf? $schedConf->getSettings(true):$conference->getSettings());
-				
+
 		$templateMgr = &TemplateManager::getManager();
 		if (isset($settings['submissionChecklist']) && count($settings['submissionChecklist']) > 0) {
 			ksort($settings['submissionChecklist']);
@@ -320,7 +320,7 @@ class AboutHandler extends Handler {
 
 		$contributors = array();
 		$sponsors = array();
-		
+
 		if($conference) {
 			$contributorNote = $conference->getSetting('contributorNote');
 			$contributors = $conference->getSetting('contributors');
@@ -345,16 +345,16 @@ class AboutHandler extends Handler {
 		$templateMgr->assign_by_ref('contributors', $contributors);
 		$templateMgr->assign('sponsorNote', $sponsorNote);
 		$templateMgr->assign_by_ref('sponsors', $sponsors);
-		
+
 		$templateMgr->display('about/conferenceSponsorship.tpl');
 	}
-	
+
 	/**
 	 * Display siteMap page.
 	 */
 	function siteMap() {
 		parent::validate();
-		
+
 		AboutHandler::setupTemplate(true);
 		$templateMgr = &TemplateManager::getManager();
 
@@ -386,15 +386,15 @@ class AboutHandler extends Handler {
 
 		$templateMgr->display('about/siteMap.tpl');
 	}
-	
+
 	/**
 	 * Display aboutThisPublishingSystem page.
 	 */
 	function aboutThisPublishingSystem() {
 		parent::validate();
-		
+
 		AboutHandler::setupTemplate(true);
-		
+
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();
 
@@ -402,7 +402,7 @@ class AboutHandler extends Handler {
 		$templateMgr->assign('ocsVersion', $version->getVersionString());
 		$templateMgr->display('about/aboutThisPublishingSystem.tpl');
 	}
-	
+
 	/**
 	 * Display a list of public stats for the current conference.
 	 * WARNING: This implementation should be kept roughly synchronized
@@ -443,7 +443,7 @@ class AboutHandler extends Handler {
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$tracks =& $trackDao->getConferenceTracks($conference->getConferenceId());
 		$templateMgr->assign('tracks', $tracks->toArray());
-		
+
 		$issueStatistics = $conferenceStatisticsDao->getIssueStatistics($conference->getConferenceId(), $fromDate, $toDate);
 		$templateMgr->assign('issueStatistics', $issueStatistics);
 

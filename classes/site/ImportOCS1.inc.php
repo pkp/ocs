@@ -376,7 +376,6 @@ class ImportOCS1 {
 			'privacyStatement' => array('string', $this->trans($this->conferenceInfo['chPrivacyStatement'])),
 			'openAccessPolicy' => array('string', $this->trans($this->conferenceInfo['chOpenAccess'])),
 		//	'envelopeSender' => array('string', ''),
-			'emailSignature' => array('string', Locale::translate('default.conferenceSettings.emailSignature', $translateParams)),
 		//	'disableUserReg' => array('bool', ''),
 		//	'allowRegReader' => array('bool', ''),
 		//	'allowRegPresenter' => array('bool', ''),

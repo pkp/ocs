@@ -109,6 +109,17 @@ class TemplateManager extends Smarty {
 				$this->assign_by_ref('navMenuItems', $navMenuItems);
 
 				$this->assign('publicConferenceFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
+
+				$this->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle());
+				$this->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo());
+				$this->assign('alternatePageHeader', $conference->getSetting('conferencePageHeader'));
+				$this->assign('metaSearchDescription', $conference->getSetting('searchDescription'));
+				$this->assign('metaSearchKeywords', $conference->getSetting('searchKeywords'));
+				$this->assign('metaCustomHeaders', $conference->getSetting('customHeaders'));
+				$this->assign('enableAnnouncements', $conference->getSetting('enableAnnouncements'));
+				
+				$this->assign('pageFooter', $conference->getSetting('conferencePageFooter'));
+
 				if (isset($schedConf)) {
 
 					// This will be needed if inheriting public conference files from the scheduled conference.
@@ -117,37 +128,14 @@ class TemplateManager extends Smarty {
 					$this->assign_by_ref('currentSchedConf', $schedConf);
 					$schedConfTitle = $schedConf->getTitle();
 
-					// If the conference has title images, and the scheduled conference doesn't, we'll
-					// inherit them here. They're assigned to different variables since the
-					// public files path for each is different.
 					$this->assign('displayConferencePageHeaderTitle', $conference->getPageHeaderTitle());
 					$this->assign('displayConferencePageHeaderLogo', $conference->getPageHeaderLogo());
-
-					// Assign scheduled conference page header
-					$this->assign('displayPageHeaderTitle', $schedConf->getPageHeaderTitle());
-					$this->assign('displayPageHeaderLogo', $schedConf->getPageHeaderLogo());
-					$this->assign('alternatePageHeader', $schedConf->getSetting('conferencePageHeader', true));
-					$this->assign('metaSearchDescription', $schedConf->getSetting('searchDescription', true));
-					$this->assign('metaSearchKeywords', $schedConf->getSetting('searchKeywords', true));
-					$this->assign('metaCustomHeaders', $schedConf->getSetting('customHeaders', true));
-					$this->assign('enableAnnouncements', $schedConf->getSetting('enableAnnouncements', true));
-				
-					$this->assign('pageFooter', $schedConf->getSetting('conferencePageFooter', true));
 
 				} else {
 
 					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
 	
 					// Assign conference page header
-					$this->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle());
-					$this->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo());
-					$this->assign('alternatePageHeader', $conference->getSetting('conferencePageHeader'));
-					$this->assign('metaSearchDescription', $conference->getSetting('searchDescription'));
-					$this->assign('metaSearchKeywords', $conference->getSetting('searchKeywords'));
-					$this->assign('metaCustomHeaders', $conference->getSetting('customHeaders'));
-					$this->assign('enableAnnouncements', $conference->getSetting('enableAnnouncements'));
-				
-					$this->assign('pageFooter', $conference->getSetting('conferencePageFooter'));	
 				}
 
 				// Assign conference stylesheet and footer

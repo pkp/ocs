@@ -144,6 +144,7 @@ class SchedConfSettingsForm extends Form {
 			// Install default scheduled conference settings
 			$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
 			$schedConfSettingsDao->installSettings($schedConfId, 'registry/schedConfSettings.xml', array(
+				'presenterGuidelinesUrl' => Request::url($conference->getPath(), $this->getData('path'), 'about', 'submissions', null, null, 'presenterGuidelines'),
 				'indexUrl' => Request::getIndexUrl(),
 				'conferencePath' => $conference->getPath(),
 				'conferenceName' => $conference->getTitle(),

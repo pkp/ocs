@@ -316,7 +316,7 @@ class SuppFile extends PaperFile {
 			$schedConf = &$schedConfDao->getSchedConf($paper->getSchedConfId());
 		}
 
-		if ($schedConf->getSetting('enablePublicSuppFileId', true)) {
+		if ($schedConf->getSetting('enablePublicSuppFileId')) {
 			$publicSuppFileId = $this->getPublicSuppFileId();
 			if (!empty($publicSuppFileId)) return $publicSuppFileId;
 		}
