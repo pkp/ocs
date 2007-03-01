@@ -38,10 +38,10 @@ class ConferenceHandler extends Handler {
 
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$currentSchedConfs = &$schedConfDao->getCurrentSchedConfs($conference->getConferenceId());
-		$pastSchedConfs = &$schedConfDao->getEnabledSchedConfs($conference->getConferenceId());
+//		$pastSchedConfs = &$schedConfDao->getEnabledSchedConfs($conference->getConferenceId());
 
 		$templateMgr->assign_by_ref('currentSchedConfs', $currentSchedConfs);
-		$templateMgr->assign_by_ref('pastSchedConfs', $pastSchedConfs);
+//		$templateMgr->assign_by_ref('pastSchedConfs', $pastSchedConfs);
 
 		$enableAnnouncements = $conference->getSetting('enableAnnouncements');
 		if ($enableAnnouncements) {
