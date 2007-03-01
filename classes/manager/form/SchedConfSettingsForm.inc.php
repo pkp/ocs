@@ -47,7 +47,6 @@ class SchedConfSettingsForm extends Form {
 		$templateMgr->assign('schedConfId', $this->schedConfId);
 		$templateMgr->assign('conferenceId', $this->conferenceId);
 		$templateMgr->assign('helpTopicId', 'manager.schedConfManagement');
-		$templateMgr->assign('dateExtentFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
 		parent::display();
 	}
 	
@@ -67,8 +66,6 @@ class SchedConfSettingsForm extends Form {
 					'description' => $schedConf->getSetting('schedConfIntroduction'),
 					'path' => $schedConf->getPath(),
 					'enabled' => $schedConf->getEnabled(),
-					'startDate' => $schedConf->getStartDate(),
-					'endDate' => $schedConf->getEndDate()
 				);
 			} else {
 				$this->schedConfId = null;
@@ -96,8 +93,6 @@ class SchedConfSettingsForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array('conferenceId', 'title', 'description', 'path', 'enabled'));
 		$this->setData('enabled', (int)$this->getData('enabled'));
-		$this->setData('startDate', Request::getUserDateVar('startDate'));
-		$this->setData('endDate', Request::getUserDateVar('endDate'));
 
 		if (isset($this->schedConfId)) {
 			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
@@ -127,8 +122,6 @@ class SchedConfSettingsForm extends Form {
 		$schedConf->setPath($this->getData('path'));
 		$schedConf->setTitle($this->getData('title'));
 		$schedConf->setEnabled($this->getData('enabled'));
-		$schedConf->setStartDate($this->getData('startDate'));
-		$schedConf->setEndDate($this->getData('endDate'));
 
 		if ($schedConf->getSchedConfId() != null) {
 			$schedConfDao->updateSchedConf($schedConf);

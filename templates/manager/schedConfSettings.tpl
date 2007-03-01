@@ -32,18 +32,6 @@
 		<td width="80%" class="value"><input type="text" id="title" name="title" value="{$title|escape}" size="40" maxlength="120" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="startDate" key="manager.schedConfs.schedConfStartDate" required="true"}</td>
-		<td width="80%" class="value">
-			{html_select_date prefix="startDate" time=$startDate all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="+0" end_year=$dateExtentFuture}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="endDate" key="manager.schedConfs.schedConfEndDate" required="true"}</td>
-		<td width="80%" class="value">
-			{html_select_date prefix="endDate" time=$endDate all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="+0" end_year=$dateExtentFuture}
-		</td>
-	</tr>
-	<tr valign="top">
 		<td class="label">{fieldLabel name="title" key="common.path" required="true"}</td>
 		<td class="value">
 			<input type="text" id="path" name="path" value="{$path|escape}" size="16" maxlength="32" class="textField" />
