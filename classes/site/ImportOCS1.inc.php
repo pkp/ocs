@@ -374,7 +374,6 @@ class ImportOCS1 {
 			'reviewGuidelines' => array('string', $this->trans($this->conferenceInfo['chReviewerGuideline'])),
 			'presenterSelectsDirector' => array('int', isset($this->conferenceInfo['bPresenterSelectEditor']) ? $this->conferenceInfo['bPresenterSelectEditor'] : 0),
 			'privacyStatement' => array('string', $this->trans($this->conferenceInfo['chPrivacyStatement'])),
-			'openAccessPolicy' => array('string', $this->trans($this->conferenceInfo['chOpenAccess'])),
 		//	'envelopeSender' => array('string', ''),
 		//	'disableUserReg' => array('bool', ''),
 		//	'allowRegReader' => array('bool', ''),

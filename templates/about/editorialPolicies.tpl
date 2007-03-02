@@ -17,7 +17,7 @@
 	{if !empty($conferenceSettings.reviewPolicy)}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if !empty($conferenceSettings.pubFreqPolicy)}<li>&#187; <a href="{url op="editorialPolicies" anchor="publicationFrequency"}">{translate key="about.publicationFrequency"}</a></li>{/if}
 	{if !empty($conferenceSettings.archiveAccessPolicy)}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiveAccessPolicy"}">{translate key="about.archiveAccessPolicy"}</a></li>{/if}
-	{if !empty($conferenceSettings.openAccessPolicy) || !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
+	{if !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{if $conferenceSettings.enableLockss && !empty($conferenceSettings.lockssLicense)}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiving"}">{translate key="about.archiving"}</a></li>{/if}
 	{foreach key=key from=$conferenceSettings.customAboutItems item=customAboutItem}
 		{if !empty($customAboutItem.title)}
@@ -53,11 +53,8 @@
 <div class="separator">&nbsp;</div>
 {/if}
 
-{if !empty($conferenceSettings.openAccessPolicy) || !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}
+{if !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}
 <a name="openAccessPolicy"></a><h3>{translate key="about.openAccessPolicy"}</h3>
-	{if empty($conferenceSettings.enableSubscriptions) && !empty($conferenceSettings.openAccessPolicy)} 
-		<p>{$conferenceSettings.openAccessPolicy|nl2br}</p>
-	{/if}
 	{if !empty($conferenceSettings.enableSubscriptions) && !empty($conferenceSettings.enableDelayedOpenAccess)}
 		<h4>{translate key="about.delayedOpenAccess"}</h4> 
 		<p>{translate key="about.delayedOpenAccessDescription1"} {$conferenceSettings.delayedOpenAccessDuration} {translate key="about.delayedOpenAccessDescription2"}</p>

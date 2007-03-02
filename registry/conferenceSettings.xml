@@ -44,10 +44,6 @@
 		<value>{translate key="default.conferenceSettings.privacyStatement"}</value>
 	</setting>
 	<setting type="string">
-		<name>openAccessPolicy</name>
-		<value>{translate key="default.conferenceSettings.openAccessPolicy"}</value>
-	</setting>
-	<setting type="string">
 		<name>presenterSelfArchivePolicy</name>
 		<value>{translate key="default.conferenceSettings.presenterSelfArchivePolicy"}</value>
 	</setting>
