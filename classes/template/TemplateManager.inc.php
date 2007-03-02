@@ -119,6 +119,7 @@ class TemplateManager extends Smarty {
 				$this->assign('enableAnnouncements', $conference->getSetting('enableAnnouncements'));
 				
 				$this->assign('pageFooter', $conference->getSetting('conferencePageFooter'));
+				$this->assign('postCreativeCommons', $conference->getSetting('postCreativeCommons'));
 
 				if (isset($schedConf)) {
 

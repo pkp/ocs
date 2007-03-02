@@ -152,6 +152,13 @@
 	<message key="common.ellipsis">...</message>
 	<message key="common.path">Path</message>
 	<message key="common.dateTimeSeparator">at</message>
+	<message key="common.ccLicense"><![CDATA[
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
+			<img alt="Creative Commons License" style="border-width:0" src="{$ccLicenseImageUrl}"/>
+		</a>
+		<br/>
+		This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-Noncommercial-No Derivative Works 3.0  License</a>.
+	]]></message>
 
 	<!-- Common Form Messages -->
 	<message key="form.errorsOccurred">Errors occurred processing this form</message>

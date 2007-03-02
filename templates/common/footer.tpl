@@ -13,6 +13,11 @@
 <br /><br />
 {$pageFooter}
 {/if}
+
+{if $postCreativeCommons}
+	{translate key="common.ccLicense" ccLicenseImageUrl=`$baseUrl`/templates/images/ccLicense.png}
+{/if}
+
 </div><!-- content -->
 </div><!-- main -->
 </div><!-- body -->
