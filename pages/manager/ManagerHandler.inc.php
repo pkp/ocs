@@ -588,6 +588,20 @@ class ManagerHandler extends Handler {
 		ConferenceLanguagesHandler::saveLanguageSettings();
 	}
 	
+	//
+	// Program
+	//
+	
+	function program() {
+		import('pages.manager.ManagerProgramHandler');
+		ManagerProgramHandler::program();
+	}
+	
+	function saveProgramSettings() {
+		import('pages.manager.ManagerProgramHandler');
+		ManagerProgramHandler::saveProgramSettings();
+	}
+	
 	
 	//
 	// Files Browser

@@ -15,11 +15,12 @@
 {if $programFile}
 	<span class="instruct">{translate key="schedConf.program.programFileInstructions"}</span>
 	<div>
-		<a class="file" href="{$publicFilesDir}/{$programFile.uploadName}" target="_blank" alt="">{translate key="schedConf.program.viewProgramFile"}</a>
+		<a class="file" href="{$publicFilesDir}/{$programFile.uploadName}" target="_blank" alt="">{$programFileTitle|escape}</a>
 	</div>
-{/if}
 
 <div class="separator"></div>
+{/if}
+
 
 <div>{$program|escape|nl2br}</div>
 

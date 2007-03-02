@@ -749,6 +749,13 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.schedConfs.form.pathExists">The selected path is already in use in this conference.</message>
 	<message key="manager.schedConfs.form.pathAlphaNumeric">The path can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
 
+	<!-- Program settings -->
+	<message key="manager.program.form.description">The date on which conference program will be made available on the website is set in Conference Timeline.</message>
+	<message key="manager.program.form.programFile">Program File</message>
+	<message key="manager.program.form.programFile.description">If the program is available as a file, upload it here.</message>
+	<message key="manager.program.form.programText">Plain Text Program</message>
+	<message key="manager.program.form.programText.description">Enter a text-based version of your conference program here.</message>
+
 	<!-- Conference Management -->
 	<message key="manager.conferenceSiteManagement">Conference Site Management</message>
 	<message key="manager.websiteManagement">Website Management</message>
@@ -760,6 +767,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.filesBrowser">Files Browser</message>
 	<message key="manager.groups">Organizing Team</message>
 	<message key="manager.managementPages">General Management</message>
+	<message key="manager.program">Program</message>
 	<message key="manager.plugins">System Plugins</message>
 	<message key="manager.users">Users</message>
 	<message key="manager.roles">Roles</message>

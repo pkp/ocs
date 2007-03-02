@@ -10,16 +10,19 @@
  *}
 
 {if not(empty($publisher.note) && empty($publisher.institution))}
+<div class="separator"></div>
+
 <h3>{translate key="common.publisher"}</h3>
 
 {if $publisher.note}<p>{$publisher.note|nl2br}</p>{/if}
 
 <p><a href="{$publisher.url}">{$publisher.institution|escape}</a></p>
 
-<div class="separator"></div>
 {/if}
 
 {if not (empty($sponsorNote) && empty($sponsors))}
+<div class="separator"></div>
+
 <h3>{translate key="about.sponsors"}</h3>
 
 {if $sponsorNote}<p>{$sponsorNote|nl2br}</p>{/if}
@@ -36,10 +39,11 @@
 	{/foreach}
 </ul>
 
-<div class="separator"></div>
 {/if}
 
 {if not (empty($contributorNote) && empty($contributors))}
+<div class="separator"></div>
+
 <h3>{translate key="about.contributors"}</h3>
 
 {if $contributorNote}<p>{$contributorNote|nl2br}</p>{/if}

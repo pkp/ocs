@@ -108,8 +108,9 @@ class SchedConfHandler extends Handler {
 			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
 
-		$templateMgr->assign('program', $schedConf->getSetting('program', false));
-		$templateMgr->assign('programFile', $schedConf->getSetting('programFile', false));
+		$templateMgr->assign('program', $schedConf->getSetting('program'));
+		$templateMgr->assign('programFileTitle', $schedConf->getSetting('programFileTitle'));
+		$templateMgr->assign('programFile', $schedConf->getSetting('programFile'));
 
 		$templateMgr->assign('helpTopicId', 'schedConf.program');
 		$templateMgr->display('schedConf/program.tpl');
