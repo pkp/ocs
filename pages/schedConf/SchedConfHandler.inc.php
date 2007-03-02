@@ -181,10 +181,8 @@ class SchedConfHandler extends Handler {
 			}
 			
 			// Assign header and content for home page
-			$templateMgr->assign('displayPageHeaderTitle', $schedConf->getPageHeaderTitle(true));
-			$templateMgr->assign('displayPageHeaderLogo', $schedConf->getPageHeaderLogo(true));
-			$templateMgr->assign('displayConferencePageHeaderTitle', $conference->getPageHeaderTitle(true));
-			$templateMgr->assign('displayConferencePageHeaderLogo', $conference->getPageHeaderLogo(true));
+			$templateMgr->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle(true));
+			$templateMgr->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo(true));
 					
 			$templateMgr->assign('submissionOpenDate', $openDate);
 			$templateMgr->assign('submissionCloseDate', $closeDate);

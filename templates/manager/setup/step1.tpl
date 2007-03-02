@@ -69,13 +69,20 @@
 
 <div class="separator"></div>
 
-<h3>1.4 {translate key="manager.setup.aboutConference.privacyStatement"}</h3>
+<h3>1.4 {translate key="manager.setup.aboutConference.archiveAccessPolicy"}</h3>
+<p>{translate key="manager.setup.aboutConference.archiveAccessPolicy.description"}</p>
+
+<p><textarea name="archiveAccessPolicy" id="archiveAccessPolicy" rows="10" cols="60" class="textArea">{$archiveAccessPolicy|escape}</textarea></p>
+
+<div class="separator"></div>
+
+<h3>1.5 {translate key="manager.setup.aboutConference.privacyStatement"}</h3>
 
 <p><textarea name="privacyStatement" id="privacyStatement" rows="10" cols="60" class="textArea">{$privacyStatement|escape}</textarea></p>
 
 <div class="separator"></div>
 
-<h3>1.5 {translate key="manager.setup.aboutConference.addItemtoAboutConference"}</h3>
+<h3>1.6 {translate key="manager.setup.aboutConference.addItemtoAboutConference"}</h3>
 
 <table width="100%" class="data">
 {foreach name=customAboutItems from=$customAboutItems key=aboutId item=aboutItem}

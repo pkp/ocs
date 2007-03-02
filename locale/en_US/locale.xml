@@ -879,6 +879,8 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<message key="manager.setup.htmlSetupInstructions"><![CDATA[If using HTML in Setup text boxes (for font size, bold, color, etc.), note that "returns" in the text are automatically treated as <tt>&lt;br&gt;</tt>.]]></message>
 
+	<message key="manager.setup.conferenceSetupNotes"><![CDATA[Conferences are set up in two stages. The first stage is concerned with the conference in general, whether it is held only once, run annually, or run as a series. The second set of steps, which are completed after these initial steps are in place, concerns the specific and scheduled instances of the conference. This permits a website to be run for the conference in general, with many instances of it available to readers (e.g., My Conference, with My Conference 2007; My Conference 2008, etc.) Conference Managers set up the general conference site.]]></message>
+
 
 	<!--
 	     ***
@@ -924,6 +926,8 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.aboutConference.copyrightNotice.description"><![CDATA[The Copyright Notice will also appear in the metadata accompanying posted conference materials and as a statement that presenters need to agree to on submitting to the conference. The Public Knowledge Project recommends the use of a <a href="http://creativecommons.org">Creative Commons</a> license, and provides a sample Copyright Notice below.]]></message>
 	<message key="manager.setup.aboutConference.copyrightNoticeAgree">Require presenters to agree to Copyright Notice as part of the submission process.</message>
 	<message key="manager.setup.aboutConference.postCreativeCommons">Post the Creative Commons license logo on the conference website.</message>
+	<message key="manager.setup.aboutConference.archiveAccessPolicy">Archive Access Policy</message>
+	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">See section 5.1 for settings.</message>
 	<message key="manager.setup.aboutConference.privacyStatement">Privacy Statement</message>
 
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Add Item to Appear in "About the Conference"</message>
@@ -980,7 +984,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.styleSheet.useConferenceStyleSheet">Conference style sheet</message>
 
 	<!-- Conference setup page 5 -->
-	<message key="manager.setup.access.securitySettings">Access Settings for Conference Archives</message>
+	<message key="manager.setup.access.securitySettings">Optional Access Settings for Conference Archives</message>
 	<message key="manager.setup.access.restrictSiteAccess">Visitors must register as Readers to view conference archives.</message>
 	<message key="manager.setup.access.comments">Reader Comments</message>
 	<message key="manager.setup.access.comments.enable">Permit commenting on archived presentations</message>
@@ -1003,57 +1007,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 Note that if your site administrator has already registered this site with the PKP Harvester, your conference will be indexed automatically and you do not need to register your conference.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <b>Site URL</b>, and <span class="highlight">{$oaiUrl}</span> under <b>Base URL for OAI Archive</b>.]]></message>
-
-	<!-- THE STUFF BELOW MAY BE UNUSED -->
-
-	<!-- Conference Setup Step 1: Details -->
-	<message key="manager.setup.conferenceSetupNotes"><![CDATA[Conferences are set up in two stages. The first stage is concerned with the conference in general, whether it is held only once, run annually, or run as a series. The second set of steps, which are completed after these initial steps are in place, concerns the specific and scheduled instances of the conference. This permits a website to be run for the conference in general, with many instances of it available to readers (e.g., My Conference, with My Conference 2007; My Conference 2008, etc.) Conference Managers set up the general conference site.]]></message>
-	<message key="manager.setup.generalInformation">General Information</message>
-	<message key="manager.setup.conferenceAcronym">Conference acronym</message>
-	<message key="manager.setup.conferenceDescription">Conference Description</message>
-	<message key="manager.setup.conferenceIntroduction">Conference Introduction</message>
-	<message key="manager.setup.conferenceIntroductionDescription">An introduction provides participants with a concise synopsis of the conference. Typically, introductions do not exceed 100 words. The introduction is used when a longer overview is not appropriate.</message>
-	<message key="manager.setup.principalContact">Principal Contact</message>
-	<message key="manager.setup.principalContactDescription">This position, which can be treated as a principal editorship, managing editorship, or administrative staff position, will be listed on the homepage of the conference under Contact, along with the Technical Support Contact.</message>
-	<message key="manager.setup.emails">Email Identification</message>
-	<!-- message key="manager.setup.form.conferenceTitleRequired">The conference title is required.</message>
-	<message key="manager.setup.form.conferenceAcronymRequired">The conference acronym is required.</message>
-	<message key="manager.setup.form.contactNameRequired">The primary contact name is required.</message>
-	<message key="manager.setup.form.contactEmailRequired">The primary contact email is required.</message>
-	<message key="manager.setup.form.supportNameRequired">The support name is required.</message>
-	<message key="manager.setup.form.supportEmailRequired">The support email is required.</message -->
-
-	<!-- Conference Setup Step 3: Access -->
-	<message key="manager.setup.conferenceArchiving">Conference Archiving</message>
-	<message key="manager.setup.lockssDescription"><![CDATA[Open Conference Systems supports the <a href="http://lockss.stanford.edu/" target="_blank">LOCKSS</a> (Lots of Copies Keep Stuff Safe) system to ensure a secure and permanent archive for the conference. LOCKSS is open source software developed at Stanford University Library that enables libraries to preserve selected web conferences by regularly polling registered conference websites for newly published content and archiving it. Each archive is continually validated against other library caches, and if content is found to be corrupted or lost, the other caches or the conference is used to restore it.
-<br /><br />
-Setting up LOCKSS support for Open Conference Systems does not need to take place until after publishing is fully underway, at which point follow these two steps:]]></message>
-	<message key="manager.setup.lockssRegister"><![CDATA[Identify 6-10 libraries that will register and cache the conference. For example, turn to institutions where directors or Board members work and/or institutions already participating in LOCKSS. See <a href="http://lockss.stanford.edu/about/users.htm" target="_blank">participating libraries</a>. Use the prepared invitations for (i) <a href="{$lockssExistingArchiveUrl}" target="_blank">libraries participating in LOCKSS</a> or (ii) <a href="{$lockssNewArchiveUrl}" target="_blank">libraries not yet participating in LOCKSS</a>.]]></message>
-	<message key="manager.setup.lockssEnable"><![CDATA[Enable LOCKSS to store and distribute conference content at participating libraries via a LOCKSS <a href="{$lockssUrl}" target="_blank">Publisher Manifest</a> page. A LOCKSS license will appear in About the Conference under Archiving:]]></message>
-	<message key="manager.setup.lockssLicenses"><![CDATA[See <a href="http://lockss.stanford.edu/publishers/publishers.htm" target="_blank">other versions of a LOCKSS license</a>.]]></message>
-
-	<message key="manager.setup.userRegistration">User Registration</message>
-	<message key="manager.setup.enableUserRegistration">Allow users to register with the conference site as:</message>
-	<message key="manager.setup.disableUserRegistration">Disable user registration. Users will have to be manually created by a conference manager.</message>
-	<message key="manager.setup.siteAccess">Site Access</message>
-	<message key="manager.setup.paperAccess">Paper Access</message>
-	<message key="manager.setup.noRestrictPaperAccess">Unregistered users can view all posted abstracts and presentations associated with this conference.</message>
-	<message key="manager.setup.restrictPaperAccess">Users must log in to view posted materials associated with this conference.</message>
-
-
-	<!-- Conference Setup Step 4: Indexing -->
-	<message key="manager.setup.managingTheConference">Step 4. Managing the Conference</message>
-	<message key="manager.setup.onlineAccessManagement">Online Access Management</message>
-	<message key="manager.setup.openAccess">Provide open access to the conference's contents as each issue or item is published.</message>
-	<message key="manager.setup.openAccessPolicy">Open Access Policy (to appear in About the Conference)</message>
-	<message key="manager.setup.registration">Restrict access to the conference's contents to registrants.</message>
-	<message key="manager.setup.registrationDescription">The Registration Management module is operated by the Registration Director and includes additional open access, self-archiving, and email notification options.</message>
-	<message key="manager.setup.registrationContactDescription">If subscription management has been enabled, this person will be listed on the conference's About page as the primary contact for subscriptions.</message>
-
-	<!-- Conference Setup Step 5 -->
-	<message key="manager.setup.conferenceStyleSheet">Conference Style Sheet</message>
-	<message key="manager.setup.noStyleSheetUploaded">No style sheet uploaded.</message>
-	<message key="manager.setup.conferenceHomepageContent">Conference Homepage Content</message>
 
 	<!-- 
 	     ***
@@ -1175,90 +1128,6 @@ Title of classification system]]></message>
 	<message key="manager.schedConfSetup.review.remindForSubmit1">Who have not submitted a review within</message>
 	<message key="manager.schedConfSetup.review.remindForSubmit2">days after its due date.</message>
 	<message key="manager.schedConfSetup.review.onQuality">Directors are able to rate reviewers on a five-point scale.</message>
-
-
-	<!-- BELOW HERE MAY BE UNUSED -->
-
-
-	<message key="manager.setup.participation">Participation</message>
-	<message key="manager.setup.participation.description">Reader registration &amp; access to proceedings.</message>
-	<message key="manager.setup.publication">Publication</message>
-	<message key="manager.setup.publication.description">Access to proceedings and indexing.</message>
-
-	<!-- Scheduled Conference Setup Step 1 -->
-	<message key="manager.setup.schedConfIntroduction">Introduction</message>
-	<message key="manager.setup.schedConfIntroductionDescription">An introduction provides participants with a concise synopsis of the scheduled conference. Typically, introductions do not exceed 100 words. The introduction is used when a longer overview is not appropriate.</message>
-	<message key="manager.setup.schedConfOverview">Overview</message>
-	<message key="manager.setup.schedConfOverviewDescription">An overview details the whole of the scheduled conference. It includes such items as direction, topics, and structure.</message>
-	<message key="manager.setup.title">Scheduled conference title</message>
-	<message key="manager.setup.acronym">Scheduled conference acronym</message>
-	<message key="manager.setup.startDate">Start date</message>
-	<message key="manager.setup.startDateDescription">The first day of conference activities.</message>
-	<message key="manager.setup.endDate">End date</message>
-	<message key="manager.setup.endDateDescription">The final day of conference activities.</message>
-	<message key="manager.setup.description">Scheduled conference description</message>
-	<message key="manager.setup.program">Scheduled Conference Program</message>
-	<message key="manager.setup.programDescription">Lay out the program by date, time, location, and event. Update this information as you begin to finalize your list of presenters and presentation titles.</message>
-
-	<!-- Scheduled Conference Setup Step 2 -->
-	<message key="manager.setup.guidingSubmissions">Step 2. Guiding Submissions</message>
-	<message key="manager.setup.presenterRegistration">Presenter Registration</message>
-	<message key="manager.setup.reminders">Reminders for Presenters</message>
-	<message key="manager.setup.reminders.description">Submissions must be completed by certain deadlines. If desired, a few days before these deadlines, presenters may be sent a warning e-mail (which can be viewed and edited in Prepared Emails).</message>
-	<message key="manager.setup.reminders.remindPaperDue">Remind presenters with incomplete submissions before their submission deadline passes.</message>
-	<message key="manager.setup.reminders.numDaysBeforeDeadlineReminder">Time before deadline that reminders are sent</message>
-	<message key="manager.setup.reminders.submissionDeadlineWarnDisabled"><![CDATA[<strong>Note:</strong> The submission deadline warning email is currently disabled. To use this feature, enable the SUBMISSION_DEADLINE_WARN email in <a class="action" href="{$preparedEmailsUrl}">Prepared Emails</a>.]]></message>
-	<message key="manager.setup.submissionReview">Step 3. Reviewing Submissions</message>
-	<message key="manager.setup.submissionAndReview">Paper Submission and Review</message>
-	<message key="manager.schedConfSetup.reviewModel">Peer Review Process</message>
-	<message key="manager.schedConfSetup.reviewPapers">Subject papers to peer review after the abstracts have been reviewed and accepted</message>
-	<message key="manager.schedConfSetup.reviewOptions">Review Options</message>
-	<message key="manager.schedConfSetup.reviewOptions.reviewTime">Review Time</message>
-	<message key="manager.setup.presenterCopyrightNotice">Copyright Notice</message>
-	<message key="manager.setup.presenterCopyrightNoticeAgree">Require presenters to agree to Copyright Notice as part of the submission process.</message>
-
-
-	<!--<message key="manager.setup.form.numReviewersPerSubmission">The number of reviewers per submission is required.</message>-->
-	<!--<message key="manager.setup.schedConfSetup2.schedConfDeadlines">Step 2. Scheduled Conference Deadlines</message>-->
-	<message key="manager.setup.schedConfSetup2.deadlineNotes">Times are specified in the default time zone, "{$defaultTimeZone}", where it is currently {$currentTimeInDefaultTimeZone}. Where times are unspecified, midnight is assumed.</message>
-	<message key="manager.setup.schedConfSetup2.submissionDeadlines">Submission Deadlines</message>
-	<message key="manager.setup.schedConfSetup2.submissionDeadlinesDescription">The following dates determine deadlines for contributors to this conference.</message>
-	<message key="manager.setup.schedConfSetup2.abstractDueDate">Abstracts due on</message>
-	<message key="manager.setup.schedConfSetup2.paperDueDate">Papers due on</message>
-	<message key="manager.setup.schedConfSetup2.submissionDueDate">Submissions due on</message>
-	<message key="manager.setup.schedConfSetup2.acceptSubmissionsDate">Accept submissions on</message>
-
-	<message key="manager.setup.schedConfSetup2.releaseDeadlines">Paper Publication Dates</message>
-	<message key="manager.setup.schedConfSetup2.showCFPDate">Show CFP (call-for-papers) on</message>
-	<message key="manager.setup.schedConfSetup2.releaseDeadlinesDescription">The following dates determine when papers are released to conference stakeholders.</message>
-	<message key="manager.setup.schedConfSetup2.internalPublishSubmissionsDate">Submissions released to registered users on</message>
-	<message key="manager.setup.schedConfSetup2.publicPublishSubmissionsDate">Submissions released to the public on</message>
-
-	<!-- Scheduled Conference Setup Step 3 -->
-	<message key="manager.schedConfSetup.reviewerRegistration">Reviewer Registration</message>
-	<message key="manager.schedConfSetup.reviewerRegistrationDescription"><![CDATA[If desired, OCS may permit users to register themselves as reviewers for this scheduled conference. If these options are disabled, the Conference Manager must manually register users as reviewers via the Conference Management pages.]]></message>
-	<message key="manager.setup.openRegReviewerOn">Permit users to register as reviewers starting on</message>
-	<message key="manager.setup.closeRegReviewerOn">Close reviewer registration on</message>
-
-	<!-- Scheduled Conference Setup Step 4 -->
-	<message key="manager.setup.readerAccess">Visitors to the conference website have open access to the conference's abstracts and presentations (see Website Posting for dates).</message>
-	<message key="manager.setup.requireRegReader">Require website registration as Reader at no charge (see Security/Access).</message>
-	<message key="manager.setup.registrantAccess">Conference registrants alone have access to abstracts and presentations.</message>
-
-	<message key="manager.setup.conferenceRegistration">Conference Registration</message>
-	<message key="manager.setup.conferenceRegistrationDescription">The Conference Director can activate Registration Management, which is to be set up and managed by the registered Registration Manager. The contact information for this user should be listed below and will appear in the conference's About the Conference page as the primary contact for registration.</message>
-	<message key="manager.setup.programFileInvalid">Invalid program file.</message>
-
-	<message key="manager.setup.conferenceProgram">Conference Program</message>
-	<message key="manager.setup.conferenceProgramDescription">Layout the program by date, time, location, and event. Update this information as you begin to finalize your list of presenters and presentation titles.</message>
-	<message key="manager.setup.programFile">Program File</message>
-	<message key="manager.setup.programFileDescription">If the program is available as a file, you may upload it here.</message>
-	<message key="manager.setup.programText">Plain Text Program</message>
-	<message key="manager.setup.programTextDescription">Enter a text-based version of your conference program here. Even if a program file is provided above, a text-based program is recomended since it allows easier indexing by search engines and can be viewed without browser plug-ins.</message>
-
-	<!-- Scheduled Conference Setup Step 5 -->
-	<message key="manager.setup.schedConfLookSetupInstructions"><![CDATA[If these settings are left unconfigured, this scheduled conference will default to the look and feel of the conference it belongs to. In order to change the look and feel of the entire conference, the Conference Director must modify the <a href="{$conferenceLookSetupUrl}">Conference Setup pages</a>.]]></message>
-	<message key="manager.setup.conferenceHomepageContentDescription">The scheduled conference's homepage includes by default the conference's name, dates, location, and introduction, and main topics with links (Overview; Call for Papers; Featured Speakers; Program and Presentations; Registration, Accomodation and Travel; Conference Organizers and Key Partners; Related Links).</message>
 
 	<!-- Languages -->
 	<message key="manager.languages.languageInstructions"><![CDATA[OCS can be made available to users in any of several supported languages. As well, OCS can operate as a partially multilingual system, providing users with an ability to toggle between languages on each page, and allowing certain data to be entered in up to two additional languages.<br /><br/>If a language supported by OCS is not listed below, ask your site administrator to install the language from the site administration interface. For instructions on adding support for new languages, please consult the OCS documentation.]]></message>
@@ -2248,6 +2117,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.privacyStatement">Privacy Statement</message>
 	<message key="about.peerReviewProcess">Peer Review Process</message>
 	<message key="about.openAccessPolicy">Open Access Policy</message>
+	<message key="about.archiveAccessPolicy">Archive Access Policy</message>
 	<message key="about.delayedOpenAccess">Delayed Open Access</message>
 	<message key="about.delayedOpenAccessDescription1">The contents of this conference will be available in an open access format</message>
 	<message key="about.delayedOpenAccessDescription2">month(s) after the scheduled conference is released to participants.</message>

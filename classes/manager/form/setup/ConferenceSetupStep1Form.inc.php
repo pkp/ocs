@@ -29,6 +29,7 @@ class ConferenceSetupStep1Form extends ConferenceSetupForm {
 				'contactPhone' => 'string',
 				'contactFax' => 'string',
 				'contactMailingAddress' => 'string',
+				'archiveAccessPolicy' => 'string',
 				'copyrightNotice' => 'string',
 				'copyrightNoticeAgree' => 'bool',
 				'postCreativeCommons' => 'bool',

@@ -246,6 +246,7 @@ class AboutHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$settings = ($schedConf? $schedConf->getSettings(true): $conference->getSettings());
+		$templateMgr->assign('conferenceSettings', $settings);
 
 		$templateMgr->display('about/editorialPolicies.tpl');
 	}

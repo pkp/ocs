@@ -127,10 +127,6 @@ class TemplateManager extends Smarty {
 
 					$this->assign_by_ref('currentSchedConf', $schedConf);
 					$schedConfTitle = $schedConf->getTitle();
-
-					$this->assign('displayConferencePageHeaderTitle', $conference->getPageHeaderTitle());
-					$this->assign('displayConferencePageHeaderLogo', $conference->getPageHeaderLogo());
-
 				} else {
 
 					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
