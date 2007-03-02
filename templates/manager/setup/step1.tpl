@@ -72,6 +72,27 @@
 <h3>1.4 {translate key="manager.setup.aboutConference.archiveAccessPolicy"}</h3>
 <p>{translate key="manager.setup.aboutConference.archiveAccessPolicy.description"}</p>
 
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="5%" class="label"><input type="checkbox" name="restrictSiteAccess" id="restrictSiteAccess" value="1"{if $restrictSiteAccess} checked="checked"{/if} /></td>
+		<td width="95%" colspan="2" class="value"><label for="restrictSiteAccess">{translate key="manager.setup.aboutConference.restrictSiteAccess"}</label></td>
+	</tr>
+	<tr valign="top">
+		<td width="5%" class="label"><input type="checkbox" name="enableComments" id="enableComments" value="1"{if $enableComments} checked="checked"{/if} /></td>
+		<td width="95%" colspan="2" class="value"><label for="enableComments">{translate key="manager.setup.aboutConference.comments.enable"}</label></td>
+	</tr>
+	<tr valign="top">
+		<td width="5%" class="label">&nbsp;</td>
+		<td width="5%" class="label"><input type="checkbox" name="commentsRequireRegistration" id="commentsRequireRegistration" value="1"{if $commentsRequireRegistration} checked="checked"{/if} /></td>
+		<td width="90%" class="value"><label for="commentsRequireRegistration">{translate key="manager.setup.aboutConference.comments.requireRegistration"}</label></td>
+	</tr>
+	<tr valign="top">
+		<td width="5%" class="label">&nbsp;</td>
+		<td width="5%" class="label"><input type="checkbox" name="commentsAllowAnonymous" id="commentsAllowAnonymous" value="1"{if $commentsAllowAnonymous} checked="checked"{/if} /></td>
+		<td width="90%" class="value"><label for="commentsAllowAnonymous">{translate key="manager.setup.aboutConference.comments.allowAnonymous"}</label></td>
+	</tr>
+</table>
+
 <p><textarea name="archiveAccessPolicy" id="archiveAccessPolicy" rows="10" cols="60" class="textArea">{$archiveAccessPolicy|escape}</textarea></p>
 
 <div class="separator"></div>

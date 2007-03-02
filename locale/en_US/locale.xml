@@ -890,28 +890,28 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.additionalContent">Additional Website Content</message>
 	<message key="manager.setup.layout">Website Headers, Footers, Lists and Navigation Bar</message>
 	<message key="manager.setup.styleSheet">Conference Stylesheet</message>
-	<message key="manager.setup.access">Site Access and Auditing</message>
+	<message key="manager.setup.loggingAndAuditing">Logging and Auditing</message>
 	<message key="manager.setup.indexing">Conference Indexing</message>
 
 	<message key="manager.setup.aboutConference.title">Step 1. About the Conference</message>
 	<message key="manager.setup.additionalContent.title">Step 2. Additional Website Content</message>
 	<message key="manager.setup.layout.title">Step 3. Website Headers, Footers, Lists and Navigation Bar</message>
 	<message key="manager.setup.styleSheet.title">Step 4. Conference Stylesheet</message>
-	<message key="manager.setup.access.title">Step 5. Site Access and Auditing</message>
+	<message key="manager.setup.loggingAndAuditing.title">Step 5. Logging and Auditing</message>
 	<message key="manager.setup.indexing.title">Step 6. Conference Indexing</message>
 
 	<message key="manager.setup.aboutConference.brief">About</message>
 	<message key="manager.setup.additionalContent.brief">Additional Content</message>
 	<message key="manager.setup.layout.brief">Headers, Footers, etc.</message>
 	<message key="manager.setup.styleSheet.brief">Stylesheet</message>
-	<message key="manager.setup.access.brief">Access and Auditing</message>
+	<message key="manager.setup.loggingAndAuditing.brief">Logging &amp; Auditing</message>
 	<message key="manager.setup.indexing.brief">Indexing</message>
 
 	<message key="manager.setup.aboutConference.description">Conference description, principal contact, copyright notice, etc.</message>
 	<message key="manager.setup.additionalContent.description">Homepage content, user information, and announcements</message>
 	<message key="manager.setup.layout.description">Titles and logos, headers, footers, etc.</message>
 	<message key="manager.setup.styleSheet.description">Cascading Style Sheet for conference pages</message>
-	<message key="manager.setup.access.description">Commenting, logging, auditing, etc.</message>
+	<message key="manager.setup.loggingAndAuditing.description">Email logs, event logs, etc.</message>
 	<message key="manager.setup.indexing.description">Search engines and metadata harvesting</message>
 
 	<message key="manager.setup.stepsToConferenceSite">Five Steps to a Conference Web Site</message>
@@ -931,6 +931,11 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Add Item to Appear in "About the Conference"</message>
 	<message key="manager.setup.aboutConference.aboutItemContent">Content</message>
 	<message key="manager.setup.aboutConference.addAboutItem">Add About Item</message>
+	<message key="manager.setup.aboutConference.restrictSiteAccess">Visitors must register as Readers to view archived conference abstracts and presentations.</message>
+	<message key="manager.setup.aboutConference.comments">Reader Comments</message>
+	<message key="manager.setup.aboutConference.comments.enable">Permit commenting on archived presentations</message>
+	<message key="manager.setup.aboutConference.comments.requireRegistration">Only registered users can comment on archived presentations.</message>
+	<message key="manager.setup.aboutConference.comments.allowAnonymous">Anonymous commenting is permitted.</message>
 
 	<!-- Conference setup page 2 -->
 	<message key="manager.setup.additionalContent.homepage">Homepage</message>
@@ -982,17 +987,10 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.styleSheet.useConferenceStyleSheet">Conference style sheet</message>
 
 	<!-- Conference setup page 5 -->
-	<message key="manager.setup.access.securitySettings">Optional Access Settings for Conference Archives</message>
-	<message key="manager.setup.access.restrictSiteAccess">Visitors must register as Readers to view conference archives.</message>
-	<message key="manager.setup.access.comments">Reader Comments</message>
-	<message key="manager.setup.access.comments.enable">Permit commenting on archived presentations</message>
-	<message key="manager.setup.access.comments.requireRegistration">Only registered users can comment on archived presentations.</message>
-	<message key="manager.setup.access.comments.allowAnonymous">Anonymous commenting is permitted.</message>
-	<message key="manager.setup.access.loggingAndAuditing">Logging and Auditing</message>
-	<message key="manager.setup.access.loggingAndAuditing.description">Maintain a log of the following actions and materials for all conferences.</message>
-	<message key="manager.setup.access.submissionEventLogging">Submission-related actions, recorded on submission's "History" page.</message>
-	<message key="manager.setup.access.submissionEmailLogging">Submission-related emails, recorded on submission's "History" page.</message>
-	<message key="manager.setup.access.conferenceEventLogging">Conference event logging.</message>
+	<message key="manager.setup.loggingAndAuditing.pageDescription">Maintain a log of the following actions and materials for all conferences.</message>
+	<message key="manager.setup.loggingAndAuditing.submissionEventLogging">Submission-related actions, recorded on submission's "History" page.</message>
+	<message key="manager.setup.loggingAndAuditing.submissionEmailLogging">Submission-related emails, recorded on submission's "History" page.</message>
+	<message key="manager.setup.loggingAndAuditing.conferenceEventLogging">Conference event logging.</message>
 
 	<!-- Conference setup page 6 -->
 	<message key="manager.setup.indexing.searchEngineIndexing">Search Engine Indexing</message>

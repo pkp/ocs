@@ -36,8 +36,8 @@
 		&nbsp;
 	</li>
 	<li>
-		<h4><a href="{url op="setup" path="5"}">{translate key="manager.setup.access"}</a></h4>
-		{translate key="manager.setup.access.description"}<br/>
+		<h4><a href="{url op="setup" path="5"}">{translate key="manager.setup.loggingAndAuditing"}</a></h4>
+		{translate key="manager.setup.loggingAndAuditing.description"}<br/>
 		&nbsp;
 	</li>
 	<li>

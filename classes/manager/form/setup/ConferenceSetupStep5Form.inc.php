@@ -24,10 +24,6 @@ class ConferenceSetupStep5Form extends ConferenceSetupForm {
 		parent::ConferenceSetupForm(
 			5,
 			array(
-				'restrictSiteAccess' => 'bool',
-				'enableComments' => 'bool',
-				'commentsRequireRegistration' => 'bool',
-				'commentsAllowAnonymous' => 'bool',
 				'paperEventLog' => 'bool',
 				'paperEmailLog' => 'bool',
 				'conferenceEventLog' => 'bool'
