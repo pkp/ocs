@@ -19,8 +19,8 @@
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr valign="top" class="heading">
-		<td width="35%">{translate key="manager.schedConfs.scheduledConference"}</td>
-		<td width="35%">{translate key="manager.schedConfs.schedConfStartDate"}</td>
+		<td width="50%">{translate key="manager.schedConfs.scheduledConference"}</td>
+		<td width="20%">{translate key="manager.schedConfs.form.acronym"}</td>
 		<td width="10%">{translate key="common.order"}</td>
 		<td width="20%" align="right">{translate key="common.action"}</td>
 	</tr>
@@ -30,7 +30,7 @@
 	{iterate from=schedConfs item=schedConf}
 	<tr valign="top">
 		<td><a class="action" href="{url schedConf=$schedConf->getPath() page="manager"}">{$schedConf->getTitle()|escape}</a></td>
-		<td>{$schedConf->getStartDate()|date_format:$dateFormatShort}</td>
+		<td>{$schedConf->getSetting('acronym')|escape|default:"&mdash;"}</td>
 		<td><a href="{url op="moveSchedConf" d=u schedConfId=$schedConf->getSchedConfId()}">&uarr;</a> <a href="{url op="moveSchedConf" d=d schedConfId=$schedConf->getSchedConfId()}">&darr;</a></td>
 
 		<td align="right">

@@ -54,7 +54,7 @@
 {elseif $bibFormat == 'BibTeX'}
 
 {literal}
-<pre style="font-size: 1.5em;">@paper{{{/literal}{$conference->getSetting('conferenceAcronym')|escape}{literal}}{{/literal}{$paperId|escape}{literal}},
+<pre style="font-size: 1.5em;">@paper{{{/literal}{$schedConf->getSetting('acronym')|escape}{literal}}{{/literal}{$paperId|escape}{literal}},
 	presenter = {{/literal}{assign var=presenters value=$paper->getPresenters()}{foreach from=$presenters item=presenter name=presenters key=i}{$presenter->getLastName()|escape}, {assign var=firstName value=$presenter->getFirstName()}{assign var=presenterCount value=$presenters|@count}{$firstName[0]|escape}.{if $i<$presenterCount-1}, {/if}{/foreach}{literal}},
 	title = {{/literal}{$paper->getPaperTitle()|strip_unsafe_html}{literal}},
 	conference = {{/literal}{$conference->getTitle()|escape}{literal}},

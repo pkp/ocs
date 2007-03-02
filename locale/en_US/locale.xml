@@ -727,8 +727,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<!--<message key="admin.conferences.form.importPathRequired">The import path is required.</message>-->
 	<!--<message key="admin.conferences.importErrors">Importing failed to complete successfully</message>-->
 
-	<message key="manager.schedConfs.enableSchedConfInstructions">Enable this scheduled conference to appear publicly on the site</message>
-
 	<!-- Registration Management -->
 	<message key="manager.registrationManagement">Registration Management</message>
 
@@ -736,17 +734,17 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.schedConfs">Scheduled Conferences</message>
 	<message key="manager.schedConfSetup">Setup</message>
 	<message key="manager.schedConfManagement">Scheduled Conference Management</message>
-	<message key="manager.schedConfs.schedConfTitle">Scheduled Conference Title</message>
 	<message key="manager.schedConfs.schedulingAConference">Scheduling a Conference</message>
 	<message key="manager.schedConfs.noneCreated">No events have been created.</message>
 	<message key="manager.schedConfs.confirmDelete">Are you sure you want to permanently delete this scheduled conference and all of its contents?</message>
 	<message key="manager.schedConfs.scheduledConference">Scheduled Conference</message>
-	<message key="manager.schedConfs.schedConfStartDate">Start Date</message>
-	<message key="manager.schedConfs.schedConfEndDate">End Date</message>
 	<message key="manager.schedConfs.create">Create a Scheduled Conference</message>
-	<message key="manager.schedConfs.createInstructions">A scheduled instance of the conference is created by entering a title (for example, if it is an annual conference, the name of the conference plus the year) and a URL path. You will be made a Conference Director and can designate other Conference Directors, who are able to manage the details of this event, beginning with the scheduling of the conference in Conference Timeline.</message>
-	<message key="manager.schedConfs.urlWillBe">The event's URL will be {$sampleUrl}</message>
+	<message key="manager.schedConfs.form.createInstructions">A scheduled instance of the conference is created by entering a title (for example, if it is an annual conference, the name of the conference plus the year) and a URL path. You will be made a Conference Director and can designate other Conference Directors, who are able to manage the details of this event, beginning with the scheduling of the conference in Conference Timeline.</message>
+	<message key="manager.schedConfs.form.urlWillBe">The event's URL will be {$sampleUrl}</message>
+	<message key="manager.schedConfs.form.title">Scheduled Conference Title</message>
+	<message key="manager.schedConfs.form.acronym">Acronym</message>
 	<message key="manager.schedConfs.form.titleRequired">A title is required.</message>
+	<message key="manager.schedConfs.form.acronymRequired">An acronym is required.</message>
 	<message key="manager.schedConfs.form.pathRequired">A path is required.</message>
 	<message key="manager.schedConfs.form.pathExists">The selected path is already in use in this conference.</message>
 	<message key="manager.schedConfs.form.pathAlphaNumeric">The path can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>

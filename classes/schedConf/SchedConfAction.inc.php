@@ -71,7 +71,7 @@ class SchedConfAction {
 	 */
 	function mayViewSchedConf(&$schedConf) {
 		$conference =& $schedConf->getConference();
-		return $schedConf->getEnabled() && $conference->getEnabled();
+		return $conference->getEnabled();
 	}
 
 	/**

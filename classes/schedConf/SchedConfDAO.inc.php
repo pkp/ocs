@@ -83,7 +83,6 @@ class SchedConfDAO extends DAO {
 		$schedConf->setTitle($row['title']);
 		$schedConf->setPath($row['path']);
 		$schedConf->setSequence($row['seq']);
-		$schedConf->setEnabled($row['enabled']);
 		$schedConf->setConferenceId($row['conference_id']);
 		$schedConf->setStartDate($this->datetimeFromDB($row['start_date']));
 		$schedConf->setEndDate($this->datetimeFromDB($row['end_date']));
@@ -100,17 +99,16 @@ class SchedConfDAO extends DAO {
 	function insertSchedConf(&$schedConf) {
 		$this->update(
 			sprintf('INSERT INTO sched_confs
-				(conference_id, title, path, seq, enabled, start_date, end_date)
+				(conference_id, title, path, seq, start_date, end_date)
 				VALUES
-				(?, ?, ?, ?, ?, %s, %s)',
+				(?, ?, ?, ?, %s, %s)',
 				$this->datetimeToDB($schedConf->getStartDate()),
 				$this->datetimeToDB($schedConf->getEndDate())),
 			array(
 				$schedConf->getConferenceId(),
 				$schedConf->getTitle(),
 				$schedConf->getPath(),
-				$schedConf->getSequence() == null ? 0 : $schedConf->getSequence(),
-				$schedConf->getEnabled() ? 1 : 0
+				$schedConf->getSequence() == null ? 0 : $schedConf->getSequence()
 			)
 		);
 		
@@ -130,7 +128,6 @@ class SchedConfDAO extends DAO {
 					title = ?,
 					path = ?,
 					seq = ?,
-					enabled = ?,
 					start_date = %s,
 					end_date = %s
 				WHERE sched_conf_id = ?',
@@ -141,7 +138,6 @@ class SchedConfDAO extends DAO {
 				$schedConf->getTitle(),
 				$schedConf->getPath(),
 				$schedConf->getSequence(),
-				$schedConf->getEnabled() ? 1 : 0,
 				$schedConf->getSchedConfId()
 			)
 		);
@@ -236,7 +232,7 @@ class SchedConfDAO extends DAO {
 	}
 	
 	/**
-	 * Retrieve all enabled scheduled conferences
+	 * Retrieve all scheduled conferences
 	 * @param conferenceId optional conference ID
 	 * @return array SchedConfs ordered by sequence
 	 */
@@ -245,8 +241,7 @@ class SchedConfDAO extends DAO {
 		$result = &$this->retrieve('
 			SELECT i.* FROM sched_confs i
 				LEFT JOIN conferences c ON (i.conference_id = c.conference_id)
-			WHERE i.enabled=1
-				AND c.enabled = 1'
+			WHERE c.enabled = 1'
 				. ($conferenceId?' AND i.conference_id = ?':'')
 			. ' ORDER BY c.seq, i.seq',
 			$conferenceId===null?-1:$conferenceId);
@@ -287,8 +282,7 @@ class SchedConfDAO extends DAO {
 		$result = &$this->retrieve('
 			SELECT i.sched_conf_id, i.title FROM schedConfs i
 				LEFT JOIN conferences c ON (i.conference_id = c.conference_id)
-			WHERE i.enabled=1
-				AND c.enabled = 1
+			WHERE c.enabled = 1
 			ORDER BY seq'
 		);
 		
@@ -362,8 +356,7 @@ class SchedConfDAO extends DAO {
 		$result = &$this->retrieve('
 			SELECT i.* FROM sched_confs i
 				LEFT JOIN conferences c ON (i.conference_id = c.conference_id)
-			WHERE i.enabled=1
-				AND c.enabled = 1
+			WHERE c.enabled = 1
 				AND i.conference_id = ?
 				AND i.start_date < NOW()
 				AND i.end_date > NOW()

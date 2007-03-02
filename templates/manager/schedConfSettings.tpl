@@ -23,13 +23,19 @@
 {include file="common/formErrors.tpl"}
 
 {if not $schedConfId}
-<p><span class="instruct">{translate key="manager.schedConfs.createInstructions"}</span></p>
+<p><span class="instruct">{translate key="manager.schedConfs.form.createInstructions"}</span></p>
 {/if}
 
 <table class="data" width="100%">
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="title" key="manager.schedConfs.schedConfTitle" required="true"}</td>
+		<td width="20%" class="label">{fieldLabel name="title" key="manager.schedConfs.form.title" required="true"}</td>
 		<td width="80%" class="value"><input type="text" id="title" name="title" value="{$title|escape}" size="40" maxlength="120" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="acronym" required="true" key="manager.schedConfs.form.acronym"}</td>
+		<td width="80%" class="value">
+			<input type="text" name="acronym" id="acronym" value="{$acronym|escape}" size="8" maxlength="16" class="textField" />
+		</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="title" key="common.path" required="true"}</td>
@@ -38,12 +44,7 @@
 			<br />
 			{translate|assign:"sampleEllipsis" key="common.ellipsis"}
 			{url|assign:"sampleUrl" schedConf="path" page="$sampleEllipsis"}
-			<span class="instruct">{translate key="manager.schedConfs.urlWillBe" sampleUrl=$sampleUrl}</span>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td colspan="2" class="label">
-			<input type="checkbox" name="enabled" id="enabled" value="1"{if $enabled} checked="checked"{/if} /> <label for="enabled">{translate key="manager.schedConfs.enableSchedConfInstructions"}</label>
+			<span class="instruct">{translate key="manager.schedConfs.form.urlWillBe" sampleUrl=$sampleUrl}</span>
 		</td>
 	</tr>
 </table>

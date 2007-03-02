@@ -34,6 +34,7 @@ class SchedConfSettingsForm extends Form {
 		
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'manager.schedConfs.form.titleRequired'));
+		$this->addCheck(new FormValidator($this, 'acronym', 'required', 'manager.schedConfs.form.acronymRequired'));
 		$this->addCheck(new FormValidator($this, 'path', 'required', 'manager.schedConfs.form.pathRequired'));
 		$this->addCheck(new FormValidatorAlphaNum($this, 'path', 'required', 'manager.schedConfs.form.pathAlphaNumeric'));
 		$this->addCheck(new FormValidatorCustom($this, 'path', 'required', 'manager.schedConfs.form.pathExists', create_function('$path,$form,$schedConfDao', 'return !$schedConfDao->schedConfExistsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('SchedConfDAO'))));
@@ -60,12 +61,10 @@ class SchedConfSettingsForm extends Form {
 		
 			if($schedConf != null) {
 				$this->_data = array(
-					'enabled' => 1,
 					'conferenceId' => $schedConf->getConferenceId(),
 					'title' => $schedConf->getTitle(),
-					'description' => $schedConf->getSetting('schedConfIntroduction'),
 					'path' => $schedConf->getPath(),
-					'enabled' => $schedConf->getEnabled(),
+					'acronym' => $schedConf->getSetting('acronym')
 				);
 			} else {
 				$this->schedConfId = null;
@@ -81,7 +80,6 @@ class SchedConfSettingsForm extends Form {
 
 		if (!isset($this->schedConfId)) {
 			$this->_data = array(
-				'enabled' => 1,
 				'conferenceId' => $this->conferenceId
 			);
 		}
@@ -91,8 +89,7 @@ class SchedConfSettingsForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('conferenceId', 'title', 'description', 'path', 'enabled'));
-		$this->setData('enabled', (int)$this->getData('enabled'));
+		$this->readUserVars(array('conferenceId', 'acronym', 'title', 'path'));
 
 		if (isset($this->schedConfId)) {
 			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
@@ -121,14 +118,11 @@ class SchedConfSettingsForm extends Form {
 		$schedConf->setConferenceId($this->getData('conferenceId'));
 		$schedConf->setPath($this->getData('path'));
 		$schedConf->setTitle($this->getData('title'));
-		$schedConf->setEnabled($this->getData('enabled'));
 
 		if ($schedConf->getSchedConfId() != null) {
 			$schedConfDao->updateSchedConf($schedConf);
-			$schedConf->updateSetting('schedConfIntroduction', $this->getData('description'));
 		} else {
 			$schedConfId = $schedConfDao->insertSchedConf($schedConf);
-			$schedConf->updateSetting('schedConfIntroduction', $this->getData('description'));
 			$schedConfDao->resequenceSchedConfs();
 
 			// Make the file directories for the scheduled conference
@@ -163,6 +157,8 @@ class SchedConfSettingsForm extends Form {
 			$track->setDirectorRestricted(false);
 			$trackDao->insertTrack($track);
 		}
+
+		$schedConf->updateSetting('acronym', $this->getData('acronym'));
 	}
 }
 

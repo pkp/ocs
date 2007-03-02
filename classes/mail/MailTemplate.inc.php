@@ -128,8 +128,8 @@ class MailTemplate extends Mail {
 			$this->setFrom($site->getContactEmail(), $site->getContactName());
 		}
 
-		if ($conference && !Request::getUserVar('continued')) {
-			$this->setSubject('[' . $conference->getSetting('conferenceAcronym') . '] ' . $this->getSubject());
+		if ($schedConf && !Request::getUserVar('continued')) {
+			$this->setSubject('[' . $schedConf->getSetting('acronym') . '] ' . $this->getSubject());
 		}
 
 		// If enableAttachments is null, use the default value from the

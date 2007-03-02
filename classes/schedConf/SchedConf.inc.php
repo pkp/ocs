@@ -88,22 +88,6 @@ class SchedConf extends DataObject {
 	}
 	
 	/**
-	 * Get enabled flag of scheduled conference
-	 * @return int
-	 */
-	 function getEnabled() {
-	 	return $this->getData('enabled');
-	}
-	
-	/**
-	* Set enabled flag of scheduled conference
-	* @param $enabled int
-	*/
-	function setEnabled($enabled) {
-		return $this->setData('enabled',$enabled);
-	}
-	
-	/**
 	 * Get ID of scheduled conference.
 	 * @return int
 	 */
