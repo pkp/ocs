@@ -158,7 +158,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr = &TemplateManager::getManager();
 
 		// Ensure the user is entitled to view the scheduled conference...
-		if (isset($schedConf) && ($schedConf->getEnabled() || (
+		if (isset($schedConf) && ($conference->getEnabled() || (
 				Validation::isDirector($conference->getConferenceId()) ||
 				Validation::isConferenceManager($conference->getConferenceId())))) {
 

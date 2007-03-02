@@ -2122,7 +2122,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.registration">Registration</message>
 	<message key="about.registrationContact">Registration Contact</message>
 	<message key="about.availableRegistrationTypes">Registration Types</message>
-	<message key="about.conferenceSponsorship">Conference Sponsorship</message>
 	<message key="about.siteMap">Site Map</message>
 	<message key="about.aboutThisPublishingSystem">About this Publishing System</message>
 	<message key="about.currentConferences">Current Conferences</message>

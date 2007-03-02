@@ -38,4 +38,6 @@
 {/foreach}
 {/if}
 
+{include file="about/conferenceSponsorship.tpl"}
+
 {include file="common/footer.tpl"}

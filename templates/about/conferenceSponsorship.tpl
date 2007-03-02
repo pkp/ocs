@@ -9,9 +9,6 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="about.conferenceSponsorship"}
-{include file="common/header.tpl"}
-
 {if not(empty($publisher.note) && empty($publisher.institution))}
 <h3>{translate key="common.publisher"}</h3>
 
@@ -59,5 +56,3 @@
 	{/foreach}
 </ul>
 {/if}
-
-{include file="common/footer.tpl"}

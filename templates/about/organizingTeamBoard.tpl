@@ -24,5 +24,6 @@
 {/foreach}
 {/foreach}
 
+{include file="about/conferenceSponsorship.tpl"}
 
 {include file="common/footer.tpl"}

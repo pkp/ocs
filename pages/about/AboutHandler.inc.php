@@ -117,6 +117,34 @@ class AboutHandler extends Handler {
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
+		$contributors = array();
+		$sponsors = array();
+
+		if($conference) {
+			$contributorNote = $conference->getSetting('contributorNote');
+			$contributors = $conference->getSetting('contributors');
+			if (!is_array($contributors)) $contributors = array();
+
+			$sponsorNote = $conference->getSetting('sponsorNote');
+			$sponsors = $conference->getSetting('sponsors');
+			if (!is_array($sponsors)) $sponsors = array();
+		}
+
+		if($schedConf) {
+			$contributorNote = $schedConf->getSetting('contributorNote', true);
+			$eventContributors = $schedConf->getSetting('contributors', false);
+			if (is_array($eventContributors)) $contributors = array_merge($contributors, $eventContributors);
+
+			$sponsorNote = $schedConf->getSetting('sponsorNote', true);
+			$eventSponsors = $schedConf->getSetting('sponsors', false);
+			if (is_array($eventSponsors)) $sponsors = array_merge($sponsors, $eventSponsors);
+		}
+
+		$templateMgr->assign_by_ref('contributorNote', $contributorNote);
+		$templateMgr->assign_by_ref('contributors', $contributors);
+		$templateMgr->assign('sponsorNote', $sponsorNote);
+		$templateMgr->assign_by_ref('sponsors', $sponsors);
+
 		// FIXME: This is pretty inefficient; should probably be cached.
 
 		if ($settings['boardEnabled'] != true) {
@@ -305,49 +333,6 @@ class AboutHandler extends Handler {
 		$templateMgr->assign_by_ref('conferenceSettings', $settings);
 		$templateMgr->assign('helpTopicId','submission.presenterGuidelines');
 		$templateMgr->display('about/submissions.tpl');
-	}
-
-	/**
-	 * Display Conference Sponsorship page.
-	 */
-	function conferenceSponsorship() {
-		parent::validate();
-
-		AboutHandler::setupTemplate(true);
-
-		$conference =& Request::getConference();
-		$schedConf = &Request::getSchedConf();
-		$templateMgr = &TemplateManager::getManager();
-
-		$contributors = array();
-		$sponsors = array();
-
-		if($conference) {
-			$contributorNote = $conference->getSetting('contributorNote');
-			$contributors = $conference->getSetting('contributors');
-			if (!is_array($contributors)) $contributors = array();
-
-			$sponsorNote = $conference->getSetting('sponsorNote');
-			$sponsors = $conference->getSetting('sponsors');
-			if (!is_array($sponsors)) $sponsors = array();
-		}
-
-		if($schedConf) {
-			$contributorNote = $schedConf->getSetting('contributorNote', true);
-			$eventContributors = $schedConf->getSetting('contributors', false);
-			if (is_array($eventContributors)) $contributors = array_merge($contributors, $eventContributors);
-
-			$sponsorNote = $schedConf->getSetting('sponsorNote', true);
-			$eventSponsors = $schedConf->getSetting('sponsors', false);
-			if (is_array($eventSponsors)) $sponsors = array_merge($sponsors, $eventSponsors);
-		}
-
-		$templateMgr->assign_by_ref('contributorNote', $contributorNote);
-		$templateMgr->assign_by_ref('contributors', $contributors);
-		$templateMgr->assign('sponsorNote', $sponsorNote);
-		$templateMgr->assign_by_ref('sponsors', $sponsors);
-
-		$templateMgr->display('about/conferenceSponsorship.tpl');
 	}
 
 	/**
