@@ -35,7 +35,6 @@ class LanguageSettingsForm extends Form {
 			'alternateLocale2' => 'string',
 			'supportedLocales' => 'object',
 			'conferenceTitleAltLanguages' => 'bool',
-			'profileAltLanguages' => 'bool',
 			'paperAltLanguages' => 'bool'
 		);
 		
@@ -69,7 +68,9 @@ class LanguageSettingsForm extends Form {
 	 */
 	function initData() {
 		$conference = &Request::getConference();
-		$this->_data = $conference->getSettings();
+                foreach (array_keys($this->settings) as $settingName) {
+			$this->_data[$settingName] = $conference->getSetting($settingName);
+		}
 		
 		if ($this->getData('supportedLocales') == null || !is_array($this->getData('supportedLocales'))) {
 			$this->setData('supportedLocales', array());
