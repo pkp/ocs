@@ -47,7 +47,7 @@
 
 <ul class="menu">
 	<li><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>
-	{if $schedConfSettings.reviewPapers and $canReview}
+	{if $schedConfSettings.reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL and $canReview}
 		<li><a href="{url op="submissionReview" path=$submission->getPaperId()}">
 			{translate key="submission.abstractReview"}</a>
 		</li>

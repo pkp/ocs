@@ -267,34 +267,6 @@ class SchedConf extends DataObject {
 	function getStyleFilename() {
 		return $this->getSetting('schedConfStyleSheet');
 	}
-	
-	//
-	// Model and state variables
-	//
-	
-	/**
-	 * Are we configured to accept papers?
-	 * @return bool
-	 */
-	function getAcceptPapers() {
-		return $this->getSetting('acceptPapers', true);
-	}
-	
-	/**
-	 * Are we configured to review papers and abstracts simultaneously?
-	 * @return bool
-	 */
-	function getCollectPapersWithAbstracts() {
-		return $this->getSetting('collectPapersWithAbstracts', true);
-	}
-	
-	/**
-	 * Are we configured to review papers, or are they automatically accepted?
-	 * @return bool
-	 */
-	function getReviewPapers() {
-		return $this->getSetting('reviewPapers', true);
-	}
 }
 
 ?>

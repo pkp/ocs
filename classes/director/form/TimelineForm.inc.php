@@ -97,13 +97,13 @@ class TimelineForm extends Form {
 			'closeCommentsDate' => $schedConf->getSetting('closeCommentsDate')
 		);
 		
-		if($schedConf->getSetting('collectPapersWithAbstracts')) {
+		if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SIMULTANEOUS) {
 			$this->_data['showSubmissionsOpenDate'] = true;
 			$this->_data['showSubmissionsCloseDate'] = true;
 		} else {
 			$this->_data['showProposalsOpenDate'] = true;
 			$this->_data['showProposalsCloseDate'] = true;
-			if ($schedConf->getSetting('acceptPapers')) {
+			if ($schedConf->getSetting('reviewMode') != REVIEW_MODE_ABSTRACTS_ALONE) {
 				$this->_data['showSubmissionsCloseDate'] = true;
 			}
 		}
@@ -230,13 +230,13 @@ class TimelineForm extends Form {
 		// Abstract and submission due dates depend on the submission and review
 		// model, so they're not quite as straightforward as the rest.
 		
-		if($schedConf->getSetting('collectPapersWithAbstracts')) {
+		if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SIMULTANEOUS) {
 			$proposalsOpenDate = $submissionsOpenDate = $this->_data['submissionsOpenDate'];
 			$proposalsCloseDate = $submissionsCloseDate = $this->_data['submissionsCloseDate'];
 		} else {
 			$proposalsOpenDate = $submissionsOpenDate = $this->_data['proposalsOpenDate'];
 			$proposalsCloseDate = $this->_data['proposalsCloseDate'];
-			if ($schedConf->getSetting('acceptPapers')) {
+			if ($schedConf->getSetting('reviewMode') != REVIEW_MODE_ABSTRACTS_ALONE) {
 				$submissionsCloseDate = $this->_data['submissionsCloseDate'];
 			} else {
 				$submissionsCloseDate = $proposalsCloseDate;

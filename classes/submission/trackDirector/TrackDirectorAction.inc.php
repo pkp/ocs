@@ -97,9 +97,7 @@ class TrackDirectorAction extends Action {
 	function completeReview($trackDirectorSubmission) {
 		$schedConf =& Request::getSchedConf();
 		
-		if($schedConf->getCollectPapersWithAbstracts() ||
-				!$schedConf->getAcceptPapers()) {
-
+		if($schedConf->getSetting('reviewMode') != REVIEW_MODE_BOTH_SEQUENTIAL) {
 			// Only one review was necessary; the submission is complete.
 			$trackDirectorSubmission->setCurrentStage(REVIEW_PROGRESS_COMPLETE);
 			$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_PUBLISHED);
@@ -114,7 +112,7 @@ class TrackDirectorAction extends Action {
 				// We've just completed reviewing the abstract. If the paper needs
 				// a separate review progress, flag it as such and move it back
 				// to review stage 1.
-				if($schedConf->getReviewPapers()) {
+				if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL) {
 					$trackDirectorSubmission->setCurrentStage(REVIEW_PROGRESS_PAPER);
 				} else {
 					$trackDirectorSubmission->setCurrentStage(REVIEW_PROGRESS_COMPLETE);

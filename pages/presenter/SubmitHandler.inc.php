@@ -140,7 +140,7 @@ class SubmitHandler extends PresenterHandler {
 			// For the "abstract only" or sequential review models, nothing else needs
 			// to be collected beyond page 2.
 			
-			if (($step == 2 && !$schedConf->getCollectPapersWithAbstracts()) ||
+			if (($step == 2 && $schedConf->getSetting('reviewMode') != REVIEW_MODE_BOTH_SIMULTANEOUS) ||
 					($step == 5 )) {
 
 				$templateMgr = &TemplateManager::getManager();

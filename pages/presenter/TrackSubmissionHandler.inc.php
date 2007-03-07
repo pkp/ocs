@@ -101,7 +101,8 @@ class TrackSubmissionHandler extends PresenterHandler {
 			case REVIEW_PROGRESS_ABSTRACT:
 				break;
 			case REVIEW_PROGRESS_PAPER:
-				if ($schedConf->getSetting('reviewPapers')) break;
+				$reviewMode = $schedConf->getSetting('reviewMode');
+				if ($reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS || $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL) break;
 			default:
 				$stage = $presenterSubmission->getCurrentStage();
 				break;

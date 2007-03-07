@@ -527,7 +527,7 @@ class DirectorSubmissionDAO extends DAO {
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 		
 		// If the submission has passed this review stage, it's out of review.
-		if($schedConf->getReviewPapers() && !$schedConf->getCollectPapersWithAbstracts())
+		if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL)
 			$finalReviewType = REVIEW_PROGRESS_PAPER;
 		else
 			$finalReviewType = REVIEW_PROGRESS_ABSTRACT;

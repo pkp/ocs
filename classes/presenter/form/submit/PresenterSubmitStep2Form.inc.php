@@ -161,7 +161,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 			
 			// If we aren't about to collect the paper, the submission is complete
 			// (for now)
-			if(!$schedConf->getCollectPapersWithAbstracts()) {
+			if(!$schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SIMULTANEOUS) {
 				$paper->setDateSubmitted(Core::getCurrentDate());
 				$paper->stampStatusModified();
 				$paper->setSubmissionProgress(0);

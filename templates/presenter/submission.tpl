@@ -15,7 +15,7 @@
 
 <ul class="menu">
 	<li class="current"><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>
-	{if $schedConfSettings.reviewPapers}
+	{if $schedConfSettings.reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}
 		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_PROGRESS_ABSTRACT}">
 			{translate key="submission.abstractReview"}</a>
 		</li>

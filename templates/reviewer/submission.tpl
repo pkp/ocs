@@ -152,7 +152,7 @@ function confirmSubmissionCheck() {
 	<td>{if $haveGuide}3{else}2{/if}.</td>
 	<td><span class="instruct">{translate key="$reviewerInstruction3"}</span></td>
 </tr>
-{if $schedConf->getAcceptPapers()}
+{if $schedConf->getSetting('reviewMode') != REVIEW_MODE_ABSTRACTS_ALONE}
 <tr valign="top">
 	<td>&nbsp;</td>
 	<td>

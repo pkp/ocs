@@ -68,7 +68,7 @@ class PresenterSubmitForm extends Form {
 		$progress = isset($this->paper) ? $this->paper->getCurrentStage() : REVIEW_PROGRESS_ABSTRACT;
 
 		$showAbstractSteps = $progress == REVIEW_PROGRESS_ABSTRACT;
-		$showPaperSteps = $progress == REVIEW_PROGRESS_PAPER || $schedConf->getCollectPapersWithAbstracts();
+		$showPaperSteps = ($progress == REVIEW_PROGRESS_PAPER) || ($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SIMULTANEOUS);
 		
 		$templateMgr->assign('showAbstractSteps', $showAbstractSteps);
 		$templateMgr->assign('showPaperSteps', $showPaperSteps);

@@ -100,7 +100,8 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			case REVIEW_PROGRESS_ABSTRACT:
 				break;
 			case REVIEW_PROGRESS_PAPER:
-				if ($schedConf->getSetting('reviewPapers')) break;
+				$reviewMode = $schedConf->getSetting('reviewMode');
+				if ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL || $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS) break;
 			default:
 				$stage = $submission->getCurrentStage();
 				break;
@@ -126,8 +127,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			($submission->getReviewFileId() || $stage != REVIEW_PROGRESS_PAPER) &&
 			!empty($editAssignments);
 
-		$reviewingAbstractOnly = ($schedConf->getReviewPapers() && $stage == REVIEW_PROGRESS_ABSTRACT) ||
-			!$schedConf->getAcceptPapers();
+		$reviewingAbstractOnly = ($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL && $stage == REVIEW_PROGRESS_ABSTRACT);
 
 		// Prepare an array to store the 'Notify Reviewer' email logs
 		$notifyReviewerLogs = array();

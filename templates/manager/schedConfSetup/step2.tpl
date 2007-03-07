@@ -27,7 +27,7 @@
 			<input type="radio" name="reviewMode" id="reviewMode-1" value="{$smarty.const.REVIEW_MODE_ABSTRACTS_ALONE}" {if $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE}checked="checked"{/if} />
 		</td>
 		<td width="95%" class="value">
-			<label for="acceptPapers">{translate key="manager.schedConfSetup.submissions.abstractsAlone"}</label>
+			<label for="reviewMode-1">{translate key="manager.schedConfSetup.submissions.abstractsAlone"}</label>
 		</td>
 	</tr>
 	<tr valign="top">
