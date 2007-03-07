@@ -445,6 +445,21 @@ class TrackDirectorSubmission extends Paper {
 		$directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_DECLINE] = 'director.paper.decision.decline';
 		return $directorDecisionOptions;
 	}
+
+	function isOriginalSubmissionComplete() {
+		$schedConf =& Request::getSchedConf();
+		if (!$schedConf || $this->getSchedConfId() != $schedConf->getSchedConfId()) {
+			unset($schedConf);
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConf =& $schedConfDao->getSchedConf($this->getSchedConfId());
+		}
+		
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		if ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL) {
+			return ($this->getSubmissionProgress() != 1);
+		}
+		return ($this->getSubmissionProgress() == 0);
+	}
 }
 
 ?>

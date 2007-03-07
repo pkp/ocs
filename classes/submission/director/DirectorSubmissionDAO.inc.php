@@ -306,7 +306,7 @@ class DirectorSubmissionDAO extends DAO {
 			// used to check if director exists for this submission
 			$editAssignments =& $directorSubmission->getEditAssignments();
 
-			if (empty($editAssignments) && $directorSubmission->getSubmissionProgress() == 0) {
+			if (empty($editAssignments) && $directorSubmission->isOriginalSubmissionComplete()) {
 				$directorSubmissions[] =& $directorSubmission;
 			}
 			unset($directorSubmission);
@@ -546,7 +546,7 @@ class DirectorSubmissionDAO extends DAO {
 				t.abbrev_alt2 AS track_abbrev_alt2
 			FROM papers p
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				WHERE p.sched_conf_id = ? AND (p.status = ' . SUBMISSION_STATUS_QUEUED . ')
+				WHERE p.sched_conf_id = ? AND p.status = ' . SUBMISSION_STATUS_QUEUED . '
 			ORDER BY paper_id ASC';
 		$result = &$this->retrieve($sql, $schedConfId);
 
@@ -572,7 +572,7 @@ class DirectorSubmissionDAO extends DAO {
 			// used to check if director exists for this submission
 			$editAssignments = $directorSubmission->getEditAssignments();
 
-			if ($directorSubmission->getSubmissionProgress() == 0 && empty($editAssignments)) {
+			if (empty($editAssignments)  && $directorSubmission->isOriginalSubmissionComplete()) {
 				// unassigned submissions
 				$submissionsCount[0] += 1;
 			} elseif ($directorSubmission->getStatus() == SUBMISSION_STATUS_QUEUED) {
