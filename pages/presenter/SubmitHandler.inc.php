@@ -153,7 +153,8 @@ class SubmitHandler extends PresenterHandler {
 				$templateMgr->assign('paperId', $paperId);
 				$templateMgr->assign('helpTopicId','submission.index');
 				$templateMgr->display('presenter/submit/complete.tpl');
-				
+			} elseif ($step == 3 && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
+				Request::redirect(null, null, null, 'submit', 5, array('paperId' => $paperId));
 			} else {
 				Request::redirect(null, null, null, 'submit', $step+1, array('paperId' => $paperId));
 			}
@@ -173,12 +174,13 @@ class SubmitHandler extends PresenterHandler {
 		$paperId = Request::getUserVar('paperId');
 		
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
-		
-		import("presenter.form.submit.PresenterSubmitSuppFileForm");
-		$submitForm = &new PresenterSubmitSuppFileForm($paper);
-		$submitForm->setData('title', Locale::translate('common.untitled'));
-		$suppFileId = $submitForm->execute();
-		
+		if ($schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
+			import("presenter.form.submit.PresenterSubmitSuppFileForm");
+			$submitForm = &new PresenterSubmitSuppFileForm($paper);
+			$submitForm->setData('title', Locale::translate('common.untitled'));
+			$suppFileId = $submitForm->execute();
+		}
+
 		Request::redirect(null, null, null, 'submitSuppFile', $suppFileId, array('paperId' => $paperId));
 	}
 	
@@ -195,9 +197,11 @@ class SubmitHandler extends PresenterHandler {
 		
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
 		
+		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
+
 		import("presenter.form.submit.PresenterSubmitSuppFileForm");
 		$submitForm = &new PresenterSubmitSuppFileForm($paper, $suppFileId);
-		
+
 		$submitForm->initData();
 		$submitForm->display();
 	}
@@ -214,6 +218,8 @@ class SubmitHandler extends PresenterHandler {
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 		
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
+		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
+
 		import("presenter.form.submit.PresenterSubmitSuppFileForm");
 		$submitForm = &new PresenterSubmitSuppFileForm($paper, $suppFileId);
 		$submitForm->readInputData();
@@ -240,6 +246,7 @@ class SubmitHandler extends PresenterHandler {
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
+		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 		
 		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paperId);

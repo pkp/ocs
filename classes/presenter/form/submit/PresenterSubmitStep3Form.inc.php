@@ -96,8 +96,12 @@ class PresenterSubmitStep3Form extends PresenterSubmitForm {
 		$paper = &$this->paper;
 		
 		if ($paper->getSubmissionProgress() <= $this->step) {
+			$schedConf =& Request::getSchedConf();
+
 			$paper->stampStatusModified();
-			$paper->setSubmissionProgress($this->step + 1);
+			if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) $paper->setSubmissionProgress($this->step + 2); // Skip supp files
+			else $paper->setSubmissionProgress($this->step + 1);
+
 			$paperDao->updatePaper($paper);
 		}
 		

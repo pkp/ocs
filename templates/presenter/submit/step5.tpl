@@ -9,7 +9,11 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="presenter.submit.step5"}
+{if $schedConfSettings.acceptSupplementaryReviewMaterials}
+	{assign var="pageTitle" value="presenter.submit.step5"}
+{else}
+	{assign var="pageTitle" value="presenter.submit.step5SkipSupp"}
+{/if}
 {include file="presenter/submit/submitHeader.tpl"}
 
 <p>{translate key="presenter.submit.confirmationDescription" conferenceTitle=$conference->getTitle()}</p>

@@ -193,7 +193,6 @@
 			{foreach from=$stageDecisions item=directorDecision key=decisionKey}
 				{if $decisionKey neq 0} | {/if}
 				{assign var="decision" value=$directorDecision.decision}
-				{assign var="directorDecisionOptions" value=`$submission->getDirectorDecisionOptions($currentSchedConf,$stagePlusOne)`}
 				{translate key=$directorDecisionOptions.$decision} {$directorDecision.dateDecided|date_format:$dateFormatShort}
 			{foreachelse}
 				{translate key="common.none"}

@@ -32,15 +32,22 @@
 			{translate key="presenter.submit.upload"}{if $submitStep != 3 && $submissionProgress >= 3}</a>{/if}
 		</li>
 
-		<li{if $submitStep == 4} class="current"{/if}>
-			{if $submitStep != 4 && $submissionProgress >= 4}<a href="{url op="submit" path="4" paperId=$paperId}">{/if}
-			{translate key="presenter.submit.supplementaryFiles"}{if $submitStep != 4 && $submissionProgress >= 4}</a>{/if}
-		</li>
+		{if $schedConfSettings.acceptSupplementaryReviewMaterials}
+			<li{if $submitStep == 4} class="current"{/if}>
+				{if $submitStep != 4 && $submissionProgress >= 4}<a href="{url op="submit" path="4" paperId=$paperId}">{/if}
+				{translate key="presenter.submit.supplementaryFiles"}{if $submitStep != 4 && $submissionProgress >= 4}</a>{/if}
+			</li>
 
-		<li{if $submitStep == 5} class="current"{/if}>
-			{if $submitStep != 5 && $submissionProgress >= 5}<a href="{url op="submit" path="5" paperId=$paperId}">{/if}
-			{translate key="presenter.submit.confirmation"}{if $submitStep != 5 && $submissionProgress >= 5}</a>{/if}
-		</li>
+			<li{if $submitStep == 5} class="current"{/if}>
+				{if $submitStep != 5 && $submissionProgress >= 5}<a href="{url op="submit" path="5" paperId=$paperId}">{/if}
+				{translate key="presenter.submit.confirmation"}{if $submitStep != 5 && $submissionProgress >= 5}</a>{/if}
+			</li>
+		{else}
+			<li{if $submitStep == 5} class="current"{/if}>
+				{if $submitStep != 5 && $submissionProgress >= 5}<a href="{url op="submit" path="5" paperId=$paperId}">{/if}
+				{translate key="presenter.submit.confirmationSkipSupp"}{if $submitStep != 5 && $submissionProgress >= 5}</a>{/if}
+			</li>
+		{/if}
 	{/if}
 
 </ul>

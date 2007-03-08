@@ -22,6 +22,11 @@ class PresenterSubmitStep4Form extends PresenterSubmitForm {
 	 */
 	function PresenterSubmitStep4Form($paper) {
 		parent::PresenterSubmitForm($paper, 4);
+		$schedConf =& Request::getSchedConf();
+		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
+			// If supplementary files are not allowed, redirect.
+			Request::redirect(null, null, null, null, '3');
+		}
 	}
 	
 	/**

@@ -138,7 +138,7 @@
 	<table class="data" width="100%">
 		<tr valign="middle">
 			<td width="30%">
-				{if $submission->getCurrentStage() == REVIEW_PROGRESS_ABSTRACT}
+				{if $stage == REVIEW_PROGRESS_ABSTRACT}
 					<h3>{translate key="submission.abstractReview"}</h3>
 				{else}{* REVIEW_PROGRESS_PAPER *}
 					<h3>{translate key="submission.paperReview"}</h3>

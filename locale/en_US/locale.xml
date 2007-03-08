@@ -1762,11 +1762,13 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="presenter.submit.step4">Step 4. Uploading Supplementary Files</message>
 	<message key="presenter.submit.step4a">Step 4a. Add a Supplementary File</message>
 	<message key="presenter.submit.step5">Step 5. Confirming the Submission</message>
+	<message key="presenter.submit.step5SkipSupp">Step 4. Confirming the Submission</message>
 	<message key="presenter.submit.start">1. Start</message>
 	<message key="presenter.submit.metadata">2. Enter Metadata</message>
 	<message key="presenter.submit.upload">3. Upload Submission</message>
 	<message key="presenter.submit.supplementaryFiles">4. Upload Supplementary Files</message>
 	<message key="presenter.submit.confirmation">5. Confirmation</message>
+	<message key="presenter.submit.confirmationSkipSupp">4. Confirmation</message>
 	<!--<message key="presenter.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Presenter home.</message>-->
 	<message key="presenter.submit.notAcceptingYet">This conference has not yet started accepting submissions.</message>
 	<message key="presenter.submit.submissionDeadlinePassed">The submission deadline for this conference has passed.</message>

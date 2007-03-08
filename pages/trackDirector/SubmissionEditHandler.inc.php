@@ -79,6 +79,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('cancelsAndRegrets', $cancelsAndRegrets);
 		$templateMgr->assign_by_ref('reviewFilesByStage', $reviewFilesByStage);
 		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
+		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
 		$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality', true));
 		
 		import('submission.reviewAssignment.ReviewAssignment');
@@ -161,7 +162,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality', true));
 		$templateMgr->assign('showPeerReviewOptions', $showPeerReviewOptions);
 		$templateMgr->assign_by_ref('tracks', $tracks->toArray());
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions($schedConf, $submission->getCurrentStage()));
+		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
 		$templateMgr->assign_by_ref('lastDecision', $lastDecision);
 		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
 
@@ -263,6 +264,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		switch ($decision) {
 			case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
+			case SUBMISSION_DIRECTOR_DECISION_INVITE:
 			case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
 			case SUBMISSION_DIRECTOR_DECISION_DECLINE:
 				TrackDirectorAction::recordDecision($submission, $decision);

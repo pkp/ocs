@@ -62,11 +62,9 @@
 			{assign var=decisions value=$submission->getDecisions($stage)}
 			{foreach from=$decisions item=decision name=lastDecisionFinder}
 				{if $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
-					{if $stage == REVIEW_PROGRESS_ABSTRACT}
-						{translate key="director.paper.decision.invitePresentation"}
-					{else}
-						{translate key="director.paper.decision.accept"}
-					{/if}
+					{translate key="director.paper.decision.accept"}
+				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_INVITE}
+					{translate key="director.paper.decision.invitePresentation"}
 				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS}
 					{translate key="director.paper.decision.pendingRevisions"}
 				{elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_DIRECTOR_DECISION_DECLINE}

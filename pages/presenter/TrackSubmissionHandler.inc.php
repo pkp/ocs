@@ -79,7 +79,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 
 		import('submission.trackDirector.TrackDirectorSubmission');
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions($schedConf, $submission));
+		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
 
 		$templateMgr->assign('helpTopicId','editorial.presentersRole');
 		$templateMgr->display('presenter/submission.tpl');
@@ -131,7 +131,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$templateMgr->assign_by_ref('revisedFile', $presenterSubmission->getRevisedFile());
 		$templateMgr->assign_by_ref('suppFiles', $presenterSubmission->getSuppFiles());
 		$templateMgr->assign('lastDirectorDecision', $lastDecision);
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions($schedConf, $submission));
+		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
 		$templateMgr->assign('helpTopicId', 'editorial.presentersRole.review');
 		$templateMgr->display('presenter/submissionReview.tpl');
 	}

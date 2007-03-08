@@ -76,7 +76,7 @@ class TrackDirectorAction extends Action {
 			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_DECISION, LOG_TYPE_DIRECTOR, $user->getUserId(), 'log.director.decision', array('directorName' => $user->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
 		
-		if($decision == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
+		if($decision == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $decision == SUBMISSION_DIRECTOR_DECISION_INVITE) {
 			// completeReview will take care of updating the
 			// submission with the new decision.
 			TrackDirectorAction::completeReview($trackDirectorSubmission);
@@ -1229,8 +1229,11 @@ import('file.PaperFileManager');
 		if (isset($stages) && is_array($stages)) $decisions = array_pop($stages);
 		if (isset($decisions) && is_array($decisions)) $lastDecision = array_pop($decisions);
 		if (isset($lastDecision) && is_array($lastDecision)) switch ($lastDecision['decision']) {
+			case SUBMISSION_DIRECTOR_DECISION_INVITE:
+				$templateName = 'SUBMISSION_ABSTRACT_ACCEPT';
+				break;
 			case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
-				$templateName = $isAbstract?'SUBMISSION_ABSTRACT_ACCEPT':'SUBMISSION_PAPER_ACCEPT';
+				$templateName = 'SUBMISSION_PAPER_ACCEPT';
 				break;
 			case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
 				$templateName = $isAbstract?'SUBMISSION_ABSTRACT_REVISE':'SUBMISSION_PAPER_REVISE';

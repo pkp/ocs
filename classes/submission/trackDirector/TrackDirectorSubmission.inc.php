@@ -436,10 +436,10 @@ class TrackDirectorSubmission extends Paper {
 	 * (Includes default mapping '' => "Choose One".)
 	 * @return array decision => localeString
 	 */
-	function &getDirectorDecisionOptions($schedConf, $stage) {
+	function &getDirectorDecisionOptions($schedConf = null, $stage = null) {
 		$directorDecisionOptions = array('' => 'common.chooseOne');
-		if ($schedConf && $stage == REVIEW_PROGRESS_ABSTRACT && $schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL) $directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_ACCEPT] = 'director.paper.decision.invitePresentation';
-		else $directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_ACCEPT] = 'director.paper.decision.accept';
+		if (!$schedConf || ($stage == REVIEW_PROGRESS_ABSTRACT && $schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL)) $directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_INVITE] = 'director.paper.decision.invitePresentation';
+		if (!$schedConf || ($stage != REVIEW_PROGRESS_ABSTRACT || $schedConf->getSetting('reviewMode') != REVIEW_MODE_BOTH_SEQUENTIAL)) $directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_ACCEPT] = 'director.paper.decision.accept';
 
 		$directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS] = 'director.paper.decision.pendingRevisions';
 		$directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_DECLINE] = 'director.paper.decision.decline';
