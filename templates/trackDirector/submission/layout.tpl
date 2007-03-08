@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{assign var=layoutFile value=$submissionAssignment->getLayoutFile()}
+{assign var=layoutFile value=$submission->getLayoutFile()}
 <a name="layout"></a>
 <h3>{translate key="submission.layout"}</h3>
 
@@ -27,7 +27,7 @@
 			{if $layoutFile}
 				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$layoutFile->getFileId()}" class="file">{$layoutFile->getFileName()|escape}</a>&nbsp;&nbsp;{$layoutFile->getDateModified()|date_format:$dateFormatShort}
 			{else}
-				{translate key="submission.layout.noLayoutFile"}
+				{translate key="common.none"}
 			{/if}
 		</td>
 	</tr>

@@ -43,7 +43,7 @@
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getPresenterString(true)|truncate:40:"..."|escape}</td>
-		<td><a href="{url op="submissionReview" path=$submission->getPaperId()}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
+		<td><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$submission->getCurrentStage()}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
 		<td>
 		<table width="100%">
 			{foreach from=$submission->getReviewAssignments(null) item=reviewAssignmentTypes}

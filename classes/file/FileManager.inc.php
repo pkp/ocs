@@ -186,7 +186,7 @@ class FileManager {
 			
 			header("Content-Type: $type");
 			header("Content-Length: ".filesize($filePath));
-			header("Content-Disposition: " . ($inline ? 'inline' : 'attachment') . "; filename=\"" .basename($filePath)."\"");
+			header ("Content-Disposition: " . ($inline ? 'inline' : 'attachment') . "; filename=\"" .basename($filePath)."\"");
 			header("Cache-Control: private"); // Workarounds for IE weirdness
 			header("Pragma: public");
 

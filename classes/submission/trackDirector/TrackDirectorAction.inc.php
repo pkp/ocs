@@ -69,7 +69,7 @@ class TrackDirectorAction extends Action {
 			}
 		
 			$trackDirectorSubmission->addDecision($directorDecision, $trackDirectorSubmission->getCurrentStage());
-			$decisions = TrackDirectorSubmission::getDirectorDecisionOptions(Request::getSchedConf(), $trackDirectorSubmission);
+			$decisions = TrackDirectorSubmission::getDirectorDecisionOptions();
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');

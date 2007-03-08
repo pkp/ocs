@@ -337,7 +337,8 @@ class ReviewerAction extends Action {
 			// Restrict files until review is accepted
 		} else if ($reviewAssignment->getReviewFileId() == $fileId) {
 			if ($revision != null) {
-				$canDownload = ($reviewAssignment->getReviewRevision() == $revision);
+				if ($reviewAssignment->getReviewRevision() == null) $canDownload = true;
+				else $canDownload = ($reviewAssignment->getReviewRevision() == $revision);
 			}
 		} else if ($reviewAssignment->getReviewerFileId() == $fileId) {
 			$canDownload = true;
