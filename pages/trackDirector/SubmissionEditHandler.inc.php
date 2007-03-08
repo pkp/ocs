@@ -81,8 +81,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
 		$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality', true));
 		
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
-
 		import('submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRatingOptions', ReviewAssignment::getReviewerRatingOptions());
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
@@ -163,7 +161,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality', true));
 		$templateMgr->assign('showPeerReviewOptions', $showPeerReviewOptions);
 		$templateMgr->assign_by_ref('tracks', $tracks->toArray());
-		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions($schedConf, $submission));
+		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions($schedConf, $submission->getCurrentStage()));
 		$templateMgr->assign_by_ref('lastDecision', $lastDecision);
 		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
 

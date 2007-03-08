@@ -152,7 +152,11 @@ function movePresenter(dir, presenterIndex) {
 
 <div class="separator"></div>
 
-<h3>{translate key="submission.titleAndAbstract"}</h3>
+{if $collectAbstracts}
+	<h3>{translate key="submission.titleAndAbstract"}</h3>
+{else}
+	<h3>{translate key="paper.title"}</h3>
+{/if}
 
 <table width="100%" class="data">
 
@@ -173,6 +177,7 @@ function movePresenter(dir, presenterIndex) {
 </tr>
 {/if}
 
+{if $collectAbstracts}
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="abstract" key="paper.abstract" required="true"}</td>
 	<td width="80%" class="value"><textarea name="abstract" id="abstract" class="textArea" rows="15" cols="60">{$abstract|escape}</textarea></td>
@@ -189,6 +194,8 @@ function movePresenter(dir, presenterIndex) {
 	<td width="80%" class="value"><textarea name="abstractAlt2" class="textArea" id="abstractAlt2" rows="15" cols="60">{$abstractAlt2|escape}</textarea></td>
 </tr>
 {/if}
+{/if}{* $collectAbstracts *}
+
 </table>
 
 <div class="separator"></div>

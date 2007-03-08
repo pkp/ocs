@@ -27,7 +27,12 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		$this->addCheck(new FormValidatorCustom($this, 'presenters', 'required', 'presenter.submit.form.presenterRequired', create_function('$presenters', 'return count($presenters) > 0;')));
 		$this->addCheck(new FormValidatorArray($this, 'presenters', 'required', 'presenter.submit.form.presenterRequiredFields', array('firstName', 'lastName', 'email')));
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'presenter.submit.form.titleRequired'));
-		$this->addCheck(new FormValidator($this, 'abstract', 'required', 'presenter.submit.form.abstractRequired'));
+
+		$schedConf =& Request::getSchedConf();
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		if ($reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE) {
+			$this->addCheck(new FormValidator($this, 'abstract', 'required', 'presenter.submit.form.abstractRequired'));
+		}
 	}
 	
 	/**
@@ -85,28 +90,32 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(
-			array(
-				'presenters',
-				'deletedPresenters',
-				'primaryContact',
-				'title',
-				'titleAlt1',
-				'titleAlt2',
-				'abstract',
-				'abstractAlt1',
-				'abstractAlt2',
-				'discipline',
-				'subjectClass',
-				'subject',
-				'coverageGeo',
-				'coverageChron',
-				'coverageSample',
-				'type',
-				'language',
-				'sponsor'
-			)
+		$userVars = array(
+			'presenters',
+			'deletedPresenters',
+			'primaryContact',
+			'title',
+			'titleAlt1',
+			'titleAlt2',
+			'discipline',
+			'subjectClass',
+			'subject',
+			'coverageGeo',
+			'coverageChron',
+			'coverageSample',
+			'type',
+			'language',
+			'sponsor'
 		);
+
+		$schedConf =& Request::getSchedConf();
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		if ($reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE) {
+			$userVars[] = 'abstract';
+			$userVars[] = 'abstractAlt1';
+			$userVars[] = 'abstractAlt2';
+		}
+		$this->readUserVars($userVars);
 
 		// Load the track. This is used in the step 2 form to
 		// determine whether or not to display indexing options.
@@ -124,6 +133,9 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('countries', $countries);
 
+		$schedConf =& Request::getSchedConf();
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		$templateMgr->assign('collectAbstracts', $reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE);
 		parent::display();
 	}
 
@@ -142,9 +154,14 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		$paper->setTitle($this->getData('title'));
 		$paper->setTitleAlt1($this->getData('titleAlt1'));
 		$paper->setTitleAlt2($this->getData('titleAlt2'));
-		$paper->setAbstract($this->getData('abstract'));
-		$paper->setAbstractAlt1($this->getData('abstractAlt1'));
-		$paper->setAbstractAlt2($this->getData('abstractAlt2'));
+
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		if ($reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE) {
+			$paper->setAbstract($this->getData('abstract'));
+			$paper->setAbstractAlt1($this->getData('abstractAlt1'));
+			$paper->setAbstractAlt2($this->getData('abstractAlt2'));
+		}
+
 		$paper->setDiscipline($this->getData('discipline'));
 		$paper->setSubjectClass($this->getData('subjectClass'));
 		$paper->setSubject($this->getData('subject'));
@@ -161,10 +178,14 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 			
 			// If we aren't about to collect the paper, the submission is complete
 			// (for now)
-			if(!$schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SIMULTANEOUS) {
+			if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL) {
 				$paper->setDateSubmitted(Core::getCurrentDate());
 				$paper->stampStatusModified();
 				$paper->setSubmissionProgress(0);
+
+				// This should already be set, but set it again
+				// just in case review settings have changed in
+				// the meantime.
 				$paper->setCurrentStage(REVIEW_PROGRESS_ABSTRACT);
 			} else {
 				$paper->setSubmissionProgress($this->step + 1);

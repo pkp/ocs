@@ -19,7 +19,7 @@
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr valign="top" class="heading">
-		<td width="35%">{translate key="manager.setup.conferenceTitle"}</td>
+		<td width="35%">{translate key="manager.setup.layout.conferenceTitle"}</td>
 		<td width="35%">{translate key="common.path"}</td>
 		<td width="10%">{translate key="common.order"}</td>
 		<td width="20%" align="right">{translate key="common.action"}</td>

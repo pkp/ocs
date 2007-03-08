@@ -35,6 +35,6 @@
 
 <div class="separator"></div>
 
-{include file="trackDirector/submission/stages.tpl"}
+{include file="trackDirector/submission/rounds.tpl"}
 
 {include file="common/footer.tpl"}

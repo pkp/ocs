@@ -436,9 +436,9 @@ class TrackDirectorSubmission extends Paper {
 	 * (Includes default mapping '' => "Choose One".)
 	 * @return array decision => localeString
 	 */
-	function &getDirectorDecisionOptions($schedConf, &$paper) {
+	function &getDirectorDecisionOptions($schedConf, $stage) {
 		$directorDecisionOptions = array('' => 'common.chooseOne');
-		if ($schedConf && $paper && $paper->getCurrentStage() == REVIEW_PROGRESS_ABSTRACT && $schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL) $directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_ACCEPT] = 'director.paper.decision.invitePresentation';
+		if ($schedConf && $stage == REVIEW_PROGRESS_ABSTRACT && $schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL) $directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_ACCEPT] = 'director.paper.decision.invitePresentation';
 		else $directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_ACCEPT] = 'director.paper.decision.accept';
 
 		$directorDecisionOptions[SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS] = 'director.paper.decision.pendingRevisions';
