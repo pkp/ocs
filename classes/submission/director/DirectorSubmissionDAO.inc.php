@@ -413,7 +413,7 @@ class DirectorSubmissionDAO extends DAO {
 			$decision = array_pop($decisions);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
+				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
 					$inEditing = true;			
 				}
 			}
@@ -528,7 +528,7 @@ class DirectorSubmissionDAO extends DAO {
 		
 		// If the submission has passed this review stage, it's out of review.
 		if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL)
-			$finalReviewType = REVIEW_PROGRESS_PAPER;
+			$finalReviewType = REVIEW_PROGRESS_PRESENTATION;
 		else
 			$finalReviewType = REVIEW_PROGRESS_ABSTRACT;
 		
