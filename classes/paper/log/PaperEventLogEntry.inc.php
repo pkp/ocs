@@ -20,14 +20,15 @@ import('log.EventLogConstants');
 define('PAPER_LOG_DEFAULT', 0);
 
 // General events 				0x10000000
-define('PAPER_LOG_PAPER_SUBMIT', 		0x10000001);
-define('PAPER_LOG_METADATA_UPDATE', 		0x10000002);
-define('PAPER_LOG_SUPPFILE_UPDATE', 		0x10000003);
-define('PAPER_LOG_ISSUE_SCHEDULE', 		0x10000004);
-define('PAPER_LOG_ISSUE_ASSIGN', 		0x10000005);
-define('PAPER_LOG_PAPER_PUBLISH', 		0x10000006);
-define('PAPER_LOG_PAPER_IMPORT',		0x10000007);
-define('PAPER_LOG_PAPER_EXPIRE',		0x10000008);
+define('PAPER_LOG_ABSTRACT_SUBMIT', 		0x10000001);
+define('PAPER_LOG_PRESENTATION_SUBMIT', 	0x10000002);
+define('PAPER_LOG_METADATA_UPDATE', 		0x10000003);
+define('PAPER_LOG_SUPPFILE_UPDATE', 		0x10000004);
+define('PAPER_LOG_ISSUE_SCHEDULE', 		0x10000005);
+define('PAPER_LOG_ISSUE_ASSIGN', 		0x10000006);
+define('PAPER_LOG_PAPER_PUBLISH', 		0x10000007);
+define('PAPER_LOG_PAPER_IMPORT',		0x10000008);
+define('PAPER_LOG_PAPER_EXPIRE',		0x10000009);
 
 // Presenter events 				0x20000000
 define('PAPER_LOG_PRESENTER_REVISION', 		0x20000001);
@@ -270,8 +271,10 @@ class PaperEventLogEntry extends DataObject {
 	function getEventTitle() {
 		switch ($this->getData('eventType')) {
 			// General events
-			case PAPER_LOG_PAPER_SUBMIT:
-				return 'submission.event.general.paperSubmitted';
+			case PAPER_LOG_ABSTRACT_SUBMIT:
+				return 'submission.event.general.abstractSubmitted';
+			case PAPER_LOG_PRESENTATION_SUBMIT:
+				return 'submission.event.general.presentationSubmitted';
 			case PAPER_LOG_METADATA_UPDATE:
 				return 'submission.event.general.metadataUpdated';
 			case PAPER_LOG_SUPPFILE_UPDATE:

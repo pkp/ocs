@@ -149,6 +149,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		$paper = &$this->paper;
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
+		$user =& Request::getUser();
 
 		// Update paper
 		$paper->setTitle($this->getData('title'));
@@ -178,17 +179,17 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 			
 			// If we aren't about to collect the paper, the submission is complete
 			// (for now)
-			if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL) {
+			$reviewMode = $schedConf->getSetting('reviewMode');
+			if($reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS || $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE) {
+				$paper->setSubmissionProgress($this->step + 1);
+			} else {
 				$paper->setDateSubmitted(Core::getCurrentDate());
 				$paper->stampStatusModified();
 				$paper->setSubmissionProgress(0);
 
-				// This should already be set, but set it again
-				// just in case review settings have changed in
-				// the meantime.
 				$paper->setCurrentStage(REVIEW_PROGRESS_ABSTRACT);
-			} else {
-				$paper->setSubmissionProgress($this->step + 1);
+				$this->confirmSubmission($paper, $user, $schedConf, $conference, 'SUBMISSION_ACK');
+
 			}
 		}
 		
@@ -232,7 +233,13 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		
 		// Save the paper
 		$paperDao->updatePaper($paper);
-		
+
+		// Log the submission, even though it may not be "complete"
+		// at this step. This is important because we don't otherwise
+		// capture changes in review process.
+		import('paper.log.PaperLog');
+		import('paper.log.PaperEventLogEntry');
+		PaperLog::logEvent($this->paperId, PAPER_LOG_ABSTRACT_SUBMIT, LOG_TYPE_PRESENTER, $user->getUserId(), 'log.presenter.abstractSubmitted', array('submissionId' => $paper->getPaperId(), 'presenterName' => $user->getFullName()));
 		return $this->paperId;
 	}
 	

@@ -138,7 +138,9 @@
 	<table class="data" width="100%">
 		<tr valign="middle">
 			<td width="30%">
-				{if $stage == REVIEW_PROGRESS_ABSTRACT}
+				{if $schedConfSettings.reviewMode == $smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}
+					<h3>{translate key="submission.review"}</h3>
+				{elseif $stage == REVIEW_PROGRESS_ABSTRACT}
 					<h3>{translate key="submission.abstractReview"}</h3>
 				{else}{* REVIEW_PROGRESS_PAPER *}
 					<h3>{translate key="submission.paperReview"}</h3>
@@ -306,7 +308,9 @@
 						<input type="file" name="upload" class="uploadField" />
 						<input type="submit" name="submit" value="{translate key="common.upload"}" class="button" />
 					</form>
-					<a class="action" href="{url op="enterReviewerRecommendation" paperId=$submission->getPaperId() reviewId=$reviewAssignment->getReviewId()}">{translate key="director.paper.recommendation"}</a>
+					{if $reviewAssignment->getDateConfirmed() && !$reviewAssignment->getDeclined()}
+						<a class="action" href="{url op="enterReviewerRecommendation" paperId=$submission->getPaperId() reviewId=$reviewAssignment->getReviewId()}">{translate key="director.paper.recommendation"}</a>
+					{/if}
 				</td>
 			</tr>
 		{/if}

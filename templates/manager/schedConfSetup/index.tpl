@@ -17,17 +17,17 @@
 <ol>
 	<li>
 		<h4><a href="{url op="schedConfSetup" path="1"}">{translate key="manager.schedConfSetup.details"}</a></h4>
-		{translate key="manager.schedConfSetup.details.description"}<br/>
+		{translate key="manager.schedConfSetup.details.pageDescription"}<br/>
 		&nbsp;
 	</li>
 	<li>
 		<h4><a href="{url op="schedConfSetup" path="2"}">{translate key="manager.schedConfSetup.submissions"}</a></h4>
-		{translate key="manager.schedConfSetup.submissions.description"}<br/>
+		{translate key="manager.schedConfSetup.submissions.pageDescription"}<br/>
 		&nbsp;
 	</li>
 	<li>
 		<h4><a href="{url op="schedConfSetup" path="3"}">{translate key="manager.schedConfSetup.review"}</a></h4>
-		{translate key="manager.schedConfSetup.review.description"}<br/>
+		{translate key="manager.schedConfSetup.review.pageDescription"}<br/>
 		&nbsp;
 	</li>
 </ol>

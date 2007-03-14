@@ -9,7 +9,10 @@
  * $Id$
  *}
 
-{if $stage==REVIEW_PROGRESS_ABSTRACT}
+{if $schedConfSettings.reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS}
+	{assign var="pageCrumbTitle" value="submission.review"}
+	{translate|assign:"pageTitleTranslated" key="submission.page.review" id=$submission->getPaperId()}
+{elseif $stage==REVIEW_PROGRESS_ABSTRACT}
 	{assign var="pageCrumbTitle" value="submission.abstractReview"}
 	{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$submission->getPaperId()}
 {else}{* REVIEW_PROGRESS_PAPER *}

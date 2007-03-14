@@ -131,7 +131,11 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$templateMgr->assign_by_ref('revisedFile', $presenterSubmission->getRevisedFile());
 		$templateMgr->assign_by_ref('suppFiles', $presenterSubmission->getSuppFiles());
 		$templateMgr->assign('lastDirectorDecision', $lastDecision);
+
+		// Bring in director decision options
+		import('submission.trackDirector.TrackDirectorSubmission');
 		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
+
 		$templateMgr->assign('helpTopicId', 'editorial.presentersRole.review');
 		$templateMgr->display('presenter/submissionReview.tpl');
 	}

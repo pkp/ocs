@@ -16,20 +16,20 @@
 import("presenter.form.submit.PresenterSubmitForm");
 
 class PresenterSubmitStep5Form extends PresenterSubmitForm {
-	
+
 	/**
 	 * Constructor.
 	 */
 	function PresenterSubmitStep5Form($paper) {
 		parent::PresenterSubmitForm($paper, 5);
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		
+
 		// Get paper file for this paper
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 		$paperFiles =& $paperFileDao->getPaperFilesByPaper($this->paperId);
@@ -39,7 +39,7 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 
 		parent::display();
 	}
-	
+
 	/**
 	 * Save changes to paper.
 	 */
@@ -56,9 +56,9 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 		$paper->setSubmissionProgress(0);
 		$paper->stampStatusModified();
 
-		// We've collected the paper now -- bump the review progress.		
+		// We've collected the paper now -- bump the review progress
 		$paper->setCurrentStage(REVIEW_PROGRESS_PAPER);
-			
+
 		$paperDao->updatePaper($paper);
 
 		// Designate this as the review version by default.
@@ -74,48 +74,17 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 			$reviewAssignment->setReviewFileId($presenterSubmission->getReviewFileId());
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
 		}
-		
-		$user = &Request::getUser();
-		
-		// Update search index
-		import('search.PaperSearchIndex');
-		PaperSearchIndex::indexPaperMetadata($paper);
-		PaperSearchIndex::indexPaperFiles($paper);
 
-		// Send presenter notification email
-		import('mail.PaperMailTemplate');
-		$mail = &new PaperMailTemplate($paper, 'SUBMISSION_ACK');
-		$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
-		if ($mail->isEnabled()) {
-			$mail->addRecipient($user->getEmail(), $user->getFullName());
-			// If necessary, BCC the acknowledgement to someone.
-			if($conference->getSetting('copySubmissionAckPrimaryContact')) {
-				$mail->addBcc(
-					$schedConf->getSetting('contactEmail', true),
-					$schedConf->getSetting('contactName', true)
-				);
-			}
-			if($conference->getSetting('copySubmissionAckSpecified')) {
-				$copyAddress = $conference->getSetting('copySubmissionAckAddress');
-				if (!empty($copyAddress)) $mail->addBcc($copyAddress);
-			}
-
-			$mail->assignParams(array(
-				'presenterName' => $user->getFullName(),
-				'presenterUsername' => $user->getUsername(),
-				'editorialContactSignature' => $schedConf->getSetting('contactName', true) . "\n" . $conference->getTitle(),
-				'submissionUrl' => Request::url(null, null, 'presenter', 'submission', $paper->getPaperId())
-			));
-			$mail->send();
-		}
-
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		$user =& Request::getUser();
+		$this->confirmSubmission($paper, $user, $schedConf, $conference, $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL?'SUBMISSION_UPLOAD_ACK':'SUBMISSION_ACK');
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');
-		PaperLog::logEvent($this->paperId, PAPER_LOG_PAPER_SUBMIT, LOG_TYPE_PRESENTER, $user->getUserId(), 'log.presenter.submitted', array('submissionId' => $paper->getPaperId(), 'presenterName' => $user->getFullName()));
-		
+		PaperLog::logEvent($this->paperId, PAPER_LOG_PRESENTATION_SUBMIT, LOG_TYPE_PRESENTER, $user->getUserId(), 'log.presenter.presentationSubmitted', array('submissionId' => $paper->getPaperId(), 'presenterName' => $user->getFullName()));
+
 		return $this->paperId;
 	}
-	
+
 }
 
 ?>

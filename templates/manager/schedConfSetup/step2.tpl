@@ -40,7 +40,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">
-			<input type="radio" name="reviewMode" id="reviewMode-3" value="{$smarty.const.REVIEW_MODE_BOTH_TOGETHER}" {if $reviewMode == REVIEW_MODE_BOTH_TOGETHER}checked="checked"{/if} />
+			<input type="radio" name="reviewMode" id="reviewMode-3" value="{$smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}" {if $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS}checked="checked"{/if} />
 		</td>
 		<td class="value">
 			<label for="reviewMode-3">{translate key="manager.schedConfSetup.submissions.bothTogether"}</label>

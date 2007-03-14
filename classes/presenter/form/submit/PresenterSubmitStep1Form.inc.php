@@ -113,7 +113,7 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 				case REVIEW_MODE_BOTH_SEQUENTIAL:
 					$this->paper->setCurrentStage(REVIEW_PROGRESS_ABSTRACT);
 					break;
-				case REVIEW_MODE_PAPERS_ALONE:
+				case REVIEW_MODE_PRESENTATIONS_ALONE:
 				case REVIEW_MODE_BOTH_SIMULTANEOUS:
 					$this->paper->setCurrentStage(REVIEW_PROGRESS_PAPER);
 					break;

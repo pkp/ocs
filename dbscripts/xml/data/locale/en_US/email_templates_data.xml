@@ -113,9 +113,24 @@ Thank you,
 			<field name="subject">Submission Acknowledgement</field>
 			<field name="body">{$presenterName}:
 
-Thank you for submitting the manuscript, "{$paperTitle}" to {$conferenceName}. With the online conference management system that we are using, you will be able to track its progress through the editorial process by logging in to the conference web site:
+Thank you for your submission, "{$paperTitle}" to {$conferenceName}. With the online conference management system that we are using, you will be able to track its progress through the editorial process by logging in to the conference web site:
 
-Manuscript URL: {$submissionUrl}
+Submission URL: {$submissionUrl}
+Username: {$presenterUsername}
+
+If you have any questions, please contact me. Thank you for considering this conference as a venue for your work.
+
+{$editorialContactSignature}</field>
+			<field name="description">This email, when enabled, is automatically sent to an presenter when he or she completes the process of submitting a paper or abstract to the conference. It provides information about tracking the submission through the process and thanks the presenter for the submission.</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
+			<field name="subject">Submission Upload Acknowledgement</field>
+			<field name="body">{$presenterName}:
+
+Thank you for uploading your presentation, "{$paperTitle}" to {$conferenceName}. With the online conference management system that we are using, you will be able to track its progress through the editorial process by logging in to the conference web site:
+
+Submission URL: {$submissionUrl}
 Username: {$presenterUsername}
 
 If you have any questions, please contact me. Thank you for considering this conference as a venue for your work.
@@ -224,7 +239,7 @@ Abstract
 			<field name="subject">Paper Review Request</field>
 			<field name="body">{$reviewerName}:
 
-I believe that you would serve as an excellent reviewer of the manuscript, "{$paperTitle}," which has been submitted to {$conferenceName}. The submission's extract is inserted below, and I hope that you will consider undertaking this important task for us.
+I believe that you would serve as an excellent reviewer of the submission, "{$paperTitle}," which has been submitted to {$conferenceName}. The submission's extract is inserted below, and I hope that you will consider undertaking this important task for us.
 
 Please log into the conference web site by {$weekLaterDate} to indicate whether you will undertake the review or not, as well as to access the submission and to record your review and recommendation.
 
@@ -271,7 +286,7 @@ I am able and willing to review the submission, "{$paperTitle}," for {$conferenc
 			<field name="subject">Review Underway Acknowledgement</field>
 			<field name="body">{$reviewerName}:
 
-Thank you for agreeing to review the manuscript "{$paperTitle}" for {$conferenceName} by {$reviewDueDate}.
+Thank you for agreeing to review the submission "{$paperTitle}" for {$conferenceName} by {$reviewDueDate}.
 
 {$editorialContactSignature}</field>
 			<field name="description">This email is sent from the Track Director to the Reviewer to acknowledge their acceptance of a review or encourage them to complete the review.</field>
