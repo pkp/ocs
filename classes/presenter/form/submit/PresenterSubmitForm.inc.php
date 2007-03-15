@@ -113,6 +113,25 @@ class PresenterSubmitForm extends Form {
 			$mail->send();
 		}
 	}
+
+	function assignDirectors(&$paper) {
+		$trackId =& $paper->getTrackId();
+
+		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+
+		$trackDirectors =& $trackDirectorsDao->getDirectorsByTrackId($trackId);
+
+		foreach ($trackDirectors as $trackDirector) {
+			$editAssignment =& new EditAssignment();
+			$editAssignment->setPaperId($paper->getPaperId());
+			$editAssignment->setDirectorId($trackDirector->getUserId());
+			$editAssignment->setCanEdit(1);
+			$editAssignment->setCanReview(1);
+			$editAssignmentDao->insertEditAssignment($editAssignment);
+			unset($editAssignment);
+		}
+	}
 }
 
 ?>

@@ -77,7 +77,14 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 
 		$reviewMode = $schedConf->getSetting('reviewMode');
 		$user =& Request::getUser();
+
+		if ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL || $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE) {
+			// Editors have not yet been assigned; assign them.
+			$this->assignDirectors($paper);
+		}
+
 		$this->confirmSubmission($paper, $user, $schedConf, $conference, $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL?'SUBMISSION_UPLOAD_ACK':'SUBMISSION_ACK');
+
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');
 		PaperLog::logEvent($this->paperId, PAPER_LOG_PRESENTATION_SUBMIT, LOG_TYPE_PRESENTER, $user->getUserId(), 'log.presenter.presentationSubmitted', array('submissionId' => $paper->getPaperId(), 'presenterName' => $user->getFullName()));
