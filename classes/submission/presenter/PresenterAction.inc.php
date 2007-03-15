@@ -48,7 +48,25 @@ class PresenterAction extends Action {
 				$presenterSubmissionDao->updatePresenterSubmission($presenterSubmission);
 
 				$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-				$trackDirectorSubmissionDao->createReviewStage($presenterSubmission->getPaperId(), 1, 1);
+				$schedConf =& Request::getSchedConf();
+				if (!$schedConf || $schedConf->getSchedConfId() != $presenterSubmission->getSchedConfId()) {
+					$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+					unset($schedConf);
+					$schedConf =& $schedConfDao->getSchedConf($presenterSubmission->getSchedConfId());
+				}
+				$reviewMode = $schedConf->getSetting('reviewMode');
+				switch ($reviewMode) {
+					case REVIEW_MODE_BOTH_SIMULTANEOUS:
+					case REVIEW_MODE_PRESENTATIONS_ALONE:
+						$stage = REVIEW_PROGRESS_PRESENTATION;
+						break;
+					case REVIEW_MODE_BOTH_SEQUENTIAL:
+					case REVIEW_MODE_ABSTRACTS_ALONE:
+					default:
+						$stage = REVIEW_PROGRESS_ABSTRACT;
+						break;
+				}
+				$trackDirectorSubmissionDao->createReviewStage($presenterSubmission->getPaperId(), $stage, 1);
 			}
 		}
 	}

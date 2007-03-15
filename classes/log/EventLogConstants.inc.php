@@ -25,5 +25,6 @@ define('LOG_TYPE_DEFAULT', 			0);
 define('LOG_TYPE_PRESENTER', 			0x01);
 define('LOG_TYPE_DIRECTOR', 			0x02);
 define('LOG_TYPE_REVIEW', 			0x03);
+define('LOG_TYPE_FILE', 			0x04);
 
 ?>

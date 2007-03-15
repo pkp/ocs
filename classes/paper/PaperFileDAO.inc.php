@@ -100,7 +100,7 @@ class PaperFileDAO extends DAO {
 
 		$result = &$this->retrieve(
 			'SELECT a.* FROM paper_files a WHERE file_id = ? ' .
-			($stage!==null?' AND a.stage = ?':'') .
+			($stage!==null?'AND a.stage = ? ':'') .
 			'ORDER BY revision',
 			array($params)
 		);

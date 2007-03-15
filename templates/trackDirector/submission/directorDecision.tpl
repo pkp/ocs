@@ -60,11 +60,22 @@
 <input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 {assign var=presenterFiles value=$submission->getPresenterFileRevisions($stage)}
 {assign var=directorFiles value=$submission->getDirectorFileRevisions($stage)}
+{assign var=reviewFile value=$submission->getReviewFile()}
 {assign var="presenterRevisionExists" value=false}
 {assign var="directorRevisionExists" value=false}
+{assign var="publishableRevisionExists" value=false}
 
 {if not $reviewingAbstractOnly}
 	<table class="data" width="100%">
+		{if $reviewFile}
+			<tr valign="top">
+				<td width="20%" class="label">{translate key="submission.reviewVersion"}</td>
+				<td width="50%" class="value">
+					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}<input type="radio" name="directorDecisionFile" value="{$reviewFile->getFileId()},{$reviewFile->getRevision()}" /> {/if}<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()}</a>&nbsp;&nbsp;
+					{$reviewFile->getDateModified()|date_format:$dateFormatShort}
+				</td>
+			</tr>
+		{/if}
 		{foreach from=$presenterFiles item=presenterFile key=key}
 			<tr valign="top">
 				{if !$presenterRevisionExists}
@@ -74,6 +85,7 @@
 				<td width="80%" class="value" colspan="3">
 					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
 						<input type="radio" name="directorDecisionFile" value="{$presenterFile->getFileId()},{$presenterFile->getRevision()}" />
+						{assign var="publishableRevisionExists" value=true}
 					{/if}
 					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$presenterFile->getFileId():$presenterFile->getRevision()}" class="file">{$presenterFile->getFileName()}</a>&nbsp;&nbsp;
 						{$presenterFile->getDateModified()|date_format:$dateFormatShort}
@@ -92,7 +104,11 @@
 					<td width="20%" rowspan="{$directorFiles|@count}" class="label">{translate key="submission.directorVersion"}</td>
 				{/if}
 				<td width="50%" class="value" colspan="2">
-					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}<input type="radio" name="directorDecisionFile" value="{$directorFile->getFileId()},{$directorFile->getRevision()}" /> {/if}<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()}</a>&nbsp;&nbsp;
+					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
+						<input type="radio" name="directorDecisionFile" value="{$directorFile->getFileId()},{$directorFile->getRevision()}" />
+						{assign var="publishableRevisionExists" value=true}
+					{/if}
+					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()}</a>&nbsp;&nbsp;
 					{$directorFile->getDateModified()|date_format:$dateFormatShort}
 				</td>
 				<td width="30%" class="value"><a href="{url op="deletePaperFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="action">{translate key="common.delete"}</a></td>
@@ -111,6 +127,18 @@
 		<input type="file" name="upload" class="uploadField" />
 		<input type="submit" name="submit" value="{translate key="common.upload"}" class="button" />
 	</div>
+	{/if}
+
+	{if $publishableRevisionExists}
+		<table class="data" width="100%">
+			<tr valign="top">
+				<td width="20%">&nbsp;</td>
+				<td width="80%">
+					{translate key="director.paper.sendFileToEditing"}
+					<input type="submit" name="setEditingFile" value="{translate key="form.send"}" class="button" />
+				</td>
+			</tr>
+		</table>
 	{/if}
 {/if}
 

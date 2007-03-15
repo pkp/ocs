@@ -18,7 +18,7 @@
 	 * by comments like this one. These sections are called:
 	 *  COMMON - Contains frequently-used words
 	 *  ENTITIES - Contains terms pertaining to the system's major
-	 *             entities, e.g. Article, Conference, Section
+	 *             entities, e.g. Paper, Conference, Track
 	 *  INTERFACE - Contains phrases organized by the section of the
 	 *              user interface they appear in.
 	 *  LOG - Contains phrases related to log entries
@@ -238,7 +238,7 @@
 	<message key="navigation.items">{$from} - {$to} of {$total} Items</message>
 	<message key="navigation.fontSize">Font Size</message>
 
-	<!-- Article Queues -->
+	<!-- Paper Queues -->
 	<message key="common.queue.long.submissionsUnassigned">Unassigned</message>
 	<message key="common.queue.short.submissionsUnassigned">Unassigned</message>
 	<message key="common.queue.long.submissionsInReview">Submissions in Review</message>
@@ -259,7 +259,7 @@
 	<!--
 	 *
 	 * ENTITIES - This section contains terms pertaining to the system's
-	 *            major entities, e.g. Article, Conference, Track
+	 *            major entities, e.g. Paper, Conference, Track
 	 *
 	-->
 
@@ -273,7 +273,7 @@
 	<message key="track.default.abbrev">GEN</message>
 	<message key="track.default.policy"></message>
 
-	<!-- Common Article Terms -->
+	<!-- Common Paper Terms -->
 	<message key="paper.papers">Papers</message>
 	<message key="paper.submissionId">Submission ID</message>
 	<message key="paper.title">Title</message>
@@ -535,9 +535,7 @@
 	<message key="submission.event.general.presentationSubmitted">Presentation submitted</message>
 	<message key="submission.event.general.metadataUpdated">Submission metadata updated</message>
 	<message key="submission.event.general.suppFileUpdated">Submission file updated</message>
-	<!--<message key="submission.event.general.issueScheduled">Submission sent to issue scheduling queue</message>-->
-	<!--<message key="submission.event.general.issueAssigned">Submission assigned to issue</message>-->
-	<!--<message key="submission.event.general.articlePublished">Article published</message>-->
+	<message key="submission.event.general.paperPublished">Article published</message>
 
 	<message key="submission.event.presenter.presenterRevision">Presenter revision submitted</message>
 
@@ -576,12 +574,11 @@
 	 *
 	-->
 
-	<!-- Reader article view -->
+	<!-- Reader paper view -->
 	<message key="reader.fullText">Full Text:</message>
 	<message key="reader.fullTextSubscribersOnly">Full Text: Subscribers Only</message>
 
 	<!-- Reader Comments -->
-	<message key="comments.commentsOnArticle">Comments on this article</message>
 	<message key="comments.viewAllComments">View all comments</message>
 	<message key="comments.noComments">No reader comments have been posted.</message>
 	<message key="comments.anonymous">Anonymous User</message>
@@ -732,7 +729,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<!--<message key="admin.conference.importPath">OCS 1 path</message>-->
 	<!--<message key="admin.conference.importPathInstructions">Complete local filesystem path to the OCS 1 installation (e.g., "/var/www/ocs").</message>-->
 	<!--<message key="admin.conferences.importSubscriptions">Import subscriptions</message>-->
-	<!--<message key="admin.conferences.transcode">Transcode article metadata from ISO8859-1</message>-->
+	<!--<message key="admin.conferences.transcode">Transcode paper metadata from ISO8859-1</message>-->
 	<!--<message key="admin.conferences.form.importPathRequired">The import path is required.</message>-->
 	<!--<message key="admin.conferences.importErrors">Importing failed to complete successfully</message>-->
 
@@ -1667,6 +1664,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="director.paper.decision.pendingRevisions">Revisions Required</message>
 	<message key="director.paper.decision.resubmit">Resubmit for Review</message>
 	<message key="director.paper.decision.decline">Decline Submission</message>
+	<message key="director.paper.sendFileToEditing">Send to Editing</message>
 	<!--<message key="director.paper.reviewSubmission">Review Submission</message>-->
 	<!--<message key="director.paper.resubmitFileForPeerReview">Resubmit selected file for peer review</message>-->
 	<message key="director.paper.completeReview">Mark review as completed</message>
@@ -1703,7 +1701,6 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="trackDirector.review.createReviewer">Create New Reviewer</message>
 
 	<!-- Reviewer -->
-	<message key="reviewer.pendingReviews">Articles Pending Review</message>
 	<message key="reviewer.completedReviews">Done</message>
 	<message key="reviewer.averageQuality">Rating</message>
 
@@ -1779,7 +1776,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="presenter.submissions.viewStatus">View Status</message>
 	<message key="presenter.submissions.noSubmissions">No submissions.</message>
 
-	<!-- Article Submission Step 1 -->
+	<!-- Paper Submission Step 1 -->
 	<message key="presenter.submit.howToSubmit"><![CDATA[Presenters submit items to this conference through this web site in a multi-step process for uploading the relevant information (some conferences allow the presenter to upload, as well, supplementary files, such as research data and instruments). If difficulties are encountered in this process, contact <a href="mailto:{$supportEmail}">{$supportName}</a> by email or phone {$supportPhone} for assistance.]]></message>
 	<message key="presenter.submit.conferenceTrack">Conference Track</message>
 	<message key="presenter.submit.conferenceTrackDescription"><![CDATA[Select the appropriate track for this submission (see Track Policies in <a href="{$aboutUrl}" target="_new">About</a> the Conference).]]></message>
@@ -1795,7 +1792,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="presenter.submit.form.trackRequired">Please select an appropriate conference track for this submission.</message>
 	<message key="presenter.submit.form.abstractRequired">Please enter an abstract for your submission.</message>
 
-	<!-- Article Submission Step 2 -->
+	<!-- Paper Submission Step 2 -->
 	<message key="presenter.submit.metadataDescription">This conference gathers metadata about each submission, according to the standards set by the Open Archives Initiative, which is the emerging online standard for identifying research resources. This enables collective and accurate searching across OAI databases, increasing the likelihood that readers will find submissions such as this one. Directors may insist that metadata be provided before initiating the editorial process.</message>
 	<message key="presenter.submit.privacyStatement">Conference's Privacy Statement</message>
 	<message key="presenter.submit.presentersDescription">For submissions with more than one presenter, order presenters as they are to appear on citation.</message>
@@ -1815,7 +1812,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="presenter.submit.form.presenterRequiredFields">The first name, last name, and email address of each presenter is required.</message>
 	<message key="presenter.submit.form.titleRequired">Please enter the title of your paper.</message>
 
-	<!-- Article Submission Step 3 -->
+	<!-- Paper Submission Step 3 -->
 	<message key="presenter.submit.uploadInstructions"><![CDATA[
 To upload a paper to this conference, complete the following steps.
 
@@ -1834,14 +1831,14 @@ The file can be viewed by clicking on the file name. A new or revised file can b
 	<message key="presenter.submit.noSubmissionFile">No submission file uploaded.</message>
 	<message key="presenter.submit.noSubmissionConfirm">Are you sure you wish to continue without uploading a submission file?</message>
 
-	<!-- Article Submission Step 4 -->
+	<!-- Paper Submission Step 4 -->
 	<message key="presenter.submit.supplementaryFilesInstructions">This optional step in the submission process allows presenters to add files to the submission which improve the contribution which the submission makes. Supplementary Files might include (a) research instruments, (b) data sets, which comply with the terms of the study's research ethics review, (c) sources that otherwise would be unavailable to readers, or (d) figures or tables that cannot be integrated into the text itself. These files are also indexed by the presenter, identifying their relation to the submission, as well as their ownership. Supplementary Files can be uploaded in any file format and will be made available to readers in their original format. They can be shared with peer reviewers, if they do not compromise the blind review.</message>
 	<message key="presenter.submit.noSupplementaryFiles">No supplementary files have been added to this submission.</message>
 	<message key="presenter.submit.backToSupplementaryFiles">Back to Supplementary Files</message>
 	<message key="presenter.submit.confirmDeleteSuppFile">Are you sure you want to delete this supplementary file?</message>
 	<message key="presenter.submit.uploadSuppFile">Upload supplementary file</message>
 
-	<!-- Article Submission Step 4a: Supplementary Files -->
+	<!-- Paper Submission Step 4a: Supplementary Files -->
 	<message key="presenter.submit.addSupplementaryFile">Add a Supplementary File</message>
 	<message key="presenter.submit.editSupplementaryFile">Edit a Supplementary File</message>
 	<message key="presenter.submit.supplementaryFileData">Supplementary File Metadata</message>
@@ -1869,12 +1866,12 @@ The file can be viewed by clicking on the file name. A new or revised file can b
 	<message key="presenter.suppFile.suppFilePublicIdentificationExists">Public supplemental file identification already exists.</message>
 	<message key="presenter.suppFile.publicSuppFileIdentifier">Public supplemental file identifier</message>
 
-	<!-- Article submission: upload article file -->
+	<!-- Paper Submission: upload file -->
 	<message key="submission.submissionFiles">Submission Files</message>
 	<message key="presenter.submit.addSubmissionFile">Add a Supplementary File</message>
 	<message key="presenter.submit.submissionFileUpload">Supplementary File</message>
 
-	<!-- Article Submission Step 5 -->
+	<!-- Paper Submission Step 5 -->
 	<message key="presenter.submit.confirmationDescription">With the previous four steps of the submission process completed, click Finish Submission to submit your manuscript to {$conferenceTitle}. You will receive an acknowledgement by email and will be able to view your submission's progress through the editorial process by logging in to the conference web site. Thank you for your interest in publishing with {$conferenceTitle}.</message>
 	<message key="presenter.submit.noFiles">No files have been attached to this submission.</message>
 	<message key="presenter.submit.filesSummary">File Summary</message>
@@ -2028,7 +2025,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 
 	<!-- Search -->
 	<message key="search.browsePresenterIndex">Browse Presenter Index</message>
-	<message key="search.searchFor">Search articles for</message>
+	<message key="search.searchFor">Search papers for</message>
 	<message key="search.inField">In</message>
 	<message key="search.allFields">All</message>
 	<message key="search.presenter">Presenters</message>
@@ -2058,8 +2055,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="search.syntaxInstructions"><![CDATA[Search tips: <ul>
 <li>Search terms are case-insensitive</li>
 <li>Common words are ignored</li>
-<li>By default only articles containing <i>all</i> terms in the query are returned (i.e., <i>AND</i> is implied)</li>
-<li>Combine multiple words with <i>OR</i> to find articles containing either term; e.g., <i>education OR research</i></li>
+<li>By default only papers containing <i>all</i> terms in the query are returned (i.e., <i>AND</i> is implied)</li>
+<li>Combine multiple words with <i>OR</i> to find papers containing either term; e.g., <i>education OR research</i></li>
 <li>Use parentheses to create more complex queries; e.g., <i>archive ((journal OR conference) NOT theses)</i></li>
 <li>Search for an exact phrase by putting it in quotes; e.g., <i>"open access publishing"</i></li>
 <li>Exclude a word by prefixing it with <b>-</b> or <i>NOT</i>; e.g. <i>online -politics</i> or <i>online NOT politics</i></li>
@@ -2074,7 +2071,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="paper.pdf.note"><![CDATA[The PDF file you selected should load here, if your Web browser has a PDF reader plug-in installed (for example, a recent version of <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>). Alternatively, the PDF file will download to your computer, where it can also be opened using a PDF reader. If you would like more information about how to print, save, and work with PDFs, Highwire Press provides a helpful <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">Frequently Asked Questions about PDFs</a>.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
 
 	<!-- Interstitial page for non-PDF non-HTML galleys -->
-	<message key="paper.nonpdf.title">Article Download</message>
+	<message key="paper.nonpdf.title">Paper Download</message>
 	<message key="paper.nonpdf.note"><![CDATA[The file you selected should begin downloading automatically. If it does not, click the link below. Note that this file may require a special viewer or plugin to view.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
 
 	<!-- Site index -->
@@ -2300,7 +2297,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="installer.checkNo"><![CDATA[<span class="formError">NO</span>]]></message>
 
 
-	<!-- Article Logs -->
+	<!-- Paper Logs -->
 	<message key="log.default.abstractPeriodExpired">The abstract submission window for incomplete paper {$paperId} has expired. Paper moved to graveyard.</message>
 	<message key="log.default.paperPeriodExpired">The paper submission window for incomplete paper {$paperId} has expired. Paper moved to graveyard.</message>
 	<message key="log.presenter.abstractSubmitted">{$presenterName} has entered a submission abstract, ID {$submissionId}.</message>
@@ -2324,14 +2321,15 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.review.reviewerFile">A reviewer file has been uploaded.</message>
 	<message key="log.director.decision">A director decision ({$decision}) for paper {$paperId} was recorded by {$directorName}.</message>
 
-	<message key="log.director.metadataModified">The metadata for this article was modified by {$directorName}.</message>
+	<message key="log.director.metadataModified">The metadata for this paper was modified by {$directorName}.</message>
 	<message key="log.director.directorFile">A director version of the submission file has been uploaded.</message>
-	<!--<message key="log.director.archived">The submission {$articleId} has been archived.</message>-->
-	<!--<message key="log.director.restored">The submission {$articleId} has been restored to the queue.</message>-->
+	<message key="log.director.archived">The submission {$paperId} has been archived.</message>
+	<message key="log.director.restored">The submission {$paperId} has been restored to the queue.</message>
 	<message key="log.director.directorAssigned">{$directorName} has been assigned as director to submission {$paperId}.</message>
-	<message key="log.director.submissionExpedited">{$directorName} has expedited the editing process for article {$paperId}.</message>
+	<message key="log.director.submissionExpedited">{$directorName} has expedited the editing process for paper {$paperId}.</message>
+	<message key="log.layout.layoutFileSet">{$directorName} has set the layout version for submission {$paperId}.</message>
 
-	<!--<message key="log.imported">{$userName} has imported article {$articleId}.</message>-->
+	<!--<message key="log.imported">{$userName} has imported paper {$paperId}.</message>-->
 
 	<!-- Conference log entries -->
 	<message key="log.deadline.submissionDeadlinePassed">Submission deadline expired.</message>
@@ -2389,7 +2387,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="rt.admin.contexts.confirmDelete">Are you sure you wish to delete this Context and all associated Searches?</message>
 	<message key="rt.admin.contexts.metadata">Metadata</message>
 	<message key="rt.admin.contexts.options">Options</message>
-	<message key="rt.admin.contexts.options.citedBy">Use presenter names as default search terms and describe the context as a search for citations to the article.</message>
+	<message key="rt.admin.contexts.options.citedBy">Use presenter names as default search terms and describe the context as a search for citations to the paper.</message>
 	<message key="rt.admin.contexts.options.authorTerms">Use presenter names as default search terms to enable users to find other works by the presenters for this item (e.g., for an "Other Works" context)</message>
 	<message key="rt.admin.contexts.options.geoTerms">Use geographical indexing data as default search terms.</message>
 	<message key="rt.admin.contexts.options.defineTerms"><![CDATA[Use the word highlighted by the reader as default search term or be left blank if none has been selected for this item (e.g., for a "Definition of terms" context). The "Definition of terms" option must be enabled in the <a href="{$settingsUrl}">RST Settings</a> to allow double-clicking on words to open this context.]]></message>
@@ -2466,7 +2464,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="rt.metadata.pkp.date">(YYYY-MM-DD)</message>
 	<message key="rt.metadata.pkp.type">Type</message>
 	<message key="rt.metadata.pkp.genre">Status &amp; genre</message>
-	<message key="rt.metadata.pkp.peerReviewed">Peer-reviewed Article</message>
+	<message key="rt.metadata.pkp.peerReviewed">Peer-reviewed Paper</message>
 	<message key="rt.metadata.pkp.format">File format</message>
 	<message key="rt.metadata.pkp.uri">Universal Resource Indicator</message>
 	<message key="rt.metadata.pkp.source">Journal/conference title; vol., no. (year)</message>
@@ -2507,7 +2505,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="rt.context.searchDescription">The search terms have been selected by the presenter(s). They can be altered or deleted by the reader, as two or three short, precise terms or phrases produced the best Boolean (AND) searches. To learn more about the resources searched, click on ABOUT. These resources have been selected for their relevance and open (free) access to all or part of their contents.</message>
 	<message key="rt.context.defineTermsDescription">If the item is a HTML file (rather than a PDF), double clicking on any word in the text will make it appear in the Word-to-Define box. Otherwise, words can be typed or pasted in the box. To learn more about the resource searched, click on ABOUT. These resources have been selected because of their relevance and their open (free) access to all or part of their contents.</message>
 	<message key="rt.context.authorTermsDescription">For items with more than one presenter, leave all names checked to search for similarly co-presented work, or search one at a time by checking only a single name. To learn more about the resource searched, click on ABOUT. These resources have been selected because of their relevance and their open (free) access to all or part of their contents.</message>
-	<message key="rt.context.citesContextDescription">If the article is indexed in Google Scholar, it may be accompanied by a "Cited by X" link, which leads to a list of works that cite it. As well, Google Scholar will list all items quoting the title and presenter. To access online resources that are only available through your research library, you may be able to go to Scholar Preferences in Google Scholar and activate the Library Links for your institution.</message>
+	<message key="rt.context.citesContextDescription">If the paper is indexed in Google Scholar, it may be accompanied by a "Cited by X" link, which leads to a list of works that cite it. As well, Google Scholar will list all items quoting the title and presenter. To access online resources that are only available through your research library, you may be able to go to Scholar Preferences in Google Scholar and activate the Library Links for your institution.</message>
 
 	<message key="rt.context.and">AND</message>
 
@@ -2556,7 +2554,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="default.conferenceSettings.checklist.anonymous">If submitting to a peer-reviewed track of the conference, presenters' names are removed from submission, with "Presenter" and year used in the bibliography and footnotes, instead of presenters' name, paper title, etc.</message>
 	<message key="default.conferenceSettings.checklist.personalInformationRemoved">If submitting to peer review, all Microsoft Office documents (including Supplementary Files) have been saved by going to File and selecting Save As; clicking Tools (or Options in a Mac); clicking Security; selecting "Remove personal information from file properties on save"; clicking Save.</message>
 	<message key="default.conferenceSettings.privacyStatement">The names and email addresses entered in this conference site will be used exclusively for the stated purposes of this conference and will not be made available for any other purpose or to any other party.</message>
-	<message key="default.conferenceSettings.presenterSelfArchivePolicy">Presenters are permitted to post their articles on personal or institutional websites prior to and after publication by this conference (while providing the bibliographic details of that publication).</message>
+	<message key="default.conferenceSettings.presenterSelfArchivePolicy">Presenters are permitted to post their papers on personal or institutional websites prior to and after publication by this conference (while providing the bibliographic details of that publication).</message>
 	<message key="default.conferenceSettings.emailSignature"><![CDATA[________________________________________________________________________
 {$conferenceName}
 {$conferenceUrl}

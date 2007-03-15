@@ -96,13 +96,16 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$stage = (isset($args[1]) ? (int) $args[1] : null);
 		$reviewMode = $schedConf->getSetting('reviewMode');
-		switch ($stage) {
-			case REVIEW_PROGRESS_ABSTRACT:
+		switch ($reviewMode) {
+			case REVIEW_MODE_ABSTRACTS_ALONE:
+				$stage = REVIEW_PROGRESS_ABSTRACT;
 				break;
-			case REVIEW_PROGRESS_PAPER:
-				if ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL || $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS) break;
-			default:
-				$stage = $submission->getCurrentStage();
+			case REVIEW_MODE_BOTH_SIMULTANEOUS:
+			case REVIEW_MODE_PRESENTATIONS_ALONE:
+				$stage = REVIEW_PROGRESS_PRESENTATION;
+				break;
+			case REVIEW_MODE_BOTH_SEQUENTIAL:
+				if ($stage != REVIEW_PROGRESS_ABSTRACT && $stage != REVIEW_PROGRESS_PRESENTATION) $stage = $submission->getCurrentStage();
 				break;
 		}
 
@@ -120,10 +123,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1]['decision'] : null;
 
 		$editAssignments =& $submission->getEditAssignments();
-
 		$isCurrent = ($stage == $submission->getCurrentStage());
+
 		$allowRecommendation = $isCurrent &&
-			($submission->getReviewFileId() || $stage != REVIEW_PROGRESS_PAPER) &&
+			($submission->getReviewFileId() || $stage != REVIEW_PROGRESS_PRESENTATION) &&
 			!empty($editAssignments);
 
 		$reviewingAbstractOnly = ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL && $stage == REVIEW_PROGRESS_ABSTRACT) || $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE;
@@ -695,9 +698,16 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$redirectArgs = array($paperId, $stage);
 
 		// If the Upload button was pressed.
-		$submit = Request::getUserVar('submit');
-		if ($submit != null) {
+		if (Request::getUserVar('submit')) {
 			TrackDirectorAction::uploadDirectorVersion($submission);
+		} elseif (Request::getUserVar('setEditingFile')) {
+			// If the Send To Editing button was pressed
+			$file = explode(',', Request::getUserVar('directorDecisionFile'));
+			if (isset($file[0]) && isset($file[1])) {
+				TrackDirectorAction::setEditingFile($submission, $file[0], $file[1]);
+				$redirectTarget = 'submissionEditing';
+			}
+			
 		}
 		
 		Request::redirect(null, null, null, $redirectTarget, $redirectArgs);

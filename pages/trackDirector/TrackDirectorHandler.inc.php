@@ -98,7 +98,7 @@ class TrackDirectorHandler extends Handler {
 
 		$templateMgr->assign('reviewType', Array(
 			REVIEW_PROGRESS_ABSTRACT => Locale::translate('submission.abstract'),
-			REVIEW_PROGRESS_PAPER => Locale::translate('submission.paper')
+			REVIEW_PROGRESS_PRESENTATION => Locale::translate('submission.paper')
 		));
 		
 		$templateMgr->assign('dateFrom', $fromDate);

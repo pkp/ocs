@@ -41,7 +41,7 @@
 				{elseif $status==SUBMISSION_STATUS_QUEUED_UNASSIGNED}{translate key="submissions.queuedUnassigned"}
 				{elseif $status==SUBMISSION_STATUS_QUEUED_EDITING}<a href="{url op="submissionEditing" path=$paperId}" class="action">{translate key="submissions.queuedEditing"}</a>
 				{elseif $status==SUBMISSION_STATUS_QUEUED_REVIEW}
-					{if $currentStage==REVIEW_PROGRESS_PAPER}
+					{if $currentStage==REVIEW_PROGRESS_PRESENTATION}
 						<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">{translate key="submissions.queuedPaperReview"}</a>
 					{else}
 						<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">{translate key="submissions.queuedAbstractReview"}</a>

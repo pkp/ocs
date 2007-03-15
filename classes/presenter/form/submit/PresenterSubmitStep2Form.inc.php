@@ -182,6 +182,10 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 			$reviewMode = $schedConf->getSetting('reviewMode');
 			if($reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS || $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE) {
 				$paper->setSubmissionProgress($this->step + 1);
+				// The line below is necessary to ensure that
+				// the paper upload goes in with the correct
+				// stage number (i.e. paper).
+				$paper->setCurrentStage(REVIEW_PROGRESS_PRESENTATION);
 			} else {
 				$paper->setDateSubmitted(Core::getCurrentDate());
 				$paper->stampStatusModified();

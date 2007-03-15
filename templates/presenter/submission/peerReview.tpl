@@ -18,7 +18,7 @@
 {assign var="viewableFiles" value=$presenterViewableFilesByStage[$stage]}
 
 <table class="data" width="100%">
-	{if $stage == REVIEW_PROGRESS_PAPER}
+	{if $stage == REVIEW_PROGRESS_PRESENTATION}
 		<tr valign="top">
 			<td class="label" width="20%">
 				{translate key="submission.reviewVersion"}
@@ -57,7 +57,7 @@
 			{/if}
 		</td>
 	</tr>
-	{if $stage == REVIEW_PROGRESS_PAPER}
+	{if $stage == REVIEW_PROGRESS_PRESENTATION}
 		<tr valign="top">
 			<td class="label" width="20%">
 				{translate key="common.uploadedFile"}

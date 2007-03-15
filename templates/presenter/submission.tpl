@@ -19,7 +19,7 @@
 		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_PROGRESS_ABSTRACT}">
 			{translate key="submission.abstractReview"}</a>
 		</li>
-		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_PROGRESS_PAPER}">
+		<li><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_PROGRESS_PRESENTATION}">
 			{translate key="submission.paperReview"}</a>
 		</li>
 	{else}

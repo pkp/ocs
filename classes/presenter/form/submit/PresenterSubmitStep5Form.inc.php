@@ -57,7 +57,7 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 		$paper->stampStatusModified();
 
 		// We've collected the paper now -- bump the review progress
-		$paper->setCurrentStage(REVIEW_PROGRESS_PAPER);
+		$paper->setCurrentStage(REVIEW_PROGRESS_PRESENTATION);
 
 		$paperDao->updatePaper($paper);
 
@@ -69,7 +69,7 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 
 		// Update any review assignments so they may access the file
 		$presenterSubmission =& $presenterSubmissionDao->getPresenterSubmission($paper->getPaperId());
-		$reviewAssignments = &$reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getPaperId(), REVIEW_PROGRESS_PAPER);
+		$reviewAssignments = &$reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getPaperId(), REVIEW_PROGRESS_PRESENTATION);
 		foreach($reviewAssignments as $reviewAssignment) {
 			$reviewAssignment->setReviewFileId($presenterSubmission->getReviewFileId());
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);

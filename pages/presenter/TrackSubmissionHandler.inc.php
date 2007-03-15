@@ -97,14 +97,17 @@ class TrackSubmissionHandler extends PresenterHandler {
 		parent::setupTemplate(true, $paperId);
 
 		$stage = (isset($args[1]) ? (int) $args[1] : 1);
-		switch ($stage) {
-			case REVIEW_PROGRESS_ABSTRACT:
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		switch ($reviewMode) {
+			case REVIEW_MODE_ABSTRACTS_ALONE:
+				$stage = REVIEW_PROGRESS_ABSTRACT;
 				break;
-			case REVIEW_PROGRESS_PAPER:
-				$reviewMode = $schedConf->getSetting('reviewMode');
-				if ($reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS || $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL) break;
-			default:
-				$stage = $presenterSubmission->getCurrentStage();
+			case REVIEW_MODE_BOTH_SIMULTANEOUS:
+			case REVIEW_MODE_PRESENTATIONS_ALONE:
+				$stage = REVIEW_PROGRESS_PRESENTATION;
+				break;
+			case REVIEW_MODE_BOTH_SEQUENTIAL:
+				if ($stage != REVIEW_PROGRESS_ABSTRACT && $stage != REVIEW_PROGRESS_PRESENTATION) $stage = $submission->getCurrentStage();
 				break;
 		}
 

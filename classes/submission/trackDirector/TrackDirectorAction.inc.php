@@ -97,12 +97,7 @@ class TrackDirectorAction extends Action {
 	function completeReview($trackDirectorSubmission) {
 		$schedConf =& Request::getSchedConf();
 		
-		if($schedConf->getSetting('reviewMode') != REVIEW_MODE_BOTH_SEQUENTIAL) {
-			// Only one review was necessary; the submission is complete.
-			$trackDirectorSubmission->setCurrentStage(REVIEW_PROGRESS_COMPLETE);
-			$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_PUBLISHED);
-
-		} else {
+		if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL) {
 			// two-stage submission; paper required
 			// The submission is incomplete, and needs the presenter to submit
 			// more materials (potentially for another stage of reviews)
@@ -113,9 +108,7 @@ class TrackDirectorAction extends Action {
 				// a separate review progress, flag it as such and move it back
 				// to review stage 1.
 				if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL) {
-					$trackDirectorSubmission->setCurrentStage(REVIEW_PROGRESS_PAPER);
-				} else {
-					$trackDirectorSubmission->setCurrentStage(REVIEW_PROGRESS_COMPLETE);
+					$trackDirectorSubmission->setCurrentStage(REVIEW_PROGRESS_PRESENTATION);
 				}
 
 				// The paper itself needs to be collected. Flag it so the presenter
@@ -130,18 +123,9 @@ class TrackDirectorAction extends Action {
 				foreach ($trackDirectorSubmission->getReviewAssignments(REVIEW_PROGRESS_ABSTRACT) as $reviewAssignment) {
 					if ($reviewAssignment->getRecommendation() != null) {
 						// This reviewer submitted a review; reassign them
-						TrackDirectorAction::addReviewer($trackDirectorSubmission, $reviewAssignment->getReviewerId(), REVIEW_PROGRESS_PAPER);
+						TrackDirectorAction::addReviewer($trackDirectorSubmission, $reviewAssignment->getReviewerId(), REVIEW_PROGRESS_PRESENTATION);
 					}
 				}
-
-			} else { // REVIEW_PROGRESS_PAPER
-
-				// Mark the review as complete
-				$trackDirectorSubmission->setCurrentStage(REVIEW_PROGRESS_COMPLETE);
-				$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_PUBLISHED);
-
-				// TODO: log? notify presenters?
-
 			}
 		}
 
@@ -709,6 +693,34 @@ class TrackDirectorAction extends Action {
 		}
 	}	 
 	 
+	/**
+	 * Set the file to use as the default editing file.
+	 * @param $trackDirectorSubmission object
+	 * @param $fileId int
+	 * @param $revision int
+	 * TODO: SECURITY!
+	 */
+	function setEditingFile($trackDirectorSubmission, $fileId, $revision) {
+		import('file.PaperFileManager');
+		$paperFileManager = &new PaperFileManager($trackDirectorSubmission->getPaperId());
+		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$user = &Request::getUser();
+
+		if (!HookRegistry::call('TrackDirectorAction::setEditingFile', array(&$trackDirectorSubmission, &$fileId, &$revision))) {
+			// Copy the file from the director decision file folder to the copyedit file folder
+			$newFileId = $paperFileManager->copyToLayoutFile($fileId, $revision);
+			
+			$trackDirectorSubmission->setLayoutFileId($newFileId);
+			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
+		
+			// Add log
+			import('paper.log.PaperLog');
+			import('paper.log.PaperEventLogEntry');
+			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_LAYOUT_SET_FILE, LOG_TYPE_FILE, $trackDirectorSubmission->getLayoutFileId(), 'log.layout.layoutFileSet', array('directorName' => $user->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId()));
+		}
+	}
+	
 	/**
 	 * Upload the review version of a paper.
 	 * @param $trackDirectorSubmission object

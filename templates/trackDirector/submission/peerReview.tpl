@@ -142,7 +142,7 @@
 					<h3>{translate key="submission.review"}</h3>
 				{elseif $stage == REVIEW_PROGRESS_ABSTRACT}
 					<h3>{translate key="submission.abstractReview"}</h3>
-				{else}{* REVIEW_PROGRESS_PAPER *}
+				{else}{* REVIEW_PROGRESS_PRESENTATION *}
 					<h3>{translate key="submission.paperReview"}</h3>
 				{/if}
 			</td>

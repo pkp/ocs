@@ -15,7 +15,7 @@
 {elseif $stage==REVIEW_PROGRESS_ABSTRACT}
 	{assign var="pageCrumbTitle" value="submission.abstractReview"}
 	{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$submission->getPaperId()}
-{else}{* REVIEW_PROGRESS_PAPER *}
+{else}{* REVIEW_PROGRESS_PRESENTATION *}
 	{assign var="pageCrumbTitle" value="submission.paperReview"}
 	{translate|assign:"pageTitleTranslated" key="submission.page.paperReview" id=$submission->getPaperId()}
 {/if}
@@ -28,7 +28,7 @@
 		<li {if $stage==REVIEW_PROGRESS_ABSTRACT}class="current"{/if}><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_PROGRESS_ABSTRACT}">
 			{translate key="submission.abstractReview"}</a>
 		</li>
-		<li {if $stage==REVIEW_PROGRESS_PAPER}class="current"{/if}><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_PROGRESS_PAPER}">
+		<li {if $stage==REVIEW_PROGRESS_PRESENTATION}class="current"{/if}><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_PROGRESS_PRESENTATION}">
 			{translate key="submission.paperReview"}</a>
 		</li>
 	{else}
