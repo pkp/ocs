@@ -410,19 +410,8 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
-		<row>
+ 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_REVISE</field>
-			<field name="subject">Editorial Decision on Paper</field>
-			<field name="body">{$presenterName}:
-
-We have now completed the review of your submission "{$paperTitle}." As a result...
-
-{$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
-		</row>
-
-		<row>
-			<field name="email_key">SUBMISSION_ABSTRACT_RESUBMIT</field>
 			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$presenterName}:
 
@@ -456,17 +445,6 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_REVISE</field>
-			<field name="subject">Editorial Decision on Paper</field>
-			<field name="body">{$presenterName}:
-
-We have now completed the review of your submission "{$paperTitle}." As a result...
-
-{$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
-		</row>
-
-		<row>
-			<field name="email_key">SUBMISSION_PAPER_RESUBMIT</field>
 			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$presenterName}:
 
