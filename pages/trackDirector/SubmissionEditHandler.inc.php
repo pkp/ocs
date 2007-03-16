@@ -17,6 +17,11 @@ define('TRACK_DIRECTOR_ACCESS_EDIT', 0x00001);
 define('TRACK_DIRECTOR_ACCESS_REVIEW', 0x00002);
 
 class SubmissionEditHandler extends TrackDirectorHandler {
+	function getFrom($default = 'submissionEditing') {
+		$from = Request::getUserVar('from');
+		if (!in_array($from, array('submission', 'submissionEditing'))) return $default;
+		return $from;
+	}
 
 	function submission($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
@@ -793,7 +798,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		if ($submitForm->validate()) {
 			$submitForm->execute();
-			Request::redirect(null, null, null, 'submissionEditing', $paperId);
+			Request::redirect(null, null, null, SubmissionEditHandler::getFrom(), $paperId);
 		} else {
 			parent::setupTemplate(true, $paperId, 'summary');
 			$submitForm->display();
@@ -826,7 +831,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		TrackDirectorAction::deleteSuppFile($submission, $suppFileId);
 
-		Request::redirect(null, null, null, 'submissionEditing', $paperId);
+		Request::redirect(null, null, null, SubmissionEditHandler::getFrom(), $paperId);
 	}
 
 	function archiveSubmission($args) {
@@ -879,7 +884,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			SubmissionEditHandler::uploadSuppFile('layoutFile');
 
 		} else {
-			Request::redirect(null, null, null, 'submissionEditing', Request::getUserVar('paperId'));
+			Request::redirect(null, null, null, SubmissionEditHandler::getFrom(), Request::getUserVar('paperId'));
 		}
 	}
 
@@ -1097,7 +1102,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$suppFileForm->setData('title', Locale::translate('common.untitled'));
 		$suppFileId = $suppFileForm->execute($fileName);
 
-		Request::redirect(null, null, null, 'editSuppFile', array($paperId, $suppFileId));
+		Request::redirect(null, null, null, SubmissionEditHandler::getFrom(), array($paperId, $suppFileId));
 	}
 
 	/**
