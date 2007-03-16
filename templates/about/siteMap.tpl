@@ -70,7 +70,7 @@
 	<li><a href="{url conference="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
 {/if}
 <li><a href="http://pkp.sfu.ca/ojs">{translate key="common.openConferenceSystems"}</a></li>
-<li><a href="javascript:openHelp('{url conference="index" page="help"}')">{translate key="help.help"}</a></li>
+<!-- li><a href="javascript:openHelp('{url conference="index" page="help"}')">{translate key="help.help"}</a></li -->
 </ul>
 
 {include file="common/footer.tpl"}

@@ -17,7 +17,8 @@
 {include file="common/formErrors.tpl"}
 
 <p>{translate key="presenter.submit.supplementaryFilesInstructions"}<br/>
-<a class="action" href="javascript:openHelp('{get_help_id key="editorial.trackDirectorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.paper.ensuringBlindReview"}</a></p>
+<!-- <a class="action" href="javascript:openHelp('{get_help_id key="editorial.trackDirectorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.paper.ensuringBlindReview"}</a> -->
+</p>
 
 <table class="listing" width="100%">
 <tr>

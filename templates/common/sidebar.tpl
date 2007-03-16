@@ -13,9 +13,9 @@
 		<a href="http://pkp.sfu.ca/ocs/" id="developedBy">{translate key="common.openConferenceSystems"}</a>
 	</div>
 	
-	<div class="block">
+	<!-- <div class="block">
 		<a href="javascript:openHelp('{if $helpTopicId}{get_help_id key="$helpTopicId" url="true"}{else}{url page="help"}{/if}')">{translate key="navigation.conferenceHelp"}</a>
-	</div>
+	</div> -->
 		
 	<div class="block">
 		<span class="blockTitle">{translate key="navigation.user"}</span>
