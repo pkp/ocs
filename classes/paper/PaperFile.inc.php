@@ -33,7 +33,7 @@ class PaperFile extends DataObject {
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$schedConf =& $schedConfDao->getSchedConf($paperId);
 
-		return Config::getVar('files', 'files_dir') . 'conferences' . $schedConf->getConferenceId() . '/schedConfs/' . $paperId .
+		return Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $paperId .
 		'/papers/' . $this->getPaperId() . '/' . $this->getType() . '/' . $this->getFileName();
 	}
 

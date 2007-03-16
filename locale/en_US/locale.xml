@@ -1665,6 +1665,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="director.paper.decision.resubmit">Resubmit for Review</message>
 	<message key="director.paper.decision.decline">Decline Submission</message>
 	<message key="director.paper.sendFileToEditing">Send to Editing</message>
+	<message key="director.paper.createGalley">This file is ready for publication.</message>
 	<!--<message key="director.paper.reviewSubmission">Review Submission</message>-->
 	<!--<message key="director.paper.resubmitFileForPeerReview">Resubmit selected file for peer review</message>-->
 	<message key="director.paper.completeReview">Mark review as completed</message>

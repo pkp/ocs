@@ -136,6 +136,11 @@
 				<td width="80%">
 					{translate key="director.paper.sendFileToEditing"}
 					<input type="submit" name="setEditingFile" value="{translate key="form.send"}" class="button" />
+					{if !$submission->getGalleys()}
+						<br />
+						<input type="checkbox" checked="checked" name="createGalley" value="1" />
+						{translate key="director.paper.createGalley"}
+					{/if}
 				</td>
 			</tr>
 		</table>

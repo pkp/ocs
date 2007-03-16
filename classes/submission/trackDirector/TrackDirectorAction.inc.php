@@ -698,9 +698,10 @@ class TrackDirectorAction extends Action {
 	 * @param $trackDirectorSubmission object
 	 * @param $fileId int
 	 * @param $revision int
+	 * @param $createGalley boolean
 	 * TODO: SECURITY!
 	 */
-	function setEditingFile($trackDirectorSubmission, $fileId, $revision) {
+	function setEditingFile($trackDirectorSubmission, $fileId, $revision, $createGalley = false) {
 		import('file.PaperFileManager');
 		$paperFileManager = &new PaperFileManager($trackDirectorSubmission->getPaperId());
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
@@ -713,7 +714,36 @@ class TrackDirectorAction extends Action {
 			
 			$trackDirectorSubmission->setLayoutFileId($newFileId);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
-		
+
+			if ($createGalley) {
+				$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+				$galleys =& $paperGalleyDao->getGalleysByPaper($trackDirectorSubmission->getPaperId());
+				if (empty($galleys)) {
+					$layoutFile =& $paperFileDao->getPaperFile($newFileId, $revision);
+					$fileType = $layoutFile->getFileType();
+					$fileId = $paperFileManager->copyPublicFile($layoutFile->getFilePath(), $fileType);
+					if (strstr($fileType, 'html')) {
+						$galley =& new PaperHTMLGalley();
+					} else {
+						$galley =& new PaperGalley();
+					}
+					$galley->setPaperId($trackDirectorSubmission->getPaperId());
+					$galley->setFileId($fileId);
+					if ($galley->isHTMLGalley()) {
+						$galley->setLabel('HTML');
+					} elseif (strstr($fileType, 'pdf')) {
+						$galley->setLabel('PDF');
+					} else if (strstr($fileType, 'postscript')) {
+						$galley->setLabel('Postscript');
+					} else if (strstr($fileType, 'xml')) {
+						$galley->setLabel('XML');
+					} else {
+						$galley->setLabel(Locale::translate('common.untitled'));
+					}
+					$paperGalleyDao->insertGalley($galley);
+				}
+			}
+
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');

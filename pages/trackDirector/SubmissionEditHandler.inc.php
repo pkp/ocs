@@ -704,7 +704,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			// If the Send To Editing button was pressed
 			$file = explode(',', Request::getUserVar('directorDecisionFile'));
 			if (isset($file[0]) && isset($file[1])) {
-				TrackDirectorAction::setEditingFile($submission, $file[0], $file[1]);
+				TrackDirectorAction::setEditingFile($submission, $file[0], $file[1], Request::getUserVar('createGalley'));
 				$redirectTarget = 'submissionEditing';
 			}
 			
