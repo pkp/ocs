@@ -584,6 +584,7 @@
 			<NOTNULL/>
 		</field>
 		<field name="track_id" type="I8"/>
+		<field name="paper_type" type="I8"/>
 		<field name="title" type="C2" size="255">
 			<NOTNULL/>
 		</field>

@@ -58,6 +58,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 				'coverageChron' => $paper->getCoverageChron(),
 				'coverageSample' => $paper->getCoverageSample(),
 				'type' => $paper->getType(),
+				'paperType' => $paper->getPaperType(),
 				'language' => $paper->getLanguage(),
 				'sponsor' => $paper->getSponsor(),
 				'track' => $trackDao->getTrack($paper->getTrackId())
@@ -105,7 +106,8 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 			'coverageSample',
 			'type',
 			'language',
-			'sponsor'
+			'sponsor',
+			'paperType'
 		);
 
 		$schedConf =& Request::getSchedConf();
@@ -172,6 +174,15 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		$paper->setType($this->getData('type'));
 		$paper->setLanguage($this->getData('language'));
 		$paper->setSponsor($this->getData('sponsor'));
+
+		$allowIndividualSubmissions = $schedConf->getSetting('allowIndividualSubmissions');
+		$allowPanelSubmissions = $schedConf->getSetting('allowPanelSubmissions');
+
+		$paperType = SUBMISSION_TYPE_SINGLE;
+		if ($allowIndividualSubmissions && $allowPanelSubmissions) {
+			if ($this->getData('paperType') == SUBMISSION_TYPE_PANEL) $paperType = SUBMISSION_TYPE_PANEL;
+		} elseif (!$allowIndividualSubmissions) $paperType = SUBMISSION_TYPE_PANEL;
+		$paper->setPaperType($paperType);
 
 		// Update the submission progress if necessary.
 		if ($paper->getSubmissionProgress() <= $this->step) {

@@ -360,6 +360,11 @@
 	<message key="submission.editMetadata">Edit Metadata</message>
 	<message key="submission.reviewMetadata">Review Metadata</message>
 	<message key="submission.backToSubmissionEditing">Back to Submission Editing</message>
+
+	<message key="submission.paperType">Submission Type</message>
+	<message key="submission.paperType.single">Single Presentation</message>
+	<message key="submission.paperType.panel">Panel Presentation</message>
+
 	<message key="submission.titleAndAbstract">Title and Abstract</message>
 	<message key="submission.indexing">Indexing</message>
 	<message key="submission.restrictions">Restrictions</message>
@@ -443,7 +448,7 @@
 	<message key="schedConf.supporters">Conference Organizers &amp; Key Partners</message>
 	<message key="schedConf.schedule">Conference Schedule</message>
 	<message key="schedConf.links">Related Links</message>
-	<message key="schedConf.proceedings">Proceedings</message>
+	<message key="schedConf.proceedings">Proceedings and Presenters</message>
 	<message key="schedConf.abstract">Abstract</message>
 	<message key="schedConf.submission">Submission</message>
 	<message key="schedConf.submissions">Submissions</message>

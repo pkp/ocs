@@ -15,7 +15,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset}" />
-	<title>{$schedConfTitle}{if $schedConf && !$schedConf->getEnabled()} {translate key="director.schedConfs.preview"}{/if}</title>
+	<title>{$schedConfTitle}</title>
 	<meta name="description" content="{$metaSearchDescription}" />
 	<meta name="keywords" content="{$metaSearchKeywords}" />
 	{$metaCustomHeaders}
@@ -87,7 +87,7 @@
 	<a href="{$currentUrl}" class="current">{$schedConf->getTitle()}</a>
 </div>
 
-<h2>{$schedConfTitle}{if $schedConf && !$schedConf->getEnabled()} {translate key="director.schedConfs.preview"}{/if}</h2>
+<h2>{$schedConfTitle}</h2>
 
 {if $schedConf}
 	<h3>{$schedConf->getFullTitle()}</h3>

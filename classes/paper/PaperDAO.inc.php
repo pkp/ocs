@@ -113,6 +113,7 @@ class PaperDAO extends DAO {
 		$paper->setAbstract($row['abstract']);
 		$paper->setAbstractAlt1($row['abstract_alt1']);
 		$paper->setAbstractAlt2($row['abstract_alt2']);
+		$paper->setPaperType($row['paper_type']);
 		$paper->setDiscipline($row['discipline']);
 		$paper->setSubjectClass($row['subject_class']);
 		$paper->setSubject($row['subject']);
@@ -159,6 +160,7 @@ class PaperDAO extends DAO {
 				 abstract,
 				 abstract_alt1,
 				 abstract_alt2,
+				 paper_type,
 				 discipline,
 				 subject_class,
 				 subject,
@@ -183,7 +185,7 @@ class PaperDAO extends DAO {
 				 pages,
 				 date_reminded)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified())),
 			array(
 				$paper->getUserId(),
@@ -195,6 +197,7 @@ class PaperDAO extends DAO {
 				$paper->getAbstract(),
 				$paper->getAbstractAlt1(),
 				$paper->getAbstractAlt2(),
+				$paper->getPaperType(),
 				$paper->getDiscipline(),
 				$paper->getSubjectClass(),
 				$paper->getSubject(),
@@ -247,6 +250,7 @@ class PaperDAO extends DAO {
 					abstract = ?,
 					abstract_alt1 = ?,
 					abstract_alt2 = ?,
+					paper_type = ?,
 					discipline = ?,
 					subject_class = ?,
 					subject = ?,
@@ -281,6 +285,7 @@ class PaperDAO extends DAO {
 				$paper->getAbstract(),
 				$paper->getAbstractAlt1(),
 				$paper->getAbstractAlt2(),
+				$paper->getPaperType(),
 				$paper->getDiscipline(),
 				$paper->getSubjectClass(),
 				$paper->getSubject(),
