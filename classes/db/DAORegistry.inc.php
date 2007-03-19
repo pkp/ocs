@@ -91,6 +91,7 @@ class DAORegistry {
 			case 'SuppFileDAO': return 'paper.SuppFileDAO';
 			case 'DAO': return 'db.DAO';
 			case 'XMLDAO': return 'db.XMLDAO';
+			case 'OAIDAO': return 'oai.ocs.OAIDAO';
 			case 'HelpTocDAO': return 'help.HelpTocDAO';
 			case 'HelpTopicDAO': return 'help.HelpTopicDAO';
 			case 'SchedConfDAO': return 'schedConf.SchedConfDAO';
