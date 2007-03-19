@@ -92,6 +92,23 @@ class SchedConfHandler extends Handler {
 		
 		$templateMgr->assign('cfpMessage', $schedConf->getSetting('cfpMessage', false));
 
+		$submissionsOpenDate = $schedConf->getSetting('proposalsOpenDate', false);
+		$submissionsCloseDate = $schedConf->getSetting('proposalsCloseDate', false);
+
+		if(!$submissionsOpenDate || !$submissionsCloseDate || time() < $submissionsOpenDate) {
+			// Too soon
+			$acceptingSubmissions = false;
+			$notAcceptingSubmissionsMessage = Locale::translate('presenter.submit.notAcceptingYet');
+		} elseif (time() > $submissionsCloseDate) {
+			// Too late
+			$acceptingSubmissions = false;
+			$notAcceptingSubmissionsMessage = Locale::translate('presenter.submit.submissionDeadlinePassed', array('closedDate' => Date('Y-m-d', $submissionsCloseDate)));
+		} else {
+			$acceptingSubmissions = true;
+		}
+				
+		$templateMgr->assign('acceptingSubmissions', $acceptingSubmissions);
+		$templateMgr->assign('notAcceptingSubmissionsMessage', $notAcceptingSubmissionsMessage);
 		$templateMgr->assign('helpTopicId', 'schedConf.cfp');
 		$templateMgr->display('schedConf/cfp.tpl');
 	}

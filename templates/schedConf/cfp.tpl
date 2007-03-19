@@ -14,6 +14,15 @@
 
 <div>{$cfpMessage|nl2br}</div>
 
-<a href="{url page="presenter" op="submit"}">{translate key="schedConf.cfp.submitHere"}</a>
+{if $acceptingSubmissions}
+	<p>
+		{translate key="presenter.submit.startHere"}<br/>
+		<a href="{url page="presenter" op="submit"}" class="action">{translate key="presenter.submit.startHereLink"}</a><br />
+	</p>
+{else}
+	<p>
+		{$notAcceptingSubmissionsMessage}
+	</p>
+{/if}
 
 {include file="common/footer.tpl"}

@@ -54,7 +54,7 @@ class PresenterHandler extends Handler {
 		} elseif (time() > $submissionsCloseDate) {
 			// Too late
 			$acceptingSubmissions = false;
-			$notAcceptingSubmissionsMessage = Locale::translate('presenter.submit.submissionDeadlinePassed');
+			$notAcceptingSubmissionsMessage = Locale::translate('presenter.submit.submissionDeadlinePassed', array('closedDate' => Date('Y-m-d', $submissionsCloseDate)));
 		} else {
 			$acceptingSubmissions = true;
 		}
