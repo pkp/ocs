@@ -171,6 +171,10 @@ class PaperGalleyForm extends Form {
 						$galley->setLabel('PostScript');
 					} else if (strstr($fileType, 'xml')) {
 						$galley->setLabel('XML');
+					} else if (strstr($fileType, 'audio')) {
+						$galley->setLabel('Audio');
+					} else if (strstr($fileType, 'powerpoint')) {
+						$galley->setLabel('Slideshow');
 					}
 				}
 
