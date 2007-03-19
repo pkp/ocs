@@ -89,9 +89,10 @@ class OAIDAO extends DAO {
 	function recordExists($paperId, $conferenceId = null) {
 		$result = &$this->retrieve(
 			'SELECT COUNT(*)
-			FROM published_papers pp
-			WHERE pp.paper_id = ?'
-			. (isset($conferenceId) ? ' AND pp.conference_id = ?' : ''),
+			FROM published_papers pp'
+			. (isset($conferenceId) ? ', sched_confs s' : '')
+			. ' WHERE pp.paper_id = ?'
+			. (isset($conferenceId) ? ' AND s.conference_id = ? AND pp.sched_conf_id = s.sched_conf_id' : ''),
 			
 			isset($conferenceId) ? array($paperId, $conferenceId) : $paperId
 		);
@@ -114,23 +115,18 @@ class OAIDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT pp.*, p.*,
 			c.path AS conference_path,
-			c.title as conference_title,
-			t.abbrev as track_abbrev,
-			t.identify_type as track_item_type,
-			pp.date_published AS issue_published,
-			\'FIXME\' AS issue_title,
-			\'FIXME\' AS issue_volume,
-			\'FIXME\' AS issue_number,
-			\'FIXME\' AS issue_year,
-			\'FIXME\' AS issue_show_volume,
-			\'FIXME\' AS issue_show_number,
-			\'FIXME\' AS issue_show_year,
-			\'FIXME\' AS issue_show_title
-			FROM published_papers pp, conferences c, papers p
+			c.title AS conference_title,
+			c.conference_id AS conference_id,
+			s.path AS sched_conf_path,
+			s.title AS sched_conf_title,
+			t.abbrev AS track_abbrev,
+			t.identify_type AS track_item_type,
+			pp.date_published AS date_published,
+			FROM published_papers pp, conferences c, sched_confs s, papers p
 			LEFT JOIN tracks t ON t.track_id = p.track_id
-			WHERE pp.paper_id = p.paper_id AND c.conference_id = p.conference_id
+			WHERE pp.paper_id = p.paper_id AND c.conference_id = s.conference_id AND s.sched_conf_id = p.sched_conf_id
 			AND pp.paper_id = ?'
-			. (isset($conferenceId) ? ' AND p.conference_id = ?' : ''),
+			. (isset($conferenceId) ? ' AND c.conference_id = ?' : ''),
 			isset($conferenceId) ? array($paperId, $conferenceId) : $paperId
 		);
 
@@ -170,22 +166,16 @@ class OAIDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT pp.*, p.*,
 			c.path AS conference_path,
-			c.title as conference_title,
-			t.abbrev as track_abbrev,
-			t.identify_type as track_item_type,
-			\'FIXME\' AS issue_published,
-			\'FIXME\' AS issue_title,
-			\'FIXME\' AS issue_volume,
-			\'FIXME\' AS issue_number,
-			\'FIXME\' AS issue_year,
-			\'FIXME\' AS issue_show_volume,
-			\'FIXME\' AS issue_show_number,
-			\'FIXME\' AS issue_show_year,
-			\'FIXME\' AS issue_show_title
-			FROM published_papers pp, conferences c, papers p
+			c.title AS conference_title,
+			c.conference_id AS conference_id,
+			s.path AS sched_conf_path,
+			s.title AS sched_conf_title,
+			t.abbrev AS track_abbrev,
+			t.identify_type AS track_item_type
+			FROM published_papers pp, conferences c, sched_confs s, papers p
 			LEFT JOIN tracks t ON t.track_id = p.track_id
-			WHERE pp.paper_id = p.paper_id AND c.conference_id = p.conference_id'
-			. (isset($conferenceId) ? ' AND p.conference_id = ?' : '')
+			WHERE pp.paper_id = p.paper_id AND p.sched_conf_id = s.sched_conf_id and s.conference_id = c.conference_id'
+			. (isset($conferenceId) ? ' AND c.conference_id = ?' : '')
 			. (isset($trackId) ? ' AND p.track_id = ?' : '')
 			. (isset($from) ? ' AND pp.date_published >= ' . $this->datetimeToDB($from) : '')
 			. (isset($until) ? ' AND pp.date_published <= ' . $this->datetimeToDB($until) : ''),
@@ -231,11 +221,12 @@ class OAIDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT pp.paper_id, pp.date_published,
 			c.title AS conference_title, c.path AS conference_path,
+			s.path AS sched_conf_path,
 			t.abbrev as track_abbrev
-			FROM published_papers pp, conferences c, papers p
+			FROM published_papers pp, conferences c, sched_confs s, papers p
 			LEFT JOIN tracks t ON t.track_id = p.track_id
-			WHERE pp.paper_id = p.paper_id AND c.conference_id = p.conference_id'
-			. (isset($conferenceId) ? ' AND p.conference_id = ?' : '')
+			WHERE pp.paper_id = p.paper_id AND p.sched_conf_id = s.sched_conf_id AND s.conference_id = c.conference_id'
+			. (isset($conferenceId) ? ' AND c.conference_id = ?' : '')
 			. (isset($trackId) ? ' AND p.track_id = ?' : '')
 			. (isset($from) ? ' AND pp.date_published >= ' . $this->datetimeToDB($from) : '')
 			. (isset($until) ? ' AND pp.date_published <= ' . $this->datetimeToDB($until) : ''),
@@ -278,17 +269,17 @@ class OAIDAO extends DAO {
 		$record->datestamp = $this->oai->UTCDate(strtotime($this->datetimeFromDB($row['date_published'])));
 		$record->sets = array($row['conference_path'] . ':' . $row['track_abbrev']);
 		
-		$record->url = Request::url($row['conference_path'], 'paper', 'view', array($paperId));
+		$record->url = Request::url($row['conference_path'], $row['sched_conf_path'], 'paper', 'view', array($paperId));
 		$record->title = strip_tags($row['title']); // FIXME include localized titles as well?
 		$record->creator = array();
 		$record->subject = array($row['discipline'], $row['subject'], $row['subject_class']);
 		$record->description = strip_tags($row['abstract']);
 		$record->publisher = $row['conference_title'];
 		$record->contributor = array($row['sponsor']);
-		$record->date = date('Y-m-d', strtotime($this->datetimeFromDB($row['issue_published'])));
+		$record->date = date('Y-m-d', strtotime($this->datetimeFromDB($row['date_published'])));
 		$record->type = array(empty($row['track_item_type']) ? Locale::translate('rt.metadata.pkp.peerReviewed') : $row['track_item_type'], $row['type']);
 		$record->format = array();
-		$record->source = $row['conference_title'] . '; ' . $this->_formatIssueId($row);
+		$record->source = $row['conference_title'] . '; ' . $row['sched_conf_title'];
 		$record->language = $row['language'];
 		$record->relation = array();
 		$record->coverage = array($row['coverage_geo'], $row['coverage_chron'], $row['coverage_sample']);
@@ -329,7 +320,7 @@ class OAIDAO extends DAO {
 		$suppFiles =& $this->suppFileDao->getSuppFilesByPaper($row['paper_id']);
 		for ($i = 0, $num = count($suppFiles); $i < $num; $i++) {
 			// FIXME replace with correct URL
-			$record->relation[] = Request::url($row['conference_path'], 'paper', 'download', array($paperId, $suppFiles[$i]->getFileId()));
+			$record->relation[] = Request::url($row['conference_path'], $row['sched_conf_path'], 'paper', 'download', array($paperId, $suppFiles[$i]->getFileId()));
 		}
 		
 		return $record;
@@ -348,54 +339,6 @@ class OAIDAO extends DAO {
 		$record->sets = array($row['conference_path'] . ':' . $row['track_abbrev']);
 		
 		return $record;
-	}
-	
-	// FIXME Common code with issue.Issue
-	function _formatIssueId(&$row) {
-		$showVolume = $row['issue_show_volume'];
-		$showNumber = $row['issue_show_number'];
-		$showYear = $row['issue_show_year'];
-		$showTitle = $row['issue_show_title'];
-
-		$volLabel = Locale::translate('issue.vol');
-		$numLabel = Locale::translate('issue.no');
-
-		$vol = $row['issue_volume'];
-		$num = $row['issue_number'];
-		$year = $row['issue_year'];
-		$title = $row['issue_title'];
-
-		$identification = '';
-
-		if ($showVolume) {
-			$identification = "$volLabel $vol";
-		}
-		if ($showNumber) {
-			if (!empty($identification)) {
-				$identification .= ", ";
-			}
-			$identification .= "$numLabel $num";
-		}
-		if ($showYear) {
-			if (!empty($identification)) {
-				$identification .= " ($year)";
-			} else {
-				$identification = "$year";
-			}
-		}
-
-		if ($showTitle) {
-			if (!empty($identification)) {
-				$identification .= ': ';
-			}
-			$identification .= "$title";
-		}
-
-		if (empty($identification)) {
-			$identification = "$volLabel $vol, $numLabel $num ($year)";
-		}
-
-		return $identification;
 	}
 	
 	
