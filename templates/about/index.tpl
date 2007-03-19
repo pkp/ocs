@@ -50,16 +50,14 @@
 	{call_hook name="Templates::About::Index::Policies"}
 </ul>
 
-{if $showAboutSchedConf}
-	<h3>{translate key="about.submissions"}</h3>
-	<ul class="plain">
-		<li>&#187; <a href="{url op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
-		{if !empty($conferenceSettings.presenterGuidelines)}<li>&#187; <a href="{url op="submissions" anchor="presenterGuidelines"}">{translate key="about.presenterGuidelines"}</a></li>{/if}
-		{if !empty($conferenceSettings.copyrightNotice)}<li>&#187; <a href="{url op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
-		{if !empty($conferenceSettings.privacyStatement)}<li>&#187; <a href="{url op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
-		{call_hook name="Templates::About::Index::Submissions"}
-	</ul>
-{/if}
+<h3>{translate key="about.submissions"}</h3>
+<ul class="plain">
+	<li>&#187; <a href="{url op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
+	{if !empty($conferenceSettings.presenterGuidelines)}<li>&#187; <a href="{url op="submissions" anchor="presenterGuidelines"}">{translate key="about.presenterGuidelines"}</a></li>{/if}
+	{if !empty($conferenceSettings.copyrightNotice)}<li>&#187; <a href="{url op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
+	{if !empty($conferenceSettings.privacyStatement)}<li>&#187; <a href="{url op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
+	{call_hook name="Templates::About::Index::Submissions"}
+</ul>
 
 <h3>{translate key="about.other"}</h3>
 <ul class="plain">
