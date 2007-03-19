@@ -649,7 +649,8 @@ class TrackDirectorAction extends Action {
 			if (!Request::getUserVar('continued')) {
 				$paramArray = array(
 					'editorialContactSignature' => $user->getContactSignature(),
-					'presenterName' => $presenter->getFullName()
+					'presenterName' => $presenter->getFullName(),
+					'locationCity' => $schedConf->getSetting('locationCity')
 				);
 				$email->assignParams($paramArray);
 				$email->addRecipient($presenter->getEmail(), $presenter->getFullName());

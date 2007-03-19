@@ -40,7 +40,11 @@
 {if not $currentSchedConfs->eof()}
 	{iterate from=currentSchedConfs item=schedConf}
 		<h4><a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getFullTitle()|escape}</a></h4>
-		<p>{$schedConf->getSetting('location')|nl2br}</p>
+		<p>
+			{$schedConf->getSetting('locationName')}<br/>
+			{$schedConf->getSetting('locationAddress')|nl2br}<br/>
+			{if $schedConf->getSetting('locationCity')}{$schedConf->getSetting('locationCity')|escape}{assign var="needsComma" value=true}{/if}{if $schedConf->getSetting('locationCountry')}{if $needsComma}, {/if}{$schedConf->getSetting('locationCountry')|escape}{/if}
+		</p>
 		<p>{$schedConf->getSetting('startDate')|date_format:$dateFormatLong} &ndash; {$schedConf->getSetting('endDate')|date_format:$dateFormatLong}</p>
 		{if $schedConf->getSetting('schedConfIntroduction')}
 			<p>{$schedConf->getSetting('schedConfIntroduction')|nl2br}</p>

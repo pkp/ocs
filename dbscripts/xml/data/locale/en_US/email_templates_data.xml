@@ -393,7 +393,7 @@ Please confirm your ability to complete this vital contribution to the work of t
 			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$presenterName}:
 
-Congratulations, your submission {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate}. 
+Congratulations, your submission {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate} at {$locationCity}. 
 
 Thank you and looking forward to your participation in this event.
 {$editorialContactSignature}</field>
@@ -429,7 +429,7 @@ Thank you and looking forward to your participation in this event.
 			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$presenterName}:
 
-Congratulations, your submission {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate}. 
+Congratulations, your submission {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate} at {$locationCity}. 
 
 Thank you and looking forward to your participation in this event.
 {$editorialContactSignature}</field>

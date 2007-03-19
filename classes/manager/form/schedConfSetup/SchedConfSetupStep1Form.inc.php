@@ -23,7 +23,10 @@ class SchedConfSetupStep1Form extends SchedConfSetupForm {
 			array(
 				'schedConfIntroduction' => 'string',
 				'schedConfOverview' => 'string',
-				'location' => 'string',
+				'locationName' => 'string',
+				'locationAddress' => 'string',
+				'locationCity' => 'string',
+				'locationCountry' => 'string',
 				'contactName' => 'string',
 				'contactTitle' => 'string',
 				'contactAffiliation' => 'string',
@@ -53,6 +56,11 @@ class SchedConfSetupStep1Form extends SchedConfSetupForm {
 		$templateMgr = &TemplateManager::getManager();
 		if (Config::getVar('email', 'allow_envelope_sender'))
 			$templateMgr->assign('envelopeSenderEnabled', true);
+
+		$countryDao =& DAORegistry::getDAO('CountryDAO');
+		$countries =& $countryDao->getCountries();
+		$templateMgr->assign_by_ref('countries', $countries);
+
 		parent::display();
 	}
 }

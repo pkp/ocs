@@ -29,9 +29,29 @@
 
 <h3>1.2 {translate key="manager.schedConfSetup.details.location"}</h3>
 
-<p><label for="location">{translate key="manager.schedConfSetup.details.location.description"}</label></p>
-
-<p><textarea name="location" id="location" rows="5" cols="60" class="textArea">{$location|escape}</textarea></p>
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="locationName" key="manager.schedConfSetup.details.location.nameOf"}</td>
+		<td width="80%" class="value"><input type="text" name="locationName" id="locationName" value="{$locationName|escape}" size="30" maxlength="60" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td class="label">{fieldLabel name="locationAddress" key="common.mailingAddress"}</td>
+		<td class="value"><textarea name="locationAddress" id="locationAddress" rows="3" cols="40" class="textArea">{$locationAddress|escape}</textarea></td>
+	</tr>
+	<tr valign="top">
+		<td class="label">{fieldLabel name="locationCity" key="manager.schedConfSetup.details.location.city"}</td>
+		<td width="80%" class="value"><input type="text" name="locationCity" id="locationCity" value="{$locationCity|escape}" size="30" maxlength="60" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td class="label">{fieldLabel name="locationCountry" key="common.country"}</td>
+		<td class="value">
+			<select name="locationCountry" id="locationCountry" class="selectMenu">
+				<option value=""></option>
+				{html_options options=$countries selected=$locationCountry}
+			</select>
+		</td>
+	</tr>
+</table>
 
 <div class="separator"></div>
 
