@@ -1259,9 +1259,10 @@ import('file.PaperFileManager');
 	 * @param $send boolean
 	 */
 	function emailDirectorDecisionComment($trackDirectorSubmission, $send) {
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$templateName = null;
 		$stages = $trackDirectorSubmission->getDecisions();
@@ -1311,6 +1312,12 @@ import('file.PaperFileManager');
 				$presenterUser =& $userDao->getUser($trackDirectorSubmission->getUserId());
 				$email->setSubject($trackDirectorSubmission->getPaperTitle());
 				$email->addRecipient($presenterUser->getEmail(), $presenterUser->getFullName());
+				$email->assignParams(array(
+					'conferenceDate' => date('Y-m-d', strtotime($schedConf->getStartDate())),
+					'presenterName' => $presenterUser->getFullName(),
+					'conferenceTitle' => $conference->getTitle(),
+					'editorialContactSignature' => $user->getContactSignature()
+				));
 			} else {
 				if (Request::getUserVar('importPeerReviews')) {
 					$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');

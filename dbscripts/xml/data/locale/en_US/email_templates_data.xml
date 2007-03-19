@@ -393,8 +393,9 @@ Please confirm your ability to complete this vital contribution to the work of t
 			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$presenterName}:
 
-We have now completed the review of your submission "{$paperTitle}." As a result...
+Congratulations, your submission {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate}. 
 
+Thank you and looking forward to your participation in this event.
 {$editorialContactSignature}</field>
 			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
@@ -415,7 +416,9 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$presenterName}:
 
-We have now completed the review of your submission "{$paperTitle}." As a result...
+After a careful review of your submission, "{$paperTitle}" will be considered for presentation at {$conferenceTitle} if the following revisions are successfully implemented.
+
+Thank you and looking forward to your participation in this event.
 
 {$editorialContactSignature}</field>
 			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
@@ -426,8 +429,9 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$presenterName}:
 
-We have now completed the review of your submission "{$paperTitle}." As a result...
+Congratulations, your submission {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate}. 
 
+Thank you and looking forward to your participation in this event.
 {$editorialContactSignature}</field>
 			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
@@ -448,7 +452,9 @@ We have now completed the review of your submission "{$paperTitle}." As a result
 			<field name="subject">Editorial Decision on Paper</field>
 			<field name="body">{$presenterName}:
 
-We have now completed the review of your submission "{$paperTitle}." As a result...
+After a careful review of your submission, "{$paperTitle}" will be considered for presentation at {$conferenceTitle} if the following revisions are successfully implemented.
+
+Thank you and looking forward to your participation in this event.
 
 {$editorialContactSignature}</field>
 			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
