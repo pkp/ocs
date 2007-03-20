@@ -368,7 +368,8 @@ class RegistrationDAO extends DAO {
 					EXTRACT(YEAR FROM expiry_date) AS expiry_year,
 					POSITION(UPPER(domain) IN UPPER(?)) AS domain_position
 			FROM registrations, registration_types
-			WHERE POSITION(UPPER(domain) IN UPPER(?)) != 0   
+			WHERE POSITION(UPPER(domain) IN UPPER(?)) != 0
+			AND   domain != \'\'
 			AND   registrations.sched_conf_id = ?
 			AND   registrations.type_id = registration_types.type_id
 			AND   registration_types.institutional = 1',
