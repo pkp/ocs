@@ -666,10 +666,6 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<field name="access_status" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
 		<field name="public_paper_id" type="C2" size="255"/>
 		<descr>Conference papers.</descr>
 		<index name="published_papers_paper_id">

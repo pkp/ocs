@@ -827,7 +827,6 @@ class TrackDirectorAction extends Action {
 				$publishedPaper->setDatePublished(Core::getCurrentDate());
 				$publishedPaper->setSeq(100000); // KLUDGE: End of list
 				$publishedPaper->setViews(0);
-				$publishedPaper->setAccessStatus(0);
 
 				$publishedPaperDao->insertPublishedPaper($publishedPaper);
 

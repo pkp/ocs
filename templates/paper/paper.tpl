@@ -82,7 +82,7 @@
 	<div>{$paper->getPaperAbstract()|strip_unsafe_html|nl2br}</div>
 	<br />
 
-	{if $mayViewPaper || $paper->getAccessStatus()}
+	{if $mayViewPaper}
 		{assign var=galleys value=$paper->getGalleys()}
 		{if $galleys}
 			{translate key="reader.fullText"}

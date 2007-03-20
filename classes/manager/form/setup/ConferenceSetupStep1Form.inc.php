@@ -29,7 +29,7 @@ class ConferenceSetupStep1Form extends ConferenceSetupForm {
 				'contactPhone' => 'string',
 				'contactFax' => 'string',
 				'contactMailingAddress' => 'string',
-				'restrictSiteAccess' => 'bool',
+				'restrictPaperAccess' => 'bool',
 				'enableComments' => 'bool',
 				'commentsRequireRegistration' => 'bool',
 				'commentsAllowAnonymous' => 'bool',

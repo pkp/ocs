@@ -442,7 +442,6 @@
 	<message key="schedConf.trackPolicies">Track Policies</message>
 	<message key="schedConf.program">Program</message>
 	<message key="schedConf.cfp">Call for Papers</message>
-	<message key="schedConf.papers">Presenters, Abstracts, &amp; Papers</message>
 	<message key="schedConf.discussion">Discussion</message>
 	<message key="schedConf.registration">Registration, Accomodation &amp; Travel</message>
 	<message key="schedConf.supporters">Conference Organizers &amp; Key Partners</message>
@@ -950,7 +949,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Add Item to Appear in "About the Conference"</message>
 	<message key="manager.setup.aboutConference.aboutItemContent">Content</message>
 	<message key="manager.setup.aboutConference.addAboutItem">Add About Item</message>
-	<message key="manager.setup.aboutConference.restrictSiteAccess">Visitors must register as Readers to view archived conference abstracts and presentations.</message>
+	<message key="manager.setup.aboutConference.restrictPaperAccess">Visitors must register as Readers to view archived conference abstracts and presentations.</message>
 	<message key="manager.setup.aboutConference.comments">Reader Comments</message>
 	<message key="manager.setup.aboutConference.comments.enable">Permit commenting on archived presentations</message>
 	<message key="manager.setup.aboutConference.comments.requireRegistration">Only registered users can comment on archived presentations.</message>

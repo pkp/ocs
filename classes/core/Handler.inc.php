@@ -50,19 +50,6 @@ class Handler {
 			}
 		}
 
-		if ($conference != null &&
-				!Validation::isLoggedIn() &&
-				Request::getRequestedPage() != 'login' &&
-				Request::getRequestedPage() != 'user' &&
-				Request::getRequestedPage() != 'help') {
-				
-			// Check if unregistered users can access the site
-			$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
-			if ($conferenceSettingsDao->getSetting($conference->getConferenceId(), 'restrictSiteAccess')) {
-				Request::redirect(null, null, 'login');
-			}
-		}
-		
 		// Extraneous checks, just to make sure we aren't being fooled
 		if ($conference && $schedConf) {
 			if($schedConf->getConferenceId() != $conference->getConferenceId())

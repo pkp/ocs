@@ -326,12 +326,12 @@ class PaperHandler extends Handler {
 			$mayViewPaper = SchedConfAction::mayViewPapers($schedConf);
 			
 			// Bar access to paper?
-			if ((isset($galleyId) && $galleyId!=0) && !SchedConfAction::mayViewPapers($schedConf) && !$paper->getAccessStatus()) {
+			if ((isset($galleyId) && $galleyId!=0) && !SchedConfAction::mayViewPapers($schedConf)) {
 				Request::redirect(null, null, null, 'index');	
 			}
 			
 			// Bar access to abstract?
-			if ((!isset($galleyId) || $galleyId==0) && !SchedConfAction::mayViewProceedings($schedConf) && !$paper->getAccessStatus()) {
+			if ((!isset($galleyId) || $galleyId==0) && !SchedConfAction::mayViewProceedings($schedConf)) {
 				Request::redirect(null, null, null, 'index');	
 			}
 		} else {

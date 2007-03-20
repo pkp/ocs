@@ -143,9 +143,7 @@ class CommentHandler extends Handler {
 
 		if (isset($paper)) {
 			import('schedConf.SchedConfAction');
-			$allowed = SchedConfAction::mayViewPaper($schedConf);
-
-			if (!$allowed && !$paper->getAccessStatus()) {
+			if (!SchedConfAction::mayViewPaper($schedConf)) {
 				Request::redirect(null, null, 'index');
 			}
 		} else {

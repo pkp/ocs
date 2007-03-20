@@ -775,7 +775,6 @@ class ImportOCS1 {
 			$issue->setPublished($row['bPublished']);
 			$issue->setCurrent($row['bLive']);
 			$issue->setDatePublished($row['dtDatePublished']);
-			$issue->setAccessStatus(OPEN_ACCESS);
 			$issue->setOpenAccessDate(isset($row['dtDateOpenAccess']) ? $row['dtDateOpenAccess'] : null);
 			$issue->setLabelFormat($this->issueLabelFormat);
 			$issue->setDescription('');
@@ -802,7 +801,6 @@ class ImportOCS1 {
 				$issue->setYear($year);
 				$issue->setPublished(1);
 				$issue->setDatePublished($year . '-01-01');
-				$issue->setAccessStatus(OPEN_ACCESS);
 				$issue->setOpenAccessDate(null);
 				$issue->setLabelFormat($this->issueLabelFormat);
 				
@@ -1001,7 +999,6 @@ class ImportOCS1 {
 				$publishedPaper->setSeq((int)$row['nOrder']);
 				$publishedPaper->setViews($row['nHitCounter']);
 				$publishedPaper->setTrackId(isset($this->trackMap[$row['fkTrackID']]) ? $this->trackMap[$row['fkTrackID']] : 0);
-				$publishedPaper->setAccessStatus(isset($row['fkPublishStatusID']) && $row['fkPublishStatusID'] == 2 ? SUBSCRIPTION : OPEN_ACCESS);
 				
 				$publishedPaperDao->insertPublishedPaper($publishedPaper);
 			}

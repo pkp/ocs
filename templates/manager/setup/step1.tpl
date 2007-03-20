@@ -74,8 +74,8 @@
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="restrictSiteAccess" id="restrictSiteAccess" value="1"{if $restrictSiteAccess} checked="checked"{/if} /></td>
-		<td width="95%" colspan="2" class="value"><label for="restrictSiteAccess">{translate key="manager.setup.aboutConference.restrictSiteAccess"}</label></td>
+		<td width="5%" class="label"><input type="checkbox" name="restrictPaperAccess" id="restrictPaperAccess" value="1"{if $restrictPaperAccess} checked="checked"{/if} /></td>
+		<td width="95%" colspan="2" class="value"><label for="restrictPaperAccess">{translate key="manager.setup.aboutConference.restrictPaperAccess"}</label></td>
 	</tr>
 	<tr valign="top">
 		<td width="5%" class="label"><input type="checkbox" name="enableComments" id="enableComments" value="1"{if $enableComments} checked="checked"{/if} /></td>

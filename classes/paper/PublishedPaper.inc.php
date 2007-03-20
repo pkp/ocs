@@ -140,22 +140,6 @@ class PublishedPaper extends Paper {
 	}
 
 	/**
-	 * get access status
-	 * @return int
-	 */
-	function getAccessStatus() {
-		return $this->getData('accessStatus');
-	}
-	 
-	/**
-	 * set access status
-	 * @param $accessStatus int
-	 */
-	function setAccessStatus($accessStatus) {
-		return $this->setData('accessStatus',$accessStatus);
-	}
-
-	/**
 	 * Get the galleys for a paper.
 	 * @return array PaperGalley
 	 */

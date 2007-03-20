@@ -26,11 +26,9 @@
 		<i><a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getFullTitle()|escape}</a> - {$track->getTitle()|escape}</i><br />
 		{$paper->getPaperTitle()|strip_unsafe_html}<br/>
 		<a href="{url schedConf=$schedConf->getPath() page="paper" op="view" path=$paper->getBestPaperId()}" class="file">{translate key="paper.abstract"}</a>
-		{if $paper->getAccessStatus()}
 		{foreach from=$paper->getGalleys() item=galley name=galleyList}
 			&nbsp;<a href="{url schedConf=$schedConf->getPath() page="paper" op="view" path=$paper->getBestPaperId()|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>
 		{/foreach}
-		{/if}
 	</li>
 	{/if}
 {/foreach}
