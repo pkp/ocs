@@ -98,9 +98,9 @@ class RegistrationHandler extends ManagerHandler {
 	}
 
 	/**
-	 * Display a list of users from which to choose a subscriber.
+	 * Display a list of users from which to choose a registrant.
 	 */
-	function selectSubscriber() {
+	function selectRegistrant() {
 		parent::validate();
 		$templateMgr = &TemplateManager::getManager();
 		RegistrationHandler::setupTemplate();
@@ -167,7 +167,7 @@ class RegistrationHandler extends ManagerHandler {
 				$registrationForm->execute();
 
 				if (Request::getUserVar('createAnother')) {
-					Request::redirect(null, null, null, 'selectSubscriber', null, array('registrationCreated', 1));
+					Request::redirect(null, null, null, 'selectRegistrant', null, array('registrationCreated', 1));
 				} else {
 					Request::redirect(null, null, null, 'registrations');
 				}

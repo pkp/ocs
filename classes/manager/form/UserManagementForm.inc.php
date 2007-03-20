@@ -257,7 +257,8 @@ class UserManagementForm extends Form {
 				$user->setPassword($password);
 				// FIXME Check result and handle failures
 				$auth->doCreateUser($user);
-				$user->setAuthId($auth->authId);				$user->setPassword(Validation::encryptCredentials($user->getUserId(), Validation::generatePassword())); // Used for PW reset hash only
+				$user->setAuthId($auth->authId);
+				$user->setPassword(Validation::encryptCredentials($user->getUserId(), Validation::generatePassword())); // Used for PW reset hash only
 			} else {
 				$user->setPassword(Validation::encryptCredentials($this->getData('username'), $password));
 			}
@@ -288,7 +289,7 @@ class UserManagementForm extends Form {
 
 				if ($schedConf) $mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
 				elseif ($conference) $mail->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
-				} else {
+				else {
 					$site =& Request::getSite();
 					$mail->setFrom($site->getContactEmail(), $site->getContactName());
 				}
@@ -299,7 +300,6 @@ class UserManagementForm extends Form {
 			}
 		}
 	}
-	
 }
 
 ?>

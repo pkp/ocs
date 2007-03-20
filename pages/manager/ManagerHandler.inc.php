@@ -378,9 +378,9 @@ class ManagerHandler extends Handler {
 		RegistrationHandler::createRegistrationType();
 	}
 
-	function selectSubscriber($args) {
+	function selectRegistrant($args) {
 		import('pages.manager.RegistrationHandler');
-		RegistrationHandler::selectSubscriber($args);
+		RegistrationHandler::selectRegistrant($args);
 	}
 
 	function editRegistrationType($args) {

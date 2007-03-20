@@ -41,7 +41,7 @@
 	
 	{foreach from=$userSchedConfs[$conferenceId] item=schedConf}
 		{assign var="schedConfId" value=$schedConf->getSchedConfId()}
-		<h5>{$schedConf->getTitle()|escape}</h5>
+		<h5><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getTitle()|escape}</a></h5>
 
 		{foreach item=role from=$userSchedConfRoles[$schedConfId]}
 			{if $role->getRolePath() != 'reader'}
@@ -76,7 +76,7 @@
 	
 	{foreach from=$userSchedConfs[$conferenceId] item=schedConf}
 		{assign var="schedConfId" value=$schedConf->getSchedConfId()}
-		<h5>{$schedConf->getTitle()|escape}</h5>
+		<h5><a href="{url conference=$userConference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getTitle()|escape}</a></h5>
 
 		{foreach item=role from=$userSchedConfRoles[$schedConfId]}
 			{if $role->getRolePath() != 'reader'}
