@@ -160,14 +160,14 @@
 {/if}
 {/if}
 	
-{if ($allowRegReader || $allowRegReader === null) or ($enableRegistration && $enableOpenAccessNotification) or ($allowRegPresenter || $allowRegPresenter === null) or ($allowRegReviewer || $allowRegReviewer === null)}
+{if ($allowRegReader || $allowRegReader === null) or $enableOpenAccessNotification or ($allowRegPresenter || $allowRegPresenter === null) or ($allowRegReviewer || $allowRegReviewer === null)}
 <tr valign="top">
 	<td class="label">{fieldLabel suppressId="true" name="registerAs" key="user.register.registerAs"}</td>
 	<td class="value">
 		{if $allowRegReader || $allowRegReader === null}
 			<input type="checkbox" name="registerAsReader" id="registerAsReader" value="1"{if $registerAsReader} checked="checked"{/if} /> <label for="registerAsReader">{translate key="user.role.reader"}</label>: {translate key="user.register.readerDescription"}<br />
 		{/if}
-		{if $enableRegistration && $enableOpenAccessNotification}
+		{if $enableOpenAccessNotification}
 			<input type="checkbox" name="openAccessNotification" id="openAccessNotification" value="1"{if $openAccessNotification} checked="checked"{/if} /> <label for="openAccessNotification">{translate key="user.role.reader"}</label>: {translate key="user.register.openAccessNotificationDescription"}<br />
 		{/if}
 		{if $allowRegPresenter || $allowRegPresenter === null}

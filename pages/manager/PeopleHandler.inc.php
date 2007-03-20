@@ -122,7 +122,6 @@ class PeopleHandler extends ManagerHandler {
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
 		$templateMgr->assign('isSchedConfManagement', $schedConf ? true : false);
 		$templateMgr->assign('isConferenceManagement', $schedConf ? false : true);
-		$templateMgr->assign('isRegistrationEnabled', ($schedConf? $schedConf->getSetting('enableRegistration', true) : false));
 		$templateMgr->display('manager/people/enrollment.tpl');
 	}
 	
@@ -164,7 +163,6 @@ class PeopleHandler extends ManagerHandler {
 		
 		$templateMgr->assign('isSchedConfManagement', $schedConf ? true : false);
 		$templateMgr->assign('isConferenceManagement', $schedConf ? false : true);
-		$templateMgr->assign('isRegistrationEnabled', ($schedConf? $schedConf->getSetting('enableRegistration', true) : false));
 
 		$templateMgr->assign('searchField', $searchType);
 		$templateMgr->assign('searchMatch', $searchMatch);

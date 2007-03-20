@@ -413,7 +413,6 @@ class ImportOCS1 {
 			'useCopyeditors' => array('bool', $this->conferenceInfo['bCopyEditor']),
 			'copyeditInstructions' => array('string', $this->trans($this->conferenceInfo['chCopyeditInstructions'])),
 			'useProofreaders' => array('bool', $this->conferenceInfo['bProofReader']),
-			'enableRegistration' => array('bool', isset($this->conferenceInfo['bRegistrations']) ? $this->conferenceInfo['bRegistrations'] : 0),
 			'registrationName' => array('string', $this->trans($this->conferenceInfo['chContactName'])),
 			'registrationEmail' => array('string', $this->trans($this->conferenceInfo['chContactEmail'])),
 			'registrationPhone' => array('string', $this->trans($this->conferenceInfo['chContactPhone'])),

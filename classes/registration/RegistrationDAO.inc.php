@@ -209,7 +209,7 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
-	 * Delete registrations by scheduled conference ID.
+	 * Delete registration by scheduled conference ID.
 	 * @param $schedConfId int
 	 */
 	function deleteRegistrationsBySchedConf($schedConfId) {
@@ -219,7 +219,7 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
-	 * Delete registrations by user ID.
+	 * Delete registration by user ID.
 	 * @param $userId int
 	 */
 	function deleteRegistrationsByUserId($userId) {
@@ -229,7 +229,7 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
-	 * Delete all registrations by registration type ID.
+	 * Delete all registration by registration type ID.
 	 * @param $registrationTypeId int
 	 * @return boolean
 	 */
@@ -240,7 +240,7 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve an array of registrations matching a particular scheduled conference ID.
+	 * Retrieve an array of registration matching a particular scheduled conference ID.
 	 * @param $schedConfId int
 	 * @return object DAOResultFactory containing matching Registrations
 	 */
@@ -253,34 +253,6 @@ class RegistrationDAO extends DAO {
 
 		return $returner;
 	}
-
-	/**
-	 * Retrieve an array of registrations matching a particular end date and scheduled conference ID.
-	 * @param $dateEnd date (YYYY-MM-DD)
-	 * @param $schedConfId int
-	 * @return object DAOResultFactory containing matching Registrations
-	 */
-	/*function &getRegistrationsByDateEnd($dateEnd, $schedConfId, $rangeInfo = null) {
-		$dateEnd = explode('-', $dateEnd);
-
-		$result = &$this->retrieveRange(
-			'SELECT * FROM registrations
-				WHERE EXTRACT(YEAR FROM date_end) = ?
-				AND   EXTRACT(MONTH FROM date_end) = ?
-				AND   EXTRACT(DAY FROM date_end) = ?
-				AND   sched_conf_id = ?',
-			array(
-				$dateEnd[0],
-				$dateEnd[1],
-				$dateEnd[2],
-				$schedConfId
-			), $rangeInfo
-		);
-
-		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationFromRow');
-
-		return $returner;
-	}*/
 
 	/**
 	 * Check whether there is a valid registration for a given scheduled conference.

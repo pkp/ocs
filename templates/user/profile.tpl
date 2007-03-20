@@ -139,7 +139,6 @@
 	{assign var=notFirstSchedConf value=0}
 	{foreach from=$schedConfs name=schedConfOpenAccessNotifications key=thisSchedConfId item=thisSchedConf}
 		{assign var=thisSchedConfId value=$thisSchedConf->getSchedConfId()}
-		{assign var=enableRegistration value=$thisSchedConf->getSetting('enableRegistration')}
 		{assign var=enableOpenAccessNotification value=$thisSchedConf->getSetting('enableOpenAccessNotification')}
 		{assign var=notificationEnabled value=$user->getSetting('openAccessNotification', $thisSchedConfId)}
 		{if !$notFirstSchedConf}
@@ -149,7 +148,7 @@
 				<td class="value">
 		{/if}
 
-		{if $enableRegistration && $enableOpenAccessNotification}
+		{if $enableOpenAccessNotification}
 			<input type="checkbox" name="openAccessNotify[]" {if $notificationEnabled}checked="checked" {/if}id="openAccessNotify-{$thisSchedConfId}" value="{$thisSchedConfId}" /> <label for="openAccessNotify-{$thisSchedConfId}">{$thisSchedConf->getFullTitle()|escape}</label><br/>
 		{/if}
 

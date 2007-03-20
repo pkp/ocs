@@ -136,7 +136,7 @@ class SchedConfAction {
 
 		if($schedConf->getSetting('postPapers') && time() > $schedConf->getSetting('postPapersDate')) {
 
-			if($schedConf->getSetting('enableRegistration') && SchedConfAction::registeredUser($schedConf)) {
+			if(SchedConfAction::registeredUser($schedConf)) {
 				return true;
 			} else {
 				if($schedConf->getSetting('openAccessVisitor')) {

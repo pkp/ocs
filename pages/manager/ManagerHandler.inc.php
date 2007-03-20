@@ -400,12 +400,12 @@ class ManagerHandler extends Handler {
 
 
 	//
-	// Registrations
+	// Registration
 	//
 
 	function registration() {
 		import('pages.manager.RegistrationHandler');
-		RegistrationHandler::registrations();
+		RegistrationHandler::registration();
 	}
 
 	function deleteRegistration($args) {

@@ -68,15 +68,11 @@ class StatisticsHandler extends ManagerHandler {
 		$userStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getSchedConfId(), $fromDate, $toDate);
 		$templateMgr->assign('userStatistics', $userStatistics);
 
-		$enableRegistration = $schedConf->getSetting('enableRegistration');
-		if ($enableRegistration) {
-			$templateMgr->assign('enableRegistration', true);
-			$allRegistrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getSchedConfId(), null, $toDate);
-			$templateMgr->assign('allRegistrationStatistics', $allRegistrationStatistics);
+		$allRegistrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getSchedConfId(), null, $toDate);
+		$templateMgr->assign('allRegistrationStatistics', $allRegistrationStatistics);
 
-			$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getSchedConfId(), $fromDate, $toDate);
-			$templateMgr->assign('registrationStatistics', $registrationStatistics);
-		}
+		$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getSchedConfId(), $fromDate, $toDate);
+		$templateMgr->assign('registrationStatistics', $registrationStatistics);
 
 		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
 		$notifiableUsers = $notificationStatusDao->getNotifiableUsersCount($schedConf->getSchedConfId());

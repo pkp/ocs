@@ -442,15 +442,11 @@ class AboutHandler extends Handler {
 		$userStatistics = $conferenceStatisticsDao->getUserStatistics($conference->getConferenceId(), $fromDate, $toDate);
 		$templateMgr->assign('userStatistics', $userStatistics);
 
-		$enableRegistration = $conference->getSetting('enableRegistration');
-		if ($enableRegistration) {
-			$templateMgr->assign('enableRegistration', true);
-			$allRegistrationStatistics = $conferenceStatisticsDao->getRegistrationStatistics($conference->getConferenceId(), null, $toDate);
-			$templateMgr->assign('allRegistrationStatistics', $allRegistrationStatistics);
+		$allRegistrationStatistics = $conferenceStatisticsDao->getRegistrationStatistics($conference->getConferenceId(), null, $toDate);
+		$templateMgr->assign('allRegistrationStatistics', $allRegistrationStatistics);
 
-			$registrationStatistics = $conferenceStatisticsDao->getRegistrationStatistics($conference->getConferenceId(), $fromDate, $toDate);
-			$templateMgr->assign('registrationStatistics', $registrationStatistics);
-		}
+		$registrationStatistics = $conferenceStatisticsDao->getRegistrationStatistics($conference->getConferenceId(), $fromDate, $toDate);
+		$templateMgr->assign('registrationStatistics', $registrationStatistics);
 
 		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
 		$notifiableUsers = $notificationStatusDao->getNotifiableUsersCount($conference->getConferenceId());

@@ -61,7 +61,7 @@ class ProfileForm extends Form {
 		$schedConfs = &$schedConfs->toArray();
 
 		foreach ($schedConfs as $thisSchedConf) {
-			if ($thisSchedConf->getSetting('enableRegistration') == true && $thisSchedConf->getSetting('enableOpenAccessNotification') == true) {
+			if ($thisSchedConf->getSetting('enableOpenAccessNotification') == true) {
 				$templateMgr->assign('displayOpenAccessNotification', true);
 				$templateMgr->assign_by_ref('user', $user);
 				break;
@@ -254,7 +254,7 @@ class ProfileForm extends Form {
 		$schedConfs = &$schedConfs->toArray();
 
 		foreach ($schedConfs as $thisSchedConf) {
-			if (($thisSchedConf->getSetting('enableRegistration') == true) && ($thisSchedConf->getSetting('enableOpenAccessNotification') == true)) {
+			if ($thisSchedConf->getSetting('enableOpenAccessNotification') == true) {
 				$currentlyReceives = $user->getSetting('openAccessNotification', $thisSchedConf->getSchedConfId());
 				$shouldReceive = !empty($openAccessNotify) && in_array($thisSchedConf->getSchedConfId(), $openAccessNotify);
 				if ($currentlyReceives != $shouldReceive) {

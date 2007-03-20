@@ -41,9 +41,7 @@
 	{if !empty($conferenceSettings.archiveAccessPolicy)}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiveAccessPolicy"}">{translate key="about.archiveAccessPolicy"}</a></li>{/if}
 	{if !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{if $conferenceSettings.enableLockss && !empty($conferenceSettings.lockssLicense)}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiving"}">{translate key="about.archiving"}</a></li>{/if}
-	{if !empty($conferenceSettings.enableRegistration)}
-		<li>&#187; <a href="{url op="registration"}">{translate key="about.registration"}</a></li>
-	{/if}
+	<li>&#187; <a href="{url op="registration"}">{translate key="about.registration"}</a></li>
 	{foreach key=key from=$customAboutItems item=customAboutItem}
 		{if $customAboutItem.title!=''}<li>&#187; <a href="{url op="editorialPolicies" anchor=custom`$key`}">{$customAboutItem.title|escape}</a></li>{/if}
 	{/foreach}

@@ -75,124 +75,119 @@ class RegistrationExpiryReminder extends ScheduledTask {
 	}
 
 	function sendSchedConfReminders ($conference, $schedConf, $curDate) {
+		$curYear = $curDate['year'];
+		$curMonth = $curDate['month'];
+		$curDay = $curDate['day'];
+		
+		// Check if expiry notification before months is enabled
+		if ($schedConf->getSetting('enableRegistrationExpiryReminderBeforeMonths', true)) {
 
-		// Only send reminders if registration are enabled
-		if ($schedConf->getSetting('enableRegistration', true)) {
+			$beforeMonths = $schedConf->getSetting('numMonthsBeforeRegistrationExpiryReminder', true);
+			$beforeYears = (int)floor($beforeMonths/12);
+			$beforeMonths = (int)fmod($beforeMonths,12);
 
-			$curYear = $curDate['year'];
-			$curMonth = $curDate['month'];
-			$curDay = $curDate['day'];
-			
-			// Check if expiry notification before months is enabled
-			if ($schedConf->getSetting('enableRegistrationExpiryReminderBeforeMonths', true)) {
+			$expiryYear = $curYear + $beforeYears + (int)floor(($curMonth+$beforeMonths)/12);
+			$expiryMonth = (int)fmod($curMonth+$beforeMonths,12);
+			$expiryDay = $curDay;
 
-				$beforeMonths = $schedConf->getSetting('numMonthsBeforeRegistrationExpiryReminder', true);
-				$beforeYears = (int)floor($beforeMonths/12);
-				$beforeMonths = (int)fmod($beforeMonths,12);
+			// Retrieve all registration that match expiry date
+			$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
+			$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
+			$registration = &$registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getSchedConfId()); 
 
-				$expiryYear = $curYear + $beforeYears + (int)floor(($curMonth+$beforeMonths)/12);
-				$expiryMonth = (int)fmod($curMonth+$beforeMonths,12);
-				$expiryDay = $curDay;
+			while (!$registration->eof()) {
+				$registration = &$registration->next();
+				$this->sendReminder($registration, $conference, $schedConf, 'SUBSCRIPTION_BEFORE_EXPIRY');
+			}
+		}
 
-				// Retrieve all registration that match expiry date
-				$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
-				$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
-				$registration = &$registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getSchedConfId()); 
+		// Check if expiry notification before weeks is enabled
+		if ($schedConf->getSetting('enableRegistrationExpiryReminderBeforeWeeks', true)) {
 
-				while (!$registration->eof()) {
-					$registration = &$registration->next();
-					$this->sendReminder($registration, $conference, $schedConf, 'SUBSCRIPTION_BEFORE_EXPIRY');
-				}
+			$beforeWeeks = $schedConf->getSetting('numWeeksBeforeRegistrationExpiryReminder', true);
+			$beforeDays = $beforeWeeks * 7;
+
+			$expiryMonth = $curMonth + (int)floor(($curDay+$beforeDays)/31);
+			$expiryYear = $curYear + (int)floor($expiryMonth/12);
+			$expiryDay = (int)fmod($curDay+$beforeDays,31);
+			$expiryMonth = (int)fmod($expiryMonth,12);				
+
+			// Retrieve all registration that match expiry date
+			$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
+			$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
+			$registration = &$registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getSchedConfId()); 
+
+			while (!$registration->eof()) {
+				$registration = &$registration->next();
+				$this->sendReminder($registration, $conference, $schedConf, 'SUBSCRIPTION_BEFORE_EXPIRY');
+			}
+		}
+
+		// Check if expiry notification after months is enabled
+		if ($schedConf->getSetting('enableRegistrationExpiryReminderAfterMonths')) {
+
+			$afterMonths = $schedConf->getSetting('numMonthsAfterRegistrationExpiryReminder', true);
+			$afterYears = (int)floor($afterMonths/12);
+			$afterMonths = (int)fmod($afterMonths,12);
+
+			if (($curMonth - $afterMonths) <= 0) {
+				$afterYears++;
+				$expiryMonth = 12 + ($curMonth - $afterMonths);
+			} else {
+				$expiryMonth = $curMonth - $afterMonths;
 			}
 
-			// Check if expiry notification before weeks is enabled
-			if ($schedConf->getSetting('enableRegistrationExpiryReminderBeforeWeeks', true)) {
+			$expiryYear = $curYear - $afterYears;
+			$expiryDay = $curDay;
 
-				$beforeWeeks = $schedConf->getSetting('numWeeksBeforeRegistrationExpiryReminder', true);
-				$beforeDays = $beforeWeeks * 7;
+			// Retrieve all registration that match expiry date
+			$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
+			$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
+			$registration = &$registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getSchedConfId()); 
 
-				$expiryMonth = $curMonth + (int)floor(($curDay+$beforeDays)/31);
-				$expiryYear = $curYear + (int)floor($expiryMonth/12);
-				$expiryDay = (int)fmod($curDay+$beforeDays,31);
-				$expiryMonth = (int)fmod($expiryMonth,12);				
-
-				// Retrieve all registration that match expiry date
-				$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
-				$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
-				$registration = &$registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getSchedConfId()); 
-
-				while (!$registration->eof()) {
-					$registration = &$registration->next();
-					$this->sendReminder($registration, $conference, $schedConf, 'SUBSCRIPTION_BEFORE_EXPIRY');
+			while (!$registration->eof()) {
+				$registration = &$registration->next();
+				// Ensure that user does not have another, valid registration
+				if (!$registrationDao->isValidRegistrationByUser($registration->getUserId(), $schedConf->getSchedConfId())) {
+					$this->sendReminder($registration, $conference, $schedConf, 'SUBSCRIPTION_AFTER_EXPIRY_LAST');
 				}
 			}
+		}
 
-			// Check if expiry notification after months is enabled
-			if ($schedConf->getSetting('enableRegistrationExpiryReminderAfterMonths')) {
+		// Check if expiry notification after weeks is enabled
+		if ($schedConf->getSetting('enableRegistrationExpiryReminderAfterWeeks', true)) {
 
-				$afterMonths = $schedConf->getSetting('numMonthsAfterRegistrationExpiryReminder', true);
-				$afterYears = (int)floor($afterMonths/12);
-				$afterMonths = (int)fmod($afterMonths,12);
+			$afterWeeks = $schedConf->getSetting('numWeeksAfterRegistrationExpiryReminder', true);
+			$afterDays = $afterWeeks * 7;
 
-				if (($curMonth - $afterMonths) <= 0) {
-					$afterYears++;
-					$expiryMonth = 12 + ($curMonth - $afterMonths);
-				} else {
-					$expiryMonth = $curMonth - $afterMonths;
-				}
-
-				$expiryYear = $curYear - $afterYears;
-				$expiryDay = $curDay;
-
-				// Retrieve all registration that match expiry date
-				$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
-				$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
-				$registration = &$registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getSchedConfId()); 
-
-				while (!$registration->eof()) {
-					$registration = &$registration->next();
-					// Ensure that user does not have another, valid registration
-					if (!$registrationDao->isValidRegistrationByUser($registration->getUserId(), $schedConf->getSchedConfId())) {
-						$this->sendReminder($registration, $conference, $schedConf, 'SUBSCRIPTION_AFTER_EXPIRY_LAST');
-					}
-				}
+			if (($curDay - $afterDays) <= 0) {
+				$afterMonths = 1;
+				$expiryDay = 31 + ($curDay - $afterDays);
+			} else {
+				$afterMonths = 0;
+				$expiryDay = $curDay - $afterDays;
 			}
 
-			// Check if expiry notification after weeks is enabled
-			if ($schedConf->getSetting('enableRegistrationExpiryReminderAfterWeeks', true)) {
+			if (($curMonth - $afterMonths) == 0) {
+				$afterYears = 1;
+				$expiryMonth = 12;
+			} else {
+				$afterYears = 0;
+				$expiryMonth = $curMonth - $afterMonths;
+			}
 
-				$afterWeeks = $schedConf->getSetting('numWeeksAfterRegistrationExpiryReminder', true);
-				$afterDays = $afterWeeks * 7;
+			$expiryYear = $curYear - $afterYears;
 
-				if (($curDay - $afterDays) <= 0) {
-					$afterMonths = 1;
-					$expiryDay = 31 + ($curDay - $afterDays);
-				} else {
-					$afterMonths = 0;
-					$expiryDay = $curDay - $afterDays;
-				}
+			// Retrieve all registration that match expiry date
+			$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
+			$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
+			$registration = &$registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getSchedConfId()); 
 
-				if (($curMonth - $afterMonths) == 0) {
-					$afterYears = 1;
-					$expiryMonth = 12;
-				} else {
-					$afterYears = 0;
-					$expiryMonth = $curMonth - $afterMonths;
-				}
-
-				$expiryYear = $curYear - $afterYears;
-
-				// Retrieve all registration that match expiry date
-				$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
-				$dateEnd = $expiryYear . '-' . $expiryMonth . '-' . $expiryDay;
-				$registration = &$registrationDao->getRegistrationByDateEnd($dateEnd, $schedConf->getSchedConfId()); 
-
-				while (!$registration->eof()) {
-					$registration = &$registration->next();
-					// Ensure that user does not have another, valid registration
-					if (!$registrationDao->isValidRegistrationByUser($registration->getUserId(), $schedConf->getSchedConfId())) {
-						$this->sendReminder($registration, $conference, $schedConf, 'SUBSCRIPTION_AFTER_EXPIRY');
-					}
+			while (!$registration->eof()) {
+				$registration = &$registration->next();
+				// Ensure that user does not have another, valid registration
+				if (!$registrationDao->isValidRegistrationByUser($registration->getUserId(), $schedConf->getSchedConfId())) {
+					$this->sendReminder($registration, $conference, $schedConf, 'SUBSCRIPTION_AFTER_EXPIRY');
 				}
 			}
 		}

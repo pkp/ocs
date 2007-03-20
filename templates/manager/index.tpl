@@ -39,9 +39,7 @@
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="schedConfSetup"}">{translate key="manager.schedConfSetup"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="program"}">{translate key="manager.program"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="statistics"}">{translate key="manager.statistics"}</a></li>
-		{if $schedConf->getSetting('enableRegistration')}
-			<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="registration"}">{translate key="manager.registration"}</a></li>
-		{/if}
+		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="registration"}">{translate key="manager.registration"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people"}">{translate key="manager.roles"}</a></li>
 		<li>
 			<h4>{translate key="manager.roles"}</h4>

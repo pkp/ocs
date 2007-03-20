@@ -18,7 +18,7 @@ class RegistrationHandler extends ManagerHandler {
 	/**
 	 * Display a list of registrations for the current scheduled conference.
 	 */
-	function registrations() {
+	function registration() {
 		parent::validate();
 		RegistrationHandler::setupTemplate();
 
@@ -29,7 +29,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('registrations', $registrations);
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
+		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
 		$templateMgr->display('registration/registrations.tpl');
 	}
 
@@ -73,12 +73,12 @@ class RegistrationHandler extends ManagerHandler {
 			import('registration.form.RegistrationForm');
 
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrations'), 'manager.registrations'));
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrations'), 'manager.registration'));
 
 			if ($registrationId == null) {
-				$templateMgr->assign('registrationTitle', 'manager.registrations.createTitle');
+				$templateMgr->assign('registrationTitle', 'manager.registration.createTitle');
 			} else {
-				$templateMgr->assign('registrationTitle', 'manager.registrations.editTitle');	
+				$templateMgr->assign('registrationTitle', 'manager.registration.editTitle');	
 			}
 
 			$registrationForm = &new RegistrationForm($registrationId, $userId);
@@ -104,7 +104,7 @@ class RegistrationHandler extends ManagerHandler {
 		parent::validate();
 		$templateMgr = &TemplateManager::getManager();
 		RegistrationHandler::setupTemplate();
-		$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrations'), 'manager.registrations'));
+		$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrations'), 'manager.registration'));
 
 		$userDao = &DAORegistry::getDAO('UserDAO');
 
@@ -140,7 +140,7 @@ class RegistrationHandler extends ManagerHandler {
 			USER_FIELD_EMAIL => 'user.email'
 		));
 		$templateMgr->assign_by_ref('users', $users);
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
+		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
 		$templateMgr->assign('registrationId', Request::getUserVar('registrationId'));
 		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 		$templateMgr->display('registration/users.tpl');
@@ -176,12 +176,12 @@ class RegistrationHandler extends ManagerHandler {
 				RegistrationHandler::setupTemplate();
 
 				$templateMgr = &TemplateManager::getManager();
-				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrations'), 'manager.registrations'));
+				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrations'), 'manager.registration'));
 
 				if ($registrationId == null) {
-					$templateMgr->assign('registrationTitle', 'manager.registrations.createTitle');
+					$templateMgr->assign('registrationTitle', 'manager.registration.createTitle');
 				} else {
-					$templateMgr->assign('registrationTitle', 'manager.registrations.editTitle');	
+					$templateMgr->assign('registrationTitle', 'manager.registration.editTitle');	
 				}
 
 				$registrationForm->display();
@@ -206,7 +206,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('registrationTypes', $registrationTypes);
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
+		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
 
 		$templateMgr->display('registration/registrationTypes.tpl');
 	}
@@ -363,7 +363,7 @@ class RegistrationHandler extends ManagerHandler {
 		import('registration.form.RegistrationPolicyForm');
 
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
+		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
 
 		if (Config::getVar('general', 'scheduled_tasks')) {
 			$templateMgr->assign('scheduledTasksEnabled', true);
@@ -391,7 +391,7 @@ class RegistrationHandler extends ManagerHandler {
 			RegistrationHandler::setupTemplate(true);
 
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
+			$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
 			$templateMgr->assign('registrationPoliciesSaved', '1');
 
 			if (Config::getVar('general', 'scheduled_tasks')) {
@@ -406,7 +406,7 @@ class RegistrationHandler extends ManagerHandler {
 		parent::setupTemplate(true);
 		if ($subclass) {
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrations'), 'manager.registrations'));
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrations'), 'manager.registration'));
 		}
 	}
 

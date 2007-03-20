@@ -15,6 +15,7 @@
 {/if}
 
 {if $postCreativeCommons}
+	<br />
 	{translate key="common.ccLicense" ccLicenseImageUrl=`$baseUrl`/templates/images/ccLicense.png}
 {/if}
 

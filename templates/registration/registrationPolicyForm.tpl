@@ -14,7 +14,7 @@
 {include file="common/header.tpl"}
 
 <ul class="menu">
-	<li><a href="{url op="registrations"}">{translate key="manager.registrations"}</a></li>
+	<li><a href="{url op="registration"}">{translate key="manager.registration"}</a></li>
 	<li><a href="{url op="registrationTypes"}">{translate key="manager.registrationTypes"}</a></li>
 	<li class="current"><a href="{url op="registrationPolicies"}">{translate key="manager.registrationPolicies"}</a></li>
 </ul>

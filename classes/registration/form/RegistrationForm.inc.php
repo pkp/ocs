@@ -8,7 +8,7 @@
  *
  * @package registration.form
  *
- * Form for conference managers to create/edit registrations.
+ * Form for conference managers to create/edit registration.
  *
  * $Id$
  */
@@ -33,29 +33,29 @@ class RegistrationForm extends Form {
 		parent::Form('registration/registrationForm.tpl');
 	
 		// User is provided and valid
-		$this->addCheck(new FormValidator($this, 'userId', 'required', 'manager.registrations.form.userIdRequired'));
-		$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'manager.registrations.form.userIdValid', create_function('$userId', '$userDao = &DAORegistry::getDAO(\'UserDAO\'); return $userDao->userExistsById($userId);')));
+		$this->addCheck(new FormValidator($this, 'userId', 'required', 'manager.registration.form.userIdRequired'));
+		$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'manager.registration.form.userIdValid', create_function('$userId', '$userDao = &DAORegistry::getDAO(\'UserDAO\'); return $userDao->userExistsById($userId);')));
 
 		// Ensure that user does not already have a registration for this scheduled conference
 		if ($this->registrationId == null) {
-			$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'manager.registrations.form.registrationExists', array(DAORegistry::getDAO('RegistrationDAO'), 'registrationExistsByUser'), array($schedConf->getSchedConfId()), true));
+			$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'manager.registration.form.registrationExists', array(DAORegistry::getDAO('RegistrationDAO'), 'registrationExistsByUser'), array($schedConf->getSchedConfId()), true));
 		} else {
-			$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'manager.registrations.form.registrationExists', create_function('$userId, $schedConfId, $registrationId', '$registrationDao = &DAORegistry::getDAO(\'RegistrationDAO\'); $checkId = $registrationDao->getRegistrationIdByUser($userId, $schedConfId); return ($checkId == 0 || $checkId == $registrationId) ? true : false;'), array($schedConf->getSchedConfId(), $this->registrationId)));
+			$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'manager.registration.form.registrationExists', create_function('$userId, $schedConfId, $registrationId', '$registrationDao = &DAORegistry::getDAO(\'RegistrationDAO\'); $checkId = $registrationDao->getRegistrationIdByUser($userId, $schedConfId); return ($checkId == 0 || $checkId == $registrationId) ? true : false;'), array($schedConf->getSchedConfId(), $this->registrationId)));
 		}
 
 		// Registration type is provided and valid
-		$this->addCheck(new FormValidator($this, 'typeId', 'required', 'manager.registrations.form.typeIdRequired'));
-		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'required', 'manager.registrations.form.typeIdValid', create_function('$typeId, $schedConfId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->registrationTypeExistsByTypeId($typeId, $schedConfId);'), array($schedConf->getSchedConfId())));
+		$this->addCheck(new FormValidator($this, 'typeId', 'required', 'manager.registration.form.typeIdRequired'));
+		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'required', 'manager.registration.form.typeIdValid', create_function('$typeId, $schedConfId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->registrationTypeExistsByTypeId($typeId, $schedConfId);'), array($schedConf->getSchedConfId())));
 
 		// If provided, domain is valid
-		$this->addCheck(new FormValidatorRegExp($this, 'domain', 'optional', 'manager.registrations.form.domainValid', '/^' .
+		$this->addCheck(new FormValidatorRegExp($this, 'domain', 'optional', 'manager.registration.form.domainValid', '/^' .
 				'[A-Z0-9]+([\-_\.][A-Z0-9]+)*' .
 				'\.' .
 				'[A-Z]{2,4}' .
 			'$/i'));
 
 		// If provided, IP range has IP address format; IP addresses may contain wildcards
-		$this->addCheck(new FormValidatorRegExp($this, 'ipRange', 'optional', 'manager.registrations.form.ipRangeValid','/^' .
+		$this->addCheck(new FormValidatorRegExp($this, 'ipRange', 'optional', 'manager.registration.form.ipRangeValid','/^' .
 				// IP4 address (with or w/o wildcards) or IP4 address range (with or w/o wildcards) or CIDR IP4 address
 				'((([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}((\s)*[' . REGISTRATION_IP_RANGE_RANGE . '](\s)*([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}){0,1})|(([0-9]{1,3})([.]([0-9]{1,3})){3}([\/](([3][0-2]{0,1})|([1-2]{0,1}[0-9])))))' .
 				// followed by 0 or more delimited IP4 addresses (with or w/o wildcards) or IP4 address ranges
@@ -66,7 +66,7 @@ class RegistrationForm extends Form {
 			'$/i'));
 		
 		// Notify email flag is valid value
-		$this->addCheck(new FormValidatorInSet($this, 'notifyEmail', 'optional', 'manager.registrations.form.notifyEmailValid', array('1')));
+		$this->addCheck(new FormValidatorInSet($this, 'notifyEmail', 'optional', 'manager.registration.form.notifyEmailValid', array('1')));
 	}
 	
 	/**
@@ -88,7 +88,7 @@ class RegistrationForm extends Form {
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
 		$templateMgr->assign('registrationTypes', $registrationTypes);
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registrations');
+		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
 	
 		parent::display();
 	}
@@ -128,19 +128,19 @@ class RegistrationForm extends Form {
 		$needMembership = $registrationTypeDao->getRegistrationTypeMembership($this->getData('typeId'));
 
 		if ($needMembership) { 
-			$this->addCheck(new FormValidator($this, 'membership', 'required', 'manager.registrations.form.membershipRequired'));
+			$this->addCheck(new FormValidator($this, 'membership', 'required', 'manager.registration.form.membershipRequired'));
 		}
 
 		// If registration type requires it, domain and/or IP range is provided
 		$isInstitutional = $registrationTypeDao->getRegistrationTypeInstitutional($this->getData('typeId'));
 
 		if ($isInstitutional) { 
-			$this->addCheck(new FormValidatorCustom($this, 'domain', 'required', 'manager.registrations.form.domainIPRangeRequired', create_function('$domain, $ipRange', 'return $domain != \'\' || $ipRange != \'\' ? true : false;'), array($this->getData('ipRange'))));
+			$this->addCheck(new FormValidatorCustom($this, 'domain', 'required', 'manager.registration.form.domainIPRangeRequired', create_function('$domain, $ipRange', 'return $domain != \'\' || $ipRange != \'\' ? true : false;'), array($this->getData('ipRange'))));
 		}
 
 		// If notify email is requested, ensure registration contact name and email exist.
 		if ($this->_data['notifyEmail'] == 1) {
-			$this->addCheck(new FormValidatorCustom($this, 'notifyEmail', 'required', 'manager.registrations.form.registrationContactRequired', create_function('', '$schedConf = &Request::getSchedConf(); $schedConfSettingsDao = &DAORegistry::getDAO(\'SchedConfSettingsDAO\'); $registrationName = $schedConfSettingsDao->getSetting($schedConf->getSchedConfId(), \'registrationName\'); $registrationEmail = $schedConfSettingsDao->getSetting($schedConf->getSchedConfId(), \'registrationEmail\'); return $registrationName != \'\' && $registrationEmail != \'\' ? true : false;'), array()));
+			$this->addCheck(new FormValidatorCustom($this, 'notifyEmail', 'required', 'manager.registration.form.registrationContactRequired', create_function('', '$schedConf = &Request::getSchedConf(); $schedConfSettingsDao = &DAORegistry::getDAO(\'SchedConfSettingsDAO\'); $registrationName = $schedConfSettingsDao->getSetting($schedConf->getSchedConfId(), \'registrationName\'); $registrationEmail = $schedConfSettingsDao->getSetting($schedConf->getSchedConfId(), \'registrationEmail\'); return $registrationName != \'\' && $registrationEmail != \'\' ? true : false;'), array()));
 		}
 	}
 	

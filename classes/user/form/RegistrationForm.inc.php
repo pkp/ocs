@@ -101,7 +101,6 @@ class RegistrationForm extends Form {
 		import('schedConf.SchedConfAction');
 
 		$templateMgr->assign('privacyStatement', $schedConf->getSetting('privacyStatement', true));
-		$templateMgr->assign('enableRegistration', $schedConf->getSetting('enableRegistration', true)==1?1:0);
 		$templateMgr->assign('enableOpenAccessNotification', $schedConf->getSetting('enableOpenAccessNotification', true)==1?1:0);
 		$templateMgr->assign('allowRegReader', SchedConfAction::allowRegReader($schedConf));
 		$templateMgr->assign('allowRegPresenter', SchedConfAction::allowRegPresenter($schedConf));
