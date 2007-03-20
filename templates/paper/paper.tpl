@@ -90,6 +90,8 @@
 				<a href="{url page="paper" op="view" path=$paperId|to_array:$galley->getGalleyId()}" class="action" target="_parent">{$galley->getLabel()|escape}</a>
 			{/foreach}
 		{/if}
+	{elseif $schedConf->getSetting('delayOpenAccess') && $schedConf->getSetting('delayOpenAccessDate') > time()}
+		{translate key="reader.fullTextSubscribersOnlyUntil" date=$schedConf->getSetting('delayOpenAccessDate')|date_format:$dateFormatShort}
 	{else}
 		{translate key="reader.fullTextSubscribersOnly"}
 	{/if}

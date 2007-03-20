@@ -580,7 +580,8 @@
 
 	<!-- Reader paper view -->
 	<message key="reader.fullText">Full Text:</message>
-	<message key="reader.fullTextSubscribersOnly">Full Text: Subscribers Only</message>
+	<message key="reader.fullTextSubscribersOnly">Full Text: Subscribers only; materials can be viewed by registering with this website.</message>
+	<message key="reader.fullTextSubscribersOnlyUntil">Full Text: Subscribers only; open access for this conference will begin on {$date}.</message>
 
 	<!-- Reader Comments -->
 	<message key="comments.viewAllComments">View all comments</message>

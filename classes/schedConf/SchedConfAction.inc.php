@@ -88,7 +88,7 @@ class SchedConfAction {
 			return false;
 		}
 		
-		if($schedConf->getSetting('delayOpenAccess') && time() > $schedConf->getSetting('delayOpenAccessUntil')) {
+		if($schedConf->getSetting('delayOpenAccess') && time() > $schedConf->getSetting('delayOpenAccessDate')) {
 			if($schedConf->getSetting('openAccessVisitor')) {
 				return true;
 			}
@@ -125,7 +125,7 @@ class SchedConfAction {
 		
 		// Allow open access once the "open access" date has passed.
 		
-		if($schedConf->getSetting('delayOpenAccess') && time() > $schedConf->getSetting('delayOpenAccessUntil')) {
+		if($schedConf->getSetting('delayOpenAccess') && time() > $schedConf->getSetting('delayOpenAccessDate')) {
 			if($schedConf->getSetting('openAccessVisitor')) {
 				return true;
 			}
