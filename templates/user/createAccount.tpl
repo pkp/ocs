@@ -1,7 +1,7 @@
 {**
- * register.tpl
+ * createAccount.tpl
  *
- * Copyright (c) 2003-2004 The Public Knowledge Project
+ * Copyright (c) 2003-2007 The Public Knowledge Project
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * User registration form.
@@ -9,19 +9,19 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="user.register"}
+{assign var="pageTitle" value="navigation.account"}
 {include file="common/header.tpl"}
 
-<form method="post" action="{url op="registerUser"}">
+<form method="post" action="{url op="createAccount"}">
 
-<p>{translate key="user.register.completeForm"}</p>
+<p>{translate key="user.account.completeForm"}</p>
 
 {if !$existingUser}
-	{url|assign:"url" page="user" op="register" existingUser=1}
-	<p>{translate key="user.register.alreadyRegisteredOtherConference" registerUrl=$url}</p>
+	{url|assign:"url" page="user" op="account" existingUser=1}
+	<p>{translate key="user.account.hasAccount" accountUrl=$url}</p>
 {else}
-	{url|assign:"url" page="user" op="register"}
-	<p>{translate key="user.register.notAlreadyRegisteredOtherConference" registerUrl=$url}</p>
+	{url|assign:"url" page="user" op="account"}
+	<p>{translate key="user.account.hasNoAccount" accountUrl=$url}</p>
 	<input type="hidden" name="existingUser" value="1"/>
 {/if}
 
@@ -33,7 +33,7 @@
 {include file="common/formErrors.tpl"}
 
 {if $existingUser}
-<p>{translate key="user.register.loginToRegister"}</p>
+<p>{translate key="user.account.loginToRegister"}</p>
 {/if}
 	
 <table class="data" width="100%">
@@ -44,7 +44,7 @@
 {if !$existingUser}
 <tr valign="top">
 	<td></td>
-	<td class="instruct">{translate key="user.register.usernameRestriction"}</td>
+	<td class="instruct">{translate key="user.account.usernameRestriction"}</td>
 </tr>
 {/if}
 	
@@ -56,10 +56,10 @@
 {if !$existingUser}
 <tr valign="top">
 	<td></td>
-	<td class="instruct">{translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}</td>
+	<td class="instruct">{translate key="user.account.passwordLengthRestriction" length=$minPasswordLength}</td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="password2" required="true" key="user.register.repeatPassword"}</td>
+	<td class="label">{fieldLabel name="password2" required="true" key="user.account.repeatPassword"}</td>
 	<td class="value"><input type="password" name="password2" id="password2" value="{$password2|escape}" size="20" maxlength="32" class="textField" /></td>
 </tr>
 
@@ -162,30 +162,30 @@
 	
 {if ($allowRegReader || $allowRegReader === null) or $enableOpenAccessNotification or ($allowRegPresenter || $allowRegPresenter === null) or ($allowRegReviewer || $allowRegReviewer === null)}
 <tr valign="top">
-	<td class="label">{fieldLabel suppressId="true" name="registerAs" key="user.register.registerAs"}</td>
+	<td class="label">{fieldLabel suppressId="true" name="createAs" key="user.account.createAs"}</td>
 	<td class="value">
 		{if $allowRegReader || $allowRegReader === null}
-			<input type="checkbox" name="registerAsReader" id="registerAsReader" value="1"{if $registerAsReader} checked="checked"{/if} /> <label for="registerAsReader">{translate key="user.role.reader"}</label>: {translate key="user.register.readerDescription"}<br />
+			<input type="checkbox" name="createAsReader" id="createAsReader" value="1"{if $createAsReader} checked="checked"{/if} /> <label for="createAsReader">{translate key="user.role.reader"}</label>: {translate key="user.account.readerDescription"}<br />
 		{/if}
 		{if $enableOpenAccessNotification}
-			<input type="checkbox" name="openAccessNotification" id="openAccessNotification" value="1"{if $openAccessNotification} checked="checked"{/if} /> <label for="openAccessNotification">{translate key="user.role.reader"}</label>: {translate key="user.register.openAccessNotificationDescription"}<br />
+			<input type="checkbox" name="openAccessNotification" id="openAccessNotification" value="1"{if $openAccessNotification} checked="checked"{/if} /> <label for="openAccessNotification">{translate key="user.role.reader"}</label>: {translate key="user.account.openAccessNotificationDescription"}<br />
 		{/if}
 		{if $allowRegPresenter || $allowRegPresenter === null}
-			<input type="checkbox" name="registerAsPresenter" id="registerAsPresenter" value="1"{if $registerAsPresenter} checked="checked"{/if} /> <label for="registerAsPresenter">{translate key="user.role.presenter"}</label>: {translate key="user.register.presenterDescription"}<br />
+			<input type="checkbox" name="createAsPresenter" id="createAsPresenter" value="1"{if $createAsPresenter} checked="checked"{/if} /> <label for="createAsPresenter">{translate key="user.role.presenter"}</label>: {translate key="user.account.presenterDescription"}<br />
 		{/if}
-		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="registerAsReviewer" id="registerAsReviewer" value="1"{if $registerAsReviewer} checked="checked"{/if} /> <label for="registerAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.register.reviewerDescriptionNoInterests"}{else}{translate key="user.register.reviewerDescription"} <input type="text" name="interests" value="{$interests|escape}" size="20" maxlength="255" class="textField" />{/if}
+		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="createAsReviewer" id="createAsReviewer" value="1"{if $createAsReviewer} checked="checked"{/if} /> <label for="createAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.account.reviewerDescriptionNoInterests"}{else}{translate key="user.account.reviewerDescription"} <input type="text" name="interests" value="{$interests|escape}" size="20" maxlength="255" class="textField" />{/if}
 		{/if}
 	</td>
 </tr>
 {/if}
 </table>
 
-<p><input type="submit" value="{translate key="user.register"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="index" escape=false}'" /></p>
+<p><input type="submit" value="{translate key="user.createAccount"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="index" escape=false}'" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 
 {if $privacyStatement}
-<h3>{translate key="user.register.privacyStatement"}</h3>
+<h3>{translate key="user.account.privacyStatement"}</h3>
 <p>{$privacyStatement|nl2br}</p>
 {/if}
 </form>

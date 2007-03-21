@@ -76,7 +76,7 @@
 		<td class="value">
 			<input type="text" name="username" id="username" value="{$username|escape}" size="20" maxlength="32" class="textField" />
 			<br />
-			<span class="instruct">{translate key="user.register.usernameRestriction"}</span>
+			<span class="instruct">{translate key="user.account.usernameRestriction"}</span>
 		</td>
 	</tr>
 	{else}
@@ -99,17 +99,17 @@
 		<td class="value">
 			<input type="password" name="password" id="password" value="{$password|escape}" size="20" maxlength="32" class="textField" />
 			<br />
-			<span class="instruct">{translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}</span>
+			<span class="instruct">{translate key="user.account.passwordLengthRestriction" length=$minPasswordLength}</span>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="password2" required=$passwordRequired key="user.register.repeatPassword"}</td>
+		<td class="label">{fieldLabel name="password2" required=$passwordRequired key="user.account.repeatPassword"}</td>
 		<td class="value"><input type="password" name="password2"  id="password2" value="{$password2|escape}" size="20" maxlength="32" class="textField" /></td>
 	</tr>
 	{if $userId}
 	<tr valign="top">
 		<td>&nbsp;</td>
-		<td class="value">{translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}<br />{translate key="user.profile.leavePasswordBlank"}</td>
+		<td class="value">{translate key="user.account.passwordLengthRestriction" length=$minPasswordLength}<br />{translate key="user.profile.leavePasswordBlank"}</td>
 	</tr>
 	{else}
 	<tr valign="top">

@@ -99,7 +99,7 @@
 <ul class="plain">
 	{if $hasOtherConferences}
 	{if $showAllConferences}
-	<li>&#187; <a href="{url conference="index" page="user" op="register"}">{translate key="user.registerForOtherConferences"}</a></li>
+	<li>&#187; <a href="{url conference="index" page="user" op="account"}">{translate key="user.createAccountForOtherConferences"}</a></li>
 	{else}
 	<li>&#187; <a href="{url conference="index" page="user"}">{translate key="user.showAllConferences"}</a></li>
 	{/if}

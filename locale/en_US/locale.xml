@@ -210,7 +210,7 @@
 	<message key="navigation.about">About</message>
 	<message key="navigation.userHome">User Home</message>
 	<message key="navigation.login">Log In</message>
-	<message key="navigation.register">Register</message>
+	<message key="navigation.account">Account</message>
 	<message key="navigation.user">User</message>
 	<message key="navigation.archive">Archive</message>
 	<message key="navigation.current">Current Conferences</message>
@@ -458,7 +458,7 @@
 	<message key="user.showAllConferences">Show My Conferences</message>
 	<message key="user.login">Log In</message>
 	<message key="user.profile">Profile</message>
-	<message key="user.register">Register</message>
+	<message key="user.createAccount">Create</message>
 	<message key="user.logIn">Log In</message>
 	<message key="user.logOut">Log Out</message>
 	<message key="user.username">Username</message>
@@ -485,9 +485,9 @@
 	<message key="user.biography">Bio statement</message>
 	<message key="user.biography.description">(E.g., department and rank)</message>
 	<message key="user.workingLanguages">Working languages</message>
-	<message key="user.dateRegistered">Date registered</message>
+	<message key="user.dateRegistered">Date Created</message>
 	<message key="user.dateLastLogin">Last login</message>
-	<message key="user.registerForOtherConferences">Register for Other Conferences</message>
+	<message key="user.createAccountForOtherConferences">Create an Account for Other Conferences</message>
 	<message key="user.roles">Roles</message>
 	<message key="user.changePassword">Change Password</message>
 	<message key="user.editMyProfile">Edit My Profile</message>
@@ -580,7 +580,7 @@
 
 	<!-- Reader paper view -->
 	<message key="reader.fullText">Full Text:</message>
-	<message key="reader.fullTextSubscribersOnly">Full Text: Subscribers only; materials can be viewed by registering with this website.</message>
+	<message key="reader.fullTextSubscribersOnly">Full Text: Subscribers only; materials can be viewed by creating an account with this website.</message>
 	<message key="reader.fullTextSubscribersOnlyUntil">Full Text: Subscribers only; open access for this conference will begin on {$date}.</message>
 
 	<!-- Reader Comments -->
@@ -650,7 +650,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="admin.languages.primaryLocaleInstructions">This will be the default language for the site and any hosted conferences.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Select all locales to support on the site. The selected locales will be available for use by all conferences hosted on the site, and also appear in a language select menu to appear on each site page (which can be overridden on conference-specific pages). If multiple locales are not selected, the language toggle menu will not appear and extended language settings will not be available to conferences.</message>
 	<message key="admin.languages.languageOptions">Language options</message>
-	<message key="admin.languages.profileLocales">In registering people (managers, directors, reviewers, etc.), working languages should be included in their User Profiles for the benefit of conference directors.</message>
+	<message key="admin.languages.profileLocales">In enrolling people (managers, directors, reviewers, etc.), working languages should be included in their User Profiles for the benefit of conference directors.</message>
 	<message key="admin.languages.installedLocales">Installed Locales</message>
 	<message key="admin.languages.reload">Reload Locale</message>
 	<message key="admin.languages.confirmReload">Are you sure you want to reload this locale? This will erase any existing locale-specific data such as customized email templates.</message>
@@ -670,7 +670,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="admin.auth.enableCreateUsers">Enable user creation (if supported by this authentication plug-in). Users created within OCS with this authentication source will be automatically added to the remote authentication source if they do not already exist. Additionally, if this source is the default authentication source, OCS accounts created through user registration will also be added to the remote authentication source.</message>
 	<message key="admin.auth.defaultSourceDescription"><![CDATA[Specifying a default authentication source other than OCS has the following effects:
 <ul>
-	<li>If a user attempts to register a new account with this site with a username that exists on the authentication source (but not in the OCS database), the registration attempt is only allowed if the supplied password is valid for that user account.</li>
+	<li>If a user attempts to create a new account with this site with a username that exists on the authentication source (but not in the OCS database), the registration attempt is only allowed if the supplied password is valid for that user account.</li>
 </ul>]]></message>
 
 	<!-- System Information -->
@@ -806,8 +806,8 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.statistics.statistics.daysPerReview">Days To Review:</message>
 	<message key="manager.statistics.statistics.reviewerScore">Director Score:</message>
 	<!--<message key="manager.statistics.statistics.daysToPublication">Days To Publication:</message>-->
-	<message key="manager.statistics.statistics.registeredUsers">Registered Users:</message>
-	<message key="manager.statistics.statistics.registeredReaders">Registered Readers:</message>
+	<message key="manager.statistics.statistics.users">Users:</message>
+	<message key="manager.statistics.statistics.readers">Readers:</message>
 	<message key="manager.statistics.statistics.totalNewValue">{$numTotal} ({$numNew} new)</message>
 	<message key="manager.statistics.statistics.subscriptions">Subscriptions:</message>
 	<message key="manager.statistics.statistics.note">Note: Percentages for peer reviewed submissions may not add up to 100%, as items resubmitted are either accepted, declined, or still in process.</message>
@@ -950,10 +950,10 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Add Item to Appear in "About the Conference"</message>
 	<message key="manager.setup.aboutConference.aboutItemContent">Content</message>
 	<message key="manager.setup.aboutConference.addAboutItem">Add About Item</message>
-	<message key="manager.setup.aboutConference.restrictPaperAccess">Visitors must register as Readers to view archived conference abstracts and presentations.</message>
+	<message key="manager.setup.aboutConference.restrictPaperAccess">Visitors must create Reader accounts to view archived conference abstracts and presentations.</message>
 	<message key="manager.setup.aboutConference.comments">Reader Comments</message>
 	<message key="manager.setup.aboutConference.comments.enable">Permit commenting on archived presentations</message>
-	<message key="manager.setup.aboutConference.comments.requireRegistration">Only registered users can comment on archived presentations.</message>
+	<message key="manager.setup.aboutConference.comments.requireRegistration">Only users with accounts can comment on archived presentations.</message>
 	<message key="manager.setup.aboutConference.comments.allowAnonymous">Anonymous commenting is permitted.</message>
 
 	<!-- Conference setup page 2 -->
@@ -1336,7 +1336,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registrationPolicies.delayedOpenAccessDescription1">The back issues of this conference will be available in an open access format</message>
 	<message key="manager.registrationPolicies.delayedOpenAccessDescription2">month(s) after an issue is published.</message>
 	<message key="manager.registrationPolicies.delayedOpenAccessDurationValid">Please select a valid duration length.</message>
-	<message key="manager.registrationPolicies.openAccessNotificationDescription">Registered readers will have the option of receiving the table of contents by email when an issue becomes open access.</message>
+	<message key="manager.registrationPolicies.openAccessNotificationDescription">Users with Reader accounts will have the option of receiving the table of contents by email when an issue becomes open access.</message>
 	<message key="manager.registrationPolicies.delayedOpenAccessPolicyDescription">The following statement will be posted in About the Conference under Delayed Open Access.</message>
 	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
 	<message key="manager.registrationPolicies.presenterSelfArchive">Presenter Self-Archiving Policy</message>
@@ -1419,7 +1419,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registration.select">Enroll Registrant</message>
 	<message key="manager.registration.selectRegistrant">Select Registrant</message>
 	<message key="manager.registration.selectRegistrant.desc">Registration access privileges are automatically granted to the conference's Conference Directors, Directors, and Track Directors.</message>
-	<message key="manager.registration.register">Enroll</message>
+	<message key="manager.registration.enroll">Enroll</message>
 	<message key="manager.registration.confirmDelete">Are you sure you want to delete this registration?</message>
 	<message key="manager.registration.noneCreated">No registrations have been created.</message>
 	<message key="manager.registration.user">User</message>
@@ -1970,7 +1970,7 @@ The file can be viewed by clicking on the file name. A new or revised file can b
 	<message key="user.login.accountDisabled">Your account has been disabled. Please contact the administrator for more information.</message>
 	<message key="user.login.accountDisabledWithReason">Your account has been disabled for the following reason: {$reason}</message>
 	<message key="user.login.rememberUsernameAndPassword">Remember my username and password</message>
-	<message key="user.login.registerNewAccount">Not a user? Register with this site</message>
+	<message key="user.login.createAccount">Not a user? Create an account with this site</message>
 	<message key="user.login.forgotPassword">Forgot your password?</message>
 	<message key="user.login.resetPassword">Reset Password</message>
 	<message key="user.login.resetPasswordInstructions"><![CDATA[For security reasons, this system emails a reset password to registered users, rather than recalling the
@@ -2002,31 +2002,31 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.profile.form.openAccessNotifications">Email notifications for open access</message>
 
 	<!-- Registration -->
-	<message key="user.register.repeatPassword">Repeat password</message>
-	<message key="user.register.form.usernameExists">The selected username is already in use by another user.</message>
-	<message key="user.register.form.usernameAlphaNumeric">The username can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
-	<message key="user.register.form.emailExists">The selected email address is already in use by another user.</message>
-	<message key="user.register.form.passwordsDoNotMatch">The passwords do not match.</message>
-	<message key="user.register.selectConference">Select an conference to register with</message>
-	<message key="user.register.noConferences">There are no conferences you may register with on this site.</message>
-	<message key="user.register.selectSchedConf">Select a scheduled conference to register with</message>
-	<message key="user.register.noSchedConfs">There are no scheduled conferences you may register with on this site.</message>
-	<message key="user.register.registerAs">Register as</message>
-	<message key="user.register.privacyStatement">Privacy Statement</message>
-	<message key="user.register.completeForm">Fill in this form to register with this conference.</message>
-	<message key="user.register.alreadyRegisteredOtherConference"><![CDATA[<a href="{$registerUrl}">Click here</a> if you are already registered with this or another conference on this site.]]></message>
-	<message key="user.register.notAlreadyRegisteredOtherConference"><![CDATA[<a href="{$registerUrl}">Click here</a> if you are <b>not</b> already registered with this or another conference on this site.]]></message>
-	<message key="user.register.loginToRegister">Enter your existing username and password to register with this conference.</message>
-	<message key="user.register.registrationDisabled">This conference is currently not accepting user registration.</message>
-	<message key="user.register.usernameRestriction">The username must contain only lowercase letters, numbers, and hyphens/underscores.</message>
-	<message key="user.register.passwordLengthRestriction">The password must be at least {$length} characters.</message>
-	<message key="user.register.form.passwordLengthTooShort">The password you entered is not long enough.</message>
-	<message key="user.register.readerDescription">Notified by email on publication of proceedings of this conference.</message>
-	<!--<message key="user.register.openAccessNotificationDescription">Notified by email when an issue of the conference is made open access.</message>-->
-	<message key="user.register.presenterDescription">Able to submit items to the conference.</message>
-	<message key="user.register.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the conference.</message>
-	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the conference. Identify reviewing interests (substantive areas and research methods).</message>
-	<message key="user.register.presenterRegistrationMessage">Although you have a user account on this site, you are not currently registered as a presenter in this conference.</message>
+	<message key="user.account.repeatPassword">Repeat password</message>
+	<message key="user.account.form.usernameExists">The selected username is already in use by another user.</message>
+	<message key="user.account.form.usernameAlphaNumeric">The username can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
+	<message key="user.account.form.emailExists">The selected email address is already in use by another user.</message>
+	<message key="user.account.form.passwordsDoNotMatch">The passwords do not match.</message>
+	<message key="user.account.selectConference">Select an conference to register with</message>
+	<message key="user.account.noConferences">There are no conferences you may register with on this site.</message>
+	<message key="user.account.selectSchedConf">Select a scheduled conference to register with</message>
+	<message key="user.account.noSchedConfs">There are no scheduled conferences you may register with on this site.</message>
+	<message key="user.account.createAs">Create account as</message>
+	<message key="user.account.privacyStatement">Privacy Statement</message>
+	<message key="user.account.completeForm">Fill in this form to create an account with this conference.</message>
+	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Click here</a> if you already have an account with this or another conference on this site.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Click here</a> if you do <b>not</b> already have an account with this or another conference on this site.]]></message>
+	<message key="user.account.loginToRegister">Enter your existing username and password to create an account with this conference.</message>
+	<message key="user.account.createAccountDisabled">This conference is currently not accepting new users.</message>
+	<message key="user.account.usernameRestriction">The username must contain only lowercase letters, numbers, and hyphens/underscores.</message>
+	<message key="user.account.passwordLengthRestriction">The password must be at least {$length} characters.</message>
+	<message key="user.account.form.passwordLengthTooShort">The password you entered is not long enough.</message>
+	<message key="user.account.readerDescription">Notified by email on publication of proceedings of this conference.</message>
+	<!--<message key="user.account.openAccessNotificationDescription">Notified by email when an issue of the conference is made open access.</message>-->
+	<message key="user.account.presenterDescription">Able to submit items to the conference.</message>
+	<message key="user.account.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the conference.</message>
+	<message key="user.account.reviewerDescription">Willing to conduct peer review of submissions to the conference. Identify reviewing interests (substantive areas and research methods).</message>
+	<message key="user.account.presenterRegistrationMessage">Although you have a user account on this site, you are not currently a presenter in this conference.</message>
 
 
 
@@ -2084,7 +2084,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<!-- Site index -->
 	<message key="site.conferencesHosted">Conferences hosted on this site</message>
 	<message key="site.conferenceView">View Conference</message>
-	<message key="site.conferenceRegister">Register</message>
+	<message key="site.conferenceAccount">Account</message>
 	<message key="site.schedConfView">View Scheduled Conference</message>
 	<message key="site.schedConfCurrent">Current Scheduled Conference</message>
 
@@ -2575,7 +2575,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 {$schedConfUrl}
 ]]></message>
 	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[The text adheres to the stylistic and bibliographic requirements outlined in the <a href="{$presenterGuidelinesUrl}">Presenter Guidelines</a>, which is found in About the Conference.]]></message>
-	<message key="default.schedConfSettings.forReaders"><![CDATA[We encourage readers to sign up for notification of papers posted for this conference. Use the <a href="{$registerUrl}">Register</a> link at the top of the homepage for the conference. This list allows the conference to claim a certain level of support or readership. See the conference's <a href="{$privacyStatementUrl}">Privacy Statement</a> which assures readers that their name and email address will not be used for other purposes.]]></message>
-	<message key="default.schedConfSettings.forPresenters"><![CDATA[Interested in submitting to this conference? We recommend that you review the <a href="{$aboutUrl}">About the Conference</a> page for the conference's track policies, as well as the <a href="{$presenterGuidelinesUrl}">Presenter Guidelines</a>. Presenters need to <a href="{$registerUrl}">register</a> with the conference prior to submitting, or if already registered can simply <a href="{$loginUrl}">log in</a> and begin the submission process.]]></message>
+	<message key="default.schedConfSettings.forReaders"><![CDATA[We encourage readers to sign up for notification of papers posted for this conference. Use the <a href="{$accountUrl}">Account</a> link at the top of the homepage for the conference. This list allows the conference to claim a certain level of support or readership. See the conference's <a href="{$privacyStatementUrl}">Privacy Statement</a> which assures readers that their name and email address will not be used for other purposes.]]></message>
+	<message key="default.schedConfSettings.forPresenters"><![CDATA[Interested in submitting to this conference? We recommend that you review the <a href="{$aboutUrl}">About the Conference</a> page for the conference's track policies, as well as the <a href="{$presenterGuidelinesUrl}">Presenter Guidelines</a>. Presenters need to <a href="{$accountUrl}">create an account</a> with the conference prior to submitting, or if an account already exists, can simply <a href="{$loginUrl}">log in</a> and begin the submission process.]]></message>
 
 </locale>

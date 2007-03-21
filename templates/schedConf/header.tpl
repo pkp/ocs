@@ -66,7 +66,7 @@
 		<li><a href="{url page="user"}">{translate key="navigation.userHome"}</a></li>
 		{else}
 		<li><a href="{url page="login"}">{translate key="navigation.login"}</a></li>
-		<li><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>
+		<li><a href="{url page="user" op="account"}">{translate key="navigation.account"}</a></li>
 		{/if}
 		<li><a href="{url page="search"}">{translate key="navigation.search"}</a></li>
 		{if $currentJournal}

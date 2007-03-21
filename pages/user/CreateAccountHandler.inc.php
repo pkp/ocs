@@ -1,33 +1,33 @@
 <?php
 
 /**
- * RegistrationHandler.inc.php
+ * CreateAccountHandler.inc.php
  *
  * Copyright (c) 2003-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package pages.user
  *
- * Handle requests for user registration. 
+ * Handle requests for user account creation. 
  *
  * $Id$
  */
 
-class RegistrationHandler extends UserHandler {
+class CreateAccountHandler extends UserHandler {
 
 	/**
-	 * Display registration form for new users.
+	 * Display account form for new users.
 	 */
-	function register() {
-		list($conference, $schedConf) = RegistrationHandler::validate();
+	function account() {
+		list($conference, $schedConf) = CreateAccountHandler::validate();
 		parent::setupTemplate(true);
 		
-		if ($conference != null && $schedConf != null && $schedConf->getEnabled()) {
+		if ($conference != null && $schedConf != null) {
 
-			// We're trying to register for a specific scheduled conference
-			import('user.form.RegistrationForm');
+			// We're trying to create an account for a specific scheduled conference
+			import('user.form.CreateAccountForm');
 		
-			$regForm = &new RegistrationForm();
+			$regForm = &new CreateAccountForm();
 			$regForm->initData();
 			$regForm->display();
 
@@ -42,7 +42,7 @@ class RegistrationHandler extends UserHandler {
 				array(Request::url(null, 'index', 'index'), $conference->getTitle(), true)));
 			$templateMgr->assign('source', Request::getUserVar('source'));
 			$templateMgr->assign_by_ref('schedConfs', $schedConfs);
-			$templateMgr->display('user/registerConference.tpl');
+			$templateMgr->display('user/createAccountConference.tpl');
 
 		} else {
 		
@@ -55,18 +55,18 @@ class RegistrationHandler extends UserHandler {
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('source', Request::getUserVar('source'));
 			$templateMgr->assign_by_ref('conferences', $conferences);
-			$templateMgr->display('user/registerSite.tpl');
+			$templateMgr->display('user/createAccountSite.tpl');
 		}
 	}
 	
 	/**
-	 * Validate user registration information and register new user.
+	 * Validate user information and create new user.
 	 */
-	function registerUser() {
-		RegistrationHandler::validate();
-		import('user.form.RegistrationForm');
+	function createAccount() {
+		CreateAccountHandler::validate();
+		import('user.form.CreateAccountForm');
 		
-		$regForm = &new RegistrationForm();
+		$regForm = &new CreateAccountForm();
 		$regForm->readInputData();
 		
 		if ($regForm->validate()) {
@@ -94,13 +94,13 @@ class RegistrationHandler extends UserHandler {
 	}
 	
 	/**
-	 * Show error message if user registration is not allowed.
+	 * Show error message if user account creation is not allowed.
 	 */
-	function registrationDisabled() {
+	function createAccountDisabled() {
 		parent::setupTemplate(true);
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('pageTitle', 'user.register');
-		$templateMgr->assign('errorMsg', 'user.register.registrationDisabled');
+		$templateMgr->assign('pageTitle', 'navigation.account');
+		$templateMgr->assign('errorMsg', 'user.account.createAccountDisabled');
 		$templateMgr->assign('backLink', Request::url(null, null, null, 'login'));
 		$templateMgr->assign('backLinkLabel', 'user.login');
 		$templateMgr->display('common/error.tpl');
@@ -108,7 +108,7 @@ class RegistrationHandler extends UserHandler {
 
 	/**
 	 * Validation check.
-	 * Checks if conference allows user registration.
+	 * Checks if conference allows user account creation.
 	 */	
 	function validate() {
 		list($conference, $schedConf) = parent::validate(false);
@@ -116,8 +116,8 @@ class RegistrationHandler extends UserHandler {
 		if ($conference != null) {
 			$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
 			if ($conferenceSettingsDao->getSetting($conference->getConferenceId(), 'disableUserReg')) {
-				// Users cannot register themselves for this conference
-				RegistrationHandler::registrationDisabled();
+				// Users cannot create accounts for this conference
+				CreateAccountHandler::createAccountDisabled();
 				exit;
 			}
 		}

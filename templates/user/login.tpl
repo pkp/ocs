@@ -10,7 +10,7 @@
  *}
 
 {assign var="pageTitle" value="user.login"}
-{assign var="helpTopicId" value="user.registerAndProfile"}
+{assign var="helpTopicId" value="user.accountAndProfile"}
 {include file="common/header.tpl"}
 
 {if $loginMessage}
@@ -49,7 +49,7 @@
 </table>
 
 <p>
-&#187; <a href="{url page="user" op="register" source=$source|escape}">{translate key="user.login.registerNewAccount"}</a><br />
+&#187; <a href="{url page="user" op="account" source=$source|escape}">{translate key="user.login.createAccount"}</a><br />
 &#187; <a href="{url page="login" op="lostPassword"}">{translate key="user.login.forgotPassword"}</a>
 </p>
 

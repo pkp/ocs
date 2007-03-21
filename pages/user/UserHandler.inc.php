@@ -190,18 +190,22 @@ class UserHandler extends Handler {
 
 
 	//
-	// Registration
+	// Create Account
 	//
 
-	function register() {
-		import('pages.user.RegistrationHandler');
-		RegistrationHandler::register();
+	function account() {
+		import('pages.user.CreateAccountHandler');
+		CreateAccountHandler::account();
 	}
 
-	function registerUser() {
-		import('pages.user.RegistrationHandler');
-		RegistrationHandler::registerUser();
+	function createAccount() {
+		import('pages.user.CreateAccountHandler');
+		CreateAccountHandler::createAccountUser();
 	}
+
+	//
+	// Email
+	//
 
 	function email($args) {
 		import('pages.user.EmailHandler');

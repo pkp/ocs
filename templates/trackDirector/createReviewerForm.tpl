@@ -22,7 +22,7 @@
 		<td class="value">
 			<input type="text" name="username" id="username" value="{$username|escape}" size="20" maxlength="32" class="textField" />
 			<br />
-			<span class="instruct">{translate key="user.register.usernameRestriction"}</span>
+			<span class="instruct">{translate key="user.account.usernameRestriction"}</span>
 		</td>
 	</tr>
 	<tr valign="top">

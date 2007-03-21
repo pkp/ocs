@@ -58,7 +58,7 @@
 		{$user->getEmail()|truncate:20:"..."|escape}&nbsp;{icon name="mail" url=$url}
 	</td>
 	<td align="right" class="nowrap">
-		<a href="{if $registrationId}{url op="editRegistration" path=$registrationId userId=$user->getUserId()}{else}{url op="createRegistration" userId=$user->getUserId()}{/if}" class="action">{translate key="manager.registration.register"}</a>
+		<a href="{if $registrationId}{url op="editRegistration" path=$registrationId userId=$user->getUserId()}{else}{url op="createRegistration" userId=$user->getUserId()}{/if}" class="action">{translate key="manager.registration.enroll"}</a>
 	</td>
 </tr>
 <tr><td colspan="4" class="{if $users->eof()}end{/if}separator">&nbsp;</td></tr>

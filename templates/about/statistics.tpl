@@ -65,11 +65,11 @@
 		<td colspan="2" class="value">{$limitedArticleStatistics.daysToPublication}</td>
 	</tr>{/if}
 	{if $statRegisteredUsers}<tr valign="top">
-		<td width="20%" class="label">{translate key="manager.statistics.statistics.registeredUsers"}</td>
+		<td width="20%" class="label">{translate key="manager.statistics.statistics.users"}</td>
 		<td colspan="2" class="value">{translate key="manager.statistics.statistics.totalNewValue" numTotal=$allUserStatistics.totalUsersCount numNew=$userStatistics.totalUsersCount}</td>
 	</tr>{/if}
 	{if $statRegisteredReaders}<tr valign="top">
-		<td width="20%" class="label">{translate key="manager.statistics.statistics.registeredReaders"}</td>
+		<td width="20%" class="label">{translate key="manager.statistics.statistics.readers"}</td>
 		<td colspan="2" class="value">{translate key="manager.statistics.statistics.totalNewValue" numTotal=$allUserStatistics.reader|default:"0" numNew=$userStatistics.reader|default:"0"}</td>
 	</tr>{/if}
 

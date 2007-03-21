@@ -47,7 +47,7 @@
 						</li>
 					{else}
 						<li><a href="{url conference=`$currentConference->getPath()` page="login"}">{translate key="navigation.login"}</a></li>
-						<li><a href="{url conference=`$currentConference->getPath()` page="register"}">{translate key="navigation.register"}</a></li>
+						<li><a href="{url conference=`$currentConference->getPath()` page="account"}">{translate key="navigation.account"}</a></li>
 					{/if}
 					<li><a href="{url conference=`$currentConference->getPath()` page="search"}">{translate key="navigation.search"}</a><br />
 						<ul class="plain">

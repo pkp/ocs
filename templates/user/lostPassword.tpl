@@ -28,7 +28,7 @@
 
 <p><input type="submit" value="{translate key="user.login.resetPassword"}" class="button defaultButton" /></p>
 
-&#187; <a href="{url page="user" op="register"}">{translate key="user.login.registerNewAccount"}</a>
+&#187; <a href="{url page="user" op="account"}">{translate key="user.login.createAccount"}</a>
 
 <script type="text/javascript">
 <!--

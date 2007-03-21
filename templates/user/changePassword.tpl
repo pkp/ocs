@@ -30,7 +30,7 @@
 </tr>
 <tr valign="top">
 	<td></td>
-	<td><span class="instruct">{translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}</span></td>
+	<td><span class="instruct">{translate key="user.account.passwordLengthRestriction" length=$minPasswordLength}</span></td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="password2" key="user.profile.repeatNewPassword"}</td>

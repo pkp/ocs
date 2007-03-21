@@ -141,7 +141,7 @@
 {/if}
 
 {if $needsLoginNote}
-{url|assign:"loginUrl" page="user" op="register"}
+{url|assign:"loginUrl" page="user" op="account"}
 <p><i style="font-size: 0.9em">{translate key="rt.email.needLogin" loginUrl=$loginUrl}</i></p>
 {/if}
 
