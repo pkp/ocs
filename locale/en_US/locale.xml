@@ -443,7 +443,7 @@
 	<message key="schedConf.program">Program</message>
 	<message key="schedConf.cfp">Call for Papers</message>
 	<message key="schedConf.discussion">Discussion</message>
-	<message key="schedConf.registration">Registration, Accomodation &amp; Travel</message>
+	<message key="schedConf.registration">Registration</message>
 	<message key="schedConf.supporters">Conference Organizers &amp; Key Partners</message>
 	<message key="schedConf.schedule">Conference Schedule</message>
 	<message key="schedConf.links">Related Links</message>
@@ -452,6 +452,20 @@
 	<message key="schedConf.submission">Submission</message>
 	<message key="schedConf.submissions">Submissions</message>
 
+	<!-- Registration Keys -->
+
+	<message key="schedConf.registration.conferenceFees">Conference Fees</message>
+	<message key="schedConf.registration.type">Registration Type</message>
+	<message key="schedConf.registration.cost">Cost</message>
+	<message key="schedConf.registration.noneAvailable">No registration types are available.</message>
+	<message key="schedConf.registration.register">Register</message>
+	<message key="schedConf.registration.typeClosed">(Registration Closed)</message>
+	<message key="schedConf.registration.feeCode">Fee Code</message>
+	<message key="schedConf.registration.specialRequests">Special Requests</message>
+	<message key="schedConf.registration.specialRequests.description">Please describe any special requirements or requests, such as dietary, access, etc.</message>
+	<message key="schedConf.registration."></message>
+	<message key="schedConf.registration."></message>
+	<message key="schedConf.registration."></message>
 
 	<!-- User -->
 	<message key="user.userHome">User Home</message>

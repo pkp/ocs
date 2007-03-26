@@ -116,6 +116,26 @@ class SchedConfHandler extends Handler {
 	/**
 	 * Display conference program page
 	 */
+	function registration() {
+		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+
+		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign('pageHierarchy', array(
+			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
+		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
+
+		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
+		$templateMgr->assign_by_ref('registrationTypes', $registrationTypes);
+
+		$templateMgr->assign('helpTopicId', 'schedConf.registration');
+		$templateMgr->display('schedConf/registration.tpl');
+	}
+
+	/**
+	 * Display conference program page
+	 */
 	function program() {
 		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
 

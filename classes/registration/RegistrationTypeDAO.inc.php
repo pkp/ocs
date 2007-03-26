@@ -28,11 +28,16 @@ class RegistrationTypeDAO extends DAO {
 	/**
 	 * Retrieve a registration type by ID.
 	 * @param $typeId int
+	 * @param $code string Optional registration code "password"
 	 * @return RegistrationType
 	 */
-	function &getRegistrationType($typeId) {
+	function &getRegistrationType($typeId, $code = null) {
+		$params = array($typeId);
+		if ($code !== null) $params[] = $code;
 		$result = &$this->retrieve(
-			'SELECT * FROM registration_types WHERE type_id = ?', $typeId
+			'SELECT * FROM registration_types WHERE type_id = ?' .
+			($code !== null ? ' AND code = ?':''),
+			$params
 		);
 
 		$returner = null;
@@ -221,6 +226,7 @@ class RegistrationTypeDAO extends DAO {
 		$registrationType->setTypeId($row['type_id']);
 		$registrationType->setSchedConfId($row['sched_conf_id']);
 		$registrationType->setTypeName($row['type_name']);
+		$registrationType->setCode($row['code']);
 		$registrationType->setDescription($row['description']);
 		$registrationType->setCost($row['cost']);
 		$registrationType->setCurrencyCodeAlpha($row['currency_code_alpha']);
@@ -246,9 +252,9 @@ class RegistrationTypeDAO extends DAO {
 	function insertRegistrationType(&$registrationType) {
 		$ret = $this->update(
 			sprintf('INSERT INTO registration_types
-				(sched_conf_id, type_name, description, cost, currency_code_alpha, opening_date, closing_date, expiry_date, access, institutional, membership, pub, seq)
+				(sched_conf_id, type_name, description, cost, currency_code_alpha, opening_date, closing_date, expiry_date, access, institutional, membership, pub, seq, code)
 				VALUES
-				(?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?)',
 				$this->dateToDB($registrationType->getOpeningDate()),
 				$this->dateToDB($registrationType->getClosingDate()),
 				$this->dateToDB($registrationType->getExpiryDate())),
@@ -262,7 +268,8 @@ class RegistrationTypeDAO extends DAO {
 				$registrationType->getInstitutional(),
 				$registrationType->getMembership(),
 				$registrationType->getPublic(),
-				$registrationType->getSequence()
+				$registrationType->getSequence(),
+				$registrationType->getCode()
 			)
 		);
 		
@@ -291,7 +298,8 @@ class RegistrationTypeDAO extends DAO {
 					institutional = ?,
 					membership = ?,
 					pub = ?,
-					seq = ?
+					seq = ?,
+					code = ?
 				WHERE type_id = ?',
 				$this->dateToDB($registrationType->getOpeningDate()),
 				$this->dateToDB($registrationType->getClosingDate()),
@@ -307,6 +315,7 @@ class RegistrationTypeDAO extends DAO {
 				$registrationType->getMembership(),
 				$registrationType->getPublic(),
 				$registrationType->getSequence(),
+				$registrationType->getCode(),
 				$registrationType->getTypeId()
 			)
 		);

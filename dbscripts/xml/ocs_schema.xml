@@ -1563,6 +1563,7 @@
 		<field name="type_name" type="C2" size="80">
 			<NOTNULL/>
 		</field>
+		<field name="code" type="C2" size="80" />
 		<field name="description" type="X"/>
 		<field name="cost" type="F">
 			<NOTNULL/>

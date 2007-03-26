@@ -57,7 +57,7 @@
 	<li>&#187; <a href="{url page="schedConf" op="trackPolicies"}">{translate key="schedConf.trackPolicies"}</a></li>
 	<li>&#187; <a href="{url page="schedConf" op="program"}">{translate key="schedConf.program"}</a></li>
 	<li>&#187; <a href="{url page="schedConf" op="proceedings"}">{translate key="schedConf.proceedings"}</a></li>
-{*	<li>&#187; <a href="{url page="schedConf" op="registration"}">{translate key="schedConf.registration"}</a></li>*}
+	<li>&#187; <a href="{url page="schedConf" op="registration"}">{translate key="schedConf.registration"}</a></li>
 	<li>&#187; <a href="{url page="about" op="organizingTeam"}">{translate key="schedConf.supporters"}</a></li>
 {*	<li>&#187; <a href="{url page="schedConf" op="schedule"}">{translate key="schedConf.schedule"}</a></li> *}
 {*	<li>&#187; <a href="{url page="schedConf" op="links"}">{translate key="schedConf.links"}</a></li>*}

@@ -82,6 +82,22 @@ class RegistrationType extends DataObject {
 	}
 
 	/**
+	 * Get registration type code.
+	 * @return string
+	 */
+	function getCode() {
+		return $this->getData('code');
+	}
+	
+	/**
+	 * Set registration type code.
+	 * @param $typeCode string
+	 */
+	function setCode($typeName) {
+		return $this->setData('code', $code);
+	}
+
+	/**
 	 * Get registration type description.
 	 * @return string
 	 */
