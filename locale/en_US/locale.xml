@@ -452,7 +452,7 @@
 	<message key="schedConf.submission">Submission</message>
 	<message key="schedConf.submissions">Submissions</message>
 
-	<!-- Registration Keys -->
+	<!-- User self-registration form -->
 
 	<message key="schedConf.registration.conferenceFees">Conference Fees</message>
 	<message key="schedConf.registration.type">Registration Type</message>
@@ -461,10 +461,12 @@
 	<message key="schedConf.registration.register">Register</message>
 	<message key="schedConf.registration.typeClosed">(Registration Closed)</message>
 	<message key="schedConf.registration.feeCode">Fee Code</message>
+	<message key="schedConf.registration.feeCode.description">If you were given a secret code for registration, please enter it here and make sure you've chosen the correct registration type above. Otherwise, leave the Fee Code field blank.</message>
 	<message key="schedConf.registration.specialRequests">Special Requests</message>
 	<message key="schedConf.registration.specialRequests.description">Please describe any special requirements or requests, such as dietary, access, etc.</message>
-	<message key="schedConf.registration."></message>
-	<message key="schedConf.registration."></message>
+	<message key="schedConf.registration.account">User Account</message>
+	<message key="schedConf.registration.loggedInAs"><![CDATA[You are currently logged in as {$userFullName}. If this is not correct, please <a href="{$logoutUrl}">log out</a>.]]></message>
+	<message key="schedConf.registration.createAccount.description"><![CDATA[You are not currently logged in. In order to register for this conference, you will need an account. If you already have one, <a href="{$loginUrl}">click here</a> to log in; otherwise, fill in the information below in order to create a new account.]]></message>
 	<message key="schedConf.registration."></message>
 
 	<!-- User -->

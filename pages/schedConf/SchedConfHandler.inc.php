@@ -125,12 +125,32 @@ class SchedConfHandler extends Handler {
 			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
 
-		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
-		$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
-		$templateMgr->assign_by_ref('registrationTypes', $registrationTypes);
+		import('registration.form.UserRegistrationForm');
+		$form =& new UserRegistrationForm();
+		$form->display();
+	}
 
-		$templateMgr->assign('helpTopicId', 'schedConf.registration');
-		$templateMgr->display('schedConf/registration.tpl');
+	/**
+	 * Handle submission of the user registration form
+	 */
+	function register() {
+		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+
+		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign('pageHierarchy', array(
+			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
+		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
+
+		import('registration.form.UserRegistrationForm');
+		$form =& new UserRegistrationForm();
+		$form->readInputData();
+		if ($form->validate()) {
+			$form->execute();
+			Request::redirect(null, null, 'index');
+		} else {
+			$form->display();
+		}
 	}
 
 	/**

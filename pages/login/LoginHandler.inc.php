@@ -106,7 +106,12 @@ class LoginHandler extends Handler {
 			Validation::logout();
 		}
 		
-		Request::redirect(null, null, Request::getRequestedPage());
+		$source = Request::getUserVar('source');
+		if (isset($source) && !empty($source)) {
+			Request::redirectUrl(Request::getProtocol() . '://' . Request::getServerHost() . $source, false);
+		} else {
+			Request::redirect(null, null, Request::getRequestedPage());
+		}
 	}
 	
 	/**

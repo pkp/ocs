@@ -153,7 +153,7 @@
 	<td class="value">
 		<input type="checkbox" name="sendPassword" id="sendPassword" value="1"{if $sendPassword} checked="checked"{/if} /> <label for="sendPassword">{translate key="user.sendPassword.description"}</label>
 	</td>
-</td>
+</tr>
 
 {if $profileLocalesEnabled && count($availableLocales) > 1}
 <tr valign="top">

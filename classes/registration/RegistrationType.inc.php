@@ -93,7 +93,7 @@ class RegistrationType extends DataObject {
 	 * Set registration type code.
 	 * @param $typeCode string
 	 */
-	function setCode($typeName) {
+	function setCode($code) {
 		return $this->setData('code', $code);
 	}
 
