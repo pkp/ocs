@@ -77,7 +77,7 @@ class PresenterHandler extends Handler {
 		$schedConf = &Request::getSchedConf();
 
 		if (!$conference || !$schedConf || !Validation::isPresenter($conference->getConferenceId(), $schedConf->getSchedConfId())) {
-			Validation::redirectLogin($reason);
+			Validation::redirectLogin($reason, array('requiresPresenter' => Request::getUserVar('requiresPresenter')));
 		}
 
 		return array(&$conference, &$schedConf);

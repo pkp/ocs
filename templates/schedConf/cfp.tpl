@@ -17,7 +17,7 @@
 {if $acceptingSubmissions}
 	<p>
 		{translate key="presenter.submit.startHere"}<br/>
-		<a href="{url page="presenter" op="submit"}" class="action">{translate key="presenter.submit.startHereLink"}</a><br />
+		<a href="{url page="presenter" op="submit" requiresPresenter=1}" class="action">{translate key="presenter.submit.startHereLink"}</a><br />
 	</p>
 {else}
 	<p>

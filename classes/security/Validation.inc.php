@@ -123,8 +123,7 @@ class Validation {
 	/**
 	 * Redirect to the login page, appending the current URL as the source.
 	 */
-	function redirectLogin($message = null) {
-		$args = array();
+	function redirectLogin($message = null, $args = array()) {
 
 		if (isset($_SERVER['REQUEST_URI'])) {
 			$args['source'] = $_SERVER['REQUEST_URI'];

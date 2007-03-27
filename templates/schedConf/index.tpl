@@ -53,7 +53,9 @@
 	{if $showCFP}
 		<li>&#187; <a href="{url page="schedConf" op="cfp"}">{translate key="schedConf.cfp"}</a> ({$submissionOpenDate|date_format:$dateFormatLong} - {$submissionCloseDate|date_format:$dateFormatLong})</li>
 	{/if}
-	{if $showSubmissionLink}<li>&#187; <a href="{url page="presenter" op="submit"}">{translate key="schedConf.proposalSubmission"}</a></li>{/if}
+	{if $showSubmissionLink}
+		<li>&#187; <a href="{url page="presenter" op="submit" requiresPresenter="1"}">{translate key="schedConf.proposalSubmission"}</a></li>
+	{/if}
 	<li>&#187; <a href="{url page="schedConf" op="trackPolicies"}">{translate key="schedConf.trackPolicies"}</a></li>
 	<li>&#187; <a href="{url page="schedConf" op="program"}">{translate key="schedConf.program"}</a></li>
 	<li>&#187; <a href="{url page="schedConf" op="proceedings"}">{translate key="schedConf.proceedings"}</a></li>

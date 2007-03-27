@@ -45,6 +45,8 @@ class LoginHandler extends Handler {
 		$templateMgr->assign('remember', Request::getUserVar('remember'));
 		$templateMgr->assign('source', Request::getUserVar('source'));
 		$templateMgr->assign('showRemember', Config::getVar('general', 'session_lifetime') > 0);
+		// Helper to prevent registering authors from getting lost
+		$templateMgr->assign('requiresPresenter', Request::getUserVar('requiresPresenter'));
 		$templateMgr->display('user/login.tpl');
 	}
 	

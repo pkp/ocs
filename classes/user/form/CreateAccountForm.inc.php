@@ -123,6 +123,7 @@ class CreateAccountForm extends Form {
 	 */
 	function initData() {
 		$this->setData('createAsReader', 1);
+		if (Request::getUserVar('requiresPresenter')) $this->setData('createAsPresenter', 1);
 		$this->setData('existingUser', $this->existingUser);
 		$this->setData('userLocales', array());
 		$this->setData('sendPassword', 1);

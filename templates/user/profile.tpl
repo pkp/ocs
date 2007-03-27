@@ -79,6 +79,7 @@
 		</select>
 	</td>
 </tr>
+
 <tr valign="top">
 	<td class="label">{fieldLabel name="timeZone" key="common.timeZone"}</td>
 	<td class="value">
@@ -88,6 +89,19 @@
 		</select>
 	</td>
 </tr>
+<tr valign="top">
+	<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
+	<td class="value"><textarea name="biography" id="biography" rows="5" cols="40" class="textArea">{$biography|escape}</textarea></td>
+</tr>
+{if $profileLocalesEnabled && count($availableLocales) > 1}
+<tr valign="top">
+	<td class="label">{translate key="user.workingLanguages"}</td>
+	<td>{foreach from=$availableLocales key=localeKey item=localeName}
+		<input type="checkbox" name="userLocales[]" id="userLocales-{$localeKey}" value="{$localeKey}"{if in_array($localeKey, $userLocales)} checked="checked"{/if} /> <label for="userLocales-{$localeKey}">{$localeName|escape}</label><br />
+	{/foreach}</td>
+</tr>
+{/if}
+
 {if $allowRegReader || $allowRegPresenter || $allowRegReviewer}
 	<tr valign="top">
 		<td class="label">{translate key="user.roles"}</td>
@@ -104,19 +118,6 @@
 		</td>
 	</tr>
 {/if}
-<tr valign="top">
-	<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-	<td class="value"><textarea name="biography" id="biography" rows="5" cols="40" class="textArea">{$biography|escape}</textarea></td>
-</tr>
-{if $profileLocalesEnabled && count($availableLocales) > 1}
-<tr valign="top">
-	<td class="label">{translate key="user.workingLanguages"}</td>
-	<td>{foreach from=$availableLocales key=localeKey item=localeName}
-		<input type="checkbox" name="userLocales[]" id="userLocales-{$localeKey}" value="{$localeKey}"{if in_array($localeKey, $userLocales)} checked="checked"{/if} /> <label for="userLocales-{$localeKey}">{$localeName|escape}</label><br />
-	{/foreach}</td>
-</tr>
-{/if}
-
 {foreach from=$schedConfs name=schedConfNotifications key=thisSchedConfId item=thisSchedConf}
 	{assign var=thisSchedConfId value=$thisSchedConf->getSchedConfId()}
 	{assign var=notificationEnabled value=`$schedConfNotifications.$thisSchedConfId`}
@@ -160,6 +161,7 @@
 {/if}
 
 </table>
+
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="user" escape=false}'" /></p>
 </form>
 

@@ -47,7 +47,7 @@ class SchedConfHandler extends Handler {
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
 		$tracks = array();
-		$tracks = &$trackDao->getSchedConfTracks($schedConf->getConferenceId());
+		$tracks = &$trackDao->getSchedConfTracks($schedConf->getSchedConfId());
 		$tracks = &$tracks->toArray();
 		$templateMgr->assign_by_ref('tracks', $tracks);
 		$trackDirectors = array();
@@ -108,7 +108,7 @@ class SchedConfHandler extends Handler {
 		}
 				
 		$templateMgr->assign('acceptingSubmissions', $acceptingSubmissions);
-		$templateMgr->assign('notAcceptingSubmissionsMessage', $notAcceptingSubmissionsMessage);
+		if (!$acceptingSubmissions) $templateMgr->assign('notAcceptingSubmissionsMessage', $notAcceptingSubmissionsMessage);
 		$templateMgr->assign('helpTopicId', 'schedConf.cfp');
 		$templateMgr->display('schedConf/cfp.tpl');
 	}

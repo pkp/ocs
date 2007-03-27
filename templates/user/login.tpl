@@ -49,7 +49,7 @@
 </table>
 
 <p>
-&#187; <a href="{url page="user" op="account" source=$source|escape}">{translate key="user.login.createAccount"}</a><br />
+&#187; <a href="{url page="user" op="account" source=$source|escape requiresPresenter=$requiresPresenter|escape}">{translate key="user.login.createAccount"}</a><br />
 &#187; <a href="{url page="login" op="lostPassword"}">{translate key="user.login.forgotPassword"}</a>
 </p>
 
