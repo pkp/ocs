@@ -267,7 +267,7 @@ class PaperSearch {
 				if (!isset($schedConfCache[$schedConfId])) {
 					$schedConfCache[$schedConfId] = &$schedConf;
 					import('schedConf.SchedConfAction');
-					$schedConfAvailabilityCache[$schedConfId] = SchedConfAction::mayViewPapers($schedConf);
+					$schedConfAvailabilityCache[$schedConfId] = SchedConfAction::mayViewProceedings($schedConf);
 				}
 
 				// Store the retrieved objects in the result array.

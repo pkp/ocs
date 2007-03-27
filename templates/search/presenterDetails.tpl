@@ -20,7 +20,7 @@
 	{assign var=schedConfUnavailable value=$schedConfsUnavailable.$schedConfId}
 	{assign var=trackId value=$paper->getTrackId()}
 	{assign var=track value=$tracks[$trackId]}
-	{if $schedConf->getEnabled() && !$schedConfUnavailable}
+	{if !$schedConfUnavailable}
 	<li>
 
 		<i><a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getFullTitle()|escape}</a> - {$track->getTitle()|escape}</i><br />

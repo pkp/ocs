@@ -150,29 +150,11 @@ class SearchHandler extends Handler {
 
 		$rangeInfo = Handler::getRangeInfo('search');
 
-		$allPaperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedByTitle(
+		$paperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedByTitle(
 			$conference? $conference->getConferenceId():-1,
 			$schedConf?$schedConf->getSchedConfId():-1,
 			$rangeInfo);
 
-		// FIXME: this is horribly inefficient.
-		// Prune papers from scheduled conferences that aren't available.
-		$paperIds = array();
-		$schedConfAbstractPermissions = array();
-		foreach($allPaperIds as $paperId) {
-			$publishedPaper =& $publishedPaperDao->getPublishedPaperById($paperId);
-			$schedConfId = $publishedPaper->getSchedConfId();
-
-			if(!isset($schedConfAbstractPermissions[$schedConfId])) {
-				$schedConf = &$schedConfDao->getSchedConf($schedConfId);
-				$schedConfAbstractPermissions[$schedConfId] = SchedConfAction::mayViewProceedings($schedConf);
-			}
-
-			if($schedConfAbstractPermissions[$schedConfId]) {
-				$paperIds[] = $paperId;
-			}
-		}
-		
 		$totalResults = count($paperIds);
 		$paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
 		$results = &new VirtualArrayIterator(PaperSearch::formatResults($paperIds), $totalResults, $rangeInfo->getPage(), $rangeInfo->getCount());
@@ -209,11 +191,12 @@ class SearchHandler extends Handler {
 		$schedConfAbstractPermissions = array();
 		$schedConfPaperPermissions = array();
 		foreach($allPaperIds as $paperId) {
-			$publishedPaper =& $publishedPaperDao->getPublishedPaperById($paperId);
+			$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId);
 			$schedConfId = $publishedPaper->getSchedConfId();
 
 			if(!isset($schedConfAbstractPermissions[$schedConfId])) {
-				$schedConf = &$schedConfDao->getSchedConf($schedConfId);
+				unset($schedConf);
+				$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 				$schedConfAbstractPermissions[$schedConfId] = SchedConfAction::mayViewProceedings($schedConf);
 				$schedConfPaperPermissions[$schedConfId] = SchedConfAction::mayViewPapers($schedConf);
 			}
