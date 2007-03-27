@@ -108,7 +108,8 @@ class RegistrationForm extends Form {
 					'membership' => $registration->getMembership(),
 					'domain' => $registration->getDomain(),
 					'ipRange' => $registration->getIPRange(),
-					'specialRequests' => $registration->getSpecialRequests()
+					'specialRequests' => $registration->getSpecialRequests(),
+					'datePaid' => $registration->getDatePaid()
 				);
 
 			} else {
@@ -121,7 +122,9 @@ class RegistrationForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('userId', 'typeId', 'membership', 'domain', 'ipRange', 'notifyEmail', 'specialRequests'));
+		$this->readUserVars(array('userId', 'typeId', 'membership', 'domain', 'ipRange', 'notifyEmail', 'specialRequests', 'datePaid'));
+
+		$this->_data['datePaid'] = Request::getUserVar('paid')?Request::getUserDateVar('datePaid'):null;
 
 		// If registration type requires it, membership is provided
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
@@ -168,8 +171,7 @@ class RegistrationForm extends Form {
 		$registration->setSpecialRequests($this->getData('specialRequests') ? $this->getData('specialRequests') : null);
 		$registration->setDateRegistered(time());
 
-		// FIXME: integrate payment module...
-		$registration->setDatePaid(time());
+		$registration->setDatePaid($this->getData('datePaid'));
 
 		// Update or insert registration
 		if ($registration->getRegistrationId() != null) {

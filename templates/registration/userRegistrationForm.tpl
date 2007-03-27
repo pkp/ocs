@@ -75,7 +75,7 @@
 </table>
 
 <p>
-	<label for="feeCode">{translate key="schedConf.registration.feeCode"}</label>&nbsp;&nbsp;<input id="feeCode" type="text" value="{$feeCode|escape}" class="textField" /><br />
+	<label for="feeCode">{translate key="schedConf.registration.feeCode"}</label>&nbsp;&nbsp;<input id="feeCode" name="feeCode" type="text" value="{$feeCode|escape}" class="textField" /><br />
 	{translate key="schedConf.registration.feeCode.description"}
 </p>
 
@@ -88,7 +88,31 @@
 <h3>{translate key="schedConf.registration.account"}</h3>
 {if $userLoggedIn}
 	{url|assign:"logoutUrl" page="login" op="signOut" source=$requestUri}
-	<p>{translate key="schedConf.registration.loggedInAs" userFullName=$userFullName logoutUrl=$logoutUrl}</p>
+	{url|assign:"profileUrl" page="user" op="profile"}
+	<p>{translate key="schedConf.registration.loggedInAs" logoutUrl=$logoutUrl profileUrl=$profileUrl}</p>
+
+	<table class="data" width="100%">
+		<tr valign="top">
+			<td width="20%" class="label">{translate key="user.name"}</td>
+			<td width="80%" class="value">{$user->getFullName()|escape}</td>
+		</tr>
+		<tr valign="top">
+			<td class="label">{translate key="user.email"}</td>
+			<td class="value">{$user->getEmail()|escape}</td>
+		</tr>
+		<tr valign="top">
+			<td class="label">{translate key="user.phone"}</td>
+			<td class="value">{$user->getPhone()|escape}</td>
+		</tr>
+		<tr valign="top">
+			<td class="label">{translate key="user.fax"}</td>
+			<td class="value">{$user->getFax()|escape}</td>
+		</tr>
+		<tr valign="top">
+			<td class="label">{translate key="common.mailingAddress"}</td>
+			<td class="value">{$user->getMailingAddress()|strip_unsafe_html|nl2br}</td>
+		</tr>
+	</table>
 {else}
 	{url|assign:"loginUrl" page="login" op="index" source=$requestUri}
 	<p>{translate key="schedConf.registration.createAccount.description" loginUrl=$loginUrl}</p>
@@ -217,9 +241,38 @@
 
 <p><textarea {$disableSnippet} name="specialRequests" id="specialRequests" cols="60" rows="10" class="textArea">{$specialRequests|escape}</textarea></p>
 
-<input type="submit" value="{translate key="schedConf.registration.register"}" {if !$registrationMethodAvailable}disabled="disabled" class="button" {else}class="button defaultButton" {/if}/>
+<div class="separator"></div>
+
+{if $schedConfSettings.registrationName}
+<h3>{translate key="manager.registrationPolicies.registrationContact"}</h3>
+
+<table class="data" width="100%">
+	<tr valign="top">
+		<td width="20%" class="label">{translate key="user.name"}</td>
+		<td width="80%" class="value">{$schedConfSettings.registrationName|escape}</td>
+	</tr>
+	{if $schedConfSettings.registrationEmail}<tr valign="top">
+		<td class="label">{translate key="about.contact.email"}</td>
+		<td class="value">{mailto address=$schedConfSettings.registrationEmail|escape encode="hex"}</td>
+	</tr>{/if}
+	{if $schedConfSettings.registrationPhone}<tr valign="top">
+		<td class="label">{translate key="about.contact.phone"}</td>
+		<td class="value">{$schedConfSettings.registrationPhone|escape}</td>
+	</tr>{/if}
+	{if $schedConfSettings.registrationFax}<tr valign="top">
+		<td class="label">{translate key="about.contact.fax"}</td>
+		<td class="value">{$schedConfSettings.registrationFax|escape}</td>
+	</tr>{/if}
+	{if $schedConfSettings.registrationMailingAddress}<tr valign="top">
+		<td class="label">{translate key="common.mailingAddress"}</td>
+		<td class="value">{$schedConfSettings.registrationMailingAddress|nl2br}</td>
+	</tr>{/if}
+</table>
 
 <div class="separator"></div>
+{/if}{* if displaying reg manager info *}
+
+<p><input type="submit" value="{translate key="schedConf.registration.register"}" {if !$registrationMethodAvailable}disabled="disabled" class="button" {else}class="button defaultButton" {/if}/></p>
 
 </form>
 

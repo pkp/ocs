@@ -33,20 +33,21 @@ class UserRegistrationForm extends Form {
 	
 		// Registration type is provided and valid
 		$this->addCheck(new FormValidator($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdRequired'));
-		$this->addCheck(new FormValidatorCustom($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdValid', create_function('$registrationTypeId, $schedConfId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->registrationTypeExistsByTypeId($registrationTypeId, $schedConfId);'), array($schedConf->getSchedConfId())));
+		$this->addCheck(new FormValidatorCustom($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdValid', create_function('$registrationTypeId, $schedConfId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->openRegistrationTypeExistsByTypeId($registrationTypeId, $schedConfId);'), array($schedConf->getSchedConfId())));
+		$this->addCheck(new FormValidatorCustom($this, 'feeCode', 'required', 'manager.registration.form.feeCodeValid', create_function('$feeCode, $schedConfId, $form', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->checkCode($form->getData(\'registrationTypeId\'), $schedConfId, $feeCode);'), array($schedConf->getSchedConfId(), $this)));
 
 		import('captcha.CaptchaManager');
 		$captchaManager =& new CaptchaManager();
 		$this->captchaEnabled = ($captchaManager->isEnabled() && Config::getVar('captcha', 'captcha_on_register'))?true:false;
 
 		$user =& Request::getUser();
-		$this->addCheck(new FormValidator($this, 'username', 'required', 'user.profile.form.usernameRequired'));
-		$this->addCheck(new FormValidator($this, 'password', 'required', 'user.profile.form.passwordRequired'));
-
 		if (!$user) {
 			$site = &Request::getSite();
 			$this->profileLocalesEnabled = $site->getProfileLocalesEnabled();
-			
+
+			$this->addCheck(new FormValidator($this, 'username', 'required', 'user.profile.form.usernameRequired'));
+			$this->addCheck(new FormValidator($this, 'password', 'required', 'user.profile.form.passwordRequired'));
+
 			$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.account.form.usernameExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByUsername'), array(), true));
 			$this->addCheck(new FormValidatorAlphaNum($this, 'username', 'required', 'user.account.form.usernameAlphaNumeric'));
 			$this->addCheck(new FormValidatorLength($this, 'password', 'required', 'user.account.form.passwordLengthTooShort', '>=', $site->getMinPasswordLength()));
@@ -108,6 +109,8 @@ class UserRegistrationForm extends Form {
 			$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 		}
 
+		$templateMgr->assign('schedConfSettings', $schedConf->getSettings());
+		$templateMgr->assign_by_ref('user', $user);
 		parent::display();
 	}
 	
@@ -115,7 +118,7 @@ class UserRegistrationForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$userVars = array('registrationTypeId', 'specialRequests');
+		$userVars = array('registrationTypeId', 'specialRequests', 'feeCode');
 
 		$user =& Request::getUser();
 		if (!$user) {
@@ -197,6 +200,15 @@ class UserRegistrationForm extends Form {
 			if (!$userId) {
 				return false;
 			}
+
+			$conference =& Request::getConference();
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$role =& new Role();
+			$role->setRoleId(ROLE_ID_READER);
+			$role->setSchedConfId($schedConf->getSchedConfId());
+			$role->setConferenceId($conference->getConferenceId());
+			$role->setUserId($user->getUserId());
+			$roleDao->insertRole($role);
 			
 			$sessionManager = &SessionManager::getManager();
 			$session = &$sessionManager->getUserSession();
@@ -210,9 +222,6 @@ class UserRegistrationForm extends Form {
 		$registration->setTypeId($this->getData('registrationTypeId'));
 		$registration->setSpecialRequests($this->getData('specialRequests') ? $this->getData('specialRequests') : null);
 		$registration->setDateRegistered(time());
-
-		// FIXME: integrate payment module...
-		$registration->setDatePaid(time());
 
 		$registrationDao->insertRegistration($registration);
 	}

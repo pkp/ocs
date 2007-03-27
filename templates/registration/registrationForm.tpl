@@ -82,9 +82,15 @@
 <tr valign="top">
 	<td class="label">{fieldLabel name="specialRequests" key="manager.registration.form.specialRequests"}</td>
 	<td class="value">
-		<input type="text" id="specialRequests" name="specialRequests" value="{$specialRequests|escape}" size="40" maxlength="255" class="textField" />
+		<textarea id="specialRequests" name="specialRequests" cols="40" rows="5" class="textArea">{$specialRequests|escape}</textarea>
 		<br />
 		<span class="instruct">{translate key="manager.registration.form.specialRequestsInstructions"}</span>
+	</td>
+</tr>
+<tr valign="top">
+	<td class="label">{fieldLabel name="paid" key="manager.registration.form.payment"}</td>
+	<td class="value">
+		<input type="checkbox" id="paid" name="paid" value="1" {if $datePaid}checked="checked"{/if} />&nbsp;&nbsp;{html_select_date prefix="datePaid" time=$datePaid all_extra="class=\"selectMenu\"" start_year=$yearOffsetPast end_year=$yearOffsetFuture}
 	</td>
 </tr>
 </table>

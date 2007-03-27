@@ -125,9 +125,19 @@ class SchedConfHandler extends Handler {
 			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
 
-		import('registration.form.UserRegistrationForm');
-		$form =& new UserRegistrationForm();
-		$form->display();
+		$user =& Request::getUser();
+		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		if ($user && $registrationDao->getRegistrationIdByUser($user->getUserId(), $schedConf->getSchedConfId())) {
+			// This user has already registered.
+			$templateMgr->assign('message', 'schedConf.registration.alreadyRegistered');
+			$templateMgr->assign('backLinkLabel', 'common.back');
+			$templateMgr->assign('backLink', Request::url(null, null, 'index'));
+			$templateMgr->display('common/message.tpl');
+		} else {
+			import('registration.form.UserRegistrationForm');
+			$form =& new UserRegistrationForm();
+			$form->display();
+		}
 	}
 
 	/**

@@ -167,6 +167,62 @@ class RegistrationTypeDAO extends DAO {
 	}
 
 	/**
+	 * Check if an open registration type exists with the given type id for a scheduled conference.
+	 * @param $typeId int
+	 * @param $schedConfId int
+	 * @return boolean
+	 */
+	function openRegistrationTypeExistsByTypeId($typeId, $schedConfId) {
+		$time = $this->dateToDB(time());
+		$result = &$this->retrieve(
+			'SELECT COUNT(*)
+				FROM registration_types
+				WHERE type_id = ?
+				AND   sched_conf_id = ?
+				AND   opening_date < ' . $time . '
+				AND   closing_date > ' . $time,
+			array(
+				$typeId,
+				$schedConfId
+			)
+		);
+		$returner = isset($result->fields[0]) && $result->fields[0] != 0 ? true : false;
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
+	 * Check if a registration type exists with the given type id and fee code for a scheduled conference.
+	 * @param $typeId int
+	 * @param $schedConfId int
+	 * @param $code string
+	 * @return boolean
+	 */
+	function checkCode($typeId, $schedConfId, $code) {
+		$result = &$this->retrieve(
+			'SELECT COUNT(*)
+				FROM registration_types
+				WHERE type_id = ?
+				AND   sched_conf_id = ?
+				AND   code = ?',
+			array(
+				$typeId,
+				$schedConfId,
+				$code
+			)
+		);
+		$returner = isset($result->fields[0]) && $result->fields[0] != 0 ? true : false;
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
 	 * Check if a registration type exists with the given type name for a scheduled conference.
 	 * @param $typeName string
 	 * @param $schedConfId int
@@ -359,6 +415,22 @@ class RegistrationTypeDAO extends DAO {
 	function &getRegistrationTypesBySchedConfId($schedConfId, $rangeInfo = null) {
 		$result = &$this->retrieveRange(
 			'SELECT * FROM registration_types WHERE sched_conf_id = ? ORDER BY seq',
+			 $schedConfId, $rangeInfo
+		);
+
+		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationTypeFromRow');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve an array of open registration types matching a particular scheduled conference ID.
+	 * @param $schedConfId int
+	 * @return object DAOResultFactory containing matching RegistrationTypes
+	 */
+	function &getOpenRegistrationTypesBySchedConfId($schedConfId, $rangeInfo = null) {
+		$time = time();
+		$result = &$this->retrieveRange(
+			'SELECT * FROM registration_types WHERE sched_conf_id = ? AND opening_date < ' . $time . ' AND closing_date < ' . $time . ' ORDER BY seq',
 			 $schedConfId, $rangeInfo
 		);
 

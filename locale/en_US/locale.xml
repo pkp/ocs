@@ -453,7 +453,7 @@
 	<message key="schedConf.submissions">Submissions</message>
 
 	<!-- User self-registration form -->
-
+	<message key="schedConf.registration.alreadyRegistered">You are already registered for this conference. Please contact the principal contact in "About" if this is in error or you would like to change your registration.</message>
 	<message key="schedConf.registration.conferenceFees">Conference Fees</message>
 	<message key="schedConf.registration.type">Registration Type</message>
 	<message key="schedConf.registration.cost">Cost</message>
@@ -465,7 +465,7 @@
 	<message key="schedConf.registration.specialRequests">Special Requests</message>
 	<message key="schedConf.registration.specialRequests.description">Please describe any special requirements or requests, such as dietary, access, etc.</message>
 	<message key="schedConf.registration.account">User Account</message>
-	<message key="schedConf.registration.loggedInAs"><![CDATA[You are currently logged in as {$userFullName}. If this is not correct, please <a href="{$logoutUrl}">log out</a>.]]></message>
+	<message key="schedConf.registration.loggedInAs"><![CDATA[You are currently logged in. Verify the account information below is correct. If it is not, correct it using <a href="{$profileUrl}">My Profile</a> or <a href="{$logoutUrl}">log out</a> to use another account.]]></message>
 	<message key="schedConf.registration.createAccount.description"><![CDATA[You are not currently logged in. In order to register for this conference, you will need an account. If you already have one, <a href="{$loginUrl}">click here</a> to log in; otherwise, fill in the information below in order to create a new account.]]></message>
 	<message key="schedConf.registration."></message>
 
@@ -1451,6 +1451,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registration.form.registrationExists">This user already has a registration for this conference.</message>
 	<message key="manager.registration.form.typeIdRequired">A registration type is required.</message>
 	<message key="manager.registration.form.typeIdValid">Please select a valid registration type.</message>
+	<message key="manager.registration.form.feeCodeValid">Please double-check the fee code and try again.</message>
 	<!--<message key="manager.registration.form.dateStartRequired">A registration start date is required.</message>
 	<message key="manager.registration.form.dateStartValid">Please select a valid registration start date.</message>
 	<message key="manager.registration.form.dateEndRequired">A registration end date is required.</message>
@@ -1472,6 +1473,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registration.form.ipRange">IP range</message>
 	<message key="manager.registration.form.ipRangeInstructions">Enter an IP range if the registration type is for institutions. If an IP range is entered here, the domain is optional. Valid values include an IP (e.g. 142.58.103.1), a CIDR IP range (e.g. 142.58.100.0/24), an IP range (e.g. 142.58.103.1 - 142.58.103.4), an IP range with '*' (e.g. 142.58.103.*), or any combination of these separated by a ';' (e.g. 142.58.103.* - 142.58.107.* ; 142.58.108.1/24 ; 142.58.106.*)</message>
 	<message key="manager.registration.form.specialRequests">Special Requests</message>
+	<message key="manager.registration.form.payment">Payment</message>
 	<message key="manager.registration.form.specialRequestsInstructions">Please use this space to include any special requests or requirements for this registration (e.g. dietary restrictions, or disabilities.)</message>
 	<message key="manager.registration.form.notifyEmail">Send the user an email with their username and registration details.</message>
 	<message key="manager.registration.form.saveAndCreateAnother">Save and Create Another</message>

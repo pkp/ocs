@@ -52,7 +52,7 @@ class RegistrationHandler extends ManagerHandler {
 			}
 		}
 		
-		Request::redirect(null, null, null, 'registrations');
+		Request::redirect(null, null, null, 'registration');
 	}
 
 	/**
@@ -73,7 +73,7 @@ class RegistrationHandler extends ManagerHandler {
 			import('registration.form.RegistrationForm');
 
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrations'), 'manager.registration'));
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registration'), 'manager.registration'));
 
 			if ($registrationId == null) {
 				$templateMgr->assign('registrationTitle', 'manager.registration.createTitle');
@@ -86,7 +86,7 @@ class RegistrationHandler extends ManagerHandler {
 			$registrationForm->display();
 		
 		} else {
-				Request::redirect(null, null, null, 'registrations');
+				Request::redirect(null, null, null, 'registration');
 		}
 	}
 
@@ -169,7 +169,7 @@ class RegistrationHandler extends ManagerHandler {
 				if (Request::getUserVar('createAnother')) {
 					Request::redirect(null, null, null, 'selectRegistrant', null, array('registrationCreated', 1));
 				} else {
-					Request::redirect(null, null, null, 'registrations');
+					Request::redirect(null, null, null, 'registration');
 				}
 				
 			} else {
@@ -188,7 +188,7 @@ class RegistrationHandler extends ManagerHandler {
 			}
 			
 		} else {
-				Request::redirect(null, null, null, 'registrations');
+				Request::redirect(null, null, null, 'registration');
 		}
 	}
 

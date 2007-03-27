@@ -1,21 +1,21 @@
 <?php
 
 /**
- * RegistrationForm.inc.php
+ * CreateAccountForm.inc.php
  *
  * Copyright (c) 2003-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package user.form
  *
- * Form for user registration.
+ * Form for user account creation.
  *
  * $Id$
  */
 
 import('form.Form');
 
-class RegistrationForm extends Form {
+class CreateAccountForm extends Form {
 
 	/** @var boolean user is already registered with another conference */
 	var $existingUser;
@@ -32,8 +32,8 @@ class RegistrationForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function RegistrationForm() {
-		parent::Form('user/register.tpl');
+	function CreateAccountForm() {
+		parent::Form('user/createAccount.tpl');
 		
 		$this->existingUser = Request::getUserVar('existingUser') ? 1 : 0;
 
@@ -107,7 +107,6 @@ class RegistrationForm extends Form {
 		$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
 		$templateMgr->assign('profileLocalesEnabled', $this->profileLocalesEnabled);
 		$templateMgr->assign('source', Request::getUserVar('source'));
-		$templateMgr->assign('registrationMessage', Request::getUserVar('registrationMessage'));
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
@@ -115,7 +114,7 @@ class RegistrationForm extends Form {
 			$site = &Request::getSite();
 			$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 		}
-		$templateMgr->assign('helpTopicId', 'user.registerAndProfile');		
+		$templateMgr->assign('helpTopicId', 'user.accountAndProfile');		
 		parent::display();
 	}
 	
@@ -123,7 +122,7 @@ class RegistrationForm extends Form {
 	 * Initialize default data.
 	 */
 	function initData() {
-		$this->setData('registerAsReader', 1);
+		$this->setData('createAsReader', 1);
 		$this->setData('existingUser', $this->existingUser);
 		$this->setData('userLocales', array());
 		$this->setData('sendPassword', 1);
@@ -138,8 +137,8 @@ class RegistrationForm extends Form {
 			'firstName', 'middleName', 'lastName', 'initials', 'country',
 			'affiliation', 'email', 'userUrl', 'phone', 'fax', 'signature',
 			'mailingAddress', 'biography', 'interests', 'userLocales',
-			'registerAsReader', 'openAccessNotification', 'registerAsPresenter',
-			'registerAsReviewer', 'existingUser', 'sendPassword'
+			'createAsReader', 'openAccessNotification', 'createAsPresenter',
+			'createAsReviewer', 'existingUser', 'sendPassword'
 		);
 		if ($this->captchaEnabled) {
 			$userVars[] = 'captchaId';
@@ -234,7 +233,7 @@ class RegistrationForm extends Form {
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		
 		// Roles users are allowed to register themselves in
-		$allowedRoles = array('reader' => 'registerAsReader', 'presenter' => 'registerAsPresenter', 'reviewer' => 'registerAsReviewer');
+		$allowedRoles = array('reader' => 'createAsReader', 'presenter' => 'createAsPresenter', 'reviewer' => 'createAsReviewer');
 
 		import('schedConf.SchedConfAction');
 		if (!SchedConfAction::allowRegReader($schedConf)) {
