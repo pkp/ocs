@@ -150,10 +150,30 @@ class SearchHandler extends Handler {
 
 		$rangeInfo = Handler::getRangeInfo('search');
 
-		$paperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedByTitle(
+		$allPaperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedByTitle(
 			$conference? $conference->getConferenceId():-1,
 			$schedConf?$schedConf->getSchedConfId():-1,
 			$rangeInfo);
+
+		// FIXME: this is horribly inefficient.
+		$paperIds = array();
+		$schedConfAbstractPermissions = array();
+		$schedConfPaperPermissions = array();
+		foreach($allPaperIds as $paperId) {
+			$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId);
+			$schedConfId = $publishedPaper->getSchedConfId();
+
+			if(!isset($schedConfAbstractPermissions[$schedConfId])) {
+				unset($schedConf);
+				$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+				$schedConfAbstractPermissions[$schedConfId] = SchedConfAction::mayViewProceedings($schedConf);
+				$schedConfPaperPermissions[$schedConfId] = SchedConfAction::mayViewPapers($schedConf);
+			}
+
+			if($schedConfAbstractPermissions[$schedConfId]) {
+				$paperIds[] = $paperId;
+			}
+		}
 
 		$totalResults = count($paperIds);
 		$paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
@@ -186,7 +206,6 @@ class SearchHandler extends Handler {
 			$rangeInfo);
 		
 		// FIXME: this is horribly inefficient.
-		// Prune papers from scheduled conferences that aren't available.
 		$paperIds = array();
 		$schedConfAbstractPermissions = array();
 		$schedConfPaperPermissions = array();

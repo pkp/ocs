@@ -35,7 +35,6 @@
 {assign var=paper value=$result.paper}
 {assign var=track value=$result.track}
 {assign var=schedConf value=$result.schedConf}
-{assign var=schedConfAvailable value=$result.schedConfAvailable}
 {assign var=conference value=$result.conference}
 <tr valign="top">
 	{if !$currentConference}<td><a href="{url conference=$conference->getPath()}">{$conference->getTitle()|escape}</a></td>{/if}
@@ -43,7 +42,7 @@
 	<td width="35%">{$paper->getPaperTitle()|strip_unsafe_html}</td>
 	<td width="25%" align="right">
 			<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>
-		{if ($schedConfAvailable)}
+		{if $schedConfPaperPermissions[$schedConfId]}
 		{foreach from=$publishedPaper->getGalleys() item=galley name=galleyList}
 			&nbsp;
 			<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>

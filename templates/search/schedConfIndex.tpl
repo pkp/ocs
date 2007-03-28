@@ -36,7 +36,6 @@
 {assign var=track value=$result.track}
 {assign var=schedConf value=$result.schedConf}
 {assign var=schedConfId value=$schedConf->getSchedConfId}
-{assign var=schedConfAvailable value=$result.schedConfAvailable}
 {assign var=conference value=$result.conference}
 <tr valign="top">
 	{if !$currentConference}<td><a href="{url conference=$conference->getPath()}">{$conference->getTitle()|escape}</a></td>{/if}
