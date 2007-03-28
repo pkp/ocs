@@ -50,11 +50,14 @@
 				{if strtotime($registrationType->getOpeningDate()) < time() && strtotime($registrationType->getClosingDate()) > time()}
 					{assign var="registrationMethodAvailable" value=1}
 					<input type="radio" name="registrationTypeId" {if $registrationTypeId == $registrationType->getTypeId() || (!$registrationTypeId && $isFirstRegistrationType)}checked="checked" {/if} value="{$registrationType->getTypeId()|escape}" />
+					{$registrationType->getCost()|escape} {$registrationType->getCurrencyCodeAlpha()|escape}
+					{translate key="schedConf.registration.typeCloses" closingDate=$registrationType->getClosingDate()|date_format:$dateFormatShort}
 					{assign var="isFirstRegistrationType" value=false}
 				{else}
-					<input type="radio" name="registrationTypeId" value="{$registrationType->getTypeId()|escape}" disabled="disabled" />&nbsp;{translate key="schedConf.registration.typeClosed"}
+					<input type="radio" name="registrationTypeId" value="{$registrationType->getTypeId()|escape}" disabled="disabled" />
+					{$registrationType->getCost()|escape} {$registrationType->getCurrencyCodeAlpha()|escape}
+					{translate key="schedConf.registration.typeClosed" closingDate=$registrationType->getClosingDate()|date_format:$dateFormatShort}
 				{/if}
-				{$registrationType->getCost()|escape} ({$registrationType->getCurrencyCodeAlpha()|escape})
 			</td>
 		</tr>
 		{if $registrationType->getDescription()}

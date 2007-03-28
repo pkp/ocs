@@ -104,8 +104,7 @@ class CommentHandler extends Handler {
 
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		if (!$roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $userId, ROLE_ID_CONFERENCE_MANAGER)) {
+		if (!Validation::isConferenceManager()) {
 			Request::redirect(null, null, 'index');
 		}
 
@@ -143,7 +142,7 @@ class CommentHandler extends Handler {
 
 		if (isset($paper)) {
 			import('schedConf.SchedConfAction');
-			if (!SchedConfAction::mayViewPaper($schedConf)) {
+			if (!SchedConfAction::mayViewPapers($schedConf)) {
 				Request::redirect(null, null, 'index');
 			}
 		} else {
@@ -158,7 +157,7 @@ class CommentHandler extends Handler {
 
 		$pageHierarchy = array(
 			array(
-				Request::url(null, 'paper', 'view', array(
+				Request::url(null, null, 'paper', 'view', array(
 					$paper->getBestPaperId(Request::getConference()), $galleyId
 				)),
 				String::stripUnsafeHtml($paper->getPaperTitle()),
@@ -166,7 +165,7 @@ class CommentHandler extends Handler {
 			)
 		);
 
-		if ($comment) $pageHierarchy[] = array(Request::url(null, 'comment', 'view', array($paper->getPaperId(), $galleyId)), 'comments.readerComments');
+		if ($comment) $pageHierarchy[] = array(Request::url(null, null, 'comment', 'view', array($paper->getPaperId(), $galleyId)), 'comments.readerComments');
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 }

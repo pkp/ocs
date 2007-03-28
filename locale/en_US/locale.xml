@@ -459,7 +459,8 @@
 	<message key="schedConf.registration.cost">Cost</message>
 	<message key="schedConf.registration.noneAvailable">No registration types are available.</message>
 	<message key="schedConf.registration.register">Register</message>
-	<message key="schedConf.registration.typeClosed">(Registration Closed)</message>
+	<message key="schedConf.registration.typeCloses">(Closes {$closingDate})</message>
+	<message key="schedConf.registration.typeClosed">(Registration Closed {$closingDate})</message>
 	<message key="schedConf.registration.feeCode">Fee Code</message>
 	<message key="schedConf.registration.feeCode.description">If you were given a secret code for registration, please enter it here and make sure you've chosen the correct registration type above. Otherwise, leave the Fee Code field blank.</message>
 	<message key="schedConf.registration.specialRequests">Special Requests</message>
@@ -618,6 +619,7 @@
 	<message key="comments.email">Poster Email</message>
 	<message key="comments.title">Title</message>
 	<message key="comments.body">Body</message>
+	<message key="comments.commentsOnPaper">Comments On Paper</message>
 	<message key="comments.postAnonymously">Post this comment anonymously</message>
 	<message key="comments.readMore">Read more</message>
 	<message key="comments.confirmDeleteChildren">Deleting this comment will also delete any replies to it. Are you sure you wish to do this?</message>
