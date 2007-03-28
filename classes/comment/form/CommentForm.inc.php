@@ -116,6 +116,10 @@ class CommentForm extends Form {
 		$templateMgr->assign('parentId', $this->parentId);
 		$templateMgr->assign('paperId', $this->paperId);
 		$templateMgr->assign('galleyId', $this->galleyId);
+		$closeCommentsDate = $schedConf->getSetting('closeCommentsDate');
+		$commentsClosed = $schedConf->getSetting('closeComments')?true:false && (strtotime($closeCommentsDate < time()));
+		$templateMgr->assign('closeCommentsDate', $closeCommentsDate);
+		$templateMgr->assign('commentsClosed', $commentsClosed);
 		$templateMgr->assign('enableComments', $schedConf->getSetting('enableComments', true));
 		$templateMgr->assign('commentsRequireRegistration', $schedConf->getSetting('commentsRequireRegistration', true));
 		$templateMgr->assign('commentsAllowAnonymous', $schedConf->getSetting('commentsAllowAnonymous', true));

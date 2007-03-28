@@ -72,4 +72,6 @@ function handleAnonymousCheckbox(theBox) {
 
 </form>
 
+{if $commentsClosed}{translate key="comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}<br />{/if}
+
 {include file="common/footer.tpl"}

@@ -316,28 +316,6 @@ class TimelineForm extends Form {
 					'newCloseReviewProcessDate' => $this->_data['closeReviewProcessDate']));
 			$schedConf->updateSetting('closeReviewProcessDate', $this->_data['closeReviewProcessDate'], 'date');
 		}
-		if($schedConf->getSetting('regRegistrantOpenDate') != $this->_data['regRegistrantOpenDate']) {
-			ConferenceLog::logEvent(
-				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
-				CONFERENCE_LOG_CONFIGURATION,
-				LOG_TYPE_DEFAULT,
-				0, 'log.timeline.regRegistrantOpenDateChanged',
-				array('oldRegRegistrantOpenDate' => $schedConf->getSetting('regRegistrantOpenDate'),
-					'newRegRegistrantOpenDate' => $this->_data['regRegistrantOpenDate']));
-			$schedConf->updateSetting('regRegistrantOpenDate', $this->_data['regRegistrantOpenDate'], 'date');
-		}
-		if($schedConf->getSetting('regRegistrantCloseDate') != $this->_data['regRegistrantCloseDate']) {
-			ConferenceLog::logEvent(
-				$schedConf->getConferenceId(),
-				$schedConf->getSchedConfId(),
-				CONFERENCE_LOG_CONFIGURATION,
-				LOG_TYPE_DEFAULT,
-				0, 'log.timeline.regRegistrantCloseDateChanged',
-				array('oldRegRegistrantCloseDate' => $schedConf->getSetting('regRegistrantCloseDate'),
-					'newRegRegistrantCloseDate' => $this->_data['regRegistrantCloseDate']));
-			$schedConf->updateSetting('regRegistrantCloseDate', $this->_data['regRegistrantCloseDate'], 'date');
-		}
 		/*if($schedConf->getSetting('postPresentationsDate') != $this->_data['postPresentationsDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),

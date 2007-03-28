@@ -170,7 +170,6 @@
 			{$delayOpenAccessDate|date_format:$dateFormatLong}
 		</td>
 	</tr>
-	{*
 	<tr valign="top">
 		<td width="50%" class="label">
 			{fieldLabel name="closeComments" key="director.timeline.closeComments"}
@@ -179,7 +178,6 @@
 			{$closeCommentsDate|date_format:$dateFormatLong}
 		</td>
 	</tr>
-	*}
 </table>
 
 {include file="common/footer.tpl"}

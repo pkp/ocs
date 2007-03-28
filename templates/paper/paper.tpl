@@ -114,6 +114,8 @@
 
 <a href="{url page="comment" op="view" path=$paper->getPaperId()|to_array:$galleyId}" class="action" target="_parent">{translate key="comments.viewAllComments"}</a>{if $postingAllowed}&nbsp;|&nbsp;<a class="action" href="{url page="comment" op="add" path=$paper->getPaperId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a>{/if}<br />
 
+{if $commentsClosed}{translate key="comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}<br />{/if}
+
 {/if}
 
 </div>

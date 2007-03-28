@@ -620,6 +620,7 @@
 	<message key="comments.title">Title</message>
 	<message key="comments.body">Body</message>
 	<message key="comments.commentsOnPaper">Comments On Paper</message>
+	<message key="comments.commentsClosed">Comments closed on {$closeCommentsDate}.</message>
 	<message key="comments.postAnonymously">Post this comment anonymously</message>
 	<message key="comments.readMore">Read more</message>
 	<message key="comments.confirmDeleteChildren">Deleting this comment will also delete any replies to it. Are you sure you wish to do this?</message>
@@ -2521,6 +2522,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="rt.thisConference">Search conference</message>
 
 	<message key="rt.email.sent">Your message has been sent.</message>
+	<message key="rt.comments.commentsClosed">† Comments closed on {$closeCommentsDate}</message>
 	<message key="rt.email.needLogin"><![CDATA[* Requires <a target="_parent" href="{$loginUrl}">registration</a>]]></message>
 
 	<message key="rt.context.searchTerms">Search Terms</message>

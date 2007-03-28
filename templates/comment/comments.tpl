@@ -36,7 +36,7 @@
 		{mailto text=$emailReply encode="javascript" address=$comment->getPosterEmail() subject=$comment->getTitle() extra='class="action"'}&nbsp;&nbsp;
 	{/if}
 
-	{if $enableComments && (!$commentsRequireRegistration || $isUserLoggedIn)}
+	{if $enableComments && !$commentsClosed && (!$commentsRequireRegistration || $isUserLoggedIn)}
 		<a href="{url op="add" path=$paperId|to_array:$galleyId:$comment->getCommentId()}" class="action">{translate key="comments.postReply"}</a>&nbsp;&nbsp;
 	{/if}
 
@@ -68,7 +68,7 @@
 	{mailto text=$emailReply encode="javascript" address=$child->getPosterEmail()|escape subject=$child->getTitle()|escape extra='class="action"'}&nbsp;&nbsp;
 {/if}
 
-{if $enableComments && ($isUserLoggedIn || !$commentsRequireRegistration)}
+{if $enableComments && !$commentsClosed && ($isUserLoggedIn || !$commentsRequireRegistration)}
 	<a href="{url op="add" path=$paperId|to_array:$galleyId:$childId}" class="action">{translate key="comments.postReply"}</a>&nbsp;&nbsp;
 {/if}
 {if $isManager}
@@ -100,6 +100,8 @@
 		{translate key="comments.noComments"}
 	{/if}
 {/foreach}
+
+{if $commentsClosed}{translate key="comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}<br />{/if}
 
 {include file="common/footer.tpl"}
 

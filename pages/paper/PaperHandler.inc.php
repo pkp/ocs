@@ -167,7 +167,12 @@ class PaperHandler extends Handler {
 		$templateMgr->assign_by_ref('galley', $galley);
 		$templateMgr->assign_by_ref('track', $track);
 		$templateMgr->assign('paperId', $paperId);
-		$templateMgr->assign('postingAllowed', $enableComments && (!$commentsRequireRegistration || Validation::isLoggedIn()));
+
+		$closeCommentsDate = $schedConf->getSetting('closeCommentsDate');
+		$commentsClosed = $schedConf->getSetting('closeComments')?true:false && (strtotime($closeCommentsDate < time()));
+		$templateMgr->assign('closeCommentsDate', $closeCommentsDate);
+		$templateMgr->assign('commentsClosed', $commentsClosed);
+		$templateMgr->assign('postingAllowed', $enableComments && (!$commentsRequireRegistration || Validation::isLoggedIn()) && !$commentsClosed);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign('defineTermsContextId', isset($defineTermsContextId)?$defineTermsContextId:null);
 		$templateMgr->assign('comments', isset($comments)?$comments:null);
@@ -209,7 +214,11 @@ class PaperHandler extends Handler {
 		$enableComments = $schedConf->getSetting('enableComments', true);
 		$commentsRequireRegistration = $schedConf->getSetting('commentsRequireRegistration', true);
 		$commentsAllowAnonymous = $schedConf->getSetting('commentsAllowAnonymous', true);
-		$templateMgr->assign('postingAllowed', $enableComments && (!$commentsRequireRegistration || Validation::isLoggedIn()));
+		$closeCommentsDate = $schedConf->getSetting('closeCommentsDate');
+		$commentsClosed = $schedConf->getSetting('closeComments')?true:false && (strtotime($closeCommentsDate < time()));
+		$templateMgr->assign('closeCommentsDate', $closeCommentsDate);
+		$templateMgr->assign('commentsClosed', $commentsClosed);
+		$templateMgr->assign('postingAllowed', $enableComments && (!$commentsRequireRegistration || Validation::isLoggedIn()) && !$commentsClosed);
 		$templateMgr->assign('postingDisabled', !$enableComments);
 
 		$templateMgr->assign_by_ref('conferenceRt', $conferenceRt);

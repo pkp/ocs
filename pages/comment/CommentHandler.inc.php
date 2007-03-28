@@ -49,6 +49,10 @@ class CommentHandler extends Handler {
 		$templateMgr->assign('enableComments', $schedConf->getSetting('enableComments', true));
 		$templateMgr->assign('commentsRequireRegistration', $schedConf->getSetting('commentsRequireRegistration', true));
 		$templateMgr->assign('commentsAllowAnonymous', $schedConf->getSetting('commentsAllowAnonymous', true));
+		$closeCommentsDate = $schedConf->getSetting('closeCommentsDate');
+		$commentsClosed = $schedConf->getSetting('closeComments')?true:false && (strtotime($closeCommentsDate < time()));
+		$templateMgr->assign('closeCommentsDate', $closeCommentsDate);
+		$templateMgr->assign('commentsClosed', $commentsClosed);
 		$templateMgr->assign('isManager', $isManager);
 
 		$templateMgr->display('comment/comments.tpl');
@@ -64,11 +68,11 @@ class CommentHandler extends Handler {
 		// Bring in comment constants
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
-		$enableComments = $schedConf->getSetting('enableComments', true);
+		$enableComments = $schedConf->getSetting('enableComments', true) && (!$schedConf->getSetting('closeComments') || (strtotime($schedConf->getSetting('closeCommentsDate') > time())));
 		$commentsRequireRegistration = $schedConf->getSetting('commentsRequireRegistration', true);
 		$commentsAllowAnonymous = $schedConf->getSetting('commentsAllowAnonymous', true);
 
-		if (!$enableComments) Validation::redirect(null, null, 'index');
+		if (!$enableComments) Request::redirect(null, null, 'index');
 		if ($commentsRequireRegistration && !Request::getUser()) Validation::redirectLogin();
 
 		$parent = &$commentDao->getComment($parentId, $paperId);

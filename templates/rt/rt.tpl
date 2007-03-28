@@ -85,6 +85,9 @@
 		{/if}
 		{if $conferenceRt->getAddComment() && $postingAllowed}
 			<li><a href="{url page="comment" op="add" path=$paper->getPaperId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a></li>
+		{elseif $commentsClosed}
+			{translate key="rt.addComment"}†
+			{assign var=needsCommentsNote value=1}
 		{elseif !$postingDisabled}
 			{translate key="rt.addComment"}*
 			{assign var=needsLoginNote value=1}
@@ -138,6 +141,10 @@
 	{else}
 		<a href="{url op="viewDownloadInterstitial" path=$paperId|to_array:$galleyId}" target="_parent" class="rtAction">{translate key="common.close"}</a>
 	{/if}
+{/if}
+
+{if $needsCommentsNote}
+<p><i style="font-size: 0.9em">{translate key="rt.comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}</i></p>
 {/if}
 
 {if $needsLoginNote}
