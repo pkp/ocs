@@ -1227,10 +1227,6 @@ Title of classification system]]></message>
 	<message key="director.timeline.closeRegReviewer">Reviewer registration closed</message>
 	<message key="director.timeline.closeReviewProcess">Review process closed</message>
 	
-	<message key="director.timeline.registration">Registration</message>
-	<message key="director.timeline.openRegRegistrant">Open</message>
-	<message key="director.timeline.closeRegRegistrant">Closed</message>
-
 	<message key="director.timeline.websitePosting">Website Posting</message>
 	<message key="director.timeline.postPresentations">Accepted abstracts/presentations</message>
 	<message key="director.timeline.postAbstracts">Accepted abstracts</message>

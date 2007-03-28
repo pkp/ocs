@@ -133,25 +133,6 @@
 
 <br/>
 
-<h3>{translate key="director.timeline.registration"}</h3>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.openRegRegistrant"}</td>
-		<td width="50%" class="value">
-			{$regRegistrantOpenDate|date_format:$dateFormatLong}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.closeRegRegistrant"}</td>
-		<td width="50%" class="value">
-			{$regRegistrantCloseDate|date_format:$dateFormatLong}
-		</td>
-	</tr>
-</table>
-
-<br/>
-
 <h3>{translate key="director.timeline.websitePosting"}</h3>
 
 <table width="100%" class="data">

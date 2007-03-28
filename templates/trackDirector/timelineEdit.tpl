@@ -137,25 +137,6 @@
 
 <br/>
 
-<h3>{translate key="director.timeline.registration"}</h3>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.openRegRegistrant"}</td>
-		<td width="50%" class="value">
-			{html_select_date prefix="regRegistrantOpenDate" time=$regRegistrantOpenDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.closeRegRegistrant"}</td>
-		<td width="50%" class="value">
-			{html_select_date prefix="regRegistrantCloseDate" time=$regRegistrantCloseDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
-		</td>
-	</tr>
-</table>
-
-<br/>
-
 <h3>{translate key="director.timeline.websitePosting"}</h3>
 
 <table width="100%" class="data">
