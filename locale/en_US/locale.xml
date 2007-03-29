@@ -913,7 +913,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 		<![CDATA[
 			<p>Almost Done!</p>
 			<p>A conference has now been set up, which may entail a single scheduled conference, an annual conference, or a series of scheduled conferences, all of which can be managed from this conference site. In order to schedule a specific instance of this conference, go to <a href="{$schedConfSetupUrl}">Scheduled Conferences</a>. You may access this page at any time via the Conference Manager's homepage.</p>
-			<p>You can return to these five pages at any time by following the links to "User Home > Conference Manager > Setup".</p>
+			<p>You can return to these six pages at any time by following the links to "User Home > Conference Manager > Setup".</p>
 			<p>You can manage scheduled conferences through "User Home > Conference Manager > Setup"</p>
 			]]></message>
 
@@ -956,7 +956,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.loggingAndAuditing.description">Email logs, event logs, etc.</message>
 	<message key="manager.setup.indexing.description">Search engines and metadata harvesting</message>
 
-	<message key="manager.setup.stepsToConferenceSite">Five Steps to a Conference Web Site</message>
+	<message key="manager.setup.stepsToConferenceSite">Six Steps to a Conference Web Site</message>
 
 	<!-- Conference setup page 1 -->
 	<message key="manager.setup.aboutConference.conferenceDescription">Conference Description</message>
