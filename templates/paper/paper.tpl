@@ -77,24 +77,15 @@
 	<div><i>{$paper->getPresenterString()|escape}</i></div>
 	<br />
 
-	{assign var="indented" value=0}
+	<blockquote>
 	{if $paper->getLocation()}
-		{if !$indented}
-			<blockquote>
-		{/if}
-		{assign var="indented" value=1}
 		{translate key="paper.location}:&nbsp;{$paper->getLocation()|strip_unsafe_html|nl2br}<br/>
 	{/if}
-
 	{if $paper->getPresentTime()}
-		{if !$indented}
-			<blockquote>
-		{/if}
-		{assign var="indented" value=1}
 		{translate key="paper.time"}:&nbsp;{$paper->getPresentTime()|date_format:$dateFormatShort}<br/>
 	{/if}
-
-	{if $indented}</blockquote>{/if}
+	{translate key="submission.lastModified"}:&nbsp;{$paper->getLastModified()|date_format:$dateFormatShort}<br/>
+	</blockquote>
 
 	<h4>{translate key="paper.abstract"}</h4>
 	<br />
