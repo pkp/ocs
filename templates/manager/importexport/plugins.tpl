@@ -15,6 +15,8 @@
 <ul>
 	{foreach from=$plugins item=plugin}
 	<li><a href="{url op="importexport" path="plugin"|to_array:$plugin->getName()}">{$plugin->getDisplayName()|escape}</a>:&nbsp;{$plugin->getDescription()|escape}</li>
+	{foreachelse}
+		<li>{translate key="manager.importExport.noPlugins"}</li>
 	{/foreach}
 </ul>
 

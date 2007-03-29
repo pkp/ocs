@@ -1250,6 +1250,7 @@ Title of classification system]]></message>
 
 	<!-- Import/Export -->
 	<message key="manager.importExport">Import/Export Data</message>
+	<message key="manager.importExport.noPlugins">There are no import/export plugins currently installed.</message>
 
 	<!-- Groups / Organizing Team -->
 	<message key="manager.groups.editTitle">Edit Title</message>
