@@ -31,14 +31,8 @@ class TrackDirectorHandler extends Handler {
 
 		// Get the user's search conditions, if any
 		$searchField = Request::getUserVar('searchField');
-		$dateSearchField = Request::getUserVar('dateSearchField');
 		$searchMatch = Request::getUserVar('searchMatch');
 		$search = Request::getUserVar('search');
-
-		$fromDate = Request::getUserDateVar('dateFrom', 1, 1);
-		if ($fromDate !== null) $fromDate = date('Y-m-d H:i:s', $fromDate);
-		$toDate = Request::getUserDateVar('dateTo', 32, 12, null, 23, 59, 59);
-		if ($toDate !== null) $toDate = date('Y-m-d H:i:s', $toDate);
 
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
@@ -72,9 +66,9 @@ class TrackDirectorHandler extends Handler {
 			$searchField,
 			$searchMatch,
 			$search,
-			$dateSearchField,
-			$fromDate,
-			$toDate,
+			null,
+			null,
+			null,
 			$rangeInfo
 		);
 
@@ -88,10 +82,7 @@ class TrackDirectorHandler extends Handler {
 
 		// Set search parameters
 		$duplicateParameters = array(
-			'searchField', 'searchMatch', 'search',
-			'dateFromMonth', 'dateFromDay', 'dateFromYear',
-			'dateToMonth', 'dateToDay', 'dateToYear',
-			'dateSearchField'
+			'searchField', 'searchMatch', 'search'
 		);
 		foreach ($duplicateParameters as $param)
 			$templateMgr->assign($param, Request::getUserVar($param));
@@ -101,15 +92,10 @@ class TrackDirectorHandler extends Handler {
 			REVIEW_PROGRESS_PRESENTATION => Locale::translate('submission.paper')
 		));
 		
-		$templateMgr->assign('dateFrom', $fromDate);
-		$templateMgr->assign('dateTo', $toDate);
 		$templateMgr->assign('fieldOptions', Array(
 			SUBMISSION_FIELD_TITLE => 'paper.title',
 			SUBMISSION_FIELD_PRESENTER => 'user.role.presenter',
 			SUBMISSION_FIELD_DIRECTOR => 'user.role.director'
-		));
-		$templateMgr->assign('dateFieldOptions', Array(
-			SUBMISSION_FIELD_DATE_SUBMITTED => 'submissions.submitted'
 		));
 
 		$templateMgr->display('trackDirector/index.tpl');

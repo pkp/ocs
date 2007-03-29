@@ -23,14 +23,6 @@
 
 <br />
 
-{if !$dateFrom}
-{assign var="dateFrom" value="--"}
-{/if}
-
-{if !$dateTo}
-{assign var="dateTo" value="--"}
-{/if}
-
 <form method="post" name="submit" action="{url op="submissions" path=$pageToDisplay}">
 	{if $track}<input type="hidden" name="track" value="{$track|escape:"quotes"}"/>{/if}
 	<select name="searchField" size="1" class="selectMenu">
@@ -42,14 +34,6 @@
 	</select>
 	<input type="text" size="15" name="search" class="textField" value="{$search|escape}" />
 	<br/>
-	<select name="dateSearchField" size="1" class="selectMenu">
-		{html_options_translate options=$dateFieldOptions selected=$dateSearchField}
-	</select>
-	{translate key="common.between"}
-	{html_select_date prefix="dateFrom" time=$dateFrom all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+1"}
-	{translate key="common.and"}
-	{html_select_date prefix="dateTo" time=$dateTo all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+1"}
-	<br/>
 	<input type="submit" value="{translate key="common.search"}" class="button" />
 </form>
 &nbsp;
@@ -57,7 +41,7 @@
 {include file="trackDirector/$pageToDisplay.tpl"}
 
 <form action="#">
-{translate key="track.track"}: <select name="track" class="selectMenu" onchange="location.href='{url path=$pageToDisplay track="TRACK_ID" searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth escape=false}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1">{html_options options=$trackOptions selected=$track}</select>
+{translate key="track.track"}: <select name="track" class="selectMenu" onchange="location.href='{url path=$pageToDisplay track="TRACK_ID" searchField=$searchField searchMatch=$searchMatch search=$search escape=false}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1">{html_options options=$trackOptions selected=$track}</select>
 </form>
 
 {if ($pageToDisplay == "submissionsInReview")}
