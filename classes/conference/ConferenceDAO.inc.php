@@ -160,7 +160,7 @@ class ConferenceDAO extends DAO {
 		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
 		$announcementDao->deleteAnnouncementsByConference($conferenceId);
 
-		$schedConfDao = &DAORegistry::getDAO('schedConfDAO');
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$schedConfDao->deleteSchedConfsByConferenceId($conferenceId);
 		
 		return $this->update(
