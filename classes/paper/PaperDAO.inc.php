@@ -84,6 +84,8 @@ class PaperDAO extends DAO {
 		$paper->setUserId($row['user_id']);
 		$paper->setSchedConfId($row['sched_conf_id']);
 		$paper->setTrackId($row['track_id']);
+		$paper->setLocation($row['location']);
+		$paper->setPresentTime($this->datetimeFromDB($row['present_time']));
 
 		// Localize track title & abbreviation.
 		static $alternateLocaleNum;
@@ -174,6 +176,8 @@ class PaperDAO extends DAO {
 				 date_submitted,
 				 date_status_modified,
 				 last_modified,
+				 present_time,
+				 location,
 				 status,
 				 submission_progress,
 				 current_stage,
@@ -185,8 +189,8 @@ class PaperDAO extends DAO {
 				 pages,
 				 date_reminded)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified())),
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getPresentTime())),
 			array(
 				$paper->getUserId(),
 				$paper->getSchedConfId(),
@@ -208,6 +212,7 @@ class PaperDAO extends DAO {
 				$paper->getLanguage(),
 				$paper->getSponsor(),
 				$paper->getCommentsToDirector(),
+				$paper->getLocation(),
 				$paper->getStatus() === null ? SUBMISSION_STATUS_QUEUED : $paper->getStatus(),
 				$paper->getSubmissionProgress() === null ? 1 : $paper->getSubmissionProgress(),
 				$paper->getCurrentStage(),
@@ -264,6 +269,8 @@ class PaperDAO extends DAO {
 					date_submitted = %s,
 					date_status_modified = %s,
 					last_modified = %s,
+					present_time = %s,
+					location = ?,
 					status = ?,
 					submission_progress = ?,
 					current_stage = ?,
@@ -275,7 +282,7 @@ class PaperDAO extends DAO {
 					pages = ?,
 					date_reminded = ?
 				WHERE paper_id = ?',
-				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified())),
+				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getPresentTime())),
 			array(
 				$paper->getUserId(),
 				$paper->getTrackId(),
@@ -296,6 +303,7 @@ class PaperDAO extends DAO {
 				$paper->getLanguage(),
 				$paper->getSponsor(),
 				$paper->getCommentsToDirector(),
+				$paper->getLocation(),
 				$paper->getStatus(),
 				$paper->getSubmissionProgress(),
 				$paper->getCurrentStage(),

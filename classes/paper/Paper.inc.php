@@ -423,6 +423,38 @@ class Paper extends DataObject {
 		return $this->setData('abstractAlt2', $abstractAlt2);
 	}
 	
+ 	/**
+	 * Get location.
+	 * @return string
+	 */
+	function getLocation() {
+		return $this->getData('location');
+	}
+	
+	/**
+	 * Set location.
+	 * @param $location string
+	 */
+	function setLocation($location) {
+		return $this->setData('location', $location);
+	}
+	
+	/**
+	 * Get presentation time.
+	 * @return string
+	 */
+	function getPresentTime() {
+		return $this->getData('presentTime');
+	}
+	
+	/**
+	 * Set presentation time.
+	 * @param $time datetime
+	 */
+	function setPresentTime($presentTime) {
+		return $this->setData('presentTime', $presentTime);
+	}
+	
 	/**
 	 * Get discipline.
 	 * @return string

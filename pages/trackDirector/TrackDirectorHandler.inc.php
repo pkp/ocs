@@ -79,6 +79,7 @@ class TrackDirectorHandler extends Handler {
 		$templateMgr->assign('track', Request::getUserVar('track'));
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign('trackDirector', $user->getFullName());
+		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
 
 		// Set search parameters
 		$duplicateParameters = array(
@@ -99,6 +100,32 @@ class TrackDirectorHandler extends Handler {
 		));
 
 		$templateMgr->display('trackDirector/index.tpl');
+	}
+
+	/**
+	 * Update the times and locations in the Accepted table.
+	 */
+	function updateAcceptedTable() {
+		TrackDirectorHandler::validate();
+		TrackDirectorHandler::setupTemplate();
+
+		$schedConf = &Request::getSchedConf();
+		$user = &Request::getUser();
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+
+		$paperIds = Request::getUserVar('paperIds');
+		if (!empty($paperIds) && !is_array($paperIds)) $paperIds = array($paperIds);
+		if (is_array($paperIds)) foreach ($paperIds as $paperId) {
+			$paper =& $paperDao->getPaper($paperId);
+			if ($paper && $paper->getSchedConfId() == $schedConf->getSchedConfId()) {
+				$paper->setLocation(Request::getUserVar('location-' . $paperId));
+				$paper->setPresentTime(Request::getUserDateVar('presentTime-' . $paperId));
+				$paperDao->updatePaper($paper);
+			}
+			unset($paper);
+		}
+
+		Request::redirect(null, null, null, 'submissions', 'submissionsAccepted');
 	}
 
 	/**

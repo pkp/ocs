@@ -102,6 +102,7 @@ class DirectorHandler extends TrackDirectorHandler {
 		$templateMgr->assign('trackOptions', array(0 => Locale::Translate('director.allTracks')) + $tracks);
 		$templateMgr->assign_by_ref('submissions', $submissions);
 		$templateMgr->assign('track', Request::getUserVar('track'));
+		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
 
 		// Set search parameters
 		$duplicateParameters = array(
