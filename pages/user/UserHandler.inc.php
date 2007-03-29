@@ -200,7 +200,7 @@ class UserHandler extends Handler {
 
 	function createAccount() {
 		import('pages.user.CreateAccountHandler');
-		CreateAccountHandler::createAccountUser();
+		CreateAccountHandler::createAccount();
 	}
 
 	//
