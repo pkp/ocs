@@ -1224,10 +1224,8 @@ Title of classification system]]></message>
 	<message key="director.timeline.openRegPresenter">Presenter registration opened</message>
 	<message key="director.timeline.closeRegPresenter">Presenter registration closed</message>
 	<message key="director.timeline.showCFP">Call for Papers posted</message>
-	<message key="director.timeline.proposalsOpen">Abstracts accepted</message>
-	<message key="director.timeline.proposalsClosed">Abstracts due</message>
 	<message key="director.timeline.submissionsOpen">Submissions accepted</message>
-	<message key="director.timeline.submissionsClosed">Submissions due</message>
+	<message key="director.timeline.submissionsClosed">Submissions closed</message>
 
 	<message key="director.timeline.reviews">Reviews</message>
 	<message key="director.timeline.openRegReviewer">Reviewer registration opened</message>
@@ -1240,7 +1238,16 @@ Title of classification system]]></message>
 	<message key="director.timeline.postPapers">Accepted papers</message>
 	<message key="director.timeline.delayOpenAccess">Delay open access until</message>
 	<message key="director.timeline.closeComments">Close comments</message>
-	
+	<message key="director.timeline.form.conferenceEndDateBeforeConferenceStart">The conference end date must come after the conference start date.</message>
+	<message key="director.timeline.form.siteEndDateBeforeConferenceStart">The conference site cannot be moved to the archive before the conference start date.</message>
+	<message key="director.timeline.form.conferenceStartDateBeforeSubmissionsClose">The conference cannot start before submissions are closed.</message>
+	<message key="director.timeline.form.siteEndDateBeforeSiteStart">The website "Go Live" date must come before the "Move to Conference Archive" date.</message>
+	<message key="director.timeline.form.conferenceStartBeforeSiteStart">The website "Go Live" date must come before the conference start date.</message>
+	<message key="director.timeline.form.siteEndBeforeLastDay">The "Move to Conference Archive" date must come after the last day of the conference.</message>
+	<message key="director.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate">The presenter registration open date must come before the presenter registration close date.</message>
+	<message key="director.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">The reviewer registration open date must come before the reviewer registration close date.</message>
+	<message key="director.timeline.form.submissionsCloseBeforeCFP">The Call for Papers must be posted before submissions close.</message>
+
 	<!-- Import/Export -->
 	<message key="manager.importExport">Import/Export Data</message>
 
@@ -2366,6 +2373,23 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 		
 	<message key="log.timeline.publicationStateChanged">The publication state has been changed from {$oldPublicationState} to {$newPublicationState}.</message>
 	<message key="log.timeline.submissionStateChanged">The submission state has been changed from {$oldSubmissionState} to {$newSubmissionState}.</message>
+	<message key="log.timeline.startDateChanged">The conference start date changed from {$oldStartDate} to {$newStartDate}.</message>
+	<message key="log.timeline.endDateChanged">The conference start date changed from {$oldEndDate} to {$newEndDate}.</message>
+	<message key="log.timeline.regReviewerOpenDateChanged">The presenter registration open date changed from {$oldRegReviewerOpenDate} to {$newRegReviewerOpenDate}.</message>
+	<message key="log.timeline.regReviewerCloseDateChanged">The presenter registration close date changed from {$oldRegReviewerCloseDate} to {$newRegReviewerCloseDate}.</message>
+	<message key="log.timeline.regPresenterOpenDateChanged">The presenter registration open date changed from {$oldRegPresenterOpenDate} to {$newRegPresenterOpenDate}.</message>
+	<message key="log.timeline.regPresenterCloseDateChanged">The presenter registration close date changed from {$oldRegPresenterCloseDate} to {$newRegPresenterCloseDate}.</message>
+	<message key="log.timeline.showCFPDateChanged">The CFP display date changed from {$oldShowCFPDate} to {$newShowCFPDate}.</message>
+	<message key="log.timeline.submissionsOpenDateChanged">The submission open date changed from {$oldSubmissionsOpenDate} to {$newSubmissionsOpenDate}</message>
+	<message key="log.timeline.submissionsCloseDateChanged">The submission close date changed from {$oldSubmissionsCloseDate} to {$newSubmissionsCloseDate}</message>
+	<message key="log.timeline.postAbstractsDateChanged">The abstract post date changed from {$oldPostAbstractsDate} to {$newPostAbstractsDate}.</message>
+	<message key="log.timeline.postAbstractsChanged">The "post abstracts" setting was changed from {$oldPostAbstracts} to {$newPostAbstracts}.</message>
+	<message key="log.timeline.postPapersDateChanged">The post papers date changed from {$oldPostPapersDate} to {$newPostPapersDate}.</message>
+	<message key="log.timeline.postPapersChanged">The "post papers" setting was changed from {$oldPostPapers} to {$newPostPapers}.</message>
+	<message key="log.timeline.delayOpenAccessDateChanged">The open access date changed from {$oldDelayOpenAccessDate} to {$newDelayOpenAccessDate}.</message>
+	<message key="log.timeline.delayOpenAccessChanged">The delayed open access setting was changed from {$oldDelayOpenAccess} to {$newDelayOpenAccess}.</message>
+	<message key="log.timeline.closeCommentsDateChanged">The comments close date changed from {$oldCloseCommentsDate} to {$newCloseCommentsDate}.</message>
+	<message key="log.timeline.closeCommentsChanged">The close comments setting was changed from {$oldCloseComments} to {$newCloseComments}.</message>
 	
 	<!-- Reading Tools entries -->
 	<message key="rt.readingTools">Reading Tools</message>

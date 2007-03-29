@@ -306,8 +306,8 @@ class SubmitHandler extends PresenterHandler {
 		} else {
 
 			// If the paper does not exist, require that the submission window be open.
-			$submissionsOpenDate = $schedConf->getSetting('proposalsOpenDate', false);
-			$submissionsCloseDate = $schedConf->getSetting('proposalsCloseDate', false);
+			$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate', false);
+			$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate', false);
 			
 			if(!$submissionsOpenDate || !$submissionsCloseDate ||
 					time() < $submissionsOpenDate || time() > $submissionsCloseDate) {

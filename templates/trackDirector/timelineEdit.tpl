@@ -82,38 +82,18 @@
 			{html_select_date prefix="showCFPDate" time=$showCFPDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 		</td>
 	</tr>
-	{if $showProposalsOpenDate}
-	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.proposalsOpen"}</td>
-		<td width="50%" class="value">
-			{html_select_date prefix="proposalsOpenDate" time=$proposalsOpenDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
-		</td>
-	</tr>
-	{/if}
-	{if $showProposalsCloseDate}
-	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.proposalsClosed"}</td>
-		<td width="50%" class="value">
-			{html_select_date prefix="proposalsCloseDate" time=$proposalsCloseDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
-		</td>
-	</tr>
-	{/if}
-	{if $showSubmissionsOpenDate}
 	<tr valign="top">
 		<td width="50%" class="label">{translate key="director.timeline.submissionsOpen"}</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="submissionsOpenDate" time=$submissionsOpenDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 		</td>
 	</tr>
-	{/if}
-	{if $showSubmissionsCloseDate}
 	<tr valign="top">
 		<td width="50%" class="label">{translate key="director.timeline.submissionsClosed"}</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="submissionsCloseDate" time=$submissionsCloseDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 		</td>
 	</tr>
-	{/if}
 </table>
 
 <br/>

@@ -92,8 +92,8 @@ class SchedConfHandler extends Handler {
 		
 		$templateMgr->assign('cfpMessage', $schedConf->getSetting('cfpMessage', false));
 
-		$submissionsOpenDate = $schedConf->getSetting('proposalsOpenDate', false);
-		$submissionsCloseDate = $schedConf->getSetting('proposalsCloseDate', false);
+		$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate', false);
+		$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate', false);
 
 		if(!$submissionsOpenDate || !$submissionsCloseDate || time() < $submissionsOpenDate) {
 			// Too soon
@@ -232,19 +232,17 @@ class SchedConfHandler extends Handler {
 
 			$schedConfTitle = $schedConf->getTitle();
 
-			$openDate = $schedConf->getSetting('proposalsOpenDate');
-			$closeDate = $schedConf->getSetting('proposalsCloseDate');
+			$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate');
+			$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate');
 			$showCFPDate = $schedConf->getSetting('showCFPDate');
 			
-			if($showCFPDate && $closeDate &&
-					(time() > $showCFPDate) && (time() < $closeDate)) {
+			if($showCFPDate && $submissionsCloseDate &&
+					(time() > $showCFPDate) && (time() < $submissionsCloseDate)) {
 
 				$templateMgr->assign('showCFP', true);
 			}
 			
-			if((time() > $schedConf->getSetting('proposalsOpenDate') &&
-					(time() < $schedConf->getSetting('proposalsCloseDate')))) {
-
+			if(time() > $submissionsOpenDate && time() < $submissionsCloseDate) {
 				$templateMgr->assign('showSubmissionLink', true);
 			}
 			
@@ -252,8 +250,8 @@ class SchedConfHandler extends Handler {
 			$templateMgr->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle(true));
 			$templateMgr->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo(true));
 					
-			$templateMgr->assign('submissionOpenDate', $openDate);
-			$templateMgr->assign('submissionCloseDate', $closeDate);
+			$templateMgr->assign('submissionOpenDate', $submissionsOpenDate);
+			$templateMgr->assign('submissionCloseDate', $submissionsCloseDate);
 			
 			$templateMgr->assign_by_ref('schedConf', $schedConf);
 			$templateMgr->assign('additionalHomeContent', $conference->getSetting('additionalHomeContent'));

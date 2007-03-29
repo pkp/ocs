@@ -44,8 +44,8 @@ class PresenterHandler extends Handler {
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign_by_ref('submissions', $submissions);
 
-		$submissionsOpenDate = $schedConf->getSetting('proposalsOpenDate', false);
-		$submissionsCloseDate = $schedConf->getSetting('proposalsCloseDate', false);
+		$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate', false);
+		$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate', false);
 
 		if(!$submissionsOpenDate || !$submissionsCloseDate || time() < $submissionsOpenDate) {
 			// Too soon

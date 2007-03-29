@@ -78,38 +78,18 @@
 			{$showCFPDate|date_format:$dateFormatLong}
 		</td>
 	</tr>
-	{if $showProposalsOpenDate}
-	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.proposalsOpen"}</td>
-		<td width="50%" class="value">
-			{$proposalsOpenDate|date_format:$dateFormatLong}
-		</td>
-	</tr>
-	{/if}
-	{if $showProposalsCloseDate}
-	<tr valign="top">
-		<td width="50%" class="label">{translate key="director.timeline.proposalsClosed"}</td>
-		<td width="50%" class="value">
-			{$proposalsCloseDate|date_format:$dateFormatLong}
-		</td>
-	</tr>
-	{/if}
-	{if $showSubmissionsOpenDate}
 	<tr valign="top">
 		<td width="50%" class="label">{translate key="director.timeline.submissionsOpen"}</td>
 		<td width="50%" class="value">
 			{$submissionsOpenDate|date_format:$dateFormatLong}
 		</td>
 	</tr>
-	{/if}
-	{if $showSubmissionsCloseDate}
 	<tr valign="top">
 		<td width="50%" class="label">{translate key="director.timeline.submissionsClosed"}</td>
 		<td width="50%" class="value">
 			{$submissionsCloseDate|date_format:$dateFormatLong}
 		</td>
 	</tr>
-	{/if}
 </table>
 
 <br/>

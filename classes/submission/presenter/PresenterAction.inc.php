@@ -309,9 +309,9 @@ class PresenterAction extends Action {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
 		}
-		$submissionsClose = (int) $schedConf->getSetting('submissionsCloseDate');
+		$submissionsCloseDate = (int) $schedConf->getSetting('submissionsCloseDate');
 		// If submissions haven't closed, the author may edit metadata.
-		return (time() <= $submissionsClose);
+		return (time() <= $submissionsCloseDate);
 	}
 }
 
