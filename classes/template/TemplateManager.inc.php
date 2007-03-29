@@ -179,6 +179,7 @@ class TemplateManager extends Smarty {
 		$this->register_modifier('strip_unsafe_html', array('String', 'stripUnsafeHtml'));
 		$this->register_modifier('String_substr', array('String', 'substr'));
 		$this->register_modifier('to_array', array(&$this, 'smartyToArray'));
+		$this->register_modifier('strtotime', array(&$this, 'smartyStrtotime'));
 		$this->register_modifier('explode', array(&$this, 'smartyExplode'));
 		$this->register_modifier('assign', array(&$this, 'smartyAssign'));
 		$this->register_function('translate', array(&$this, 'smartyTranslate'));
@@ -638,6 +639,13 @@ class TemplateManager extends Smarty {
 	 */
 	function smartyToArray() {
 		return func_get_args();
+	}
+
+	/**
+	 * Convert a string to a numeric time.
+	 */
+	function smartyStrtotime($string) {
+		return strtotime($string);
 	}
 
 	/**

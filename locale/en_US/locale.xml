@@ -302,6 +302,7 @@
 	<message key="paper.details">Details</message>
 	<message key="paper.location">Location</message>
 	<message key="paper.time">Time</message>
+	<message key="paper.duration">Duration</message>
 
 	<!-- Submission Tracking - Common -->
 	<message key="submission.summary">Summary</message>

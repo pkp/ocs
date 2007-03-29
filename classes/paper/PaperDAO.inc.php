@@ -85,7 +85,8 @@ class PaperDAO extends DAO {
 		$paper->setSchedConfId($row['sched_conf_id']);
 		$paper->setTrackId($row['track_id']);
 		$paper->setLocation($row['location']);
-		$paper->setPresentTime($this->datetimeFromDB($row['present_time']));
+		$paper->setPresentStartTime($this->datetimeFromDB($row['present_start_time']));
+		$paper->setPresentEndTime($this->datetimeFromDB($row['present_end_time']));
 
 		// Localize track title & abbreviation.
 		static $alternateLocaleNum;
@@ -176,7 +177,8 @@ class PaperDAO extends DAO {
 				 date_submitted,
 				 date_status_modified,
 				 last_modified,
-				 present_time,
+				 present_start_time,
+				 present_end_time,
 				 location,
 				 status,
 				 submission_progress,
@@ -189,8 +191,8 @@ class PaperDAO extends DAO {
 				 pages,
 				 date_reminded)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getPresentTime())),
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getPresentStartTime()), $this->datetimeToDB($paper->getPresentEndTime())),
 			array(
 				$paper->getUserId(),
 				$paper->getSchedConfId(),
@@ -269,7 +271,8 @@ class PaperDAO extends DAO {
 					date_submitted = %s,
 					date_status_modified = %s,
 					last_modified = %s,
-					present_time = %s,
+					present_start_time = %s,
+					present_end_time = %s,
 					location = ?,
 					status = ?,
 					submission_progress = ?,
@@ -282,7 +285,7 @@ class PaperDAO extends DAO {
 					pages = ?,
 					date_reminded = ?
 				WHERE paper_id = ?',
-				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getPresentTime())),
+				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getPresentStartTime()), $this->datetimeToDB($paper->getPresentEndTime())),
 			array(
 				$paper->getUserId(),
 				$paper->getTrackId(),

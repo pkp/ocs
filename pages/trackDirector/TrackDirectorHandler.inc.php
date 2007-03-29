@@ -80,6 +80,7 @@ class TrackDirectorHandler extends Handler {
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign('trackDirector', $user->getFullName());
 		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
+		$templateMgr->assign('durationOptions', TrackDirectorHandler::getDurationOptions());
 
 		// Set search parameters
 		$duplicateParameters = array(
@@ -119,7 +120,8 @@ class TrackDirectorHandler extends Handler {
 			$paper =& $paperDao->getPaper($paperId);
 			if ($paper && $paper->getSchedConfId() == $schedConf->getSchedConfId()) {
 				$paper->setLocation(Request::getUserVar('location-' . $paperId));
-				$paper->setPresentTime(Request::getUserDateVar('presentTime-' . $paperId));
+				$paper->setPresentStartTime(Request::getUserDateVar('presentStartTime-' . $paperId));
+				$paper->setPresentEndTime(Request::getUserDateVar('presentStartTime-' . $paperId) + Request::getUserVar('duration-' . $paperId));
 				$paperDao->updatePaper($paper);
 			}
 			unset($paper);
@@ -595,6 +597,26 @@ class TrackDirectorHandler extends Handler {
 	function deleteComment($args) {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::deleteComment($args);
+	}
+
+	function getDurationOptions() {
+		return array(
+			60 * 10		=> '0:10',
+			60 * 60 * 0.25	=> '0:15',
+			60 * 20		=> '0:20',
+			60 * 60 * 0.5	=> '0:30',
+			60 * 60 * 1	=> '1:00',
+			60 * 60 * 1.5	=> '1:30',
+			60 * 60 * 2	=> '2:00',
+			60 * 60 * 2.5	=> '2:30',
+			60 * 60 * 3	=> '3:00',
+			60 * 60 * 3.5	=> '3:30',
+			60 * 60 * 4	=> '4:00',
+			60 * 60 * 4	=> '5:00',
+			60 * 60 * 5	=> '6:00',
+			60 * 60 * 6	=> '7:00',
+			60 * 60 * 7	=> '8:00',
+		);
 	}
 }
 

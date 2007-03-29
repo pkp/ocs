@@ -81,8 +81,8 @@
 	{if $paper->getLocation()}
 		{translate key="paper.location}:&nbsp;{$paper->getLocation()|strip_unsafe_html|nl2br}<br/>
 	{/if}
-	{if $paper->getPresentTime()}
-		{translate key="paper.time"}:&nbsp;{$paper->getPresentTime()|date_format:$dateFormatShort}<br/>
+	{if $paper->getPresentStartTime()}
+		{translate key="paper.time"}:&nbsp;{$paper->getPresentStartTime()|date_format:$dateFormatShort}{if $paper->getPresentEndTime()} ({$paper->getDurationNice()}){/if}<br/>
 	{/if}
 	{translate key="submission.lastModified"}:&nbsp;{$paper->getLastModified()|date_format:$dateFormatShort}<br/>
 	</blockquote>

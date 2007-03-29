@@ -39,7 +39,13 @@
 		<td><a href="{url op="submissionEditing" path=$paperId}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td><input name="location-{$paperId}" size="10" class="textField" id="location-{$paperId}" value="{$submission->getLocation()|escape}" />
 		<td>
-			{html_select_date prefix="presentTime-$paperId" time=$submission->getPresentTime() all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
+			{html_select_date prefix="presentStartTime-$paperId" time=$submission->getPresentStartTime() all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
+			{translate key="paper.duration"}:&nbsp;<select name="duration-{$paperId}" class="selectMenu" id="duration-{$paperId}">
+				{assign var="presentStartTime" value=$submission->getPresentStartTime()|strtotime}
+				{assign var="presentEndTime" value=$submission->getPresentEndTime()|strtotime}
+				{assign var="duration" value=`$presentEndTime-$presentStartTime`}
+				{html_options options=$durationOptions selected=$duration}
+			</select>
 		</td>
 		<td align="right">
 			{assign var="status" value=$submission->getStatus()}

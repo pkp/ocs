@@ -440,19 +440,35 @@ class Paper extends DataObject {
 	}
 	
 	/**
-	 * Get presentation time.
+	 * Get presentation start time.
 	 * @return string
 	 */
-	function getPresentTime() {
-		return $this->getData('presentTime');
+	function getPresentStartTime() {
+		return $this->getData('presentStartTime');
 	}
 	
 	/**
-	 * Set presentation time.
-	 * @param $time datetime
+	 * Set presentation start time.
+	 * @param $presentStartTime datetime
 	 */
-	function setPresentTime($presentTime) {
-		return $this->setData('presentTime', $presentTime);
+	function setPresentStartTime($presentStartTime) {
+		return $this->setData('presentStartTime', $presentStartTime);
+	}
+	
+	/**
+	 * Get presentation end time.
+	 * @return datetime
+	 */
+	function getPresentEndTime() {
+		return $this->getData('presentEndTime');
+	}
+	
+	/**
+	 * Set presentation end time.
+	 * @param $presentEndTime datetime
+	 */
+	function setPresentEndTime($presentEndTime) {
+		return $this->setData('presentEndTime', $presentEndTime);
 	}
 	
 	/**
@@ -837,6 +853,12 @@ class Paper extends DataObject {
 		return $this->setData('pages',$pages);
 	}		
 
+	function getDurationNice() {
+		$durationMinutes = (strtotime($this->getPresentEndTime()) - strtotime($this->getPresentStartTime())) / 60;
+		$hours = $durationMinutes / 60;
+		$minutes = $durationMinutes % 60;
+		return sprintf('%02u:%02u', $hours, $minutes);
+	}
 }
 
 ?>
