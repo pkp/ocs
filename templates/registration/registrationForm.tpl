@@ -91,6 +91,8 @@
 	<td class="label">{fieldLabel name="paid" key="manager.registration.form.payment"}</td>
 	<td class="value">
 		<input type="checkbox" id="paid" name="paid" value="1" {if $datePaid}checked="checked"{/if} />&nbsp;&nbsp;{html_select_date prefix="datePaid" time=$datePaid all_extra="class=\"selectMenu\"" start_year=$yearOffsetPast end_year=$yearOffsetFuture}
+		<br />
+		<span class="instruct">{translate key="manager.registration.form.payment.description"}</span>
 	</td>
 </tr>
 </table>
