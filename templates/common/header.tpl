@@ -43,7 +43,7 @@
 	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderLogo.uploadName|escape:"url"}" width="{$displayConferencePageHeaderLogo.width}" height="{$displayConferencePageHeaderLogo.height}" border="0" alt="" />
 {/if}
 {if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-	<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width}" height="{$displayPageHeaderTitle.height}" border="0" alt="" />
+	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width}" height="{$displayPageHeaderTitle.height}" border="0" alt="" />
 {elseif $displayPageHeaderTitle}
 	{$displayPageHeaderTitle}
 {elseif $alternatePageHeader}
