@@ -41,7 +41,7 @@
 
 {/if}
 
-{if not (empty($contributorNote) && empty($contributors))}
+{if !empty($contributorNote) || (!empty($contributors) && !empty($contributors[0].name))}
 <div class="separator"></div>
 
 <h3>{translate key="about.contributors"}</h3>
