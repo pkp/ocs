@@ -325,14 +325,8 @@ class ConferenceEventLogEntry extends DataObject {
 	 */
 	function getAssocTypeString() {
 		switch ($this->getData('assocType')) {
-			case LOG_TYPE_PRESENTER:
-				return 'AUT';
-			case LOG_TYPE_DIRECTOR:
-				return 'DIR';
-			case LOG_TYPE_REVIEW:
-				return 'REV';
 			default:
-				return 'PAP';
+				return 'CON';
 		}
 	}
 	
@@ -342,14 +336,8 @@ class ConferenceEventLogEntry extends DataObject {
 	 */
 	function getAssocTypeLongString() {
 		switch ($this->getData('assocType')) {
-			case LOG_TYPE_PRESENTER:
-				return 'event.logType.presenter';
-			case LOG_TYPE_DIRECTOR:
-				return 'event.logType.director';
-			case LOG_TYPE_REVIEW:
-				return 'event.logType.review';
 			default:
-				return 'event.logType.paper';
+				return 'event.logType.conference';
 		}
 	}
 	

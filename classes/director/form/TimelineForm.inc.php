@@ -192,7 +192,9 @@ class TimelineForm extends Form {
 		//
 		// Log the rest.
 		//
-		
+
+		$dateFormatShort = Config::getVar('general', 'date_format_short');
+
 		// Physical scheduled conference start date and end date
 		if($schedConf->getSetting('startDate') != $this->_data['startDate']) {
 			ConferenceLog::logEvent(
@@ -201,8 +203,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.startDateChanged',
-				array('oldStartDate' => $schedConf->getSetting('startDate'),
-					'newStartDate' => $this->_data['startDate']));
+				array(	'oldStartDate' => strftime($dateFormatShort, $schedConf->getSetting('startDate')),
+					'newStartDate' => strftime($dateFormatShort, $this->_data['startDate'])));
 			$schedConf->updateSetting('startDate', $this->_data['startDate'], 'date');
 		}
 
@@ -213,8 +215,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.endDateChanged',
-				array('oldEndDate' => $schedConf->getSetting('endDate'),
-					'newEndDate' => $this->_data['endDate']));
+				array('oldEndDate' => strftime($dateFormatShort, $schedConf->getSetting('endDate')),
+					'newEndDate' => strftime($dateFormatShort, $this->_data['endDate'])));
 			$schedConf->updateSetting('endDate', $this->_data['endDate'], 'date');
 		}
 
@@ -225,8 +227,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.regPresenterOpenDateChanged',
-				array('oldRegPresenterOpenDate' => $schedConf->getSetting('regPresenterOpenDate'),
-					'newRegPresenterOpenDate' => $this->_data['regPresenterOpenDate']));
+				array('oldRegPresenterOpenDate' => strftime($dateFormatShort, $schedConf->getSetting('regPresenterOpenDate')),
+					'newRegPresenterOpenDate' => strftime($dateFormatShort, $this->_data['regPresenterOpenDate'])));
 			$schedConf->updateSetting('regPresenterOpenDate', $this->_data['regPresenterOpenDate'], 'date');
 		}
 		if($schedConf->getSetting('regPresenterCloseDate') != $this->_data['regPresenterCloseDate']) {
@@ -236,8 +238,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.regPresenterCloseDateChanged',
-				array('oldRegPresenterCloseDate' => $schedConf->getSetting('regPresenterCloseDate'),
-					'newRegPresenterCloseDate' => $this->_data['regPresenterCloseDate']));
+				array('oldRegPresenterCloseDate' => strftime($dateFormatShort, $schedConf->getSetting('regPresenterCloseDate')),
+					'newRegPresenterCloseDate' => strftime($dateFormatShort, $this->_data['regPresenterCloseDate'])));
 			$schedConf->updateSetting('regPresenterCloseDate', $this->_data['regPresenterCloseDate'], 'date');
 		}
 		if($schedConf->getSetting('showCFPDate') != $this->_data['showCFPDate']) {
@@ -247,8 +249,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.showCFPDateChanged',
-				array('oldShowCFPDate' => $schedConf->getSetting('showCFPDate'),
-					'newShowCFPDate' => $this->_data['showCFPDate']));
+				array(	'oldShowCFPDate' => strftime($dateFormatShort, $schedConf->getSetting('showCFPDate')),
+					'newShowCFPDate' => strftime($dateFormatShort, $this->_data['showCFPDate'])));
 			$schedConf->updateSetting('showCFPDate', $this->_data['showCFPDate'], 'date');
 		}
 
@@ -259,8 +261,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.submissionsOpenDateChanged',
-				array('oldSubmissionsOpenDate' => $schedConf->getSetting('submissionsOpenDate'),
-					'newSubmissionsOpenDate' => $this->_data['submissionsOpenDate']));
+				array(	'oldSubmissionsOpenDate' => strftime($dateFormatShort, $schedConf->getSetting('submissionsOpenDate')),
+					'newSubmissionsOpenDate' => strftime($dateFormatShort, $this->_data['submissionsOpenDate'])));
 			$schedConf->updateSetting('submissionsOpenDate', $this->_data['submissionsOpenDate'], 'date');
 		}
 		if($schedConf->getSetting('submissionsCloseDate') != $this->_data['submissionsCloseDate']) {
@@ -270,8 +272,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.submissionsCloseDateChanged',
-				array('oldSubmissionsCloseDate' => $schedConf->getSetting('submissionsCloseDate'),
-					'newSubmissionsCloseDate' => $this->_data['submissionsCloseDate']));
+				array('oldSubmissionsCloseDate' => strftime($dateFormatShort, $schedConf->getSetting('submissionsCloseDate')),
+					'newSubmissionsCloseDate' => strftime($dateFormatShort, $this->_data['submissionsCloseDate'])));
 			$schedConf->updateSetting('submissionsCloseDate', $this->_data['submissionsCloseDate'], 'date');
 		}
 		if($schedConf->getSetting('regReviewerOpenDate') != $this->_data['regReviewerOpenDate']) {
@@ -281,8 +283,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.regReviewerOpenDateChanged',
-				array('oldRegReviewerOpenDate' => $schedConf->getSetting('regReviewerOpenDate'),
-					'newRegReviewerOpenDate' => $this->_data['regReviewerOpenDate']));
+				array('oldRegReviewerOpenDate' => strftime($dateFormatShort, $schedConf->getSetting('regReviewerOpenDate')),
+					'newRegReviewerOpenDate' => strftime($dateFormatShort, $this->_data['regReviewerOpenDate'])));
 			$schedConf->updateSetting('regReviewerOpenDate', $this->_data['regReviewerOpenDate'], 'date');
 		}
 		if($schedConf->getSetting('regReviewerCloseDate') != $this->_data['regReviewerCloseDate']) {
@@ -292,8 +294,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.regReviewerCloseDateChanged',
-				array('oldRegReviewerCloseDate' => $schedConf->getSetting('regReviewerCloseDate'),
-					'newRegReviewerCloseDate' => $this->_data['regReviewerCloseDate']));
+				array('oldRegReviewerCloseDate' => strftime($dateFormatShort, $schedConf->getSetting('regReviewerCloseDate')),
+					'newRegReviewerCloseDate' => strftime($dateFormatShort, $this->_data['regReviewerCloseDate'])));
 			$schedConf->updateSetting('regReviewerCloseDate', $this->_data['regReviewerCloseDate'], 'date');
 		}
 		if($schedConf->getSetting('postAbstractsDate') != $this->_data['postAbstractsDate']) {
@@ -303,8 +305,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postAbstractsDateChanged',
-				array(	'oldPostAbstractsDate' => $schedConf->getSetting('postAbstractsDate'),
-					'newPostAbstractsDate' => $this->_data['postAbstractsDate']));
+				array(	'oldPostAbstractsDate' => strftime($dateFormatShort, $schedConf->getSetting('postAbstractsDate')),
+					'newPostAbstractsDate' => strftime($dateFormatShort, $this->_data['postAbstractsDate'])));
 			$schedConf->updateSetting('postAbstractsDate', $this->_data['postAbstractsDate'], 'date');
 		}
 		if($schedConf->getSetting('postAbstracts') != $this->_data['postAbstracts']) {
@@ -325,8 +327,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.postPapersDateChanged',
-				array(	'oldPostPapersDate' => $schedConf->getSetting('postPapersDate'),
-					'newPostPapersDate' => $this->_data['postPapersDate']));
+				array(	'oldPostPapersDate' => strftime($dateFormatShort, $schedConf->getSetting('postPapersDate')),
+					'newPostPapersDate' => strftime($dateFormatShort, $this->_data['postPapersDate'])));
 			$schedConf->updateSetting('postPapersDate', $this->_data['postPapersDate'], 'date');
 		}
 		if($schedConf->getSetting('postPapers') != $this->_data['postPapers']) {
@@ -347,8 +349,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.delayOpenAccessDateChanged',
-				array(	'oldDelayOpenAccessDate' => $schedConf->getSetting('delayOpenAccessDate'),
-					'newDelayOpenAccessDate' => $this->_data['delayOpenAccessDate']));
+				array(	'oldDelayOpenAccessDate' => strftime($dateFormatShort, $schedConf->getSetting('delayOpenAccessDate')),
+					'newDelayOpenAccessDate' => strftime($dateFormatShort, $this->_data['delayOpenAccessDate'])));
 			$schedConf->updateSetting('delayOpenAccessDate', $this->_data['delayOpenAccessDate'], 'date');
 		}
 		if($schedConf->getSetting('delayOpenAccess') != $this->_data['delayOpenAccess']) {
@@ -369,8 +371,8 @@ class TimelineForm extends Form {
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.closeCommentsDateChanged',
-				array(	'oldCloseCommentsDate' => $schedConf->getSetting('closeCommentsDate'),
-					'newCloseCommentsDate' => $this->_data['closeCommentsDate']));
+				array(	'oldCloseCommentsDate' => strftime($dateFormatShort, $schedConf->getSetting('closeCommentsDate')),
+					'newCloseCommentsDate' => strftime($dateFormatShort, $this->_data['closeCommentsDate'])));
 			$schedConf->updateSetting('closeCommentsDate', $this->_data['closeCommentsDate'], 'date');
 		}
 		if($schedConf->getSetting('closeComments') != $this->_data['closeComments']) {

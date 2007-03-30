@@ -542,6 +542,7 @@
 	<message key="event.logType.presenter">Presenter</message>
 	<message key="event.logType.director">Director</message>
 	<message key="event.logType.review">Review</message>
+	<message key="event.logType.conference">Conference</message>
 
 	<message key="event.eventLog">Event Log</message>
 	<message key="event.logLevel">Level</message>
