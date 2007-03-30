@@ -256,15 +256,15 @@ class TimelineForm extends Form {
 		// model, so they're not quite as straightforward as the rest.
 		
 		if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SIMULTANEOUS) {
-			$proposalsOpenDate = $submissionsOpenDate = $this->_data['submissionsOpenDate'];
-			$proposalsCloseDate = $submissionsCloseDate = $this->_data['submissionsCloseDate'];
+			$submissionsOpenDate = $submissionsOpenDate = $this->_data['submissionsOpenDate'];
+			$submissionsCloseDate = $submissionsCloseDate = $this->_data['submissionsCloseDate'];
 		} else {
-			$proposalsOpenDate = $submissionsOpenDate = $this->_data['proposalsOpenDate'];
-			$proposalsCloseDate = $this->_data['proposalsCloseDate'];
+			$submissionsOpenDate = $submissionsOpenDate = $this->_data['submissionsOpenDate'];
+			$submissionsCloseDate = $this->_data['submissionsCloseDate'];
 			if ($schedConf->getSetting('reviewMode') != REVIEW_MODE_ABSTRACTS_ALONE) {
 				$submissionsCloseDate = $this->_data['submissionsCloseDate'];
 			} else {
-				$submissionsCloseDate = $proposalsCloseDate;
+				$submissionsCloseDate = $submissionsCloseDate;
 			}
 		}
 
