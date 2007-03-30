@@ -252,23 +252,7 @@ class TimelineForm extends Form {
 			$schedConf->updateSetting('showCFPDate', $this->_data['showCFPDate'], 'date');
 		}
 
-		// Abstract and submission due dates depend on the submission and review
-		// model, so they're not quite as straightforward as the rest.
-		
-		if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SIMULTANEOUS) {
-			$submissionsOpenDate = $submissionsOpenDate = $this->_data['submissionsOpenDate'];
-			$submissionsCloseDate = $submissionsCloseDate = $this->_data['submissionsCloseDate'];
-		} else {
-			$submissionsOpenDate = $submissionsOpenDate = $this->_data['submissionsOpenDate'];
-			$submissionsCloseDate = $this->_data['submissionsCloseDate'];
-			if ($schedConf->getSetting('reviewMode') != REVIEW_MODE_ABSTRACTS_ALONE) {
-				$submissionsCloseDate = $this->_data['submissionsCloseDate'];
-			} else {
-				$submissionsCloseDate = $submissionsCloseDate;
-			}
-		}
-
-		if($schedConf->getSetting('submissionsOpenDate') != $submissionsOpenDate) {
+		if($schedConf->getSetting('submissionsOpenDate') != $this->_data['submissionsOpenDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
 				$schedConf->getSchedConfId(),
@@ -276,10 +260,10 @@ class TimelineForm extends Form {
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.submissionsOpenDateChanged',
 				array('oldSubmissionsOpenDate' => $schedConf->getSetting('submissionsOpenDate'),
-					'newSubmissionsOpenDate' => $submissionsOpenDate));
-			$schedConf->updateSetting('submissionsOpenDate', $submissionsOpenDate, 'date');
+					'newSubmissionsOpenDate' => $this->_data['submissionsOpenDate']));
+			$schedConf->updateSetting('submissionsOpenDate', $this->_data['submissionsOpenDate'], 'date');
 		}
-		if($schedConf->getSetting('submissionsCloseDate') != $submissionsCloseDate) {
+		if($schedConf->getSetting('submissionsCloseDate') != $this->_data['submissionsCloseDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
 				$schedConf->getSchedConfId(),
@@ -287,8 +271,8 @@ class TimelineForm extends Form {
 				LOG_TYPE_DEFAULT,
 				0, 'log.timeline.submissionsCloseDateChanged',
 				array('oldSubmissionsCloseDate' => $schedConf->getSetting('submissionsCloseDate'),
-					'newSubmissionsCloseDate' => $submissionsCloseDate));
-			$schedConf->updateSetting('submissionsCloseDate', $submissionsCloseDate, 'date');
+					'newSubmissionsCloseDate' => $this->_data['submissionsCloseDate']));
+			$schedConf->updateSetting('submissionsCloseDate', $this->_data['submissionsCloseDate'], 'date');
 		}
 		if($schedConf->getSetting('regReviewerOpenDate') != $this->_data['regReviewerOpenDate']) {
 			ConferenceLog::logEvent(
