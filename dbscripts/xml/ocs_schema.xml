@@ -591,7 +591,8 @@
 		<field name="title_alt1" type="C2" size="255"/>
 		<field name="title_alt2" type="C2" size="255"/>
 		<field name="location" type="X"/>
-		<field name="present_time" type="T"/>
+		<field name="present_start_time" type="T"/>
+		<field name="present_end_time" type="T"/>
 		<field name="abstract" type="X"/>
 		<field name="abstract_alt1" type="X"/>
 		<field name="abstract_alt2" type="X"/>
