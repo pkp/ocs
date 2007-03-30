@@ -117,11 +117,12 @@ class PresenterSubmitForm extends Form {
 
 	function assignDirectors(&$paper) {
 		$trackId =& $paper->getTrackId();
+		$schedConf =& Request::getSchedConf();
 
 		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 
-		$trackDirectors =& $trackDirectorsDao->getDirectorsByTrackId($trackId);
+		$trackDirectors =& $trackDirectorsDao->getDirectorsByTrackId($schedConf->getSchedConfId(), $trackId);
 
 		foreach ($trackDirectors as $trackDirector) {
 			$editAssignment =& new EditAssignment();
