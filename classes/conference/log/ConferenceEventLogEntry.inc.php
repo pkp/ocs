@@ -94,6 +94,38 @@ class ConferenceEventLogEntry extends DataObject {
 	}
 	
 	/**
+	 * Get conference title.
+	 * @return string
+	 */
+	function getConferenceTitle() {
+		return $this->getData('conferenceTitle');
+	}
+	
+	/**
+	 * Set conference title.
+	 * @param $conferenceTitle string
+	 */
+	function setConferenceTitle($conferenceTitle) {
+		return $this->setData('conferenceTitle', $conferenceTitle);
+	}
+	
+	/**
+	 * Get sched conf title.
+	 * @return string
+	 */
+	function getSchedConfTitle() {
+		return $this->getData('schedConfTitle');
+	}
+	
+	/**
+	 * Set sched conf title.
+	 * @param $schedConfTitle string
+	 */
+	function setSchedConfTitle($schedConfTitle) {
+		return $this->setData('schedConfTitle', $schedConfTitle);
+	}
+	
+	/**
 	 * Get user ID of user that initiated the event.
 	 * @return int
 	 */

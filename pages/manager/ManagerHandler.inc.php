@@ -650,6 +650,25 @@ class ManagerHandler extends Handler {
 		import('pages.manager.PluginHandler');
 		PluginHandler::plugin($args);
 	}
+
+	//
+	// Conference History
+	//
+
+	function conferenceEventLog($args) {
+		import('pages.manager.ConferenceHistoryHandler');
+		ConferenceHistoryHandler::conferenceEventLog($args);
+	}		
+
+	function conferenceEventLogType($args) {
+		import('pages.manager.ConferenceHistoryHandler');
+		ConferenceHistoryHandler::conferenceEventLogType($args);
+	}
+	
+	function clearConferenceEventLog($args) {
+		import('pages.manager.ConferenceHistoryHandler');
+		ConferenceHistoryHandler::clearConferenceEventLog($args);
+	}
 }
 
 ?>

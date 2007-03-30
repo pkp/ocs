@@ -763,6 +763,15 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<!-- Registration Management -->
 	<message key="manager.registrationManagement">Registration Management</message>
 
+	<!-- Conference Event Log -->
+	<message key="manager.conferenceEventLog">Event Log</message>
+	<message key="conference.event.confirmClearLog">Are you sure you want to clear the event log for this conference?</message>
+	<message key="conference.event.confirmDeleteLogEntry">Are you sure you want to delete this event log entry?</message>
+	<message key="conference.event.deleteLogEntry">Delete Log Entry</message>
+	<message key="conference.event.backToEventLog">Back to Event Log</message>
+	<message key="conference.history.conferenceEventLog">Event Log</message>
+	<message key="conference.history.clearLog">Clear Log</message>
+
 	<!-- Scheduled Conference Management -->
 	<message key="manager.schedConfs">Scheduled Conferences</message>
 	<message key="manager.schedConfSetup">Setup</message>
