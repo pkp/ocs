@@ -233,6 +233,23 @@ class PresenterSubmission extends Paper {
 	}
 	
 	/**
+	 * Get layout file.
+	 * @return PaperFile
+	 */
+	function &getLayoutFile() {
+		$returner =& $this->getData('layoutFile');
+		return $returner;
+	}
+	
+	/**
+	 * Set layout file.
+	 * @param $layoutFile PaperFile
+	 */
+	function setLayoutFile($layoutFile) {
+		return $this->setData('layoutFile', $layoutFile);
+	}
+	
+	/**
 	 * Get supplementary files for this paper.
 	 * @return array SuppFiles
 	 */

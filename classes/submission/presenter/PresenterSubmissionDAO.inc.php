@@ -110,6 +110,7 @@ class PresenterSubmissionDAO extends DAO {
 		for ($i = 1; $i <= $row['current_stage']; $i++) {
 			$presenterSubmission->setDirectorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['director_file_id'], $i), $i);
 		}
+		$presenterSubmission->setLayoutFile($this->paperFileDao->getPaperFile($row['layout_file_id']));
 		$presenterSubmission->setGalleys($this->galleyDao->getGalleysByPaper($row['paper_id']));
 
 		HookRegistry::call('PresenterSubmissionDAO::_returnPresenterSubmissionFromRow', array(&$presenterSubmission, &$row));
