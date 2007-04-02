@@ -68,20 +68,12 @@
 ]>
 
 <scheduled_tasks>
-	<!--<task class="tasks.ReviewReminder">
+	<task class="tasks.ReviewReminder">
 		<descr>Send automated reminders to reviewers to complete their assignments.</descr>
 		<frequency hour="0"/>
-	</task>-->
-	<!--<task class="tasks.IncompleteSubmissionsTask">
-		<descr>Send reminders and remove incomplete submissions.</descr>
+	</task>
+	<task class="tasks.RegistrationExpiryReminder">
+		<descr>Send automated reminders to registrants regarding their expired/about to expire registrations.</descr>
 		<frequency hour="0"/>
-	</task>-->
-	<!--<task class="tasks.SubscriptionExpiryReminder">
-		<descr>Send automated reminders to subscribers regarding their expired/about to expire subscriptions.</descr>
-		<frequency hour="0"/>
-	</task>-->
-	<!--<task class="tasks.OpenAccessNotification">
-		<descr>Send automated email to registered readers that have requested to be notified when an issue becomes open access.</descr>
-		<frequency hour="0"/>
-	</task>-->
+	</task>
 </scheduled_tasks>
