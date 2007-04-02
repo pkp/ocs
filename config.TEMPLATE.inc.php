@@ -254,6 +254,13 @@ oai = On
 repository_id = ocs.pkp.sfu.ca
 
 
+;;;;;;;;;;;;;;;;;;;;;
+; Fileinfo Settings ;
+;;;;;;;;;;;;;;;;;;;;;
+
+[finfo]
+mime_database_path = /path/to/magic.mime
+
 ;;;;;;;;;;;;;;;;;;;;;;
 ; Interface Settings ;
 ;;;;;;;;;;;;;;;;;;;;;;

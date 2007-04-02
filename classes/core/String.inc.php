@@ -204,16 +204,25 @@ class String {
 	}
 
 	function mime_content_type($filename) {
-		if (!function_exists('mime_content_type')) {
-			$f = escapeshellarg($filename);
-			$result = trim(`file -bi $f`);
-			// Make sure we just return the mime type.
-			if (($i = strpos($result, ';')) !== false) {
-				$result = trim(substr($result, 0, $i));
+		if (function_exists('mime_content_type')) {
+			return mime_content_type($filename);
+		} elseif (function_exists('finfo_open')) {
+			static $fi;
+			if (!isset($fi)) {
+				$fi = finfo_open(FILEINFO_MIME, Config::getVar('finfo', 'mime_database_path'));
 			}
-			return $result;
+			if ($fi !== false) {
+				return finfo_file($fi, $filename);
+			}
+		} 
+
+		$f = escapeshellarg($filename);
+		$result = trim(`file -bi $f`);
+		// Make sure we just return the mime type.
+		if (($i = strpos($result, ';')) !== false) {
+			$result = trim(substr($result, 0, $i));
 		}
-		return mime_content_type($filename);
+		return $result;
 	}
 
 
