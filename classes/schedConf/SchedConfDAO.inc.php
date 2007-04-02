@@ -28,11 +28,14 @@ class SchedConfDAO extends DAO {
 	/**
 	 * Retrieve a scheduled conference by ID.
 	 * @param $schedConfId int
+	 * @param $conferenceId int optional
 	 * @return SchedConf
 	 */
-	function &getSchedConf($schedConfId) {
+	function &getSchedConf($schedConfId, $conferenceId = null) {
+		$params = array($schedConfId);
+		if ($conferenceId !== null) $params[] = $conferenceId;
 		$result = &$this->retrieve(
-			'SELECT * FROM sched_confs WHERE sched_conf_id = ?', $schedConfId
+			'SELECT * FROM sched_confs WHERE sched_conf_id = ?' . ($conferenceId !== null?' AND conference_id = ?':''), $params
 		);
 
 		$returner = null;
