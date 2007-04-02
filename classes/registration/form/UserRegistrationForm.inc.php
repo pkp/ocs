@@ -34,7 +34,6 @@ class UserRegistrationForm extends Form {
 		// Registration type is provided and valid
 		$this->addCheck(new FormValidator($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdRequired'));
 		$this->addCheck(new FormValidatorCustom($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdValid', create_function('$registrationTypeId, $schedConfId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->openRegistrationTypeExistsByTypeId($registrationTypeId, $schedConfId);'), array($schedConf->getSchedConfId())));
-		$this->addCheck(new FormValidatorCustom($this, 'feeCode', 'optional', 'manager.registration.form.feeCodeValid', create_function('$feeCode, $schedConfId, $form', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->checkCode($form->getData(\'registrationTypeId\'), $schedConfId, $feeCode);'), array($schedConf->getSchedConfId(), $this)));
 
 		import('captcha.CaptchaManager');
 		$captchaManager =& new CaptchaManager();
@@ -67,7 +66,17 @@ class UserRegistrationForm extends Form {
 			}
 		}
 	}
-	
+
+	function validate() {
+		$schedConf =& Request::getSchedConf();
+		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationType =& $registrationTypeDao->getRegistrationType($this->getData('registrationTypeId'));
+		if ($registrationType && $registrationType->getCode() != '') {
+			$this->addCheck(new FormValidatorCustom($this, 'feeCode', 'required', 'manager.registration.form.feeCodeValid', create_function('$feeCode, $schedConfId, $form', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->checkCode($form->getData(\'registrationTypeId\'), $schedConfId, $feeCode);'), array($schedConf->getSchedConfId(), $this)));
+		}
+		return parent::validate();
+	}
+
 	/**
 	 * Display the form.
 	 */
