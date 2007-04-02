@@ -405,6 +405,7 @@
 	<message key="submission.dueDate">Due Date</message>
 	<message key="submission.recommendation">Recommendation</message>
 	<message key="submission.galley">Galley</message>
+	<message key="trackDirector.galley.replaceGalley">Replace File</message>
 	<message key="submission.emailLog">Email Log</message>
 	<message key="submission.uploadFileTo">Upload file to</message>
 	<message key="submission.abstract">Abstract</message>
