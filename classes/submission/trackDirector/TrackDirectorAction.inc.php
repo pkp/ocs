@@ -1320,7 +1320,8 @@ import('file.PaperFileManager');
 					'conferenceDate' => date('Y-m-d', strtotime($schedConf->getStartDate())),
 					'presenterName' => $presenterUser->getFullName(),
 					'conferenceTitle' => $conference->getTitle(),
-					'editorialContactSignature' => $user->getContactSignature()
+					'editorialContactSignature' => $user->getContactSignature(),
+					'locationCity' => $schedConf->getSetting('locationCity')
 				));
 			} else {
 				if (Request::getUserVar('importPeerReviews')) {
