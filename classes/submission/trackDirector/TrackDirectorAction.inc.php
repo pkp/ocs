@@ -1269,7 +1269,11 @@ import('file.PaperFileManager');
 		if (is_array($stages)) {
 			$isAbstract = array_pop(array_keys($stages)) == REVIEW_PROGRESS_ABSTRACT;
 		}
-		if (isset($stages) && is_array($stages)) $decisions = array_pop($stages);
+		if (isset($stages) && is_array($stages)) {
+			$decisions = array_pop($stages);
+			// If this round has no decision, revert to prior round
+			if (empty($decisions)) $decisions = array_pop($stages);
+		}
 		if (isset($decisions) && is_array($decisions)) $lastDecision = array_pop($decisions);
 		if (isset($lastDecision) && is_array($lastDecision)) switch ($lastDecision['decision']) {
 			case SUBMISSION_DIRECTOR_DECISION_INVITE:
