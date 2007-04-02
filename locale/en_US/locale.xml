@@ -794,7 +794,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.schedConfs.form.pathAlphaNumeric">The path can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
 
 	<!-- Program settings -->
-	<message key="manager.program.form.description">The date on which conference program will be made available on the website is set in Conference Timeline.</message>
+	<message key="manager.program.form.description">When the conference program is ready to be presented to users, upload it here or enter it as plain text.</message>
 	<message key="manager.program.form.programFile">Program File</message>
 	<message key="manager.program.form.programFile.description">If the program is available as a file, upload it here.</message>
 	<message key="manager.program.form.programText">Plain Text Program</message>
