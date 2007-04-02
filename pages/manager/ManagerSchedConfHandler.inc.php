@@ -136,14 +136,16 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	 */
 	function moveSchedConf() {
 		parent::validate();
+
+		$conference =& Request::getConference();
 		
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$schedConf = &$schedConfDao->getSchedConf(Request::getUserVar('schedConfId'));
+		$schedConf = &$schedConfDao->getSchedConf(Request::getUserVar('schedConfId'), $conference->getConferenceId());
 		
 		if ($schedConf != null) {
 			$schedConf->setSequence($schedConf->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
 			$schedConfDao->updateSchedConf($schedConf);
-			$schedConfDao->resequenceSchedConfs();
+			$schedConfDao->resequenceSchedConfs($conference->getConferenceId());
 		}
 		
 		Request::redirect(null, null, null, 'schedConfs');

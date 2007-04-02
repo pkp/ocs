@@ -123,7 +123,7 @@ class SchedConfSettingsForm extends Form {
 			$schedConfDao->updateSchedConf($schedConf);
 		} else {
 			$schedConfId = $schedConfDao->insertSchedConf($schedConf);
-			$schedConfDao->resequenceSchedConfs();
+			$schedConfDao->resequenceSchedConfs($this->getData('conferenceId'));
 
 			// Make the file directories for the scheduled conference
 			import('file.FileManager');

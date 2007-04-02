@@ -320,9 +320,10 @@ class SchedConfDAO extends DAO {
 	/**
 	 * Sequentially renumber scheduled conferences in their sequence order.
 	 */
-	function resequenceSchedConfs() {
+	function resequenceSchedConfs($conferenceId) {
 		$result = &$this->retrieve(
-			'SELECT sched_conf_id FROM sched_confs ORDER BY seq'
+			'SELECT sched_conf_id FROM sched_confs WHERE conference_id = ? ORDER BY seq',
+			$conferenceId
 		);
 		
 		for ($i=1; !$result->EOF; $i++) {
