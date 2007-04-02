@@ -162,7 +162,8 @@ class SchedConfDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT i.*
 			FROM sched_confs i
-				WHERE i.conference_id = ?',
+				WHERE i.conference_id = ?
+				ORDER BY seq',
 			$conferenceId
 		);
 		
