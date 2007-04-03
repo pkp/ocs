@@ -70,8 +70,9 @@
 		{if $reviewFile}
 			<tr valign="top">
 				<td width="20%" class="label">{translate key="submission.reviewVersion"}</td>
-				<td width="50%" class="value">
+				<td width="50%" colspan="2" class="value">
 					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}<input type="radio" name="directorDecisionFile" value="{$reviewFile->getFileId()},{$reviewFile->getRevision()}" /> {/if}<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()}</a>&nbsp;&nbsp;
+					{assign var="publishableRevisionExists" value=true}
 					{$reviewFile->getDateModified()|date_format:$dateFormatShort}
 				</td>
 			</tr>
@@ -82,7 +83,7 @@
 					{assign var="presenterRevisionExists" value=true}
 					<td width="20%" rowspan="{$presenterFiles|@count}" class="label">{translate key="submission.presenterVersion"}</td>
 				{/if}
-				<td width="80%" class="value" colspan="3">
+				<td width="80%" class="value" colspan="2">
 					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
 						<input type="radio" name="directorDecisionFile" value="{$presenterFile->getFileId()},{$presenterFile->getRevision()}" />
 						{assign var="publishableRevisionExists" value=true}
@@ -94,7 +95,7 @@
 		{foreachelse}
 			<tr valign="top">
 				<td width="20%" class="label">{translate key="submission.presenterVersion"}</td>
-				<td width="80%" colspan="3" class="nodata">{translate key="common.none"}</td>
+				<td width="80%" colspan="2" class="nodata">{translate key="common.none"}</td>
 			</tr>
 		{/foreach}
 		{foreach from=$directorFiles item=directorFile key=key}
@@ -103,7 +104,7 @@
 					{assign var="directorRevisionExists" value=true}
 					<td width="20%" rowspan="{$directorFiles|@count}" class="label">{translate key="submission.directorVersion"}</td>
 				{/if}
-				<td width="50%" class="value" colspan="2">
+				<td width="50%" class="value">
 					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
 						<input type="radio" name="directorDecisionFile" value="{$directorFile->getFileId()},{$directorFile->getRevision()}" />
 						{assign var="publishableRevisionExists" value=true}
