@@ -141,7 +141,6 @@ class ConferenceSiteSettingsForm extends Form {
 				'loginUrl' => Request::url('index', 'index', 'login'),
 				'conferenceUrl' => Request::url($this->getData('path'), null),
 				'aboutUrl' => Request::url($this->getData('path'), 'index', 'about', null),
-				'schedConfUrl' => Request::url($this->getData('path'), 'index', 'index'),
 				'accountUrl' => Request::url($this->getData('path'), 'index', 'user', 'register'),
 				'conferenceName' => $this->getData('title')
 			));

@@ -143,6 +143,7 @@ class SchedConfSettingsForm extends Form {
 				'conferencePath' => $conference->getPath(),
 				'conferenceName' => $conference->getTitle(),
 				'schedConfPath' => $this->getData('path'),
+				'schedConfUrl' => Request::url($conference->getPath(), $this->getData('path'), 'index'),
 				'schedConfName' => $this->getData('title')
 			));
 			
