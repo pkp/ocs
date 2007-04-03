@@ -629,6 +629,7 @@ class TrackDirectorAction extends Action {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		
 		$conference = &Request::getConference();
+		$schedConf =& Request::getSchedConf();
 		$user = &Request::getUser();
 
 		$presenter = &$userDao->getUser($trackDirectorSubmission->getUserId());
