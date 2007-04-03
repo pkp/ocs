@@ -14,7 +14,7 @@
 #
 
 CVSROOT=:pserver:anonymous@lib-pkp.lib.sfu.ca:/cvs
-MODULE=ojs2
+MODULE=ocs2
 PRECOMPILE=1
 
 if [ -z "$1" ]; then
@@ -25,7 +25,7 @@ fi
 VERSION=$1
 TAG=${2-HEAD}
 PATCHDIR=${3-}
-PREFIX=ojs
+PREFIX=ocs
 BUILD=$PREFIX-$VERSION
 TMPDIR=`mktemp -d $PREFIX.XXXXXX` || exit 1
 
