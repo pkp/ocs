@@ -1451,6 +1451,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registrationTypes.form.membership">Subscribers must be members of an association or organization.</message>
 	<message key="manager.registrationTypes.form.public">This registration type will not appear under Registrations in About the Conference.</message>
 	<message key="manager.registrationTypes.form.saveAndCreateAnotherType">Save and Create Another</message>
+	<message key="manager.registrationTypes.form.closeBeforeOpen">The open date for this registration type must come before the close date.</message>
 	<message key="manager.registrationTypes.access">Access</message>
 	<message key="manager.registrationTypes.access.online">Online</message>
 	<message key="manager.registrationTypes.access.physical">Physical</message>
