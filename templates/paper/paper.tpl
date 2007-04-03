@@ -102,6 +102,8 @@
 		{/if}
 	{elseif $schedConf->getSetting('delayOpenAccess') && $schedConf->getSetting('delayOpenAccessDate') > time()}
 		{translate key="reader.fullTextSubscribersOnlyUntil" date=$schedConf->getSetting('delayOpenAccessDate')|date_format:$dateFormatShort}
+	{elseif $schedConf->getSetting('postPapers') && $schedConf->getSetting('postPapersDate') > time()}
+		{translate key="reader.fullTextNotPostedYet" date=$schedConf->getSetting('postPapersDate')|date_format:$dateFormatShort}
 	{else}
 		{translate key="reader.fullTextSubscribersOnly"}
 	{/if}
