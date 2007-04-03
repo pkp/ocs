@@ -114,8 +114,8 @@ class PaperSearchDAO extends DAO {
 			NATURAL JOIN ' . $sqlFrom . '
 			WHERE
 				pa.paper_id = o.paper_id AND
-				i.sched_conf_id = pa.sched_conf_id AND
-				i.enabled = 1 AND ' . $sqlWhere . '
+				i.sched_conf_id = pa.sched_conf_id AND ' .
+				$sqlWhere . '
 			GROUP BY o.paper_id
 			ORDER BY count DESC
 			LIMIT ' . $limit,
