@@ -50,7 +50,6 @@ class preCompile extends CommandLineTool {
 	}
 	
 	function compileTemplates() {
-		import('issue.IssueAction');
 		import('form.Form');
 		$this->templateMgr = &TemplateManager::getManager();
 
@@ -79,9 +78,7 @@ class preCompile extends CommandLineTool {
 	
 	function compileLocales() {
 		$locales = &Locale::getAllLocales();
-		foreach ($locales as $key => $name) {
-			Locale::loadLocale($key);
-		}
+		// FIXME: Compile temporarily removed.
 	}
 	
 	function compileHelp() {
