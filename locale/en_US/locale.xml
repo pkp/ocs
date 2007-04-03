@@ -460,7 +460,7 @@
 	<message key="schedConf.overview.title">{$schedConfAbbrev} Overview</message>
 	<message key="schedConf.proceedings.title">{$schedConfAbbrev} Presentations and Presenters</message>
 	<message key="schedConf.program.title">{$schedConfAbbrev} Program</message>
-	<message key="schedConf.trackPolicies">{$schedConfAbbrev} Track Policies</message>
+	<message key="schedConf.trackPolicies.title">{$schedConfAbbrev} Track Policies</message>
 
 	<!-- User self-registration form -->
 	<message key="schedConf.registration.alreadyRegistered">You are already registered for this conference. Please contact the principal contact in "About" if this is in error or you would like to change your registration.</message>
@@ -608,8 +608,10 @@
 
 	<!-- Reader paper view -->
 	<message key="reader.fullText">Full Text:</message>
-	<message key="reader.fullTextSubscribersOnly">Conference papers are not currently available.</message>
-	<message key="reader.fullTextSubscribersOnlyUntil">Full Text: Subscribers only; open access for this conference will begin on {$date}.</message>
+	<message key="reader.fullTextNotAvailable">Conference papers are not currently available.</message>
+	<message key="reader.fullTextRegistrationRequired">Conference registration is required in order to view papers.</message>
+	<message key="reader.fullTextAccountRequired"><![CDATA[An account with this site is required in order to view papers. <a href="{$registerUrl}">Click here</a> to create an account.]]></message>
+	<message key="reader.fullTextSubscribersOnlyUntil">Open access for this conference will begin on {$date}.</message>
 	<message key="reader.fullTextNotPostedYet">Papers for this conference will be posted on {$date}.</message>
 
 	<!-- Reader Comments -->
@@ -1014,6 +1016,11 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.additionalContent.enableAnnouncementsHomepage2">of the most recent announcements on the conference homepage.</message>
 	<message key="manager.setup.additionalContent.announcementsIntroduction">Additional Information</message>
 	<message key="manager.setup.additionalContent.announcementsIntroductionDescription">Enter any additional information that should be displayed to readers on the Announcements page.</message>
+	<message key="manager.setup.additionalContent.archiveAccess">Access to Conference Presentations</message>
+	<message key="manager.setup.additionalContent.archiveAccess.description">The date for allowing access to presentations is set in Conference Timeline, while access to archived conferences is controlled by the Conference Manager in Conference Setup.</message>
+	<message key="manager.setup.additionalContent.archiveAccess.open">Provide open access to all visitors to the website.</message>
+	<message key="manager.setup.additionalContent.archiveAccess.accountRequired">Require visitors to sign up with the website.</message>
+	<message key="manager.setup.additionalContent.archiveAccess.registrationRequired">Require registration to attend the conference.</message>
 
 	<!-- Conference setup page 3 -->
 	<message key="manager.setup.layout.homepageTitle">Conference Homepage Title</message>

@@ -14,6 +14,10 @@
  * $Id$
  */
 
+define('PAPER_ACCESS_OPEN',			0x00000000);
+define('PAPER_ACCESS_ACCOUNT_REQUIRED',		0x00000001);
+define('PAPER_ACCESS_REGISTRATION_REQUIRED',	0x00000002);
+
 class Conference extends DataObject {
 
 	//

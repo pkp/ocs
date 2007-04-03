@@ -87,10 +87,12 @@
 	{translate key="submission.lastModified"}:&nbsp;{$paper->getLastModified()|date_format:$dateFormatShort}<br/>
 	</blockquote>
 
+	{if $paper->getPaperAbstract()}
 	<h4>{translate key="paper.abstract"}</h4>
 	<br />
 	<div>{$paper->getPaperAbstract()|strip_unsafe_html|nl2br}</div>
 	<br />
+	{/if}
 
 	{if $mayViewPaper}
 		{assign var=galleys value=$paper->getGalleys()}
@@ -104,8 +106,13 @@
 		{translate key="reader.fullTextSubscribersOnlyUntil" date=$schedConf->getSetting('delayOpenAccessDate')|date_format:$dateFormatShort}
 	{elseif $schedConf->getSetting('postPapers') && $schedConf->getSetting('postPapersDate') > time()}
 		{translate key="reader.fullTextNotPostedYet" date=$schedConf->getSetting('postPapersDate')|date_format:$dateFormatShort}
+	{elseif $conference->getSetting('paperAccess') == PAPER_ACCESS_REGISTRATION_REQUIRED}
+		{translate key="reader.fullTextRegistrationRequired"}
+	{elseif $conference->getSetting('paperAccess') == PAPER_ACCESS_ACCOUNT_REQUIRED && !$isUserLoggedIn}
+		{url|assign:"accountUrl" page="user" op="account"}
+		{translate key="reader.fullTextAccountRequired" registerUrl=$accountUrl}
 	{else}
-		{translate key="reader.fullTextSubscribersOnly"}
+		{translate key="reader.fullTextNotAvailable"}
 	{/if}
 {/if}
 

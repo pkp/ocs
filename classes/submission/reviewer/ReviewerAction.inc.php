@@ -322,7 +322,7 @@ class ReviewerAction extends Action {
 	 * @param $fileId int
 	 * @param $revision int
 	 */
-	function downloadReviewerFile($reviewId, $paper, $fileId, $revision = null) {
+	function downloadReviewerFile($reviewId, &$paper, $fileId, $revision = null) {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');		
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$conference = &Request::getConference();

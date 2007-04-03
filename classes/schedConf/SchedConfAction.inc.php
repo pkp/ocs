@@ -88,15 +88,6 @@ class SchedConfAction {
 			return false;
 		}
 		
-		if($schedConf->getSetting('delayOpenAccess') && time() > $schedConf->getSetting('delayOpenAccessDate')) {
-			if($schedConf->getSetting('openAccessVisitor')) {
-				return true;
-			}
-			if(Validation::isReader() && $schedConf->getSetting('openAccessReader')) {
-				return true;
-			}
-		}
-
 		if(($schedConf->getSetting('postAbstracts') && time() > $schedConf->getSetting('postAbstractsDate')) ||
 				($schedConf->getSetting('postPapers')) && time() > $schedConf->getSetting('postPapersDate')) {
 
@@ -111,10 +102,11 @@ class SchedConfAction {
 
 	/**
 	 * Checks if a user has access to the proceedings index (titles and abstracts)
-	 * @param $schedConf
+	 * @param $schedConf object
+	 * @param $conference object
 	 * @return bool
 	 */
-	function mayViewPapers(&$schedConf) {
+	function mayViewPapers(&$schedConf, &$conference) {
 		if(Validation::isSiteAdmin() || Validation::isConferenceManager() || Validation::isDirector() || Validation::isTrackDirector()) {
 			return true;
 		}
@@ -124,12 +116,11 @@ class SchedConfAction {
 		}
 		
 		// Allow open access once the "open access" date has passed.
+		$paperAccess = $conference->getSetting('paperAccess');
+		if ($paperAccess == PAPER_ACCESS_OPEN) return true;
 		
 		if($schedConf->getSetting('delayOpenAccess') && time() > $schedConf->getSetting('delayOpenAccessDate')) {
-			if($schedConf->getSetting('openAccessVisitor')) {
-				return true;
-			}
-			if(Validation::isReader() && $schedConf->getSetting('openAccessReader')) {
+			if(Validation::isReader() && $paperAcccess == PAPER_ACCESS_ACCOUNT_REQUIRED) {
 				return true;
 			}
 		}
@@ -138,13 +129,6 @@ class SchedConfAction {
 
 			if(SchedConfAction::registeredUser($schedConf)) {
 				return true;
-			} else {
-				if($schedConf->getSetting('openAccessVisitor')) {
-					return true;
-				}
-				if(Validation::isReader() && $schedConf->getSetting('openAccessReader')) {
-					return true;
-				}
 			}
 		}
 

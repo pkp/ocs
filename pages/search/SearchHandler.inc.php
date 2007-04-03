@@ -167,7 +167,7 @@ class SearchHandler extends Handler {
 				unset($schedConf);
 				$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 				$schedConfAbstractPermissions[$schedConfId] = SchedConfAction::mayViewProceedings($schedConf);
-				$schedConfPaperPermissions[$schedConfId] = SchedConfAction::mayViewPapers($schedConf);
+				$schedConfPaperPermissions[$schedConfId] = SchedConfAction::mayViewPapers($schedConf, $conference);
 			}
 
 			if($schedConfAbstractPermissions[$schedConfId]) {
@@ -217,7 +217,7 @@ class SearchHandler extends Handler {
 				unset($schedConf);
 				$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 				$schedConfAbstractPermissions[$schedConfId] = SchedConfAction::mayViewProceedings($schedConf);
-				$schedConfPaperPermissions[$schedConfId] = SchedConfAction::mayViewPapers($schedConf);
+				$schedConfPaperPermissions[$schedConfId] = SchedConfAction::mayViewPapers($schedConf, $conference);
 			}
 
 			if($schedConfAbstractPermissions[$schedConfId]) {

@@ -140,7 +140,7 @@ class PaperHandler extends Handler {
 			// Get the registration status if displaying the abstract;
 			// if access is open, we can display links to the full text.
 			import('schedConf.SchedConfAction');
-			$templateMgr->assign('mayViewPaper', SchedConfAction::mayViewPapers($schedConf));
+			$templateMgr->assign('mayViewPaper', SchedConfAction::mayViewPapers($schedConf, $conference));
 			$templateMgr->assign('registeredUser', SchedConfAction::registeredUser($schedConf));
 			$templateMgr->assign('registeredDomain', SchedConfAction::registeredDomain($schedConf));
 
@@ -332,10 +332,10 @@ class PaperHandler extends Handler {
 			}
 	
 			import('schedConf.SchedConfAction');
-			$mayViewPaper = SchedConfAction::mayViewPapers($schedConf);
+			$mayViewPaper = SchedConfAction::mayViewPapers($schedConf, $conference);
 			
 			// Bar access to paper?
-			if ((isset($galleyId) && $galleyId!=0) && !SchedConfAction::mayViewPapers($schedConf)) {
+			if ((isset($galleyId) && $galleyId!=0) && !$mayViewPaper) {
 				Request::redirect(null, null, null, 'index');	
 			}
 			

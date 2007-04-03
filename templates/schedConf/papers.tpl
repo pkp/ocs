@@ -22,7 +22,7 @@
 				<td width="75%">{$paper->getPaperTitle()|strip_unsafe_html}</td>
 				<td align="right" width="25%">
 
-					{if !$mayViewPapers || $paper->getAbstract() != ""}<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}" class="file">{translate key="paper.abstract"}</a>{/if}
+					{if !$mayViewPapers || $paper->getAbstract() != ""}<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}" class="file">{if $paper->getAbstract() == ""}{translate key="paper.details"}{else}{translate key="paper.abstract"}{/if}</a>{/if}
 
 					{if $mayViewPapers}
 					{foreach from=$paper->getGalleys() item=galley name=galleyList}

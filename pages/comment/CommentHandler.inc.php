@@ -146,7 +146,7 @@ class CommentHandler extends Handler {
 
 		if (isset($paper)) {
 			import('schedConf.SchedConfAction');
-			if (!SchedConfAction::mayViewPapers($schedConf)) {
+			if (!SchedConfAction::mayViewPapers($schedConf, $conference)) {
 				Request::redirect(null, null, 'index');
 			}
 		} else {

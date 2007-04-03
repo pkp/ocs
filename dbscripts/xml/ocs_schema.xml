@@ -333,12 +333,8 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<field name="start_date" type="T">
-			<NOTNULL/>
-		</field>
-		<field name="end_date" type="T">
-			<NOTNULL/>
-		</field>
+		<field name="start_date" type="T"/>
+		<field name="end_date" type="T"/>
 		<descr>Scheduled conferences and basic scheduled conference settings.</descr>
 		<index name="sched_conf_path">
 			<col>path</col>

@@ -192,7 +192,7 @@ class SchedConfHandler extends Handler {
 		import('schedConf.SchedConfAction');
 
 		$mayViewProceedings = SchedConfAction::mayViewProceedings($schedConf);
-		$mayViewPapers = SchedConfAction::mayViewPapers($schedConf);
+		$mayViewPapers = SchedConfAction::mayViewPapers($schedConf, $conference);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, null, 'proceedings'), 'schedConf.proceedings')));

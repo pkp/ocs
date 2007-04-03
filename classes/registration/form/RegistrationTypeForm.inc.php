@@ -68,13 +68,11 @@ class RegistrationTypeForm extends Form {
 		$this->addCheck(new FormValidator($this, 'currency', 'required', 'manager.registrationTypes.form.currencyRequired'));	
 		$this->addCheck(new FormValidatorInSet($this, 'currency', 'required', 'manager.registrationTypes.form.currencyValid', array_keys($this->validCurrencies)));
 
-		// TODO: Opening date is valid
-		/*$this->addCheck(new FormValidator($this, 'openDate', 'required', 'manager.registrationTypes.form.openDateRequired'));	
-		$this->addCheck(new FormValidatorCustom($this, 'openDate', 'required', 'manager.registrationTypes.form.durationNumeric', create_function('$duration', 'return (is_numeric($duration) && $duration >= 0);')));*/
-
-		// TODO: Closing date is valid and occurs after the opening date
-		/*$this->addCheck(new FormValidator($this, 'closeDate', 'required', 'manager.registrationTypes.form.closeDateRequired'));	
-		$this->addCheck(new FormValidatorCustom($this, 'closeDate', 'required', 'manager.registrationTypes.form.durationNumeric', create_function('$duration', 'return (is_numeric($duration) && $duration >= 0);')));*/
+		// Opening date must happen before closing date
+		$this->addCheck(new FormValidatorCustom($this, 'openDate', 'required', 'manager.registrationTypes.form.closeBeforeOpen',
+			create_function('$openDate,$form',
+			'return ($openDate < $form->getData(\'closeDate\'));'),
+			array(&$this)));
 
 		// Access type is provided and is valid value
 		$this->addCheck(new FormValidator($this, 'access', 'required', 'manager.registrationTypes.form.accessRequired'));	
