@@ -454,27 +454,9 @@ class DirectorSubmissionDAO extends DAO {
 	function &getDirectorSubmissionsArchives($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$directorSubmissions = array();
 	
-		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
-		while (!$result->EOF) {
-			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
-			$paperId = $directorSubmission->getPaperId();
 
-			if ($directorSubmission->getStatus() == SUBMISSION_STATUS_ARCHIVED) {
-				$directorSubmissions[] =& $directorSubmission;
-				unset($directorSubmission);
-			}
-			$result->MoveNext();
-		}
-		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
-		} else {
-			$returner = &new ArrayItemIterator($directorSubmissions);
-		}
-
-		$result->Close();
-		unset($result);
-		
+		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
 	}
 

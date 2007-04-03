@@ -499,28 +499,9 @@ class TrackDirectorSubmissionDAO extends DAO {
 	function &getTrackDirectorSubmissionsArchives($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$submissions = array();
 
-		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false);
+		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
 
-		while (!$result->EOF) {
-			$submission = &$this->_returnTrackDirectorSubmissionFromRow($result->GetRowAssoc(false));
-
-			if ($submission->getStatus() == SUBMISSION_STATUS_ARCHIVED) {
-				$submissions[] =& $submission;
-			}
-			unset($submission);
-			$result->MoveNext();
-		}
-
-		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new VirtualArrayIterator($submissions, $rangeInfo->getPage(), $rangeInfo->getCount());
-		} else {
-			$returner = &new ArrayItemIterator($submissions);
-		}
-
-		$result->Close();
-		unset($result);
-
+		$returner = &new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
 	}
 
