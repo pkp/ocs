@@ -394,6 +394,15 @@ class TrackDirectorSubmissionDAO extends DAO {
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
+		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+		
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		if($reviewMode != REVIEW_MODE_ABSTRACTS_ALONE)
+			$finalReviewType = REVIEW_PROGRESS_PRESENTATION;
+		else
+			$finalReviewType = REVIEW_PROGRESS_ABSTRACT;
+
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			$submission = &$this->_returnTrackDirectorSubmissionFromRow($row);
@@ -401,16 +410,18 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 			// check if submission is still in review
 			$inReview = true;
-			$decisions = $submission->getDecisions();
-			$decision = array_pop($decisions);
-			if (!empty($decision)) {
-				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
-					$inReview = false;
+			$decisions = $directorSubmission->getDecisions($finalReviewType);
+			if($decisions) {
+				$decision = is_array($decisions)?array_pop($decisions):null;
+				if (!empty($decision)) {
+					$latestDecision = array_pop($decision);
+					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
+						$inReview = false;
+					}
 				}
 			}
 
-			if ($inReview && !$submission->getSubmissionProgress()) {
+			if ($inReview) {
 				$submissions[] =& $submission;
 			}
 			unset($submission);
@@ -449,22 +460,33 @@ class TrackDirectorSubmissionDAO extends DAO {
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
+		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+		
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		if($reviewMode != REVIEW_MODE_ABSTRACTS_ALONE)
+			$finalReviewType = REVIEW_PROGRESS_PRESENTATION;
+		else
+			$finalReviewType = REVIEW_PROGRESS_ABSTRACT;
+
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			$submission = &$this->_returnTrackDirectorSubmissionFromRow($row);
 
 			// check if submission is still in review
-			$inReview = true;
-			$decisions = $submission->getDecisions();
-			$decision = array_pop($decisions);
-			if (!empty($decision)) {
-				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
-					$inReview = false;
+			$inEditing = false;
+			$decisions = $directorSubmission->getDecisions($finalReviewType);
+			if($decisions) {
+				$decision = is_array($decisions)?array_pop($decisions):null;
+				if (!empty($decision)) {
+					$latestDecision = array_pop($decision);
+					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
+						$inEditing = true;
+					}
 				}
 			}
 
-			if (!$inReview && !$submission->getSubmissionProgress()) {
+			if ($inEditing) {
 				$submissions[] =& $submission;
 			}
 			unset($submission);
@@ -577,17 +599,15 @@ class TrackDirectorSubmissionDAO extends DAO {
 				}
 			}
 
-			if (!$trackDirectorSubmission->getSubmissionProgress()) {
-				if ($inReview) {
-					if ($notDeclined && $row['can_review']) {
-						// in review submissions
-						$submissionsCount[0] += 1;
-					}
-				} else {
-					// in editing submissions
-					if ($row['can_edit']) {
-						$submissionsCount[1] += 1;
-					}
+			if ($inReview) {
+				if ($notDeclined && $row['can_review']) {
+					// in review submissions
+					$submissionsCount[0] += 1;
+				}
+			} else {
+				// in editing submissions
+				if ($row['can_edit']) {
+					$submissionsCount[1] += 1;
 				}
 			}
 			unset($trackDirectorDecision);

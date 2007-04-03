@@ -193,7 +193,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array result
 	 */
-	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, $status, $rangeInfo = null) {
+	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $rangeInfo = null) {
 		$params = array($schedConfId);
 		$searchSql = '';
 
@@ -343,6 +343,17 @@ class DirectorSubmissionDAO extends DAO {
 		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+
+		// If the submission has passed this review stage, it's out of review.
+		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+		
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		if($reviewMode != REVIEW_MODE_ABSTRACTS_ALONE)
+			$finalReviewType = REVIEW_PROGRESS_PRESENTATION;
+		else
+			$finalReviewType = REVIEW_PROGRESS_ABSTRACT;
+
 		while (!$result->EOF) {
 			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 			$paperId = $directorSubmission->getPaperId();
@@ -355,19 +366,21 @@ class DirectorSubmissionDAO extends DAO {
 
 			// check if submission is still in review
 			$inReview = true;
-			$decisions = $directorSubmission->getDecisions();
-			$decision = array_pop($decisions);
-			if (!empty($decision)) {
-				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
-					$inReview = false;
+			$decisions = $directorSubmission->getDecisions($finalReviewType);
+			if($decisions) {
+				$decision = is_array($decisions)?array_pop($decisions):null;
+				if (!empty($decision)) {
+					$latestDecision = array_pop($decision);
+					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
+						$inReview = false;
+					}
 				}
 			}
 
 			// used to check if director exists for this submission
 			$editAssignments =& $directorSubmission->getEditAssignments();
 
-			if (!empty($editAssignments) && $inReview) {
+			if (!empty($editAssignments) && $inReview && $directorSubmission->isOriginalSubmissionComplete()) {
 				$directorSubmissions[] =& $directorSubmission;
 			}
 			unset($directorSubmission);
@@ -403,25 +416,36 @@ class DirectorSubmissionDAO extends DAO {
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
+		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+		
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		if($reviewMode != REVIEW_MODE_ABSTRACTS_ALONE)
+			$finalReviewType = REVIEW_PROGRESS_PRESENTATION;
+		else
+			$finalReviewType = REVIEW_PROGRESS_ABSTRACT;
+
 		while (!$result->EOF) {
 			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 			$paperId = $directorSubmission->getPaperId();
 
 			// check if submission is still in review
 			$inEditing = false;
-			$decisions = $directorSubmission->getDecisions();
-			$decision = array_pop($decisions);
-			if (!empty($decision)) {
-				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
-					$inEditing = true;			
+			$decisions = $directorSubmission->getDecisions($finalReviewType);
+			if($decisions) {
+				$decision = is_array($decisions)?array_pop($decisions):null;
+				if (!empty($decision)) {
+					$latestDecision = array_pop($decision);
+					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
+						$inEditing = true;
+					}
 				}
 			}
 
 			// used to check if director exists for this submission
 			$editAssignments = $directorSubmission->getEditAssignments();
 
-			if ($inEditing && !empty($editAssignments)) {
+			if ($inEditing && !empty($editAssignments) && $directorSubmission->isOriginalSubmissionComplete()) {
 				$directorSubmissions[] =& $directorSubmission;
 			}
 			unset($directorSubmission);
@@ -509,7 +533,8 @@ class DirectorSubmissionDAO extends DAO {
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 		
 		// If the submission has passed this review stage, it's out of review.
-		if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL)
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		if($reviewMode != REVIEW_MODE_ABSTRACTS_ALONE)
 			$finalReviewType = REVIEW_PROGRESS_PRESENTATION;
 		else
 			$finalReviewType = REVIEW_PROGRESS_ABSTRACT;
@@ -519,18 +544,7 @@ class DirectorSubmissionDAO extends DAO {
 			$submissionsCount[$i] = 0;
 		}
 
-		$sql = 'SELECT p.*,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2
-			FROM papers p
-				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				WHERE p.sched_conf_id = ? AND p.status = ' . SUBMISSION_STATUS_QUEUED . '
-			ORDER BY paper_id ASC';
-		$result = &$this->retrieve($sql, $schedConfId);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId);
 
 		while (!$result->EOF) {
 			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
@@ -554,7 +568,9 @@ class DirectorSubmissionDAO extends DAO {
 			// used to check if director exists for this submission
 			$editAssignments = $directorSubmission->getEditAssignments();
 
-			if (empty($editAssignments)  && $directorSubmission->isOriginalSubmissionComplete()) {
+			if (!$directorSubmission->isOriginalSubmissionComplete()) {
+				// Do not include incomplete submissions
+			} elseif (empty($editAssignments)) {
 				// unassigned submissions
 				$submissionsCount[0] += 1;
 			} elseif ($directorSubmission->getStatus() == SUBMISSION_STATUS_QUEUED) {
