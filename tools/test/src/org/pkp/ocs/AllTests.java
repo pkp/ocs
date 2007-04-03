@@ -1,10 +1,10 @@
-package org.pkp.ojs;
+package org.pkp.ocs;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
 /**
- * Run all JUnit tests for OJS.
+ * Run all JUnit tests for OCS.
  */
 public class AllTests extends TestSuite {
 	public static Test suite() {

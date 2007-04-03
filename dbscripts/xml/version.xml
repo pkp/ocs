@@ -11,7 +11,7 @@
   -->
 
 <!DOCTYPE version [
-	<!ELEMENT version (application, release, tag, date, info, package, patch+)>
+	<!ELEMENT version (application, release, tag, date, info, package, patch*)>
 	<!ELEMENT application (#PCDATA)>
 	<!ELEMENT release (#PCDATA)>
 	<!ELEMENT tag (#PCDATA)>
@@ -27,7 +27,7 @@
 	<application>ocs2</application>
 	<release>2.0.0.0</release>
 	<tag>ocs-2_0_0-0</tag>
-	<date>2006-02-03</date>
+	<date>2007-04-02</date>
 	<info>http://pkp.sfu.ca/ocs/</info>
 	<package>http://pkp.sfu.ca/ocs/download/ocs-2.0.0-0.tar.gz</package>
 </version>
