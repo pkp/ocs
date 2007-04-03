@@ -148,7 +148,6 @@ class PresenterDAO extends DAO {
 				published_papers pa,
 				sched_confs e
 			WHERE e.sched_conf_id = pa.sched_conf_id
-				AND e.enabled = 1
 				AND aa.paper_id = a.paper_id ' .
 				(isset($schedConfId)?'AND a.sched_conf_id = ? ':'') .
 				'AND pa.paper_id = a.paper_id
