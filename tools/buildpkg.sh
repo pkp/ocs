@@ -13,7 +13,7 @@
 # $Id$
 #
 
-CVSROOT=:pserver:anonymous@research2.csci.educ.ubc.ca:/cvs
+CVSROOT=:pserver:anonymous@lib-pkp.lib.sfu.ca:/cvs
 MODULE=ojs2
 PRECOMPILE=1
 
