@@ -92,6 +92,18 @@
 
 <p><textarea name="announcementsIntroduction" id="announcementsIntroduction" rows="10" cols="60" class="textArea">{$announcementsIntroduction|escape}</textarea></p>
 
+<div class="separator"></div>
+
+<h3>2.4 {translate key="manager.setup.additionalContent.archiveAccess"}</h3>
+
+<p>{translate key="manager.setup.additionalContent.archiveAccess.description"}</p>
+
+<p>
+	<input type="radio" name="paperAccess" id="paperAccess-1" value="{$smarty.const.PAPER_ACCESS_OPEN}" {if $paperAccess == PAPER_ACCESS_OPEN || $paperAccess == ""} checked="checked"{/if} />&nbsp;<label for="paperAccess-1">{translate key="manager.setup.additionalContent.archiveAccess.open"}</label><br/>
+	<input type="radio" name="paperAccess" id="paperAccess-2" value="{$smarty.const.PAPER_ACCESS_ACCOUNT_REQUIRED}" {if $paperAccess == PAPER_ACCESS_ACCOUNT_REQUIRED} checked="checked"{/if} />&nbsp;<label for="paperAccess-2">{translate key="manager.setup.additionalContent.archiveAccess.accountRequired"}</label><br/>
+	<input type="radio" name="paperAccess" id="paperAccess-3" value="{$smarty.const.PAPER_ACCESS_REGISTRATION_REQUIRED}" {if $paperAccess == PAPER_ACCESS_REGISTRATION_REQUIRED} checked="checked"{/if} />&nbsp;<label for="paperAccess-3">{translate key="manager.setup.additionalContent.archiveAccess.registrationRequired"}</label><br/>
+</p>
+
 
 <div class="separator"></div>
 

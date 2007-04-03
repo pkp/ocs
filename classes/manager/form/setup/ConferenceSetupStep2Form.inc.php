@@ -28,6 +28,7 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 				'enableAnnouncements' => 'bool',
 				'enableAnnouncementsHomepage' => 'bool',
 				'numAnnouncementsHomepage' => 'int',
+				'paperAccess' => 'int',
 				'announcementsIntroduction' => 'string'
 			)
 		);
