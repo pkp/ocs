@@ -9,7 +9,8 @@
  * $Id$
  *}
 
-{include file="schedConf/header.tpl"}
+{assign var="pageTitleTranslated" value=$currentSchedConf->getTitle()}
+{include file="common/header.tpl"}
 
 {if $mayViewProceedings}
 	{foreach name=tracks from=$publishedPapers item=track key=trackId}

@@ -12,7 +12,7 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="schedConf.trackPolicies"}
+{translate|assign:"pageTitleTranslated" key="schedConf.trackPolicies.title" schedConfAbbrev=$currentSchedConf->getSetting('abbrev')}
 {include file="common/header.tpl"}
 
 {foreach from=$tracks item=track}

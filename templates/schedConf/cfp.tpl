@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="schedConf.cfp"}
+{translate|assign:"pageTitleTranslated" key="schedConf.cfp.title" schedConfAbbrev=$currentSchedConf->getSetting('abbrev')}
 {include file="common/header.tpl"}
 
 <div>{$cfpMessage|nl2br}</div>
