@@ -415,7 +415,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				$decision = is_array($decisions)?array_pop($decisions):null;
 				if (!empty($decision)) {
 					$latestDecision = array_pop($decision);
-					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
+					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
 						$inReview = false;
 					}
 				}
@@ -587,20 +587,17 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 			// check if submission is still in review
 			$inReview = true;
-			$notDeclined = true;
 			$decisions = $trackDirectorSubmission->getDecisions();
 			$decision = array_pop($decisions);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
 				if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
 					$inReview = false;
-				} elseif ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
-					$notDeclined = false;
 				}
 			}
 
 			if ($inReview) {
-				if ($notDeclined && $row['can_review']) {
+				if ($row['can_review']) {
 					// in review submissions
 					$submissionsCount[0] += 1;
 				}

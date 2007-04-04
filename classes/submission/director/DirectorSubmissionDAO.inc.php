@@ -371,7 +371,7 @@ class DirectorSubmissionDAO extends DAO {
 				$decision = is_array($decisions)?array_pop($decisions):null;
 				if (!empty($decision)) {
 					$latestDecision = array_pop($decision);
-					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
+					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
 						$inReview = false;
 					}
 				}
@@ -551,7 +551,6 @@ class DirectorSubmissionDAO extends DAO {
 
 			// check if submission is still in review
 			$inReview = true;
-			$notDeclined = true;
 			$decisions = $directorSubmission->getDecisions($finalReviewType);
 			if($decisions) {
 				$decision = is_array($decisions)?array_pop($decisions):null;
@@ -559,8 +558,6 @@ class DirectorSubmissionDAO extends DAO {
 					$latestDecision = array_pop($decision);
 					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
 						$inReview = false;
-					} elseif ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
-						$notDeclined = false;
 					}
 				}
 			}
@@ -575,10 +572,8 @@ class DirectorSubmissionDAO extends DAO {
 				$submissionsCount[0] += 1;
 			} elseif ($directorSubmission->getStatus() == SUBMISSION_STATUS_QUEUED) {
 				if ($inReview) {
-					if ($notDeclined) {
-						// in review submissions
-						$submissionsCount[1] += 1;
-					}
+					// in review submissions
+					$submissionsCount[1] += 1;
 				} else {
 					// in editing submissions
 					$submissionsCount[2] += 1;					
