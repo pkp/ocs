@@ -116,7 +116,7 @@ class PresenterSubmitForm extends Form {
 	}
 
 	function assignDirectors(&$paper) {
-		$trackId =& $paper->getTrackId();
+		$trackId = $paper->getTrackId();
 		$schedConf =& Request::getSchedConf();
 
 		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
