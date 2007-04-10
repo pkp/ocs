@@ -83,11 +83,13 @@ class TrackDirectorSubmission extends Paper {
 	function removeReviewAssignment($reviewId) {
 		if ($reviewId == 0) return false;
 
-		foreach($this->getReviewAssignments() as $reviewkey => $review) {
-			if($review->getReviewId() == $reviewId) {
-				$this->removedReviewAssignments[] =& $this->reviewAssignments[$stagekey][$reviewkey];
-				unset($this->reviewAssignments[$stagekey][$reviewkey]);
-				return true;
+		foreach($this->getReviewAssignments() as $stageKey => $reviews) {
+			foreach ($reviews as $reviewKey => $review) {
+				if($review->getReviewId() == $reviewId) {
+					$this->removedReviewAssignments[] =& $this->reviewAssignments[$stageKey][$reviewKey];
+					unset($this->reviewAssignments[$stageKey][$reviewKey]);
+					return true;
+				}
 			}
 		}
 		return false;
