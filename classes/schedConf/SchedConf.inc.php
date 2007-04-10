@@ -52,7 +52,8 @@ class SchedConf extends DataObject {
 	 */
 	function &getConference() {
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		return $conferenceDao->getConference($this->getConferenceId());
+		$returner =& $conferenceDao->getConference($this->getConferenceId());
+		return $returner;
 	}
 	
 	/**
