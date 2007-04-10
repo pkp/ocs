@@ -104,7 +104,7 @@ class RegistrationHandler extends ManagerHandler {
 		parent::validate();
 		$templateMgr = &TemplateManager::getManager();
 		RegistrationHandler::setupTemplate();
-		$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrations'), 'manager.registration'));
+		$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registration'), 'manager.registration'));
 
 		$userDao = &DAORegistry::getDAO('UserDAO');
 
@@ -176,7 +176,7 @@ class RegistrationHandler extends ManagerHandler {
 				RegistrationHandler::setupTemplate();
 
 				$templateMgr = &TemplateManager::getManager();
-				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrations'), 'manager.registration'));
+				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registration'), 'manager.registration'));
 
 				if ($registrationId == null) {
 					$templateMgr->assign('registrationTitle', 'manager.registration.createTitle');
@@ -406,7 +406,7 @@ class RegistrationHandler extends ManagerHandler {
 		parent::setupTemplate(true);
 		if ($subclass) {
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrations'), 'manager.registration'));
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registration'), 'manager.registration'));
 		}
 	}
 
