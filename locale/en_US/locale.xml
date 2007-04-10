@@ -1716,6 +1716,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<!--<message key="director.paper.noneSelected">None Selected</message>-->
 	<!--<message key="director.paper.presenterProofing">Presenter Proofing</message>-->
 	<message key="director.paper.archiveSubmission">Archive Submission</message>
+	<message key="director.paper.sendToArchive">Send this submission to the Archive</message>
 	<!--<message key="director.paper.emailPresenterOnArchive">Email presenter about the archiving of this submission?</message>-->
 	<message key="director.paper.restoreToQueue">Restore to Active List</message>
 	<message key="director.paper.assignTrackDirector">Add Track Director</message>

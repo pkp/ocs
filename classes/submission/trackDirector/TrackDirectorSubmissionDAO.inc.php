@@ -243,46 +243,9 @@ class TrackDirectorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get all track director submissions for a track director.
-	 * @param $trackDirectorId int
-	 * @param $schedConfId int
-	 * @param $status boolean true if active, false if completed.
-	 * @return array TrackDirectorSubmission
-	 */
-	function &getTrackDirectorSubmissions($trackDirectorId, $schedConfId, $status = true) {
-		$trackDirectorSubmissions = array();
-
-		$result = &$this->retrieve(
-			'SELECT p.*,
-			t.title AS track_title,
-			t.title_alt1 AS track_title_alt1,
-			t.title_alt2 AS track_title_alt2,
-			t.abbrev AS track_abbrev,
-			t.abbrev_alt1 AS track_abbrev_alt1,
-			t.abbrev_alt2 AS track_abbrev_alt2,
-			r2.review_revision
-			FROM papers p LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
-				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				LEFT JOIN review_stages r2 ON (p.paper_id = r2.paper_id AND p.current_stage = r2.stage)
-			WHERE p.sched_conf_id = ? AND e.director_id = ? AND p.status = ?',
-			array($schedConfId, $trackDirectorId, $status)
-		);
-
-		while (!$result->EOF) {
-			$trackDirectorSubmissions[] = &$this->_returnTrackDirectorSubmissionFromRow($result->GetRowAssoc(false));
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $trackDirectorSubmissions;
-	}
-
-	/**
 	 * Retrieve unfiltered track director submissions
 	 */
-	function &getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $rangeInfo = null) {
+	function &getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null) {
 		$params = array($schedConfId, $trackDirectorId);
 
 		$searchSql = '';
@@ -358,8 +321,8 @@ class TrackDirectorSubmissionDAO extends DAO {
 			WHERE
 				p.sched_conf_id = ? AND e.director_id = ?';
 
-		if ($status === true) $sql .= ' AND (p.status = ' . SUBMISSION_STATUS_QUEUED . ')';
-		else $sql .= ' AND (p.status <> ' . SUBMISSION_STATUS_QUEUED . ')';
+		if ($statusSql !== null) $sql .= " AND ($statusSql)";
+		else $sql .= ' AND p.status = ' . SUBMISSION_STATUS_QUEUED;
 
 		if ($trackId) {
 			$params[] = $trackId;
@@ -392,7 +355,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
 		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
@@ -410,7 +373,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 			// check if submission is still in review
 			$inReview = true;
-			$decisions = $directorSubmission->getDecisions($finalReviewType);
+			$decisions = $submission->getDecisions($finalReviewType);
 			if($decisions) {
 				$decision = is_array($decisions)?array_pop($decisions):null;
 				if (!empty($decision)) {
@@ -458,7 +421,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
 		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
@@ -475,7 +438,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 			// check if submission is still in review
 			$inEditing = false;
-			$decisions = $directorSubmission->getDecisions($finalReviewType);
+			$decisions = $submission->getDecisions($finalReviewType);
 			if($decisions) {
 				$decision = is_array($decisions)?array_pop($decisions):null;
 				if (!empty($decision)) {
@@ -505,29 +468,6 @@ class TrackDirectorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get all submissions in archives for a conference.
-	 * @param $trackDirectorId int
-	 * @param $schedConfId int
-	 * @param $trackId int
-	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
-	 * @param $searchMatch string "is" or "contains"
-	 * @param $search String to look in $searchField for
-	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
-	 * @param $dateFrom String date to search from
-	 * @param $dateTo String date to search to
-	 * @param $rangeInfo object
-	 * @return array DirectorSubmission
-	 */
-	function &getTrackDirectorSubmissionsArchives($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
-		$submissions = array();
-
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
-
-		$returner = &new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
-		return $returner;
-	}
-
-	/**
 	 * Get all submissions accepted to a conference.
 	 * @param $trackDirectorId int
 	 * @param $schedConfId int
@@ -545,27 +485,32 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false);
+		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo);
 
-		while (!$result->EOF) {
-			$submission = &$this->_returnTrackDirectorSubmissionFromRow($result->GetRowAssoc(false));
+		$returner = &new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
+		return $returner;
+	}
 
-			if ($submission->getStatus() == SUBMISSION_STATUS_PUBLISHED) {
-				$submissions[] =& $submission;
-			}
-			unset($submission);
-			$result->MoveNext();
-		}
+	/**
+	 * Get all submissions in archives for a conference.
+	 * @param $trackDirectorId int
+	 * @param $schedConfId int
+	 * @param $trackId int
+	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
+	 * @param $searchMatch string "is" or "contains"
+	 * @param $search String to look in $searchField for
+	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
+	 * @param $dateFrom String date to search from
+	 * @param $dateTo String date to search to
+	 * @param $rangeInfo object
+	 * @return array DirectorSubmission
+	 */
+	function &getTrackDirectorSubmissionsArchives($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$submissions = array();
 
-		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new VirtualArrayIterator($submissions, $rangeInfo->getPage(), $rangeInfo->getCount());
-		} else {
-			$returner = &new ArrayItemIterator($submissions);
-		}
+		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo);
 
-		$result->Close();
-		unset($result);
-
+		$returner = &new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
 	}
 

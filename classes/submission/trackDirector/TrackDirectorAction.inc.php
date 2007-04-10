@@ -804,52 +804,59 @@ class TrackDirectorAction extends Action {
 		
 		if (isset($fileId) && $fileId != 0) {
 			$trackDirectorSubmission->setDirectorFileId($fileId);
-
-			
-			// Set initial layout version to final copyedit version
-			if (!$trackDirectorSubmission->getLayoutFileId()) {
-				import('file.PaperFileManager');
-				$paperFileManager = &new PaperFileManager($trackDirectorSubmission->getPaperId());
-				if ($layoutFileId = $paperFileManager->copyToLayoutFile($fileId)) {
-					$trackDirectorSubmission->setLayoutFileId($layoutFileId);
-				}
-			}
-
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 
-			// Add a publishedpaper object
-			$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-			if(($publishedPaper = $publishedPaperDao->getPublishedPaperByPaperId($trackDirectorSubmission->getPaperId())) == null) {
-				$schedConfId = $trackDirectorSubmission->getSchedConfId();
-
-				$publishedPaper =& new PublishedPaper();
-				$publishedPaper->setPaperId($trackDirectorSubmission->getPaperId());
-				$publishedPaper->setSchedConfId($schedConfId);
-				$publishedPaper->setDatePublished(Core::getCurrentDate());
-				$publishedPaper->setSeq(100000); // KLUDGE: End of list
-				$publishedPaper->setViews(0);
-
-				$publishedPaperDao->insertPublishedPaper($publishedPaper);
-
-				// Resequence the papers.
-				$publishedPaperDao->resequencePublishedPapers($trackDirectorSubmission->getTrackId(), $schedConfId);
-
-				// If we're using custom track ordering, and if this is the first
-				// paper published in a track, make sure we enter a custom ordering
-				// for it. (Default at the end of the list.)
-				$trackDao =& DAORegistry::getDAO('TrackDAO');
-				if ($trackDao->customTrackOrderingExists($schedConfId)) {
-					if ($trackDao->getCustomTrackOrder($schedConfId, $submission->getTrackId()) === null) {
-						$trackDao->insertCustomTrackOrder($schedConfId, $submission->getTrackId(), 10000); // KLUDGE: End of list
-						$trackDao->resequenceCustomTrackOrders($schedConfId);
-					}
-				}
-			}		
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
 			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_FILE, LOG_TYPE_DIRECTOR, $trackDirectorSubmission->getDirectorFileId(), 'log.director.directorFile');
 		}
+	}
+	
+	/**
+	 * Mark a paper as published.
+	 * @param $trackDirectorSubmission object
+	 */
+	function publishPaper($trackDirectorSubmission) {
+		import('file.PaperFileManager');
+		$paperFileManager = &new PaperFileManager($trackDirectorSubmission->getPaperId());
+		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$user = &Request::getUser();
+
+		$trackDirectorSubmission->setStatus(PAPER_STATUS_PUBLISHED);
+		$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
+		// Add a published paper object
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		if(($publishedPaper = $publishedPaperDao->getPublishedPaperByPaperId($trackDirectorSubmission->getPaperId())) == null) {
+			$schedConfId = $trackDirectorSubmission->getSchedConfId();
+
+			$publishedPaper =& new PublishedPaper();
+			$publishedPaper->setPaperId($trackDirectorSubmission->getPaperId());
+			$publishedPaper->setSchedConfId($schedConfId);
+			$publishedPaper->setDatePublished(Core::getCurrentDate());
+			$publishedPaper->setSeq(100000); // KLUDGE: End of list
+			$publishedPaper->setViews(0);
+
+			$publishedPaperDao->insertPublishedPaper($publishedPaper);
+
+			// Resequence the papers.
+			$publishedPaperDao->resequencePublishedPapers($trackDirectorSubmission->getTrackId(), $schedConfId);
+
+			// If we're using custom track ordering, and if this is the first
+			// paper published in a track, make sure we enter a custom ordering
+			// for it. (Default at the end of the list.)
+			$trackDao =& DAORegistry::getDAO('TrackDAO');
+			if ($trackDao->customTrackOrderingExists($schedConfId)) {
+				if ($trackDao->getCustomTrackOrder($schedConfId, $submission->getTrackId()) === null) {
+					$trackDao->insertCustomTrackOrder($schedConfId, $submission->getTrackId(), 10000); // KLUDGE: End of list
+					$trackDao->resequenceCustomTrackOrders($schedConfId);
+				}
+			}
+		}
+		// Add log
+		import('paper.log.PaperLog');
+		import('paper.log.PaperEventLogEntry');
+		PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_PUBLISH, LOG_TYPE_DIRECTOR, $trackDirectorSubmission->getDirectorFileId(), 'log.director.publish');
 	}
 	
 	/**
@@ -1286,7 +1293,7 @@ import('file.PaperFileManager');
 			case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
 				$templateName = $isAbstract?'SUBMISSION_ABSTRACT_REVISE':'SUBMISSION_PAPER_REVISE';
 				break;
-			case SUBMISSION_DIRECTOR_DECISION_ACCEPT_DECLINE:
+			case SUBMISSION_DIRECTOR_DECISION_DECLINE:
 				$templateName = $isAbstract?'SUBMISSION_ABSTRACT_DECLINE':'SUBMISSION_PAPER_DECLINE';
 				break;
 		}

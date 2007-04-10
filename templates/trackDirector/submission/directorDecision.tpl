@@ -52,6 +52,10 @@
 		{else}
 			<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId()}');" class="icon">{icon name="comment"}</a>
 		{/if}
+		{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_DECLINE}
+			<br />
+			<a href="{url op="unsuitableSubmission" paperId=$submission->getPaperId()}" class="action">{translate key="director.paper.sendToArchive"}</a>
+		{/if}
 	</td>
 </tr>
 </table>
@@ -71,8 +75,11 @@
 			<tr valign="top">
 				<td width="20%" class="label">{translate key="submission.reviewVersion"}</td>
 				<td width="50%" colspan="2" class="value">
-					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}<input type="radio" name="directorDecisionFile" value="{$reviewFile->getFileId()},{$reviewFile->getRevision()}" /> {/if}<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()}</a>&nbsp;&nbsp;
-					{assign var="publishableRevisionExists" value=true}
+					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
+						<input type="radio" name="directorDecisionFile" value="{$reviewFile->getFileId()},{$reviewFile->getRevision()}" />
+						{assign var="publishableRevisionExists" value=true}
+					{/if}
+					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()}</a>&nbsp;&nbsp;
 					{$reviewFile->getDateModified()|date_format:$dateFormatShort}
 				</td>
 			</tr>

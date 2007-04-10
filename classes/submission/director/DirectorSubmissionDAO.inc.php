@@ -139,47 +139,6 @@ class DirectorSubmissionDAO extends DAO {
 	}
 	
 	/**
-	 * Get all submissions for a scheduled conference.
-	 * @param $schedConfId int
-	 * @param $status boolean true if queued, false if archived.
-	 * @return array DirectorSubmission
-	 */
-	function &getDirectorSubmissions($schedConfId, $status = true, $trackId = 0, $rangeInfo = null) {
-		if (!$trackId) {
-			$result = &$this->retrieveRange(
-					'SELECT p.*,
-						t.title AS track_title,
-						t.title_alt1 AS track_title_alt1,
-						t.title_alt2 AS track_title_alt2,
-						t.abbrev AS track_abbrev,
-						t.abbrev_alt1 AS track_abbrev_alt1,
-						t.abbrev_alt2 AS track_abbrev_alt2
-					FROM papers p
-						LEFT JOIN tracks t ON (t.track_id = p.track_id)
-					WHERE p.sched_conf_id = ? AND p.status = ? ORDER BY paper_id ASC',
-					array($schedConfId, $status),
-					$rangeInfo
-			);
-		} else {
-			$result = &$this->retrieveRange(
-					'SELECT p.*,
-						t.title AS track_title,
-						p.title_alt1 AS track_title_alt1,
-						p.title_alt2 AS track_title_alt2,
-						p.abbrev AS track_abbrev,
-						p.abbrev_alt1 AS track_abbrev_alt1,
-						p.abbrev_alt2 AS track_abbrev_alt2
-					FROM papers p LEFT JOIN tracks t ON (t.track_id = p.track_id) WHERE p.sched_conf_id = ? AND p.status = ? AND p.track_id = ?
-					ORDER BY paper_id ASC',
-					array($schedConfId, $status, $trackId),
-					$rangeInfo
-			);	
-		}
-		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
-		return $returner;
-	}
-
-	/**
 	 * Get all unfiltered submissions for a scheduled conference.
 	 * @param $schedConfId int
 	 * @param $trackId int
@@ -193,7 +152,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array result
 	 */
-	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $rangeInfo = null) {
+	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null) {
 		$params = array($schedConfId);
 		$searchSql = '';
 
@@ -247,8 +206,8 @@ class DirectorSubmissionDAO extends DAO {
 			WHERE
 				p.sched_conf_id = ?';
 
-		if ($status === true) $sql .= ' AND (p.status = ' . SUBMISSION_STATUS_QUEUED . ')';
-		else $sql .= ' AND (p.status <> ' . SUBMISSION_STATUS_QUEUED . ')';
+		if ($statusSql !== null) $sql .= " AND ($statusSql)";
+		else $sql .= ' AND p.status = ' . SUBMISSION_STATUS_QUEUED;
 		
 		if ($trackId) {
 			$searchSql .= ' AND p.track_id = ?';
@@ -298,7 +257,7 @@ class DirectorSubmissionDAO extends DAO {
 		$directorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
 		while (!$result->EOF) {
 			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
@@ -340,7 +299,7 @@ class DirectorSubmissionDAO extends DAO {
 		$directorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 
@@ -414,7 +373,7 @@ class DirectorSubmissionDAO extends DAO {
 		$directorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
 		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
@@ -463,28 +422,6 @@ class DirectorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get all submissions archived for a scheduled conference.
-	 * @param $schedConfId int
-	 * @param $trackId int
-	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
-	 * @param $searchMatch string "is" or "contains"
-	 * @param $search String to look in $searchField for
-	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
-	 * @param $dateFrom String date to search from
-	 * @param $dateTo String date to search to
-	 * @param $rangeInfo object
-	 * @return array DirectorSubmission
-	 */
-	function &getDirectorSubmissionsArchives($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
-		$directorSubmissions = array();
-	
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
-
-		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
-		return $returner;
-	}
-
-	/**
 	 * Get all submissions accepted for a scheduled conference.
 	 * @param $schedConfId int
 	 * @param $trackId int
@@ -501,26 +438,31 @@ class DirectorSubmissionDAO extends DAO {
 		$directorSubmissions = array();
 	
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
-		while (!$result->EOF) {
-			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
-			$paperId = $directorSubmission->getPaperId();
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo);
 
-			if ($directorSubmission->getStatus() == SUBMISSION_STATUS_PUBLISHED) {
-				$directorSubmissions[] =& $directorSubmission;
-				unset($directorSubmission);
-			}
-			$result->MoveNext();
-		}
-		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
-		} else {
-			$returner = &new ArrayItemIterator($directorSubmissions);
-		}
+		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
+		return $returner;
+	}
 
-		$result->Close();
-		unset($result);
-		
+	/**
+	 * Get all submissions archived for a scheduled conference.
+	 * @param $schedConfId int
+	 * @param $trackId int
+	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
+	 * @param $searchMatch string "is" or "contains"
+	 * @param $search String to look in $searchField for
+	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
+	 * @param $dateFrom String date to search from
+	 * @param $dateTo String date to search to
+	 * @param $rangeInfo object
+	 * @return array DirectorSubmission
+	 */
+	function &getDirectorSubmissionsArchives($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$directorSubmissions = array();
+	
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo);
+
+		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
 	}
 

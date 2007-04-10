@@ -138,7 +138,7 @@ class TrackDirectorSubmission extends Paper {
 		$decision = array_pop($decisions);
 		if (!empty($decision)) {
 			$latestDecision = array_pop($decision);
-			if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_DECLINE) {
+			if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
 				return SUBMISSION_STATUS_QUEUED_EDITING;
 			}
 		}

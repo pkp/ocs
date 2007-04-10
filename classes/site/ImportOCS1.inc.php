@@ -13,9 +13,6 @@
  * $Id$
  */
 
-define('OCS1_MIN_VERSION', '1.1.5');
-define('OCS1_MIN_VERSION_SUBSCRIPTIONS', '1.1.8');
-
 import('user.User');
 import('conference.Conference');
 import('conference.Track');
@@ -35,10 +32,7 @@ import('paper.SuppFile');
 import('submission.common/Action');
 import('submission.presenter.PresenterSubmission');
 import('submission.reviewer.ReviewerSubmission');
-import('issue.Issue');
-import('submission.copyAssignment.CopyAssignment');
 import('submission.editAssignment.EditAssignment');
-import('submission.proofAssignment.ProofAssignment');
 import('submission.reviewAssignment.ReviewAssignment');
 import('comment.Comment');
 import('file.PaperFileManager');
@@ -53,12 +47,12 @@ class ImportOCS1 {
 	//
 
 	var $importPath;
-	var $importVersion;
 	var $conferencePath;
 	var $conferenceId = 0;
-	
+
+	var $dbtable = array();
+
 	var $userMap = array();
-	var $issueMap = array();
 	var $trackMap = array();
 	var $paperMap = array();
 	var $fileMap = array();
@@ -67,13 +61,10 @@ class ImportOCS1 {
 	var $importDao;
 	
 	var $indexUrl;
-	var $importConference;
-	var $conferenceConfigInfo;
-	var $conferenceInfo;
-	var $issueLabelFormat;
+	var $globalConfigInfo;
+	var $conferenceInfo = array();
 	
 	var $userCount = 0;
-	var $issueCount = 0;
 	var $paperCount = 0;
 	
 	var $options;
@@ -157,14 +148,14 @@ class ImportOCS1 {
 		$dbconn->reconnect(true);
 		
 		// Create a connection to the old database
-		if (!@include($this->importPath . '/include/db.php')) { // Suppress E_NOTICE messages
+		if (!@include($this->importPath . '/include/db.inc.php')) { // Suppress E_NOTICE messages
 			$this->error('Failed to load ' . $this->importPath . '/include/db.php');
 			return false;
 		}
 		
 		// Assumes no character set (not supported by OCS 1.x)
 		// Forces open a new connection
-		$this->importDBConn = &new DBConnection($db_config['type'], $db_config['host'], $db_config['uname'], $db_config['password'], $db_config['name'], false, false, true, false, true);
+		$this->importDBConn = &new DBConnection($db_type, $db_host, $db_login, $db_password, $db_name, false, false, true, false, true);
 		$dbconn = &$this->importDBConn->getDBConn();
 		
 		if (!$this->importDBConn->isConnected()) {
@@ -172,32 +163,21 @@ class ImportOCS1 {
 			return false;
 		}
 		
+		$this->dbtable = $dbtable;
 		$this->importDao = &new DAO($dbconn);
 		
-		if (!$this->loadConferenceConfig()) {
+		if (!$this->loadGlobalConfig()) {
 			$this->error('Unsupported or unrecognized OCS version');
 			return false;
 		}
 		
-		// Determine if conference already exists
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$conference = &$conferenceDao->getConferenceByPath($this->conferencePath);
-		$this->importConference = ($conference == null);
-		
-		// Import data
-		if ($this->importConference) {
-			$this->importConference();
-			$this->importReadingTools();
-		} else {
-			$this->conferenceId = $conference->getConferenceId();
-		}
+		$this->importConferences();
+		$this->importReadingTools();
 		$this->importUsers();
-		if ($this->hasOption('importRegistrations') && version_compare($this->importVersion, OCS1_MIN_VERSION_SUBSCRIPTIONS) >= 0) {
-			// Registrations requires OCS >= 1.1.8
+		if ($this->hasOption('importRegistrations')) {
 			$this->importRegistrations();
 		}
 		$this->importTracks();
-		$this->importIssues();
 		$this->importPapers();
 		
 		// Rebuild search index
@@ -207,27 +187,19 @@ class ImportOCS1 {
 	}
 	
 	/**
-	 * Load OCS 1 conference configuration and settings data.
+	 * Load OCS 1 configuration and settings data.
 	 * @return boolean
 	 */
-	function loadConferenceConfig() {
-		// Load conference config
-		$result = &$this->importDao->retrieve('SELECT * FROM tblconferenceconfig');
-		$this->conferenceConfigInfo = &$result->fields;
+	function loadGlobalConfig() {
+		$dbtable = $this->dbtable;
+		// Load global config
+		$result = &$this->importDao->retrieve("SELECT * FROM $dbtable[conference_global]");
+		$this->globalConfigInfo = &$result->fields;
 		$result->Close();
 		
-		if (!isset($this->conferenceConfigInfo['chOCSVersion'])) {
+		if (!isset($this->globalConfigInfo['admin_login'])) {
 			return false;
 		}
-		$this->importVersion = $this->conferenceConfigInfo['chOCSVersion'];
-		if (version_compare($this->importVersion, OCS1_MIN_VERSION) < 0) {
-			return false;
-		}
-
-		// Load conference settings
-		$result = &$this->importDao->retrieve('SELECT * FROM tblconference');
-		$this->conferenceInfo = &$result->fields;
-		$result->Close();
 		
 		return true;
 	}
@@ -236,19 +208,47 @@ class ImportOCS1 {
 	//
 	// Conference
 	//
-	
+
+	function importConferences() {
+		if ($this->hasOption('verbose')) {
+			printf("Importing conferences\n");
+		}
+
+		$dbtable = $this->dbtable;
+		$result = &$this->importDao->retrieve("SELECT id FROM $dbtable[conference] ORDER BY id");
+		$conferenceIds = array();
+		while (!$result->EOF) {
+			$conferenceIds[] = &$result->fields[0];
+			$result->MoveNext();
+		}
+		$result->Close();
+
+		foreach ($conferenceIds as $id) {
+			$this->importConference($id);
+		}
+	}
+
 	/**
 	 * Import conference and conference settings.
+	 * @param $id int
 	 */
-	function importConference() {
+	function importConference($id) {
 		if ($this->hasOption('verbose')) {
-			printf("Importing conference\n");
+			printf("Importing conference ID $id\n");
 		}
-		
+		$dbtable = $this->dbtable;
+
+		// Load conference config
+		$result = &$this->importDao->retrieve("SELECT * FROM $dbtable[conference_global]");
+		$this->conferenceInfo[$id] = &$result->fields;
+		$result->Close();
+
+		die('HERE');
+
 		// Create conference
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
 		$conference = &new Conference();
-		$conference->setTitle($this->conferenceInfo['chTitle']);
+		$conference->setTitle($this->conferenceInfo['title_text']);
 		$conference->setPath($this->conferencePath);
 		$conference->setEnabled(1);
 		$this->conferenceId = $conferenceDao->insertConference($conference);
@@ -420,8 +420,6 @@ class ImportOCS1 {
 			'registrationMailingAddress' => array('string', $this->trans($this->conferenceInfo['chContactMailAddr'])),
 		//	'registrationAdditionalInformation' => array('string', ''),
 		//	'volumePerYear' => array('int', ''),
-		//	'issuePerVolume' => array('int', ''),
-		//	'enablePublicIssueId' => array('bool', ''),
 		//	'enablePublicPaperId' => array('bool', ''),
 		//	'enablePageNumber' => array('bool', ''),
 		
@@ -522,7 +520,7 @@ class ImportOCS1 {
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$notifyDao = &DAORegistry::getDAO('NotificationStatusDAO');
 		
-		$result = &$this->importDao->retrieve('SELECT *, DECODE(chPassword, ?) AS chPassword FROM tblusers ORDER BY nUserID', $this->conferenceConfigInfo['chPasswordSalt']);
+		$result = &$this->importDao->retrieve('SELECT *, DECODE(chPassword, ?) AS chPassword FROM tblusers ORDER BY nUserID', $this->globalConfigInfo['chPasswordSalt']);
 		while (!$result->EOF) {
 			$row = &$result->fields;
 
@@ -739,98 +737,6 @@ class ImportOCS1 {
 		$result->Close();
 	}
 	
-	
-	//
-	// Issues
-	//
-	
-	/**
-	 * Import issues.
-	 */
-	function importIssues() {
-		if ($this->hasOption('verbose')) {
-			printf("Importing issues\n");
-		}
-		
-		$issueDao = &DAORegistry::getDAO('IssueDAO');
-		
-		$this->issueLabelFormat = ISSUE_LABEL_NUM_VOL_YEAR;
-		if ($this->conferenceInfo['nSchedulingType'] == 1 && !$this->conferenceInfo['bPubUseNum']) {
-			$this->issueLabelFormat = ISSUE_LABEL_VOL_YEAR;
-		} else if($this->conferenceInfo['nSchedulingType'] == 2) {
-			$this->issueLabelFormat = ISSUE_LABEL_YEAR;
-		}
-		
-		$result = &$this->importDao->retrieve('SELECT * FROM tblissues ORDER BY bPublished DESC, bLive ASC, nYear ASC, nVolume ASC, nNumber ASC');
-		while (!$result->EOF) {
-			$row = &$result->fields;
-			
-			$issue = &new Issue();
-			$issue->setConferenceId($this->conferenceId);
-			$issue->setTitle($this->trans($row['chIssueTitle']));
-			$issue->setVolume($row['nVolume']);
-			$issue->setNumber($row['nNumber']);
-			$issue->setYear($row['nYear']);
-			$issue->setPublished($row['bPublished']);
-			$issue->setCurrent($row['bLive']);
-			$issue->setDatePublished($row['dtDatePublished']);
-			$issue->setOpenAccessDate(isset($row['dtDateOpenAccess']) ? $row['dtDateOpenAccess'] : null);
-			$issue->setLabelFormat($this->issueLabelFormat);
-			$issue->setDescription('');
-			$issue->setShowCoverPage(0);
-			
-			$issueId = $issueDao->insertIssue($issue);
-			$this->issueMap[$row['nIssueID']] = $issueId;
-			$this->issueCount++;
-			$result->MoveNext();
-		}
-		$result->Close();
-		
-		if ($this->issueLabelFormat == ISSUE_LABEL_YEAR) {
-			// Insert issues for each year in "publish by year" mode
-			$result = &$this->importDao->retrieve('SELECT DISTINCT(DATE_FORMAT(dtDatePublished, \'%Y\')) FROM tblpapers WHERE bPublished = 1 ORDER BY year');
-			while (!$result->EOF) {
-				list($year) = $result->fields;
-				
-				$issue = &new Issue();
-				$issue->setConferenceId($this->conferenceId);
-				$issue->setTitle('');
-				$issue->setVolume('');
-				$issue->setNumber('');
-				$issue->setYear($year);
-				$issue->setPublished(1);
-				$issue->setDatePublished($year . '-01-01');
-				$issue->setOpenAccessDate(null);
-				$issue->setLabelFormat($this->issueLabelFormat);
-				
-				$result->MoveNext();
-			
-				$issue->setCurrent($result->EOF ? 1 : 0);	
-				$issueId = $issueDao->insertIssue($issue);
-				$this->issueMap['YEAR' . $year] = $issueId;
-				$this->issueCount++;
-			}
-			$result->Close();			
-		}
-
-		// Import custom track ordering
-		$count = 0;
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$result = &$this->importDao->retrieve('SELECT * FROM tblissuestotracks ORDER BY nTrackRank');
-		while (!$result->EOF) {
-			$row = &$result->fields;
-
-			$trackId = isset($this->trackMap[$row['fkTrackID']])?$this->trackMap[$row['fkTrackID']]:null;
-			$issueId = isset($this->issueMap[$row['fkIssueID']])?$this->issueMap[$row['fkIssueID']]:null;
-
-			if (isset($trackId) && isset($issueId)) {
-				$trackDao->_insertCustomTrackOrder($issueId, $trackId, $count);
-			}
-			$result->MoveNext();
-		}
-		$result->Close();
-	}
-	
 	/**
 	 * Import tracks.
 	 */
@@ -985,10 +891,6 @@ class ImportOCS1 {
 				'reviewerId' => array(),
 				'reviewId' => array()
 			);
-			
-			if (empty($row['fkIssueID']) && $row['bPublished'] && $row['dtDatePublished'] && $this->issueLabelFormat == ISSUE_LABEL_YEAR) {
-				$row['fkIssueID'] = 'YEAR' . date('Y', strtotime($row['dtDatePublished']));
-			}
 			
 			if ($row['fkIssueID']) {
 				$publishedPaper = &new PublishedPaper();
@@ -1399,7 +1301,7 @@ class ImportOCS1 {
 		}
 		
 		$row = &$result->fields;
-		$oldPath = $this->trans($this->conferenceConfigInfo['chFilePath']) . $this->trans($row['chFilePath']);
+		$oldPath = $this->trans($this->globalConfigInfo['chFilePath']) . $this->trans($row['chFilePath']);
 		
 		$fileManager = &new PaperFileManager($paperId);
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');

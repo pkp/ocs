@@ -180,7 +180,7 @@ system is configured to index full-text files.
     ocs1_path     Complete local filesystem path to the OCS 1 installation
                   (E.g., "/var/www/ocs")
                   
-    options       importSubscriptions - import subscription type and subscriber
+    options       importRegistrations - import registration type and user
                   data
                   verbose - print additional debugging information
                   
@@ -189,7 +189,7 @@ system is configured to index full-text files.
     To import all data from "/var/www/ocs" into a new conference "import1" and
     scheduled conference "2007":
 
-        $ php tools/migrate.php import1 2007 /var/www/ocs importSubscriptions
+        $ php tools/migrate.php import1 2007 /var/www/ocs importRegistrations
     
     To import just users, issues, and articles from "/var/www/ocs" into an
     existing conference "import2" and scheduled conference "2007":     
