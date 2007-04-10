@@ -759,17 +759,17 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="admin.conferences.conferenceDescription">Conference description</message>
 	<message key="admin.conferences.conferenceDescriptionInstructions">The conference description identifies the ongoing mission of this conference. It appears on the main conference page, as well as all of the conference's convention pages.</message>
 	<message key="admin.conferences.importOCS1">Import from OCS 1</message>
-	<!--<message key="admin.conferences.importOCS1.editMigratedConference">Edit Migrated Conference</message>-->
-	<!--<message key="admin.conferences.importOCS1.conflict.desc">Some user accounts had conflicting information. OCS 1.x allows multiple user accounts to share the same email address, while OCS 2.x does not. In the list below, the second account listed has had a temporary email account assigned to it. These should be corrected by hand, either by assigning a different email account, or by merging accounts.</message>-->
-	<!--<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) and {$secondUsername} ({$secondName})</message>-->
-	<!--<message key="admin.conferences.importOCS1Instructions">Consult the UPGRADE document distributed with OCS for detailed information on migrating data from OCS 1 to OCS 2.</message>-->
-	<!--<message key="admin.conference.pathImportInstructions">Existing conference path or path to create (e.g., "ocs").</message>-->
-	<!--<message key="admin.conference.importPath">OCS 1 path</message>-->
-	<!--<message key="admin.conference.importPathInstructions">Complete local filesystem path to the OCS 1 installation (e.g., "/var/www/ocs").</message>-->
-	<!--<message key="admin.conferences.importSubscriptions">Import subscriptions</message>-->
-	<!--<message key="admin.conferences.transcode">Transcode paper metadata from ISO8859-1</message>-->
-	<!--<message key="admin.conferences.form.importPathRequired">The import path is required.</message>-->
-	<!--<message key="admin.conferences.importErrors">Importing failed to complete successfully</message>-->
+	<message key="admin.conferences.importOCS1.editMigratedConference">Edit Migrated Conference</message>
+	<message key="admin.conferences.importOCS1.conflict.desc">Some user accounts had conflicting information. OCS 1.x allows multiple user accounts to share the same email address, while OCS 2.x does not. In the list below, the second account listed has had a temporary email account assigned to it. These should be corrected by hand, either by assigning a different email account, or by merging accounts.</message>
+	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) and {$secondUsername} ({$secondName})</message>
+	<message key="admin.conferences.importOCS1Instructions">Consult the UPGRADE document distributed with OCS for detailed information on migrating data from OCS 1 to OCS 2.</message>
+	<message key="admin.conference.pathImportInstructions">Existing conference path or path to create (e.g., "ocs").</message>
+	<message key="admin.conference.importPath">OCS 1 path</message>
+	<message key="admin.conference.importPathInstructions">Complete local filesystem path to the OCS 1 installation (e.g., "/var/www/ocs").</message>
+	<message key="admin.conferences.importRegistrations">Import registrations</message>
+	<message key="admin.conferences.transcode">Transcode paper metadata from ISO8859-1</message>
+	<message key="admin.conferences.form.importPathRequired">The import path is required.</message>
+	<message key="admin.conferences.importErrors">Importing failed to complete successfully</message>
 
 	<!-- Registration Management -->
 	<message key="manager.registrationManagement">Registration Management</message>
@@ -782,6 +782,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="conference.event.backToEventLog">Back to Event Log</message>
 	<message key="conference.history.conferenceEventLog">Event Log</message>
 	<message key="conference.history.clearLog">Clear Log</message>
+	<message key="conference.history.noLogEntries">No log entries.</message>
 
 	<!-- Scheduled Conference Management -->
 	<message key="manager.schedConfs">Scheduled Conferences</message>
@@ -2383,6 +2384,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.review.reviewFileByProxy">The Director, {$userName}, has uploaded a review file for stage {$stage} of submission {$paperId} on behalf of the reviewer, {$reviewerName}.</message>
 	<message key="log.review.reviewerFile">A reviewer file has been uploaded.</message>
 	<message key="log.director.decision">A director decision ({$decision}) for paper {$paperId} was recorded by {$directorName}.</message>
+	<message key="log.director.publish">The paper was published.</message>
 
 	<message key="log.director.metadataModified">The metadata for this paper was modified by {$directorName}.</message>
 	<message key="log.director.directorFile">A director version of the submission file has been uploaded.</message>
