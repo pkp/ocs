@@ -73,7 +73,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$cancelsAndRegrets = $reviewAssignmentDao->getCancelsAndRegrets($paperId);
 		$reviewFilesByStage = $reviewAssignmentDao->getReviewFilesByStage($paperId);
 
-		$stages =& $submission->getReviewAssignments();
+		$stages = $submission->getReviewAssignments();
 		
 		$directorDecisions = $submission->getDecisions();
 
