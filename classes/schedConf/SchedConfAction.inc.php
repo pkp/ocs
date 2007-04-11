@@ -75,7 +75,7 @@ class SchedConfAction {
 	}
 
 	/**
-	 * Checks if a user has access to the proceedings index (titles and abstracts)
+	 * Checks if a user has access to the presentations index (titles and abstracts)
 	 * @param $schedConf
 	 * @return bool
 	 */
@@ -101,7 +101,7 @@ class SchedConfAction {
 	}
 
 	/**
-	 * Checks if a user has access to the proceedings index (titles and abstracts)
+	 * Checks if a user has access to view papers
 	 * @param $schedConf object
 	 * @param $conference object
 	 * @return bool

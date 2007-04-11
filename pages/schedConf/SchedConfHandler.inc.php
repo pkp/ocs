@@ -184,9 +184,9 @@ class SchedConfHandler extends Handler {
 	}
 
 	/**
-	 * Display the proceedings
+	 * Display the presentations
 	 */
-	function proceedings() {
+	function presentations() {
 		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
 
 		import('schedConf.SchedConfAction');
@@ -195,7 +195,7 @@ class SchedConfHandler extends Handler {
 		$mayViewPapers = SchedConfAction::mayViewPapers($schedConf, $conference);
 
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, null, 'proceedings'), 'schedConf.proceedings')));
+		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, null, 'presentations'), 'schedConf.presentations')));
 		$templateMgr->assign('helpTopicId', 'FIXME');
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
 

@@ -58,7 +58,7 @@
 	{/if}
 	<li>&#187; <a href="{url page="schedConf" op="trackPolicies"}">{translate key="schedConf.trackPolicies"}</a></li>
 	{if $schedConf->getSetting("program") || $schedConf->getSetting("programFile")}<li>&#187; <a href="{url page="schedConf" op="program"}">{translate key="schedConf.program"}</a></li>{/if}
-	<li>&#187; <a href="{url page="schedConf" op="proceedings"}">{translate key="schedConf.proceedings"}</a></li>
+	<li>&#187; <a href="{url page="schedConf" op="presentations"}">{translate key="schedConf.presentations"}</a></li>
 	<li>&#187; <a href="{url page="schedConf" op="registration"}">{translate key="schedConf.registration"}</a></li>
 	<li>&#187; <a href="{url page="about" op="organizingTeam"}">{translate key="schedConf.supporters"}</a></li>
 </ul>

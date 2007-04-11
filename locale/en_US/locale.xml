@@ -451,14 +451,14 @@
 	<message key="schedConf.supporters">Organizers and Partners</message>
 	<message key="schedConf.schedule">Conference Schedule</message>
 	<message key="schedConf.links">Related Links</message>
-	<message key="schedConf.proceedings">Presentations and Presenters</message>
+	<message key="schedConf.presentations">Presentations and Presenters</message>
 	<message key="schedConf.abstract">Abstract</message>
 	<message key="schedConf.submission">Submission</message>
 	<message key="schedConf.submissions">Submissions</message>
 
 	<message key="schedConf.cfp.title">{$schedConfAbbrev} Call for Papers</message>
 	<message key="schedConf.overview.title">{$schedConfAbbrev} Overview</message>
-	<message key="schedConf.proceedings.title">{$schedConfAbbrev} Presentations and Presenters</message>
+	<message key="schedConf.presentations.title">{$schedConfAbbrev} Presentations and Presenters</message>
 	<message key="schedConf.program.title">{$schedConfAbbrev} Program</message>
 	<message key="schedConf.trackPolicies.title">{$schedConfAbbrev} Track Policies</message>
 
@@ -2079,7 +2079,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.account.usernameRestriction">The username must contain only lowercase letters, numbers, and hyphens/underscores.</message>
 	<message key="user.account.passwordLengthRestriction">The password must be at least {$length} characters.</message>
 	<message key="user.account.form.passwordLengthTooShort">The password you entered is not long enough.</message>
-	<message key="user.account.readerDescription">Notified by email on publication of proceedings of this conference.</message>
+	<message key="user.account.readerDescription">Notified by email on publication of presentations.</message>
 	<!--<message key="user.account.openAccessNotificationDescription">Notified by email when an issue of the conference is made open access.</message>-->
 	<message key="user.account.presenterDescription">Able to submit items to the conference.</message>
 	<message key="user.account.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the conference.</message>
@@ -2157,9 +2157,9 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<!-- Call-for-Papers (CFP) page -->
 	<message key="schedConf.cfp.submitHere">Start here to submit a proposal to this conference.</message>
 	<!-- Conference Proceedings -->
-	<message key="proceedings.notPermitted"><![CDATA[You do not yet have access to the proceedings of this conference.]]></message>
-	<message key="proceedings.trackEmpty"><![CDATA[No papers are available in this track.]]></message>
-	<message key="proceedings.schedConfEmpty"><![CDATA[The proceedings of this conference are not yet available.]]></message>
+	<message key="presentations.notPermitted">You do not yet have access to this conference's presentations.</message>
+	<message key="presentations.trackEmpty">No papers are available in this track.</message>
+	<message key="presentations.schedConfEmpty">This conference's presentations are not yet available.</message>
 	
 	<!-- Program page -->
 	<message key="schedConf.program.programFileInstructions">The program for this conference is available via the following link.</message>
@@ -2399,8 +2399,8 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 
 	<!-- Conference log entries -->
 	<message key="log.deadline.submissionDeadlinePassed">Submission deadline expired.</message>
-	<message key="log.deadline.proceedingsReleasedToParticipants">Proceedings have been released to participants.</message>
-	<message key="log.deadline.proceedingsReleasedToPublic">Proceedings have been released to the public.</message>
+	<message key="log.deadline.presentationsReleasedToParticipants">Presentations have been released to participants.</message>
+	<message key="log.deadline.presentationsReleasedToPublic">Presentations have been released to the public.</message>
 		
 	<message key="log.timeline.publicationStateChanged">The publication state has been changed from {$oldPublicationState} to {$newPublicationState}.</message>
 	<message key="log.timeline.submissionStateChanged">The submission state has been changed from {$oldSubmissionState} to {$newSubmissionState}.</message>

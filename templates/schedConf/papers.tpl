@@ -41,17 +41,17 @@
 			</tr>
 			</table>
 		{foreachelse}
-			{translate key="proceedings.trackEmpty"}
+			{translate key="presentations.trackEmpty"}
 		{/foreach}
 
 		{if !$smarty.foreach.tracks.last}
 			<div class="separator"></div>
 		{/if}
 	{foreachelse}
-		{translate key="proceedings.schedConfEmpty"}
+		{translate key="presentations.schedConfEmpty"}
 	{/foreach}
 {else} {* notPermitted *}
-	{translate key="proceedings.notPermitted"}
+	{translate key="presentations.notPermitted"}
 {/if}
 
 {include file="common/footer.tpl"}
