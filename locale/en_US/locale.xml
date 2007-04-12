@@ -335,6 +335,7 @@
 	<message key="submission.acceptance">Agreed to Review</message>
 	<message key="submission.due">Due</message>
 	<message key="submission.complete">Complete</message>
+	<message key="submission.complete.description">Complete the submission and publish it according to the conference timeline.</message>
 	<message key="submission.acknowledge">Acknowledge</message>
 	<message key="submission.done">Done</message>
 	<message key="submission.views">Views</message>
@@ -352,6 +353,7 @@
 	<message key="submission.presentersRevisedVersion">Presenter's revised version of file</message>
 	<message key="submission.presenterVersion">Presenter Version</message>
 	<message key="submission.layout">Layout</message>
+	<message key="submission.complete">Complete</message>
 	<message key="submission.files">Files</message>
 	<message key="submission.viewMetadata">View Metadata</message>
 	<message key="submission.editMetadata">Edit Metadata</message>

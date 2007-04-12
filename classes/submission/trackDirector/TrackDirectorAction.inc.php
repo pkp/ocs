@@ -817,13 +817,13 @@ class TrackDirectorAction extends Action {
 	 * Mark a paper as published.
 	 * @param $trackDirectorSubmission object
 	 */
-	function publishPaper($trackDirectorSubmission) {
+	function completePaper($trackDirectorSubmission) {
 		import('file.PaperFileManager');
 		$paperFileManager = &new PaperFileManager($trackDirectorSubmission->getPaperId());
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$user = &Request::getUser();
 
-		$trackDirectorSubmission->setStatus(PAPER_STATUS_PUBLISHED);
+		$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_PUBLISHED);
 		$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 		// Add a published paper object
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');

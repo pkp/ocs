@@ -282,6 +282,15 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		Request::redirect(null, null, null, 'submissionReview', array($paperId, $stage));
 	}
 
+	function completePaper($args) {
+		$paperId = Request::getUserVar('paperId');
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
+
+		TrackDirectorAction::completePaper($submission);
+
+		Request::redirect(null, null, null, 'submissions', 'submissionsAccepted');
+	}
+
 	//
 	// Peer Review
 	//

@@ -35,4 +35,8 @@
 
 {include file="trackDirector/submission/layout.tpl"}
 
+<div class="separator"></div>
+
+{include file="trackDirector/submission/complete.tpl"}
+
 {include file="common/footer.tpl"}

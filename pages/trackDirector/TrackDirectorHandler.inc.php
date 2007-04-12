@@ -475,6 +475,11 @@ class TrackDirectorHandler extends Handler {
 		SubmissionEditHandler::orderSuppFile();
 	}
 	
+	function completePaper($args) {
+		import('pages.trackDirector.SubmissionEditHandler');
+		SubmissionEditHandler::completePaper($args);
+	}
+	
 	
 	//
 	// Submission History
