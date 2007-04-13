@@ -89,7 +89,26 @@
 		</form>
 		
 		<br />
-		
+	
+	{if $currentSchedConf}
+		<span class="blockSubtitle">{translate key="schedConf.contents"}</span>
+
+		<ul class="plain">
+			<li>&#187; <a href="{url page="schedConf" op="overview"}">{translate key="schedConf.overview"}</a></li>
+			{if $schedConfShowCFP}
+				<li>&#187; <a href="{url page="schedConf" op="cfp"}">{translate key="schedConf.cfp"}</a> ({$submissionOpenDate|date_format:$dateFormatLong} - {$submissionCloseDate|date_format:$dateFormatLong})</li>
+			{/if}
+			{if $schedConfShowSubmissionLink}
+				<li>&#187; <a href="{url page="presenter" op="submit" requiresPresenter="1"}">{translate key="schedConf.proposalSubmission"}</a></li>
+			{/if}
+			<li>&#187; <a href="{url page="schedConf" op="trackPolicies"}">{translate key="schedConf.trackPolicies"}</a></li>
+			{if $schedConfShowProgram}<li>&#187; <a href="{url page="schedConf" op="program"}">{translate key="schedConf.program"}</a></li>{/if}
+			<li>&#187; <a href="{url page="schedConf" op="presentations"}">{translate key="schedConf.presentations.short"}</a></li>
+			<li>&#187; <a href="{url page="schedConf" op="registration"}">{translate key="schedConf.registration"}</a></li>
+			<li>&#187; <a href="{url page="about" op="organizingTeam"}">{translate key="schedConf.supporters"}</a></li>
+		</ul>
+		{/if}
+
 		{if $currentConference}
 		<span class="blockSubtitle">{translate key="navigation.browse"}</span>
 		<ul>

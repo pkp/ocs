@@ -127,12 +127,31 @@ class TemplateManager extends Smarty {
 					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
 
 					$this->assign_by_ref('currentSchedConf', $schedConf);
-					$schedConfTitle = $schedConf->getTitle();
+
+					// Assign common sched conf vars:
+					$currentTime = time();
+					$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate');
+
+					// CFP displayed
+					$showCFPDate = $schedConf->getSetting('showCFPDate');
+					if ($showCFPDate && $submissionsCloseDate && $currentTime > $showCFPDate && $currentTime < $submissionsCloseDate) {
+						$this->assign('schedConfShowCFP', true);
+					}
+
+					// Program
+					if ($schedConf->getSetting('program') || $schedConf->getSetting('programFile')) {
+						$this->assign('schedConfShowProgram', true);
+					}
+
+					// Submissions open
+					$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate');
+					if ($currentTime > $submissionsOpenDate && $currentTime < $submissionsCloseDate) {
+						$this->assign('schedConfShowSubmissionLink', true);
+					}
+
 				} else {
 
 					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
-	
-					// Assign conference page header
 				}
 
 				// Assign conference stylesheet and footer

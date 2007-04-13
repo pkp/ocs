@@ -233,21 +233,8 @@ class SchedConfHandler extends Handler {
 				Validation::isDirector($conference->getConferenceId()) ||
 				Validation::isConferenceManager($conference->getConferenceId())))) {
 
-			$schedConfTitle = $schedConf->getTitle();
-
 			$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate');
 			$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate');
-			$showCFPDate = $schedConf->getSetting('showCFPDate');
-			
-			if($showCFPDate && $submissionsCloseDate &&
-					(time() > $showCFPDate) && (time() < $submissionsCloseDate)) {
-
-				$templateMgr->assign('showCFP', true);
-			}
-			
-			if(time() > $submissionsOpenDate && time() < $submissionsCloseDate) {
-				$templateMgr->assign('showSubmissionLink', true);
-			}
 			
 			// Assign header and content for home page
 			$templateMgr->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle(true));
@@ -281,8 +268,6 @@ class SchedConfHandler extends Handler {
 				Request::getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getConferenceId()) . '/' . $styleFileName
 			);
 		}
-
-		$templateMgr->assign('schedConfTitle', $schedConfTitle);
 	}
 
 	function validate() {

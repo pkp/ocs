@@ -443,6 +443,7 @@
 	<message key="schedConf.schedule">Conference Schedule</message>
 	<message key="schedConf.links">Related Links</message>
 	<message key="schedConf.presentations">Presentations and Presenters</message>
+	<message key="schedConf.presentations.short">Presentations</message>
 	<message key="schedConf.abstract">Abstract</message>
 	<message key="schedConf.submission">Submission</message>
 	<message key="schedConf.submissions">Submissions</message>
