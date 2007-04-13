@@ -195,7 +195,10 @@ class SchedConfHandler extends Handler {
 		$mayViewPapers = SchedConfAction::mayViewPapers($schedConf, $conference);
 
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, null, 'presentations'), 'schedConf.presentations')));
+
+		$templateMgr->assign('pageHierarchy', array(
+			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
 		$templateMgr->assign('helpTopicId', 'FIXME');
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
 

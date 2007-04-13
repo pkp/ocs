@@ -26,6 +26,8 @@ class AboutHandler extends Handler {
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$conferencePath = Request::getRequestedConferencePath();
 
+		AboutHandler::setupTemplate(false);
+
 		if ($conferencePath != 'index' && $conferenceDao->conferenceExistsByPath($conferencePath)) {
 			$schedConf =& Request::getSchedConf();
 			$conference =& Request::getConference();
@@ -68,11 +70,19 @@ class AboutHandler extends Handler {
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false) {
+	function setupTemplate($subclass = true) {
 		parent::validate();
 
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'about'), 'about.aboutTheConference')));
+
+		$pageHierarchy = array();
+		if ($conference) $pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getTitle(), true);
+		if ($schedConf) $pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getTitle(), true);
+		if ($subclass) $pageHierarchy[] = array(Request::url(null, null, 'about'), 'about.aboutTheConference');
+		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 
 	/**
@@ -81,7 +91,7 @@ class AboutHandler extends Handler {
 	function contact() {
 		parent::validate(true);
 
-		AboutHandler::setupTemplate(true);
+		AboutHandler::setupTemplate();
 
 		$schedConf = &Request::getSchedConf();
 		$conference =& Request::getConference();
@@ -98,7 +108,7 @@ class AboutHandler extends Handler {
 	 */
 	function organizingTeam() {
 		parent::validate(true);
-		AboutHandler::setupTemplate(true);
+		AboutHandler::setupTemplate();
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
@@ -194,7 +204,7 @@ class AboutHandler extends Handler {
 	function organizingTeamBio($args) {
 		list($conference, $schedConf) = parent::validate(true);
 
-		AboutHandler::setupTemplate(true);
+		AboutHandler::setupTemplate();
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 
@@ -266,7 +276,7 @@ class AboutHandler extends Handler {
 	function editorialPolicies() {
 		parent::validate(true);
 
-		AboutHandler::setupTemplate(true);
+		AboutHandler::setupTemplate();
 
 		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
 		$schedConf = &Request::getSchedConf();
@@ -285,7 +295,7 @@ class AboutHandler extends Handler {
 	function registration() {
 		parent::validate(true);
 
-		AboutHandler::setupTemplate(true);
+		AboutHandler::setupTemplate();
 
 		$conferenceDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
@@ -318,7 +328,7 @@ class AboutHandler extends Handler {
 	function submissions() {
 		parent::validate(true);
 
-		AboutHandler::setupTemplate(true);
+		AboutHandler::setupTemplate();
 
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
@@ -341,7 +351,7 @@ class AboutHandler extends Handler {
 	function siteMap() {
 		parent::validate();
 
-		AboutHandler::setupTemplate(true);
+		AboutHandler::setupTemplate();
 		$templateMgr = &TemplateManager::getManager();
 
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
@@ -379,7 +389,7 @@ class AboutHandler extends Handler {
 	function aboutThisPublishingSystem() {
 		parent::validate();
 
-		AboutHandler::setupTemplate(true);
+		AboutHandler::setupTemplate();
 
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();
@@ -396,7 +406,7 @@ class AboutHandler extends Handler {
 	 */
 	function statistics() {
 		parent::validate();
-		AboutHandler::setupTemplate(true);
+		AboutHandler::setupTemplate();
 
 		$conference = &Request::getConference();
 		$templateMgr = &TemplateManager::getManager();

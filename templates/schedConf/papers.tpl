@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{assign var="pageTitleTranslated" value=$currentSchedConf->getTitle()}
+{assign var="pageTitle" value="schedConf.presentations"}
 {include file="common/header.tpl"}
 
 {if $mayViewProceedings}
