@@ -19,7 +19,7 @@
 
 <p>{translate key="manager.schedConfSetup.submissions.description"}</p>
 
-<h4>{translate key="manager.schedConfSetup.submissions.presentationMaterials"}</h4>
+<h4>{translate key="manager.schedConfSetup.submissions.submissionMaterials"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
@@ -56,7 +56,7 @@
 	</tr>
 </table>
 
-<h4>{translate key="manager.schedConfSetup.submissions.presentationMaterials"}</h4>
+<h4>{translate key="manager.schedConfSetup.submissions.typeOfSubmission"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
