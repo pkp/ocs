@@ -1682,7 +1682,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="reviewer.paper.schedule.due">Review Due</message>
 	<message key="reviewer.paper.decision.accept">Accept Submission</message>
 	<message key="reviewer.paper.decision.pendingRevisions">Revisions Required</message>
-	<message key="reviewer.paper.decision.resubmitElsewhere">Resubmit Elsewhere</message>
+	<message key="reviewer.paper.decision.resubmitElsewhere">Submit Elsewhere</message>
 	<message key="reviewer.paper.decision.decline">Decline Submission</message>
 	<message key="reviewer.paper.decision.seeComments">See Comments</message>
 	<message key="reviewer.paper.schedule">Schedule</message>
