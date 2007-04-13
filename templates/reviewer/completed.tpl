@@ -40,8 +40,6 @@
 					{translate key="reviewer.paper.decision.accept"}
 				{elseif $recommendation == SUBMISSION_REVIEWER_RECOMMENDATION_PENDING_REVISIONS}
 					{translate key="reviewer.paper.decision.pendingRevisions"}
-				{elseif $recommendation == SUBMISSION_REVIEWER_RECOMMENDATION_RESUBMIT_HERE}
-					{translate key="reviewer.paper.decision.resubmitHere"}
 				{elseif $recommendation == SUBMISSION_REVIEWER_RECOMMENDATION_RESUBMIT_ELSEWHERE}
 					{translate key="reviewer.paper.decision.resubmitElsewhere"}
 				{elseif $recommendation == SUBMISSION_REVIEWER_RECOMMENDATION_DECLINE}

@@ -832,7 +832,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.statistics.statistics.peerReviewed">Peer reviewed:</message>
 	<message key="manager.statistics.statistics.count.accept">Accept (%):</message>
 	<message key="manager.statistics.statistics.count.decline">Decline (%):</message>
-	<message key="manager.statistics.statistics.count.revise">Resubmit (%):</message>
 	<message key="manager.statistics.statistics.count.value">{$count} ({$percentage}%)</message>
 	<message key="manager.statistics.statistics.reviewers">Reviewers:</message>
 	<message key="manager.statistics.statistics.reviewerCount">No. Assigned:</message>
@@ -1623,7 +1622,6 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="director.paper.decision.invitePresentation">Invite Presentation</message>
 	<message key="director.paper.decision.accept">Accept Submission</message>
 	<message key="director.paper.decision.pendingRevisions">Revisions Required</message>
-	<message key="director.paper.decision.resubmit">Resubmit for Review</message>
 	<message key="director.paper.decision.decline">Decline Submission</message>
 	<message key="director.paper.sendFileToEditing">Send to Editing</message>
 	<message key="director.paper.createGalley">This file is ready for publication.</message>
@@ -1684,7 +1682,6 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="reviewer.paper.schedule.due">Review Due</message>
 	<message key="reviewer.paper.decision.accept">Accept Submission</message>
 	<message key="reviewer.paper.decision.pendingRevisions">Revisions Required</message>
-	<message key="reviewer.paper.decision.resubmitHere">Resubmit for Review</message>
 	<message key="reviewer.paper.decision.resubmitElsewhere">Resubmit Elsewhere</message>
 	<message key="reviewer.paper.decision.decline">Decline Submission</message>
 	<message key="reviewer.paper.decision.seeComments">See Comments</message>
