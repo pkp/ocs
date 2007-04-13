@@ -24,9 +24,7 @@
 
 <h3>{translate key="about.people"}</h3>
 <ul class="plain">
-	{if not (empty($conferenceSettings.mailingAddress) && empty($conferenceSettings.contactName) && empty($conferenceSettings.contactAffiliation) && empty($conferenceSettings.contactMailingAddress) && empty($conferenceSettings.contactPhone) && empty($conferenceSettings.contactFax) && empty($conferenceSettings.contactEmail) && empty($conferenceSettings.supportName) && empty($conferenceSettings.supportPhone) && empty($conferenceSettings.supportEmail))}
-		<li>&#187; <a href="{url op="contact"}">{translate key="about.contact"}</a></li>
-	{/if}
+	<li>&#187; <a href="{url op="contact"}">{translate key="about.contact"}</a></li>
 	{if $showAboutSchedConf}
 		<li>&#187; <a href="{url op="organizingTeam"}">{translate key="about.organizingTeam"}</a></li>
 	{/if}
@@ -41,7 +39,7 @@
 	{if !empty($conferenceSettings.archiveAccessPolicy)}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiveAccessPolicy"}">{translate key="about.archiveAccessPolicy"}</a></li>{/if}
 	{if !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{if $conferenceSettings.enableLockss && !empty($conferenceSettings.lockssLicense)}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiving"}">{translate key="about.archiving"}</a></li>{/if}
-	<li>&#187; <a href="{url op="registration"}">{translate key="about.registration"}</a></li>
+	{if $showAboutSchedConf}<li>&#187; <a href="{url op="registration"}">{translate key="about.registration"}</a></li>{/if}
 	{foreach key=key from=$customAboutItems item=customAboutItem}
 		{if $customAboutItem.title!=''}<li>&#187; <a href="{url op="editorialPolicies" anchor=custom`$key`}">{$customAboutItem.title|escape}</a></li>{/if}
 	{/foreach}

@@ -303,6 +303,8 @@ class AboutHandler extends Handler {
 		$schedConf = &Request::getSchedConf();
 		$conference = &Request::getConference();
 
+		if (!$schedConf || !$conference) Request::redirect(null, null, 'about');
+
 		$registrationName = &$schedConf->getSetting('registrationName', true);
 		$registrationEmail = &$schedConf->getSetting('registrationEmail', true);
 		$registrationPhone = &$schedConf->getSetting('registrationPhone', true);
