@@ -11,11 +11,13 @@
  * $Id$
  *}
 
+{assign var="paperId" value=$submission->getPaperId()}
+{assign var="reviewId" value=$reviewAssignment->getReviewId()}
 {if $reviewAssignment->getStage() == REVIEW_PROGRESS_ABSTRACT}
-	{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$submission->getPaperId()}
+	{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$paperId}
 	{assign var="pageCrumbTitle" value="submission.abstractReview"}
 {else}
-	{translate|assign:"pageTitleTranslated" key="submission.page.paperReview" id=$submission->getPaperId()}
+	{translate|assign:"pageTitleTranslated" key="submission.page.paperReview" id=$paperId}
 	{assign var="pageCrumbTitle" value="submission.paperReview"}
 {/if}
 
@@ -69,7 +71,7 @@ function confirmSubmissionCheck() {
 			<td class="value">
 	{/if}
 			{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
-			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getPaperTitle()|strip_tags paperId=$submission->getPaperId()}
+			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getPaperTitle()|strip_tags paperId=$paperId}
 			{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
 			{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
 				{if $editAssignment->getCanEdit()}
@@ -84,6 +86,12 @@ function confirmSubmissionCheck() {
 		</td>
 	</tr>
 {/if}
+<tr valign="top">
+	<td class="label">{translate key="submission.metadata"}</td>
+	<td class="value">
+		<a href="{url op="viewMetadata" path=$reviewId|to_array:$paperId}" class="action" target="_new">{translate key="submission.viewMetadata"}</a>
+	</td>
+</tr>
 </table>
 
 <div class="separator"></div>
@@ -124,18 +132,18 @@ function confirmSubmissionCheck() {
 	<td>
 		{translate key="submission.response"}&nbsp;&nbsp;&nbsp;&nbsp;
 		{if not $confirmedStatus}
-			{url|assign:"acceptUrl" op="confirmReview" reviewId=$submission->getReviewId()}
-			{url|assign:"declineUrl" op="confirmReview" reviewId=$submission->getReviewId() declineReview=1}
+			{url|assign:"acceptUrl" op="confirmReview" reviewId=$reviewId}
+			{url|assign:"declineUrl" op="confirmReview" reviewId=$reviewId declineReview=1}
 
 			{if !$submission->getCancelled()}
 				{translate key="reviewer.paper.canDoReview"} {icon name="mail" url=$acceptUrl}
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				{translate key="reviewer.paper.cannotDoReview"} {icon name="mail" url=$declineUrl}
 			{else}
-				{url|assign:"url" op="confirmReview" reviewId=$submission->getReviewId()}
+				{url|assign:"url" op="confirmReview" reviewId=$reviewId}
 				{translate key="reviewer.paper.canDoReview"} {icon name="mail" disabled="disabled" url=$acceptUrl}
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				{url|assign:"url" op="confirmReview" reviewId=$submission->getReviewId() declineReview=1}
+				{url|assign:"url" op="confirmReview" reviewId=$reviewId declineReview=1}
 				{translate key="reviewer.paper.cannotDoReview"} {icon name="mail" disabled="disabled" url=$declineUrl}
 			{/if}
 		{else}
@@ -185,7 +193,7 @@ function confirmSubmissionCheck() {
 						<td class="value" width="70%">
 							{if $reviewFile}
 							{if $submission->getDateConfirmed() or not $schedConf->getSetting('restrictReviewerAccessToFile', true)}
-								<a href="{url op="downloadFile" path=$submission->getReviewId()|to_array:$submission->getPaperId():$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>
+								<a href="{url op="downloadFile" path=$reviewId|to_array:$paperId:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>
 							{else}{$reviewFile->getFileName()|escape}{/if}
 							&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
 							{else}
@@ -202,7 +210,7 @@ function confirmSubmissionCheck() {
 							{foreach from=$suppFiles item=suppFile}
 								{if $suppFile->getShowReviewers() }
 									{assign var=sawSuppFile value=1}
-									<a href="{url op="downloadFile" path=$submission->getReviewId()|to_array:$submission->getPaperId():$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a><br />
+									<a href="{url op="downloadFile" path=$reviewId|to_array:$paperId:$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a><br />
 								{/if}
 							{/foreach}
 		
@@ -231,7 +239,7 @@ function confirmSubmissionCheck() {
 	<td>
 		{translate key="submission.review"} 
 		{if $confirmedStatus and not $declined}
-			<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$submission->getPaperId()|to_array:$submission->getReviewId()}');" class="icon">{icon name="comment"}</a>
+			<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$paperId|to_array:$reviewId}');" class="icon">{icon name="comment"}</a>
 		{else}
 			 {icon name="comment" disabled="disabled"}
 		{/if}
@@ -257,10 +265,10 @@ function confirmSubmissionCheck() {
 					{/if}
 				</td>
 				<td class="value" width="70%">
-					<a href="{url op="downloadFile" path=$submission->getReviewId()|to_array:$submission->getPaperId():$reviewerFile->getFileId():$reviewerFile->getRevision()}" class="file">{$reviewerFile->getFileName()|escape}</a>
+					<a href="{url op="downloadFile" path=$reviewId|to_array:$paperId:$reviewerFile->getFileId():$reviewerFile->getRevision()}" class="file">{$reviewerFile->getFileName()|escape}</a>
 					{$reviewerFile->getDateModified()|date_format:$dateFormatShort}
 					{if (!$submission->getRecommendation()) && (!$submission->getCancelled())}
-						<a class="action" href="{url op="deleteReviewerVersion" path=$submission->getReviewId()|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}">{translate key="common.delete"}</a>
+						<a class="action" href="{url op="deleteReviewerVersion" path=$reviewId|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}">{translate key="common.delete"}</a>
 					{/if}
 				</td>
 				</tr>
@@ -277,7 +285,7 @@ function confirmSubmissionCheck() {
 		</table>
 		{if not $submission->getRecommendation()}
 			<form method="post" action="{url op="uploadReviewerVersion"}" enctype="multipart/form-data">
-				<input type="hidden" name="reviewId" value="{$submission->getReviewId()}" />
+				<input type="hidden" name="reviewId" value="{$reviewId}" />
 				<input type="file" name="upload" {if not $confirmedStatus or $declined or $submission->getCancelled()}disabled="disabled"{/if} class="uploadField" />
 				<input type="submit" name="submit" value="{translate key="common.upload"}" {if not $confirmedStatus or $declined or $submission->getCancelled()}disabled="disabled"{/if} class="button" />
 			</form>
@@ -307,7 +315,7 @@ function confirmSubmissionCheck() {
 					{$submission->getDateCompleted()|date_format:$dateFormatShort}
 				{else}
 					<form name="recommendation" method="post" action="{url op="recordRecommendation"}">
-					<input type="hidden" name="reviewId" value="{$submission->getReviewId()}" />
+					<input type="hidden" name="reviewId" value="{$reviewId}" />
 					<select name="recommendation" {if not $confirmedStatus or $declined or $submission->getCancelled() or (!$reviewAssignment->getMostRecentPeerReviewComment() and !$uploadedFileExists)}disabled="disabled"{/if} class="selectMenu">
 						{html_options_translate options=$reviewerRecommendationOptions selected=''}
 					</select>&nbsp;&nbsp;&nbsp;&nbsp;
