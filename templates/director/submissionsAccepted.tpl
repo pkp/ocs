@@ -36,7 +36,7 @@
 		<td>{$paperId}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getPresenterString(true)|truncate:40:"..."|escape}</td>
-		<td><a href="{url op="submissionEditing" path=$paperId}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
+		<td><a href="{url op="submissionReview" path=$paperId}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td><input name="location-{$paperId}" size="10" class="textField" id="location-{$paperId}" value="{$submission->getLocation()|escape}" />
 		<td>
 			{html_select_date prefix="presentStartTime-$paperId" time=$submission->getPresentStartTime() all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}

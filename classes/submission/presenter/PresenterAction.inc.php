@@ -58,12 +58,12 @@ class PresenterAction extends Action {
 				switch ($reviewMode) {
 					case REVIEW_MODE_BOTH_SIMULTANEOUS:
 					case REVIEW_MODE_PRESENTATIONS_ALONE:
-						$stage = REVIEW_PROGRESS_PRESENTATION;
+						$stage = REVIEW_STAGE_PRESENTATION;
 						break;
 					case REVIEW_MODE_BOTH_SEQUENTIAL:
 					case REVIEW_MODE_ABSTRACTS_ALONE:
 					default:
-						$stage = REVIEW_PROGRESS_ABSTRACT;
+						$stage = REVIEW_STAGE_ABSTRACT;
 						break;
 				}
 				$trackDirectorSubmissionDao->createReviewStage($presenterSubmission->getPaperId(), $stage, 1);

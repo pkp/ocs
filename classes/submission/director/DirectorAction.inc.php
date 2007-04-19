@@ -57,8 +57,6 @@ class DirectorAction extends TrackDirectorAction {
 
 			$editAssignment = &new EditAssignment();
 			$editAssignment->setPaperId($paperId);
-			$editAssignment->setCanEdit(1);
-			$editAssignment->setCanReview(1);
 		
 			// Make the selected director the new director
 			$editAssignment->setDirectorId($trackDirectorId);
@@ -84,8 +82,7 @@ class DirectorAction extends TrackDirectorAction {
 					'directorUsername' => $trackDirector->getUsername(),
 					'directorPassword' => $trackDirector->getPassword(),
 					'editorialContactSignature' => $user->getContactSignature(),
-					'submissionUrl' => Request::url(null, null, 'trackDirector', 'submissionReview', $paperId),
-					'submissionEditingUrl' => Request::url(null, null, 'trackDirector', 'submissionReview', $paperId)
+					'submissionUrl' => Request::url(null, null, 'trackDirector', 'submissionReview', $paperId)
 				);
 				$email->assignParams($paramArray);
 			}

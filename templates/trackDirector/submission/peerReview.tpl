@@ -36,13 +36,6 @@
 				{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
 				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getPaperTitle|strip_tags paperId=$submission->getPaperId()}
 				{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
-				{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
-					{if $editAssignment->getCanEdit()}
-						({translate key="submission.editing"})
-					{else}
-						({translate key="submission.review"})
-					{/if}
-				{/if}
 				<br/>
 			{foreachelse}
 				{translate key="common.noneAssigned"}
@@ -140,9 +133,9 @@
 			<td width="30%">
 				{if $schedConfSettings.reviewMode == $smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}
 					<h3>{translate key="submission.review"}</h3>
-				{elseif $stage == REVIEW_PROGRESS_ABSTRACT}
+				{elseif $stage == REVIEW_STAGE_ABSTRACT}
 					<h3>{translate key="submission.abstractReview"}</h3>
-				{else}{* REVIEW_PROGRESS_PRESENTATION *}
+				{else}{* REVIEW_STAGE_PRESENTATION *}
 					<h3>{translate key="submission.paperReview"}</h3>
 				{/if}
 			</td>

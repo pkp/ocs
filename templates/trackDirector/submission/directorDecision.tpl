@@ -54,7 +54,8 @@
 		{/if}
 		{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_DECLINE}
 			<br />
-			<a href="{url op="unsuitableSubmission" paperId=$submission->getPaperId()}" class="action">{translate key="director.paper.sendToArchive"}</a>
+			{if $submission->getStatus() == SUBMISSION_STATUS_ARCHIVED}{translate key="submissions.archived"}{else}<a href="{url op="archiveSubmission" path=$submission->getPaperId()}" onclick="return window.confirm('{translate|escape:"quotes" key="director.submissionReview.confirmToArchive"}')" class="action">{translate key="director.paper.sendToArchive"}</a>{/if}
+			{if $submission->getDateToArchive()}{$submission->getDateToArchive()|date_format:$dateFormatShort}{/if}
 		{/if}
 	</td>
 </tr>
@@ -67,7 +68,7 @@
 {assign var=reviewFile value=$submission->getReviewFile()}
 {assign var="presenterRevisionExists" value=false}
 {assign var="directorRevisionExists" value=false}
-{assign var="publishableRevisionExists" value=false}
+{assign var="sendableVersionExists" value=false}
 
 {if not $reviewingAbstractOnly}
 	<table class="data" width="100%">
@@ -77,7 +78,7 @@
 				<td width="50%" colspan="2" class="value">
 					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
 						<input type="radio" name="directorDecisionFile" value="{$reviewFile->getFileId()},{$reviewFile->getRevision()}" />
-						{assign var="publishableRevisionExists" value=true}
+						{assign var="sendableVersionExists" value=true}
 					{/if}
 					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()}</a>&nbsp;&nbsp;
 					{$reviewFile->getDateModified()|date_format:$dateFormatShort}
@@ -93,7 +94,7 @@
 				<td width="80%" class="value" colspan="2">
 					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
 						<input type="radio" name="directorDecisionFile" value="{$presenterFile->getFileId()},{$presenterFile->getRevision()}" />
-						{assign var="publishableRevisionExists" value=true}
+						{assign var="sendableVersionExists" value=true}
 					{/if}
 					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$presenterFile->getFileId():$presenterFile->getRevision()}" class="file">{$presenterFile->getFileName()}</a>&nbsp;&nbsp;
 						{$presenterFile->getDateModified()|date_format:$dateFormatShort}
@@ -114,7 +115,7 @@
 				<td width="50%" class="value">
 					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
 						<input type="radio" name="directorDecisionFile" value="{$directorFile->getFileId()},{$directorFile->getRevision()}" />
-						{assign var="publishableRevisionExists" value=true}
+						{assign var="sendableVersionExists" value=true}
 					{/if}
 					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()}</a>&nbsp;&nbsp;
 					{$directorFile->getDateModified()|date_format:$dateFormatShort}
@@ -137,13 +138,14 @@
 	</div>
 	{/if}
 
-	{if $publishableRevisionExists}
+	{if $sendableVersionExists}
 		<table class="data" width="100%">
 			<tr valign="top">
 				<td width="20%">&nbsp;</td>
 				<td width="80%">
-					{translate key="director.paper.sendFileToEditing"}
-					<input type="submit" name="setEditingFile" value="{translate key="form.send"}" class="button" />
+					{translate key="director.paper.moveToLayout"}
+					<input type="submit" name="setEditingFile" onclick="return window.confirm('{translate|escape:"quotes" key="director.submissionReview.confirmToLayout"}')" value="{translate key="form.send"}" class="button" />
+					{if $submission->getDateToPresentations()}{$submission->getDateToPresentations()|date_format:$dateFormatShort}{/if}
 					{if !$submission->getGalleys()}
 						<br />
 						<input type="checkbox" checked="checked" name="createGalley" value="1" />
@@ -152,7 +154,13 @@
 				</td>
 			</tr>
 		</table>
+
 	{/if}
 {/if}
-
 </form>
+
+{if $isFinalReview}
+	{include file="trackDirector/submission/layout.tpl"}
+	{include file="trackDirector/submission/complete.tpl"}
+{/if}
+

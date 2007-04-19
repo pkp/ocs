@@ -17,12 +17,6 @@ define('TRACK_DIRECTOR_ACCESS_EDIT', 0x00001);
 define('TRACK_DIRECTOR_ACCESS_REVIEW', 0x00002);
 
 class SubmissionEditHandler extends TrackDirectorHandler {
-	function getFrom($default = 'submissionEditing') {
-		$from = Request::getUserVar('from');
-		if (!in_array($from, array('submission', 'submissionEditing'))) return $default;
-		return $from;
-	}
-
 	function submission($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
@@ -103,14 +97,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$reviewMode = $schedConf->getSetting('reviewMode');
 		switch ($reviewMode) {
 			case REVIEW_MODE_ABSTRACTS_ALONE:
-				$stage = REVIEW_PROGRESS_ABSTRACT;
+				$stage = REVIEW_STAGE_ABSTRACT;
 				break;
 			case REVIEW_MODE_BOTH_SIMULTANEOUS:
 			case REVIEW_MODE_PRESENTATIONS_ALONE:
-				$stage = REVIEW_PROGRESS_PRESENTATION;
+				$stage = REVIEW_STAGE_PRESENTATION;
 				break;
 			case REVIEW_MODE_BOTH_SEQUENTIAL:
-				if ($stage != REVIEW_PROGRESS_ABSTRACT && $stage != REVIEW_PROGRESS_PRESENTATION) $stage = $submission->getCurrentStage();
+				if ($stage != REVIEW_STAGE_ABSTRACT && $stage != REVIEW_STAGE_PRESENTATION) $stage = $submission->getCurrentStage();
 				break;
 		}
 
@@ -131,10 +125,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$isCurrent = ($stage == $submission->getCurrentStage());
 
 		$allowRecommendation = $isCurrent &&
-			($submission->getReviewFileId() || $stage != REVIEW_PROGRESS_PRESENTATION) &&
+			($submission->getReviewFileId() || $stage != REVIEW_STAGE_PRESENTATION) &&
 			!empty($editAssignments);
 
-		$reviewingAbstractOnly = ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL && $stage == REVIEW_PROGRESS_ABSTRACT) || $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE;
+		$reviewingAbstractOnly = ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL && $stage == REVIEW_STAGE_ABSTRACT) || $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE;
 
 		// Prepare an array to store the 'Notify Reviewer' email logs
 		$notifyReviewerLogs = array();
@@ -174,6 +168,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('lastDecision', $lastDecision);
 		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
 
+		if ($reviewMode != REVIEW_MODE_BOTH_SEQUENTIAL || $stage == REVIEW_STAGE_PRESENTATION) {
+			$templateMgr->assign('isFinalReview', true);
+		}
+
 		import('submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 		$templateMgr->assign_by_ref('reviewerRatingOptions', ReviewAssignment::getReviewerRatingOptions());
@@ -186,35 +184,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole.review');
 		$templateMgr->display('trackDirector/submissionReview.tpl');
-	}
-
-	function submissionEditing($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
-		parent::setupTemplate(true, $paperId);
-
-		// check if submission is accepted
-		$stage = isset($args[1]) ? $args[1] : $submission->getCurrentStage();
-		$directorDecisions = $submission->getDecisions($stage);
-		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1]['decision'] : null;
-		$submissionAccepted = ($lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT) ? true : false;
-
-		$templateMgr = &TemplateManager::getManager();
-
-		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
-
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($submission->getPaperId());
-		$templateMgr->assign_by_ref('publishedPaper', $publishedPaper);
-
-		$templateMgr->assign('submissionAccepted', $submissionAccepted);
-
-		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
-
-		$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole.editing');
-		$templateMgr->display('trackDirector/submissionEditing.tpl');
 	}
 
 	/**
@@ -704,11 +673,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function directorReview() {
 		import('paper.Paper');
 
-		$stage = (isset($args[1]) ? $args[1] : REVIEW_PROGRESS_ABSTRACT);
+		$stage = (isset($args[1]) ? $args[1] : REVIEW_STAGE_ABSTRACT);
 		$paperId = Request::getUserVar('paperId');
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
-		$redirectTarget = 'submissionReview';
 		$redirectArgs = array($paperId, $stage);
 
 		// If the Upload button was pressed.
@@ -717,14 +685,17 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		} elseif (Request::getUserVar('setEditingFile')) {
 			// If the Send To Editing button was pressed
 			$file = explode(',', Request::getUserVar('directorDecisionFile'));
+			$submission->stampDateToPresentations();
+			$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($submission);
+
 			if (isset($file[0]) && isset($file[1])) {
 				TrackDirectorAction::setEditingFile($submission, $file[0], $file[1], Request::getUserVar('createGalley'));
-				$redirectTarget = 'submissionEditing';
 			}
 			
 		}
 		
-		Request::redirect(null, null, null, $redirectTarget, $redirectArgs);
+		Request::redirect(null, null, null, 'submissionReview', $redirectArgs);
 	}
 
 	function uploadReviewVersion() {
@@ -807,7 +778,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		if ($submitForm->validate()) {
 			$submitForm->execute();
-			Request::redirect(null, null, null, SubmissionEditHandler::getFrom(), $paperId);
+			Request::redirect(null, null, null, 'submissionReview', $paperId);
 		} else {
 			parent::setupTemplate(true, $paperId, 'summary');
 			$submitForm->display();
@@ -840,7 +811,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		TrackDirectorAction::deleteSuppFile($submission, $suppFileId);
 
-		Request::redirect(null, null, null, SubmissionEditHandler::getFrom(), $paperId);
+		Request::redirect(null, null, null, 'submission', $paperId);
 	}
 
 	function archiveSubmission($args) {
@@ -858,7 +829,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		TrackDirectorAction::restoreToQueue($submission);
 
-		Request::redirect(null, null, null, 'submissionEditing', $paperId);
+		Request::redirect(null, null, null, 'submission', $paperId);
 	}
 
 	function unsuitableSubmission($args) {
@@ -893,7 +864,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			SubmissionEditHandler::uploadSuppFile('layoutFile');
 
 		} else {
-			Request::redirect(null, null, null, SubmissionEditHandler::getFrom(), Request::getUserVar('paperId'));
+			Request::redirect(null, null, null, 'submission', Request::getUserVar('paperId'));
 		}
 	}
 
@@ -906,7 +877,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		TrackDirectorAction::uploadLayoutVersion($submission);
 
-		Request::redirect(null, null, null, 'submissionEditing', $paperId);
+		Request::redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	/**
@@ -949,7 +920,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
-		parent::setupTemplate(true, $paperId, 'editing');
+		parent::setupTemplate(true, $paperId, 'review');
 
 		import('submission.form.PaperGalleyForm');
 
@@ -994,13 +965,13 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		} else if ($submitForm->validate()) {
 			$submitForm->execute();
-			Request::redirect(null, null, null, 'submissionEditing', $paperId);
+			Request::redirect(null, null, null, 'submissionReview', $paperId);
 
 		} else {
 			$submitForm->readInputData();
 			if ($submitForm->validate()) {
 				$submitForm->execute();
-				Request::redirect(null, null, 'submissionEditing', $paperId);
+				Request::redirect(null, null, 'submissionReview', $paperId);
 
 			} else {
 				parent::setupTemplate(true, $paperId, 'editing');
@@ -1018,7 +989,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		TrackDirectorAction::orderGalley($submission, Request::getUserVar('galleyId'), Request::getUserVar('d'));
 
-		Request::redirect(null, null, null, 'submissionEditing', $paperId);
+		Request::redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	/**
@@ -1032,7 +1003,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		TrackDirectorAction::deleteGalley($submission, $galleyId);
 
-		Request::redirect(null, null, null, 'submissionEditing', $paperId);
+		Request::redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	/**
@@ -1062,7 +1033,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
-		$templateMgr->assign('backHandler', 'submissionEditing');
+		$templateMgr->assign('backHandler', 'submissionReview');
 		$templateMgr->display('submission/layout/proofGalleyTop.tpl');
 	}
 	
@@ -1111,7 +1082,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$suppFileForm->setData('title', Locale::translate('common.untitled'));
 		$suppFileId = $suppFileForm->execute($fileName);
 
-		Request::redirect(null, null, null, SubmissionEditHandler::getFrom(), array($paperId, $suppFileId));
+		Request::redirect(null, null, null, 'submission', array($paperId, $suppFileId));
 	}
 
 	/**
@@ -1123,7 +1094,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		TrackDirectorAction::orderSuppFile($submission, Request::getUserVar('suppFileId'), Request::getUserVar('d'));
 
-		Request::redirect(null, null, null, 'submissionEditing', $paperId);
+		Request::redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 
@@ -1446,39 +1417,13 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		} else {
 			$templateMgr =& TemplateManager::getManager();
-			if (Validation::isDirector()) {
-				// Make canReview and canEdit available to templates.
-				// Since this user is a director, both are available.
-				$templateMgr->assign('canReview', true);
-				$templateMgr->assign('canEdit', true);
-			} else {
-				// If this user isn't the submission's director, they don't have access.
-				$editAssignments =& $trackDirectorSubmission->getEditAssignments();
-				$wasFound = false;
-				foreach ($editAssignments as $editAssignment) {
-					if ($editAssignment->getDirectorId() == $user->getUserId()) {
-						$templateMgr->assign('canReview', $editAssignment->getCanReview());
-						$templateMgr->assign('canEdit', $editAssignment->getCanEdit());
-						switch ($access) {
-							case TRACK_DIRECTOR_ACCESS_EDIT:
-								if ($editAssignment->getCanEdit()) {
-									$wasFound = true;
-								}
-								break;
-							case TRACK_DIRECTOR_ACCESS_REVIEW:
-								if ($editAssignment->getCanReview()) {
-									$wasFound = true;
-								}
-								break;
-
-							default:
-								$wasFound = true;
-						}
-						break;
-					}
+			// If this user isn't the submission's director, they don't have access.
+			$editAssignments =& $trackDirectorSubmission->getEditAssignments();
+			$wasFound = false;
+			foreach ($editAssignments as $editAssignment) {
+				if ($editAssignment->getDirectorId() == $user->getUserId()) {
+					$wasFound = true;
 				}
-
-				if (!$wasFound) $isValid = false;
 			}
 		}
 

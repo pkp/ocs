@@ -225,6 +225,8 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$paper->setDirectorFileId($trackDirectorSubmission->getDirectorFileId());
 			$paper->setStatus($trackDirectorSubmission->getStatus());
 			$paper->setDateStatusModified($trackDirectorSubmission->getDateStatusModified());
+			$paper->setDateToPresentations($trackDirectorSubmission->getDateToPresentations());
+			$paper->setDateToArchive($trackDirectorSubmission->getDateToArchive());
 			$paper->setLastModified($trackDirectorSubmission->getLastModified());
 
 			$this->paperDao->updatePaper($paper);
@@ -302,8 +304,6 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 		$sql = 'SELECT DISTINCT
 				p.*,
-				e.can_review AS can_review,
-				e.can_edit AS can_edit,
 				t.title AS track_title,
 				t.title_alt1 AS track_title_alt1,
 				t.title_alt2 AS track_title_alt2,
@@ -357,114 +357,9 @@ class TrackDirectorSubmissionDAO extends DAO {
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
-		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
-		
-		$reviewMode = $schedConf->getSetting('reviewMode');
-		if($reviewMode != REVIEW_MODE_ABSTRACTS_ALONE)
-			$finalReviewType = REVIEW_PROGRESS_PRESENTATION;
-		else
-			$finalReviewType = REVIEW_PROGRESS_ABSTRACT;
-
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			$submission = &$this->_returnTrackDirectorSubmissionFromRow($row);
-			$paperId = $submission->getPaperId();
-
-			// check if submission is still in review
-			$inReview = true;
-			$decisions = $submission->getDecisions($finalReviewType);
-			if($decisions) {
-				$decision = is_array($decisions)?array_pop($decisions):null;
-				if (!empty($decision)) {
-					$latestDecision = array_pop($decision);
-					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
-						$inReview = false;
-					}
-				}
-			}
-
-			if ($inReview) {
-				$submissions[] =& $submission;
-			}
-			unset($submission);
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new ArrayItemIterator($submissions, $rangeInfo->getPage(), $rangeInfo->getCount());
-		} else {
-			$returner = &new ArrayItemIterator($submissions);
-		}
+		$returner = &new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
 
-	}
-
-	/**
-	 * Get all submissions in editing for a conference.
-	 * @param $trackDirectorId int
-	 * @param $schedConfId int
-	 * @param $trackId int
-	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
-	 * @param $searchMatch string "is" or "contains"
-	 * @param $search String to look in $searchField for
-	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
-	 * @param $dateFrom String date to search from
-	 * @param $dateTo String date to search to
-	 * @param $rangeInfo object
-	 * @return array DirectorSubmission
-	 */
-	function &getTrackDirectorSubmissionsInEditing($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
-		$submissions = array();
-
-		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
-
-		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
-		
-		$reviewMode = $schedConf->getSetting('reviewMode');
-		if($reviewMode != REVIEW_MODE_ABSTRACTS_ALONE)
-			$finalReviewType = REVIEW_PROGRESS_PRESENTATION;
-		else
-			$finalReviewType = REVIEW_PROGRESS_ABSTRACT;
-
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			$submission = &$this->_returnTrackDirectorSubmissionFromRow($row);
-
-			// check if submission is still in review
-			$inEditing = false;
-			$decisions = $submission->getDecisions($finalReviewType);
-			if($decisions) {
-				$decision = is_array($decisions)?array_pop($decisions):null;
-				if (!empty($decision)) {
-					$latestDecision = array_pop($decision);
-					if ($latestDecision['decision'] == SUBMISSION_DIRECTOR_DECISION_ACCEPT) {
-						$inEditing = true;
-					}
-				}
-			}
-
-			if ($inEditing) {
-				$submissions[] =& $submission;
-			}
-			unset($submission);
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new ArrayItemIterator($submissions, $rangeInfo->getPage(), $rangeInfo->getCount());
-		} else {
-			$returner = &new ArrayItemIterator($submissions);
-		}
-		return $returner;
 	}
 
 	/**
@@ -542,15 +437,9 @@ class TrackDirectorSubmissionDAO extends DAO {
 			}
 
 			if ($inReview) {
-				if ($row['can_review']) {
-					// in review submissions
-					$submissionsCount[0] += 1;
-				}
+				$submissionsCount[0] += 1;
 			} else {
-				// in editing submissions
-				if ($row['can_edit']) {
-					$submissionsCount[1] += 1;
-				}
+				$submissionsCount[1] += 1;
 			}
 			unset($trackDirectorDecision);
 			$result->MoveNext();

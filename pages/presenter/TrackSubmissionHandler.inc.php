@@ -24,7 +24,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		parent::setupTemplate(true);
 
 		// If the submission is incomplete, allow the presenter to delete it.
-		if ($presenterSubmission->getSubmissionProgress()!=0 && $presenterSubmission->getCurrentStage()==REVIEW_PROGRESS_ABSTRACT) {
+		if ($presenterSubmission->getSubmissionProgress()!=0 && $presenterSubmission->getCurrentStage()==REVIEW_STAGE_ABSTRACT) {
 			import('file.PaperFileManager');
 			$paperFileManager = &new PaperFileManager($paperId);
 			$paperFileManager->deletePaperTree();
@@ -100,14 +100,14 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$reviewMode = $schedConf->getSetting('reviewMode');
 		switch ($reviewMode) {
 			case REVIEW_MODE_ABSTRACTS_ALONE:
-				$stage = REVIEW_PROGRESS_ABSTRACT;
+				$stage = REVIEW_STAGE_ABSTRACT;
 				break;
 			case REVIEW_MODE_BOTH_SIMULTANEOUS:
 			case REVIEW_MODE_PRESENTATIONS_ALONE:
-				$stage = REVIEW_PROGRESS_PRESENTATION;
+				$stage = REVIEW_STAGE_PRESENTATION;
 				break;
 			case REVIEW_MODE_BOTH_SEQUENTIAL:
-				if ($stage != REVIEW_PROGRESS_ABSTRACT && $stage != REVIEW_PROGRESS_PRESENTATION) $stage = $submission->getCurrentStage();
+				if ($stage != REVIEW_STAGE_ABSTRACT && $stage != REVIEW_STAGE_PRESENTATION) $stage = $submission->getCurrentStage();
 				break;
 		}
 
@@ -219,25 +219,6 @@ class TrackSubmissionHandler extends PresenterHandler {
 			parent::setupTemplate(true, $paperId, 'summary');
 			$submitForm->display();
 		}
-	}
-
-	/**
-	 * Display the status and other details of an presenter's submission.
-	 */
-	function submissionEditing($args) {
-		$user = &Request::getUser();
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-
-		list($conference, $schedConf, $submission) = TrackSubmissionHandler::validate($paperId);
-		parent::setupTemplate(true, $paperId);
-
-		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
-		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
-		$templateMgr->assign('helpTopicId', 'editorial.presentersRole.editing');
-		$templateMgr->display('presenter/submissionEditing.tpl');
 	}
 
 	/**

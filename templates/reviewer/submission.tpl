@@ -13,7 +13,7 @@
 
 {assign var="paperId" value=$submission->getPaperId()}
 {assign var="reviewId" value=$reviewAssignment->getReviewId()}
-{if $reviewAssignment->getStage() == REVIEW_PROGRESS_ABSTRACT}
+{if $reviewAssignment->getStage() == REVIEW_STAGE_ABSTRACT}
 	{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$paperId}
 	{assign var="pageCrumbTitle" value="submission.abstractReview"}
 {else}
@@ -73,13 +73,6 @@ function confirmSubmissionCheck() {
 			{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
 			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getPaperTitle()|strip_tags paperId=$paperId}
 			{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
-			{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
-				{if $editAssignment->getCanEdit()}
-					({translate key="submission.editing"})
-				{else}
-					({translate key="submission.review"})
-				{/if}
-			{/if}
 			<br/>
 {/foreach}
 {if $notFirstEditAssignment}
@@ -176,7 +169,7 @@ function confirmSubmissionCheck() {
 	<td>
 		<table width="100%" class="data">
 			{if ($confirmedStatus and not $declined) or not $schedConf->getSetting('restrictReviewerFileAccess', true)}
-				{if $reviewAssignment->getStage() == REVIEW_PROGRESS_ABSTRACT}
+				{if $reviewAssignment->getStage() == REVIEW_STAGE_ABSTRACT}
 					<tr valign="top">
 						<td width="30%" class="label">
 							{translate key="submission.abstract"}

@@ -39,22 +39,21 @@
 			<td align="right">
 				{if $status==SUBMISSION_STATUS_ARCHIVED}{translate key="submissions.archived"}
 				{elseif $status==SUBMISSION_STATUS_QUEUED_UNASSIGNED}{translate key="submissions.queuedUnassigned"}
-				{elseif $status==SUBMISSION_STATUS_QUEUED_EDITING}<a href="{url op="submissionEditing" path=$paperId}" class="action">{translate key="submissions.queuedEditing"}</a>
-				{elseif $status==SUBMISSION_STATUS_QUEUED_REVIEW}
-					{if $currentStage==REVIEW_PROGRESS_PRESENTATION}
+				{elseif $status==SUBMISSION_STATUS_PUBLISHED}{translate key="submissions.published"}
+				{elseif $status==SUBMISSION_STATUS_DECLINED}{translate key="submissions.declined"}
+				{else}{* SUBMISSION_STATUS_EDITING *}
+					{if $currentStage==REVIEW_STAGE_PRESENTATION}
 						<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">{translate key="submissions.queuedPaperReview"}</a>
 					{else}
 						<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">{translate key="submissions.queuedAbstractReview"}</a>
 					{/if}
-				{elseif $status==SUBMISSION_STATUS_PUBLISHED}{translate key="submissions.published"}
-				{elseif $status==SUBMISSION_STATUS_DECLINED}{translate key="submissions.declined"}
 				{/if}
 			</td>
 		{else}
 			{url|assign:"submitUrl" op="submit" path=$submission->getSubmissionProgress() paperId=$paperId}
 			<td><a href="{$submitUrl}" class="action">{if $submission->getPaperTitle()}{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
 			<td align="right">
-				{if $currentStage==REVIEW_PROGRESS_ABSTRACT}
+				{if $currentStage==REVIEW_STAGE_ABSTRACT}
 					{translate key="submissions.incomplete"}
 					<br />
 					<a href="{url op="deleteSubmission" path=$paperId}" class="action" onclick="return confirm('{translate|escape:"javascript" key="presenter.submissions.confirmDelete"}')">

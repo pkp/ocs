@@ -175,10 +175,10 @@ class PaperMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function toAssignedReviewingTrackDirectors($paperId) {
+	function toAssignedTrackDirectors($paperId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getReviewingTrackDirectorAssignmentsByPaperId($paperId);
+		$editAssignments =& $editAssignmentDao->getTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addRecipient($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
 			$returner[] =& $editAssignment;
@@ -187,34 +187,10 @@ class PaperMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function toAssignedEditingTrackDirectors($paperId) {
+	function ccAssignedTrackDirectors($paperId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditingTrackDirectorAssignmentsByPaperId($paperId);
-		while ($editAssignment =& $editAssignments->next()) {
-			$this->addRecipient($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
-			$returner[] =& $editAssignment;
-			unset($editAssignment);
-		}
-		return $returner;
-	}
-
-	function ccAssignedReviewingTrackDirectors($paperId) {
-		$returner = array();
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getReviewingTrackDirectorAssignmentsByPaperId($paperId);
-		while ($editAssignment =& $editAssignments->next()) {
-			$this->addCc($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
-			$returner[] =& $editAssignment;
-			unset($editAssignment);
-		}
-		return $returner;
-	}
-
-	function ccAssignedEditingTrackDirectors($paperId) {
-		$returner = array();
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditingTrackDirectorAssignmentsByPaperId($paperId);
+		$editAssignments =& $editAssignmentDao->getTrackDirectorAssignmentsByPaperId($paperId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addCc($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
 			$returner[] =& $editAssignment;

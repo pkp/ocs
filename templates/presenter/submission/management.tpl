@@ -82,13 +82,6 @@
 				{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
 				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getPaperTitle|strip_tags paperId=$submission->getPaperId()}
 				{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
-				{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
-					{if $editAssignment->getCanEdit()}
-						({translate key="submission.editing"})
-					{else}
-						({translate key="submission.review"})
-					{/if}
-				{/if}
 				<br/>
 			{foreachelse}
 				{translate key="common.noneAssigned"}

@@ -189,11 +189,6 @@ class PresenterHandler extends Handler {
 		TrackSubmissionHandler::submissionReview($args);
 	}
 
-	function submissionEditing($args) {
-		import('pages.presenter.TrackSubmissionHandler');
-		TrackSubmissionHandler::submissionEditing($args);
-	}
-
 	function uploadRevisedVersion() {
 		import('pages.presenter.TrackSubmissionHandler');
 		TrackSubmissionHandler::uploadRevisedVersion();

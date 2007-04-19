@@ -83,7 +83,7 @@ class ReviewerAction extends Action {
 				return true;
 			} else {
 				if (!Request::getUserVar('continued')) {
-					$reviewingTrackDirectors = $email->toAssignedReviewingTrackDirectors($reviewerSubmission->getPaperId());
+					$reviewingTrackDirectors = $email->toAssignedTrackDirectors($reviewerSubmission->getPaperId());
 					if (!empty($reviewingTrackDirectors)) $assignedDirectors = $email->ccAssignedDirectors($reviewerSubmission->getPaperId());
 					else $assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getPaperId());
 					if (empty($assignedDirectors) && empty($reviewingTrackDirectors)) {
@@ -165,7 +165,7 @@ class ReviewerAction extends Action {
 			} else {
 				if (!Request::getUserVar('continued')) {
 					$assignedDirectors = $email->ccAssignedDirectors($reviewerSubmission->getPaperId());
-					$reviewingTrackDirectors = $email->toAssignedReviewingTrackDirectors($reviewerSubmission->getPaperId());
+					$reviewingTrackDirectors = $email->toAssignedTrackDirectors($reviewerSubmission->getPaperId());
 					if (empty($assignedDirectors) && empty($reviewingTrackDirectors)) {
 						$schedConf = &Request::getSchedConf();
 						$email->addRecipient($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));

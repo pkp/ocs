@@ -102,13 +102,13 @@ class TrackDirectorAction extends Action {
 			// The submission is incomplete, and needs the presenter to submit
 			// more materials (potentially for another stage of reviews)
 
-			if($trackDirectorSubmission->getCurrentStage() == REVIEW_PROGRESS_ABSTRACT) {
+			if($trackDirectorSubmission->getCurrentStage() == REVIEW_STAGE_ABSTRACT) {
 
 				// We've just completed reviewing the abstract. If the paper needs
 				// a separate review progress, flag it as such and move it back
 				// to review stage 1.
 				if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL) {
-					$trackDirectorSubmission->setCurrentStage(REVIEW_PROGRESS_PRESENTATION);
+					$trackDirectorSubmission->setCurrentStage(REVIEW_STAGE_PRESENTATION);
 				}
 
 				// The paper itself needs to be collected. Flag it so the presenter
@@ -120,10 +120,10 @@ class TrackDirectorAction extends Action {
 
 				// Now, reassign all reviewers that submitted a review for the last
 				// stage of reviews.
-				foreach ($trackDirectorSubmission->getReviewAssignments(REVIEW_PROGRESS_ABSTRACT) as $reviewAssignment) {
+				foreach ($trackDirectorSubmission->getReviewAssignments(REVIEW_STAGE_ABSTRACT) as $reviewAssignment) {
 					if ($reviewAssignment->getRecommendation() != null) {
 						// This reviewer submitted a review; reassign them
-						TrackDirectorAction::addReviewer($trackDirectorSubmission, $reviewAssignment->getReviewerId(), REVIEW_PROGRESS_PRESENTATION);
+						TrackDirectorAction::addReviewer($trackDirectorSubmission, $reviewAssignment->getReviewerId(), REVIEW_STAGE_PRESENTATION);
 					}
 				}
 			}
@@ -871,6 +871,7 @@ class TrackDirectorAction extends Action {
 
 		$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_ARCHIVED);
 		$trackDirectorSubmission->stampStatusModified();
+		$trackDirectorSubmission->stampDateToArchive();
 		
 		$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 		
@@ -1275,7 +1276,7 @@ import('file.PaperFileManager');
 		$templateName = null;
 		$stages = $trackDirectorSubmission->getDecisions();
 		if (is_array($stages)) {
-			$isAbstract = array_pop(array_keys($stages)) == REVIEW_PROGRESS_ABSTRACT;
+			$isAbstract = array_pop(array_keys($stages)) == REVIEW_STAGE_ABSTRACT;
 		}
 		if (isset($stages) && is_array($stages)) {
 			$decisions = array_pop($stages);
@@ -1536,9 +1537,6 @@ import('file.PaperFileManager');
 					break;
 				case 'review':
 					$parent = array(Request::url(null, null, $track, 'submissionReview', $paperId), 'submission.review');
-					break;
-				case 'editing':
-					$parent = array(Request::url(null, null, $track, 'submissionEditing', $paperId), 'submission.editing');
 					break;
 				case 'history':
 					$parent = array(Request::url(null, null, $track, 'submissionHistory', $paperId), 'submission.history');

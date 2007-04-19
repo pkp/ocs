@@ -93,7 +93,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$send = Request::getUserVar('send')?true:false;
 		$inhibitExistingEmail = Request::getUserVar('blindCcReviewers')?true:false;
 
-		if (!$send) parent::setupTemplate(true, $paperId, 'editing');
+		if (!$send) parent::setupTemplate(true, $paperId, 'review');
 		if (TrackDirectorAction::blindCcReviewsToReviewers($submission, $send, $inhibitExistingEmail)) {
 			Request::redirect(null, null, null, 'submissionReview', $paperId);
 		}

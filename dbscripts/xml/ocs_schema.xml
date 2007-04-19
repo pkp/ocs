@@ -636,6 +636,8 @@
 		<index name="papers_track_id">
 			<col>track_id</col>
 		</index>
+		<field name="date_to_presentations" type="T"/>
+		<field name="date_to_archive" type="T"/>
 	</table>
 	
 	<!--
@@ -905,14 +907,6 @@
 		</field>
 		<field name="director_id" type="I8">
 			<NOTNULL/>
-		</field>
-		<field name="can_edit" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
-		</field>
-		<field name="can_review" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
 		</field>
 		<field name="date_assigned" type="T"/>
 		<field name="date_notified" type="T"/>

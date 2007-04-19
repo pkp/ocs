@@ -243,10 +243,8 @@
 	<message key="common.queue.short.submissionsUnassigned">Unassigned</message>
 	<message key="common.queue.long.submissionsInReview">Submissions in Review</message>
 	<message key="common.queue.short.submissionsInReview">In Review</message>
-	<message key="common.queue.long.submissionsInEditing">Submissions in Editing</message>
-	<message key="common.queue.short.submissionsInEditing">In Editing</message>
-	<message key="common.queue.long.submissionsAccepted">Accepted</message>
-	<message key="common.queue.short.submissionsAccepted">Accepted</message>
+	<message key="common.queue.long.submissionsAccepted">Presentations</message>
+	<message key="common.queue.short.submissionsAccepted">Presentations</message>
 	<message key="common.queue.long.submissionsArchives">Archives</message>
 	<message key="common.queue.short.submissionsArchives">Archives</message>
 	<message key="common.queue.long.active">Active Submissions</message>
@@ -314,7 +312,6 @@
 	<message key="submission.page.editing">#{$id} Editing</message>
 	<message key="submission.page.history">#{$id} History</message>
 	<message key="submission.submissionReview">Submission Review</message>
-	<message key="submission.submissionEditing">Submission Editing</message>
 	<message key="submission.submissionHistory">Submission History</message>
 	<message key="submission.submissionManuscript">Submission Manuscript</message>
 	<message key="submission.metadata">Submission Metadata</message>
@@ -335,7 +332,7 @@
 	<message key="submission.acceptance">Agreed to Review</message>
 	<message key="submission.due">Due</message>
 	<message key="submission.complete">Complete</message>
-	<message key="submission.complete.description">Complete the submission and publish it according to the conference timeline.</message>
+	<message key="submission.complete.description">Add the submission to the list of accepted Presentations.</message>
 	<message key="submission.acknowledge">Acknowledge</message>
 	<message key="submission.done">Done</message>
 	<message key="submission.views">Views</message>
@@ -1558,6 +1555,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="director.submissionArchive.saveChanges">Save changes to archived submissions? Submissions marked for deletion will be permanently deleted from the system.</message>
 	<message key="director.submissionArchive.confirmDelete">Are you sure you want to permanently delete this submission?</message>
 	<message key="director.submissionReview.confirmDecision">Are you sure you wish to record this decision?</message>
+	<message key="director.submissionReview.confirmToLayout">Has the author been notified of this decision? If not, press Cancel and use the Notify Author tool before moving this submission to layout.</message>
+	<message key="director.submissionReview.confirmToArchive">Has the author been notified of this decision? If not, press Cancel and use the Notify Author tool before moving this submission to the Archive.</message>
 	<message key="director.submissionReview.notes">Due indicates number of weeks remaining until the review's due date or (-) weeks that it is overdue. It is filled in when a reviewer accepts the request to review.</message>
 	<message key="director.notifyUsers">Notify Users</message>
 	<message key="director.notifyUsers.allUsers">Send this message to all users associated with this conference ({$count} users)</message>
@@ -1568,6 +1567,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="director.navigation.management">Management</message>
 
 	<!-- Used by director in submission review / editing -->
+	<message key="director.paper.sendToArchive">Archive this submission</message>
 	<message key="director.paper.designateReviewVersion">Designate the original file as the Review Version</message>
 	<message key="director.paper.uploadReviewVersion">Upload a revised file to serve as the Review Version</message>
 	<message key="director.paper.uploadDirectorVersion">Upload Director Version</message>
@@ -1627,7 +1627,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="director.paper.decision.accept">Accept Submission</message>
 	<message key="director.paper.decision.pendingRevisions">Revisions Required</message>
 	<message key="director.paper.decision.decline">Decline Submission</message>
-	<message key="director.paper.sendFileToEditing">Send to Editing</message>
+	<message key="director.paper.moveToLayout">Move to Layout</message>
 	<message key="director.paper.createGalley">This file is ready for publication.</message>
 	<message key="director.paper.completeReview">Mark review as completed</message>
 

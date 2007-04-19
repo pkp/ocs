@@ -65,7 +65,7 @@
 		<td><a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;{$suppFile->getDateModified()|date_format:$dateFormatShort}</td>
 		<td><a href="{url op="orderSuppFile" d=u paperId=$submission->getPaperId() suppFileId=$suppFile->getSuppFileId()}" class="plain">&uarr;</a> <a href="{url op="orderSuppFile" d=d paperId=$submission->getPaperId() suppFileId=$suppFile->getSuppFileId()}" class="plain">&darr;</a></td>
 		<td colspan="2">
-			<a href="{url op="editSuppFile" from="submissionEditing" path=$submission->getPaperId()|to_array:$suppFile->getSuppFileId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSuppFile" from="submissionEditing" path=$submission->getPaperId()|to_array:$suppFile->getSuppFileId()}" onclick="return confirm('{translate|escape:"javascript" key="submission.layout.confirmDeleteSupplementaryFile"}')" class="action">{translate key="common.delete"}</a>
+			<a href="{url op="editSuppFile" from="submissionReview" path=$submission->getPaperId()|to_array:$suppFile->getSuppFileId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSuppFile" from="submissionReview" path=$submission->getPaperId()|to_array:$suppFile->getSuppFileId()}" onclick="return confirm('{translate|escape:"javascript" key="submission.layout.confirmDeleteSupplementaryFile"}')" class="action">{translate key="common.delete"}</a>
 		</td>
 	</tr>
 	{foreachelse}
@@ -79,10 +79,10 @@
 </table>
 
 <form method="post" action="{url op="uploadLayoutFile"}"  enctype="multipart/form-data">
-	<input type="hidden" name="from" value="submissionEditing" />
+	<input type="hidden" name="from" value="submissionReview" />
 	<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 	{translate key="submission.uploadFileTo"}
-		<input type="radio" name="layoutFileType" id="layoutFileTypeGalley" value="galley" />
+		<input type="radio" checked="checked" name="layoutFileType" id="layoutFileTypeGalley" value="galley" />
 		<label for="layoutFileTypeGalley">{translate key="submission.galley"}</label>,
 		<input type="radio" name="layoutFileType" id="layoutFileTypeSupp" value="supp" />
 		<label for="layoutFileTypeSupp">{translate key="paper.suppFilesAbbrev"}</label>

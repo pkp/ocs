@@ -36,7 +36,7 @@
 			{elseif $status==SUBMISSION_STATUS_QUEUED_UNASSIGNED}{translate key="submissions.queuedUnassigned"}
 			{elseif $status==SUBMISSION_STATUS_QUEUED_EDITING}{translate key="submissions.queuedEditing"}
 			{elseif $status==SUBMISSION_STATUS_QUEUED_REVIEW}
-				{if $submission->getCurrentStage()==REVIEW_PROGRESS_PRESENTATION}{translate key="submissions.queuedPaperReview"}
+				{if $submission->getCurrentStage()==REVIEW_STAGE_PRESENTATION}{translate key="submissions.queuedPaperReview"}
 				{else}{translate key="submissions.queuedAbstractReview"}
 				{/if}
 			{elseif $status==SUBMISSION_STATUS_PUBLISHED}{translate key="submissions.published"}

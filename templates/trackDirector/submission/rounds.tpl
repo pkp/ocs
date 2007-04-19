@@ -64,7 +64,7 @@
 
 <h4>{translate key="trackDirector.regrets.reviewStage" stage=$stagePlusOne}</h4>
 
-{if $stage != REVIEW_PROGRESS_ABSTRACT}
+{if $stage != REVIEW_STAGE_ABSTRACT}
 <table width="100%" class="data">
 	<tr valign="top">
 		<td class="label" width="20%">{translate key="submission.reviewVersion"}</td>

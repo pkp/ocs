@@ -67,10 +67,6 @@ class DirectorHandler extends TrackDirectorHandler {
 				$functionName = 'getDirectorSubmissionsUnassigned';
 				$helpTopicId = 'editorial.directorsRole.submissions.unassigned';
 				break;
-			case 'submissionsInEditing':
-				$functionName = 'getDirectorSubmissionsInEditing';
-				$helpTopicId = 'editorial.directorsRole.submissions.inEditing';
-				break;
 			case 'submissionsAccepted':
 				$functionName = 'getDirectorSubmissionsAccepted';
 				$helpTopicId = 'editorial.directorsRole.submissions.accepted';
@@ -113,8 +109,8 @@ class DirectorHandler extends TrackDirectorHandler {
 			$templateMgr->assign($param, Request::getUserVar($param));
 
 		$templateMgr->assign('reviewType', Array(
-			REVIEW_PROGRESS_ABSTRACT => Locale::translate('submission.abstract'),
-			REVIEW_PROGRESS_PRESENTATION => Locale::translate('submission.paper')
+			REVIEW_STAGE_ABSTRACT => Locale::translate('submission.abstract'),
+			REVIEW_STAGE_PRESENTATION => Locale::translate('submission.paper')
 		));
 		
 		$templateMgr->assign('fieldOptions', Array(
@@ -130,38 +126,6 @@ class DirectorHandler extends TrackDirectorHandler {
 
 	function updateSubmissionArchive() {
 		DirectorHandler::submissionArchive();
-	}
-
-	/**
-	 * Set the canEdit / canReview flags for this submission's edit assignments.
-	 */
-	function setDirectorFlags($args) {
-		DirectorHandler::validate();
-
-		$schedConf = &Request::getSchedConf();
-		$paperId = (int) Request::getUserVar('paperId');
-
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
-		$paper =& $paperDao->getPaper($paperId);
-
-		if ($paper && $paper->getSchedConfId() === $schedConf->getSchedConfId()) {
-			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($paperId);
-
-			while($editAssignment =& $editAssignments->next()) {
-				if ($editAssignment->getIsDirector()) continue;
-
-				$canReview = Request::getUserVar('canReview-' . $editAssignment->getEditId()) ? 1 : 0;
-				$canEdit = Request::getUserVar('canEdit-' . $editAssignment->getEditId()) ? 1 : 0;
-
-				$editAssignment->setCanReview($canReview);
-				$editAssignment->setCanEdit($canEdit);
-
-				$editAssignmentDao->updateEditAssignment($editAssignment);
-			}
-		}
-
-		Request::redirect(null, null, null, 'submission', $paperId);
 	}
 
 	/**

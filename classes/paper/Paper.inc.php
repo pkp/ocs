@@ -29,8 +29,8 @@ define ('SUBMISSION_STATUS_QUEUED_REVIEW', 7);
 define ('SUBMISSION_STATUS_QUEUED_EDITING', 8);
 define ('SUBMISSION_STATUS_INCOMPLETE', 9);
 
-define ('REVIEW_PROGRESS_ABSTRACT', 1);
-define ('REVIEW_PROGRESS_PRESENTATION', 2);
+define ('REVIEW_STAGE_ABSTRACT', 1);
+define ('REVIEW_STAGE_PRESENTATION', 2);
 
 class Paper extends DataObject {
 
@@ -648,6 +648,38 @@ class Paper extends DataObject {
 	}
 	
 	/**
+	 * Get date sent to presentations.
+	 * @return date
+	 */
+	function getDateToPresentations() {
+		return $this->getData('dateToPresentations');
+	}
+	
+	/**
+	 * Set date sent to presentations.
+	 * @param $dateToPresentations date
+	 */
+	function setDateToPresentations($dateToPresentations) {
+		return $this->setData('dateToPresentations', $dateToPresentations);
+	}
+
+	/**
+	 * Get date sent to presentations.
+	 * @return date
+	 */
+	function getDateToArchive() {
+		return $this->getData('dateToArchive');
+	}
+	
+	/**
+	 * Set date sent to presentations.
+	 * @param $dateToArchive date
+	 */
+	function setDateToArchive($dateToArchive) {
+		return $this->setData('dateToArchive', $dateToArchive);
+	}
+
+	/**
 	 * Get the date of the last status modification.
 	 * @return date
 	 */
@@ -684,6 +716,20 @@ class Paper extends DataObject {
 	 */
 	function stampModified() {
 		return $this->setLastModified(Core::getCurrentDate());
+	}
+	
+	/**
+	 * Stamp the date moved to the archive to the current time.
+	 */
+	function stampDateToArchive() {
+		return $this->setDateToArchive(Core::getCurrentDate());
+	}
+	
+	/**
+	 * Stamp the date moved to presentations to the current time.
+	 */
+	function stampDateToPresentations() {
+		return $this->setDateToPresentations(Core::getCurrentDate());
 	}
 	
 	/**

@@ -986,8 +986,6 @@ class ImportOCS1 {
 					$editAssignment = &new EditAssignment();
 					$editAssignment->setPaperId($paperId);
 					$editAssignment->setDirectorId($this->userMap[$row['nEditorUserID']]);
-					$editAssignment->setCanEdit(1);
-					$editAssignment->setCanReview(1);
 					$editAssignment->setDateNotified($row['dtDateEditorNotified']);
 					$editAssignment->setDateUnderway($row['dtDateEditorNotified']);
 					$editAssignmentDao->insertEditAssignment($editAssignment);

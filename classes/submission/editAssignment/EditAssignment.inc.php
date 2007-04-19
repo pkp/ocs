@@ -76,38 +76,6 @@ class EditAssignment extends DataObject {
 	}
 	
 	/**
-	 * Get flag indicating whether this track director can review this paper. (Irrelevant if this is a director.)
-	 * @return boolean
-	 */
-	function getCanReview() {
-		return $this->getData('canReview');
-	}
-	
-	/**
-	 * Set flag indicating whether this track director can review this paper. (Irrelevant if this is a director.)
-	 * @param $canReview boolean
-	 */
-	function setCanReview($canReview) {
-		return $this->setData('canReview', $canReview);
-	}
-	
-	/**
-	 * Get flag indicating whether this track director can edit this paper. (Irrelevant if this is a director.)
-	 * @return boolean
-	 */
-	function getCanEdit() {
-		return $this->getData('canEdit');
-	}
-	
-	/**
-	 * Set flag indicating whether this track director can edit this paper. (Irrelevant if this is a director.)
-	 * @param $canEdit boolean
-	 */
-	function setCanEdit($canEdit) {
-		return $this->setData('canEdit', $canEdit);
-	}
-	
-	/**
 	 * Get flag indicating whether this entry is for a director or a track director.
 	 * @return boolean
 	 */

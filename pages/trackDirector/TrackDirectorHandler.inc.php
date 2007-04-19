@@ -41,10 +41,6 @@ class TrackDirectorHandler extends Handler {
 		$tracks = &$trackDao->getTrackTitles($schedConf->getSchedConfId());
 
 		switch($page) {
-			case 'submissionsInEditing':
-				$functionName = 'getTrackDirectorSubmissionsInEditing';
-				$helpTopicId = 'editorial.trackDirectorsRole.submissions.inEditing';
-				break;
 			case 'submissionsAccepted':
 				$functionName = 'getTrackDirectorSubmissionsAccepted';
 				$helpTopicId = 'editorial.trackDirectorsRole.submissions.accepted';
@@ -90,8 +86,8 @@ class TrackDirectorHandler extends Handler {
 			$templateMgr->assign($param, Request::getUserVar($param));
 
 		$templateMgr->assign('reviewType', Array(
-			REVIEW_PROGRESS_ABSTRACT => Locale::translate('submission.abstract'),
-			REVIEW_PROGRESS_PRESENTATION => Locale::translate('submission.paper')
+			REVIEW_STAGE_ABSTRACT => Locale::translate('submission.abstract'),
+			REVIEW_STAGE_PRESENTATION => Locale::translate('submission.paper')
 		));
 		
 		$templateMgr->assign('fieldOptions', Array(
@@ -248,11 +244,6 @@ class TrackDirectorHandler extends Handler {
 	function submissionReview($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::submissionReview($args);
-	}
-	
-	function submissionEditing($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::submissionEditing($args);
 	}
 	
 	function submissionHistory($args) {

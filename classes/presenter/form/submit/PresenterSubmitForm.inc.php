@@ -65,11 +65,11 @@ class PresenterSubmitForm extends Form {
 
 		// Determine which submission steps should be shown
 		
-		$progress = isset($this->paper) ? $this->paper->getCurrentStage() : REVIEW_PROGRESS_ABSTRACT;
+		$progress = isset($this->paper) ? $this->paper->getCurrentStage() : REVIEW_STAGE_ABSTRACT;
 
 		$reviewMode = $schedConf->getSetting('reviewMode');
-		$showAbstractSteps = $progress == REVIEW_PROGRESS_ABSTRACT || $reviewMode != REVIEW_MODE_BOTH_SEQUENTIAL;
-		$showPaperSteps = $progress == REVIEW_PROGRESS_PRESENTATION || $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS;
+		$showAbstractSteps = $progress == REVIEW_STAGE_ABSTRACT || $reviewMode != REVIEW_MODE_BOTH_SEQUENTIAL;
+		$showPaperSteps = $progress == REVIEW_STAGE_PRESENTATION || $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS;
 		
 		$templateMgr->assign('showAbstractSteps', $showAbstractSteps);
 		$templateMgr->assign('showPaperSteps', $showPaperSteps);
@@ -128,8 +128,6 @@ class PresenterSubmitForm extends Form {
 			$editAssignment =& new EditAssignment();
 			$editAssignment->setPaperId($paper->getPaperId());
 			$editAssignment->setDirectorId($trackDirector->getUserId());
-			$editAssignment->setCanEdit(1);
-			$editAssignment->setCanReview(1);
 			$editAssignmentDao->insertEditAssignment($editAssignment);
 			unset($editAssignment);
 		}

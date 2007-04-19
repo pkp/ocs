@@ -96,25 +96,9 @@ class EditAssignmentDAO extends DAO {
 	 * @param $paperId int
 	 * @return EditAssignment
 	 */
-	function &getReviewingTrackDirectorAssignmentsByPaperId($paperId) {
+	function &getTrackDirectorAssignmentsByPaperId($paperId) {
 		$result = &$this->retrieve(
-			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS director_role_id FROM papers a, edit_assignments e LEFT JOIN users u ON (e.director_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.director_id AND r.role_id = ' . ROLE_ID_DIRECTOR . ') WHERE e.paper_id = ? AND (r.sched_conf_id IS NULL OR r.sched_conf_id = a.sched_conf_id) AND a.paper_id = e.paper_id AND r.role_id IS NULL AND e.can_review = 1 ORDER BY e.date_notified ASC',
-			$paperId
-			);
-
-		$returner = &new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
-		return $returner;
-	}
-
-	/**
-	 * Retrieve those edit assignments that relate to track directors with
-	 * editing access.
-	 * @param $paperId int
-	 * @return EditAssignment
-	 */
-	function &getEditingTrackDirectorAssignmentsByPaperId($paperId) {
-		$result = &$this->retrieve(
-			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS director_role_id FROM papers a, edit_assignments e LEFT JOIN users u ON (e.director_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.director_id AND r.role_id = ' . ROLE_ID_DIRECTOR . ') WHERE e.paper_id = ? AND (r.insetance_id IS NULL OR r.sched_conf_id = a.sched_conf_id) AND a.paper_id = e.paper_id AND r.role_id IS NULL AND e.can_edit = 1 ORDER BY e.date_notified ASC',
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS director_role_id FROM papers a, edit_assignments e LEFT JOIN users u ON (e.director_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.director_id AND r.role_id = ' . ROLE_ID_DIRECTOR . ') WHERE e.paper_id = ? AND (r.sched_conf_id IS NULL OR r.sched_conf_id = a.sched_conf_id) AND a.paper_id = e.paper_id AND r.role_id IS NULL ORDER BY e.date_notified ASC',
 			$paperId
 			);
 
@@ -147,8 +131,6 @@ class EditAssignmentDAO extends DAO {
 		$editAssignment->setEditId($row['edit_id']);
 		$editAssignment->setPaperId($row['paper_id']);
 		$editAssignment->setDirectorId($row['director_id']);
-		$editAssignment->setCanReview($row['can_review']);
-		$editAssignment->setCanEdit($row['can_edit']);
 		$editAssignment->setDirectorFullName($row['first_name'].' '.$row['last_name']);
 		$editAssignment->setDirectorFirstName($row['first_name']);
 		$editAssignment->setDirectorLastName($row['last_name']);
@@ -170,16 +152,14 @@ class EditAssignmentDAO extends DAO {
 	function insertEditAssignment(&$editAssignment) {
 		$this->update(
 			sprintf('INSERT INTO edit_assignments
-				(paper_id, director_id, can_edit, can_review, date_notified, date_underway)
+				(paper_id, director_id, date_notified, date_underway)
 				VALUES
-				(?, ?, ?, ?, %s, %s)',
+				(?, ?, %s, %s)',
 				$this->datetimeToDB($editAssignment->getDateNotified()),
 				$this->datetimeToDB($editAssignment->getDateUnderway())),
 			array(
 				$editAssignment->getPaperId(),
-				$editAssignment->getDirectorId(),
-				$editAssignment->getCanEdit()?1:0,
-				$editAssignment->getCanReview()?1:0
+				$editAssignment->getDirectorId()
 			)
 		);
 		
@@ -196,8 +176,6 @@ class EditAssignmentDAO extends DAO {
 			sprintf('UPDATE edit_assignments
 				SET	paper_id = ?,
 					director_id = ?,
-					can_review = ?,
-					can_edit = ?,
 					date_notified = %s,
 					date_underway = %s
 				WHERE edit_id = ?',
@@ -206,8 +184,6 @@ class EditAssignmentDAO extends DAO {
 			array(
 				$editAssignment->getPaperId(),
 				$editAssignment->getDirectorId(),
-				$editAssignment->getCanReview() ? 1:0,
-				$editAssignment->getCanEdit() ? 1:0,
 				$editAssignment->getEditId()
 			)
 		);

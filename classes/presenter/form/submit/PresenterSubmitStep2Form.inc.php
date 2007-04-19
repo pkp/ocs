@@ -196,13 +196,13 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 				// The line below is necessary to ensure that
 				// the paper upload goes in with the correct
 				// stage number (i.e. paper).
-				$paper->setCurrentStage(REVIEW_PROGRESS_PRESENTATION);
+				$paper->setCurrentStage(REVIEW_STAGE_PRESENTATION);
 			} else {
 				$paper->setDateSubmitted(Core::getCurrentDate());
 				$paper->stampStatusModified();
 				$paper->setSubmissionProgress(0);
 
-				$paper->setCurrentStage(REVIEW_PROGRESS_ABSTRACT);
+				$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
 				$this->assignDirectors($paper);
 				$this->confirmSubmission($paper, $user, $schedConf, $conference, 'SUBMISSION_ACK');
 			}

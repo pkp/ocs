@@ -87,6 +87,8 @@ class PaperDAO extends DAO {
 		$paper->setLocation($row['location']);
 		$paper->setPresentStartTime($this->datetimeFromDB($row['present_start_time']));
 		$paper->setPresentEndTime($this->datetimeFromDB($row['present_end_time']));
+		$paper->setDateToPresentations($this->datetimeFromDB($row['date_to_presentations']));
+		$paper->setDateToArchive($this->datetimeFromDB($row['date_to_archive']));
 
 		// Localize track title & abbreviation.
 		static $alternateLocaleNum;
@@ -179,6 +181,9 @@ class PaperDAO extends DAO {
 				 last_modified,
 				 present_start_time,
 				 present_end_time,
+				 date_reminded,
+				 date_to_presentations,
+				 date_to_archive,
 				 location,
 				 status,
 				 submission_progress,
@@ -188,11 +193,10 @@ class PaperDAO extends DAO {
 				 review_file_id,
 				 layout_file_id,
 				 director_file_id,
-				 pages,
-				 date_reminded)
+				 pages)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getPresentStartTime()), $this->datetimeToDB($paper->getPresentEndTime())),
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getPresentStartTime()), $this->datetimeToDB($paper->getPresentEndTime()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
 			array(
 				$paper->getUserId(),
 				$paper->getSchedConfId(),
@@ -223,8 +227,7 @@ class PaperDAO extends DAO {
 				$paper->getReviewFileId(),
 				$paper->getLayoutFileId(),
 				$paper->getDirectorFileId(),
-				$paper->getPages(),
-				$paper->getDateReminded()
+				$paper->getPages()
 			)
 		);
 		
@@ -273,6 +276,9 @@ class PaperDAO extends DAO {
 					last_modified = %s,
 					present_start_time = %s,
 					present_end_time = %s,
+					date_reminded = %s,
+					date_to_presentations = %s,
+					date_to_archive = %s,
 					location = ?,
 					status = ?,
 					submission_progress = ?,
@@ -282,10 +288,9 @@ class PaperDAO extends DAO {
 					review_file_id = ?,
 					layout_file_id = ?,
 					director_file_id = ?,
-					pages = ?,
-					date_reminded = ?
+					pages = ?
 				WHERE paper_id = ?',
-				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getPresentStartTime()), $this->datetimeToDB($paper->getPresentEndTime())),
+				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getPresentStartTime()), $this->datetimeToDB($paper->getPresentEndTime()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
 			array(
 				$paper->getUserId(),
 				$paper->getTrackId(),
@@ -316,7 +321,6 @@ class PaperDAO extends DAO {
 				$paper->getLayoutFileId(),
 				$paper->getDirectorFileId(),
 				$paper->getPages(),
-				$paper->getDateReminded(),
 				$paper->getPaperId()
 			)
 		);
@@ -356,8 +360,8 @@ class PaperDAO extends DAO {
 	function deletePaperById($paperId) {
 		$this->presenterDao->deletePresentersByPaper($paperId);
 
-		/*$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
-		$publishedPaperDao->deletePublishedPaperByPaperId($paperId);*/
+		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao->deletePublishedPaperByPaperId($paperId);
 
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 		$commentDao->deleteCommentsByPaper($paperId);
