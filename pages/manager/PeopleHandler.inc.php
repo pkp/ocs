@@ -305,6 +305,7 @@ class PeopleHandler extends ManagerHandler {
 		parent::validate();
 		
 		$conference = &Request::getConference();
+		$schedConf =& Request::getSchedConf();
 		$rolePath = Request::getUserVar('rolePath');
 		$syncConference = Request::getUserVar('syncConference');
 		
