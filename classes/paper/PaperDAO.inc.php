@@ -195,7 +195,7 @@ class PaperDAO extends DAO {
 				 director_file_id,
 				 pages)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getPresentStartTime()), $this->datetimeToDB($paper->getPresentEndTime()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
 			array(
 				$paper->getUserId(),
