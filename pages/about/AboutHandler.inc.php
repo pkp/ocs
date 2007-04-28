@@ -228,7 +228,7 @@ class AboutHandler extends Handler {
 		}
 
 		$user = null;
-		if ($settings['boardEnabled'] != true) {
+		if (!isset($settings['boardEnabled']) || $settings['boardEnabled'] != true) {
 			$directors = &$roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
 			while ($potentialUser =& $directors->next()) {
 				if ($potentialUser->getUserId() == $userId)
