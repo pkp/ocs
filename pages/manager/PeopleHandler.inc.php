@@ -481,8 +481,8 @@ class PeopleHandler extends ManagerHandler {
 			// Delete the old user and associated info.
 			$sessionDao =& DAORegistry::getDAO('SessionDAO');
 			$sessionDao->deleteSessionsByUserId($oldUserId);
-			$subscriptionDao =& DAORegistry::getDAO('SubscriptionDAO');
-			$subscriptionDao->deleteSubscriptionsByUserId($oldUserId);
+			$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+			$registrationDao->deleteRegistrantsByUserId($oldUserId);
 			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
 			$temporaryFileDao->deleteTemporaryFilesByUserId($oldUserId);
 			$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');

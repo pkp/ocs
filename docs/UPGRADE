@@ -233,7 +233,7 @@ Additional notes regarding migration:
           can then be updated manually post-migration
     - Modified email templates and RST versions are not migrated due to the
       numerous revisions and enhancements to these components in OCS 2
-    - Migrated subscription types are given a 12-month duration and public
+    - Migrated registration types are given a 12-month duration and public
       visibility by default -- these settings can be modified post-migration
 
 

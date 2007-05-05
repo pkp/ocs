@@ -55,7 +55,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		$registrationContactSignature .= "\n" . Locale::Translate('user.email') . ': ' . $registrationEmail;
 
 		$paramArray = array(
-			'subscriberName' => $user->getFullName(),
+			'registrantName' => $user->getFullName(),
 			'conferenceName' => $conferenceName,
 			'schedConfName' => $schedConfName,
 			'registrationType' => $registrationType->getSummaryString(),
@@ -97,7 +97,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 
 			while (!$registration->eof()) {
 				$registration = &$registration->next();
-				$this->sendReminder($registration, $conference, $schedConf, 'SUBSCRIPTION_BEFORE_EXPIRY');
+				$this->sendReminder($registration, $conference, $schedConf, 'REGISTRATION_BEFORE_EXPIRY');
 			}
 		}
 
@@ -119,7 +119,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 
 			while (!$registration->eof()) {
 				$registration = &$registration->next();
-				$this->sendReminder($registration, $conference, $schedConf, 'SUBSCRIPTION_BEFORE_EXPIRY');
+				$this->sendReminder($registration, $conference, $schedConf, 'REGISTRATION_BEFORE_EXPIRY');
 			}
 		}
 
@@ -149,7 +149,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 				$registration = &$registration->next();
 				// Ensure that user does not have another, valid registration
 				if (!$registrationDao->isValidRegistrationByUser($registration->getUserId(), $schedConf->getSchedConfId())) {
-					$this->sendReminder($registration, $conference, $schedConf, 'SUBSCRIPTION_AFTER_EXPIRY_LAST');
+					$this->sendReminder($registration, $conference, $schedConf, 'REGISTRATION_AFTER_EXPIRY_LAST');
 				}
 			}
 		}
@@ -187,7 +187,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 				$registration = &$registration->next();
 				// Ensure that user does not have another, valid registration
 				if (!$registrationDao->isValidRegistrationByUser($registration->getUserId(), $schedConf->getSchedConfId())) {
-					$this->sendReminder($registration, $conference, $schedConf, 'SUBSCRIPTION_AFTER_EXPIRY');
+					$this->sendReminder($registration, $conference, $schedConf, 'REGISTRATION_AFTER_EXPIRY');
 				}
 			}
 		}

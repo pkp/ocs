@@ -48,7 +48,9 @@ class ImportOCS1 {
 
 	var $importPath;
 	var $conferencePath;
+	var $conference;
 	var $conferenceId = 0;
+	var $conferenceIsNew;
 
 	var $dbtable = array();
 
@@ -170,10 +172,38 @@ class ImportOCS1 {
 			$this->error('Unsupported or unrecognized OCS version');
 			return false;
 		}
-		
-		$this->importConferences();
+
+		// If necessary, create the conference.
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		if (!$conference =& $conferenceDao->getConferenceByPath($this->conferencePath)) {
+			if ($this->hasOption('verbose')) {
+				printf("Creating conference\n");
+			}
+			unset($conference);
+			$conference =& new Conference();
+			$conference->setPath($this->conferencePath);
+			$conference->setTitle($this->globalConfigInfo['name']);
+			$conference->setEnabled(true);
+			$this->conferenceId = $conferenceDao->insertConference($conference);
+			$conferenceDao->resequenceConferences();
+
+			$this->conferenceIsNew = true;
+		} else {
+			if ($this->hasOption('verbose')) {
+				printf("Using existing conference\n");
+			}
+			$conference->setTitle($this->globalConfigInfo['name']);
+			$conferenceDao->updateConference($conference);
+			$this->conferenceId = $conference->getConferenceId();
+			$this->conferenceIsNew = false;
+		}
+		$this->conference =& $conference;
+
+		$this->importConference();
+		$this->importConferenceUsers();
+		$this->importSchedConfs();
+
 		$this->importReadingTools();
-		$this->importUsers();
 		if ($this->hasOption('importRegistrations')) {
 			$this->importRegistrations();
 		}
@@ -204,14 +234,40 @@ class ImportOCS1 {
 		return true;
 	}
 	
-	
+
 	//
 	// Conference
 	//
 
-	function importConferences() {
+	function importConference() {
+		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		if ($this->conferenceIsNew) {
+			// All site admins should get a manager role by default
+			$admins = $roleDao->getUsersByRoleId(ROLE_ID_SITE_ADMIN);
+			foreach ($admins->toArray() as $admin) {
+				$role = &new Role();
+				$role->setConferenceId($this->conferenceId);
+				$role->setUserId($admin->getUserId());
+				$role->setRoleId(ROLE_ID_CONFERENCE_MANAGER);
+				$roleDao->insertRole($role);
+			}
+
+			// Install the default RT versions.
+			import('rt.ocs.ConferenceRTAdmin');
+			$conferenceRtAdmin = &new ConferenceRTAdmin($this->conferenceId);
+			$conferenceRtAdmin->restoreVersions(false);
+		}
+		
+	}
+
+
+	//
+	// Scheduled Conference
+	//
+
+	function importSchedConfs() {
 		if ($this->hasOption('verbose')) {
-			printf("Importing conferences\n");
+			printf("Importing scheduled conferences\n");
 		}
 
 		$dbtable = $this->dbtable;
@@ -224,53 +280,46 @@ class ImportOCS1 {
 		$result->Close();
 
 		foreach ($conferenceIds as $id) {
-			$this->importConference($id);
+			$this->importSchedConf($id);
 		}
 	}
 
 	/**
-	 * Import conference and conference settings.
+	 * Import scheduled conference and related settings.
 	 * @param $id int
 	 */
-	function importConference($id) {
+	function importSchedConf($id) {
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+
 		if ($this->hasOption('verbose')) {
-			printf("Importing conference ID $id\n");
+			printf("Importing OCS 1.x conference ID $id\n");
 		}
 		$dbtable = $this->dbtable;
 
-		// Load conference config
-		$result = &$this->importDao->retrieve("SELECT * FROM $dbtable[conference_global]");
+		// Load sched conf config
+		$result = &$this->importDao->retrieve("SELECT * FROM $dbtable[conference]");
 		$this->conferenceInfo[$id] = &$result->fields;
 		$result->Close();
 
-		die('HERE');
-
-		// Create conference
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$conference = &new Conference();
-		$conference->setTitle($this->conferenceInfo['title_text']);
-		$conference->setPath($this->conferencePath);
-		$conference->setEnabled(1);
-		$this->conferenceId = $conferenceDao->insertConference($conference);
-		$conferenceDao->resequenceConferences();
-		
-		// Add conference manager role for site administrator(s)
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$admins = $roleDao->getUsersByRoleId(ROLE_ID_SITE_ADMIN);
-		foreach ($admins->toArray() as $admin) {
-			$role = &new Role();
-			$role->setConferenceId($this->conferenceId);
-			$role->setUserId($admin->getUserId());
-			$role->setRoleId(ROLE_ID_CONFERENCE_MANAGER);
-			$roleDao->insertRole($role);
+		$conferenceInfo =& $this->conferenceInfo[$id];
+		// Create/fetch scheduled conference
+		if (!$schedConf =& $schedConfDao->getSchedConfByPath($id, $this->conferenceId)) {
+			unset($schedConf);
+			$schedConf = &new SchedConf();
+			$schedConf->setConferenceId($this->conferenceId);
+			$schedConf->setTitle($conferenceInfo['name']);
+			$schedConf->setPath($id);
+			$schedConfDao->insertSchedConf($schedConf);
+			$schedConfDao->resequenceSchedConfs($this->conferenceId);
+		} else {
+			$schedConf->setTitle($conferenceInfo['name']);
+			$schedConfDao->updateSchedConf($schedConf);
 		}
-		
-		// Install the default RT versions.
-		import('rt.ocs.ConferenceRTAdmin');
-		$conferenceRtAdmin = &new ConferenceRTAdmin($this->conferenceId);
-		$conferenceRtAdmin->restoreVersions(false);
-		
-		// Publishers, sponsors, and contributors
+
+		$this->importSchedConfUsers($id, &$schedConf);
+
+		/* // Publishers, sponsors, and contributors
 		$publisher = array();
 		$sponsors = array();
 		$result = &$this->importDao->retrieve('SELECT * FROM tblsponsors ORDER BY nSponsorID');
@@ -456,7 +505,7 @@ class ImportOCS1 {
 		foreach ($conferenceSettings as $settingName => $settingInfo) {
 			list($settingType, $settingValue) = $settingInfo;
 			$settingsDao->updateSetting($this->conferenceId, $settingName, $settingValue, $settingType);
-		}
+		} */
 	}
 		
 	/**
@@ -511,16 +560,15 @@ class ImportOCS1 {
 	/**
 	 * Import users and roles.
 	 */
-	function importUsers() {
+	function importConferenceUsers() {
 		if ($this->hasOption('verbose')) {
 			printf("Importing users\n");
 		}
 		
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$notifyDao = &DAORegistry::getDAO('NotificationStatusDAO');
-		
-		$result = &$this->importDao->retrieve('SELECT *, DECODE(chPassword, ?) AS chPassword FROM tblusers ORDER BY nUserID', $this->globalConfigInfo['chPasswordSalt']);
+
+		/*$result = &$this->importDao->retrieve('SELECT *, DECODE(chPassword, ?) AS chPassword FROM tblusers ORDER BY nUserID', $this->globalConfigInfo['chPasswordSalt']);
 		while (!$result->EOF) {
 			$row = &$result->fields;
 
@@ -666,9 +714,42 @@ class ImportOCS1 {
 			$result->MoveNext();
 			unset($user);
 		}
-		$result->Close();
+		$result->Close(); */
 	}
 	
+	function importSchedConfUsers($id, &$schedConf) {
+		$conferenceInfo =& $this->conferenceInfo[$schedConf->getSchedConfId()];
+
+		// Import registrants
+		/* $result =& $this->importDao->retrieve('SELECT * FROM registrants WHERE cf = ? ORDER BY id', array($id));
+		while (!$result->EOF) {
+			$row = &$result->fields;
+
+			$user =
+			$result->MoveNext();
+		}
+		$result->Close(); */
+
+		/* What to do with this?
+		$directorNames = explode("\n", $conferenceInfo['directors']);
+		$directorEmails = explode("\n", $conferenceInfo['director_emails']);
+		$directorTitles = explode("\n", $conferenceInfo['director_titles']);
+		for ($i = 0; $i < min(count($directorNames), count($directorEmails), count($directorTitles)); $i++) {
+			$name = $directorNames[$i];
+			$email = $directorEmails[$i];
+			$title = $directorTitles[$i];
+
+			$nameParts = explode(' ', $name);
+			$lastName = array_pop($nameParts);
+			$firstName = join(' ', $nameParts);
+
+			if ($user =& $userDao->getUserByEmail($email)) {
+			}
+
+			unset($user);
+		} */
+	}
+
 	/**
 	 * Import registrations and registration types.
 	 */

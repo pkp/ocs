@@ -109,21 +109,22 @@ class Plugin {
 		require_once($this->getPluginPath() . '/' . str_replace('.', '/', $class) . '.inc.php');
 	}
 
-	function getSetting($conferenceId, $name) {
+	function getSetting($conferenceId, $schedConfId, $name) {
 		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
-		return $pluginSettingsDao->getSetting($conferenceId, $this->getName(), $name);
+		return $pluginSettingsDao->getSetting($conferenceId, $schedConfId, $this->getName(), $name);
 	}
 
 	/**
 	 * Update a plugin setting.
 	 * @param $conferenceId int
+	 * @param $schedConfId int
 	 * @param $name string The name of the setting
 	 * @param $value mixed
 	 * @param $type string optional
 	 */
-	function updateSetting($conferenceId, $name, $value, $type = null) {
+	function updateSetting($conferenceId, $schedConfId, $name, $value, $type = null) {
 		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
-		$pluginSettingsDao->updateSetting($conferenceId, $this->getName(), $name, $value, $type);
+		$pluginSettingsDao->updateSetting($conferenceId, $schedConfId, $this->getName(), $name, $value, $type);
 	}
 
 	/**

@@ -41,18 +41,18 @@ class AcronPlugin extends GenericPlugin {
 	}
 
 	function callback($hookName, $args) {
-		$isEnabled = $this->getSetting(0, 'enabled');
+		$isEnabled = $this->getSetting(0, 0, 'enabled');
 		if($isEnabled) {
 			$taskDao =& DAORegistry::getDao('ScheduledTaskDAO');
 
 			// Grab the scheduled scheduled conference tree
-			$scheduledTasks = $this->getSetting(0, 'crontab');
+			$scheduledTasks = $this->getSetting(0, 0, 'crontab');
 			if(!$scheduledTasks) {
 				$this->parseCrontab();
-				$scheduledTasks = $this->getSetting(0, 'crontab');
+				$scheduledTasks = $this->getSetting(0, 0, 'crontab');
 			}
 		
-			$tasks = $this->getSetting(0, 'crontab');
+			$tasks = $this->getSetting(0, 0, 'crontab');
 		
 			foreach($tasks as $task) {
 
@@ -135,7 +135,7 @@ class AcronPlugin extends GenericPlugin {
 		$xmlParser->destroy();
 
 		// Store the object.
-		$this->updateSetting(0, 'crontab', $tasks, 'object');		
+		$this->updateSetting(0, 0, 'crontab', $tasks, 'object');		
 	}
 	
 	/**
@@ -261,7 +261,7 @@ class AcronPlugin extends GenericPlugin {
 	}
 
 	function getManagementVerbs() {
-		$isEnabled = $this->getSetting(0, 'enabled');
+		$isEnabled = $this->getSetting(0, 0, 'enabled');
 
 		$verbs = array();
 		$verbs[] = array(
@@ -277,10 +277,10 @@ class AcronPlugin extends GenericPlugin {
 	function manage($verb, $args) {
 		switch ($verb) {
 			case 'enable':
-				$this->updateSetting(0, 'enabled', true);
+				$this->updateSetting(0, 0, 'enabled', true);
 				break;
 			case 'disable':
-				$this->updateSetting(0, 'enabled', false);
+				$this->updateSetting(0, 0, 'enabled', false);
 				break;
 			case 'reload':
 				$this->parseCrontab();
