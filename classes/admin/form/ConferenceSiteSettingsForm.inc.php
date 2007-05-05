@@ -108,7 +108,7 @@ class ConferenceSiteSettingsForm extends Form {
 
 		if ($conference->getConferenceId() != null) {
 			$conferenceDao->updateConference($conference);
-		$conference->updateSetting('conferenceDescription', $this->getData('description'));
+			$conference->updateSetting('conferenceDescription', $this->getData('description'));
 		} else {
 			$conferenceId = $conferenceDao->insertConference($conference);
 			$conferenceDao->resequenceConferences();
