@@ -601,6 +601,21 @@ class ManagerHandler extends Handler {
 		import('pages.manager.ManagerProgramHandler');
 		ManagerProgramHandler::saveProgramSettings();
 	}
+
+
+	//
+	// Payment
+	//
+	
+	function paymentSettings() {
+		import('pages.manager.ManagerPaymentHandler');
+		ManagerPaymentHandler::paymentSettings();
+	}
+	
+	function savePaymentSettings() {
+		import('pages.manager.ManagerPaymentHandler');
+		ManagerPaymentHandler::savePaymentSettings();
+	}
 	
 	
 	//

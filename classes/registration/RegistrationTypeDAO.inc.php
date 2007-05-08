@@ -174,13 +174,15 @@ class RegistrationTypeDAO extends DAO {
 	 */
 	function openRegistrationTypeExistsByTypeId($typeId, $schedConfId) {
 		$time = $this->dateToDB(time());
+
 		$result = &$this->retrieve(
 			'SELECT COUNT(*)
 				FROM registration_types
 				WHERE type_id = ?
 				AND   sched_conf_id = ?
-				AND   opening_date < ' . $time . '
-				AND   closing_date > ' . $time,
+				AND   opening_date <= ' . $time . '
+				AND   closing_date > ' . $time . '
+				AND   pub = 1',
 			array(
 				$typeId,
 				$schedConfId

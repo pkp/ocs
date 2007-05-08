@@ -76,17 +76,15 @@
 		<td colspan="2" class="value">{translate key="manager.statistics.statistics.totalNewValue" numTotal=$allUserStatistics.reader|default:"0" numNew=$userStatistics.reader|default:"0"}</td>
 	</tr>
 
-	{if $enableSubscriptions}
-		<tr valign="top">
-			<td colspan="3" class="label"><input type="checkbox" id="statSubscriptions" name="statSubscriptions" {if $statSubscriptions}checked {/if}/><label for="statSubscriptions">{translate key="manager.statistics.statistics.subscriptions"}</label></td>
-		</tr>
-		{foreach from=$allSubscriptionStatistics key=type_id item=stats}
-		<tr valign="top">
-			<td width="20%" class="label">&nbsp;&nbsp;{$stats.name}:</td>
-			<td colspan="2" class="value">{translate key="manager.statistics.statistics.totalNewValue" numTotal=$stats.count|default:"0" numNew=$subscriptionStatistics.$type_id.count|default:"0"}</td>
-		</tr>
-		{/foreach}
-	{/if}
+	<tr valign="top">
+		<td colspan="3" class="label"><input type="checkbox" id="statRegistrations" name="statRegistrations" {if $statRegistrations}checked {/if}/><label for="statRegistrations">{translate key="manager.statistics.statistics.registrations"}</label></td>
+	</tr>
+	{foreach from=$allRegistrationStatistics key=type_id item=stats}
+	<tr valign="top">
+		<td width="20%" class="label">&nbsp;&nbsp;{$stats.name}:</td>
+		<td colspan="2" class="value">{translate key="manager.statistics.statistics.totalNewValue" numTotal=$stats.count|default:"0" numNew=$registrationStatistics.$type_id.count|default:"0"}</td>
+	</tr>
+	{/foreach}
 </table>
 <p>{translate key="manager.statistics.statistics.note"}</p>
 

@@ -149,6 +149,10 @@ class TemplateManager extends Smarty {
 						$this->assign('schedConfShowSubmissionLink', true);
 					}
 
+					import('payment.ocs.OCSPaymentManager');
+					$paymentManager =& OCSPaymentManager::getManager();
+					$this->assign('schedConfPaymentsEnabled', $paymentManager->isConfigured());
+
 				} else {
 
 					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));

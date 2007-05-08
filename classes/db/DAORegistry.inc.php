@@ -104,7 +104,7 @@ class DAORegistry {
 			case 'TrackDirectorsDAO': return 'conference.TrackDirectorsDAO';
 			case 'NotificationStatusDAO': return 'conference.NotificationStatusDAO';
 			case 'EmailTemplateDAO': return 'mail.EmailTemplateDAO';
-			//case 'OAIDAO': return 'oai.ocs.OAIDAO';
+			case 'QueuedPaymentDAO': return 'payment.QueuedPaymentDAO';
 			case 'ScheduledTaskDAO': return 'scheduledTask.ScheduledTaskDAO';
 			case 'PaperSearchDAO': return 'search.PaperSearchDAO';
 			case 'RoleDAO': return 'security.RoleDAO';

@@ -162,7 +162,6 @@ class UserRegistrationForm extends Form {
 	 * Save registration. 
 	 */
 	function execute() {
-		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		$schedConf =& Request::getSchedConf();
 		$user =& Request::getUser();
 	
@@ -224,6 +223,19 @@ class UserRegistrationForm extends Form {
 			$session->setSessionVar('username', $user->getUsername());
 		}
 
+		// Get the registration type
+		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationType =& $registrationTypeDao->getRegistrationType($this->getData('registrationTypeId'));
+		if (!$registrationType || $registrationType->getSchedConfId() != $schedConf->getSchedConfId()) {
+			Request::redirect('index');
+		}
+
+		import('payment.ocs.OCSPaymentManager');
+		$paymentManager =& OCSPaymentManager::getManager();
+
+		if (!$paymentManager->isConfigured()) return false;
+
+		import('registration.Registration');
 		$registration = &new Registration();
 		
 		$registration->setSchedConfId($schedConf->getSchedConfId());
@@ -232,7 +244,15 @@ class UserRegistrationForm extends Form {
 		$registration->setSpecialRequests($this->getData('specialRequests') ? $this->getData('specialRequests') : null);
 		$registration->setDateRegistered(time());
 
-		$registrationDao->insertRegistration($registration);
+		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$registrationId = $registrationDao->insertRegistration($registration);
+
+		$queuedPayment =& $paymentManager->createQueuedPayment($schedConf->getConferenceId(), $schedConf->getSchedConfId(), QUEUED_PAYMENT_TYPE_REGISTRATION, $user->getUserId(), $registrationId, $registrationType->getCost(), $registrationType->getCurrencyCodeAlpha());
+		$queuedPaymentId = $paymentManager->queuePayment($queuedPayment);
+
+		$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
+
+		return true;
 	}
 }
 

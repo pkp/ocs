@@ -42,6 +42,7 @@
 	</tr>
 	{assign var="isFirstRegistrationType" value=true}
 	{iterate from=registrationTypes item=registrationType}
+	{if $registrationType->getPublic()}
 		<tr valign="top">
 			<td colspan="2" class="label">
 				<strong>{$registrationType->getTypeName()|escape}</strong>
@@ -66,6 +67,7 @@
 				<td>{$registrationType->getDescription()|nl2br}</td>
 			</tr>
 		{/if}
+	{/if}
 	{/iterate}
 	{if $registrationTypes->wasEmpty()}
 		<tr>

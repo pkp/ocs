@@ -54,6 +54,14 @@
 	<td><select name="currency" id="currency" class="selectMenu" />{html_options options=$validCurrencies selected=$currency}</select></td>
 </tr>
 <tr valign="top">
+	<td class="label">{fieldLabel name="code" key="manager.registrationTypes.form.code"}</td>
+	<td class="value">
+		<input type="text" name="code" value="{$code|escape}" size="15" maxlength="20" id="code" class="textField" />
+		<br />
+		<span class="instruct">{translate key="manager.registrationTypes.form.code.instructions"}</span>
+	</td>
+</tr>
+<tr valign="top">
 	<td class="label">{fieldLabel name="openDate" required="true" key="manager.registrationTypes.form.openDate"}</td>
 	<td class="value">
 		{html_select_date prefix="openDate" time=$openDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}

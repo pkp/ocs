@@ -122,12 +122,17 @@ class RegistrationTypeForm extends Form {
 					'access' => $registrationType->getAccess(),
 					'institutional' => $registrationType->getInstitutional(),
 					'membership' => $registrationType->getMembership(),
-					'public' => $registrationType->getPublic()
+					'public' => $registrationType->getPublic(),
+					'code' => $registrationType->getCode()
 				);
 
 			} else {
 				$this->typeId = null;
 			}
+		} else {
+			$this->_data = array(
+				'public' => 1
+			);
 		}
 	}
 	
@@ -135,7 +140,7 @@ class RegistrationTypeForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('typeName', 'description', 'cost', 'currency', 'access', 'institutional', 'membership', 'public'));
+		$this->readUserVars(array('typeName', 'description', 'cost', 'currency', 'access', 'institutional', 'membership', 'public', 'code'));
 		$this->_data['openDate'] = Request::getUserDateVar('openDate');
 		$this->_data['closeDate'] = Request::getUserDateVar('closeDate');
 		$this->_data['expiryDate'] = Request::getUserDateVar('expiryDate');
@@ -165,9 +170,10 @@ class RegistrationTypeForm extends Form {
 		$registrationType->setClosingDate($this->getData('closeDate'));
 		$registrationType->setExpiryDate($this->getData('expiryDate'));
 		$registrationType->setAccess($this->getData('access'));
-		$registrationType->setInstitutional($this->getData('institutional') == null ? 0 : $this->getData('institutional'));
-		$registrationType->setMembership($this->getData('membership') == null ? 0 : $this->getData('membership'));
-		$registrationType->setPublic($this->getData('public') == null ? 0 : $this->getData('public'));
+		$registrationType->setInstitutional($this->getData('institutional')?1:0);
+		$registrationType->setMembership($this->getData('membership')?1:0);
+		$registrationType->setPublic($this->getData('public')?1:0);
+		$registrationType->setCode($this->getData('code'));
 
 		// Update or insert registration type
 		if ($registrationType->getTypeId() != null) {
@@ -182,7 +188,6 @@ class RegistrationTypeForm extends Form {
 			$registrationTypeDao->resequenceRegistrationTypes($registrationType->getSchedConfId());
 		}
 	}
-	
 }
 
 ?>

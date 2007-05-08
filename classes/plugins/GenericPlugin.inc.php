@@ -31,16 +31,7 @@ class GenericPlugin extends Plugin {
 	 * 	the plugin will not be registered.
 	 */
 	function register($category, $path) {
-		$success = parent::register($category, $path);
-		if ($success) {
-			if ($this->getInstallSchemaFile()) {
-				HookRegistry::register ('Installer::postInstall', array(&$this, 'updateSchema'));
-			}
-			if ($this->getInstallDataFile()) {
-				HookRegistry::register ('Installer::postInstall', array(&$this, 'installData'));
-			}
-		}
-		return $success;
+		return parent::register($category, $path);
 	}
 
 	/**
@@ -59,51 +50,6 @@ class GenericPlugin extends Plugin {
 	function getDescription() {
 		return 'This is the base generic plugin class. It contains no concrete implementation. Its functions must be overridden by subclasses to provide actual functionality.';
 	}
-
-	/**
-	 * Get the filename of the ADODB schema for this plugin.
-	 * Subclasses using SQL tables should override this.
-	 */
-	function getInstallSchemaFile() {
-		return null;
-	}
-
-	function updateSchema(&$plugin, $args) {
-		$installer =& $args[0];
-		$result =& $args[1];
-
-		$schemaXMLParser = &new adoSchema($installer->dbconn, $installer->dbconn->charSet);
-		$sql = $schemaXMLParser->parseSchema($this->getInstallSchemaFile());
-		if ($sql) {
-			$result = $installer->executeSQL($sql);
-		} else {
-			$installer->setError(INSTALLER_ERROR_DB, str_replace('{$file}', $this->getInstallSchemaFile(), Locale::translate('installer.installParseDBFileError')));
-			$result = false;
-		}
-		return false;
-	}
-
-	/**
-	 * Get the filename of the install data for this plugin.
-	 * Subclasses using SQL tables should override this.
-	 */
-	function getInstallDataFile() {
-		return null;
-	}
-
-	function installData(&$plugin, $args) {
-		$installer =& $args[0];
-		$result =& $args[1];
-
-		$sql = $installer->dataXMLParser->parseData($this->getInstallDataFile());
-		if ($sql) {
-			$result = $installer->executeSQL($sql);
-		} else {
-			$installer->setError(INSTALLER_ERROR_DB, str_replace('{$file}', $this->getInstallDataFile(), Locale::translate('installer.installParseDBFileError')));
-			$result = false;
-		}
-		return false;
-	}
-
 }
+
 ?>

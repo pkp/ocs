@@ -13,8 +13,6 @@
  * $Id$
  */
 
-define('REGISTRATION_OPEN_ACCESS_DELAY_MIN', '0');
-define('REGISTRATION_OPEN_ACCESS_DELAY_MAX', '24');
 define('REGISTRATION_EXPIRY_REMINDER_BEFORE_MONTHS_MIN', '1');
 define('REGISTRATION_EXPIRY_REMINDER_BEFORE_MONTHS_MAX', '12');
 define('REGISTRATION_EXPIRY_REMINDER_BEFORE_WEEKS_MIN', '0');
@@ -28,9 +26,6 @@ import('form.Form');
 
 
 class RegistrationPolicyForm extends Form {
-
-	/** @var validDuration array keys are valid open access delay months */	
-	var $validDuration;
 
 	/** @var validNumMonthsBeforeExpiry array keys are valid expiry reminder months */	
 	var $validNumMonthsBeforeExpiry;
@@ -48,11 +43,6 @@ class RegistrationPolicyForm extends Form {
 	 * Constructor
 	 */
 	function RegistrationPolicyForm() {
-
-		for ($i=REGISTRATION_OPEN_ACCESS_DELAY_MIN; $i<=REGISTRATION_OPEN_ACCESS_DELAY_MAX; $i++) {
-			$this->validDuration[$i] = $i;
-		}
-
 		for ($i=REGISTRATION_EXPIRY_REMINDER_BEFORE_MONTHS_MIN; $i<=REGISTRATION_EXPIRY_REMINDER_BEFORE_MONTHS_MAX; $i++) {
 			$this->validNumMonthsBeforeExpiry[$i] = $i;
 		}
@@ -74,9 +64,6 @@ class RegistrationPolicyForm extends Form {
 		// If provided, registration contact email is valid
 		$this->addCheck(new FormValidatorEmail($this, 'registrationEmail', 'optional', 'manager.registrationPolicies.registrationContactEmailValid'));
 
-		// If provided delayed open access duration is valid value
-		$this->addCheck(new FormValidatorInSet($this, 'delayedOpenAccessDuration', 'optional', 'manager.registrationPolicies.delayedOpenAccessDurationValid', array_keys($this->validDuration)));
-
 		// If provided expiry reminder months before value is valid value
 		$this->addCheck(new FormValidatorInSet($this, 'numMonthsBeforeRegistrationExpiryReminder', 'optional', 'manager.registrationPolicies.numMonthsBeforeRegistrationExpiryReminderValid', array_keys($this->validNumMonthsBeforeExpiry)));
 
@@ -95,7 +82,6 @@ class RegistrationPolicyForm extends Form {
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('validDuration', $this->validDuration);
 		$templateMgr->assign('validNumMonthsBeforeExpiry', $this->validNumMonthsBeforeExpiry);
 		$templateMgr->assign('validNumWeeksBeforeExpiry', $this->validNumWeeksBeforeExpiry);
 		$templateMgr->assign('validNumMonthsAfterExpiry', $this->validNumMonthsAfterExpiry);
@@ -119,8 +105,6 @@ class RegistrationPolicyForm extends Form {
 			'registrationFax' => $schedConfSettingsDao->getSetting($schedConfId, 'registrationFax'),
 			'registrationMailingAddress' => $schedConfSettingsDao->getSetting($schedConfId, 'registrationMailingAddress'),
 			'registrationAdditionalInformation' => $schedConfSettingsDao->getSetting($schedConfId, 'registrationAdditionalInformation'),
-			'enableDelayedOpenAccess' => $schedConfSettingsDao->getSetting($schedConfId, 'enableDelayedOpenAccess'),
-			'delayedOpenAccessDuration' => $schedConfSettingsDao->getSetting($schedConfId, 'delayedOpenAccessDuration'),
 			'delayedOpenAccessPolicy' => $schedConfSettingsDao->getSetting($schedConfId, 'delayedOpenAccessPolicy'),
 			'enableOpenAccessNotification' => $schedConfSettingsDao->getSetting($schedConfId, 'enableOpenAccessNotification'),
 			'enablePresenterSelfArchive' => $schedConfSettingsDao->getSetting($schedConfId, 'enablePresenterSelfArchive'),
@@ -141,11 +125,6 @@ class RegistrationPolicyForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array('registrationName', 'registrationEmail', 'registrationPhone', 'registrationFax', 'registrationMailingAddress', 'registrationAdditionalInformation', 'enableDelayedOpenAccess', 'delayedOpenAccessDuration', 'delayedOpenAccessPolicy', 'enableOpenAccessNotification', 'enablePresenterSelfArchive', 'presenterSelfArchivePolicy', 'enableRegistrationExpiryReminderBeforeMonths', 'numMonthsBeforeRegistrationExpiryReminder', 'enableRegistrationExpiryReminderBeforeWeeks', 'numWeeksBeforeRegistrationExpiryReminder', 'enableRegistrationExpiryReminderAfterWeeks', 'numWeeksAfterRegistrationExpiryReminder', 'enableRegistrationExpiryReminderAfterMonths', 'numMonthsAfterRegistrationExpiryReminder'));
-
-		// If delayed open access selected, ensure a valid duration is provided
-		if ($this->_data['enableDelayedOpenAccess'] == 1) {
-			$this->addCheck(new FormValidatorInSet($this, 'delayedOpenAccessDuration', 'required', 'manager.registrationPolicies.delayedOpenAccessDurationValid', array_keys($this->validDuration)));
-		}
 
 		// If expiry reminder before months is selected, ensure a valid month value is provided
 		if ($this->_data['enableRegistrationExpiryReminderBeforeMonths'] == 1) {
@@ -182,8 +161,6 @@ class RegistrationPolicyForm extends Form {
 		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationFax', $this->getData('registrationFax'), 'string');
 		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationMailingAddress', $this->getData('registrationMailingAddress'), 'string');
 		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationAdditionalInformation', $this->getData('registrationAdditionalInformation'), 'string');
-		$schedConfSettingsDao->updateSetting($schedConfId, 'enableDelayedOpenAccess', $this->getData('enableDelayedOpenAccess') == null ? 0 : $this->getData('enableDelayedOpenAccess'), 'bool');
-		$schedConfSettingsDao->updateSetting($schedConfId, 'delayedOpenAccessDuration', $this->getData('delayedOpenAccessDuration'), 'int');
 		$schedConfSettingsDao->updateSetting($schedConfId, 'delayedOpenAccessPolicy', $this->getData('delayedOpenAccessPolicy'), 'string');
 		$schedConfSettingsDao->updateSetting($schedConfId, 'enableOpenAccessNotification', $this->getData('enableOpenAccessNotification') == null ? 0 : $this->getData('enableOpenAccessNotification'), 'bool');
 		$schedConfSettingsDao->updateSetting($schedConfId, 'enablePresenterSelfArchive', $this->getData('enablePresenterSelfArchive') == null ? 0 : $this->getData('enablePresenterSelfArchive'), 'bool');

@@ -452,7 +452,9 @@
 	<message key="schedConf.trackPolicies.title">{$schedConfAbbrev} Track Policies</message>
 
 	<!-- User self-registration form -->
-	<message key="schedConf.registration.alreadyRegistered">You are already registered for this conference. Please contact the principal contact in "About" if this is in error or you would like to change your registration.</message>
+	<message key="schedConf.registration.alreadyRegistered">You are already registered for this conference, although payment has not yet been received. Please contact the principal contact in "About" if this is in error or you would like to change your registration.</message>
+	<message key="schedConf.registration.alreadyRegisteredAndPaid">You are already registered for this conference and your registration has been paid. Please contact the principal contact in "About" if this is in error or you would like to change your registration.</message>
+	<message key="schedConf.registration.noPaymentMethodAvailable">Your registration has been recorded. If applicable, you will be contacted regarding payment.</message>
 	<message key="schedConf.registration.conferenceFees">Conference Fees</message>
 	<message key="schedConf.registration.type">Registration Type</message>
 	<message key="schedConf.registration.cost">Cost</message>
@@ -600,7 +602,7 @@
 	<message key="reader.fullTextNotAvailable">Conference papers are not currently available.</message>
 	<message key="reader.fullTextRegistrationRequired">Conference registration is required in order to view papers.</message>
 	<message key="reader.fullTextAccountRequired"><![CDATA[An account with this site is required in order to view papers. <a href="{$registerUrl}">Click here</a> to create an account.]]></message>
-	<message key="reader.fullTextSubscribersOnlyUntil">Open access for this conference will begin on {$date}.</message>
+	<message key="reader.fullTextRegistrantsOnlyUntil">Open access for this conference will begin on {$date}.</message>
 	<message key="reader.fullTextNotPostedYet">Papers for this conference will be posted on {$date}.</message>
 
 	<!-- Reader Comments -->
@@ -763,6 +765,14 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<!-- Registration Management -->
 	<message key="manager.registrationManagement">Registration Management</message>
 
+	<!-- Payment Handling -->
+	<message key="manager.payment.paymentSettings">Payment Settings</message>
+	<message key="manager.payment.paymentPluginInvalid">You must choose a valid payment method.</message>
+	<message key="manager.payment.form.description">Enter the configuration details for the method of payment this conference website is able to accept.</message>
+	<message key="manager.payment.form.method">Payment Method</message>
+
+	<message key="payment.type.registration">Conference Registration</message>
+
 	<!-- Conference Event Log -->
 	<message key="manager.conferenceEventLog">Event Log</message>
 	<message key="conference.event.confirmClearLog">Are you sure you want to clear the event log for this conference?</message>
@@ -840,7 +850,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.statistics.statistics.users">Users:</message>
 	<message key="manager.statistics.statistics.readers">Readers:</message>
 	<message key="manager.statistics.statistics.totalNewValue">{$numTotal} ({$numNew} new)</message>
-	<message key="manager.statistics.statistics.subscriptions">Subscriptions:</message>
+	<message key="manager.statistics.statistics.registrations">Registrations:</message>
 	<message key="manager.statistics.statistics.note">Note: Percentages for peer reviewed submissions may not add up to 100%, as items resubmitted are either accepted, declined, or still in process.</message>
 
 	<message key="manager.statistics.reports">Report Generator</message>
@@ -885,6 +895,9 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<message key="plugins.categories.gateways">Gateway Plugins</message>
 	<message key="plugins.categories.gateways.description">Gateway Plugins provide live data to external systems.</message>
+
+	<message key="plugins.categories.paymethod">Payment Methods</message>
+	<message key="plugins.categories.paymethod.description">Payment Method plugins implement support for various ways of processing payments online.</message>
 
 	<!-- Files Browser -->
 	<message key="manager.files.indexOfDir">Index of {$dir}</message>
@@ -976,7 +989,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.aboutConference.copyrightNoticeAgree">Require authors to agree to Copyright Notice as part of the submission process.</message>
 	<message key="manager.setup.aboutConference.postCreativeCommons">Post the Creative Commons license logo on the conference website.</message>
 	<message key="manager.setup.aboutConference.archiveAccessPolicy">Archive Access Policy</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">See section 5.1 for settings.</message>
+	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">The following settings control access to the conference archives. See section 2.4 for additional settings.</message>
 	<message key="manager.setup.aboutConference.privacyStatement">Privacy Statement</message>
 
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Add Item to Appear in "About the Conference"</message>
@@ -1370,31 +1383,27 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registrationPolicies.registrationContact">Registration Manager</message>
 	<message key="manager.registrationPolicies.registrationContactDescription">The contact listed under Registrations in About the Conference.</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformation">Registration Information</message>
-	<message key="manager.registrationPolicies.registrationAdditionalInformationDescription">The Registration Types and fee structure will be automatically placed under Registrations on the About the Conference page, along with the name and contact information for the Registration Manager. Additional information about registration, such as methods of payment or support for subscribers in developing countries, can be added here.</message>
+	<message key="manager.registrationPolicies.registrationAdditionalInformationDescription">The Registration Types and fee structure will be automatically placed under Registrations on the About the Conference page, along with the name and contact information for the Registration Manager. Additional information about registration, such as methods of payment or support for registrants in developing countries, can be added here.</message>
 	<message key="manager.registrationPolicies.htmlInstructions"><![CDATA[HTML can be used in textarea (for font size, color, etc.), with "returns" treated as <tt>&lt;br&gt;</tt>; HTML editor works with Firefox browsers.]]></message>
 	<message key="manager.registrationPolicies.openAccessOptions">Open Access Options For Registration Conferences</message>
 	<message key="manager.registrationPolicies.openAccessOptionsDescription">Registration conferences can provide "delayed open access" and/or "author self-archiving" (which increase readership and citation of content). The selected policies will appear in About the Conference.</message>
 	<message key="manager.registrationPolicies.delayedOpenAccess">Delayed Open Access</message>
-	<message key="manager.registrationPolicies.delayedOpenAccessDescription">With delayed open access, directors are still able to designate specific articles within an issue for immediate open access.</message>
-	<message key="manager.registrationPolicies.delayedOpenAccessDescription1">The back issues of this conference will be available in an open access format</message>
-	<message key="manager.registrationPolicies.delayedOpenAccessDescription2">month(s) after an issue is published.</message>
-	<message key="manager.registrationPolicies.delayedOpenAccessDurationValid">Please select a valid duration length.</message>
-	<message key="manager.registrationPolicies.openAccessNotificationDescription">Users with Reader accounts will have the option of receiving the table of contents by email when an issue becomes open access.</message>
+	<message key="manager.registrationPolicies.openAccessNotificationDescription">Users with Reader accounts will have the option of receiving the contents by email when a conference becomes open access.</message>
 	<message key="manager.registrationPolicies.delayedOpenAccessPolicyDescription">The following statement will be posted in About the Conference under Delayed Open Access.</message>
 	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
 	<message key="manager.registrationPolicies.presenterSelfArchive">Author Self-Archiving Policy</message>
 	<message key="manager.registrationPolicies.presenterSelfArchiveDescription">The following policy will be included in About the Conference.</message>
 	<message key="manager.registrationPolicies.registrationPoliciesSaved">Your registration policy settings have been updated.</message>
 	<message key="manager.registrationPolicies.expiryReminders">Registration Expiry Reminders</message>
-	<message key="manager.registrationPolicies.expiryRemindersDescription">Automated email reminders (available for editing by Conference Managers in OCS's Prepared Emails) can be sent to subscribers both before and after a registration has expired.</message>
+	<message key="manager.registrationPolicies.expiryRemindersDescription">Automated email reminders (available for editing by Conference Managers in OCS's Prepared Emails) can be sent to registrants both before and after a registration has expired.</message>
 	<message key="manager.registrationPolicies.expiryRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
-	<message key="manager.registrationPolicies.expiryReminderBeforeMonths1">Notify subscribers by email</message>
+	<message key="manager.registrationPolicies.expiryReminderBeforeMonths1">Notify registrants by email</message>
 	<message key="manager.registrationPolicies.expiryReminderBeforeMonths2">month(s) before registration expiry.</message>
-	<message key="manager.registrationPolicies.expiryReminderBeforeWeeks1">Notify subscribers by email</message>
+	<message key="manager.registrationPolicies.expiryReminderBeforeWeeks1">Notify registrants by email</message>
 	<message key="manager.registrationPolicies.expiryReminderBeforeWeeks2">week(s) before registration expiry.</message>
-	<message key="manager.registrationPolicies.expiryReminderAfterMonths1">Notify subscribers by email</message>
+	<message key="manager.registrationPolicies.expiryReminderAfterMonths1">Notify registrants by email</message>
 	<message key="manager.registrationPolicies.expiryReminderAfterMonths2">month(s) after registration expiry.</message>
-	<message key="manager.registrationPolicies.expiryReminderAfterWeeks1">Notify subscribers by email</message>
+	<message key="manager.registrationPolicies.expiryReminderAfterWeeks1">Notify registrants by email</message>
 	<message key="manager.registrationPolicies.expiryReminderAfterWeeks2">week(s) after registration expiry.</message>
 	<message key="manager.registrationPolicies.registrationContactEmailValid">Please enter a valid email.</message>
 	<message key="manager.registrationPolicies.enableRegistrationExpiryReminderBeforeMonthsValid">Please use the checkbox provided.</message>
@@ -1436,6 +1445,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registrationTypes.form.description">Description</message>
 	<message key="manager.registrationTypes.form.cost">Cost</message>
 	<message key="manager.registrationTypes.form.costInstructions">Enter a numeric value (e.g. 40 or 40.00). Do not include any other text such as "$".</message>
+	<message key="manager.registrationTypes.form.code">Code</message>
+	<message key="manager.registrationTypes.form.code.instructions">If a code is entered here, it must be used by registrants when registering for the conference. This can be used to limit a registration type to users who have been given a password for it, such as discounted registrations.</message>
 	<message key="manager.registrationTypes.form.currency">Currency</message>
 	<message key="manager.registrationTypes.form.openDate">Opening Date</message>
 	<message key="manager.registrationTypes.form.openDateInstructions">The date on which users are permitted to register themselves using this registration type.</message>
@@ -1444,9 +1455,9 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registrationTypes.form.expiryDate">Expiry Date</message>
 	<message key="manager.registrationTypes.form.expiryDateInstructions">Site access for this registration type ends on this date.</message>
 	<message key="manager.registrationTypes.form.access">Access</message>
-	<message key="manager.registrationTypes.form.institutional">Subscribers should be validated via domain or IP authentication.</message>
-	<message key="manager.registrationTypes.form.membership">Subscribers must be members of an association or organization.</message>
-	<message key="manager.registrationTypes.form.public">This registration type will not appear under Registrations in About the Conference.</message>
+	<message key="manager.registrationTypes.form.institutional">Registrants should be validated via domain or IP authentication.</message>
+	<message key="manager.registrationTypes.form.membership">Registrants must be members of an association or organization.</message>
+	<message key="manager.registrationTypes.form.public">This registration type will be publicly available.</message>
 	<message key="manager.registrationTypes.form.saveAndCreateAnotherType">Save and Create Another</message>
 	<message key="manager.registrationTypes.form.closeBeforeOpen">The open date for this registration type must come before the close date.</message>
 	<message key="manager.registrationTypes.access">Access</message>
@@ -1487,7 +1498,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registration.form.userId">User</message>
 	<message key="manager.registration.form.typeId">Registration type</message>
 	<message key="manager.registration.form.membership">Membership</message>
-	<message key="manager.registration.form.membershipInstructions">Enter membership information if the registration type requires that subscribers belong to an association or organization.</message>
+	<message key="manager.registration.form.membershipInstructions">Enter membership information if the registration type requires that registrants belong to an association or organization.</message>
 	<message key="manager.registration.form.domain">Domain</message>
 	<message key="manager.registration.form.domainInstructions">Enter a domain if the registration type is for institutions. If a domain is entered here, the IP range is optional. Valid values are domain names (e.g. lib.sfu.ca).</message>
 	<message key="manager.registration.form.ipRange">IP range</message>
@@ -1969,7 +1980,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.account.passwordLengthRestriction">The password must be at least {$length} characters.</message>
 	<message key="user.account.form.passwordLengthTooShort">The password you entered is not long enough.</message>
 	<message key="user.account.readerDescription">Notified by email on publication of presentations.</message>
-	<message key="user.account.openAccessNotificationDescription">Notified by email when an issue of the conference is made open access.</message>
+	<message key="user.account.openAccessNotificationDescription">Notified by email when a conference is made open access.</message>
 	<message key="user.account.presenterDescription">Able to submit items to the conference.</message>
 	<message key="user.account.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the conference.</message>
 	<message key="user.account.reviewerDescription">Willing to conduct peer review of submissions to the conference. Identify reviewing interests (substantive areas and research methods).</message>

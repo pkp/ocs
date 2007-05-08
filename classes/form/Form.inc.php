@@ -40,7 +40,16 @@ class Form {
 	 * Constructor.
 	 * @param $template string the path to the form template file
 	 */
-	function Form($template) {
+	function Form($template, $callHooks = true) {
+		if ($callHooks === true && checkPhpVersion('4.3.0')) {
+			$trace = debug_backtrace();
+			// Call hooks based on the calling entity, assuming
+			// this method is only called by a subclass. Results
+			// in hook calls named e.g. "articlegalleyform::Constructor"
+			// Note that class names are always lower case.
+			HookRegistry::call(strtolower($trace[1]['class']) . '::Constructor', array(&$this, &$template));
+		}
+
 		$this->_template = $template;
 		$this->_data = array();
 		$this->_checks = array();
@@ -96,7 +105,7 @@ class Form {
 	/**
 	 * Validate form data.
 	 */
-	function validate() {
+	function validate($callHooks = true) {
 		if (!isset($this->errorsArray)) {
 			$this->getErrorsArray();
 		}
@@ -114,6 +123,20 @@ class Form {
 				}
 			}
 		}
+
+		if ($callHooks === true && checkPhpVersion('4.3.0')) {
+			$trace = debug_backtrace();
+			// Call hooks based on the calling entity, assuming
+			// this method is only called by a subclass. Results
+			// in hook calls named e.g. "articlegalleyform::validate"
+			// Note that class and function names are always lower
+			// case.
+			$value = null;
+			if (HookRegistry::call(strtolower($trace[0]['class'] . '::' . $trace[0]['function']), array(&$this, &$value))) {
+				return $value;
+			}
+		}
+
 		return $this->isValid();
 	}
 	

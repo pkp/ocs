@@ -41,6 +41,7 @@
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="program"}">{translate key="manager.program"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="statistics"}">{translate key="manager.statistics"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="registration"}">{translate key="manager.registration"}</a></li>
+		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="paymentSettings"}">{translate key="manager.payment.paymentSettings"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people"}">{translate key="manager.roles"}</a></li>
 		<li>
 			<h4>{translate key="manager.roles"}</h4>
@@ -54,7 +55,7 @@
 				{call_hook name="Templates::Manager::Index::SchedConfRoles"}
 			</ul>
 		</li>
-		{call_hook name="Templates::Manager::Index::SchedConfFuncs"}
+		{call_hook name="Templates::Manager::Index::SchedConfFuncs" schedConf=$schedConf}
 </ul>
 {/iterate}
 

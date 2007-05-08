@@ -20,7 +20,7 @@
 <h4><a href="{url page="user"}">{$siteTitle|escape}</a></h4>
 <ul class="plain">
 	<li>&#187; <a href="{url conference="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
-	{call_hook name="Templates::User::Index::Site"}
+	{call_hook name="Templates::User::Index::Admin"}
 </ul>
 {/if}
 
@@ -107,7 +107,7 @@
 	<li>&#187; <a href="{url page="user" op="profile"}">{translate key="user.editMyProfile"}</a></li>
 	<li>&#187; <a href="{url page="user" op="changePassword"}">{translate key="user.changeMyPassword"}</a></li>
 	<li>&#187; <a href="{url page="login" op="signOut"}">{translate key="user.logOut"}</a></li>
-	{call_hook name="Templates::Admin::Index::MyAccount"}
+	{call_hook name="Templates::User::Index::MyAccount"}
 </ul>
 
 {include file="common/footer.tpl"}

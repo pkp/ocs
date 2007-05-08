@@ -30,9 +30,6 @@
 	<script type="text/javascript">
 		{literal}
 		<!--
-			function toggleAllowSetDelayedOpenAccessDuration(form) {
-				form.delayedOpenAccessDuration.disabled = !form.delayedOpenAccessDuration.disabled;
-			}
 			function toggleAllowSetBeforeMonthsReminder(form) {
 				form.numMonthsBeforeRegistrationExpiryReminder.disabled = !form.numMonthsBeforeRegistrationExpiryReminder.disabled;
 			}
@@ -131,12 +128,6 @@
 <p>{translate key="manager.registrationPolicies.openAccessOptionsDescription"}</p>
 
 	<h4>{translate key="manager.registrationPolicies.delayedOpenAccess"}</h4>
-	<p>{translate key="manager.registrationPolicies.delayedOpenAccessDescription"}</p>
-	<input type="checkbox" name="enableDelayedOpenAccess" id="enableDelayedOpenAccess" value="1" onclick="toggleAllowSetDelayedOpenAccessDuration(this.form)" {if $enableDelayedOpenAccess} checked="checked"{/if} />&nbsp;
-	<label for="enableDelayedOpenAccess">{translate key="manager.registrationPolicies.delayedOpenAccessDescription1"}</label>
-	<select name="delayedOpenAccessDuration" id="delayedOpenAccessDuration" class="selectMenu" {if not $enableDelayedOpenAccess} disabled="disabled"{/if} />{html_options options=$validDuration selected=$delayedOpenAccessDuration}</select>
-	{translate key="manager.registrationPolicies.delayedOpenAccessDescription2"}
-
 	<p>
 	<input type="checkbox" name="enableOpenAccessNotification" id="enableOpenAccessNotification" value="1"{if !$scheduledTasksEnabled} disabled="disabled" {elseif $enableOpenAccessNotification} checked="checked"{/if} />&nbsp;
 	<label for="enableOpenAccessNotification">{translate key="manager.registrationPolicies.openAccessNotificationDescription"}</label>

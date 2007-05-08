@@ -24,7 +24,14 @@ class PluginRegistry {
 	 */
 	function &getPlugins($category = null) {
 		$plugins = &Registry::get('plugins');
-		if ($category !== null) return $plugins[$category];
+		if (!is_array($plugins)) {
+			$plugins = array();
+			Registry::set('plugins', $plugins);
+		}
+		if ($category !== null) {
+			if (!isset($plugins[$category])) $plugins[$category] = array();
+			return $plugins[$category];
+		}
 		return $plugins;
 	}
 
@@ -111,7 +118,8 @@ class PluginRegistry {
 			'generic',
 			'auth',
 			'importexport',
-			'gateways'
+			'gateways',
+			'paymethod'
 		);
 	}
 

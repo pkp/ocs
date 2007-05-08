@@ -246,7 +246,7 @@ class RegistrationDAO extends DAO {
 	 */
 	function &getRegistrationsBySchedConfId($schedConfId, $rangeInfo = null) {
 		$result = &$this->retrieveRange(
-			'SELECT * FROM registrations WHERE sched_conf_id = ?', $schedConfId, $rangeInfo
+			'SELECT * FROM registrations WHERE sched_conf_id = ? ORDER BY membership', $schedConfId, $rangeInfo
 		);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationFromRow');
@@ -263,20 +263,19 @@ class RegistrationDAO extends DAO {
 	 * @return boolean
 	 */
 	function isValidRegistration($domain, $IP, $userId, $schedConfId) {
-		$valid = false;
+		if ($userId != null) {
+			$valid = $this->isValidRegistrationByUser($userId, $schedConfId);
+			if ($valid !== false) { return $valid; }
+		}
 
 		if ($domain != null) {
 			$valid = $this->isValidRegistrationByDomain($domain, $schedConfId);
-			if ($valid) { return true; }
+			if ($valid !== false) { return $valid; }
 		}	
 
 		if ($IP != null) {
 			$valid = $this->isValidRegistrationByIP($IP, $schedConfId);
-			if ($valid) { return true; }
-		}
-
-		if ($userId != null) {
-			return $this->isValidRegistrationByUser($userId, $schedConfId);
+			if ($valid) { return $valid; }
 		}
 
 		return false;
@@ -290,13 +289,15 @@ class RegistrationDAO extends DAO {
 	 */
 	function isValidRegistrationByUser($userId, $schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT EXTRACT(DAY FROM expiry_date) AS expiry_day,
-					EXTRACT(MONTH FROM expiry_date) AS expiry_month,
-					EXTRACT(YEAR FROM expiry_date) AS expiry_year
+			'SELECT 	registrations.registration_id,
+					EXTRACT(DAY FROM expiry_date) AS day,
+					EXTRACT(MONTH FROM expiry_date) AS month,
+					EXTRACT(YEAR FROM expiry_date) AS year
 			FROM registrations, registration_types
 			WHERE registrations.user_id = ?
 			AND   registrations.sched_conf_id = ?
-			AND   registrations.type_id = registration_types.type_id',
+			AND   registrations.type_id = registration_types.type_id
+			AND   date_paid IS NOT NULL',
 			array(
 				$userId,
 				$schedConfId
@@ -305,19 +306,20 @@ class RegistrationDAO extends DAO {
 		$returner = false;
 
 		if ($result->RecordCount() != 0) {
-			$dayEnd = $result->fields['expiry_day'];
-			$monthEnd = $result->fields['expiry_month'];
-			$yearEnd = $result->fields['expiry_year'];
+			$dayEnd = $result->fields['day'];
+			$monthEnd = $result->fields['month'];
+			$yearEnd = $result->fields['year'];
+			$registrationId = $result->fields['registration_id'];
 
 			// Ensure registration is still valid
 			$curDate = getdate();
 
 			if ( $curDate['year'] < $yearEnd ) {
-				$returner = true;
+				$returner = $registrationId;
 			} elseif (( $curDate['year'] == $yearEnd ) && ( $curDate['mon'] < $monthEnd )) {
-				$returner = true;
+				$returner = $registrationId;
 			} elseif ((( $curDate['year'] == $yearEnd ) && ( $curDate['mon'] == $monthEnd )) && ( $curDate['mday'] <= $dayEnd ) ) {
-				$returner = true;
+				$returner = $registrationId;
 			}
 		}
 
@@ -335,16 +337,18 @@ class RegistrationDAO extends DAO {
 	 */
 	function isValidRegistrationByDomain($domain, $schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT EXTRACT(DAY FROM expiry_date) AS expiry_day,
-					EXTRACT(MONTH FROM expiry_date) AS expiry_month,
-					EXTRACT(YEAR FROM expiry_date) AS expiry_year,
+			'SELECT 	registrations.registration_id,
+					EXTRACT(DAY FROM expiry_date) AS day,
+					EXTRACT(MONTH FROM expiry_date) AS month,
+					EXTRACT(YEAR FROM expiry_date) AS year,
 					POSITION(UPPER(domain) IN UPPER(?)) AS domain_position
 			FROM registrations, registration_types
 			WHERE POSITION(UPPER(domain) IN UPPER(?)) != 0
 			AND   domain != \'\'
 			AND   registrations.sched_conf_id = ?
 			AND   registrations.type_id = registration_types.type_id
-			AND   registration_types.institutional = 1',
+			AND   registration_types.institutional = 1
+			AND   date_paid IS NOT NULL',
 			array(
 				$domain,
 				$domain,
@@ -355,10 +359,11 @@ class RegistrationDAO extends DAO {
 
 		if ($result->RecordCount() != 0) {
 			while (!$returner && !$result->EOF) {
-				$dayEnd = $result->fields['expiry_day'];
-				$monthEnd = $result->fields['expiry_month'];
-				$yearEnd = $result->fields['expiry_year'];
+				$dayEnd = $result->fields['day'];
+				$monthEnd = $result->fields['month'];
+				$yearEnd = $result->fields['year'];
 				$posMatch = $result->fields['domain_position'];
+				$registrationId = $result->fields['registration_id'];
 
 				// Ensure we have a proper match (i.e. bar.com should not match foobar.com but should match foo.bar.com)
 				if ( $posMatch > 1) {
@@ -372,11 +377,11 @@ class RegistrationDAO extends DAO {
 				$curDate = getdate();
 
 				if ( $curDate['year'] < $yearEnd ) {
-					$returner = true;
+					$returner = $registrationId;
 				} elseif (( $curDate['year'] == $yearEnd ) && ( $curDate['mon'] < $monthEnd )) {
-					$returner = true;
+					$returner = $registrationId;
 				} elseif ((( $curDate['year'] == $yearEnd ) && ( $curDate['mon'] == $monthEnd )) && ( $curDate['mday'] <= $dayEnd ) ) {
-					$returner = true;
+					$returner = $registrationId;
 				}
 
 				$result->moveNext();
@@ -398,15 +403,17 @@ class RegistrationDAO extends DAO {
 	 */
 	function isValidRegistrationByIP($IP, $schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT EXTRACT(DAY FROM expiry_date) AS expiry_day,
-					EXTRACT(MONTH FROM expiry_date) AS expiry_month,
-					EXTRACT(YEAR FROM expiry_date) AS expiry_year,
+			'SELECT 	registrations.registration_id,
+					EXTRACT(DAY FROM expiry_date) AS day,
+					EXTRACT(MONTH FROM expiry_date) AS month,
+					EXTRACT(YEAR FROM expiry_date) AS year,
 					ip_range 
 			FROM registrations, registration_types
 			WHERE ip_range IS NOT NULL   
 			AND   registrations.sched_conf_id = ?
 			AND   registrations.type_id = registration_types.type_id
-			AND   registration_types.institutional = 1',
+			AND   registration_types.institutional = 1
+			AND   date_paid IS NOT NULL',
 			$schedConfId
 			);
 
@@ -416,7 +423,7 @@ class RegistrationDAO extends DAO {
 			$matchFound = false;
 
 			while (!$returner && !$result->EOF) {
-				$ipRange = $result->fields[3];
+				$ipRange = $result->fields['ip_range'];
 
 				// Get all IPs and IP ranges
 				$ipRanges = explode(REGISTRATION_IP_RANGE_SEPERATOR, $ipRange);
@@ -483,18 +490,19 @@ class RegistrationDAO extends DAO {
 
 			// Found a match. Ensure registration is still valid
 			if ($matchFound == true) {
-				$dayEnd = $result->fields['expiry_day'];
-				$monthEnd = $result->fields['expiry_month'];
-				$yearEnd = $result->fields['expiry_year'];
+				$dayEnd = $result->fields['day'];
+				$monthEnd = $result->fields['month'];
+				$yearEnd = $result->fields['year'];
+				$registrationId = $result->fields['registration_id'];
 
 				$curDate = getdate();
 
 				if ( $curDate['year'] < $yearEnd ) {
-					$returner = true;
+					$returner = $registrationId;
 				} elseif (( $curDate['year'] == $yearEnd ) && ( $curDate['mon'] < $monthEnd )) {
-					$returner = true;
+					$returner = $registrationId;
 				} elseif ((( $curDate['year'] == $yearEnd ) && ( $curDate['mon'] == $monthEnd )) && ( $curDate['mday'] <= $dayEnd ) ) {
-					$returner = true;
+					$returner = $registrationId;
 				}
 			}
 		}

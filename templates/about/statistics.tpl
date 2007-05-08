@@ -69,14 +69,14 @@
 		<td colspan="2" class="value">{translate key="manager.statistics.statistics.totalNewValue" numTotal=$allUserStatistics.reader|default:"0" numNew=$userStatistics.reader|default:"0"}</td>
 	</tr>{/if}
 
-	{if $enableSubscriptions && $statSubscriptions}
+	{if $statRegistrations}
 		<tr valign="top">
-			<td colspan="3" class="label">{translate key="manager.statistics.statistics.subscriptions"}</td>
+			<td colspan="3" class="label">{translate key="manager.statistics.statistics.registrations"}</td>
 		</tr>
-		{foreach from=$allSubscriptionStatistics key=type_id item=stats}
+		{foreach from=$allRegistrationStatistics key=type_id item=stats}
 		<tr valign="top">
 			<td width="20%" class="label">&nbsp;&nbsp;{$stats.name}:</td>
-			<td colspan="2" class="value">{translate key="manager.statistics.statistics.totalNewValue" numTotal=$stats.count|default:"0" numNew=$subscriptionStatistics.$type_id.count|default:"0"}</td>
+			<td colspan="2" class="value">{translate key="manager.statistics.statistics.totalNewValue" numTotal=$stats.count|default:"0" numNew=$registrationStatistics.$type_id.count|default:"0"}</td>
 		</tr>
 		{/foreach}
 	{/if}

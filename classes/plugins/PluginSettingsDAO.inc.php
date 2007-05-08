@@ -23,7 +23,7 @@ class PluginSettingsDAO extends DAO {
 		parent::DAO();
 	}
 
-	function &_getCache($conferenceId, $pluginName) {
+	function &_getCache($conferenceId, $schedConfId, $pluginName) {
 		static $settingCache;
 		if (!isset($settingCache)) {
 			$settingCache = array();
@@ -31,15 +31,18 @@ class PluginSettingsDAO extends DAO {
 		if (!isset($this->settingCache[$conferenceId])) {
 			$this->settingCache[$conferenceId] = array();
 		}
-		if (!isset($this->settingCache[$conferenceId][$pluginName])) {
+		if (!isset($this->settingCache[$conferenceId][$schedConfId])) {
+			$this->settingCache[$conferenceId][$schedConfId] = array();
+		}
+		if (!isset($this->settingCache[$conferenceId][$schedConfId][$pluginName])) {
 			import('cache.CacheManager');
 			$cacheManager =& CacheManager::getManager();
-			$this->settingCache[$conferenceId][$pluginName] =& $cacheManager->getCache(
-				'pluginSettings-' . $conferenceId, $pluginName,
+			$this->settingCache[$conferenceId][$schedConfId][$pluginName] =& $cacheManager->getCache(
+				'pluginSettings-' . ((int) $conferenceId) . '-' . ((int) $schedConfId), $pluginName,
 				array($this, '_cacheMiss')
 			);
 		}
-		return $this->settingCache[$conferenceId][$pluginName];
+		return $this->settingCache[$conferenceId][$schedConfId][$pluginName];
 	}
 
 	/**
@@ -48,15 +51,16 @@ class PluginSettingsDAO extends DAO {
 	 * @param $name
 	 * @return mixed
 	 */
-	function getSetting($conferenceId, $pluginName, $name) {
-		$cache =& $this->_getCache($conferenceId, $pluginName);
+	function getSetting($conferenceId, $schedConfId, $pluginName, $name) {
+		$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
 		return $cache->get($name);
 	}
 
 	function _cacheMiss(&$cache, $id) {
 		$contextParts = explode('-', $cache->getContext());
+		$schedConfId = array_pop($contextParts);
 		$conferenceId = array_pop($contextParts);
-		$settings =& $this->getPluginSettings($conferenceId, $cache->getCacheId());
+		$settings =& $this->getPluginSettings($conferenceId, $schedConfId, $cache->getCacheId());
 		if (!isset($settings[$id])) {
 			// Make sure that even null values are cached
 			$cache->setCache($id, null);
@@ -71,11 +75,11 @@ class PluginSettingsDAO extends DAO {
 	 * @param $pluginName string
 	 * @return array
 	 */
-	function &getPluginSettings($conferenceId, $pluginName) {
+	function &getPluginSettings($conferenceId, $schedConfId, $pluginName) {
 		$pluginSettings[$pluginName] = array();
 		
 		$result = &$this->retrieve(
-			'SELECT setting_name, setting_value, setting_type FROM plugin_settings WHERE plugin_name = ? AND conference_id = ?', array($pluginName, $conferenceId)
+			'SELECT setting_name, setting_value, setting_type FROM plugin_settings WHERE plugin_name = ? AND conference_id = ? AND sched_conf_id = ?', array($pluginName, $conferenceId, $schedConfId)
 		);
 		
 		if ($result->RecordCount() == 0) {
@@ -110,7 +114,7 @@ class PluginSettingsDAO extends DAO {
 			$result->close();
 			unset($result);
 
-			$cache =& $this->_getCache($conferenceId, $pluginName);
+			$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
 			$cache->setEntireCache($pluginSettings[$pluginName]);
 
 			return $pluginSettings[$pluginName];
@@ -125,8 +129,8 @@ class PluginSettingsDAO extends DAO {
 	 * @param $value mixed
 	 * @param $type string data type of the setting. If omitted, type will be guessed
 	 */
-	function updateSetting($conferenceId, $pluginName, $name, $value, $type = null) {
-		$cache =& $this->_getCache($conferenceId, $pluginName);
+	function updateSetting($conferenceId, $schedConfId, $pluginName, $name, $value, $type = null) {
+		$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
 		$cache->setCache($name, $value);
 		
 		if ($type == null) {
@@ -162,25 +166,25 @@ class PluginSettingsDAO extends DAO {
 		}
 		
 		$result = $this->retrieve(
-			'SELECT COUNT(*) FROM plugin_settings WHERE plugin_name = ? AND setting_name = ? AND conference_id = ?',
-			array($pluginName, $name, $conferenceId)
+			'SELECT COUNT(*) FROM plugin_settings WHERE plugin_name = ? AND setting_name = ? AND conference_id = ? AND sched_conf_id = ?',
+			array($pluginName, $name, $conferenceId, $schedConfId)
 		);
 		
 		if ($result->fields[0] == 0) {
 			$returner = $this->update(
 				'INSERT INTO plugin_settings
-					(plugin_name, conference_id, setting_name, setting_value, setting_type)
+					(plugin_name, conference_id, sched_conf_id, setting_name, setting_value, setting_type)
 					VALUES
-					(?, ?, ?, ?, ?)',
-				array($pluginName, $conferenceId, $name, $value, $type)
+					(?, ?, ?, ?, ?, ?)',
+				array($pluginName, $conferenceId, $schedConfId, $name, $value, $type)
 			);
 		} else {
 			$returner = $this->update(
 				'UPDATE plugin_settings SET
 					setting_value = ?,
 					setting_type = ?
-					WHERE plugin_name = ? AND setting_name = ? AND conference_id = ?',
-				array($value, $type, $pluginName, $name, $conferenceId)
+					WHERE plugin_name = ? AND setting_name = ? AND conference_id = ? AND sched_conf_id = ?',
+				array($value, $type, $pluginName, $name, $conferenceId, $schedConfId)
 			);
 		}
 
@@ -193,16 +197,17 @@ class PluginSettingsDAO extends DAO {
 	/**
 	 * Delete a plugin setting.
 	 * @param $conferenceId int
+	 * @param $schedConfId int
 	 * @param $pluginName int
 	 * @param $name string
 	 */
-	function deleteSetting($conferenceId, $pluginName, $name) {
+	function deleteSetting($conferenceId, $schedConfId, $pluginName, $name) {
 		$cache =& $this->_getCache($pluginName);
 		$cache->setCache($name, null);
 		
 		return $this->update(
-			'DELETE FROM plugin_settings WHERE plugin_name = ? AND setting_name = ? AND conference_id = ?',
-			array($pluginName, $name, $conferenceId)
+			'DELETE FROM plugin_settings WHERE plugin_name = ? AND setting_name = ? AND conference_id = ? AND sched_conf_id = ?',
+			array($pluginName, $name, $conferenceId, $schedConfId)
 		);
 	}
 	
@@ -298,7 +303,7 @@ class PluginSettingsDAO extends DAO {
 				}
 
 				// Replace translate calls with translated content
-				$this->updateSetting($conferenceId, $pluginName, $name, $value, $type);
+				$this->updateSetting($conferenceId, 0, $pluginName, $name, $value, $type);
 			}
 		}
 

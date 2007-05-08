@@ -55,11 +55,11 @@
 
 {if !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}
 <a name="openAccessPolicy"></a><h3>{translate key="about.openAccessPolicy"}</h3>
-	{if !empty($conferenceSettings.enableSubscriptions) && !empty($conferenceSettings.enableDelayedOpenAccess)}
+	{if !empty($conferenceSettings.enableDelayedOpenAccess)}
 		<h4>{translate key="about.delayedOpenAccess"}</h4> 
 		<p>{translate key="about.delayedOpenAccessDescription1"} {$conferenceSettings.delayedOpenAccessDuration} {translate key="about.delayedOpenAccessDescription2"}</p>
 	{/if}
-	{if !empty($conferenceSettings.enableSubscriptions) && !empty($conferenceSettings.enablePresenterSelfArchive)} 
+	{if !empty($conferenceSettings.enablePresenterSelfArchive)} 
 		<h4>{translate key="about.presenterSelfArchive"}</h4> 
 		<p>{$conferenceSettings.presenterSelfArchivePolicy|nl2br}</p>
 	{/if}

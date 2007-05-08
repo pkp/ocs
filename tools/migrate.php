@@ -57,7 +57,7 @@ class migrate extends CommandLineTool {
 			. "                  will be imported into the existing journal\n"
 			. "ojs1_path         Complete local filesystem path to the OJS 1 installation\n"
 			. "                  (E.g., \"/var/www/ojs\")\n"
-			. "options           importRegistrations - import subscription type and subscriber\n"
+			. "options           importRegistrations - import registration type and registrant\n"
 			. "                  data\n"
 			. "                  verbose - print additional debugging information\n";
 	}
