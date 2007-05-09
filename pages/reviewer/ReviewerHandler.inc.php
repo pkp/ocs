@@ -121,28 +121,24 @@ class ReviewerHandler extends Handler {
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null, $showSidebar = true) {
+	function setupTemplate($subclass = false, $paperId = 0, $reviewId = 0) {
 		$templateMgr = &TemplateManager::getManager();
 		$pageHierarchy = $subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'reviewer'), 'user.role.reviewer'))
 				: array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'reviewer'), 'user.role.reviewer'));
 
-		import('submission.trackDirector.TrackDirectorAction');
-		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'reviewer');
-		if (isset($submissionCrumb)) {
-			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
+		if ($paperId && $reviewId) {
+			$pageHierarchy[] = array(Request::url(null, null, 'reviewer', 'submission', $reviewId), "#$paperId", true);
 		}
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 
-		if ($showSidebar) {
-			$templateMgr->assign('sidebarTemplate', 'reviewer/navsidebar.tpl');
+		$templateMgr->assign('sidebarTemplate', 'reviewer/navsidebar.tpl');
 
-			$schedConf = &Request::getSchedConf();
-			$user = &Request::getUser();
-			if ($user) {
-				$reviewerSubmissionDao = &DAORegistry::getDAO('ReviewerSubmissionDAO');
-				$submissionsCount = $reviewerSubmissionDao->getSubmissionsCount($user->getUserId(), $schedConf->getSchedConfId());
-				$templateMgr->assign('submissionsCount', $submissionsCount);
-			}
+		$schedConf = &Request::getSchedConf();
+		$user = &Request::getUser();
+		if ($user) {
+			$reviewerSubmissionDao = &DAORegistry::getDAO('ReviewerSubmissionDAO');
+			$submissionsCount = $reviewerSubmissionDao->getSubmissionsCount($user->getUserId(), $schedConf->getSchedConfId());
+			$templateMgr->assign('submissionsCount', $submissionsCount);
 		}
 	}
 	
