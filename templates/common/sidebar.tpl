@@ -96,7 +96,7 @@
 		<ul class="plain">
 			<li>&#187; <a href="{url page="schedConf" op="overview"}">{translate key="schedConf.overview"}</a></li>
 			{if $schedConfShowCFP}
-				<li>&#187; <a href="{url page="schedConf" op="cfp"}">{translate key="schedConf.cfp"}</a> ({$submissionOpenDate|date_format:$dateFormatLong} - {$submissionCloseDate|date_format:$dateFormatLong})</li>
+				<li>&#187; <a href="{url page="schedConf" op="cfp"}">{translate key="schedConf.cfp"}</a>{if $submissionOpenDate} ({$submissionOpenDate|date_format:$dateFormatLong} - {$submissionCloseDate|date_format:$dateFormatLong}){/if}</li>
 			{/if}
 			{if $schedConfShowSubmissionLink}
 				<li>&#187; <a href="{url page="presenter" op="submit" requiresPresenter="1"}">{translate key="schedConf.proposalSubmission"}</a></li>
