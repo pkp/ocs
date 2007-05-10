@@ -57,7 +57,7 @@ class PayPalPaymentForm extends Form {
 
 		$this->_data = array(
 			'business' => $payPalPlugin->getSetting($conferenceId, $schedConfId, 'selleraccount'),
-			'item_name' => $queuedPayment->getDescription();
+			'item_name' => $queuedPayment->getDescription(),
 			'a3' => $queuedPayment->getAmount($args),
 			'quantity' => 1,
 			'no_note' => 1,
