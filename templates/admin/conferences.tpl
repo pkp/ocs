@@ -53,6 +53,6 @@
 	{/if}
 </table>
 
-<p><a href="{url op="createConference"}" class="action">{translate key="admin.conferences.create"}</a>{* | <a href="{url op="importOCS1"}" class="action">{translate key="admin.conferences.importOCS1"}</a>*}</p>
+<p><a href="{url op="createConference"}" class="action">{translate key="admin.conferences.create"}</a> | <a href="{url op="importOCS1"}" class="action">{translate key="admin.conferences.importOCS1"}</a></p>
 
 {include file="common/footer.tpl"}

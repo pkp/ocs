@@ -153,11 +153,11 @@
 	<message key="common.path">Path</message>
 	<message key="common.dateTimeSeparator">at</message>
 	<message key="common.ccLicense"><![CDATA[
-		<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
+		<a target="_new" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
 			<img alt="Creative Commons License" style="border-width:0" src="{$ccLicenseImageUrl}"/>
 		</a>
 		<br/>
-		This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-Noncommercial-No Derivative Works 3.0  License</a>.
+		This <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">work</span> is licensed under a <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0  License</a>.
 	]]></message>
 
 	<!-- Common Form Messages -->
@@ -753,7 +753,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="admin.conferences.importOCS1.editMigratedConference">Edit Migrated Conference</message>
 	<message key="admin.conferences.importOCS1.conflict.desc">Some user accounts had conflicting information. OCS 1.x allows multiple user accounts to share the same email address, while OCS 2.x does not. In the list below, the second account listed has had a temporary email account assigned to it. These should be corrected by hand, either by assigning a different email account, or by merging accounts.</message>
 	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) and {$secondUsername} ({$secondName})</message>
-	<message key="admin.conferences.importOCS1Instructions">Consult the UPGRADE document distributed with OCS for detailed information on migrating data from OCS 1 to OCS 2.</message>
+	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consult the UPGRADE document distributed with OCS for detailed information on migrating data from OCS 1 to OCS 2. Note that this process will NOT create a completely configured OCS 2 conference; only certain items (e.g. papers) will be imported. <strong>All imported users will need to reset their passwords.</strong>]]></message>
 	<message key="admin.conference.pathImportInstructions">Existing conference path or path to create (e.g., "ocs").</message>
 	<message key="admin.conference.importPath">OCS 1 path</message>
 	<message key="admin.conference.importPathInstructions">Complete local filesystem path to the OCS 1 installation (e.g., "/var/www/ocs").</message>
@@ -2526,9 +2526,9 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	 *
 	-->
 	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Authors who submit to this conference agree to the following terms:<br/>
-<b>a)</b>&nbsp;Authors retain copyright over their work, while allowing the conference to place this unpublished work under a Creative Commons License (Attribution Non-commercial No Derivatives) which allows others to freely access, use, and share the work for non-commercial purposes, without altering it, and with an acknowledgement of the work's authorship and its initial presentation at this conference.<br/>
-<b>b)</b>&nbsp;Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution and subsequent publication of this work (e.g., publish a revised version in a journal, post it to an institutional repository or publish it in a book), with an acknowledgement of its initial presentation at this conference.<br/>
-<b>c)</b>&nbsp;In addition, authors are encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process.]]></message>
+<b>a)</b>&nbsp;Authors retain copyright over their work, while allowing the conference to place this unpublished work under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>, which allows others to freely access, use, and share the work, with an acknowledgement of the work's authorship and its initial presentation at this conference.<br/>
+<b>b)</b>&nbsp;Authors are able to waive the terms of the CC license and enter into separate, additional contractual arrangements for the non-exclusive distribution and subsequent publication of this work (e.g., publish a revised version in a journal, post it to an institutional repository or publish it in a book), with an acknowledgement of its initial presentation at this conference.<br/>
+<b>c)</b>&nbsp;In addition, authors are encouraged to post and share their work online (e.g., in institutional repositories or on their website) at any point before and after the conference.]]></message>
 
 	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another conference for consideration (or an explanation has been provided in Comments to the Director).</message>
 	<message key="default.schedConfSettings.checklist.fileFormat">The submission file is in Microsoft Word, RTF, or WordPerfect document file format.</message>
