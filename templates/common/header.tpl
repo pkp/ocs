@@ -38,7 +38,7 @@
 <div id="headerTitle">
 <h1>
 {if $displayPageHeaderLogo}
-	<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width}" height="{$displayPageHeaderLogo.height}" border="0" alt="" />
+	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width}" height="{$displayPageHeaderLogo.height}" border="0" alt="" />
 {elseif $displayConferencePageHeaderLogo}
 	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderLogo.uploadName|escape:"url"}" width="{$displayConferencePageHeaderLogo.width}" height="{$displayConferencePageHeaderLogo.height}" border="0" alt="" />
 {/if}
