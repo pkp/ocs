@@ -31,7 +31,7 @@
 <div align="center"><img src="{$publicFilesDir}/{$homepageImage.uploadName|escape}" width="{$homepageImage.width}" height="{$homepageImage.height}" border="0" alt="" /></div>
 {/if}
 
-<br /><br />
+<br />
 
 {$additionalHomeContent}
 
