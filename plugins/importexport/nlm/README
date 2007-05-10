@@ -1,0 +1,44 @@
+================================
+=== OCS NLM Meeting Abstracts Export Plugin
+=== Version: 1.0
+=== Release date: May 10, 2007
+=== Author: MJ Suhonos <mj@robotninja.com>
+================================
+
+About
+-----
+This plugin for OCS 2 provides an export plugin to generate bibliographic information for papers in the current conference in NLM Meeting Abstracts data format XML for indexing in NLM Gateway.  Details on the XML format and data requirements is available at: http://www.nlm.nih.gov/databases/dtd/nlmmeetingabstractinput_060101.dtd
+
+License
+-------
+This plugin is licensed under the GNU General Public License v2. See the file COPYING for the complete terms of this license.
+
+System Requirements
+-------------------
+Same requirements as the OCS 2.0.x core.
+
+Installation
+------------
+To install the plugin:
+- copy the nlm folder into OCS/plugins/importexport
+
+The export functionality can then be accessed through:
+- Home > User > Conference Manager > Import/Export Data > NLM XML Export Plugin 
+
+Known Issues/Limitations
+---------
+- NLM currently requires the following elements which are not well-defined for online conferences: <Journal> , <MedlineJournalInfo> ; these may be modified pending discussion with NLM
+- There may be further ambiguity or misunderstanding which is not correctly represented; this plugin should NOT be used for production conferences without first contacting PKP and/or NLM
+
+Localization
+------------
+- Because NLM requires abstracts in English, no localization is presently done on the XML data
+
+Contact/Support
+---------------
+Please email the author for support, bugfixes, or comments.
+Email: <mj@robotninja.com>
+
+Version History
+---------------
+1.0    - initial release
