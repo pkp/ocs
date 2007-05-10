@@ -1238,6 +1238,7 @@ Title of classification system]]></message>
 
 	<!-- Timeline management -->
 	<message key="director.timeline.conferenceTimeline">Conference Timeline</message>
+	<message key="director.timeline.overrideDates">Override error message(s)</message>
 	<message key="director.timeline.description"><![CDATA[
 		Enter the dates when acivities are to take place for this scheduled conference, and then notify the relevant users with the prepared email at the indicated dates.]]></message>
 

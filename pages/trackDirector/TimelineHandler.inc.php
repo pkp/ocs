@@ -24,7 +24,7 @@ class TimelineHandler extends TrackDirectorHandler {
 		
 		import('director.form.TimelineForm');
 		
-		$timelineForm = &new TimelineForm();
+		$timelineForm = &new TimelineForm(Request::getUserVar('overrideDates'));
 		$timelineForm->initData();
 		$timelineForm->display();
 
@@ -35,7 +35,7 @@ class TimelineHandler extends TrackDirectorHandler {
 		
 		import('director.form.TimelineForm');
 		
-		$timelineForm = &new TimelineForm();
+		$timelineForm = &new TimelineForm(Request::getUserVar('overrideDates'));
 		$timelineForm->readInputData();
 		
 		if ($timelineForm->validate()) {
@@ -43,6 +43,7 @@ class TimelineHandler extends TrackDirectorHandler {
 			Request::redirect(null, null, null, 'index');
 		} else {
 			parent::setupTemplate(true);
+			$timelineForm->setData('errorsExist', true);
 			$timelineForm->display();
 		}
 	}
