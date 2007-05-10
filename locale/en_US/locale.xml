@@ -2044,7 +2044,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="site.conferencesHosted">Conferences hosted on this site</message>
 	<message key="site.conferenceView">View Conference</message>
 	<message key="site.conferenceAccount">Account</message>
-	<message key="site.schedConfView">View Scheduled Conference</message>
+	<message key="site.schedConfView">View Conference Details</message>
 	<message key="site.schedConfCurrent">Current Scheduled Conference</message>
 
 	<!-- Conference page -->

@@ -49,7 +49,7 @@
 		{if $schedConf->getSetting('schedConfIntroduction')}
 			<p>{$schedConf->getSetting('schedConfIntroduction')|nl2br}</p>
 		{/if}
-		<p><a href="{url schedConf=$schedConf->getPath()}" class="action">{translate key="site.schedConfView"}</a> | <a href="{url schedConf=$schedConf->getPath() page="user" op="account"}" class="action">{translate key="site.conferenceAccount"}</a></p>
+		<p><a href="{url schedConf=$schedConf->getPath()}" class="action">{translate key="site.schedConfView"}</a>
 	{/iterate}
 {else}
 	{translate key="conference.noCurrentConferences"}
