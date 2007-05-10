@@ -1748,7 +1748,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<!-- Paper Submission Step 1 -->
 	<message key="presenter.submit.howToSubmit"><![CDATA[Authors submit items to this conference through this web site in a multi-step process for uploading the relevant information (some conferences allow the author to upload, as well, supplementary files, such as research data and instruments). If difficulties are encountered in this process, contact <a href="mailto:{$supportEmail}">{$supportName}</a> by email or phone {$supportPhone} for assistance.]]></message>
 	<message key="presenter.submit.conferenceTrack">Conference Track</message>
-	<message key="presenter.submit.conferenceTrackDescription"><![CDATA[Select the appropriate track for this submission (see Track Policies in <a href="{$aboutUrl}" target="_new">About</a> the Conference).]]></message>
+	<message key="presenter.submit.conferenceTrackDescription"><![CDATA[Select the appropriate track for this submission (see <a href="{$aboutUrl}" target="_new">Track Policies</a>).]]></message>
 	<message key="presenter.submit.selectTrack">Please select a track...</message>
 
 	<message key="presenter.submit.submissionChecklist">Submission Checklist</message>
@@ -1756,7 +1756,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="presenter.submit.verifyChecklist">You must make sure all items in the submission checklist are satisfied before continuing.</message>
 	<message key="presenter.submit.copyrightNoticeAgree">The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this conference (comments to the director can be added below).</message>
 	<message key="presenter.submit.copyrightNoticeAgreeRequired">You must agree to the terms of the Copyright Notice before continuing.</message>
-	<message key="presenter.submit.commentsForDirector">Comments for the Director</message>
+	<message key="presenter.submit.commentsForDirector">Comments for Conference Director</message>
 	<message key="presenter.submit.comments">Enter text (optional)</message>
 	<message key="presenter.submit.form.trackRequired">Please select an appropriate conference track for this submission.</message>
 	<message key="presenter.submit.form.abstractRequired">Please enter an abstract for your submission.</message>
@@ -1770,7 +1770,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="presenter.submit.selectPrincipalContact">Principal contact for editorial correspondence.</message>
 	<message key="presenter.submit.addPresenter">Add Author</message>
 	<message key="presenter.submit.deletePresenter">Delete Author</message>
-	<message key="presenter.submit.submissionIndexingDescription">Choose terms that best describe the submission's content following the categories used by this conference, and examples provided by the director. Separate terms with a semi-colon (term1; term2; term3).</message>
+	<message key="presenter.submit.submissionIndexingDescription">Provide one or more terms that describe the submission's content. Separate terms with a semi-colon (term1; term2; term3).</message>
 	<message key="presenter.submit.submissionSupportingAgencies">Supporting Agencies</message>
 	<message key="presenter.submit.submissionSupportingAgenciesDescription">Identify agencies that provided funding or support for the work presented in this submission.</message>
 	<message key="presenter.submit.agencies">Agencies</message>

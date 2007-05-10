@@ -96,7 +96,7 @@ function checkSubmissionChecklist() {
 
 <h3>{translate key="presenter.submit.conferenceTrack"}</h3>
 
-{url|assign:"url" page="about"}
+{url|assign:"url" page="schedConf" op="trackPolicies"}
 <p>{translate key="presenter.submit.conferenceTrackDescription" aboutUrl=$url}</p>
 
 
