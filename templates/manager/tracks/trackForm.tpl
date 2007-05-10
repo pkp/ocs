@@ -138,9 +138,17 @@
 	<td class="value"><textarea name="policy" rows="4" cols="40" id="policy" class="textArea">{$policy|escape}</textarea></td>
 </tr>
 <tr valign="top">
-	<td rowspan="4" class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
+	<td rowspan="5" class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
+	<td class="value">{translate key="manager.tracks.submissionsToThisTrack"}</td>
+</tr>
+<tr valign="top">
 	<td class="value">
-		{translate key="manager.tracks.submissionsToThisTrack"}<br/>
+		{fieldLabel name="identifyType" key="manager.tracks.identifyType"} <input type="text" name="identifyType" id="identifyType" value="{$identifyType|escape}" size="20" maxlength="60" class="textField" />
+		<br />
+		<span class="instruct">{translate key="manager.tracks.identifyTypeExamples"}</span>
+	</td>
+</tr>
+<tr valign="top">
 		<input type="checkbox" name="metaNotReviewed" id="metaNotReviewed" value="1" {if $metaNotReviewed}checked="checked"{/if} />
 		{fieldLabel name="metaNotReviewed" key="manager.tracks.submissionNotReviewed"}
 	</td>
@@ -155,13 +163,6 @@
 	<td class="value">
 		<input type="checkbox" name="metaIndexed" id="metaIndexed" value="1" {if $metaIndexed}checked="checked"{/if} />
 		{fieldLabel name="metaIndexed" key="manager.tracks.submissionIndexing"}
-	</td>
-</tr>
-<tr valign="top">
-	<td class="value">
-		{fieldLabel name="identifyType" key="manager.tracks.identifyType"} <input type="text" name="identifyType" id="identifyType" value="{$identifyType|escape}" size="20" maxlength="60" class="textField" />
-		<br />
-		<span class="instruct">{translate key="manager.tracks.identifyTypeExamples"}</span>
 	</td>
 </tr>
 <tr valign="top">

@@ -12,8 +12,6 @@
 {assign var="pageTitle" value="manager.setup.aboutConference.title}
 {include file="manager/setup/setupHeader.tpl"}
 
-<br /><span class="instruct">{translate key="manager.setup.conferenceSetupNotes"}</span>
-
 <form method="post" action="{url op="saveSetup" path="1"}">
 {include file="common/formErrors.tpl"}
 

@@ -14,6 +14,8 @@
 
 <h3>{translate key="manager.managementPages"}</h3>
 
+<p>{translate key="manager.managementPages.description"}</p>
+
 <ul class="plain">
 	{if $announcementsEnabled}
 		<li>&#187; <a href="{url op="announcements"}">{translate key="manager.announcements"}</a></li>

@@ -820,6 +820,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.filesBrowser">Files Browser</message>
 	<message key="manager.groups">Organizing Team</message>
 	<message key="manager.managementPages">General Management</message>
+	<message key="manager.managementPages.description">Open Conference Systems is set up in three stages. This first stage begins with Website Management, which is used to set up the general conference website (whether the conference will be held only once, run annually, or as a series). The next stage is initiated through Scheduled Conferences, which is used to establish a scheduled instance of the conference. Once a conference is scheduled, it is listed under Current Conferences, with a Setup procedure for putting all of the pieces into place (Description, Call for Papers, etc.), while Users and Roles are used to create its Directors, Reviewers, etc. The current conference's Directors (who can also be Conference Managers) set up the Timeline to sequence events on the conference website.</message>
 	<message key="manager.program">Program</message>
 	<message key="manager.plugins">System Plugins</message>
 	<message key="manager.users">Users</message>
@@ -940,9 +941,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 			]]></message>
 
 	<message key="manager.setup.htmlSetupInstructions"><![CDATA[If using HTML in Setup text boxes (for font size, bold, color, etc.), note that "returns" in the text are automatically treated as <tt>&lt;br&gt;</tt>.]]></message>
-
-	<message key="manager.setup.conferenceSetupNotes"><![CDATA[Conferences are set up in two stages. The first stage is concerned with the conference in general, whether it is held only once, run annually, or run as a series. The second set of steps, which are completed after these initial steps are in place, concerns the specific and scheduled instances of the conference. This permits a website to be run for the conference in general, with many instances of it available to readers (e.g., My Conference, with My Conference 2007; My Conference 2008, etc.) Conference Managers set up the general conference site.]]></message>
-
 
 	<!--
 	     ***
@@ -1223,18 +1221,18 @@ Title of classification system]]></message>
 	<message key="manager.tracks.form.abbrevRequired">An abbreviated title is required for the track</message>
 	<message key="manager.tracks.trackDirectorInstructions">Select from among the available Track Directors and "Assign Director" to this track.</message>
 	<message key="manager.tracks.submissionsToThisTrack">Submissions made to this conference track</message>
-	<message key="manager.tracks.submissionIndexing">Will not be included in the proceedings of the conference</message>
-	<message key="manager.tracks.submissionNotReviewed">Will not be peer-reviewed</message>
+	<message key="manager.tracks.submissionIndexing">Do not post accepted submissions on website</message>
+	<message key="manager.tracks.submissionNotReviewed">Do not identify track as peer-reviewed</message>
 	<message key="manager.tracks.peerReviewed">Peer Reviewed</message>
 	<message key="manager.tracks.directorRestriction">Items can only be submitted by Directors and Track Directors.</message>
-	<message key="manager.tracks.hideAbout">Omit this track from About the Conference.</message>
+	<message key="manager.tracks.hideAbout">Omit this track from Track Policies</message>
 	<message key="manager.tracks.readingTools">Reading Tools</message>
 	<message key="manager.tracks.indexed">Indexed</message>
 	<message key="manager.tracks.open">Open Submissions</message>
 	<message key="manager.tracks.policy">Track Policy</message>
-	<message key="manager.tracks.identifyType">In their metadata, identify items in this track as</message>
-	<message key="manager.tracks.identifyTypeExamples">(For example, "Peer-reviewed Paper", "Non-refereed Paper", "Invited Paper", etc.)</message>
-	<message key="manager.tracks.abstractsDisabled">Items published in this track will not have abstracts.</message>
+	<message key="manager.tracks.identifyType">Describe submissions to this conference track as</message>
+	<message key="manager.tracks.identifyTypeExamples">(For example, "Peer-reviewed abstract", "Non-refereed paper", "Invited presentation", etc.)</message>
+	<message key="manager.tracks.abstractsDisabled">Do not request abstracts</message>
 
 	<!-- Timeline management -->
 	<message key="director.timeline.conferenceTimeline">Conference Timeline</message>
