@@ -157,10 +157,23 @@ class UserHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate($subclass = false) {
-		if ($subclass) {
-			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'user'), 'navigation.user')));
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		$templateMgr = &TemplateManager::getManager();
+
+		$pageHierarchy = array();
+
+		if ($schedConf) {
+			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getFullTitle(), true);
+		} elseif ($conference) {
+			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getTitle(), true);
 		}
+
+		if ($subclass) {
+			$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
+		}
+
+		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 
 

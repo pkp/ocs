@@ -194,12 +194,12 @@ class SchedConf extends DataObject {
 	//
 
 	/**
-	 * Get full title of scheduled conference, including the conference title
+	 * Get full title of scheduled conference.
+	 * (Used to include conference title as well; this behavior was deprecated prior to 2.0 release.)
 	 * @return string
 	 */
 	 function getFullTitle() {
-	 	$conference =& $this->getConference();
-	 	return $conference->getTitle() . ' ' . $this->getData('title');
+	 	return $this->getData('title');
 	}
 	
 	
