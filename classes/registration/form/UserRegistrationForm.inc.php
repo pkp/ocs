@@ -53,7 +53,7 @@ class UserRegistrationForm extends Form {
 			$this->addCheck(new FormValidatorCustom($this, 'password', 'required', 'user.account.form.passwordsDoNotMatch', create_function('$password,$form', 'return $password == $form->getData(\'password2\');'), array(&$this)));
 			$this->addCheck(new FormValidator($this, 'firstName', 'required', 'user.profile.form.firstNameRequired'));
 			$this->addCheck(new FormValidator($this, 'lastName', 'required', 'user.profile.form.lastNameRequired'));
-	$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
+			$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
 			$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.account.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array(), true));
 			if ($this->captchaEnabled) {
 				$this->addCheck(new FormValidatorCaptcha($this, 'captcha', 'captchaId', 'common.captchaField.badCaptcha'));
@@ -166,7 +166,6 @@ class UserRegistrationForm extends Form {
 		$user =& Request::getUser();
 	
 		if (!$user) {
-			unset($user);
 			// New user
 			$user = &new User();
 			
@@ -221,6 +220,9 @@ class UserRegistrationForm extends Form {
 			$sessionManager = &SessionManager::getManager();
 			$session = &$sessionManager->getUserSession();
 			$session->setSessionVar('username', $user->getUsername());
+
+			// Make sure subsequent requests to Request::getUser work
+			Validation::login($this->getData('username'), $this->getData('password'), $reason);
 		}
 
 		// Get the registration type
