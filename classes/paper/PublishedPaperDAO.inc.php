@@ -199,7 +199,7 @@ class PublishedPaperDAO extends DAO {
 		$publishedPapers = array();
 
 		$result = &$this->retrieve(
-			'SELECT DISTINCT pa.*,
+			'SELECT pa.*,
 				a.*,
 				s.title AS track_title,
 				s.title_alt1 AS track_title_alt1,
@@ -209,8 +209,7 @@ class PublishedPaperDAO extends DAO {
 				s.abbrev_alt2 AS track_abbrev_alt2
 			FROM published_papers pa,
 				papers a,
-				tracks s,
-				tracks t2
+				tracks s
 			WHERE a.track_id = s.track_id
 				AND pa.paper_id = a.paper_id
 				AND a.track_id = ?
