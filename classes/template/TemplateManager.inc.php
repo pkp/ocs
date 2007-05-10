@@ -131,6 +131,7 @@ class TemplateManager extends Smarty {
 					// Assign common sched conf vars:
 					$currentTime = time();
 					$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate');
+					$templateMgr->assign('submissionCloseDate', $submissionsCloseDate);
 
 					// CFP displayed
 					$showCFPDate = $schedConf->getSetting('showCFPDate');
@@ -145,6 +146,7 @@ class TemplateManager extends Smarty {
 
 					// Submissions open
 					$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate');
+					$templateMgr->assign('submissionOpenDate', $submissionsOpenDate);
 					if ($currentTime > $submissionsOpenDate && $currentTime < $submissionsCloseDate) {
 						$this->assign('schedConfShowSubmissionLink', true);
 					}

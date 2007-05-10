@@ -259,16 +259,10 @@ class SchedConfHandler extends Handler {
 				Validation::isDirector($conference->getConferenceId()) ||
 				Validation::isConferenceManager($conference->getConferenceId())))) {
 
-			$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate');
-			$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate');
-			
 			// Assign header and content for home page
 			$templateMgr->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle(true));
 			$templateMgr->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo(true));
 					
-			$templateMgr->assign('submissionOpenDate', $submissionsOpenDate);
-			$templateMgr->assign('submissionCloseDate', $submissionsCloseDate);
-			
 			$templateMgr->assign_by_ref('schedConf', $schedConf);
 			$templateMgr->assign('additionalHomeContent', $conference->getSetting('additionalHomeContent'));
 
