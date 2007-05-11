@@ -85,7 +85,7 @@ class RegistrationTypeForm extends Form {
 		$this->addCheck(new FormValidatorInSet($this, 'membership', 'optional', 'manager.registrationTypes.form.membershipValid', array('1')));
 
 		// Public flag is valid value
-		$this->addCheck(new FormValidatorInSet($this, 'public', 'optional', 'manager.registrationTypes.form.publicValid', array('1')));
+		$this->addCheck(new FormValidatorInSet($this, 'notPublic', 'optional', 'manager.registrationTypes.form.notPublicValid', array('1')));
 	}
 	
 	/**
@@ -122,7 +122,7 @@ class RegistrationTypeForm extends Form {
 					'access' => $registrationType->getAccess(),
 					'institutional' => $registrationType->getInstitutional(),
 					'membership' => $registrationType->getMembership(),
-					'public' => $registrationType->getPublic(),
+					'notPublic' => $registrationType->getPublic()?0:1,
 					'code' => $registrationType->getCode()
 				);
 
@@ -131,7 +131,7 @@ class RegistrationTypeForm extends Form {
 			}
 		} else {
 			$this->_data = array(
-				'public' => 1
+				'notPublic' => 0
 			);
 		}
 	}
@@ -140,10 +140,10 @@ class RegistrationTypeForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('typeName', 'description', 'cost', 'currency', 'access', 'institutional', 'membership', 'public', 'code'));
+		$this->readUserVars(array('typeName', 'description', 'cost', 'currency', 'access', 'institutional', 'membership', 'notPublic', 'code'));
 		$this->_data['openDate'] = Request::getUserDateVar('openDate');
 		$this->_data['closeDate'] = Request::getUserDateVar('closeDate');
-		$this->_data['expiryDate'] = Request::getUserDateVar('expiryDate');
+		$this->_data['expiryDate'] = Request::getUserVar('expiryDate')?Request::getUserDateVar('expiryDate'):null;
 	}
 	
 	/**
@@ -172,7 +172,7 @@ class RegistrationTypeForm extends Form {
 		$registrationType->setAccess($this->getData('access'));
 		$registrationType->setInstitutional($this->getData('institutional')?1:0);
 		$registrationType->setMembership($this->getData('membership')?1:0);
-		$registrationType->setPublic($this->getData('public')?1:0);
+		$registrationType->setPublic($this->getData('notPublic')?0:1);
 		$registrationType->setCode($this->getData('code'));
 
 		// Update or insert registration type

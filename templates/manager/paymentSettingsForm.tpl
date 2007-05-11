@@ -34,12 +34,14 @@ function changePaymentMethod() {
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td class="label" width="20%">{fieldLabel for="paymentMethodPluginName" key="manager.payment.form.method"}</td>
-		<td class="data" width="80%">
-			<select name="paymentMethodPluginName" id="paymentMethodPluginName" class="selectMenu" onchange="changePaymentMethod();">
-				{foreach from=$paymentMethodPlugins item=plugin}
-					<option {if $paymentMethodPluginName == $plugin->getName()}selected="selected" {/if}value="{$plugin->getName()|escape}">{$plugin->getDisplayName()|escape}</option>
-				{/foreach}
+		<td class="data" colspan="2">
+			{assign var=pluginIndex value=1}
+			<h4>{translate key="manager.payment.form.method"}</h4>
+			{foreach from=$paymentMethodPlugins item=plugin}
+				&nbsp;<input type="radio" name="paymentMethodPluginName" id="paymentMethodPluginName-{$pluginIndex}" value="{$plugin->getName()|escape}" onchange="changePaymentMethod();" {if $paymentMethodPluginName == $plugin->getName()}checked="checked" {/if}/>&nbsp;<label for="paymentMethodPluginName-{$pluginIndex}">{$plugin->getDisplayName()|escape}</label><br/>
+				<p>{$plugin->getDescription()}</p>
+				{assign var=pluginIndex value=$pluginIndex+1}
+			{/foreach}
 			</select>
 		</td>
 	{call_hook name="Template::Manager::Payment::displayPaymentSettingsForm" plugin=$paymentMethodPluginName}

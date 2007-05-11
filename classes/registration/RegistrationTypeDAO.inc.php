@@ -308,6 +308,7 @@ class RegistrationTypeDAO extends DAO {
 	 * @return boolean 
 	 */
 	function insertRegistrationType(&$registrationType) {
+		$expiryDate = $registrationType->getExpiryDate();
 		$ret = $this->update(
 			sprintf('INSERT INTO registration_types
 				(sched_conf_id, type_name, description, cost, currency_code_alpha, opening_date, closing_date, expiry_date, access, institutional, membership, pub, seq, code)
@@ -315,8 +316,8 @@ class RegistrationTypeDAO extends DAO {
 				(?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?)',
 				$this->dateToDB($registrationType->getOpeningDate()),
 				$this->dateToDB($registrationType->getClosingDate()),
-				$this->dateToDB($registrationType->getExpiryDate())),
-			array(
+				$expiryDate === null?'null':$this->dateToDB($expiryDate)
+			), array(
 				$registrationType->getSchedConfId(),
 				$registrationType->getTypeName(),
 				$registrationType->getDescription(),
@@ -341,6 +342,7 @@ class RegistrationTypeDAO extends DAO {
 	 * @return boolean
 	 */
 	function updateRegistrationType(&$registrationType) {
+		$expiryDate = $registrationType->getExpiryDate();
 		return $this->update(
 			sprintf('UPDATE registration_types
 				SET
@@ -361,8 +363,8 @@ class RegistrationTypeDAO extends DAO {
 				WHERE type_id = ?',
 				$this->dateToDB($registrationType->getOpeningDate()),
 				$this->dateToDB($registrationType->getClosingDate()),
-				$this->dateToDB($registrationType->getExpiryDate())),
-			array(
+				$expiryDate === null?'null':$this->dateToDB($expiryDate)
+			), array(
 				$registrationType->getSchedConfId(),
 				$registrationType->getTypeName(),
 				$registrationType->getDescription(),

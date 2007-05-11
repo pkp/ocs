@@ -65,24 +65,19 @@
 	<td class="label">{fieldLabel name="openDate" required="true" key="manager.registrationTypes.form.openDate"}</td>
 	<td class="value">
 		{html_select_date prefix="openDate" time=$openDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
-		<br />
-		<span class="instruct">{translate key="manager.registrationTypes.form.openDateInstructions"}</span>
 	</td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="closeDate" required="true" key="manager.registrationTypes.form.closeDate"}</td>
 	<td class="value">
 		{html_select_date prefix="closeDate" time=$closeDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
-		<br />
-		<span class="instruct">{translate key="manager.registrationTypes.form.closeDateInstructions"}</span>
 	</td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="expiryDate" required="true" key="manager.registrationTypes.form.expiryDate"}</td>
+	<td class="label">&nbsp;</td>
 	<td class="value">
+		<input id="expiryDate" type="checkbox" name="expiryDate" value="1" {if $expiryDate}checked="checked" {/if} />&nbsp;{fieldLabel name="expiryDate" key="manager.registrationTypes.form.expiryDate"}
 		{html_select_date prefix="expiryDate" time=$expiryDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
-		<br />
-		<span class="instruct">{translate key="manager.registrationTypes.form.expiryDateInstructions"}</span>
 	</td>
 </tr>
 <tr valign="top">
@@ -90,24 +85,22 @@
 	<td><select id="access" name="access" class="selectMenu" />{html_options options=$validAccessTypes selected=$access}</select></td>
 </tr>
 <tr valign="top">
-	<td>&nbsp;</td>
+	<td rowspan="3">{translate key="common.options"}</td>
 	<td class="value">
 		<input type="checkbox" name="institutional" id="institutional" value="1"{if $institutional} checked="checked"{/if} />
 		<label for="institutional">{translate key="manager.registrationTypes.form.institutional"}</label>
 	</td>
 </tr>
 <tr valign="top">
-	<td>&nbsp;</td>
 	<td class="value">
 		<input type="checkbox" name="membership" id="membership" value="1"{if $membership} checked="checked"{/if} />
 		<label for="membership">{translate key="manager.registrationTypes.form.membership"}</label>
 	</td>
 </tr>
 <tr valign="top">
-	<td>&nbsp;</td>
 	<td class="value">
-		<input type="checkbox" name="public" id="public" value="1"{if $public} checked="checked"{/if} />
-		<label for="public">{translate key="manager.registrationTypes.form.public"}</label>
+		<input type="checkbox" name="notPublic" id="notPublic" value="1"{if $notPublic} checked="checked"{/if} />
+		<label for="notPublic">{translate key="manager.registrationTypes.form.notPublic"}</label>
 	</td>
 </tr>
 </table>

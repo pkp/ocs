@@ -766,10 +766,10 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.registrationManagement">Registration Management</message>
 
 	<!-- Payment Handling -->
-	<message key="manager.payment.paymentSettings">Payment Settings</message>
+	<message key="manager.payment.paymentSettings">Payment Methods</message>
 	<message key="manager.payment.paymentPluginInvalid">You must choose a valid payment method.</message>
 	<message key="manager.payment.form.description">Enter the configuration details for the method of payment this conference website is able to accept.</message>
-	<message key="manager.payment.form.method">Payment Method</message>
+	<message key="manager.payment.form.method">Conference Registration Payment Methods</message>
 
 	<message key="payment.type.registration">Conference Registration</message>
 
@@ -1438,24 +1438,21 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registrationTypes.form.accessValid">Please select a valid registration access type.</message>
 	<message key="manager.registrationTypes.form.institutionalValid">Please use the checkbox provided.</message>
 	<message key="manager.registrationTypes.form.membershipValid">Please use the checkbox provided.</message>
-	<message key="manager.registrationTypes.form.publicValid">Please use the checkbox provided.</message>
+	<message key="manager.registrationTypes.form.notPublicValid">Please use the checkbox provided.</message>
 	<message key="manager.registrationTypes.form.typeName">Name</message>
 	<message key="manager.registrationTypes.form.description">Description</message>
 	<message key="manager.registrationTypes.form.cost">Cost</message>
-	<message key="manager.registrationTypes.form.costInstructions">Enter a numeric value (e.g. 40 or 40.00). Do not include any other text such as "$".</message>
+	<message key="manager.registrationTypes.form.costInstructions">Enter a numeric value (e.g., 40 or 40.00). Do not include any other text (e.g., $).</message>
 	<message key="manager.registrationTypes.form.code">Code</message>
-	<message key="manager.registrationTypes.form.code.instructions">If a code is entered here, it must be used by registrants when registering for the conference. This can be used to limit a registration type to users who have been given a password for it, such as discounted registrations.</message>
+	<message key="manager.registrationTypes.form.code.instructions">Enter a code (e.g., 1234) if registration in this type is to be restricted to those who have been issued the code to use when registering (such as invited presenters who can register at no charge).</message>
 	<message key="manager.registrationTypes.form.currency">Currency</message>
-	<message key="manager.registrationTypes.form.openDate">Opening Date</message>
-	<message key="manager.registrationTypes.form.openDateInstructions">The date on which users are permitted to register themselves using this registration type.</message>
-	<message key="manager.registrationTypes.form.closeDate">Closing Date</message>
-	<message key="manager.registrationTypes.form.closeDateInstructions">The deadline for registrations of this type.</message>
-	<message key="manager.registrationTypes.form.expiryDate">Expiry Date</message>
-	<message key="manager.registrationTypes.form.expiryDateInstructions">Site access for this registration type ends on this date.</message>
+	<message key="manager.registrationTypes.form.openDate">Opens for Registration</message>
+	<message key="manager.registrationTypes.form.closeDate">Closes for Registration</message>
+	<message key="manager.registrationTypes.form.expiryDate">Expiry date for access to conference's online content</message>
 	<message key="manager.registrationTypes.form.access">Access</message>
-	<message key="manager.registrationTypes.form.institutional">Registrants should be validated via domain or IP authentication.</message>
-	<message key="manager.registrationTypes.form.membership">Registrants must be members of an association or organization.</message>
-	<message key="manager.registrationTypes.form.public">This registration type will be publicly available.</message>
+	<message key="manager.registrationTypes.form.institutional">Registrants can be validated via domain or IP authentication.</message>
+	<message key="manager.registrationTypes.form.membership">Registrants must be members of a designated organization.</message>
+	<message key="manager.registrationTypes.form.notPublic">Do not make this registration type publicly available.</message>
 	<message key="manager.registrationTypes.form.saveAndCreateAnotherType">Save and Create Another</message>
 	<message key="manager.registrationTypes.form.closeBeforeOpen">The open date for this registration type must come before the close date.</message>
 	<message key="manager.registrationTypes.access">Access</message>

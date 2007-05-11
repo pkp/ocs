@@ -1567,9 +1567,7 @@
 		<field name="closing_date" type="D">
 			<NOTNULL/>
 		</field>
-		<field name="expiry_date" type="D">
-			<NOTNULL/>
-		</field>
+		<field name="expiry_date" type="D" />
 		<field name="access" type="I2">
 			<NOTNULL/>
 		</field>

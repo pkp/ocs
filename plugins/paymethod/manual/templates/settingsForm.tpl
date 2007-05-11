@@ -8,6 +8,4 @@
  *
  *}
 
-	<tr>
-		<td colspan="2"><span class="instruct">{translate key="plugins.paymethod.manual.description"}</span></td>
-	</tr>
+{* Nothing for now *}
