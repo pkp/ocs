@@ -248,9 +248,20 @@ class RTAdminHandler extends Handler {
 	 * @param $search object The current search, if applicable
 	 */
 	function setupTemplate($subclass = false, $version = null, $context = null, $search = null) {
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 		$templateMgr = &TemplateManager::getManager();
 
-		$pageHierarchy = array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'manager'), 'manager.conferenceSiteManagement'));
+		$pageHierarchy = array();
+
+		if ($schedConf) {
+			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getFullTitle(), true);
+		} elseif ($conference) {
+			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getTitle(), true);
+		}
+
+		$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
+		$pageHierarchy[] = array(Request::url(null, null, 'manager'), 'manager.conferenceSiteManagement');
 
 		if ($subclass) $pageHierarchy[] = array(Request::url(null, null, 'rtadmin'), 'rt.readingTools');
 
