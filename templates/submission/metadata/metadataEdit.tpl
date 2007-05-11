@@ -195,7 +195,7 @@ function movePresenter(dir, presenterIndex) {
 
 <h3>{translate key="submission.indexing"}</h3>
 
-<p>{translate key="presenter.submit.submissionIndexingDescription"}</p>
+{if $schedConfSettings.metaDiscipline || $schedConfSettings.metaSubjectClass || $schedConfSettings.metaSubject || $schedConfSettings.metaCoverage || $schedConfSettings.metaType}<p>{translate key="presenter.submit.submissionIndexingDescription"}</p>{/if}
 
 <table width="100%" class="data">
 	{if $schedConfSettings.metaDiscipline}
