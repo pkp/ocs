@@ -164,11 +164,10 @@ class DirectorHandler extends TrackDirectorHandler {
 		$directorId = Request::getUserVar('directorId');
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 
-		if (isset($directorId) && $directorId != null && (
-			$roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $directorId, ROLE_ID_TRACK_DIRECTOR) ||
-			$roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $directorId, ROLE_ID_DIRECTOR) ||
-			$roleDao->roleExists($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_TRACK_DIRECTOR) ||
-			$roleDao->roleExists($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_DIRECTOR))) {
+		$isDirector = $roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $directorId, ROLE_ID_DIRECTOR) || $roleDao->roleExists($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_DIRECTOR);
+		$isTrackDirector = $roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $directorId, ROLE_ID_TRACK_DIRECTOR) || $roleDao->roleExists($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_TRACK_DIRECTOR);
+
+		if (isset($directorId) && $directorId != null && ($isDirector || $isTrackDirector)) {
 			// A valid track director has already been chosen;
 			// either prompt with a modifiable email or, if this
 			// has been done, send the email and store the director
@@ -177,7 +176,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, true, $paperId, 'summary');
 
 			// FIXME: Prompt for due date.
-			if (DirectorAction::assignDirector($paperId, $directorId, Request::getUserVar('send'))) {
+			if (DirectorAction::assignDirector($paperId, $directorId, $isDirector, Request::getUserVar('send'))) {
 				Request::redirect(null, null, null, 'submission', $paperId);
 			}
 		} else {

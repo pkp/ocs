@@ -33,7 +33,7 @@ class DirectorAction extends TrackDirectorAction {
 	 * @param $paperId int
 	 * @return boolean true iff ready for redirect
 	 */
-	function assignDirector($paperId, $trackDirectorId, $send = false) {
+	function assignDirector($paperId, $trackDirectorId, $isDirector = false, $send = false) {
 		$directorSubmissionDao = &DAORegistry::getDAO('DirectorSubmissionDAO');
 		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
@@ -49,7 +49,7 @@ class DirectorAction extends TrackDirectorAction {
 		$email = &new PaperMailTemplate($directorSubmission, 'DIRECTOR_ASSIGN');
 
 		if ($user->getUserId() === $trackDirectorId || !$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('DirectorAction::assignDirector', array(&$directorSubmission, &$trackDirector, &$email));
+			HookRegistry::call('DirectorAction::assignDirector', array(&$directorSubmission, &$trackDirector, &$isDirector, &$email));
 			if ($email->isEnabled() && $user->getUserId() !== $trackDirectorId) {
 				$email->setAssoc(PAPER_EMAIL_DIRECTOR_ASSIGN, PAPER_EMAIL_TYPE_DIRECTOR, $trackDirector->getUserId());
 				$email->send();
@@ -82,7 +82,7 @@ class DirectorAction extends TrackDirectorAction {
 					'directorUsername' => $trackDirector->getUsername(),
 					'directorPassword' => $trackDirector->getPassword(),
 					'editorialContactSignature' => $user->getContactSignature(),
-					'submissionUrl' => Request::url(null, null, 'trackDirector', 'submissionReview', $paperId)
+					'submissionUrl' => Request::url(null, null, $isDirector?'director':'trackDirector', 'submissionReview', $paperId)
 				);
 				$email->assignParams($paramArray);
 			}
@@ -117,7 +117,7 @@ class DirectorAction extends TrackDirectorAction {
 		$editAssignments =& $trackDirectorSubmission->getEditAssignments();
 		if (empty($editAssignments)) {
 			// No directors are currently assigned; assign self.
-			DirectorAction::assignDirector($paper->getPaperId(), $user->getUserId());
+			DirectorAction::assignDirector($paper->getPaperId(), $user->getUserId(), true);
 		}
 
 		// 2. Accept the submission and send to copyediting.
