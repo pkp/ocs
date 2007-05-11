@@ -1330,7 +1330,8 @@ import('file.PaperFileManager');
 					'presenterName' => $presenterUser->getFullName(),
 					'conferenceTitle' => $conference->getTitle(),
 					'editorialContactSignature' => $user->getContactSignature(),
-					'locationCity' => $schedConf->getSetting('locationCity')
+					'locationCity' => $schedConf->getSetting('locationCity'),
+					'paperTitle' => $trackDirectorSubmission->getPaperTitle()
 				));
 			} else {
 				if (Request::getUserVar('importPeerReviews')) {
