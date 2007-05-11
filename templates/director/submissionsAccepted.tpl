@@ -39,13 +39,8 @@
 		<td><a href="{url op="submissionReview" path=$paperId}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td><input name="location-{$paperId}" size="10" class="textField" id="location-{$paperId}" value="{$submission->getLocation()|escape}" />
 		<td>
-			{html_select_date prefix="presentStartTime-$paperId" time=$submission->getPresentStartTime() all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
-			{translate key="paper.duration"}:&nbsp;<select name="duration-{$paperId}" class="selectMenu" id="duration-{$paperId}">
-				{assign var="presentStartTime" value=$submission->getPresentStartTime()|strtotime}
-				{assign var="presentEndTime" value=$submission->getPresentEndTime()|strtotime}
-				{assign var="duration" value=`$presentEndTime-$presentStartTime`}
-				{html_options options=$durationOptions selected=$duration}
-			</select>
+			{html_select_time prefix="presentStartTime-$paperId-" time=$submission->getPresentStartTime() all_extra="class=\"selectMenu\"" display_seconds=false display_meridian=false use_24_hours=true minute_interval=5}&nbsp;{translate key="submission.toTime"}&nbsp;{html_select_time prefix="presentEndTime-$paperId-" time=$submission->getPresentEndTime() all_extra="class=\"selectMenu\"" display_seconds=false display_meridian=false use_24_hours=true minute_interval=5}
+			{html_select_date prefix="presentStartDate-$paperId" time=$submission->getPresentStartTime() all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
 		</td>
 		<td align="right">
 			{assign var="status" value=$submission->getStatus()}

@@ -296,9 +296,10 @@
 	<message key="paper.details">Details</message>
 	<message key="paper.location">Location</message>
 	<message key="paper.time">Time</message>
-	<message key="paper.duration">Duration</message>
 
 	<!-- Submission Tracking - Common -->
+	<message key="submission.fromTime">From</message>
+	<message key="submission.toTime">To</message>
 	<message key="submission.summary">Summary</message>
 	<message key="submission.review">Review</message>
 	<message key="submission.abstractReview">Abstract Review</message>
@@ -375,7 +376,7 @@
 	<message key="submissions.queuedAbstractReview">Abstract in review</message>
 	<message key="submissions.queuedPaperReview">Paper in review</message>
 	<message key="submissions.archived">Archived</message>
-	<message key="submissions.published">Published</message>
+	<message key="submissions.published">Posted</message>
 	<message key="submissions.accepted">Accepted</message>
 	<message key="submissions.declined">Declined</message>
 	<message key="submissions.queued">Queued</message>

@@ -116,8 +116,19 @@ class TrackDirectorHandler extends Handler {
 			$paper =& $paperDao->getPaper($paperId);
 			if ($paper && $paper->getSchedConfId() == $schedConf->getSchedConfId()) {
 				$paper->setLocation(Request::getUserVar('location-' . $paperId));
-				$paper->setPresentStartTime(Request::getUserDateVar('presentStartTime-' . $paperId));
-				$paper->setPresentEndTime(Request::getUserDateVar('presentStartTime-' . $paperId) + Request::getUserVar('duration-' . $paperId));
+
+				$presentStartTime = $presentEndTime = Request::getUserDateVar("presentStartDate-$paperId");
+
+				$addHours = (int) Request::getUserVar("presentStartTime-$paperId-Hour");
+				$addMinutes = (int) Request::getUserVar("presentStartTime-$paperId-Minute");
+				$presentStartTime += (60 * $addMinutes) + (3600 * $addHours);
+
+				$addHours = (int) Request::getUserVar("presentEndTime-$paperId-Hour");
+				$addMinutes = (int) Request::getUserVar("presentEndTime-$paperId-Minute");
+				$presentEndTime += (60 * $addMinutes) + (3600 * $addHours);
+
+				$paper->setPresentStartTime($presentStartTime);
+				$paper->setPresentEndTime($presentEndTime);
 				$paperDao->updatePaper($paper);
 			}
 			unset($paper);

@@ -82,7 +82,7 @@
 		{translate key="paper.location}:&nbsp;{$paper->getLocation()|strip_unsafe_html|nl2br}<br/>
 	{/if}
 	{if $paper->getPresentStartTime()}
-		{translate key="paper.time"}:&nbsp;{$paper->getPresentStartTime()|date_format:$dateFormatShort}{if $paper->getPresentEndTime()} ({$paper->getDurationNice()}){/if}<br/>
+		{translate key="paper.time"}:&nbsp;{$paper->getPresentStartTime()|date_format:$dateFormatShort}&nbsp;&nbsp;{$paper->getPresentStartTime()|date_format:$timeFormat}&nbsp;&ndash;&nbsp;{$paper->getPresentEndTime()|date_format:$timeFormat}<br/>
 	{/if}
 	{translate key="submission.lastModified"}:&nbsp;{$paper->getLastModified()|date_format:$dateFormatShort}<br/>
 	</blockquote>

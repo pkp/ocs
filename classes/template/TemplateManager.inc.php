@@ -61,6 +61,7 @@ class TemplateManager extends Smarty {
 		$this->assign('dateFormatLong', Config::getVar('general', 'date_format_long'));
 		$this->assign('datetimeFormatShort', Config::getVar('general', 'datetime_format_short'));
 		$this->assign('datetimeFormatLong', Config::getVar('general', 'datetime_format_long'));
+		$this->assign('timeFormat', Config::getVar('general', 'time_format'));
 		$this->assign('currentLocale', Locale::getLocale());
 		$this->assign('paperSearchByOptions', array(
 			'' => 'search.allFields',
