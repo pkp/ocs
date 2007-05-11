@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="manager.setup.layout.title}
+{assign var="pageTitle" value="manager.setup.layout.title"}
 {include file="manager/setup/setupHeader.tpl"}
 
 <form method="post" action="{url op="saveSetup" path="3"}" enctype="multipart/form-data">

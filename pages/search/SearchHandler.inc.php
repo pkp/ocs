@@ -190,48 +190,25 @@ class SearchHandler extends Handler {
 	function schedConfs($args) {
 		parent::validate();
 		SearchHandler::setupTemplate(true);
-		
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-		import('schedConf.SchedConfAction');
 
-		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 
-		$rangeInfo = Handler::getRangeInfo('search');
-
-		$allPaperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedBySchedConf(
-			$conference? $conference->getConferenceId():-1,
-			$schedConf?$schedConf->getSchedConfId():-1,
-			$rangeInfo);
-		
-		// FIXME: this is horribly inefficient.
-		$paperIds = array();
-		$schedConfAbstractPermissions = array();
-		$schedConfPaperPermissions = array();
-		foreach($allPaperIds as $paperId) {
-			$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId);
-			$schedConfId = $publishedPaper->getSchedConfId();
-
-			if(!isset($schedConfAbstractPermissions[$schedConfId])) {
-				unset($schedConf);
-				$schedConf =& $schedConfDao->getSchedConf($schedConfId);
-				$schedConfAbstractPermissions[$schedConfId] = SchedConfAction::mayViewProceedings($schedConf);
-				$schedConfPaperPermissions[$schedConfId] = SchedConfAction::mayViewPapers($schedConf, $conference);
-			}
-
-			if($schedConfAbstractPermissions[$schedConfId]) {
-				$paperIds[] = $paperId;
-			}
+		$conferences =& $conferenceDao->getEnabledConferences();
+		$conferenceIndex = array();
+		$schedConfIndex = array();
+		while ($conference =& $conferences->next()) {
+			$conferenceId = $conference->getConferenceId();
+			$conferenceIndex[$conferenceId] =& $conference;
+			$schedConfsIterator =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
+			$schedConfIndex[$conferenceId] =& $schedConfsIterator->toArray();
+			unset($schedConfsIterator);
+			unset($conference);
 		}
 
-		$totalResults = count($paperIds);
-		$paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
-		$results = &new VirtualArrayIterator(PaperSearch::formatResults($paperIds), $totalResults, $rangeInfo->getPage(), $rangeInfo->getCount());
-
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign_by_ref('results', $results);
-		$templateMgr->assign_by_ref('schedConfPaperPermissions', $schedConfPaperPermissions);
+		$templateMgr->assign_by_ref('conferenceIndex', $conferenceIndex);
+		$templateMgr->assign_by_ref('schedConfIndex', $schedConfIndex);
 		$templateMgr->display('search/schedConfIndex.tpl');
 	}
 	
