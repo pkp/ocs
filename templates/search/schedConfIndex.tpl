@@ -27,6 +27,7 @@
 				{assign var=schedConfIntroduction value=$schedConf->getSetting('schedConfIntroduction')}
 				<li>
 					<h4>{$schedConf->getTitle()|escape}</h4>
+					{if $schedConf->getSetting('startDate')}{$schedConf->getSetting('startDate')|date_format:$dateFormatLong} &ndash; {$schedConf->getSetting('endDate')|date_format:$dateFormatLong}{/if}
 					{if !empty($schedConfIntroduction)}
 						<p>{$schedConfIntroduction|nl2br}</p>
 					{/if}
