@@ -129,7 +129,6 @@ class TrackDAO extends DAO {
 		$track->setAbbrevAlt1($row['abbrev_alt1']);
 		$track->setAbbrevAlt2($row['abbrev_alt2']);
 		$track->setSequence($row['seq']);
-		$track->setMetaIndexed($row['meta_indexed']);
 		$track->setMetaReviewed($row['meta_reviewed']);
 		$track->setIdentifyType($row['identify_type']);
 		$track->setDirectorRestricted($row['director_restricted']);
@@ -147,9 +146,9 @@ class TrackDAO extends DAO {
 	function insertTrack(&$track) {
 		$this->update(
 			'INSERT INTO tracks
-				(sched_conf_id, title, title_alt1, title_alt2, abbrev, abbrev_alt1, abbrev_alt2, seq, meta_reviewed, meta_indexed, identify_type, policy, director_restricted)
+				(sched_conf_id, title, title_alt1, title_alt2, abbrev, abbrev_alt1, abbrev_alt2, seq, meta_reviewed, identify_type, policy, director_restricted)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$track->getSchedConfId(),
 				$track->getTitle(),
@@ -160,7 +159,6 @@ class TrackDAO extends DAO {
 				$track->getAbbrevAlt2(),
 				$track->getSequence() == null ? 0 : $track->getSequence(),
 				$track->getMetaReviewed() ? 1 : 0,
-				$track->getMetaIndexed() ? 1 : 0,
 				$track->getIdentifyType(),
 				$track->getPolicy(),
 				$track->getDirectorRestricted() ? 1 : 0
@@ -187,7 +185,6 @@ class TrackDAO extends DAO {
 					abbrev_alt2 = ?,
 					seq = ?,
 					meta_reviewed = ?,
-					meta_indexed = ?,
 					identify_type = ?,
 					policy = ?,
 					director_restricted = ?
@@ -201,7 +198,6 @@ class TrackDAO extends DAO {
 				$track->getAbbrevAlt2(),
 				$track->getSequence(),
 				$track->getMetaReviewed(),
-				$track->getMetaIndexed(),
 				$track->getIdentifyType(),
 				$track->getPolicy(),
 				$track->getDirectorRestricted(),

@@ -214,22 +214,6 @@ class Track extends DataObject {
 	}
 	
 	/**
-	 * Get open archive setting of track.
-	 * @return boolean
-	 */
-	function getMetaIndexed() {
-		return $this->getData('metaIndexed');
-	}
-	
-	/**
-	 * Set open archive setting of track.
-	 * @param $metaIndexed boolean
-	 */
-	function setMetaIndexed($metaIndexed) {
-		return $this->setData('metaIndexed', $metaIndexed);
-	}
-	
-	/**
 	 * Get peer review setting of track.
 	 * @return boolean
 	 */

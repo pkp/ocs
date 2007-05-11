@@ -138,7 +138,7 @@
 	<td class="value"><textarea name="policy" rows="4" cols="40" id="policy" class="textArea">{$policy|escape}</textarea></td>
 </tr>
 <tr valign="top">
-	<td rowspan="5" class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
+	<td rowspan="4" class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
 	<td class="value">{translate key="manager.tracks.submissionsToThisTrack"}</td>
 </tr>
 <tr valign="top">
@@ -149,6 +149,7 @@
 	</td>
 </tr>
 <tr valign="top">
+	<td class="value">
 		<input type="checkbox" name="metaNotReviewed" id="metaNotReviewed" value="1" {if $metaNotReviewed}checked="checked"{/if} />
 		{fieldLabel name="metaNotReviewed" key="manager.tracks.submissionNotReviewed"}
 	</td>
@@ -157,12 +158,6 @@
 	<td class="value">
 		<input type="checkbox" name="abstractsDisabled" id="abstractsDisabled" value="1" {if $abstractsDisabled}checked="checked"{/if} />
 		{fieldLabel name="abstractsDisabled" key="manager.tracks.abstractsDisabled"}
-	</td>
-</tr>
-<tr valign="top">
-	<td class="value">
-		<input type="checkbox" name="metaIndexed" id="metaIndexed" value="1" {if $metaIndexed}checked="checked"{/if} />
-		{fieldLabel name="metaIndexed" key="manager.tracks.submissionIndexing"}
 	</td>
 </tr>
 <tr valign="top">

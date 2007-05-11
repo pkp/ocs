@@ -153,7 +153,6 @@ class SchedConfSettingsForm extends Form {
 			$track->setSchedConfId($schedConfId);
 			$track->setTitle(Locale::translate('track.default.title'));
 			$track->setAbbrev(Locale::translate('track.default.abbrev'));
-			$track->setMetaIndexed(true);
 			$track->setPolicy(Locale::translate('track.default.policy'));
 			$track->setDirectorRestricted(false);
 			$trackDao->insertTrack($track);

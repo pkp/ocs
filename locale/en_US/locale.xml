@@ -1221,8 +1221,7 @@ Title of classification system]]></message>
 	<message key="manager.tracks.form.abbrevRequired">An abbreviated title is required for the track</message>
 	<message key="manager.tracks.trackDirectorInstructions">Select from among the available Track Directors and "Assign Director" to this track.</message>
 	<message key="manager.tracks.submissionsToThisTrack">Submissions made to this conference track</message>
-	<message key="manager.tracks.submissionIndexing">Do not post accepted submissions on website</message>
-	<message key="manager.tracks.submissionNotReviewed">Do not identify track as peer-reviewed</message>
+	<message key="manager.tracks.submissionNotReviewed">Indicate that track is not peer-reviewed</message>
 	<message key="manager.tracks.peerReviewed">Peer Reviewed</message>
 	<message key="manager.tracks.directorRestriction">Items can only be submitted by Directors and Track Directors.</message>
 	<message key="manager.tracks.hideAbout">Omit this track from Track Policies</message>
@@ -1232,7 +1231,7 @@ Title of classification system]]></message>
 	<message key="manager.tracks.policy">Track Policy</message>
 	<message key="manager.tracks.identifyType">Describe submissions to this conference track as</message>
 	<message key="manager.tracks.identifyTypeExamples">(For example, "Peer-reviewed abstract", "Non-refereed paper", "Invited presentation", etc.)</message>
-	<message key="manager.tracks.abstractsDisabled">Do not request abstracts</message>
+	<message key="manager.tracks.abstractsDisabled">Do not request abstracts with submissions</message>
 
 	<!-- Timeline management -->
 	<message key="director.timeline.conferenceTimeline">Conference Timeline</message>

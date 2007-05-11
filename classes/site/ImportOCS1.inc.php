@@ -426,7 +426,6 @@ class ImportOCS1 {
 			$track->setTitle($this->trans($row['chTitle']));
 			$track->setAbbrev($this->trans($row['chAbbrev']));
 			$track->setSequence(++$count);
-			$track->setMetaIndexed($row['bMetaIndex']);
 			$track->setDirectorRestricted($row['bAcceptSubmissions'] ? 0 : 1);
 			$track->setPolicy($this->trans($row['chPolicies']));
 			

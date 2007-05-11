@@ -513,10 +513,6 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<field name="meta_indexed" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
 		<field name="identify_type" type="C2" size="60"/>
 		<field name="policy" type="X"/>
 		<descr>Scheduled conference tracks.</descr>

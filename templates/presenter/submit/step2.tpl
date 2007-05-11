@@ -220,127 +220,124 @@ function movePresenter(dir, presenterIndex) {
 
 <div class="separator"></div>
 
-{if $track->getMetaIndexed()==1}
-	<h3>{translate key="submission.indexing"}</h3>
-	<p>{translate key="presenter.submit.submissionIndexingDescription"}</p>
-	<table width="100%" class="data">
-	{if $schedConfSettings.metaDiscipline}
-	<tr valign="top">
-		<td{if $schedConfSettings.metaDisciplineExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="discipline" key="paper.discipline"}</td>
-		<td width="80%" class="value"><input type="text" class="textField" name="discipline" id="discipline" value="{$discipline|escape}" size="40" maxlength="255" /></td>
-	</tr>
-	{if $schedConfSettings.metaDisciplineExamples}
-	<tr valign="top">
-		<td><span class="instruct">{$schedConfSettings.metaDisciplineExamples|escape}</span></td>
-	</tr>
-	{/if}
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
-	{/if}
-	
-	{if $schedConfSettings.metaSubjectClass}
-	<tr valign="top">
-		<td rowspan="2" width="20%" class="label">{fieldLabel name="subjectClass" key="paper.subjectClassification"}</td>
-		<td width="80%" class="value"><input type="text" class="textField" name="subjectClass" id="subjectClass" value="{$subjectClass|escape}" size="40" maxlength="255" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl|escape}" target="_blank">{$schedConfSettings.metaSubjectClassTitle|escape}</a></td>
-	</tr>
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
-	{/if}
-	
-	{if $schedConfSettings.metaSubject}
-	<tr valign="top">
-		<td{if $schedConfSettings.metaSubjectExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="subject" key="paper.subject"}</td>
-		<td width="80%" class="value"><input type="text" class="textField" name="subject" id="subject" value="{$subject|escape}" size="40" maxlength="255" /></td>
-	</tr>
-	{if $schedConfSettings.metaSubjectExamples}
-	<tr valign="top">
-		<td><span class="instruct">{$schedConfSettings.metaSubjectExamples|escape}</span></td>
-	</tr>
-	{/if}
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
-	{/if}
-	
-	{if $schedConfSettings.metaCoverage}
-	<tr valign="top">
-		<td{if $schedConfSettings.metaCoverageGeoExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageGeo" key="paper.coverageGeo"}</td>
-		<td width="80%" class="value"><input type="text" class="textField" name="coverageGeo" id="coverageGeo" value="{$coverageGeo|escape}" size="40" maxlength="255" /></td>
-	</tr>
-	{if $schedConfSettings.metaCoverageGeoExamples}
-	<tr valign="top">
-		<td><span class="instruct">{$schedConfSettings.metaCoverageGeoExamples|escape}</span></td>
-	</tr>
-	{/if}
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
-	<tr valign="top">
-		<td{if $schedConfSettings.metaCoverageChronExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageChron" key="paper.coverageChron"}</td>
-		<td width="80%" class="value"><input type="text" class="textField" name="coverageChron" id="coverageChron" value="{$coverageChron|escape}" size="40" maxlength="255" /></td>
-	</tr>
-	{if $schedConfSettings.metaCoverageChronExamples}
-	<tr valign="top">
-		<td><span class="instruct">{$schedConfSettings.metaCoverageChronExamples|escape}</span></td>
-	</tr>
-	{/if}
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
-	<tr valign="top">
-		<td{if $schedConfSettings.metaCoverageResearchSampleExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageSample" key="paper.coverageSample"}</td>
-		<td width="80%" class="value"><input type="text" class="textField" name="coverageSample" id="coverageSample" value="{$coverageSample|escape}" size="40" maxlength="255" /></td>
-	</tr>
-	{if $schedConfSettings.metaCoverageResearchSampleExamples}
-	<tr valign="top">
-		<td><span class="instruct">{$schedConfSettings.metaCoverageResearchSampleExamples|escape}</span></td>
-	</tr>
-	{/if}
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
-	{/if}
-	
-	{if $schedConfSettings.metaType}
-	<tr valign="top">
-		<td width="20%" {if $schedConfSettings.metaTypeExamples}rowspan="2" {/if}class="label">{fieldLabel name="type" key="paper.type"}</td>
-		<td width="80%" class="value"><input type="text" class="textField" name="type" id="type" value="{$type|escape}" size="40" maxlength="255" /></td>
-	</tr>
+<h3>{translate key="submission.indexing"}</h3>
+<p>{translate key="presenter.submit.submissionIndexingDescription"}</p>
+<table width="100%" class="data">
+{if $schedConfSettings.metaDiscipline}
+<tr valign="top">
+	<td{if $schedConfSettings.metaDisciplineExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="discipline" key="paper.discipline"}</td>
+	<td width="80%" class="value"><input type="text" class="textField" name="discipline" id="discipline" value="{$discipline|escape}" size="40" maxlength="255" /></td>
+</tr>
+{if $schedConfSettings.metaDisciplineExamples}
+<tr valign="top">
+	<td><span class="instruct">{$schedConfSettings.metaDisciplineExamples|escape}</span></td>
+</tr>
+{/if}
+<tr valign="top">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+{/if}
 
-	{if $schedConfSettings.metaTypeExamples}
-	<tr valign="top">
-		<td><span class="instruct">{$schedConfSettings.metaTypeExamples|escape}</span></td>
-	</tr>
-	{/if}
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
-	{/if}
-	
-	<tr valign="top">
-		<td rowspan="2" width="20%" class="label">{fieldLabel name="language" key="paper.language"}</td>
-		<td width="80%" class="value"><input type="text" class="textField" name="language" id="language" value="{$language|escape|default:en}" size="5" maxlength="10" /></td>
-	</tr>
-	<tr valign="top">
-		<td><span class="instruct">{translate key="presenter.submit.languageInstructions"}</span></td>
-	</tr>
-	</table>
+{if $schedConfSettings.metaSubjectClass}
+<tr valign="top">
+	<td rowspan="2" width="20%" class="label">{fieldLabel name="subjectClass" key="paper.subjectClassification"}</td>
+	<td width="80%" class="value"><input type="text" class="textField" name="subjectClass" id="subjectClass" value="{$subjectClass|escape}" size="40" maxlength="255" /></td>
+</tr>
+<tr valign="top">
+	<td width="20%" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl|escape}" target="_blank">{$schedConfSettings.metaSubjectClassTitle|escape}</a></td>
+</tr>
+<tr valign="top">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+{/if}
+
+{if $schedConfSettings.metaSubject}
+<tr valign="top">
+	<td{if $schedConfSettings.metaSubjectExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="subject" key="paper.subject"}</td>
+	<td width="80%" class="value"><input type="text" class="textField" name="subject" id="subject" value="{$subject|escape}" size="40" maxlength="255" /></td>
+</tr>
+{if $schedConfSettings.metaSubjectExamples}
+<tr valign="top">
+	<td><span class="instruct">{$schedConfSettings.metaSubjectExamples|escape}</span></td>
+</tr>
+{/if}
+<tr valign="top">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+{/if}
+
+{if $schedConfSettings.metaCoverage}
+<tr valign="top">
+	<td{if $schedConfSettings.metaCoverageGeoExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageGeo" key="paper.coverageGeo"}</td>
+	<td width="80%" class="value"><input type="text" class="textField" name="coverageGeo" id="coverageGeo" value="{$coverageGeo|escape}" size="40" maxlength="255" /></td>
+</tr>
+{if $schedConfSettings.metaCoverageGeoExamples}
+<tr valign="top">
+	<td><span class="instruct">{$schedConfSettings.metaCoverageGeoExamples|escape}</span></td>
+</tr>
+{/if}
+<tr valign="top">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+<tr valign="top">
+	<td{if $schedConfSettings.metaCoverageChronExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageChron" key="paper.coverageChron"}</td>
+	<td width="80%" class="value"><input type="text" class="textField" name="coverageChron" id="coverageChron" value="{$coverageChron|escape}" size="40" maxlength="255" /></td>
+</tr>
+{if $schedConfSettings.metaCoverageChronExamples}
+<tr valign="top">
+	<td><span class="instruct">{$schedConfSettings.metaCoverageChronExamples|escape}</span></td>
+</tr>
+{/if}
+<tr valign="top">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+<tr valign="top">
+	<td{if $schedConfSettings.metaCoverageResearchSampleExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageSample" key="paper.coverageSample"}</td>
+	<td width="80%" class="value"><input type="text" class="textField" name="coverageSample" id="coverageSample" value="{$coverageSample|escape}" size="40" maxlength="255" /></td>
+</tr>
+{if $schedConfSettings.metaCoverageResearchSampleExamples}
+<tr valign="top">
+	<td><span class="instruct">{$schedConfSettings.metaCoverageResearchSampleExamples|escape}</span></td>
+</tr>
+{/if}
+<tr valign="top">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+{/if}
+
+{if $schedConfSettings.metaType}
+<tr valign="top">
+	<td width="20%" {if $schedConfSettings.metaTypeExamples}rowspan="2" {/if}class="label">{fieldLabel name="type" key="paper.type"}</td>
+	<td width="80%" class="value"><input type="text" class="textField" name="type" id="type" value="{$type|escape}" size="40" maxlength="255" /></td>
+</tr>
+
+{if $schedConfSettings.metaTypeExamples}
+<tr valign="top">
+	<td><span class="instruct">{$schedConfSettings.metaTypeExamples|escape}</span></td>
+</tr>
+{/if}
+<tr valign="top">
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+{/if}
+
+<tr valign="top">
+	<td rowspan="2" width="20%" class="label">{fieldLabel name="language" key="paper.language"}</td>
+	<td width="80%" class="value"><input type="text" class="textField" name="language" id="language" value="{$language|escape|default:en}" size="5" maxlength="10" /></td>
+</tr>
+<tr valign="top">
+	<td><span class="instruct">{translate key="presenter.submit.languageInstructions"}</span></td>
+</tr>
+</table>
 
 <div class="separator"></div>
-
-{/if}
 
 
 <h3>{translate key="presenter.submit.submissionSupportingAgencies"}</h3>
