@@ -821,7 +821,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.filesBrowser">Files Browser</message>
 	<message key="manager.groups">Organizing Team</message>
 	<message key="manager.managementPages">General Management</message>
-	<message key="manager.managementPages.description">Open Conference Systems is set up in three stages. This first stage begins with Website Management, which is used to set up the general conference website (whether the conference will be held only once, run annually, or as a series). The next stage is initiated through Scheduled Conferences, which is used to establish a scheduled instance of the conference. Once a conference is scheduled, it is listed under Current Conferences, with a Setup procedure for putting all of the pieces into place (Description, Call for Papers, etc.), while Users and Roles are used to create its Directors, Reviewers, etc. The current conference's Directors (who can also be Conference Managers) set up the Timeline to sequence events on the conference website.</message>
+	<message key="manager.managementPages.description"><![CDATA[To get started:<ol><li>Begin with Website Management to set up the conference website.</li><li>Go to Scheduled Conferences to establish a scheduled instance of the conference.</li><li>Use scheduled conference's Setup to put pieces in place (e.g., Call for Papers, etc.).</li><li>Use scheduled conference's Timeline to manage the timing of postings, submissions, etc.</li></ol>]]></message>
 	<message key="manager.program">Program</message>
 	<message key="manager.plugins">System Plugins</message>
 	<message key="manager.users">Users</message>
