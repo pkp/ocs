@@ -185,7 +185,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 			$searchType = null;
 			$searchMatch = null;
-			$search = $searchQuery = Request::getUserVar('search');
+			$search = Request::getUserVar('search');
 			$searchInitial = Request::getUserVar('searchInitial');
 			if (isset($search)) {
 				$searchType = Request::getUserVar('searchField');
@@ -225,7 +225,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 			$templateMgr->assign('searchField', $searchType);
 			$templateMgr->assign('searchMatch', $searchMatch);
-			$templateMgr->assign('search', $searchQuery);
+			$templateMgr->assign('search', $search);
 			$templateMgr->assign('searchInitial', $searchInitial);
 
 			$templateMgr->assign('fieldOptions', Array(
