@@ -13,6 +13,8 @@
 <a name="layout"></a>
 <h3>{translate key="submission.layout"}</h3>
 
+<p>{translate key="submission.layout.description"}</p>
+
 <p>
 	{translate key="common.file"}:&nbsp;&nbsp;&nbsp;&nbsp;
 	{if $layoutFile}
