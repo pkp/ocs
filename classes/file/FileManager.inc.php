@@ -332,7 +332,9 @@ class FileManager {
 			case 'application/pdf':
 				return '.pdf';
 			case 'application/word':
-				return'.doc';
+				return '.doc';
+			case 'text/html':
+				return '.html';
 			default:
 				return false;
 		}

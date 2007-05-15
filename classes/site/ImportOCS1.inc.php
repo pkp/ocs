@@ -54,10 +54,10 @@ class ImportOCS1 {
 
 	var $dbtable = array();
 
-	var $userMap = array();
+	var $schedConfMap = array();
 	var $trackMap = array();
 	var $paperMap = array();
-	var $fileMap = array();
+	var $reviewerMap = array();
 	
 	var $importDBConn;
 	var $importDao;
@@ -78,6 +78,9 @@ class ImportOCS1 {
 	/** @var $conflicts array List of conflicting user accounts */
 	var $conflicts;
 
+	/** @var $errors array List of errors */
+	var $errors;
+
 	/**
 	 * Constructor.
 	 */
@@ -91,6 +94,7 @@ class ImportOCS1 {
 			$this->indexUrl = Request::getIndexUrl();
 
 		$this->conflicts = array();
+		$this->errors = array();
 	}
 
 	/**
@@ -173,42 +177,17 @@ class ImportOCS1 {
 			return false;
 		}
 
-		// If necessary, create the conference.
-		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		if (!$conference =& $conferenceDao->getConferenceByPath($this->conferencePath)) {
-			if ($this->hasOption('verbose')) {
-				printf("Creating conference\n");
-			}
-			unset($conference);
-			$conference =& new Conference();
-			$conference->setPath($this->conferencePath);
-			$conference->setTitle($this->globalConfigInfo['name']);
-			$conference->setEnabled(true);
-			$this->conferenceId = $conferenceDao->insertConference($conference);
-			$conferenceDao->resequenceConferences();
-
-			$this->conferenceIsNew = true;
-		} else {
-			if ($this->hasOption('verbose')) {
-				printf("Using existing conference\n");
-			}
-			$conference->setTitle($this->globalConfigInfo['name']);
-			$conferenceDao->updateConference($conference);
-			$this->conferenceId = $conference->getConferenceId();
-			$this->conferenceIsNew = false;
-		}
-		$this->conference =& $conference;
-
 		$this->importConference();
 		$this->importSchedConfs();
+		$this->importTracks();
+		$this->importPapers();
+		$this->importReviewers();
+		$this->importReviews();
 
-		fatalError('NOT IMPLEMENTED');
 		if ($this->hasOption('importRegistrations')) {
 			$this->importRegistrations();
 		}
-		$this->importTracks();
-		$this->importPapers();
-		
+
 		// Rebuild search index
 		$this->rebuildSearchIndex();
 		
@@ -239,6 +218,32 @@ class ImportOCS1 {
 	//
 
 	function importConference() {
+		// If necessary, create the conference.
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		if (!$conference =& $conferenceDao->getConferenceByPath($this->conferencePath)) {
+			if ($this->hasOption('verbose')) {
+				printf("Creating conference\n");
+			}
+			unset($conference);
+			$conference =& new Conference();
+			$conference->setPath($this->conferencePath);
+			$conference->setTitle($this->globalConfigInfo['name']);
+			$conference->setEnabled(true);
+			$this->conferenceId = $conferenceDao->insertConference($conference);
+			$conferenceDao->resequenceConferences();
+
+			$this->conferenceIsNew = true;
+		} else {
+			if ($this->hasOption('verbose')) {
+				printf("Using existing conference\n");
+			}
+			$conference->setTitle($this->globalConfigInfo['name']);
+			$conferenceDao->updateConference($conference);
+			$this->conferenceId = $conference->getConferenceId();
+			$this->conferenceIsNew = false;
+		}
+		$this->conference =& $conference;
+
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		if ($this->conferenceIsNew) {
 			// All site admins should get a manager role by default
@@ -307,7 +312,7 @@ class ImportOCS1 {
 		$dbtable = $this->dbtable;
 
 		// Load sched conf config
-		$result = &$this->importDao->retrieve("SELECT * FROM $dbtable[conference]");
+		$result = &$this->importDao->retrieve("SELECT * FROM $dbtable[conference] WHERE id = ?", array($id));
 		$this->conferenceInfo[$id] = &$result->fields;
 		$result->Close();
 
@@ -326,8 +331,11 @@ class ImportOCS1 {
 			$schedConfDao->updateSchedConf($schedConf);
 		}
 
+		$this->schedConfMap[$id] =& $schedConf;
+
 		$schedConfSettings = array(
-			// Nothing yet
+			'contactEmail' => array('string', $this->trans($this->conferenceInfo[$id]['contact_email'])),
+			'contactName' => array('string', $this->trans($this->conferenceInfo[$id]['contact_name']))
 		);
 		
 		foreach ($schedConfSettings as $settingName => $settingInfo) {
@@ -345,61 +353,145 @@ class ImportOCS1 {
 			printf("Importing registrations\n");
 		}
 		
-		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
-		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
-		
-		$registrationTypeMap = array();
-		
-		$registrationFormatMap = array(
-			1 => SUBSCRIPTION_TYPE_FORMAT_PRINT,
-			2 => SUBSCRIPTION_TYPE_FORMAT_ONLINE,
-			3 => SUBSCRIPTION_TYPE_FORMAT_PRINT_ONLINE
-		);
-		
-		$currencyMap = array(
-			1 => 22,	// CDN
-			2 => 160	// USD
-		);
-		
-		$result = &$this->importDao->retrieve('SELECT * FROM tblregistrationtype ORDER BY nOrder');
-		$count = 0;
-		while (!$result->EOF) {
-			$row = &$result->fields;
-			
-			$registrationType = &new RegistrationType();
-			$registrationType->setConferenceId($this->conferenceId);
-			$registrationType->setTypeName($this->trans($row['chRegistrationType']));
-			$registrationType->setDescription($this->trans($row['chRegistrationTypeDesc']));
-			$registrationType->setCost($row['fCost']);
-			$registrationType->setCurrencyId(isset($currencyMap[$row['fkCurrencyID']]) ? $currencyMap[$row['fkCurrencyID']] : 160);
-			$registrationType->setDuration(12); // No equivalent in OCS 1.x
-			$registrationType->setFormat(isset($registrationFormatMap[$row['fkRegistrationFormatID']]) ? $registrationFormatMap[$row['fkRegistrationFormatID']] : SUBSCRIPTION_TYPE_FORMAT_PRINT_ONLINE);
-			$registrationType->setInstitutional($row['bInstitutional']);
-			$registrationType->setMembership($row['bMembership']);
-			$registrationType->setPublic(1); // No equivalent in OCS 1.x
-			$registrationType->setSequence(++$count);
-			
-			$registrationTypeDao->insertRegistrationType($registrationType);
-			$registrationTypeMap[$row['nRegistrationTypeID']] = $registrationType->getTypeId();
-			$result->MoveNext();
+		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+
+		$registrationTypes = array();
+
+		foreach ($this->conferenceInfo as $conferenceId => $conferenceInfo) {
+			$levels = array_map('trim', split("\n", $this->trans($conferenceInfo['reg_levels'])));
+			$fees = array_map('trim', split("\n", $this->trans($conferenceInfo['reg_fees'])));
+			$levelsLate = array_map('trim', split("\n", $this->trans($conferenceInfo['reg_levels_late'])));
+			$feesLate = array_map('trim', split("\n", $this->trans($conferenceInfo['reg_fees_late'])));
+
+			$lateDate = $this->trans($conferenceInfo['reg_late_date']);
+			$schedConf =& $this->schedConfMap[$conferenceId];
+
+			foreach ($levels as $key => $level) {
+				$fee = $fees[$key];
+				$registrationType =& new RegistrationType();
+				$registrationType->setSchedConfId($schedConf->getSchedConfId());
+				$registrationType->setTypeName($level);
+				$registrationType->setCost($fee);
+				$registrationType->setCurrencyCodeAlpha('USD'); // FIXME?
+				$registrationType->setOpeningDate($this->trans($conferenceInfo['accept_deadline']));
+				$registrationType->setClosingDate($lateDate);
+				$registrationType->setAccess(REGISTRATION_TYPE_ACCESS_ONLINE);
+				$registrationType->setPublic(0);
+				$registrationType->setInstitutional(0);
+				$registrationType->setMembership(0);
+				$registrationType->setSequence($key);
+				$registrationTypeDao->insertRegistrationType($registrationType);
+				$registrationTypes[substr($level, 0, 60)] =& $registrationType; // Truncated in 1.x DB
+				unset($registrationType);
+			}
+
+			foreach ($levelsLate as $key => $level) {
+				$fee = $feesLate[$key];
+				$registrationType =& new RegistrationType();
+				$registrationType->setSchedConfId($schedConf->getSchedConfId());
+				$registrationType->setTypeName($level . ' (Late)');
+				$registrationType->setCost($fee);
+				$registrationType->setCurrencyCodeAlpha('USD'); // FIXME?
+				$registrationType->setOpeningDate($lateDate);
+				$registrationType->setClosingDate($this->trans($conferenceInfo['start_date']));
+				$registrationType->setAccess(REGISTRATION_TYPE_ACCESS_ONLINE);
+				$registrationType->setPublic(0);
+				$registrationType->setInstitutional(0);
+				$registrationType->setMembership(0);
+				$registrationType->setSequence($key);
+				$registrationTypeDao->insertRegistrationType($registrationType);
+				$registrationTypes[substr($level, 0, 60) . ' (Late)'] =& $registrationType; // Truncated in 1.x DB
+				unset($registrationType);
+			}
 		}
-		$result->Close();
-		
-		$result = &$this->importDao->retrieve('SELECT tblsubscribers.*, nUserID FROM tblsubscribers LEFT JOIN tblusers ON nSubscriberID = fkSubscriberID ORDER BY nSubscriberID');
+
+		$result = &$this->importDao->retrieve('SELECT * FROM registrants ORDER BY cf, id');
 		while (!$result->EOF) {
 			$row = &$result->fields;
-			
-			$registration = &new Registration();
-			$registration->setConferenceId($this->conferenceId);
-			$registration->setUserId(isset($this->userMap[$row['nUserID']]) ? $this->userMap[$row['nUserID']] : 0);
-			$registration->setTypeId(isset($registrationTypeMap[$row['fkRegistrationTypeID']]) ? $registrationTypeMap[$row['fkRegistrationTypeID']] : 0);
-			$registration->setDateStart($row['dtDateStart']);
-			$registration->setDateEnd($row['dtDateEnd']);
-			$registration->setMembership($this->trans($row['chMembership']));
-			$registration->setDomain($this->trans($row['chDomain']));
-			$registration->setIPRange('');
-			
-			$registrationDao->insertRegistration($registration);
+			$schedConf =& $this->schedConfMap[$row['cf']];
+
+			$email = $this->trans($row['email']);
+
+			if (!$user =& $userDao->getUserByEmail($email)) {
+				// The user doesn't exist by email; create one.
+				$name = $this->trans($row['name']);
+				$nameParts = split(' ', $name);
+
+				$lastName = array_pop($nameParts);
+				$firstName = join(' ', $nameParts);
+
+				$user =& new User();
+				$user->setEmail($email);
+				$user->setFirstName($firstName);
+				$user->setLastName($lastName);
+				$user->setPhone($this->trans($row['phone']));
+				$user->setFax($this->trans($row['fax']));
+				$user->setMailingAddress($this->trans($row['address']));
+
+				$i = "";
+				while ($userDao->userExistsByUsername($lastName . $i)) $i++;
+				$user->setUsername($lastName . $i);
+
+				$user->setDateRegistered($row['date_registered']);
+				$user->setDateLastLogin(null);
+				$user->setMustChangePassword(1);
+
+				$password = Validation::generatePassword();
+				$user->setPassword(Validation::encryptCredentials($user->getUsername(), $password));
+
+				$userDao->insertUser($user);
+
+				if ($this->hasOption('emailUsers')) {
+					import('mail.MailTemplate');
+					$mail = &new MailTemplate('USER_REGISTER');
+
+					$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+					$mail->assignParams(array('username' => $user->getUsername(), 'password' => $password, 'conferenceName' => $schedConf->getFullTitle()));
+					$mail->addRecipient($user->getEmail(), $user->getFullName());
+					$mail->send();
+					
+				}
+			}
+
+			$regLevel = trim($this->trans($row['reg_level']));
+			$regFee = $this->trans($row['reg_fee']);
+			$conferenceInfo =& $this->conferenceInfo[$row['cf']];
+			$seekingRegLevel = $regLevel . (strtotime($row['date_registered']) > strtotime($conferenceInfo['reg_late_date']) ? ' (Late)':'');
+			$registrationType =& $registrationTypes[$seekingRegLevel];
+			if (!$registrationType || $registrationType->getCost() != $regFee) {
+				if (!$registrationType) $this->errors[] = "Registration data inconsistency: Registration type \"$seekingRegLevel\" not found for user with email $email.";
+				else {
+					$this->errors[] = "Registration data inconsistency: Paid registration fee $regFee does not match registration type cost for \"$seekingRegLevel\" (" . $registrationType->getCost() . ") for user with email $email.";
+					unset($registrationType);
+				}
+
+				unset($user);
+				unset($schedConf);
+				$result->MoveNext();
+				continue;
+			}
+
+			if ($registrationDao->registrationExistsByUser($user->getUserId(), $schedConf->getSchedConfId())) {
+				$this->errors[] = "A duplicate registration (level \"$seekingRegLevel\") was skipped for user with email $email.";
+			} else {
+				$registration =& new Registration();
+				$registration->setSchedConfId($schedConf->getSchedConfId());
+				$registration->setUserId($user->getUserId());
+				$registration->setTypeId($registrationType->getTypeId());
+				if ($row['has_paid'] == 'paid') $registration->setDatePaid($this->trans($row['date_paid']));
+				$registration->setSpecialRequests($this->trans($row['special_requests']));
+				$registration->setDateRegistered($row['date_registered']);
+				$registrationDao->insertRegistration($registration);
+				unset($registration);
+			}
+
+			unset($user);
+			unset($registrationType);
+			unset($conferenceInfo);
+			unset($schedConf);
+
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -414,41 +506,118 @@ class ImportOCS1 {
 		}
 		
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$trackDirectorDao = &DAORegistry::getDAO('TrackDirectorsDAO');
 		
-		$result = &$this->importDao->retrieve('SELECT * FROM tbltracks ORDER BY nRank');
-		$count = 0;
+		$result = &$this->importDao->retrieve('SELECT * FROM tracks ORDER BY cf, track_order');
+		$oldConferenceId = null;
 		while (!$result->EOF) {
 			$row = &$result->fields;
-			
+			if ($oldConferenceId != $row['cf']) {
+				$sequence = 0;
+				$oldConferenceId = $row['cf'];
+			}
+
 			$track = &new Track();
-			$track->setConferenceId($this->conferenceId);
-			$track->setTitle($this->trans($row['chTitle']));
-			$track->setAbbrev($this->trans($row['chAbbrev']));
-			$track->setSequence(++$count);
-			$track->setDirectorRestricted($row['bAcceptSubmissions'] ? 0 : 1);
-			$track->setPolicy($this->trans($row['chPolicies']));
+			$schedConf =& $this->schedConfMap[$row['cf']];
+			$track->setSchedConfId($schedConf->getSchedConfId());
+			$track->setTitle($this->trans($row['track']));
+			$track->setSequence(++$sequence);
+			$track->setDirectorRestricted(0);
+			$track->setMetaReviewed(1);
 			
 			$trackId = $trackDao->insertTrack($track);
-			$this->trackMap[$row['nTrackID']] = $trackId;
+			$this->trackMap[$row['id']] = $trackId;
 			$result->MoveNext();
-		}
-		$result->Close();
-
-		// Note: ignores board members (not supported in OCS 1.x)
-		$result = &$this->importDao->retrieve('SELECT nUserID, fkTrackID FROM tblusers, tbleditorsections WHERE tblusers.fkEditorID = tbleditorsections.fkEditorID AND fkTrackID IS NOT NULL AND fkTrackID != -1 ORDER BY nUserID');
-		while (!$result->EOF) {
-			$row = &$result->fields;
-			
-			if (isset($this->trackMap[$row['fkTrackID']]) && isset($this->userMap[$row['nUserID']])) {
-				$trackDirectorDao->insertDirector($this->conferenceId, $this->trackMap[$row['fkTrackID']], $this->userMap[$row['nUserID']]);
-			}
-			
-			$result->MoveNext();
+			unset($track);
+			unset($schedConf);
 		}
 		$result->Close();
 	}
 	
+	/**
+	 * Import reviewers
+	 */
+	function importReviewers() {
+		if ($this->hasOption('verbose')) {
+			printf("Importing reviewers\n");
+		}
+		
+		import('file.PaperFileManager');
+		import('search.PaperSearchIndex');
+
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+
+		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
+		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		
+		$result = &$this->importDao->retrieve('SELECT * FROM reviewers');
+		while (!$result->EOF) {
+			$row = &$result->fields;
+			$schedConf =& $this->schedConfMap[$row['cf']];
+			$schedConfId = $schedConf->getSchedConfId();
+
+			$user = $userDao->getUserByUsername($this->trans($row['login']));
+			if (!$user) {
+				unset($user);
+				$user =& new User();
+				$user->setUsername($this->trans($row['login']));
+
+				$nameParts = split(' ', $this->trans($row['name']));
+				$firstName = array_shift($nameParts);
+				$lastName = join(' ', $nameParts);
+
+				$user->setFirstName(empty($firstName)?'(NONE)':$firstName);
+				$user->setLastName(empty($lastName)?'(NONE)':$lastName);
+				$user->setEmail($this->trans($row['email']));
+				$user->setDateRegistered(Core::getCurrentDate());
+				$user->setDateLastLogin(null);
+				$user->setMustChangePassword(1);
+
+				$password = Validation::generatePassword();
+				$user->setPassword(Validation::encryptCredentials($user->getUsername(), $password));
+
+				if ($this->hasOption('emailUsers')) {
+					import('mail.MailTemplate');
+					$mail = &new MailTemplate('USER_REGISTER');
+
+					$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+					$mail->assignParams(array('username' => $user->getUsername(), 'password' => $password, 'conferenceName' => $schedConf->getFullTitle()));
+					$mail->addRecipient($user->getEmail(), $user->getFullName());
+					$mail->send();
+					
+				}
+				$user->setDisabled(0);
+
+				$otherUser =& $userDao->getUserByEmail($this->trans($row['email']));
+				if ($otherUser !== null) {
+					// User exists with this email -- munge it to make unique
+					$user->setEmail('ocs-' . $this->trans($row['login']) . '+' . $this->trans($row['email']));
+					$this->conflicts[] = array(&$otherUser, &$user);
+				}
+
+				unset($otherUser);
+
+				$userDao->insertUser($user);
+
+				// Make this user a presenter
+				$role =& new Role();
+				$role->setSchedConfId($schedConf->getSchedConfId());
+				$role->setConferenceId($schedConf->getConferenceId());
+				$role->setUserId($user->getUserId());
+				$role->setRoleId(ROLE_ID_REVIEWER);
+				$roleDao->insertRole($role);
+				unset($role);
+			}
+			$this->reviewerMap[$row['login']] =& $user;
+
+			unset($schedConf);
+			unset($user);
+
+			$result->MoveNext();
+		}
+		$result->Close();
+	}
+
 	/**
 	 * Import papers (including metadata and files).
 	 */
@@ -457,442 +626,325 @@ class ImportOCS1 {
 			printf("Importing papers\n");
 		}
 		
+		import('file.PaperFileManager');
+		import('search.PaperSearchIndex');
+
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-		$copyAssignmentDao = &DAORegistry::getDAO('CopyeditorSubmissionDAO');
-		$proofAssignmentDao = &DAORegistry::getDAO('ProofAssignmentDAO');
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+
+		$unassignedTrackId = null;
 		
-		$paperUsers = array();
-		
-		$reviewRecommendations = array(
-			0 => null,
-			1 => null,
-			2 => SUBMISSION_REVIEWER_RECOMMENDATION_ACCEPT,
-			3 => SUBMISSION_REVIEWER_RECOMMENDATION_PENDING_REVISIONS,
-			4 => SUBMISSION_REVIEWER_RECOMMENDATION_RESUBMIT_HERE,
-			5 => SUBMISSION_REVIEWER_RECOMMENDATION_RESUBMIT_ELSEWHERE,
-			6 => SUBMISSION_REVIEWER_RECOMMENDATION_DECLINE,
-			7 => SUBMISSION_REVIEWER_RECOMMENDATION_SEE_COMMENTS
-		);
-		
-		// Import papers
-		$result = &$this->importDao->retrieve('SELECT tblpapers.*, editor.nUserID AS nEditorUserID FROM tblpapers LEFT JOIN tblusers AS editor ON (tblpapers.fkEditorId = editor.fkEditorID) ORDER by nPaperID');
+		$result = &$this->importDao->retrieve('SELECT * FROM papers ORDER by id');
 		while (!$result->EOF) {
 			$row = &$result->fields;
-			
-			$status = STATUS_QUEUED;
-			if ($row['nStatus'] !== null) {
-				if ($row['nStatus'] == 3) {
-					$status = STATUS_DECLINED;
-				} else if ($row['bArchive']) {
-					$status = STATUS_ARCHIVED;
-				} else if($row['bPublished']) {
-					$status = STATUS_PUBLISHED;
-				} else if($row['bSchedule']) {
-					$status = STATUS_SCHEDULED;
+			$schedConf =& $this->schedConfMap[$row['cf']];
+			$schedConfId = $schedConf->getSchedConfId();
+
+			// Bring in the primary user for this paper.
+			$user = $userDao->getUserByUsername($this->trans($row['login']));
+			if (!$user) {
+				unset($user);
+				$user =& new User();
+				$user->setUsername($this->trans($row['login']));
+				$user->setFirstName($this->trans($row['first_name']));
+				$user->setLastName($this->trans($row['surname']));
+				$user->setAffiliation($this->trans($row['affiliation']));
+				$user->setEmail($this->trans($row['email']));
+				$user->setUrl($this->trans($row['url']));
+				$user->setBiography($this->trans($row['bio']));
+				$user->setLocales(array());
+				$user->setDateRegistered($row['created']);
+				$user->setDateLastLogin($row['created']);
+				$user->setMustChangePassword(1);
+
+				$password = Validation::generatePassword();
+				$user->setPassword(Validation::encryptCredentials($user->getUsername(), $password));
+
+				if ($this->hasOption('emailUsers')) {
+					import('mail.MailTemplate');
+					$mail = &new MailTemplate('USER_REGISTER');
+
+					$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+					$mail->assignParams(array('username' => $user->getUsername(), 'password' => $password, 'conferenceName' => $schedConf->getFullTitle()));
+					$mail->addRecipient($user->getEmail(), $user->getFullName());
+					$mail->send();
+					
 				}
+				$user->setDisabled(0);
+
+				$otherUser =& $userDao->getUserByEmail($this->trans($row['email']));
+				if ($otherUser !== null) {
+					// User exists with this email -- munge it to make unique
+					$user->setEmail('ocs-' . $this->trans($row['login']) . '+' . $this->trans($row['email']));
+					$this->conflicts[] = array(&$otherUser, &$user);
+				}
+
+				unset($otherUser);
+
+				$userDao->insertUser($user);
+
+				// Make this user a presenter
+				$role =& new Role();
+				$role->setSchedConfId($schedConf->getSchedConfId());
+				$role->setConferenceId($schedConf->getConferenceId());
+				$role->setUserId($user->getUserId());
+				$role->setRoleId(ROLE_ID_PRESENTER);
+				$roleDao->insertRole($role);
+				unset($role);
 			}
+			$userId = $user->getUserId();
+
+			// Bring in the basic entry for the paper
+			$paper =& new Paper();
+			$paper->setUserId($userId);
+			$paper->setSchedConfId($schedConfId);
+
+			$oldTrackId = $row['primary_track_id'];
+			if (!$oldTrackId || !isset($this->trackMap[$oldTrackId])) {
+				$oldTrackId = $row['secondary_track_id'];
+			}
+			if (!$oldTrackId || !isset($this->trackMap[$oldTrackId])) {
+				if (!$unassignedTrackId) {
+					// Create an "Unassigned" track to use for submissions
+					// that didn't have a track in OCS 1.x.
+					$track = &new Track();
+					$track->setSchedConfId($schedConf->getSchedConfId());
+					$track->setTitle('UNASSIGNED');
+					$track->setSequence(10000);
+					$track->setDirectorRestricted(1);
+					$track->setMetaReviewed(1);
 			
-			$paper = &new Paper();
-			$paper->setUserId(1);
-			$paper->setConferenceId($this->conferenceId);
-			$paper->setTrackId(isset($this->trackMap[$row['fkTrackID']]) ? $this->trackMap[$row['fkTrackID']] : 0);
-			$paper->setTitle($this->trans($row['chMetaTitle']));
+					$unassignedTrackId = $trackDao->insertTrack($track);
+				}
+				$newTrackId = $unassignedTrackId;
+			} else {
+				$newTrackId = $this->trackMap[$oldTrackId];
+			}
+
+			$paper->setTrackId($newTrackId);
+			$paper->setTitle($this->trans($row['title']));
 			$paper->setTitleAlt1('');
 			$paper->setTitleAlt2('');
-			$paper->setAbstract($this->trans($row['chMetaAbstract']));
-			$paper->setAbstractAlt1('');
-			$paper->setAbstractAlt2('');
-			$paper->setDiscipline($this->trans($row['chMetaDiscipline']));
-			$paper->setSubjectClass($this->trans($row['chMetaSubjectClass']));
-			$paper->setSubject($this->trans($row['chMetaSubject']));
-			$paper->setCoverageGeo($this->trans($row['chMetaCoverageGeo']));
-			$paper->setCoverageChron($this->trans($row['chMetaCoverageChron']));
-			$paper->setCoverageSample($this->trans($row['chMetaCoverageSample']));
-			$paper->setType($this->trans($row['chMetaType_Presenter']));
-			$paper->setLanguage($this->trans($row['chMetaLanguage']));
-			$paper->setSponsor($this->trans($row['chMetaSponsor_Presenter']));
-			$paper->setCommentsToDirector($this->trans($row['chNotesToEditor']));
-			$paper->setDateSubmitted($row['dtDateSubmitted']);
-			$paper->setDateStatusModified($row['dtDateSubmitted']);
-			$paper->setLastModified($row['dtDateSubmitted']);
-			$paper->setStatus($status);
-			$paper->setSubmissionProgress($row['dtDateSubmitted'] ? 0 : $row['nSubmissionProgress']);
-			$paper->setPages('');
-			
-			// Add paper presenters
-			$presenterResult = &$this->importDao->retrieve('SELECT nUserID, tblmetapresenters.* FROM tblmetapresenters LEFT JOIN tblusers ON tblmetapresenters.fkPresenterID = tblusers.fkPresenterID WHERE fkPaperID = ? ORDER BY nRank', $row['nPaperID']);
-			while (!$presenterResult->EOF) {
-				$presenterRow = &$presenterResult->fields;
-				
-				$presenter = &new Presenter();
-				$presenter->setFirstName($this->trans($presenterRow['chFirstName']));
-				$presenter->setMiddleName($this->trans($presenterRow['chMiddleInitial']));
-				$presenter->setLastName($this->trans($presenterRow['chSurname']));
-				$presenter->setAffiliation($this->trans($presenterRow['chAffiliation']));
-				$presenter->setEmail($this->trans($presenterRow['chEmail']));
-				$presenter->setBiography($this->trans($presenterRow['chBiography']));
-				$presenter->setPrimaryContact($presenterRow['bPrimaryContact']);
-				
-				if ($presenterRow['bPrimaryContact'] && isset($this->userMap[$presenterRow['nUserID']])) {
-					$paper->setUserId($this->userMap[$presenterRow['nUserID']]);
-				}
-				
-				$paper->addPresenter($presenter);
-				$presenterResult->MoveNext();
-			}
-			$presenterResult->Close();
-			
-			$paperDao->insertPaper($paper);
-			$paperId = $paper->getPaperId();
-			$this->paperMap[$row['nPaperID']] = $paperId;
-			$this->paperCount++;
-			
-			$paperUsers[$paperId] = array(
-				'presenterId' => $paper->getUserId(),
-				'directorId' => isset($this->userMap[$row['nEditorUserID']]) ? $this->userMap[$row['nEditorUserID']] : $paper->getUserId(),
-				'proofId' => 0,
-				'reviewerId' => array(),
-				'reviewId' => array()
-			);
-			
-			if ($row['fkIssueID']) {
-				$publishedPaper = &new PublishedPaper();
-				$publishedPaper->setPaperId($paperId);
-				$publishedPaper->setIssueId($this->issueMap[$row['fkIssueID']]);
-				$publishedPaper->setDatePublished($row['dtDatePublished'] ? $row['dtDatePublished'] : $row['dtDateSubmitted']);
-				$publishedPaper->setSeq((int)$row['nOrder']);
-				$publishedPaper->setViews($row['nHitCounter']);
-				$publishedPaper->setTrackId(isset($this->trackMap[$row['fkTrackID']]) ? $this->trackMap[$row['fkTrackID']] : 0);
-				
-				$publishedPaperDao->insertPublishedPaper($publishedPaper);
-			}
-			
-			// Paper files
-			if ($row['fkFileOriginalID']) {
-				$fileId = $this->addPaperFile($paperId, $row['fkFileOriginalID'], PAPER_FILE_SUBMISSION);
-				$paper->setSubmissionFileId($fileId);
-			}
-			if ($row['fkFileRevisionsID']) {
-				$fileId = $this->addPaperFile($paperId, $row['fkFileRevisionsID'], PAPER_FILE_DIRECTOR);
-				$paper->setRevisedFileId($fileId);
-			}
-			if ($row['fkFileEditorID']) {
-				$fileId = $this->addPaperFile($paperId, $row['fkFileEditorID'], PAPER_FILE_DIRECTOR);
-				$paper->setDirectorFileId($fileId);
-			}
-			
-			if ($row['dtDateSubmitted']) {
-				$fileManager = &new PaperFileManager($paperId);
-				
-				if ($paper->getSubmissionFileId()) {
-					// Copy submission file to review version (not separate in OCS 1.x)
-					$fileId = $fileManager->copyToReviewFile($paper->getSubmissionFileId());
-					$paper->setReviewFileId($fileId);
-					if (!$paper->getDirectorFileId()) {
-						$fileId = $fileManager->copyToDirectorFile($fileId);
-						$paper->setDirectorFileId($fileId);
-					}
-				}
-				
-				// Add director decision and review stage (only one stage in OCS 1.x)
-				if ($row['dtDateEdDec']) {
-					$paperDao->update('INSERT INTO edit_decisions
-							(paper_id, stage, director_id, decision, date_decided)
-							VALUES (?, ?, ?, ?, ?)',
-							array($paperId, 1, isset($this->userMap[$row['nEditorUserID']]) ? $this->userMap[$row['nEditorUserID']] : 0, $row['nStatus'] == 3 ? SUBMISSION_DIRECTOR_DECISION_DECLINE : SUBMISSION_DIRECTOR_DECISION_ACCEPT, $paperDao->datetimeToDB($row['dtDateEdDec'])));
-				}
-				
-				$paperDao->update('INSERT INTO review_stages
-					(paper_id, stage, review_revision)
-					VALUES
-					(?, ?, ?)',
-					array($paperId, 1, 1)
-				);
-				
-				// Paper galleys
-				if ($row['fkFileHTMLID']) {
-					$fileId = $this->addPaperFile($paperId, $row['fkFileHTMLID'], PAPER_FILE_PUBLIC);
-					$galley = &new PaperHTMLGalley();
-					$galley->setPaperId($paperId);
-					$galley->setFileId($fileId);
-					$galley->setLabel('HTML');
-					$galley->setSequence(1);
-					if ($row['fkFileStyleID']) {
-						$fileId = $this->addPaperFile($paperId, $row['fkFileStyleID'], PAPER_FILE_PUBLIC);
-						$galley->setStyleFile($fileId);
-					}
-					$galleyDao->insertGalley($galley);
-					$this->copyHTMLGalleyImages($galley, $row['chLongID']);
-				}
-				if ($row['fkFilePDFID']) {
-					$fileId = $this->addPaperFile($paperId, $row['fkFilePDFID'], PAPER_FILE_PUBLIC);
-					$galley = &new PaperGalley();
-					$galley->setPaperId($paperId);
-					$galley->setFileId($fileId);
-					$galley->setLabel('PDF');
-					$galley->setSequence(2);
-					$galleyDao->insertGalley($galley);
-				}
-				if ($row['fkFilePostScriptID']) {
-					$fileId = $this->addPaperFile($paperId, $row['fkFilePostScriptID'], PAPER_FILE_PUBLIC);
-					$galley = &new PaperGalley();
-					$galley->setPaperId($paperId);
-					$galley->setFileId($fileId);
-					$galley->setLabel('PostScript');
-					$galley->setSequence(3);
-					$galleyDao->insertGalley($galley);
-				}
-			
-				// Create submission management assignment records
-				if ($row['nEditorUserID']) {
-					// Director assignment
-					$editAssignment = &new EditAssignment();
-					$editAssignment->setPaperId($paperId);
-					$editAssignment->setDirectorId($this->userMap[$row['nEditorUserID']]);
-					$editAssignment->setDateNotified($row['dtDateEditorNotified']);
-					$editAssignment->setDateUnderway($row['dtDateEditorNotified']);
-					$editAssignmentDao->insertEditAssignment($editAssignment);
-				}
-				
-				// Copyediting assignment
-				$copyAssignment = &new CopyeditorSubmission();
-				$copyAssignment->setPaperId($paperId);
-				$copyResult = &$this->importDao->retrieve('SELECT tblcopyedit.*, nUserID FROM tblcopyedit, tblpapersassigned, tblusers WHERE tblcopyedit.fkPaperID = tblpapersassigned.fkPaperID AND tblusers.fkCopyEdID = tblpapersassigned.fkCopyEdID AND bReplaced = 0 AND bDeclined = 0 AND tblcopyedit.fkPaperID = ?', $row['nPaperID']);
-				if ($copyResult->RecordCount() != 0) {
-					$copyRow = &$copyResult->fields;
-					
-					if ($copyRow['fkFileCopyEdID']) {
-						$fileId = $this->addPaperFile($paperId, $copyRow['fkFileCopyEdID'], PAPER_FILE_COPYEDIT);
-						$paper->setCopyeditFileId($fileId);
-					}
-					
-					$copyAssignment->setCopyeditorId($this->userMap[$copyRow['nUserID']]);
-					$copyAssignment->setDateNotified($copyRow['dtDateNotified_CEd']);
-					$copyAssignment->setDateUnderway($copyRow['dtDateNotified_CEd']);
-					$copyAssignment->setDateCompleted($copyRow['dtDateCompleted_CEd']);
-					$copyAssignment->setDateAcknowledged($copyRow['dtDateAcknowledged_CEd']);
-					$copyAssignment->setDatePresenterNotified($copyRow['dtDateNotified_Presenter']);
-					$copyAssignment->setDatePresenterUnderway($copyRow['dtDateNotified_Presenter']);
-					$copyAssignment->setDatePresenterCompleted($copyRow['dtDateCompleted_Presenter']);
-					$copyAssignment->setDatePresenterAcknowledged($copyRow['dtDateAcknowledged_Presenter']);
-					$copyAssignment->setDateFinalNotified($copyRow['dtDateNotified_Final']);
-					$copyAssignment->setDateFinalUnderway($copyRow['dtDateNotified_Final']);
-					$copyAssignment->setDateFinalCompleted($copyRow['dtDateCompleted_Final']);
-					$copyAssignment->setDateFinalAcknowledged($copyRow['dtDateAcknowledged_Final']);
-					$copyAssignment->setInitialRevision(1);
-					$copyAssignment->setDirectorPresenterRevision(1);
-					$copyAssignment->setFinalRevision(1);
-				} else {
-					$copyAssignment->setCopyeditorId(0);
-				}
-				$copyResult->Close();
-				$copyAssignmentDao->insertCopyeditorSubmission($copyAssignment);
-				
-				// Proofreading assignment
-				$proofAssignment = &new ProofAssignment();
-				$proofAssignment->setPaperId($paperId);
-				$proofResult = &$this->importDao->retrieve('SELECT tblproofread.*, nUserID, dtDateSchedule FROM tblproofread, tblpapersassigned, tblusers, tblpapers WHERE tblproofread.fkPaperID = tblpapers.nPaperID AND tblproofread.fkPaperID = tblpapersassigned.fkPaperID AND tblusers.fkProofID = tblpapersassigned.fkProofID AND bReplaced = 0 AND bDeclined = 0 AND tblproofread.fkPaperID = ?', $row['nPaperID']);
-				if ($proofResult->RecordCount() != 0) {
-					$proofRow = &$proofResult->fields;
-					
-					if ($proofRow['fkFileProofID']) {
-						// Treat proofreader file as layout file
-						$fileId = $this->addPaperFile($paperId, $proofRow['fkFileProofID'], PAPER_FILE_LAYOUT);
-					}
-					
-					$proofAssignment->setProofreaderId($this->userMap[$proofRow['nUserID']]);
-					$proofAssignment->setDateSchedulingQueue($proofRow['dtDateSchedule']);
-					$proofAssignment->setDatePresenterNotified($proofRow['dtDateNotified_Presenter']);
-					$proofAssignment->setDatePresenterUnderway($proofRow['dtDateNotified_Presenter']);
-					$proofAssignment->setDatePresenterCompleted($proofRow['dtDateCompleted_Presenter']);
-					$proofAssignment->setDatePresenterAcknowledged($proofRow['dtDateAcknowledged_Presenter']);
-					$proofAssignment->setDateProofreaderNotified($proofRow['dtDateNotified_Proof']);
-					$proofAssignment->setDateProofreaderUnderway($proofRow['dtDateNotified_Proof']);
-					$proofAssignment->setDateProofreaderCompleted($proofRow['dtDateCompleted_Proof']);
-					$proofAssignment->setDateProofreaderAcknowledged($proofRow['dtDateAcknowledged_Proof']);
-				} else {
-					$proofAssignment->setProofreaderId(0);
-				}
-				$proofResult->Close();
-				$proofAssignmentDao->insertProofAssignment($proofAssignment);
-				
-				$reviewerOrder = 1;
-				$reviewResult = &$this->importDao->retrieve('SELECT tblreviews.*, tblpapersassigned.*, nUserID FROM tblreviews, tblpapersassigned, tblusers, tblpapers WHERE tblreviews.fkPaperID = tblpapers.nPaperID AND tblreviews.fkPaperID = tblpapersassigned.fkPaperID AND tblusers.fkReviewerID = tblpapersassigned.fkReviewerID AND tblreviews.fkReviewerID = tblpapersassigned.fkReviewerID AND tblpapersassigned.nOrder IS NOT NULL AND tblreviews.fkPaperID = ? ORDER BY nOrder', $row['nPaperID']);
-				while (!$reviewResult->EOF) {
-					$reviewRow = &$reviewResult->fields;
-					
-					$reviewAssignment = &new ReviewAssignment();
-					
-					if ($reviewRow['fkFileRevCopyID']) {
-						$fileId = $this->addPaperFile($paperId, $reviewRow['fkFileRevCopyID'], PAPER_FILE_REVIEW);
-						$reviewAssignment->setReviewFileId($fileId);
-					}
-					
-					$reviewAssignment->setPaperId($paperId);
-					$reviewAssignment->setReviewerId($this->userMap[$reviewRow['nUserID']]);
-					$reviewAssignment->setRecommendation($reviewRecommendations[(int)$reviewRow['nRecommendation']]);
-					$reviewAssignment->setDateAssigned($reviewRow['dtDateAssigned']);
-					$reviewAssignment->setDateNotified($reviewRow['dtDateNotified']);
-					$reviewAssignment->setDateConfirmed($reviewRow['dtDateConfirmedDeclined']);
-					$reviewAssignment->setDateCompleted($reviewRow['dtDateReviewed']);
-					$reviewAssignment->setDateAcknowledged($reviewRow['dtDateAcknowledged']);
-					$reviewAssignment->setDateDue($reviewRow['dtDateRequestedBy']);
-					$reviewAssignment->setLastModified(isset($reviewRow['dtDateReviewed']) ? $reviewRow['dtDateReviewed'] : (isset($reviewRow['dtDateConfirmedDeclined']) ? $reviewRow['dtDateConfirmedDeclined'] : $reviewRow['dtDateAssigned']));
-					$reviewAssignment->setDeclined($reviewRow['bDeclined']);
-					$reviewAssignment->setReplaced($reviewRow['bReplaced']);
-					$reviewAssignment->setCancelled($reviewRow['bReplaced']);
-					$reviewAssignment->setQuality(null);
-					$reviewAssignment->setDateRated(null);
-					$reviewAssignment->setDateReminded($reviewRow['dtDateReminded']);
-					$reviewAssignment->setReminderWasAutomatic(0);
-					$reviewAssignment->setStage(1);
-					
-					$reviewAssignmentDao->insertReviewAssignment($reviewAssignment);
-					
-					if (!$reviewRow['bReplaced']) {
-						$paperUsers[$paperId]['reviewerId'][$reviewerOrder] = $reviewAssignment->getReviewerId();
-						$paperUsers[$paperId]['reviewId'][$reviewerOrder] = $reviewAssignment->getReviewId();
-						$reviewerOrder++;
-					}
-					
-					$reviewResult->MoveNext();
-				}
-				$reviewResult->Close();
-			}
-			
-			// Update paper with file IDs, etc.
-			$paperDao->updatePaper($paper);
-			
-			$result->MoveNext();
-		}
-		$result->Close();
-		
-		
-		// Supplementary files
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-		
-		$result = &$this->importDao->retrieve('SELECT * FROM tblsupplementaryfiles ORDER BY nSupFileID');
-		while (!$result->EOF) {
-			$row = &$result->fields;
-			
-			$fileId = $this->addPaperFile($this->paperMap[$row['fkPaperID']], $row['fkFileID'], PAPER_FILE_SUPP);
-			
-			$suppFile = &new SuppFile();
-			$suppFile->setFileId($fileId);
-			$suppFile->setPaperId($this->paperMap[$row['fkPaperID']]);
-			$suppFile->setTitle($this->trans($row['chTitle']));
-			$suppFile->setCreator($this->trans($row['chCreator']));
-			$suppFile->setSubject($this->trans($row['chSubject']));
-			$suppFile->setType($this->trans($row['chType']));
-			$suppFile->setTypeOther($this->trans($row['chTypeOther']));
-			$suppFile->setDescription($this->trans($row['chDescription']));
-			$suppFile->setPublisher($this->trans($row['chPublisher']));
-			$suppFile->setSponsor($this->trans($row['chSponsor']));
-			$suppFile->setDateCreated($row['dtDateCreated']);
-			$suppFile->setSource($this->trans($row['chSource']));
-			$suppFile->setLanguage($this->trans($row['chLanguage']));
-			$suppFile->setShowReviewers($row['bShowReviewer']);
-			$suppFile->setDateSubmitted($row['dtDateCreated']);
-			
-			$suppFileDao->insertSuppFile($suppFile);
-			$result->MoveNext();
-		}
-		$result->Close();
-		
-		
-		// Paper (public) comments
-		$commentDao = &DAORegistry::getDAO('CommentDAO');
-		
-		$result = &$this->importDao->retrieve('SELECT * FROM tblcomments ORDER BY nCommentID');
-		while (!$result->EOF) {
-			$row = &$result->fields;
-			
-			if (!empty($row['chAffiliation'])) {
-				$row['chPresenter'] .= ', ' . $this->trans($row['chAffiliation']);
-			}
-			
-			$comment = &new Comment();
-			$comment->setPaperId($this->paperMap[$row['fkPaperID']]);
-			$comment->setPosterIP('');
-			$comment->setPosterName($this->trans($row['chPresenter']));
-			$comment->setPosterEmail($this->trans($row['chEmail']));
-			$comment->setTitle($this->trans($row['chCommentTitle']));
-			$comment->setBody($this->trans($row['chComments']));
-			$comment->setDatePosted($row['dtDate']);
-			$comment->setDateModified($row['dtDate']);
-			$comment->setChildCommentCount(0);
-			
-			$commentDao->insertComment($comment);
-			$result->MoveNext();
-		}
-		$result->Close();
+			$paper->setAbstract($this->trans($row['abstract']));
+			$paper->setDiscipline($this->trans($row['discipline']));
+			$paper->setSponsor($this->trans($row['sponsor']));
+			$paper->setSubject($this->trans($row['topic']));
+			$paper->setLanguage($this->trans($row['language']));
 
-		
-		// Submission comments
-		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
-		
-		$commentTypes = array(
-			'reviewer' => COMMENT_TYPE_PEER_REVIEW,
-			'editorrev' => COMMENT_TYPE_DIRECTOR_DECISION,
-			'proof' => COMMENT_TYPE_PROOFREAD
-		);
-		
-		$result = &$this->importDao->retrieve('SELECT * FROM tblsubmissioncomments ORDER BY nCommentID');
-		while (!$result->EOF) {
-			$row = &$result->fields;
-			$assocId = $this->paperMap[$row['fkPaperID']];
-			
-			// Stupidly these strings are localized so this won't necessarily work if using non-English or modified localization
-			switch ($row['chFrom']) {
-				case 'Presenter':
-					$authorId = $paperUsers[$this->paperMap[$row['fkPaperID']]]['presenterId'];
-					$roleId = ROLE_ID_PRESENTER;
+			$paper->setDateSubmitted($row['created']);
+			$paper->setDateStatusModified($row['timestamp']);
+
+			$paper->setPaperType($row['present_format'] == 'multiple' ? SUBMISSION_TYPE_PANEL : SUBMISSION_TYPE_SINGLE);
+			$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
+			$paper->setSubmissionProgress(0);
+			$paper->setPages('');
+
+			// Bring in authors
+			$firstNames = split("\n", $this->trans($row['first_name'] . "\n" . $row['add_first_names']));
+			$lastNames = split("\n", $this->trans($row['surname'] . "\n" . $row['add_surnames']));
+			$emails = split("\n", $this->trans($row['email'] . "\n" . $row['add_emails']));
+			$affiliations = split("\n", $this->trans($row['affiliation'] . "\n" . $row['add_affiliations']));
+			$urls = split("\n", $this->trans($row['url'] . "\n" . $row['add_urls']));
+			foreach ($emails as $key => $email) {
+				if (empty($email)) continue;
+
+				$presenter =& new Presenter();
+
+				$presenter->setEmail($email);
+				$presenter->setFirstName($firstNames[$key]);
+				$presenter->setLastName($lastNames[$key]);
+				$presenter->setAffiliation($affiliations[$key]);
+				$presenter->setUrl($urls[$key]);
+				$presenter->setPrimaryContact($key == 0 ? 1 : 0);
+
+				$paper->addPresenter($presenter);
+
+				unset($presenter);
+			}
+
+			switch ($row['accepted']) {
+				case 'true':
+					$paper->setStatus(SUBMISSION_STATUS_PUBLISHED);
+					$paperId = $paperDao->insertPaper($paper);
+					$publishedPaper =& new PublishedPaper();
+					$publishedPaper->setPaperId($paperId);
+					$publishedPaper->setSchedConfId($schedConfId);
+					$publishedPaper->setDatePublished(Core::getCurrentDate());
+					$publishedPaper->setSeq(10000);
+					$publishedPaper->setViews(0);
+					$publishedPaperDao->insertPublishedPaper($publishedPaper);
+					$publishedPaperDao->resequencePublishedPapers($paper->getTrackId(), $schedConfId);
 					break;
-				case 'Proofreader':
-					$authorId = $paperUsers[$this->paperMap[$row['fkPaperID']]]['proofId'];
-					$roleId = ROLE_ID_PROOFREADER;
+				case 'reject':
+					$paper->setStatus(SUBMISSION_STATUS_DECLINED);
+					$paperId = $paperDao->insertPaper($paper);
 					break;
-				case 'Reviewer':
-					$authorId = @$paperUsers[$this->paperMap[$row['fkPaperID']]]['reviewerId'][$row['nOrder']];
-					$roleId = ROLE_ID_REVIEWER;
-					$assocId = @$paperUsers[$this->paperMap[$row['fkPaperID']]]['reviewId'][$row['nOrder']];
-					if (!isset($assocId)) $assocId = $this->paperMap[$row['fkPaperID']];
-					break;
-				case 'Editor':
 				default:
-					$authorId = $paperUsers[$this->paperMap[$row['fkPaperID']]]['directorId'];
-					$roleId = ROLE_ID_DIRECTOR;
-					break;
+					$paper->setStatus(SUBMISSION_STATUS_QUEUED);
+					$paperId = $paperDao->insertPaper($paper);
 			}
-			
-			if (!isset($authorId)) {
-				// Assume "Editor" by default
-				$authorId = $paperUsers[$this->paperMap[$row['fkPaperID']]]['directorId'];
-				$roleId = ROLE_ID_DIRECTOR;
+
+			$this->paperMap[$row['id']] =& $paper;
+
+			$paperFileManager =& new PaperFileManager($paperId);
+			if (!empty($row['paper']) && $row['paper'] != 'PDF') {
+				$format = 'text/html';
+				$extension = $paperFileManager->getDocumentExtension($format);
+
+				$fileId = $paperFileManager->writeSubmissionFile('migratedFile' . $extension, $row['paper'], $format);
+				$paper->setSubmissionFileId($fileId);
+				$paperDao->updatePaper($paper);
+
+				$fileId = $paperFileManager->writePublicFile('migratedGalley' . $extension, $row['paper'], $format);
+				PaperSearchIndex::updateFileIndex($paperId, PAPER_SEARCH_GALLEY_FILE, $fileId);
+				if (strstr($format, 'html')) {
+					$galley =& new PaperHTMLGalley();
+					$galley->setLabel('HTML');
+				} else {
+					$galley =& new PaperGalley();
+					switch ($format) {
+						case 'application/pdf': $galley->setLabel('PDF'); break;
+						case 'application/postscript': $galley->setLabel('PostScript'); break;
+						case 'application/msword': $galley->setLabel('Word'); break;
+						case 'text/xml': $galley->setLabel('XML'); break;
+						case 'application/powerpoint': $galley->setLabel('Slideshow'); break;
+						default: $galley->setLabel('Untitled'); break;
+					}
+				}
+
+				$galley->setPaperId($paperId);
+				$galley->setFileId($fileId);
+				$galleyDao->insertGalley($galley);
+				unset($galley);
+			} elseif ($row['paper'] == 'PDF') {
+				$fileId = $paperFileManager->copySubmissionFile($this->importPath . '/papers/' . $row['pdf'], 'application/pdf');
+				$paper->setSubmissionFileId($fileId);
+				$paperDao->updatePaper($paper);
+
+				$fileId = $paperFileManager->copyPublicFile($this->importPath . '/papers/' . $row['pdf'], 'application/pdf');
+				PaperSearchIndex::updateFileIndex($paperId, PAPER_SEARCH_GALLEY_FILE, $fileId);
+				$galley =& new PaperGalley();
+				$galley->setLabel('PDF');
+				$galley->setPaperId($paperId);
+				$galley->setFileId($fileId);
+				$galleyDao->insertGalley($galley);
+				unset($galley);
 			}
-			
-			$paperComment = &new PaperComment();
-			$paperComment->setCommentType($commentTypes[$row['chType']]);
-			$paperComment->setRoleId($roleId);
-			$paperComment->setPaperId($this->paperMap[$row['fkPaperID']]);
-			$paperComment->setAssocId($assocId);
-			$paperComment->setAuthorId($authorId);
-			$paperComment->setCommentTitle(''); // Not applicable to 1.x
-			$paperComment->setComments($this->trans($row['chComment']));
-			$paperComment->setDatePosted($row['dtDateCreated']);
-			$paperComment->setDateModified($row['dtDateCreated']);
-			$paperComment->setViewable(0);
-			
-			$paperCommentDao->insertPaperComment($paperComment);
+
+			// FIXME: The following fields from OCS 1.x are UNUSED:
+			// program_insert approach coverage format relation appendix_names appendix_dates
+			// appendix appendix_pdf secondary_track_id multiple_* restrict_access paper_email
+			// delete_paper comment_email
+
+			unset($user);
+			unset($paper);
+			unset($schedConf);
+			unset($paperFileManager);
 			$result->MoveNext();
 		}
 		$result->Close();
 	}
 	
+	/**
+	 * Import reviews.
+	 */
+	function importReviews() {
+		if ($this->hasOption('verbose')) {
+			printf("Importing reviews\n");
+		}
+		
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+
+		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
+		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+
+		$unassignedTrackId = null;
+		
+		$result = &$this->importDao->retrieve('SELECT * FROM reviews ORDER by timestamp');
+		while (!$result->EOF) {
+			$row = &$result->fields;
+
+			$schedConf =& $this->schedConfMap[$row['cf']];
+			$paper =& $this->paperMap[$row['paper']];
+			$reviewer =& $this->reviewerMap[$row['reviewer']];
+
+			if (!$schedConf || !$paper || !$reviewer) {
+				// Database inconsistency! Skip this entry.
+				if (!$schedConf) $errors[] = "Unknown conference referenced in reviews: $row[cf]";
+				else unset($schedConf);
+				if (!$paper) $errors[] = "Unknown paper referenced in reviews: $row[paper]";
+				else unset($paper);
+				if (!$reviewer) $errors[] = "Unknown reviewer referenced in reviews: $row[reviewer]";
+				else unser($reviewer);
+
+				$result->MoveNext();
+				continue;
+			}
+
+			$schedConfId = $schedConf->getSchedConfId();
+			$paperId = $paper->getPaperId();
+			$reviewerId = $reviewer->getUserId();
+
+			$reviewAssignment =& new ReviewAssignment();
+			$reviewAssignment->setReviewerId($reviewerId);
+			$reviewAssignment->setPaperId($paperId);
+			$reviewAssignment->setStage(REVIEW_STAGE_ABSTRACT); // Won't always be accurate
+			$reviewAssignment->setDateAssigned($row['timestamp']);
+			$reviewAssignment->setDateNotified($row['timestamp']);
+			$reviewAssignment->setDateConfirmed($row['timestamp']);
+			$reviewAssignment->setDeclined(0);
+			switch (trim(strtolower(array_shift(split("[\n\.:]", $row['recommendation']))))) {
+				case 'accept':
+					$reviewAssignment->setRecommendation(SUBMISSION_REVIEWER_RECOMMENDATION_ACCEPT);
+					$reviewAssignment->setDateCompleted($row['timestamp']);
+					break;
+				case 'revise':
+				case 'pending revisions':
+				case 'accept with revisions':
+					$reviewAssignment->setRecommendation(SUBMISSION_REVIEWER_RECOMMENDATION_PENDING_REVISIONS);
+					$reviewAssignment->setDateCompleted($row['timestamp']);
+					break;
+				case 'decline':
+				case 'reject':
+					$reviewAssignment->setRecommendation(SUBMISSION_REVIEWER_RECOMMENDATION_DECLINE);
+					$reviewAssignment->setDateCompleted($row['timestamp']);
+					break;
+				default:
+					// WARNING: We're not setting a recommendation here at all!
+					break;
+			}
+
+			$reviewId = $reviewAssignmentDao->insertReviewAssignment($reviewAssignment);
+
+			$paperComment =& new PaperComment();
+			$paperComment->setCommentType(COMMENT_TYPE_PEER_REVIEW);
+			$paperComment->setRoleId(ROLE_ID_REVIEWER);
+			$paperComment->setPaperId($paperId);
+			$paperComment->setAssocId($reviewId);
+			$paperComment->setAuthorId($reviewerId);
+			$paperComment->setCommentTitle('');
+			$paperComment->setComments($this->trans($row['comments'] . "\n" . $row['recommendation']));
+			$paperComment->setDatePosted($row['timestamp']);
+			$paperComment->setViewable(0);
+
+			$paperCommentDao->insertPaperComment($paperComment);
+
+			unset($schedConf);
+			unset($paper);
+			unset($reviewer);
+			unset($reviewAssignment);
+			unset($paperComment);
+			$result->MoveNext();
+		}
+		$result->Close();
+	}
 	
 	//
 	// Helper functions
@@ -912,166 +964,17 @@ class ImportOCS1 {
 	}
 	
 	/**
-	 * Copy a conference title/logo image.
-	 * @param $oldName string old setting name
-	 * @param $newName string new setting name
-	 * @return array image info
-	 */
-	function copyConferenceImage($oldName, $newName) {
-		if (empty($this->conferenceInfo[$oldName])) {
-			return null;
-		}
-		
-		$oldPath = $this->importPath . '/images/custom/' . $this->trans($this->conferenceInfo[$oldName]);
-		if (!file_exists($oldPath)) {
-			return null;
-		}
-		
-		list($width, $height) = getimagesize($oldPath);
-		
-		$fileManager = &new PublicFileManager();
-		$extension = $fileManager->getExtension($this->trans($this->conferenceInfo[$oldName]));
-				
-		$uploadName = $newName . '.' . $extension;
-		if (!$fileManager->copyConferenceFile($this->conferenceId, $oldPath, $uploadName)) {
-			printf("Failed to copy file %s\n", $oldPath);
-			return null; // This should never happen
-		}
-		
-		return array(
-			'name' => $this->trans($this->conferenceInfo[$oldName]),
-			'uploadName' => $uploadName,
-			'width' => $width,
-			'height' => $height,
-			'dateUploaded' => Core::getCurrentDate()
-		);
-	}
-	
-	/**
-	 * Copy a paper file.
-	 * @param $paperId int
-	 * @param $oldFileId int
-	 * @param $fileType string
-	 */
-	function addPaperFile($paperId, $oldFileId, $fileType) {
-		if (!$oldFileId) {
-			return 0;
-		}
-		
-		$result = &$this->importDao->retrieve('SELECT * FROM tblfiles WHERE nFileID = ?', $oldFileId);
-
-		if ($result->RecordCount() == 0) {
-			$result->Close();
-			return 0;
-		}
-		
-		$row = &$result->fields;
-		$oldPath = $this->trans($this->globalConfigInfo['chFilePath']) . $this->trans($row['chFilePath']);
-		
-		$fileManager = &new PaperFileManager($paperId);
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		
-		$paperFile = &new PaperFile();
-		$paperFile->setPaperId($paperId);
-		$paperFile->setFileName('temp');
-		$paperFile->setOriginalFileName($this->trans($row['chOldFileName']));
-		$paperFile->setFileType($this->trans($row['chFileType']));
-		$paperFile->setFileSize(filesize($oldPath));
-		$paperFile->setType($fileManager->typeToPath($fileType));
-		$paperFile->setStatus('');
-		$paperFile->setDateUploaded($row['dtDateUploaded']);
-		$paperFile->setDateModified($row['dtDateUploaded']);
-		$paperFile->setStage(1);
-		$paperFile->setRevision(1);
-		
-		$fileId = $paperFileDao->insertPaperFile($paperFile);
-		
-		$newFileName = $fileManager->generateFilename($paperFile, $fileType, $row['chOldFileName']);
-		if (!$fileManager->copyFile($oldPath, $fileManager->filesDir . $fileManager->typeToPath($fileType) . '/' . $newFileName)) {
-			$paperFileDao->deletePaperFileById($paperFile->getFileId());
-			printf("Failed to copy file %s\n", $oldPath);
-			$result->Close();
-			return 0; // This should never happen
-		}
-		
-		$paperFileDao->updatePaperFile($paperFile);
-		$this->fileMap[$oldFileId] = $fileId;
-
-		$result->Close();
-
-		return $fileId;
-	}
-	
-	/**
-	 * Copy all image files for a paper's HTML galley.
-	 * @param $galley PaperHTMLGalley
-	 * @param $prefix string image file prefix, e.g. "<abbrev>-<year>-<id>"
-	 */
-	function copyHTMLGalleyImages($galley, $prefix) {
-		$dir = opendir($this->importPath . '/images/paperimages');
-		if (!$dir) {
-			printf("Failed to open directory %s\n", $this->importPath . '/images/paperimages');
-			return; // This should never happen
-		}
-		
-		while(($file = readdir($dir)) !== false) {
-			if (!strstr($file, $prefix . '-')) {
-				continue;
-			}
-			
-			if (!isset($fileManager)) {
-				$fileManager = &new PaperFileManager($galley->getPaperId());
-				$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-				$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-			}
-			
-			$fileType = PAPER_FILE_PUBLIC;
-			$oldPath = $this->importPath . '/images/paperimages/' . $file;
-			
-			$mimeType = String::mime_content_type($oldPath);
-			if (empty($mimeType)) {
-				$extension = $fileManager->getExtension($file);
-				if ($extension == 'jpg') {
-					$mimeType = 'image/jpeg';
-				} else {
-					$mimeType = 'image/' . $extension;
-				}
-			}
-		
-			$paperFile = &new PaperFile();
-			$paperFile->setPaperId($galley->getPaperId());
-			$paperFile->setFileName('temp');
-			$paperFile->setOriginalFileName($file);
-			$paperFile->setFileType($mimeType);
-			$paperFile->setFileSize(filesize($oldPath));
-			$paperFile->setType($fileManager->typeToPath($fileType));
-			$paperFile->setStatus('');
-			$paperFile->setDateUploaded(date('Y-m-d', filemtime($oldPath)));
-			$paperFile->setDateModified($paperFile->getDateUploaded());
-			$paperFile->setStage(1);
-			$paperFile->setRevision(1);
-			
-			$fileId = $paperFileDao->insertPaperFile($paperFile);
-			
-			$newFileName = $fileManager->generateFilename($paperFile, $fileType, $file);
-			if (!$fileManager->copyFile($oldPath, $fileManager->filesDir . $fileManager->typeToPath($fileType) . '/' . $newFileName)) {
-				$paperFileDao->deletePaperFileById($paperFile->getFileId());
-				printf("Failed to copy file %s\n", $oldPath);
-				// This should never happen
-			} else {
-				$paperFileDao->updatePaperFile($paperFile);
-				$galleyDao->insertGalleyImage($galley->getGalleyId(), $fileId);
-			}
-		}
-		
-		closedir($dir);
-	}
-
-	/**
 	 * Get the list of conflicting user accounts.
 	 */
 	function getConflicts() {
 		return $this->conflicts;
+	}
+
+	/**
+	 * Get the list of errors.
+	 */
+	function getErrors() {
+		return $this->errors;
 	}
 }
 

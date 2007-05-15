@@ -49,6 +49,7 @@
 		<td class="label">{translate key="common.options"}</td>
 		<td class="value">
 			<input type="checkbox" name="options[]" id="options-importRegistrations" value="importRegistrations"{if $options && in_array('importRegistrations', $options)} checked="checked"{/if} /> <label for="options-importRegistrations">{translate key="admin.conferences.importRegistrations"}</label><br/>
+			<input type="checkbox" name="options[]" id="options-emailUsers" value="emailUsers"{if $options && in_array('emailUsers', $options)} checked="checked"{/if} /> <label for="options-emailUsers">{translate key="admin.conferences.emailUsers"}</label><br/>
 			<input type="checkbox" name="options[]" id="options-transcode" value="transcode"{if $options && in_array('transcode', $options)} checked="checked"{/if} /> <label for="options-transcode">{translate key="admin.conferences.transcode"}</label>
 		</td>
 	</tr>

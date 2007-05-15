@@ -11,6 +11,7 @@
 
 {include file="common/header.tpl"}
 
+{if !empty($conflicts)}
 <p>{translate key="admin.conferences.importOCS1.conflict.desc"}</p>
 
 <ul>
@@ -21,6 +22,18 @@
 {/foreach}
 </ul>
 
+{/if}
+
+{if !empty($errors)}
+<p>{translate key="admin.conferences.importOCS1.errors.desc"}</p>
+
+<ul>
+{foreach from=$errors item=error}
+	<li>{$error|escape}</li>
+{/foreach}
+</ul>
+
+{/if}
 <p>&#187; <a href="{url op="editConference" path=$conferenceId}">{translate key="admin.conferences.importOCS1.editMigratedConference"}</a></p>
 
 {include file="common/footer.tpl"}

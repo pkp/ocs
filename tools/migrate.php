@@ -59,7 +59,8 @@ class migrate extends CommandLineTool {
 			. "                  (E.g., \"/var/www/ojs\")\n"
 			. "options           importRegistrations - import registration type and registrant\n"
 			. "                  data\n"
-			. "                  verbose - print additional debugging information\n";
+			. "                  verbose - print additional debugging information\n"
+			. "                  emailUsers - Email created users with login information\n";
 	}
 	
 	/**

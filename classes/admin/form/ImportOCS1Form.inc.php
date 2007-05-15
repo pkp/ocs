@@ -63,6 +63,10 @@ class ImportOCS1Form extends Form {
 	function getConflicts() {
 		return $this->importer->getConflicts();
 	}
+
+	function getErrors() {
+		return $this->importer->getErrors();
+	}
 }
 
 ?>

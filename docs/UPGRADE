@@ -147,6 +147,13 @@ Instead, a migration utility has been provided to allow content from OCS 1.x to
 be imported into an installed 2.x system -- including most conference settings and
 all user, issue, and paper data.
 
+This migration tool imports papers, reviews, registrations, tracks, and attendant
+metadata, but the migration process IS NOT COMPREHENSIVE and there is a
+considerable amount of data and configuration that will not be migrated. It is
+STRONGLY SUGGESTED that you review all migrated data to ensure that it has been
+imported properly, partcularly security settings, registration and payment info,
+and other critical and/or private data.
+
 To migrate data from OCS 1.x to a 2.x system:
 
     - Install the latest release of OCS 2 onto the same server as the current
@@ -239,11 +246,13 @@ Additional notes regarding migration:
 
 OCS 1.x features that are currently not supported in 2.x:
 
+    - Most configuration options in OCS 1.x are not migrated because of
+      differences in operation between the two systems. After migrating, review
+      and configure your conference and scheduled conferences to ensure that
+      the site will operate as you need.
     - OCS 2 currently only includes an English localization (see the README for
       information on producing a translation for other languages)
     - LOCKSS support is currently unavailable, but will likely appear in a
       future release
-    - The conference statistics component is currently not implemented, but will be
-      added to a future release
     - Room and session scheduling is not currently implemented, and will be
       added in the near future.

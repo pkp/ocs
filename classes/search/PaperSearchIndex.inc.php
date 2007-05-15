@@ -35,8 +35,9 @@ class PaperSearchIndex {
 		$searchDao = &DAORegistry::getDAO('PaperSearchDAO');
 		$keywords = &PaperSearchIndex::filterKeywords($text);
 		for ($i = 0, $count = count($keywords); $i < $count; $i++) {
-			$searchDao->insertObjectKeyword($objectId, $keywords[$i], $position);
-			$position += 1;
+			if ($searchDao->insertObjectKeyword($objectId, $keywords[$i], $position) !== null) {
+				$position += 1;
+			}
 		}
 	}
 
@@ -242,17 +243,17 @@ class PaperSearchIndex {
 		if ($log) echo "done\n";
 		
 		// Build index
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
+		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		
-		$conferences = &$conferenceDao->getConferences();
-		while (!$conferences->eof()) {
-			$conference = &$conferences->next();
+		$schedConfs = &$schedConfDao->getSchedConfs();
+		while (!$schedConfs->eof()) {
+			$schedConf = &$schedConfs->next();
 			$numIndexed = 0;
 			
-			if ($log) echo "Indexing \"", $conference->getTitle(), "\" ... ";
+			if ($log) echo "Indexing \"", $schedConf->getFullTitle(), "\" ... ";
 			
-			$papers = &$paperDao->getPapersByConferenceId($conference->getConferenceId());
+			$papers = &$paperDao->getPapersBySchedConfId($schedConf->getSchedConfId());
 			while (!$papers->eof()) {
 				$paper = &$papers->next();
 				if ($paper->getDateSubmitted()) {
@@ -264,7 +265,7 @@ class PaperSearchIndex {
 			}
 			
 			if ($log) echo $numIndexed, " papers indexed\n";
-			unset($conference);
+			unset($schedConf);
 		}
 	}
 	

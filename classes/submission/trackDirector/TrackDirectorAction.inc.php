@@ -168,7 +168,7 @@ class TrackDirectorAction extends Action {
 			$reviewAssignment->setDateAssigned(Core::getCurrentDate());
 			$reviewAssignment->setStage($stage);
 			
-			$trackDirectorSubmission->AddReviewAssignment($reviewAssignment);
+			$trackDirectorSubmission->addReviewAssignment($reviewAssignment);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 		
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($trackDirectorSubmission->getPaperId(), $reviewerId, $stage);

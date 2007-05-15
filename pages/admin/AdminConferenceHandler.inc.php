@@ -150,10 +150,12 @@ class AdminConferenceHandler extends AdminHandler {
 		
 		if ($importForm->validate() && ($conferenceId = $importForm->execute()) !== false) {
 			$conflicts = $importForm->getConflicts();
-			if (!empty($conflicts)) {
+			$errors = $importForm->getErrors();
+			if (!empty($conflicts) || !empty($errors)) {
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('conferenceId', $conferenceId);
 				$templateMgr->assign('conflicts', $conflicts);
+				$templateMgr->assign('errors', $errors);
 				$templateMgr->display('admin/importConflicts.tpl');
 			} else {
 				Request::redirect(null, null, null, 'editConference', $conferenceId);

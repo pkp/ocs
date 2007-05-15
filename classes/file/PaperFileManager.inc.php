@@ -72,6 +72,29 @@ class PaperFileManager extends FileManager {
 	}
 	
 	/**
+	 * Write a submission file.
+	 * @param $fileName string The original filename
+	 * @param $contents string The contents to be written to the file
+	 * @param $mimeType string The mime type of the original file
+	 * @param $fileId int
+	 * @param $overwrite boolean
+	 */
+	function writeSubmissionFile($fileName, &$contents, $mimeType, $fileId = null, $overwrite = true) {
+		return $this->handleWrite($fileName, $contents, $mimeType, PAPER_FILE_SUBMISSION, $fileId, $overwrite);
+	}
+
+	/**
+	 * Copy a submission file.
+	 * @param $url string The source URL/filename
+	 * @param $mimeType string The mime type of the original file
+	 * @param $fileId int
+	 * @param $overwrite boolean
+	 */
+	function copySubmissionFile($url, $mimeType, $fileId = null, $overwrite = true) {
+		return $this->handleCopy($url, $mimeType, PAPER_FILE_SUBMISSION, $fileId, $overwrite);
+	}
+
+	/**
 	 * Upload a file to the review file folder.
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $fileId int
