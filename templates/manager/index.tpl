@@ -17,17 +17,17 @@
 <p>{translate key="manager.managementPages.description"}</p>
 
 <ul class="plain">
+	<li>&#187; <a href="{url op="setup"}">{translate key="manager.websiteManagement"}</a></li>
+	<li>&#187; <a href="{url op="schedConfs"}">{translate key="manager.schedConfs"}</a></li>
 	{if $announcementsEnabled}
 		<li>&#187; <a href="{url op="announcements"}">{translate key="manager.announcements"}</a></li>
 	{/if}
+	<li>&#187; <a href="{url op="emails"}">{translate key="manager.emails"}</a></li>
+	<li>&#187; <a href="{url page="rtadmin"}">{translate key="manager.readingTools"}</a></li>
 	<li>&#187; <a href="{url op="files"}">{translate key="manager.filesBrowser"}</a></li>
 	<li>&#187; <a href="{url op="importexport"}">{translate key="manager.importExport"}</a></li>
 	<li>&#187; <a href="{url op="languages"}">{translate key="common.languages"}</a></li>
-	<li>&#187; <a href="{url op="emails"}">{translate key="manager.emails"}</a></li>
-	<li>&#187; <a href="{url page="rtadmin"}">{translate key="manager.readingTools"}</a></li>
-	<li>&#187; <a href="{url op="schedConfs"}">{translate key="manager.schedConfs"}</a></li>
 	<li>&#187; <a href="{url op="conferenceEventLog"}">{translate key="manager.conferenceEventLog"}</a></li>
-	<li>&#187; <a href="{url op="setup"}">{translate key="manager.websiteManagement"}</a></li>
 	<li>&#187; <a href="{url op="plugins"}">{translate key="manager.plugins"}</a></li>
 	{call_hook name="Templates::Manager::Index::ManagementPages"}
 </ul>
