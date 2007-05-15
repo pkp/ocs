@@ -23,10 +23,4 @@
 	{call_hook name="Templates::Director::Index::Submissions"}
 </ul>
 
-<br />
-
-<ul class="plain">
-	<li>&#187; <a href="{url op="timeline"}">{translate key="director.timeline"}</a></li>
-</ul>
-
 {include file="common/footer.tpl"}

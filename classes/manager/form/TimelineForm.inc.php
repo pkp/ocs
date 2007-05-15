@@ -26,67 +26,67 @@ class TimelineForm extends Form {
 	 */
 	function TimelineForm($overrideDates = false) {
 		$this->canEdit = false;
-		if (Validation::isDirector() || Validation::isConferenceManager()) {
+		if (Validation::isConferenceManager()) {
 			$this->canEdit = true;
 		}
 
 		if($this->canEdit) {
-			parent::Form('trackDirector/timelineEdit.tpl');
+			parent::Form('manager/timelineEdit.tpl');
 		} else {
-			parent::Form('trackDirector/timelineView.tpl');
+			parent::Form('manager/timelineView.tpl');
 		}
 
 		if (!$overrideDates) {
 			// Conference start must happen before conference end
-			$this->addCheck(new FormValidatorCustom($this, 'endDate', 'required', 'director.timeline.form.conferenceEndDateBeforeConferenceStart',
+			$this->addCheck(new FormValidatorCustom($this, 'endDate', 'required', 'manager.timeline.form.conferenceEndDateBeforeConferenceStart',
 				create_function('$endDate,$form',
 				'return ($endDate >= $form->getData(\'startDate\'));'),
 				array(&$this)));
 
 			// Conference start must happen before site move to archive
-			$this->addCheck(new FormValidatorCustom($this, 'siteEndDate', 'required', 'director.timeline.form.siteEndDateBeforeConferenceStart',
+			$this->addCheck(new FormValidatorCustom($this, 'siteEndDate', 'required', 'manager.timeline.form.siteEndDateBeforeConferenceStart',
 				create_function('$endDate,$form',
 				'return ($endDate >= $form->getData(\'startDate\'));'),
 				array(&$this)));
 
 			// Conference start must happen after submission close
-			$this->addCheck(new FormValidatorCustom($this, 'startDate', 'required', 'director.timeline.form.conferenceStartDateBeforeSubmissionsClose',
+			$this->addCheck(new FormValidatorCustom($this, 'startDate', 'required', 'manager.timeline.form.conferenceStartDateBeforeSubmissionsClose',
 				create_function('$startDate,$form',
 				'return ($startDate >= $form->getData(\'submissionsCloseDate\'));'),
 				array(&$this)));
 
 			// Conference site start must happen before site end
-			$this->addCheck(new FormValidatorCustom($this, 'siteStartDate', 'required', 'director.timeline.form.siteEndDateBeforeSiteStart',
+			$this->addCheck(new FormValidatorCustom($this, 'siteStartDate', 'required', 'manager.timeline.form.siteEndDateBeforeSiteStart',
 				create_function('$siteStartDate,$form',
 				'return ($siteStartDate <= $form->getData(\'siteEndDate\'));'),
 				array(&$this)));
 
 			// Conference start must happen after site go-live
-			$this->addCheck(new FormValidatorCustom($this, 'siteStartDate', 'required', 'director.timeline.form.conferenceStartBeforeSiteStart',
+			$this->addCheck(new FormValidatorCustom($this, 'siteStartDate', 'required', 'manager.timeline.form.conferenceStartBeforeSiteStart',
 				create_function('$siteStartDate,$form',
 				'return ($siteStartDate <= $form->getData(\'startDate\'));'),
 				array(&$this)));
 
 			// Move to Conference Archive must come after Last Day of Conf
-			$this->addCheck(new FormValidatorCustom($this, 'siteEndDate', 'required', 'director.timeline.form.siteEndBeforeLastDay',
+			$this->addCheck(new FormValidatorCustom($this, 'siteEndDate', 'required', 'manager.timeline.form.siteEndBeforeLastDay',
 				create_function('$siteEndDate,$form',
 				'return ($siteEndDate >= $form->getData(\'endDate\'));'),
 				array(&$this)));
 
 			// regPresenterOpenDate must be before regPresenterCloseDate
-			$this->addCheck(new FormValidatorCustom($this, 'regPresenterOpenDate', 'required', 'director.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate',
+			$this->addCheck(new FormValidatorCustom($this, 'regPresenterOpenDate', 'required', 'manager.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate',
 				create_function('$regPresenterOpenDate,$form',
 				'return ($regPresenterOpenDate <= $form->getData(\'regPresenterCloseDate\'));'),
 				array(&$this)));
 
 			// regReviewerOpenDate must be before regReviewerCloseDate
-			$this->addCheck(new FormValidatorCustom($this, 'regReviewerOpenDate', 'required', 'director.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate',
+			$this->addCheck(new FormValidatorCustom($this, 'regReviewerOpenDate', 'required', 'manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate',
 				create_function('$regReviewerOpenDate,$form',
 				'return ($regReviewerOpenDate <= $form->getData(\'regReviewerCloseDate\'));'),
 				array(&$this)));
 
 			// Submission CfP must come before Close Submissions
-			$this->addCheck(new FormValidatorCustom($this, 'showCFPDate', 'required', 'director.timeline.form.submissionsCloseBeforeCFP',
+			$this->addCheck(new FormValidatorCustom($this, 'showCFPDate', 'required', 'manager.timeline.form.submissionsCloseBeforeCFP',
 				create_function('$showCFPDate,$form',
 				'return ($showCFPDate <= $form->getData(\'submissionsCloseDate\'));'),
 				array(&$this)));
@@ -100,7 +100,7 @@ class TimelineForm extends Form {
 		$schedConf =& Request::getSchedConf();
 		$templateMgr = &TemplateManager::getManager();
 
-		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'director'), 'user.role.director')));
+		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'manager'), 'user.role.manager')));
 		$templateMgr->assign('helpTopicId','conference.managementPages.timeline');
 
 		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);

@@ -20,10 +20,4 @@
 		<li><a href="{url op="submissions" path="submissionsAccepted"}">{translate key="common.queue.short.submissionsAccepted"}</a></li>
 		<li><a href="{url op="submissions" path="submissionsArchives"}">{translate key="common.queue.short.submissionsArchives"}</a></li>
 	</ul>
-
-	<span class="blockSubtitle">{translate key="director.navigation.management"}</span>
-
-	<ul>
-		<li><a href="{url op="timeline"}">{translate key="director.timeline"}</a></li>
-	</ul>
 </div>

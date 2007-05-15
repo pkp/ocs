@@ -1238,46 +1238,47 @@ Title of classification system]]></message>
 	<message key="manager.tracks.abstractsDisabled">Do not request abstracts with submissions</message>
 
 	<!-- Timeline management -->
-	<message key="director.timeline.conferenceTimeline">Conference Timeline</message>
-	<message key="director.timeline.overrideDates">Override error message(s)</message>
-	<message key="director.timeline.description"><![CDATA[
+	<message key="manager.timeline">Conference Timeline</message>
+	<message key="manager.timeline.conferenceTimeline">Conference Timeline</message>
+	<message key="manager.timeline.overrideDates">Override error message(s)</message>
+	<message key="manager.timeline.description"><![CDATA[
 		Enter the dates when acivities are to take place for this scheduled conference, and then notify the relevant users with the prepared email at the indicated dates.]]></message>
 
-	<message key="director.timeline.conference">Conference</message>
-	<message key="director.timeline.schedConfStartsOn">First day of conference</message>
-	<message key="director.timeline.schedConfEndsOn">Last day of conference</message>
+	<message key="manager.timeline.conference">Conference</message>
+	<message key="manager.timeline.schedConfStartsOn">First day of conference</message>
+	<message key="manager.timeline.schedConfEndsOn">Last day of conference</message>
 	
-	<message key="director.timeline.website">Website</message>
-	<message key="director.timeline.schedConfAppearsOn">Go Live (as a Current Conference)</message>
-	<message key="director.timeline.schedConfArchivedOn">Move to Conference Archive</message>
+	<message key="manager.timeline.website">Website</message>
+	<message key="manager.timeline.schedConfAppearsOn">Go Live (as a Current Conference)</message>
+	<message key="manager.timeline.schedConfArchivedOn">Move to Conference Archive</message>
 
-	<message key="director.timeline.submissions">Submissions</message>
-	<message key="director.timeline.openRegPresenter">Author registration opened</message>
-	<message key="director.timeline.closeRegPresenter">Author registration closed</message>
-	<message key="director.timeline.showCFP">Call for Papers posted</message>
-	<message key="director.timeline.submissionsOpen">Submissions accepted</message>
-	<message key="director.timeline.submissionsClosed">Submissions closed</message>
+	<message key="manager.timeline.submissions">Submissions</message>
+	<message key="manager.timeline.openRegPresenter">Author registration opened</message>
+	<message key="manager.timeline.closeRegPresenter">Author registration closed</message>
+	<message key="manager.timeline.showCFP">Call for Papers posted</message>
+	<message key="manager.timeline.submissionsOpen">Submissions accepted</message>
+	<message key="manager.timeline.submissionsClosed">Submissions closed</message>
 
-	<message key="director.timeline.reviews">Reviews</message>
-	<message key="director.timeline.openRegReviewer">Reviewer registration opened</message>
-	<message key="director.timeline.closeRegReviewer">Reviewer registration closed</message>
-	<message key="director.timeline.closeReviewProcess">Review process closed</message>
+	<message key="manager.timeline.reviews">Reviews</message>
+	<message key="manager.timeline.openRegReviewer">Reviewer registration opened</message>
+	<message key="manager.timeline.closeRegReviewer">Reviewer registration closed</message>
+	<message key="manager.timeline.closeReviewProcess">Review process closed</message>
 	
-	<message key="director.timeline.websitePosting">Website Posting</message>
-	<message key="director.timeline.postPresentations">Accepted abstracts/presentations</message>
-	<message key="director.timeline.postAbstracts">Accepted abstracts</message>
-	<message key="director.timeline.postPapers">Accepted papers</message>
-	<message key="director.timeline.delayOpenAccess">Delay open access until</message>
-	<message key="director.timeline.closeComments">Close comments</message>
-	<message key="director.timeline.form.conferenceEndDateBeforeConferenceStart">The conference end date must come after the conference start date.</message>
-	<message key="director.timeline.form.siteEndDateBeforeConferenceStart">The conference site cannot be moved to the archive before the conference start date.</message>
-	<message key="director.timeline.form.conferenceStartDateBeforeSubmissionsClose">The conference cannot start before submissions are closed.</message>
-	<message key="director.timeline.form.siteEndDateBeforeSiteStart">The website "Go Live" date must come before the "Move to Conference Archive" date.</message>
-	<message key="director.timeline.form.conferenceStartBeforeSiteStart">The website "Go Live" date must come before the conference start date.</message>
-	<message key="director.timeline.form.siteEndBeforeLastDay">The "Move to Conference Archive" date must come after the last day of the conference.</message>
-	<message key="director.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate">The author registration open date must come before the author registration close date.</message>
-	<message key="director.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">The reviewer registration open date must come before the reviewer registration close date.</message>
-	<message key="director.timeline.form.submissionsCloseBeforeCFP">The Call for Papers must be posted before submissions close.</message>
+	<message key="manager.timeline.websitePosting">Website Posting</message>
+	<message key="manager.timeline.postPresentations">Accepted abstracts/presentations</message>
+	<message key="manager.timeline.postAbstracts">Accepted abstracts</message>
+	<message key="manager.timeline.postPapers">Accepted papers</message>
+	<message key="manager.timeline.delayOpenAccess">Delay open access until</message>
+	<message key="manager.timeline.closeComments">Close comments</message>
+	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">The conference end date must come after the conference start date.</message>
+	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">The conference site cannot be moved to the archive before the conference start date.</message>
+	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">The conference cannot start before submissions are closed.</message>
+	<message key="manager.timeline.form.siteEndDateBeforeSiteStart">The website "Go Live" date must come before the "Move to Conference Archive" date.</message>
+	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">The website "Go Live" date must come before the conference start date.</message>
+	<message key="manager.timeline.form.siteEndBeforeLastDay">The "Move to Conference Archive" date must come after the last day of the conference.</message>
+	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate">The author registration open date must come before the author registration close date.</message>
+	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">The reviewer registration open date must come before the reviewer registration close date.</message>
+	<message key="manager.timeline.form.submissionsCloseBeforeCFP">The Call for Papers must be posted before submissions close.</message>
 
 	<!-- Import/Export -->
 	<message key="manager.importExport">Import/Export Data</message>
@@ -1554,7 +1555,6 @@ You may optionally provide the user with a reason for disabling their account.</
 
 	<!-- Director -->
 	<message key="director.home">Director Home</message>
-	<message key="director.timeline">Conference Timeline</message>
 	<message key="director.submissionsAndPublishing">Submissions and Publishing</message>
 	<message key="director.submissionQueue">Submission Queue</message>
 	<message key="director.submissionArchive">Submission Archive</message>

@@ -168,6 +168,16 @@ class TrackDirectorHandler extends Handler {
 	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null, $showSidebar = true) {
 		$templateMgr = &TemplateManager::getManager();
 		$isDirector = Validation::isDirector();
+		$pageHierarchy = array();
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+
+		if ($schedConf) {
+			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getFullTitle(), true);
+		} elseif ($conference) {
+			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getTitle(), true);
+		}
 
 		if (Request::getRequestedPage() == 'director') {
 			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $showSidebar, $paperId, $parentPage);
@@ -175,16 +185,20 @@ class TrackDirectorHandler extends Handler {
 			
 		} else {
 			$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole');
+			$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
 
-			$pageHierarchy = $subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector'), array(Request::url(null, null, $isDirector?'director':'trackDirector'), 'paper.submissions'))
-				: array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector'));
+			if ($subclass) {
+				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
+				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), 'paper.submissions');
+			} else {
+				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
+			}
 
 			import('submission.trackDirector.TrackDirectorAction');
 			$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'trackDirector');
 			if (isset($submissionCrumb)) {
 				$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
 			}
-			$templateMgr->assign('pageHierarchy', $pageHierarchy);
 
 			if ($showSidebar) {
 				$templateMgr->assign('sidebarTemplate', 'trackDirector/navsidebar.tpl');
@@ -196,6 +210,7 @@ class TrackDirectorHandler extends Handler {
 				$templateMgr->assign('submissionsCount', $submissionsCount);
 			}
 		}
+		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 	
 	/**
@@ -207,20 +222,6 @@ class TrackDirectorHandler extends Handler {
 		if (!isset($args[0]) || !Action::instructions($args[0])) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
-	}
-
-	//
-	// Timeline Management
-	//
-	
-	function timeline($args) {
-		import('pages.trackDirector.TimelineHandler');
-		TimelineHandler::timeline($args);
-	}
-
-	function updateTimeline($args) {
-		import('pages.trackDirector.TimelineHandler');
-		TimelineHandler::updateTimeline($args);
 	}
 
 	//

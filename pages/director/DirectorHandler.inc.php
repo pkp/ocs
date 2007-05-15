@@ -296,8 +296,21 @@ class DirectorHandler extends TrackDirectorHandler {
 	function setupTemplate($level = DIRECTOR_TRACK_HOME, $showSidebar = true, $paperId = 0, $parentPage = null) {
 		$templateMgr = &TemplateManager::getManager();
 
-		if ($level==DIRECTOR_TRACK_HOME) $pageHierarchy = array(array(Request::url(null, null, 'user'), 'navigation.user'));
-		else if ($level==DIRECTOR_TRACK_SUBMISSIONS) $pageHierarchy = array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'director'), 'user.role.director'), array(Request::url(null, null, 'director', 'submissions'), 'paper.submissions'));
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		$pageHierarchy = array();
+
+		if ($schedConf) {
+			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getFullTitle(), true);
+		} elseif ($conference) {
+			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getTitle(), true);
+		}
+
+		$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
+		if ($level==DIRECTOR_TRACK_SUBMISSIONS) {
+			$pageHierarchy[] = array(Request::url(null, null, 'director'), 'user.role.director');
+			$pageHierarchy[] = array(Request::url(null, null, 'director', 'submissions'), 'paper.submissions');
+		}
 
 		import('submission.trackDirector.TrackDirectorAction');
 		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'director');

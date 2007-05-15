@@ -679,6 +679,20 @@ class ManagerHandler extends Handler {
 	}
 
 	//
+	// Timeline Management
+	//
+	
+	function timeline($args) {
+		import('pages.manager.TimelineHandler');
+		TimelineHandler::timeline($args);
+	}
+
+	function updateTimeline($args) {
+		import('pages.manager.TimelineHandler');
+		TimelineHandler::updateTimeline($args);
+	}
+
+	//
 	// Conference History
 	//
 

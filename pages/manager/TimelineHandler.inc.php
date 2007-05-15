@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.director
+ * @package pages.manager
  *
  * Handle requests for scheduled conference timeline management functions. 
  *
  * $Id$
  */
 
-class TimelineHandler extends TrackDirectorHandler {
+class TimelineHandler extends ManagerHandler {
 
 	/**
 	 * Display a list of the tracks within the current conference.
@@ -22,7 +22,7 @@ class TimelineHandler extends TrackDirectorHandler {
 		parent::validate();
 		parent::setupTemplate(true);
 		
-		import('director.form.TimelineForm');
+		import('manager.form.TimelineForm');
 		
 		$timelineForm = &new TimelineForm(Request::getUserVar('overrideDates'));
 		$timelineForm->initData();
@@ -33,7 +33,7 @@ class TimelineHandler extends TrackDirectorHandler {
 	function updateTimeline($args) {
 		parent::validate();
 		
-		import('director.form.TimelineForm');
+		import('manager.form.TimelineForm');
 		
 		$timelineForm = &new TimelineForm(Request::getUserVar('overrideDates'));
 		$timelineForm->readInputData();
