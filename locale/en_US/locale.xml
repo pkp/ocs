@@ -1242,8 +1242,7 @@ Title of classification system]]></message>
 	<message key="manager.timeline">Conference Timeline</message>
 	<message key="manager.timeline.conferenceTimeline">Conference Timeline</message>
 	<message key="manager.timeline.overrideDates">Override error message(s)</message>
-	<message key="manager.timeline.description"><![CDATA[
-		Enter the dates when acivities are to take place for this scheduled conference.]]></message>
+	<message key="manager.timeline.description">The dates recorded here will be utilized for this scheduled conference, and can be posted on the website by checking "Conference timeline" at the bottom of the page.</message>
 
 	<message key="manager.timeline.conference">Conference</message>
 	<message key="manager.timeline.schedConfStartsOn">First day of conference</message>
@@ -1268,11 +1267,10 @@ Title of classification system]]></message>
 	<message key="manager.timeline.websitePosting">Website Posting</message>
 	<message key="manager.timeline.postPresentations">Accepted abstracts/presentations</message>
 	<message key="manager.timeline.postAbstracts">Accepted abstracts</message>
-	<message key="manager.timeline.postTimeline">Conference timeline</message>
-	<message key="manager.timeline.postTimeline.description">Link to appear under Conference Information</message>
+	<message key="manager.timeline.postTimeline">Conference timeline (included in Conference Information)</message>
 	<message key="manager.timeline.postPapers">Accepted papers</message>
 	<message key="manager.timeline.delayOpenAccess">Delay open access until</message>
-	<message key="manager.timeline.closeComments">Close comments</message>
+	<message key="manager.timeline.closeComments">Close comments (requires Reading Tools to activate)</message>
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">The conference end date must come after the conference start date.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">The conference site cannot be moved to the archive before the conference start date.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">The conference cannot start before submissions are closed.</message>
