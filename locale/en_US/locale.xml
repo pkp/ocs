@@ -2061,7 +2061,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<!-- Conference Proceedings -->
 	<message key="presentations.notPermitted">You do not yet have access to this conference's presentations.</message>
 	<message key="presentations.trackEmpty">No papers are available in this track.</message>
-	<message key="presentations.schedConfEmpty">This conference's presentations are not yet available.</message>
+	<message key="presentations.schedConfEmpty">This conference's presentations are not yet available or no matching presentations were found.</message>
 	
 	<!-- Program page -->
 	<message key="schedConf.program.programFileInstructions">The program for this conference is available via the following link.</message>

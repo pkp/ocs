@@ -144,9 +144,10 @@ class PublishedPaperDAO extends DAO {
 	 * @param $schedConfId int
 	 * @return PublishedPaper objects array
 	 */
-	function &getPublishedPapersInTracks($schedConfId, $searchField, $searchMatch, $search) {
+	function &getPublishedPapersInTracks($schedConfId, $trackId, $searchField, $searchMatch, $search) {
 		$publishedPapers = array();
 		$params = array($schedConfId, $schedConfId);
+		if ($trackId) $params[] = $trackId;
 		$searchSql = '';
 		if (!empty($search)) switch ($searchField) {
 			case SUBMISSION_FIELD_TITLE:
@@ -186,6 +187,7 @@ class PublishedPaperDAO extends DAO {
 				AND pa.sched_conf_id = ?
 				AND p.status = ' . SUBMISSION_STATUS_PUBLISHED . '
 				AND pp.paper_id = p.paper_id
+				' . ($trackId?'AND p.track_id = ?' : ''). '
 				' . $searchSql . '
 			ORDER BY track_seq ASC, pa.seq ASC', $params
 		);
