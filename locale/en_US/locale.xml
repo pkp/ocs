@@ -1557,7 +1557,6 @@ You may optionally provide the user with a reason for disabling their account.</
 
 	<!-- Director -->
 	<message key="director.home">Director Home</message>
-	<message key="director.submissionsAndPublishing">Submissions and Publishing</message>
 	<message key="director.submissionQueue">Submission Queue</message>
 	<message key="director.submissionArchive">Submission Archive</message>
 	<message key="director.allTracks">All Tracks</message>
@@ -1840,11 +1839,11 @@ The file can be viewed by clicking on the file name. A new or revised file can b
 	<message key="presenter.submit.submissionFileUpload">Supplementary File</message>
 
 	<!-- Paper Submission Step 5 -->
-	<message key="presenter.submit.confirmationDescription">With the previous four steps of the submission process completed, click Finish Submission to submit your manuscript to {$conferenceTitle}. You will receive an acknowledgement by email and will be able to view your submission's progress through the editorial process by logging in to the conference web site. Thank you for your interest in publishing with {$conferenceTitle}.</message>
+	<message key="presenter.submit.confirmationDescription">With the previous four steps of the submission process completed, click Finish Submission to submit your manuscript to {$conferenceTitle}. You will receive an acknowledgement by email and will be able to view your submission's progress through the editorial process by logging in to the conference web site. Thank you for submitting your work to {$conferenceTitle}.</message>
 	<message key="presenter.submit.noFiles">No files have been attached to this submission.</message>
 	<message key="presenter.submit.filesSummary">File Summary</message>
 	<message key="presenter.submit.finishSubmission">Finish Submission</message>
-	<message key="presenter.submit.submissionComplete">Submission complete. Thank you for your interest in publishing with {$conferenceTitle}.</message>
+	<message key="presenter.submit.submissionComplete">Submission complete. Thank you for submitting your work to {$conferenceTitle}.</message>
 	<message key="presenter.submit.expedite"><![CDATA[If this submission is in a format that is ready to be published, without further review or editing work, it can be sent directly to the Proceedings page by <a href="{$expediteUrl}" class="action">Clicking here</a>. (Note: Only conference directors have this option for their submissions.)]]></message>
 
 	<!-- Used in submission review / editing -->
@@ -2105,13 +2104,13 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.registrationContact">Registration Contact</message>
 	<message key="about.availableRegistrationTypes">Registration Types</message>
 	<message key="about.siteMap">Site Map</message>
-	<message key="about.aboutThisPublishingSystem">About this Publishing System</message>
+	<message key="about.aboutThisPublishingSystem">About this Conference System</message>
 	<message key="about.currentConferences">Current Conferences</message>
 	<message key="about.people">People</message>
 	<message key="about.policies">Policies</message>
 	<message key="about.other">Other</message>
-	<message key="about.aboutOCSConference"><![CDATA[This conference uses Open Conference Systems {$ocsVersion}, which is open source conference management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
-	<message key="about.aboutOCSSite"><![CDATA[This site uses Open Conference Systems {$ocsVersion}, which is open source conference management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
+	<message key="about.aboutOCSConference"><![CDATA[This conference uses Open Conference Systems {$ocsVersion}, which is open source conference management software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
+	<message key="about.aboutOCSSite"><![CDATA[This site uses Open Conference Systems {$ocsVersion}, which is open source conference management software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
 
 	<!-- Announcement -->
 	<message key="announcement.announcements">Announcements</message>
