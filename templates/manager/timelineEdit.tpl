@@ -168,12 +168,9 @@
 		</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">
+		<td class="label" colspan="2">
 			<input type="checkbox" name="postTimeline" id="postTimeline" value="1" {if $postTimeline}checked="checked"{/if} />
 			{fieldLabel name="postTimeline" key="manager.timeline.postTimeline"}
-		</td>
-		<td width="50%" class="value">
-				{translate key="manager.timeline.postTimeline.description"}
 		</td>
 	</tr>
 </table>
