@@ -1269,6 +1269,7 @@ Title of classification system]]></message>
 	<message key="manager.timeline.postPresentations">Accepted abstracts/presentations</message>
 	<message key="manager.timeline.postAbstracts">Accepted abstracts</message>
 	<message key="manager.timeline.postTimeline">Conference timeline</message>
+	<message key="manager.timeline.postTimeline.description">Link to appear under Conference Information</message>
 	<message key="manager.timeline.postPapers">Accepted papers</message>
 	<message key="manager.timeline.delayOpenAccess">Delay open access until</message>
 	<message key="manager.timeline.closeComments">Close comments</message>
