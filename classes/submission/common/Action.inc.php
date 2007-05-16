@@ -19,14 +19,6 @@ define('SUBMISSION_DIRECTOR_DECISION_ACCEPT', 2);
 define('SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS', 3);
 define('SUBMISSION_DIRECTOR_DECISION_DECLINE', 4);
 
-/* These constants are used as search fields for the various submission lists */
-define('SUBMISSION_FIELD_PRESENTER', 1);
-define('SUBMISSION_FIELD_DIRECTOR', 2);
-define('SUBMISSION_FIELD_TITLE', 3);
-define('SUBMISSION_FIELD_REVIEWER', 4);
-
-define('SUBMISSION_FIELD_DATE_SUBMITTED', 5);
-
 class Action {
 
 	/**

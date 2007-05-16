@@ -232,11 +232,14 @@ class DirectorSubmissionDAO extends DAO {
 		$last_comma_first_middle = $this->_dataSource->Concat($prefix.'last_name', '\', \'', $prefix.'first_name', '\' \'', $prefix.'middle_name');
 		if ($searchMatch === 'is') {
 			$searchSql = " AND (LOWER({$prefix}last_name) = LOWER(?) OR LOWER($first_last) = LOWER(?) OR LOWER($first_middle_last) = LOWER(?) OR LOWER($last_comma_first) = LOWER(?) OR LOWER($last_comma_first_middle) = LOWER(?))";
+			$params[] = $params[] = $params[] = $params[] = $params[] = $search;
+		} elseif ($searchMatch === 'initial') {
+			$searchSql = " AND (LOWER({$prefix}last_name) LIKE LOWER(?))";
+			$params[] = $search . '%';
 		} else {
 			$searchSql = " AND (LOWER({$prefix}last_name) LIKE LOWER(?) OR LOWER($first_last) LIKE LOWER(?) OR LOWER($first_middle_last) LIKE LOWER(?) OR LOWER($last_comma_first) LIKE LOWER(?) OR LOWER($last_comma_first_middle) LIKE LOWER(?))";
-			$search = '%' . $search . '%';
+			$params[] = $params[] = $params[] = $params[] = $params[] = '%' . $search . '%';
 		}
-		$params[] = $params[] = $params[] = $params[] = $params[] = $search;
 		return $searchSql;
 	}
 

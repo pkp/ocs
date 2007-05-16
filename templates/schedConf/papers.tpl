@@ -13,6 +13,22 @@
 {include file="common/header.tpl"}
 
 {if $mayViewProceedings}
+	<form method="post" name="submit" action="{url op="presentations"}">
+		<select name="searchField" size="1" class="selectMenu">
+			{html_options_translate options=$fieldOptions selected=$searchField}
+		</select>
+		<select name="searchMatch" size="1" class="selectMenu">
+			<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
+			<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
+		</select>
+		<input type="text" size="15" name="search" class="textField" value="{$search|escape}" />
+		<input type="submit" value="{translate key="common.search"}" class="button" />
+		<br />
+		{translate key="user.lastName"}
+		{foreach from=$alphaList item=letter}<a href="{url op="presentations" searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter}</strong>{else}{$letter}{/if}</a> {/foreach}<a href="{url op="presentations"}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a>
+	</form>
+	&nbsp;
+
 	{foreach name=tracks from=$publishedPapers item=track key=trackId}
 		{if $track.title}<h4>{$track.title|escape}</h4>{/if}
 
@@ -48,6 +64,7 @@
 			<div class="separator"></div>
 		{/if}
 	{foreachelse}
+		<br />
 		{translate key="presentations.schedConfEmpty"}
 	{/foreach}
 {else} {* notPermitted *}

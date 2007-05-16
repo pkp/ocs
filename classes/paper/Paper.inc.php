@@ -32,6 +32,14 @@ define ('SUBMISSION_STATUS_INCOMPLETE', 9);
 define ('REVIEW_STAGE_ABSTRACT', 1);
 define ('REVIEW_STAGE_PRESENTATION', 2);
 
+/* These constants are used as search fields for the various submission lists */
+define('SUBMISSION_FIELD_PRESENTER', 1);
+define('SUBMISSION_FIELD_DIRECTOR', 2);
+define('SUBMISSION_FIELD_TITLE', 3);
+define('SUBMISSION_FIELD_REVIEWER', 4);
+
+define('SUBMISSION_FIELD_DATE_SUBMITTED', 5);
+
 class Paper extends DataObject {
 
 	/** @var array Presenters of this paper */

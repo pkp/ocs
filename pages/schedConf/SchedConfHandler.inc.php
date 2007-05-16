@@ -250,10 +250,34 @@ class SchedConfHandler extends Handler {
 		
 		if($mayViewProceedings) {
 			$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
-			$rangeInfo = Handler::getRangeInfo('publishedPapers');
 
-			$publishedPapers = &$publishedPaperDao->getPublishedPapersInTracks($schedConf->getSchedConfId(), true);
+			// Get the user's search conditions, if any
+			$searchField = Request::getUserVar('searchField');
+			$searchMatch = Request::getUserVar('searchMatch');
+			$search = Request::getUserVar('search');
 
+			$searchInitial = Request::getUserVar('searchInitial');
+			if (isset($searchInitial)) {
+				$searchField = SUBMISSION_FIELD_PRESENTER;
+				$searchMatch = 'initial';
+				$search = $searchInitial;
+			}
+
+			$templateMgr->assign('fieldOptions', Array(
+				SUBMISSION_FIELD_TITLE => 'paper.title',
+				SUBMISSION_FIELD_PRESENTER => 'user.role.presenter'
+			));
+
+			$publishedPapers = &$publishedPaperDao->getPublishedPapersInTracks($schedConf->getSchedConfId(), $searchField, $searchMatch, $search);
+
+			// Set search parameters
+			$duplicateParameters = array(
+				'searchField', 'searchMatch', 'search', 'searchInitial'
+			);
+			foreach ($duplicateParameters as $param)
+				$templateMgr->assign($param, Request::getUserVar($param));
+
+			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 			$templateMgr->assign_by_ref('publishedPapers', $publishedPapers);
 		}
 

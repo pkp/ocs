@@ -144,12 +144,29 @@ class PublishedPaperDAO extends DAO {
 	 * @param $schedConfId int
 	 * @return PublishedPaper objects array
 	 */
-	function &getPublishedPapersInTracks($schedConfId) {
+	function &getPublishedPapersInTracks($schedConfId, $searchField, $searchMatch, $search) {
 		$publishedPapers = array();
+		$params = array($schedConfId, $schedConfId);
+		$searchSql = '';
+		if (!empty($search)) switch ($searchField) {
+			case SUBMISSION_FIELD_TITLE:
+				if ($searchMatch === 'is') {
+					$searchSql = ' AND (LOWER(p.title) = LOWER(?) OR LOWER(p.title_alt1) = LOWER(?) OR LOWER(p.title_alt2) = LOWER(?))';
+				} else {
+					$searchSql = ' AND (LOWER(p.title) LIKE LOWER(?) OR LOWER(p.title_alt1) LIKE LOWER(?) OR LOWER(p.title_alt2) LIKE LOWER(?))';
+					$search = '%' . $search . '%';
+				}
+				$params[] = $params[] = $params[] = $search;
+				break;
+			case SUBMISSION_FIELD_PRESENTER:
+				$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
+				$searchSql = $directorSubmissionDao->_generateUserNameSearchSQL($search, $searchMatch, 'pp.', $params);
+				break;
+		}
 
 		$result = &$this->retrieve(
 			'SELECT DISTINCT pa.*,
-				a.*,
+				p.*,
 				s.title AS track_title,
 				s.title_alt1 AS track_title_alt1,
 				s.title_alt2 AS track_title_alt2,
@@ -158,14 +175,19 @@ class PublishedPaperDAO extends DAO {
 				s.abbrev_alt2 AS track_abbrev_alt2,
 				COALESCE(o.seq, s.seq) AS track_seq,
 				pa.seq
-			FROM published_papers pa,
-				papers a
-			LEFT JOIN tracks s ON s.track_id = a.track_id
-			LEFT JOIN custom_track_orders o ON (a.track_id = o.track_id AND o.sched_conf_id = ?)
-			WHERE pa.paper_id = a.paper_id
+			FROM
+				published_papers pa,
+				paper_presenters pp,
+				papers p
+			LEFT JOIN tracks s ON s.track_id = p.track_id
+			LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = ?)
+			WHERE
+				pa.paper_id = p.paper_id
 				AND pa.sched_conf_id = ?
-				AND a.status <> ' . SUBMISSION_STATUS_ARCHIVED . '
-			ORDER BY track_seq ASC, pa.seq ASC', array($schedConfId, $schedConfId)
+				AND p.status = ' . SUBMISSION_STATUS_PUBLISHED . '
+				AND pp.paper_id = p.paper_id
+				' . $searchSql . '
+			ORDER BY track_seq ASC, pa.seq ASC', $params
 		);
 
 		$currTrackId = 0;
