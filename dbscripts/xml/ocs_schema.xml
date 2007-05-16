@@ -625,6 +625,8 @@
 		<field name="layout_file_id" type="I8"/>
 		<field name="director_file_id" type="I8"/>
 		<field name="pages" type="C2" size="255"/>
+		<field name="date_to_presentations" type="T"/>
+		<field name="date_to_archive" type="T"/>
 		<descr>Conference papers.</descr>
 		<index name="papers_user_id">
 			<col>user_id</col>
@@ -635,8 +637,6 @@
 		<index name="papers_track_id">
 			<col>track_id</col>
 		</index>
-		<field name="date_to_presentations" type="T"/>
-		<field name="date_to_archive" type="T"/>
 	</table>
 	
 	<!--
