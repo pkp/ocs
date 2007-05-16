@@ -317,6 +317,7 @@ class PeopleHandler extends ManagerHandler {
 			while (!$roles->eof()) {
 				$role = &$roles->next();
 				$role->setConferenceId($conference->getConferenceId());
+				$role->setSchedConfId($schedConf->getSchedConfId());
 				if ($role->getRolePath() != ROLE_PATH_SITE_ADMIN && !$roleDao->roleExists($role->getConferenceId(), $schedConf->getSchedConfId(), $role->getUserId(), $role->getRoleId())) {
 					$roleDao->insertRole($role);
 				}
