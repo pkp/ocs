@@ -31,20 +31,20 @@
 
 <table class="listing" width="100%">
 	<tr>
-		<td colspan="3" class="headseparator">&nbsp;</td>
+		<td colspan="2" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr valign="top" class="heading">
-		<td colspan="2" width="60%">{translate key="schedConf.registration.type"}</td>
+		<td width="60%">{translate key="schedConf.registration.type"}</td>
 		<td width="60%">{translate key="schedConf.registration.cost"}</td>
 	</tr>
 	<tr>
-		<td colspan="3" class="headseparator">&nbsp;</td>
+		<td colspan="2" class="headseparator">&nbsp;</td>
 	</tr>
 	{assign var="isFirstRegistrationType" value=true}
 	{iterate from=registrationTypes item=registrationType}
 	{if $registrationType->getPublic()}
 		<tr valign="top">
-			<td colspan="2" class="label">
+			<td class="label">
 				<strong>{$registrationType->getTypeName()|escape}</strong>
 			</td>
 			<td class="data">
@@ -63,19 +63,21 @@
 		</tr>
 		{if $registrationType->getDescription()}
 			<tr valign="top">
-				<td>&nbsp;</td>
-				<td>{$registrationType->getDescription()|nl2br}</td>
+				<td colspan="2">{$registrationType->getDescription()|nl2br}</td>
 			</tr>
 		{/if}
+		<tr valign="top">
+			<td colspan="2">&nbsp;</td>
+		</tr>
 	{/if}
 	{/iterate}
 	{if $registrationTypes->wasEmpty()}
 		<tr>
-			<td colspan="3" class="nodata">{translate key="schedConf.registration.noneAvailable"}</td>
+			<td colspan="2" class="nodata">{translate key="schedConf.registration.noneAvailable"}</td>
 		</tr>
 	{/if}
 	<tr>
-		<td colspan="3" class="endseparator">&nbsp;</td>
+		<td colspan="2" class="endseparator">&nbsp;</td>
 	</tr>
 </table>
 

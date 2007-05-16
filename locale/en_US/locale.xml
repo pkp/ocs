@@ -825,7 +825,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.filesBrowser">Files Browser</message>
 	<message key="manager.groups">Organizing Team</message>
 	<message key="manager.managementPages">General Management</message>
-	<message key="manager.managementPages.description"><![CDATA[To get started:<ol><li>Begin with Website Management to set up the conference website.</li><li>Use Scheduled Conferences to establish a scheduled instance of the conference.</li><li>Go to scheduled conference's Setup to post Call for Papers, Registration, etc. and use its Timeline to set dates for postings, submissions, etc.</li></ol>]]></message>
+	<message key="manager.managementPages.description"><![CDATA[<ol><li>Begin with Website Management to set up the conference website.</li><li>Use Scheduled Conferences to establish a scheduled instance of the conference.</li><li>Go to scheduled conference's Setup to post Call for Papers, Registration, etc. and use its Timeline to set dates for postings, submissions, etc.</li></ol>]]></message>
 	<message key="manager.program">Program</message>
 	<message key="manager.plugins">System Plugins</message>
 	<message key="manager.users">Users</message>
@@ -1243,7 +1243,7 @@ Title of classification system]]></message>
 	<message key="manager.timeline.conferenceTimeline">Conference Timeline</message>
 	<message key="manager.timeline.overrideDates">Override error message(s)</message>
 	<message key="manager.timeline.description"><![CDATA[
-		Enter the dates when acivities are to take place for this scheduled conference, and then notify the relevant users with the prepared email at the indicated dates.]]></message>
+		Enter the dates when acivities are to take place for this scheduled conference.]]></message>
 
 	<message key="manager.timeline.conference">Conference</message>
 	<message key="manager.timeline.schedConfStartsOn">First day of conference</message>
