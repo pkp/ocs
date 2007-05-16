@@ -24,9 +24,9 @@ class TimelineForm extends Form {
 	 * Constructor.
 	 * @param $trackId int omit for a new track
 	 */
-	function TimelineForm($overrideDates = false) {
+	function TimelineForm($overrideDates = false, $readOnly = false) {
 		$this->canEdit = false;
-		if (Validation::isConferenceManager()) {
+		if (!$readOnly && Validation::isConferenceManager()) {
 			$this->canEdit = true;
 		}
 
@@ -100,7 +100,6 @@ class TimelineForm extends Form {
 		$schedConf =& Request::getSchedConf();
 		$templateMgr = &TemplateManager::getManager();
 
-		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'manager'), 'user.role.manager')));
 		$templateMgr->assign('helpTopicId','conference.managementPages.timeline');
 
 		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
@@ -133,6 +132,7 @@ class TimelineForm extends Form {
 			'postAbstractsDate' => $schedConf->getSetting('postAbstractsDate'),
 			'postPapers' => $schedConf->getSetting('postPapers'),
 			'postPapersDate' => $schedConf->getSetting('postPapersDate'),
+			'postTimeline' => $schedConf->getSetting('postTimeline'),
 			'delayOpenAccess' => $schedConf->getSetting('delayOpenAccess'),
 			'delayOpenAccessDate' => $schedConf->getSetting('delayOpenAccessDate'),
 			'closeComments' => $schedConf->getSetting('closeComments'),
@@ -151,8 +151,7 @@ class TimelineForm extends Form {
 			'showCFPDate',
 			'submissionsOpenDate', 'submissionsCloseDate',
 			'regReviewerOpenDate', 'regReviewerCloseDate', 'closeReviewProcessDate',
-			'postAbstractsDate',
-			'postPapersDate',
+			'postAbstractsDate', 'postPapersDate',
 			'delayOpenAccessDate',
 			'closeCommentsDate'
 		));
@@ -161,7 +160,8 @@ class TimelineForm extends Form {
 			'postAbstracts',
 			'postPapers',
 			'delayOpenAccess',
-			'closeComments'
+			'closeComments',
+			'postTimeline'
 		));
 	}
 	
@@ -190,7 +190,10 @@ class TimelineForm extends Form {
 			$schedConf->setEndDate($this->_data['siteEndDate']);
 			$schedConfDao->updateSchedConf($schedConf);
 		}
-		
+
+		// Post timeline flag
+		$schedConf->updateSetting('postTimeline', $this->getData('postTimeline'), 'bool');
+
 		//
 		// Log the rest.
 		//

@@ -80,6 +80,23 @@ class SchedConfHandler extends Handler {
 	}
 
 	/**
+	 * Display read-only timeline
+	 */
+	function timeline() {
+		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+
+		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign('pageHierarchy', array(
+			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
+		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
+		import('manager.form.TimelineForm');
+		$timelineForm =& new TimelineForm(false, true);
+		$timelineForm->initData();
+		$timelineForm->display();
+	}
+
+	/**
 	 * Display conference CFP page
 	 */
 	function cfp() {

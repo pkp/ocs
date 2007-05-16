@@ -133,6 +133,7 @@ class TemplateManager extends Smarty {
 					$currentTime = time();
 					$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate');
 					$this->assign('submissionCloseDate', $submissionsCloseDate);
+					$this->assign('schedConfPostTimeline', $schedConf->getSetting('postTimeline'));
 
 					// CFP displayed
 					$showCFPDate = $schedConf->getSetting('showCFPDate');

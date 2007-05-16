@@ -439,6 +439,7 @@
 	<message key="schedConf.discussion">Discussion</message>
 	<message key="schedConf.registration">Registration</message>
 	<message key="schedConf.supporters">Organizers and Partners</message>
+	<message key="schedConf.timeline">Timeline</message>
 	<message key="schedConf.schedule">Conference Schedule</message>
 	<message key="schedConf.links">Related Links</message>
 	<message key="schedConf.presentations">Presentations and Authors</message>
@@ -1267,6 +1268,7 @@ Title of classification system]]></message>
 	<message key="manager.timeline.websitePosting">Website Posting</message>
 	<message key="manager.timeline.postPresentations">Accepted abstracts/presentations</message>
 	<message key="manager.timeline.postAbstracts">Accepted abstracts</message>
+	<message key="manager.timeline.postTimeline">Conference timeline</message>
 	<message key="manager.timeline.postPapers">Accepted papers</message>
 	<message key="manager.timeline.delayOpenAccess">Delay open access until</message>
 	<message key="manager.timeline.closeComments">Close comments</message>

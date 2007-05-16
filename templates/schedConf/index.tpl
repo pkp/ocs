@@ -61,6 +61,7 @@
 	<li>&#187; <a href="{url page="schedConf" op="presentations"}">{translate key="schedConf.presentations"}</a></li>
 	{if $schedConfPaymentsEnabled}<li>&#187; <a href="{url page="schedConf" op="registration"}">{translate key="schedConf.registration"}</a></li>{/if}
 	<li>&#187; <a href="{url page="about" op="organizingTeam"}">{translate key="schedConf.supporters"}</a></li>
+	{if $schedConfPostTimeline}<li>&#187; <a href="{url page="schedConf" op="timeline"}">{translate key="schedConf.timeline"}</a></li>{/if}
 </ul>
 
 {$additionalHomeContent}
