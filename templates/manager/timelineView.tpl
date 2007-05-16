@@ -103,43 +103,55 @@
 	</tr>
 </table>
 
+{if $postAbstracts || $postPapers || $delayOpenAccess || $closeComments}
+
 <br/>
 
 <h3>{translate key="manager.timeline.websitePosting"}</h3>
 
 <table width="100%" class="data">
-	<tr valign="top">
-		<td width="40%" class="label">
-			{fieldLabel name="postAbstracts" key="manager.timeline.postAbstracts"}
-		</td>
-		<td width="60%" class="value">
-			{$postAbstractsDate|date_format:$dateFormatLong}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="40%" class="label">
-			{fieldLabel name="postPapers" key="manager.timeline.postPapers"}
-		</td>
-		<td width="60%" class="value">
-			{$postPapersDate|date_format:$dateFormatLong}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="40%" class="label">
-			{fieldLabel name="delayOpenAccess" key="manager.timeline.delayOpenAccess"}
-		</td>
-		<td width="60%" class="value">
-			{$delayOpenAccessDate|date_format:$dateFormatLong}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="40%" class="label">
-			{fieldLabel name="closeComments" key="manager.timeline.closeComments"}
-		</td>
-		<td width="60%" class="value">
-			{$closeCommentsDate|date_format:$dateFormatLong}
-		</td>
-	</tr>
+	{if $postAbstracts}
+		<tr valign="top">
+			<td width="40%" class="label">
+				{fieldLabel name="postAbstracts" key="manager.timeline.postAbstracts"}
+			</td>
+			<td width="60%" class="value">
+				{$postAbstractsDate|date_format:$dateFormatLong}
+			</td>
+		</tr>
+	{/if}
+	{if $postPapers}
+		<tr valign="top">
+			<td width="40%" class="label">
+				{fieldLabel name="postPapers" key="manager.timeline.postPapers"}
+			</td>
+			<td width="60%" class="value">
+				{$postPapersDate|date_format:$dateFormatLong}
+			</td>
+		</tr>
+	{/if}
+	{if $delayOpenAccess}
+		<tr valign="top">
+			<td width="40%" class="label">
+				{fieldLabel name="delayOpenAccess" key="manager.timeline.delayOpenAccess"}
+			</td>
+			<td width="60%" class="value">
+				{$delayOpenAccessDate|date_format:$dateFormatLong}
+			</td>
+		</tr>
+	{/if}
+	{if $closeComments}
+		<tr valign="top">
+			<td width="40%" class="label">
+				{fieldLabel name="closeComments" key="manager.timeline.closeComments"}
+			</td>
+			<td width="60%" class="value">
+				{$closeCommentsDate|date_format:$dateFormatLong}
+			</td>
+		</tr>
+	{/if}
 </table>
+
+{/if}
 
 {include file="common/footer.tpl"}

@@ -35,7 +35,7 @@ class OCSPaymentManager extends PaymentManager {
 		return $payment;
 	}
 	
-	function getPaymentPlugin() {
+	function &getPaymentPlugin() {
 		$schedConf =& Request::getSchedConf();
 		$paymentMethodPluginName = $schedConf->getSetting('paymentMethodPluginName');
 		$paymentMethodPlugin = null;
