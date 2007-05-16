@@ -143,7 +143,7 @@
 	{if $closeComments}
 		<tr valign="top">
 			<td width="40%" class="label">
-				{fieldLabel name="closeComments" key="manager.timeline.closeComments"}
+				{fieldLabel name="closeComments" key="manager.timeline.closeComments.plain"}
 			</td>
 			<td width="60%" class="value">
 				{$closeCommentsDate|date_format:$dateFormatLong}

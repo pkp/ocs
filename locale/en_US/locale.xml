@@ -1270,7 +1270,8 @@ Title of classification system]]></message>
 	<message key="manager.timeline.postTimeline">Conference timeline (included in Conference Information)</message>
 	<message key="manager.timeline.postPapers">Accepted papers</message>
 	<message key="manager.timeline.delayOpenAccess">Delay open access until</message>
-	<message key="manager.timeline.closeComments">Close comments (requires Reading Tools to activate)</message>
+	<message key="manager.timeline.closeComments">Close comments (activate Reading Tools)</message>
+	<message key="manager.timeline.closeComments.plain">Close comments</message>
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">The conference end date must come after the conference start date.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">The conference site cannot be moved to the archive before the conference start date.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">The conference cannot start before submissions are closed.</message>
