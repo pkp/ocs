@@ -1618,7 +1618,7 @@
 		<field name="date_paid" type="D"/>
 		<field name="membership" type="C2" size="40"/>
 		<field name="domain" type="C2" size="255"/>
-		<field name="ip_range" type="C2" size="255"/>
+		<field name="ip_range" type="X"/>
 		<field name="special_requests" type="C2" size="255"/>
 		<descr>Conference registrations.</descr>
 		<index name="registration_sched_conf_id">
