@@ -15,5 +15,5 @@
 <install version="2.0.0.0">
 	
 	<!-- Common upgrade files -->
-	<schema file="ojs_schema.xml"/>
+	<schema file="ocs_schema.xml"/>
 </install>
