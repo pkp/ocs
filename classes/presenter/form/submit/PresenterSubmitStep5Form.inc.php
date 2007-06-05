@@ -78,12 +78,13 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 		$reviewMode = $schedConf->getSetting('reviewMode');
 		$user =& Request::getUser();
 
+		$trackDirectors = array();
 		if ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL || $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE) {
 			// Editors have not yet been assigned; assign them.
-			$this->assignDirectors($paper);
+			$trackDirectors = $this->assignDirectors($paper);
 		}
 
-		$this->confirmSubmission($paper, $user, $schedConf, $conference, $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL?'SUBMISSION_UPLOAD_ACK':'SUBMISSION_ACK');
+		$this->confirmSubmission($paper, $user, $schedConf, $conference, $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL?'SUBMISSION_UPLOAD_ACK':'SUBMISSION_ACK', $trackDirectors);
 
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');

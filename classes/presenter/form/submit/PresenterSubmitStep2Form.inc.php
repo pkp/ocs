@@ -203,8 +203,8 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 				$paper->setSubmissionProgress(0);
 
 				$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
-				$this->assignDirectors($paper);
-				$this->confirmSubmission($paper, $user, $schedConf, $conference, 'SUBMISSION_ACK');
+				$trackDirectors = $this->assignDirectors($paper);
+				$this->confirmSubmission($paper, $user, $schedConf, $conference, 'SUBMISSION_ACK', $trackDirectors);
 			}
 		}
 		

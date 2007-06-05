@@ -81,7 +81,7 @@ class PresenterSubmitForm extends Form {
 		parent::display();
 	}
 	
-	function confirmSubmission(&$paper, &$user, &$schedConf, $conference, $mailTemplate = 'SUBMISSION_ACK') {
+	function confirmSubmission(&$paper, &$user, &$schedConf, $conference, $mailTemplate = 'SUBMISSION_ACK', $trackDirectors = array()) {
 		// Update search index
 		import('search.PaperSearchIndex');
 		PaperSearchIndex::indexPaperMetadata($paper);
@@ -105,6 +105,10 @@ class PresenterSubmitForm extends Form {
 				if (!empty($copyAddress)) $mail->addBcc($copyAddress);
 			}
 
+			foreach ($trackDirectors as $trackDirector) {
+				$mail->addBcc($trackDirector->getEmail(), $trackDirector->getFullName());
+			}
+
 			$mail->assignParams(array(
 				'presenterName' => $user->getFullName(),
 				'presenterUsername' => $user->getUsername(),
@@ -114,6 +118,12 @@ class PresenterSubmitForm extends Form {
 			$mail->send();
 		}
 	}
+
+	/**
+	 * Automatically assign Track Directors to new submissions.
+	 * @param $paper object
+	 * @return array of track directors
+	 */
 
 	function assignDirectors(&$paper) {
 		$trackId = $paper->getTrackId();
@@ -131,6 +141,8 @@ class PresenterSubmitForm extends Form {
 			$editAssignmentDao->insertEditAssignment($editAssignment);
 			unset($editAssignment);
 		}
+
+		return $trackDirectors;
 	}
 }
 
