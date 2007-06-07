@@ -17,7 +17,7 @@
 		<a href="javascript:openHelp('{if $helpTopicId}{get_help_id key="$helpTopicId" url="true"}{else}{url page="help"}{/if}')">{translate key="navigation.conferenceHelp"}</a>
 	</div> -->
 		
-	<div class="block">
+	<div class="block" id="sidebarUser">
 		<span class="blockTitle">{translate key="navigation.user"}</span>
 		{if $isUserLoggedIn}
 		{translate key="navigation.loggedInAs"}<br />
@@ -60,7 +60,7 @@
 	{/if}
 	
 	{if $enableLanguageToggle}
-	<div class="block">
+	<div class="block" id="sidebarLanguageToggle">
 		<span class="blockTitle">{translate key="common.language"}</span>
 		<form action="#">
 			<select size="1" name="locale" onchange="location.href={if $languageToggleNoUser}'{$currentUrl}{if strstr($currentUrl, '?')}&{else}?{/if}setLocale='+this.options[this.selectedIndex].value{else}('{url page="user" op="setLocale" path="NEW_LOCALE" source=$smarty.server.REQUEST_URI escape=false}'.replace('NEW_LOCALE', this.options[this.selectedIndex].value)){/if}" class="selectMenu">{html_options options=$languageToggleLocales selected=$currentLocale}</select>
@@ -68,7 +68,7 @@
 	</div>
 	{/if}
 		
-	<div class="block">
+	<div class="block" id="sidebarConferenceContent">
 		<span class="blockTitle">{translate key="navigation.conferenceContent"}</span>
 		
 		<span class="blockSubtitle">{translate key="navigation.search"}</span>
@@ -123,7 +123,7 @@
 		{/if}
 	</div>
 	
-	<div class="block">
+	<div class="block" id="sidebarFontSize">
 		<span class="blockTitle">{translate key="navigation.fontSize"}</span>
 		<a href="#" onclick="setFontSize('{translate key="icon.small.alt"}');">{icon name="small"}</a>&nbsp;
 		<a href="#" onclick="setFontSize('{translate key="icon.medium.alt"}');">{icon name="medium"}</a>&nbsp;
@@ -134,7 +134,7 @@
 	{assign var=forReadersConference value=$currentConference->getSetting('readerInformation')}
 	{assign var=forPresentersConference value=$currentConference->getSetting('presenterInformation')}
 	{if !empty($forReadersConference) && !empty($forPresentersConference) || !empty($forReadersSchedConf) || !empty($forPresentersSchedConf)}
-		<div class="block">
+		<div class="block" id="sidebarInformation">
 			<span class="blockTitle">{translate key="navigation.info"}</span>
 			<ul>
 				{if !empty($forReadersConference)}<li><a href="{url page="information" op="readers"}">{translate key="navigation.infoForReaders"}</a></li>{/if}
