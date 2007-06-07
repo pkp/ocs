@@ -1629,9 +1629,6 @@
 		<index name="registration_domain">
 			<col>domain</col>
 		</index>
-		<index name="registration_ip_range">
-			<col>ip_range</col>
-		</index>
 	</table>
 
 	<!--
