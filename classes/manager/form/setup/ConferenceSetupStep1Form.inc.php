@@ -43,8 +43,8 @@ class ConferenceSetupStep1Form extends ConferenceSetupForm {
 		);
 		
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'contactName', 'required', 'manager.setup.form.contactNameRequired'));
-		$this->addCheck(new FormValidator($this, 'contactEmail', 'required', 'manager.setup.form.contactEmailRequired'));
+		$this->addCheck(new FormValidator($this, 'contactName', 'required', 'manager.schedConfSetup.details.contactNameRequired'));
+		$this->addCheck(new FormValidator($this, 'contactEmail', 'required', 'manager.schedConfSetup.details.contactEmailRequired'));
 	}
 
 	function initData() {
