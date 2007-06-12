@@ -668,7 +668,7 @@ class Request {
 		$additionalParams = '';
 		if (!empty($params)) foreach ($params as $key => $value) {
 			if (is_array($value)) foreach($value as $element) {
-				$additionalParams .= $prefix . $key . '[]=' . rawurlencode($element);
+				$additionalParams .= $prefix . $key . '%5B%5D=' . rawurlencode($element);
 				$prefix = $amp;
 			} else {
 				$additionalParams .= $prefix . $key . '=' . rawurlencode($value);
@@ -689,7 +689,7 @@ class Request {
 
 		$pathString = '';
 		if ($pathInfoDisabled) {
-			$joiner = $amp . 'path[]=';
+			$joiner = $amp . 'path%5B%5D=';
 			if (!empty($path)) $pathString = $joiner . implode($joiner, $path);
 			if (empty($overriddenBaseUrl)) $baseParams = "?conference=$conferencePath&schedConf=$schedConfPath";
 			else $baseParams = '';
