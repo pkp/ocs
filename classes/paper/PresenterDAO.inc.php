@@ -132,13 +132,13 @@ class PresenterDAO extends DAO {
 		}
 
 		$result = &$this->retrieveRange(
-			'SELECT DISTINCT NULL AS url,
-				NULL AS presenter_id,
-				NULL AS paper_id,
-				NULL AS email,
-				NULL AS biography,
-				NULL AS primary_contact,
-				NULL AS seq,
+			'SELECT DISTINCT CAST(\'\', CHAR(1)) AS url,
+				0 AS presenter_id,
+				0 AS paper_id,
+				CAST(\'\', CHAR(1)) AS email,
+				CAST(\'\', CHAR(1)) AS biography,
+				0 AS primary_contact,
+				0 AS seq,
 				aa.first_name AS first_name,
 				aa.middle_name AS middle_name,
 				aa.last_name AS last_name,
