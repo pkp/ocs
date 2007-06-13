@@ -32,6 +32,8 @@ class PayPalSettingsForm extends Form {
 	function PayPalSettingsForm(&$plugin, $conferenceId, $schedConfId) {
 		parent::Form($plugin->getTemplatePath() . 'settingsForm.tpl');
 	
+		$this->addCheck(new FormValidatorPost($this));
+
 		$this->conferenceId = $conferenceId;
 		$this->schedConfId = $schedConfId;
 		$this->plugin =& $plugin;

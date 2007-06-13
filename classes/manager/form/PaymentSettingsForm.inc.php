@@ -32,7 +32,7 @@ class PaymentSettingsForm extends Form {
 
 		// Add form checks
 		$this->addCheck(new FormValidatorInSet($this, 'paymentMethodPluginName', 'optional', 'manager.payment.paymentPluginInvalid', array_keys($this->plugins)));
-
+		$this->addCheck(new FormValidatorPost($this));
 	}
 
 	/**

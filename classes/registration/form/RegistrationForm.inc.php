@@ -67,6 +67,8 @@ class RegistrationForm extends Form {
 		
 		// Notify email flag is valid value
 		$this->addCheck(new FormValidatorInSet($this, 'notifyEmail', 'optional', 'manager.registration.form.notifyEmailValid', array('1')));
+
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**

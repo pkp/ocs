@@ -29,6 +29,7 @@ class ConferenceSetupForm extends Form {
 		parent::Form(sprintf('manager/setup/step%d.tpl', $step));
 		$this->step = $step;
 		$this->settings = $settings;
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**

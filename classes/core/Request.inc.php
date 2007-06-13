@@ -225,6 +225,30 @@ class Request {
 	}
 
 	/**
+	 * Get the request method
+	 * @return string
+	 */
+	function getRequestMethod() {
+		return $_SERVER['REQUEST_METHOD'];
+	}
+
+	/**
+	 * Determine whether the request is a POST request
+	 * @return boolean
+	 */
+	function isPost() {
+		return (Request::getRequestMethod() == 'POST');
+	}
+
+	/**
+	 * Determine whether the request is a GET request
+	 * @return boolean
+	 */
+	function isGet() {
+		return (Request::getRequestMethod() == 'GET');
+	}
+
+	/**
 	 * Get the remote IP address of the current request.
 	 * @return string
 	 */

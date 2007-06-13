@@ -35,6 +35,7 @@ class ConferenceSiteSettingsForm extends Form {
 		$this->addCheck(new FormValidator($this, 'path', 'required', 'admin.conferences.form.pathRequired'));
 		$this->addCheck(new FormValidatorAlphaNum($this, 'path', 'required', 'admin.conferences.form.pathAlphaNumeric'));
 		$this->addCheck(new FormValidatorCustom($this, 'path', 'required', 'admin.conferences.form.pathExists', create_function('$path,$form,$conferenceDao', 'return !$conferenceDao->conferenceExistsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('ConferenceDAO'))));
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**

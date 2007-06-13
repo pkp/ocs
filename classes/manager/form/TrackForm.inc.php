@@ -32,6 +32,7 @@ class TrackForm extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'manager.tracks.form.titleRequired'));
 		$this->addCheck(new FormValidator($this, 'abbrev', 'required', 'manager.tracks.form.abbrevRequired'));
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**

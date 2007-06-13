@@ -40,6 +40,7 @@ class CreateReviewerForm extends Form {
 		$this->addCheck(new FormValidator($this, 'lastName', 'required', 'user.profile.form.lastNameRequired'));
 		$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
 		$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.account.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array(null, true), true));
+		$this->addCheck(new FormValidatorPost($this));
 
 		// Provide a default for sendNotify: If we're using one-click
 		// reviewer access, it's not necessary;

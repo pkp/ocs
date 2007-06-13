@@ -42,6 +42,8 @@ class EditCommentForm extends Form {
 
 		$this->paper = $paper;
 		$this->user = &Request::getUser();
+
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**

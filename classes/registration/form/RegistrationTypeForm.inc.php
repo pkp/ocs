@@ -86,6 +86,8 @@ class RegistrationTypeForm extends Form {
 
 		// Public flag is valid value
 		$this->addCheck(new FormValidatorInSet($this, 'notPublic', 'optional', 'manager.registrationTypes.form.notPublicValid', array('1')));
+
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**

@@ -53,6 +53,8 @@ class CommentForm extends Form {
 		$this->user = &Request::getUser();
 
 		if ($commentType != COMMENT_TYPE_PEER_REVIEW) $this->addCheck(new FormValidator($this, 'comments', 'required', 'director.paper.commentsRequired'));
+
+		$this->addCheck(new FormValidatorPost($this));
 	}
 
 	/**

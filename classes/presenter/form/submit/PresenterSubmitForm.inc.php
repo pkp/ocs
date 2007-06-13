@@ -33,6 +33,9 @@ class PresenterSubmitForm extends Form {
 	 */
 	function PresenterSubmitForm($paper, $step) {
 		parent::Form(sprintf('presenter/submit/step%d.tpl', $step));
+
+		$this->addCheck(new FormValidatorPost($this));
+
 		$this->step = $step;
 		$this->paper = $paper;
 		$this->paperId = $paper ? $paper->getPaperId() : null;

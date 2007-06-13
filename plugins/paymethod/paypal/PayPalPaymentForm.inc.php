@@ -38,6 +38,8 @@ class PayPalPaymentForm extends Form {
 	function PayPalPaymentForm(&$payPalPlugin, $queuedPaymentId, $key, &$queuedPayment) {
 		parent::Form($plugin->getTemplatePath() . 'paymentForm.tpl');
 
+		$this->addCheck(new FormValidatorPost($this));
+
 		$this->payPalPlugin =& $payPalPlugin;
 		$this->queuedPaymentId = $queuedPaymentId;
 		$this->key = $key;

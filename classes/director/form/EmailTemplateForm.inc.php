@@ -36,6 +36,7 @@ class EmailTemplateForm extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorArray($this, 'subject', 'required', 'director.emails.form.subjectRequired'));
 		$this->addCheck(new FormValidatorArray($this, 'body', 'required', 'director.emails.form.bodyRequired'));
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**

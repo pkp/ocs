@@ -75,6 +75,8 @@ class RegistrationPolicyForm extends Form {
 
 		// If provided expiry reminder weeks after value is valid value
 		$this->addCheck(new FormValidatorInSet($this, 'numWeeksAfterRegistrationExpiryReminder', 'optional', 'manager.registrationPolicies.numWeeksAfterRegistrationExpiryReminderValid', array_keys($this->validNumWeeksAfterExpiry)));
+
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**

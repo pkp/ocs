@@ -32,6 +32,7 @@ class ImportOCS1Form extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'conferencePath', 'required', 'admin.conferences.form.pathRequired'));
 		$this->addCheck(new FormValidator($this, 'importPath', 'required', 'admin.conferences.form.importPathRequired'));
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**

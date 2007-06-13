@@ -26,6 +26,8 @@ class ProgramSettingsForm extends Form {
 	function ProgramSettingsForm() {
 		parent::Form('manager/programSettings.tpl');
 		
+		$this->addCheck(new FormValidatorPost($this));
+
 		$this->settings = array(
 			'program' => 'string',
 			'programFileTitle' => 'string'

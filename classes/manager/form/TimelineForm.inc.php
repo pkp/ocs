@@ -91,6 +91,7 @@ class TimelineForm extends Form {
 				'return ($showCFPDate <= $form->getData(\'submissionsCloseDate\'));'),
 				array(&$this)));
 		}
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**

@@ -71,6 +71,8 @@ class CreateAccountForm extends Form {
 				$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.account.form.usernameExists', create_function('$username,$form,$auth', 'return (!$auth->userExists($username) || $auth->authenticate($username, $form->getData(\'password\')));'), array(&$this, $this->defaultAuth)));
 			}
 		}
+
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**

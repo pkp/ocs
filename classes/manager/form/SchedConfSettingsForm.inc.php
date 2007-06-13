@@ -38,6 +38,7 @@ class SchedConfSettingsForm extends Form {
 		$this->addCheck(new FormValidator($this, 'path', 'required', 'manager.schedConfs.form.pathRequired'));
 		$this->addCheck(new FormValidatorAlphaNum($this, 'path', 'required', 'manager.schedConfs.form.pathAlphaNumeric'));
 		$this->addCheck(new FormValidatorCustom($this, 'path', 'required', 'manager.schedConfs.form.pathExists', create_function('$path,$form,$schedConfDao', 'return !$schedConfDao->schedConfExistsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('SchedConfDAO'))));
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**

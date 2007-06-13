@@ -27,6 +27,7 @@ class SchedConfSetupForm extends Form {
 	 */
 	function SchedConfSetupForm($step, $settings) {
 		parent::Form(sprintf('manager/schedConfSetup/step%d.tpl', $step));
+		$this->addCheck(new FormValidatorPost($this));
 		$this->step = $step;
 		$this->settings = $settings;
 	}

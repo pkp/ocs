@@ -62,6 +62,8 @@ class MetadataForm extends Form {
 		}
 		
 		$this->paper = $paper;
+
+		$this->addCheck(new FormValidatorPost($this));
 	}
 	
 	/**
