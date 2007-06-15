@@ -62,7 +62,10 @@ class TemplateManager extends Smarty {
 		$this->assign('datetimeFormatShort', Config::getVar('general', 'datetime_format_short'));
 		$this->assign('datetimeFormatLong', Config::getVar('general', 'datetime_format_long'));
 		$this->assign('timeFormat', Config::getVar('general', 'time_format'));
-		$this->assign('currentLocale', Locale::getLocale());
+
+ 		$locale = Locale::getLocale();
+ 		$this->assign('currentLocale', $locale);
+
 		$this->assign('paperSearchByOptions', array(
 			'' => 'search.allFields',
 			PAPER_SEARCH_PRESENTER => 'search.presenter',
@@ -200,7 +203,10 @@ class TemplateManager extends Smarty {
 			$this->assign('enableLanguageToggle', true);
 			$this->assign('languageToggleLocales', $locales);
 		}
-		
+
+		// If there's a locale-specific stylesheet, add it.
+		if (($localeStyleSheet = Locale::getLocaleStyleSheet($locale)) != null) $this->addStyleSheet(Request::getBaseUrl() . '/' . $localeStyleSheet);
+
 		// Register custom functions
 		$this->register_modifier('translate', array('Locale', 'translate'));
 		$this->register_modifier('strip_unsafe_html', array('String', 'stripUnsafeHtml'));

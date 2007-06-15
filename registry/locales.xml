@@ -16,12 +16,14 @@
 
 <!DOCTYPE locales [
 	<!ELEMENT locales (locale+)>
-	<!ELEMENT locale EMPTY>
+	<!ELEMENT locale (stylesheet?)>
 		<!ATTLIST locale
 			key CDATA #REQUIRED
-			name CDATA #REQUIRED>
+			name CDATA #REQUIRED
+			stylesheet CDATA #IMPLIED>
 ]>
 
 <locales>
 	<locale key="en_US" name="English"/>
+	<locale key="te_ST" name="Test Locale"/>
 </locales>

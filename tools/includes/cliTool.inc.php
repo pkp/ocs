@@ -24,8 +24,12 @@ define('SESSION_DISABLE_INIT', 1);
 
 if (!isset($argc)) {
 	// In PHP < 4.3.0 $argc/$argv are not automatically registered
-	$argc = $_SERVER['argc'];
-	$argv = $_SERVER['argv'];
+	if (isset($_SERVER['argc'])) {
+		$argc = $_SERVER['argc'];
+		$argv = $_SERVER['argv'];
+	} else {
+		$argc = $argv = null;
+	}
 }
 
 class CommandLineTool {
