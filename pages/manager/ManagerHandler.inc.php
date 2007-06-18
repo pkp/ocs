@@ -138,6 +138,11 @@ class ManagerHandler extends Handler {
 		ManagerSetupHandler::saveSetup($args);
 	}
 
+	function setupSaved($args) {
+		import('pages.manager.ManagerSetupHandler');
+		ManagerSetupHandler::setupSaved($args);
+	}
+
 	//
 	// Scheduled Conference Setup
 	//
@@ -150,6 +155,11 @@ class ManagerHandler extends Handler {
 	function saveSchedConfSetup($args) {
 		import('pages.manager.SchedConfSetupHandler');
 		SchedConfSetupHandler::saveSetup($args);
+	}
+
+	function schedConfSetupSaved($args) {
+		import('pages.manager.SchedConfSetupHandler');
+		SchedConfSetupHandler::schedConfSetupSaved($args);
 	}
 
 	//

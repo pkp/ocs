@@ -31,8 +31,8 @@
 		&nbsp;
 	</li>
 	<li>
-		<h4><a href="{url op="setup" path="4"}">{translate key="manager.setup.styleSheet"}</a></h4>
-		{translate key="manager.setup.styleSheet.description"}<br/>
+		<h4><a href="{url op="setup" path="4"}">{translate key="manager.setup.style"}</a></h4>
+		{translate key="manager.setup.style.description"}<br/>
 		&nbsp;
 	</li>
 	<li>

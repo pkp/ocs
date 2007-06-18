@@ -134,18 +134,30 @@ class SchedConfSetupHandler extends ManagerHandler {
 			
 			if (!isset($editData) && $setupForm->validate()) {
 				$setupForm->execute();
-				
-				$templateMgr = &TemplateManager::getManager();
-				$templateMgr->assign('setupStep', $step);
-				$templateMgr->assign('helpTopicId', 'conference.managementPages.setup');
-				$templateMgr->display('manager/schedConfSetup/settingsSaved.tpl');
-			
+				Request::redirect(null, null, null, 'schedConfSetupSaved', $step);
 			} else {
 				$setupForm->display();
 			}
 		
 		} else {
 			Request::redirect();
+		}
+	}
+
+	/**
+	 * Display a "Scheduled conference settings saved" page
+	 */
+	function schedConfSetupSaved($args) {
+		parent::validate();
+		
+		$step = isset($args[0]) ? (int) $args[0] : 0;
+		
+		if ($step >= 1 && $step <= 3) {
+			parent::setupTemplate(true);
+			$templateMgr = &TemplateManager::getManager();
+			$templateMgr->assign('setupStep', $step);
+			$templateMgr->assign('helpTopicId', 'conference.managementPages.setup');
+			$templateMgr->display('manager/schedConfSetup/settingsSaved.tpl');
 		}
 	}
 }

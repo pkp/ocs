@@ -957,28 +957,28 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.aboutConference">About the Conference</message>
 	<message key="manager.setup.additionalContent">Additional Website Content</message>
 	<message key="manager.setup.layout">Website Headers, Footers, Lists and Navigation Bar</message>
-	<message key="manager.setup.styleSheet">Conference Stylesheet</message>
+	<message key="manager.setup.style">Conference Style</message>
 	<message key="manager.setup.loggingAndAuditing">Logging and Auditing</message>
 	<message key="manager.setup.indexing">Conference Indexing</message>
 
 	<message key="manager.setup.aboutConference.title">Step 1. About the Conference</message>
 	<message key="manager.setup.additionalContent.title">Step 2. Additional Website Content</message>
 	<message key="manager.setup.layout.title">Step 3. Website Headers, Footers, Lists and Navigation Bar</message>
-	<message key="manager.setup.styleSheet.title">Step 4. Conference Stylesheet</message>
+	<message key="manager.setup.style.title">Step 4. Conference Style</message>
 	<message key="manager.setup.loggingAndAuditing.title">Step 5. Logging and Auditing</message>
 	<message key="manager.setup.indexing.title">Step 6. Conference Indexing</message>
 
 	<message key="manager.setup.aboutConference.brief">About</message>
 	<message key="manager.setup.additionalContent.brief">Additional Content</message>
 	<message key="manager.setup.layout.brief">Headers, Footers, etc.</message>
-	<message key="manager.setup.styleSheet.brief">Stylesheet</message>
+	<message key="manager.setup.style.brief">Style</message>
 	<message key="manager.setup.loggingAndAuditing.brief">Logging &amp; Auditing</message>
 	<message key="manager.setup.indexing.brief">Indexing</message>
 
 	<message key="manager.setup.aboutConference.description">Conference description, principal contact, copyright notice, etc.</message>
 	<message key="manager.setup.additionalContent.description">Homepage content, user information, and announcements</message>
 	<message key="manager.setup.layout.description">Titles and logos, headers, footers, etc.</message>
-	<message key="manager.setup.styleSheet.description">Cascading Style Sheet for conference pages</message>
+	<message key="manager.setup.style.description">Cascading Style Sheet and theme for conference pages</message>
 	<message key="manager.setup.loggingAndAuditing.description">Email logs, event logs, etc.</message>
 	<message key="manager.setup.indexing.description">Search engines and metadata harvesting</message>
 
@@ -1056,8 +1056,9 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.layout.conferencePageFooterDescription">This is the footer of your conference. To change or update the footer, paste the HTML code in the textbox below. Examples could be another navigation bar, a counter, etc. This footer will appear on every page.</message>
 
 	<!-- Conference setup page 4 -->
-	<message key="manager.setup.styleSheet.conferenceStyleSheet.description">By default conferences and the site use a common style sheet (located in the "styles" subdirectory of the site). The default style rules can be overridden by uploading a conference-specific cascading style sheet.</message>
-	<message key="manager.setup.styleSheet.useConferenceStyleSheet">Conference style sheet</message>
+	<message key="manager.setup.style.conferenceTheme">Conference Theme</message>
+	<message key="manager.setup.style.conferenceStyleSheet.description">By default conferences and the site use a common style sheet (located in the "styles" subdirectory of the site). The default style rules can be overridden by choosing a theme and/or uploading a conference-specific cascading style sheet.</message>
+	<message key="manager.setup.style.useConferenceStyleSheet">Conference style sheet</message>
 
 	<!-- Conference setup page 5 -->
 	<message key="manager.setup.loggingAndAuditing.pageDescription">Maintain a log of the following actions and materials for all conferences.</message>

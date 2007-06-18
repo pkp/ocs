@@ -108,6 +108,15 @@ class TemplateManager extends Smarty {
 				$this->assign('numPageLinks', $conference->getSetting('numPageLinks'));
 				$this->assign('itemsPerPage', $conference->getSetting('itemsPerPage'));
 
+				// Load and apply theme plugin, if chosen
+				$themePluginPath = $conference->getSetting('conferenceTheme');
+
+				if (!empty($themePluginPath)) {
+					// Load and activate the theme
+					$themePlugin =& PluginRegistry::loadPlugin('themes', $themePluginPath);
+					if ($themePlugin) $themePlugin->activate(&$this);
+				}
+
 				// Assign additional navigation bar items
 				$navMenuItems = &$conference->getSetting('navItems');
 				$this->assign_by_ref('navMenuItems', $navMenuItems);

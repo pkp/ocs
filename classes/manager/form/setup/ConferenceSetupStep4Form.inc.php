@@ -18,7 +18,9 @@ import("manager.form.setup.ConferenceSetupForm");
 class ConferenceSetupStep4Form extends ConferenceSetupForm {
 	
 	function ConferenceSetupStep4Form() {
-		parent::ConferenceSetupForm(4, array());
+		parent::ConferenceSetupForm(4, array(
+			'conferenceTheme' => 'string'
+		));
 	}
 
 	/**
@@ -27,10 +29,19 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 	function display() {
 		$conference = &Request::getConference();
 
+		$allThemes =& PluginRegistry::loadCategory('themes', true);
+		$conferenceThemes = array();
+		foreach ($allThemes as $key => $junk) {
+			$plugin =& $allThemes[$key]; // by ref
+			$conferenceThemes[basename($plugin->getPluginPath())] =& $plugin;
+			unset($plugin);
+		}
+
 		// Ensure upload file settings are reloaded when the form is displayed.
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign(array(
-			'conferenceStyleSheet' => $conference->getSetting('conferenceStyleSheet')
+			'conferenceStyleSheet' => $conference->getSetting('conferenceStyleSheet'),
+			'conferenceThemes' => $conferenceThemes
 		));
 		
 		parent::display();	   

@@ -8,7 +8,8 @@
  * $Id$
  */
  
-import('plugins.generic.acron.AcronPlugin');
+require_once('AcronPlugin.inc.php');
+
 return new AcronPlugin();
 
 ?> 

@@ -9,17 +9,29 @@
  * $Id$
  *}
 
-{assign var="pageTitle" value="manager.setup.styleSheet.title"}
+{assign var="pageTitle" value="manager.setup.style.title"}
 {include file="manager/setup/setupHeader.tpl"}
 
 <form method="post" action="{url op="saveSetup" path="4"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
-<p>{translate key="manager.setup.styleSheet.conferenceStyleSheet.description"}</p>
+<p>{translate key="manager.setup.style.conferenceStyleSheet.description"}</p>
 
 <table width="100%" class="data">
 <tr>
-	<td width="20%" class="label">{translate key="manager.setup.styleSheet.useConferenceStyleSheet"}</td>
+	<td width="20%" class="label"><label for="conferenceTheme">{translate key="manager.setup.style.conferenceTheme"}</label></td></td>
+	<td width="80%" class="value">
+		<select name="conferenceTheme" class="selectMenu" id="conferenceTheme"{if empty($conferenceThemes)} disabled="disabled"{/if}>
+			<option value="">{translate key="common.none"}</option>
+			{foreach from=$conferenceThemes key=path item=conferenceThemePlugin}
+				<option value="{$path|escape}"{if $path == $conferenceTheme} selected="selected"{/if}>{$conferenceThemePlugin->getDisplayName()}</option>
+			{/foreach}
+		</select>
+	</td>
+
+</tr>
+<tr>
+	<td width="20%" class="label">{translate key="manager.setup.style.useConferenceStyleSheet"}</td>
 	<td width="80%" class="value"><input type="file" name="conferenceStyleSheet" class="uploadField" /> <input type="submit" name="uploadConferenceStyleSheet" value="{translate key="common.upload"}" class="button" /></td>
 </tr>
 </table>

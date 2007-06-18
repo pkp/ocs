@@ -11,7 +11,8 @@
  *
  */
  
-require('PayPalPlugin.inc.php'); 
+require_once('PayPalPlugin.inc.php');
+
 return new PayPalPlugin();
  
 ?> 

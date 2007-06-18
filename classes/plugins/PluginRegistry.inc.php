@@ -15,6 +15,8 @@
 
 import('plugins.Plugin');
 
+define('PLUGINS_PREFIX', 'plugins/');
+
 class PluginRegistry {
 	/**
 	 * Return all plugins in the given category as an array, or, if the
@@ -24,14 +26,7 @@ class PluginRegistry {
 	 */
 	function &getPlugins($category = null) {
 		$plugins = &Registry::get('plugins');
-		if (!is_array($plugins)) {
-			$plugins = array();
-			Registry::set('plugins', $plugins);
-		}
-		if ($category !== null) {
-			if (!isset($plugins[$category])) $plugins[$category] = array();
-			return $plugins[$category];
-		}
+		if ($category !== null) return $plugins[$category];
 		return $plugins;
 	}
 
@@ -81,13 +76,16 @@ class PluginRegistry {
 	/**
 	 * Load all plugins for a given category.
 	 * @param $category String The name of the category to load
+	 * @param $forceLoad boolean Whether or not to force loading of the
+	 * category (since if e.g. a single plugin is already registered, the
+	 * current set will be returned rather than attempting to load others)
 	 */
-	function &loadCategory ($category) {
+	function &loadCategory ($category, $forceLoad = false) {
 		// Check if the category is already loaded. If so, don't
 		// load it again.
-		if (($plugins = &PluginRegistry::getPlugins($category))!=null) return $plugins;
+		if (($plugins = &PluginRegistry::getPlugins($category))!=null && !$forceLoad) return $plugins;
 
-		$categoryDir = 'plugins' . DIRECTORY_SEPARATOR . $category;
+		$categoryDir = PLUGINS_PREFIX . $category;
 		if (is_dir($categoryDir)) {
 			$handle = opendir($categoryDir);
 			while (($file = readdir($handle)) !== false) {
@@ -101,13 +99,36 @@ class PluginRegistry {
 					// is in a CVS tree; in this case the CVS
 					// directory will throw an error.)
 					$plugin = @include("$pluginPath/index.php");
-					if ($plugin) PluginRegistry::register($category, $plugin, $pluginPath);
+					if ($plugin) {
+						PluginRegistry::register($category, $plugin, $pluginPath);
+						unset($plugin);
+					}
 				}
 			}
 			closedir($handle);
 		}
 		$plugins = &PluginRegistry::getPlugins($category);
 		return $plugins;
+	}
+
+	/**
+	 * Load a specific plugin from a category by path name.
+	 * Similar to loadCategory, except that it only loads a single plugin
+	 * within a category rather than loading all.
+	 * @param $category string
+	 * @param $pathName string
+	 * @return object
+	 */
+	function &loadPlugin($category, $pathName) {
+		$pluginPath = PLUGINS_PREFIX . $category . '/' . $pathName;
+		$plugin = null;
+		if (file_exists($pluginPath . '/index.php')) {
+			$plugin = @include("$pluginPath/index.php");
+			if ($plugin) {
+				PluginRegistry::register($category, $plugin, $pluginPath);
+			}
+		}
+		return $plugin;
 	}
 
 	/**

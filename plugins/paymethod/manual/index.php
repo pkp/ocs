@@ -11,7 +11,8 @@
  *
  */
  
-require('ManualPaymentPlugin.inc.php'); 
+require_once('ManualPaymentPlugin.inc.php');
+
 return new ManualPaymentPlugin();
  
 ?> 
