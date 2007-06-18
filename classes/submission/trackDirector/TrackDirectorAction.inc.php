@@ -227,7 +227,7 @@ class TrackDirectorAction extends Action {
 		
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
-		$reviewerAccessKeysEnabled = $conference->getSetting('reviewerAccessKeysEnabled');
+		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled');
 
 		// If we're using access keys, disable the address fields
 		// for this message. (Prevents security issue: track director
@@ -386,7 +386,7 @@ class TrackDirectorAction extends Action {
 		$schedConf = &Request::getSchedConf();
 		$user = &Request::getUser();
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		$reviewerAccessKeysEnabled = $conference->getSetting('reviewerAccessKeysEnabled');
+		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled');
 
 		// If we're using access keys, disable the address fields
 		// for this message. (Prevents security issue: track director
