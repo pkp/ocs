@@ -120,7 +120,7 @@ class SchedConfHandler extends Handler {
 		} elseif (time() > $submissionsCloseDate) {
 			// Too late
 			$acceptingSubmissions = false;
-			$notAcceptingSubmissionsMessage = Locale::translate('presenter.submit.submissionDeadlinePassed', array('closedDate' => Date('Y-m-d', $submissionsCloseDate)));
+			$notAcceptingSubmissionsMessage = Locale::translate('presenter.submit.submissionDeadlinePassed', array('closedDate' => strftime(Config::getVar('general', 'date_format_short'), $submissionsCloseDate)));
 		} else {
 			$acceptingSubmissions = true;
 		}

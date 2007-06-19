@@ -99,7 +99,7 @@ class ReviewerAction extends Action {
 					$email->assignParams(array(
 						'editorialContactName' => $editorialContactName,
 						'reviewerName' => $reviewer->getFullName(),
-						'reviewDueDate' => ($reviewAssignment->getDateDue() === null ? Locale::translate('common.noDate') : date('Y-m-d', strtotime($reviewAssignment->getDateDue())))
+						'reviewDueDate' => ($reviewAssignment->getDateDue() === null ? Locale::translate('common.noDate') : strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())))
 					));
 				}
 				$paramArray = array('reviewId' => $reviewId);

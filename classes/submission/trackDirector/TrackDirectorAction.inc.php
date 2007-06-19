@@ -277,13 +277,13 @@ class TrackDirectorAction extends Action {
 				return true;
 			} else {
 				if (!Request::getUserVar('continued')) {
-					$weekLaterDate = date('Y-m-d', strtotime('+1 week'));
+					$weekLaterDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+1 week'));
 				
 					if ($reviewAssignment->getDateDue() != null) {
-						$reviewDueDate = date('Y-m-d', strtotime($reviewAssignment->getDateDue()));
+						$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue()));
 					} else {
 						$numWeeks = max((int) $schedConf->getSetting('numWeeksPerReview'), 2);
-						$reviewDueDate = date('Y-m-d', strtotime('+' . $numWeeks . ' week'));
+						$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 					}
 
 					$submissionUrl = Request::url(null, null, 'reviewer', 'submission', $reviewId, $reviewerAccessKeysEnabled?array('key' => 'ACCESS_KEY'):array());
@@ -445,7 +445,7 @@ class TrackDirectorAction extends Action {
 					'reviewerName' => $reviewer->getFullName(),
 					'reviewerUsername' => $reviewer->getUsername(),
 					'reviewerPassword' => $reviewer->getPassword(),
-					'reviewDueDate' => date('Y-m-d', strtotime($reviewAssignment->getDateDue())),
+					'reviewDueDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())),
 					'editorialContactSignature' => $user->getContactSignature(),
 					'passwordResetUrl' => Request::url(null, null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId()))),
 					'submissionReviewUrl' => $submissionUrl
@@ -615,7 +615,19 @@ class TrackDirectorAction extends Action {
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($paperId, PAPER_LOG_REVIEW_SET_DUE_DATE, LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewDueDateSet', array('reviewerName' => $reviewer->getFullName(), 'dueDate' => date('Y-m-d', strtotime($reviewAssignment->getDateDue())), 'paperId' => $paperId, 'stage' => $reviewAssignment->getStage()));
+			PaperLog::logEvent(
+				$paperId,
+				PAPER_LOG_REVIEW_SET_DUE_DATE,
+				LOG_TYPE_REVIEW,
+				$reviewAssignment->getReviewId(),
+				'log.review.reviewDueDateSet',
+				array(
+					'reviewerName' => $reviewer->getFullName(),
+					'dueDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())),
+					'paperId' => $paperId,
+					'stage' => $reviewAssignment->getStage()
+				)
+			);
 		}
 	 }
 	 
@@ -1326,7 +1338,7 @@ import('file.PaperFileManager');
 				$email->setSubject($trackDirectorSubmission->getPaperTitle());
 				$email->addRecipient($presenterUser->getEmail(), $presenterUser->getFullName());
 				$email->assignParams(array(
-					'conferenceDate' => date('Y-m-d', strtotime($schedConf->getStartDate())),
+					'conferenceDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($schedConf->getStartDate())),
 					'presenterName' => $presenterUser->getFullName(),
 					'conferenceTitle' => $conference->getTitle(),
 					'editorialContactSignature' => $user->getContactSignature(),
