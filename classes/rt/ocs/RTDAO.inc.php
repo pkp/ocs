@@ -129,7 +129,7 @@ class RTDAO extends DAO {
 			(conference_id, version_key, locale, title, description)
 			VALUES
 			(?, ?, ?, ?, ?)',
-			array($conferenceId, $version->key, $version->locale, $version->title, $version->description)
+			array((int) $conferenceId, $version->key, $version->locale, $version->title, $version->description)
 		);
 		
 		$version->versionId = $this->getInsertId('rt_versions', 'version_id');
@@ -162,8 +162,8 @@ class RTDAO extends DAO {
 				$version->getDescription(),
 				$version->getKey(),
 				$version->getLocale(),
-				$version->getVersionId(),
-				$conferenceId
+				(int) $version->getVersionId(),
+				(int) $conferenceId
 			)
 		);
 	}
@@ -188,7 +188,7 @@ class RTDAO extends DAO {
 		$this->deleteContextsByVersionId($versionId);
 		return $this->update(
 			'DELETE FROM rt_versions WHERE version_id = ? AND conference_id = ?',
-			array($versionId, $conferenceId)
+			array((int) $versionId, (int) $conferenceId)
 		);
 	}
 
@@ -284,7 +284,7 @@ class RTDAO extends DAO {
 	function &getContext($contextId) {
 		$result = &$this->retrieve(
 			'SELECT * FROM rt_contexts WHERE context_id = ?',
-			array($contextId)
+			array((int) $contextId)
 		);
 
 		$returner = null;
@@ -309,7 +309,7 @@ class RTDAO extends DAO {
 
 		$result = &$this->retrieveRange(
 			'SELECT * FROM rt_contexts WHERE version_id = ? ORDER BY seq',
-			$versionId,
+			array((int) $versionId),
 			$pagingInfo
 		);
 
@@ -328,7 +328,7 @@ class RTDAO extends DAO {
 			(version_id, title, abbrev, description, cited_by, author_terms, geo_terms, define_terms, seq)
 			VALUES
 			(?, ?, ?, ?, ?, ?, ?, ?, ?)',
-			array($context->versionId, $context->title, $context->abbrev, $context->description, $context->citedBy, $context->authorTerms, $context->geoTerms, $context->defineTerms, $context->order)
+			array((int) $context->versionId, $context->title, $context->abbrev, $context->description, $context->citedBy?1:0, $context->authorTerms?1:0, $context->geoTerms?1:0, $context->defineTerms?1:0, (int) $context->order)
 		);
 		
 		$context->contextId = $this->getInsertId('rt_contexts', 'context_id');
@@ -351,7 +351,7 @@ class RTDAO extends DAO {
 			'UPDATE rt_contexts
 			SET title = ?, abbrev = ?, description = ?, cited_by = ?, author_terms = ?, geo_terms = ?, define_terms = ?, seq = ?
 			WHERE context_id = ? AND version_id = ?',
-			array($context->title, $context->abbrev, $context->description, $context->citedBy, $context->authorTerms, $context->geoTerms, $context->defineTerms, $context->order, $context->contextId, $context->versionId)
+			array($context->title, $context->abbrev, $context->description, $context->citedBy?1:0, $context->authorTerms?1:0, $context->geoTerms?1:0, $context->defineTerms?1:0, (int) $context->order, (int) $context->contextId, (int) $context->versionId)
 		);
 	}
 	
@@ -377,7 +377,7 @@ class RTDAO extends DAO {
 	function deleteContext($contextId, $versionId) {
 		$result = $this->update(
 			'DELETE FROM rt_contexts WHERE context_id = ? AND version_id = ?',
-			array($contextId, $versionId)
+			array((int) $contextId, (int) $versionId)
 		);
 		if ($result) $this->deleteSearchesByContextId($contextId);
 		return $result;
@@ -389,7 +389,7 @@ class RTDAO extends DAO {
 	function resequenceContexts($versionId) {
 		$result = &$this->retrieve(
 			'SELECT context_id FROM rt_contexts WHERE version_id = ? ORDER BY seq',
-			$versionId
+			array((int) $versionId)
 		);
 		
 		for ($i=1; !$result->EOF; $i++) {
@@ -449,7 +449,7 @@ class RTDAO extends DAO {
 	function &getSearch($searchId) {
 		$result = &$this->retrieve(
 			'SELECT * FROM rt_searches WHERE search_id = ?',
-			$searchId
+			array((int) $searchId)
 		);
 
 		$returner = null;
@@ -474,7 +474,7 @@ class RTDAO extends DAO {
 		
 		$result = &$this->retrieveRange(
 			'SELECT * FROM rt_searches WHERE context_id = ? ORDER BY seq',
-			$contextId,
+			array((int) $contextId),
 			$pagingInfo
 		);
 
@@ -493,13 +493,13 @@ class RTDAO extends DAO {
 			VALUES
 			(?, ?, ?, ?, ?, ?, ?)',
 			array(
-				$search->getContextId(),
+				(int) $search->getContextId(),
 				$search->getTitle(),
 				$search->getDescription(),
 				$search->getUrl(),
 				$search->getSearchUrl(),
 				$search->getSearchPost(),
-				$search->getOrder()
+				(int) $search->getOrder()
 			)
 		);
 		
@@ -522,9 +522,9 @@ class RTDAO extends DAO {
 				$search->getUrl(),
 				$search->getSearchUrl(),
 				$search->getSearchPost(),
-				$search->getOrder(),
-				$search->getSearchId(),
-				$search->getContextId()
+				(int) $search->getOrder(),
+				(int) $search->getSearchId(),
+				(int) $search->getContextId()
 			)
 		);
 	}
@@ -536,7 +536,7 @@ class RTDAO extends DAO {
 	function deleteSearchesByContextId($contextId) {
 		return $this->update(
 			'DELETE FROM rt_searches WHERE context_id = ?',
-			$contextId
+			array((int) $contextId)
 		);
 	}
 
@@ -548,7 +548,7 @@ class RTDAO extends DAO {
 	function deleteSearch($searchId, $contextId) {
 		return $this->update(
 			'DELETE FROM rt_searches WHERE search_id = ? AND context_id = ?',
-			array($searchId, $contextId)
+			array((int) $searchId, (int) $contextId)
 		);
 	}
 	
@@ -558,7 +558,7 @@ class RTDAO extends DAO {
 	function resequenceSearches($contextId) {
 		$result = &$this->retrieve(
 			'SELECT search_id FROM rt_searches WHERE context_id = ? ORDER BY seq',
-			$contextId
+			array((int) $contextId)
 		);
 		
 		for ($i=1; !$result->EOF; $i++) {
