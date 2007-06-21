@@ -40,7 +40,6 @@ class RTDAO extends DAO {
 		$rt->setAddComment($conference->getSetting('rtAddComment')?true:false);
 		$rt->setEmailPresenter($conference->getSetting('rtEmailPresenter')?true:false);
 		$rt->setEmailOthers($conference->getSetting('rtEmailOthers')?true:false);
-		$rt->setBibFormat($conference->getSetting('rtBibFormat'));
 		return $rt;
 	}
 
@@ -60,7 +59,6 @@ class RTDAO extends DAO {
 		$conference->updateSetting('rtAddComment', $rt->getAddComment(), 'bool');
 		$conference->updateSetting('rtEmailPresenter', $rt->getEmailPresenter(), 'bool');
 		$conference->updateSetting('rtEmailOthers', $rt->getEmailOthers(), 'bool');
-		$conference->updateSetting('rtBibFormat', $rt->getBibFormat());
 		return true;
 	}
 	
@@ -221,7 +219,6 @@ class RTDAO extends DAO {
 		$rt->setAddComment($row['add_comment']);
 		$rt->setEmailPresenter($row['email_presenter']);
 		$rt->setEmailOthers($row['email_others']);
-		$rt->setBibFormat($row['bib_format']);
 
 		HookRegistry::call('RTDAO::_returnConferenceRTFromRow', array(&$rt, &$row));
 

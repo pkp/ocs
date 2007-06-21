@@ -151,7 +151,7 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign_by_ref('conferenceSettings', $conference->getSettings());
 		$templateMgr->display('rt/context.tpl');
 	}
-	
+
 	function captureCite($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -173,27 +173,19 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign_by_ref('conference', $conference);
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
 		$templateMgr->assign_by_ref('paper', $paper);
-		$templateMgr->assign('bibFormat', $conferenceRt->getBibFormat());
+
 		$templateMgr->assign_by_ref('conferenceSettings', $conference->getSettings());
 
-		switch ($citeType) {
-			case 'endNote':
-				header('Content-Disposition: attachment; filename="' . $paperId . '-endNote.enw"');
-				$templateMgr->display('rt/citeEndNote.tpl', 'application/x-endnote-refer');
-				break;
-			case 'referenceManager':
-				header('Content-Disposition: attachment; filename="' . $paperId . '-refMan.ris"');
-				$templateMgr->display('rt/citeReferenceManager.tpl', 'application/x-Research-Info-Systems');
-				break;
-			case 'proCite':
-				header('Content-Disposition: attachment; filename="' . $paperId . '-proCite.ris"');
-				$templateMgr->display('rt/citeProCite.tpl', 'application/x-Research-Info-Systems');
-				break;
-			default:
-				$templateMgr->display('rt/captureCite.tpl');
-				break;
+		$citationPlugins =& PluginRegistry::loadCategory('citationFormats');
+		$templateMgr->assign('citationPlugins', $citationPlugins);
+		if (isset($citationPlugins[$citeType])) {
+			// A citation type has been selected; display citation.
+			$citationPlugin =& $citationPlugins[$citeType];
+		} else {
+			// No citation type has been selected; use a default.
+			$citationPlugin = array_shift($citationPlugins);
 		}
-
+		$citationPlugin->cite($paper);
 	}
 	
 	function printerFriendly($args) {

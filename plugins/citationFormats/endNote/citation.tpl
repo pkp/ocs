@@ -1,13 +1,14 @@
 {**
- * citeEndNote.tpl
+ * citation.tpl
  *
- * Copyright (c) 2000-2007 John Willinsky
+ * Copyright (c) 2003-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * EndNote citation format generator
  *
  * $Id$
  *}
+
 {if $galleyId}
 	{url|assign:"paperUrl" page="paper" op="view" path=$paperId|to_array:$galleyId}
 {else}

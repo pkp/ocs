@@ -37,15 +37,6 @@ class RTSetupHandler extends RTAdminHandler {
 			}
 
 			$templateMgr->assign('versionOptions', $versionOptions);
-			$templateMgr->assign('bibFormatOptions', array(
-				'APA' => 'American Psychological Association (APA)',
-				'MLA' => 'Modern Language Association (MLA)',
-				'Turabian' => 'Turabian',
-				'CBE' => 'Council of Biology Editors (CBE)',
-				'BibTeX' => 'BibTeX',
-				'ABNT' => 'ABNT 10520'
-			));
-
 			$templateMgr->assign_by_ref('version', $rt->getVersion());
 			$templateMgr->assign('enabled', $rt->getEnabled());
 			$templateMgr->assign('abstract', $rt->getAbstract());
@@ -58,7 +49,6 @@ class RTSetupHandler extends RTAdminHandler {
 			$templateMgr->assign('addComment', $rt->getAddComment());
 			$templateMgr->assign('emailPresenter', $rt->getEmailPresenter());
 			$templateMgr->assign('emailOthers', $rt->getEmailOthers());
-			$templateMgr->assign('bibFormat', $rt->getBibFormat());
 
 			$templateMgr->assign('helpTopicId', 'conference.managementPages.readingTools.settings');
 			$templateMgr->display('rtadmin/settings.tpl');
@@ -89,7 +79,6 @@ class RTSetupHandler extends RTAdminHandler {
 			$rt->setAddComment(Request::getUserVar('addComment')==true);
 			$rt->setEmailPresenter(Request::getUserVar('emailPresenter')==true);
 			$rt->setEmailOthers(Request::getUserVar('emailOthers')==true);
-			$rt->setBibFormat(Request::getUserVar('bibFormat'));
 
 			$rtDao->updateConferenceRT($rt);
 		}

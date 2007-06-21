@@ -53,9 +53,6 @@ class RT {
 	/** @var $emailOthers boolean */
 	var $emailOthers;
 
-	/** @var $bibFormat string */
-	var $bibFormat;
-
 	/**
 	 * Getter/Setter functions
 	 */
@@ -91,14 +88,6 @@ class RT {
 
 	function getAbstract() {
 		return $this->abstract;
-	}
-
-	function setBibFormat($bibFormat) {
-		$this->bibFormat = $bibFormat;
-	}
-
-	function getBibFormat() {
-		return $this->bibFormat;
 	}
 
 	function setViewMetadata($viewMetadata) {
