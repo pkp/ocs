@@ -38,18 +38,18 @@
 <div id="headerTitle">
 <h1>
 {if $displayPageHeaderLogo}
-	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width}" height="{$displayPageHeaderLogo.height}" border="0" alt="" />
+	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width}" height="{$displayPageHeaderLogo.height}" style="border: 0;" alt="" />
 {elseif $displayConferencePageHeaderLogo}
-	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderLogo.uploadName|escape:"url"}" width="{$displayConferencePageHeaderLogo.width}" height="{$displayConferencePageHeaderLogo.height}" border="0" alt="" />
+	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderLogo.uploadName|escape:"url"}" width="{$displayConferencePageHeaderLogo.width}" height="{$displayConferencePageHeaderLogo.height}" style="border: 0;" alt="" />
 {/if}
 {if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width}" height="{$displayPageHeaderTitle.height}" border="0" alt="" />
+	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width}" height="{$displayPageHeaderTitle.height}" style="border: 0;" alt="" />
 {elseif $displayPageHeaderTitle}
 	{$displayPageHeaderTitle}
 {elseif $alternatePageHeader}
 	{$alternatePageHeader}
 {elseif $displayConferencePageHeaderTitle && is_array($displayConferencePageHeaderTitle)}
-	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderTitle.uploadName|escape:"url"}" width="{$displayConferencePageHeaderTitle.width}" height="{$displayConferencePageHeaderTitle.height}" border="0" alt="" />
+	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderTitle.uploadName|escape:"url"}" width="{$displayConferencePageHeaderTitle.width}" height="{$displayConferencePageHeaderTitle.height}" style="border: 0;" alt="" />
 {elseif $displayConferencePageHeaderTitle}
 	{$displayConferencePageHeaderTitle}
 {elseif $alternateConferencePageHeader}

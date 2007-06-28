@@ -31,7 +31,7 @@
 {if $homepageImage}
 {translate key="common.fileName"}: {$homepageImage.name} {$homepageImage.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteHomepageImage" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicConferenceFilesDir}/{$homepageImage.uploadName}" width="{$homepageImage.width}" height="{$homepageImage.height}" border="0" alt="" />
+<img src="{$publicConferenceFilesDir}/{$homepageImage.uploadName}" width="{$homepageImage.width}" height="{$homepageImage.height}" style="border: 0;" alt="" />
 {/if}
 
 <h4>{translate key="manager.setup.additionalContent.additionalContent"}</h4>
