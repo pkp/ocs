@@ -378,7 +378,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Allow the Conference Manager to merge user accounts, including attributed papers etc.
 	 */
-	/*function mergeUsers($args) {
+	function mergeUsers($args) {
 		parent::validate();
 		parent::setupTemplate(true);
 
@@ -446,24 +446,6 @@ class PeopleHandler extends ManagerHandler {
 				unset($reviewAssignment);
 			}
 
-			$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
-			$copyeditorSubmissions =& $copyeditorSubmissionDao->getCopyeditorSubmissionsByCopyeditorId($oldUserId);
-			while ($copyeditorSubmission =& $copyeditorSubmissions->next()) {
-				$copyeditorSubmission->setCopyeditorId($newUserId);
-				$copyeditorSubmissionDao->updateCopyeditorSubmission($copyeditorSubmission);
-				unset($copyeditorSubmission);
-			}
-
-			$proofreaderSubmissionDao =& DAORegistry::getDAO('ProofreaderSubmissionDAO');
-			$proofreaderSubmissions =& $proofreaderSubmissionDao->getSubmissions($oldUserId);
-			while ($proofreaderSubmission =& $proofreaderSubmissions->next()) {
-				$proofAssignment =& $proofreaderSubmission->getProofAssignment();
-				$proofAssignment->setProofreaderId($newUserId);
-				$proofreaderSubmissionDao->updateSubmission($proofreaderSubmission);
-				unset($proofAssignment);
-				unset($proofreaderSubmission);
-			}
-
 			$paperEmailLogDao =& DAORegistry::getDAO('PaperEmailLogDAO');
 			$paperEmailLogDao->transferPaperLogEntries($oldUserId, $newUserId);
 			$paperEventLogDao =& DAORegistry::getDAO('PaperEventLogDAO');
@@ -483,7 +465,7 @@ class PeopleHandler extends ManagerHandler {
 			$sessionDao =& DAORegistry::getDAO('SessionDAO');
 			$sessionDao->deleteSessionsByUserId($oldUserId);
 			$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
-			$registrationDao->deleteRegistrantsByUserId($oldUserId);
+			$registrationDao->deleteRegistrationsByUserId($oldUserId);
 			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
 			$temporaryFileDao->deleteTemporaryFilesByUserId($oldUserId);
 			$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
@@ -572,7 +554,7 @@ class PeopleHandler extends ManagerHandler {
 		$templateMgr->assign('rolePath', $roleDao->getRolePath($roleId));
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
 		$templateMgr->display('manager/people/selectMergeUser.tpl');
-	}*/
+	}
 
 	/**
 	 * Disable a user's account.

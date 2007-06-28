@@ -331,7 +331,7 @@ class Validation {
 	 * @param $userId int
 	 * @return boolean
 	 */
-	function canAdminister($conferenceId, $schedConfId, $userId) {
+	function canAdminister($conferenceId, $userId) {
 
 		if (Validation::isSiteAdmin()) return true;
 		if (!Validation::isConferenceManager($conferenceId)) return false;
