@@ -318,6 +318,10 @@ a.icon {
 	text-decoration: none;
 }
 
+a.icon img {
+	border: 0;
+}
+
 a.icon:hover {
 	background: none;
 }
