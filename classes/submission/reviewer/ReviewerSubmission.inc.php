@@ -145,7 +145,6 @@ class ReviewerSubmission extends Paper {
 	 * @param $stage int
 	 */
 	function setDecisions($directorDecisions, $stage) {
-		$this->stampStatusModified();
 		return $this->directorDecisions[$stage] = $directorDecisions;
 	}
 	
