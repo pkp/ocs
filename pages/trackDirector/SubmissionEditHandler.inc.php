@@ -944,39 +944,21 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$submitForm = &new PaperGalleyForm($paperId, $galleyId);
 		$submitForm->readInputData();
 
-		if (Request::getUserVar('uploadImage')) {
-			$submitForm->initData();
-
-			// Attach galley image
-			$submitForm->uploadImage();
-
-			parent::setupTemplate(true, $paperId, 'editing');
-			$submitForm->display();
-
-		} else if(($deleteImage = Request::getUserVar('deleteImage')) && count($deleteImage) == 1) {
-			$submitForm->initData();
-
-			// Delete galley image
-			list($imageId) = array_keys($deleteImage);
-			$submitForm->deleteImage($imageId);
-
-			parent::setupTemplate(true, $paperId, 'editing');
-			$submitForm->display();
-
-		} else if ($submitForm->validate()) {
+		if ($submitForm->validate()) {
 			$submitForm->execute();
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
 
-		} else {
-			$submitForm->readInputData();
-			if ($submitForm->validate()) {
-				$submitForm->execute();
-				Request::redirect(null, null, 'submissionReview', $paperId);
-
-			} else {
-				parent::setupTemplate(true, $paperId, 'editing');
-				$submitForm->display();
+			if (Request::getUserVar('uploadImage')) {
+				$submitForm->uploadImage();
+				Request::redirect(null, null, null, 'editGalley', array($paperId, $galleyId));
+			} else if(($deleteImage = Request::getUserVar('deleteImage')) && count($deleteImage) == 1) {
+				list($imageId) = array_keys($deleteImage);
+				$submitForm->deleteImage($imageId);
+				Request::redirect(null, null, null, 'editGalley', array($paperId, $galleyId));
 			}
+			Request::redirect(null, null, null, 'submissionReview', $paperId);
+		} else {
+			parent::setupTemplate(true, $paperId, 'editing');
+			$submitForm->display();
 		}
 	}
 
