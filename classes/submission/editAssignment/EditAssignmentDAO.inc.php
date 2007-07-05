@@ -36,11 +36,11 @@ class EditAssignmentDAO extends DAO {
 				u.email,
 				u.initials,
 				r.role_id AS director_role_id
-			FROM papers p,
-				edit_assignments e
+			FROM papers p
+				LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
 				LEFT JOIN users u ON (e.director_id = u.user_id)
-				LEFT JOIN roles r ON (r.user_id = e.director_id AND r.role_id = ' . ROLE_ID_DIRECTOR . ')
-			WHERE (r.sched_conf_id = p.sched_conf_id OR r.sched_conf_id IS NULL) AND e.edit_id = ? AND p.paper_id = e.paper_id',
+				LEFT JOIN roles r ON (r.user_id = e.director_id AND r.role_id = ' . ROLE_ID_DIRECTOR . ' AND r.sched_conf_id = p.sched_conf_id)
+			WHERE e.edit_id = ? AND p.paper_id = e.paper_id',
 			$editId
 			);
 
@@ -63,11 +63,11 @@ class EditAssignmentDAO extends DAO {
 	function &getEditAssignmentsByPaperId($paperId) {
 		$result = &$this->retrieve(
 			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS director_role_id
-			FROM papers p, edit_assignments e LEFT JOIN users u ON (e.director_id = u.user_id)
-			LEFT JOIN roles r ON (r.user_id = e.director_id AND r.role_id = ' . ROLE_ID_DIRECTOR . ')
-			WHERE e.paper_id = ?
-				AND (r.sched_conf_id IS NULL OR r.sched_conf_id = p.sched_conf_id)
-				AND p.paper_id = e.paper_id ORDER BY e.date_notified ASC',
+			FROM papers p
+				LEFT JOIN edit_assignments e ON (p.paper_id = e.paper_id)
+				LEFT JOIN users u ON (e.director_id = u.user_id)
+				LEFT JOIN roles r ON (r.user_id = e.director_id AND r.role_id = ' . ROLE_ID_DIRECTOR . ' AND r.sched_conf_id = p.sched_conf_id)
+			WHERE e.paper_id = ? AND p.paper_id = e.paper_id ORDER BY e.date_notified ASC',
 			$paperId
 			);
 
@@ -98,7 +98,12 @@ class EditAssignmentDAO extends DAO {
 	 */
 	function &getTrackDirectorAssignmentsByPaperId($paperId) {
 		$result = &$this->retrieve(
-			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS director_role_id FROM papers a, edit_assignments e LEFT JOIN users u ON (e.director_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.director_id AND r.role_id = ' . ROLE_ID_DIRECTOR . ') WHERE e.paper_id = ? AND (r.sched_conf_id IS NULL OR r.sched_conf_id = a.sched_conf_id) AND a.paper_id = e.paper_id AND r.role_id IS NULL ORDER BY e.date_notified ASC',
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS director_role_id
+			FROM papers p
+				LEFT JOIN edit_assignments e ON (p.paper_id = e.paper_id)
+				LEFT JOIN users u ON (e.director_id = u.user_id)
+				LEFT JOIN roles r ON (r.user_id = e.director_id AND r.role_id = ' . ROLE_ID_DIRECTOR . ' AND r.sched_conf_id = p.sched_conf_id)
+			WHERE e.paper_id = ? AND p.paper_id = e.paper_id AND r.role_id IS NULL ORDER BY e.date_notified ASC',
 			$paperId
 			);
 
@@ -113,7 +118,12 @@ class EditAssignmentDAO extends DAO {
 	 */
 	function &getEditAssignmentsByUserId($userId) {
 		$result = &$this->retrieve(
-			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS director_role_id FROM papers a, edit_assignments e LEFT JOIN users u ON (e.director_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.director_id AND r.role_id = ' . ROLE_ID_DIRECTOR . ') WHERE e.director_id = ? AND (r.sched_conf_id IS NULL OR r.sched_conf_id = a.sched_conf_id) AND a.paper_id = e.paper_id ORDER BY e.date_notified ASC',
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS director_role_id
+			FROM papers p
+				LEFT JOIN edit_assignments e ON (p.paper_id = e.paper_id)
+				LEFT JOIN users u ON (e.director_id = u.user_id)
+				LEFT JOIN roles r ON (r.user_id = e.director_id AND r.role_id = ' . ROLE_ID_DIRECTOR . ' AND r.sched_conf_id = p.sched_conf_id)
+				WHERE e.director_id = ? AND p.paper_id = e.paper_id ORDER BY e.date_notified ASC',
 			$userId
 			);
 
