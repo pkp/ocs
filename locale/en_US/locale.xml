@@ -159,6 +159,9 @@
 		<br/>
 		This <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">work</span> is licensed under a <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0  License</a>.
 	]]></message>
+	<message key="common.captchaField">Validation</message>
+	<message key="common.captchaField.description">Please enter the letters as they appear in the image above.</message>
+	<message key="common.captchaField.badCaptcha">The characters you entered did not match the characters in the image. Please check the characters and try again.</message>
 
 	<!-- Common Form Messages -->
 	<message key="form.errorsOccurred">Errors occurred processing this form</message>
@@ -1967,10 +1970,10 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.account.form.usernameAlphaNumeric">The username can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
 	<message key="user.account.form.emailExists">The selected email address is already in use by another user.</message>
 	<message key="user.account.form.passwordsDoNotMatch">The passwords do not match.</message>
-	<message key="user.account.selectConference">Select an conference to register with</message>
-	<message key="user.account.noConferences">There are no conferences you may register with on this site.</message>
-	<message key="user.account.selectSchedConf">Select a scheduled conference to register with</message>
-	<message key="user.account.noSchedConfs">There are no scheduled conferences you may register with on this site.</message>
+	<message key="user.account.selectConference">Select an conference to create an account with</message>
+	<message key="user.account.noConferences">There are no conferences you may create an account for on this site.</message>
+	<message key="user.account.selectSchedConf">Select a scheduled conference to create an account with</message>
+	<message key="user.account.noSchedConfs">There are no scheduled conferences you may create an account with on this site.</message>
 	<message key="user.account.createAs">Create account as</message>
 	<message key="user.account.privacyStatement">Privacy Statement</message>
 	<message key="user.account.completeForm">Fill in this form to create an account with this conference.</message>
