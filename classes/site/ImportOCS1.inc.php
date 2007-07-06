@@ -72,9 +72,6 @@ class ImportOCS1 {
 	var $options;
 	var $error;
 
-	/** @var $transcoder object The transcoder to use, if desired */
-	var $transcoder;
-
 	/** @var $conflicts array List of conflicting user accounts */
 	var $conflicts;
 
@@ -95,17 +92,6 @@ class ImportOCS1 {
 
 		$this->conflicts = array();
 		$this->errors = array();
-	}
-
-	/**
-	 * Transcode a string as necessary.
-	 */
-	function trans($string) {
-		if (isset($this->transcoder)) {
-			return $this->transcoder->trans($string);
-		}
-		// No transcoder configured -- do nothing.
-		return $string;
 	}
 
 	/**
@@ -142,12 +128,6 @@ class ImportOCS1 {
 		$this->conferencePath = $conferencePath;
 		$this->importPath = $importPath;
 		$this->options = $options;
-
-		if ($this->hasOption('transcode')) {
-			$clientCharset = Config::getVar('i18n', 'client_charset');
-			import('core.Transcoder');
-			$this->transcoder =& new Transcoder('ISO-8859-1', $clientCharset);
-		}
 
 		// Force a new database connection
 		$dbconn = &DBConnection::getInstance();
@@ -334,8 +314,8 @@ class ImportOCS1 {
 		$this->schedConfMap[$id] =& $schedConf;
 
 		$schedConfSettings = array(
-			'contactEmail' => array('string', $this->trans($this->conferenceInfo[$id]['contact_email'])),
-			'contactName' => array('string', $this->trans($this->conferenceInfo[$id]['contact_name']))
+			'contactEmail' => array('string', Core::cleanVar($this->conferenceInfo[$id]['contact_email'])),
+			'contactName' => array('string', Core::cleanVar($this->conferenceInfo[$id]['contact_name']))
 		);
 		
 		foreach ($schedConfSettings as $settingName => $settingInfo) {
@@ -360,12 +340,12 @@ class ImportOCS1 {
 		$registrationTypes = array();
 
 		foreach ($this->conferenceInfo as $conferenceId => $conferenceInfo) {
-			$levels = array_map('trim', split("\n", $this->trans($conferenceInfo['reg_levels'])));
-			$fees = array_map('trim', split("\n", $this->trans($conferenceInfo['reg_fees'])));
-			$levelsLate = array_map('trim', split("\n", $this->trans($conferenceInfo['reg_levels_late'])));
-			$feesLate = array_map('trim', split("\n", $this->trans($conferenceInfo['reg_fees_late'])));
+			$levels = array_map('trim', split("\n", Core::cleanVar($conferenceInfo['reg_levels'])));
+			$fees = array_map('trim', split("\n", Core::cleanVar($conferenceInfo['reg_fees'])));
+			$levelsLate = array_map('trim', split("\n", Core::cleanVar($conferenceInfo['reg_levels_late'])));
+			$feesLate = array_map('trim', split("\n", Core::cleanVar($conferenceInfo['reg_fees_late'])));
 
-			$lateDate = $this->trans($conferenceInfo['reg_late_date']);
+			$lateDate = Core::cleanVar($conferenceInfo['reg_late_date']);
 			$schedConf =& $this->schedConfMap[$conferenceId];
 
 			foreach ($levels as $key => $level) {
@@ -375,7 +355,7 @@ class ImportOCS1 {
 				$registrationType->setTypeName($level);
 				$registrationType->setCost($fee);
 				$registrationType->setCurrencyCodeAlpha('USD'); // FIXME?
-				$registrationType->setOpeningDate($this->trans($conferenceInfo['accept_deadline']));
+				$registrationType->setOpeningDate(Core::cleanVar($conferenceInfo['accept_deadline']));
 				$registrationType->setClosingDate($lateDate);
 				$registrationType->setAccess(REGISTRATION_TYPE_ACCESS_ONLINE);
 				$registrationType->setPublic(0);
@@ -395,7 +375,7 @@ class ImportOCS1 {
 				$registrationType->setCost($fee);
 				$registrationType->setCurrencyCodeAlpha('USD'); // FIXME?
 				$registrationType->setOpeningDate($lateDate);
-				$registrationType->setClosingDate($this->trans($conferenceInfo['start_date']));
+				$registrationType->setClosingDate(Core::cleanVar($conferenceInfo['start_date']));
 				$registrationType->setAccess(REGISTRATION_TYPE_ACCESS_ONLINE);
 				$registrationType->setPublic(0);
 				$registrationType->setInstitutional(0);
@@ -412,11 +392,11 @@ class ImportOCS1 {
 			$row = &$result->fields;
 			$schedConf =& $this->schedConfMap[$row['cf']];
 
-			$email = $this->trans($row['email']);
+			$email = Core::cleanVar($row['email']);
 
 			if (!$user =& $userDao->getUserByEmail($email)) {
 				// The user doesn't exist by email; create one.
-				$name = $this->trans($row['name']);
+				$name = Core::cleanVar($row['name']);
 				$nameParts = split(' ', $name);
 
 				$lastName = array_pop($nameParts);
@@ -426,9 +406,9 @@ class ImportOCS1 {
 				$user->setEmail($email);
 				$user->setFirstName($firstName);
 				$user->setLastName($lastName);
-				$user->setPhone($this->trans($row['phone']));
-				$user->setFax($this->trans($row['fax']));
-				$user->setMailingAddress($this->trans($row['address']));
+				$user->setPhone(Core::cleanVar($row['phone']));
+				$user->setFax(Core::cleanVar($row['fax']));
+				$user->setMailingAddress(Core::cleanVar($row['address']));
 
 				$i = "";
 				while ($userDao->userExistsByUsername($lastName . $i)) $i++;
@@ -455,8 +435,8 @@ class ImportOCS1 {
 				}
 			}
 
-			$regLevel = trim($this->trans($row['reg_level']));
-			$regFee = $this->trans($row['reg_fee']);
+			$regLevel = trim(Core::cleanVar($row['reg_level']));
+			$regFee = Core::cleanVar($row['reg_fee']);
 			$conferenceInfo =& $this->conferenceInfo[$row['cf']];
 			$seekingRegLevel = $regLevel . (strtotime($row['date_registered']) > strtotime($conferenceInfo['reg_late_date']) ? ' (Late)':'');
 			$registrationType =& $registrationTypes[$seekingRegLevel];
@@ -480,8 +460,8 @@ class ImportOCS1 {
 				$registration->setSchedConfId($schedConf->getSchedConfId());
 				$registration->setUserId($user->getUserId());
 				$registration->setTypeId($registrationType->getTypeId());
-				if ($row['has_paid'] == 'paid') $registration->setDatePaid($this->trans($row['date_paid']));
-				$registration->setSpecialRequests($this->trans($row['special_requests']));
+				if ($row['has_paid'] == 'paid') $registration->setDatePaid(Core::cleanVar($row['date_paid']));
+				$registration->setSpecialRequests(Core::cleanVar($row['special_requests']));
 				$registration->setDateRegistered($row['date_registered']);
 				$registrationDao->insertRegistration($registration);
 				unset($registration);
@@ -519,7 +499,7 @@ class ImportOCS1 {
 			$track = &new Track();
 			$schedConf =& $this->schedConfMap[$row['cf']];
 			$track->setSchedConfId($schedConf->getSchedConfId());
-			$track->setTitle($this->trans($row['track']));
+			$track->setTitle(Core::cleanVar($row['track']));
 			$track->setSequence(++$sequence);
 			$track->setDirectorRestricted(0);
 			$track->setMetaReviewed(1);
@@ -556,19 +536,19 @@ class ImportOCS1 {
 			$schedConf =& $this->schedConfMap[$row['cf']];
 			$schedConfId = $schedConf->getSchedConfId();
 
-			$user = $userDao->getUserByUsername($this->trans($row['login']));
+			$user = $userDao->getUserByUsername(Core::cleanVar($row['login']));
 			if (!$user) {
 				unset($user);
 				$user =& new User();
-				$user->setUsername($this->trans($row['login']));
+				$user->setUsername(Core::cleanVar($row['login']));
 
-				$nameParts = split(' ', $this->trans($row['name']));
+				$nameParts = split(' ', Core::cleanVar($row['name']));
 				$firstName = array_shift($nameParts);
 				$lastName = join(' ', $nameParts);
 
 				$user->setFirstName(empty($firstName)?'(NONE)':$firstName);
 				$user->setLastName(empty($lastName)?'(NONE)':$lastName);
-				$user->setEmail($this->trans($row['email']));
+				$user->setEmail(Core::cleanVar($row['email']));
 				$user->setDateRegistered(Core::getCurrentDate());
 				$user->setDateLastLogin(null);
 				$user->setMustChangePassword(1);
@@ -588,10 +568,10 @@ class ImportOCS1 {
 				}
 				$user->setDisabled(0);
 
-				$otherUser =& $userDao->getUserByEmail($this->trans($row['email']));
+				$otherUser =& $userDao->getUserByEmail(Core::cleanVar($row['email']));
 				if ($otherUser !== null) {
 					// User exists with this email -- munge it to make unique
-					$user->setEmail('ocs-' . $this->trans($row['login']) . '+' . $this->trans($row['email']));
+					$user->setEmail('ocs-' . Core::cleanVar($row['login']) . '+' . Core::cleanVar($row['email']));
 					$this->conflicts[] = array(&$otherUser, &$user);
 				}
 
@@ -646,17 +626,17 @@ class ImportOCS1 {
 			$schedConfId = $schedConf->getSchedConfId();
 
 			// Bring in the primary user for this paper.
-			$user = $userDao->getUserByUsername($this->trans($row['login']));
+			$user = $userDao->getUserByUsername(Core::cleanVar($row['login']));
 			if (!$user) {
 				unset($user);
 				$user =& new User();
-				$user->setUsername($this->trans($row['login']));
-				$user->setFirstName($this->trans($row['first_name']));
-				$user->setLastName($this->trans($row['surname']));
-				$user->setAffiliation($this->trans($row['affiliation']));
-				$user->setEmail($this->trans($row['email']));
-				$user->setUrl($this->trans($row['url']));
-				$user->setBiography($this->trans($row['bio']));
+				$user->setUsername(Core::cleanVar($row['login']));
+				$user->setFirstName(Core::cleanVar($row['first_name']));
+				$user->setLastName(Core::cleanVar($row['surname']));
+				$user->setAffiliation(Core::cleanVar($row['affiliation']));
+				$user->setEmail(Core::cleanVar($row['email']));
+				$user->setUrl(Core::cleanVar($row['url']));
+				$user->setBiography(Core::cleanVar($row['bio']));
 				$user->setLocales(array());
 				$user->setDateRegistered($row['created']);
 				$user->setDateLastLogin($row['created']);
@@ -677,10 +657,10 @@ class ImportOCS1 {
 				}
 				$user->setDisabled(0);
 
-				$otherUser =& $userDao->getUserByEmail($this->trans($row['email']));
+				$otherUser =& $userDao->getUserByEmail(Core::cleanVar($row['email']));
 				if ($otherUser !== null) {
 					// User exists with this email -- munge it to make unique
-					$user->setEmail('ocs-' . $this->trans($row['login']) . '+' . $this->trans($row['email']));
+					$user->setEmail('ocs-' . Core::cleanVar($row['login']) . '+' . Core::cleanVar($row['email']));
 					$this->conflicts[] = array(&$otherUser, &$user);
 				}
 
@@ -727,14 +707,14 @@ class ImportOCS1 {
 			}
 
 			$paper->setTrackId($newTrackId);
-			$paper->setTitle($this->trans($row['title']));
+			$paper->setTitle(Core::cleanVar($row['title']));
 			$paper->setTitleAlt1('');
 			$paper->setTitleAlt2('');
-			$paper->setAbstract($this->trans($row['abstract']));
-			$paper->setDiscipline($this->trans($row['discipline']));
-			$paper->setSponsor($this->trans($row['sponsor']));
-			$paper->setSubject($this->trans($row['topic']));
-			$paper->setLanguage($this->trans($row['language']));
+			$paper->setAbstract(Core::cleanVar($row['abstract']));
+			$paper->setDiscipline(Core::cleanVar($row['discipline']));
+			$paper->setSponsor(Core::cleanVar($row['sponsor']));
+			$paper->setSubject(Core::cleanVar($row['topic']));
+			$paper->setLanguage(Core::cleanVar($row['language']));
 
 			$paper->setDateSubmitted($row['created']);
 			$paper->setDateStatusModified($row['timestamp']);
@@ -745,11 +725,11 @@ class ImportOCS1 {
 			$paper->setPages('');
 
 			// Bring in authors
-			$firstNames = split("\n", $this->trans($row['first_name'] . "\n" . $row['add_first_names']));
-			$lastNames = split("\n", $this->trans($row['surname'] . "\n" . $row['add_surnames']));
-			$emails = split("\n", $this->trans($row['email'] . "\n" . $row['add_emails']));
-			$affiliations = split("\n", $this->trans($row['affiliation'] . "\n" . $row['add_affiliations']));
-			$urls = split("\n", $this->trans($row['url'] . "\n" . $row['add_urls']));
+			$firstNames = split("\n", Core::cleanVar($row['first_name'] . "\n" . $row['add_first_names']));
+			$lastNames = split("\n", Core::cleanVar($row['surname'] . "\n" . $row['add_surnames']));
+			$emails = split("\n", Core::cleanVar($row['email'] . "\n" . $row['add_emails']));
+			$affiliations = split("\n", Core::cleanVar($row['affiliation'] . "\n" . $row['add_affiliations']));
+			$urls = split("\n", Core::cleanVar($row['url'] . "\n" . $row['add_urls']));
 			foreach ($emails as $key => $email) {
 				if (empty($email)) continue;
 
@@ -930,7 +910,7 @@ class ImportOCS1 {
 			$paperComment->setAssocId($reviewId);
 			$paperComment->setAuthorId($reviewerId);
 			$paperComment->setCommentTitle('');
-			$paperComment->setComments($this->trans($row['comments'] . "\n" . $row['recommendation']));
+			$paperComment->setComments(Core::cleanVar($row['comments'] . "\n" . $row['recommendation']));
 			$paperComment->setDatePosted($row['timestamp']);
 			$paperComment->setViewable(0);
 
