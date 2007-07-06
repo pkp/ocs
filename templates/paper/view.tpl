@@ -17,11 +17,18 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset}" />
 	<title>{$paper->getFirstPresenter(true)|escape}</title>
+
 	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
 	<link rel="stylesheet" href="{$baseUrl}/styles/paperView.css" type="text/css" />
+
 	{foreach from=$stylesheets item=cssUrl}
-	<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
+		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
+
+	<link rel="alternate stylesheet" title="{translate key="icon.small.alt"}" href="{$baseUrl}/styles/small.css" type="text/css" />
+	<link rel="stylesheet" title="{translate key="icon.medium.alt"}" href="{$baseUrl}/styles/medium.css" type="text/css" />
+	<link rel="alternate stylesheet" title="{translate key="icon.large.alt"}" href="{$baseUrl}/styles/large.css" type="text/css" />
+
 </head>
 <frameset cols="*,180" frameborder="0" framespacing="0" style="border: 0;">
 	{if !$galley}
