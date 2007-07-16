@@ -167,7 +167,7 @@ class DirectorSubmissionDAO extends DAO {
 				$params[] = $params[] = $params[] = $search;
 				break;
 			case SUBMISSION_FIELD_PRESENTER:
-				$searchSql = $this->_generateUserNameSearchSQL($search, $searchMatch, 'aa.', $params);
+				$searchSql = $this->_generateUserNameSearchSQL($search, $searchMatch, 'pa.', $params);
 				break;
 			case SUBMISSION_FIELD_DIRECTOR:
 				$searchSql = $this->_generateUserNameSearchSQL($search, $searchMatch, 'ed.', $params);
