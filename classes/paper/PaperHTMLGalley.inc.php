@@ -64,6 +64,19 @@ class PaperHTMLGalley extends PaperGalley {
 			$contents
 		);
 
+		// Perform variable replacement for site info etc.
+		$schedConf =& Request::getSchedConf();
+		$site =& Request::getSite();
+
+		$paramArray = array(
+			'confTitle' => $schedConf->getTitle(),
+			'siteTitle' => $site->getTitle(),
+			'currentUrl' => Request::getRequestUrl()
+		);
+
+		foreach ($paramArray as $key => $value) {
+			$contents = str_replace('{$' . $key . '}', $value, $contents);
+		}
 		return $contents;
 	}
 
