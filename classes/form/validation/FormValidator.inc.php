@@ -13,6 +13,7 @@
  * $Id$
  */
 
+import('form.validation.FormValidatorCaptcha');
 import('form.validation.FormValidatorRegExp');
 import('form.validation.FormValidatorEmail');
 import('form.validation.FormValidatorAlphaNum');
