@@ -1,12 +1,13 @@
 <?php
 
 /**
- * RegistrationTypeDAO.inc.php
+ * @file RegistrationTypeDAO.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package registration
+ * @class RegistrationTypeDAO
  *
  * Class for RegistrationType DAO.
  * Operations for retrieving and modifying RegistrationType objects.

@@ -1,12 +1,13 @@
 <?php
 
 /**
- * SchedConfHandler.inc.php
+ * @file SchedConfHandler.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package pages.schedConf
+ * @class SchedConfHandler
  *
  * Handle requests for scheduled conference functions.
  *

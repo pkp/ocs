@@ -1,12 +1,13 @@
 <?php
 
 /**
- * LanguageSettingsForm.inc.php
+ * @file LanguageSettingsForm.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package manager.form
+ * @class LanguageSettingsForm
  *
  * Form for modifying conference language settings.
  *

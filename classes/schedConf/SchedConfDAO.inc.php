@@ -1,12 +1,13 @@
 <?php
 
 /**
- * SchedConfDAO.inc.php
+ * @file SchedConfDAO.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package schedConf
+ * @class SchedConfDAO
  *
  * Class for Scheduled Conference DAO.
  * Operations for retrieving and modifying SchedConf objects.

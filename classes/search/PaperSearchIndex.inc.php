@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PaperSearchIndex.inc.php
+ * @file PaperSearchIndex.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package search
+ * @class PaperSearchIndex
  *
  * Class to add content to the paper search index.
  *

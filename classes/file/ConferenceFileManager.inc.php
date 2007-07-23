@@ -1,12 +1,13 @@
 <?php
 
 /**
- * ConferenceFileManager.inc.php
+ * @file ConferenceFileManager.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package file
+ * @class ConferenceFileManager
  *
  * Class defining operations for private conference file management.
  *

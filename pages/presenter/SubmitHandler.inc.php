@@ -1,12 +1,13 @@
 <?php
 
 /**
- * SubmitHandler.inc.php
+ * @file SubmitHandler.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package pages.presenter
+ * @class SubmitHandler
  *
  * Handle requests for presenter paper submission. 
  *

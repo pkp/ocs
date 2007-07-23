@@ -1,12 +1,13 @@
 <?php
 
 /**
- * ProgramSettingsForm.inc.php
+ * @file ProgramSettingsForm.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package manager.form
+ * @class ProgramSettingsForm
  *
  * Form for modifying scheduled conference program settings.
  *

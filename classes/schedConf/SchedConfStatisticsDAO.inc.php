@@ -1,12 +1,13 @@
 <?php
 
 /**
- * SchedConfStatisticsDAO.inc.php
+ * @file SchedConfStatisticsDAO.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package schedConf
+ * @class SchedConfStatisticsDAO
  *
  * Class for scheduled conference statistics DAO.
  * Operations for retrieving scheduled conference statistics.

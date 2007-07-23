@@ -1,12 +1,13 @@
 <?php
 
 /**
- * RegistrationExpiryReminder.inc.php
+ * @file RegistrationExpiryReminder.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package tasks
+ * @class RegistrationExpiryReminder
  *
  * Class to perform automated reminders for reviewers.
  *

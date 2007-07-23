@@ -1,12 +1,13 @@
 <?php
 
 /**
- * ConferenceEventLogEntry.inc.php
+ * @file ConferenceEventLogEntry.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package conference.log
+ * @class ConferenceEventLogEntry
  *
  * Conference event log entry class.
  * Describes an entry in the conference history log.

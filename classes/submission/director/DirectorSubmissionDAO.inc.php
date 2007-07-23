@@ -1,12 +1,13 @@
 <?php
 
 /**
- * DirectorSubmissionDAO.inc.php
+ * @file DirectorSubmissionDAO.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package submission
+ * @class DirectorSubmissionDAO
  *
  * Class for DirectorSubmission DAO.
  * Operations for retrieving and modifying DirectorSubmission objects.

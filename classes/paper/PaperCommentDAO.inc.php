@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PaperCommentDAO.inc.php
+ * @file PaperCommentDAO.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package paper
+ * @class PaperCommentDAO
  *
  * Class for PaperComment DAO.
  * Operations for retrieving and modifying PaperComment objects.

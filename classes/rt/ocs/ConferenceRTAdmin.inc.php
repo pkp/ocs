@@ -1,12 +1,13 @@
 <?php
 
 /**
- * ConferenceRTAdmin.inc.php
+ * @file ConferenceRTAdmin.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package rt.ocs
+ * @class ConferenceRTAdmin
  *
  * OCS-specific Reading Tools administration interface.
  *

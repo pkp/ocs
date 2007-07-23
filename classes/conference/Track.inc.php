@@ -1,12 +1,13 @@
 <?php
 
 /**
- * Track.inc.php
+ * @file Track.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package conference
+ * @class Track
  *
  * Track class.
  * Describes basic track properties.

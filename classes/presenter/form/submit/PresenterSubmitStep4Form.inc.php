@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PresenterSubmitStep4Form.inc.php
+ * @file PresenterSubmitStep4Form.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package presenter.form.submit
+ * @class PresenterSubmitStep4Form
  *
  * Form for Step 4 of presenter paper submission.
  *

@@ -1,12 +1,13 @@
 <?php
 
 /**
- * ImportOCS1.inc.php
+ * @file ImportOCS1.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package site
+ * @class ImportOCS1
  *
  * Class to import data from an OCS 1.x installation.
  *

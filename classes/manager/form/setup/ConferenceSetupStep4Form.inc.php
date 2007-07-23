@@ -1,12 +1,13 @@
 <?php
 
 /**
- * ConferenceSetupStep4Form.inc.php
+ * @file ConferenceSetupStep4Form.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package manager.form.setup
+ * @class ConferenceSetupStep4Form
  *
  * Form for Step 4 of conference setup.
  *

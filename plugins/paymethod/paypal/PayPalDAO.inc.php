@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PayPalDAO.inc.php
+ * @file PayPalDAO.inc.php
  *
  * Copyright (c) 2006-2007 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package thesis
+ * @class PayPalDAO
  *
  * Class for PayPal Logging DAO.
  * Operations for retrieving and modifying Transactions objects.

@@ -1,12 +1,13 @@
 <?php
 
 /**
- * TrackForm.inc.php
+ * @file TrackForm.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package manager.form
+ * @class TrackForm
  *
  * Form for creating and modifying scheduled conference tracks.
  *

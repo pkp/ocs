@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PresenterSubmitStep1Form.inc.php
+ * @file PresenterSubmitStep1Form.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package presenter.form.submit
+ * @class PresenterSubmitStep1Form
  *
  * Form for Step 1 of presenter paper submission.
  *

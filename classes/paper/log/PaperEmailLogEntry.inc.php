@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PaperEmailLogEntry.inc.php
+ * @file PaperEmailLogEntry.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package paper.log
+ * @class PaperEmailLogEntry
  *
  * Paper email log entry class.
  * Describes an entry in the paper email log.

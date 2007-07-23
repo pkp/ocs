@@ -1,12 +1,13 @@
 <?php
 
 /**
- * ConferenceDAO.inc.php
+ * @file ConferenceDAO.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package conference
+ * @class ConferenceDAO
  *
  * Class for Conference DAO.
  * Operations for retrieving and modifying Conference objects.

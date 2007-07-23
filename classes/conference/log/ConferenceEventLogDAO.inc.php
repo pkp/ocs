@@ -1,12 +1,13 @@
 <?php
 
 /**
- * ConferenceEventLogDAO.inc.php
+ * @file ConferenceEventLogDAO.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package conference.log
+ * @class ConferenceEventLogDAO
  *
  * Class for inserting/accessing conference history log entries.
  *

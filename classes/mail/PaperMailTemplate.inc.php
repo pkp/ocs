@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PaperMailTemplate.inc.php
+ * @file PaperMailTemplate.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package mail
+ * @class PaperMailTemplate
  *
  * Subclass of MailTemplate for sending emails related to papers.
  * This allows for paper-specific functionality like logging, etc.

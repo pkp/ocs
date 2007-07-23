@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PresenterSubmissionDAO.inc.php
+ * @file PresenterSubmissionDAO.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package submission
+ * @class PresenterSubmissionDAO
  *
  * Class for PresenterSubmission DAO.
  * Operations for retrieving and modifying PresenterSubmission objects.

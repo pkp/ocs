@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PublishedPaperDAO.inc.php
+ * @file PublishedPaperDAO.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package paper
+ * @class PublishedPaperDAO
  *
  * Class for PublishedPaper DAO.
  * Operations for retrieving and modifying PublishedPaper objects.

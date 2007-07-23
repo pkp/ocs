@@ -1,12 +1,13 @@
 <?php
 
 /**
- * SchedConfSetupStep3Form.inc.php
+ * @file SchedConfSetupStep3Form.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package manager.form.schedConfSetup
+ * @class SchedConfSetupStep3Form
  *
  * Form for Step 3 of scheduled conference setup.
  *

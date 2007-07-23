@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PresenterDAO.inc.php
+ * @file PresenterDAO.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package paper
+ * @class PresenterDAO
  *
  * Class for Presenter DAO.
  * Operations for retrieving and modifying Presenter objects.

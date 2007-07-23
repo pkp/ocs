@@ -1,12 +1,13 @@
 <?php
 
 /**
- * SettingsDAO.inc.php
+ * @file SettingsDAO.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package db
+ * @class SettingsDAO
  *
  * Class for Settings DAO.
  * Operations for retrieving and modifying settings.

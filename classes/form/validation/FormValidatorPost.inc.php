@@ -1,12 +1,13 @@
 <?php
 
 /**
- * FormValidatorPost.inc.php
+ * @file FormValidatorPost.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package form.validation
+ * @class FormValidatorPost
  *
  * Form validation check to make sure it's a POSTed form.
  *

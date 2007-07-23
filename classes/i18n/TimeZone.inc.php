@@ -1,12 +1,13 @@
 <?php
 
 /**
- * TimeZone.inc.php
+ * @file TimeZone.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package i18n
+ * @class TimeZone
  *
  * Time zone management class. 
  * Provides methods for determining local times and dates

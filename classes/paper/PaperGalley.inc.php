@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PaperGalley.inc.php
+ * @file PaperGalley.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package paper
+ * @class PaperGalley
  *
  * PaperGalley class.
  * A galley is a final presentation version of the full-text of a paper.

@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PaperEventLogDAO.inc.php
+ * @file PaperEventLogDAO.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package paper.log
+ * @class PaperEventLogDAO
  *
  * Class for inserting/accessing paper history log entries.
  *

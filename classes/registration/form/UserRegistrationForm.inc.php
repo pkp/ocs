@@ -1,12 +1,13 @@
 <?php
 
 /**
- * UserRegistrationForm.inc.php
+ * @file UserRegistrationForm.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package registration.form
+ * @class UserRegistrationForm
  *
  * Form for users to self-register.
  *

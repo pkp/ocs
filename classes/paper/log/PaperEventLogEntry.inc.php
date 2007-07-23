@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PaperEventLogEntry.inc.php
+ * @file PaperEventLogEntry.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package paper.log
+ * @class PaperEventLogEntry
  *
  * Paper event log entry class.
  * Describes an entry in the paper history log.

@@ -1,12 +1,13 @@
 <?php
 
 /**
- * SchedConfSetupHandler.inc.php
+ * @file SchedConfSetupHandler.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package pages.director
+ * @class SchedConfSetupHandler
  *
  * Handle requests for conference setup functions. 
  *

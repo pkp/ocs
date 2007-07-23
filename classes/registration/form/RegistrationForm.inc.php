@@ -1,12 +1,13 @@
 <?php
 
 /**
- * RegistrationForm.inc.php
+ * @file RegistrationForm.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package registration.form
+ * @class RegistrationForm
  *
  * Form for conference managers to create/edit registration.
  *

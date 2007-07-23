@@ -1,12 +1,13 @@
 <?php
 
 /**
- * ImportExportHandler.inc.php
+ * @file ImportExportHandler.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package pages.director
+ * @class ImportExportHandler
  *
  * Handle requests for import/export functions. 
  *

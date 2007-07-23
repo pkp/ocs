@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PaperLog.inc.php
+ * @file PaperLog.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package paper.log
+ * @class PaperLog
  *
  * PaperLog class.
  * Static class for adding / accessing paper log entries.

@@ -1,12 +1,13 @@
 <?php
 
 /**
- * SchedConfSetupStep1Form.inc.php
+ * @file SchedConfSetupStep1Form.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package manager.form.schedConfSetup
+ * @class SchedConfSetupStep1Form
  *
  * Form for Step 1 of scheduled conference setup.
  *

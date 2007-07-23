@@ -1,12 +1,13 @@
 <?php
 
 /**
- * PaperHTMLGalley.inc.php
+ * @file PaperHTMLGalley.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package paper
+ * @class PaperHTMLGalley
  *
  * PaperHTMLGalley class.
  * An HTML galley may include an optional stylesheet and set of images.

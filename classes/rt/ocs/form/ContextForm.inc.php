@@ -1,12 +1,13 @@
 <?php
 
 /**
- * ContextForm.inc.php
+ * @file ContextForm.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package rt.ocs.form
+ * @class ContextForm
  *
  * Form to change metadata information for an RT context.
  *
