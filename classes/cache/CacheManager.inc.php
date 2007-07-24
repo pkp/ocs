@@ -1,12 +1,13 @@
 <?php
 
 /**
- * CacheManager.inc.php
+ * @file CacheManager.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package cache
+ * @class CacheManager
  *
  * Provides cache management functions.
  *

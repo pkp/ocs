@@ -1,12 +1,14 @@
 <?php
 
 /**
- * index.php
+ * @file index.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Handle requests for site administration functions. 
+ *
+ * @package pages.admin
  *
  * $Id$
  */

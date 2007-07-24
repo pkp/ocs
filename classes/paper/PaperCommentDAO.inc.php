@@ -234,7 +234,7 @@ class PaperCommentDAO extends DAO {
 	
 	/**
 	 * updates a paper comment
-	 * @param PaperComment object
+	 * @param paperComment object
 	 */
 	function updatePaperComment($paperComment) {
 		$this->update(

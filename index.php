@@ -1,14 +1,22 @@
 <?php
 
 /**
+ * @mainpage OCS API Reference
+ * 
+ * Welcome to the OCS API Reference. This resource contains documentation
+ * generated automatically from the OCS source code. There are several
+ * additional resources that may be useful:
+ * - The docs/README document
+ * - The PKP support forum at <http://pkp.sfu.ca/support/forum>
+ *
  * @file index.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package index
- *
  * Front controller for OCS site. Loads required files and dispatches requests to the appropriate handler. 
+ *
+ * @package index
  *
  * $Id$
  */

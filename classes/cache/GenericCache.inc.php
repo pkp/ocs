@@ -1,12 +1,13 @@
 <?php
 
 /**
- * GenericCache.inc.php
+ * @file GenericCache.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package cache
+ * @class GenericCache
  *
  * Provides implementation-independent caching. Although this class is intended
  * to be overridden with a more specific implementation, it can be used as the
