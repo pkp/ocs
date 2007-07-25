@@ -182,9 +182,7 @@ class RegistrationTypeForm extends Form {
 		if ($registrationType->getTypeId() != null) {
 			$registrationTypeDao->updateRegistrationType($registrationType);
 		} else {
-			// Kludge: Assume we'll have less than 10,000 registration types.
-			$registrationType->setSequence(10000);
-
+			$registrationType->setSequence(REALLY_BIG_NUMBER);
 			$registrationTypeDao->insertRegistrationType($registrationType);
 
 			// Re-order the registration types so the new one is at the end of the list.

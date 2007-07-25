@@ -847,7 +847,7 @@ class TrackDirectorAction extends Action {
 			$publishedPaper->setPaperId($trackDirectorSubmission->getPaperId());
 			$publishedPaper->setSchedConfId($schedConfId);
 			$publishedPaper->setDatePublished(Core::getCurrentDate());
-			$publishedPaper->setSeq(100000); // KLUDGE: End of list
+			$publishedPaper->setSeq(REALLY_BIG_NUMBER);
 			$publishedPaper->setViews(0);
 
 			$publishedPaperDao->insertPublishedPaper($publishedPaper);
@@ -861,7 +861,7 @@ class TrackDirectorAction extends Action {
 			$trackDao =& DAORegistry::getDAO('TrackDAO');
 			if ($trackDao->customTrackOrderingExists($schedConfId)) {
 				if ($trackDao->getCustomTrackOrder($schedConfId, $submission->getTrackId()) === null) {
-					$trackDao->insertCustomTrackOrder($schedConfId, $submission->getTrackId(), 10000); // KLUDGE: End of list
+					$trackDao->insertCustomTrackOrder($schedConfId, $submission->getTrackId(), REALLY_BIG_NUMBER);
 					$trackDao->resequenceCustomTrackOrders($schedConfId);
 				}
 			}

@@ -153,6 +153,8 @@ class ConferenceSiteSettingsForm extends Form {
 			import('rt.ocs.ConferenceRTAdmin');
 			$conferenceRtAdmin = &new ConferenceRTAdmin($conferenceId);
 			$conferenceRtAdmin->restoreVersions(false);
+
+			HookRegistry::call('ConferenceSiteSettingsForm::execute', array(&$this, &$conference));
 		}
 	}
 	

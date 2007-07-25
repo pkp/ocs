@@ -26,6 +26,10 @@ class TemplateManager extends Smarty {
 	/** @var $styleSheets array of URLs to stylesheets */
 	var $styleSheets;
 
+	/** @var $initialized Kludge because of reference problems with
+	    TemplateManager::getManager() invoked during constructor process */
+	var $initialized;
+
 	/**
 	 * Constructor.
 	 * Initialize template engine and assign basic template variables.
@@ -43,11 +47,7 @@ class TemplateManager extends Smarty {
 		$this->compile_dir = $cachePath . DIRECTORY_SEPARATOR . 't_compile';
 		$this->config_dir = $cachePath . DIRECTORY_SEPARATOR . 't_config';
 		$this->cache_dir = $cachePath . DIRECTORY_SEPARATOR . 't_cache';
-		
-		// TODO: Investigate caching behaviour and if OCS can take advantage of it
-		//$this->caching = true;
-		//$this->compile_check = true;
-		
+
 		// Assign common variables
 		$this->styleSheets = array();
 		$this->assign_by_ref('stylesheets', $this->styleSheets);
@@ -67,29 +67,16 @@ class TemplateManager extends Smarty {
  		$locale = Locale::getLocale();
  		$this->assign('currentLocale', $locale);
 
-		$this->assign('paperSearchByOptions', array(
-			'' => 'search.allFields',
-			PAPER_SEARCH_PRESENTER => 'search.presenter',
-			PAPER_SEARCH_TITLE => 'paper.title',
-			PAPER_SEARCH_ABSTRACT => 'search.abstract',
-			PAPER_SEARCH_INDEX_TERMS => 'search.indexTerms',
-			PAPER_SEARCH_GALLEY_FILE => 'search.fullText'
-		));
-		
 		if (!defined('SESSION_DISABLE_INIT')) {
 			/* Kludge to make sure no code that tries to connect to the database is executed
 			 * (e.g., when loading installer pages). */
-			$sessionManager = &SessionManager::getManager();
-			$session = &$sessionManager->getUserSession();
-			$isUserLoggedIn = Validation::isLoggedIn();
-			$this->assign_by_ref('userSession', $session);
-			$this->assign('isUserLoggedIn', $isUserLoggedIn);
-			$this->assign('loggedInUsername', $session->getSessionVar('username'));
-			
+			$this->assign('isUserLoggedIn', Validation::isLoggedIn());
+
 			$conference = &Request::getConference();
 			$schedConf = &Request::getSchedConf();
 			$site = &Request::getSite();
-			
+			$this->assign('siteTitle', $site->getTitle());
+
 			$siteStyleFilename = PublicFileManager::getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
 			if (file_exists($siteStyleFilename)) $this->addStyleSheet(Request::getBaseUrl() . '/' . $siteStyleFilename);
 			if (isset($conference)) {
@@ -103,7 +90,6 @@ class TemplateManager extends Smarty {
 				$this->assign_by_ref('currentConference', $conference);
 				$conferenceTitle = $conference->getTitle();
 
-				$locales = &$conference->getSupportedLocaleNames();
 				$this->assign('alternateLocale1', $conference->getSetting('alternateLocale1'));
 				$this->assign('alternateLocale2', $conference->getSetting('alternateLocale2'));
 				$this->assign('numPageLinks', $conference->getSetting('numPageLinks'));
@@ -131,7 +117,7 @@ class TemplateManager extends Smarty {
 				$this->assign('metaSearchKeywords', $conference->getSetting('searchKeywords'));
 				$this->assign('metaCustomHeaders', $conference->getSetting('customHeaders'));
 				$this->assign('enableAnnouncements', $conference->getSetting('enableAnnouncements'));
-				
+
 				$this->assign('pageFooter', $conference->getSetting('conferencePageFooter'));
 				$this->assign('postCreativeCommons', $conference->getSetting('postCreativeCommons'));
 
@@ -192,26 +178,11 @@ class TemplateManager extends Smarty {
 						'/' . $schedConfStyleSheet['uploadName']);
 					}
 				}
-				
-				// Assign site title
-				$siteTitle = $site->getTitle();
-				$this->assign('siteTitle', $siteTitle);
-				
-			} else {
-				$this->assign('siteTitle', $site->getTitle());
+			} else { // Not within conference context
 				$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath());
-				$locales = &$site->getSupportedLocaleNames();
 				$this->assign('itemsPerPage', Config::getVar('interface', 'items_per_page'));
 				$this->assign('numPageLinks', Config::getVar('interface', 'page_links'));
 			}
-		} else {
-			$locales = &Locale::getAllLocales();
-			$this->assign('languageToggleNoUser', true);
-		}
-			
-		if (isset($locales) && count($locales) > 1) {
-			$this->assign('enableLanguageToggle', true);
-			$this->assign('languageToggleLocales', $locales);
 		}
 
 		// If there's a locale-specific stylesheet, add it.
@@ -240,6 +211,18 @@ class TemplateManager extends Smarty {
 		$this->register_function('display_template', array(&$this, 'smartyDisplayTemplate'));
 
 		$this->register_function('url', array(&$this, 'smartyUrl'));
+
+		$this->initialized = false;
+	}
+
+	function initialize() {
+		// This code cannot be called in the constructor because of
+		// reference problems, i.e. callers that need getManager fail.
+
+		// Load the block plugins.
+		$plugins =& PluginRegistry::loadCategory('blocks');
+
+		$this->initialized = true;
 	}
 
 	function addStyleSheet($url) {
@@ -250,6 +233,10 @@ class TemplateManager extends Smarty {
 	 * Display the template.
 	 */
 	function display($template, $sendContentType = 'text/html', $hookName = 'TemplateManager::display') {
+		if (!$this->initialized) {
+			$this->initialize();
+		}
+
 		$charset = Config::getVar('i18n', 'client_charset');
 
 		// Give any hooks registered against the TemplateManager
@@ -276,7 +263,7 @@ class TemplateManager extends Smarty {
 
 	/**
 	 * Display templates from Smarty and allow hook overrides
-	 * 
+	 *
 	 * Smarty usage: {display_template template="name.tpl" hookname="My::Hook::Name"}
 	 */
 	function smartyDisplayTemplate($params, &$smarty) {
@@ -295,25 +282,25 @@ class TemplateManager extends Smarty {
 		$this->clear_compiled_tpl();
 		$this->clear_all_cache();
 	}
-	
+
 	/**
 	 * Return an instance of the template manager.
 	 * @return TemplateManager the template manager object
 	 */
 	function &getManager() {
 		static $instance;
-		
+
 		if (!isset($instance)) {
 			$instance = new TemplateManager();
 		}
 		return $instance;
 	}
-	
-	
+
+
 	//
 	// Custom template functions, modifiers, etc.
 	//
-	
+
 	/**
 	 * Smarty usage: {translate key="localization.key.name" [paramName="paramValue" ...]}
 	 *
@@ -327,24 +314,21 @@ class TemplateManager extends Smarty {
 	 */
 	function smartyTranslate($params, &$smarty) {
 		if (isset($params) && !empty($params)) {
-			if (isset($params['key'])) {
-				$key = $params['key'];
-				unset($params['key']);
-				if (isset($params['params'])) {
-					$paramsArray = $params['params'];
-					unset($params['params']);
-					$params = array_merge($params, $paramsArray);
-				}
-				return Locale::translate($key, $params);
-				
-			} else {
-				return Locale::translate('');
+			if (!isset($params['key'])) return Locale::translate('');
+
+			$key = $params['key'];
+			unset($params['key']);
+			if (isset($params['params'])) {
+				$paramsArray = $params['params'];
+				unset($params['params']);
+				$params = array_merge($params, $paramsArray);
 			}
+			return Locale::translate($key, $params);
 		}
 	}
-	
+
 	/**
-	 * Smarty usage: {assign_mailto var="varName" address="email@address.com" ...]} 
+	 * Smarty usage: {assign_mailto var="varName" address="email@address.com" ...]}
 	 *
 	 * Generates a hex-encoded mailto address and assigns it to the variable name specified..
 	 */
@@ -370,13 +354,13 @@ class TemplateManager extends Smarty {
 			$smarty->assign($params['var'], $mailto . $address_encode);
 		}
 	}
-	
+
 	/**
 	 * Smarty usage: {html_options_translate ...}
 	 * For parameter usage, see http://smarty.php.net/manual/en/language.function.html.options.php
 	 *
 	 * Identical to Smarty's "html_options" function except option values are translated from i18n keys.
-	 * @params $params array 
+	 * @params $params array
 	 * @params $smarty Smarty
 	 */
 	function smartyHtmlOptionsTranslate($params, &$smarty) {
@@ -388,23 +372,23 @@ class TemplateManager extends Smarty {
 					$newOptions[Locale::translate($k)] = Locale::translate($v);
 				}
 				$params['options'] = $newOptions;
-				
+
 			} else {
 				// Just translate output
 				$params['options'] = array_map(array('Locale', 'translate'), $params['options']);
 			}
-			
+
 		}
-		
+
 		if (isset($params['output'])) {
 			$params['output'] = array_map(array('Locale', 'translate'), $params['output']);
-			
+
 		}
-		
+
 		if (isset($params['values']) && isset($params['translateValues'])) {
 			$params['values'] = array_map(array('Locale', 'translate'), $params['values']);
 		}
-		
+
 		require_once($this->_get_plugin_filepath('function','html_options'));
 		return smarty_function_html_options($params, $smarty);
 	}
@@ -463,7 +447,7 @@ class TemplateManager extends Smarty {
 			} else {
 				$translatedKey = $help->translate('');
 			}
-			
+
 			if ($params['url'] == "true") {
 				return Request::url(null, null, 'help', 'view', explode('/', $translatedKey));
 			} else {
@@ -503,9 +487,10 @@ class TemplateManager extends Smarty {
 			if (isset($params['name'])) {
 				// build image tag with standarized size of 16x16
 				$disabled = (isset($params['disabled']) && !empty($params['disabled']));
-				$iconHtml = '<img src="' . $smarty->get_template_vars('baseUrl') . '/templates/images/icons/';			
+				if (!isset($params['path'])) $params['path'] = 'templates/images/icons/';
+				$iconHtml = '<img src="' . $smarty->get_template_vars('baseUrl') . '/' . $params['path'];
 				$iconHtml .= $params['name'] . ($disabled ? '_disabled' : '') . '.gif" width="16" height="14" border="0" alt="';
-				
+
 				// if alt parameter specified use it, otherwise use localization version
 				if (isset($params['alt'])) {
 					$iconHtml .= $params['alt'];

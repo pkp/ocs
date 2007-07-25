@@ -209,6 +209,15 @@ class PaperHandler extends Handler {
 		$templateMgr->assign_by_ref('conference', $conference);
 		$templateMgr->assign_by_ref('track', $track);
 
+		$this->assign('paperSearchByOptions', array(
+			'' => 'search.allFields',
+			PAPER_SEARCH_PRESENTER => 'search.presenter',
+			PAPER_SEARCH_TITLE => 'paper.title',
+			PAPER_SEARCH_ABSTRACT => 'search.abstract',
+			PAPER_SEARCH_INDEX_TERMS => 'search.indexTerms',
+			PAPER_SEARCH_GALLEY_FILE => 'search.fullText'
+		));
+
 		// Bring in comment constants.
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 

@@ -17,7 +17,7 @@
 import("manager.form.setup.ConferenceSetupForm");
 
 class ConferenceSetupStep4Form extends ConferenceSetupForm {
-	
+
 	function ConferenceSetupStep4Form() {
 		parent::ConferenceSetupForm(4, array(
 			'conferenceTheme' => 'string'
@@ -44,11 +44,32 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 			'conferenceStyleSheet' => $conference->getSetting('conferenceStyleSheet'),
 			'conferenceThemes' => $conferenceThemes
 		));
-		
-		parent::display();	   
+
+		// Make lists of the sidebar blocks available.
+		$templateMgr->initialize();
+		$leftBlockPlugins = $disabledBlockPlugins = $rightBlockPlugins = array();
+		$plugins =& PluginRegistry::getPlugins('blocks');
+		foreach ($plugins as $key => $junk) {
+			if (!$plugins[$key]->getEnabled() || $plugins[$key]->getBlockContext() == '') {
+				if (count(array_intersect($plugins[$key]->getSupportedContexts(), array(BLOCK_CONTEXT_LEFT_SIDEBAR, BLOCK_CONTEXT_RIGHT_SIDEBAR))) > 0) $disabledBlockPlugins[] =& $plugins[$key];
+			} else switch ($plugins[$key]->getBlockContext()) {
+				case BLOCK_CONTEXT_LEFT_SIDEBAR:
+					$leftBlockPlugins[] =& $plugins[$key];
+					break;
+				case BLOCK_CONTEXT_RIGHT_SIDEBAR:
+					$rightBlockPlugins[] =& $plugins[$key];
+					break;
+			}
+		}
+		$templateMgr->assign(array(
+			'disabledBlockPlugins' => &$disabledBlockPlugins,
+			'leftBlockPlugins' => &$leftBlockPlugins,
+			'rightBlockPlugins' => &$rightBlockPlugins
+		));
+
+		parent::display();
 	}
-	
-	
+
 	/**
 	 * Uploads conference custom stylesheet.
 	 * @param $settingName string setting key associated with the file
@@ -56,7 +77,7 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 	function uploadStyleSheet($settingName) {
 		$conference = &Request::getConference();
 		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
-	
+
 		import('file.PublicFileManager');
 		$fileManager = &new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
@@ -65,17 +86,42 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 				return false;
 			}
 			$uploadName = $settingName . '.css';
-			if($fileManager->uploadConferenceFile($conference->getConferenceId(), $settingName, $uploadName)) {			
+			if($fileManager->uploadConferenceFile($conference->getConferenceId(), $settingName, $uploadName)) {
 				$value = array(
 					'name' => $fileManager->getUploadedFileName($settingName),
 					'uploadName' => $uploadName,
 					'dateUploaded' => date("Y-m-d g:i:s")
 				);
-				
+
 				return $settingsDao->updateSetting($conference->getConferenceId(), $settingName, $value, 'object');
 			}
 		}
 		return false;
+	}
+
+	function execute() {
+		// Save the block plugin layout settings.
+		$blockVars = array('blockSelectLeft', 'blockUnselected', 'blockSelectRight');
+		foreach ($blockVars as $varName) {
+			$$varName = split(' ', Request::getUserVar($varName));
+		}
+ 
+		$plugins =& PluginRegistry::loadCategory('blocks');
+		foreach ($plugins as $key => $junk) {
+			$plugin =& $plugins[$key]; // Ref hack
+			$plugin->setEnabled(!in_array($plugin->getName(), $blockUnselected));
+			if (in_array($plugin->getName(), $blockSelectLeft)) {
+				$plugin->setBlockContext(BLOCK_CONTEXT_LEFT_SIDEBAR);
+				$plugin->setSeq(array_search($key, $blockSelectLeft));
+			}
+			else if (in_array($plugin->getName(), $blockSelectRight)) {
+				$plugin->setBlockContext(BLOCK_CONTEXT_RIGHT_SIDEBAR);
+				$plugin->setSeq(array_search($key, $blockSelectRight));
+			}
+			unset($plugin);
+		}
+ 
+		return parent::execute();
 	}
 }
 

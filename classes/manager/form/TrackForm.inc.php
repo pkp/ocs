@@ -133,8 +133,7 @@ class TrackForm extends Form {
 		if (!isset($track)) {
 			$track = &new Track();
 			$track->setSchedConfId($schedConf->getSchedConfId());
-			// Kludge: Move this track to the end of the list
-			$track->setSequence(10000);
+			$track->setSequence(REALLY_BIG_NUMBER);
 		}
 		
 		$track->setTitle($this->getData('title'));

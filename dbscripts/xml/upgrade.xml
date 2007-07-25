@@ -16,4 +16,10 @@
 	
 	<!-- Common upgrade files -->
 	<schema file="ocs_schema.xml"/>
+
+	<!-- Upgrade to version 2.0.1 -->
+	<upgrade minversion="2.0.0.0" maxversion="2.0.0.1">
+		<code function="installBlockPlugins"/>
+		<note file="release-notes/README-2.0.1"/>
+	</upgrade>
 </install>

@@ -696,10 +696,10 @@ class ImportOCS1 {
 					$track = &new Track();
 					$track->setSchedConfId($schedConf->getSchedConfId());
 					$track->setTitle('UNASSIGNED');
-					$track->setSequence(10000);
+					$track->setSequence(REALLY_BIG_NUMBER);
 					$track->setDirectorRestricted(1);
 					$track->setMetaReviewed(1);
-			
+
 					$unassignedTrackId = $trackDao->insertTrack($track);
 				}
 				$newTrackId = $unassignedTrackId;
@@ -756,7 +756,7 @@ class ImportOCS1 {
 					$publishedPaper->setPaperId($paperId);
 					$publishedPaper->setSchedConfId($schedConfId);
 					$publishedPaper->setDatePublished(Core::getCurrentDate());
-					$publishedPaper->setSeq(10000);
+					$publishedPaper->setSeq(REALLY_BIG_NUMBER);
 					$publishedPaper->setViews(0);
 					$publishedPaperDao->insertPublishedPaper($publishedPaper);
 					$publishedPaperDao->resequencePublishedPapers($paper->getTrackId(), $schedConfId);
