@@ -330,7 +330,23 @@ class User extends DataObject {
 	function setLocales($locales) {
 		return $this->setData('locales', $locales);
 	}
-	
+
+        /**
+	 * Get date user last sent an email.
+	 * @return datestamp (YYYY-MM-DD HH:MM:SS)
+	 */
+	function getDateLastEmail() {
+		return $this->getData('dateLastEmail');
+	}
+
+	/**
+	 * Set date user last sent an email.
+	 * @param $dateLastEmail datestamp (YYYY-MM-DD HH:MM:SS)
+	 */
+	function setDateLastEmail($dateLastEmail) {
+		return $this->setData('dateLastEmail', $dateLastEmail);
+	}
+
 	/**
 	 * Get date user registered with the site.
 	 * @return datestamp (YYYY-MM-DD HH:MM:SS)
