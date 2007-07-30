@@ -188,9 +188,9 @@ class PaperGalleyDAO extends DAO {
 			)
 		);
 		
-		if($galley->isHTMLGalley()) {
+		//if($galley->isHTMLGalley()) {
 			// FIXME Update images, etc.
-		}
+		//}
 	}
 	
 	/**
