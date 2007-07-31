@@ -209,7 +209,7 @@ class PaperHandler extends Handler {
 		$templateMgr->assign_by_ref('conference', $conference);
 		$templateMgr->assign_by_ref('track', $track);
 
-		$this->assign('paperSearchByOptions', array(
+		$templateMgr->assign('paperSearchByOptions', array(
 			'' => 'search.allFields',
 			PAPER_SEARCH_PRESENTER => 'search.presenter',
 			PAPER_SEARCH_TITLE => 'paper.title',

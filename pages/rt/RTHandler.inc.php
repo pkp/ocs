@@ -30,7 +30,7 @@ class RTHandler extends PaperHandler {
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
 
-		if (!$conferenceRt || $conferenceRt->getVersion()==null || !$conferenceRt->getPresenterBio()) {
+		if (!$conferenceRt || !$conferenceRt->getPresenterBio()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -49,7 +49,7 @@ class RTHandler extends PaperHandler {
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
 
-		if (!$conferenceRt || $conferenceRt->getVersion()==null || !$conferenceRt->getViewMetadata()) {
+		if (!$conferenceRt || !$conferenceRt->getViewMetadata()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 		
@@ -163,7 +163,7 @@ class RTHandler extends PaperHandler {
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
 
-		if (!$conferenceRt || $conferenceRt->getVersion()==null || !$conferenceRt->getCaptureCite()) {
+		if (!$conferenceRt || !$conferenceRt->getCaptureCite()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -197,7 +197,7 @@ class RTHandler extends PaperHandler {
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
 
-		if (!$conferenceRt || $conferenceRt->getVersion()==null || !$conferenceRt->getPrinterFriendly()) {
+		if (!$conferenceRt || !$conferenceRt->getPrinterFriendly()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -228,7 +228,7 @@ class RTHandler extends PaperHandler {
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
 		$user = &Request::getUser();
 
-		if (!$conferenceRt || $conferenceRt->getVersion()==null || !$conferenceRt->getEmailOthers() || !$user) {
+		if (!$conferenceRt || !$conferenceRt->getEmailOthers() || !$user) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -267,8 +267,7 @@ class RTHandler extends PaperHandler {
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
 		$user = &Request::getUser();
 
-		// FIXME: no RT versions, but RT enabled -- this dies...?
-		if (!$conferenceRt || $conferenceRt->getVersion()==null || !$conferenceRt->getEmailPresenter() || !$user) {
+		if (!$conferenceRt || !$conferenceRt->getEmailPresenter() || !$user) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -302,7 +301,7 @@ class RTHandler extends PaperHandler {
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
 
-		if (!$conferenceRt || $conferenceRt->getVersion()==null || !$conferenceRt->getSupplementaryFiles()) {
+		if (!$conferenceRt || !$conferenceRt->getSupplementaryFiles()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -327,7 +326,7 @@ class RTHandler extends PaperHandler {
 		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
 
-		if (!$conferenceRt || $conferenceRt->getVersion()==null || !$conferenceRt->getSupplementaryFiles() || !$suppFile) {
+		if (!$conferenceRt || !$conferenceRt->getSupplementaryFiles() || !$suppFile) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
