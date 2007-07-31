@@ -13,7 +13,7 @@
  * $Id$
  */
 
-require('NLMExportPlugin.inc.php');
+require_once('NLMExportPlugin.inc.php');
 
 return new NLMExportPlugin();
 
