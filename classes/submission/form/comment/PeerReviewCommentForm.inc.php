@@ -107,32 +107,6 @@ class PeerReviewCommentForm extends CommentForm {
 			array_push($this->insertedComments, $commentDao->insertPaperComment($comment));
 		}
 	}
-	
-	/**
-	 * Email the comment.
-	 */
-	function email() {
-		// Create list of recipients:
-		
-		// Peer Review comments are to be sent to the director or reviewer;
-		// the opposite of whomever posted the comment.
-		$recipients = array();
-		
-		if ($this->roleId == ROLE_ID_DIRECTOR) {
-			// Then add reviewer
-			$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-			$userDao = &DAORegistry::getDAO('UserDAO');
-			
-			$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($this->reviewId);
-			$user = &$userDao->getUser($reviewAssignment->getReviewerId());
-			
-			if ($user) $recipients = array_merge($recipients, array($user->getEmail() => $user->getFullName()));
-		} else {
-			/* COMMENTED OUT SINCE THE REVIEWER CAN NO LONGER 'SAVE AND EMAIL' COMMENTS */
-		}
-		
-		parent::email($recipients, $this->insertedComments);
-	}
 }
 
 ?>

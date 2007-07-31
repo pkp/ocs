@@ -122,29 +122,17 @@ class CommentForm extends Form {
 	/**
 	 * Email the comment.
 	 * @param $recipients array of recipients (email address => name)
-	 * @param $insertedComments array of comment IDs (currently only used for review-type emails)
 	 */
-	function email($recipients, $insertedComments = null) {
+	function email($recipients) {
 		$paper = $this->paper;
 		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
 		$schedConf = &Request::getSchedConf();
 		
-		$user = &Request::getUser();
 		import('mail.PaperMailTemplate');
 		$email = &new PaperMailTemplate($paper, 'SUBMISSION_COMMENT');
-		$email->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+		$email->setFrom($this->user->getEmail(), $this->user->getFullName());
 
-		// For Reviews, comments can actually be a compound of two comments.
-		// If this is the case, then concatenate them before sending.
-		$commentText = "";
-		if ($insertedComments != null) {
-			foreach ($insertedComments as $commentId) {
-				$comment = &$paperCommentDao->getPaperCommentById($commentId);
-				$commentText .= $comment->getComments() . "\n\n";
-			}
-		} else {
-			$commentText = $this->getData('comments');
-		}
+		$commentText = $this->getData('comments');
 
 		// Individually send an email to each of the recipients.
 		foreach ($recipients as $emailAddress => $name) {
