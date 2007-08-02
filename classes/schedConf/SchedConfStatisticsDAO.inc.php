@@ -60,15 +60,14 @@ class SchedConfStatisticsDAO extends DAO {
 
 		$returner = array(
 			'numSubmissions' => 0,
+			'numReviewedSubmissions' => 0,
 			'numPublishedSubmissions' => 0,
 			'submissionsAccept' => 0,
 			'submissionsDecline' => 0,
 			'submissionsRevise' => 0,
-			'submissionsUndecided' => 0,
 			'submissionsAcceptPercent' => 0,
 			'submissionsDeclinePercent' => 0,
 			'submissionsRevisePercent' => 0,
-			'submissionsUndecidedPercent' => 0,
 			'daysToPublication' => 0
 		);
 
@@ -106,22 +105,14 @@ class SchedConfStatisticsDAO extends DAO {
 				switch ($row['decision']) {
 					case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
 						$returner['submissionsAccept']++;
+						$returner['numReviewedSubmissions']++;
 						break;
 					case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
 						$returner['submissionsRevise']++;
 						break;
 					case SUBMISSION_DIRECTOR_DECISION_DECLINE:
 						$returner['submissionsDecline']++;
-						break;
-					default:
-						// If a paper is published
-						// but no decision recorded,
-						// assume it was accepted
-						if (isset($row['pub_id'])) {
-							$returner['submissionsAccept']++;
-						} else {
-							$returner['submissionsUndecided']++;
-						}
+						$returner['numReviewedSubmissions']++;
 						break;
 				}
 			}
@@ -134,10 +125,9 @@ class SchedConfStatisticsDAO extends DAO {
 
 		// Calculate percentages where necessary
 		if ($returner['numSubmissions'] != 0) {
-			$returner['submissionsAcceptPercent'] = round($returner['submissionsAccept'] * 100 / $returner['numSubmissions']);
-			$returner['submissionsDeclinePercent'] = round($returner['submissionsDecline'] * 100 / $returner['numSubmissions']);
-			$returner['submissionsRevisePercent'] = round($returner['submissionsRevise'] * 100 / $returner['numSubmissions']);
-			$returner['submissionsUndecidedPercent'] = round($returner['submissionsUndecided'] * 100 / $returner['numSubmissions']);
+			$returner['submissionsAcceptPercent'] = round($returner['submissionsAccept'] * 100 / $returner['numReviewedSubmissions']);
+			$returner['submissionsDeclinePercent'] = round($returner['submissionsDecline'] * 100 / $returner['numReviewedSubmissions']);
+			$returner['submissionsRevisePercent'] = round($returner['submissionsRevise'] * 100 / $returner['numReviewedSubmissions']);
 		}
 
 		if ($timeToPublicationCount != 0) {
