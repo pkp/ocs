@@ -98,14 +98,14 @@ class PresenterSubmitForm extends Form {
 		if ($mail->isEnabled()) {
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 			// If necessary, BCC the acknowledgement to someone.
-			if($conference->getSetting('copySubmissionAckPrimaryContact')) {
+			if($schedConf->getSetting('copySubmissionAckPrimaryContact')) {
 				$mail->addBcc(
 					$schedConf->getSetting('contactEmail', true),
 					$schedConf->getSetting('contactName', true)
 				);
 			}
-			if($conference->getSetting('copySubmissionAckSpecified')) {
-				$copyAddress = $conference->getSetting('copySubmissionAckAddress');
+			if($schedConf->getSetting('copySubmissionAckSpecified')) {
+				$copyAddress = $schedConf->getSetting('copySubmissionAckAddress');
 				if (!empty($copyAddress)) $mail->addBcc($copyAddress);
 			}
 
