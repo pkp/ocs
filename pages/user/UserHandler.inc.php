@@ -217,6 +217,11 @@ class UserHandler extends Handler {
 		CreateAccountHandler::createAccount();
 	}
 
+	function activateUser($args) {
+		import('pages.user.CreateAccountHandler');
+		CreateAccountHandler::activateUser($args);
+	}
+
 	//
 	// Email
 	//

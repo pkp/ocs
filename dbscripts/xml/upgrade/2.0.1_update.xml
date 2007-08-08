@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../dtd/xmldata.dtd">
+
+<!--
+  * 2.0.1_update.xml
+  *
+  * Copyright (c) 2000-2007 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 2.0.1 database updates XML file.
+  *
+  * $Id$
+  -->
+
+<data>
+	<sql><!-- 2883 / OJS 2578: Email validation process -->
+		<query>INSERT INTO email_templates_default (email_key, can_edit, can_disable) VALUES ('USER_VALIDATE', 1, 0)</query>
+		<query>INSERT INTO email_templates_default_data (locale, email_key, subject, body, description) VALUES ('en_US', 'USER_VALIDATE', 'Validate Your Account', '{$userFullName}
+
+You have created an account with {$conferenceName}, but before you can start using it, you need to validate your email account. To do this, simply follow the link below:
+
+{$activateUrl}
+
+Thank you,
+{$principalContactSignature}', 'This email is sent to a newly registered user to welcome them to the system and provide them with a record of their username and password.')</query>
+	</sql>
+</data>

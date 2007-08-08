@@ -72,6 +72,11 @@ class CreateAccountHandler extends UserHandler {
 		
 		if ($regForm->validate()) {
 			$regForm->execute();
+			if (Config::getVar('email', 'require_validation')) {
+				// Send them home; they need to deal with the
+				// registration email.
+				Request::redirect(null, 'index');
+			}
 			Validation::login($regForm->getData('username'), $regForm->getData('password'), $reason);
 			if ($reason !== null) {
 				parent::setupTemplate(true);
@@ -81,7 +86,7 @@ class CreateAccountHandler extends UserHandler {
 				$templateMgr->assign('errorParams', array('reason' => $reason));
 				$templateMgr->assign('backLink', Request::url(null, null, null, 'login'));
 				$templateMgr->assign('backLinkLabel', 'user.login');
-				$templateMgr->display('common/error.tpl');
+				return $templateMgr->display('common/error.tpl');
 			}
 			if($source = Request::getUserVar('source'))
 				Request::redirectUrl($source);
@@ -105,6 +110,42 @@ class CreateAccountHandler extends UserHandler {
 		$templateMgr->assign('backLink', Request::url(null, null, null, 'login'));
 		$templateMgr->assign('backLinkLabel', 'user.login');
 		$templateMgr->display('common/error.tpl');
+	}
+
+	/**
+	 * Check credentials and activate a new user
+	 * @author Marc Bria <marc.bria@uab.es>
+	 */
+	function activateUser($args) {
+		$username = array_shift($args);
+		$accessKeyCode = array_shift($args);
+
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& $userDao->getUserByUsername($username);
+		if (!$user) Request::redirect(null, 'login');
+
+		// Checks user & token
+		import('security.AccessKeyManager');
+		$accessKeyManager =& new AccessKeyManager();
+		$accessKeyHash = AccessKeyManager::generateKeyHash($accessKeyCode);
+		$accessKey =& $accessKeyManager->validateKey(
+			'RegisterContext',
+			$user->getUserId(),
+			$accessKeyHash
+		);
+
+		if ($accessKey != null && $user->getDateValidated() === null) {
+			// Activate user
+			$user->setDisabled(false);
+			$user->setDisabledReason('');
+			$user->setDateValidated(Core::getCurrentDate());
+			$userDao->updateUser($user);
+
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->assign('message', 'user.login.activated');
+			return $templateMgr->display('common/message.tpl');
+		}
+		Request::redirect(null, 'login');
 	}
 
 	/**

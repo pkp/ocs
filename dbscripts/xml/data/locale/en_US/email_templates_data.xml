@@ -56,6 +56,19 @@ Thank you,
 {$principalContactSignature}</field>
 			<field name="description">This email is sent to a newly registered user to welcome them to the system and provide them with a record of their username and password.</field>
 		</row>
+		<row>
+			<field name="email_key">USER_VALIDATE</field>
+			<field name="subject">Validate Your Account</field>
+			<field name="body">{$userFullName}
+
+You have created an account with {$conferenceName}, but before you can start using it, you need to validate your email account. To do this, simply follow the link below:
+
+{$activateUrl}
+
+Thank you,
+{$principalContactSignature}</field>
+			<field name="description">This email is sent to a newly created user to welcome them to the system and provide them with a record of their username and password.</field>
+		</row>
 
 
 		<!--
