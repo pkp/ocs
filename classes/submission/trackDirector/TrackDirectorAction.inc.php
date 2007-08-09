@@ -1202,7 +1202,7 @@ import('file.PaperFileManager');
 
 		import('submission.form.comment.PeerReviewCommentForm');
 		
-		$commentForm = &new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_DIRECTOR);
+		$commentForm = &new PeerReviewCommentForm($paper, $reviewId, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -1218,7 +1218,7 @@ import('file.PaperFileManager');
 
 		import('submission.form.comment.PeerReviewCommentForm');
 		
-		$commentForm = &new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_DIRECTOR);
+		$commentForm = &new PeerReviewCommentForm($paper, $reviewId, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 		$commentForm->readInputData();
 		
 		if ($commentForm->validate()) {
@@ -1244,7 +1244,7 @@ import('file.PaperFileManager');
 
 		import('submission.form.comment.DirectorDecisionCommentForm');
 		
-		$commentForm = &new DirectorDecisionCommentForm($paper, ROLE_ID_DIRECTOR);
+		$commentForm = &new DirectorDecisionCommentForm($paper, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -1259,7 +1259,7 @@ import('file.PaperFileManager');
 
 		import('submission.form.comment.DirectorDecisionCommentForm');
 		
-		$commentForm = &new DirectorDecisionCommentForm($paper, ROLE_ID_DIRECTOR);
+		$commentForm = &new DirectorDecisionCommentForm($paper, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 		$commentForm->readInputData();
 		
 		if ($commentForm->validate()) {

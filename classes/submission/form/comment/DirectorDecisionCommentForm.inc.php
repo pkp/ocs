@@ -80,7 +80,7 @@ class DirectorDecisionCommentForm extends CommentForm {
 		// the opposite of whomever wrote the comment.
 		$recipients = array();
 		
-		if ($this->roleId == ROLE_ID_DIRECTOR) {
+		if ($this->roleId == ROLE_ID_DIRECTOR || $this->roleId == ROLE_ID_TRACK_DIRECTOR) {
 			// Then add presenter
 			$user = &$userDao->getUser($this->paper->getUserId());
 			

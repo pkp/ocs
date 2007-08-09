@@ -156,7 +156,7 @@ class EditCommentForm extends Form {
 	
 		switch ($this->comment->getCommentType()) {
 		case COMMENT_TYPE_PEER_REVIEW:
-			if ($this->roleId == ROLE_ID_DIRECTOR) {
+			if ($this->roleId == ROLE_ID_DIRECTOR || $this->roleId == ROLE_ID_TRACK_DIRECTOR) {
 				// Then add reviewer
 				if ($reviewer != null) {
 					$recipients = array_merge($recipients, array($reviewer->getEmail() => $reviewer->getFullName()));
@@ -165,7 +165,7 @@ class EditCommentForm extends Form {
 			break;
 
 		case COMMENT_TYPE_DIRECTOR_DECISION:
-			if ($this->roleId == ROLE_ID_DIRECTOR) {
+			if ($this->roleId == ROLE_ID_DIRECTOR || $this->roleId == ROLE_ID_TRACK_DIRECTOR) {
 				// Then add presenter
 				if (isset($presenter)) $recipients = array_merge($recipients, array($presenter->getEmail() => $presenter->getFullName()));
 			} else {
