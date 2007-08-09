@@ -327,7 +327,20 @@ class PeopleHandler extends ManagerHandler {
 		
 		Request::redirect(null, null, null, 'people', $roleDao->getRolePath($roleId));
 	}
-	
+
+	/**
+	 * Get a suggested username, making sure it's not
+	 * already used by the system. (Poor-man's AJAX.)
+	 */
+	function suggestUsername() {
+		parent::validate();
+		$suggestion = Validation::suggestUsername(
+			Request::getUserVar('firstName'),
+			Request::getUserVar('lastName')
+		);
+		echo $suggestion;
+	}
+
 	/**
 	 * Display form to create a new user.
 	 */
