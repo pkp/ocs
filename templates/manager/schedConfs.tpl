@@ -14,6 +14,8 @@
 
 <br />
 
+<a name="schedConfs"></a>
+
 <table width="100%" class="listing">
 	<tr>
 		<td colspan="4" class="headseparator">&nbsp;</td>
@@ -55,7 +57,7 @@
 	{else}
 		<tr>
 			<td colspan="2" align="left">{page_info iterator=$schedConfs}</td>
-			<td colspan="2" align="right">{page_links name="schedConfs" iterator=$schedConfs}</td>
+			<td colspan="2" align="right">{page_links anchor="schedConfs" name="schedConfs" iterator=$schedConfs}</td>
 		</tr>
 	{/if}
 </table>

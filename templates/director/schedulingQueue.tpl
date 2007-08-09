@@ -28,6 +28,8 @@
 
 <form method="post" action="{url op="updateSchedulingQueue"}" onsubmit="return confirm('{translate|escape:"javascript" key="director.schedulingQueue.saveChanges"}')">
 
+<a name="papers"></a>
+
 <table class="listing" width="100%">
 	<tr>
 		<td colspan="7" class="headseparator">&nbsp;</td>
@@ -68,7 +70,7 @@
 {else}
 	<tr>
 		<td colspan="4" align="left">{page_info iterator=$schedulingQueueSubmissions}</td>
-		<td colspan="3" align="right">{page_links name="papers" iterator=$schedulingQueueSubmissions track=$track}</td>
+		<td colspan="3" align="right">{page_links anchor="papers" name="papers" iterator=$schedulingQueueSubmissions track=$track}</td>
 	</tr>
 {/if}
 </table>
