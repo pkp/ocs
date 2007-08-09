@@ -1321,6 +1321,9 @@ Title of classification system]]></message>
 
 	<!-- People Management -->
 	<message key="manager.people.allUsers">All Users</message>
+	<message key="manager.people.allEnrolledUsers">All Enrolled Users</message>
+	<message key="manager.people.allSiteUsers">Enroll a User from this Site in this Conference</message>
+	<message key="manager.people.mustChooseRole">Please select a role at the top of the page before clicking "Enroll User".</message>
 	<message key="manager.people.allConferences">All Conferences</message>
 	<message key="manager.people.editUser">Edit User</message>
 	<message key="manager.people.enrollExistingUser">Enroll Existing User</message>
