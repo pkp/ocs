@@ -215,17 +215,8 @@ class SchedConf extends DataObject {
 	 * @return array
 	 */
 	function getSettings($includeParent = false) {
-		if($includeParent) {
-			$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
-			$conferenceSettings = &$conferenceSettingsDao->getConferenceSettings($this->getData('conferenceId'));
-		} else {
-			$conferenceSettings = array();
-		}
-
 		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-		$schedConfSettings = &$schedConfSettingsDao->getSchedConfSettings($this->getData('schedConfId'));
-		
-		return array_merge($conferenceSettings, $schedConfSettings);
+		return $schedConfSettingsDao->getSchedConfSettings($this->getData('schedConfId'), $includeParent);
 	}
 	
 	/**
@@ -236,14 +227,7 @@ class SchedConf extends DataObject {
 	 */
 	function &getSetting($name, $includeParent = false) {
 		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-		$setting = &$schedConfSettingsDao->getSetting($this->getData('schedConfId'), $name);
-
-		if(!$setting && $includeParent) {
-			$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
-			$setting = &$conferenceSettingsDao->getSetting($this->getData('conferenceId'), $name);
-		}
-
-		return $setting;
+		return $schedConfSettingsDao->getSetting($this->getData('schedConfId'), $name, $includeParent);
 	}
 
 	/**

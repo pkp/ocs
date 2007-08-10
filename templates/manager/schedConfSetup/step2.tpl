@@ -311,6 +311,8 @@
 	</tr>
 </table>
 
+<div class="separator"></div>
+
 <h3>2.5 {translate key="manager.schedConfSetup.submissions.publicIdentifier"}</h3>
 
 <p>{translate key="manager.schedConfSetup.submissions.uniqueIdentifierDescription"}</p>

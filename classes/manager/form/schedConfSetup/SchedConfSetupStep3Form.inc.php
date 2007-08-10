@@ -31,7 +31,8 @@ class SchedConfSetupStep3Form extends SchedConfSetupForm {
 				'restrictReviewerFileAccess' => 'int',
 				'reviewerAccessKeysEnabled' => 'int',
 				'numDaysBeforeInviteReminder' => 'int',
-				'numDaysBeforeSubmitReminder' => 'int'
+				'numDaysBeforeSubmitReminder' => 'int',
+				'notifyAllPresentersOnDecision' => 'bool'
 			)
 		);
 

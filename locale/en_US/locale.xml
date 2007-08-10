@@ -1214,6 +1214,8 @@ Title of classification system]]></message>
 	<message key="manager.schedConfSetup.review.remindForSubmit1">Who have not submitted a review within</message>
 	<message key="manager.schedConfSetup.review.remindForSubmit2">days after its due date.</message>
 	<message key="manager.schedConfSetup.review.onQuality">Directors are able to rate reviewers on a five-point scale.</message>
+	<message key="manager.schedConfSetup.review.directorDecision">Director Decision</message>
+	<message key="manager.schedConfSetup.review.notifyAllPresentersOnDecision">When using the Notify Author email, include the email addresses of all co-authors for multiple-author submissions, and not just the submitting user.</message>
 
 	<!-- Languages -->
 	<message key="manager.languages.languageInstructions"><![CDATA[OCS can be made available to users in any of several supported languages. As well, OCS can operate as a partially multilingual system, providing users with an ability to toggle between languages on each page, and allowing certain data to be entered in up to two additional languages.<br /><br/>If a language supported by OCS is not listed below, ask your site administrator to install the language from the site administration interface. For instructions on adding support for new languages, please consult the OCS documentation.]]></message>

@@ -1337,7 +1337,13 @@ import('file.PaperFileManager');
 			if (!Request::getUserVar('continued')) {
 				$presenterUser =& $userDao->getUser($trackDirectorSubmission->getUserId());
 				$email->setSubject($trackDirectorSubmission->getPaperTitle());
-				$email->addRecipient($presenterUser->getEmail(), $presenterUser->getFullName());
+				$presenterEmail = $presenterUser->getEmail();
+				$email->addRecipient($presenterEmail, $presenterUser->getFullName());
+				if ($schedConf->getSetting('notifyAllPresentersOnDecision')) foreach ($trackDirectorSubmission->getPresenters() as $presenter) {
+					if ($presenter->getEmail() != $presenterEmail) {
+						$email->addCc ($presenter->getEmail(), $presenter->getFullName());
+					}
+				}
 				$email->assignParams(array(
 					'conferenceDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($schedConf->getStartDate())),
 					'presenterName' => $presenterUser->getFullName(),

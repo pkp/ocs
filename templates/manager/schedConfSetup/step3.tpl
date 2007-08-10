@@ -23,6 +23,7 @@
 
 <p><textarea name="reviewPolicy" id="reviewPolicy" rows="12" cols="60" class="textArea">{$reviewPolicy|escape}</textarea></p>
 
+<div class="separator"></div>
 
 <h3>3.2 {translate key="manager.schedConfSetup.review.peerReview"}</h3>
 
@@ -77,6 +78,14 @@
 
 <p>
 	<input type="checkbox" name="rateReviewerOnQuality" id="rateReviewerOnQuality" value="1"{if $rateReviewerOnQuality} checked="checked"{/if} />&nbsp;<label for="rateReviewerOnQuality">{translate key="manager.schedConfSetup.review.onQuality"}</label>
+</p>
+
+<div class="separator"></div>
+
+<h3>3.3 {translate key="manager.schedConfSetup.review.directorDecision"}</h3>
+
+<p>
+	<input type="checkbox" name="notifyAllPresentersOnDecision" id="notifyAllPresentersOnDecision" value="1"{if $notifyAllPresentersOnDecision} checked="checked"{/if} />&nbsp;<label for="notifyAllPresentersOnDecision">{translate key="manager.schedConfSetup.review.notifyAllPresentersOnDecision"}</label>
 </p>
 
 <div class="separator"></div>
