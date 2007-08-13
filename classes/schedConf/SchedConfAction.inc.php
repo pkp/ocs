@@ -30,11 +30,7 @@ class SchedConfAction {
 	 * Get whether or not we permit users to register as readers
 	 */
 	function allowRegReader($schedConf) {
-		$allowRegReader = false;
-		if($schedConf->getSetting('openRegReader')) {
-			$allowRegReader = true;
-		}
-		return $allowRegReader;
+		return true;
 	}
 
 	/**
