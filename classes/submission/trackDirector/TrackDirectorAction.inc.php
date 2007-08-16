@@ -1376,10 +1376,10 @@ import('file.PaperFileManager');
 							}
 							$body .= "------------------------------------------------------\n\n";
 						}
+					}
 					$oldBody = $email->getBody();
 					if (!empty($oldBody)) $oldBody .= "\n";
 					$email->setBody($oldBody . $body);
-					}
 				}
 			}
 
