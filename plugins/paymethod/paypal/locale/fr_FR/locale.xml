@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2006-2007 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+ -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.paymethod.paypal.displayName">Paypal</message>
+
+	<!-- PayPal Settings Form -->
+	<message key="plugins.paymethod.paypal.settings.paypalenable">Activer PayPal</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl">URL d'IPN</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl.description"><![CDATA[Ceci est l'URL du service l'Instant Payment Notification (IPN) de Paypal. Pour tester, utiliser <u>https://www.sandbox.paypal.com/cgi-bin/webscr</u>; pour les systèmes de production, utiliser <u>https://www.paypal.com/cgi-bin/webscr</u>.]]></message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount">Compte vendeur</message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount.description">Ceci est est le nom d'utilisateur Paypal à utiliser par les vendeurs, normalement une adresse électronique.</message>
+	<message key="plugins.paymethod.paypal.settings.curlNotInstalled">Avertissement: le support de CURL par PHP n'est pas installé. Le support du paiement PayPal exige la librairie CURL et ne fonctionnera pas avant qu'il ne soit installé.</message>
+	<message key="plugins.paymethod.paypal.settings">Paramètres PayPal</message>
+
+	<!-- PayPal -->
+	<message key="plugins.paymethod.paypal">Paiement PayPal</message>
+	<message key="plugins.paymethod.paypal.description"><![CDATA[Gérera les cartes de crédits les plus communes, aussi bien que les eChecks; ne nécessite pas de compte PayPal pour les participants, mais exige la mise au point par les organisateurs d'un <a href="http://www.paypal.com" target="_new">Compte Affaires sur PayPal</a>.]]></message>
+	<message key="plugins.paymethod.paypal.warning">Cliquer sur Continuer vous redirigera vers le site web  de Paypal. Après avoir effectué votre paiement avec Paypal, vous pouvez cliquer sur le bouton "Return to Merchant" pour revenir sur ce site.</message>
+	<message key="plugins.paymethod.paypal.purchase.amount">Amount</message>
+	<message key="plugins.paymethod.paypal.purchase.description">Description</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled">Votre paiement a été annulé.</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled.title">Paiement annulé</message>
+</locale>

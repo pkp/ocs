@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../dtd/xmldata.dtd">
+
+<!--
+  * email_templates_data.xml
+  *
+  * Copyright (c) 2000-2007 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Email templates data XML file (English).
+  *
+  * $Id$
+  -->
+
+<data>
+	<table name="email_templates_default_data">
+		<field_default name="locale">fr_FR</field_default>
+
+		<!--
+		  *
+		  * General
+		  *
+		  -->
+		<row>
+			<field name="email_key">PASSWORD_RESET_CONFIRM</field>
+			<field name="subject">Confirmation de la réinitialisation du mot de passe</field>
+			<field name="body">Nous avons reçu une demande concernant la réinitialisation de votre mot de passe pour le site Web {$siteTitle}.
+
+Si vous n'avez pas fait cette demande, veuillez ne pas tenir compte du présent message; votre mot de passe restera le même. Si vous voulez réinitialiser votre mot de passe, cliquez sur l'URL et un nouveau mot de passe vous sera envoyé par courriel sous peu.
+
+Réinitialisation du mot de passe : {$url}
+
+{$principalContactSignature}</field>
+			<field name="description">Ce courriel est envoyé aux utilisateurs qui nous informent d'un oubli de leur mot de passe, ou qui sont incapable d'ouvrir une session. Il fournit le lien URL pour réinitialiser leur mot de passe.</field>
+		</row>
+		<row>
+			<field name="email_key">PASSWORD_RESET</field>
+			<field name="subject">Réinitialisation du mot de passe</field>
+			<field name="body">Votre mot de passe pour le site Web {$siteTitle} a été réinitialisé avec succès. Veuillez garder votre nom d'utilisateur et mot de passe, car vous en aurez besoin pour tous les travaux liés à la conférence.
+
+Votre nom d'utilisateur: {$username}
+Votre mot de passe: {$password}
+
+{$principalContactSignature}</field>
+			<field name="description">Ce courriel est envoyé aux usagers inscrits lorsqu'ils ont réussi à réinitialiser leur mot de passe en ayant suivi la procédure décrite dans le courriel « Confirmation de la réinitialisation du mot de passe ».</field>
+		</row>
+		<row>
+			<field name="email_key">USER_REGISTER</field>
+			<field name="subject">Inscription d'un nouvel usager</field>
+			<field name="body">Nous vous remercions de vous être inscrit en tant qu'utilisateur de {$conferenceName}. Veuillez garder votre nom d'utilisateur et mot de passe, car vous en aurez besoin pour tous les travaux liés à la conférence.
+
+Nom d'utilisateur: {$username}
+Mot de passe: {$password}
+
+Merci,
+{$principalContactSignature}</field>
+			<field name="description">Ce courriel est envoyé aux utilisateurs nouvellement inscrits pour leur souhaiter la bienvenue à la conférence, et leur faire connaître leur nom d'utilisateur et leur mot de passe.</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Submission-related
+		  *
+		  -->
+		<row>
+			<field name="email_key">SUBMISSION_ACK</field>
+			<field name="subject">Accusé de réception de la proposition</field>
+			<field name="body">{$presenterName}:
+
+Nous vous remercions d'avoir soumis le papier intitulé "{$paperTitle}" à {$conferenceName}. Grâce à notre système de gestion en ligne, vous pourrez suivre votre proposition tout au long du processus d'édition en accédant au site Web de la conférence.
+
+URL de la proposition: {$submissionUrl}
+Nom d'utilisateur: {$presenterUsername}
+
+Si vous avez des questions, merci de me contacter. Merci d'avoir pensé à notre conférence pour la publication de vos travaux.
+
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel, lorsqu'il est activé, est envoyé automatiquement à un auteur quand il a complété le processus de proposition d'un papier à la conférence. Il fournit les informations sur comment suivre la proposition à travers le processus éditorial, et remercie l'auteur de sa proposition.</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
+			<field name="subject">Accusé de réception du téléchargement d'une proposition</field>
+			<field name="body">{$presenterName}:
+
+Nous vous remercions d'avoir téléchargé sur le serveur le papier intitulé "{$paperTitle}" à {$conferenceName}. Grâce à notre système de gestion en ligne, vous pourrez suivre votre proposition tout au long du processus d'édition en accédant au site Web de la conférence.
+
+URL de la proposition: {$submissionUrl}
+Nom d'utilisateur: {$presenterUsername}
+
+Si vous avez des questions, merci de me contacter. Merci d'avoir pensé à notre conférence pour la publication de vos travaux.
+
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel, lorsqu'il est activé, est envoyé automatiquement à un auteur quand il a complété le processus de proposition d'un papier à la conférence. Il fournit les informations sur comment suivre la proposition à travers le processus éditorial, et remercie l'auteur de sa proposition.</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_UNSUITABLE</field>
+			<field name="subject">Présentation non conforme</field>
+			<field name="body">{$presenterName}:
+
+Une évaluation initiale de "{$paperTitle}" a démontré clairement que cette proposition n'entre pas dans le domaine de {$conferenceName}. Je vous suggère de consulter la description de cette conférence en allant dans la rubrique « A propos de la conférence » ainsi que de voir le contenu de la conférence pour en savoir plus sur les ouvrages que nous publions. Vous pourriez aussi songer à soumettre ce papier à une autre conférence plus appropriée.
+
+{$editorialContactSignature}</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_COMMENT</field>
+			<field name="subject">Commentaires sur une proposition</field>
+			<field name="body">{$name}:
+
+{$commentName} a ajouté un commentaire à la proposition, "{$paperTitle}" dans {$conferenceName}:
+
+{$comments}</field>
+			<field name="description">Ce courriel avise diverses personnes impliquées dans le processus éditorial qu'un nouveau commentaire a été ajouté.</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_DECISION_REVIEWERS</field>
+			<field name="subject">Décision à propos de "{$paperTitle}"</field>
+			<field name="body">Puisque vous avez été l'un des évaluateurs du papier intitulé "{$paperTitle}," pour {$conferenceName}, je vous envoie les évaluations et la décision du responsable. Je vous remercie à nouveau de votre contribution importante à ce processus.
+ 
+{$editorialContactSignature}
+
+{$comments}</field>
+			<field name="description">Ce courriel avise les évaluateurs d'une proposition que le processus d'évaluation est complété. Il inclut des informations au sujet de l'article et de la décision prise, et remercie les évaluateurs de leur contribution.</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_DEADLINE_WARN</field>
+			<field name="subject">Notification de l'échéance d'une proposition</field>
+			<field name="body">L'échéance de votre proposition, "{$paperTitle}," pour {$conferenceName} expirera dans quelques jours. Selon notre registre, cette proposition n'est pas encore complète.
+
+Vous devriez compléter la proposition (en téléchargeant vers le site les fichiers manquant ou en mettant à jour toute information requise) aussi tôt que possible, ou votre proposition sera disqualifiée de cette conférence.
+
+Si vous avez des questions, sentez-vous libre de me contacter.
+
+{$editorialContactSignature}</field>
+			<field name="description">Cet email avise un auteur que sa proposition incomplète sera disqualifiée par une échéance proche.</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Director
+		  *
+		  -->
+		<row>
+			<field name="email_key">DIRECTOR_ASSIGN</field>
+			<field name="subject">Assignation d'un papier</field>
+			<field name="body">{$editorialContactName}:
+
+La proposition "{$paperTitle}," à {$conferenceName} vous a été attribué. Vous êtes donc chargé, en tant que responsable de partie, de suivre cet article durant le processus d'évaluation.
+
+URL de la proposition: {$submissionUrl}
+Nom d'utilisateur: {$directorUsername}
+
+Merci,
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel avise un responsable de partie que le responsable lui a assigné la tâche de suivre une proposition durant le processus éditorial. Il fournit des informations sur la proposition, et comment accéder au site Web de la conférence.</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Peer Review
+		  *
+		  -->
+		<row>
+			<field name="email_key">REVIEW_REQUEST</field>
+			<field name="subject">Demande pour l'évaluation d'un papier</field>
+			<field name="body">{$reviewerName}:
+
+Je crois que vous seriez un excellent évaluateur pour le papier "{$paperTitle}," qui a été soumis afin pour {$conferenceName}. Vous trouverez un résumé de la proposition ci-dessous. J'espère que vous accepterez ce travail important pour la conférence.
+
+Veuillez accéder au site Web de la conférence avant le {$weekLaterDate} pour nous laisser savoir si vous effectuerez l'évaluation ou non. Vous pouvez également y consulter la proposition et y enregistrer votre évaluation et votre recommandation. Le site Web se trouve à l'adresse suivante : {$conferenceUrl}
+
+La date d'échéance de l'évaluation a été fixée au {$reviewDueDate}.
+
+Si vous n'avez pas de nom d'utilisateur ou de mot de passe pour le site Web de la conférence, cliquez sur le lien suivant : {$passwordResetUrl} Vous recevrez votre mot de passe et votre nom d'utilisateur par courriel.
+
+URL de la proosition: {$submissionReviewUrl}
+
+Espérant que vous accepterez ma demande, je vous prie d'agréer l'expression de mes sentiments les meilleurs.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Abstract
+{$paperAbstract}</field>
+			<field name="description">Ce courriel du responsable de partie à un évaluateur demande que l'évaluateur accepte ou refuse la tâche d'évaluer une proposition. Il donne de l'information au sujet de la proposition, tel son titre et un résumé, la date d'échéance pour l'évaluation, et comment accéder à la proposition elle-même. Ce message est utilisé quand « Processus d'évaluation standard » est sélectionné à l'étape 2 dans la mise en place de la conférence. (Autrement voir « Demande d'évaluation en pièce jointe »).</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REQUEST_ONECLICK</field>
+			<field name="subject">Demande d'évaluation d'un article</field>
+			<field name="body">{$reviewerName}:
+
+Je crois fermement que pourriez servir comme un excellant évaluateur pour la proposition "{$paperTitle}," qui a été soumise à {$conferenceName}. Un résumé de la proposition apparaît plus bas, et j'espère que vous allez considérer entreprendre cette importante tâche pour nous.
+
+Veuillez vous connecter au site Web de la conférence au plus tard le {$weekLaterDate} pour nous indiquer si vous allez entreprendre l'évaluation ou pas, ainsi que pour accéder à la proposition et y enregistrer votre évaluation et votre recommandation.
+
+Date limite pour l'évaluation {$reviewDueDate}.
+
+L'adresse URL de la proposition: {$submissionReviewUrl}
+
+Merci pour bien vouloir considérer cette demande,
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Résumé
+{$paperAbstract}</field>
+			<field name="description">Ce courriel d'un responsable de partie à un évaluateur demande que l'évaluateur accepte ou décline la tâche d'évaluer une proposition. Il contient des informations sur la proposition tel que son titre et un résumé, la date d'échéance pour faire l'évaluation, et comment accéder à la proposition complète. Ce message est utilisé quand le «Processus d'évaluation standard» a été sélectionné à l'étape 2  de la mise en marche de la conférence, et que l'accès en "un clic" de la part du évaluateur a été activé.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_CANCEL</field>
+			<field name="subject">Annulation de la demande d'évaluation</field>
+			<field name="body">{$reviewerName}:
+
+Nous avons décidé d'annuler notre demande concernant l'évaluation du papier intitulé "{$paperTitle}," pour {$conferenceName}. Nous sommes désolés de tout inconvénient que cela pourrait vous causer et nous espérons que nous pourrons compter sur votre collaboration pour un autre projet.
+
+Si vous avez des questions, n'hésitez pas à communiquer avec nous.
+
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel est envoyé par le responsable de partie à un évaluateur qui a une évaluation en cours, pour l'aviser que celle-ci est annulée.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_CONFIRM</field>
+			<field name="subject">Confirmation de l'évaluation</field>
+			<field name="body">{$editorialContactName}:
+
+Je suis en mesure d'évaluer la soumission intitulée "{$paperTitle}," pour {$conferenceName}. Je vous remercie d'avoir pensé à moi. Je devrais pouvoir mener à bien ma mission à la date d'échéance fixée au {$reviewDueDate}, si ce n'est avant.
+
+{$reviewerName}</field>
+			<field name="description">Ce courriel est envoyé par l'évaluateur au responsable de partie en réponse à la demande d'évaluation faite, pour aviser ce dernier que la demande a été acceptée et que l'évaluation sera complétée au plus tard à la date spécifiée.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_CONFIRM_ACK</field>
+			<field name="subject">Reconnaissance que l'évaluation est en cours</field>
+			<field name="body">{$reviewerName}:
+
+Merci d'avoir accepté d'évaluer le papier intitulé "{$paperTitle}" pour {$conferenceName} avant le {$reviewDueDate}.
+
+{$editorialContactSignature}</field>
+			<field name="description">Le responsable de partie envoie ce courriel à l'évaluateur pour reconnaître son acceptation ou pour l'encourager à compléter l'évaluation.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_DECLINE</field>
+			<field name="subject">Refus d'évaluer le manuscrit</field>
+			<field name="body">{$editorialContactName}:
+
+Pour le moment, il m'est impossible d'évaluer la proposition intitulée "{$paperTitle}", pour {$conferenceName}. N'hésitez pas à communiquer avec moi pour un autre projet.
+
+{$reviewerName}</field>
+			<field name="description">Ce courriel est envoyé par l'évaluateur au responsable de partie en réponse à la demande de faire une évaluation, pour aviser ce dernier qu'il ne peut faire l'évaluation.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_COMPLETE</field>
+			<field name="subject">Révision de la soumission terminée</field>
+			<field name="body">{$editorialContactName}:
+
+J'ai effectué l'évaluation de la proposition intitulée "{$paperTitle}" pour {$conferenceName}. Mes commentaires et ma recommandation sont sur le site Web de la conférence. "{$recommendation}."
+
+{$reviewerName}</field>
+			<field name="description">Ce courriel est envoyé par l'évaluateur au responsable de partie pour l'aviser que l'évaluation est terminée, et que les commentaires et les recommandations ont été enregistrés sur le site Web de la conférence.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_ACK</field>
+			<field name="subject">Accusé de réception pour l'évaluation d'une proposition</field>
+			<field name="body">{$reviewerName}:
+
+Nous vous remercions d'avoir révisé la propostion intitulée "{$paperTitle}" pour {$conferenceName}. Nous vous sommes reconnaissants de votre contribution à la qualité des travaux que nous publions.
+
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel est envoyé par le responsable de partie, pour accuser réception de l'évaluation complétée et remercier l'évaluateur de sa contribution.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REMIND</field>
+			<field name="subject">Rappel concernant l'évaluation d'une proposition</field>
+			<field name="body">{$reviewerName}:
+
+Juste un petit mot pour vous rappeler notre demande à propos de l'évaluation de la proposition intitulée "{$paperTitle}" pour {$conferenceName}. Nous espérions recevoir votre évaluation avant le {$reviewDueDate}, et nous serions heureux de la recevoir dès que possible.
+
+Si vous n'avez pas de nom d'utilisateur ni de mot de passe pour le site Web de la conférence, cliquez sur le lien suivant: {$passwordResetUrl}. Vous recevrez votre mot de passe et votre nom d'utilisateur par courriel.
+
+URL de la soumission: {$submissionReviewUrl}
+
+Veuillez confirmer que vous êtes en mesure d'effectuer ce travail important pour notre conférence. J'espère avoir de vos nouvelles très bientôt.
+
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel est envoyé par le responsable de partie pour rappeler a l'évaluateur que l'échéance de son évaluation est dépassée.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REMIND_ONECLICK</field>
+			<field name="subject">Rappel au évaluateur d'une proposition en un clic</field>
+			<field name="body">{$reviewerName}:
+
+Juste un petit mot pour vous rappeler notre demande d'évaluer la proposition intitulée "{$paperTitle}" pour {$conferenceName}. Nous espérions recevoir votre évaluation le {$reviewDueDate}, et nous serions heureux de la recevoir aussitôt qu'il vous sera possible de le faire.
+
+Adresse URL de la soumission: {$submissionReviewUrl}
+
+S.V.P. confirmer si vous êtes en mesure de compléter ce travail très important pour la conférence. Espérant avoir de vos nouvelles sous peu, 
+
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel est envoyé par le responsable de partie pour rappeler a l'évaluateur que l'échéance de son évaluation est dépassée.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REMIND_AUTO</field>
+			<field name="subject">Rappel automatique pour l'évaluation d'une proposition</field>
+			<field name="body">{$reviewerName}:
+
+Juste un petit mot pour vous rappeler notre demande à propos de l'évaluation de la proposition intitulée "{$paperTitle}," pour {$conferenceName}. Nous espérions recevoir votre évaluation avant le {$reviewDueDate}. Ce courriel a été envoyé automatiquement parce que la date d'échéance est passée. Nous serions quand même heureux de recevoir votre évaluation dès que possible.
+
+Si vous n'avez pas de nom d'utilisateur ni de mot de passe pour le site Web de la conférence, cliquez sur le lien suivant : {$passwordResetUrl}. Vous recevrez votre mot de passe et nom d'utilisateur par courriel.
+
+URL de la soumission: {$submissionReviewUrl}
+
+Veuillez confirmer que vous êtes en mesure d'effectuer ce travail important pour notre conférence. J'espère avoir de vos nouvelles très bientôt.
+
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel est envoyé automatiquement quand la date due d'un évaluateur est dépassée. (Voir Options d'évaluations à l'étape 2 dans Options, et que «l'accès en un clic» est désactivé. Les tâches prévues doivent être activées et configurées. (Voir le fichier Configuration du site)</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REMIND_AUTO_ONECLICK</field>
+			<field name="subject">Rappel automatique au évaluateur en un clic.</field>
+			<field name="body">{$reviewerName}:
+
+Juste un gentil rappel au sujet de notre demande vous demandant d'évaluer la proposition "{$paperTitle}," pour {$conferenceName}. Nous espérions avoir cette évaluation avant le {$reviewDueDate}, et ce courriel vous a été envoyé automatiquement parce que la date d'échéance est passée. Nous serions heureux de la recevoir dès qu'il vous sera possible de nous l'envoyer.
+
+L'adresse URL de la soumission: {$submissionReviewUrl}
+
+S.V.P. veuillez nous confirmer votre disponibilité à compléter cette contribution importante à notre conférence. Espérant recevoir de vos nouvelles bientôt,
+
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel est envoyé automatiquement quand la date d'entrée de l'évaluation est échue. (Voir options d'évaluations à l'étape 2 de la mise en marche (Options) de la conférence, et que l'accès en un clic à un évaluateur est actif. Les tâches prévues doivent être activées et configurées. (Voir le fichier de configuration du site.)</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Director Review
+		  *
+		  -->
+		<row>
+			<field name="email_key">SUBMISSION_ABSTRACT_ACCEPT</field>
+			<field name="subject">Décision éditoriale à propos du papier</field>
+			<field name="body">{$presenterName}:
+
+Félicitations, votre proposition {$paperTitle} a été acceptée pour la présentation de {$conferenceTitle} tenue le {$conferenceDate} à {$locationCity}. 
+
+Merci, et nous serions ravis de vous voir participer à cet événement.
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel est envoyé par un responsable de partie à un auteur de proposition pour l'aviser qu'une décision a été prise à l'égard de sa proposition.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_ABSTRACT_DECLINE</field>
+			<field name="subject">Décision éditoriale à propos du papier</field>
+			<field name="body">{$presenterName}:
+
+Nous avons terminé l'évaluation de votre proposition "{$paperTitle}." Et le résultat est...
+
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel est envoyé par un responsable de partie à un auteur de proposition pour l'aviser qu'une décision a été prise à l'égard de sa proposition.</field>
+		</row>
+
+ 		<row>
+			<field name="email_key">SUBMISSION_ABSTRACT_REVISE</field>
+			<field name="subject">Décision éditoriale à propos du papier</field>
+			<field name="body">{$presenterName}:
+
+Après une évaluation attentive de votre papier, "{$paperTitle}" sera considéré pour une présentation à {$conferenceTitle} si les révisions suivantes sont implémentées.
+
+Merci, et nous serions ravis de vous voir participer à cet événement.
+
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel est envoyé par un responsable de partie à un auteur de proposition pour l'aviser qu'une décision a été prise à l'égard de sa proposition.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_ACCEPT</field>
+			<field name="subject">Décision éditoriale à propos du papier</field>
+			<field name="body">{$presenterName}:
+
+Félicitations, votre proposition {$paperTitle} a été acceptée pour la présentation de {$conferenceTitle} tenue le {$conferenceDate} à {$locationCity}.  
+
+Merci, et nous serions ravis de vous voir participer à cet événement.
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel est envoyé par un responsable de partie à un auteur de proposition pour l'aviser qu'une décision a été prise à l'égard de sa proposition.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_DECLINE</field>
+			<field name="subject">Décision éditoriale à propos du papier</field>
+			<field name="body">{$presenterName}:
+
+Nous avons terminé l'évaluation de votre proposition "{$paperTitle}." Et le résultat est...
+
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel est envoyé par un responsable de partie à un auteur de proposition pour l'aviser qu'une décision a été prise à l'égard de sa proposition.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_REVISE</field>
+			<field name="subject">Décision éditoriale à propos du papier</field>
+			<field name="body">{$presenterName}:
+
+Après une évaluation attentive de votre papier, "{$paperTitle}" sera considéré pour une présentation à {$conferenceTitle} si les révisions suivantes sont implémentées.
+
+Merci, et nous serions ravis de vous voir participer à cet événement.
+
+{$editorialContactSignature}</field>
+			<field name="description">Ce courriel est envoyé par un responsable de partie à un auteur de proposition pour l'aviser qu'une décision a été prise à l'égard de sa proposition.</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Registration 
+		  *
+		  -->
+		<row>
+			<field name="email_key">REGISTRATION_NOTIFY</field>
+			<field name="subject">Avis d'inscription</field>
+			<field name="body">{$registrantName}:
+
+Vous êtes maintenant inscrit à notre système de gestion de conférence en ligne pour {$conferenceName}, avec le type d'abonnement suivant:
+
+{$registrationType}
+
+Pour accéder au contenu destiné seulement aux abonnés, entrez dans le système à l'aide de votre nom d'utilisateur: "{$username}".
+
+Une fois dans le système, vous pouvez changer votre profil et votre mot de passe en tout temps.
+
+Veuillez prendre note que si vous avez une inscription institutionnelle, les utilisateurs n'ont pas à entrer de nom d'utilisateur puisque le système authentifiera automatiquement les demandes.
+
+Si vous avez des questions, n'hésitez pas à communiquer avec moi.
+
+{$registrationContactSignature}</field>
+			<field name="description">Ce courriel avise un lecteur inscrit que le directeur de la conférence a créé une inscription pour lui. Il fournit l'adresse URL de la conférence ainsi que les instructions pour y accéder.</field>
+		</row>
+		<row>
+			<field name="email_key">OPEN_ACCESS_NOTIFY</field>
+			<field name="subject">Contenu en accès libre</field>
+			<field name="body">Chers lecteurs et lectrices:
+
+{$conferenceName} vient de rendre un contenu disponible en format libre accès. Nous vous invitons à lire la Table des matières ici puis visiter notre site Web ({$conferenceUrl}) pour lire les articles et autres textes qui pourraient vous intéresser.
+
+Merci de votre intérêt continu pour notre travail,
+{$editorialContactSignature}</field>
+			<field name="description">Nous envoyons ce courriel aux lecteurs inscrits qui ont demandé à recevoir un avis par courriel quand un numéro devient disponible à accès libre.</field>
+		</row>
+		<!--<row>
+			<field name="email_key">REGISTRATION_BEFORE_EXPIRY</field>
+			<field name="subject">Notice of Registration Expiry</field>
+			<field name="body">{$registrantName}:
+
+Your {$conferenceName} registration is about to expire.
+
+{$registrationType}
+Expiry date: {$expiryDate}
+
+To ensure the continuity of your access to this conference, please go to the conference website and renew your registration. You are able to log in to the system with your username, "{$username}".
+
+If you have any questions, please feel free to contact me.
+
+{$registrationContactSignature}</field>
+			<field name="description">This email notifies a registrant that their registration will soon expire. It provides the conference's URL along with instructions for access.</field>
+		</row>-->
+		<!--<row>
+			<field name="email_key">REGISTRATION_AFTER_EXPIRY</field>
+			<field name="subject">Registration Expired</field>
+			<field name="body">{$registrantName}:
+
+Your {$conferenceName} registration has expired.
+
+{$registrationType}
+Expiry date: {$expiryDate}
+
+To renew your registration, please go to the conference website. You are able to log in to the system with your username, "{$username}".
+
+If you have any questions, please feel free to contact me.
+
+{$registrationContactSignature}</field>
+			<field name="description">This email notifies a registrant that their registration has expired. It provides the conference's URL along with instructions for access.</field>
+		</row>-->
+		<!--<row>
+			<field name="email_key">REGISTRATION_AFTER_EXPIRY_LAST</field>
+			<field name="subject">Registration Expired - Final Reminder</field>
+			<field name="body">{$registrantName}:
+
+Your {$conferenceName} registration has expired.
+Please note that this is the final reminder that will be emailed to you.
+
+{$registrationType}
+Expiry date: {$expiryDate}
+
+To renew your registration, please go to the conference website. You are able to log in to the system with your username, "{$username}".
+
+If you have any questions, please feel free to contact me.
+
+{$registrationContactSignature}</field>
+			<field name="description">This email notifies a registrant that their registration has expired. It provides the conference's URL along with instructions for access.</field>
+		</row>-->
+	</table>
+</data>
