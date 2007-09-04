@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="track.track"}
 {assign var="pageCrumbTitle" value="track.tracks"}
 {url|assign:"currentUser" op="tracks"}

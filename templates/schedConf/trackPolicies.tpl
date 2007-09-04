@@ -11,7 +11,6 @@
  *
  * $Id$
  *}
-
 {translate|assign:"pageTitleTranslated" key="schedConf.trackPolicies.title" schedConfAbbrev=$currentSchedConf->getSetting('abbrev')}
 {include file="common/header.tpl"}
 

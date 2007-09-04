@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {include file="common/header.tpl"}
 
 <p>{translate key="presenter.submit.submissionComplete" conferenceTitle=$conference->getTitle()}</p>

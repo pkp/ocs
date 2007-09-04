@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageCrumbTitle" value="presenter.submit"}
 {include file="common/header.tpl"}
 

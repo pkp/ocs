@@ -7,5 +7,4 @@
  * Form for manual payment settings.
  *
  *}
-
 {* Nothing for now *}

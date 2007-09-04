@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="manager.schedConfs.schedulingAConference"}
 {include file="common/header.tpl"}
 

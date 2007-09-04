@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="plugins.importexport.nlm.export.selectPaper"}
 {assign var="pageCrumbTitle" value="plugins.importexport.nlm.export.selectPaper"}
 {include file="common/header.tpl"}

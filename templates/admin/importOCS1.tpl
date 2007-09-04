@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="admin.conferences.importOCS1"}
 {assign var="helpTopicId" value="site.siteManagement"}
 {include file="common/header.tpl"}

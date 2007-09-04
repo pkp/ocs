@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {if not(empty($publisher.note) && empty($publisher.institution))}
 <div class="separator"></div>
 

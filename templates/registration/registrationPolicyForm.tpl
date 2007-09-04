@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="manager.registrationPolicies"}
 {assign var="pageId" value="manager.registrationPolicies"}
 {include file="common/header.tpl"}

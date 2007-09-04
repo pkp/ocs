@@ -8,9 +8,9 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="presenter.submit.step2"}
 {include file="presenter/submit/submitHeader.tpl"}
+
 <p>{translate key="presenter.submit.metadataDescription"}</p>
 <h3>{translate key="presenter.submit.privacyStatement"}</h3>
 <br />

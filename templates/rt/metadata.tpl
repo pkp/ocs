@@ -8,9 +8,7 @@
  *
  * $Id$
  *}
-
 {assign var=pageTitle value="rt.viewMetadata"}
-
 {include file="rt/header.tpl"}
 
 <h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>

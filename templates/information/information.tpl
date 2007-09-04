@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {include file="common/header.tpl"}
 
 {if !empty($conferenceContent)}

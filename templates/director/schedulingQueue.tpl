@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="director.schedulingQueue"}
 {url|assign:"currentUrl" op="schedulingQueue"}
 {include file="common/header.tpl"}

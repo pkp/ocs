@@ -7,7 +7,6 @@
  * Manual payment page
  *
  *}
-
 {assign var="pageTitle" value="plugins.paymethod.manual"}
 {include file="common/header.tpl"}
 

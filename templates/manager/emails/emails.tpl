@@ -8,9 +8,9 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="manager.emails"}
 {include file="common/header.tpl"}
+
 <br/>
 <table class="listing" width="100%">
 	<tr><td colspan="5" class="headseparator">&nbsp;</td></tr>

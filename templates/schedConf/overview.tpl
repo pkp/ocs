@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {translate|assign:"pageTitleTranslated" key="schedConf.overview.title" schedConfAbbrev=$currentSchedConf->getSetting('abbrev')}
 {include file="common/header.tpl"}
 

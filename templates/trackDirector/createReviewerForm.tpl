@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="trackDirector.review.createReviewer"}
 {include file="common/header.tpl"}
 

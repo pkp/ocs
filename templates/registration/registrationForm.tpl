@@ -8,14 +8,12 @@
  *
  * $Id$
  *}
-
 {assign var="pageCrumbTitle" value="$registrationTitle"}
 {if $registrationId}
-	{assign var="pageTitle" value="manager.registration.edit"}
+{assign var="pageTitle" value="manager.registration.edit"}
 {else}
-	{assign var="pageTitle" value="manager.registration.create"}
+{assign var="pageTitle" value="manager.registration.create"}
 {/if}
-
 {assign var="pageId" value="manager.registration.registrationForm"}
 {include file="common/header.tpl"}
 

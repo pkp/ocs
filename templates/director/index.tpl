@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="director.home"}
 {assign var="pageCrumbTitle" value="user.role.director"}
 {include file="common/header.tpl"}

@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="search.presenterIndex"}
 {include file="common/header.tpl"}
 

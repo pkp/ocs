@@ -9,7 +9,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitleTranslated" value=$conferenceTitle}
 {include file="common/header.tpl"}
 

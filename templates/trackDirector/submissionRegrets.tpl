@@ -9,7 +9,6 @@
  *
  * $Id$
  *}
-
 {translate|assign:"pageTitleTranslated" key="trackDirector.regrets.title" paperId=$submission->getPaperId()}
 {assign var=pageTitleTranslated value=$pageTitleTranslated|escape}
 {assign var="pageCrumbTitle" value="trackDirector.regrets.breadcrumb"}

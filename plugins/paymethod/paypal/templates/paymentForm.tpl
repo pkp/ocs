@@ -7,9 +7,9 @@
  * Form for submitting a PayPal payment
  *
  *}
-
 {assign var="pageTitle" value="plugins.paymethod.paypal"}
 {include file="common/header.tpl"}
+
 <table>
 	<tr>
 		<td><img src="{$baseUrl}/plugins/paymethod/paypal/images/paypal.gif" alt="paypal" /></td>

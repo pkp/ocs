@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 <a name="directorDecision"></a>
 <h3>{translate key="submission.directorDecision"}</h3>
 

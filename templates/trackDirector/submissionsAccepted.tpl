@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 <a name="submissions"></a>
 
 <form action="{url op="updateAcceptedTable"}" method="post">

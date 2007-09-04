@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="presenter.submit.step4a"}
 {include file="presenter/submit/submitHeader.tpl"}
 

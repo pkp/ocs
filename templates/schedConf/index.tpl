@@ -9,12 +9,10 @@
  *
  * $Id$
  *}
-
 {*
  * The page and crumb titles differ here since the breadcrumbs already include
  * the conference title, but the page title doesn't.
  *}
- 
 {assign var="pageCrumbTitleTranslated" value=$schedConf->getTitle()}
 {assign var="pageTitleTranslated" value=$schedConf->getFullTitle()}
 {include file="common/header.tpl"}

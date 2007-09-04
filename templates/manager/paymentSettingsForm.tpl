@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="manager.payment.paymentSettings"}
 {include file="common/header.tpl"}
 

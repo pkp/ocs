@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="manager.setup.loggingAndAuditing.title"}
 {include file="manager/setup/setupHeader.tpl"}
 

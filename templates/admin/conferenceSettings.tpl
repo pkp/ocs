@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="admin.conferences.conferenceSettings"}
 {include file="common/header.tpl"}
 

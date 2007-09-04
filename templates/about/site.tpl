@@ -8,9 +8,9 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="about.aboutSite"}
 {include file="common/header.tpl"}
+
 {if !empty($about)}
 	<p>{$about|nl2br}</p>
 {/if}

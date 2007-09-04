@@ -8,9 +8,9 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="track.tracks"}
 {include file="common/header.tpl"}
+
 <br/>
 
 <a name="tracks"></a>

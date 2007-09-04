@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="schedConf.program"}
 {include file="common/header.tpl"}
 

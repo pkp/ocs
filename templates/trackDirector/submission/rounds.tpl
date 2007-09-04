@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 <a name="stages"></a>
 <h3>{translate|escape key="trackDirector.regrets.regretsAndCancels"}</h3>
 

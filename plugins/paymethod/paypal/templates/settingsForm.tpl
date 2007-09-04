@@ -7,7 +7,6 @@
  * Form for PayPal settings.
  *
  *}
-
 	<tr>
 		<td colspan="2"><h4>{translate key="plugins.paymethod.paypal.settings"}</td>
 	</tr>

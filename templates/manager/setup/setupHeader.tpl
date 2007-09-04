@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageCrumbTitle" value="manager.websiteManagement"}
 {url|assign:"currentUrl" op="setup"}
 {include file="common/header.tpl"}

@@ -8,8 +8,6 @@
  *
  * $Id$
  *}
-
-
 {include file="submission/comment/header.tpl"}
 
 <table class="data" width="100%">

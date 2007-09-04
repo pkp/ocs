@@ -9,7 +9,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="event.eventLog"}
 {include file="common/header.tpl"}
 

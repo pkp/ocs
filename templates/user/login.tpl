@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="user.login"}
 {assign var="helpTopicId" value="user.accountAndProfile"}
 {include file="common/header.tpl"}

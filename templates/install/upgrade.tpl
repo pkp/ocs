@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="installer.ocsUpgrade"}
 {include file="common/header.tpl"}
 

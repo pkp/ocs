@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var="pageTitle" value="navigation.account"}
 {include file="common/header.tpl"}
 

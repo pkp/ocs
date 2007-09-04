@@ -8,18 +8,16 @@
  *
  * $Id$
  *}
-
 {if $schedConfSettings.reviewMode == $smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}
-	{assign var="pageCrumbTitle" value="submission.review"}
-	{translate|assign:"pageTitleTranslated" key="submission.page.review" id=$submission->getPaperId()}
+{assign var="pageCrumbTitle" value="submission.review"}
+{translate|assign:"pageTitleTranslated" key="submission.page.review" id=$submission->getPaperId()}
 {elseif $stage==REVIEW_STAGE_ABSTRACT}
-	{assign var="pageCrumbTitle" value="submission.abstractReview"}
-	{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$submission->getPaperId()}
+{assign var="pageCrumbTitle" value="submission.abstractReview"}
+{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$submission->getPaperId()}
 {else}{* REVIEW_STAGE_PRESENTATION *}
-	{assign var="pageCrumbTitle" value="submission.paperReview"}
-	{translate|assign:"pageTitleTranslated" key="submission.page.paperReview" id=$submission->getPaperId()}
+{assign var="pageCrumbTitle" value="submission.paperReview"}
+{translate|assign:"pageTitleTranslated" key="submission.page.paperReview" id=$submission->getPaperId()}
 {/if}
-
 {include file="common/header.tpl"}
 
 <ul class="menu">

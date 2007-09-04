@@ -8,11 +8,10 @@
  *
  * $Id$
  *}
-
 {if $schedConfSettings.acceptSupplementaryReviewMaterials}
-	{assign var="pageTitle" value="presenter.submit.step5"}
+{assign var="pageTitle" value="presenter.submit.step5"}
 {else}
-	{assign var="pageTitle" value="presenter.submit.step5SkipSupp"}
+{assign var="pageTitle" value="presenter.submit.step5SkipSupp"}
 {/if}
 {include file="presenter/submit/submitHeader.tpl"}
 

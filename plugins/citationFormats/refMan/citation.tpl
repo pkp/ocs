@@ -9,9 +9,9 @@
  * $Id$
  *}
 {if $galleyId}
-	{url|assign:"paperUrl" page="paper" op="view" path=$paperId|to_array:$galleyId}
+{url|assign:"paperUrl" page="paper" op="view" path=$paperId|to_array:$galleyId}
 {else}
-	{url|assign:"paperUrl" page="paper" op="view" path=$paperId}
+{url|assign:"paperUrl" page="paper" op="view" path=$paperId}
 {/if}
 TY  - JOUR
 {foreach from=$paper->getPresenters() item=presenter}

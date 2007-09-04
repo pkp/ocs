@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 <a name="directors"></a>
 <h3>{translate key="user.role.directors"}</h3>
 <table width="100%" class="listing">

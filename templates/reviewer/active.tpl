@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 {assign var=cols value=7}
 
 <a name="submissions"></a>

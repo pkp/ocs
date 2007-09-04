@@ -8,7 +8,6 @@
  *
  * $Id$
  *}
-
 <a name="complete"></a>
 
 <h3>{translate key="submission.complete"}</h3>

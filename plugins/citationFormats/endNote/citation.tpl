@@ -8,11 +8,10 @@
  *
  * $Id$
  *}
-
 {if $galleyId}
-	{url|assign:"paperUrl" page="paper" op="view" path=$paperId|to_array:$galleyId}
+{url|assign:"paperUrl" page="paper" op="view" path=$paperId|to_array:$galleyId}
 {else}
-	{url|assign:"paperUrl" page="paper" op="view" path=$paperId}
+{url|assign:"paperUrl" page="paper" op="view" path=$paperId}
 {/if}
 {foreach from=$paper->getPresenters() item=presenter}
 %A {$presenter->getFullName(true)|escape}
