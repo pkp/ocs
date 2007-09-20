@@ -51,11 +51,11 @@ class AnnouncementHandler extends DirectorHandler {
 	 */
 	function deleteAnnouncement($args) {
 		parent::validate();
-		
+
 		if (isset($args) && !empty($args)) {
 			$conference = &Request::getConference();
 			$announcementId = (int) $args[0];
-		
+
 			$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
 
 			// Ensure announcement is for this conference
@@ -63,7 +63,7 @@ class AnnouncementHandler extends DirectorHandler {
 				$announcementDao->deleteAnnouncementById($announcementId);
 			}
 		}
-		
+
 		Request::redirect(null, null, null, 'announcements');
 	}
 
@@ -117,9 +117,9 @@ class AnnouncementHandler extends DirectorHandler {
 	 */
 	function updateAnnouncement() {
 		parent::validate();
-		
+
 		import('director.form.AnnouncementForm');
-		
+
 		$conference = &Request::getConference();
 		$announcementId = Request::getUserVar('announcementId') == null ? null : (int) Request::getUserVar('announcementId');
 		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
@@ -128,7 +128,7 @@ class AnnouncementHandler extends DirectorHandler {
 
 			$announcementForm = &new AnnouncementForm($announcementId);
 			$announcementForm->readInputData();
-			
+
 			if ($announcementForm->validate()) {
 				$announcementForm->execute();
 
@@ -137,7 +137,7 @@ class AnnouncementHandler extends DirectorHandler {
 				} else {
 					Request::redirect(null, null, null, 'announcements');
 				}
-				
+
 			} else {
 				AnnouncementHandler::setupTemplate();
 
@@ -152,7 +152,7 @@ class AnnouncementHandler extends DirectorHandler {
 
 				$announcementForm->display();
 			}
-			
+
 		} else {
 				Request::redirect(null, null, null, 'announcements');
 		}	
@@ -182,11 +182,11 @@ class AnnouncementHandler extends DirectorHandler {
 	 */
 	function deleteAnnouncementType($args) {
 		parent::validate();
-		
+
 		if (isset($args) && !empty($args)) {
 			$conference = &Request::getConference();
 			$typeId = (int) $args[0];
-		
+
 			$announcementTypeDao = &DAORegistry::getDAO('AnnouncementTypeDAO');
 
 			// Ensure announcement is for this conference
@@ -194,7 +194,7 @@ class AnnouncementHandler extends DirectorHandler {
 				$announcementTypeDao->deleteAnnouncementTypeById($typeId);
 			}
 		}
-		
+
 		Request::redirect(null, null, null, 'announcementTypes');
 	}
 
@@ -244,9 +244,9 @@ class AnnouncementHandler extends DirectorHandler {
 	 */
 	function updateAnnouncementType() {
 		parent::validate();
-		
+
 		import('director.form.AnnouncementTypeForm');
-		
+
 		$conference = &Request::getConference();
 		$typeId = Request::getUserVar('typeId') == null ? null : (int) Request::getUserVar('typeId');
 		$announcementTypeDao = &DAORegistry::getDAO('AnnouncementTypeDAO');
@@ -255,7 +255,7 @@ class AnnouncementHandler extends DirectorHandler {
 
 			$announcementTypeForm = &new AnnouncementTypeForm($typeId);
 			$announcementTypeForm->readInputData();
-			
+
 			if ($announcementTypeForm->validate()) {
 				$announcementTypeForm->execute();
 
@@ -264,7 +264,7 @@ class AnnouncementHandler extends DirectorHandler {
 				} else {
 					Request::redirect(null, null, null, 'announcementTypes');
 				}
-				
+
 			} else {
 				AnnouncementHandler::setupTemplate(true);
 
@@ -279,7 +279,7 @@ class AnnouncementHandler extends DirectorHandler {
 
 				$announcementTypeForm->display();
 			}
-			
+
 		} else {
 				Request::redirect(null, null, null, 'announcementTypes');
 		}	

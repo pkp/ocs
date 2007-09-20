@@ -22,7 +22,7 @@ class SettingsDAO extends DAO {
 	function SettingsDAO() {
 		parent::DAO();
 	}
-	
+
 	/**
 	 * Used internally by installSettings to perform variable and translation replacements.
 	 * @param $rawInput string contains text including variable and/or translate replacements.
@@ -82,6 +82,7 @@ class SettingsDAO extends DAO {
 
 			if (isset($nameNode) && isset($valueNode)) {
 				$type = $setting->getAttribute('type');
+				$isLocaleField = $setting->getAttribute('locale');
 				$name = &$nameNode->getValue();
 
 				if ($type == 'date') {
@@ -94,7 +95,13 @@ class SettingsDAO extends DAO {
 				}
 
 				// Replace translate calls with translated content
-				$this->updateSetting($id, $name, $value, $type);
+				$this->updateSetting(
+					$id,
+					$name,
+					$isLocaleField?array(Locale::getLocale() => $value):$value,
+					$type,
+					$isLocaleField
+				);
 			}
 		}
 

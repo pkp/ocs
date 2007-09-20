@@ -30,13 +30,6 @@ class SchedConf extends DataObject {
 	//
 
 	/**
-	 * Constructor.
-	 */
-	function SchedConf() {
-		parent::DataObject();
-	}
-	
-	/**
 	 * Get the base URL to the scheduled conference.
 	 * @return string
 	 */
@@ -56,7 +49,7 @@ class SchedConf extends DataObject {
 		$returner =& $conferenceDao->getConference($this->getConferenceId());
 		return $returner;
 	}
-	
+
 	/**
 	 * get current
 	 * @return int
@@ -64,31 +57,32 @@ class SchedConf extends DataObject {
 	function getCurrent() {
 		return $this->getData('current');
 	}
-	 
+
 	/**
 	 * set current
 	 * @param $current int
 	 */
 	function setCurrent($current) {
-		return $this->setData('current',$current);
+		return $this->setData('current', $current);
+	}
+
+	/**
+	 * Get the localized title of the scheduled conference
+	 * @return string
+	 */
+	function getSchedConfTitle() {
+		return $this->getLocalizedSetting('title');
 	}
 
 	/**
 	 * Get title of scheduled conference
+	 * @param $locale string
 	 * @return string
 	 */
-	 function getTitle() {
-	 	return $this->getData('title');
+	function getTitle($locale) {
+		return $this->getSetting('title', $locale);
 	}
-	
-	/**
-	* Set title of scheduled conference
-	* @param $title string
-	*/
-	function setTitle($title) {
-		return $this->setData('title',$title);
-	}
-	
+
 	/**
 	 * Get ID of scheduled conference.
 	 * @return int
@@ -96,7 +90,7 @@ class SchedConf extends DataObject {
 	function getSchedConfId() {
 		return $this->getData('schedConfId');
 	}
-	
+
 	/**
 	 * Set ID of scheduled conference.
 	 * @param $schedConfId int
@@ -104,7 +98,7 @@ class SchedConf extends DataObject {
 	function setSchedConfId($schedConfId) {
 		return $this->setData('schedConfId', $schedConfId);
 	}
-	
+
 	/**
 	 * Get conference ID of scheduled conference.
 	 * @return int
@@ -112,7 +106,7 @@ class SchedConf extends DataObject {
 	function getConferenceId() {
 		return $this->getData('conferenceId');
 	}
-	
+
 	/**
 	 * Set conference ID of scheduled conference.
 	 * @param $schedConfId int
@@ -120,7 +114,7 @@ class SchedConf extends DataObject {
 	function setConferenceId($conferenceId) {
 		return $this->setData('conferenceId', $conferenceId);
 	}
-	
+
 	/**
 	 * Get path to scheduled conference (in URL).
 	 * @return string
@@ -128,7 +122,7 @@ class SchedConf extends DataObject {
 	function getPath() {
 		return $this->getData('path');
 	}
-	
+
 	/**
 	 * Set path to scheduled conference (in URL).
 	 * @param $path string
@@ -136,7 +130,7 @@ class SchedConf extends DataObject {
 	function setPath($path) {
 		return $this->setData('path', $path);
 	}
-	
+
 	/**
 	 * Get sequence of scheduled conference in site table of contents.
 	 * @return float
@@ -144,7 +138,7 @@ class SchedConf extends DataObject {
 	function getSequence() {
 		return $this->getData('sequence');
 	}
-	
+
 	/**
 	 * Set sequence of scheduled conference in site table of contents.
 	 * @param $sequence float
@@ -156,7 +150,7 @@ class SchedConf extends DataObject {
 	//
 	// Scheduled conference start/end date functions
 	//
-	
+
 	/**
 	 * Get start date of scheduled conference.
 	 * @return date
@@ -164,7 +158,7 @@ class SchedConf extends DataObject {
 	function getStartDate() {
 		return $this->getData('startDate');
 	}
-	
+
 	/**
 	 * Set start date of scheduled conference.
 	 * @param $startDate date
@@ -172,7 +166,7 @@ class SchedConf extends DataObject {
 	function setStartDate($startDate) {
 		return $this->setData('startDate', $startDate);
 	}
-	
+
 	/**
 	 * Get end date of scheduled conference.
 	 * @return date
@@ -180,7 +174,7 @@ class SchedConf extends DataObject {
 	function getEndDate() {
 		return $this->getData('endDate');
 	}
-	
+
 	/**
 	 * Set end date of scheduled conference.
 	 * @param $endDate date
@@ -188,7 +182,7 @@ class SchedConf extends DataObject {
 	function setEndDate($endDate) {
 		return $this->setData('endDate', $endDate);
 	}
-	
+
 	//
 	// Helper functions making use of both the scheduled conference
 	// and Conference.
@@ -199,11 +193,11 @@ class SchedConf extends DataObject {
 	 * (Used to include conference title as well; this behavior was deprecated prior to 2.0 release.)
 	 * @return string
 	 */
-	 function getFullTitle() {
-	 	return $this->getData('title');
+	function getFullTitle() {
+		return $this->getData('title');
 	}
-	
-	
+
+
 	//
 	// SchedConfSettings functions: the following make use of data in the
 	// ConferenceSettings or SchedConfSettings tables.
@@ -218,34 +212,58 @@ class SchedConf extends DataObject {
 		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
 		return $schedConfSettingsDao->getSchedConfSettings($this->getData('schedConfId'), $includeParent);
 	}
-	
+
+	function &getLocalizedSetting($name) {
+		$returner = $this->getSetting($name, Locale::getLocale());
+		if ($returner === null) {
+			unset($returner);
+			$returner = $this->getSetting($name, Locale::getPrimaryLocale());
+		}
+		return $returner;
+	}
+
 	/**
 	 * Retrieve a scheduled conference setting value.
 	 * @param $name
 	 * @param $includeParent
+	 * @param $locale string
 	 * @return mixed
 	 */
-	function &getSetting($name, $includeParent = false) {
+	function &getSetting($name, $includeParent = false, $locale = null) {
 		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-		return $schedConfSettingsDao->getSetting($this->getData('schedConfId'), $name, $includeParent);
+		$setting =& $schedConfSettingsDao->getSetting($this->getData('schedConfId'), $name, $includeParent, $locale);
+		return $setting;
 	}
 
 	/**
 	 * Update a scheduled conference setting value.
+	 * @param $name string
+	 * @param $value mixed
+	 * @param $type string optional
+	 * @param $isLocalized boolean optional
 	 */
-	function updateSetting($name, $value, $type = null) {
+	function updateSetting($name, $value, $type = null, $isLocalized = false) {
 		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		return $schedConfSettingsDao->updateSetting($this->getSchedConfId(), $name, $value, $type);
+		return $schedConfSettingsDao->updateSetting($this->getSchedConfId(), $name, $value, $type, $isLocalized);
 	}
 
 	/**
 	 * Return the primary locale of this scheduled conference.
 	 * @return string
 	 */
-	function getLocale() {
-		return $this->getSetting('primaryLocale', true);
+	function getPrimaryLocale() {
+		$conference =& $this->getConference();
+		return $conference->getPrimaryLocale();
 	}
-	
+
+	/**
+	 * Set the primary locale of this conference.
+	 * @param $locale string
+	 */
+	function setPrimaryLocale($primaryLocale) {
+		return $this->setData('primaryLocale', $primaryLocale);
+	}
+
 	/**
 	 * Get CSS for this scheduled conference
 	 * @return string

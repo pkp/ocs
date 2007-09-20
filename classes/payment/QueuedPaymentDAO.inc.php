@@ -23,7 +23,7 @@ class QueuedPaymentDAO extends DAO {
 	function QueuedPaymentDAO() {
 		parent::DAO();
 	}
-	
+
 	/**
 	 * Retrieve a queued payment by ID.
 	 * @param $queuedPaymentId int
@@ -44,7 +44,7 @@ class QueuedPaymentDAO extends DAO {
 		unset($result);
 		return $queuedPayment;
 	}
-	
+
 	/**
 	 * Insert a new queued payment.
 	 * @param $payment Payment
@@ -61,10 +61,10 @@ class QueuedPaymentDAO extends DAO {
 				serialize($queuedPayment)
 			)
 		);
-		
+
 		return $this->getInsertQueuedPaymentId();
 	}
-	
+
 	/**
 	 * Update an existing queued payment.
 	 * @param $paymentId int
@@ -84,7 +84,7 @@ class QueuedPaymentDAO extends DAO {
 			)
 		);
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted queued payment.
 	 * @return int
@@ -92,7 +92,7 @@ class QueuedPaymentDAO extends DAO {
 	function getInsertQueuedPaymentId() {
 		return $this->getInsertId('queued_payments', 'queued_payment_id');
 	}
-	
+
 	function deleteQueuedPayment(&$queuedPayment) {
 		return $this->update(
 			'DELETE FROM queued_payments WHERE queued_payment_id = ?',

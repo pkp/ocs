@@ -108,7 +108,7 @@
 	{/if}
 	{if $schedConfSettings.metaSubjectClass}
 	<tr valign="top">
-		<td colspan="2" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl}" target="_blank">{$schedConfSettings.metaSubjectClassTitle|escape}</a></td>
+		<td colspan="2" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl}" target="_blank">{$currentSchedConf->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
 	</tr>
 	<tr valign="top">
 		<td width="20%"class="label">{translate key="paper.subjectClassification"}</td>

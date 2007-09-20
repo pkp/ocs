@@ -40,11 +40,11 @@ class RegistrationHandler extends ManagerHandler {
 	 */
 	function deleteRegistration($args) {
 		parent::validate();
-		
+
 		if (isset($args) && !empty($args)) {
 			$schedConf = &Request::getSchedConf();
 			$registrationId = (int) $args[0];
-		
+
 			$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
 
 			// Ensure registration is for this scheduled conference
@@ -52,7 +52,7 @@ class RegistrationHandler extends ManagerHandler {
 				$registrationDao->deleteRegistrationById($registrationId);
 			}
 		}
-		
+
 		Request::redirect(null, null, null, 'registration');
 	}
 
@@ -83,9 +83,13 @@ class RegistrationHandler extends ManagerHandler {
 			}
 
 			$registrationForm = &new RegistrationForm($registrationId, $userId);
-			$registrationForm->initData();
+			if ($registrationForm->isLocaleResubmit()) {
+				$registrationForm->readInputData();
+			} else {
+				$registrationForm->initData();
+			}
 			$registrationForm->display();
-		
+
 		} else {
 				Request::redirect(null, null, null, 'registration');
 		}
@@ -116,7 +120,7 @@ class RegistrationHandler extends ManagerHandler {
 		if (!empty($search)) {
 			$searchType = Request::getUserVar('searchField');
 			$searchMatch = Request::getUserVar('searchMatch');
-			
+
 		} else if (isset($searchInitial)) {
 			$searchInitial = String::strtoupper($searchInitial);
 			$searchType = USER_FIELD_INITIAL;
@@ -126,11 +130,11 @@ class RegistrationHandler extends ManagerHandler {
 		$rangeInfo = Handler::getRangeInfo('users');
 
 		$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
-		
+
 		$templateMgr->assign('searchField', $searchType);
 		$templateMgr->assign('searchMatch', $searchMatch);
 		$templateMgr->assign('search', $searchQuery);
-		$templateMgr->assign('searchInitial', $searchInitial);
+		$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 
 		$templateMgr->assign('isSchedConfManager', true);
 
@@ -152,9 +156,9 @@ class RegistrationHandler extends ManagerHandler {
 	 */
 	function updateRegistration() {
 		parent::validate();
-		
+
 		import('registration.form.RegistrationForm');
-		
+
 		$schedConf = &Request::getSchedConf();
 		$registrationId = Request::getUserVar('registrationId') == null ? null : (int) Request::getUserVar('registrationId');
 		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
@@ -163,7 +167,7 @@ class RegistrationHandler extends ManagerHandler {
 
 			$registrationForm = &new RegistrationForm($registrationId);
 			$registrationForm->readInputData();
-			
+
 			if ($registrationForm->validate()) {
 				$registrationForm->execute();
 
@@ -172,7 +176,7 @@ class RegistrationHandler extends ManagerHandler {
 				} else {
 					Request::redirect(null, null, null, 'registration');
 				}
-				
+
 			} else {
 				RegistrationHandler::setupTemplate();
 
@@ -187,7 +191,7 @@ class RegistrationHandler extends ManagerHandler {
 
 				$registrationForm->display();
 			}
-			
+
 		} else {
 				Request::redirect(null, null, null, 'registration');
 		}
@@ -240,11 +244,11 @@ class RegistrationHandler extends ManagerHandler {
 	 */
 	function deleteRegistrationType($args) {
 		parent::validate();
-		
+
 		if (isset($args) && !empty($args)) {
 			$schedConf = &Request::getSchedConf();
 			$registrationTypeId = (int) $args[0];
-		
+
 			$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 
 			// Ensure registration type is for this scheduled conference.
@@ -252,7 +256,7 @@ class RegistrationHandler extends ManagerHandler {
 				$registrationTypeDao->deleteRegistrationTypeById($registrationTypeId);
 			}
 		}
-		
+
 		Request::redirect(null, null, null, 'registrationTypes');
 	}
 
@@ -283,9 +287,13 @@ class RegistrationHandler extends ManagerHandler {
 			}
 
 			$registrationTypeForm = &new RegistrationTypeForm($registrationTypeId);
-			$registrationTypeForm->initData();
+			if ($registrationTypeForm->isLocaleResubmit()) {
+				$registrationTypeForm->readInputData();
+			} else {
+				$registrationTypeForm->initData();
+			}
 			$registrationTypeForm->display();
-		
+
 		} else {
 				Request::redirect(null, null, null, 'registrationTypes');
 		}
@@ -303,9 +311,9 @@ class RegistrationHandler extends ManagerHandler {
 	 */
 	function updateRegistrationType() {
 		parent::validate();
-		
+
 		import('registration.form.RegistrationTypeForm');
-		
+
 		$schedConf = &Request::getSchedConf();
 		$registrationTypeId = Request::getUserVar('typeId') == null ? null : (int) Request::getUserVar('typeId');
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
@@ -314,7 +322,7 @@ class RegistrationHandler extends ManagerHandler {
 
 			$registrationTypeForm = &new RegistrationTypeForm($registrationTypeId);
 			$registrationTypeForm->readInputData();
-			
+
 			if ($registrationTypeForm->validate()) {
 				$registrationTypeForm->execute();
 
@@ -329,11 +337,11 @@ class RegistrationHandler extends ManagerHandler {
 					$registrationTypeForm = &new RegistrationTypeForm($registrationTypeId);
 					$registrationTypeForm->initData();
 					$registrationTypeForm->display();
-	
+
 				} else {
 					Request::redirect(null, null, null, 'registrationTypes');
 				}
-				
+
 			} else {
 				RegistrationHandler::setupTemplate(true);
 
@@ -348,12 +356,12 @@ class RegistrationHandler extends ManagerHandler {
 
 				$registrationTypeForm->display();
 			}
-			
+
 		} else {
 				Request::redirect(null, null, null, 'registrationTypes');
 		}
 	}
-	
+
 	/**
 	 * Display registration policies for the current scheduled conference.
 	 */
@@ -371,10 +379,14 @@ class RegistrationHandler extends ManagerHandler {
 		}
 
 		$registrationPolicyForm = &new RegistrationPolicyForm();
-		$registrationPolicyForm->initData();
+		if ($registrationPolicyForm->isLocaleResubmit()) {
+			$registrationPolicyForm->readInputData();
+		} else {
+			$registrationPolicyForm->initData();
+		}
 		$registrationPolicyForm->display();
 	}
-	
+
 	/**
 	 * Save registration policies for the current scheduled conference.
 	 */
@@ -385,7 +397,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$registrationPolicyForm = &new RegistrationPolicyForm();
 		$registrationPolicyForm->readInputData();
-			
+
 		if ($registrationPolicyForm->validate()) {
 			$registrationPolicyForm->execute();
 

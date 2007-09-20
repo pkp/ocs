@@ -24,20 +24,20 @@ class IndexHandler extends Handler {
 	function index($args) {
 		list($conference, $schedConf) = parent::validate(false, false);
 
-		if($schedConf && $conference) {
+		if ($schedConf && $conference) {
 
 			// A scheduled conference was specified; display it.
 			import('pages.schedConf.SchedConfHandler');
 			SchedConfHandler::index($args);
 
-		} elseif($conference) {
+		} elseif ($conference) {
 
 			// A scheduled conference was specified; display it.
 			import('pages.conference.ConferenceHandler');
 			ConferenceHandler::index($args);
 
 		} else {
-		
+
 			// Otherwise, display a list of conferences to choose from.
 			$templateMgr = &TemplateManager::getManager();
 
@@ -46,18 +46,18 @@ class IndexHandler extends Handler {
 
 			// If the site specifies that we should redirect to a specific conference
 			// by default, do it.
-			
+
 			$siteDao = &DAORegistry::getDAO('SiteDAO');
 			$site = &$siteDao->getSite();
 			$conference = $conferenceDao->getConference($site->getConferenceRedirect());
-			
+
 			if ($site->getConferenceRedirect() && $conference) {
 				Request::redirect($conference->getPath());
 			}
 
 			// Otherwise, show a list of hosted conferences.
-			
-			$templateMgr->assign('intro', $site->getIntro());
+
+			$templateMgr->assign('intro', $site->getSiteIntro());
 			$conferences = &$conferenceDao->getEnabledConferences();
 			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->display('index/site.tpl');

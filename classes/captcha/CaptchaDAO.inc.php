@@ -18,14 +18,6 @@
 import('captcha.Captcha');
 
 class CaptchaDAO extends DAO {
- 
- 	/**
-	 * Constructor.
-	 */
-	function CaptchaDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Retrieve captchas by session id
 	 * @param $userId int
@@ -33,7 +25,7 @@ class CaptchaDAO extends DAO {
 	 */
 	function &getCaptchasBySessionId($sessionId) {
 		$captchas = array();
-		
+
 		$result = &$this->retrieve('SELECT * FROM captchas WHERE session_id = ?', $sessionId);
 
 		while (!$result->EOF) {
@@ -43,10 +35,10 @@ class CaptchaDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-		
+
 		return $captchas;
 	}
-	
+
 	/**
 	 * Retrieve expired captchas
 	 * @param $lifespan int optional number of seconds a captcha should last
@@ -55,7 +47,7 @@ class CaptchaDAO extends DAO {
 	function &getExpiredCaptchas($lifespan = 86400) {
 		$captchas = array();
 		$threshold = time() - $lifespan;
-		
+
 		$result = &$this->retrieve('SELECT c.* FROM captchas c LEFT JOIN sessions s ON (s.session_id = c.session_id) WHERE s.session_id IS NULL OR c.date_created <= ' . $this->datetimeToDB($threshold));
 
 		while (!$result->EOF) {
@@ -65,10 +57,10 @@ class CaptchaDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-		
+
 		return $captchas;
 	}
-	
+
 	/**
 	 * Retrieve Captcha by captcha id
 	 * @param $captchaId int
@@ -86,12 +78,12 @@ class CaptchaDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-		
+
 		return $captcha;
 	}	
-	
+
 	/**
-	 * Creates and returns an article captcha object from a row
+	 * Creates and returns an captcha object from a row
 	 * @param $row array
 	 * @return Captcha object
 	 */
@@ -106,9 +98,9 @@ class CaptchaDAO extends DAO {
 
 		return $captcha;
 	}
-	
+
 	/**
-	 * inserts a new captcha into article_captchas table
+	 * inserts a new captcha into captchas table
 	 * @param Captcha object
 	 * @return int ID of new captcha
 	 */
@@ -129,9 +121,9 @@ class CaptchaDAO extends DAO {
 		$captcha->setCaptchaId($this->getInsertCaptchaId());
 		return $captcha->getCaptchaId();
 	}
-		
+
 	/**
-	 * Get the ID of the last inserted article captcha.
+	 * Get the ID of the last inserted captcha.
 	 * @return int
 	 */
 	function getInsertCaptchaId() {
@@ -139,7 +131,7 @@ class CaptchaDAO extends DAO {
 	}	
 
 	/**
-	 * removes an article captcha from article_captchas table
+	 * removes an captcha from captchas table
 	 * @param Captcha object
 	 */
 	function deleteCaptcha(&$captcha) {
@@ -152,7 +144,7 @@ class CaptchaDAO extends DAO {
 	 */
 	function updateCaptcha(&$captcha) {
 		$this->update(
-			sprintf('UPDATE article_captchas
+			sprintf('UPDATE captchas
 				SET
 					session_id = ?,
 					value = ?,
@@ -166,6 +158,6 @@ class CaptchaDAO extends DAO {
 			)
 		);
 	}
- }
-  
+}
+
 ?>

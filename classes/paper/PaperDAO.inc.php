@@ -18,7 +18,6 @@
 import('paper.Paper');
 
 class PaperDAO extends DAO {
-
 	var $presenterDao;
 
 	/**
@@ -28,23 +27,54 @@ class PaperDAO extends DAO {
 		parent::DAO();
 		$this->presenterDao = &DAORegistry::getDAO('PresenterDAO');
 	}
-	
+
+	/**
+	 * Get a list of field names for which data is localized.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('title', 'abstract', 'discipline', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
+	}
+
+	/**
+	 * Update the settings for this object
+	 * @param $paper object
+	 */
+	function updateLocaleFields(&$paper) {
+		$this->updateDataObjectSettings('paper_settings', $paper, array(
+			'paper_id' => $paper->getPaperId()
+		));
+	}
+
 	/**
 	 * Retrieve a paper by ID.
 	 * @param $paperId int
 	 * @return Paper
 	 */
 	function &getPaper($paperId) {
-		$result = &$this->retrieve(
-			'SELECT p.*,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$params = array(
+			'title',
+			$primaryLocale,
+			'title',
+			$locale,
+			'abbrev',
+			$primaryLocale,
+			'abbrev',
+			$locale,
+			$paperId
+		);
+		$result =& $this->retrieve(
+			'SELECT	p.*,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE paper_id = ?', $paperId
 		);
 
@@ -58,7 +88,7 @@ class PaperDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Internal function to return an Paper object from a row.
 	 * @param $row array
@@ -69,7 +99,7 @@ class PaperDAO extends DAO {
 		$this->_paperFromRow($paper, $row);
 		return $paper;
 	}
-	
+
 	/**
 	 * Internal function to fill in the passed paper object from the row.
 	 * @param $paper Paper output paper
@@ -80,7 +110,7 @@ class PaperDAO extends DAO {
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$schedConf = &$schedConfDao->getSchedConf($schedConfId);
 		$conferenceId = $schedConf->getConferenceId();
-		
+
 		$paper->setPaperId($row['paper_id']);
 		$paper->setUserId($row['user_id']);
 		$paper->setSchedConfId($row['sched_conf_id']);
@@ -91,44 +121,10 @@ class PaperDAO extends DAO {
 		$paper->setDateToPresentations($this->datetimeFromDB($row['date_to_presentations']));
 		$paper->setDateToArchive($this->datetimeFromDB($row['date_to_archive']));
 
-		// Localize track title & abbreviation.
-		static $alternateLocaleNum;
-		if (!isset($alternateLocaleNum)) {
-			$alternateLocaleNum = Locale::isAlternateConferenceLocale($conferenceId);
-		}
-		$trackTitle = $trackAbbrev = null;
-		switch ($alternateLocaleNum) {
-			case 1:
-				$trackTitle = $row['track_title_alt1'];
-				$trackAbbrev = $row['track_abbrev_alt1'];
-				break;
-			case 2:
-				$trackTitle = $row['track_title_alt2'];
-				$trackAbbrev = $row['track_abbrev_alt2'];
-				break;
-		}
-		if (empty($trackTitle)) $trackTitle = $row['track_title'];
-		if (empty($trackAbbrev)) $trackAbbrev = $row['track_abbrev'];
-
-		$paper->setTrackTitle($trackTitle);
-		$paper->setTrackAbbrev($trackAbbrev);
-
-		$paper->setTitle($row['title']);
-		$paper->setTitleAlt1($row['title_alt1']);
-		$paper->setTitleAlt2($row['title_alt2']);
-		$paper->setAbstract($row['abstract']);
-		$paper->setAbstractAlt1($row['abstract_alt1']);
-		$paper->setAbstractAlt2($row['abstract_alt2']);
-		$paper->setPaperType($row['paper_type']);
-		$paper->setDiscipline($row['discipline']);
-		$paper->setSubjectClass($row['subject_class']);
-		$paper->setSubject($row['subject']);
-		$paper->setCoverageGeo($row['coverage_geo']);
-		$paper->setCoverageChron($row['coverage_chron']);
-		$paper->setCoverageSample($row['coverage_sample']);
-		$paper->setType($row['type']);
+		$paper->setTrackTitle($row['track_title']);
+		$paper->setTrackAbbrev($row['track_abbrev']);
+		$paper->setTypeConst($row['paper_type']);
 		$paper->setLanguage($row['language']);
-		$paper->setSponsor($row['sponsor']);
 		$paper->setCommentsToDirector($row['comments_to_dr']);
 		$paper->setDateSubmitted($this->datetimeFromDB($row['date_submitted']));
 		$paper->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
@@ -143,10 +139,13 @@ class PaperDAO extends DAO {
 		$paper->setLayoutFileId($row['layout_file_id']);
 		$paper->setDirectorFileId($row['director_file_id']);
 		$paper->setPages($row['pages']);
-		
+
 		$paper->setPresenters($this->presenterDao->getPresentersByPaper($row['paper_id']));
+
+		$this->getDataObjectSettings('paper_settings', 'paper_id', $row['paper_id'], $paper);
+
 		HookRegistry::call('PaperDAO::_returnPaperFromRow', array(&$paper, &$row));
-		
+
 	}
 
 	/**
@@ -160,22 +159,8 @@ class PaperDAO extends DAO {
 				(user_id,
 				 sched_conf_id,
 				 track_id,
-				 title,
-				 title_alt1,
-				 title_alt2,
-				 abstract,
-				 abstract_alt1,
-				 abstract_alt2,
 				 paper_type,
-				 discipline,
-				 subject_class,
-				 subject,
-				 coverage_geo,
-				 coverage_chron,
-				 coverage_sample,
-				 type,
 				 language,
-				 sponsor,
 				 comments_to_dr,
 				 date_submitted,
 				 date_status_modified,
@@ -185,7 +170,6 @@ class PaperDAO extends DAO {
 				 date_reminded,
 				 date_to_presentations,
 				 date_to_archive,
-				 location,
 				 status,
 				 submission_progress,
 				 current_stage,
@@ -196,30 +180,15 @@ class PaperDAO extends DAO {
 				 director_file_id,
 				 pages)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getPresentStartTime()), $this->datetimeToDB($paper->getPresentEndTime()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
 			array(
 				$paper->getUserId(),
 				$paper->getSchedConfId(),
 				$paper->getTrackId(),
-				$paper->getTitle() === null ? '' : $paper->getTitle(),
-				$paper->getTitleAlt1(),
-				$paper->getTitleAlt2(),
-				$paper->getAbstract(),
-				$paper->getAbstractAlt1(),
-				$paper->getAbstractAlt2(),
-				$paper->getPaperType(),
-				$paper->getDiscipline(),
-				$paper->getSubjectClass(),
-				$paper->getSubject(),
-				$paper->getCoverageGeo(),
-				$paper->getCoverageChron(),
-				$paper->getCoverageSample(),
-				$paper->getType(),
+				$paper->getTypeConst(),
 				$paper->getLanguage(),
-				$paper->getSponsor(),
 				$paper->getCommentsToDirector(),
-				$paper->getLocation(),
 				$paper->getStatus() === null ? SUBMISSION_STATUS_QUEUED : $paper->getStatus(),
 				$paper->getSubmissionProgress() === null ? 1 : $paper->getSubmissionProgress(),
 				$paper->getCurrentStage(),
@@ -231,19 +200,20 @@ class PaperDAO extends DAO {
 				$paper->getPages()
 			)
 		);
-		
+
 		$paper->setPaperId($this->getInsertPaperId());
-		
+		$this->updateLocaleFields($paper);
+
 		// Insert presenters for this paper
 		$presenters = &$paper->getPresenters();
 		for ($i=0, $count=count($presenters); $i < $count; $i++) {
 			$presenters[$i]->setPaperId($paper->getPaperId());
 			$this->presenterDao->insertPresenter($presenters[$i]);
 		}
-		
+
 		return $paper->getPaperId();
 	}
-	
+
 	/**
 	 * Update an existing paper.
 	 * @param $paper Paper
@@ -255,22 +225,8 @@ class PaperDAO extends DAO {
 				SET
 					user_id = ?,
 					track_id = ?,
-					title = ?,
-					title_alt1 = ?,
-					title_alt2 = ?,
-					abstract = ?,
-					abstract_alt1 = ?,
-					abstract_alt2 = ?,
 					paper_type = ?,
-					discipline = ?,
-					subject_class = ?,
-					subject = ?,
-					coverage_geo = ?,
-					coverage_chron = ?,
-					coverage_sample = ?,
-					type = ?,
 					language = ?,
-					sponsor = ?,
 					comments_to_dr = ?,
 					date_submitted = %s,
 					date_status_modified = %s,
@@ -280,7 +236,6 @@ class PaperDAO extends DAO {
 					date_reminded = %s,
 					date_to_presentations = %s,
 					date_to_archive = %s,
-					location = ?,
 					status = ?,
 					submission_progress = ?,
 					current_stage = ?,
@@ -295,24 +250,9 @@ class PaperDAO extends DAO {
 			array(
 				$paper->getUserId(),
 				$paper->getTrackId(),
-				$paper->getTitle(),
-				$paper->getTitleAlt1(),
-				$paper->getTitleAlt2(),
-				$paper->getAbstract(),
-				$paper->getAbstractAlt1(),
-				$paper->getAbstractAlt2(),
-				$paper->getPaperType(),
-				$paper->getDiscipline(),
-				$paper->getSubjectClass(),
-				$paper->getSubject(),
-				$paper->getCoverageGeo(),
-				$paper->getCoverageChron(),
-				$paper->getCoverageSample(),
-				$paper->getType(),
+				$paper->getTypeConst(),
 				$paper->getLanguage(),
-				$paper->getSponsor(),
 				$paper->getCommentsToDirector(),
-				$paper->getLocation(),
 				$paper->getStatus(),
 				$paper->getSubmissionProgress(),
 				$paper->getCurrentStage(),
@@ -325,7 +265,7 @@ class PaperDAO extends DAO {
 				$paper->getPaperId()
 			)
 		);
-		
+
 		// update presenters for this paper
 		$presenters = &$paper->getPresenters();
 		for ($i=0, $count=count($presenters); $i < $count; $i++) {
@@ -335,17 +275,19 @@ class PaperDAO extends DAO {
 				$this->presenterDao->insertPresenter($presenters[$i]);
 			}
 		}
-		
+
 		// Remove deleted presenters
 		$removedPresenters = $paper->getRemovedPresenters();
 		for ($i=0, $count=count($removedPresenters); $i < $count; $i++) {
 			$this->presenterDao->deletePresenterById($removedPresenters[$i], $paper->getPaperId());
 		}
-		
+
+		$this->updateLocaleFields($paper);
+
 		// Update presenter sequence numbers
 		$this->presenterDao->resequencePresenters($paper->getPaperId());
 	}
-	
+
 	/**
 	 * Delete a paper.
 	 * @param $paper Paper
@@ -353,7 +295,7 @@ class PaperDAO extends DAO {
 	function deletePaper(&$paper) {
 		return $this->deletePaperById($paper->getPaperId());
 	}
-	
+
 	/**
 	 * Delete a paper by ID.
 	 * @param $paperId int
@@ -405,7 +347,7 @@ class PaperDAO extends DAO {
 		import('file.PaperFileManager');
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 		$paperFiles = &$paperFileDao->getPaperFilesByPaper($paperId);
-	
+
 		$paperFileManager = &new PaperFileManager($paperId);
 		foreach ($paperFiles as $paperFile) {
 			$paperFileManager->deleteFile($paperFile->getFileId());
@@ -413,11 +355,10 @@ class PaperDAO extends DAO {
 
 		$paperFileDao->deletePaperFiles($paperId);
 
-		$this->update(
-			'DELETE FROM papers WHERE paper_id = ?', $paperId
-		);
+		$this->update('DELETE FROM paper_settings WHERE paper_id = ?', $paperId);
+		$this->update('DELETE FROM papers WHERE paper_id = ?', $paperId);
 	}
-	
+
 	/**
 	 * Get all papers for a scheduled conference.
 	 * @param $userId int
@@ -425,22 +366,39 @@ class PaperDAO extends DAO {
 	 * @return DAOResultFactory containing matching Papers
 	 */
 	function &getPapersBySchedConfId($schedConfId, $trackId = null) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+
+		$params = array(
+			'title',
+			$primaryLocale,
+			'title',
+			$locale,
+			'abbrev',
+			$primaryLocale,
+			'abbrev',
+			$locale,
+			$schedConfId
+		);
+
+		if ($trackId) $params[] = $trackId;
+
 		$papers = array();
-		
 		$result = &$this->retrieve(
-			'SELECT p.*,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2
-			FROM papers p
+			'SELECT	p.*,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
+			FROM	papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 				WHERE p.sched_conf_id = ?' .
 				($trackId ? ' AND p.track_id = ?' : ''),
-				($trackId ? array($schedConfId, $trackId) : $schedConfId));
-		
+			$params
+		);
+
 		$returner = &new DAOResultFactory($result, $this, '_returnPaperFromRow');
 		return $returner;
 	}
@@ -451,7 +409,7 @@ class PaperDAO extends DAO {
 	 */
 	function deletePapersBySchedConfId($schedConfId) {
 		$papers = $this->getPapersBySchedConfId($schedConfId);
-		
+
 		while (!$papers->eof()) {
 			$paper = &$papers->next();
 			$this->deletePaperById($paper->getPaperId());
@@ -465,22 +423,39 @@ class PaperDAO extends DAO {
 	 * @return array Papers
 	 */
 	function &getPapersByUserId($userId, $schedConfId = null) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+
+		$params = array(
+			'title',
+			$primaryLocale,
+			'title',
+			$locale,
+			'abbrev',
+			$primaryLocale,
+			'abbrev',
+			$locale,
+			$userId
+		);
+
+		if ($schedConfId) $params[] = $schedConfId;
+
 		$papers = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT p.*,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
 			FROM papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE p.user_id = ?', (isset($schedConfId)?' AND p.sched_conf_id = ?':''),
-				isset($schedConfId)?array($userId, $schedConfId):$userId
+			$params
 		);
-		
+
 		while (!$result->EOF) {
 			$papers[] = &$this->_returnPaperFromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
@@ -488,10 +463,10 @@ class PaperDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-		
+
 		return $papers;
 	}
-	
+
 	/**
 	 * Get the ID of the scheduled conference a paper is in.
 	 * @param $paperId int
@@ -508,7 +483,7 @@ class PaperDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Check if the specified incomplete submission exists.
 	 * @param $paperId int
@@ -539,7 +514,7 @@ class PaperDAO extends DAO {
 			'UPDATE papers SET status = ? WHERE paper_id = ?', array($status, $paperId)
 		);
 	}
-	
+
 	/**
 	 * Removes papers from a track by track ID
 	 * @param $trackId int
@@ -549,7 +524,7 @@ class PaperDAO extends DAO {
 			'UPDATE papers SET track_id = null WHERE track_id = ?', $trackId
 		);
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted paper.
 	 * @return int
@@ -557,7 +532,6 @@ class PaperDAO extends DAO {
 	function getInsertPaperId() {
 		return $this->getInsertId('papers', 'paper_id');
 	}
-	
 }
 
 ?>

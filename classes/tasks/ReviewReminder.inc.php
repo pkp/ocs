@@ -44,8 +44,8 @@ class ReviewReminder extends ScheduledTask {
 		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 		$email->setAssoc(PAPER_EMAIL_REVIEW_REMIND, PAPER_EMAIL_TYPE_REVIEW, $reviewId);
 
-		$email->setSubject($email->getSubject($conference->getLocale()));
-		$email->setBody($email->getBody($conference->getLocale()));
+		$email->setSubject($email->getSubject($conference->getPrimaryLocale()));
+		$email->setBody($email->getBody($conference->getPrimaryLocale()));
 
 		$urlParams = array();
 		if ($reviewerAccessKeysEnabled) {

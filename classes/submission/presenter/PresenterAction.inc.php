@@ -24,11 +24,11 @@ class PresenterAction extends Action {
 	function PresenterAction() {
 		parent::Action();
 	}
-	
+
 	/**
 	 * Actions.
 	 */
-	 
+
 	/**
 	 * Designates the original file the review version.
 	 * @param $presenterSubmission object
@@ -38,14 +38,14 @@ class PresenterAction extends Action {
 		import('file.PaperFileManager');
 		$paperFileManager = &new PaperFileManager($presenterSubmission->getPaperId());
 		$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');
-		
+
 		if ($designate && !HookRegistry::call('PresenterAction::designateReviewVersion', array(&$presenterSubmission))) {
 			$submissionFile =& $presenterSubmission->getSubmissionFile();
 			if ($submissionFile) {
 				$reviewFileId = $paperFileManager->copyToReviewFile($submissionFile->getFileId());
 
 				$presenterSubmission->setReviewFileId($reviewFileId);
-			
+
 				$presenterSubmissionDao->updatePresenterSubmission($presenterSubmission);
 
 				$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
@@ -71,7 +71,7 @@ class PresenterAction extends Action {
 			}
 		}
 	}
-	 
+
 	/**
 	 * Delete an presenter file from a submission.
 	 * @param $paper object
@@ -111,7 +111,7 @@ class PresenterAction extends Action {
 		import("file.PaperFileManager");
 		$paperFileManager = &new PaperFileManager($presenterSubmission->getPaperId());
 		$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');
-		
+
 		$fileName = 'upload';
 		if ($paperFileManager->uploadedFileExists($fileName)) {
 			HookRegistry::call('PresenterAction::uploadRevisedVersion', array(&$presenterSubmission));
@@ -121,10 +121,10 @@ class PresenterAction extends Action {
 				$fileId = $paperFileManager->uploadDirectorDecisionFile($fileName);
 			}
 		}
-		
+
 		if (isset($fileId) && $fileId != 0) {
 			$presenterSubmission->setRevisedFileId($fileId);
-			
+
 			$presenterSubmissionDao->updatePresenterSubmission($presenterSubmission);
 
 			// Add log entry
@@ -134,11 +134,11 @@ class PresenterAction extends Action {
 			PaperLog::logEvent($presenterSubmission->getPaperId(), PAPER_LOG_PRESENTER_REVISION, LOG_TYPE_PRESENTER, $user->getUserId(), 'log.presenter.documentRevised', array('presenterName' => $user->getFullName(), 'fileId' => $fileId, 'paperId' => $presenterSubmission->getPaperId()));
 		}
 	}
-	
+
 	//
 	// Comments
 	//
-	
+
 	/**
 	 * View director decision comments.
 	 * @param $paper object
@@ -152,7 +152,7 @@ class PresenterAction extends Action {
 			$commentForm->display();
 		}
 	}
-	
+
 	/**
 	 * Email director decision comment.
 	 * @param $presenterSubmission object
@@ -166,7 +166,7 @@ class PresenterAction extends Action {
 		$user = &Request::getUser();
 		import('mail.PaperMailTemplate');
 		$email = &new PaperMailTemplate($presenterSubmission);
-	
+
 		$editAssignments = $presenterSubmission->getEditAssignments();
 		$directors = array();
 		foreach ($editAssignments as $editAssignment) {
@@ -208,11 +208,11 @@ class PresenterAction extends Action {
 			return false;
 		}
 	}
-	
+
 	//
 	// Misc
 	//
-	
+
 	/**
 	 * Download a file an presenter has access to.
 	 * @param $paper object
@@ -227,7 +227,7 @@ class PresenterAction extends Action {
 		$submission =& $presenterSubmissionDao->getPresenterSubmission($paper->getPaperId());
 
 		$canDownload = false;
-		
+
 		// Presenters have access to:
 		// 1) The original submission file.
 		// 2) Any files uploaded by the reviewers that are "viewable",
@@ -251,23 +251,23 @@ class PresenterAction extends Action {
 				foreach ($stageReviewAssignments as $reviewAssignment) {
 					if ($reviewAssignment->getReviewerFileId() == $fileId) {
 						$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-					
+
 						$paperFile = &$paperFileDao->getPaperFile($fileId, $revision);
-					
+
 						if ($paperFile != null && $paperFile->getViewable()) {
 							$canDownload = true;
 						}
 					}
 				}
 			}
-			
+
 			// Check supplementary files
 			foreach ($submission->getSuppFiles() as $suppFile) {
 				if ($suppFile->getFileId() == $fileId) {
 					$canDownload = true;
 				}
 			}
-			
+
 			// Check galley files
 			foreach ($submission->getGalleys() as $galleyFile) {
 				if ($galleyFile->getFileId() == $fileId) {
@@ -291,7 +291,7 @@ class PresenterAction extends Action {
 				}
 			}
 		}
-		
+
 		$result = false;
 		if (!HookRegistry::call('PresenterAction::downloadPresenterFile', array(&$paper, &$fileId, &$revision, &$canDownload, &$result))) {
 			if ($canDownload) {

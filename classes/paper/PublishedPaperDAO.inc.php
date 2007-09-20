@@ -18,7 +18,6 @@
 import('paper.PublishedPaper');
 
 class PublishedPaperDAO extends DAO {
-
 	var $paperDao;
 	var $presenterDao;
 	var $galleyDao;
@@ -42,50 +41,45 @@ class PublishedPaperDAO extends DAO {
 	 * @return PublishedPaper objects array
 	 */
 	function &getPublishedPapers($schedConfId, $limit = NULL) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+
+		$params = array(
+			'title',
+			$primaryLocale,
+			'title',
+			$locale,
+			'abbrev',
+			$primaryLocale,
+			'abbrev',
+			$locale,
+			$schedConfId,
+			$schedConfId
+		);
+
 		$publishedPapers = array();
 
-		if (isset($limit)) {
-			$result = &$this->retrieveLimit(
-				'SELECT DISTINCT pa.*,
-					p.*,
-					s.title AS track_title,
-					s.title_alt1 AS track_title_alt1,
-					s.title_alt2 AS track_title_alt2,
-					s.abbrev AS track_abbrev,
-					s.abbrev_alt1 AS track_abbrev_alt1,
-					s.abbrev_alt2 AS track_abbrev_alt2,
-					COALESCE(o.seq, s.seq) AS track_seq, pa.seq
-				FROM published_papers pa,
-					papers p
+		$sql = 'SELECT DISTINCT
+				pa.*,
+				p.*,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev,
+				COALESCE(o.seq, s.seq) AS track_seq, pa.seq
+			FROM published_papers pa,
+				papers p
 				LEFT JOIN tracks s ON s.track_id = p.track_id
 				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = ?)
-				WHERE pa.paper_id = p.paper_id
-					AND pa.sched_conf_id = ?
-					AND p.status <> ' . SUBMISSION_STATUS_ARCHIVED . '
-				ORDER BY track_seq ASC, pa.seq ASC', array($schedConfId, $schedConfId), $limit
-			);
-		} else {
-			$result = &$this->retrieve(
-				'SELECT DISTINCT pa.*,
-					p.*,
-					s.title AS track_title,
-					s.title_alt1 AS track_title_alt1,
-					s.title_alt2 AS track_title_alt2,
-					s.abbrev AS track_abbrev,
-					s.abbrev_alt1 AS track_abbrev_alt1,
-					s.abbrev_alt2 AS track_abbrev_alt2,
-					COALESCE(o.seq, s.seq) AS track_seq,
-					pa.seq
-				FROM published_papers pa,
-					papers p
-				LEFT JOIN tracks s ON s.track_id = p.track_id
-				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = ?)
-				WHERE pa.paper_id = p.paper_id
-					AND pa.sched_conf_id = ?
-					AND p.status <> ' . SUBMISSION_STATUS_ARCHIVED . '
-				ORDER BY track_seq ASC, pa.seq ASC', array($schedConfId, $schedConfId)
-			);
-		}
+				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+			WHERE pa.paper_id = p.paper_id
+				AND pa.sched_conf_id = ?
+				AND p.status <> ' . SUBMISSION_STATUS_ARCHIVED . '
+			ORDER BY track_seq ASC, pa.seq ASC';
+
+		if (isset($limit)) $result =& $this->retrieveLimit($sql, $params, $limit);
+		else $result = &$this->retrieve($sql, $params);
 
 		while (!$result->EOF) {
 			$publishedPapers[] = &$this->_returnPublishedPaperFromRow($result->GetRowAssoc(false));
@@ -117,37 +111,66 @@ class PublishedPaperDAO extends DAO {
 	 * @param $rangeInfo object
 	 */
 	function &getPublishedPapersBySchedConfId($schedConfId, $rangeInfo = null) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+
 		$result =& $this->retrieveRange(
 			'SELECT pa.*,
 				a.*,
-				s.title AS track_title,
-				s.title_alt1 AS track_title_alt1,
-				s.title_alt2 AS track_title_alt2,
-				s.abbrev AS track_abbrev,
-				s.abbrev_alt1 AS track_abbrev_alt1,
-				s.abbrev_alt2 AS track_abbrev_alt2
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
 			FROM published_papers pa,
 				papers a
-			LEFT JOIN tracks s ON s.track_id = a.track_id
+				LEFT JOIN tracks s ON s.track_id = a.track_id
+				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE pa.paper_id = a.paper_id
 				AND a.sched_conf_id = ?
 				AND a.status <> ' . SUBMISSION_STATUS_ARCHIVED,
-			$schedConfId,
+			array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
+				$schedConfId
+			),
 			$rangeInfo
 		);
 
 		$returner =& new DAOResultFactory($result, $this, '_returnPublishedPaperFromRow');
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve Published Papers by scheduled conference id
 	 * @param $schedConfId int
 	 * @return PublishedPaper objects array
 	 */
 	function &getPublishedPapersInTracks($schedConfId, $trackId, $searchField, $searchMatch, $search) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+
 		$publishedPapers = array();
-		$params = array($schedConfId, $schedConfId);
+
+		$params = array(
+			'title',
+			$primaryLocale,
+			'title',
+			$locale,
+			'abbrev',
+			$primaryLocale,
+			'abbrev',
+			$locale,
+			$schedConfId,
+			$schedConfId
+		);
+
 		if ($trackId) $params[] = $trackId;
 		$searchSql = '';
 		if (!empty($search)) switch ($searchField) {
@@ -167,22 +190,22 @@ class PublishedPaperDAO extends DAO {
 		}
 
 		$result = &$this->retrieve(
-			'SELECT DISTINCT pa.*,
+			'SELECT DISTINCT
+				pa.*,
 				p.*,
-				s.title AS track_title,
-				s.title_alt1 AS track_title_alt1,
-				s.title_alt2 AS track_title_alt2,
-				s.abbrev AS track_abbrev,
-				s.abbrev_alt1 AS track_abbrev_alt1,
-				s.abbrev_alt2 AS track_abbrev_alt2,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev,
 				COALESCE(o.seq, s.seq) AS track_seq,
 				pa.seq
-			FROM
-				published_papers pa,
+			FROM	published_papers pa,
 				paper_presenters pp,
 				papers p
-			LEFT JOIN tracks s ON s.track_id = p.track_id
-			LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = ?)
+				LEFT JOIN tracks s ON s.track_id = p.track_id
+				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = ?)
+				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE
 				pa.paper_id = p.paper_id
 				AND pa.sched_conf_id = ?
@@ -221,26 +244,40 @@ class PublishedPaperDAO extends DAO {
 	 * @return PublishedPaper objects array
 	 */
 	function &getPublishedPapersByTrackId($trackId, $schedConfId) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+
 		$publishedPapers = array();
 
 		$result = &$this->retrieve(
 			'SELECT pa.*,
 				a.*,
-				s.title AS track_title,
-				s.title_alt1 AS track_title_alt1,
-				s.title_alt2 AS track_title_alt2,
-				s.abbrev AS track_abbrev,
-				s.abbrev_alt1 AS track_abbrev_alt1,
-				s.abbrev_alt2 AS track_abbrev_alt2
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
 			FROM published_papers pa,
 				papers a,
 				tracks s
+				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE a.track_id = s.track_id
 				AND pa.paper_id = a.paper_id
 				AND a.track_id = ?
 				AND pa.sched_conf_id = ?
 				AND a.status <> ' . SUBMISSION_STATUS_ARCHIVED . '
-			ORDER BY pa.seq ASC', array($trackId, $schedConfId)
+			ORDER BY pa.seq ASC', array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
+				$trackId,
+				$schedConfId
+			)
 		);
 
 		$currTrackId = 0;
@@ -290,24 +327,37 @@ class PublishedPaperDAO extends DAO {
 	 * @return PublishedPaper object
 	 */
 	function &getPublishedPaperByPaperId($paperId, $schedConfId = null) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$params = array(
+			'title',
+			$primaryLocale,
+			'title',
+			$locale,
+			'abbrev',
+			$primaryLocale,
+			'abbrev',
+			$locale,
+			$paperId
+		);
+		if ($schedConfId) $params[] = $schedConfId;
+
 		$result = &$this->retrieve(
 			'SELECT pa.*,
 				a.*,
-				s.title AS track_title,
-				s.title_alt1 AS track_title_alt1,
-				s.title_alt2 AS track_title_alt2,
-				s.abbrev AS track_abbrev,
-				s.abbrev_alt1 AS track_abbrev_alt1,
-				s.abbrev_alt2 AS track_abbrev_alt2
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
 			FROM published_papers pa,
 				papers a
+				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			LEFT JOIN tracks s ON s.track_id = a.track_id
 			WHERE pa.paper_id = a.paper_id
 				AND a.paper_id = ?' . (isset($schedConfId)?'
 				AND a.sched_conf_id = ?':''),
-			isset($schedConfId)?
-				array($paperId, $schedConfId):
-				$paperId
+			$params
 		);
 
 		$publishedPaper = null;
@@ -328,22 +378,36 @@ class PublishedPaperDAO extends DAO {
 	 * @return PublishedPaper object
 	 */
 	function &getPublishedPaperByPublicPaperId($schedConfId, $publicPaperId) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+
 		$result = &$this->retrieve(
-			'SELECT pa.*,
+			'SELECT	pa.*,
 				a.*,
-				s.title AS track_title,
-				s.title_alt1 AS track_title_alt1,
-				s.title_alt2 AS track_title_alt2,
-				s.abbrev AS track_abbrev,
-				s.abbrev_alt1 AS track_abbrev_alt1,
-				s.abbrev_alt2 AS track_abbrev_alt2
-			FROM published_papers pa,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
+			FROM	published_papers pa,
 				papers a
-			LEFT JOIN tracks s ON s.track_id = a.track_id
-			WHERE pa.paper_id = a.paper_id
+				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+				LEFT JOIN tracks s ON s.track_id = a.track_id
+			WHERE	pa.paper_id = a.paper_id
 				AND pa.public_paper_id = ?
 				AND a.sched_conf_id = ?',
-			array($publicPaperId, $schedConfId)
+			array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
+				$publicPaperId,
+				$schedConfId
+			)
 		);
 
 		$publishedPaper = null;
@@ -378,33 +442,25 @@ class PublishedPaperDAO extends DAO {
 	 * @param $schedConfId int
 	 * @return Array
 	 */
-	function &getPublishedPaperIdsAlphabetizedByTitle($conferenceId = -1, $schedConfId = -1, $rangeInfo = null) {
+	function &getPublishedPaperIdsAlphabetizedByTitle($conferenceId = null, $schedConfId = null, $rangeInfo = null) {
+		$params = array();
+		if ($conferenceId) $params[] = $conferenceId;
+		if ($schedConfId) $params[] = $schedConfId;
+
 		$paperIds = array();
-		
-		if($schedConfId !== -1) {
-			$result = &$this->retrieveCached(
-				'SELECT a.paper_id AS pub_id
-				FROM published_papers pa, papers a
-				WHERE pa.paper_id = a.paper_id
-					AND a.sched_conf_id = ?
-				ORDER BY a.title', $schedConfId);
-		} elseif ($conferenceId !== -1) {
-			$result = &$this->retrieveCached(
-				'SELECT a.paper_id AS pub_id
-				FROM published_papers pa, papers a
-				LEFT JOIN sched_confs e ON e.sched_conf_id = a.sched_conf_id
-				WHERE pa.paper_id = a.paper_id
-					AND e.conference_id = ?
-				ORDER BY a.title', $conferenceId);
-		} else {
-			$result = &$this->retrieveCached(
-				'SELECT a.paper_id AS pub_id
-				FROM published_papers pa, papers a
-				LEFT JOIN tracks s ON s.track_id = a.track_id
-				WHERE pa.paper_id = a.paper_id
-				ORDER BY a.title', false);
-		}
-		
+
+		$result =& $this->retrieveCached(
+			'SELECT	a.paper_id AS pub_id
+			FROM	published_papers pa,
+				papers a
+				' . ($conferenceId?'LEFT JOIN sched_confs e ON e.sched_conf_id = a.sched_conf_id':'') . '
+			WHERE	pa.paper_id = a.paper_id
+				' . ($schedConfId?'AND a.sched_conf_id = ?':'') . '
+				' . ($conferenceId?'AND e.conference_id = ?':'') . '
+			ORDER BY a.title',
+			$params
+		);
+
 		while (!$result->EOF) {
 			$row = $result->getRowAssoc(false);
 			$paperIds[] = $row['pub_id'];
@@ -425,33 +481,25 @@ class PublishedPaperDAO extends DAO {
 	 * @param $schedConfId int
 	 * @return Array
 	 */
-	function &getPublishedPaperIdsAlphabetizedBySchedConf($conferenceId, $schedConfId = -1, $rangeInfo = null) {
+	function &getPublishedPaperIdsAlphabetizedBySchedConf($conferenceId = null, $schedConfId = null, $rangeInfo = null) {
+		$params = array();
+		if ($conferenceId) $params[] = $conferenceId;
+		if ($schedConfId) $params[] = $schedConfId;
+
 		$paperIds = array();
-		
-		if($schedConfId !== -1) {
-			$result = &$this->retrieveCached(
-				'SELECT a.paper_id AS pub_id
-				FROM published_papers pa, papers a
-				WHERE pa.paper_id = a.paper_id
-					AND a.sched_conf_id = ?
-				ORDER BY a.sched_conf_id, a.title', $schedConfId);
-		} elseif ($conferenceId !== -1) {
-			$result = &$this->retrieveCached(
-				'SELECT a.paper_id AS pub_id
-				FROM published_papers pa, papers a
-				LEFT JOIN sched_confs e ON e.sched_conf_id = a.sched_conf_id
-				WHERE pa.paper_id = a.paper_id
-					AND e.conference_id = ?
-				ORDER BY a.sched_conf_id, a.title', $conferenceId);
-		} else {
-			$result = &$this->retrieveCached(
-				'SELECT a.paper_id AS pub_id
-				FROM published_papers pa, papers a
-				LEFT JOIN tracks s ON s.track_id = a.track_id
-				WHERE pa.paper_id = a.paper_id
-				ORDER BY a.sched_conf_id, a.title', false);
-		}
-		
+
+		$result =& $this->retrieveCached(
+			'SELECT	a.paper_id AS pub_id
+			FROM	published_papers pa,
+				papers a
+				' . ($conferenceId?'LEFT JOIN sched_confs e ON e.sched_conf_id = a.sched_conf_id':'') . '
+			WHERE	pa.paper_id = a.paper_id
+				' . ($schedConfId?'AND a.sched_conf_id = ?':'') . '
+				' . ($conferenceId?'AND e.conference_id = ?':'') . '
+			ORDER BY a.sched_conf_id',
+			$params
+		);
+
 		while (!$result->EOF) {
 			$row = $result->getRowAssoc(false);
 			$paperIds[] = $row['pub_id'];

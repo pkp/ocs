@@ -145,11 +145,11 @@ class UserHandler extends Handler {
 	 */
 	function validate($loginCheck = true) {
 		list($conference, $schedConf) = parent::validate();
-		
+
 		if ($loginCheck && !Validation::isLoggedIn()) {
 			Validation::redirectLogin();
 		}
-		
+
 		return array($conference, $schedConf);
 	}
 
@@ -167,7 +167,7 @@ class UserHandler extends Handler {
 		if ($schedConf) {
 			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getFullTitle(), true);
 		} elseif ($conference) {
-			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getTitle(), true);
+			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
 		}
 
 		if ($subclass) {
@@ -234,7 +234,7 @@ class UserHandler extends Handler {
 	//
 	// Captcha
 	//
-	
+
 	function viewCaptcha($args) {
 		$captchaId = (int) array_shift($args);
 		import('captcha.CaptchaManager');

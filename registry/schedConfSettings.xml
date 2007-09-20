@@ -15,6 +15,7 @@
 	<!ELEMENT sched_conf_settings (setting+)>
 	<!ELEMENT setting (name, value)>
 	<!ATTLIST setting type (int|string|object|bool) #REQUIRED>
+	<!ATTLIST setting locale (0|1) #REQUIRED>
 	<!ELEMENT name (#PCDATA)>
 	<!ELEMENT value (#PCDATA | array)*>
 	<!ELEMENT element (#PCDATA | array)*>
@@ -23,21 +24,20 @@
 ]>
 
 <sched_conf_settings>
-
 	<!-- Review settings -->
-	<setting type="int">
+	<setting type="int" locale="0">
 		<name>numWeeksPerReview</name>
 		<value>4</value>
 	</setting>
 
 	<!-- Policy and default settings -->
-	<setting type="string">
+	<setting type="string" locale="1">
 		<name>emailSignature</name>
 		<value>{translate key="default.schedConfSettings.emailSignature"}</value>
 	</setting>
 
 	<!-- Submission checklist -->
-	<setting type="object">
+	<setting type="object" locale="1">
 		<name>submissionChecklist</name>
 		<value>
 			<array>
@@ -86,5 +86,4 @@
 			</array>
 		</value>
 	</setting>
-
 </sched_conf_settings>

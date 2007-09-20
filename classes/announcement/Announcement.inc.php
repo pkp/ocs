@@ -19,15 +19,10 @@ define('ANNOUNCEMENT_EXPIRE_YEAR_OFFSET_FUTURE',	'+10');
 
 
 class Announcement extends DataObject {
-
-	function Announcement() {
-		parent::DataObject();
-	}
-	
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get the ID of the announcement.
 	 * @return int
@@ -35,7 +30,7 @@ class Announcement extends DataObject {
 	function getAnnouncementId() {
 		return $this->getData('announcementId');
 	}
-	
+
 	/**
 	 * Set the ID of the announcement.
 	 * @param $announcementId int
@@ -51,7 +46,7 @@ class Announcement extends DataObject {
 	function getConferenceId() {
 		return $this->getData('conferenceId');
 	}
-	
+
 	/**
 	 * Set the conference ID of the announcement.
 	 * @param $conferenceId int
@@ -67,7 +62,7 @@ class Announcement extends DataObject {
 	function getSchedConfId() {
 		return $this->getData('schedConfId');
 	}
-	
+
 	/**
 	 * Set the sched conf ID of the announcement.
 	 * @param $schedConfId int
@@ -83,7 +78,7 @@ class Announcement extends DataObject {
 	function getTypeId() {
 		return $this->getData('typeId');
 	}
-	
+
 	/**
 	 * Set the announcement type of the announcement.
 	 * @param $typeId int
@@ -96,57 +91,87 @@ class Announcement extends DataObject {
 	 * Get the announcement type name of the announcement.
 	 * @return string
 	 */
-	function getTypeName() {
+	function getAnnouncementTypeName() {
 		$announcementTypeDao = &DAORegistry::getDAO('AnnouncementTypeDAO');
 		return $announcementTypeDao->getAnnouncementTypeName($this->getData('typeId'));
 	}
 
 	/**
-	 * Get announcement title.
+	 * Get localized announcement title
 	 * @return string
 	 */
-	function getTitle() {
-		return $this->getData('title');
+	function getAnnouncementTitle() {
+		return $this->getLocalizedData('title');
 	}
-	
+
+	/**
+	 * Get announcement title.
+	 * @param $locale
+	 * @return string
+	 */
+	function getTitle($locale) {
+		return $this->getData('title', $locale);
+	}
+
 	/**
 	 * Set announcement title.
 	 * @param $title string
+	 * @param $locale string
 	 */
-	function setTitle($title) {
-		return $this->setData('title', $title);
+	function setTitle($title, $locale) {
+		return $this->setData('title', $title, $locale);
+	}
+
+	/**
+	 * Get localized short description
+	 * @return string
+	 */
+	function getAnnouncementDescriptionShort() {
+		return $this->getLocalizedData('descriptionShort');
 	}
 
 	/**
 	 * Get announcement brief description.
+	 * @param $locale string
 	 * @return string
 	 */
-	function getDescriptionShort() {
-		return $this->getData('descriptionShort');
+	function getDescriptionShort($locale) {
+		return $this->getData('descriptionShort', $locale);
 	}
-	
+
 	/**
 	 * Set announcement brief description.
 	 * @param $descriptionShort string
+	 * @param $locale string
 	 */
-	function setDescriptionShort($descriptionShort) {
-		return $this->setData('descriptionShort', $descriptionShort);
+	function setDescriptionShort($descriptionShort, $locale) {
+		return $this->setData('descriptionShort', $descriptionShort, $locale);
+	}
+
+	/**
+	 * Get localized full description
+	 * @return string
+	 */
+	function getAnnouncementDescription() {
+		return $this->getLocalizedData('description');
 	}
 
 	/**
 	 * Get announcement description.
+	 * @param $locale string
 	 * @return string
 	 */
-	function getDescription() {
-		return $this->getData('description');
+	function getDescription($locale) {
+		return $this->getData('description', $locale);
 	}
-	
+
 	/**
 	 * Set announcement description.
 	 * @param $description string
+	 * @param $locale string
 	 */
-	function setDescription($description) {
-		return $this->setData('description', $description);
+	function setDescription($description, $locale) {
+		return $this->setData('description', $description, $locale);
 	}
 
 	/**
@@ -156,7 +181,7 @@ class Announcement extends DataObject {
 	function getDateExpire() {
 		return $this->getData('dateExpire');
 	}
-	
+
 	/**
 	 * Set announcement expiration date.
 	 * @param $dateExpire date (YYYY-MM-DD)
@@ -172,7 +197,7 @@ class Announcement extends DataObject {
 	function getDatePosted() {
 		return $this->getData('datePosted');
 	}
-	
+
 	/**
 	 * Set announcement posted date.
 	 * @param $datePosted date (YYYY-MM-DD)
@@ -180,7 +205,6 @@ class Announcement extends DataObject {
 	function setDatePosted($datePosted) {
 		return $this->setData('datePosted', $datePosted);
 	}
-
 }
 
 ?>

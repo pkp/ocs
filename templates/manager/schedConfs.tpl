@@ -30,8 +30,8 @@
 	</tr>
 	{iterate from=schedConfs item=schedConf}
 	<tr valign="top">
-		<td><a class="action" href="{url schedConf=$schedConf->getPath() page="manager"}">{$schedConf->getTitle()|escape}</a></td>
-		<td>{$schedConf->getSetting('acronym')|escape|default:"&mdash;"}</td>
+		<td><a class="action" href="{url schedConf=$schedConf->getPath() page="manager"}">{$schedConf->getSchedConfTitle()|escape}</a></td>
+		<td>{$schedConf->getLocalizedSetting('acronym')|escape|default:"&mdash;"}</td>
 		<td><a href="{url op="moveSchedConf" d=u schedConfId=$schedConf->getSchedConfId()}">&uarr;</a> <a href="{url op="moveSchedConf" d=d schedConfId=$schedConf->getSchedConfId()}">&darr;</a></td>
 
 		<td align="right">

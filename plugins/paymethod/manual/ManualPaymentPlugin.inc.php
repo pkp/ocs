@@ -20,7 +20,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	function getName() {
 		return 'ManualPayment';
 	}
-	
+
 	function getDisplayName() {
 		return Locale::translate('plugins.paymethod.manual.displayName');
 	}

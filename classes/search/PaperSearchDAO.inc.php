@@ -17,14 +17,6 @@
 import('search.PaperSearch');
 
 class PaperSearchDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function PaperSearchDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Add a word to the keyword list (if it doesn't already exist).
 	 * @param $keyword string
@@ -55,12 +47,12 @@ class PaperSearchDAO extends DAO {
 			$result->Close();
 			unset($result);
 		}
-		
+
 		$paperSearchKeywordIds[$keyword] = $keywordId;
 
 		return $keywordId;
 	}
-	
+
 	/**
 	 * Retrieve the top results for a phrases with the given
 	 * limit (default 500 results).
@@ -73,10 +65,10 @@ class PaperSearchDAO extends DAO {
 			$returner = &new DBRowIterator($results);
 			return $returner;
 		}
-		
+
 		$sqlFrom = '';
 		$sqlWhere = '';
-		
+
 		for ($i = 0, $count = count($phrase); $i < $count; $i++) {
 			if (!empty($sqlFrom)) {
 				$sqlFrom .= ', ';
@@ -86,7 +78,7 @@ class PaperSearchDAO extends DAO {
 			if (strstr($phrase[$i], '%') === false) $sqlWhere .= 'k'.$i.'.keyword_text = ?';
 			else $sqlWhere .= 'k'.$i.'.keyword_text LIKE ?';
 			if ($i > 0) $sqlWhere .= ' AND o0.object_id = o'.$i.'.object_id AND o0.pos+'.$i.' = o'.$i.'.pos';
-			
+
 			$params[] = $phrase[$i];
 		}
 
@@ -131,7 +123,7 @@ class PaperSearchDAO extends DAO {
 		$returner = &new DBRowIterator($result);
 		return $returner;
 	}
-	
+
 	/**
 	 * Delete all keywords for a paper object.
 	 * @param $paperId int
@@ -141,17 +133,17 @@ class PaperSearchDAO extends DAO {
 	function deletePaperKeywords($paperId, $type = null, $assocId = null) {
 		$sql = 'SELECT object_id FROM paper_search_objects WHERE paper_id = ?';
 		$params = array($paperId);
-		
+
 		if (isset($type)) {
 			$sql .= ' AND type = ?';
 			$params[] = $type;
 		}
-		
+
 		if (isset($assocId)) {
 			$sql .= ' AND assoc_id = ?';
 			$params[] = $assocId;
 		}
-		
+
 		$result = &$this->retrieve($sql, $params);
 		while (!$result->EOF) {
 			$objectId = $result->fields[0];
@@ -162,7 +154,7 @@ class PaperSearchDAO extends DAO {
 		$result->Close();
 		unset($result);
 	}
-	
+
 	/**
 	 * Add a paper object to the index (if already exists, indexed keywords are cleared).
 	 * @param $paperId int
@@ -181,7 +173,7 @@ class PaperSearchDAO extends DAO {
 				array($paperId, $type, $assocId)
 			);
 			$objectId = $this->getInsertId('paper_search_objects', 'object_id');
-			
+
 		} else {
 			$objectId = $result->fields[0];
 			$this->update(
@@ -191,10 +183,10 @@ class PaperSearchDAO extends DAO {
 		}
 		$result->Close();
 		unset($result);
-		
+
 		return $objectId;
 	}
-	
+
 	/**
 	 * Index an occurrence of a keyword in an object.s
 	 * @param $objectId int
@@ -212,7 +204,6 @@ class PaperSearchDAO extends DAO {
 		);
 		return $keywordId;
 	}
-	
 }
 
 ?>

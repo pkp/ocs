@@ -19,14 +19,6 @@ import('registration.Registration');
 import('registration.RegistrationType');
 
 class RegistrationDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function RegistrationDAO() {
-		parent::DAO();
-	}
-
 	/**
 	 * Retrieve a registration by registration ID.
 	 * @param $registrationId int
@@ -56,7 +48,7 @@ class RegistrationDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT sched_conf_id FROM registrations WHERE registration_id = ?', $registrationId
 		);
-		
+
 		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;	
 
 		$result->Close();
@@ -82,7 +74,7 @@ class RegistrationDAO extends DAO {
 				$schedConfId
 			)
 		);
-		
+
 		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;	
 
 		$result->Close();
@@ -133,7 +125,7 @@ class RegistrationDAO extends DAO {
 		$registration->setDomain($row['domain']);
 		$registration->setIPRange($row['ip_range']);
 		$registration->setSpecialRequests($row['special_requests']);
-		
+
 		HookRegistry::call('RegistrationDAO::_returnRegistrationFromRow', array(&$registration, &$row));
 
 		return $registration;
@@ -521,7 +513,6 @@ class RegistrationDAO extends DAO {
 	function getInsertRegistrationId() {
 		return $this->getInsertId('registrations', 'registration_id');
 	}
-	
 }
 
 ?>

@@ -20,7 +20,7 @@ class CommentForm extends Form {
 
 	/** @var int the comment type */
 	var $commentType;
-	
+
 	/** @var int the role id of the comment poster */
 	var $roleId;
 
@@ -29,10 +29,10 @@ class CommentForm extends Form {
 
 	/** @var User comment presenter */
 	var $user;
-	
+
 	/** @var int the ID of the comment after insertion */
 	var $commentId;
-	
+
 	/**
 	 * Constructor.
 	 * @param $paper object
@@ -45,12 +45,12 @@ class CommentForm extends Form {
 		} else {
 			parent::Form('submission/comment/comment.tpl');
 		}
-		
+
 		$this->paper = $paper;
 		$this->commentType = $commentType;
 		$this->roleId = $roleId;
 		$this->assocId = $assocId == null ? $paper->getPaperId() : $assocId;
-		
+
 		$this->user = &Request::getUser();
 
 		if ($commentType != COMMENT_TYPE_PEER_REVIEW) $this->addCheck(new FormValidator($this, 'comments', 'required', 'director.paper.commentsRequired'));
@@ -74,16 +74,16 @@ class CommentForm extends Form {
 
 		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
 		$paperComments = &$paperCommentDao->getPaperComments($paper->getPaperId(), $this->commentType, $this->assocId);
-	
+
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paper->getPaperId());
 		$templateMgr->assign('commentTitle', strip_tags($paper->getPaperTitle()));
 		$templateMgr->assign('userId', $this->user->getUserId());
 		$templateMgr->assign('paperComments', $paperComments);
-		
+
 		parent::display();
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -96,14 +96,14 @@ class CommentForm extends Form {
 			)
 		);
 	}
-	
+
 	/**
 	 * Add the comment.
 	 */
 	function execute() {
 		$commentDao = &DAORegistry::getDAO('PaperCommentDAO');
 		$paper = $this->paper;
-	
+
 		// Insert new comment		
 		$comment = &new PaperComment();
 		$comment->setCommentType($this->commentType);
@@ -115,10 +115,10 @@ class CommentForm extends Form {
 		$comment->setComments($this->getData('comments'));
 		$comment->setDatePosted(Core::getCurrentDate());
 		$comment->setViewable($this->getData('viewable'));
-		
+
 		$this->commentId = $commentDao->insertPaperComment($comment);
 	}
-	
+
 	/**
 	 * Email the comment.
 	 * @param $recipients array of recipients (email address => name)
@@ -127,7 +127,7 @@ class CommentForm extends Form {
 		$paper = $this->paper;
 		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
 		$schedConf = &Request::getSchedConf();
-		
+
 		import('mail.PaperMailTemplate');
 		$email = &new PaperMailTemplate($paper, 'SUBMISSION_COMMENT');
 		$email->setFrom($this->user->getEmail(), $this->user->getFullName());

@@ -21,7 +21,7 @@ PY  - {$paper->getDatePublished()|date_format:"%Y"}
 TI  - {$paper->getPaperTitle()|strip_tags}
 JF  - {$conference->getTitle()}; {$schedConf->getSchedConfIdentification()}
 Y2  - {$paper->getDatePublished()|date_format:"%Y"}
-KW  - {$paper->getSubject()|escape}
+KW  - {$paper->getPaperSubject()|escape}
 N2  - {$paper->getPaperAbstract()|strip_tags|replace:"\n":" "|replace:"\r":" "}
 UR  - {$paperUrl}
 

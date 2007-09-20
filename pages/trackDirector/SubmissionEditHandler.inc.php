@@ -51,7 +51,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		if ($publishedPaper) {
 			$templateMgr->assign_by_ref('publishedPaper', $publishedPaper);
 		}
-		
+
 		if ($isDirector) {
 			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
 		}
@@ -69,7 +69,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$reviewFilesByStage = $reviewAssignmentDao->getReviewFilesByStage($paperId);
 
 		$stages = $submission->getReviewAssignments();
-		
+
 		$directorDecisions = $submission->getDecisions();
 
 		$templateMgr = &TemplateManager::getManager();
@@ -81,7 +81,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
 		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
 		$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality', true));
-		
+
 		import('submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRatingOptions', ReviewAssignment::getReviewerRatingOptions());
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
@@ -306,7 +306,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign('searchField', $searchType);
 			$templateMgr->assign('searchMatch', $searchMatch);
 			$templateMgr->assign('search', $searchQuery);
-			$templateMgr->assign('searchInitial', $searchInitial);
+			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 
 			$templateMgr->assign_by_ref('reviewers', $reviewers);
 			$templateMgr->assign('paperId', $paperId);
@@ -404,7 +404,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign('searchField', $searchType);
 		$templateMgr->assign('searchMatch', $searchMatch);
 		$templateMgr->assign('search', $searchQuery);
-		$templateMgr->assign('searchInitial', $searchInitial);
+		$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('fieldOptions', Array(
@@ -654,8 +654,21 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		} else {
 			$site = &Request::getSite();
 
+			$countryDao =& DAORegistry::getDAO('CountryDAO');
+			$country = null;
+			if ($user->getCountry() != '') {
+				$country = $countryDao->getCountry($user->getCountry());
+			}
+			$templateMgr->assign('country', $country);
+
+			$disciplineDao =& DAORegistry::getDAO('DisciplineDAO');
+			$discipline = null;
+			if ($user->getDiscipline() != '') {
+				$discipline = $disciplineDao->getDiscipline($user->getDiscipline());
+			}
+			$templateMgr->assign('discipline', $discipline);
+
 			$templateMgr->assign_by_ref('user', $user);
-			$templateMgr->assign('profileLocalesEnabled', $site->getProfileLocalesEnabled());
 			$templateMgr->assign('localeNames', Locale::getAllLocales());
 			$templateMgr->assign('helpTopicId', 'conference.roles.index');
 			$templateMgr->display('trackDirector/userProfile.tpl');
@@ -706,9 +719,9 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			if (isset($file[0]) && isset($file[1])) {
 				TrackDirectorAction::setEditingFile($submission, $file[0], $file[1], Request::getUserVar('createGalley'));
 			}
-			
+
 		}
-		
+
 		Request::redirect(null, null, null, 'submissionReview', $redirectArgs);
 	}
 
@@ -734,7 +747,11 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$submitForm = &new SuppFileForm($submission);
 
-		$submitForm->initData();
+		if ($submitForm->isLocaleResubmit()) {
+			$submitForm->readInputData();
+		} else {
+			$submitForm->initData();
+		}
 		$submitForm->display();
 	}
 
@@ -752,7 +769,11 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$submitForm = &new SuppFileForm($submission, $suppFileId);
 
-		$submitForm->initData();
+		if ($submitForm->isLocaleResubmit()) {
+			$submitForm->readInputData();
+		} else {
+			$submitForm->initData();
+		}
 		$submitForm->display();
 	}
 
@@ -906,10 +927,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 		TrackDirectorAction::deletePaperImage($submission, $fileId, $revisionId);
-		
+
 		Request::redirect(null, null, 'editGalley', array($paperId, $galleyId));
 	}
-	
+
 	/**
 	 * Create a new galley with the uploaded file.
 	 */
@@ -940,7 +961,11 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$submitForm = &new PaperGalleyForm($paperId, $galleyId);
 
-		$submitForm->initData();
+		if ($submitForm->isLocaleResubmit()) {
+			$submitForm->readInputData();
+		} else {
+			$submitForm->initData();
+		}
 		$submitForm->display();
 	}
 
@@ -1010,13 +1035,13 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
-		
+
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->display('submission/layout/proofGalley.tpl');
 	}
-	
+
 	/**
 	 * Proof galley (shows frame header).
 	 * @param $args array ($paperId, $galleyId)
@@ -1025,14 +1050,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
-		
+
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign('backHandler', 'submissionReview');
 		$templateMgr->display('submission/layout/proofGalleyTop.tpl');
 	}
-	
+
 	/**
 	 * Proof galley (outputs file contents).
 	 * @param $args array ($paperId, $galleyId)
@@ -1041,12 +1066,12 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
-		
+
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 		$galley = &$galleyDao->getGalley($galleyId, $paperId);
-		
+
 		import('file.PaperFileManager'); // FIXME
-		
+
 		if (isset($galley)) {
 			if ($galley->isHTMLGalley()) {
 				$templateMgr = &TemplateManager::getManager();
@@ -1057,14 +1082,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 					)));
 				}
 				$templateMgr->display('submission/layout/proofGalleyHTML.tpl');
-				
+
 			} else {
 				// View non-HTML file inline
 				SubmissionEditHandler::viewFile(array($paperId, $galley->getFileId()));
 			}
 		}
 	}
-	
+
 	/**
 	 * Upload a new supplementary file.
 	 */

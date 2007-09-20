@@ -22,14 +22,18 @@ class CreateAccountHandler extends UserHandler {
 	function account() {
 		list($conference, $schedConf) = CreateAccountHandler::validate();
 		parent::setupTemplate(true);
-		
+
 		if ($conference != null && $schedConf != null) {
 
 			// We're trying to create an account for a specific scheduled conference
 			import('user.form.CreateAccountForm');
-		
+
 			$regForm = &new CreateAccountForm();
-			$regForm->initData();
+			if ($regForm->isLocaleResubmit()) {
+				$regForm->readInputData();
+			} else {
+				$regForm->initData();
+			}
 			$regForm->display();
 
 		} elseif ($conference != null) {
@@ -40,16 +44,16 @@ class CreateAccountHandler extends UserHandler {
 
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('pageHierarchy', array(
-				array(Request::url(null, 'index', 'index'), $conference->getTitle(), true)));
+				array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true)));
 			$templateMgr->assign('source', Request::getUserVar('source'));
 			$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 			$templateMgr->display('user/createAccountConference.tpl');
 
 		} else {
-		
+
 			// We have neither conference nor scheduled conference; start by selecting a
 			// conference and we'll end up above after a redirect.
-			
+
 			$conferencesDao = &DAORegistry::getDAO('ConferenceDAO');
 			$conferences = &$conferencesDao->getEnabledConferences();
 
@@ -59,17 +63,17 @@ class CreateAccountHandler extends UserHandler {
 			$templateMgr->display('user/createAccountSite.tpl');
 		}
 	}
-	
+
 	/**
 	 * Validate user information and create new user.
 	 */
 	function createAccount() {
 		CreateAccountHandler::validate();
 		import('user.form.CreateAccountForm');
-		
+
 		$regForm = &new CreateAccountForm();
 		$regForm->readInputData();
-		
+
 		if ($regForm->validate()) {
 			$regForm->execute();
 			if (Config::getVar('email', 'require_validation')) {
@@ -92,13 +96,13 @@ class CreateAccountHandler extends UserHandler {
 				Request::redirectUrl($source);
 
 			else Request::redirect(null, null, 'login');
-			
+
 		} else {
 			parent::setupTemplate(true);
 			$regForm->display();
 		}
 	}
-	
+
 	/**
 	 * Show error message if user account creation is not allowed.
 	 */
@@ -163,10 +167,10 @@ class CreateAccountHandler extends UserHandler {
 				exit;
 			}
 		}
-		
+
 		return array($conference, $schedConf);
 	}
-	
+
 }
 
 ?>

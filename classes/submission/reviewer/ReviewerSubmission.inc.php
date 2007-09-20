@@ -20,7 +20,7 @@ class ReviewerSubmission extends Paper {
 
 	/** @var array PaperFiles reviewer file revisions of this paper */
 	var $reviewerFileRevisions;
-	
+
 	/** @var array PaperComments peer review comments of this paper */
 	var $peerReviewComments;
 
@@ -33,11 +33,11 @@ class ReviewerSubmission extends Paper {
 	function ReviewerSubmission() {
 		parent::Paper();
 	}
-	
+
 	/**
 	 * Get/Set Methods.
 	 */
-	 
+
 	/**
 	 * Get edit assignments for this paper.
 	 * @return array
@@ -46,7 +46,7 @@ class ReviewerSubmission extends Paper {
 		$editAssignments = &$this->getData('editAssignments');
 		return $editAssignments;
 	}
-	
+
 	/**
 	 * Set edit assignments for this paper.
 	 * @param $editAssignments array
@@ -54,7 +54,7 @@ class ReviewerSubmission extends Paper {
 	function setEditAssignments($editAssignments) {
 		return $this->setData('editAssignments', $editAssignments);
 	}
-	
+
 	/**
 	 * Get ID of review assignment.
 	 * @return int
@@ -62,7 +62,7 @@ class ReviewerSubmission extends Paper {
 	function getReviewId() {
 		return $this->getData('reviewId');
 	}
-	
+
 	/**
 	 * Set ID of review assignment
 	 * @param $reviewId int
@@ -70,7 +70,7 @@ class ReviewerSubmission extends Paper {
 	function setReviewId($reviewId) {
 		return $this->setData('reviewId', $reviewId);
 	}
-	
+
 	/**
 	 * Get ID of paper.
 	 * @return int
@@ -78,7 +78,7 @@ class ReviewerSubmission extends Paper {
 	function getPaperId() {
 		return $this->getData('paperId');
 	}
-	
+
 	/**
 	 * Set ID of paper.
 	 * @param $paperId int
@@ -86,7 +86,7 @@ class ReviewerSubmission extends Paper {
 	function setPaperId($paperId) {
 		return $this->setData('paperId', $paperId);
 	}
-	
+
 	/**
 	 * Get ID of reviewer.
 	 * @return int
@@ -94,7 +94,7 @@ class ReviewerSubmission extends Paper {
 	function getReviewerId() {
 		return $this->getData('reviewerId');
 	}
-	
+
 	/**
 	 * Set ID of reviewer.
 	 * @param $reviewerId int
@@ -102,7 +102,7 @@ class ReviewerSubmission extends Paper {
 	function setReviewerId($reviewerId) {
 		return $this->setData('reviewerId', $reviewerId);
 	}
-	
+
 	/**
 	 * Get full name of reviewer.
 	 * @return string
@@ -110,7 +110,7 @@ class ReviewerSubmission extends Paper {
 	function getReviewerFullName() {
 		return $this->getData('reviewerFullName');
 	}
-	
+
 	/**
 	 * Set full name of reviewer.
 	 * @param $reviewerFullName string
@@ -118,7 +118,7 @@ class ReviewerSubmission extends Paper {
 	function setReviewerFullName($reviewerFullName) {
 		return $this->setData('reviewerFullName', $reviewerFullName);
 	}
-	
+
 	/**
 	 * Get director decisions.
 	 * @return array
@@ -132,7 +132,7 @@ class ReviewerSubmission extends Paper {
 
 		return $this->directorDecisions[$stage];
 	}
-	
+
 	/**
 	 * Set director decisions.
 	 * @param $directorDecisions array
@@ -141,7 +141,7 @@ class ReviewerSubmission extends Paper {
 	function setDecisions($directorDecisions, $stage) {
 		return $this->directorDecisions[$stage] = $directorDecisions;
 	}
-	
+
 	/**
 	 * Get reviewer recommendation.
 	 * @return string
@@ -149,7 +149,7 @@ class ReviewerSubmission extends Paper {
 	function getRecommendation() {
 		return $this->getData('recommendation');
 	}
-	
+
 	/**
 	 * Set reviewer recommendation.
 	 * @param $recommendation string
@@ -157,7 +157,7 @@ class ReviewerSubmission extends Paper {
 	function setRecommendation($recommendation) {
 		return $this->setData('recommendation', $recommendation);
 	}
-	
+
 	/**
 	 * Get the reviewer's assigned date.
 	 * @return string
@@ -165,7 +165,7 @@ class ReviewerSubmission extends Paper {
 	function getDateAssigned() {
 		return $this->getData('dateAssigned');
 	}
-	
+
 	/**
 	 * Set the reviewer's assigned date.
 	 * @param $dateAssigned string
@@ -173,7 +173,7 @@ class ReviewerSubmission extends Paper {
 	function setDateAssigned($dateAssigned) {
 		return $this->setData('dateAssigned', $dateAssigned);
 	}
-	
+
 	/**
 	 * Get the reviewer's notified date.
 	 * @return string
@@ -181,7 +181,7 @@ class ReviewerSubmission extends Paper {
 	function getDateNotified() {
 		return $this->getData('dateNotified');
 	}
-	
+
 	/**
 	 * Set the reviewer's notified date.
 	 * @param $dateNotified string
@@ -189,7 +189,7 @@ class ReviewerSubmission extends Paper {
 	function setDateNotified($dateNotified) {
 		return $this->setData('dateNotified', $dateNotified);
 	}
-	
+
 	/**
 	 * Get the reviewer's confirmed date.
 	 * @return string
@@ -197,7 +197,7 @@ class ReviewerSubmission extends Paper {
 	function getDateConfirmed() {
 		return $this->getData('dateConfirmed');
 	}
-	
+
 	/**
 	 * Set the reviewer's confirmed date.
 	 * @param $dateConfirmed string
@@ -205,7 +205,7 @@ class ReviewerSubmission extends Paper {
 	function setDateConfirmed($dateConfirmed) {
 		return $this->setData('dateConfirmed', $dateConfirmed);
 	}
-	
+
 	/**
 	 * Get the reviewer's completed date.
 	 * @return string
@@ -213,7 +213,7 @@ class ReviewerSubmission extends Paper {
 	function getDateCompleted() {
 		return $this->getData('dateCompleted');
 	}
-	
+
 	/**
 	 * Set the reviewer's completed date.
 	 * @param $dateCompleted string
@@ -221,7 +221,7 @@ class ReviewerSubmission extends Paper {
 	function setDateCompleted($dateCompleted) {
 		return $this->setData('dateCompleted', $dateCompleted);
 	}
-	
+
 	/**
 	 * Get the reviewer's acknowledged date.
 	 * @return string
@@ -229,7 +229,7 @@ class ReviewerSubmission extends Paper {
 	function getDateAcknowledged() {
 		return $this->getData('dateAcknowledged');
 	}
-	
+
 	/**
 	 * Set the reviewer's acknowledged date.
 	 * @param $dateAcknowledged string
@@ -237,7 +237,7 @@ class ReviewerSubmission extends Paper {
 	function setDateAcknowledged($dateAcknowledged) {
 		return $this->setData('dateAcknowledged', $dateAcknowledged);
 	}
-	
+
 	/**
 	 * Get the reviewer's due date.
 	 * @return string
@@ -245,7 +245,7 @@ class ReviewerSubmission extends Paper {
 	function getDateDue() {
 		return $this->getData('dateDue');
 	}
-	
+
 	/**
 	 * Set the reviewer's due date.
 	 * @param $dateDue string
@@ -253,7 +253,7 @@ class ReviewerSubmission extends Paper {
 	function setDateDue($dateDue) {
 		return $this->setData('dateDue', $dateDue);
 	}
-	
+
 	/**
 	 * Get the declined value.
 	 * @return boolean
@@ -261,7 +261,7 @@ class ReviewerSubmission extends Paper {
 	function getDeclined() {
 		return $this->getData('declined');
 	}
-	
+
 	/**
 	 * Set the reviewer's declined value.
 	 * @param $declined boolean
@@ -269,7 +269,7 @@ class ReviewerSubmission extends Paper {
 	function setDeclined($declined) {
 		return $this->setData('declined', $declined);
 	}
-	
+
 	/**
 	 * Get the replaced value.
 	 * @return boolean
@@ -277,7 +277,7 @@ class ReviewerSubmission extends Paper {
 	function getReplaced() {
 		return $this->getData('replaced');
 	}
-	
+
 	/**
 	 * Set the reviewer's replaced value.
 	 * @param $replaced boolean
@@ -285,7 +285,7 @@ class ReviewerSubmission extends Paper {
 	function setReplaced($replaced) {
 		return $this->setData('replaced', $replaced);
 	}
-	
+
 	/**
 	 * Get the cancelled value.
 	 * @return boolean
@@ -293,7 +293,7 @@ class ReviewerSubmission extends Paper {
 	function getCancelled() {
 		return $this->getData('cancelled');
 	}
-	
+
 	/**
 	 * Set the reviewer's cancelled value.
 	 * @param $replaced boolean
@@ -309,7 +309,7 @@ class ReviewerSubmission extends Paper {
 	function getReviewerFileId() {
 		return $this->getData('reviewerFileId');
 	}
-	
+
 	/**
 	 * Set reviewer file id.
 	 * @param $reviewerFileId int
@@ -317,7 +317,7 @@ class ReviewerSubmission extends Paper {
 	function setReviewerFileId($reviewerFileId) {
 		return $this->setData('reviewerFileId', $reviewerFileId);
 	}
-	
+
 	/**
 	 * Get quality.
 	 * @return int
@@ -325,7 +325,7 @@ class ReviewerSubmission extends Paper {
 	function getQuality() {
 		return $this->getData('quality');
 	}
-	
+
 	/**
 	 * Set quality.
 	 * @param $quality int
@@ -333,8 +333,8 @@ class ReviewerSubmission extends Paper {
 	function setQuality($quality) {
 		return $this->setData('quality', $quality);
 	}
-	
-	
+
+
 	/**
 	 * Get stage.
 	 * @return int
@@ -342,7 +342,7 @@ class ReviewerSubmission extends Paper {
 	function getStage() {
 		return $this->getData('stage');
 	}
-	
+
 	/**
 	 * Set stage.
 	 * @param $stage int
@@ -350,7 +350,7 @@ class ReviewerSubmission extends Paper {
 	function setStage($stage) {
 		return $this->setData('stage', $stage);
 	}
-	
+
 	/**
 	 * Get review file id.
 	 * @return int
@@ -358,7 +358,7 @@ class ReviewerSubmission extends Paper {
 	function getReviewFileId() {
 		return $this->getData('reviewFileId');
 	}
-	
+
 	/**
 	 * Set review file id.
 	 * @param $reviewFileId int
@@ -366,7 +366,7 @@ class ReviewerSubmission extends Paper {
 	function setReviewFileId($reviewFileId) {
 		return $this->setData('reviewFileId', $reviewFileId);
 	}
-	
+
 	/**
 	 * Get review revision.
 	 * @return int
@@ -374,7 +374,7 @@ class ReviewerSubmission extends Paper {
 	function getReviewRevision() {
 		return $this->getData('reviewRevision');
 	}
-	
+
 	/**
 	 * Set review revision.
 	 * @param $reviewRevision int
@@ -382,11 +382,11 @@ class ReviewerSubmission extends Paper {
 	function setReviewRevision($reviewRevision) {
 		return $this->setData('reviewRevision', $reviewRevision);
 	}
-	
+
 	//
 	// Files
 	//
-	
+
 	/**
 	 * Get submission file for this paper.
 	 * @return PaperFile
@@ -395,7 +395,7 @@ class ReviewerSubmission extends Paper {
 		$returner =& $this->getData('submissionFile');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set submission file for this paper.
 	 * @param $submissionFile PaperFile
@@ -403,7 +403,7 @@ class ReviewerSubmission extends Paper {
 	function setSubmissionFile($submissionFile) {
 		return $this->setData('submissionFile', $submissionFile);
 	}
-	
+
 	/**
 	 * Get revised file for this paper.
 	 * @return PaperFile
@@ -412,7 +412,7 @@ class ReviewerSubmission extends Paper {
 		$returner =& $this->getData('revisedFile');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set revised file for this paper.
 	 * @param $submissionFile PaperFile
@@ -420,7 +420,7 @@ class ReviewerSubmission extends Paper {
 	function setRevisedFile($revisedFile) {
 		return $this->setData('revisedFile', $revisedFile);
 	}
-	
+
 	/**
 	 * Get supplementary files for this paper.
 	 * @return array SuppFiles
@@ -429,7 +429,7 @@ class ReviewerSubmission extends Paper {
 		$returner =& $this->getData('suppFiles');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set supplementary file for this paper.
 	 * @param $suppFiles array SuppFiles
@@ -437,7 +437,7 @@ class ReviewerSubmission extends Paper {
 	function setSuppFiles($suppFiles) {
 		return $this->setData('suppFiles', $suppFiles);
 	}
-	
+
 	/**
 	 * Get review file.
 	 * @return PaperFile
@@ -446,7 +446,7 @@ class ReviewerSubmission extends Paper {
 		$returner =& $this->getData('reviewFile');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set review file.
 	 * @param $reviewFile PaperFile
@@ -463,7 +463,7 @@ class ReviewerSubmission extends Paper {
 		$returner =& $this->getData('reviewerFile');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set reviewer file.
 	 * @param $reviewFile PaperFile
@@ -471,7 +471,7 @@ class ReviewerSubmission extends Paper {
 	function setReviewerFile($reviewerFile) {
 		return $this->setData('reviewerFile', $reviewerFile);
 	}
-	
+
 	/**
 	 * Get all reviewer file revisions.
 	 * @return array PaperFiles
@@ -479,7 +479,7 @@ class ReviewerSubmission extends Paper {
 	function getReviewerFileRevisions() {
 		return $this->reviewerFileRevisions;
 	}
-	
+
 	/**
 	 * Set all reviewer file revisions.
 	 * @param $reviewerFileRevisions array PaperFiles
@@ -487,11 +487,11 @@ class ReviewerSubmission extends Paper {
 	function setReviewerFileRevisions($reviewerFileRevisions) {
 		return $this->reviewerFileRevisions = $reviewerFileRevisions;
 	}
-	
+
 	//
 	// Comments
 	//
-	
+
 	/**
 	 * Get most recent peer review comment.
 	 * @return PaperComment
@@ -499,7 +499,7 @@ class ReviewerSubmission extends Paper {
 	function getMostRecentPeerReviewComment() {
 		return $this->getData('peerReviewComment');
 	}
-	
+
 	/**
 	 * Set most recent peer review comment.
 	 * @param $peerReviewComment PaperComment

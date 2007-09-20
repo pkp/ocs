@@ -24,4 +24,7 @@ You have created an account with {$conferenceName}, but before you can start usi
 Thank you,
 {$principalContactSignature}', 'This email is sent to a newly registered user to welcome them to the system and provide them with a record of their username and password.')</query>
 	</sql>
+
+	<!-- The currencies table is not used. -->
+	<sql><drop table="currencies" /></sql>
 </data>

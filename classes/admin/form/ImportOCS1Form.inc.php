@@ -21,7 +21,7 @@ class ImportOCS1Form extends Form {
 
 	/** @var $importer ImportOCS1 */
 	var $importer;
-	
+
 	/**
 	 * Constructor.
 	 * @param $conferenceId omit for a new conference
@@ -35,7 +35,7 @@ class ImportOCS1Form extends Form {
 		$this->addCheck(new FormValidator($this, 'importPath', 'required', 'admin.conferences.form.importPathRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -44,14 +44,14 @@ class ImportOCS1Form extends Form {
 		$templateMgr->assign('importError', $this->importer->error());
 		parent::display();
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
 		$this->readUserVars(array('conferencePath', 'importPath', 'options'));
 	}
-	
+
 	/**
 	 * Import content.
 	 * @return boolean/int false or conference ID

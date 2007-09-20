@@ -29,7 +29,7 @@ class PayPalDAO extends DAO {
 	/*
 	 * Insert a payment into the payments table
 	 */
-	 function insertTransaction($txn_id, $txn_type, $payer_email, $receiver_email, $item_number, $payment_date, $payer_id, $receiver_id) {
+	function insertTransaction($txn_id, $txn_type, $payer_email, $receiver_email, $item_number, $payment_date, $payer_id, $receiver_id) {
 		$ret = $this->update(
 			sprintf('INSERT INTO paypal_transactions (
 				txn_id, 
@@ -56,8 +56,8 @@ class PayPalDAO extends DAO {
 		);
 
 		return true;
-	 }
-	 
+	}
+
 	function transactionExists($txn_id) {
 		$result =& $this->retrieve(
 			'SELECT count(*) 
@@ -65,11 +65,11 @@ class PayPalDAO extends DAO {
 				WHERE txn_id = ?', 
 				array($txn_id)
 		);
-		
+
 		$returner = false;
 		if (isset($result->fields[0]) && $result->fields[0] >= 1) 
 			$returner = true;
-		
+
 		$result->Close();
 		return $returner;		
 	}

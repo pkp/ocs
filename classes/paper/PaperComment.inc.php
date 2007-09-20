@@ -13,20 +13,20 @@
  *
  * $Id$
  */
- 
+
 /** Comment associative types. All types must be defined here. */
 define('COMMENT_TYPE_PEER_REVIEW', 0x01);
 define('COMMENT_TYPE_DIRECTOR_DECISION', 0x02);
- 
+
 class PaperComment extends DataObject {
- 
+
 	/**
 	 * Constructor.
 	 */
 	function PaperComment() {
 		parent::DataObject();
 	}
-	
+
 	/**
 	 * get paper comment id
 	 * @return int
@@ -34,7 +34,7 @@ class PaperComment extends DataObject {
 	function getCommentId() {
 		return $this->getData('commentId');
 	}
-	 
+
 	/**
 	 * set paper comment id
 	 * @param $commentId int
@@ -42,7 +42,7 @@ class PaperComment extends DataObject {
 	function setCommentId($commentId) {
 		return $this->setData('commentId', $commentId);
 	}
-	
+
 	/**
 	 * get comment type
 	 * @return int
@@ -50,7 +50,7 @@ class PaperComment extends DataObject {
 	function getCommentType() {
 		return $this->getData('commentType');
 	}
-	 
+
 	/**
 	 * set comment type
 	 * @param $commentType int
@@ -58,7 +58,7 @@ class PaperComment extends DataObject {
 	function setCommentType($commentType) {
 		return $this->setData('commentType', $commentType);
 	}
-	
+
 	/**
 	 * get role id
 	 * @return int
@@ -66,7 +66,7 @@ class PaperComment extends DataObject {
 	function getRoleId() {
 		return $this->getData('roleId');
 	}
-	
+
 	/**
 	 * set role id
 	 * @param $roleId int
@@ -74,7 +74,7 @@ class PaperComment extends DataObject {
 	function setRoleId($roleId) {
 		return $this->setData('roleId', $roleId);
 	}
-	
+
 	/**
 	 * get role name
 	 * @return string
@@ -85,7 +85,7 @@ class PaperComment extends DataObject {
 
 		return $roleName;
 	}
- 
+
 	/**
 	 * get paper id
 	 * @return int
@@ -93,7 +93,7 @@ class PaperComment extends DataObject {
 	function getPaperId() {
 		return $this->getData('paperId');
 	}
-	 
+
 	/**
 	 * set paper id
 	 * @param $paperId int
@@ -101,7 +101,7 @@ class PaperComment extends DataObject {
 	function setPaperId($paperId) {
 		return $this->setData('paperId', $paperId);
 	}
-	
+
 	/**
 	 * get assoc id
 	 * @return int
@@ -109,7 +109,7 @@ class PaperComment extends DataObject {
 	function getAssocId() {
 		return $this->getData('assocId');
 	}
-	 
+
 	/**
 	 * set assoc id
 	 * @param $assocId int
@@ -117,7 +117,7 @@ class PaperComment extends DataObject {
 	function setAssocId($assocId) {
 		return $this->setData('assocId', $assocId);
 	}	
-	
+
 	/**
 	 * get presenter id
 	 * @return int
@@ -125,7 +125,7 @@ class PaperComment extends DataObject {
 	function getAuthorId() {
 		return $this->getData('authorId');
 	}
-	 
+
 	/**
 	 * set presenter id
 	 * @param $presenterId int
@@ -133,37 +133,37 @@ class PaperComment extends DataObject {
 	function setAuthorId($authorId) {
 		return $this->setData('authorId', $authorId);
 	}
-	
+
 	/**
 	 * get presenter name
 	 * @return string
 	 */
 	function getPresenterName() {
 		static $presenterFullName;
-		
+
 		if(!isset($presenterFullName)) {
 			$userDao = &DAORegistry::getDAO('UserDAO');
 			$presenterFullName = $userDao->getUserFullName($this->getPresenterId(), true);
 		}
-		
+
 		return $presenterFullName ? $presenterFullName : '';
 	}
-	
+
 	/**
 	 * get presenter email
 	 * @return string
 	 */
 	function getPresenterEmail() {
 		static $presenterEmail;
-		
+
 		if(!isset($presenterEmail)) {
 			$userDao = &DAORegistry::getDAO('UserDAO');
 			$presenterEmail = $userDao->getUserEmail($this->getPresenterId(), true);
 		}
-		
+
 		return $presenterEmail ? $presenterEmail : '';
 	}
-	 
+
 	/**
 	 * get comment title
 	 * @return string
@@ -171,7 +171,7 @@ class PaperComment extends DataObject {
 	function getCommentTitle() {
 		return $this->getData('commentTitle');
 	}
-	 
+
 	/**
 	 * set comment title
 	 * @param $commentTitle string
@@ -179,7 +179,7 @@ class PaperComment extends DataObject {
 	function setCommentTitle($commentTitle) {
 		return $this->setData('commentTitle', $commentTitle);
 	}
-	
+
 	/**
 	 * get comments
 	 * @return string
@@ -187,7 +187,7 @@ class PaperComment extends DataObject {
 	function getComments() {
 		return $this->getData('comments');
 	}
-	 
+
 	/**
 	 * set comments
 	 * @param $comments string
@@ -195,7 +195,7 @@ class PaperComment extends DataObject {
 	function setComments($comments) {
 		return $this->setData('comments', $comments);
 	}
- 
+
  	/**
 	 * get date posted
 	 * @return date
@@ -203,7 +203,7 @@ class PaperComment extends DataObject {
 	function getDatePosted() {
 		return $this->getData('datePosted');
 	}
-	 
+
 	/**
 	 * set date posted
 	 * @param $datePosted date
@@ -211,7 +211,7 @@ class PaperComment extends DataObject {
 	function setDatePosted($datePosted) {
 		return $this->setData('datePosted', $datePosted);
 	}
-	
+
  	/**
 	 * get date modified
 	 * @return date
@@ -219,7 +219,7 @@ class PaperComment extends DataObject {
 	function getDateModified() {
 		return $this->getData('dateModified');
 	}
-	 
+
 	/**
 	 * set date modified
 	 * @param $dateModified date
@@ -227,7 +227,7 @@ class PaperComment extends DataObject {
 	function setDateModified($dateModified) {
 		return $this->setData('dateModified', $dateModified);
 	}
-	
+
  	/**
 	 * get viewable
 	 * @return boolean
@@ -235,7 +235,7 @@ class PaperComment extends DataObject {
 	function getViewable() {
 		return $this->getData('viewable');
 	}
-	 
+
 	/**
 	 * set viewable
 	 * @param $viewable boolean
@@ -244,5 +244,5 @@ class PaperComment extends DataObject {
 		return $this->setData('viewable', $viewable);
 	}
  }
- 
+
 ?>

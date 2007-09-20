@@ -30,25 +30,25 @@ class EmailTemplateForm extends Form {
 	 */
 	function EmailTemplateForm($emailKey, $conference) {
 		parent::Form('director/emails/emailTemplateForm.tpl');
-		
+
 		$this->conference = $conference;
 		$this->emailKey = $emailKey;
-		
+
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorArray($this, 'subject', 'required', 'director.emails.form.subjectRequired'));
 		$this->addCheck(new FormValidatorArray($this, 'body', 'required', 'director.emails.form.bodyRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		
+
 		$conferenceId = $this->conference->getConferenceId();
 		$eventId = 0;
-		
+
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplate = &$emailTemplateDao->getBaseEmailTemplate($this->emailKey, $conferenceId, $eventId);
 		$templateMgr->assign('canDisable', $emailTemplate?$emailTemplate->getCanDisable():false);
@@ -56,14 +56,14 @@ class EmailTemplateForm extends Form {
 		$templateMgr->assign('helpTopicId','conference.managementPages.emails');
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
 		$eventId = 0;
 		$conferenceId = $this->conference->getConferenceId();
-		
+
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
 
 		// If there's already an event-level template, grab it. This will grab
@@ -90,7 +90,7 @@ class EmailTemplateForm extends Form {
 				$body[$locale] = $emailTemplate->getBody($locale);
 				$description[$locale] = $emailTemplate->getDescription($locale);
 			}
-			
+
 			if ($emailTemplate != null) {
 				$this->_data = array(
 					'emailId' => $emailTemplate->getEmailId(),
@@ -105,14 +105,14 @@ class EmailTemplateForm extends Form {
 			$this->_data = array('isNewTemplate' => true);
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
 		$this->readUserVars(array('emailId', 'subject', 'body', 'enabled', 'conferenceId', 'eventId', 'emailKey'));
 	}
-	
+
 	/**
 	 * Save email template.
 	 */
@@ -139,7 +139,7 @@ class EmailTemplateForm extends Form {
 
 		$emailTemplate->setConferenceId($conferenceId);
 		$emailTemplate->setEventId($eventId);
-		
+
 		$supportedLocales = $this->conference->getSupportedLocaleNames();
 		if (!empty($supportedLocales)) {
 			foreach ($conference->getSupportedLocaleNames() as $localeKey => $localeName) {

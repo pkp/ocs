@@ -21,11 +21,11 @@ class SchedConfAction {
 	 */
 	function SchedConfAction() {
 	}
-	
+
 	/**
 	 * Actions.
 	 */
-	 
+
 	/**
 	 * Get whether or not we permit users to register as readers
 	 */
@@ -60,7 +60,7 @@ class SchedConfAction {
 		}
 		return $allowRegPresenter;
 	}
-	
+
 	/**
 	 * Checks if a user has access to the scheduled conference
 	 * @param $schedConf
@@ -84,7 +84,7 @@ class SchedConfAction {
 		if(!SchedConfAction::mayViewSchedConf($schedConf)) {
 			return false;
 		}
-		
+
 		if(($schedConf->getSetting('postAbstracts') && time() > $schedConf->getSetting('postAbstractsDate')) ||
 				($schedConf->getSetting('postPapers')) && time() > $schedConf->getSetting('postPapersDate')) {
 
@@ -111,11 +111,11 @@ class SchedConfAction {
 		if(!SchedConfAction::mayViewSchedConf($schedConf)) {
 			return false;
 		}
-		
+
 		// Allow open access once the "open access" date has passed.
 		$paperAccess = $conference->getSetting('paperAccess');
 		if ($paperAccess == PAPER_ACCESS_OPEN) return true;
-		
+
 		if($schedConf->getSetting('delayOpenAccess') && time() > $schedConf->getSetting('delayOpenAccessDate')) {
 			if(Validation::isReader() && $paperAcccess == PAPER_ACCESS_ACCOUNT_REQUIRED) {
 				return true;
@@ -178,13 +178,13 @@ class SchedConfAction {
 		if (isset($user) && isset($schedConf)) {
 
 			if(SchedConfAction::entitledUser($schedConf)) return true;
-			
+
 			$result = $registrationDao->isValidRegistration(null, null, $user->getUserId(), $schedConf->getSchedConfId());
 		}
 		HookRegistry::call('SchedConfAction::registeredUser', array(&$schedConf, &$result));
 		return $result;
 	}
-	
+
 	/**
 	 * Checks if remote client domain or ip is allowed
 	 * @return bool

@@ -20,6 +20,9 @@ import('form.validation.FormValidatorEmail');
 import('form.validation.FormValidatorAlphaNum');
 import('form.validation.FormValidatorInSet');
 import('form.validation.FormValidatorArray');
+import('form.validation.FormValidatorArrayCustom');
+import('form.validation.FormValidatorLocale');
+import('form.validation.FormValidatorLocaleEmail');
 import('form.validation.FormValidatorLength');
 import('form.validation.FormValidatorCustom');
 import('form.validation.FormValidatorPost');
@@ -28,16 +31,16 @@ class FormValidator {
 
 	/** The Form associated with the check */
 	var $form;
-	
+
 	/** The name of the field */
 	var $field;
-	
+
 	/** The type of check ("required" or "optional") */
 	var $type;
-	
+
 	/** The error message associated with a validation failure */
 	var $message;
-	
+
 	/**
 	 * Constructor.
 	 * @param $form Form the associated form
@@ -51,7 +54,7 @@ class FormValidator {
 		$this->type = $type;
 		$this->message = $message;
 	}
-	
+
 	/**
 	 * Check if field value is valid.
 	 * Default check is that field is either optional or not empty.
@@ -60,7 +63,7 @@ class FormValidator {
 	function isValid() {
 		return $this->type == 'optional' || trim($this->form->getData($this->field)) != '';
 	}
-	
+
 	/**
 	 * Check if field value is empty and optional.
 	 * @return boolean
@@ -68,7 +71,7 @@ class FormValidator {
 	function isEmptyAndOptional() {
 		return $this->type == 'optional' && trim($this->form->getData($this->field)) == '';
 	}
-	
+
 	/**
 	 * Get the field associated with the check.
 	 * @return string
@@ -76,15 +79,15 @@ class FormValidator {
 	function getField() {
 		return $this->field;
 	}
-	
+
 	/**
 	 * Get the error message associated with a failed validation check.
 	 * @return string
 	 */
 	function getMessage() {
-		return $this->message;
+		return Locale::translate($this->message);
 	}
-	
+
 }
 
 ?>

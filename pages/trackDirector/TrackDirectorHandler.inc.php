@@ -90,7 +90,7 @@ class TrackDirectorHandler extends Handler {
 			REVIEW_STAGE_ABSTRACT => Locale::translate('submission.abstract'),
 			REVIEW_STAGE_PRESENTATION => Locale::translate('submission.paper')
 		));
-		
+
 		$templateMgr->assign('fieldOptions', Array(
 			SUBMISSION_FIELD_TITLE => 'paper.title',
 			SUBMISSION_FIELD_PRESENTER => 'user.role.presenter',
@@ -152,16 +152,16 @@ class TrackDirectorHandler extends Handler {
 		if (!isset($conference) || !isset($schedConf)) {
 			Validation::redirectLogin();
 		}
-		
+
 		if($page == ROLE_PATH_TRACK_DIRECTOR && !Validation::isTrackDirector($conference->getConferenceId(), $schedConf->getSchedConfId())) {
 			Validation::redirectLogin();
 		}
-		
+
 		if($page == ROLE_PATH_DIRECTOR && !Validation::isDirector($conference->getConferenceId(), $schedConf->getSchedConfId())) {
 			Validation::redirectLogin();
 		}
 	}
-	
+
 	/**
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
@@ -177,13 +177,13 @@ class TrackDirectorHandler extends Handler {
 		if ($schedConf) {
 			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getFullTitle(), true);
 		} elseif ($conference) {
-			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getTitle(), true);
+			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
 		}
 
 		if (Request::getRequestedPage() == 'director') {
 			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $showSidebar, $paperId, $parentPage);
 			$templateMgr->assign('helpTopicId', 'editorial.directorsRole');
-			
+
 		} else {
 			$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole');
 			$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
@@ -213,7 +213,7 @@ class TrackDirectorHandler extends Handler {
 		}
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
-	
+
 	/**
 	 * Display submission management instructions.
 	 * @param $args (type)
@@ -253,57 +253,57 @@ class TrackDirectorHandler extends Handler {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::submissionRegrets($args);
 	}
-	
+
 	function submissionReview($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::submissionReview($args);
 	}
-	
+
 	function submissionHistory($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::submissionHistory($args);
 	}
-	
+
 	function changeTrack() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::changeTrack();
 	}
-	
+
 	function recordDecision() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::recordDecision();
 	}
-	
+
 	function selectReviewer($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::selectReviewer($args);
 	}
-	
+
 	function notifyReviewer($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::notifyReviewer($args);
 	}
-	
+
 	function notifyAllReviewers($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::notifyAllReviewers($args);
 	}
-	
+
 	function userProfile($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::userProfile($args);
 	}
-	
+
 	function clearReview($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::clearReview($args);
 	}
-	
+
 	function cancelReview($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::cancelReview($args);
 	}
-	
+
 	function remindReviewer($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::remindReviewer($args);
@@ -313,42 +313,42 @@ class TrackDirectorHandler extends Handler {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::thankReviewer($args);
 	}
-	
+
 	function rateReviewer() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::rateReviewer();
 	}
-	
+
 	function confirmReviewForReviewer($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::confirmReviewForReviewer($args);
 	}
-	
+
 	function uploadReviewForReviewer($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::uploadReviewForReviewer($args);
 	}
-	
+
 	function enterReviewerRecommendation($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::enterReviewerRecommendation($args);
 	}
-	
+
 	function makeReviewerFileViewable() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::makeReviewerFileViewable();
 	}
-	
+
 	function setDueDate($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::setDueDate($args);
 	}
-	
+
 	function viewMetadata($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::viewMetadata($args);
 	}
-	
+
 	function saveMetadata() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::saveMetadata();
@@ -363,7 +363,7 @@ class TrackDirectorHandler extends Handler {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::uploadReviewVersion();
 	}
-	
+
 	function addSuppFile($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::addSuppFile($args);
@@ -378,7 +378,7 @@ class TrackDirectorHandler extends Handler {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::editSuppFile($args);
 	}
-	
+
 	function saveSuppFile($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::saveSuppFile($args);
@@ -388,12 +388,12 @@ class TrackDirectorHandler extends Handler {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::deleteSuppFile($args);
 	}
-	
+
 	function deletePaperFile($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::deletePaperFile($args);
 	}
-	
+
 	function archiveSubmission($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::archiveSubmission($args);
@@ -408,42 +408,42 @@ class TrackDirectorHandler extends Handler {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::restoreToQueue($args);
 	}
-	
-	
+
+
 	//
 	// Layout Editing
 	//
-	
-	function deleteArticleImage($args) {
+
+	function deletePaperImage($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::deleteArticleImage($args);
+		SubmissionEditHandler::deletePaperImage($args);
 	}
-	
+
 	function uploadLayoutFile() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::uploadLayoutFile();
 	}
-	
+
 	function uploadLayoutVersion() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::uploadLayoutVersion();
 	}
-	
+
 	function uploadGalley() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::uploadGalley();
 	}
-	
+
 	function editGalley($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::editGalley($args);
 	}
-	
+
 	function saveGalley($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::saveGalley($args);
 	}
-	
+
 	function orderGalley() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::orderGalley();
@@ -453,38 +453,38 @@ class TrackDirectorHandler extends Handler {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::deleteGalley($args);
 	}
-	
+
 	function proofGalley($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::proofGalley($args);
 	}
-	
+
 	function proofGalleyTop($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::proofGalleyTop($args);
 	}
-	
+
 	function proofGalleyFile($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::proofGalleyFile($args);
 	}	
-	
+
 	function uploadSuppFile() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::uploadSuppFile();
 	}
-	
+
 	function orderSuppFile() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::orderSuppFile();
 	}
-	
+
 	function completePaper($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::completePaper($args);
 	}
-	
-	
+
+
 	//
 	// Submission History
 	//
@@ -498,22 +498,22 @@ class TrackDirectorHandler extends Handler {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::submissionEventLogType($args);
 	}
-	
+
 	function clearSubmissionEventLog($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::clearSubmissionEventLog($args);
 	}
-	
+
 	function submissionEmailLog($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::submissionEmailLog($args);
 	}
-	
+
 	function submissionEmailLogType($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::submissionEmailLogType($args);
 	}
-	
+
 	function clearSubmissionEmailLog($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::clearSubmissionEmailLog($args);
@@ -543,8 +543,8 @@ class TrackDirectorHandler extends Handler {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::submissionNotes($args);
 	}
-	
-	
+
+
 	//
 	// Misc.
 	//
@@ -553,56 +553,56 @@ class TrackDirectorHandler extends Handler {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::downloadFile($args);
 	}
-	
+
 	function viewFile($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::viewFile($args);
 	}
-	
+
 	//
 	// Submission Comments
 	//
-	
+
 	function viewPeerReviewComments($args) {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::viewPeerReviewComments($args);
 	}
-	
+
 	function postPeerReviewComment() {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::postPeerReviewComment();
 	}
-	
+
 	function viewDirectorDecisionComments($args) {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::viewDirectorDecisionComments($args);
 	}
-	
+
 	function blindCcReviewsToReviewers($args) {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::blindCcReviewsToReviewers($args);
 	}
-	
+
 	function postDirectorDecisionComment() {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::postDirectorDecisionComment();
 	}
-	
+
 	function emailDirectorDecisionComment() {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::emailDirectorDecisionComment();
 	}
-	
+
 	function editComment($args) {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::editComment($args);
 	}
-	
+
 	function saveComment() {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::saveComment();
 	}
-	
+
 	function deleteComment($args) {
 		import('pages.trackDirector.SubmissionCommentsHandler');
 		SubmissionCommentsHandler::deleteComment($args);

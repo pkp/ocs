@@ -17,25 +17,24 @@
 import("presenter.form.submit.PresenterSubmitForm");
 
 class PresenterSubmitStep2Form extends PresenterSubmitForm {
-	
 	/**
 	 * Constructor.
 	 */
 	function PresenterSubmitStep2Form($paper) {
 		parent::PresenterSubmitForm($paper, 2);
-		
+
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorCustom($this, 'presenters', 'required', 'presenter.submit.form.presenterRequired', create_function('$presenters', 'return count($presenters) > 0;')));
 		$this->addCheck(new FormValidatorArray($this, 'presenters', 'required', 'presenter.submit.form.presenterRequiredFields', array('firstName', 'lastName', 'email')));
-		$this->addCheck(new FormValidator($this, 'title', 'required', 'presenter.submit.form.titleRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'presenter.submit.form.titleRequired'));
 
 		$schedConf =& Request::getSchedConf();
 		$reviewMode = $schedConf->getSetting('reviewMode');
 		if ($reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE) {
-			$this->addCheck(new FormValidator($this, 'abstract', 'required', 'presenter.submit.form.abstractRequired'));
+			$this->addCheck(new FormValidatorLocale($this, 'abstract', 'required', 'presenter.submit.form.abstractRequired'));
 		}
 	}
-	
+
 	/**
 	 * Initialize form data from current paper.
 	 */
@@ -46,25 +45,21 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 			$paper = &$this->paper;
 			$this->_data = array(
 				'presenters' => array(),
-				'title' => $paper->getTitle(),
-				'titleAlt1' => $paper->getTitleAlt1(),
-				'titleAlt2' => $paper->getTitleAlt2(),
-				'abstract' => $paper->getAbstract(),
-				'abstractAlt1' => $paper->getAbstractAlt1(),
-				'abstractAlt2' => $paper->getAbstractAlt2(),
-				'discipline' => $paper->getDiscipline(),
-				'subjectClass' => $paper->getSubjectClass(),
-				'subject' => $paper->getSubject(),
-				'coverageGeo' => $paper->getCoverageGeo(),
-				'coverageChron' => $paper->getCoverageChron(),
-				'coverageSample' => $paper->getCoverageSample(),
-				'type' => $paper->getType(),
-				'paperType' => $paper->getPaperType(),
+				'title' => $paper->getTitle(null), // Localized
+				'abstract' => $paper->getAbstract(null), // Localized
+				'discipline' => $paper->getDiscipline(null), // Localized
+				'subjectClass' => $paper->getSubjectClass(null), // Localized
+				'subject' => $paper->getSubject(null), // Localized
+				'coverageGeo' => $paper->getCoverageGeo(null), // Localized
+				'coverageChron' => $paper->getCoverageChron(null), // Localized
+				'coverageSample' => $paper->getCoverageSample(null), // Localized
+				'type' => $paper->getType(null), // Localized
+				'paperType' => $paper->getTypeConst(),
 				'language' => $paper->getLanguage(),
-				'sponsor' => $paper->getSponsor(),
+				'sponsor' => $paper->getSponsor(null), // Localized
 				'track' => $trackDao->getTrack($paper->getTrackId())
 			);
-			
+
 			$presenters = &$paper->getPresenters();
 			for ($i=0, $count=count($presenters); $i < $count; $i++) {
 				array_push(
@@ -78,7 +73,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 						'country' => $presenters[$i]->getCountry(),
 						'email' => $presenters[$i]->getEmail(),
 						'url' => $presenters[$i]->getUrl(),
-						'biography' => $presenters[$i]->getBiography()
+						'biography' => $presenters[$i]->getBiography(null)
 					)
 				);
 				if ($presenters[$i]->getPrimaryContact()) {
@@ -87,7 +82,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 			}
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -97,8 +92,6 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 			'deletedPresenters',
 			'primaryContact',
 			'title',
-			'titleAlt1',
-			'titleAlt2',
 			'discipline',
 			'subjectClass',
 			'subject',
@@ -115,8 +108,6 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		$reviewMode = $schedConf->getSetting('reviewMode');
 		if ($reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE) {
 			$userVars[] = 'abstract';
-			$userVars[] = 'abstractAlt1';
-			$userVars[] = 'abstractAlt2';
 		}
 		$this->readUserVars($userVars);
 
@@ -127,13 +118,27 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 	}
 
 	/**
+	 * Get the names of fields for which data should be localized
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		$returner = array('title', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
+		$schedConf =& Request::getSchedConf();
+		$reviewMode = $schedConf->getSetting('reviewMode');
+		if ($reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE) {
+			$returner[] = 'abstract';
+		}
+		return $returner;
+	}
+
+	/**
 	 * Display the form.
 	 */
 	function display() {
+		$templateMgr =& TemplateManager::getManager();
+
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
-
-		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('countries', $countries);
 
 		$schedConf =& Request::getSchedConf();
@@ -155,26 +160,22 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		$user =& Request::getUser();
 
 		// Update paper
-		$paper->setTitle($this->getData('title'));
-		$paper->setTitleAlt1($this->getData('titleAlt1'));
-		$paper->setTitleAlt2($this->getData('titleAlt2'));
+		$paper->setTitle($this->getData('title'), null); // Localized
 
 		$reviewMode = $schedConf->getSetting('reviewMode');
 		if ($reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE) {
-			$paper->setAbstract($this->getData('abstract'));
-			$paper->setAbstractAlt1($this->getData('abstractAlt1'));
-			$paper->setAbstractAlt2($this->getData('abstractAlt2'));
+			$paper->setAbstract($this->getData('abstract'), null); // Localized
 		}
 
-		$paper->setDiscipline($this->getData('discipline'));
-		$paper->setSubjectClass($this->getData('subjectClass'));
-		$paper->setSubject($this->getData('subject'));
-		$paper->setCoverageGeo($this->getData('coverageGeo'));
-		$paper->setCoverageChron($this->getData('coverageChron'));
-		$paper->setCoverageSample($this->getData('coverageSample'));
-		$paper->setType($this->getData('type'));
-		$paper->setLanguage($this->getData('language'));
-		$paper->setSponsor($this->getData('sponsor'));
+		$paper->setDiscipline($this->getData('discipline'), null); // Localized
+		$paper->setSubjectClass($this->getData('subjectClass'), null); // Localized
+		$paper->setSubject($this->getData('subject'), null); // Localized
+		$paper->setCoverageGeo($this->getData('coverageGeo'), null); // Localized
+		$paper->setCoverageChron($this->getData('coverageChron'), null); // Localized
+		$paper->setCoverageSample($this->getData('coverageSample'), null); // Localized
+		$paper->setType($this->getData('type'), null); // Localized
+		$paper->setLanguage($this->getData('language')); // Localized
+		$paper->setSponsor($this->getData('sponsor'), null); // Localized
 
 		$allowIndividualSubmissions = $schedConf->getSetting('allowIndividualSubmissions');
 		$allowPanelSubmissions = $schedConf->getSetting('allowPanelSubmissions');
@@ -183,12 +184,12 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		if ($allowIndividualSubmissions && $allowPanelSubmissions) {
 			if ($this->getData('paperType') == SUBMISSION_TYPE_PANEL) $paperType = SUBMISSION_TYPE_PANEL;
 		} elseif (!$allowIndividualSubmissions) $paperType = SUBMISSION_TYPE_PANEL;
-		$paper->setPaperType($paperType);
+		$paper->setTypeConst($paperType);
 
 		// Update the submission progress if necessary.
 		if ($paper->getSubmissionProgress() <= $this->step) {
 			$paper->stampStatusModified();
-			
+
 			// If we aren't about to collect the paper, the submission is complete
 			// (for now)
 			$reviewMode = $schedConf->getSetting('reviewMode');
@@ -208,7 +209,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 				$this->confirmSubmission($paper, $user, $schedConf, $conference, 'SUBMISSION_ACK', $trackDirectors);
 			}
 		}
-		
+
 		// Update presenters
 		$presenters = $this->getData('presenters');
 		for ($i=0, $count=count($presenters); $i < $count; $i++) {
@@ -216,13 +217,13 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 				// Update an existing presenter
 				$presenter = &$paper->getPresenter($presenters[$i]['presenterId']);
 				$isExistingPresenter = true;
-				
+
 			} else {
 				// Create a new presenter
 				$presenter = &new Presenter();
 				$isExistingPresenter = false;
 			}
-			
+
 			if ($presenter != null) {
 				$presenter->setFirstName($presenters[$i]['firstName']);
 				$presenter->setMiddleName($presenters[$i]['middleName']);
@@ -234,19 +235,19 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 				$presenter->setBiography($presenters[$i]['biography']);
 				$presenter->setPrimaryContact($this->getData('primaryContact') == $i ? 1 : 0);
 				$presenter->setSequence($presenters[$i]['seq']);
-				
+
 				if ($isExistingPresenter == false) {
 					$paper->addPresenter($presenter);
 				}
 			}
 		}
-		
+
 		// Remove deleted presenters
 		$deletedPresenters = explode(':', $this->getData('deletedPresenters'));
 		for ($i=0, $count=count($deletedPresenters); $i < $count; $i++) {
 			$paper->removePresenter($deletedPresenters[$i]);
 		}
-		
+
 		// Save the paper
 		$paperDao->updatePaper($paper);
 
@@ -258,7 +259,6 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		PaperLog::logEvent($this->paperId, PAPER_LOG_ABSTRACT_SUBMIT, LOG_TYPE_PRESENTER, $user->getUserId(), 'log.presenter.abstractSubmitted', array('submissionId' => $paper->getPaperId(), 'presenterName' => $user->getFullName()));
 		return $this->paperId;
 	}
-	
 }
 
 ?>

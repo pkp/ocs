@@ -13,17 +13,17 @@
  *
  * $Id$
  */
- 
+
 import("submission.form.comment.CommentForm");
 
 class PeerReviewCommentForm extends CommentForm {
 
 	/** @var int the ID of the review assignment */
 	var $reviewId;
-	
+
 	/** @var array the IDs of the inserted comments */
 	var $insertedComments;
-	
+
 	/**
 	 * Constructor.
 	 * @param $paper object
@@ -32,7 +32,7 @@ class PeerReviewCommentForm extends CommentForm {
 		parent::CommentForm($paper, COMMENT_TYPE_PEER_REVIEW, $roleId, $reviewId);
 		$this->reviewId = $reviewId;
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -57,10 +57,10 @@ class PeerReviewCommentForm extends CommentForm {
 				'reviewId' => $this->reviewId
 			)
 		);
-		
+
 		parent::display();
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -73,16 +73,16 @@ class PeerReviewCommentForm extends CommentForm {
 			)
 		);
 	}
-	
+
 	/**
 	 * Add the comment.
 	 */
 	function execute() {
 		// Personalized execute() method since now there are possibly two comments contained within each form submission.
-	
+
 		$commentDao = &DAORegistry::getDAO('PaperCommentDAO');
 		$this->insertedComments = array();
-	
+
 		// Assign all common information	
 		$comment = &new PaperComment();
 		$comment->setCommentType($this->commentType);
@@ -92,14 +92,14 @@ class PeerReviewCommentForm extends CommentForm {
 		$comment->setAuthorId($this->user->getUserId());
 		$comment->setCommentTitle($this->getData('commentTitle'));
 		$comment->setDatePosted(Core::getCurrentDate());
-		
+
 		// If comments "For presenters and director" submitted
 		if ($this->getData('presenterComments') != null) {
 			$comment->setComments($this->getData('presenterComments'));
 			$comment->setViewable(1);
 			array_push($this->insertedComments, $commentDao->insertPaperComment($comment));
 		}		
-		
+
 		// If comments "For director" submitted
 		if ($this->getData('comments') != null) {
 			$comment->setComments($this->getData('comments'));

@@ -12,14 +12,27 @@
   * $Id$
   -->
 
-<install version="2.0.0.0">
-	
+<install version="2.1.0.0">
+	<!-- #2961: Stage 1 of 2.1 schema upgrade: Do not drop columns yet -->
+	<upgrade minversion="2.0.0.0" maxversion="2.0.0.0">
+		<schema file="ocs_schema_stage1.xml" />
+		<data file="upgrade/2.1.0_preupdate.xml" />
+	</upgrade>
+
+	<!-- Upgrade to version 2.1.0 -->
+	<upgrade minversion="2.1.0.0" maxversion="2.1.0.0">
+		<data file="upgrade/2.1.0_localize.xml" />
+		<code function="setConferencePrimaryLocales" />
+		<code function="localizeConferenceSettings" />
+		<code function="localizeSchedConfSettings" />
+		<code function="installBlockPlugins" />
+		<code function="setGalleyLocales" />
+		<data file="upgrade/2.1.0_update.xml" />
+		<code function="clearDataCache" />
+		<note file="release-notes/README-2.1.0" />
+	</upgrade>
+
 	<!-- Common upgrade files -->
 	<schema file="ocs_schema.xml"/>
 
-	<!-- Upgrade to version 2.0.1 -->
-	<upgrade minversion="2.0.0.0" maxversion="2.0.0.1">
-		<code function="installBlockPlugins"/>
-		<note file="release-notes/README-2.0.1"/>
-	</upgrade>
 </install>

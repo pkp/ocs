@@ -37,15 +37,15 @@
 {assign var=schedConf value=$result.schedConf}
 {assign var=conference value=$result.conference}
 <tr valign="top">
-	{if !$currentConference}<td><a href="{url conference=$conference->getPath()}">{$conference->getTitle()|escape}</a></td>{/if}
-	<td><a href="{url conference=$conference->getPath() page="schedConf" op="view"}">{$schedConf->getTitle()|escape}</a></td>
+	{if !$currentConference}<td><a href="{url conference=$conference->getPath()}">{$conference->getConferenceTitle()|escape}</a></td>{/if}
+	<td><a href="{url conference=$conference->getPath() page="schedConf" op="view"}">{$schedConf->getSchedConfTitle()|escape}</a></td>
 	<td width="35%">{$paper->getPaperTitle()|strip_unsafe_html}</td>
 	<td width="25%" align="right">
 			<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>
 		{if $schedConfPaperPermissions[$schedConfId]}
-		{foreach from=$publishedPaper->getGalleys() item=galley name=galleyList}
+		{foreach from=$publishedPaper->getLocalizedGalleys() item=galley name=galleyList}
 			&nbsp;
-			<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>
+			<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getGalleyLabel()|escape}</a>
 		{/foreach}
 		{/if}
 	</td>

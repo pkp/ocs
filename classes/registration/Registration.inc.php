@@ -27,11 +27,11 @@ class Registration extends DataObject {
 	function Registration() {
 		parent::DataObject();
 	}
-	
+
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get the ID of the registration.
 	 * @return int
@@ -39,7 +39,7 @@ class Registration extends DataObject {
 	function getRegistrationId() {
 		return $this->getData('registrationId');
 	}
-	
+
 	/**
 	 * Set the ID of the registration.
 	 * @param $registrationId int
@@ -55,7 +55,7 @@ class Registration extends DataObject {
 	function getSchedConfId() {
 		return $this->getData('schedConfId');
 	}
-	
+
 	/**
 	 * Set the scheduled conference ID of the registration.
 	 * @param $schedConfId int
@@ -71,7 +71,7 @@ class Registration extends DataObject {
 	function getUserId() {
 		return $this->getData('userId');
 	}
-	
+
 	/**
 	 * Set the user ID of the registration.
 	 * @param $userId int
@@ -96,7 +96,7 @@ class Registration extends DataObject {
 	function getTypeId() {
 		return $this->getData('typeId');
 	}
-	
+
 	/**
 	 * Set the registration type ID of the registration.
 	 * @param $typeId int
@@ -109,7 +109,7 @@ class Registration extends DataObject {
 	 * Get the registration type name of the registration.
 	 * @return string
 	 */
-	function getTypeName() {
+	function getRegistrationTypeName() {
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 		return $registrationTypeDao->getRegistrationTypeName($this->getData('typeId'));
 	}
@@ -121,7 +121,7 @@ class Registration extends DataObject {
 	function getDateRegistered() {
 		return $this->getData('dateRegistered');
 	}
-	
+
 	/**
 	 * Set date of registration.
 	 * @param $dateRegistered date (YYYY-MM-DD)
@@ -137,7 +137,7 @@ class Registration extends DataObject {
 	function getDatePaid() {
 		return $this->getData('datePaid');
 	}
-	
+
 	/**
 	 * Set registration end date.
 	 * @param $datePaid date (YYYY-MM-DD)
@@ -169,7 +169,7 @@ class Registration extends DataObject {
 	function getMembership() {
 		return $this->getData('membership');
 	}
-	
+
 	/**
 	 * Set registration membership.
 	 * @param $membership string
@@ -185,7 +185,7 @@ class Registration extends DataObject {
 	function getDomain() {
 		return $this->getData('domain');
 	}
-	
+
 	/**
 	 * Set registration domain string.
 	 * @param $domain string
@@ -201,7 +201,7 @@ class Registration extends DataObject {
 	function getIPRange() {
 		return $this->getData('ipRange');
 	}
-	
+
 	/**
 	 * Set registration ip range string.
 	 * @param $ipRange string

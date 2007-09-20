@@ -32,7 +32,7 @@ class RegistrationForm extends Form {
 		$schedConf = &Request::getSchedConf();
 
 		parent::Form('registration/registrationForm.tpl');
-	
+
 		// User is provided and valid
 		$this->addCheck(new FormValidator($this, 'userId', 'required', 'manager.registration.form.userIdRequired'));
 		$this->addCheck(new FormValidatorCustom($this, 'userId', 'required', 'manager.registration.form.userIdValid', create_function('$userId', '$userDao = &DAORegistry::getDAO(\'UserDAO\'); return $userDao->userExistsById($userId);')));
@@ -65,13 +65,13 @@ class RegistrationForm extends Form {
 				'((([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}((\s)*[' . REGISTRATION_IP_RANGE_RANGE . '](\s)*([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}){0,1})|(([0-9]{1,3})([.]([0-9]{1,3})){3}([\/](([3][0-2]{0,1})|([1-2]{0,1}[0-9])))))' .
 				')*' .
 			'$/i'));
-		
+
 		// Notify email flag is valid value
 		$this->addCheck(new FormValidatorInSet($this, 'notifyEmail', 'optional', 'manager.registration.form.notifyEmailValid', array('1')));
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -92,10 +92,10 @@ class RegistrationForm extends Form {
 		$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
 		$templateMgr->assign('registrationTypes', $registrationTypes);
 		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
-	
+
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize form data from current registration.
 	 */
@@ -103,7 +103,7 @@ class RegistrationForm extends Form {
 		if (isset($this->registrationId)) {
 			$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
 			$registration = &$registrationDao->getRegistration($this->registrationId);
-			
+
 			if ($registration != null) {
 				$this->_data = array(
 					'userId' => $registration->getUserId(),
@@ -120,7 +120,7 @@ class RegistrationForm extends Form {
 			}
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -149,22 +149,22 @@ class RegistrationForm extends Form {
 			$this->addCheck(new FormValidatorCustom($this, 'notifyEmail', 'required', 'manager.registration.form.registrationContactRequired', create_function('', '$schedConf = &Request::getSchedConf(); $schedConfSettingsDao = &DAORegistry::getDAO(\'SchedConfSettingsDAO\'); $registrationName = $schedConfSettingsDao->getSetting($schedConf->getSchedConfId(), \'registrationName\'); $registrationEmail = $schedConfSettingsDao->getSetting($schedConf->getSchedConfId(), \'registrationEmail\'); return $registrationName != \'\' && $registrationEmail != \'\' ? true : false;'), array()));
 		}
 	}
-	
+
 	/**
 	 * Save registration. 
 	 */
 	function execute() {
 		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
 		$schedConf = &Request::getSchedConf();
-	
+
 		if (isset($this->registrationId)) {
 			$registration = &$registrationDao->getRegistration($this->registrationId);
 		}
-		
+
 		if (!isset($registration)) {
 			$registration = &new Registration();
 		}
-		
+
 		$registration->setSchedConfId($schedConf->getSchedConfId());
 		$registration->setUserId($this->getData('userId'));
 		$registration->setTypeId($this->getData('typeId'));
@@ -189,7 +189,7 @@ class RegistrationForm extends Form {
 			$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 			$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
 
-			$schedConfName = $schedConf->getTitle();
+			$schedConfName = $schedConf->getSchedConfTitle();
 			$schedConfId = $schedConf->getSchedConfId();
 			$user = &$userDao->getUser($this->getData('userId'));
 			$registrationType = &$registrationTypeDao->getRegistrationType($this->getData('typeId'));
@@ -229,7 +229,7 @@ class RegistrationForm extends Form {
 			$mail->send();
 		}
 	}
-	
+
 }
 
 ?>

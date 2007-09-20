@@ -17,13 +17,13 @@
 import("manager.form.schedConfSetup.SchedConfSetupForm");
 
 class SchedConfSetupStep1Form extends SchedConfSetupForm {
-	
+
 	function SchedConfSetupStep1Form() {
 		parent::SchedConfSetupForm(
 			1,
 			array(
-				'schedConfIntroduction' => 'string',
-				'schedConfOverview' => 'string',
+				'introduction' => 'string',
+				'overview' => 'string',
 				'locationName' => 'string',
 				'locationAddress' => 'string',
 				'locationCity' => 'string',
@@ -51,6 +51,14 @@ class SchedConfSetupStep1Form extends SchedConfSetupForm {
 		$this->addCheck(new FormValidatorEmail($this, 'contactEmail', 'required', 'manager.schedConfSetup.details.contactEmailRequired'));
 		$this->addCheck(new FormValidator($this, 'supportName', 'required', 'manager.schedConfSetup.details.supportNameRequired'));
 		$this->addCheck(new FormValidatorEmail($this, 'supportEmail', 'required', 'manager.schedConfSetup.details.supportEmailRequired'));
+	}
+
+	/**
+	 * Get the list of field names for which localized settings are used.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('introduction', 'overview', 'emailSignature', 'sponsorNote', 'contributorNote');
 	}
 
 	function display() {

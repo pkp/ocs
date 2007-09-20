@@ -11,18 +11,30 @@
 {assign var="pageTitle" value="manager.schedConfSetup.details.title"}
 {include file="manager/schedConfSetup/setupHeader.tpl"}
 
-<form method="post" action="{url op="saveSchedConfSetup" path="1"}">
+<form name="setupForm" method="post" action="{url op="saveSchedConfSetup" path="1"}">
 {include file="common/formErrors.tpl"}
+
+{if count($formLocales) > 1}
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="80%" class="value">
+			{url|assign:"setupFormUrl" op="schedConfSetup" path="1"}
+			{form_language_chooser form="setupForm" url=$setupFormUrl}
+		</td>
+	</tr>
+</table>
+{/if}
 
 <h3>1.1 {translate key="manager.schedConfSetup.details.description"}</h3>
 
-<p><label for="schedConfIntroduction">{translate key="manager.schedConfSetup.details.introduction.description"}</label></p>
+<p><label for="introduction">{translate key="manager.schedConfSetup.details.introduction.description"}</label></p>
 
-<p><textarea name="schedConfIntroduction" id="schedConfIntroduction" rows="10" cols="60" class="textArea">{$schedConfIntroduction|escape}</textarea></p>
+<p><textarea name="introduction[{$formLocale|escape}]" id="introduction" rows="10" cols="60" class="textArea">{$introduction[$formLocale]|escape}</textarea></p>
 
-<p><label for="schedConfOverview">{translate key="manager.schedConfSetup.details.overview.description"}</label></p>
+<p><label for="overview">{translate key="manager.schedConfSetup.details.overview.description"}</label></p>
 
-<p><textarea name="schedConfOverview" id="schedConfOverview" rows="10" cols="60" class="textArea">{$schedConfOverview|escape}</textarea></p>
+<p><textarea name="overview[{$formLocale|escape]}" id="overview" rows="10" cols="60" class="textArea">{$overview[$formLocale]|escape}</textarea></p>
 
 <div class="separator"></div>
 
@@ -116,7 +128,7 @@
 	<tr valign="top">
 		<td class="label">{fieldLabel name="emailSignature" key="manager.schedConfSetup.details.emailSignature"}</td>
 		<td class="value">
-			<textarea name="emailSignature" id="emailSignature" rows="3" cols="60" class="textArea">{$emailSignature|escape}</textarea>
+			<textarea name="emailSignature[{$formLocale|escape}]" id="emailSignature" rows="3" cols="60" class="textArea">{$emailSignature[$formLocale]|escape}</textarea>
 		</td>
 	</tr>
 	<tr valign="top"><td colspan="2">&nbsp;</td></tr>
@@ -143,7 +155,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="sponsorNote" key="manager.schedConfSetup.details.note"}</td>
-		<td width="80%" class="value"><textarea name="sponsorNote" id="sponsorNote" rows="5" cols="40" class="textArea">{$sponsorNote|escape}</textarea></td>
+		<td width="80%" class="value"><textarea name="sponsorNote[{$formLocale|escape}]" id="sponsorNote" rows="5" cols="40" class="textArea">{$sponsorNote[$formLocale]|escape}</textarea></td>
 	</tr>
 {foreach name=sponsors from=$sponsors key=sponsorId item=sponsor}
 	<tr valign="top">
@@ -198,7 +210,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contributorNote" key="manager.schedConfSetup.details.note"}</td>
-		<td width="80%" class="value"><textarea name="contributorNote" id="contributorNote" rows="5" cols="40" class="textArea">{$contributorNote|escape}</textarea></td>
+		<td width="80%" class="value"><textarea name="contributorNote[{$formLocale|escape}]" id="contributorNote" rows="5" cols="40" class="textArea">{$contributorNote[$formLocale]|escape}</textarea></td>
 	</tr>
 {foreach name=contributors from=$contributors key=contributorId item=contributor}
 	<tr valign="top">

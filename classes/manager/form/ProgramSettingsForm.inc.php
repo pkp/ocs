@@ -20,13 +20,13 @@ class ProgramSettingsForm extends Form {
 
 	/** @var array the setting names */
 	var $settings;
-	
+
 	/**
 	 * Constructor.
 	 */
 	function ProgramSettingsForm() {
 		parent::Form('manager/programSettings.tpl');
-		
+
 		$this->addCheck(new FormValidatorPost($this));
 
 		$this->settings = array(
@@ -34,7 +34,7 @@ class ProgramSettingsForm extends Form {
 			'programFileTitle' => 'string'
 		);
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -49,7 +49,7 @@ class ProgramSettingsForm extends Form {
 		$templateMgr->assign('programFile', $schedConf->getSetting('programFile'));
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize form data from current settings.
 	 */
@@ -59,7 +59,7 @@ class ProgramSettingsForm extends Form {
 			$this->_data[$settingName] = $schedConf->getSetting($settingName);
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -73,7 +73,7 @@ class ProgramSettingsForm extends Form {
 	function execute() {
 		$schedConf = &Request::getSchedConf();
 		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-		
+
 		foreach ($this->_data as $name => $value) {
 			$settingsDao->updateSetting(
 				$schedConf->getSchedConfId(),

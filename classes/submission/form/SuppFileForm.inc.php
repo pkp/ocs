@@ -19,13 +19,13 @@ import('form.Form');
 class SuppFileForm extends Form {
 	/** @var int the ID of the supplementary file */
 	var $suppFileId;
-	
+
 	/** @var Paper current paper */
 	var $paper;
-	
+
 	/** @var SuppFile current file */
 	var $suppFile;
-	
+
 	/**
 	 * Constructor.
 	 * @param $paper object
@@ -33,9 +33,9 @@ class SuppFileForm extends Form {
 	 */
 	function SuppFileForm($paper, $suppFileId = null) {
 		parent::Form('submission/suppFile/suppFile.tpl');
-		
+
 		$this->paper = $paper;
-		
+
 		if (isset($suppFileId) && !empty($suppFileId)) {
 			$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 			$this->suppFile = &$suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
@@ -43,12 +43,21 @@ class SuppFileForm extends Form {
 				$this->suppFileId = $suppFileId;
 			}
 		}
-		
+
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'title', 'required', 'presenter.submit.suppFile.form.titleRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'presenter.submit.suppFile.form.titleRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
+	/**
+	 * Get the names of fields for which data should be localized
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		return $suppFileDao->getLocaleFieldNames();
+	}
+
 	/**
 	 * Display the form.
 	 */
@@ -60,7 +69,7 @@ class SuppFileForm extends Form {
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('paperId', $this->paper->getPaperId());
 		$templateMgr->assign('suppFileId', $this->suppFileId);
-		
+
 		$typeOptionsOutput = array(
 			'presenter.submit.suppFile.researchInstrument',
 			'presenter.submit.suppFile.researchMaterials',
@@ -73,25 +82,25 @@ class SuppFileForm extends Form {
 		$typeOptionsValues = $typeOptionsOutput;
 		array_push($typeOptionsOutput, 'common.other');
 		array_push($typeOptionsValues, '');
-		
+
 		$templateMgr->assign('typeOptionsOutput', $typeOptionsOutput);
 		$templateMgr->assign('typeOptionsValues', $typeOptionsValues);
 
 		// Sometimes it's necessary to track the page we came from in
 		// order to redirect back to the right place
 		$templateMgr->assign('from', Request::getUserVar('from'));
-		
+
 		if (isset($this->paper)) {
 			$templateMgr->assign('submissionProgress', $this->paper->getSubmissionProgress());
 		}
-		
+
 		if (isset($this->suppFile)) {
 			$templateMgr->assign_by_ref('suppFile', $this->suppFile);
 		}
 		$templateMgr->assign('helpTopicId','submission.supplementaryFiles');		
 		parent::display();
 	}
-	
+
 	/**
 	 * Validate the form
 	 */
@@ -101,7 +110,7 @@ class SuppFileForm extends Form {
 
 		$publicSuppFileId = $this->getData('publicSuppFileId');
 		if ($publicSuppFileId && $suppFileDao->suppFileExistsByPublicId($publicSuppFileId, $this->suppFileId, $conference->getConferenceId())) {
-			$this->addError('publicSchedConfId', 'presenter.suppFile.suppFilePublicIdentificationExists');
+			$this->addError('publicSchedConfId', Locale::translate('presenter.suppFile.suppFilePublicIdentificationExists'));
 			$this->addErrorField('publicSuppFileId');
 		}
 
@@ -115,30 +124,30 @@ class SuppFileForm extends Form {
 		if (isset($this->suppFile)) {
 			$suppFile = &$this->suppFile;
 			$this->_data = array(
-				'title' => $suppFile->getTitle(),
-				'creator' => $suppFile->getCreator(),
-				'subject' => $suppFile->getSubject(),
+				'title' => $suppFile->getTitle(null), // Localized
+				'creator' => $suppFile->getCreator(null), // Localized
+				'subject' => $suppFile->getSubject(null), // Localized
 				'type' => $suppFile->getType(),
-				'typeOther' => $suppFile->getTypeOther(),
-				'description' => $suppFile->getDescription(),
-				'publisher' => $suppFile->getPublisher(),
-				'sponsor' => $suppFile->getSponsor(),
+				'typeOther' => $suppFile->getTypeOther(null), // Localized
+				'description' => $suppFile->getDescription(null), // Localized
+				'publisher' => $suppFile->getPublisher(null), // Localized
+				'sponsor' => $suppFile->getSponsor(null), // Localized
 				'dateCreated' => $suppFile->getDateCreated(),
-				'source' => $suppFile->getSource(),
+				'source' => $suppFile->getSource(null), // Localized
 				'language' => $suppFile->getLanguage(),
 				'showReviewers' => $suppFile->getShowReviewers()==1?1:0,
 				'publicSuppFileId' => $suppFile->getPublicSuppFileId()
 			);
-			
+
 		} else {
 			$this->_data = array(
 				'type' => '',
 				'showReviewers' => 1
 			);
 		}
-		
+
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -161,7 +170,7 @@ class SuppFileForm extends Form {
 			)
 		);
 	}
-	
+
 	/**
 	 * Save changes to the supplementary file.
 	 * @return int the supplementary file ID
@@ -170,9 +179,9 @@ class SuppFileForm extends Form {
 		import("file.PaperFileManager");
 		$paperFileManager = &new PaperFileManager($this->paper->getPaperId());
 		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-		
+
 		$fileName = isset($fileName) ? $fileName : 'uploadSuppFile';
-			
+
 		if (isset($this->suppFile)) {
 			$suppFile = &$this->suppFile;
 
@@ -182,14 +191,14 @@ class SuppFileForm extends Form {
 				import('search.PaperSearchIndex');
 				PaperSearchIndex::updateFileIndex($this->paper->getPaperId(), PAPER_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
 			}
-			
+
 			// Index metadata
 			PaperSearchIndex::indexSuppFileMetadata($suppFile);
 
 			// Update existing supplementary file
 			$this->setSuppFileData($suppFile);
 			$suppFileDao->updateSuppFile($suppFile);
-		
+
 		} else {
 			// Upload file, if file selected.
 			if ($paperFileManager->uploadedFileExists($fileName)) {
@@ -199,7 +208,7 @@ class SuppFileForm extends Form {
 			} else {
 				$fileId = 0;
 			}
-			
+
 			// Insert new supplementary file		
 			$suppFile = &new SuppFile();
 			$suppFile->setPaperId($this->paper->getPaperId());
@@ -208,25 +217,25 @@ class SuppFileForm extends Form {
 			$suppFileDao->insertSuppFile($suppFile);
 			$this->suppFileId = $suppFile->getSuppFileId();
 		}
-		
+
 		return $this->suppFileId;
 	}
-	
+
 	/**
 	 * Assign form data to a SuppFile.
 	 * @param $suppFile SuppFile
 	 */
 	function setSuppFileData(&$suppFile) {
-		$suppFile->setTitle($this->getData('title'));
-		$suppFile->setCreator($this->getData('creator'));
-		$suppFile->setSubject($this->getData('subject'));
+		$suppFile->setTitle($this->getData('title'), null); // Localized
+		$suppFile->setCreator($this->getData('creator'), null); // Localized
+		$suppFile->setSubject($this->getData('subject'), null); // Localized
 		$suppFile->setType($this->getData('type'));
-		$suppFile->setTypeOther($this->getData('typeOther'));
-		$suppFile->setDescription($this->getData('description'));
-		$suppFile->setPublisher($this->getData('publisher'));
-		$suppFile->setSponsor($this->getData('sponsor'));
+		$suppFile->setTypeOther($this->getData('typeOther'), null); // Localized
+		$suppFile->setDescription($this->getData('description'), null); // Localized
+		$suppFile->setPublisher($this->getData('publisher'), null); // Localized
+		$suppFile->setSponsor($this->getData('sponsor'), null); // Localized
 		$suppFile->setDateCreated($this->getData('dateCreated') == '' ? Core::getCurrentDate() : $this->getData('dateCreated'));
-		$suppFile->setSource($this->getData('source'));
+		$suppFile->setSource($this->getData('source'), null); // Localized
 		$suppFile->setLanguage($this->getData('language'));
 		$suppFile->setShowReviewers($this->getData('showReviewers')==1?1:0);
 		$suppFile->setPublicSuppFileId($this->getData('publicSuppFileId'));

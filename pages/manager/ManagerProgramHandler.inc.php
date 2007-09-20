@@ -22,17 +22,17 @@ class ManagerProgramHandler extends ManagerHandler {
 	function program() {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect (null, null, 'index');
 
 		import('manager.form.ProgramSettingsForm');
-		
+
 		$settingsForm = &new ProgramSettingsForm();
 		$settingsForm->initData();
 		$settingsForm->display();
 	}
-	
+
 	/**
 	 * Save changes to program settings.
 	 */
@@ -81,7 +81,7 @@ class ManagerProgramHandler extends ManagerHandler {
 
 		if (!$editData && $settingsForm->validate()) {
 			$settingsForm->execute();
-			
+
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign(array(
 				'currentUrl' => Request::url(null, null, null, 'program'),
@@ -91,11 +91,11 @@ class ManagerProgramHandler extends ManagerHandler {
 				'backLinkLabel' => 'manager.conferenceSiteManagement'
 			));
 			$templateMgr->display('common/message.tpl');
-			
+
 		} else {
 			$settingsForm->display();
 		}
 	}
-	
+
 }
 ?>

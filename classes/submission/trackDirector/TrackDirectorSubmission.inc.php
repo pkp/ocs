@@ -29,7 +29,7 @@ class TrackDirectorSubmission extends Paper {
 
 	/** @var array the revisions of the director file */
 	var $directorFileRevisions;
-	
+
 	/** @var array the revisions of the presenter file */
 	var $presenterFileRevisions;
 
@@ -41,7 +41,7 @@ class TrackDirectorSubmission extends Paper {
 		$this->reviewAssignments = array();
 		$this->removedReviewAssignments = array();
 	}
-	
+
 	/**
 	 * Add a review assignment for this paper.
 	 * @param $reviewAssignment ReviewAssignment
@@ -52,15 +52,15 @@ class TrackDirectorSubmission extends Paper {
 		}
 
 		$stage = $reviewAssignment->getStage();
-		
+
 		if(!isset($this->reviewAssignments[$stage]))
 			$this->reviewAssignments[$stage] = array();
-		
+
 		$this->reviewAssignments[$stage][] = $reviewAssignment;
-		
+
 		return $this->reviewAssignments[$stage];
 	}
-	
+
 	/**
 	 * Add an editorial decision for this paper.
 	 * @param $directorDecision array
@@ -69,13 +69,13 @@ class TrackDirectorSubmission extends Paper {
 	function addDecision($directorDecision, $stage) {
 		if(!is_array($this->directorDecisions))
 			$this->directorDecisions = array();
-			
+
 		if(!isset($this->directorDecisions[$stage]))
 			$this->directorDecisions[$stage] = array();
 
 		array_push($this->directorDecisions[$stage], $directorDecision);
 	}		
-	
+
 	/**
 	 * Remove a review assignment.
 	 * @param $reviewId ID of the review assignment to remove
@@ -95,7 +95,7 @@ class TrackDirectorSubmission extends Paper {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Updates an existing review assignment.
 	 * @param $reviewAssignment ReviewAssignment
@@ -126,7 +126,7 @@ class TrackDirectorSubmission extends Paper {
 	function getSubmissionStatus() {
 		$status = $this->getStatus();
 		if ($status == SUBMISSION_STATUS_ARCHIVED ||
-				$status == SUBMISSION_STATUS_PUBLISHED ||
+		    $status == SUBMISSION_STATUS_PUBLISHED ||
 		    $status == SUBMISSION_STATUS_DECLINED) return $status;
 
 		// The submission is SUBMISSION_STATUS_QUEUED or the presenter's submission was SUBMISSION_STATUS_INCOMPLETE.
@@ -151,7 +151,7 @@ class TrackDirectorSubmission extends Paper {
 	/**
 	 * Get/Set Methods.
 	 */
-	 
+
 	/**
 	 * Get edit assignments for this paper.
 	 * @return array
@@ -160,7 +160,7 @@ class TrackDirectorSubmission extends Paper {
 		$editAssignments = &$this->getData('editAssignments');
 		return $editAssignments;
 	}
-	
+
 	/**
 	 * Set edit assignments for this paper.
 	 * @param $editAssignments array
@@ -180,13 +180,13 @@ class TrackDirectorSubmission extends Paper {
 	function getReviewAssignments($stage = null) {
 		if($stage == null)
 			return $this->reviewAssignments;
-		
+
 		if(!isset($this->reviewAssignments[$stage]))
 			return null;
-		
+
 		return $this->reviewAssignments[$stage];
 	}
-	
+
 	/**
 	 * Set review assignments for this paper.
 	 * @param $reviewAssignments array ReviewAssignments
@@ -194,7 +194,7 @@ class TrackDirectorSubmission extends Paper {
 	function setReviewAssignments($reviewAssignments, $stage) {
 		return $this->reviewAssignments[$stage] = $reviewAssignments;
 	}
-	
+
 	/**
 	 * Get the IDs of all review assignments removed.
 	 * @return array int
@@ -202,7 +202,7 @@ class TrackDirectorSubmission extends Paper {
 	function &getRemovedReviewAssignments() {
 		return $this->removedReviewAssignments;
 	}
-	
+
 	//
 	// Director Decisions
 	//
@@ -220,7 +220,7 @@ class TrackDirectorSubmission extends Paper {
 
 		return $this->directorDecisions[$stage];
 	}
-	
+
 	/**
 	 * Set director decisions.
 	 * @param $directorDecisions array
@@ -229,7 +229,7 @@ class TrackDirectorSubmission extends Paper {
 	function setDecisions($directorDecisions, $stage) {
 		return $this->directorDecisions[$stage] = $directorDecisions;
 	}
-	
+
 	// 
 	// Files
 	//	
@@ -242,7 +242,7 @@ class TrackDirectorSubmission extends Paper {
 		$returner =& $this->getData('submissionFile');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set submission file for this paper.
 	 * @param $submissionFile PaperFile
@@ -250,7 +250,7 @@ class TrackDirectorSubmission extends Paper {
 	function setSubmissionFile($submissionFile) {
 		return $this->setData('submissionFile', $submissionFile);
 	}
-	
+
 	/**
 	 * Get revised file for this paper.
 	 * @return PaperFile
@@ -259,7 +259,7 @@ class TrackDirectorSubmission extends Paper {
 		$returner =& $this->getData('revisedFile');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set revised file for this paper.
 	 * @param $submissionFile PaperFile
@@ -267,7 +267,7 @@ class TrackDirectorSubmission extends Paper {
 	function setRevisedFile($revisedFile) {
 		return $this->setData('revisedFile', $revisedFile);
 	}
-	
+
 	/**
 	 * Get supplementary files for this paper.
 	 * @return array SuppFiles
@@ -276,7 +276,7 @@ class TrackDirectorSubmission extends Paper {
 		$returner =& $this->getData('suppFiles');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set supplementary file for this paper.
 	 * @param $suppFiles array SuppFiles
@@ -284,7 +284,7 @@ class TrackDirectorSubmission extends Paper {
 	function setSuppFiles($suppFiles) {
 		return $this->setData('suppFiles', $suppFiles);
 	}
-	
+
 	/**
 	 * Get review file.
 	 * @return PaperFile
@@ -293,7 +293,7 @@ class TrackDirectorSubmission extends Paper {
 		$returner =& $this->getData('reviewFile');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set review file.
 	 * @param $reviewFile PaperFile
@@ -301,7 +301,7 @@ class TrackDirectorSubmission extends Paper {
 	function setReviewFile($reviewFile) {
 		return $this->setData('reviewFile', $reviewFile);
 	}
-	
+
 	/**
 	 * Get layout file.
 	 * @return PaperFile
@@ -310,7 +310,7 @@ class TrackDirectorSubmission extends Paper {
 		$returner =& $this->getData('layoutFile');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set layout file.
 	 * @param $layoutFile PaperFile
@@ -318,7 +318,7 @@ class TrackDirectorSubmission extends Paper {
 	function setLayoutFile($layoutFile) {
 		return $this->setData('layoutFile', $layoutFile);
 	}
-	
+
 	/**
 	 * Get all director file revisions.
 	 * @return array PaperFiles
@@ -330,7 +330,7 @@ class TrackDirectorSubmission extends Paper {
 			return $this->directorFileRevisions[$stage];
 		}
 	}
-	
+
 	/**
 	 * Set all director file revisions.
 	 * @param $directorFileRevisions array PaperFiles
@@ -338,7 +338,7 @@ class TrackDirectorSubmission extends Paper {
 	function setDirectorFileRevisions($directorFileRevisions, $stage) {
 		return $this->directorFileRevisions[$stage] = $directorFileRevisions;
 	}
-	
+
 	/**
 	 * Get all presenter file revisions.
 	 * @return array PaperFiles
@@ -350,7 +350,7 @@ class TrackDirectorSubmission extends Paper {
 			return $this->presenterFileRevisions[$stage];
 		}
 	}
-	
+
 	/**
 	 * Set all presenter file revisions.
 	 * @param $presenterFileRevisions array PaperFiles
@@ -358,7 +358,7 @@ class TrackDirectorSubmission extends Paper {
 	function setPresenterFileRevisions($presenterFileRevisions, $stage) {
 		return $this->presenterFileRevisions[$stage] = $presenterFileRevisions;
 	}
-	
+
 	/**
 	 * Get post-review file.
 	 * @return PaperFile
@@ -367,7 +367,7 @@ class TrackDirectorSubmission extends Paper {
 		$returner =& $this->getData('directorFile');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set post-review file.
 	 * @param $directorFile PaperFile
@@ -375,11 +375,11 @@ class TrackDirectorSubmission extends Paper {
 	function setDirectorFile($directorFile) {
 		return $this->setData('directorFile', $directorFile);
 	}
-	
+
 	//
 	// Review Stages
 	//
-	
+
 	/**
 	 * Get review file revision.
 	 * @return int
@@ -387,7 +387,7 @@ class TrackDirectorSubmission extends Paper {
 	function getReviewRevision() {
 		return $this->getData('reviewRevision');
 	}
-	
+
 	/**
 	 * Set review file revision.
 	 * @param $reviewRevision int
@@ -399,7 +399,7 @@ class TrackDirectorSubmission extends Paper {
 	//
 	// Comments
 	//
-	
+
 	/**
 	 * Get most recent director decision comment.
 	 * @return PaperComment
@@ -407,7 +407,7 @@ class TrackDirectorSubmission extends Paper {
 	function getMostRecentDirectorDecisionComment() {
 		return $this->getData('mostRecentDirectorDecisionComment');
 	}
-	
+
 	/**
 	 * Set most recent director decision comment.
 	 * @param $mostRecentDirectorDecisionComment PaperComment
@@ -415,7 +415,7 @@ class TrackDirectorSubmission extends Paper {
 	function setMostRecentDirectorDecisionComment($mostRecentDirectorDecisionComment) {
 		return $this->setData('mostRecentDirectorDecisionComment', $mostRecentDirectorDecisionComment);
 	}
-	
+
 	/**
 	 * Get the galleys for a paper.
 	 * @return array PaperGalley
@@ -424,7 +424,7 @@ class TrackDirectorSubmission extends Paper {
 		$galleys = &$this->getData('galleys');
 		return $galleys;
 	}
-	
+
 	/**
 	 * Set the galleys for a paper.
 	 * @param $galleys array PaperGalley
@@ -455,7 +455,7 @@ class TrackDirectorSubmission extends Paper {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConf =& $schedConfDao->getSchedConf($this->getSchedConfId());
 		}
-		
+
 		$reviewMode = $schedConf->getSetting('reviewMode');
 		if ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL) {
 			return ($this->getSubmissionProgress() != 1);

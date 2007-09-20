@@ -17,23 +17,17 @@
 import("manager.form.setup.ConferenceSetupForm");
 
 class ConferenceSetupStep3Form extends ConferenceSetupForm {
-	
+	/**
+	 * Constructor.
+	 */
 	function ConferenceSetupStep3Form() {
 		parent::ConferenceSetupForm(
 			3,
 			array(
 				'homeHeaderTitleType' => 'int',
 				'homeHeaderTitle' => 'string',
-				'homeHeaderTitleTypeAlt1' => 'int',
-				'homeHeaderTitleAlt1' => 'string',
-				'homeHeaderTitleTypeAlt2' => 'int',
-				'homeHeaderTitleAlt2' => 'string',
 				'pageHeaderTitleType' => 'int',
 				'pageHeaderTitle' => 'string',
-				'pageHeaderTitleTypeAlt1' => 'int',
-				'pageHeaderTitleAlt1' => 'string',
-				'pageHeaderTitleTypeAlt2' => 'int',
-				'pageHeaderTitleAlt2' => 'string',
 				'navItems' => 'object',
 				'conferencePageHeader' => 'string',
 				'conferencePageFooter' => 'string',
@@ -42,7 +36,15 @@ class ConferenceSetupStep3Form extends ConferenceSetupForm {
 			)
 		);
 	}
-	
+
+	/**
+	 * Get the list of field names for which localized settings are used.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('homeHeaderTitleType', 'homeHeaderTitle', 'pageHeaderTitleType', 'pageHeaderTitle', 'navItems', 'conferencePageHeader', 'conferencePageFooter');
+	}
+
 	function readInputData() {
 		parent::readInputData();
 	}
@@ -58,19 +60,11 @@ class ConferenceSetupStep3Form extends ConferenceSetupForm {
 		$templateMgr->assign(array(
 			'homeHeaderTitleImage' => $conference->getSetting('homeHeaderTitleImage'),
 			'homeHeaderLogoImage'=> $conference->getSetting('homeHeaderLogoImage'),
-			'homeHeaderTitleImageAlt1' => $conference->getSetting('homeHeaderTitleImageAlt1'),
-			'homeHeaderLogoImageAlt1'=> $conference->getSetting('homeHeaderLogoImageAlt1'),
-			'homeHeaderTitleImageAlt2' => $conference->getSetting('homeHeaderTitleImageAlt2'),
-			'homeHeaderLogoImageAlt2'=> $conference->getSetting('homeHeaderLogoImageAlt2'),
 			'pageHeaderTitleImage' => $conference->getSetting('pageHeaderTitleImage'),
 			'pageHeaderLogoImage' => $conference->getSetting('pageHeaderLogoImage'),
-			'pageHeaderTitleImageAlt1' => $conference->getSetting('pageHeaderTitleImageAlt1'),
-			'pageHeaderLogoImageAlt1' => $conference->getSetting('pageHeaderLogoImageAlt1'),
-			'pageHeaderTitleImageAlt2' => $conference->getSetting('pageHeaderTitleImageAlt2'),
-			'pageHeaderLogoImageAlt2' => $conference->getSetting('pageHeaderLogoImageAlt2'),
 			'homepageImage' => $conference->getSetting('homepageImage')
 		));
-		
+
 		parent::display();	   
 	}
 }

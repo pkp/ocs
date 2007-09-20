@@ -9,7 +9,7 @@
  * @package manager.form
  * @class EmailTemplateForm
  *
- * Form for creating and modifying conference tracks.
+ * Form for creating and modifying email templates.
  *
  * $Id$
  */
@@ -30,25 +30,25 @@ class EmailTemplateForm extends Form {
 	 */
 	function EmailTemplateForm($emailKey, $conference) {
 		parent::Form('manager/emails/emailTemplateForm.tpl');
-		
+
 		$this->conference = $conference;
 		$this->emailKey = $emailKey;
-		
+
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorArray($this, 'subject', 'required', 'manager.emails.form.subjectRequired'));
 		$this->addCheck(new FormValidatorArray($this, 'body', 'required', 'manager.emails.form.bodyRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		
+
 		$conferenceId = $this->conference->getConferenceId();
 		$schedConfId = 0;
-		
+
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplate = &$emailTemplateDao->getBaseEmailTemplate($this->emailKey, $conferenceId, $schedConfId);
 		$templateMgr->assign('canDisable', $emailTemplate?$emailTemplate->getCanDisable():false);
@@ -56,14 +56,14 @@ class EmailTemplateForm extends Form {
 		$templateMgr->assign('helpTopicId','conference.managementPages.emails');
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
 		$schedConfId = 0;
 		$conferenceId = $this->conference->getConferenceId();
-		
+
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
 
 		// If there's already a scheduled conference-level template, grab it. This will grab
@@ -90,7 +90,7 @@ class EmailTemplateForm extends Form {
 				$body[$locale] = $emailTemplate->getBody($locale);
 				$description[$locale] = $emailTemplate->getDescription($locale);
 			}
-			
+
 			if ($emailTemplate != null) {
 				$this->_data = array(
 					'emailId' => $emailTemplate->getEmailId(),
@@ -105,14 +105,14 @@ class EmailTemplateForm extends Form {
 			$this->_data = array('isNewTemplate' => true);
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
 		$this->readUserVars(array('emailId', 'subject', 'body', 'enabled', 'conferenceId', 'schedConfId', 'emailKey'));
 	}
-	
+
 	/**
 	 * Save email template.
 	 */
@@ -139,7 +139,7 @@ class EmailTemplateForm extends Form {
 
 		$emailTemplate->setConferenceId($conferenceId);
 		$emailTemplate->setSchedConfId($schedConfId);
-		
+
 		$supportedLocales = $this->conference->getSupportedLocaleNames();
 		if (!empty($supportedLocales)) {
 			foreach ($conference->getSupportedLocaleNames() as $localeKey => $localeName) {

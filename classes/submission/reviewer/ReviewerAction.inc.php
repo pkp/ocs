@@ -28,7 +28,7 @@ class ReviewerAction extends Action {
 	/**
 	 * Actions.
 	 */
-	 
+
 	/**
 	 * Records whether or not the reviewer accepts the review assignment.
 	 * @param $user object
@@ -45,7 +45,7 @@ class ReviewerAction extends Action {
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
-		
+
 		// Only confirm the review for the reviewer if 
 		// he has not previously done so.
 		if ($reviewAssignment->getDateConfirmed() == null) {
@@ -78,7 +78,7 @@ class ReviewerAction extends Action {
 				$entry->setLogMessage($decline?'log.review.reviewDeclined':'log.review.reviewAccepted', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'stage' => $reviewAssignment->getStage()));
 				$entry->setAssocType(LOG_TYPE_REVIEW);
 				$entry->setAssocId($reviewAssignment->getReviewId());
-				
+
 				PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
 
 				return true;
@@ -111,7 +111,7 @@ class ReviewerAction extends Action {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Records the reviewer's submission recommendation.
 	 * @param $reviewId int
@@ -121,13 +121,13 @@ class ReviewerAction extends Action {
 	function recordRecommendation(&$reviewerSubmission, $recommendation, $send) {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
-		
+
 		if (SUBMISSION_REVIEWER_RECOMMENDATION_ACCEPT > $recommendation || SUBMISSION_REVIEWER_RECOMMENDATION_SEE_COMMENTS < $recommendation) return true;
-		
+
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewerSubmission->getReviewId());
 		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
-	
+
 		// Only record the reviewers recommendation if
 		// no recommendation has previously been submitted.
 		if ($reviewAssignment->getRecommendation() == null) {
@@ -148,7 +148,7 @@ class ReviewerAction extends Action {
 				$reviewAssignment->setDateCompleted(Core::getCurrentDate());
 				$reviewAssignment->stampModified();
 				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
-		
+
 				// Add log
 				import('paper.log.PaperLog');
 				import('paper.log.PaperEventLogEntry');
@@ -161,7 +161,7 @@ class ReviewerAction extends Action {
 				$entry->setLogMessage('log.review.reviewRecommendationSet', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'stage' => $reviewAssignment->getStage()));
 				$entry->setAssocType(LOG_TYPE_REVIEW);
 				$entry->setAssocId($reviewAssignment->getReviewId());
-				
+
 				PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
 			} else {
 				if (!Request::getUserVar('continued')) {
@@ -186,7 +186,7 @@ class ReviewerAction extends Action {
 						'recommendation' => Locale::translate($reviewerRecommendationOptions[$recommendation])
 					));
 				}
-			
+
 				$email->displayEditForm(Request::url(null, null, 'reviewer', 'recordRecommendation'),
 					array('reviewId' => $reviewerSubmission->getReviewId(), 'recommendation' => $recommendation)
 				);
@@ -195,7 +195,7 @@ class ReviewerAction extends Action {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Upload the annotated version of a paper.
 	 * @param $reviewId int
@@ -204,9 +204,9 @@ class ReviewerAction extends Action {
 		import("file.PaperFileManager");
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');		
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		
+
 		$paperFileManager = &new PaperFileManager($reviewAssignment->getPaperId());
-		
+
 		// Only upload the file if the reviewer has yet to submit a recommendation
 		if ($reviewAssignment->getRecommendation() == null && !$reviewAssignment->getCancelled()) {
 			$fileName = 'upload';
@@ -219,12 +219,12 @@ class ReviewerAction extends Action {
 				}
 			}
 		}
-		
+
 		if (isset($fileId) && $fileId != 0) {
 			$reviewAssignment->setReviewerFileId($fileId);
 			$reviewAssignment->stampModified();
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
-	
+
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
@@ -240,20 +240,20 @@ class ReviewerAction extends Action {
 			$entry->setLogMessage('log.review.reviewerFile');
 			$entry->setAssocType(LOG_TYPE_REVIEW);
 			$entry->setAssocId($reviewAssignment->getReviewId());
-			
+
 			PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
 		}
 	}
 
 	/**
-	* Delete an annotated version of a paper.
-	* @param $reviewId int
-	* @param $fileId int
-	* @param $revision int If null, then all revisions are deleted.
-	*/
+	 * Delete an annotated version of a paper.
+	 * @param $reviewId int
+	 * @param $fileId int
+	 * @param $revision int If null, then all revisions are deleted.
+	 */
         function deleteReviewerVersion($reviewId, $fileId, $revision = null) {
 		import("file.PaperFileManager");
-		
+
 		$paperId = Request::getUserVar('paperId');
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
@@ -263,7 +263,7 @@ class ReviewerAction extends Action {
 			$paperFileManager->deleteFile($fileId, $revision);
 		}
         }
-	
+
 	/**
 	 * View reviewer comments.
 	 * @param $user object Current user
@@ -273,7 +273,7 @@ class ReviewerAction extends Action {
 	function viewPeerReviewComments(&$user, &$paper, $reviewId) {
 		if (!HookRegistry::call('ReviewerAction::viewPeerReviewComments', array(&$user, &$paper, &$reviewId))) {
 			import("submission.form.comment.PeerReviewCommentForm");
-		
+
 			$commentForm = &new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_REVIEWER);
 			$commentForm->setUser($user);
 			$commentForm->initData();
@@ -281,7 +281,7 @@ class ReviewerAction extends Action {
 			$commentForm->display();
 		}
 	}
-	
+
 	/**
 	 * Post reviewer comments.
 	 * @param $user object Current user
@@ -292,18 +292,18 @@ class ReviewerAction extends Action {
 	function postPeerReviewComment(&$user, &$paper, $reviewId, $emailComment) {
 		if (!HookRegistry::call('ReviewerAction::postPeerReviewComment', array(&$user, &$paper, &$reviewId, &$emailComment))) {
 			import("submission.form.comment.PeerReviewCommentForm");
-		
+
 			$commentForm = &new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_REVIEWER);
 			$commentForm->setUser($user);
 			$commentForm->readInputData();
-		
+
 			if ($commentForm->validate()) {
 				$commentForm->execute();
-			
+
 				if ($emailComment) {
 					$commentForm->email();
 				}
-			
+
 			} else {
 				$commentForm->display();
 				return false;
@@ -311,11 +311,11 @@ class ReviewerAction extends Action {
 			return true;
 		}
 	}
-	
+
 	//
 	// Misc
 	//
-	
+
 	/**
 	 * Download a file a reviewer has access to.
 	 * @param $reviewId int
@@ -329,7 +329,7 @@ class ReviewerAction extends Action {
 		$conference = &Request::getConference();
 
 		$canDownload = false;
-		
+
 		// Reviewers have access to:
 		// 1) The current revision of the file to be reviewed.
 		// 2) Any file that he uploads.

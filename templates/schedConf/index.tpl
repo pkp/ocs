@@ -17,12 +17,12 @@
 {assign var="pageTitleTranslated" value=$schedConf->getFullTitle()}
 {include file="common/header.tpl"}
 
-<h2>{$schedConf->getSetting('locationName')|nl2br}</h2>
+<h2>{$schedConf->getLocalizedSetting('locationName')|nl2br}</h2>
 {if $schedConf->getSetting('startDate')}<h2>{$schedConf->getSetting('startDate')|date_format:$dateFormatLong} &ndash; {$schedConf->getSetting('endDate')|date_format:$dateFormatLong}</h2>{/if}
 
 <br />
 
-<div>{$schedConf->getSetting("schedConfIntroduction")|nl2br}</div>
+<div>{$schedConf->getLocalizedSetting("introduction")|nl2br}</div>
 
 {if $enableAnnouncementsHomepage}
 	{* Display announcements *}

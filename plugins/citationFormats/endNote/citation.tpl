@@ -19,9 +19,9 @@
 %D {$paper->getDatePublished()|date_format:"%Y"}
 %T {$paper->getPaperTitle()|strip_tags}
 %B {$paper->getDatePublished()|date_format:"%Y"}
-%9 {$paper->getSubject()|escape}
+%9 {$paper->getPaperSubject()|escape}
 %! {$paper->getPaperTitle()|strip_tags}
-%K {$paper->getSubject()|escape}
+%K {$paper->getPaperSubject()|escape}
 %X {$paper->getPaperAbstract()|strip_tags|replace:"\n":" "|replace:"\r":" "}
 %U {$paperUrl}
 

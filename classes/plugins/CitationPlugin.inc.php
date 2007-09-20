@@ -26,8 +26,7 @@ class CitationPlugin extends Plugin {
 	}
 
 	/**
-	 * Get the display name of this plugin. This name is displayed on the
-	 * Journal Manager's setup page 5, for example.
+	 * Get the display name of this plugin.
 	 * @return String
 	 */
 	function getDisplayName() {

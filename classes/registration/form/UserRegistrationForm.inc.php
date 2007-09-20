@@ -20,7 +20,7 @@ class UserRegistrationForm extends Form {
 
 	/** @var boolean Include a user's working languages in their profile */
 	var $profileLocalesEnabled;
-	
+
 	/** @var boolean whether or not captcha is enabled for this form */
 	var $captchaEnabled;
 
@@ -31,7 +31,7 @@ class UserRegistrationForm extends Form {
 		$schedConf = &Request::getSchedConf();
 
 		parent::Form('registration/userRegistrationForm.tpl');
-	
+
 		// Registration type is provided and valid
 		$this->addCheck(new FormValidator($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdRequired'));
 		$this->addCheck(new FormValidatorCustom($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdValid', create_function('$registrationTypeId, $schedConfId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->openRegistrationTypeExistsByTypeId($registrationTypeId, $schedConfId);'), array($schedConf->getSchedConfId())));
@@ -125,7 +125,7 @@ class UserRegistrationForm extends Form {
 		$templateMgr->assign_by_ref('user', $user);
 		parent::display();
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -160,18 +160,18 @@ class UserRegistrationForm extends Form {
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 		$needMembership = $registrationTypeDao->getRegistrationTypeMembership($this->getData('typeId'));
 	}
-	
+
 	/**
 	 * Save registration. 
 	 */
 	function execute() {
 		$schedConf =& Request::getSchedConf();
 		$user =& Request::getUser();
-	
+
 		if (!$user) {
 			// New user
 			$user = &new User();
-			
+
 			$user->setUsername($this->getData('username'));
 			$user->setFirstName($this->getData('firstName'));
 			$user->setMiddleName($this->getData('middleName'));
@@ -188,11 +188,11 @@ class UserRegistrationForm extends Form {
 			$user->setInterests($this->getData('interests'));
 			$user->setDateRegistered(Core::getCurrentDate());
 			$user->setCountry($this->getData('country'));
-		
+
 			if ($this->profileLocalesEnabled) {
 				$site = &Request::getSite();
 				$availableLocales = $site->getSupportedLocales();
-				
+
 				$locales = array();
 				foreach ($this->getData('userLocales') as $locale) {
 					if (Locale::isLocaleValid($locale) && in_array($locale, $availableLocales)) {
@@ -201,7 +201,7 @@ class UserRegistrationForm extends Form {
 				}
 				$user->setLocales($locales);
 			}
-			
+
 			$user->setPassword(Validation::encryptCredentials($this->getData('username'), $this->getData('password')));
 
 			$userDao = &DAORegistry::getDAO('UserDAO');
@@ -219,7 +219,7 @@ class UserRegistrationForm extends Form {
 			$role->setConferenceId($conference->getConferenceId());
 			$role->setUserId($user->getUserId());
 			$roleDao->insertRole($role);
-			
+
 			$sessionManager = &SessionManager::getManager();
 			$session = &$sessionManager->getUserSession();
 			$session->setSessionVar('username', $user->getUsername());
@@ -242,7 +242,7 @@ class UserRegistrationForm extends Form {
 
 		import('registration.Registration');
 		$registration = &new Registration();
-		
+
 		$registration->setSchedConfId($schedConf->getSchedConfId());
 		$registration->setUserId($user->getUserId());
 		$registration->setTypeId($this->getData('registrationTypeId'));

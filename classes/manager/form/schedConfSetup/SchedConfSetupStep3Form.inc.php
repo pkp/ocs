@@ -17,7 +17,7 @@
 import("manager.form.schedConfSetup.SchedConfSetupForm");
 
 class SchedConfSetupStep3Form extends SchedConfSetupForm {
-	
+
 	function SchedConfSetupStep3Form() {
 		parent::SchedConfSetupForm(
 			3,
@@ -38,9 +38,13 @@ class SchedConfSetupStep3Form extends SchedConfSetupForm {
 
 		$this->addCheck(new FormValidatorEmail($this, 'copySubmissionAckAddress', 'optional', 'user.profile.form.emailRequired'));
 	}
-	
-	function readInputData() {
-		parent::readInputData();
+
+	/**
+	 * Get the list of field names for which localized settings are used.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('reviewPolicy', 'reviewGuidelines');
 	}
 
 	/**

@@ -54,7 +54,7 @@ class Role extends DataObject {
 	function Role() {
 		parent::DataObject();
 	}
-	
+
 	/**
 	 * Get the i18n key name associated with this role.
 	 * @return String the key
@@ -62,7 +62,7 @@ class Role extends DataObject {
 	function getRoleName() {
 		return RoleDAO::getRoleName($this->getData('roleId'));
 	}
-	
+
 	/**
 	 * Get the URL path associated with this role's operations.
 	 * @return String the path
@@ -70,11 +70,11 @@ class Role extends DataObject {
 	function getRolePath() {
 		return RoleDAO::getRolePath($this->getData('roleId'));
 	}
-	
+
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get conference ID associated with role.
 	 * @return int
@@ -82,7 +82,7 @@ class Role extends DataObject {
 	function getConferenceId() {
 		return $this->getData('conferenceId');
 	}
-	
+
 	/**
 	 * Set conference ID associated with role.
 	 * @param $conferenceId int
@@ -90,7 +90,7 @@ class Role extends DataObject {
 	function setConferenceId($conferenceId) {
 		return $this->setData('conferenceId', $conferenceId);
 	}
-	
+
 	/**
 	 * Get scheduled conference ID associated with role.
 	 * @return int
@@ -98,7 +98,7 @@ class Role extends DataObject {
 	function getSchedConfId() {
 		return $this->getData('schedConfId');
 	}
-	
+
 	/**
 	 * Set scheduled conference ID associated with role.
 	 * @param $conferenceId int
@@ -106,7 +106,7 @@ class Role extends DataObject {
 	function setSchedConfId($schedConfId) {
 		return $this->setData('schedConfId', $schedConfId);
 	}
-	
+
 	/**
 	 * Get user ID associated with role.
 	 * @return int
@@ -114,7 +114,7 @@ class Role extends DataObject {
 	function getUserId() {
 		return $this->getData('userId');
 	}
-	
+
 	/**
 	 * Set user ID associated with role.
 	 * @param $userId int
@@ -122,7 +122,7 @@ class Role extends DataObject {
 	function setUserId($userId) {
 		return $this->setData('userId', $userId);
 	}
-	
+
 	/**
 	 * Get role ID of this role.
 	 * @return int
@@ -130,7 +130,7 @@ class Role extends DataObject {
 	function getRoleId() {
 		return $this->getData('roleId');
 	}
-	
+
 	/**
 	 * Set role ID of this role.
 	 * @param $roleId int

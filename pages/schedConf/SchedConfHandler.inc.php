@@ -28,7 +28,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr = &TemplateManager::getManager();
 		SchedConfHandler::setupSchedConfTemplate($conference, $schedConf);
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true)));
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true)));
 		$templateMgr->assign('helpTopicId', 'user.currentAndArchives');
 		$templateMgr->display('schedConf/index.tpl');
 
@@ -42,8 +42,8 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
 
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
@@ -70,11 +70,11 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
 
-		$templateMgr->assign('schedConfOverview', $schedConf->getSetting('schedConfOverview'));
+		$templateMgr->assign('overview', $schedConf->getLocalizedSetting('overview'));
 
 		$templateMgr->assign('helpTopicId', 'schedConf.overview');
 		$templateMgr->display('schedConf/overview.tpl');
@@ -88,8 +88,8 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
 		import('manager.form.TimelineForm');
 		$timelineForm =& new TimelineForm(false, true);
@@ -105,14 +105,14 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
-		
-		$templateMgr->assign('cfpMessage', $schedConf->getSetting('cfpMessage', false));
 
-		$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate', false);
-		$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate', false);
+		$templateMgr->assign('cfpMessage', $schedConf->getLocalizedSetting('cfpMessage'));
+
+		$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate');
+		$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate');
 
 		if(!$submissionsOpenDate || !$submissionsCloseDate || time() < $submissionsOpenDate) {
 			// Too soon
@@ -125,7 +125,7 @@ class SchedConfHandler extends Handler {
 		} else {
 			$acceptingSubmissions = true;
 		}
-				
+
 		$templateMgr->assign('acceptingSubmissions', $acceptingSubmissions);
 		if (!$acceptingSubmissions) $templateMgr->assign('notAcceptingSubmissionsMessage', $notAcceptingSubmissionsMessage);
 		$templateMgr->assign('helpTopicId', 'schedConf.cfp');
@@ -143,8 +143,8 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
 
 		$user =& Request::getUser();
@@ -185,8 +185,8 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
 
 		import('registration.form.UserRegistrationForm');
@@ -215,13 +215,13 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
 
-		$templateMgr->assign('program', $schedConf->getSetting('program'));
-		$templateMgr->assign('programFileTitle', $schedConf->getSetting('programFileTitle'));
-		$templateMgr->assign('programFile', $schedConf->getSetting('programFile'));
+		$templateMgr->assign('program', $schedConf->getLocalizedSetting('program'));
+		$templateMgr->assign('programFileTitle', $schedConf->getLocalizedSetting('programFileTitle'));
+		$templateMgr->assign('programFile', $schedConf->getLocalizedSetting('programFile'));
 
 		$templateMgr->assign('helpTopicId', 'schedConf.program');
 		$templateMgr->display('schedConf/program.tpl');
@@ -241,14 +241,14 @@ class SchedConfHandler extends Handler {
 		$templateMgr = &TemplateManager::getManager();
 
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		$templateMgr->assign('helpTopicId', 'FIXME');
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
 
 		$templateMgr->assign('mayViewProceedings', $mayViewProceedings);
 		$templateMgr->assign('mayViewPapers', $mayViewPapers);
-		
+
 		if($mayViewProceedings) {
 			$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 			$trackDao =& DAORegistry::getDAO('TrackDAO');
@@ -309,9 +309,9 @@ class SchedConfHandler extends Handler {
 			// Assign header and content for home page
 			$templateMgr->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle(true));
 			$templateMgr->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo(true));
-					
+
 			$templateMgr->assign_by_ref('schedConf', $schedConf);
-			$templateMgr->assign('additionalHomeContent', $conference->getSetting('additionalHomeContent'));
+			$templateMgr->assign('additionalHomeContent', $conference->getLocalizedSetting('additionalHomeContent'));
 
 			$enableAnnouncements = $schedConf->getSetting('enableAnnouncements', true);
 

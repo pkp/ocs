@@ -18,14 +18,6 @@
 import('mail.EmailTemplate');
 
 class EmailTemplateDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function EmailTemplateDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Retrieve a base email template by key.
 	 * @param $emailKey string
@@ -53,7 +45,7 @@ class EmailTemplateDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve localized email template by key.
 	 * @param $emailKey string
@@ -91,14 +83,14 @@ class EmailTemplateDAO extends DAO {
 				array($conferenceId, $schedConfId, $emailKey)
 			);
 		}
-		
+
 		$returner = null;
 		if ($result->RecordCount() != 0) {
 			$returner = &$this->_returnLocaleEmailTemplateFromRow($result->GetRowAssoc(false));
 		} else {
 			$result->Close();
 			unset($result);
-		
+
 			// Check to see if there's a custom email template. This is done in PHP to avoid
 			// having to do a full outer join or union in SQL.
 			$result = &$this->retrieve(
@@ -111,13 +103,13 @@ class EmailTemplateDAO extends DAO {
 			if ($result->RecordCount() != 0) {
 				$returner = &$this->_returnLocaleEmailTemplateFromRow($result->GetRowAssoc(false));
 			} else {
-			
+
 				// If we failed to find a scheduled conference template, check to see if the conference
 				// has a custom e-mail template.
 				if($schedConfId != 0 && $allowConferenceTemplates) {
 					$result->Close();
 					unset($result);
-				
+
 					// Check to see if there's a custom email template. This is done in PHP to avoid
 					// having to do a full outer join or union in SQL.
 					$result = &$this->retrieve(
@@ -139,7 +131,7 @@ class EmailTemplateDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve an email template by key.
 	 * @param $emailKey string
@@ -206,7 +198,7 @@ class EmailTemplateDAO extends DAO {
 		$emailTemplate->setCanDisable($row['can_disable']);
 		$emailTemplate->setFromRoleId($row['from_role_id']);
 		$emailTemplate->setToRoleId($row['to_role_id']);
-	
+
 		HookRegistry::call('EmailTemplateDAO::_returnBaseEmailTemplateFromRow', array(&$emailTemplate, &$row));
 
 		return $emailTemplate;
@@ -229,7 +221,7 @@ class EmailTemplateDAO extends DAO {
 		$emailTemplate->setToRoleId($row['to_role_id']);
 
 		$emailTemplate->setCustomTemplate(false);
-		
+
 		if (!HookRegistry::call('EmailTemplateDAO::_returnLocaleEmailTemplateFromRow', array(&$emailTemplate, &$row))) {
 			$result = &$this->retrieve(
 				'SELECT dd.locale, dd.description, COALESCE(ed.subject, dd.subject) AS subject, COALESCE(ed.body, dd.body) AS body
@@ -238,7 +230,7 @@ class EmailTemplateDAO extends DAO {
 				WHERE dd.email_key = ?',
 				array($row['conference_id'], $row['sched_conf_id'], $row['email_key'])
 			);
-		
+
 			while (!$result->EOF) {
 				$dataRow = &$result->GetRowAssoc(false);
 				$emailTemplate->addLocale($dataRow['locale']);
@@ -295,7 +287,7 @@ class EmailTemplateDAO extends DAO {
 		$emailTemplate->setCanDisable($row['can_disable']);
 		$emailTemplate->setFromRoleId($row['from_role_id']);
 		$emailTemplate->setToRoleId($row['to_role_id']);
-	
+
 		if ($isCustomTemplate !== null) {
 			$emailTemplate->setCustomTemplate($isCustomTemplate);
 		}
@@ -325,7 +317,7 @@ class EmailTemplateDAO extends DAO {
 		$emailTemplate->setEmailId($this->getInsertEmailId());
 		return $emailTemplate->getEmailId();
 	}
-	
+
 	/**
 	 * Update an existing base email template.
 	 * @param $emailTemplate BaseEmailTemplate
@@ -350,7 +342,7 @@ class EmailTemplateDAO extends DAO {
 		$this->insertBaseEmailTemplate($emailTemplate);
 		return $this->updateLocaleEmailTemplateData($emailTemplate);
 	}
-	
+
 	/**
 	 * Update an existing localized email template.
 	 * @param $emailTemplate LocaleEmailTemplate
@@ -359,7 +351,7 @@ class EmailTemplateDAO extends DAO {
 		$this->updateBaseEmailTemplate($emailTemplate);
 		return $this->updateLocaleEmailTemplateData($emailTemplate);
 	}
-	
+
 	/**
 	 * Insert/update locale-specific email template data.
 	 * @param $emailTemplate LocaleEmailTemplate
@@ -371,7 +363,7 @@ class EmailTemplateDAO extends DAO {
 				WHERE email_key = ? AND locale = ? AND conference_id = ? AND sched_conf_id = ?',
 				array($emailTemplate->getEmailKey(), $locale, $emailTemplate->getConferenceId(), $emailTemplate->getSchedConfId())
 			);
-			
+
 			if ($result->fields[0] == 0) {
 				$this->update(
 					'INSERT INTO email_templates_data
@@ -380,7 +372,7 @@ class EmailTemplateDAO extends DAO {
 					(?, ?, ?, ?, ?, ?)',
 					array($emailTemplate->getEmailKey(), $locale, $emailTemplate->getConferenceId(), $emailTemplate->getSchedConfId(), $emailTemplate->getSubject($locale), $emailTemplate->getBody($locale))
 				);
-				
+
 			} else {
 				$this->update(
 					'UPDATE email_templates_data
@@ -395,7 +387,7 @@ class EmailTemplateDAO extends DAO {
 			unset($result);
 		}
 	}
-	
+
 	/**
 	 * Delete an email template by key.
 	 * @param $emailKey string
@@ -411,7 +403,7 @@ class EmailTemplateDAO extends DAO {
 			array($emailKey, $conferenceId, $schedConfId)
 		);
 	}
-	
+
 	/**
 	 * Retrieve all email templates.
 	 * @param $locale string
@@ -421,18 +413,18 @@ class EmailTemplateDAO extends DAO {
 	 */
 	function &getEmailTemplates($locale, $conferenceId, $schedConfId = 0) {
 		$emailTemplates = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT COALESCE(ed.subject, dd.subject) AS subject, COALESCE(ed.body, dd.body) AS body, COALESCE(e.enabled, 1) AS enabled,
-		 	d.email_key, d.can_edit, d.can_disable, e.conference_id, e.sched_conf_id, e.email_id, dd.locale,
+			d.email_key, d.can_edit, d.can_disable, e.conference_id, e.sched_conf_id, e.email_id, dd.locale,
 			d.from_role_id, d.to_role_id
-		 	FROM email_templates_default AS d NATURAL JOIN email_templates_default_data AS dd
-		 	LEFT JOIN email_templates AS e ON (d.email_key = e.email_key AND e.conference_id = ? AND e.sched_conf_id = ?)
+			FROM email_templates_default AS d NATURAL JOIN email_templates_default_data AS dd
+			LEFT JOIN email_templates AS e ON (d.email_key = e.email_key AND e.conference_id = ? AND e.sched_conf_id = ?)
 			LEFT JOIN email_templates_data AS ed ON (ed.email_key = e.email_key AND ed.conference_id = e.conference_id AND ed.sched_conf_id = e.sched_conf_id AND ed.locale = dd.locale)
-		 	WHERE dd.locale = ?',
+			WHERE dd.locale = ?',
 			array($conferenceId, $schedConfId, $locale)
 		);
-		
+
 		while (!$result->EOF) {
 			$emailTemplates[] = &$this->_returnEmailTemplateFromRow($result->GetRowAssoc(false), false);
 			$result->moveNext();
@@ -466,7 +458,7 @@ class EmailTemplateDAO extends DAO {
 
 		return $emailTemplates;
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted email template.
 	 * @return int
@@ -474,7 +466,7 @@ class EmailTemplateDAO extends DAO {
 	function getInsertEmailId() {
 		return $this->getInsertId('email_templates', 'emailId');
 	}
-	
+
 	/**
 	 * Delete all email templates for a specific conference.
 	 * @param $conferenceId int
@@ -511,7 +503,7 @@ class EmailTemplateDAO extends DAO {
 			'DELETE FROM email_templates_data WHERE locale = ?', $locale
 		);
 	}
-	
+
 	/**
 	 * Delete all default email templates for a specific locale.
 	 * @param $locale string
@@ -521,7 +513,7 @@ class EmailTemplateDAO extends DAO {
 			'DELETE FROM email_templates_default_data WHERE locale = ?', $locale
 		);
 	}
-	
+
 	/**
 	 * Check if a template exists with the given email key for a conference.
 	 * @param $emailKey string
@@ -530,11 +522,11 @@ class EmailTemplateDAO extends DAO {
 	 */
 	function templateExistsByKey($emailKey, $conferenceId, $schedConfId = -1) {
 		$params = array($emailKey, $conferenceId);
-		
+
 		if($schedConfId != -1) {
 			$params[] = $schedConfId;
 		}
-		
+
 		$result = &$this->retrieve(
 			'SELECT COUNT(*)
 				FROM email_templates

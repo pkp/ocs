@@ -61,7 +61,7 @@ class PaymethodPlugin extends Plugin {
 	function getTemplatePath() {
 		return parent::getTemplatePath() . 'templates' . DIRECTORY_SEPARATOR ;
 	}
-		
+
 	/**
 	 * Get the filename of the ADODB schema for this plugin.
 	 * Subclasses using SQL tables should override this.

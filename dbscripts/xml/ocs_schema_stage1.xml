@@ -1,0 +1,2120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE schema SYSTEM "dtd/xmlschema.dtd">
+
+<!--
+  * ojs_schema.xml
+  *
+  * Copyright (c) 2000-2007 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * OJS database schema in XML.
+  *
+  * $Id$
+  -->
+
+<schema version="0.2">
+
+	<!--
+	  *
+	  * TABLE version
+	  *
+	  -->
+	<table name="versions">
+		<field name="major" type="I4">
+			<KEY/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="minor" type="I4">
+			<KEY/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="revision" type="I4">
+			<KEY/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="build" type="I4">
+			<KEY/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="date_installed" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="current" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>OCS installation and upgrade version history.</descr>
+	</table>
+
+	<!--
+	  *
+	  * TABLE site
+	  *
+	  -->
+	<table name="site">
+		<field name="title" type="C2" size="120">
+			<KEY/>
+			<DEFAULT VALUE="Open Conference Systems"/>
+		</field>
+		<field name="intro" type="X"/>
+		<field name="conference_redirect" type="I8">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+			<descr>If not 0, redirect to the specified conference site.</descr>
+		</field>
+		<field name="about" type="X"/>
+		<field name="contact_name" type="C2" size="90"/>
+		<field name="contact_email" type="C2" size="90"/>
+		<field name="min_password_length" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="6"/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL/>
+			<DEFAULT VALUE="en_US"/>
+			<descr>Primary locale for the site.</descr>
+		</field>
+		<field name="installed_locales" type="C2" size="255">
+			<NOTNULL/>
+			<DEFAULT VALUE="en_US"/>
+			<descr>Locales for which support has been installed.</descr>
+		</field>
+		<field name="supported_locales" type="C2" size="255">
+			<descr>Locales supported by the site (for hosted conferences).</descr>
+		</field>
+		<field name="original_style_file_name" type="C2" size="255"/>
+		<descr>Common site settings.</descr>
+	</table>
+
+	<!--
+	  *
+	  * TABLE site_settings
+	  *
+	  -->
+	<table name="site_settings">
+		<field name="setting_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Site settings.</descr>
+	</table>
+
+	<!--
+	  *
+	  * TABLE scheduled_tasks
+	  *
+	  -->
+	<table name="scheduled_tasks">
+		<field name="class_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="last_run" type="T" />
+		<descr>The last run times of all scheduled tasks.</descr>
+	</table>
+
+	<!--
+	  *
+	  * TABLE users
+	  *
+	  -->
+	<table name="users">
+		<field name="user_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="username" type="C2" size="32">
+			<NOTNULL/>
+		</field>
+		<field name="password" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="first_name" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="middle_name" type="C2" size="40"/>
+		<field name="last_name" type="C2" size="90">
+			<NOTNULL/>
+		</field>
+		<field name="signature" type="X"/>
+		<field name="initials" type="C2" size="5"/>
+		<field name="affiliation" type="C2" size="255"/>
+		<field name="email" type="C2" size="90">
+			<NOTNULL/>
+		</field>
+		<field name="url" type="C2" size="255"/>
+		<field name="phone" type="C2" size="24"/>
+		<field name="fax" type="C2" size="24"/>
+		<field name="mailing_address" type="C2" size="255"/>
+		<field name="country" type="C2" size="90"/>
+		<field name="time_zone" type="C2" size="20"/>
+		<field name="biography" type="X"/>
+		<field name="interests" type="C2" size="255"/>
+		<field name="locales" type="C2" size="255"/>
+		<field name="date_last_email" type="T"/>
+		<field name="date_registered" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="date_validated" type="T"/>
+		<field name="date_last_login" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="must_change_password" type="I1"/>
+		<field name="auth_id" type="I8"/>
+		<field name="disabled" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="disabled_reason" type="X"/>
+		<descr>User authentication credentials and profile data.</descr>
+		<index name="users_username">
+			<col>username</col>
+			<UNIQUE/>
+		</index>
+		<index name="users_email">
+			<col>email</col>
+			<UNIQUE/>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE user_settings
+	  *
+	  -->
+	<table name="user_settings">
+		<field name="user_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="conference_id" type="I8"/>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+		</field>
+		<descr>Locale-specific user data</descr>
+		<index name="user_settings_user_id">
+			<col>user_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE auth_sources
+	  *
+	  -->
+	<table name="auth_sources">
+		<field name="auth_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="title" type="C2" size="60">
+			<NOTNULL/>
+		</field>
+		<field name="plugin" type="C2" size="32">
+			<NOTNULL/>
+		</field>
+		<field name="auth_default" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="settings" type="X"/>
+		<descr>User authentication sources.</descr>
+	</table>
+
+	<!--
+	  *
+	  * TABLE sessions
+	  *
+	  -->
+	<table name="sessions">
+		<field name="session_id" type="C2" size="32">
+			<KEY/>
+		</field>
+		<field name="user_id" type="I8"/>
+		<field name="ip_address" type="C2" size="15">
+			<NOTNULL/>
+		</field>
+		<field name="user_agent" type="C2" size="255"/>
+		<field name="created" type="I8">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="last_used" type="I8">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="remember" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="data" type="X">
+			<NOTNULL/>
+			<DEFAULT VALUE=""/>
+		</field>
+		<descr>Browser/user sessions and session data.</descr>
+		<index name="sessions_user_id">
+			<col>user_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE conferences
+	  *
+	  -->
+	<table name="conferences">
+		<field name="conference_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="title" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="description" type="X"/>
+		<field name="path" type="C2" size="32">
+			<NOTNULL/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="enabled" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<descr>Conferences and basic conference settings.</descr>
+		<index name="conferences__path">
+			<col>path</col>
+			<UNIQUE/>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE conference_settings
+	  *
+	  -->
+	<table name="conference_settings">
+		<field name="conference_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Conference settings.</descr>
+		<index name="conference_settings_conference_id">
+			<col>conference_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE sched_confs
+	  *
+	  -->
+	<table name="sched_confs">
+		<field name="sched_conf_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="conference_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="title" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="description" type="X"/>
+		<field name="path" type="C2" size="32">
+			<NOTNULL/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="start_date" type="T"/>
+		<field name="end_date" type="T"/>
+		<descr>Scheduled conferences and basic scheduled conference settings.</descr>
+		<index name="sched_conf_path">
+			<col>path</col>
+		</index>
+		<index name="sched_conf_conference_id">
+			<col>conference_id</col>
+		</index>
+		<index name="sched_confs_start_end_date">
+			<col>start_date</col>
+			<col>end_date</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE sched_conf_settings
+	  *
+	  -->
+	<table name="sched_conf_settings">
+		<field name="sched_conf_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Scheduled conference settings.</descr>
+		<index name="sched_conf_settings_sched_conf_id">
+			<col>sched_conf_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE conference_event_log
+	  *
+	  -->
+	<table name="conference_event_log">
+		<field name="log_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="sched_conf_id" type="I8"/>
+		<field name="conference_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="user_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_logged" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="ip_address" type="C2" size="15">
+			<NOTNULL/>
+		</field>
+		<field name="log_level" type="C2" size="1"/>
+		<field name="event_type" type="I8"/>
+		<field name="assoc_type" type="I8"/>
+		<field name="assoc_id" type="I8"/>
+		<field name="message" type="X"/>
+		<descr>A log of all events associated with a conference or scheduled conference.</descr>
+		<index name="conference_event_log_sched_conf_id">
+			<col>sched_conf_id</col>
+		</index>
+		<index name="conference_event_log_conference_id">
+			<col>conference_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE plugin_settings
+	  *
+	  -->
+	<table name="plugin_settings">
+		<field name="plugin_name" type="C2" size="80">
+			<KEY/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="conference_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="setting_name" type="C2" size="80">
+			<KEY/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Plugin settings.</descr>
+		<index name="plugin_settings_plugin_name">
+			<col>plugin_name</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE roles
+	  *
+	  -->
+	<table name="roles">
+		<field name="conference_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="user_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="role_id" type="I8">
+			<KEY/>
+		</field>
+		<descr>User roles in conferences.</descr>
+		<index name="roles_conference_id">
+			<col>conference_id</col>
+		</index>
+		<index name="roles_sched_conf_id">
+			<col>sched_conf_id</col>
+		</index>
+		<index name="roles_user_id">
+			<col>user_id</col>
+		</index>
+		<index name="roles_role_id">
+			<col>role_id</col>
+		</index>
+	</table>
+
+	<table name="notification_status">
+		<field name="sched_conf_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="user_id" type="I8">
+			<KEY/>
+		</field>
+		<descr>User "mail notifications to my account" flags</descr>
+	</table>
+
+	<!--
+	  *
+	  * TABLE tracks
+	  *
+	  -->
+	<table name="tracks">
+		<field name="track_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="title" type="C2" size="120">
+			<NOTNULL/>
+		</field>
+		<field name="title_alt1" type="C2" size="120"/>
+		<field name="title_alt2" type="C2" size="120"/>
+		<field name="abbrev" type="C2" size="20"/>
+		<field name="abbrev_alt1" type="C2" size="20"/>
+		<field name="abbrev_alt2" type="C2" size="20"/>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="director_restricted" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="meta_reviewed" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="identify_type" type="C2" size="60"/>
+		<field name="policy" type="X"/>
+		<descr>Scheduled conference tracks.</descr>
+		<index name="tracks_sched_conf_id">
+			<col>sched_conf_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE track_settings
+	  *
+	  -->
+	<table name="track_settings">
+		<field name="track_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Track settings.</descr>
+		<index name="track_settings_track_id">
+			<col>track_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE track_directors
+	  *
+	  -->
+	<table name="track_directors">
+		<field name="sched_conf_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="track_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="user_id" type="I8">
+			<KEY/>
+		</field>
+		<descr>Assignments of track directors to tracks.</descr>
+		<index name="track_directors_sched_conf_id">
+			<col>sched_conf_id</col>
+		</index>
+		<index name="track_directors_track_id">
+			<col>track_id</col>
+		</index>
+		<index name="track_directors_user_id">
+			<col>user_id</col>
+		</index>
+	</table>
+
+	<table name="custom_track_orders">
+		<field name="sched_conf_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="track_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>Custom sequencing information by scheduled conference, when available.</descr>
+	</table>
+
+	<!--
+	  *
+	  * TABLE papers
+	  *
+	  -->
+	<table name="papers">
+		<field name="paper_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="user_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="track_id" type="I8"/>
+		<field name="paper_type" type="I8"/>
+		<field name="title" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="title_alt1" type="C2" size="255"/>
+		<field name="title_alt2" type="C2" size="255"/>
+		<field name="location" type="X"/>
+		<field name="present_start_time" type="T"/>
+		<field name="present_end_time" type="T"/>
+		<field name="abstract" type="X"/>
+		<field name="abstract_alt1" type="X"/>
+		<field name="abstract_alt2" type="X"/>
+		<field name="discipline" type="C2" size="255"/>
+		<field name="subject_class" type="C2" size="255"/>
+		<field name="subject" type="C2" size="255"/>
+		<field name="coverage_geo" type="C2" size="255"/>
+		<field name="coverage_chron" type="C2" size="255"/>
+		<field name="coverage_sample" type="C2" size="255"/>
+		<field name="type" type="C2" size="255"/>
+		<field name="language" type="C2" size="10">
+			<DEFAULT VALUE="en"/>
+		</field>
+		<field name="sponsor" type="C2" size="255"/>
+		<field name="comments_to_dr" type="X"/>
+		<field name="date_submitted" type="T"/>
+		<field name="date_reminded" type="T"/>
+		<field name="last_modified" type="T"/>
+		<field name="date_status_modified" type="T"/>
+		<field name="status" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="submission_progress" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="current_stage" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="submission_file_id" type="I8"/>
+		<field name="revised_file_id" type="I8"/>
+		<field name="review_file_id" type="I8"/>
+		<field name="layout_file_id" type="I8"/>
+		<field name="director_file_id" type="I8"/>
+		<field name="pages" type="C2" size="255"/>
+		<field name="date_to_presentations" type="T"/>
+		<field name="date_to_archive" type="T"/>
+		<descr>Conference papers.</descr>
+		<index name="papers_user_id">
+			<col>user_id</col>
+		</index>
+		<index name="papers_sched_conf_id">
+			<col>sched_conf_id</col>
+		</index>
+		<index name="papers_track_id">
+			<col>track_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE paper_settings
+	  *
+	  -->
+	<table name="paper_settings">
+		<field name="paper_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Track settings.</descr>
+		<index name="paper_settings_paper_id">
+			<col>paper_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE published_papers
+	  *
+	  -->
+	<table name="published_papers">
+		<field name="pub_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_published" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="views" type="I4">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="public_paper_id" type="C2" size="255"/>
+		<descr>Conference papers.</descr>
+		<index name="published_papers_paper_id">
+			<col>paper_id</col>
+			<UNIQUE/>
+		</index>
+		<index name="published_papers_sched_conf_id">
+			<col>sched_conf_id</col>
+		</index>
+		<index name="published_papers_public_paper_id">
+			<col>public_paper_id</col>
+		</index>
+	</table>
+
+	<!--
+	 *
+	 * TABLE comments
+	 *
+	 -->
+	<table name="comments">
+		<field name="comment_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="parent_comment_id" type="I8"/>
+		<field name="num_children" type="I4">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="user_id" type="I8"/>
+		<field name="poster_ip" type="C2" size="15">
+			<NOTNULL/>
+		</field>
+		<field name="poster_name" type="C2" size="90"/>
+		<field name="poster_email" type="C2" size="90"/>
+		<field name="title" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="body" type="X"/>
+		<field name="date_posted" type="T"/>
+		<field name="date_modified" type="T"/>
+		<descr>Reader comments on papers.</descr>
+		<index name="comments_paper_id">
+			<col>paper_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE paper_presenters
+	  *
+	  -->
+	<table name="paper_presenters">
+		<field name="presenter_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="first_name" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="middle_name" type="C2" size="40"/>
+		<field name="last_name" type="C2" size="90">
+			<NOTNULL/>
+		</field>
+		<field name="affiliation" type="C2" size="255"/>
+		<field name="country" type="C2" size="90"/>
+		<field name="email" type="C2" size="90">
+			<NOTNULL/>
+		</field>
+		<field name="url" type="C2" size="255"/>
+		<field name="biography" type="X"/>
+		<field name="primary_contact" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>Presenter metadata for papers.</descr>
+		<index name="paper_presenters_paper_id">
+			<col>paper_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE paper_presenter_settings
+	  *
+	  -->
+	<table name="paper_presenter_settings">
+		<field name="presenter_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Paper presenter settings.</descr>
+		<index name="presenter_settings_presenter_id">
+			<col>presenter_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE paper_files
+	  *
+	  -->
+	<table name="paper_files">
+		<field name="file_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="revision" type="I8">
+			<KEY/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="file_name" type="C2" size="90">
+			<NOTNULL/>
+		</field>
+		<field name="file_type" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="file_size" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="original_file_name" type="C2" size="90"/>
+		<field name="type" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="stage" type="I1"/>
+		<field name="status" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="viewable" type="I1" />
+		<field name="date_uploaded" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="date_modified" type="T">
+			<NOTNULL/>
+		</field>
+		<descr>Files associated with papers. Includes submission files, supplementary files, etc.</descr>
+		<index name="paper_files_paper_id">
+			<col>paper_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE paper_supplementary_files
+	  *
+	  -->
+	<table name="paper_supplementary_files">
+		<field name="supp_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="file_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="language" type="C2" size="10"/>
+		<field name="public_supp_file_id" type="C2" size="255"/>
+		<field name="title" type="C2" size="255"/>
+		<field name="creator" type="C2" size="255"/>
+		<field name="subject" type="C2" size="255"/>
+		<field name="type" type="C2" size="255"/>
+		<field name="type_other" type="C2" size="255"/>
+		<field name="description" type="X"/>
+		<field name="publisher" type="C2" size="255"/>
+		<field name="sponsor" type="C2" size="255"/>
+		<field name="date_created" type="D"/>
+		<field name="source" type="C2" size="255"/>
+		<field name="language" type="C2" size="10">
+			<DEFAULT VALUE="en"/>
+		</field>
+		<field name="show_reviewers" type="I1">
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="date_submitted" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>Supplementary files attached to papers.</descr>
+		<index name="paper_supplementary_files_file_id">
+			<col>file_id</col>
+		</index>
+		<index name="paper_supplementary_files_paper_id">
+			<col>paper_id</col>
+		</index>
+		<index name="paper_supplementary_files_public_issue_id">
+			<col>public_supp_file_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE paper_supplementary_file_settings
+	  *
+	  -->
+	<table name="paper_supp_file_settings">
+		<field name="supp_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object|date)</descr>
+		</field>
+		<descr>Paper supplementary file metadata.</descr>
+		<index name="paper_supp_file_settings_supp_id">
+			<col>supp_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE paper_notes
+	  *
+	  -->
+	<table name="paper_notes">
+		<field name="note_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="user_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_created" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="date_modified" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="title" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="note" type="X"/>
+		<field name="file_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<descr>Paper submission notes added by directors to each submission</descr>
+		<index name="paper_notes_paper_id">
+			<col>paper_id</col>
+		</index>
+		<index name="paper_notes_user_id">
+			<col>user_id</col>
+		</index>
+		<index name="paper_notes_file_id">
+			<col>file_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE edit_assignments
+	  *
+	  -->
+	<table name="edit_assignments">
+		<field name="edit_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="director_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_assigned" type="T"/>
+		<field name="date_notified" type="T"/>
+		<field name="date_underway" type="T"/>
+		<descr>Editing assignments.</descr>
+		<index name="edit_assignments_paper_id">
+			<col>paper_id</col>
+		</index>
+		<index name="edit_assignments_director_id">
+			<col>director_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE edit_decisions
+	  *
+	  -->
+	<table name="edit_decisions">
+		<field name="edit_decision_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="type" type="I1">
+			<NOTNULL/>
+		</field>
+		<field name="stage" type="I1">
+			<NOTNULL/>
+		</field>
+		<field name="director_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="decision" type="I1">
+			<NOTNULL/>
+		</field>
+		<field name="date_decided" type="T">
+			<NOTNULL/>
+		</field>
+		<descr>Director decisions.</descr>
+		<index name="edit_decisions_paper_id">
+			<col>paper_id</col>
+		</index>
+		<index name="edit_decisions_director_id">
+			<col>director_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE review_stages
+	  *
+	  -->
+	<table name="review_stages">
+		<field name="paper_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="stage" type="I1">
+			<KEY/>
+		</field>
+		<field name="review_revision" type="I8" />
+		<descr>Review stages.</descr>
+		<index name="review_stages_paper_id">
+			<col>paper_id</col>
+		</index>
+	</table>
+		
+	<!--
+	  *
+	  * TABLE review_assignments
+	  *
+	  -->
+	<table name="review_assignments">
+		<field name="review_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="reviewer_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="recommendation" type="I1"/>
+		<field name="date_assigned" type="T"/>
+		<field name="date_notified" type="T"/>
+		<field name="date_confirmed" type="T"/>
+		<field name="date_completed" type="T"/>
+		<field name="date_acknowledged" type="T"/>
+		<field name="date_due" type="T"/>
+		<field name="last_modified" type="T"/>
+		<field name="reminder_was_automatic" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="declined" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="replaced" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="cancelled" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="reviewer_file_id" type="I8"/>
+		<field name="date_rated" type="T"/>
+		<field name="date_reminded" type="T"/>
+		<field name="quality" type="I1"/>
+		<field name="stage" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<descr>Reviewing assignments.</descr>
+		<index name="review_assignments_paper_id">
+			<col>paper_id</col>
+		</index>
+		<index name="review_assignments_reviewer_id">
+			<col>reviewer_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE paper_galleys
+	  *
+	  -->
+	<table name="paper_galleys">
+		<field name="galley_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="locale" type="C2" size="5"/>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="file_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="label" type="C2" size="32"/>
+		<field name="html_galley" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="style_file_id" type="I8"/>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="views" type="I4">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>Paper galleys.</descr>
+		<index name="paper_galleys_paper_id">
+			<col>paper_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE paper_html_galley_images
+	  *
+	  -->
+	<table name="paper_html_galley_images">
+		<field name="galley_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="file_id" type="I8">
+			<KEY/>
+		</field>
+		<descr>Images associated with a paper HTML galley.</descr>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE paper_notifications
+	  *
+	  -->
+	<table name="paper_notifications">
+		<field name="notification_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="from_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="to_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="notification_type" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="date_notified" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="was_automatic" type="I4">
+			<NOTNULL/>
+		</field>
+
+		<descr>Paper notifications.</descr>
+		<index name="paper_notifications_paper_id">
+			<col>paper_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE paper_event_log
+	  *
+	  -->
+	<table name="paper_event_log">
+		<field name="log_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="user_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_logged" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="ip_address" type="C2" size="15">
+			<NOTNULL/>
+		</field>
+		<field name="log_level" type="C2" size="1"/>
+		<field name="event_type" type="I8"/>
+		<field name="assoc_type" type="I8"/>
+		<field name="assoc_id" type="I8"/>
+		<field name="message" type="X"/>
+		<descr>A log of all events associated with a submission.</descr>
+		<index name="paper_event_log_paper_id">
+			<col>paper_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE paper_email_log
+	  *
+	  -->
+	<table name="paper_email_log">
+		<field name="log_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="sender_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_sent" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="ip_address" type="C2" size="15"/>
+		<field name="event_type" type="I8"/>
+		<field name="assoc_type" type="I8"/>
+		<field name="assoc_id" type="I8"/>
+		<field name="from_address" type="C2" size="255"/>
+		<field name="recipients" type="X"/>
+		<field name="cc_recipients" type="X"/>
+		<field name="bcc_recipients" type="X"/>
+		<field name="subject" type="C2" size="255"/>
+		<field name="body" type="X"/>
+		<descr>A log of all emails sent out related to a submission.</descr>
+		<index name="paper_email_log_paper_id">
+			<col>paper_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE paper_comments
+	  *
+	  -->
+	<table name="paper_comments">
+		<field name="comment_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="comment_type" type="I8"/>
+		<field name="role_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="assoc_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="author_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="comment_title" type="C2" size="90">
+			<NOTNULL/>
+		</field>
+		<field name="comments" type="X"/>
+		<field name="date_posted" type="T"/>
+		<field name="date_modified" type="T"/>
+		<field name="viewable" type="I1" />
+		<descr>Comments posted on papers.</descr>
+		<index name="paper_comments_paper_id">
+			<col>paper_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE email_templates_default
+	  *
+	  -->
+	<table name="email_templates_default">
+		<field name="email_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="email_key" type="C2" size="30">
+			<NOTNULL/>
+			<descr>Unique identifier for this email.</descr>
+		</field>
+		<field name="can_disable" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="can_edit" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="from_role_id" type="I8"/>
+		<field name="to_role_id" type="I8"/>
+		<descr>Default conference email templates.</descr>
+		<index name="email_templates_default_email_key">
+			<col>email_key</col>
+			<UNIQUE/>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE email_templates_default_data
+	  *
+	  -->
+	<table name="email_templates_default_data">
+		<field name="email_key" type="C2" size="30">
+			<KEY/>
+			<descr>Unique identifier for this email.</descr>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+			<DEFAULT VALUE="en_US"/>
+		</field>
+		<field name="subject" type="C2" size="120">
+			<NOTNULL/>
+		</field>
+		<field name="body" type="X"/>
+		<field name="description" type="X"/>
+		<descr>Default data for conference email templates.</descr>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE email_templates
+	  *
+	  -->
+	<table name="email_templates">
+		<field name="email_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="email_key" type="C2" size="30">
+			<NOTNULL/>
+			<descr>Unique identifier for this email.</descr>
+		</field>
+		<field name="conference_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="enabled" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<descr>Templates for conference emails.</descr>
+		<index name="email_templates_email_key">
+			<col>email_key</col>
+			<col>conference_id</col>
+			<col>sched_conf_id</col>
+			<UNIQUE/>
+		</index>
+		<index name="email_templates_conference_id">
+			<col>conference_id</col>
+		</index>
+		<index name="email_templates_sched_conf_id">
+			<col>sched_conf_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE email_templates_data
+	  *
+	  -->
+	<table name="email_templates_data">
+		<field name="email_key" type="C2" size="30">
+			<KEY/>
+			<descr>Unique identifier for this email.</descr>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+			<DEFAULT VALUE="en_US"/>
+		</field>
+		<field name="conference_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="subject" type="C2" size="120">
+			<NOTNULL/>
+		</field>
+		<field name="body" type="X"/>
+		<descr>Data for conference email templates.</descr>
+	</table>
+	
+	<!--
+	 *
+	 * TABLE paper_search_keyword_list
+	 *
+	 -->
+	<table name="paper_search_keyword_list">
+		<field name="keyword_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="keyword_text" type="C2" size="60">
+			<NOTNULL/>
+		</field>
+		<descr>List of all keywords.</descr>
+		<index name="paper_search_keyword_text">
+			<col>keyword_text</col>
+			<UNIQUE/>
+		</index>
+	</table>
+	
+	<!--
+	 *
+	 * TABLE paper_search_objects
+	 *
+	 -->
+	<table name="paper_search_objects">
+		<field name="object_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="paper_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="type" type="I4">
+			<NOTNULL/>
+			<descr>Type of item. E.g., abstract, fulltext, etc.</descr>
+		</field>
+		<field name="assoc_id" type="I8">
+			<descr>Optional ID of an associated record (e.g., a file_id)</descr>
+		</field>
+		<descr>Indexed objects.</descr>
+	</table>
+	
+	<!--
+	 *
+	 * TABLE paper_search_object_keywords
+	 *
+	 -->
+	<table name="paper_search_object_keywords">
+		<field name="object_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="keyword_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="pos" type="I4">
+			<KEY/>
+			<descr>Word position of the keyword in the object.</descr>
+		</field>
+		<descr>Keyword occurrences for each indexed object.</descr>
+		<index name="paper_search_object_keywords_keyword_id">
+			<col>keyword_id</col>
+		</index>
+	</table>
+	
+	
+	<!-- OAI Tables -->
+	
+	<!--
+	 *
+	 * TABLE oai_resumption_tokens
+	 *
+	 -->
+	<table name="oai_resumption_tokens">
+		<field name="token" type="C2" size="32">
+			<KEY/>
+		</field>
+		<field name="expire" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="record_offset" type="I4">
+			<NOTNULL/>
+		</field>
+		<field name="params" type="X" />
+		<descr>Resumption tokens for the OAI protocol interface.</descr>
+	</table>
+	
+	
+	<!-- Reading Tools Tables -->
+	
+	<!--
+	 *
+	 * TABLE rt_versions
+	 *
+	 -->
+	<table name="rt_versions">
+		<field name="version_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="conference_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="version_key" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<DEFAULT VALUE="en_US"/>
+		</field>
+		<field name="title" type="C2" size="120">
+			<NOTNULL/>
+		</field>
+		<field name="description" type="X"/>
+		<descr>Reading Tools versions.</descr>
+		<index name="rt_versions_conference_id">
+			<col>conference_id</col>
+		</index>
+		<index name="rt_versions_version_key">
+			<col>version_key</col>
+		</index>
+	</table>
+	
+	<!--
+	 *
+	 * TABLE rt_contexts
+	 *
+	 -->
+	<table name="rt_contexts">
+		<field name="context_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="version_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="title" type="C2" size="120">
+			<NOTNULL/>
+		</field>
+		<field name="abbrev" type="C2" size="32">
+			<NOTNULL/>
+		</field>
+		<field name="description" type="X"/>
+		<field name="cited_by" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="author_terms" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="define_terms" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="geo_terms" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>Reading Tools contexts (within versions).</descr>
+		<index name="rt_contexts_version_id">
+			<col>version_id</col>
+		</index>
+	</table>
+	
+	<!--
+	 *
+	 * TABLE rt_searches
+	 *
+	 -->
+	<table name="rt_searches">
+		<field name="search_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="context_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="title" type="C2" size="120">
+			<NOTNULL/>
+		</field>
+		<field name="description" type="X"/>
+		<field name="url" type="X"/>
+		<field name="search_url" type="X"/>
+		<field name="search_post" type="X"/>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>Reading Tools searches (within contexts).</descr>
+		<index name="rt_searches_context_id">
+			<col>context_id</col>
+		</index>
+	</table>
+
+	<!--
+	 *
+	 * TABLE registration_types 
+	 *
+	 -->
+	<table name="registration_types">
+		<field name="type_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="type_name" type="C2" size="80">
+			<NOTNULL/>
+		</field>
+		<field name="code" type="C2" size="80" />
+		<field name="description" type="X"/>
+		<field name="cost" type="F">
+			<NOTNULL/>
+		</field>
+		<field name="currency_code_alpha" type="C2" size="3">
+			<NOTNULL/>
+		</field>
+		<field name="opening_date" type="D"/>
+		<field name="closing_date" type="D">
+			<NOTNULL/>
+		</field>
+		<field name="expiry_date" type="D" />
+		<field name="access" type="I2">
+			<NOTNULL/>
+		</field>
+		<field name="institutional" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="membership" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="pub" type="I1">
+			<NOTNULL/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+		</field>
+		<descr>Registration types.</descr>
+	</table>
+
+	<!--
+	  *
+	  * TABLE registration_type_settings
+	  *
+	  -->
+	<table name="registration_type_settings">
+		<field name="type_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+		</field>
+		<descr>Locale-specific registration type data</descr>
+		<index name="registration_type_settings_type_id">
+			<col>type_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE registrations
+	  *
+	 -->
+	<table name="registrations">
+		<field name="registration_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="user_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="type_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_registered" type="D">
+			<NOTNULL/>
+		</field>
+		<field name="date_paid" type="D"/>
+		<field name="membership" type="C2" size="40"/>
+		<field name="domain" type="C2" size="255"/>
+		<field name="ip_range" type="X"/>
+		<field name="special_requests" type="C2" size="255"/>
+		<descr>Conference registrations.</descr>
+		<index name="registration_sched_conf_id">
+			<col>sched_conf_id</col>
+			<col>user_id</col>
+			<UNIQUE/>
+		</index>
+		<index name="registration_domain">
+			<col>domain</col>
+		</index>
+	</table>
+
+	<!--
+	 *
+	 * TABLE currencies 
+	 *
+	 -->
+	<table name="currencies">
+		<field name="currency_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="name" type="C2" size="60">
+			<NOTNULL/>
+		</field>
+		<field name="code_alpha" type="C2" size="10">
+			<NOTNULL/>
+		</field>
+		<field name="code_numeric" type="I2">
+			<NOTNULL/>
+		</field>
+		<descr>Currencies based on ISO 4217.</descr>
+		<index name="currencies_currency_id">
+			<col>currency_id</col>
+		</index>
+	</table>
+
+	<!--
+	 *
+	 * TABLE announcement_types 
+	 *
+	 -->
+	<table name="announcement_types">
+		<field name="type_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="conference_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="type_name" type="C2" size="80">
+			<NOTNULL/>
+		</field>
+		<descr>Conference announcement types.</descr>
+		<index name="announcement_types_conference_id">
+			<col>conference_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE announcement_type_settings
+	  *
+	  -->
+	<table name="announcement_type_settings">
+		<field name="type_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+		</field>
+		<descr>Locale-specific announcement type data</descr>
+		<index name="announcement_type_settings_type_id">
+			<col>type_id</col>
+		</index>
+	</table>
+
+	<!--
+	 *
+	 * TABLE announcements 
+	 *
+	 -->
+	<table name="announcements">
+		<field name="announcement_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="conference_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="type_id" type="I8"/>
+		<field name="title" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="description_short" type="X">
+			<NOTNULL/>
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="description" type="X">
+			<NOTNULL/>
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="date_expire" type="T"/>
+		<field name="date_posted" type="T">
+			<NOTNULL/>
+		</field>
+		<descr>Conference announcements.</descr>
+		<index name="announcements_conference_id">
+			<col>conference_id</col>
+		</index>
+		<index name="announcements_sched_conf_id">
+			<col>sched_conf_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE announcement_settings
+	  *
+	  -->
+	<table name="announcement_settings">
+		<field name="announcement_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+		</field>
+		<descr>Locale-specific announcement data</descr>
+		<index name="announcement_settings_announcement_id">
+			<col>announcement_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE captchas
+	  *
+	  -->
+	<table name="captchas">
+		<field name="captcha_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="session_id" type="C2" size="32">
+			<NOTNULL/>
+		</field>
+		<field name="value" type="C2" size="20">
+			<NOTNULL/>
+		</field>
+		<field name="date_created" type="T">
+			<NOTNULL/>
+		</field>
+	</table>
+
+	<!--
+	  *
+	  * TABLE temporary_files
+	  *
+	  -->
+	<table name="temporary_files">
+		<field name="file_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="user_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="file_name" type="C2" size="90">
+			<NOTNULL/>
+		</field>
+		<field name="file_type" type="C2" size="255">
+		</field>
+		<field name="file_size" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="original_file_name" type="C2" size="90"/>
+		<field name="type" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="date_uploaded" type="T">
+			<NOTNULL/>
+		</field>
+		<descr>Temporary file storage; used to keep attachments across multiple email composition requests</descr>
+		<index name="temporary_files_user_id">
+			<col>user_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE access_keys
+	  *
+	  -->
+	<table name="access_keys">
+		<field name="access_key_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="context" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="user_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="assoc_id" type="I8"/>
+		<field name="expiry_date" type="T">
+			<NOTNULL/>
+		</field>
+		<descr>Access keys are used to provide pseudo-login functionality for security-minimal tasks. Passkeys can be emailed directly to users, who can use them for a limited time in lieu of standard username and password.</descr>
+		<index name="access_keys_hash">
+			<col>key_hash</col>
+			<col>user_id</col>
+			<col>context</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE queued_payments
+	  *
+	  -->
+	<table name="queued_payments">
+		<field name="queued_payment_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="key_hash" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="date_created" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="date_modified" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="payment_data" type="X" />
+		<descr>Logs queued (unfulfilled) payments.</descr>
+		<index name="queued_payments_hash">
+			<col>key_hash</col>
+			<col>queued_payment_id</col>
+		</index>
+	</table>
+
+	<!-- 
+	  *
+	  * TABLE groups
+	  *
+	 -->
+	<table name="groups">
+		<field name="group_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="conference_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="title" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="title_alt1" type="C2" size="255"/>
+		<field name="title_alt2" type="C2" size="255"/>
+		<field name="about_displayed" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<index name="groups_conference_id">
+			<col>conference_id</col>
+		</index>
+		<index name="groups_sched_conf_id">
+			<col>sched_conf_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE group_settings
+	  *
+	  -->
+	<table name="group_settings">
+		<field name="group_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<KEY/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<KEY/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+		</field>
+		<descr>Locale-specific group data</descr>
+		<index name="group_settings_announcement_id">
+			<col>group_id</col>
+		</index>
+	</table>
+
+	<!-- 
+	  *
+	  * TABLE group_memberships
+	  *
+	 -->
+	<table name="group_memberships">
+		<field name="user_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="group_id" type="I8">
+			<KEY/>
+		</field>
+		<field name="about_displayed" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+	</table>
+</schema>

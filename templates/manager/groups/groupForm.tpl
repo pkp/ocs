@@ -21,31 +21,27 @@
 
 <br/>
 
-<form method="post" action="{url op="updateGroup"}">
+<form name="groupForm" method="post" action="{url op="updateGroup"}">
 {if $group}
 	<input type="hidden" name="groupId" value="{$group->getGroupId()}"/>
 {/if}
 
 {include file="common/formErrors.tpl"}
 <table class="data" width="100%">
-<tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="title" required="true" key="manager.groups.title"}</td>
-	<td width="80%" class="value"><input type="text" name="title" value="{$title|escape}" size="35" maxlength="80" id="title" class="textField" /></td>
-</tr>
-
-{if $alternateLocale1}
+{if count($formLocales) > 1}
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="titleAlt1" required="true" key="manager.groups.title"} ({$languageToggleLocales.$alternateLocale1|escape})</td>
-		<td width="80%" class="value"><input type="text" name="titleAlt1" value="{$titleAlt1|escape}" size="35" maxlength="80" id="titleAlt1" class="textField" /></td>
+		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="80%" class="value">
+			{if $group}{url|assign:"groupFormUrl" op="editGroup" path=$group->getGroupId()}
+			{else}{url|assign:"groupFormUrl" op="createGroup"}
+			{/if}
+			{form_language_chooser form="groupForm" url=$groupFormUrl}
+		</td>
 	</tr>
-{/if}
-
-{if $alternateLocale2}
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="titleAlt2" required="true" key="manager.groups.title"} ({$languageToggleLocales.$alternateLocale2|escape})</td>
-		<td width="80%" class="value"><input type="text" name="titleAlt2" value="{$titleAlt2|escape}" size="35" maxlength="80" id="titleAlt2" class="textField" /></td>
+		<td width="20%" class="label">{fieldLabel name="title" required="true" key="manager.groups.title"}</td>
+		<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" value="{$title[$formLocale]|escape}" size="35" maxlength="80" id="title" class="textField" /></td>
 	</tr>
-{/if}
 </table>
 
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="groups" escape=false}'" /></p>

@@ -24,7 +24,7 @@ class AnnouncementHandler extends Handler {
 
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
-		
+
 		$announcementsEnabled = $conference->getSetting('enableAnnouncements');
 
 		if ($announcementsEnabled) {
@@ -33,12 +33,12 @@ class AnnouncementHandler extends Handler {
 
 			if($schedConf) {
 				$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $schedConf->getSchedConfId(), $rangeInfo);
-				$announcementsIntroduction = $schedConf->getSetting('announcementsIntroduction',true);
+				$announcementsIntroduction = $schedConf->getLocalizedSetting('announcementsIntroduction');
 			} else {
 				$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), 0, $rangeInfo);
-				$announcementsIntroduction = $conference->getSetting('announcementsIntroduction');
+				$announcementsIntroduction = $conference->getLocalizedSetting('announcementsIntroduction');
 			}
-			
+
 
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('announcements', $announcements);
@@ -49,7 +49,7 @@ class AnnouncementHandler extends Handler {
 		}
 
 	}
-	
+
 	/**
 	 * View announcement details.
 	 * @param $args array optional, first parameter is the ID of the announcement to display 
@@ -58,7 +58,7 @@ class AnnouncementHandler extends Handler {
 		AnnouncementHandler::setupTemplate();
 
 		$conference = &Request::getConference();
-		
+
 		$announcementsEnabled = $conference->getSetting('enableAnnouncements');
 		$announcementId = !isset($args) || empty($args) ? null : (int) $args[0];
 		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
@@ -70,9 +70,9 @@ class AnnouncementHandler extends Handler {
 				$templateMgr = &TemplateManager::getManager();
 				$templateMgr->assign('announcement', $announcement);
 				if ($announcement->getTypeId() == null) {
-					$templateMgr->assign('announcementTitle', $announcement->getTitle());
+					$templateMgr->assign('announcementTitle', $announcement->getAnnouncementTitle());
 				} else {
-					$templateMgr->assign('announcementTitle', $announcement->getTypeName() . ": " . $announcement->getTitle());
+					$templateMgr->assign('announcementTitle', $announcement->getTypeName() . ": " . $announcement->getAnnouncementTitle());
 				}
 				$templateMgr->append('pageHierarchy', array(Request::url(null, 'announcement'), 'announcement.announcements'));
 				$templateMgr->display('announcement/view.tpl');

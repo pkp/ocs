@@ -88,7 +88,7 @@ class PaperHandler extends Handler {
 			$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 			$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
 		}
-		
+
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
@@ -195,7 +195,7 @@ class PaperHandler extends Handler {
 		// The RST needs to know whether this galley is HTML or not. Fetch the galley.
 		$paperGalleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 		$galley = &$paperGalleyDao->getGalley($galleyId, $paper->getPaperId());
-		
+
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$track = &$trackDao->getTrack($paper->getTrackId());
 
@@ -340,15 +340,15 @@ class PaperHandler extends Handler {
 			if (!Validation::isLoggedIn() && $schedConf->getSetting('restrictPaperAccess', true)) {
 				Validation::redirectLogin();
 			}
-	
+
 			import('schedConf.SchedConfAction');
 			$mayViewPaper = SchedConfAction::mayViewPapers($schedConf, $conference);
-			
+
 			// Bar access to paper?
 			if ((isset($galleyId) && $galleyId!=0) && !$mayViewPaper) {
 				Request::redirect(null, null, null, 'index');	
 			}
-			
+
 			// Bar access to abstract?
 			if ((!isset($galleyId) || $galleyId==0) && !SchedConfAction::mayViewProceedings($schedConf)) {
 				Request::redirect(null, null, null, 'index');	

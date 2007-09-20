@@ -18,14 +18,6 @@
 import('announcement.Announcement');
 
 class AnnouncementDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function AnnouncementDAO() {
-		parent::DAO();
-	}
-
 	/**
 	 * Retrieve an announcement by announcement ID.
 	 * @param $announcementId int
@@ -53,8 +45,16 @@ class AnnouncementDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT conference_id FROM announcements WHERE announcement_id = ?', $announcementId
 		);
-		
+
 		return isset($result->fields[0]) ? $result->fields[0] : 0;	
+	}
+
+	/**
+	 * Get the list of localized field names for this table
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('title', 'descriptionShort', 'description');
 	}
 
 	/**
@@ -68,13 +68,22 @@ class AnnouncementDAO extends DAO {
 		$announcement->setConferenceId($row['conference_id']);
 		$announcement->setSchedConfId($row['sched_conf_id']);
 		$announcement->setTypeId($row['type_id']);
-		$announcement->setTitle($row['title']);
-		$announcement->setDescriptionShort($row['description_short']);
-		$announcement->setDescription($row['description']);
 		$announcement->setDateExpire($this->dateFromDB($row['date_expire']));
 		$announcement->setDatePosted($this->dateFromDB($row['date_posted']));
-		
+
+		$this->getDataObjectSettings('announcement_settings', 'announcement_id', $row['announcement_id'], $announcement);
+
 		return $announcement;
+	}
+
+	/**
+	 * Update the settings for this object
+	 * @param $announcement object
+	 */
+	function updateLocaleFields(&$announcement) {
+		$this->updateDataObjectSettings('announcement_settings', $announcement, array(
+			'announcement_id' => $announcement->getAnnouncementId()
+		));
 	}
 
 	/**
@@ -83,22 +92,20 @@ class AnnouncementDAO extends DAO {
 	 * @return int 
 	 */
 	function insertAnnouncement(&$announcement) {
-		$ret = $this->update(
+		$this->update(
 			sprintf('INSERT INTO announcements
-				(conference_id, sched_conf_id, type_id, title, description_short, description, date_expire, date_posted)
+				(conference_id, sched_conf_id, type_id, date_expire, date_posted)
 				VALUES
-				(?, ?, ?, ?, ?, ?, %s, %s)',
+				(?, ?, ?, %s, %s)',
 				$this->dateToDB($announcement->getDateExpire()), $this->dateToDB($announcement->getDatePosted())),
 			array(
 				$announcement->getConferenceId(),
 				$announcement->getSchedConfId(),
-				$announcement->getTypeId(),
-				$announcement->getTitle(),
-				$announcement->getDescriptionShort(),
-				$announcement->getDescription()
+				$announcement->getTypeId()
 			)
 		);
 		$announcement->setAnnouncementId($this->getInsertAnnouncementId());
+		$this->updateLocaleFields($announcement);
 		return $announcement->getAnnouncementId();
 	}
 
@@ -108,15 +115,12 @@ class AnnouncementDAO extends DAO {
 	 * @return boolean
 	 */
 	function updateAnnouncement(&$announcement) {
-		return $this->update(
+		$returner = $this->update(
 			sprintf('UPDATE announcements
 				SET
 					conference_id = ?,
 					sched_conf_id = ?,
 					type_id = ?,
-					title = ?,
-					description_short = ?,
-					description = ?,
 					date_expire = %s
 				WHERE announcement_id = ?',
 				$this->dateToDB($announcement->getDateExpire())),
@@ -124,12 +128,11 @@ class AnnouncementDAO extends DAO {
 				$announcement->getConferenceId(),
 				$announcement->getSchedConfId(),
 				$announcement->getTypeId(),
-				$announcement->getTitle(),
-				$announcement->getDescriptionShort(),
-				$announcement->getDescription(),
 				$announcement->getAnnouncementId()
 			)
 		);
+		$this->updateLocaleFields($announcement);
+		return $returner;
 	}
 
 	/**
@@ -147,9 +150,8 @@ class AnnouncementDAO extends DAO {
 	 * @return boolean
 	 */
 	function deleteAnnouncementById($announcementId) {
-		return $this->update(
-			'DELETE FROM announcements WHERE announcement_id = ?', $announcementId
-		);
+		$this->update('DELETE FROM announcement_settings WHERE announcement_id = ?', $announcementId);
+		return $this->update('DELETE FROM announcements WHERE announcement_id = ?', $announcementId);
 	}
 
 	/**
@@ -158,9 +160,11 @@ class AnnouncementDAO extends DAO {
 	 * @return boolean
 	 */
 	function deleteAnnouncementByTypeId($typeId) {
-		return $this->update(
-			'DELETE FROM announcements WHERE type_id = ?', $typeId
-		);
+		$announcements =& $this->getAnnouncementsByTypeId($typeId);
+		while (($announcement =& $announcements->next())) {
+			$this->deleteAnnouncement($announcement->getAnnouncementId());
+			unset($announcement);
+		}
 	}
 
 	/**
@@ -204,6 +208,20 @@ class AnnouncementDAO extends DAO {
 			'ORDER BY announcement_id DESC',
 			$args,
 			$rangeInfo
+		);
+
+		$returner = &new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve an array of announcements matching a particular type ID.
+	 * @param $typeId int
+	 * @return object DAOResultFactory containing matching Announcements
+	 */
+	function &getAnnouncementsByTypeId($typeId, $rangeInfo = null) {
+		$result = &$this->retrieveRange(
+			'SELECT * FROM announcements WHERE type_id = ? ORDER BY announcement_id DESC', $typeId, $rangeInfo
 		);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
@@ -278,7 +296,6 @@ class AnnouncementDAO extends DAO {
 	function getInsertAnnouncementId() {
 		return $this->getInsertId('announcements', 'announcement_id');
 	}
-
 }
 
 ?>

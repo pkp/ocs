@@ -14,7 +14,7 @@
  * $Id$
  *
  */
- 
+
 import("submission.form.comment.CommentForm");
 
 class DirectorDecisionCommentForm extends CommentForm {
@@ -26,7 +26,7 @@ class DirectorDecisionCommentForm extends CommentForm {
 	function DirectorDecisionCommentForm($paper, $roleId) {
 		parent::CommentForm($paper, COMMENT_TYPE_DIRECTOR_DECISION, $roleId, $paper->getPaperId());
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -40,13 +40,13 @@ class DirectorDecisionCommentForm extends CommentForm {
 				'paperId' => $this->paper->getPaperId()
 			)
 		);
-		
+
 		$isDirector = $this->roleId == ROLE_ID_DIRECTOR || $this->roleId == ROLE_ID_TRACK_DIRECTOR ? true : false;
 		$templateMgr->assign('isDirector', $isDirector);
-		
+
 		parent::display();
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -58,14 +58,14 @@ class DirectorDecisionCommentForm extends CommentForm {
 			)
 		);
 	}
-	
+
 	/**
 	 * Add the comment.
 	 */
 	function execute() {
 		parent::execute();
 	}
-	
+
 	/**
 	 * Email the comment.
 	 */
@@ -73,17 +73,17 @@ class DirectorDecisionCommentForm extends CommentForm {
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$conference = &Request::getConference();
-		
+
 		// Create list of recipients:
-		
+
 		// Director Decision comments are to be sent to the director or presenter,
 		// the opposite of whomever wrote the comment.
 		$recipients = array();
-		
+
 		if ($this->roleId == ROLE_ID_DIRECTOR || $this->roleId == ROLE_ID_TRACK_DIRECTOR) {
 			// Then add presenter
 			$user = &$userDao->getUser($this->paper->getUserId());
-			
+
 			if ($user) $recipients = array_merge($recipients, array($user->getEmail() => $user->getFullName()));
 		} else {
 			// Then add director
@@ -106,7 +106,7 @@ class DirectorDecisionCommentForm extends CommentForm {
 			}
 			$recipients = array_merge($recipients, $directorAddresses);
 		}
-		
+
 		parent::email($recipients);	
 	}
 }

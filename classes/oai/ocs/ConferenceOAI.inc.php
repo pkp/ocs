@@ -20,33 +20,32 @@ import('oai.OAI');
 import('oai.ocs.OAIDAO');
 
 class ConferenceOAI extends OAI {
-
 	/** @var $site Site associated site object */
 	var $site;
-	
+
 	/** @var $conference Conference associated conference object */
 	var $conference;
-	
+
 	/** @var $conferenceId int null if no conference */
 	var $conferenceId;
-	
+
 	/** @var $dao OAIDAO DAO for retrieving OAI records/tokens from database */
 	var $dao;
-	
-	
+
+
 	/**
 	 * @see OAI#OAI
 	 */
 	function ConferenceOAI($config) {
 		parent::OAI($config);
-		
+
 		$this->site = &Request::getSite();
 		$this->conference = &Request::getConference();
 		$this->conferenceId = isset($this->conference) ? $this->conference->getConferenceId() : null;
 		$this->dao = &DAORegistry::getDAO('OAIDAO');
 		$this->dao->setOAI($this);
 	}
-	
+
 	/**
 	 * Convert paper ID to OAI identifier.
 	 * @param $paperId int
@@ -55,13 +54,13 @@ class ConferenceOAI extends OAI {
 	function paperIdToIdentifier($paperId) {
 		return 'oai:' . $this->config->repositoryId . ':' . 'paper/' . $paperId;
 	}
-	
+
 	/**
 	 * Convert OAI identifier to paper ID.
 	 * @param $identifier string
 	 * @return int
 	 */
-	function identifierToArticleId($identifier) {
+	function identifierToPaperId($identifier) {
 		$prefix = 'oai:' . $this->config->repositoryId . ':' . 'paper/';
 		if (strstr($identifier, $prefix)) {
 			return (int) str_replace($prefix, '', $identifier);
@@ -86,57 +85,57 @@ class ConferenceOAI extends OAI {
 		}
 		return $this->dao->getSetConferenceTrackId($conferenceSpec, $trackSpec, $this->conferenceId);
 	}
-	
-	
+
+
 	//
 	// OAI interface functions
 	//
-	
+
 	/**
 	 * @see OAI#repositoryInfo
 	 */
 	function &repositoryInfo() {
 		$info = &new OAIRepository();
-		
+
 		if (isset($this->conference)) {
-			$info->repositoryName = $this->conference->getTitle();
+			$info->repositoryName = $this->conference->getConferenceTitle();
 			$info->adminEmail = $this->conference->getSetting('contactEmail');
 
 		} else {
-			$info->repositoryName = $this->site->getTitle();
-			$info->adminEmail = $this->site->getContactEmail();
+			$info->repositoryName = $this->site->getSiteTitle();
+			$info->adminEmail = $this->site->getSiteContactEmail();
 		}
-		
+
 		$info->sampleIdentifier = $this->paperIdToIdentifier(1);
 		$info->earliestDatestamp = $this->dao->getEarliestDatestamp($this->conferenceId);
-		
+
 		return $info;
 	}
-	
+
 	/**
 	 * @see OAI#validIdentifier
 	 */
 	function validIdentifier($identifier) {
-		return $this->identifierToArticleId($identifier) !== false;
+		return $this->identifierToPaperId($identifier) !== false;
 	}
-	
+
 	/**
 	 * @see OAI#identifierExists
 	 */
 	function identifierExists($identifier) {
 		$recordExists = false;
-		$paperId = $this->identifierToArticleId($identifier);
+		$paperId = $this->identifierToPaperId($identifier);
 		if ($paperId) {
 			$recordExists = $this->dao->recordExists($paperId, $this->conferenceId);
 		}
 		return $recordExists;
 	}
-	
+
 	/**
 	 * @see OAI#record
 	 */
 	function &record($identifier) {
-		$paperId = $this->identifierToArticleId($identifier);
+		$paperId = $this->identifierToPaperId($identifier);
 		if ($paperId) {
 			$record = &$this->dao->getRecord($paperId, $this->conferenceId);
 		}
@@ -145,7 +144,7 @@ class ConferenceOAI extends OAI {
 		}
 		return $record;		
 	}
-	
+
 	/**
 	 * @see OAI#records
 	 */
@@ -159,7 +158,7 @@ class ConferenceOAI extends OAI {
 		$records = &$this->dao->getRecords($conferenceId, $trackId, $from, $until, $offset, $limit, $total);
 		return $records;
 	}
-	
+
 	/**
 	 * @see OAI#identifiers
 	 */
@@ -173,7 +172,7 @@ class ConferenceOAI extends OAI {
 		$records = &$this->dao->getIdentifiers($conferenceId, $trackId, $from, $until, $offset, $limit, $total);
 		return $records;
 	}
-	
+
 	/**
 	 * @see OAI#sets
 	 */
@@ -181,7 +180,7 @@ class ConferenceOAI extends OAI {
 		$sets = &$this->dao->getConferenceSets($this->conferenceId, $offset, $total);
 		return $sets;
 	}
-	
+
 	/**
 	 * @see OAI#resumptionToken
 	 */
@@ -193,7 +192,7 @@ class ConferenceOAI extends OAI {
 		}
 		return $token;
 	}
-	
+
 	/**
 	 * @see OAI#saveResumptionToken
 	 */
@@ -202,7 +201,6 @@ class ConferenceOAI extends OAI {
 		$this->dao->insertToken($token);
 		return $token;
 	}
-	
 }
 
 ?>

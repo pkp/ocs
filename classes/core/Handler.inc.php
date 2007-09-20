@@ -23,7 +23,7 @@ class Handler {
 		header('HTTP/1.0 404 Not Found');
 		fatalError('404 Not Found');
 	}
-	
+
 	/**
 	 * Perform request access validation based on security settings.
 	 * @param $requiresConference boolean
@@ -33,7 +33,7 @@ class Handler {
 			// Force SSL connections site-wide
 			Request::redirectSSL();
 		}
-		
+
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
 
@@ -56,7 +56,7 @@ class Handler {
 			if($schedConf->getConferenceId() != $conference->getConferenceId())
 				Request::redirect(null, null, 'about');
 		}
-		
+
 		return array($conference, $schedConf);
 	}
 

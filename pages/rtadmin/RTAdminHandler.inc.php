@@ -48,7 +48,7 @@ class RTAdminHandler extends Handler {
 			$roleDao = &DAORegistry::getDAO('RoleDAO');
 
 			$conferences = array();
-			
+
 			$allConferences = &$conferenceDao->getConferences();
 			$allConferences = &$allConferences->toArray();
 
@@ -258,7 +258,7 @@ class RTAdminHandler extends Handler {
 		if ($schedConf) {
 			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getFullTitle(), true);
 		} elseif ($conference) {
-			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getTitle(), true);
+			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
 		}
 
 		$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');

@@ -18,26 +18,25 @@
  * OAI repository configuration.
  */
 class OAIConfig {
-
 	/** @var $baseUrl string URL to the OAI front-end */
 	var $baseUrl = '';
-	
+
 	/** @var $repositoryId string identifier of the repository */
 	var $repositoryId = 'oai';
-	
+
 	/** @var $granularity string record datestamp granularity */
 	// Must be either 'YYYY-MM-DD' or 'YYYY-MM-DDThh:mm:ssZ'
 	var $granularity = 'YYYY-MM-DDThh:mm:ssZ';
-	
+
 	/** @var $tokenLifetime int TTL of resumption tokens */
 	var $tokenLifetime = 3600;
-	
+
 	/** @var $maxIdentifiers int maximum identifiers returned per request */
 	var $maxIdentifiers = 500;
-	
+
 	/** @var $maxRecords int maximum records returned per request */
 	var $maxRecords = 200;
-	
+
 	/** @var $maxSets int maximum sets returned per request */
 	// Must be set to zero if sets not supported by repository
 	var $maxSets = 50;
@@ -56,19 +55,19 @@ class OAIConfig {
  * OAI repository information.
  */
 class OAIRepository {
-	
+
 	/** @var $repositoryName string name of the repository */
 	var $repositoryName;
-	
+
 	/** @var $adminEmail string administrative contact email */
 	var $adminEmail;
-	
+
 	/** @var $earliestDatestamp int earliest *nix timestamp in the repository */
 	var $earliestDatestamp;
-	
+
 	/** @var $delimiter string delimiter in identifier */
 	var $delimiter = ':';
-	
+
 	/** @var $sampleIdentifier string example identifier */
 	var $sampleIdentifier;
 }
@@ -82,17 +81,17 @@ class OAIResumptionToken {
 
 	/** @var $id string unique token ID */
 	var $id;
-	
+
 	/** @var $offset int record offset */
 	var $offset;
-	
+
 	/** @var $params array request parameters */
 	var $params;
-	
+
 	/** @var $expire int expiration timestamp */
 	var $expire;
-	
-	
+
+
 	/**
 	 * Constructor.
 	 */
@@ -113,17 +112,17 @@ class OAIMetadataFormat {
 
 	/** @var $prefix string metadata prefix */
 	var $prefix;
-	
+
 	/** @var $schema string XML schema */
 	var $schema;
-	
+
 	/** @var $namespace string XML namespace */
 	var $namespace;
-	
+
 	/** @var $oai the parent OAI object */
 	var $oai;
-	
-	
+
+
 	/**
 	 * Constructor.
 	 */
@@ -133,7 +132,14 @@ class OAIMetadataFormat {
 		$this->schema = $schema;
 		$this->namespace = $namespace;
 	}
-	
+
+	function getLocalizedData($data, $locale) {
+		foreach ($data as $element) {
+			if (isset($data[$locale])) return $data[$locale];
+		}
+		return '';
+	}
+
 	/**
 	 * Retrieve XML-formatted metadata for the specified record.
 	 * @param $record OAIRecord
@@ -153,14 +159,14 @@ class OAISet {
 
 	/** @var $spec string unique set specifier */
 	var $spec;
-	
+
 	/** @var $name string set name */
 	var $name;
-	
+
 	/** @var $description string set description */
 	var $description;
-	
-	
+
+
 	/**
 	 * Constructor.
 	 */
@@ -179,10 +185,10 @@ class OAIIdentifier {
 
 	/** @var $identifier string unique OAI record identifier */
 	var $identifier;
-	
+
 	/** @var $datestamp int last-modified *nix timestamp */
 	var $datestamp;
-	
+
 	/** @var $sets array sets this record belongs to */
 	var $sets;
 }
@@ -193,27 +199,29 @@ class OAIIdentifier {
  * Describes metadata for a single record in the repository.
  */
 class OAIRecord extends OAIIdentifier {
-	
+
 	//
 	// Metadata fields
 	//
-	
+
 	var $url;
-	var $title;
+	var $titles;
 	var $creator;
-	var $subject;
-	var $description;
-	var $publisher;
-	var $contributor;
+	var $subjects;
+	var $descriptions;
+	var $publishers;
+	var $contributors;
 	var $date;
-	var $type;
+	var $types;
 	var $format;
-	var $source;
+	var $sources;
 	var $language;
 	var $relation;
 	var $coverage;
 	var $rights;
 	var $pages;
+
+	var $primaryLocale;
 }
 
 ?>

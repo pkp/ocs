@@ -21,19 +21,15 @@ class UserManagementForm extends Form {
 	/** The ID of the user being edited */
 	var $userId;
 
-	/** @var boolean Include a user's working languages in their profile */
-	var $profileLocalesEnabled;
-	
 	/**
 	 * Constructor.
 	 */
 	function UserManagementForm($userId = null) {
 		parent::Form('manager/people/userProfileForm.tpl');
-		
+
 		$this->userId = isset($userId) ? (int) $userId : null;
 		$site = &Request::getSite();
-		$this->profileLocalesEnabled = $site->getProfileLocalesEnabled();
-		
+
 		// Validation checks for this form
 		if ($userId == null) {
 			$this->addCheck(new FormValidator($this, 'username', 'required', 'user.profile.form.usernameRequired'));
@@ -52,7 +48,7 @@ class UserManagementForm extends Form {
 		$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.account.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array($this->userId, true), true));
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -71,7 +67,7 @@ class UserManagementForm extends Form {
 		} else {
 			$helpTopicId = 'conference.users.createNewUser';
 		}
-		
+
 		if($schedConf) {
 			$templateMgr->assign('roleOptions',
 				array(
@@ -91,17 +87,19 @@ class UserManagementForm extends Form {
 				)
 			);
 		}
-		$templateMgr->assign('profileLocalesEnabled', $this->profileLocalesEnabled);
-		if ($this->profileLocalesEnabled) {
-			$site = &Request::getSite();
-			$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
-		}
+		$site = &Request::getSite();
+		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
+
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
-		
+
+		$disciplineDao =& DAORegistry::getDAO('DisciplineDAO');
+		$disciplines =& $disciplineDao->getDisciplines();
+		$templateMgr->assign_by_ref('disciplines', $disciplines);
+
 		$authDao = &DAORegistry::getDAO('AuthSourceDAO');
 		$authSources = &$authDao->getSources();
 		$authSourceOptions = array();
@@ -113,7 +111,7 @@ class UserManagementForm extends Form {
 		}
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize form data from current user profile.
 	 */
@@ -121,15 +119,17 @@ class UserManagementForm extends Form {
 		if (isset($this->userId)) {
 			$userDao = &DAORegistry::getDAO('UserDAO');
 			$user = &$userDao->getUser($this->userId);
-			
+
 			if ($user != null) {
 				$this->_data = array(
 					'authId' => $user->getAuthId(),
 					'username' => $user->getUsername(),
+					'salutation' => $user->getSalutation(),
 					'firstName' => $user->getFirstName(),
 					'middleName' => $user->getMiddleName(),
 					'lastName' => $user->getLastName(),
 					'initials' => $user->getInitials(),
+					'gender' => $user->getGender(),
 					'affiliation' => $user->getAffiliation(),
 					'email' => $user->getEmail(),
 					'userUrl' => $user->getUrl(),
@@ -137,9 +137,10 @@ class UserManagementForm extends Form {
 					'fax' => $user->getFax(),
 					'mailingAddress' => $user->getMailingAddress(),
 					'country' => $user->getCountry(),
-					'biography' => $user->getBiography(),
-					'interests' => $user->getInterests(),
-					'signature' => $user->getSignature(),
+					'biography' => $user->getBiography(null), // Localized
+					'interests' => $user->getInterests(null), // Localized
+					'signature' => $user->getSignature(null), // Localized
+					'discipline' => $user->getDiscipline(),
 					'userLocales' => $user->getLocales()
 				);
 
@@ -157,26 +158,57 @@ class UserManagementForm extends Form {
 			);
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('authId', 'enrollAs', 'password', 'password2', 'firstName', 'middleName', 'lastName', 'initials', 'affiliation', 'email', 'phone', 'fax', 'mailingAddress', 'country', 'userUrl', 'biography', 'interests', 'signature', 'userLocales', 'generatePassword', 'sendNotify', 'mustChangePassword'));
+		$this->readUserVars(array(
+			'authId',
+			'enrollAs',
+			'password',
+			'password2',
+			'salutation',
+			'firstName',
+			'middleName',
+			'lastName',
+			'gender',
+			'discipline',
+			'initials',
+			'affiliation',
+			'email',
+			'phone',
+			'fax',
+			'mailingAddress',
+			'country',
+			'userUrl',
+			'biography',
+			'interests',
+			'signature',
+			'userLocales',
+			'generatePassword',
+			'sendNotify',
+			'mustChangePassword'
+		));
 		if ($this->userId == null) {
 			$this->readUserVars(array('username'));
 		}
-		
+
 		if ($this->getData('userLocales') == null || !is_array($this->getData('userLocales'))) {
 			$this->setData('userLocales', array());
 		}
-		
+
 		if ($this->getData('username') != null) {
 			// Usernames must be lowercase
 			$this->setData('username', strtolower($this->getData('username')));
 		}
 	}
-	
+
+	function getLocaleFieldNames() {
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		return $userDao->getLocaleFieldNames();
+	}
+
 	/**
 	 * Register a new user.
 	 */
@@ -184,19 +216,22 @@ class UserManagementForm extends Form {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
-		
+
 		if (isset($this->userId)) {
 			$user = &$userDao->getUser($this->userId);
 		}
-		
+
 		if (!isset($user)) {
 			$user = &new User();
 		}
-		
+
+		$user->setSalutation($this->getData('salutation'));
 		$user->setFirstName($this->getData('firstName'));
 		$user->setMiddleName($this->getData('middleName'));
 		$user->setLastName($this->getData('lastName'));
 		$user->setInitials($this->getData('initials'));
+		$user->setGender($this->getData('gender'));
+		$user->setDiscipline($this->getData('discipline'));
 		$user->setAffiliation($this->getData('affiliation'));
 		$user->setEmail($this->getData('email'));
 		$user->setUrl($this->getData('userUrl'));
@@ -204,30 +239,28 @@ class UserManagementForm extends Form {
 		$user->setFax($this->getData('fax'));
 		$user->setMailingAddress($this->getData('mailingAddress'));
 		$user->setCountry($this->getData('country'));
-		$user->setBiography($this->getData('biography'));
-		$user->setInterests($this->getData('interests'));
-		$user->setSignature($this->getData('signature'));
+		$user->setBiography($this->getData('biography'), null); // Localized
+		$user->setInterests($this->getData('interests'), null); // Localized
+		$user->setSignature($this->getData('signature'), null); // Localized
 		$user->setMustChangePassword($this->getData('mustChangePassword') ? 1 : 0);
 		$user->setAuthId((int) $this->getData('authId'));
-		
-		if ($this->profileLocalesEnabled) {
-			$site = &Request::getSite();
-			$availableLocales = $site->getSupportedLocales();
-			
-			$locales = array();
-			foreach ($this->getData('userLocales') as $locale) {
-				if (Locale::isLocaleValid($locale) && in_array($locale, $availableLocales)) {
-					array_push($locales, $locale);
-				}
+
+		$site = &Request::getSite();
+		$availableLocales = $site->getSupportedLocales();
+
+		$locales = array();
+		foreach ($this->getData('userLocales') as $locale) {
+			if (Locale::isLocaleValid($locale) && in_array($locale, $availableLocales)) {
+				array_push($locales, $locale);
 			}
-			$user->setLocales($locales);
 		}
-		
+		$user->setLocales($locales);
+
 		if ($user->getAuthId()) {
 			$authDao = &DAORegistry::getDAO('AuthSourceDAO');
 			$auth = &$authDao->getPlugin($user->getAuthId());
 		}
-		
+
 		if ($user->getUserId() != null) {
 			if ($this->getData('password') !== '') {
 				if (isset($auth)) {
@@ -237,14 +270,14 @@ class UserManagementForm extends Form {
 					$user->setPassword(Validation::encryptCredentials($user->getUsername(), $this->getData('password')));
 				}
 			}
-			
+
 			if (isset($auth)) {
 				// FIXME Should try to create user here too?
 				$auth->doSetUserInfo($user);
 			}
-			
+
 			$userDao->updateUser($user);
-		
+
 		} else {
 			$user->setUsername($this->getData('username'));
 			if ($this->getData('generatePassword')) {
@@ -254,7 +287,7 @@ class UserManagementForm extends Form {
 				$password = $this->getData('password');
 				$sendNotify = $this->getData('sendNotify');
 			}
-			
+
 			if (isset($auth)) {
 				$user->setPassword($password);
 				// FIXME Check result and handle failures
@@ -267,7 +300,7 @@ class UserManagementForm extends Form {
 
 			$user->setDateRegistered(Core::getCurrentDate());
 			$userId = $userDao->insertUser($user);
-			
+
 			if (!empty($this->_data['enrollAs'])) {
 				foreach ($this->getData('enrollAs') as $roleName) {
 					// Enroll new user into an initial role
@@ -283,7 +316,7 @@ class UserManagementForm extends Form {
 					}
 				}
 			}
-		
+
 			if ($sendNotify) {
 				// Send welcome email to user
 				import('mail.MailTemplate');

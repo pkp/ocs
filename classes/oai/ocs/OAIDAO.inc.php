@@ -17,30 +17,40 @@
 import('oai.OAI');
 
 class OAIDAO extends DAO {
- 
+
  	/** @var $oai ConferenceOAI parent OAI object */
  	var $oai;
- 	
+
  	/** Helper DAOs */
  	var $conferenceDao;
  	var $trackDao;
+	var $paperDao;
  	var $presenterDao;
  	var $suppFileDao;
  	var $conferenceSettingsDao;
- 	
- 
+
+	var $conferenceCache;
+	var $schedConfCache;
+	var $trackCache;
+
  	/**
 	 * Constructor.
 	 */
 	function OAIDAO() {
 		parent::DAO();
-		$this->conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$this->trackDao = &DAORegistry::getDAO('TrackDAO');
-		$this->presenterDao = &DAORegistry::getDAO('PresenterDAO');
-		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-		$this->conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+		$this->conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$this->schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$this->trackDao =& DAORegistry::getDAO('TrackDAO');
+		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
+		$this->presenterDao =& DAORegistry::getDAO('PresenterDAO');
+		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$this->conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+
+		$this->conferenceCache = array();
+		$this->schedConfCache = array();
+		$this->trackCache = array();
 	}
-	
+
 	/**
 	 * Set parent OAI object.
 	 * @param ConferenceOAI
@@ -48,26 +58,25 @@ class OAIDAO extends DAO {
 	function setOAI(&$oai) {
 		$this->oai = $oai;
 	}
-	
-	
+
 	//
 	// Records
 	//
-	
+
 	/**
 	 * Return the *nix timestamp of the earliest published paper.
 	 * @param $conferenceId int optional
 	 * @return int
 	 */
 	function getEarliestDatestamp($conferenceId = null) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT MIN(pp.date_published)
 			FROM published_papers pp'
 			. (isset($conferenceId) ? ' WHERE i.conference_id = ?' : ''),
-			
+
 			isset($conferenceId) ? $conferenceId : false
 		);
-		
+
 		if (isset($result->fields[0])) {
 			$timestamp = strtotime($this->datetimeFromDB($result->fields[0]));
 		}
@@ -80,7 +89,7 @@ class OAIDAO extends DAO {
 
 		return $timestamp;
 	}
-	
+
 	/**
 	 * Check if an paper ID specifies a published paper.
 	 * @param $paperId int
@@ -94,10 +103,10 @@ class OAIDAO extends DAO {
 			. (isset($conferenceId) ? ', sched_confs s' : '')
 			. ' WHERE pp.paper_id = ?'
 			. (isset($conferenceId) ? ' AND s.conference_id = ? AND pp.sched_conf_id = s.sched_conf_id' : ''),
-			
+
 			isset($conferenceId) ? array($paperId, $conferenceId) : $paperId
 		);
-		
+
 		$returner = $result->fields[0] == 1;
 
 		$result->Close();
@@ -105,7 +114,7 @@ class OAIDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Return OAI record for specified paper.
 	 * @param $paperId int
@@ -113,28 +122,27 @@ class OAIDAO extends DAO {
 	 * @return OAIRecord
 	 */
 	function &getRecord($paperId, $conferenceId = null) {
-		$result = &$this->retrieve(
-			'SELECT pp.*, p.*,
-			c.path AS conference_path,
-			c.title AS conference_title,
-			c.conference_id AS conference_id,
-			s.path AS sched_conf_path,
-			s.title AS sched_conf_title,
-			t.abbrev AS track_abbrev,
-			t.identify_type AS track_item_type,
-			pp.date_published AS date_published,
-			FROM published_papers pp, conferences c, sched_confs s, papers p
-			LEFT JOIN tracks t ON t.track_id = p.track_id
-			WHERE pp.paper_id = p.paper_id AND c.conference_id = s.conference_id AND s.sched_conf_id = p.sched_conf_id
-			AND pp.paper_id = ?'
+		$result =& $this->retrieve(
+			'SELECT	pp.*, p.*,
+				c.path AS conference_path,
+				c.conference_id AS conference_id,
+				s.path AS sched_conf_path,
+				t.identify_type AS track_item_type,
+				pp.date_published AS date_published,
+			FROM	published_papers pp, conferences c, sched_confs s, papers p
+				LEFT JOIN tracks t ON t.track_id = p.track_id
+			WHERE	pp.paper_id = p.paper_id AND
+				c.conference_id = s.conference_id AND
+				s.sched_conf_id = p.sched_conf_id
+				AND pp.paper_id = ?'
 			. (isset($conferenceId) ? ' AND c.conference_id = ?' : ''),
 			isset($conferenceId) ? array($paperId, $conferenceId) : $paperId
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$row = &$result->GetRowAssoc(false);
-			$returner = &$this->_returnRecordFromRow($row);
+			$row =& $result->GetRowAssoc(false);
+			$returner =& $this->_returnRecordFromRow($row);
 		}
 
 		$result->Close();
@@ -142,7 +150,7 @@ class OAIDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Return set of OAI records matching specified parameters.
 	 * @param $conferenceId int
@@ -156,7 +164,7 @@ class OAIDAO extends DAO {
 	 */
 	function &getRecords($conferenceId, $trackId, $from, $until, $offset, $limit, &$total) {
 		$records = array();
-		
+
 		$params = array();
 		if (isset($conferenceId)) {
 			array_push($params, $conferenceId);
@@ -164,40 +172,43 @@ class OAIDAO extends DAO {
 		if (isset($trackId)) {
 			array_push($params, $trackId);
 		}
-		$result = &$this->retrieve(
-			'SELECT pp.*, p.*,
-			c.path AS conference_path,
-			c.title AS conference_title,
-			c.conference_id AS conference_id,
-			s.path AS sched_conf_path,
-			s.title AS sched_conf_title,
-			t.abbrev AS track_abbrev,
-			t.identify_type AS track_item_type
-			FROM published_papers pp, conferences c, sched_confs s, papers p
-			LEFT JOIN tracks t ON t.track_id = p.track_id
-			WHERE pp.paper_id = p.paper_id AND p.sched_conf_id = s.sched_conf_id and s.conference_id = c.conference_id'
+		$result =& $this->retrieve(
+			'SELECT	pp.*,
+				p.*,
+				c.path AS conference_path,
+				c.conference_id AS conference_id,
+				s.path AS sched_conf_path,
+				t.identify_type AS track_item_type
+			FROM	published_papers pp,
+				conferences c,
+				sched_confs s,
+				papers p
+				LEFT JOIN tracks t ON t.track_id = p.track_id
+			WHERE	pp.paper_id = p.paper_id AND
+				p.sched_conf_id = s.sched_conf_id AND
+				s.conference_id = c.conference_id'
 			. (isset($conferenceId) ? ' AND c.conference_id = ?' : '')
 			. (isset($trackId) ? ' AND p.track_id = ?' : '')
 			. (isset($from) ? ' AND pp.date_published >= ' . $this->datetimeToDB($from) : '')
 			. (isset($until) ? ' AND pp.date_published <= ' . $this->datetimeToDB($until) : ''),
 			$params
 		);
-		
+
 		$total = $result->RecordCount();
-		
+
 		$result->Move($offset);
 		for ($count = 0; $count < $limit && !$result->EOF; $count++) {
-			$row = &$result->GetRowAssoc(false);
-			$records[] = &$this->_returnRecordFromRow($row);
+			$row =& $result->GetRowAssoc(false);
+			$records[] =& $this->_returnRecordFromRow($row);
 			$result->moveNext();
 		}
 
 		$result->Close();
 		unset($result);
-		
+
 		return $records;
 	}
-	
+
 	/**
 	 * Return set of OAI identifiers matching specified parameters.
 	 * @param $conferenceId int
@@ -211,7 +222,7 @@ class OAIDAO extends DAO {
 	 */
 	function &getIdentifiers($conferenceId, $trackId, $from, $until, $offset, $limit, &$total) {
 		$records = array();
-		
+
 		$params = array();
 		if (isset($conferenceId)) {
 			array_push($params, $conferenceId);
@@ -220,81 +231,143 @@ class OAIDAO extends DAO {
 			array_push($params, $trackId);
 		}
 		$result = &$this->retrieve(
-			'SELECT pp.paper_id, pp.date_published,
-			c.title AS conference_title, c.path AS conference_path,
-			s.path AS sched_conf_path,
-			t.abbrev as track_abbrev
-			FROM published_papers pp, conferences c, sched_confs s, papers p
-			LEFT JOIN tracks t ON t.track_id = p.track_id
-			WHERE pp.paper_id = p.paper_id AND p.sched_conf_id = s.sched_conf_id AND s.conference_id = c.conference_id'
+			'SELECT	pp.paper_id,
+				pp.date_published,
+				c.path AS conference_path,
+				s.path AS sched_conf_path
+			FROM	published_papers pp,
+				conferences c,
+				sched_confs s,
+				papers p
+				LEFT JOIN tracks t ON t.track_id = p.track_id
+			WHERE	pp.paper_id = p.paper_id AND
+				p.sched_conf_id = s.sched_conf_id AND
+				s.conference_id = c.conference_id'
 			. (isset($conferenceId) ? ' AND c.conference_id = ?' : '')
 			. (isset($trackId) ? ' AND p.track_id = ?' : '')
 			. (isset($from) ? ' AND pp.date_published >= ' . $this->datetimeToDB($from) : '')
 			. (isset($until) ? ' AND pp.date_published <= ' . $this->datetimeToDB($until) : ''),
 			$params
 		);
-		
+
 		$total = $result->RecordCount();
-		
+
 		$result->Move($offset);
 		for ($count = 0; $count < $limit && !$result->EOF; $count++) {
-			$row = &$result->GetRowAssoc(false);
-			$records[] = &$this->_returnIdentifierFromRow($row);
+			$row =& $result->GetRowAssoc(false);
+			$records[] =& $this->_returnIdentifierFromRow($row);
 			$result->moveNext();
 		}
 
 		$result->Close();
 		unset($result);
-		
+
 		return $records;
 	}
-	
+
+	function stripAssocArray($values) {
+		foreach (array_keys($values) as $key) {
+			$values[$key] = strip_tags($values[$key]);
+		}
+		return $values;
+	}
+ 
+	/**
+	 * Cached function to get a conference
+	 * @param $conferenceId int
+	 * @return object
+	 */
+	function &getConference($conferenceId) {
+		if (!isset($this->conferenceCache[$conferenceId])) {
+			$this->conferenceCache[$conferenceId] =& $this->conferenceDao->getConference($conferenceId);
+		}
+		return $this->conferenceCache[$conferenceId];
+	}
+
+	/**
+	 * Cached function to get a schedConf
+	 * @param $schedConfId int
+	 * @return object
+	 */
+	function &getSchedConf($schedConfId) {
+		if (!isset($this->schedConfCache[$schedConfId])) {
+			$this->schedConfCache[$schedConfId] =& $this->schedConfDao->getSchedConf($schedConfId);
+		}
+		return $this->schedConfCache[$schedConfId];
+	}
+
+	/**
+	 * Cached function to get a track
+	 * @param $trackId int
+	 * @return object
+	 */
+	function &getTrack($trackId) {
+		if (!isset($this->trackCache[$trackId])) {
+			$this->trackCache[$trackId] =& $this->trackDao->getTrack($trackId);
+		}
+		return $this->trackCache[$trackId];
+	}
+
 	/**
 	 * Return OAIRecord object from database row.
 	 * @param $row array
 	 * @return OAIRecord
 	 */
 	function &_returnRecordFromRow(&$row) {
-		$record = &new OAIRecord();
-		
+		$record =& new OAIRecord();
+
 		$paperId = $row['paper_id'];
 		if ($this->conferenceSettingsDao->getSetting($row['conference_id'], 'enablePublicPaperId')) {
 			if (!empty($row['public_paper_id'])) {
 				$paperId = $row['public_paper_id'];
 			}
 		}
-		
+
+		$paper =& $this->paperDao->getPaper($paperId);
+		$conference =& $this->getConference($row['conference_id']);
+		$schedConf =& $this->getSchedConf($row['sched_conf_id']);
+		$track =& $this->getTrack($row['track_id']);
+
 		// FIXME Use public ID in OAI identifier?
 		// FIXME Use "last-modified" field for datestamp?
 		$record->identifier = $this->oai->paperIdToIdentifier($row['paper_id']);
 		$record->datestamp = $this->oai->UTCDate(strtotime($this->datetimeFromDB($row['date_published'])));
-		$record->sets = array($row['conference_path'] . ':' . $row['track_abbrev']);
-		
-		$record->url = Request::url($row['conference_path'], $row['sched_conf_path'], 'paper', 'view', array($paperId));
-		$record->title = strip_tags($row['title']); // FIXME include localized titles as well?
-		$record->creator = array();
-		$record->subject = array($row['discipline'], $row['subject'], $row['subject_class']);
-		$record->description = strip_tags($row['abstract']);
-		$record->publisher = $row['conference_title'];
-		$record->contributor = array($row['sponsor']);
+		$record->sets = array($conference->getPath() . ':' . $track->getTrackAbbrev());
+
+		$record->url = Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', array($paperId));
+		$record->titles = $this->stripAssocArray((array) $paper->getPaperTitle(null));
+		$record->subjects = array_merge_recursive(
+			$this->stripAssocArray((array) $paper->getDiscipline(null)),
+			$this->stripAssocArray((array) $paper->getSubject(null)),
+			$this->stripAssocArray((array) $paper->getSubjectClass(null))
+		);
+		$record->descriptions = $this->stripAssocArray((array) $paper->getAbstract(null));
+		$record->publishers = $this->stripAssocArray((array) $conference->getTitle(null)); // Provide a default; may be overridden later
+		$record->contributors = $this->stripAssocArray((array) $paper->getSponsor(null));
 		$record->date = date('Y-m-d', strtotime($this->datetimeFromDB($row['date_published'])));
-		$record->type = array(empty($row['track_item_type']) ? Locale::translate('rt.metadata.pkp.peerReviewed') : $row['track_item_type'], $row['type']);
+		$types = $this->stripAssocArray((array) $track->getIdentifyType(null));
+		$record->types = empty($row['track_item_type']) ? array(Locale::translate('rt.metadata.pkp.peerReviewed')) : $row['track_item_type'], $row['type'];
 		$record->format = array();
-		$record->source = $row['conference_title'] . '; ' . $row['sched_conf_title'];
-		$record->language = $row['language'];
+		$record->sources = array($conference->getConferenceTitle() . '; ' . $schedConf->getSchedConfTitle());
+		$record->language = strip_tags($paper->getLanguage());
 		$record->relation = array();
-		$record->coverage = array($row['coverage_geo'], $row['coverage_chron'], $row['coverage_sample']);
-		$record->rights = $this->conferenceSettingsDao->getSetting($row['conference_id'], 'copyrightNotice');
-		$record->pages = $row['pages'];
-		
-		// Get publisher
-		$publisher = $this->conferenceSettingsDao->getSetting($row['conference_id'], 'publisher');
-		if (isset($publisher['institution']) && !empty($publisher['institution'])) {
-			$record->publisher = $publisher['institution'];
+		$record->coverage = array_merge_recursive(
+			$this->stripAssocArray((array) $paper->getCoverageGeo(null)),
+			$this->stripAssocArray((array) $paper->getCoverageChron(null)),
+			$this->stripAssocArray((array) $paper->getCoverageSample(null))
+		);
+		$record->rights = (array) $this->conferenceSettingsDao->getSetting($row['conference_id'], 'copyrightNotice');
+		$record->pages = $paper->getPages();
+
+		// Get publisher (may override earlier publisher)
+		$publisherInstitution = (array) $conference->getSetting('publisherInstitution');
+		if (!empty($publisherInstitution)) {
+			$record->publishers = $publisherInstitution;
 		}
-		
+
 		// Get presenter names
 		$presenters = $this->presenterDao->getPresentersByPaper($row['paper_id']);
+		$record->creator = array();
 		for ($i = 0, $num = count($presenters); $i < $num; $i++) {
 			$presenterName = $presenters[$i]->getFullName();
 			$affiliation = $presenters[$i]->getAffiliation();
@@ -303,9 +376,9 @@ class OAIDAO extends DAO {
 			}
 			$record->creator[] = $presenterName;
 		}
-		
+
 		// Get galley formats
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT DISTINCT(f.file_type) FROM paper_galleys g, paper_files f WHERE g.file_id = f.file_id AND g.paper_id = ?',
 			$row['paper_id']
 		);
@@ -316,37 +389,41 @@ class OAIDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-		
+
 		// Get supplementary files
 		$suppFiles =& $this->suppFileDao->getSuppFilesByPaper($row['paper_id']);
 		for ($i = 0, $num = count($suppFiles); $i < $num; $i++) {
 			// FIXME replace with correct URL
-			$record->relation[] = Request::url($row['conference_path'], $row['sched_conf_path'], 'paper', 'download', array($paperId, $suppFiles[$i]->getFileId()));
+			$record->relation[] = Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'download', array($paperId, $suppFiles[$i]->getFileId()));
 		}
-		
+
+		$record->primaryLocale = $conference->getPrimaryLocale();
+
 		return $record;
 	}
-	
+
 	/**
 	 * Return OAIIdentifier object from database row.
 	 * @param $row array
 	 * @return OAIIdentifier
 	 */
 	function &_returnIdentifierFromRow(&$row) {
-		$record = &new OAIRecord();
-		
+		$record =& new OAIRecord();
+		$conference =& $this->getConference($row['conference_id']);
+		$schedConf =& $this->getSchedConf($row['sched_conf_id']);
+		$track =& $this->getTrack($row['track_id']);
+
 		$record->identifier = $this->oai->paperIdToIdentifier($row['paper_id']);
 		$record->datestamp = $this->oai->UTCDate(strtotime($this->datetimeFromDB($row['date_published'])));
-		$record->sets = array($row['conference_path'] . ':' . $row['track_abbrev']);
-		
+		$record->sets = array($conference->getPath() . ':' . $track->getTrackAbbrev());
+
 		return $record;
 	}
-	
-	
+
 	//
 	// Resumption tokens
 	//
-	
+
 	/**
 	 * Clear stale resumption tokens.
 	 */
@@ -355,22 +432,22 @@ class OAIDAO extends DAO {
 			'DELETE FROM oai_resumption_tokens WHERE expire < ?', time()
 		);
 	}
-	
+
 	/**
 	 * Retrieve a resumption token.
 	 * @return OAIResumptionToken
 	 */
 	function &getToken($tokenId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM oai_resumption_tokens WHERE token = ?', $tokenId
 		);
-		
+
 		if ($result->RecordCount() == 0) {
 			$token = null;
-			
+
 		} else {
-			$row = &$result->getRowAssoc(false);
-			$token = &new OAIResumptionToken($row['token'], $row['record_offset'], unserialize($row['params']), $row['expire']);
+			$row =& $result->getRowAssoc(false);
+			$token =& new OAIResumptionToken($row['token'], $row['record_offset'], unserialize($row['params']), $row['expire']);
 		}
 
 		$result->Close();
@@ -378,7 +455,7 @@ class OAIDAO extends DAO {
 
 		return $token;
 	}
-	
+
 	/**
 	 * Insert an OAI resumption token, generating a new ID.
 	 * @param $token OAIResumptionToken
@@ -388,7 +465,7 @@ class OAIDAO extends DAO {
 		do {
 			// Generate unique token ID
 			$token->id = md5(uniqid(mt_rand(), true));
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT COUNT(*) FROM oai_resumption_tokens WHERE token = ?',
 				$token->id
 			);
@@ -397,22 +474,21 @@ class OAIDAO extends DAO {
 			$result->Close();
 			unset($result);
 		} while($val != 0);
-		
+
 		$this->update(
 			'INSERT INTO oai_resumption_tokens (token, record_offset, params, expire)
 			VALUES
 			(?, ?, ?, ?)',
 			array($token->id, $token->offset, serialize($token->params), $token->expire)
 		);
-		
+
 		return $token;
 	}
-	
-	
+
 	//
 	// Sets
 	//
-	
+
 	/**
 	 * Return hierarchy of OAI sets (conferences plus conference tracks).
 	 * @param $conferenceId int
@@ -424,30 +500,30 @@ class OAIDAO extends DAO {
 		if (isset($conferenceId)) {
 			$conferences = array($this->conferenceDao->getConference($conferenceId));
 		} else {
-			$conferences = &$this->conferenceDao->getConferences();
-			$conferences = &$conferences->toArray();
+			$conferences =& $this->conferenceDao->getConferences();
+			$conferences =& $conferences->toArray();
 		}
-		
+
 		// FIXME Set descriptions
 		$sets = array();
 		foreach ($conferences as $conference) {
-			$title = $conference->getTitle();
+			$title = $conference->getConferenceTitle();
 			$abbrev = $conference->getPath();
 			array_push($sets, new OAISet($abbrev, $title, ''));
-			
-			$tracks = &$this->trackDao->getConferenceTracks($conference->getConferenceId());
+
+			$tracks =& $this->trackDao->getConferenceTracks($conference->getConferenceId());
 			foreach ($tracks->toArray() as $track) {
-				array_push($sets, new OAISet($abbrev . ':' . $track->getAbbrev(), $track->getTitle(), ''));
+				array_push($sets, new OAISet($abbrev . ':' . $track->getTrackAbbrev(), $track->getTrackTitle(), ''));
 			}
 		}
-		
+
 		if ($offset != 0) {
 			$sets = array_slice($sets, $offset);
 		}
-		
+
 		return $sets;
 	}
-	
+
 	/**
 	 * Return the conference ID and track ID corresponding to a conference/track pairing.
 	 * @param $conferenceSpec string
@@ -457,27 +533,26 @@ class OAIDAO extends DAO {
 	 */
 	function getSetConferenceTrackId($conferenceSpec, $trackSpec, $restrictConferenceId = null) {
 		$conferenceId = null;
-		
-		$conference = &$this->conferenceDao->getConferenceByPath($conferenceSpec);
+
+		$conference =& $this->conferenceDao->getConferenceByPath($conferenceSpec);
 		if (!isset($conference) || (isset($restrictConferenceId) && $conference->getConferenceId() != $restrictConferenceId)) {
 			return array(0, 0);
 		}
-		
+
 		$conferenceId = $conference->getConferenceId();
 		$trackId = null;
-		
+
 		if (isset($trackSpec)) {
-			$track = &$this->trackDao->getTrackByAbbrev($trackSpec, $conference->getConferenceId());
+			$track =& $this->trackDao->getTrackByAbbrev($trackSpec, $conference->getConferenceId());
 			if (isset($track)) {
 				$trackId = $track->getTrackId();
 			} else {
 				$trackId = 0;
 			}
 		}
-		
+
 		return array($conferenceId, $trackId);
 	}
-	
 }
 
 ?>

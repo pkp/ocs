@@ -36,16 +36,16 @@ define('PAPER_FILE_SUPP',		'SP');
 define('PAPER_FILE_NOTE',		'NT');
 
 class PaperFileManager extends FileManager {
-	
+
 	/** @var string the path to location of the files */
 	var $filesDir;
-	
+
 	/** @var int the ID of the associated paper */
 	var $paperId;
-	
+
 	/** @var Paper the associated paper */
 	var $paper;
-	
+
 	/**
 	 * Constructor.
 	 * Create a manager for handling paper file uploads.
@@ -61,7 +61,7 @@ class PaperFileManager extends FileManager {
 		$this->filesDir = Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId .
 		'/papers/' . $paperId . '/';
 	}
-	
+
 	/**
 	 * Upload a submission file.
 	 * @param $fileName string the name of the file used in the POST form
@@ -71,7 +71,7 @@ class PaperFileManager extends FileManager {
 	function uploadSubmissionFile($fileName, $fileId = null, $overwrite = false) {
 		return $this->handleUpload($fileName, PAPER_FILE_SUBMISSION, $fileId, $overwrite);
 	}
-	
+
 	/**
 	 * Write a submission file.
 	 * @param $fileName string The original filename
@@ -147,7 +147,7 @@ class PaperFileManager extends FileManager {
 	function uploadPublicFile($fileName, $fileId = null, $overwrite = true) {
 		return $this->handleUpload($fileName, PAPER_FILE_PUBLIC, $fileId, $overwrite);
 	}	
-	
+
 	/**
 	 * Upload a note file.
 	 * @param $fileName string the name of the file used in the POST form
@@ -214,7 +214,7 @@ class PaperFileManager extends FileManager {
 		$paperFile = &$paperFileDao->getPaperFile($fileId, $revision, $this->paperId);
 		return $paperFile;
 	}
-	
+
 	/**
 	 * Read a file's contents.
 	 * @param $output boolean output the file's contents instead of returning a string
@@ -222,18 +222,18 @@ class PaperFileManager extends FileManager {
 	 */
 	function readFile($fileId, $revision = null, $output = false) {
 		$paperFile = &$this->getFile($fileId, $revision);
-		
+
 		if (isset($paperFile)) {
 			$fileType = $paperFile->getFileType();
 			$filePath = $this->filesDir . $paperFile->getType() . '/' . $paperFile->getFileName();
-	
+
 			return parent::readFile($filePath, $output);
-			
+
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Delete a file by ID.
 	 * If no revision is specified, all revisions of the file are deleted.
@@ -243,24 +243,24 @@ class PaperFileManager extends FileManager {
 	 */
 	function deleteFile($fileId, $revision = null) {
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		
+
 		$files = array();
 		if (isset($revision)) {
 			$file = &$paperFileDao->getPaperFile($fileId, $revision);
 			if (isset($file)) {
 				$files[] = $file;
 			}
-			
+
 		} else {
 			$files =  &$paperFileDao->getPaperFileRevisions($fileId);
 		}
-		
+
 		foreach ($files as $f) {
 			parent::deleteFile($this->filesDir . $f->getType() . '/' . $f->getFileName());
 		}
-		
+
 		$paperFileDao->deletePaperFileById($fileId, $revision);
-		
+
 		return count($files);
 	}
 
@@ -283,14 +283,14 @@ class PaperFileManager extends FileManager {
 		if (isset($paperFile)) {
 			$fileType = $paperFile->getFileType();
 			$filePath = $this->filesDir . $paperFile->getType() . '/' . $paperFile->getFileName();
-	
+
 			return parent::downloadFile($filePath, $fileType, $inline);
-			
+
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * View a file inline (variant of downloadFile).
 	 * @see PaperFileManager::downloadFile
@@ -298,7 +298,7 @@ class PaperFileManager extends FileManager {
 	function viewFile($fileId, $revision = null) {
 		$this->downloadFile($fileId, $revision, true);
 	}
-	
+
 	/**
 	 * Copies an existing file to create a review file.
 	 * @param $originalFileId int the file id of the original file.
@@ -309,7 +309,7 @@ class PaperFileManager extends FileManager {
 	function copyToReviewFile($fileId, $revision = null, $destFileId = null) {
 		return $this->copyAndRenameFile($fileId, $revision, PAPER_FILE_REVIEW, $destFileId);
 	}
-	
+
 	/**
 	 * Copies an existing file to create a director decision file.
 	 * @param $fileId int the file id of the review file.
@@ -320,7 +320,7 @@ class PaperFileManager extends FileManager {
 	function copyToDirectorFile($fileId, $revision = null, $destFileId = null) {
 		return $this->copyAndRenameFile($fileId, $revision, PAPER_FILE_DIRECTOR, $destFileId);
 	}
-	
+
 	/**
 	 * Copies an existing file to create a layout file.
 	 * @param $fileId int the file id of the layout file.
@@ -330,7 +330,7 @@ class PaperFileManager extends FileManager {
 	function copyToLayoutFile($fileId, $revision = null) {
 		return $this->copyAndRenameFile($fileId, $revision, PAPER_FILE_LAYOUT);
 	}
-	
+
 	/**
 	 * Return type path associated with a type code.
 	 * @param $type string
@@ -347,7 +347,7 @@ class PaperFileManager extends FileManager {
 			case PAPER_FILE_SUBMISSION: default: return 'submission/original';
 		}
 	}
-	
+
 	/**
 	 * Copies an existing PaperFile and renames it.
 	 * @param $sourceFileId int
@@ -358,25 +358,25 @@ class PaperFileManager extends FileManager {
 	function copyAndRenameFile($sourceFileId, $sourceRevision, $destType, $destFileId = null) {
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 		$paperFile = &new PaperFile();
-		
+
 		$destTypePath = $this->typeToPath($destType);
 		$destDir = $this->filesDir . $destTypePath . '/';
-		
+
 		if ($destFileId != null) {
 			$currentRevision = $paperFileDao->getRevisionNumber($destFileId);
 			$revision = $currentRevision + 1;
 		} else {
 			$revision = 1;
 		}	
-		
+
 		$sourcePaperFile = $paperFileDao->getPaperFile($sourceFileId, $sourceRevision, $this->paperId);
 
 		if (!isset($sourcePaperFile)) {
 			return false;
 		}
-		
+
 		$sourceDir = $this->filesDir . $sourcePaperFile->getType() . '/';
-		
+
 		if ($destFileId != null) {
 			$paperFile->setFileId($destFileId);
 		}
@@ -391,23 +391,23 @@ class PaperFileManager extends FileManager {
 		$paperFile->setDateModified(Core::getCurrentDate());
 		$paperFile->setStage($this->paper->getCurrentStage());
 		$paperFile->setRevision($revision);
-		
+
 		$fileId = $paperFileDao->insertPaperFile($paperFile);
-		
+
 		// Rename the file.
 		$fileExtension = $this->parseFileExtension($sourcePaperFile->getFileName());
 		$newFileName = $this->paperId.'-'.$fileId.'-'.$revision.'-'.$destType.'.'.$fileExtension;
-		
+
 		if (!$this->fileExists($destDir, 'dir')) {
 			// Try to create destination directory
 			$this->mkdirtree($destDir);
 		}
-		
+
 		copy($sourceDir.$sourcePaperFile->getFileName(), $destDir.$newFileName);
-		
+
 		$paperFile->setFileName($newFileName);
 		$paperFileDao->updatePaperFile($paperFile);
-		
+
 		return $fileId;
 	}
 
@@ -430,7 +430,7 @@ class PaperFileManager extends FileManager {
 		$paperFile->setDateModified(Core::getCurrentDate());
 		$paperFile->setStage(0);
 		$paperFile->setRevision(1);
-		
+
 		$paperFile->setFileId($paperFileDao->insertPaperFile($paperFile));
 
 		return $paperFile;
@@ -473,10 +473,10 @@ class PaperFileManager extends FileManager {
 	 */
 	function handleUpload($fileName, $type, $fileId = null, $overwrite = false) {
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		
+
 		$typePath = $this->typeToPath($type);
 		$dir = $this->filesDir . $typePath . '/';
-		
+
 		if (!$fileId) {
 			// Insert dummy file to generate file id FIXME?
 			$dummyFile = true;
@@ -490,7 +490,7 @@ class PaperFileManager extends FileManager {
 			$paperFile->setDateUploaded(Core::getCurrentDate());
 			$paperFile->setDateModified(Core::getCurrentDate());
 		}
-		
+
 		$paperFile->setFileType($_FILES[$fileName]['type']);
 		$paperFile->setFileSize($_FILES[$fileName]['size']);
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($_FILES[$fileName]['name'], 127));
@@ -503,7 +503,7 @@ class PaperFileManager extends FileManager {
 		if (!$this->uploadFile($fileName, $dir.$newFileName)) {
 			// Delete the dummy file we inserted
 			$paperFileDao->deletePaperFileById($paperFile->getFileId());
-			
+
 			return false;
 		}
 
@@ -511,7 +511,7 @@ class PaperFileManager extends FileManager {
 		else $paperFileDao->insertPaperFile($paperFile);
 
 		if ($overwrite) $this->removePriorRevisions($paperFile->getFileId(), $paperFile->getRevision());
-		
+
 		return $paperFile->getFileId();
 	}
 
@@ -527,10 +527,10 @@ class PaperFileManager extends FileManager {
 	 */
 	function handleWrite($fileName, &$contents, $mimeType, $type, $fileId = null, $overwrite = false) {
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		
+
 		$typePath = $this->typeToPath($type);
 		$dir = $this->filesDir . $typePath . '/';
-		
+
 		if (!$fileId) {
 			// Insert dummy file to generate file id FIXME?
 			$dummyFile = true;
@@ -544,7 +544,7 @@ class PaperFileManager extends FileManager {
 			$paperFile->setDateUploaded(Core::getCurrentDate());
 			$paperFile->setDateModified(Core::getCurrentDate());
 		}
-		
+
 		$paperFile->setFileType($mimeType);
 		$paperFile->setFileSize(strlen($contents));
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($fileName, 127));
@@ -557,7 +557,7 @@ class PaperFileManager extends FileManager {
 		if (!$this->writeFile($dir.$newFileName, $contents)) {
 			// Delete the dummy file we inserted
 			$paperFileDao->deletePaperFileById($paperFile->getFileId());
-			
+
 			return false;
 		}
 
@@ -565,7 +565,7 @@ class PaperFileManager extends FileManager {
 		else $paperFileDao->insertPaperFile($paperFile);
 
 		if ($overwrite) $this->removePriorRevisions($paperFile->getFileId(), $paperFile->getRevision());
-		
+
 		return $paperFile->getFileId();
 	}
 
@@ -580,10 +580,10 @@ class PaperFileManager extends FileManager {
 	 */
 	function handleCopy($url, $mimeType, $type, $fileId = null, $overwrite = false) {
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		
+
 		$typePath = $this->typeToPath($type);
 		$dir = $this->filesDir . $typePath . '/';
-		
+
 		if (!$fileId) {
 			// Insert dummy file to generate file id FIXME?
 			$dummyFile = true;
@@ -597,7 +597,7 @@ class PaperFileManager extends FileManager {
 			$paperFile->setDateUploaded(Core::getCurrentDate());
 			$paperFile->setDateModified(Core::getCurrentDate());
 		}
-		
+
 		$paperFile->setFileType($mimeType);
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName(basename($url), 127));
 		$paperFile->setType($typePath);
@@ -609,7 +609,7 @@ class PaperFileManager extends FileManager {
 		if (!$this->copyFile($url, $dir.$newFileName)) {
 			// Delete the dummy file we inserted
 			$paperFileDao->deletePaperFileById($paperFile->getFileId());
-			
+
 			return false;
 		}
 
@@ -619,7 +619,7 @@ class PaperFileManager extends FileManager {
 		else $paperFileDao->insertPaperFile($paperFile);
 
 		if ($overwrite) $this->removePriorRevisions($paperFile->getFileId(), $paperFile->getRevision());
-		
+
 		return $paperFile->getFileId();
 	}
 }

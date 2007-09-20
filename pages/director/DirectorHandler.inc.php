@@ -113,7 +113,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			REVIEW_STAGE_ABSTRACT => Locale::translate('submission.abstract'),
 			REVIEW_STAGE_PRESENTATION => Locale::translate('submission.paper')
 		));
-		
+
 		$templateMgr->assign('fieldOptions', Array(
 			SUBMISSION_FIELD_TITLE => 'paper.title',
 			SUBMISSION_FIELD_PRESENTER => 'user.role.presenter',
@@ -227,7 +227,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			$templateMgr->assign('searchField', $searchType);
 			$templateMgr->assign('searchMatch', $searchMatch);
 			$templateMgr->assign('search', $search);
-			$templateMgr->assign('searchInitial', $searchInitial);
+			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 
 			$templateMgr->assign('fieldOptions', Array(
 				USER_FIELD_FIRSTNAME => 'user.firstName',
@@ -304,7 +304,7 @@ class DirectorHandler extends TrackDirectorHandler {
 		if ($schedConf) {
 			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getFullTitle(), true);
 		} elseif ($conference) {
-			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getTitle(), true);
+			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
 		}
 
 		$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');

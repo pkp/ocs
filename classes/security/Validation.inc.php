@@ -32,17 +32,17 @@ class Validation {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 
 		$user = &$userDao->getUserByUsername($username, true);
-		
+
 		if (!isset($user)) {
 			// User does not exist
 			return $valid;
 		}
-		
+
 		if ($user->getAuthId()) {
 			$authDao = &DAORegistry::getDAO('AuthSourceDAO');
 			$auth = &$authDao->getPlugin($user->getAuthId());
 		}
-		
+
 		if (isset($auth)) {
 			// Validate against remote authentication source
 			$valid = $auth->authenticate($username, $password);
@@ -56,16 +56,16 @@ class Validation {
 					}
 				}
 			}
-			
+
 		} else {
 			// Validate against OCS user database
 			$valid = ($user->getPassword() === Validation::encryptCredentials($username, $password));
 		}
-		
+
 		if (!$valid) {
 			// Login credentials are invalid
 			return $valid;
-			
+
 		} else {
 			if ($user->getDisabled()) {
 				// The user has been disabled.
@@ -74,31 +74,31 @@ class Validation {
 				$valid = false;
 				return $valid;
 			}
-	
+
 			// The user is valid, mark user as logged in in current session
 			$sessionManager = &SessionManager::getManager();
-		
+
 			// Regenerate session ID first
 			$sessionManager->regenerateSessionId();
-		
+
 			$session = &$sessionManager->getUserSession();
 			$session->setSessionVar('userId', $user->getUserId());
 			$session->setUserId($user->getUserId());
 			$session->setSessionVar('username', $user->getUsername());
 			$session->setRemember($remember);
-		
+
 			if ($remember && Config::getVar('general', 'session_lifetime') > 0) {
 				// Update session expiration time
 				$sessionManager->updateSessionLifetime(time() +  Config::getVar('general', 'session_lifetime') * 86400);
 			}
-		
+
 			$user->setDateLastLogin(Core::getCurrentDate());
 			$userDao->updateUser($user);
-	
+
 			return $user;
 		}
 	}
-	
+
 	/**
 	 * Mark the user as logged out in the current session.
 	 * @return boolean
@@ -109,18 +109,18 @@ class Validation {
 		$session->unsetSessionVar('userId');
 		$session->unsetSessionVar('signedInAs');
 		$session->setUserId(null);
-		
+
 		if ($session->getRemember()) {
 			$session->setRemember(0);
 			$sessionManager->updateSessionLifetime(0);
 		}
-			
+
 		$sessionDao = &DAORegistry::getDAO('SessionDAO');
 		$sessionDao->updateSession($session);
 
 		return true;
 	}
-	
+
 	/**
 	 * Redirect to the login page, appending the current URL as the source.
 	 */
@@ -135,7 +135,7 @@ class Validation {
 
 		Request::redirect(null, null, 'login', null, null, $args);
 	}
-	
+
 	/**
 	 * Check if a user's credentials are valid.
 	 * @param $username string username
@@ -145,24 +145,24 @@ class Validation {
 	function checkCredentials($username, $password) {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$user = &$userDao->getUserByUsername($username, false);
-		
+
 		$valid = false;
 		if (isset($user)) {
 			if ($user->getAuthId()) {
 				$authDao = &DAORegistry::getDAO('AuthSourceDAO');
 				$auth = &$authDao->getPlugin($user->getAuthId());
 			}
-			
+
 			if (isset($auth)) {
 				$valid = $auth->authenticate($username, $password);
 			} else {
 				$valid = ($user->getPassword() === Validation::encryptCredentials($username, $password));
 			}
 		}
-		
+
 		return $valid;
 	}
-	
+
 	/**
 	 * Check if a user is authorized to access the specified role in the specified conference.
 	 * @param $roleId int
@@ -173,7 +173,7 @@ class Validation {
 		if (!Validation::isLoggedIn()) {
 			return false;
 		}
-		
+
 		if ($conferenceId === -1) {
 			// Get conference ID from request
 			$conference = &Request::getConference();
@@ -185,15 +185,15 @@ class Validation {
 			$schedConf = &Request::getSchedConf();
 			$schedConfId = $schedConf ? $schedConf->getSchedConfId() : 0;
 		}
-		
+
 		$sessionManager = &SessionManager::getManager();
 		$session = &$sessionManager->getUserSession();
 		$user = &$session->getUser();
-		
+
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		return $roleDao->roleExists($conferenceId, $schedConfId, $user->getUserId(), $roleId);
 	}
-	
+
 	/**
 	 * Encrypt user passwords for database storage.
 	 * The username is used as a unique salt to make dictionary
@@ -205,11 +205,11 @@ class Validation {
 	 */
 	function encryptCredentials($username, $password, $encryption = false) {
 		$valueToEncrypt = $username . $password;
-		
+
 		if ($encryption == false) {
 			$encryption = Config::getVar('security', 'encryption');
 		}
-		
+
 		switch ($encryption) {
 			case 'sha1':
 				if (function_exists('sha1')) {
@@ -220,7 +220,7 @@ class Validation {
 				return md5($valueToEncrypt);
 		}
 	}
-	
+
 	/**
 	 * Generate a random password.
 	 * Assumes the random number generator has already been seeded.
@@ -237,7 +237,7 @@ class Validation {
 		}
 		return $password;
 	}
-	
+
 	/**
 	 * Generate a hash value to use for confirmation to reset a password.
 	 * @param $userId int
@@ -272,11 +272,11 @@ class Validation {
 	function isLoggedIn() {
 		$sessionManager = &SessionManager::getManager();
 		$session = &$sessionManager->getUserSession();
-		
+
 		$userId = $session->getUserId();
 		return isset($userId) && !empty($userId);
 	}
-	
+
 	/**
 	 * Shortcut for checking Authorization as site admin.
 	 * @return boolean
@@ -284,7 +284,7 @@ class Validation {
 	function isSiteAdmin() {
 		return Validation::isAuthorized(ROLE_ID_SITE_ADMIN, 0, 0);
 	}
-	
+
 	/**
 	 * Shortcut for checking authorization as conference manager.
 	 * @param $conferenceId int
@@ -293,7 +293,7 @@ class Validation {
 	function isConferenceManager($conferenceId = -1) {
 		return Validation::isAuthorized(ROLE_ID_CONFERENCE_MANAGER, $conferenceId, 0);
 	}
-	
+
 	/**
 	 * Shortcut for checking Authorization as director.
 	 * @param $conferenceId int
@@ -302,7 +302,7 @@ class Validation {
 	function isDirector($conferenceId = -1, $schedConfId = -1) {
 		return Validation::isAuthorized(ROLE_ID_DIRECTOR, $conferenceId, $schedConfId);
 	}
-	
+
 	/**
 	 * Shortcut for checking authorization as track director.
 	 * @param $conferenceId int
@@ -311,7 +311,7 @@ class Validation {
 	function isTrackDirector($conferenceId = -1, $schedConfId = -1) {
 		return Validation::isAuthorized(ROLE_ID_TRACK_DIRECTOR, $conferenceId, $schedConfId);
 	}
-	
+
 	/**
 	 * Shortcut for checking authorization as reviewer.
 	 * @param $conferenceId int
@@ -320,7 +320,7 @@ class Validation {
 	function isReviewer($conferenceId = -1, $schedConfId = -1) {
 		return Validation::isAuthorized(ROLE_ID_REVIEWER, $conferenceId, $schedConfId);
 	}
-	
+
 	/**
 	 * Shortcut for checking authorization as presenter.
 	 * @param $conferenceId int
@@ -329,7 +329,7 @@ class Validation {
 	function isPresenter($conferenceId = -1, $schedConfId = -1) {
 		return Validation::isAuthorized(ROLE_ID_PRESENTER, $conferenceId, $schedConfId);
 	}
-	
+
 	/**
 	 * Shortcut for checking authorization as reader.
 	 * @param $conferenceId int
@@ -349,7 +349,7 @@ class Validation {
 
 		if (Validation::isSiteAdmin()) return true;
 		if (!Validation::isConferenceManager($conferenceId)) return false;
-		
+
 		// Check for roles in other conferences that this user
 		// doesn't have administrative rights over.
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
@@ -357,7 +357,7 @@ class Validation {
 		foreach ($roles as $role) {
 			// Other user cannot be site admin
 			if ($role->getRoleId() == ROLE_ID_SITE_ADMIN) return false;
-			
+
 			if($role->getConferenceId() != $conferenceId) {
 				// Other conferences: We must have admin privileges there too
 				if (!Validation::isConferenceManager($role->getConferenceId())) {

@@ -26,50 +26,23 @@ class Track extends DataObject {
 
 	/**
 	 * Get localized title of conference track.
+	 * @return string
 	 */
 	function getTrackTitle() {
-		$schedConfId = &$this->getSchedConfId();
-		$schedConfDao = &DAORegistry::getDao('SchedConfDAO');
-		$schedConf = &$schedConfDao->getSchedConf($schedConfId);
-		$conference = &$schedConf->getConference();
-		$alternateLocaleNum = Locale::isAlternateConferenceLocale($conference->getConferenceId());
-		
-		$title = null;
-		switch ($alternateLocaleNum) {
-			case 1: $title = $this->getTitleAlt1(); break;
-			case 2: $title = $this->getTitleAlt2(); break;
-		}
-		// Fall back on the primary locale title.
-		if (empty($title)) $title = $this->getTitle();
-
-		return $title;
+		return $this->getLocalizedData('title');
 	}
 
 	/**
 	 * Get localized abbreviation of conference track.
 	 */
 	function getTrackAbbrev() {
-		$schedConfId = &$this->getSchedConfId();
-		$schedConfDao = &DAORegistry::getDao('SchedConfDAO');
-		$schedConf = &$schedConfDao->getSchedConf($schedConfId);
-		$conference = &$schedConf->getConference();
-		$alternateLocaleNum = Locale::isAlternateConferenceLocale($conference->getConferenceId());
-		
-		$abbrev = null;
-		switch ($alternateLocaleNum) {
-			case 1: $abbrev = $this->getAbbrevAlt1(); break;
-			case 2: $abbrev = $this->getAbbrevAlt2(); break;
-		}
-		// Fall back on the primary locale title.
-		if (empty($abbrev)) $abbrev = $this->getAbbrev();
-
-		return $abbrev;
+		return $this->getLocalizedData('abbrev');
 	}
 
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get ID of track.
 	 * @return int
@@ -77,7 +50,7 @@ class Track extends DataObject {
 	function getTrackId() {
 		return $this->getData('trackId');
 	}
-	
+
 	/**
 	 * Set ID of track.
 	 * @param $trackId int
@@ -85,7 +58,7 @@ class Track extends DataObject {
 	function setTrackId($trackId) {
 		return $this->setData('trackId', $trackId);
 	}
-	
+
 	/**
 	 * Get ID of scheduled conference.
 	 * @return int
@@ -93,7 +66,7 @@ class Track extends DataObject {
 	function getSchedConfId() {
 		return $this->getData('schedConfId');
 	}
-	
+
 	/**
 	 * Set ID of scheduled conference.
 	 * @param $schedConfId int
@@ -101,103 +74,43 @@ class Track extends DataObject {
 	function setSchedConfId($schedConfId) {
 		return $this->setData('schedConfId', $schedConfId);
 	}
-	
+
 	/**
 	 * Get title of track.
+	 * @param $locale string
 	 * @return string
 	 */
-	function getTitle() {
-		return $this->getData('title');
+	function getTitle($locale) {
+		return $this->getData('title', $locale);
 	}
-	
+
 	/**
 	 * Set title of track.
 	 * @param $title string
+	 * @param $locale string
 	 */
-	function setTitle($title) {
-		return $this->setData('title', $title);
+	function setTitle($title, $locale) {
+		return $this->setData('title', $title, $locale);
 	}
-	
-	/**
-	 * Get title of track (alternate locale 1).
-	 * @return string
-	 */
-	function getTitleAlt1() {
-		return $this->getData('titleAlt1');
-	}
-	
-	/**
-	 * Set title of track (alternate locale 1).
-	 * @param $titleAlt1 string
-	 */
-	function setTitleAlt1($titleAlt1) {
-		return $this->setData('titleAlt1', $titleAlt1);
-	}
-	
-	/**
-	 * Get title of track (alternate locale 2).
-	 * @return string
-	 */
-	function getTitleAlt2() {
-		return $this->getData('titleAlt2');
-	}
-	
-	/**
-	 * Set title of track (alternate locale 2).
-	 * @param $titleAlt2 string
-	 */
-	function setTitleAlt2($titleAlt2) {
-		return $this->setData('titleAlt2', $titleAlt2);
-	}
-	
+
 	/**
 	 * Get track title abbreviation.
+	 * @param $locale string
 	 * @return string
 	 */
-	function getAbbrev() {
-		return $this->getData('abbrev');
+	function getAbbrev($locale) {
+		return $this->getData('abbrev', $locale);
 	}
-	
+
 	/**
 	 * Set track title abbreviation.
 	 * @param $abbrev string
+	 * @param $locale string
 	 */
-	function setAbbrev($abbrev) {
-		return $this->setData('abbrev', $abbrev);
+	function setAbbrev($abbrev, $locale) {
+		return $this->setData('abbrev', $abbrev, $locale);
 	}
-	
-	/**
-	 * Get track title abbreviation (alternate locale 1).
-	 * @return string
-	 */
-	function getAbbrevAlt1() {
-		return $this->getData('abbrevAlt1');
-	}
-	
-	/**
-	 * Set track title abbreviation (alternate locale 1).
-	 * @param $abbrevAlt1 string
-	 */
-	function setAbbrevAlt1($abbrevAlt1) {
-		return $this->setData('abbrevAlt1', $abbrevAlt1);
-	}
-	
-	/**
-	 * Get track title abbreviation (alternate locale 2).
-	 * @return string
-	 */
-	function getAbbrevAlt2() {
-		return $this->getData('abbrevAlt2');
-	}
-	
-	/**
-	 * Set track title abbreviation (alternate locale 2).
-	 * @param $abbrevAlt2 string
-	 */
-	function setAbbrevAlt2($abbrevAlt2) {
-		return $this->setData('abbrevAlt2', $abbrevAlt2);
-	}
-	
+
 	/**
 	 * Get sequence of track.
 	 * @return float
@@ -205,7 +118,7 @@ class Track extends DataObject {
 	function getSequence() {
 		return $this->getData('sequence');
 	}
-	
+
 	/**
 	 * Set sequence of track.
 	 * @param $sequence float
@@ -213,7 +126,7 @@ class Track extends DataObject {
 	function setSequence($sequence) {
 		return $this->setData('sequence', $sequence);
 	}
-	
+
 	/**
 	 * Get peer review setting of track.
 	 * @return boolean
@@ -221,7 +134,7 @@ class Track extends DataObject {
 	function getMetaReviewed() {
 		return $this->getData('metaReviewed');
 	}
-	
+
 	/**
 	 * Set peer review setting of track.
 	 * @param $metaReviewed boolean
@@ -229,23 +142,33 @@ class Track extends DataObject {
 	function setMetaReviewed($metaReviewed) {
 		return $this->setData('metaReviewed', $metaReviewed);
 	}
-	
+
 	/**
-	 * Get string identifying type of items in this track.
+	 * Get localized string identifying type of items in this track.
 	 * @return string
 	 */
-	function getIdentifyType() {
-		return $this->getData('identifyType');
+	function getTrackIdentifyType() {
+		return $this->getLocalizedData('identifyType');
 	}
-	
+
+	/**
+	 * Get string identifying type of items in this track.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getIdentifyType($locale) {
+		return $this->getData('identifyType', $locale);
+	}
+
 	/**
 	 * Set string identifying type of items in this track.
 	 * @param $identifyType string
+	 * @param $locale string
 	 */
-	function setIdentifyType($identifyType) {
-		return $this->setData('identifyType', $identifyType);
+	function setIdentifyType($identifyType, $locale) {
+		return $this->setData('identifyType', $identifyType, $locale);
 	}
-	
+
 	/**
 	 * Return boolean indicating whether or not submissions are restricted to [track] directors.
 	 * @return boolean
@@ -253,7 +176,7 @@ class Track extends DataObject {
 	function getDirectorRestricted() {
 		return $this->getData('directorRestricted');
 	}
-	
+
 	/**
 	 * Set whether or not submissions are restricted to [track] directors.
 	 * @param $directorRestricted boolean
@@ -261,23 +184,32 @@ class Track extends DataObject {
 	function setDirectorRestricted($directorRestricted) {
 		return $this->setData('directorRestricted', $directorRestricted);
 	}
-	
+
 	/**
-	 * Get policy.
+	 * Get localized track policy.
 	 * @return string
 	 */
-	function getPolicy() {
-		return $this->getData('policy');
+	function getTrackPolicy() {
+		return $this->getLocalizedData('policy');
 	}
-	
+
+	/**
+	 * Get policy.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getPolicy($locale) {
+		return $this->getData('policy', $locale);
+	}
+
 	/**
 	 * Set policy.
 	 * @param $policy string
+	 * @param $locale string
 	 */
-	function setPolicy($policy) {
-		return $this->setData('policy', $policy);
+	function setPolicy($policy, $locale) {
+		return $this->setData('policy', $policy, $locale);
 	}
-	
 }
 
 ?>

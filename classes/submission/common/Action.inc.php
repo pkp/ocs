@@ -28,11 +28,11 @@ class Action {
 	function Action() {
 
 	}
-	
+
 	/**
 	 * Actions.
 	 */
-	 
+
 	/**
 	 * View metadata of a paper.
 	 * @param $paper object
@@ -41,11 +41,15 @@ class Action {
 		if (!HookRegistry::call('Action::viewMetadata', array(&$paper, &$roleId))) {
 			import("submission.form.MetadataForm");
 			$metadataForm = &new MetadataForm($paper, $roleId);
-			$metadataForm->initData();
+			if ($metadataForm->isLocaleResubmit()) {
+				$metadataForm->readInputData();
+			} else {
+				$metadataForm->initData();
+			}
 			$metadataForm->display();
 		}
 	}
-	
+
 	/**
 	 * Save metadata.
 	 * @param $paper object
@@ -67,7 +71,7 @@ class Action {
 				$presenters = $metadataForm->getData('presenters');
 				array_push($presenters, array());
 				$metadataForm->setData('presenters', $presenters);
-			
+
 			} else if (($delPresenter = Request::getUserVar('delPresenter')) && count($delPresenter) == 1) {
 				// Delete an presenter
 				$editData = true;
@@ -81,11 +85,11 @@ class Action {
 				}
 				array_splice($presenters, $delPresenter, 1);
 				$metadataForm->setData('presenters', $presenters);
-					
+
 				if ($metadataForm->getData('primaryContact') == $delPresenter) {
 					$metadataForm->setData('primaryContact', 0);
 				}
-					
+
 			} else if (Request::getUserVar('movePresenter')) {
 				// Move an presenter up/down
 				$editData = true;
@@ -93,7 +97,7 @@ class Action {
 				$movePresenterDir = $movePresenterDir == 'u' ? 'u' : 'd';
 				$movePresenterIndex = (int) Request::getUserVar('movePresenterIndex');
 				$presenters = $metadataForm->getData('presenters');
-			
+
 				if (!(($movePresenterDir == 'u' && $movePresenterIndex <= 0) || ($movePresenterDir == 'd' && $movePresenterIndex >= count($presenters) - 1))) {
 					$tmpPresenter = $presenters[$movePresenterIndex];
 					$primaryContact = $metadataForm->getData('primaryContact');
@@ -117,11 +121,11 @@ class Action {
 				}
 				$metadataForm->setData('presenters', $presenters);
 			}
-		
+
 			if (isset($editData)) {
 				$metadataForm->display();
 				return false;
-			
+
 			} else {
 				$metadataForm->execute();
 
@@ -135,7 +139,7 @@ class Action {
 			}
 		}
 	}
-	
+
 	/**
 	 * Download file.
 	 * @param $paperId int
@@ -147,7 +151,7 @@ class Action {
 		$paperFileManager = &new PaperFileManager($paperId);
 		return $paperFileManager->downloadFile($fileId, $revision);
 	}
-	
+
 	/**
 	 * View file.
 	 * @param $paperId int
@@ -159,7 +163,7 @@ class Action {
 		$paperFileManager = &new PaperFileManager($paperId);
 		return $paperFileManager->viewFile($fileId, $revision);
 	}
-	
+
 	/**
 	 * Edit comment.
 	 * @param $commentId int
@@ -167,13 +171,13 @@ class Action {
 	function editComment($paper, $comment) {
 		if (!HookRegistry::call('Action::editComment', array(&$paper, &$comment))) {
 			import("submission.form.comment.EditCommentForm");
-		
+
 			$commentForm = &new EditCommentForm($paper, $comment);
 			$commentForm->initData();
 			$commentForm->display();
 		}
 	}
-	
+
 	/**
 	 * Save comment.
 	 * @param $commentId int
@@ -181,23 +185,23 @@ class Action {
 	function saveComment($paper, &$comment, $emailComment) {
 		if (!HookRegistry::call('Action::saveComment', array(&$paper, &$comment, &$emailComment))) {
 			import("submission.form.comment.EditCommentForm");
-		
+
 			$commentForm = &new EditCommentForm($paper, $comment);
 			$commentForm->readInputData();
-		
+
 			if ($commentForm->validate()) {
 				$commentForm->execute();
-			
+
 				if ($emailComment) {
 					$commentForm->email($commentForm->emailHelper());
 				}
-			
+
 			} else {
 				$commentForm->display();
 			}
 		}
 	}
-	
+
 	/**
 	 * Delete comment.
 	 * @param $commentId int
@@ -205,10 +209,10 @@ class Action {
 	 */
 	function deleteComment($commentId, $user = null) {
 		if ($user == null) $user = &Request::getUser();
-	
+
 		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
 		$comment = &$paperCommentDao->getPaperCommentById($commentId);
-		
+
 		if ($comment->getAuthorId() == $user->getUserId()) {
 			if (!HookRegistry::call('Action::deleteComment', array(&$comment))) {
 				$paperCommentDao->deletePaperComment($comment);

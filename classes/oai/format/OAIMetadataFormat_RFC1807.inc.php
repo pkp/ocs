@@ -28,25 +28,25 @@ class OAIMetadataFormat_RFC1807 extends OAIMetadataFormat {
 			"\t<bib-version>v2</bib-version>\n" .
 			$this->formatElement('id', $record->url) .
 			$this->formatElement('entry', $record->datestamp) .
-			$this->formatElement('organization', $record->publisher) .
-			$this->formatElement('organization', $record->source) .
-			$this->formatElement('title', $record->title) .
-			$this->formatElement('type', $record->type) .
+			$this->formatElement('organization', $this->getLocalizedData($record->publishers, $record->primaryLocale)) .
+			$this->formatElement('organization', $this->getLocalizedData($record->sources, $record->primaryLocale)) .
+			$this->formatElement('title', $this->getLocalizedData($record->titles, $record->primaryLocale)) .
+			$this->formatElement('type', $this->getLocalizedData($record->types, $record->primaryLocale)) .
 			$this->formatElement('type', $record->relation) .
 			$this->formatElement('author', $record->creator) .
 			$this->formatElement('date', $record->date) .
 			$this->formatElement('copyright', $record->rights) .
 			$this->formatElement('other_access', 'url:' . $record->url) .
-			$this->formatElement('keyword', $record->subject) .
+			$this->formatElement('keyword', $this->getLocalizedData($record->subjects, $record->primaryLocale)) .
 			$this->formatElement('period', $record->coverage) .
-			$this->formatElement('monitoring', $record->contributor) .
+			$this->formatElement('monitoring', $this->getLocalizedData($record->contributors, $record->primaryLocale)) .
 			$this->formatElement('language', $record->language) .
-			$this->formatElement('abstract', $record->description) .
+			$this->formatElement('abstract', $this->getLocalizedData($record->descriptions, $record->primaryLocale)) .
 			"</rfc1807>\n";
-			
+
 		return $response;
 	}
-	
+
 	/**
 	 * Format XML for single RFC 1807 element.
 	 * @param $name string
@@ -56,14 +56,14 @@ class OAIMetadataFormat_RFC1807 extends OAIMetadataFormat {
 		if (!is_array($value)) {
 			$value = array($value);
 		}
-		
+
 		$response = '';
 		foreach ($value as $v) {
 			$response .= "\t<$name>" . $this->oai->prepOutput($v) . "</$name>\n";
 		}
 		return $response;
 	}
-	
+
 }
 
 ?>

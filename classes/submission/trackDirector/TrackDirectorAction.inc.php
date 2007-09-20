@@ -24,11 +24,11 @@ class TrackDirectorAction extends Action {
 	function TrackDirectorAction() {
 		parent::Action();
 	}
-	
+
 	/**
 	 * Actions.
 	 */
-	 
+
 	/**
 	 * Changes the track a paper belongs in.
 	 * @param $trackDirectorSubmission int
@@ -41,7 +41,7 @@ class TrackDirectorAction extends Action {
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 		}
 	}
-	 
+
 	/**
 	 * Records a director's submission decision.
 	 * @param $trackDirectorSubmission object
@@ -68,7 +68,7 @@ class TrackDirectorAction extends Action {
 				$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_QUEUED);		
 				$trackDirectorSubmission->stampStatusModified();
 			}
-		
+
 			$trackDirectorSubmission->addDecision($directorDecision, $trackDirectorSubmission->getCurrentStage());
 			$decisions = TrackDirectorSubmission::getDirectorDecisionOptions();
 			// Add log
@@ -76,7 +76,7 @@ class TrackDirectorAction extends Action {
 			import('paper.log.PaperEventLogEntry');
 			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_DECISION, LOG_TYPE_DIRECTOR, $user->getUserId(), 'log.director.decision', array('directorName' => $user->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
-		
+
 		if($decision == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $decision == SUBMISSION_DIRECTOR_DECISION_INVITE) {
 			// completeReview will take care of updating the
 			// submission with the new decision.
@@ -86,7 +86,7 @@ class TrackDirectorAction extends Action {
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 		}
 	}
-	
+
 	/**
 	 * After a decision has been recorded, bumps the paper to the next stage.
 	 * If the submission requires completion, it's sent back to the presenter.
@@ -97,7 +97,7 @@ class TrackDirectorAction extends Action {
 	 */
 	function completeReview($trackDirectorSubmission) {
 		$schedConf =& Request::getSchedConf();
-		
+
 		if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL) {
 			// two-stage submission; paper required
 			// The submission is incomplete, and needs the presenter to submit
@@ -138,7 +138,7 @@ class TrackDirectorAction extends Action {
 		$paperDao = &DAORegistry::getDao('PaperDAO');
 		$paperDao->updatePaper($trackDirectorSubmission);
 	}
-	
+
 	/**
 	 * Assigns a reviewer to a submission.
 	 * @param $trackDirectorSubmission object
@@ -150,7 +150,7 @@ class TrackDirectorAction extends Action {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$user = &Request::getUser();
-		
+
 		$reviewer = &$userDao->getUser($reviewerId);
 
 		// Check to see if the requested reviewer is not already
@@ -158,9 +158,9 @@ class TrackDirectorAction extends Action {
 		if ($stage == null) {
 			$stage = $trackDirectorSubmission->getCurrentStage();
 		}
-		
+
 		$assigned = $trackDirectorSubmissionDao->reviewerExists($trackDirectorSubmission->getPaperId(), $reviewerId, $stage);
-				
+
 		// Only add the reviewer if he has not already
 		// been assigned to review this paper.
 		if (!$assigned && isset($reviewer) && !HookRegistry::call('TrackDirectorAction::addReviewer', array(&$trackDirectorSubmission, $reviewerId))) {
@@ -168,23 +168,23 @@ class TrackDirectorAction extends Action {
 			$reviewAssignment->setReviewerId($reviewerId);
 			$reviewAssignment->setDateAssigned(Core::getCurrentDate());
 			$reviewAssignment->setStage($stage);
-			
+
 			$trackDirectorSubmission->addReviewAssignment($reviewAssignment);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
-		
+
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($trackDirectorSubmission->getPaperId(), $reviewerId, $stage);
 
 			$schedConf = &Request::getSchedConf();
 			if ($schedConf->getSetting('numWeeksPerReview', true) != null)
 				TrackDirectorAction::setDueDate($trackDirectorSubmission->getPaperId(), $reviewAssignment->getReviewId(), null, $schedConf->getSetting('numWeeksPerReview',true));
-			
+
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
 			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_REVIEW_ASSIGN, LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'stage' => $stage));
 		}
 	}
-	
+
 	/**
 	 * Clears a review assignment from a submission.
 	 * @param $trackDirectorSubmission object
@@ -195,15 +195,15 @@ class TrackDirectorAction extends Action {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$user = &Request::getUser();
-		
+
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		
+
 		if (isset($reviewAssignment) && $reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId() && !HookRegistry::call('TrackDirectorAction::clearReview', array(&$trackDirectorSubmission, $reviewAssignment))) {
 			$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return false;
 			$trackDirectorSubmission->removeReviewAssignment($reviewId);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
-			
+
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
@@ -221,11 +221,11 @@ class TrackDirectorAction extends Action {
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
-		
+
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
 		$user = &Request::getUser();
-		
+
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled');
@@ -247,7 +247,7 @@ class TrackDirectorAction extends Action {
 		if ($reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
 			$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return true;
-			
+
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 				HookRegistry::call('TrackDirectorAction::notifyReviewer', array(&$trackDirectorSubmission, &$reviewAssignment, &$email));
 				if ($email->isEnabled()) {
@@ -270,7 +270,7 @@ class TrackDirectorAction extends Action {
 					}
 					$email->send();
 				}
-				
+
 				$reviewAssignment->setDateNotified(Core::getCurrentDate());
 				$reviewAssignment->setCancelled(0);
 				$reviewAssignment->stampModified();
@@ -279,7 +279,7 @@ class TrackDirectorAction extends Action {
 			} else {
 				if (!Request::getUserVar('continued')) {
 					$weekLaterDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+1 week'));
-				
+
 					if ($reviewAssignment->getDateDue() != null) {
 						$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue()));
 					} else {
@@ -296,7 +296,7 @@ class TrackDirectorAction extends Action {
 						'reviewerUsername' => $reviewer->getUsername(),
 						'reviewerPassword' => $reviewer->getPassword(),
 						'editorialContactSignature' => $user->getContactSignature(),
-						'reviewGuidelines' => $schedConf->getSetting('reviewGuidelines'),
+						'reviewGuidelines' => $schedConf->getLocalizedSetting('reviewGuidelines'),
 						'submissionReviewUrl' => $submissionUrl,
 						'passwordResetUrl' => Request::url(null, null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId())))
 					);
@@ -345,7 +345,7 @@ class TrackDirectorAction extends Action {
 					$reviewAssignment->setCancelled(1);
 					$reviewAssignment->setDateCompleted(Core::getCurrentDate());
 					$reviewAssignment->stampModified();
-				
+
 					$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
 
 					// Add log
@@ -371,7 +371,7 @@ class TrackDirectorAction extends Action {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Reminds a reviewer about a review assignment.
 	 * @param $trackDirectorSubmission object
@@ -382,7 +382,7 @@ class TrackDirectorAction extends Action {
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
-			
+
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
 		$user = &Request::getUser();
@@ -432,13 +432,13 @@ class TrackDirectorAction extends Action {
 			return true;
 		} elseif ($reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
 			$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
-		
+
 			if (!Request::getUserVar('continued')) {
 				if (!isset($reviewer)) return true;
 				$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 
 				$submissionUrl = Request::url(null, null, 'reviewer', 'submission', $reviewId, $reviewerAccessKeysEnabled?array('key' => 'ACCESS_KEY'):array());
-				
+
 				//
 				// FIXME: Assign correct values!
 				//
@@ -452,7 +452,7 @@ class TrackDirectorAction extends Action {
 					'submissionReviewUrl' => $submissionUrl
 				);
 				$email->assignParams($paramArray);
-	
+
 			}
 			$email->displayEditForm(
 				Request::url(null, null, null, 'remindReviewer', 'send'),
@@ -466,7 +466,7 @@ class TrackDirectorAction extends Action {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Thanks a reviewer for completing a review assignment.
 	 * @param $trackDirectorSubmission object
@@ -477,26 +477,26 @@ class TrackDirectorAction extends Action {
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
-		
+
 		$conference = &Request::getConference();
 		$user = &Request::getUser();
-		
+
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		
+
 		import('mail.PaperMailTemplate');
 		$email = &new PaperMailTemplate($trackDirectorSubmission, 'REVIEW_ACK');
 
 		if ($reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
 			$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return true;
-			
+
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 				HookRegistry::call('TrackDirectorAction::thankReviewer', array(&$trackDirectorSubmission, &$reviewAssignment, &$email));
 				if ($email->isEnabled()) {
 					$email->setAssoc(PAPER_EMAIL_REVIEW_THANK_REVIEWER, PAPER_EMAIL_TYPE_REVIEW, $reviewId);
 					$email->send();
 				}
-				
+
 				$reviewAssignment->setDateAcknowledged(Core::getCurrentDate());
 				$reviewAssignment->stampModified();
 				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
@@ -516,7 +516,7 @@ class TrackDirectorAction extends Action {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Rates a reviewer for quality of a review.
 	 * @param $paperId int
@@ -531,7 +531,7 @@ class TrackDirectorAction extends Action {
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
-		
+
 		if ($reviewAssignment->getPaperId() == $paperId && !HookRegistry::call('TrackDirectorAction::rateReviewer', array(&$reviewAssignment, &$reviewer, &$quality))) {
 			// Ensure that the value for quality
 			// is between 1 and 5.
@@ -543,14 +543,14 @@ class TrackDirectorAction extends Action {
 			$reviewAssignment->stampModified();
 
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
-			
+
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
 			PaperLog::logEvent($paperId, PAPER_LOG_REVIEW_RATE, LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerRated', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $paperId, 'stage' => $reviewAssignment->getStage()));
 		}
 	}
-	
+
 	/**
 	 * Makes a reviewer's annotated version of a paper available to the presenter.
 	 * @param $paperId int
@@ -560,16 +560,16 @@ class TrackDirectorAction extends Action {
 	function makeReviewerFileViewable($paperId, $reviewId, $fileId, $revision, $viewable = false) {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		
+
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$paperFile = &$paperFileDao->getPaperFile($fileId, $revision);
-		
+
 		if ($reviewAssignment->getPaperId() == $paperId && $reviewAssignment->getReviewerFileId() == $fileId && !HookRegistry::call('TrackDirectorAction::makeReviewerFileViewable', array(&$reviewAssignment, &$paperFile, &$viewable))) {
 			$paperFile->setViewable($viewable);
 			$paperFileDao->updatePaperFile($paperFile);				
 		}
 	}
-	
+
 	/**
 	 * Sets the due date for a review assignment.
 	 * @param $paperId int
@@ -577,20 +577,20 @@ class TrackDirectorAction extends Action {
 	 * @param $dueDate string
 	 * @param $numWeeks int
 	 */
-	 function setDueDate($paperId, $reviewId, $dueDate = null, $numWeeks = null) {
+	function setDueDate($paperId, $reviewId, $dueDate = null, $numWeeks = null) {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$user = &Request::getUser();
-		
+
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
-		
+
 		if ($reviewAssignment->getPaperId() == $paperId && !HookRegistry::call('TrackDirectorAction::setDueDate', array(&$reviewAssignment, &$reviewer, &$dueDate, &$numWeeks))) {
 			if ($dueDate != null) {
 				$dueDateParts = explode('-', $dueDate);
 				$today = getDate();
-				
+
 				// Ensure that the specified due date is today or after today's date.
 				if ($dueDateParts[0] >= $today['year'] && ($dueDateParts[1] > $today['mon'] || ($dueDateParts[1] == $today['mon'] && $dueDateParts[2] >= $today['mday']))) {
 					$reviewAssignment->setDateDue(date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[1], $dueDateParts[2], $dueDateParts[0])));
@@ -603,16 +603,16 @@ class TrackDirectorAction extends Action {
 			} else {
 				$today = getDate();
 				$todayTimestamp = mktime(0, 0, 0, $today['mon'], $today['mday'], $today['year']);
-				
+
 				// Add the equivilant of $numWeeks weeks, measured in seconds, to $todaysTimestamp.
 				$newDueDateTimestamp = $todayTimestamp + ($numWeeks * 7 * 24 * 60 * 60);
 
 				$reviewAssignment->setDateDue(date('Y-m-d H:i:s', $newDueDateTimestamp));
 			}
-		
+
 			$reviewAssignment->stampModified();
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
-			
+
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
@@ -630,8 +630,8 @@ class TrackDirectorAction extends Action {
 				)
 			);
 		}
-	 }
-	 
+	}
+
 	/**
 	 * Notifies an presenter that a submission was unsuitable.
 	 * @param $trackDirectorSubmission object
@@ -640,14 +640,14 @@ class TrackDirectorAction extends Action {
 	function unsuitableSubmission($trackDirectorSubmission, $send = false) {
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
-		
+
 		$conference = &Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		$user = &Request::getUser();
 
 		$presenter = &$userDao->getUser($trackDirectorSubmission->getUserId());
 		if (!isset($presenter)) return true;
-		
+
 		import('mail.PaperMailTemplate');
 		$email = &new PaperMailTemplate($trackDirectorSubmission, 'SUBMISSION_UNSUITABLE');
 
@@ -681,14 +681,14 @@ class TrackDirectorAction extends Action {
 	 * @param $reviewId int
 	 * @param $recommendation int
 	 */
-	 function setReviewerRecommendation($paperId, $reviewId, $recommendation, $acceptOption) {
+	function setReviewerRecommendation($paperId, $reviewId, $recommendation, $acceptOption) {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$user = &Request::getUser();
-		
+
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId(), true);
-		
+
 		if ($reviewAssignment->getPaperId() == $paperId && !HookRegistry::call('TrackDirectorAction::setReviewerRecommendation', array(&$reviewAssignment, &$reviewer, &$recommendation, &$acceptOption))) {
 			$reviewAssignment->setRecommendation($recommendation);
 
@@ -698,16 +698,16 @@ class TrackDirectorAction extends Action {
 			}
 			$reviewAssignment->setDateCompleted($nowDate);
 			$reviewAssignment->stampModified();
-		
+
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
-			
+
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
 			PaperLog::logEvent($paperId, PAPER_LOG_REVIEW_RECOMMENDATION_BY_PROXY, LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewRecommendationSetByProxy', array('directorName' => $user->getFullName(), 'reviewerName' => $reviewer->getFullName(), 'paperId' => $paperId, 'stage' => $reviewAssignment->getStage()));
 		}
 	}	 
-	 
+
 	/**
 	 * Set the file to use as the default editing file.
 	 * @param $trackDirectorSubmission object
@@ -726,7 +726,7 @@ class TrackDirectorAction extends Action {
 		if (!HookRegistry::call('TrackDirectorAction::setEditingFile', array(&$trackDirectorSubmission, &$fileId, &$revision))) {
 			// Copy the file from the director decision file folder to the copyedit file folder
 			$newFileId = $paperFileManager->copyToLayoutFile($fileId, $revision);
-			
+
 			$trackDirectorSubmission->setLayoutFileId($newFileId);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 
@@ -765,7 +765,7 @@ class TrackDirectorAction extends Action {
 			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_LAYOUT_SET_FILE, LOG_TYPE_FILE, $trackDirectorSubmission->getLayoutFileId(), 'log.layout.layoutFileSet', array('directorName' => $user->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId()));
 		}
 	}
-	
+
 	/**
 	 * Upload the review version of a paper.
 	 * @param $trackDirectorSubmission object
@@ -774,7 +774,7 @@ class TrackDirectorAction extends Action {
 		import('file.PaperFileManager');
 		$paperFileManager = &new PaperFileManager($trackDirectorSubmission->getPaperId());
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		
+
 		$fileName = 'upload';
 		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadReviewVersion', array(&$trackDirectorSubmission))) {
 			if ($trackDirectorSubmission->getReviewFileId() != null) {
@@ -787,11 +787,11 @@ class TrackDirectorAction extends Action {
 			}
 			$directorFileId = $paperFileManager->copyToDirectorFile($reviewFileId, $trackDirectorSubmission->getReviewRevision(), $trackDirectorSubmission->getDirectorFileId());
 		}
-		
+
 		if (isset($reviewFileId) && $reviewFileId != 0 && isset($directorFileId) && $directorFileId != 0) {
 			$trackDirectorSubmission->setReviewFileId($reviewFileId);
 			$trackDirectorSubmission->setDirectorFileId($directorFileId);
-	
+
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 		}
 	}
@@ -805,7 +805,7 @@ class TrackDirectorAction extends Action {
 		$paperFileManager = &new PaperFileManager($trackDirectorSubmission->getPaperId());
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$user = &Request::getUser();
-		
+
 		$fileName = 'upload';
 		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadDirectorVersion', array(&$trackDirectorSubmission))) {
 			if ($trackDirectorSubmission->getDirectorFileId() != null) {
@@ -814,7 +814,7 @@ class TrackDirectorAction extends Action {
 				$fileId = $paperFileManager->uploadDirectorDecisionFile($fileName);
 			}
 		}
-		
+
 		if (isset($fileId) && $fileId != 0) {
 			$trackDirectorSubmission->setDirectorFileId($fileId);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
@@ -825,7 +825,7 @@ class TrackDirectorAction extends Action {
 			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_FILE, LOG_TYPE_DIRECTOR, $trackDirectorSubmission->getDirectorFileId(), 'log.director.directorFile');
 		}
 	}
-	
+
 	/**
 	 * Mark a paper as published.
 	 * @param $trackDirectorSubmission object
@@ -871,7 +871,7 @@ class TrackDirectorAction extends Action {
 		import('paper.log.PaperEventLogEntry');
 		PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_PUBLISH, LOG_TYPE_DIRECTOR, $trackDirectorSubmission->getDirectorFileId(), 'log.director.publish');
 	}
-	
+
 	/**
 	 * Archive a submission.
 	 * @param $trackDirectorSubmission object
@@ -879,21 +879,21 @@ class TrackDirectorAction extends Action {
 	function archiveSubmission($trackDirectorSubmission) {
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$user = &Request::getUser();
-		
+
 		if (HookRegistry::call('TrackDirectorAction::archiveSubmission', array(&$trackDirectorSubmission))) return;
 
 		$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_ARCHIVED);
 		$trackDirectorSubmission->stampStatusModified();
 		$trackDirectorSubmission->stampDateToArchive();
-		
+
 		$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
-		
+
 		// Add log
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');
 		PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_ARCHIVE, LOG_TYPE_DIRECTOR, $trackDirectorSubmission->getPaperId(), 'log.director.archived', array('paperId' => $trackDirectorSubmission->getPaperId()));
 	}
-	
+
 	/**
 	 * Restores a submission to the queue.
 	 * @param $trackDirectorSubmission object
@@ -915,19 +915,19 @@ class TrackDirectorAction extends Action {
 		unset($publishedPaper);
 
 		$trackDirectorSubmission->stampStatusModified();
-		
+
 		$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
-	
+
 		// Add log
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');
 		PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_RESTORE, LOG_TYPE_DIRECTOR, $trackDirectorSubmission->getPaperId(), 'log.director.restored', array('paperId' => $trackDirectorSubmission->getPaperId()));
 	}
-	
+
 	//
 	// Layout Editing
 	//
-	
+
 	/**
 	 * Upload the layout version of a paper.
 	 * @param $submission object
@@ -936,16 +936,16 @@ class TrackDirectorAction extends Action {
 		import('file.PaperFileManager');
 		$paperFileManager = &new PaperFileManager($submission->getPaperId());
 		$submissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		
+
 		$fileName = 'layoutFile';
 		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadLayoutVersion', array(&$submission))) {
 			$layoutFileId = $paperFileManager->uploadLayoutFile($fileName, $submission->getLayoutFileId());
-		
+
 			$submission->setLayoutFileId($layoutFileId);
 			$submissionDao->updateTrackDirectorSubmission($submission);
 		}
 	}
-	
+
 	/**
 	 * Change the sequence order of a galley.
 	 * @param $paper object
@@ -961,7 +961,7 @@ class TrackDirectorAction extends Action {
 			$galleyDao->resequenceGalleys($paper->getPaperId());
 		}
 	}
-	
+
 	/**
 	 * Delete a galley.
 	 * @param $paper object
@@ -992,7 +992,7 @@ import('file.PaperFileManager');
 			$galleyDao->deleteGalley($galley);
 		}
 	}
-	
+
 	/**
 	 * Change the sequence order of a supplementary file.
 	 * @param $paper object
@@ -1008,7 +1008,7 @@ import('file.PaperFileManager');
 			$suppFileDao->resequenceSuppFiles($paper->getPaperId());
 		}
 	}
-	
+
 	/**
 	 * Delete a supplementary file.
 	 * @param $paper object
@@ -1030,7 +1030,7 @@ import('file.PaperFileManager');
 			$suppFileDao->deleteSuppFile($suppFile);
 		}
 	}
-	
+
 	/**
 	 * Delete a file from a paper.
 	 * @param $submission object
@@ -1040,7 +1040,7 @@ import('file.PaperFileManager');
 	function deletePaperFile($submission, $fileId, $revision) {
 		import('file.PaperFileManager');
 		$file =& $submission->getDirectorFile();
-		
+
 		if (isset($file) && $file->getFileId() == $fileId && !HookRegistry::call('TrackDirectorAction::deletePaperFile', array(&$submission, &$fileId, &$revision))) {
 			$paperFileManager = &new PaperFileManager($submission->getPaperId());
 			$paperFileManager->deleteFile($fileId, $revision);
@@ -1068,7 +1068,7 @@ import('file.PaperFileManager');
 			unset($images);
 		}
 	}
-	
+
 	/**
 	 * Add Submission Note
 	 * @param $paperId int
@@ -1078,7 +1078,7 @@ import('file.PaperFileManager');
 
 		$paperNoteDao = &DAORegistry::getDAO('PaperNoteDAO');
 		$user = &Request::getUser();
-		
+
 		$paperNote = &new PaperNote();
 		$paperNote->setPaperId($paperId);
 		$paperNote->setUserId($user->getUserId());
@@ -1096,7 +1096,7 @@ import('file.PaperFileManager');
 			}
 
 			$paperNote->setFileId($fileId);
-	
+
 			$paperNoteDao->insertPaperNote($paperNote);
 		}
 	}
@@ -1121,7 +1121,7 @@ import('file.PaperFileManager');
 		$paperNoteDao = &DAORegistry::getDAO('PaperNoteDAO');
 		$paperNoteDao->deletePaperNoteById($noteId);
 	}
-	
+
 	/**
 	 * Updates Submission Note
 	 * @param $paperId int
@@ -1131,7 +1131,7 @@ import('file.PaperFileManager');
 
 		$paperNoteDao = &DAORegistry::getDAO('PaperNoteDAO');
 		$user = &Request::getUser();
-		
+
 		$paperNote = &new PaperNote();
 		$paperNote->setNoteId(Request::getUserVar('noteId'));
 		$paperNote->setPaperId($paperId);
@@ -1140,17 +1140,17 @@ import('file.PaperFileManager');
 		$paperNote->setTitle(Request::getUserVar('title'));
 		$paperNote->setNote(Request::getUserVar('note'));
 		$paperNote->setFileId(Request::getUserVar('fileId'));
-		
+
 		if (HookRegistry::call('TrackDirectorAction::updateSubmissionNote', array(&$paperId, &$paperNote))) return;
 
 		$paperFileManager = &new PaperFileManager($paperId);
-		
+
 		// if there is a new file being uploaded
 		if ($paperFileManager->uploadedFileExists('upload')) {
 			// Attach the new file to the note, overwriting existing file if necessary
 			$fileId = $paperFileManager->uploadSubmissionNoteFile('upload', $paperNote->getFileId(), true);
 			$paperNote->setFileId($fileId);
-			
+
 		} else {
 			if (Request::getUserVar('removeUploadedFile')) {
 				$paperFileManager = &new PaperFileManager($paperId);
@@ -1158,10 +1158,10 @@ import('file.PaperFileManager');
 				$paperNote->setFileId(0);
 			}
 		}
-	
+
 		$paperNoteDao->updatePaperNote($paperNote);
 	}
-	
+
 	/**
 	 * Clear All Submission Notes
 	 * @param $paperId int
@@ -1178,20 +1178,20 @@ import('file.PaperFileManager');
 		if (!empty($fileIds)) {
 			$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 			$paperFileManager = &new PaperFileManager($paperId);
-			
+
 			foreach ($fileIds as $fileId) {
 				$paperFileManager->deleteFile($fileId);
 			}			
 		}
-		
+
 		$paperNoteDao->clearAllPaperNotes($paperId);
-		
+
 	}
-	
+
 	//
 	// Comments
 	//
-	
+
 	/**
 	 * View reviewer comments.
 	 * @param $paper object
@@ -1201,12 +1201,12 @@ import('file.PaperFileManager');
 		if (HookRegistry::call('TrackDirectorAction::viewPeerReviewComments', array(&$paper, &$reviewId))) return;
 
 		import('submission.form.comment.PeerReviewCommentForm');
-		
+
 		$commentForm = &new PeerReviewCommentForm($paper, $reviewId, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
-	
+
 	/**
 	 * Post reviewer comments.
 	 * @param $paper object
@@ -1217,24 +1217,24 @@ import('file.PaperFileManager');
 		if (HookRegistry::call('TrackDirectorAction::postPeerReviewComment', array(&$paper, &$reviewId, &$emailComment))) return;
 
 		import('submission.form.comment.PeerReviewCommentForm');
-		
+
 		$commentForm = &new PeerReviewCommentForm($paper, $reviewId, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 		$commentForm->readInputData();
-		
+
 		if ($commentForm->validate()) {
 			$commentForm->execute();
-			
+
 			if ($emailComment) {
 				$commentForm->email();
 			}
-			
+
 		} else {
 			$commentForm->display();
 			return false;
 		}
 		return true;
 	}
-	
+
 	/**
 	 * View director decision comments.
 	 * @param $paper object
@@ -1243,12 +1243,12 @@ import('file.PaperFileManager');
 		if (HookRegistry::call('TrackDirectorAction::viewDirectorDecisionComments', array(&$paper))) return;
 
 		import('submission.form.comment.DirectorDecisionCommentForm');
-		
+
 		$commentForm = &new DirectorDecisionCommentForm($paper, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
-	
+
 	/**
 	 * Post director decision comment.
 	 * @param $paper int
@@ -1258,13 +1258,13 @@ import('file.PaperFileManager');
 		if (HookRegistry::call('TrackDirectorAction::postDirectorDecisionComment', array(&$paper, &$emailComment))) return;
 
 		import('submission.form.comment.DirectorDecisionCommentForm');
-		
+
 		$commentForm = &new DirectorDecisionCommentForm($paper, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 		$commentForm->readInputData();
-		
+
 		if ($commentForm->validate()) {
 			$commentForm->execute();
-			
+
 			if ($emailComment) {
 				$commentForm->email();
 			}
@@ -1274,7 +1274,7 @@ import('file.PaperFileManager');
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Email director decision comment.
 	 * @param $trackDirectorSubmission object
@@ -1315,7 +1315,7 @@ import('file.PaperFileManager');
 		$user = &Request::getUser();
 		import('mail.PaperMailTemplate');
 		$email = &new PaperMailTemplate($trackDirectorSubmission, $templateName);
-	
+
 		if ($send && !$email->hasErrors()) {
 			HookRegistry::call('TrackDirectorAction::emailDirectorDecisionComment', array(&$trackDirectorSubmission, &$send));
 			$email->send();
@@ -1347,7 +1347,7 @@ import('file.PaperFileManager');
 				$email->assignParams(array(
 					'conferenceDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($schedConf->getStartDate())),
 					'presenterName' => $presenterUser->getFullName(),
-					'conferenceTitle' => $conference->getTitle(),
+					'conferenceTitle' => $conference->getConferenceTitle(),
 					'editorialContactSignature' => $user->getContactSignature(),
 					'locationCity' => $schedConf->getSetting('locationCity'),
 					'paperTitle' => $trackDirectorSubmission->getPaperTitle()
@@ -1388,7 +1388,7 @@ import('file.PaperFileManager');
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Blind CC the reviews to reviewers.
 	 * @param $paper object
@@ -1401,15 +1401,15 @@ import('file.PaperFileManager');
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$conference = &Request::getConference();
-		
+
 		$comments = &$commentDao->getPaperComments($paper->getPaperId(), COMMENT_TYPE_DIRECTOR_DECISION);
 		$reviewAssignments = &$reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getPaperId(), $paper->getCurrentStage());
-		
+
 		$commentsText = "";
 		foreach ($comments as $comment) {
 			$commentsText .= $comment->getComments() . "\n\n";
 		}
-		
+
 		$user = &Request::getUser();
 		import('mail.PaperMailTemplate');
 		$email = &new PaperMailTemplate($paper, 'SUBMISSION_DECISION_REVIEWERS');
@@ -1424,7 +1424,7 @@ import('file.PaperFileManager');
 				foreach ($reviewAssignments as $reviewAssignment) {
 					if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
 						$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
-						
+
 						if (isset($reviewer)) $email->addBcc($reviewer->getEmail(), $reviewer->getFullName());
 					}
 				}
@@ -1435,12 +1435,12 @@ import('file.PaperFileManager');
 				);
 				$email->assignParams($paramArray);
 			}
-			
+
 			$email->displayEditForm(Request::url(null, null, null, 'blindCcReviewsToReviewers'), array('paperId' => $paper->getPaperId()));
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Accepts the review assignment on behalf of its reviewer.
 	 * @param $reviewId int
@@ -1452,7 +1452,7 @@ import('file.PaperFileManager');
 
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId(), true);
-		
+
 		if (HookRegistry::call('TrackDirectorAction::confirmReviewForReviewer', array(&$reviewAssignment, &$reviewer))) return;
 
 		// Only confirm the review for the reviewer if 
@@ -1491,7 +1491,7 @@ import('file.PaperFileManager');
 
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId(), true);
-		
+
 		if (HookRegistry::call('TrackDirectorAction::uploadReviewForReviewer', array(&$reviewAssignment, &$reviewer))) return;
 
 		// Upload the review file.
@@ -1569,7 +1569,7 @@ import('file.PaperFileManager');
 		}
 		return $breadcrumb;
 	}
-	
+
 }
 
 ?>

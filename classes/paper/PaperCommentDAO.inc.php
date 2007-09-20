@@ -18,14 +18,6 @@
 import('paper.PaperComment');
 
 class PaperCommentDAO extends DAO {
- 
- 	/**
-	 * Constructor.
-	 */
-	function PaperCommentDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Retrieve PaperComments by paper id
 	 * @param $paperId int
@@ -34,7 +26,7 @@ class PaperCommentDAO extends DAO {
 	 */
 	function &getPaperComments($paperId, $commentType = null, $assocId = null) {
 		$paperComments = array();
-		
+
 		if ($commentType == null) {
 			$result = &$this->retrieve(
 				'SELECT a.* FROM paper_comments a WHERE paper_id = ? ORDER BY date_posted',	$paperId
@@ -51,7 +43,7 @@ class PaperCommentDAO extends DAO {
 				);
 			}				
 		}
-		
+
 		while (!$result->EOF) {
 			$paperComments[] = &$this->_returnPaperCommentFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -59,10 +51,10 @@ class PaperCommentDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-		
+
 		return $paperComments;
 	}
-	
+
 	/**
 	 * Retrieve PaperComments by user id
 	 * @param $userId int
@@ -70,11 +62,11 @@ class PaperCommentDAO extends DAO {
 	 */
 	function &getPaperCommentsByUserId($userId) {
 		$paperComments = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT a.* FROM paper_comments a WHERE author_id = ? ORDER BY date_posted',	$userId
 		);
-		
+
 		while (!$result->EOF) {
 			$paperComments[] = &$this->_returnPaperCommentFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -82,10 +74,10 @@ class PaperCommentDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-		
+
 		return $paperComments;
 	}
-	
+
 	/**
 	 * Retrieve most recent PaperComment
 	 * @param $paperId int
@@ -135,15 +127,15 @@ class PaperCommentDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT a.* FROM paper_comments a WHERE comment_id = ?', $commentId
 		);
-		
+
 		$paperComment = &$this->_returnPaperCommentFromRow($result->GetRowAssoc(false));
 
 		$result->Close();
 		unset($result);
-		
+
 		return $paperComment;
 	}	
-	
+
 	/**
 	 * Creates and returns a paper comment object from a row
 	 * @param $row array
@@ -164,10 +156,10 @@ class PaperCommentDAO extends DAO {
 		$paperComment->setViewable($row['viewable']);
 
 		HookRegistry::call('PaperCommentDAO::_returnPaperCommentFromRow', array(&$paperComment, &$row));
-		
+
 		return $paperComment;
 	}
-	
+
 	/**
 	 * inserts a new paper comment into paper_comments table
 	 * @param PaperNote object
@@ -191,11 +183,11 @@ class PaperCommentDAO extends DAO {
 				$paperComment->getViewable() === null ? 0 : $paperComment->getViewable()
 			)
 		);
-		
+
 		$paperComment->setCommentId($this->getInsertPaperCommentId());
 		return $paperComment->getCommentId();		
 	}
-		
+
 	/**
 	 * Get the ID of the last inserted paper comment.
 	 * @return int
@@ -221,7 +213,7 @@ class PaperCommentDAO extends DAO {
 			'DELETE FROM paper_comments WHERE comment_id = ?', $commentId
 		);
 	}
-	
+
 	/**
 	 * Delete all comments for a paper.
 	 * @param $paperId int
@@ -231,7 +223,7 @@ class PaperCommentDAO extends DAO {
 			'DELETE FROM paper_comments WHERE paper_id = ?', $paperId
 		);
 	}
-	
+
 	/**
 	 * updates a paper comment
 	 * @param paperComment object
@@ -266,5 +258,5 @@ class PaperCommentDAO extends DAO {
 		);
 	}
 }
-  
+
 ?>

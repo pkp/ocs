@@ -18,13 +18,6 @@ import('submission.editAssignment.EditAssignment');
 
 class EditAssignmentDAO extends DAO {
 	/**
-	 * Constructor.
-	 */
-	function EditAssignmentDAO() {
-		parent::DAO();
-	}
-	
-	/**
 	 * Retrieve an edit assignment by id.
 	 * @param $editId int
 	 * @return EditAssignment
@@ -55,7 +48,7 @@ class EditAssignmentDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve edit assignments by paper id.
 	 * @param $paperId int
@@ -155,7 +148,7 @@ class EditAssignmentDAO extends DAO {
 
 		return $editAssignment;
 	}
-	
+
 	/**
 	 * Insert a new EditAssignment.
 	 * @param $editAssignment EditAssignment
@@ -173,11 +166,11 @@ class EditAssignmentDAO extends DAO {
 				$editAssignment->getDirectorId()
 			)
 		);
-		
+
 		$editAssignment->setEditId($this->getInsertEditId());
 		return $editAssignment->getEditId();
 	}
-	
+
 	/**
 	 * Update an existing edit assignment.
 	 * @param $editAssignment EditAssignment
@@ -199,7 +192,7 @@ class EditAssignmentDAO extends DAO {
 			)
 		);
 	}
-	
+
 	/**
 	 * Delete edit assignment.
 	 * @param $reviewId int
@@ -210,7 +203,7 @@ class EditAssignmentDAO extends DAO {
 			$editId
 		);
 	}
-	
+
 	/**
 	 * Delete edit assignments by paper.
 	 * @param $paperId int
@@ -229,7 +222,7 @@ class EditAssignmentDAO extends DAO {
 	function getInsertEditId() {
 		return $this->getInsertId('edit_assignments', 'edit_id');
 	}
-	
+
 	/**
 	 * Get the assignment counts and last assigned date for all directors in the given conference.
 	 * @return array
@@ -250,7 +243,7 @@ class EditAssignmentDAO extends DAO {
 				AND pa.paper_id = p.paper_id
 				AND p.sched_conf_id = ?
 			GROUP BY ea.director_id', $schedConfId);
-			
+
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['director_id']])) $statistics[$row['director_id']] = array();

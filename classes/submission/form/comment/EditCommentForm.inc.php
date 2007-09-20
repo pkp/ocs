@@ -23,10 +23,10 @@ class EditCommentForm extends Form {
 
 	/** @var PaperComment the comment */
 	var $comment;
-	
+
 	/** @var int the role of the comment presenter */
 	var $roleId;
-	
+
 	/** @var User the user */
 	var $user;
 
@@ -37,7 +37,7 @@ class EditCommentForm extends Form {
 	 */
 	function EditCommentForm(&$paper, &$comment) {
 		parent::Form('submission/comment/editComment.tpl');
-		
+
 		$this->comment = $comment;
 		$this->roleId = $comment->getRoleId();
 
@@ -46,7 +46,7 @@ class EditCommentForm extends Form {
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
 	/**
 	 * Initialize form data from current comment.
 	 */
@@ -59,7 +59,7 @@ class EditCommentForm extends Form {
 			'viewable' => $comment->getViewable(),
 		);
 	}	
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -76,13 +76,13 @@ class EditCommentForm extends Form {
 
 		$isPeerReviewComment = $this->comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW;
 		$templateMgr->assign('isPeerReviewComment', $isPeerReviewComment); // FIXME
-		
+
 		$templateMgr->assign_by_ref('comment', $this->comment);
 		$templateMgr->assign_by_ref('hiddenFormParams', $hiddenFormParams);
-		
+
 		parent::display();
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -95,23 +95,23 @@ class EditCommentForm extends Form {
 			)
 		);
 	}
-	
+
 	/**
 	 * Update the comment.
 	 */
 	function execute() {
 		$commentDao = &DAORegistry::getDAO('PaperCommentDAO');
-	
+
 		// Update comment		
 		$comment = $this->comment;
 		$comment->setCommentTitle($this->getData('commentTitle'));
 		$comment->setComments($this->getData('comments'));
 		$comment->setViewable($this->getData('viewable') ? 1 : 0);
 		$comment->setDateModified(Core::getCurrentDate());
-		
+
 		$commentDao->updatePaperComment($comment);
 	}
-	
+
 	/**
 	 * UGLEEE function that gets the recipients for a comment.
 	 * @return $recipients array of recipients (email address => name)
@@ -120,9 +120,9 @@ class EditCommentForm extends Form {
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$conference = &Request::getConference();
-		
+
 		$recipients = array();
-		
+
 		// Get directors for paper
 		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments = &$editAssignmentDao->getEditAssignmentsByPaperId($this->paper->getPaperId());
@@ -141,7 +141,7 @@ class EditCommentForm extends Form {
 				$directorAddresses[$director->getEmail()] = $director->getFullName();
 			}
 		}
-		
+
 		// Get reviewer
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($this->comment->getAssocId());
@@ -150,10 +150,10 @@ class EditCommentForm extends Form {
 		} else {
 			$reviewer = null;
 		}
-		
+
 		// Get presenter
 		$presenter = &$userDao->getUser($this->paper->getUserId());
-	
+
 		switch ($this->comment->getCommentType()) {
 		case COMMENT_TYPE_PEER_REVIEW:
 			if ($this->roleId == ROLE_ID_DIRECTOR || $this->roleId == ROLE_ID_TRACK_DIRECTOR) {
@@ -177,7 +177,7 @@ class EditCommentForm extends Form {
 
 		return $recipients;
 	}
-	
+
 	/**
 	 * Email the comment.
 	 * @param $recipients array of recipients (email address => name)

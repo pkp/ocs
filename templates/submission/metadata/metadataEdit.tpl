@@ -31,6 +31,24 @@ function movePresenter(dir, presenterIndex) {
 </script>
 {/literal}
 
+{if count($formLocales) > 1}
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="80%" class="value">
+			{url|assign:"formUrl" path=$paperId}
+			{* Maintain localized presenter bios across requests *}
+			{foreach from=$presenters key=presenterIndex item=presenter}
+				{foreach from=$presenter.biography key="thisLocale" item="thisBiography"}
+					{if $thisLocale != $formLocale}<input type="hidden" name="presenters[{$presenterIndex}][biography][{$thisLocale|escape}]" value="{$thisBiography|escape}" />{/if}
+				{/foreach}
+			{/foreach}
+			{form_language_chooser form="metadata" url=$formUrl}
+		</td>
+	</tr>
+</table>
+{/if}
+
 <h3>{translate key="paper.presenters"}</h3>
 
 <input type="hidden" name="deletedPresenters" value="{$deletedPresenters|escape}" />
@@ -82,7 +100,7 @@ function movePresenter(dir, presenterIndex) {
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="presenters-$presenterIndex-biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-		<td class="value"><textarea name="presenters[{$presenterIndex}][biography]" id="presenters-{$presenterIndex}-biography" rows="5" cols="40" class="textArea">{$presenter.biography|escape}</textarea></td>
+		<td class="value"><textarea name="presenters[{$presenterIndex}][biography][{$formLocale|escape}]" id="presenters-{$presenterIndex}-biography" rows="5" cols="40" class="textArea">{$presenter.biography[$formLocale]|escape}</textarea></td>
 	</tr>
 	{if $smarty.foreach.presenters.total > 1}
 	<tr valign="top">
@@ -135,7 +153,7 @@ function movePresenter(dir, presenterIndex) {
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="presenters-0-biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-		<td class="value"><textarea name="presenters[0][biography]" id="presenters-0-biography" rows="5" cols="40" class="textArea"></textarea></td>
+		<td class="value"><textarea name="presenters[0][biography][{$formLocale|escape}]" id="presenters-0-biography" rows="5" cols="40" class="textArea"></textarea></td>
 	</tr>
 	{/foreach}
 </table>
@@ -152,40 +170,16 @@ function movePresenter(dir, presenterIndex) {
 <table width="100%" class="data">
 	<tr>
 		<td width="20%" class="label">{fieldLabel name="title" required="true" key="paper.title"}</td>
-		<td width="80%" class="value"><input type="text" name="title" id="title" value="{$title|escape}" size="60" maxlength="255" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" id="title" value="{$title[$formLocale]|escape}" size="60" maxlength="255" class="textField" /></td>
 	</tr>
-	{if $alternateLocale1}
-	<tr valign="top">
-		<td class="label">{fieldLabel name="titleAlt1" key="paper.title"}<br />({$languageToggleLocales.$alternateLocale1})</td>
-		<td class="value"><input type="text" name="titleAlt1" id="titleAlt1" value="{$titleAlt1|escape}" size="60" maxlength="255" class="textField" /></td>
-	</tr>
-	{/if}
-	{if $alternateLocale2}
-	<tr valign="top">
-		<td class="label">{fieldLabel name="titleAlt2" key="paper.title"}<br />({$languageToggleLocales.$alternateLocale2})</td>
-		<td class="value"><input type="text" name="titleAlt2" id="titleAlt2" value="{$titleAlt2|escape}" size="60" maxlength="255" class="textField" /></td>
-	</tr>
-	{/if}
 
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="abstract" key="paper.abstract" required="true"}</td>
-		<td class="value"><textarea name="abstract" id="abstract" rows="15" cols="60" class="textArea">{$abstract|escape}</textarea></td>
+		<td class="value"><textarea name="abstract[{$formLocale|escape}]" id="abstract" rows="15" cols="60" class="textArea">{$abstract[$formLocale]|escape}</textarea></td>
 	</tr>
-	{if $alternateLocale1}
-	<tr valign="top">
-		<td class="label">{fieldLabel name="abstractAlt1" key="paper.abstract"}<br />({$languageToggleLocales.$alternateLocale1})</td>
-		<td class="value"><textarea name="abstractAlt1" id="abstractAlt1" rows="15" cols="60" class="textArea">{$abstractAlt1|escape}</textarea></td>
-	</tr>
-	{/if}
-	{if $alternateLocale2}
-	<tr valign="top">
-		<td class="label">{fieldLabel name="abstractAlt2" key="paper.abstract"}<br />({$languageToggleLocales.$alternateLocale2})</td>
-		<td class="value"><textarea name="abstractAlt2" id="abstractAlt2" rows="15" cols="60" class="textArea">{$abstractAlt2|escape}</textarea></td>
-	</tr>
-	{/if}
 </table>
 
 
@@ -201,10 +195,10 @@ function movePresenter(dir, presenterIndex) {
 	<tr valign="top">
 		<td class="label">{fieldLabel name="discipline" key="paper.discipline"}</td>
 		<td class="value">
-			<input type="text" name="discipline" id="discipline" value="{$discipline|escape}" size="40" maxlength="255" class="textField" />
-			{if $schedConfSettings.metaDisciplineExamples}
+			<input type="text" name="discipline[{$formLocale|escape}]" id="discipline" value="{$discipline[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
+			{if $currentSchedConf->getLocalizedSetting('metaDisciplineExamples') != ''}
 			<br />
-			<span class="instruct">{$schedConfSettings.metaDisciplineExamples|escape}</span>
+			<span class="instruct">{$currentSchedConf->getLocalizedSetting('metaDisciplineExamples')|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -214,12 +208,12 @@ function movePresenter(dir, presenterIndex) {
 	{/if}
 	{if $schedConfSettings.metaSubjectClass}
 	<tr valign="top">
-		<td colspan="2" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl}" target="_blank">{$schedConfSettings.metaSubjectClassTitle}</a></td>
+		<td colspan="2" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl}" target="_blank">{$currentSchedConf->getLocalizedSetting('metaSubjectClassTitle')}</a></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="subjectClass" key="paper.subjectClassification"}</td>
 		<td class="value">
-			<input type="text" name="subjectClass" id="subjectClass" value="{$subjectClass|escape}" size="40" maxlength="255" class="textField" />
+			<input type="text" name="subjectClass[{$formLocale|escape}]" id="subjectClass" value="{$subjectClass[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
 			<br />
 			<span class="instruct">{translate key="presenter.submit.subjectClassInstructions"}</span>
 		</td>
@@ -232,10 +226,10 @@ function movePresenter(dir, presenterIndex) {
 	<tr valign="top">
 		<td class="label">{fieldLabel name="subject" key="paper.subject"}</td>
 		<td class="value">
-			<input type="text" name="subject" id="subject" value="{$subject|escape}" size="40" maxlength="255" class="textField" />
-			{if $schedConfSettings.metaSubjectExamples}
+			<input type="text" name="subject[{$formLocale|escape}]" id="subject" value="{$subject[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
+			{if $currentSchedConf->getLocalizedSetting('metaSubjectExamples') != ''}
 			<br />
-			<span class="instruct">{$schedConfSettings.metaSubjectExamples|escape}</span>
+			<span class="instruct">{$currentSchedConf->getLocalizedSetting('metaSubjectExamples')|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -247,10 +241,10 @@ function movePresenter(dir, presenterIndex) {
 	<tr valign="top">
 		<td class="label">{fieldLabel name="coverageGeo" key="paper.coverageGeo"}</td>
 		<td class="value">
-			<input type="text" name="coverageGeo" id="coverageGeo" value="{$coverageGeo|escape}" size="40" maxlength="255" class="textField" />
-			{if $schedConfSettings.metaCoverageGeoExamples}
+			<input type="text" name="coverageGeo[{$formLocale|escape}]" id="coverageGeo" value="{$coverageGeo[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
+			{if $currentSchedConf->getLocalizedSetting('metaCoverageGeoExamples') != ''}
 			<br />
-			<span class="instruct">{$schedConfSettings.metaCoverageGeoExamples|escape}</span>
+			<span class="instruct">{$currentSchedConf->getLocalizedSetting('metaCoverageGeoExamples')|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -260,10 +254,10 @@ function movePresenter(dir, presenterIndex) {
 	<tr valign="top">
 		<td class="label">{fieldLabel name="coverageChron" key="paper.coverageChron"}</td>
 		<td class="value">
-			<input type="text" name="coverageChron" id="coverageChron" value="{$coverageChron|escape}" size="40" maxlength="255" class="textField" />
-			{if $schedConfSettings.metaCoverageChronExamples}
+			<input type="text" name="coverageChron[{$formLocale|escape}]" id="coverageChron" value="{$coverageChron[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
+			{if $currentSchedConf->getLocalizedSetting('metaCoverageChronExamples') != ''}
 			<br />
-			<span class="instruct">{$schedConfSettings.metaCoverageChronExamples|escape}</span>
+			<span class="instruct">{$currentSchedConf->getLocalizedSetting('metaCoverageChronExamples')|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -273,10 +267,10 @@ function movePresenter(dir, presenterIndex) {
 	<tr valign="top">
 		<td class="label">{fieldLabel name="coverageSample" key="paper.coverageSample"}</td>
 		<td class="value">
-			<input type="text" name="coverageSample" id="coverageSample" value="{$coverageSample|escape}" size="40" maxlength="255" class="textField" />
-			{if $schedConfSettings.metaCoverageResearchSampleExamples}
+			<input type="text" name="coverageSample[{$formLocale|escape}]" id="coverageSample" value="{$coverageSample[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
+			{if $currentSchedConf->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''}
 			<br />
-			<span class="instruct">{$schedConfSettings.metaCoverageResearchSampleExamples|escape}</span>
+			<span class="instruct">{$currentSchedConf->getLocalizedSetting('metaCoverageResearchSampleExamples')|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -288,7 +282,7 @@ function movePresenter(dir, presenterIndex) {
 	<tr valign="top">
 		<td class="label">{fieldLabel name="type" key="paper.type"}</td>
 		<td class="value">
-			<input type="text" name="type" id="type" value="{$type|escape}" size="40" maxlength="255" class="textField" />
+			<input type="text" name="type[{$formLocale|escape}]" id="type" value="{$type[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
 		</td>
 	</tr>
 	<tr>
@@ -317,7 +311,7 @@ function movePresenter(dir, presenterIndex) {
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="sponsor" key="presenter.submit.agencies"}</td>
 		<td width="80%" class="value">
-			<input type="text" name="sponsor" id="sponsor" value="{$sponsor|escape}" size="60" maxlength="255" class="textField" />
+			<input type="text" name="sponsor[{$formLocale|escape}]" id="sponsor" value="{$sponsor[$formLocale]|escape}" size="60" maxlength="255" class="textField" />
 		</td>
 	</tr>
 </table>

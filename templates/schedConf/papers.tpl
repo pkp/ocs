@@ -43,7 +43,7 @@
 
 					{if $mayViewPapers}
 					{foreach from=$paper->getGalleys() item=galley name=galleyList}
-						<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getLabel()|escape}</a>
+						<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getGalleyLabel()|escape}</a>
 					{/foreach}
 					{/if}
 				</td>

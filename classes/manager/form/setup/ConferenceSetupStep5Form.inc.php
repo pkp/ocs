@@ -17,7 +17,6 @@
 import("manager.form.setup.ConferenceSetupForm");
 
 class ConferenceSetupStep5Form extends ConferenceSetupForm {
-	
 	/**
 	 * Constructor.
 	 */

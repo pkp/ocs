@@ -11,8 +11,20 @@
 {assign var="pageTitle" value="manager.setup.indexing.title"}
 {include file="manager/setup/setupHeader.tpl"}
 
-<form method="post" action="{url op="saveSetup" path="6"}">
+<form name="setupForm" method="post" action="{url op="saveSetup" path="6"}">
 {include file="common/formErrors.tpl"}
+
+{if count($formLocales) > 1}
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="80%" class="value">
+			{url|assign:"setupFormUrl" op="setup" path="6"}
+			{form_language_chooser form="setupForm" url=$setupFormUrl}
+		</td>
+	</tr>
+</table>
+{/if}
 
 <h3>6.1 {translate key="manager.setup.indexing.searchEngineIndexing"}</h3>
 
@@ -21,16 +33,16 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="searchDescription" key="common.description"}</td>
-		<td width="80%" class="value"><input type="text" name="searchDescription" id="searchDescription" value="{$searchDescription|escape}" size="40" maxlength="255" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" name="searchDescription[{$formLocale|escape}]" id="searchDescription" value="{$searchDescription[$formLocale]|escape}" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="searchKeywords" key="common.keywords"}</td>
-		<td width="80%" class="value"><input type="text" name="searchKeywords" id="searchKeywords" value="{$searchKeywords|escape}" size="40" maxlength="255" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" name="searchKeywords[{$formLocale|escape}]" id="searchKeywords" value="{$searchKeywords[$formLocale]|escape}" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="customHeaders" key="manager.setup.indexing.customTags"}</td>
 		<td width="80%" class="value">
-			<textarea name="customHeaders" id="customHeaders" rows="3" cols="40" class="textArea">{$customHeaders|escape}</textarea>
+			<textarea name="customHeaders[{$formLocale|escape}]" id="customHeaders" rows="3" cols="40" class="textArea">{$customHeaders[$formLocale]|escape}</textarea>
 			<br />
 			<span class="instruct">{translate key="manager.setup.indexing.customTagsDescription"}</span>
 		</td>

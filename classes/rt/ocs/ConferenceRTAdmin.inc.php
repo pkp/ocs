@@ -24,10 +24,10 @@ class ConferenceRTAdmin extends RTAdmin {
 
 	/** @var $conferenceId int */
 	var $conferenceId;
-	
+
 	/** @var $dao DAO */
 	var $dao;
-	
+
 
 	function ConferenceRTAdmin($conferenceId) {
 		$this->conferenceId = $conferenceId;

@@ -11,8 +11,20 @@
 {assign var="pageTitle" value="manager.schedConfSetup.review.title"}
 {include file="manager/schedConfSetup/setupHeader.tpl"}
 
-<form method="post" action="{url op="saveSchedConfSetup" path="3"}">
+<form name="setupForm" method="post" action="{url op="saveSchedConfSetup" path="3"}">
 {include file="common/formErrors.tpl"}
+
+{if count($formLocales) > 1}
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="80%" class="value">
+			{url|assign:"setupFormUrl" op="schedConfSetup" path="3"}
+			{form_language_chooser form="setupForm" url=$setupFormUrl}
+		</td>
+	</tr>
+</table>
+{/if}
 
 <h3>3.1 {translate key="manager.schedConfSetup.review.reviewPolicy"}</h3>
 
@@ -20,7 +32,7 @@
 
 <h4>{translate key="manager.schedConfSetup.review.reviewPolicy"}</h4>
 
-<p><textarea name="reviewPolicy" id="reviewPolicy" rows="12" cols="60" class="textArea">{$reviewPolicy|escape}</textarea></p>
+<p><textarea name="reviewPolicy[{$formLocale|escape}]" id="reviewPolicy" rows="12" cols="60" class="textArea">{$reviewPolicy[$formLocale]|escape}</textarea></p>
 
 <div class="separator"></div>
 
@@ -28,7 +40,7 @@
 
 <p>{translate key="manager.schedConfSetup.review.reviewGuidelinesDescription"}</p>
 
-<p><textarea name="reviewGuidelines" id="reviewGuidelines" rows="12" cols="60" class="textArea">{$reviewGuidelines|escape}</textarea></p>
+<p><textarea name="reviewGuidelines[{$formLocale|escape}]" id="reviewGuidelines" rows="12" cols="60" class="textArea">{$reviewGuidelines[$formLocale]|escape}</textarea></p>
 
 <script type="text/javascript">
 	{literal}

@@ -18,14 +18,6 @@
 import('security.AccessKey');
 
 class AccessKeyDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function AccessKeyDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Retrieve an accessKey by ID.
 	 * @param $accessKeyId int
@@ -48,7 +40,7 @@ class AccessKeyDAO extends DAO {
 		unset($result);
 		return $accessKey;
 	}
-	
+
 	/**
 	 * Retrieve a accessKey object by key.
 	 * @param $userId int
@@ -75,7 +67,7 @@ class AccessKeyDAO extends DAO {
 		unset($result);
 		return $returner;
 	}
-	
+
 	/**
 	 * Internal function to return an AccessKey object from a row.
 	 * @param $row array
@@ -89,12 +81,12 @@ class AccessKeyDAO extends DAO {
 		$accessKey->setContext($row['context']);
 		$accessKey->setAssocId($row['assoc_id']);
 		$accessKey->setUserId($row['user_id']);
-		
+
 		HookRegistry::call('AccessKeyDAO::_returnAccessKeyFromRow', array(&$accessKey, &$row));
 
 		return $accessKey;
 	}
-	
+
 	/**
 	 * Insert a new accessKey.
 	 * @param $accessKey AccessKey
@@ -113,11 +105,11 @@ class AccessKeyDAO extends DAO {
 				$accessKey->getUserId()
 			)
 		);
-		
+
 		$accessKey->setAccessKeyId($this->getInsertAccessKeyId());
 		return $accessKey->getAccessKeyId();
 	}
-	
+
 	/**
 	 * Update an existing accessKey.
 	 * @param $accessKey AccessKey
@@ -142,7 +134,7 @@ class AccessKeyDAO extends DAO {
 			)
 		);
 	}
-	
+
 	/**
 	 * Delete an accessKey.
 	 * @param $accessKey AccessKey
@@ -150,7 +142,7 @@ class AccessKeyDAO extends DAO {
 	function deleteAccessKey(&$accessKey) {
 		return $this->deleteAccessKeyById($accessKey->getAccessKeyId());
 	}
-	
+
 	/**
 	 * Delete an accessKey by ID.
 	 * @param $accessKeyId int
@@ -160,7 +152,7 @@ class AccessKeyDAO extends DAO {
 			'DELETE FROM access_keys WHERE access_key_id = ?', $accessKeyId
 		);
 	}
-	
+
 	/**
 	 * Transfer access keys to another user ID.
 	 * @param $oldUserId int
@@ -172,7 +164,7 @@ class AccessKeyDAO extends DAO {
 			array($newUserId, $oldUserId)
 		);
 	}
-	
+
 	/**
 	 * Delete expired access keys.
 	 */
@@ -184,7 +176,7 @@ class AccessKeyDAO extends DAO {
 			)
 		);
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted accessKey.
 	 * @return int
@@ -192,7 +184,6 @@ class AccessKeyDAO extends DAO {
 	function getInsertAccessKeyId() {
 		return $this->getInsertId('accessKeys', 'access_key_id');
 	}
-	
 }
 
 ?>

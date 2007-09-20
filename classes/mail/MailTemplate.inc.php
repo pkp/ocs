@@ -18,13 +18,13 @@ import('mail.Mail');
 
 define('MAIL_ERROR_INVALID_EMAIL', 0x000001);
 class MailTemplate extends Mail {
-	
+
 	/** @var $emailKey string Key of the email template we are using */
 	var $emailKey;
-	
+
 	/** @var $locale string locale of this template */
 	var $locale;
-	
+
 	/** @var $enabled boolean email template is enabled */
 	var $enabled;
 
@@ -46,7 +46,7 @@ class MailTemplate extends Mail {
 
 	/** @var boolean Whether or not email fields are disabled */
 	var $addressFieldsEnabled;
-	
+
 	/**
 	 * Constructor.
 	 * @param $emailKey string unique identifier for the template
@@ -57,14 +57,14 @@ class MailTemplate extends Mail {
 	function MailTemplate($emailKey = null, $locale = null, $enableAttachments = null, $conference = null, $schedConf = null) {
 		$this->emailKey = isset($emailKey) ? $emailKey : null;
 
-		
+
 		// Use current user's locale if none specified
 		$this->locale = isset($locale) ? $locale : Locale::getLocale();
-		
+
 		// If a conference wasn't specified, use the current request.
 		if ($conference === null) $conference = &Request::getConference();
 		if ($schedConf == null) $schedConf = &Request::getSchedConf();
-		
+
 		if (isset($this->emailKey)) {
 			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
 			$emailTemplate = &$emailTemplateDao->getEmailTemplate($this->emailKey, $this->locale, $conference == null ? 0 : $conference->getConferenceId());
@@ -73,7 +73,7 @@ class MailTemplate extends Mail {
 		$userSig = '';
 		$user =& Request::getUser();
 		if ($user) {
-			$userSig = $user->getSignature();
+			$userSig = $user->getUserSignature();
 			if (!empty($userSig)) $userSig = "\n" . $userSig;
 		}
 
@@ -198,7 +198,7 @@ class MailTemplate extends Mail {
 
 		if (isset($conference)) {
 			// FIXME Include affiliation, title, etc. in signature?
-			$paramArray['conferenceName'] = $conference->getTitle();
+			$paramArray['conferenceName'] = $conference->getConferenceTitle();
 		}
 		if (!isset($paramArray['conferenceUrl'])) $paramArray['conferenceUrl'] = Request::url(Request::getRequestedConferencePath(), Request::getRequestedSchedConfPath());
 
@@ -209,11 +209,11 @@ class MailTemplate extends Mail {
 				$body = str_replace('{$' . $key . '}', $value, $body);
 			}
 		}
-		
+
 		$this->setSubject($subject);
 		$this->setBody($body);
 	}
-	
+
 	/**
 	 * Returns true if the email template is enabled; false otherwise.
 	 * @return boolean
@@ -291,7 +291,7 @@ class MailTemplate extends Mail {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'conference.managementPages.emails');
-			
+
 		$form->display();
 	}
 
@@ -303,12 +303,12 @@ class MailTemplate extends Mail {
 	 */
 	function send($clearAttachments = true) {
 		$schedConf = &Request::getSchedConf();
-		
+
 		if($schedConf) {
 			$envelopeSender = $schedConf->getSetting('envelopeSender');
-			$emailSignature = $schedConf->getSetting('emailSignature');
+			$emailSignature = $schedConf->getLocalizedSetting('emailSignature');
 		}
-		
+
 		if (isset($emailSignature)) {
 			//If {$templateSignature} exists in the body of the
 			// message, replace it with the conference signature;
@@ -321,7 +321,7 @@ class MailTemplate extends Mail {
 			} else {
 				$this->setBody(str_replace($searchString, $emailSignature, $this->getBody()));
 			}
-	
+
 			if (!empty($envelopeSender) && Config::getVar('email', 'allow_envelope_sender')) $this->setEnvelopeSender($envelopeSender);
 		}
 
@@ -364,18 +364,18 @@ class MailTemplate extends Mail {
 		$savedHeaders = $this->getHeaders();
 		$savedSubject = $this->getSubject();
 		$savedBody = $this->getBody();
-		
+
 		$this->assignParams($paramArray);
-		
+
 		$ret = $this->send();
-		
+
 		$this->setHeaders($savedHeaders);
 		$this->setSubject($savedSubject);
 		$this->setBody($savedBody);
-		
+
 		return $ret;
 	}
-	
+
 	/**
 	 * Clears the recipient, cc, and bcc lists.
 	 * @param $clearHeaders boolean if true, also clear headers

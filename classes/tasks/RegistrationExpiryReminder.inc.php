@@ -30,7 +30,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 
-		$schedConfName = $schedConf->getTitle();
+		$schedConfName = $schedConf->getSchedConfTitle();
 		$schedConfId = $schedConf->getSchedConfId();
 		$user = &$userDao->getUser($registration->getUserId());
 		if (!isset($user)) return false;
@@ -71,8 +71,8 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		$mail = &new MailTemplate($emailKey);
 		$mail->setFrom($registrationEmail, $registrationName);
 		$mail->addRecipient($user->getEmail(), $user->getFullName());
-		$mail->setSubject($mail->getSubject($conference->getLocale()));
-		$mail->setBody($mail->getBody($conference->getLocale()));
+		$mail->setSubject($mail->getSubject($conference->getPrimaryLocale()));
+		$mail->setBody($mail->getBody($conference->getPrimaryLocale()));
 		$mail->assignParams($paramArray);
 		$mail->send();
 	}
@@ -81,7 +81,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		$curYear = $curDate['year'];
 		$curMonth = $curDate['month'];
 		$curDay = $curDate['day'];
-		
+
 		// Check if expiry notification before months is enabled
 		if ($schedConf->getSetting('enableRegistrationExpiryReminderBeforeMonths', true)) {
 
@@ -237,14 +237,14 @@ class RegistrationExpiryReminder extends ScheduledTask {
 			}
 
 			$schedConfs = &$schedConfDao->getEnabledSchedConfs();
-			
+
 			while (!$schedConfs->eof()) {
 				$schedConf = &$schedConfs->next();
 
 				if(!$conference || $schedConf->getConferenceId() != $conference->getConferenceId()) {
 					$conference = &$conferenceDao->getConference($schedConf->getConferenceId());
 				}
-				
+
 				// Send reminders for simulated 31st day of short month
 				$this->sendSchedConfReminders($schedConf, $conference, $curDate);
 				unset($schedConf);
@@ -267,7 +267,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 				if(!$conference || $schedConf->getConferenceId() != $conference->getConferenceId()) {
 					$conference = &$conferenceDao->getConference($schedConf->getConferenceId());
 				}
-				
+
 				// Send reminders for simulated 30th day of February
 				$this->sendSchedConfReminders($schedConf, $conference, $curDate);
 				unset($schedConf);

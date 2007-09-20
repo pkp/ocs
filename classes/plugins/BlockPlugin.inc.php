@@ -110,7 +110,7 @@ class BlockPlugin extends Plugin {
 		static $contextMap = array(
 			BLOCK_CONTEXT_LEFT_SIDEBAR => 'Templates::Common::LeftSidebar',
 			BLOCK_CONTEXT_RIGHT_SIDEBAR => 'Templates::Common::RightSidebar',
-			BLOCK_CONTEXT_HOMEPAGE => 'Templates::Index::journal'
+			BLOCK_CONTEXT_HOMEPAGE => 'Templates::Index::Conference'
 		);
 		HookRegistry::call('BlockPlugin::getContextMap', array(&$this, &$contextMap));
 		return $contextMap;

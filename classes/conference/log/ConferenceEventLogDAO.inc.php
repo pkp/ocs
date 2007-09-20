@@ -24,7 +24,7 @@ class ConferenceEventLogDAO extends DAO {
 	function ConferenceEventLogDAO() {
 		parent::DAO();
 	}
-	
+
 	/**
 	 * Retrieve a log entry by ID.
 	 * @param $logId int
@@ -33,10 +33,10 @@ class ConferenceEventLogDAO extends DAO {
 	 */
 	function &getLogEntry($logId, $conferenceId = null, $schedConfId = null) {
 		$args = array($logId);
-		
+
 		if (isset($conferenceId))
 			$args[] = $conferenceId;
-		
+
 		if (isset($schedConfId))
 			$args[] = $schedConfId;
 
@@ -62,7 +62,7 @@ class ConferenceEventLogDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve all log entries for a conference.
 	 * @param $conferenceId int
@@ -73,7 +73,7 @@ class ConferenceEventLogDAO extends DAO {
 		$returner = &$this->getConferenceLogEntriesByAssoc($conferenceId, $schedConfId, null, null, $rangeInfo);
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve all log entries for a conference matching the specified association.
 	 * @param $conferenceId int
@@ -86,7 +86,7 @@ class ConferenceEventLogDAO extends DAO {
 	 */
 	function &getConferenceLogEntriesByAssoc($conferenceId, $schedConfId = null, $assocType = null, $assocId = null, $rangeInfo = null) {
 		$params = array($conferenceId);
-		
+
 		if (isset($schedConfId))
 			$params[] = $schedConfId;
 
@@ -95,7 +95,7 @@ class ConferenceEventLogDAO extends DAO {
 			if (isset($assocId))
 				$params[] = $assocId;
 		}
-		
+
 		$result = &$this->retrieveRange(
 			'SELECT	e.*,
 				sc.title AS sched_conf_title,
@@ -109,11 +109,11 @@ class ConferenceEventLogDAO extends DAO {
 				' ORDER BY log_id DESC',
 			$params, $rangeInfo
 		);
-		
+
 		$returner = &new DAOResultFactory($result, $this, '_returnLogEntryFromRow');
 		return $returner;
 	}
-	
+
 	/**
 	 * Internal function to return an ConferenceEventLogEntry object from a row.
 	 * @param $row array
@@ -134,7 +134,7 @@ class ConferenceEventLogDAO extends DAO {
 		$entry->setConferenceTitle($row['conference_title']);
 		$entry->setAssocId($row['assoc_id']);
 		$entry->setMessage($row['message']);
-		
+
 		HookRegistry::call('ConferenceEventLogDAO::_returnLogEntryFromRow', array(&$entry, &$row));
 
 		return $entry;
@@ -169,11 +169,11 @@ class ConferenceEventLogDAO extends DAO {
 				$entry->getMessage()
 			)
 		);
-		
+
 		$entry->setLogId($this->getInsertLogId());
 		return $entry->getLogId();
 	}
-	
+
 	/**
 	 * Delete a single log entry for a conference.
 	 * @param $logId int
@@ -184,30 +184,30 @@ class ConferenceEventLogDAO extends DAO {
 		$args = array($logId, $conferenceId);
 		if(isset($schedConfId))
 			$args[] = $schedConfId;
-		
+
 		return $this->update(
 			'DELETE FROM conference_event_log WHERE log_id = ?
 				AND conference_id = ?' .
 			(isset($schedConfId)? ' AND sched_conf_id = ?' : ''),
 			$args);
 	}
-	
+
 	/**
 	 * Delete all log entries for a conference.
 	 * @param $conferenceId int
 	 */
 	function deleteConferenceLogEntries($conferenceId, $schedConfId = null) {
 		$args = array($conferenceId);
-		
+
 		if(isset($schedConfId))
 			$args[] = $schedConfId;
-		
+
 		return $this->update(
 			'DELETE FROM conference_event_log WHERE conference_id = ?' .
 			(isset($schedConfId) ? ' AND sched_conf_id = ?' : ''),
 			(count($args)>1 ? $args : array_shift($args)));
 	}
-	
+
 	/**
 	 * Transfer all conference log entries to another user.
 	 * @param $oldUserId int
@@ -219,7 +219,7 @@ class ConferenceEventLogDAO extends DAO {
 			array($newUserId, $oldUserId)
 		);
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted log entry.
 	 * @return int
@@ -227,7 +227,7 @@ class ConferenceEventLogDAO extends DAO {
 	function getInsertLogId() {
 		return $this->getInsertId('conference_event_log', 'log_id');
 	}
-	
+
 }
 
 ?>

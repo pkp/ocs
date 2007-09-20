@@ -4,7 +4,7 @@
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Article reading tools -- Capture Citation CBE format
+ * Paper reading tools -- Capture Citation CBE format
  *
  * $Id$
  *}
@@ -17,5 +17,5 @@
 	{$presenter->getLastName()|escape}, {$firstName[0]|escape}.{if $i==$presenterCount-2}, &amp; {elseif $i<$presenterCount-1}, {/if}
 {/foreach}
 
-{$paper->getDatePublished()|date_format:'%Y %b %e'}. {$paper->getPaperTitle()|strip_unsafe_html}. {$conference->getTitle()|escape}. [{translate key="rt.captureCite.online"}] 
+{$paper->getDatePublished()|date_format:'%Y %b %e'}. {$paper->getPaperTitle()|strip_unsafe_html}. {$conference->getConferenceTitle()|escape}. [{translate key="rt.captureCite.online"}] 
 

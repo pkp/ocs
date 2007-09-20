@@ -19,9 +19,9 @@ AU  - {$presenter->getFullName(true)|escape}
 {/foreach}
 PY  - {$paper->getDatePublished()|date_format:"%Y"}
 TI  - {$paper->getPaperTitle()|strip_tags}
-JF  - {$conference->getTitle()|escape}; {$schedConf->getSchedConfIdentification()|escape}
+JF  - {$conference->getConferenceTitle()|escape}; {$schedConf->getSchedConfIdentification()|escape}
 Y2  - {$paper->getDatePublished()|date_format:"%Y"}
-KW  - {$paper->getSubject()|replace:';':','|escape}
+KW  - {$paper->getPaperSubject()|replace:';':','|escape}
 N2  - {$paper->getPaperAbstract()|strip_tags|replace:"\n":" "|replace:"\r":" "}
 UR  - {$paperUrl}
 

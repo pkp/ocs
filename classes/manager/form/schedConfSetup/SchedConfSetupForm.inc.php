@@ -20,7 +20,7 @@ import('form.Form');
 class SchedConfSetupForm extends Form {
 	var $step;
 	var $settings;
-	
+
 	/**
 	 * Constructor.
 	 * @param $step the step number
@@ -32,7 +32,7 @@ class SchedConfSetupForm extends Form {
 		$this->step = $step;
 		$this->settings = $settings;
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -43,7 +43,7 @@ class SchedConfSetupForm extends Form {
 		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize data from current settings.
 	 */
@@ -51,28 +51,30 @@ class SchedConfSetupForm extends Form {
 		$schedConf = &Request::getSchedConf();
 		$this->_data = $schedConf->getSettings();
 	}
-	
+
 	/**
 	 * Read user input.
 	 */
 	function readInputData() {		
 		$this->readUserVars(array_keys($this->settings));
 	}
-	
+
 	/**
 	 * Save modified settings.
 	 */
 	function execute() {
 		$schedConf = &Request::getSchedConf();
 		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-		
+
 		foreach ($this->_data as $name => $value) {
 			if (isset($this->settings[$name])) {
+				$isLocalized = in_array($name, $this->getLocaleFieldNames());
 				$settingsDao->updateSetting(
 					$schedConf->getSchedConfId(),
 					$name,
 					$value,
-					$this->settings[$name]
+					$this->settings[$name],
+					$isLocalized
 				);
 			}
 		}

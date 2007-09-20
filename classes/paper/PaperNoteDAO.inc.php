@@ -18,14 +18,6 @@
 import('paper.PaperNote');
 
 class PaperNoteDAO extends DAO {
- 
- 	/**
-	 * Constructor.
-	 */
-	function PaperNoteDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Retrieve Paper Notes by paper id.
 	 * @param $paperId int
@@ -35,7 +27,7 @@ class PaperNoteDAO extends DAO {
 		$sql = 'SELECT n.*, a.file_name, a.original_file_name FROM paper_notes n LEFT JOIN paper_files a ON (n.file_id = a.file_id) WHERE a.paper_id = ? OR (n.file_id = 0 AND n.paper_id = ?) ORDER BY n.date_created DESC';
 
 		$result = &$this->retrieveRange($sql, array($paperId, $paperId), $rangeInfo);
-		
+
 		$returner = &new DAOResultFactory($result, $this, '_returnPaperNoteFromRow');
 		return $returner;
 	}
@@ -49,7 +41,7 @@ class PaperNoteDAO extends DAO {
 		$sql = 'SELECT n.*, a.file_name, a.original_file_name FROM paper_notes n LEFT JOIN paper_files a ON (n.file_id = a.file_id) WHERE n.user_id = ? ORDER BY n.date_created DESC';
 
 		$result = &$this->retrieveRange($sql, $userId, $rangeInfo);
-		
+
 		$returner = &new DAOResultFactory($result, $this, '_returnPaperNoteFromRow');
 		return $returner;
 	}
@@ -70,7 +62,7 @@ class PaperNoteDAO extends DAO {
 
 		return $paperNote;
 	}	
-	
+
 	/**
 	 * creates and returns a paper note object from a row
 	 * @param $row array
@@ -94,7 +86,7 @@ class PaperNoteDAO extends DAO {
 
 		return $paperNote;
 	}
-	
+
 	/**
 	 * inserts a new paper note into paper_notes table
 	 * @param PaperNote object
@@ -119,7 +111,7 @@ class PaperNoteDAO extends DAO {
 		$paperNote->setNoteId($this->getInsertPaperNoteId());
 		return $paperNote->getNoteId();
 	}
-		
+
 	/**
 	 * Get the ID of the last inserted paper note.
 	 * @return int
@@ -137,7 +129,7 @@ class PaperNoteDAO extends DAO {
 			'DELETE FROM paper_notes WHERE note_id = ?', $noteId
 		);
 	}
-	
+
 	/**
 	 * updates a paper note
 	 * @param PaperNote object
@@ -169,7 +161,7 @@ class PaperNoteDAO extends DAO {
 	 */
 	function getAllPaperNoteFileIds($paperId) {
 		$fileIds = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT a.file_id FROM paper_notes a WHERE paper_id = ? AND file_id > ?', array($paperId, 0)
 		);
@@ -182,7 +174,7 @@ class PaperNoteDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-		
+
 		return $fileIds;
 	}	
 
@@ -197,7 +189,6 @@ class PaperNoteDAO extends DAO {
 
 		$result->Close();
 	}
+}
 
- }
-  
 ?>

@@ -64,8 +64,8 @@
 
 <div id="breadcrumb">
 	<a href="{url page="index"}" target="_parent">{translate key="navigation.home"}</a> &gt;
-	<a href="{url schedConf=""}" target="_parent">{$conference->getTitle()|escape}</a> &gt;
-	<a href="{url page="index"}" target="_parent">{$schedConf->getTitle()|escape}</a> &gt;
+	<a href="{url schedConf=""}" target="_parent">{$conference->getConferenceTitle()|escape}</a> &gt;
+	<a href="{url page="index"}" target="_parent">{$schedConf->getSchedConfTitle()|escape}</a> &gt;
 	<a href="{url page="schedConf" op="presentations"}" target="_parent">{$track->getTrackTitle()|escape}</a> &gt;
 	<a href="{url page="paper" op="view" path=$paperId|to_array:$galleyId}" class="current" target="_parent">{$paper->getFirstPresenter(true)|escape}</a>
 </div>
@@ -97,11 +97,11 @@
 	{/if}
 
 	{if $mayViewPaper}
-		{assign var=galleys value=$paper->getGalleys()}
+		{assign var=galleys value=$paper->getLocalizedGalleys()}
 		{if $galleys}
 			{translate key="reader.fullText"}
 			{foreach from=$galleys item=galley name=galleyList}
-				<a href="{url page="paper" op="view" path=$paperId|to_array:$galley->getGalleyId()}" class="action" target="_parent">{$galley->getLabel()|escape}</a>
+				<a href="{url page="paper" op="view" path=$paperId|to_array:$galley->getGalleyId()}" class="action" target="_parent">{$galley->getGalleyLabel()|escape}</a>
 			{/foreach}
 		{/if}
 	{elseif $schedConf->getSetting('delayOpenAccess') && $schedConf->getSetting('delayOpenAccessDate') > time()}

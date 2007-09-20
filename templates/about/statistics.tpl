@@ -30,23 +30,23 @@
 
 	{if $statItemsPublished}<tr valign="top">
 		<td width="20%" class="label">{translate key="manager.statistics.statistics.itemsPublished"}</td>
-		<td width="80%" colspan="2" class="value">{$articleStatistics.numPublishedSubmissions}</td>
+		<td width="80%" colspan="2" class="value">{$paperStatistics.numPublishedSubmissions}</td>
 	</tr>{/if}
 	{if $statNumSubmissions}<tr valign="top">
 		<td width="20%" class="label">{translate key="manager.statistics.statistics.numSubmissions"}</td>
-		<td width="80%" colspan="2" class="value">{$articleStatistics.numSubmissions}</td>
+		<td width="80%" colspan="2" class="value">{$paperStatistics.numSubmissions}</td>
 	</tr>{/if}
 	{if $statPeerReviewed}<tr valign="top">
 		<td width="20%" class="label">{translate key="manager.statistics.statistics.peerReviewed"}</td>
-		<td width="80%" colspan="2" class="value">{$limitedArticleStatistics.numReviewedSubmissions}</td>
+		<td width="80%" colspan="2" class="value">{$limitedPaperStatistics.numReviewedSubmissions}</td>
 	</tr>{/if}
 	{if $statCountAccept}<tr valign="top">
 		<td width="20%" class="label">&nbsp;&nbsp;{translate key="manager.statistics.statistics.count.accept"}</td>
-		<td width="80%" colspan="2" class="value">{translate key="manager.statistics.statistics.count.value" count=$limitedArticleStatistics.submissionsAccept percentage=$limitedArticleStatistics.submissionsAcceptPercent}</td>
+		<td width="80%" colspan="2" class="value">{translate key="manager.statistics.statistics.count.value" count=$limitedPaperStatistics.submissionsAccept percentage=$limitedPaperStatistics.submissionsAcceptPercent}</td>
 	</tr>{/if}
 	{if $statCountDecline}<tr valign="top">
 		<td width="20%" class="label">&nbsp;&nbsp;{translate key="manager.statistics.statistics.count.decline"}</td>
-		<td width="80%" colspan="2" class="value">{translate key="manager.statistics.statistics.count.value" count=$limitedArticleStatistics.submissionsDecline percentage=$limitedArticleStatistics.submissionsDeclinePercent}</td>
+		<td width="80%" colspan="2" class="value">{translate key="manager.statistics.statistics.count.value" count=$limitedPaperStatistics.submissionsDecline percentage=$limitedPaperStatistics.submissionsDeclinePercent}</td>
 	</tr>{/if}
 	{if $statDaysPerReview}<tr valign="top">
 		<td width="20%" class="label">&nbsp;&nbsp;{translate key="manager.statistics.statistics.daysPerReview"}</td>
@@ -57,7 +57,7 @@
 	</tr>{/if}
 	{if $statDaysToPublication}<tr valign="top">
 		<td width="20%" class="label">&nbsp;&nbsp;{translate key="manager.statistics.statistics.daysToPublication"}</td>
-		<td colspan="2" class="value">{$limitedArticleStatistics.daysToPublication}</td>
+		<td colspan="2" class="value">{$limitedPaperStatistics.daysToPublication}</td>
 	</tr>{/if}
 	{if $statRegisteredUsers}<tr valign="top">
 		<td width="20%" class="label">{translate key="manager.statistics.statistics.users"}</td>

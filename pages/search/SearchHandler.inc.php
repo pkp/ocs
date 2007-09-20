@@ -41,19 +41,19 @@ class SearchHandler extends Handler {
 		parent::validate();
 		SearchHandler::setupTemplate(false);
 		$templateMgr = &TemplateManager::getManager();
-		
+
 		if (Request::getConference() == null) {
 			$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
 			$conferences = &$conferenceDao->getEnabledConferenceTitles();  //Enabled added
 			$templateMgr->assign('siteSearch', true);
 			$templateMgr->assign('conferenceOptions', array('' => Locale::Translate('search.allConferences')) + $conferences);
 		}
-		
+
 		SearchHandler::assignAdvancedSearchParameters($templateMgr);
 
 		$templateMgr->display('search/advancedSearch.tpl');
 	}
-	
+
 	/**
 	 * Show index of published papers by presenter.
 	 */
@@ -92,7 +92,7 @@ class SearchHandler extends Handler {
 			foreach ($publishedPapers as $paper) {
 				$trackId = $paper->getTrackId();
 				$schedConfId = $paper->getSchedConfId();
-				
+
 				if (!isset($schedConfs[$schedConfId])) {
 					import('schedConf.SchedConfAction');
 					$schedConf = &$schedConfDao->getSchedConf($schedConfId);
@@ -128,13 +128,13 @@ class SearchHandler extends Handler {
 			);
 
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->assign('searchInitial', $searchInitial);
+			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 			$templateMgr->assign_by_ref('presenters', $presenters);
 			$templateMgr->display('search/presenterIndex.tpl');
 		}
 	}
-	
+
 	/**
 	 * Show index of published papers by title.
 	 */
@@ -212,7 +212,7 @@ class SearchHandler extends Handler {
 		$templateMgr->assign_by_ref('schedConfIndex', $schedConfIndex);
 		$templateMgr->display('search/schedConfIndex.tpl');
 	}
-	
+
 	/**
 	 * Show basic search results.
 	 */
@@ -244,7 +244,7 @@ class SearchHandler extends Handler {
 		$templateMgr->assign('searchField', Request::getUserVar('searchField'));
 		$templateMgr->display('search/searchResults.tpl');
 	}
-	
+
 	/**
 	 * Show advanced search results.
 	 */
@@ -286,7 +286,7 @@ class SearchHandler extends Handler {
 
 		$templateMgr->display('search/searchResults.tpl');
 	}
-	
+
 	/**
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy

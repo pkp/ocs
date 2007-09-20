@@ -227,12 +227,12 @@ function movePresenter(dir, presenterIndex) {
 <table width="100%" class="data">
 {if $schedConfSettings.metaDiscipline}
 <tr valign="top">
-	<td{if $schedConfSettings.metaDisciplineExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="discipline" key="paper.discipline"}</td>
+	<td{if $currentSchedConf->getLocalizedSetting('metaDisciplineExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="discipline" key="paper.discipline"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="discipline" id="discipline" value="{$discipline|escape}" size="40" maxlength="255" /></td>
 </tr>
-{if $schedConfSettings.metaDisciplineExamples}
+{if $currentSchedConf->getLocalizedSetting('metaDisciplineExamples) != ''}
 <tr valign="top">
-	<td><span class="instruct">{$schedConfSettings.metaDisciplineExamples|escape}</span></td>
+	<td><span class="instruct">{$currentSchedConf->getLocalizedSetting('metaDisciplineExamples')|escape}</span></td>
 </tr>
 {/if}
 <tr valign="top">
@@ -247,7 +247,7 @@ function movePresenter(dir, presenterIndex) {
 	<td width="80%" class="value"><input type="text" class="textField" name="subjectClass" id="subjectClass" value="{$subjectClass|escape}" size="40" maxlength="255" /></td>
 </tr>
 <tr valign="top">
-	<td width="20%" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl|escape}" target="_blank">{$schedConfSettings.metaSubjectClassTitle|escape}</a></td>
+	<td width="20%" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl|escape}" target="_blank">{$currentSchedConf->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>
@@ -257,12 +257,12 @@ function movePresenter(dir, presenterIndex) {
 
 {if $schedConfSettings.metaSubject}
 <tr valign="top">
-	<td{if $schedConfSettings.metaSubjectExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="subject" key="paper.subject"}</td>
+	<td{if $currentSchedConf->getLocalizedSetting('metaSubjectExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="subject" key="paper.subject"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="subject" id="subject" value="{$subject|escape}" size="40" maxlength="255" /></td>
 </tr>
-{if $schedConfSettings.metaSubjectExamples}
+{if $currentSchedConf->getLocalizedSetting('metaSubjectExamples') != ''}
 <tr valign="top">
-	<td><span class="instruct">{$schedConfSettings.metaSubjectExamples|escape}</span></td>
+	<td><span class="instruct">{$currentSchedConf->getLocalizedSetting('metaSubjectExamples')|escape}</span></td>
 </tr>
 {/if}
 <tr valign="top">
@@ -273,12 +273,12 @@ function movePresenter(dir, presenterIndex) {
 
 {if $schedConfSettings.metaCoverage}
 <tr valign="top">
-	<td{if $schedConfSettings.metaCoverageGeoExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageGeo" key="paper.coverageGeo"}</td>
+	<td{if $currentSchedConf->getLocalizedSetting('metaCoverageGeoExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageGeo" key="paper.coverageGeo"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="coverageGeo" id="coverageGeo" value="{$coverageGeo|escape}" size="40" maxlength="255" /></td>
 </tr>
-{if $schedConfSettings.metaCoverageGeoExamples}
+{if $currentSchedConf->getLocalizedSetting('metaCoverageGeoExamples') != ''}
 <tr valign="top">
-	<td><span class="instruct">{$schedConfSettings.metaCoverageGeoExamples|escape}</span></td>
+	<td><span class="instruct">{$currentSchedConf->getLocalizedSetting('metaCoverageGeoExamples')|escape}</span></td>
 </tr>
 {/if}
 <tr valign="top">
@@ -286,12 +286,12 @@ function movePresenter(dir, presenterIndex) {
 	<td>&nbsp;</td>
 </tr>
 <tr valign="top">
-	<td{if $schedConfSettings.metaCoverageChronExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageChron" key="paper.coverageChron"}</td>
+	<td{if $currentSchedConf->getLocalizedSetting('metaCoverageChronExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageChron" key="paper.coverageChron"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="coverageChron" id="coverageChron" value="{$coverageChron|escape}" size="40" maxlength="255" /></td>
 </tr>
-{if $schedConfSettings.metaCoverageChronExamples}
+{if $currentSchedConf->getLocalizedSetting('metaCoverageChronExamples') != ''}
 <tr valign="top">
-	<td><span class="instruct">{$schedConfSettings.metaCoverageChronExamples|escape}</span></td>
+	<td><span class="instruct">{$currentSchedConf->getLocalizedSetting('metaCoverageChronExamples')|escape}</span></td>
 </tr>
 {/if}
 <tr valign="top">
@@ -299,12 +299,12 @@ function movePresenter(dir, presenterIndex) {
 	<td>&nbsp;</td>
 </tr>
 <tr valign="top">
-	<td{if $schedConfSettings.metaCoverageResearchSampleExamples} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageSample" key="paper.coverageSample"}</td>
+	<td{if $currentSchedConf->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageSample" key="paper.coverageSample"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="coverageSample" id="coverageSample" value="{$coverageSample|escape}" size="40" maxlength="255" /></td>
 </tr>
-{if $schedConfSettings.metaCoverageResearchSampleExamples}
+{if $currentSchedConf->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''}
 <tr valign="top">
-	<td><span class="instruct">{$schedConfSettings.metaCoverageResearchSampleExamples|escape}</span></td>
+	<td><span class="instruct">{$currentSchedConf->getLocalizedSetting('metaCoverageResearchSampleExamples')|escape}</span></td>
 </tr>
 {/if}
 <tr valign="top">
@@ -315,13 +315,13 @@ function movePresenter(dir, presenterIndex) {
 
 {if $schedConfSettings.metaType}
 <tr valign="top">
-	<td width="20%" {if $schedConfSettings.metaTypeExamples}rowspan="2" {/if}class="label">{fieldLabel name="type" key="paper.type"}</td>
+	<td width="20%" {if $currentSchedConf->getLocalizedSetting('metaTypeExamples') != ''}rowspan="2" {/if}class="label">{fieldLabel name="type" key="paper.type"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="type" id="type" value="{$type|escape}" size="40" maxlength="255" /></td>
 </tr>
 
-{if $schedConfSettings.metaTypeExamples}
+{if $currentSchedConf->getLocalizedSetting('metaTypeExamples') != ''}
 <tr valign="top">
-	<td><span class="instruct">{$schedConfSettings.metaTypeExamples|escape}</span></td>
+	<td><span class="instruct">{$currentSchedConf->getLocalizedSetting('metaTypeExamples')|escape}</span></td>
 </tr>
 {/if}
 <tr valign="top">

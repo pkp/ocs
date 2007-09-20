@@ -35,27 +35,37 @@ class DirectorSubmissionDAO extends DAO {
 		$this->userDao = &DAORegistry::getDAO('UserDAO');
 		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 	}
-	
+
 	/**
 	 * Retrieve a director submission by paper ID.
 	 * @param $paperId int
 	 * @return DirectorSubmission
 	 */
 	function &getDirectorSubmission($paperId) {
-		$result = &$this->retrieve(
-			'SELECT
-				p.*,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2
-			FROM
-				papers p
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$result =& $this->retrieve(
+			'SELECT	p.*,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
+			FROM	papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
-			WHERE
-				p.paper_id = ?', $paperId
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+			WHERE	p.paper_id = ?',
+			array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
+				$paperId
+			)
 		);
 
 		$returner = null;
@@ -68,7 +78,7 @@ class DirectorSubmissionDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Internal function to return a DirectorSubmission object from a row.
 	 * @param $row array
@@ -79,16 +89,16 @@ class DirectorSubmissionDAO extends DAO {
 
 		// Paper attributes
 		$this->paperDao->_paperFromRow($directorSubmission, $row);
-		
+
 		// Director Assignment
 		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByPaperId($row['paper_id']);
 		$directorSubmission->setEditAssignments($editAssignments->toArray());
-		
+
 		// Director Decisions
 		for ($i = 1; $i <= $row['current_stage']; $i++) {
 			$directorSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i), $i);
 		}
-		
+
 		HookRegistry::call('DirectorSubmissionDAO::_returnDirectorSubmissionFromRow', array(&$directorSubmission, &$row));
 
 		return $directorSubmission;
@@ -110,19 +120,19 @@ class DirectorSubmissionDAO extends DAO {
 				$directorSubmission->getDirectorId()
 			)
 		);
-		
+
 		$directorSubmission->setEditId($this->getInsertEditId());
-		
+
 		// Insert review assignments.
 		$reviewAssignments = &$directorSubmission->getReviewAssignments();
 		for ($i=0, $count=count($reviewAssignments); $i < $count; $i++) {
 			$reviewAssignments[$i]->setPaperId($directorSubmission->getPaperId());
 			$this->reviewAssignmentDao->insertReviewAssignment($reviewAssignments[$i]);
 		}
-		
+
 		return $directorSubmission->getEditId();
 	}
-	
+
 	/**
 	 * Update an existing paper.
 	 * @param $paper Paper
@@ -138,7 +148,7 @@ class DirectorSubmissionDAO extends DAO {
 			}
 		}
 	}
-	
+
 	/**
 	 * Get all unfiltered submissions for a scheduled conference.
 	 * @param $schedConfId int
@@ -154,18 +164,31 @@ class DirectorSubmissionDAO extends DAO {
 	 * @return array result
 	 */
 	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null) {
-		$params = array($schedConfId);
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$params = array(
+			'title', // Track title
+			$primaryLocale,
+			'title',
+			$locale,
+			'abbrev', // Track abbrev
+			$primaryLocale,
+			'abbrev',
+			$locale,
+			'title', // Paper title
+			$schedConfId
+		);
 		$searchSql = '';
 
 		if (!empty($search)) switch ($searchField) {
 			case SUBMISSION_FIELD_TITLE:
 				if ($searchMatch === 'is') {
-					$searchSql = ' AND (LOWER(p.title) = LOWER(?) OR LOWER(p.title_alt1) = LOWER(?) OR LOWER(p.title_alt2) = LOWER(?))';
+					$searchSql = ' AND LOWER(ptl.setting_value) = LOWER(?)';
 				} else {
-					$searchSql = ' AND (LOWER(p.title) LIKE LOWER(?) OR LOWER(p.title_alt1) LIKE LOWER(?) OR LOWER(p.title_alt2) LIKE LOWER(?))';
+					$searchSql = ' AND LOWER(ptl.setting_value) LIKE LOWER(?)';
 					$search = '%' . $search . '%';
 				}
-				$params[] = $params[] = $params[] = $search;
+				$params[] = $search;
 				break;
 			case SUBMISSION_FIELD_PRESENTER:
 				$searchSql = $this->_generateUserNameSearchSQL($search, $searchMatch, 'pa.', $params);
@@ -190,26 +213,25 @@ class DirectorSubmissionDAO extends DAO {
 
 		$sql = 'SELECT DISTINCT
 				p.*,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2
-			FROM
-				papers p
-			INNER JOIN paper_presenters pa ON (pa.paper_id = p.paper_id)
-			LEFT JOIN tracks t ON (t.track_id = p.track_id)
-			LEFT JOIN edit_assignments ea ON (ea.paper_id = p.paper_id)
-			LEFT JOIN users ed ON (ea.director_id = ed.user_id)
-			LEFT JOIN review_assignments ra ON (ra.paper_id = p.paper_id)
-			LEFT JOIN users re ON (re.user_id = ra.reviewer_id AND cancelled = 0)
-			WHERE
-				p.sched_conf_id = ?';
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
+			FROM	papers p
+				INNER JOIN paper_presenters pa ON (pa.paper_id = p.paper_id)
+				LEFT JOIN tracks t ON (t.track_id = p.track_id)
+				LEFT JOIN edit_assignments ea ON (ea.paper_id = p.paper_id)
+				LEFT JOIN users ed ON (ea.director_id = ed.user_id)
+				LEFT JOIN review_assignments ra ON (ra.paper_id = p.paper_id)
+				LEFT JOIN users re ON (re.user_id = ra.reviewer_id AND cancelled = 0)
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ?)
+			WHERE	p.sched_conf_id = ?';
 
 		if ($statusSql !== null) $sql .= " AND ($statusSql)";
 		else $sql .= ' AND p.status = ' . SUBMISSION_STATUS_QUEUED;
-		
+
 		if ($trackId) {
 			$searchSql .= ' AND p.track_id = ?';
 			$params[] = $trackId;
@@ -217,12 +239,12 @@ class DirectorSubmissionDAO extends DAO {
 
 		$result = &$this->retrieveRange(
 			$sql . ' ' . $searchSql . ' ORDER BY paper_id ASC',
-			(count($params)>1 ? $params : array_shift($params)),
+			$params,
 			$rangeInfo
 		);
 		return $result;
 	}
-	
+
 	/**
 	 * FIXME Move this into somewhere common (SubmissionDAO?) as this is used in several classes.
 	 */
@@ -259,7 +281,7 @@ class DirectorSubmissionDAO extends DAO {
 	 */
 	function &getDirectorSubmissionsUnassigned($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$directorSubmissions = array();
-	
+
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
@@ -301,7 +323,7 @@ class DirectorSubmissionDAO extends DAO {
 	 */
 	function &getDirectorSubmissionsInReview($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$directorSubmissions = array();
-	
+
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
@@ -310,7 +332,7 @@ class DirectorSubmissionDAO extends DAO {
 		// If the submission has passed this review stage, it's out of review.
 		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
-		
+
 		$reviewMode = $schedConf->getSetting('reviewMode');
 		if($reviewMode != REVIEW_MODE_ABSTRACTS_ALONE)
 			$finalReviewType = REVIEW_STAGE_PRESENTATION;
@@ -338,7 +360,7 @@ class DirectorSubmissionDAO extends DAO {
 		}
 		$result->Close();
 		unset($result);
-		
+
 		if (isset($rangeInfo) && $rangeInfo->isValid()) {
 			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
 		} else {
@@ -362,7 +384,7 @@ class DirectorSubmissionDAO extends DAO {
 	 */
 	function &getDirectorSubmissionsAccepted($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$directorSubmissions = array();
-	
+
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo);
 
@@ -385,7 +407,7 @@ class DirectorSubmissionDAO extends DAO {
 	 */
 	function &getDirectorSubmissionsArchives($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$directorSubmissions = array();
-	
+
 		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
@@ -399,14 +421,14 @@ class DirectorSubmissionDAO extends DAO {
 
 		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
-		
+
 		// If the submission has passed this review stage, it's out of review.
 		$reviewMode = $schedConf->getSetting('reviewMode');
 		if($reviewMode != REVIEW_MODE_ABSTRACTS_ALONE)
 			$finalReviewType = REVIEW_STAGE_PRESENTATION;
 		else
 			$finalReviewType = REVIEW_STAGE_ABSTRACT;
-		
+
 		$submissionsCount = array();
 		for($i = 0; $i < 2; $i++) {
 			$submissionsCount[$i] = 0;
@@ -441,7 +463,7 @@ class DirectorSubmissionDAO extends DAO {
 	//
 	// Miscellaneous
 	//
-	
+
 	/**
 	 * Get the director decisions for a review stage of a paper.
 	 * @param $paperId int
@@ -453,16 +475,19 @@ class DirectorSubmissionDAO extends DAO {
 		if($stage) {
 			$args[] = $stage;
 		}
-	
+
 		$result = &$this->retrieve(
-			'SELECT edit_decision_id, director_id, decision, date_decided
-			FROM edit_decisions
-			WHERE paper_id = ? ' .
+			'SELECT	edit_decision_id,
+				director_id,
+				decision,
+				date_decided
+			FROM	edit_decisions
+			WHERE	paper_id = ? ' .
 			($stage?' AND stage = ?':'') .
 			' ORDER BY date_decided ASC',
 			(count($args)==1?shift($args):$args)
 		);
-		
+
 		while (!$result->EOF) {
 			$decisions[] = array(
 				'editDecisionId' => $result->fields['edit_decision_id'],
@@ -475,10 +500,10 @@ class DirectorSubmissionDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $decisions;
 	}
-	
+
 	/**
 	 * Get the director decisions for a director.
 	 * @param $userId int
@@ -489,7 +514,7 @@ class DirectorSubmissionDAO extends DAO {
 			array($newUserId, $oldUserId)
 		);
 	}
-	
+
 	/**
 	 * Retrieve a list of all users in the specified role not assigned as directors to the specified paper.
 	 * @param $schedConfId int
@@ -499,8 +524,14 @@ class DirectorSubmissionDAO extends DAO {
 	 */
 	function &getUsersNotAssignedToPaper($schedConfId, $paperId, $roleId, $searchType=null, $search=null, $searchMatch=null, $rangeInfo = null) {
 		$users = array();
-		
-		$paramArray = array($paperId, $schedConfId, $roleId);
+
+		$paramArray = array(
+			'interests',
+			$paperId,
+			$schedConfId,
+			$roleId
+		);
+
 		$searchSql = '';
 
 		if (isset($search)) switch ($searchType) {
@@ -525,7 +556,7 @@ class DirectorSubmissionDAO extends DAO {
 				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
 				break;
 			case USER_FIELD_INTERESTS:
-				$searchSql = 'AND LOWER(interests) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
+				$searchSql = 'AND LOWER(s.setting_value) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
 				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
 				break;
 			case USER_FIELD_INITIAL:
@@ -534,16 +565,28 @@ class DirectorSubmissionDAO extends DAO {
 				$paramArray[] = $search . '%';
 				break;
 		}
-		
+
 		$result = &$this->retrieveRange(
-			'SELECT DISTINCT u.* FROM users u NATURAL JOIN roles r LEFT JOIN edit_assignments e ON (e.director_id = u.user_id AND e.paper_id = ?) WHERE r.sched_conf_id = ? AND r.role_id = ? AND (e.paper_id IS NULL) ' . $searchSql . ' ORDER BY last_name, first_name',
+			'SELECT DISTINCT
+				u.*
+			FROM	users u
+				NATURAL JOIN roles r
+				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
+				LEFT JOIN edit_assignments e ON (e.director_id = u.user_id AND e.paper_id = ?)
+			WHERE	r.sched_conf_id = ? AND
+				r.role_id = ? AND
+				e.paper_id IS NULL ' .
+				$searchSql . '
+			ORDER BY
+				last_name,
+				first_name',
 			$paramArray, $rangeInfo
 		);
-		
+
 		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRow');
 		return $returner;
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted director assignment.
 	 * @return int

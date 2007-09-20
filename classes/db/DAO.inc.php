@@ -16,10 +16,9 @@
  */
 
 class DAO {
-
 	/** The database connection object */
 	var $_dataSource;
-	
+
 	/**
 	 * Constructor.
 	 * Initialize the database connection.
@@ -35,14 +34,14 @@ class DAO {
 				return;
 			}
 		}
-		
+
 		if (!isset($dataSource)) {
 			$this->_dataSource = &DBConnection::getConn();
 		} else {
 			$this->_dataSource = $dataSource;
 		}
 	}
-	
+
 	/**
 	 * Execute a SELECT SQL statement.
 	 * @param $sql string the SQL statement
@@ -62,7 +61,7 @@ class DAO {
 				return $value;
 			}
 		}
-		
+
 		$result = &$this->_dataSource->execute($sql, $params !== false && !is_array($params) ? array($params) : $params);
 		if ($this->_dataSource->errorNo()) {
 			// FIXME Handle errors more elegantly.
@@ -100,7 +99,7 @@ class DAO {
 		}
 		return $result;
 	}
-	
+
 	/**
 	 * Execute a SELECT SQL statement with LIMIT on the rows returned.
 	 * @param $sql string the SQL statement
@@ -122,7 +121,7 @@ class DAO {
 				return $value;
 			}
 		}
-		
+
 		$result = &$this->_dataSource->selectLimit($sql, $numRows === false ? -1 : $numRows, $offset === false ? -1 : $offset, $params !== false && !is_array($params) ? array($params) : $params);
 		if ($this->_dataSource->errorNo()) {
 			fatalError('DB Error: ' . $this->_dataSource->errorMsg());
@@ -149,7 +148,7 @@ class DAO {
 				return $value;
 			}
 		}
-		
+
 		if (isset($dbResultRange) && $dbResultRange->isValid()) {
 			$result = &$this->_dataSource->PageExecute($sql, $dbResultRange->getCount(), $dbResultRange->getPage(), $params);
 			if ($this->_dataSource->errorNo()) {
@@ -161,7 +160,7 @@ class DAO {
 		}
 		return $result;
 	}
-	
+
 	/**
 	 * Execute an INSERT, UPDATE, or DELETE SQL statement.
 	 * @param $sql the SQL statement the execute
@@ -183,14 +182,24 @@ class DAO {
 				return $value;
 			}
 		}
-		
+
 		$this->_dataSource->execute($sql, $params !== false && !is_array($params) ? array($params) : $params);
 		if ($dieOnError && $this->_dataSource->errorNo()) {
 			fatalError('DB Error: ' . $this->_dataSource->errorMsg());
 		}
 		return $this->_dataSource->errorNo() == 0 ? true : false;
 	}
-	
+
+	/**
+	 * Insert a row in a table, replacing an existing row if necessary.
+	 * @param $table string
+	 * @param $arrFields array Associative array of colName => value
+	 * @param $keyCols array Array of column names that are keys
+	 */
+	function replace($table, $arrFields, $keyCols) {
+		$this->_dataSource->Replace($table, $arrFields, $keyCols, true);
+	}
+
 	/**
 	 * Return the last ID inserted in an autonumbered field.
 	 * @param $table string table name
@@ -200,7 +209,7 @@ class DAO {
 	function getInsertId($table = '', $id = '', $callHooks = true) {
 		return $this->_dataSource->po_insert_id($table, $id);
 	}
-	
+
 	/**
 	 * Configure the caching directory for database results
 	 * NOTE: This is implemented as a GLOBAL setting and cannot
@@ -234,7 +243,7 @@ class DAO {
 	function datetimeToDB($dt) {
 		return $this->_dataSource->DBTimeStamp($dt);
 	}
-	
+
 	/**
 	 * Return date formatted for DB insertion.
 	 * @param $d int/string *nix timestamp or ISO date string
@@ -243,7 +252,7 @@ class DAO {
 	function dateToDB($d) {
 		return $this->_dataSource->DBDate($d);
 	}
-	
+
 	/**
 	 * Return datetime from DB as ISO datetime string.
 	 * @param $dt string datetime from DB
@@ -261,6 +270,125 @@ class DAO {
 	function dateFromDB($d) {
 		if ($d === null) return null;
 		return $this->_dataSource->UserDate($d, 'Y-m-d');
+	}
+
+	/**
+	 * Convert a stored type from the database
+	 * @param $value string Value from DB
+	 * @param $type string Type from DB
+	 * @return mixed
+	 */
+	function convertFromDB($value, $type) {
+		switch ($type) {
+			case 'bool':
+				$value = (bool) $value;
+				break;
+			case 'int':
+				$value = (int) $value;
+				break;
+			case 'float':
+				$value = (float) $value;
+				break;
+			case 'object':
+				$value = unserialize($value);
+				break;
+			case 'string':
+			default:
+				// Nothing required.
+				break;
+		}
+		return $value;
+	}
+
+	/**
+	 * Get the type of a value to be stored in the database
+	 * @param $value string
+	 * @return string
+	 */
+	function getType($value) {
+		switch (gettype($value)) {
+			case 'boolean':
+			case 'bool':
+				return 'bool';
+			case 'integer':
+			case 'int':
+				return 'int';
+			case 'double':
+			case 'float':
+				return 'float';
+			case 'array':
+			case 'object':
+				return 'object';
+			case 'string':
+			default:
+				return 'string';
+		}
+	}
+
+	/**
+	 * Convert a PHP variable into a string to be stored in the DB
+	 * @param $value mixed
+	 * @param $type string
+	 * @return string
+	 */
+	function convertToDB($value, &$type) {
+		if ($type == null) {
+			$type = $this->getType($value);
+		}
+
+		if ($type == 'object') {
+			$value = serialize($value);
+
+		} else if ($type == 'bool') {
+			$value = $value ? 1 : 0;
+		}
+
+		return $value;
+	}
+
+	function getLocaleFieldNames() {
+		return array();
+	}
+
+	function updateDataObjectSettings($tableName, &$dataObject, $idArray) {
+		$idFields = array_keys($idArray);
+		$idFields[] = 'locale';
+		$idFields[] = 'setting_name';
+
+		foreach ($this->getLocaleFieldNames() as $field) {
+			$values = $dataObject->getData($field);
+			if (!is_array($values)) continue;
+
+			foreach ($values as $locale => $value) {
+				$idArray['setting_type'] = null;
+				$idArray['locale'] = $locale;
+				$idArray['setting_name'] = $field;
+				$idArray['setting_value'] = $this->convertToDB($value, $idArray['setting_type']);
+
+				$this->replace($tableName, $idArray, $idFields);
+			}
+		}
+	}
+
+	function getDataObjectSettings($tableName, $idFieldName, $idFieldValue, &$dataObject) {
+		if ($idFieldName !== null) {
+			$sql = "SELECT * FROM $tableName WHERE $idFieldName = ?";
+			$params = array($idFieldValue);
+		} else {
+			$sql = "SELECT * FROM $tableName";
+			$params = false;
+		}
+		$result =& $this->retrieve($sql, $params);
+
+		while (!$result->EOF) {
+			$row = &$result->getRowAssoc(false);
+			$dataObject->setData($row['setting_name'], $row['setting_value'], $row['locale']);
+			unset($row);
+			$result->MoveNext();
+		}
+
+		$result->Close();
+		unset($result);
 	}
 }
 

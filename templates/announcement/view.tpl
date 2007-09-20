@@ -14,7 +14,7 @@
 
 <table width="100%">
 	<tr>
-		<td>{$announcement->getDescription()|nl2br}</td>
+		<td>{$announcement->getAnnouncementDescription()|nl2br}</td>
 	</tr>
 </table>
 

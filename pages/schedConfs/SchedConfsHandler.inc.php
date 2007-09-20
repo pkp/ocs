@@ -21,7 +21,7 @@ class SchedConfsHandler extends Handler {
 	 */
 	function current($args) {
 		list($conference, $schedConf) = parent::validate(true, false);
-		
+
 		$templateMgr = &TemplateManager::getManager();
 
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
@@ -31,10 +31,10 @@ class SchedConfsHandler extends Handler {
 		// Assign header and content for home page
 		$templateMgr->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle(true));
 		$templateMgr->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo(true));
-		$templateMgr->assign('additionalHomeContent', $conference->getSetting('additionalHomeContent'));
+		$templateMgr->assign('additionalHomeContent', $conference->getLocalizedSetting('additionalHomeContent'));
 		$templateMgr->assign('homepageImage', $conference->getSetting('homepageImage'));
-		$templateMgr->assign('conferenceDescription', $conference->getSetting('conferenceDescription'));
-		$templateMgr->assign('conferenceTitle', $conference->getTitle());
+		$templateMgr->assign('description', $conference->getSetting('description'));
+		$templateMgr->assign('conferenceTitle', $conference->getConferenceTitle());
 
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$currentSchedConfs = &$schedConfDao->getCurrentSchedConfs($conference->getConferenceId());
@@ -49,7 +49,7 @@ class SchedConfsHandler extends Handler {
 	 */
 	function archive($args) {
 		list($conference, $schedConf) = parent::validate(true, false);
-		
+
 		$templateMgr = &TemplateManager::getManager();
 
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
@@ -59,10 +59,10 @@ class SchedConfsHandler extends Handler {
 		// Assign header and content for home page
 		$templateMgr->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle(true));
 		$templateMgr->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo(true));
-		$templateMgr->assign('additionalHomeContent', $conference->getSetting('additionalHomeContent'));
+		$templateMgr->assign('additionalHomeContent', $conference->getLocalizedSetting('additionalHomeContent'));
 		$templateMgr->assign('homepageImage', $conference->getSetting('homepageImage'));
-		$templateMgr->assign('conferenceDescription', $conference->getSetting('conferenceDescription'));
-		$templateMgr->assign('conferenceTitle', $conference->getTitle());
+		$templateMgr->assign('description', $conference->getSetting('description'));
+		$templateMgr->assign('conferenceTitle', $conference->getConferenceTitle());
 
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$pastSchedConfs = &$schedConfDao->getEnabledSchedConfs($conference->getConferenceId());

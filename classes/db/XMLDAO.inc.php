@@ -18,13 +18,12 @@
 import('xml.XMLParser');
 
 class XMLDAO {
-
 	/**
 	 * Constructor.
 	 */
 	function XMLDAO() {
 	}
-	
+
 	/**
 	 * Parse an XML file and return data in an object.
 	 * @see xml.XMLParser::parse()
@@ -35,7 +34,7 @@ class XMLDAO {
 		$parser->destroy();
 		return $data;
 	}
-	
+
 	/**
 	 * Parse an XML file with the specified handler and return data in an object.
 	 * @see xml.XMLParser::parse()
@@ -48,7 +47,7 @@ class XMLDAO {
 		$parser->destroy();
 		return $data;
 	}
-	
+
 	/**
 	 * Parse an XML file and return data in an array.
 	 * @see xml.XMLParser::parseStruct()

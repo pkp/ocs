@@ -24,7 +24,7 @@
 {/if}
 
 {foreach from=$userConferences item=conference}
-<h4><a href="{url conference=$conference->getPath() page="user"}">{$conference->getTitle()|escape}</a></h4>
+<h4><a href="{url conference=$conference->getPath() page="user"}">{$conference->getConferenceTitle()|escape}</a></h4>
 	<ul class="plain">
 	{assign var="conferenceId" value=$conference->getConferenceId()}
 
@@ -40,7 +40,7 @@
 	
 	{foreach from=$userSchedConfs[$conferenceId] item=schedConf}
 		{assign var="schedConfId" value=$schedConf->getSchedConfId()}
-		<h5><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getTitle()|escape}</a></h5>
+		<h5><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getSchedConfTitle()|escape}</a></h5>
 
 		{foreach item=role from=$userSchedConfRoles[$schedConfId]}
 			{if $role->getRolePath() != 'reader'}
@@ -55,7 +55,7 @@
 {/foreach}
 
 {else}
-<h3>{$userConference->getTitle()}</h3>
+<h3>{$userConference->getConferenceTitle()}</h3>
 <ul class="plain">
 {if $isSiteAdmin && !$hasOtherConferences}
 	<li>&#187; <a href="{url conference="index" schedConf="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
@@ -75,7 +75,7 @@
 	
 	{foreach from=$userSchedConfs[$conferenceId] item=schedConf}
 		{assign var="schedConfId" value=$schedConf->getSchedConfId()}
-		<h5><a href="{url conference=$userConference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getTitle()|escape}</a></h5>
+		<h5><a href="{url conference=$userConference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getSchedConfTitle()|escape}</a></h5>
 
 		{foreach item=role from=$userSchedConfRoles[$schedConfId]}
 			{if $role->getRolePath() != 'reader'}

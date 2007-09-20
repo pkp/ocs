@@ -23,7 +23,7 @@
 {translate key="manager.registrationPolicies.registrationPoliciesSaved"}<br />
 {/if}
 
-<form method="post" action="{url op="saveRegistrationPolicies"}">
+<form name="registrationPolicies" method="post" action="{url op="saveRegistrationPolicies"}">
 {include file="common/formErrors.tpl"}
 
 	<script type="text/javascript">
@@ -48,6 +48,14 @@
 <h3>{translate key="manager.registrationPolicies.registrationContact"}</h3>
 <p>{translate key="manager.registrationPolicies.registrationContactDescription"}</p>
 <table width="100%" class="data">
+{if count($formLocales) > 1}
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="80%" class="value">
+			{url|assign:"registrationPoliciesUrl" op="registrationPolicies"}
+			{form_language_chooser form="registrationPolicies" url=$registrationPoliciesUrl}
+		</td>
+{/if}
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="registrationName" key="user.name"}</td>
 		<td width="80%" class="value"><input type="text" name="registrationName" id="registrationName" value="{$registrationName|escape}" size="30" maxlength="60" class="textField" /></td>
@@ -77,7 +85,7 @@
 <h3>{translate key="manager.registrationPolicies.registrationAdditionalInformation"}</h3>
 <p>{translate key="manager.registrationPolicies.registrationAdditionalInformationDescription"}</p>
 <p>
-	<textarea name="registrationAdditionalInformation" id="registrationAdditionalInformation" rows="12" cols="60" class="textArea">{$registrationAdditionalInformation|escape}</textarea>
+	<textarea name="registrationAdditionalInformation[{$formLocale|escape}]" id="registrationAdditionalInformation" rows="12" cols="60" class="textArea">{$registrationAdditionalInformation[$formLocale]|escape}</textarea>
 	<br />
 	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 </p>
@@ -138,7 +146,7 @@
 
 	<p>{translate key="manager.registrationPolicies.delayedOpenAccessPolicyDescription"}</p>
 	<p>
-	<textarea name="delayedOpenAccessPolicy" id="delayedOpenAccessPolicy" rows="12" cols="60" class="textArea">{$delayedOpenAccessPolicy|escape}</textarea>
+	<textarea name="delayedOpenAccessPolicy[{$formLocale|escape}]" id="delayedOpenAccessPolicy" rows="12" cols="60" class="textArea">{$delayedOpenAccessPolicy[$formLocale]|escape}</textarea>
 	<br />
 	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 	</p>
@@ -149,7 +157,7 @@
 	<label for="enablePresenterSelfArchive">{translate key="manager.registrationPolicies.presenterSelfArchiveDescription"}</label>
 </p>
 <p>
-	<textarea name="presenterSelfArchivePolicy" id="presenterSelfArchivePolicy" rows="12" cols="60" class="textArea">{$presenterSelfArchivePolicy|escape}</textarea>
+	<textarea name="presenterSelfArchivePolicy[{$formLocale|escape}]" id="presenterSelfArchivePolicy" rows="12" cols="60" class="textArea">{$presenterSelfArchivePolicy[$formLocale]|escape}</textarea>
 	<br />
 	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 </p>

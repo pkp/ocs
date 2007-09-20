@@ -18,14 +18,6 @@
 import('help.HelpTopic');
 
 class HelpTopicDAO extends XMLDAO {
-
-	/**
-	 * Constructor.
-	 */
-	function HelpTopicDAO() {
-		parent::XMLDAO();
-	}
-
 	function &_getCache($topicId) {
 		static $cache;
 		if (!isset($cache)) {
@@ -78,7 +70,7 @@ class HelpTopicDAO extends XMLDAO {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Retrieve a topic by its ID.
 	 * @param $topicId string
@@ -182,15 +174,15 @@ class HelpTopicDAO extends XMLDAO {
 		if (preg_match('/^\d{6,6}\.xml$/', $file)) {
 			$topicId = $mappingFile->getTopicIdForFilename($dir . DIRECTORY_SEPARATOR . $file);
 			$topic = &$this->getTopic($topicId);
-			
+
 			if ($topic) {
 				$numMatches = String::substr_count(String::strtolower($topic->getTitle()), $keyword);
-				
+
 				foreach ($topic->getSections() as $section) {
-					$numMatches += String::substr_count(String::strtolower($section->getTitle()), $keyword);
+					$numMatches += String::substr_count(String::strtolower($section->getSectionTitle()), $keyword);
 					$numMatches += String::substr_count(String::strtolower($section->getContent()), $keyword);
 				}
-				
+
 				if ($numMatches > 0) {
 					$matchingTopics[($numMatches << 16) + count($matchingTopics)] = $topic;
 				}

@@ -9,32 +9,32 @@
  * @package tools
  * @class rebuildSearchIndex
  *
- * CLI tool to rebuild the article keyword search database.
+ * CLI tool to rebuild the paper keyword search database.
  *
  * $Id$
  */
 
 require(dirname(__FILE__) . '/includes/cliTool.inc.php');
 
-import('search.ArticleSearchIndex');
+import('search.PaperSearchIndex');
 
 class rebuildSearchIndex extends CommandLineTool {
-	
+
 	/**
 	 * Print command usage information.
 	 */
 	function usage() {
-		echo "Script to rebuild article search index\n"
+		echo "Script to rebuild paper search index\n"
 			. "Usage: {$this->scriptName}\n";
 	}
-	
+
 	/**
-	 * Rebuild the search index for all articles in all journals.
+	 * Rebuild the search index for all papers in all conferences.
 	 */
 	function execute() {
-		ArticleSearchIndex::rebuildIndex(true);
+		PaperSearchIndex::rebuildIndex(true);
 	}
-	
+
 }
 
 $tool = &new rebuildSearchIndex(isset($argv) ? $argv : array());

@@ -18,7 +18,6 @@
 import('security.Role');
 
 class RoleDAO extends DAO {
-
 	/**
 	 * Constructor.
 	 */
@@ -26,7 +25,7 @@ class RoleDAO extends DAO {
 		parent::DAO();
 		$this->userDao = &DAORegistry::getDAO('UserDAO');
 	}
-	
+
 	/**
 	 * Retrieve a role.
 	 * @param $conferenceId int
@@ -55,7 +54,7 @@ class RoleDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Internal function to return a Role object from a row.
 	 * @param $row array
@@ -67,12 +66,12 @@ class RoleDAO extends DAO {
 		$role->setSchedConfId($row['sched_conf_id']);
 		$role->setUserId($row['user_id']);
 		$role->setRoleId($row['role_id']);
-		
+
 		HookRegistry::call('RoleDAO::_returnRoleFromRow', array(&$role, &$row));
 
 		return $role;
 	}
-	
+
 	/**
 	 * Insert a new role.
 	 * @param $role Role
@@ -91,7 +90,7 @@ class RoleDAO extends DAO {
 			)
 		);
 	}
-	
+
 	/**
 	 * Delete a role.
 	 * @param $role Role
@@ -107,7 +106,7 @@ class RoleDAO extends DAO {
 			)
 		);
 	}
-	
+
 	/**
 	 * Retrieve a list of all roles for a specified user.
 	 * @param $userId int
@@ -118,16 +117,16 @@ class RoleDAO extends DAO {
 	function &getRolesByUserId($userId, $conferenceId = null, $schedConfId = null) {
 		$roles = array();
 		$params = array();
-		
+
 		$params[] = $userId;
 		if(isset($conferenceId)) $params[] = $conferenceId;
 		if(isset($schedConfId)) $params[] = $schedConfId;
-		
+
 		$result = &$this->retrieve('SELECT * FROM roles WHERE user_id = ?' .
 				(isset($conferenceId) ? ' AND conference_id = ?' : '') .
 				(isset($schedConfId) ? ' AND sched_conf_id = ?' : ''),
 			(count($params) == 1 ? array_shift($params) : $params));
-		
+
 		while (!$result->EOF) {
 			$roles[] = &$this->_returnRoleFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -135,10 +134,10 @@ class RoleDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $roles;
 	}
-	
+
 	/**
 	 * Retrieve a list of users in a specified role.
 	 * @param $roleId int optional (can leave as null to get all users in conference)
@@ -152,17 +151,17 @@ class RoleDAO extends DAO {
 	 */
 	function &getUsersByRoleId($roleId = null, $conferenceId = null, $schedConfId = null,
 			$searchType = null, $search = null, $searchMatch = null, $dbResultRange = null) {
-			
+
 		$users = array();
 
-		$paramArray = array();
+		$paramArray = array('interests');
 		if (isset($roleId)) $paramArray[] = (int) $roleId;
 		if (isset($conferenceId)) $paramArray[] = (int) $conferenceId;
 		if (isset($schedConfId)) $paramArray[] = (int) $schedConfId;
 
 		// For security / resource usage reasons, a role, scheduled conference, or conference
 		// must be specified. Don't allow calls supplying none.
-		if (empty($paramArray)) return null;
+		if ($conferenceId === null && $schedConfId === null && $roleId === null) return null;
 
 		$searchSql = '';
 
@@ -188,7 +187,7 @@ class RoleDAO extends DAO {
 				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
 				break;
 			case USER_FIELD_INTERESTS:
-				$searchSql = 'AND LOWER(u.interests) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
+				$searchSql = 'AND LOWER(s.setting_value) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
 				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
 				break;
 			case USER_FIELD_INITIAL:
@@ -196,23 +195,23 @@ class RoleDAO extends DAO {
 				$paramArray[] = $search . '%';
 				break;
 		}
-		
+
 		$searchSql .= ' ORDER  BY u.last_name, u.first_name';
-		
+
 		$result = &$this->retrieveRange(
-			'SELECT DISTINCT u.* FROM users AS u, roles AS r WHERE u.user_id = r.user_id ' .
+			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id ' .
 				(isset($roleId)?'AND r.role_id = ?':'') .
 				(isset($conferenceId) ? ' AND r.conference_id = ?' : '') .
 				(isset($schedConfId) ? ' AND r.sched_conf_id = ?' : '') .
 				' ' . $searchSql,
-			(count($paramArray)==1? array_shift($paramArray) : $paramArray),
+			$paramArray,
 			$dbResultRange
 		);
-		
-		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRow');
+
+		$returner =& new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve a list of all users with some role in the specified conference.
 	 * @param $conferenceId int
@@ -225,7 +224,7 @@ class RoleDAO extends DAO {
 	function &getUsersByConferenceId($conferenceId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null) {
 		$users = array();
 
-		$paramArray = array((int) $conferenceId);
+		$paramArray = array('interests', (int) $conferenceId);
 		$searchSql = '';
 
 		if (isset($search)) switch ($searchType) {
@@ -250,7 +249,7 @@ class RoleDAO extends DAO {
 				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
 				break;
 			case USER_FIELD_INTERESTS:
-				$searchSql = 'AND LOWER(u.interests) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
+				$searchSql = 'AND LOWER(s.setting_value) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
 				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
 				break;
 			case USER_FIELD_INITIAL:
@@ -258,20 +257,20 @@ class RoleDAO extends DAO {
 				$paramArray[] = $search . '%';
 				break;
 		}
-		
+
 		$searchSql .= ' ORDER BY u.last_name, u.first_name'; // FIXME Add "sort field" parameter?
-		
+
 		$result = &$this->retrieveRange(
 
-			'SELECT DISTINCT u.* FROM users AS u, roles AS r WHERE u.user_id = r.user_id AND r.conference_id = ? ' . $searchSql,
+			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id AND r.conference_id = ? ' . $searchSql,
 			$paramArray,
 			$dbResultRange
 		);
-		
-		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRow');
+
+		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve the number of users associated with the specified conference.
 	 * @param $conferenceId int
@@ -279,7 +278,7 @@ class RoleDAO extends DAO {
 	 */
 	function getConferenceUsersCount($conferenceId) {
 		$userDao = &DAORegistry::getDAO('UserDAO');
-				
+
 		$result = &$this->retrieve(
 			'SELECT COUNT(DISTINCT(user_id)) FROM roles WHERE conference_id = ?',
 			(int) $conferenceId
@@ -309,16 +308,16 @@ class RoleDAO extends DAO {
 			$params[] = (int) $roleId;
 			$conditions[] = 'role_id = ?';
 		}
-		
+
 		$result = &$this->retrieve(
 			'SELECT * FROM roles' . (empty($conditions) ? '' : ' WHERE ' . join(' AND ', $conditions)),
 			$params
 		);
-		
+
 		$returner = &new DAOResultFactory($result, $this, '_returnRoleFromRow');
 		return $returner;
 	}
-	
+
 	/**
 	 * Delete all roles for a specified conference.
 	 * @param $conferenceId int
@@ -328,7 +327,7 @@ class RoleDAO extends DAO {
 			'DELETE FROM roles WHERE conference_id = ?', (int) $conferenceId
 		);
 	}
-	
+
 	/**
 	 * Delete all roles for a specified scheduled conference.
 	 * @param $schedConfId int
@@ -338,7 +337,7 @@ class RoleDAO extends DAO {
 			'DELETE FROM roles WHERE sched_conf_id = ?', (int) $schedConfId
 		);
 	}
-	
+
 	/**
 	 * Delete all roles for a specified conference.
 	 * @param $userId int
@@ -346,12 +345,12 @@ class RoleDAO extends DAO {
 	 * @param $roleId int optional, include only this role
 	 */
 	function deleteRoleByUserId($userId, $conferenceId  = null, $roleId = null, $schedConfId = null) {
-	
+
 		$args = array((int)$userId);
 		if(isset($conferenceId)) $args[] = (int)$conferenceId;
 		if(isset($roleId)) $args[] = (int)$roleId;
 		if(isset($schedConfId)) $args[] = (int)$schedConfId;
-		
+
 		return $this->update(
 			'DELETE FROM roles WHERE user_id = ?' .
 				(isset($conferenceId) ? ' AND conference_id = ?' : '') .
@@ -359,7 +358,7 @@ class RoleDAO extends DAO {
 				(isset($schedConfId) ? ' AND sched_conf_id = ?' : ''),
 			(count($args) ? $args : shift($args)));
 	}
-	
+
 	/**
 	 * Check if a role exists.
 	 * @param $conferenceId int
@@ -378,7 +377,7 @@ class RoleDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Get the i18n key name associated with the specified role.
 	 * @param $roleId int
@@ -405,7 +404,7 @@ class RoleDAO extends DAO {
 				return '';
 		}
 	}
-	
+
 	/**
 	 * Get the URL path associated with the specified role's operations.
 	 * @param $roleId int
@@ -431,7 +430,7 @@ class RoleDAO extends DAO {
 				return '';
 		}
 	}
-	
+
 	/**
 	 * Get a role's ID based on its path.
 	 * @param $rolePath string
@@ -457,7 +456,6 @@ class RoleDAO extends DAO {
 				return null;
 		}
 	}
-
 }
 
 ?>

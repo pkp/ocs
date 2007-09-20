@@ -29,11 +29,11 @@ class RegistrationType extends DataObject {
 	function RegistrationType() {
 		parent::DataObject();
 	}
-	
+
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get the ID of the registration type.
 	 * @return int
@@ -41,7 +41,7 @@ class RegistrationType extends DataObject {
 	function getTypeId() {
 		return $this->getData('typeId');
 	}
-	
+
 	/**
 	 * Set the ID of the registration type.
 	 * @param $typeId int
@@ -57,7 +57,7 @@ class RegistrationType extends DataObject {
 	function getSchedConfId() {
 		return $this->getData('schedConfId');
 	}
-	
+
 	/**
 	 * Set the scheduled conference ID of the registration type.
 	 * @param $schedConfId int
@@ -65,21 +65,31 @@ class RegistrationType extends DataObject {
 	function setSchedConfId($schedConfId) {
 		return $this->setData('schedConfId', $schedConfId);
 	}
-	
+
 	/**
-	 * Get registration type name.
+	 * Get the localized registration type name
 	 * @return string
 	 */
-	function getTypeName() {
-		return $this->getData('typeName');
+	function getRegistrationTypeName() {
+		return $this->getLocalizedData('name');
 	}
-	
+
+	/**
+	 * Get registration type name.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getName($locale) {
+		return $this->getData('typeName', $locale);
+	}
+
 	/**
 	 * Set registration type name.
 	 * @param $typeName string
+	 * @param $locale string
 	 */
-	function setTypeName($typeName) {
-		return $this->setData('typeName', $typeName);
+	function setName($typeName, $locale) {
+		return $this->setData('typeName', $typeName, $locale);
 	}
 
 	/**
@@ -89,7 +99,7 @@ class RegistrationType extends DataObject {
 	function getCode() {
 		return $this->getData('code');
 	}
-	
+
 	/**
 	 * Set registration type code.
 	 * @param $typeCode string
@@ -99,19 +109,29 @@ class RegistrationType extends DataObject {
 	}
 
 	/**
-	 * Get registration type description.
+	 * Get the localized registration type description
 	 * @return string
 	 */
-	function getDescription() {
-		return $this->getData('description');
+	function getRegistrationTypeDescription() {
+		return $this->getLocalizedData('description');
 	}
-	
+
+	/**
+	 * Get registration type description.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getDescription($locale) {
+		return $this->getData('description', $locale);
+	}
+
 	/**
 	 * Set registration type description.
 	 * @param $description string
+	 * @param $locale string
 	 */
-	function setDescription($description) {
-		return $this->setData('description', $description);
+	function setDescription($description, $locale) {
+		return $this->setData('description', $description, $locale);
 	}
 
 	/**
@@ -121,7 +141,7 @@ class RegistrationType extends DataObject {
 	function getCost() {
 		return $this->getData('cost');
 	}
-	
+
 	/**
 	 * Set registration type cost.
 	 * @param $cost float
@@ -137,7 +157,7 @@ class RegistrationType extends DataObject {
 	function getCurrencyCodeAlpha() {
 		return $this->getData('currencyCodeAlpha');
 	}
-	
+
 	/**
 	 * Set registration type currency code.
 	 * @param $currencyCodeAlpha string
@@ -183,7 +203,7 @@ class RegistrationType extends DataObject {
 	function getOpeningDate() {
 		return $this->getData('openingDate');
 	}
-	
+
 	/**
 	 * Set registration type opening date.
 	 * @param $duration date
@@ -199,7 +219,7 @@ class RegistrationType extends DataObject {
 	function getClosingDate() {
 		return $this->getData('closingDate');
 	}
-	
+
 	/**
 	 * Set registration type closing date.
 	 * @param $duration date
@@ -215,7 +235,7 @@ class RegistrationType extends DataObject {
 	function getExpiryDate() {
 		return $this->getData('expiryDate');
 	}
-	
+
 	/**
 	 * Set registration type expiry date.
 	 * @param $duration date
@@ -257,7 +277,7 @@ class RegistrationType extends DataObject {
 	function getAccess() {
 		return $this->getData('access');
 	}
-	
+
 	/**
 	 * Set registration access type.
 	 * @param $access int
@@ -290,7 +310,7 @@ class RegistrationType extends DataObject {
 	function getInstitutional() {
 		return $this->getData('institutional');
 	}
-	
+
 	/**
 	 * Set whether or not this registration type is for an institution.
 	 * @param $institutional boolean
@@ -306,7 +326,7 @@ class RegistrationType extends DataObject {
 	function getMembership() {
 		return $this->getData('membership');
 	}
-	
+
 	/**
 	 * Set whether or not this registration type requires a membership.
 	 * @param $membership boolean
@@ -322,7 +342,7 @@ class RegistrationType extends DataObject {
 	function getPublic() {
 		return $this->getData('public');
 	}
-	
+
 	/**
 	 * Set whether or not this registration should be publicly visible.
 	 * @param $public boolean
@@ -338,7 +358,7 @@ class RegistrationType extends DataObject {
 	function getSequence() {
 		return $this->getData('sequence');
 	}
-	
+
 	/**
 	 * Set registration type display sequence.
 	 * @param $sequence float
@@ -352,7 +372,7 @@ class RegistrationType extends DataObject {
 	 * @return string
 	 */
 	function getSummaryString() {
-		return $this->getTypeName() . ' - ' . $this->getDurationYearsMonths() . ' - ' . sprintf('%.2f', $this->getCost()) . ' ' . $this->getCurrencyStringShort();
+		return $this->getRegistrationTypeName() . ' - ' . $this->getDurationYearsMonths() . ' - ' . sprintf('%.2f', $this->getCost()) . ' ' . $this->getCurrencyStringShort();
 	}
 }
 

@@ -15,36 +15,40 @@
  */
 
 class AdminSettingsHandler extends AdminHandler {
-	
+
 	/**
 	 * Display form to modify site settings.
 	 */
 	function settings() {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		import('admin.form.SiteSettingsForm');
 
 		$settingsForm = &new SiteSettingsForm();
-		$settingsForm->initData();
+		if ($settingsForm->isLocaleResubmit()) {
+			$settingsForm->readInputData();
+		} else {
+			$settingsForm->initData();
+		}
 		$settingsForm->display();
 	}
-	
+
 	/**
 	 * Validate and save changes to site settings.
 	 */
 	function saveSettings() {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		import('admin.form.SiteSettingsForm');
-		
+
 		$settingsForm = &new SiteSettingsForm();
 		$settingsForm->readInputData();
-		
+
 		if ($settingsForm->validate()) {
 			$settingsForm->execute();
-		
+
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign(array(
 				'currentUrl' => Request::url(null, null, null, 'settings'),
@@ -54,12 +58,12 @@ class AdminSettingsHandler extends AdminHandler {
 				'backLinkLabel' => 'admin.siteAdmin'
 			));
 			$templateMgr->display('common/message.tpl');
-			
+
 		} else {
 			$settingsForm->display();
 		}
 	}
-	
+
 }
 
 ?>

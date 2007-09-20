@@ -12,9 +12,9 @@
  *
  * $Id$
  */
- 
+
 require_once('PayPalPlugin.inc.php');
 
 return new PayPalPlugin();
- 
+
 ?> 

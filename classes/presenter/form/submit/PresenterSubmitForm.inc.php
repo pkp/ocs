@@ -20,13 +20,13 @@ class PresenterSubmitForm extends Form {
 
 	/** @var int the ID of the paper */
 	var $paperId;
-	
+
 	/** @var Paper current paper */
 	var $paper;
 
 	/** @var int the current step */
 	var $step;
-	
+
 	/**
 	 * Constructor.
 	 * @param $paper object
@@ -41,7 +41,7 @@ class PresenterSubmitForm extends Form {
 		$this->paper = $paper;
 		$this->paperId = $paper ? $paper->getPaperId() : null;
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -50,7 +50,7 @@ class PresenterSubmitForm extends Form {
 		$templateMgr->assign('sidebarTemplate', 'presenter/submit/submitSidebar.tpl');
 		$templateMgr->assign('paperId', $this->paperId);
 		$templateMgr->assign('submitStep', $this->step);
-		
+
 		switch($this->step) {
 			case '2':
 				$helpTopicId = 'submission.indexingAndMetadata';
@@ -68,23 +68,23 @@ class PresenterSubmitForm extends Form {
 		$templateMgr->assign_by_ref('schedConfSettings', $settingsDao->getSchedConfSettings($schedConf->getSchedConfId(), true));
 
 		// Determine which submission steps should be shown
-		
+
 		$progress = isset($this->paper) ? $this->paper->getCurrentStage() : REVIEW_STAGE_ABSTRACT;
 
 		$reviewMode = $schedConf->getSetting('reviewMode');
 		$showAbstractSteps = $progress == REVIEW_STAGE_ABSTRACT || $reviewMode != REVIEW_MODE_BOTH_SEQUENTIAL;
 		$showPaperSteps = $progress == REVIEW_STAGE_PRESENTATION || $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS;
-		
+
 		$templateMgr->assign('showAbstractSteps', $showAbstractSteps);
 		$templateMgr->assign('showPaperSteps', $showPaperSteps);
-		
+
 		if (isset($this->paper)) {
 			$templateMgr->assign('submissionProgress', $this->paper->getSubmissionProgress());
 		}
-		
+
 		parent::display();
 	}
-	
+
 	function confirmSubmission(&$paper, &$user, &$schedConf, $conference, $mailTemplate = 'SUBMISSION_ACK', $trackDirectors = array()) {
 		// Update search index
 		import('search.PaperSearchIndex');
@@ -116,7 +116,7 @@ class PresenterSubmitForm extends Form {
 			$mail->assignParams(array(
 				'presenterName' => $user->getFullName(),
 				'presenterUsername' => $user->getUsername(),
-				'editorialContactSignature' => $schedConf->getSetting('contactName', true) . "\n" . $conference->getTitle(),
+				'editorialContactSignature' => $schedConf->getSetting('contactName', true) . "\n" . $conference->getConferenceTitle(),
 				'submissionUrl' => Request::url(null, null, 'presenter', 'submission', $paper->getPaperId())
 			));
 			$mail->send();

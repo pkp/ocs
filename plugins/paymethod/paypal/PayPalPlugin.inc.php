@@ -20,7 +20,7 @@ class PayPalPlugin extends PaymethodPlugin {
 	function getName() {
 		return 'Paypal';
 	}
-	
+
 	function getDisplayName() {
 		return Locale::translate('plugins.paymethod.paypal.displayName');
 	}
@@ -202,7 +202,7 @@ class PayPalPlugin extends PaymethodPlugin {
 
 							// Fulfill the queued payment.
 							if ($ocsPaymentManager->fulfillQueuedPayment($queuedPayment)) exit();
-							
+
 							// If we're still here, it means the payment couldn't be fulfilled.
 							$mail->assignParams(array(
 								'schedConfName' => $schedConf->getFullTitle(),

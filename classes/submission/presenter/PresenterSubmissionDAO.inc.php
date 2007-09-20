@@ -43,25 +43,39 @@ class PresenterSubmissionDAO extends DAO {
 		$this->paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
 		$this->galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 	}
-	
+
 	/**
 	 * Retrieve a presenter submission by paper ID.
 	 * @param $paperId int
 	 * @return PresenterSubmission
 	 */
 	function &getPresenterSubmission($paperId) {
-		$result = &$this->retrieve(
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$result =& $this->retrieve(
 			'SELECT
 				p.*,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2
-			FROM papers p
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
+			FROM	papers p
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				WHERE p.paper_id = ?', $paperId);
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+			WHERE	p.paper_id = ?',
+			array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
+				$paperId
+			)
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -73,7 +87,7 @@ class PresenterSubmissionDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Internal function to return a PresenterSubmission object from a row.
 	 * @param $row array
@@ -84,23 +98,23 @@ class PresenterSubmissionDAO extends DAO {
 
 		// Paper attributes
 		$this->paperDao->_paperFromRow($presenterSubmission, $row);
-		
+
 		// Director Assignment
 		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByPaperId($row['paper_id']);
 		$presenterSubmission->setEditAssignments($editAssignments->toArray());
-		
+
 		// Director Decisions
 		for ($i = 1; $i <= $row['current_stage']; $i++) {
 			$presenterSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i), $i);
 		}
-				
+
 		// Review Assignments
 		for ($i = 1; $i <= $row['current_stage']; $i++)
 			$presenterSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByPaperId($row['paper_id'], $i), $i);
 
 		// Comments
 		$presenterSubmission->setMostRecentDirectorDecisionComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_DIRECTOR_DECISION, $row['paper_id']));
-		
+
 		// Files
 		$presenterSubmission->setSubmissionFile($this->paperFileDao->getPaperFile($row['submission_file_id']));
 		$presenterSubmission->setRevisedFile($this->paperFileDao->getPaperFile($row['revised_file_id']));
@@ -118,7 +132,7 @@ class PresenterSubmissionDAO extends DAO {
 
 		return $presenterSubmission;
 	}
-	
+
 	/**
 	 * Update an existing presenter submission.
 	 * @param $presenterSubmission PresenterSubmission
@@ -127,7 +141,7 @@ class PresenterSubmissionDAO extends DAO {
 		// Update paper
 		if ($presenterSubmission->getPaperId()) {
 			$paper = &$this->paperDao->getPaper($presenterSubmission->getPaperId());
-			
+
 			// Only update fields that an presenter can actually edit.
 			$paper->setRevisedFileId($presenterSubmission->getRevisedFileId());
 			$paper->setDateStatusModified($presenterSubmission->getDateStatusModified());
@@ -137,70 +151,96 @@ class PresenterSubmissionDAO extends DAO {
 			// best not exposed like this.
 			$paper->setReviewFileId($presenterSubmission->getReviewFileId());
 			$paper->setDirectorFileId($presenterSubmission->getDirectorFileId());
-			
+
 			$this->paperDao->updatePaper($paper);
 		}
 	}
-	
+
 	/**
 	 * Get all incomplete submissions.
 	 * @return DAOResultFactory containing PresenterSubmissions
 	 */
 	function &getIncompleteSubmissions() {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
 		$incompleteSubmissions = array();
-		$sql = 'SELECT p.*,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2
-			FROM papers p
+		$result =& $this->retrieve(
+			'SELECT	p.*,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
+			FROM	papers p
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				WHERE p.submission_progress != 0 AND p.status = ' . (int)SUBMISSION_STATUS_QUEUED;
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+			WHERE	p.submission_progress != 0 AND
+				p.status = ' . (int)SUBMISSION_STATUS_QUEUED,
+			array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale
+			)
+		);
 
-		$result = &$this->retrieveRange($sql);
 		while(!$result->EOF) {
 			$incompleteSubmissions[] = &$this->_returnPresenterSubmissionFromRow($result->getRowAssoc(false));
 			$result->moveNext();
 		}
 		return $incompleteSubmissions;
 	}
-	
+
 	/**
 	 * Get all presenter submissions for an presenter.
 	 * @param $presenterId int
 	 * @return DAOResultFactory containing PresenterSubmissions
 	 */
 	function &getPresenterSubmissions($presenterId, $schedConfId, $active = true, $rangeInfo = null) {
-		$sql = 'SELECT p.*,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2
-			FROM papers p
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$result =& $this->retrieveRange(
+			'SELECT	p.*,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
+			FROM	papers p
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
-				WHERE p.sched_conf_id = ? AND p.user_id = ?';
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+			WHERE	p.sched_conf_id = ?
+				AND p.user_id = ?' .
+				($active?' AND p.status = 1':(
+					' AND ((p.status <> ' . (int) SUBMISSION_STATUS_QUEUED . ' AND p.submission_progress = 0) OR (p.status = ' . (int) SUBMISSION_STATUS_ARCHIVED . '))'
+				)),
+			array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
+				$schedConfId,
+				$presenterId
+			),
+			$rangeInfo
+		);
 
-		if ($active) {
-			$sql .= ' AND p.status = 1';
-		} else {
-			$sql .= ' AND ((p.status <> ' . (int) SUBMISSION_STATUS_QUEUED . ' AND p.submission_progress = 0) OR
-				(p.status = ' . (int) SUBMISSION_STATUS_ARCHIVED . '))'; 
-		}
-
-		$result = &$this->retrieveRange($sql, array($schedConfId, $presenterId), $rangeInfo);
-		
 		$returner = &new DAOResultFactory($result, $this, '_returnPresenterSubmissionFromRow');
 		return $returner;
 	}
-	
+
 	//
 	// Miscellaneous
 	//
-	
+
 	/**
 	 * Get the director decisions for a review stage of a paper.
 	 * @param $paperId int
@@ -212,7 +252,7 @@ class PresenterSubmissionDAO extends DAO {
 		if($stage) {
 			$args[] = $stage;
 		}
-	
+
 		$result = &$this->retrieve(
 			'SELECT edit_decision_id, director_id, decision, date_decided
 			FROM edit_decisions
@@ -221,7 +261,7 @@ class PresenterSubmissionDAO extends DAO {
 			' ORDER BY date_decided ASC',
 			(count($args)==1?shift($args):$args)
 		);
-		
+
 		while (!$result->EOF) {
 			$decisions[] = array(
 				'editDecisionId' => $result->fields['edit_decision_id'],
@@ -234,7 +274,7 @@ class PresenterSubmissionDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $decisions;
 	}
 
@@ -249,11 +289,10 @@ class PresenterSubmissionDAO extends DAO {
 		$submissionsCount[1] = 0;
 
 		$sql = '
-			SELECT
-				count(*), status
-			FROM papers p 
-			LEFT JOIN tracks s ON (s.track_id = p.track_id)
-			WHERE p.sched_conf_id = ? AND p.user_id = ?
+			SELECT	count(*), status
+			FROM	papers p 
+			WHERE	p.sched_conf_id = ? AND
+				p.user_id = ?
 			GROUP BY p.status';
 
 		$result = &$this->retrieve($sql, array($schedConfId, $presenterId));

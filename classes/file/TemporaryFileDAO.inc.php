@@ -18,15 +18,6 @@
 import('file.TemporaryFile');
 
 class TemporaryFileDAO extends DAO {
-
-
-	/**
-	 * Constructor.
-	 */
-	function TemporaryFileDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Retrieve a temporary file by ID.
 	 * @param $fileId int
@@ -50,7 +41,7 @@ class TemporaryFileDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Internal function to return a TemporaryFile object from a row.
 	 * @param $row array
@@ -91,11 +82,11 @@ class TemporaryFileDAO extends DAO {
 				$temporaryFile->getOriginalFileName()
 			)
 		);
-		
+
 		$temporaryFile->setFileId($this->getInsertTemporaryFileId());
 		return $temporaryFile->getFileId();
 	}
-	
+
 	/**
 	 * Update an existing temporary file.
 	 * @param $temporary TemporaryFile
@@ -121,11 +112,11 @@ class TemporaryFileDAO extends DAO {
 				$temporaryFile->getFileId()
 			)
 		);
-		
+
 		return $temporaryFile->getFileId();
-		
+
 	}
-	
+
 	/**
 	 * Delete a temporary file by ID.
 	 * @param $fileId int
@@ -136,7 +127,7 @@ class TemporaryFileDAO extends DAO {
 			'DELETE FROM temporary_files WHERE file_id = ? AND user_id = ?', array($fileId, $userId)
 		);
 	}
-	
+
 	/**
 	 * Delete temporary files by user ID.
 	 * @param $userId int
@@ -146,7 +137,7 @@ class TemporaryFileDAO extends DAO {
 			'DELETE FROM temporary_files WHERE user_id = ?', $userId
 		);
 	}
-	
+
 	function &getExpiredFiles() {
 		// Files older than one day can be cleaned up.
 		$expiryThresholdTimestamp = time() - (60 * 60 * 24);
@@ -175,7 +166,6 @@ class TemporaryFileDAO extends DAO {
 	function getInsertTemporaryFileId() {
 		return $this->getInsertId('temporary_files', 'file_id');
 	}
-	
 }
 
 ?>

@@ -29,13 +29,13 @@ class preCompile extends CommandLineTool {
 	 */
 	function preCompile($argv = array()) {
 		parent::CommandLineTool($argv);
-		
+
 		if (isset($this->argv[0]) && $this->argv[0] == '-h') {
 			$this->usage();
 			exit(0);
 		}
 	}
-	
+
 	/**
 	 * Print command usage information.
 	 */
@@ -43,13 +43,13 @@ class preCompile extends CommandLineTool {
 		echo "Script to precompile all templates and localization and help cache files\n"
 			. "Usage: {$this->scriptName}\n";
 	}
-	
+
 	function execute() {
 		$this->compileTemplates();
 		$this->compileLocales();
 		$this->compileHelp();
 	}
-	
+
 	function compileTemplates() {
 		import('form.Form');
 		$this->templateMgr = &TemplateManager::getManager();
@@ -68,20 +68,20 @@ class preCompile extends CommandLineTool {
 		$this->_findFiles('templates', '_compileTemplate', create_function('$f', 'return preg_match(\'/\.tpl$/\', $f);'));
 		$this->_findFiles('plugins', '_compilePluginTemplate', create_function('$f', 'return preg_match(\'/\.tpl$/\', $f);'));
 	}
-	
+
 	function _compileTemplate($file) {
 		$this->templateMgr->compile(preg_replace('|^templates/|', '', $file));
 	}
-	
+
 	function _compilePluginTemplate($file) {
 		$this->templateMgr->compile('file:' . getcwd() . '/' . $file);
 	}
-	
+
 	function compileLocales() {
 		$locales = &Locale::getAllLocales();
 		// FIXME: Compile temporarily removed.
 	}
-	
+
 	function compileHelp() {
 		import('help.HelpToc');
 		import('help.HelpTocDAO');
@@ -92,18 +92,18 @@ class preCompile extends CommandLineTool {
 		$this->helpTocDao = &DAORegistry::getDAO('HelpTocDAO');
 		$this->_findFiles('help', '_compileHelp', create_function('$f', 'return preg_match(\'/[\d]+\.xml$/\', $f);'));
 	}
-	
+
 	function _compileHelp($file) {
 		preg_match('|help/([\w]+)/(.+)\.xml|', $file, $matches);
 		Request::setCookieVar('currentLocale', $matches[1]); // FIXME kludge
-		
+
 		if (strstr($matches[2], '/topic/')) {
 			$this->helpTopicDao->getTopic($matches[2]);
 		} else {
 			$this->helpTocDao->getToc($matches[2]);
 		}
 	}
-	
+
 	function _findFiles($baseDir, $func, $filter = null) {
 		$dir = opendir($baseDir);
 		while(($file = readdir($dir)) !== false) {
@@ -118,9 +118,9 @@ class preCompile extends CommandLineTool {
 				}
 			}
 		}
-		
+
 	}
-	
+
 }
 
 $tool = &new preCompile(isset($argv) ? $argv : array());

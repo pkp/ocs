@@ -17,14 +17,6 @@
 import ('paper.log.PaperEventLogEntry');
 
 class PaperEventLogDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function PaperEventLogDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Retrieve a log entry by ID.
 	 * @param $logId int
@@ -53,7 +45,7 @@ class PaperEventLogDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve all log entries for a paper.
 	 * @param $paperId int
@@ -63,7 +55,7 @@ class PaperEventLogDAO extends DAO {
 		$returner = &$this->getPaperLogEntriesByAssoc($paperId, null, null, $rangeInfo);
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve all log entries for a paper matching the specified association.
 	 * @param $paperId int
@@ -81,16 +73,16 @@ class PaperEventLogDAO extends DAO {
 				array_push($params, $assocId);
 			}
 		}
-		
+
 		$result = &$this->retrieveRange(
 			'SELECT * FROM paper_event_log WHERE paper_id = ?' . (isset($assocType) ? ' AND assoc_type = ?' . (isset($assocId) ? ' AND assoc_id = ?' : '') : '') . ' ORDER BY log_id DESC',
 			$params, $rangeInfo
 		);
-		
+
 		$returner = &new DAOResultFactory($result, $this, '_returnLogEntryFromRow');
 		return $returner;
 	}
-	
+
 	/**
 	 * Internal function to return an PaperEventLogEntry object from a row.
 	 * @param $row array
@@ -108,7 +100,7 @@ class PaperEventLogDAO extends DAO {
 		$entry->setAssocType($row['assoc_type']);
 		$entry->setAssocId($row['assoc_id']);
 		$entry->setMessage($row['message']);
-		
+
 		HookRegistry::call('PaperEventLogDAO::_returnLogEntryFromRow', array(&$entry, &$row));
 
 		return $entry;
@@ -142,11 +134,11 @@ class PaperEventLogDAO extends DAO {
 				$entry->getMessage()
 			)
 		);
-		
+
 		$entry->setLogId($this->getInsertLogId());
 		return $entry->getLogId();
 	}
-	
+
 	/**
 	 * Delete a single log entry for a paper.
 	 * @param $logId int
@@ -158,14 +150,14 @@ class PaperEventLogDAO extends DAO {
 				'DELETE FROM paper_event_log WHERE log_id = ? AND paper_id = ?',
 				array($logId, $paperId)
 			);
-			
+
 		} else {
 			return $this->update(
 				'DELETE FROM paper_event_log WHERE log_id = ?', $logId
 			);
 		}
 	}
-	
+
 	/**
 	 * Delete all log entries for a paper.
 	 * @param $paperId int
@@ -175,7 +167,7 @@ class PaperEventLogDAO extends DAO {
 			'DELETE FROM paper_event_log WHERE paper_id = ?', $paperId
 		);
 	}
-	
+
 	/**
 	 * Transfer all paper log entries to another user.
 	 * @param $paperId int
@@ -186,7 +178,7 @@ class PaperEventLogDAO extends DAO {
 			array($newUserId, $oldUserId)
 		);
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted log entry.
 	 * @return int
@@ -194,7 +186,6 @@ class PaperEventLogDAO extends DAO {
 	function getInsertLogId() {
 		return $this->getInsertId('paper_event_log', 'log_id');
 	}
-	
 }
 
 ?>

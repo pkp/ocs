@@ -17,13 +17,9 @@
 import('form.Form');
 
 class CreateAccountForm extends Form {
-
 	/** @var boolean user is already registered with another conference */
 	var $existingUser;
 
-	/** @var boolean Include a user's working languages in their profile */
-	var $profileLocalesEnabled;
-	
 	/** @var AuthPlugin default authentication source, if specified */
 	var $defaultAuth;
 
@@ -35,7 +31,7 @@ class CreateAccountForm extends Form {
 	 */
 	function CreateAccountForm() {
 		parent::Form('user/createAccount.tpl');
-		
+
 		$this->existingUser = Request::getUserVar('existingUser') ? 1 : 0;
 
 		import('captcha.CaptchaManager');
@@ -52,8 +48,7 @@ class CreateAccountForm extends Form {
 		} else {
 			// New user -- check required profile fields
 			$site = &Request::getSite();
-			$this->profileLocalesEnabled = $site->getProfileLocalesEnabled();
-			
+
 			$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.account.form.usernameExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByUsername'), array(), true));
 			$this->addCheck(new FormValidatorAlphaNum($this, 'username', 'required', 'user.account.form.usernameAlphaNumeric'));
 			$this->addCheck(new FormValidatorLength($this, 'password', 'required', 'user.account.form.passwordLengthTooShort', '>=', $site->getMinPasswordLength()));
@@ -75,7 +70,7 @@ class CreateAccountForm extends Form {
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -86,7 +81,7 @@ class CreateAccountForm extends Form {
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
-		
+
 		if ($this->captchaEnabled) {
 			import('captcha.CaptchaManager');
 			$captchaManager =& new CaptchaManager();
@@ -103,24 +98,32 @@ class CreateAccountForm extends Form {
 
 		import('schedConf.SchedConfAction');
 
-		$templateMgr->assign('privacyStatement', $schedConf->getSetting('privacyStatement', true));
+		$disciplineDao =& DAORegistry::getDAO('DisciplineDAO');
+		$disciplines =& $disciplineDao->getDisciplines();
+		$templateMgr->assign_by_ref('disciplines', $disciplines);
+
+		$templateMgr->assign('privacyStatement', $conference->getLocalizedSetting('privacyStatement'));
 		$templateMgr->assign('enableOpenAccessNotification', $schedConf->getSetting('enableOpenAccessNotification', true)==1?1:0);
 		$templateMgr->assign('allowRegReader', SchedConfAction::allowRegReader($schedConf));
 		$templateMgr->assign('allowRegPresenter', SchedConfAction::allowRegPresenter($schedConf));
 		$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
-		$templateMgr->assign('profileLocalesEnabled', $this->profileLocalesEnabled);
 		$templateMgr->assign('source', Request::getUserVar('source'));
 		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getTitle(), true)));
-		if ($this->profileLocalesEnabled) {
-			$site = &Request::getSite();
-			$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
-		}
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+
+		$site = &Request::getSite();
+		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
+
 		$templateMgr->assign('helpTopicId', 'user.accountAndProfile');		
 		parent::display();
 	}
-	
+
+	function getLocaleFieldNames() {
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		return $userDao->getLocaleFieldNames();
+	}
+
 	/**
 	 * Initialize default data.
 	 */
@@ -131,14 +134,15 @@ class CreateAccountForm extends Form {
 		$this->setData('userLocales', array());
 		$this->setData('sendPassword', 1);
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
 		$userVars = array(
 			'username', 'password', 'password2',
-			'firstName', 'middleName', 'lastName', 'initials', 'country',
+			'salutation', 'firstName', 'middleName', 'lastName',
+			'gender', 'initials', 'country', 'discipline',
 			'affiliation', 'email', 'userUrl', 'phone', 'fax', 'signature',
 			'mailingAddress', 'biography', 'interests', 'userLocales',
 			'createAsReader', 'openAccessNotification', 'createAsPresenter',
@@ -150,17 +154,17 @@ class CreateAccountForm extends Form {
 		}
 
 		$this->readUserVars($userVars);
-		
+
 		if ($this->getData('userLocales') == null || !is_array($this->getData('userLocales'))) {
 			$this->setData('userLocales', array());
 		}
-		
+
 		if ($this->getData('username') != null) {
 			// Usernames must be lowercase
 			$this->setData('username', strtolower($this->getData('username')));
 		}
 	}
-	
+
 	/**
 	 * Register a new user.
 	 */
@@ -173,43 +177,43 @@ class CreateAccountForm extends Form {
 			if ($user == null) {
 				return false;
 			}
-			
+
 			$userId = $user->getUserId();
-			
+
 		} else {
 			// New user
 			$user = &new User();
-			
+
 			$user->setUsername($this->getData('username'));
+			$user->setSalutation($this->getData('salutation'));
 			$user->setFirstName($this->getData('firstName'));
 			$user->setMiddleName($this->getData('middleName'));
 			$user->setInitials($this->getData('initials'));
 			$user->setLastName($this->getData('lastName'));
+			$user->setGender($this->getData('gender'));
 			$user->setAffiliation($this->getData('affiliation'));
-			$user->setSignature($this->getData('signature'));
+			$user->setSignature($this->getData('signature'), null); // Localized
 			$user->setEmail($this->getData('email'));
 			$user->setUrl($this->getData('userUrl'));
 			$user->setPhone($this->getData('phone'));
 			$user->setFax($this->getData('fax'));
 			$user->setMailingAddress($this->getData('mailingAddress'));
-			$user->setBiography($this->getData('biography'));
-			$user->setInterests($this->getData('interests'));
+			$user->setBiography($this->getData('biography'), null); // Localized
+			$user->setInterests($this->getData('interests'), null); // Localized
 			$user->setDateRegistered(Core::getCurrentDate());
 			$user->setCountry($this->getData('country'));
-		
-			if ($this->profileLocalesEnabled) {
-				$site = &Request::getSite();
-				$availableLocales = $site->getSupportedLocales();
-				
-				$locales = array();
-				foreach ($this->getData('userLocales') as $locale) {
-					if (Locale::isLocaleValid($locale) && in_array($locale, $availableLocales)) {
-						array_push($locales, $locale);
-					}
+
+			$site = &Request::getSite();
+			$availableLocales = $site->getSupportedLocales();
+
+			$locales = array();
+			foreach ($this->getData('userLocales') as $locale) {
+				if (Locale::isLocaleValid($locale) && in_array($locale, $availableLocales)) {
+					array_push($locales, $locale);
 				}
-				$user->setLocales($locales);
 			}
-			
+			$user->setLocales($locales);
+
 			if (isset($this->defaultAuth)) {
 				$user->setPassword($this->getData('password'));
 				// FIXME Check result and handle failures
@@ -240,9 +244,9 @@ class CreateAccountForm extends Form {
 
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
-		
+
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		
+
 		// Roles users are allowed to register themselves in
 		$allowedRoles = array('reader' => 'createAsReader', 'presenter' => 'createAsPresenter', 'reviewer' => 'createAsReviewer');
 
@@ -256,7 +260,7 @@ class CreateAccountForm extends Form {
 		if (!SchedConfAction::allowRegReviewer($schedConf)) {
 			unset($allowedRoles['reviewer']);
 		}
-		
+
 		foreach ($allowedRoles as $k => $v) {
 			$roleId = $roleDao->getRoleIdFromPath($k);
 			if ($this->getData($v) && !$roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $userId, $roleId)) {
@@ -269,7 +273,7 @@ class CreateAccountForm extends Form {
 
 			}
 		}
-		
+
 		if (!$this->existingUser) {
 			import('mail.MailTemplate');
 			if ($requireValidation) {
@@ -315,7 +319,7 @@ class CreateAccountForm extends Form {
 			$userSettingsDao->updateSetting($userId, 'openAccessNotification', true, 'bool', $conference->getConferenceId());
 		}
 	}
-	
+
 }
 
 ?>

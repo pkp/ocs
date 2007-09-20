@@ -25,14 +25,14 @@ class PayPalSettingsForm extends Form {
 
 	/** $var $errors string */
 	var $errors;
-	
+
 	/**
 	 * Constructor
 	 * @param $schedConfId int
 	 */
 	function PayPalSettingsForm(&$plugin, $conferenceId, $schedConfId) {
 		parent::Form($plugin->getTemplatePath() . 'settingsForm.tpl');
-	
+
 		$this->addCheck(new FormValidatorPost($this));
 
 		$this->conferenceId = $conferenceId;
@@ -40,9 +40,9 @@ class PayPalSettingsForm extends Form {
 		$this->plugin =& $plugin;
 
 	}
-	
 
-	
+
+
 	/**
 	 * Initialize form data from current group group.
 	 */
@@ -50,7 +50,7 @@ class PayPalSettingsForm extends Form {
 		$schedConfId = $this->schedConfId;
 		$conferenceId = $this->conferenceId;
 		$plugin =& $this->plugin;
-		
+
 		/* FIXME: put these defaults somewhere else */
 		/*
 		$paypalSettings['enabled'] = true;
@@ -58,7 +58,7 @@ class PayPalSettingsForm extends Form {
 		$paypalSettings['selleraccount'] = "seller@ojs.org";
 		;
 		*/
-		
+
 		$this->_data = array(
 			'enabled' => $plugin->getSetting($conferenceId, $schedConfId, 'enabled'),
 			'paypalurl' => $plugin->getSetting($conferenceId, $schedConfId, 'paypalurl'),
@@ -66,7 +66,7 @@ class PayPalSettingsForm extends Form {
 		);
 
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -76,7 +76,7 @@ class PayPalSettingsForm extends Form {
 								'selleraccount'
 								));
 	}
-	
+
 	/**
 	 * Save page - write to content file. 
 	 */	 
@@ -84,7 +84,7 @@ class PayPalSettingsForm extends Form {
 		$plugin =& $this->plugin;
 		$conferenceId = $this->conferenceId;
 		$schedConfId = $this->schedConfId;
-				
+
 		$paypalSettings = array();
 		$plugin->updateSetting($conferenceId, $schedConfId, 'enabled', $this->getData('enabled'));
 		$plugin->updateSetting($conferenceId, $schedConfId, 'paypalurl', $this->getData('paypalurl'));

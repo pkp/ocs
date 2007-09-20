@@ -24,11 +24,11 @@ class SuppFile extends PaperFile {
 	function SuppFile() {
 		parent::DataObject();
 	}
-	
+
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get ID of supplementary file.
 	 * @return int
@@ -36,7 +36,7 @@ class SuppFile extends PaperFile {
 	function getSuppFileId() {
 		return $this->getData('suppFileId');
 	}
-	
+
 	/**
 	 * Set ID of supplementary file.
 	 * @param $suppFileId int
@@ -44,7 +44,7 @@ class SuppFile extends PaperFile {
 	function setSuppFileId($suppFileId) {
 		return $this->setData('suppFileId', $suppFileId);
 	}
-	
+
 	/**
 	 * Get public ID of supplementary file.
 	 * @return string
@@ -52,7 +52,7 @@ class SuppFile extends PaperFile {
 	function getPublicSuppFileId() {
 		return $this->getData('publicSuppFileId');
 	}
-	
+
 	/**
 	 * Set public ID of supplementary file.
 	 * @param $suppFileId string
@@ -60,7 +60,7 @@ class SuppFile extends PaperFile {
 	function setPublicSuppFileId($publicSuppFileId) {
 		return $this->setData('publicSuppFileId', $publicSuppFileId);
 	}
-	
+
 	/**
 	 * Get ID of paper.
 	 * @return int
@@ -68,7 +68,7 @@ class SuppFile extends PaperFile {
 	function getPaperId() {
 		return $this->getData('paperId');
 	}
-	
+
 	/**
 	 * Set ID of paper.
 	 * @param $paperId int
@@ -76,55 +76,85 @@ class SuppFile extends PaperFile {
 	function setPaperId($paperId) {
 		return $this->setData('paperId', $paperId);
 	}
-		
+
+	/**
+	 * Get localized title
+	 * @return string
+	 */
+	function getSuppFileTitle() {
+		return $this->getLocalizedData('title');
+	}
+
 	/**
 	 * Get title.
+	 * @param $locale string
 	 * @return string
 	 */
 	function getTitle() {
 		return $this->getData('title');
 	}
-	
+
 	/**
 	 * Set title.
 	 * @param $title string
+	 * @param $locale string
 	 */
-	function setTitle($title) {
-		return $this->setData('title', $title);
+	function setTitle($title, $locale) {
+		return $this->setData('title', $title, $locale);
 	}
-	
+
 	/**
-	 * Get creator.
+	 * Get localized creator
 	 * @return string
 	 */
-	function getCreator() {
-		return $this->getData('creator');
+	function getSuppFileCreator() {
+		return $this->getLocalizedData('creator');
 	}
-	
+
+	/**
+	 * Get creator.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getCreator($locale) {
+		return $this->getData('creator', $locale);
+	}
+
 	/**
 	 * Set creator.
 	 * @param $creator string
+	 * @param $locale string
 	 */
-	function setCreator($creator) {
-		return $this->setData('creator', $creator);
+	function setCreator($creator, $locale) {
+		return $this->setData('creator', $creator, $locale);
 	}
-	
+
 	/**
-	 * Get subject.
+	 * Get localized subject
 	 * @return string
 	 */
-	function getSubject() {
-		return $this->getData('subject');
+	function getSuppFileSubject() {
+		return $this->getLocalizedData('subject');
 	}
-	
+
+	/**
+	 * Get subject.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getSubject($locale) {
+		return $this->getData('subject', $locale);
+	}
+
 	/**
 	 * Set subject.
 	 * @param $subject string
+	 * @param $locale string
 	 */
-	function setSubject($subject) {
-		return $this->setData('subject', $subject);
+	function setSubject($subject, $locale) {
+		return $this->setData('subject', $subject, $locale);
 	}
-	
+
 	/**
 	 * Get type (method/approach).
 	 * @return string
@@ -132,7 +162,7 @@ class SuppFile extends PaperFile {
 	function getType() {
 		return $this->getData('type');
 	}
-	
+
 	/**
 	 * Set type (method/approach).
 	 * @param $type string
@@ -140,71 +170,111 @@ class SuppFile extends PaperFile {
 	function setType($type) {
 		return $this->setData('type', $type);
 	}
-	
+
 	/**
-	 * Get custom type.
+	 * Get localized subject
 	 * @return string
 	 */
-	function getTypeOther() {
-		return $this->getData('typeOther');
+	function getSuppFileTypeOther() {
+		return $this->getLocalizedData('typeOther');
 	}
-	
+
+	/**
+	 * Get custom type.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getTypeOther($locale) {
+		return $this->getData('typeOther', $locale);
+	}
+
 	/**
 	 * Set custom type.
 	 * @param $typeOther string
+	 * @param $locale string
 	 */
-	function setTypeOther($typeOther) {
-		return $this->setData('typeOther', $typeOther);
+	function setTypeOther($typeOther, $locale) {
+		return $this->setData('typeOther', $typeOther, $locale);
 	}
-	
+
 	/**
-	 * Get file description.
+	 * Get localized description
 	 * @return string
 	 */
-	function getDescription() {
-		return $this->getData('description');
+	function getSuppFileDescription() {
+		return $this->getLocalizedData('description');
 	}
-	
+
+	/**
+	 * Get file description.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getDescription($locale) {
+		return $this->getData('description', $locale);
+	}
+
 	/**
 	 * Set file description.
 	 * @param $description string
+	 * @param $locale string
 	 */
-	function setDescription($description) {
-		return $this->setData('description', $description);
+	function setDescription($description, $locale) {
+		return $this->setData('description', $description, $locale);
 	}
-	
+
 	/**
-	 * Get publisher.
+	 * Get localized publisher
 	 * @return string
 	 */
-	function getPublisher() {
-		return $this->getData('publisher');
+	function getSuppFilePublisher() {
+		return $this->getLocalizedData('publisher');
 	}
-	
+
+	/**
+	 * Get publisher.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getPublisher($locale) {
+		return $this->getData('publisher', $locale);
+	}
+
 	/**
 	 * Set publisher.
 	 * @param $publisher string
+	 * @param $locale string
 	 */
-	function setPublisher($publisher) {
-		return $this->setData('publisher', $publisher);
+	function setPublisher($publisher, $locale) {
+		return $this->setData('publisher', $publisher, $locale);
 	}
-	
+
 	/**
-	 * Get sponsor.
+	 * Get localized sponsor
 	 * @return string
 	 */
-	function getSponsor() {
-		return $this->getData('sponsor');
+	function getSuppFileSponsor() {
+		return $this->getLocalizedData('sponsor');
 	}
-	
+
+	/**
+	 * Get sponsor.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getSponsor($locale) {
+		return $this->getData('sponsor', $locale);
+	}
+
 	/**
 	 * Set sponsor.
 	 * @param $sponsor string
+	 * @param $locale string
 	 */
-	function setSponsor($sponsor) {
-		return $this->setData('sponsor', $sponsor);
+	function setSponsor($sponsor, $locale) {
+		return $this->setData('sponsor', $sponsor, $locale);
 	}
-	
+
 	/**
 	 * Get date created.
 	 * @return date
@@ -212,7 +282,7 @@ class SuppFile extends PaperFile {
 	function getDateCreated() {
 		return $this->getData('dateCreated');
 	}
-	
+
 	/**
 	 * Set date created.
 	 * @param $dateCreated date
@@ -220,23 +290,33 @@ class SuppFile extends PaperFile {
 	function setDateCreated($dateCreated) {
 		return $this->setData('dateCreated', $dateCreated);
 	}
-	
+
 	/**
-	 * Get source.
+	 * Get localized source
 	 * @return string
 	 */
-	function getSource() {
-		return $this->getData('source');
+	function getSuppFileSource() {
+		return $this->getLocalizedData('source');
 	}
-	
+
+	/**
+	 * Get source.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getSource($locale) {
+		return $this->getData('source', $locale);
+	}
+
 	/**
 	 * Set source.
 	 * @param $source string
+	 * @param $locale string
 	 */
-	function setSource($source) {
-		return $this->setData('source', $source);
+	function setSource($source, $locale) {
+		return $this->setData('source', $source, $locale);
 	}
-	
+
 	/**
 	 * Get language.
 	 * @return string
@@ -244,7 +324,7 @@ class SuppFile extends PaperFile {
 	function getLanguage() {
 		return $this->getData('language');
 	}
-	
+
 	/**
 	 * Set language.
 	 * @param $language string
@@ -252,7 +332,7 @@ class SuppFile extends PaperFile {
 	function setLanguage($language) {
 		return $this->setData('language', $language);
 	}
-	
+
 	/**
 	 * Check if file is available to peer reviewers.
 	 * @return boolean
@@ -260,7 +340,7 @@ class SuppFile extends PaperFile {
 	function getShowReviewers() {
 		return $this->getData('showReviewers');
 	}
-	
+
 	/**
 	 * Set if file is available to peer reviewers or not.
 	 * @param boolean
@@ -268,7 +348,7 @@ class SuppFile extends PaperFile {
 	function setShowReviewers($showReviewers) {
 		return $this->setData('showReviewers', $showReviewers);
 	}
-	
+
 	/**
 	 * Get date file was submitted.
 	 * @return datetime
@@ -276,7 +356,7 @@ class SuppFile extends PaperFile {
 	function getDateSubmitted() {
 		return $this->getData('dateSubmitted');
 	}
-	
+
 	/**
 	 * Set date file was submitted.
 	 * @param $dateSubmitted datetime
@@ -284,7 +364,7 @@ class SuppFile extends PaperFile {
 	function setDateSubmitted($dateSubmitted) {
 		return $this->setData('dateSubmitted', $dateSubmitted);
 	}
-	
+
 	/**
 	 * Get sequence order of supplementary file.
 	 * @return float
@@ -292,7 +372,7 @@ class SuppFile extends PaperFile {
 	function getSequence() {
 		return $this->getData('sequence');
 	}
-	
+
 	/**
 	 * Set sequence order of supplementary file.
 	 * @param $sequence float
@@ -300,7 +380,7 @@ class SuppFile extends PaperFile {
 	function setSequence($sequence) {
 		return $this->setData('sequence', $sequence);
 	}
-	
+
 	/**
 	 * Return the "best" supp file ID -- If a public ID is set,
 	 * use it; otherwise use the internal Id. (Checks the sched conf

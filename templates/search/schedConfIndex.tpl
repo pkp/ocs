@@ -15,19 +15,19 @@
 
 {foreach from=$conferenceIndex item=conference key=conferenceId}
 	<h3><a href="{url conference=$conference->getPath() page="index"}">{$conference->getTitle()|escape}</a></h3>
-	{assign var=conferenceDescription value=$conference->getSetting('conferenceDescription')}
-	{if !empty($conferenceDescription)}
-		<p>{$conferenceDescription|nl2br}</p>
+	{assign var=description value=$conference->getSetting('description')}
+	{if !empty($description)}
+		<p>{$description|nl2br}</p>
 	{/if}
 	{if !empty($schedConfIndex[$conferenceId])}
 		<ul>
 			{foreach from=$schedConfIndex[$conferenceId] item=schedConf}
-				{assign var=schedConfIntroduction value=$schedConf->getSetting('schedConfIntroduction')}
+				{assign var=introduction value=$schedConf->getLocalizedSetting('introduction')}
 				<li>
-					<h4>{$schedConf->getTitle()|escape}</h4>
+					<h4>{$schedConf->getSchedConfTitle()|escape}</h4>
 					{if $schedConf->getSetting('startDate')}{$schedConf->getSetting('startDate')|date_format:$dateFormatLong} &ndash; {$schedConf->getSetting('endDate')|date_format:$dateFormatLong}{/if}
-					{if !empty($schedConfIntroduction)}
-						<p>{$schedConfIntroduction|nl2br}</p>
+					{if !empty($introduction)}
+						<p>{$introduction|nl2br}</p>
 					{/if}
 				</li>
 			{/foreach}

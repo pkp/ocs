@@ -44,7 +44,7 @@ class PaymentSettingsForm extends Form {
 		$templateMgr->assign_by_ref('paymentMethodPlugins', $this->plugins);
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize form data from current group group.
 	 */
@@ -76,7 +76,7 @@ class PaymentSettingsForm extends Form {
 			}
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -92,7 +92,7 @@ class PaymentSettingsForm extends Form {
 		}
 
 	}
-	
+
 	/**
 	 * Save settings 
 	 */	 

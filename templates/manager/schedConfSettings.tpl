@@ -13,7 +13,7 @@
 
 <br />
 
-<form method="post" action="{url op="updateSchedConf"}">
+<form name="schedConf" method="post" action="{url op="updateSchedConf"}">
 {if $schedConfId}
 <input type="hidden" name="schedConfId" value="{$schedConfId}" />
 {/if}
@@ -26,18 +26,27 @@
 {/if}
 
 <table class="data" width="100%">
+	{if count($formLocales) > 1}
+		<tr valign="top">
+			<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+			<td width="80%" class="value">
+				{url|assign:"settingsUrl" op="editSchedConf" path=$schedConfId}
+				{form_language_chooser form="schedConf" url=$settingsUrl}
+			</td>
+		</tr>
+	{/if}
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="title" key="manager.schedConfs.form.title" required="true"}</td>
-		<td width="80%" class="value"><input type="text" id="title" name="title" value="{$title|escape}" size="40" maxlength="120" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" id="title" name="title[{$formLocale|escape}]" value="{$title[$formLocale]|escape}" size="40" maxlength="120" class="textField" /></td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="acronym" required="true" key="manager.schedConfs.form.acronym"}</td>
 		<td width="80%" class="value">
-			<input type="text" name="acronym" id="acronym" value="{$acronym|escape}" size="8" maxlength="16" class="textField" />
+			<input type="text" name="acronym[{$formLocale|escape}]" id="acronym" value="{$acronym[$formLocale]|escape}" size="8" maxlength="16" class="textField" />
 		</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="title" key="common.path" required="true"}</td>
+		<td class="label">{fieldLabel name="path" key="common.path" required="true"}</td>
 		<td class="value">
 			<input type="text" id="path" name="path" value="{$path|escape}" size="16" maxlength="32" class="textField" />
 			<br />

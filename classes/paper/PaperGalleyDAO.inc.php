@@ -19,7 +19,6 @@ import('paper.PaperGalley');
 import('paper.PaperHTMLGalley');
 
 class PaperGalleyDAO extends DAO {
-
 	/** Helper file DAOs. */
 	var $paperFileDao;
 
@@ -30,7 +29,7 @@ class PaperGalleyDAO extends DAO {
 		parent::DAO();
 		$this->paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 	}
-	
+
 	/**
 	 * Retrieve a galley by ID.
 	 * @param $galleyId int
@@ -47,7 +46,7 @@ class PaperGalleyDAO extends DAO {
 				WHERE g.galley_id = ? AND g.paper_id = ?',
 				array($galleyId, $paperId)
 			);
-			
+
 		} else {
 			$result = &$this->retrieve(
 				'SELECT g.*,
@@ -69,7 +68,7 @@ class PaperGalleyDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve all galleys for a paper.
 	 * @param $paperId int
@@ -77,7 +76,7 @@ class PaperGalleyDAO extends DAO {
 	 */
 	function &getGalleysByPaper($paperId) {
 		$galleys = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT g.*,
 			a.file_name, a.original_file_name, a.file_type, a.file_size, a.status, a.date_uploaded, a.date_modified
@@ -86,7 +85,7 @@ class PaperGalleyDAO extends DAO {
 			WHERE g.paper_id = ? ORDER BY g.seq',
 			$paperId
 		);
-		
+
 		while (!$result->EOF) {
 			$galleys[] = &$this->_returnGalleyFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -94,10 +93,12 @@ class PaperGalleyDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
+		HookRegistry::call('PaperGalleyDAO::getGalleysByPaper', array(&$galleys, &$paperId));
+
 		return $galleys;
 	}
-	
+
 	/**
 	 * Internal function to return an PaperGalley object from a row.
 	 * @param $row array
@@ -106,27 +107,28 @@ class PaperGalleyDAO extends DAO {
 	function &_returnGalleyFromRow(&$row) {
 		if ($row['html_galley']) {
 			$galley = &new PaperHTMLGalley();
-			
+
 			// HTML-specific settings
 			$galley->setStyleFileId($row['style_file_id']);
 			if ($row['style_file_id']) {
 				$galley->setStyleFile($this->paperFileDao->getPaperFile($row['style_file_id']));
 			}
-		
+
 			// Retrieve images
 			$images = &$this->getGalleyImages($row['galley_id']);
 			$galley->setImageFiles($images); 
-			
+
 		} else {
 			$galley = &new PaperGalley();
 		}
 		$galley->setGalleyId($row['galley_id']);
 		$galley->setPaperId($row['paper_id']);
+		$galley->setLocale($row['locale']);
 		$galley->setFileId($row['file_id']);
 		$galley->setLabel($row['label']);
 		$galley->setSequence($row['seq']);
 		$galley->setViews($row['views']);
-		
+
 		// PaperFile set methods
 		$galley->setFileName($row['file_name']);
 		$galley->setOriginalFileName($row['original_file_name']);
@@ -135,7 +137,7 @@ class PaperGalleyDAO extends DAO {
 		$galley->setStatus($row['status']);
 		$galley->setDateModified($this->datetimeFromDB($row['date_modified']));
 		$galley->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
-		
+
 		HookRegistry::call('PaperGalleyDAO::_returnGalleyFromRow', array(&$galley, &$row));
 
 		return $galley;
@@ -148,13 +150,14 @@ class PaperGalleyDAO extends DAO {
 	function insertGalley(&$galley) {
 		$this->update(
 			'INSERT INTO paper_galleys
-				(paper_id, file_id, label, html_galley, style_file_id, seq)
+				(paper_id, file_id, label, locale, html_galley, style_file_id, seq)
 				VALUES
-				(?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$galley->getPaperId(),
 				$galley->getFileId(),
 				$galley->getLabel(),
+				$galley->getLocale(),
 				(int)$galley->isHTMLGalley(),
 				$galley->isHTMLGalley() ? $galley->getStyleFileId() : null,
 				$galley->getSequence() == null ? $this->getNextGalleySequence($galley->getPaperID()) : $galley->getSequence()
@@ -163,7 +166,7 @@ class PaperGalleyDAO extends DAO {
 		$galley->setGalleyId($this->getInsertGalleyId());
 		return $galley->getGalleyId();
 	}
-	
+
 	/**
 	 * Update an existing PaperGalley.
 	 * @param $galley PaperGalley
@@ -174,6 +177,7 @@ class PaperGalleyDAO extends DAO {
 				SET
 					file_id = ?,
 					label = ?,
+					locale = ?,
 					html_galley = ?,
 					style_file_id = ?,
 					seq = ?
@@ -181,18 +185,15 @@ class PaperGalleyDAO extends DAO {
 			array(
 				$galley->getFileId(),
 				$galley->getLabel(),
+				$galley->getLocale(),
 				(int)$galley->isHTMLGalley(),
 				$galley->isHTMLGalley() ? $galley->getStyleFileId() : null,
 				$galley->getSequence(),
 				$galley->getGalleyId()
 			)
 		);
-		
-		//if($galley->isHTMLGalley()) {
-			// FIXME Update images, etc.
-		//}
 	}
-	
+
 	/**
 	 * Delete an PaperGalley.
 	 * @param $galley PaperGalley
@@ -200,7 +201,7 @@ class PaperGalleyDAO extends DAO {
 	function deleteGalley(&$galley) {
 		return $this->deleteGalleyById($galley->getGalleyId());
 	}
-	
+
 	/**
 	 * Delete a galley by ID.
 	 * @param $galleyId int
@@ -213,14 +214,14 @@ class PaperGalleyDAO extends DAO {
 				'DELETE FROM paper_galleys WHERE galley_id = ? AND paper_id = ?',
 				array($galleyId, $paperId)
 			);
-		
+
 		} else {
 			return $this->update(
 				'DELETE FROM paper_galleys WHERE galley_id = ?', $galleyId
 			);
 		}
 	}
-	
+
 	/**
 	 * Delete galleys (and dependent galley image entries) by paper.
 	 * NOTE that this will not delete paper_file entities or the respective files.
@@ -232,7 +233,7 @@ class PaperGalleyDAO extends DAO {
 			$this->deleteGalleyById($galley->getGalleyId(), $paperId);
 		}
 	}
-	
+
 	/**
 	 * Check if a galley exists with the associated file ID.
 	 * @param $paperId int
@@ -245,7 +246,7 @@ class PaperGalleyDAO extends DAO {
 			WHERE paper_id = ? AND file_id = ?',
 			array($paperId, $fileId)
 		);
-		
+
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
 		$result->Close();
@@ -253,7 +254,7 @@ class PaperGalleyDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Increment the views count for a galley.
 	 * @param $galleyId int
@@ -264,7 +265,7 @@ class PaperGalleyDAO extends DAO {
 			$galleyId
 		);
 	}
-	
+
 	/**
 	 * Sequentially renumber galleys for a paper in their sequence order.
 	 * @param $paperId int
@@ -274,7 +275,7 @@ class PaperGalleyDAO extends DAO {
 			'SELECT galley_id FROM paper_galleys WHERE paper_id = ? ORDER BY seq',
 			$paperId
 		);
-		
+
 		for ($i=1; !$result->EOF; $i++) {
 			list($galleyId) = $result->fields;
 			$this->update(
@@ -287,7 +288,7 @@ class PaperGalleyDAO extends DAO {
 		$result->close();
 		unset($result);
 	}
-	
+
 	/**
 	 * Get the the next sequence number for a paper's galleys (i.e., current max + 1).
 	 * @param $paperId int
@@ -305,7 +306,7 @@ class PaperGalleyDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted gallery.
 	 * @return int
@@ -313,12 +314,12 @@ class PaperGalleyDAO extends DAO {
 	function getInsertGalleyId() {
 		return $this->getInsertId('paper_galleys', 'galley_id');
 	}
-	
-	
+
+
 	//
 	// Extra routines specific to HTML galleys.
 	//
-	
+
 	/**
 	 * Retrieve array of the images for an HTML galley.
 	 * @param $galleyId int
@@ -326,13 +327,13 @@ class PaperGalleyDAO extends DAO {
 	 */
 	function &getGalleyImages($galleyId) {
 		$images = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT a.* FROM paper_html_galley_images i, paper_files a
 			WHERE i.file_id = a.file_id AND i.galley_id = ?',
 			$galleyId
 		);
-		
+
 		while (!$result->EOF) {
 			$images[] = &$this->paperFileDao->_returnPaperFileFromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
@@ -340,10 +341,10 @@ class PaperGalleyDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-		
+
 		return $images;
 	}
-	
+
 	/**
 	 * Attach an image to an HTML galley.
 	 * @param $galleyId int
@@ -358,7 +359,7 @@ class PaperGalleyDAO extends DAO {
 			array($galleyId, $fileId)
 		);
 	}
-	
+
 	/**
 	 * Delete an image from an HTML galley.
 	 * @param $galleyId int
@@ -371,7 +372,7 @@ class PaperGalleyDAO extends DAO {
 			array($galleyId, $fileId)
 		);
 	}
-	
+
 	/**
 	 * Delete HTML galley images by galley.
 	 * @param $galleyId int

@@ -18,7 +18,6 @@
 import('submission.reviewer.ReviewerSubmission');
 
 class ReviewerSubmissionDAO extends DAO {
-
 	var $paperDao;
 	var $presenterDao;
 	var $userDao;
@@ -42,7 +41,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 		$this->paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
 	}
-	
+
 	/**
 	 * Retrieve a reviewer submission by paper ID.
 	 * @param $paperId int
@@ -50,24 +49,36 @@ class ReviewerSubmissionDAO extends DAO {
 	 * @return ReviewerSubmission
 	 */
 	function &getReviewerSubmission($reviewId) {
-		$result = &$this->retrieve(
-			'SELECT p.*, r.*,
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$result =& $this->retrieve(
+			'SELECT	p.*, r.*,
 				r2.review_revision,
 				u.first_name,
 				u.last_name,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2
-			FROM papers p
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
+			FROM	papers p
 				LEFT JOIN review_assignments r ON (p.paper_id = r.paper_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_stages r2 ON (p.paper_id = r2.paper_id AND r.stage = r2.stage)
-			WHERE r.review_id = ?',
-			$reviewId
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+			WHERE	r.review_id = ?',
+			array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
+				$reviewId
+			)
 		);
 
 		$returner = null;
@@ -80,7 +91,7 @@ class ReviewerSubmissionDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Internal function to return a ReviewerSubmission object from a row.
 	 * @param $row array
@@ -100,15 +111,15 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setReviewFile($this->paperFileDao->getPaperFile($row['review_file_id']));
 		$reviewerSubmission->setReviewerFile($this->paperFileDao->getPaperFile($row['reviewer_file_id']));
 		$reviewerSubmission->setReviewerFileRevisions($this->paperFileDao->getPaperFileRevisions($row['reviewer_file_id']));
-		
+
 		// Comments
 		$reviewerSubmission->setMostRecentPeerReviewComment($this->paperCommentDao->getMostRecentPaperComment($row['paper_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
-		
+
 		// Director Decisions
 		for ($i = 1; $i <= $row['current_stage']; $i++) {
 			$reviewerSubmission->setDecisions($this->getDirectorDecisions($row['paper_id'], $i), $i);
 		}
-		
+
 		// Review Assignment 
 		$reviewerSubmission->setReviewId($row['review_id']);
 		$reviewerSubmission->setReviewerId($row['reviewer_id']);
@@ -131,7 +142,7 @@ class ReviewerSubmissionDAO extends DAO {
 
 		// Paper attributes
 		$this->paperDao->_paperFromRow($reviewerSubmission, $row);
-		
+
 		HookRegistry::call('ReviewerSubmissionDAO::_returnReviewerSubmissionFromRow', array(&$reviewerSubmission, &$row));
 
 		return $reviewerSubmission;
@@ -175,7 +186,7 @@ class ReviewerSubmissionDAO extends DAO {
 			)
 		);
 	}
-	
+
 	/**
 	 * Get all submissions for a reviewer of a conference.
 	 * @param $reviewerId int
@@ -184,31 +195,47 @@ class ReviewerSubmissionDAO extends DAO {
 	 * @return array ReviewerSubmissions
 	 */
 	function &getReviewerSubmissionsByReviewerId($reviewerId, $schedConfId, $active = true, $rangeInfo = null) {
-		$sql = 'SELECT p.*,
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$result =& $this->retrieveRange(
+			'SELECT	p.*,
 				r.*,
 				r2.review_revision,
 				u.first_name,
 				u.last_name,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM papers p
 				LEFT JOIN review_assignments r ON (p.paper_id = r.paper_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage)
-			WHERE p.sched_conf_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+			WHERE	p.sched_conf_id = ? AND
+				r.reviewer_id = ? AND
+				r.date_notified IS NOT NULL' .
+				($active?
+					' AND r.date_completed IS NULL AND r.declined <> 1 AND (r.cancelled = 0 OR r.cancelled IS NULL)':
+					' AND (r.date_completed IS NOT NULL OR r.cancelled = 1 OR r.declined = 1)';
+				),
+			array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
+				$schedConfId,
+				$reviewerId
+			),
+			$rangeInfo
+		);
 
-		if ($active) {
-			$sql .=  ' AND r.date_completed IS NULL AND r.declined <> 1 AND (r.cancelled = 0 OR r.cancelled IS NULL)';
-		} else {
-			$sql .= ' AND (r.date_completed IS NOT NULL OR r.cancelled = 1 OR r.declined = 1)';
-		}
-
-		$result = &$this->retrieveRange($sql, array($schedConfId, $reviewerId), $rangeInfo);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnReviewerSubmissionFromRow');
 		return $returner;
@@ -249,7 +276,7 @@ class ReviewerSubmissionDAO extends DAO {
 
 		return $submissionsCount;
 	}
-	
+
 	/**
 	 * Get the director decisions for a review stage of a paper.
 	 * @param $paperId int
@@ -257,12 +284,12 @@ class ReviewerSubmissionDAO extends DAO {
 	 */
 	function getDirectorDecisions($paperId, $stage = null) {
 		$decisions = array();
-	
+
 		$args = array($paperId);
 		if($stage) {
 			$args[] = $stage;
 		}
-		
+
 		$result = &$this->retrieve('
 			SELECT edit_decision_id, director_id, decision, date_decided
 			FROM edit_decisions
@@ -270,7 +297,7 @@ class ReviewerSubmissionDAO extends DAO {
 				. ($stage?' AND stage = ?':'')
 			. ' ORDER BY edit_decision_id ASC',
 			count($args)==1?shift($args):$args);
-		
+
 		while (!$result->EOF) {
 			$decisions[] = array(
 				'editDecisionId' => $result->fields['edit_decision_id'],
@@ -283,10 +310,9 @@ class ReviewerSubmissionDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $decisions;
 	}
-	
 }
 
 ?>

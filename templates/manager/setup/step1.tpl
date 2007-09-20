@@ -11,17 +11,40 @@
 {assign var="pageTitle" value="manager.setup.aboutConference.title"}
 {include file="manager/setup/setupHeader.tpl"}
 
-<form method="post" action="{url op="saveSetup" path="1"}">
+<form name="setupForm" method="post" action="{url op="saveSetup" path="1"}">
 {include file="common/formErrors.tpl"}
 
-<h3><label for="conferenceDescription">1.1 {translate key="manager.setup.aboutConference.conferenceDescription"}</label></h3>
-<span class="instruct">{translate key="manager.setup.aboutConference.conferenceDescription.description"}</span>
+{if count($formLocales) > 1}
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="80%" class="value">
+			{url|assign:"setupFormUrl" op="setup" path="1"}
+			{form_language_chooser form="setupForm" url=$setupFormUrl}
+		</td>
+	</tr>
+</table>
+{/if}
 
-<textarea name="conferenceDescription" id="conferenceDescription" rows="5" cols="60" class="textArea">{$conferenceDescription|escape}</textarea>
+<h3>1.1 {translate key="common.title"}</h3>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="title" key="common.title" required="true"}</td>
+		<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" id="title" value="{$title[$formLocale]|escape}" size="30" maxlength="60" class="textField" /></td>
+	</tr>
+</table>
 
 <div class="separator"></div>
 
-<h3>1.2 {translate key="manager.setup.aboutConference.principalContact"}</h3>
+<h3><label for="description">1.2 {translate key="manager.setup.aboutConference.conferenceDescription"}</label></h3>
+<span class="instruct">{translate key="manager.setup.aboutConference.conferenceDescription.description"}</span>
+
+<textarea name="description[{$formLocale|escape}]" id="description" rows="5" cols="60" class="textArea">{$description[$formLocale]|escape}</textarea>
+
+<div class="separator"></div>
+
+<h3>1.3 {translate key="manager.setup.aboutConference.principalContact"}</h3>
 
 <table width="100%" class="data">
 	<tr valign="top">
@@ -56,17 +79,17 @@
 
 <div class="separator"></div>
 
-<h3><label for="copyrightNotice">1.3 {translate key="manager.setup.aboutConference.copyrightNotice"}</label></h3>
+<h3><label for="copyrightNotice">1.4 {translate key="manager.setup.aboutConference.copyrightNotice"}</label></h3>
 <p>{translate key="manager.setup.aboutConference.copyrightNotice.description"}</p>
 
-<p><textarea name="copyrightNotice" id="copyrightNotice" rows="10" cols="60" class="textArea">{$copyrightNotice|escape}</textarea></p>
+<p><textarea name="copyrightNotice[{$formLocale|escape}]" id="copyrightNotice" rows="10" cols="60" class="textArea">{$copyrightNotice[$formLocale]|escape}</textarea></p>
 
 <p><input type="checkbox" name="copyrightNoticeAgree" id="copyrightNoticeAgree" value="1"{if $copyrightNoticeAgree} checked="checked"{/if} /> <label for="copyrightNoticeAgree">{translate key="manager.setup.aboutConference.copyrightNoticeAgree"}</label><br/>
 <input type="checkbox" name="postCreativeCommons" id="postCreativeCommons" value="1"{if $postCreativeCommons} checked="checked"{/if} /> <label for="postCreativeCommons">{translate key="manager.setup.aboutConference.postCreativeCommons"}</label><br/></p>
 
 <div class="separator"></div>
 
-<h3>1.4 {translate key="manager.setup.aboutConference.archiveAccessPolicy"}</h3>
+<h3>1.5 {translate key="manager.setup.aboutConference.archiveAccessPolicy"}</h3>
 <p>{translate key="manager.setup.aboutConference.archiveAccessPolicy.description"}</p>
 
 <table width="100%" class="data">
@@ -90,27 +113,27 @@
 	</tr>
 </table>
 
-<p><textarea name="archiveAccessPolicy" id="archiveAccessPolicy" rows="10" cols="60" class="textArea">{$archiveAccessPolicy|escape}</textarea></p>
+<p><textarea name="archiveAccessPolicy[{$formLocale|escape}]" id="archiveAccessPolicy" rows="10" cols="60" class="textArea">{$archiveAccessPolicy[$formLocale]|escape}</textarea></p>
 
 <div class="separator"></div>
 
-<h3>1.5 {translate key="manager.setup.aboutConference.privacyStatement"}</h3>
+<h3>1.6 {translate key="manager.setup.aboutConference.privacyStatement"}</h3>
 
-<p><textarea name="privacyStatement" id="privacyStatement" rows="10" cols="60" class="textArea">{$privacyStatement|escape}</textarea></p>
+<p><textarea name="privacyStatement[{$formLocale|escape}]" id="privacyStatement" rows="10" cols="60" class="textArea">{$privacyStatement[$formLocale]|escape}</textarea></p>
 
 <div class="separator"></div>
 
-<h3>1.6 {translate key="manager.setup.aboutConference.addItemtoAboutConference"}</h3>
+<h3>1.7 {translate key="manager.setup.aboutConference.addItemtoAboutConference"}</h3>
 
 <table width="100%" class="data">
-{foreach name=customAboutItems from=$customAboutItems key=aboutId item=aboutItem}
+{foreach name=customAboutItems from=$customAboutItems[$formLocale] key=aboutId item=aboutItem}
 	<tr valign="top">
 		<td width="5%" class="label">{fieldLabel name="customAboutItems-$aboutId-title" key="common.title"}</td>
-		<td width="95%" class="value"><input type="text" name="customAboutItems[{$aboutId}][title]" id="customAboutItems-{$aboutId}-title" value="{$aboutItem.title|escape}" size="40" maxlength="255" class="textField" />{if $smarty.foreach.customAboutItems.total > 1} <input type="submit" name="delCustomAboutItem[{$aboutId}]" value="{translate key="common.delete"}" class="button" />{/if}</td>
+		<td width="95%" class="value"><input type="text" name="customAboutItems[{$formLocale|escape}][{$aboutId|escape}][title]" id="customAboutItems-{$aboutId}-title" value="{$aboutItem.title|escape}" size="40" maxlength="255" class="textField" />{if $smarty.foreach.customAboutItems.total > 1} <input type="submit" name="delCustomAboutItem[{$aboutId}]" value="{translate key="common.delete"}" class="button" />{/if}</td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="customAboutItems-$aboutId-content" key="manager.setup.aboutConference.aboutItemContent"}</td>
-		<td width="80%" class="value"><textarea name="customAboutItems[{$aboutId}][content]" id="customAboutItems-{$aboutId}-content" rows="10" cols="40" class="textArea">{$aboutItem.content|escape}</textarea></td>
+		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][{$aboutId|escape}][content]" id="customAboutItems-{$aboutId}-content" rows="10" cols="40" class="textArea">{$aboutItem.content|escape}</textarea></td>
 	</tr>
 	{if !$smarty.foreach.customAboutItems.last}
 	<tr valign="top">
@@ -120,11 +143,11 @@
 {foreachelse}
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-title" key="common.title"}</td>
-		<td width="80%" class="value"><input type="text" name="customAboutItems[0][title]" id="customAboutItems-0-title" value="" size="40" maxlength="255" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" name="customAboutItems[{$formLocale|escape}][0][title]" id="customAboutItems-0-title" value="" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-content" key="manager.setup.aboutConference.aboutItemContent"}</td>
-		<td width="80%" class="value"><textarea name="customAboutItems[0][content]" id="customAboutItems-0-content" rows="10" cols="40" class="textArea"></textarea></td>
+		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][0][content]" id="customAboutItems-0-content" rows="10" cols="40" class="textArea"></textarea></td>
 	</tr>
 {/foreach}
 </table>

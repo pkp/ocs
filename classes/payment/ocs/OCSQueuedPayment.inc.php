@@ -20,7 +20,7 @@ class OCSQueuedPayment extends QueuedPayment {
 	var $conferenceId;
 
 	var $schedConfId;
-	
+
 	var $paperId;
 
 	var $type;

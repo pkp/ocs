@@ -20,7 +20,7 @@ class TimelineForm extends Form {
 
 	/** @var boolean can edit metadata */
 	var $canEdit;
-	
+
 	/**
 	 * Constructor.
 	 * @param $trackId int omit for a new track
@@ -94,7 +94,7 @@ class TimelineForm extends Form {
 		}
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -108,7 +108,7 @@ class TimelineForm extends Form {
 
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize form data from current settings.
 	 */
@@ -141,7 +141,7 @@ class TimelineForm extends Form {
 			'closeCommentsDate' => $schedConf->getSetting('closeCommentsDate')
 		);
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -166,23 +166,23 @@ class TimelineForm extends Form {
 			'postTimeline'
 		));
 	}
-	
+
 	/**
 	 * Save track.
 	 */
 	function execute() {
 		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
 		$schedConf = &Request::getSchedConf();
-		
+
 		import('conference.log.ConferenceLog');
 		import('conference.log.ConferenceEventLogEntry');
 
 		//
 		// Don't log these, since they aren't particularly nefarious.
 		//
-		
+
 		// Website start date and end date.
-		
+
 		if($schedConf->getStartDate() != $this->_data['siteStartDate']) {
 			$schedConf->setStartDate($this->_data['siteStartDate']);
 			$schedConfDao->updateSchedConf($schedConf);

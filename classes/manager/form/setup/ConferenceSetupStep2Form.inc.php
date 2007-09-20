@@ -18,7 +18,9 @@ import("manager.form.setup.ConferenceSetupForm");
 import('schedConf.SchedConf');
 
 class ConferenceSetupStep2Form extends ConferenceSetupForm {
-	
+	/**
+	 * Constructor.
+	 */
 	function ConferenceSetupStep2Form() {
 		parent::ConferenceSetupForm(
 			2,
@@ -33,6 +35,14 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 				'announcementsIntroduction' => 'string'
 			)
 		);
+	}
+
+	/**
+	 * Get the list of field names for which localized settings are used.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('additionalHomeContent', 'readerInformation', 'presenterInformation', 'announcementsIntroduction');
 	}
 
 	/**

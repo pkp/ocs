@@ -128,4 +128,13 @@ function sendAsyncRequest(req, url, data, method) {
 	req.send(data);
 }
 
+/**
+ * Change the form action
+ * @param formName string
+ * @param action string 
+ */
+function changeFormAction(formName, action) {
+	document.forms[formName].action = action;
+	document.forms[formName].submit();
+}
 

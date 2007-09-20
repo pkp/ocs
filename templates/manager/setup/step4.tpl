@@ -94,6 +94,18 @@ function prepBlockFields() {
 <form name="setupForm" method="post" action="{url op="saveSetup" path="4"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
+{if count($formLocales) > 1}
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="80%" class="value">
+			{url|assign:"setupFormUrl" op="setup" path="4"}
+			{form_language_chooser form="setupForm" url=$setupFormUrl}
+		</td>
+	</tr>
+</table>
+{/if}
+
 <p>{translate key="manager.setup.style.conferenceStyleSheet.description"}</p>
 
 <table width="100%" class="data">

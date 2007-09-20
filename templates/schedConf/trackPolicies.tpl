@@ -16,8 +16,8 @@
 
 {foreach from=$tracks item=track}
 	<h4>{$track->getTrackTitle()}</h4>
-	{if strlen($track->getPolicy()) > 0}
-		<p>{$track->getPolicy()|nl2br}</p>
+	{if strlen($track->getTrackPolicy()) > 0}
+		<p>{$track->getTrackPolicy()|nl2br}</p>
 	{/if}
 
 	{assign var="hasDirectors" value=0}

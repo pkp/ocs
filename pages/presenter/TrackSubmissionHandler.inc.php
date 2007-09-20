@@ -157,7 +157,11 @@ class TrackSubmissionHandler extends PresenterHandler {
 
 		$submitForm = &new SuppFileForm($presenterSubmission);
 
-		$submitForm->initData();
+		if ($submitForm->isLocaleResubmit()) {
+			$submitForm->readInputData();
+		} else {
+			$submitForm->initData();
+		}
 		$submitForm->display();
 	}
 
@@ -175,7 +179,11 @@ class TrackSubmissionHandler extends PresenterHandler {
 
 		$submitForm = &new SuppFileForm($presenterSubmission, $suppFileId);
 
-		$submitForm->initData();
+		if ($submitForm->isLocaleResubmit()) {
+			$submitForm->readInputData();
+		} else {
+			$submitForm->initData();
+		}
 		$submitForm->display();
 	}
 

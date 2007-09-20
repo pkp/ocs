@@ -17,7 +17,6 @@
 import('form.Form');
 
 class AnnouncementTypeForm extends Form {
-
 	/** @var typeId int the ID of the announcement type being edited */
 	var $typeId;
 
@@ -26,24 +25,26 @@ class AnnouncementTypeForm extends Form {
 	 * @param typeId int leave as default for new announcement type
 	 */
 	function AnnouncementTypeForm($typeId = null) {
-
 		$this->typeId = isset($typeId) ? (int) $typeId : null;
 		$conference = &Request::getConference();
 
 		parent::Form('manager/announcement/announcementTypeForm.tpl');
 
 		// Type name is provided
-		$this->addCheck(new FormValidator($this, 'typeName', 'required', 'manager.announcementTypes.form.typeNameRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.announcementTypes.form.typeNameRequired'));
 
-		// Type name does not already exist for this conference
-		if ($this->typeId == null) {
-			$this->addCheck(new FormValidatorCustom($this, 'typeName', 'required', 'manager.announcementTypes.form.typeNameExists', array(DAORegistry::getDAO('AnnouncementTypeDAO'), 'announcementTypeExistsByTypeName'), array($conference->getConferenceId()), true));
-		} else {
-			$this->addCheck(new FormValidatorCustom($this, 'typeName', 'required', 'manager.announcementTypes.form.typeNameExists', create_function('$typeName, $conferenceId, $typeId', '$announcementTypeDao = &DAORegistry::getDAO(\'AnnouncementTypeDAO\'); $checkId = $announcementTypeDao->getAnnouncementTypeByTypeName($typeName, $conferenceId); return ($checkId == 0 || $checkId == $typeId) ? true : false;'), array($conference->getConferenceId(), $this->typeId)));
-		}
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
+	/**
+	 * Get a list of localized field names for this form
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
+		return $announcementTypeDao->getLocaleFieldNames();
+	}
+
 	/**
 	 * Display the form.
 	 */
@@ -51,10 +52,10 @@ class AnnouncementTypeForm extends Form {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('typeId', $this->typeId);
 		$templateMgr->assign('helpTopicId', 'conference.managementPages.announcements');
-	
+
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize form data from current announcement type.
 	 */
@@ -65,7 +66,7 @@ class AnnouncementTypeForm extends Form {
 
 			if ($announcementType != null) {
 				$this->_data = array(
-					'typeName' => $announcementType->getTypeName()
+					'name' => $announcementType->getName()
 				);
 
 			} else {
@@ -73,32 +74,32 @@ class AnnouncementTypeForm extends Form {
 			}
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('typeName'));
-	
+		$this->readUserVars(array('name'));
+
 	}
-	
+
 	/**
 	 * Save announcement type. 
 	 */
 	function execute() {
 		$announcementTypeDao = &DAORegistry::getDAO('AnnouncementTypeDAO');
 		$conference = &Request::getConference();
-	
+
 		if (isset($this->typeId)) {
 			$announcementType = &$announcementTypeDao->getAnnouncementType($this->typeId);
 		}
-		
+
 		if (!isset($announcementType)) {
 			$announcementType = &new AnnouncementType();
 		}
-		
+
 		$announcementType->setConferenceId($conference->getConferenceId());
-		$announcementType->setTypeName($this->getData('typeName'));
+		$announcementType->setName($this->getData('name'), null); // Localized
 
 		// Update or insert announcement type
 		if ($announcementType->getTypeId() != null) {
@@ -107,7 +108,6 @@ class AnnouncementTypeForm extends Form {
 			$announcementTypeDao->insertAnnouncementType($announcementType);
 		}
 	}
-	
 }
 
 ?>

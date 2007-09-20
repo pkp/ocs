@@ -23,13 +23,6 @@ define('REPORT_TYPE_TRACK',		0x00005);
 
 class SchedConfStatisticsDAO extends DAO {
 	/**
-	 * Constructor.
-	 */
-	function SchedConfDAO() {
-		parent::DAO();
-	}
-
-	/**
 	 * Get statistics about papers in the system.
 	 * Returns a map of name => value pairs.
 	 * @param $schedConfId int The scheduled conference to fetch statistics for
@@ -50,7 +43,15 @@ class SchedConfStatisticsDAO extends DAO {
 			$trackSql .= ')';
 		} else $trackSql = '';
 
-		$sql =	'SELECT a.paper_id AS paper_id, a.date_submitted AS date_submitted, pa.date_published AS date_published, pa.pub_id AS pub_id, d.decision FROM papers a LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id) LEFT JOIN edit_decisions d ON (d.paper_id = a.paper_id) WHERE a.sched_conf_id = ?' .
+		$sql =	'SELECT	a.paper_id,
+				a.date_submitted,
+				pa.date_published,
+				pa.pub_id,
+				d.decision
+			FROM	papers a
+				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
+				LEFT JOIN edit_decisions d ON (d.paper_id = a.paper_id)
+			WHERE	a.sched_conf_id = ?' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
 			$trackSql .
@@ -137,7 +138,7 @@ class SchedConfStatisticsDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Get statistics about users in the system.
 	 * Returns a map of name => value pairs.
@@ -194,17 +195,22 @@ class SchedConfStatisticsDAO extends DAO {
 	 */
 	function getRegistrationStatistics($schedConfId, $dateStart = null, $dateEnd = null) {
 		$result = &$this->retrieve(
-			'SELECT st.type_id,
-				st.type_name,
-				count(s.registration_id) AS type_count
-			FROM registration_types st,
-				registrations s
-			WHERE st.sched_conf_id = ?
-				AND s.type_id = st.type_id' .
+			'SELECT	st.type_id,
+				rts.setting_value AS type_name,
+				COUNT(s.registration_id) AS type_count
+			FROM	registration_types st,
+				registrations s,
+				sched_confs sc,
+				conferences c
+				LEFT JOIN registration_type_settings rts ON (rts.type_id = st.type_id AND rts.setting_name = ? AND rts.locale = c.primary_locale)
+			WHERE	st.sched_conf_id = ? AND
+				s.type_id = st.type_id AND
+				s.sched_conf_id = sc.sched_conf_id AND
+				sc.conference_id = c.conference_id' .
 				($dateStart !== null ? ' AND st.opening_date >= ' . $this->datetimeToDB($dateStart) : '') .
 				($dateEnd !== null ? ' AND st.closing_date <= ' . $this->datetimeToDB($dateEnd) : '') .
-			' GROUP BY st.type_id, st.type_name',
-			$schedConfId
+			' GROUP BY st.type_id, rts.setting_value',
+			array('name', $schedConfId)
 		);
 
 		$returner = array();
@@ -233,7 +239,7 @@ class SchedConfStatisticsDAO extends DAO {
 	 */
 	function getIssueStatistics($schedConfId, $dateStart = null, $dateEnd = null) {
 		$result = &$this->retrieve(
-			'SELECT COUNT(*) AS count, published FROM issues  WHERE sched_conf_id = ?' .
+			'SELECT COUNT(*) AS count, published FROM issues WHERE sched_conf_id = ?' .
 			($dateStart !== null ? ' AND date_published >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND date_published <= ' . $this->datetimeToDB($dateEnd) : '') .
 			' GROUP BY published',
@@ -284,7 +290,23 @@ class SchedConfStatisticsDAO extends DAO {
 			$trackSql .= ')';
 		} else $trackSql = '';
 
-		$sql =	'SELECT a.paper_id, af.date_uploaded AS date_rv_uploaded, r.review_id AS review_id, u.date_registered AS date_registered, r.reviewer_id AS reviewer_id, r.quality AS quality, r.date_assigned AS date_assigned, r.date_completed AS date_completed FROM papers a, paper_files af, review_assignments r LEFT JOIN users u ON (u.user_id = r.reviewer_id) WHERE a.sched_conf_id = ? AND r.paper_id = a.paper_id AND af.paper_id = a.paper_id AND af.file_id = a.review_file_id AND af.revision = 1' .
+		$sql =	'SELECT	a.paper_id,
+				af.date_uploaded AS date_rv_uploaded,
+				r.review_id,
+				u.date_registered,
+				r.reviewer_id,
+				r.quality AS quality,
+				r.date_assigned,
+				r.date_completed
+			FROM	papers a,
+				paper_files af,
+				review_assignments r
+				LEFT JOIN users u ON (u.user_id = r.reviewer_id)
+			WHERE	a.sched_conf_id = ? AND
+				r.paper_id = a.paper_id AND
+				af.paper_id = a.paper_id AND
+				af.file_id = a.review_file_id AND
+				af.revision = 1' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
 			$trackSql;
@@ -383,15 +405,15 @@ class SchedConfStatisticsDAO extends DAO {
 	 */
 	function &getSchedConfReport($schedConfId, $dateStart = null, $dateEnd = null) {
 		$result = &$this->retrieve(
-			'SELECT a.paper_id AS paper_id, a.title AS paper_title, ' .
-			'pa.pub_id AS pub_id, pa.date_published AS date_published, ' .
-			's.title AS track_title, s.title_alt1 AS track_title_alt1, s.title_alt2 AS track_title_alt2, ' .
-			'a.date_submitted AS date_submitted, a.status AS status ' .
-			'FROM ' .
-			'papers a ' .
-			'LEFT JOIN tracks s ON (s.track_id = a.track_id) ' .
-			'LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id) ' .
-			'WHERE a.sched_conf_id = ? ' .
+			'SELECT	a.paper_id,
+				pa.pub_id AS pub_id,
+				pa.date_published
+				a.date_submitted AS date_submitted,
+				a.status AS status
+			FROM	papers a
+				LEFT JOIN tracks s ON (s.track_id = a.track_id) 
+				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
+			WHERE	a.sched_conf_id = ? ' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
 			' ORDER BY a.date_submitted',
@@ -410,15 +432,15 @@ class SchedConfStatisticsDAO extends DAO {
 	 */
 	function &getTrackReport($schedConfId, $dateStart = null, $dateEnd = null) {
 		$result = &$this->retrieve(
-			'SELECT a.paper_id AS paper_id, a.title AS paper_title, ' .
-			'pa.pub_id AS pub_id, pa.date_published AS date_published, ' .
-			's.title AS track_title, s.title_alt1 AS track_title_alt1, s.title_alt2 AS track_title_alt2, ' .
-			'a.date_submitted AS date_submitted, a.status AS status ' .
-			'FROM ' .
-			'papers a ' .
-			'LEFT JOIN tracks s ON (s.track_id = a.track_id) ' .
-			'LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id) ' .
-			'WHERE a.sched_conf_id = ? ' .
+			'SELECT	a.paper_id,
+				pa.pub_id,
+				pa.date_published,
+				a.date_submitted,
+				a.status
+			FROM	papers a
+				LEFT JOIN tracks s ON (s.track_id = a.track_id)
+				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
+			WHERE	a.sched_conf_id = ?' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
 			' ORDER BY s.title, a.date_submitted',
@@ -437,16 +459,19 @@ class SchedConfStatisticsDAO extends DAO {
 	 */
 	function &getReviewerReport($schedConfId, $dateStart = null, $dateEnd = null) {
 		$result = &$this->retrieve(
-			'SELECT ra.reviewer_id, ra.quality, a.paper_id AS paper_id, a.title AS paper_title, ' .
-			'pa.pub_id AS pub_id, pa.date_published AS date_published, ' .
-			's.title AS track_title, s.title_alt1 AS track_title_alt1, s.title_alt2 AS track_title_alt2, ' .
-			'a.date_submitted AS date_submitted, a.status AS status ' .
-			'FROM ' .
-			'review_assignments ra, ' .
-			'papers a ' .
-			'LEFT JOIN tracks s ON (s.track_id = a.track_id) ' .
-			'LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id) ' .
-			'WHERE a.sched_conf_id = ? AND ra.paper_id = a.paper_id ' .
+			'SELECT	ra.reviewer_id,
+				ra.quality,
+				a.paper_id,
+				pa.pub_id,
+				pa.date_published,
+				a.date_submitted,
+				a.status
+			FROM	review_assignments ra,
+				papers a
+				LEFT JOIN tracks s ON (s.track_id = a.track_id)
+				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
+			WHERE	a.sched_conf_id = ? AND
+				ra.paper_id = a.paper_id ' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
 			' ORDER BY ra.reviewer_id, a.date_submitted',
@@ -465,16 +490,17 @@ class SchedConfStatisticsDAO extends DAO {
 	 */
 	function &getDirectorReport($schedConfId, $dateStart = null, $dateEnd = null) {
 		$result = &$this->retrieve(
-			'SELECT ee.director_id, a.paper_id AS paper_id, a.title AS paper_title, ' .
-			'pa.pub_id AS pub_id, pa.date_published AS date_published, ' .
-			's.title AS track_title, s.title_alt1 AS track_title_alt1, s.title_alt2 AS track_title_alt2, ' .
-			'a.date_submitted AS date_submitted, a.status AS status ' .
-			'FROM ' .
-			'papers a ' .
-			'LEFT JOIN edit_assignments ee ON (ee.paper_id = a.paper_id) ' .
-			'LEFT JOIN tracks s ON (s.track_id = a.track_id) ' .
-			'LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id) ' .
-			'WHERE a.sched_conf_id = ? ' .
+			'SELECT	ee.director_id,
+				a.paper_id,
+				pa.pub_id,
+				pa.date_published,
+				a.date_submitted,
+				a.status
+			FROM	papers a
+				LEFT JOIN edit_assignments ee ON (ee.paper_id = a.paper_id)
+				LEFT JOIN tracks s ON (s.track_id = a.track_id)
+				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
+			WHERE	a.sched_conf_id = ? ' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
 			' ORDER BY ee.director_id, a.date_submitted',
@@ -493,13 +519,12 @@ class SchedConfStatisticsDAO extends DAO {
 	 * @param $dateEnd string
 	 */
 	function getMaxPresenterCount($schedConfId, $dateStart, $dateEnd) {
-		$result = &$this->retrieve(
-			'SELECT COUNT(aa.presenter_id) ' .
-			'FROM ' .
-			'papers a, ' .
-			'paper_presenters aa ' .
-			'WHERE a.sched_conf_id = ? ' .
-			'AND aa.paper_id = a.paper_id ' .
+		$result =& $this->retrieve(
+			'SELECT	COUNT(aa.presenter_id)
+			FROM	papers a,
+				paper_presenters aa
+			WHERE	a.sched_conf_id = ? AND
+				aa.paper_id = a.paper_id ' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
 			' GROUP BY a.paper_id',
@@ -529,12 +554,11 @@ class SchedConfStatisticsDAO extends DAO {
 	 */
 	function getMaxReviewerCount($schedConfId, $dateStart, $dateEnd) {
 		$result = &$this->retrieve(
-			'SELECT COUNT(r.review_id) ' .
-			'FROM ' .
-			'papers a, ' .
-			'review_assignments r ' .
-			'WHERE a.sched_conf_id = ? ' .
-			'AND r.paper_id = a.paper_id ' .
+			'SELECT	COUNT(r.review_id)
+			FROM	papers a,
+				review_assignments r
+			WHERE	a.sched_conf_id = ? AND
+				r.paper_id = a.paper_id ' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
 			' GROUP BY r.paper_id',
@@ -564,12 +588,11 @@ class SchedConfStatisticsDAO extends DAO {
 	 */
 	function getMaxDirectorCount($schedConfId, $dateStart, $dateEnd) {
 		$result = &$this->retrieve(
-			'SELECT COUNT(e.director_id) ' .
-			'FROM ' .
-			'papers a, ' .
-			'edit_assignments e ' .
-			'WHERE a.sched_conf_id = ? ' .
-			'AND e.paper_id = a.paper_id ' .
+			'SELECT COUNT(e.director_id)
+			FROM	papers a,
+				edit_assignments e
+			WHERE	a.sched_conf_id = ? AND
+				e.paper_id = a.paper_id ' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
 			' GROUP BY e.paper_id',

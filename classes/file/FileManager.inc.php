@@ -20,13 +20,6 @@ define('DIRECTORY_MODE_MASK', 0777);
 class FileManager {
 
 	/**
-	 * Constructor.
-	 * Empty constructor.
-	 */
-	function FileManager() {	
-	}
-	
-	/**
 	 * Return true if an uploaded file exists.
 	 * @param $fileName string the name of the file used in the POST form
 	 * @return boolean
@@ -34,11 +27,10 @@ class FileManager {
 	function uploadedFileExists($fileName) {
 		if (isset($_FILES[$fileName]['tmp_name']) && is_uploaded_file($_FILES[$fileName]['tmp_name'])) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
-	
+
 	/**
 	 * Return the (temporary) path to an uploaded file.
 	 * @param $fileName string the name of the file used in the POST form
@@ -47,11 +39,10 @@ class FileManager {
 	function getUploadedFilePath($fileName) {
 		if (isset($_FILES[$fileName]['tmp_name']) && is_uploaded_file($_FILES[$fileName]['tmp_name'])) {
 			return $_FILES[$fileName]['tmp_name'];
-		} else {
-			return false;
 		}
+		return false;
 	}
-	
+
 	/**
 	 * Return the user-specific (not temporary) filename of an uploaded file.
 	 * @param $fileName string the name of the file used in the POST form
@@ -60,11 +51,10 @@ class FileManager {
 	function getUploadedFileName($fileName) {
 		if (isset($_FILES[$fileName]['name'])) {
 			return $_FILES[$fileName]['name'];
-		} else {
-			return false;
 		}
+		return false;
 	}
-	
+
 	/**
 	 * Return the type of an uploaded file.
 	 * @param $fileName string the name of the file used in the POST form
@@ -75,11 +65,10 @@ class FileManager {
 			$type = String::mime_content_type($_FILES[$fileName]['tmp_name']);
 			if (!empty($type)) return $type;
 			return $_FILES[$fileName]['type'];
-		} else {
-			return false;
 		}
+		return false;
 	}
-		
+
 	/**
 	 * Upload a file.
 	 * @param $fileName string the name of the file used in the POST form
@@ -92,7 +81,6 @@ class FileManager {
 			// Try to create the destination directory
 			FileManager::mkdirtree($destDir);
 		}
-
 		if (move_uploaded_file($_FILES[$fileName]['tmp_name'], $destFileName))
 			return FileManager::setMode($destFileName, FILE_MODE_MASK);
 		return false;
@@ -114,7 +102,7 @@ class FileManager {
 		if (($f = fopen($dest, 'wb'))===false) $success = false;
 		if ($success && fwrite($f, $contents)===false) $success = false;
 		@fclose($f);
-		
+
 		if ($success)
 			return FileManager::setMode($dest, FILE_MODE_MASK);
 		return false;
@@ -156,20 +144,20 @@ class FileManager {
 				}
 			}
 			fclose($f);
-			
+
 			if ($output) {
 				$returner = true;
 				return $returner;
 			} else {
 				return $data;
 			}
-			
+
 		} else {
 			$returner = false;
 			return $returner;
 		}
 	}
-	
+
 	/**
 	 * Download a file.
 	 * Outputs HTTP headers and file content for download
@@ -184,7 +172,7 @@ class FileManager {
 				$type = String::mime_content_type($filePath);
 				if (empty($type)) $type = 'application/octet-stream';
 			}
-			
+
 			header("Content-Type: $type");
 			header("Content-Length: ".filesize($filePath));
 			header ("Content-Disposition: " . ($inline ? 'inline' : 'attachment') . "; filename=\"" .basename($filePath)."\"");
@@ -193,14 +181,14 @@ class FileManager {
 
 			import('file.FileManager');
 			FileManager::readFile($filePath, true);
-			
+
 			return true;
-			
+
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * View a file inline (variant of downloadFile).
 	 * @see FileManager::downloadFile
@@ -208,7 +196,7 @@ class FileManager {
 	function viewFile($filePath, $type = null) {
 		FileManager::downloadFile($filePath, $type, true);
 	}
-	
+
 	/**
 	 * Delete a file.
 	 * @param $filePath string the location of the file to be deleted
@@ -221,7 +209,7 @@ class FileManager {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Create a new directory.
 	 * @param $dirPath string the full path of the directory to be created
@@ -237,7 +225,7 @@ class FileManager {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Remove a directory.
 	 * @param $dirPath string the full path of the directory to be delete
@@ -246,7 +234,7 @@ class FileManager {
 	function rmdir($dirPath) {
 		return rmdir($dirPath);
 	}
-	
+
 	/**
 	 * Delete all contents including directory (equivalent to "rm -r")
 	 * @param $file string the full path of the directory to be removed
@@ -263,13 +251,13 @@ class FileManager {
 				}
 				closedir($handle);
 				rmdir($file);
-				
+
 			} else {
 				unlink($file);
 			}
 		}
 	}
-	
+
 	/**
 	 * Create a new directory, including all intermediate directories if required (equivalent to "mkdir -p")
 	 * @param $dirPath string the full path of the directory to be created
@@ -277,16 +265,16 @@ class FileManager {
 	 * @return boolean returns true if successful
 	 */
 	function mkdirtree($dirPath, $perms = null) {
-	 	if (!file_exists($dirPath)) {
-	 		if (FileManager::mkdirtree(dirname($dirPath), $perms)) {
-	 			return FileManager::mkdir($dirPath, $perms);
-	 		} else {
-	 			return false;
-	 		}
-		 }
-		 return true;
+		if (!file_exists($dirPath)) {
+			if (FileManager::mkdirtree(dirname($dirPath), $perms)) {
+				return FileManager::mkdir($dirPath, $perms);
+			} else {
+				return false;
+			}
+		}
+		return true;
 	}
-	
+
 	/**
 	 * Check if a file path is valid;
 	 * @param $filePath string the file/directory to check
@@ -302,7 +290,7 @@ class FileManager {
 				return false;
 		}
 	}
-	
+
 	/**
 	 * Returns file extension associated with the given image type,
 	 * or false if the type does not belong to a recognized image type.
@@ -354,7 +342,7 @@ class FileManager {
 		}
 		return $extension;
 	}
-	
+
 	/**
 	 * Truncate a filename to fit in the specified length.
 	 */
@@ -377,7 +365,7 @@ class FileManager {
 		}
 		return $size . $niceFileSizeUnits[$i];
 	}
-	
+
 	/**
 	 * Set file/directory mode based on the 'umask' config setting.
 	 * @param $path string
@@ -390,7 +378,7 @@ class FileManager {
 			return true;
 		return chmod($path, $mask & ~$umask);
 	}
-	
+
 	/**
 	 * Parse the file extension from a filename/path.
 	 * @param $fileName string
@@ -401,15 +389,14 @@ class FileManager {
 		if (is_array($fileParts)) {
 			$fileExtension = $fileParts[count($fileParts) - 1];
 		}
-		
+
 		// FIXME Check for evil
 		if (!isset($fileExtension) || strstr($fileExtension, 'php') || strlen($fileExtension) > 6 || !preg_match('/^\w+$/', $fileExtension)) {
 			$fileExtension = 'txt';
 		}
-		
+
 		return $fileExtension;
 	}
-	
 }
 
 ?>

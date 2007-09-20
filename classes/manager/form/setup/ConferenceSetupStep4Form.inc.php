@@ -17,7 +17,9 @@
 import("manager.form.setup.ConferenceSetupForm");
 
 class ConferenceSetupStep4Form extends ConferenceSetupForm {
-
+	/**
+	 * Constructor.
+	 */
 	function ConferenceSetupStep4Form() {
 		parent::ConferenceSetupForm(4, array(
 			'conferenceTheme' => 'string'
@@ -99,13 +101,16 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 		return false;
 	}
 
+	/**
+	 * Save the page of settings.
+	 */
 	function execute() {
 		// Save the block plugin layout settings.
 		$blockVars = array('blockSelectLeft', 'blockUnselected', 'blockSelectRight');
 		foreach ($blockVars as $varName) {
 			$$varName = split(' ', Request::getUserVar($varName));
 		}
- 
+
 		$plugins =& PluginRegistry::loadCategory('blocks');
 		foreach ($plugins as $key => $junk) {
 			$plugin =& $plugins[$key]; // Ref hack
@@ -120,7 +125,7 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 			}
 			unset($plugin);
 		}
- 
+
 		return parent::execute();
 	}
 }

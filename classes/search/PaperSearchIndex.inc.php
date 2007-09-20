@@ -25,7 +25,7 @@ define('SEARCH_STOPWORDS_FILE', 'registry/stopwords.txt');
 define('SEARCH_KEYWORD_MAX_LENGTH', 40);
 
 class PaperSearchIndex {
-	
+
 	/**
 	 * Index a block of text for an object.
 	 * @param $objectId int
@@ -55,7 +55,7 @@ class PaperSearchIndex {
 			$position = 0;
 			PaperSearchIndex::indexObjectKeywords($objectId, $text, $position);
 	}
-	
+
 	/**
 	 * Add a file to the search index.
 	 * @param $paperId int
@@ -66,16 +66,16 @@ class PaperSearchIndex {
 		import('file.PaperFileManager');
 		$fileMgr = &new PaperFileManager($paperId);
 		$file = &$fileMgr->getFile($fileId);
-		
+
 		if (isset($file)) {
 			$parser = &SearchFileParser::fromFile($file);
 		}
-			
+
 		if (isset($parser)) {
 			if ($parser->open()) {
 				$searchDao = &DAORegistry::getDAO('PaperSearchDAO');
 				$objectId = $searchDao->insertObject($paperId, $type, $fileId);
-				
+
 				$position = 0;
 				while(($text = $parser->read()) !== false) {
 					PaperSearchIndex::indexObjectKeywords($objectId, $text, $position);
@@ -84,7 +84,7 @@ class PaperSearchIndex {
 			}
 		}
 	}
-	
+
 	/**
 	 * Delete keywords from the search index.
 	 * @param $paperId int
@@ -105,22 +105,22 @@ class PaperSearchIndex {
 	function &filterKeywords($text, $allowWildcards = false) {
 		$minLength = Config::getVar('search', 'min_word_length');
 		$stopwords = &PaperSearchIndex::loadStopwords();
-		
+
 		// Remove punctuation
 		if (is_array($text)) {
 			$text = join("\n", $text);
 		}
-		
+
 		$cleanText = preg_replace('/[!"\#\$%\'\(\)\.\?@\[\]\^`\{\}~]/', '', $text);
 		$cleanText = preg_replace('/[\+,:;&\/<=>\|\\\]/', ' ', $cleanText);
 		$cleanText = preg_replace('/[\*]/', $allowWildcards ? '%' : ' ', $cleanText);
 		$cleanText = String::strtolower($cleanText);
-		
+
 		// Split into words
 		$words = preg_split('/\s+/', $cleanText);
-		
+
 		// FIXME Do not perform further filtering for some fields, e.g., presenter names?
-		
+
 		// Remove stopwords
 		$keywords = array();
 		foreach ($words as $k) {
@@ -130,7 +130,7 @@ class PaperSearchIndex {
 		}
 		return $keywords;
 	}
-	
+
 	/**
 	 * Return list of stopwords.
 	 * FIXME Should this be locale-specific?
@@ -144,10 +144,10 @@ class PaperSearchIndex {
 			$searchStopwords = array_count_values(array_filter(file(SEARCH_STOPWORDS_FILE), create_function('&$a', 'return ($a = trim($a)) && !empty($a) && $a[0] != \'#\';')));
 			$searchStopwords[''] = 1;
 		}
-		
+
 		return $searchStopwords;
 	}
-	
+
 	/**
 	 * Index paper metadata.
 	 * @param $paper Paper
@@ -162,24 +162,35 @@ class PaperSearchIndex {
 			array_push($presenterText, $presenter->getMiddleName());
 			array_push($presenterText, $presenter->getLastName());
 			array_push($presenterText, $presenter->getAffiliation());
-			array_push($presenterText, strip_tags($presenter->getBiography()));
+			$bios = $presenter->getBiography(null);
+			if (is_array($bios)) foreach ($bios as $bio) { // Localized
+				array_push($presenterText, strip_tags($bio));
+			}
 		}
-		
+
 		// Update search index
 		$paperId = $paper->getPaperId();
 		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_PRESENTER, $presenterText);
-		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_TITLE, array($paper->getTitle(), $paper->getTitleAlt1(), $paper->getTitleAlt2()));
+		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_TITLE, $paper->getTitle(null));
 
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$track = &$trackDao->getTrack($paper->getTrackId());
-		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_ABSTRACT, array($paper->getAbstract(), $paper->getAbstractAlt1(), $paper->getAbstractAlt2()));
-		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_DISCIPLINE, $paper->getDiscipline());
-		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_SUBJECT, array($paper->getSubjectClass(), $paper->getSubject()));
-		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_TYPE, $paper->getType());
-		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_COVERAGE, array($paper->getCoverageGeo(), $paper->getCoverageChron(), $paper->getCoverageSample()));
+		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_ABSTRACT, $paper->getAbstract(null));
+		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_DISCIPLINE, $paper->getDiscipline(null));
+		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_SUBJECT, array_merge_recursive($paper->getSubjectClass(null), $paper->getSubject(null)));
+		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_TYPE, $paper->getType(null));
+		PaperSearchIndex::updateTextIndex(
+			$paperId,
+			PAPER_SEARCH_COVERAGE,
+			array_merge(
+				array_values((array) $paper->getCoverageGeo(null)),
+				array_values((array) $paper->getCoverageChron(null)),
+				array_values((array) $paper->getCoverageSample(null))
+			)
+		);
 		// FIXME Index sponsors too?
 	}
-	
+
 	/**
 	 * Index supp file metadata.
 	 * @param $suppFile object
@@ -190,18 +201,18 @@ class PaperSearchIndex {
 		PaperSearchIndex::updateTextIndex(
 			$paperId,
 			PAPER_SEARCH_SUPPLEMENTARY_FILE,
-			array(
-				$suppFile->getTitle(),
-				$suppFile->getCreator(),
-				$suppFile->getSubject(),
-				$suppFile->getTypeOther(),
-				$suppFile->getDescription(),
-				$suppFile->getSource()
+			array_merge(
+				array_values((array) $suppFile->getTitle()),
+				array_values((array) $suppFile->getCreator()),
+				array_values((array) $suppFile->getSubject()),
+				array_values((array) $suppFile->getTypeOther()),
+				array_values((array) $suppFile->getDescription()),
+				array_values((array) $suppFile->getSource())
 			),
 			$suppFile->getFileId()
 		);
 	}
-	
+
 	/**
 	 * Index all paper files (supplementary and galley).
 	 * @param $paper Paper
@@ -217,7 +228,7 @@ class PaperSearchIndex {
 			PaperSearchIndex::indexSuppFileMetadata($file);
 		}
 		unset($files);
-		
+
 		// Index galley files
 		$fileDao = &DAORegistry::getDAO('PaperGalleyDAO');
 		$files = &$fileDao->getGalleysByPaper($paper->getPaperId());
@@ -227,7 +238,7 @@ class PaperSearchIndex {
 			}
 		}
 	}
-	
+
 	/**
 	 * Rebuild the search index for all conferences.
 	 */
@@ -242,18 +253,18 @@ class PaperSearchIndex {
 		$searchDao->setCacheDir(Config::getVar('files', 'files_dir') . '/_db');
 		$searchDao->_dataSource->CacheFlush();
 		if ($log) echo "done\n";
-		
+
 		// Build index
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		
+
 		$schedConfs = &$schedConfDao->getSchedConfs();
 		while (!$schedConfs->eof()) {
 			$schedConf = &$schedConfs->next();
 			$numIndexed = 0;
-			
+
 			if ($log) echo "Indexing \"", $schedConf->getFullTitle(), "\" ... ";
-			
+
 			$papers = &$paperDao->getPapersBySchedConfId($schedConf->getSchedConfId());
 			while (!$papers->eof()) {
 				$paper = &$papers->next();
@@ -264,12 +275,12 @@ class PaperSearchIndex {
 				}
 				unset($paper);
 			}
-			
+
 			if ($log) echo $numIndexed, " papers indexed\n";
 			unset($schedConf);
 		}
 	}
-	
+
 }
 
 ?>

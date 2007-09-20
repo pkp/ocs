@@ -17,7 +17,7 @@
 import("manager.form.schedConfSetup.SchedConfSetupForm");
 
 class SchedConfSetupStep2Form extends SchedConfSetupForm {
-	
+
 	function SchedConfSetupStep2Form() {
 		$settings = array(
 			'reviewMode' => 'int',
@@ -46,21 +46,24 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 			'enablePublicPaperId' => 'bool',
 			'enablePublicSuppFileId' => 'bool'
 		);
-		
+
 		$this->addCheck(new FormValidatorEmail($this, 'copySubmissionAckAddress', 'optional', 'user.profile.form.emailRequired'));
 
 		parent::SchedConfSetupForm(2, $settings);
 	}
 
-	function readInputData() {
-		parent::readInputData();
-
+	/**
+	 * Get the list of field names for which localized settings are used.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('cfpMessage', 'presenterGuidelines', 'submissionChecklist', 'metaDisciplineExamples', 'metaSubjectClassTitle', 'metaSubjectExamples', 'metaCoverageGeoExamples', 'metaCoverageChronExamples', 'metaCoverageResearchSampleExamples', 'metaTypeExamples');
 	}
 
 	function display() {
 		$schedConf = &Request::getSchedConf();
 		$templateMgr = &TemplateManager::getManager();
-		
+
 		import('mail.MailTemplate');
 		$mail = &new MailTemplate('SUBMISSION_ACK');
 		if ($mail->isEnabled()) {

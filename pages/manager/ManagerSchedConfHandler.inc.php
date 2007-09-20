@@ -22,23 +22,23 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	function schedConfs() {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		$conference = &Request::getConference();
-		
+
 		$rangeInfo = Handler::getRangeInfo('schedConfs');
 
 		// TODO: use $rangeInfo here!
-		
+
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
-		
+
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 		$templateMgr->assign_by_ref('conference', $conference);
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
 		$templateMgr->display('manager/schedConfs.tpl');
 	}
-	
+
 	/**
 	 * Display form to create a new scheduled conference.
 	 */
@@ -46,7 +46,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		import('schedConf.SchedConf');
 		$schedConf = Request::getSchedConf();
 		$conference = Request::getConference();
-		
+
 		if($schedConf) {
 			$schedConfId = $schedConf->getSchedConfId();
 		} else {
@@ -58,10 +58,10 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		} else {
 			$conferenceId = null;
 		}
-				
+
 		ManagerSchedConfHandler::editSchedConf(array($conferenceId, $schedConfId));
 	}
-	
+
 	/**
 	 * Display form to create/edit a scheduled conference.
 	 * @param $args array optional, if set the first parameter is the ID of the scheduled conference to edit
@@ -69,45 +69,45 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	function editSchedConf($args = array()) {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		import('manager.form.SchedConfSettingsForm');
-		
+
 		$settingsForm = &new SchedConfSettingsForm($args);
 		$settingsForm->initData();
 		$settingsForm->display();
 	}
-	
+
 	/**
 	 * Save changes to a scheduled conference's settings.
 	 */
 	function updateSchedConf() {
 		parent::validate();
-		
+
 		import('manager.form.SchedConfSettingsForm');
-		
+
 		$settingsForm = &new SchedConfSettingsForm(
 			array(Request::getUserVar('conferenceId'), Request::getUserVar('schedConfId')));
 		$settingsForm->readInputData();
-		
+
 		if ($settingsForm->validate()) {
 			$settingsForm->execute();
 			Request::redirect(null, null, null, 'schedConfs');
-			
+
 		} else {
 			parent::setupTemplate(true);
 			$settingsForm->display();
 		}
 	}
-	
+
 	/**
 	 * Delete a scheduled conference.
 	 * @param $args array first parameter is the ID of the scheduled conference to delete
 	 */
 	function deleteSchedConf($args) {
 		parent::validate();
-		
+
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		
+
 		if (isset($args) && !empty($args) && !empty($args[0])) {
 			$schedConfId = $args[0];
 			$schedConf =& $schedConfDao->getSchedConf($schedConfId);
@@ -128,10 +128,10 @@ class ManagerSchedConfHandler extends ManagerHandler {
 				$publicFileManager->rmtree($schedConfFilesPath);
 			}
 		}
-		
+
 		Request::redirect(null, null, null, 'schedConfs');
 	}
-	
+
 	/**
 	 * Change the sequence of a schedConf on the site index page.
 	 */
@@ -139,16 +139,16 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		parent::validate();
 
 		$conference =& Request::getConference();
-		
+
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$schedConf = &$schedConfDao->getSchedConf(Request::getUserVar('schedConfId'), $conference->getConferenceId());
-		
+
 		if ($schedConf != null) {
 			$schedConf->setSequence($schedConf->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
 			$schedConfDao->updateSchedConf($schedConf);
 			$schedConfDao->resequenceSchedConfs($conference->getConferenceId());
 		}
-		
+
 		Request::redirect(null, null, null, 'schedConfs');
 	}
 }

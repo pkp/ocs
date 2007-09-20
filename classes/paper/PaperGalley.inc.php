@@ -25,7 +25,7 @@ class PaperGalley extends PaperFile {
 	function PaperGalley() {
 		parent::DataObject();
 	}
-	
+
 	/**
 	 * Check if galley is an HTML galley.
 	 * @return boolean
@@ -61,7 +61,7 @@ class PaperGalley extends PaperFile {
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get ID of galley.
 	 * @return int
@@ -69,7 +69,7 @@ class PaperGalley extends PaperFile {
 	function getGalleyId() {
 		return $this->getData('galleyId');
 	}
-	
+
 	/**
 	 * Set ID of galley.
 	 * @param $galleyId int
@@ -85,7 +85,7 @@ class PaperGalley extends PaperFile {
 	function getViews() {
 		return $this->getData('views');
 	}
-	
+
 	/**
 	 * Set views count.
 	 * NOTE that the views count is NOT stored by the DAO update or insert functions.
@@ -94,7 +94,20 @@ class PaperGalley extends PaperFile {
 	function setViews($views) {
 		return $this->setData('views', $views);
 	}
-		
+
+	/**
+	 * Get the localized value of the galley label.
+	 * @return $string
+	 */
+	function getGalleyLabel() {
+		$label = $this->getLabel();
+		if ($this->getLocale() != Locale::getLocale()) {
+			$locales = Locale::getAllLocales();
+			$label .= ' (' . $locales[$this->getLocale()] . ')';
+		}
+		return $label;
+	}
+
 	/**
 	 * Get label/title.
 	 * @return string
@@ -102,7 +115,7 @@ class PaperGalley extends PaperFile {
 	function getLabel() {
 		return $this->getData('label');
 	}
-	
+
 	/**
 	 * Set label/title.
 	 * @param $label string
@@ -110,7 +123,23 @@ class PaperGalley extends PaperFile {
 	function setLabel($label) {
 		return $this->setData('label', $label);
 	}
-	
+
+	/**
+	 * Get locale.
+	 * @return string
+	 */
+	function getLocale() {
+		return $this->getData('locale');
+	}
+
+	/**
+	 * Set locale.
+	 * @param $locale string
+	 */
+	function setLocale($locale) {
+		return $this->setData('locale', $locale);
+	}
+
 	/**
 	 * Get sequence order of supplementary file.
 	 * @return float
@@ -118,7 +147,7 @@ class PaperGalley extends PaperFile {
 	function getSequence() {
 		return $this->getData('sequence');
 	}
-	
+
 	/**
 	 * Set sequence order of supplementary file.
 	 * @param $sequence float
@@ -126,7 +155,7 @@ class PaperGalley extends PaperFile {
 	function setSequence($sequence) {
 		return $this->setData('sequence', $sequence);
 	}
-	
+
 }
 
 ?>

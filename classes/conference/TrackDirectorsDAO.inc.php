@@ -15,14 +15,6 @@
  */
 
 class TrackDirectorsDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function TrackDirectorsDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Insert a new track director.
 	 * @param $schedConfId int
@@ -42,7 +34,7 @@ class TrackDirectorsDAO extends DAO {
 			)
 		);
 	}
-	
+
 	/**
 	 * Delete a track director.
 	 * @param $schedConfId int
@@ -59,7 +51,7 @@ class TrackDirectorsDAO extends DAO {
 			)
 		);
 	}
-	
+
 	/**
 	 * Retrieve a list of tracks assigned to the specified user.
 	 * @param $schedConfId int
@@ -68,14 +60,14 @@ class TrackDirectorsDAO extends DAO {
 	 */
 	function &getTracksByUserId($schedConfId, $userId) {
 		$tracks = array();
-		
+
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
-				
+
 		$result = &$this->retrieve(
 			'SELECT s.* FROM tracks AS s, track_directors AS e WHERE s.track_id = e.track_id AND s.sched_conf_id = ? AND e.user_id = ?',
 			array($schedConfId, $userId)
 		);
-		
+
 		while (!$result->EOF) {
 			$tracks[] = &$trackDao->_returnTrackFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -83,10 +75,10 @@ class TrackDirectorsDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $tracks;
 	}
-	
+
 	/**
 	 * Retrieve a list of all track directors assigned to the specified track.
 	 * @param $schedConfId int
@@ -95,14 +87,14 @@ class TrackDirectorsDAO extends DAO {
 	 */
 	function &getDirectorsByTrackId($schedConfId, $trackId) {
 		$users = array();
-		
+
 		$userDao = &DAORegistry::getDAO('UserDAO');
-				
+
 		$result = &$this->retrieve(
 			'SELECT u.* FROM users AS u, track_directors AS e WHERE u.user_id = e.user_id AND e.sched_conf_id = ? AND e.track_id = ? ORDER BY last_name, first_name',
 			array($schedConfId, $trackId)
 		);
-		
+
 		while (!$result->EOF) {
 			$users[] = &$userDao->_returnUserFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -110,10 +102,10 @@ class TrackDirectorsDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $users;
 	}
-	
+
 	/**
 	 * Retrieve a list of all track directors not assigned to the specified track.
 	 * @param $schedConfId int
@@ -122,14 +114,14 @@ class TrackDirectorsDAO extends DAO {
 	 */
 	function &getDirectorsNotInTrack($schedConfId, $trackId) {
 		$users = array();
-		
+
 		$userDao = &DAORegistry::getDAO('UserDAO');
-				
+
 		$result = &$this->retrieve(
 			'SELECT u.* FROM users AS u NATURAL JOIN roles r LEFT JOIN track_directors AS e ON e.user_id = u.user_id AND e.sched_conf_id = r.sched_conf_id AND e.track_id = ? WHERE r.sched_conf_id = ? AND r.role_id = ? AND e.track_id IS NULL ORDER BY last_name, first_name',
 			array($trackId, $schedConfId, ROLE_ID_TRACK_DIRECTOR)
 		);
-		
+
 		while (!$result->EOF) {
 			$users[] = &$userDao->_returnUserFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -137,10 +129,10 @@ class TrackDirectorsDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $users;
 	}
-	
+
 	/**
 	 * Delete all track directors for a specified track in a scheduled conference.
 	 * @param $trackId int
@@ -156,7 +148,7 @@ class TrackDirectorsDAO extends DAO {
 			$trackId
 		);
 	}
-	
+
 	/**
 	 * Delete all track directors for a specified scheduled conference.
 	 * @param $schedConfId int
@@ -166,7 +158,7 @@ class TrackDirectorsDAO extends DAO {
 			'DELETE FROM track_directors WHERE sched_conf_id = ?', $schedConfId
 		);
 	}
-	
+
 	/**
 	 * Delete all track assignments for the specified user.
 	 * @param $userId int
@@ -181,7 +173,7 @@ class TrackDirectorsDAO extends DAO {
 			: (isset($trackId) ? array($userId, $trackId) : $userId))
 		);
 	}
-	
+
 	/**
 	 * Check if a user is assigned to a specified track.
 	 * @param $schedConfId int
@@ -200,7 +192,6 @@ class TrackDirectorsDAO extends DAO {
 
 		return $returner;
 	}
-	
 }
 
 ?>

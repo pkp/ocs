@@ -11,7 +11,7 @@
 {assign var="pageTitle" value="navigation.account"}
 {include file="common/header.tpl"}
 
-<form method="post" action="{url op="createAccount"}">
+<form name="createAccount" method="post" action="{url op="createAccount"}">
 
 <p>{translate key="user.account.completeForm"}</p>
 
@@ -39,6 +39,15 @@
    with the implementation in templates/registration/userRegistrationForm.tpl *}
 
 <table class="data" width="100%">
+{if count($formLocales) > 1 && !$existingUser}
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="80%" class="value">
+			{url|assign:"createAccountUrl" page="user" op="account"}
+			{form_language_chooser form="createAccount" url=$createAccountUrl}
+		</td>
+	</tr>
+{/if}
 <tr valign="top">	
 	<td width="20%" class="label">{fieldLabel name="username" required="true" key="user.username"}</td>
 	<td width="80%" class="value"><input type="text" name="username" value="{$username|escape}" id="username" size="20" maxlength="32" class="textField" /></td>
@@ -78,6 +87,10 @@
 {/if}
 
 <tr valign="top">
+	<td class="label">{fieldLabel name="salutation" key="user.salutation"}</td>
+	<td class="value"><input type="text" name="salutation" id="salutation" value="{$salutation|escape}" size="20" maxlength="40" class="textField" /></td>
+</tr>
+<tr valign="top">
 	<td class="label">{fieldLabel name="firstName" required="true" key="user.firstName"}</td>
 	<td class="value"><input type="text" id="firstName" name="firstName" value="{$firstName|escape}" size="20" maxlength="40" class="textField" /></td>
 </tr>
@@ -96,7 +109,12 @@
 	<td class="label">{fieldLabel name="initials" key="user.initials"}</td>
 	<td class="value"><input type="text" id="initials" name="initials" value="{$initials|escape}" size="5" maxlength="5" class="textField" />&nbsp;&nbsp;{translate key="user.initialsExample"}</td>
 </tr>
-	
+
+<tr valign="top">
+	<td class="label">{fieldLabel name="gender" key="user.gender"}</td>
+	<td class="value"><input type="radio" name="gender" id="gender-m" value="M" {if $gender == 'M'} checked="checked"{/if}/><label for="gender-m">{translate key="user.masculine"}</label> &nbsp;&nbsp;&nbsp; <input type="radio" name="gender" id="gender-f" value="F" {if $gender == 'F'} checked="checked"{/if}><label for="gender-f">{translate key="user.feminine"}</label></td>
+</tr>
+
 <tr valign="top">
 	<td class="label">{fieldLabel name="affiliation" key="user.affiliation"}</td>
 	<td class="value"><input type="text" id="affiliation" name="affiliation" value="{$affiliation|escape}" size="30" maxlength="255" class="textField" /></td>
@@ -104,7 +122,7 @@
 
 <tr valign="top">
 	<td class="label">{fieldLabel name="signature" key="user.signature"}</td>
-	<td class="value"><textarea name="signature" id="signature" rows="5" cols="40" class="textArea">{$signature|escape}</textarea></td>
+	<td class="value"><textarea name="signature[{$formLocale|escape}]" id="signature" rows="5" cols="40" class="textArea">{$signature[$formLocale]|escape|nl2br}</textarea></td>
 </tr>
 
 <tr valign="top">
@@ -126,7 +144,18 @@
 	<td class="label">{fieldLabel name="fax" key="user.fax"}</td>
 	<td class="value"><input type="text" name="fax" id="fax" value="{$fax|escape}" size="15" maxlength="24" class="textField" /></td>
 </tr>
-	
+
+<tr valign="top">
+	<td class="label">{fieldLabel name="discipline" key="common.discipline"}</td>
+	<td class="value">
+		<select name="discipline" id="discipline" class="selectMenu">
+			<option value=""></option>
+			{html_options options=$disciplines selected=$discipline}
+
+		</select>
+	</td>
+</tr>
+
 <tr valign="top">
 	<td class="label">{fieldLabel name="mailingAddress" key="common.mailingAddress"}</td>
 	<td class="value"><textarea name="mailingAddress" id="mailingAddress" rows="3" cols="40" class="textArea">{$mailingAddress|escape}</textarea></td>
@@ -144,7 +173,7 @@
 
 <tr valign="top">
 	<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-	<td class="value"><textarea name="biography" id="biography" rows="5" cols="40" class="textArea">{$biography|escape}</textarea></td>
+	<td class="value"><textarea name="biography[{$formLocale|escape}]" id="biography" rows="5" cols="40" class="textArea">{$biography[$formLocale]|escape}</textarea></td>
 </tr>
 
 <tr valign="top">
@@ -154,7 +183,7 @@
 	</td>
 </tr>
 
-{if $profileLocalesEnabled && count($availableLocales) > 1}
+{if count($availableLocales) > 1}
 <tr valign="top">
 	<td class="label">{translate key="user.workingLanguages"}</td>
 	<td class="value">{foreach from=$availableLocales key=localeKey item=localeName}
@@ -177,7 +206,7 @@
 		{if $allowRegPresenter || $allowRegPresenter === null}
 			<input type="checkbox" name="createAsPresenter" id="createAsPresenter" value="1"{if $createAsPresenter} checked="checked"{/if} /> <label for="createAsPresenter">{translate key="user.role.presenter"}</label>: {translate key="user.account.presenterDescription"}<br />
 		{/if}
-		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="createAsReviewer" id="createAsReviewer" value="1"{if $createAsReviewer} checked="checked"{/if} /> <label for="createAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.account.reviewerDescriptionNoInterests"}{else}{translate key="user.account.reviewerDescription"} <input type="text" name="interests" value="{$interests|escape}" size="20" maxlength="255" class="textField" />{/if}
+		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="createAsReviewer" id="createAsReviewer" value="1"{if $createAsReviewer} checked="checked"{/if} /> <label for="createAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.account.reviewerDescriptionNoInterests"}{else}{translate key="user.account.reviewerDescription"} <input type="text" name="interests[{$formLocale|escape}]" value="{$interests[$formLocale]|escape}" size="20" maxlength="255" class="textField" />{/if}
 		{/if}
 	</td>
 </tr>

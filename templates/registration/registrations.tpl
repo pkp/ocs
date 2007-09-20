@@ -39,7 +39,7 @@
 {iterate from=registrations item=registration}
 	<tr valign="top">
 		<td>{$registration->getUserFullName()|escape}</td>
-		<td>{$registration->getTypeName()|escape}</td>
+		<td>{$registration->getRegistrationTypeName()|escape}</td>
 		<td>{$registration->getDateRegistered()|date_format:$dateFormatShort}</td>
 		<td>{$registration->getDatePaid()|date_format:$dateFormatShort}</td>
 		<td><a href="{url op="editRegistration" path=$registration->getRegistrationId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteRegistration" path=$registration->getRegistrationId()}" onclick="return confirm('{translate|escape:"javascript" key="manager.registration.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>

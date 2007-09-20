@@ -19,7 +19,7 @@
 	<ul class="plain">
 	{if $conferences|@count>1 && !$currentConference}
 		{foreach from=$conferences item=conference}
-			<li><a href="{url conference=`$conference->getPath()` page="about" op="siteMap"}">{$conference->getTitle()|escape}</a></li>
+			<li><a href="{url conference=`$conference->getPath()` page="about" op="siteMap"}">{$conference->getConferenceTitle()|escape}</a></li>
 		{/foreach}
 	{else}
 		{if $conferences|@count==1}
@@ -30,7 +30,7 @@
 			{assign var=onlyOneConference value=1}
 		{/if}
 
-		<li><a href="{url conference=`$currentConference->getPath()`}">{$currentConference->getTitle()|escape}</a><br/>
+		<li><a href="{url conference=`$currentConference->getPath()`}">{$currentConference->getConferenceTitle()|escape}</a><br/>
 			<ul class="plain">
 				<li><a href="{url conference=`$currentConference->getPath()` page="about"}">{translate key="navigation.about"}</a></li>
 				<li>
@@ -55,7 +55,7 @@
 						</ul>
 					</li>
 				</li>
-				{foreach from=$currentConference->getSetting('navItems') item=navItem}
+				{foreach from=$currentConference->getLoaclizedSetting('navItems') item=navItem}
 					<li><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{url page=""}{$navItem.url|escape}{/if}">{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name|escape}{/if}</a></li>
 				{/foreach}
 			</ul>

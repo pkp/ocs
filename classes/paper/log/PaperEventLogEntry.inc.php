@@ -74,7 +74,7 @@ class PaperEventLogEntry extends DataObject {
 	function PaperEventLogEntry() {
 		parent::DataObject();
 	}
-	
+
 	/**
 	 * Set localized log message (in the conference's primary locale)
 	 * @param $key localization message key
@@ -83,11 +83,11 @@ class PaperEventLogEntry extends DataObject {
 	function setLogMessage($key, $params = array()) {
 		$this->setMessage(Locale::translate($key, $params, Locale::getPrimaryLocale()));
 	}
-	
+
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get ID of log entry.
 	 * @return int
@@ -95,7 +95,7 @@ class PaperEventLogEntry extends DataObject {
 	function getLogId() {
 		return $this->getData('logId');
 	}
-	
+
 	/**
 	 * Set ID of log entry.
 	 * @param $logId int
@@ -103,7 +103,7 @@ class PaperEventLogEntry extends DataObject {
 	function setLogId($logId) {
 		return $this->setData('logId', $logId);
 	}
-	
+
 	/**
 	 * Get ID of paper.
 	 * @return int
@@ -111,7 +111,7 @@ class PaperEventLogEntry extends DataObject {
 	function getPaperId() {
 		return $this->getData('paperId');
 	}
-	
+
 	/**
 	 * Set ID of paper.
 	 * @param $paperId int
@@ -119,7 +119,7 @@ class PaperEventLogEntry extends DataObject {
 	function setPaperId($paperId) {
 		return $this->setData('paperId', $paperId);
 	}
-	
+
 	/**
 	 * Get user ID of user that initiated the event.
 	 * @return int
@@ -127,7 +127,7 @@ class PaperEventLogEntry extends DataObject {
 	function getUserId() {
 		return $this->getData('userId');
 	}
-	
+
 	/**
 	 * Set user ID of user that initiated the event.
 	 * @param $userId int
@@ -135,7 +135,7 @@ class PaperEventLogEntry extends DataObject {
 	function setUserId($userId) {
 		return $this->setData('userId', $userId);
 	}
-	
+
 	/**
 	 * Get date entry was logged.
 	 * @return datestamp
@@ -143,7 +143,7 @@ class PaperEventLogEntry extends DataObject {
 	function getDateLogged() {
 		return $this->getData('dateLogged');
 	}
-	
+
 	/**
 	 * Set date entry was logged.
 	 * @param $dateLogged datestamp
@@ -151,7 +151,7 @@ class PaperEventLogEntry extends DataObject {
 	function setDateLogged($dateLogged) {
 		return $this->setData('dateLogged', $dateLogged);
 	}
-	
+
 	/**
 	 * Get IP address of user that initiated the event.
 	 * @return string
@@ -159,7 +159,7 @@ class PaperEventLogEntry extends DataObject {
 	function getIPAddress() {
 		return $this->getData('ipAddress');
 	}
-	
+
 	/**
 	 * Set IP address of user that initiated the event.
 	 * @param $ipAddress string
@@ -167,7 +167,7 @@ class PaperEventLogEntry extends DataObject {
 	function setIPAddress($ipAddress) {
 		return $this->setData('ipAddress', $ipAddress);
 	}
-	
+
 	/**
 	 * Get the log level.
 	 * @return int
@@ -175,7 +175,7 @@ class PaperEventLogEntry extends DataObject {
 	function getLogLevel() {
 		return $this->getData('logLevel');
 	}
-	
+
 	/**
 	 * Set the log level.
 	 * @param $logLevel char
@@ -183,7 +183,7 @@ class PaperEventLogEntry extends DataObject {
 	function setLogLevel($logLevel) {
 		return $this->setData('logLevel', $logLevel);
 	}
-	
+
 	/**
 	 * Get event type.
 	 * @return int
@@ -191,7 +191,7 @@ class PaperEventLogEntry extends DataObject {
 	function getEventType() {
 		return $this->getData('eventType');
 	}
-	
+
 	/**
 	 * Set event type.
 	 * @param $eventType int
@@ -199,7 +199,7 @@ class PaperEventLogEntry extends DataObject {
 	function setEventType($eventType) {
 		return $this->setData('eventType', $eventType);
 	}
-	
+
 	/**
 	 * Get associated type.
 	 * @return int
@@ -207,7 +207,7 @@ class PaperEventLogEntry extends DataObject {
 	function getAssocType() {
 		return $this->getData('assocType');
 	}
-	
+
 	/**
 	 * Set associated type.
 	 * @param $assocType int
@@ -215,7 +215,7 @@ class PaperEventLogEntry extends DataObject {
 	function setAssocType($assocType) {
 		return $this->setData('assocType', $assocType);
 	}
-	
+
 	/**
 	 * Get associated ID.
 	 * @return int
@@ -223,7 +223,7 @@ class PaperEventLogEntry extends DataObject {
 	function getAssocId() {
 		return $this->getData('assocId');
 	}
-	
+
 	/**
 	 * Set associated ID.
 	 * @param $assocId int
@@ -231,7 +231,7 @@ class PaperEventLogEntry extends DataObject {
 	function setAssocId($assocId) {
 		return $this->setData('assocId', $assocId);
 	}
-	
+
 	/**
 	 * Get custom log message (non-localized).
 	 * @return string
@@ -239,7 +239,7 @@ class PaperEventLogEntry extends DataObject {
 	function getMessage() {
 		return $this->getData('message');
 	}
-	
+
 	/**
 	 * Set custom log message (non-localized).
 	 * @param $message string
@@ -247,7 +247,7 @@ class PaperEventLogEntry extends DataObject {
 	function setMessage($message) {
 		return $this->setData('message', $message);
 	}
-	
+
 	/**
 	 * Return locale message key for the log level.
 	 * @return string
@@ -266,7 +266,7 @@ class PaperEventLogEntry extends DataObject {
 				return 'event.logLevel.notice';
 		}
 	}
-	
+
 	/**
 	 * Return locale message key describing event type.
 	 * @return string
@@ -288,11 +288,11 @@ class PaperEventLogEntry extends DataObject {
 				return 'submission.event.general.issueAssigned';
 			case PAPER_LOG_PAPER_PUBLISH:
 				return 'submission.event.general.paperPublished';
-				
+
 			// Presenter events
 			case PAPER_LOG_PRESENTER_REVISION:
 				return 'submission.event.presenter.presenterRevision';
-			
+
 			// Director events
 			case PAPER_LOG_DIRECTOR_ASSIGN:
 				return 'submission.event.director.directorAssigned';
@@ -306,7 +306,7 @@ class PaperEventLogEntry extends DataObject {
 				return 'submission.event.director.submissionArchived';
 			case PAPER_LOG_DIRECTOR_RESTORE:
 				return 'submission.event.director.submissionRestored';
-				
+
 			// Reviewer events
 			case PAPER_LOG_REVIEW_ASSIGN:
 				return 'submission.event.reviewer.reviewerAssigned';
@@ -334,46 +334,46 @@ class PaperEventLogEntry extends DataObject {
 				return 'submission.event.reviewer.reviewDueDate';
 			case PAPER_LOG_REVIEW_FILE:
 				return 'submission.event.reviewer.reviewFile';
-			
+
 			// Layout events
 			case PAPER_LOG_LAYOUT_GALLEY:
 				return 'submission.event.layout.layoutGalleyCreated';
-				
+
 			default:
 				return 'event.general.defaultEvent';
 		}
 	}
-	
+
 	/**
 	 * Return the full name of the user.
 	 * @return string
 	 */
 	function getUserFullName() {
 		static $userFullName;
-		
+
 		if(!isset($userFullName)) {
 			$userDao = &DAORegistry::getDAO('UserDAO');
 			$userFullName = $userDao->getUserFullName($this->getUserId(), true);
 		}
-		
+
 		return $userFullName ? $userFullName : '';
 	}
-	
+
 	/**
 	 * Return the email address of the user.
 	 * @return string
 	 */
 	function getUserEmail() {
 		static $userEmail;
-		
+
 		if(!isset($userEmail)) {
 			$userDao = &DAORegistry::getDAO('UserDAO');
 			$userEmail = $userDao->getUserEmail($this->getUserId(), true);
 		}
-		
+
 		return $userEmail ? $userEmail : '';
 	}
-	
+
 	/**
 	 * Return string representation of the associated type.
 	 * @return string
@@ -390,7 +390,7 @@ class PaperEventLogEntry extends DataObject {
 				return 'PAP';
 		}
 	}
-	
+
 	/**
 	 * Return locale message key for the long format of the associated type.
 	 * @return string
@@ -407,7 +407,7 @@ class PaperEventLogEntry extends DataObject {
 				return 'event.logType.paper';
 		}
 	}
-	
+
 }
 
 ?>

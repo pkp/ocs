@@ -16,14 +16,6 @@
  */
 
 class PluginSettingsDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function PluginSettingsDAO() {
-		parent::DAO();
-	}
-
 	function &_getCache($conferenceId, $schedConfId, $pluginName) {
 		static $settingCache;
 		if (!isset($settingCache)) {
@@ -78,37 +70,20 @@ class PluginSettingsDAO extends DAO {
 	 */
 	function &getPluginSettings($conferenceId, $schedConfId, $pluginName) {
 		$pluginSettings[$pluginName] = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT setting_name, setting_value, setting_type FROM plugin_settings WHERE plugin_name = ? AND conference_id = ? AND sched_conf_id = ?', array($pluginName, $conferenceId, $schedConfId)
 		);
-		
+
 		if ($result->RecordCount() == 0) {
 			$returner = null;
 			$result->Close();
 			return $returner;
-			
+
 		} else {
 			while (!$result->EOF) {
 				$row = &$result->getRowAssoc(false);
-				switch ($row['setting_type']) {
-					case 'bool':
-						$value = (bool) $row['setting_value'];
-						break;
-					case 'int':
-						$value = (int) $row['setting_value'];
-						break;
-					case 'float':
-						$value = (float) $row['setting_value'];
-						break;
-					case 'object':
-						$value = unserialize($row['setting_value']);
-						break;
-					case 'string':
-					default:
-						$value = $row['setting_value'];
-						break;
-				}
+				$value = $this->convertFromDB($row['setting_value'], $row['setting_type']);
 				$pluginSettings[$pluginName][$row['setting_name']] = $value;
 				$result->MoveNext();
 			}
@@ -121,7 +96,7 @@ class PluginSettingsDAO extends DAO {
 			return $pluginSettings[$pluginName];
 		}
 	}
-	
+
 	/**
 	 * Add/update a plugin setting.
 	 * @param $conferenceId int
@@ -133,44 +108,13 @@ class PluginSettingsDAO extends DAO {
 	function updateSetting($conferenceId, $schedConfId, $pluginName, $name, $value, $type = null) {
 		$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
 		$cache->setCache($name, $value);
-		
-		if ($type == null) {
-			switch (gettype($value)) {
-				case 'boolean':
-				case 'bool':
-					$type = 'bool';
-					break;
-				case 'integer':
-				case 'int':
-					$type = 'int';
-					break;
-				case 'double':
-				case 'float':
-					$type = 'float';
-					break;
-				case 'array':
-				case 'object':
-					$type = 'object';
-					break;
-				case 'string':
-				default:
-					$type = 'string';
-					break;
-			}
-		}
-		
-		if ($type == 'object') {
-			$value = serialize($value);
-			
-		} else if ($type == 'bool') {
-			$value = isset($value) && $value ? 1 : 0;
-		}
-		
+
 		$result = $this->retrieve(
 			'SELECT COUNT(*) FROM plugin_settings WHERE plugin_name = ? AND setting_name = ? AND conference_id = ? AND sched_conf_id = ?',
 			array($pluginName, $name, $conferenceId, $schedConfId)
 		);
-		
+
+		$value = $this->convertToDB($value, $type);
 		if ($result->fields[0] == 0) {
 			$returner = $this->update(
 				'INSERT INTO plugin_settings
@@ -194,7 +138,7 @@ class PluginSettingsDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Delete a plugin setting.
 	 * @param $conferenceId int
@@ -205,13 +149,13 @@ class PluginSettingsDAO extends DAO {
 	function deleteSetting($conferenceId, $schedConfId, $pluginName, $name) {
 		$cache =& $this->_getCache($pluginName);
 		$cache->setCache($name, null);
-		
+
 		return $this->update(
 			'DELETE FROM plugin_settings WHERE plugin_name = ? AND setting_name = ? AND conference_id = ? AND sched_conf_id = ?',
 			array($pluginName, $name, $conferenceId, $schedConfId)
 		);
 	}
-	
+
 	/**
 	 * Delete all settings for a plugin.
 	 * @param $pluginName string
@@ -219,7 +163,7 @@ class PluginSettingsDAO extends DAO {
 	function deleteSettingsByPlugin($pluginName) {
 		$cache =& $this->_getCache($pluginName);
 		$cache->flush();
-		
+
 		return $this->update(
 				'DELETE FROM plugin_settings WHERE plugin_name = ?', $pluginName
 		);

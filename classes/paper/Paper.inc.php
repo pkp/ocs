@@ -57,7 +57,7 @@ class Paper extends DataObject {
 		$this->presenters = array();
 		$this->removedPresenters = array();
 	}
-	
+
 	/**
 	 * Add an presenter.
 	 * @param $presenter Presenter
@@ -71,7 +71,7 @@ class Paper extends DataObject {
 		}
 		array_push($this->presenters, $presenter);
 	}
-	
+
 	/**
 	 * Remove an presenter.
 	 * @param $presenterId ID of the presenter to remove
@@ -79,7 +79,7 @@ class Paper extends DataObject {
 	 */
 	function removePresenter($presenterId) {
 		$found = false;
-		
+
 		if ($presenterId != 0) {
 			// FIXME maintain a hash of ID to presenter for quicker get/remove
 			$presenters = array();
@@ -95,52 +95,23 @@ class Paper extends DataObject {
 		}
 		return $found;
 	}
-	
+
 	/**
 	 * Get "localized" paper title (if applicable).
 	 * @return string
 	 */
 	function getPaperTitle() {
-		// FIXME this is evil
-		$alternateLocaleNum = Locale::isAlternateConferenceLocale($this->getData('conferenceId'));
-		switch ($alternateLocaleNum) {
-			case 1:
-				$title = $this->getTitleAlt1();
-				break;
-			case 2:
-				$title = $this->getTitleAlt2();
-				break;
-		}
-		
-		if (isset($title) && !empty($title)) {
-			return $title;
-		} else {
-			return $this->getTitle();
-		}
+		return $this->getLocalizedData('title');
 	}
-	
+
 	/**
 	 * Get "localized" paper abstract (if applicable).
 	 * @return string
 	 */
 	function getPaperAbstract() {
-		$alternateLocaleNum = Locale::isAlternateConferenceLocale($this->getData('conferenceId'));
-		switch ($alternateLocaleNum) {
-			case 1:
-				$abstract = $this->getAbstractAlt1();
-				break;
-			case 2:
-				$abstract = $this->getAbstractAlt2();
-				break;
-		}
-		
-		if (isset($abstract) && !empty($abstract)) {
-			return $abstract;
-		} else {
-			return $this->getAbstract();
-		}
+		return $this->getLocalizedData('abstract');
 	}
-	
+
 	/**
 	 * Return string of presenter names, separated by the specified token
 	 * @param $lastOnly boolean return list of lastnames only (default false)
@@ -168,27 +139,27 @@ class Paper extends DataObject {
 		return $lastOnly ? $presenter->getLastName() : $presenter->getFullName();
 	}
 
-	
+
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get paper type (SUBMISSION_TYPE_...).
 	 * @return int
 	 */
-	function getPaperType() {
+	function getTypeConst() {
 		return $this->getData('paperType');
 	}
-	
+
 	/**
 	 * Set paper type (SUBMISSION_TYPE_...).
 	 * @param $type int
 	 */
-	function setPaperType($paperType) {
-		return $this->setData('paperType', $paperType);
+	function setTypeConst($typeConst) {
+		return $this->setData('paperType', $typeConst);
 	}
-	
+
 	/**
 	 * Get all presenters of this paper.
 	 * @return array Presenters
@@ -196,7 +167,7 @@ class Paper extends DataObject {
 	function &getPresenters() {
 		return $this->presenters;
 	}
-	
+
 	/**
 	 * Get a specific presenter of this paper.
 	 * @param $presenterId int
@@ -204,7 +175,7 @@ class Paper extends DataObject {
 	 */
 	function &getPresenter($presenterId) {
 		$presenter = null;
-		
+
 		if ($presenterId != 0) {
 			for ($i=0, $count=count($this->presenters); $i < $count && $presenter == null; $i++) {
 				if ($this->presenters[$i]->getPresenterId() == $presenterId) {
@@ -214,7 +185,7 @@ class Paper extends DataObject {
 		}
 		return $presenter;
 	}
-	
+
 	/**
 	 * Get the IDs of all presenters removed from this paper.
 	 * @return array int
@@ -222,7 +193,7 @@ class Paper extends DataObject {
 	function &getRemovedPresenters() {
 		return $this->removedPresenters;
 	}
-	
+
 	/**
 	 * Set presenters of this paper.
 	 * @param $presenters array Presenters
@@ -230,7 +201,7 @@ class Paper extends DataObject {
 	function setPresenters($presenters) {
 		return $this->presenters = $presenters;
 	}
-	
+
 	/**
 	 * Get ID of paper.
 	 * @return int
@@ -238,7 +209,7 @@ class Paper extends DataObject {
 	function getPaperId() {
 		return $this->getData('paperId');
 	}
-	
+
 	/**
 	 * Set ID of paper.
 	 * @param $paperId int
@@ -246,7 +217,7 @@ class Paper extends DataObject {
 	function setPaperId($paperId) {
 		return $this->setData('paperId', $paperId);
 	}
-	
+
 	/**
 	 * Get user ID of the paper submitter.
 	 * @return int
@@ -254,7 +225,7 @@ class Paper extends DataObject {
 	function getUserId() {
 		return $this->getData('userId');
 	}
-	
+
 	/**
 	 * Set user ID of the paper submitter.
 	 * @param $userId int
@@ -262,7 +233,7 @@ class Paper extends DataObject {
 	function setUserId($userId) {
 		return $this->setData('userId', $userId);
 	}
-	
+
 	/**
 	 * Return the user of the paper submitter.
 	 * @return User
@@ -271,7 +242,7 @@ class Paper extends DataObject {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		return $userDao->getUser($this->getUserId(), true);
 	}
-	
+
 	/**
 	 * Get ID of scheduled conference.
 	 * @return int
@@ -279,7 +250,7 @@ class Paper extends DataObject {
 	function getSchedConfId() {
 		return $this->getData('schedConfId');
 	}
-	
+
 	/**
 	 * Set ID of scheduled conference.
 	 * @param $schedConfId int
@@ -287,7 +258,7 @@ class Paper extends DataObject {
 	function setSchedConfId($schedConfId) {
 		return $this->setData('schedConfId', $schedConfId);
 	}
-	
+
 	/**
 	 * Get ID of paper's track.
 	 * @return int
@@ -295,7 +266,7 @@ class Paper extends DataObject {
 	function getTrackId() {
 		return $this->getData('trackId');
 	}
-	
+
 	/**
 	 * Set ID of paper's track.
 	 * @param $trackId int
@@ -311,7 +282,7 @@ class Paper extends DataObject {
 	function getTrackTitle() {
 		return $this->getData('trackTitle');
 	}
-	
+
 	/**
 	 * Set title of paper's track.
 	 * @param $trackTitle string
@@ -327,7 +298,7 @@ class Paper extends DataObject {
 	function getTrackAbbrev() {
 		return $this->getData('trackAbbrev');
 	}
-	
+
 	/**
 	 * Set track abbreviation.
 	 * @param $trackAbbrev string
@@ -335,119 +306,61 @@ class Paper extends DataObject {
 	function setTrackAbbrev($trackAbbrev) {
 		return $this->setData('trackAbbrev', $trackAbbrev);
 	}
-	
+
 	/**
 	 * Get title.
+	 * @param $locale string
 	 * @return string
 	 */
-	function getTitle() {
-		return $this->getData('title');
+	function getTitle($locale) {
+		return $this->getData('title', $locale);
 	}
-	
+
 	/**
 	 * Set title.
 	 * @param $title string
+	 * @param $locale string
 	 */
-	function setTitle($title) {
-		return $this->setData('title', $title);
+	function setTitle($title, $locale) {
+		return $this->setData('title', $title, $locale);
 	}
-	
-	/**
-	 * Get alternate title #1.
-	 * @return string
-	 */
-	function getTitleAlt1() {
-		return $this->getData('titleAlt1');
-	}
-	
-	/**
-	 * Set alternate title #1.
-	 * @param $titleAlt1 string
-	 */
-	function setTitleAlt1($titleAlt1) {
-		return $this->setData('titleAlt1', $titleAlt1);
-	}
-	
-	/**
-	 * Get alternate title #2.
-	 * @return string
-	 */
-	function getTitleAlt2() {
-		return $this->getData('titleAlt2');
-	}
-	
-	/**
-	 * Set alternate title #2.
-	 * @param $titleAlt2 string
-	 */
-	function setTitleAlt2($titleAlt2) {
-		return $this->setData('titleAlt2', $titleAlt2);
-	}
-	
+
 	/**
 	 * Get abstract.
+	 * @param $locale string
 	 * @return string
 	 */
-	function getAbstract() {
-		return $this->getData('abstract');
+	function getAbstract($locale) {
+		return $this->getData('abstract', $locale);
 	}
-	
+
 	/**
 	 * Set abstract.
 	 * @param $abstract string
+	 * @param $locale string
 	 */
-	function setAbstract($abstract) {
-		return $this->setData('abstract', $abstract);
+	function setAbstract($abstract, $locale) {
+		return $this->setData('abstract', $abstract, $locale);
 	}
-	
-	/**
-	 * Get alternate abstract #1.
-	 * @return string
-	 */
-	function getAbstractAlt1() {
-		return $this->getData('abstractAlt1');
-	}
-	
-	/**
-	 * Set alternate abstract #1.
-	 * @param $abstractAlt1 string
-	 */
-	function setAbstractAlt1($abstractAlt1) {
-		return $this->setData('abstractAlt1', $abstractAlt1);
-	}
-	
-	/**
-	 * Get alternate abstract #2.
-	 * @return string
-	 */
-	function getAbstractAlt2() {
-		return $this->getData('abstractAlt2');
-	}
-	
-	/**
-	 * Set alternate abstract #2
-	 * @param $abstractAlt2 string
-	 */
-	function setAbstractAlt2($abstractAlt2) {
-		return $this->setData('abstractAlt2', $abstractAlt2);
-	}
-	
+
  	/**
 	 * Get location.
+	 * @param $locale string
 	 * @return string
 	 */
-	function getLocation() {
-		return $this->getData('location');
+	function getLocation($locale) {
+		return $this->getData('location', $locale);
 	}
-	
+
 	/**
 	 * Set location.
 	 * @param $location string
+	 * @param $locale string
 	 */
-	function setLocation($location) {
-		return $this->setData('location', $location);
+	function setLocation($location, $locale) {
+		return $this->setData('location', $location, $locale);
 	}
-	
+
 	/**
 	 * Get presentation start time.
 	 * @return string
@@ -455,7 +368,7 @@ class Paper extends DataObject {
 	function getPresentStartTime() {
 		return $this->getData('presentStartTime');
 	}
-	
+
 	/**
 	 * Set presentation start time.
 	 * @param $presentStartTime datetime
@@ -463,7 +376,7 @@ class Paper extends DataObject {
 	function setPresentStartTime($presentStartTime) {
 		return $this->setData('presentStartTime', $presentStartTime);
 	}
-	
+
 	/**
 	 * Get presentation end time.
 	 * @return datetime
@@ -471,7 +384,7 @@ class Paper extends DataObject {
 	function getPresentEndTime() {
 		return $this->getData('presentEndTime');
 	}
-	
+
 	/**
 	 * Set presentation end time.
 	 * @param $presentEndTime datetime
@@ -479,119 +392,191 @@ class Paper extends DataObject {
 	function setPresentEndTime($presentEndTime) {
 		return $this->setData('presentEndTime', $presentEndTime);
 	}
-	
+
 	/**
-	 * Get discipline.
+	 * Return the localized discipline
+	 * @param $locale string
 	 * @return string
 	 */
-	function getDiscipline() {
-		return $this->getData('discipline');
+	function getPaperDiscipline() {
+		return $this->getLocalizedData('discipline');
 	}
-	
+
+	/**
+	 * Get discipline.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getDiscipline($locale) {
+		return $this->getData('discipline', $locale);
+	}
+
 	/**
 	 * Set discipline.
 	 * @param $discipline string
+	 * @param $locale string
 	 */
-	function setDiscipline($discipline) {
-		return $this->setData('discipline', $discipline);
+	function setDiscipline($discipline, $locale) {
+		return $this->setData('discipline', $discipline, $locale);
 	}
-	
+
 	/**
-	 * Get subject classification.
+	 * Return the localized subject classification
+	 * @param $locale string
 	 * @return string
 	 */
-	function getSubjectClass() {
-		return $this->getData('subjectClass');
+	function getPaperSubjectClass() {
+		return $this->getLocalizedData('subjectClass');
 	}
-	
+
+	/**
+	 * Get subject classification.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getSubjectClass($locale) {
+		return $this->getData('subjectClass', $locale);
+	}
+
 	/**
 	 * Set subject classification.
 	 * @param $subjectClass string
+	 * @param $locale string
 	 */
-	function setSubjectClass($subjectClass) {
-		return $this->setData('subjectClass', $subjectClass);
+	function setSubjectClass($subjectClass, $locale) {
+		return $this->setData('subjectClass', $subjectClass, $locale);
 	}
-	
+
 	/**
-	 * Get subject.
+	 * Return the localized subject
 	 * @return string
 	 */
-	function getSubject() {
-		return $this->getData('subject');
+	function getPaperSubject() {
+		return $this->getLocalizedData('subject');
 	}
-	
+
+	/**
+	 * Get subject.
+	 * @param $locale
+	 * @return string
+	 */
+	function getSubject($locale) {
+		return $this->getData('subject', $locale);
+	}
+
 	/**
 	 * Set subject.
 	 * @param $subject string
+	 * @param $locale string
 	 */
-	function setSubject($subject) {
-		return $this->setData('subject', $subject);
+	function setSubject($subject, $locale) {
+		return $this->setData('subject', $subject, $locale);
 	}
-	
+
 	/**
-	 * Get geographical coverage.
+	 * Return the localized geo coverage
 	 * @return string
 	 */
-	function getCoverageGeo() {
-		return $this->getData('coverageGeo');
+	function getPaperCoverageGeo() {
+		return $this->getLocalizedData('coverageGeo');
 	}
-	
+
+	/**
+	 * Get geographical coverage.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getCoverageGeo($locale) {
+		return $this->getData('coverageGeo', $locale);
+	}
+
 	/**
 	 * Set geographical coverage.
 	 * @param $coverageGeo string
+	 * @param $locale string
 	 */
-	function setCoverageGeo($coverageGeo) {
-		return $this->setData('coverageGeo', $coverageGeo);
+	function setCoverageGeo($coverageGeo, $locale) {
+		return $this->setData('coverageGeo', $coverageGeo, $locale);
 	}
-	
+
 	/**
-	 * Get chronological coverage.
+	 * Return the localized chron coverage
 	 * @return string
 	 */
-	function getCoverageChron() {
-		return $this->getData('coverageChron');
+	function getPaperCoverageChron() {
+		return $this->getLocalizedData('coverageChron');
 	}
-	
+
+	/**
+	 * Get chronological coverage.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getCoverageChron($locale) {
+		return $this->getData('coverageChron', $locale);
+	}
+
 	/**
 	 * Set chronological coverage.
 	 * @param $coverageChron string
+	 * @param $locale string
 	 */
-	function setCoverageChron($coverageChron) {
-		return $this->setData('coverageChron', $coverageChron);
+	function setCoverageChron($coverageChron, $locale) {
+		return $this->setData('coverageChron', $coverageChron, $locale);
 	}
-	
+
 	/**
-	 * Get research sample coverage.
+	 * Return the localized sample coverage
 	 * @return string
 	 */
-	function getCoverageSample() {
-		return $this->getData('coverageSample');
+	function getPaperCoverageSample() {
+		return $this->getLocalizedData('coverageSample');
 	}
-	
+
+	/**
+	 * Get research sample coverage.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getCoverageSample($locale) {
+		return $this->getData('coverageSample', $locale);
+	}
+
 	/**
 	 * Set geographical coverage.
 	 * @param $coverageSample string
+	 * @param $locale string
 	 */
-	function setCoverageSample($coverageSample) {
-		return $this->setData('coverageSample', $coverageSample);
+	function setCoverageSample($coverageSample, $locale) {
+		return $this->setData('coverageSample', $coverageSample, $locale);
 	}
-	
+
 	/**
-	 * Get type (method/approach).
+	 * Return the localized type
 	 * @return string
 	 */
-	function getType() {
-		return $this->getData('type');
+	function getPaperType() {
+		return $this->getLocalizedData('type');
 	}
-	
+
+	/**
+	 * Get type (method/approach).
+	 * @param $locale string
+	 * @return string
+	 */
+	function getType($locale) {
+		return $this->getData('type', $locale);
+	}
+
 	/**
 	 * Set type (method/approach).
 	 * @param $type string
+	 * @param $locale string
 	 */
-	function setType($type) {
-		return $this->setData('type', $type);
+	function setType($type, $locale) {
+		return $this->setData('type', $type, $locale);
 	}
-	
+
 	/**
 	 * Get language.
 	 * @return string
@@ -599,7 +584,7 @@ class Paper extends DataObject {
 	function getLanguage() {
 		return $this->getData('language');
 	}
-	
+
 	/**
 	 * Set language.
 	 * @param $language string
@@ -607,23 +592,33 @@ class Paper extends DataObject {
 	function setLanguage($language) {
 		return $this->setData('language', $language);
 	}
-	
+
 	/**
-	 * Get sponsor.
+	 * Return the localized sponsor
 	 * @return string
 	 */
-	function getSponsor() {
-		return $this->getData('sponsor');
+	function getPaperSponsor() {
+		return $this->getLocalizedData('sponsor');
 	}
-	
+
+	/**
+	 * Get sponsor.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getSponsor($locale) {
+		return $this->getData('sponsor', $locale);
+	}
+
 	/**
 	 * Set sponsor.
 	 * @param $sponsor string
+	 * @param $locale string
 	 */
-	function setSponsor($sponsor) {
-		return $this->setData('sponsor', $sponsor);
+	function setSponsor($sponsor, $locale) {
+		return $this->setData('sponsor', $sponsor, $locale);
 	}
-	
+
 	/**
 	 * Get comments to director.
 	 * @return string
@@ -631,7 +626,7 @@ class Paper extends DataObject {
 	function getCommentsToDirector() {
 		return $this->getData('commentsToDirector');
 	}
-	
+
 	/**
 	 * Set comments to director.
 	 * @param $commentsToDirector string
@@ -639,7 +634,7 @@ class Paper extends DataObject {
 	function setCommentsToDirector($commentsToDirector) {
 		return $this->setData('commentsToDirector', $commentsToDirector);
 	}
-	
+
 	/**
 	 * Get submission date.
 	 * @return date
@@ -647,7 +642,7 @@ class Paper extends DataObject {
 	function getDateSubmitted() {
 		return $this->getData('dateSubmitted');
 	}
-	
+
 	/**
 	 * Set submission date.
 	 * @param $dateSubmitted date
@@ -655,7 +650,7 @@ class Paper extends DataObject {
 	function setDateSubmitted($dateSubmitted) {
 		return $this->setData('dateSubmitted', $dateSubmitted);
 	}
-	
+
 	/**
 	 * Get date sent to presentations.
 	 * @return date
@@ -663,7 +658,7 @@ class Paper extends DataObject {
 	function getDateToPresentations() {
 		return $this->getData('dateToPresentations');
 	}
-	
+
 	/**
 	 * Set date sent to presentations.
 	 * @param $dateToPresentations date
@@ -679,7 +674,7 @@ class Paper extends DataObject {
 	function getDateToArchive() {
 		return $this->getData('dateToArchive');
 	}
-	
+
 	/**
 	 * Set date sent to presentations.
 	 * @param $dateToArchive date
@@ -695,7 +690,7 @@ class Paper extends DataObject {
 	function getDateStatusModified() {
 		return $this->getData('dateStatusModified');
 	}
-	
+
 	/**
 	 * Set the date of the last status modification.
 	 * @param $dateModified date
@@ -703,7 +698,7 @@ class Paper extends DataObject {
 	function setDateStatusModified($dateModified) {
 		return $this->setData('dateStatusModified', $dateModified);
 	}
-	
+
 	/**
 	 * Get the date of the last modification.
 	 * @return date
@@ -711,7 +706,7 @@ class Paper extends DataObject {
 	function getLastModified() {
 		return $this->getData('lastModified');
 	}
-	
+
 	/**
 	 * Set the date of the last modification.
 	 * @param $dateModified date
@@ -719,35 +714,35 @@ class Paper extends DataObject {
 	function setLastModified($dateModified) {
 		return $this->setData('lastModified', $dateModified);
 	}
-	
+
 	/**
 	 * Stamp the date of the last modification to the current time.
 	 */
 	function stampModified() {
 		return $this->setLastModified(Core::getCurrentDate());
 	}
-	
+
 	/**
 	 * Stamp the date moved to the archive to the current time.
 	 */
 	function stampDateToArchive() {
 		return $this->setDateToArchive(Core::getCurrentDate());
 	}
-	
+
 	/**
 	 * Stamp the date moved to presentations to the current time.
 	 */
 	function stampDateToPresentations() {
 		return $this->setDateToPresentations(Core::getCurrentDate());
 	}
-	
+
 	/**
 	 * Stamp the date of the last status modification to the current time.
 	 */
 	function stampStatusModified() {
 		return $this->setDateStatusModified(Core::getCurrentDate());
 	}
-	
+
 	/**
 	 * Get the date of the "submission due" reminder.
 	 * @return date
@@ -755,7 +750,7 @@ class Paper extends DataObject {
 	function getDateReminded() {
 		return $this->getData('dateReminded');
 	}
-	
+
 	/**
 	 * Set the date of the "submission due" reminder.
 	 * @param $dateModified date
@@ -763,7 +758,7 @@ class Paper extends DataObject {
 	function setDateReminded($dateReminded) {
 		return $this->setData('dateReminded', $dateReminded);
 	}
-	
+
 	/**
 	 * Get paper status.
 	 * @return int
@@ -771,7 +766,7 @@ class Paper extends DataObject {
 	function getStatus() {
 		return $this->getData('status');
 	}
-	
+
 	/**
 	 * Set paper status.
 	 * @param $status int
@@ -779,7 +774,7 @@ class Paper extends DataObject {
 	function setStatus($status) {
 		return $this->setData('status', $status);
 	}
-	
+
 	/**
 	 * Get submission progress (most recently completed submission step).
 	 * @return int
@@ -787,7 +782,7 @@ class Paper extends DataObject {
 	function getSubmissionProgress() {
 		return $this->getData('submissionProgress');
 	}
-	
+
 	/**
 	 * Set submission progress.
 	 * @param $submissionProgress int
@@ -795,7 +790,7 @@ class Paper extends DataObject {
 	function setSubmissionProgress($submissionProgress) {
 		return $this->setData('submissionProgress', $submissionProgress);
 	}
-	
+
 	/**
 	 * Get current stage.
 	 * @return int
@@ -803,7 +798,7 @@ class Paper extends DataObject {
 	function getCurrentStage() {
 		return $this->getData('currentStage');
 	}
-	
+
 	/**
 	 * Set current stage.
 	 * @param $currentStage int
@@ -811,7 +806,7 @@ class Paper extends DataObject {
 	function setCurrentStage($currentStage) {
 		return $this->setData('currentStage', $currentStage);
 	}
-	
+
 	/**
 	 * Get submission file id.
 	 * @return int
@@ -819,7 +814,7 @@ class Paper extends DataObject {
 	function getSubmissionFileId() {
 		return $this->getData('submissionFileId');
 	}
-	
+
 	/**
 	 * Set submission file id.
 	 * @param $submissionFileId int
@@ -827,7 +822,7 @@ class Paper extends DataObject {
 	function setSubmissionFileId($submissionFileId) {
 		return $this->setData('submissionFileId', $submissionFileId);
 	}
-	
+
 	/**
 	 * Get revised file id.
 	 * @return int
@@ -835,7 +830,7 @@ class Paper extends DataObject {
 	function getRevisedFileId() {
 		return $this->getData('revisedFileId');
 	}
-	
+
 	/**
 	 * Set revised file id.
 	 * @param $revisedFileId int
@@ -843,7 +838,7 @@ class Paper extends DataObject {
 	function setRevisedFileId($revisedFileId) {
 		return $this->setData('revisedFileId', $revisedFileId);
 	}
-	
+
 	/**
 	 * Get review file id.
 	 * @return int
@@ -851,7 +846,7 @@ class Paper extends DataObject {
 	function getReviewFileId() {
 		return $this->getData('reviewFileId');
 	}
-	
+
 	/**
 	 * Set review file id.
 	 * @param $reviewFileId int
@@ -859,7 +854,7 @@ class Paper extends DataObject {
 	function setReviewFileId($reviewFileId) {
 		return $this->setData('reviewFileId', $reviewFileId);
 	}
-	
+
 	/**
 	 * Get layout file id.
 	 * @return int
@@ -867,7 +862,7 @@ class Paper extends DataObject {
 	function getLayoutFileId() {
 		return $this->getData('layoutFileId');
 	}
-	
+
 	/**
 	 * Set layout file id.
 	 * @param $layoutFileId int
@@ -883,7 +878,7 @@ class Paper extends DataObject {
 	function getDirectorFileId() {
 		return $this->getData('directorFileId');
 	}
-	
+
 	/**
 	 * Set director file id.
 	 * @param $directorFileId int
@@ -891,7 +886,7 @@ class Paper extends DataObject {
 	function setDirectorFileId($directorFileId) {
 		return $this->setData('directorFileId', $directorFileId);
 	}
-	
+
 	/**
 	 * get pages
 	 * @return string
@@ -899,7 +894,7 @@ class Paper extends DataObject {
 	function getPages() {
 		return $this->getData('pages');
 	}
-	 
+
 	/**
 	 * set pages
 	 * @param $pages string

@@ -32,7 +32,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function ConferenceEventLogEntry() {
 		parent::DataObject();
 	}
-	
+
 	/**
 	 * Set localized log message (in the conference's primary locale)
 	 * @param $key localization message key
@@ -41,11 +41,11 @@ class ConferenceEventLogEntry extends DataObject {
 	function setLogMessage($key, $params = array()) {
 		$this->setMessage(Locale::translate($key, $params, Locale::getPrimaryLocale()));
 	}
-	
+
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get ID of log entry.
 	 * @return int
@@ -53,7 +53,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getLogId() {
 		return $this->getData('logId');
 	}
-	
+
 	/**
 	 * Set ID of log entry.
 	 * @param $logId int
@@ -61,7 +61,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setLogId($logId) {
 		return $this->setData('logId', $logId);
 	}
-	
+
 	/**
 	 * Get ID of conference.
 	 * @return int
@@ -69,7 +69,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getConferenceId() {
 		return $this->getData('conferenceId');
 	}
-	
+
 	/**
 	 * Set ID of conference.
 	 * @param $conferenceId int
@@ -77,7 +77,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setConferenceId($conferenceId) {
 		return $this->setData('conferenceId', $conferenceId);
 	}
-	
+
 	/**
 	 * Get ID of sched conf.
 	 * @return int
@@ -85,7 +85,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getSchedConfId() {
 		return $this->getData('schedConfId');
 	}
-	
+
 	/**
 	 * Set ID of sched conf.
 	 * @param $schedConfId int
@@ -93,7 +93,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setSchedConfId($schedConfId) {
 		return $this->setData('schedConfId', $schedConfId);
 	}
-	
+
 	/**
 	 * Get conference title.
 	 * @return string
@@ -101,7 +101,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getConferenceTitle() {
 		return $this->getData('conferenceTitle');
 	}
-	
+
 	/**
 	 * Set conference title.
 	 * @param $conferenceTitle string
@@ -109,7 +109,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setConferenceTitle($conferenceTitle) {
 		return $this->setData('conferenceTitle', $conferenceTitle);
 	}
-	
+
 	/**
 	 * Get sched conf title.
 	 * @return string
@@ -117,7 +117,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getSchedConfTitle() {
 		return $this->getData('schedConfTitle');
 	}
-	
+
 	/**
 	 * Set sched conf title.
 	 * @param $schedConfTitle string
@@ -125,7 +125,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setSchedConfTitle($schedConfTitle) {
 		return $this->setData('schedConfTitle', $schedConfTitle);
 	}
-	
+
 	/**
 	 * Get user ID of user that initiated the event.
 	 * @return int
@@ -133,7 +133,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getUserId() {
 		return $this->getData('userId');
 	}
-	
+
 	/**
 	 * Set user ID of user that initiated the event.
 	 * @param $userId int
@@ -141,7 +141,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setUserId($userId) {
 		return $this->setData('userId', $userId);
 	}
-	
+
 	/**
 	 * Get date entry was logged.
 	 * @return datestamp
@@ -149,7 +149,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getDateLogged() {
 		return $this->getData('dateLogged');
 	}
-	
+
 	/**
 	 * Set date entry was logged.
 	 * @param $dateLogged datestamp
@@ -157,7 +157,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setDateLogged($dateLogged) {
 		return $this->setData('dateLogged', $dateLogged);
 	}
-	
+
 	/**
 	 * Get IP address of user that initiated the event.
 	 * @return string
@@ -165,7 +165,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getIPAddress() {
 		return $this->getData('ipAddress');
 	}
-	
+
 	/**
 	 * Set IP address of user that initiated the event.
 	 * @param $ipAddress string
@@ -173,7 +173,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setIPAddress($ipAddress) {
 		return $this->setData('ipAddress', $ipAddress);
 	}
-	
+
 	/**
 	 * Get the log level.
 	 * @return int
@@ -181,7 +181,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getLogLevel() {
 		return $this->getData('logLevel');
 	}
-	
+
 	/**
 	 * Set the log level.
 	 * @param $logLevel char
@@ -189,7 +189,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setLogLevel($logLevel) {
 		return $this->setData('logLevel', $logLevel);
 	}
-	
+
 	/**
 	 * Get event type.
 	 * @return int
@@ -197,7 +197,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getEventType() {
 		return $this->getData('eventType');
 	}
-	
+
 	/**
 	 * Set event type.
 	 * @param $eventType int
@@ -205,7 +205,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setEventType($eventType) {
 		return $this->setData('eventType', $eventType);
 	}
-	
+
 	/**
 	 * Get associated type.
 	 * @return int
@@ -213,7 +213,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getAssocType() {
 		return $this->getData('assocType');
 	}
-	
+
 	/**
 	 * Set associated type.
 	 * @param $assocType int
@@ -221,7 +221,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setAssocType($assocType) {
 		return $this->setData('assocType', $assocType);
 	}
-	
+
 	/**
 	 * Get associated ID.
 	 * @return int
@@ -229,7 +229,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getAssocId() {
 		return $this->getData('assocId');
 	}
-	
+
 	/**
 	 * Set associated ID.
 	 * @param $assocId int
@@ -237,7 +237,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setAssocId($assocId) {
 		return $this->setData('assocId', $assocId);
 	}
-	
+
 	/**
 	 * Get custom log message (non-localized).
 	 * @return string
@@ -245,7 +245,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function getMessage() {
 		return $this->getData('message');
 	}
-	
+
 	/**
 	 * Set custom log message (non-localized).
 	 * @param $message string
@@ -253,7 +253,7 @@ class ConferenceEventLogEntry extends DataObject {
 	function setMessage($message) {
 		return $this->setData('message', $message);
 	}
-	
+
 	/**
 	 * Return locale message key for the log level.
 	 * @return string
@@ -272,7 +272,7 @@ class ConferenceEventLogEntry extends DataObject {
 				return 'event.logLevel.notice';
 		}
 	}
-	
+
 	/**
 	 * Return locale message key describing event type.
 	 * @return string
@@ -284,42 +284,42 @@ class ConferenceEventLogEntry extends DataObject {
 				return 'conference.event.general.configuration';
 			case CONFERENCE_LOG_DEADALINE:
 				return 'conference.event.general.deadline';
-				
+
 			default:
 				return 'event.general.defaultEvent';
 		}
 	}
-	
+
 	/**
 	 * Return the full name of the user.
 	 * @return string
 	 */
 	function getUserFullName() {
 		static $userFullName;
-		
+
 		if(!isset($userFullName)) {
 			$userDao = &DAORegistry::getDAO('UserDAO');
 			$userFullName = $userDao->getUserFullName($this->getUserId(), true);
 		}
-		
+
 		return $userFullName ? $userFullName : '';
 	}
-	
+
 	/**
 	 * Return the email address of the user.
 	 * @return string
 	 */
 	function getUserEmail() {
 		static $userEmail;
-		
+
 		if(!isset($userEmail)) {
 			$userDao = &DAORegistry::getDAO('UserDAO');
 			$userEmail = $userDao->getUserEmail($this->getUserId(), true);
 		}
-		
+
 		return $userEmail ? $userEmail : '';
 	}
-	
+
 	/**
 	 * Return string representation of the associated type.
 	 * @return string
@@ -330,7 +330,7 @@ class ConferenceEventLogEntry extends DataObject {
 				return 'CON';
 		}
 	}
-	
+
 	/**
 	 * Return locale message key for the long format of the associated type.
 	 * @return string
@@ -341,7 +341,7 @@ class ConferenceEventLogEntry extends DataObject {
 				return 'event.logType.conference';
 		}
 	}
-	
+
 }
 
 ?>

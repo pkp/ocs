@@ -52,9 +52,9 @@ function checkSubmissionChecklist() {
 <input type="hidden" name="submissionChecklist" value="1" />
 {include file="common/formErrors.tpl"}
 
-{if $schedConfSettings.submissionChecklist}
+{if $currentSchedConf->getLocalizedSetting('submissionChecklist')}
 
-{foreach name=checklist from=$schedConfSettings.submissionChecklist key=checklistId item=checklistItem}
+{foreach name=checklist from=$currentSchedConf->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
 	{if $checklistItem.content}
 		{if !$notFirstChecklistItem}
 			{assign var=notFirstChecklistItem value=1}

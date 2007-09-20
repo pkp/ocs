@@ -17,7 +17,6 @@
 import('form.Form');
 
 class RegistrationTypeForm extends Form {
-
 	/** @var typeId int the ID of the registration type being edited */
 	var $typeId;
 
@@ -50,16 +49,9 @@ class RegistrationTypeForm extends Form {
 		$schedConf = &Request::getSchedConf();
 
 		parent::Form('registration/registrationTypeForm.tpl');
-	
-		// Type name is provided
-		$this->addCheck(new FormValidator($this, 'typeName', 'required', 'manager.registrationTypes.form.typeNameRequired'));
 
-		// Type name does not already exist for this scheduled conference
-		if ($this->typeId == null) {
-			$this->addCheck(new FormValidatorCustom($this, 'typeName', 'required', 'manager.registrationTypes.form.typeNameExists', array(DAORegistry::getDAO('RegistrationTypeDAO'), 'registrationTypeExistsByTypeName'), array($schedConf->getSchedConfId()), true));
-		} else {
-			$this->addCheck(new FormValidatorCustom($this, 'typeName', 'required', 'manager.registrationTypes.form.typeNameExists', create_function('$typeName, $schedConfId, $typeId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); $checkId = $registrationTypeDao->getRegistrationTypeByTypeName($typeName, $schedConfId); return ($checkId == 0 || $checkId == $typeId) ? true : false;'), array($schedConf->getSchedConfId(), $this->typeId)));
-		}
+		// Type name is provided
+		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.registrationTypes.form.typeNameRequired'));
 
 		// Cost	is provided and is numeric and positive	
 		$this->addCheck(new FormValidator($this, 'cost', 'required', 'manager.registrationTypes.form.costRequired'));	
@@ -90,7 +82,16 @@ class RegistrationTypeForm extends Form {
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
+	/**
+	 * Get a list of localized field names for this form
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		return $registrationTypeDao->getLocaleFieldNames();
+	}
+
 	/**
 	 * Display the form.
 	 */
@@ -101,10 +102,10 @@ class RegistrationTypeForm extends Form {
 		$templateMgr->assign('validCurrencies', $this->validCurrencies);
 		$templateMgr->assign('validAccessTypes', $this->validAccessTypes);
 		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
-	
+
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize form data from current registration type.
 	 */
@@ -112,11 +113,11 @@ class RegistrationTypeForm extends Form {
 		if (isset($this->typeId)) {
 			$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 			$registrationType = &$registrationTypeDao->getRegistrationType($this->typeId);
-			
+
 			if ($registrationType != null) {
 				$this->_data = array(
-					'typeName' => $registrationType->getTypeName(),
-					'description' => $registrationType->getDescription(),
+					'name' => $registrationType->getName(null), // Localized
+					'description' => $registrationType->getDescription(null), // Localized
 					'cost' => $registrationType->getCost(),
 					'currency' => $registrationType->getCurrencyCodeAlpha(),
 					'openDate' => $registrationType->getOpeningDate(),
@@ -138,35 +139,35 @@ class RegistrationTypeForm extends Form {
 			);
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('typeName', 'description', 'cost', 'currency', 'access', 'institutional', 'membership', 'notPublic', 'code'));
+		$this->readUserVars(array('name', 'description', 'cost', 'currency', 'access', 'institutional', 'membership', 'notPublic', 'code'));
 		$this->_data['openDate'] = Request::getUserDateVar('openDate');
 		$this->_data['closeDate'] = Request::getUserDateVar('closeDate');
 		$this->_data['expiryDate'] = Request::getUserVar('expiryDate')?Request::getUserDateVar('expiryDate'):null;
 	}
-	
+
 	/**
 	 * Save registration type. 
 	 */
 	function execute() {
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 		$schedConf = &Request::getSchedConf();
-	
+
 		if (isset($this->typeId)) {
 			$registrationType = &$registrationTypeDao->getRegistrationType($this->typeId);
 		}
-		
+
 		if (!isset($registrationType)) {
 			$registrationType = &new RegistrationType();
 		}
-		
+
 		$registrationType->setSchedConfId($schedConf->getSchedConfId());
-		$registrationType->setTypeName($this->getData('typeName'));
-		$registrationType->setDescription($this->getData('description'));
+		$registrationType->setName($this->getData('name'), null); // Localized
+		$registrationType->setDescription($this->getData('description'), null); // Localized
 		$registrationType->setCost(round($this->getData('cost'), 2));
 		$registrationType->setCurrencyCodeAlpha($this->getData('currency'));
 		$registrationType->setOpeningDate($this->getData('openDate'));

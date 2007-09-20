@@ -32,12 +32,12 @@ class InformationHandler extends Handler {
 
 		switch(isset($args[0])?$args[0]:null) {
 			case 'readers':
-				$conferenceContent = $conference->getSetting('readerInformation');
+				$conferenceContent = $conference->getLocalizedSetting('readerInformation');
 				$pageTitle = 'navigation.infoForReaders.long';
 				$pageCrumbTitle = 'navigation.infoForReaders';
 				break;
 			case 'presenters':
-				$conferenceContent = $conference->getSetting('presenterInformation');
+				$conferenceContent = $conference->getLocalizedSetting('presenterInformation');
 				$pageTitle = 'navigation.infoForPresenters.long';
 				$pageCrumbTitle = 'navigation.infoForPresenters';
 				break;
@@ -51,7 +51,7 @@ class InformationHandler extends Handler {
 		if($schedConf) {
 			$templateMgr->assign('schedConfTitle', $schedConf->getFullTitle());
 		}
-		$templateMgr->assign('conferenceTitle', $conference->getTitle());
+		$templateMgr->assign('conferenceTitle', $conference->getConferenceTitle());
 
 		$templateMgr->assign('pageCrumbTitle', $pageCrumbTitle);
 		$templateMgr->assign('pageTitle', $pageTitle);

@@ -21,7 +21,7 @@
 	<message key="plugins.importexport.nlm.export.selectPaper">Sélectionner les papiers à exporter</message>
 	
 	<message key="plugins.importexport.nlm.cliUsage"><![CDATA[Usage: 
-{$scriptName} {$pluginName} [xmlFileName] [journal_path] papers [paperId1] [paperId2] ...
+{$scriptName} {$pluginName} [xmlFileName] [conference_path] papers [paperId1] [paperId2] ...
 ]]></message>
 	<message key="plugins.importexport.nlm.cliError">ERREUR:</message>
 

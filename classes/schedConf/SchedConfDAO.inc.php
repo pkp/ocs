@@ -18,14 +18,6 @@
 import ('schedConf.SchedConf');
 
 class SchedConfDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function SchedConfDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Retrieve a scheduled conference by ID.
 	 * @param $schedConfId int
@@ -47,7 +39,7 @@ class SchedConfDAO extends DAO {
 		unset($result);
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve a scheduled conference by path.
 	 * @param $path string
@@ -62,12 +54,12 @@ class SchedConfDAO extends DAO {
 			else
 				$conferenceId = $conference->getConferenceId();
 		}
-		
+
 		$returner = null;
 		$result = &$this->retrieve(
 			'SELECT * FROM sched_confs WHERE path = ? and conference_id = ?',
 			array($path, $conferenceId));
-		
+
 		if ($result->RecordCount() != 0) {
 			$returner = &$this->_returnSchedConfFromRow($result->GetRowAssoc(false));
 		}
@@ -75,7 +67,7 @@ class SchedConfDAO extends DAO {
 		unset($result);
 		return $returner;
 	}
-	
+
 	/**
 	 * Internal function to return a scheduled conference object from a row.
 	 * @param $row array
@@ -84,13 +76,12 @@ class SchedConfDAO extends DAO {
 	function &_returnSchedConfFromRow(&$row) {
 		$schedConf = &new SchedConf();
 		$schedConf->setSchedConfId($row['sched_conf_id']);
-		$schedConf->setTitle($row['title']);
 		$schedConf->setPath($row['path']);
 		$schedConf->setSequence($row['seq']);
 		$schedConf->setConferenceId($row['conference_id']);
 		$schedConf->setStartDate($this->datetimeFromDB($row['start_date']));
 		$schedConf->setEndDate($this->datetimeFromDB($row['end_date']));
-		
+
 		HookRegistry::call('SchedConfDAO::_returnSchedConfFromRow', array(&$schedConf, &$row));
 
 		return $schedConf;
@@ -103,23 +94,22 @@ class SchedConfDAO extends DAO {
 	function insertSchedConf(&$schedConf) {
 		$this->update(
 			sprintf('INSERT INTO sched_confs
-				(conference_id, title, path, seq, start_date, end_date)
+				(conference_id, path, seq, start_date, end_date)
 				VALUES
-				(?, ?, ?, ?, %s, %s)',
+				(?, ?, ?, %s, %s)',
 				$this->datetimeToDB($schedConf->getStartDate()),
 				$this->datetimeToDB($schedConf->getEndDate())),
 			array(
 				$schedConf->getConferenceId(),
-				$schedConf->getTitle(),
 				$schedConf->getPath(),
 				$schedConf->getSequence() == null ? 0 : $schedConf->getSequence()
 			)
 		);
-		
+
 		$schedConf->setSchedConfId($this->getInsertSchedConfId());
 		return $schedConf->getSchedConfId();
 	}
-	
+
 	/**
 	 * Update an existing scheduled conference.
 	 * @param $schedConf SchedConf
@@ -129,7 +119,6 @@ class SchedConfDAO extends DAO {
 			sprintf('UPDATE sched_confs
 				SET
 					conference_id = ?,
-					title = ?,
 					path = ?,
 					seq = ?,
 					start_date = %s,
@@ -139,14 +128,13 @@ class SchedConfDAO extends DAO {
 				$this->datetimeToDB($schedConf->getEndDate())),
 			array(
 				$schedConf->getConferenceId(),
-				$schedConf->getTitle(),
 				$schedConf->getPath(),
 				$schedConf->getSequence(),
 				$schedConf->getSchedConfId()
 			)
 		);
 	}
-	
+
 	/**
 	 * Delete a scheduled conference, INCLUDING ALL DEPENDENT ITEMS.
 	 * @param $schedConf SchedConf
@@ -154,7 +142,7 @@ class SchedConfDAO extends DAO {
 	function deleteSchedConf(&$schedConf) {
 		return $this->deleteSchedConfById($schedConf->getSchedConfId());
 	}
-	
+
 	/**
 	 * Retrieves all scheduled conferences for a conference
 	 * @param $conferenceId
@@ -167,7 +155,7 @@ class SchedConfDAO extends DAO {
 				ORDER BY seq',
 			$conferenceId
 		);
-		
+
 		$returner = &new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
 		return $returner;
 	}
@@ -178,13 +166,13 @@ class SchedConfDAO extends DAO {
 	 */
 	function deleteSchedConfsByConferenceId($conferenceId) {
 		$schedConfs = $this->getSchedConfsByConferenceId($conferenceId);
-		
+
 		while (!$schedConfs->eof()) {
 			$schedConf = &$schedConfs->next();
 			$this->deleteSchedConfById($schedConf->getSchedConfId());
 		}
 	}
-	
+
 	/**
 	 * Delete a scheduled conference by ID, INCLUDING ALL DEPENDENT ITEMS.
 	 * @param $schedConfId int
@@ -221,7 +209,7 @@ class SchedConfDAO extends DAO {
 			'DELETE FROM sched_confs WHERE sched_conf_id = ?', $schedConfId
 		);
 	}
-	
+
 	/**
 	 * Retrieve all scheduled conferences.
 	 * @return DAOResultFactory containing matching scheduled conferences
@@ -235,14 +223,13 @@ class SchedConfDAO extends DAO {
 		$returner = &new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve all scheduled conferences
 	 * @param conferenceId optional conference ID
 	 * @return array SchedConfs ordered by sequence
 	 */
-	 function &getEnabledSchedConfs($conferenceId = null) 
-	 {
+	function &getEnabledSchedConfs($conferenceId = null) {
 		$result = &$this->retrieve('
 			SELECT i.* FROM sched_confs i
 				LEFT JOIN conferences c ON (i.conference_id = c.conference_id)
@@ -250,58 +237,11 @@ class SchedConfDAO extends DAO {
 				. ($conferenceId?' AND i.conference_id = ?':'')
 			. ' ORDER BY c.seq, i.seq',
 			$conferenceId===null?-1:$conferenceId);
-		
+
 		$resultFactory = &new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
 		return $resultFactory;
 	}
-	
-	/**
-	 * Retrieve the IDs and titles of all scheduled conferences in an associative array.
-	 * @return array
-	 */
-	function &getSchedConfTitles() {
-		$schedConfs = array();
-		
-		$result = &$this->retrieve(
-			'SELECT sched_conf_id, title FROM sched_confs ORDER BY seq'
-		);
-		
-		while (!$result->EOF) {
-			$schedConfId = $result->fields[0];
-			$sched_confs[$schedConfId] = $result->fields[1];
-			$result->moveNext();
-		}
-		$result->Close();
-		unset($result);
-	
-		return $sched_confs;
-	}
-	
-	/**
-	* Retrieve enabled scheduled conference IDs and titles in an associative array
-	* @return array
-	*/
-	function &getEnabledSchedConfTitles() {
-		$schedConfs = array();
-		
-		$result = &$this->retrieve('
-			SELECT i.sched_conf_id, i.title FROM schedConfs i
-				LEFT JOIN conferences c ON (i.conference_id = c.conference_id)
-			WHERE c.enabled = 1
-			ORDER BY seq'
-		);
-		
-		while (!$result->EOF) {
-			$schedConfId = $result->fields[0];
-			$schedConfs[$schedConfId] = $result->fields[1];
-			$result->moveNext();
-		}
-		$result->Close();
-		unset($result);
-	
-		return $schedConfs;
-	}
-	
+
 	/**
 	 * Check if a scheduled conference exists with a specified path.
 	 * @param $path the path of the scheduled conference
@@ -318,7 +258,7 @@ class SchedConfDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Sequentially renumber scheduled conferences in their sequence order.
 	 */
@@ -327,7 +267,7 @@ class SchedConfDAO extends DAO {
 			'SELECT sched_conf_id FROM sched_confs WHERE conference_id = ? ORDER BY seq',
 			$conferenceId
 		);
-		
+
 		for ($i=1; !$result->EOF; $i++) {
 			list($schedConfId) = $result->fields;
 			$this->update(
@@ -337,14 +277,14 @@ class SchedConfDAO extends DAO {
 					$schedConfId
 				)
 			);
-			
+
 			$result->moveNext();
 		}
 
 		$result->close();
 		unset($result);
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted scheduled conference.
 	 * @return int
@@ -352,13 +292,12 @@ class SchedConfDAO extends DAO {
 	function getInsertSchedConfId() {
 		return $this->getInsertId('sched_confs', 'sched_conf_id');
 	}
-	
+
 	/**
 	 * Retrieve most recent enabled scheduled conference of a given conference
 	 * @return array SchedConfs ordered by sequence
 	 */
-	 function &getCurrentSchedConfs($conferenceId) 
-	 {
+	function &getCurrentSchedConfs($conferenceId) {
 		$result = &$this->retrieve('
 			SELECT i.* FROM sched_confs i
 				LEFT JOIN conferences c ON (i.conference_id = c.conference_id)
@@ -368,7 +307,7 @@ class SchedConfDAO extends DAO {
 				AND i.end_date > NOW()
 			ORDER BY c.seq, i.seq',
 			$conferenceId);
-		
+
 		$resultFactory = &new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
 		return $resultFactory;
 	}

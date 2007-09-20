@@ -4,7 +4,7 @@
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Article reading tools -- Capture Citation APA format
+ * Paper reading tools -- Capture Citation APA format
  *
  * $Id$
  *}
@@ -19,6 +19,6 @@
 
 ({$paper->getDatePublished()|date_format:'%Y'}).
 {$paper->getPaperTitle()|strip_unsafe_html}.
-<i>{$conference->getTitle()|escape}</i>.
+<i>{$conference->getConferenceTitle()|escape}</i>.
 {translate key="plugins.citationFormats.apa.retrieved" retrievedDate=$smarty.now|date_format:$dateFormatShort url=$paperUrl}
 

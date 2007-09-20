@@ -51,7 +51,9 @@ class AboutHandler extends Handler {
 				} 
 			}
 
-			$templateMgr->assign('customAboutItems', $customAboutItems);
+			if (isset($customAboutItems[Locale::getLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[Locale::getLocale()]);
+			elseif (isset($customAboutItems[Locale::getPrimaryLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[Locale::getPrimaryLocale()]);
+
 			$templateMgr->assign('helpTopicId', 'user.about');
 			$templateMgr->assign_by_ref('conferenceSettings', $settings);
 			$templateMgr->display('about/index.tpl');
@@ -80,8 +82,8 @@ class AboutHandler extends Handler {
 		$templateMgr = &TemplateManager::getManager();
 
 		$pageHierarchy = array();
-		if ($conference) $pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getTitle(), true);
-		if ($schedConf) $pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getTitle(), true);
+		if ($conference) $pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
+		if ($schedConf) $pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true);
 		if ($subclass) $pageHierarchy[] = array(Request::url(null, null, 'about'), 'about.aboutTheConference');
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
@@ -132,21 +134,21 @@ class AboutHandler extends Handler {
 		$sponsors = array();
 
 		if($conference) {
-			$contributorNote = $conference->getSetting('contributorNote');
+			$contributorNote = $conference->getLocalizedSetting('contributorNote');
 			$contributors = $conference->getSetting('contributors');
 			if (!is_array($contributors)) $contributors = array();
 
-			$sponsorNote = $conference->getSetting('sponsorNote');
+			$sponsorNote = $conference->getLocalizedSetting('sponsorNote');
 			$sponsors = $conference->getSetting('sponsors');
 			if (!is_array($sponsors)) $sponsors = array();
 		}
 
 		if($schedConf) {
-			$contributorNote = $schedConf->getSetting('contributorNote', true);
-			$eventContributors = $schedConf->getSetting('contributors', false);
+			$contributorNote = $schedConf->getLocalizedSetting('contributorNote');
+			$eventContributors = $schedConf->getSetting('contributors');
 			if (is_array($eventContributors)) $contributors = array_merge($contributors, $eventContributors);
 
-			$sponsorNote = $schedConf->getSetting('sponsorNote', true);
+			$sponsorNote = $schedConf->getLocalizedSetting('sponsorNote', true);
 			$eventSponsors = $schedConf->getSetting('sponsors', false);
 			if (is_array($eventSponsors)) $sponsors = array_merge($sponsors, $eventSponsors);
 		}
@@ -311,7 +313,7 @@ class AboutHandler extends Handler {
 		$registrationPhone = &$schedConf->getSetting('registrationPhone', true);
 		$registrationFax = &$schedConf->getSetting('registrationFax', true);
 		$registrationMailingAddress = &$schedConf->getSetting('registrationMailingAddress', true);
-		$registrationAdditionalInformation = &$schedConf->getSetting('registrationAdditionalInformation', true);
+		$registrationAdditionalInformation = &$schedConf->getLocalizedSetting('registrationAdditionalInformation');
 		$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
 
 		$templateMgr = &TemplateManager::getManager();
@@ -339,10 +341,12 @@ class AboutHandler extends Handler {
 		$settings = ($schedConf? $schedConf->getSettings(true):$conference->getSettings());
 
 		$templateMgr = &TemplateManager::getManager();
-		if (isset($settings['submissionChecklist']) && count($settings['submissionChecklist']) > 0) {
-			ksort($settings['submissionChecklist']);
-			reset($settings['submissionChecklist']);
+		$submissionChecklist = $schedConf->getLocalizedSetting('submissionChecklist');
+		if (!empty($submissionChecklist)) {
+			ksort($submissionChecklist);
+			reset($submissionChecklist);
 		}
+		$templateMgr->assign('submissionChecklist', $submissionChecklist);
 		$templateMgr->assign_by_ref('conferenceSettings', $settings);
 		$templateMgr->assign('helpTopicId','submission.presenterGuidelines');
 		$templateMgr->display('about/submissions.tpl');
@@ -430,14 +434,14 @@ class AboutHandler extends Handler {
 		$toDate = mktime(23, 59, 59, 12, 31, $statisticsYear);
 
 		$conferenceStatisticsDao =& DAORegistry::getDAO('ConferenceStatisticsDAO');
-		$articleStatistics = $conferenceStatisticsDao->getArticleStatistics($conference->getConferenceId(), null, $fromDate, $toDate);
-		$templateMgr->assign('articleStatistics', $articleStatistics);
+		$paperStatistics = $conferenceStatisticsDao->getPaperStatistics($conference->getConferenceId(), null, $fromDate, $toDate);
+		$templateMgr->assign('paperStatistics', $paperStatistics);
 
-		$limitedArticleStatistics = $conferenceStatisticsDao->getArticleStatistics($conference->getConferenceId(), $trackIds, $fromDate, $toDate);
-		$templateMgr->assign('limitedArticleStatistics', $limitedArticleStatistics);
+		$limitedPaperStatistics = $conferenceStatisticsDao->getPaperStatistics($conference->getConferenceId(), $trackIds, $fromDate, $toDate);
+		$templateMgr->assign('limitedPaperStatistics', $limitedPaperStatistics);
 
-		$limitedArticleStatistics = $conferenceStatisticsDao->getArticleStatistics($conference->getConferenceId(), $trackIds, $fromDate, $toDate);
-		$templateMgr->assign('articleStatistics', $articleStatistics);
+		$limitedPaperStatistics = $conferenceStatisticsDao->getPaperStatistics($conference->getConferenceId(), $trackIds, $fromDate, $toDate);
+		$templateMgr->assign('paperStatistics', $paperStatistics);
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$tracks =& $trackDao->getConferenceTracks($conference->getConferenceId());

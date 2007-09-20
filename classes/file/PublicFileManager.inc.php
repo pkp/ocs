@@ -36,7 +36,7 @@ class PublicFileManager extends FileManager {
  	function uploadSiteFile($fileName, $destFileName) {
  		return $this->uploadFile($fileName, $this->getSiteFilesPath() . '/' . $destFileName);
  	}
- 	
+
  	/**
 	 * Delete a file from the site's public directory.
  	 * @param $fileName string the target file name
@@ -45,7 +45,7 @@ class PublicFileManager extends FileManager {
  	function removeSiteFile($fileName) {
  		return $this->deleteFile($this->getSiteFilesPath() . '/' . $fileName);
  	}
- 	
+
 	/**
 	 * Get the path to a conference's public files directory.
 	 * @param $conferenceId int
@@ -54,7 +54,7 @@ class PublicFileManager extends FileManager {
 	function getConferenceFilesPath($conferenceId) {
 		return Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId;
 	}
-	
+
 	/**
 	 * Get the path to a scheduled conference's public files directory.
 	 * @param $schedConfId int
@@ -65,7 +65,7 @@ class PublicFileManager extends FileManager {
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 		return Config::getVar('files', 'public_files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId;
 	}
-	
+
 	/**
 	 * Upload a file to a conferences's public directory.
 	 * @param $conferenceId int
@@ -76,7 +76,7 @@ class PublicFileManager extends FileManager {
  	function uploadConferenceFile($conferenceId, $fileName, $destFileName) {
  		return $this->uploadFile($fileName, $this->getConferenceFilesPath($conferenceId) . '/' . $destFileName);
  	}
- 	
+
 	/**
 	 * Write a file to a conferences's public directory.
 	 * @param $conferenceId int
@@ -87,7 +87,7 @@ class PublicFileManager extends FileManager {
  	function writeConferenceFile($conferenceId, $destFileName, &$contents) {
  		return $this->writeFile($this->getConferenceFilesPath($conferenceId) . '/' . $destFileName, $contents);
  	}
- 	
+
 	/**
 	 * Copy a file to a conferences's public directory.
 	 * @param $conferenceId int
@@ -108,7 +108,7 @@ class PublicFileManager extends FileManager {
  	function removeConferenceFile($conferenceId, $fileName) {
  		return $this->deleteFile($this->getConferenceFilesPath($conferenceId) . '/' . $fileName);
  	}
- 	
+
 	/**
 	 * Upload a file to a scheduled conference's public directory.
 	 * @param $schedConfId int
@@ -119,7 +119,7 @@ class PublicFileManager extends FileManager {
  	function uploadSchedConfFile($schedConfId, $fileName, $destFileName) {
  		return $this->uploadFile($fileName, $this->getSchedConfFilesPath($schedConfId) . '/' . $destFileName);
  	}
- 	
+
 	/**
 	 * Write a file to a scheduled conference's public directory.
 	 * @param $schedConfId int
@@ -130,7 +130,7 @@ class PublicFileManager extends FileManager {
  	function writeSchedConfFile($schedConfId, $destFileName, &$contents) {
  		return $this->writeFile($this->getSchedConfFilesPath($schedConfId) . '/' . $destFileName, $contents);
  	}
- 	
+
 	/**
 	 * Copy a file to a scheduled conference's public directory.
 	 * @param $schedConfId int
@@ -151,7 +151,6 @@ class PublicFileManager extends FileManager {
  	function removeSchedConfFile($schedConfId, $fileName) {
  		return $this->deleteFile($this->getSchedConfFilesPath($schedConfId) . '/' . $fileName);
  	}
- 	
 }
 
 ?>

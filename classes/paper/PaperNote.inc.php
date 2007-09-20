@@ -17,14 +17,14 @@
 import('paper.PaperFile');
 
 class PaperNote extends PaperFile {
- 
+
 	/**
 	 * Constructor.
 	 */
 	function PaperNote() {
 		parent::DataObject();
 	}
-	
+
 	/**
 	 * get paper note id
 	 * @return int
@@ -32,7 +32,7 @@ class PaperNote extends PaperFile {
 	function getNoteId() {
 		return $this->getData('noteId');
 	}
-	 
+
 	/**
 	 * set paper note id
 	 * @param $noteId int
@@ -40,7 +40,7 @@ class PaperNote extends PaperFile {
 	function setNoteId($noteId) {
 		return $this->setData('noteId',$noteId);
 	}
- 
+
 	/**
 	 * get paper id
 	 * @return int
@@ -48,7 +48,7 @@ class PaperNote extends PaperFile {
 	function getPaperId() {
 		return $this->getData('paperId');
 	}
-	 
+
 	/**
 	 * set paper id
 	 * @param $paperId int
@@ -56,7 +56,7 @@ class PaperNote extends PaperFile {
 	function setPaperId($paperId) {
 		return $this->setData('paperId',$paperId);
 	}
-	
+
 	/**
 	 * get user id
 	 * @return int
@@ -64,7 +64,7 @@ class PaperNote extends PaperFile {
 	function getUserId() {
 		return $this->getData('userId');
 	}
-	 
+
 	/**
 	 * set user id
 	 * @param $userId int
@@ -72,7 +72,7 @@ class PaperNote extends PaperFile {
 	function setUserId($userId) {
 		return $this->setData('userId',$userId);
 	}
- 
+
  	/**
 	 * get date created
 	 * @return date
@@ -80,7 +80,7 @@ class PaperNote extends PaperFile {
 	function getDateCreated() {
 		return $this->getData('dateCreated');
 	}
-	 
+
 	/**
 	 * set date created
 	 * @param $dateCreated date
@@ -96,7 +96,7 @@ class PaperNote extends PaperFile {
 	function getDateModified() {
 		return $this->getData('dateModified');
 	}
-	 
+
 	/**
 	 * set date modified
 	 * @param $dateModified date
@@ -112,7 +112,7 @@ class PaperNote extends PaperFile {
 	function getTitle() {
 		return $this->getData('title');
 	}
-	 
+
 	/**
 	 * set title
 	 * @param $title string
@@ -128,7 +128,7 @@ class PaperNote extends PaperFile {
 	function getNote() {
 		return $this->getData('note');
 	}
-	 
+
 	/**
 	 * set note
 	 * @param $note string
@@ -144,7 +144,7 @@ class PaperNote extends PaperFile {
 	function getFileId() {
 		return $this->getData('fileId');
 	}
-	 
+
 	/**
 	 * set file id
 	 * @param $fileId int
@@ -154,5 +154,5 @@ class PaperNote extends PaperFile {
 	}
 
  }
- 
+
 ?>

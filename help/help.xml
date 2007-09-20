@@ -25,7 +25,7 @@
 	<topic key="site.siteManagement" id="site/topic/000002"></topic>
 	<topic key="site.administrativeFunctions" id="site/topic/000003"></topic>
 
-	<!-- Journal Management
+	<!-- Conference Management -->
 	<topic key="journal.index" id="journal/topic/000000"></topic>
 
 	<topic key="journal.managementPages.index" id="journal/topic/000001"></topic>
@@ -62,14 +62,14 @@
 	<topic key="journal.roles.presenter" id="journal/topic/000022"></topic>
 	<topic key="journal.roles.reader" id="journal/topic/000023"></topic>-->
 
-	<!-- Submission Process
+	<!-- Submission Process -->
 	<topic key="submission.index" id="submission/topic/000000"></topic>
 	<topic key="submission.presenterGuidelines" id="submission/topic/000001"></topic>
 	<topic key="submission.submissionRequirements" id="submission/topic/000002"></topic>
 	<topic key="submission.indexingAndMetadata" id="submission/topic/000003"></topic>
 	<topic key="submission.supplementaryFiles" id="submission/topic/000004"></topic>-->
 
-	<!-- Editorial Process
+	<!-- Editorial Process -->
 	<topic key="editorial.index" id="editorial/topic/000000"></topic>
 	<topic key="editorial.directorsRole" id="editorial/topic/000001"></topic>
 	<topic key="editorial.directorsRole.submissions" id="editorial/topic/000002"></topic>
@@ -118,7 +118,7 @@
 	<topic key="editorial.proofreadersRole.submissions" id="editorial/topic/000042"></topic>
 	<topic key="editorial.proofreadersRole.proofreading" id="editorial/topic/000043"></topic>-->
 
-	<!-- Publishing Process
+	<!-- Publishing Process -->
 	<topic key="publishing.index" id="publishing/topic/000000"></topic>
 	<topic key="publishing.createIssue" id="publishing/topic/000001"></topic>
 	<topic key="publishing.scheduleSubmissions" id="publishing/topic/000002"></topic>

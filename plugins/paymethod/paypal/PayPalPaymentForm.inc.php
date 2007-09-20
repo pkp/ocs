@@ -28,7 +28,7 @@ class PayPalPaymentForm extends Form {
 
 	/** @var $queuedPayment object */
 	var $queuedPayment;
-	
+
 	/**
 	 * Constructor
 	 * @param $payPalPlugin object
@@ -46,7 +46,7 @@ class PayPalPaymentForm extends Form {
 		$this->key = $key;
 		$this->queuedPayment =& $queuedPayment;
 	}
-	
+
 
 	/**
 	 * Initialize form data.
@@ -78,37 +78,37 @@ class PayPalPaymentForm extends Form {
 			'item_number' => 1
 		);
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
 		$this->readUserVars(array(
 			'business',
-		        'item_name', 
-		        'quantity',
-		        'no_note',
-		        'no_shipping',
-		        'currency_code',
-		        'lc',  
-		        'custom', 
-		        'notify_url',   
-		        'return', 
-		        'cancel_return', 
-		        'first_name',  
-		        'last_name',
-		        'city', 
-		        'zip',
-		        'item_number'
-	        ));
+			'item_name', 
+			'quantity',
+			'no_note',
+			'no_shipping',
+			'currency_code',
+			'lc',  
+			'custom', 
+			'notify_url',   
+			'return', 
+			'cancel_return', 
+			'first_name',  
+			'last_name',
+			'city', 
+			'zip',
+			'item_number'
+		));
 	}		
-	
+
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('message', $this->message);
 		$templateMgr->assign('paymentIsRegistration', $this->isRegistration);
 		parent::display();
 	}	
-	
+
 }
 ?>

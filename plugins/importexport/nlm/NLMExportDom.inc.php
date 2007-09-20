@@ -48,7 +48,7 @@ class NLMExportDom {
 
 		// register the editor submission DAO for use later
 //		$editorSubmissionDao = &DAORegistry::getDAO('EditorSubmissionDAO');
-		
+
 		/* --- MeetingAbstract --- */
 		$root = &XMLCustomWriter::createElement($doc, 'MeetingAbstract');
 		XMLCustomWriter::setAttribute($root, 'Status', 'Completed');
@@ -80,7 +80,7 @@ class NLMExportDom {
 
 		/* --- ArticleTitle --- */
 		// NLM requires english titles for PaperTitle
-		XMLCustomWriter::createChildWithText($doc, $articleNode, 'ArticleTitle', $paper->getTitle());
+		XMLCustomWriter::createChildWithText($doc, $articleNode, 'ArticleTitle', $paper->getPaperTitle());
 
 		/* --- Pagination --- */
 		// If there is no page number, then use abstract number
@@ -104,11 +104,11 @@ class NLMExportDom {
 		$abstractNode = &XMLCustomWriter::createElement($doc, 'Abstract');
 		XMLCustomWriter::appendChild($articleNode, $abstractNode);
 
-		XMLCustomWriter::createChildWithText($doc, $abstractNode, 'AbstractText', strip_tags($paper->getAbstract()), false);
+		XMLCustomWriter::createChildWithText($doc, $abstractNode, 'AbstractText', strip_tags($paper->getPaperAbstract()), false);
 
 		/* --- Affiliation --- */
-		$sponsor = $paper->getSponsor();
-		
+		$sponsor = $paper->getPaperSponsor();
+
 		if ($sponsor != '') {
 			XMLCustomWriter::createChildWithText($doc, $articleNode, 'Affiliation', $sponsor);
 		}
@@ -127,7 +127,7 @@ class NLMExportDom {
 		$conferenceNode = &XMLCustomWriter::createElement($doc, 'Author');
 		XMLCustomWriter::appendChild($authorListNode, $conferenceNode);
 
-		XMLCustomWriter::createChildWithText($doc, $conferenceNode, 'CollectiveName', $conference->getTitle());
+		XMLCustomWriter::createChildWithText($doc, $conferenceNode, 'CollectiveName', $conference->getConferenceTitle());
 
 		// OtherInformation element goes here with location for current conference
 

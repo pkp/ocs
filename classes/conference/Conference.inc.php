@@ -20,7 +20,6 @@ define('PAPER_ACCESS_ACCOUNT_REQUIRED',		0x00000001);
 define('PAPER_ACCESS_REGISTRATION_REQUIRED',	0x00000002);
 
 class Conference extends DataObject {
-
 	//
 	// Conference functions: the following do not operate on data from the
 	// ConferenceSettings table.
@@ -32,7 +31,7 @@ class Conference extends DataObject {
 	function Conference() {
 		parent::DataObject();
 	}
-	
+
 	/**
 	 * Get the base URL to the conference.
 	 * @return string
@@ -40,39 +39,57 @@ class Conference extends DataObject {
 	function getUrl() {
 		return Request::url($this->getPath());
 	}
-	
+
 	/**
-	 * Get title of conference
+	 * Get the localized title of the conference.
 	 * @return string
 	 */
-	 function getTitle() {
-	 	return $this->getData('title');
+	function getConferenceTitle() {
+		return $this->getLocalizedSetting('title');
 	}
-	
+
 	/**
-	* Set title of conference
-	* @param $title string
-	*/
-	function setTitle($title) {
-		return $this->setData('title',$title);
+	 * Get title of conference
+	 * @param $locale string
+	 * @return string
+	 */
+	function getTitle($locale) {
+		return $this->getSetting('title', $locale);
 	}
-	
+
+	/**
+	 * Get the localized description of the conference.
+	 * @return string
+	 */
+	function getConferenceDescription() {
+		return $this->getLocalizedSetting('description');
+	}
+
+	/**
+	 * Get description of conference
+	 * @param $locale string
+	 * @return string
+	 */
+	function getDescription($locale) {
+		return $this->getSetting('description', $locale);
+	}
+
 	/**
 	 * Get enabled flag of conference
 	 * @return int
 	 */
-	 function getEnabled() {
-	 	return $this->getData('enabled');
+	function getEnabled() {
+		return $this->getData('enabled');
 	}
-	
+
 	/**
-	* Set enabled flag of conference
-	* @param $enabled int
-	*/
+	 * Set enabled flag of conference
+	 * @param $enabled int
+	 */
 	function setEnabled($enabled) {
 		return $this->setData('enabled',$enabled);
 	}
-	
+
 	/**
 	 * Get ID of conference.
 	 * @return int
@@ -80,7 +97,7 @@ class Conference extends DataObject {
 	function getConferenceId() {
 		return $this->getData('conferenceId');
 	}
-	
+
 	/**
 	 * Set ID of conference.
 	 * @param $conferenceId int
@@ -88,7 +105,7 @@ class Conference extends DataObject {
 	function setConferenceId($conferenceId) {
 		return $this->setData('conferenceId', $conferenceId);
 	}
-	
+
 	/**
 	 * Get path to conference (in URL).
 	 * @return string
@@ -96,7 +113,7 @@ class Conference extends DataObject {
 	function getPath() {
 		return $this->getData('path');
 	}
-	
+
 	/**
 	 * Set path to conference (in URL).
 	 * @param $path string
@@ -104,7 +121,7 @@ class Conference extends DataObject {
 	function setPath($path) {
 		return $this->setData('path', $path);
 	}
-	
+
 	/**
 	 * Get sequence of conference in site table of contents.
 	 * @return float
@@ -112,7 +129,7 @@ class Conference extends DataObject {
 	function getSequence() {
 		return $this->getData('sequence');
 	}
-	
+
 	/**
 	 * Set sequence of conference in site table of contents.
 	 * @param $sequence float
@@ -135,34 +152,56 @@ class Conference extends DataObject {
 		$settings = &$conferenceSettingsDao->getConferenceSettings($this->getData('conferenceId'));
 		return $settings;
 	}
-	
+
+	function &getLocalizedSetting($name) {
+		$returner = $this->getSetting($name, Locale::getLocale());
+		if ($returner === null) {
+			unset($returner);
+			$returner = $this->getSetting($name, Locale::getPrimaryLocale());
+		}
+		return $returner;
+	}
+
 	/**
 	 * Retrieve a conference setting value.
 	 * @param $name
+	 * @param $locale string
 	 * @return mixed
 	 */
-	function &getSetting($name) {
+	function &getSetting($name, $locale = null) {
 		$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
-		$setting = &$conferenceSettingsDao->getSetting($this->getData('conferenceId'), $name);
+		$setting = &$conferenceSettingsDao->getSetting($this->getData('conferenceId'), $name, $locale);
 		return $setting;
 	}
 
 	/**
 	 * Update a conference setting value.
+	 * @param $name string
+	 * @param $value mixed
+	 * @param $type string optional
+	 * @param $isLocalized boolean optional
 	 */
-	function updateSetting($name, $value, $type = null) {
+	function updateSetting($name, $value, $type = null, $isLocalized = false) {
 		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		return $conferenceSettingsDao->updateSetting($this->getConferenceId(), $name, $value, $type);
+		return $conferenceSettingsDao->updateSetting($this->getConferenceId(), $name, $value, $type, $isLocalized);
 	}
 
 	/**
 	 * Return the primary locale of this conference.
 	 * @return string
 	 */
-	function getLocale() {
-		return $this->getSetting('primaryLocale');
+	function getPrimaryLocale() {
+		return $this->getData('primaryLocale');
 	}
-	
+
+	/**
+	 * Set the primary locale of this conference.
+	 * @param $primaryLocale string
+	 */
+	function setPrimaryLocale($primaryLocale) {
+		$this->getData('primaryLocale', $primaryLocale);
+	}
+
 	/**
 	 * Return associative array of all locales supported by the site.
 	 * These locales are used to provide a language toggle on the main site pages.
@@ -170,7 +209,7 @@ class Conference extends DataObject {
 	 */
 	function &getSupportedLocaleNames() {
 		static $supportedLocales;
-		
+
 		if (!isset($supportedLocales)) {
 			$supportedLocales = array();
 			$localeNames = &Locale::getAllLocales();
@@ -179,87 +218,50 @@ class Conference extends DataObject {
 			if (!isset($locales) || !is_array($locales)) {
 				$locales = array();
 			}
-						
+
 			foreach ($locales as $localeKey) {
 				$supportedLocales[$localeKey] = $localeNames[$localeKey];
 			}
-		
-			asort($supportedLocales);
 		}
-		
+
 		return $supportedLocales;
 	}
-	
+
 	/**
 	 * Get "localized" conference page title (if applicable).
 	 * param $home boolean get homepage title
 	 * @return string
 	 */
 	function getPageHeaderTitle($home = false) {
-		// FIXME this is evil
-		$alternateLocaleNum = Locale::isAlternateConferenceLocale($this->getData('conferenceId'));
 		$prefix = $home ? 'home' : 'page';
-		switch ($alternateLocaleNum) {
-			case 1:
-				$type = $this->getSetting($prefix . 'HeaderTitleTypeAlt1');
-				if ($type) {
-					$title = $this->getSetting($prefix . 'HeaderTitleImageAlt1');
-				}
-				if (!isset($title)) {
-					$title = $this->getSetting($prefix . 'HeaderTitleAlt1');
-				}
-				break;
-			case 2:
-				$type = $this->getSetting($prefix . 'HeaderTitleTypeAlt2');
-				if ($type) {
-					$title = $this->getSetting($prefix . 'HeaderTitleImageAlt2');
-				}
-				if (!isset($title)) {
-					$title = $this->getSetting($prefix . 'HeaderTitleAlt2');
-				}
-				break;
-		}
-		
-		if (isset($title) && !empty($title)) {
-			return $title;
-			
-		} else {
-			$type = $this->getSetting($prefix . 'HeaderTitleType');
-			if ($type) {
-				$title = $this->getSetting($prefix . 'HeaderTitleImage');
+		$typeArray = $this->getSetting($prefix . 'HeaderTitleType');
+		$imageArray = $this->getSetting($prefix . 'HeaderTitleImage');
+		$titleArray = $this->getSetting($prefix . 'HeaderTitle');
+
+		$title = null;
+
+		foreach (array(Locale::getLocale(), Locale::getPrimaryLocale()) as $locale) {
+			if (isset($typeArray[$locale]) && $typeArray[$locale]) {
+				if (isset($imageArray[$locale])) $title = $imageArray[$locale];
 			}
-			if (!isset($title)) {
-				$title = $this->getSetting($prefix . 'HeaderTitle');
-			}
-			
-			return $title;
+			if (empty($title) && isset($titleArray[$locale])) $title = $titleArray[$locale];
+			if (!empty($title)) return $title;
 		}
+		return null;
 	}
-	
+
 	/**
 	 * Get "localized" conference page logo (if applicable).
 	 * param $home boolean get homepage logo
 	 * @return string
 	 */
 	function getPageHeaderLogo($home = false) {
-		// FIXME this is evil
-		$alternateLocaleNum = Locale::isAlternateConferenceLocale($this->getData('conferenceId'));
 		$prefix = $home ? 'home' : 'page';
-		switch ($alternateLocaleNum) {
-			case 1:
-				$logo = $this->getSetting($prefix . 'HeaderLogoImageAlt1');
-				break;
-			case 2:
-				$logo = $this->getSetting($prefix . 'HeaderLogoImageAlt2');
-				break;
+		$logoArray = $this->getSetting($prefix . 'HeaderLogoImage');
+		foreach (array(Locale::getLocale(), Locale::getPrimaryLocale()) as $locale) {
+			if (isset($logoArray[$locale])) return $logoArray[$locale];
 		}
-		
-		if (isset($logo) && !empty($logo)) {
-			return $logo;
-			
-		} else {
-			return $this->getSetting($prefix . 'HeaderLogoImage');
-		}
+		return null;
 	}
 }
 

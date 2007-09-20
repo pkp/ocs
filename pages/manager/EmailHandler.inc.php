@@ -27,9 +27,9 @@ class EmailHandler extends ManagerHandler {
 		$emailTemplates = &$emailTemplateDao->getEmailTemplates(Locale::getLocale(),
 			$conference->getConferenceId(),
 			$schedConf ? $schedConf->getSchedConfId() : 0);
-		
+
 		$templateMgr = &TemplateManager::getManager();
-		
+
 		// The bread crumbs depends on whether we're doing scheduled conference or conference
 		// management. FIXME: this is going to be a common situation, and this isn't
 		// an elegant way of testing for it.
@@ -42,7 +42,7 @@ class EmailHandler extends ManagerHandler {
 				array(Request::url(null, null, 'manager'), 'manager.schedConfManagement')
 				));
 		}
-		
+
 		$templateMgr->assign_by_ref('emailTemplates', $emailTemplates);
 		$templateMgr->assign('helpTopicId','conference.managementPages.emails');
 		$templateMgr->display('manager/emails/emails.tpl');
@@ -62,7 +62,7 @@ class EmailHandler extends ManagerHandler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->append('pageHierarchy', array(Request::url(null, null, null, 'emails'), 'manager.emails'));
-		
+
 		$emailKey = !isset($args) || empty($args) ? null : $args[0];
 
 		import('manager.form.EmailTemplateForm');
@@ -71,15 +71,15 @@ class EmailHandler extends ManagerHandler {
 		$emailTemplateForm->initData();
 		$emailTemplateForm->display();
 	}
-	
+
 	/**
 	 * Save changes to an email.
 	 */
 	function updateEmail() {
 		list($conference, $schedConf) = EmailHandler::validate();
-		
+
 		import('manager.form.EmailTemplateForm');
-		
+
 		$emailKey = Request::getUserVar('emailKey');
 
 		$emailTemplateForm = &new EmailTemplateForm($emailKey, $conference, $schedConf);
@@ -119,35 +119,35 @@ class EmailHandler extends ManagerHandler {
 		list($conference, $schedConf) = EmailHandler::validate();
 
 		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
-		
+
 		if (isset($args) && !empty($args)) {
 			$conference = &Request::getConference();
-		
+
 			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
 			$emailTemplateDao->deleteEmailTemplateByKey($args[0], $conference->getConferenceId(), $schedConfId);
 		}
-		
+
 		Request::redirect(null, null, null, 'emails');
 	}
-	
+
 	/**
 	 * resets all email templates associated with the conference.
 	 */
 	function resetAllEmails() {
 		list($conference, $schedConf) = EmailHandler::validate();
-		
+
 		$conference = &Request::getConference();
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		
+
 		if(Request::isConferenceManager()) {
 			$emailTemplateDao->deleteEmailTemplatesByConference($conference->getConferenceId());
 		} else {
 			$emailTemplateDao->deleteEmailTemplatesBySchedConf($schedConf->getSchedConfId());
 		}
-		
+
 		Request::redirect(null, null, null, 'emails');
 	}
-	
+
 	/**
 	 * disables an email template.
 	 * @param $args array first parameter is the key of the email to disable
@@ -156,27 +156,27 @@ class EmailHandler extends ManagerHandler {
 		list($conference, $schedConf) = EmailHandler::validate();
 
 		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
-				
+
 		if (isset($args) && !empty($args)) {
 			$conference = &Request::getConference();
-		
+
 			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
 			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $conference->getConferenceId(), $schedConfId);
-			
+
 			if (isset($emailTemplate)) {
 				if ($emailTemplate->getCanDisable()) {
 					$emailTemplate->setEnabled(0);
-					
+
 					if ($emailTemplate->getConferenceId() == null) {
 						$emailTemplate->setConferenceId($conference->getConferenceId());
 					}
-					
+
 					if($emailTemplate->getSchedConfId() == null && $schedConf) {
 						$emailTemplate->setSchedConfId($schedConfId);
 					} else {
 						$emailTemplate->setSchedConfId(0);
 					}
-			
+
 					if ($emailTemplate->getEmailId() != null) {
 						$emailTemplateDao->updateBaseEmailTemplate($emailTemplate);
 					} else {
@@ -185,27 +185,27 @@ class EmailHandler extends ManagerHandler {
 				}
 			}
 		}
-		
+
 		Request::redirect(null, null, null, 'emails');
 	}
-	
+
 	/**
 	 * enables an email template.
 	 * @param $args array first parameter is the key of the email to enable
 	 */
 	function enableEmail($args) {
 		list($conference, $schedConf) = EmailHandler::validate();
-		
+
 		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
 
 		if (isset($args) && !empty($args)) {
 			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
 			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $conference->getConferenceId(), $schedConfId);
-			
+
 			if (isset($emailTemplate)) {
 				if ($emailTemplate->getCanDisable()) {
 					$emailTemplate->setEnabled(1);
-					
+
 					if ($emailTemplate->getEmailId() != null) {
 						$emailTemplateDao->updateBaseEmailTemplate($emailTemplate);
 					} else {
@@ -214,10 +214,10 @@ class EmailHandler extends ManagerHandler {
 				}
 			}
 		}
-		
+
 		Request::redirect(null, null, null, 'emails');
 	}
-	
+
 	/**
 	 * Validate that user has permissions to manage e-mail templates.
 	 * Redirects to user index page if not properly authenticated.
@@ -228,14 +228,14 @@ class EmailHandler extends ManagerHandler {
 		} else {
 			list($conference, $schedConf) = parent::validate(true);
 		}
-		
+
 		// If the user is a Conference Manager, but has specified a scheduled conference,
 		// redirect so no scheduled conference is present (otherwise they would end up managing
 		// scheduled conference e-mails.)
 		if($schedConf && !Validation::isConferenceManager()) {
 			Request::redirect(null, 'index', Request::getRequestedPage(), Request::getRequestedOp());
 		}
-		
+
 		return array($conference, $schedConf);
 	}
 }

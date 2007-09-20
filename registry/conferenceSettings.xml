@@ -15,6 +15,7 @@
 	<!ELEMENT conference_settings (setting+)>
 	<!ELEMENT setting (name, value)>
 	<!ATTLIST setting type (int|string|object|bool) #REQUIRED>
+	<!ATTLIST setting locale (0|1) #REQUIRED>
 	<!ELEMENT name (#PCDATA)>
 	<!ELEMENT value (#PCDATA | array)*>
 	<!ELEMENT element (#PCDATA | array)*>
@@ -23,85 +24,80 @@
 ]>
 
 <conference_settings>
-	<setting type="bool">
+	<setting type="bool" locale="0">
 		<name>showSetupHints</name>
 		<value>true</value>
 	</setting>
-	<setting type="int">
+	<setting type="int" locale="0">
 		<name>numPageLinks</name>
 		<value>10</value>
 	</setting>
-	<setting type="int">
+	<setting type="int" locale="0">
 		<name>itemsPerPage</name>
 		<value>25</value>
 	</setting>
-	<setting type="string">
+	<setting type="string" locale="1">
 		<name>copyrightNotice</name>
 		<value>{translate key="default.conferenceSettings.copyrightNotice"}</value>
 	</setting>
-	<setting type="string">
+	<setting type="string" locale="1">
 		<name>privacyStatement</name>
 		<value>{translate key="default.conferenceSettings.privacyStatement"}</value>
 	</setting>
-	<setting type="string">
+	<setting type="string" locale="1">
 		<name>presenterSelfArchivePolicy</name>
 		<value>{translate key="default.conferenceSettings.presenterSelfArchivePolicy"}</value>
 	</setting>
-	<setting type="string">
+	<setting type="string" locale="1">
 		<name>readerInformation</name>
 		<value>{translate key="default.conferenceSettings.forReaders"}</value>
 	</setting>
-	<setting type="string">
+	<setting type="string" locale="1">
 		<name>presenterInformation</name>
 		<value>{translate key="default.conferenceSettings.forPresenters"}</value>
 	</setting>
-	<setting type="string">
+	<setting type="string" locale="1">
 		<name>lockssLicense</name>
 		<value>{translate key="default.conferenceSettings.lockssLicense"}</value>
 	</setting>
 
-	<setting type="string">
-		<name>primaryLocale</name>
-		<value>{$primaryLocale}</value>
-	</setting>
-
-	<setting type="bool">
+	<setting type="bool" locale="0">
 		<name>rtAbstract</name>
 		<value>true</value>
 	</setting>
-	<setting type="bool">
+	<setting type="bool" locale="0">
 		<name>rtCaptureCite</name>
 		<value>true</value>
 	</setting>
-	<setting type="bool">
+	<setting type="bool" locale="0">
 		<name>rtViewMetadata</name>
 		<value>true</value>
 	</setting>
-	<setting type="bool">
+	<setting type="bool" locale="0">
 		<name>rtSupplementaryFiles</name>
 		<value>true</value>
 	</setting>
-	<setting type="bool">
+	<setting type="bool" locale="0">
 		<name>rtPrinterFriendly</name>
 		<value>true</value>
 	</setting>
-	<setting type="bool">
+	<setting type="bool" locale="0">
 		<name>rtPresenterBio</name>
 		<value>true</value>
 	</setting>
-	<setting type="bool">
+	<setting type="bool" locale="0">
 		<name>rtDefineTerms</name>
 		<value>true</value>
 	</setting>
-	<setting type="bool">
+	<setting type="bool" locale="0">
 		<name>rtAddComment</name>
 		<value>true</value>
 	</setting>
-	<setting type="bool">
+	<setting type="bool" locale="0">
 		<name>rtEmailPresenter</name>
 		<value>true</value>
 	</setting>
-	<setting type="bool">
+	<setting type="bool" locale="0">
 		<name>rtEmailOthers</name>
 		<value>true</value>
 	</setting>

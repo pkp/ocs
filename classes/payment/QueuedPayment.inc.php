@@ -33,7 +33,7 @@ class QueuedPayment {
 	function setAmount($amount) {
 		$this->amount = $amount;
 	}
-	
+
 	function getAmount() {
 		return $this->amount;
 	}

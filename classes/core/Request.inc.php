@@ -27,7 +27,7 @@
 define('INDEX_SCRIPTNAME', 'index.php');
 
 class Request {
-	
+
 	/**
 	 * Perform an HTTP redirect to an absolute or relative (to base system URL) URL.
 	 * @param $url string (exclude protocol for local redirects) 
@@ -37,7 +37,7 @@ class Request {
 		if (HookRegistry::call('Request::redirect', array(&$url))) {
 			return;
 		}
-		
+
 		header("Location: $url");
 		exit();
 	}
@@ -67,7 +67,7 @@ class Request {
 		if (!empty($queryString)) $url .= "?$queryString";
 		Request::redirectUrl($url);
 	}
-	
+
 	/**
 	 * Redirect to the current URL, forcing the HTTP protocol to be used.
 	 */
@@ -84,7 +84,7 @@ class Request {
 	 */
 	function getBaseUrl() {
 		static $baseUrl;
-		
+
 		if (!isset($baseUrl)) {
 			$serverHost = Request::getServerHost(null);
 			if ($serverHost !== null) {
@@ -96,7 +96,7 @@ class Request {
 			}
 			HookRegistry::call('Request::getBaseUrl', array(&$baseUrl));
 		}
-		
+
 		return $baseUrl;
 	}
 
@@ -106,7 +106,7 @@ class Request {
 	 */
 	function getBasePath() {
 		static $basePath;
-		
+
 		if (!isset($basePath)) {
 			$basePath = dirname($_SERVER['SCRIPT_NAME']);
 			if ($basePath == '/' || $basePath == '\\') {
@@ -114,7 +114,7 @@ class Request {
 			}
 			HookRegistry::call('Request::getBasePath', array(&$basePath));
 		}
-		
+
 		return $basePath;
 	}
 
@@ -156,12 +156,12 @@ class Request {
 	 */
 	function getRequestUrl() {
 		static $requestUrl;
-		
+
 		if (!isset($requestUrl)) {
 			$requestUrl = Request::getProtocol() . '://' . Request::getServerHost() . Request::getRequestPath();
 			HookRegistry::call('Request::getRequestUrl', array(&$requestUrl));
 		}
-		
+
 		return $requestUrl;
 	}
 
@@ -195,7 +195,7 @@ class Request {
 		}
 		return $requestPath;
 	}
-	
+
 	/**
 	 * Get the server hostname in the request.
 	 * @return string
@@ -276,7 +276,7 @@ class Request {
 		}
 		return $ipaddr;
 	}
-	
+
 	/**
 	 * Get the remote domain of the current request
 	 * @return string
@@ -288,7 +288,7 @@ class Request {
 			HookRegistry::call('Request::getRemoteDomain', array(&$remoteDomain));
 		}
 	}
-	
+
 	/**
 	 * Get the user agent of the current request.
 	 * @return string
@@ -327,7 +327,7 @@ class Request {
 	 */
 	function getRequestedConferencePath() {
 		static $conference;
-		
+
 		if (!isset($conference)) {
 			if (Request::isPathInfoEnabled()) {
 				$conference = '';
@@ -344,17 +344,17 @@ class Request {
 			$conference = empty($conference) ? 'index' : $conference;
 			HookRegistry::call('Request::getRequestedConferencePath', array(&$conference));
 		}
-		
+
 		return $conference;
 	}
-	
+
 	/**
 	 * Get the scheduled conference path requested in the URL ("index" for top-level site requests).
 	 * @return string 
 	 */
 	function getRequestedSchedConfPath() {
 		static $schedConf;
-		
+
 		if (!isset($schedConf)) {
 			if (Request::isPathInfoEnabled()) {
 				$schedConf = '';
@@ -371,91 +371,91 @@ class Request {
 			$schedConf = empty($schedConf) ? 'index' : $schedConf;
 			HookRegistry::call('Request::getRequestedSchedConfPath', array(&$schedConf));
 		}
-		
+
 		return $schedConf;
 	}
-	
+
 	/**
 	 * Get site data.
 	 * @return Site
 	 */
-	 function &getSite() {
-	 	static $site;
-	 	
-	 	if (!isset($site)) {
-		 	$siteDao = &DAORegistry::getDAO('SiteDAO');
-		 	$site = $siteDao->getSite();
-	 	}
-	 	
-	 	return $site;
-	 }
-	
+	function &getSite() {
+		static $site;
+
+		if (!isset($site)) {
+			$siteDao = &DAORegistry::getDAO('SiteDAO');
+			$site = $siteDao->getSite();
+		}
+
+		return $site;
+	}
+
 	/**
 	 * Get the user session associated with the current request.
 	 * @return Session
 	 */
-	 function &getSession() {
-	 	static $session;
-	 	
-	 	if (!isset($session)) {
-	 		$sessionManager = &SessionManager::getManager();
-	 		$session = $sessionManager->getUserSession();
-	 	}
-	 	
-	 	return $session;
-	 }
-	
+	function &getSession() {
+		static $session;
+
+		if (!isset($session)) {
+			$sessionManager = &SessionManager::getManager();
+			$session = $sessionManager->getUserSession();
+		}
+
+		return $session;
+	}
+
 	/**
 	 * Get the user associated with the current request.
 	 * @return User
 	 */
-	 function &getUser() {
-	 	static $user;
-	 	
-	 	if (!isset($user)) {
-	 		$sessionManager = &SessionManager::getManager();
-	 		$session = &$sessionManager->getUserSession();
-	 		$user = $session->getUser();
-	 	}
-	 	
-	 	return $user;
-	 }
-	 
+	function &getUser() {
+		static $user;
+
+		if (!isset($user)) {
+			$sessionManager = &SessionManager::getManager();
+			$session = &$sessionManager->getUserSession();
+			$user = $session->getUser();
+		}
+
+		return $user;
+	}
+
 	/**
 	 * Get the conference associated with the current request.
 	 * @return Conference
 	 */
-	 function &getConference() {
-	 	static $conference;
-	 	
-	 	if (!isset($conference)) {
-	 		$path = Request::getRequestedConferencePath();
-	 		if ($path != 'index') {
-		 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		 		$conference = $conferenceDao->getConferenceByPath(Request::getRequestedConferencePath());
-		 	}
-	 	}
-	 	
-	 	return $conference;
-	 }
+	function &getConference() {
+		static $conference;
+
+		if (!isset($conference)) {
+			$path = Request::getRequestedConferencePath();
+			if ($path != 'index') {
+				$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
+				$conference = $conferenceDao->getConferenceByPath(Request::getRequestedConferencePath());
+			}
+		}
+
+		return $conference;
+	}
 
 	/**
 	 * Get the scheduled conference associated with the current request.
 	 * @return schedConf object
 	 */
-	 function &getSchedConf() {
-	 	static $schedConf;
-	 	
-	 	if (!isset($schedConf)) {
-	 		$path = Request::getRequestedSchedConfPath();
-	 		if ($path != 'index') {
-		 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		 		$schedConf = $schedConfDao->getSchedConfByPath(Request::getRequestedSchedConfPath());
-		 	}
-	 	}
-	 	
-	 	return $schedConf;
-	 }
+	function &getSchedConf() {
+		static $schedConf;
+
+		if (!isset($schedConf)) {
+			$path = Request::getRequestedSchedConfPath();
+			if ($path != 'index') {
+				$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+				$schedConf = $schedConfDao->getSchedConfByPath(Request::getRequestedSchedConfPath());
+			}
+		}
+
+		return $schedConf;
+	}
 
 	/**
 	 * Get the page requested in the URL.
@@ -463,7 +463,7 @@ class Request {
 	 */
 	function getRequestedPage() {
 		static $page;
-		
+
 		if (!isset($page)) {
 			if (Request::isPathInfoEnabled()) {
 				$page = '';
@@ -477,17 +477,17 @@ class Request {
 				$page = Request::getUserVar('page');
 			}
 		}
-		
+
 		return $page;
 	}
-	
+
 	/**
 	 * Get the operation requested in the URL (assumed to exist in the requested page handler).
 	 * @return string
 	 */
 	function getRequestedOp() {
 		static $op;
-		
+
 		if (!isset($op)) {
 			if (Request::isPathInfoEnabled()) {
 				$op = '';
@@ -502,10 +502,10 @@ class Request {
 			}
 			$op = empty($op) ? 'index' : $op;
 		}
-		
+
 		return $op;
 	}
-	
+
 	/**
 	 * Get the arguments requested in the URL (not GET/POST arguments, only arguments prepended to the URL separated by "/").
 	 * @return array
@@ -529,18 +529,18 @@ class Request {
 		}
 		return $args;	
 	}
-	
+
 	/**
 	 * Get the value of a GET/POST variable.
 	 * @return mixed
 	 */
 	function getUserVar($key) {
 		static $vars;
-		
+
 		if (!isset($vars)) {
 			$vars = array_merge($_GET, $_POST);
 		}
-		
+
 		if (isset($vars[$key])) {
 			// FIXME Do not clean vars again if function is called more than once?
 			Request::cleanUserVar($vars[$key]);
@@ -588,16 +588,17 @@ class Request {
 	 */
 	function cleanUserVar(&$var, $stripHtml = false) {
 		if (isset($var) && is_array($var)) {
-			array_walk($var, create_function('&$item,$key', 'Request::cleanUserVar($item);'));
-		
+			foreach ($var as $key => $value) {
+				Request::cleanUserVar($var[$key], $stripHtml);
+			}
 		} else if (isset($var)) {
 			$var = Core::cleanVar(get_magic_quotes_gpc() ? stripslashes($var) : $var);
-			
+
 		} else {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Get the value of a cookie variable.
 	 * @return mixed
@@ -611,7 +612,7 @@ class Request {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Set a cookie variable.
 	 * @param $key string

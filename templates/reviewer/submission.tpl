@@ -45,7 +45,7 @@ function confirmSubmissionCheck() {
 <tr valign="top">
 	<td width="20%" class="label">{translate key="submission.paperType"}</td>
 	<td width="80%" colspan="2" class="data">
-		{if $submission->getPaperType() == SUBMISSION_TYPE_PANEL}
+		{if $submission->getTypeConst() == SUBMISSION_TYPE_PANEL}
 			{translate key="submission.paperType.panel"}
 		{else}
 			{translate key="submission.paperType.single"}
@@ -145,7 +145,7 @@ function confirmSubmissionCheck() {
 <tr>
 	<td colspan="2">&nbsp;</td>
 </tr>
-{if $schedConf->getSetting('reviewGuidelines')}
+{if $schedConf->getLocalizedSetting('reviewGuidelines')}
 {assign var="haveGuide" value=true}
 <tr valign="top">
         <td>2.</td>
@@ -323,7 +323,7 @@ function confirmSubmissionCheck() {
 {if $haveGuide}
 <div class="separator"></div>
 <h3>{translate key="reviewer.paper.reviewerGuidelines"}</h3>
-<p>{$schedConf->getSetting('reviewGuidelines')|nl2br}</p>
+<p>{$schedConf->getLocalizedSetting('reviewGuidelines')|nl2br}</p>
 {/if}
 
 {include file="common/footer.tpl"}

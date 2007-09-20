@@ -10,7 +10,7 @@
  *}
 {include file="common/header.tpl"}
 
-<p>{translate key="presenter.submit.submissionComplete" conferenceTitle=$conference->getTitle()}</p>
+<p>{translate key="presenter.submit.submissionComplete" conferenceTitle=$conference->getConferenceTitle()}</p>
 
 {* TODO: expedite handler is incomplete
 {if $canExpedite}

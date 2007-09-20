@@ -28,7 +28,7 @@ class ManagerHandler extends Handler {
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
-		
+
 		$announcementsEnabled = $conference->getSetting('enableAnnouncements');
 		$templateMgr->assign('announcementsEnabled', $announcementsEnabled);
 
@@ -54,7 +54,7 @@ class ManagerHandler extends Handler {
 
 		import('mail.MailTemplate');
 		$email = &new MailTemplate(Request::getUserVar('template'), Request::getUserVar('locale'));
-		
+
 		if (Request::getUserVar('send') && !$email->hasErrors()) {
 			$email->send();
 			Request::redirect(null, null, Request::getRequestedPage());
@@ -89,14 +89,14 @@ class ManagerHandler extends Handler {
 	 */
 	function validate() {
 		list($conference, $schedConf) = Handler::validate(true, false);
-	
+
 		if (!$conference || (!Validation::isConferenceManager() && !Validation::isSiteAdmin())) {
 			Validation::redirectLogin();
 		}
-		
+
 		return array($conference, $schedConf);
 	}
-	
+
 	/**
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
@@ -111,7 +111,7 @@ class ManagerHandler extends Handler {
 		if ($schedConf) {
 			$pageHierarchy[] = array(Request::url(null, null, 'index'), $schedConf->getFullTitle(), true);
 		} elseif ($conference) {
-			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getTitle(), true);
+			$pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);
 		}
 
 		if ($subclass) {
@@ -123,8 +123,8 @@ class ManagerHandler extends Handler {
 
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
-	
-	
+
+
 	//
 	// Setup
 	//
@@ -196,7 +196,7 @@ class ManagerHandler extends Handler {
 		import('pages.manager.ManagerSchedConfHandler');
 		ManagerSchedConfHandler::moveSchedConf($args);
 	}
-	
+
 	//
 	// People Management
 	//
@@ -205,32 +205,32 @@ class ManagerHandler extends Handler {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::people($args);
 	}
-	
+
 	function enrollSearch($args) {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::enrollSearch($args);
 	}
-	
+
 	function enroll($args) {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::enroll($args);
 	}
-	
+
 	function unEnroll($args) {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::unEnroll($args);
 	}
-	
+
 	function enrollSyncSelect($args) {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::enrollSyncSelect($args);
 	}
-	
+
 	function enrollSync($args) {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::enrollSync($args);
 	}
-	
+
 	function createUser() {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::createUser();
@@ -245,133 +245,133 @@ class ManagerHandler extends Handler {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::mergeUsers($args);
 	}
-	
+
 	function disableUser($args) {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::disableUser($args);
 	}
-	
+
 	function enableUser($args) {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::enableUser($args);
 	}
-	
+
 	function removeUser($args) {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::removeUser($args);
 	}
-	
+
 	function editUser($args) {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::editUser($args);
 	}
-	
+
 	function updateUser() {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::updateUser();
 	}
-	
+
 	function userProfile($args) {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::userProfile($args);
 	}
-	
+
 	function signInAsUser($args) {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::signInAsUser($args);
 	}
-	
+
 	function signOutAsUser() {
 		import('pages.manager.PeopleHandler');
 		PeopleHandler::signOutAsUser();
 	}
-	
-	
+
+
 	//
 	// Track Management
 	//
-	
+
 	function tracks() {
 		import('pages.manager.TrackHandler');
 		TrackHandler::tracks();
 	}
-	
+
 	function createTrack() {
 		import('pages.manager.TrackHandler');
 		TrackHandler::createTrack();
 	}
-	
+
 	function editTrack($args) {
 		import('pages.manager.TrackHandler');
 		TrackHandler::editTrack($args);
 	}
-	
+
 	function updateTrack() {
 		import('pages.manager.TrackHandler');
 		TrackHandler::updateTrack();
 	}
-	
+
 	function deleteTrack($args) {
 		import('pages.manager.TrackHandler');
 		TrackHandler::deleteTrack($args);
 	}
-	
+
 	function moveTrack() {
 		import('pages.manager.TrackHandler');
 		TrackHandler::moveTrack();
 	}
-	
-	
+
+
 	//
 	// E-mail Management
 	//
-	
+
 	function emails($args) {
 		import('pages.manager.EmailHandler');
 		EmailHandler::emails($args);
 	}
-	
+
 	function createEmail($args) {
 		import('pages.manager.EmailHandler');
 		EmailHandler::createEmail($args);
 	}
-	
+
 	function editEmail($args) {
 		import('pages.manager.EmailHandler');
 		EmailHandler::editEmail($args);
 	}
-	
+
 	function updateEmail() {
 		import('pages.manager.EmailHandler');
 		EmailHandler::updateEmail();
 	}
-	
+
 	function deleteCustomEmail($args) {
 		import('pages.manager.EmailHandler');
 		EmailHandler::deleteCustomEmail($args);
 	}
-	
+
 	function resetEmail($args) {
 		import('pages.manager.EmailHandler');
 		EmailHandler::resetEmail($args);
 	}
-	
+
 	function disableEmail($args) {
 		import('pages.manager.EmailHandler');
 		EmailHandler::disableEmail($args);
 	}
-	
+
 	function enableEmail($args) {
 		import('pages.manager.EmailHandler');
 		EmailHandler::enableEmail($args);
 	}
-	
+
 	function resetAllEmails() {
 		import('pages.manager.EmailHandler');
 		EmailHandler::resetAllEmails();
 	}
-	
-	
+
+
 	//
 	// Registration Policies 
 	//
@@ -583,7 +583,7 @@ class ManagerHandler extends Handler {
 		import('pages.manager.StatisticsHandler');
 		StatisticsHandler::statistics($args);
 	}
-	
+
 	function saveStatisticsTracks() {
 		import('pages.manager.StatisticsHandler');
 		StatisticsHandler::saveStatisticsTracks();
@@ -605,26 +605,26 @@ class ManagerHandler extends Handler {
 	//
 	// Languages
 	//
-	
+
 	function languages() {
 		import('pages.manager.ConferenceLanguagesHandler');
 		ConferenceLanguagesHandler::languages();
 	}
-	
+
 	function saveLanguageSettings() {
 		import('pages.manager.ConferenceLanguagesHandler');
 		ConferenceLanguagesHandler::saveLanguageSettings();
 	}
-	
+
 	//
 	// Program
 	//
-	
+
 	function program() {
 		import('pages.manager.ManagerProgramHandler');
 		ManagerProgramHandler::program();
 	}
-	
+
 	function saveProgramSettings() {
 		import('pages.manager.ManagerProgramHandler');
 		ManagerProgramHandler::saveProgramSettings();
@@ -634,37 +634,37 @@ class ManagerHandler extends Handler {
 	//
 	// Payment
 	//
-	
+
 	function paymentSettings() {
 		import('pages.manager.ManagerPaymentHandler');
 		ManagerPaymentHandler::paymentSettings();
 	}
-	
+
 	function savePaymentSettings() {
 		import('pages.manager.ManagerPaymentHandler');
 		ManagerPaymentHandler::savePaymentSettings();
 	}
-	
-	
+
+
 	//
 	// Files Browser
 	//
-	
+
 	function files($args) {
 		import('pages.manager.FilesHandler');
 		FilesHandler::files($args);
 	}
-	
+
 	function fileUpload($args) {
 		import('pages.manager.FilesHandler');
 		FilesHandler::fileUpload($args);
 	}
-	
+
 	function fileMakeDir($args) {
 		import('pages.manager.FilesHandler');
 		FilesHandler::fileMakeDir($args);
 	}
-	
+
 	function fileDelete($args) {
 		import('pages.manager.FilesHandler');
 		FilesHandler::fileDelete($args);
@@ -697,7 +697,7 @@ class ManagerHandler extends Handler {
 	//
 	// Timeline Management
 	//
-	
+
 	function timeline($args) {
 		import('pages.manager.TimelineHandler');
 		TimelineHandler::timeline($args);
@@ -721,7 +721,7 @@ class ManagerHandler extends Handler {
 		import('pages.manager.ConferenceHistoryHandler');
 		ConferenceHistoryHandler::conferenceEventLogType($args);
 	}
-	
+
 	function clearConferenceEventLog($args) {
 		import('pages.manager.ConferenceHistoryHandler');
 		ConferenceHistoryHandler::clearConferenceEventLog($args);

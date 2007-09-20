@@ -17,7 +17,7 @@
 import('form.Form');
 
 class CommentForm extends Form {
-	
+
 	/** @var int the ID of the comment */
 	var $commentId;
 
@@ -35,7 +35,7 @@ class CommentForm extends Form {
 
 	/** @var int Galley view by which the user entered the comments pages */
 	var $galleyId;
-	
+
 	/**
 	 * Constructor.
 	 */
@@ -63,7 +63,7 @@ class CommentForm extends Form {
 		}
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
 	/**
 	 * Initialize form data from current comment.
 	 */
@@ -85,7 +85,7 @@ class CommentForm extends Form {
 			}
 		}
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -128,8 +128,8 @@ class CommentForm extends Form {
 
 		parent::display();
 	}
-	
-	
+
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -159,7 +159,7 @@ class CommentForm extends Form {
 		$commentsAllowAnonymous = $schedConf->getSetting('commentsAllowAnonymous', true);
 
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
-		
+
 		$comment = $this->comment;
 		if (!isset($comment)) {
 			$comment = &new Comment();
@@ -190,10 +190,10 @@ class CommentForm extends Form {
 			$commentDao->insertComment($comment);
 			$this->commentId = $comment->getCommentId();
 		}
-		
+
 		return $this->commentId;
 	}
-	
+
 }
 
 ?>

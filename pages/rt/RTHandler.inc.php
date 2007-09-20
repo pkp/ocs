@@ -40,7 +40,7 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->display('rt/bio.tpl');
 	}
-	
+
 	function metadata($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -52,7 +52,7 @@ class RTHandler extends PaperHandler {
 		if (!$conferenceRt || !$conferenceRt->getViewMetadata()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
-		
+
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$track = &$trackDao->getTrack($paper->getTrackId());
 
@@ -69,7 +69,7 @@ class RTHandler extends PaperHandler {
 			$templateMgr->assign_by_ref('conferenceSettings', $conference->getSettings());
 		$templateMgr->display('rt/metadata.tpl');
 	}
-	
+
 	function context($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -106,13 +106,13 @@ class RTHandler extends PaperHandler {
 					// Split name and value from each parameter
 					$nameValue = explode('=', $param);
 					if (!isset($nameValue[0])) break;
-	
+
 					$name = trim($nameValue[0]);
 					$value = trim(isset($nameValue[1])?$nameValue[1]:'');
 					if (!empty($name)) $params[] = array('name' => $name, 'value' => $value);
 				}
 			}
-			
+
 			$search->postParams = $params;
 			$searches[] = $search;
 		}
@@ -126,7 +126,7 @@ class RTHandler extends PaperHandler {
 				$searchValues[$param] = $paper->getPresenterString();
 				break;
 			case 'coverageGeo':
-				$searchValues[$param] = $paper->getCoverageGeo();
+				$searchValues[$param] = $paper->getPaperCoverageGeo();
 				break;
 			case 'title':
 				$searchValues[$param] = $paper->getPaperTitle();
@@ -147,8 +147,8 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign('searchParams', $searchParams);
 		$templateMgr->assign('searchValues', $searchValues);
 		$templateMgr->assign('defineTerm', Request::getUserVar('defineTerm'));
-		$templateMgr->assign('keywords', explode(';', $paper->getSubject()));
-		$templateMgr->assign('coverageGeo', $paper->getCoverageGeo());
+		$templateMgr->assign('keywords', explode(';', $paper->getPaperSubject()));
+		$templateMgr->assign('coverageGeo', $paper->getPaperCoverageGeo());
 		$templateMgr->assign_by_ref('conferenceSettings', $conference->getSettings());
 		$templateMgr->display('rt/context.tpl');
 	}
@@ -188,7 +188,7 @@ class RTHandler extends PaperHandler {
 		}
 		$citationPlugin->cite($paper);
 	}
-	
+
 	function printerFriendly($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -217,7 +217,7 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->display('rt/printerFriendly.tpl');	
 	}
-	
+
 	function emailColleague($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -248,7 +248,7 @@ class RTHandler extends PaperHandler {
 				$email->setSubject('[' . $schedConf->getSetting('acronym') . '] ' . strip_tags($paper->getPaperTitle()));
 				$email->assignParams(array(
 					'paperTitle' => strip_tags($paper->getPaperTitle()),
-					'schedConf' => $schedConf->getTitle(),
+					'schedConf' => $schedConf->getSchedConfTitle(),
 					'presenterName' => $primaryPresenter->getFullName(),
 					'paperUrl' => Request::url(null, null, 'paper', 'view', $paper->getBestPaperId())
 				));
@@ -292,7 +292,7 @@ class RTHandler extends PaperHandler {
 
 	function addComment($args) {
 	}
-	
+
 	function suppFiles($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -313,7 +313,7 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign_by_ref('conferenceSettings', $conference->getSettings());
 		$templateMgr->display('rt/suppFiles.tpl');
 	}
-	
+
 	function suppFileMetadata($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;

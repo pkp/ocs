@@ -35,7 +35,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.biography"}</td>
-		<td class="value">{$presenter->getBiography()|nl2br|strip_unsafe_html|default:"&mdash;"}</td>
+		<td class="value">{$presenter->getPresenterBiography()|nl2br|strip_unsafe_html|default:"&mdash;"}</td>
 	</tr>
 	{if $presenter->getPrimaryContact()}
 	<tr valign="top">
@@ -59,40 +59,15 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.title"}</td>
-		<td width="80%" class="value">{$submission->getTitle()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getPaperTitle()|escape|default:"&mdash;"}</td>
 	</tr>
-	{if $alternateLocale1}
-	<tr valign="top">
-		<td class="label">{translate key="paper.title"}<br />({$languageToggleLocales.$alternateLocale1|escape})</td>
-		<td class="value">{$submission->getTitleAlt1()|escape|default:"&mdash;"}</td>
-	</tr>
-	{/if}
-	{if $alternateLocale2}
-	<tr valign="top">
-		<td class="label">{translate key="paper.title"}<br />({$languageToggleLocales.$alternateLocale2|escape})</td>
-		<td class="value">{$submission->getTitleAlt2()|escape|default:"&mdash;"}</td>
-	</tr>
-	{/if}
-
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="paper.abstract"}</td>
-		<td class="value">{$submission->getAbstract()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
+		<td class="value">{$submission->getPaperAbstract()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
-	{if $alternateLocale1}
-	<tr valign="top">
-		<td class="label">{translate key="paper.abstract"}<br />({$languageToggleLocales.$alternateLocale1|escape})</td>
-		<td class="value">{$submission->getAbstractAlt1()|strip_unsafe_html|escape|nl2br|default:"&mdash;"}</td>
-	</tr>
-	{/if}
-	{if $alternateLocale2}
-	<tr valign="top">
-		<td class="label">{translate key="paper.abstract"}<br />({$languageToggleLocales.$alternateLocale2|escape})</td>
-		<td class="value">{$submission->getAbstractAlt2()|strip_unsafe_html|escape|nl2br|default:"&mdash;"}</td>
-	</tr>
-	{/if}
 </table>
 
 
@@ -105,7 +80,7 @@
 	{if $schedConfSettings.metaDiscipline}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.discipline"}</td>
-		<td width="80%" class="value">{$submission->getDiscipline()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getPaperDiscipline()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -114,7 +89,7 @@
 	{if $schedConfSettings.metaSubjectClass}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.subjectClassification"}</td>
-		<td width="80%" class="value">{$submission->getSubjectClass()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getPaperSubjectClass()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -123,7 +98,7 @@
 	{if $schedConfSettings.metaSubject}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.subject"}</td>
-		<td width="80%" class="value">{$submission->getSubject()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getPaperSubject()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -132,21 +107,21 @@
 	{if $schedConfSettings.metaCoverage}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.coverageGeo"}</td>
-		<td width="80%" class="value">{$submission->getCoverageGeo()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getPaperCoverageGeo()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="paper.coverageChron"}</td>
-		<td class="value">{$submission->getCoverageChron()|escape|default:"&mdash;"}</td>
+		<td class="value">{$submission->getPaperCoverageChron()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="paper.coverageSample"}</td>
-		<td class="value">{$submission->getCoverageSample()|escape|default:"&mdash;"}</td>
+		<td class="value">{$submission->getPaperCoverageSample()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -155,7 +130,7 @@
 	{if $schedConfSettings.metaType}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.type"}</td>
-		<td width="80%" class="value">{$submission->getType()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getPaperType()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -176,6 +151,6 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="presenter.submit.agencies"}</td>
-		<td width="80%" class="value">{$submission->getSponsor()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getPaperSponsor()|escape|default:"&mdash;"}</td>
 	</tr>
 </table>

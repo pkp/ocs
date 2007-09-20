@@ -14,12 +14,12 @@
 <h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
 
 {foreach from=$paper->getSuppFiles() item=suppFile key=key}
-<h4>{$key+1}. {$suppFile->getTitle()|escape}</h4>
+<h4>{$key+1}. {$suppFile->getSuppFileTitle()|escape}</h4>
 <table class="data" width="100%">
 <tr valign="top">
 	<td class="label" width="20%">{translate key="common.subject"}</td>
 	<td class="value" width="80%">
-		{$suppFile->getSubject()|escape}
+		{$suppFile->getSuppFileSubject()|escape}
 	</td>
 </tr>
 <tr valign="top">
@@ -28,7 +28,7 @@
 		{if $suppFile->getType()|escape}
 			{$suppFile->getType()}
 		{elseif $suppFile->getTypeOther()}
-			{$suppFile->getTypeOther()|escape}
+			{$suppFile->getSuppFileTypeOther()|escape}
 		{else}
 			{translate key="common.other"}
 		{/if}

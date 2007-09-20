@@ -17,16 +17,9 @@
 
 import('db.SettingsDAO');
 class SchedConfSettingsDAO extends SettingsDAO {
-	/**
-	 * Constructor.
-	 */
-	function SchedConfSettingsDAO() {
-		parent::DAO();
-	}
-
 	function &_getCache($schedConfId) {
 		static $settingCache;
-		
+
 		if (!isset($settingCache)) {
 			$settingCache = array();
 		}
@@ -44,21 +37,32 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	/**
 	 * Retrieve a scheduled conference setting value.
 	 * @param $schedConfId int
-	 * @param $name
+	 * @param $name string
+	 * @param $includeParent boolean optional
+	 * @param $locale string optional
 	 * @return mixed
 	 */
-	function &getSetting($schedConfId, $name, $includeParent = false) {
+	function &getSetting($schedConfId, $name, $includeParent = false, $locale = null) {
 		$cache =& $this->_getCache($schedConfId);
 		$returner = $cache->get($name);
 
+		if ($locale !== null) {
+			if (is_array($returner) && isset($returner[$locale])) {
+				return $returner[$locale];
+			}
+		}
+		if ($returner !== null) return $returner;
+
 		/* TODO: this doesn't allow empty scheduled conference overrides */
-		if($returner === null && $includeParent) {
+		if($includeParent) {
 			$schedConfDao = &DAORegistry::getDao('SchedConfDAO');
 			$schedConf = &$schedConfDao->getSchedConf($schedConfId);
 			$conference = &$schedConf->getConference();
-			return $conference->getSetting($name);
+			return $conference->getSetting($name, $locale);
 		}
-		
+
+		unset($returner);
+		$returner = null;
 		return $returner;
 	}
 
@@ -78,52 +82,23 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	 * @return array
 	 */
 	function &getSchedConfSettings($schedConfId, $includeParent = false) {
+		$schedConfSettings = array();
 
-		/* Pre-seed with conference settings */
-		if ($includeParent) {
-			$conferenceSettingsDao = &DAORegistry::getDao('ConferenceSettingsDAO');
-			$schedConfDao = &DAORegistry::getDao('SchedConfDAO');
-			$schedConf = &$schedConfDao->getSchedConf($schedConfId);
-			$schedConfSettings = &$conferenceSettingsDao->getConferenceSettings($schedConf->getConferenceId());
-		} else {
-			$schedConfSettings = array();
-		}
-		
 		$result = &$this->retrieve(
-			'SELECT setting_name, setting_value, setting_type FROM sched_conf_settings WHERE sched_conf_id = ?', $schedConfId 
+			'SELECT setting_name, setting_value, setting_type, locale FROM sched_conf_settings WHERE sched_conf_id = ?', $schedConfId 
 		);
-		
+
 		if ($result->RecordCount() == 0) {
 			$returner = null;
 			$result->Close();
 			return $returner;
-			
+
 		} else {
 			while (!$result->EOF) {
 				$row = &$result->getRowAssoc(false);
-				switch ($row['setting_type']) {
-					case 'date':
-						list($y, $mon, $d, $h, $min, $s) = sscanf($row['setting_value'], "%d-%d-%d %d:%d:%d");
-						$value = mktime($h,$min,$s,$mon,$d,$y);
-						break;
-					case 'bool':
-						$value = (bool) $row['setting_value'];
-						break;
-					case 'int':
-						$value = (int) $row['setting_value'];
-						break;
-					case 'float':
-						$value = (float) $row['setting_value'];
-						break;
-					case 'object':
-						$value = unserialize($row['setting_value']);
-						break;
-					case 'string':
-					default:
-						$value = $row['setting_value'];
-						break;
-				}
-				$schedConfSettings[$row['setting_name']] = $value;
+				$value = $this->convertFromDB($row['setting_value'], $row['setting_type']);
+				if ($row['locale'] == '') $schedConfSettings[$row['setting_name']] = $value;
+				else $schedConfSettings[$row['setting_name']][$row['locale']] = $value;
 				$result->MoveNext();
 			}
 			$result->close();
@@ -135,99 +110,68 @@ class SchedConfSettingsDAO extends SettingsDAO {
 			return $schedConfSettings;
 		}
 	}
-	
+
 	/**
 	 * Add/update a scheduled conference setting.
 	 * @param $schedConfId int
 	 * @param $name string
 	 * @param $value mixed
 	 * @param $type string data type of the setting. If omitted, type will be guessed
+	 * @param $isLocalized boolean
 	 */
-	function updateSetting($schedConfId, $name, $value, $type = null) {
+	function updateSetting($schedConfId, $name, $value, $type = null, $isLocalized = false) {
 		$cache =& $this->_getCache($schedConfId);
 		$cache->setCache($name, $value);
-		
-		if ($type == null) {
-			switch (gettype($value)) {
-				case 'date':
-					$type = 'date';
-					break;
-				case 'boolean':
-				case 'bool':
-					$type = 'bool';
-					break;
-				case 'integer':
-				case 'int':
-					$type = 'int';
-					break;
-				case 'double':
-				case 'float':
-					$type = 'float';
-					break;
-				case 'array':
-				case 'object':
-					$type = 'object';
-					break;
-				case 'string':
-				default:
-					$type = 'string';
-					break;
-			}
-		}
-		
-		if ($type == 'object') {
-			$value = serialize($value);
-			
-		} else if ($type == 'bool') {
-			$value = isset($value) && $value ? 1 : 0;
-		} else if ($type == 'date') {
-			$value = date("Y-n-d H:i:s", $value);
-		}
-		
-		$result = $this->retrieve(
-			'SELECT COUNT(*) FROM sched_conf_settings WHERE sched_conf_id = ? AND setting_name = ?',
-			array($schedConfId, $name)
-		);
-		
-		if ($result->fields[0] == 0) {
-			$returner = $this->update(
-				'INSERT INTO sched_conf_settings
-					(sched_conf_id, setting_name, setting_value, setting_type)
-					VALUES
-					(?, ?, ?, ?)',
-				array($schedConfId, $name, $value, $type)
+
+		$keyFields = array('setting_name', 'locale', 'sched_conf_id');
+
+		if (!$isLocalized) {
+			$value = $this->convertToDB($value, $type);
+			$this->replace('sched_conf_settings',
+				array(
+					'sched_conf_id' => $schedConfId,
+					'setting_name' => $name,
+					'setting_value' => $value,
+					'setting_type' => $type,
+					'locale' => ''
+				),
+				$keyFields
 			);
 		} else {
-			$returner = $this->update(
-				'UPDATE sched_conf_settings SET
-					setting_value = ?,
-					setting_type = ?
-					WHERE sched_conf_id = ? AND setting_name = ?',
-				array($value, $type, $schedConfId, $name)
-			);
+			$this->update('DELETE FROM sched_conf_settings WHERE sched_conf_id = ? AND setting_name = ?', array($schedConfId, $name));
+			if (is_array($value)) foreach ($value as $locale => $localeValue) {
+				if (empty($localeValue)) continue;
+				$type = null;
+				$this->update('INSERT INTO sched_conf_settings
+					(sched_conf_id, setting_name, setting_value, setting_type, locale)
+					VALUES (?, ?, ?, ?, ?)',
+					array(
+						$schedConfId, $name, $this->convertToDB($localeValue, $type), $type, $locale
+					)
+				);
+			}
 		}
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
 	}
-	
+
 	/**
 	 * Delete a scheduled conference setting.
 	 * @param $schedConfId int
 	 * @param $name string
+	 * @param $locale string optional
 	 */
-	function deleteSetting($schedConfId, $name) {
+	function deleteSetting($schedConfId, $name, $locale = null) {
 		$cache =& $this->_getCache($schedConfId);
 		$cache->setCache($name, null);
-		
-		return $this->update(
-			'DELETE FROM sched_conf_settings WHERE sched_conf_id = ? AND setting_name = ?',
-			array($schedConfId, $name)
-		);
+
+		$params = array($schedConfId, $name);
+		$sql = 'DELETE FROM sched_conf_settings WHERE sched_conf_id = ? AND setting_name = ?';
+		if ($locale !== null) {
+			$params[] = $locale;
+			$sql .= ' AND locale = ?';
+		}
+		return $this->update($sql, $params);
 	}
-	
+
 	/**
 	 * Delete all settings for a scheduled conference.
 	 * @param $schedConfId int
@@ -235,7 +179,7 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	function deleteSettingsBySchedConf($schedConfId) {
 		$cache =& $this->_getCache($schedConfId);
 		$cache->flush();
-		
+
 		return $this->update(
 				'DELETE FROM sched_conf_settings WHERE sched_conf_id = ?', $schedConfId
 		);

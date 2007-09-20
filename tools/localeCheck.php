@@ -44,7 +44,7 @@ class localeCheck extends CommandLineTool {
 		echo "Script to test locales for consistency\n"
 			. "Usage: {$this->scriptName} [localeName (optional)] ...\n";
 	}
-	
+
 	/**
 	 * Test locales.
 	 */
@@ -147,7 +147,7 @@ class localeCheck extends CommandLineTool {
 				);
 			}
 		}
-		
+
 		$this->displayEmailErrors($locale, $errors);
 	}
 
@@ -242,7 +242,7 @@ class localeCheck extends CommandLineTool {
 			// will be extra unnecessary keys.
 			unset($localeContents[$key]);
 		}
-		
+
 		// Leftover keys are extraneous.
 		foreach ($localeContents as $key => $value) {
 			$errors[LOCALE_ERROR_EXTRA_KEY][] = array(

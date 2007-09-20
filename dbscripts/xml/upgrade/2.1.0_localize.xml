@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../dtd/xmldata.dtd">
+
+<!--
+  * 2.1.0_localize.xml
+  *
+  * Copyright (c) 2000-2007 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localize the database for an upgrade from pre-2.1 to 2.1.
+  *
+  * $Id$
+  -->
+
+<data>
+	<!-- Localize the site table -->
+	<sql>
+		<query>INSERT INTO site_settings (setting_name, setting_value, setting_type, locale) SELECT 'title', title, 'string', primary_locale FROM site</query>
+		<query>INSERT INTO site_settings (setting_name, setting_value, setting_type, locale) SELECT 'intro', intro, 'string', primary_locale FROM site</query>
+		<query>INSERT INTO site_settings (setting_name, setting_value, setting_type, locale) SELECT 'about', about, 'string', primary_locale FROM site</query>
+		<query>INSERT INTO site_settings (setting_name, setting_value, setting_type, locale) SELECT 'contact_name', contact_name, 'string', primary_locale FROM site</query>
+		<query>INSERT INTO site_settings (setting_name, setting_value, setting_type, locale) SELECT 'contact_email', contact_email, 'string', primary_locale FROM site</query>
+	</sql>
+
+	<!-- Localize the users table -->
+	<sql>
+		<query>INSERT INTO user_settings (user_id, setting_name, setting_value, setting_type, locale) SELECT u.user_id, 'biography', biography, 'string', s.primary_locale FROM users u, site s</query>
+		<query>INSERT INTO user_settings (user_id, setting_name, setting_value, setting_type, locale) SELECT u.user_id, 'interests', interests, 'string', s.primary_locale FROM users u, site s</query>
+		<query>INSERT INTO user_settings (user_id, setting_name, setting_value, setting_type, locale) SELECT u.user_id, 'signature', signature, 'string', s.primary_locale FROM users u, site s</query>
+	</sql>
+
+	<!-- Localize the conferences table -->
+	<sql>
+		<query>INSERT INTO conference_settings (conference_id, setting_name, setting_value, setting_type, locale) SELECT c.conference_id, 'title', title, 'string', c.primary_locale FROM conferences c</query>
+		<query>INSERT INTO conference_settings (conference_id, setting_name, setting_value, setting_type, locale) SELECT c.conference_id, 'description', description, 'string', c.primary_locale FROM conferences c</query>
+	</sql>
+
+	<!-- Localize the sched_confs table -->
+	<sql>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, conference_id, setting_name, setting_value, setting_type, locale) SELECT sc.sched_conf_id, sc.conference_id, 'title', title, 'string', c.primary_locale FROM conferences c, sched_confs sc WHERE c.conference_id = sc.conference_id</query>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, conference_id, setting_name, setting_value, setting_type, locale) SELECT sc.sched_conf_id, sc.conference_id, 'description', description, 'string', c.primary_locale FROM conferences c, sched_confs sc WHERE c.conference_id = sc.conference_id</query>
+	</sql>
+
+	<!-- Localize the tracks table -->
+	<sql>
+		<!-- Track title + alts -->
+		<query>INSERT INTO track_settings (track_id, setting_name, setting_value, setting_type, locale) SELECT t.track_id, 'title', t.title, 'string', c.primary_locale FROM tracks t, sched_confs sc, conferences c WHERE t.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id</query>
+		<query>INSERT INTO track_settings (track_id, setting_name, setting_value, setting_type, locale) SELECT t.track_id, 'title', t.title_alt1, 'string', cs.setting_value FROM tracks t, conference_settings cs, sched_confs sc WHERE t.sched_conf_id = sc.sched_conf_id AND sc.conference_id = cs.conference_id AND cs.setting_name = 'alternateLocale1' AND t.title_alt1 IS NOT NULL AND t.title_alt1 != ''</query>
+		<query>INSERT INTO track_settings (track_id, setting_name, setting_value, setting_type, locale) SELECT t.track_id, 'title', t.title_alt2, 'string', cs.setting_value FROM tracks t, conference_settings cs, sched_confs sc WHERE t.sched_conf_id = sc.sched_conf_id AND sc.conference_id = cs.conference_id AND cs.setting_name = 'alternateLocale2' AND t.title_alt1 IS NOT NULL AND t.title_alt2 != ''</query>
+
+		<!-- Track abbrev + alts -->
+		<query>INSERT INTO track_settings (track_id, setting_name, setting_value, setting_type, locale) SELECT t.track_id, 'abbrev', t.abbrev, 'string', c.primary_locale FROM tracks t, sched_confs sc, conferences c WHERE t.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id</query>
+		<query>INSERT INTO track_settings (track_id, setting_name, setting_value, setting_type, locale) SELECT t.track_id, 'abbrev', t.abbrev_alt1, 'string', cs.setting_value FROM tracks t, conference_settings cs, sched_confs sc WHERE t.sched_conf_id = sc.sched_conf_id AND sc.conference_id = cs.conference_id AND cs.setting_name = 'alternateLocale1' AND t.abbrev_alt1 IS NOT NULL AND t.abbrev_alt1 != ''</query>
+		<query>INSERT INTO track_settings (track_id, setting_name, setting_value, setting_type, locale) SELECT t.track_id, 'abbrev', t.abbrev_alt2, 'string', cs.setting_value FROM tracks t, conference_settings cs, sched_confs sc WHERE t.sched_conf_id = sc.sched_conf_id AND sc.conference_id = cs.conference_id AND cs.setting_name = 'alternateLocale2' AND t.abbrev_alt1 IS NOT NULL AND t.abbrev_alt2 != ''</query>
+
+		<!-- Track identify type -->
+		<query>INSERT INTO track_settings (track_id, setting_name, setting_value, setting_type, locale) SELECT t.track_id, 'identifyType', t.identify_type, 'string', c.primary_locale FROM tracks t, sched_confs sc, conferences c WHERE t.sched_conf_id = sc.sched_conf_id AND c.conference_id = sc.conference_id</query>
+	</sql>
+
+	<!-- Localize the papers table -->
+	<sql>
+		<!-- Paper title + alts -->
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'title', p.title, 'string', c.primary_locale FROM papers p, conferences c, sched_confs sc WHERE p.sched_conf_id = sc.sched_conf_id AND c.conference_id = sc.conference_id</query>
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'title', p.title_alt1, 'string', cs.setting_value FROM papers p, conference_settings cs, sched_confs sc WHERE p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = cs.conference_id AND cs.setting_name = 'alternateLocale1' AND p.title_alt1 IS NOT NULL AND p.title_alt1 != ''</query>
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'title', p.title_alt2, 'string', cs.setting_value FROM papers p, conference_settings cs, sched_confs sc WHERE p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = cs.conference_id AND cs.setting_name = 'alternateLocale2' AND p.title_alt2 IS NOT NULL AND p.title_alt2 != ''</query>
+
+		<!-- Paper abstract + alts -->
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'abstract', p.abstract, 'string', c.primary_locale FROM papers p, conferences c, sched_confs sc WHERE p.sched_conf_id = sc.sched_conf_id AND c.conference_id = sc.conference_id</query>
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'abstract', p.abstract_alt1, 'string', cs.setting_value FROM papers p, conference_settings cs, sched_confs sc WHERE p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = cs.conference_id AND cs.setting_name = 'alternateLocale1' AND p.abstract_alt1 IS NOT NULL AND p.abstract_alt1 != ''</query>
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'abstract', p.abstract_alt2, 'string', cs.setting_value FROM papers p, conference_settings cs, sched_confs sc WHERE p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = cs.conference_id AND cs.setting_name = 'alternateLocale2' AND p.abstract_alt2 IS NOT NULL AND p.abstract_alt2 != ''</query>
+
+		<!-- Additional fields -->
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'discipline', p.discipline, 'string', c.primary_locale FROM papers p, sched_confs sc, conferences c WHERE p.sched_conf_id = sc.sched_conf_id AND c.conference_id = sc.conference_id AND p.discipline IS NOT NULL AND p.discipline != ''</query>
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'subjectClass', p.subject_class, 'string', c.primary_locale FROM papers p, sched_confs sc, conferences c WHERE p.sched_conf_id = sc.sched_conf_id AND c.conference_id = sc.conference_id AND p.subject_class IS NOT NULL AND p.subject_class != ''</query>
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'subject', p.subject, 'string', c.primary_locale FROM papers p, sched_confs sc, conferences c WHERE p.sched_conf_id = sc.sched_conf_id AND c.conference_id = sc.conference_id AND p.subject IS NOT NULL AND p.subject != ''</query>
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'coverageGeo', p.coverage_geo, 'string', c.primary_locale FROM papers p, sched_confs sc, conferences c WHERE p.sched_conf_id = sc.sched_conf_id AND c.conference_id = sc.conference_id AND p.coverage_geo IS NOT NULL AND p.coverage_geo != ''</query>
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'coverageChron', p.coverage_chron, 'string', c.primary_locale FROM papers p, sched_confs sc, conferences c WHERE p.sched_conf_id = sc.sched_conf_id AND c.conference_id = sc.conference_id AND p.coverage_chron IS NOT NULL AND p.coverage_chron != ''</query>
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'coverageSample', p.coverage_sample, 'string', c.primary_locale FROM papers p, sched_confs sc, conferences c WHERE p.sched_conf_id = sc.sched_conf_id AND c.conference_id = sc.conference_id AND p.coverage_sample IS NOT NULL AND p.coverage_sample != ''</query>
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'type', p.type, 'string', c.primary_locale FROM papers p, sched_confs sc, conferences c WHERE p.sched_conf_id = sc.sched_conf_id AND c.conference_id = sc.conference_id AND p.type IS NOT NULL AND p.type != ''</query>
+		<query>INSERT INTO paper_settings (paper_id, setting_name, setting_value, setting_type, locale) SELECT p.paper_id, 'sponsor', p.sponsor, 'string', c.primary_locale FROM papers p, sched_confs sc, conferences c WHERE p.sched_conf_id = sc.sched_conf_id AND c.conference_id = sc.conference_id AND p.sponsor IS NOT NULL AND p.sponsor != ''</query>
+	</sql>
+
+	<!-- Localize the paper_presenters table -->
+	<sql>
+		<query>INSERT INTO paper_presenter_settings (presenter_id, setting_name, setting_value, setting_type, locale) SELECT pp.presenter_id, 'biography', pp.biography, 'string', c.primary_locale FROM paper_presenters pp, papers p, sched_confs sc, conferences c WHERE pp.paper_id = p.paper_id AND p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND pp.biography IS NOT NULL AND pp.biography != ''</query>
+	</sql>
+
+	<!-- Localize the paper_supplementary_files table -->
+	<sql>
+		<query>INSERT INTO paper_supp_file_settings (supp_id, setting_name, setting_value, setting_type, locale) SELECT s.supp_id, 'title', s.title, 'string', c.primary_locale FROM paper_supplementary_files s, papers p, sched_confs sc, conferences c WHERE s.paper_id = p.paper_id AND p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND s.title IS NOT NULL AND s.title != ''</query>
+		<query>INSERT INTO paper_supp_file_settings (supp_id, setting_name, setting_value, setting_type, locale) SELECT s.supp_id, 'creator', s.creator, 'string', c.primary_locale FROM paper_supplementary_files s, papers p, sched_confs sc, conferences c WHERE s.paper_id = p.paper_id AND p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND s.creator IS NOT NULL AND s.creator != ''</query>
+		<query>INSERT INTO paper_supp_file_settings (supp_id, setting_name, setting_value, setting_type, locale) SELECT s.supp_id, 'subject', s.subject, 'string', c.primary_locale FROM paper_supplementary_files s, papers p, sched_confs sc, conferences c WHERE s.paper_id = p.paper_id AND p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND s.subject IS NOT NULL AND s.subject != ''</query>
+		<query>INSERT INTO paper_supp_file_settings (supp_id, setting_name, setting_value, setting_type, locale) SELECT s.supp_id, 'typeOther', s.type_other, 'string', c.primary_locale FROM paper_supplementary_files s, papers p, sched_confs sc, conferences c WHERE s.paper_id = p.paper_id AND p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND s.type_other IS NOT NULL AND s.type_other != ''</query>
+		<query>INSERT INTO paper_supp_file_settings (supp_id, setting_name, setting_value, setting_type, locale) SELECT s.supp_id, 'description', s.description, 'string', c.primary_locale FROM paper_supplementary_files s, papers p, sched_confs sc, conferences c WHERE s.paper_id = p.paper_id AND p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND s.description IS NOT NULL AND s.description != ''</query>
+		<query>INSERT INTO paper_supp_file_settings (supp_id, setting_name, setting_value, setting_type, locale) SELECT s.supp_id, 'publisher', s.publisher, 'string', c.primary_locale FROM paper_supplementary_files s, papers p, sched_confs sc, conferences c WHERE s.paper_id = p.paper_id AND p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND s.publisher IS NOT NULL AND s.publisher != ''</query>
+		<query>INSERT INTO paper_supp_file_settings (supp_id, setting_name, setting_value, setting_type, locale) SELECT s.supp_id, 'sponsor', s.sponsor, 'string', c.primary_locale FROM paper_supplementary_files s, papers p, sched_confs sc, conferences c WHERE s.paper_id = p.paper_id AND p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND s.sponsor IS NOT NULL AND s.sponsor != ''</query>
+		<query>INSERT INTO paper_supp_file_settings (supp_id, setting_name, setting_value, setting_type, locale) SELECT s.supp_id, 'source', s.source, 'string', c.primary_locale FROM paper_supplementary_files s, papers p, sched_confs sc, conferences c WHERE s.paper_id = p.paper_id AND p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND s.source IS NOT NULL AND s.source != ''</query>
+	</sql>
+
+	<!-- Localize the registration_types table -->
+	<sql>
+		<query>INSERT INTO registration_type_settings (type_id, setting_name, setting_value, setting_type, locale) SELECT t.type_id, 'name', t.type_name, 'string', c.primary_locale FROM registration_types t, conferences c, sched_confs sc WHERE t.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND t.type_name IS NOT NULL AND t.type_name != ''</query>
+		<query>INSERT INTO registration_type_settings (type_id, setting_name, setting_value, setting_type, locale) SELECT t.type_id, 'description', t.description, 'string', c.primary_locale FROM registration_types t, conferences c, sched_confs sc WHERE t.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND t.description IS NOT NULL AND t.description != ''</query>
+	</sql>
+
+	<!-- Localize the announcements table -->
+	<sql>
+		<query>INSERT INTO announcement_settings (announcement_id, setting_name, setting_value, setting_type, locale) SELECT a.announcement_id, 'title', a.title, 'string', c.primary_locale FROM announcements a, conferences c WHERE a.conference_id = c.conference_id AND a.title IS NOT NULL AND a.title != ''</query>
+		<query>INSERT INTO announcement_settings (announcement_id, setting_name, setting_value, setting_type, locale) SELECT a.announcement_id, 'descriptionShort', a.description_short, 'string', c.primary_locale FROM announcements a, conferences c WHERE a.conference_id = c.conference_id AND a.description_short IS NOT NULL AND a.description_short != ''</query>
+		<query>INSERT INTO announcement_settings (announcement_id, setting_name, setting_value, setting_type, locale) SELECT a.announcement_id, 'description', a.description, 'string', c.primary_locale FROM announcements a, conferences c WHERE a.conference_id = c.conference_id AND a.description IS NOT NULL AND a.description != ''</query>
+	</sql>
+
+	<!-- Localize the groups table -->
+	<sql>
+		<query>INSERT INTO group_settings (group_id, setting_name, setting_value, setting_type, locale) SELECT g.group_id, 'title', g.title, 'string', c.primary_locale FROM groups g, conferences c WHERE g.conference_id = c.conference_id AND g.title IS NOT NULL AND g.title != ''</query>
+		<query>INSERT INTO group_settings (group_id, setting_name, setting_value, setting_type, locale) SELECT g.group_id, 'title', g.title_alt1, 'string', cs.setting_value FROM groups g, conference_settings cs WHERE g.conference_id = cs.conference_id AND cs.setting_name = 'alternateLocale1' AND g.title_alt1 IS NOT NULL AND g.title_alt1 != ''</query>
+		<query>INSERT INTO group_settings (group_id, setting_name, setting_value, setting_type, locale) SELECT g.group_id, 'title', g.title_alt2, 'string', cs.setting_value FROM groups g, conference_settings cs WHERE g.conference_id = cs.conference_id AND cs.setting_name = 'alternateLocale2' AND g.title_alt2 IS NOT NULL AND g.title_alt2 != ''</query>
+	</sql>
+
+	<!-- Localize the announcement_types table -->
+	<sql>
+		<query>INSERT INTO announcement_type_settings (type_id, setting_name, setting_value, setting_type, locale) SELECT t.type_id, 'name', t.type_name, 'string', c.primary_locale FROM announcement_types t, conferences c WHERE t.conference_id = c.conference_id AND t.type_name IS NOT NULL AND t.type_name != ''</query>
+	</sql>
+
+	<!-- Clean up settings that are no longer used -->
+	<sql>
+		<query>DELETE FROM conference_settings WHERE setting_name = 'alternateLocale1' OR setting_name = 'alternateLocale2'</query>
+	</sql>
+</data>

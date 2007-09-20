@@ -16,7 +16,7 @@
  */
 
 class PaperLog {
-	
+
 	/**
 	 * Add an event log entry to this paper.
 	 * @param $paperId int
@@ -25,30 +25,30 @@ class PaperLog {
 	function logEventEntry($paperId, &$entry) {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$schedConfId = $paperDao->getPaperSchedConfId($paperId);
-		
+
 		if (!$schedConfId) {
 			// Invalid paper
 			return false;
 		}
-		
+
 		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
 		if (!$settingsDao->getSetting($schedConfId, 'paperEventLog', true)) {
 			// Event logging is disabled
 			return false;
 		}
-	
+
 		// Add the entry
 		$entry->setPaperId($paperId);
-		
+
 		if ($entry->getUserId() == null) {
 			$user = &Request::getUser();
 			$entry->setUserId($user == null ? 0 : $user->getUserId());
 		}
-		
+
 		$logDao = &DAORegistry::getDAO('PaperEventLogDAO');
 		return $logDao->insertLogEntry($entry);
 	}
-	
+
 	/**
 	 * Add a new event log entry with the specified parameters, at the default log level
 	 * @param $paperId int
@@ -61,7 +61,7 @@ class PaperLog {
 	function logEvent($paperId, $eventType, $assocType = 0, $assocId = 0, $messageKey = null, $messageParams = array()) {
 		return PaperLog::logEventLevel($paperId, LOG_LEVEL_NOTICE, $eventType, $assocType, $assocId, $messageKey, $messageParams);
 	}
-	
+
 	/**
 	 * Add a new event log entry with the specified parameters, including log level.
 	 * @param $paperId int
@@ -78,14 +78,14 @@ class PaperLog {
 		$entry->setEventType($eventType);
 		$entry->setAssocType($assocType);
 		$entry->setAssocId($assocId);
-		
+
 		if (isset($messageKey)) {
 			$entry->setLogMessage($messageKey, $messageParams);
 		}
-		
+
 		return PaperLog::logEventEntry($paperId, $entry);
 	}
-	
+
 	/**
 	 * Get all event log entries for a paper.
 	 * @param $paperId int
@@ -96,7 +96,7 @@ class PaperLog {
 		$returner = &$logDao->getPaperLogEntries($paperId, $rangeInfo);
 		return $returner;
 	}
-	
+
 	/**
 	 * Add an email log entry to this paper.
 	 * @param $paperId int
@@ -105,30 +105,30 @@ class PaperLog {
 	function logEmailEntry($paperId, &$entry) {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$schedConfId = $paperDao->getPaperSchedConfId($paperId);
-		
+
 		if (!$schedConfId) {
 			// Invalid paper
 			return false;
 		}
-		
+
 		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
 		if (!$settingsDao->getSetting($schedConfId, 'paperEmailLog', true)) {
 			// Email logging is disabled
 			return false;
 		}
-	
+
 		// Add the entry
 		$entry->setPaperId($paperId);
-		
+
 		if ($entry->getSenderId() == null) {
 			$user = &Request::getUser();
 			$entry->setSenderId($user == null ? 0 : $user->getUserId());
 		}
-		
+
 		$logDao = &DAORegistry::getDAO('PaperEmailLogDAO');
 		return $logDao->insertLogEntry($entry);
 	}
-	
+
 	/**
 	 * Get all email log entries for a paper.
 	 * @param $paperId int
@@ -139,7 +139,7 @@ class PaperLog {
 		$result = &$logDao->getPaperLogEntries($paperId, $rangeInfo);
 		return $result;
 	}
-	
+
 }
 
 ?>

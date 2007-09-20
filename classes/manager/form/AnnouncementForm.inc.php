@@ -17,7 +17,6 @@
 import('form.Form');
 
 class AnnouncementForm extends Form {
-
 	/** @var announcementId int the ID of the announcement being edited */
 	var $announcementId;
 
@@ -39,13 +38,13 @@ class AnnouncementForm extends Form {
 		$this->addCheck(new FormValidatorCustom($this, 'schedConfId', 'required', 'manager.announcements.form.schedConfIdValid', create_function('$schedConfId, $conferenceId', 'if ($schedConfId == 0) return true; $schedConfDao = &DAORegistry::getDAO(\'SchedConfDAO\'); $schedConf =& $schedConfDao->getSchedConf($schedConfId); if(!$schedConf) return false; return ($schedConf->getConferenceId() == $conferenceId);'), array($conference->getConferenceId())));
 
 		// Title is provided
-		$this->addCheck(new FormValidator($this, 'title', 'required', 'manager.announcements.form.titleRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.announcements.form.titleRequired'));
 
 		// Short description is provided
 		$this->addCheck(new FormValidator($this, 'descriptionShort', 'required', 'manager.announcements.form.descriptionShortRequired'));
 
 		// Description is provided
-		$this->addCheck(new FormValidator($this, 'description', 'required', 'manager.announcements.form.descriptionRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'description', 'required', 'manager.announcements.form.descriptionRequired'));
 
 		// If provided, expiry date is valid
 		$this->addCheck(new FormValidatorCustom($this, 'dateExpireYear', 'optional', 'manager.announcements.form.dateExpireValid', create_function('$dateExpireYear', '$minYear = date(\'Y\'); $maxYear = date(\'Y\') + ANNOUNCEMENT_EXPIRE_YEAR_OFFSET_FUTURE; return ($dateExpireYear >= $minYear && $dateExpireYear <= $maxYear) ? true : false;')));
@@ -62,7 +61,16 @@ class AnnouncementForm extends Form {
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
+	/**
+	 * Get the list of localized field names for this object
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+		return $announcementDao->getLocaleFieldNames();
+	}
+
 	/**
 	 * Display the form.
 	 */
@@ -77,10 +85,10 @@ class AnnouncementForm extends Form {
 		$announcementTypeDao = &DAORegistry::getDAO('AnnouncementTypeDAO');
 		$announcementTypes = &$announcementTypeDao->getAnnouncementTypesByConferenceId($conference->getConferenceId());
 		$templateMgr->assign('announcementTypes', $announcementTypes);
-	
+
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize form data from current announcement.
 	 */
@@ -93,9 +101,9 @@ class AnnouncementForm extends Form {
 				$this->_data = array(
 					'typeId' => $announcement->getTypeId(),
 					'schedConfId' => $announcement->getSchedConfId(),
-					'title' => $announcement->getTitle(),
-					'descriptionShort' => $announcement->getDescriptionShort(),
-					'description' => $announcement->getDescription(),
+					'title' => $announcement->getTitle(null), // Localized
+					'descriptionShort' => $announcement->getDescriptionShort(null), // Localized
+					'description' => $announcement->getDescription(null), // Localized
 					'dateExpire' => $announcement->getDateExpire()
 				);
 
@@ -104,36 +112,36 @@ class AnnouncementForm extends Form {
 			}
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
 		$this->readUserVars(array('typeId', 'schedConfId', 'title', 'descriptionShort', 'description', 'dateExpireYear', 'dateExpireMonth', 'dateExpireDay'));
 		$this->_data['dateExpire'] = $this->_data['dateExpireYear'] . '-' . $this->_data['dateExpireMonth'] . '-' . $this->_data['dateExpireDay'];
-	
+
 	}
-	
+
 	/**
 	 * Save announcement. 
 	 */
 	function execute() {
 		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
 		$conference = &Request::getConference();
-	
+
 		if (isset($this->announcementId)) {
 			$announcement = &$announcementDao->getAnnouncement($this->announcementId);
 		}
-		
+
 		if (!isset($announcement)) {
 			$announcement = &new Announcement();
 		}
-		
+
 		$announcement->setConferenceId($conference->getConferenceId());
 		$announcement->setSchedConfId($this->getData('schedConfId'));
-		$announcement->setTitle($this->getData('title'));
-		$announcement->setDescriptionShort($this->getData('descriptionShort'));
-		$announcement->setDescription($this->getData('description'));
+		$announcement->setTitle($this->getData('title'), null); // Localized
+		$announcement->setDescriptionShort($this->getData('descriptionShort'), null); // Localized
+		$announcement->setDescription($this->getData('description'), null); // Localized
 
 		if ($this->getData('typeId') != null) {
 			$announcement->setTypeId($this->getData('typeId'));
@@ -155,7 +163,6 @@ class AnnouncementForm extends Form {
 			$announcementDao->insertAnnouncement($announcement);
 		}
 	}
-	
 }
 
 ?>

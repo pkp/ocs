@@ -28,7 +28,7 @@ class DirectorAction extends TrackDirectorAction {
 	/**
 	 * Actions.
 	 */
-	 
+
 	/**
 	 * Assigns a track director to a submission.
 	 * @param $paperId int
@@ -58,18 +58,18 @@ class DirectorAction extends TrackDirectorAction {
 
 			$editAssignment = &new EditAssignment();
 			$editAssignment->setPaperId($paperId);
-		
+
 			// Make the selected director the new director
 			$editAssignment->setDirectorId($trackDirectorId);
 			$editAssignment->setDateNotified(Core::getCurrentDate());
 			$editAssignment->setDateUnderway(null);
-		
+
 			$editAssignments =& $directorSubmission->getEditAssignments();
 			array_push($editAssignments, $editAssignment);
 			$directorSubmission->setEditAssignments($editAssignments);
-		
+
 			$directorSubmissionDao->updateDirectorSubmission($directorSubmission);
-		
+
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');

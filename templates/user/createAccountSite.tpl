@@ -16,9 +16,9 @@
 {iterate from=conferences item=conference}
 	<li>
 		{if $source}
-			<a href="{url conference=$conference->getPath() page="user" op="account" source=$source|escape}">{$conference->getTitle()|escape}</a>
+			<a href="{url conference=$conference->getPath() page="user" op="account" source=$source|escape}">{$conference->getConferenceTitle()|escape}</a>
 		{else}
-			<a href="{url conference=$conference->getPath() page="user" op="account"}">{$conference->getTitle()|escape}</a>
+			<a href="{url conference=$conference->getPath() page="user" op="account"}">{$conference->getConferenceTitle()|escape}</a>
 		{/if}
 	</li>
 {/iterate}

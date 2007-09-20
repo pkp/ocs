@@ -17,12 +17,12 @@
 import("manager.form.setup.ConferenceSetupForm");
 
 class ConferenceSetupStep1Form extends ConferenceSetupForm {
-	
 	function ConferenceSetupStep1Form() {
 		parent::ConferenceSetupForm(
 			1,
 			array(
-				'conferenceDescription' => 'string',
+				'title' => 'string',
+				'description' => 'string',
 				'contactName' => 'string',
 				'contactTitle' => 'string',
 				'contactAffiliation' => 'string',
@@ -42,22 +42,18 @@ class ConferenceSetupStep1Form extends ConferenceSetupForm {
 				'customAboutItems' => 'object'
 			)
 		);
-		
+
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'contactName', 'required', 'manager.schedConfSetup.details.contactNameRequired'));
 		$this->addCheck(new FormValidator($this, 'contactEmail', 'required', 'manager.schedConfSetup.details.contactEmailRequired'));
 	}
 
-	function initData() {
-		parent::initData();
-
-		$conference = Request::getConference();
-		$this->_data['conferenceTitle'] = $conference->getTitle();
-	}
-
-	function readInputData() {
-		parent::readInputData();
-		$this->_data['conferenceTitle'] = Request::getUserVar('conferenceTitle');
+	/**
+	 * Get the list of field names for which localized settings are used.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('title', 'description', 'archiveAccessPolicy', 'copyrightNotice', 'privacyStatement', 'customAboutItems');
 	}
 }
 

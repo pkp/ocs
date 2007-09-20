@@ -15,7 +15,7 @@
  */
 
 class SubmitHandler extends PresenterHandler {
-	
+
 	/**
 	 * Display conference presenter paper submission.
 	 * Displays presenter index page if a valid step is not specified.
@@ -24,20 +24,24 @@ class SubmitHandler extends PresenterHandler {
 	function submit($args) {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 		$paperId = Request::getUserVar('paperId');
-		
+
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, $step);
 
 		$formClass = "PresenterSubmitStep{$step}Form";
 		import("presenter.form.submit.$formClass");
 
 		$submitForm = &new $formClass($paper);
-		$submitForm->initData();
+		if ($submitForm->isLocaleResubmit()) {
+			$submitForm->readInputData();
+		} else {
+			$submitForm->initData();
+		}
 		$submitForm->display();
 	}
-	
+
 	/**
 	 * Save a submission step.
 	 * @param $args array first parameter is the step being saved
@@ -48,15 +52,15 @@ class SubmitHandler extends PresenterHandler {
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 		$paperId = Request::getUserVar('paperId');
-		
+
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, $step);
-			
+
 		$formClass = "PresenterSubmitStep{$step}Form";
 		import("presenter.form.submit.$formClass");
-		
+
 		$submitForm = &new $formClass($paper);
 		$submitForm->readInputData();
-			
+
 		// Check for any special cases before trying to save
 		switch ($step) {
 			case 2:
@@ -66,7 +70,7 @@ class SubmitHandler extends PresenterHandler {
 					$presenters = $submitForm->getData('presenters');
 					array_push($presenters, array());
 					$submitForm->setData('presenters', $presenters);
-					
+
 				} else if (($delPresenter = Request::getUserVar('delPresenter')) && count($delPresenter) == 1) {
 					// Delete an presenter
 					$editData = true;
@@ -80,11 +84,11 @@ class SubmitHandler extends PresenterHandler {
 					}
 					array_splice($presenters, $delPresenter, 1);
 					$submitForm->setData('presenters', $presenters);
-					
+
 					if ($submitForm->getData('primaryContact') == $delPresenter) {
 						$submitForm->setData('primaryContact', 0);
 					}
-					
+
 				} else if (Request::getUserVar('movePresenter')) {
 					// Move an presenter up/down
 					$editData = true;
@@ -92,7 +96,7 @@ class SubmitHandler extends PresenterHandler {
 					$movePresenterDir = $movePresenterDir == 'u' ? 'u' : 'd';
 					$movePresenterIndex = (int) Request::getUserVar('movePresenterIndex');
 					$presenters = $submitForm->getData('presenters');
-					
+
 					if (!(($movePresenterDir == 'u' && $movePresenterIndex <= 0) || ($movePresenterDir == 'd' && $movePresenterIndex >= count($presenters) - 1))) {
 						$tmpPresenter = $presenters[$movePresenterIndex];
 						$primaryContact = $submitForm->getData('primaryContact');
@@ -117,14 +121,14 @@ class SubmitHandler extends PresenterHandler {
 					$submitForm->setData('presenters', $presenters);
 				}
 				break;
-				
+
 			case 3:
 				if (Request::getUserVar('uploadSubmissionFile')) {
 					$submitForm->uploadSubmissionFile('submissionFile');
 					$editData = true;
 				}
 				break;
-				
+
 			case 4:
 				if (Request::getUserVar('submitUploadSuppFile')) {
 					SubmitHandler::submitUploadSuppFile();
@@ -132,7 +136,7 @@ class SubmitHandler extends PresenterHandler {
 				}
 				break;
 		}
-		
+
 		if (!isset($editData) && $submitForm->validate()) {
 			$paperId = $submitForm->execute();
 			$conference = &Request::getConference();
@@ -159,21 +163,21 @@ class SubmitHandler extends PresenterHandler {
 			} else {
 				Request::redirect(null, null, null, 'submit', $step+1, array('paperId' => $paperId));
 			}
-		
+
 		} else {
 			$submitForm->display();
 		}
 	}
-	
+
 	/**
 	 * Create new supplementary file with a uploaded file.
 	 */
 	function submitUploadSuppFile() {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		$paperId = Request::getUserVar('paperId');
-		
+
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
 		if ($schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
 			import("presenter.form.submit.PresenterSubmitSuppFileForm");
@@ -184,7 +188,7 @@ class SubmitHandler extends PresenterHandler {
 
 		Request::redirect(null, null, null, 'submitSuppFile', $suppFileId, array('paperId' => $paperId));
 	}
-	
+
 	/**
 	 * Display supplementary file submission form.
 	 * @param $args array optional, if set the first parameter is the supplementary file to edit
@@ -192,21 +196,25 @@ class SubmitHandler extends PresenterHandler {
 	function submitSuppFile($args) {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		$paperId = Request::getUserVar('paperId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
-		
+
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
-		
+
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
 		import("presenter.form.submit.PresenterSubmitSuppFileForm");
 		$submitForm = &new PresenterSubmitSuppFileForm($paper, $suppFileId);
 
-		$submitForm->initData();
+		if ($submitForm->isLocaleResubmit()) {
+			$submitForm->readInputData();
+		} else {
+			$submitForm->initData();
+		}
 		$submitForm->display();
 	}
-	
+
 	/**
 	 * Save a supplementary file.
 	 * @param $args array optional, if set the first parameter is the supplementary file to update
@@ -214,17 +222,17 @@ class SubmitHandler extends PresenterHandler {
 	function saveSubmitSuppFile($args) {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		$paperId = Request::getUserVar('paperId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
-		
+
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
 		import("presenter.form.submit.PresenterSubmitSuppFileForm");
 		$submitForm = &new PresenterSubmitSuppFileForm($paper, $suppFileId);
 		$submitForm->readInputData();
-		
+
 		if ($submitForm->validate()) {
 			$submitForm->execute();
 			Request::redirect(null, null, null, 'submit', '4', array('paperId' => $paperId));
@@ -232,7 +240,7 @@ class SubmitHandler extends PresenterHandler {
 			$submitForm->display();
 		}
 	}
-	
+
 	/**
 	 * Delete a supplementary file.
 	 * @param $args array, the first parameter is the supplementary file to delete
@@ -242,22 +250,22 @@ class SubmitHandler extends PresenterHandler {
 
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		$paperId = Request::getUserVar('paperId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
-		
+
 		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paperId);
 		$suppFileDao->deleteSuppFileById($suppFileId, $paperId);
-		
+
 		if ($suppFile->getFileId()) {
 			$paperFileManager = &new PaperFileManager($paperId);
 			$paperFileManager->deleteFile($suppFile->getFileId());
 		}
-		
+
 		Request::redirect(null, null, null, 'submit', '4', array('paperId' => $paperId));
 	}
 
@@ -283,7 +291,7 @@ class SubmitHandler extends PresenterHandler {
 	 */
 	function validate($paperId = null, $step = false) {
 		list($conference, $schedConf) = parent::validate(true, true);
-		
+
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$user = &Request::getUser();
 
@@ -299,7 +307,7 @@ class SubmitHandler extends PresenterHandler {
 			if (!$paper || $paper->getUserId() !== $user->getUserId() || $paper->getSchedConfId() !== $schedConf->getSchedConfId()) {
 				Request::redirect(null, null, null, 'submit');
 			}
-			
+
 			if($step !== false && $step > $paper->getSubmissionProgress()) {
 				Request::redirect(null, null, null, 'submit');
 			}
@@ -309,15 +317,15 @@ class SubmitHandler extends PresenterHandler {
 			// If the paper does not exist, require that the submission window be open.
 			$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate', false);
 			$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate', false);
-			
+
 			if(!$submissionsOpenDate || !$submissionsCloseDate ||
 					time() < $submissionsOpenDate || time() > $submissionsCloseDate) {
-				
+
 				Request::redirect(null, null, 'presenter', 'index');
 			}
 		}
 		return array(&$conference, &$schedConf, &$paper);
 	}
-	
+
 }
 ?>

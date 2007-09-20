@@ -19,13 +19,13 @@ import('form.Form');
 class MetadataForm extends Form {
 	/** @var Paper current paper */
 	var $paper;
-	
+
 	/** @var boolean can edit metadata */
 	var $canEdit;
-	
+
 	/** @var boolean can view presenters */
 	var $canViewPresenters;
-	
+
 	/**
 	 * Constructor.
 	 */
@@ -35,7 +35,7 @@ class MetadataForm extends Form {
 		$schedConf = &Request::getSchedConf();
 		$user = &Request::getUser();
 		$roleId = $roleDao->getRoleIdFromPath(Request::getRequestedPage());
-		
+
 		// If the user is a director of this paper, make the form editable.
 		$this->canEdit = false;
 		if ($roleId != null && ($roleId == ROLE_ID_DIRECTOR || $roleId == ROLE_ID_TRACK_DIRECTOR)) {
@@ -51,22 +51,22 @@ class MetadataForm extends Form {
 
 		if ($this->canEdit) {
 			parent::Form('submission/metadata/metadataEdit.tpl');
-			$this->addCheck(new FormValidator($this, 'title', 'required', 'presenter.submit.form.titleRequired'));
+			$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'presenter.submit.form.titleRequired'));
 		} else {
 			parent::Form('submission/metadata/metadataView.tpl');
 		}
-		
+
 		// If the user is a reviewer of this paper, do not show presenters.
 		$this->canViewPresenters = true;
 		if ($roleId != null && $roleId == ROLE_ID_REVIEWER) {
 			$this->canViewPresenters = false;
 		}
-		
+
 		$this->paper = $paper;
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
 	/**
 	 * Initialize form data from current paper.
 	 */
@@ -75,23 +75,19 @@ class MetadataForm extends Form {
 			$paper = &$this->paper;
 			$this->_data = array(
 				'presenters' => array(),
-				'title' => $paper->getTitle(),
-				'titleAlt1' => $paper->getTitleAlt1(),
-				'titleAlt2' => $paper->getTitleAlt2(),
-				'abstract' => $paper->getAbstract(),
-				'abstractAlt1' => $paper->getAbstractAlt1(),
-				'abstractAlt2' => $paper->getAbstractAlt2(),
-				'discipline' => $paper->getDiscipline(),
-				'subjectClass' => $paper->getSubjectClass(),
-				'subject' => $paper->getSubject(),
-				'coverageGeo' => $paper->getCoverageGeo(),
-				'coverageChron' => $paper->getCoverageChron(),
-				'coverageSample' => $paper->getCoverageSample(),
-				'type' => $paper->getType(),
+				'title' => $paper->getTitle(null), // Localized
+				'abstract' => $paper->getAbstract(null), // Localized
+				'discipline' => $paper->getDiscipline(null), // Localized
+				'subjectClass' => $paper->getSubjectClass(null), // Localized
+				'subject' => $paper->getSubject(null), // Localized
+				'coverageGeo' => $paper->getCoverageGeo(null), // Localized
+				'coverageChron' => $paper->getCoverageChron(null), // Localized
+				'coverageSample' => $paper->getCoverageSample(null), // Localized
+				'type' => $paper->getType(null), // Localized
 				'language' => $paper->getLanguage(),
-				'sponsor' => $paper->getSponsor()
+				'sponsor' => $paper->getSponsor(null) // Localized
 			);
-		
+
 			$presenters = &$paper->getPresenters();
 			for ($i=0, $count=count($presenters); $i < $count; $i++) {
 				array_push(
@@ -106,7 +102,7 @@ class MetadataForm extends Form {
 						'countryLocalized' => $presenters[$i]->getCountryLocalized(),
 						'email' => $presenters[$i]->getEmail(),
 						'url' => $presenters[$i]->getUrl(),
-						'biography' => $presenters[$i]->getBiography()
+						'biography' => $presenters[$i]->getBiography(null) // Localized
 					)
 				);
 				if ($presenters[$i]->getPrimaryContact()) {
@@ -115,7 +111,15 @@ class MetadataForm extends Form {
 			}
 		}
 	}
-	
+
+	/**
+	 * Get the field names for which data can be localized
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('title', 'abstract', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
+	}
+
 	/**
 	 * Display the form.
 	 */
@@ -123,14 +127,19 @@ class MetadataForm extends Form {
 		$schedConf = &Request::getSchedConf();
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$countryDao =& DAORegistry::getDAO('CountryDAO');
-		
+
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', isset($this->paper)?$this->paper->getPaperId():null);
 		$templateMgr->assign('schedConfSettings', $schedConf->getSettings(true));
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('canViewPresenters', $this->canViewPresenters);
+
+		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$templateMgr->assign('countries', $countryDao->getCountries());
+
+		$disciplineDao =& DAORegistry::getDAO('DisciplineDAO');
+		$templateMgr->assign('disciplines', $disciplineDao->getDisciplines());
+
 		$templateMgr->assign('helpTopicId','submission.indexingAndMetadata');
 		if ($this->paper) {
 			$templateMgr->assign_by_ref('track', $trackDao->getTrack($this->paper->getTrackId()));
@@ -138,8 +147,8 @@ class MetadataForm extends Form {
 
 		parent::display();
 	}
-	
-	
+
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -150,11 +159,7 @@ class MetadataForm extends Form {
 				'deletedPresenters',
 				'primaryContact',
 				'title',
-				'titleAlt1',
-				'titleAlt2',
 				'abstract',
-				'abstractAlt1',
-				'abstractAlt2',
 				'discipline',
 				'subjectClass',
 				'subject',
@@ -176,29 +181,25 @@ class MetadataForm extends Form {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$presenterDao = &DAORegistry::getDAO('PresenterDAO');
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		
+
 		// Update paper
-	
+
 		$paper = &$this->paper;
-		$paper->setTitle($this->getData('title'));
-		$paper->setTitleAlt1($this->getData('titleAlt1'));
-		$paper->setTitleAlt2($this->getData('titleAlt2'));
+		$paper->setTitle($this->getData('title'), null); // Localized
 
 		$track = &$trackDao->getTrack($paper->getTrackId());
-		$paper->setAbstract($this->getData('abstract'));
-		$paper->setAbstractAlt1($this->getData('abstractAlt1'));
-		$paper->setAbstractAlt2($this->getData('abstractAlt2'));
+		$paper->setAbstract($this->getData('abstract'), null); // Localized
 
-		$paper->setDiscipline($this->getData('discipline'));
-		$paper->setSubjectClass($this->getData('subjectClass'));
-		$paper->setSubject($this->getData('subject'));
-		$paper->setCoverageGeo($this->getData('coverageGeo'));
-		$paper->setCoverageChron($this->getData('coverageChron'));
-		$paper->setCoverageSample($this->getData('coverageSample'));
-		$paper->setType($this->getData('type'));
+		$paper->setDiscipline($this->getData('discipline'), null); // Localized
+		$paper->setSubjectClass($this->getData('subjectClass'), null); // Localized
+		$paper->setSubject($this->getData('subject'), null); // Localized
+		$paper->setCoverageGeo($this->getData('coverageGeo'), null); // Localized
+		$paper->setCoverageChron($this->getData('coverageChron'), null); // Localized
+		$paper->setCoverageSample($this->getData('coverageSample'), null); // Localized
+		$paper->setType($this->getData('type'), null); // Localized
 		$paper->setLanguage($this->getData('language'));
-		$paper->setSponsor($this->getData('sponsor'));
-		
+		$paper->setSponsor($this->getData('sponsor'), null); // Localized
+
 		// Update presenters
 		$presenters = $this->getData('presenters');
 		for ($i=0, $count=count($presenters); $i < $count; $i++) {
@@ -206,13 +207,13 @@ class MetadataForm extends Form {
 				// Update an existing presenter
 				$presenter = &$paper->getPresenter($presenters[$i]['presenterId']);
 				$isExistingPresenter = true;
-				
+
 			} else {
 				// Create a new presenter
 				$presenter = &new Presenter();
 				$isExistingPresenter = false;
 			}
-			
+
 			if ($presenter != null) {
 				$presenter->setFirstName($presenters[$i]['firstName']);
 				$presenter->setMiddleName($presenters[$i]['middleName']);
@@ -221,32 +222,31 @@ class MetadataForm extends Form {
 				$presenter->setCountry($presenters[$i]['country']);
 				$presenter->setEmail($presenters[$i]['email']);
 				$presenter->setUrl($presenters[$i]['url']);
-				$presenter->setBiography($presenters[$i]['biography']);
+				$presenter->setBiography($presenters[$i]['biography'], null); // Localized
 				$presenter->setPrimaryContact($this->getData('primaryContact') == $i ? 1 : 0);
 				$presenter->setSequence($presenters[$i]['seq']);
-				
+
 				if ($isExistingPresenter == false) {
 					$paper->addPresenter($presenter);
 				}
 			}
 		}
-		
+
 		// Remove deleted presenters
 		$deletedPresenters = explode(':', $this->getData('deletedPresenters'));
 		for ($i=0, $count=count($deletedPresenters); $i < $count; $i++) {
 			$paper->removePresenter($deletedPresenters[$i]);
 		}
-		
+
 		// Save the paper
 		$paperDao->updatePaper($paper);
-		
+
 		// Update search index
 		import('search.PaperSearchIndex');
 		PaperSearchIndex::indexPaperMetadata($paper);
-		
+
 		return $paper->getPaperId();
 	}
-	
 }
 
 ?>

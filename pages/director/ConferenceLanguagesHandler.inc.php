@@ -22,29 +22,29 @@ class ConferenceLanguagesHandler extends DirectorHandler {
 	function languages() {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		import('director.form.LanguageSettingsForm');
-		
+
 		$settingsForm = &new LanguageSettingsForm();
 		$settingsForm->initData();
 		$settingsForm->display();
 	}
-	
+
 	/**
 	 * Save changes to language settings.
 	 */
 	function saveLanguageSettings() {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		import('director.form.LanguageSettingsForm');
-		
+
 		$settingsForm = &new LanguageSettingsForm();
 		$settingsForm->readInputData();
-		
+
 		if ($settingsForm->validate()) {
 			$settingsForm->execute();
-			
+
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign(array(
 				'currentUrl' => Request::url(null, null, null, 'languages'),
@@ -54,11 +54,11 @@ class ConferenceLanguagesHandler extends DirectorHandler {
 				'backLinkLabel' => 'director.conferenceSiteManagement'
 			));
 			$templateMgr->display('common/message.tpl');
-			
+
 		} else {
 			$settingsForm->display();
 		}
 	}
-	
+
 }
 ?>

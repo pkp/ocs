@@ -30,7 +30,7 @@
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="submission.paperType"}</td>
 		<td width="80%" colspan="2" class="data">
-			{if $submission->getPaperType() == SUBMISSION_TYPE_PANEL}
+			{if $submission->getTypeConst() == SUBMISSION_TYPE_PANEL}
 				{translate key="submission.paperType.panel"}
 			{else}
 				{translate key="submission.paperType.single"}
@@ -52,7 +52,7 @@
 		<td class="label">{translate key="paper.suppFilesAbbrev"}</td>
 		<td colspan="2" class="value">
 			{foreach name="suppFiles" from=$suppFiles item=suppFile}
-				<a href="{url op="editSuppFile" from="submission" path=$submission->getPaperId()|to_array:$suppFile->getSuppFileId()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;{$suppFile->getDateModified()|date_format:$dateFormatShort}&nbsp;&nbsp;<a href="{url op="editSuppFile" from="submission" path=$submission->getPaperId()|to_array:$suppFile->getSuppFileId()}" class="action">{translate key="common.edit"}</a>&nbsp;&nbsp;&nbsp;&nbsp;{if !$notFirst}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="addSuppFile" from="submission" path=$submission->getPaperId()}" class="action">{translate key="submission.addSuppFile"}</a>{/if}<br />
+				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;{$suppFile->getDateModified()|date_format:$dateFormatShort}&nbsp;&nbsp;<a href="{url op="editSuppFile" from="submission" path=$submission->getPaperId()|to_array:$suppFile->getSuppFileId()}" class="action">{translate key="common.edit"}</a>&nbsp;&nbsp;&nbsp;&nbsp;{if !$notFirst}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="addSuppFile" from="submission" path=$submission->getPaperId()}" class="action">{translate key="submission.addSuppFile"}</a>{/if}<br />
 				{assign var=notFirst value=1}
 			{foreachelse}
 				{translate key="common.none"}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="addSuppFile" from="submission" path=$submission->getPaperId()}" class="action">{translate key="submission.addSuppFile"}</a>

@@ -24,7 +24,7 @@ class PublishedPaper extends Paper {
 	function PublishedPaper() {
 		parent::Paper();
 	}
-	
+
 	/**
 	 * Get ID of published paper.
 	 * @return int
@@ -32,7 +32,7 @@ class PublishedPaper extends Paper {
 	function getPubId() {
 		return $this->getData('pubId');
 	}
-	
+
 	/**
 	 * Set ID of published paper.
 	 * @param $pubId int
@@ -48,7 +48,7 @@ class PublishedPaper extends Paper {
 	function getPaperId() {
 		return $this->getData('paperId');
 	}
-	
+
 	/**
 	 * Set ID of associated paper.
 	 * @param $paperId int
@@ -56,7 +56,7 @@ class PublishedPaper extends Paper {
 	function setPaperId($paperId) {
 		return $this->setData('paperId', $paperId);
 	}
-	
+
 	/**
 	 * Get ID of the scheduled conference this paper is in.
 	 * @return int
@@ -64,7 +64,7 @@ class PublishedPaper extends Paper {
 	function getSchedConfId() {
 		return $this->getData('schedConfId');
 	}
-	
+
 	/**
 	 * Set ID of the scheduled conference this paper is in.
 	 * @param $schedConfId int
@@ -80,7 +80,7 @@ class PublishedPaper extends Paper {
 	function getTrackId() {
 		return $this->getData('trackId');
 	}
-	
+
 	/**
 	 * Set track ID of the scheduled conference this paper is in.
 	 * @param $trackId int
@@ -93,21 +93,21 @@ class PublishedPaper extends Paper {
 	 * Get date published.
 	 * @return date
 	 */
-	
+
 	function getDatePublished() {
 		return $this->getData('datePublished');	
 	}
-	
+
 
 	/**
 	 * Set date published.
 	 * @param $datePublished date
 	 */
-	 
+
 	function setDatePublished($datePublished) {
 		return $this->SetData('datePublished', $datePublished);
 	}
-	
+
 	/**
 	 * Get sequence of paper in table of contents.
 	 * @return float
@@ -115,7 +115,7 @@ class PublishedPaper extends Paper {
 	function getSeq() {
 		return $this->getData('seq');
 	}
-	
+
 	/**
 	 * Set sequence of paper in table of contents.
 	 * @param $sequence float
@@ -131,7 +131,7 @@ class PublishedPaper extends Paper {
 	function getViews() {
 		return $this->getData('views');
 	}
-	
+
 	/**
 	 * Set views of the published paper.
 	 * @param $views int
@@ -145,10 +145,35 @@ class PublishedPaper extends Paper {
 	 * @return array PaperGalley
 	 */
 	function &getGalleys() {
-		$galleys = &$this->getData('galleys');
+		$galleys =& $this->getData('galleys');
 		return $galleys;
 	}
-	
+
+	/**
+	 * Get the localized galleys for an paper.
+	 * @return array PaperGalley
+	 */
+	function &getLocalizedGalleys() {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+
+		$allGalleys =& $this->getData('galleys');
+		$galleys = array();
+		foreach (array(Locale::getLocale(), Locale::getPrimaryLocale()) as $tryLocale) {
+			foreach (array_keys($allGalleys) as $key) {
+				if ($allGalleys[$key]->getLocale() == $locale) {
+					$galleys[] =& $allGalleys[$key];
+				}
+			}
+			if (!empty($galleys)) {
+				HookRegistry::call('PaperGalleyDAO::getLocalizedGalleysByPaper', array(&$galleys, &$paperId));
+				return $galleys;
+			}
+		}
+
+		return $galleys;
+	}
+
 	/**
 	 * Set the galleys for a paper.
 	 * @param $galleys array PaperGalley
@@ -156,7 +181,7 @@ class PublishedPaper extends Paper {
 	function setGalleys(&$galleys) {
 		return $this->setData('galleys', $galleys);
 	}
-		
+
 	/**
 	 * Get supplementary files for this paper.
 	 * @return array SuppFiles
@@ -165,7 +190,7 @@ class PublishedPaper extends Paper {
 		$returner =& $this->getData('suppFiles');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set supplementary file for this paper.
 	 * @param $suppFiles array SuppFiles
@@ -173,7 +198,7 @@ class PublishedPaper extends Paper {
 	function setSuppFiles($suppFiles) {
 		return $this->setData('suppFiles', $suppFiles);
 	}
-	
+
 	/**
 	 * Get public paper id
 	 * @return string
@@ -200,7 +225,7 @@ class PublishedPaper extends Paper {
 	function getBestPaperId($conference = null) {
 		// Retrieve the conference, if necessary.
 		if (!isset($schedConf)) {
-			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConf = $schedConfDao->getSchedConf($this->getSchedConfId());
 		}
 

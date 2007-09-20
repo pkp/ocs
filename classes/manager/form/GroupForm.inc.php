@@ -17,7 +17,6 @@
 import('form.Form');
 
 class GroupForm extends Form {
-
 	/** @var groupId int the ID of the group being edited */
 	var $group;
 
@@ -29,14 +28,23 @@ class GroupForm extends Form {
 		$conference = &Request::getConference();
 
 		parent::Form('manager/groups/groupForm.tpl');
-	
+
 		// Group title is provided
-		$this->addCheck(new FormValidator($this, 'title', 'required', 'manager.groups.form.groupTitleRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.groups.form.groupTitleRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 
 		$this->group =& $group;
 	}
-	
+
+	/**
+	 * Get the list of localized field names for this object
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		$groupDao =& DAORegistry::getDAO('GroupDAO');
+		return $groupDao->getLocaleFieldNames();
+	}
+
 	/**
 	 * Display the form.
 	 */
@@ -46,27 +54,25 @@ class GroupForm extends Form {
 		$templateMgr->assign('helpTopicId', 'conference.managementPages.groups');
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize form data from current group group.
 	 */
 	function initData() {
 		if ($this->group != null) {
 			$this->_data = array(
-				'title' => $this->group->getTitle(),
-				'titleAlt1' => $this->group->getTitleAlt1(),
-				'titleAlt2' => $this->group->getTitleAlt2()
+				'title' => $this->group->getTitle(null) // Localized
 			);
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'titleAlt1', 'titleAlt2'));
+		$this->readUserVars(array('title'));
 	}
-	
+
 	/**
 	 * Save group group. 
 	 */
@@ -74,20 +80,18 @@ class GroupForm extends Form {
 		$groupDao = &DAORegistry::getDAO('GroupDAO');
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
-	
+
 		if (!isset($this->group)) {
 			$this->group = &new Group();
 		}
-		
+
 		$this->group->setConferenceId($conference->getConferenceId());
 		if($schedConf) {
 			$this->group->setSchedConfId($schedConf->getSchedConfId());
 		} else {
 			$this->group->setSchedConfId(0);
 		}
-		$this->group->setTitle($this->getData('title'));
-		$this->group->setTitleAlt1($this->getData('titleAlt1'));
-		$this->group->setTitleAlt2($this->getData('titleAlt2'));
+		$this->group->setTitle($this->getData('title'), null); // Localized
 
 		// Eventually this will be a general Groups feature; for now,
 		// we're just using it to display conference team entries in About.
@@ -104,7 +108,7 @@ class GroupForm extends Form {
 			$groupDao->resequenceGroups($this->group->getConferenceId());
 		}
 	}
-	
+
 }
 
 ?>

@@ -24,7 +24,7 @@ class GroupHandler extends ManagerHandler {
 		GroupHandler::setupTemplate();
 
 		$schedConfId = $schedConf? $schedConf->getSchedConfId():0;
-		
+
 		$rangeInfo = &Handler::getRangeInfo('groups');
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
@@ -47,7 +47,7 @@ class GroupHandler extends ManagerHandler {
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroup($group);
 		$groupDao->resequenceGroups($conference->getConferenceId());
-		
+
 		Request::redirect(null, null, null, 'groups');
 	}
 
@@ -57,12 +57,12 @@ class GroupHandler extends ManagerHandler {
 	function moveGroup() {
 		$groupId = (int) Request::getUserVar('groupId');
 		list($conference, $schedConf, $group) = GroupHandler::validate($groupId);
-		
+
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$group->setSequence($group->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
 		$groupDao->updateGroup($group);
 		$groupDao->resequenceGroups($conference->getConferenceId());
-		
+
 		Request::redirect(null, null, null, 'groups');
 	}
 
@@ -81,7 +81,7 @@ class GroupHandler extends ManagerHandler {
 				Request::redirect(null, null, null, 'groups');
 			}
 		} else $group = null;
-		
+
 		GroupHandler::setupTemplate($group, true);
 		import('manager.form.GroupForm');
 
@@ -94,7 +94,11 @@ class GroupHandler extends ManagerHandler {
 		);
 
 		$groupForm = &new GroupForm($group);
-		$groupForm->initData();
+		if ($groupForm->isLocaleResubmit()) {
+			$groupForm->readInputData();
+		} else {
+			$groupForm->initData();
+		}
 		$groupForm->display();
 	}
 
@@ -116,12 +120,12 @@ class GroupHandler extends ManagerHandler {
 		} else {
 			list($conference, $schedConf, $group) = GroupHandler::validate($groupId);
 		}
-		
+
 		import('manager.form.GroupForm');
-		
+
 		$groupForm =& new GroupForm($group);
 		$groupForm->readInputData();
-		
+
 		if ($groupForm->validate()) {
 			$groupForm->execute();
 			Request::redirect(null, null, null, 'groups');
@@ -140,14 +144,14 @@ class GroupHandler extends ManagerHandler {
 			$groupForm->display();
 		}
 	}
-	
+
 	/**
 	 * View group membership.
 	 */
 	function groupMembership($args) {
 		$groupId = isset($args[0])?(int)$args[0]:0;
 		list($conference, $schedConf, $group) = GroupHandler::validate($groupId);
-		
+
 		$rangeInfo = &Handler::getRangeInfo('memberships');
 
 		GroupHandler::setupTemplate($group, true);
@@ -197,7 +201,7 @@ class GroupHandler extends ManagerHandler {
 			if (isset($search)) {
 				$searchType = Request::getUserVar('searchField');
 				$searchMatch = Request::getUserVar('searchMatch');
-				
+
 			} else if (isset($searchInitial)) {
 				$searchInitial = String::strtoupper($searchInitial);
 				$searchType = USER_FIELD_INITIAL;
@@ -212,8 +216,8 @@ class GroupHandler extends ManagerHandler {
 			$templateMgr->assign('searchField', $searchType);
 			$templateMgr->assign('searchMatch', $searchMatch);
 			$templateMgr->assign('search', $searchQuery);
-			$templateMgr->assign('searchInitial', $searchInitial);
-	
+			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
+
 			$templateMgr->assign_by_ref('users', $users);
 			$templateMgr->assign('fieldOptions', Array(
 				USER_FIELD_FIRSTNAME => 'user.firstName',
@@ -251,12 +255,12 @@ class GroupHandler extends ManagerHandler {
 		$groupId = (int) Request::getUserVar('groupId');
 		$userId = (int) Request::getUserVar('userId');
 		list($conference, $schedConf, $group, $user, $groupMembership) = GroupHandler::validate($groupId, $userId, true);
-		
+
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		$groupMembership->setSequence($groupMembership->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
 		$groupMembershipDao->updateMembership($groupMembership);
 		$groupMembershipDao->resequenceMemberships($group->getGroupId());
-		
+
 		Request::redirect(null, null, null, 'groupMembership', $group->getGroupId());
 	}
 
@@ -276,7 +280,7 @@ class GroupHandler extends ManagerHandler {
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'groups'), 'manager.groups'));
 		}
 		if ($group) {
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'editGroup', $group->getGroupId()), $group->getTitle(), true));
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'editGroup', $group->getGroupId()), $group->getGroupTitle(), true));
 		}
 		$templateMgr->assign('helpTopicId', 'conference.managementPages.groups');
 	}
@@ -296,7 +300,7 @@ class GroupHandler extends ManagerHandler {
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		
+
 		$returner = array(&$conference, &$schedConf);
 
 		$passedValidation = true;
@@ -313,10 +317,10 @@ class GroupHandler extends ManagerHandler {
 
 			} elseif (!$schedConf && !Validation::isConferenceManager($conference->getConferenceId())) {
 				$passedValidation = false;
-			
+
 			} elseif ($schedConf->getSchedConfId() != $group->getSchedConfId()) {
 				$passedValidation = false;
-			
+
 			} else {
 				$returner[] = &$group;
 			}

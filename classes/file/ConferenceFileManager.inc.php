@@ -17,16 +17,16 @@
 import('file.FileManager');
 
 class ConferenceFileManager extends FileManager {
-	
+
 	/** @var string the path to location of the files */
 	var $filesDir;
-	
+
 	/** @var int the ID of the associated conference */
 	var $conferenceId;
-	
+
 	/** @var Conference the associated conference */
 	var $conference;
-	
+
 	/**
 	 * Constructor.
 	 * Create a manager for handling conference file uploads.
@@ -37,7 +37,7 @@ class ConferenceFileManager extends FileManager {
 		$this->conference =& $conference;
 		$this->filesDir = Config::getVar('files', 'files_dir') . '/conferences/' . $this->conferenceId . '/';
 	}
-	
+
 	function uploadFile($fileName, $destFileName) {
 		return parent::uploadFile($fileName, $this->filesDir . $destFileName);
 	}

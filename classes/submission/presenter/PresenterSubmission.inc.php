@@ -23,10 +23,10 @@ class PresenterSubmission extends Paper {
 
 	/** @var array the director decisions of this paper */
 	var $directorDecisions;
-	
+
 	/** @var array the revisions of the presenter file */
 	var $presenterFileRevisions;
-	
+
 	/** @var array the revisions of the director file */
 	var $directorFileRevisions;
 
@@ -37,11 +37,11 @@ class PresenterSubmission extends Paper {
 		parent::Paper();
 		$this->reviewAssignments = array();
 	}
-	
+
 	/**
 	 * Get/Set Methods.
 	 */
-	 
+
 	/**
 	 * Get edit assignments for this paper.
 	 * @return array
@@ -50,7 +50,7 @@ class PresenterSubmission extends Paper {
 		$editAssignments = &$this->getData('editAssignments');
 		return $editAssignments;
 	}
-	
+
 	/**
 	 * Set edit assignments for this paper.
 	 * @param $editAssignments array
@@ -58,7 +58,7 @@ class PresenterSubmission extends Paper {
 	function setEditAssignments($editAssignments) {
 		return $this->setData('editAssignments', $editAssignments);
 	}
-	
+
 	/**
 	 * Add a review assignment for this paper.
 	 * @param $reviewAssignment ReviewAssignment
@@ -67,17 +67,17 @@ class PresenterSubmission extends Paper {
 		if ($reviewAssignment->getPaperId() == null) {
 			$reviewAssignment->setPaperId($this->getPaperId());
 		}
-		
+
 		$stage = $reviewAssignment->getStage();
-		
+
 		if(!isset($this->reviewAssignments[$stage]))
 			$this->reviewAssignments[$stage] = array();
-		
+
 		$this->reviewAssignments[$stage][] = $reviewAssignment;
-		
+
 		return $this->reviewAssignments[$stage];
 	}
-	
+
 	/**
 	 * Remove a review assignment.
 	 * @param $reviewId ID of the review assignment to remove
@@ -97,11 +97,11 @@ class PresenterSubmission extends Paper {
 
 		return $found;
 	}
-	
+
 	//
 	// Review Assignments
 	//
-	
+
 	/**
 	 * Get review assignments for this paper.
 	 * @return array ReviewAssignments
@@ -109,13 +109,13 @@ class PresenterSubmission extends Paper {
 	function getReviewAssignments($stage) {
 		if($stage == null)
 			return $this->reviewAssignments;
-		
+
 		if(!isset($this->reviewAssignments[$stage]))
 			return null;
-		
+
 		return $this->reviewAssignments[$stage];
 	}
-	
+
 	/**
 	 * Set review assignments for this paper.
 	 * @param $reviewAssignments array ReviewAssignments
@@ -123,7 +123,7 @@ class PresenterSubmission extends Paper {
 	function setReviewAssignments($reviewAssignments, $stage) {
 		return $this->reviewAssignments[$stage] = $reviewAssignments;
 	}
-	
+
 	//
 	// Director Decisions
 	//
@@ -141,7 +141,7 @@ class PresenterSubmission extends Paper {
 
 		return $this->directorDecisions[$stage];
 	}
-	
+
 	/**
 	 * Set director decisions.
 	 * @param $directorDecisions array
@@ -169,10 +169,10 @@ class PresenterSubmission extends Paper {
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConf =& $schedConfDao->getSchedConf($this->getSchedConfId());
 		}
-		
+
 		$status = $this->getStatus();
 		if ($status == SUBMISSION_STATUS_ARCHIVED ||
-				$status == SUBMISSION_STATUS_PUBLISHED ||
+		    $status == SUBMISSION_STATUS_PUBLISHED ||
 		    $status == SUBMISSION_STATUS_DECLINED) return $status;
 
 		// The submission is SUBMISSION_STATUS_QUEUED or the presenter's submission was SUBMISSION_STATUS_INCOMPLETE.
@@ -197,7 +197,7 @@ class PresenterSubmission extends Paper {
 	//
 	// Files
 	//
-	
+
 	/**
 	 * Get submission file for this paper.
 	 * @return PaperFile
@@ -206,7 +206,7 @@ class PresenterSubmission extends Paper {
 		$returner =& $this->getData('submissionFile');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set submission file for this paper.
 	 * @param $submissionFile PaperFile
@@ -214,7 +214,7 @@ class PresenterSubmission extends Paper {
 	function setSubmissionFile($submissionFile) {
 		return $this->setData('submissionFile', $submissionFile);
 	}
-	
+
 	/**
 	 * Get revised file for this paper.
 	 * @return PaperFile
@@ -223,7 +223,7 @@ class PresenterSubmission extends Paper {
 		$returner =& $this->getData('revisedFile');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set revised file for this paper.
 	 * @param $submissionFile PaperFile
@@ -231,7 +231,7 @@ class PresenterSubmission extends Paper {
 	function setRevisedFile($revisedFile) {
 		return $this->setData('revisedFile', $revisedFile);
 	}
-	
+
 	/**
 	 * Get layout file.
 	 * @return PaperFile
@@ -240,7 +240,7 @@ class PresenterSubmission extends Paper {
 		$returner =& $this->getData('layoutFile');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set layout file.
 	 * @param $layoutFile PaperFile
@@ -248,7 +248,7 @@ class PresenterSubmission extends Paper {
 	function setLayoutFile($layoutFile) {
 		return $this->setData('layoutFile', $layoutFile);
 	}
-	
+
 	/**
 	 * Get supplementary files for this paper.
 	 * @return array SuppFiles
@@ -257,7 +257,7 @@ class PresenterSubmission extends Paper {
 		$returner =& $this->getData('suppFiles');
 		return $returner;
 	}
-	
+
 	/**
 	 * Set supplementary file for this paper.
 	 * @param $suppFiles array SuppFiles
@@ -265,7 +265,7 @@ class PresenterSubmission extends Paper {
 	function setSuppFiles($suppFiles) {
 		return $this->setData('suppFiles', $suppFiles);
 	}
-	
+
 	/**
 	 * Get all presenter file revisions.
 	 * @return array PaperFiles
@@ -277,7 +277,7 @@ class PresenterSubmission extends Paper {
 			return $this->presenterFileRevisions[$stage];
 		}
 	}
-	
+
 	/**
 	 * Set all presenter file revisions.
 	 * @param $presenterFileRevisions array PaperFiles
@@ -285,7 +285,7 @@ class PresenterSubmission extends Paper {
 	function setPresenterFileRevisions($presenterFileRevisions, $stage) {
 		return $this->presenterFileRevisions[$stage] = $presenterFileRevisions;
 	}
-	
+
 	/**
 	 * Get all director file revisions.
 	 * @return array PaperFiles
@@ -297,7 +297,7 @@ class PresenterSubmission extends Paper {
 			return $this->directorFileRevisions[$stage];
 		}
 	}
-	
+
 	/**
 	 * Set all director file revisions.
 	 * @param $directorFileRevisions array PaperFiles
@@ -305,28 +305,28 @@ class PresenterSubmission extends Paper {
 	function setDirectorFileRevisions($directorFileRevisions, $stage) {
 		return $this->directorFileRevisions[$stage] = $directorFileRevisions;
 	}
-	
+
 	/**
-	 * Get the galleys for an article.
-	 * @return array ArticleGalley
+	 * Get the galleys for a paper.
+	 * @return array PaperGalley
 	 */
 	function &getGalleys() {
 		$galleys = &$this->getData('galleys');
 		return $galleys;
 	}
-	
+
 	/**
-	 * Set the galleys for an article.
-	 * @param $galleys array ArticleGalley
+	 * Set the galleys for a paper.
+	 * @param $galleys array PaperGalley
 	 */
 	function setGalleys(&$galleys) {
 		return $this->setData('galleys', $galleys);
 	}
-	
+
 	//
 	// Comments
 	//
-	
+
 	/**
 	 * Get most recent director decision comment.
 	 * @return PaperComment
@@ -334,7 +334,7 @@ class PresenterSubmission extends Paper {
 	function getMostRecentDirectorDecisionComment() {
 		return $this->getData('mostRecentDirectorDecisionComment');
 	}
-	
+
 	/**
 	 * Set most recent director decision comment.
 	 * @param $mostRecentDirectorDecisionComment PaperComment

@@ -23,7 +23,7 @@ class Presenter extends DataObject {
 		parent::DataObject();
 		$this->setPresenterId(0);
 	}
-	
+
 	/**
 	 * Get the presenter's complete name.
 	 * Includes first name, middle name (if applicable), and last name.
@@ -32,11 +32,11 @@ class Presenter extends DataObject {
 	function getFullName() {
 		return $this->getData('firstName') . ' ' . ($this->getData('middleName') != '' ? $this->getData('middleName') . ' ' : '') . $this->getData('lastName');
 	}
-	
+
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get ID of presenter.
 	 * @return int
@@ -44,7 +44,7 @@ class Presenter extends DataObject {
 	function getPresenterId() {
 		return $this->getData('presenterId');
 	}
-	
+
 	/**
 	 * Set ID of presenter.
 	 * @param $presenterId int
@@ -52,7 +52,7 @@ class Presenter extends DataObject {
 	function setPresenterId($presenterId) {
 		return $this->setData('presenterId', $presenterId);
 	}
-	
+
 	/**
 	 * Get ID of paper.
 	 * @return int
@@ -60,7 +60,7 @@ class Presenter extends DataObject {
 	function getPaperId() {
 		return $this->getData('paperId');
 	}
-	
+
 	/**
 	 * Set ID of paper.
 	 * @param $paperId int
@@ -68,7 +68,7 @@ class Presenter extends DataObject {
 	function setPaperId($paperId) {
 		return $this->setData('paperId', $paperId);
 	}
-		
+
 	/**
 	 * Get first name.
 	 * @return string
@@ -76,7 +76,7 @@ class Presenter extends DataObject {
 	function getFirstName() {
 		return $this->getData('firstName');
 	}
-	
+
 	/**
 	 * Set first name.
 	 * @param $firstName string
@@ -85,7 +85,7 @@ class Presenter extends DataObject {
 	{
 		return $this->setData('firstName', $firstName);
 	}
-	
+
 	/**
 	 * Get middle name.
 	 * @return string
@@ -93,7 +93,7 @@ class Presenter extends DataObject {
 	function getMiddleName() {
 		return $this->getData('middleName');
 	}
-	
+
 	/**
 	 * Set middle name.
 	 * @param $middleName string
@@ -101,7 +101,7 @@ class Presenter extends DataObject {
 	function setMiddleName($middleName) {
 		return $this->setData('middleName', $middleName);
 	}
-	
+
 	/**
 	 * Get last name.
 	 * @return string
@@ -109,7 +109,7 @@ class Presenter extends DataObject {
 	function getLastName() {
 		return $this->getData('lastName');
 	}
-	
+
 	/**
 	 * Set last name.
 	 * @param $lastName string
@@ -117,7 +117,7 @@ class Presenter extends DataObject {
 	function setLastName($lastName) {
 		return $this->setData('lastName', $lastName);
 	}
-	
+
 	/**
 	 * Get affiliation (position, institution, etc.).
 	 * @return string
@@ -125,7 +125,7 @@ class Presenter extends DataObject {
 	function getAffiliation() {
 		return $this->getData('affiliation');
 	}
-	
+
 	/**
 	 * Set affiliation.
 	 * @param $affiliation string
@@ -133,7 +133,7 @@ class Presenter extends DataObject {
 	function setAffiliation($affiliation) {
 		return $this->setData('affiliation', $affiliation);
 	}
-	
+
 	/**
 	 * Get country code
 	 * @return string
@@ -154,7 +154,7 @@ class Presenter extends DataObject {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Set country code.
 	 * @param $country string
@@ -162,7 +162,7 @@ class Presenter extends DataObject {
 	function setCountry($country) {
 		return $this->setData('country', $country);
 	}
-	
+
 	/**
 	 * Get email address.
 	 * @return string
@@ -170,7 +170,7 @@ class Presenter extends DataObject {
 	function getEmail() {
 		return $this->getData('email');
 	}
-	
+
 	/**
 	 * Set email address.
 	 * @param $email string
@@ -178,7 +178,7 @@ class Presenter extends DataObject {
 	function setEmail($email) {
 		return $this->setData('email', $email);
 	}
-	
+
 	/**
 	 * Get URL.
 	 * @return string
@@ -186,7 +186,7 @@ class Presenter extends DataObject {
 	function getUrl() {
 		return $this->getData('url');
 	}
-	
+
 	/**
 	 * Set URL.
 	 * @param $url string
@@ -194,23 +194,32 @@ class Presenter extends DataObject {
 	function setUrl($url) {
 		return $this->setData('url', $url);
 	}
-	
+
+	/**
+	 * Get the localized biography for this presenter
+	 */
+	function getPresenterBiography() {
+		return $this->getLocalizedData('biography');
+	}
+
 	/**
 	 * Get presenter biography.
+	 * @param $locale string
 	 * @return string
 	 */
-	function getBiography() {
-		return $this->getData('biography');
+	function getBiography($locale) {
+		return $this->getData('biography', $locale);
 	}
-	
+
 	/**
 	 * Set presenter biography.
 	 * @param $biography string
+	 * @param $locale string
 	 */
-	function setBiography($biography) {
-		return $this->setData('biography', $biography);
+	function setBiography($biography, $locale) {
+		return $this->setData('biography', $biography, $locale);
 	}
-	
+
 	/**
 	 * Get primary contact.
 	 * @return boolean
@@ -218,7 +227,7 @@ class Presenter extends DataObject {
 	function getPrimaryContact() {
 		return $this->getData('primaryContact');
 	}
-	
+
 	/**
 	 * Set primary contact.
 	 * @param $primaryContact boolean
@@ -226,7 +235,7 @@ class Presenter extends DataObject {
 	function setPrimaryContact($primaryContact) {
 		return $this->setData('primaryContact', $primaryContact);
 	}
-	
+
 	/**
 	 * Get sequence of presenter in paper's presenter list.
 	 * @return float
@@ -234,7 +243,7 @@ class Presenter extends DataObject {
 	function getSequence() {
 		return $this->getData('sequence');
 	}
-	
+
 	/**
 	 * Set sequence of presenter in paper's presenter list.
 	 * @param $sequence float
@@ -242,7 +251,7 @@ class Presenter extends DataObject {
 	function setSequence($sequence) {
 		return $this->setData('sequence', $sequence);
 	}
-	
+
 }
 
 ?>

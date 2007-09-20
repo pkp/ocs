@@ -18,14 +18,6 @@
 import('paper.Presenter');
 
 class PresenterDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function PresenterDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Retrieve an presenter by ID.
 	 * @param $presenterId int
@@ -46,7 +38,7 @@ class PresenterDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve all presenters for a paper.
 	 * @param $paperId int
@@ -54,12 +46,12 @@ class PresenterDAO extends DAO {
 	 */
 	function &getPresentersByPaper($paperId) {
 		$presenters = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT * FROM paper_presenters WHERE paper_id = ? ORDER BY seq',
 			$paperId
 		);
-		
+
 		while (!$result->EOF) {
 			$presenters[] = &$this->_returnPresenterFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -67,7 +59,7 @@ class PresenterDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $presenters;
 	}
 
@@ -87,10 +79,14 @@ class PresenterDAO extends DAO {
 		if ($schedConfId !== null) $params[] = $schedConfId;
 
 		$result = &$this->retrieve(
-			'SELECT DISTINCT aa.paper_id FROM paper_presenters aa
+			'SELECT DISTINCT
+				aa.paper_id
+			FROM paper_presenters aa
 				LEFT JOIN papers a ON (aa.paper_id = a.paper_id)
-				WHERE aa.first_name = ? AND (aa.middle_name = ?' . (empty($middleName)?' OR aa.middle_name IS NULL':'') .  ')
-					AND aa.last_name = ? AND (aa.affiliation = ?' . (empty($affiliation)?' OR aa.affiliation IS NULL':'') . ')' .
+			WHERE aa.first_name = ? AND
+				(aa.middle_name = ?' . (empty($middleName)?' OR aa.middle_name IS NULL':'') .  ') AND
+				aa.last_name = ? AND
+				(aa.affiliation = ?' . (empty($affiliation)?' OR aa.affiliation IS NULL':'') . ')' .
 				($schedConfId!==null?(' AND a.sched_conf_id = ?'):''),
 			$params
 		);
@@ -157,11 +153,11 @@ class PresenterDAO extends DAO {
 			empty($params)?false:$params,
 			$rangeInfo
 		);
-		
+
 		$returner = &new DAOResultFactory($result, $this, '_returnPresenterFromRow');
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve the IDs of all presenters for a paper.
 	 * @param $paperId int
@@ -169,12 +165,12 @@ class PresenterDAO extends DAO {
 	 */
 	function &getPresenterIdsByPaper($paperId) {
 		$presenters = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT presenter_id FROM paper_presenters WHERE paper_id = ? ORDER BY seq',
 			$paperId
 		);
-		
+
 		while (!$result->EOF) {
 			$presenters[] = $result->fields[0];
 			$result->moveNext();
@@ -182,10 +178,29 @@ class PresenterDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $presenters;
 	}
-	
+
+	/**
+	 * Get field names for which data is localized.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('biography');
+	}
+
+	/**
+	 * Update the localized data for this object
+	 * @param $presenter object
+	 */
+	function updateLocaleFields(&$presenter) {
+		$this->updateDataObjectSettings('paper_presenter_settings', $presenter, array(
+			'presenter_id' => $presenter->getPresenterId()
+		));
+
+	}
+
 	/**
 	 * Internal function to return an Presenter object from a row.
 	 * @param $row array
@@ -202,10 +217,11 @@ class PresenterDAO extends DAO {
 		$presenter->setCountry($row['country']);
 		$presenter->setEmail($row['email']);
 		$presenter->setUrl($row['url']);
-		$presenter->setBiography($row['biography']);
 		$presenter->setPrimaryContact($row['primary_contact']);
 		$presenter->setSequence($row['seq']);
-		
+
+		$this->getDataObjectSettings('paper_presenter_settings', 'presenter_id', $row['presenter_id'], $presenter);
+
 		HookRegistry::call('PresenterDAO::_returnPresenterFromRow', array(&$presenter, &$row));
 
 		return $presenter;
@@ -218,9 +234,9 @@ class PresenterDAO extends DAO {
 	function insertPresenter(&$presenter) {
 		$this->update(
 			'INSERT INTO paper_presenters
-				(paper_id, first_name, middle_name, last_name, affiliation, country, email, url, biography, primary_contact, seq)
+				(paper_id, first_name, middle_name, last_name, affiliation, country, email, url, primary_contact, seq)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$presenter->getPaperId(),
 				$presenter->getFirstName(),
@@ -230,21 +246,23 @@ class PresenterDAO extends DAO {
 				$presenter->getCountry(),
 				$presenter->getEmail(),
 				$presenter->getUrl(),
-				$presenter->getBiography(),
 				$presenter->getPrimaryContact(),
 				$presenter->getSequence()
 			)
 		);
+
 		$presenter->setPresenterId($this->getInsertPresenterId());
+		$this->updateLocaleFields($presenter);
+
 		return $presenter->getPresenterId();
 	}
-	
+
 	/**
 	 * Update an existing Presenter.
 	 * @param $presenter Presenter
 	 */
 	function updatePresenter(&$presenter) {
-		return $this->update(
+		$returner = $this->update(
 			'UPDATE paper_presenters
 				SET
 					first_name = ?,
@@ -254,7 +272,6 @@ class PresenterDAO extends DAO {
 					country = ?,
 					email = ?,
 					url = ?,
-					biography = ?,
 					primary_contact = ?,
 					seq = ?
 				WHERE presenter_id = ?',
@@ -266,14 +283,15 @@ class PresenterDAO extends DAO {
 				$presenter->getCountry(),
 				$presenter->getEmail(),
 				$presenter->getUrl(),
-				$presenter->getBiography(),
 				$presenter->getPrimaryContact(),
 				$presenter->getSequence(),
 				$presenter->getPresenterId()
 			)
 		);
+		$this->updateLocaleFields($presenter);
+		return $returner;
 	}
-	
+
 	/**
 	 * Delete an Presenter.
 	 * @param $presenter Presenter
@@ -281,36 +299,34 @@ class PresenterDAO extends DAO {
 	function deletePresenter(&$presenter) {
 		return $this->deletePresenterById($presenter->getPresenterId());
 	}
-	
+
 	/**
 	 * Delete an presenter by ID.
 	 * @param $presenterId int
 	 * @param $paperId int optional
 	 */
 	function deletePresenterById($presenterId, $paperId = null) {
-		if (isset($paperId)) {
-			return $this->update(
-				'DELETE FROM paper_presenters WHERE presenter_id = ? AND paper_id = ?',
-				array($presenterId, $paperId)
-			);
-		
-		} else {
-			return $this->update(
-				'DELETE FROM paper_presenters WHERE presenter_id = ?', $presenterId
-			);
-		}
+		$params = array($presenterId);
+		if ($paperId) $params[] = $paperId;
+		$returner = $this->update(
+			'DELETE FROM paper_presenters WHERE presenter_id = ?' .
+			($paperId?' AND paper_id = ?':''),
+			$params
+		);
+		if ($returner) $this->update('DELETE FROM paper_presenter_settings WHERE presenter_id = ?', array($presenterId));
 	}
-	
+
 	/**
 	 * Delete presenters by paper.
 	 * @param $paperId int
 	 */
 	function deletePresentersByPaper($paperId) {
-		return $this->update(
-			'DELETE FROM paper_presenters WHERE paper_id = ?', $paperId
-		);
+		$presenters =& $this->getPresentersByPaper($paperId);
+		foreach ($presenters as $presenter) {
+			$this->deletePresenter($presenter);
+		}
 	}
-	
+
 	/**
 	 * Sequentially renumber a paper's presenters in their sequence order.
 	 * @param $paperId int
@@ -319,7 +335,7 @@ class PresenterDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT presenter_id FROM paper_presenters WHERE paper_id = ? ORDER BY seq', $paperId
 		);
-		
+
 		for ($i=1; !$result->EOF; $i++) {
 			list($presenterId) = $result->fields;
 			$this->update(
@@ -329,14 +345,14 @@ class PresenterDAO extends DAO {
 					$presenterId
 				)
 			);
-			
+
 			$result->moveNext();
 		}
 
 		$result->close();
 		unset($result);
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted presenter.
 	 * @return int
@@ -344,7 +360,6 @@ class PresenterDAO extends DAO {
 	function getInsertPresenterId() {
 		return $this->getInsertId('paper_presenters', 'presenter_id');
 	}
-	
 }
 
 ?>

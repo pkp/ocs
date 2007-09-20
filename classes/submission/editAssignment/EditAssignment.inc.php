@@ -23,11 +23,11 @@ class EditAssignment extends DataObject {
 	function EditAssignment() {
 		parent::DataObject();
 	}
-	
+
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get ID of edit assignment.
 	 * @return int
@@ -35,7 +35,7 @@ class EditAssignment extends DataObject {
 	function getEditId() {
 		return $this->getData('editId');
 	}
-	
+
 	/**
 	 * Set ID of edit assignment
 	 * @param $editId int
@@ -43,7 +43,7 @@ class EditAssignment extends DataObject {
 	function setEditId($editId) {
 		return $this->setData('editId', $editId);
 	}
-	
+
 	/**
 	 * Get ID of paper.
 	 * @return int
@@ -51,7 +51,7 @@ class EditAssignment extends DataObject {
 	function getPaperId() {
 		return $this->getData('paperId');
 	}
-	
+
 	/**
 	 * Set ID of paper.
 	 * @param $paperId int
@@ -59,7 +59,7 @@ class EditAssignment extends DataObject {
 	function setPaperId($paperId) {
 		return $this->setData('paperId', $paperId);
 	}
-	
+
 	/**
 	 * Get ID of director.
 	 * @return int
@@ -67,7 +67,7 @@ class EditAssignment extends DataObject {
 	function getDirectorId() {
 		return $this->getData('directorId');
 	}
-	
+
 	/**
 	 * Set ID of director.
 	 * @param $directorId int
@@ -75,7 +75,7 @@ class EditAssignment extends DataObject {
 	function setDirectorId($directorId) {
 		return $this->setData('directorId', $directorId);
 	}
-	
+
 	/**
 	 * Get flag indicating whether this entry is for a director or a track director.
 	 * @return boolean
@@ -83,7 +83,7 @@ class EditAssignment extends DataObject {
 	function getIsDirector() {
 		return $this->getData('isDirector');
 	}
-	
+
 	/**
 	 * Set flag indicating whether this entry is for a director or a track director.
 	 * @param $isDirector boolean
@@ -99,7 +99,7 @@ class EditAssignment extends DataObject {
 	function getDateNotified() {
 		return $this->getData('dateNotified');
 	}
-	
+
 	/**
 	 * Set date director notified.
 	 * @param $dateNotified timestamp
@@ -107,7 +107,7 @@ class EditAssignment extends DataObject {
 	function setDateNotified($dateNotified) {
 		return $this->setData('dateNotified', $dateNotified);
 	}
-	
+
 	/**
 	 * Get date director underway.
 	 * @return timestamp
@@ -115,7 +115,7 @@ class EditAssignment extends DataObject {
 	function getDateUnderway() {
 		return $this->getData('dateUnderway');
 	}
-	
+
 	/**
 	 * Set date director underway.
 	 * @param $dateUnderway timestamp
@@ -123,7 +123,7 @@ class EditAssignment extends DataObject {
 	function setDateUnderway($dateUnderway) {
 		return $this->setData('dateUnderway', $dateUnderway);
 	}
-	
+
 	/**
 	 * Get full name of director.
 	 * @return string
@@ -131,7 +131,7 @@ class EditAssignment extends DataObject {
 	function getDirectorFullName() {
 		return $this->getData('directorFullName');
 	}
-	
+
 	/**
 	 * Set full name of director.
 	 * @param $directorFullName string
@@ -147,7 +147,7 @@ class EditAssignment extends DataObject {
 	function getDirectorFirstName() {
 		return $this->getData('directorFirstName');
 	}
-	
+
 	/**
 	 * Set first name of director.
 	 * @param $directorFirstName string
@@ -163,7 +163,7 @@ class EditAssignment extends DataObject {
 	function getDirectorLastName() {
 		return $this->getData('directorLastName');
 	}
-	
+
 	/**
 	 * Set last name of director.
 	 * @param $directorLastName string
@@ -171,7 +171,7 @@ class EditAssignment extends DataObject {
 	function setDirectorLastName($directorLastName) {
 		return $this->setData('directorLastName', $directorLastName);
 	}
-	
+
 	/**
 	 * Get initials of director.
 	 * @return string
@@ -183,7 +183,7 @@ class EditAssignment extends DataObject {
 			return substr($this->getDirectorFirstName(), 0, 1) . substr($this->getDirectorLastName(), 0, 1);
 		}
 	}
-	
+
 	/**
 	 * Set initials of director.
 	 * @param $directorInitials string
@@ -191,7 +191,7 @@ class EditAssignment extends DataObject {
 	function setDirectorInitials($directorInitials) {
 		return $this->setData('directorInitials', $directorInitials);
 	}
-	
+
 	/**
 	 * Get email of director.
 	 * @return string
@@ -199,7 +199,7 @@ class EditAssignment extends DataObject {
 	function getDirectorEmail() {
 		return $this->getData('directorEmail');
 	}
-	
+
 	/**
 	 * Set full name of director.
 	 * @param $directorEmail string

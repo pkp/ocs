@@ -18,14 +18,6 @@
 import('paper.SuppFile');
 
 class SuppFileDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function SuppFileDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Retrieve a supplementary file by ID.
 	 * @param $suppFileId int
@@ -33,17 +25,13 @@ class SuppFileDAO extends DAO {
 	 * @return SuppFile
 	 */
 	function &getSuppFile($suppFileId, $paperId = null) {
-		if (isset($paperId)) {
-			$result = &$this->retrieve(
-				'SELECT s.*, a.file_name, a.original_file_name, a.file_type, a.file_size, a.status, a.date_uploaded, a.date_modified FROM paper_supplementary_files s LEFT JOIN paper_files a ON (s.file_id = a.file_id) WHERE s.supp_id = ? AND s.paper_id = ?',
-				array($suppFileId, $paperId)
-			);
-			
-		} else {
-			$result = &$this->retrieve(
-				'SELECT s.*, a.file_name, a.original_file_name, a.file_type, a.file_size, a.status, a.date_uploaded, a.date_modified FROM paper_supplementary_files s LEFT JOIN paper_files a ON (s.file_id = a.file_id) WHERE s.supp_id = ? AND s.paper_id = ?', $suppFileId
-			);
-		}
+		$params = array($suppFileId);
+		if ($paperId) $params[] = $paperId;
+
+		$result = &$this->retrieve(
+			'SELECT s.*, a.file_name, a.original_file_name, a.file_type, a.file_size, a.status, a.date_uploaded, a.date_modified FROM paper_supplementary_files s LEFT JOIN paper_files a ON (s.file_id = a.file_id) WHERE s.supp_id = ?' . ($paperId?' AND s.paper_id = ?':''),
+			$params
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -55,7 +43,7 @@ class SuppFileDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve a supplementary file by public supp file ID.
 	 * @param $publicSuppId string
@@ -78,7 +66,7 @@ class SuppFileDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve all supplementary files for a paper.
 	 * @param $paperId int
@@ -86,12 +74,12 @@ class SuppFileDAO extends DAO {
 	 */
 	function &getSuppFilesByPaper($paperId) {
 		$suppFiles = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT s.*, a.file_name, a.original_file_name, a.file_type, a.file_size, a.status, a.date_uploaded, a.date_modified FROM paper_supplementary_files s LEFT JOIN paper_files a ON (s.file_id = a.file_id) WHERE s.paper_id = ? ORDER BY s.seq',
 			$paperId
 		);
-		
+
 		while (!$result->EOF) {
 			$suppFiles[] = &$this->_returnSuppFileFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -102,7 +90,25 @@ class SuppFileDAO extends DAO {
 
 		return $suppFiles;
 	}
-	
+
+	/**
+	 * Get the list of fields for which data is localized.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('title', 'creator', 'subject', 'type_other', 'description', 'publisher', 'sponsor', 'source');
+	}
+
+	/**
+	 * Update the localized fields for this supp file.
+	 * @param $suppFile
+	 */
+	function updateLocaleFields(&$suppFile) {
+		$this->updateDataObjectSettings('paper_supp_file_settings', $suppFile, array(
+			'supp_id' => $suppFile->getSuppFileId()
+		));
+	}
+
 	/**
 	 * Internal function to return a SuppFile object from a row.
 	 * @param $row array
@@ -114,21 +120,13 @@ class SuppFileDAO extends DAO {
 		$suppFile->setPublicSuppFileID($row['public_supp_file_id']);
 		$suppFile->setFileId($row['file_id']);
 		$suppFile->setPaperId($row['paper_id']);
-		$suppFile->setTitle($row['title']);
-		$suppFile->setCreator($row['creator']);
-		$suppFile->setSubject($row['subject']);
 		$suppFile->setType($row['type']);
-		$suppFile->setTypeOther($row['type_other']);
-		$suppFile->setDescription($row['description']);
-		$suppFile->setPublisher($row['publisher']);
-		$suppFile->setSponsor($row['sponsor']);
 		$suppFile->setDateCreated($this->dateFromDB($row['date_created']));
-		$suppFile->setSource($row['source']);
 		$suppFile->setLanguage($row['language']);
 		$suppFile->setShowReviewers($row['show_reviewers']);
 		$suppFile->setDateSubmitted($this->datetimeFromDB($row['date_submitted']));
 		$suppFile->setSequence($row['seq']);
-		
+
 		//PaperFile set methods
 		$suppFile->setFileName($row['file_name']);
 		$suppFile->setOriginalFileName($row['original_file_name']);
@@ -137,7 +135,9 @@ class SuppFileDAO extends DAO {
 		$suppFile->setStatus($row['status']);
 		$suppFile->setDateModified($this->datetimeFromDB($row['date_modified']));
 		$suppFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
-		
+
+		$this->getDataObjectSettings('paper_supp_file_settings', 'supp_id', $row['supp_id'], $suppFile);
+
 		HookRegistry::call('SuppFileDAO::_returnSuppFileFromRow', array(&$suppFile, &$row));
 
 		return $suppFile;
@@ -156,52 +156,37 @@ class SuppFileDAO extends DAO {
 		}
 		$this->update(
 			sprintf('INSERT INTO paper_supplementary_files
-				(public_supp_file_id, file_id, paper_id, title, creator, subject, type, type_other, description, publisher, sponsor, date_created, source, language, show_reviewers, date_submitted, seq)
+				(public_supp_file_id, file_id, paper_id, type, date_created, language, show_reviewers, date_submitted, seq)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, ?, ?, ?, %s, ?)',
+				(?, ?, ?, ?, %s, ?, ?, %s, ?)',
 				$this->dateToDB($suppFile->getDateCreated()), $this->datetimeToDB($suppFile->getDateSubmitted())),
 			array(
 				$suppFile->getPublicSuppFileId(),
 				$suppFile->getFileId(),
 				$suppFile->getPaperId(),
-				$suppFile->getTitle(),
-				$suppFile->getCreator(),
-				$suppFile->getSubject(),
 				$suppFile->getType(),
-				$suppFile->getTypeOther(),
-				$suppFile->getDescription(),
-				$suppFile->getPublisher(),
-				$suppFile->getSponsor(),
-				$suppFile->getSource(),
 				$suppFile->getLanguage(),
 				$suppFile->getShowReviewers(),
 				$suppFile->getSequence()
 			)
 		);
 		$suppFile->setSuppFileId($this->getInsertSuppFileId());
+		$this->updateLocaleFields($suppFile);
 		return $suppFile->getSuppFileId();
 	}
-	
+
 	/**
 	 * Update an existing SuppFile.
 	 * @param $suppFile SuppFile
 	 */
 	function updateSuppFile(&$suppFile) {
-		return $this->update(
+		$returner = $this->update(
 			sprintf('UPDATE paper_supplementary_files
 				SET
 					public_supp_file_id = ?,
 					file_id = ?,
-					title = ?,
-					creator = ?,
-					subject = ?,
 					type = ?,
-					type_other = ?,
-					description = ?,
-					publisher = ?,
-					sponsor = ?,
 					date_created = %s,
-					source = ?,
 					language = ?,
 					show_reviewers = ?,
 					seq = ?
@@ -210,23 +195,17 @@ class SuppFileDAO extends DAO {
 			array(
 				$suppFile->getPublicSuppFileId(),
 				$suppFile->getFileId(),
-				$suppFile->getTitle(),
-				$suppFile->getCreator(),
-				$suppFile->getSubject(),
 				$suppFile->getType(),
-				$suppFile->getTypeOther(),
-				$suppFile->getDescription(),
-				$suppFile->getPublisher(),
-				$suppFile->getSponsor(),
-				$suppFile->getSource(),
 				$suppFile->getLanguage(),
 				$suppFile->getShowReviewers(),
 				$suppFile->getSequence(),
 				$suppFile->getSuppFileId()
 			)
 		);
+		$this->updateLocaleFields($suppFile);
+		return $returner;
 	}
-	
+
 	/**
 	 * Delete a SuppFile.
 	 * @param $suppFile SuppFile
@@ -234,7 +213,7 @@ class SuppFileDAO extends DAO {
 	function deleteSuppFile(&$suppFile) {
 		return $this->deleteSuppFileById($suppFile->getSuppFileId());
 	}
-	
+
 	/**
 	 * Delete a supplementary file by ID.
 	 * @param $suppFileId int
@@ -242,28 +221,29 @@ class SuppFileDAO extends DAO {
 	 */
 	function deleteSuppFileById($suppFileId, $paperId = null) {
 		if (isset($paperId)) {
-			return $this->update(
-				'DELETE FROM paper_supplementary_files WHERE supp_id = ? AND paper_id = ?',
-				array($suppFileId, $paperId)
-			);
-		
+			$returner = $this->update('DELETE FROM paper_supplementary_files WHERE supp_id = ? AND paper_id = ?', array($suppFileId, $paperId));
+			if ($returner) $this->update('DELETE FROM paper_supp_file_settings WHERE supp_id = ?', $suppFileId);
+			return $returner;
+
 		} else {
+			$this->update('DELETE FROM paper_supp_file_settings WHERE supp_id = ?', $suppFileId);
 			return $this->update(
 				'DELETE FROM paper_supplementary_files WHERE supp_id = ?', $suppFileId
 			);
 		}
 	}
-	
+
 	/**
 	 * Delete supplementary files by paper.
 	 * @param $paperId int
 	 */
 	function deleteSuppFilesByPaper($paperId) {
-		return $this->update(
-			'DELETE FROM paper_supplementary_files WHERE paper_id = ?', $paperId
-		);
+		$suppFiles =& $this->getSuppFilesByPaper($paperId);
+		foreach ($suppFiles as $suppFile) {
+			$this->deleteSuppFile($suppFile);
+		}
 	}
-	
+
 	/**
 	 * Check if a supplementary file exists with the associated file ID.
 	 * @param $paperId int
@@ -276,7 +256,7 @@ class SuppFileDAO extends DAO {
 			WHERE paper_id = ? AND file_id = ?',
 			array($paperId, $fileId)
 		);
-		
+
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
 		$result->Close();
@@ -284,7 +264,7 @@ class SuppFileDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Sequentially renumber supplementary files for a paper in their sequence order.
 	 * @param $paperId int
@@ -294,7 +274,7 @@ class SuppFileDAO extends DAO {
 			'SELECT supp_id FROM paper_supplementary_files WHERE paper_id = ? ORDER BY seq',
 			$paperId
 		);
-		
+
 		for ($i=1; !$result->EOF; $i++) {
 			list($suppId) = $result->fields;
 			$this->update(
@@ -307,7 +287,7 @@ class SuppFileDAO extends DAO {
 		$result->close();
 		unset($result);
 	}
-	
+
 	/**
 	 * Get the the next sequence number for a paper's supplementary files (i.e., current max + 1).
 	 * @param $paperId int
@@ -325,7 +305,7 @@ class SuppFileDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted supplementary file.
 	 * @return int

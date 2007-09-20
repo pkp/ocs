@@ -26,13 +26,6 @@ class PaperFileDAO extends DAO {
 	var $inlineableTypes;
 
 	/**
-	 * Constructor.
-	 */
-	function PaperFileDAO() {
-		parent::DAO();
-	}
-	
-	/**
 	 * Retrieve a paper by ID.
 	 * @param $fileId int
 	 * @param $revision int optional, if omitted latest revision is used
@@ -58,7 +51,7 @@ class PaperFileDAO extends DAO {
 					1
 				);
 			}
-			
+
 		} else {
 			if ($paperId != null) {
 				$result = &$this->retrieve(
@@ -83,7 +76,7 @@ class PaperFileDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve all revisions of a paper file.
 	 * @param $paperId int
@@ -105,7 +98,7 @@ class PaperFileDAO extends DAO {
 			'ORDER BY revision',
 			array($params)
 		);
-		
+
 		while (!$result->EOF) {
 			$paperFiles[] = &$this->_returnPaperFileFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -113,10 +106,10 @@ class PaperFileDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $paperFiles;
 	}
-	
+
 	/**
 	 * Retrieve revisions of a paper file in a range.
 	 * @param $paperId int
@@ -128,7 +121,7 @@ class PaperFileDAO extends DAO {
 			return $returner;
 		}
 		$paperFiles = array();
-		
+
 		if ($end == null) {
 			$result = &$this->retrieve(
 				'SELECT a.* FROM paper_files a WHERE file_id = ? AND revision >= ?',
@@ -140,7 +133,7 @@ class PaperFileDAO extends DAO {
 				array($fileId, $start, $end)
 			);		
 		}
-				
+
 		while (!$result->EOF) {
 			$paperFiles[] = &$this->_returnPaperFileFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -148,10 +141,10 @@ class PaperFileDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $paperFiles;
 	}
-	
+
 	/**
 	 * Retrieve the current revision number for a file.
 	 * @param $fileId int
@@ -166,7 +159,7 @@ class PaperFileDAO extends DAO {
 			'SELECT MAX(revision) AS max_revision FROM paper_files a WHERE file_id = ?',
 			$fileId
 		);
-		
+
 		if ($result->RecordCount() == 0) {
 			$returner = null;
 		} else {
@@ -179,7 +172,7 @@ class PaperFileDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve all paper files for a paper.
 	 * @param $paperId int
@@ -187,12 +180,12 @@ class PaperFileDAO extends DAO {
 	 */
 	function &getPaperFilesByPaper($paperId) {
 		$paperFiles = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT * FROM paper_files WHERE paper_id = ?',
 			$paperId
 		);
-		
+
 		while (!$result->EOF) {
 			$paperFiles[] = &$this->_returnPaperFileFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -200,10 +193,10 @@ class PaperFileDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $paperFiles;
 	}
-	
+
 	/**
 	 * Internal function to return an PaperFile object from a row.
 	 * @param $row array
@@ -247,11 +240,11 @@ class PaperFileDAO extends DAO {
 			$paperFile->getStatus(),
 			$paperFile->getViewable()
 		);
-		
+
 		if ($fileId) {
 			array_unshift($params, $fileId);
 		}
-		
+
 		$this->update(
 			sprintf('INSERT INTO paper_files
 				(' . ($fileId ? 'file_id, ' : '') . 'revision, paper_id, file_name, file_type, file_size, original_file_name, type, stage, status, date_uploaded, date_modified, viewable)
@@ -260,14 +253,14 @@ class PaperFileDAO extends DAO {
 				$this->datetimeToDB($paperFile->getDateUploaded()), $this->datetimeToDB($paperFile->getDateModified())),
 			$params
 		);
-		
+
 		if (!$fileId) {
 			$paperFile->setFileId($this->getInsertPaperFileId());
 		}
-		
+
 		return $paperFile->getFileId();
 	}
-	
+
 	/**
 	 * Update an existing paper file.
 	 * @param $paper PaperFile
@@ -303,11 +296,11 @@ class PaperFileDAO extends DAO {
 				$paperFile->getRevision()
 			)
 		);
-		
+
 		return $paperFile->getFileId();
-		
+
 	}
-	
+
 	/**
 	 * Delete a paper file.
 	 * @param $paper PaperFile
@@ -315,7 +308,7 @@ class PaperFileDAO extends DAO {
 	function deletePaperFile(&$paperFile) {
 		return $this->deletePaperFileById($paperFile->getFileId(), $paperFile->getRevision());
 	}
-	
+
 	/**
 	 * Delete a paper file by ID.
 	 * @param $paperId int
@@ -332,7 +325,7 @@ class PaperFileDAO extends DAO {
 			);
 		}
 	}
-	
+
 	/**
 	 * Delete all paper files for a paper.
 	 * @param $paperId int
@@ -350,7 +343,7 @@ class PaperFileDAO extends DAO {
 	function getInsertPaperFileId() {
 		return $this->getInsertId('paper_files', 'file_id');
 	}
-	
+
 	/**
 	 * Check whether a file may be displayed inline.
 	 * @param $paperFile object

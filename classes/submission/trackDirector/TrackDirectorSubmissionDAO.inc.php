@@ -55,19 +55,32 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @return DirectorSubmission
 	 */
 	function &getTrackDirectorSubmission($paperId) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
 		$result = &$this->retrieve(
-			'SELECT p.*,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				r2.review_revision
-				FROM papers p
-					LEFT JOIN tracks t ON (t.track_id = p.track_id)
-					LEFT JOIN review_stages r2 ON (p.paper_id = r2.paper_id AND p.current_stage = r2.stage)
-				WHERE p.paper_id = ?', $paperId
+			'SELECT	p.*,
+				r2.review_revision,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
+			FROM	papers p
+				LEFT JOIN tracks t ON (t.track_id = p.track_id)
+				LEFT JOIN review_stages r2 ON (p.paper_id = r2.paper_id AND p.current_stage = r2.stage)
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+			WHERE	p.paper_id = ?',
+			array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
+				$paperId
+			)
 		);
 
 		$returner = null;
@@ -178,10 +191,10 @@ class TrackDirectorSubmissionDAO extends DAO {
 		}
 		if ($this->reviewStageExists($trackDirectorSubmission->getPaperId(), $trackDirectorSubmission->getCurrentStage())) {
 			$this->update(
-				'UPDATE review_stages
-					SET
-						review_revision = ?
-					WHERE paper_id = ? AND stage = ?',
+				'UPDATE	review_stages
+				SET	review_revision = ?
+				WHERE	paper_id = ? AND
+					stage = ?',
 				array(
 					$trackDirectorSubmission->getReviewRevision(),
 					$trackDirectorSubmission->getPaperId(),
@@ -239,7 +252,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$this->update(
 			'INSERT INTO review_stages
 				(paper_id, stage, review_revision)
-				VALUES
+			VALUES
 				(?, ?, ?)',
 			array($paperId, $stage, $reviewRevision)
 		);
@@ -249,19 +262,34 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * Retrieve unfiltered track director submissions
 	 */
 	function &getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null) {
-		$params = array($schedConfId, $trackDirectorId);
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+
+		$params = array(
+			'title', // Track title
+			$primaryLocale,
+			'title',
+			$locale,
+			'abbrev', // Track abbrev
+			$primaryLocale,
+			'abbrev',
+			$locale,
+			'title', // Paper title
+			$schedConfId,
+			$trackDirectorId
+		);
 
 		$searchSql = '';
 
 		if (!empty($search)) switch ($searchField) {
 			case SUBMISSION_FIELD_TITLE:
 				if ($searchMatch === 'is') {
-					$searchSql = ' AND (LOWER(p.title) = LOWER(?) OR LOWER(p.title_alt1) = LOWER(?) OR LOWER(p.title_alt2) = LOWER(?))';
+					$searchSql = ' AND LOWER(ptl.setting_value) = LOWER(?)';
 				} else {
-					$searchSql = ' AND (LOWER(p.title) LIKE LOWER(?) OR LOWER(p.title_alt1) LIKE LOWER(?) OR LOWER(p.title_alt2) LIKE LOWER(?))';
+					$searchSql = ' AND LOWER(ptl.setting_value) LIKE LOWER(?)';
 					$search = '%' . $search . '%';
 				}
-				$params[] = $params[] = $params[] = $search;
+				$params[] = $search;
 				break;
 			case SUBMISSION_FIELD_PRESENTER:
 				$first_last = $this->_dataSource->Concat('pa.first_name', '\' \'', 'pa.last_name');
@@ -305,22 +333,22 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 		$sql = 'SELECT DISTINCT
 				p.*,
-				t.title AS track_title,
-				t.title_alt1 AS track_title_alt1,
-				t.title_alt2 AS track_title_alt2,
-				t.abbrev AS track_abbrev,
-				t.abbrev_alt1 AS track_abbrev_alt1,
-				t.abbrev_alt2 AS track_abbrev_alt2,
-				r2.review_revision
-			FROM
-				papers p
-			INNER JOIN paper_presenters pa ON (pa.paper_id = p.paper_id)
-			LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
-			LEFT JOIN users ed ON (e.director_id = ed.user_id)
-			LEFT JOIN tracks t ON (t.track_id = p.track_id)
-			LEFT JOIN review_stages r2 ON (p.paper_id = r2.paper_id and p.current_stage = r2.stage)
-			WHERE
-				p.sched_conf_id = ? AND e.director_id = ?';
+				r2.review_revision,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
+			FROM	papers p
+				INNER JOIN paper_presenters pa ON (pa.paper_id = p.paper_id)
+				LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
+				LEFT JOIN users ed ON (e.director_id = ed.user_id)
+				LEFT JOIN tracks t ON (t.track_id = p.track_id)
+				LEFT JOIN review_stages r2 ON (p.paper_id = r2.paper_id and p.current_stage = r2.stage)
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ?)
+			WHERE	p.sched_conf_id = ? AND
+				e.director_id = ?';
 
 		if ($statusSql !== null) $sql .= " AND ($statusSql)";
 		else $sql .= ' AND p.status = ' . SUBMISSION_STATUS_QUEUED;
@@ -485,10 +513,10 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 */
 	function getDirectorDecisions($paperId, $stage) {
 		$decisions = array();
-		
+
 		$params = array($paperId);
 		if($stage != null) $params[] = $stage;
-		
+
 		$result = &$this->retrieve('
 			SELECT edit_decision_id, director_id, decision, date_decided
 				FROM edit_decisions
@@ -634,7 +662,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	}
 
 	function &_returnReviewerUserFromRow(&$row) { // FIXME
-		$user = &$this->userDao->_returnUserFromRow($row);
+		$user = &$this->userDao->_returnUserFromRowWithData($row);
 		$user->review_id = $row['review_id'];
 
 		HookRegistry::call('TrackDirectorSubmissionDAO::_returnReviewerUserFromRow', array(&$user, &$row));
@@ -657,7 +685,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			$users[] = &$this->userDao->_returnUserFromRow($result->GetRowAssoc(false));
+			$users[] = &$this->userDao->_returnUserFromRowWithData($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -675,7 +703,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result = &$this->retrieve('select ra.reviewer_id as reviewer_id, max(ra.date_notified) as last_notified from review_assignments ra, papers p where ra.paper_id=p.paper_id and p.sched_conf_id=? group by ra.reviewer_id', $schedConfId);
+		$result = &$this->retrieve('SELECT ra.reviewer_id AS reviewer_id, MAX(ra.date_notified) AS last_notified FROM review_assignments ra, papers p WHERE ra.paper_id = p.paper_id AND p.sched_conf_id = ? GROUP BY ra.reviewer_id', $schedConfId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
@@ -687,7 +715,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get completion status
-		$result = &$this->retrieve('select r.reviewer_id as reviewer_id, COUNT(*) AS incomplete from review_assignments r, papers p where r.paper_id=p.paper_id and r.date_notified is not null and r.date_completed is null and r.cancelled = 0 and p.sched_conf_id = ? group by r.reviewer_id', $schedConfId);
+		$result = &$this->retrieve('SELECT r.reviewer_id AS reviewer_id, COUNT(*) AS incomplete FROM review_assignments r, papers p WHERE r.paper_id = p.paper_id AND r.date_notified IS NOT NULL AND r.date_completed IS NULL AND r.cancelled = 0 AND p.sched_conf_id = ? GROUP BY r.reviewer_id', $schedConfId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
@@ -699,7 +727,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Calculate time taken for completed reviews
-		$result = &$this->retrieve('select r.reviewer_id as reviewer_id, r.date_notified as date_notified, r.date_completed as date_completed from review_assignments r, papers p where r.paper_id=p.paper_id and r.date_notified is not null and r.date_completed is not null and p.sched_conf_id = ?', $schedConfId);
+		$result = &$this->retrieve('SELECT r.reviewer_id, r.date_notified, r.date_completed FROM review_assignments r, papers p WHERE r.paper_id = p.paper_id AND r.date_notified IS NOT NULL AND r.date_completed IS NOT NULL AND p.sched_conf_id = ?', $schedConfId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
@@ -724,7 +752,6 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 		return $statistics;
 	}
-
 }
 
 ?>

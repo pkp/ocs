@@ -1,6 +1,6 @@
 {$body}
 
-{$conference->getTitle()}
+{$conference->getConferenceTitle()}
 {$schedConf->getSchedConfIdentification()}
 {translate key="schedConf.toc"}
 {url page="schedConf" op="view" path=$schedConf->getBestSchedConfId()}

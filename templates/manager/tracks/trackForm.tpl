@@ -100,41 +100,28 @@
 {include file="common/formErrors.tpl"}
 
 <table class="data" width="100%">
+{if count($formLocales) > 1}
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="80%" class="value">
+			{if $trackId}{url|assign:"trackFormUrl" op="editTrack" path=$trackId}
+			{else}{url|assign:"trackFormUrl" op="createTrack" path=$trackId}
+			{/if}
+			{form_language_chooser form="track" url=$trackFormUrl}
+		</td>
+	</tr>
+{/if}
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="title" required="true" key="track.title"}</td>
-	<td width="80%" class="value"><input type="text" name="title" value="{$title|escape}" id="title" size="40" maxlength="120" class="textField" /></td>
+	<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" value="{$title[$formLocale]|escape}" id="title" size="40" maxlength="120" class="textField" /></td>
 </tr>
-{if $alternateLocale1}
-<tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="titleAlt1" key="track.title"}&nbsp;({$languageToggleLocales.$alternateLocale1|escape})</td>
-	<td width="80%" class="value"><input type="text" name="titleAlt1" value="{$titleAlt1|escape}" id="titleAlt1" size="40" maxlength="120" class="textField" /></td>
-</tr>
-{/if}
-{if $alternateLocale2}
-<tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="titleAlt2" key="track.title"}&nbsp;({$languageToggleLocales.$alternateLocale2|escape})</td>
-	<td width="80%" class="value"><input type="text" name="titleAlt2" value="{$titleAlt2|escape}" id="titleAlt2" size="40" maxlength="120" class="textField" /></td>
-</tr>
-{/if}
 <tr valign="top">
 	<td class="label">{fieldLabel name="abbrev" required="true" key="track.abbreviation"}</td>
-	<td class="value"><input type="text" name="abbrev" id="abbrev" value="{$abbrev|escape}" size="20" maxlength="20" class="textField" />&nbsp;&nbsp;{translate key="track.abbreviation.example"}</td>
+	<td class="value"><input type="text" name="abbrev[{$formLocale|escape}]" id="abbrev" value="{$abbrev[$formLocale]|escape}" size="20" maxlength="20" class="textField" />&nbsp;&nbsp;{translate key="track.abbreviation.example"}</td>
 </tr>
-{if $alternateLocale1}
-<tr valign="top">
-	<td class="label">{fieldLabel name="abbrevAlt1" key="track.abbreviation"}&nbsp;({$languageToggleLocales.$alternateLocale1|escape})</td>
-	<td class="value"><input type="text" name="abbrevAlt1" id="abbrevAlt1" value="{$abbrevAlt1|escape}" size="20" maxlength="20" class="textField" /></td>
-</tr>
-{/if}
-{if $alternateLocale2}
-<tr valign="top">
-	<td class="label">{fieldLabel name="abbrevAlt2" key="track.abbreviation"}&nbsp;({$languageToggleLocales.$alternateLocale2|escape})</td>
-	<td class="value"><input type="text" name="abbrevAlt2" id="abbrevAlt2" value="{$abbrevAlt2|escape}" size="20" maxlength="20" class="textField" /></td>
-</tr>
-{/if}
 <tr valign="top">
 	<td class="label">{fieldLabel name="policy" key="manager.tracks.policy"}</td>
-	<td class="value"><textarea name="policy" rows="4" cols="40" id="policy" class="textArea">{$policy|escape}</textarea></td>
+	<td class="value"><textarea name="policy[{$formLocale|escape}]" rows="4" cols="40" id="policy" class="textArea">{$policy[$formLocale]|escape}</textarea></td>
 </tr>
 <tr valign="top">
 	<td rowspan="4" class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
@@ -142,7 +129,7 @@
 </tr>
 <tr valign="top">
 	<td class="value">
-		{fieldLabel name="identifyType" key="manager.tracks.identifyType"} <input type="text" name="identifyType" id="identifyType" value="{$identifyType|escape}" size="20" maxlength="60" class="textField" />
+		{fieldLabel name="identifyType" key="manager.tracks.identifyType"} <input type="text" name="identifyType[{$formLocale|escape}]" id="identifyType" value="{$identifyType[$formLocale]|escape}" size="20" maxlength="60" class="textField" />
 		<br />
 		<span class="instruct">{translate key="manager.tracks.identifyTypeExamples"}</span>
 	</td>

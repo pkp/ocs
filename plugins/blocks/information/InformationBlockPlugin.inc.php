@@ -81,8 +81,8 @@ class InformationBlockPlugin extends BlockPlugin {
 		$conference =& Request::getConference();
 		if (!$conference) return '';
 
-		$templateMgr->assign('forReaders', $conference->getSetting('readerInformation'));
-		$templateMgr->assign('forAuthors', $conference->getSetting('authorInformation'));
+		$templateMgr->assign('forReaders', $conference->getLocalizedSetting('readerInformation'));
+		$templateMgr->assign('forAuthors', $conference->getLocalizedSetting('authorInformation'));
 		return parent::getContents($templateMgr);
 	}
 }

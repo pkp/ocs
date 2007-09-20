@@ -40,7 +40,7 @@ import('file.PaperFileManager');
 import('file.PublicFileManager');
 import('search.PaperSearchIndex');
 
-	
+
 class ImportOCS1 {
 
 	//
@@ -59,17 +59,17 @@ class ImportOCS1 {
 	var $trackMap = array();
 	var $paperMap = array();
 	var $reviewerMap = array();
-	
+
 	var $importDBConn;
 	var $importDao;
-	
+
 	var $indexUrl;
 	var $globalConfigInfo;
 	var $conferenceInfo = array();
-	
+
 	var $userCount = 0;
 	var $paperCount = 0;
-	
+
 	var $options;
 	var $error;
 
@@ -105,7 +105,7 @@ class ImportOCS1 {
 		}
 		return $this->error;
 	}
-	
+
 	/**
 	 * Check if an option is enabled.
 	 * @param $option string
@@ -114,7 +114,7 @@ class ImportOCS1 {
 	function hasOption($option) {
 		return in_array($option, $this->options);
 	}
-	
+
 	/**
 	 * Execute import of an OCS 1 conference.
 	 * If an existing conference path is specified, only content is imported;
@@ -133,26 +133,26 @@ class ImportOCS1 {
 		// Force a new database connection
 		$dbconn = &DBConnection::getInstance();
 		$dbconn->reconnect(true);
-		
+
 		// Create a connection to the old database
 		if (!@include($this->importPath . '/include/db.inc.php')) { // Suppress E_NOTICE messages
 			$this->error('Failed to load ' . $this->importPath . '/include/db.php');
 			return false;
 		}
-		
+
 		// Assumes no character set (not supported by OCS 1.x)
 		// Forces open a new connection
 		$this->importDBConn = &new DBConnection($db_type, $db_host, $db_login, $db_password, $db_name, false, false, true, false, true);
 		$dbconn = &$this->importDBConn->getDBConn();
-		
+
 		if (!$this->importDBConn->isConnected()) {
 			$this->error('Database connection error: ' . $dbconn->errorMsg());
 			return false;
 		}
-		
+
 		$this->dbtable = $dbtable;
 		$this->importDao = &new DAO($dbconn);
-		
+
 		if (!$this->loadGlobalConfig()) {
 			$this->error('Unsupported or unrecognized OCS version');
 			return false;
@@ -171,10 +171,10 @@ class ImportOCS1 {
 
 		// Rebuild search index
 		$this->rebuildSearchIndex();
-		
+
 		return $this->conferenceId;
 	}
-	
+
 	/**
 	 * Load OCS 1 configuration and settings data.
 	 * @return boolean
@@ -185,14 +185,14 @@ class ImportOCS1 {
 		$result = &$this->importDao->retrieve("SELECT * FROM $dbtable[conference_global]");
 		$this->globalConfigInfo = &$result->fields;
 		$result->Close();
-		
+
 		if (!isset($this->globalConfigInfo['admin_login'])) {
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 
 	//
 	// Conference
@@ -208,7 +208,8 @@ class ImportOCS1 {
 			unset($conference);
 			$conference =& new Conference();
 			$conference->setPath($this->conferencePath);
-			$conference->setTitle($this->globalConfigInfo['name']);
+			$conference->setTitle($this->globalConfigInfo['name'], Locale::getLocale());
+			$conference->setPrimaryLocale(Locale::getLocale());
 			$conference->setEnabled(true);
 			$this->conferenceId = $conferenceDao->insertConference($conference);
 			$conferenceDao->resequenceConferences();
@@ -252,7 +253,7 @@ class ImportOCS1 {
 				$this->conference->updateSetting($settingName, $settingValue, $settingType);
 			}
 		}
-		
+
 	}
 
 
@@ -318,7 +319,7 @@ class ImportOCS1 {
 			'contactEmail' => array('string', Core::cleanVar($this->conferenceInfo[$id]['contact_email'])),
 			'contactName' => array('string', Core::cleanVar($this->conferenceInfo[$id]['contact_name']))
 		);
-		
+
 		foreach ($schedConfSettings as $settingName => $settingInfo) {
 			list($settingType, $settingValue) = $settingInfo;
 			$schedConf->updateSetting($settingName, $settingValue, $settingType);
@@ -333,7 +334,7 @@ class ImportOCS1 {
 		if ($this->hasOption('verbose')) {
 			printf("Importing registrations\n");
 		}
-		
+
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -432,7 +433,7 @@ class ImportOCS1 {
 					$mail->assignParams(array('username' => $user->getUsername(), 'password' => $password, 'conferenceName' => $schedConf->getFullTitle()));
 					$mail->addRecipient($user->getEmail(), $user->getFullName());
 					$mail->send();
-					
+
 				}
 			}
 
@@ -477,7 +478,7 @@ class ImportOCS1 {
 		}
 		$result->Close();
 	}
-	
+
 	/**
 	 * Import tracks.
 	 */
@@ -485,9 +486,9 @@ class ImportOCS1 {
 		if ($this->hasOption('verbose')) {
 			printf("Importing tracks\n");
 		}
-		
+
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		
+
 		$result = &$this->importDao->retrieve('SELECT * FROM tracks ORDER BY cf, track_order');
 		$oldConferenceId = null;
 		while (!$result->EOF) {
@@ -504,7 +505,7 @@ class ImportOCS1 {
 			$track->setSequence(++$sequence);
 			$track->setDirectorRestricted(0);
 			$track->setMetaReviewed(1);
-			
+
 			$trackId = $trackDao->insertTrack($track);
 			$this->trackMap[$row['id']] = $trackId;
 			$result->MoveNext();
@@ -513,7 +514,7 @@ class ImportOCS1 {
 		}
 		$result->Close();
 	}
-	
+
 	/**
 	 * Import reviewers
 	 */
@@ -521,7 +522,7 @@ class ImportOCS1 {
 		if ($this->hasOption('verbose')) {
 			printf("Importing reviewers\n");
 		}
-		
+
 		import('file.PaperFileManager');
 		import('search.PaperSearchIndex');
 
@@ -530,7 +531,7 @@ class ImportOCS1 {
 
 		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		
+
 		$result = &$this->importDao->retrieve('SELECT * FROM reviewers');
 		while (!$result->EOF) {
 			$row = &$result->fields;
@@ -565,7 +566,7 @@ class ImportOCS1 {
 					$mail->assignParams(array('username' => $user->getUsername(), 'password' => $password, 'conferenceName' => $schedConf->getFullTitle()));
 					$mail->addRecipient($user->getEmail(), $user->getFullName());
 					$mail->send();
-					
+
 				}
 				$user->setDisabled(0);
 
@@ -606,7 +607,7 @@ class ImportOCS1 {
 		if ($this->hasOption('verbose')) {
 			printf("Importing papers\n");
 		}
-		
+
 		import('file.PaperFileManager');
 		import('search.PaperSearchIndex');
 
@@ -619,7 +620,7 @@ class ImportOCS1 {
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 
 		$unassignedTrackId = null;
-		
+
 		$result = &$this->importDao->retrieve('SELECT * FROM papers ORDER by id');
 		while (!$result->EOF) {
 			$row = &$result->fields;
@@ -637,7 +638,7 @@ class ImportOCS1 {
 				$user->setAffiliation(Core::cleanVar($row['affiliation']));
 				$user->setEmail(Core::cleanVar($row['email']));
 				$user->setUrl(Core::cleanVar($row['url']));
-				$user->setBiography(Core::cleanVar($row['bio']));
+				$user->setBiography(Core::cleanVar($row['bio']), Locale::getLocale());
 				$user->setLocales(array());
 				$user->setDateRegistered($row['created']);
 				$user->setDateLastLogin($row['created']);
@@ -654,7 +655,7 @@ class ImportOCS1 {
 					$mail->assignParams(array('username' => $user->getUsername(), 'password' => $password, 'conferenceName' => $schedConf->getFullTitle()));
 					$mail->addRecipient($user->getEmail(), $user->getFullName());
 					$mail->send();
-					
+
 				}
 				$user->setDisabled(0);
 
@@ -695,7 +696,7 @@ class ImportOCS1 {
 					// that didn't have a track in OCS 1.x.
 					$track = &new Track();
 					$track->setSchedConfId($schedConf->getSchedConfId());
-					$track->setTitle('UNASSIGNED');
+					$track->setTitle('UNASSIGNED', Locale::getLocale());
 					$track->setSequence(REALLY_BIG_NUMBER);
 					$track->setDirectorRestricted(1);
 					$track->setMetaReviewed(1);
@@ -708,13 +709,11 @@ class ImportOCS1 {
 			}
 
 			$paper->setTrackId($newTrackId);
-			$paper->setTitle(Core::cleanVar($row['title']));
-			$paper->setTitleAlt1('');
-			$paper->setTitleAlt2('');
-			$paper->setAbstract(Core::cleanVar($row['abstract']));
-			$paper->setDiscipline(Core::cleanVar($row['discipline']));
-			$paper->setSponsor(Core::cleanVar($row['sponsor']));
-			$paper->setSubject(Core::cleanVar($row['topic']));
+			$paper->setTitle(Core::cleanVar($row['title']), Locale::getLocale());
+			$paper->setAbstract(Core::cleanVar($row['abstract']), Locale::getLocale());
+			$paper->setDiscipline(Core::cleanVar($row['discipline'], Locale::getLocale()));
+			$paper->setSponsor(Core::cleanVar($row['sponsor']), Locale::getLocale());
+			$paper->setSubject(Core::cleanVar($row['topic']), Locale::getLocale());
 			$paper->setLanguage(Core::cleanVar($row['language']));
 
 			$paper->setDateSubmitted($row['created']);
@@ -798,6 +797,7 @@ class ImportOCS1 {
 					}
 				}
 
+				$galley->setLocale(Locale::getLocale());
 				$galley->setPaperId($paperId);
 				$galley->setFileId($fileId);
 				$galleyDao->insertGalley($galley);
@@ -811,6 +811,7 @@ class ImportOCS1 {
 				PaperSearchIndex::updateFileIndex($paperId, PAPER_SEARCH_GALLEY_FILE, $fileId);
 				$galley =& new PaperGalley();
 				$galley->setLabel('PDF');
+				$galley->setLocale(Locale::getLocale());
 				$galley->setPaperId($paperId);
 				$galley->setFileId($fileId);
 				$galleyDao->insertGalley($galley);
@@ -830,7 +831,7 @@ class ImportOCS1 {
 		}
 		$result->Close();
 	}
-	
+
 	/**
 	 * Import reviews.
 	 */
@@ -838,7 +839,7 @@ class ImportOCS1 {
 		if ($this->hasOption('verbose')) {
 			printf("Importing reviews\n");
 		}
-		
+
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
@@ -847,7 +848,7 @@ class ImportOCS1 {
 		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
 
 		$unassignedTrackId = null;
-		
+
 		$result = &$this->importDao->retrieve('SELECT * FROM reviews ORDER by timestamp');
 		while (!$result->EOF) {
 			$row = &$result->fields;
@@ -926,11 +927,11 @@ class ImportOCS1 {
 		}
 		$result->Close();
 	}
-	
+
 	//
 	// Helper functions
 	//
-	
+
 	/**
 	 * Rebuild the paper search index.
 	 * Note: Rebuilds index for _all_ conferences (non-optimal, but shouldn't be a problem)
@@ -940,10 +941,10 @@ class ImportOCS1 {
 		if ($this->hasOption('verbose')) {
 			printf("Rebuilding search index\n");
 		}
-		
+
 		PaperSearchIndex::rebuildIndex();
 	}
-	
+
 	/**
 	 * Get the list of conflicting user accounts.
 	 */

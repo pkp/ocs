@@ -56,7 +56,7 @@ class StatisticsHandler extends ManagerHandler {
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$tracks =& $trackDao->getSchedConfTracks($schedConf->getSchedConfId());
 		$templateMgr->assign('tracks', $tracks->toArray());
-		
+
 		//$issueStatistics = $schedConfStatisticsDao->getIssueStatistics($schedConf->getSchedConfId(), $fromDate, $toDate);
 		//$templateMgr->assign('issueStatistics', $issueStatistics);
 
@@ -138,7 +138,7 @@ class StatisticsHandler extends ManagerHandler {
 		}
 		Request::redirect(null, null, 'manager', 'statistics', null, array('statisticsYear' => Request::getUserVar('statisticsYear')));
 	}
-	
+
 	function csvEscape($value) {
 		$value = str_replace('"', '""', $value);
 		return '"' . $value . '"';

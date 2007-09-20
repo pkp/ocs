@@ -25,7 +25,7 @@ class PaperHTMLGalley extends PaperGalley {
 	function PaperHTMLGalley() {
 		parent::PaperGalley();
 	}
-	
+
 	/**
 	 * Check if galley is an HTML galley.
 	 * @return boolean
@@ -33,7 +33,7 @@ class PaperHTMLGalley extends PaperGalley {
 	function isHTMLGalley() {
 		return true;
 	}
-	
+
 	/**
 	 * Return string containing the contents of the HTML file.
 	 * This function performs any necessary filtering, like image URL replacement.
@@ -44,7 +44,7 @@ class PaperHTMLGalley extends PaperGalley {
 		import('file.PaperFileManager');
 		$fileManager = &new PaperFileManager($this->getPaperId());
 		$contents = $fileManager->readFile($this->getFileId());
-		
+
 		// Replace image references
 		$images = &$this->getImageFiles();
 
@@ -75,8 +75,8 @@ class PaperHTMLGalley extends PaperGalley {
 		$site =& Request::getSite();
 
 		$paramArray = array(
-			'confTitle' => $schedConf->getTitle(),
-			'siteTitle' => $site->getTitle(),
+			'confTitle' => $schedConf->getSchedConfTitle(),
+			'siteTitle' => $site->getSiteTitle(),
 			'currentUrl' => Request::getRequestUrl()
 		);
 
@@ -147,7 +147,7 @@ class PaperHTMLGalley extends PaperGalley {
 	//
 	// Get/set methods
 	//
-	
+
 	/**
 	 * Get ID of associated stylesheet file, if applicable.
 	 * @return int
@@ -155,7 +155,7 @@ class PaperHTMLGalley extends PaperGalley {
 	function getStyleFileId() {
 		return $this->getData('styleFileId');
 	}
-	
+
 	/**
 	 * Set ID of associated stylesheet file.
 	 * @param $styleFileId int
@@ -163,7 +163,7 @@ class PaperHTMLGalley extends PaperGalley {
 	function setStyleFileId($styleFileId) {
 		return $this->setData('styleFileId', $styleFileId);
 	}
-	
+
 	/**
 	 * Return the stylesheet file associated with this HTML galley, if applicable.
 	 * @return PaperFile
@@ -172,7 +172,7 @@ class PaperHTMLGalley extends PaperGalley {
 		$styleFile = &$this->getData('styleFile');
 		return $styleFile;
 	}
-		
+
 	/**
 	 * Set the stylesheet file for this HTML galley.
 	 * @param PaperFile $styleFile
@@ -180,7 +180,7 @@ class PaperHTMLGalley extends PaperGalley {
 	function setStyleFile(&$styleFile) {
 		$this->setData('styleFile', $styleFile);
 	}
-		
+
 	/**
 	 * Return array of image files for this HTML galley.
 	 * @return array
@@ -189,7 +189,7 @@ class PaperHTMLGalley extends PaperGalley {
 		$images = &$this->getData('images');
 		return $images;
 	}
-		
+
 	/**
 	 * Set array of image files for this HTML galley.
 	 * @param $images array
@@ -198,7 +198,7 @@ class PaperHTMLGalley extends PaperGalley {
 	function setImageFiles(&$images) {
 		return $this->setData('images', $images);
 	}
-	
+
 }
 
 ?>

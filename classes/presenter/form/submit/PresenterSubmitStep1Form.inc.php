@@ -17,31 +17,31 @@
 import("presenter.form.submit.PresenterSubmitForm");
 
 class PresenterSubmitStep1Form extends PresenterSubmitForm {
-	
+
 	/**
 	 * Constructor.
 	 */
 	function PresenterSubmitStep1Form($paper = null) {
 		parent::PresenterSubmitForm($paper, 1);
-		
+
 		$schedConf = &Request::getSchedConf();
-		
+
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'trackId', 'required', 'presenter.submit.form.trackRequired'));
 		$this->addCheck(new FormValidatorCustom($this, 'trackId', 'required', 'presenter.submit.form.trackRequired', array(DAORegistry::getDAO('TrackDAO'), 'trackExists'), array($schedConf->getSchedConfId())));
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
 	function display() {
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
-		
+
 		$user = &Request::getUser();
 
 		$templateMgr = &TemplateManager::getManager();
-		
+
 		// Get tracks for this conference
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 
@@ -58,7 +58,7 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize form data from current paper.
 	 */
@@ -70,21 +70,21 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 			);
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
 		$this->readUserVars(array('submissionChecklist', 'copyrightNoticeAgree', 'trackId', 'commentsToDirector'));
 	}
-	
+
 	/**
 	 * Save changes to paper.
 	 * @return int the paper ID
 	 */
 	function execute() {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		
+
 		if (isset($this->paper)) {
 			// Update existing paper
 			$this->paper->setTrackId($this->getData('trackId'));
@@ -94,19 +94,19 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 				$this->paper->setSubmissionProgress($this->step + 1);
 			}
 			$paperDao->updatePaper($this->paper);
-			
+
 		} else {
 			// Insert new paper
 			$schedConf = &Request::getSchedConf();
 			$user = &Request::getUser();
-		
+
 			$this->paper = &new Paper();
 			$this->paper->setUserId($user->getUserId());
 			$this->paper->setSchedConfId($schedConf->getSchedConfId());
 			$this->paper->setTrackId($this->getData('trackId'));
 			$this->paper->stampStatusModified();
 			$this->paper->setSubmissionProgress($this->step + 1);
-			$this->paper->setLanguage('');
+			$this->paper->setLanguage($conference->getPrimaryLocale());
 			$this->paper->setCommentsToDirector($this->getData('commentsToDirector'));
 
 			switch($schedConf->getSetting('reviewMode')) {
@@ -119,7 +119,7 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 					$this->paper->setCurrentStage(REVIEW_STAGE_PRESENTATION);
 					break;
 			}
-		
+
 			// Set user to initial presenter
 			$user = &Request::getUser();
 			$presenter = &new Presenter();
@@ -130,17 +130,17 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 			$presenter->setCountry($user->getCountry());
 			$presenter->setEmail($user->getEmail());
 			$presenter->setUrl($user->getUrl());
-			$presenter->setBiography($user->getBiography());
+			$presenter->setBiography($user->getBiography(null), null);
 			$presenter->setPrimaryContact(1);
 			$this->paper->addPresenter($presenter);
-			
+
 			$paperDao->insertPaper($this->paper);
 			$this->paperId = $this->paper->getPaperId();
 		}
-		
+
 		return $this->paperId;
 	}
-	
+
 }
 
 ?>

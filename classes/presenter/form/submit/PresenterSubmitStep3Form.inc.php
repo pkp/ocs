@@ -17,7 +17,6 @@
 import("presenter.form.submit.PresenterSubmitForm");
 
 class PresenterSubmitStep3Form extends PresenterSubmitForm {
-	
 	/**
 	 * Constructor.
 	 */
@@ -26,7 +25,7 @@ class PresenterSubmitStep3Form extends PresenterSubmitForm {
 
 		// Validation checks for this form
 	}
-	
+
 	/**
 	 * Initialize form data from current paper.
 	 */
@@ -37,7 +36,7 @@ class PresenterSubmitStep3Form extends PresenterSubmitForm {
 			);
 		}
 	}
-	
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -47,13 +46,13 @@ class PresenterSubmitStep3Form extends PresenterSubmitForm {
 			)
 		);
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		
+
 		// Get supplementary files for this paper
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 		if ($this->paper->getSubmissionFileId() != null) {
@@ -61,7 +60,7 @@ class PresenterSubmitStep3Form extends PresenterSubmitForm {
 		}
 		parent::display();
 	}
-	
+
 	/**
 	 * Upload the submission file.
 	 * @param $fileName string
@@ -81,12 +80,12 @@ class PresenterSubmitStep3Form extends PresenterSubmitForm {
 		if (isset($submissionFileId)) {
 			$this->paper->setSubmissionFileId($submissionFileId);
 			return $paperDao->updatePaper($this->paper);
-			
+
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Save changes to paper.
 	 * @return int the paper ID
@@ -95,7 +94,7 @@ class PresenterSubmitStep3Form extends PresenterSubmitForm {
 		// Update paper
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$paper = &$this->paper;
-		
+
 		if ($paper->getSubmissionProgress() <= $this->step) {
 			$schedConf =& Request::getSchedConf();
 
@@ -105,10 +104,9 @@ class PresenterSubmitStep3Form extends PresenterSubmitForm {
 
 			$paperDao->updatePaper($paper);
 		}
-		
+
 		return $this->paperId;
 	}
-	
 }
 
 ?>

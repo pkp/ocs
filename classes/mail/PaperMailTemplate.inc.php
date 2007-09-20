@@ -34,7 +34,7 @@ class PaperMailTemplate extends MailTemplate {
 
 	/** @var int Associated type of this email */
 	var $assocType;
-	
+
 	/** @var int Associated ID of this email */
 	var $assocId;
 
@@ -57,10 +57,10 @@ class PaperMailTemplate extends MailTemplate {
 		$paper = &$this->paper;
 		$conference = isset($this->conference)?$this->conference:Request::getConference();
 		$schedConf = isset($this->schedConf)?$this->schedConf:Request::getSchedConf();
-		
+
 		$paramArray['paperTitle'] = strip_tags($paper->getPaperTitle());
-		$paramArray['conferenceName'] = strip_tags($conference->getTitle());
-		$paramArray['schedConfName'] = strip_tags($schedConf->getTitle());
+		$paramArray['conferenceName'] = strip_tags($conference->getConferenceTitle());
+		$paramArray['schedConfName'] = strip_tags($schedConf->getSchedConfTitle());
 		$paramArray['trackName'] = strip_tags($paper->getTrackTitle());
 		$paramArray['paperAbstract'] = strip_tags($paper->getPaperAbstract());
 		$paramArray['presenterString'] = strip_tags($paper->getPresenterString());
@@ -75,29 +75,29 @@ class PaperMailTemplate extends MailTemplate {
 		if (parent::send()) {
 			if (!isset($this->skip) || !$this->skip) $this->log();
 			return true;
-			
+
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * @see parent::sendWithParams()
 	 */
 	function sendWithParams($paramArray) {
 		$savedSubject = $this->getSubject();
 		$savedBody = $this->getBody();
-		
+
 		$this->assignParams($paramArray);
-		
+
 		$ret = $this->send();
-		
+
 		$this->setSubject($savedSubject);
 		$this->setBody($savedBody);
-		
+
 		return $ret;
 	}
-	
+
 	/**
 	 * Add a generic association between this email and some event type / type / ID tuple.
 	 * @param $eventType int
@@ -133,12 +133,12 @@ class PaperMailTemplate extends MailTemplate {
 		import('paper.log.PaperEmailLogEntry');
 		import('paper.log.PaperLog');
 		$entry = &new PaperEmailLogEntry();
-		
+
 		// Log data
 		$entry->setEventType($this->eventType);
 		$entry->setAssocType($this->assocType);
 		$entry->setAssocId($this->assocId);
-		
+
 		// Email data
 		$entry->setSubject($this->getSubject());
 		$entry->setBody($this->getBody());

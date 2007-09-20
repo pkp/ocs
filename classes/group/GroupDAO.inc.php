@@ -18,14 +18,6 @@
 import ('group.Group');
 
 class GroupDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function GroupDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Retrieve a group by ID.
 	 * @param $groupId int
@@ -80,6 +72,14 @@ class GroupDAO extends DAO {
 	}
 
 	/**
+	 * Get the list of fields for which locale data is stored.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('title');
+	}
+
+	/**
 	 * Internal function to return a Group object from a row.
 	 * @param $row array
 	 * @return Group
@@ -87,17 +87,25 @@ class GroupDAO extends DAO {
 	function &_returnGroupFromRow(&$row) {
 		$group = &new Group();
 		$group->setGroupId($row['group_id']);
-		$group->setTitle($row['title']);
-		$group->setTitleAlt1($row['title_alt1']);
-		$group->setTitleAlt2($row['title_alt2']);
 		$group->setAboutDisplayed($row['about_displayed']);
 		$group->setSequence($row['seq']);
 		$group->setConferenceId($row['conference_id']);
 		$group->setSchedConfId($row['sched_conf_id']);
-		
+		$this->getDataObjectSettings('group_settings', 'group_id', $row['group_id'], $group);
+
 		HookRegistry::call('GroupDAO::_returnGroupFromRow', array(&$group, &$row));
 
 		return $group;
+	}
+
+	/**
+	 * Update the settings for this object
+	 * @param $group object
+	 */
+	function updateLocaleFields(&$group) {
+		$this->updateDataObjectSettings('group_settings', $group, array(
+			'group_id' => $group->getGroupId()
+		));
 	}
 
 	/**
@@ -107,44 +115,36 @@ class GroupDAO extends DAO {
 	function insertGroup(&$group) {
 		$this->update(
 			'INSERT INTO groups
-				(title, title_alt1, title_alt2, seq, conference_id, sched_conf_id, about_displayed)
+				(seq, conference_id, sched_conf_id, about_displayed)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?)',
 			array(
-				$group->getTitle(),
-				$group->getTitleAlt1(),
-				$group->getTitleAlt2(),
 				$group->getSequence() == null ? 0 : $group->getSequence(),
 				$group->getConferenceId(),
 				$group->getSchedConfId(),
 				$group->getAboutDisplayed()
 			)
 		);
-		
+
+		$this->updateLocaleFields($group);
 		$group->setGroupId($this->getInsertGroupId());
 		return $group->getGroupId();
 	}
-	
+
 	/**
 	 * Update an existing board group.
 	 * @param $group Group
 	 */
 	function updateGroup(&$group) {
-		return $this->update(
+		$returner = $this->update(
 			'UPDATE groups
 				SET
-					title = ?,
-					title_alt1 = ?,
-					title_alt2 = ?,
 					seq = ?,
 					conference_id = ?,
 					sched_conf_id = ?,
 					about_displayed = ?
 				WHERE group_id = ?',
 			array(
-				$group->getTitle(),
-				$group->getTitleAlt1(),
-				$group->getTitleAlt2(),
 				$group->getSequence(),
 				$group->getConferenceId(),
 				$group->getSchedConfId(),
@@ -152,8 +152,11 @@ class GroupDAO extends DAO {
 				$group->getGroupId()
 			)
 		);
+
+		$this->updateLocaleFields($group);
+		return $returner;
 	}
-	
+
 	/**
 	 * Delete a board group, including membership info
 	 * @param $conference Group
@@ -161,7 +164,7 @@ class GroupDAO extends DAO {
 	function deleteGroup(&$group) {
 		return $this->deleteGroupById($group->getGroupId());
 	}
-	
+
 	/**
 	 * Delete a board group, including membership info
 	 * @param $groupId int
@@ -169,12 +172,10 @@ class GroupDAO extends DAO {
 	function deleteGroupById($groupId) {
 		$groupMembershipDao = &DAORegistry::getDAO('GroupMembershipDAO');
 		$groupMembershipDao->deleteMembershipByGroupId($groupId);
-
-		return $this->update(
-			'DELETE FROM groups WHERE group_id = ?', $groupId
-		);
+		$this->update('DELETE FROM group_settings WHERE group_id = ?', $groupId);
+		return $this->update('DELETE FROM groups WHERE group_id = ?', $groupId);
 	}
-	
+
 	/**
 	 * Delete board groups by conference ID, including membership info
 	 * @param $conferenceId int
@@ -185,7 +186,7 @@ class GroupDAO extends DAO {
 			$this->deleteGroup($group);
 		}
 	}
-	
+
 	/**
 	 * Delete board groups by scheduled conference ID, including membership info
 	 * @param $schedConfId int
@@ -196,7 +197,7 @@ class GroupDAO extends DAO {
 			$this->deleteGroup($group);
 		}
 	}
-	
+
 	/**
 	 * Sequentially renumber board groups in their sequence order, optionally by conference.
 	 * @param $conferenceId int
@@ -208,7 +209,7 @@ class GroupDAO extends DAO {
 			'ORDER BY seq',
 			$conferenceId
 		);
-		
+
 		for ($i=1; !$result->EOF; $i++) {
 			list($groupId) = $result->fields;
 			$this->update(
@@ -218,14 +219,14 @@ class GroupDAO extends DAO {
 					$groupId
 				)
 			);
-			
+
 			$result->moveNext();
 		}
 
 		$result->close();
 		unset($result);
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted board group.
 	 * @return int
@@ -233,7 +234,7 @@ class GroupDAO extends DAO {
 	function getInsertGroupId() {
 		return $this->getInsertId('groups', 'group_id');
 	}
-	
+
 }
 
 ?>

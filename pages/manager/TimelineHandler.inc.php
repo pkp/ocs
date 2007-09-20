@@ -22,9 +22,9 @@ class TimelineHandler extends ManagerHandler {
 	function timeline($args) {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		import('manager.form.TimelineForm');
-		
+
 		$timelineForm = &new TimelineForm(Request::getUserVar('overrideDates'));
 		$timelineForm->initData();
 		$timelineForm->display();
@@ -33,12 +33,12 @@ class TimelineHandler extends ManagerHandler {
 
 	function updateTimeline($args) {
 		parent::validate();
-		
+
 		import('manager.form.TimelineForm');
-		
+
 		$timelineForm = &new TimelineForm(Request::getUserVar('overrideDates'));
 		$timelineForm->readInputData();
-		
+
 		if ($timelineForm->validate()) {
 			$timelineForm->execute();
 			Request::redirect(null, null, null, 'index');
@@ -48,6 +48,6 @@ class TimelineHandler extends ManagerHandler {
 			$timelineForm->display();
 		}
 	}
-	
+
 }
 ?>

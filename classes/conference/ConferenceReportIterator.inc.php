@@ -21,8 +21,11 @@ class ConferenceReportIterator extends DBRowIterator {
 	/** @var $locale Name of report's locale */
 	var $locale;
 
-	/** @var $altLocaleNum int 1 iff current locale is conference's alt locale 1, 2 iff current locale is conference's alt locale 2 */
-	var $altLocaleNum;
+	/** @var $trackDao object */
+	var $trackDao;
+
+	/** @var $paperDao object */
+	var $paperDao;
 
 	/** @var $conferenceStatisticsDao object */
 	var $conferenceStatisticsDao;
@@ -54,6 +57,9 @@ class ConferenceReportIterator extends DBRowIterator {
 	/** @var $reportType int The report type (REPORT_TYPE_...) */
 	var $type;
 
+	/** @var $trackCache array */
+	var $trackCache;
+
 	/**
 	 * Constructor.
 	 * Initialize the ConferenceReportIterator
@@ -64,7 +70,9 @@ class ConferenceReportIterator extends DBRowIterator {
 	 * @param $reportType int REPORT_TYPE_...
 	 */
 	function ConferenceReportIterator($conferenceId, &$records, $dateStart, $dateEnd, $reportType) {
-		$this->presenterDao =& DAORegistry::getDao('PresenterDAO');
+		$this->trackDao =& DAORegistry::getDAO('TrackDAO');
+		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
+		$this->presenterDao =& DAORegistry::getDAO('PresenterDAO');
 		$this->presenterSubmissionDao =& DAORegistry::getDAO('PresenterSubmissionDAO');
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
 		$this->conferenceStatisticsDao =& DAORegistry::getDAO('ConferenceStatisticsDAO');
@@ -74,7 +82,6 @@ class ConferenceReportIterator extends DBRowIterator {
 
 		parent::DBRowIterator($records);
 
-		$this->altLocaleNum = Locale::isAlternateConferenceLocale($conferenceId);
 		$this->type = $reportType;
 
 		$this->maxPresenterCount = $this->conferenceStatisticsDao->getMaxPresenterCount($conferenceId, $dateStart, $dateEnd);
@@ -82,6 +89,18 @@ class ConferenceReportIterator extends DBRowIterator {
 		if ($this->type !== REPORT_TYPE_DIRECTOR) {
 			$this->maxDirectorCount = $this->conferenceStatisticsDao->getMaxDirectorCount($conferenceId, $dateStart, $dateEnd);
 		}
+	}
+
+	/**
+	 * Get a track (cached) by ID.
+	 * @param $trackId int
+	 * @return object
+	 */ 
+	function &getTrack($trackId) {
+		if (!isset($this->trackCache[$trackId])) {
+			$this->trackCache[$trackId] =& $this->trackDao->getTrack($trackId);
+		}
+		return $this->trackCache[$trackId];
 	}
 
 	/**
@@ -97,14 +116,12 @@ class ConferenceReportIterator extends DBRowIterator {
 		);
 
 		$ret['dateSubmitted'] = $this->conferenceStatisticsDao->dateFromDB($row['date_submitted']);
-		$ret['title'] = $row['paper_title'];
 
-		$ret['track'] = null;
-		switch ($this->altLocaleNum) {
-			case 1: $ret['track'] = $row['track_title_alt1']; break;
-			case 2: $ret['track'] = $row['track_title_alt2']; break;
-		}
-		if (empty($ret['track'])) $ret['track'] = $row['track_title'];
+		$paper =& $this->paperDao->getPaper($row['paper_id']);
+		$ret['title'] = $paper->getPaperTitle();
+
+		$track =& $this->trackDao->getTrack($row['track_id']);
+		$ret['track'] = $track->getTrackTitle();
 
 		// Presenter Names & Affiliations
 		$maxPresenters = $this->getMaxPresenters();
@@ -116,7 +133,7 @@ class ConferenceReportIterator extends DBRowIterator {
 		foreach ($presenters as $presenter) {
 			$ret['presenters'][$presenterIndex] = $presenter->getFullName();
 			$ret['affiliations'][$presenterIndex] = $presenter->getAffiliation();
-			
+
 			$country = $presenter->getCountry();
 			if (!empty($country)) {
 				$ret['countries'][$presenterIndex] = $this->countryDao->getCountry($country);

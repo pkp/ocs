@@ -11,8 +11,20 @@
 {assign var="pageTitle" value="manager.setup.additionalContent.title"}
 {include file="manager/setup/setupHeader.tpl"}
 
-<form method="post" action="{url op="saveSetup" path="2"}" enctype="multipart/form-data">
+<form name="setupForm" method="post" action="{url op="saveSetup" path="2"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
+
+{if count($formLocales) > 1}
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="80%" class="value">
+			{url|assign:"setupFormUrl" op="setup" path="2"}
+			{form_language_chooser form="setupForm" url=$setupFormUrl}
+		</td>
+	</tr>
+</table>
+{/if}
 
 <h3>2.1 {translate key="manager.setup.additionalContent.homepage"}</h3>
 
@@ -37,7 +49,7 @@
 
 <p>{translate key="manager.setup.additionalContent.additionalContent.description"}</p>
 
-<p><textarea name="additionalHomeContent" id="additionalHomeContent" rows="10" cols="60" class="textArea">{$additionalHomeContent|escape}</textarea></p>
+<p><textarea name="additionalHomeContent[{$formLocale|escape}]" id="additionalHomeContent" rows="10" cols="60" class="textArea">{$additionalHomeContent[$formLocale]|escape}</textarea></p>
 
 <div class="separator"></div>
 
@@ -47,11 +59,11 @@
 
 <h4>{translate key="manager.setup.additionalContent.information.forReaders"}</h4>
 
-<p><textarea name="readerInformation" id="readerInformation" rows="10" cols="60" class="textArea">{$readerInformation|escape}</textarea></p>
+<p><textarea name="readerInformation[{$formLocale|escape}]" id="readerInformation" rows="10" cols="60" class="textArea">{$readerInformation[$formLocale]|escape}</textarea></p>
 
 <h4>{translate key="manager.setup.additionalContent.information.forPresenters"}</h4>
 
-<p><textarea name="presenterInformation" id="presenterInformation" rows="10" cols="60" class="textArea">{$presenterInformation|escape}</textarea></p>
+<p><textarea name="presenterInformation[{$formLocale|escape}]" id="presenterInformation" rows="10" cols="60" class="textArea">{$presenterInformation[$formLocale]|escape}</textarea></p>
 
 <div class="separator"></div>
 
@@ -89,7 +101,7 @@
 
 <p>{translate key="manager.setup.additionalContent.announcementsIntroductionDescription"}</p>
 
-<p><textarea name="announcementsIntroduction" id="announcementsIntroduction" rows="10" cols="60" class="textArea">{$announcementsIntroduction|escape}</textarea></p>
+<p><textarea name="announcementsIntroduction[{$formLocale|escape}]" id="announcementsIntroduction" rows="10" cols="60" class="textArea">{$announcementsIntroduction[$formLocale]|escape}</textarea></p>
 
 <div class="separator"></div>
 

@@ -18,14 +18,6 @@
 import ('conference.Track');
 
 class TrackDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function TrackDAO() {
-		parent::DAO();
-	}
-	
 	/**
 	 * Retrieve a track by ID.
 	 * @param $trackId int
@@ -46,17 +38,22 @@ class TrackDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve a track by abbreviation.
 	 * @param $trackAbbrev string
-	 * @return Track
+	 * @param $locale string Optional
+	 * @return track
 	 */
-	function &getTrackByAbbrev($trackAbbrev, $schedConfId) {
-		$result = &$this->retrieve(
-			'SELECT * FROM tracks WHERE abbrev = ? AND sched_conf_id = ?',
-			array($trackAbbrev, $schedConfId)
-		);
+	function &getTrackByAbbrev($trackAbbrev, $schedConfId, $locale = null) {
+		$sql = 'SELECT * FROM tracks t, track_settings l WHERE l.track_id = t.track_id AND l.setting_name = ? AND l.setting_value = ? AND t.sched_conf_id = ?';
+		$params = array('abbrev', $trackAbbrev, $schedConfId);
+
+		if ($locale !== null) {
+			$sql .= ' AND l.locale = ?';
+			$params[] = $locale;
+		}
+		$result = &$this->retrieve($sql, $params);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -68,17 +65,22 @@ class TrackDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve a track by title.
 	 * @param $trackTitle string
-	 * @return Track
+	 * @param $locale string optional
+	 * @return track
 	 */
-	function &getTrackByTitle($trackTitle, $schedConfId) {
-		$result = &$this->retrieve(
-			'SELECT * FROM tracks WHERE (title = ? OR title_alt1 = ? OR title_alt2 = ?) AND sched_conf_id = ?',
-			array($trackTitle, $trackTitle, $trackTitle, $schedConfId)
-		);
+	function &getTrackByTitle($trackTitle, $schedConfId, $locale = null) {
+		$sql = 'SELECT * FROM tracks t, track_settings l WHERE l.track_id = t.track_id AND l.setting_name = ? AND l.setting_value = ? AND t.sched_conf_id = ?';
+		$params = array('title', $trackAbbrev, $schedConfId);
+
+		if ($locale !== null) {
+			$sql .= ' AND l.locale = ?';
+			$params[] = $locale;
+		}
+		$result = &$this->retrieve($sql, $params);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -90,18 +92,34 @@ class TrackDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve a track by title and abbrev.
 	 * @param $trackTitle string
 	 * @param $trackAbbrev string
+	 * @param $locale string optional
 	 * @return Track
 	 */
-	function &getTrackByTitleAndAbbrev($trackTitle, $trackAbbrev, $schedConfId) {
-		$result = &$this->retrieve(
-			'SELECT * FROM tracks WHERE (title = ? OR title_alt1 = ? OR title_alt2 = ?) AND (abbrev = ? OR abbrev_alt1 = ? OR abbrev_alt2 = ?) AND sched_conf_id = ?',
-			array($trackTitle, $trackTitle, $trackTitle, $trackAbbrev, $trackAbbrev, $trackAbbrev, $schedConfId)
-		);
+	function &getTrackByTitleAndAbbrev($trackTitle, $trackAbbrev, $schedConfId, $locale = null) {
+		$params = array('title', 'abbrev', $trackTitle, $trackAbbrev, $schedConfId);
+		if ($locale !== null) {
+			$params[] = $locale;
+			$params[] = $locale;
+		}
+
+		$sql = 'SELECT	t.*
+			FROM	tracks t,
+				track_settings l1,
+				track_settings l2
+			WHERE	l1.track_id = t.track_id AND
+				l2.track_id = t.track_id AND
+				l1.setting_name = ? AND
+				l2.setting_name = ? AND
+				l1.setting_value = ? AND
+				l2.setting_value = ? AND
+				t.sched_conf_id = ?';
+		if ($locale !== null) $sql .= ' AND l1.locale = ? AND l2.locale = ?';
+		$result =& $this->retrieve($sql, $params);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -113,7 +131,7 @@ class TrackDAO extends DAO {
 
 		return $returner;
 	}
-	
+
 	/**
 	 * Internal function to return a Track object from a row.
 	 * @param $row array
@@ -123,21 +141,26 @@ class TrackDAO extends DAO {
 		$track = &new Track();
 		$track->setTrackId($row['track_id']);
 		$track->setSchedConfId($row['sched_conf_id']);
-		$track->setTitle($row['title']);
-		$track->setTitleAlt1($row['title_alt1']);
-		$track->setTitleAlt2($row['title_alt2']);
-		$track->setAbbrev($row['abbrev']);
-		$track->setAbbrevAlt1($row['abbrev_alt1']);
-		$track->setAbbrevAlt2($row['abbrev_alt2']);
 		$track->setSequence($row['seq']);
 		$track->setMetaReviewed($row['meta_reviewed']);
-		$track->setIdentifyType($row['identify_type']);
 		$track->setDirectorRestricted($row['director_restricted']);
-		$track->setPolicy($row['policy']);
-		
+
+		$this->getDataObjectSettings('track_settings', 'track_id', $row['track_id'], $track);
+
 		HookRegistry::call('TrackDAO::_returnTrackFromRow', array(&$track, &$row));
 
 		return $track;
+	}
+
+	/**
+	 * Update the localized fields for this table
+	 * @param $track object
+	 */
+	function updateLocaleFields(&$track) {
+		$this->updateDataObjectSettings('track_settings', $track, array(
+
+			'track_id' => $track->getTrackId()
+		));
 	}
 
 	/**
@@ -147,66 +170,45 @@ class TrackDAO extends DAO {
 	function insertTrack(&$track) {
 		$this->update(
 			'INSERT INTO tracks
-				(sched_conf_id, title, title_alt1, title_alt2, abbrev, abbrev_alt1, abbrev_alt2, seq, meta_reviewed, identify_type, policy, director_restricted)
+				(sched_conf_id, seq, meta_reviewed, director_restricted)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?)',
 			array(
 				$track->getSchedConfId(),
-				$track->getTitle(),
-				$track->getTitleAlt1(),
-				$track->getTitleAlt2(),
-				$track->getAbbrev(),
-				$track->getAbbrevAlt1(),
-				$track->getAbbrevAlt2(),
 				$track->getSequence() == null ? 0 : $track->getSequence(),
 				$track->getMetaReviewed() ? 1 : 0,
-				$track->getIdentifyType(),
-				$track->getPolicy(),
 				$track->getDirectorRestricted() ? 1 : 0
 			)
 		);
-		
+
 		$track->setTrackId($this->getInsertTrackId());
+		$this->updateLocaleFields($track);
 		return $track->getTrackId();
 	}
-	
+
 	/**
 	 * Update an existing track.
 	 * @param $track Track
 	 */
 	function updateTrack(&$track) {
-		return $this->update(
+		$returner = $this->update(
 			'UPDATE tracks
 				SET
-					title = ?,
-					title_alt1 = ?,
-					title_alt2 = ?,
-					abbrev = ?,
-					abbrev_alt1 = ?,
-					abbrev_alt2 = ?,
 					seq = ?,
 					meta_reviewed = ?,
-					identify_type = ?,
-					policy = ?,
 					director_restricted = ?
 				WHERE track_id = ?',
 			array(
-				$track->getTitle(),
-				$track->getTitleAlt1(),
-				$track->getTitleAlt2(),
-				$track->getAbbrev(),
-				$track->getAbbrevAlt1(),
-				$track->getAbbrevAlt2(),
 				$track->getSequence(),
 				$track->getMetaReviewed(),
-				$track->getIdentifyType(),
-				$track->getPolicy(),
 				$track->getDirectorRestricted(),
 				$track->getTrackId()
 			)
 		);
+		$this->updateLocaleFields($track);
+		return $returner;
 	}
-	
+
 	/**
 	 * Delete a track.
 	 * @param $track Track
@@ -214,7 +216,7 @@ class TrackDAO extends DAO {
 	function deleteTrack(&$track) {
 		return $this->deleteTrackById($track->getTrackId(), $track->getSchedConfId());
 	}
-	
+
 	/**
 	 * Delete a track by ID.
 	 * @param $trackId int
@@ -233,31 +235,21 @@ class TrackDAO extends DAO {
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaperDao->deletePublishedPapersByTrackId($trackId);
 
-		if (isset($schedConfId)) {
-			return $this->update(
-				'DELETE FROM tracks WHERE track_id = ? AND sched_conf_id = ?', array($trackId, $schedConfId)
-			);
-		
-		} else {
-			return $this->update(
-				'DELETE FROM tracks WHERE track_id = ?', $trackId
-			);
-		}
+		if (isset($schedConfId) && !$this->trackExists($trackId, $schedConfId)) return false;
+		$this->update('DELETE FROM track_settings WHERE track_id = ?', array($trackId));
+		return $this->update('DELETE FROM tracks WHERE track_id = ?', array($trackId));
 	}
-	
+
 	/**
-	 * Delete tracks by sched conf ID
-	 * NOTE: This does not delete dependent entries EXCEPT from track_directors. It is intended
-	 * to be called only when deleting a scheduled conference.
+	 * Delete tracks by sched conf ID including ALL dependents.
 	 * @param $schedConfId int
 	 */
 	function deleteTracksBySchedConf($schedConfId) {
-		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
-		$trackDirectorsDao->deleteDirectorsBySchedConfId($schedConfId);
-
-		return $this->update(
-			'DELETE FROM tracks WHERE sched_conf_id = ?', $schedConfId
-		);
+		$tracks =& $this->getSchedConfTracks($schedConfId);
+		while (($track =& $tracks->next())) {
+			$this->deleteTrack($track);
+			unset($track);
+		}
 	}
 
 	/**
@@ -267,12 +259,12 @@ class TrackDAO extends DAO {
 	 */
 	function &getDirectorTracks($schedConfId) {
 		$returner = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT s.*, se.user_id AS director_id FROM track_directors se, tracks s WHERE se.track_id = s.track_id AND s.sched_conf_id = se.sched_conf_id AND s.sched_conf_id = ?',
 			$schedConfId
 		);
-		
+
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			$track = &$this->_returnTrackFromRow($row);
@@ -286,7 +278,7 @@ class TrackDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $returner;
 	}
 
@@ -297,7 +289,7 @@ class TrackDAO extends DAO {
 	 */
 	function &getTracksBySchedConfId($schedConfId) {
 		$returner = array();
-		
+
 		$result = &$this->retrieve(
 			'SELECT DISTINCT s.*,
 				COALESCE(o.seq, s.seq) AS track_seq
@@ -307,7 +299,7 @@ class TrackDAO extends DAO {
 			WHERE s.track_id = a.track_id ORDER BY track_seq',
 			array($schedConfId)
 		);
-		
+
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			$returner[] = &$this->_returnTrackFromRow($row);
@@ -316,10 +308,10 @@ class TrackDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-	
+
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve all tracks for a scheduled conference.
 	 * @return DAOResultFactory containing Tracks ordered by sequence
@@ -329,43 +321,32 @@ class TrackDAO extends DAO {
 			'SELECT * FROM tracks WHERE sched_conf_id = ? ORDER BY seq',
 			$schedConfId, $rangeInfo
 		);
-		
+
 		$returner = &new DAOResultFactory($result, $this, '_returnTrackFromRow');
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve the IDs and titles of the tracks for a scheduled conference in an associative array.
 	 * @return array
 	 */
 	function &getTrackTitles($schedConfId, $submittableOnly = false) {
-		$schedConfDao = DAORegistry::getDAO('SchedConfDAO');
-		$schedConf = $schedConfDao->getSchedConf($schedConfId);
-
 		$tracks = array();
-		
-		$result = &$this->retrieve(
-			($submittableOnly?
-			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE sched_conf_id = ? AND director_restricted = 0 ORDER BY seq':
-			'SELECT track_id, title, title_alt1, title_alt2 FROM tracks WHERE sched_conf_id = ? ORDER BY seq'),
-			$schedConfId
-		);
+		$tracksIterator =& $this->getConferenceTracks($schedConfId);
+		while (($track =& $tracksIterator->next())) {
+			if (!$submittableOnly || !$track->getDirectorRestricted()) {
+				$tracks[$track->getTrackId()] = $track->getTrackTitle();
+			}
 
-		$localeNumber = Locale::isAlternateConferenceLocale($schedConf->getConferenceId());
-
-		while (!$result->EOF) {
-			$trackTitle = $result->fields[$localeNumber + 1];
-			if (!isset($trackTitle)) $trackTitle = $result->fields[1];
-			$tracks[$result->fields[0]] = $trackTitle;
-			$result->moveNext();
+			unset($track);
 		}
 
 		$result->Close();
 		unset($result);
-	
+
 		return $tracks;
 	}
-	
+
 	/**
 	 * Check if a track exists with the specified ID.
 	 * @param $trackId int
@@ -394,7 +375,7 @@ class TrackDAO extends DAO {
 			'SELECT track_id FROM tracks WHERE sched_conf_id = ? ORDER BY seq',
 			$schedConfId
 		);
-		
+
 		for ($i=1; !$result->EOF; $i++) {
 			list($trackId) = $result->fields;
 			$this->update(
@@ -404,14 +385,14 @@ class TrackDAO extends DAO {
 					$trackId
 				)
 			);
-			
+
 			$result->moveNext();
 		}
-		
+
 		$result->close();
 		unset($result);
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted track.
 	 * @return int
@@ -439,7 +420,7 @@ class TrackDAO extends DAO {
 			'SELECT track_id FROM custom_track_orders WHERE sched_conf_id = ? ORDER BY seq',
 			$schedConfId
 		);
-		
+
 		for ($i=1; !$result->EOF; $i++) {
 			list($trackId) = $result->fields;
 			$this->update(
@@ -450,14 +431,14 @@ class TrackDAO extends DAO {
 					$schedConfId
 				)
 			);
-			
+
 			$result->moveNext();
 		}
-		
+
 		$result->close();
 		unset($result);
 	}
-	
+
 	/**
 	 * Check if a scheduled conference has custom track ordering.
 	 * @param $schedConfId int
@@ -487,7 +468,7 @@ class TrackDAO extends DAO {
 			'SELECT seq FROM custom_track_orders WHERE sched_conf_id = ? AND track_id = ?',
 			array($schedConfId, $trackId)
 		);
-		
+
 		$returner = null;
 		if (!$result->EOF) {
 			list($returner) = $result->fields;
@@ -508,13 +489,13 @@ class TrackDAO extends DAO {
 			'SELECT s.track_id FROM tracks s, sched_confs i WHERE i.sched_conf_id = s.sched_conf_id AND i.sched_conf_id = ? ORDER BY seq',
 			$schedConfId
 		);
-		
+
 		for ($i=1; !$result->EOF; $i++) {
 			list($trackId) = $result->fields;
 			$this->_insertCustomTrackOrder($schedConfId, $trackId, $i);
 			$result->moveNext();
 		}
-		
+
 		$result->close();
 		unset($result);
 	}

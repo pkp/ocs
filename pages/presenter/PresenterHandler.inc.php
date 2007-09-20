@@ -59,7 +59,7 @@ class PresenterHandler extends Handler {
 		} else {
 			$acceptingSubmissions = true;
 		}
-				
+
 		$templateMgr->assign('acceptingSubmissions', $acceptingSubmissions);
 		if(isset($notAcceptingSubmissionsMessage))
 			$templateMgr->assign('notAcceptingSubmissionsMessage', $notAcceptingSubmissionsMessage);

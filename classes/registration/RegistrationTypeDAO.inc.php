@@ -18,14 +18,6 @@
 import('registration.RegistrationType');
 
 class RegistrationTypeDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function RegistrationTypeDAO() {
-		parent::DAO();
-	}
-
 	/**
 	 * Retrieve a registration type by ID.
 	 * @param $typeId int
@@ -61,7 +53,7 @@ class RegistrationTypeDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT sched_conf_id FROM registration_types WHERE type_id = ?', $typeId
 		);
-		
+
 		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;	
 
 		$result->Close();
@@ -77,9 +69,13 @@ class RegistrationTypeDAO extends DAO {
 	 */
 	function getRegistrationTypeName($typeId) {
 		$result = &$this->retrieve(
-			'SELECT type_name FROM registration_types WHERE type_id = ?', $typeId
+			'SELECT COALESCE(l.setting_value, p.setting_value) FROM registration_type_settings l LEFT JOIN registration_type_settings p ON (p.type_id = ? AND p.setting_name = ? AND p.locale = ?) WHERE l.type_id = ? AND l.setting_name = ? AND l.locale = ?', 
+			array(
+				$typeId, 'name', Locale::getLocale(),
+				$typeId, 'name', Locale::getPrimaryLocale()
+			)
 		);
-		
+
 		$returner = isset($result->fields[0]) ? $result->fields[0] : false;
 
 		$result->Close();
@@ -97,7 +93,7 @@ class RegistrationTypeDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT institutional FROM registration_types WHERE type_id = ?', $typeId
 		);
-		
+
 		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;
 
 		$result->Close();
@@ -226,56 +222,6 @@ class RegistrationTypeDAO extends DAO {
 	}
 
 	/**
-	 * Check if a registration type exists with the given type name for a scheduled conference.
-	 * @param $typeName string
-	 * @param $schedConfId int
-	 * @return boolean
-	 */
-	function registrationTypeExistsByTypeName($typeName, $schedConfId) {
-		$result = &$this->retrieve(
-			'SELECT COUNT(*)
-				FROM registration_types
-				WHERE type_name = ?
-				AND   sched_conf_id = ?',
-			array(
-				$typeName,
-				$schedConfId
-			)
-		);
-		$returner = isset($result->fields[0]) && $result->fields[0] != 0 ? true : false;
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
-	}
-
-	/**
-	 * Return registration type ID based on a type name for a scheduled conference.
-	 * @param $typeName string
-	 * @param $schedConfId int
-	 * @return int
-	 */
-	function getRegistrationTypeByTypeName($typeName, $schedConfId) {
-		$result = &$this->retrieve(
-			'SELECT type_id
-				FROM registration_types
-				WHERE type_name = ?
-				AND   sched_conf_id = ?',
-			array(
-				$typeName,
-				$schedConfId
-			)
-		);
-		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
-	}
-
-	/**
 	 * Internal function to return a RegistrationType object from a row.
 	 * @param $row array
 	 * @return RegistrationType
@@ -284,9 +230,7 @@ class RegistrationTypeDAO extends DAO {
 		$registrationType = &new RegistrationType();
 		$registrationType->setTypeId($row['type_id']);
 		$registrationType->setSchedConfId($row['sched_conf_id']);
-		$registrationType->setTypeName($row['type_name']);
 		$registrationType->setCode($row['code']);
-		$registrationType->setDescription($row['description']);
 		$registrationType->setCost($row['cost']);
 		$registrationType->setCurrencyCodeAlpha($row['currency_code_alpha']);
 		$registrationType->setOpeningDate($this->dateFromDB($row['opening_date']));
@@ -298,9 +242,29 @@ class RegistrationTypeDAO extends DAO {
 		$registrationType->setPublic($row['pub']);
 		$registrationType->setSequence($row['seq']);
 
+		$this->getDataObjectSettings('registration_type_settings', 'type_id', $row['type_id'], $registrationType);
+
 		HookRegistry::call('RegistrationTypeDAO::_returnRegistrationTypeFromRow', array(&$registrationType, &$row));
 
 		return $registrationType;
+	}
+
+	/**
+	 * Get the list of field names for which localized data is used.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('name', 'description');
+	}
+
+	/**
+	 * Update the localized settings for this object
+	 * @param $registrationType object
+	 */
+	function updateLocaleFields(&$registrationType) {
+		$this->updateDataObjectSettings('registration_type_settings', $registrationType, array(
+			'type_id' => $registrationType->getTypeId()
+		));
 	}
 
 	/**
@@ -310,18 +274,16 @@ class RegistrationTypeDAO extends DAO {
 	 */
 	function insertRegistrationType(&$registrationType) {
 		$expiryDate = $registrationType->getExpiryDate();
-		$ret = $this->update(
+		$this->update(
 			sprintf('INSERT INTO registration_types
-				(sched_conf_id, type_name, description, cost, currency_code_alpha, opening_date, closing_date, expiry_date, access, institutional, membership, pub, seq, code)
+				(sched_conf_id, cost, currency_code_alpha, opening_date, closing_date, expiry_date, access, institutional, membership, pub, seq, code)
 				VALUES
-				(?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?)',
 				$this->dateToDB($registrationType->getOpeningDate()),
 				$this->dateToDB($registrationType->getClosingDate()),
 				$expiryDate === null?'null':$this->dateToDB($expiryDate)
 			), array(
 				$registrationType->getSchedConfId(),
-				$registrationType->getTypeName(),
-				$registrationType->getDescription(),
 				$registrationType->getCost(),
 				$registrationType->getCurrencyCodeAlpha(),
 				$registrationType->getAccess(),
@@ -332,8 +294,9 @@ class RegistrationTypeDAO extends DAO {
 				$registrationType->getCode()
 			)
 		);
-		
+
 		$registrationType->setTypeId($this->getInsertRegistrationTypeId());
+		$this->updateLocaleFields($registrationType);
 		return $registrationType->getTypeId();
 	}
 
@@ -344,12 +307,10 @@ class RegistrationTypeDAO extends DAO {
 	 */
 	function updateRegistrationType(&$registrationType) {
 		$expiryDate = $registrationType->getExpiryDate();
-		return $this->update(
+		$returner = $this->update(
 			sprintf('UPDATE registration_types
 				SET
 					sched_conf_id = ?,
-					type_name = ?,
-					description = ?,
 					cost = ?,
 					currency_code_alpha = ?,
 					opening_date = %s,
@@ -367,8 +328,6 @@ class RegistrationTypeDAO extends DAO {
 				$expiryDate === null?'null':$this->dateToDB($expiryDate)
 			), array(
 				$registrationType->getSchedConfId(),
-				$registrationType->getTypeName(),
-				$registrationType->getDescription(),
 				$registrationType->getCost(),
 				$registrationType->getCurrencyCodeAlpha(),
 				$registrationType->getAccess(),
@@ -380,6 +339,8 @@ class RegistrationTypeDAO extends DAO {
 				$registrationType->getTypeId()
 			)
 		);
+		$this->updateLocaleFields($registrationType);
+		return $returner;
 	}
 
 	/**
@@ -399,9 +360,8 @@ class RegistrationTypeDAO extends DAO {
 	 */
 	function deleteRegistrationTypeById($typeId) {
 		// Delete registration type
-		$ret = $this->update(
-			'DELETE FROM registration_types WHERE type_id = ?', $typeId
-			);
+		$this->update('DELETE FROM registration_types WHERE type_id = ?', $typeId);
+		$ret = $this->update('DELETE FROM registration_types WHERE type_id = ?', $typeId);
 
 		// Delete all registrations with this registration type
 		if ($ret) {
@@ -420,7 +380,7 @@ class RegistrationTypeDAO extends DAO {
 	function &getRegistrationTypesBySchedConfId($schedConfId, $rangeInfo = null) {
 		$result = &$this->retrieveRange(
 			'SELECT * FROM registration_types WHERE sched_conf_id = ? ORDER BY seq',
-			 $schedConfId, $rangeInfo
+			$schedConfId, $rangeInfo
 		);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationTypeFromRow');
@@ -436,7 +396,7 @@ class RegistrationTypeDAO extends DAO {
 		$time = time();
 		$result = &$this->retrieveRange(
 			'SELECT * FROM registration_types WHERE sched_conf_id = ? AND opening_date < ' . $time . ' AND closing_date < ' . $time . ' ORDER BY seq',
-			 $schedConfId, $rangeInfo
+			$schedConfId, $rangeInfo
 		);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationTypeFromRow');
@@ -459,7 +419,7 @@ class RegistrationTypeDAO extends DAO {
 			'SELECT type_id FROM registration_types WHERE sched_conf_id = ? ORDER BY seq',
 			$schedConfId
 		);
-		
+
 		for ($i=1; !$result->EOF; $i++) {
 			list($registrationTypeId) = $result->fields;
 			$this->update(
@@ -469,14 +429,13 @@ class RegistrationTypeDAO extends DAO {
 					$registrationTypeId
 				)
 			);
-			
+
 			$result->moveNext();
 		}
-		
+
 		$result->close();
 		unset($result);
 	}
-
 }
 
 ?>

@@ -17,13 +17,6 @@
 
 import('db.SettingsDAO');
 class ConferenceSettingsDAO extends SettingsDAO {
-	/**
-	 * Constructor.
-	 */
-	function ConferenceSettingsDAO() {
-		parent::DAO();
-	}
-
 	function &_getCache($conferenceId) {
 		static $settingCache;
 		if (!isset($settingCache)) {
@@ -43,12 +36,21 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	/**
 	 * Retrieve a conference setting value.
 	 * @param $conferenceId int
-	 * @param $name
+	 * @param $name string
+	 * @param $locale string optional
 	 * @return mixed
 	 */
-	function &getSetting($conferenceId, $name) {
+	function &getSetting($conferenceId, $name, $locale = null) {
 		$cache =& $this->_getCache($conferenceId);
 		$returner = $cache->get($name);
+		if ($locale !== null) {
+			if (!isset($returner[$locale]) || !is_array($returner)) {
+				unset($returner);
+				$returner = null;
+				return $returner;
+			}
+			return $returner[$locale];
+		}
 		return $returner;
 	}
 
@@ -69,42 +71,22 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	 */
 	function &getConferenceSettings($conferenceId) {
 		$conferenceSettings = array();
-		
+
 		$result = &$this->retrieve(
-			'SELECT setting_name, setting_value, setting_type FROM conference_settings WHERE conference_id = ?', $conferenceId
+			'SELECT setting_name, setting_value, setting_type, locale FROM conference_settings WHERE conference_id = ?', $conferenceId
 		);
-		
+
 		if ($result->RecordCount() == 0) {
 			$returner = null;
 			$result->Close();
 			return $returner;
-			
+
 		} else {
 			while (!$result->EOF) {
 				$row = &$result->getRowAssoc(false);
-				switch ($row['setting_type']) {
-					case 'date':
-						list($y, $mon, $d, $h, $min, $s) = sscanf($row['setting_value'], "%d-%d-%d %d:%d:%d");
-						$value = mktime($h,$min,$s,$mon,$d,$y);
-						break;
-					case 'bool':
-						$value = (bool) $row['setting_value'];
-						break;
-					case 'int':
-						$value = (int) $row['setting_value'];
-						break;
-					case 'float':
-						$value = (float) $row['setting_value'];
-						break;
-					case 'object':
-						$value = unserialize($row['setting_value']);
-						break;
-					case 'string':
-					default:
-						$value = $row['setting_value'];
-						break;
-				}
-				$conferenceSettings[$row['setting_name']] = $value;
+				$value = $this->convertFromDB($row['setting_value'], $row['setting_type']);
+				if ($row['locale'] == '') $conferenceSettings[$row['setting_name']] = $value;
+				else $conferenceSettings[$row['setting_name']][$row['locale']] = $value;
 				$result->MoveNext();
 			}
 			$result->close();
@@ -116,99 +98,69 @@ class ConferenceSettingsDAO extends SettingsDAO {
 			return $conferenceSettings;
 		}
 	}
-	
+
 	/**
 	 * Add/update a conference setting.
 	 * @param $conferenceId int
 	 * @param $name string
 	 * @param $value mixed
 	 * @param $type string data type of the setting. If omitted, type will be guessed
+	 * @param $isLocalized boolean
 	 */
-	function updateSetting($conferenceId, $name, $value, $type = null) {
+	function updateSetting($conferenceId, $name, $value, $type = null, $isLocalized = false) {
 		$cache =& $this->_getCache($conferenceId);
 		$cache->setCache($name, $value);
-		
-		if ($type == null) {
-			switch (gettype($value)) {
-				case 'date':
-					$type = 'date';
-					break;
-				case 'boolean':
-				case 'bool':
-					$type = 'bool';
-					break;
-				case 'integer':
-				case 'int':
-					$type = 'int';
-					break;
-				case 'double':
-				case 'float':
-					$type = 'float';
-					break;
-				case 'array':
-				case 'object':
-					$type = 'object';
-					break;
-				case 'string':
-				default:
-					$type = 'string';
-					break;
-			}
-		}
-		
-		if ($type == 'object') {
-			$value = serialize($value);
-			
-		} else if ($type == 'bool') {
-			$value = isset($value) && $value ? 1 : 0;
-		} else if ($type == 'date') {
-			$value = date("Y-n-d H:i:s", $value);
-		}
-		
-		$result = $this->retrieve(
-			'SELECT COUNT(*) FROM conference_settings WHERE conference_id = ? AND setting_name = ?',
-			array($conferenceId, $name)
-		);
-		
-		if ($result->fields[0] == 0) {
-			$returner = $this->update(
-				'INSERT INTO conference_settings
-					(conference_id, setting_name, setting_value, setting_type)
-					VALUES
-					(?, ?, ?, ?)',
-				array($conferenceId, $name, $value, $type)
+
+		$keyFields = array('setting_name', 'locale', 'conference_id');
+
+		if (!$isLocalized) {
+			$value = $this->convertToDB($value, $type);
+			$this->replace('conference_settings',
+				array(
+					'conference_id' => $conferenceId,
+					'setting_name' => $name,
+					'setting_value' => $value,
+					'setting_type' => $type,
+					'locale' => ''
+				),
+				$keyFields
 			);
 		} else {
-			$returner = $this->update(
-				'UPDATE conference_settings SET
-					setting_value = ?,
-					setting_type = ?
-					WHERE conference_id = ? AND setting_name = ?',
-				array($value, $type, $conferenceId, $name)
-			);
+			$this->update('DELETE FROM conference_settings WHERE conference_id = ? AND setting_name = ?', array($conferenceId, $name));
+			if (is_array($value)) foreach ($value as $locale => $localeValue) {
+				if (empty($localeValue)) continue;
+				$type = null;
+				$this->update('INSERT INTO conference_settings
+					(conference_id, setting_name, setting_value, setting_type, locale)
+					VALUES (?, ?, ?, ?, ?)',
+					array(
+						$conferenceId, $name, $this->convertToDB($localeValue, $type), $type, $locale
+					)
+				);
+			}
 		}
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
 	}
-	
+
 	/**
 	 * Delete a conference setting.
 	 * @param $conferenceId int
 	 * @param $name string
+	 * @param $locale string
 	 */
-	function deleteSetting($conferenceId, $name) {
+	function deleteSetting($conferenceId, $name, $locale = null) {
 		$cache =& $this->_getCache($conferenceId);
 		$cache->setCache($name, null);
-		
-		return $this->update(
-			'DELETE FROM conference_settings WHERE conference_id = ? AND setting_name = ?',
-			array($conferenceId, $name)
-		);
+
+		$params = array($conferenceId, $name);
+		$sql = 'DELETE FROM conference_settings WHERE conference_id = ? AND setting_name = ?';
+		if ($locale !== null) {
+			$params[] = $locale;
+			$sql .= ' AND locale = ?';
+		}
+
+		return $this->update($sql, $params);
 	}
-	
+
 	/**
 	 * Delete all settings for a conference.
 	 * @param $conferenceId int
@@ -216,7 +168,7 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	function deleteSettingsByConference($conferenceId) {
 		$cache =& $this->_getCache($conferenceId);
 		$cache->flush();
-		
+
 		return $this->update(
 				'DELETE FROM conference_settings WHERE conference_id = ?', $conferenceId
 		);

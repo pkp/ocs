@@ -22,10 +22,10 @@
 
 {iterate from=conferences item=conference}
 
-<h3>{$conference->getTitle()|escape}</h3>
+<h3>{$conference->getConferenceTitle()|escape}</h3>
 
-{if $conference->getSetting('conferenceDescription')}
-<p>{$conference->getSetting('conferenceDescription')|nl2br}</p>
+{if $conference->getLocalizedSetting('description') != ''}
+<p>{$conference->getLocalizedSetting('description')|nl2br}</p>
 {/if}
 
 <p><a href="{url conference=$conference->getPath() schedConf=""}" class="action">{translate key="site.conferenceView"}</a></p>

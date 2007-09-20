@@ -22,17 +22,17 @@ class ManagerPaymentHandler extends ManagerHandler {
 	function paymentSettings() {
 		parent::validate();
 		parent::setupTemplate(true);
-		
+
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect (null, null, 'index');
 
 		import('manager.form.PaymentSettingsForm');
-		
+
 		$settingsForm = &new PaymentSettingsForm();
 		$settingsForm->initData();
 		$settingsForm->display();
 	}
-	
+
 	/**
 	 * Save changes to payment settings.
 	 */
@@ -50,7 +50,7 @@ class ManagerPaymentHandler extends ManagerHandler {
 
 		if ($settingsForm->validate()) {
 			$settingsForm->execute();
-			
+
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign(array(
 				'currentUrl' => Request::url(null, null, null, 'paymentSettings'),
@@ -60,7 +60,7 @@ class ManagerPaymentHandler extends ManagerHandler {
 				'backLinkLabel' => 'manager.conferenceSiteManagement'
 			));
 			$templateMgr->display('common/message.tpl');
-			
+
 		} else {
 			$settingsForm->display();
 		}

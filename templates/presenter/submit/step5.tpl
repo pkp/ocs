@@ -15,7 +15,7 @@
 {/if}
 {include file="presenter/submit/submitHeader.tpl"}
 
-<p>{translate key="presenter.submit.confirmationDescription" conferenceTitle=$conference->getTitle()}</p>
+<p>{translate key="presenter.submit.confirmationDescription" conferenceTitle=$conference->getConferenceTitle()}</p>
 
 <form method="post" action="{url op="saveSubmit" path=$submitStep}">
 <input type="hidden" name="paperId" value="{$paperId}" />

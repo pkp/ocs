@@ -19,6 +19,7 @@
 define('SMARTY_DIR', Core::getBaseDir() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'smarty' . DIRECTORY_SEPARATOR);
 
 require_once('smarty/Smarty.class.php');
+require_once('smarty/plugins/modifier.escape.php'); // Seems to be needed?
 
 import('search.PaperSearch');
 
@@ -64,8 +65,8 @@ class TemplateManager extends Smarty {
 		$this->assign('datetimeFormatLong', Config::getVar('general', 'datetime_format_long'));
 		$this->assign('timeFormat', Config::getVar('general', 'time_format'));
 
- 		$locale = Locale::getLocale();
- 		$this->assign('currentLocale', $locale);
+		$locale = Locale::getLocale();
+		$this->assign('currentLocale', $locale);
 
 		if (!defined('SESSION_DISABLE_INIT')) {
 			/* Kludge to make sure no code that tries to connect to the database is executed
@@ -75,12 +76,12 @@ class TemplateManager extends Smarty {
 			$conference = &Request::getConference();
 			$schedConf = &Request::getSchedConf();
 			$site = &Request::getSite();
-			$this->assign('siteTitle', $site->getTitle());
+			$this->assign('siteTitle', $site->getSiteTitle());
 
 			$siteStyleFilename = PublicFileManager::getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
 			if (file_exists($siteStyleFilename)) $this->addStyleSheet(Request::getBaseUrl() . '/' . $siteStyleFilename);
-			if (isset($conference)) {
 
+			if (isset($conference)) {
 				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 				$archivedSchedConfsExist = $schedConfDao->archivedSchedConfsExist($conference->getConferenceId());
 				$currentSchedConfsExist = $schedConfDao->currentSchedConfsExist($conference->getConferenceId());
@@ -88,10 +89,8 @@ class TemplateManager extends Smarty {
 				$this->assign('currentSchedConfsExist', $currentSchedConfsExist);
 
 				$this->assign_by_ref('currentConference', $conference);
-				$conferenceTitle = $conference->getTitle();
+				$conferenceTitle = $conference->getConferenceTitle();
 
-				$this->assign('alternateLocale1', $conference->getSetting('alternateLocale1'));
-				$this->assign('alternateLocale2', $conference->getSetting('alternateLocale2'));
 				$this->assign('numPageLinks', $conference->getSetting('numPageLinks'));
 				$this->assign('itemsPerPage', $conference->getSetting('itemsPerPage'));
 
@@ -105,26 +104,28 @@ class TemplateManager extends Smarty {
 				}
 
 				// Assign additional navigation bar items
-				$navMenuItems = &$conference->getSetting('navItems');
+				$navMenuItems =& $conference->getLocalizedSetting('navItems');
 				$this->assign_by_ref('navMenuItems', $navMenuItems);
 
 				$this->assign('publicConferenceFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
 
 				$this->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle());
 				$this->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo());
-				$this->assign('alternatePageHeader', $conference->getSetting('conferencePageHeader'));
-				$this->assign('metaSearchDescription', $conference->getSetting('searchDescription'));
-				$this->assign('metaSearchKeywords', $conference->getSetting('searchKeywords'));
-				$this->assign('metaCustomHeaders', $conference->getSetting('customHeaders'));
+				$this->assign('alternatePageHeader', $conference->getLocalizedSetting('conferencePageHeader'));
+				$this->assign('metaSearchDescription', $conference->getLocalizedSetting('searchDescription'));
+				$this->assign('metaSearchKeywords', $conference->getLocalizedSetting('searchKeywords'));
+				$this->assign('metaCustomHeaders', $conference->getLocalizedSetting('customHeaders'));
 				$this->assign('enableAnnouncements', $conference->getSetting('enableAnnouncements'));
 
-				$this->assign('pageFooter', $conference->getSetting('conferencePageFooter'));
+				$this->assign('pageFooter', $conference->getLocalizedSetting('conferencePageFooter'));
 				$this->assign('postCreativeCommons', $conference->getSetting('postCreativeCommons'));
 
 				if (isset($schedConf)) {
 
 					// This will be needed if inheriting public conference files from the scheduled conference.
 					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
+					$this->assign('primaryLocale', $conference->getSetting('primaryLocale'));
+					$this->assign('alternateLocales', $conference->getSetting('alternateLocales'));
 
 					$this->assign_by_ref('currentSchedConf', $schedConf);
 
@@ -193,6 +194,7 @@ class TemplateManager extends Smarty {
 		$this->register_modifier('strip_unsafe_html', array('String', 'stripUnsafeHtml'));
 		$this->register_modifier('String_substr', array('String', 'substr'));
 		$this->register_modifier('to_array', array(&$this, 'smartyToArray'));
+		$this->register_modifier('escape', array(&$this, 'smartyEscape'));
 		$this->register_modifier('strtotime', array(&$this, 'smartyStrtotime'));
 		$this->register_modifier('explode', array(&$this, 'smartyExplode'));
 		$this->register_modifier('assign', array(&$this, 'smartyAssign'));
@@ -339,12 +341,12 @@ class TemplateManager extends Smarty {
 			$address = $params['address'];
 			$address_encode = '';
 			for ($x=0; $x < strlen($address); $x++) {
-			if(preg_match('!\w!',$address[$x])) {
-				$address_encode .= '%' . bin2hex($address[$x]);
-			} else {
-				$address_encode .= $address[$x];
+				if(preg_match('!\w!',$address[$x])) {
+					$address_encode .= '%' . bin2hex($address[$x]);
+				} else {
+					$address_encode .= $address[$x];
+				}
 			}
-							            }
 			$text_encode = '';
 			for ($x=0; $x < strlen($text); $x++) {
 				$text_encode .= '&#x' . bin2hex($text[$x]).';';
@@ -674,6 +676,15 @@ class TemplateManager extends Smarty {
 	 */
 	function smartyStrtotime($string) {
 		return strtotime($string);
+	}
+
+	/**
+	 * Override the built-in smarty escape modifier to set the charset
+	 * properly.
+	 */
+	function smartyEscape($string, $esc_type = 'html', $char_set = null) {
+		if ($char_set === null) $char_set = LOCALE_ENCODING;
+		return smarty_modifier_escape($string, $esc_type, $char_set);
 	}
 
 	/**

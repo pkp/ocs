@@ -20,7 +20,7 @@ import('form.Form');
 class ConferenceSetupForm extends Form {
 	var $step;
 	var $settings;
-	
+
 	/**
 	 * Constructor.
 	 * @param $step the step number
@@ -32,7 +32,7 @@ class ConferenceSetupForm extends Form {
 		$this->settings = $settings;
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
 	/**
 	 * Display the form.
 	 */
@@ -42,7 +42,7 @@ class ConferenceSetupForm extends Form {
 		$templateMgr->assign('helpTopicId', 'conference.managementPages.setup');
 		parent::display();
 	}
-	
+
 	/**
 	 * Initialize data from current settings.
 	 */
@@ -50,28 +50,30 @@ class ConferenceSetupForm extends Form {
 		$conference = &Request::getConference();
 		$this->_data = $conference->getSettings();
 	}
-	
+
 	/**
 	 * Read user input.
 	 */
 	function readInputData() {		
 		$this->readUserVars(array_keys($this->settings));
 	}
-	
+
 	/**
 	 * Save modified settings.
 	 */
 	function execute() {
 		$conference = &Request::getConference();
 		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
-		
+
 		foreach ($this->_data as $name => $value) {
 			if (isset($this->settings[$name])) {
+				$isLocalized = in_array($name, $this->getLocaleFieldNames());
 				$settingsDao->updateSetting(
 					$conference->getConferenceId(),
 					$name,
 					$value,
-					$this->settings[$name]
+					$this->settings[$name],
+					$isLocalized
 				);
 			}
 		}
@@ -84,7 +86,7 @@ class ConferenceSetupForm extends Form {
 	function uploadImage($settingName) {
 		$conference = &Request::getConference();
 		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
-		
+
 		import('file.PublicFileManager');
 		$fileManager = &new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
@@ -93,13 +95,13 @@ class ConferenceSetupForm extends Form {
 			if (!$extension) {
 				return false;
 			}
-			
+
 			$uploadName = $settingName . $extension;
 			if ($fileManager->uploadConferenceFile($conference->getConferenceId(), $settingName, $uploadName)) {
 				// Get image dimensions
 				$filePath = $fileManager->getConferenceFilesPath($conference->getConferenceId());
 				list($width, $height) = getimagesize($filePath . '/' . $settingName.$extension);
-				
+
 				$value = array(
 					'name' => $fileManager->getUploadedFileName($settingName),
 					'uploadName' => $uploadName,
@@ -107,11 +109,11 @@ class ConferenceSetupForm extends Form {
 					'height' => $height,
 					'dateUploaded' => Core::getCurrentDate()
 				);
-				
+
 				return $settingsDao->updateSetting($conference->getConferenceId(), $settingName, $value, 'object');
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -123,10 +125,10 @@ class ConferenceSetupForm extends Form {
 		$conference = &Request::getConference();
 		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
 		$setting = $settingsDao->getSetting($conference->getConferenceId(), $settingName);
-		
+
 		import('file.PublicFileManager');
 		$fileManager = &new PublicFileManager();
-	 	if ($fileManager->removeConferenceFile($conference->getConferenceId(), $setting['uploadName'])) {
+		if ($fileManager->removeConferenceFile($conference->getConferenceId(), $setting['uploadName'])) {
 			return $settingsDao->deleteSetting($conference->getConferenceId(), $settingName);
 		} else {
 			return false;
