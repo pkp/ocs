@@ -438,9 +438,6 @@
 		<field name="plugin_name" type="C2" size="80">
 			<KEY/>
 		</field>
-		<field name="locale" type="C2" size="5">
-			<KEY/>
-		</field>
 		<field name="conference_id" type="I8">
 			<KEY/>
 		</field>
