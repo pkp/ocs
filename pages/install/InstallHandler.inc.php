@@ -26,6 +26,9 @@ class InstallHandler extends Handler {
 	 * Show installation form.
 	 */
 	function index() {
+		// Make sure errors are displayed to the browser during install.
+		@ini_set('display_errors', E_ALL);
+
 		InstallHandler::validate();
 
 		if (($setLocale = Request::getUserVar('setLocale')) != null && Locale::isLocaleValid($setLocale)) {
