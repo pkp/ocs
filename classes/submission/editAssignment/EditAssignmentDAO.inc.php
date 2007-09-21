@@ -231,18 +231,20 @@ class EditAssignmentDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result = &$this->retrieve(
-			'SELECT
-				ea.director_id AS director_id,
+		$result =& $this->retrieve(
+			'SELECT	ea.director_id,
 				COUNT(ea.paper_id) AS complete
-			FROM
-				edit_assignments ea,
-				papers p,
-				published_papers pa
-			WHERE ea.paper_id=p.paper_id
-				AND pa.paper_id = p.paper_id
-				AND p.sched_conf_id = ?
-			GROUP BY ea.director_id', $schedConfId);
+			FROM	edit_assignments ea,
+				papers p
+			WHERE	ea.paper_id=p.paper_id AND
+				p.sched_conf_id = ? AND (
+					p.status = ' . STATUS_ARCHIVED . ' OR
+					p.status = ' . STATUS_PUBLISHED . ' OR
+					p.status = ' . STATUS_DECLINED . '
+				)
+			GROUP BY ea.director_id',
+			$schedConfId
+		);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -254,12 +256,18 @@ class EditAssignmentDAO extends DAO {
 		unset($result);
 
 		// Get counts of incomplete submissions
-		$result = &$this->retrieve('
-			SELECT ea.director_id AS director_id,
+		$result =& $this->retrieve(
+			'SELECT	ea.director_id,
 				COUNT(ea.paper_id) AS incomplete
-			FROM edit_assignments ea,	papers p
-				LEFT JOIN published_papers pa ON (pa.paper_id = p.paper_id)
-			WHERE pa.paper_id IS NULL AND ea.paper_id=p.paper_id AND p.sched_conf_id = ? GROUP BY ea.director_id', $schedConfId);
+			FROM	edit_assignments ea,
+				papers p
+			WHERE	ea.paper_id = p.paper_id AND
+				p.sched_conf_id = ? AND
+				p.status = ' . STATUS_QUEUED . '
+			GROUP BY ea.director_id',
+			$schedConfId
+		);
+
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['director_id']])) $statistics[$row['director_id']] = array();

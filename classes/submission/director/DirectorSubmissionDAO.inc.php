@@ -566,20 +566,18 @@ class DirectorSubmissionDAO extends DAO {
 				break;
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT DISTINCT
 				u.*
 			FROM	users u
-				NATURAL JOIN roles r
+				LEFT JOIN roles r ON (r.user_id = u.user_id)
 				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
 				LEFT JOIN edit_assignments e ON (e.director_id = u.user_id AND e.paper_id = ?)
 			WHERE	r.sched_conf_id = ? AND
 				r.role_id = ? AND
 				e.paper_id IS NULL ' .
 				$searchSql . '
-			ORDER BY
-				last_name,
-				first_name',
+			ORDER BY last_name, first_name',
 			$paramArray, $rangeInfo
 		);
 
