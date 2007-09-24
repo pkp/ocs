@@ -113,10 +113,12 @@ function confirmSubmissionCheck() {
 
 {include file="common/formErrors.tpl"}
 
+{assign var="currentStep" value=1}
+
 <table width="100%" class="data">
 <tr valign="top">
-	<td width="3%">1.</td>
-	<td width="97%"><span class="instruct">{translate key="reviewer.paper.reviewerInstruction1a"}{if $editAssignment}, {$editAssignment->getDirectorFullName()},{/if} {translate key="reviewer.paper.reviewerInstruction1b"}</span></td>
+	<td width="3%">{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
+	<td width="97%"><span class="instruct">{translate key="reviewer.paper.notifyEditorA"}{if $editAssignment}, {$editAssignment->getDirectorFullName()},{/if} {translate key="reviewer.paper.notifyEditorB"}</span></td>
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>
@@ -145,20 +147,17 @@ function confirmSubmissionCheck() {
 <tr>
 	<td colspan="2">&nbsp;</td>
 </tr>
-{if $schedConf->getLocalizedSetting('reviewGuidelines')}
-{assign var="haveGuide" value=true}
+{if $schedConf->getLocalizedSetting('reviewGuidelines') != ''}
 <tr valign="top">
-        <td>2.</td>
-	<td><span class="instruct">{translate key="reviewer.paper.reviewerInstruction2"}</span></td>
+        <td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
+	<td><span class="instruct">{translate key="reviewer.paper.consultGuidelines"}</span></td>
 </tr>
 <tr>
 	<td colspan="2">&nbsp;</td>
 </tr>
-{else}
-{assign var="haveGuide" value=false}
 {/if}
 <tr valign="top">
-	<td>{if $haveGuide}3{else}2{/if}.</td>
+	<td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
 	<td><span class="instruct">{translate key="$reviewerInstruction3"}</span></td>
 </tr>
 {if $schedConf->getSetting('reviewMode') != REVIEW_MODE_ABSTRACTS_ALONE}
@@ -222,8 +221,8 @@ function confirmSubmissionCheck() {
 	<td colspan="2">&nbsp;</td>
 </tr>
 <tr valign="top">
-	<td>{if $haveGuide}4{else}3{/if}.</td>
-	<td><span class="instruct">{translate key="reviewer.paper.reviewerInstruction4a"}</span></td>
+	<td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
+	<td><span class="instruct">{translate key="reviewer.paper.enterReviewA"}</span></td>
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>
@@ -240,8 +239,8 @@ function confirmSubmissionCheck() {
 	<td colspan="2">&nbsp;</td>
 </tr>
 <tr valign="top">
-	<td>{if $haveGuide}5{else}4{/if}.</td>
-	<td><span class="instruct">{translate key="reviewer.paper.reviewerInstruction5"}</span></td>
+	<td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
+	<td><span class="instruct">{translate key="reviewer.paper.uploadFile"}</span></td>
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>
@@ -290,8 +289,8 @@ function confirmSubmissionCheck() {
 	<td colspan="2">&nbsp;</td>
 </tr>
 <tr valign="top">
-	<td>{if $haveGuide}6{else}5{/if}.</td>
-	<td><span class="instruct">{translate key="reviewer.paper.reviewerInstruction6"}</span></td>
+	<td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
+	<td><span class="instruct">{translate key="reviewer.paper.selectRecommendation"}</span></td>
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>
@@ -320,7 +319,7 @@ function confirmSubmissionCheck() {
 </tr>
 </table>
 
-{if $haveGuide}
+{if $schedConf->getLocalizedSetting('reviewGuidelines') != ''}
 <div class="separator"></div>
 <h3>{translate key="reviewer.paper.reviewerGuidelines"}</h3>
 <p>{$schedConf->getLocalizedSetting('reviewGuidelines')|nl2br}</p>

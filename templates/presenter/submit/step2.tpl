@@ -111,7 +111,7 @@ function movePresenter(dir, presenterIndex) {
 <input type="hidden" name="presenters[0][presenterId]" value="0" />
 <input type="hidden" name="primaryContact" value="0" />
 <input type="hidden" name="presenters[0][seq]" value="1" />
-<table width="100%' class="data">
+<table width="100%" class="data">
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="presenters-0-firstName" required="true" key="user.firstName"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="presenters[0][firstName]" id="presenters-0-firstName" size="20" maxlength="40" /></td>
