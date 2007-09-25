@@ -247,6 +247,14 @@ class MetadataForm extends Form {
 
 		return $paper->getPaperId();
 	}
+
+	/**
+	 * Determine whether or not the current user is allowed to edit metadata.
+	 * @return boolean
+	 */
+	function getCanEdit() {
+		return $this->canEdit;
+	}
 }
 
 ?>
