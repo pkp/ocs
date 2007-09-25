@@ -285,7 +285,7 @@ class PresenterAction extends Action {
 
 			// Check director version
 			$directorFiles = $submission->getDirectorFileRevisions($paper->getCurrentStage());
-			foreach ($directorFiles as $directorFile) {
+			if (is_array($directorFiles)) foreach ($directorFiles as $directorFile) {
 				if ($directorFile->getFileId() == $fileId) {
 					$canDownload = true;
 				}
