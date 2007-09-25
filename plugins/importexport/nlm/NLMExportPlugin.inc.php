@@ -48,7 +48,7 @@ class NLMExportPlugin extends ImportExportPlugin {
 
 	function display(&$args) {
 		$templateMgr = &TemplateManager::getManager();
-		parent::display();
+		parent::display($args);
 
 		$conference = &Request::getConference();
 
