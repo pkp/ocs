@@ -1011,9 +1011,6 @@
 		<field name="paper_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="type" type="I1">
-			<NOTNULL/>
-		</field>
 		<field name="stage" type="I1">
 			<NOTNULL/>
 		</field>
