@@ -1721,7 +1721,6 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="reviewer.paper.downloadSubmissionAbstractOnly">Review the abstract provided with the submission.</message>
 	<message key="reviewer.paper.downloadSubmissionSubmission">Review the submission.</message>
 	<message key="reviewer.paper.enterReviewA">Click on icon to enter (or paste) your review of this submission.</message>
-	<message key="reviewer.paper.enterReviewB">following Reviewer Guidelines below.</message>
 	<message key="reviewer.paper.uploadFile">In addition, you can upload files for the director and/or author to consult.</message>
 	<message key="reviewer.paper.selectRecommendation">Select a recommendation and submit the review to complete the process. You must enter a review or upload a file before selecting a recommendation.</message>
 	<message key="reviewer.paper.mustSelectDecision">No recommendation was selected. You must choose a recommendation to submit.</message>

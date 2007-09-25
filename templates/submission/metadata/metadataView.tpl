@@ -15,6 +15,15 @@
 <h3>{translate key="paper.presenters"}</h3>
 	
 <table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="80%" class="value">
+			{url|assign:"formUrl" path=$paperId}
+			<form name="metadata" action="{$formUrl}" method="post">
+			{form_language_chooser form="metadata" url=$formUrl}
+			</form>
+		</td>
+	</tr>
 	{foreach name=presenters from=$presenters key=presenterIndex item=presenter}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.name"}</td>
@@ -54,20 +63,8 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.title"}</td>
-		<td width="80%" class="value">{$title|strip_unsafe_html|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$title[$formLocale]|strip_unsafe_html|default:"&mdash;"}</td>
 	</tr>
-	{if $alternateLocale1}
-	<tr valign="top">
-		<td class="label">{translate key="paper.title"}<br />({$languageToggleLocales.$alternateLocale1})</td>
-		<td class="value">{$titleAlt1|strip_unsafe_html|default:"&mdash;"}</td>
-	</tr>
-	{/if}
-	{if $alternateLocale2}
-	<tr valign="top">
-		<td class="label">{translate key="paper.title"}<br />({$languageToggleLocales.$alternateLocale2})</td>
-		<td class="value">{$titleAlt2|strip_unsafe_html|default:"&mdash;"}</td>
-	</tr>
-	{/if}
 
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -76,18 +73,6 @@
 		<td class="label">{translate key="paper.abstract"}</td>
 		<td class="value">{$abstract|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
-	{if $alternateLocale1}
-	<tr valign="top">
-		<td class="label">{translate key="paper.abstract"}<br />({$languageToggleLocales.$alternateLocale1})</td>
-		<td class="value">{$abstractAlt1|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
-	</tr>
-	{/if}
-	{if $alternateLocale2}
-	<tr valign="top">
-		<td class="label">{translate key="paper.abstract"}<br />({$languageToggleLocales.$alternateLocale2})</td>
-		<td class="value">{$abstractAlt2|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
-	</tr>
-	{/if}
 </table>
 
 
@@ -100,7 +85,7 @@
 	{if $schedConfSettings.metaDiscipline}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.discipline"}</td>
-		<td width="80%" class="value">{$discipline|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$discipline[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -112,7 +97,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%"class="label">{translate key="paper.subjectClassification"}</td>
-		<td width="80%" class="value">{$subjectClass|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$subjectClass[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -121,7 +106,7 @@
 	{if $schedConfSettings.metaSubject}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.subject"}</td>
-		<td width="80%" class="value">{$subject|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$subject[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -130,21 +115,21 @@
 	{if $schedConfSettings.metaCoverage}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.coverageGeo"}</td>
-		<td width="80%" class="value">{$coverageGeo|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$coverageGeo[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="paper.coverageChron"}</td>
-		<td class="value">{$coverageChron|escape|default:"&mdash;"}</td>
+		<td class="value">{$coverageChron[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="paper.coverageSample"}</td>
-		<td class="value">{$coverageSample|escape|default:"&mdash;"}</td>
+		<td class="value">{$coverageSample[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -153,7 +138,7 @@
 	{if $schedConfSettings.metaType}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.type"}</td>
-		<td width="80%" class="value">{$type|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$type[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -174,7 +159,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="presenter.submit.agencies"}</td>
-		<td width="80%" class="value">{$sponsor|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$sponsor[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 </table>
 

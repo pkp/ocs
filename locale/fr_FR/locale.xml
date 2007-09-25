@@ -1708,7 +1708,6 @@ Actif est le nombre de révisions en cours ou en réflexion.]]></message>
 	<message key="reviewer.paper.downloadSubmissionAbstractOnly">Relire le résumé fourni avec la proposition.</message>
 	<message key="reviewer.paper.downloadSubmissionSubmission">Relire la proposition.</message>
 	<message key="reviewer.paper.enterReviewA">Cliquez sur l'icône pour entrer (ou coller) votre révision de cette proposition.</message>
-	<message key="reviewer.paper.enterReviewB">En suivant les directives pour l'évaluateur ci-dessous.</message>
 	<message key="reviewer.paper.uploadFile">De plus, vous pouvez envoyer au serveur les fichiers à consulter par le responsable et l'auteur.</message>
 	<message key="reviewer.paper.selectRecommendation">Sélectionner une recommandation et soumettre la critique pour terminer le precessus. Vous devez entrer une révision ou envoyer au serveur un fichier avant de sélectionner une recommandation.</message>
 	<message key="reviewer.paper.mustSelectDecision">Aucune recommandation sélectionnée. vous devez choisir une recommandation à soumettre.</message>
