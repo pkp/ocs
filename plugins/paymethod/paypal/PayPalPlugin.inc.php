@@ -249,7 +249,7 @@ class PayPalPlugin extends PaymethodPlugin {
 				exit();
 				break;
 			case 'return':
-				echo 'RETURN';exit();
+				Request::redirect(null, null, 'index');
 				break;
 		}
 		parent::handle($args); // Don't know what to do with it
