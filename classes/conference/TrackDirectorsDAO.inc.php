@@ -118,7 +118,14 @@ class TrackDirectorsDAO extends DAO {
 		$userDao = &DAORegistry::getDAO('UserDAO');
 
 		$result = &$this->retrieve(
-			'SELECT u.* FROM users AS u NATURAL JOIN roles r LEFT JOIN track_directors AS e ON e.user_id = u.user_id AND e.sched_conf_id = r.sched_conf_id AND e.track_id = ? WHERE r.sched_conf_id = ? AND r.role_id = ? AND e.track_id IS NULL ORDER BY last_name, first_name',
+			'SELECT	u.*
+			FROM	users u
+				LEFT JOIN roles r ON (r.user_id = u.user_id)
+				LEFT JOIN track_directors e ON (e.user_id = u.user_id AND e.sched_conf_id = r.sched_conf_id AND e.track_id = ?)
+			WHERE	r.sched_conf_id = ? AND
+				r.role_id = ? AND
+				e.track_id IS NULL
+			ORDER BY last_name, first_name',
 			array($trackId, $schedConfId, ROLE_ID_TRACK_DIRECTOR)
 		);
 
