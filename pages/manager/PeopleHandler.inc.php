@@ -694,7 +694,6 @@ class PeopleHandler extends ManagerHandler {
 			$userForm->execute();
 
 			if (Request::getUserVar('createAnother')) {
-				// C
 				$templateMgr = &TemplateManager::getManager();
 				$templateMgr->assign('currentUrl', Request::url(null, null, null, 'people', 'all'));
 				$templateMgr->assign('userCreated', true);
@@ -703,7 +702,8 @@ class PeopleHandler extends ManagerHandler {
 				$userForm->display();
 
 			} else {
-				Request::redirect(null, null, null, 'people', 'all');
+				if ($source = Request::getUserVar('source')) Request::redirectUrl($source);
+				else Request::redirect(null, null, null, 'people', 'all');
 			}
 
 		} else {
