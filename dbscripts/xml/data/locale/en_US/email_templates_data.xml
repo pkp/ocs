@@ -89,7 +89,7 @@ Username: {$presenterUsername}
 If you have any questions, please contact me. Thank you for considering this conference as a venue for your work.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email, when enabled, is automatically sent to an presenter when he or she completes the process of submitting a paper or abstract to the conference. It provides information about tracking the submission through the process and thanks the presenter for the submission.</field>
+			<field name="description">This email, when enabled, is automatically sent to a presenter when he or she completes the process of submitting a paper or abstract to the conference. It provides information about tracking the submission through the process and thanks the presenter for the submission.</field>
 		</row>
 		<row>
 			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
@@ -104,7 +104,7 @@ Username: {$presenterUsername}
 If you have any questions, please contact me. Thank you for considering this conference as a venue for your work.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email, when enabled, is automatically sent to an presenter when he or she completes the process of submitting a paper or abstract to the conference. It provides information about tracking the submission through the process and thanks the presenter for the submission.</field>
+			<field name="description">This email, when enabled, is automatically sent to a presenter when he or she completes the process of submitting a paper or abstract to the conference. It provides information about tracking the submission through the process and thanks the presenter for the submission.</field>
 		</row>
 		<row>
 			<field name="email_key">SUBMISSION_UNSUITABLE</field>
@@ -145,7 +145,7 @@ You should complete the submission (by uploading any missing files or updating a
 If you have any questions, please feel free to contact me.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email notifies an presenter that their incomplete submission will be disqualified by an approaching deadline.</field>
+			<field name="description">This email notifies a presenter that their incomplete submission will be disqualified by an approaching deadline.</field>
 		</row>
 
 

@@ -17,10 +17,11 @@
 {if count($formLocales) > 1}
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
+		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
 			{url|assign:"setupFormUrl" op="schedConfSetup" path="1"}
 			{form_language_chooser form="setupForm" url=$setupFormUrl}
+			<span class="instruct">{translate key="form.formLanguage.description"}</span>
 		</td>
 	</tr>
 </table>
@@ -34,7 +35,7 @@
 
 <p><label for="overview">{translate key="manager.schedConfSetup.details.overview.description"}</label></p>
 
-<p><textarea name="overview[{$formLocale|escape]}" id="overview" rows="10" cols="60" class="textArea">{$overview[$formLocale]|escape}</textarea></p>
+<p><textarea name="overview[{$formLocale|escape}]" id="overview" rows="10" cols="60" class="textArea">{$overview[$formLocale]|escape}</textarea></p>
 
 <div class="separator"></div>
 

@@ -73,7 +73,11 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		import('manager.form.SchedConfSettingsForm');
 
 		$settingsForm = &new SchedConfSettingsForm($args);
-		$settingsForm->initData();
+		if ($settingsForm->isLocaleResubmit()) {
+			$settingsForm->readInputData();
+		} else {
+			$settingsForm->initData();
+		}
 		$settingsForm->display();
 	}
 

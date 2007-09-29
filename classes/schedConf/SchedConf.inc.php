@@ -84,6 +84,14 @@ class SchedConf extends DataObject {
 	}
 
 	/**
+	 * Get the localized acronym of the scheduled conference
+	 * @return string
+	 */
+	function getSchedConfAcronym() {
+		return $this->getLocalizedSetting('acronym');
+	}
+
+	/**
 	 * Get ID of scheduled conference.
 	 * @return int
 	 */
