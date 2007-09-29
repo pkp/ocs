@@ -430,7 +430,7 @@ class AboutHandler extends Handler {
 		foreach (AboutHandler::getPublicStatisticsNames() as $name) {
 			$templateMgr->assign($name, $conference->getSetting($name));
 		}
-		$fromDate = mktime(0, 0, 1, 1, 1, $statisticsYear);
+		$fromDate = mktime(0, 0, 0, 1, 1, $statisticsYear);
 		$toDate = mktime(23, 59, 59, 12, 31, $statisticsYear);
 
 		$conferenceStatisticsDao =& DAORegistry::getDAO('ConferenceStatisticsDAO');

@@ -40,7 +40,7 @@ class StatisticsHandler extends ManagerHandler {
 		foreach (StatisticsHandler::getPublicStatisticsNames() as $name) {
 			$templateMgr->assign($name, $schedConf->getSetting($name));
 		}
-		$fromDate = mktime(0, 0, 1, 1, 1, $statisticsYear);
+		$fromDate = mktime(0, 0, 0, 1, 1, $statisticsYear);
 		$toDate = mktime(23, 59, 59, 12, 31, $statisticsYear);
 
 		$schedConfStatisticsDao =& DAORegistry::getDAO('SchedConfStatisticsDAO');
