@@ -228,6 +228,7 @@ class Install extends Installer {
 			$site->setPrimaryLocale($locale);
 			$site->setlocale($this->getParam('locale'));
 			$site->setInstalledLocales($this->installedLocales);
+			$site->setSupportedLocales($this->installedLocales);
 			$site->setContactName($site->getTitle(), $locale);
 			$site->setContactEmail($this->getParam('adminEmail'), $locale);
 			if (!$siteDao->insertSite($site)) {
