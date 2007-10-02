@@ -2157,7 +2157,7 @@ Le fichier peut être vu en cliquant sur le nom du fichier. Une nouvelle version
 
 <h4>Système de base de données documenté</h4>
 
-<p>OCSa jusqu'à maintenant uniquement été mis à l'essai sur MySQL et PostgreSQL, bien que d'autres systèmes de gestion de base de données documentés par <a href="http://php.weblogs.com/adodb/" target="_blank">ADOdb</a> pourraient fonctionner (en tout ou en partie). Il est possible d'envoyer à l'équipe OCS des rapports de compatibilité ou des pièces de codes pour d'autres SGBD.</p>
+<p>OCSa jusqu'à maintenant uniquement été mis à l'essai sur MySQL et PostgreSQL, bien que d'autres systèmes de gestion de base de données documentés par <a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a> pourraient fonctionner (en tout ou en partie). Il est possible d'envoyer à l'équipe OCS des rapports de compatibilité ou des pièces de codes pour d'autres SGBD.</p>
 
 <h4>Etapes de pre-installation</h4>
 
