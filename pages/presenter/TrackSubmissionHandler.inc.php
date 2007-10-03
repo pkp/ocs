@@ -263,8 +263,6 @@ class TrackSubmissionHandler extends PresenterHandler {
 
 			if(PresenterAction::saveMetadata($submission)) {
 				Request::redirect(null, null, null, 'submission', $paperId);
-			} else {
-				PresenterAction::viewMetadata($submission, ROLE_ID_PRESENTER);
 			}
 		}
 	}
