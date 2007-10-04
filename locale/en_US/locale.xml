@@ -475,7 +475,6 @@
 	<message key="schedConf.registration.account">User Account</message>
 	<message key="schedConf.registration.loggedInAs"><![CDATA[You are currently logged in. Verify the account information below is correct. If it is not, correct it using <a href="{$profileUrl}">My Profile</a> or <a href="{$logoutUrl}">log out</a> to use another account.]]></message>
 	<message key="schedConf.registration.createAccount.description"><![CDATA[You are not currently logged in. In order to register for this conference, you will need an account. If you already have one, <a href="{$loginUrl}">click here</a> to log in; otherwise, fill in the information below in order to create a new account.]]></message>
-	<message key="schedConf.registration."></message>
 
 	<!-- User -->
 	<message key="user.userHome">User Home</message>
