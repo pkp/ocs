@@ -52,7 +52,7 @@ class ProfileForm extends Form {
 		$notificationStatusDao = &DAORegistry::getDAO('NotificationStatusDAO');
 		$userSettingsDao = &DAORegistry::getDAO('UserSettingsDAO');
 
-		$schedConfs = &$schedConfDao->getSchedConfs();
+		$schedConfs = &$schedConfDao->getEnabledSchedConfs();
 		$schedConfs = &$schedConfs->toArray();
 
 		foreach ($schedConfs as $thisSchedConf) {

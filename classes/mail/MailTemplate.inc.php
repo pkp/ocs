@@ -126,7 +126,7 @@ class MailTemplate extends Mail {
 			$this->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
 		} else {
 			$site = &Request::getSite();
-			$this->setFrom($site->getContactEmail(), $site->getContactName());
+			$this->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
 		}
 
 		if ($schedConf && !Request::getUserVar('continued')) {
@@ -193,7 +193,7 @@ class MailTemplate extends Mail {
 			$paramArray['principalContactSignature'] = $schedConf->getSetting('contactName', true);
 		} else {
 			$site = &Request::getSite();
-			$paramArray['principalContactSignature'] = $site->getContactName();
+			$paramArray['principalContactSignature'] = $site->getSiteContactName();
 		}
 
 		if (isset($conference)) {
