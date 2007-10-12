@@ -156,7 +156,7 @@ class ConferenceSiteSettingsForm extends Form {
 				'conferenceUrl' => Request::url($this->getData('path'), null),
 				'aboutUrl' => Request::url($this->getData('path'), 'index', 'about', null),
 				'accountUrl' => Request::url($this->getData('path'), 'index', 'user', 'register'),
-				'conferenceName' => $titles[$site->getPrimaryLocale()];
+				'conferenceName' => $titles[$site->getPrimaryLocale()]
 			));
 
 			// Install the default RT versions.

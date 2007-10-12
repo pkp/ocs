@@ -151,7 +151,7 @@ class Upgrade extends Installer {
 			// Setup page 5
 			// Setup page 6
 			'searchDescription' => 'searchDescription',
-			'searchKeywords' = 'searchKeywords',
+			'searchKeywords' => 'searchKeywords',
 			'customHeaders' => 'customHeaders'
 		);
 
