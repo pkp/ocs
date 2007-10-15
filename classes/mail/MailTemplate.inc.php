@@ -77,7 +77,7 @@ class MailTemplate extends Mail {
 			if (!empty($userSig)) $userSig = "\n" . $userSig;
 		}
 
-		if (isset($emailTemplate) && Request::getUserVar('subject')==null && Request::getUserVar('body')==null) {
+		if (isset($emailTemplate) && (Request::getUserVar('subject')==null || Request::getUserVar('body')==null)) {
 			$this->setSubject($emailTemplate->getSubject());
 			$this->setBody($emailTemplate->getBody() . $userSig);
 			$this->enabled = $emailTemplate->getEnabled();
