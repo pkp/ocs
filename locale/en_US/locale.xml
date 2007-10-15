@@ -907,7 +907,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="plugins.categories.gateways">Gateway Plugins</message>
 	<message key="plugins.categories.gateways.description">Gateway Plugins provide live data to external systems.</message>
 
-	<message key="plugins.categories.paymethod">Payment Methods</message>
+	<message key="plugins.categories.paymethod">Payment Plugins</message>
 	<message key="plugins.categories.paymethod.description">Payment Method plugins implement support for various ways of processing payments online.</message>
 
 	<message key="plugins.categories.citationFormats">Citation Format Plugins</message>
