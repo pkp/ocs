@@ -25,7 +25,7 @@ class ReviewerSubmissionDAO extends DAO {
 	var $editAssignmentDao;
 	var $paperFileDao;
 	var $suppFileDao;
-	var $paperCommentsDao;
+	var $paperCommentDao;
 
 	/**
 	 * Constructor.

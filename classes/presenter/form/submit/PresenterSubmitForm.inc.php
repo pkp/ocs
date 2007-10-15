@@ -85,7 +85,7 @@ class PresenterSubmitForm extends Form {
 		parent::display();
 	}
 
-	function confirmSubmission(&$paper, &$user, &$schedConf, $conference, $mailTemplate = 'SUBMISSION_ACK', $trackDirectors = array()) {
+	function confirmSubmission(&$paper, &$user, &$schedConf, &$conference, $mailTemplate = 'SUBMISSION_ACK', $trackDirectors = array()) {
 		// Update search index
 		import('search.PaperSearchIndex');
 		PaperSearchIndex::indexPaperMetadata($paper);

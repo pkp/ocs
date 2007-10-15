@@ -198,15 +198,13 @@ class SchedConfStatisticsDAO extends DAO {
 			'SELECT	st.type_id,
 				rts.setting_value AS type_name,
 				COUNT(s.registration_id) AS type_count
-			FROM	registration_types st,
-				registrations s,
-				sched_confs sc,
-				conferences c
-				LEFT JOIN registration_type_settings rts ON (rts.type_id = st.type_id AND rts.setting_name = ? AND rts.locale = c.primary_locale)
+			FROM	registration_types st
+				LEFT JOIN sched_confs sc ON (st.sched_conf_id = sc.sched_conf_id)
+				LEFT JOIN conferences c ON (sc.conference_id = c.conference_id)
+				LEFT JOIN registration_type_settings rts ON (rts.type_id = st.type_id AND rts.setting_name = ? AND rts.locale = c.primary_locale),
+				registrations s
 			WHERE	st.sched_conf_id = ? AND
-				s.type_id = st.type_id AND
-				s.sched_conf_id = sc.sched_conf_id AND
-				sc.conference_id = c.conference_id' .
+				s.type_id = st.type_id' .
 				($dateStart !== null ? ' AND st.opening_date >= ' . $this->datetimeToDB($dateStart) : '') .
 				($dateEnd !== null ? ' AND st.closing_date <= ' . $this->datetimeToDB($dateEnd) : '') .
 			' GROUP BY st.type_id, rts.setting_value',
