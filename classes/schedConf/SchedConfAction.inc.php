@@ -117,7 +117,7 @@ class SchedConfAction {
 		if ($paperAccess == PAPER_ACCESS_OPEN) return true;
 
 		if($schedConf->getSetting('delayOpenAccess') && time() > $schedConf->getSetting('delayOpenAccessDate')) {
-			if(Validation::isReader() && $paperAcccess == PAPER_ACCESS_ACCOUNT_REQUIRED) {
+			if(Validation::isReader() && $paperAccess == PAPER_ACCESS_ACCOUNT_REQUIRED) {
 				return true;
 			}
 		}
