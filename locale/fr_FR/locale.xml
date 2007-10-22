@@ -1770,7 +1770,7 @@ Actif est le nombre de révisions en cours ou en réflexion.]]></message>
 	<message key="presenter.submit.submissionSupportingAgenciesDescription">Identifier les organismes apportant des fonds ou un soutien au travail présenté par la proposition.</message>
 	<message key="presenter.submit.agencies">Organismes</message>
 	<message key="presenter.submit.subjectClassInstructions">Utiliser le système de  classification hypertextuelle pour sélectionner les termes de classification et, si appropriés, les nombres.</message>
-	<message key="presenter.submit.languageInstructions"><![CDATA[Anglais=en; Français=fr; Espagnol=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">Codes Supplémentaires</a>.]]></message>
+	<message key="presenter.submit.languageInstructions"><![CDATA[Anglais=en; Français=fr; Espagnol=es. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Codes Supplémentaires</a>.]]></message>
 	<message key="presenter.submit.form.presenterRequired">Au moins un auteur est exigé.</message>
 	<message key="presenter.submit.form.presenterRequiredFields">Le prénom, le nom et l'adresse électronique de chacun des auteurs sont exigés.</message>
 	<message key="presenter.submit.form.titleRequired">Veuillez entrer le titre de votre papier.</message>

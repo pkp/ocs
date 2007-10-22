@@ -1784,7 +1784,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="presenter.submit.submissionSupportingAgenciesDescription">Identify agencies that provided funding or support for the work presented in this submission.</message>
 	<message key="presenter.submit.agencies">Agencies</message>
 	<message key="presenter.submit.subjectClassInstructions">Use the hyperlinked classification system to select classification terms and, if appropriate, numbers.</message>
-	<message key="presenter.submit.languageInstructions"><![CDATA[English=en; French=fr; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">Additional codes</a>.]]></message>
+	<message key="presenter.submit.languageInstructions"><![CDATA[English=en; French=fr; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Additional codes</a>.]]></message>
 	<message key="presenter.submit.form.presenterRequired">At least one author is required.</message>
 	<message key="presenter.submit.form.presenterRequiredFields">The first name, last name, and email address of each author is required.</message>
 	<message key="presenter.submit.form.titleRequired">Please enter the title of your paper.</message>
