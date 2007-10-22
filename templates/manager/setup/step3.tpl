@@ -71,7 +71,7 @@
 
 <p>{translate key="manager.setup.layout.conferencePageHeader.description"}</p>
 
-<h4>{translate key="manager.setup.layout.conferenceLogo"}</h4>
+<h4>{translate key="manager.setup.layout.conferenceTitle"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
