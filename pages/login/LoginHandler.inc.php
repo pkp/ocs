@@ -150,7 +150,7 @@ class LoginHandler extends Handler {
 			$mail->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
 			$mail->assignParams(array(
 				'url' => Request::url(null, null, 'login', 'resetPassword', $user->getUsername(), array('confirm' => $hash)),
-				'siteTitle' => $site->getTitle()
+				'siteTitle' => $site->getSiteTitle()
 			));
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 			$mail->send();
@@ -214,7 +214,7 @@ class LoginHandler extends Handler {
 			$mail->assignParams(array(
 				'username' => $user->getUsername(),
 				'password' => $newPassword,
-				'siteTitle' => $site->getTitle()
+				'siteTitle' => $site->getSiteTitle()
 			));
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 			$mail->send();

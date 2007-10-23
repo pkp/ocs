@@ -297,7 +297,10 @@ class CreateAccountForm extends Form {
 				// Send welcome email to user
 				$mail = &new MailTemplate('USER_REGISTER');
 				$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
-				$mail->assignParams(array('username' => $this->getData('username'), 'password' => $this->getData('password')));
+				$mail->assignParams(array(
+					'username' => $this->getData('username'),
+					'password' => String::substr($this->getData('password'), 0, 30), // Prevent mailer abuse via long passwords
+				));
 				$mail->addRecipient($user->getEmail(), $user->getFullName());
 				$mail->send();
 				unset($mail);
