@@ -52,7 +52,7 @@
 	</tr>
 </table>
 {if $isDirector}
-	<a href="{url op="clearConferenceEventLog" path=$logEntry->getLogId()}" onclick="return confirm('{translate|escape:"javascript" key="conference.event.confirmDeleteLogEntry"}')" class="action">{translate key="conference.event.deleteLogEntry"}</a><br/>
+	<a href="{url op="clearConferenceEventLog" path=$logEntry->getLogId()}" onclick="return confirm('{translate|escape:"jsparam" key="conference.event.confirmDeleteLogEntry"}')" class="action">{translate key="conference.event.deleteLogEntry"}</a><br/>
 {/if}
 
 <a class="action" href="{url op="conferenceEventLog"}">{translate key="conference.event.backToEventLog"}</a>

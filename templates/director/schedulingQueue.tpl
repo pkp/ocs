@@ -25,7 +25,7 @@
 
 <br />
 
-<form method="post" action="{url op="updateSchedulingQueue"}" onsubmit="return confirm('{translate|escape:"javascript" key="director.schedulingQueue.saveChanges"}')">
+<form method="post" action="{url op="updateSchedulingQueue"}" onsubmit="return confirm('{translate|escape:"jsparam" key="director.schedulingQueue.saveChanges"}')">
 
 <a name="papers"></a>
 

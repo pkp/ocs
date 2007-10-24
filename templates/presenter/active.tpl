@@ -55,7 +55,7 @@
 				{if $currentStage==REVIEW_STAGE_ABSTRACT}
 					{translate key="submissions.incomplete"}
 					<br />
-					<a href="{url op="deleteSubmission" path=$paperId}" class="action" onclick="return confirm('{translate|escape:"javascript" key="presenter.submissions.confirmDelete"}')">
+					<a href="{url op="deleteSubmission" path=$paperId}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="presenter.submissions.confirmDelete"}')">
 						{translate key="common.delete"}
 					</a>
 				{else}

@@ -64,7 +64,7 @@
 
 <div class="separator"></div>
 
-<p><input type="submit"{if !$submissionFile} onclick="return confirm('{translate|escape:"javascript" key="presenter.submit.noSubmissionConfirm"}')"{/if} value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="presenter"}', '{translate|escape:"javascript" key="presenter.submit.cancelSubmission"}')" /></p>
+<p><input type="submit"{if !$submissionFile} onclick="return confirm('{translate|escape:"jsparam" key="presenter.submit.noSubmissionConfirm"}')"{/if} value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="presenter"}', '{translate|escape:"jsparam" key="presenter.submit.cancelSubmission"}')" /></p>
 
 </form>
 

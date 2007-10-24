@@ -32,7 +32,7 @@
 		<td>{$track->getTrackTitle()|escape}</td>
 		<td>{$track->getTrackAbbrev()|escape}</td>
 		<td align="right" class="nowrap">
-			<a href="{url op="editTrack" path=$track->getTrackId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteTrack" path=$track->getTrackId()}" onclick="return confirm('{translate|escape:"javascript" key="manager.tracks.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveTrack" d=u trackId=$track->getTrackId()}">&uarr;</a>&nbsp;<a href="{url op="moveTrack" d=d trackId=$track->getTrackId()}">&darr;</a>
+			<a href="{url op="editTrack" path=$track->getTrackId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteTrack" path=$track->getTrackId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.tracks.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveTrack" d=u trackId=$track->getTrackId()}">&uarr;</a>&nbsp;<a href="{url op="moveTrack" d=d trackId=$track->getTrackId()}">&darr;</a>
 		</td>
 	</tr>
 	<tr>

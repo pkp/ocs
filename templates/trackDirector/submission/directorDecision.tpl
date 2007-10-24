@@ -21,7 +21,7 @@
 				{assign var=availableDirectorDecisionOptions value=`$submission->getDirectorDecisionOptions($currentSchedConf,$stage)`}
 				{html_options_translate options=$availableDirectorDecisionOptions selected=$lastDecision}
 			</select>
-			<input type="submit" onclick="return confirm('{translate|escape:"javascript" key="director.submissionReview.confirmDecision"}')" name="submit" value="{translate key="director.paper.recordDecision"}" {if not $allowRecommendation}disabled="disabled"{/if} class="button" />
+			<input type="submit" onclick="return confirm('{translate|escape:"jsparam" key="director.submissionReview.confirmDecision"}')" name="submit" value="{translate key="director.paper.recordDecision"}" {if not $allowRecommendation}disabled="disabled"{/if} class="button" />
 			{if not $allowRecommendation and $isCurrent}<br />{translate key="director.paper.cannotRecord}{/if}
 		</form>
 	</td>
@@ -53,7 +53,7 @@
 		{/if}
 		{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_DECLINE}
 			<br />
-			{if $submission->getStatus() == SUBMISSION_STATUS_ARCHIVED}{translate key="submissions.archived"}{else}<a href="{url op="archiveSubmission" path=$submission->getPaperId()}" onclick="return window.confirm('{translate|escape:"quotes" key="director.submissionReview.confirmToArchive"}')" class="action">{translate key="director.paper.sendToArchive"}</a>{/if}
+			{if $submission->getStatus() == SUBMISSION_STATUS_ARCHIVED}{translate key="submissions.archived"}{else}<a href="{url op="archiveSubmission" path=$submission->getPaperId()}" onclick="return window.confirm('{translate|escape:"jsparam" key="director.submissionReview.confirmToArchive"}')" class="action">{translate key="director.paper.sendToArchive"}</a>{/if}
 			{if $submission->getDateToArchive()}{$submission->getDateToArchive()|date_format:$dateFormatShort}{/if}
 		{/if}
 	</td>
@@ -143,7 +143,7 @@
 				<td width="20%">&nbsp;</td>
 				<td width="80%">
 					{translate key="director.paper.moveToLayout"}
-					<input type="submit" name="setEditingFile" onclick="return window.confirm('{translate|escape:"quotes" key="director.submissionReview.confirmToLayout"}')" value="{translate key="form.send"}" class="button" />
+					<input type="submit" name="setEditingFile" onclick="return window.confirm('{translate|escape:"jsparam" key="director.submissionReview.confirmToLayout"}')" value="{translate key="form.send"}" class="button" />
 					{if $submission->getDateToPresentations()}{$submission->getDateToPresentations()|date_format:$dateFormatShort}{/if}
 					{if !$submission->getGalleys()}
 						<br />

@@ -130,7 +130,7 @@
 					op="unEnroll"
 					path=$userRoles[role]->getRoleId()
 					userId=$user->getUserId()}"
-					onclick="return confirm('{translate|escape:"javascript" key="manager.people.confirmUnenroll"}')"
+					onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmUnenroll"}')"
 					class="action">
 				{translate key="manager.people.unenroll"}
 			</a>

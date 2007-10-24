@@ -39,7 +39,7 @@
 	<td>{$file->getTitle()|escape}</td>
 	<td>{$file->getOriginalFileName()|escape}</td>
 	<td>{$file->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
-	<td align="right"><a href="{url op="submitSuppFile" path=$file->getSuppFileId() paperId=$paperId}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSubmitSuppFile" path=$file->getSuppFileId() paperId=$paperId}" onclick="return confirm('{translate|escape:"javascript" key="presenter.submit.confirmDeleteSuppFile"}')" class="action">{translate key="common.delete"}</a></td>
+	<td align="right"><a href="{url op="submitSuppFile" path=$file->getSuppFileId() paperId=$paperId}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSubmitSuppFile" path=$file->getSuppFileId() paperId=$paperId}" onclick="return confirm('{translate|escape:"jsparam" key="presenter.submit.confirmDeleteSuppFile"}')" class="action">{translate key="common.delete"}</a></td>
 </tr>
 {foreachelse}
 <tr valign="top">
@@ -59,7 +59,7 @@
 
 <div class="separator"></div>
 
-<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="presenter"}', '{translate|escape:"javascript" key="presenter.submit.cancelSubmission"}')" /></p>
+<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="presenter"}', '{translate|escape:"jsparam" key="presenter.submit.cancelSubmission"}')" /></p>
 
 </form>
 

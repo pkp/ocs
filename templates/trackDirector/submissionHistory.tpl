@@ -96,7 +96,7 @@
 			<br />
 			{$logEntry->getMessage()|strip_unsafe_html|truncate:60:"..."}
 		</td>
-		<td align="right">{if $logEntry->getAssocType()}<a href="{url op="submissionEventLogType" path=$submission->getPaperId()|to_array:$logEntry->getAssocType():$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="submissionEventLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>{if $isDirector}&nbsp;|&nbsp;<a href="{url op="clearSubmissionEventLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" class="action" onclick="return confirm('{translate|escape:"javascript" key="submission.event.confirmDeleteLogEntry"}')">{translate key="common.delete"}</a>{/if}</td>
+		<td align="right">{if $logEntry->getAssocType()}<a href="{url op="submissionEventLogType" path=$submission->getPaperId()|to_array:$logEntry->getAssocType():$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="submissionEventLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>{if $isDirector}&nbsp;|&nbsp;<a href="{url op="clearSubmissionEventLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmDeleteLogEntry"}')">{translate key="common.delete"}</a>{/if}</td>
 	</tr>
 	<tr valign="top">
 		<td colspan="6" class="{if $eventLogEntries->eof()}end{/if}separator">&nbsp;</td>
@@ -112,7 +112,7 @@
 {/if}
 </table>
 
-<a href="{url op="submissionEventLog" path=$submission->getPaperId()}" class="action">{translate key="submission.history.viewLog"}</a>{if $isDirector} | <a href="{url op="clearSubmissionEventLog" path=$submission->getPaperId()}" class="action" onclick="return confirm('{translate|escape:"javascript" key="submission.event.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>{/if}
+<a href="{url op="submissionEventLog" path=$submission->getPaperId()}" class="action">{translate key="submission.history.viewLog"}</a>{if $isDirector} | <a href="{url op="clearSubmissionEventLog" path=$submission->getPaperId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>{/if}
 
 <br /><br />
 
@@ -137,7 +137,7 @@
 		<td>{$logEntry->getFrom()|truncate:40:"..."|escape}</td>
 		<td>{$logEntry->getRecipients()|truncate:40:"..."|escape}</td>
 		<td><strong>{$logEntry->getSubject()|truncate:60:"..."|escape}</strong></td>
-		<td>{if $logEntry->getAssocType()}<a href="{url op="submissionEmailLogType" path=$submission->getPaperId()|to_array:$logEntry->getAssocType():$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="submissionEmailLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>{if $isDirector}&nbsp;|&nbsp;<a href="{url op="clearSubmissionEmailLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" onclick="return confirm('{translate|escape:"javascript" key="submission.email.confirmDeleteLogEntry"}')" class="action">{translate key="common.delete"}</a>{/if}</td>
+		<td>{if $logEntry->getAssocType()}<a href="{url op="submissionEmailLogType" path=$submission->getPaperId()|to_array:$logEntry->getAssocType():$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="submissionEmailLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>{if $isDirector}&nbsp;|&nbsp;<a href="{url op="clearSubmissionEmailLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.email.confirmDeleteLogEntry"}')" class="action">{translate key="common.delete"}</a>{/if}</td>
 	</tr>
 	<tr valign="top">
 		<td colspan="6" class="{if $emailLogEntries->eof()}end{/if}separator">&nbsp;</td>
@@ -153,7 +153,7 @@
 {/if}
 </table>
 
-<a class="action" href="{url op="submissionEmailLog" path=$submission->getPaperId()}">{translate key="submission.history.viewLog"}</a>{if $isDirector} | <a class="action" href="{url op="clearsubmissionEmailLog" path=$submission->getPaperId()}" onclick="return confirm('{translate|escape:"javascript" key="submission.email.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>{/if}
+<a class="action" href="{url op="submissionEmailLog" path=$submission->getPaperId()}">{translate key="submission.history.viewLog"}</a>{if $isDirector} | <a class="action" href="{url op="clearsubmissionEmailLog" path=$submission->getPaperId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.email.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>{/if}
 
 <br /><br />
 
@@ -180,7 +180,7 @@
 		<td>{$note->getDateCreated()|date_format:$dateFormatShort}</td>
 		<td><a class="action" href="javascript:toggleNote({$note->getNoteId()})">{$note->getTitle()|escape}</a><div style="display: none" id="{$note->getNoteId()}" name="{$note->getNoteId()}">{$note->getNote()|strip_unsafe_html|nl2br}</div></td>
 		<td>{if $note->getFileId()}<a class="action" href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$note->getFileId()}">{$note->getOriginalFileName()}</a>{else}&mdash;{/if}</td>
-		<td align="right"><a href="{url op="submissionNotes" path=$submission->getPaperId()|to_array:"edit":$note->getNoteId()}" class="action">{translate key="common.view"}</a>&nbsp;|&nbsp;<a href="{url op="removeSubmissionNote" paperId=$submission->getPaperId() noteId=$note->getNoteId() fileId=$note->getFileId()}" onclick="return confirm('{translate|escape:"javascript" key="submission.notes.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
+		<td align="right"><a href="{url op="submissionNotes" path=$submission->getPaperId()|to_array:"edit":$note->getNoteId()}" class="action">{translate key="common.view"}</a>&nbsp;|&nbsp;<a href="{url op="removeSubmissionNote" paperId=$submission->getPaperId() noteId=$note->getNoteId() fileId=$note->getFileId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.notes.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
 	<tr valign="top">
 		<td colspan="6" class="{if $submissionNotes->eof()}end{/if}separator">&nbsp;</td>
@@ -196,6 +196,6 @@
 {/if}
 </table>
 
-<a class="action" href="{url op="submissionNotes" path=$submission->getPaperId()}">{translate key="submission.notes.viewNotes"}</a> | <a class="action" href="javascript:toggleNoteAll()">{translate key="submission.notes.expandNotes"} / {translate key="submission.notes.collapseNotes"}</a> | <a class="action" href="{url op="submissionNotes" path=$submission->getPaperId()|to_array:"add"}">{translate key="submission.notes.addNewNote"}</a> | <a class="action" href="{url op="clearAllSubmissionNotes" paperId=$submission->getPaperId()}" onclick="return confirm('{translate|escape:"javascript" key="submission.notes.confirmDeleteAll"}')">{translate key="submission.notes.clearAllNotes"}</a>
+<a class="action" href="{url op="submissionNotes" path=$submission->getPaperId()}">{translate key="submission.notes.viewNotes"}</a> | <a class="action" href="javascript:toggleNoteAll()">{translate key="submission.notes.expandNotes"} / {translate key="submission.notes.collapseNotes"}</a> | <a class="action" href="{url op="submissionNotes" path=$submission->getPaperId()|to_array:"add"}">{translate key="submission.notes.addNewNote"}</a> | <a class="action" href="{url op="clearAllSubmissionNotes" paperId=$submission->getPaperId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.notes.confirmDeleteAll"}')">{translate key="submission.notes.clearAllNotes"}</a>
 
 {include file="common/footer.tpl"}

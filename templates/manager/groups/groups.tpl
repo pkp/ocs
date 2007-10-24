@@ -45,7 +45,7 @@
 			{$group->getGroupTitle()|escape}&nbsp;{icon name="mail" url=$url}
 		</td>
 		<td>
-			<a href="{url op="editGroup" path=$group->getGroupId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="groupMembership" path=$group->getGroupId()}" class="action">{translate key="manager.groups.membership"}</a>&nbsp;|&nbsp;<a href="{url op="deleteGroup" path=$group->getGroupId()}" onclick="return confirm('{translate|escape:"javascript" key="manager.groups.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveGroup" d=u groupId=$group->getGroupId()}">&uarr;</a>&nbsp;<a href="{url op="moveGroup" d=d groupId=$group->getGroupId()}">&darr;</a>
+			<a href="{url op="editGroup" path=$group->getGroupId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="groupMembership" path=$group->getGroupId()}" class="action">{translate key="manager.groups.membership"}</a>&nbsp;|&nbsp;<a href="{url op="deleteGroup" path=$group->getGroupId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.groups.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveGroup" d=u groupId=$group->getGroupId()}">&uarr;</a>&nbsp;<a href="{url op="moveGroup" d=d groupId=$group->getGroupId()}">&darr;</a>
 		</td>
 	</tr>
 	<tr>

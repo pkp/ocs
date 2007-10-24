@@ -73,7 +73,7 @@
 	</tr>
 </table>
 {if $isDirector}
-	<a href="{url op="clearSubmissionEventLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" onclick="return confirm('{translate|escape:"javascript" key="submission.event.confirmDeleteLogEntry"}')" class="action">{translate key="submission.event.deleteLogEntry"}</a><br/>
+	<a href="{url op="clearSubmissionEventLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmDeleteLogEntry"}')" class="action">{translate key="submission.event.deleteLogEntry"}</a><br/>
 {/if}
 
 <a class="action" href="{url op="submissionEventLog" path=$submission->getPaperId()}">{translate key="submission.event.backToEventLog"}</a>

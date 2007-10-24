@@ -43,7 +43,7 @@
 			<br />
 			{$logEntry->getMessage()|strip_unsafe_html|truncate:60:"..."|escape}
 		</td>
-		<td align="right">{if $logEntry->getAssocType()}<a href="{url op="conferenceEventLogType" path=$logEntry->getAssocType()|to_array:$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="conferenceEventLog" path=$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>&nbsp;|&nbsp;<a href="{url op="clearConferenceEventLog" path=$logEntry->getLogId()}" class="action" onclick="return confirm('{translate|escape:"javascript" key="conference.event.confirmDeleteLogEntry"}')" class="icon">{translate key="common.delete"}</a></td>
+		<td align="right">{if $logEntry->getAssocType()}<a href="{url op="conferenceEventLogType" path=$logEntry->getAssocType()|to_array:$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="conferenceEventLog" path=$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>&nbsp;|&nbsp;<a href="{url op="clearConferenceEventLog" path=$logEntry->getLogId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="conference.event.confirmDeleteLogEntry"}')" class="icon">{translate key="common.delete"}</a></td>
 	</tr>
 	<tr valign="top">
 		<td colspan="7" class="{if $eventLogEntries->eof()}end{/if}separator">&nbsp;</td>
@@ -64,6 +64,6 @@
 {/if}
 </table>
 
-<a href="{url op="clearConferenceEventLog"}" class="action" onclick="return confirm('{translate|escape:"javascript" key="conference.event.confirmClearLog"}')">{translate key="conference.history.clearLog"}</a>
+<a href="{url op="clearConferenceEventLog"}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="conference.event.confirmClearLog"}')">{translate key="conference.history.clearLog"}</a>
 
 {include file="common/footer.tpl"}
