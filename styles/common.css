@@ -127,9 +127,10 @@ input.defaultButton {
 
 #header h1 {
 	margin: 0 auto;
-	padding: 0.5em 0 0.5em 0;
+	padding: 0.5em 0 0.25em 0;
 	font-family: Georgia,'Times New Roman',Times,serif;
 	font-weight: normal;
+	line-height: 1em;
 }
 
 #body {
