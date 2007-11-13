@@ -17,11 +17,12 @@
 class Transcoder {
 	var $fromEncoding;
 	var $toEncoding;
-	var $translit = false;
+	var $translit;
 
-	function Transcoder($fromEncoding, $toEncoding) {
+	function Transcoder($fromEncoding, $toEncoding, $translit = false) {
 		$this->fromEncoding = $fromEncoding;
 		$this->toEncoding = $toEncoding;
+		$this->translit = $translit;
 	}
 
 	function trans($string) {
@@ -38,7 +39,11 @@ class Transcoder {
 				return String::utf2html($string);		// NB: this will return all numeric entities
 			} else {
 				// NB: old PHP versions may have issues with htmlentities()
-				return htmlentities($string, ENT_COMPAT, $this->fromEncoding);
+				if ($string == html_entity_decode($string, ENT_COMPAT, $this->fromEncoding)) {
+					return htmlentities($string, ENT_COMPAT, $this->fromEncoding);
+				} else {
+					return $string;
+				}
 			}
 
 		} elseif ($this->fromEncoding == 'HTML-ENTITIES' && !$mbstring) {
@@ -57,6 +62,12 @@ class Transcoder {
 		} elseif ($this->translit == true && $iconv) {
 			// use the iconv library to transliterate
 			return iconv($this->fromEncoding, $this->toEncoding . '//TRANSLIT', $string);
+
+		} elseif ($this->translit == true && $this->fromEncoding == "UTF-8" && $this->toEncoding == "ASCII") {
+			// transliterate using built-in mapping
+			return String::html2utf(String::html2ascii(String::utf2html($string)));
+
+		// === end special cases for transliteration
 
 		} elseif ($mbstring) {
 			// use the multibyte library to transcode (no transliteration)

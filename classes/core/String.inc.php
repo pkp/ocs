@@ -368,7 +368,7 @@ class String {
 	}
 
 	/**
-	 * Convert escaped HTML entities in a string to UTF-8 encoded characters 
+	 * Convert numeric HTML entities in a string to UTF-8 encoded characters 
 	 * This is a native alternative to the buggy html_entity_decode() using UTF8
 	 * @param $input string input string
 	 * @return string
@@ -390,7 +390,7 @@ class String {
 	 * @param $input string input string
 	 * @return string
 	 */
-	function utf2ascii ($str) {
+	function html2ascii ($str) {
 		// define the conversion table
 		$entities = array(
 			"&#126;" => "~",			"&#160;" => " ",				"&#161;" => "!",
