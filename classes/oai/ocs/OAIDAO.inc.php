@@ -72,7 +72,7 @@ class OAIDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT MIN(pp.date_published)
 			FROM published_papers pp'
-			. (isset($conferenceId) ? ' WHERE i.conference_id = ?' : ''),
+			. (isset($conferenceId) ? ' LEFT JOIN sched_confs sc ON (pp.sched_conf_id = sc.sched_conf_id) WHERE sc.conference_id = ?' : ''),
 
 			isset($conferenceId) ? $conferenceId : false
 		);

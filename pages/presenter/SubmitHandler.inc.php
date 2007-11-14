@@ -22,6 +22,25 @@ class SubmitHandler extends PresenterHandler {
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
 	function submit($args) {
+		$user =& Request::getUser();
+		$schedConf =& Request::getSchedConf();
+		if ($user && $schedConf && !Validation::isPresenter()) {
+			// The user is logged in but not a presenter. If
+			// possible, enroll them as a presenter automatically.
+			import('schedConf.SchedConfAction');
+			$schedConfAction =& new SchedConfAction();
+			if ($schedConfAction->allowRegPresenter($schedConf)) {
+				$role =& new Role();
+				$role->setSchedConfId($schedConf->getSchedConfId());
+				$role->setConferenceId($schedConf->getConferenceId());
+				$role->setRoleId(ROLE_ID_PRESENTER);
+				$role->setUserId($user->getUserId());
+
+				$roleDao =& DAORegistry::getDAO('RoleDAO');
+				$roleDao->insertRole($role);
+			}
+		}
+
 		parent::validate();
 		parent::setupTemplate(true);
 

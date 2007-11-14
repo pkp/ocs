@@ -69,9 +69,9 @@ class PublishedPaperDAO extends DAO {
 				papers p
 				LEFT JOIN tracks s ON s.track_id = p.track_id
 				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = ?)
-				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE pa.paper_id = p.paper_id
 				AND pa.sched_conf_id = ?
@@ -122,9 +122,9 @@ class PublishedPaperDAO extends DAO {
 			FROM published_papers pa,
 				papers a
 				LEFT JOIN tracks s ON s.track_id = a.track_id
-				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE pa.paper_id = a.paper_id
 				AND a.sched_conf_id = ?
@@ -202,9 +202,9 @@ class PublishedPaperDAO extends DAO {
 				papers p
 				LEFT JOIN tracks s ON s.track_id = p.track_id
 				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = ?)
-				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE
 				pa.paper_id = p.paper_id
@@ -257,9 +257,9 @@ class PublishedPaperDAO extends DAO {
 			FROM published_papers pa,
 				papers a,
 				tracks s
-				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE a.track_id = s.track_id
 				AND pa.paper_id = a.paper_id
@@ -349,9 +349,9 @@ class PublishedPaperDAO extends DAO {
 				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
 			FROM published_papers pa,
 				papers a
-				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			LEFT JOIN tracks s ON s.track_id = a.track_id
 			WHERE pa.paper_id = a.paper_id
@@ -388,9 +388,9 @@ class PublishedPaperDAO extends DAO {
 				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
 			FROM	published_papers pa,
 				papers a
-				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 				LEFT JOIN tracks s ON s.track_id = a.track_id
 			WHERE	pa.paper_id = a.paper_id

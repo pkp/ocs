@@ -332,7 +332,7 @@ class TrackDAO extends DAO {
 	 */
 	function &getTrackTitles($schedConfId, $submittableOnly = false) {
 		$tracks = array();
-		$tracksIterator =& $this->getConferenceTracks($schedConfId);
+		$tracksIterator =& $this->getSchedConfTracks($schedConfId);
 		while (($track =& $tracksIterator->next())) {
 			if (!$submittableOnly || !$track->getDirectorRestricted()) {
 				$tracks[$track->getTrackId()] = $track->getTrackTitle();
@@ -340,9 +340,6 @@ class TrackDAO extends DAO {
 
 			unset($track);
 		}
-
-		$result->Close();
-		unset($result);
 
 		return $tracks;
 	}
