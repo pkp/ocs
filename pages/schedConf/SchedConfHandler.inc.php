@@ -133,7 +133,7 @@ class SchedConfHandler extends Handler {
 	}
 
 	/**
-	 * Display conference program page
+	 * Display conference registration page
 	 */
 	function registration() {
 		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
@@ -225,6 +225,25 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr->assign('helpTopicId', 'schedConf.program');
 		$templateMgr->display('schedConf/program.tpl');
+	}
+
+	/**
+	 * Display conference accommodation page
+	 */
+	function accommodation() {
+		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+
+		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign('pageHierarchy', array(
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
+
+		$templateMgr->assign('accommodationDescription', $schedConf->getLocalizedSetting('accommodationDescription'));
+		$templateMgr->assign('accommodationFiles', $schedConf->getLocalizedSetting('accommodationFiles'));
+
+		$templateMgr->assign('helpTopicId', 'schedConf.accommodation');
+		$templateMgr->display('schedConf/accommodation.tpl');
 	}
 
 	/**

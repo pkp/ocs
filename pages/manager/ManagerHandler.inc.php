@@ -632,6 +632,21 @@ class ManagerHandler extends Handler {
 
 
 	//
+	// Accommodation
+	//
+
+	function accommodation() {
+		import('pages.manager.ManagerAccommodationHandler');
+		ManagerAccommodationHandler::accommodation();
+	}
+
+	function saveAccommodationSettings() {
+		import('pages.manager.ManagerAccommodationHandler');
+		ManagerAccommodationHandler::saveAccommodationSettings();
+	}
+
+
+	//
 	// Payment
 	//
 

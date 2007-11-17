@@ -221,11 +221,17 @@ class SchedConf extends DataObject {
 		return $schedConfSettingsDao->getSchedConfSettings($this->getData('schedConfId'), $includeParent);
 	}
 
-	function &getLocalizedSetting($name) {
-		$returner = $this->getSetting($name, Locale::getLocale());
+	/**
+	 * Get a localized scheduled conference setting.
+	 * @param $name string
+	 * @param $includeParent boolean
+	 * @return mixed
+	 */
+	function &getLocalizedSetting($name, $includeParent = false) {
+		$returner = $this->getSetting($name, $includeParent, Locale::getLocale());
 		if ($returner === null) {
 			unset($returner);
-			$returner = $this->getSetting($name, Locale::getPrimaryLocale());
+			$returner = $this->getSetting($name, $includeParent, Locale::getPrimaryLocale());
 		}
 		return $returner;
 	}

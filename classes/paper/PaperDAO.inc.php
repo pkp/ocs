@@ -33,7 +33,7 @@ class PaperDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'abstract', 'discipline', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
+		return array('title', 'abstract', 'location', 'discipline', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
 	}
 
 	/**
@@ -115,7 +115,6 @@ class PaperDAO extends DAO {
 		$paper->setUserId($row['user_id']);
 		$paper->setSchedConfId($row['sched_conf_id']);
 		$paper->setTrackId($row['track_id']);
-		$paper->setLocation($row['location']);
 		$paper->setPresentStartTime($this->datetimeFromDB($row['present_start_time']));
 		$paper->setPresentEndTime($this->datetimeFromDB($row['present_end_time']));
 		$paper->setDateToPresentations($this->datetimeFromDB($row['date_to_presentations']));

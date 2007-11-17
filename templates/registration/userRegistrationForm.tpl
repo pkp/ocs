@@ -53,6 +53,10 @@
 					{$registrationType->getCost()|escape} {$registrationType->getCurrencyCodeAlpha()|escape}
 					{translate key="schedConf.registration.typeCloses" closingDate=$registrationType->getClosingDate()|date_format:$dateFormatShort}
 					{assign var="isFirstRegistrationType" value=false}
+				{elseif strtotime($registrationType->getOpeningDate()) > time()}
+					<input type="radio" name="registrationTypeId" value="{$registrationType->getTypeId()|escape}" disabled="disabled" />
+					{$registrationType->getCost()|escape} {$registrationType->getCurrencyCodeAlpha()|escape}
+					{translate key="schedConf.registration.typeFuture" openingDate=$registrationType->getOpeningDate()|date_format:$dateFormatShort}
 				{else}
 					<input type="radio" name="registrationTypeId" value="{$registrationType->getTypeId()|escape}" disabled="disabled" />
 					{$registrationType->getCost()|escape} {$registrationType->getCurrencyCodeAlpha()|escape}

@@ -441,6 +441,7 @@
 	<message key="schedConf.cfp">Call for Papers</message>
 	<message key="schedConf.discussion">Discussion</message>
 	<message key="schedConf.registration">Registration</message>
+	<message key="schedConf.accommodation">Accommodation</message>
 	<message key="schedConf.supporters">Organizers and Partners</message>
 	<message key="schedConf.timeline">Timeline</message>
 	<message key="schedConf.schedule">Conference Schedule</message>
@@ -455,6 +456,7 @@
 	<message key="schedConf.overview.title">{$schedConfAbbrev} Overview</message>
 	<message key="schedConf.presentations.title">{$schedConfAbbrev} Presentations and Authors</message>
 	<message key="schedConf.program.title">{$schedConfAbbrev} Program</message>
+	<message key="schedConf.accommodation.title">{$schedConfAbbrev} Accommodation</message>
 	<message key="schedConf.trackPolicies.title">{$schedConfAbbrev} Track Policies</message>
 
 	<!-- User self-registration form -->
@@ -468,6 +470,7 @@
 	<message key="schedConf.registration.register">Register</message>
 	<message key="schedConf.registration.typeCloses">(Closes {$closingDate})</message>
 	<message key="schedConf.registration.typeClosed">(Registration Closed {$closingDate})</message>
+	<message key="schedConf.registration.typeFuture">(Registration Opening {$openingDate})</message>
 	<message key="schedConf.registration.feeCode">Fee Code</message>
 	<message key="schedConf.registration.feeCode.description">If you were given a secret code for registration, please enter it here and make sure you've chosen the correct registration type above. Otherwise, leave the Fee Code field blank.</message>
 	<message key="schedConf.registration.specialRequests">Special Requests</message>
@@ -818,6 +821,13 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.program.form.programText">Plain Text Program</message>
 	<message key="manager.program.form.programText.description">Enter a text-based version of your conference program here.</message>
 
+	<!-- Accommodation settings -->
+	<message key="manager.accommodation.form.description">Enter information about accommodation, transportation, and other related logistics here. Several files including information like directions and forms may also be uploaded.</message>
+	<message key="manager.accommodation.form.accommodationFiles">Files</message>
+	<message key="manager.accommodation.form.accommodationFiles.description">Use this section to upload one or more files for registrants and potential registrants, such as maps, forms, etc.</message>
+	<message key="manager.accommodation.form.accommodationText">Accommodation Description</message>
+	<message key="manager.accommodation.form.accommodationText.description">Enter text describing conference accommodations in the field below.</message>
+
 	<!-- Conference Management -->
 	<message key="manager.conferenceSiteManagement">Conference Site Management</message>
 	<message key="manager.websiteManagement">Website Management</message>
@@ -837,6 +847,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.registrationTypes">Registration Types</message>
 	<message key="manager.registration">Registrations</message>
 	<message key="manager.registrationPolicies">Registration Policies</message>
+	<message key="manager.accommodation">Accommodation</message>
 	<message key="manager.announcements">Announcements</message>
 	<message key="manager.announcementTypes">Announcement Types</message>
 
