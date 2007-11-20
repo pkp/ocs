@@ -34,6 +34,7 @@ class HelpHandler extends Handler {
 
 	function toc() {
 		parent::validate();
+		HelpHandler::setupTemplate();
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('helpToc', Help::getTableOfContents());
@@ -46,6 +47,7 @@ class HelpHandler extends Handler {
 	 */
 	function view($args) {
 		parent::validate();
+		HelpHandler::setupTemplate();
 
 		$topicId = implode("/",$args);
 
@@ -91,6 +93,7 @@ class HelpHandler extends Handler {
 	 */
 	function search() {
 		parent::validate();
+		HelpHandler::setupTemplate();
 
 		$searchResults = array();
 
@@ -114,6 +117,13 @@ class HelpHandler extends Handler {
 		$templateMgr->display('help/searchResults.tpl');
 	}
 
+	/**
+	 * Initialize the template
+	 */
+	function setupTemplate() {
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
+	}
 }
 
 ?>

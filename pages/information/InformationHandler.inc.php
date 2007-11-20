@@ -21,6 +21,7 @@ class InformationHandler extends Handler {
 	 */
 	function index($args) {
 		parent::validate();
+		InformationHandler::setupTemplate();
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		$schedConfContent = null;
@@ -66,6 +67,14 @@ class InformationHandler extends Handler {
 
 	function presenters() {
 		InformationHandler::index(array('presenters'));
+	}
+
+	/**
+	 * Initialize the template.
+	 */
+	function setupTemplate() {
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 	}
 }
 

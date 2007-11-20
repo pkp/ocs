@@ -80,6 +80,7 @@ class AboutHandler extends Handler {
 		$schedConf =& Request::getSchedConf();
 
 		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 
 		$pageHierarchy = array();
 		if ($conference) $pageHierarchy[] = array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true);

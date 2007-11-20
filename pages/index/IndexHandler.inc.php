@@ -60,6 +60,7 @@ class IndexHandler extends Handler {
 			$templateMgr->assign('intro', $site->getSiteIntro());
 			$conferences = &$conferenceDao->getEnabledConferences();
 			$templateMgr->assign_by_ref('conferences', $conferences);
+			HelpHandler::setupTemplate();
 			$templateMgr->display('index/site.tpl');
 		}
 	}

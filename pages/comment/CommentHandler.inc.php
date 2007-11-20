@@ -40,6 +40,7 @@ class CommentHandler extends Handler {
 		CommentHandler::setupTemplate($paper, $galleyId, $comment);
 
 		$templateMgr = &TemplateManager::getManager();
+		if (Request::getUserVar('refresh')) $templateMgr->setCacheability(CACHEABILITY_NO_CACHE);
 		if ($comment) {
 			$templateMgr->assign_by_ref('comment', $comment);
 			$templateMgr->assign_by_ref('parent', $commentDao->getComment($comment->getParentCommentId(), $paperId));
@@ -88,7 +89,7 @@ class CommentHandler extends Handler {
 		if (isset($args[3]) && $args[3]=='save') {
 			$commentForm->readInputData();
 			$commentForm->execute();
-			Request::redirect(null, null, null, 'view', array($paperId, $galleyId, $parentId));
+			Request::redirect(null, null, null, 'view', array($paperId, $galleyId, $parentId), array('refresh' => 1));
 		} else {
 			CommentHandler::setupTemplate($paper, $galleyId, $parent);
 			$commentForm->display();
@@ -116,7 +117,7 @@ class CommentHandler extends Handler {
 		$comment = &$commentDao->getComment($commentId, $paperId, PAPER_COMMENT_RECURSE_ALL);
 		if ($comment)$commentDao->deleteComment($comment);
 
-		Request::redirect(null, null, null, 'view', array($paperId, $galleyId));
+		Request::redirect(null, null, null, 'view', array($paperId, $galleyId), array('refresh' => 1));
 	}
 
 	/**
@@ -159,6 +160,7 @@ class CommentHandler extends Handler {
 
 	function setupTemplate($paper, $galleyId, $comment = null) {
 		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 
 		$pageHierarchy = array(
 			array(

@@ -281,6 +281,7 @@ class SearchHandler extends Handler {
 		$results = &PaperSearch::retrieveResults($conference, $keywords, $fromDate, $toDate, $rangeInfo);
 
 		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->setCacheability(CACHEABILITY_NO_STORE);
 		$templateMgr->assign_by_ref('results', $results);
 		SearchHandler::assignAdvancedSearchParameters($templateMgr);
 
@@ -299,6 +300,8 @@ class SearchHandler extends Handler {
 			$subclass ? array(array(Request::url(null, null, 'search'), 'navigation.search'))
 				: array()
 		);
+
+		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 	}
 
 	function assignAdvancedSearchParameters(&$templateMgr) {

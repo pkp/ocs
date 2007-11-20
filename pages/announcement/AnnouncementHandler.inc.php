@@ -92,6 +92,7 @@ class AnnouncementHandler extends Handler {
 		parent::validate();
 
 		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 		$templateMgr->assign('pageHierachy', array(array(Request::url(null, 'announcements'), 'announcement.announcements')));
 	}
 }
