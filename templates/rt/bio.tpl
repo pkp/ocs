@@ -21,7 +21,7 @@
 	{if $presenter->getCountry()}<br/>{$presenter->getCountryLocalized()|escape}{/if}
 </p>
 
-<p>{$presenter->getBiography()|strip_unsafe_html|nl2br}</p>
+<p>{$presenter->getPresenterBiography()|strip_unsafe_html|nl2br}</p>
 
 {if !$smarty.foreach.presenters.last}<div class="separator"></div>{/if}
 
