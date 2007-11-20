@@ -42,10 +42,18 @@ class SiteSettingsForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
+		$site =& Request::getSite();
+		$publicFileManager =& new PublicFileManager();
+		$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
 		$conferences = &$conferenceDao->getConferenceTitles();
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('redirectOptions', $conferences);
+		$templateMgr->assign('originalStyleFilename', $site->getOriginalStyleFilename());
+		$templateMgr->assign('styleFilename', $site->getSiteStyleFilename());
+		$templateMgr->assign('publicFilesDir', Request::getBasePath() . '/' . $publicFileManager->getSiteFilesPath());
+		$templateMgr->assign('dateStyleFileUploaded', file_exists($siteStyleFilename)?filemtime($siteStyleFilename):null);
+		$templateMgr->assign('siteStyleFileExists', file_exists($siteStyleFilename));
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
 		parent::display();
 	}
@@ -95,6 +103,29 @@ class SiteSettingsForm extends Form {
 		$siteDao->updateSite($site);
 	}
 
+	/**
+	 * Uploads custom site stylesheet.
+	 */
+	function uploadSiteStyleSheet() {
+		import('file.PublicFileManager');
+		$fileManager = &new PublicFileManager();
+		$site =& Request::getSite();
+		if ($fileManager->uploadedFileExists('siteStyleSheet')) {
+			$type = $fileManager->getUploadedFileType('siteStyleSheet');
+			if ($type != 'text/plain' && $type != 'text/css') {
+				return false;
+			}
+
+			$uploadName = $site->getSiteStyleFilename();
+			if($fileManager->uploadSiteFile('siteStyleSheet', $uploadName)) {
+				$siteDao =& DAORegistry::getDAO('SiteDAO');
+				$site->setOriginalStyleFilename($fileManager->getUploadedFileName('siteStyleSheet'));
+				$siteDao->updateSite($site);
+			}
+		}
+		
+		return true;
+	}
 }
 
 ?>
