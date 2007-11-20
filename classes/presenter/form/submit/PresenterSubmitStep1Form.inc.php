@@ -106,7 +106,7 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 			$this->paper->setTrackId($this->getData('trackId'));
 			$this->paper->stampStatusModified();
 			$this->paper->setSubmissionProgress($this->step + 1);
-			$this->paper->setLanguage($conference->getPrimaryLocale());
+			$this->paper->setLanguage(String::substr($conference->getPrimaryLocale(), 0, 2));
 			$this->paper->setCommentsToDirector($this->getData('commentsToDirector'));
 
 			switch($schedConf->getSetting('reviewMode')) {
