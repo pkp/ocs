@@ -147,6 +147,7 @@ class DirectorAction extends TrackDirectorAction {
 			}
 			$galley->setPaperId($paper->getPaperId());
 			$galley->setFileId($fileId);
+			$galley->setLocale(Locale::getLocale());
 
 			if ($galley->isHTMLGalley()) {
 				$galley->setLabel('HTML');
