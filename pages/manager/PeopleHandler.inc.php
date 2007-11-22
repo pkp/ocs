@@ -369,7 +369,7 @@ class PeopleHandler extends ManagerHandler {
 
 		$templateMgr = &TemplateManager::getManager();
 
-		if (!Validation::canAdminister($conference->getConferenceId(), $schedConfId, $userId)) {
+		if ($userId !== null && !Validation::canAdminister($conference->getConferenceId(), $schedConfId, $userId)) {
 			// We don't have administrative rights
 			// over this user. Display an error.
 			$templateMgr->assign('pageTitle', 'manager.people');
