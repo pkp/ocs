@@ -184,7 +184,8 @@ class RTHandler extends PaperHandler {
 			$citationPlugin =& $citationPlugins[$citeType];
 		} else {
 			// No citation type has been selected; use a default.
-			$citationPlugin = array_shift($citationPlugins);
+			if (isset($citationPlugins['abnt'])) $citationPlugin =& $citationPlugins['abnt'];
+			else $citationPlugin = array_shift($citationPlugins);
 		}
 		$citationPlugin->cite($paper);
 	}
