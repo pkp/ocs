@@ -261,7 +261,7 @@ class TrackDAO extends DAO {
 		$returner = array();
 
 		$result = &$this->retrieve(
-			'SELECT s.*, se.user_id AS director_id FROM track_directors se, tracks s WHERE se.track_id = s.track_id AND s.sched_conf_id = se.sched_conf_id AND s.sched_conf_id = ?',
+			'SELECT t.*, td.user_id AS director_id FROM track_directors td, tracks t WHERE td.track_id = t.track_id AND t.sched_conf_id = td.sched_conf_id AND t.sched_conf_id = ?',
 			$schedConfId
 		);
 
@@ -291,12 +291,12 @@ class TrackDAO extends DAO {
 		$returner = array();
 
 		$result = &$this->retrieve(
-			'SELECT DISTINCT s.*,
-				COALESCE(o.seq, s.seq) AS track_seq
-			FROM tracks s, papers a
-			LEFT JOIN sched_confs i ON (a.sched_conf_id = i.sched_conf_id) AND (i.sched_conf_id = ?)
-			LEFT JOIN custom_track_orders o ON (a.track_id = o.track_id AND o.sched_conf_id = i.sched_conf_id)
-			WHERE s.track_id = a.track_id ORDER BY track_seq',
+			'SELECT DISTINCT t.*,
+				COALESCE(o.seq, t.seq) AS track_seq
+			FROM tracks t, papers p
+			LEFT JOIN sched_confs i ON (p.sched_conf_id = i.sched_conf_id) AND (i.sched_conf_id = ?)
+			LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = i.sched_conf_id)
+			WHERE t.track_id = p.track_id ORDER BY track_seq',
 			array($schedConfId)
 		);
 
@@ -483,7 +483,7 @@ class TrackDAO extends DAO {
 	 */
 	function setDefaultCustomTrackOrders($schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT s.track_id FROM tracks s, sched_confs i WHERE i.sched_conf_id = s.sched_conf_id AND i.sched_conf_id = ? ORDER BY seq',
+			'SELECT t.track_id FROM tracks t, sched_confs i WHERE i.sched_conf_id = t.sched_conf_id AND i.sched_conf_id = ? ORDER BY seq',
 			$schedConfId
 		);
 

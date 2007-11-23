@@ -41,8 +41,8 @@ class TrackForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-		return $sectionDao->getLocaleFieldNames();
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		return $trackDao->getLocaleFieldNames();
 	}
 
 	/**

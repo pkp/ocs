@@ -409,7 +409,7 @@ class SchedConfStatisticsDAO extends DAO {
 				a.date_submitted AS date_submitted,
 				a.status AS status
 			FROM	papers a
-				LEFT JOIN tracks s ON (s.track_id = a.track_id) 
+				LEFT JOIN tracks t ON (t.track_id = a.track_id) 
 				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
 			WHERE	a.sched_conf_id = ? ' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
@@ -436,12 +436,12 @@ class SchedConfStatisticsDAO extends DAO {
 				a.date_submitted,
 				a.status
 			FROM	papers a
-				LEFT JOIN tracks s ON (s.track_id = a.track_id)
+				LEFT JOIN tracks s ON (t.track_id = a.track_id)
 				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
 			WHERE	a.sched_conf_id = ?' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
-			' ORDER BY s.title, a.date_submitted',
+			' ORDER BY t.title, a.date_submitted',
 			$schedConfId
 		);
 		import('schedConf.SchedConfReportIterator');
@@ -466,7 +466,7 @@ class SchedConfStatisticsDAO extends DAO {
 				a.status
 			FROM	review_assignments ra,
 				papers a
-				LEFT JOIN tracks s ON (s.track_id = a.track_id)
+				LEFT JOIN tracks t ON (t.track_id = a.track_id)
 				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
 			WHERE	a.sched_conf_id = ? AND
 				ra.paper_id = a.paper_id ' .
@@ -496,7 +496,7 @@ class SchedConfStatisticsDAO extends DAO {
 				a.status
 			FROM	papers a
 				LEFT JOIN edit_assignments ee ON (ee.paper_id = a.paper_id)
-				LEFT JOIN tracks s ON (s.track_id = a.track_id)
+				LEFT JOIN tracks t ON (t.track_id = a.track_id)
 				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
 			WHERE	a.sched_conf_id = ? ' .
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .

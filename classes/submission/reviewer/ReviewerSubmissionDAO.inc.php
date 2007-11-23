@@ -255,7 +255,7 @@ class ReviewerSubmissionDAO extends DAO {
 			SELECT r.date_completed, r.declined, r.cancelled
 			FROM papers a
 				LEFT JOIN review_assignments r ON (a.paper_id = r.paper_id)
-				LEFT JOIN tracks s ON (s.track_id = a.track_id)
+				LEFT JOIN tracks t ON (t.track_id = a.track_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage)
 			WHERE a.sched_conf_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';

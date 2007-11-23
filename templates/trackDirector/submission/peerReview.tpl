@@ -50,7 +50,7 @@
 		<tr valign="top">
 			<td class="label" width="20%">{translate key="submission.abstract"}</td>
 			<td width="80%" class="value">
-				{$submission->getAbstract()}
+				{$submission->getPaperAbstract()}
 			</td>
 		</tr>
 

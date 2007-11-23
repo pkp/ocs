@@ -62,18 +62,18 @@ class PublishedPaperDAO extends DAO {
 		$sql = 'SELECT DISTINCT
 				pa.*,
 				p.*,
-				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
-				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev,
-				COALESCE(o.seq, s.seq) AS track_seq, pa.seq
-			FROM published_papers pa,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev,
+				COALESCE(o.seq, t.seq) AS track_seq, pa.seq
+			FROM	published_papers pa,
 				papers p
-				LEFT JOIN tracks s ON s.track_id = p.track_id
+				LEFT JOIN tracks t ON t.track_id = p.track_id
 				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = ?)
-				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
-				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
-				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
-				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
-			WHERE pa.paper_id = p.paper_id
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+			WHERE	pa.paper_id = p.paper_id
 				AND pa.sched_conf_id = ?
 				AND p.status <> ' . SUBMISSION_STATUS_ARCHIVED . '
 			ORDER BY track_seq ASC, pa.seq ASC';
@@ -115,20 +115,20 @@ class PublishedPaperDAO extends DAO {
 		$locale = Locale::getLocale();
 
 		$result =& $this->retrieveRange(
-			'SELECT pa.*,
-				a.*,
-				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
-				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
-			FROM published_papers pa,
-				papers a
-				LEFT JOIN tracks s ON s.track_id = a.track_id
-				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
-				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
-				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
-				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
-			WHERE pa.paper_id = a.paper_id
-				AND a.sched_conf_id = ?
-				AND a.status <> ' . SUBMISSION_STATUS_ARCHIVED,
+			'SELECT pp.*,
+				p.*,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
+			FROM published_papers pp,
+				papers p
+				LEFT JOIN tracks t ON t.track_id = p.track_id
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+			WHERE pp.paper_id = p.paper_id
+				AND p.sched_conf_id = ?
+				AND p.status <> ' . SUBMISSION_STATUS_ARCHIVED,
 			array(
 				'title',
 				$primaryLocale,
@@ -193,19 +193,19 @@ class PublishedPaperDAO extends DAO {
 			'SELECT DISTINCT
 				pa.*,
 				p.*,
-				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
-				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev,
-				COALESCE(o.seq, s.seq) AS track_seq,
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev,
+				COALESCE(o.seq, t.seq) AS track_seq,
 				pa.seq
 			FROM	published_papers pa,
 				paper_presenters pp,
 				papers p
-				LEFT JOIN tracks s ON s.track_id = p.track_id
+				LEFT JOIN tracks t ON t.track_id = p.track_id
 				LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = ?)
-				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
-				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
-				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
-				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE
 				pa.paper_id = p.paper_id
 				AND pa.sched_conf_id = ?
@@ -252,16 +252,16 @@ class PublishedPaperDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT pa.*,
 				a.*,
-				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
-				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM published_papers pa,
 				papers a,
-				tracks s
-				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
-				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
-				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
-				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
-			WHERE a.track_id = s.track_id
+				tracks t
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
+			WHERE a.track_id = t.track_id
 				AND pa.paper_id = a.paper_id
 				AND a.track_id = ?
 				AND pa.sched_conf_id = ?
@@ -345,15 +345,15 @@ class PublishedPaperDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT pa.*,
 				a.*,
-				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
-				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM published_papers pa,
 				papers a
-				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
-				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
-				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
-				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
-			LEFT JOIN tracks s ON s.track_id = a.track_id
+				LEFT JOIN tracks t ON t.track_id = a.track_id
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE pa.paper_id = a.paper_id
 				AND a.paper_id = ?' . (isset($schedConfId)?'
 				AND a.sched_conf_id = ?':''),
@@ -384,15 +384,15 @@ class PublishedPaperDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT	pa.*,
 				a.*,
-				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
-				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	published_papers pa,
 				papers a
-				LEFT JOIN track_settings ttpl ON (s.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
-				LEFT JOIN track_settings ttl ON (s.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
-				LEFT JOIN track_settings tapl ON (s.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
-				LEFT JOIN track_settings tal ON (s.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
-				LEFT JOIN tracks s ON s.track_id = a.track_id
+				LEFT JOIN tracks t ON t.track_id = a.track_id
+				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
+				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
+				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
+				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE	pa.paper_id = a.paper_id
 				AND pa.public_paper_id = ?
 				AND a.sched_conf_id = ?',

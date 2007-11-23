@@ -64,7 +64,7 @@ class TrackDirectorsDAO extends DAO {
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 
 		$result = &$this->retrieve(
-			'SELECT s.* FROM tracks AS s, track_directors AS e WHERE s.track_id = e.track_id AND s.sched_conf_id = ? AND e.user_id = ?',
+			'SELECT t.* FROM tracks t, track_directors td WHERE t.track_id = td.track_id AND t.sched_conf_id = ? AND td.user_id = ?',
 			array($schedConfId, $userId)
 		);
 
