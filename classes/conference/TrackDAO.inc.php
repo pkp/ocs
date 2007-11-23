@@ -153,6 +153,14 @@ class TrackDAO extends DAO {
 	}
 
 	/**
+	 * Get the list of fields for which data can be localized.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('title', 'abbrev', 'policy', 'identifyType');
+	}
+
+	/**
 	 * Update the localized fields for this table
 	 * @param $track object
 	 */
