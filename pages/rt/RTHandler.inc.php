@@ -246,7 +246,7 @@ class RTHandler extends PaperHandler {
 				$primaryPresenter = $paper->getPresenters();
 				$primaryPresenter = $primaryPresenter[0];
 
-				$email->setSubject('[' . $schedConf->getSetting('acronym') . '] ' . strip_tags($paper->getPaperTitle()));
+				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getPaperTitle()));
 				$email->assignParams(array(
 					'paperTitle' => strip_tags($paper->getPaperTitle()),
 					'schedConf' => $schedConf->getSchedConfTitle(),
@@ -282,7 +282,7 @@ class RTHandler extends PaperHandler {
 			$templateMgr->display('rt/sent.tpl');
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$email->setSubject('[' . $schedConf->getSetting('acronym') . '] ' . strip_tags($paper->getPaperTitle()));
+				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getPaperTitle()));
 				$presenters = &$paper->getPresenters();
 				$presenter = &$presenters[0];
 				$email->addRecipient($presenter->getEmail(), $presenter->getFullName());

@@ -69,13 +69,14 @@ class PaperDAO extends DAO {
 			'SELECT	p.*,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
-			FROM papers p
+			FROM	papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
-			WHERE paper_id = ?', $paperId
+			WHERE	paper_id = ?',
+			$params
 		);
 
 		$returner = null;

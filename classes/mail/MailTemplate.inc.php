@@ -130,7 +130,7 @@ class MailTemplate extends Mail {
 		}
 
 		if ($schedConf && !Request::getUserVar('continued')) {
-			$this->setSubject('[' . $schedConf->getSetting('acronym') . '] ' . $this->getSubject());
+			$this->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . $this->getSubject());
 		}
 
 		// If enableAttachments is null, use the default value from the
