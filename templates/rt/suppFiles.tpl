@@ -27,7 +27,7 @@
 	<td class="value" width="80%">
 		{if $suppFile->getType()|escape}
 			{$suppFile->getType()}
-		{elseif $suppFile->getTypeOther()}
+		{elseif $suppFile->getSuppFileTypeOther()}
 			{$suppFile->getSuppFileTypeOther()|escape}
 		{else}
 			{translate key="common.other"}

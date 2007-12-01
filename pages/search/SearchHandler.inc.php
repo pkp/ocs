@@ -152,8 +152,8 @@ class SearchHandler extends Handler {
 		$rangeInfo = Handler::getRangeInfo('search');
 
 		$allPaperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedByTitle(
-			$conference? $conference->getConferenceId():-1,
-			$schedConf?$schedConf->getSchedConfId():-1,
+			$conference? $conference->getConferenceId():null,
+			$schedConf?$schedConf->getSchedConfId():null,
 			$rangeInfo);
 
 		// FIXME: this is horribly inefficient.

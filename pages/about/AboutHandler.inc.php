@@ -42,7 +42,7 @@ class AboutHandler extends Handler {
 				$templateMgr->assign_by_ref('currentSchedConfs', $schedConfDao->getCurrentSchedConfs($conference->getConferenceId()));
 			}
 
-			$customAboutItems = &$settings['customAboutItems'];
+			$customAboutItems = $conference->getSetting('customAboutItems');
 
 			foreach (AboutHandler::getPublicStatisticsNames() as $name) {
 				if (isset($settings[$name])) {
@@ -404,6 +404,13 @@ class AboutHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('ocsVersion', $version->getVersionString());
+
+		foreach (array(Locale::getLocale(), $primaryLocale = Locale::getPrimaryLocale(), 'en_US') as $locale) {
+			$edProcessFile = "locale/$locale/edprocesslarge.png";
+			if (file_exists($edProcessFile)) break;
+		}
+		$templateMgr->assign('edProcessFile', $edProcessFile);
+
 		$templateMgr->display('about/aboutThisPublishingSystem.tpl');
 	}
 

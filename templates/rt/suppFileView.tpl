@@ -28,7 +28,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="common.subject"}</td>
-		<td class="value">{$suppFile->getSubject()|escape|default:"&mdash;"}</td>
+		<td class="value">{$suppFile->getSuppFileSubject()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="common.type"}</td>

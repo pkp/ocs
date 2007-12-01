@@ -22,7 +22,7 @@
 	{if !$schedConfUnavailable}
 	<li>
 
-		<i><a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getFullTitle()|escape}</a> - {$track->getTitle()|escape}</i><br />
+		<i><a href="{url schedConf=$schedConf->getPath()}">{$schedConf->getFullTitle()|escape}</a> - {$track->getTrackTitle()|escape}</i><br />
 		{$paper->getPaperTitle()|strip_unsafe_html}<br/>
 		<a href="{url schedConf=$schedConf->getPath() page="paper" op="view" path=$paper->getBestPaperId()}" class="file">{translate key="paper.abstract"}</a>
 		{foreach from=$paper->getLocalizedGalleys() item=galley name=galleyList}

@@ -146,12 +146,7 @@ class CommentHandler extends Handler {
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$paper = &$publishedPaperDao->getPublishedPaperByPaperId($paperId);
 
-		if (isset($paper)) {
-			import('schedConf.SchedConfAction');
-			if (!SchedConfAction::mayViewPapers($schedConf, $conference)) {
-				Request::redirect(null, null, 'index');
-			}
-		} else {
+		if (!isset($paper)) {
 			Request::redirect(null, null, 'index');
 		}
 

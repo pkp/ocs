@@ -386,8 +386,8 @@ class PaperDAO extends DAO {
 		$papers = array();
 		$result = &$this->retrieve(
 			'SELECT	p.*,
-				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
-				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
@@ -444,8 +444,8 @@ class PaperDAO extends DAO {
 
 		$result = &$this->retrieve(
 			'SELECT p.*,
-				COALESCE(ttl.setting_value, ttpl.setting_value) AS section_title,
-				COALESCE(tal.setting_value, tapl.setting_value) AS section_abbrev
+				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
+				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)

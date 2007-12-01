@@ -443,28 +443,36 @@ class PublishedPaperDAO extends DAO {
 	 * @return Array
 	 */
 	function &getPublishedPaperIdsAlphabetizedByTitle($conferenceId = null, $schedConfId = null, $rangeInfo = null) {
-		$params = array();
+		$params = array(
+			'title',
+			Locale::getLocale(),
+			'title',
+			Locale::getPrimaryLocale()
+		);
 		if ($conferenceId) $params[] = $conferenceId;
 		if ($schedConfId) $params[] = $schedConfId;
 
 		$paperIds = array();
 
 		$result =& $this->retrieveCached(
-			'SELECT	a.paper_id AS pub_id
-			FROM	published_papers pa,
-				papers a
-				' . ($conferenceId?'LEFT JOIN sched_confs e ON e.sched_conf_id = a.sched_conf_id':'') . '
-			WHERE	pa.paper_id = a.paper_id
-				' . ($schedConfId?'AND a.sched_conf_id = ?':'') . '
-				' . ($conferenceId?'AND e.conference_id = ?':'') . '
-			ORDER BY a.title',
+			'SELECT	p.paper_id,
+				COALESCE(ptl.setting_value, ptpl.setting_value) AS paper_title
+			FROM	published_papers pp,
+				papers p
+				' . ($conferenceId?'LEFT JOIN sched_confs sc ON sc.sched_conf_id = p.sched_conf_id':'') . '
+				LEFT JOIN paper_settings ptl ON (ptl.setting_name = ? AND ptl.paper_id = p.paper_id AND ptl.locale = ?)
+				LEFT JOIN paper_settings ptpl ON (ptpl.setting_name = ? AND ptpl.paper_id = p.paper_id AND ptpl.locale = ?)
+			WHERE	pp.paper_id = p.paper_id
+				' . ($schedConfId?'AND p.sched_conf_id = ?':'') . '
+				' . ($conferenceId?'AND sc.conference_id = ?':'') . '
+			ORDER BY paper_title',
 			$params
 		);
 
 		while (!$result->EOF) {
 			$row = $result->getRowAssoc(false);
-			$paperIds[] = $row['pub_id'];
-			$result->moveNext();
+			$paperIds[] = $row['paper_id'];
+			$result->MoveNext();
 		}
 
 		$result->Close();

@@ -177,7 +177,7 @@ class PaperSearchIndex {
 		$track = &$trackDao->getTrack($paper->getTrackId());
 		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_ABSTRACT, $paper->getAbstract(null));
 		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_DISCIPLINE, $paper->getDiscipline(null));
-		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_SUBJECT, array_merge_recursive($paper->getSubjectClass(null), $paper->getSubject(null)));
+		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_SUBJECT, array_merge(array_values((array) $paper->getSubjectClass(null)), array_values((array) $paper->getSubject(null))));
 		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_TYPE, $paper->getType(null));
 		PaperSearchIndex::updateTextIndex(
 			$paperId,
@@ -202,12 +202,12 @@ class PaperSearchIndex {
 			$paperId,
 			PAPER_SEARCH_SUPPLEMENTARY_FILE,
 			array_merge(
-				array_values((array) $suppFile->getTitle()),
-				array_values((array) $suppFile->getCreator()),
-				array_values((array) $suppFile->getSubject()),
-				array_values((array) $suppFile->getTypeOther()),
-				array_values((array) $suppFile->getDescription()),
-				array_values((array) $suppFile->getSource())
+				array_values((array) $suppFile->getTitle(null)),
+				array_values((array) $suppFile->getCreator(null)),
+				array_values((array) $suppFile->getSubject(null)),
+				array_values((array) $suppFile->getTypeOther(null)),
+				array_values((array) $suppFile->getDescription(null)),
+				array_values((array) $suppFile->getSource(null))
 			),
 			$suppFile->getFileId()
 		);
