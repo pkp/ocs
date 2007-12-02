@@ -202,7 +202,7 @@ class SchedConf extends DataObject {
 	 * @return string
 	 */
 	function getFullTitle() {
-		return $this->getData('title');
+		return $this->getSchedConfTitle();
 	}
 
 
