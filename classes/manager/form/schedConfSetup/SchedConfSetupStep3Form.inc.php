@@ -58,6 +58,9 @@ class SchedConfSetupStep3Form extends SchedConfSetupForm {
 			$templateMgr->assign('submissionAckEnabled', true);
 		}
 
+		if (Config::getVar('general', 'scheduled_tasks'))
+			$templateMgr->assign('scheduledTasksEnabled', true);
+
 		parent::display();
 	}
 }

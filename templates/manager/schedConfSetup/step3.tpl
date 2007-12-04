@@ -68,7 +68,7 @@
 
 <p>
 	{translate key="manager.schedConfSetup.review.automatedReminders"}:<br/>
-	<input type="checkbox" name="remindForInvite" id="remindForInvite" value="1" onclick="toggleAllowSetInviteReminder(this.form)"{if $remindForInvite} checked="checked"{/if} />&nbsp;
+	<input type="checkbox" {if !$scheduledTasksEnabled}disabled="disabled" {/if} name="remindForInvite" id="remindForInvite" value="1" onclick="toggleAllowSetInviteReminder(this.form)"{if $remindForInvite} checked="checked"{/if} />&nbsp;
 	<label for="remindForInvite">{translate key="manager.schedConfSetup.review.remindForInvite1"}</label>
 	<select name="numDaysBeforeInviteReminder" size="1" class="selectMenu"{if not $remindForInvite} disabled="disabled"{/if}>
 		{section name="inviteDayOptions" start=3 loop=11}
@@ -78,7 +78,7 @@
 	{translate key="manager.schedConfSetup.review.remindForInvite2"}
 	<br/>
 
-	<input type="checkbox" name="remindForSubmit" id="remindForSubmit" value="1" onclick="toggleAllowSetSubmitReminder(this.form)"{if $remindForSubmit} checked="checked"{/if} />&nbsp;
+	<input type="checkbox" {if !$scheduledTasksEnabled}disabled="disabled" {/if}name="remindForSubmit" id="remindForSubmit" value="1" onclick="toggleAllowSetSubmitReminder(this.form)"{if $remindForSubmit} checked="checked"{/if} />&nbsp;
 	<label for="remindForSubmit">{translate key="manager.schedConfSetup.review.remindForSubmit1"}</label>
 	<select name="numDaysBeforeSubmitReminder" size="1" class="selectMenu"{if not $remindForSubmit} disabled="disabled"{/if}>
 		{section name="submitDayOptions" start=0 loop=11}
@@ -86,6 +86,11 @@
 	{/section}
 	</select>
 	{translate key="manager.schedConfSetup.review.remindForSubmit2"}
+
+	{if !$scheduledTasksEnabled}
+	<br/>
+	{translate key="manager.schedConfSetup.review.automatedRemindersDisabled"}
+	{/if}
 </p>
 
 <p>

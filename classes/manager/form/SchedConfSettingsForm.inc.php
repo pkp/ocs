@@ -146,6 +146,10 @@ class SchedConfSettingsForm extends Form {
 
 			// Install default scheduled conference settings
 			$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+
+			$title = $this->getData('title');
+			$title = $title[$this->getFormLocale()];
+
 			$schedConfSettingsDao->installSettings($schedConfId, 'registry/schedConfSettings.xml', array(
 				'presenterGuidelinesUrl' => Request::url($conference->getPath(), $this->getData('path'), 'about', 'submissions', null, null, 'presenterGuidelines'),
 				'indexUrl' => Request::getIndexUrl(),
@@ -153,7 +157,7 @@ class SchedConfSettingsForm extends Form {
 				'conferenceName' => $conference->getConferenceTitle(),
 				'schedConfPath' => $this->getData('path'),
 				'schedConfUrl' => Request::url($conference->getPath(), $this->getData('path'), 'index'),
-				'schedConfName' => $this->getData('title')
+				'schedConfName' => $title
 			));
 
 			// Create a default "Papers" track
