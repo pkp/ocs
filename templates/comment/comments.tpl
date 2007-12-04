@@ -16,6 +16,12 @@
 {/if}
 {include file="common/header.tpl"}
 
+{if $enableComments && !$commentsClosed && (!$commentsRequireRegistration || $isUserLoggedIn)}
+	{assign var=postingAllowed value=1}
+{else}
+	{assign var=postingAllowed value=0}
+{/if}
+
 {if $comment}
 	{assign var=user value=$comment->getUser()}
 	<h3>{$comment->getTitle()|escape|default:"&nbsp;"}</h3>
@@ -34,7 +40,7 @@
 		{mailto text=$emailReply encode="javascript" address=$comment->getPosterEmail() subject=$comment->getTitle()|default:"&nbsp;" extra='class="action"'}&nbsp;&nbsp;
 	{/if}
 
-	{if $enableComments && !$commentsClosed && (!$commentsRequireRegistration || $isUserLoggedIn)}
+	{if $postingAllowed}
 		<a href="{url op="add" path=$paperId|to_array:$galleyId:$comment->getCommentId()}" class="action">{translate key="comments.postReply"}</a>&nbsp;&nbsp;
 	{/if}
 
@@ -66,7 +72,7 @@
 	{mailto text=$emailReply encode="javascript" address=$child->getPosterEmail()|escape subject=$child->getTitle()|escape|default:"&nbsp;" extra='class="action"'}&nbsp;&nbsp;
 {/if}
 
-{if $enableComments && !$commentsClosed && ($isUserLoggedIn || !$commentsRequireRegistration)}
+{if $postingAllowed}
 	<a href="{url op="add" path=$paperId|to_array:$galleyId:$childId}" class="action">{translate key="comments.postReply"}</a>&nbsp;&nbsp;
 {/if}
 {if $isManager}
@@ -101,5 +107,8 @@
 
 {if $commentsClosed}{translate key="comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}<br />{/if}
 
-{include file="common/footer.tpl"}
+{if $commentsAllowed}
+	<p><a class="action" href="{url op="add" path=$paperId|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a></p>
+{/if}
 
+{include file="common/footer.tpl"}
