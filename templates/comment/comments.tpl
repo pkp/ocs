@@ -10,7 +10,7 @@
  *}
 {if $comment}
 {assign var=pageTitle value="comments.readerComments"}
-{assign var=pageCrumbTitleTranslated value=$comment->getTitle()|escape|truncate:50:"..."}
+{assign var=pageCrumbTitleTranslated value=$comment->getTitle()|escape|truncate:50:"..."|default:"&nbsp;"}
 {else}
 {assign var=pageTitle value="comments.readerComments"}
 {/if}
@@ -18,7 +18,7 @@
 
 {if $comment}
 	{assign var=user value=$comment->getUser()}
-	<h3>{$comment->getTitle()|escape}</h3>
+	<h3>{$comment->getTitle()|escape|default:"&nbsp;"}</h3>
 	<h4>{if $user}{translate key="comments.authenticated" userName=$comment->getPosterName()|escape}{elseif $comment->getPosterName()}{translate key="comments.anonymousNamed" userName=$comment->getPosterName()|escape}{else}{translate key="comments.anonymous"}{/if} ({$comment->getDatePosted()|date_format:$dateFormatShort})</h4>
 
 	<p>
@@ -26,12 +26,12 @@
 	{if $parent}
 		{assign var=parentId value=$parent->getCommentId()}
 		{url|assign:"url" page="comment" op="view" path=$paperId|to_array:$parentId}
-		<i>{translate key="comments.inResponseTo" url=$url title=$parent->getTitle()|escape}</i><br />
+		<i>{translate key="comments.inResponseTo" url=$url title=$parent->getTitle()|escape|default:"&nbsp;"}</i><br />
 	{/if}
 
 	{if $comment->getPosterEmail()}
 		{translate|assign:"emailReply" key="comments.emailReply"}
-		{mailto text=$emailReply encode="javascript" address=$comment->getPosterEmail() subject=$comment->getTitle() extra='class="action"'}&nbsp;&nbsp;
+		{mailto text=$emailReply encode="javascript" address=$comment->getPosterEmail() subject=$comment->getTitle()|default:"&nbsp;" extra='class="action"'}&nbsp;&nbsp;
 	{/if}
 
 	{if $enableComments && !$commentsClosed && (!$commentsRequireRegistration || $isUserLoggedIn)}
@@ -59,11 +59,11 @@
 
 {assign var=user value=$child->getUser()}
 {assign var=childId value=$child->getCommentId()}
-<h4><a href="{url op="view" path=$paperId|to_array:$galleyId:$childId}" target="_parent">{$child->getTitle()|escape}</a></h4>
+<h4><a href="{url op="view" path=$paperId|to_array:$galleyId:$childId}" target="_parent">{$child->getTitle()|escape|default:"&nbsp;"}</a></h4>
 <h5>{if $user}{translate key="comments.authenticated" userName=$child->getPosterName()|escape}{elseif $child->getPosterName()}{translate key="comments.anonymousNamed" userName=$child->getPosterName()|escape}{else}{translate key="comments.anonymous"}{/if} ({$child->getDatePosted()|date_format:$dateFormatShort})</h5>
 {if $child->getPosterEmail()}
 	{translate|assign:"emailReply" key="comments.emailReply"}
-	{mailto text=$emailReply encode="javascript" address=$child->getPosterEmail()|escape subject=$child->getTitle()|escape extra='class="action"'}&nbsp;&nbsp;
+	{mailto text=$emailReply encode="javascript" address=$child->getPosterEmail()|escape subject=$child->getTitle()|escape|default:"&nbsp;" extra='class="action"'}&nbsp;&nbsp;
 {/if}
 
 {if $enableComments && !$commentsClosed && ($isUserLoggedIn || !$commentsRequireRegistration)}
@@ -84,7 +84,7 @@
 {foreach from=$child->getChildren() item=grandChild}
 {assign var=user value=$grandChild->getUser()}
 	<li>
-		<a href="{url op="view" path=$paperId|to_array:$galleyId:$grandChild->getCommentId()}" target="_parent">{$grandChild->getTitle()|escape}</a>
+		<a href="{url op="view" path=$paperId|to_array:$galleyId:$grandChild->getCommentId()}" target="_parent">{$grandChild->getTitle()|escape|default:"&nbsp;"}</a>
 		{if $grandChild->getChildCommentCount()==1}{translate key="comments.oneReply"}{elseif $grandChild->getChildCommentCount()>0}{translate key="comments.nReplies" num=$grandChild->getChildCommentCount()}{/if}<br/>
 		{if $user}{translate key="comments.authenticated" userName=$grandChild->getPosterName()|escape}{elseif $grandChild->getPosterName()}{translate key="comments.anonymousNamed" userName=$grandChild->getPosterName()|escape}{else}{translate key="comments.anonymous"}{/if} ({$grandChild->getDatePosted()|date_format:$dateFormatShort})
 	</li>
