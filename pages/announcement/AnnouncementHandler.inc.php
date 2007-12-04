@@ -72,7 +72,7 @@ class AnnouncementHandler extends Handler {
 				if ($announcement->getTypeId() == null) {
 					$templateMgr->assign('announcementTitle', $announcement->getAnnouncementTitle());
 				} else {
-					$templateMgr->assign('announcementTitle', $announcement->getTypeName() . ": " . $announcement->getAnnouncementTitle());
+					$templateMgr->assign('announcementTitle', $announcement->getAnnouncementTypeName() . ": " . $announcement->getAnnouncementTitle());
 				}
 				$templateMgr->append('pageHierarchy', array(Request::url(null, 'announcement'), 'announcement.announcements'));
 				$templateMgr->display('announcement/view.tpl');

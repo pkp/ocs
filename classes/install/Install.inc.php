@@ -226,10 +226,9 @@ class Install extends Installer {
 			$site->setConferenceRedirect(0);
 			$site->setMinPasswordLength(INSTALLER_DEFAULT_MIN_PASSWORD_LENGTH);
 			$site->setPrimaryLocale($locale);
-			$site->setlocale($this->getParam('locale'));
 			$site->setInstalledLocales($this->installedLocales);
 			$site->setSupportedLocales($this->installedLocales);
-			$site->setContactName($site->getTitle(), $locale);
+			$site->setContactName($site->getTitle($locale), $locale);
 			$site->setContactEmail($this->getParam('adminEmail'), $locale);
 			if (!$siteDao->insertSite($site)) {
 				$this->setError(INSTALLER_ERROR_DB, $this->dbconn->errorMsg());

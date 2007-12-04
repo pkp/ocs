@@ -94,6 +94,7 @@ function prepBlockFields() {
 <form name="setupForm" method="post" action="{url op="saveSetup" path="4"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
+{* There are no localized settings on this page.
 {if count($formLocales) > 1}
 <table width="100%" class="data">
 	<tr valign="top">
@@ -106,6 +107,7 @@ function prepBlockFields() {
 	</tr>
 </table>
 {/if}
+*}
 
 <p>{translate key="manager.setup.style.conferenceStyleSheet.description"}</p>
 

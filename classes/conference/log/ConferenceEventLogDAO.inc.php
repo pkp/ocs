@@ -32,7 +32,19 @@ class ConferenceEventLogDAO extends DAO {
 	 * @return ConferenceEventLogEntry
 	 */
 	function &getLogEntry($logId, $conferenceId = null, $schedConfId = null) {
-		$args = array($logId);
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$args = array(
+			'title', // Conference
+			$primaryLocale,
+			'title',
+			$locale,
+			'title', // Scheduled Conference
+			$primaryLocale,
+			'title',
+			$locale,
+			$logId
+		);
 
 		if (isset($conferenceId))
 			$args[] = $conferenceId;
@@ -42,15 +54,20 @@ class ConferenceEventLogDAO extends DAO {
 
 		$result = &$this->retrieve(
 			'SELECT	e.*,
-				sc.title AS sched_conf_title,
-				c.title AS conference_title
+				COALESCE(sctl.setting_value, sct.setting_value) AS sched_conf_title,
+				COALESCE(ctl.setting_value, ct.setting_value)
 			FROM	conference_event_log e
 				LEFT JOIN sched_confs sc ON (e.sched_conf_id = sc.sched_conf_id)
 				LEFT JOIN conferences c ON (e.conference_id = c.conference_id)
+				LEFT JOIN conference_settings ct ON (ct.setting_name = ? AND ct.locale = ?)
+				LEFT JOIN conference_settings ctl ON (ct.setting_name = ? AND ct.locale = ?)
+				LEFT JOIN sched_conf_settings sct ON (sct.setting_name = ? AND sct.locale = ?)
+				LEFT JOIN sched_conf_settings sctl ON (sctl.setting_name = ? AND sctl.locale = ?)
 			WHERE e.log_id = ?' .
 				(isset($conferenceId) ? ' AND e.conference_id = ?' : '') .
 				(isset($schedConfId) ? ' AND e.sched_conf_id = ?' : ''),
-				(count($args)>1 ? $args : array_pop($args)));
+				$args
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -85,7 +102,19 @@ class ConferenceEventLogDAO extends DAO {
 	 * @return DAOResultFactory containing matching ConferenceEventLogEntry ordered by sequence
 	 */
 	function &getConferenceLogEntriesByAssoc($conferenceId, $schedConfId = null, $assocType = null, $assocId = null, $rangeInfo = null) {
-		$params = array($conferenceId);
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$params = array(
+			'title', // Conference
+			$primaryLocale,
+			'title',
+			$locale,
+			'title', // Scheduled Conference
+			$primaryLocale,
+			'title',
+			$locale,
+			$conferenceId
+		);
 
 		if (isset($schedConfId))
 			$params[] = $schedConfId;
@@ -98,11 +127,15 @@ class ConferenceEventLogDAO extends DAO {
 
 		$result = &$this->retrieveRange(
 			'SELECT	e.*,
-				sc.title AS sched_conf_title,
-				c.title AS conference_title
+				COALESCE(sctl.setting_value, sct.setting_value) AS sched_conf_title,
+				COALESCE(ctl.setting_value, ct.setting_value)
 			FROM	conference_event_log e
 				LEFT JOIN sched_confs sc ON (e.sched_conf_id = sc.sched_conf_id)
 				LEFT JOIN conferences c ON (e.conference_id = c.conference_id)
+				LEFT JOIN conference_settings ct ON (ct.setting_name = ? AND ct.locale = ?)
+				LEFT JOIN conference_settings ctl ON (ct.setting_name = ? AND ct.locale = ?)
+				LEFT JOIN sched_conf_settings sct ON (sct.setting_name = ? AND sct.locale = ?)
+				LEFT JOIN sched_conf_settings sctl ON (sctl.setting_name = ? AND sctl.locale = ?)
 				WHERE e.conference_id = ?' .
 				(isset($schedConfId) ? ' AND e.sched_conf_id = ? ':'') .
 				(isset($assocType) ? ' AND e.assoc_type = ?' . (isset($assocId) ? ' AND e.assoc_id = ?' : '') : '') .

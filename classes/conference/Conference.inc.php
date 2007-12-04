@@ -199,7 +199,7 @@ class Conference extends DataObject {
 	 * @param $primaryLocale string
 	 */
 	function setPrimaryLocale($primaryLocale) {
-		$this->getData('primaryLocale', $primaryLocale);
+		$this->setData('primaryLocale', $primaryLocale);
 	}
 
 	/**

@@ -14,8 +14,8 @@
 <br />
 
 {foreach from=$conferenceIndex item=conference key=conferenceId}
-	<h3><a href="{url conference=$conference->getPath() page="index"}">{$conference->getTitle()|escape}</a></h3>
-	{assign var=description value=$conference->getSetting('description')}
+	<h3><a href="{url conference=$conference->getPath() page="index"}">{$conference->getConferenceTitle()|escape}</a></h3>
+	{assign var=description value=$conference->getLocalizedSetting('description')}
 	{if !empty($description)}
 		<p>{$description|nl2br}</p>
 	{/if}

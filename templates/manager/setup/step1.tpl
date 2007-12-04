@@ -114,6 +114,8 @@
 	</tr>
 </table>
 
+<h4>{translate key="manager.setup.aboutConference.archiveAccessPolicy"}</h4>
+
 <p><textarea name="archiveAccessPolicy[{$formLocale|escape}]" id="archiveAccessPolicy" rows="10" cols="60" class="textArea">{$archiveAccessPolicy[$formLocale]|escape}</textarea></p>
 
 <div class="separator"></div>

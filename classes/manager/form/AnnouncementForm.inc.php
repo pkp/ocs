@@ -41,7 +41,7 @@ class AnnouncementForm extends Form {
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.announcements.form.titleRequired'));
 
 		// Short description is provided
-		$this->addCheck(new FormValidator($this, 'descriptionShort', 'required', 'manager.announcements.form.descriptionShortRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'descriptionShort', 'required', 'manager.announcements.form.descriptionShortRequired'));
 
 		// Description is provided
 		$this->addCheck(new FormValidatorLocale($this, 'description', 'required', 'manager.announcements.form.descriptionRequired'));

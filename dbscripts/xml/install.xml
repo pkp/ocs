@@ -18,7 +18,6 @@
 	<schema file="ocs_schema.xml"/>
 	<data file="data/email_templates.xml"/>
 	<data file="data/locale/{$installedLocale}/email_templates_data.xml"/>
-	<data file="data/currencies.xml"/>
 	<code function="createData"/>
 	<code function="createConfig"/>
 </install>

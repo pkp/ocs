@@ -59,7 +59,7 @@ class AboutHandler extends Handler {
 			$templateMgr->display('about/index.tpl');
 		} else {
 			$site = &Request::getSite();
-			$about = $site->getAbout();
+			$about = $site->getSiteAbout();
 			$templateMgr->assign('about', $about);
 
 			$conferences = &$conferenceDao->getEnabledConferences(); //Enabled Added
