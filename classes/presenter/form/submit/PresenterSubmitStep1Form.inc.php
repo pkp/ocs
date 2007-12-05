@@ -97,8 +97,9 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 
 		} else {
 			// Insert new paper
-			$schedConf = &Request::getSchedConf();
-			$user = &Request::getUser();
+			$conference =& Request::getConference();
+			$schedConf =& Request::getSchedConf();
+			$user =& Request::getUser();
 
 			$this->paper = &new Paper();
 			$this->paper->setUserId($user->getUserId());

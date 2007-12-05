@@ -31,7 +31,6 @@ class LanguageSettingsForm extends Form {
 		parent::Form('manager/languageSettings.tpl');
 
 		$this->settings = array(
-			'primaryLocale' => 'string',
 			'supportedLocales' => 'object'
 		);
 
@@ -66,6 +65,8 @@ class LanguageSettingsForm extends Form {
 			$this->_data[$settingName] = $conference->getSetting($settingName);
 		}
 
+		$this->setData('primaryLocale', $conference->getPrimaryLocale());
+
 		if ($this->getData('supportedLocales') == null || !is_array($this->getData('supportedLocales'))) {
 			$this->setData('supportedLocales', array());
 		}
@@ -75,11 +76,13 @@ class LanguageSettingsForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array_keys($this->settings));
+		$vars = array_keys($this->settings);
+		$vars[] = 'primaryLocale';
+		$this->readUserVars($vars);
 
 		if ($this->getData('supportedLocales') == null || !is_array($this->getData('supportedLocales'))) {
 			$this->setData('supportedLocales', array());
-		}		
+		}
 	}
 
 	/**
@@ -105,6 +108,7 @@ class LanguageSettingsForm extends Form {
 		$this->setData('supportedLocales', $supportedLocales);
 
 		foreach ($this->_data as $name => $value) {
+			if (!in_array($this->settings, $name)) continue;
 			$settingsDao->updateSetting(
 				$conference->getConferenceId(),
 				$name,
@@ -112,6 +116,10 @@ class LanguageSettingsForm extends Form {
 				$this->settings[$name]
 			);
 		}
+
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conference->setPrimaryLocale($this->getData('primaryLocale'));
+		$conferenceDao->updateConference($conference);
 	}
 
 }

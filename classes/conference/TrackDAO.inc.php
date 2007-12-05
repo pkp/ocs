@@ -74,7 +74,7 @@ class TrackDAO extends DAO {
 	 */
 	function &getTrackByTitle($trackTitle, $schedConfId, $locale = null) {
 		$sql = 'SELECT * FROM tracks t, track_settings l WHERE l.track_id = t.track_id AND l.setting_name = ? AND l.setting_value = ? AND t.sched_conf_id = ?';
-		$params = array('title', $trackAbbrev, $schedConfId);
+		$params = array('title', $trackTitle, $schedConfId);
 
 		if ($locale !== null) {
 			$sql .= ' AND l.locale = ?';

@@ -121,7 +121,7 @@ class ConferenceSiteSettingsForm extends Form {
 			$site =& Request::getSite();
 
 			// Give it a default primary locale.
-			$conference->setPrimaryLocale(Locale::getLocale());
+			$conference->setPrimaryLocale($site->getPrimaryLocale());
 
 			$conferenceId = $conferenceDao->insertConference($conference);
 			$conferenceDao->resequenceConferences();
@@ -154,6 +154,8 @@ class ConferenceSiteSettingsForm extends Form {
 				'privacyStatementUrl' => Request::url($this->getData('path'), 'index', 'about', 'submissions', null, null, 'privacyStatement'),
 				'loginUrl' => Request::url('index', 'index', 'login'),
 				'conferenceUrl' => Request::url($this->getData('path'), null),
+				'conferencePath' => $this->getData('path'),
+				'primaryLocale' => $site->getPrimaryLocale(),
 				'aboutUrl' => Request::url($this->getData('path'), 'index', 'about', null),
 				'accountUrl' => Request::url($this->getData('path'), 'index', 'user', 'register'),
 				'conferenceName' => $titles[$site->getPrimaryLocale()]

@@ -164,21 +164,12 @@ class AdminLanguagesHandler extends AdminHandler {
 		$conferences = &$conferenceDao->getConferences();
 		$conferences = &$conferences->toArray();
 		foreach ($conferences as $conference) {
-			$primaryLocale =  $conference->getSetting('primaryLocale');
-			$alternateLocale1 =  $conference->getSetting('alternateLocale1');
-			$alternateLocale2 =  $conference->getSetting('alternateLocale2');
+			$primaryLocale = $conference->getPrimaryLocale();
 			$supportedLocales = $conference->getSetting('supportedLocales');
 
 			if (isset($primaryLocale) && !in_array($primaryLocale, $siteSupportedLocales)) {
-				$settingsDao->updateSetting($conference->getConferenceId(), 'primaryLocale', null, 'string');
-			}
-
-			if (isset($alternateLocale1) && !in_array($alternateLocale1, $siteSupportedLocales)) {
-				$settingsDao->updateSetting($conference->getConferenceId(), 'alternateLocale1', null, 'string');
-			}
-
-			if (isset($alternateLocale2) && !in_array($alternateLocale2, $siteSupportedLocales)) {
-				$settingsDao->updateSetting($conference->getConferenceId(), 'alternateLocale2', null, 'string');
+				$conference->setPrimaryLocale($site->getPrimaryLocale());
+				$conferenceDao->updateConference($conference);
 			}
 
 			if (is_array($supportedLocales)) {
@@ -187,7 +178,6 @@ class AdminLanguagesHandler extends AdminHandler {
 			}
 		}
 	}
-
 }
 
 ?>

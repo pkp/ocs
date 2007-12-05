@@ -230,7 +230,7 @@ function movePresenter(dir, presenterIndex) {
 	<td{if $currentSchedConf->getLocalizedSetting('metaDisciplineExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="discipline" key="paper.discipline"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="discipline" id="discipline" value="{$discipline|escape}" size="40" maxlength="255" /></td>
 </tr>
-{if $currentSchedConf->getLocalizedSetting('metaDisciplineExamples) != ''}
+{if $currentSchedConf->getLocalizedSetting('metaDisciplineExamples') != ''}
 <tr valign="top">
 	<td><span class="instruct">{$currentSchedConf->getLocalizedSetting('metaDisciplineExamples')|escape}</span></td>
 </tr>

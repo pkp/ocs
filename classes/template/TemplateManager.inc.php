@@ -135,7 +135,7 @@ class TemplateManager extends Smarty {
 					// This will be needed if inheriting public conference files from the scheduled conference.
 					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
 					$this->assign('primaryLocale', $conference->getSetting('primaryLocale'));
-					$this->assign('alternateLocales', $conference->getSetting('alternateLocales'));
+					$this->assign('alternateLocales', $conference->getPrimaryLocale());
 
 					$this->assign_by_ref('currentSchedConf', $schedConf);
 
