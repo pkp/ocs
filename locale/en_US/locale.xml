@@ -1222,6 +1222,7 @@ Title of classification system]]></message>
 	<message key="manager.schedConfSetup.review.remindForInvite2">days.</message>
 	<message key="manager.schedConfSetup.review.remindForSubmit1">Who have not submitted a review within</message>
 	<message key="manager.schedConfSetup.review.remindForSubmit2">days after its due date.</message>
+	<message key="manager.schedConfSetup.review.automatedRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
 	<message key="manager.schedConfSetup.review.onQuality">Directors are able to rate reviewers on a five-point scale.</message>
 	<message key="manager.schedConfSetup.review.directorDecision">Director Decision</message>
 	<message key="manager.schedConfSetup.review.notifyAllPresentersOnDecision">When using the Notify Author email, include the email addresses of all co-authors for multiple-author submissions, and not just the submitting user.</message>

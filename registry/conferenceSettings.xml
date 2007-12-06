@@ -61,6 +61,15 @@
 		<value>{translate key="default.conferenceSettings.lockssLicense"}</value>
 	</setting>
 
+	<setting type="object" locale="0">
+		<name>supportedLocales</name>
+		<value>
+			<array>
+				<element>{$primaryLocale}</element>
+			</array>
+		</value>
+	</setting>
+
 	<setting type="bool" locale="0">
 		<name>rtAbstract</name>
 		<value>true</value>

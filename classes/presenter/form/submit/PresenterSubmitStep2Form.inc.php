@@ -232,7 +232,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 				$presenter->setCountry($presenters[$i]['country']);
 				$presenter->setEmail($presenters[$i]['email']);
 				$presenter->setUrl($presenters[$i]['url']);
-				$presenter->setBiography($presenters[$i]['biography']);
+				$presenter->setBiography($presenters[$i]['biography'], null); // Localized
 				$presenter->setPrimaryContact($this->getData('primaryContact') == $i ? 1 : 0);
 				$presenter->setSequence($presenters[$i]['seq']);
 
