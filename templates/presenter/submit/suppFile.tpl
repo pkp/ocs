@@ -22,7 +22,7 @@
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{url|assign:"submitFormUrl" path="4" paperId=$paperId}
+			{url|assign:"submitFormUrl" path=$suppFileId paperId=$paperId}
 			{form_language_chooser form="submit" url=$submitFormUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
 		</td>
