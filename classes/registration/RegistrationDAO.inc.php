@@ -239,7 +239,7 @@ class RegistrationDAO extends DAO {
 	 */
 	function &getRegistrationsBySchedConfId($schedConfId, $rangeInfo = null) {
 		$result = &$this->retrieveRange(
-			'SELECT * FROM registrations WHERE sched_conf_id = ? ORDER BY membership', $schedConfId, $rangeInfo
+			'SELECT r.* FROM registrations r, users u WHERE r.user_id = u.user_id AND sched_conf_id = ? ORDER BY membership, u.last_name', $schedConfId, $rangeInfo
 		);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationFromRow');
