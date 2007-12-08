@@ -286,7 +286,7 @@ class AnnouncementHandler extends DirectorHandler {
 	}	
 
 	function setupTemplate($subclass = false) {
-		parent::setupTemplate(true);
+		parent::setupTemplate();
 		if ($subclass) {
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, null, 'director', 'announcements'), 'director.announcements'));

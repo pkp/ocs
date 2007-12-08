@@ -88,7 +88,7 @@ class PresenterHandler extends Handler {
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null, $showSidebar = true) {
+	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null) {
 		$templateMgr = &TemplateManager::getManager();
 
 		$pageHierarchy = $subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'presenter'), 'user.role.presenter'), array(Request::url(null, null, 'presenter'), 'paper.submissions'))
@@ -100,16 +100,6 @@ class PresenterHandler extends Handler {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
 		}
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
-
-		if ($showSidebar) {
-			$templateMgr->assign('sidebarTemplate', 'presenter/navsidebar.tpl');
-
-			$schedConf = &Request::getSchedConf();
-			$user = &Request::getUser();
-			$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');
-			$submissionsCount = $presenterSubmissionDao->getSubmissionsCount($user->getUserId(), $schedConf->getSchedConfId());
-			$templateMgr->assign('submissionsCount', $submissionsCount);
-		}
 	}
 
 	//

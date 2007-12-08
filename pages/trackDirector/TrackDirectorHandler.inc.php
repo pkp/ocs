@@ -166,7 +166,7 @@ class TrackDirectorHandler extends Handler {
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null, $showSidebar = true) {
+	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null) {
 		$templateMgr = &TemplateManager::getManager();
 		$isDirector = Validation::isDirector();
 		$pageHierarchy = array();
@@ -181,7 +181,7 @@ class TrackDirectorHandler extends Handler {
 		}
 
 		if (Request::getRequestedPage() == 'director') {
-			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $showSidebar, $paperId, $parentPage);
+			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $paperId, $parentPage);
 			$templateMgr->assign('helpTopicId', 'editorial.directorsRole');
 
 		} else {
@@ -199,16 +199,6 @@ class TrackDirectorHandler extends Handler {
 			$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'trackDirector');
 			if (isset($submissionCrumb)) {
 				$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
-			}
-
-			if ($showSidebar) {
-				$templateMgr->assign('sidebarTemplate', 'trackDirector/navsidebar.tpl');
-				$schedConf = &Request::getSchedConf();
-				$user = &Request::getUser();
-
-				$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-				$submissionsCount = &$trackDirectorSubmissionDao->getTrackDirectorSubmissionsCount($user->getUserId(), $schedConf->getSchedConfId());
-				$templateMgr->assign('submissionsCount', $submissionsCount);
 			}
 		}
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);

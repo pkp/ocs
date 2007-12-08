@@ -29,7 +29,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 	function index($args) {
 		DirectorHandler::validate();
-		DirectorHandler::setupTemplate(DIRECTOR_TRACK_HOME, false);
+		DirectorHandler::setupTemplate(DIRECTOR_TRACK_HOME);
 
 		$templateMgr = &TemplateManager::getManager();
 		$schedConf = &Request::getSchedConf();
@@ -45,7 +45,7 @@ class DirectorHandler extends TrackDirectorHandler {
 	 */
 	function submissions($args) {
 		DirectorHandler::validate();
-		DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, true);
+		DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS);
 
 		$schedConf = &Request::getSchedConf();
 		$user = &Request::getUser();
@@ -174,7 +174,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			// has been done, send the email and store the director
 			// selection.
 
-			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, true, $paperId, 'summary');
+			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $paperId, 'summary');
 
 			// FIXME: Prompt for due date.
 			if (DirectorAction::assignDirector($paperId, $directorId, $isDirector, Request::getUserVar('send'))) {
@@ -182,7 +182,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			}
 		} else {
 			// Allow the user to choose a track director or director.
-			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, true, $paperId, 'summary');
+			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $paperId, 'summary');
 
 			$searchType = null;
 			$searchMatch = null;
@@ -247,7 +247,6 @@ class DirectorHandler extends TrackDirectorHandler {
 	function deleteSubmission($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		DirectorHandler::validate($paperId);
-		parent::setupTemplate(true);
 
 		$schedConf = &Request::getSchedConf();
 
@@ -294,7 +293,7 @@ class DirectorHandler extends TrackDirectorHandler {
 	 * Setup common template variables.
 	 * @param $level int set to 0 if caller is at the same level as this handler in the hierarchy; otherwise the number of levels below this handler
 	 */
-	function setupTemplate($level = DIRECTOR_TRACK_HOME, $showSidebar = true, $paperId = 0, $parentPage = null) {
+	function setupTemplate($level = DIRECTOR_TRACK_HOME, $paperId = 0, $parentPage = null) {
 		$templateMgr = &TemplateManager::getManager();
 
 		$conference =& Request::getConference();
@@ -319,15 +318,6 @@ class DirectorHandler extends TrackDirectorHandler {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
 		}
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
-
-		if ($showSidebar) {
-			$templateMgr->assign('sidebarTemplate', 'director/navsidebar.tpl');
-
-			$schedConf = &Request::getSchedConf();
-			$directorSubmissionDao = &DAORegistry::getDAO('DirectorSubmissionDAO');
-			$submissionsCount = &$directorSubmissionDao->getDirectorSubmissionsCount($schedConf->getSchedConfId());
-			$templateMgr->assign('submissionsCount', $submissionsCount);
-		}
 	}
 }
 

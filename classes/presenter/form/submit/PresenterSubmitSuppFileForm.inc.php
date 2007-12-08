@@ -65,7 +65,6 @@ class PresenterSubmitSuppFileForm extends Form {
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('sidebarTemplate', 'presenter/submit/submitSidebar.tpl');
 		$templateMgr->assign('paperId', $this->paperId);
 		$templateMgr->assign('suppFileId', $this->suppFileId);
 		$templateMgr->assign('submitStep', 4);

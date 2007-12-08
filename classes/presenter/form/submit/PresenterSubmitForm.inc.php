@@ -47,7 +47,6 @@ class PresenterSubmitForm extends Form {
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('sidebarTemplate', 'presenter/submit/submitSidebar.tpl');
 		$templateMgr->assign('paperId', $this->paperId);
 		$templateMgr->assign('submitStep', $this->step);
 

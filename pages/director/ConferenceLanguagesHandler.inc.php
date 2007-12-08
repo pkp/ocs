@@ -21,7 +21,7 @@ class ConferenceLanguagesHandler extends DirectorHandler {
 	 */
 	function languages() {
 		parent::validate();
-		parent::setupTemplate(true);
+		parent::setupTemplate();
 
 		import('director.form.LanguageSettingsForm');
 
@@ -35,7 +35,7 @@ class ConferenceLanguagesHandler extends DirectorHandler {
 	 */
 	function saveLanguageSettings() {
 		parent::validate();
-		parent::setupTemplate(true);
+		parent::setupTemplate();
 
 		import('director.form.LanguageSettingsForm');
 
