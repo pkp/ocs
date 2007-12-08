@@ -8,6 +8,7 @@
  *
  * $Id$
  *}
+{assign var="pageTitle" value="presenter.track"}
 {include file="common/header.tpl"}
 
 <p>{translate key="presenter.submit.submissionComplete" conferenceTitle=$conference->getConferenceTitle()}</p>
