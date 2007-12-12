@@ -85,17 +85,23 @@
 	  -->
 	<table name="site_settings">
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
-			<NOTNULL/>
+			<NOTNULL />
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
 		<descr>Site settings.</descr>
+		<index name="site_settings_pkey">
+			<col>setting_name</col>
+			<col>locale</col>
+			<UNIQUE />
+		</index>
 	</table>
 
 	<!--

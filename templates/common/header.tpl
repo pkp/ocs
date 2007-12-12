@@ -43,7 +43,9 @@
 <div id="header">
 <div id="headerTitle">
 <h1>
-{if $displayPageHeaderLogo}
+{if $displaySitePageHeaderLogo}
+	<img src="{$publicFilesDir}/{$displaySitePageHeaderLogo.uploadName|escape:"url"}" width="{$displaySitePageHeaderLogo.width|escape}" height="{$displaySitePageHeaderLogo.height|escape}" style="border: 0;" alt="" />
+{elseif $displayPageHeaderLogo}
 	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" style="border: 0;" alt="" />
 {elseif $displayConferencePageHeaderLogo}
 	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderLogo.uploadName|escape:"url"}" width="{$displayConferencePageHeaderLogo.width|escape}" height="{$displayConferencePageHeaderLogo.height|escape}" style="border: 0;" alt="" />
