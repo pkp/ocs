@@ -164,6 +164,7 @@ class SchedConfSettingsForm extends Form {
 			$trackDao = &DAORegistry::getDAO('TrackDAO');
 			$track = &new Track();
 			$track->setSchedConfId($schedConfId);
+			$track->setMetaReviewed(true);
 			$track->setTitle(Locale::translate('track.default.title'), $conference->getPrimaryLocale());
 			$track->setAbbrev(Locale::translate('track.default.abbrev'), $conference->getPrimaryLocale());
 			$track->setPolicy(Locale::translate('track.default.policy'), $conference->getPrimaryLocale());
