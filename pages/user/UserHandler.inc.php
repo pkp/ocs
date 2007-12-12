@@ -22,8 +22,8 @@ class UserHandler extends Handler {
 	function index() {
 		UserHandler::validate();
 
-		$sessionManager = &SessionManager::getManager();
-		$session = &$sessionManager->getUserSession();
+		$user =& Request::getUser();
+		$userId = $user->getUserId();
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
@@ -50,25 +50,35 @@ class UserHandler extends Handler {
 			$conferencesToDisplay = array();
 			$rolesToDisplay = array();
 			// Fetch the user's roles for each conference
-			foreach ($conferences->toArray() as $conference) {
+			while ($conference =& $conferences->next()) {
+				$conferenceId = $conference->getConferenceId();
+
 				// First, the generic roles for this conference
-				$roles = &$roleDao->getRolesByUserId($session->getUserId(), $conference->getConferenceId(), 0);
+				$roles = &$roleDao->getRolesByUserId($userId, $conferenceId, 0);
 				if (!empty($roles)) {
-					$conferencesToDisplay[] = $conference;
-					$rolesToDisplay[$conference->getConferenceId()] = &$roles;
+					$conferencesToDisplay[$conferenceId] =& $conference;
+					$rolesToDisplay[$conferenceId] = &$roles;
 				}
 
 				// Second, scheduled conference-specific roles
 				// TODO: don't display scheduled conference roles if granted at conference level too?
-				$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
-				$schedConfsArray = &$schedConfs->toArray();
-				foreach($schedConfsArray as $schedConf) {
-					$schedConfRoles = &$roleDao->getRolesByUserId($session->getUserId(), $conference->getConferenceId(), $schedConf->getSchedConfId());
+				$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conferenceId);
+				while ($schedConf =& $schedConfs->next()) {
+					$schedConfId = $schedConf->getSchedConfId();
+
+					$schedConfRoles =& $roleDao->getRolesByUserId($userId, $conferenceId, $schedConfId);
 					if(!empty($schedConfRoles)) {
-						$schedConfRolesToDisplay[$schedConf->getSchedConfId()] = &$schedConfRoles;
-						$schedConfsToDisplay[$conference->getConferenceId()] = &$schedConfsArray;
+						$schedConfRolesToDisplay[$schedConfId] =& $schedConfRoles;
+						$schedConfsToDisplay[$conferenceId][$schedConfId] =& $schedConf;
+						if (!isset($conferencesToDisplay[$conferenceId])) {
+							$conferencesToDisplay[$conferenceId] =& $conference;
+						}
 					}
+					unset($schedConf);
+					unset($schedConfRoles);
 				}
+				unset($schedConfs);
+				unset($conference);
 			}
 
 			$templateMgr->assign('showAllConferences', 1);
@@ -76,19 +86,22 @@ class UserHandler extends Handler {
 
 		} else {
 			// Show roles for the currently selected conference
-			$roles = &$roleDao->getRolesByUserId($session->getUserId(), $conference->getConferenceId(), 0);
+			$conferenceId = $conference->getConferenceId();
+			$roles =& $roleDao->getRolesByUserId($userId, $conferenceId, 0);
 			if(!empty($roles)) {
-				$rolesToDisplay[$conference->getConferenceId()] = &$roles;
+				$rolesToDisplay[$conferenceId] =& $roles;
 			}
 
-			$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
-			$schedConfsArray = &$schedConfs->toArray();
-			foreach($schedConfsArray as $schedConf) {
-				$schedConfRoles = &$roleDao->getRolesByUserId($session->getUserId(), $conference->getConferenceId(), $schedConf->getSchedConfId());
+			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
+			while($schedConf =& $schedConfs->next()) {
+				$schedConfId = $schedConf->getSchedConfId();
+				$schedConfRoles =& $roleDao->getRolesByUserId($userId, $conferenceId, $schedConfId);
 				if(!empty($schedConfRoles)) {
-					$schedConfRolesToDisplay[$schedConf->getSchedConfId()] = &$schedConfRoles;
-					$schedConfsToDisplay[$conference->getConferenceId()] = &$schedConfsArray;
+					$schedConfRolesToDisplay[$schedConfId] =& $schedConfRoles;
+					$schedConfsToDisplay[$conferenceId][$schedConfId] =& $schedConf;
 				}
+				unset($schedConfRoles);
+				unset($schedConf);
 			}
 
 			if (empty($roles) && empty($schedConfsToDisplay)) {
@@ -98,7 +111,7 @@ class UserHandler extends Handler {
 			$templateMgr->assign_by_ref('userConference', $conference);
 		}
 
-		$templateMgr->assign('isSiteAdmin', $roleDao->getRole(0, 0, $session->getUserId(), ROLE_ID_SITE_ADMIN));
+		$templateMgr->assign('isSiteAdmin', $roleDao->getRole(0, 0, $userId, ROLE_ID_SITE_ADMIN));
 		$templateMgr->assign('userRoles', $rolesToDisplay);
 		$templateMgr->assign('userSchedConfs', $schedConfsToDisplay);
 		$templateMgr->assign('userSchedConfRoles', $schedConfRolesToDisplay);
