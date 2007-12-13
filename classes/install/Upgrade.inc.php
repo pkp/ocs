@@ -234,6 +234,62 @@ class Upgrade extends Installer {
 
 		return true;
 	}
+
+	/**
+	 * For 2.1 upgrade: index handling changed away from using the <KEY />
+	 * syntax in schema descriptors in cases where AUTONUM columns were not
+	 * used, in favour of specifically-named indexes using the <index ...>
+	 * syntax. For this, all indexes (including potentially duplicated
+	 * indexes from before) on OCS tables should be dropped prior to the new
+	 * schema being applied.
+	 * @return boolean
+	 */
+	function dropAllIndexes() {
+		$siteDao =& DAORegistry::getDAO('SiteDAO');
+		$dict = NewDataDictionary($siteDao->_dataSource);
+		$dropIndexSql = array();
+
+		// This is a list of tables that were used in 2.0 (i.e.
+		// before the way indexes were used was changed). All indexes
+		// from these tables will be dropped.
+		$tables = array(
+			'versions', 'site', 'site_settings', 'scheduled_tasks',
+			'sessions', 'conference_settings', 'sched_conf_settings',
+			'plugin_settings', 'roles', 'notification_status', 
+			'track_directors', 'custom_track_orders',
+			'review_stages', 'paper_html_galley_images',
+			'email_templates_default_data', 'email_templates_data',
+			'paper_search_object_keywords', 'oai_resumption_tokens',
+			'group_memberships'
+		);
+
+		// Assemble a list of indexes to be dropped
+		foreach ($tables as $tableName) {
+			$indexes = $dict->MetaIndexes($tableName);
+			if (is_array($indexes)) foreach ($indexes as $indexName => $indexData) {
+				$dropIndexSql = array_merge($dropIndexSql, $dict->DropIndexSQL($indexName, $tableName));
+			}
+		}
+
+		// Execute the DROP INDEX statements.
+		foreach ($dropIndexSql as $sql) {
+			$siteDao->update($sql);
+		}
+
+		// Second run: Only return primary indexes. This is necessary
+		// so that primary indexes can be dropped by MySQL.
+		foreach ($tables as $tableName) {
+			$indexes = $dict->MetaIndexes($tableName, true);
+			if (!empty($indexes)) switch(Config::getVar('database', 'driver')) {
+				case 'mysql':
+					$siteDao->update("ALTER TABLE $tableName DROP PRIMARY KEY");
+					break;
+			}
+		}
+
+
+		return true;
+	}
 }
 
 ?>

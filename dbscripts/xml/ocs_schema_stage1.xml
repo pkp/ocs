@@ -21,19 +21,19 @@
 	  -->
 	<table name="versions">
 		<field name="major" type="I4">
-			<KEY/>
+			<NOTNULL />
 			<DEFAULT VALUE="0"/>
 		</field>
 		<field name="minor" type="I4">
-			<KEY/>
+			<NOTNULL />
 			<DEFAULT VALUE="0"/>
 		</field>
 		<field name="revision" type="I4">
-			<KEY/>
+			<NOTNULL />
 			<DEFAULT VALUE="0"/>
 		</field>
 		<field name="build" type="I4">
-			<KEY/>
+			<NOTNULL />
 			<DEFAULT VALUE="0"/>
 		</field>
 		<field name="date_installed" type="T">
@@ -53,7 +53,7 @@
 	  -->
 	<table name="site">
 		<field name="title" type="C2" size="120">
-			<KEY/>
+			<NOTNULL />
 			<DEFAULT VALUE="Open Conference Systems"/>
 		</field>
 		<field name="intro" type="X"/>
@@ -62,17 +62,15 @@
 			<DEFAULT VALUE="0"/>
 			<descr>If not 0, redirect to the specified conference site.</descr>
 		</field>
+		<field name="primary_locale" type="C2" size="5">
+			<NOTNULL/>
+		</field>
 		<field name="about" type="X"/>
 		<field name="contact_name" type="C2" size="90"/>
 		<field name="contact_email" type="C2" size="90"/>
 		<field name="min_password_length" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="6"/>
-		</field>
-		<field name="locale" type="C2" size="5">
-			<NOTNULL/>
-			<DEFAULT VALUE="en_US"/>
-			<descr>Primary locale for the site.</descr>
 		</field>
 		<field name="installed_locales" type="C2" size="255">
 			<NOTNULL/>
@@ -93,10 +91,11 @@
 	  -->
 	<table name="site_settings">
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
@@ -113,7 +112,7 @@
 	  -->
 	<table name="scheduled_tasks">
 		<field name="class_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="last_run" type="T" />
 		<descr>The last run times of all scheduled tasks.</descr>
@@ -126,8 +125,8 @@
 	  -->
 	<table name="users">
 		<field name="user_id" type="I8">
-			<KEY/>
-			<AUTOINCREMENT/>
+			<KEY />
+			<AUTOINCREMENT />
 		</field>
 		<field name="username" type="C2" size="32">
 			<NOTNULL/>
@@ -135,6 +134,7 @@
 		<field name="password" type="C2" size="40">
 			<NOTNULL/>
 		</field>
+		<field name="salutation" type="C2" size="40"/>
 		<field name="first_name" type="C2" size="40">
 			<NOTNULL/>
 		</field>
@@ -143,6 +143,8 @@
 			<NOTNULL/>
 		</field>
 		<field name="signature" type="X"/>
+		<field name="gender" type="C" size="1"/>
+		<field name="discipline" type="C2" size="255"/>
 		<field name="initials" type="C2" size="5"/>
 		<field name="affiliation" type="C2" size="255"/>
 		<field name="email" type="C2" size="90">
@@ -173,14 +175,6 @@
 		</field>
 		<field name="disabled_reason" type="X"/>
 		<descr>User authentication credentials and profile data.</descr>
-		<index name="users_username">
-			<col>username</col>
-			<UNIQUE/>
-		</index>
-		<index name="users_email">
-			<col>email</col>
-			<UNIQUE/>
-		</index>
 	</table>
 
 	<!--
@@ -193,10 +187,11 @@
 			<NOTNULL/>
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL/>
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL/>
 		</field>
 		<field name="conference_id" type="I8"/>
 		<field name="setting_value" type="X"/>
@@ -204,9 +199,6 @@
 			<NOTNULL/>
 		</field>
 		<descr>Locale-specific user data</descr>
-		<index name="user_settings_user_id">
-			<col>user_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -216,7 +208,7 @@
 	  -->
 	<table name="auth_sources">
 		<field name="auth_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="title" type="C2" size="60">
@@ -240,7 +232,7 @@
 	  -->
 	<table name="sessions">
 		<field name="session_id" type="C2" size="32">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="user_id" type="I8"/>
 		<field name="ip_address" type="C2" size="15">
@@ -264,9 +256,6 @@
 			<DEFAULT VALUE=""/>
 		</field>
 		<descr>Browser/user sessions and session data.</descr>
-		<index name="sessions_user_id">
-			<col>user_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -276,7 +265,7 @@
 	  -->
 	<table name="conferences">
 		<field name="conference_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="title" type="C2" size="255">
@@ -290,15 +279,12 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
+		<field name="primary_locale" type="C2" size="5"/>
 		<field name="enabled" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
 		<descr>Conferences and basic conference settings.</descr>
-		<index name="conferences__path">
-			<col>path</col>
-			<UNIQUE/>
-		</index>
 	</table>
 	
 	<!--
@@ -308,13 +294,14 @@
 	  -->
 	<table name="conference_settings">
 		<field name="conference_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
@@ -322,9 +309,6 @@
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
 		<descr>Conference settings.</descr>
-		<index name="conference_settings_conference_id">
-			<col>conference_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -338,7 +322,7 @@
 			<AUTOINCREMENT/>
 		</field>
 		<field name="conference_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="title" type="C2" size="255">
 			<NOTNULL/>
@@ -354,16 +338,6 @@
 		<field name="start_date" type="T"/>
 		<field name="end_date" type="T"/>
 		<descr>Scheduled conferences and basic scheduled conference settings.</descr>
-		<index name="sched_conf_path">
-			<col>path</col>
-		</index>
-		<index name="sched_conf_conference_id">
-			<col>conference_id</col>
-		</index>
-		<index name="sched_confs_start_end_date">
-			<col>start_date</col>
-			<col>end_date</col>
-		</index>
 	</table>
 	
 	<!--
@@ -373,13 +347,14 @@
 	  -->
 	<table name="sched_conf_settings">
 		<field name="sched_conf_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
@@ -387,9 +362,6 @@
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
 		<descr>Scheduled conference settings.</descr>
-		<index name="sched_conf_settings_sched_conf_id">
-			<col>sched_conf_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -421,12 +393,6 @@
 		<field name="assoc_id" type="I8"/>
 		<field name="message" type="X"/>
 		<descr>A log of all events associated with a conference or scheduled conference.</descr>
-		<index name="conference_event_log_sched_conf_id">
-			<col>sched_conf_id</col>
-		</index>
-		<index name="conference_event_log_conference_id">
-			<col>conference_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -436,16 +402,20 @@
 	  -->
 	<table name="plugin_settings">
 		<field name="plugin_name" type="C2" size="80">
-			<KEY/>
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="conference_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="sched_conf_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="setting_name" type="C2" size="80">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
@@ -453,9 +423,6 @@
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
 		<descr>Plugin settings.</descr>
-		<index name="plugin_settings_plugin_name">
-			<col>plugin_name</col>
-		</index>
 	</table>
 	
 	<!--
@@ -465,38 +432,26 @@
 	  -->
 	<table name="roles">
 		<field name="conference_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="sched_conf_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="user_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="role_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<descr>User roles in conferences.</descr>
-		<index name="roles_conference_id">
-			<col>conference_id</col>
-		</index>
-		<index name="roles_sched_conf_id">
-			<col>sched_conf_id</col>
-		</index>
-		<index name="roles_user_id">
-			<col>user_id</col>
-		</index>
-		<index name="roles_role_id">
-			<col>role_id</col>
-		</index>
 	</table>
 
 	<table name="notification_status">
 		<field name="sched_conf_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="user_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<descr>User "mail notifications to my account" flags</descr>
 	</table>
@@ -537,9 +492,6 @@
 		<field name="identify_type" type="C2" size="60"/>
 		<field name="policy" type="X"/>
 		<descr>Scheduled conference tracks.</descr>
-		<index name="tracks_sched_conf_id">
-			<col>sched_conf_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -549,13 +501,14 @@
 	  -->
 	<table name="track_settings">
 		<field name="track_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
@@ -563,9 +516,6 @@
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
 		<descr>Track settings.</descr>
-		<index name="track_settings_track_id">
-			<col>track_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -575,32 +525,23 @@
 	  -->
 	<table name="track_directors">
 		<field name="sched_conf_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="track_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="user_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<descr>Assignments of track directors to tracks.</descr>
-		<index name="track_directors_sched_conf_id">
-			<col>sched_conf_id</col>
-		</index>
-		<index name="track_directors_track_id">
-			<col>track_id</col>
-		</index>
-		<index name="track_directors_user_id">
-			<col>user_id</col>
-		</index>
 	</table>
 
 	<table name="custom_track_orders">
 		<field name="sched_conf_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="track_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="seq" type="F">
 			<NOTNULL/>
@@ -616,7 +557,7 @@
 	  -->
 	<table name="papers">
 		<field name="paper_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="user_id" type="I8">
@@ -675,15 +616,6 @@
 		<field name="date_to_presentations" type="T"/>
 		<field name="date_to_archive" type="T"/>
 		<descr>Conference papers.</descr>
-		<index name="papers_user_id">
-			<col>user_id</col>
-		</index>
-		<index name="papers_sched_conf_id">
-			<col>sched_conf_id</col>
-		</index>
-		<index name="papers_track_id">
-			<col>track_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -693,13 +625,14 @@
 	  -->
 	<table name="paper_settings">
 		<field name="paper_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
@@ -707,9 +640,6 @@
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
 		<descr>Track settings.</descr>
-		<index name="paper_settings_paper_id">
-			<col>paper_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -741,16 +671,6 @@
 		</field>
 		<field name="public_paper_id" type="C2" size="255"/>
 		<descr>Conference papers.</descr>
-		<index name="published_papers_paper_id">
-			<col>paper_id</col>
-			<UNIQUE/>
-		</index>
-		<index name="published_papers_sched_conf_id">
-			<col>sched_conf_id</col>
-		</index>
-		<index name="published_papers_public_paper_id">
-			<col>public_paper_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -760,7 +680,7 @@
 	 -->
 	<table name="comments">
 		<field name="comment_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="paper_id" type="I8">
@@ -784,9 +704,6 @@
 		<field name="date_posted" type="T"/>
 		<field name="date_modified" type="T"/>
 		<descr>Reader comments on papers.</descr>
-		<index name="comments_paper_id">
-			<col>paper_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -796,11 +713,19 @@
 	  -->
 	<table name="paper_presenters">
 		<field name="presenter_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="paper_id" type="I8">
 			<NOTNULL/>
+		</field>
+		<field name="primary_contact" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
 		</field>
 		<field name="first_name" type="C2" size="40">
 			<NOTNULL/>
@@ -816,18 +741,7 @@
 		</field>
 		<field name="url" type="C2" size="255"/>
 		<field name="biography" type="X"/>
-		<field name="primary_contact" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
-		<field name="seq" type="F">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
 		<descr>Presenter metadata for papers.</descr>
-		<index name="paper_presenters_paper_id">
-			<col>paper_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -837,13 +751,14 @@
 	  -->
 	<table name="paper_presenter_settings">
 		<field name="presenter_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
@@ -851,9 +766,6 @@
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
 		<descr>Paper presenter settings.</descr>
-		<index name="presenter_settings_presenter_id">
-			<col>presenter_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -863,11 +775,11 @@
 	  -->
 	<table name="paper_files">
 		<field name="file_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="revision" type="I8">
-			<KEY/>
+			<KEY />
 		</field>
 		<field name="paper_id" type="I8">
 			<NOTNULL/>
@@ -881,7 +793,7 @@
 		<field name="file_size" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="original_file_name" type="C2" size="90"/>
+		<field name="original_file_name" type="C2" size="127"/>
 		<field name="type" type="C2" size="40">
 			<NOTNULL/>
 		</field>
@@ -897,9 +809,6 @@
 			<NOTNULL/>
 		</field>
 		<descr>Files associated with papers. Includes submission files, supplementary files, etc.</descr>
-		<index name="paper_files_paper_id">
-			<col>paper_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -909,7 +818,7 @@
 	  -->
 	<table name="paper_supplementary_files">
 		<field name="supp_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="file_id" type="I8">
@@ -918,8 +827,6 @@
 		<field name="paper_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="language" type="C2" size="10"/>
-		<field name="public_supp_file_id" type="C2" size="255"/>
 		<field name="title" type="C2" size="255"/>
 		<field name="creator" type="C2" size="255"/>
 		<field name="subject" type="C2" size="255"/>
@@ -928,11 +835,10 @@
 		<field name="description" type="X"/>
 		<field name="publisher" type="C2" size="255"/>
 		<field name="sponsor" type="C2" size="255"/>
-		<field name="date_created" type="D"/>
 		<field name="source" type="C2" size="255"/>
-		<field name="language" type="C2" size="10">
-			<DEFAULT VALUE="en"/>
-		</field>
+		<field name="language" type="C2" size="10"/>
+		<field name="public_supp_file_id" type="C2" size="255"/>
+		<field name="date_created" type="D"/>
 		<field name="show_reviewers" type="I1">
 			<DEFAULT VALUE="0"/>
 		</field>
@@ -944,15 +850,6 @@
 			<DEFAULT VALUE="0"/>
 		</field>
 		<descr>Supplementary files attached to papers.</descr>
-		<index name="paper_supplementary_files_file_id">
-			<col>file_id</col>
-		</index>
-		<index name="paper_supplementary_files_paper_id">
-			<col>paper_id</col>
-		</index>
-		<index name="paper_supplementary_files_public_issue_id">
-			<col>public_supp_file_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -962,13 +859,14 @@
 	  -->
 	<table name="paper_supp_file_settings">
 		<field name="supp_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
@@ -976,9 +874,6 @@
 			<descr>(bool|int|float|string|object|date)</descr>
 		</field>
 		<descr>Paper supplementary file metadata.</descr>
-		<index name="paper_supp_file_settings_supp_id">
-			<col>supp_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -1011,15 +906,6 @@
 			<NOTNULL/>
 		</field>
 		<descr>Paper submission notes added by directors to each submission</descr>
-		<index name="paper_notes_paper_id">
-			<col>paper_id</col>
-		</index>
-		<index name="paper_notes_user_id">
-			<col>user_id</col>
-		</index>
-		<index name="paper_notes_file_id">
-			<col>file_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -1042,12 +928,6 @@
 		<field name="date_notified" type="T"/>
 		<field name="date_underway" type="T"/>
 		<descr>Editing assignments.</descr>
-		<index name="edit_assignments_paper_id">
-			<col>paper_id</col>
-		</index>
-		<index name="edit_assignments_director_id">
-			<col>director_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -1057,7 +937,7 @@
 	  -->
 	<table name="edit_decisions">
 		<field name="edit_decision_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="paper_id" type="I8">
@@ -1076,12 +956,6 @@
 			<NOTNULL/>
 		</field>
 		<descr>Director decisions.</descr>
-		<index name="edit_decisions_paper_id">
-			<col>paper_id</col>
-		</index>
-		<index name="edit_decisions_director_id">
-			<col>director_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -1091,16 +965,13 @@
 	  -->
 	<table name="review_stages">
 		<field name="paper_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="stage" type="I1">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="review_revision" type="I8" />
 		<descr>Review stages.</descr>
-		<index name="review_stages_paper_id">
-			<col>paper_id</col>
-		</index>
 	</table>
 		
 	<!--
@@ -1152,12 +1023,6 @@
 			<DEFAULT VALUE="1"/>
 		</field>
 		<descr>Reviewing assignments.</descr>
-		<index name="review_assignments_paper_id">
-			<col>paper_id</col>
-		</index>
-		<index name="review_assignments_reviewer_id">
-			<col>reviewer_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -1192,9 +1057,6 @@
 			<DEFAULT VALUE="0"/>
 		</field>
 		<descr>Paper galleys.</descr>
-		<index name="paper_galleys_paper_id">
-			<col>paper_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -1204,47 +1066,12 @@
 	  -->
 	<table name="paper_html_galley_images">
 		<field name="galley_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="file_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<descr>Images associated with a paper HTML galley.</descr>
-	</table>
-	
-	<!--
-	  *
-	  * TABLE paper_notifications
-	  *
-	  -->
-	<table name="paper_notifications">
-		<field name="notification_id" type="I8">
-			<KEY/>
-			<AUTOINCREMENT/>
-		</field>
-		<field name="paper_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<field name="from_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<field name="to_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<field name="notification_type" type="T">
-			<NOTNULL/>
-		</field>
-		<field name="date_notified" type="T">
-			<NOTNULL/>
-		</field>
-		<field name="was_automatic" type="I4">
-			<NOTNULL/>
-		</field>
-
-		<descr>Paper notifications.</descr>
-		<index name="paper_notifications_paper_id">
-			<col>paper_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -1254,7 +1081,7 @@
 	  -->
 	<table name="paper_event_log">
 		<field name="log_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="paper_id" type="I8">
@@ -1275,9 +1102,6 @@
 		<field name="assoc_id" type="I8"/>
 		<field name="message" type="X"/>
 		<descr>A log of all events associated with a submission.</descr>
-		<index name="paper_event_log_paper_id">
-			<col>paper_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -1287,7 +1111,7 @@
 	  -->
 	<table name="paper_email_log">
 		<field name="log_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="paper_id" type="I8">
@@ -1310,9 +1134,6 @@
 		<field name="subject" type="C2" size="255"/>
 		<field name="body" type="X"/>
 		<descr>A log of all emails sent out related to a submission.</descr>
-		<index name="paper_email_log_paper_id">
-			<col>paper_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -1322,7 +1143,7 @@
 	  -->
 	<table name="paper_comments">
 		<field name="comment_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="comment_type" type="I8"/>
@@ -1346,9 +1167,6 @@
 		<field name="date_modified" type="T"/>
 		<field name="viewable" type="I1" />
 		<descr>Comments posted on papers.</descr>
-		<index name="paper_comments_paper_id">
-			<col>paper_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -1358,7 +1176,7 @@
 	  -->
 	<table name="email_templates_default">
 		<field name="email_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="email_key" type="C2" size="30">
@@ -1376,10 +1194,6 @@
 		<field name="from_role_id" type="I8"/>
 		<field name="to_role_id" type="I8"/>
 		<descr>Default conference email templates.</descr>
-		<index name="email_templates_default_email_key">
-			<col>email_key</col>
-			<UNIQUE/>
-		</index>
 	</table>
 	
 	<!--
@@ -1389,11 +1203,11 @@
 	  -->
 	<table name="email_templates_default_data">
 		<field name="email_key" type="C2" size="30">
-			<KEY/>
+			<NOTNULL />
 			<descr>Unique identifier for this email.</descr>
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
 			<DEFAULT VALUE="en_US"/>
 		</field>
 		<field name="subject" type="C2" size="120">
@@ -1411,7 +1225,7 @@
 	  -->
 	<table name="email_templates">
 		<field name="email_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="email_key" type="C2" size="30">
@@ -1429,18 +1243,6 @@
 			<DEFAULT VALUE="1"/>
 		</field>
 		<descr>Templates for conference emails.</descr>
-		<index name="email_templates_email_key">
-			<col>email_key</col>
-			<col>conference_id</col>
-			<col>sched_conf_id</col>
-			<UNIQUE/>
-		</index>
-		<index name="email_templates_conference_id">
-			<col>conference_id</col>
-		</index>
-		<index name="email_templates_sched_conf_id">
-			<col>sched_conf_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -1450,18 +1252,18 @@
 	  -->
 	<table name="email_templates_data">
 		<field name="email_key" type="C2" size="30">
-			<KEY/>
+			<NOTNULL />
 			<descr>Unique identifier for this email.</descr>
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
 			<DEFAULT VALUE="en_US"/>
 		</field>
 		<field name="conference_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="sched_conf_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="subject" type="C2" size="120">
 			<NOTNULL/>
@@ -1477,17 +1279,13 @@
 	 -->
 	<table name="paper_search_keyword_list">
 		<field name="keyword_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="keyword_text" type="C2" size="60">
 			<NOTNULL/>
 		</field>
 		<descr>List of all keywords.</descr>
-		<index name="paper_search_keyword_text">
-			<col>keyword_text</col>
-			<UNIQUE/>
-		</index>
 	</table>
 	
 	<!--
@@ -1497,7 +1295,7 @@
 	 -->
 	<table name="paper_search_objects">
 		<field name="object_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="paper_id" type="I8">
@@ -1520,19 +1318,16 @@
 	 -->
 	<table name="paper_search_object_keywords">
 		<field name="object_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="keyword_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="pos" type="I4">
-			<KEY/>
+			<NOTNULL />
 			<descr>Word position of the keyword in the object.</descr>
 		</field>
 		<descr>Keyword occurrences for each indexed object.</descr>
-		<index name="paper_search_object_keywords_keyword_id">
-			<col>keyword_id</col>
-		</index>
 	</table>
 	
 	
@@ -1545,7 +1340,7 @@
 	 -->
 	<table name="oai_resumption_tokens">
 		<field name="token" type="C2" size="32">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="expire" type="I8">
 			<NOTNULL/>
@@ -1567,7 +1362,7 @@
 	 -->
 	<table name="rt_versions">
 		<field name="version_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="conference_id" type="I8">
@@ -1584,12 +1379,6 @@
 		</field>
 		<field name="description" type="X"/>
 		<descr>Reading Tools versions.</descr>
-		<index name="rt_versions_conference_id">
-			<col>conference_id</col>
-		</index>
-		<index name="rt_versions_version_key">
-			<col>version_key</col>
-		</index>
 	</table>
 	
 	<!--
@@ -1599,7 +1388,7 @@
 	 -->
 	<table name="rt_contexts">
 		<field name="context_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="version_id" type="I8">
@@ -1633,9 +1422,6 @@
 			<DEFAULT VALUE="0"/>
 		</field>
 		<descr>Reading Tools contexts (within versions).</descr>
-		<index name="rt_contexts_version_id">
-			<col>version_id</col>
-		</index>
 	</table>
 	
 	<!--
@@ -1645,7 +1431,7 @@
 	 -->
 	<table name="rt_searches">
 		<field name="search_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="context_id" type="I8">
@@ -1663,9 +1449,6 @@
 			<DEFAULT VALUE="0"/>
 		</field>
 		<descr>Reading Tools searches (within contexts).</descr>
-		<index name="rt_searches_context_id">
-			<col>context_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -1675,7 +1458,7 @@
 	 -->
 	<table name="registration_types">
 		<field name="type_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="sched_conf_id" type="I8">
@@ -1724,22 +1507,20 @@
 	  -->
 	<table name="registration_type_settings">
 		<field name="type_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
 			<NOTNULL/>
 		</field>
 		<descr>Locale-specific registration type data</descr>
-		<index name="registration_type_settings_type_id">
-			<col>type_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -1749,7 +1530,7 @@
 	 -->
 	<table name="registrations">
 		<field name="registration_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="sched_conf_id" type="I8">
@@ -1770,39 +1551,6 @@
 		<field name="ip_range" type="X"/>
 		<field name="special_requests" type="C2" size="255"/>
 		<descr>Conference registrations.</descr>
-		<index name="registration_sched_conf_id">
-			<col>sched_conf_id</col>
-			<col>user_id</col>
-			<UNIQUE/>
-		</index>
-		<index name="registration_domain">
-			<col>domain</col>
-		</index>
-	</table>
-
-	<!--
-	 *
-	 * TABLE currencies 
-	 *
-	 -->
-	<table name="currencies">
-		<field name="currency_id" type="I8">
-			<KEY/>
-			<AUTOINCREMENT/>
-		</field>
-		<field name="name" type="C2" size="60">
-			<NOTNULL/>
-		</field>
-		<field name="code_alpha" type="C2" size="10">
-			<NOTNULL/>
-		</field>
-		<field name="code_numeric" type="I2">
-			<NOTNULL/>
-		</field>
-		<descr>Currencies based on ISO 4217.</descr>
-		<index name="currencies_currency_id">
-			<col>currency_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -1812,7 +1560,7 @@
 	 -->
 	<table name="announcement_types">
 		<field name="type_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="conference_id" type="I8">
@@ -1822,9 +1570,6 @@
 			<NOTNULL/>
 		</field>
 		<descr>Conference announcement types.</descr>
-		<index name="announcement_types_conference_id">
-			<col>conference_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -1834,22 +1579,20 @@
 	  -->
 	<table name="announcement_type_settings">
 		<field name="type_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
 			<NOTNULL/>
 		</field>
 		<descr>Locale-specific announcement type data</descr>
-		<index name="announcement_type_settings_type_id">
-			<col>type_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -1859,7 +1602,7 @@
 	 -->
 	<table name="announcements">
 		<field name="announcement_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="conference_id" type="I8">
@@ -1885,12 +1628,6 @@
 			<NOTNULL/>
 		</field>
 		<descr>Conference announcements.</descr>
-		<index name="announcements_conference_id">
-			<col>conference_id</col>
-		</index>
-		<index name="announcements_sched_conf_id">
-			<col>sched_conf_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -1900,22 +1637,20 @@
 	  -->
 	<table name="announcement_settings">
 		<field name="announcement_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
 			<NOTNULL/>
 		</field>
 		<descr>Locale-specific announcement data</descr>
-		<index name="announcement_settings_announcement_id">
-			<col>announcement_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -1925,7 +1660,7 @@
 	  -->
 	<table name="captchas">
 		<field name="captcha_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="session_id" type="C2" size="32">
@@ -1946,7 +1681,7 @@
 	  -->
 	<table name="temporary_files">
 		<field name="file_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="user_id" type="I8">
@@ -1960,14 +1695,11 @@
 		<field name="file_size" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="original_file_name" type="C2" size="90"/>
+		<field name="original_file_name" type="C2" size="127"/>
 		<field name="date_uploaded" type="T">
 			<NOTNULL/>
 		</field>
 		<descr>Temporary file storage; used to keep attachments across multiple email composition requests</descr>
-		<index name="temporary_files_user_id">
-			<col>user_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -1977,7 +1709,7 @@
 	  -->
 	<table name="access_keys">
 		<field name="access_key_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="context" type="C2" size="40">
@@ -1991,11 +1723,6 @@
 			<NOTNULL/>
 		</field>
 		<descr>Access keys are used to provide pseudo-login functionality for security-minimal tasks. Passkeys can be emailed directly to users, who can use them for a limited time in lieu of standard username and password.</descr>
-		<index name="access_keys_hash">
-			<col>key_hash</col>
-			<col>user_id</col>
-			<col>context</col>
-		</index>
 	</table>
 
 	<!--
@@ -2005,7 +1732,7 @@
 	  -->
 	<table name="queued_payments">
 		<field name="queued_payment_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="key_hash" type="C2" size="40">
@@ -2019,10 +1746,6 @@
 		</field>
 		<field name="payment_data" type="X" />
 		<descr>Logs queued (unfulfilled) payments.</descr>
-		<index name="queued_payments_hash">
-			<col>key_hash</col>
-			<col>queued_payment_id</col>
-		</index>
 	</table>
 
 	<!-- 
@@ -2032,7 +1755,7 @@
 	 -->
 	<table name="groups">
 		<field name="group_id" type="I8">
-			<KEY/>
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="conference_id" type="I8">
@@ -2054,12 +1777,6 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<index name="groups_conference_id">
-			<col>conference_id</col>
-		</index>
-		<index name="groups_sched_conf_id">
-			<col>sched_conf_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -2069,22 +1786,20 @@
 	  -->
 	<table name="group_settings">
 		<field name="group_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
-			<KEY/>
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
 		</field>
 		<field name="setting_name" type="C2" size="255">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
 			<NOTNULL/>
 		</field>
 		<descr>Locale-specific group data</descr>
-		<index name="group_settings_announcement_id">
-			<col>group_id</col>
-		</index>
 	</table>
 
 	<!-- 
@@ -2094,10 +1809,10 @@
 	 -->
 	<table name="group_memberships">
 		<field name="user_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="group_id" type="I8">
-			<KEY/>
+			<NOTNULL />
 		</field>
 		<field name="about_displayed" type="I1">
 			<NOTNULL/>

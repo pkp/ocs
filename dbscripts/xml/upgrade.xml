@@ -17,6 +17,7 @@
 	<upgrade minversion="2.0.0.0" maxversion="2.0.0.0">
 		<schema file="ocs_schema_stage1.xml" />
 		<data file="upgrade/2.1.0_preupdate.xml" />
+		<code function="dropAllIndexes" />
 	</upgrade>
 
 	<!-- Upgrade to version 2.1.0 -->

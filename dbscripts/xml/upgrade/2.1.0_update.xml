@@ -27,4 +27,7 @@ Thank you,
 
 	<!-- The currencies table is not used. -->
 	<sql><drop table="currencies" /></sql>
+
+	<!-- Bug #3188: paper_notifications was never used. -->
+	<sql><drop table="paper_notifications" /></sql>
 </data>
