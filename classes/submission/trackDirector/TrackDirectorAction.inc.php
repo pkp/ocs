@@ -1336,7 +1336,6 @@ import('file.PaperFileManager');
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$presenterUser =& $userDao->getUser($trackDirectorSubmission->getUserId());
-				$email->setSubject($trackDirectorSubmission->getPaperTitle());
 				$presenterEmail = $presenterUser->getEmail();
 				$email->addRecipient($presenterEmail, $presenterUser->getFullName());
 				if ($schedConf->getSetting('notifyAllPresentersOnDecision')) foreach ($trackDirectorSubmission->getPresenters() as $presenter) {
