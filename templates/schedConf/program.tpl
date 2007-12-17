@@ -21,6 +21,6 @@
 {/if}
 
 
-<div>{$program|escape|nl2br}</div>
+<div>{$program|nl2br}</div>
 
 {include file="common/footer.tpl"}
