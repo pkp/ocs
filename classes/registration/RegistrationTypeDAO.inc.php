@@ -373,7 +373,7 @@ class RegistrationTypeDAO extends DAO {
 	}
 
 	function deleteRegistrationTypesBySchedConf($schedConfId) {
-		$registrationTypes =& $this->getRegistrationTypesBySchedConfId($schedConfId) {
+		$registrationTypes =& $this->getRegistrationTypesBySchedConfId($schedConfId);
 		while ($registrationType =& $registrationTypes->next()) {
 			$this->deleteRegistrationType($registrationType);
 			unset($registrationType);

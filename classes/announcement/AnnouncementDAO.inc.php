@@ -172,7 +172,7 @@ class AnnouncementDAO extends DAO {
 	 * @param $conferenceId int
 	 */
 	function deleteAnnouncementsByConference($conferenceId) {
-		$announcements =& $this->getAnnouncementsByConferenceId($conferenceId);
+		$announcements =& $this->getAnnouncementsByConferenceId($conferenceId, -1);
 		while (($announcement =& $announcements->next())) {
 			$this->deleteAnnouncementById($announcement->getAnnouncementId());
 			unset($announcement);
@@ -212,8 +212,8 @@ class AnnouncementDAO extends DAO {
 			'SELECT *
 			FROM announcements
 			WHERE conference_id = ?' .
-				($schedConfId !== 0 ? ' AND (sched_conf_id = ? OR sched_conf_id = 0)':'') .
-			'ORDER BY announcement_id DESC',
+				($schedConfId !== -1 ? ' AND (sched_conf_id = ? OR sched_conf_id = 0)':'') .
+			' ORDER BY announcement_id DESC',
 			$args,
 			$rangeInfo
 		);
