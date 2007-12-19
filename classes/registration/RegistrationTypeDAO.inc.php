@@ -360,15 +360,23 @@ class RegistrationTypeDAO extends DAO {
 	 */
 	function deleteRegistrationTypeById($typeId) {
 		// Delete registration type
-		$this->update('DELETE FROM registration_types WHERE type_id = ?', $typeId);
-		$ret = $this->update('DELETE FROM registration_types WHERE type_id = ?', $typeId);
+		$returner = $this->update('DELETE FROM registration_types WHERE type_id = ?', $typeId);
 
-		// Delete all registrations with this registration type
-		if ($ret) {
+		// Delete all localization settings and registrations associated with this registration type
+		if ($returner) {
+			$this->update('DELETE FROM registration_type_settings WHERE type_id = ?', $typeId);
 			$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
 			return $registrationDao->deleteRegistrationByTypeId($typeId);
 		} else {
-			return $ret;
+			return $returner;
+		}
+	}
+
+	function deleteRegistrationTypesBySchedConf($schedConfId) {
+		$registrationTypes =& $this->getRegistrationTypesBySchedConfId($schedConfId) {
+		while ($registrationType =& $registrationTypes->next()) {
+			$this->deleteRegistrationType($registrationType);
+			unset($registrationType);
 		}
 	}
 

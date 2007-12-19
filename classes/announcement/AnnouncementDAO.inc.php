@@ -172,10 +172,12 @@ class AnnouncementDAO extends DAO {
 	 * @param $conferenceId int
 	 */
 	function deleteAnnouncementsByConference($conferenceId) {
-		return $this->update(
-			'DELETE FROM announcements WHERE conference_id = ?',
-			$conferenceId
-		);
+		$announcements =& $this->getAnnouncementsByConferenceId($conferenceId);
+		while (($announcement =& $announcements->next())) {
+			$this->deleteAnnouncementById($announcement->getAnnouncementId());
+			unset($announcement);
+		}
+		return true;
 	}
 
 	/**
@@ -183,10 +185,16 @@ class AnnouncementDAO extends DAO {
 	 * @param $conferenceId int
 	 */
 	function deleteAnnouncementsBySchedConf($schedConfId) {
-		return $this->update(
-			'DELETE FROM announcements WHERE sched_conf_id = ?',
-			$schedConfId
-		);
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+		if (!$schedConf) return false;
+
+		$announcements =& $this->getAnnouncementsByConferenceId($schedConf->getConferenceId(), $schedConf->getSchedConfId());
+		while (($announcement =& $announcements->next())) {
+			$this->deleteAnnouncementById($announcement->getAnnouncementId());
+			unset($announcement);
+		}
+		return true;
 	}
 
 	/**
@@ -204,7 +212,7 @@ class AnnouncementDAO extends DAO {
 			'SELECT *
 			FROM announcements
 			WHERE conference_id = ?' .
-				($schedConfId !== -1 ? ' AND (sched_conf_id = ? OR sched_conf_id = 0)':'') .
+				($schedConfId !== 0 ? ' AND (sched_conf_id = ? OR sched_conf_id = 0)':'') .
 			'ORDER BY announcement_id DESC',
 			$args,
 			$rangeInfo
