@@ -51,7 +51,8 @@ class upgradeTool extends CommandLineTool {
 			. "Supported commands:\n"
 			. "    check                     perform version check\n"
 			. "    latest                    display latest version info\n"
-			. "    upgrade [pretend]         execute upgrade script\n"
+			. "    upgrade                   execute upgrade script\n"
+			//. "    upgrade [pretend]         execute upgrade script\n" // Temporarily removed
 			. "    patch                     download and apply patch for latest version\n"
 			. "    download [package|patch]  download latest version (does not unpack/install)\n";
 	}
@@ -82,7 +83,7 @@ class upgradeTool extends CommandLineTool {
 	 * Run upgrade script.
 	 */
 	function upgrade() {
-		$pretend = isset($this->argv[1]) && $this->argv[1] == 'pretend';
+		$pretend = false; // Temporarily removed; was isset($this->argv[1]) && $this->argv[1] == 'pretend';
 		$installer = &new Upgrade(array('manualInstall' => $pretend));
 		$installer->setLogger($this);
 
