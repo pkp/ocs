@@ -350,6 +350,11 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			}
 		} else {
 			// Display the "create user" form.
+			if ($createReviewerForm->isLocaleResubmit()) {
+				$createReviewerForm->readInputData();
+			} else {
+				$createReviewerForm->initData();
+			}
 			$createReviewerForm->display();
 		}
 
