@@ -11,12 +11,16 @@
 <div class="separator"></div>
 
 {literal}
-<pre style="font-size: 1.5em;">@paper{{{/literal}{$schedConf->getSetting('acronym')|escape}{literal}}{{/literal}{$paperId|escape}{literal}},
-	author = {{/literal}{assign var=presenters value=$paper->getPresenters()}{foreach from=$presenters item=presenter name=presenters key=i}{$presenter->getLastName()|escape}, {assign var=firstName value=$presenter->getFirstName()}{assign var=presenterCount value=$presenters|@count}{$firstName[0]|escape}.{if $i<$presenterCount-1}, {/if}{/foreach}{literal}},
+<pre style="font-size: 1.5em;">@paper{{/literal}{$schedConf->getLocalizedSetting('acronym')|escape}{$paperId|escape}{literal},
+	author = {{/literal}{assign var=presenters value=$paper->getPresenters()}{foreach from=$presenters item=presenter name=presenters key=i}{assign var=firstName value=$presenter->getFirstName()}{assign var=presenterCount value=$presenters|@count}{$firstName|escape} {$presenter->getLastName()|escape}{if $i<$presenterCount-1} and {/if}{/foreach}{literal}},
 	title = {{/literal}{$paper->getPaperTitle()|strip_unsafe_html}{literal}},
 	conference = {{/literal}{$conference->getConferenceTitle()|escape}{literal}},
 	year = {{/literal}{$paper->getDatePublished()|date_format:'%Y'}{literal}},
-{/literal}{assign var=issn value=$conference->getSetting('issn')|escape}{if $issn}{literal}	issn = {{/literal}{$issn}{literal}},{/literal}{/if}
+	keywords = {{/literal}{$paper->getPaperSubject()|escape}{literal}},
+	abstract = {{/literal}{$paper->getPaperAbstract()|escape}{literal}},
+{/literal}{assign var=onlineIssn value=$conference->getSetting('onlineIssn')|escape}
+{assign var=issn value=$conference->getSetting('issn')|escape}{if $issn}{literal}	issn = {{/literal}{$issn}{literal}},{/literal}
+{elseif $onlineIssn}{literal}  issn = {{/literal}{$onlineIssn}{literal}},{/literal}{/if}
 
 {literal}	url = {{/literal}{$paperUrl}{literal}}
 }
