@@ -142,8 +142,10 @@ class Upgrade extends Installer {
 			// Setup page 3
 			'homeHeaderTitleType' => 'homeHeaderTitleType',
 			'homeHeaderTitle' => 'homeHeaderTitle',
+			'homeHeaderTitleImage' => 'homeHeaderTitleImage',
 			'pageHeaderTitleType' => 'pageHeaderTitleType',
 			'pageHeaderTitle' => 'pageHeaderTitle',
+			'pageHeaderTitleImage' => 'pageHeaderTitleImage',
 			'navItems' => 'navItems',
 			'conferencePageHeader' => 'conferencePageHeader',
 			'conferencePageFooter' => 'conferencePageFooter',
