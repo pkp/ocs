@@ -1344,7 +1344,7 @@ import('file.PaperFileManager');
 					}
 				}
 				$email->assignParams(array(
-					'conferenceDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($schedConf->getSetting('startDate'))),
+					'conferenceDate' => strftime(Config::getVar('general', 'date_format_short'), $schedConf->getSetting('startDate')),
 					'presenterName' => $presenterUser->getFullName(),
 					'conferenceTitle' => $conference->getConferenceTitle(),
 					'editorialContactSignature' => $user->getContactSignature(),
