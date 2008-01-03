@@ -30,13 +30,13 @@
 	
 	{iterate from=submissions item=submission}
 	{assign var="paperId" value=$submission->getPaperId()}
-	<input type="hidden" name="paperIds[]" value="{$paperId}" />
+	<input type="hidden" name="paperIds[]" value="{$paperId|escape}" />
 	<tr valign="top">
-		<td>{$paperId}</td>
+		<td>{$paperId|escape}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getPresenterString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionReview" path=$paperId}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
-		<td><input name="location-{$paperId}" size="10" class="textField" id="location-{$paperId}" value="{$submission->getLocation()|escape}" />
+		<td><input name="location-{$paperId|escape}" size="10" class="textField" id="location-{$paperId|escape}" value="{$submission->getLocation()|escape}" />
 		<td>
 			{html_select_time prefix="presentStartTime-$paperId-" time=$submission->getPresentStartTime() all_extra="class=\"selectMenu\"" display_seconds=false display_meridian=false use_24_hours=true minute_interval=5}&nbsp;{translate key="submission.toTime"}&nbsp;{html_select_time prefix="presentEndTime-$paperId-" time=$submission->getPresentEndTime() all_extra="class=\"selectMenu\"" display_seconds=false display_meridian=false use_24_hours=true minute_interval=5}
 			{html_select_date prefix="presentStartDate-$paperId" time=$submission->getPresentStartTime() all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}

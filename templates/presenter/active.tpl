@@ -29,7 +29,7 @@
 	{assign var="status" value=$submission->getSubmissionStatus()}
 
 	<tr valign="top">
-		<td>{$paperId}</td>
+		<td>{$paperId|escape}</td>
 		<td>{if $submission->getDateSubmitted()}{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}{else}&mdash;{/if}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getPresenterString(true)|truncate:40:"..."|escape}</td>

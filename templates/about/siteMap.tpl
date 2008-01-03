@@ -40,7 +40,7 @@
 								{assign var=currentConferenceId value=$currentConference->getConferenceId()}
 								{foreach from=$rolesByConference[$currentConferenceId] item=role}
 									{translate|assign:"roleName" key=$role->getRoleName()}
-									<li><a href="{url conference=`$currentConference->getPath()` page=`$role->getRolePath()`}">{$roleName}</a></li>
+									<li><a href="{url conference=`$currentConference->getPath()` page=`$role->getRolePath()`}">{$roleName|escape}</a></li>
 								{/foreach}
 							</ul>
 						</li>

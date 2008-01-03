@@ -22,13 +22,13 @@
 <a name="results"></a>
 
 <table width="100%" class="listing">
-<tr><td colspan="{$numCols}" class="headseparator">&nbsp;</td></tr>
+<tr><td colspan="{$numCols|escape}" class="headseparator">&nbsp;</td></tr>
 <tr class="heading" valign="bottom">
 	{if !$currentConference}<td width="20%">{translate key="conference.conference"}</td>{/if}
 	<td width="20%">{translate key="schedConf.schedConf"}</td>
 	<td width="{if !$currentConference}60%{else}80%{/if}" colspan="2">{translate key="paper.title"}</td>
 </tr>
-<tr><td colspan="{$numCols}" class="headseparator">&nbsp;</td></tr>
+<tr><td colspan="{$numCols|escape}" class="headseparator">&nbsp;</td></tr>
 
 {iterate from=results item=result}
 {assign var=publishedPaper value=$result.publishedPaper}
@@ -51,19 +51,19 @@
 	</td>
 </tr>
 <tr>
-	<td colspan="{$numCols}" style="padding-left: 30px;font-style: italic;">
+	<td colspan="{$numCols|escape}" style="padding-left: 30px;font-style: italic;">
 		{foreach from=$paper->getPresenters() item=presenter name=presenterList}
 			{$presenter->getFullName()|escape}{if !$smarty.foreach.presenterList.last},{/if}
 		{/foreach}
 	</td>
 </tr>
-<tr><td colspan="{$numCols}" class="{if $results->eof()}end{/if}separator">&nbsp;</td></tr>
+<tr><td colspan="{$numCols|escape}" class="{if $results->eof()}end{/if}separator">&nbsp;</td></tr>
 {/iterate}
 {if $results->wasEmpty()}
 <tr>
-<td colspan="{$numCols}" class="nodata">{translate key="search.noResults"}</td>
+<td colspan="{$numCols|escape}" class="nodata">{translate key="search.noResults"}</td>
 </tr>
-<tr><td colspan="{$numCols}" class="endseparator">&nbsp;</td></tr>
+<tr><td colspan="{$numCols|escape}" class="endseparator">&nbsp;</td></tr>
 {else}
 	<tr>
 		<td {if !$currentConference}colspan="2" {/if}align="left">{page_info iterator=$results}</td>

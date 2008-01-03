@@ -15,7 +15,7 @@
 
 <form name="track" method="post" action="{url op="updateTrack"}" onsubmit="return saveSelectedDirectors()">
 {if $trackId}
-<input type="hidden" name="trackId" value="{$trackId}" />
+<input type="hidden" name="trackId" value="{$trackId|escape}" />
 {/if}
 <input type="hidden" name="assignedDirectors" value="" />
 <input type="hidden" name="unassignedDirectors" value="" />

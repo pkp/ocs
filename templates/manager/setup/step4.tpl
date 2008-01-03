@@ -131,7 +131,7 @@ function prepBlockFields() {
 </table>
 
 {if $conferenceStyleSheet}
-{translate key="common.fileName"}: <a href="{$publicConferenceFilesDir}/{$conferenceStyleSheet.uploadName}" class="file">{$conferenceStyleSheet.name}</a> {$conferenceStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteConferenceStyleSheet" value="{translate key="common.delete"}" class="button" />
+{translate key="common.fileName"}: <a href="{$publicConferenceFilesDir}/{$conferenceStyleSheet.uploadName}" class="file">{$conferenceStyleSheet.name|escape}</a> {$conferenceStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteConferenceStyleSheet" value="{translate key="common.delete"}" class="button" />
 {/if}
 
 <table border="0" align="center">

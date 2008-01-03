@@ -11,12 +11,12 @@
 {include file="common/header.tpl"}
 
 {if !empty($conferenceContent)}
-	<h2>{$conferenceTitle}</h2>
+	<h2>{$conferenceTitle|escape}</h2>
 	<p>{$conferenceContent|nl2br}</p>
 {/if}
 
 {if !empty($schedConfContent)}
-	<h2>{$schedConfTitle}</h2>
+	<h2>{$schedConfTitle|escape}</h2>
 	<p>{$schedConfContent|nl2br}</p>
 {/if}
 

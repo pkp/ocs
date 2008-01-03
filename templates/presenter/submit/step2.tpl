@@ -19,7 +19,7 @@
 <div class="separator"></div>
 
 <form name="submit" method="post" action="{url op="saveSubmit" path=$submitStep}">
-<input type="hidden" name="paperId" value="{$paperId}" />
+<input type="hidden" name="paperId" value="{$paperId|escape}" />
 {include file="common/formErrors.tpl"}
 
 {literal}
@@ -46,7 +46,7 @@ function movePresenter(dir, presenterIndex) {
 			{* Maintain localized presenter info across requests *}
 			{foreach from=$presenters key=presenterIndex item=presenter}
 				{foreach from=$presenter.biography key="thisLocale" item="thisBiography"}
-					{if $thisLocale != $formLocale}<input type="hidden" name="presenters[{$presenterIndex}][biography][{$thisLocale|escape}]" value="{$thisBiography|escape}" />{/if}
+					{if $thisLocale != $formLocale}<input type="hidden" name="presenters[{$presenterIndex|escape}][biography][{$thisLocale|escape}]" value="{$thisBiography|escape}" />{/if}
 				{/foreach}
 			{/foreach}
 			{form_language_chooser form="submit" url=$submitFormUrl}
@@ -64,33 +64,33 @@ function movePresenter(dir, presenterIndex) {
 <input type="hidden" name="movePresenterIndex" value="" />
 
 {foreach name=presenters from=$presenters key=presenterIndex item=presenter}
-<input type="hidden" name="presenters[{$presenterIndex}][presenterId]" value="{$presenter.presenterId|escape}" />
-<input type="hidden" name="presenters[{$presenterIndex}][seq]" value="{$presenterIndex+1}" />
+<input type="hidden" name="presenters[{$presenterIndex|escape}][presenterId]" value="{$presenter.presenterId|escape}" />
+<input type="hidden" name="presenters[{$presenterIndex|escape}][seq]" value="{$presenterIndex+1}" />
 {if $smarty.foreach.presenters.total <= 1}
-<input type="hidden" name="primaryContact" value="{$presenterIndex}" />
+<input type="hidden" name="primaryContact" value="{$presenterIndex|escape}" />
 {/if}
 
 <table width="100%" class="data">
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="presenters-$presenterIndex-firstName" required="true" key="user.firstName"}</td>
-	<td width="80%" class="value"><input type="text" class="textField" name="presenters[{$presenterIndex}][firstName]" id="presenters-{$presenterIndex}-firstName" value="{$presenter.firstName|escape}" size="20" maxlength="40" /></td>
+	<td width="80%" class="value"><input type="text" class="textField" name="presenters[{$presenterIndex|escape}][firstName]" id="presenters-{$presenterIndex|escape}-firstName" value="{$presenter.firstName|escape}" size="20" maxlength="40" /></td>
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="presenters-$presenterIndex-middleName" key="user.middleName"}</td>
-	<td width="80%" class="value"><input type="text" class="textField" name="presenters[{$presenterIndex}][middleName]" id="presenters-{$presenterIndex}-middleName" value="{$presenter.middleName|escape}" size="20" maxlength="40" /></td>
+	<td width="80%" class="value"><input type="text" class="textField" name="presenters[{$presenterIndex|escape}][middleName]" id="presenters-{$presenterIndex|escape}-middleName" value="{$presenter.middleName|escape}" size="20" maxlength="40" /></td>
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="presenters-$presenterIndex-lastName" required="true" key="user.lastName"}</td>
-	<td width="80%" class="value"><input type="text" class="textField" name="presenters[{$presenterIndex}][lastName]" id="presenters-{$presenterIndex}-lastName" value="{$presenter.lastName|escape}" size="20" maxlength="90" /></td>
+	<td width="80%" class="value"><input type="text" class="textField" name="presenters[{$presenterIndex|escape}][lastName]" id="presenters-{$presenterIndex|escape}-lastName" value="{$presenter.lastName|escape}" size="20" maxlength="90" /></td>
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="presenters-$presenterIndex-affiliation" key="user.affiliation"}</td>
-	<td width="80%" class="value"><input type="text" class="textField" name="presenters[{$presenterIndex}][affiliation]" id="presenters-{$presenterIndex}-affiliation" value="{$presenter.affiliation|escape}" size="30" maxlength="255"/></td>
+	<td width="80%" class="value"><input type="text" class="textField" name="presenters[{$presenterIndex|escape}][affiliation]" id="presenters-{$presenterIndex|escape}-affiliation" value="{$presenter.affiliation|escape}" size="30" maxlength="255"/></td>
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="presenters-$presenterIndex-country" key="common.country"}</td>
 	<td width="80%" class="value">
-		<select name="presenters[{$presenterIndex}][country]" id="presenters-{$presenterIndex}-country" class="selectMenu">
+		<select name="presenters[{$presenterIndex|escape}][country]" id="presenters-{$presenterIndex|escape}-country" class="selectMenu">
 			<option value=""></option>
 			{html_options options=$countries selected=$presenter.country}
 		</select>
@@ -98,28 +98,28 @@ function movePresenter(dir, presenterIndex) {
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="presenters-$presenterIndex-email" required="true" key="user.email"}</td>
-	<td width="80%" class="value"><input type="text" class="textField" name="presenters[{$presenterIndex}][email]" id="presenters-{$presenterIndex}-email" value="{$presenter.email|escape}" size="30" maxlength="90" /></td>
+	<td width="80%" class="value"><input type="text" class="textField" name="presenters[{$presenterIndex|escape}][email]" id="presenters-{$presenterIndex|escape}-email" value="{$presenter.email|escape}" size="30" maxlength="90" /></td>
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="presenters-$presenterIndex-url" key="user.url"}</td>
 	<td width="80%" class="value">
-		<input type="text" class="textField" name="presenters[{$presenterIndex}][url]" id="presenters-{$presenterIndex}-url" value="{$presenter.url|escape}" size="30" maxlength="90" /><br/>
+		<input type="text" class="textField" name="presenters[{$presenterIndex|escape}][url]" id="presenters-{$presenterIndex|escape}-url" value="{$presenter.url|escape}" size="30" maxlength="90" /><br/>
 		<span class="instruct">{translate key="user.url.description"}</span>
 	</td>
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="presenters-$presenterIndex-biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-	<td width="80%" class="value"><textarea name="presenters[{$presenterIndex}][biography][{$formLocale|escape}]" class="textArea" id="presenters-{$presenterIndex}-biography" rows="5" cols="40">{$presenter.biography[$formLocale]|escape}</textarea></td>
+	<td width="80%" class="value"><textarea name="presenters[{$presenterIndex|escape}][biography][{$formLocale|escape}]" class="textArea" id="presenters-{$presenterIndex|escape}-biography" rows="5" cols="40">{$presenter.biography[$formLocale]|escape}</textarea></td>
 </tr>
 {if $smarty.foreach.presenters.total > 1}
 <tr valign="top">
 	<td colspan="2">
-		{translate key="presenter.submit.reorderPresenterName"} <a href="javascript:movePresenter('u', '{$presenterIndex}')" class="action">&uarr;</a> <a href="javascript:movePresenter('d', '{$presenterIndex}')" class="action">&darr;</a><br/>
+		{translate key="presenter.submit.reorderPresenterName"} <a href="javascript:movePresenter('u', '{$presenterIndex|escape}')" class="action">&uarr;</a> <a href="javascript:movePresenter('d', '{$presenterIndex|escape}')" class="action">&darr;</a><br/>
 		{translate key="presenter.submit.reorderInstructions"}
 	</td>
 </tr>
 <tr valign="top">
-	<td width="80%" class="value" colspan="2"><input type="radio" name="primaryContact" value="{$presenterIndex}"{if $primaryContact == $presenterIndex} checked="checked"{/if} /> <label for="primaryContact">{translate key="presenter.submit.selectPrincipalContact"}</label> <input type="submit" name="delPresenter[{$presenterIndex}]" value="{translate key="presenter.submit.deletePresenter"}" class="button" /></td>
+	<td width="80%" class="value" colspan="2"><input type="radio" name="primaryContact" value="{$presenterIndex|escape}"{if $primaryContact == $presenterIndex} checked="checked"{/if} /> <label for="primaryContact">{translate key="presenter.submit.selectPrincipalContact"}</label> <input type="submit" name="delPresenter[{$presenterIndex|escape}]" value="{translate key="presenter.submit.deletePresenter"}" class="button" /></td>
 </tr>
 <tr>
 	<td colspan="2"><br/></td>

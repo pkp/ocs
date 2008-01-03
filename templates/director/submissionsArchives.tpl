@@ -29,7 +29,7 @@
 	{iterate from=submissions item=submission}
 	{assign var="paperId" value=$submission->getPaperId()}
 	<tr valign="top">
-		<td>{$paperId}</td>
+		<td>{$paperId|escape}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatShort}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getPresenterString(true)|truncate:40:"..."|escape}</td>

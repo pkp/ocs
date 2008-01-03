@@ -13,7 +13,7 @@
 <table>
 	<tr>
 		<td><img src="{$baseUrl}/plugins/paymethod/paypal/images/paypal.gif" alt="paypal" /></td>
-		<td>{$paypalDescripiton}</td>
+		<td>{$paypalDescription}</td>
 	</tr>
 </table>
 

@@ -17,7 +17,7 @@
 	{if $schedConfSettings.reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}
 		{assign var="cols" value=$cols+1}
 	{/if}
-	<tr><td colspan="{$cols}" class="headseparator">&nbsp;</td></tr>
+	<tr><td colspan="{$cols|escape}" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
 		<td width="7%">{translate key="common.id"}</td>
 		<td width="7%"><span class="disabled">MM-DD</span><br />{translate key="common.assigned"}</td>
@@ -28,14 +28,14 @@
 			<td width="10%">{translate key="submissions.reviewType"}</td>
 		{/if}
 	</tr>
-	<tr><td colspan="{$cols}" class="headseparator">&nbsp;</td></tr>
+	<tr><td colspan="{$cols|escape}" class="headseparator">&nbsp;</td></tr>
 
 {iterate from=submissions item=submission}
 	{assign var="paperId" value=$submission->getPaperId()}
 	{assign var="reviewId" value=$submission->getReviewId()}
 
 	<tr valign="top">
-		<td>{$paperId}</td>
+		<td>{$paperId|escape}</td>
 		<td>{$submission->getDateNotified()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td><a href="{url op="submission" path=$reviewId}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
@@ -51,15 +51,15 @@
 		{/if}
 	</tr>
 	<tr>
-		<td colspan="{$cols}" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
+		<td colspan="{$cols|escape}" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
 {/iterate}
 {if $submissions->wasEmpty()}
 <tr>
-		<td colspan="{$cols}" class="nodata">{translate key="submissions.noSubmissions"}</td>
+		<td colspan="{$cols|escape}" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
 	<tr>
-		<td colspan="{$cols}" class="endseparator">&nbsp;</td>
+		<td colspan="{$cols|escape}" class="endseparator">&nbsp;</td>
 	</tr>
 {else}
 	<tr>

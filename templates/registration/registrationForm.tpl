@@ -21,7 +21,7 @@
 
 <form method="post" action="{url op="updateRegistration"}">
 {if $registrationId}
-<input type="hidden" name="registrationId" value="{$registrationId}" />
+<input type="hidden" name="registrationId" value="{$registrationId|escape}" />
 {/if}
 
 {include file="common/formErrors.tpl"}

@@ -47,7 +47,7 @@ function checkSubmissionChecklist() {
 <form name="submit" method="post" action="{url op="saveSubmit" path=$submitStep}" onsubmit="return checkSubmissionChecklist()">
 
 {if $paperId}
-<input type="hidden" name="paperId" value="{$paperId}" />
+<input type="hidden" name="paperId" value="{$paperId|escape}" />
 {/if}
 <input type="hidden" name="submissionChecklist" value="1" />
 {include file="common/formErrors.tpl"}
@@ -63,7 +63,7 @@ function checkSubmissionChecklist() {
 			<table width="100%" class="data">
 		{/if}
 		<tr valign="top">
-			<td width="5%"><input type="checkbox" id="checklist-{$smarty.foreach.checklist.iteration}" name="checklist[]" value="{$checklistId}"{if $paperId || $submissionChecklist} checked="checked"{/if} /></td>
+			<td width="5%"><input type="checkbox" id="checklist-{$smarty.foreach.checklist.iteration}" name="checklist[]" value="{$checklistId|escape}"{if $paperId || $submissionChecklist} checked="checked"{/if} /></td>
 			<td width="95%"><label for="checklist-{$smarty.foreach.checklist.iteration}">{$checklistItem.content|nl2br}</label></td>
 		</tr>
 	{/if}

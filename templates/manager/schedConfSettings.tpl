@@ -15,9 +15,9 @@
 
 <form name="schedConf" method="post" action="{url op="updateSchedConf"}">
 {if $schedConfId}
-<input type="hidden" name="schedConfId" value="{$schedConfId}" />
+<input type="hidden" name="schedConfId" value="{$schedConfId|escape}" />
 {/if}
-<input type="hidden" name="conferenceId" value="{$conferenceId}" />
+<input type="hidden" name="conferenceId" value="{$conferenceId|escape}" />
 
 {include file="common/formErrors.tpl"}
 

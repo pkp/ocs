@@ -32,7 +32,7 @@
 
 {/if}
 <form name="suppFile" method="post" action="{url page=$rolePath op="saveSuppFile" path=$suppFileId}" enctype="multipart/form-data">
-<input type="hidden" name="paperId" value="{$paperId}" />
+<input type="hidden" name="paperId" value="{$paperId|escape}" />
 <input type="hidden" name="from" value="{$from|escape}" />
 {include file="common/formErrors.tpl"}
 

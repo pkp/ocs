@@ -15,7 +15,7 @@
 <p>{translate key="admin.editSystemConfigInstructions"}</p>
 
 {foreach from=$configData key=trackName item=trackData}
-<h3>{$trackName}</h3>
+<h3>{$trackName|escape}</h3>
 <table class="data" width="100%">
 {foreach from=$trackData key=settingName item=settingValue}
 <tr valign="top">	

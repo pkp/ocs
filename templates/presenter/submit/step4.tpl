@@ -12,7 +12,7 @@
 {include file="presenter/submit/submitHeader.tpl"}
 
 <form method="post" action="{url op="saveSubmit" path=$submitStep}" enctype="multipart/form-data">
-<input type="hidden" name="paperId" value="{$paperId}" />
+<input type="hidden" name="paperId" value="{$paperId|escape}" />
 {include file="common/formErrors.tpl"}
 
 <p>{translate key="presenter.submit.supplementaryFilesInstructions"}<br/>

@@ -19,7 +19,7 @@
 	{/if}
 
 {foreach from=$directors item=director}
-	<a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$director->getUserId()}')">{$director->getFullName()|escape}</a>{if $director->getAffiliation()}, {$director->getAffiliation()|escape}{/if}{if $director->getCountry()}{assign var=countryCode value=$director->getCountry()}{assign var=country value=$countries.$countryCode}, {$country}{/if}
+	<a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$director->getUserId()}')">{$director->getFullName()|escape}</a>{if $director->getAffiliation()}, {$director->getAffiliation()|escape}{/if}{if $director->getCountry()}{assign var=countryCode value=$director->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}
 	<br/>
 {/foreach}
 {/if}
@@ -32,7 +32,7 @@
 	{/if}
 
 {foreach from=$trackDirectors item=trackDirector}
-	<a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$trackDirector->getUserId()}')">{$trackDirector->getFullName()|escape}</a>{if $trackDirector->getAffiliation()}, {$trackDirector->getAffiliation()|escape}{/if}{if $trackDirector->getCountry()}{assign var=countryCode value=$trackDirector->getCountry()}{assign var=country value=$countries.$countryCode}, {$country}{/if}
+	<a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$trackDirector->getUserId()}')">{$trackDirector->getFullName()|escape}</a>{if $trackDirector->getAffiliation()}, {$trackDirector->getAffiliation()|escape}{/if}{if $trackDirector->getCountry()}{assign var=countryCode value=$trackDirector->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}
 	<br/>
 {/foreach}
 {/if}

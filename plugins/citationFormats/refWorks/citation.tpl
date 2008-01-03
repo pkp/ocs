@@ -16,7 +16,7 @@
 	title = {{/literal}{$paper->getPaperTitle()|strip_unsafe_html}{literal}},
 	conference = {{/literal}{$conference->getConferenceTitle()|escape}{literal}},
 	year = {{/literal}{$paper->getDatePublished()|date_format:'%Y'}{literal}},
-{/literal}{assign var=issn value=$conference->getSetting('issn')|escape}{if $issn}{literal}	issn = {{/literal}{$issn}{literal}},{/literal}{/if}
+{/literal}{assign var=issn value=$conference->getSetting('issn')|escape}{if $issn}{literal}	issn = {{/literal}{$issn|escape}{literal}},{/literal}{/if}
 {literal}	url = {{/literal}{$paperUrl}{literal}}
 }{/literal}</textarea>
 	<br />
