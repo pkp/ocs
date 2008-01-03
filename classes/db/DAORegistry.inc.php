@@ -127,6 +127,8 @@ class DAORegistry {
 			case 'RegistrationTypeDAO': return 'registration.RegistrationTypeDAO';
 			case 'AnnouncementDAO': return 'announcement.AnnouncementDAO';
 			case 'AnnouncementTypeDAO': return 'announcement.AnnouncementTypeDAO';
+			case 'BuildingDAO': return 'scheduler.BuildingDAO';
+			case 'RoomDAO': return 'scheduler.RoomDAO';
 			case 'TemporaryFileDAO': return 'file.TemporaryFileDAO';
 			case 'CommentDAO': return 'comment.CommentDAO';
 			case 'AuthSourceDAO': return 'security.AuthSourceDAO';

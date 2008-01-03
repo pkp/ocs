@@ -199,6 +199,9 @@ class SchedConfDAO extends DAO {
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		$announcementDao->deleteAnnouncementsBySchedConf($schedConfId);
 
+		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
+		$buildingDao->deleteBuildingsBySchedConf($schedConfId);
+
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$paperDao->deletePapersBySchedConfId($schedConfId);
 

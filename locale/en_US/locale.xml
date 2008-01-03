@@ -780,6 +780,40 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<!-- Registration Management -->
 	<message key="manager.registrationManagement">Registration Management</message>
 
+	<!-- Scheduler -->
+	<message key="manager.scheduler">Scheduler</message>
+	<message key="manager.scheduler.description"><![CDATA[<p>Conference Managers may schedule presentations and special events for times and locations using the Scheduler. In the pages below, the Conference Manager can define locations (buildings and rooms) and blocks of time, and assign presentations and events to each.]]></message>
+
+	<message key="manager.scheduler.buildingsAndRooms">Buildings &amp;amp; Rooms</message>
+	<message key="manager.scheduler.buildings">Buildings</message>
+	<message key="manager.scheduler.building.name">Name</message>
+	<message key="manager.scheduler.building.form.nameRequired">A building name is required.</message>
+	<message key="manager.scheduler.building.confirmDelete">Are you sure you wish to delete this building? There may be presentations scheduled to appear here.</message>
+	<message key="manager.scheduler.building.saveAndCreateAnother">Save and Create Another</message>
+	<message key="manager.scheduler.building.noneCreated">No buildings have been created.</message>
+	<message key="manager.scheduler.building.create">Create a new building</message>
+	<message key="manager.scheduler.building.createBuilding">Create Building</message>
+	<message key="manager.scheduler.building.createBuildingShort">Create</message>
+	<message key="manager.scheduler.building.editBuilding">Edit Building</message>
+	<message key="manager.scheduler.building.editBuildingShort">Edit</message>
+
+	<message key="manager.scheduler.rooms">Rooms</message>
+	<message key="manager.scheduler.room.name">Name</message>
+	<message key="manager.scheduler.room.form.nameRequired">A room name is required.</message>
+	<message key="manager.scheduler.room.form.buildingIdValid">Each room must be associated with a valid building.</message>
+	<message key="manager.scheduler.room.confirmDelete">Are you sure you wish to delete this room? There may be presentations scheduled to appear here.</message>
+	<message key="manager.scheduler.room.saveAndCreateAnother">Save and Create Another</message>
+	<message key="manager.scheduler.room.noneCreated">No rooms have been created.</message>
+	<message key="manager.scheduler.room.create">Create a new room</message>
+	<message key="manager.scheduler.room.createRoom">Create room</message>
+	<message key="manager.scheduler.room.createRoomShort">Create</message>
+	<message key="manager.scheduler.room.editRoom">Edit Room</message>
+	<message key="manager.scheduler.room.editRoomShort">Edit</message>
+
+	<message key="manager.scheduler.specialEvents">Special Events</message>
+
+	<message key="manager.scheduler.schedule">Schedule Presentations &amp;amp; Events</message>
+
 	<!-- Payment Handling -->
 	<message key="manager.payment.paymentSettings">Payment Methods</message>
 	<message key="manager.payment.paymentPluginInvalid">You must choose a valid payment method.</message>

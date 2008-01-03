@@ -458,6 +458,66 @@ class ManagerHandler extends Handler {
 
 
 	//
+	// Scheduler
+	//
+
+	function scheduler() {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::scheduler();
+	}
+
+	function buildings() {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::buildings();
+	}
+
+	function deleteBuilding($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::deleteBuilding($args);
+	}
+
+	function editBuilding($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::editBuilding($args);
+	}
+
+	function createBuilding() {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::createBuilding();
+	}
+
+	function updateBuilding($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::updateBuilding($args);
+	}
+
+	function rooms($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::rooms($args);
+	}
+
+	function deleteRoom($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::deleteRoom($args);
+	}
+
+	function editRoom($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::editRoom($args);
+	}
+
+	function createRoom($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::createRoom($args);
+	}
+
+	function updateRoom($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::updateRoom($args);
+	}
+
+
+	//
 	// Announcement Types 
 	//
 
