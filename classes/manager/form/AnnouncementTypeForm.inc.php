@@ -26,7 +26,6 @@ class AnnouncementTypeForm extends Form {
 	 */
 	function AnnouncementTypeForm($typeId = null) {
 		$this->typeId = isset($typeId) ? (int) $typeId : null;
-		$conference = &Request::getConference();
 
 		parent::Form('manager/announcement/announcementTypeForm.tpl');
 
@@ -66,7 +65,7 @@ class AnnouncementTypeForm extends Form {
 
 			if ($announcementType != null) {
 				$this->_data = array(
-					'name' => $announcementType->getName()
+					'name' => $announcementType->getName(null) // Localized
 				);
 
 			} else {

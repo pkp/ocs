@@ -42,7 +42,7 @@
 		<td>{$announcement->getAnnouncementTypeName()}</td>
 		<td>{$schedConfNames[$schedConfId]}</td>
 		<td>{$announcement->getAnnouncementTitle()|escape}</td>
-		<td><a href="{url op="editAnnouncement" path=$announcement->getAnnouncementId()}" class="action">{translate key="common.edit"}</a> <a href="{url op="deleteAnnouncement" path=$announcement->getAnnouncementId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.announcements.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
+		<td><a href="{url op="editAnnouncement" path=$announcement->getAnnouncementId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteAnnouncement" path=$announcement->getAnnouncementId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.announcements.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
 	<tr>
 		<td colspan="5" class="{if $announcements->eof()}end{/if}separator">&nbsp;</td>
