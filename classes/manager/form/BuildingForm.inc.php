@@ -65,7 +65,8 @@ class BuildingForm extends Form {
 
 			if ($building != null) {
 				$this->_data = array(
-					'name' => $building->getName(null) // Localized
+					'name' => $building->getName(null), // Localized
+					'description' => $building->getDescription(null) // Localized
 				);
 
 			} else {
@@ -78,7 +79,7 @@ class BuildingForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('name'));
+		$this->readUserVars(array('name', 'description'));
 
 	}
 
@@ -99,6 +100,7 @@ class BuildingForm extends Form {
 
 		$building->setSchedConfId($schedConf->getSchedConfId());
 		$building->setName($this->getData('name'), null); // Localized
+		$building->setDescription($this->getData('description'), null); // Localized
 
 		// Update or insert building
 		if ($building->getBuildingId() != null) {

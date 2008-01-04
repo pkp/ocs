@@ -40,6 +40,6 @@
 </table>
 {if $isDirector}
 	<a href="{url op="assignDirector" path="trackDirector" paperId=$submission->getPaperId()}" class="action">{translate key="director.paper.assignTrackDirector"}</a>
-	| <a href="{url op="assignDirector" path="director" paperId=$submission->getPaperId()}" class="action">{translate key="director.paper.assignDirector"}</a>
-	{if !$selfAssigned}| <a href="{url op="assignDirector" path="director" directorId=$userId paperId=$submission->getPaperId()}" class="action">{translate key="common.addSelf"}</a>{/if}
+	|&nbsp;<a href="{url op="assignDirector" path="director" paperId=$submission->getPaperId()}" class="action">{translate key="director.paper.assignDirector"}</a>
+	{if !$selfAssigned}|&nbsp;<a href="{url op="assignDirector" path="director" directorId=$userId paperId=$submission->getPaperId()}" class="action">{translate key="common.addSelf"}</a>{/if}
 {/if}

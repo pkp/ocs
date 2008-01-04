@@ -687,8 +687,8 @@
 			<DEFAULT VALUE="en"/>
 		</field>
 		<field name="paper_type" type="I8"/>
-		<field name="present_start_time" type="T"/>
-		<field name="present_end_time" type="T"/>
+		<field name="time_block_id" type="I8" />
+		<field name="room_id" type="I8" />
 		<field name="comments_to_dr" type="X"/>
 		<field name="date_submitted" type="T"/>
 		<field name="date_reminded" type="T"/>
@@ -2240,6 +2240,34 @@
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE/>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE time_blocks
+	  *
+	  -->
+	<table name="time_blocks">
+		<field name="time_block_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="start_time" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="end_time" type="T">
+			<NOTNULL/>
+		</field>
+		<descr>Blocks of time for event/presentation assignments.</descr>
+		<index name="time_block_unique">
+			<col>sched_conf_id</col>
+			<col>start_time</col>
+			<col>end_time</col>
+			<UNIQUE />
 		</index>
 	</table>
 </schema>

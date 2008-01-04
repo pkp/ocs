@@ -287,7 +287,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		// Ensure that the specified parameters are valid
 		if (	!$building || !$schedConf ||
-			$schedConf->getSchedConfId() != $building->getBuildingId()
+			$schedConf->getSchedConfId() != $building->getSchedConfId()
 		) {
 			Request::redirect(null, null, null, 'scheduler');
 		}

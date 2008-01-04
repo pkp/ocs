@@ -219,11 +219,13 @@ class PluginSettingsDAO extends DAO {
 
 	/**
 	 * Install plugin settings from an XML file.
+	 * @param $conferenceId int ID of conference, if applicable
+	 * @param $schedConfId int ID of scheduled conference, if applicable
 	 * @param $pluginName name of plugin for settings to apply to
 	 * @param $filename string Name of XML file to parse and install
 	 * @param $paramArray array Optional parameters for variable replacement in settings
 	 */
-	function installSettings($conferenceId, $pluginName, $filename, $paramArray = array()) {
+	function installSettings($conferenceId, $schedConfId, $pluginName, $filename, $paramArray = array()) {
 		$xmlParser = &new XMLParser();
 		$tree = $xmlParser->parse($filename);
 
@@ -248,7 +250,7 @@ class PluginSettingsDAO extends DAO {
 				}
 
 				// Replace translate calls with translated content
-				$this->updateSetting($conferenceId, 0, $pluginName, $name, $value, $type);
+				$this->updateSetting($conferenceId, $schedConfId, $pluginName, $name, $value, $type);
 			}
 		}
 

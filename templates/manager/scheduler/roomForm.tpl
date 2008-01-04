@@ -50,9 +50,19 @@
 	<td width="20%" class="label">{fieldLabel name="name" required="true" key="manager.scheduler.room.name"}</td>
 	<td width="80%" class="value"><input type="text" name="name[{$formLocale|escape}]" value="{$name[$formLocale]|escape}" size="40" id="name" maxlength="80" class="textField" /></td>
 </tr>
+<tr valign="top">
+	<td width="20%" class="label">{fieldLabel name="number" key="manager.scheduler.room.number"}</td>
+	<td width="80%" class="value"><input type="text" name="number[{$formLocale|escape}]" value="{$number[$formLocale]|escape}" size="40" id="number" maxlength="80" class="textField" /></td>
+</tr>
+<tr valign="top">
+	<td class="label">{fieldLabel name="description" key="manager.scheduler.building.description"}</td>
+	<td class="value">
+		<textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="10" class="textArea">{$description[$formLocale]|escape}</textarea>
+	</td>
+</tr>
 </table>
 
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> {if not $roomId}<input type="submit" name="createAnother" value="{translate key="manager.scheduler.room.saveAndCreateAnother"}" class="button" /> {/if}<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="rooms" escape=false}'" /></p>
+<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> {if not $roomId}<input type="submit" name="createAnother" value="{translate key="manager.scheduler.room.saveAndCreateAnother"}" class="button" /> {/if}<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="rooms" path=$buildingId escape=false}'" /></p>
 
 </form>
 

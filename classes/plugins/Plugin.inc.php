@@ -301,7 +301,7 @@ class Plugin {
 		// Settings are only installed during automated installs. FIXME!
 		if (!$installer->getParam('manualInstall')) {
 			$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
-			$pluginSettingsDao->installSettings(0, $this->getName(), $this->getInstallSitePluginSettingsFile());
+			$pluginSettingsDao->installSettings(0, 0, $this->getName(), $this->getInstallSitePluginSettingsFile());
 		}
 
 		return false;

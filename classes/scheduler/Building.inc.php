@@ -16,11 +16,6 @@
  */
 
 class Building extends DataObject {
-
-	function Building() {
-		parent::DataObject();
-	}
-
 	//
 	// Get/set methods
 	//
@@ -58,7 +53,7 @@ class Building extends DataObject {
 	}
 
 	/**
-	 * Get the type of the building.
+	 * Get the localized name of the building.
 	 * @return string
 	 */
 	function getBuildingName() {
@@ -83,6 +78,31 @@ class Building extends DataObject {
 		return $this->setData('name', $name, $locale);
 	}
 
+	/**
+	 * Get the localized description of the building.
+	 * @return string
+	 */
+	function getBuildingDescription() {
+		return $this->getLocalizedData('description');
+	}
+
+	/**
+	 * Get the type of the room.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getDescription($locale) {
+		return $this->getData('description', $locale);
+	}
+
+	/**
+	 * Set the type of the room.
+	 * @param $description string
+	 * @param $locale string
+	 */
+	function setDescription($description, $locale) {
+		return $this->setData('description', $description, $locale);
+	}
 }
 
 ?>

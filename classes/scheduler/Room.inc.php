@@ -16,11 +16,6 @@
  */
 
 class Room extends DataObject {
-
-	function Room() {
-		parent::DataObject();
-	}
-
 	//
 	// Get/set methods
 	//
@@ -58,7 +53,7 @@ class Room extends DataObject {
 	}
 
 	/**
-	 * Get the type of the room.
+	 * Get the localized name of the room.
 	 * @return string
 	 */
 	function getRoomName() {
@@ -84,7 +79,7 @@ class Room extends DataObject {
 	}
 
 	/**
-	 * Get the type of the room.
+	 * Get the localized number of the room.
 	 * @return string
 	 */
 	function getRoomNumber() {
@@ -110,7 +105,7 @@ class Room extends DataObject {
 	}
 
 	/**
-	 * Get the type of the room.
+	 * Get the localized description of the room.
 	 * @return string
 	 */
 	function getRoomDescription() {
