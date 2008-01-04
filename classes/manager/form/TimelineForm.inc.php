@@ -104,7 +104,30 @@ class TimelineForm extends Form {
 
 		$templateMgr->assign('helpTopicId','conference.managementPages.timeline');
 
-		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
+		// Figure out the range of dates to display: first assemble a
+		// list of all dates currently used and make sure they are
+		// available on the form; then make sure certain minimum ranges
+		// are satisfied.
+		$dates = array();
+		if ($schedConf->getStartDate()) $dates[] = strtotime($schedConf->getStartDate());
+		if ($schedConf->getEndDate()) $dates[] = strtotime($schedConf->getEndDate());
+		foreach (array('startDate', 'endDate', 'regPresenterOpenDate', 'regPresenterCloseDate', 'showCFPDate', 'submissionsOpenDate', 'submissionsCloseDate', 'regReviewerOpenDate', 'regReviewerCloseDate', 'closeReviewProcessDate', 'postAbstracts', 'postAbstractsDate', 'postPapers', 'postPapersDate', 'postTimeline', 'delayOpenAccess', 'delayOpenAccessDate', 'closeComments', 'closeCommentsDate') as $dateSettingName) {
+			$dateSetting = $schedConf->getSetting($dateSettingName);
+			if ($dateSetting) $dates[] = $dateSetting;
+		}
+
+		$earliestDate = $latestDate = time();
+		foreach ($dates as $date) {
+			if (!$earliestDate || $earliestDate > $date) $earliestDate = $date;
+			if (!$latestDate || $latestDate < $date) $latestDate = $date;
+		}
+
+		$secsPerYear = 60 * 60 * 24 * 366; // (Rounding up)
+		$earliestDate = min($earliestDate, time() - $secsPerYear); // Last year must be included
+		$latestDate = max($latestDate, time() + ($secsPerYear * SCHED_CONF_DATE_YEAR_OFFSET_FUTURE));
+
+		$templateMgr->assign('firstYear', strftime('%Y', $earliestDate));
+		$templateMgr->assign('lastYear', strftime('%Y', $latestDate));
 
 		parent::display();
 	}
