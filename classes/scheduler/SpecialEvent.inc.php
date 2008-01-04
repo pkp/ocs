@@ -1,43 +1,43 @@
 <?php
 
 /**
- * @file Building.inc.php
+ * @file SpecialEvent.inc.php
  *
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package scheduler
- * @class Building
+ * @class SpecialEvent
  *
- * Building class.
- * Basic class describing a building.
+ * SpecialEvent class.
+ * Basic class describing a specialEvent.
  *
  * $Id$
  */
 
-class Building extends DataObject {
+class SpecialEvent extends DataObject {
 	//
 	// Get/set methods
 	//
 
 	/**
-	 * Get the ID of the building.
+	 * Get the ID of the specialEvent.
 	 * @return int
 	 */
-	function getBuildingId() {
-		return $this->getData('buildingId');
+	function getSpecialEventId() {
+		return $this->getData('specialEventId');
 	}
 
 	/**
-	 * Set the ID of the building.
-	 * @param $buildingId int
+	 * Set the ID of the specialEvent.
+	 * @param $specialEventId int
 	 */
-	function setBuildingId($buildingId) {
-		return $this->setData('buildingId', $buildingId);
+	function setSpecialEventId($specialEventId) {
+		return $this->setData('specialEventId', $specialEventId);
 	}
 
 	/**
-	 * Get the sched conf ID of the building.
+	 * Get the sched conf ID of the specialEvent.
 	 * @return int
 	 */
 	function getSchedConfId() {
@@ -45,7 +45,7 @@ class Building extends DataObject {
 	}
 
 	/**
-	 * Set the sched conf ID of the building.
+	 * Set the sched conf ID of the specialEvent.
 	 * @param $schedConfId int
 	 */
 	function setSchedConfId($schedConfId) {
@@ -53,15 +53,15 @@ class Building extends DataObject {
 	}
 
 	/**
-	 * Get the localized name of the building.
+	 * Get the localized name of the specialEvent.
 	 * @return string
 	 */
-	function getBuildingName() {
+	function getSpecialEventName() {
 		return $this->getLocalizedData('name');
 	}
 
 	/**
-	 * Get the name of the building.
+	 * Get the name of the specialEvent.
 	 * @param $locale string
 	 * @return string
 	 */
@@ -70,7 +70,7 @@ class Building extends DataObject {
 	}
 
 	/**
-	 * Set the name of the building.
+	 * Set the name of the specialEvent.
 	 * @param $name string
 	 * @param $locale string
 	 */
@@ -79,15 +79,15 @@ class Building extends DataObject {
 	}
 
 	/**
-	 * Get the localized description of the building.
+	 * Get the localized description of the specialEvent.
 	 * @return string
 	 */
-	function getBuildingDescription() {
+	function getSpecialEventDescription() {
 		return $this->getLocalizedData('description');
 	}
 
 	/**
-	 * Get the description of the building.
+	 * Get the description of the room.
 	 * @param $locale string
 	 * @return string
 	 */
@@ -96,7 +96,7 @@ class Building extends DataObject {
 	}
 
 	/**
-	 * Set the description of the building.
+	 * Set the description of the room.
 	 * @param $description string
 	 * @param $locale string
 	 */

@@ -161,7 +161,7 @@ class TimeBlockDAO extends DAO {
 	}
 
 	/**
-	 * Delete scheduler types by scheduled conference ID.
+	 * Delete time blocks by scheduled conference ID.
 	 * @param $conferenceId int
 	 */
 	function deleteTimeBlocksBySchedConfId($schedConfId) {

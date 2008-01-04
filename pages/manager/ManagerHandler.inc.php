@@ -466,6 +466,8 @@ class ManagerHandler extends Handler {
 		SchedulerHandler::scheduler();
 	}
 
+	// Buildings
+
 	function buildings() {
 		import('pages.manager.SchedulerHandler');
 		SchedulerHandler::buildings();
@@ -491,6 +493,8 @@ class ManagerHandler extends Handler {
 		SchedulerHandler::updateBuilding($args);
 	}
 
+	// Rooms
+
 	function rooms($args) {
 		import('pages.manager.SchedulerHandler');
 		SchedulerHandler::rooms($args);
@@ -514,6 +518,33 @@ class ManagerHandler extends Handler {
 	function updateRoom($args) {
 		import('pages.manager.SchedulerHandler');
 		SchedulerHandler::updateRoom($args);
+	}
+
+	// Special Events
+
+	function specialEvents() {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::specialEvents();
+	}
+
+	function deleteSpecialEvent($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::deleteSpecialEvent($args);
+	}
+
+	function editSpecialEvent($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::editSpecialEvent($args);
+	}
+
+	function createSpecialEvent() {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::createSpecialEvent();
+	}
+
+	function updateSpecialEvent($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::updateSpecialEvent($args);
 	}
 
 

@@ -2270,4 +2270,55 @@
 			<UNIQUE />
 		</index>
 	</table>
+
+	<!--
+	  *
+	  * TABLE special_events
+	  *
+	  -->
+	<table name="special_events">
+		<field name="special_event_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<descr>Conference scheduler special events.</descr>
+		<index name="special_event_sched_conf_id">
+			<col>sched_conf_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE special_event_settings
+	  *
+	  -->
+	<table name="special_event_settings">
+		<field name="special_event_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+		</field>
+		<descr>Locale-specific special_event data</descr>
+		<index name="special_event_settings_special_event_id">
+			<col>special_event_id</col>
+		</index>
+		<index name="special_event_settings_pkey">
+			<col>special_event_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
+		</index>
+	</table>
 </schema>

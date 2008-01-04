@@ -327,6 +327,133 @@ class SchedulerHandler extends ManagerHandler {
 	}
 
 	/**
+	 * Display a list of special events to manage.
+	 */
+	function specialEvents() {
+		parent::validate();
+		SchedulerHandler::setupTemplate(true);
+
+		$schedConf =& Request::getSchedConf();
+		$rangeInfo =& Handler::getRangeInfo('specialEvents');
+		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+		$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('specialEvents', $specialEvents);
+		$templateMgr->assign('helpTopicId', 'conference.managementPages.specialEvents');
+		$templateMgr->display('manager/scheduler/specialEvents.tpl');
+	}
+
+	/**
+	 * Delete a special event.
+	 * @param $args array first parameter is the ID of the special event to delete
+	 */
+	function deleteSpecialEvent($args) {
+		parent::validate();
+		$specialEventId = (int) array_shift($args);
+		$schedConf =& Request::getSchedConf();
+		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+
+		// Ensure specialEvent is for this conference
+		if ($specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getSchedConfId()) {
+			$specialEventDao->deleteSpecialEventById($specialEventId);
+		}
+
+		Request::redirect(null, null, null, 'specialEvents');
+	}
+
+	/**
+	 * Display form to edit a special event.
+	 * @param $args array optional, first parameter is the ID of the specialEvent to edit
+	 */
+	function editSpecialEvent($args = array()) {
+		parent::validate();
+		SchedulerHandler::setupTemplate(true);
+
+		$schedConf =& Request::getSchedConf();
+		$specialEventId = !isset($args) || empty($args) ? null : (int) $args[0];
+		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+
+		// Ensure special event is valid and for this conference
+		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getSchedConfId()) || ($specialEventId == null)) {
+			import('manager.form.SpecialEventForm');
+
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'specialEvents'), 'manager.scheduler.specialEvents'));
+
+			if ($specialEventId == null) {
+				$templateMgr->assign('specialEventTitle', 'manager.scheduler.specialEvent.createSpecialEventShort');
+			} else {
+				$templateMgr->assign('specialEventTitle', 'manager.scheduler.specialEvent.editSpecialEventShort');
+			}
+
+			$specialEventForm =& new SpecialEventForm($specialEventId);
+			if ($specialEventForm->isLocaleResubmit()) {
+				$specialEventForm->readInputData();
+			} else {
+				$specialEventForm->initData();
+			}
+			$specialEventForm->display();
+
+		} else {
+				Request::redirect(null, null, null, 'specialEvents');
+		}
+	}
+
+	/**
+	 * Display form to create new special event.
+	 */
+	function createSpecialEvent() {
+		SchedulerHandler::editSpecialEvent();
+	}
+
+	/**
+	 * Save changes to a special event.
+	 */
+	function updateSpecialEvent() {
+		parent::validate();
+
+		import('manager.form.SpecialEventForm');
+
+		$schedConf =& Request::getSchedConf();
+		$specialEventId = Request::getUserVar('specialEventId') == null ? null : (int) Request::getUserVar('specialEventId');
+		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+
+		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getSchedConfId()) || $specialEventId == null) {
+
+			$specialEventForm =& new SpecialEventForm($specialEventId);
+			$specialEventForm->readInputData();
+
+			if ($specialEventForm->validate()) {
+				$specialEventForm->execute();
+
+				if (Request::getUserVar('createAnother')) {
+					Request::redirect(null, null, null, 'createSpecialEvent');
+				} else {
+					Request::redirect(null, null, null, 'specialEvents');
+				}
+
+			} else {
+				SpecialEventHandler::setupTemplate(true);
+
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'specialEvents'), 'manager.scheduler.specialEvents'));
+
+				if ($specialEventId == null) {
+					$templateMgr->assign('specialEventTitle', 'manager.scheduler.specialEvent.createSpecialEvent');
+				} else {
+					$templateMgr->assign('specialEventTitle', 'manager.scheduler.specialEvent.editSpecialEvent');	
+				}
+
+				$specialEventForm->display();
+			}
+
+		} else {
+				Request::redirect(null, null, null, 'specialEvents');
+		}	
+	}
+
+	/**
 	 * Common template configuration function for Scheduler pages.
 	 * @param $subclass boolean Whether or not the page to display is a
 	 * "subclass" (sub-page) of the Scheduler (i.e. as

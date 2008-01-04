@@ -61,7 +61,7 @@ class Room extends DataObject {
 	}
 
 	/**
-	 * Get the type of the room.
+	 * Get the name of the room.
 	 * @param $locale string
 	 * @return string
 	 */
@@ -70,7 +70,7 @@ class Room extends DataObject {
 	}
 
 	/**
-	 * Set the type of the room.
+	 * Set the name of the room.
 	 * @param $name string
 	 * @param $locale string
 	 */
@@ -87,7 +87,7 @@ class Room extends DataObject {
 	}
 
 	/**
-	 * Get the type of the room.
+	 * Get the number of the room.
 	 * @param $locale string
 	 * @return string
 	 */
@@ -96,7 +96,7 @@ class Room extends DataObject {
 	}
 
 	/**
-	 * Set the type of the room.
+	 * Set the number of the room.
 	 * @param $number string
 	 * @param $locale string
 	 */
@@ -113,7 +113,7 @@ class Room extends DataObject {
 	}
 
 	/**
-	 * Get the type of the room.
+	 * Get the description of the room.
 	 * @param $locale string
 	 * @return string
 	 */
@@ -122,7 +122,7 @@ class Room extends DataObject {
 	}
 
 	/**
-	 * Set the type of the room.
+	 * Set the description of the room.
 	 * @param $description string
 	 * @param $locale string
 	 */

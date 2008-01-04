@@ -142,7 +142,7 @@ class RoomDAO extends DAO {
 	}
 
 	/**
-	 * Delete scheduler types by scheduled conference ID.
+	 * Delete rooms by scheduled conference ID.
 	 * @param $buildingId int
 	 */
 	function deleteRoomsByBuildingId($buildingId) {

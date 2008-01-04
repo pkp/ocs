@@ -171,7 +171,7 @@ class BuildingDAO extends DAO {
 	}
 
 	/**
-	 * Delete scheduler types by scheduled conference ID.
+	 * Delete buildings by scheduled conference ID.
 	 * @param $conferenceId int
 	 */
 	function deleteBuildingsBySchedConfId($schedConfId) {

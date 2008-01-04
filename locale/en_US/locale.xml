@@ -814,6 +814,17 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.scheduler.room.editRoomShort">Edit</message>
 
 	<message key="manager.scheduler.specialEvents">Special Events</message>
+	<message key="manager.scheduler.specialEvent.name">Name</message>
+	<message key="manager.scheduler.specialEvent.description">Description</message>
+	<message key="manager.scheduler.specialEvent.form.nameRequired">A special event name is required.</message>
+	<message key="manager.scheduler.specialEvent.confirmDelete">Are you sure you wish to delete this special event?</message>
+	<message key="manager.scheduler.specialEvent.saveAndCreateAnother">Save and Create Another</message>
+	<message key="manager.scheduler.specialEvent.noneCreated">No special events have been created.</message>
+	<message key="manager.scheduler.specialEvent.create">Create a new special event</message>
+	<message key="manager.scheduler.specialEvent.createSpecialEvent">Create Special Event</message>
+	<message key="manager.scheduler.specialEvent.createSpecialEventShort">Create</message>
+	<message key="manager.scheduler.specialEvent.editSpecialEvent">Edit Special Event</message>
+	<message key="manager.scheduler.specialEvent.editSpecialEventShort">Edit</message>
 
 	<message key="manager.scheduler.schedule">Schedule Presentations &amp;amp; Events</message>
 
