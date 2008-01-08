@@ -36,7 +36,7 @@
 		<td align="right"><a href="{url op="editConference" path=$conference->getConferenceId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a class="action" href="{url op="deleteConference" path=$conference->getConferenceId()}" onclick="return confirm('{translate|escape:"jsparam" key="admin.conferences.confirmDelete"}')">{translate key="common.delete"}</a></td>
 	</tr>
 	<tr>
-		<td colspan="4" class="{if $smarty.foreach.conferences.last}end{/if}separator">&nbsp;</td>
+		<td colspan="4" class="{if $conferences->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
 	{/iterate}
 	{if $conferences->wasEmpty()}

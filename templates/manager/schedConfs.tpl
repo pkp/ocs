@@ -43,7 +43,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="4" class="{if $smarty.foreach.schedConfs.last}end{/if}separator">&nbsp;</td>
+		<td colspan="4" class="{if $schedConfs->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
 	{/iterate}
 	{if $schedConfs->wasEmpty()}
