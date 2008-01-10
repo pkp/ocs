@@ -547,6 +547,16 @@ class ManagerHandler extends Handler {
 		SchedulerHandler::updateSpecialEvent($args);
 	}
 
+	function schedule($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::schedule($args);
+	}
+
+	function createTimeBlocks($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::createTimeBlocks($args);
+	}
+
 
 	//
 	// Announcement Types 

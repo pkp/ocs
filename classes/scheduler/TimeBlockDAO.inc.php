@@ -50,7 +50,7 @@ class TimeBlockDAO extends DAO {
 	}
 
 	/**
-	 * Check if a timeBlock exists with the given buliding id for a sched conf.
+	 * Check if a timeBlock exists with the given time block id for a sched conf.
 	 * @param $timeBlockId int
 	 * @param $schedConfId int
 	 * @return boolean
@@ -58,13 +58,33 @@ class TimeBlockDAO extends DAO {
 	function timeBlockExistsForSchedConf($timeBlockId, $schedConfId) {
 		$result = &$this->retrieve(
 			'SELECT	COUNT(*)
-				FROM time_blocks
-				WHERE time_block_id = ?
-				AND   sched_conf_id = ?',
+			FROM	time_blocks
+			WHERE	time_block_id = ?
+			AND	sched_conf_id = ?',
 			array(
 				$timeBlockId,
 				$schedConfId
 			)
+		);
+		$returner = isset($result->fields[0]) && $result->fields[0] != 0 ? true : false;
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
+	 * Check if any timeBlock exists for a sched conf.
+	 * @param $schedConfId int
+	 * @return boolean
+	 */
+	function timeBlocksExistForSchedConf($schedConfId) {
+		$result = &$this->retrieve(
+			'SELECT	COUNT(*)
+			FROM	time_blocks
+			WHERE	sched_conf_id = ?',
+			array($schedConfId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] != 0 ? true : false;
 
@@ -93,7 +113,20 @@ class TimeBlockDAO extends DAO {
 		$timeBlock->setSchedConfId($row['sched_conf_id']);
 		$timeBlock->setStartTime($this->datetimeFromDB($row['start_time']));
 		$timeBlock->setEndTime($this->datetimeFromDB($row['end_time']));
+		$timeBlock->setAssignedColour($row['assigned_colour']);
+		$timeBlock->setUnassignedColour($row['unassigned_colour']);
+		$this->getDataObjectSettings('time_block_settings', 'time_block_id', $row['time_block_id'], $timeBlock);
 		return $timeBlock;
+	}
+
+	/**
+	 * Update the localized settings for this object
+	 * @param $timeBlock object
+	 */
+	function updateLocaleFields(&$timeBlock) {
+		$this->updateDataObjectSettings('time_block_settings', $timeBlock, array(
+			'time_block_id' => $timeBlock->getTimeBlockId()
+		));
 	}
 
 	/**
@@ -103,18 +136,22 @@ class TimeBlockDAO extends DAO {
 	 */
 	function insertTimeBlock(&$timeBlock) {
 		$this->update(
-			sprintf('INSERT INTO time_blocks
-				(sched_conf_id, start_time, end_time)
-				VALUES
-				(?, %s, %s)',
+			sprintf('INSERT INTO time_blocks (
+					sched_conf_id,
+					start_time,
+					end_time, assigned_colour,
+					unassigned_colour
+				) VALUES (?, %s, %s, ?, ?)',
 				$this->datetimeToDB($timeBlock->getStartTime()),
 				$this->datetimeToDB($timeBlock->getEndTime())
-			),
-			array(
-				$timeBlock->getSchedConfId()
+			), array(
+				$timeBlock->getSchedConfId(),
+				$timeBlock->getAssignedColour(),
+				$timeBlock->getUnassignedColour()
 			)
 		);
 		$timeBlock->setTimeBlockId($this->getInsertTimeBlockId());
+		$this->updateLocaleFields($timeBlock);
 		return $timeBlock->getTimeBlockId();
 	}
 
@@ -125,20 +162,23 @@ class TimeBlockDAO extends DAO {
 	 */
 	function updateTimeBlock(&$timeBlock) {
 		$returner = $this->update(
-			sprintf('UPDATE time_blocks
-				SET
-					sched_conf_id = ?,
+			sprintf('UPDATE	time_blocks
+				SET	sched_conf_id = ?,
 					start_time = %s,
-					end_time = %s
-				WHERE time_block_id = ?',
+					end_time = %s,
+					assigned_colour = ?,
+					unassigned_colour = ?
+				WHERE	time_block_id = ?',
 				$this->datetimeToDB($timeBlock->getStartTime()),
 				$this->datetimeToDB($timeBlock->getEndTime())
-			),
-			array(
+			), array(
 				$timeBlock->getSchedConfId(),
+				$timeBlock->getAssignedColour(),
+				$timeBlock->getUnassignedColour(),
 				$timeBlock->getTimeBlockId()
 			)
 		);
+		$this->updateLocaleFields($timeBlock);
 		return $returner;
 	}
 
@@ -157,6 +197,7 @@ class TimeBlockDAO extends DAO {
 	 * @return boolean
 	 */
 	function deleteTimeBlockById($timeBlockId) {
+		$this->update('DELETE FROM time_block_settings WHERE time_block_id = ?', $timeBlockId);
 		return $this->update('DELETE FROM time_blocks WHERE time_block_id = ?', $timeBlockId);
 	}
 

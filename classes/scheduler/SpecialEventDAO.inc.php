@@ -50,12 +50,12 @@ class SpecialEventDAO extends DAO {
 	}
 
 	/**
-	 * Check if a special event exists with the given buliding id for a sched conf.
+	 * Check if a special event exists with the given special event id for a sched conf.
 	 * @param $specialEventId int
 	 * @param $schedConfId int
 	 * @return boolean
 	 */
-	function special_eventExistsForSchedConf($specialEventId, $schedConfId) {
+	function specialEventExistsForSchedConf($specialEventId, $schedConfId) {
 		$result = &$this->retrieve(
 			'SELECT	COUNT(*)
 				FROM special_events
@@ -91,6 +91,7 @@ class SpecialEventDAO extends DAO {
 		$specialEvent = &new SpecialEvent();
 		$specialEvent->setSpecialEventId($row['special_event_id']);
 		$specialEvent->setSchedConfId($row['sched_conf_id']);
+		$specialEvent->setIsMultiple($row['is_multiple']);
 		$this->getDataObjectSettings('special_event_settings', 'special_event_id', $row['special_event_id'], $specialEvent);
 
 		return $specialEvent;
@@ -114,11 +115,12 @@ class SpecialEventDAO extends DAO {
 	function insertSpecialEvent(&$specialEvent) {
 		$this->update(
 			sprintf('INSERT INTO special_events
-				(sched_conf_id)
+				(sched_conf_id, is_multiple)
 				VALUES
-				(?)'),
+				(?, ?)'),
 			array(
-				$specialEvent->getSchedConfId()
+				(int) $specialEvent->getSchedConfId(),
+				(int) $specialEvent->getIsMultiple()
 			)
 		);
 		$specialEvent->setSpecialEventId($this->getInsertSpecialEventId());
@@ -133,13 +135,14 @@ class SpecialEventDAO extends DAO {
 	 */
 	function updateSpecialEvent(&$specialEvent) {
 		$returner = $this->update(
-			sprintf('UPDATE special_events
-				SET
-					sched_conf_id = ?
+			sprintf('UPDATE	special_events
+				SET	sched_conf_id = ?,
+					is_multiple = ?
 				WHERE special_event_id = ?'),
 			array(
-				$specialEvent->getSchedConfId(),
-				$specialEvent->getSpecialEventId()
+				(int) $specialEvent->getSchedConfId(),
+				(int) $specialEvent->getIsMultiple(),
+				(int) $specialEvent->getSpecialEventId()
 			)
 		);
 		$this->updateLocaleFields($specialEvent);
@@ -201,6 +204,33 @@ class SpecialEventDAO extends DAO {
 	function getInsertSpecialEventId() {
 		return $this->getInsertId('special_events', 'special_event_id');
 	}
+
+	/**
+	 * Assign a special event to a block.
+	 * @param $specialEventId int
+	 * @param $timeBlockId int
+	 * @return int
+	 */
+	function assignEventToBlock($specialEventId, $timeBlockId) {
+		return $this->update('INSERT INTO event_time_assignments (special_event_id, time_block_id) VALUES (?, ?)', array($specialEventId, $timeBlockId));
+	}
+
+	/**
+	 * Retrieve an array of special events matching a particular sched conf ID.
+	 * @param $schedConfId int
+	 * @return object DAOResultFactory containing matching special events
+	 */
+	function &getSpecialEventsByTimeBlockId($timeBlockId, $rangeInfo = null) {
+		$result = &$this->retrieveRange(
+			'SELECT s.* FROM special_events s, event_time_assignments e WHERE e.special_event_id = s.special_event_id AND e.time_block_id = ? ORDER BY s.special_event_id',
+			$timeBlockId,
+			$rangeInfo
+		);
+
+		$returner = &new DAOResultFactory($result, $this, '_returnSpecialEventFromRow');
+		return $returner;
+	}
+
 }
 
 ?>

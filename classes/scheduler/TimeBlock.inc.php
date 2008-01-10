@@ -56,7 +56,7 @@ class TimeBlock extends DataObject {
 	 * Get the start time of the timeBlock.
 	 * @return string
 	 */
-	function getStartTime($startTime) {
+	function getStartTime() {
 		return $this->getData('startTime');
 	}
 
@@ -72,7 +72,7 @@ class TimeBlock extends DataObject {
 	 * Get the end time of the timeBlock.
 	 * @return string
 	 */
-	function getEndTime($endTime) {
+	function getEndTime() {
 		return $this->getData('endTime');
 	}
 
@@ -82,6 +82,64 @@ class TimeBlock extends DataObject {
 	 */
 	function setEndTime($endTime) {
 		return $this->setData('endTime', $endTime);
+	}
+
+	/**
+	 * Get the localized name of the time block.
+	 * @return string
+	 */
+	function getTimeBlockName() {
+		return $this->getLocalizedData('name');
+	}
+
+	/**
+	 * Get the name of the time block.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getName($locale) {
+		return $this->getData('name', $locale);
+	}
+
+	/**
+	 * Set the name of the time block.
+	 * @param $name string
+	 * @param $locale string
+	 */
+	function setName($name, $locale) {
+		return $this->setData('name', $name, $locale);
+	}
+
+	/**
+	 * Get the colour of this time block for use when it has been assigned to a presentation or special event.
+	 * @return string
+	 */
+	function getAssignedColour() {
+		return $this->getData('assignedColour');
+	}
+
+	/**
+	 * Set the colour of this time block for use when it has been assigned to a presentation or special event.
+	 * @param $assignedColour string
+	 */
+	function setAssignedColour($assignedColour) {
+		return $this->setData('assignedColour', $assignedColour);
+	}
+
+	/**
+	 * Get the colour of this time block for use when it has not been assigned to a presentation or special event.
+	 * @return string
+	 */
+	function getUnassignedColour() {
+		return $this->getData('unassignedColour');
+	}
+
+	/**
+	 * Set the colour of this time block for use when it has not been assigned to a presentation or special event.
+	 * @param $unassignedColour string
+	 */
+	function setUnassignedColour($unassignedColour) {
+		return $this->setData('unassignedColour', $unassignedColour);
 	}
 }
 

@@ -2262,12 +2262,46 @@
 		<field name="end_time" type="T">
 			<NOTNULL/>
 		</field>
+		<field name="assigned_colour" type="C2" size="6" />
+		<field name="unassigned_colour" type="C2" size="6" />
 		<descr>Blocks of time for event/presentation assignments.</descr>
 		<index name="time_block_unique">
 			<col>sched_conf_id</col>
 			<col>start_time</col>
 			<col>end_time</col>
 			<UNIQUE />
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE time_block_settings
+	  *
+	  -->
+	<table name="time_block_settings">
+		<field name="time_block_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+		</field>
+		<descr>Locale-specific time block data</descr>
+		<index name="time_block_settings_time_block_id">
+			<col>time_block_id</col>
+		</index>
+		<index name="time_block_settings_pkey">
+			<col>time_block_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
 		</index>
 	</table>
 
@@ -2283,6 +2317,10 @@
 		</field>
 		<field name="sched_conf_id" type="I8">
 			<NOTNULL/>
+		</field>
+		<field name="is_multiple" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
 		</field>
 		<descr>Conference scheduler special events.</descr>
 		<index name="special_event_sched_conf_id">
@@ -2310,7 +2348,7 @@
 		<field name="setting_type" type="C2" size="6">
 			<NOTNULL/>
 		</field>
-		<descr>Locale-specific special_event data</descr>
+		<descr>Locale-specific special event data</descr>
 		<index name="special_event_settings_special_event_id">
 			<col>special_event_id</col>
 		</index>
@@ -2319,6 +2357,25 @@
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE/>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE event_time_assignments
+	  *
+	  -->
+	<table name="event_time_assignments">
+		<field name="special_event_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="time_block_id" type="I8">
+			<NOTNULL />
+		</field>
+		<descr>Assignments of special events to time blocks</descr>
+		<index name="event_time_assignments_pkey">
+			<col>special_event_id</col>
+			<col>time_block_id</col>
 		</index>
 	</table>
 </schema>

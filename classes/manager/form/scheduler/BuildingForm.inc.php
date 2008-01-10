@@ -6,7 +6,7 @@
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form
+ * @package manager.form.scheduler
  * @class BuildingForm
  *
  * Form for conference manager to create/edit buildings for scheduler.

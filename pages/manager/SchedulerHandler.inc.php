@@ -78,7 +78,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		// Ensure building is valid and for this conference
 		if (($buildingId != null && $buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getSchedConfId()) || ($buildingId == null)) {
-			import('manager.form.BuildingForm');
+			import('manager.form.scheduler.BuildingForm');
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'buildings'), 'manager.scheduler.buildings'));
@@ -115,7 +115,7 @@ class SchedulerHandler extends ManagerHandler {
 	function updateBuilding() {
 		parent::validate();
 
-		import('manager.form.BuildingForm');
+		import('manager.form.scheduler.BuildingForm');
 
 		$schedConf =& Request::getSchedConf();
 		$buildingId = Request::getUserVar('buildingId') == null ? null : (int) Request::getUserVar('buildingId');
@@ -237,7 +237,7 @@ class SchedulerHandler extends ManagerHandler {
 				$room && $room->getBuildingId() == $building->getBuildingId()
 			))
 		) {
-			import('manager.form.RoomForm');
+			import('manager.form.scheduler.RoomForm');
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'rooms', array($building->getBuildingId())), 'manager.scheduler.rooms'));
@@ -274,7 +274,7 @@ class SchedulerHandler extends ManagerHandler {
 	function updateRoom() {
 		parent::validate();
 
-		import('manager.form.RoomForm');
+		import('manager.form.scheduler.RoomForm');
 
 		$schedConf =& Request::getSchedConf();
 		$roomId = Request::getUserVar('roomId') == null ? null : (int) Request::getUserVar('roomId');
@@ -376,7 +376,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		// Ensure special event is valid and for this conference
 		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getSchedConfId()) || ($specialEventId == null)) {
-			import('manager.form.SpecialEventForm');
+			import('manager.form.scheduler.SpecialEventForm');
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'specialEvents'), 'manager.scheduler.specialEvents'));
@@ -413,7 +413,7 @@ class SchedulerHandler extends ManagerHandler {
 	function updateSpecialEvent() {
 		parent::validate();
 
-		import('manager.form.SpecialEventForm');
+		import('manager.form.scheduler.SpecialEventForm');
 
 		$schedConf =& Request::getSchedConf();
 		$specialEventId = Request::getUserVar('specialEventId') == null ? null : (int) Request::getUserVar('specialEventId');
@@ -451,6 +451,62 @@ class SchedulerHandler extends ManagerHandler {
 		} else {
 				Request::redirect(null, null, null, 'specialEvents');
 		}	
+	}
+
+	/**
+	 * Display the conference schedule.
+	 */
+	function schedule($args) {
+		parent::validate();
+		$schedConf =& Request::getSchedConf();
+
+		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+		if (!$timeBlockDao->timeBlocksExistForSchedConf($schedConf->getSchedConfId())) {
+			// Allow the manager to populate the time blocks set
+			Request::redirect(null, null, null, 'createTimeBlocks');
+		}
+	}
+
+	/**
+	 * Create a set of time blocks to use for the conference.
+	 */
+	function createTimeBlocks($args) {
+		parent::validate();
+		$schedConf =& Request::getSchedConf();
+
+		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+		if ($timeBlockDao->timeBlocksExistForSchedConf($schedConf->getSchedConfId())) {
+			// This function is not allowed if time blocks are
+			// already created.
+			Request::redirect(null, null, null, 'schedule');
+		}
+
+		import('manager.form.scheduler.CreateTimeBlocksForm');
+		$createTimeBlocksForm =& new CreateTimeBlocksForm();
+
+		// Handle special cases first
+		if (Request::getUserVar('createTimeBlock')) {
+			$createTimeBlocksForm->readInputData();
+			$createTimeBlocksForm->addTimeBlock();
+			$createTimeBlocksForm->validate();
+		} elseif (isset($args[0]) && $args[0] == 'deleteTimeBlock') {
+			$createTimeBlocksForm->readInputData();
+			$createTimeBlocksForm->deleteTimeBlock((int) Request::getUserVar('blockIndex'));
+		} elseif (array_shift($args) == 'execute') {
+			$createTimeBlocksForm->readInputData();
+			if ($createTimeBlocksForm->validate()) {
+				$createTimeBlocksForm->execute();
+				Request::redirect(null, null, null, 'schedule');
+			}
+		} else {
+			if ($createTimeBlocksForm->isLocaleResubmit()) {
+				$createTimeBlocksForm->readInputData();
+			} else {
+				$createTimeBlocksForm->initData();
+			}
+		}
+		$createTimeBlocksForm->sortTimeBlocks();
+		$createTimeBlocksForm->display();
 	}
 
 	/**

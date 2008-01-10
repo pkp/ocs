@@ -103,6 +103,22 @@ class SpecialEvent extends DataObject {
 	function setDescription($description, $locale) {
 		return $this->setData('description', $description, $locale);
 	}
+
+	/**
+	 * Get whether or not the special event may occur multiple times.
+	 * @return string
+	 */
+	function getIsMultiple() {
+		return $this->getData('isMultiple');
+	}
+
+	/**
+	 * Set whether or not the special event may occur multiple times.
+	 * @param $isMultiple boolean
+	 */
+	function setIsMultiple($isMultiple) {
+		return $this->setData('isMultiple', $isMultiple);
+	}
 }
 
 ?>

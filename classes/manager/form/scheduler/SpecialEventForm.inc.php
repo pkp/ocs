@@ -6,7 +6,7 @@
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form
+ * @package manager.form.scheduler
  * @class SpecialEventForm
  *
  * Form for conference manager to create/edit special events for scheduler.
@@ -66,7 +66,8 @@ class SpecialEventForm extends Form {
 			if ($specialEvent != null) {
 				$this->_data = array(
 					'name' => $specialEvent->getName(null), // Localized
-					'description' => $specialEvent->getDescription(null) // Localized
+					'description' => $specialEvent->getDescription(null), // Localized
+					'isMultiple' => $specialEvent->getIsMultiple()
 				);
 
 			} else {
@@ -79,7 +80,7 @@ class SpecialEventForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('name', 'description'));
+		$this->readUserVars(array('name', 'description', 'isMultiple'));
 
 	}
 
@@ -101,6 +102,7 @@ class SpecialEventForm extends Form {
 		$specialEvent->setSchedConfId($schedConf->getSchedConfId());
 		$specialEvent->setName($this->getData('name'), null); // Localized
 		$specialEvent->setDescription($this->getData('description'), null); // Localized
+		$specialEvent->setIsMultiple($this->getData('isMultiple'));
 
 		// Update or insert specialEvent
 		if ($specialEvent->getSpecialEventId() != null) {

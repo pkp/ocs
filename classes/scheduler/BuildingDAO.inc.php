@@ -50,7 +50,7 @@ class BuildingDAO extends DAO {
 	}
 
 	/**
-	 * Check if a building exists with the given buliding id for a sched conf.
+	 * Check if a building exists with the given building id for a sched conf.
 	 * @param $buildingId int
 	 * @param $schedConfId int
 	 * @return boolean
