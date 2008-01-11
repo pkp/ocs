@@ -203,7 +203,10 @@ class PublishedPaper extends Paper {
 	 * @return string
 	 */
 	function getPublicPaperId() {
-		return $this->getData('publicPaperId');
+		// Ensure that blanks are treated as nulls
+		$returner = $this->getData('publicPaperId');
+		if ($returner === '') return null;
+		return $returner;
 	}
 
 	/**
