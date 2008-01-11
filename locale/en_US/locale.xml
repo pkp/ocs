@@ -2398,7 +2398,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.timeline.publicationStateChanged">The publication state has been changed from {$oldPublicationState} to {$newPublicationState}.</message>
 	<message key="log.timeline.submissionStateChanged">The submission state has been changed from {$oldSubmissionState} to {$newSubmissionState}.</message>
 	<message key="log.timeline.startDateChanged">The conference start date changed from {$oldStartDate} to {$newStartDate}.</message>
-	<message key="log.timeline.endDateChanged">The conference start date changed from {$oldEndDate} to {$newEndDate}.</message>
+	<message key="log.timeline.endDateChanged">The conference end date changed from {$oldEndDate} to {$newEndDate}.</message>
 	<message key="log.timeline.regReviewerOpenDateChanged">The author registration open date changed from {$oldRegReviewerOpenDate} to {$newRegReviewerOpenDate}.</message>
 	<message key="log.timeline.regReviewerCloseDateChanged">The author registration close date changed from {$oldRegReviewerCloseDate} to {$newRegReviewerCloseDate}.</message>
 	<message key="log.timeline.regPresenterOpenDateChanged">The author registration open date changed from {$oldRegPresenterOpenDate} to {$newRegPresenterOpenDate}.</message>
