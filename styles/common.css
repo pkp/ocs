@@ -324,6 +324,7 @@ table.info td {
 }
 
 table.listing {
+	border-collapse: collapse;
 }
 
 table.listing td {
@@ -481,4 +482,48 @@ div.separator {
 	border-bottom: 1px dotted #000;
 	font-size: 0.5em;
 	line-height: 25%;
+}
+
+/**
+ * Drag and drop styles
+ */
+.draggable {
+	position: relative;
+	cursor: hand;
+}
+
+.borderBox {
+	border-style: solid;
+	border-width: 1px;
+	margin: 2px;
+	padding: 2px;
+}
+
+.floatLeft {
+	float: left;
+}
+
+/**
+ * Scheduler styles
+ */
+.schedulerEvent {
+	color: #880000;
+	background-color: #FBFBF3;
+}
+
+.schedulerPresentation {
+	color: #008800;
+	background-color: #FBFBF3;
+}
+
+td.hole {
+	background-color: #777777;
+}
+
+td.timeRowLabel {
+	border-style: solid none none none;
+	border-width: 1px;
+}
+
+.droppable {
 }

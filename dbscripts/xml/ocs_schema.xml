@@ -576,6 +576,10 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
+		<field name="hide_about" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<descr>Scheduled conference tracks.</descr>
 		<index name="tracks_sched_conf_id">
 			<col>sched_conf_id</col>
@@ -687,7 +691,6 @@
 			<DEFAULT VALUE="en"/>
 		</field>
 		<field name="paper_type" type="I8"/>
-		<field name="time_block_id" type="I8" />
 		<field name="room_id" type="I8" />
 		<field name="comments_to_dr" type="X"/>
 		<field name="date_submitted" type="T"/>
@@ -787,6 +790,7 @@
 			<DEFAULT VALUE="0"/>
 		</field>
 		<field name="public_paper_id" type="C2" size="255"/>
+		<field name="time_block_id" type="I8" />
 		<descr>Conference papers.</descr>
 		<index name="published_papers_paper_id">
 			<col>paper_id</col>

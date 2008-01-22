@@ -164,7 +164,7 @@ class CreateTimeBlocksForm extends Form {
 	 * @return int
 	 */
 	function timeToSmartyChooser($fromTime, $untilTime) {
-		return $untilTime - $fromTime + mktime(0, 0, 0);
+		return $untilTime - $fromTime + mktime(0, 0, 1);
 	}
 
 	/**
@@ -177,7 +177,7 @@ class CreateTimeBlocksForm extends Form {
 	 * @return int
 	 */
 	function smartyChooserToTime($smartyTime, $baseTimestamp = 0) {
-		$time = $smartyTime - mktime(0, 0, 0);
+		$time = $smartyTime - mktime(0, 0, 1);
 		$time = $time % (60 * 60 * 24); // In case the interim timestamp appears on a different day
 		return $time + $baseTimestamp;
 	}

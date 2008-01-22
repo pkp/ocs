@@ -119,6 +119,23 @@ class SpecialEvent extends DataObject {
 	function setIsMultiple($isMultiple) {
 		return $this->setData('isMultiple', $isMultiple);
 	}
+
+	/**
+	 * Get the ID of the timeBlock this published paper is assigned to.
+	 * @return int
+	 */
+	function getTimeBlockId() {
+		return $this->getData('timeBlockId');
+	}
+
+	/**
+	 * Set the ID of the timeBlock this published paper is assigned to.
+	 * @param $timeBlockId int
+	 */
+	function setTimeBlockId($timeBlockId) {
+		return $this->setData('timeBlockId', $timeBlockId);
+	}
+
 }
 
 ?>

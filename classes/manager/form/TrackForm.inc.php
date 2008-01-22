@@ -110,7 +110,8 @@ class TrackForm extends Form {
 					'metaNotReviewed' => $track->getMetaReviewed()?0:1,
 					'identifyType' => $track->getIdentifyType(null), // Localized
 					'directorRestriction' => $track->getDirectorRestricted(),
-					'policy' => $track->getPolicy(null) // Localized
+					'policy' => $track->getPolicy(null), // Localized
+					'hideAbout' => $track->getHideAbout()
 				);
 			}
 		}
@@ -120,7 +121,7 @@ class TrackForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'abbrev', 'metaNotReviewed', 'identifyType', 'directorRestriction', 'policy'));
+		$this->readUserVars(array('title', 'abbrev', 'metaNotReviewed', 'identifyType', 'directorRestriction', 'policy', 'hideAbout'));
 	}
 
 	/**
@@ -147,6 +148,7 @@ class TrackForm extends Form {
 		$track->setIdentifyType($this->getData('identifyType'), null); // Localized
 		$track->setDirectorRestricted($this->getData('directorRestriction') ? 1 : 0);
 		$track->setPolicy($this->getData('policy'), null); // Localized
+		$track->setHideAbout($this->getData('hideAbout'));
 
 		if ($track->getTrackId() != null) {
 			$trackDao->updateTrack($track);
@@ -166,7 +168,6 @@ class TrackForm extends Form {
 			}
 		}
 	}
-
 }
 
 ?>

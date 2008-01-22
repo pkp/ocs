@@ -51,7 +51,7 @@
 		<td colspan="6" class="headseparator">&nbsp;</td>
 	</tr>
 {iterate from=registrationTypes item=registrationType}
-	{if !$registrationType->getPublic()}
+	{if $registrationType->getPublic()}
 		<tr valign="top">
 			<td>{$registrationType->getRegistrationTypeName()|escape}<br />{$registrationType->getRegistrationTypeDescription()|escape|nl2br}</td>
 			<td>{translate key=$registrationType->getAccessString()}</td>

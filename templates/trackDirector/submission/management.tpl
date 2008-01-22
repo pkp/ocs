@@ -26,7 +26,6 @@
 		<td class="label">{translate key="paper.title"}</td>
 		<td colspan="2" class="value">{$submission->getPaperTitle()|strip_unsafe_html}</td>
 	</tr>
-{if $submissionFile || $schedConfSettings.reviewMode != REVIEW_MODE_ABSTRACTS_ALONE}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="submission.paperType"}</td>
 		<td width="80%" colspan="2" class="data">
@@ -37,6 +36,7 @@
 			{/if}
 		</td>
 	</tr>
+{if $submissionFile || $schedConfSettings.reviewMode != REVIEW_MODE_ABSTRACTS_ALONE}
 	<tr>
 		<td class="label">{translate key="submission.originalFile"}</td>
 		<td colspan="2" class="value">

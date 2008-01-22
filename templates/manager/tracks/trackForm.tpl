@@ -8,10 +8,7 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="track.track"}
-{assign var="pageCrumbTitle" value="track.tracks"}
-{url|assign:"currentUser" op="tracks"}
-{include file="common/header.tpl"}
+{assign var="pageTitle" value="track.track"}{assign var="pageCrumbTitle" value="track.tracks"}{url|assign:"currentUser" op="tracks"}{include file="common/header.tpl"}
 
 <form name="track" method="post" action="{url op="updateTrack"}" onsubmit="return saveSelectedDirectors()">
 {if $trackId}
@@ -125,7 +122,7 @@
 	<td class="value"><textarea name="policy[{$formLocale|escape}]" rows="4" cols="40" id="policy" class="textArea">{$policy[$formLocale]|escape}</textarea></td>
 </tr>
 <tr valign="top">
-	<td rowspan="4" class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
+	<td rowspan="3" class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
 	<td class="value">{translate key="manager.tracks.submissionsToThisTrack"}</td>
 </tr>
 <tr valign="top">
@@ -139,12 +136,6 @@
 	<td class="value">
 		<input type="checkbox" name="metaNotReviewed" id="metaNotReviewed" value="1" {if $metaNotReviewed}checked="checked"{/if} />
 		{fieldLabel name="metaNotReviewed" key="manager.tracks.submissionNotReviewed"}
-	</td>
-</tr>
-<tr valign="top">
-	<td class="value">
-		<input type="checkbox" name="abstractsDisabled" id="abstractsDisabled" value="1" {if $abstractsDisabled}checked="checked"{/if} />
-		{fieldLabel name="abstractsDisabled" key="manager.tracks.abstractsDisabled"}
 	</td>
 </tr>
 <tr valign="top">

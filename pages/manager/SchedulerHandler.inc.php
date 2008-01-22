@@ -336,7 +336,7 @@ class SchedulerHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		$rangeInfo =& Handler::getRangeInfo('specialEvents');
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
-		$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+		$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId(), null, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('specialEvents', $specialEvents);
@@ -465,6 +465,79 @@ class SchedulerHandler extends ManagerHandler {
 			// Allow the manager to populate the time blocks set
 			Request::redirect(null, null, null, 'createTimeBlocks');
 		}
+
+		import('manager.form.scheduler.ScheduleForm');
+		$scheduleForm =& new ScheduleForm();
+
+		if (array_shift($args) == 'execute') {
+			// Perform submitted actions if necessary.
+			$actions = explode("\n", Request::getUserVar('actions'));
+			foreach ($actions as $action) {
+				$parts = explode(' ', $action);
+				switch (array_shift($parts)) {
+					case 'SCHEDULE':
+						// Format: SCHEDULE [EVENT|PRESENTATION]-id TIME-timeBlockId
+						$itemIdentifier = array_shift($parts);
+						$itemParts = explode('-', $itemIdentifier);
+						$itemType = array_shift($itemParts);
+						$itemId = (int) array_shift($itemParts);
+						$timeBlockParts = explode('-', array_shift($parts));
+						$timeToken = array_shift($timeBlockParts);
+						$timeBlockId = (int) array_shift($timeBlockParts);
+						$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+						$timeBlock =& $timeBlockDao->getTimeBlock($timeBlockId);
+						if (!$timeBlock || $timeBlock->getSchedConfId() != $schedConf->getSchedConfId()) continue;
+						switch ($itemType) {
+							case 'EVENT':
+								$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+								$specialEvent =& $specialEventDao->getSpecialEvent($itemId);
+								if (!$specialEvent || $specialEvent->getSchedConfId() != $schedConf->getSchedConfId()) break;
+								$specialEvent->setTimeBlockId($timeBlockId);
+								$specialEventDao->updateSpecialEvent($specialEvent);
+								break;
+							case 'PRESENTATION':
+								$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+								$paper =& $publishedPaperDao->getPublishedPaperByPaperId($itemId);
+								if (!$paper || $paper->getSchedConfId() != $schedConf->getSchedConfId()) break;
+								$paper->setTimeBlockId($timeBlockId);
+								$publishedPaperDao->updatePublishedPaper($paper);
+								break;
+						}
+						break;
+					case 'UNSCHEDULE':
+						// Format: SCHEDULE [EVENT|PRESENTATION]-id TIME-timeBlockId
+						$itemIdentifier = array_shift($parts);
+						$itemParts = explode('-', $itemIdentifier);
+						$itemType = array_shift($itemParts);
+						$itemId = (int) array_shift($itemParts);
+						switch ($itemType) {
+							case 'EVENT':
+								$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+								$specialEvent =& $specialEventDao->getSpecialEvent($itemId);
+								if (!$specialEvent || $specialEvent->getSchedConfId() != $schedConf->getSchedConfId()) break;
+								$specialEvent->setTimeBlockId(null);
+								$specialEventDao->updateSpecialEvent($specialEvent);
+								break;
+							case 'PRESENTATION':
+								$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+								$paper =& $publishedPaperDao->getPublishedPaperByPaperId($itemId);
+								if (!$paper || $paper->getSchedConfId() != $schedConf->getSchedConfId()) break;
+								$paper->setTimeBlockId(null);
+								$publishedPaperDao->updatePublishedPaper($paper);
+								break;
+						}
+						break;
+				}
+			}
+
+			Request::redirect(null, null, null, 'schedule');
+		} elseif ($scheduleForm->isLocaleResubmit()) {
+			$scheduleForm->readInputData();
+		} else {
+			$scheduleForm->initData();
+		}
+
+		$scheduleForm->display();
 	}
 
 	/**

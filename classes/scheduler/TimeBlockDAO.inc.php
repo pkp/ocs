@@ -220,7 +220,7 @@ class TimeBlockDAO extends DAO {
 	 */
 	function &getTimeBlocksBySchedConfId($schedConfId, $rangeInfo = null) {
 		$result = &$this->retrieveRange(
-			'SELECT * FROM time_blocks WHERE sched_conf_id = ? ORDER BY sched_conf_id',
+			'SELECT * FROM time_blocks WHERE sched_conf_id = ? ORDER BY start_time',
 			$schedConfId,
 			$rangeInfo
 		);

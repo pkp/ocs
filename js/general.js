@@ -138,3 +138,7 @@ function changeFormAction(formName, action) {
 	document.forms[formName].submit();
 }
 
+/**
+ * Drag and drop functions
+ */
+

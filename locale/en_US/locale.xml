@@ -845,6 +845,10 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.scheduler.timeBlocks.blockNames">One or more time blocks is missing a name in this conference's primary locale.</message>
 	<message key="manager.scheduler.timeBlocks.startEndDatesOverlap">The "From" date chosen is after the "Until" date. Please ensure that these dates are correct.</message>
 
+	<message key="manager.scheduler.schedule.description">The following form allows Journal Managers to schedule presentations and special events.</message>
+	<message key="manager.scheduler.schedule.unscheduledPresentations">Unscheduled Presentations</message>
+	<message key="manager.scheduler.schedule.unscheduledEvents">Unscheduled Events</message>
+
 	<!-- Payment Handling -->
 	<message key="manager.payment.paymentSettings">Payment Methods</message>
 	<message key="manager.payment.paymentPluginInvalid">You must choose a valid payment method.</message>
@@ -1324,7 +1328,6 @@ Title of classification system]]></message>
 	<message key="manager.tracks.policy">Track Policy</message>
 	<message key="manager.tracks.identifyType">Describe submissions to this conference track as</message>
 	<message key="manager.tracks.identifyTypeExamples">(For example, "Peer-reviewed abstract", "Non-refereed paper", "Invited presentation", etc.)</message>
-	<message key="manager.tracks.abstractsDisabled">Do not request abstracts with submissions</message>
 
 	<!-- Timeline management -->
 	<message key="manager.timeline">Conference Timeline</message>

@@ -92,6 +92,7 @@ class SpecialEventDAO extends DAO {
 		$specialEvent->setSpecialEventId($row['special_event_id']);
 		$specialEvent->setSchedConfId($row['sched_conf_id']);
 		$specialEvent->setIsMultiple($row['is_multiple']);
+		$specialEvent->setTimeBlockId($row['time_block_id']);
 		$this->getDataObjectSettings('special_event_settings', 'special_event_id', $row['special_event_id'], $specialEvent);
 
 		return $specialEvent;
@@ -115,12 +116,13 @@ class SpecialEventDAO extends DAO {
 	function insertSpecialEvent(&$specialEvent) {
 		$this->update(
 			sprintf('INSERT INTO special_events
-				(sched_conf_id, is_multiple)
+				(sched_conf_id, is_multiple, time_block_id)
 				VALUES
-				(?, ?)'),
+				(?, ?, ?)'),
 			array(
 				(int) $specialEvent->getSchedConfId(),
-				(int) $specialEvent->getIsMultiple()
+				(int) $specialEvent->getIsMultiple(),
+				$specialEvent->getTimeBlockId() // Nullable
 			)
 		);
 		$specialEvent->setSpecialEventId($this->getInsertSpecialEventId());
@@ -137,11 +139,13 @@ class SpecialEventDAO extends DAO {
 		$returner = $this->update(
 			sprintf('UPDATE	special_events
 				SET	sched_conf_id = ?,
-					is_multiple = ?
+					is_multiple = ?,
+					time_block_id = ?
 				WHERE special_event_id = ?'),
 			array(
 				(int) $specialEvent->getSchedConfId(),
 				(int) $specialEvent->getIsMultiple(),
+				$specialEvent->getTimeBlockId(), // Nullable
 				(int) $specialEvent->getSpecialEventId()
 			)
 		);
@@ -184,14 +188,15 @@ class SpecialEventDAO extends DAO {
 	/**
 	 * Retrieve an array of special events matching a particular sched conf ID.
 	 * @param $schedConfId int
+	 * @param $isScheduled boolean true === scheduled events only, false === unscheduled events only, null === all events
 	 * @return object DAOResultFactory containing matching special events
 	 */
-	function &getSpecialEventsBySchedConfId($schedConfId, $rangeInfo = null) {
-		$result = &$this->retrieveRange(
-			'SELECT * FROM special_events WHERE sched_conf_id = ? ORDER BY sched_conf_id',
-			$schedConfId,
-			$rangeInfo
-		);
+	function &getSpecialEventsBySchedConfId($schedConfId, $isScheduled = null, $rangeInfo = null) {
+		$sql = 'SELECT * FROM special_events WHERE sched_conf_id = ?';
+		if ($isScheduled === true) $sql .= ' AND time_block_id IS NOT NULL';
+		elseif ($isScheduled === false) $sql .= ' AND time_block_id IS NULL';
+
+		$result = &$this->retrieveRange($sql .' ORDER BY sched_conf_id', $schedConfId, $rangeInfo);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnSpecialEventFromRow');
 		return $returner;

@@ -14,7 +14,7 @@
 {translate|assign:"pageTitleTranslated" key="schedConf.trackPolicies.title" schedConfAbbrev=$currentSchedConf->getSetting('abbrev')}
 {include file="common/header.tpl"}
 
-{foreach from=$tracks item=track}
+{foreach from=$tracks item=track}{if !$track->getHideAbout()}
 	<h4>{$track->getTrackTitle()}</h4>
 	{if strlen($track->getTrackPolicy()) > 0}
 		<p>{$track->getTrackPolicy()|nl2br}</p>
@@ -40,6 +40,6 @@
 			<td width="50%">{if $track->getMetaReviewed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.tracks.peerReviewed"}</td>
 		</tr>
 	</table>
-{/foreach}
+{/if}{/foreach}
 
 {include file="common/footer.tpl"}
