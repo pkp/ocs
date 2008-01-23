@@ -76,7 +76,7 @@
 
 <table class="listing" width="100%">
 	<tr>
-		<td colspan="5" class="headseparator">&nbsp;</td>
+		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr valign="top" class="heading">
 		<td width="45%">{translate key="manager.scheduler.timeBlock.name"}</td>
@@ -85,7 +85,7 @@
 		<td width="15%" align="right">{translate key="common.action"}</td>
 	</tr>
 	<tr>
-		<td colspan="5" class="headseparator">&nbsp;</td>
+		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
 {foreach name=blocks from=$timeBlocks key=blockIndex item=block}
 <input type="hidden" name="timeBlockIndexes[]" value="{$blockIndex|escape}" />
@@ -104,14 +104,14 @@
 	</td>
 </tr>
 <tr>
-	<td colspan="5" class="{if $smarty.foreach.blocks.last}end{/if}separator">&nbsp;</td>
+	<td colspan="4" class="{if $smarty.foreach.blocks.last}end{/if}separator">&nbsp;</td>
 </tr>
 {foreachelse}
 <tr>
-	<td colspan="5" class="nodata">{translate key="manager.scheduler.timeBlock.noneCreated"}</td>
+	<td colspan="4" class="nodata">{translate key="manager.scheduler.timeBlock.noneCreated"}</td>
 </tr>
 <tr>
-	<td colspan="5" class="endseparator">&nbsp;</td>
+	<td colspan="4" class="endseparator">&nbsp;</td>
 <tr>
 {/foreach}
 </table>

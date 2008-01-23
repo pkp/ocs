@@ -547,6 +547,8 @@ class ManagerHandler extends Handler {
 		SchedulerHandler::updateSpecialEvent($args);
 	}
 
+	// Scheduler
+
 	function schedule($args) {
 		import('pages.manager.SchedulerHandler');
 		SchedulerHandler::schedule($args);
@@ -555,6 +557,31 @@ class ManagerHandler extends Handler {
 	function createTimeBlocks($args) {
 		import('pages.manager.SchedulerHandler');
 		SchedulerHandler::createTimeBlocks($args);
+	}
+
+	function timeBlocks() {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::timeBlocks();
+	}
+
+	function deleteTimeBlock($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::deleteTimeBlock($args);
+	}
+
+	function editTimeBlock($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::editTimeBlock($args);
+	}
+
+	function createTimeBlock() {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::createTimeBlock();
+	}
+
+	function updateTimeBlock($args) {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::updateTimeBlock($args);
 	}
 
 

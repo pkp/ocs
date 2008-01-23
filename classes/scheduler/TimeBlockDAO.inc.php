@@ -197,6 +197,9 @@ class TimeBlockDAO extends DAO {
 	 * @return boolean
 	 */
 	function deleteTimeBlockById($timeBlockId) {
+		$this->update('UPDATE published_papers SET time_block_id = NULL WHERE time_block_id = ?', $timeBlockId);
+		$this->update('UPDATE special_events SET time_block_id = NULL WHERE time_block_id = ?', $timeBlockId);
+		$this->update('DELETE FROM time_block_settings WHERE time_block_id = ?', $timeBlockId);
 		$this->update('DELETE FROM time_block_settings WHERE time_block_id = ?', $timeBlockId);
 		return $this->update('DELETE FROM time_blocks WHERE time_block_id = ?', $timeBlockId);
 	}

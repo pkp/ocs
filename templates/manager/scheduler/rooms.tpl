@@ -50,8 +50,8 @@
 	</tr>
 {else}
 	<tr>
-		<td colspan="2" align="left">{page_info iterator=$rooms}</td>
-		<td colspan="2" align="right">{page_links anchor="rooms" name="rooms" iterator=$rooms}</td>
+		<td align="left">{page_info iterator=$rooms}</td>
+		<td align="right">{page_links anchor="rooms" name="rooms" iterator=$rooms}</td>
 	</tr>
 {/if}
 </table>

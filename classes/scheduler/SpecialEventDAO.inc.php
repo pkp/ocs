@@ -91,7 +91,6 @@ class SpecialEventDAO extends DAO {
 		$specialEvent = &new SpecialEvent();
 		$specialEvent->setSpecialEventId($row['special_event_id']);
 		$specialEvent->setSchedConfId($row['sched_conf_id']);
-		$specialEvent->setIsMultiple($row['is_multiple']);
 		$specialEvent->setTimeBlockId($row['time_block_id']);
 		$this->getDataObjectSettings('special_event_settings', 'special_event_id', $row['special_event_id'], $specialEvent);
 
@@ -116,12 +115,11 @@ class SpecialEventDAO extends DAO {
 	function insertSpecialEvent(&$specialEvent) {
 		$this->update(
 			sprintf('INSERT INTO special_events
-				(sched_conf_id, is_multiple, time_block_id)
+				(sched_conf_id, time_block_id)
 				VALUES
-				(?, ?, ?)'),
+				(?, ?)'),
 			array(
 				(int) $specialEvent->getSchedConfId(),
-				(int) $specialEvent->getIsMultiple(),
 				$specialEvent->getTimeBlockId() // Nullable
 			)
 		);
@@ -139,12 +137,10 @@ class SpecialEventDAO extends DAO {
 		$returner = $this->update(
 			sprintf('UPDATE	special_events
 				SET	sched_conf_id = ?,
-					is_multiple = ?,
 					time_block_id = ?
 				WHERE special_event_id = ?'),
 			array(
 				(int) $specialEvent->getSchedConfId(),
-				(int) $specialEvent->getIsMultiple(),
 				$specialEvent->getTimeBlockId(), // Nullable
 				(int) $specialEvent->getSpecialEventId()
 			)

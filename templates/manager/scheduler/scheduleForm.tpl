@@ -12,6 +12,11 @@
 {assign var="pageId" value="manager.scheduler.schedule"}
 {include file="common/header.tpl"}
 
+<ul class="menu">
+	<li class="current"><a href="{url op="schedule"}" onclick='return (document.schedule.actions.value.replace(/^\s+|\s+$/g,"") == "" || confirm("{translate|escape:"quotes" key="manager.scheduler.schedule.confirmLeave"}"))'>{$pageTitle|translate}</a></li>
+	<li><a href="{url op="timeBlocks"}" onclick='return (document.schedule.actions.value.replace(/^\s+|\s+$/g,"") == "" || confirm("{translate|escape:"quotes" key="manager.scheduler.schedule.confirmLeave"}"))'>{translate key="manager.scheduler.timeBlocks"}</a></li>
+</ul>
+
 <script type="text/javascript">
 <!--
 {literal}
@@ -103,14 +108,14 @@ function dragMouseUp(ev) {
 			if (cell.className.indexOf("droppable") != -1 && cd.x1 <= xd && cd.y1 <= yd && cd.x2 >= xd && cd.y2 >= yd) {
 				var cellId = cell.getAttribute("id");
 				flashCell(cellId, 2, "#ff8888", "");
-				document.schedule.actions.value += "SCHEDULE " + e.getAttribute("id") + " " + cellId + "\n";
+				document.schedule.actions.value += "\nSCHEDULE " + e.getAttribute("id") + " " + cellId;
 				blockFound = true;
 			}
 		}
 	}
 	
 	if (!blockFound) {
-		document.schedule.actions.value += "UNSCHEDULE " + e.getAttribute("id") + "\n";
+		document.schedule.actions.value += "\nUNSCHEDULE " + e.getAttribute("id");
 	}
 }
 
@@ -189,10 +194,11 @@ document.onmouseup = dragMouseUp;
 	</td>
 	{foreach from=$baseDates item=baseDate}
 		{assign var=timeBlock value=$timeBlockGrid.$baseDate.$boundaryTime.timeBlockStarts}
-		{if $timeBlock}
+		{if $timeBlock}{* This is an existing time block; display it and its contents *}
 			{assign var="timeBlockId" value=$timeBlock->getTimeBlockId()}
 			{assign var="rowspan" value=$timeBlockGrid.$baseDate.$boundaryTime.rowspan}
 			<td id="TIME-{$timeBlockId|escape}" class="borderBox droppable"{if $rowspan} rowspan="{$rowspan|escape}"{/if}>
+				{$timeBlock->getTimeBlockName()|escape}
 				{foreach from=$scheduledEventsByTimeBlockId.$timeBlockId item=scheduledEvent}
 					<div id="EVENT-{$scheduledEvent->getSpecialEventId()|escape}" class="draggable floatLeft borderBox schedulerEvent">
 						{$scheduledEvent->getSpecialEventName()|escape|truncate:30:"..."}
@@ -204,8 +210,9 @@ document.onmouseup = dragMouseUp;
 					</div>
 				{/foreach}
 			</td>
-		{elseif $gridSlotUsed.$baseDate.$boundaryTime}
+		{elseif !$gridSlotUsed.$baseDate.$boundaryTime}{* This is a "hole" in the schedule *}
 			<td class="hole">&nbsp</td>
+		{else}{* This is a rowspanned part of a time block; do nothing. *}
 		{/if}
 	{/foreach}
 </tr>
@@ -244,7 +251,7 @@ document.onmouseup = dragMouseUp;
 
 <p style="clear: both;"><input type="submit" value="{translate key="common.done"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="scheduler" escape=false}'" /></p>
 
-<textarea name="actions" cols="80" rows="5"></textarea>
+<input type="hidden" name="actions" value="{$actions|escape}">
 
 </form>
 

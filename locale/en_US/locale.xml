@@ -70,6 +70,7 @@
 	<message key="common.notes">Notes</message>
 	<message key="common.date">Date</message>
 	<message key="common.noDate">(date)</message>
+	<message key="common.time">Time</message>
 	<message key="common.weeks">weeks</message>
 	<message key="common.days">days</message>
 	<message key="common.source">Source</message>
@@ -829,8 +830,19 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<message key="manager.scheduler.schedule">Schedule Presentations &amp;amp; Events</message>
 	<message key="manager.scheduler.createTimeBlocks">Create Time Blocks</message>
+	<message key="manager.scheduler.timeBlock.form.nameRequired">A time block name is required.</message>
+	<message key="manager.scheduler.timeBlock.noneCreated">No time blocks have been created.</message>
 	<message key="manager.scheduler.timeBlock.name">Name</message>
+	<message key="manager.scheduler.timeBlock.description">Description</message>
+	<message key="manager.scheduler.timeBlock.createTimeBlock">Create Time Block</message>
+	<message key="manager.scheduler.timeBlock.createTimeBlockShort">Create</message>
+	<message key="manager.scheduler.timeBlock.editTimeBlock">Edit Time Block</message>
+	<message key="manager.scheduler.timeBlock.editTimeBlockShort">Edit</message>
+	<message key="manager.scheduler.timeBlock.saveAndCreateAnother">Save and Create Another</message>
+	<message key="manager.scheduler.timeBlock.create">Create Time Block</message>
 	<message key="manager.scheduler.timeBlock.startTime">Start Time</message>
+	<message key="manager.scheduler.timeBlock.endTime">End Time</message>
+	<message key="manager.scheduler.timeBlock.timeOrderWrong">The time block must end after it has begun.</message>
 	<message key="manager.scheduler.timeBlock.duration">Duration</message>
 	<message key="manager.scheduler.timeBlock.firstSession">First Session</message>
 	<message key="manager.scheduler.timeBlock.coffeeBreak">Coffee Break</message>
@@ -844,8 +856,10 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.scheduler.timeBlocks.blockOverlap">One or more time blocks overlap. Please ensure that all time blocks and their durations are properly chosen.</message>
 	<message key="manager.scheduler.timeBlocks.blockNames">One or more time blocks is missing a name in this conference's primary locale.</message>
 	<message key="manager.scheduler.timeBlocks.startEndDatesOverlap">The "From" date chosen is after the "Until" date. Please ensure that these dates are correct.</message>
+	<message key="manager.scheduler.timeBlock.confirmDelete">Are you sure you wish to delete this time block? There may be events or presentations scheduled against it.</message>
 
-	<message key="manager.scheduler.schedule.description">The following form allows Journal Managers to schedule presentations and special events.</message>
+	<message key="manager.scheduler.schedule.description">The following form allows Journal Managers to schedule presentations and special events. Drag and drop Special Events and accepted Papers into the appropriate Time Block to schedule them, or drag them outside of the table to leave them unscheduled. Click "Save" at the bottom of the page to complete the schedule. To change the available Time Blocks, choose the "Time Blocks" tab.</message>
+	<message key="manager.scheduler.schedule.confirmLeave">Are you sure you wish to leave the scheduler without saving? You will lose any unsaved changes.</message>
 	<message key="manager.scheduler.schedule.unscheduledPresentations">Unscheduled Presentations</message>
 	<message key="manager.scheduler.schedule.unscheduledEvents">Unscheduled Events</message>
 

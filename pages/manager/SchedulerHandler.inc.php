@@ -470,67 +470,11 @@ class SchedulerHandler extends ManagerHandler {
 		$scheduleForm =& new ScheduleForm();
 
 		if (array_shift($args) == 'execute') {
-			// Perform submitted actions if necessary.
-			$actions = explode("\n", Request::getUserVar('actions'));
-			foreach ($actions as $action) {
-				$parts = explode(' ', $action);
-				switch (array_shift($parts)) {
-					case 'SCHEDULE':
-						// Format: SCHEDULE [EVENT|PRESENTATION]-id TIME-timeBlockId
-						$itemIdentifier = array_shift($parts);
-						$itemParts = explode('-', $itemIdentifier);
-						$itemType = array_shift($itemParts);
-						$itemId = (int) array_shift($itemParts);
-						$timeBlockParts = explode('-', array_shift($parts));
-						$timeToken = array_shift($timeBlockParts);
-						$timeBlockId = (int) array_shift($timeBlockParts);
-						$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
-						$timeBlock =& $timeBlockDao->getTimeBlock($timeBlockId);
-						if (!$timeBlock || $timeBlock->getSchedConfId() != $schedConf->getSchedConfId()) continue;
-						switch ($itemType) {
-							case 'EVENT':
-								$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
-								$specialEvent =& $specialEventDao->getSpecialEvent($itemId);
-								if (!$specialEvent || $specialEvent->getSchedConfId() != $schedConf->getSchedConfId()) break;
-								$specialEvent->setTimeBlockId($timeBlockId);
-								$specialEventDao->updateSpecialEvent($specialEvent);
-								break;
-							case 'PRESENTATION':
-								$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-								$paper =& $publishedPaperDao->getPublishedPaperByPaperId($itemId);
-								if (!$paper || $paper->getSchedConfId() != $schedConf->getSchedConfId()) break;
-								$paper->setTimeBlockId($timeBlockId);
-								$publishedPaperDao->updatePublishedPaper($paper);
-								break;
-						}
-						break;
-					case 'UNSCHEDULE':
-						// Format: SCHEDULE [EVENT|PRESENTATION]-id TIME-timeBlockId
-						$itemIdentifier = array_shift($parts);
-						$itemParts = explode('-', $itemIdentifier);
-						$itemType = array_shift($itemParts);
-						$itemId = (int) array_shift($itemParts);
-						switch ($itemType) {
-							case 'EVENT':
-								$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
-								$specialEvent =& $specialEventDao->getSpecialEvent($itemId);
-								if (!$specialEvent || $specialEvent->getSchedConfId() != $schedConf->getSchedConfId()) break;
-								$specialEvent->setTimeBlockId(null);
-								$specialEventDao->updateSpecialEvent($specialEvent);
-								break;
-							case 'PRESENTATION':
-								$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-								$paper =& $publishedPaperDao->getPublishedPaperByPaperId($itemId);
-								if (!$paper || $paper->getSchedConfId() != $schedConf->getSchedConfId()) break;
-								$paper->setTimeBlockId(null);
-								$publishedPaperDao->updatePublishedPaper($paper);
-								break;
-						}
-						break;
-				}
+			$scheduleForm->readInputData();
+			if ($scheduleForm->validate()) {
+				$scheduleForm->execute();
+				Request::redirect(null, null, null, 'scheduler');
 			}
-
-			Request::redirect(null, null, null, 'schedule');
 		} elseif ($scheduleForm->isLocaleResubmit()) {
 			$scheduleForm->readInputData();
 		} else {
@@ -580,6 +524,133 @@ class SchedulerHandler extends ManagerHandler {
 		}
 		$createTimeBlocksForm->sortTimeBlocks();
 		$createTimeBlocksForm->display();
+	}
+
+	/**
+	 * Display a list of buildings to manage.
+	 */
+	function timeBlocks() {
+		parent::validate();
+		SchedulerHandler::setupTemplate(true);
+
+		$schedConf =& Request::getSchedConf();
+		$rangeInfo =& Handler::getRangeInfo('timeBlocks');
+		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('timeBlocks', $timeBlocks);
+		$templateMgr->assign('helpTopicId', 'conference.managementPages.timeBlocks');
+		$templateMgr->display('manager/scheduler/timeBlocks.tpl');
+	}
+
+	/**
+	 * Delete a time block.
+	 * @param $args array first parameter is the ID of the time block to delete
+	 */
+	function deleteTimeBlock($args) {
+		parent::validate();
+		$timeBlockId = (int) array_shift($args);
+		$schedConf =& Request::getSchedConf();
+		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+
+		// Ensure time block is for this conference
+		if ($timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getSchedConfId()) {
+			$timeBlockDao->deleteTimeBlockById($timeBlockId);
+		}
+
+		Request::redirect(null, null, null, 'timeBlocks');
+	}
+
+	/**
+	 * Display form to create new time block.
+	 */
+	function createTimeBlock() {
+		SchedulerHandler::editTimeBlock();
+	}
+
+	/**
+	 * Display form to edit a time block.
+	 * @param $args array optional, first parameter is the ID of the time block to edit
+	 */
+	function editTimeBlock($args = array()) {
+		parent::validate();
+		SchedulerHandler::setupTemplate(true);
+
+		$schedConf =& Request::getSchedConf();
+		$timeBlockId = !isset($args) || empty($args) ? null : (int) $args[0];
+		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+
+		// Ensure time block is valid and for this conference
+		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getSchedConfId()) || ($timeBlockId == null)) {
+			import('manager.form.scheduler.TimeBlockForm');
+
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'timeBlocks'), 'manager.scheduler.timeBlocks'));
+
+			if ($timeBlockId == null) {
+				$templateMgr->assign('timeBlockTitle', 'manager.scheduler.timeBlock.createTimeBlockShort');
+			} else {
+				$templateMgr->assign('timeBlockTitle', 'manager.scheduler.timeBlock.editTimeBlockShort');
+			}
+
+			$timeBlockForm =& new TimeBlockForm($timeBlockId);
+			if ($timeBlockForm->isLocaleResubmit()) {
+				$timeBlockForm->readInputData();
+			} else {
+				$timeBlockForm->initData();
+			}
+			$timeBlockForm->display();
+
+		} else {
+				Request::redirect(null, null, null, 'timeBlocks');
+		}
+	}
+
+	/**
+	 * Save changes to a timeBlock.
+	 */
+	function updateTimeBlock() {
+		parent::validate();
+
+		import('manager.form.scheduler.TimeBlockForm');
+
+		$schedConf =& Request::getSchedConf();
+		$timeBlockId = Request::getUserVar('timeBlockId') == null ? null : (int) Request::getUserVar('timeBlockId');
+		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+
+		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getSchedConfId()) || $timeBlockId == null) {
+
+			$timeBlockForm =& new TimeBlockForm($timeBlockId);
+			$timeBlockForm->readInputData();
+
+			if ($timeBlockForm->validate()) {
+				$timeBlockForm->execute();
+
+				if (Request::getUserVar('createAnother')) {
+					Request::redirect(null, null, null, 'createTimeBlock');
+				} else {
+					Request::redirect(null, null, null, 'timeBlocks');
+				}
+
+			} else {
+				SchedulerHandler::setupTemplate(true);
+
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'timeBlocks'), 'manager.scheduler.timeBlocks'));
+
+				if ($timeBlockId == null) {
+					$templateMgr->assign('timeBlockTitle', 'manager.scheduler.timeBlock.createTimeBlock');
+				} else {
+					$templateMgr->assign('timeBlockTitle', 'manager.scheduler.timeBlock.editTimeBlock');	
+				}
+
+				$timeBlockForm->display();
+			}
+
+		} else {
+				Request::redirect(null, null, null, 'timeBlocks');
+		}	
 	}
 
 	/**

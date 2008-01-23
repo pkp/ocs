@@ -45,8 +45,8 @@
 	</tr>
 {else}
 	<tr>
-		<td colspan="2" align="left">{page_info iterator=$specialEvents}</td>
-		<td colspan="2" align="right">{page_links anchor="specialEvents" name="specialEvents" iterator=$specialEvents}</td>
+		<td align="left">{page_info iterator=$specialEvents}</td>
+		<td align="right">{page_links anchor="specialEvents" name="specialEvents" iterator=$specialEvents}</td>
 	</tr>
 {/if}
 </table>

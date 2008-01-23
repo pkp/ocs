@@ -48,11 +48,6 @@
 		<textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="10" class="textArea">{$description[$formLocale]|escape}</textarea>
 	</td>
 </tr>
-	<tr valign="top">
-		<td colspan="2" class="label">
-			<input type="checkbox" name="isMultiple" id="isMultiple" value="1"{if $isMultiple} checked="checked"{/if} /> <label for="isMultiple">{translate key="manager.scheduler.specialEvent.isMultiple"}</label>
-		</td>
-	</tr>
 </table>
 
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> {if not $specialEventId}<input type="submit" name="createAnother" value="{translate key="manager.scheduler.specialEvent.saveAndCreateAnother"}" class="button" /> {/if}<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="specialEvents" escape=false}'" /></p>

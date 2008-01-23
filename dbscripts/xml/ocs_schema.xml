@@ -2363,23 +2363,4 @@
 			<UNIQUE/>
 		</index>
 	</table>
-
-	<!--
-	  *
-	  * TABLE event_time_assignments
-	  *
-	  -->
-	<table name="event_time_assignments">
-		<field name="special_event_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="time_block_id" type="I8">
-			<NOTNULL />
-		</field>
-		<descr>Assignments of special events to time blocks</descr>
-		<index name="event_time_assignments_pkey">
-			<col>special_event_id</col>
-			<col>time_block_id</col>
-		</index>
-	</table>
 </schema>

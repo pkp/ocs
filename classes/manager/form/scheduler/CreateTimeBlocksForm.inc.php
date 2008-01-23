@@ -31,6 +31,9 @@ class CreateTimeBlocksForm extends Form {
 			array(&$this)));
 
 		$this->addCheck(new FormValidatorPost($this));
+
+		// Bring in conversion functions for using Smarty widgets for durations
+		import('manager.form.scheduler.TimeBlockForm');
 	}
 
 	/**
@@ -41,11 +44,11 @@ class CreateTimeBlocksForm extends Form {
 	function checkBlockSequence($timeBlocks) {
 		foreach ($timeBlocks as $aIndex => $aBlock) {
 			$aStart = $aBlock['start'];
-			$aEnd = $this->smartyChooserToTime($aBlock['duration'], $aStart);
+			$aEnd = TimeBlockForm::smartyChooserToTime($aBlock['duration'], $aStart);
 			foreach ($timeBlocks as $bIndex => $bBlock) {
 				if ($aIndex == $bIndex) continue;
 				$bStart = $bBlock['start'];
-				$bEnd = $this->smartyChooserToTime($bBlock['duration'], $bStart);
+				$bEnd = TimeBlockForm::smartyChooserToTime($bBlock['duration'], $bStart);
 				if (!(
 					($aStart >= $bEnd) ||
 					($bStart >= $aEnd)
@@ -138,7 +141,7 @@ class CreateTimeBlocksForm extends Form {
 		// Calculate durations in a format that can be chosen by the
 		// Smarty time chooser
 		foreach ($timeBlocks as $index => $block) {
-			$timeBlocks[$index]['duration'] = $this->timeToSmartyChooser($block['start'], $block['end']);
+			$timeBlocks[$index]['duration'] = TimeBlockForm::timeToSmartyChooser($block['start'], $block['end']);
 			// Remove possibility of ambiguity
 			unset($timeBlocks[$index]['end']);
 		}
@@ -150,36 +153,8 @@ class CreateTimeBlocksForm extends Form {
 			'endDate' => $endDate,
 			'timeBlocks' => $timeBlocks,
 			'newBlockStart' => $defaultNewBlockStart,
-			'newBlockDuration' => $this->timeToSmartyChooser($defaultNewBlockStart, $defaultNewBlockStart + (60 * 60)) // 1 hour long
+			'newBlockDuration' => TimeBlockForm::timeToSmartyChooser($defaultNewBlockStart, $defaultNewBlockStart + (60 * 60)) // 1 hour long
 		);
-	}
-
-	/**
-	 * Since the Smarty time chooser only operates in terms of actual times
-	 * of day rather than durations, using this widget for durations
-	 * requires a conversion. This function converts from a pair of
-	 * timestamps to a number that will appear in the widget as a duration.
-	 * @param $fromTime int The beginning time
-	 * @param $untilTime int The end time
-	 * @return int
-	 */
-	function timeToSmartyChooser($fromTime, $untilTime) {
-		return $untilTime - $fromTime + mktime(0, 0, 1);
-	}
-
-	/**
-	 * See above description of timeToSmartyChooser. This performs the
-	 * opposite conversion by converting from a number that appears as a
-	 * duration in a Smarty time select widget into an actual duration, i.e.
-	 * a number of seconds (with an optional parameter for base timestamp).
-	 * @param $smartyTime int The value of the Smarty time select widget
-	 * @param $baseTimestamp int Optional timestamp to add to the duration
-	 * @return int
-	 */
-	function smartyChooserToTime($smartyTime, $baseTimestamp = 0) {
-		$time = $smartyTime - mktime(0, 0, 1);
-		$time = $time % (60 * 60 * 24); // In case the interim timestamp appears on a different day
-		return $time + $baseTimestamp;
 	}
 
 	/**
@@ -270,7 +245,7 @@ class CreateTimeBlocksForm extends Form {
 					strftime('%S', $block['start']),
 					$thisMonth, $thisDay, $thisYear
 				));
-				$timeBlock->setEndTime($this->smartyChooserToTime($block['duration'], $timeBlock->getStartTime()));
+				$timeBlock->setEndTime(TimeBlockForm::smartyChooserToTime($block['duration'], $timeBlock->getStartTime()));
 				$timeBlock->setName($block['name'], null); // Localized
 				$timeBlockDao->insertTimeBlock($timeBlock);
 				unset($timeBlock);

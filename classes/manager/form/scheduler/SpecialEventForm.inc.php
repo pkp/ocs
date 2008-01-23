@@ -66,8 +66,7 @@ class SpecialEventForm extends Form {
 			if ($specialEvent != null) {
 				$this->_data = array(
 					'name' => $specialEvent->getName(null), // Localized
-					'description' => $specialEvent->getDescription(null), // Localized
-					'isMultiple' => $specialEvent->getIsMultiple()
+					'description' => $specialEvent->getDescription(null) // Localized
 				);
 
 			} else {

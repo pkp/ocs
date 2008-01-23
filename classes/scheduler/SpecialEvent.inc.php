@@ -105,22 +105,6 @@ class SpecialEvent extends DataObject {
 	}
 
 	/**
-	 * Get whether or not the special event may occur multiple times.
-	 * @return string
-	 */
-	function getIsMultiple() {
-		return $this->getData('isMultiple');
-	}
-
-	/**
-	 * Set whether or not the special event may occur multiple times.
-	 * @param $isMultiple boolean
-	 */
-	function setIsMultiple($isMultiple) {
-		return $this->setData('isMultiple', $isMultiple);
-	}
-
-	/**
 	 * Get the ID of the timeBlock this published paper is assigned to.
 	 * @return int
 	 */
@@ -135,7 +119,6 @@ class SpecialEvent extends DataObject {
 	function setTimeBlockId($timeBlockId) {
 		return $this->setData('timeBlockId', $timeBlockId);
 	}
-
 }
 
 ?>

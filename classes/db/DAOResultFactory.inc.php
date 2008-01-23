@@ -155,6 +155,16 @@ class DAOResultFactory extends ItemIterator {
 		}
 		return $returner;
 	}
+
+	function &toAssociativeArray($keyName) {
+		$returner = array();
+		while (!$this->eof()) {
+			$result =& $this->next();
+			$returner[$result->getData($keyName)] =& $result;
+			unset($result);
+		}
+		return $returner;
+	}
 }
 
 ?>
