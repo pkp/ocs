@@ -71,9 +71,7 @@ class ScheduleForm extends Form {
 			'unscheduledPresentations' => &$unscheduledPresentations,
 			'scheduledEvents' => &$scheduledEvents,
 			'scheduledPresentations' => &$scheduledPresentations,
-			'timeBlocks' => &$timeBlocks,
-			'buildings' => &$buildings,
-			'rooms' => &$rooms
+			'timeBlocks' => &$timeBlocks
 		);
 	}
 
@@ -166,6 +164,58 @@ class ScheduleForm extends Form {
 								$this->modifiedPapers[$itemId] =& $scheduledPresentation;
 								unset($scheduledPresentation);
 							}
+							break;
+					}
+					break;
+				case 'ASSIGN': // Format: ASSIGN [EVENT|PRESENTATION]-id-ROOM roomId
+					$itemIdentifier = array_shift($parts);
+					$itemParts = explode('-', $itemIdentifier);
+					$itemType = array_shift($itemParts);
+					$itemId = (int) array_shift($itemParts);
+					$roomId = (int) array_shift($parts);
+					$roomDao =& DAORegistry::getDAO('RoomDAO');
+					$room =& $roomDao->getRoom($roomId);
+					if (!$room || $roomDao->getRoomSchedConfId($roomId) != $schedConf->getSchedConfId()) break;
+					switch ($itemType) {
+						case 'EVENT':
+							if (isset($scheduledEvents[$itemId])) $event =& $scheduledEvents[$itemId];
+							elseif (isset($unscheduledEvents[$itemId])) $event =& $unscheduledEvents[$itemId];
+							else break;
+							$event->setRoomId($roomId);
+							$this->modifiedEvents[$itemId] =& $event;
+							unset($event);
+							break;
+						case 'PRESENTATION':
+							if (isset($scheduledPresentations[$itemId])) $presentation =& $scheduledPresentations[$itemId];
+							elseif (isset($unscheduledPresentations[$itemId])) $presentation =& $unscheduledPresentations[$itemId];
+							else break;
+							$presentation->setRoomId($roomId);
+							$this->modifiedPapers[$itemId] =& $presentation;
+							unset($presentation);
+							break;
+					}
+					break;
+				case 'UNASSIGN': // Format: UNASSIGN [EVENT|PRESENTATION]-id-ROOM
+					$itemIdentifier = array_shift($parts);
+					$itemParts = explode('-', $itemIdentifier);
+					$itemType = array_shift($itemParts);
+					$itemId = (int) array_shift($itemParts);
+					switch($itemType) {
+						case 'EVENT':
+							if (isset($scheduledEvents[$itemId])) $event =& $scheduledEvents[$itemId];
+							elseif (isset($unscheduledEvents[$itemId])) $event =& $unscheduledEvents[$itemId];
+							else break;
+							$event->setRoomId(null);
+							$this->modifiedEvents[$itemId] =& $event;
+							unset($event);
+							break;
+						case 'PRESENTATION':
+							if (isset($scheduledPresentations[$itemId])) $presentation =& $scheduledPresentations[$itemId];
+							elseif (isset($unscheduledPresentations[$itemId])) $presentation =& $unscheduledPresentations[$itemId];
+							else break;
+							$presentation->setRoomId(null);
+							$this->modifiedPapers[$itemId] =& $presentation;
+							unset($presentation);
 							break;
 					}
 					break;

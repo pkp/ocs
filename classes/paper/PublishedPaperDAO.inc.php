@@ -306,6 +306,7 @@ class PublishedPaperDAO extends DAO {
 		$publishedPaper->setSeq($row['seq']);
 		$publishedPaper->setViews($row['views']);
 		$publishedPaper->setTimeBlockId($row['time_block_id']);
+		$publishedPaper->setRoomId($row['room_id']);
 
 		$publishedPaper->setSuppFiles($this->suppFileDao->getSuppFilesByPaper($row['paper_id']));
 
@@ -529,6 +530,7 @@ class PublishedPaperDAO extends DAO {
 		$publishedPaper->setViews($row['views']);
 		$publishedPaper->setPublicPaperId($row['public_paper_id']);
 		$publishedPaper->setTimeBlockId($row['time_block_id']);
+		$publishedPaper->setRoomId($row['room_id']);
 
 		// Paper attributes
 		$this->paperDao->_paperFromRow($publishedPaper, $row);
@@ -551,16 +553,17 @@ class PublishedPaperDAO extends DAO {
 	function insertPublishedPaper(&$publishedPaper) {
 		$this->update(
 			sprintf('INSERT INTO published_papers
-				(paper_id, sched_conf_id, date_published, seq, public_paper_id, time_block_id)
+				(paper_id, sched_conf_id, date_published, seq, public_paper_id, time_block_id, room_id)
 				VALUES
-				(?, ?, %s, ?, ?, ?)',
+				(?, ?, %s, ?, ?, ?, ?)',
 				$this->datetimeToDB($publishedPaper->getDatePublished())),
 			array(
 				$publishedPaper->getPaperId(),
 				$publishedPaper->getSchedConfId(),
 				$publishedPaper->getSeq(),
 				$publishedPaper->getPublicPaperId(),
-				$publishedPaper->getTimeBlockId()
+				$publishedPaper->getTimeBlockId(),
+				$publishedPaper->getRoomId()
 			)
 		);
 
@@ -640,7 +643,8 @@ class PublishedPaperDAO extends DAO {
 					date_published = %s,
 					seq = ?,
 					public_paper_id = ?,
-					time_block_id = ?
+					time_block_id = ?,
+					room_id = ?
 				WHERE pub_id = ?',
 				$this->datetimeToDB($publishedPaper->getDatePublished())),
 			array(
@@ -649,6 +653,7 @@ class PublishedPaperDAO extends DAO {
 				$publishedPaper->getSeq(),
 				$publishedPaper->getPublicPaperId(),
 				$publishedPaper->getTimeBlockId(),
+				$publishedPaper->getRoomId(),
 				$publishedPaper->getPubId()
 			)
 		);

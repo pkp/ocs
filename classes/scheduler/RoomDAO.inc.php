@@ -50,6 +50,19 @@ class RoomDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve sched conf ID by room ID.
+	 * @param $roomId int
+	 * @return int
+	 */
+	function getRoomSchedConfId($roomId) {
+		$result = &$this->retrieve(
+			'SELECT b.sched_conf_id FROM rooms r LEFT JOIN buildings b ON (r.building_id = b.building_id) WHERE r.room_id = ?', $roomId
+		);
+
+		return isset($result->fields[0]) ? $result->fields[0] : 0;
+	}
+
+	/**
 	 * Retrieve a list of localized fields for this object.
 	 * @return array
 	 */

@@ -90,6 +90,22 @@ class PublishedPaper extends Paper {
 	}
 
 	/**
+	 * Get the room ID of the published paper.
+	 * @return int
+	 */
+	function getRoomId() {
+		return $this->getData('roomId');
+	}
+
+	/**
+	 * Set the room ID of the published paper.
+	 * @param $roomId int
+	 */
+	function setRoomId($roomId) {
+		return $this->setData('roomId', $roomId);
+	}
+
+	/**
 	 * Get track ID of the scheduled conference this paper is in.
 	 * @return int
 	 */

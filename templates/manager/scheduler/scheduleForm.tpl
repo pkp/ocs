@@ -20,13 +20,18 @@
 <script type="text/javascript">
 <!--
 {literal}
+// Variables used to track drag and drop interactions
 var dragging = false;
+var moved = false;
 var x, y;
 var e;
 var tempx;
 var tempy;
 var nn = document.getElementById && !document.all;
 
+/**
+ * Prepare for a drag-and-drop interaction with a presentation or special event.
+ */
 function dragMouseDown(ev) {
 	var dObj; // Drag object
 	var topelement;
@@ -56,6 +61,7 @@ function dragMouseDown(ev) {
 
 	// We are now dragging a draggable object. Calculate coordinates.
 	dragging = true;
+	moved = false;
 	e=dObj;
 	tempx=parseInt(e.style.left+0); // int cast
 	tempy=parseInt(e.style.top+0); // int cast
@@ -70,6 +76,9 @@ function dragMouseDown(ev) {
 	return false;
 }
 
+/**
+ * Get the position of an element.
+ */
 function getPosition(el) {
 	var i, x=0, y=0;
 	for (i = el; i; i = i.offsetParent) {
@@ -84,9 +93,16 @@ function getPosition(el) {
 	};
 }
 
+/**
+ * Handler for mouse button releases, to deal with dropped presentation and event boxes.
+ */
 function dragMouseUp(ev) {
+	// Make sure we're actually dragging something
 	if (!dragging) return;
 	dragging = false;
+
+	// If the mouse hasn't moved, ignore the event.
+	if (!moved) return;
 
 	var tObj = document.getElementById("scheduleTable"); // Table object
 	var xd, yd; // "Average" coordinates of the dropped object
@@ -97,6 +113,7 @@ function dragMouseUp(ev) {
 	xd = (dPos.x1 + dPos.x2) / 2;
 	yd = (dPos.y1 + dPos.y2) / 2;
 
+	// Go through all scheduler table rows and columns and find out where the item was dropped.
 	var rows = tObj.tBodies[0].rows;
 	for (var i=0; i<rows.length; i++) {
 		var row = rows[i];
@@ -113,14 +130,19 @@ function dragMouseUp(ev) {
 			}
 		}
 	}
-	
+
+	// If the item wasn't dropped into a time block, consider it unscheduled.
 	if (!blockFound) {
 		document.schedule.actions.value += "\nUNSCHEDULE " + e.getAttribute("id");
 	}
 }
 
+/**
+ * Handler installed to deal with mouse moves, syncing a dragged object with the cursor.
+ */
 function dragMouseMove(ev) {
 	if (dragging) {
+		moved = true;
 		if (nn) {
 			e.style.left = (tempx + ev.clientX - x) + "px";
 			e.style.top = (tempy + ev.clientY - y) + "px";
@@ -132,6 +154,10 @@ function dragMouseMove(ev) {
 	}
 }
 
+/**
+ * Used to flash a cell of the scheduler table to indicate which time slot a presentation or event
+ * has been dropped into.
+ */
 function flashCell(cellId, count, flashColour, oldColour) {
 	var cell = document.getElementById(cellId); // Table object
 	if (count % 2) {
@@ -145,8 +171,21 @@ function flashCell(cellId, count, flashColour, oldColour) {
 	}
 }
 
+// Install drag-and-drop handlers for mouse clicks and releases.
 document.onmousedown = dragMouseDown;
 document.onmouseup = dragMouseUp;
+
+/**
+ * Handle a selection from one of the room change widgets for an event or presentation.
+ */
+function chooseRoom(el) {
+	var selectedRoomId = el.options[el.selectedIndex].value;
+	if (selectedRoomId == "UNASSIGN") {
+		 document.schedule.actions.value += "\nUNASSIGN " + el.getAttribute("id");
+	} else {
+		 document.schedule.actions.value += "\nASSIGN " + el.getAttribute("id") + " " + el.options[el.selectedIndex].value;
+	}
+}
 
 {/literal}
 // -->
@@ -194,14 +233,14 @@ document.onmouseup = dragMouseUp;
 							</tr>
 							{assign var=fieldId value=EVENT-`$event->getSpecialEventId()`-ROOM}
 							<tr valign="top">
-								<td class="label">{fieldLabel for=$fieldId key="manager.scheduler.room"}</td>
+								<td class="label">{fieldLabel name=$fieldId key="manager.scheduler.room"}</td>
 								<td class="value">
-									<select id="{$fieldId|escape}" name="{$fieldId|escape}" class="selectMenu">
+									<select id="{$fieldId|escape}" name="{$fieldId|escape}" onchange="chooseRoom(this)" class="selectMenu">
 									<option value="UNASSIGN">{translate key="manager.scheduler.room.unassigned"}</option>
 									{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
 										<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
 										{foreach from=$buildingEntry.rooms key=roomId item=room}
-											<option value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
+											<option {if $event->getRoomId() == $roomId}selected="selected" {/if}value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
 										{/foreach}
 									{/foreach}
 									</select>
@@ -222,14 +261,14 @@ document.onmouseup = dragMouseUp;
 							</tr>
 							{assign var=fieldId value=PRESENTATION-`$presentation->getPaperId()`-ROOM}
 							<tr valign="top">
-								<td class="label">{fieldLabel for=$fieldId key="manager.scheduler.room"}</td>
+								<td class="label">{fieldLabel name=$fieldId key="manager.scheduler.room"}</td>
 								<td class="value">
-									<select id="{$fieldId|escape}" name="{$fieldId|escape}" class="selectMenu">
+									<select id="{$fieldId|escape}" name="{$fieldId|escape}" onchange="chooseRoom(this)" class="selectMenu">
 									<option value="UNASSIGN">{translate key="manager.scheduler.room.unassigned"}</option>
 									{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
 										<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
 										{foreach from=$buildingEntry.rooms key=roomId item=room}
-											<option value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
+											<option {if $presentation->getRoomId() == $roomId}selected="selected" {/if}value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
 										{/foreach}
 									{/foreach}
 									</select>
@@ -266,14 +305,14 @@ document.onmouseup = dragMouseUp;
 		</tr>
 		{assign var=fieldId value=PRESENTATION-`$presentation->getPaperId()`-ROOM}
 		<tr valign="top">
-			<td class="label">{fieldLabel for=$fieldId key="manager.scheduler.room"}</td>
+			<td class="label">{fieldLabel name=$fieldId key="manager.scheduler.room"}</td>
 			<td class="value">
-				<select id="{$fieldId|escape}" name="{$fieldId|escape}" class="selectMenu">
+				<select id="{$fieldId|escape}" name="{$fieldId|escape}" onchange="chooseRoom(this)" class="selectMenu">
 				<option value="UNASSIGN">{translate key="manager.scheduler.room.unassigned"}</option>
 				{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
 					<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
 					{foreach from=$buildingEntry.rooms key=roomId item=room}
-						<option value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
+						<option {if $presentation->getRoomId() == $roomId}selected="selected" {/if}value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
 					{/foreach}
 				{/foreach}
 				</select>
@@ -300,14 +339,14 @@ document.onmouseup = dragMouseUp;
 		</tr>
 		{assign var=fieldId value=EVENT-`$event->getSpecialEventId()`-ROOM}
 		<tr valign="top">
-			<td class="label">{fieldLabel for=$fieldId key="manager.scheduler.room"}</td>
+			<td class="label">{fieldLabel name=$fieldId key="manager.scheduler.room"}</td>
 			<td class="value">
-				<select id="{$fieldId|escape}" name="{$fieldId|escape}" class="selectMenu">
+				<select id="{$fieldId|escape}" name="{$fieldId|escape}" onchange="chooseRoom(this)" class="selectMenu">
 				<option value="UNASSIGN">{translate key="manager.scheduler.room.unassigned"}</option>
 				{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
 					<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
 					{foreach from=$buildingEntry.rooms key=roomId item=room}
-						<option value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
+						<option {if $event->getRoomId() == $roomId}selected="selected" {/if}value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
 					{/foreach}
 				{/foreach}
 				</select>

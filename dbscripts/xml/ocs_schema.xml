@@ -691,7 +691,6 @@
 			<DEFAULT VALUE="en"/>
 		</field>
 		<field name="paper_type" type="I8"/>
-		<field name="room_id" type="I8" />
 		<field name="comments_to_dr" type="X"/>
 		<field name="date_submitted" type="T"/>
 		<field name="date_reminded" type="T"/>
@@ -778,6 +777,7 @@
 		<field name="sched_conf_id" type="I8">
 			<NOTNULL/>
 		</field>
+		<field name="room_id" type="I8" />
 		<field name="date_published" type="T">
 			<NOTNULL/>
 		</field>
