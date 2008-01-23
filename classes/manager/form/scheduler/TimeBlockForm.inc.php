@@ -31,13 +31,38 @@ class TimeBlockForm extends Form {
 
 		// Type name is provided
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.scheduler.timeBlock.form.nameRequired'));
-
-		$this->addCheck(new FormValidatorPost($this));
+		$this->addCheck(new FormValidatorCustom($this, 'startTime', 'required', 'manager.scheduler.timeBlocks.blockOverlap', array(&$this, 'checkBlockSequence')));
 		$this->addCheck(new FormValidatorCustom($this, 'endTime', 'required', 'manager.scheduler.timeBlock.timeOrderWrong',
 			create_function('$endTime,$form',
 			'return ($endTime >= $form->getData(\'startTime\'));'),
 			array(&$this)));
+		$this->addCheck(new FormValidatorPost($this));
 
+	}
+
+	function checkBlockSequence($aStart) {
+		$aEnd = $this->getData('endTime');
+
+		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+		$schedConf =& Request::getSchedConf();
+
+		$allOk = true;
+
+		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getSchedConfId());
+		while ($timeBlock =& $timeBlocks->next()) {
+			if ($this->timeBlockId != $timeBlock->getTimeBlockId()) {
+				$bStart = strtotime($timeBlock->getStartTime());
+				$bEnd = strtotime($timeBlock->getEndTime());
+				if (
+					($bStart >= $aStart && $bStart < $aEnd) ||
+					($bEnd > $aStart && $bEnd <= $aEnd) ||
+					($aStart >= $bStart && $aStart < $bEnd) ||
+					($aEnd > $bStart && $aEnd <= $bEnd)
+				) $allOk = false;
+			}
+			unset($timeBlock);
+		}
+		return $allOk;
 	}
 
 	/**

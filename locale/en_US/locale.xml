@@ -783,6 +783,8 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<!-- Scheduler -->
 	<message key="manager.scheduler">Scheduler</message>
+	<message key="manager.scheduler.roomsAndEvents">Rooms &amp;amp; Events</message>
+	<message key="manager.scheduler.scheduling">Scheduling</message>
 	<message key="manager.scheduler.description"><![CDATA[<p>Conference Managers may schedule presentations and special events for times and locations using the Scheduler. In the pages below, the Conference Manager can define locations (buildings and rooms) and blocks of time, and assign presentations and events to each.]]></message>
 
 	<message key="manager.scheduler.buildingsAndRooms">Buildings &amp;amp; Rooms</message>

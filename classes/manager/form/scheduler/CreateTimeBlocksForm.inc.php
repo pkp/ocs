@@ -49,10 +49,12 @@ class CreateTimeBlocksForm extends Form {
 				if ($aIndex == $bIndex) continue;
 				$bStart = $bBlock['start'];
 				$bEnd = TimeBlockForm::smartyChooserToTime($bBlock['duration'], $bStart);
-				if (!(
-					($aStart >= $bEnd) ||
-					($bStart >= $aEnd)
-				)) {
+				if (
+					($bStart >= $aStart && $bStart < $aEnd) ||
+					($bEnd > $aStart && $bEnd <= $aEnd) ||
+					($aStart >= $bStart && $aStart < $bEnd) ||
+					($aEnd > $bStart && $aEnd <= $bEnd)
+				) {
 					// Overlap.
 					return false;
 				}
