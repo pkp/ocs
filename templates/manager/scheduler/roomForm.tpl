@@ -10,10 +10,10 @@
  *}
 {assign var="pageCrumbTitle" value="$roomTitle"}
 {if $roomId}
-{url|assign:"roomUrl" op="editRoom" path=$roomId}
+{url|assign:"roomUrl" op="editRoom" path=$buildingId|to_array:$roomId}
 {assign var="pageTitle" value="manager.scheduler.room.editRoom"}
 {else}
-{url|assign:"roomUrl" op="createRoom"}
+{url|assign:"roomUrl" op="createRoom" path=$buildingId}
 {assign var="pageTitle" value="manager.scheduler.room.createRoom"}
 {/if}
 {assign var="pageId" value="manager.scheduler.room.roomForm"}
@@ -51,8 +51,8 @@
 	<td width="80%" class="value"><input type="text" name="name[{$formLocale|escape}]" value="{$name[$formLocale]|escape}" size="40" id="name" maxlength="80" class="textField" /></td>
 </tr>
 <tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="number" key="manager.scheduler.room.number"}</td>
-	<td width="80%" class="value"><input type="text" name="number[{$formLocale|escape}]" value="{$number[$formLocale]|escape}" size="40" id="number" maxlength="80" class="textField" /></td>
+	<td width="20%" class="label">{fieldLabel name="abbrev" required="true" key="manager.scheduler.room.abbrev"}</td>
+	<td width="80%" class="value"><input type="text" name="abbrev[{$formLocale|escape}]" value="{$abbrev[$formLocale]|escape}" size="40" id="abbrev" maxlength="80" class="textField" /></td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="description" key="manager.scheduler.building.description"}</td>

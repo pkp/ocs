@@ -75,7 +75,7 @@ class RoomForm extends Form {
 			if ($room != null) {
 				$this->_data = array(
 					'name' => $room->getName(null), // Localized
-					'number' => $room->getNumber(null), // Localized
+					'abbrev' => $room->getAbbrev(null), // Localized
 					'description' => $room->getDescription(null) // Localized
 				);
 
@@ -89,7 +89,7 @@ class RoomForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('name', 'buildingId', 'description', 'number'));
+		$this->readUserVars(array('name', 'buildingId', 'description', 'abbrev'));
 
 	}
 
@@ -110,7 +110,7 @@ class RoomForm extends Form {
 
 		$room->setBuildingId($this->buildingId);
 		$room->setName($this->getData('name'), null); // Localized
-		$room->setNumber($this->getData('number'), null); // Localized
+		$room->setAbbrev($this->getData('abbrev'), null); // Localized
 		$room->setDescription($this->getData('description'), null); // Localized
 
 		// Update or insert room

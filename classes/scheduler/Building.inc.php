@@ -79,6 +79,32 @@ class Building extends DataObject {
 	}
 
 	/**
+	 * Get the localized abbreviation of the building.
+	 * @return string
+	 */
+	function getBuildingAbbrev() {
+		return $this->getLocalizedData('abbrev');
+	}
+
+	/**
+	 * Get the abbreviation of the building.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getAbbrev($locale) {
+		return $this->getData('abbrev', $locale);
+	}
+
+	/**
+	 * Set the abbreviation of the building.
+	 * @param $abbrev string
+	 * @param $locale string
+	 */
+	function setAbbrev($abbrev, $locale) {
+		return $this->setData('abbrev', $abbrev, $locale);
+	}
+
+	/**
 	 * Get the localized description of the building.
 	 * @return string
 	 */

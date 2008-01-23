@@ -79,7 +79,7 @@ class BuildingDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('name', 'description');
+		return array('name', 'abbrev', 'description');
 	}
 
 	/**

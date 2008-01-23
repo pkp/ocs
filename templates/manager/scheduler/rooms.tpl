@@ -23,35 +23,37 @@
 
 <table width="100%" class="listing">
 	<tr>
-		<td colspan="2" class="headseparator">&nbsp;</td>
+		<td colspan="3" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr class="heading" valign="bottom">
-		<td width="85%">{translate key="manager.scheduler.room.name"}</td>
+		<td width="70%">{translate key="manager.scheduler.room.name"}</td>
+		<td width="15%">{translate key="manager.scheduler.room.abbrev"}</td>
 		<td width="15%">{translate key="common.action"}</td>
 	</tr>
 	<tr>
-		<td colspan="2" class="headseparator">&nbsp;</td>
+		<td colspan="3" class="headseparator">&nbsp;</td>
 	</tr>
 {iterate from=rooms item=room}
 	<tr valign="top">
 		<td>{$room->getRoomName()|escape}</td>
+		<td>{$room->getRoomAbbrev()|escape}</td>
 		<td><a href="{url op="editRoom" path=$room->getBuildingId()|to_array:$room->getRoomId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteRoom" path=$room->getRoomId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.scheduler.room.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>
 	<tr>
-		<td colspan="2" class="{if $rooms->eof()}end{/if}separator">&nbsp;</td>
+		<td colspan="3" class="{if $rooms->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
 {/iterate}
 {if $rooms->wasEmpty()}
 	<tr>
-		<td colspan="2" class="nodata">{translate key="manager.scheduler.room.noneCreated"}</td>
+		<td colspan="3" class="nodata">{translate key="manager.scheduler.room.noneCreated"}</td>
 	</tr>
 	<tr>
-		<td colspan="2" class="endseparator">&nbsp;</td>
+		<td colspan="3" class="endseparator">&nbsp;</td>
 	</tr>
 {else}
 	<tr>
 		<td align="left">{page_info iterator=$rooms}</td>
-		<td align="right">{page_links anchor="rooms" name="rooms" iterator=$rooms}</td>
+		<td align="right" colspan="2">{page_links anchor="rooms" name="rooms" iterator=$rooms}</td>
 	</tr>
 {/if}
 </table>

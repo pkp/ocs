@@ -516,6 +516,17 @@ div.separator {
 	background-color: #FBFBF3;
 }
 
+.schedulerEventHeader {
+	color: #FBFBF3;
+	background-color: #880000;
+}
+
+.schedulerPresentationHeader {
+	color: #FBFBF3;
+	background-color: #008800;
+}
+
+
 td.hole {
 	background-color: #777777;
 }

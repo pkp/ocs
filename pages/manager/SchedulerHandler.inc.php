@@ -136,7 +136,7 @@ class SchedulerHandler extends ManagerHandler {
 				}
 
 			} else {
-				BuildingHandler::setupTemplate(true);
+				SchedulerHandler::setupTemplate(true);
 
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'buildings'), 'manager.scheduler.buildings'));
@@ -307,7 +307,7 @@ class SchedulerHandler extends ManagerHandler {
 				}
 
 			} else {
-				RoomHandler::setupTemplate(true);
+				SchedulerHandler::setupTemplate(true);
 
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'rooms', array($buildingId)), 'manager.scheduler.rooms'));
@@ -434,7 +434,7 @@ class SchedulerHandler extends ManagerHandler {
 				}
 
 			} else {
-				SpecialEventHandler::setupTemplate(true);
+				SchedulerHandler::setupTemplate(true);
 
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'specialEvents'), 'manager.scheduler.specialEvents'));
@@ -458,6 +458,7 @@ class SchedulerHandler extends ManagerHandler {
 	 */
 	function schedule($args) {
 		parent::validate();
+		SchedulerHandler::setupTemplate(true);
 		$schedConf =& Request::getSchedConf();
 
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');

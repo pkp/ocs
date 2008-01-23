@@ -50,6 +50,10 @@
 	<td width="80%" class="value"><input type="text" name="name[{$formLocale|escape}]" value="{$name[$formLocale]|escape}" size="40" id="name" maxlength="80" class="textField" /></td>
 </tr>
 <tr valign="top">
+	<td width="20%" class="label">{fieldLabel name="abbrev" required="true" key="manager.scheduler.building.abbrev"}</td>
+	<td width="80%" class="value"><input type="text" name="abbrev[{$formLocale|escape}]" value="{$abbrev[$formLocale]|escape}" size="40" id="abbrev" maxlength="80" class="textField" /></td>
+</tr>
+<tr valign="top">
 	<td class="label">{fieldLabel name="description" key="manager.scheduler.building.description"}</td>
 	<td class="value">
 		<textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="10" class="textArea">{$description[$formLocale]|escape}</textarea>

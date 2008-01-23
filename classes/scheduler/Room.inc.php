@@ -79,29 +79,29 @@ class Room extends DataObject {
 	}
 
 	/**
-	 * Get the localized number of the room.
+	 * Get the localized abbreviation of the room.
 	 * @return string
 	 */
-	function getRoomNumber() {
-		return $this->getLocalizedData('number');
+	function getRoomAbbrev() {
+		return $this->getLocalizedData('abbrev');
 	}
 
 	/**
-	 * Get the number of the room.
+	 * Get the abbreviation of the room.
 	 * @param $locale string
 	 * @return string
 	 */
-	function getNumber($locale) {
-		return $this->getData('number', $locale);
+	function getAbbrev($locale) {
+		return $this->getData('abbrev', $locale);
 	}
 
 	/**
-	 * Set the number of the room.
-	 * @param $number string
+	 * Set the abbreviation of the room.
+	 * @param $abbrev string
 	 * @param $locale string
 	 */
-	function setNumber($number, $locale) {
-		return $this->setData('number', $number, $locale);
+	function setAbbrev($abbrev, $locale) {
+		return $this->setData('abbrev', $abbrev, $locale);
 	}
 
 	/**

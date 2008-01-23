@@ -54,7 +54,7 @@ class RoomDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('name', 'number', 'description');
+		return array('name', 'abbrev', 'description');
 	}
 
 	/**

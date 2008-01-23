@@ -31,6 +31,7 @@ class BuildingForm extends Form {
 
 		// Type name is provided
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.scheduler.building.form.nameRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'abbrev', 'required', 'manager.scheduler.building.form.abbrevRequired'));
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -66,7 +67,8 @@ class BuildingForm extends Form {
 			if ($building != null) {
 				$this->_data = array(
 					'name' => $building->getName(null), // Localized
-					'description' => $building->getDescription(null) // Localized
+					'description' => $building->getDescription(null), // Localized
+					'abbrev' => $building->getAbbrev(null) // Localized
 				);
 
 			} else {
@@ -79,7 +81,7 @@ class BuildingForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('name', 'description'));
+		$this->readUserVars(array('name', 'abbrev', 'description'));
 
 	}
 
@@ -100,6 +102,7 @@ class BuildingForm extends Form {
 
 		$building->setSchedConfId($schedConf->getSchedConfId());
 		$building->setName($this->getData('name'), null); // Localized
+		$building->setAbbrev($this->getData('abbrev'), null); // Localized
 		$building->setDescription($this->getData('description'), null); // Localized
 
 		// Update or insert building

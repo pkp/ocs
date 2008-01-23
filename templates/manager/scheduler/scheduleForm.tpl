@@ -158,19 +158,6 @@ document.onmouseup = dragMouseUp;
 
 <p>{translate key="manager.scheduler.schedule.description"}</p>
 
-<table class="data" width="100%">
-{if count($formLocales) > 1}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td width="80%" class="value">
-			{url|assign:"scheduleUrl" op="schedule"}
-			{form_language_chooser form="schedule" url=$scheduleUrl}
-			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-		</td>
-	</tr>
-{/if}
-</table>
-
 <table id="scheduleTable" class="listing" width="100%" border="0">
 
 {assign var=baseDatesCount value=$baseDates|@count}
@@ -199,14 +186,56 @@ document.onmouseup = dragMouseUp;
 			{assign var="rowspan" value=$timeBlockGrid.$baseDate.$boundaryTime.rowspan}
 			<td id="TIME-{$timeBlockId|escape}" class="borderBox droppable"{if $rowspan} rowspan="{$rowspan|escape}"{/if}>
 				{$timeBlock->getTimeBlockName()|escape}
-				{foreach from=$scheduledEventsByTimeBlockId.$timeBlockId item=scheduledEvent}
-					<div id="EVENT-{$scheduledEvent->getSpecialEventId()|escape}" class="draggable floatLeft borderBox schedulerEvent">
-						{$scheduledEvent->getSpecialEventName()|escape|truncate:30:"..."}
+				{foreach from=$scheduledEventsByTimeBlockId.$timeBlockId item=event}
+					<div id="EVENT-{$event->getSpecialEventId()|escape}" class="draggable floatLeft borderBox schedulerEvent">
+						<table class="data">
+							<tr valign="top">
+								<td colspan="2" class="schedulerEventHeader">{$event->getSpecialEventName()|escape|truncate:35:"..."}</td>
+							</tr>
+							{assign var=fieldId value=EVENT-`$event->getSpecialEventId()`-ROOM}
+							<tr valign="top">
+								<td class="label">{fieldLabel for=$fieldId key="manager.scheduler.room"}</td>
+								<td class="value">
+									<select id="{$fieldId|escape}" name="{$fieldId|escape}" class="selectMenu">
+									<option value="UNASSIGN">{translate key="manager.scheduler.room.unassigned"}</option>
+									{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
+										<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
+										{foreach from=$buildingEntry.rooms key=roomId item=room}
+											<option value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
+										{/foreach}
+									{/foreach}
+									</select>
+								</td>
+							</tr>
+						</table>
 					</div>
 				{/foreach}
-				{foreach from=$scheduledPresentationsByTimeBlockId[$timeBlockId] item=scheduledPresentation}
-					<div id="PRESENTATION-{$scheduledPresentation->getPaperId()|escape}" class="draggable floatLeft borderBox schedulerPresentation">
-						{$scheduledPresentation->getPaperTitle()|escape|truncate:30:"..."}
+				{foreach from=$scheduledPresentationsByTimeBlockId[$timeBlockId] item=presentation}
+					<div id="PRESENTATION-{$presentation->getPaperId()|escape}" class="draggable floatLeft borderBox schedulerPresentation">
+						<table class="data">
+							<tr valign="top">
+								<td colspan="2" class="schedulerPresentationHeader">{$presentation->getPaperTitle()|escape|truncate:35:"..."}</td>
+							</tr>
+							<tr valign="top">
+								<td class="label">{translate key="paper.presenters"}</td>
+								<td class="value">{$presentation->getPresenterString()|escape}</td>
+							</tr>
+							{assign var=fieldId value=PRESENTATION-`$presentation->getPaperId()`-ROOM}
+							<tr valign="top">
+								<td class="label">{fieldLabel for=$fieldId key="manager.scheduler.room"}</td>
+								<td class="value">
+									<select id="{$fieldId|escape}" name="{$fieldId|escape}" class="selectMenu">
+									<option value="UNASSIGN">{translate key="manager.scheduler.room.unassigned"}</option>
+									{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
+										<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
+										{foreach from=$buildingEntry.rooms key=roomId item=room}
+											<option value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
+										{/foreach}
+									{/foreach}
+									</select>
+								</td>
+							</tr>
+						</table>
 					</div>
 				{/foreach}
 			</td>
@@ -227,7 +256,30 @@ document.onmouseup = dragMouseUp;
 {foreach from=$unscheduledPresentations item=presentation}
 
 <div id="PRESENTATION-{$presentation->getPaperId()|escape}" class="draggable floatLeft borderBox schedulerPresentation">
-	{$presentation->getPaperTitle()|escape|truncate:30:"..."}
+	<table class="data">
+		<tr valign="top">
+			<td colspan="2" class="schedulerPresentationHeader">{$presentation->getPaperTitle()|escape|truncate:35:"..."}</td>
+		</tr>
+		<tr valign="top">
+			<td class="label">{translate key="paper.presenters"}</td>
+			<td class="value">{$presentation->getPresenterString()|escape}</td>
+		</tr>
+		{assign var=fieldId value=PRESENTATION-`$presentation->getPaperId()`-ROOM}
+		<tr valign="top">
+			<td class="label">{fieldLabel for=$fieldId key="manager.scheduler.room"}</td>
+			<td class="value">
+				<select id="{$fieldId|escape}" name="{$fieldId|escape}" class="selectMenu">
+				<option value="UNASSIGN">{translate key="manager.scheduler.room.unassigned"}</option>
+				{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
+					<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
+					{foreach from=$buildingEntry.rooms key=roomId item=room}
+						<option value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
+					{/foreach}
+				{/foreach}
+				</select>
+			</td>
+		</tr>
+	</table>
 </div>
 
 {/foreach}
@@ -242,7 +294,26 @@ document.onmouseup = dragMouseUp;
 {foreach from=$unscheduledEvents item=event key=eventIndex}
 
 <div id="EVENT-{$event->getSpecialEventId()|escape}" class="draggable floatLeft borderBox schedulerEvent">
-	{$event->getSpecialEventName()|escape|truncate:30:"..."}
+	<table class="data">
+		<tr valign="top">
+			<td colspan="2" class="schedulerEventHeader">{$event->getSpecialEventName()|escape|truncate:35:"..."}</td>
+		</tr>
+		{assign var=fieldId value=EVENT-`$event->getSpecialEventId()`-ROOM}
+		<tr valign="top">
+			<td class="label">{fieldLabel for=$fieldId key="manager.scheduler.room"}</td>
+			<td class="value">
+				<select id="{$fieldId|escape}" name="{$fieldId|escape}" class="selectMenu">
+				<option value="UNASSIGN">{translate key="manager.scheduler.room.unassigned"}</option>
+				{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
+					<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
+					{foreach from=$buildingEntry.rooms key=roomId item=room}
+						<option value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
+					{/foreach}
+				{/foreach}
+				</select>
+			</td>
+		</tr>
+	</table>
 </div>
 
 {/foreach}

@@ -790,8 +790,10 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.scheduler.buildingsAndRooms">Buildings &amp;amp; Rooms</message>
 	<message key="manager.scheduler.buildings">Buildings</message>
 	<message key="manager.scheduler.building.name">Name</message>
+	<message key="manager.scheduler.building.abbrev">Abbreviation</message>
 	<message key="manager.scheduler.building.description">Description</message>
 	<message key="manager.scheduler.building.form.nameRequired">A building name is required.</message>
+	<message key="manager.scheduler.building.form.abbrevRequired">A building abbreviation is required.</message>
 	<message key="manager.scheduler.building.confirmDelete">Are you sure you wish to delete this building? There may be presentations scheduled to appear here.</message>
 	<message key="manager.scheduler.building.saveAndCreateAnother">Save and Create Another</message>
 	<message key="manager.scheduler.building.noneCreated">No buildings have been created.</message>
@@ -802,10 +804,13 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.scheduler.building.editBuildingShort">Edit</message>
 
 	<message key="manager.scheduler.rooms">Rooms</message>
+	<message key="manager.scheduler.room">Room</message>
+	<message key="manager.scheduler.room.unassigned">Unassigned</message>
 	<message key="manager.scheduler.room.name">Name</message>
+	<message key="manager.scheduler.room.abbrev">Abbreviation</message>
 	<message key="manager.scheduler.room.description">Description</message>
-	<message key="manager.scheduler.room.number">Room Number</message>
 	<message key="manager.scheduler.room.form.nameRequired">A room name is required.</message>
+	<message key="manager.scheduler.room.form.abbrevRequired">A room abbreviation is required.</message>
 	<message key="manager.scheduler.room.form.buildingIdValid">Each room must be associated with a valid building.</message>
 	<message key="manager.scheduler.room.confirmDelete">Are you sure you wish to delete this room? There may be presentations scheduled to appear here.</message>
 	<message key="manager.scheduler.room.saveAndCreateAnother">Save and Create Another</message>

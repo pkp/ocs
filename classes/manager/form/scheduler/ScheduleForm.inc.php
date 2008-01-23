@@ -48,20 +48,22 @@ class ScheduleForm extends Form {
 	 */
 	function initData() {
 		$schedConf =& Request::getSchedConf();
+		$schedConfId = $schedConf->getSchedConfId();
+
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$unscheduledPresentations =& $publishedPaperDao->getPublishedPapers($schedConf->getSchedConfId(), false);
+		$unscheduledPresentations =& $publishedPaperDao->getPublishedPapers($schedConfId, false);
 		$unscheduledPresentations =& $unscheduledPresentations->toAssociativeArray('paperId');
-		$scheduledPresentations =& $publishedPaperDao->getPublishedPapers($schedConf->getSchedConfId(), true);
+		$scheduledPresentations =& $publishedPaperDao->getPublishedPapers($schedConfId, true);
 		$scheduledPresentations =& $scheduledPresentations->toAssociativeArray('paperId');
 
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
-		$unscheduledEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId(), false);
+		$unscheduledEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConfId, false);
 		$unscheduledEvents =& $unscheduledEvents->toAssociativeArray('specialEventId');
-		$scheduledEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId(), true);
+		$scheduledEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConfId, true);
 		$scheduledEvents =& $scheduledEvents->toAssociativeArray('specialEventId');
 
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
-		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getSchedConfId());
+		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConfId);
 		$timeBlocks =& $timeBlocks->toAssociativeArray('timeBlockId');
 
 		$this->_data = array(
@@ -69,7 +71,9 @@ class ScheduleForm extends Form {
 			'unscheduledPresentations' => &$unscheduledPresentations,
 			'scheduledEvents' => &$scheduledEvents,
 			'scheduledPresentations' => &$scheduledPresentations,
-			'timeBlocks' => &$timeBlocks
+			'timeBlocks' => &$timeBlocks,
+			'buildings' => &$buildings,
+			'rooms' => &$rooms
 		);
 	}
 
@@ -242,6 +246,27 @@ class ScheduleForm extends Form {
 			unset($scheduledEvent);
 		}
 		$templateMgr->assign_by_ref('scheduledEventsByTimeBlockId', $scheduledEventsByTimeBlockId);
+
+		$buildingsAndRooms = array();
+		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
+		$roomDao =& DAORegistry::getDAO('RoomDAO');
+		$schedConf =& Request::getSchedConf();
+		$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getSchedConfId());
+		while ($building =& $buildings->next()) {
+			$buildingId = $building->getBuildingId();
+			$rooms =& $roomDao->getRoomsByBuildingId($buildingId);
+			$buildingsAndRooms[$buildingId] = array(
+				'building' => &$building
+			);
+			while ($room =& $rooms->next()) {
+				$roomId = $room->getRoomId();
+				$buildingsAndRooms[$buildingId]['rooms'][$roomId] =& $room;
+				unset($room);
+			}
+			unset($rooms);
+			unset($building);
+		}
+		$templateMgr->assign_by_ref('buildingsAndRooms', $buildingsAndRooms);
 
 		parent::display();
 	}
