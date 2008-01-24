@@ -101,44 +101,6 @@ class TrackDirectorHandler extends Handler {
 	}
 
 	/**
-	 * Update the times and locations in the Accepted table.
-	 */
-	function updateAcceptedTable() {
-		TrackDirectorHandler::validate();
-		TrackDirectorHandler::setupTemplate();
-
-		$schedConf = &Request::getSchedConf();
-		$user = &Request::getUser();
-		$paperDao =& DAORegistry::getDAO('PaperDAO');
-
-		$paperIds = Request::getUserVar('paperIds');
-		if (!empty($paperIds) && !is_array($paperIds)) $paperIds = array($paperIds);
-		if (is_array($paperIds)) foreach ($paperIds as $paperId) {
-			$paper =& $paperDao->getPaper($paperId);
-			if ($paper && $paper->getSchedConfId() == $schedConf->getSchedConfId()) {
-				$paper->setLocation(Request::getUserVar('location-' . $paperId));
-
-				$presentStartTime = $presentEndTime = Request::getUserDateVar("presentStartDate-$paperId");
-
-				$addHours = (int) Request::getUserVar("presentStartTime-$paperId-Hour");
-				$addMinutes = (int) Request::getUserVar("presentStartTime-$paperId-Minute");
-				$presentStartTime += (60 * $addMinutes) + (3600 * $addHours);
-
-				$addHours = (int) Request::getUserVar("presentEndTime-$paperId-Hour");
-				$addMinutes = (int) Request::getUserVar("presentEndTime-$paperId-Minute");
-				$presentEndTime += (60 * $addMinutes) + (3600 * $addHours);
-
-				$paper->setPresentStartTime($presentStartTime);
-				$paper->setPresentEndTime($presentEndTime);
-				$paperDao->updatePaper($paper);
-			}
-			unset($paper);
-		}
-
-		Request::redirect(null, null, null, 'submissions', 'submissionsAccepted');
-	}
-
-	/**
 	 * Validate that user is a track director in the selected conference.
 	 * Redirects to user index page if not properly authenticated.
 	 */

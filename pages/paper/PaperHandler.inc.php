@@ -177,6 +177,24 @@ class PaperHandler extends Handler {
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign('defineTermsContextId', isset($defineTermsContextId)?$defineTermsContextId:null);
 		$templateMgr->assign('comments', isset($comments)?$comments:null);
+
+		if ($paper->getRoomId()) {
+			$roomDao =& DAORegistry::getDAO('RoomDAO');
+			$buildingDao =& DAORegistry::getDAO('BuildingDAO');
+
+			$room =& $roomDao->getRoom($paper->getRoomId());
+			if (!$room) break;
+
+			$building =& $buildingDao->getBuilding($room->getBuildingId());
+			$templateMgr->assign_by_ref('room', $room);
+			$templateMgr->assign_by_ref('building', $building);
+		}
+		if ($paper->getTimeBlockId()) {
+			$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+			$timeBlock =& $timeBlockDao->getTimeBlock($paper->getTimeBlockId());
+			$templateMgr->assign_by_ref('timeBlock', $timeBlock);
+		}
+
 		$templateMgr->display('paper/paper.tpl');	
 	}
 

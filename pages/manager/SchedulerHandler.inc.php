@@ -470,14 +470,14 @@ class SchedulerHandler extends ManagerHandler {
 		import('manager.form.scheduler.ScheduleForm');
 		$scheduleForm =& new ScheduleForm();
 
-		if (array_shift($args) == 'execute') {
+		if (Request::getUserVar('tidy')) {
+			$scheduleForm->readInputData();
+		} elseif (array_shift($args) == 'execute') {
 			$scheduleForm->readInputData();
 			if ($scheduleForm->validate()) {
 				$scheduleForm->execute();
 				Request::redirect(null, null, null, 'scheduler');
 			}
-		} elseif ($scheduleForm->isLocaleResubmit()) {
-			$scheduleForm->readInputData();
 		} else {
 			$scheduleForm->initData();
 		}

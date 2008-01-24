@@ -359,7 +359,7 @@ function chooseRoom(el) {
 
 </div>
 
-<p style="clear: both;"><input type="submit" value="{translate key="common.done"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="scheduler" escape=false}'" /></p>
+<p style="clear: both;"><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="submit" value="{translate key="manager.scheduler.schedule.tidy"}" name="tidy" class="button" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="scheduler" escape=false}'" /></p>
 
 <input type="hidden" name="actions" value="{$actions|escape}">
 

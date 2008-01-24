@@ -343,56 +343,6 @@ class Paper extends DataObject {
 		return $this->setData('abstract', $abstract, $locale);
 	}
 
- 	/**
-	 * Get location.
-	 * @param $locale string
-	 * @return string
-	 */
-	function getLocation($locale) {
-		return $this->getData('location', $locale);
-	}
-
-	/**
-	 * Set location.
-	 * @param $location string
-	 * @param $locale string
-	 */
-	function setLocation($location, $locale) {
-		return $this->setData('location', $location, $locale);
-	}
-
-	/**
-	 * Get presentation start time.
-	 * @return string
-	 */
-	function getPresentStartTime() {
-		return $this->getData('presentStartTime');
-	}
-
-	/**
-	 * Set presentation start time.
-	 * @param $presentStartTime datetime
-	 */
-	function setPresentStartTime($presentStartTime) {
-		return $this->setData('presentStartTime', $presentStartTime);
-	}
-
-	/**
-	 * Get presentation end time.
-	 * @return datetime
-	 */
-	function getPresentEndTime() {
-		return $this->getData('presentEndTime');
-	}
-
-	/**
-	 * Set presentation end time.
-	 * @param $presentEndTime datetime
-	 */
-	function setPresentEndTime($presentEndTime) {
-		return $this->setData('presentEndTime', $presentEndTime);
-	}
-
 	/**
 	 * Return the localized discipline
 	 * @param $locale string
@@ -902,13 +852,6 @@ class Paper extends DataObject {
 	function setPages($pages) {
 		return $this->setData('pages',$pages);
 	}		
-
-	function getDurationNice() {
-		$durationMinutes = (strtotime($this->getPresentEndTime()) - strtotime($this->getPresentStartTime())) / 60;
-		$hours = $durationMinutes / 60;
-		$minutes = $durationMinutes % 60;
-		return sprintf('%02u:%02u', $hours, $minutes);
-	}
 }
 
 ?>

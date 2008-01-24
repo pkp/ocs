@@ -80,11 +80,12 @@
 	<br />
 
 	<blockquote>
-	{if $paper->getLocation()}
-		{translate key="paper.location}:&nbsp;{$paper->getLocation()|strip_unsafe_html|nl2br}<br/>
+	{if $room && $building}
+		{translate key="manager.scheduler.building"}:&nbsp;{$building->getBuildingName()|nl2br}<br/>
+		{translate key="manager.scheduler.room"}:&nbsp;{$room->getRoomName()|nl2br}<br/>
 	{/if}
-	{if $paper->getPresentStartTime()}
-		{translate key="paper.time"}:&nbsp;{$paper->getPresentStartTime()|date_format:$dateFormatShort}&nbsp;&nbsp;{$paper->getPresentStartTime()|date_format:$timeFormat}&nbsp;&ndash;&nbsp;{$paper->getPresentEndTime()|date_format:$timeFormat}<br/>
+	{if $timeBlock}
+		{translate key="common.date"}:&nbsp;{$timeBlock->getStartTime()|date_format:$datetimeFormatShort}&nbsp;&ndash;&nbsp;{$timeBlock->getEndTime()|date_format:$timeFormat}<br/>
 	{/if}
 	{translate key="submission.lastModified"}:&nbsp;{$paper->getLastModified()|date_format:$dateFormatShort}<br/>
 	</blockquote>

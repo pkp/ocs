@@ -10,22 +10,19 @@
  *}
 <a name="submissions"></a>
 
-<form action="{url op="updateAcceptedTable"}" method="post">
 <table width="100%" class="listing">
 	<tr>
-		<td colspan="7" class="headseparator">&nbsp;</td>
+		<td colspan="5" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr class="heading" valign="bottom">
 		<td width="3%">{translate key="common.id"}</td>
 		<td width="4%">{translate key="submissions.track"}</td>
 		<td width="15%">{translate key="paper.presenters"}</td>
 		<td>{translate key="paper.title"}</td>
-		<td width="10%">{translate key="paper.location"}</td>
-		<td width="32%">{translate key="paper.time"}</td>
 		<td width="10%" align="right">{translate key="common.status"}</td>
 	</tr>
 	<tr>
-		<td colspan="7" class="headseparator">&nbsp;</td>
+		<td colspan="5" class="headseparator">&nbsp;</td>
 	</tr>
 	
 	{iterate from=submissions item=submission}
@@ -36,11 +33,6 @@
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getPresenterString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionReview" path=$paperId}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
-		<td><input name="location-{$paperId|escape}" size="10" class="textField" id="location-{$paperId|escape}" value="{$submission->getLocation()|escape}" />
-		<td>
-			{html_select_time prefix="presentStartTime-$paperId-" time=$submission->getPresentStartTime() all_extra="class=\"selectMenu\"" display_seconds=false display_meridian=false use_24_hours=true minute_interval=5}&nbsp;{translate key="submission.toTime"}&nbsp;{html_select_time prefix="presentEndTime-$paperId-" time=$submission->getPresentEndTime() all_extra="class=\"selectMenu\"" display_seconds=false display_meridian=false use_24_hours=true minute_interval=5}
-			{html_select_date prefix="presentStartDate-$paperId" time=$submission->getPresentStartTime() all_extra="class=\"selectMenu\"" start_year="+0" end_year=$yearOffsetFuture}
-		</td>
 		<td align="right">
 			{assign var="status" value=$submission->getStatus()}
 			{if $status == SUBMISSION_STATUS_ARCHIVED}
@@ -53,23 +45,21 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="7" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
+		<td colspan="5" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
 {/iterate}
 {if $submissions->wasEmpty()}
 	<tr>
-		<td colspan="7" class="nodata">{translate key="submissions.noSubmissions"}</td>
+		<td colspan="5" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
 	<tr>
-		<td colspan="7" class="endseparator">&nbsp;</td>
+		<td colspan="5" class="endseparator">&nbsp;</td>
 	</tr>
 {else}
 	<tr>
-		<td colspan="4" align="left">{page_info iterator=$submissions}</td>
+		<td colspan="2" align="left">{page_info iterator=$submissions}</td>
 		<td colspan="3" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search track=$track}</td>
 	</tr>
 {/if}
 </table>
-<p><input type="submit" class="button defaultButton" value="{translate key="common.record"}" /></p>
-</form>
 

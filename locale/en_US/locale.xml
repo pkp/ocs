@@ -789,6 +789,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 
 	<message key="manager.scheduler.buildingsAndRooms">Buildings &amp;amp; Rooms</message>
 	<message key="manager.scheduler.buildings">Buildings</message>
+	<message key="manager.scheduler.building">Building</message>
 	<message key="manager.scheduler.building.name">Name</message>
 	<message key="manager.scheduler.building.abbrev">Abbreviation</message>
 	<message key="manager.scheduler.building.description">Description</message>
@@ -866,6 +867,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.scheduler.timeBlock.confirmDelete">Are you sure you wish to delete this time block? There may be events or presentations scheduled against it.</message>
 
 	<message key="manager.scheduler.schedule.description">The following form allows Journal Managers to schedule presentations and special events. Drag and drop Special Events and accepted Papers into the appropriate Time Block to schedule them, or drag them outside of the table to leave them unscheduled. Click "Save" at the bottom of the page to complete the schedule. To change the available Time Blocks, choose the "Time Blocks" tab.</message>
+	<message key="manager.scheduler.schedule.tidy">Tidy</message>
 	<message key="manager.scheduler.schedule.confirmLeave">Are you sure you wish to leave the scheduler without saving? You will lose any unsaved changes.</message>
 	<message key="manager.scheduler.schedule.unscheduledPresentations">Unscheduled Presentations</message>
 	<message key="manager.scheduler.schedule.unscheduledEvents">Unscheduled Events</message>
