@@ -88,13 +88,6 @@
 			<field name="from_role_id">128<!-- Track Director --></field>
 			<field name="to_role_id">256<!-- Reviewer --></field>
 		</row>
-		<row>
-			<field name="email_key">SUBMISSION_DEADLINE_WARN</field>
-			<field name="can_edit">1</field>
-			<field name="can_disable">1</field>
-			<field name="from_role_id">64<!-- Director --></field>
-			<field name="to_role_id">4096<!-- Presenter --></field>
-		</row>
 
 		<!--
 		  *

@@ -69,10 +69,6 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 		if ($mail->isEnabled()) {
 			$templateMgr->assign('submissionAckEnabled', true);
 		}
-		$mail = &new MailTemplate('SUBMISSION_DEADLINE_WARN');
-		if ($mail->isEnabled()) {
-			$templateMgr->assign('submissionDeadlineWarnEnabled', true);
-		}
 
 		parent::display();
 	}

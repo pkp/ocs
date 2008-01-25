@@ -135,18 +135,6 @@ An initial review of "{$paperTitle}" has made it clear that this submission does
 {$comments}</field>
 			<field name="description">This email notifies the reviewers of a submission that the review process has been completed. It includes information about the paper and the decision reached, and thanks the reviewers for their contributions.</field>
 		</row>
-		<row>
-			<field name="email_key">SUBMISSION_DEADLINE_WARN</field>
-			<field name="subject">Notice of Submission Deadline</field>
-			<field name="body">The deadline for your submission, "{$paperTitle}," to {$conferenceName} will expire in several days. According to our records, this submission is not yet complete.
-
-You should complete the submission (by uploading any missing files or updating any required information) as soon as possible, or your submission will be disqualified from this conference.
-
-If you have any questions, please feel free to contact me.
-
-{$editorialContactSignature}</field>
-			<field name="description">This email notifies a presenter that their incomplete submission will be disqualified by an approaching deadline.</field>
-		</row>
 
 
 		<!--

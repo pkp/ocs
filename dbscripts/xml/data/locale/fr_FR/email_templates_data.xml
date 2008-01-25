@@ -122,18 +122,6 @@ Une évaluation initiale de "{$paperTitle}" a démontré clairement que cette pr
 {$comments}</field>
 			<field name="description">Ce courriel avise les évaluateurs d'une proposition que le processus d'évaluation est complété. Il inclut des informations au sujet de l'article et de la décision prise, et remercie les évaluateurs de leur contribution.</field>
 		</row>
-		<row>
-			<field name="email_key">SUBMISSION_DEADLINE_WARN</field>
-			<field name="subject">Notification de l'échéance d'une proposition</field>
-			<field name="body">L'échéance de votre proposition, "{$paperTitle}," pour {$conferenceName} expirera dans quelques jours. Selon notre registre, cette proposition n'est pas encore complète.
-
-Vous devriez compléter la proposition (en téléchargeant vers le site les fichiers manquant ou en mettant à jour toute information requise) aussi tôt que possible, ou votre proposition sera disqualifiée de cette conférence.
-
-Si vous avez des questions, sentez-vous libre de me contacter.
-
-{$editorialContactSignature}</field>
-			<field name="description">Cet email avise un auteur que sa proposition incomplète sera disqualifiée par une échéance proche.</field>
-		</row>
 
 
 		<!--

@@ -122,18 +122,6 @@ Una prima revisione di "{$paperTitle}" ha reso evidente che questa submission no
 {$comments}</field>
 			<field name="description">Questa email notifica i revisori della submission che il processo di revisione &#x00E8; stato completato. Include le informazioni sulla relazione e la decisione ricevuta, e ringrazia i revisori per i loro contributi.</field>
 		</row>
-		<row>
-			<field name="email_key">SUBMISSION_DEADLINE_WARN</field>
-			<field name="subject">Notifica della scadenza della submission</field>
-			<field name="body">La scadenza per la tua submission, "{$paperTitle}," a {$conferenceName} terminer&#x00E0; tra molti giorni. Secondo la nostra documentazione, questa submission non &#x00E8; ancora completa.
-
-Dovresti completare la submission (caricando i file mancanti o aggiornando qualsiasi informazione richiesta) il prima possibile, o la tua submission sar&#x00E0; esclusa da questo convegno.
-
-Se avessi qualche domanda, per favore sentiti libero di contattarmi.
-
-{$editorialContactSignature}</field>
-			<field name="description">Questa email notifica un relatore che la sua submission incompleta verr&#x00E0; esclusa a causa della scadenza in avvicinamento.</field>
-		</row>
 
 
 		<!--
