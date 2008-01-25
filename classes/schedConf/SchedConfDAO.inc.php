@@ -144,6 +144,20 @@ class SchedConfDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve the IDs and titles of all scheduled conferences for a conference in an associative array.
+	 * @return array
+	 */
+	function &getSchedConfTitles($conferenceId) {
+		$schedConfs = array();
+		$schedConfIterator =& $this->getSchedConfsByConferenceId($conferenceId);
+		while ($schedConf =& $schedConfIterator->next()) {
+			$schedConfs[$schedConf->getSchedConfId()] = $schedConf->getSchedConfTitle();
+			unset($schedConf);
+		}
+		return $schedConfs;
+	}
+
+	/**
 	 * Retrieves all scheduled conferences for a conference
 	 * @param $conferenceId
 	 */

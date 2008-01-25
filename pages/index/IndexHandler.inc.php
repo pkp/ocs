@@ -31,6 +31,12 @@ class IndexHandler extends Handler {
 			SchedConfHandler::index($args);
 
 		} elseif ($conference) {
+			$redirect = $conference->getSetting('schedConfRedirect');
+			if (!empty($redirect)) {
+				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+				$redirectSchedConf =& $schedConfDao->getSchedConf($redirect, $conference->getConferenceId());
+				if ($redirectSchedConf) Request::redirect($conference->getPath(), $redirectSchedConf->getPath());
+			}
 
 			// A scheduled conference was specified; display it.
 			import('pages.conference.ConferenceHandler');

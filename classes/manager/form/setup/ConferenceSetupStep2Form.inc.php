@@ -32,9 +32,12 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 				'enableAnnouncementsHomepage' => 'bool',
 				'numAnnouncementsHomepage' => 'int',
 				'paperAccess' => 'int',
-				'announcementsIntroduction' => 'string'
+				'announcementsIntroduction' => 'string',
+				'schedConfRedirect' => 'int'
 			)
 		);
+		$conference =& Request::getConference();
+		$this->addCheck(new FormValidatorCustom($this, 'schedConfRedirect', 'optional', 'manager.setup.additionalContent.redirect.invalidSchedConf', create_function('$schedConfRedirect,$form,$schedConfDao,$conferenceId', 'return $schedConfDao->getSchedConf($schedConfRedirect, $conferenceId);'), array(&$this, DAORegistry::getDAO('SchedConfDAO'), $conference->getConferenceId())));
 	}
 
 	/**
@@ -49,10 +52,14 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 	 * Display the form.
 	 */
 	function display() {
+		$templateMgr = &TemplateManager::getManager();
 		$conference = &Request::getConference();
 
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConfTitles =& $schedConfDao->getSchedConfTitles($conference->getConferenceId());
+		$templateMgr->assign_by_ref('schedConfTitles', $schedConfTitles);
+
 		// Ensure upload file settings are reloaded when the form is displayed.
-		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign(array(
 			'homepageImage' => $conference->getSetting('homepageImage')
 		));

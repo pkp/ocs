@@ -1119,6 +1119,11 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.aboutConference.comments.allowAnonymous">Anonymous commenting is permitted.</message>
 
 	<!-- Conference setup page 2 -->
+	<message key="manager.setup.additionalContent.redirect">Scheduled Conference Redirect</message>
+	<message key="manager.setup.additionalContent.schedConfRedirect">Redirect</message>
+	<message key="manager.setup.additionalContent.redirect.noSchedConfRedirect">Do not redirect</message>
+	<message key="manager.setup.additionalContent.redirect.invalidSchedConf">An invalid scheduled conference was chosen for redirects. Please check the chosen scheduled conference and try again.</message>
+	<message key="manager.setup.additionalContent.redirect.description">By selecting a Scheduled Conference below, it is possible to redirect users who visit the Conference page directly to that Scheduled Conference. This is useful if, for example, this Conference only contains a single Scheduled Conference.</message>
 	<message key="manager.setup.additionalContent.homepage">Homepage</message>
 	<message key="manager.setup.additionalContent.homepageImage">Homepage Image</message>
 	<message key="manager.setup.additionalContent.homepageImage.description"></message>

@@ -27,7 +27,23 @@
 </table>
 {/if}
 
-<h3>2.1 {translate key="manager.setup.additionalContent.homepage"}</h3>
+<h3>2.1 {translate key="manager.setup.additionalContent.redirect"}</h3>
+
+<p>{translate key="manager.setup.additionalContent.redirect.description"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="schedConfRedirect" key="manager.setup.additionalContent.schedConfRedirect"}</td>
+		<td width="80%" class="value">
+			<select name="schedConfRedirect" id="schedConfRedirect" class="selectMenu">
+				<option value="">{translate key="manager.setup.additionalContent.redirect.noSchedConfRedirect"}</option>
+				{html_options options=$schedConfTitles selected=$schedConfRedirect}
+			</select>
+		</td>
+	</tr>
+</table>
+
+<h3>2.2 {translate key="manager.setup.additionalContent.homepage"}</h3>
 
 <h4>{translate key="manager.setup.additionalContent.homepageImage"}</h4>
 
@@ -35,8 +51,8 @@
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="manager.setup.additionalContent.homepageImage"}</td>
-		<td width="80%" class="value"><input type="file" name="homepageImage" class="uploadField" /> <input type="submit" name="uploadHomepageImage" value="{translate key="common.upload"}" class="button" /></td>
+		<td width="20%" class="label">{fieldLabel name="homepageImage" key="manager.setup.additionalContent.homepageImage"}</td>
+		<td width="80%" class="value"><input type="file" id="homepageImage" name="homepageImage" class="uploadField" /> <input type="submit" name="uploadHomepageImage" value="{translate key="common.upload"}" class="button" /></td>
 	</tr>
 </table>
 
@@ -54,7 +70,7 @@
 
 <div class="separator"></div>
 
-<h3>2.2 {translate key="manager.setup.additionalContent.information"}</h3>
+<h3>2.3 {translate key="manager.setup.additionalContent.information"}</h3>
 
 <p>{translate key="manager.setup.additionalContent.information.description"}</p>
 
@@ -68,7 +84,7 @@
 
 <div class="separator"></div>
 
-<h3>2.3 {translate key="manager.setup.additionalContent.announcements"}</h3>
+<h3>2.4 {translate key="manager.setup.additionalContent.announcements"}</h3>
 
 <p>{translate key="manager.setup.additionalContent.announcementsDescription"}</p>
 
@@ -106,7 +122,7 @@
 
 <div class="separator"></div>
 
-<h3>2.4 {translate key="manager.setup.additionalContent.archiveAccess"}</h3>
+<h3>2.5 {translate key="manager.setup.additionalContent.archiveAccess"}</h3>
 
 <p>{translate key="manager.setup.additionalContent.archiveAccess.description"}</p>
 
