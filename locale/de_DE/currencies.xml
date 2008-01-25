@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  * currencies.xml
+  *
+  * Copyright (c) 2000-2007 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Currencies data XML file. Based on ISO 4217.
+  *
+  * $Id$
+  -->
+
+<!DOCTYPE currencies [
+	<!ELEMENT currencies (currency+)>
+		<!ATTLIST currencies
+			locale CDATA #REQUIRED>
+	<!ELEMENT currency EMPTY>
+		<!ATTLIST currency
+			code_alpha CDATA #REQUIRED
+			code_numeric CDATA #REQUIRED
+			name CDATA #REQUIRED>
+]>
+
+<currencies locale="de_DE">
+	<currency name="Euro" code_alpha="EUR" code_numeric="978" />
+</currencies>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+ 
+<locale name="de_DE" full_name="Deutsch">
+	<message key="plugins.paymethod.manual.displayName">Überweisung</message>
+	<message key="plugins.paymethod.manual.description">Zahlungen werden unabhängig vom OCS abgewickelt und erfordern daher, dass der Konferenzmanager diese überprüft, bevor Teilnehmerregistrierungen vollständig akzeptiert werden.
+	</message>
+	<message key="plugins.paymethod.manual">Überweisung</message>
+</locale>
