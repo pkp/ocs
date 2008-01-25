@@ -2,12 +2,12 @@
 <!DOCTYPE schema SYSTEM "dtd/xmlschema.dtd">
 
 <!--
-  * ojs_schema.xml
+  * ocs_schema.xml
   *
   * Copyright (c) 2000-2007 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * OJS database schema in XML.
+  * OCS database schema in XML.
   *
   * $Id$
   -->

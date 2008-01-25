@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2007 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the it_IT (Italian) locale.
+  *
+ -->
+ 
+<locale name="it_IT" full_name="Italian">
+	<message key="plugins.paymethod.manual.displayName">Pagamento manuale</message>
+	<message key="plugins.paymethod.manual.description">Il pagamento deve essere inviato al di fuori di OCS e richiede che il gestore della conferenza convalidi prima la registrazione per renderla attiva. I contenuti del campo Informazione sulla registrazione nella Gestione delle modalit&#x00E0; di registrazione verranno mostrate a chi si iscrive e dovrebbero fornire informazioni su come procedere con l'invio della registrazione manuale.</message>
+	<message key="plugins.paymethod.manual">Pagamento della registrazione</message>
+</locale>
+
