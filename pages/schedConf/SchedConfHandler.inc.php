@@ -224,14 +224,17 @@ class SchedConfHandler extends Handler {
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$scheduledPresentations =& $publishedPaperDao->getPublishedPapers($schedConfId, true);
 		$scheduledPresentations =& $scheduledPresentations->toAssociativeArray('paperId');
+		$templateMgr->assign_by_ref('scheduledPresentations', $scheduledPresentations);
 
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 		$scheduledEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConfId, true);
 		$scheduledEvents =& $scheduledEvents->toAssociativeArray('specialEventId');
+		$templateMgr->assign_by_ref('scheduledEvents', $scheduledEvents);
 
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
 		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConfId);
 		$timeBlocks =& $timeBlocks->toAssociativeArray('timeBlockId');
+		$templateMgr->assign_by_ref('timeBlocks', $timeBlocks);
 
 		$baseDates = array(); // Array of columns representing dates
 		$boundaryTimes = array(); // Array of rows representing start times
@@ -286,7 +289,6 @@ class SchedConfHandler extends Handler {
 			$scheduledPresentationsByTimeBlockId[$scheduledPresentation->getTimeBlockId()][] =& $scheduledPresentation;
 			unset($scheduledPresentation);
 		}
-		$templateMgr->assign_by_ref('scheduledPresentations', $scheduledPresentations);
 		$templateMgr->assign_by_ref('scheduledPresentationsByTimeBlockId', $scheduledPresentationsByTimeBlockId);
 
 		$scheduledEventsByTimeBlockId = array();
@@ -295,8 +297,27 @@ class SchedConfHandler extends Handler {
 			$scheduledEventsByTimeBlockId[$scheduledEvent->getTimeBlockId()][] =& $scheduledEvent;
 			unset($scheduledEvent);
 		}
-		$templateMgr->assign_by_ref('scheduledEvents', $scheduledEvents);
 		$templateMgr->assign_by_ref('scheduledEventsByTimeBlockId', $scheduledEventsByTimeBlockId);
+
+		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
+		$roomDao =& DAORegistry::getDAO('RoomDAO');
+		$schedConf =& Request::getSchedConf();
+		$buildingIterator =& $buildingDao->getBuildingsBySchedConfId($schedConf->getSchedConfId());
+		$buildings = $rooms = array();
+		while ($building =& $buildingIterator->next()) {
+			$buildingId = $building->getBuildingId();
+			$buildings[$buildingId] =& $building;
+			$roomIterator =& $roomDao->getRoomsByBuildingId($buildingId);
+			while ($room =& $roomIterator->next()) {
+				$roomId = $room->getRoomId();
+				$rooms[$roomId] =& $room;
+				unset($room);
+			}
+			unset($roomIterator);
+			unset($building);
+		}
+		$templateMgr->assign_by_ref('buildings', $buildings);
+		$templateMgr->assign_by_ref('rooms', $rooms);
 
 		$templateMgr->assign('helpTopicId', 'schedConf.schedule');
 		$templateMgr->display('schedConf/schedule.tpl');

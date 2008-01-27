@@ -46,11 +46,15 @@
 				{/if}
 				{foreach from=$scheduledEventsByTimeBlockId.$timeBlockId item=event}
 					{assign var="eventExists" value=1}
-					<a href="#event-{$event->getSpecialEventId()|escape}">{$event->getSpecialEventName()|escape|truncate:35:"..."}</a><br />
+					<div class="borderBox schedulerEvent">
+						<a href="#event-{$event->getSpecialEventId()|escape}">{$event->getSpecialEventName()|escape|truncate:35:"..."}</a>
+					</div>
 				{/foreach}
 				{foreach from=$scheduledPresentationsByTimeBlockId[$timeBlockId] item=presentation}
 					{assign var="paperExists" value=1}
-					<a href="#paper-{$presentation->getPaperId()|escape}">{$presentation->getPaperTitle()|escape|truncate:35:"..."}</a><br />
+					<div class="borderBox schedulerPresentation">
+						<a href="#paper-{$presentation->getPaperId()|escape}">{$presentation->getPaperTitle()|escape|truncate:35:"..."}</a>
+					</div>
 				{/foreach}
 			</td>
 		{elseif !$gridSlotUsed.$baseDate.$boundaryTime}{* This is a "hole" in the schedule *}
@@ -69,8 +73,41 @@
 
 {foreach from=$scheduledPresentations item=paper}
 <a name="paper-{$paper->getPaperId()|escape}"></a>
-<h4>{$paper->getPaperTitle()}</h4>
-<a href="#top">{translate key="manager.scheduler.returnToSchedule"}</a>
+<h4>{$paper->getPaperTitle()|strip_unsafe_html}</h4>
+<table class="data">
+<tr valign="top">
+	<td class="label">{translate key="paper.presenters"}</td>
+	<td class="value"><strong>{$paper->getPresenterString()|escape}</strong></td>
+</tr>
+{if $paper->getRoomId()}
+	{assign var="roomId" value=$paper->getRoomId()}
+	{assign var="room" value=$rooms.$roomId}
+	{assign var="buildingId" value=$room->getBuildingId()}
+	{assign var="building" value=$buildings.$buildingId}
+	<tr valign="top">
+		<td class="label">{translate key="manager.scheduler.building"}</td>
+		<td class="value">{$building->getBuildingName()|escape}</td>
+	</tr>
+	<tr valign="top">
+		<td class="label">{translate key="manager.scheduler.room"}</td>
+		<td class="value">{$room->getRoomName()|escape}</td>
+	</tr>
+{/if}
+{assign var="timeBlockId" value=$paper->getTimeBlockId()}
+{assign var="timeBlock" value=$timeBlocks.$timeBlockId}
+<tr valign="top">
+	<td class="label">{translate key="common.time"}</td>
+	<td class="value">{$timeBlock->getStartTime()|date_format:$datetimeFormatShort}&nbsp;&ndash;&nbsp;{$timeBlock->getEndTime()|date_format:$timeFormat}</td>
+</tr>
+{if $paper->getPaperAbstract() != ""}
+<tr valign="top">
+	<td class="label">{translate key="paper.abstract"}</td>
+	<td class="value">{$paper->getPaperAbstract()|strip_unsafe_html|nl2br}</td>
+</tr>
+{/if}
+</table>
+
+<p><a href="#top" class="action">{translate key="manager.scheduler.returnToSchedule"}</a></p>
 {/foreach}{* scheduledPresentations *}
 
 {/if}{* paperExists *}
@@ -81,8 +118,35 @@
 {foreach from=$scheduledEvents item=event}
 <a name="event-{$event->getSpecialEventId()|escape}"></a>
 <h4>{$event->getSpecialEventName()}</h4>
-<a href="#top">{translate key="manager.scheduler.returnToSchedule"}</a>
-{if $event->getSpecialEventDescription() != ''}<p>{$event->getSpecialEventDescription()}</p>{/if}
+<table class="data">
+{if $event->getRoomId()}
+	{assign var="roomId" value=$event->getRoomId()}
+	{assign var="room" value=$rooms.$roomId}
+	{assign var="buildingId" value=$room->getBuildingId()}
+	{assign var="building" value=$buildings.$buildingId}
+	<tr valign="top">
+		<td class="label">{translate key="manager.scheduler.building"}</td>
+		<td class="value">{$building->getBuildingName()|escape}</td>
+	</tr>
+	<tr valign="top">
+		<td class="label">{translate key="manager.scheduler.room"}</td>
+		<td class="value">{$room->getRoomName()|escape}</td>
+	</tr>
+{/if}
+{assign var="timeBlockId" value=$event->getTimeBlockId()}
+{assign var="timeBlock" value=$timeBlocks.$timeBlockId}
+<tr valign="top">
+	<td class="label">{translate key="common.time"}</td>
+	<td class="value">{$timeBlock->getStartTime()|date_format:$datetimeFormatShort}&nbsp;&ndash;&nbsp;{$timeBlock->getEndTime()|date_format:$timeFormat}</td>
+</tr>
+{if $event->getSpecialEventDescription() != ""}
+<tr valign="top">
+	<td class="label">{translate key="manager.scheduler.specialEvent.description"}</td>
+	<td class="value">{$event->getSpecialEventDescription()|nl2br}</td>
+</tr>
+{/if}
+</table>
+<p><a href="#top" class="action">{translate key="manager.scheduler.returnToSchedule"}</a></p>
 {/foreach}{* scheduledEvents *}
 
 {/if}{* eventExists *}
