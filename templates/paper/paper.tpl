@@ -39,7 +39,7 @@
 
 <div id="navbar">
 	<ul class="menu">
-		<li><a href="{url schedConf=""}" target="_parent">{translate key="navigation.home"}</a></li>
+		<li><a href="{url conference="index" schedConf="index" op="index"}" target="_parent">{translate key="navigation.home"}</a></li>
 		<li><a href="{url page="about"}" target="_parent">{translate key="navigation.about"}</a></li>
 		{if $isUserLoggedIn}
 			<li><a href="{url page="user"}" target="_parent">{translate key="navigation.userHome"}</a></li>

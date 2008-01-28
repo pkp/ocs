@@ -91,7 +91,7 @@
 <div id="main">
 <div id="navbar">
 	<ul class="menu">
-		<li><a href="{url schedConf=""}">{translate key="navigation.home"}</a></li>
+		<li><a href="{url conference="index" schedConf="index" op="index"}">{translate key="navigation.home"}</a></li>
 		<li><a href="{url page="about"}">{translate key="navigation.about"}</a></li>
 		{if $isUserLoggedIn}
 			<li><a href="{url page="user"}">{translate key="navigation.userHome"}</a></li>
@@ -115,7 +115,7 @@
 </div>
 
 <div id="breadcrumb">
-	<a href="{url page="index"}">{translate key="navigation.home"}</a> &gt;
+	<a href="{url conference="index" schedConf="index" page="index"}">{translate key="navigation.home"}</a> &gt;
 	{foreach from=$pageHierarchy item=hierarchyLink}
 		<a href="{$hierarchyLink[0]|escape}" class="hierarchyLink">{if not $hierarchyLink[2]}{translate key=$hierarchyLink[1]}{else}{$hierarchyLink[1]|escape}{/if}</a> &gt;
 	{/foreach}
