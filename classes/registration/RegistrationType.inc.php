@@ -80,16 +80,16 @@ class RegistrationType extends DataObject {
 	 * @return string
 	 */
 	function getName($locale) {
-		return $this->getData('typeName', $locale);
+		return $this->getData('name', $locale);
 	}
 
 	/**
 	 * Set registration type name.
-	 * @param $typeName string
+	 * @param $name string
 	 * @param $locale string
 	 */
-	function setName($typeName, $locale) {
-		return $this->setData('typeName', $typeName, $locale);
+	function setName($name, $locale) {
+		return $this->setData('name', $name, $locale);
 	}
 
 	/**
