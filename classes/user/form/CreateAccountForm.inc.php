@@ -166,6 +166,44 @@ class CreateAccountForm extends Form {
 	}
 
 	/**
+	 * Send the registration confirmation email.
+	 * @param $user object
+	 */
+	function sendConfirmationEmail($user, $password, $sendPassword) {
+		$schedConf =& Request::getSchedConf();
+		import('mail.MailTemplate');
+		if (Config::getVar('email', 'require_validation')) {
+			// Create an access key
+			import('security.AccessKeyManager');
+			$accessKeyManager =& new AccessKeyManager();
+			$accessKey = $accessKeyManager->createKey('RegisterContext', $user->getUserId(), null, Config::getVar('email', 'validation_timeout'));
+
+			// Send email validation request to user
+			$mail =& new MailTemplate('USER_VALIDATE');
+			$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName'), true);
+			$mail->assignParams(array(
+				'userFullName' => $user->getFullName(),
+				'activateUrl' => Request::url(null, null, 'user', 'activateUser', array($user->getUsername(), $accessKey))
+			));
+			$mail->addRecipient($user->getEmail(), $user->getFullName());
+			$mail->send();
+			unset($mail);
+		}
+		if ($sendPassword) {
+			// Send welcome email to user
+			$mail = &new MailTemplate('USER_REGISTER');
+			$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+			$mail->assignParams(array(
+				'username' => $user->getUsername(),
+				'password' => String::substr($password, 0, 30), // Prevent mailer abuse via long passwords
+			));
+			$mail->addRecipient($user->getEmail(), $user->getFullName());
+			$mail->send();
+			unset($mail);
+		}
+	}
+
+	/**
 	 * Register a new user.
 	 */
 	function execute() {
@@ -275,36 +313,7 @@ class CreateAccountForm extends Form {
 		}
 
 		if (!$this->existingUser) {
-			import('mail.MailTemplate');
-			if ($requireValidation) {
-				// Create an access key
-				import('security.AccessKeyManager');
-				$accessKeyManager =& new AccessKeyManager();
-				$accessKey = $accessKeyManager->createKey('RegisterContext', $user->getUserId(), null, Config::getVar('email', 'validation_timeout'));
-
-				// Send email validation request to user
-				$mail =& new MailTemplate('USER_VALIDATE');
-				$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName'), true);
-				$mail->assignParams(array(
-					'userFullName' => $user->getFullName(),
-					'activateUrl' => Request::url(null, null, 'user', 'activateUser', array($this->getData('username'), $accessKey))
-				));
-				$mail->addRecipient($user->getEmail(), $user->getFullName());
-				$mail->send();
-				unset($mail);
-			}
-			if ($this->getData('sendPassword')) {
-				// Send welcome email to user
-				$mail = &new MailTemplate('USER_REGISTER');
-				$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
-				$mail->assignParams(array(
-					'username' => $this->getData('username'),
-					'password' => String::substr($this->getData('password'), 0, 30), // Prevent mailer abuse via long passwords
-				));
-				$mail->addRecipient($user->getEmail(), $user->getFullName());
-				$mail->send();
-				unset($mail);
-			}
+			$this->sendConfirmationEmail($user, $this->getData('password'), $this->getData('sendPassword'));
 		}
 
 		// By default, self-registering readers will receive

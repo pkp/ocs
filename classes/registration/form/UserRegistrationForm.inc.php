@@ -226,6 +226,9 @@ class UserRegistrationForm extends Form {
 
 			// Make sure subsequent requests to Request::getUser work
 			Validation::login($this->getData('username'), $this->getData('password'), $reason);
+
+			import('user.form.CreateAccountForm');
+			CreateAccountForm::sendConfirmationEmail($user, $this->getData('password'), true);
 		}
 
 		// Get the registration type
