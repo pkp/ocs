@@ -154,6 +154,8 @@ class ScheduleForm extends Form {
 								$scheduledEvent =& $scheduledEvents[$itemId];
 								$scheduledEvent->setTimeBlockId(null);
 								$this->modifiedEvents[$itemId] =& $scheduledEvent;
+								unset($scheduledEvents[$itemId]);
+								$unscheduledEvents[$itemId] =& $scheduledEvent;
 								unset($scheduledEvent);
 							}
 							break;
@@ -162,6 +164,8 @@ class ScheduleForm extends Form {
 								$scheduledPresentation =& $scheduledPresentations[$itemId];
 								$scheduledPresentation->setTimeBlockId(null);
 								$this->modifiedPapers[$itemId] =& $scheduledPresentation;
+								unset($scheduledPresentations[$itemId]);
+								$unscheduledPresentations[$itemId] =& $scheduledPresentation;
 								unset($scheduledPresentation);
 							}
 							break;
@@ -265,9 +269,10 @@ class ScheduleForm extends Form {
 		// For each block, find out how long it lasts
 		foreach ($baseDates as $baseDate) {
 			foreach ($boundaryTimes as $boundaryTimeIndex => $boundaryTime) {
-				if (!isset($timeBlockGrid[$baseDate][$boundaryTime])) continue;
+				if (!isset($timeBlockGrid[$baseDate][$boundaryTime]['timeBlockStarts'])) continue;
+				$gridSlotUsed[$baseDate][$boundaryTime] = 1;
 				// Establish the number of rows spanned ($i); track used grid slots
-				for ($i=0; (isset($boundaryTimes[$i+$boundaryTimeIndex]) && !isset($timeBlockGrid[$baseDate][$boundaryTimes[$i+$boundaryTimeIndex]]['timeBlockEnds'])); $i++) {
+				for ($i=1; (isset($boundaryTimes[$i+$boundaryTimeIndex]) && !isset($timeBlockGrid[$baseDate][$boundaryTimes[$i+$boundaryTimeIndex]]['timeBlockEnds'])); $i++) {
 					$gridSlotUsed[$baseDate][$boundaryTimes[$i+$boundaryTimeIndex]] = 1;
 				}
 				$timeBlockGrid[$baseDate][$boundaryTime]['rowspan'] = $i;

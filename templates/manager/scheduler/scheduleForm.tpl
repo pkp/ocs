@@ -285,7 +285,8 @@ function chooseRoom(el) {
 	{/foreach}
 </tr>
 
-{/foreach}{* timeBlocks *}
+{/foreach}{* boundaryTimes *}
+
 
 </table>
 
@@ -356,6 +357,9 @@ function chooseRoom(el) {
 </div>
 
 {/foreach}
+{if $unscheduledPresentations|@count == 0}
+	<i>{translate key="common.none"}</i><br/>
+{/if}
 
 </div>
 
