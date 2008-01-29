@@ -279,7 +279,7 @@ function chooseRoom(el) {
 				{/foreach}
 			</td>
 		{elseif !$gridSlotUsed.$baseDate.$boundaryTime}{* This is a "hole" in the schedule *}
-			<td class="hole">&nbsp</td>
+			<td class="hole">&nbsp;</td>
 		{else}{* This is a rowspanned part of a time block; do nothing. *}
 		{/if}
 	{/foreach}
@@ -365,7 +365,7 @@ function chooseRoom(el) {
 
 <p style="clear: both;"><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="submit" value="{translate key="manager.scheduler.schedule.tidy"}" name="tidy" class="button" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="scheduler" escape=false}'" /></p>
 
-<input type="hidden" name="actions" value="{$actions|escape}">
+<input type="hidden" name="actions" value="{$actions|escape}" />
 
 </form>
 
