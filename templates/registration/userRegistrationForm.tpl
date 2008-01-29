@@ -44,7 +44,7 @@
 	{if $registrationType->getPublic()}
 		<tr valign="top">
 			<td class="label">
-				<strong>{$registrationType->getTypeName()|escape}</strong>
+				<strong>{$registrationType->getRegistrationTypeName()|escape}</strong>
 			</td>
 			<td class="data">
 				{if strtotime($registrationType->getOpeningDate()) < time() && strtotime($registrationType->getClosingDate()) > time()}
@@ -64,9 +64,9 @@
 				{/if}
 			</td>
 		</tr>
-		{if $registrationType->getDescription()}
+		{if $registrationType->getRegistrationTypeDescription()}
 			<tr valign="top">
-				<td colspan="2">{$registrationType->getDescription()|nl2br}</td>
+				<td colspan="2">{$registrationType->getRegistrationTypeDescription()|nl2br}</td>
 			</tr>
 		{/if}
 		<tr valign="top">
@@ -228,16 +228,6 @@
 	<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
 	<td class="value"><textarea {$disableSnippet} name="biography" id="biography" rows="5" cols="40" class="textArea">{$biography|escape}</textarea></td>
 </tr>
-
-{if $profileLocalesEnabled && count($availableLocales) > 1}
-<tr valign="top">
-	<td class="label">{translate key="user.workingLanguages"}</td>
-	<td class="value">{foreach from=$availableLocales key=localeKey item=localeName}
-		<input {$disableSnippet} type="checkbox" name="userLocales[]" id="userLocales-{$localeKey|escape}" value="{$localeKey|escape}"{if in_array($localeKey, $userLocales)} checked="checked"{/if} /> <label for="userLocales-{$localeKey|escape}">{$localeName|escape}</label><br />
-	{/foreach}</td>
-</tr>
-
-{/if}{* other locales exist *}
 
 </table>
 

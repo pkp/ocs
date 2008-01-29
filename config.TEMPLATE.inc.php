@@ -309,7 +309,7 @@ page_links = 10
 ; Whether or not to enable Captcha features
 captcha = off
 
-; Whether or not to use Captcha on user registration
+; Whether or not to use Captcha on user registration / account creation
 captcha_on_register = on
 
 ; Whether or not to use Captcha on user comments

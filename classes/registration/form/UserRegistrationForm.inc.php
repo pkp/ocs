@@ -17,10 +17,6 @@
 import('form.Form');
 
 class UserRegistrationForm extends Form {
-
-	/** @var boolean Include a user's working languages in their profile */
-	var $profileLocalesEnabled;
-
 	/** @var boolean whether or not captcha is enabled for this form */
 	var $captchaEnabled;
 
@@ -43,8 +39,6 @@ class UserRegistrationForm extends Form {
 		$user =& Request::getUser();
 		if (!$user) {
 			$site = &Request::getSite();
-			$this->profileLocalesEnabled = $site->getProfileLocalesEnabled();
-
 			$this->addCheck(new FormValidator($this, 'username', 'required', 'user.profile.form.usernameRequired'));
 			$this->addCheck(new FormValidator($this, 'password', 'required', 'user.profile.form.passwordRequired'));
 
@@ -114,12 +108,7 @@ class UserRegistrationForm extends Form {
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
-		$templateMgr->assign('profileLocalesEnabled', $this->profileLocalesEnabled);
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
-		if ($this->profileLocalesEnabled) {
-			$site = &Request::getSite();
-			$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
-		}
 
 		$templateMgr->assign('schedConfSettings', $schedConf->getSettings());
 		$templateMgr->assign_by_ref('user', $user);
@@ -188,19 +177,6 @@ class UserRegistrationForm extends Form {
 			$user->setInterests($this->getData('interests'));
 			$user->setDateRegistered(Core::getCurrentDate());
 			$user->setCountry($this->getData('country'));
-
-			if ($this->profileLocalesEnabled) {
-				$site = &Request::getSite();
-				$availableLocales = $site->getSupportedLocales();
-
-				$locales = array();
-				foreach ($this->getData('userLocales') as $locale) {
-					if (Locale::isLocaleValid($locale) && in_array($locale, $availableLocales)) {
-						array_push($locales, $locale);
-					}
-				}
-				$user->setLocales($locales);
-			}
 
 			$user->setPassword(Validation::encryptCredentials($this->getData('username'), $this->getData('password')));
 

@@ -489,7 +489,7 @@ div.separator {
  */
 .draggable {
 	position: relative;
-	cursor: hand;
+	cursor: move;
 }
 
 .borderBox {
