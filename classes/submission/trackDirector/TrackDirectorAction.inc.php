@@ -98,19 +98,16 @@ class TrackDirectorAction extends Action {
 	function completeReview($trackDirectorSubmission) {
 		$schedConf =& Request::getSchedConf();
 
-		if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL) {
+		if($trackDirectorSubmission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL) {
 			// two-stage submission; paper required
 			// The submission is incomplete, and needs the presenter to submit
 			// more materials (potentially for another stage of reviews)
 
 			if($trackDirectorSubmission->getCurrentStage() == REVIEW_STAGE_ABSTRACT) {
 
-				// We've just completed reviewing the abstract. If the paper needs
-				// a separate review progress, flag it as such and move it back
-				// to review stage 1.
-				if($schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL) {
-					$trackDirectorSubmission->setCurrentStage(REVIEW_STAGE_PRESENTATION);
-				}
+				// We've just completed reviewing the abstract. Prepare for presentation
+				// review process.
+				$trackDirectorSubmission->setCurrentStage(REVIEW_STAGE_PRESENTATION);
 
 				// The paper itself needs to be collected. Flag it so the presenter
 				// may complete it.

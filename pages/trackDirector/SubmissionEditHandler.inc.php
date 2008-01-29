@@ -95,7 +95,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 
 		$stage = (isset($args[1]) ? (int) $args[1] : null);
-		$reviewMode = $schedConf->getSetting('reviewMode');
+		$reviewMode = $submission->getReviewMode();
 		switch ($reviewMode) {
 			case REVIEW_MODE_ABSTRACTS_ALONE:
 				$stage = REVIEW_STAGE_ABSTRACT;
@@ -117,13 +117,13 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$tracks = &$trackDao->getSchedConfTracks($schedConf->getSchedConfId());
 
-		$showPeerReviewOptions = $stage == $submission->getCurrentStage() && $submission->getReviewFile() != null ? true : false;
 
 		$directorDecisions = $submission->getDecisions($stage);
 		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1]['decision'] : null;
 
 		$editAssignments =& $submission->getEditAssignments();
 		$isCurrent = ($stage == $submission->getCurrentStage());
+		$showPeerReviewOptions = $isCurrent && $submission->getReviewFile() != null ? true : false;
 
 		$allowRecommendation = $isCurrent &&
 			($submission->getReviewFileId() || $stage != REVIEW_STAGE_PRESENTATION) &&

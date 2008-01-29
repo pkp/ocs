@@ -238,6 +238,24 @@ class Upgrade extends Installer {
 	}
 
 	/**
+	 * For 2.1.0 upgrade: Set review mode for papers.
+	 * @return boolean
+	 */
+	function setReviewMode() {
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+
+		$schedConfs =& $schedConfDao->getSchedConfs();
+		while ($schedConf =& $schedConfs->next()) {
+			$papers =& $paperDao->getPapersBySchedConfId($schedConf->getSchedConfId());
+			$reviewMode = $schedConf->getSetting('reviewMode');
+			$paperDao->update('UPDATE papers SET review_mode = ? WHERE sched_conf_id = ?', array((int) $reviewMode, $schedConf->getSchedConfId()));
+			unset($schedConf);
+		}
+		return true;
+	}
+
+	/**
 	 * For 2.1 upgrade: index handling changed away from using the <KEY />
 	 * syntax in schema descriptors in cases where AUTONUM columns were not
 	 * used, in favour of specifically-named indexes using the <index ...>

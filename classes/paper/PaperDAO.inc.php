@@ -130,6 +130,7 @@ class PaperDAO extends DAO {
 		$paper->setDateReminded($this->datetimeFromDB($row['date_reminded']));
 		$paper->setStatus($row['status']);
 		$paper->setSubmissionProgress($row['submission_progress']);
+		$paper->setReviewMode($row['review_mode']);
 		$paper->setCurrentStage($row['current_stage']);
 		$paper->setSubmissionFileId($row['submission_file_id']);
 		$paper->setRevisedFileId($row['revised_file_id']);
@@ -168,6 +169,7 @@ class PaperDAO extends DAO {
 				 date_to_archive,
 				 status,
 				 submission_progress,
+				 review_mode,
 				 current_stage,
 				 submission_file_id,
 				 revised_file_id,
@@ -176,7 +178,7 @@ class PaperDAO extends DAO {
 				 director_file_id,
 				 pages)
 				VALUES
-				(?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
 			array(
 				$paper->getUserId(),
@@ -187,6 +189,7 @@ class PaperDAO extends DAO {
 				$paper->getCommentsToDirector(),
 				$paper->getStatus() === null ? SUBMISSION_STATUS_QUEUED : $paper->getStatus(),
 				$paper->getSubmissionProgress() === null ? 1 : $paper->getSubmissionProgress(),
+				$paper->getReviewMode(),
 				$paper->getCurrentStage(),
 				$paper->getSubmissionFileId(),
 				$paper->getRevisedFileId(),
@@ -232,6 +235,7 @@ class PaperDAO extends DAO {
 					date_to_archive = %s,
 					status = ?,
 					submission_progress = ?,
+					review_mode = ?,
 					current_stage = ?,
 					submission_file_id = ?,
 					revised_file_id = ?,
@@ -249,6 +253,7 @@ class PaperDAO extends DAO {
 				$paper->getCommentsToDirector(),
 				$paper->getStatus(),
 				$paper->getSubmissionProgress(),
+				$paper->getReviewMode(),
 				$paper->getCurrentStage(),
 				$paper->getSubmissionFileId(),
 				$paper->getRevisedFileId(),

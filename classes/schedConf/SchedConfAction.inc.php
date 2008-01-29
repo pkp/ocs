@@ -195,6 +195,23 @@ class SchedConfAction {
 		HookRegistry::call('SchedConfAction::registeredDomain', array(&$schedConf, &$result));
 		return $result;
 	}
+
+	/**
+	 * Checks whether or not submissions are currently open.
+	 * @return bool
+	 */
+	function submissionsOpen(&$schedConf) {
+		$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate', false);
+		$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate', false);
+
+		$currentTime = time();
+
+		return (
+			$submissionsOpenDate && $submissionsCloseDate &&
+			$currentTime >= $submissionsOpenDate &&
+			$currentTime < $submissionsCloseDate
+		);
+	}
 }
 
 ?>

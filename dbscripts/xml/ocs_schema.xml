@@ -704,6 +704,7 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
+		<field name="review_mode" type="I8"/>
 		<field name="current_stage" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>

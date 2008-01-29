@@ -32,14 +32,13 @@ class PresenterAction extends Action {
 	/**
 	 * Designates the original file the review version.
 	 * @param $presenterSubmission object
-	 * @param $designate boolean
 	 */
-	function designateReviewVersion($presenterSubmission, $designate = false) {
+	function designateReviewVersion($presenterSubmission) {
 		import('file.PaperFileManager');
 		$paperFileManager = &new PaperFileManager($presenterSubmission->getPaperId());
 		$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');
 
-		if ($designate && !HookRegistry::call('PresenterAction::designateReviewVersion', array(&$presenterSubmission))) {
+		if (!HookRegistry::call('PresenterAction::designateReviewVersion', array(&$presenterSubmission))) {
 			$submissionFile =& $presenterSubmission->getSubmissionFile();
 			if ($submissionFile) {
 				$reviewFileId = $paperFileManager->copyToReviewFile($submissionFile->getFileId());
@@ -55,19 +54,7 @@ class PresenterAction extends Action {
 					unset($schedConf);
 					$schedConf =& $schedConfDao->getSchedConf($presenterSubmission->getSchedConfId());
 				}
-				$reviewMode = $schedConf->getSetting('reviewMode');
-				switch ($reviewMode) {
-					case REVIEW_MODE_BOTH_SIMULTANEOUS:
-					case REVIEW_MODE_PRESENTATIONS_ALONE:
-						$stage = REVIEW_STAGE_PRESENTATION;
-						break;
-					case REVIEW_MODE_BOTH_SEQUENTIAL:
-					case REVIEW_MODE_ABSTRACTS_ALONE:
-					default:
-						$stage = REVIEW_STAGE_ABSTRACT;
-						break;
-				}
-				$trackDirectorSubmissionDao->createReviewStage($presenterSubmission->getPaperId(), $stage, 1);
+				$trackDirectorSubmissionDao->createReviewStage($presenterSubmission->getPaperId(), REVIEW_STAGE_PRESENTATION, 1);
 			}
 		}
 	}

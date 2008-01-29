@@ -333,12 +333,6 @@ class DirectorSubmissionDAO extends DAO {
 		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 
-		$reviewMode = $schedConf->getSetting('reviewMode');
-		if($reviewMode != REVIEW_MODE_ABSTRACTS_ALONE)
-			$finalReviewType = REVIEW_STAGE_PRESENTATION;
-		else
-			$finalReviewType = REVIEW_STAGE_ABSTRACT;
-
 		while (!$result->EOF) {
 			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 			$paperId = $directorSubmission->getPaperId();
@@ -421,13 +415,6 @@ class DirectorSubmissionDAO extends DAO {
 
 		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
-
-		// If the submission has passed this review stage, it's out of review.
-		$reviewMode = $schedConf->getSetting('reviewMode');
-		if($reviewMode != REVIEW_MODE_ABSTRACTS_ALONE)
-			$finalReviewType = REVIEW_STAGE_PRESENTATION;
-		else
-			$finalReviewType = REVIEW_STAGE_ABSTRACT;
 
 		$submissionsCount = array();
 		for($i = 0; $i < 2; $i++) {

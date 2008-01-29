@@ -69,8 +69,8 @@ class PresenterSubmitForm extends Form {
 		// Determine which submission steps should be shown
 
 		$progress = isset($this->paper) ? $this->paper->getCurrentStage() : REVIEW_STAGE_ABSTRACT;
+		$reviewMode = isset($this->paper)?$this->paper->getReviewMode():$schedConf->getSetting('reviewMode');
 
-		$reviewMode = $schedConf->getSetting('reviewMode');
 		$showAbstractSteps = $progress == REVIEW_STAGE_ABSTRACT || $reviewMode != REVIEW_MODE_BOTH_SEQUENTIAL;
 		$showPaperSteps = $progress == REVIEW_STAGE_PRESENTATION || $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS;
 

@@ -29,7 +29,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'presenter.submit.form.titleRequired'));
 
 		$schedConf =& Request::getSchedConf();
-		$reviewMode = $schedConf->getSetting('reviewMode');
+		$reviewMode = $paper->getReviewMode();
 		if ($reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE) {
 			$this->addCheck(new FormValidatorLocale($this, 'abstract', 'required', 'presenter.submit.form.abstractRequired'));
 		}
@@ -105,7 +105,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		);
 
 		$schedConf =& Request::getSchedConf();
-		$reviewMode = $schedConf->getSetting('reviewMode');
+		$reviewMode = $this->paper->getReviewMode();
 		if ($reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE) {
 			$userVars[] = 'abstract';
 		}
@@ -124,7 +124,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 	function getLocaleFieldNames() {
 		$returner = array('title', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
 		$schedConf =& Request::getSchedConf();
-		$reviewMode = $schedConf->getSetting('reviewMode');
+		$reviewMode = $this->paper->getReviewMode();
 		if ($reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE) {
 			$returner[] = 'abstract';
 		}
@@ -142,7 +142,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		$templateMgr->assign_by_ref('countries', $countries);
 
 		$schedConf =& Request::getSchedConf();
-		$reviewMode = $schedConf->getSetting('reviewMode');
+		$reviewMode = $this->paper->getReviewMode();
 		$templateMgr->assign('collectAbstracts', $reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE);
 		parent::display();
 	}
@@ -162,7 +162,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 		// Update paper
 		$paper->setTitle($this->getData('title'), null); // Localized
 
-		$reviewMode = $schedConf->getSetting('reviewMode');
+		$reviewMode = $this->paper->getReviewMode();
 		if ($reviewMode != REVIEW_MODE_PRESENTATIONS_ALONE) {
 			$paper->setAbstract($this->getData('abstract'), null); // Localized
 		}
@@ -192,7 +192,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 
 			// If we aren't about to collect the paper, the submission is complete
 			// (for now)
-			$reviewMode = $schedConf->getSetting('reviewMode');
+			$reviewMode = $this->paper->getReviewMode();
 			if($reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS || $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE) {
 				$paper->setSubmissionProgress($this->step + 1);
 				// The line below is necessary to ensure that

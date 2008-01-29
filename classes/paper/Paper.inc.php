@@ -758,6 +758,22 @@ class Paper extends DataObject {
 	}
 
 	/**
+	 * Get review mode.
+	 * @return int REVIEW_MODE_...
+	 */
+	function getReviewMode() {
+		return $this->getData('reviewMode');
+	}
+
+	/**
+	 * Set review mode.
+	 * @param $reviewMode int REVIEW_MODE_...
+	 */
+	function setReviewMode($reviewMode) {
+		return $this->setData('reviewMode', $reviewMode);
+	}
+
+	/**
 	 * Get submission file id.
 	 * @return int
 	 */

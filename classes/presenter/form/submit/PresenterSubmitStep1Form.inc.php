@@ -109,8 +109,9 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 			$this->paper->setSubmissionProgress($this->step + 1);
 			$this->paper->setLanguage(String::substr($conference->getPrimaryLocale(), 0, 2));
 			$this->paper->setCommentsToDirector($this->getData('commentsToDirector'));
+			$this->paper->setReviewMode($schedConf->getSetting('reviewMode'));
 
-			switch($schedConf->getSetting('reviewMode')) {
+			switch($this->paper->getReviewMode()) {
 				case REVIEW_MODE_ABSTRACTS_ALONE:
 				case REVIEW_MODE_BOTH_SEQUENTIAL:
 					$this->paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);

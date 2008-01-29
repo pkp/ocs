@@ -62,7 +62,20 @@ class TrackSubmissionHandler extends PresenterHandler {
 		list($conference, $schedConf, $submission) = TrackSubmissionHandler::validate($paperId);
 		parent::setupTemplate(true, $paperId);
 
-		$stage = isset($args[1]) ? $args[1] : $submission->getCurrentStage();
+		$stage = (isset($args[1]) ? (int) $args[1] : 1);
+		$reviewMode = $submission->getReviewMode();
+		switch ($reviewMode) {
+			case REVIEW_MODE_ABSTRACTS_ALONE:
+				$stage = REVIEW_STAGE_ABSTRACT;
+				break;
+			case REVIEW_MODE_BOTH_SIMULTANEOUS:
+			case REVIEW_MODE_PRESENTATIONS_ALONE:
+				$stage = REVIEW_STAGE_PRESENTATION;
+				break;
+			case REVIEW_MODE_BOTH_SEQUENTIAL:
+				if ($stage != REVIEW_STAGE_ABSTRACT && $stage != REVIEW_STAGE_PRESENTATION) $stage = $submission->getCurrentStage();
+				break;
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('mayEditMetadata', PresenterAction::mayEditMetadata($submission));
@@ -98,7 +111,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		parent::setupTemplate(true, $paperId);
 
 		$stage = (isset($args[1]) ? (int) $args[1] : 1);
-		$reviewMode = $schedConf->getSetting('reviewMode');
+		$reviewMode = $presenterSubmission->getReviewMode();
 		switch ($reviewMode) {
 			case REVIEW_MODE_ABSTRACTS_ALONE:
 				$stage = REVIEW_STAGE_ABSTRACT;

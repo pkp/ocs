@@ -65,7 +65,7 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 		// Designate this as the review version by default.
 		$presenterSubmissionDao =& DAORegistry::getDAO('PresenterSubmissionDAO');
 		$presenterSubmission =& $presenterSubmissionDao->getPresenterSubmission($paper->getPaperId());
-		PresenterAction::designateReviewVersion($presenterSubmission, true);
+		PresenterAction::designateReviewVersion($presenterSubmission);
 		unset($presenterSubmission);
 
 		// Update any review assignments so they may access the file
@@ -76,7 +76,7 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
 		}
 
-		$reviewMode = $schedConf->getSetting('reviewMode');
+		$reviewMode = $presenterSubmission->getReviewMode();
 		$user =& Request::getUser();
 
 		$trackDirectors = array();

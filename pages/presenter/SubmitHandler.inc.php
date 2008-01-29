@@ -163,7 +163,7 @@ class SubmitHandler extends PresenterHandler {
 
 			// For the "abstract only" or sequential review models, nothing else needs
 			// to be collected beyond page 2.
-			$reviewMode = $schedConf->getSetting('reviewMode');
+			$reviewMode = $paper->getReviewMode();
 			if (($step == 2 && ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL || $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE)) ||
 					($step == 5 )) {
 
@@ -332,19 +332,14 @@ class SubmitHandler extends PresenterHandler {
 			}
 
 		} else {
-
 			// If the paper does not exist, require that the submission window be open.
-			$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate', false);
-			$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate', false);
-
-			if(!$submissionsOpenDate || !$submissionsCloseDate ||
-					time() < $submissionsOpenDate || time() > $submissionsCloseDate) {
-
+			import('schedConf.SchedConfAction');
+			if (!SchedConfAction::submissionsOpen($schedConf)) {
 				Request::redirect(null, null, 'presenter', 'index');
 			}
 		}
 		return array(&$conference, &$schedConf, &$paper);
 	}
-
 }
+
 ?>
