@@ -11,7 +11,7 @@
 <a name="metadata"></a>
 <h3>{translate key="submission.metadata"}</h3>
 
-{if $mayEditMetadata}<p><a href="{url op="viewMetadata" path=$submission->getPaperId()}" class="action">{translate key="submission.editMetadata"}</a></p>{/if}
+{if $mayEditPaper}<p><a href="{url op="viewMetadata" path=$submission->getPaperId()}" class="action">{translate key="submission.editMetadata"}</a></p>{/if}
 
 
 <h4>{translate key="paper.presenters"}</h4>

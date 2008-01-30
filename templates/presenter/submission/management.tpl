@@ -43,13 +43,18 @@
 		<td class="label">{translate key="paper.suppFilesAbbrev"}</td>
 		<td width="30%" class="value">
 			{foreach name="suppFiles" from=$suppFiles item=suppFile}
-				<a href="{url op="editSuppFile" path=$submission->getPaperId()|to_array:$suppFile->getSuppFileId()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;{$suppFile->getDateModified()|date_format:$dateFormatShort}<br />
+				{if $mayEditPaper}
+					{assign var="suppFileOp" value="editSuppFile"}
+				{else}
+					{assign var="suppFileOp" value="viewSuppFile"}
+				{/if}
+				<a href="{url op=$suppFileOp path=$submission->getPaperId()|to_array:$suppFile->getSuppFileId()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;{$suppFile->getDateModified()|date_format:$dateFormatShort}<br />
 			{foreachelse}
 				{translate key="common.none"}
 			{/foreach}
 		</td>
 		<td width="50%" class="value">
-			{if $submission->getStatus() != STATUS_PUBLISHED && $submission->getStatus() != STATUS_ARCHIVED}
+			{if $mayEditPaper}
 				<a href="{url op="addSuppFile" path=$submission->getPaperId()}" class="action">{translate key="submission.addSuppFile"}</a>
 			{else}
 				&nbsp;

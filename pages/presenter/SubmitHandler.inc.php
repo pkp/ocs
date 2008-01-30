@@ -309,7 +309,7 @@ class SubmitHandler extends PresenterHandler {
 	 * @param $step int
 	 */
 	function validate($paperId = null, $step = false) {
-		list($conference, $schedConf) = parent::validate(true, true);
+		list($conference, $schedConf) = parent::validate();
 
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$user = &Request::getUser();
@@ -332,9 +332,12 @@ class SubmitHandler extends PresenterHandler {
 			}
 
 		} else {
-			// If the paper does not exist, require that the submission window be open.
+			// If the paper does not exist, require that the
+			// submission window be open or that this user be a
+			// director or track director.
 			import('schedConf.SchedConfAction');
-			if (!SchedConfAction::submissionsOpen($schedConf)) {
+			$schedConf =& Request::getSchedConf();
+			if (!$schedConf || (!SchedConfAction::submissionsOpen($schedConf) && !Validation::isDirector($schedConf->getConferenceId(), $schedConf->getSchedConfId()) && !Validation::isTrackDirector($schedConf->getConferenceId()))) {
 				Request::redirect(null, null, 'presenter', 'index');
 			}
 		}

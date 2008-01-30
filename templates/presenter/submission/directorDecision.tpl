@@ -61,8 +61,12 @@
 		</td>
 		<td class="value" width="80%">
 			{foreach from=$presenterFiles item=presenterFile key=key}
-				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$presenterFile->getFileId():$presenterFile->getRevision()}" class="file">{$presenterFile->getFileName()|escape}</a>&nbsp;&nbsp;{$presenterFile->getDateModified()|date_format:$dateFormatShort}&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="{url op="deletePaperFile" path=$submission->getPaperId()|to_array:$presenterFile->getFileId():$presenterFile->getRevision()}" class="action">{translate key="common.delete"}</a><br />
+				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$presenterFile->getFileId():$presenterFile->getRevision()}" class="file">{$presenterFile->getFileName()|escape}</a>&nbsp;&nbsp;{$presenterFile->getDateModified()|date_format:$dateFormatShort}
+				{if $mayEditPaper}
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="{url op="deletePaperFile" path=$submission->getPaperId()|to_array:$presenterFile->getFileId():$presenterFile->getRevision()}" class="action">{translate key="common.delete"}</a>
+				{/if}
+				<br />
 			{foreachelse}
 				{translate key="common.none"}
 			{/foreach}
@@ -75,8 +79,8 @@
 		<td class="value" width="80%">
 			<form method="post" action="{url op="uploadRevisedVersion"}" enctype="multipart/form-data">
 				<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
-				<input type="file" name="upload" class="uploadField" />
-				<input type="submit" name="submit" value="{translate key="common.upload"}" class="button" />
+				<input type="file" {if !$mayEditPaper}disabled="disabled" {/if}name="upload" class="uploadField" />
+				<input type="submit" {if !$mayEditPaper}disabled="disabled" {/if}name="submit" value="{translate key="common.upload"}" class="button" />
 			</form>
 
 		</td>

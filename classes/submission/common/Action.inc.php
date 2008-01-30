@@ -21,18 +21,6 @@ define('SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS', 3);
 define('SUBMISSION_DIRECTOR_DECISION_DECLINE', 4);
 
 class Action {
-
-	/**
-	 * Constructor.
-	 */
-	function Action() {
-
-	}
-
-	/**
-	 * Actions.
-	 */
-
 	/**
 	 * View metadata of a paper.
 	 * @param $paper object

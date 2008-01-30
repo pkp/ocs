@@ -290,16 +290,35 @@ class PresenterAction extends Action {
 		return $result;
 	}
 
-	function mayEditMetadata(&$presenterSubmission) {
+	function mayEditPaper(&$presenterSubmission) {
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf || $schedConf->getSchedConfId() != $presenterSubmission->getSchedConfId()) {
 			unset($schedConf);
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 			$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
 		}
-		$submissionsCloseDate = (int) $schedConf->getSetting('submissionsCloseDate');
-		// If submissions haven't closed, the author may edit metadata.
-		return (time() <= $submissionsCloseDate);
+
+		// Directors acting as Presenters can always edit.
+		if (Validation::isDirector($schedConf->getConferenceId(), $schedConf->getSchedConfId()) || Validation::isTrackDirector($schedConf->getConferenceId(), $schedConf->getSchedConfId())) return true;
+
+		// Incomplete submissions can always be edited.
+		if ($presenterSubmission->getProgress() != 0) return true;
+
+		// Published submissions can never be edited.
+		if ($presenterSubmission->getStatus() != STATUS_QUEUED) return false;
+
+		// If the last recorded editorial decision on the current stage
+		// was "Revisions Required", the author may edit the submission.
+		$decisions = $presenterSubmission->getDecisions($presenterSubmission->getCurrentStage());
+		$decision = array_shift($decisions);
+		if ($decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS) return true;
+
+		// If submissions haven't closed, the author may edit the submission.
+		import('schedConf.SchedConfAction');
+		if (SchedConfAction::submissionsOpen($schedConf)) return true;
+
+		// Otherwise, edits are not allowed.
+		return false;
 	}
 }
 

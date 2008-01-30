@@ -46,7 +46,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$fileId = isset($args[1]) ? (int) $args[1] : 0;
 		$revisionId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId);
+		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId, true);
 		PresenterAction::deletePaperFile($presenterSubmission, $fileId, $revisionId);
 
 		Request::redirect(null, null, null, 'submissionReview', $paperId);
@@ -78,7 +78,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		}
 
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('mayEditMetadata', PresenterAction::mayEditMetadata($submission));
+		$templateMgr->assign('mayEditPaper', PresenterAction::mayEditPaper($submission));
 
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$track = &$trackDao->getTrack($submission->getTrackId());
@@ -153,6 +153,9 @@ class TrackSubmissionHandler extends PresenterHandler {
 		import('submission.trackDirector.TrackDirectorSubmission');
 		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
 
+		// Determine whether or not certain features should be disabled (i.e. past deadline)
+		$templateMgr->assign('mayEditPaper', PresenterAction::mayEditPaper($presenterSubmission));
+
 		$templateMgr->assign('helpTopicId', 'editorial.presentersRole.review');
 		$templateMgr->display('presenter/submissionReview.tpl');
 	}
@@ -163,7 +166,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 	 */
 	function addSuppFile($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId);
+		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId, true);
 		parent::setupTemplate(true, $paperId, 'summary');
 
 		import('submission.form.SuppFileForm');
@@ -179,13 +182,38 @@ class TrackSubmissionHandler extends PresenterHandler {
 	}
 
 	/**
+	 * View a supplementary file.
+	 * @param $args array ($paperId, $suppFileId)
+	 */
+	function viewSuppFile($args) {
+		$paperId = isset($args[0]) ? (int) $args[0] : 0;
+		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
+		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId);
+
+		parent::setupTemplate(true, $paperId, 'summary');
+
+		// View supplementary file only
+		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$suppFile = &$suppFileDao->getSuppFile($suppFileId, $paperId);
+
+		if (!isset($suppFile)) {
+			Request::redirect(null, null, null, 'submission', $paperId);
+		}
+
+		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign('paperId', $paperId);
+		$templateMgr->assign_by_ref('suppFile', $suppFile);
+		$templateMgr->display('submission/suppFile/suppFileView.tpl');	
+	}
+
+	/**
 	 * Edit a supplementary file.
 	 * @param $args array ($paperId, $suppFileId)
 	 */
 	function editSuppFile($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
-		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId);
+		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId, true);
 		parent::setupTemplate(true, $paperId, 'summary');
 
 		import('submission.form.SuppFileForm');
@@ -206,7 +234,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 	 */
 	function setSuppFileVisibility($args) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId);
+		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId, true);
 
 		$suppFileId = Request::getUserVar('fileId');
 		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
@@ -225,7 +253,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 	 */
 	function saveSuppFile($args) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId);
+		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId, true);
 
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
@@ -248,7 +276,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 	 */
 	function uploadRevisedVersion() {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = TrackSubmissionHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = TrackSubmissionHandler::validate($paperId, true);
 		parent::setupTemplate(true);
 
 		PresenterAction::uploadRevisedVersion($submission);
@@ -266,17 +294,11 @@ class TrackSubmissionHandler extends PresenterHandler {
 
 	function saveMetadata() {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = TrackSubmissionHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = TrackSubmissionHandler::validate($paperId, true);
 		parent::setupTemplate(true, $paperId);
 
-		// If submissions are closed, the author may not edit metadata.
-		if (!PresenterAction::mayEditMetadata($submission)) {
+		if(PresenterAction::saveMetadata($submission)) {
 			Request::redirect(null, null, null, 'submission', $paperId);
-		} else {
-
-			if(PresenterAction::saveMetadata($submission)) {
-				Request::redirect(null, null, null, 'submission', $paperId);
-			}
 		}
 	}
 
@@ -319,8 +341,12 @@ class TrackSubmissionHandler extends PresenterHandler {
 	/**
 	 * Validate that the user is the presenter for the paper.
 	 * Redirects to presenter index page if validation fails.
+	 * @param $paperId int
+	 * @param $requiresEditAccess boolean True means that the author must
+	 * 	  have edit access over the specified paper in order for
+	 * 	  validation to be successful.
 	 */
-	function validate($paperId) {
+	function validate($paperId, $requiresEditAccess = false) {
 		parent::validate();
 
 		$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');
@@ -341,6 +367,10 @@ class TrackSubmissionHandler extends PresenterHandler {
 			if ($presenterSubmission->getUserId() != $user->getUserId()) {
 				$isValid = false;
 			}
+		}
+
+		if ($isValid && $requiresEditAccess) {
+			if (!PresenterAction::mayEditPaper($presenterSubmission)) $isValid = false;
 		}
 
 		if (!$isValid) {
@@ -364,6 +394,6 @@ class TrackSubmissionHandler extends PresenterHandler {
 			Request::redirect(null, null, null, 'submission', $paperId);
 		}
 	}
-
 }
+
 ?>

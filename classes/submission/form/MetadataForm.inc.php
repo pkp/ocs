@@ -44,7 +44,7 @@ class MetadataForm extends Form {
 
 		// Check if the presenter can modify metadata.
 		if ($roleId == ROLE_ID_PRESENTER) {
-			if(PresenterAction::mayEditMetadata($paper)) {
+			if(PresenterAction::mayEditPaper($paper)) {
 				$this->canEdit = true;
 			}
 		}

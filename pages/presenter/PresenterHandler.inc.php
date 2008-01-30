@@ -48,7 +48,10 @@ class PresenterHandler extends Handler {
 		$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate', false);
 		$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate', false);
 
-		if(!$submissionsOpenDate || !$submissionsCloseDate || time() < $submissionsOpenDate) {
+		if (Validation::isDirector($schedConf->getConferenceId(), $schedConf->getSchedConfId()) || Validation::isTrackDirector($schedConf->getConferenceId(), $schedConf->getSchedConfId())) {
+			// Directors or track directors may always submit
+			$acceptingSubmissions = true;
+		} elseif (!$submissionsOpenDate || !$submissionsCloseDate || time() < $submissionsOpenDate) {
 			// Too soon
 			$acceptingSubmissions = false;
 			$notAcceptingSubmissionsMessage = Locale::translate('presenter.submit.notAcceptingYet');
@@ -153,6 +156,11 @@ class PresenterHandler extends Handler {
 	function submission($args) {
 		import('pages.presenter.TrackSubmissionHandler');
 		TrackSubmissionHandler::submission($args);
+	}
+
+	function viewSuppFile($args) {
+		import('pages.presenter.TrackSubmissionHandler');
+		TrackSubmissionHandler::viewSuppFile($args);
 	}
 
 	function editSuppFile($args) {

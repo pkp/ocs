@@ -96,8 +96,8 @@
 						<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$suppFile->getFileId():$suppFile->getRevision()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;
 						{$suppFile->getDateModified()|date_format:$dateFormatShort}
 						<label for="show">{translate key="director.paper.showSuppFile"}</label>
-						<input type="checkbox" name="show" id="show" value="1"{if $suppFile->getShowReviewers()==1} checked="checked"{/if}/>
-						<input type="submit" name="submit" value="{translate key="common.record"}" class="button" />
+						<input type="checkbox" {if !$mayEditPaper}disabled="disabled" {/if}name="show" id="show" value="1"{if $suppFile->getShowReviewers()==1} checked="checked"{/if}/>
+						<input type="submit" {if !$mayEditPaper}disabled="disabled" {/if}name="submit" value="{translate key="common.record"}" class="button" />
 					</td>
 				</tr>
 			</form>
