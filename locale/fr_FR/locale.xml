@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2007 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the fr_FR locale.
   *
   * $Id$
   -->
 
-<locale name="en_US" full_name="U.S. English">
+<locale name="fr_FR" full_name="Français">
 	<!--
 	 * This file is organized into several major sections, separated
 	 * by comments like this one. These sections are called:
