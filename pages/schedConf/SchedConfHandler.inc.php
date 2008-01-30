@@ -269,9 +269,10 @@ class SchedConfHandler extends Handler {
 		// For each block, find out how long it lasts
 		foreach ($baseDates as $baseDate) {
 			foreach ($boundaryTimes as $boundaryTimeIndex => $boundaryTime) {
-				if (!isset($timeBlockGrid[$baseDate][$boundaryTime])) continue;
+				if (!isset($timeBlockGrid[$baseDate][$boundaryTime]['timeBlockStarts'])) continue;
+				$gridSlotUsed[$baseDate][$boundaryTime] = 1;
 				// Establish the number of rows spanned ($i); track used grid slots
-				for ($i=0; (isset($boundaryTimes[$i+$boundaryTimeIndex]) && !isset($timeBlockGrid[$baseDate][$boundaryTimes[$i+$boundaryTimeIndex]]['timeBlockEnds'])); $i++) {
+				for ($i=1; (isset($boundaryTimes[$i+$boundaryTimeIndex]) && !isset($timeBlockGrid[$baseDate][$boundaryTimes[$i+$boundaryTimeIndex]]['timeBlockEnds'])); $i++) {
 					$gridSlotUsed[$baseDate][$boundaryTimes[$i+$boundaryTimeIndex]] = 1;
 				}
 				$timeBlockGrid[$baseDate][$boundaryTime]['rowspan'] = $i;

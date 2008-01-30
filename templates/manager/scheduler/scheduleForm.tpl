@@ -287,7 +287,6 @@ function chooseRoom(el) {
 
 {/foreach}{* boundaryTimes *}
 
-
 </table>
 
 <div id="unscheduledPresentations" style="clear: both; height: 6em;">
