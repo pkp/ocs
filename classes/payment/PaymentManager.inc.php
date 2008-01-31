@@ -25,17 +25,21 @@ class PaymentManager {
 	/**
 	 * Queue a payment for receipt.
 	 */
-	function queuePayment(&$queuedPayment) {
+	function queuePayment(&$queuedPayment, $expiryDate) {
 		if (!$this->isConfigured()) return false;
 
 		$queuedPaymentDao =& DAORegistry::getDAO('QueuedPaymentDAO');
-		$queuedPaymentId = $queuedPaymentDao->insertQueuedPayment($queuedPayment);
+		$queuedPaymentId = $queuedPaymentDao->insertQueuedPayment($queuedPayment, $expiryDate);
+
+		// Perform periodic cleanup
+		if (time() % 100 == 0) $queuedPaymentDao->deleteExpiredQueuedPayments();
+
 		return $queuedPaymentId;
 	}
 
 	function &getPaymentPlugin() {
 		$returnValue = null;
-		return $returnValue; // Abstract method; subclasses should impl
+		return $returnValue; // Abstract method; subclasses should implement
 	}
 
 	function isConfigured() {
@@ -62,7 +66,12 @@ class PaymentManager {
 		return $queuedPayment;
 	}
 
-	function fulfillQueuedPayment(&$queuedPayment) {
+	/**
+	 * Fulfill a queued payment.
+	 * @param $queuedPaymentId int
+	 * @param $queuedPayment object
+	 */
+	function fulfillQueuedPayment($queuedPaymentId, &$queuedPayment) {
 		fatalError('ABSTRACT CLASS');
 	}
 }

@@ -232,7 +232,7 @@ class UserRegistrationForm extends Form {
 		$registrationId = $registrationDao->insertRegistration($registration);
 
 		$queuedPayment =& $paymentManager->createQueuedPayment($schedConf->getConferenceId(), $schedConf->getSchedConfId(), QUEUED_PAYMENT_TYPE_REGISTRATION, $user->getUserId(), $registrationId, $registrationType->getCost(), $registrationType->getCurrencyCodeAlpha());
-		$queuedPaymentId = $paymentManager->queuePayment($queuedPayment);
+		$queuedPaymentId = $paymentManager->queuePayment($queuedPayment, time() + (60 * 60 * 24 * 30)); // 30 days to complete
 
 		$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
 

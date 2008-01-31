@@ -47,7 +47,12 @@ class OCSPaymentManager extends PaymentManager {
 		return $paymentMethodPlugin;
 	}
 
-	function fulfillQueuedPayment(&$queuedPayment) {
+	/**
+	 * Fulfill a queued payment.
+	 * @param $queuedPaymentId int
+	 * @param $queuedPayment object
+	 */
+	function fulfillQueuedPayment($queuedPaymentId, &$queuedPayment) {
 		if ($queuedPayment) switch ($queuedPayment->getType()) {
 			case QUEUED_PAYMENT_TYPE_REGISTRATION:
 				$registrationId = $queuedPayment->getAssocId();
@@ -59,7 +64,7 @@ class OCSPaymentManager extends PaymentManager {
 				$registrationDao->updateRegistration($registration);
 
 				$queuedPaymentDao =& DAORegistry::getDAO('QueuedPaymentDAO');
-				$queuedPaymentDao->deleteQueuedPayment($queuedPayment);
+				$queuedPaymentDao->deleteQueuedPayment($queuedPaymentId);
 				return true;
 		}
 		return false;

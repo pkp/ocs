@@ -2047,6 +2047,7 @@
 		<field name="date_modified" type="T">
 			<NOTNULL/>
 		</field>
+		<field name="expiry_date" type="D" />
 		<field name="payment_data" type="X" />
 		<descr>Logs queued (unfulfilled) payments.</descr>
 		<index name="queued_payments_hash">

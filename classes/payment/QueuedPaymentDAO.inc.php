@@ -48,15 +48,17 @@ class QueuedPaymentDAO extends DAO {
 	/**
 	 * Insert a new queued payment.
 	 * @param $payment Payment
+	 * @param $expiryDate date
 	 */
-	function insertQueuedPayment(&$queuedPayment) {
+	function insertQueuedPayment(&$queuedPayment, $expiryDate) {
 		$this->update(
 			sprintf('INSERT INTO queued_payments
-				(date_created, date_modified, payment_data)
+				(date_created, date_modified, expiry_date, payment_data)
 				VALUES
-				(%s, %s, ?)',
+				(%s, %s, %s, ?)',
 				$this->datetimeToDB(Core::getCurrentDate()),
 				$this->datetimeToDB(Core::getCurrentDate())),
+				$this->datetimeToDB($expiryDate),
 			array(
 				serialize($queuedPayment)
 			)
@@ -67,7 +69,7 @@ class QueuedPaymentDAO extends DAO {
 
 	/**
 	 * Update an existing queued payment.
-	 * @param $paymentId int
+	 * @param $queuedPaymentId int
 	 * @param $payment Payment
 	 */
 	function updateQueuedPayment($queuedPaymentId, &$queuedPayment) {
@@ -80,7 +82,7 @@ class QueuedPaymentDAO extends DAO {
 				$this->datetimeToDB(Core::getCurrentDate())),
 			array(
 				serialize($queuedPayment),
-				$queuedPaymentId
+				(int) $queuedPaymentId
 			)
 		);
 	}
@@ -93,11 +95,25 @@ class QueuedPaymentDAO extends DAO {
 		return $this->getInsertId('queued_payments', 'queued_payment_id');
 	}
 
-	function deleteQueuedPayment(&$queuedPayment) {
+	/**
+	 * Delete a queued payment.
+	 * @param $queuedPaymentId int
+	 */
+	function deleteQueuedPayment($queuedPaymentId) {
 		return $this->update(
 			'DELETE FROM queued_payments WHERE queued_payment_id = ?',
-			array($queuedPayment->getQueuedPaymentId())
+			array((int) $queuedPaymentId)
 		);
+	}
+
+	/**
+	 * Delete expired queued payments.
+	 */
+	function deleteExpiredQueuedPayments() {
+		return $this->update(sprintf(
+			'DELETE FROM queued_payments WHERE expiry_date < %s',
+			$this->datetimeToDB(time())
+		));
 	}
 }
 

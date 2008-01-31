@@ -201,7 +201,7 @@ class PayPalPlugin extends PaymethodPlugin {
 							}
 
 							// Fulfill the queued payment.
-							if ($ocsPaymentManager->fulfillQueuedPayment($queuedPayment)) exit();
+							if ($ocsPaymentManager->fulfillQueuedPayment($queuedPaymentId, $queuedPayment)) exit();
 
 							// If we're still here, it means the payment couldn't be fulfilled.
 							$mail->assignParams(array(
