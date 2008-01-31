@@ -23,10 +23,17 @@ class EmailHandler extends ManagerHandler {
 		list($conference, $schedConf) = EmailHandler::validate();
 		parent::setupTemplate(true);
 
+		$rangeInfo = Handler::getRangeInfo('emails');
+
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplates = &$emailTemplateDao->getEmailTemplates(Locale::getLocale(),
 			$conference->getConferenceId(),
 			$schedConf ? $schedConf->getSchedConfId() : 0);
+		if ($rangeInfo && $rangeInfo->isValid()) {
+			$emailTemplates =& new ArrayItemIterator($emailTemplates, $rangeInfo->getPage(), $rangeInfo->getCount());
+		} else {
+			$emailTemplates =& new ArrayItemIterator($emailTemplates);
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 
