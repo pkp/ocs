@@ -315,7 +315,7 @@
 	<message key="submission.submissionReview">Evaluation de la proposition</message>
 	<message key="submission.submissionHistory">Historique de la proposition</message>
 	<message key="submission.submissionManuscript">Manuscrit de la proposition</message>
-	<message key="submission.Métadonnées">Métadonnées sur la proposition</message>
+	<message key="submission.metadata">Métadonnées sur la proposition</message>
 	<message key="submission.originalFile">Fichier d'origine</message>
 	<message key="submission.uploadFile">Envoyer le papier</message>
 	<message key="submission.addSuppFile">Ajouter un fichier supplémentaire</message>
@@ -354,9 +354,9 @@
 	<message key="submission.layout.description">Cette étape optionnelle permet d'éditer les propositions ou bien changer les formats des fichiers que ce soit avant ou après que les propositions soient envoyées.</message>
 	<message key="submission.complete">Complet</message>
 	<message key="submission.files">Fichiers</message>
-	<message key="submission.viewMétadonnées">Voir les métadonnées</message>
-	<message key="submission.editMétadonnées">Modifier les métadonnées</message>
-	<message key="submission.reviewMétadonnées">Evaluer les Métadonnées</message>
+	<message key="submission.viewMetadata">Voir les métadonnées</message>
+	<message key="submission.editMetadata">Modifier les métadonnées</message>
+	<message key="submission.reviewMetadata">Evaluer les Métadonnées</message>
 	<message key="submission.backToSubmissionEditing">Retour à la révision de la proposition</message>
 
 	<message key="submission.paperType">Type de proposition</message>
@@ -367,7 +367,7 @@
 	<message key="submission.indexing">Indexation</message>
 	<message key="submission.restrictions">Restrictions</message>
 	<message key="submission.supportingAgencies">Organisme de soutien</message>
-	<message key="submission.saveMétadonnées">Sauvegarder les métadonnées</message>
+	<message key="submission.saveMetadata">Sauvegarder les métadonnées</message>
 
 	<message key="submissions.track">Partie</message>
 	<message key="submissions.completed">Terminé</message>
@@ -557,7 +557,7 @@
 	
 	<message key="submission.event.general.abstractSubmitted">Résumé soumis</message>
 	<message key="submission.event.general.presentationSubmitted">Présentation soumise</message>
-	<message key="submission.event.general.MétadonnéesUpdated">Métadonnées de proposition mises à jour</message>
+	<message key="submission.event.general.metadataUpdated">Métadonnées de proposition mises à jour</message>
 	<message key="submission.event.general.suppFileUpdated">Fichier sur la proposition mis à jour</message>
 	<message key="submission.event.general.paperPublished">Papier soumis</message>
 
@@ -652,7 +652,7 @@
 	<message key="admin.settings.passwordCharacters">Caractères</message>
 	<message key="admin.settings.siteLanguage">Langue du Site</message>
 	<message key="admin.settings.oaiRegistration">Enregistrer le site pour indexation (collecte de métadonnées)</message>
-	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Pour indexer le contenu de toutes les conférences hébergées sur ce site selon un un système général de bases de données, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">inscrivez</a> l'adresse URL de votre site sur le <a href="http://pkp.sfu.ca/harvester/" target="_blank">collecte de métadonnées de la Public Knowledge Project</a>. Cet outil récolte les métadonnées de chaque objet indexé de chaque conférence, activant ainsi une recherche précise et collective parmi les moteurs de recherche qui adhèrent à la <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Métadonnées Harvesting</a>.
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Pour indexer le contenu de toutes les conférences hébergées sur ce site selon un un système général de bases de données, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">inscrivez</a> l'adresse URL de votre site sur le <a href="http://pkp.sfu.ca/harvester/" target="_blank">collecte de métadonnées de la Public Knowledge Project</a>. Cet outil récolte les métadonnées de chaque objet indexé de chaque conférence, activant ainsi une recherche précise et collective parmi les moteurs de recherche qui adhèrent à la <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Cliquez ici</a> et entrez <span class="highlight">{$siteUrl}</span> sous <b>l'URL du site</b>, et <span class="highlight">{$oaiUrl}</span> sous <b> l'URL de base pour archiver OAI</b>.
 <br /><br />
@@ -1066,7 +1066,7 @@
 	<message key="manager.setup.indexing.customTags">Etiquettes personnalisés</message>
 	<message key="manager.setup.indexing.customTagsDescription">En-têtes HTML personnalisées à insérer dans les en-têtes de chacune des pages (par ex., étiquettes META).</message>
 	<message key="manager.setup.indexing.registerConferenceForIndexing">Enregistrer la Conférence pour indexation (collecte de métadonnées)</message>
-	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[Pour indexer le contenu de votre conférences selon un un système général de bases de données, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">inscrivez</a> l'adresse URL de votre conférence sur le <a href="http://pkp.sfu.ca/harvester/" target="_blank">collecte de métadonnées de la Public Knowledge Project</a>. Cet outil récolte les métadonnées de chaque élément indexé de cette conférence, activant ainsi une recherche précise et collective parmi les moteurs de recherche qui adhèrent à la <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Métadonnées Harvesting</a>.
+	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[Pour indexer le contenu de votre conférences selon un un système général de bases de données, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">inscrivez</a> l'adresse URL de votre conférence sur le <a href="http://pkp.sfu.ca/harvester/" target="_blank">collecte de métadonnées de la Public Knowledge Project</a>. Cet outil récolte les métadonnées de chaque élément indexé de cette conférence, activant ainsi une recherche précise et collective parmi les moteurs de recherche qui adhèrent à la <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
 
 A noter que si l'administrateur du site a déjà inscrit le site sur le collecteur du PKP, votre conférence va automatiquement être indexée et vous n'avez pas besoin d'inscrire votre conférence.
@@ -1727,7 +1727,7 @@ Actif est le nombre de révisions en cours ou en réflexion.]]></message>
 	<message key="presenter.submit.step5">Étape 5. Confirmer la proposition</message>
 	<message key="presenter.submit.step5SkipSupp">Étape 4. Confirmer la Proposition</message>
 	<message key="presenter.submit.start">1. Commencer</message>
-	<message key="presenter.submit.Métadonnées">2. Entrer les métadonnées</message>
+	<message key="presenter.submit.metadata">2. Entrer les métadonnées</message>
 	<message key="presenter.submit.upload">3. Envoyer la proposition au serveur</message>
 	<message key="presenter.submit.supplementaryFiles">4. Envoyer les Fichiers Supplémentaires au serveur</message>
 	<message key="presenter.submit.confirmation">5. Confirmation</message>
@@ -1757,7 +1757,7 @@ Actif est le nombre de révisions en cours ou en réflexion.]]></message>
 	<message key="presenter.submit.form.abstractRequired">Veuillez entrer un résumé de votre proposition.</message>
 
 	<!-- Paper Submission Step 2 -->
-	<message key="presenter.submit.MétadonnéesDescription">Cette conférence réunit des Métadonnées sur chaque proposition selon les standards de l'Open Archives Initiative, qui est le standard montant de l'identification des ressources en ligne dans le domaine de la recherche. Ceci permet une recherche commune et précise dans les bases de données de l'OAI, augmentant ainsi les chances qu'a le lecteur de trouver des propositions comme celle-ci. Les responsables peuvent insister pour que les métadonnées soient fournies avant que le processus éditorial ne soit lancé.</message>
+	<message key="presenter.submit.metadataDescription">Cette conférence réunit des Métadonnées sur chaque proposition selon les standards de l'Open Archives Initiative, qui est le standard montant de l'identification des ressources en ligne dans le domaine de la recherche. Ceci permet une recherche commune et précise dans les bases de données de l'OAI, augmentant ainsi les chances qu'a le lecteur de trouver des propositions comme celle-ci. Les responsables peuvent insister pour que les métadonnées soient fournies avant que le processus éditorial ne soit lancé.</message>
 	<message key="presenter.submit.privacyStatement">Protection des données personnelles de la conférence</message>
 	<message key="presenter.submit.presentersDescription">Pour les propositions qui ont plus d'un auteur, triez les auteurs selon leur ordre d'apparition dans la citation.</message>
 	<message key="presenter.submit.reorderPresenterName">Retrier les noms des auteurs</message>
@@ -2007,7 +2007,7 @@ Le fichier peut être vu en cliquant sur le nom du fichier. Une nouvelle version
 	<message key="search.matchAll">Dans toutes les rubriques</message>
 	<message key="search.presenterIndex">Explorer l'index des auteurs</message>
 	<message key="search.titleIndex">Explorer l'index des titres</message>
-	<message key="search.presenterDetails">Détails sur les auteursAuthor Details</message>
+	<message key="search.presenterDetails">Détails sur les auteurs</message>
 	<message key="search.searchResults">Resultats de la recherche</message>
 	<message key="search.reviseSearch">Réviseer la recherche</message>
 	<message key="search.noResults">Aucun résultat</message>
@@ -2283,7 +2283,7 @@ p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "
 	<message key="log.director.decision">Une décision d'un responsable ({$decision}) pour le papier {$paperId} a été enregistrée par {$directorName}.</message>
 	<message key="log.director.publish">Le papier a été publié.</message>
 
-	<message key="log.director.MétadonnéesModified">Les métadonnées pour ce papier ont été modifiées par {$directorName}.</message>
+	<message key="log.director.metadataModified">Les métadonnées pour ce papier ont été modifiées par {$directorName}.</message>
 	<message key="log.director.directorFile">Une version de responsable du fichier de proposition a été téléchargé.</message>
 	<message key="log.director.archived">La proposition {$paperId} a été archivée.</message>
 	<message key="log.director.restored">La proposition {$paperId} a été restaurée à la file d'attente.</message>
@@ -2339,7 +2339,7 @@ p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "
 	<message key="rt.admin.settings.disableRelatedItems">Désactiver éléments connexes</message>
 	<message key="rt.admin.settings.bibFormat">Format bibliographique</message>
 	<message key="rt.admin.settings.captureCite">Comment citer (fournit les données bibliographiques pour un élément).</message>
-	<message key="rt.admin.settings.viewMétadonnées">Indexer les métadonnées (affiche les métadonnées d'indexation fournies par l'auteur et le système pour un élément).</message>
+	<message key="rt.admin.settings.viewMetadata">Indexer les métadonnées (affiche les métadonnées d'indexation fournies par l'auteur et le système pour un élément).</message>
 	<message key="rt.admin.settings.supplementaryFiles">Fichiers supplémentaires (affiche une liste de fichiers que l'auteur a inclus avec sa proposition).</message>
 	<message key="rt.admin.settings.printerFriendly">Imprimable (mène jusqu'à une version imprimable de l'élément).</message>
 	<message key="rt.admin.settings.presenterBio">Biographie de l'auteur (affiche les repères biographiques soumis par l'auteur).</message>
@@ -2354,7 +2354,7 @@ p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "
 	<message key="rt.admin.versions.confirmRestore">Êtes-vous certain de vouloir restaurer de façon irréversible toutes les versions à leur version par défaut? Si oui, vous devez sélectionner une version active dans la page des paramètres.</message>
 	<message key="rt.admin.versions.confirmDelete">Êtes-vous certain de vouloir supprimer cette version ainsi que tous les contextes et recherches qui lui sont associés?</message>
 	<message key="rt.admin.versions.edit.editVersion">Modifier la version</message>
-	<message key="rt.admin.versions.Métadonnées">Métadonnées</message>
+	<message key="rt.admin.versions.metadata">Métadonnées</message>
 	<message key="rt.admin.versions.export">Exporter</message>
 	<message key="rt.admin.versions.importVersion">Importer une version</message>
 
@@ -2362,7 +2362,7 @@ p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "
 	<message key="rt.admin.contexts.edit.editContext">Modifier le contexte</message>
 	<message key="rt.admin.contexts.createContext">Créer le contexte</message>
 	<message key="rt.admin.contexts.confirmDelete">Êtes-vous certain de vouloir supprimer ce contexte et toutes les recherches associées?</message>
-	<message key="rt.admin.contexts.Métadonnées">Métadonnées</message>
+	<message key="rt.admin.contexts.metadata">Métadonnées</message>
 	<message key="rt.admin.contexts.options">Options</message>
 	<message key="rt.admin.contexts.options.citedBy">Utilise les noms des auteurs comme termes de recherche par défaut et décrit le contexte comme une recherche de citations pour l'article.</message>
 	<message key="rt.admin.contexts.options.authorTerms">Utilise les noms des auteurs comme termes de recherche par défaut afin de permettre aux usagers de trouver d'autres ouvrages de ces auteurs (par ex., pour un contexte " Autres ouvrages ")</message>
@@ -2410,48 +2410,48 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 
 	<message key="rt.presenterBio">A propos de l'auteur</message>
 
-	<message key="rt.viewMétadonnées">Indexer les métadonnées</message>
-	<message key="rt.Métadonnées.dublinCore">Dublin Core</message>
-	<message key="rt.Métadonnées.pkpItem">PKP Postes des métadonnées</message>
-	<message key="rt.Métadonnées.forThisDocument">Métadonnées de ce document</message>
-	<message key="rt.Métadonnées.dublinCore.title">Titre</message>
-	<message key="rt.Métadonnées.dublinCore.primaryPresenter">Créateur</message>
-	<message key="rt.Métadonnées.dublinCore.subject">Sujet</message>
-	<message key="rt.Métadonnées.dublinCore.description">Description</message>
-	<message key="rt.Métadonnées.dublinCore.publisher">Rédacteur</message>
-	<message key="rt.Métadonnées.dublinCore.contributor">Contribuant</message>
-	<message key="rt.Métadonnées.dublinCore.date">Date</message>
-	<message key="rt.Métadonnées.dublinCore.type">Type</message>
-	<message key="rt.Métadonnées.dublinCore.format">Format</message>
-	<message key="rt.Métadonnées.dublinCore.identifier">Identificateur</message>
-	<message key="rt.Métadonnées.dublinCore.source">Source</message>
-	<message key="rt.Métadonnées.dublinCore.language">Langue</message>
-	<message key="rt.Métadonnées.dublinCore.relation">Relation</message>
-	<message key="rt.Métadonnées.dublinCore.coverage">Couverture</message>
-	<message key="rt.Métadonnées.dublinCore.rights">Droits</message>
+	<message key="rt.viewMetadata">Indexer les métadonnées</message>
+	<message key="rt.metadata.dublinCore">Dublin Core</message>
+	<message key="rt.metadata.pkpItem">PKP Postes des métadonnées</message>
+	<message key="rt.metadata.forThisDocument">Métadonnées de ce document</message>
+	<message key="rt.metadata.dublinCore.title">Titre</message>
+	<message key="rt.metadata.dublinCore.primaryPresenter">Créateur</message>
+	<message key="rt.metadata.dublinCore.subject">Sujet</message>
+	<message key="rt.metadata.dublinCore.description">Description</message>
+	<message key="rt.metadata.dublinCore.publisher">Rédacteur</message>
+	<message key="rt.metadata.dublinCore.contributor">Contribuant</message>
+	<message key="rt.metadata.dublinCore.date">Date</message>
+	<message key="rt.metadata.dublinCore.type">Type</message>
+	<message key="rt.metadata.dublinCore.format">Format</message>
+	<message key="rt.metadata.dublinCore.identifier">Identificateur</message>
+	<message key="rt.metadata.dublinCore.source">Source</message>
+	<message key="rt.metadata.dublinCore.language">Langue</message>
+	<message key="rt.metadata.dublinCore.relation">Relation</message>
+	<message key="rt.metadata.dublinCore.coverage">Couverture</message>
+	<message key="rt.metadata.dublinCore.rights">Droits</message>
 
-	<message key="rt.Métadonnées.pkp.title">Titre du document</message>
-	<message key="rt.Métadonnées.pkp.primaryPresenter">Nom de l'auteur, affiliation, pays</message>
-	<message key="rt.Métadonnées.pkp.discipline">Discipline(s)</message>
-	<message key="rt.Métadonnées.pkp.subject">Objet(s)</message>
-	<message key="rt.Métadonnées.pkp.subjectClass">Classification par sujet</message>
-	<message key="rt.Métadonnées.pkp.abstract">Résumé</message>
-	<message key="rt.Métadonnées.pkp.publisher">Agence organisatrice, emplacement</message>
-	<message key="rt.Métadonnées.pkp.sponsors">Commanditaire(s)</message>
-	<message key="rt.Métadonnées.pkp.date">(AAAA-MM-JJ)</message>
-	<message key="rt.Métadonnées.pkp.type">Type</message>
-	<message key="rt.Métadonnées.pkp.genre">Etat &amp; genre</message>
-	<message key="rt.Métadonnées.pkp.peerReviewed">Article évalué par les pairs</message>
-	<message key="rt.Métadonnées.pkp.format">Format de fichier</message>
-	<message key="rt.Métadonnées.pkp.uri">Système URI</message>
-	<message key="rt.Métadonnées.pkp.source">revue/conférence, titre; vol., No. (année)</message>
-	<message key="rt.Métadonnées.pkp.language">English=en</message>
-	<message key="rt.Métadonnées.pkp.suppFiles">Fichiers supplémentaires</message>
-	<message key="rt.Métadonnées.pkp.coverage">Emplacement géo-spatial, période chronologique, exemple de recherche (genre, âge, etc.)</message>
-	<message key="rt.Métadonnées.pkp.copyright">droit d'auteur et autorisations</message>
+	<message key="rt.metadata.pkp.title">Titre du document</message>
+	<message key="rt.metadata.pkp.primaryPresenter">Nom de l'auteur, affiliation, pays</message>
+	<message key="rt.metadata.pkp.discipline">Discipline(s)</message>
+	<message key="rt.metadata.pkp.subject">Objet(s)</message>
+	<message key="rt.metadata.pkp.subjectClass">Classification par sujet</message>
+	<message key="rt.metadata.pkp.abstract">Résumé</message>
+	<message key="rt.metadata.pkp.publisher">Agence organisatrice, emplacement</message>
+	<message key="rt.metadata.pkp.sponsors">Commanditaire(s)</message>
+	<message key="rt.metadata.pkp.date">(AAAA-MM-JJ)</message>
+	<message key="rt.metadata.pkp.type">Type</message>
+	<message key="rt.metadata.pkp.genre">Etat &amp; genre</message>
+	<message key="rt.metadata.pkp.peerReviewed">Article évalué par les pairs</message>
+	<message key="rt.metadata.pkp.format">Format de fichier</message>
+	<message key="rt.metadata.pkp.uri">Système URI</message>
+	<message key="rt.metadata.pkp.source">revue/conférence, titre; vol., No. (année)</message>
+	<message key="rt.metadata.pkp.language">English=en</message>
+	<message key="rt.metadata.pkp.suppFiles">Fichiers supplémentaires</message>
+	<message key="rt.metadata.pkp.coverage">Emplacement géo-spatial, période chronologique, exemple de recherche (genre, âge, etc.)</message>
+	<message key="rt.metadata.pkp.copyright">droit d'auteur et autorisations</message>
 
 	<message key="rt.suppFiles">Fichiers supplémentaires</message>
-	<message key="rt.suppFiles.viewMétadonnées">Indexation de métadonnées</message>
+	<message key="rt.suppFiles.viewMetadata">Indexation de métadonnées</message>
 	<message key="rt.suppFiles.download">Télécharger</message>
 
 	<message key="rt.captureCite">Comment citer un élément</message>
