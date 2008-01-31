@@ -153,12 +153,25 @@ class SchedConfHandler extends Handler {
 			// This user has already registered.
 			$registration =& $registrationDao->getRegistration($registrationId);
 
-			if ($registration && $registration->getDatePaid()) $templateMgr->assign('message', 'schedConf.registration.alreadyRegisteredAndPaid');
-			else $templateMgr->assign('message', 'schedConf.registration.alreadyRegistered');
+			import('payment.ocs.OCSPaymentManager');
+			$paymentManager =& OCSPaymentManager::getManager();
 
-			$templateMgr->assign('backLinkLabel', 'common.back');
-			$templateMgr->assign('backLink', Request::url(null, null, 'index'));
-			$templateMgr->display('common/message.tpl');
+			if (!$paymentManager->isConfigured() || !$registration || $registration->getDatePaid()) {
+				// If the system isn't fully configured or the registration is already paid,
+				// display a message and block the user from going further.
+				$templateMgr->assign('message', 'schedConf.registration.alreadyRegisteredAndPaid');
+				$templateMgr->assign('backLinkLabel', 'common.back');
+				$templateMgr->assign('backLink', Request::url(null, null, 'index'));
+				return $templateMgr->display('common/message.tpl');
+			} else {
+				// Otherwise, allow them to try to pay again.
+				$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+				$registrationType =& $registrationTypeDao->getRegistrationType($registration->getTypeId());
+				$queuedPayment =& $paymentManager->createQueuedPayment($schedConf->getConferenceId(), $schedConf->getSchedConfId(), QUEUED_PAYMENT_TYPE_REGISTRATION, $user->getUserId(), $registrationId, $registrationType->getCost(), $registrationType->getCurrencyCodeAlpha());
+				$queuedPaymentId = $paymentManager->queuePayment($queuedPayment, time() + (60 * 60 * 24 * 30)); // 30 days to complete
+
+				$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
+			}
 		} else {
 			import('registration.form.UserRegistrationForm');
 

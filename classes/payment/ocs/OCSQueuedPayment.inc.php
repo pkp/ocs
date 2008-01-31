@@ -60,7 +60,23 @@ class OCSQueuedPayment extends QueuedPayment {
 	function getDescription() {
 		switch ($this->type) {
 			case QUEUED_PAYMENT_TYPE_REGISTRATION:
-				return Locale::translate('payment.type.registration');
+				$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+				$registration =& $registrationDao->getRegistration($this->getAssocId());
+
+				$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+				$registrationType =& $registrationTypeDao->getRegistrationType(
+					$registration?$registration->getTypeId():0
+				);
+
+				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+				$schedConf =& $schedConfDao->getSchedConf(
+					$registrationType?$registrationType->getSchedConfId():0
+				);
+
+				return Locale::translate('payment.type.conferenceRegistration', array(
+					'schedConfTitle' => ($schedConf?$schedConf->getFullTitle():Locale::translate('common.none')),
+					'registrationTypeName' => ($registrationType?$registrationType->getRegistrationTypeName():Locale::translate('common.none')),
+				));
 		}
 	}
 }

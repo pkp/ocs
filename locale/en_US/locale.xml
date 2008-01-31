@@ -880,7 +880,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.payment.form.description">Enter the configuration details for the method of payment this conference website is able to accept.</message>
 	<message key="manager.payment.form.method">Conference Registration Payment Methods</message>
 
-	<message key="payment.type.registration">Conference Registration</message>
+	<message key="payment.type.conferenceRegistration">Conference Registration; {$schedConfTitle}; {$registrationTypeName}</message>
 
 	<!-- Conference Event Log -->
 	<message key="manager.conferenceEventLog">Event Log</message>

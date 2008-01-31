@@ -57,8 +57,8 @@ class QueuedPaymentDAO extends DAO {
 				VALUES
 				(%s, %s, %s, ?)',
 				$this->datetimeToDB(Core::getCurrentDate()),
-				$this->datetimeToDB(Core::getCurrentDate())),
-				$this->datetimeToDB($expiryDate),
+				$this->datetimeToDB(Core::getCurrentDate()),
+				$this->datetimeToDB($expiryDate)),
 			array(
 				serialize($queuedPayment)
 			)
