@@ -106,14 +106,15 @@ class PaperSearchIndex {
 		$minLength = Config::getVar('search', 'min_word_length');
 		$stopwords = &PaperSearchIndex::loadStopwords();
 
-		// Remove punctuation
-		if (is_array($text)) {
-			$text = join("\n", $text);
-		}
+		// Join multiple lines into a single string
+		if (is_array($text)) $text = join("\n", $text);
 
-		$cleanText = preg_replace('/[!"\#\$%\'\(\)\.\?@\[\]\^`\{\}~]/', '', $text);
-		$cleanText = preg_replace('/[\+,:;&\/<=>\|\\\]/', ' ', $cleanText);
-		$cleanText = preg_replace('/[\*]/', $allowWildcards ? '%' : ' ', $cleanText);
+		$cleanText = Core::cleanVar($text);
+
+		// Remove punctuation
+		$cleanText = String::regexp_replace('/[!"\#\$%\'\(\)\.\?@\[\]\^`\{\}~]/', '', $cleanText);
+		$cleanText = String::regexp_replace('/[\+,:;&\/<=>\|\\\]/', ' ', $cleanText);
+		$cleanText = String::regexp_replace('/[\*]/', $allowWildcards ? '%' : ' ', $cleanText);
 		$cleanText = String::strtolower($cleanText);
 
 		// Split into words
