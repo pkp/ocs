@@ -55,14 +55,14 @@ class ConferenceEventLogDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT	e.*,
 				COALESCE(sctl.setting_value, sct.setting_value) AS sched_conf_title,
-				COALESCE(ctl.setting_value, ct.setting_value)
+				COALESCE(ctl.setting_value, ct.setting_value) AS conference_title
 			FROM	conference_event_log e
 				LEFT JOIN sched_confs sc ON (e.sched_conf_id = sc.sched_conf_id)
 				LEFT JOIN conferences c ON (e.conference_id = c.conference_id)
-				LEFT JOIN conference_settings ct ON (ct.setting_name = ? AND ct.locale = ?)
-				LEFT JOIN conference_settings ctl ON (ct.setting_name = ? AND ct.locale = ?)
-				LEFT JOIN sched_conf_settings sct ON (sct.setting_name = ? AND sct.locale = ?)
-				LEFT JOIN sched_conf_settings sctl ON (sctl.setting_name = ? AND sctl.locale = ?)
+				LEFT JOIN conference_settings ct ON (ct.setting_name = ? AND ct.locale = ? AND ct.conference_id = e.conference_id)
+				LEFT JOIN conference_settings ctl ON (ctl.setting_name = ? AND ctl.locale = ? AND ctl.conference_id = e.conference_id)
+				LEFT JOIN sched_conf_settings sct ON (sct.setting_name = ? AND sct.locale = ? AND sct.sched_conf_id = e.sched_conf_id)
+				LEFT JOIN sched_conf_settings sctl ON (sctl.setting_name = ? AND sctl.locale = ? AND sctl.sched_conf_id = e.sched_conf_id)
 			WHERE e.log_id = ?' .
 				(isset($conferenceId) ? ' AND e.conference_id = ?' : '') .
 				(isset($schedConfId) ? ' AND e.sched_conf_id = ?' : ''),
@@ -132,10 +132,10 @@ class ConferenceEventLogDAO extends DAO {
 			FROM	conference_event_log e
 				LEFT JOIN sched_confs sc ON (e.sched_conf_id = sc.sched_conf_id)
 				LEFT JOIN conferences c ON (e.conference_id = c.conference_id)
-				LEFT JOIN conference_settings ct ON (ct.setting_name = ? AND ct.locale = ?)
-				LEFT JOIN conference_settings ctl ON (ct.setting_name = ? AND ct.locale = ?)
-				LEFT JOIN sched_conf_settings sct ON (sct.setting_name = ? AND sct.locale = ?)
-				LEFT JOIN sched_conf_settings sctl ON (sctl.setting_name = ? AND sctl.locale = ?)
+				LEFT JOIN conference_settings ct ON (ct.setting_name = ? AND ct.locale = ? AND ct.conference_id = e.conference_id)
+				LEFT JOIN conference_settings ctl ON (ctl.setting_name = ? AND ctl.locale = ? AND ctl.conference_id = e.conference_id)
+				LEFT JOIN sched_conf_settings sct ON (sct.setting_name = ? AND sct.locale = ? AND sct.sched_conf_id = e.sched_conf_id)
+				LEFT JOIN sched_conf_settings sctl ON (sctl.setting_name = ? AND sctl.locale = ? AND sctl.sched_conf_id = e.sched_conf_id)
 				WHERE e.conference_id = ?' .
 				(isset($schedConfId) ? ' AND e.sched_conf_id = ? ':'') .
 				(isset($assocType) ? ' AND e.assoc_type = ?' . (isset($assocId) ? ' AND e.assoc_id = ?' : '') : '') .
