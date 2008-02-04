@@ -61,9 +61,6 @@ class SearchHandler extends Handler {
 		parent::validate();
 		SearchHandler::setupTemplate(true);
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-
 		$presenterDao = &DAORegistry::getDAO('PresenterDAO');
 
 		if (isset($args[0]) && $args[0] == 'view') {
@@ -73,6 +70,7 @@ class SearchHandler extends Handler {
 			$lastName = Request::getUserVar('lastName');
 			$affiliation = Request::getUserVar('affiliation');
 
+			$schedConf =& Request::getSchedConf();
 			$publishedPapers = $presenterDao->getPublishedPapersForPresenter(
 				$schedConf?$schedConf->getSchedConfId():null,
 				$firstName,
@@ -80,14 +78,17 @@ class SearchHandler extends Handler {
 				$lastName,
 				$affiliation
 			);
+			unset($schedConf);
 
 			// Load information associated with each paper.
+			$conferences = array();
 			$schedConfs = array();
 			$tracks = array();
 			$schedConfsUnavailable = array();
 
-			$trackDao = &DAORegistry::getDAO('TrackDAO');
-			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+			$trackDao =& DAORegistry::getDAO('TrackDAO');
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 
 			foreach ($publishedPapers as $paper) {
 				$trackId = $paper->getTrackId();
@@ -95,11 +96,19 @@ class SearchHandler extends Handler {
 
 				if (!isset($schedConfs[$schedConfId])) {
 					import('schedConf.SchedConfAction');
-					$schedConf = &$schedConfDao->getSchedConf($schedConfId);
-					$schedConfs[$schedConfId] = &$schedConf;
+					$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+					$schedConfs[$schedConfId] =& $schedConf;
 					$schedConfsUnavailable[$schedConfId] = !SchedConfAction::mayViewProceedings($schedConf);
+					unset($schedConf);
 				}
-				if (!isset($tracks[$trackId])) $tracks[$trackId] = &$trackDao->getTrack($trackId);
+				if (!isset($tracks[$trackId])) {
+					$tracks[$trackId] =& $trackDao->getTrack($trackId);
+				}
+
+				$conferenceId = $schedConfs[$schedConfId]->getConferenceId();
+				if (!isset($conferences[$conferenceId])) {
+					$conferences[$conferenceId] =& $conferenceDao->getConference($conferenceId);
+				}
 			}
 
 			if (empty($publishedPapers)) {
@@ -108,6 +117,7 @@ class SearchHandler extends Handler {
 
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign_by_ref('publishedPapers', $publishedPapers);
+			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 			$templateMgr->assign('schedConfsUnavailable', $schedConfsUnavailable);
 			$templateMgr->assign_by_ref('tracks', $tracks);
@@ -120,6 +130,8 @@ class SearchHandler extends Handler {
 			// Show the presenter index
 			$searchInitial = Request::getUserVar('searchInitial');
 			$rangeInfo = Handler::getRangeInfo('presenters');
+
+			$schedConf =& Request::getSchedConf();
 
 			$presenters = &$presenterDao->getPresentersAlphabetizedBySchedConf(
 				isset($schedConf)?$schedConf->getSchedConfId():null,
