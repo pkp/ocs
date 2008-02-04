@@ -130,7 +130,7 @@
 	<table class="data" width="100%">
 		<tr valign="middle">
 			<td width="30%">
-				{if $schedConfSettings.reviewMode == $smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}
+				{if $submission->getReviewMode == $smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}
 					<h3>{translate key="submission.review"}</h3>
 				{elseif $stage == REVIEW_STAGE_ABSTRACT}
 					<h3>{translate key="submission.abstractReview"}</h3>

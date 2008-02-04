@@ -14,7 +14,7 @@
 
 <table class="listing" width="100%">
 	<assign var="cols" value=6>
-	{if $schedConfSettings.reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}
+	{if $submission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL}
 		{assign var="cols" value=$cols+1}
 	{/if}
 	<tr><td colspan="{$cols|escape}" class="headseparator">&nbsp;</td></tr>
@@ -24,7 +24,7 @@
 		<td width="8%">{translate key="submissions.track"}</td>
 		<td>{translate key="paper.title"}</td>
 		<td width="8%">{translate key="submission.due"}</td>
-		{if $schedConfSettings.reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}
+		{if $submission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL}
 			<td width="10%">{translate key="submissions.reviewType"}</td>
 		{/if}
 	</tr>
@@ -40,7 +40,7 @@
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td><a href="{url op="submission" path=$reviewId}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td class="nowrap">{$submission->getDateDue()|date_format:$dateFormatTrunc}</td>
-		{if $schedConfSettings.reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}
+		{if $submission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL}
 			<td>
 				{if $submission->getCurrentStage()==REVIEW_STAGE_ABSTRACT}{* Reviewing abstract *}
 					{translate key="submission.abstract"}

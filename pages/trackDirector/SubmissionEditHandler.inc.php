@@ -39,7 +39,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
-		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
+		$templateMgr->assign_by_ref('reviewMode', $submission->getReviewMode());
 		$templateMgr->assign('userId', $user->getUserId());
 		$templateMgr->assign('isDirector', $isDirector);
 
@@ -73,7 +73,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$directorDecisions = $submission->getDecisions();
 
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
+		$templateMgr->assign('reviewMode', $submission->getReviewMode());
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('reviewAssignmentStages', $stages);
 		$templateMgr->assign_by_ref('cancelsAndRegrets', $cancelsAndRegrets);
@@ -179,8 +179,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$templateMgr->assign('isCurrent', $isCurrent);
 		$templateMgr->assign('allowRecommendation', $allowRecommendation);
-
-		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
 		$templateMgr->assign('reviewingAbstractOnly', $reviewingAbstractOnly);
 
 		$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole.review');
@@ -199,18 +197,38 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		// submission notes
 		$paperNoteDao = &DAORegistry::getDAO('PaperNoteDAO');
 
-		$rangeInfo = &Handler::getRangeInfo('submissionNotes');
-		$submissionNotes =& $paperNoteDao->getPaperNotes($paperId, $rangeInfo);
+		$rangeInfo = &Handler::getRangeInfo('submissionNotes', array($paperId));
+		while (true) {
+			$submissionNotes =& $paperNoteDao->getPaperNotes($paperId, $rangeInfo);
+			unset($rangeInfo);
+			if ($submissionNotes->isInBounds()) break;
+			$rangeInfo =& $submissionNotes->getLastPageRangeInfo();
+			unset($submissionNotes);
+		}
 
 		import('paper.log.PaperLog');
-		$rangeInfo = &Handler::getRangeInfo('eventLogEntries');
-		$eventLogEntries = &PaperLog::getEventLogEntries($paperId, $rangeInfo);
-		$rangeInfo = &Handler::getRangeInfo('emailLogEntries');
-		$emailLogEntries = &PaperLog::getEmailLogEntries($paperId, $rangeInfo);
+
+		$rangeInfo = &Handler::getRangeInfo('eventLogEntries', array($paperId));
+		while (true) {
+			$eventLogEntries =& PaperLog::getEventLogEntries($paperId, $rangeInfo);
+			unset($rangeInfo);
+			if ($eventLogEntries->isInBounds()) break;
+			$rangeInfo =& $eventLogEntries->getLastPageRangeInfo();
+			unset($eventLogEntries);
+		}
+
+		$rangeInfo = &Handler::getRangeInfo('emailLogEntries', array($paperId));
+		while (true) {
+			$emailLogEntries =& PaperLog::getEmailLogEntries($paperId, $rangeInfo);
+			unset($rangeInfo);
+			if ($emailLogEntries->isInBounds()) break;
+			$rangeInfo =& $emailLogEntries->getLastPageRangeInfo();
+			unset($emailLogEntries);
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 
-		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
+		$templateMgr->assign_by_ref('reviewMode', $submission->getReviewMode());
 
 		$templateMgr->assign('isDirector', Validation::isDirector());
 		$templateMgr->assign_by_ref('submission', $submission);
@@ -296,8 +314,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				$search = $searchInitial;
 			}
 
-			$rangeInfo = &Handler::getRangeInfo('reviewers');
+			$rangeInfo = &Handler::getRangeInfo('reviewers', array($submission->getCurrentStage(), (string) $searchType, (string) $search, (string) $searchMatch)); // Paper ID intentionally omitted
+			while (true) {
 			$reviewers = $trackDirectorSubmissionDao->getReviewersForPaper($schedConf->getSchedConfId(), $paperId, $submission->getCurrentStage(), $searchType, $search, $searchMatch, $rangeInfo);
+				if ($reviewers->isInBounds()) break;
+				unset($rangeInfo);
+				$rangeInfo =& $reviewers->getLastPageRangeInfo();
+				unset($reviewers);
+			}
 
 			$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 
@@ -385,7 +409,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$user = &Request::getUser();
 
-		$rangeInfo = Handler::getRangeInfo('users');
 		$templateMgr = &TemplateManager::getManager();
 		parent::setupTemplate(true);
 
@@ -403,8 +426,15 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$search = $searchInitial;
 		}
 
+		$rangeInfo = Handler::getRangeInfo('users', array((string) $searchType, (string) $searchMatch, (string) $search)); // Paper ID intentionally omitted
 		$userDao = &DAORegistry::getDAO('UserDAO');
-		$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, false, $rangeInfo);
+		while (true) {
+			$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, false, $rangeInfo);
+			if ($users->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $users->getLastPageRangeInfo();
+			unset($users);
+		}
 
 		$templateMgr->assign('searchField', $searchType);
 		$templateMgr->assign('searchMatch', $searchMatch);
@@ -1147,17 +1177,21 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$logEntry = &$logDao->getLogEntry($logId, $paperId);
 		}
 
-		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
-
 		if (isset($logEntry)) {
 			$templateMgr->assign('logEntry', $logEntry);
 			$templateMgr->display('trackDirector/submissionEventLogEntry.tpl');
 
 		} else {
-			$rangeInfo = &Handler::getRangeInfo('eventLogEntries');
+			$rangeInfo = &Handler::getRangeInfo('eventLogEntries', array($paperId));
 
 			import('paper.log.PaperLog');
-			$eventLogEntries = &PaperLog::getEventLogEntries($paperId, $rangeInfo);
+			while (true) {
+				$eventLogEntries =& PaperLog::getEventLogEntries($paperId, $rangeInfo);
+				if ($eventLogEntries->isInBounds()) break;
+				unset($rangeInfo);
+				$rangeInfo =& $eventLogEntries->getLastPageRangeInfo();
+				unset($eventLogEntries);
+			}
 			$templateMgr->assign('eventLogEntries', $eventLogEntries);
 			$templateMgr->display('trackDirector/submissionEventLog.tpl');
 		}
@@ -1173,9 +1207,15 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		parent::setupTemplate(true, $paperId, 'history');
 
-		$rangeInfo = &Handler::getRangeInfo('eventLogEntries');
+		$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array($paperId, $assocType, $assocId));
 		$logDao = &DAORegistry::getDAO('PaperEventLogDAO');
-		$eventLogEntries = &$logDao->getPaperLogEntriesByAssoc($paperId, $assocType, $assocId, $rangeInfo);
+		while (true) {
+			$eventLogEntries =& $logDao->getPaperLogEntriesByAssoc($paperId, $assocType, $assocId, $rangeInfo);
+			if ($eventLogEntries->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $eventLogEntries->getLastPageRangeInfo();
+			unset($eventLogEntries);
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -1225,17 +1265,21 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$logEntry = &$logDao->getLogEntry($logId, $paperId);
 		}
 
-		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
-
 		if (isset($logEntry)) {
 			$templateMgr->assign_by_ref('logEntry', $logEntry);
 			$templateMgr->display('trackDirector/submissionEmailLogEntry.tpl');
 
 		} else {
-			$rangeInfo = &Handler::getRangeInfo('emailLogEntries');
+			$rangeInfo = &Handler::getRangeInfo('emailLogEntries', array($paperId));
 
 			import('paper.log.PaperLog');
-			$emailLogEntries = &PaperLog::getEmailLogEntries($paperId, $rangeInfo);
+			while (true) {
+				$emailLogEntries =& PaperLog::getEmailLogEntries($paperId, $rangeInfo);
+				if ($emailLogEntries->isInBounds()) break;
+				unset($rangeInfo);
+				$rangeInfo =& $emailLogEntries->getLastPageRangeInfo();
+				unset($emailLogEntries);
+			}
 			$templateMgr->assign_by_ref('emailLogEntries', $emailLogEntries);
 			$templateMgr->display('trackDirector/submissionEmailLog.tpl');
 		}
@@ -1251,9 +1295,15 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		parent::setupTemplate(true, $paperId, 'history');
 
-		$rangeInfo = &Handler::getRangeInfo('eventLogEntries');
+		$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array($paperId, $assocType, $assocId));
 		$logDao = &DAORegistry::getDAO('PaperEmailLogDAO');
-		$emailLogEntries = &$logDao->getPaperLogEntriesByAssoc($paperId, $assocType, $assocId, $rangeInfo);
+		while (true) {
+			$emailLogEntries =& $logDao->getPaperLogEntriesByAssoc($paperId, $assocType, $assocId, $rangeInfo);
+			if ($emailLogEntries->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $emailLogEntries->getLastPageRangeInfo();
+			unset($emailLogEntries);
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -1345,9 +1395,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		parent::setupTemplate(true, $paperId, 'history');
 
-		$rangeInfo = &Handler::getRangeInfo('submissionNotes');
 		$paperNoteDao = &DAORegistry::getDAO('PaperNoteDAO');
-		$submissionNotes =& $paperNoteDao->getPaperNotes($paperId, $rangeInfo);
 
 		// submission note edit
 		if ($noteViewType == 'edit') {
@@ -1358,16 +1406,23 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('submissionNotes', $submissionNotes);
 		$templateMgr->assign('noteViewType', $noteViewType);
 		if (isset($paperNote)) {
 			$templateMgr->assign_by_ref('paperNote', $paperNote);
 		}
 
-		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
-
 		if ($noteViewType == 'edit' || $noteViewType == 'add') {
 			$templateMgr->assign('showBackLink', true);
+		} else {
+			$rangeInfo =& Handler::getRangeInfo('submissionNotes', array($paperId));
+			while (true) {
+				$submissionNotes =& $paperNoteDao->getPaperNotes($paperId, $rangeInfo);
+				if ($submissionNotes->isInBounds()) break;
+				unset($rangeInfo);
+				$rangeInfo =& $submissionNotes->getLastPageRangeInfo();
+				unset($submissionNotes);
+			}
+			$templateMgr->assign_by_ref('submissionNotes', $submissionNotes);
 		}
 
 		$templateMgr->display('trackDirector/submissionNotes.tpl');

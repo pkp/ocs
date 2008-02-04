@@ -46,24 +46,24 @@ class GroupDAO extends DAO {
 	 */
 	function &getGroups($conferenceId, $schedConfId, $rangeInfo = null) {
 		if($conferenceId !== -1 && $schedConfId !== -1) {
-			$result = &$this->retrieve(
+			$result = &$this->retrieveRange(
 				'SELECT * FROM groups WHERE conference_id = ? AND sched_conf_id = ? ORDER BY seq',
 				array($conferenceId, $schedConfId), $rangeInfo
 			);
 		} elseif($conferenceId !== -1) {
-			$result = &$this->retrieve(
+			$result = &$this->retrieveRange(
 				'SELECT * FROM groups WHERE conference_id = ? ORDER BY seq',
-				$conferenceId, $rangeInfo
+				array($conferenceId), $rangeInfo
 			);
 		} elseif($schedConfId !== -1) {
-			$result = &$this->retrieve(
+			$result = &$this->retrieveRange(
 				'SELECT * FROM groups WHERE sched_conf_id = ? ORDER BY seq',
-				$schedConfId, $rangeInfo
+				array($schedConfId), $rangeInfo
 			);
 		} else {
-			$result = &$this->retrieve(
+			$result = &$this->retrieveRange(
 				'SELECT * FROM groups ORDER BY seq',
-				$schedConfId, $rangeInfo
+				array($schedConfId), $rangeInfo
 			);
 		}
 
@@ -126,8 +126,8 @@ class GroupDAO extends DAO {
 			)
 		);
 
-		$this->updateLocaleFields($group);
 		$group->setGroupId($this->getInsertGroupId());
+		$this->updateLocaleFields($group);
 		return $group->getGroupId();
 	}
 

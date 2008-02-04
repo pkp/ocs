@@ -23,16 +23,22 @@ class EmailHandler extends ManagerHandler {
 		list($conference, $schedConf) = EmailHandler::validate();
 		parent::setupTemplate(true);
 
-		$rangeInfo = Handler::getRangeInfo('emails');
+		$rangeInfo = Handler::getRangeInfo('emails', array());
 
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplates = &$emailTemplateDao->getEmailTemplates(Locale::getLocale(),
+		$emailTemplatesArray = &$emailTemplateDao->getEmailTemplates(Locale::getLocale(),
 			$conference->getConferenceId(),
 			$schedConf ? $schedConf->getSchedConfId() : 0);
 		if ($rangeInfo && $rangeInfo->isValid()) {
-			$emailTemplates =& new ArrayItemIterator($emailTemplates, $rangeInfo->getPage(), $rangeInfo->getCount());
+			while (true) {
+				$emailTemplates =& new ArrayItemIterator($emailTemplatesArray, $rangeInfo->getPage(), $rangeInfo->getCount());
+				if ($emailTemplates->isInBounds()) break;
+				unset($rangeInfo);
+				$rangeInfo =& $emailTemplates->getLastPageRangeInfo();
+				unset($emailTemplates);
+			}
 		} else {
-			$emailTemplates =& new ArrayItemIterator($emailTemplates);
+			$emailTemplates =& new ArrayItemIterator($emailTemplatesArray);
 		}
 
 		$templateMgr = &TemplateManager::getManager();
@@ -43,11 +49,11 @@ class EmailHandler extends ManagerHandler {
 		if(Request::getRequestedPage() === 'manager') {
 			$templateMgr->assign('pageHierarchy', array(
 				array(Request::url(null, 'index', 'manager'), 'manager.conferenceSiteManagement')
-				));
+			));
 		} else {
 			$templateMgr->assign('pageHierarchy', array(
 				array(Request::url(null, null, 'manager'), 'manager.schedConfManagement')
-				));
+			));
 		}
 
 		$templateMgr->assign_by_ref('emailTemplates', $emailTemplates);

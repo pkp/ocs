@@ -60,11 +60,17 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = Handler::getRangeInfo('users');
+		$rangeInfo = &Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType, $roleId));
 
 		if ($roleId) {
-			$users = &$roleDao->getUsersByRoleId($roleId, $conference->getConferenceId(),
-				($schedConf? $schedConf->getSchedConfId() : null), $searchType, $search, $searchMatch, $rangeInfo);
+			while (true) {
+				$users = &$roleDao->getUsersByRoleId($roleId, $conference->getConferenceId(),
+					($schedConf? $schedConf->getSchedConfId() : null), $searchType, $search, $searchMatch, $rangeInfo);
+				if ($users->isInBounds()) break;
+				unset($rangeInfo);
+				$rangeInfo =& $users->getLastPageRangeInfo();
+				unset($users);
+			}
 			$templateMgr->assign('roleId', $roleId);
 			switch($roleId) {
 				case ROLE_ID_CONFERENCE_MANAGER:
@@ -158,9 +164,15 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = Handler::getRangeInfo('users');
+		$rangeInfo = &Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 
-		$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
+		while (true) {
+			$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
+			if ($users->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $users->getLastPageRangeInfo();
+			unset($users);
+		}
 
 		$templateMgr->assign('isSchedConfManagement', $schedConf ? true : false);
 		$templateMgr->assign('isConferenceManagement', $schedConf ? false : true);
@@ -535,13 +547,25 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = Handler::getRangeInfo('users');
+		$rangeInfo = &Handler::getRangeInfo('users', array($roleId, (string) $search, (string) $searchMatch, (string) $searchType));
 
 		if ($roleId) {
-			$users = &$roleDao->getUsersByRoleId($roleId, $conference->getConferenceId(), $schedConf->getSchedConfId(), $searchType, $search, $searchMatch, $rangeInfo);
+			while (true) {
+				$users = &$roleDao->getUsersByRoleId($roleId, $conference->getConferenceId(), $schedConf->getSchedConfId(), $searchType, $search, $searchMatch, $rangeInfo);
+				if ($users->isInBounds()) break;
+				unset($rangeInfo);
+				$rangeInfo =& $users->getLastPageRangeInfo();
+				unset($users);
+			}
 			$templateMgr->assign('roleId', $roleId);
 		} else {
-			$users = &$roleDao->getUsersByConferenceId($conference->getConferenceId(), $searchType, $search, $searchMatch, $rangeInfo);
+			while (true) {
+				$users = &$roleDao->getUsersByConferenceId($conference->getConferenceId(), $searchType, $search, $searchMatch, $rangeInfo);
+				if ($users->isInBounds()) break;
+				unset($rangeInfo);
+				$rangeInfo =& $users->getLastPageRangeInfo();
+				unset($users);
+			}
 		}
 
 		$templateMgr->assign('currentUrl', Request::url(null, null, null, 'people', 'all'));

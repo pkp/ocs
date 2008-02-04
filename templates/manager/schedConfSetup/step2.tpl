@@ -118,7 +118,7 @@
 	{if !$submissionAckEnabled}
 	<tr valign="top">
 		<td>&nbsp;</td>
-		{url|assign:"preparedEmailsUrl" op="emails"}
+		{url|assign:"preparedEmailsUrl" op="emails" clearPageContext=1}
 		<td>{translate key="manager.schedConfSetup.submissions.notifications.submissionAckDisabled" preparedEmailsUrl=$preparedEmailsUrl}</td>
 	</tr>
 	{/if}

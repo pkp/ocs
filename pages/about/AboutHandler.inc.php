@@ -161,7 +161,7 @@ class AboutHandler extends Handler {
 
 		// FIXME: This is pretty inefficient; should probably be cached.
 
-		if (!isset($settings['boardEnabled']) || $settings['boardEnabled'] != true) {
+		if (!$schedConf->getSetting('boardEnabled')) {
 			// Don't use the Organizing Team feature. Generate
 			// Organizing Team information using Role info.
 			$roleDao = &DAORegistry::getDAO('RoleDAO');

@@ -13,8 +13,8 @@
 {include file="common/header.tpl"}
 
 <ul class="menu">
-	<li class="current"><a href="{url op="announcements"}">{translate key="manager.announcements"}</a></li>
-	<li><a href="{url op="announcementTypes"}">{translate key="manager.announcementTypes"}</a></li>
+	<li class="current"><a href="{url op="announcements" clearPageContext=1}">{translate key="manager.announcements"}</a></li>
+	<li><a href="{url op="announcementTypes" clearPageContext=1}">{translate key="manager.announcementTypes"}</a></li>
 </ul>
 
 <br />

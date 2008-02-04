@@ -24,9 +24,15 @@ class RegistrationHandler extends ManagerHandler {
 		RegistrationHandler::setupTemplate();
 
 		$schedConf = &Request::getSchedConf();
-		$rangeInfo = &Handler::getRangeInfo('registrations');
+		$rangeInfo = &Handler::getRangeInfo('registrations', array());
 		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
-		$registrations = &$registrationDao->getRegistrationsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+		while (true) {
+			$registrations = &$registrationDao->getRegistrationsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+			if ($registrations->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $registrations->getLastPageRangeInfo();
+			unset($registrations);
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('registrations', $registrations);
@@ -127,9 +133,15 @@ class RegistrationHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = Handler::getRangeInfo('users');
+		$rangeInfo = &Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 
-		$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
+		while (true) {
+			$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
+			if ($users->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $users->getLastPageRangeInfo();
+			unset($users);
+		}
 
 		$templateMgr->assign('searchField', $searchType);
 		$templateMgr->assign('searchMatch', $searchMatch);
@@ -205,9 +217,15 @@ class RegistrationHandler extends ManagerHandler {
 		RegistrationHandler::setupTemplate(true);
 
 		$schedConf = &Request::getSchedConf();
-		$rangeInfo = &Handler::getRangeInfo('registrationTypes');
+		$rangeInfo = &Handler::getRangeInfo('registrationTypes', array());
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
-		$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+		while (true) {
+			$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+			if ($registrationTypes->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $registrationTypes->getLastPageRangeInfo();
+			unset($registrationTypes);
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('registrationTypes', $registrationTypes);

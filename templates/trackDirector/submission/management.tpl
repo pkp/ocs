@@ -36,7 +36,7 @@
 			{/if}
 		</td>
 	</tr>
-{if $submissionFile || $schedConfSettings.reviewMode != REVIEW_MODE_ABSTRACTS_ALONE}
+{if $submissionFile || $submission->getReviewMode() != REVIEW_MODE_ABSTRACTS_ALONE}
 	<tr>
 		<td class="label">{translate key="submission.originalFile"}</td>
 		<td colspan="2" class="value">

@@ -130,7 +130,6 @@ class MetadataForm extends Form {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', isset($this->paper)?$this->paper->getPaperId():null);
-		$templateMgr->assign('schedConfSettings', $schedConf->getSettings(true));
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('canViewPresenters', $this->canViewPresenters);
 

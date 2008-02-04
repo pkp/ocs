@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-{if $schedConfSettings.reviewMode == $smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}
+{if $submission->getReviewMode() == $smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}
 {assign var="pageCrumbTitle" value="submission.review"}
 {translate|assign:"pageTitleTranslated" key="submission.page.review" id=$submission->getPaperId()}
 {elseif $stage==REVIEW_STAGE_ABSTRACT}
@@ -22,7 +22,7 @@
 
 <ul class="menu">
 	<li><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>
-	{if $schedConfSettings.reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}
+	{if $submission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL}
 		<li {if $stage==REVIEW_STAGE_ABSTRACT}class="current"{/if}>
 			<a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$smarty.const.REVIEW_STAGE_ABSTRACT}">
 				{translate key="submission.abstractReview"}</a>

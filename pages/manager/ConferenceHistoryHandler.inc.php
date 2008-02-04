@@ -41,10 +41,16 @@ class ConferenceHistoryHandler extends ManagerHandler {
 			$templateMgr->display('manager/conferenceEventLogEntry.tpl');
 
 		} else {
-			$rangeInfo = &Handler::getRangeInfo('eventLogEntries');
+			$rangeInfo = &Handler::getRangeInfo('eventLogEntries', array());
 
 			import('conference.log.ConferenceLog');
-			$eventLogEntries = &ConferenceLog::getEventLogEntries($conference->getConferenceId(), null, $rangeInfo);
+			while (true) {
+				$eventLogEntries = &ConferenceLog::getEventLogEntries($conference->getConferenceId(), null, $rangeInfo);
+				if ($eventLogEntries->isInBounds()) break;
+				unset($rangeInfo);
+				$rangeInfo =& $eventLogEntries->getLastPageRangeInfo();
+				unset($eventLogEntries);
+			}
 			$templateMgr->assign('eventLogEntries', $eventLogEntries);
 			$templateMgr->display('manager/conferenceEventLog.tpl');
 		}
@@ -61,9 +67,15 @@ class ConferenceHistoryHandler extends ManagerHandler {
 
 		$conference =& Request::getConference();
 
-		$rangeInfo = &Handler::getRangeInfo('eventLogEntries');
+		$rangeInfo = &Handler::getRangeInfo('eventLogEntries', array($assocType, $assocId));
 		$logDao = &DAORegistry::getDAO('ConferenceEventLogDAO');
-		$eventLogEntries = &$logDao->getConferenceLogEntriesByAssoc($conference->getConferenceId(), null, $assocType, $assocId, $rangeInfo);
+		while (true) {
+			$eventLogEntries = &$logDao->getConferenceLogEntriesByAssoc($conference->getConferenceId(), null, $assocType, $assocId, $rangeInfo);
+			if ($eventLogEntries->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $eventLogEntries->getLastPageRangeInfo();
+			unset($eventLogEntries);
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -71,7 +83,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 		$templateMgr->assign('isDirector', Validation::isDirector());
 		$templateMgr->assign_by_ref('conference', $conference);
 		$templateMgr->assign_by_ref('eventLogEntries', $eventLogEntries);
-		$templateMgr->display('trackDirector/conferenceEventLog.tpl');
+		$templateMgr->display('manager/conferenceEventLog.tpl');
 	}
 
 	/**

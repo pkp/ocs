@@ -46,7 +46,7 @@
 
 <ul class="menu">
 	<li><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>
-	{if $schedConfSettings.reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}
+	{if $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}
 		<li><a href="{url op="submissionReview" path=$submission->getPaperId()}">
 			{translate key="submission.abstractReview"}</a>
 		</li>
@@ -68,6 +68,8 @@
 {include file="trackDirector/submission/summary.tpl"}
 
 <div class="separator"></div>
+
+<a name="eventLogEntries"></a>
 
 <h3>{translate key="submission.history.submissionEventLog"} - {translate key="submission.history.recentLogEntries"}</h3>
 <table width="100%" class="listing">
@@ -109,6 +111,11 @@
 	<tr valign="top">
 		<td colspan="6" class="endseparator">&nbsp;</td>
 	</tr>
+{else}
+	<tr>
+		<td colspan="3" align="left">{page_info iterator=$eventLogEntries}</td>
+		<td colspan="3" align="right">{page_links anchor="eventLogEntries" name="eventLogEntries" iterator=$eventLogEntries}</td>
+	</tr>
 {/if}
 </table>
 
@@ -117,6 +124,9 @@
 <br /><br />
 
 <div class="separator"></div>
+
+<a name="emailLogEntries"></a>
+
 <h3>{translate key="submission.history.submissionEmailLog"} - {translate key="submission.history.recentLogEntries"}</h3>
 
 <table width="100%" class="listing">
@@ -150,6 +160,11 @@
 	<tr valign="top">
 		<td colspan="6" class="endseparator">&nbsp;</td>
 	</tr>
+{else}
+	<tr>
+		<td colspan="3" align="left">{page_info iterator=$emailLogEntries}</td>
+		<td colspan="3" align="right">{page_links anchor="emailLogEntries" name="emailLogEntries" iterator=$emailLogEntries}</td>
+	</tr>
 {/if}
 </table>
 
@@ -158,6 +173,8 @@
 <br /><br />
 
 <div class="separator"></div>
+
+<a name="submissionNotes"></a>
 
 <h3>{translate key="submission.notes"}</h3>
 
@@ -192,6 +209,11 @@
 	</tr>
 	<tr valign="top">
 		<td colspan="6" class="endseparator">&nbsp;</td>
+	</tr>
+{else}
+	<tr>
+		<td colspan="3" align="left">{page_info iterator=$submissionNotes}</td>
+		<td colspan="3" align="right">{page_links anchor="submissionNotes" name="submissionNotes" iterator=$submissionNotes}</td>
 	</tr>
 {/if}
 </table>

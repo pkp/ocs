@@ -34,7 +34,7 @@ function confirmAndPrompt(userId) {
 </script>
 
 <form method="post" name="submit" action="{url op="enrollSearch"}">
-<input type="hidden" name="roleId" value="{$roleId|escape}"/>
+	<input type="hidden" name="roleId" value="{$roleId|escape}"/>
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>

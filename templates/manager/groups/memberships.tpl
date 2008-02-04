@@ -14,7 +14,7 @@
 
 <ul class="menu">
 	<li><a href="{url op="editGroup" path=$group->getGroupId()}">{translate key="manager.groups.editTitle"}</a></li>
-	<li class="current"><a href="{url op="groupMembership" path=$group->getGroupId()}">{translate key="manager.groups.membership}</a></li>
+	<li class="current"><a href="{url op="groupMembership" path=$group->getGroupId() clearPageContext=1}">{translate key="manager.groups.membership}</a></li>
 </ul>
 
 <br/>

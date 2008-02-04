@@ -160,14 +160,16 @@ class SchedConfDAO extends DAO {
 	/**
 	 * Retrieves all scheduled conferences for a conference
 	 * @param $conferenceId
+	 * @param $rangeInfo object
 	 */
-	function &getSchedConfsByConferenceId($conferenceId) {
-		$result = &$this->retrieve(
+	function &getSchedConfsByConferenceId($conferenceId, $rangeInfo = null) {
+		$result = &$this->retrieveRange(
 			'SELECT i.*
 			FROM sched_confs i
 				WHERE i.conference_id = ?
 				ORDER BY seq',
-			$conferenceId
+			array($conferenceId),
+			$rangeInfo
 		);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnSchedConfFromRow');

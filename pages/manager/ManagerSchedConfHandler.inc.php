@@ -25,12 +25,16 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		$conference = &Request::getConference();
 
-		$rangeInfo = Handler::getRangeInfo('schedConfs');
-
-		// TODO: use $rangeInfo here!
+		$rangeInfo = Handler::getRangeInfo('schedConfs', array());
 
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
+		while (true) {
+			$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId(), $rangeInfo);
+			if ($schedConfs->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $schedConfs->getLastPageRangeInfo();
+			unset($schedConfs);
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);

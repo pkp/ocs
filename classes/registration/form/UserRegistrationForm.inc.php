@@ -110,7 +110,6 @@ class UserRegistrationForm extends Form {
 
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
 
-		$templateMgr->assign('schedConfSettings', $schedConf->getSettings());
 		$templateMgr->assign_by_ref('user', $user);
 		parent::display();
 	}

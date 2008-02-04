@@ -64,7 +64,6 @@ class PresenterSubmitForm extends Form {
 
 		$schedConf = &Request::getSchedConf();
 		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-		$templateMgr->assign_by_ref('schedConfSettings', $settingsDao->getSchedConfSettings($schedConf->getSchedConfId(), true));
 
 		// Determine which submission steps should be shown
 

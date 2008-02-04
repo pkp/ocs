@@ -36,9 +36,15 @@ class SchedulerHandler extends ManagerHandler {
 		SchedulerHandler::setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
-		$rangeInfo =& Handler::getRangeInfo('buildings');
+		$rangeInfo =& Handler::getRangeInfo('buildings', array());
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
-		$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+		while (true) {
+			$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+			if ($buildings->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $buildings->getLastPageRangeInfo();
+			unset($buildings);
+		}
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('buildings', $buildings);
@@ -172,9 +178,15 @@ class SchedulerHandler extends ManagerHandler {
 			Request::redirect(null, null, null, 'scheduler');
 		}
 
-		$rangeInfo =& Handler::getRangeInfo('rooms');
+		$rangeInfo =& Handler::getRangeInfo('rooms', array($buildingId));
 		$roomDao =& DAORegistry::getDAO('RoomDAO');
-		$rooms =& $roomDao->getRoomsByBuildingId($buildingId, $rangeInfo);
+		while (true) {
+			$rooms =& $roomDao->getRoomsByBuildingId($buildingId, $rangeInfo);
+			if ($rooms->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $rooms->getLastPageRangeInfo();
+			unset($rooms);
+		}
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('rooms', $rooms);
@@ -334,9 +346,15 @@ class SchedulerHandler extends ManagerHandler {
 		SchedulerHandler::setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
-		$rangeInfo =& Handler::getRangeInfo('specialEvents');
+		$rangeInfo =& Handler::getRangeInfo('specialEvents', array());
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
-		$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId(), null, $rangeInfo);
+		while (true) {
+			$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId(), null, $rangeInfo);
+			if ($specialEvents->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $specialEvents->getLastPageRangeInfo();
+			unset($specialEvents);
+		}
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('specialEvents', $specialEvents);
@@ -535,9 +553,15 @@ class SchedulerHandler extends ManagerHandler {
 		SchedulerHandler::setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
-		$rangeInfo =& Handler::getRangeInfo('timeBlocks');
+		$rangeInfo =& Handler::getRangeInfo('timeBlocks', array());
 		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
-		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+		while (true) {
+			$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+			if ($timeBlocks->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $timeBlocks->getLastPageRangeInfo();
+			unset($timeBlocks);
+		}
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('timeBlocks', $timeBlocks);

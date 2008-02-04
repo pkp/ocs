@@ -61,8 +61,6 @@ class DirectorHandler extends TrackDirectorHandler {
 		$searchMatch = Request::getUserVar('searchMatch');
 		$search = Request::getUserVar('search');
 
-		$rangeInfo = Handler::getRangeInfo('submissions');
-
 		switch($page) {
 			case 'submissionsUnassigned':
 				$functionName = 'getDirectorSubmissionsUnassigned';
@@ -82,18 +80,26 @@ class DirectorHandler extends TrackDirectorHandler {
 				$helpTopicId = 'editorial.directorsRole.submissions.inReview';
 		}
 
-		$submissions = &$directorSubmissionDao->$functionName(
-			$schedConf->getSchedConfId(),
-			Request::getUserVar('track'),
-			$searchField,
-			$searchMatch,
-			$search,
-			null,
-			null,
-			null,
-			$rangeInfo);
+		$rangeInfo =& Handler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
+		while (true) {
+			$submissions =& $directorSubmissionDao->$functionName(
+				$schedConf->getSchedConfId(),
+				Request::getUserVar('track'),
+				$searchField,
+				$searchMatch,
+				$search,
+				null,
+				null,
+				null,
+				$rangeInfo
+			);
+			if ($submissions->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $submissions->getLastPageRangeInfo();
+			unset($submissions);
+		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign('director', $user->getFullName());
 		$templateMgr->assign('trackOptions', array(0 => Locale::Translate('director.allTracks')) + $tracks);
@@ -198,15 +204,28 @@ class DirectorHandler extends TrackDirectorHandler {
 				$search = $searchInitial;
 			}
 
-			$rangeInfo = &Handler::getRangeInfo('directors');
+			$forDirectors = isset($args[0]) && $args[0] === 'director';
+			$rangeInfo =& Handler::getRangeInfo('directors', array($forDirectors, (string) $searchType, (string) $search, (string) $searchMatch));
 			$directorSubmissionDao = &DAORegistry::getDAO('DirectorSubmissionDAO');
 
-			if (isset($args[0]) && $args[0] === 'director') {
+			if ($forDirectors) {
 				$roleName = 'user.role.director';
-				$directors = &$directorSubmissionDao->getUsersNotAssignedToPaper($schedConf->getSchedConfId(), $paperId, RoleDAO::getRoleIdFromPath('director'), $searchType, $search, $searchMatch, $rangeInfo);
+				while (true) {
+					$directors =& $directorSubmissionDao->getUsersNotAssignedToPaper($schedConf->getSchedConfId(), $paperId, RoleDAO::getRoleIdFromPath('director'), $searchType, $search, $searchMatch, $rangeInfo);
+					if ($directors->isInBounds()) break;
+					unset($rangeInfo);
+					$rangeInfo =& $directors->getLastPageRangeInfo();
+					unset($directors);
+				}
 			} else {
 				$roleName = 'user.role.trackDirector';
-				$directors = &$directorSubmissionDao->getUsersNotAssignedToPaper($schedConf->getSchedConfId(), $paperId, RoleDAO::getRoleIdFromPath('trackDirector'), $searchType, $search, $searchMatch, $rangeInfo);
+				while (true) {
+					$directors =& $directorSubmissionDao->getUsersNotAssignedToPaper($schedConf->getSchedConfId(), $paperId, RoleDAO::getRoleIdFromPath('trackDirector'), $searchType, $search, $searchMatch, $rangeInfo);
+					if ($directors->isInBounds()) break;
+					unset($rangeInfo);
+					$rangeInfo =& $directors->getLastPageRangeInfo();
+					unset($directors);
+				}
 			}
 
 			$templateMgr = &TemplateManager::getManager();

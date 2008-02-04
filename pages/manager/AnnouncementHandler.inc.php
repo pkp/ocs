@@ -27,9 +27,15 @@ class AnnouncementHandler extends ManagerHandler {
 		list($conference, $schedConf) = parent::validate();
 		AnnouncementHandler::setupTemplate();
 
-		$rangeInfo = &Handler::getRangeInfo('announcements');
+		$rangeInfo = &Handler::getRangeInfo('announcements', array());
 		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-		$announcements = &$announcementDao->getAnnouncementsByConferenceId($conference->getConferenceId(), -1, $rangeInfo);
+		while (true) {
+			$announcements = &$announcementDao->getAnnouncementsByConferenceId($conference->getConferenceId(), -1, $rangeInfo);
+			if ($announcements->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $announcements->getLastPageRangeInfo();
+			unset($announcements);
+		}
 
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
@@ -170,9 +176,14 @@ class AnnouncementHandler extends ManagerHandler {
 		AnnouncementHandler::setupTemplate(true);
 
 		$conference = &Request::getConference();
-		$rangeInfo = &Handler::getRangeInfo('announcementTypes');
+		$rangeInfo = &Handler::getRangeInfo('announcementTypes', array());
 		$announcementTypeDao = &DAORegistry::getDAO('AnnouncementTypeDAO');
-		$announcementTypes = &$announcementTypeDao->getAnnouncementTypesByConferenceId($conference->getConferenceId(), $rangeInfo);
+		while (true) {
+			$announcementTypes = &$announcementTypeDao->getAnnouncementTypesByConferenceId($conference->getConferenceId(), $rangeInfo);
+			if ($announcementTypes->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $announcementTypes->getLastPageRangeInfo();
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('announcementTypes', $announcementTypes);

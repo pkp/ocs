@@ -13,8 +13,8 @@
 {include file="common/header.tpl"}
 
 <ul class="menu">
-	<li><a href="{url op="announcements"}">{translate key="manager.announcements"}</a></li>
-	<li class="current"><a href="{url op="announcementTypes"}">{translate key="manager.announcementTypes"}</a></li>
+	<li><a href="{url op="announcements" clearPageContext=1}">{translate key="manager.announcements"}</a></li>
+	<li class="current"><a href="{url op="announcementTypes" clearPageContext=1}">{translate key="manager.announcementTypes"}</a></li>
 </ul>
 
 <br />
@@ -50,8 +50,8 @@
 	</tr>
 {else}
 	<tr>
-		<td colspan="2" align="left">{page_info iterator=$announcementTypes}</td>
-		<td colspan="2" align="right">{page_links anchor="announcementTypes" name="announcementTypes" iterator=$announcementTypes}</td>
+		<td align="left">{page_info iterator=$announcementTypes}</td>
+		<td align="right">{page_links anchor="announcementTypes" name="announcementTypes" iterator=$announcementTypes}</td>
 	</tr>
 {/if}
 </table>

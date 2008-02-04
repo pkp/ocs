@@ -15,7 +15,7 @@
 {if $group}
 	<ul class="menu">
 		<li class="current"><a href="{url op="editGroup" path=$group->getGroupId()}">{translate key="manager.groups.editTitle"}</a></li>
-		<li><a href="{url op="groupMembership" path=$group->getGroupId()}">{translate key="manager.groups.membership}</a></li>
+		<li><a href="{url op="groupMembership" path=$group->getGroupId() clearPageContext=1}">{translate key="manager.groups.membership}</a></li>
 	</ul>
 {/if}
 
@@ -39,6 +39,7 @@
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
 		</td>
 	</tr>
+{/if}
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="title" required="true" key="manager.groups.title"}</td>
 		<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" value="{$title[$formLocale]|escape}" size="35" maxlength="80" id="title" class="textField" /></td>

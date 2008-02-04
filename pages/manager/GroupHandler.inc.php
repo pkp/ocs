@@ -25,14 +25,19 @@ class GroupHandler extends ManagerHandler {
 
 		$schedConfId = $schedConf? $schedConf->getSchedConfId():0;
 
-		$rangeInfo = &Handler::getRangeInfo('groups');
-
+		$rangeInfo = &Handler::getRangeInfo('groups', array());
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
-		$groups =& $groupDao->getGroups($conference->getConferenceId(), $schedConfId, $rangeInfo);
+		while (true) {
+			$groups =& $groupDao->getGroups($conference->getConferenceId(), $schedConfId, $rangeInfo);
+			if ($groups->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $groups->getLastPageRangeInfo();
+			unset($groups);
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('groups', $groups);
-		$templateMgr->assign('boardEnabled', $conference->getSetting('boardEnabled'));
+		$templateMgr->assign('boardEnabled', $schedConf->getSetting('boardEnabled'));
 		$templateMgr->display('manager/groups/groups.tpl');
 	}
 
@@ -152,11 +157,17 @@ class GroupHandler extends ManagerHandler {
 		$groupId = isset($args[0])?(int)$args[0]:0;
 		list($conference, $schedConf, $group) = GroupHandler::validate($groupId);
 
-		$rangeInfo = &Handler::getRangeInfo('memberships');
+		$rangeInfo = &Handler::getRangeInfo('membership', array($groupId));
 
 		GroupHandler::setupTemplate($group, true);
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-		$memberships =& $groupMembershipDao->getMemberships($group->getGroupId(), $rangeInfo);
+		while (true) {
+			$memberships =& $groupMembershipDao->getMemberships($group->getGroupId(), $rangeInfo);
+			if ($memberships->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $memberships->getLastPageRangeInfo();
+			unset($memberships);
+		}
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('memberships', $memberships);
 		$templateMgr->assign_by_ref('group', $group);
@@ -208,8 +219,16 @@ class GroupHandler extends ManagerHandler {
 				$search = $searchInitial;
 			}
 
+			$rangeInfo = &Handler::getRangeInfo('users', array($groupId, (string) $search, (string) $searchMatch, (string) $searchType));
+
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$users = $roleDao->getUsersByRoleId(null, $conference->getConferenceId(), null, $searchType, $search, $searchMatch);
+			while (true) {
+				$users = $roleDao->getUsersByRoleId(null, $conference->getConferenceId(), null, $searchType, $search, $searchMatch, $rangeInfo);
+				if ($users->isInBounds()) break;
+				unset($rangeInfo);
+				$rangeInfo =& $users->getLastPageRangeInfo();
+				unset($users);
+			}
 
 			$templateMgr = &TemplateManager::getManager();
 
@@ -268,8 +287,8 @@ class GroupHandler extends ManagerHandler {
 		GroupHandler::validate();
 		$conference = &Request::getConference();
 		$boardEnabled = Request::getUserVar('boardEnabled')==1?true:false;
-		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
-		$conferenceSettingsDao->updateSetting($conference->getConferenceId(), 'boardEnabled', $boardEnabled);
+		$schedConf =& Request::getSchedConf();
+		$schedConf->updateSetting('boardEnabled', $boardEnabled);
 		Request::redirect(null, null, null, 'groups');
 	}
 

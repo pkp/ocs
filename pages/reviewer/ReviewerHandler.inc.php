@@ -46,7 +46,6 @@ class ReviewerHandler extends Handler {
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign_by_ref('submissions', $submissions);
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
-		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
 
 		import('submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());

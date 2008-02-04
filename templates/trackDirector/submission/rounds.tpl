@@ -17,7 +17,7 @@
 		<td class="heading" width="30%">{translate key="user.name"}</td>
 		<td class="heading" width="25%">{translate key="submission.request"}</td>
 		<td class="heading" width="25%">{translate key="trackDirector.regrets.result"}</td>
-		{if $schedConfSettings.reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}<td class="heading" width="20%">{translate key="submissions.reviewType"}</td>{/if}
+		{if $submission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL}<td class="heading" width="20%">{translate key="submissions.reviewType"}</td>{/if}
 	</tr>
 	<tr><td colspan="4" class="headseparator">&nbsp;</td></tr>
 {foreach from=$cancelsAndRegrets item=cancelOrRegret name=cancelsAndRegrets}

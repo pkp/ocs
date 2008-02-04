@@ -28,8 +28,6 @@ class TrackDirectorHandler extends Handler {
 		$schedConf = &Request::getSchedConf();
 		$user = &Request::getUser();
 
-		$rangeInfo = Handler::getRangeInfo('submissions');
-
 		// Get the user's search conditions, if any
 		$searchField = Request::getUserVar('searchField');
 		$searchMatch = Request::getUserVar('searchMatch');
@@ -56,18 +54,25 @@ class TrackDirectorHandler extends Handler {
 				$helpTopicId = 'editorial.trackDirectorsRole.submissions.inReview';
 		}
 
-		$submissions = &$trackDirectorSubmissionDao->$functionName(
-			$user->getUserId(),
-			$schedConf->getSchedConfId(),
-			Request::getUserVar('track'),
-			$searchField,
-			$searchMatch,
-			$search,
-			null,
-			null,
-			null,
-			$rangeInfo
-		);
+		$rangeInfo = Handler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
+		while (true) {
+			$submissions =& $trackDirectorSubmissionDao->$functionName(
+				$user->getUserId(),
+				$schedConf->getSchedConfId(),
+				Request::getUserVar('track'),
+				$searchField,
+				$searchMatch,
+				$search,
+				null,
+				null,
+				null,
+				$rangeInfo
+			);
+			if ($submissions->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $submissions->getLastPageRangeInfo();
+			unset($submissions);
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', $helpTopicId);

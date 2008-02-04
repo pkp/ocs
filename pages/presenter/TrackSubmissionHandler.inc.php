@@ -84,7 +84,6 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$track = &$trackDao->getTrack($submission->getTrackId());
 		$templateMgr->assign_by_ref('track', $track);
 
-		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($stage));
 		$templateMgr->assign('stage', $stage);
@@ -136,7 +135,6 @@ class TrackSubmissionHandler extends PresenterHandler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $presenterSubmission);
-		$templateMgr->assign_by_ref('schedConfSettings', $schedConf->getSettings(true));
 		$templateMgr->assign_by_ref('reviewAssignments', $presenterSubmission->getReviewAssignments($stage));
 		$templateMgr->assign('stage', $stage);
 		$templateMgr->assign_by_ref('reviewFilesByStage', $reviewFilesByStage);

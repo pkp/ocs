@@ -23,9 +23,15 @@ class TrackHandler extends ManagerHandler {
 		list($conference, $schedConf) = parent::validate();
 		parent::setupTemplate(true);
 
-		$rangeInfo = &Handler::getRangeInfo('tracks');
+		$rangeInfo = &Handler::getRangeInfo('tracks', array());
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$tracks = &$trackDao->getSchedConfTracks($schedConf->getSchedConfId(), $rangeInfo);
+		while (true) {
+			$tracks = &$trackDao->getSchedConfTracks($schedConf->getSchedConfId(), $rangeInfo);
+			if ($tracks->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $tracks->getLastPageRangeInfo();
+			unset($tracks);
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'manager'), 'manager.schedConfManagement')));
