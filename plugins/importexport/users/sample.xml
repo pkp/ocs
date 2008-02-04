@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE users SYSTEM "users.dtd">
+
+<!--
+  * sample.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Sample user import data.
+  *
+  * $Id$
+  -->
+
+<users>
+        <user>
+		<username>testuser1</username>
+		<password>ocsocs</password>
+		<salutation>Dr.</salutation>
+		<first_name>TestUser1FirstName</first_name>
+		<last_name>TestUser1LastName</last_name>
+		<gender>F</gender>
+		<affiliation>TestUser1Affiliation</affiliation>
+		<email>testuser1@ocsdev.bb</email>
+		<country>DE</country>
+		<discipline>C4</discipline>
+		<biography locale="de_DE">My biography (German) - TestUser1.</biography>
+		<biography locale="en_US">My biography (English) - TestUser1.</biography>
+		<biography locale="es_ES">My biography (Spanish) - TestUser1.</biography>
+		<role type="presenter"/>
+	</user>
+	<user>
+		<username>testuser2</username>
+		<password encrypted="sha1">efe7d096996561e621764052b451ff752b03652f</password>
+		<salutation>Dr.</salutation>
+		<first_name>TestUser2FirstName</first_name>
+		<last_name>TestUser2LastName</last_name>
+		<gender>F</gender>
+		<affiliation>TestUser2Affiliation</affiliation>
+		<email>testuser2@ocsdev.bb</email>
+		<country>DE</country>
+		<discipline>C4</discipline>
+		<biography locale="de_DE">My biography (German) - TestUser2.</biography>
+		<biography locale="en_US">My biography (English) - TestUser2.</biography>
+		<biography locale="es_ES">My biography (Spanish) - TestUser2.</biography>
+		<userLocales>de_DE:en_US</userLocales>
+		<role type="presenter"/>
+        </user>
+</users>

@@ -272,6 +272,64 @@ class RoleDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve a list of all users with some role in the specified scheduled conference.
+	 * @param $schedConfId int
+	 * @param $searchType int optional, which field to search
+	 * @param $search string optional, string to match
+	 * @param $searchMatch string optional, type of match ('is' vs. 'contains')
+	 * @param $dbRangeInfo object DBRangeInfo object describing range of results to return
+	 * @return array matching Users
+	 */
+	function &getUsersBySchedConfId($schedConfId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null) {
+		$users = array();
+
+		$paramArray = array('interests', (int) $schedConfId);
+		$searchSql = '';
+
+		if (isset($search)) switch ($searchType) {
+			case USER_FIELD_USERID:
+				$searchSql = 'AND u.user_id=?';
+				$paramArray[] = $search;
+				break;
+			case USER_FIELD_FIRSTNAME:
+				$searchSql = 'AND LOWER(u.first_name) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
+				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
+				break;
+			case USER_FIELD_LASTNAME:
+				$searchSql = 'AND LOWER(u.last_name) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
+				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
+				break;
+			case USER_FIELD_USERNAME:
+				$searchSql = 'AND LOWER(u.username) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
+				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
+				break;
+			case USER_FIELD_EMAIL:
+				$searchSql = 'AND LOWER(u.email) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
+				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
+				break;
+			case USER_FIELD_INTERESTS:
+				$searchSql = 'AND LOWER(s.setting_value) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
+				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
+				break;
+			case USER_FIELD_INITIAL:
+				$searchSql = 'AND LOWER(u.last_name) LIKE LOWER(?)';
+				$paramArray[] = $search . '%';
+				break;
+		}
+
+		$searchSql .= ' ORDER BY u.last_name, u.first_name'; // FIXME Add "sort field" parameter?
+
+		$result = &$this->retrieveRange(
+
+			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id AND r.sched_conf_id = ? ' . $searchSql,
+			$paramArray,
+			$dbResultRange
+		);
+
+		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
+		return $returner;
+	}
+	/**
 	 * Retrieve the number of users associated with the specified conference.
 	 * @param $conferenceId int
 	 * @return int

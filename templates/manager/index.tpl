@@ -24,7 +24,6 @@
 	<li>&#187; <a href="{url op="emails" clearPageContext=1}">{translate key="manager.emails"}</a></li>
 	<li>&#187; <a href="{url page="rtadmin"}">{translate key="manager.readingTools"}</a></li>
 	<li>&#187; <a href="{url op="files"}">{translate key="manager.filesBrowser"}</a></li>
-	<li>&#187; <a href="{url op="importexport"}">{translate key="manager.importExport"}</a></li>
 	<li>&#187; <a href="{url op="languages"}">{translate key="common.languages"}</a></li>
 	<li>&#187; <a href="{url op="conferenceEventLog" clearPageContext=1}">{translate key="manager.conferenceEventLog"}</a></li>
 	<li>&#187; <a href="{url op="plugins"}">{translate key="manager.plugins"}</a></li>
@@ -41,6 +40,7 @@
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="tracks" clearPageContext=1}">{translate key="track.tracks"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="groups" clearPageContext=1}">{translate key="manager.groups"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="program"}">{translate key="manager.program"}</a></li>
+		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="importexport"}">{translate key="manager.importExport"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="statistics"}">{translate key="manager.statistics"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="registration" clearPageContext=1}">{translate key="manager.registration"}</a></li>
 		<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="scheduler"}">{translate key="manager.scheduler"}</a></li>
