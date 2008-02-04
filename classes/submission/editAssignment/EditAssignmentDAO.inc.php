@@ -238,9 +238,9 @@ class EditAssignmentDAO extends DAO {
 				papers p
 			WHERE	ea.paper_id=p.paper_id AND
 				p.sched_conf_id = ? AND (
-					p.status = ' . STATUS_ARCHIVED . ' OR
-					p.status = ' . STATUS_PUBLISHED . ' OR
-					p.status = ' . STATUS_DECLINED . '
+					p.status = ' . SUBMISSION_STATUS_ARCHIVED . ' OR
+					p.status = ' . SUBMISSION_STATUS_PUBLISHED . ' OR
+					p.status = ' . SUBMISSION_STATUS_DECLINED . '
 				)
 			GROUP BY ea.director_id',
 			$schedConfId
@@ -263,7 +263,7 @@ class EditAssignmentDAO extends DAO {
 				papers p
 			WHERE	ea.paper_id = p.paper_id AND
 				p.sched_conf_id = ? AND
-				p.status = ' . STATUS_QUEUED . '
+				p.status = ' . SUBMISSION_STATUS_QUEUED . '
 			GROUP BY ea.director_id',
 			$schedConfId
 		);
