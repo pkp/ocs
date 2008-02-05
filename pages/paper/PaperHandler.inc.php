@@ -362,21 +362,25 @@ class PaperHandler extends Handler {
 			import('schedConf.SchedConfAction');
 			$mayViewPaper = SchedConfAction::mayViewPapers($schedConf, $conference);
 
-			// Bar access to paper?
-			if ((isset($galleyId) && $galleyId!=0) && !$mayViewPaper) {
-				Request::redirect(null, null, null, 'index');	
+			if (
+				// Bar access to paper?
+				((isset($galleyId) && $galleyId!=0) && !$mayViewPaper) ||
+				// Bar access to abstract?
+				((!isset($galleyId) || $galleyId==0) && !SchedConfAction::mayViewProceedings($schedConf))
+			) {
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->assign_by_ref('paper', $paper);
+				$templateMgr->assign_by_ref('schedConf', $schedConf);
+				$templateMgr->assign_by_ref('conference', $conference);
+				$templateMgr->display('paper/accessDenied.tpl');
+				exit;
 			}
 
-			// Bar access to abstract?
-			if ((!isset($galleyId) || $galleyId==0) && !SchedConfAction::mayViewProceedings($schedConf)) {
-				Request::redirect(null, null, null, 'index');	
-			}
 		} else {
 			Request::redirect(null, null, null, 'index');
 		}
 		return array($conference, $schedConf, $paper);
 	}
-
 }
 
 ?>

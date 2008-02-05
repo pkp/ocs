@@ -76,7 +76,7 @@ class SchedConfAction {
 	 * @param $schedConf
 	 * @return bool
 	 */
-	function mayViewProceedings(&$schedConf) {
+	function mayViewProceedings(&$schedConf) {return false;
 		if(Validation::isSiteAdmin() || Validation::isConferenceManager() || Validation::isDirector() || Validation::isTrackDirector()) {
 			return true;
 		}

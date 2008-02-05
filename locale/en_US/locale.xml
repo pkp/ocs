@@ -614,6 +614,7 @@
 	<!-- Reader paper view -->
 	<message key="reader.fullText">Full Text:</message>
 	<message key="reader.fullTextNotAvailable">Conference papers are not currently available.</message>
+	<message key="reader.accessDenied">You are not currently permitted to view this paper. If you have an account for this conference website, you may need to log in to view content.</message>
 	<message key="reader.fullTextRegistrationRequired">Conference registration is required in order to view papers.</message>
 	<message key="reader.fullTextAccountRequired"><![CDATA[An account with this site is required in order to view papers. <a href="{$registerUrl}">Click here</a> to create an account.]]></message>
 	<message key="reader.fullTextRegistrantsOnlyUntil">Open access for this conference will begin on {$date}.</message>
