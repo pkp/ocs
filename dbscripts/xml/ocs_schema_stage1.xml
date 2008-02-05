@@ -1735,9 +1735,6 @@
 			<KEY />
 			<AUTOINCREMENT/>
 		</field>
-		<field name="key_hash" type="C2" size="40">
-			<NOTNULL/>
-		</field>
 		<field name="date_created" type="T">
 			<NOTNULL/>
 		</field>
