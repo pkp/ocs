@@ -15,7 +15,7 @@
 
 <br />
 
-<form method="post" action="{url op="saveGalley" path=$paperId|to_array:$galleyId}" enctype="multipart/form-data">
+<form method="post" action="{url op="saveGalley" path=$paperId|to_array:$galleyId:$stage}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
 <p>{translate key="submission.layout.galleyFileData"}</p>
@@ -27,6 +27,15 @@
 <tr valign="top">
 	<td>&nbsp;</td>
 	<td class="instruct">{translate key="submission.layout.galleyLabelInstructions"}</td>
+</tr>
+
+<tr valign="top">
+	<td class="label">{fieldLabel name="galleyLocale" required="true" key="common.language"}</td>
+	<td class="value">
+		<select name="galleyLocale" id="galleyLocale" class="selectMenu">
+		{html_options options=$supportedLocales selected=$galleyLocale|default:$formLocale}
+		</select>
+	</td>
 </tr>
 
 <tr valign="top">

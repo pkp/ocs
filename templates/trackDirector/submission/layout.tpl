@@ -41,7 +41,7 @@
 		<td><a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$galley->getFileId()}" class="file">{$galley->getFileName()|escape}</a>&nbsp;&nbsp;{$galley->getDateModified()|date_format:$dateFormatShort}</td>
 		<td><a href="{url op="orderGalley" d=u paperId=$submission->getPaperId() galleyId=$galley->getGalleyId()}" class="plain">&uarr;</a> <a href="{url op="orderGalley" d=d paperId=$submission->getPaperId() galleyId=$galley->getGalleyId()}" class="plain">&darr;</a></td>
 		<td>
-			<a href="{url op="editGalley" path=$submission->getPaperId()|to_array:$galley->getGalleyId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteGalley" path=$submission->getPaperId()|to_array:$galley->getGalleyId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.layout.confirmDeleteGalley"}')" class="action">{translate key="common.delete"}</a>
+			<a href="{url op="editGalley" path=$submission->getPaperId()|to_array:$galley->getGalleyId():$stage}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteGalley" path=$submission->getPaperId()|to_array:$galley->getGalleyId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.layout.confirmDeleteGalley"}')" class="action">{translate key="common.delete"}</a>
 		</td>
 		<td>{$galley->getViews()|escape}</td>
 	</tr>
@@ -82,6 +82,7 @@
 <form method="post" action="{url op="uploadLayoutFile"}"  enctype="multipart/form-data">
 	<input type="hidden" name="from" value="submissionReview" />
 	<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
+	<input type="hidden" name="stage" value="{$stage|escape}" />
 	{translate key="submission.uploadFileTo"}
 		<input type="radio" checked="checked" name="layoutFileType" id="layoutFileTypeGalley" value="galley" />
 		<label for="layoutFileTypeGalley">{translate key="submission.galley"}</label>,

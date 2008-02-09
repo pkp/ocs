@@ -20,21 +20,26 @@ class PaperGalleyForm extends Form {
 	/** @var int the ID of the paper */
 	var $paperId;
 
-	/** @var int the ID of the galley */
+	/** @var $galleyId int the ID of the galley */
 	var $galleyId;
 
-	/** @var PaperGalley current galley */
+	/** @var $galley PaperGalley current galley */
 	var $galley;
+
+	/** @var $stage int The review stage the person was coming from (used for redirect) */
+	var $stage;
 
 	/**
 	 * Constructor.
 	 * @param $paperId int
 	 * @param $galleyId int (optional)
+	 * @param $stage int (optional, used for smart redirect)
 	 */
-	function PaperGalleyForm($paperId, $galleyId = null) {
+	function PaperGalleyForm($paperId, $galleyId = null, $stage = null) {
 		parent::Form('submission/layout/galleyForm.tpl');
 		$conference =& Request::getConference();
 		$this->paperId = $paperId;
+		$this->stage = $stage;
 
 		if (isset($galleyId) && !empty($galleyId)) {
 			$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
@@ -60,6 +65,7 @@ class PaperGalleyForm extends Form {
 
 		$templateMgr->assign('paperId', $this->paperId);
 		$templateMgr->assign('galleyId', $this->galleyId);
+		$templateMgr->assign('stage', $this->stage);
 		$templateMgr->assign('supportedLocales', $conference->getSupportedLocaleNames());
 
 		if (isset($this->galley)) {

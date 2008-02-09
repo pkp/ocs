@@ -924,14 +924,15 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 */
 	function uploadLayoutFile() {
 		$layoutFileType = Request::getUserVar('layoutFileType');
+		$stage = (int) Request::getUserVar('stage');
 		if ($layoutFileType == 'submission') {
-			SubmissionEditHandler::uploadLayoutVersion();
+			SubmissionEditHandler::uploadLayoutVersion($stage);
 
 		} else if ($layoutFileType == 'galley') {
-			SubmissionEditHandler::uploadGalley('layoutFile');
+			SubmissionEditHandler::uploadGalley('layoutFile', $stage);
 
 		} else if ($layoutFileType == 'supp') {
-			SubmissionEditHandler::uploadSuppFile('layoutFile');
+			SubmissionEditHandler::uploadSuppFile('layoutFile', $stage);
 
 		} else {
 			Request::redirect(null, null, null, 'submission', Request::getUserVar('paperId'));
@@ -940,14 +941,15 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	/**
 	 * Upload the layout version of the submission file
+	 * @var $stage int The current review stage to redirect back to
 	 */
-	function uploadLayoutVersion() {
+	function uploadLayoutVersion($stage) {
 		$paperId = Request::getUserVar('paperId');
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		TrackDirectorAction::uploadLayoutVersion($submission);
 
-		Request::redirect(null, null, null, 'submissionReview', $paperId);
+		Request::redirect(null, null, null, 'submissionReview', array($paperId, $stage));
 	}
 
 	/**
@@ -968,8 +970,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	/**
 	 * Create a new galley with the uploaded file.
+	 * @param $fileName string
+	 * @param $stage int
 	 */
-	function uploadGalley($fileName = null) {
+	function uploadGalley($fileName = null, $stage = null) {
 		$paperId = Request::getUserVar('paperId');
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
@@ -978,7 +982,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$galleyForm = &new PaperGalleyForm($paperId);
 		$galleyId = $galleyForm->execute($fileName);
 
-		Request::redirect(null, null, null, 'editGalley', array($paperId, $galleyId));
+		Request::redirect(null, null, null, 'editGalley', array($paperId, $galleyId, $stage));
 	}
 
 	/**
@@ -986,15 +990,16 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * @param $args array ($paperId, $galleyId)
 	 */
 	function editGalley($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
+		$paperId = (int) array_shift($args);
+		$galleyId = (int) array_shift($args);
+		$stage = (int) array_shift($args);
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		parent::setupTemplate(true, $paperId, 'review');
 
 		import('submission.form.PaperGalleyForm');
 
-		$submitForm = &new PaperGalleyForm($paperId, $galleyId);
+		$submitForm = &new PaperGalleyForm($paperId, $galleyId, $stage);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -1009,13 +1014,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 * @param $args array ($paperId, $galleyId)
 	 */
 	function saveGalley($args) {
-		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
+		$paperId = (int) array_shift($args);
+		$galleyId = (int) array_shift($args);
+		$stage = (int) array_shift($args);
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
 		import('submission.form.PaperGalleyForm');
 
-		$submitForm = &new PaperGalleyForm($paperId, $galleyId);
+		$submitForm = &new PaperGalleyForm($paperId, $galleyId, $stage);
 		$submitForm->readInputData();
 
 		if ($submitForm->validate()) {
@@ -1023,13 +1029,13 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 			if (Request::getUserVar('uploadImage')) {
 				$submitForm->uploadImage();
-				Request::redirect(null, null, null, 'editGalley', array($paperId, $galleyId));
+				Request::redirect(null, null, null, 'editGalley', array($paperId, $galleyId, $stage));
 			} else if(($deleteImage = Request::getUserVar('deleteImage')) && count($deleteImage) == 1) {
 				list($imageId) = array_keys($deleteImage);
 				$submitForm->deleteImage($imageId);
-				Request::redirect(null, null, null, 'editGalley', array($paperId, $galleyId));
+				Request::redirect(null, null, null, 'editGalley', array($paperId, $galleyId, $stage));
 			}
-			Request::redirect(null, null, null, 'submissionReview', $paperId);
+			Request::redirect(null, null, null, 'submissionReview', array($paperId, $stage));
 		} else {
 			parent::setupTemplate(true, $paperId, 'editing');
 			$submitForm->display();
@@ -1127,8 +1133,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 	/**
 	 * Upload a new supplementary file.
+	 * @param $fileName string
+	 * @param $stage int
 	 */
-	function uploadSuppFile($fileName = null) {
+	function uploadSuppFile($fileName = null, $stage = null) {
 		$paperId = Request::getUserVar('paperId');
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 
@@ -1138,7 +1146,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$suppFileForm->setData('title', Locale::translate('common.untitled'));
 		$suppFileId = $suppFileForm->execute($fileName);
 
-		Request::redirect(null, null, null, 'submission', array($paperId, $suppFileId));
+		Request::redirect(null, null, null, ($stage===null?'submission':'submissionReview'), array($paperId, $suppFileId, $stage));
 	}
 
 	/**

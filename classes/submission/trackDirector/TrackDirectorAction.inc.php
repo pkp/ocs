@@ -1556,7 +1556,7 @@ import('file.PaperFileManager');
 			if ($track != 'director' && $track != 'trackDirector') {
 				$parent[0] = Request::url(null, null, $track, 'submission', $paperId);
 			}
-			$breadcrumb[] = $parent;
+			if (isset($parent)) $breadcrumb[] = $parent;
 		}
 		return $breadcrumb;
 	}
