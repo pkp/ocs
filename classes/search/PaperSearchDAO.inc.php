@@ -170,7 +170,7 @@ class PaperSearchDAO extends DAO {
 		if ($result->RecordCount() == 0) {
 			$this->update(
 				'INSERT INTO paper_search_objects (paper_id, type, assoc_id) VALUES (?, ?, ?)',
-				array($paperId, $type, $assocId)
+				array($paperId, $type, (int) $assocId)
 			);
 			$objectId = $this->getInsertId('paper_search_objects', 'object_id');
 
