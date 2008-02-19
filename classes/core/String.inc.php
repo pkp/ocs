@@ -117,6 +117,11 @@ class String {
 		}
 	}
 
+	function ucfirst($string) {
+		$fc = String::strtoupper(String::substr($string, 0, 1));
+		return $fc . String::substr($string, 1);
+	}
+
 	function strtolower($string) {
 		if (defined('ENABLE_MBSTRING')) {
 			return mb_strtolower($string); // Requires PHP >= 4.3.0
