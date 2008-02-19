@@ -86,3 +86,8 @@
 		</td>
 	</tr>
 </table>
+
+<div class="separator"></div>
+
+{include file="presenter/submission/layout.tpl"}
+

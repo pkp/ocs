@@ -77,6 +77,9 @@ class TrackSubmissionHandler extends PresenterHandler {
 				break;
 		}
 
+		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($submission->getPaperId());
+
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('mayEditPaper', PresenterAction::mayEditPaper($submission));
 
@@ -85,6 +88,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$templateMgr->assign_by_ref('track', $track);
 
 		$templateMgr->assign_by_ref('submission', $submission);
+		$templateMgr->assign_by_ref('publishedPaper', $publishedPaper);
 		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($stage));
 		$templateMgr->assign('stage', $stage);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());

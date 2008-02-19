@@ -16,13 +16,14 @@
 	<tr>
 		<td width="40%" colspan="2">{translate key="submission.layout.galleyFormat"}</td>
 		<td width="40%" colspan="2" class="heading">{translate key="common.file"}</td>
-		<td>&nbsp;</td>
+		<td align="right" class="heading">{translate key="submission.views"}</td>
 	</tr>
 	{foreach name=galleys from=$submission->getGalleys() item=galley}
 	<tr>
 		<td width="5%">{$smarty.foreach.galleys.iteration}.</td>
-		<td width="35%">{$galley->getGalleyLabel()|escape} &nbsp; <a href="{url op="proofGalley" path=$submission->getPaperId()|to_array:$galley->getGalleyId()}" class="action">{translate key="submission.layout.viewProof"}</td>
-		<td colspan="3"><a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$galley->getFileId()}" class="file">{$galley->getFileName()|escape}</a>&nbsp;&nbsp;{$galley->getDateModified()|date_format:$dateFormatShort}</td>
+		<td width="35%">{$galley->getGalleyLabel()|escape}
+		<td colspan="2"><a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$galley->getFileId()}" class="file">{$galley->getFileName()|escape}</a>&nbsp;&nbsp;{$galley->getDateModified()|date_format:$dateFormatShort}</td>
+		<td align="right">{$galley->getViews()}</td>
 	</tr>
 	{foreachelse}
 	<tr>
