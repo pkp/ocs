@@ -17,6 +17,7 @@
 import('form.validation.FormValidatorCaptcha');
 import('form.validation.FormValidatorRegExp');
 import('form.validation.FormValidatorEmail');
+import('form.validation.FormValidatorUrl');
 import('form.validation.FormValidatorAlphaNum');
 import('form.validation.FormValidatorInSet');
 import('form.validation.FormValidatorArray');
