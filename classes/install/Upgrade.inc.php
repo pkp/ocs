@@ -129,7 +129,7 @@ class Upgrade extends Installer {
 		$settingNames = array(
 			// Setup page 1
 			'title' => 'title',
-			'description' => 'description',
+			'conferenceDescription' => 'description',
 			'archiveAccessPolicy' => 'archiveAccessPolicy',
 			'copyrightNotice' => 'copyrightNotice',
 			'privacyStatement' => 'privacyStatement',

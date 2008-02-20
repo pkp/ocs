@@ -18,8 +18,8 @@
 		<query>INSERT INTO site_settings (setting_name, setting_value, setting_type, locale) SELECT 'title', title, 'string', primary_locale FROM site</query>
 		<query>INSERT INTO site_settings (setting_name, setting_value, setting_type, locale) SELECT 'intro', intro, 'string', primary_locale FROM site</query>
 		<query>INSERT INTO site_settings (setting_name, setting_value, setting_type, locale) SELECT 'about', about, 'string', primary_locale FROM site</query>
-		<query>INSERT INTO site_settings (setting_name, setting_value, setting_type, locale) SELECT 'contact_name', contact_name, 'string', primary_locale FROM site</query>
-		<query>INSERT INTO site_settings (setting_name, setting_value, setting_type, locale) SELECT 'contact_email', contact_email, 'string', primary_locale FROM site</query>
+		<query>INSERT INTO site_settings (setting_name, setting_value, setting_type, locale) SELECT 'contactName', contact_name, 'string', primary_locale FROM site</query>
+		<query>INSERT INTO site_settings (setting_name, setting_value, setting_type, locale) SELECT 'contactEmail', contact_email, 'string', primary_locale FROM site</query>
 	</sql>
 
 	<!-- Localize the users table -->
