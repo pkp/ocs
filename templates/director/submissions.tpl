@@ -9,8 +9,7 @@
  * $Id$
  *}
 {assign var="pageTitle" value="common.queue.long.$pageToDisplay"}
-{url|assign:"currentUrl" page="director"}
-{include file="common/header.tpl"}
+{url|assign:"currentUrl" page="director"}{include file="common/header.tpl"}
 
 <ul class="menu">
 	<li{if $pageToDisplay == "submissionsUnassigned"} class="current"{/if}><a href="{url op="submissions" path="submissionsUnassigned"}">{translate key="common.queue.short.submissionsUnassigned"}</a></li>
@@ -38,7 +37,7 @@
 
 {include file="director/$pageToDisplay.tpl"}
 <form action="#">
-{translate key="track.track"}: <select name="track" onchange="location.href='{url path=$pageToDisplay searchField=$searchField searchMatch=$searchMatch search=$search track="TRACK_ID" escape=false}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$trackOptions selected=$track}</select>
+{translate key="track.track"}: <select name="track" onchange="location.href='{url|escape path=$pageToDisplay searchField=$searchField searchMatch=$searchMatch search=$search track="TRACK_ID" escape=false}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$trackOptions selected=$track}</select>
 </form>
 
 {if ($pageToDisplay == "submissionsInReview")}

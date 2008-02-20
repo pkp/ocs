@@ -233,8 +233,8 @@
 	<message key="navigation.previousStep">Étape Précédente</message>
 	<message key="navigation.nextStep">Étape Suivante</message>
 	<message key="navigation.stepNumber">Étape {$step}</message>
-	<message key="navigation.previousPage">&lt;&lt;</message>
-	<message key="navigation.nextPage">&gt;&gt;</message>
+	<message key="navigation.previousPage"><![CDATA[&lt;&lt;]]></message>
+	<message key="navigation.nextPage"><![CDATA[&gt;&gt;]]></message>
 	<message key="navigation.items">{$from} - {$to} sur {$total} éléments</message>
 	<message key="navigation.fontSize">Taille de la police</message>
 
@@ -691,7 +691,7 @@
 	<message key="admin.auth.enableSyncProfiles">Activer la synchronisation des profils utilisateurs(si supporté pas ce plugin d'authentification). Les informations du profil de l'utilisateur seront automatiquement mises à jour depuis la source distante quand un utilisateur se connecte, et les modifications du profil (y compris le mot de passe) effectuée avec OCS vont automatiquement être mise à jour sur la source distante. Si cette option n'est pas activée, les informations du profil OCS vont rester séparée de celles du profil sur la source distante.</message>
 	<message key="admin.auth.enableSyncPasswords">Permettre la modification du mot de passe utilisateur (si supporté par ce plugin d'authentification). Activer cette option permettra aux utilisateurs de modifier leurs mot de passe OCS et d'utiliser la fonction "mot de passe oublié" pour réinitialiser un mot de passe perdu. Ces fonctions seront indisponibles pour les utilisateurs utilisant une source authentification où cette option n'est pas activée.</message>
 	<message key="admin.auth.enableCreateUsers">Permettre la création de nouveaux utilisateurs (si supporté par ce plugin d'authentification).Les utilisateurs créés avec OCS à l'aide de cette source d'authentification vont automatiquement être ajoutés à la source d'authentification distante s'ils n'existent pas déjà. De plus, si cette source est la source d'authentification par défaut, les comptes OCS créés par une inscription d'un utilisateur vont aussi être ajoutés à la source distante d'authentification.</message>
-	<message key="admin.auth.defaultSourceDescription"><![CDATA[Définir une source d'authentification par défaut autre que celle d'OCS entraîne les effets suivants:
+	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Définir une source d'authentification par défaut autre que celle d'OCS entraîne les effets suivants:</p>
 <ul>
 	<li>Si un utilisateur tente de créer un nouveau compte sur ce site avec un nom d'utilisateur déjà existant dans la source d'authentification (mais pas dans la base de données OCS), la tentative d'inscription n'est permise que si le mot de passe fourni est valide pour ce compte.</li>
 </ul>]]></message>
@@ -816,7 +816,7 @@
 	<message key="manager.websiteManagement">Gestion du site web</message>
 	<message key="manager.currentConferences">Conférences en cours</message>
 	<message key="manager.emails">Courriels préparés</message>
-	<message key="manager.statistics">Statistiques &amp; Rapports</message>
+	<message key="manager.statistics"><![CDATA[Statistiques &amp; Rapports]]></message>
 	<message key="manager.readingTools">Outils de lecture</message>
 	<message key="manager.people">Personnes</message>
 	<message key="manager.filesBrowser">Navigateur de fichiers</message>
@@ -1777,7 +1777,7 @@ Actif est le nombre de révisions en cours ou en réflexion.]]></message>
 
 	<!-- Paper Submission Step 3 -->
 	<message key="presenter.submit.uploadInstructions"><![CDATA[
-Pour télécharger un papier à cette conférence, complétez les étapes suivantes.
+<p>Pour télécharger un papier à cette conférence, complétez les étapes suivantes.</p>
 
 <ol>
 <li>Sur cette page, cliquez sur Parcourir (ou Choisir un Fichier) qui ouvre une fenêtre de sélection d'un fichier sur le disque dur de votre ordinateur.</li>

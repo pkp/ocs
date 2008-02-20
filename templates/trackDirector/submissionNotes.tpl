@@ -19,13 +19,13 @@
 	var toggleAll = 0;
 	var noteArray = new Array();
 	function toggleNote(divNoteId) {
-		var domStyle = getBrowserObject(divNoteId,1);
+		var domStyle = getBrowserObject("note" + divNoteId,1);
 		domStyle.display = (domStyle.display == "block") ? "none" : "block";
 	}
 
 	function toggleNoteAll() {
 		for(var i = 0; i < noteArray.length; i++) {
-			var domStyle = getBrowserObject(noteArray[i],1);
+			var domStyle = getBrowserObject("note" + noteArray[i],1);
 			domStyle.display = toggleAll ? "none" : "block";
 		}
 		toggleAll = toggleAll ? 0 : 1;
@@ -100,11 +100,10 @@
 		<td class="label" width="20%">{translate key="common.uploadedFile"}</td>
 		<td class="value" width="80%">{if $paperNote->getFileId()}<a href="{url op="downloadFile" path=$paperId|to_array:$paperNote->getFileId()}">{$paperNote->getOriginalFileName()}</a><br /><input type="checkbox" name="removeUploadedFile" value="1" />&nbsp;{translate key="submission.notes.removeUploadedFile"}{else}&mdash;{/if}</td>
 	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">&nbsp;</td>
-		<td class="value" width="80%"><input type="button" class="button" value="{translate key="submission.notes.deleteNote"}" onclick="confirmAction('{url op="removeSubmissionNote" paperId=$paperNote->getPaperId() noteId=$paperNote->getNoteId() fileId=$paperNote->getFileId()}', '{translate|escape:"jsparam" key="submission.notes.confirmDelete"}')">&nbsp;<input type="submit" class="button" value="{translate key="submission.notes.updateNote"}" /></td>
-	</tr>
 </table>
+<br />
+<input type="button" class="button" value="{translate key="submission.notes.deleteNote"}" onclick="confirmAction('{url op="removeSubmissionNote" paperId=$paperNote->getPaperId() noteId=$paperNote->getNoteId() fileId=$paperNote->getFileId()}', '{translate|escape:"jsparam" key="submission.notes.confirmDelete"}')">&nbsp;<input type="submit" class="button" value="{translate key="submission.notes.updateNote"}" />
+</form>
 
 {elseif $noteViewType == "add"}
 	<h3>{translate key="submission.notes.addNewNote"}</h3>
@@ -123,11 +122,9 @@
 		<td class="label">{translate key="common.file"}</td>
 		<td class="value"><input type="file" name="upload" class="uploadField" /></td>
 	</tr>
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td class="formField"><input type="submit" class="button defaultButton" value="{translate key="submission.notes.createNewNote"}" /></td>
-	</tr>
 	</table>
+	<br />
+	<input type="submit" class="button defaultButton" value="{translate key="submission.notes.createNewNote"}" />
 	</form>
 {else}
 <h3>{translate key="submission.notes"}</h3>
@@ -142,14 +139,16 @@
 	</tr>
 	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
 {iterate from=submissionNotes item=note}
-	<script type="text/javascript">
-	<!--
-		noteArray.push({$note->getNoteId()});
-	// -->
-	</script>
 	<tr valign="top">
-		<td>{$note->getDateCreated()|date_format:$dateFormatTrunc}</td>
-		<td><a class="action" href="javascript:toggleNote({$note->getNoteId()})">{$note->getTitle()}</a><div style="display: none" id="{$note->getNoteId()}" name="{$note->getNoteId()}">{$note->getNote()|strip_unsafe_html|nl2br}</div></td>
+		<td>
+			<script type="text/javascript">
+			<!--
+				noteArray.push({$note->getNoteId()});
+			// -->
+			</script>
+			{$note->getDateCreated()|date_format:$dateFormatTrunc}
+		</td>
+		<td><a class="action" href="javascript:toggleNote({$note->getNoteId()})">{$note->getTitle()}</a><div style="display: none" id="note{$note->getNoteId()}" name="{$note->getNoteId()}">{$note->getNote()|strip_unsafe_html|nl2br}</div></td>
 		<td>{if $note->getFileId()}<a class="action" href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$note->getFileId()}">{$note->getOriginalFileName()}</a>{else}&mdash;{/if}</td>
 		<td align="right"><a href="{url op="submissionNotes" path=$submission->getPaperId()|to_array:"edit":$note->getNoteId()}" class="action">{translate key="common.view"}</a>&nbsp;|&nbsp;<a href="{url op="removeSubmissionNote" paperId=$submission->getPaperId() noteId=$note->getNoteId() fileId=$note->getFileId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.notes.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>

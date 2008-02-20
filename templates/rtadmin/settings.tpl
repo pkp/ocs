@@ -43,7 +43,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label"><input type="checkbox" name="viewMetadata" id="viewMetadata" {if $viewMetadata}checked="checked" {/if}/></td>
-		<td class="value"><label for="viewMetadata">{translate key="rt.admin.settings.viewMetadata"}</td>
+		<td class="value"><label for="viewMetadata">{translate key="rt.admin.settings.viewMetadata"}</label></td>
 	</tr>
 	<tr valign="top">
 		<td class="label"><input type="checkbox" name="supplementaryFiles" id="supplementaryFiles" {if $supplementaryFiles}checked="checked" {/if}/></td>

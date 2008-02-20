@@ -233,8 +233,8 @@
 	<message key="navigation.previousStep">Passo precedente</message>
 	<message key="navigation.nextStep">Passo successivo</message>
 	<message key="navigation.stepNumber">Passo {$step}</message>
-	<message key="navigation.previousPage">&lt;&lt;</message>
-	<message key="navigation.nextPage">&gt;&gt;</message>
+	<message key="navigation.previousPage"><![CDATA[&lt;&lt;]]></message>
+	<message key="navigation.nextPage"><![CDATA[&gt;&gt;]]></message>
 	<message key="navigation.items">{$from} - {$to} di {$total} elementi</message>
 	<message key="navigation.fontSize">Dimensione del carattere</message>
 
@@ -695,7 +695,7 @@ Nota che l'interfaccia OAI pu&#x00F2; essere disabilitata per questo sito modifi
 	<message key="admin.auth.enableSyncProfiles">Abilita la sincronizzazione del profilo dell'utente (se supportato da questo plug-in di autenticazione). Le informazione sul profilo dell'utente saranno automaticamente aggiornate in remoto quando un utente accede, e i cambiamenti del profilo (inclusi cambi di password) fatti all'interno di OCS saranno automaticamente aggiornati in remoto. Se questa opzione &#x00E8; disabilitata le informazioni del profilo OCS saranno mantenute separate dalle informazioni del profilo in remoto.</message>
 	<message key="admin.auth.enableSyncPasswords">Abilita la modifica della password dell'utente (se supportato da questo plug-in di autenticazione). L'abilitazione di questa opzione permette agli utenti di modificare la password all'interno di OCS and e di usare il comando OCS "password smarrita" per resettare una password dimenticata. Queste funzioni non saranno disponibili all'utente con questa fonte di autenticazione se questa opzione &#x00E8; disabilitata.</message>
 	<message key="admin.auth.enableCreateUsers">Abilita la creazione di un utente (se supportato da questo plug-in di autenticazione). Gli utenti creati all'interno di OCS con questa fonte di autenticazione  saranno automaticamente aggiunti alla fonte di autenticazione in remoto se ancora non esiste. Inoltre, se questa fonte &#x00E8; la fonte di autenticazione di default, gli account di OCS creati tramite la registrazione dell'utente saranno aggiunti alla fonte di autenticazione in remoto.</message>
-	<message key="admin.auth.defaultSourceDescription"><![CDATA[Specificare una fonte di autenticazione di default fuori da  OCS ha i seguenti effetti:
+	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Specificare una fonte di autenticazione di default fuori da  OCS ha i seguenti effetti:</p>
 <ul>
 	<li>Se un utente cerca di registrare un nuovo account in questo sito con una username che esiste nella fonte di autenticazione (ma non nel database di OCS), il tentativo di registrazione &#x00E8; permesso solo se la password fornita &#x00E8; valida per quell'account dell'utente.</li>
 </ul>]]></message>
@@ -819,7 +819,7 @@ Nota che l'interfaccia OAI pu&#x00F2; essere disabilitata per questo sito modifi
 	<message key="manager.websiteManagement">Gestione del sito web</message>
 	<message key="manager.currentConferences">Convegni correnti</message>
 	<message key="manager.emails">Email preimpostate</message>
-	<message key="manager.statistics">Statistiche</message>
+	<message key="manager.statistics"><![CDATA[Statistiche]]></message>
 	<message key="manager.readingTools">Strumenti di lettura</message>
 	<message key="manager.people">Strumenti di lettura</message>
 	<message key="manager.filesBrowser">Navigazione tra i file</message>
@@ -1781,7 +1781,7 @@ Attivo &#x00E8; il numero di quante revisioni si stanno considerando o stanno an
 
 	<!-- Paper Submission Step 3 -->
 	<message key="presenter.submit.uploadInstructions"><![CDATA[
-Per caricare una relazione in questo convegno, completa le seguenti fasi.
+<p>Per caricare una relazione in questo convegno, completa le seguenti fasi.</p>
 
 <ol>
 <li>Da questa pagina, clicca su Cerca (o su Scegli File) che apre una finestra di Scegli File per localizzare il file sul disco fisso del tuo computer.</li>

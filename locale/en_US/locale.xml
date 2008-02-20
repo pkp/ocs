@@ -238,8 +238,8 @@
 	<message key="navigation.previousStep">Previous Step</message>
 	<message key="navigation.nextStep">Next Step</message>
 	<message key="navigation.stepNumber">Step {$step}</message>
-	<message key="navigation.previousPage">&lt;&lt;</message>
-	<message key="navigation.nextPage">&gt;&gt;</message>
+	<message key="navigation.previousPage"><![CDATA[&lt;&lt;]]></message>
+	<message key="navigation.nextPage"><![CDATA[&gt;&gt;]]></message>
 	<message key="navigation.items">{$from} - {$to} of {$total} Items</message>
 
 	<!-- Paper Queues -->
@@ -708,7 +708,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="admin.auth.enableSyncProfiles">Enable user profile synchronization (if supported by this authentication plug-in). User profile information will be automatically updated from the remote source when a user logs in, and profile changes (including password changes) made within OCS will be automatically updated on the remote source. If this option is not enabled OCS profile information will be kept separate from remote source profile information.</message>
 	<message key="admin.auth.enableSyncPasswords">Enable user password modification (if supported by this authentication plug-in). Enabling this option allows users to modify their password from within OCS and to use the OCS "lost password" feature to reset a forgotten password. These functions will be unavailable to users with this authentication source if this option is not enabled.</message>
 	<message key="admin.auth.enableCreateUsers">Enable user creation (if supported by this authentication plug-in). Users created within OCS with this authentication source will be automatically added to the remote authentication source if they do not already exist. Additionally, if this source is the default authentication source, OCS accounts created through user registration will also be added to the remote authentication source.</message>
-	<message key="admin.auth.defaultSourceDescription"><![CDATA[Specifying a default authentication source other than OCS has the following effects:
+	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Specifying a default authentication source other than OCS has the following effects:</p>
 <ul>
 	<li>If a user attempts to create a new account with this site with a username that exists on the authentication source (but not in the OCS database), the registration attempt is only allowed if the supplied password is valid for that user account.</li>
 </ul>]]></message>
@@ -931,7 +931,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.websiteManagement">Website Management</message>
 	<message key="manager.currentConferences">Current Conferences</message>
 	<message key="manager.emails">Prepared Emails</message>
-	<message key="manager.statistics">Stats &amp; Reports</message>
+	<message key="manager.statistics"><![CDATA[Stats &amp; Reports]]></message>
 	<message key="manager.readingTools">Reading Tools</message>
 	<message key="manager.people">People</message>
 	<message key="manager.filesBrowser">Files Browser</message>
@@ -1906,7 +1906,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 
 	<!-- Paper Submission Step 3 -->
 	<message key="presenter.submit.uploadInstructions"><![CDATA[
-To upload a paper to this conference, complete the following steps.
+<p>To upload a paper to this conference, complete the following steps.</p>
 
 <ol>
 <li>On this page, click Browse (or Choose File) which opens a Choose File window for locating the file on the hard drive of your computer.</li>

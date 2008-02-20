@@ -83,29 +83,29 @@
 		</tr>
 		{/if}
 		{foreach from=$suppFiles item=suppFile}
-			<form method="post" action="{url op="setSuppFileVisibility"}">
-				<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
-				<input type="hidden" name="fileId" value="{$suppFile->getSuppFileId()}" />
-	
-				<tr valign="top">
-					{if !$notFirstSuppFile}
-						<td class="label" rowspan="{$suppFiles|@count}">{translate key="paper.suppFilesAbbrev"}</td>
-							{assign var=notFirstSuppFile value=1}
-					{/if}
-					<td width="80%" class="value nowrap">
+			<tr valign="top">
+				{if !$notFirstSuppFile}
+					<td class="label" rowspan="{$suppFiles|@count}">{translate key="paper.suppFilesAbbrev"}</td>
+						{assign var=notFirstSuppFile value=1}
+				{/if}
+				<td width="80%" class="value nowrap">
+					<form method="post" action="{url op="setSuppFileVisibility"}">
+						<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
+						<input type="hidden" name="fileId" value="{$suppFile->getSuppFileId()}" />
+
 						<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$suppFile->getFileId():$suppFile->getRevision()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;
 						{$suppFile->getDateModified()|date_format:$dateFormatShort}
 						<label for="show">{translate key="director.paper.showSuppFile"}</label>
 						<input type="checkbox" {if !$mayEditPaper}disabled="disabled" {/if}name="show" id="show" value="1"{if $suppFile->getShowReviewers()==1} checked="checked"{/if}/>
 						<input type="submit" {if !$mayEditPaper}disabled="disabled" {/if}name="submit" value="{translate key="common.record"}" class="button" />
-					</td>
-				</tr>
-			</form>
+					</form>
+				</td>
+			</tr>
 		{foreachelse}
 			<tr valign="top">
-			<td class="label">{translate key="paper.suppFilesAbbrev"}</td>
-			<td class="nodata">{translate key="common.none"}</td>
-		</tr>
+				<td class="label">{translate key="paper.suppFilesAbbrev"}</td>
+				<td class="nodata">{translate key="common.none"}</td>
+			</tr>
 		{/foreach}
 	{/if}
 </table>

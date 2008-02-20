@@ -61,6 +61,7 @@
 <a class="action" href="{url op="editSystemConfig"}">{translate key="common.edit"}</a>
 <p>{translate key="admin.systemConfigurationDescription"}</p>
 
+{if !empty($sectionData)}{* Empty tables cause validation problems *}
 {foreach from=$configData key=sectionName item=sectionData}
 <h4>{$sectionName|escape}</h4>
 
@@ -72,6 +73,7 @@
 </tr>
 {/foreach}
 </table>
+{/if}{* !empty($sectionData) *}
 
 {/foreach}
 

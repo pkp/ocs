@@ -8,8 +8,7 @@
  *
  * $Id$
  *}
-{translate|assign:"pageTitleTranslated" key="submission.page.summary" id=$submission->getPaperId()}
-{assign var="pageCrumbTitle" value="submission.summary"}
+{translate|assign:"pageTitleTranslated" key="submission.page.summary" id=$submission->getPaperId()}{assign var="pageCrumbTitle" value="submission.summary"}
 {include file="common/header.tpl"}
 
 <ul class="menu">

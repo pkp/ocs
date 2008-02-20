@@ -9,14 +9,11 @@
  * $Id$
  *}
 {if $submission->getReviewMode() == $smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}
-{assign var="pageCrumbTitle" value="submission.review"}
-{translate|assign:"pageTitleTranslated" key="submission.page.review" id=$submission->getPaperId()}
+{translate|assign:"pageTitleTranslated" key="submission.page.review" id=$submission->getPaperId()}{assign var="pageCrumbTitle" value="submission.review"}
 {elseif $stage==REVIEW_STAGE_ABSTRACT}
-{assign var="pageCrumbTitle" value="submission.abstractReview"}
-{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$submission->getPaperId()}
+{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$submission->getPaperId()}{assign var="pageCrumbTitle" value="submission.abstractReview"}
 {else}{* REVIEW_STAGE_PRESENTATION *}
-{assign var="pageCrumbTitle" value="submission.paperReview"}
-{translate|assign:"pageTitleTranslated" key="submission.page.paperReview" id=$submission->getPaperId()}
+{translate|assign:"pageTitleTranslated" key="submission.page.paperReview" id=$submission->getPaperId()}{assign var="pageCrumbTitle" value="submission.paperReview"}
 {/if}
 {include file="common/header.tpl"}
 

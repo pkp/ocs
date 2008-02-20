@@ -16,6 +16,8 @@
 
 {foreach from=$configData key=trackName item=trackData}
 <h3>{$trackName|escape}</h3>
+
+{if !empty($trackData)}{* Empty tables cause validation problems *}
 <table class="data" width="100%">
 {foreach from=$trackData key=settingName item=settingValue}
 <tr valign="top">	
@@ -24,10 +26,10 @@
 </tr>
 {/foreach}
 </table>
+{/if}{* !empty($trackData) *}
 
 <br />
 {/foreach}
-</table>
 
 <p><input type="submit" value="{translate key="admin.saveSystemConfig"}" class="button defaultButton" /> <input name="display" type="submit" value="{translate key="admin.displayNewSystemConfig"}" class="button" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="systemInfo" escape=false}'" /></p>
 

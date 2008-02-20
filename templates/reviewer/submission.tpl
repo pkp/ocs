@@ -13,8 +13,7 @@
 {assign var="paperId" value=$submission->getPaperId()}
 {assign var="reviewId" value=$reviewAssignment->getReviewId()}
 {if $reviewAssignment->getStage() == REVIEW_STAGE_ABSTRACT}
-{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$paperId}
-{assign var="pageCrumbTitle" value="submission.abstractReview"}
+{translate|assign:"pageTitleTranslated" key="submission.page.abstractReview" id=$paperId}{assign var="pageCrumbTitle" value="submission.abstractReview"}
 {else}
 {translate|assign:"pageTitleTranslated" key="submission.page.paperReview" id=$paperId}
 {assign var="pageCrumbTitle" value="submission.paperReview"}

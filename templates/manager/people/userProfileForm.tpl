@@ -8,8 +8,7 @@
  *
  * $Id$
  *}
-{url|assign:"currentUrl" op="people" path="all"}
-{assign var="pageTitle" value="manager.people"}
+{url|assign:"currentUrl" op="people" path="all"}{assign var="pageTitle" value="manager.people"}
 {include file="common/header.tpl"}
 
 {if not $userId}
@@ -105,7 +104,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="gender" key="user.gender"}</td>
-		<td class="value"><input type="radio" name="gender" id="gender-m" value="M" {if $gender == 'M'} checked="checked"{/if}/><label for="gender-m">{translate key="user.masculine"}</label> &nbsp;&nbsp;&nbsp; <input type="radio" name="gender" id="gender-f" value="F" {if $gender == 'F'} checked="checked"{/if}><label for="gender-f">{translate key="user.feminine"}</label></td>
+		<td class="value"><input type="radio" name="gender" id="gender-m" value="M" {if $gender == 'M'} checked="checked"{/if}/><label for="gender-m">{translate key="user.masculine"}</label> &nbsp;&nbsp;&nbsp; <input type="radio" name="gender" id="gender-f" value="F" {if $gender == 'F'} checked="checked"{/if} /><label for="gender-f">{translate key="user.feminine"}</label></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="initials" key="user.initials"}</td>
@@ -123,7 +122,7 @@
 		</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="username" required="true" key="user.username"}</td>
+		<td class="label">{fieldLabel suppressId="true" name="username" required="true" key="user.username"}</td>
 		<td class="value">
 			<input type="text" name="username" id="username" value="{$username|escape}" size="20" maxlength="32" class="textField" />&nbsp;&nbsp;<input type="button" class="button" value="{translate key="common.suggest"}" onclick="generateUsername()" />
 			<br />

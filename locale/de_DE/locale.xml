@@ -233,8 +233,8 @@
         <message key="navigation.previousStep">Vorheriger Schritt</message>
         <message key="navigation.nextStep">N&#228;chster Schritt</message>
         <message key="navigation.stepNumber">Schritt {$step}</message>
-        <message key="navigation.previousPage">&lt;&lt;</message>
-        <message key="navigation.nextPage">&gt;&gt;</message>
+        <message key="navigation.previousPage"><![CDATA[&lt;&lt;]]></message>
+        <message key="navigation.nextPage"><![CDATA[&gt;&gt;]]></message>
         <message key="navigation.items">{$from} - {$to} von {$total} Items</message>
         <message key="navigation.fontSize">Schriftgr&#246;&#223;e</message>
 
@@ -703,7 +703,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
         <message key="admin.auth.enableSyncProfiles">Enable user profile synchronization (if supported by this authentication plug-in). User profile information will be automatically updated from the remote source when a user logs in, and profile changes (including password changes) made within OCS will be automatically updated on the remote source. If this option is not enabled OCS profile information will be kept separate from remote source profile information.</message>
         <message key="admin.auth.enableSyncPasswords">Enable user password modification (if supported by this authentication plug-in). Enabling this option allows users to modify their password from within OCS and to use the OCS &quot;lost password&quot; feature to reset a forgotten password. These functions will be unavailable to users with this authentication source if this option is not enabled.</message>
         <message key="admin.auth.enableCreateUsers">Enable user creation (if supported by this authentication plug-in). Users created within OCS with this authentication source will be automatically added to the remote authentication source if they do not already exist. Additionally, if this source is the default authentication source, OCS accounts created through user registration will also be added to the remote authentication source.</message>
-        <message key="admin.auth.defaultSourceDescription"><![CDATA[Specifying a default authentication source other than OCS has the following effects:
+        <message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Specifying a default authentication source other than OCS has the following effects:</p>
 <ul>
         <li>If a user attempts to create a new account with this site with a username that exists on the authentication source (but not in the OCS database), the registration attempt is only allowed if the supplied password is valid for that user account.</li>
 </ul>]]></message>
@@ -827,7 +827,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
         <message key="manager.websiteManagement">Webseitenverwaltung</message>
         <message key="manager.currentConferences">Aktuelle Konferenzen</message>
         <message key="manager.emails">Vorgefertigte Emails</message>
-        <message key="manager.statistics">Statistiken &amp; Berichte</message>
+        <message key="manager.statistics"><![CDATA[Statistiken &amp; Berichte]]></message>
         <message key="manager.readingTools">Lesewerkzeuge</message>
         <message key="manager.people">Personen</message>
         <message key="manager.filesBrowser">Dateibrowser</message>
@@ -1796,7 +1796,7 @@ Titel des Klassifikationssystem]]></message>
         <message key="presenter.submit.form.typeRequired">Bitte geben Sie das Symposium an.</message>
         <!-- Paper Submission Step 3 -->
         <message key="presenter.submit.uploadInstructions"><![CDATA[
-Um ein Paper f&#252;r diese Konferenz hochzuladen, f&#252;hren Sie die folgenden Schritte durch:
+<p>Um ein Paper f&#252;r diese Konferenz hochzuladen, f&#252;hren Sie die folgenden Schritte durch:</p>
 
 <ol>
 <li>Klicken Sie auf dieser Seite auf &quot;Durchsuchen&quot; (oder &quot;Datei ausw&#228;hlen&quot;), um ein Auswahlfenster zu &#246;ffnen, &#252;ber das Sie die Datei auf Ihrer Festplatte suchen.</li>
