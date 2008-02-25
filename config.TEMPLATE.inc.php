@@ -184,7 +184,7 @@ allowed_html = "<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd> <b
 
 ; Prevent VIM from attempting to highlight the rest of the config file
 ; with unclosed tags:
-; </p></sub></sup></u></i></b></dd></dt></dl></li></ol></ul></code></cite></string></em></a>
+; </p></sub></sup></u></i></b></dd></dt></dl></li></ol></ul></code></cite></strong></em></a>
 
 
 ;;;;;;;;;;;;;;;;;;
