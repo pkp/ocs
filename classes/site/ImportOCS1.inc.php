@@ -864,7 +864,7 @@ class ImportOCS1 {
 				if (!$paper) $errors[] = "Unknown paper referenced in reviews: $row[paper]";
 				else unset($paper);
 				if (!$reviewer) $errors[] = "Unknown reviewer referenced in reviews: $row[reviewer]";
-				else unser($reviewer);
+				else unset($reviewer);
 
 				$result->MoveNext();
 				continue;
