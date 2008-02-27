@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2007 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the pt_BR (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="pt_BR" full_name="U.S. English">
+	<message key="plugins.generic.acron.name">Plugin Acron</message>
+	<message key="plugins.generic.acron.description">Este plugin tem a intenção de reduzir a dependência do OCS em ferramentas de agendamento periódico, tais como a 'cron.'</message>
+
+	<message key="plugins.generic.acron.reload">Recarregar Tarefas Agendadas</message>
+</locale>

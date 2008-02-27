@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2007 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the pt_BR (U.S. English) locale.
+  *
+ -->
+ 
+<locale name="pt_BR" full_name="U.S. English">
+	<message key="plugins.paymethod.manual.displayName">Pagamento Manual</message>
+	<message key="plugins.paymethod.manual.description">O Pagamento deve ser enviado fora do Sistema e requer que o Gerente valide-o antes de ativar o registro. O conteúdo dos campos de Informação de Registro na Gestão das Políticas de Registro será visualizado pelos usuários, ao se registrarem, e deve prover informações sobre como proceder no envio do registro manual.</message>
+	<message key="plugins.paymethod.manual">Pagamento de Registro</message>
+</locale>
