@@ -35,18 +35,10 @@
 				{translate key="trackDirector.regrets"}
 			{else}
 				{assign var=recommendation value=$submission->getRecommendation()}
-				{if $recommendation == SUBMISSION_REVIEWER_RECOMMENDATION_ACCEPT}
-					{translate key="reviewer.paper.decision.accept"}
-				{elseif $recommendation == SUBMISSION_REVIEWER_RECOMMENDATION_PENDING_REVISIONS}
-					{translate key="reviewer.paper.decision.pendingRevisions"}
-				{elseif $recommendation == SUBMISSION_REVIEWER_RECOMMENDATION_RESUBMIT_ELSEWHERE}
-					{translate key="reviewer.paper.decision.resubmitElsewhere"}
-				{elseif $recommendation == SUBMISSION_REVIEWER_RECOMMENDATION_DECLINE}
-					{translate key="reviewer.paper.decision.decline"}
-				{elseif $recommendation == SUBMISSION_REVIEWER_RECOMMENDATION_SEE_COMMENTS}
-					{translate key="reviewer.paper.decision.seeComments"}
-				{else}
+				{if $recommendation === '' || $recommendation === null}
 					&mdash;
+				{else}
+					{translate key=$reviewerRecommendationOptions.$recommendation}
 				{/if}
 			{/if}
 		</td>

@@ -352,7 +352,6 @@
 	<message key="submission.presenterVersion">Versione dell'autore</message>
 	<message key="submission.layout">Layout</message>
 	<message key="submission.layout.description">Questa fase opzionale pu&#x00F2; essere usata per visualizzare le submissions o cambiare i formati dei file sia prima che dopo che le submissions siano inviate per la presentazione.</message>
-	<message key="submission.complete">Submission completata</message>
 	<message key="submission.files">Files</message>
 	<message key="submission.viewMetadata">Vedi i metadati</message>
 	<message key="submission.editMetadata">Modifica i metadati</message>

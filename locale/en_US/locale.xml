@@ -356,7 +356,6 @@
 	<message key="submission.presenterVersion">Author Version</message>
 	<message key="submission.layout">Layout</message>
 	<message key="submission.layout.description">This optional step can be used to lay out submissions or change file formats either before or after submissions are sent to Presentations.</message>
-	<message key="submission.complete">Complete</message>
 	<message key="submission.files">Files</message>
 	<message key="submission.viewMetadata">View Metadata</message>
 	<message key="submission.editMetadata">Edit Metadata</message>

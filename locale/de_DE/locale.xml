@@ -352,7 +352,6 @@
         <message key="submission.presenterVersion">Version des Autors</message>
         <message key="submission.layout">Layout</message>
         <message key="submission.layout.description">Dieser optionale Schritt dient der Darstellungs&#228;nderung von Einreichungen oder der &#196;nderung von Dateiformaten bevor oder nachdem sie zu &quot;Pr&#228;sentationen&quot; weitergeleitet sind.</message>
-        <message key="submission.complete">Vollst&#228;ndig</message>
         <message key="submission.files">Dateien</message>
         <message key="submission.viewMetadata">Metadaten anzeigen</message>
         <message key="submission.editMetadata">Metadaten bearbeiten</message>

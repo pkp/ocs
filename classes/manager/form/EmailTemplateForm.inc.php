@@ -31,7 +31,7 @@ class EmailTemplateForm extends Form {
 	function EmailTemplateForm($emailKey, $conference) {
 		parent::Form('manager/emails/emailTemplateForm.tpl');
 
-		$this->conference = $conference;
+		$this->conference =& $conference;
 		$this->emailKey = $emailKey;
 
 		// Validation checks for this form
@@ -134,7 +134,6 @@ class EmailTemplateForm extends Form {
 			if ($emailTemplate->getCanDisable()) {
 				$emailTemplate->setEnabled($this->getData('enabled'));
 			}
-			$foo = $emailTemplate->getEmailId();
 		}
 
 		$emailTemplate->setConferenceId($conferenceId);

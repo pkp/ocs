@@ -43,6 +43,7 @@ class ReviewerHandler extends Handler {
 		$submissions = $reviewerSubmissionDao->getReviewerSubmissionsByReviewerId($user->getUserId(), $schedConf->getSchedConfId(), $active, $rangeInfo);
 
 		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign_by_ref('submissions', $submissions);
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
