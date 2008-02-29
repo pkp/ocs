@@ -61,6 +61,29 @@ class SchedConfSetupStep1Form extends SchedConfSetupForm {
 		return array('introduction', 'overview', 'emailSignature', 'sponsorNote', 'contributorNote');
 	}
 
+	/**
+	 * Execute the form, but first:
+	 * Make sure we're not saving an empty entry for sponsors. (This would
+	 * result in a possibly empty heading for the Sponsors section in About.)
+	 */
+	function execute() {
+		foreach (array('sponsors', 'contributors') as $element) {
+			$elementValue = (array) $this->getData($element);
+			foreach (array_keys($elementValue) as $key) {
+				$values = array_values((array) $elementValue[$key]);
+				$isEmpty = true;
+				foreach ($values as $value) {
+					if (!empty($value)) $isEmpty = false;
+				}
+				if ($isEmpty) unset($elementValue[$key]);
+			}
+			$this->setData($element, $elementValue);
+
+		}
+
+		return parent::execute();
+	}
+
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
 		if (Config::getVar('email', 'allow_envelope_sender'))
