@@ -21,10 +21,8 @@
 {/if}
 </p>
 
-{* TODO
 <p align="center">
 	<img src="{$baseUrl}/{$edProcessFile}" style="border: 0;" alt="" />
 </p>
-*}
 
 {include file="common/footer.tpl"}
