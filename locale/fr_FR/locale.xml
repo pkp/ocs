@@ -496,7 +496,6 @@
 	<message key="user.affiliations">Affiliations</message>
 	<message key="user.email">Courriel</message>
 	<message key="user.url">URL</message>
-	<message key="user.url.description">Ceci va apparaître comme un lien hypertexte dans votre biographie en bas de la page "à propos de l'auteur" et de la page "Équipe organisatrice".</message>
 	<message key="user.phone">Téléphone</message>
 	<message key="user.fax">Fax</message>
 	<message key="user.interests">Intérêts pour les évaluations</message>
@@ -1755,10 +1754,7 @@ Actif est le nombre de révisions en cours ou en réflexion.]]></message>
 	<message key="presenter.submit.form.abstractRequired">Veuillez entrer un résumé de votre proposition.</message>
 
 	<!-- Paper Submission Step 2 -->
-	<message key="presenter.submit.metadataDescription">Cette conférence réunit des Métadonnées sur chaque proposition selon les standards de l'Open Archives Initiative, qui est le standard montant de l'identification des ressources en ligne dans le domaine de la recherche. Ceci permet une recherche commune et précise dans les bases de données de l'OAI, augmentant ainsi les chances qu'a le lecteur de trouver des propositions comme celle-ci. Les responsables peuvent insister pour que les métadonnées soient fournies avant que le processus éditorial ne soit lancé.</message>
 	<message key="presenter.submit.privacyStatement">Protection des données personnelles de la conférence</message>
-	<message key="presenter.submit.presentersDescription">Pour les propositions qui ont plus d'un auteur, triez les auteurs selon leur ordre d'apparition dans la citation.</message>
-	<message key="presenter.submit.reorderPresenterName">Retrier les noms des auteurs</message>
 	<message key="presenter.submit.reorderInstructions">Utiliser les flèches pour changer l'ordre dans lequel apparaîtront les noms des auteurs dans la proposition.</message>
 	<message key="presenter.submit.selectPrincipalContact">Contact principal pour la correspondance éditoriale.</message>
 	<message key="presenter.submit.addPresenter">Ajouter un auteur</message>
@@ -1783,9 +1779,7 @@ Actif est le nombre de révisions en cours ou en réflexion.]]></message>
 <li>Cliquez sur Ouvrir de la fenêtre de sélection du fichier, ceci placera son nom sur cette page.</li>
 <li>Cliquez sur "Upload" sur cette page, ceci uploadera le fichier de votre ordinateur au site web de la conférence et le renomme selon les normes de la conférence.</li>
 <li>Une fois la proposition est uploadée, cliquez sur Sauvegarder et Continuer en bas de la page.</li>
-</ol>
-
-Le fichier peut être vu en cliquant sur le nom du fichier. Une nouvelle version ou une version révisée peuvent être uploadées, effaçant ainsi celle qui apparaît actuellement. Des fichiers supplémentaires peuvent être ajoutés en utilisant Fichiers Supplémentaires (prochaine étape). Si vous rencontrez des difficultés à uploader une proposition, contactez <a href="mailto:{$supportEmail}">{$supportName}</a> par email ou téléphone {$supportPhone} pour avoir de l'aide. ]]></message>
+</ol>]]></message>
 	<message key="presenter.submit.submissionFile">Fichier de la proposition</message>
 	<message key="presenter.submit.uploadSubmissionFile">Envoyer le fichier de la proposition au serveur</message>
 	<message key="presenter.submit.replaceSubmissionFile">Remplacer Fichier de Proposition</message>

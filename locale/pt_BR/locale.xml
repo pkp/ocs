@@ -496,7 +496,6 @@
 	<message key="user.affiliations">Instituições</message>
 	<message key="user.email">E-mail</message>
 	<message key="user.url">URL</message>
-	<message key="user.url.description"><![CDATA[A URL aparecerá ativa abaixo do resumo da biografia, na página <i>pop-up</i> "Sobre o autor" e na página "Organização".]]></message>
 	<message key="user.phone">Fone</message>
 	<message key="user.fax">Fax</message>
 	<message key="user.interests">Áreas de interesse para avaliação</message>
@@ -1759,10 +1758,7 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<message key="presenter.submit.form.abstractRequired">Informe o resumo da submissão.</message>
 
 	<!-- Paper Submission Step 2 -->
-	<message key="presenter.submit.metadataDescription">A indexação da submissão segue os padrões definidos pelo Open Archives Initiative, padrão de formato de metadados emergente para identificação de recursos e interoperabilidade entre sistemas para pesquisa. Isto permite pesquisas coletivas e precisas entre repositórios OAI, aumentando a visibilidade e acessibilidade de documentos científicos. Diretores podem insistir que a indexação deva ser incluída antes de iniciar o processo editorial.</message>
 	<message key="presenter.submit.privacyStatement">Declaração de Privacidade</message>
-	<message key="presenter.submit.presentersDescription">Para submissões com mais de um autor, ordene os co-autores conforme devem aparecer na citação.</message>
-	<message key="presenter.submit.reorderPresenterName">Ordenar novamente nome do Autor</message>
 	<message key="presenter.submit.reorderInstructions">Utilize as setas para alterar a ordem em que os nomes dos autores aparecem na submissão.</message>
 	<message key="presenter.submit.selectPrincipalContact">Contato Principal para correspondência.</message>
 	<message key="presenter.submit.addPresenter">Incluir Autor</message>
@@ -1785,9 +1781,7 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 <li>Clique em Abrir na janela, que colocará o nome do documento no campo respectivo do formulário de envio.</li>
 <li>Clique em Transferir, para enviar o documento do seu computador para o servidor de hospedagem da revista. O sistema dará um novo nome ao documento seguindo os padrões definidos pela revista..</li>
 <li>Uma vez transferido, clique em Salvar e Continuar no final da página.</li>
-</ol>
-
-O documento pode ser visualizado/baixado ao clicar no nome. Ao transferir uma nova versão ou uma versão revisada, ou caso tenha errado o documento, basta transferir novamente, substituindo o documento atual. Em caso de dificuldades com o processo, entre em contato com <a href="mailto:{$supportEmail}">{$supportName}</a> via e-mail ou telefone {$supportPhone} para suporte.]]></message>
+</ol>]]></message>
 	<message key="presenter.submit.submissionFile">Documento da Submissão</message>
 	<message key="presenter.submit.uploadSubmissionFile">Transferir Documento da Submissão</message>
 	<message key="presenter.submit.replaceSubmissionFile">Subsituir Documento da Submissão</message>

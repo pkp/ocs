@@ -11,13 +11,26 @@
 {assign var="pageTitle" value="presenter.submit.step4"}
 {include file="presenter/submit/submitHeader.tpl"}
 
-<form method="post" action="{url op="saveSubmit" path=$submitStep}" enctype="multipart/form-data">
+<script type="text/javascript">
+{literal}
+<!--
+function confirmForgottenUpload() {
+	var fieldValue = document.submitForm.uploadSuppFile.value;
+	if (fieldValue) {
+		return confirm("{/literal}{translate key="presenter.submit.forgottenSubmitSuppFile"}{literal}");
+	}
+	return true;
+}
+// -->
+{/literal}
+</script>
+
+
+<form name="submitForm" method="post" action="{url op="saveSubmit" path=$submitStep}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$paperId|escape}" />
 {include file="common/formErrors.tpl"}
 
-<p>{translate key="presenter.submit.supplementaryFilesInstructions"}<br/>
-<!-- <a class="action" href="javascript:openHelp('{get_help_id key="editorial.trackDirectorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.paper.ensuringBlindReview"}</a> -->
-</p>
+<p>{translate key="presenter.submit.supplementaryFilesInstructions"}</p>
 
 <table class="listing" width="100%">
 <tr>
@@ -59,7 +72,7 @@
 
 <div class="separator"></div>
 
-<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="presenter"}', '{translate|escape:"jsparam" key="presenter.submit.cancelSubmission"}')" /></p>
+<p><input type="submit" onclick="return confirmForgottenUpload()" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="presenter"}', '{translate|escape:"jsparam" key="presenter.submit.cancelSubmission"}')" /></p>
 
 </form>
 

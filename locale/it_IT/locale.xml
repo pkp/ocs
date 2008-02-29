@@ -497,7 +497,6 @@
 	<message key="user.affiliations">Istituti/Organizzazioni</message>
 	<message key="user.email">Email</message>
 	<message key="user.url">URL</message>
-	<message key="user.url.description">Questa apparir&#x00E0; come una URL linkata in fondo alla biografia nel pop-up "info sull'autore" e la pagina "Team editoriale".</message>
 	<message key="user.phone">Telefono</message>
 	<message key="user.fax">Fax</message>
 	<message key="user.interests">Interessi per i miei convegni</message>
@@ -1760,10 +1759,7 @@ Attivo &#x00E8; il numero di quante revisioni si stanno considerando o stanno an
 	<message key="presenter.submit.form.abstractRequired">Inserisci per favore un abstract per la tua submission.</message>
 
 	<!-- Paper Submission Step 2 -->
-	<message key="presenter.submit.metadataDescription">Questo convegno raccoglie i metadati di ogni submission, in accordo con gli standard fissati dall'Open Archives Initiative, che &#x00E8; lo standard emergente online per identificare le risorse di ricerca. Questo abilita la ricerca collettiva e accurata attraverso le banche dati OAI, aumentando la possibilit&#x00E0; che i lettori trovino le submission come questa. I direttori possono insistere per avere i metadati prima di iniziare il processo editoriale.</message>
 	<message key="presenter.submit.privacyStatement">Dichiarazione sulla privacy del convegno</message>
-	<message key="presenter.submit.presentersDescription">Per le submission con pi&#x00F9; di un autore, ordina gli autori come dovranno comparire nella citazione.</message>
-	<message key="presenter.submit.reorderPresenterName">Riordina il nome dell'autore</message>
 	<message key="presenter.submit.reorderInstructions">Utilizza le frecce per cambiare l'ordine in cui i nomi degli autori dovranno comparire nella submission.</message>
 	<message key="presenter.submit.selectPrincipalContact">Contatto principale per corrispondenza editoriale.</message>
 	<message key="presenter.submit.addPresenter">Aggiungi autore</message>
@@ -1788,9 +1784,7 @@ Attivo &#x00E8; il numero di quante revisioni si stanno considerando o stanno an
 <li>Clicca Apri nella finestra Scegli il File, che inserir&#x00E0; il nome del file in questa pagina.</li>
 <li>Clicca Carica in questa pagina, verr&#x00E0; caricato il file dal computer al sito web del convegno e lo rinominer&#x00E0; seguendo le convenzioni del convegno.</li>
 <li>Una volta che la submission &#x00E8; caricata, clicca Salva e continua in fondo a questa pagina.</li>
-</ol>
-
-Il file pu&#x00F2; essere visualizzato cliccando sul nome del file. Un file nuovo o revisionato pu&#x00F2; essere caricato, cancellando quello che appare attualmente. File aggiuntivi possono essere aggiunti usando File supplementari (prossimo passo). Se avessi difficolt&#x00E0; nel caricare la submission, contatta <a href="mailto:{$supportEmail}">{$supportName}</a> via email o chiama {$supportPhone} per assistenza.]]></message>
+</ol>]]></message>
 	<message key="presenter.submit.submissionFile">File della submission</message>
 	<message key="presenter.submit.uploadSubmissionFile">carica il file della submission</message>
 	<message key="presenter.submit.replaceSubmissionFile">Sostituisci il file della submission</message>

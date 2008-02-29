@@ -11,16 +11,34 @@
 {assign var="pageTitle" value="presenter.submit.step1"}
 {include file="presenter/submit/submitHeader.tpl"}
 
-<p>{translate key="presenter.submit.howToSubmit"
-	supportName=$schedConfSettings.supportName
-	supportEmail=$schedConfSettings.supportEmail
-	supportPhone=$schedConfSettings.supportPhone}</p>
+{if $schedConfSettings.supportPhone}
+	{assign var="howToKeyName" value="presenter.submit.howToSubmit"}
+{else}
+	{assign var="howToKeyName" value="presenter.submit.howToSubmitNoPhone"}
+{/if}
+
+<p>{translate key=$howToKeyName supportName=$schedConfSettings.supportName supportEmail=$schedConfSettings.supportEmail supportPhone=$schedConfSettings.supportPhone}</p>
 
 <div class="separator"></div>
 
 {if count($trackOptions) <= 1}
 <p>{translate key="presenter.submit.notAccepting"}</p>
 {else}
+
+<h3>{translate key="presenter.submit.conferenceTrack"}</h3>
+
+{url|assign:"url" page="schedConf" op="trackPolicies"}
+<p>{translate key="presenter.submit.conferenceTrackDescription" aboutUrl=$url}</p>
+
+
+<table class="data" width="100%">
+<tr valign="top">	
+	<td width="20%" class="label">{fieldLabel name="trackId" required="true" key="track.track"}</td>
+	<td width="80%" class="value"><select name="trackId" id="trackId" size="1" class="selectMenu">{html_options options=$trackOptions selected=$trackId}</select></td>
+</tr>
+</table>
+
+<div class="separator"></div>
 
 <script type="text/javascript">
 {literal}
@@ -45,12 +63,6 @@ function checkSubmissionChecklist() {
 </script>
 
 <form name="submit" method="post" action="{url op="saveSubmit" path=$submitStep}" onsubmit="return checkSubmissionChecklist()">
-
-{if $paperId}
-<input type="hidden" name="paperId" value="{$paperId|escape}" />
-{/if}
-<input type="hidden" name="submissionChecklist" value="1" />
-{include file="common/formErrors.tpl"}
 
 {if $currentSchedConf->getLocalizedSetting('submissionChecklist')}
 
@@ -93,18 +105,9 @@ function checkSubmissionChecklist() {
 <div class="separator"></div>
 {/if}
 
-<h3>{translate key="presenter.submit.conferenceTrack"}</h3>
-
-{url|assign:"url" page="schedConf" op="trackPolicies"}
-<p>{translate key="presenter.submit.conferenceTrackDescription" aboutUrl=$url}</p>
-
-
-<table class="data" width="100%">
-<tr valign="top">	
-	<td width="20%" class="label">{fieldLabel name="trackId" required="true" key="track.track"}</td>
-	<td width="80%" class="value"><select name="trackId" id="trackId" size="1" class="selectMenu">{html_options options=$trackOptions selected=$trackId}</select></td>
-</tr>
-</table>
+<h3>{translate key="presenter.submit.privacyStatement"}</h3>
+<br />
+{$schedConfSettings.privacyStatement|nl2br}
 
 <div class="separator"></div>
 
@@ -126,6 +129,6 @@ function checkSubmissionChecklist() {
 
 </form>
 
-{/if}
+{/if}{* If not accepting submissions *}
 
 {include file="common/footer.tpl"}

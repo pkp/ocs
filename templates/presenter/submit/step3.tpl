@@ -15,8 +15,14 @@
 <input type="hidden" name="paperId" value="{$paperId|escape}" />
 {include file="common/formErrors.tpl"}
 
-{translate key="presenter.submit.uploadInstructions" supportName=$schedConfSettings.supportName supportEmail=$schedConfSettings.supportEmail supportPhone=$schedConfSettings.supportPhone}
-<!-- <a class="action" href="javascript:openHelp('{get_help_id key="editorial.trackDirectorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.paper.ensuringBlindReview"}</a> -->
+<p>{translate key="presenter.submit.uploadInstructions"}</p>
+{if $schedConfSettings.supportPhone}
+	{assign var="howToKeyName" value="presenter.submit.howToSubmit"}
+{else}
+	{assign var="howToKeyName" value="presenter.submit.howToSubmitNoPhone"}
+{/if}
+
+<p>{translate key=$howToKeyName supportName=$schedConfSettings.supportName supportEmail=$schedConfSettings.supportEmail supportPhone=$schedConfSettings.supportPhone}</p>
 
 <div class="separator"></div>
 

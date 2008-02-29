@@ -12,9 +12,6 @@
 {include file="presenter/submit/submitHeader.tpl"}
 
 <p>{translate key="presenter.submit.metadataDescription"}</p>
-<h3>{translate key="presenter.submit.privacyStatement"}</h3>
-<br />
-{$schedConfSettings.privacyStatement|nl2br}
 
 <div class="separator"></div>
 
@@ -103,8 +100,7 @@ function movePresenter(dir, presenterIndex) {
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="presenters-$presenterIndex-url" key="user.url"}</td>
 	<td width="80%" class="value">
-		<input type="text" class="textField" name="presenters[{$presenterIndex|escape}][url]" id="presenters-{$presenterIndex|escape}-url" value="{$presenter.url|escape}" size="30" maxlength="90" /><br/>
-		<span class="instruct">{translate key="user.url.description"}</span>
+		<input type="text" class="textField" name="presenters[{$presenterIndex|escape}][url]" id="presenters-{$presenterIndex|escape}-url" value="{$presenter.url|escape}" size="30" maxlength="90" />
 	</td>
 </tr>
 <tr valign="top">
@@ -114,7 +110,7 @@ function movePresenter(dir, presenterIndex) {
 {if $smarty.foreach.presenters.total > 1}
 <tr valign="top">
 	<td colspan="2">
-		{translate key="presenter.submit.reorderPresenterName"} <a href="javascript:movePresenter('u', '{$presenterIndex|escape}')" class="action">&uarr;</a> <a href="javascript:movePresenter('d', '{$presenterIndex|escape}')" class="action">&darr;</a><br/>
+		<a href="javascript:movePresenter('u', '{$presenterIndex|escape}')" class="action">&uarr;</a> <a href="javascript:movePresenter('d', '{$presenterIndex|escape}')" class="action">&darr;</a><br/>
 		{translate key="presenter.submit.reorderInstructions"}
 	</td>
 </tr>

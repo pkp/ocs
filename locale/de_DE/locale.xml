@@ -505,13 +505,12 @@ einverstanden sein sollten, geben Sie dies bitte unten im Feld
         <message key="user.affiliations">Abteilungen</message>
         <message key="user.email">Email</message>
         <message key="user.url">URL</message>
-        <message key="user.url.description">Dies erscheint als eine hyperlinked URL unten auf dem &quot;&#220;ber den Autor&quot; pop-up und der &quot;Organisationsteam&quot;-Seite.</message>
         <message key="user.phone">Tel.</message>
         <message key="user.fax">Fax</message>
         <message key="user.interests">Gutachterinteressen</message>
         <message key="user.mailingAddress">Postadresse</message>
         <message key="user.biography">Institution</message>
-        <message key="user.biography.description">&nbsp;</message>
+        <message key="user.biography.description">&amp;nbsp;</message>
         <message key="user.workingLanguages">Sprachkenntnisse</message>
         <message key="user.dateRegistered">Erstellungsdatum</message>
         <message key="user.dateLastLogin">Letztes Login</message>
@@ -1775,10 +1774,7 @@ Titel des Klassifikationssystem]]></message>
         <message key="presenter.submit.form.abstractRequired">Bitte geben Sie einen Abstract f&#252;r diese Einreichung ein.</message>
 
         <!-- Paper Submission Step 2 -->
-        <message key="presenter.submit.metadataDescription"></message>
         <message key="presenter.submit.privacyStatement">Datenschutzerkl&#228;rung der Konferenz</message>
-        <message key="presenter.submit.presentersDescription">Falls eine Einreichung von mehreren Autoren verfasst ist, geben Sie die Namen der Autoren in der Reihenfolge an, in der sie zitiert werden sollen. Zum Hinzuf&#252;gen weiterer Autoren benutzen Sie bitte den Button "Weiteren Autor hinzuf&#252;gen".</message>
-        <message key="presenter.submit.reorderPresenterName">Autorennamen neu anordnen</message>
         <message key="presenter.submit.reorderInstructions">Benutzen Sie die Pfeile um die Reihenfolge, in der die Autoren erscheinen sollen, zu &#228;ndern.</message>
         <message key="presenter.submit.selectPrincipalContact">Hauptansprechpartner f&#252;r die Bearbeitung betreffende Korrespondenz</message>
         <message key="presenter.submit.addPresenter">Weiteren Autor hinzuf&#252;gen</message>
@@ -1803,9 +1799,7 @@ Titel des Klassifikationssystem]]></message>
 <li>Klicken Sie auf &quot;&#214;ffnen&quot; im Auswahlfenster. Der Name der Datei wird nun auf dieser Seite angezeigt.</li>
 <li>Klicken Sie auf &quot;Hochladen&quot;, um die Datei von Ihrem Computer auf die Konferenzwebseite hochzuladen (die Datei wird dabei entsprechend den Konventionen der Konferenz umbenannt).</li>
 <li>Sobald die Einreichung hochgeladen ist, klicken Sie auf &quot;Speichern und Fortfahren&quot; am Ende dieser Seite.</li>
-</ol>
-
-Die Datei kann durch Anklicken des Dateinamens angezeigt werden. Eine neue oder &#252;berarbeitete Datei kann hochgeladen werden, die die derzeit angezeigte &#252;berschreibt. Zus&#228;tzliche Dateien k&#246;nnen im n&#228;chsten Schritt (&quot;Erg&#228;nzungsdateien&quot;) hinzugef&#252;gt werden. Wenn Sie Probleme beim Hochladen der Einreichung haben, wenden Sie sich per Email oder telefonisch ({$supportPhone}) an <a href="mailto:{$supportEmail}">{$supportName}</a> , um Hilfestellung zu erlangen.]]></message>
+</ol>]]></message>
         <message key="presenter.submit.submissionFile">Einreichungsdatei</message>
         <message key="presenter.submit.uploadSubmissionFile">Einreichungsdatei hochladen</message>
         <message key="presenter.submit.replaceSubmissionFile">Einreichungsdatei ersetzen</message>
@@ -2095,7 +2089,7 @@ Die Datei kann durch Anklicken des Dateinamens angezeigt werden. Eine neue oder 
         <message key="about.conferenceContact">Konferenzkontakt</message>
         <message key="about.aboutTheConference">&#220;ber die Konferenz</message>
         <message key="about.organizingTeam">Organisationsteam</message>
-        <message key="about.editorialPolicies">&nbsp;</message>
+        <message key="about.editorialPolicies">&amp;nbsp;</message>
         <message key="about.submissions">Einreichungen</message>
         <message key="about.sponsors">Sponsoren</message>
         <message key="about.contributors">Aussteller und Sponsoren</message>
@@ -2497,7 +2491,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
         <message key="rt.thisConference">Konferenz durchsuchen</message>
 
         <message key="rt.email.sent">Ihre Nachricht wurde verschickt.</message>
-        <message key="rt.comments.commentsClosed">&dagger; Keine Kommentare mehr m&#246;glich seit {$closeCommentsDate}</message>
+        <message key="rt.comments.commentsClosed"><![CDATA[&dagger; Keine Kommentare mehr m&#246;glich seit {$closeCommentsDate}]]></message>
         <message key="rt.email.needLogin"><![CDATA[* Erfordert <a target="_parent" href="{$loginUrl}">Anmeldung</a>]]></message>
 
         <message key="rt.context.searchTerms">Suchbegriffe</message>
@@ -2571,4 +2565,4 @@ Validation may fail on search URLs that require posted form data.]]></message>
         <message key="default.schedConfSettings.forReaders"><![CDATA[Wir ermutigen die Leser, sich f&#252;r die Benachrichtigung &#252;ber auf der Konferenz ver&#246;ffentlichte Papers einzuschreiben. Dies ist &#252;ber den Link <a href="{$accountUrl}">&quot;Benutzerkonto&quot;</a> am oberen Ende der Konferenzstartseite m&#246;glicht. Die Einschreibung erm&#246;glicht es der Konferenz, Angaben &#252;ber die Unterst&#252;tzung bzw. Leserschaft zu machen. Lesen Sie sich hierzu auch die <a href="{$privacyStatementUrl}">Datenschutzerkl&#228;rung</a> der Konferenz durch, welche garantiert, dass die Namen und Emailadressen von Lesern nicht f&#252;r sachfremde Zwecke benutzt werden.]]></message>
         <message key="default.schedConfSettings.forPresenters"><![CDATA[Haben Sie Interesse daran, etwas an diese Konferenz einzureichen? Wenn dies der Fall ist, empfehlen wir, die entsprechenden Regelungen auf der Seite <a href="{$aboutUrl}">&quot;&#220;ber die Konferenz&quot;</a> sowie die <a href="{$presenterGuidelinesUrl}">Richtlinien f&#252;r Autoren</a> anzusehen. Autoren m&#252;ssen ein <a href="{$accountUrl}">Benutzerkonto bei der Konferenz erstellen</a> um Einreichungen vornehmen zu k&#246;nnen. Falls ein Benutzerkonto bereits besteht, k&#246;nnen sie sich <a href="{$loginUrl}">einloggen</a> um die Einreichungsprozedur einzuleiten.]]></message>
 
-</locale>￼
+</locale>
