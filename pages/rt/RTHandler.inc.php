@@ -22,6 +22,9 @@ import('rt.ocs.ConferenceRT');
 import('paper.PaperHandler');
 
 class RTHandler extends PaperHandler {
+	/**
+	 * Display a presenter biography
+	 */
 	function bio($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -41,6 +44,9 @@ class RTHandler extends PaperHandler {
 		$templateMgr->display('rt/bio.tpl');
 	}
 
+	/**
+	 * Display the paper metadata
+	 */
 	function metadata($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -70,6 +76,9 @@ class RTHandler extends PaperHandler {
 		$templateMgr->display('rt/metadata.tpl');
 	}
 
+	/**
+	 * Display an RT search context
+	 */
 	function context($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -83,7 +92,7 @@ class RTHandler extends PaperHandler {
 		$context = &$rtDao->getContext($contextId);
 		if ($context) $version = &$rtDao->getVersion($context->getVersionId(), $conference->getConferenceId());
 
-		if (!$context || !$version || !$conferenceRt || $conferenceRt->getVersion()==null || $conferenceRt->getVersion() !=  $context->getVersionId()) {
+		if (!$context || !$version || !$conferenceRt || $conferenceRt->getVersion()==null || $conferenceRt->getVersion() != $context->getVersionId()) {
 			Request::redirect(null, null, 'paper', 'view', array($paperId, $galleyId));
 		}
 
@@ -153,6 +162,9 @@ class RTHandler extends PaperHandler {
 		$templateMgr->display('rt/context.tpl');
 	}
 
+	/**
+	 * Display citation information
+	 */
 	function captureCite($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -190,6 +202,9 @@ class RTHandler extends PaperHandler {
 		$citationPlugin->cite($paper);
 	}
 
+	/**
+	 * Display a printer-friendly version of the paper
+	 */
 	function printerFriendly($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -219,6 +234,9 @@ class RTHandler extends PaperHandler {
 		$templateMgr->display('rt/printerFriendly.tpl');	
 	}
 
+	/**
+	 * Display the "Email Colleague" form
+	 */
 	function emailColleague($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -258,6 +276,9 @@ class RTHandler extends PaperHandler {
 		}
 	}
 
+	/**
+	 * Display the "email presenter"
+	 */
 	function emailPresenter($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -291,9 +312,9 @@ class RTHandler extends PaperHandler {
 		}
 	}
 
-	function addComment($args) {
-	}
-
+	/**
+	 * Display a list of supplementary files
+	 */
 	function suppFiles($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -315,6 +336,9 @@ class RTHandler extends PaperHandler {
 		$templateMgr->display('rt/suppFiles.tpl');
 	}
 
+	/**
+	 * Display the metadata of a supplementary file
+	 */
 	function suppFileMetadata($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -341,6 +365,32 @@ class RTHandler extends PaperHandler {
 		$templateMgr->display('rt/suppFileView.tpl');
 	}
 
+	/**
+	 * Display the "finding references" search engine list
+	 */
+	function findingReferences($args) {
+		$paperId = isset($args[0]) ? $args[0] : 0;
+		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
+		list($conference, $issue, $paper) = RTHandler::validate($paperId, $galleyId);
+ 
+		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
+ 
+		if (!$conferenceRt || !$conferenceRt->getFindingReferences()) {
+			Request::redirect(null, null, Request::getRequestedPage());
+		}
+ 
+		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign('paperId', $paperId);
+		$templateMgr->assign('galleyId', $galleyId);
+		$templateMgr->assign_by_ref('conferenceRt', $conferenceRt);
+		$templateMgr->assign_by_ref('paper', $paper);
+		$templateMgr->display('rt/findingReferences.tpl');
+	}
+
+	/**
+	 * Get parameter values: Used internally for RT searches
+	 */
 	function getParameterNames($value) {
 		$matches = null;
 		String::regexp_match_all('/\{\$([a-zA-Z0-9]+)\}/', $value, $matches);

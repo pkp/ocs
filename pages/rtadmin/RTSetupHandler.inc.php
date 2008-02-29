@@ -50,6 +50,7 @@ class RTSetupHandler extends RTAdminHandler {
 			$templateMgr->assign('addComment', $rt->getAddComment());
 			$templateMgr->assign('emailPresenter', $rt->getEmailPresenter());
 			$templateMgr->assign('emailOthers', $rt->getEmailOthers());
+			$templateMgr->assign('findingReferences', $rt->getFindingReferences());
 
 			$templateMgr->assign('helpTopicId', 'conference.managementPages.readingTools.settings');
 			$templateMgr->display('rtadmin/settings.tpl');
@@ -80,6 +81,7 @@ class RTSetupHandler extends RTAdminHandler {
 			$rt->setAddComment(Request::getUserVar('addComment')==true);
 			$rt->setEmailPresenter(Request::getUserVar('emailPresenter')==true);
 			$rt->setEmailOthers(Request::getUserVar('emailOthers')==true);
+			$rt->setFindingReferences(Request::getUserVar('findingReferences')==true);
 
 			$rtDao->updateConferenceRT($rt);
 		}

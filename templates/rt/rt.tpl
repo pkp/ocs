@@ -95,6 +95,9 @@
 			{translate key="rt.addComment"}*
 			{assign var=needsLoginNote value=1}
 		{/if}
+		{if $conferenceRt->getFindingReferences()}
+			<li><a href="javascript:openRTWindow('{url page="rt" op="findingReferences" path=$paper->getPaperId()|to_array:$galleyId}');">{translate key="rt.findingReferences"}</a></li>
+		{/if}
 	</ul>
 </div>
 <br />

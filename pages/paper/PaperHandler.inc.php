@@ -377,7 +377,7 @@ class PaperHandler extends Handler {
 			}
 
 		} else {
-			Request::redirect(null, null, null, 'index');
+			Request::redirect(null, null, 'index');
 		}
 		return array($conference, $schedConf, $paper);
 	}

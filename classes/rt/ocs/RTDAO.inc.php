@@ -40,6 +40,7 @@ class RTDAO extends DAO {
 		$rt->setAddComment($conference->getSetting('rtAddComment')?true:false);
 		$rt->setEmailPresenter($conference->getSetting('rtEmailPresenter')?true:false);
 		$rt->setEmailOthers($conference->getSetting('rtEmailOthers')?true:false);
+		$rt->setFindingReferences($conference->getSetting('rtFindingReferences')?true:false);
 		return $rt;
 	}
 
@@ -59,6 +60,7 @@ class RTDAO extends DAO {
 		$conference->updateSetting('rtAddComment', $rt->getAddComment(), 'bool');
 		$conference->updateSetting('rtEmailPresenter', $rt->getEmailPresenter(), 'bool');
 		$conference->updateSetting('rtEmailOthers', $rt->getEmailOthers(), 'bool');
+		$conference->updateSetting('rtFindingReferences', $rt->getFindingReferences());
 		return true;
 	}
 
