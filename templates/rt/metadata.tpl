@@ -145,7 +145,7 @@
 	<td>{translate key="rt.metadata.pkp.suppFiles"}</td>
 	<td>
 		{foreach from=$paper->getSuppFiles() item=suppFile}
-			<a href="{url page="paper" op="download" path=$paperId|to_array:$suppFile->getFileId()}">{$suppFile->getSuppFileTitle()|escape}</a> ({$suppFile->getNiceFileSize()})<br />
+			<a href="{url page="paper" op="downloadSuppFile" path=$paperId|to_array:$suppFile->getBestSuppFileId($currentConference)}">{$suppFile->getSuppFileTitle()|escape}</a> ({$suppFile->getNiceFileSize()})<br />
 		{/foreach}
 	</td>
 </tr>
