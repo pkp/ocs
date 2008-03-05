@@ -346,7 +346,7 @@ class OAIDAO extends DAO {
 		$record->contributors = $this->stripAssocArray((array) $paper->getSponsor(null));
 		$record->date = date('Y-m-d', strtotime($this->datetimeFromDB($row['date_published'])));
 		$types = $this->stripAssocArray((array) $track->getIdentifyType(null));
-		$record->types = empty($row['track_item_type']) ? array(Locale::translate('rt.metadata.pkp.peerReviewed')) : $row['track_item_type'], $row['type'];
+		$record->types = empty($row['track_item_type']) ? array(Locale::getLocale() => Locale::translate('rt.metadata.pkp.peerReviewed')) : $row['track_item_type'].$row['type'];
 		$record->format = array();
 		$record->sources = array($conference->getConferenceTitle() . '; ' . $schedConf->getSchedConfTitle());
 		$record->language = strip_tags($paper->getLanguage());

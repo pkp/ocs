@@ -535,7 +535,7 @@ class OAI {
 			// Output set memberships
 			foreach ($record->sets as $setSpec) {
 				$response .= "\t\t\t\t<setSpec>" . $this->prepOutput($setSpec) . "</setSpec>\n";
-
+			}
 			$response .=	"\t\t\t</header>\n" .
 					"\t\t\t<metadata>\n";
 			// Output metadata
