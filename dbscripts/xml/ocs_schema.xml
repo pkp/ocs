@@ -2317,10 +2317,7 @@
 		<field name="sched_conf_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="is_multiple" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
+		<field name="time_block_id" type="I8" />
 		<descr>Conference scheduler special events.</descr>
 		<index name="special_event_sched_conf_id">
 			<col>sched_conf_id</col>
