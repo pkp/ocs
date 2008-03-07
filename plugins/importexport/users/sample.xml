@@ -23,7 +23,6 @@
 		<affiliation>TestUser1Affiliation</affiliation>
 		<email>testuser1@ocsdev.bb</email>
 		<country>DE</country>
-		<discipline>C4</discipline>
 		<biography locale="de_DE">My biography (German) - TestUser1.</biography>
 		<biography locale="en_US">My biography (English) - TestUser1.</biography>
 		<biography locale="es_ES">My biography (Spanish) - TestUser1.</biography>
@@ -39,7 +38,6 @@
 		<affiliation>TestUser2Affiliation</affiliation>
 		<email>testuser2@ocsdev.bb</email>
 		<country>DE</country>
-		<discipline>C4</discipline>
 		<biography locale="de_DE">My biography (German) - TestUser2.</biography>
 		<biography locale="en_US">My biography (English) - TestUser2.</biography>
 		<biography locale="es_ES">My biography (Spanish) - TestUser2.</biography>

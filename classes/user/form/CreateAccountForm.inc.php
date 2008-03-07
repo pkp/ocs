@@ -99,10 +99,6 @@ class CreateAccountForm extends Form {
 
 		import('schedConf.SchedConfAction');
 
-		$disciplineDao =& DAORegistry::getDAO('DisciplineDAO');
-		$disciplines =& $disciplineDao->getDisciplines();
-		$templateMgr->assign_by_ref('disciplines', $disciplines);
-
 		$templateMgr->assign('privacyStatement', $conference->getLocalizedSetting('privacyStatement'));
 		$templateMgr->assign('enableOpenAccessNotification', $schedConf->getSetting('enableOpenAccessNotification', true)==1?1:0);
 		$templateMgr->assign('allowRegReader', SchedConfAction::allowRegReader($schedConf));
@@ -143,7 +139,7 @@ class CreateAccountForm extends Form {
 		$userVars = array(
 			'username', 'password', 'password2',
 			'salutation', 'firstName', 'middleName', 'lastName',
-			'gender', 'initials', 'country', 'discipline',
+			'gender', 'initials', 'country',
 			'affiliation', 'email', 'userUrl', 'phone', 'fax', 'signature',
 			'mailingAddress', 'biography', 'interests', 'userLocales',
 			'createAsReader', 'openAccessNotification', 'createAsPresenter',

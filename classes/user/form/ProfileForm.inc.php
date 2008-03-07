@@ -69,12 +69,8 @@ class ProfileForm extends Form {
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 
-		$disciplineDao =& DAORegistry::getDAO('DisciplineDAO');
-		$disciplines =& $disciplineDao->getDisciplines();
-
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 		$templateMgr->assign_by_ref('countries', $countries);
-		$templateMgr->assign_by_ref('disciplines', $disciplines);
 		$templateMgr->assign_by_ref('schedConfNotifications', $schedConfNotifications);
 		$templateMgr->assign('helpTopicId', 'user.accountAndProfile');
 
@@ -115,7 +111,6 @@ class ProfileForm extends Form {
 			'initials' => $user->getInitials(),
 			'lastName' => $user->getLastName(),
 			'gender' => $user->getGender(),
-			'discipline' => $user->getDiscipline(),
 			'affiliation' => $user->getAffiliation(),
 			'signature' => $user->getSignature(null), // Localized
 			'email' => $user->getEmail(),
@@ -146,7 +141,6 @@ class ProfileForm extends Form {
 			'middleName',
 			'lastName',
 			'gender',
-			'discipline',
 			'initials',
 			'affiliation',
 			'signature',
@@ -181,7 +175,6 @@ class ProfileForm extends Form {
 		$user->setMiddleName($this->getData('middleName'));
 		$user->setLastName($this->getData('lastName'));
 		$user->setGender($this->getData('gender'));
-		$user->setDiscipline($this->getData('discipline'));
 		$user->setInitials($this->getData('initials'));
 		$user->setAffiliation($this->getData('affiliation'));
 		$user->setSignature($this->getData('signature'), null); // Localized
