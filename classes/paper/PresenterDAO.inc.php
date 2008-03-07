@@ -16,6 +16,7 @@
  */
 
 import('paper.Presenter');
+import('paper.Paper');
 
 class PresenterDAO extends DAO {
 	/**
@@ -129,7 +130,7 @@ class PresenterDAO extends DAO {
 		}
 
 		$result = &$this->retrieveRange(
-			'SELECT DISTINCT CAST(\'\' AS CHAR(1)) AS url,
+			'SELECT	DISTINCT CAST(\'\' AS CHAR(1)) AS url,
 				0 AS presenter_id,
 				0 AS paper_id,
 				CAST(\'\' AS CHAR(1)) AS email,
@@ -144,10 +145,11 @@ class PresenterDAO extends DAO {
 				papers a,
 				published_papers pa,
 				sched_confs e
-			WHERE e.sched_conf_id = pa.sched_conf_id
-				AND aa.paper_id = a.paper_id ' .
-				(isset($schedConfId)?'AND a.sched_conf_id = ? ':'') .
-				'AND pa.paper_id = a.paper_id
+			WHERE	e.sched_conf_id = pa.sched_conf_id
+				AND aa.paper_id = a.paper_id
+				' . (isset($schedConfId)?'AND a.sched_conf_id = ? ':'') . '
+				AND pa.paper_id = a.paper_id
+				AND a.status = ' . SUBMISSION_STATUS_PUBLISHED . '
 				AND (aa.last_name IS NOT NULL
 				AND aa.last_name <> \'\')' . $initialSql . ' ORDER BY aa.last_name, aa.first_name',
 			empty($params)?false:$params,
