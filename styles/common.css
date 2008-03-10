@@ -494,6 +494,7 @@ div.separator {
 
 .borderBox {
 	border-style: solid;
+	border-color: #000000;
 	border-width: 1px;
 	margin: 2px;
 	padding: 2px;
@@ -506,6 +507,10 @@ div.separator {
 /**
  * Scheduler styles
  */
+.scheduleTable {
+	min-width: 100%;
+}
+
 .schedulerEvent {
 	color: #880000;
 	background-color: #FBFBF3;

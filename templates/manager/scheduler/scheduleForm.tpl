@@ -45,8 +45,12 @@ function dragMouseDown(ev) {
 		topelement = "BODY";
 	}
 
+	if (typeof(dObj) != 'object') {
+		return;
+	}
+
 	// Find the draggable object (rather than potentially a subelement)
-	while (dObj.tagName != topelement && dObj.className.indexOf("draggable") == -1) {
+	while (dObj != null && dObj.tagName != topelement && dObj.className.indexOf("draggable") == -1) {
 		if (nn) {
 			dObj = dObj.parentNode;
 		} else {
@@ -55,7 +59,7 @@ function dragMouseDown(ev) {
 	}
 
 	// If we couldn't find it, abort
-	if (dObj.className.indexOf("draggable") == -1) {
+	if (dObj == null || dObj.className.indexOf("draggable") == -1) {
 		return;
 	}
 
