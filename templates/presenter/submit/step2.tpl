@@ -54,7 +54,7 @@ function movePresenter(dir, presenterIndex) {
 {/if}
 
 <h3>{translate key="paper.presenters"}</h3>
-<p>{translate key="presenter.submit.presentersDescription"}</p>
+
 <input type="hidden" name="deletedPresenters" value="{$deletedPresenters|escape}" />
 <input type="hidden" name="movePresenter" value="0" />
 <input type="hidden" name="movePresenterDir" value="" />

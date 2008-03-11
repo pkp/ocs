@@ -30,6 +30,7 @@
 {url|assign:"url" page="schedConf" op="trackPolicies"}
 <p>{translate key="presenter.submit.conferenceTrackDescription" aboutUrl=$url}</p>
 
+<form name="submit" method="post" action="{url op="saveSubmit" path=$submitStep}" onsubmit="return checkSubmissionChecklist()">
 
 <table class="data" width="100%">
 <tr valign="top">	
@@ -61,8 +62,6 @@ function checkSubmissionChecklist() {
 // -->
 {/literal}
 </script>
-
-<form name="submit" method="post" action="{url op="saveSubmit" path=$submitStep}" onsubmit="return checkSubmissionChecklist()">
 
 {if $currentSchedConf->getLocalizedSetting('submissionChecklist')}
 

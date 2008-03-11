@@ -8,27 +8,20 @@
  *
  * $Id$
  *}
-{assign var=cols value=7}
 
 <a name="submissions"></a>
 
 <table class="listing" width="100%">
-	<assign var="cols" value=6>
-	{if $submission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL}
-		{assign var="cols" value=$cols+1}
-	{/if}
-	<tr><td colspan="{$cols|escape}" class="headseparator">&nbsp;</td></tr>
+	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
 		<td width="7%">{translate key="common.id"}</td>
 		<td width="7%"><span class="disabled">MM-DD</span><br />{translate key="common.assigned"}</td>
 		<td width="8%">{translate key="submissions.track"}</td>
-		<td>{translate key="paper.title"}</td>
+		<td width="60%">{translate key="paper.title"}</td>
 		<td width="8%">{translate key="submission.due"}</td>
-		{if $submission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL}
-			<td width="10%">{translate key="submissions.reviewType"}</td>
-		{/if}
+		<td width="10%">{translate key="submissions.reviewType"}</td>
 	</tr>
-	<tr><td colspan="{$cols|escape}" class="headseparator">&nbsp;</td></tr>
+	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
 
 {iterate from=submissions item=submission}
 	{assign var="paperId" value=$submission->getPaperId()}
@@ -51,15 +44,15 @@
 		{/if}
 	</tr>
 	<tr>
-		<td colspan="{$cols|escape}" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
+		<td colspan="6" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
 {/iterate}
 {if $submissions->wasEmpty()}
 <tr>
-		<td colspan="{$cols|escape}" class="nodata">{translate key="submissions.noSubmissions"}</td>
+		<td colspan="6" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
 	<tr>
-		<td colspan="{$cols|escape}" class="endseparator">&nbsp;</td>
+		<td colspan="6" class="endseparator">&nbsp;</td>
 	</tr>
 {else}
 	<tr>

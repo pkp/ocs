@@ -49,6 +49,10 @@ function dragMouseDown(ev) {
 		return;
 	}
 
+	if (!dObj.className.indexOf("scrollContainer")) {
+		return;
+	}
+
 	// Find the draggable object (rather than potentially a subelement)
 	while (dObj != null && dObj.tagName != topelement && dObj.className.indexOf("draggable") == -1) {
 		if (nn) {
@@ -231,6 +235,7 @@ function chooseRoom(el) {
 				{$timeBlock->getTimeBlockName()|escape}
 				{foreach from=$scheduledEventsByTimeBlockId.$timeBlockId item=event}
 					<div id="EVENT-{$event->getSpecialEventId()|escape}" class="draggable floatLeft borderBox schedulerEvent">
+						<div class="scrollContainer">
 						<table class="data">
 							<tr valign="top">
 								<td colspan="2" class="schedulerEventHeader">{$event->getSpecialEventName()|escape|truncate:35:"..."}</td>
@@ -251,10 +256,12 @@ function chooseRoom(el) {
 								</td>
 							</tr>
 						</table>
+						</div>{* scrollContainer *}
 					</div>
 				{/foreach}
 				{foreach from=$scheduledPresentationsByTimeBlockId[$timeBlockId] item=presentation}
 					<div id="PRESENTATION-{$presentation->getPaperId()|escape}" class="draggable floatLeft borderBox schedulerPresentation">
+						<div class="scrollContainer">
 						<table class="data">
 							<tr valign="top">
 								<td colspan="2" class="schedulerPresentationHeader">{$presentation->getPaperTitle()|escape|truncate:35:"..."}</td>
@@ -279,6 +286,7 @@ function chooseRoom(el) {
 								</td>
 							</tr>
 						</table>
+						</div>{* scrollContainer *}
 					</div>
 				{/foreach}
 			</td>
