@@ -37,8 +37,8 @@
 
 	<!-- Localize the sched_confs table -->
 	<sql>
-		<query>INSERT INTO sched_conf_settings (sched_conf_id, conference_id, setting_name, setting_value, setting_type, locale) SELECT sc.sched_conf_id, sc.conference_id, 'title', title, 'string', c.primary_locale FROM conferences c, sched_confs sc WHERE c.conference_id = sc.conference_id</query>
-		<query>INSERT INTO sched_conf_settings (sched_conf_id, conference_id, setting_name, setting_value, setting_type, locale) SELECT sc.sched_conf_id, sc.conference_id, 'description', description, 'string', c.primary_locale FROM conferences c, sched_confs sc WHERE c.conference_id = sc.conference_id</query>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, setting_name, setting_value, setting_type, locale) SELECT sc.sched_conf_id, 'title', sc.title, 'string', c.primary_locale FROM conferences c, sched_confs sc WHERE c.conference_id = sc.conference_id</query>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, setting_name, setting_value, setting_type, locale) SELECT sc.sched_conf_id, 'description', sc.description, 'string', c.primary_locale FROM conferences c, sched_confs sc WHERE c.conference_id = sc.conference_id</query>
 	</sql>
 
 	<!-- Localize the tracks table -->

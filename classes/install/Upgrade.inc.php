@@ -204,7 +204,7 @@ class Upgrade extends Installer {
 		);
 
 		foreach ($settingNames as $oldName => $newName) {
-			$result =& $schedConfDao->retrieve('SELECT s.sched_conf_id, c.primary_locale FROM sched_confs s, conferences c, sched_conf_settings scs WHERE c.conference_id = sc.conference_id AND sc.sched_conf_id = scs.sched_conf_id AND scs.setting_name = ? AND (scs.locale IS NULL OR scs.locale = ?)', array($oldName, ''));
+			$result =& $schedConfDao->retrieve('SELECT sc.sched_conf_id, c.primary_locale FROM sched_confs sc, conferences c, sched_conf_settings scs WHERE c.conference_id = sc.conference_id AND sc.sched_conf_id = scs.sched_conf_id AND scs.setting_name = ? AND (scs.locale IS NULL OR scs.locale = ?)', array($oldName, ''));
 			while (!$result->EOF) {
 				$row = $result->GetRowAssoc(false);
 				$schedConfSettingsDao->update('UPDATE sched_conf_settings SET locale = ?, setting_name = ? WHERE sched_conf_id = ? AND setting_name = ? AND (locale IS NULL OR locale = ?)', array($row['primary_locale'], $newName, $row['sched_conf_id'], $oldName, ''));
@@ -225,7 +225,7 @@ class Upgrade extends Installer {
 		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 
-		$result =& $conferenceDao->retrieve('SELECT g.galley_id, c.primary_locale FROM conferences c, papers p, paper_galleys g WHERE p.conference_id = c.conference_id AND g.paper_id = p.paper_id AND (g.locale IS NULL OR g.locale = ?)', '');
+		$result =& $conferenceDao->retrieve('SELECT g.galley_id, c.primary_locale FROM conferences c, sched_confs sc, papers p, paper_galleys g WHERE p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND g.paper_id = p.paper_id AND (g.locale IS NULL OR g.locale = ?)', '');
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			$paperGalleyDao->update('UPDATE paper_galleys SET locale = ? WHERE galley_id = ?', array($row['primary_locale'], $row['galley_id']));

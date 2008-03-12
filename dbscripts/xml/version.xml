@@ -25,9 +25,9 @@
 
 <version>
 	<application>ocs2</application>
-	<release>2.0.1.0</release>
-	<tag>ocs-2_0_1-0</tag>
-	<date>2007-05-16</date>
+	<release>2.1.0.0</release>
+	<tag>ocs-2_1_0-0</tag>
+	<date>2008-03-31</date>
 	<info>http://pkp.sfu.ca/ocs/</info>
-	<package>http://pkp.sfu.ca/ocs/download/ocs-2.0.0-1.tar.gz</package>
+	<package>http://pkp.sfu.ca/ocs/download/ocs-2.1.0-0.tar.gz</package>
 </version>
