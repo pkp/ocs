@@ -423,7 +423,8 @@ class AboutHandler extends Handler {
 		parent::validate();
 		AboutHandler::setupTemplate();
 
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId','user.about');
 
@@ -431,50 +432,47 @@ class AboutHandler extends Handler {
 		if (empty($statisticsYear)) $statisticsYear = date('Y');
 		$templateMgr->assign('statisticsYear', $statisticsYear);
 
-		$trackIds = $conference->getSetting('statisticsTrackIds');
+		$trackIds = $schedConf->getSetting('statisticsTrackIds');
 		if (!is_array($trackIds)) $trackIds = array();
 		$templateMgr->assign('trackIds', $trackIds);
 
 		foreach (AboutHandler::getPublicStatisticsNames() as $name) {
-			$templateMgr->assign($name, $conference->getSetting($name));
+			$templateMgr->assign($name, $schedConf->getSetting($name));
 		}
 		$fromDate = mktime(0, 0, 0, 1, 1, $statisticsYear);
 		$toDate = mktime(23, 59, 59, 12, 31, $statisticsYear);
 
-		$conferenceStatisticsDao =& DAORegistry::getDAO('ConferenceStatisticsDAO');
-		$paperStatistics = $conferenceStatisticsDao->getPaperStatistics($conference->getConferenceId(), null, $fromDate, $toDate);
+		$schedConfStatisticsDao =& DAORegistry::getDAO('SchedConfStatisticsDAO');
+		$paperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getSchedConfId(), null, $fromDate, $toDate);
 		$templateMgr->assign('paperStatistics', $paperStatistics);
 
-		$limitedPaperStatistics = $conferenceStatisticsDao->getPaperStatistics($conference->getConferenceId(), $trackIds, $fromDate, $toDate);
+		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getSchedConfId(), $trackIds, $fromDate, $toDate);
 		$templateMgr->assign('limitedPaperStatistics', $limitedPaperStatistics);
 
-		$limitedPaperStatistics = $conferenceStatisticsDao->getPaperStatistics($conference->getConferenceId(), $trackIds, $fromDate, $toDate);
+		$limitedPaperStatistics = $schedConfStatisticsDao->getPaperStatistics($schedConf->getSchedConfId(), $trackIds, $fromDate, $toDate);
 		$templateMgr->assign('paperStatistics', $paperStatistics);
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
-		$tracks =& $trackDao->getConferenceTracks($conference->getConferenceId());
+		$tracks =& $trackDao->getSchedConfTracks($schedConf->getSchedConfId());
 		$templateMgr->assign('tracks', $tracks->toArray());
 
-		$issueStatistics = $conferenceStatisticsDao->getIssueStatistics($conference->getConferenceId(), $fromDate, $toDate);
-		$templateMgr->assign('issueStatistics', $issueStatistics);
-
-		$reviewerStatistics = $conferenceStatisticsDao->getReviewerStatistics($schedConf->getSchedConfId(), $trackIds, $fromDate, $toDate);
+		$reviewerStatistics = $schedConfStatisticsDao->getReviewerStatistics($schedConf->getSchedConfId(), $trackIds, $fromDate, $toDate);
 		$templateMgr->assign('reviewerStatistics', $reviewerStatistics);
 
-		$allUserStatistics = $conferenceStatisticsDao->getUserStatistics($conference->getConferenceId(), null, $toDate);
+		$allUserStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getSchedConfId(), null, $toDate);
 		$templateMgr->assign('allUserStatistics', $allUserStatistics);
 
-		$userStatistics = $conferenceStatisticsDao->getUserStatistics($conference->getConferenceId(), $fromDate, $toDate);
+		$userStatistics = $schedConfStatisticsDao->getUserStatistics($schedConf->getSchedConfId(), $fromDate, $toDate);
 		$templateMgr->assign('userStatistics', $userStatistics);
 
-		$allRegistrationStatistics = $conferenceStatisticsDao->getRegistrationStatistics($conference->getConferenceId(), null, $toDate);
+		$allRegistrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getSchedConfId(), null, $toDate);
 		$templateMgr->assign('allRegistrationStatistics', $allRegistrationStatistics);
 
-		$registrationStatistics = $conferenceStatisticsDao->getRegistrationStatistics($conference->getConferenceId(), $fromDate, $toDate);
+		$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getSchedConfId(), $fromDate, $toDate);
 		$templateMgr->assign('registrationStatistics', $registrationStatistics);
 
 		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
-		$notifiableUsers = $notificationStatusDao->getNotifiableUsersCount($conference->getConferenceId());
+		$notifiableUsers = $notificationStatusDao->getNotifiableUsersCount($schedConf->getSchedConfId());
 		$templateMgr->assign('notifiableUsers', $notifiableUsers);
 
 		$templateMgr->display('about/statistics.tpl');

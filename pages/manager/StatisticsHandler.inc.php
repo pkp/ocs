@@ -123,7 +123,7 @@ class StatisticsHandler extends ManagerHandler {
 			'statDaysToPublication',
 			'statRegisteredUsers',
 			'statRegisteredReaders',
-			'statRegistration'
+			'statRegistrations'
 		);
 	}
 
