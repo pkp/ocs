@@ -15,7 +15,7 @@
 
 {include file="common/formErrors.tpl"}
 
-{assign var="registrationAdditionalInformation" value=$schedConf->getSetting('registrationAdditionalInformation')}
+{assign var="registrationAdditionalInformation" value=$schedConf->getLocalizedSetting('registrationAdditionalInformation')}
 {if $registrationAdditionalInformation}
 	<h3>{translate key="manager.registrationPolicies.registrationAdditionalInformation"}</h3>
 
