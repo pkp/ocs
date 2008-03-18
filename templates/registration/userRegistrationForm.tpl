@@ -11,9 +11,22 @@
 {assign var="pageTitle" value="schedConf.registration"}
 {include file="common/header.tpl"}
 
-<form action="{url op="register"}" method="post">
+<form action="{url op="register"}" name="registration" method="post">
 
 {include file="common/formErrors.tpl"}
+
+{if count($formLocales) > 1 && !$existingUser}
+<table class="data" width="100%">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
+		<td width="80%" class="value">
+			{url|assign:"registerUrl" op="registration"}
+			{form_language_chooser form="registration" url=$registerUrl}
+			<span class="instruct">{translate key="form.formLanguage.description"}</span>
+		</td>
+	</tr>
+</table>
+{/if}
 
 {assign var="registrationAdditionalInformation" value=$schedConf->getLocalizedSetting('registrationAdditionalInformation')}
 {if $registrationAdditionalInformation}
@@ -186,7 +199,7 @@
 
 <tr valign="top">
 	<td class="label">{fieldLabel name="signature" key="user.signature"}</td>
-	<td class="value"><textarea {$disableSnippet} name="signature" id="signature" rows="5" cols="40" class="textArea">{$signature|escape}</textarea></td>
+	<td class="value"><textarea {$disableSnippet} name="signature[{$formLocale|escape}]" id="signature" rows="5" cols="40" class="textArea">{$signature[$formLocale]|escape}</textarea></td>
 </tr>
 
 <tr valign="top">
@@ -226,7 +239,7 @@
 
 <tr valign="top">
 	<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-	<td class="value"><textarea {$disableSnippet} name="biography" id="biography" rows="5" cols="40" class="textArea">{$biography|escape}</textarea></td>
+	<td class="value"><textarea {$disableSnippet} name="biography[{$formLocale|escape}]" id="biography" rows="5" cols="40" class="textArea">{$biography[$formLocale]|escape}</textarea></td>
 </tr>
 
 </table>

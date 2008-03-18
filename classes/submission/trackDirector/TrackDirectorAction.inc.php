@@ -119,7 +119,7 @@ class TrackDirectorAction extends Action {
 				// Now, reassign all reviewers that submitted a review for the last
 				// stage of reviews.
 				foreach ($trackDirectorSubmission->getReviewAssignments(REVIEW_STAGE_ABSTRACT) as $reviewAssignment) {
-					if ($reviewAssignment->getRecommendation() != null) {
+					if ($reviewAssignment->getRecommendation() !== null && $reviewAssignment->getRecommendation() !== '') {
 						// This reviewer submitted a review; reassign them
 						TrackDirectorAction::addReviewer($trackDirectorSubmission, $reviewAssignment->getReviewerId(), REVIEW_STAGE_PRESENTATION);
 					}
@@ -1489,7 +1489,7 @@ import('file.PaperFileManager');
 		import('file.PaperFileManager');
 		$paperFileManager = &new PaperFileManager($reviewAssignment->getPaperId());
 		// Only upload the file if the reviewer has yet to submit a recommendation
-		if ($reviewAssignment->getRecommendation() == null && !$reviewAssignment->getCancelled()) {
+		if (($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation() === '') && !$reviewAssignment->getCancelled()) {
 			$fileName = 'upload';
 			if ($paperFileManager->uploadedFileExists($fileName)) {
 				if ($reviewAssignment->getReviewerFileId() != null) {

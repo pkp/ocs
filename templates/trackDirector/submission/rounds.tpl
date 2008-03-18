@@ -129,7 +129,7 @@
 	<tr valign="top">
 		<td>{translate key="submission.recommendation"}</td>
 		<td colspan="4">
-			{if $reviewAssignment->getRecommendation()}
+			{if $reviewAssignment->getRecommendation() !== null && $reviewAssignment->getRecommendation() !== ''}
 				{assign var="recommendation" value=$reviewAssignment->getRecommendation()}
 				{translate key=$reviewerRecommendationOptions.$recommendation}
 			{else}

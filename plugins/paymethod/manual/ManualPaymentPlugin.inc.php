@@ -60,7 +60,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		$user =& Request::getUser();
 
 		/* FIXME: This is too specific to registration payments. */
-		$templateMgr->assign('message', $schedConf->getSetting('registrationAdditionalInformation'));
+		$templateMgr->assign('message', $schedConf->getLocalizedSetting('registrationAdditionalInformation'));
 
 		$templateMgr->display($this->getTemplatePath() . 'paymentForm.tpl');
 

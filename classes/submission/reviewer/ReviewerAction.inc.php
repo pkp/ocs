@@ -132,7 +132,7 @@ class ReviewerAction extends Action {
 
 		// Only record the reviewers recommendation if
 		// no recommendation has previously been submitted.
-		if ($reviewAssignment->getRecommendation() == null) {
+		if ($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation === '') {
 			import('mail.PaperMailTemplate');
 			$email = &new PaperMailTemplate($reviewerSubmission, 'REVIEW_COMPLETE');
 			// Must explicitly set sender because we may be here on an access
@@ -210,7 +210,7 @@ class ReviewerAction extends Action {
 		$paperFileManager = &new PaperFileManager($reviewAssignment->getPaperId());
 
 		// Only upload the file if the reviewer has yet to submit a recommendation
-		if ($reviewAssignment->getRecommendation() == null && !$reviewAssignment->getCancelled()) {
+		if (($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation() === '') && !$reviewAssignment->getCancelled()) {
 			$fileName = 'upload';
 			if ($paperFileManager->uploadedFileExists($fileName)) {
 				HookRegistry::call('ReviewerAction::uploadReviewFile', array(&$reviewAssignment));

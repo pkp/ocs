@@ -176,6 +176,11 @@ class SchedConfHandler extends Handler {
 			import('registration.form.UserRegistrationForm');
 
 			$form =& new UserRegistrationForm();
+			if ($form->isLocaleResubmit()) {
+				$form->readInputData();
+			} else {
+				$form->initData();
+			}
 			$form->display();
 		}
 	}

@@ -114,6 +114,11 @@ class UserRegistrationForm extends Form {
 		parent::display();
 	}
 
+	function getLocaleFieldNames() {
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		return $userDao->getLocaleFieldNames();
+	}
+
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -142,6 +147,11 @@ class UserRegistrationForm extends Form {
 			$userVars[] = 'userLocales';
 		}
 
+		if ($this->captchaEnabled) {
+			$userVars[] = 'captchaId';
+			$userVars[] = 'captcha';
+		}
+
 		$this->readUserVars($userVars);
 
 		// If registration type requires it, membership is provided
@@ -166,14 +176,14 @@ class UserRegistrationForm extends Form {
 			$user->setInitials($this->getData('initials'));
 			$user->setLastName($this->getData('lastName'));
 			$user->setAffiliation($this->getData('affiliation'));
-			$user->setSignature($this->getData('signature'));
+			$user->setSignature($this->getData('signature'), null); // Localized
 			$user->setEmail($this->getData('email'));
 			$user->setUrl($this->getData('userUrl'));
 			$user->setPhone($this->getData('phone'));
 			$user->setFax($this->getData('fax'));
 			$user->setMailingAddress($this->getData('mailingAddress'));
-			$user->setBiography($this->getData('biography'));
-			$user->setInterests($this->getData('interests'));
+			$user->setBiography($this->getData('biography'), null); // Localized
+			$user->setInterests($this->getData('interests'), null); // Localized
 			$user->setDateRegistered(Core::getCurrentDate());
 			$user->setCountry($this->getData('country'));
 
