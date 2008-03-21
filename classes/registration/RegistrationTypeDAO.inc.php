@@ -396,22 +396,6 @@ class RegistrationTypeDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve an array of open registration types matching a particular scheduled conference ID.
-	 * @param $schedConfId int
-	 * @return object DAOResultFactory containing matching RegistrationTypes
-	 */
-	function &getOpenRegistrationTypesBySchedConfId($schedConfId, $rangeInfo = null) {
-		$time = time();
-		$result = &$this->retrieveRange(
-			'SELECT * FROM registration_types WHERE sched_conf_id = ? AND opening_date < ' . $time . ' AND closing_date < ' . $time . ' ORDER BY seq',
-			$schedConfId, $rangeInfo
-		);
-
-		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationTypeFromRow');
-		return $returner;
-	}
-
-	/**
 	 * Get the ID of the last inserted registration type.
 	 * @return int
 	 */
