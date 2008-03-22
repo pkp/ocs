@@ -1819,7 +1819,7 @@
 		<field name="membership" type="C2" size="40"/>
 		<field name="domain" type="C2" size="255"/>
 		<field name="ip_range" type="X"/>
-		<field name="special_requests" type="C2" size="255"/>
+		<field name="special_requests" type="X"/>
 		<descr>Conference registrations.</descr>
 		<index name="registration_sched_conf_id">
 			<col>sched_conf_id</col>
