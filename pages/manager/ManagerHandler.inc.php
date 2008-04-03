@@ -466,6 +466,11 @@ class ManagerHandler extends Handler {
 		SchedulerHandler::scheduler();
 	}
 
+	function saveSchedule() {
+		import('pages.manager.SchedulerHandler');
+		SchedulerHandler::saveSchedule();
+	}
+
 	// Buildings
 
 	function buildings() {
@@ -553,37 +558,6 @@ class ManagerHandler extends Handler {
 		import('pages.manager.SchedulerHandler');
 		SchedulerHandler::schedule($args);
 	}
-
-	function createTimeBlocks($args) {
-		import('pages.manager.SchedulerHandler');
-		SchedulerHandler::createTimeBlocks($args);
-	}
-
-	function timeBlocks() {
-		import('pages.manager.SchedulerHandler');
-		SchedulerHandler::timeBlocks();
-	}
-
-	function deleteTimeBlock($args) {
-		import('pages.manager.SchedulerHandler');
-		SchedulerHandler::deleteTimeBlock($args);
-	}
-
-	function editTimeBlock($args) {
-		import('pages.manager.SchedulerHandler');
-		SchedulerHandler::editTimeBlock($args);
-	}
-
-	function createTimeBlock() {
-		import('pages.manager.SchedulerHandler');
-		SchedulerHandler::createTimeBlock();
-	}
-
-	function updateTimeBlock($args) {
-		import('pages.manager.SchedulerHandler');
-		SchedulerHandler::updateTimeBlock($args);
-	}
-
 
 	//
 	// Announcement Types 

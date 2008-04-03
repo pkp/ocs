@@ -165,6 +165,7 @@
 	<message key="common.captchaField.description">Please enter the letters as they appear in the image above.</message>
 	<message key="common.captchaField.badCaptcha">The characters you entered did not match the characters in the image. Please check the characters and try again.</message>
 	<message key="common.suggest">Suggest</message>
+	<message key="common.sortBy">Sort By...</message>
 
 	<!-- Common Form Messages -->
 	<message key="form.errorsOccurred">Errors occurred processing this form</message>
@@ -828,6 +829,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.scheduler.specialEvent.description">Description</message>
 	<message key="manager.scheduler.specialEvent.isMultiple">This special event may occur several times during the conference (e.g. coffee breaks).</message>
 	<message key="manager.scheduler.specialEvent.form.nameRequired">A special event name is required.</message>
+	<message key="manager.scheduler.specialEvent.form.checkTimes">Please check the times entered to ensure that the end time is not before the start time.</message>
 	<message key="manager.scheduler.specialEvent.confirmDelete">Are you sure you wish to delete this special event?</message>
 	<message key="manager.scheduler.specialEvent.saveAndCreateAnother">Save and Create Another</message>
 	<message key="manager.scheduler.specialEvent.noneCreated">No special events have been created.</message>
@@ -838,40 +840,11 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.scheduler.specialEvent.editSpecialEventShort">Edit</message>
 
 	<message key="manager.scheduler.schedule">Schedule Presentations &amp;amp; Events</message>
-	<message key="manager.scheduler.createTimeBlocks">Create Time Blocks</message>
-	<message key="manager.scheduler.timeBlock.form.nameRequired">A time block name is required.</message>
-	<message key="manager.scheduler.timeBlock.noneCreated">No time blocks have been created.</message>
-	<message key="manager.scheduler.timeBlock.name">Name</message>
-	<message key="manager.scheduler.timeBlock.description">Description</message>
-	<message key="manager.scheduler.timeBlock.createTimeBlock">Create Time Block</message>
-	<message key="manager.scheduler.timeBlock.createTimeBlockShort">Create</message>
-	<message key="manager.scheduler.timeBlock.editTimeBlock">Edit Time Block</message>
-	<message key="manager.scheduler.timeBlock.editTimeBlockShort">Edit</message>
-	<message key="manager.scheduler.timeBlock.saveAndCreateAnother">Save and Create Another</message>
-	<message key="manager.scheduler.timeBlock.create">Create Time Block</message>
-	<message key="manager.scheduler.timeBlock.startTime">Start Time</message>
-	<message key="manager.scheduler.timeBlock.endTime">End Time</message>
-	<message key="manager.scheduler.timeBlock.timeOrderWrong">The time block must end after it has begun.</message>
-	<message key="manager.scheduler.timeBlock.duration">Duration</message>
-	<message key="manager.scheduler.timeBlock.firstSession">First Session</message>
-	<message key="manager.scheduler.timeBlock.coffeeBreak">Coffee Break</message>
-	<message key="manager.scheduler.timeBlock.secondSession">Second Session</message>
-	<message key="manager.scheduler.timeBlock.lunch">Lunch</message>
-	<message key="manager.scheduler.timeBlock.afternoonSession">Afternoon Session</message>
-	<message key="manager.scheduler.timeBlock.noneCreated">None Created</message>
-	<message key="manager.scheduler.timeBlock.createNew">Create New Time Block</message>
-	<message key="manager.scheduler.timeBlocks">Time Blocks</message>
-	<message key="manager.scheduler.timeBlocks.description">Conference presentations and special events are assigned to blocks of time using the Scheduler. Before assigning events and presentations to time blocks, use the form below to create a set of time blocks available for assignment. (These can be adjusted in finer detail once they have been created.)</message>
-	<message key="manager.scheduler.timeBlocks.blockOverlap">One or more time blocks overlap. Please ensure that all time blocks and their durations are properly chosen.</message>
-	<message key="manager.scheduler.timeBlocks.blockNames">One or more time blocks is missing a name in this conference's primary locale.</message>
-	<message key="manager.scheduler.timeBlocks.startEndDatesOverlap">The "From" date chosen is after the "Until" date. Please ensure that these dates are correct.</message>
-	<message key="manager.scheduler.timeBlock.confirmDelete">Are you sure you wish to delete this time block? There may be events or presentations scheduled against it.</message>
-
-	<message key="manager.scheduler.schedule.description">The following form allows Journal Managers to schedule presentations and special events. Drag and drop Special Events and accepted Papers into the appropriate Time Block to schedule them, or drag them outside of the table to leave them unscheduled. Click "Save" at the bottom of the page to complete the schedule. To change the available Time Blocks, choose the "Time Blocks" tab.</message>
-	<message key="manager.scheduler.schedule.tidy">Tidy</message>
-	<message key="manager.scheduler.schedule.confirmLeave">Are you sure you wish to leave the scheduler without saving? You will lose any unsaved changes.</message>
-	<message key="manager.scheduler.schedule.unscheduledPresentations">Unscheduled Presentations</message>
-	<message key="manager.scheduler.schedule.unscheduledEvents">Unscheduled Events</message>
+	<message key="manager.scheduler.schedule">Schedule Presentations</message>
+	<message key="manager.scheduler.startTime">Start Time</message>
+	<message key="manager.scheduler.endTime">End Time</message>
+	<message key="manager.scheduler.location">Location</message>
+	<message key="manager.scheduler.checkTimes">Please check the start and end times for the presentations indicated in red to ensure that they are valid.</message>
 
 	<!-- Payment Handling -->
 	<message key="manager.payment.paymentSettings">Payment Methods</message>

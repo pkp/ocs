@@ -189,11 +189,6 @@ class PaperHandler extends Handler {
 			$templateMgr->assign_by_ref('room', $room);
 			$templateMgr->assign_by_ref('building', $building);
 		}
-		if ($paper->getTimeBlockId()) {
-			$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
-			$timeBlock =& $timeBlockDao->getTimeBlock($paper->getTimeBlockId());
-			$templateMgr->assign_by_ref('timeBlock', $timeBlock);
-		}
 
 		$templateMgr->display('paper/paper.tpl');	
 	}

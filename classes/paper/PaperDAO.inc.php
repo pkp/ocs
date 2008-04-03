@@ -128,6 +128,8 @@ class PaperDAO extends DAO {
 		$paper->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
 		$paper->setLastModified($this->datetimeFromDB($row['last_modified']));
 		$paper->setDateReminded($this->datetimeFromDB($row['date_reminded']));
+		$paper->setStartTime($this->datetimeFromDB($row['start_time']));
+		$paper->setEndTime($this->datetimeFromDB($row['end_time']));
 		$paper->setStatus($row['status']);
 		$paper->setSubmissionProgress($row['submission_progress']);
 		$paper->setReviewMode($row['review_mode']);
@@ -165,6 +167,8 @@ class PaperDAO extends DAO {
 				 date_status_modified,
 				 last_modified,
 				 date_reminded,
+				 start_time,
+				 end_time,
 				 date_to_presentations,
 				 date_to_archive,
 				 status,
@@ -178,8 +182,8 @@ class PaperDAO extends DAO {
 				 director_file_id,
 				 pages)
 				VALUES
-				(?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
+				(?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getStartTime()), $this->datetimeToDB($paper->getEndTime()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
 			array(
 				$paper->getUserId(),
 				$paper->getSchedConfId(),
@@ -231,6 +235,8 @@ class PaperDAO extends DAO {
 					date_status_modified = %s,
 					last_modified = %s,
 					date_reminded = %s,
+					start_time = %s,
+					end_time = %s,
 					date_to_presentations = %s,
 					date_to_archive = %s,
 					status = ?,
@@ -244,7 +250,7 @@ class PaperDAO extends DAO {
 					director_file_id = ?,
 					pages = ?
 				WHERE paper_id = ?',
-				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
+				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getStartTime()), $this->datetimeToDB($paper->getEndTime()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
 			array(
 				$paper->getUserId(),
 				$paper->getTrackId(),

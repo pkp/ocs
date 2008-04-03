@@ -128,7 +128,6 @@ class DAORegistry {
 			case 'AnnouncementTypeDAO': return 'announcement.AnnouncementTypeDAO';
 			case 'BuildingDAO': return 'scheduler.BuildingDAO';
 			case 'RoomDAO': return 'scheduler.RoomDAO';
-			case 'TimeBlockDAO': return 'scheduler.TimeBlockDAO';
 			case 'SpecialEventDAO': return 'scheduler.SpecialEventDAO';
 			case 'TemporaryFileDAO': return 'file.TemporaryFileDAO';
 			case 'CommentDAO': return 'comment.CommentDAO';

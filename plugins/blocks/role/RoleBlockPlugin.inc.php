@@ -100,10 +100,10 @@ class RoleBlockPlugin extends BlockPlugin {
 			}
 			case 'director':
 				if (Request::getRequestedOp() == 'index') return null;
-				$editorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
-				$submissionsCount =& $editorSubmissionDao->getDirectorSubmissionsCount($schedConfId);
+				$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
+				$submissionsCount =& $directorSubmissionDao->getDirectorSubmissionsCount($schedConfId);
 				$templateMgr->assign('submissionsCount', $submissionsCount);
-				return 'editor.tpl';
+				return 'director.tpl';
 			case 'trackDirector':
 				$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 				$submissionsCount =& $trackDirectorSubmissionDao->getTrackDirectorSubmissionsCount($userId, $schedConfId);

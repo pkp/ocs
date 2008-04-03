@@ -74,22 +74,6 @@ class PublishedPaper extends Paper {
 	}
 
 	/**
-	 * Get the ID of the timeBlock this published paper is assigned to.
-	 * @return int
-	 */
-	function getTimeBlockId() {
-		return $this->getData('timeBlockId');
-	}
-
-	/**
-	 * Set the ID of the timeBlock this published paper is assigned to.
-	 * @param $timeBlockId int
-	 */
-	function setTimeBlockId($timeBlockId) {
-		return $this->setData('timeBlockId', $timeBlockId);
-	}
-
-	/**
 	 * Get the room ID of the published paper.
 	 * @return int
 	 */

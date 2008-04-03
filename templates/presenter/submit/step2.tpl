@@ -11,8 +11,6 @@
 {assign var="pageTitle" value="presenter.submit.step2"}
 {include file="presenter/submit/submitHeader.tpl"}
 
-<p>{translate key="presenter.submit.metadataDescription"}</p>
-
 <div class="separator"></div>
 
 <form name="submit" method="post" action="{url op="saveSubmit" path=$submitStep}">

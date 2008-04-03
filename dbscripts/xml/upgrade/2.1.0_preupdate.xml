@@ -7,7 +7,7 @@
   * Copyright (c) 2000-2007 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * 2.0.1 database updates XML file, run prior to localization and schema sync.
+  * 2.1.0 database updates XML file, run prior to localization and schema sync.
   *
   * $Id$
   -->
@@ -16,5 +16,10 @@
 	<!-- OJS bug #2961: Localization overhaul -->
 	<sql>
 		<rename table="site" column="locale" to="primary_locale" />
+	</sql>
+	<!-- Scheduler -->
+	<sql>
+		<rename table="papers" column="present_start_time" to="start_time" />
+		<rename table="papers" column="present_end_time" to="end_time" />
 	</sql>
 </data>

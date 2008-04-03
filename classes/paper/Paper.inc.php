@@ -710,6 +710,38 @@ class Paper extends DataObject {
 	}
 
 	/**
+	 * Get the presentation start time.
+	 * @return date
+	 */
+	function getStartTime() {
+		return $this->getData('startTime');
+	}
+
+	/**
+	 * Set the presentation start time.
+	 * @param $startTime date
+	 */
+	function setStartTime($startTime) {
+		return $this->setData('startTime', $startTime);
+	}
+
+	/**
+	 * Get the presentation end time.
+	 * @return date
+	 */
+	function getEndTime() {
+		return $this->getData('endTime');
+	}
+
+	/**
+	 * Get the presentation end time.
+	 * @param $endTime date
+	 */
+	function setEndTime($endTime) {
+		return $this->setData('endTime', $endTime);
+	}
+
+	/**
 	 * Get paper status.
 	 * @return int
 	 */

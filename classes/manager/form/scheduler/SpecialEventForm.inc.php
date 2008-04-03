@@ -32,6 +32,12 @@ class SpecialEventForm extends Form {
 		// Type name is provided
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.scheduler.specialEvent.form.nameRequired'));
 
+		// Special event must start before it ends
+		$this->addCheck(new FormValidatorCustom($this, 'endTime', 'required', 'manager.scheduler.specialEvent.form.checkTimes',
+			create_function('$endTime,$form',
+			'return ($endTime >= $form->getData(\'startTime\'));'),
+			array(&$this)));
+
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -49,8 +55,15 @@ class SpecialEventForm extends Form {
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
+		$schedConf =& Request::getSchedConf();
+
 		$templateMgr->assign('specialEventId', $this->specialEventId);
 		$templateMgr->assign('helpTopicId', 'conference.managementPages.specialEvents');
+
+		import('manager.form.TimelineForm');
+		list($earliestDate, $latestDate) = TimelineForm::getOutsideDates($schedConf);
+		$templateMgr->assign('firstYear', strftime('%Y', $earliestDate));
+		$templateMgr->assign('lastYear', strftime('%Y', $latestDate));
 
 		parent::display();
 	}
@@ -66,7 +79,9 @@ class SpecialEventForm extends Form {
 			if ($specialEvent != null) {
 				$this->_data = array(
 					'name' => $specialEvent->getName(null), // Localized
-					'description' => $specialEvent->getDescription(null) // Localized
+					'description' => $specialEvent->getDescription(null), // Localized
+					'startTime' => $specialEvent->getStartTime(),
+					'endTime' => $specialEvent->getEndTime()
 				);
 
 			} else {
@@ -80,7 +95,16 @@ class SpecialEventForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array('name', 'description', 'isMultiple'));
-
+		$this->readUserDateVars(array('startTime', 'endTime'));
+		$startTime = $this->getData('startTime');
+		$endTime = $this->getData('endTime');
+		list($year, $month, $day) = explode('-', date('Y-m-d', $startTime));
+		$this->setData('endTime', mktime(
+			(int) date('H', $endTime),
+			(int) date('i', $endTime),
+			(int) date('s', $endTime),
+			$month, $day, $year
+		));
 	}
 
 	/**
@@ -101,7 +125,8 @@ class SpecialEventForm extends Form {
 		$specialEvent->setSchedConfId($schedConf->getSchedConfId());
 		$specialEvent->setName($this->getData('name'), null); // Localized
 		$specialEvent->setDescription($this->getData('description'), null); // Localized
-		$specialEvent->setIsMultiple($this->getData('isMultiple'));
+		$specialEvent->setStartTime(date('Y-m-d H:i:s', $this->getData('startTime')));
+		$specialEvent->setEndTime(date('Y-m-d H:i:s', $this->getData('endTime')));
 
 		// Update or insert specialEvent
 		if ($specialEvent->getSpecialEventId() != null) {

@@ -226,123 +226,6 @@ class SchedConfHandler extends Handler {
 	}
 
 	/**
-	 * Display conference schedule
-	 */
-	function schedule() {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
-
-		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
-		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
-
-		$schedConfId = $schedConf->getSchedConfId();
-
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$scheduledPresentations =& $publishedPaperDao->getPublishedPapers($schedConfId, true);
-		$scheduledPresentations =& $scheduledPresentations->toAssociativeArray('paperId');
-		$templateMgr->assign_by_ref('scheduledPresentations', $scheduledPresentations);
-
-		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
-		$scheduledEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConfId, true);
-		$scheduledEvents =& $scheduledEvents->toAssociativeArray('specialEventId');
-		$templateMgr->assign_by_ref('scheduledEvents', $scheduledEvents);
-
-		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
-		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConfId);
-		$timeBlocks =& $timeBlocks->toAssociativeArray('timeBlockId');
-		$templateMgr->assign_by_ref('timeBlocks', $timeBlocks);
-
-		$baseDates = array(); // Array of columns representing dates
-		$boundaryTimes = array(); // Array of rows representing start times
-		$timeBlockGrid = array();
-
-		foreach (array_keys($timeBlocks) as $timeBlockKey) { // By ref
-			$timeBlock =& $timeBlocks[$timeBlockKey];
-
-			$startDate = strtotime($timeBlock->getStartTime());
-			$endDate = strtotime($timeBlock->getEndTime());
-			list($startDay, $startMonth, $startYear) = array(strftime('%d', $startDate), strftime('%m', $startDate), strftime('%Y', $startDate));
-			$baseDate = mktime(0, 0, 1, $startMonth, $startDay, $startYear);
-			$startTime = $startDate - $baseDate;
-			$endTime = $endDate - $baseDate;
-
-			$baseDates[] = $baseDate;
-			$boundaryTimes[] = $startTime;
-			$boundaryTimes[] = $endTime;
-
-			$timeBlockGrid[$baseDate][$startTime]['timeBlockStarts'] =& $timeBlock;
-			$timeBlockGrid[$baseDate][$endTime]['timeBlockEnds'] =& $timeBlock;
-			unset($timeBlock);
-		}
-
-		// Knock out duplicates and sort the results.
-		$boundaryTimes = array_unique($boundaryTimes);
-		$baseDates = array_unique($baseDates);
-		sort($boundaryTimes);
-		sort($baseDates);
-
-		$gridSlotUsed = array();
-		// For each block, find out how long it lasts
-		foreach ($baseDates as $baseDate) {
-			foreach ($boundaryTimes as $boundaryTimeIndex => $boundaryTime) {
-				if (!isset($timeBlockGrid[$baseDate][$boundaryTime]['timeBlockStarts'])) continue;
-				$gridSlotUsed[$baseDate][$boundaryTime] = 1;
-				// Establish the number of rows spanned ($i); track used grid slots
-				for ($i=1; (isset($boundaryTimes[$i+$boundaryTimeIndex]) && !isset($timeBlockGrid[$baseDate][$boundaryTimes[$i+$boundaryTimeIndex]]['timeBlockEnds'])); $i++) {
-					$gridSlotUsed[$baseDate][$boundaryTimes[$i+$boundaryTimeIndex]] = 1;
-				}
-				$timeBlockGrid[$baseDate][$boundaryTime]['rowspan'] = $i;
-			}
-		}
-
-		$templateMgr->assign_by_ref('baseDates', $baseDates);
-		$templateMgr->assign_by_ref('boundaryTimes', $boundaryTimes);
-		$templateMgr->assign_by_ref('timeBlockGrid', $timeBlockGrid);
-		$templateMgr->assign_by_ref('gridSlotUsed', $gridSlotUsed);
-
-		$scheduledPresentationsByTimeBlockId = array();
-		foreach (array_keys($scheduledPresentations) as $key) { // By ref
-			$scheduledPresentation =& $scheduledPresentations[$key];
-			$scheduledPresentationsByTimeBlockId[$scheduledPresentation->getTimeBlockId()][] =& $scheduledPresentation;
-			unset($scheduledPresentation);
-		}
-		$templateMgr->assign_by_ref('scheduledPresentationsByTimeBlockId', $scheduledPresentationsByTimeBlockId);
-
-		$scheduledEventsByTimeBlockId = array();
-		foreach (array_keys($scheduledEvents) as $key) { // By ref
-			$scheduledEvent =& $scheduledEvents[$key];
-			$scheduledEventsByTimeBlockId[$scheduledEvent->getTimeBlockId()][] =& $scheduledEvent;
-			unset($scheduledEvent);
-		}
-		$templateMgr->assign_by_ref('scheduledEventsByTimeBlockId', $scheduledEventsByTimeBlockId);
-
-		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
-		$roomDao =& DAORegistry::getDAO('RoomDAO');
-		$schedConf =& Request::getSchedConf();
-		$buildingIterator =& $buildingDao->getBuildingsBySchedConfId($schedConf->getSchedConfId());
-		$buildings = $rooms = array();
-		while ($building =& $buildingIterator->next()) {
-			$buildingId = $building->getBuildingId();
-			$buildings[$buildingId] =& $building;
-			$roomIterator =& $roomDao->getRoomsByBuildingId($buildingId);
-			while ($room =& $roomIterator->next()) {
-				$roomId = $room->getRoomId();
-				$rooms[$roomId] =& $room;
-				unset($room);
-			}
-			unset($roomIterator);
-			unset($building);
-		}
-		$templateMgr->assign_by_ref('buildings', $buildings);
-		$templateMgr->assign_by_ref('rooms', $rooms);
-
-		$templateMgr->assign('helpTopicId', 'schedConf.schedule');
-		$templateMgr->display('schedConf/schedule.tpl');
-	}
-
-	/**
 	 * Display conference program page
 	 */
 	function program() {
@@ -360,6 +243,22 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr->assign('helpTopicId', 'schedConf.program');
 		$templateMgr->display('schedConf/program.tpl');
+	}
+
+	/**
+	 * Display conference schedule page
+	 */
+	function schedule() {
+		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+
+		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign('pageHierarchy', array(
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
+
+		$templateMgr->assign('helpTopicId', 'schedConf.schedule');
+		$templateMgr->display('schedConf/schedule.tpl');
 	}
 
 	/**

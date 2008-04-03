@@ -43,6 +43,27 @@
 	<td width="80%" class="value"><input type="text" name="name[{$formLocale|escape}]" value="{$name[$formLocale]|escape}" size="40" id="name" maxlength="80" class="textField" /></td>
 </tr>
 <tr valign="top">
+	<td class="label">{fieldLabel name="startDate" required="true" key="common.date"}</td>
+	<td class="value">
+		{html_select_date prefix="startTime" all_extra="class=\"selectMenu\"" time=$startTime start_year=$firstYear end_year=$lastYear}
+	</td>
+</tr>
+<tr valign="top">
+	<td class="label">{fieldLabel name="startTime" required="true" key="manager.scheduler.startTime"}</td>
+	<td class="value">
+		{html_select_time prefix="startTime" all_extra="class=\"selectMenu\"" display_seconds=false display_meridian=true use_24_hours=false time=$startTime}
+	</td>
+</tr>
+<tr valign="top">
+	<td class="label">{fieldLabel name="endTime" required="true" key="manager.scheduler.endTime"}</td>
+	<td class="value">
+		<input name="endTimeDay" value="1" type="hidden" />
+		<input name="endTimeMonth" value="1" type="hidden" />
+		<input name="endTimeYear" value="2008" type="hidden" />
+		{html_select_time prefix="endTime" all_extra="class=\"selectMenu\"" display_seconds=false display_meridian=true use_24_hours=false time=$endTime}
+	</td>
+</tr>
+<tr valign="top">
 	<td class="label">{fieldLabel name="description" key="manager.scheduler.specialEvent.description"}</td>
 	<td class="value">
 		<textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="10" class="textArea">{$description[$formLocale]|escape}</textarea>

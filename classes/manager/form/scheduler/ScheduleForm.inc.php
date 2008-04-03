@@ -9,7 +9,7 @@
  * @package manager.form.scheduler
  * @class ScheduleForm
  *
- * Form for conference manager to schedule special events and presentations
+ * Form for conference manager to for schedule presentations.
  *
  * $Id$
  */
@@ -17,214 +17,67 @@
 import('form.Form');
 
 class ScheduleForm extends Form {
-	/** @var $modifiedEventIds array Set of modified special events */
-	var $modifiedEvents;
+	/** @var $schedConf object */
+	var $schedConf;
 
-	/** @var $modifiedPaperIds array Set of modified papers */
-	var $modifiedPapers;
+	/** @var $publishedPaperDao object */
+	var $publishedPaperDao;
 
 	/**
 	 * Constructor
 	 */
 	function ScheduleForm() {
 		parent::Form('manager/scheduler/scheduleForm.tpl');
-
-		$this->modifiedEvents = array();
-		$this->modifiedPapers = array();
-
 		$this->addCheck(new FormValidatorPost($this));
+		$this->schedConf =& Request::getSchedConf();
+		$this->publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 	}
 
-	/**
-	 * Get a list of localized field names for this form
-	 * @return array
-	 */
-	function getLocaleFieldNames() {
-		return array();
+	function presenterSort($a, $b) {
+		$presenterA = $a->getPresenterString();
+		$presenterB = $b->getPresenterString();
+
+		return strcmp($presenterA, $presenterB);
 	}
 
-	/**
-	 * Initialize form data.
-	 */
-	function initData() {
-		$schedConf =& Request::getSchedConf();
-		$schedConfId = $schedConf->getSchedConfId();
+	function roomSort($a, $b) {
+		static $roomMap = array();
+		$roomDao =& DAORegistry::getDAO('RoomDAO');
 
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$unscheduledPresentations =& $publishedPaperDao->getPublishedPapers($schedConfId, false);
-		$unscheduledPresentations =& $unscheduledPresentations->toAssociativeArray('paperId');
-		$scheduledPresentations =& $publishedPaperDao->getPublishedPapers($schedConfId, true);
-		$scheduledPresentations =& $scheduledPresentations->toAssociativeArray('paperId');
+		$aRoomId = $a->getRoomId();
+		$bRoomId = $b->getRoomId();
 
-		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
-		$unscheduledEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConfId, false);
-		$unscheduledEvents =& $unscheduledEvents->toAssociativeArray('specialEventId');
-		$scheduledEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConfId, true);
-		$scheduledEvents =& $scheduledEvents->toAssociativeArray('specialEventId');
+		// Make sure we have the room info
+		foreach (array($aRoomId, $bRoomId) as $roomId) {
+			if (!isset($roomMap[$roomId])) {
+				$room =& $roomDao->getRoom($roomId);
+				if ($room) $roomMap[$roomId] =& $room;
+				unset($room);
+			}
+		}
 
-		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
-		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConfId);
-		$timeBlocks =& $timeBlocks->toAssociativeArray('timeBlockId');
-
-		$this->_data = array(
-			'unscheduledEvents' => &$unscheduledEvents,
-			'unscheduledPresentations' => &$unscheduledPresentations,
-			'scheduledEvents' => &$scheduledEvents,
-			'scheduledPresentations' => &$scheduledPresentations,
-			'timeBlocks' => &$timeBlocks
+		if (!isset($roomMap[$aRoomId])) return 1;
+		if (!isset($roomMap[$bRoomId])) return -1;
+		return strcmp(
+			$roomMap[$aRoomId]->getRoomName(),
+			$roomMap[$bRoomId]->getRoomName()
 		);
 	}
 
-	/**
-	 * Assign form data to user-submitted data.
-	 */
-	function readInputData() {
-		$schedConf =& Request::getSchedConf();
+	function titleSort($a, $b) {
+		$titleA = $a->getPaperTitle();
+		$titleB = $b->getPaperTitle();
 
-		// Use the current database for starters, then apply actions to bring it up to date
-		// with the user's input
-		$this->initData();
+		return strcmp($titleA, $titleB);
+	}
 
-		$unscheduledEvents =& $this->_data['unscheduledEvents'];
-		$unscheduledPresentations =& $this->_data['unscheduledPresentations'];
-		$scheduledEvents =& $this->_data['scheduledEvents'];
-		$scheduledPresentations =& $this->_data['scheduledPresentations'];
-		$timeBlocks =& $this->_data['timeBlocks'];
+	function startTimeSort($a, $b) {
+		$startTimeA = $a->getStartTime();
+		$startTimeB = $b->getStartTime();
+		if ($startTimeA === null) return 1;
+		if ($startTimeB === null) return -1;
 
-		$this->readUserVars(array('actions')); // Forward actions along for resubmits
-
-		foreach (explode("\n", $this->getData('actions')) as $action) {
-			$parts = explode(' ', $action);
-			switch (array_shift($parts)) {
-				case 'SCHEDULE': // Format: SCHEDULE [EVENT|PRESENTATION]-id TIME-timeBlockId
-					$itemIdentifier = array_shift($parts);
-					$itemParts = explode('-', $itemIdentifier);
-					$itemType = array_shift($itemParts);
-					$itemId = (int) array_shift($itemParts);
-					$timeBlockParts = explode('-', array_shift($parts));
-					$timeToken = array_shift($timeBlockParts);
-					$timeBlockId = (int) array_shift($timeBlockParts);
-
-					if (!isset($timeBlocks[$timeBlockId])) break;
-					$timeBlock =& $timeBlocks[$timeBlockId];
-
-					switch ($itemType) {
-						case 'EVENT':
-							if (isset($unscheduledEvents[$itemId])) {
-								$unscheduledEvent =& $unscheduledEvents[$itemId];
-								$unscheduledEvent->setTimeBlockId($timeBlockId);
-								unset($unscheduledEvents[$itemId]);
-								$scheduledEvents[$itemId] =& $unscheduledEvent;
-								$this->modifiedEvents[$itemId] =& $unscheduledEvent;
-								unset($unscheduledEvent);
-							} elseif (isset($scheduledEvents[$itemId])) {
-								$scheduledEvent =& $scheduledEvents[$itemId];
-								$scheduledEvent->setTimeBlockId($timeBlockId);
-								$this->modifiedEvents[$itemId] =& $scheduledEvent;
-								unset($scheduledEvent);
-							}
-							break;
-						case 'PRESENTATION':
-							if (isset($unscheduledPresentations[$itemId])) {
-								$unscheduledPresentation =& $unscheduledPresentations[$itemId];
-								$unscheduledPresentation->setTimeBlockId($timeBlockId);
-								unset($unscheduledPresentations[$itemId]);
-								$scheduledPresentations[$itemId] =& $unscheduledPresentation;
-								$this->modifiedPapers[$itemId] =& $unscheduledPresentation;
-								unset($unscheduledPresentation);
-							} elseif (isset($scheduledPresentations[$itemId])) {
-								$scheduledPresentation =& $scheduledPresentations[$itemId];
-								$scheduledPresentation->setTimeBlockId($timeBlockId);
-								$this->modifiedPapers[$itemId] =& $scheduledPresentation;
-								unset($scheduledPresentation);
-							}
-							break;
-					}
-					unset($timeBlock);
-					break;
-				case 'UNSCHEDULE': // Format: SCHEDULE [EVENT|PRESENTATION]-id TIME-timeBlockId
-					$itemIdentifier = array_shift($parts);
-					$itemParts = explode('-', $itemIdentifier);
-					$itemType = array_shift($itemParts);
-					$itemId = (int) array_shift($itemParts);
-
-					switch ($itemType) {
-						case 'EVENT':
-							if (isset($scheduledEvents[$itemId])) {
-								$scheduledEvent =& $scheduledEvents[$itemId];
-								$scheduledEvent->setTimeBlockId(null);
-								$this->modifiedEvents[$itemId] =& $scheduledEvent;
-								unset($scheduledEvents[$itemId]);
-								$unscheduledEvents[$itemId] =& $scheduledEvent;
-								unset($scheduledEvent);
-							}
-							break;
-						case 'PRESENTATION':
-							if (isset($scheduledPresentations[$itemId])) {
-								$scheduledPresentation =& $scheduledPresentations[$itemId];
-								$scheduledPresentation->setTimeBlockId(null);
-								$this->modifiedPapers[$itemId] =& $scheduledPresentation;
-								unset($scheduledPresentations[$itemId]);
-								$unscheduledPresentations[$itemId] =& $scheduledPresentation;
-								unset($scheduledPresentation);
-							}
-							break;
-					}
-					break;
-				case 'ASSIGN': // Format: ASSIGN [EVENT|PRESENTATION]-id-ROOM roomId
-					$itemIdentifier = array_shift($parts);
-					$itemParts = explode('-', $itemIdentifier);
-					$itemType = array_shift($itemParts);
-					$itemId = (int) array_shift($itemParts);
-					$roomId = (int) array_shift($parts);
-					$roomDao =& DAORegistry::getDAO('RoomDAO');
-					$room =& $roomDao->getRoom($roomId);
-					if (!$room || $roomDao->getRoomSchedConfId($roomId) != $schedConf->getSchedConfId()) break;
-					switch ($itemType) {
-						case 'EVENT':
-							if (isset($scheduledEvents[$itemId])) $event =& $scheduledEvents[$itemId];
-							elseif (isset($unscheduledEvents[$itemId])) $event =& $unscheduledEvents[$itemId];
-							else break;
-							$event->setRoomId($roomId);
-							$this->modifiedEvents[$itemId] =& $event;
-							unset($event);
-							break;
-						case 'PRESENTATION':
-							if (isset($scheduledPresentations[$itemId])) $presentation =& $scheduledPresentations[$itemId];
-							elseif (isset($unscheduledPresentations[$itemId])) $presentation =& $unscheduledPresentations[$itemId];
-							else break;
-							$presentation->setRoomId($roomId);
-							$this->modifiedPapers[$itemId] =& $presentation;
-							unset($presentation);
-							break;
-					}
-					break;
-				case 'UNASSIGN': // Format: UNASSIGN [EVENT|PRESENTATION]-id-ROOM
-					$itemIdentifier = array_shift($parts);
-					$itemParts = explode('-', $itemIdentifier);
-					$itemType = array_shift($itemParts);
-					$itemId = (int) array_shift($itemParts);
-					switch($itemType) {
-						case 'EVENT':
-							if (isset($scheduledEvents[$itemId])) $event =& $scheduledEvents[$itemId];
-							elseif (isset($unscheduledEvents[$itemId])) $event =& $unscheduledEvents[$itemId];
-							else break;
-							$event->setRoomId(null);
-							$this->modifiedEvents[$itemId] =& $event;
-							unset($event);
-							break;
-						case 'PRESENTATION':
-							if (isset($scheduledPresentations[$itemId])) $presentation =& $scheduledPresentations[$itemId];
-							elseif (isset($unscheduledPresentations[$itemId])) $presentation =& $unscheduledPresentations[$itemId];
-							else break;
-							$presentation->setRoomId(null);
-							$this->modifiedPapers[$itemId] =& $presentation;
-							unset($presentation);
-							break;
-					}
-					break;
-			}
-		}
+		return strtotime($startTimeB) - strtotime($startTimeA);
 	}
 
 	/**
@@ -232,75 +85,31 @@ class ScheduleForm extends Form {
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.schedule');
+		$templateMgr->assign('helpTopicId', 'conference.managementPages.buildings');
+		$schedConf =& Request::getSchedConf();
 
-		$baseDates = array(); // Array of columns representing dates
-		$boundaryTimes = array(); // Array of rows representing start times
+		import('manager.form.TimelineForm');
+		list($earliestDate, $latestDate) = TimelineForm::getOutsideDates($schedConf);
+		$templateMgr->assign('firstYear', strftime('%Y', $earliestDate));
+		$templateMgr->assign('lastYear', strftime('%Y', $latestDate));
 
-		$timeBlocks =& $this->_data['timeBlocks'];
-		$timeBlockGrid = array();
-
-		foreach (array_keys($timeBlocks) as $timeBlockKey) { // By ref
-			$timeBlock =& $timeBlocks[$timeBlockKey];
-
-			$startDate = strtotime($timeBlock->getStartTime());
-			$endDate = strtotime($timeBlock->getEndTime());
-			list($startDay, $startMonth, $startYear) = array(strftime('%d', $startDate), strftime('%m', $startDate), strftime('%Y', $startDate));
-			$baseDate = mktime(0, 0, 1, $startMonth, $startDay, $startYear);
-			$startTime = $startDate - $baseDate;
-			$endTime = $endDate - $baseDate;
-
-			$baseDates[] = $baseDate;
-			$boundaryTimes[] = $startTime;
-			$boundaryTimes[] = $endTime;
-
-			$timeBlockGrid[$baseDate][$startTime]['timeBlockStarts'] =& $timeBlock;
-			$timeBlockGrid[$baseDate][$endTime]['timeBlockEnds'] =& $timeBlock;
-			unset($timeBlock);
+		// Sort the data.
+		$sort = Request::getUserVar('sort');
+		$sortFuncMap = array(
+			'presenter' => array(&$this, 'presenterSort'),
+			'title' => array(&$this, 'titleSort'),
+			'startTime' => array(&$this, 'startTimeSort'),
+			'room' => array(&$this, 'roomSort')
+		);
+		if ($sort && isset($sortFuncMap[$sort])) {
+			usort($this->_data['publishedPapers'], $sortFuncMap[$sort]);
 		}
 
-		// Knock out duplicates and sort the results.
-		$boundaryTimes = array_unique($boundaryTimes);
-		$baseDates = array_unique($baseDates);
-		sort($boundaryTimes);
-		sort($baseDates);
-
-		$gridSlotUsed = array();
-		// For each block, find out how long it lasts
-		foreach ($baseDates as $baseDate) {
-			foreach ($boundaryTimes as $boundaryTimeIndex => $boundaryTime) {
-				if (!isset($timeBlockGrid[$baseDate][$boundaryTime]['timeBlockStarts'])) continue;
-				$gridSlotUsed[$baseDate][$boundaryTime] = 1;
-				// Establish the number of rows spanned ($i); track used grid slots
-				for ($i=1; (isset($boundaryTimes[$i+$boundaryTimeIndex]) && !isset($timeBlockGrid[$baseDate][$boundaryTimes[$i+$boundaryTimeIndex]]['timeBlockEnds'])); $i++) {
-					$gridSlotUsed[$baseDate][$boundaryTimes[$i+$boundaryTimeIndex]] = 1;
-				}
-				$timeBlockGrid[$baseDate][$boundaryTime]['rowspan'] = $i;
-			}
-		}
-
-		$templateMgr->assign_by_ref('baseDates', $baseDates);
-		$templateMgr->assign_by_ref('boundaryTimes', $boundaryTimes);
-		$templateMgr->assign_by_ref('timeBlockGrid', $timeBlockGrid);
-		$templateMgr->assign_by_ref('gridSlotUsed', $gridSlotUsed);
-
-		$scheduledPresentationsByTimeBlockId = array();
-		$scheduledPresentations =& $this->_data['scheduledPresentations'];
-		foreach (array_keys($scheduledPresentations) as $key) { // By ref
-			$scheduledPresentation =& $scheduledPresentations[$key];
-			$scheduledPresentationsByTimeBlockId[$scheduledPresentation->getTimeBlockId()][] =& $scheduledPresentation;
-			unset($scheduledPresentation);
-		}
-		$templateMgr->assign_by_ref('scheduledPresentationsByTimeBlockId', $scheduledPresentationsByTimeBlockId);
-
-		$scheduledEvents =& $this->_data['scheduledEvents'];
-		$scheduledEventsByTimeBlockId = array();
-		foreach (array_keys($scheduledEvents) as $key) { // By ref
-			$scheduledEvent =& $scheduledEvents[$key];
-			$scheduledEventsByTimeBlockId[$scheduledEvent->getTimeBlockId()][] =& $scheduledEvent;
-			unset($scheduledEvent);
-		}
-		$templateMgr->assign_by_ref('scheduledEventsByTimeBlockId', $scheduledEventsByTimeBlockId);
+		// Determine a good default start time.
+		$startDate = $schedConf->getSetting('startDate');
+		if (!$startDate || !is_numeric($startDate)) $startDate = time();
+		list($startDay, $startMonth, $startYear) = array(strftime('%d', $startDate), strftime('%m', $startDate), strftime('%Y', $startDate));
+		$templateMgr->assign('defaultStartTime', mktime(10, 0, 0, $startMonth, $startDay, $startYear));
 
 		$buildingsAndRooms = array();
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
@@ -322,24 +131,169 @@ class ScheduleForm extends Form {
 			unset($building);
 		}
 		$templateMgr->assign_by_ref('buildingsAndRooms', $buildingsAndRooms);
-
 		parent::display();
 	}
 
 	/**
-	 * Create the time blocks.. 
+	 * Initialize form data from current building.
 	 */
-	function execute() {
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+	function initData() {
+		$publishedPapersIterator =& $this->publishedPaperDao->getPublishedPapers($this->schedConf->getSchedConfId());
+		$publishedPapers =& $publishedPapersIterator->toArray();
 
-		// Update events and papers using the modified set
-		foreach (array_keys($this->modifiedEvents) as $eventId) {
-			$specialEventDao->updateSpecialEvent($this->modifiedEvents[$eventId]);
+		$this->_data = array(
+			'publishedPapers' => &$publishedPapers
+		);
+	}
+
+	/**
+	 * Assign form data to user-submitted data.
+	 */
+	function readInputData() {
+		$publishedPapers =& $this->publishedPaperDao->getPublishedPapers($this->schedConf->getSchedConfId());
+
+		// Read in the list of changes that need applying
+		$changeList = array();
+		$changes = Request::getUserVar('changes');
+		foreach (explode("\n", $changes) as $change) {
+			if (empty($change)) continue;
+			$changeParts = explode(' ', $change);
+			$paperId = array_shift($changeParts);
+			$changeType = array_shift($changeParts);
+			$newValue = trim(join(' ', $changeParts));
+			$changeList[$paperId][$changeType] = $newValue;
 		}
 
-		foreach (array_keys($this->modifiedPapers) as $paperId) {
-			$publishedPaperDao->updatePublishedPaper($this->modifiedPapers[$paperId]);
+		// Apply any relevant changes to the current paper (sub)set
+		$publishedPapersArray = array();
+		while ($publishedPaper =& $publishedPapers->next()) {
+			$paperId =& $publishedPaper->getPaperId();
+			if (isset($changeList[$paperId])) foreach ($changeList[$paperId] as $type => $newValue) switch ($type) {
+				case 'location':
+					$publishedPaper->setRoomId((int) $newValue);
+					break;
+				case 'date':
+					// It may be that we are unscheduling:
+					// if so, set start/end to null
+					if (!$newValue) {
+						$publishedPaper->setStartDate(null);
+						$publishedPaper->setEndDate(null);
+						break;
+					}
+					// Otherwise, date was chosen.
+					list($month, $day, $year) = explode('-', $newValue);
+					// Use the old values for start and end
+					// times, but the new date.
+					foreach (array('Start', 'End') as $funcPart) {
+						$getter = 'get' . $funcPart . 'Time'; // getStartTime getEndTime
+						$setter = 'set' . $funcPart . 'Time'; // setStartTime setEndTime
+						$oldDate = $publishedPaper->$getter();
+						if ($oldDate) $oldDate = strtotime($oldDate);
+						else $oldDate = time(); // Bonehead default
+						list($hour, $minute, $second) = array(
+							date('H', $oldDate),
+							date('i', $oldDate),
+							date('s', $oldDate)
+						);
+						$publishedPaper->$setter(date('Y-m-d H:i:s', mktime(
+							$hour, $minute, $second,
+							$month, $day, $year
+						)));
+					}
+					break;
+				case 'startTime':
+				case 'endTime':
+					$funcPart = ucfirst($type);
+					$getter = 'get' . $funcPart; // getStartTime getEndTime
+					$setter = 'set' . $funcPart; // setStartTime setEndTime
+					$oldDate = $publishedPaper->$getter();
+					if ($oldDate) $oldDate = strtotime($oldDate);
+					else $oldDate = time(); // Bonehead default
+					list($year, $month, $date) = array(
+						date('Y', $oldDate),
+						date('m', $oldDate),
+						date('d', $oldDate)
+					);
+					$publishedPaper->$setter(
+						date('Y-m-d H:i:s',
+							strtotime(
+								$thing = ($year . '-' . $month . '-' . $date . ' ' . $newValue)
+							)
+						)
+					);
+					break;
+			}
+			$publishedPapersArray[] =& $publishedPaper;
+			unset($publishedPaper);
+		}
+
+		// Make the data available to the UI.
+		$this->_data = array(
+			'publishedPapers' => &$publishedPapersArray,
+			'changes' => $changes
+		);
+	}
+
+	/**
+	 * Validate the form.
+	 */
+	function validate() {
+		$success = true;
+		$publishedPapers =& $this->_data['publishedPapers'];
+
+		foreach (array_keys($publishedPapers) as $key) {
+			$publishedPaper =& $publishedPapers[$key];
+			$startTime = $publishedPaper->getStartTime();
+			$endTime = $publishedPaper->getEndTime();
+			if (($startTime === null || $endTime === null) && ($startTime || $endTime)) {
+				$fieldName = 'paper' . $publishedPaper->getPaperId() . 'StartTime';
+				$this->addError($fieldName, Locale::translate('manager.scheduler.checkTimes'));
+				$this->addErrorField($fieldName);
+				$success = false;
+			} elseif ($startTime && $endTime && strtotime($startTime) >= strtotime($endTime)) {
+				$fieldName = 'paper' . $publishedPaper->getPaperId() . 'StartTime';
+				$this->addError('paper' . $publishedPaper->getPaperId() . 'StartTime', Locale::translate('manager.scheduler.checkTimes'));
+				$this->addErrorField($fieldName);
+				$success = false;
+			}
+			unset($publishedPaper);
+		}
+
+		return $success;
+	}
+
+	/**
+	 * Save schedule. 
+	 */
+	function execute() {
+		$modifiedPapersById = array();
+		foreach (array_keys($this->_data['publishedPapers']) as $key) {
+			$modifiedPaper =& $this->_data['publishedPapers'][$key];
+			$modifiedPapersById[$modifiedPaper->getPaperId()] =& $modifiedPaper;
+			unset($modifiedPaper);
+		}
+
+		$publishedPapers =& $this->publishedPaperDao->getPublishedPapers($this->schedConf->getSchedConfId());
+
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO'); // For modifying room IDs
+		$paperDao =& DAORegistry::getDAO('PaperDAO'); // For modifying times/dates
+		while ($publishedPaper =& $publishedPapers->next()) {
+			$paperId = $publishedPaper->getPaperId();
+			if (isset($modifiedPapersById[$paperId])) {
+				// Check to see if times have been modified
+				$modifiedPaper =& $modifiedPapersById[$paperId];
+				if (	$modifiedPaper->getStartTime() !== $publishedPaper->getStartTime() ||
+					$modifiedPaper->getEndTime() !== $publishedPaper->getEndTime()) {
+					$paperDao->updatePaper($modifiedPaper);
+				}
+				// Check to see if rooms have been modified
+				if (	$modifiedPaper->getRoomId() !== $publishedPaper->getRoomId()
+				) {
+					$publishedPaperDao->updatePublishedPaper($modifiedPaper);
+				}
+				unset($modifiedPaper);
+			}
+			unset($publishedPaper);
 		}
 	}
 }

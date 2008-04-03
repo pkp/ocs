@@ -69,6 +69,38 @@ class SpecialEvent extends DataObject {
 	}
 
 	/**
+	 * Get the presentation start time.
+	 * @return date
+	 */
+	function getStartTime() {
+		return $this->getData('startTime');
+	}
+
+	/**
+	 * Set the presentation start time.
+	 * @param $startTime date
+	 */
+	function setStartTime($startTime) {
+		return $this->setData('startTime', $startTime);
+	}
+
+	/**
+	 * Get the special event end time.
+	 * @return date
+	 */
+	function getEndTime() {
+		return $this->getData('endTime');
+	}
+
+	/**
+	 * Get the special event end time.
+	 * @param $endTime date
+	 */
+	function setEndTime($endTime) {
+		return $this->setData('endTime', $endTime);
+	}
+
+	/**
 	 * Get the localized name of the specialEvent.
 	 * @return string
 	 */
@@ -118,22 +150,6 @@ class SpecialEvent extends DataObject {
 	 */
 	function setDescription($description, $locale) {
 		return $this->setData('description', $description, $locale);
-	}
-
-	/**
-	 * Get the ID of the timeBlock this published paper is assigned to.
-	 * @return int
-	 */
-	function getTimeBlockId() {
-		return $this->getData('timeBlockId');
-	}
-
-	/**
-	 * Set the ID of the timeBlock this published paper is assigned to.
-	 * @param $timeBlockId int
-	 */
-	function setTimeBlockId($timeBlockId) {
-		return $this->setData('timeBlockId', $timeBlockId);
 	}
 }
 

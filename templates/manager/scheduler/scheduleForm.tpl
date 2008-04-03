@@ -4,379 +4,173 @@
  * Copyright (c) 2000-2007 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Form to schedule presentations and special events.
+ * Building form under Scheduler.
  *
  * $Id$
  *}
-{assign var="pageTitle" value="manager.scheduler.schedule"}
-{assign var="pageId" value="manager.scheduler.schedule"}
+{assign var="pageCrumbTitle" value="$scheduleTitle"}
+{assign var="pageId" value="manager.scheduler.schedule.scheduleForm"}
 {include file="common/header.tpl"}
-
-<ul class="menu">
-	<li class="current"><a href="{url op="schedule"}" onclick='return (document.schedule.actions.value.replace(/^\s+|\s+$/g,"") == "" || confirm("{translate|escape:"quotes" key="manager.scheduler.schedule.confirmLeave"}"))'>{$pageTitle|translate}</a></li>
-	<li><a href="{url op="timeBlocks"}" onclick='return (document.schedule.actions.value.replace(/^\s+|\s+$/g,"") == "" || confirm("{translate|escape:"quotes" key="manager.scheduler.schedule.confirmLeave"}"))'>{translate key="manager.scheduler.timeBlocks"}</a></li>
-</ul>
 
 <script type="text/javascript">
 <!--
 {literal}
-// Variables used to track drag and drop interactions
-var dragging = false;
-var moved = false;
-var x, y;
-var e;
-var tempx;
-var tempy;
-var nn = document.getElementById && !document.all;
 
-/**
- * Prepare for a drag-and-drop interaction with a presentation or special event.
- */
-function dragMouseDown(ev) {
-	var dObj; // Drag object
-	var topelement;
+// Used to update the actions list when the location of a presentation is
+// changed or the corresponding checkbox is toggled. Room ID 0 indicates that
+// a room has not been chosen for the presentation.
+function changeLocation(paperId) {
+	var checkVarName = "paper" + paperId + "RoomExists";
+	var isChecked = eval("document.schedule." + checkVarName + ".checked");
 
-	// Browser compatibility
-	if (nn) {
-		dObj = ev.target;
-		topelement = "HTML";
+	var roomIdVarName = "paper" + paperId + "Room";
+	var roomId = eval("document.schedule." + roomIdVarName + ".value");
+
+	if (!isChecked) {
+		roomId = 0;
+	}
+
+	document.schedule.changes.value += "\n" + paperId + " location " + roomId;
+}
+
+// Used to update the actions list when the date of a paper is changed
+// or the corresponding checkbox is toggled. A date of 0 indicates that a
+// date has not been chosen for the presentation.
+function changeDate(paperId) {
+	var checkVarName = "paper" + paperId + "DateExists";
+	var isChecked = eval("document.schedule." + checkVarName + ".checked");
+
+	var datePrefixName = "document.schedule.paper" + paperId + "Date";
+	var paperMonth = eval(datePrefixName + "Month.value");
+	var paperDay = eval(datePrefixName + "Day.value");
+	var paperYear = eval(datePrefixName + "Year.value");
+
+	var paperDate;
+
+	if (isChecked) {
+		paperDate = paperMonth + "-" + paperDay + "-" + paperYear;
 	} else {
-		dObj = event.srcElement;
-		topelement = "BODY";
+		paperDate = "0";
 	}
 
-	if (typeof(dObj) != 'object') {
-		return;
-	}
-
-	if (!dObj.className.indexOf("scrollContainer")) {
-		return;
-	}
-
-	// Find the draggable object (rather than potentially a subelement)
-	while (dObj != null && dObj.tagName != topelement && dObj.className.indexOf("draggable") == -1) {
-		if (nn) {
-			dObj = dObj.parentNode;
-		} else {
-			dObj = dObj.parentElement;
-		}
-	}
-
-	// If we couldn't find it, abort
-	if (dObj == null || dObj.className.indexOf("draggable") == -1) {
-		return;
-	}
-
-	// We are now dragging a draggable object. Calculate coordinates.
-	dragging = true;
-	moved = false;
-	e=dObj;
-	tempx=parseInt(e.style.left+0); // int cast
-	tempy=parseInt(e.style.top+0); // int cast
-	if (nn) {
-		x = ev.clientX;
-		y = ev.clientY;
-	} else {
-		x = event.clientX;
-		y = event.clientY;
-	}
-	document.onmousemove=dragMouseMove;
-	return false;
+	document.schedule.changes.value += "\n" + paperId + " date " + paperDate;
 }
 
-/**
- * Get the position of an element.
- */
-function getPosition(el) {
-	var i, x=0, y=0;
-	for (i = el; i; i = i.offsetParent) {
-		x += i.offsetLeft;
-		y += i.offsetTop;
-	}
-	return {
-		x1: x,
-		y1: y,
-		x2: x+el.offsetWidth,
-		y2: y+el.offsetHeight
-	};
+// Used to update the actions list when the start or end time of a paper is
+// changed.
+function changeTime(paperId) {
+	var timePrefixName = "document.schedule.paper" + paperId + "StartTime";
+	var paperHour = eval(timePrefixName + "Hour.value");
+	var paperMinute = eval(timePrefixName + "Minute.value");
+	var paperMeridian = eval(timePrefixName + "Meridian.value");
+
+	var paperTime = paperHour + ":" + paperMinute + ' ' + paperMeridian;
+
+	document.schedule.changes.value += "\n" + paperId + " startTime" + " " + paperTime;
+
+	var timePrefixName = "document.schedule.paper" + paperId + "EndTime";
+	var paperHour = eval(timePrefixName + "Hour.value");
+	var paperMinute = eval(timePrefixName + "Minute.value");
+	var paperMeridian = eval(timePrefixName + "Meridian.value");
+
+	var paperTime = paperHour + ":" + paperMinute + ' ' + paperMeridian;
+
+	document.schedule.changes.value += "\n" + paperId + " endTime" + " " + paperTime;
 }
 
-/**
- * Handler for mouse button releases, to deal with dropped presentation and event boxes.
- */
-function dragMouseUp(ev) {
-	// Make sure we're actually dragging something
-	if (!dragging) return;
-	dragging = false;
-
-	// If the mouse hasn't moved, ignore the event.
-	if (!moved) return;
-
-	var tObj = document.getElementById("scheduleTable"); // Table object
-	var xd, yd; // "Average" coordinates of the dropped object
-
-	var dPos = getPosition(e);
-	var blockFound = false;
-
-	xd = (dPos.x1 + dPos.x2) / 2;
-	yd = (dPos.y1 + dPos.y2) / 2;
-
-	// Go through all scheduler table rows and columns and find out where the item was dropped.
-	var rows = tObj.tBodies[0].rows;
-	for (var i=0; i<rows.length; i++) {
-		var row = rows[i];
-		var rd = getPosition(row);
-		var cells = row.cells;
-		for (var j=0; j < cells.length; j++) {
-			var cell = cells[j];
-			var cd = getPosition(cell);
-			if (cell.className.indexOf("droppable") != -1 && cd.x1 <= xd && cd.y1 <= yd && cd.x2 >= xd && cd.y2 >= yd) {
-				var cellId = cell.getAttribute("id");
-				flashCell(cellId, 2, "#ff8888", "");
-				document.schedule.actions.value += "\nSCHEDULE " + e.getAttribute("id") + " " + cellId;
-				blockFound = true;
-			}
-		}
-	}
-
-	// If the item wasn't dropped into a time block, consider it unscheduled.
-	if (!blockFound) {
-		document.schedule.actions.value += "\nUNSCHEDULE " + e.getAttribute("id");
-	}
-}
-
-/**
- * Handler installed to deal with mouse moves, syncing a dragged object with the cursor.
- */
-function dragMouseMove(ev) {
-	if (dragging) {
-		moved = true;
-		if (nn) {
-			e.style.left = (tempx + ev.clientX - x) + "px";
-			e.style.top = (tempy + ev.clientY - y) + "px";
-		} else {
-			e.style.pixelLeft = tempx + event.clientX - x;
-			e.style.pixelTop = tempy + event.clientY - y;
-		}
-		return false;
-	}
-}
-
-/**
- * Used to flash a cell of the scheduler table to indicate which time slot a presentation or event
- * has been dropped into.
- */
-function flashCell(cellId, count, flashColour, oldColour) {
-	var cell = document.getElementById(cellId); // Table object
-	if (count % 2) {
-		cell.bgColor = flashColour;
-		cell.style.borderWidth = "1px";
-	} else {
-		cell.bgColor = oldColour;
-	}
-	if (count > 0) {
-		window.setTimeout("flashCell(\"" + cell.getAttribute("id") + "\", " + (count-1) + ", \"" + flashColour + "\", \"" + oldColour + "\")", 100);
-	}
-}
-
-// Install drag-and-drop handlers for mouse clicks and releases.
-document.onmousedown = dragMouseDown;
-document.onmouseup = dragMouseUp;
-
-/**
- * Handle a selection from one of the room change widgets for an event or presentation.
- */
-function chooseRoom(el) {
-	var selectedRoomId = el.options[el.selectedIndex].value;
-	if (selectedRoomId == "UNASSIGN") {
-		 document.schedule.actions.value += "\nUNASSIGN " + el.getAttribute("id");
-	} else {
-		 document.schedule.actions.value += "\nASSIGN " + el.getAttribute("id") + " " + el.options[el.selectedIndex].value;
-	}
+// Used to sort the display by a certain piece of data
+function sortBy(sortName) {
+	document.schedule.sort.value = sortName;
+	document.schedule.action = "{/literal}{url op="schedule" escape=false}{literal}";
+	document.schedule.submit();
 }
 
 {/literal}
 // -->
 </script>
 
-<form name="schedule" method="post" action="{url op="schedule" path="execute"}">
+<br/>
 
+<form name="schedule" method="post" action="{url op="saveSchedule"}">
+<input name="changes" type="hidden" value="{$changes|escape}" />
+<input name="sort" type="hidden" value="{$sort|truncate:20|escape}" />
 {include file="common/formErrors.tpl"}
 
-<p>{translate key="manager.scheduler.schedule.description"}</p>
+<a name="publishedPapers"></a>
 
-<table id="scheduleTable" class="listing" width="100%" border="0">
-
-{assign var=baseDatesCount value=$baseDates|@count}
-<tr valign="top"><td colspan="{$baseDatesCount+1}" class="headseparator">&nbsp;</td></tr>
-
-<tr valign="top" class="heading">
-	<td width="10%">&nbsp;</td>
-	{foreach from=$baseDates item=baseDate}
-		<td width="{math equation="(100 - 10)/x" x=$baseDatesCount}%">{$baseDate|date_format:$dateFormatShort}</td>
-	{/foreach}
-</tr>
-
-<tr valign="top"><td colspan="{$baseDatesCount+1}" class="headseparator">&nbsp;</td></tr>
-
-{foreach name=boundaryTimes from=$boundaryTimes item=boundaryTime key=boundaryTimeKey}
-{assign var=nextBoundaryTimeKey value=$boundaryTimeKey+1}
-{assign var=nextBoundaryTime value=$boundaryTimes.$nextBoundaryTimeKey}
-<tr valign="top"{if $nextBoundaryTime} style="height: {math equation="max((x - y)/1000, 3)" x=$nextBoundaryTime y=$boundaryTime}em;"{/if}>
-	<td class="timeRowLabel">
-		{$boundaryTime+$baseDate|date_format:$timeFormat}
-	</td>
-	{foreach from=$baseDates item=baseDate}
-		{assign var=timeBlock value=$timeBlockGrid.$baseDate.$boundaryTime.timeBlockStarts}
-		{if $timeBlock}{* This is an existing time block; display it and its contents *}
-			{assign var="timeBlockId" value=$timeBlock->getTimeBlockId()}
-			{assign var="rowspan" value=$timeBlockGrid.$baseDate.$boundaryTime.rowspan}
-			<td id="TIME-{$timeBlockId|escape}" class="borderBox droppable"{if $rowspan} rowspan="{$rowspan|escape}"{/if}>
-				{$timeBlock->getTimeBlockName()|escape}
-				{foreach from=$scheduledEventsByTimeBlockId.$timeBlockId item=event}
-					<div id="EVENT-{$event->getSpecialEventId()|escape}" class="draggable floatLeft borderBox schedulerEvent">
-						<div class="scrollContainer">
-						<table class="data">
-							<tr valign="top">
-								<td colspan="2" class="schedulerEventHeader">{$event->getSpecialEventName()|escape|truncate:35:"..."}</td>
-							</tr>
-							{assign var=fieldId value=EVENT-`$event->getSpecialEventId()`-ROOM}
-							<tr valign="top">
-								<td class="label">{fieldLabel name=$fieldId key="manager.scheduler.room"}</td>
-								<td class="value">
-									<select id="{$fieldId|escape}" name="{$fieldId|escape}" onchange="chooseRoom(this)" class="selectMenu">
-									<option value="UNASSIGN">{translate key="manager.scheduler.room.unassigned"}</option>
-									{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
-										<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
-										{foreach from=$buildingEntry.rooms key=roomId item=room}
-											<option {if $event->getRoomId() == $roomId}selected="selected" {/if}value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
-										{/foreach}
-									{/foreach}
-									</select>
-								</td>
-							</tr>
-						</table>
-						</div>{* scrollContainer *}
-					</div>
+<table width="100%" class="listing">
+	<tr>
+		<td colspan="5" class="headseparator">&nbsp;</td>
+	</tr>
+	<tr valign="top" class="heading">
+		<td width="5%">{translate key="common.id"}</td>
+		<td width="49%">{translate key="paper.title"}</td>
+		<td colspan="3" width="46%">{translate key="manager.scheduler.schedule"}</td>
+	</tr>
+	<tr>
+		<td colspan="5" class="headseparator">&nbsp;</td>
+	</tr>
+	{foreach name=publishedPapers from=$publishedPapers item=publishedPaper}
+	<tr valign="top">
+		<td rowspan="4">{$publishedPaper->getPaperId()|escape}</a></td>
+		<td rowspan="4">
+			<input name="paperIds[]" type="hidden" value="{$publishedPaper->getPaperId()|escape}" />
+			{$publishedPaper->getPaperTitle()|escape}<br />
+			<i>{$publishedPaper->getPresenterString()|escape}</i>
+		</td>
+		<td width="4%"><input id="paper{$publishedPaper->getPaperId()|escape}RoomExists" type="checkbox" {if $publishedPaper->getRoomId()}checked="checked" {/if}name="paper{$publishedPaper->getPaperId()|escape}RoomExists" onchange="changeLocation({$publishedPaper->getPaperId()|escape});" /></td>
+		<td width="9%">{fieldLabel name="paper`$publishedPaper->getPaperId()`RoomExists" key="manager.scheduler.location"}</td>
+		<td width="33%">
+			<select id="paper{$publishedPaper->getPaperId()}Room" name="paper{$publishedPaper->getPaperId()}Room" onchange="document.schedule.paper{$publishedPaper->getPaperId()|escape}RoomExists.checked = true; changeLocation({$publishedPaper->getPaperId()|escape});" class="selectMenu">
+				{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
+					<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
+					{foreach from=$buildingEntry.rooms key=roomId item=room}
+						<option {if $publishedPaper->getRoomId() == $roomId}selected="selected" {/if}value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()|truncate:15:"..."}</option>
+					{/foreach}
 				{/foreach}
-				{foreach from=$scheduledPresentationsByTimeBlockId[$timeBlockId] item=presentation}
-					<div id="PRESENTATION-{$presentation->getPaperId()|escape}" class="draggable floatLeft borderBox schedulerPresentation">
-						<div class="scrollContainer">
-						<table class="data">
-							<tr valign="top">
-								<td colspan="2" class="schedulerPresentationHeader">{$presentation->getPaperTitle()|escape|truncate:35:"..."}</td>
-							</tr>
-							<tr valign="top">
-								<td class="label">{translate key="paper.presenters"}</td>
-								<td class="value">{$presentation->getPresenterString()|escape}</td>
-							</tr>
-							{assign var=fieldId value=PRESENTATION-`$presentation->getPaperId()`-ROOM}
-							<tr valign="top">
-								<td class="label">{fieldLabel name=$fieldId key="manager.scheduler.room"}</td>
-								<td class="value">
-									<select id="{$fieldId|escape}" name="{$fieldId|escape}" onchange="chooseRoom(this)" class="selectMenu">
-									<option value="UNASSIGN">{translate key="manager.scheduler.room.unassigned"}</option>
-									{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
-										<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
-										{foreach from=$buildingEntry.rooms key=roomId item=room}
-											<option {if $presentation->getRoomId() == $roomId}selected="selected" {/if}value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
-										{/foreach}
-									{/foreach}
-									</select>
-								</td>
-							</tr>
-						</table>
-						</div>{* scrollContainer *}
-					</div>
-				{/foreach}
-			</td>
-		{elseif !$gridSlotUsed.$baseDate.$boundaryTime}{* This is a "hole" in the schedule *}
-			<td class="hole">&nbsp;</td>
-		{else}{* This is a rowspanned part of a time block; do nothing. *}
-		{/if}
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td><input type="checkbox" {if $publishedPaper->getStartTime()}checked="checked" {/if}id="paper{$publishedPaper->getPaperId()|escape}DateExists" name="paper{$publishedPaper->getPaperId()|escape}DateExists" onchange="changeDate({$publishedPaper->getPaperId()|escape});" /></td>
+		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`DateExists" key="common.date"}</td>
+		<td>{html_select_date prefix="paper`$publishedPaper->getPaperId()`Date" all_extra="class=\"selectMenu\" onchange=\"document.schedule.paper`$publishedPaper->getPaperId()`DateExists.checked = true; changeDate(`$publishedPaper->getPaperId()`);\"" time=$publishedPaper->getStartTime()|default:$defaultStartTime start_year=$firstYear end_year=$lastYear}</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`StartTime" key="manager.scheduler.startTime"}</td>
+		<td>{html_select_time prefix="paper`$publishedPaper->getPaperId()`StartTime" all_extra="class=\"selectMenu\" onchange=\"document.schedule.paper`$publishedPaper->getPaperId()`DateExists.checked = true; changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getStartTime()|default:$defaultStartTime}</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`EndTime" key="manager.scheduler.endTime"}</td>
+		<td>
+			{html_select_time prefix="paper`$publishedPaper->getPaperId()`EndTime" all_extra="class=\"selectMenu\" onchange=\"changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getEndTime()|default:$defaultStartTime}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="5" class="{if $smarty.foreach.publishedPapers.last}end{/if}separator">&nbsp;</td>
+	</tr>
 	{/foreach}
-</tr>
-
-{/foreach}{* boundaryTimes *}
-
+	{if empty($publishedPapers)}
+	<tr>
+		<td colspan="5" class="nodata">{translate key="common.none"}</td>
+	</tr>
+	<tr>
+		<td colspan="5" class="endseparator">&nbsp;</td>
+	<tr>
+	{/if}
 </table>
 
-<div id="unscheduledPresentations" style="clear: both; height: 6em;">
-<h4>{translate key="manager.scheduler.schedule.unscheduledPresentations"}</h4>
+<p>
+	{translate key="common.sortBy"}
+	<a href="javascript:sortBy('startTime');">{translate key="manager.scheduler.startTime"}</a>&nbsp;|
+	<a href="javascript:sortBy('presenter');">{translate key="user.role.presenter"}</a>&nbsp;|
+	<a href="javascript:sortBy('room');">{translate key="paper.location"}</a>&nbsp;|
+	<a href="javascript:sortBy('title');">{translate key="paper.title"}</a>
+</p>
 
-{foreach from=$unscheduledPresentations item=presentation}
-
-<div id="PRESENTATION-{$presentation->getPaperId()|escape}" class="draggable floatLeft borderBox schedulerPresentation">
-	<table class="data">
-		<tr valign="top">
-			<td colspan="2" class="schedulerPresentationHeader">{$presentation->getPaperTitle()|escape|truncate:35:"..."}</td>
-		</tr>
-		<tr valign="top">
-			<td class="label">{translate key="paper.presenters"}</td>
-			<td class="value">{$presentation->getPresenterString()|escape}</td>
-		</tr>
-		{assign var=fieldId value=PRESENTATION-`$presentation->getPaperId()`-ROOM}
-		<tr valign="top">
-			<td class="label">{fieldLabel name=$fieldId key="manager.scheduler.room"}</td>
-			<td class="value">
-				<select id="{$fieldId|escape}" name="{$fieldId|escape}" onchange="chooseRoom(this)" class="selectMenu">
-				<option value="UNASSIGN">{translate key="manager.scheduler.room.unassigned"}</option>
-				{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
-					<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
-					{foreach from=$buildingEntry.rooms key=roomId item=room}
-						<option {if $presentation->getRoomId() == $roomId}selected="selected" {/if}value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
-					{/foreach}
-				{/foreach}
-				</select>
-			</td>
-		</tr>
-	</table>
-</div>
-
-{/foreach}
-{if $unscheduledPresentations|@count == 0}
-	<i>{translate key="common.none"}</i><br/>
-{/if}
-
-</div>
-
-<div id="unscheduledEvents" style="clear: both; height: 6em;">
-<h4>{translate key="manager.scheduler.schedule.unscheduledEvents"}</h4>
-{foreach from=$unscheduledEvents item=event key=eventIndex}
-
-<div id="EVENT-{$event->getSpecialEventId()|escape}" class="draggable floatLeft borderBox schedulerEvent">
-	<table class="data">
-		<tr valign="top">
-			<td colspan="2" class="schedulerEventHeader">{$event->getSpecialEventName()|escape|truncate:35:"..."}</td>
-		</tr>
-		{assign var=fieldId value=EVENT-`$event->getSpecialEventId()`-ROOM}
-		<tr valign="top">
-			<td class="label">{fieldLabel name=$fieldId key="manager.scheduler.room"}</td>
-			<td class="value">
-				<select id="{$fieldId|escape}" name="{$fieldId|escape}" onchange="chooseRoom(this)" class="selectMenu">
-				<option value="UNASSIGN">{translate key="manager.scheduler.room.unassigned"}</option>
-				{foreach from=$buildingsAndRooms key=buildingId item=buildingEntry}
-					<option disabled="disabled" value="">{$buildingEntry.building->getBuildingAbbrev()}</option>
-					{foreach from=$buildingEntry.rooms key=roomId item=room}
-						<option {if $event->getRoomId() == $roomId}selected="selected" {/if}value="{$roomId|escape}">&nbsp;&#187;&nbsp;{$room->getRoomAbbrev()}</option>
-					{/foreach}
-				{/foreach}
-				</select>
-			</td>
-		</tr>
-	</table>
-</div>
-
-{/foreach}
-{if $unscheduledPresentations|@count == 0}
-	<i>{translate key="common.none"}</i><br/>
-{/if}
-
-</div>
-
-<p style="clear: both;"><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="submit" value="{translate key="manager.scheduler.schedule.tidy"}" name="tidy" class="button" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="scheduler" escape=false}'" /></p>
-
-<input type="hidden" name="actions" value="{$actions|escape}" />
+<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="schedules" escape=false}'" /></p>
 
 </form>
 

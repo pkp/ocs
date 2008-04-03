@@ -91,7 +91,8 @@ class SpecialEventDAO extends DAO {
 		$specialEvent = &new SpecialEvent();
 		$specialEvent->setSpecialEventId($row['special_event_id']);
 		$specialEvent->setSchedConfId($row['sched_conf_id']);
-		$specialEvent->setTimeBlockId($row['time_block_id']);
+		$specialEvent->setStartTime($this->datetimeFromDB($row['start_time']));
+		$specialEvent->setEndTime($this->datetimeFromDB($row['end_time']));
 		$specialEvent->setRoomId($row['room_id']);
 		$this->getDataObjectSettings('special_event_settings', 'special_event_id', $row['special_event_id'], $specialEvent);
 
@@ -116,12 +117,12 @@ class SpecialEventDAO extends DAO {
 	function insertSpecialEvent(&$specialEvent) {
 		$this->update(
 			sprintf('INSERT INTO special_events
-				(sched_conf_id, time_block_id, room_id)
+				(sched_conf_id, start_time, end_time, room_id)
 				VALUES
-				(?, ?, ?)'),
-			array(
+				(?, %s, %s, ?)',
+				$this->datetimeToDB($specialEvent->getStartTime()), $this->datetimeToDB($specialEvent->getEndTime())
+			), array(
 				(int) $specialEvent->getSchedConfId(),
-				$specialEvent->getTimeBlockId(), // Nullable
 				$specialEvent->getRoomId() // Nullable
 			)
 		);
@@ -139,12 +140,13 @@ class SpecialEventDAO extends DAO {
 		$returner = $this->update(
 			sprintf('UPDATE	special_events
 				SET	sched_conf_id = ?,
-					time_block_id = ?,
+					start_time = %s,
+					end_time = %s,
 					room_id = ?
-				WHERE special_event_id = ?'),
-			array(
+				WHERE special_event_id = ?',
+				$this->datetimeToDB($specialEvent->getStartTime()), $this->datetimeToDB($specialEvent->getEndTime())
+			), array(
 				(int) $specialEvent->getSchedConfId(),
-				$specialEvent->getTimeBlockId(), // Nullable
 				$specialEvent->getRoomId(), // Nullable
 				(int) $specialEvent->getSpecialEventId()
 			)
@@ -188,16 +190,10 @@ class SpecialEventDAO extends DAO {
 	/**
 	 * Retrieve an array of special events matching a particular sched conf ID.
 	 * @param $schedConfId int
-	 * @param $isScheduled boolean true === scheduled events only, false === unscheduled events only, null === all events
 	 * @return object DAOResultFactory containing matching special events
 	 */
-	function &getSpecialEventsBySchedConfId($schedConfId, $isScheduled = null, $rangeInfo = null) {
-		$sql = 'SELECT * FROM special_events WHERE sched_conf_id = ?';
-		if ($isScheduled === true) $sql .= ' AND time_block_id IS NOT NULL';
-		elseif ($isScheduled === false) $sql .= ' AND time_block_id IS NULL';
-
-		$result = &$this->retrieveRange($sql .' ORDER BY sched_conf_id', $schedConfId, $rangeInfo);
-
+	function &getSpecialEventsBySchedConfId($schedConfId, $rangeInfo = null) {
+		$result = &$this->retrieveRange('SELECT * FROM special_events WHERE sched_conf_id = ? ORDER BY start_time, end_time', $schedConfId, $rangeInfo);
 		$returner = &new DAOResultFactory($result, $this, '_returnSpecialEventFromRow');
 		return $returner;
 	}

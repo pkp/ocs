@@ -96,18 +96,11 @@ class TimelineForm extends Form {
 	}
 
 	/**
-	 * Display the form.
+	 * Get the earliest and latest dates for the conference. These should
+	 * be included on the timeline form date ranges as possibilities.
+	 * @return array ($earliestDate, $latestDate)
 	 */
-	function display() {
-		$schedConf =& Request::getSchedConf();
-		$templateMgr = &TemplateManager::getManager();
-
-		$templateMgr->assign('helpTopicId','conference.managementPages.timeline');
-
-		// Figure out the range of dates to display: first assemble a
-		// list of all dates currently used and make sure they are
-		// available on the form; then make sure certain minimum ranges
-		// are satisfied.
+	function getOutsideDates(&$schedConf) {
 		$dates = array();
 		if ($schedConf->getStartDate()) $dates[] = strtotime($schedConf->getStartDate());
 		if ($schedConf->getEndDate()) $dates[] = strtotime($schedConf->getEndDate());
@@ -126,6 +119,18 @@ class TimelineForm extends Form {
 		$earliestDate = min($earliestDate, time() - $secsPerYear); // Last year must be included
 		$latestDate = max($latestDate, time() + ($secsPerYear * SCHED_CONF_DATE_YEAR_OFFSET_FUTURE));
 
+		return array($earliestDate, $latestDate);
+	}
+
+	/**
+	 * Display the form.
+	 */
+	function display() {
+		$schedConf =& Request::getSchedConf();
+		$templateMgr = &TemplateManager::getManager();
+		$templateMgr->assign('helpTopicId','conference.managementPages.timeline');
+
+		list($earliestDate, $latestDate) = $this->getOutsideDates($schedConf);
 		$templateMgr->assign('firstYear', strftime('%Y', $earliestDate));
 		$templateMgr->assign('lastYear', strftime('%Y', $latestDate));
 

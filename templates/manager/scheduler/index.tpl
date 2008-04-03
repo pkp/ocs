@@ -24,7 +24,6 @@
 
 <ul class="plain">
 	<li>&#187; <a href="{url op="schedule"}">{translate key="manager.scheduler.schedule"}</a></li>
-	<li>&#187; <a href="{url op="timeBlocks" clearPageContext=1}">{translate key="manager.scheduler.timeBlocks"}</a></li>
 </ul>
 
 {include file="common/footer.tpl"}
