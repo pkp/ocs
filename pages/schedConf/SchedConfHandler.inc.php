@@ -246,22 +246,6 @@ class SchedConfHandler extends Handler {
 	}
 
 	/**
-	 * Display conference schedule page
-	 */
-	function schedule() {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
-
-		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', array(
-			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
-			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
-		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
-
-		$templateMgr->assign('helpTopicId', 'schedConf.schedule');
-		$templateMgr->display('schedConf/schedule.tpl');
-	}
-
-	/**
 	 * Display conference accommodation page
 	 */
 	function accommodation() {

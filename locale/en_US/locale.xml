@@ -1361,7 +1361,6 @@ Title of classification system]]></message>
 	<message key="manager.timeline.postPresentations">Accepted abstracts/presentations</message>
 	<message key="manager.timeline.postAbstracts">Accepted abstracts</message>
 	<message key="manager.timeline.postTimeline">Conference timeline (included in Conference Information)</message>
-	<message key="manager.timeline.postSchedule">Schedule</message>
 	<message key="manager.timeline.postPapers">Accepted papers</message>
 	<message key="manager.timeline.delayOpenAccess">Delay open access until</message>
 	<message key="manager.timeline.closeComments">Close comments (activate Reading Tools)</message>
@@ -2415,8 +2414,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.timeline.submissionsCloseDateChanged">The submission close date changed from {$oldSubmissionsCloseDate} to {$newSubmissionsCloseDate}</message>
 	<message key="log.timeline.postAbstractsDateChanged">The abstract post date changed from {$oldPostAbstractsDate} to {$newPostAbstractsDate}.</message>
 	<message key="log.timeline.postAbstractsChanged">The "post abstracts" setting was changed from {$oldPostAbstracts} to {$newPostAbstracts}.</message>
-	<message key="log.timeline.postScheduleDateChanged">The post schedule date changed from {$oldPostScheduleDate} to {$newPostScheduleDate}.</message>
-	<message key="log.timeline.postScheduleChanged">The "post schedule" setting was changed from {$oldPostSchedule} to {$newPostSchedule}.</message>
 	<message key="log.timeline.postPapersDateChanged">The post papers date changed from {$oldPostPapersDate} to {$newPostPapersDate}.</message>
 	<message key="log.timeline.postPapersChanged">The "post papers" setting was changed from {$oldPostPapers} to {$newPostPapers}.</message>
 	<message key="log.timeline.delayOpenAccessDateChanged">The open access date changed from {$oldDelayOpenAccessDate} to {$newDelayOpenAccessDate}.</message>

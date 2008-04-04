@@ -151,12 +151,6 @@ class TemplateManager extends Smarty {
 						$this->assign('schedConfShowCFP', true);
 					}
 
-					// Schedule
-					$postScheduleDate = $schedConf->getSetting('postScheduleDate');
-					if ($schedConf->getSetting('postSchedule') && $currentTime > $postScheduleDate) {
-						$this->assign('schedConfShowSchedule', true);
-					}
-
 					// Program
 					if ($schedConf->getSetting('program') || $schedConf->getSetting('programFile')) {
 						$this->assign('schedConfShowProgram', true);

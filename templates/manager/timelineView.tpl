@@ -102,7 +102,7 @@
 	</tr>
 </table>
 
-{if $postAbstracts || $postSchedule || $postPapers || $delayOpenAccess || $closeComments}
+{if $postAbstracts || $postPapers || $delayOpenAccess || $closeComments}
 
 <br/>
 
@@ -116,16 +116,6 @@
 			</td>
 			<td width="60%" class="value">
 				{$postAbstractsDate|date_format:$dateFormatLong}
-			</td>
-		</tr>
-	{/if}
-	{if $postSchedule}
-		<tr valign="top">
-			<td width="40%" class="label">
-				{fieldLabel name="postSchedule" key="manager.timeline.postSchedule"}
-			</td>
-			<td width="60%" class="value">
-				{$postScheduleDate|date_format:$dateFormatLong}
 			</td>
 		</tr>
 	{/if}
