@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2006-2007 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+ -->
+ 
+<locale name="es_ES" full_name="Español">
+	<message key="plugins.paymethod.paypal.displayName">Pago online (PayPal)</message>
+
+	<!-- PayPal Settings Form -->
+	<message key="plugins.paymethod.paypal.settings.paypalenable">Permitir el pago online (PayPal)</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl">IPN URL</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl.description"><![CDATA[ Esta es la URL del servicio de notificación instantáneo de pago de PayPal (PayPal's Instant Payment Notification o IPN). Para pruebas use: <u>https://www.sandbox.paypal.com/cgi-bin/webscr</u>; para sistemas de pago automáticos use: <u>https://www.paypal.com/cgi-bin/webscr</u>.]]></message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount">Cuenta bancaria</message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount.description">Este es el nombre de usuario de la cuenta PayPal asociada al número de cuenta que se usará, habitualmente un dirección e-mail.</message>
+	<message key="plugins.paymethod.paypal.settings.curlNotInstalled">Atención: el soporte CURL para PHP no está instalado. El soporte del sistema de pagos Paypal requiere la biblioteca CURL. No funcionará hasta que esta esté instalada.</message>
+	<message key="plugins.paymethod.paypal.settings">Configuración PayPal</message>
+
+	<!-- PayPal -->
+	<message key="plugins.paymethod.paypal">Pago online (PayPal)</message>
+	<message key="plugins.paymethod.paypal.description"><![CDATA[Se acepta la mayoria de targetas de crédito, así como tambien eChecks; no és necesrario que los participantes sean miembros de PayPal, pero si que requiere que los organizadores de las conferencias (#evento) creen una <a href="http://www.paypal.com" target="_new">cuenta de empresa PayPal</a>.]]></message>
+	<message key="plugins.paymethod.paypal.warning">Clicando en "Continuar" se le direccionará al sitio web de PayPal. Antes de realizar el pago mediante PayPal puede clicar en el botón "Return to Merchant" para volver a esta página.</message>
+	<message key="plugins.paymethod.paypal.purchase.amount">Importe</message>
+	<message key="plugins.paymethod.paypal.purchase.description">Descripción</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled">Su operación ha sido cancelada.</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled.title">Operación cancelada</message>
+</locale>

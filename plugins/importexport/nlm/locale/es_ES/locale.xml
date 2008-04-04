@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2007 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="es_ES" full_name="Español">
+	<message key="plugins.importexport.nlm.displayName">NLM XML Plugin de exportación</message>
+	<message key="plugins.importexport.nlm.description"> Exportar metadatos del trabajo al formato NML Meeting Abstracts XML para su indexación.</message>
+
+	<message key="plugins.importexport.nlm.export">Exportar datos</message>
+	<message key="plugins.importexport.nlm.export.papers">Exportar trabajos</message>
+	<message key="plugins.importexport.nlm.export.selectPaper">Seleccionar trabajos a exportar</message>
+	
+	<message key="plugins.importexport.nlm.cliUsage"><![CDATA[Usage: 
+{$scriptName} {$pluginName} [xmlFileName] [journal_path] papers [paperId1] [paperId2] ...
+]]></message>
+	<message key="plugins.importexport.nlm.cliError">ERROR:</message>
+
+	<message key="plugins.importexport.nlm.export.error.paperNotFound">Ningún documento responde a la ID especificada "{$paperId}".</message>
+	<message key="plugins.importexport.nlm.export.error.unknownConference"> Ruta de conferencia desconocida {$conferencePath}</message>
+	<message key="plugins.importexport.nlm.export.error.couldNotWrite"> No se encuentra el fichero especificado "{$fileName}"</message>
+</locale>

@@ -25,6 +25,7 @@
 
 <locales>
 	<locale key="de_DE" name="Deutsch"/>
+	<locale key="es_ES" name="España Castellano"/>
 	<locale key="en_US" name="English"/>
 	<locale key="fr_FR" name="Français"/>
 	<locale key="it_IT" name="Italiano"/>
