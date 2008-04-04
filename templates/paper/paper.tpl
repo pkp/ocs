@@ -84,8 +84,8 @@
 		{translate key="manager.scheduler.building"}:&nbsp;{$building->getBuildingName()|nl2br}<br/>
 		{translate key="manager.scheduler.room"}:&nbsp;{$room->getRoomName()|nl2br}<br/>
 	{/if}
-	{if $timeBlock}
-		{translate key="common.date"}:&nbsp;{$timeBlock->getStartTime()|date_format:$datetimeFormatShort}&nbsp;&ndash;&nbsp;{$timeBlock->getEndTime()|date_format:$timeFormat}<br/>
+	{if $paper->getStartTime()}
+		{translate key="common.date"}:&nbsp;{$paper->getStartTime()|date_format:$datetimeFormatShort}&nbsp;&ndash;&nbsp;{$paper->getEndTime()|date_format:$timeFormat}<br/>
 	{/if}
 	{translate key="submission.lastModified"}:&nbsp;{$paper->getLastModified()|date_format:$dateFormatShort}<br/>
 	</blockquote>
