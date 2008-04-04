@@ -94,10 +94,33 @@ class Upgrade extends Installer {
 	function setConferencePrimaryLocales() {
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+
+		// There was a bug in OCS 2.0 that resulted in a conference
+		// primary locale setting of {$primaryLocale} (or truncated to
+		// "{$pri"); in this case, the site primary locale should be
+		// used as a fallback.
+		$result =& $conferenceSettingsDao->retrieve('SELECT primary_locale FROM site');
+		$siteLocale = 'en_US';
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			$siteLocale = $row['locale'];
+			$result->MoveNext();
+		}
+		$result->Close();
+		unset($result);
+
 		$result =& $conferenceSettingsDao->retrieve('SELECT conference_id, setting_value FROM conference_settings WHERE setting_name = ?', array('primaryLocale'));
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$conferenceDao->update('UPDATE conferences SET primary_locale = ? WHERE conference_id = ?', array($row['setting_value'], $row['conference_id']));
+			$newLocale = $row['setting_value'];
+
+			// Fix the bug mentioned above.
+			if (empty($newLocale) || strpos($newLocale, '{$pr') === 0) {
+				$newLocale = $siteLocale;
+			}
+
+			// Set the primary locale value in the conferences table.
+			$conferenceDao->update('UPDATE conferences SET primary_locale = ? WHERE conference_id = ?', array($newLocale, $row['conference_id']));
 			$result->MoveNext();
 		}
 		$conferenceDao->update('UPDATE conferences SET primary_locale = ? WHERE primary_locale IS NULL OR primary_locale = ?', array(INSTALLER_DEFAULT_LOCALE, ''));
@@ -308,6 +331,37 @@ class Upgrade extends Installer {
 		}
 
 
+		return true;
+	}
+
+	/**
+	 * The supportedLocales setting may be missing for conferences; ensure
+	 * that it is properly set.
+	 */
+	function ensureSupportedLocales() {
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$result =& $conferenceDao->retrieve(
+			'SELECT	c.conference_id,
+				c.primary_locale
+			FROM	conferences c
+				LEFT JOIN conference_settings cs ON (cs.conference_id = c.conference_id AND cs.setting_name = ?)
+			WHERE	cs.setting_name IS NULL',
+			array('supportedLocales')
+		);
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			$conferenceSettingsDao->updateSetting(
+				$row['conference_id'],
+				'supportedLocales',
+				array($row['primary_locale']),
+				'object',
+				false
+			);
+			$result->MoveNext();
+		}
+		$result->Close();
+		unset($result);
 		return true;
 	}
 }

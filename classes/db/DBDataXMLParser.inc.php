@@ -131,6 +131,7 @@ class DBDataXMLParser {
 								if (isset($columns[$colId])) {
 									$col = $columns[$colId];
 									$fld = array('NAME' => $col->name, 'TYPE' => $dbdict->MetaType($col), 'SIZE' => $col->max_length);
+									if ($fld['SIZE'] == -1) unset($fld['SIZE']); // e.g. for datetime fields
 									if ($col->primary_key) $fld['KEY'] = 'KEY';
 									if ($col->auto_increment) $fld['AUTOINCREMENT'] = 'AUTOINCREMENT';
 									if ($col->not_null) $fld['NOTNULL'] = 'NOTNULL';
