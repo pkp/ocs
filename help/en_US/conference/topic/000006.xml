@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000006.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Scheduled Conferences
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000006" locale="en_US" title="Scheduled Conferences" toc="conference/toc/000001" key="conference.generalManagement.scheduledConferences">
+	<section>
+		<![CDATA[<p>Clicking on "Create a Scheduled Conference" leads to Scheduling a Conference page, where information about conference title, acronym and path need to be filled in. This is the establishment of individual conference events. Once done, the newly-created conference will be listed among scheduled conferences on the previous page, and the title of newly-created conference will appear under Current Conferences on Conference Site Management page. </p>]]>
+	</section>
+</topic>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000039.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Web Site Management - Logging and Auditing
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000039" locale="en_US" title="Logging and Auditing" toc="conference/toc/000005" key="conference.generalManagement.webSiteManagement.loggingAuditing">
+	<section>
+		<![CDATA[<p>This is to maintain a record of actions and materials for the conference.</p>]]>
+	</section>
+</topic>

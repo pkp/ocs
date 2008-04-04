@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * User Interface Index 
+  *
+  * $Id$
+  -->
+
+<topic id="user/topic/000000" locale="en_US" title="Conference Web Site" toc="index/toc/000000" subtoc="user/toc/000000" key="user.index">
+	<section>
+		<![CDATA[<p>OCS user interface features are based on that of OJS, which is in turn shared with other online journals. Similar features may be kept by other conference management systems as well, with the common purpose to provide a friendly online reading environment and to improve reading experience with research and scholarship. </p>]]>	
+	</section>
+</topic>

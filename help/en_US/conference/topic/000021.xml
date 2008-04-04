@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000021.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Registration
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000021" locale="en_US" title="Registration" toc="conference/toc/000002" subtoc="conference/toc/000021" key="conference.currentConferences.registration">
+	<section>
+		<![CDATA[<p>Once open for registration, a list of registrants will be shown with a summary of their status. </p>]]>
+	</section>
+</topic>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc SYSTEM "../../../toc.dtd">
+
+<!--
+  * 000002.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * table of contents for Conference Management - Current Conferences. 
+  *
+  * $Id$
+  -->
+
+<toc id="conference/toc/000002" locale="en_US" title="Current Conferences" parent_topic="conference/topic/000002">
+	<topic id="conference/topic/000014" title="Set up" />
+	<topic id="conference/topic/000015" title="Conference Timeline" />
+    <topic id="conference/topic/000016" title="Conference Tracks" />
+    <topic id="conference/topic/000017" title="Organizing Team" />
+    <topic id="conference/topic/000018" title="Program" />
+    <topic id="conference/topic/000019" title="Import/Export Data" />
+    <topic id="conference/topic/000020" title="Stats &amp; Reports" />
+    <topic id="conference/topic/000021" title="Registration" />
+    <topic id="conference/topic/000022" title="Scheduler" />
+    <topic id="conference/topic/000023" title="Payment Methods" />
+    <topic id="conference/topic/000024" title="Accommodation" />
+
+
+	<breadcrumb url="conference/topic/000000" title="Conference Management" />
+	<breadcrumb url="conference/topic/000002" title="Current Conferences" />
+</toc>

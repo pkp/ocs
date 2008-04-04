@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc SYSTEM "../../../toc.dtd">
+
+<!--
+  * 0000021.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * table of contents for Conference Management - Current Conferences - Registration.
+  *
+  * $Id$
+  -->
+
+<toc id="conference/toc/000021" locale="en_US" title="Registration" parent_topic="conference/topic/000021">
+	<topic id="conference/topic/000047" title="Registration Types" />
+	<topic id="conference/topic/000048" title="Registration Policies" />
+	
+	<breadcrumb url="conference/topic/000000" title="Conference Management" />
+	<breadcrumb url="conference/topic/000002" title="Current Conferences" />
+	<breadcrumb url="conference/topic/000021" title="Registration" />
+</toc>

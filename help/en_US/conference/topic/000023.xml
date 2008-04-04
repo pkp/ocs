@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000023.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Payment Methods
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000023" locale="en_US" title="Payment Methods" toc="conference/toc/000002" subtoc="conference/toc/000023" key="conference.currentConferences.paymentMethods">
+	<section>
+		<![CDATA[<p>The Conference Manager has the alternatives of enabling either Manual Fee Payment or PayPal Fee Payment, which determines whether registrants will encounter a PayPal or a Manual Fee Payment page wherever they wish to make a payment to attend the conference.</p>
+		<p><i>Manual Fee Payment</i>. If this option is selected, cheques, money orders, credit card information submitted by mail, telephone, etc. can be used. Conference Manager will validate the payment before the registration is active.</p>
+		<p><i>PayPal Fee Payment</i>. If this option is selected, major credit cards as well as eChecks can be used. A PayPal Business Account needs to be activated and IPN URL and Seller Account information should be filled in. </p> ]]>
+	</section>
+</topic>

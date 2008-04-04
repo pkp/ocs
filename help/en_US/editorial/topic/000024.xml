@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000024.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Track Director's Role - Review - Review Version 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000024" locale="en_US" title="Review Version" toc="editorial/toc/000011" key="editorial.trackDirectorsRole.review.reviewVersion">
+	<section>
+		<![CDATA[<p>First, with each submission, the Track Director clicks on the file name next to Review Version, that is, the verson submitted by the author, to check if the original file can serve as Review Version. If not, it should be revised to serve as Review Version and a revised file can be uploaded.</p>
+		<p><i>Ensuring a blind Peer Review</i>. See instructions for {help_topic key="editorial.directorsRole.blindPeerReview" text="Ensuring a Blind Peer Review"}. The Track Director should also check whether Supplementary Files can be shared with Reviewers. Though the checked box expresses the author's wish to present files to Reviewers in submission, the Track Director can uncheck it and press "Record" if considering them unsuitable to be shared with Reviewers.</p>
+		<p><i>Establishing the submission's Review Version</i>. The Track Director presents the Review Version to the Reviewers, by (a) selecting the original version, if it is suitable, or (b) uploading a more suitable revised version. The Track Director can choose to fix minor problems with the original file using a word processor to make the changes, saving the file to the computer and then uploading the file, using the "Browse" and "Upload" buttons.</p>
+		<p><i>Inadequately prepared submissions</i>. If the Author has clearly failed to meet the conference's Author Guidelines and Submission Requirements, the Track Director can notify the Author that the work needs to be resubmitted. The Author can then resubmit the improved version by email directly to the Track Director, who can then upload it as the Review Version. The Track Director can also decide that the submission is simply not suitable for the conference and notify the Author to that effect, and sends the submission to the Archives.</p>]]>	
+	</section>
+</topic>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000044.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Setup - Details
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000044" locale="en_US" title="Details" toc="conference/toc/000015" subtoc="conference/toc/000044" key="conference.currentConferences.setup.details">
+	<section>
+		<![CDATA[<p>Details can be added to a scheduled conference: such as a brief description and overview of conference, conference venue, principal contact and technical contact information, names of organizations and contributors sponsoring the conference; in addition, a customized email signature and email bounce address can be specified. </p>]]>
+	</section>
+</topic>

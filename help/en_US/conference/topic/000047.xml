@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000047.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Registration - Registration Types
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000047" locale="en_US" title="Registration Types" toc="conference/toc/000021" subtoc="conference/toc/000047" key="conference.currentConferences.registrationTypes">
+	<section>
+		<![CDATA[<p>Click on "Registration Types" on Registration page, and on the subsequent Registration Types page click on "Create New Registration Type". In addition to details of new registration type itself, other settings include dates for opening and closing of registration, access options for online access, physical access, or both, and authentication options to limit acccess to registrants. </p>]]>
+	</section>
+</topic>

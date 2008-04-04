@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Submission Process Index 
+  *
+  * $Id$
+  -->
+
+<topic id="submission/topic/000000" locale="en_US" title="Submission Process" toc="index/toc/000000" subtoc="submission/toc/000000" key="submission.index">
+	<section>
+		<![CDATA[<p>For those who are interested in submitting to a scheduled conference, they may create an account with the site and conference as author on Log In page, or alternatively, </p>
+		(1) they may click on About the Conference to access Submissions page to review copyright notice and privacy statement, or submit items online for which registration and login are required; </br>
+		(2) they may click on Conference Homepage to learn about the upcoming conferences, and if available, on Conference Information page select Proposal Submission, or Call for Papers which also provides a link to submissons - both require registration and login for proceeding.</p>
+		<p>Upon completing registration process, the authors can log in as the role of Author; those who have several roles simultaneously (i.e., reviewer as well as author) should log in as Author role to fulfill author submissions. And then the author will be brought to Submissions page where his/her current and past submissions are listed, and a new submission can be initiated.  </p>]]>	
+	</section>
+</topic>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000035.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Web Site Management - About the Conference
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000035" locale="en_US" title="About the Conference" toc="conference/toc/000005" key="conference.generalManagement.webSiteManagement.about">
+	<section>
+		<![CDATA[<p><i>Title</i> and <i>Conference Description</i>. The contents are automatically filled in by information provided in Conference Title and Conference Description when setting up the Hosted Conference. </p>
+		<p><i>Principal Contact for Conference Website</i>. The details of the principal contact can be added. </p>
+		<p><i>Copyright Notice</i>. The default copyright notice can be modified, with options to require authors to agree to the copyright notice as part of the submission process, and to post the Creative Commons license logo on the conference web site.</p>
+		<p><i>Archive Access Policy</i>. Options to require users' accounts with conference web site for viewing archived abstracts and presentations, and for commenting on archived presentations. See {help_topic key="conference.generalManagement.webSiteManagement.additional" text="Access to Conference Presentations"} for additional settings.</p>
+		<p><i>Privacy Statement</i>. The default privacy statement can be modified.</p>
+		<p><i>Add Item to Appear in "About the Conference"</i>. Additional information may be added, and will be displayed as a new entry under Policies on the About page. By clicking on "Add About Item", another new entry may be added. </p>]]>
+	</section>
+</topic>

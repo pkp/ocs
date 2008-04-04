@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc SYSTEM "../../../toc.dtd">
+
+<!--
+  * 000006.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Summary Page
+  *
+  * $Id$
+  -->
+
+<toc id="editorial/toc/000006" locale="en_US" title="Submission Summary" parent_topic="editorial/topic/000006">
+	<topic id="editorial/topic/000022" title="Submission Management" />
+	<topic id="editorial/topic/000023" title="Submission Metadata" />
+
+	<breadcrumb url="editorial/topic/000000" title="Editorial Process" />
+	<breadcrumb url="editorial/topic/000001" title="Director's Role" />
+	<breadcrumb url="editorial/topic/000006" title="Summary Page" />
+</toc>

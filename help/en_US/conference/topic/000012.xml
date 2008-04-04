@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000012.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conferennce Management - General Management - Event Log 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000012" locale="en_US" title="Event Log" toc="conference/toc/000001" key="conference.generalManagement.eventLog">
+	<section>
+		<![CDATA[<p>Event log provides the Conference Manager a glimpse of changes made to the system, which can be viewed further in detail. </p>]]>	
+	</section>
+</topic>

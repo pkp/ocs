@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000013.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Track Director's Role - Archives
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000013" locale="en_US" title="Archives" toc="editorial/toc/000002" key="editorial.trackDirectorsRole.archives">
+	<section>
+		<![CDATA[<p>Those in Archives queue can be submissions declined in the review process. This is made by "Decline Submission" by the Track Director in Director Decision after being reviewed. It is shown as Declined in its status. A submission may also be sent to Archives queue by the Track Director at the beginning of review process, who considers it as unsuitable for the review and clicks on "Archive Submission" on Summary page. In this case, its status is shown as Archived. The button is then changed to "Restore to Active List", which can be clicked on again to restore it to the stage before being archived.</p>]]>	
+	</section>
+</topic>

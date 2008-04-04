@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000046.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Setup - Review 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000046" locale="en_US" title="Review" toc="conference/toc/000015" subtoc="conference/toc/000046" key="conference.currentConferences.setup.review">
+	<section>
+		<![CDATA[<p><i>Review Policy</i>. Conference's review policy is outlined for readers and authors and will appear on About page.</p>
+		<p><i>Peer Review</i>. Review guidelines are specified for reviewers, and the peer review's system can be configured such as email reminder, reviewing time limit, "one-click" review access that directs reviewers to OCS by the link contained in the email, and directors' rating of reviewers. </p>
+		<p><i>Director Decision</i>. This is to determine if the notification email go to all co-authors or to the submitter only.</p>]]>
+	</section>
+</topic>

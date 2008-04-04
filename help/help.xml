@@ -4,12 +4,12 @@
 <!--
   * help.xml
   *
-  * Copyright (c) 2000-2007 John Willinsky
+  * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Help Page Numerical Mappings for help section.
   *
-  * $Id$
+   * $Id$
   -->
 <help>
 
@@ -21,118 +21,121 @@
 
 	<!-- Site Administration -->
 	<topic key="site.index" id="site/topic/000000"></topic>
+	
 	<topic key="site.installation" id="site/topic/000001"></topic>
 	<topic key="site.siteManagement" id="site/topic/000002"></topic>
 	<topic key="site.administrativeFunctions" id="site/topic/000003"></topic>
+    	
+    <!-- Conference Management -->
+	<topic key="conference.index" id="conference/topic/000000"></topic>
 
-	<!-- Conference Management -->
-	<topic key="journal.index" id="journal/topic/000000"></topic>
+	<topic key="conference.generalManagement.index" id="conference/topic/000001"></topic>
+	<topic key="conference.generalManagement.webSiteManagement" id="conference/topic/000005"></topic>
+	<topic key="conference.generalManagement.webSiteManagement.about" id="conference/topic/000035"></topic>
+	<topic key="conference.generalManagement.webSiteManagement.additional" id="conference/topic/000036"></topic>
+	<topic key="conference.generalManagement.webSiteManagement.headersFooters" id="conference/topic/000037"></topic>
+	<topic key="conference.generalManagement.webSiteManagement.style" id="conference/topic/000038"></topic>
+	<topic key="conference.generalManagement.webSiteManagement.loggingAuditing" id="conference/topic/000039"></topic>
+	<topic key="conference.generalManagement.webSiteManagement.indexing" id="conference/topic/000040"></topic>
+	<topic key="conference.generalManagement.scheduledConferences" id="conference/topic/000006"></topic>
+	<topic key="conference.generalManagement.announcements" id="conference/topic/000007"></topic>
+	<topic key="conference.generalManagement.emails" id="conference/topic/000008"></topic>
+	<topic key="conference.generalManagement.readingTools" id="conference/topic/000009"></topic>
+	<topic key="conference.generalManagement.readingTools.settings" id="conference/topic/000041"></topic>
+	<topic key="conference.generalManagement.readingTools.versions" id="conference/topic/000042"></topic>
+	<topic key="conference.generalManagement.readingTools.contexts" id="conference/topic/000043"></topic>
+	<topic key="conference.generalManagement.filesBrowser" id="conference/topic/000010"></topic>
+	<topic key="conference.generalManagement.languages" id="conference/topic/000011"></topic>
+	<topic key="conference.generalManagement.eventLog" id="conference/topic/000012"></topic>
+	<topic key="conference.generalManagement.plugins" id="conference/topic/000013"></topic>
 
-	<topic key="journal.managementPages.index" id="journal/topic/000001"></topic>
-	<topic key="journal.managementPages.setup" id="journal/topic/000004"></topic>
-	<topic key="journal.managementPages.tracks" id="journal/topic/000005"></topic>
-	<topic key="journal.managementPages.emails" id="journal/topic/000006"></topic>
-	<topic key="journal.managementPages.languages" id="journal/topic/000007"></topic>
-	<topic key="journal.managementPages.statsAndReports" id="journal/topic/000008"></topic>
-	<topic key="journal.managementPages.readingTools" id="journal/topic/000009"></topic>
-	<topic key="journal.managementPages.readingTools.settings" id="journal/topic/000026"></topic>
-	<topic key="journal.managementPages.readingTools.versions" id="journal/topic/000027"></topic>
-	<topic key="journal.managementPages.readingTools.contexts" id="journal/topic/000028"></topic>
-	<topic key="journal.managementPages.fileBrowser" id="journal/topic/000010"></topic>
-	<topic key="journal.managementPages.registrations" id="journal/topic/000025"></topic>
-	<topic key="journal.managementPages.groups" id="journal/topic/000029"></topic>
-	<topic key="journal.managementPages.plugins" id="journal/topic/000030"></topic>
-	<topic key="journal.managementPages.importExport" id="journal/topic/000031"></topic>
-	<topic key="journal.managementPages.mergeUsers" id="journal/topic/000033"></topic>
-	<topic key="journal.managementPages.announcements" id="journal/topic/000034"></topic>
+	<topic key="conference.currentConferences.index" id="conference/topic/000002"></topic>
+	<topic key="conference.currentConferences.setup" id="conference/topic/000014"></topic>
+	<topic key="conference.currentConferences.setup.details" id="conference/topic/000044"></topic>
+	<topic key="conference.currentConferences.setup.submissions" id="conference/topic/000045"></topic>
+	<topic key="conference.currentConferences.setup.review" id="conference/topic/000046"></topic>
+	<topic key="conference.currentConferences.timeline" id="conference/topic/000015"></topic>
+	<topic key="conference.currentConferences.tracks" id="conference/topic/000016"></topic>
+	<topic key="conference.currentConferences.organizingTeam" id="conference/topic/000017"></topic>
+	<topic key="conference.currentConferences.program" id="conference/topic/000018"></topic>
+	<topic key="conference.currentConferences.importExport" id="conference/topic/000019"></topic>
+	<topic key="conference.currentConferences.statsReports" id="conference/topic/000020"></topic>
+	<topic key="conference.currentConferences.registration" id="conference/topic/000021"></topic>
+	<topic key="conference.currentConferences.registration.registrationTypes" id="conference/topic/000047"></topic>
+	<topic key="conference.currentConferences.registration.registrationPolicies" id="conference/topic/000048"></topic>
+	<topic key="conference.currentConferences.scheduler" id="conference/topic/000022"></topic>
+	<topic key="conference.currentConferences.paymentMethods" id="conference/topic/000023"></topic>
+		<topic key="conference.currentConferences.accommodation" id="conference/topic/000024"></topic>
+	
+	<topic key="conference.users.index" id="conference/topic/000003"></topic>
+	<topic key="conference.users.allUsers" id="conference/topic/000025"></topic>
+	<topic key="conference.users.enrollExistingUsers" id="conference/topic/000026"></topic>
+	<topic key="conference.users.createNewUser" id="conference/topic/000027"></topic>
+	<topic key="conference.users.mergeUsers" id="conference/topic/000028"></topic>
 
-	<topic key="journal.users.index" id="journal/topic/000002"></topic>
-	<topic key="journal.users.allUsers" id="journal/topic/000011"></topic>
-	<topic key="journal.users.createNewUser" id="journal/topic/000012"></topic>
-	<topic key="journal.users.importUsers" id="journal/topic/000013"></topic>
-	<topic key="journal.users.emailUsers" id="journal/topic/000014"></topic>
-
-	<topic key="journal.roles.index" id="journal/topic/000003"></topic>
-	<topic key="journal.roles.journalManager" id="journal/topic/000015"></topic>
-	<topic key="journal.roles.director" id="journal/topic/000016"></topic>
-	<topic key="journal.roles.trackDirector" id="journal/topic/000017"></topic>
-	<topic key="journal.roles.copyeditor" id="journal/topic/000019"></topic>
-	<topic key="journal.roles.proofreader" id="journal/topic/000020"></topic>
-	<topic key="journal.roles.reviewer" id="journal/topic/000021"></topic>
-	<topic key="journal.roles.presenter" id="journal/topic/000022"></topic>
-	<topic key="journal.roles.reader" id="journal/topic/000023"></topic>-->
-
+	<topic key="conference.roles.index" id="conference/topic/000004"></topic>
+	<topic key="conference.roles.conferenceManagers" id="conference/topic/000029"></topic>
+	<topic key="conference.roles.directors" id="conference/topic/000030"></topic>
+	<topic key="conference.roles.trackDirectors" id="conference/topic/000031"></topic>
+    <topic key="conference.roles.reviewers" id="conference/topic/000032"></topic>
+    <topic key="conference.roles.authors" id="conference/topic/000033"></topic>
+    <topic key="conference.roles.readers" id="conference/topic/000034"></topic>
+        
 	<!-- Submission Process -->
 	<topic key="submission.index" id="submission/topic/000000"></topic>
-	<topic key="submission.presenterGuidelines" id="submission/topic/000001"></topic>
+	
+	<topic key="submission.authorGuidelines" id="submission/topic/000001"></topic>
 	<topic key="submission.submissionRequirements" id="submission/topic/000002"></topic>
-	<topic key="submission.indexingAndMetadata" id="submission/topic/000003"></topic>
-	<topic key="submission.supplementaryFiles" id="submission/topic/000004"></topic>-->
+	<topic key="submission.indexingMetadata" id="submission/topic/000003"></topic>
+	<topic key="submission.supplementaryFiles" id="submission/topic/000004"></topic>
 
 	<!-- Editorial Process -->
 	<topic key="editorial.index" id="editorial/topic/000000"></topic>
+	
 	<topic key="editorial.directorsRole" id="editorial/topic/000001"></topic>
-	<topic key="editorial.directorsRole.submissions" id="editorial/topic/000002"></topic>
-	<topic key="editorial.directorsRole.submissions.unassigned" id="editorial/topic/000015"></topic>
-	<topic key="editorial.directorsRole.submissions.inReview" id="editorial/topic/000016"></topic>
-	<topic key="editorial.directorsRole.submissions.inEditing" id="editorial/topic/000017"></topic>
-	<topic key="editorial.directorsRole.submissions.archives" id="editorial/topic/000018"></topic>
-	<topic key="editorial.directorsRole.submissionSummary" id="editorial/topic/000003"></topic>
-	<topic key="editorial.directorsRole.submissionSummary.submissionManagement" id="editorial/topic/000019"></topic>
-	<topic key="editorial.directorsRole.submissionSummary.submissionMetadata" id="editorial/topic/000020"></topic>
+	<topic key="editorial.directorsRole.submissions" id="editorial/topic/000005"></topic>
+	<topic key="editorial.directorsRole.submissions.unassigned" id="editorial/topic/000018"></topic>
+	<topic key="editorial.directorsRole.submissions.inReview" id="editorial/topic/000019"></topic>
+	<topic key="editorial.directorsRole.submissions.presentations" id="editorial/topic/000020"></topic>
+	<topic key="editorial.directorsRole.submissions.archives" id="editorial/topic/000021"></topic>
+	<topic key="editorial.directorsRole.summaryPage" id="editorial/topic/000006"></topic>
+	<topic key="editorial.directorsRole.summaryPage.submissionManagement" id="editorial/topic/000022"></topic>
+	<topic key="editorial.directorsRole.summaryPage.submissionMetadata" id="editorial/topic/000023"></topic>
+      <topic key="editorial.directorsRole.ReviewPage" id="editorial/topic/000007"></topic>
+      <topic key="editorial.directorsRole.HistoryPage" id="editorial/topic/000008"></topic>
+      <topic key="editorial.directorsRole.blindPeerReview" id="editorial/topic/000009"></topic>
 
-	<topic key="editorial.trackDirectorsRole" id="editorial/topic/000004"></topic>
-	<topic key="editorial.trackDirectorsRole.submissions" id="editorial/topic/000005"></topic>
-	<topic key="editorial.trackDirectorsRole.submissions.inReview" id="editorial/topic/000021"></topic>
-	<topic key="editorial.trackDirectorsRole.submissions.inEditing" id="editorial/topic/000022"></topic>
-	<topic key="editorial.trackDirectorsRole.submissions.archives" id="editorial/topic/000023"></topic>
-	<topic key="editorial.trackDirectorsRole.review" id="editorial/topic/000006"></topic>
+	<topic key="editorial.trackDirectorsRole" id="editorial/topic/000002"></topic>
+	<topic key="editorial.trackDirectorsRole.submissions" id="editorial/topic/000010"></topic>
+	<topic key="editorial.trackDirectorsRole.review" id="editorial/topic/000011"></topic>
 	<topic key="editorial.trackDirectorsRole.review.reviewVersion" id="editorial/topic/000024"></topic>
 	<topic key="editorial.trackDirectorsRole.review.peerReview" id="editorial/topic/000025"></topic>
 	<topic key="editorial.trackDirectorsRole.review.directorDecision" id="editorial/topic/000026"></topic>
-	<topic key="editorial.trackDirectorsRole.editing" id="editorial/topic/000007"></topic>
-	<topic key="editorial.trackDirectorsRole.editing.copyediting" id="editorial/topic/000027"></topic>
-	<topic key="editorial.trackDirectorsRole.editing.layout" id="editorial/topic/000028"></topic>
-	<topic key="editorial.trackDirectorsRole.editing.proofreading" id="editorial/topic/000029"></topic>
-	<topic key="editorial.trackDirectorsRole.review.blindPeerReview" id="editorial/topic/000044"></topic>
+	<topic key="editorial.trackDirectorsRole.review.layout" id="editorial/topic/000027"></topic>
+	<topic key="editorial.trackDirectorsRole.presentations" id="editorial/topic/000012"></topic>
+	<topic key="editorial.trackDirectorsRole.archives" id="editorial/topic/000013"></topic>
+		
+	<topic key="editorial.reviewersRole" id="editorial/topic/000003"></topic>
+	<topic key="editorial.reviewersRole.submissions" id="editorial/topic/000014"></topic>
+	<topic key="editorial.reviewersRole.review" id="editorial/topic/000015"></topic>
 
-	<topic key="editorial.reviewersRole" id="editorial/topic/000008"></topic>
-	<topic key="editorial.reviewersRole.submissions" id="editorial/topic/000030"></topic>
-	<topic key="editorial.reviewersRole.review" id="editorial/topic/000031"></topic>
-
-	<topic key="editorial.presentersRole" id="editorial/topic/000009"></topic>
-	<topic key="editorial.presentersRole.submissions" id="editorial/topic/000032"></topic>
-	<topic key="editorial.presentersRole.review" id="editorial/topic/000010"></topic>
-	<topic key="editorial.presentersRole.review.peerReview" id="editorial/topic/000033"></topic>
-	<topic key="editorial.presentersRole.review.directorDecision" id="editorial/topic/000034"></topic>
-	<topic key="editorial.presentersRole.editing" id="editorial/topic/000011"></topic>
-	<topic key="editorial.presentersRole.editing.copyediting" id="editorial/topic/000035"></topic>
-	<topic key="editorial.presentersRole.editing.proofreading" id="editorial/topic/000036"></topic>
-
-	<topic key="editorial.copyeditorsRole" id="editorial/topic/000012"></topic>
-	<topic key="editorial.copyeditorsRole.submissions" id="editorial/topic/000037"></topic>
-	<topic key="editorial.copyeditorsRole.copyediting" id="editorial/topic/000038"></topic>
-
-
-	<topic key="editorial.proofreadersRole" id="editorial/topic/000014"></topic>
-	<topic key="editorial.proofreadersRole.submissions" id="editorial/topic/000042"></topic>
-	<topic key="editorial.proofreadersRole.proofreading" id="editorial/topic/000043"></topic>-->
-
-	<!-- Publishing Process -->
-	<topic key="publishing.index" id="publishing/topic/000000"></topic>
-	<topic key="publishing.createIssue" id="publishing/topic/000001"></topic>
-	<topic key="publishing.scheduleSubmissions" id="publishing/topic/000002"></topic>
-	<topic key="publishing.tableOfContents" id="publishing/topic/000003"></topic>
-	<topic key="publishing.publish" id="publishing/topic/000004"></topic>-->
+	<topic key="editorial.authorsRole" id="editorial/topic/000004"></topic>
+	<topic key="editorial.authorsRole.submissions" id="editorial/topic/000016"></topic>
+	<topic key="editorial.authorsRole.review" id="editorial/topic/000017"></topic>
+	<topic key="editorial.authorsRole.review.peerReview" id="editorial/topic/000028"></topic>
+	<topic key="editorial.authorsRole.review.directorDecision" id="editorial/topic/000029"></topic>
+		
+      <!-- Publishing Process -->
+      <topic key="publishing.index" id="publishing/topic/000000"></topic>
 
 	<!-- User Interface -->
 	<topic key="user.index" id="user/topic/000000"></topic>
 	<topic key="user.home" id="user/topic/000001"></topic>
 	<topic key="user.about" id="user/topic/000002"></topic>
-	<topic key="user.userHome" id="user/topic/000007"></topic>
-	<topic key="user.accountAndProfile" id="user/topic/000003"></topic>
-	<topic key="user.currentAndArchives" id="user/topic/000004"></topic>
-	<topic key="user.searchAndBrowse" id="user/topic/000005"></topic>
-	<topic key="user.readingTools" id="user/topic/000006"></topic>
+	<topic key="user.userHome" id="user/topic/000003"></topic>
+	<topic key="user.registerProfile" id="user/topic/000004"></topic>
+	<topic key="user.currentArchives" id="user/topic/000005"></topic>
+	<topic key="user.searchBrowse" id="user/topic/000006"></topic>
+	<topic key="user.readingTools" id="user/topic/000007"></topic>
 
 </help>

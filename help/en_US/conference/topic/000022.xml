@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000022.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Scheduler
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000022" locale="en_US" title="Scheduler" toc="conference/toc/000002" subtoc="conference/toc/000022" key="conference.currentConferences.scheduler">
+	<section>
+		<![CDATA[<p>The Conference Manager can use Scheduler to make arrangements of times and locations regarding conference presentations and any other events: first define buildings and rooms as well as time blocks, and then drag and drop items under unscheduled presentations and unscheduled events into appropriate time block, and designate a building and room for each of them.</p>
+            <p>For presentations, once they have gone through editorial process and been accepted, they will appear under Unscheduled Presentations.</p>
+            <p>For events, once they are created by clicking on Special Events under Rooms &amp; Events, they will appear under Unscheduled Events. </p>]]> 
+	</section>
+</topic>
