@@ -88,44 +88,92 @@ class PaperHTMLGalley extends PaperGalley {
 
 	function _handleOcsUrl($matchArray) {
 		$url = $matchArray[2];
+		$anchor = null;
+		if (($i = strpos($url, '#')) !== false) {
+			$anchor = substr($url, $i+1);
+			$url = substr($url, 0, $i);
+		}
 		$urlParts = explode('/', $url);
 		if (isset($urlParts[0])) switch(String::strtolower($urlParts[0])) {
 			case 'conference':
 				$url = Request::url(
 					isset($urlParts[1]) ?
 						$urlParts[1] :
-						Request::getRequestedConferencePath()
+						Request::getRequestedConferencePath(),
+					null,
+					null,
+					null,
+					null,
+					null,
+					$anchor
 				);
 				break;
 			case 'paper':
 				if (isset($urlParts[1])) {
-					$url = Request::url(null, 'paper', 'view', $urlParts[1]);
+					$url = Request::url(
+						null,
+						null,
+						'paper',
+						'view',
+						$urlParts[1],
+						null,
+						$anchor
+					);
 				}
 				break;
 			case 'schedConf':
 				if (isset($urlParts[1])) {
-					$url = Request::url(null, null, 'view', $urlParts[1]);
+					$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+					$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+					$thisSchedConf =& $schedConfDao->getSchedConfByPath($urlParts[1]);
+					if (!$thisSchedConf) break;
+					$thisConference =& $conferenceDao->getConference($thisSchedConf->getConferenceId());
+					$url = Request::url(
+						$thisConference->getPath(),
+						$thisSchedConf->getPath(),
+						null,
+						null,
+						null,
+						null,
+						$anchor
+					);
 				} else {
-					$url = Request::url(null, null, 'current');
+					$url = Request::url(
+						null,
+						null,
+						'schedConfs',
+						'current',
+						null,
+						null,
+						$anchor
+					);
 				}
 				break;
 			case 'suppfile':
 				if (isset($urlParts[1]) && isset($urlParts[2])) {
-					$url = Request::url(null, 'paper', 'downloadSuppFile', array($urlParts[1], $urlParts[2]));
+					$url = Request::url(
+						null,
+						null,
+						'paper',
+						'downloadSuppFile',
+						array($urlParts[1], $urlParts[2]),
+						null,
+						$anchor
+					);
 				}
 				break;
 			case 'sitepublic':
 					array_shift($urlParts);
 					import ('file.PublicFileManager');
 					$publicFileManager = &new PublicFileManager();
-					$url = Request::getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath() . '/' . implode('/', $urlParts);
+					$url = Request::getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath() . '/' . implode('/', $urlParts) . ($anchor?'#' . $anchor:'');
 				break;
 			case 'public':
 					array_shift($urlParts);
 					$schedConf = &Request::getSchedConf();
 					import ('file.PublicFileManager');
 					$publicFileManager = &new PublicFileManager();
-					$url = Request::getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getSchedConfId()) . '/' . implode('/', $urlParts);
+					$url = Request::getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getSchedConfId()) . '/' . implode('/', $urlParts) . ($anchor?'#' . $anchor:'');
 				break;
 		}
 		return $matchArray[1] . $url . $matchArray[3];
