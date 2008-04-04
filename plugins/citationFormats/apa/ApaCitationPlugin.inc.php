@@ -3,7 +3,7 @@
 /**
  * @file ApaCitationPlugin.inc.php
  *
- * Copyright (c) 2000-2007 John Willinsky
+ * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package plugins.citationFormats.apa
@@ -44,6 +44,22 @@ class ApaCitationPlugin extends CitationPlugin {
 		return Locale::translate('plugins.citationFormats.apa.description');
 	}
 
+	/**
+	 * Return an HTML-formatted citation. Default implementation displays
+	 * an HTML-based citation using the citation.tpl template in the plugin
+	 * path.
+	 * @param $paper object
+	 */
+	function cite(&$paper) {
+		$loweredTitle = String::strtolower($paper->getPaperTitle());
+		$apaCapitalized = String::ucfirst($loweredTitle);
+
+		HookRegistry::register('Template::RT::CaptureCite', array(&$this, 'displayCitation'));
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign_by_ref('citationPlugin', $this);
+		$templateMgr->assign('apaCapitalized', $apaCapitalized);
+		$templateMgr->display('rt/captureCite.tpl');
+	}
 }
 
 ?>

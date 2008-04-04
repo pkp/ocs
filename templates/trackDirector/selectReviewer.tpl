@@ -1,7 +1,7 @@
 {**
  * selectReviewer.tpl
  *
- * Copyright (c) 2000-2007 John Willinsky
+ * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * List reviewers and give the ability to select a reviewer.

@@ -2,7 +2,7 @@
 <!--
   * version.xml
   *
-  * Copyright (c) 2000-2007 John Willinsky
+  * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * OCS version information.
@@ -27,7 +27,7 @@
 	<application>ocs2</application>
 	<release>2.1.0.0</release>
 	<tag>ocs-2_1_0-0</tag>
-	<date>2008-03-31</date>
+	<date>2008-04-04</date>
 	<info>http://pkp.sfu.ca/ocs/</info>
 	<package>http://pkp.sfu.ca/ocs/download/ocs-2.1.0-0.tar.gz</package>
 </version>
