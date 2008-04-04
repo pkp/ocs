@@ -1684,7 +1684,7 @@ En activo significa cuantas recensiones están actualmente en marcha.]]></messag
 	<message key="reviewer.paper.sendReminder">Enviar recordatorio</message>
 	<message key="reviewer.paper.automatic">(Auto)</message>
 	<message key="reviewer.paper.selectRecommendation">Seleccionar la recomendación</message>
-	<message key="reviewer.paper.recommendation">Recomendación>
+	<message key="reviewer.paper.recommendation">Recomendación</message>
 	<message key="reviewer.paper.submitReview">Enviar la recensión al Director</message>
 	<message key="reviewer.paper.reviewerComments">Comentarios</message>
 	<message key="reviewer.paper.uploadedFile">Depositar ficheros</message>
