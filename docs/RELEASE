@@ -1,21 +1,19 @@
-OCS 2.0.0 Release Notes
-CVS tag: 
-Release date: 
+OCS 2.1.0 Release Notes
+CVS tag: ojs-2_1_0-0
+Release date: April 4, 2008
 =================================
 
 
 Configuration Changes
 ---------------------
 
+See config.TEMPLATE.inc.php for a description and examples of all supported
+configuration parameters.
+
+New config.inc.php parameters:
 
 New Features
 ------------
-
-
+	
 Bug Fixes
 ---------
-
-
-Removed Features
-----------------
-
