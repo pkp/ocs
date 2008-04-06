@@ -132,6 +132,7 @@ class TinyMCEPlugin extends GenericPlugin {
 						$fields[] = 'conferencePageFooter';
 						break;
 				}
+				break;
 			case 'manager/schedConfSetup':
 			case 'manager/saveSchedConfSetup':
 				switch (array_shift(Request::getRequestedArgs())) {
