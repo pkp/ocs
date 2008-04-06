@@ -83,7 +83,7 @@
 <h3>{translate key="submission.indexing"}</h3>
 	
 <table width="100%" class="data">
-	{if $schedConfSettings.metaDiscipline}
+	{if $currentSchedConf->getSetting('metaDiscipline')}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.discipline"}</td>
 		<td width="80%" class="value">{$discipline[$formLocale]|escape|default:"&mdash;"}</td>
@@ -92,9 +92,9 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $schedConfSettings.metaSubjectClass}
+	{if $currentSchedConf->getSetting('metaSubjectClass')}
 	<tr valign="top">
-		<td colspan="2" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl}" target="_blank">{$currentSchedConf->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
+		<td colspan="2" class="label"><a href="{$currentSchedConf->getSetting('metaSubjectClassUrl')}" target="_blank">{$currentSchedConf->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
 	</tr>
 	<tr valign="top">
 		<td width="20%"class="label">{translate key="paper.subjectClassification"}</td>
@@ -104,7 +104,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $schedConfSettings.metaSubject}
+	{if $currentSchedConf->getSetting('metaSubject')}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.subject"}</td>
 		<td width="80%" class="value">{$subject[$formLocale]|escape|default:"&mdash;"}</td>
@@ -113,7 +113,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $schedConfSettings.metaCoverage}
+	{if $currentSchedConf->getSetting('metaCoverage')}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.coverageGeo"}</td>
 		<td width="80%" class="value">{$coverageGeo[$formLocale]|escape|default:"&mdash;"}</td>
@@ -136,7 +136,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $schedConfSettings.metaType}
+	{if $currentSchedConf->getSetting('metaType')}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.type"}</td>
 		<td width="80%" class="value">{$type[$formLocale]|escape|default:"&mdash;"}</td>

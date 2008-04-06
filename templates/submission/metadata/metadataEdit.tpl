@@ -189,10 +189,10 @@ function movePresenter(dir, presenterIndex) {
 
 <h3>{translate key="submission.indexing"}</h3>
 
-{if $schedConfSettings.metaDiscipline || $schedConfSettings.metaSubjectClass || $schedConfSettings.metaSubject || $schedConfSettings.metaCoverage || $schedConfSettings.metaType}<p>{translate key="presenter.submit.submissionIndexingDescription"}</p>{/if}
+{if $currentSchedConf->getSetting('metaDiscipline') || $currentSchedConf->getSetting('metaSubjectClass') || $currentSchedConf->getSetting('metaSubject') || $currentSchedConf->getSetting('metaCoverage') || $currentSchedConf->getSetting('metaType')}<p>{translate key="presenter.submit.submissionIndexingDescription"}</p>{/if}
 
 <table width="100%" class="data">
-	{if $schedConfSettings.metaDiscipline}
+	{if $currentSchedConf->getSetting('metaDiscipline')}
 	<tr valign="top">
 		<td class="label">{fieldLabel name="discipline" key="paper.discipline"}</td>
 		<td class="value">
@@ -207,9 +207,9 @@ function movePresenter(dir, presenterIndex) {
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $schedConfSettings.metaSubjectClass}
+	{if $currentSchedConf->getSetting('metaSubjectClass')}
 	<tr valign="top">
-		<td colspan="2" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl}" target="_blank">{$currentSchedConf->getLocalizedSetting('metaSubjectClassTitle')}</a></td>
+		<td colspan="2" class="label"><a href="{$currentSchedConf->getSetting('metaSubjectClassUrl')}" target="_blank">{$currentSchedConf->getLocalizedSetting('metaSubjectClassTitle')}</a></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="subjectClass" key="paper.subjectClassification"}</td>
@@ -223,7 +223,7 @@ function movePresenter(dir, presenterIndex) {
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $schedConfSettings.metaSubject}
+	{if $currentSchedConf->getSetting('metaSubject')}
 	<tr valign="top">
 		<td class="label">{fieldLabel name="subject" key="paper.subject"}</td>
 		<td class="value">
@@ -238,7 +238,7 @@ function movePresenter(dir, presenterIndex) {
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $schedConfSettings.metaCoverage}
+	{if $currentSchedConf->getSetting('metaCoverage')}
 	<tr valign="top">
 		<td class="label">{fieldLabel name="coverageGeo" key="paper.coverageGeo"}</td>
 		<td class="value">
@@ -279,7 +279,7 @@ function movePresenter(dir, presenterIndex) {
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $schedConfSettings.metaType}
+	{if $currentSchedConf->getSetting('metaType')}
 	<tr valign="top">
 		<td class="label">{fieldLabel name="type" key="paper.type"}</td>
 		<td class="value">

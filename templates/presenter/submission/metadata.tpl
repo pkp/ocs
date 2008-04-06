@@ -77,7 +77,7 @@
 <h4>{translate key="submission.indexing"}</h4>
 	
 <table width="100%" class="data">
-	{if $schedConfSettings.metaDiscipline}
+	{if $currentSchedConf->getSetting('metaDiscipline')}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.discipline"}</td>
 		<td width="80%" class="value">{$submission->getPaperDiscipline()|escape|default:"&mdash;"}</td>
@@ -86,7 +86,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $schedConfSettings.metaSubjectClass}
+	{if $currentSchedConf->getSetting('metaSubjectClass')}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.subjectClassification"}</td>
 		<td width="80%" class="value">{$submission->getPaperSubjectClass()|escape|default:"&mdash;"}</td>
@@ -95,7 +95,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $schedConfSettings.metaSubject}
+	{if $currentSchedConf->getSetting('metaSubject')}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.subject"}</td>
 		<td width="80%" class="value">{$submission->getPaperSubject()|escape|default:"&mdash;"}</td>
@@ -104,7 +104,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $schedConfSettings.metaCoverage}
+	{if $currentSchedConf->getSetting('metaCoverage')}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.coverageGeo"}</td>
 		<td width="80%" class="value">{$submission->getPaperCoverageGeo()|escape|default:"&mdash;"}</td>
@@ -127,7 +127,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $schedConfSettings.metaType}
+	{if $currentSchedConf->getSetting('metaType')}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.type"}</td>
 		<td width="80%" class="value">{$submission->getPaperType()|escape|default:"&mdash;"}</td>

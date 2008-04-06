@@ -16,13 +16,13 @@
 {include file="common/formErrors.tpl"}
 
 <p>{translate key="presenter.submit.uploadInstructions"}</p>
-{if $schedConfSettings.supportPhone}
+{if $currentSchedConf->getSetting('supportPhone')}
 	{assign var="howToKeyName" value="presenter.submit.howToSubmit"}
 {else}
 	{assign var="howToKeyName" value="presenter.submit.howToSubmitNoPhone"}
 {/if}
 
-<p>{translate key=$howToKeyName supportName=$schedConfSettings.supportName supportEmail=$schedConfSettings.supportEmail supportPhone=$schedConfSettings.supportPhone}</p>
+<p>{translate key=$howToKeyName supportName=$currentSchedConf->getSetting('supportName') supportEmail=$currentSchedConf->getSetting('supportEmail') supportPhone=$currentSchedConf->getSetting('supportPhone')}</p>
 
 <div class="separator"></div>
 

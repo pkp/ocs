@@ -169,7 +169,7 @@ function movePresenter(dir, presenterIndex) {
 
 <div class="separator"></div>
 
-{if $schedConfSettings.allowIndividualSubmissions && $schedConfSettings.allowPanelSubmissions}
+{if $currentSchedConf->getSetting('allowIndividualSubmissions') && $currentSchedConf->getSetting('allowPanelSubmissions')}
 
 <h3>{translate key="submission.paperType"}</h3>
 
@@ -215,10 +215,10 @@ function movePresenter(dir, presenterIndex) {
 
 <h3>{translate key="submission.indexing"}</h3>
 
-{if $schedConfSettings.metaDiscipline || $schedConfSettings.metaSubjectClass || $schedConfSettings.metaSubject || $schedConfSettings.metaCoverage || $schedConfSettings.metaType}<p>{translate key="presenter.submit.submissionIndexingDescription"}</p>{/if}
+{if $currentSchedConf->getSetting('metaDiscipline') || $currentSchedConf->getSetting('metaSubjectClass') || $currentSchedConf->getSetting('metaSubject') || $currentSchedConf->getSetting('metaCoverage') || $currentSchedConf->getSetting('metaType')}<p>{translate key="presenter.submit.submissionIndexingDescription"}</p>{/if}
 
 <table width="100%" class="data">
-{if $schedConfSettings.metaDiscipline}
+{if $currentSchedConf->getSetting('metaDiscipline')}
 <tr valign="top">
 	<td{if $currentSchedConf->getLocalizedSetting('metaDisciplineExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="discipline" key="paper.discipline"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="discipline[{$formLocale|escape}]" id="discipline" value="{$discipline[$formLocale]|escape}" size="40" maxlength="255" /></td>
@@ -234,13 +234,13 @@ function movePresenter(dir, presenterIndex) {
 </tr>
 {/if}
 
-{if $schedConfSettings.metaSubjectClass}
+{if $currentSchedConf->getSetting('metaSubjectClass')}
 <tr valign="top">
 	<td rowspan="2" width="20%" class="label">{fieldLabel name="subjectClass" key="paper.subjectClassification"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="subjectClass[{$formLocale|escape}]" id="subjectClass" value="{$subjectClass[$formLocale]|escape}" size="40" maxlength="255" /></td>
 </tr>
 <tr valign="top">
-	<td width="20%" class="label"><a href="{$schedConfSettings.metaSubjectClassUrl|escape}" target="_blank">{$currentSchedConf->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
+	<td width="20%" class="label"><a href="{$currentSchedConf->getSetting('metaSubjectClassUrl')|escape}" target="_blank">{$currentSchedConf->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>
@@ -248,7 +248,7 @@ function movePresenter(dir, presenterIndex) {
 </tr>
 {/if}
 
-{if $schedConfSettings.metaSubject}
+{if $currentSchedConf->getSetting('metaSubject')}
 <tr valign="top">
 	<td{if $currentSchedConf->getLocalizedSetting('metaSubjectExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="subject" key="paper.subject"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="subject[{$formLocale|escape}]" id="subject" value="{$subject[$formLocale]|escape}" size="40" maxlength="255" /></td>
@@ -264,7 +264,7 @@ function movePresenter(dir, presenterIndex) {
 </tr>
 {/if}
 
-{if $schedConfSettings.metaCoverage}
+{if $currentSchedConf->getSetting('metaCoverage')}
 <tr valign="top">
 	<td{if $currentSchedConf->getLocalizedSetting('metaCoverageGeoExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageGeo" key="paper.coverageGeo"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="coverageGeo[{$formLocale|escape}]" id="coverageGeo" value="{$coverageGeo[$formLocale]|escape}" size="40" maxlength="255" /></td>
@@ -306,7 +306,7 @@ function movePresenter(dir, presenterIndex) {
 </tr>
 {/if}
 
-{if $schedConfSettings.metaType}
+{if $currentSchedConf->getSetting('metaType')}
 <tr valign="top">
 	<td width="20%" {if $currentSchedConf->getLocalizedSetting('metaTypeExamples') != ''}rowspan="2" {/if}class="label">{fieldLabel name="type" key="paper.type"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="type[{$formLocale|escape}]" id="type" value="{$type[$formLocale]|escape}" size="40" maxlength="255" /></td>

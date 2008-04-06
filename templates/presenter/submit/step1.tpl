@@ -11,13 +11,13 @@
 {assign var="pageTitle" value="presenter.submit.step1"}
 {include file="presenter/submit/submitHeader.tpl"}
 
-{if $schedConfSettings.supportPhone}
+{if $currentSchedConf->getSetting('supportPhone')}
 	{assign var="howToKeyName" value="presenter.submit.howToSubmit"}
 {else}
 	{assign var="howToKeyName" value="presenter.submit.howToSubmitNoPhone"}
 {/if}
 
-<p>{translate key=$howToKeyName supportName=$schedConfSettings.supportName supportEmail=$schedConfSettings.supportEmail supportPhone=$schedConfSettings.supportPhone}</p>
+<p>{translate key=$howToKeyName supportName=$currentSchedConf->getSetting('supportName') supportEmail=$currentSchedConf->getSetting('supportEmail') supportPhone=$currentSchedConf->getSetting('supportPhone')}</p>
 
 <div class="separator"></div>
 
@@ -87,12 +87,12 @@ function checkSubmissionChecklist() {
 
 {/if}
 
-{if !empty($schedConfSettings.copyrightNotice)}
+{if !empty($currentSchedConf->getLocalizedSetting('copyrightNotice'))}
 <h3>{translate key="about.copyrightNotice"}</h3>
 
-<p>{$schedConfSettings.copyrightNotice|nl2br}</p>
+<p>{$currentSchedConf->getLocalizedSetting('copyrightNotice')|nl2br}</p>
 
-{if $schedConfSettings.copyrightNoticeAgree}
+{if $currentSchedConf->getSetting('copyrightNoticeAgree')}
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="5%"><input type="checkbox" name="copyrightNoticeAgree" id="copyrightNoticeAgree" value="1"{if $paperId || $copyrightNoticeAgree} checked="checked"{/if} /></td>
@@ -106,7 +106,7 @@ function checkSubmissionChecklist() {
 
 <h3>{translate key="presenter.submit.privacyStatement"}</h3>
 <br />
-{$schedConfSettings.privacyStatement|nl2br}
+{$currentSchedConf->getLocalizedSetting('privacyStatement')|nl2br}
 
 <div class="separator"></div>
 
