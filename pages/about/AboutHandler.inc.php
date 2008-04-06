@@ -342,7 +342,7 @@ class AboutHandler extends Handler {
 		$settings = ($schedConf? $schedConf->getSettings(true):$conference->getSettings());
 
 		$templateMgr = &TemplateManager::getManager();
-		$submissionChecklist = $schedConf->getLocalizedSetting('submissionChecklist');
+		$submissionChecklist = $schedConf?$schedConf->getLocalizedSetting('submissionChecklist'):null;
 		if (!empty($submissionChecklist)) {
 			ksort($submissionChecklist);
 			reset($submissionChecklist);

@@ -38,14 +38,16 @@
 <div class="separator">&nbsp;</div>
 {/if}
 
+{if $submissionChecklist}
 <a name="submissionPreparationChecklist"></a><h3>{translate key="about.submissionPreparationChecklist"}</h3>
 <ol>
-	{foreach from=$currentConference->getLocalizedSetting('submissionChecklist') item=checklistItem}
+	{foreach from=$submissionChecklist item=checklistItem}
 		<li>{$checklistItem.content|nl2br}</li>	
 	{/foreach}
 </ol>
 
 <div class="separator">&nbsp;</div>
+{/if}
 
 {if $currentConference->getLocalizedSetting('copyrightNotice') != ''}
 <a name="copyrightNotice"></a><h3>{translate key="about.copyrightNotice"}</h3>
