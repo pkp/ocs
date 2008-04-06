@@ -82,8 +82,9 @@ class ConferenceSetupForm extends Form {
 	/**
 	 * Uploads a conference image.
 	 * @param $settingName string setting key associated with the file
+	 * @param $locale string
 	 */
-	function uploadImage($settingName) {
+	function uploadImage($settingName, $locale) {
 		$conference = &Request::getConference();
 		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
 
@@ -102,7 +103,8 @@ class ConferenceSetupForm extends Form {
 				$filePath = $fileManager->getConferenceFilesPath($conference->getConferenceId());
 				list($width, $height) = getimagesize($filePath . '/' . $settingName.$extension);
 
-				$value = array(
+				$value = $conference->getSetting('settingName');
+				$value[$locale] = array(
 					'name' => $fileManager->getUploadedFileName($settingName),
 					'uploadName' => $uploadName,
 					'width' => $width,
@@ -110,7 +112,8 @@ class ConferenceSetupForm extends Form {
 					'dateUploaded' => Core::getCurrentDate()
 				);
 
-				return $settingsDao->updateSetting($conference->getConferenceId(), $settingName, $value, 'object');
+				$settingsDao->updateSetting($conference->getConferenceId(), $settingName, $value, 'object', true);
+				return true;
 			}
 		}
 
