@@ -50,7 +50,9 @@
 {elseif $displayConferencePageHeaderLogo}
 	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderLogo.uploadName|escape:"url"}" width="{$displayConferencePageHeaderLogo.width|escape}" height="{$displayConferencePageHeaderLogo.height|escape}" style="border: 0;" alt="" />
 {/if}
-{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
+{if $displaySitePageHeaderTitle && is_array($displaySitePageHeaderTitle)}
+	<img src="{$publicFilesDir}/{$displaySitePageHeaderTitle.uploadName|escape:"url"}" width="{$displaySitePageHeaderTitle.width|escape}" height="{$displaySitePageHeaderTitle.height|escape}" style="border: 0;" alt="" />
+{elseif $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
 	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" style="border: 0;" alt="" />
 {elseif $displayPageHeaderTitle}
 	{$displayPageHeaderTitle}

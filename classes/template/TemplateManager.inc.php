@@ -191,7 +191,7 @@ class TemplateManager extends Smarty {
 				}
 			} else { // Not within conference context
 				// Add the site-wide logo, if set for this locale or the primary locale
-				$this->assign('displayPageHeaderTitle', $site->getSitePageHeaderTitle());
+				$this->assign('displaySitePageHeaderTitle', $site->getSitePageHeaderTitle());
 
 				$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath());
 				$this->assign('itemsPerPage', Config::getVar('interface', 'items_per_page'));
