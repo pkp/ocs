@@ -2,20 +2,21 @@
 <!DOCTYPE toc SYSTEM "../../../toc.dtd">
 
 <!--
-  * 000004.xml
+  * 000015.xml
   *
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * table of contents for Editorial Process - Author's Role.
+  * table of contents for Editorial Process - Author's Role - Review.
   *
   * $Id$
   -->
 
-<toc id="editorial/toc/000004" locale="en_US" title="Author's Role" parent_topic="editorial/topic/000004">
-	<topic id="editorial/topic/000016" title="Submissions" />
-	<topic id="editorial/topic/000017" title="Review" />
-	
+<toc id="editorial/toc/000015" locale="en_US" title="Review" parent_topic="editorial/topic/000015">
+	<topic id="editorial/topic/000026" title="Peer Review" />
+	<topic id="editorial/topic/000027" title="Director Decision" />
+
 	<breadcrumb url="editorial/topic/000000" title="Editorial Process" />
 	<breadcrumb url="editorial/topic/000004" title="Author's Role" />
+	<breadcrumb url="editorial/topic/000015" title="Review" />
 </toc>

@@ -7,13 +7,13 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Conference Management - General Management - Web Site Management 
+  * Conference Management - General Management - Website Management 
   *
   * $Id$
   -->
 
-<topic id="conference/topic/000005" locale="en_US" title="Web Site Management" toc="conference/toc/000001" key="conference.generalManagement.webSiteManagement">
+<topic id="conference/topic/000005" locale="en_US" title="Website Management" toc="conference/toc/000001" subtoc="conference/toc/000005" key="conference.generalManagement.websiteManagement">
 	<section>
-		<![CDATA[<p>Web Site Management consists of six steps to configure a conference web site, in its contents such as conference description, principal contact, user information, announcements, etc., in its form such as headers and footers, background, etc., or in enhancing its use by logging emails and events, and by indexing conference. </p>]]>
+		<![CDATA[<p>Website Management consists of six steps to configure a conference web site, in its contents such as conference description, principal contact, user information, announcements, etc., in its layout such as headers and footers, style sheet, etc., or in enhancing its use by logging emails and events, and by indexing conference. </p>]]>
 	</section>
 </topic>

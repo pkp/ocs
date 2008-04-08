@@ -14,8 +14,7 @@
 
 <topic id="conference/topic/000022" locale="en_US" title="Scheduler" toc="conference/toc/000002" subtoc="conference/toc/000022" key="conference.currentConferences.scheduler">
 	<section>
-		<![CDATA[<p>The Conference Manager can use Scheduler to make arrangements of times and locations regarding conference presentations and any other events: first define buildings and rooms as well as time blocks, and then drag and drop items under unscheduled presentations and unscheduled events into appropriate time block, and designate a building and room for each of them.</p>
-            <p>For presentations, once they have gone through editorial process and been accepted, they will appear under Unscheduled Presentations.</p>
-            <p>For events, once they are created by clicking on Special Events under Rooms &amp; Events, they will appear under Unscheduled Events. </p>]]> 
+		<![CDATA[<p>The Conference Manager can use Scheduler to make arrangements of times and locations regarding conference presentations and any other events. First define buildings and rooms for each building; create any special events; then click on Scheduling Presentations on Scheduler page, those in presentations queue are shown on a list, ready to be designated times and locations. For each on the list, check the boxes of location and time, then select building and room, and date, start time and end time from dropdown menu.</p>
+            <p>The scheduled presentations can be sorted by Start Time, Author, Location, or Title. </p>]]> 
 	</section>
 </topic>

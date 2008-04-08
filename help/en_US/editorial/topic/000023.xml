@@ -12,8 +12,8 @@
   * $Id$
   -->
 
-<topic id="editorial/topic/000023" locale="en_US" title="Submission Metadata" toc="editorial/toc/000006" key="editorial.directorsRole.submissionSummary.submissionMetadata">
+<topic id="editorial/topic/000023" locale="en_US" title="Submission Metadata" toc="editorial/toc/000006" key="editorial.directorsRole.summaryPage.submissionMetadata">
 	<section>
-		<![CDATA[<p>Submission Metadata shown here are what entered by the author in Step Two of submission process, and can be edited by Director and Track Director. The author also can edit submission metadata during the editorial process. </p>]]>	
+		<![CDATA[<p>Submission Metadata shown here are what entered by the Author in Step Two of submission process, and can be edited by the Director and the Track Director. The Author can edit submission metadata as well logged in as Author's role. </p>]]>	
 	</section>
 </topic>

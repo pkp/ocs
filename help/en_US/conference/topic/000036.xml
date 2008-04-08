@@ -7,17 +7,17 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Conference Management - General Management - Web Site Management - Additional Website Content
+  * Conference Management - General Management - Website Management - Additional Website Content
   *
   * $Id$
   -->
 
-<topic id="conference/topic/000036" locale="en_US" title="Additional Website Content" toc="conference/toc/000005" key="conference.generalManagement.webSiteManagement.additional">
+<topic id="conference/topic/000036" locale="en_US" title="Additional Website Content" toc="conference/toc/000005" key="conference.generalManagement.websiteManagement.additional">
 	<section>
-		<![CDATA[<p><i>Scheduled Conference Redirect</i>. This will redirect the requests to the conference web site to the scheduled conference. Typically this setting is used when the conference holds a single scheduled conference.
+		<![CDATA[<p><i>Scheduled Conference Redirect</i>. This will redirect the requests to the conference website to the scheduled conference. Typically this setting is used when the conference holds a single scheduled conference.
 		<i>Homepage</i>. This is to add flavour to your conference home visually and verbally, by uploading an image and adding extra information.</p>
 		<p><i>Information for Users</i>. Default information for readers and authors can be modified, which appear under Information on the right sidebar.</p>
-		<p><i>Announcements</i>. This is to customize announcemnets - whether annoucements should be displayed on conference homepage, and how many to display.</p>
-		<p><i>Access to Conference Presentations</i>. Three options are for allowing access to conference presentations - to anyone indiscriminately, to those who have accounts with conference web site, or to registered conference participants only. </p>]]>
+		<p><i>Announcements</i>. This is to customize announcements - whether annoucements should be displayed on conference homepage, and how many to be displayed.</p>
+		<p><i>Access to Conference Presentations</i>. Three options are for allowing access to conference presentations - to anyone indiscriminately, to those who have accounts with conference website, or to registered conference participants only. </p>]]>
 	</section>
 </topic>

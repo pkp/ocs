@@ -61,7 +61,7 @@
 <li><em>Registration Manager:</em> Responsible for the conference registrations.</li>
 <li><em>Track Director:</em> Responsible for managing the presentation submissions for their track (or stream, category, etc.), seeing them through the review and editing process, and accepting or rejecting them for their conference.</li>
 <li><em>Reviewer:</em> Provides peer-review of the submissions for the conference. Recommmends for or against the inclusion of the submission to the conference. </li>
-<li>Author:<em>Submits their proposals to the conference, and participate in the review and editing process.</em></li>
+<li>Author:<em>Submit their proposals to the conference, and participate in the review and editing process.</em></li>
 <li>Reader:<em>Users that can register to read the proceedings, while some conferences do not require registration for that.</em></li>
 </ul></p>
 <p align="center"><a href="{$baseUrl}/locale/{$locale}/edprocesslarge.png"><img src="{$baseUrl}/locale/{$locale}/edprocess.png" width="480" height="542" border="0" alt="" /></a></p>]]>

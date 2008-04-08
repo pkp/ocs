@@ -7,20 +7,20 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * table of contents for Conference Management - General Management - Web Site Management.
+  * Conference Management - General Management - Website Management
   *
   * $Id$
   -->
 
-<toc id="conference/toc/000005" locale="en_US" title="Web Site Management" parent_topic="conference/topic/000005">
+<toc id="conference/toc/000005" locale="en_US" title="Website Management" parent_topic="conference/topic/000005">
 	<topic id="conference/topic/000035" title="About the Conference" />
 	<topic id="conference/topic/000036" title="Additional Web Site Content" />
-    <topic id="conference/topic/000037" title="Web Site Headers, Footers, Lists and Navigation Bar" />
-	<topic id="conference/topic/000038" title="Conference Stylesheet" />
+      <topic id="conference/topic/000037" title="Web Site Headers, Footers, Lists and Navigation Bar" />
+	<topic id="conference/topic/000038" title="Conference Style" />
 	<topic id="conference/topic/000039" title="Logging and Auditing" />
 	<topic id="conference/topic/000040" title="Conference Indexing" />
 	
 	<breadcrumb url="conference/topic/000000" title="Conference Management" />
 	<breadcrumb url="conference/topic/000001" title="General Management" />
-	<breadcrumb url="conference/topic/000005" title="Web Site Management" />
+	<breadcrumb url="conference/topic/000005" title="Website Management" />
 </toc>

@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Conference Management - General Management - Web Site Management - Logging and Auditing
+  * Conference Management - General Management - Website Management - Logging and Auditing
   *
   * $Id$
   -->
 
-<topic id="conference/topic/000039" locale="en_US" title="Logging and Auditing" toc="conference/toc/000005" key="conference.generalManagement.webSiteManagement.loggingAuditing">
+<topic id="conference/topic/000039" locale="en_US" title="Logging and Auditing" toc="conference/toc/000005" key="conference.generalManagement.websiteManagement.loggingAuditing">
 	<section>
 		<![CDATA[<p>This is to maintain a record of actions and materials for the conference.</p>]]>
 	</section>

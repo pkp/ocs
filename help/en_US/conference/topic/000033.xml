@@ -14,7 +14,7 @@
 
 <topic id="conference/topic/000033" locale="en_US" title="Authors" toc="conference/toc/000004" key="conference.roles.authors">
 	<section>
-		<![CDATA[<p>By registration and login, the Authors are able to submit items to the conference directly through the conference web site. Then by logging in the conference web site, the Author can track the status of submitted items, and participate in the editorial process.</p>
+		<![CDATA[<p>By registration and login, the Authors are able to submit items to the conference directly through the conference website. Then by logging in the conference website, the Author can track the status of submitted items, and participate in the editorial process.</p>
             <p>On Log In page, non-registered users can create an account with the conference as author. </p>
 		<p>For more information, see {help_topic key="editorial.authorsRole" text="Author's Role"}.</p>]]>	
 	</section>

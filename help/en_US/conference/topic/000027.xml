@@ -14,7 +14,7 @@
 
 <topic id="conference/topic/000027" locale="en_US" title="Create New User" toc="conference/toc/000003" key="conference.users.createNewUser">
 	<section>
-		<![CDATA[<p>By selecting "Create New User" under Users on Current Conferences page, what we get to is the same as the link "Create New User" on All Users page. The Conference Manager can create a user account and assign the user any role. The user can, by logging in to the conference, complete or modify the profile information entered by the Conference Manager.</p>
+		<![CDATA[<p>By selecting "Create New User" under Users on Current Conferences page, what we get to is the same as the link "Create New User" on All Enrolled Users page. The Conference Manager can create a user account and assign the user any role. The user can, by logging in to the conference, complete or modify the profile information entered by the Conference Manager.</p>
 		<p><i>Resetting password</i>. A registered user can reset his/her password in two situations. Before logging in, by clicking on "Forgot Your Password?" on Log In page, the user should enter email address, and Press "Reset Password". The system will email the user a confirmation and instructions on resetting password. Once logged in, the user can reset password by selecting "Change My Password" under My Account on User Home page.</p>]]>
 	</section>
 </topic>

@@ -30,13 +30,13 @@
 	<topic key="conference.index" id="conference/topic/000000"></topic>
 
 	<topic key="conference.generalManagement.index" id="conference/topic/000001"></topic>
-	<topic key="conference.generalManagement.webSiteManagement" id="conference/topic/000005"></topic>
-	<topic key="conference.generalManagement.webSiteManagement.about" id="conference/topic/000035"></topic>
-	<topic key="conference.generalManagement.webSiteManagement.additional" id="conference/topic/000036"></topic>
-	<topic key="conference.generalManagement.webSiteManagement.headersFooters" id="conference/topic/000037"></topic>
-	<topic key="conference.generalManagement.webSiteManagement.style" id="conference/topic/000038"></topic>
-	<topic key="conference.generalManagement.webSiteManagement.loggingAuditing" id="conference/topic/000039"></topic>
-	<topic key="conference.generalManagement.webSiteManagement.indexing" id="conference/topic/000040"></topic>
+	<topic key="conference.generalManagement.websiteManagement" id="conference/topic/000005"></topic>
+	<topic key="conference.generalManagement.websiteManagement.about" id="conference/topic/000035"></topic>
+	<topic key="conference.generalManagement.websiteManagement.additional" id="conference/topic/000036"></topic>
+	<topic key="conference.generalManagement.websiteManagement.headersFooters" id="conference/topic/000037"></topic>
+	<topic key="conference.generalManagement.websiteManagement.style" id="conference/topic/000038"></topic>
+	<topic key="conference.generalManagement.websiteManagement.loggingAuditing" id="conference/topic/000039"></topic>
+	<topic key="conference.generalManagement.websiteManagement.indexing" id="conference/topic/000040"></topic>
 	<topic key="conference.generalManagement.scheduledConferences" id="conference/topic/000006"></topic>
 	<topic key="conference.generalManagement.announcements" id="conference/topic/000007"></topic>
 	<topic key="conference.generalManagement.emails" id="conference/topic/000008"></topic>
@@ -61,11 +61,9 @@
 	<topic key="conference.currentConferences.importExport" id="conference/topic/000019"></topic>
 	<topic key="conference.currentConferences.statsReports" id="conference/topic/000020"></topic>
 	<topic key="conference.currentConferences.registration" id="conference/topic/000021"></topic>
-	<topic key="conference.currentConferences.registration.registrationTypes" id="conference/topic/000047"></topic>
-	<topic key="conference.currentConferences.registration.registrationPolicies" id="conference/topic/000048"></topic>
 	<topic key="conference.currentConferences.scheduler" id="conference/topic/000022"></topic>
 	<topic key="conference.currentConferences.paymentMethods" id="conference/topic/000023"></topic>
-		<topic key="conference.currentConferences.accommodation" id="conference/topic/000024"></topic>
+	<topic key="conference.currentConferences.accommodation" id="conference/topic/000024"></topic>
 	
 	<topic key="conference.users.index" id="conference/topic/000003"></topic>
 	<topic key="conference.users.allUsers" id="conference/topic/000025"></topic>
@@ -77,9 +75,9 @@
 	<topic key="conference.roles.conferenceManagers" id="conference/topic/000029"></topic>
 	<topic key="conference.roles.directors" id="conference/topic/000030"></topic>
 	<topic key="conference.roles.trackDirectors" id="conference/topic/000031"></topic>
-    <topic key="conference.roles.reviewers" id="conference/topic/000032"></topic>
-    <topic key="conference.roles.authors" id="conference/topic/000033"></topic>
-    <topic key="conference.roles.readers" id="conference/topic/000034"></topic>
+      <topic key="conference.roles.reviewers" id="conference/topic/000032"></topic>
+      <topic key="conference.roles.authors" id="conference/topic/000033"></topic>
+      <topic key="conference.roles.readers" id="conference/topic/000034"></topic>
         
 	<!-- Submission Process -->
 	<topic key="submission.index" id="submission/topic/000000"></topic>

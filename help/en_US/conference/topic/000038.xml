@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Conference Management - General Management - Web Site Management - Conference Style
+  * Conference Management - General Management - Website Management - Conference Style
   *
   * $Id$
   -->
 
-<topic id="conference/topic/000038" locale="en_US" title="Conference Style" toc="conference/toc/000005" key="conference.generalManagement.webSiteManagement.style">
+<topic id="conference/topic/000038" locale="en_US" title="Conference Style" toc="conference/toc/000005" key="conference.generalManagement.websiteManagement.style">
 	<section>
 		<![CDATA[<p>A desired style can be applied to the conference. A particular theme can be selected from the dropdown menu next to Conference Theme. A variety of themes is also available in <a href="http://pkp.sfu.ca/theme-gallery" target="_blank">Theme Gallary</a> on Public Knowledge Project website to be downloaded. A particular Conference Style sheet can be uploaded as well. </p>
 		<p>Additionally, the interface can be customized by moving blocks of information for different displays: (a) display or not; (b) the position to display - on left sidebar or on right sidebar, moved with left-right arrows; (c)the position on the sidebar - in any order, moved with up-down arrows. Those chosen as unselected will be hidden. </p>]]>

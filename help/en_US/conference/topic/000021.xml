@@ -14,6 +14,8 @@
 
 <topic id="conference/topic/000021" locale="en_US" title="Registration" toc="conference/toc/000002" subtoc="conference/toc/000021" key="conference.currentConferences.registration">
 	<section>
-		<![CDATA[<p>Once open for registration, a list of registrants will be shown with a summary of their status. </p>]]>
+		<![CDATA[<p>A list of registrants can be displayed with a summary of their status. </p>
+                     <p><i>Registration Types<i>. Click on "Registration Types" on Registration page, and on the subsequent Registration Types page click on "Create New Registration Type". In addition to details of new registration type itself, other settings include dates for opening and closing of registration, access options for online access, physical access, or both, and authentication options to limit acccess to registrants. </p>
+                     <p><i>Registration Policies<i>. Registration Manager can be indicated, and additional registration information can be added. Registration expiry reminders can also be configured; however, the Site Administrator need to be consulted for activating these options. In addition to Author Self-Archiving, Delayed Open Access is provided for registration conferences, with the consultation of the Site Administrator to activate as well. </p>]]>
 	</section>
 </topic>
