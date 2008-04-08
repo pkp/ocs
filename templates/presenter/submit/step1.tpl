@@ -87,7 +87,7 @@ function checkSubmissionChecklist() {
 
 {/if}
 
-{if !empty($currentSchedConf->getLocalizedSetting('copyrightNotice'))}
+{if $currentSchedConf->getLocalizedSetting('copyrightNotice') != ''}
 <h3>{translate key="about.copyrightNotice"}</h3>
 
 <p>{$currentSchedConf->getLocalizedSetting('copyrightNotice')|nl2br}</p>
@@ -104,11 +104,13 @@ function checkSubmissionChecklist() {
 <div class="separator"></div>
 {/if}
 
+{if ($currentSchedConf->getLocalizedSetting('privacyStatement')) != ''}
 <h3>{translate key="presenter.submit.privacyStatement"}</h3>
 <br />
 {$currentSchedConf->getLocalizedSetting('privacyStatement')|nl2br}
 
 <div class="separator"></div>
+{/if}
 
 <h3>{translate key="presenter.submit.commentsForDirector"}</h3>
 <table width="100%" class="data">
