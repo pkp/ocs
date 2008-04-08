@@ -302,7 +302,7 @@ class PresenterAction extends Action {
 		if (Validation::isDirector($schedConf->getConferenceId(), $schedConf->getSchedConfId()) || Validation::isTrackDirector($schedConf->getConferenceId(), $schedConf->getSchedConfId())) return true;
 
 		// Incomplete submissions can always be edited.
-		if ($presenterSubmission->getProgress() != 0) return true;
+		if ($presenterSubmission->getSubmissionProgress() != 0) return true;
 
 		// Published submissions can never be edited.
 		if ($presenterSubmission->getStatus() != STATUS_QUEUED) return false;
