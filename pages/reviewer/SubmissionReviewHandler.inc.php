@@ -47,9 +47,9 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 		// The reviewer instructions differ depending on what is reviewed, and when.
 		if($reviewAssignment->getStage()==REVIEW_STAGE_ABSTRACT && $submission->getReviewMode() != REVIEW_MODE_BOTH_SIMULTANEOUS)
-			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.reviewerInstruction3AbstractOnly');
+			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.downloadSubmissionAbstractOnly');
 		else
-			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.reviewerInstruction3Submission');
+			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.downloadSubmissionSubmission');
 
 		import('submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
