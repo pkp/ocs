@@ -93,7 +93,6 @@ class SpecialEventDAO extends DAO {
 		$specialEvent->setSchedConfId($row['sched_conf_id']);
 		$specialEvent->setStartTime($this->datetimeFromDB($row['start_time']));
 		$specialEvent->setEndTime($this->datetimeFromDB($row['end_time']));
-		$specialEvent->setRoomId($row['room_id']);
 		$this->getDataObjectSettings('special_event_settings', 'special_event_id', $row['special_event_id'], $specialEvent);
 
 		return $specialEvent;
@@ -117,13 +116,12 @@ class SpecialEventDAO extends DAO {
 	function insertSpecialEvent(&$specialEvent) {
 		$this->update(
 			sprintf('INSERT INTO special_events
-				(sched_conf_id, start_time, end_time, room_id)
+				(sched_conf_id, start_time, end_time)
 				VALUES
-				(?, %s, %s, ?)',
+				(?, %s, %s)',
 				$this->datetimeToDB($specialEvent->getStartTime()), $this->datetimeToDB($specialEvent->getEndTime())
 			), array(
-				(int) $specialEvent->getSchedConfId(),
-				$specialEvent->getRoomId() // Nullable
+				(int) $specialEvent->getSchedConfId()
 			)
 		);
 		$specialEvent->setSpecialEventId($this->getInsertSpecialEventId());
@@ -142,12 +140,10 @@ class SpecialEventDAO extends DAO {
 				SET	sched_conf_id = ?,
 					start_time = %s,
 					end_time = %s,
-					room_id = ?
 				WHERE special_event_id = ?',
 				$this->datetimeToDB($specialEvent->getStartTime()), $this->datetimeToDB($specialEvent->getEndTime())
 			), array(
 				(int) $specialEvent->getSchedConfId(),
-				$specialEvent->getRoomId(), // Nullable
 				(int) $specialEvent->getSpecialEventId()
 			)
 		);

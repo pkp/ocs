@@ -53,22 +53,6 @@ class SpecialEvent extends DataObject {
 	}
 
 	/**
-	 * Get the room ID of the specialEvent.
-	 * @return int
-	 */
-	function getRoomId() {
-		return $this->getData('roomId');
-	}
-
-	/**
-	 * Set the room ID of the specialEvent.
-	 * @param $roomId int
-	 */
-	function setRoomId($roomId) {
-		return $this->setData('roomId', $roomId);
-	}
-
-	/**
 	 * Get the presentation start time.
 	 * @return date
 	 */
@@ -135,7 +119,7 @@ class SpecialEvent extends DataObject {
 	}
 
 	/**
-	 * Get the description of the room.
+	 * Get the description of the special event.
 	 * @param $locale string
 	 * @return string
 	 */
@@ -144,7 +128,7 @@ class SpecialEvent extends DataObject {
 	}
 
 	/**
-	 * Set the description of the room.
+	 * Set the description of the special event.
 	 * @param $description string
 	 * @param $locale string
 	 */
