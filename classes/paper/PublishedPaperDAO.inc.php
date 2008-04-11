@@ -17,6 +17,9 @@
 
 import('paper.PublishedPaper');
 
+define('PAPER_SORT_ORDER_NATURAL', 0);
+define('PAPER_SORT_ORDER_TIME', 1);
+
 class PublishedPaperDAO extends DAO {
 	var $paperDao;
 	var $presenterDao;
@@ -37,9 +40,10 @@ class PublishedPaperDAO extends DAO {
 	/**
 	 * Retrieve Published Papers by scheduled conference id.  Limit provides number of records to retrieve
 	 * @param $schedConfId int
+	 * @param $sortOrder int PAPER_SORT_ORDER_...
 	 * @return object Iterator of PublishedPaper objects
 	 */
-	function &getPublishedPapers($schedConfId) {
+	function &getPublishedPapers($schedConfId, $sortOrder = PAPER_SORT_ORDER_NATURAL) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 
@@ -75,7 +79,15 @@ class PublishedPaperDAO extends DAO {
 				AND pp.sched_conf_id = ?
 				AND p.status <> ' . SUBMISSION_STATUS_ARCHIVED;
 
-		$sql .= ' ORDER BY track_seq ASC, pp.seq ASC';
+		switch ($sortOrder) {
+			case PAPER_SORT_ORDER_TIME:
+				$sql .= ' ORDER BY p.start_time ASC, p.end_time ASC';
+				break;
+			case PAPER_SORT_ORDER_NATURAL:
+			default:
+				$sql .= ' ORDER BY track_seq ASC, pp.seq ASC';
+				break;
+		}
 
 		$result =& $this->retrieve($sql, $params);
 		$returner =& new DAOResultFactory($result, $this, '_returnPublishedPaperFromRow');

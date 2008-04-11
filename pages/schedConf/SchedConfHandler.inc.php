@@ -25,8 +25,20 @@ class SchedConfHandler extends Handler {
 	function index($args) {
 		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		SchedConfHandler::setupSchedConfTemplate($conference, $schedConf);
+		$enableAnnouncements = $schedConf->getSetting('enableAnnouncements', true);
+
+		if ($enableAnnouncements) {
+			$enableAnnouncementsHomepage = $schedConf->getSetting('enableAnnouncementsHomepage', true);
+			if ($enableAnnouncementsHomepage) {
+				$numAnnouncementsHomepage = $schedConf->getSetting('numAnnouncementsHomepage', true);
+				$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+				$announcements =& $announcementDao->getNumAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $schedConf->getSchedConfId(), $numAnnouncementsHomepage);
+				$templateMgr->assign('announcements', $announcements);
+				$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
+			}
+		} 
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true)));
 		$templateMgr->assign('helpTopicId', 'user.currentAndArchives');
@@ -40,21 +52,21 @@ class SchedConfHandler extends Handler {
 	function trackPolicies() {
 		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
 
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
 		$tracks = array();
-		$tracks = &$trackDao->getSchedConfTracks($schedConf->getSchedConfId());
-		$tracks = &$tracks->toArray();
+		$tracks =& $trackDao->getSchedConfTracks($schedConf->getSchedConfId());
+		$tracks =& $tracks->toArray();
 		$templateMgr->assign_by_ref('tracks', $tracks);
 		$trackDirectors = array();
 		foreach ($tracks as $track) {
-			$trackDirectors[$track->getTrackId()] = &$trackDirectorsDao->getDirectorsByTrackId($conference->getConferenceId(), $track->getTrackId());
+			$trackDirectors[$track->getTrackId()] =& $trackDirectorsDao->getDirectorsByTrackId($conference->getConferenceId(), $track->getTrackId());
 		}
 		$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
 
@@ -68,7 +80,7 @@ class SchedConfHandler extends Handler {
 	function overview() {
 		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
@@ -86,7 +98,7 @@ class SchedConfHandler extends Handler {
 	function timeline() {
 		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
@@ -103,7 +115,7 @@ class SchedConfHandler extends Handler {
 	function cfp() {
 		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
@@ -141,7 +153,7 @@ class SchedConfHandler extends Handler {
 		$paymentManager =& OCSPaymentManager::getManager();
 		if (!$paymentManager->isConfigured()) Request::redirect(null, null, 'index');
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
@@ -201,7 +213,7 @@ class SchedConfHandler extends Handler {
 			Request::redirect(null, null, null, 'registration');
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
@@ -231,7 +243,7 @@ class SchedConfHandler extends Handler {
 	function program() {
 		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
@@ -246,12 +258,75 @@ class SchedConfHandler extends Handler {
 	}
 
 	/**
+	 * Display conference schedule page
+	 */
+	function schedule() {
+		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+
+		$postScheduleDate = $schedConf->getSetting('postScheduleDate');
+		if (!$postScheduleDate || time() < $postScheduleDate) Request::redirect(null, null, 'schedConf');
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('pageHierarchy', array(
+			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
+			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
+		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
+
+		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
+		$roomDao =& DAORegistry::getDAO('RoomDAO');
+
+		$buildingsAndRooms = $allRooms = array();
+		$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getSchedConfId());
+		while ($building =& $buildings->next()) {
+			$buildingId = $building->getBuildingId();
+			$rooms =& $roomDao->getRoomsByBuildingId($buildingId);
+			$buildingsAndRooms[$buildingId] = array(
+				'building' => &$building
+			);
+			while ($room =& $rooms->next()) {
+				$roomId = $room->getRoomId();
+				$buildingsAndRooms[$buildingId][$roomId] =& $room;
+				$allRooms[$roomId] =& $room;
+				unset($room);
+			}
+			unset($building);
+			unset($rooms);
+		}
+		$templateMgr->assign_by_ref('buildingsAndRooms', $buildingsAndRooms);
+		$templateMgr->assign_by_ref('allRooms', $allRooms);
+
+		// Merge special events and papers into an array by time/date
+		$itemsByTime = array();
+
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPapers =& $publishedPaperDao->getPublishedPapers($schedConf->getSchedConfId(), PAPER_SORT_ORDER_TIME);
+		while ($paper =& $publishedPapers->next()) {
+			$startTime = $paper->getStartTime();
+			if ($startTime) $itemsByTime[$startTime][] =& $paper;
+			unset($paper);
+		}
+		unset($publishedPapers);
+
+		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+		$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId());
+		while ($specialEvent =& $specialEvents->next()) {
+			$startTime = $specialEvent->getStartTime();
+			if ($startTime) $itemsByTime[$startTime][] =& $specialEvent;
+			unset($specialEvent);
+		}
+		unset($specialEvents);
+
+		$templateMgr->assign_by_ref('itemsByTime', $itemsByTime);
+		$templateMgr->assign('helpTopicId', 'schedConf.schedule');
+		$templateMgr->display('schedConf/schedule.tpl');
+	}
+
+	/**
 	 * Display conference accommodation page
 	 */
 	function accommodation() {
 		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
@@ -275,7 +350,7 @@ class SchedConfHandler extends Handler {
 		$mayViewProceedings = SchedConfAction::mayViewProceedings($schedConf);
 		$mayViewPapers = SchedConfAction::mayViewPapers($schedConf, $conference);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
@@ -287,10 +362,10 @@ class SchedConfHandler extends Handler {
 		$templateMgr->assign('mayViewPapers', $mayViewPapers);
 
 		if($mayViewProceedings) {
-			$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+			$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 			$trackDao =& DAORegistry::getDAO('TrackDAO');
 
-			$tracks = &$trackDao->getTrackTitles($schedConf->getSchedConfId());
+			$tracks =& $trackDao->getTrackTitles($schedConf->getSchedConfId());
 
 			// Get the user's search conditions, if any
 			$searchField = Request::getUserVar('searchField');
@@ -310,7 +385,7 @@ class SchedConfHandler extends Handler {
 			));
 
 
-			$publishedPapers = &$publishedPaperDao->getPublishedPapersInTracks($schedConf->getSchedConfId(), Request::getUserVar('track'), $searchField, $searchMatch, $search);
+			$publishedPapers =& $publishedPaperDao->getPublishedPapersInTracks($schedConf->getSchedConfId(), Request::getUserVar('track'), $searchField, $searchMatch, $search);
 
 			// Set search parameters
 			$duplicateParameters = array(
@@ -335,8 +410,7 @@ class SchedConfHandler extends Handler {
 	 * 	will be displayed.
 	 */
 	function setupSchedConfTemplate(&$conference, &$schedConf) {
-
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		// Ensure the user is entitled to view the scheduled conference...
 		if (isset($schedConf) && ($conference->getEnabled() || (
@@ -349,26 +423,13 @@ class SchedConfHandler extends Handler {
 
 			$templateMgr->assign_by_ref('schedConf', $schedConf);
 			$templateMgr->assign('additionalHomeContent', $conference->getLocalizedSetting('additionalHomeContent'));
-
-			$enableAnnouncements = $schedConf->getSetting('enableAnnouncements', true);
-
-			if ($enableAnnouncements) {
-				$enableAnnouncementsHomepage = $schedConf->getSetting('enableAnnouncementsHomepage', true);
-				if ($enableAnnouncementsHomepage) {
-					$numAnnouncementsHomepage = $schedConf->getSetting('numAnnouncementsHomepage', true);
-					$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-					$announcements = &$announcementDao->getNumAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $schedConf->getSchedConfId(), $numAnnouncementsHomepage);
-					$templateMgr->assign('announcements', $announcements);
-					$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
-				}
-			} 
 		} else {
 			Request::redirect(null, 'index');
 		}
 
 		if ($styleFileName = $schedConf->getStyleFileName()) {
 			import('file.PublicFileManager');
-			$publicFileManager = &new PublicFileManager();
+			$publicFileManager =& new PublicFileManager();
 			$templateMgr->addStyleSheet(
 				Request::getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getConferenceId()) . '/' . $styleFileName
 			);

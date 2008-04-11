@@ -141,6 +141,15 @@
 	</tr>
 	<tr valign="top">
 		<td width="50%" class="label">
+			<input type="checkbox" name="postSchedule" id="postSchedule" value="1" {if $postSchedule}checked="checked"{/if} />
+			{fieldLabel name="postSchedule" key="manager.timeline.postSchedule"}
+		</td>
+		<td width="50%" class="value">
+				{html_select_date prefix="postScheduleDate" time=$postScheduleDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" class="label">
 			<input type="checkbox" name="postPapers" id="postPapers" value="1" {if $postPapers}checked="checked"{/if} />
 			{fieldLabel name="postPapers" key="manager.timeline.postPapers"}
 		</td>

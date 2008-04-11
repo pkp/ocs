@@ -457,9 +457,13 @@
 	<message key="schedConf.cfp.title">{$schedConfAbbrev} Call for Papers</message>
 	<message key="schedConf.overview.title">{$schedConfAbbrev} Overview</message>
 	<message key="schedConf.presentations.title">{$schedConfAbbrev} Presentations and Authors</message>
+	<message key="schedConf.schedule.title">{$schedConfAbbrev} Schedule</message>
 	<message key="schedConf.program.title">{$schedConfAbbrev} Program</message>
 	<message key="schedConf.accommodation.title">{$schedConfAbbrev} Accommodation</message>
 	<message key="schedConf.trackPolicies.title">{$schedConfAbbrev} Track Policies</message>
+
+	<!-- Reader interface for scheduler -->
+	<message key="schedConf.scheduler.locations">Conference Locations</message>
 
 	<!-- User self-registration form -->
 	<message key="schedConf.registration.alreadyRegistered">You are already registered for this conference, although payment has not yet been received. Please contact the principal contact in "About" if this is in error or you would like to change your registration.</message>
@@ -1362,6 +1366,7 @@ Title of classification system]]></message>
 	<message key="manager.timeline.postAbstracts">Accepted abstracts</message>
 	<message key="manager.timeline.postTimeline">Conference timeline (included in Conference Information)</message>
 	<message key="manager.timeline.postPapers">Accepted papers</message>
+	<message key="manager.timeline.postSchedule">Schedule</message>
 	<message key="manager.timeline.delayOpenAccess">Delay open access until</message>
 	<message key="manager.timeline.closeComments">Close comments (activate Reading Tools)</message>
 	<message key="manager.timeline.closeComments.plain">Close comments</message>
@@ -2414,6 +2419,8 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.timeline.submissionsCloseDateChanged">The submission close date changed from {$oldSubmissionsCloseDate} to {$newSubmissionsCloseDate}</message>
 	<message key="log.timeline.postAbstractsDateChanged">The abstract post date changed from {$oldPostAbstractsDate} to {$newPostAbstractsDate}.</message>
 	<message key="log.timeline.postAbstractsChanged">The "post abstracts" setting was changed from {$oldPostAbstracts} to {$newPostAbstracts}.</message>
+	<message key="log.timeline.postScheduleDateChanged">The post schedule date changed from {$oldPostScheduleDate} to {$newPostScheduleDate}.</message>
+	<message key="log.timeline.postScheduleChanged">The "post schedule" setting was changed from {$oldPostSchedule} to {$newPostSchedule}.</message>
 	<message key="log.timeline.postPapersDateChanged">The post papers date changed from {$oldPostPapersDate} to {$newPostPapersDate}.</message>
 	<message key="log.timeline.postPapersChanged">The "post papers" setting was changed from {$oldPostPapers} to {$newPostPapers}.</message>
 	<message key="log.timeline.delayOpenAccessDateChanged">The open access date changed from {$oldDelayOpenAccessDate} to {$newDelayOpenAccessDate}.</message>

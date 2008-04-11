@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-{translate|assign:"pageTitleTranslated" key="schedConf.overview.title" schedConfAbbrev=$currentSchedConf->getLocalizedSetting('abbrev')}
+{translate|assign:"pageTitleTranslated" key="schedConf.overview.title" schedConfAbbrev=$currentSchedConf->getLocalizedSetting('acronym')}
 {include file="common/header.tpl"}
 
 <div>{$overview|nl2br}</div>

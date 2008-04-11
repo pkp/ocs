@@ -37,7 +37,8 @@ class HelpHandler extends Handler {
 		HelpHandler::setupTemplate();
 
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign_by_ref('helpToc', Help::getTableOfContents());
+		$help =& Help::getHelp();
+		$templateMgr->assign_by_ref('helpToc', $help->getTableOfContents());
 		$templateMgr->display('help/helpToc.tpl');
 	}
 
@@ -50,6 +51,8 @@ class HelpHandler extends Handler {
 		HelpHandler::setupTemplate();
 
 		$topicId = implode("/",$args);
+		$keyword = trim(String::regexp_replace('/[^\w\s\.\-]/', '', strip_tags(Request::getUserVar('keyword'))));
+		$result = (int) Request::getUserVar('result');
 
 		$topicDao = &DAORegistry::getDAO('HelpTopicDAO');
 		$topic = $topicDao->getTopic($topicId);
@@ -84,7 +87,14 @@ class HelpHandler extends Handler {
 		$templateMgr->assign('toc', $toc);
 		$templateMgr->assign('subToc', $subToc);
 		$templateMgr->assign('relatedTopics', $relatedTopics);
+		$templateMgr->assign('locale', Locale::getLocale());
 		$templateMgr->assign('breadcrumbs', $toc->getBreadcrumbs());
+		if (!empty($keyword)) {
+			$templateMgr->assign('helpSearchKeyword', $keyword);
+		}
+		if (!empty($result)) {
+			$templateMgr->assign('helpSearchResult', $result);
+		}
 		$templateMgr->display('help/view.tpl');
 	}
 

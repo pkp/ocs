@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-{translate|assign:"pageTitleTranslated" key="schedConf.program.title" schedConfAbbrev=$currentSchedConf->getSetting('abbrev')}
+{translate|assign:"pageTitleTranslated" key="schedConf.program.title" schedConfAbbrev=$currentSchedConf->getLocalizedSetting('acronym')}
 {include file="common/header.tpl"}
 
 {if $programFile}

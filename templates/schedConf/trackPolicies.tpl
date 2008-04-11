@@ -11,7 +11,7 @@
  *
  * $Id$
  *}
-{translate|assign:"pageTitleTranslated" key="schedConf.trackPolicies.title" schedConfAbbrev=$currentSchedConf->getSetting('abbrev')}
+{translate|assign:"pageTitleTranslated" key="schedConf.trackPolicies.title" schedConfAbbrev=$currentSchedConf->getLocalizedSetting('acronym')}
 {include file="common/header.tpl"}
 
 {foreach from=$tracks item=track}{if !$track->getHideAbout()}

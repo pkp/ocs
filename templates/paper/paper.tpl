@@ -80,13 +80,15 @@
 	<br />
 
 	<blockquote>
-	{if $room && $building}
-		{translate key="manager.scheduler.building"}:&nbsp;{$building->getBuildingName()|nl2br}<br/>
-		{translate key="manager.scheduler.room"}:&nbsp;{$room->getRoomName()|nl2br}<br/>
-	{/if}
-	{if $paper->getStartTime()}
-		{translate key="common.date"}:&nbsp;{$paper->getStartTime()|date_format:$datetimeFormatShort}&nbsp;&ndash;&nbsp;{$paper->getEndTime()|date_format:$timeFormat}<br/>
-	{/if}
+	{if $schedConfPostSchedule}
+		{if $room && $building}
+			{translate key="manager.scheduler.building"}:&nbsp;{$building->getBuildingName()|escape}<br/>
+			{translate key="manager.scheduler.room"}:&nbsp;{$room->getRoomName()|escape}<br/>
+		{/if}
+		{if $paper->getStartTime()}
+			{translate key="common.date"}:&nbsp;{$paper->getStartTime()|date_format:$datetimeFormatShort}&nbsp;&ndash;&nbsp;{$paper->getEndTime()|date_format:$timeFormat}<br/>
+		{/if}
+	{/if}{* $schedConfPostSchedule *}
 	{translate key="submission.lastModified"}:&nbsp;{$paper->getLastModified()|date_format:$dateFormatShort}<br/>
 	</blockquote>
 
