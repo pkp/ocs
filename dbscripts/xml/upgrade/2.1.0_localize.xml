@@ -32,7 +32,6 @@
 	<!-- Localize the conferences table -->
 	<sql>
 		<query>INSERT INTO conference_settings (conference_id, setting_name, setting_value, setting_type, locale) SELECT c.conference_id, 'title', title, 'string', c.primary_locale FROM conferences c</query>
-		<query>INSERT INTO conference_settings (conference_id, setting_name, setting_value, setting_type, locale) SELECT c.conference_id, 'description', description, 'string', c.primary_locale FROM conferences c</query>
 	</sql>
 
 	<!-- Localize the sched_confs table -->

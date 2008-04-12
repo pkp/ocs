@@ -22,8 +22,8 @@
 
 	<!-- Upgrade to version 2.1.0 -->
 	<upgrade minversion="2.0.0.0" maxversion="2.0.0.1">
-		<data file="upgrade/2.1.0_localize.xml" />
 		<code function="setConferencePrimaryLocales" />
+		<data file="upgrade/2.1.0_localize.xml" />
 		<code function="localizeConferenceSettings" />
 		<code function="localizeSchedConfSettings" />
 		<code function="installBlockPlugins" />
