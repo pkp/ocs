@@ -457,7 +457,7 @@ class PaperDAO extends DAO {
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
-			WHERE p.user_id = ?', (isset($schedConfId)?' AND p.sched_conf_id = ?':''),
+			WHERE p.user_id = ?' . (isset($schedConfId)?' AND p.sched_conf_id = ?':''),
 			$params
 		);
 
