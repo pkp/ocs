@@ -80,6 +80,15 @@ class ScheduleForm extends Form {
 		return strtotime($startTimeB) - strtotime($startTimeA);
 	}
 
+	function getDefaultStartTime() {
+		// Determine a good default start time.
+		$schedConf =& Request::getSchedConf();
+		$startDate = $schedConf->getSetting('startDate');
+		if (!$startDate || !is_numeric($startDate)) $startDate = time();
+		list($startDay, $startMonth, $startYear) = array(strftime('%d', $startDate), strftime('%m', $startDate), strftime('%Y', $startDate));
+		return mktime(10, 0, 0, $startMonth, $startDay, $startYear);
+	}
+
 	/**
 	 * Display the form.
 	 */
@@ -105,11 +114,8 @@ class ScheduleForm extends Form {
 			usort($this->_data['publishedPapers'], $sortFuncMap[$sort]);
 		}
 
-		// Determine a good default start time.
-		$startDate = $schedConf->getSetting('startDate');
-		if (!$startDate || !is_numeric($startDate)) $startDate = time();
-		list($startDay, $startMonth, $startYear) = array(strftime('%d', $startDate), strftime('%m', $startDate), strftime('%Y', $startDate));
-		$templateMgr->assign('defaultStartTime', mktime(10, 0, 0, $startMonth, $startDay, $startYear));
+		$defaultStartTime = $this->getDefaultStartTime();
+		$templateMgr->assign('defaultStartTime', $defaultStartTime);
 
 		$buildingsAndRooms = array();
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');

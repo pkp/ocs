@@ -45,13 +45,13 @@
 <tr valign="top">
 	<td class="label">{fieldLabel name="startDate" required="true" key="common.date"}</td>
 	<td class="value">
-		{html_select_date prefix="startTime" all_extra="class=\"selectMenu\"" time=$startTime start_year=$firstYear end_year=$lastYear}
+		{html_select_date prefix="startTime" all_extra="class=\"selectMenu\"" time=$startTime|default:$defaultStartTime start_year=$firstYear end_year=$lastYear}
 	</td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="startTime" required="true" key="manager.scheduler.startTime"}</td>
 	<td class="value">
-		{html_select_time prefix="startTime" all_extra="class=\"selectMenu\"" display_seconds=false display_meridian=true use_24_hours=false time=$startTime}
+		{html_select_time prefix="startTime" all_extra="class=\"selectMenu\"" display_seconds=false display_meridian=true use_24_hours=false time=$startTime|default:$defaultStartTime}
 	</td>
 </tr>
 <tr valign="top">
@@ -60,7 +60,7 @@
 		<input name="endTimeDay" value="1" type="hidden" />
 		<input name="endTimeMonth" value="1" type="hidden" />
 		<input name="endTimeYear" value="2008" type="hidden" />
-		{html_select_time prefix="endTime" all_extra="class=\"selectMenu\"" display_seconds=false display_meridian=true use_24_hours=false time=$endTime}
+		{html_select_time prefix="endTime" all_extra="class=\"selectMenu\"" display_seconds=false display_meridian=true use_24_hours=false time=$endTime|default:$defaultStartTime}
 	</td>
 </tr>
 <tr valign="top">

@@ -65,6 +65,11 @@ class SpecialEventForm extends Form {
 		$templateMgr->assign('firstYear', strftime('%Y', $earliestDate));
 		$templateMgr->assign('lastYear', strftime('%Y', $latestDate));
 
+		// Get a good default start time
+		import('manager.form.scheduler.ScheduleForm');
+		$defaultStartTime = ScheduleForm::getDefaultStartTime();
+		$templateMgr->assign('defaultStartTime', $defaultStartTime);
+
 		parent::display();
 	}
 
