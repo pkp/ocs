@@ -161,6 +161,7 @@ class PublishedPaperDAO extends DAO {
 		$publishedPapers = array();
 
 		$params = array(
+			$schedConfId,
 			'title',
 			$primaryLocale,
 			'title',
