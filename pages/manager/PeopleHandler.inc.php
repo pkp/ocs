@@ -24,7 +24,7 @@ class PeopleHandler extends ManagerHandler {
 		parent::validate();
 		parent::setupTemplate(true);
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		if (Request::getUserVar('roleSymbolic')!=null) $roleSymbolic = Request::getUserVar('roleSymbolic');
 		else $roleSymbolic = isset($args[0])?$args[0]:'all';
@@ -41,10 +41,10 @@ class PeopleHandler extends ManagerHandler {
 			$roleName = 'manager.people.allUsers';
 		}
 
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$searchType = null;
 		$searchMatch = null;
@@ -60,11 +60,11 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = &Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType, $roleId));
+		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType, $roleId));
 
 		if ($roleId) {
 			while (true) {
-				$users = &$roleDao->getUsersByRoleId($roleId, $conference->getConferenceId(),
+				$users =& $roleDao->getUsersByRoleId($roleId, $conference->getConferenceId(),
 					($schedConf? $schedConf->getSchedConfId() : null), $searchType, $search, $searchMatch, $rangeInfo);
 				if ($users->isInBounds()) break;
 				unset($rangeInfo);
@@ -96,7 +96,7 @@ class PeopleHandler extends ManagerHandler {
 					break;
 			}
 		} else {
-			$users = &$roleDao->getUsersByConferenceId($conference->getConferenceId(), $searchType, $search, $searchMatch, $rangeInfo);
+			$users =& $roleDao->getUsersByConferenceId($conference->getConferenceId(), $searchType, $search, $searchMatch, $rangeInfo);
 			$helpTopicId = 'conference.users.allUsers';
 		}
 
@@ -112,7 +112,7 @@ class PeopleHandler extends ManagerHandler {
 		$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 
 		if ($roleId == ROLE_ID_REVIEWER) {
-			$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$templateMgr->assign('rateReviewerOnQuality', $conference->getSetting('rateReviewerOnQuality'));
 			$templateMgr->assign('qualityRatings', $conference->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($conference->getConferenceId()) : null);
 		}
@@ -139,14 +139,14 @@ class PeopleHandler extends ManagerHandler {
 	function enrollSearch($args) {
 		parent::validate();
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$roleId = (int)(isset($args[0])?$args[0]:Request::getUserVar('roleId'));
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		parent::setupTemplate(true);
 
@@ -164,10 +164,10 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = &Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
+		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 
 		while (true) {
-			$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
+			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
 			if ($users->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $users->getLastPageRangeInfo();
@@ -216,7 +216,7 @@ class PeopleHandler extends ManagerHandler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$rolePath = $roleDao->getRolePath($roleId);
 
 		$isConferenceManager = Validation::isConferenceManager($conference->getConferenceId());
@@ -239,11 +239,11 @@ class PeopleHandler extends ManagerHandler {
 						$roleDao->deleteRoleByUserId($users[$i], $conference->getConferenceId(), $roleId);
 					} else if ($roleDao->roleExists($conference->getConferenceId(), 0, $users[$i], $roleId)) {
 						// If they're enrolled in the whole conference, this individual
-						// enrollment isn't valuable.a
+						// enrollment isn't valuable.
 						return;
 					}
 
-					$role = &new Role();
+					$role =& new Role();
 					$role->setConferenceId($conference->getConferenceId());
 					if ($schedConf) {
 						$role->setSchedConfId($schedConfId);
@@ -268,11 +268,8 @@ class PeopleHandler extends ManagerHandler {
 		parent::validate();
 
 		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-
 		$isConferenceManager = Validation::isConferenceManager($conference->getConferenceId());
-
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		// Don't allow scheduled conference managers to unenroll scheduled conference managers or
 		// conference managers. FIXME is this still relevant?
@@ -290,7 +287,7 @@ class PeopleHandler extends ManagerHandler {
 		parent::validate();
 
 		$rolePath = isset($args[0]) ? $args[0] : '';
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath($rolePath);
 		if ($roleId) {
 			$roleName = $roleDao->getRoleName($roleId, true);
@@ -299,13 +296,13 @@ class PeopleHandler extends ManagerHandler {
 			$roleName = '';
 		}
 
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$conferenceTitles = &$conferenceDao->getConferenceTitles();
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferenceTitles =& $conferenceDao->getConferenceTitles();
 
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		unset($conferenceTitles[$conference->getConferenceId()]);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('rolePath', $rolePath);
 		$templateMgr->assign('roleName', $roleName);
 		$templateMgr->assign('conferenceOptions', $conferenceTitles);
@@ -318,18 +315,18 @@ class PeopleHandler extends ManagerHandler {
 	function enrollSync($args) {
 		parent::validate();
 
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		$rolePath = Request::getUserVar('rolePath');
 		$syncConference = Request::getUserVar('syncConference');
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath($rolePath);
 
 		if ((!empty($roleId) || $rolePath == 'all') && !empty($syncConference)) {
-			$roles = &$roleDao->getRolesByConferenceId($syncConference == 'all' ? null : $syncConference, $roleId);
+			$roles =& $roleDao->getRolesByConferenceId($syncConference == 'all' ? null : $syncConference, $roleId);
 			while (!$roles->eof()) {
-				$role = &$roles->next();
+				$role =& $roles->next();
 				$role->setConferenceId($conference->getConferenceId());
 				$role->setSchedConfId($schedConf->getSchedConfId());
 				if ($role->getRolePath() != ROLE_PATH_SITE_ADMIN && !$roleDao->roleExists($role->getConferenceId(), $schedConf->getSchedConfId(), $role->getUserId(), $role->getRoleId())) {
@@ -369,18 +366,11 @@ class PeopleHandler extends ManagerHandler {
 		parent::validate();
 		parent::setupTemplate(true);
 
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
-
-		if($schedConf) {
-			$schedConfId = $schedConf->getSchedConfId();
-		} else {
-			$schedConfId = null;
-		}
+		$conference =& Request::getConference();
 
 		$userId = isset($args[0])?$args[0]:null;
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		if ($userId !== null && !Validation::canAdminister($conference->getConferenceId(), $userId)) {
 			// We don't have administrative rights
@@ -397,7 +387,7 @@ class PeopleHandler extends ManagerHandler {
 
 		$templateMgr->assign('currentUrl', Request::url(null, null, null, 'people', 'all'));
 
-		$userForm = &new UserManagementForm($userId);
+		$userForm =& new UserManagementForm($userId);
 		if ($userForm->isLocaleResubmit()) {
 			$userForm->readInputData();
 		} else {
@@ -413,10 +403,11 @@ class PeopleHandler extends ManagerHandler {
 		parent::validate();
 		parent::setupTemplate(true);
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 		$templateMgr =& TemplateManager::getManager();
 
 		$oldUserId = Request::getUserVar('oldUserId');
@@ -547,11 +538,11 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = &Handler::getRangeInfo('users', array($roleId, (string) $search, (string) $searchMatch, (string) $searchType));
+		$rangeInfo =& Handler::getRangeInfo('users', array($roleId, (string) $search, (string) $searchMatch, (string) $searchType));
 
 		if ($roleId) {
 			while (true) {
-				$users = &$roleDao->getUsersByRoleId($roleId, $conference->getConferenceId(), $schedConf->getSchedConfId(), $searchType, $search, $searchMatch, $rangeInfo);
+				$users =& $roleDao->getUsersByRoleId($roleId, $conference->getConferenceId(), $schedConf->getSchedConfId(), $searchType, $search, $searchMatch, $rangeInfo);
 				if ($users->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $users->getLastPageRangeInfo();
@@ -560,7 +551,7 @@ class PeopleHandler extends ManagerHandler {
 			$templateMgr->assign('roleId', $roleId);
 		} else {
 			while (true) {
-				$users = &$roleDao->getUsersByConferenceId($conference->getConferenceId(), $searchType, $search, $searchMatch, $rangeInfo);
+				$users =& $roleDao->getUsersByConferenceId($conference->getConferenceId(), $searchType, $search, $searchMatch, $rangeInfo);
 				if ($users->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $users->getLastPageRangeInfo();
@@ -581,7 +572,7 @@ class PeopleHandler extends ManagerHandler {
 		$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 
 		if ($roleId == ROLE_ID_REVIEWER) {
-			$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$templateMgr->assign('rateReviewerOnQuality', $conference->getSetting('rateReviewerOnQuality'));
 			$templateMgr->assign('qualityRatings', $conference->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($conference->getConferenceId()) : null);
 		}
@@ -608,28 +599,22 @@ class PeopleHandler extends ManagerHandler {
 		parent::setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:Request::getUserVar('userId');
-		$user = &Request::getUser();
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
-
-		if($schedConf)
-			$schedConfId = $schedConf->getSchedConfId();
-		else
-			$schedConfId = null;
+		$user =& Request::getUser();
+		$conference =& Request::getConference();
 
 		if ($userId != null && $userId != $user->getUserId()) {
 			if (!Validation::canAdminister($conference->getConferenceId(), $userId)) {
 				// We don't have administrative rights
 				// over this user. Display an error.
-				$templateMgr = &TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('pageTitle', 'manager.people');
 				$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
 				$templateMgr->assign('backLink', Request::url(null, null, null, 'people', 'all'));
 				$templateMgr->assign('backLinkLabel', 'manager.people.allUsers');
 				return $templateMgr->display('common/error.tpl');
 			}
-			$userDao = &DAORegistry::getDAO('UserDAO');
-			$user = &$userDao->getUser($userId);
+			$userDao =& DAORegistry::getDAO('UserDAO');
+			$user =& $userDao->getUser($userId);
 			if ($user) {
 				$user->setDisabled(1);
 				$user->setDisabledReason(Request::getUserVar('reason'));
@@ -649,11 +634,11 @@ class PeopleHandler extends ManagerHandler {
 		parent::setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:null;
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 
 		if ($userId != null && $userId != $user->getUserId()) {
-			$userDao = &DAORegistry::getDAO('UserDAO');
-			$user = &$userDao->getUser($userId, true);
+			$userDao =& DAORegistry::getDAO('UserDAO');
+			$user =& $userDao->getUser($userId, true);
 			if ($user) {
 				$user->setDisabled(0);
 			}
@@ -672,11 +657,11 @@ class PeopleHandler extends ManagerHandler {
 		parent::setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:null;
-		$user = &Request::getUser();
-		$conference = &Request::getConference();
+		$user =& Request::getUser();
+		$conference =& Request::getConference();
 
 		if ($userId != null && $userId != $user->getUserId()) {
-			$roleDao = &DAORegistry::getDAO('RoleDAO');
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			$roleDao->deleteRoleByUserId($userId, $conference->getConferenceId());
 		}
 
@@ -689,20 +674,13 @@ class PeopleHandler extends ManagerHandler {
 	function updateUser() {
 		parent::validate();
 
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
+		$conference =& Request::getConference();
 		$userId = Request::getUserVar('userId');
-		$schedConf = &Request::getSchedConf();
-
-		if($schedConf)
-			$schedConfId = $schedConf->getSchedConfId();
-		else
-			$schedConfId = null;
 
 		if (!empty($userId) && !Validation::canAdminister($conference->getConferenceId(), $userId)) {
 			// We don't have administrative rights
 			// over this user. Display an error.
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('pageTitle', 'manager.people');
 			$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
 			$templateMgr->assign('backLink', Request::url(null, null, null, 'people', 'all'));
@@ -712,17 +690,17 @@ class PeopleHandler extends ManagerHandler {
 
 		import('manager.form.UserManagementForm');
 
-		$userForm = &new UserManagementForm($userId);
+		$userForm =& new UserManagementForm($userId);
 		$userForm->readInputData();
 
 		if ($userForm->validate()) {
 			$userForm->execute();
 
 			if (Request::getUserVar('createAnother')) {
-				$templateMgr = &TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('currentUrl', Request::url(null, null, null, 'people', 'all'));
 				$templateMgr->assign('userCreated', true);
-				$userForm = &new UserManagementForm();
+				$userForm =& new UserManagementForm();
 				$userForm->initData();
 				$userForm->display();
 
@@ -745,11 +723,11 @@ class PeopleHandler extends ManagerHandler {
 		parent::validate();
 		parent::setupTemplate(true);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentUrl', Request::url(null, null, null, 'people', 'all'));
 		$templateMgr->assign('helpTopicId', 'conference.users.index');
 
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		$userId = isset($args[0]) ? $args[0] : 0;
 		if (is_numeric($userId)) {
 			$userId = (int) $userId;
@@ -768,10 +746,10 @@ class PeopleHandler extends ManagerHandler {
 			$templateMgr->display('common/error.tpl');
 
 		} else {
-			$site = &Request::getSite();
-			$conference = &Request::getConference();
-			$roleDao = &DAORegistry::getDAO('RoleDAO');
-			$roles = &$roleDao->getRolesByUserId($user->getUserId(), $conference->getConferenceId());
+			$site =& Request::getSite();
+			$conference =& Request::getConference();
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $conference->getConferenceId());
 
 			$countryDao =& DAORegistry::getDAO('CountryDAO');
 			$country = null;
@@ -799,18 +777,12 @@ class PeopleHandler extends ManagerHandler {
 
 		if (isset($args[0]) && !empty($args[0])) {
 			$userId = (int)$args[0];
-			$conference = &Request::getConference();
-			$schedConf = &Request::getSchedConf();
-
-			if($schedConf)
-				$schedConfId = $schedConf->getSchedConfId();
-			else
-				$schedConfId = null;
+			$conference =& Request::getConference();
 
 			if (!Validation::canAdminister($conference->getConferenceId(), $userId)) {
 				// We don't have administrative rights
 				// over this user. Display an error.
-				$templateMgr = &TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('pageTitle', 'manager.people');
 				$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
 				$templateMgr->assign('backLink', Request::url(null, null, null, 'people', 'all'));
@@ -818,9 +790,9 @@ class PeopleHandler extends ManagerHandler {
 				return $templateMgr->display('common/error.tpl');
 			}
 
-			$userDao = &DAORegistry::getDAO('UserDAO');
-			$newUser = &$userDao->getUser($userId);
-			$session = &Request::getSession();
+			$userDao =& DAORegistry::getDAO('UserDAO');
+			$newUser =& $userDao->getUser($userId);
+			$session =& Request::getSession();
 
 			// FIXME Support "stack" of signed-in-as user IDs?
 			if (isset($newUser) && $session->getUserId() != $newUser->getUserId()) {
@@ -840,14 +812,14 @@ class PeopleHandler extends ManagerHandler {
 	function signOutAsUser() {
 		Handler::validate();
 
-		$session = &Request::getSession();
+		$session =& Request::getSession();
 		$signedInAs = $session->getSessionVar('signedInAs');
 
 		if (isset($signedInAs) && !empty($signedInAs)) {
 			$signedInAs = (int)$signedInAs;
 
-			$userDao = &DAORegistry::getDAO('UserDAO');
-			$oldUser = &$userDao->getUser($signedInAs);
+			$userDao =& DAORegistry::getDAO('UserDAO');
+			$oldUser =& $userDao->getUser($signedInAs);
 
 			$session->unsetSessionVar('signedInAs');
 
