@@ -858,7 +858,7 @@ class PeopleHandler extends ManagerHandler {
 			}
 		}
 
-		Request::redirect(null, null, Request::getRequestedPage());
+		Request::redirect(null, 'index', 'manager');
 	}
 }
 
