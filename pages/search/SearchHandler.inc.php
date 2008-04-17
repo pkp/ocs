@@ -248,7 +248,7 @@ class SearchHandler extends Handler {
 		// Load the keywords array with submitted values
 		$keywords = array($searchType => PaperSearch::parseQuery(Request::getUserVar('query')));
 
-		$rawResults = &PaperSearch::retrieveResults($conference, $keywords, null, null, $rangeInfo);
+		$results = &PaperSearch::retrieveResults($conference, $keywords, null, null, $rangeInfo);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('results', $results);
