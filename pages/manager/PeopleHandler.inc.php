@@ -382,7 +382,7 @@ class PeopleHandler extends ManagerHandler {
 
 		$templateMgr = &TemplateManager::getManager();
 
-		if ($userId !== null && !Validation::canAdminister($conference->getConferenceId(), $schedConfId, $userId)) {
+		if ($userId !== null && !Validation::canAdminister($conference->getConferenceId(), $userId)) {
 			// We don't have administrative rights
 			// over this user. Display an error.
 			$templateMgr->assign('pageTitle', 'manager.people');
@@ -618,7 +618,7 @@ class PeopleHandler extends ManagerHandler {
 			$schedConfId = null;
 
 		if ($userId != null && $userId != $user->getUserId()) {
-			if (!Validation::canAdminister($conference->getConferenceId(), $schedConfId, $userId)) {
+			if (!Validation::canAdminister($conference->getConferenceId(), $userId)) {
 				// We don't have administrative rights
 				// over this user. Display an error.
 				$templateMgr = &TemplateManager::getManager();
@@ -699,7 +699,7 @@ class PeopleHandler extends ManagerHandler {
 		else
 			$schedConfId = null;
 
-		if (!empty($userId) && !Validation::canAdminister($conference->getConferenceId(), $schedConfId, $userId)) {
+		if (!empty($userId) && !Validation::canAdminister($conference->getConferenceId(), $userId)) {
 			// We don't have administrative rights
 			// over this user. Display an error.
 			$templateMgr = &TemplateManager::getManager();
@@ -807,7 +807,7 @@ class PeopleHandler extends ManagerHandler {
 			else
 				$schedConfId = null;
 
-			if (!Validation::canAdminister($conference->getConferenceId(), $schedConfId, $userId)) {
+			if (!Validation::canAdminister($conference->getConferenceId(), $userId)) {
 				// We don't have administrative rights
 				// over this user. Display an error.
 				$templateMgr = &TemplateManager::getManager();
