@@ -31,7 +31,7 @@
 		{$conferenceSettings.contactAffiliation|escape}<br />
 	{/if}
 	{if !empty($conferenceSettings.contactMailingAddress)}
-		{$conferenceSettings.contactMailingAddress|escape|nl2br}<br />
+		{$conferenceSettings.contactMailingAddress|nl2br}<br />
 	{/if}
 	{if !empty($conferenceSettings.contactPhone)}
 		{translate key="about.contact.phone"}: {$conferenceSettings.contactPhone|escape}<br />
