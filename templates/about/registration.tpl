@@ -17,7 +17,7 @@
 		<strong>{$registrationName|escape}</strong><br />
 	{/if}
 	{if !empty($registrationMailingAddress)}
-		{$registrationMailingAddress|escape|nl2br}<br />
+		{$registrationMailingAddress|nl2br}<br />
 	{/if}
 	{if !empty($registrationPhone)}
 		{translate key="user.phone"}: {$registrationPhone|escape}<br />
