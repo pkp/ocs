@@ -38,6 +38,10 @@ class SubmitHandler extends PresenterHandler {
 
 				$roleDao =& DAORegistry::getDAO('RoleDAO');
 				$roleDao->insertRole($role);
+			} else {
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->assign('message', 'presenter.submit.authorRegistrationClosed');
+				return $templateMgr->display('common/message.tpl');
 			}
 		}
 
