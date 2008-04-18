@@ -170,7 +170,6 @@ class PublishedPaperDAO extends DAO {
 			$primaryLocale,
 			'abbrev',
 			$locale,
-			$schedConfId,
 			$schedConfId
 		);
 
