@@ -14,14 +14,18 @@
 
 {include file="manager/statistics/statistics.tpl"}
 
-{* --- Reports deferred for this release ---
-
 <div class="separator">&nbsp;</div>
 
 <br/>
 
-{include file="manager/statistics/reportGenerator.tpl"}
+<a name="statistics"></a>
+<h3>{translate key="manager.statistics.reports"}</h3>
+<p>{translate key="manager.statistics.reports.description"}</p>
 
---- *}
+<ul class="plain">
+{foreach from=$reportPlugins key=key item=plugin}
+	<li>&#187; <a href="{url op="report" path=$plugin->getName()|escape}">{$plugin->getDisplayName()|escape}</a></li>
+{/foreach}
+</ul>
 
 {include file="common/footer.tpl"}

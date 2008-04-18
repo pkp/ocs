@@ -147,13 +147,14 @@ class PluginRegistry {
 	 */
 	function getCategories() {
 		return array(
-			'generic',
 			'auth',
-			'importexport',
-			'gateways',
-			'paymethod',
 			'blocks',
 			'citationFormats',
+			'gateways',
+			'generic',
+			'importexport',
+			'paymethod',
+			'reports',
 			'themes'
 		);
 	}
