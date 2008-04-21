@@ -48,15 +48,15 @@ class PublishedPaperDAO extends DAO {
 		$locale = Locale::getLocale();
 
 		$params = array(
-			'title',
-			$primaryLocale,
-			'title',
-			$locale,
-			'abbrev',
-			$primaryLocale,
-			'abbrev',
-			$locale,
 			$schedConfId,
+			'title',
+			$primaryLocale,
+			'title',
+			$locale,
+			'abbrev',
+			$primaryLocale,
+			'abbrev',
+			$locale,
 			$schedConfId
 		);
 
