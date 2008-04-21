@@ -465,7 +465,8 @@ class PublishedPaperDAO extends DAO {
 				' . ($conferenceId?'LEFT JOIN sched_confs sc ON sc.sched_conf_id = p.sched_conf_id':'') . '
 				LEFT JOIN paper_settings ptl ON (ptl.setting_name = ? AND ptl.paper_id = p.paper_id AND ptl.locale = ?)
 				LEFT JOIN paper_settings ptpl ON (ptpl.setting_name = ? AND ptpl.paper_id = p.paper_id AND ptpl.locale = ?)
-			WHERE	pp.paper_id = p.paper_id
+			WHERE	pp.paper_id = p.paper_id AND
+				p.status = ' . SUBMISSION_STATUS_PUBLISHED . '
 				' . ($schedConfId?'AND p.sched_conf_id = ?':'') . '
 				' . ($conferenceId?'AND sc.conference_id = ?':'') . '
 			ORDER BY paper_title',
