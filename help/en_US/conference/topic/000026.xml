@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000026.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Users - Enroll a User from This Site in This Conference 
+  *
+  * $Id$
+-->
+
+<topic id="conference/topic/000026" locale="en_US" title="Enroll a User from This Site in This Conference" toc="conference/toc/000003" key="conference.users.enrollExistingUsers">
+	<section>
+		<![CDATA[<p>By selecting "Enroll a User from This Site in This Conference" under Users on Current Conferences page, what we get to is the same as the link "Enroll Existing User" on All Users page. The Conference Manager can first select a role to be assigned, then select a user name and click "Enrolled Selected Users", or directly click "Enroll User" next to the name of a user.</p> ]]>	
+	</section>
+</topic>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000008.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Prepared Emails 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000008" locale="en_US" title="Prepared Emails" toc="conference/toc/000001" key="conference.generalManagement.emails">
+	<section title="Prepared Emails">
+		<![CDATA[<p>OCS uses a variety of prepared emails for communication between people involved in the editorial process, such as the assignment request to Track Director by the Director, review request and response between the Track Director and the Reviewer, or the notification to Author by the Track Director. Conference Manager can modify email templates in Prepared Emails under General Management on Conference Site Management page. Email templates with pre-written messages are provided for particular tasks, though they can be edited by using Edit link next to each of them. Existing email templates can be disabled or reset. Also new email templates can be created. </p>]]>	
+	</section>
+	<section title="Sending Emails">
+		<![CDATA[<p>Email icons for various tasks appear on corresponding pages in the editorial process. When an email icon is clicked on, a default email is generated ready to be sent out, though it can be edited by the sender prior to sending. In the email, the intended recipient is automatically filled in, along with all related information as needed, such as the title and abstract of the submission in question, the due date of a review, or acccess to the submission. The sender can alter the recipient's email address and additional recipients, except in those cases that involve the sending of passwords (for security reasons). Note that correcting a recipient's address does not alter the email address listed on the Profile page in this system. Correcting the recipient's email address on a permanent basis for this system requires notifying the Conference Manager, who has the authority to make such changes to users' profiles.</p>]]>
+	</section>
+</topic>

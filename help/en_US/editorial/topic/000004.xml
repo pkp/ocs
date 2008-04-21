@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000004.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Author's Role
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000004" locale="en_US" title="Author's Role" toc="editorial/toc/000000" subtoc="editorial/toc/000004" key="editorial.authorsRole">
+	<section>
+		<![CDATA[<p>By registering and logging in the conference website, the Author can submit online to the conference and track the progress of the submission and participate in the editorial process. If there is more than one author, the principal contact needs to be identified for the sake of editorial correspondence and access to conference website.</p>]]>	</section>
+</topic>

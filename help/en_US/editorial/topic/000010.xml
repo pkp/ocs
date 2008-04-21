@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000010.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Track Director's Role - Submissions 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000010" locale="en_US" title="Submissions" toc="editorial/toc/000002" subtoc="editorial/toc/000010" key="editorial.trackDirectorsRole.submissions">
+	<section>
+		<![CDATA[<p>Once a submission to the conference is assigned to the Track Director by the Director, it is listed on that Track Director's Submissions In Review page. Brief information about the submission such as title, author names, track, submitted date are displayed, together with prospective information regarding peer review. </p>]]>	
+	</section>
+</topic>

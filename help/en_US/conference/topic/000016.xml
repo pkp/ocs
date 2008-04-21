@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000016.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Conference Tracks
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000016" locale="en_US" title="Conference Tracks" toc="conference/toc/000002"  key="conference.currentConferences.tracks">
+	<section>
+		<![CDATA[<p>Conference Manager can create different tracks for a conference such as tracks of papers, posters, panel discussions, demos, etc. Track directors are assigned to be responsible for editorial process regarding submissions to a particular track. </p>
+		<p>By clicking on "create track" on Conference Tracks page, on Track page details should be provided for a newly-created track, including track title and abbreviation. A brief track policy statement should describe the scope of the track and type of submissions sought, whether submissions are peer reviewed and the identification of submission type as peer-reviewed abstract, non-refereed paper, invited presentation, etc. More important is the option that limits submissions to Directors and Track Directors, instead of open to author submissions in an unrestricted way. In this case, only Authors who are also registered as Directors and Track Directors can submit to the track. In addition, an option is also provided if you may wish to remove information about this track from appearing in track policies. </p>
+		<p>If track directors are available, their names will appear and they can be assigned to this track. </p>]]>
+	</section>
+</topic>

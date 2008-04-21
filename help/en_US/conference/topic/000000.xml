@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management Main 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000000" locale="en_US" title="Conference Managment" toc="index/toc/000000" subtoc="conference/toc/000000" key="conference.index">
+	<section>
+		<![CDATA[<p>The Conference Manager's role is to manage conference in three main strands: (1) Setting up a conference website by {help_topic key="conference.generalManagement.websiteManagement" text="Website Management"} and establishing a scheduled instance of the conference by {help_topic key="conference.generalManagement.scheduledConferences" text="Scheduled Conferences"}; see {help_topic key="conference.generalManagement.index" text="General Management"}. (2) Building up that scheduled conference in all aspects started from {help_topic key="conference.currentConferences.setup" text="Setup"}; see {help_topic key="conference.currentConferences.index" text="Current Conferences"}. (3) Administering users in a variety of roles for running the conference; see {help_topic key="conference.users.index" text="Users"} and {help_topic key="conference.roles.index" text="Roles"}.</p>]]>	
+	</section>
+</topic>
+
