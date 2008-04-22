@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000001.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Frequently Asked Questions 
+  *
+  * $Id$
+  -->
+
+<topic id="intro/topic/000001" locale="en_US" title="Frequently Asked Questions" toc="intro/toc/000000" key="intro.faq">
+	<section>
+		<![CDATA[
+<ol>
+	<li><a href="#section1">How do I start a conference with OCS?</a></li>
+	<li><a href="#section2">Where can I find technical support, pose bugs, and suggest improvements in using OCS?</a></li>
+	<li><a href="#section3">How would I go about translating OCS in another language?</a></li>
+	<li><a href="#section4">How can I get word out on the web about my conference proceedings?</a></li>
+	<li><a href="#section5">How can the conference present a record the history of who served on its editorial team?</a></li>
+	<li><a href="#section6">How can I let readers sign up as reviewers for the conference?</a></li>
+	<li><a href="#section7">How can I find additional reviewers for a submission to the conference beyond the current list of available reviewers?</a></li>
+	<li><a href="#section8">What are the different ways in which a conference proceedings might be able to publish in an open access format, making the proceedings' contents free to readers?</a></li>
+</ol>
+		]]>	
+	</section>
+	<section title="1. How do I start a conference with OCS?">
+		<![CDATA[
+<ol type="a">
+	<li><a href="http://pkp.sfu.ca/ocs_download" target="_blank">Download</a> OCS and install the software, following its installation script, on a web server that meets the software's requirements.</li>
+	<li>Use the administration username and password generated in the installation of OCS to log in.</li>
+	<li>Set up a conference web site through the six steps by Website Management under General Management.</li>
+	<li>Create a new conference by Hosted Conferences under General Management.</li>
+	<li>The Site Administrator will automatically be enrolled as a Conference Manager for the new conference, but if necessary, create a new user (or users) in the role of Conference Manager.</li>
+	<li>The Conference Manager then goes into Setup under Current Conferences and works through the three steps, the result of which will be a web site ready to receive submissions, manage the editorial process and publish the conference papers online.</li>
+	<li>Consult <a href="http://pkp.sfu.ca/files/OCSinanHour.pdf" target="_blank">OCS in an Hour </a> for more information on getting started with OCS.</li>
+</ol>
+		]]>
+	</section>
+	<section title="2. Where can I find technical support, pose bugs, and suggest improvements in using OCS?">
+		<![CDATA[
+<p>The Public Knowledge Project operates a <a href="http://pkp.sfu.ca/support/forum/" target="_blank">Support Forum</a> with well over a thousand exchanges where answers can be searched for and questions can be posed. For example, error messages can be searched, leading to proposed solutions for known issues. Failing that, users can send queries to <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>. Bug reports should be submitted through PKP's <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">Bugzilla</a>.</p>
+		]]>
+	</section>
+	<section title="3. How would I go about translating OCS in another language?">
+		<![CDATA[
+<p>Instructions are provided in the docs/README file which is included in the OCS download. Additional information on common translation issues can also be found in the <a href="http://pkp.sfu.ca/ocs-languages" target="_blank">OCS Languages</a>, <a href="http://pkp.sfu.ca/ocs-translating" target="_blank">Translating OCS</a>, <a href="http://pkp.sfu.ca/support/forum/" target="_blank">PKP Support Forum</a>.</p>
+		]]>
+	</section>
+	<section title="4. How can I get word out on the web about my conference proceedings?">
+		<![CDATA[
+<p>Your conference proceedings will start showing up in Google and the other major search engines, but you can take other steps as well. Be sure to register the conference with the PKP Harvester in Step 6 - Conference Indexing under Website Management, which will lead to your conference being indexed in Open Archives Initiative indexes, including the <a href="http://pkp.sfu.ca/harvester/" target="_blank">PKP Harvester</a> and <a href="http://oaister.umdl.umich.edu/o/oaister/" target="_blank">OAIster</a>. If your conference proceedings is open access, speak to your university librarian about how your proceedings can be listed among the library's electronic proceedings and how you can contact a number of other research libraries through a serials librarian listserv. See whether you can use the web site or listserv of the relevant professional associations to announce a "call for papers" or the launch of the conference. </p>
+		]]>
+	</section>
+	<section title="5. How can the conference present a record of the history of who served on its editorial team?">
+		<![CDATA[
+<p>The Conference Manager can enter this information by means of Organizing Team under Current Conferences. Alternatively, in step 1.7 under Website Management, the Conference Manager can create a "History of the Editorial Team" page as a new item in About the Conference. On such a page, you can record the name, editorial title and years served for members of the editorial team.</p>
+		]]>
+	</section>
+	<section title="6. How can I let readers sign up as reviewers for the conference?">
+		<![CDATA[
+<p>On Log In page, those who haven't registered are encouraged to create an account with a scheduled conference. on Account page one may create account as Reviewers, as well as Readers and/or Authors. The Reviewers will then appear among the list the Track Director can select and invite to review submissions. In step 2.3 under Website Management, the Conference Manager can add a note to "For Readers" about the conference's interest in having readers serve as Reviewers for the conference. By the same token, the conference can encourage users to enroll as Readers for purposes of notification and to be able to identify how many regular readers there are.</p>
+		]]>
+	</section>
+	<section title="7. How can I find additional reviewers for a submission to the conference beyond the current list of available reviewers?">
+		<![CDATA[
+<p>There are a number of techniques to use. Once a potential reviewer is identified by name, then their email and affiliation can be identified using a further search on the name.</p>
+<ol type="a">
+	<li>Use the bibliography of the paper to be reviewed to identify suitable people, and then use their full name in Google to find their institution and then their email address.</li>
+	<li>Use Boolean searches in Google based on the author's keywords (e.g., postcolonialism + literature + "South Africa") to identify related online materials and people working in the same area.</li>
+	<li>Based on how the author has identified the subject of the paper (see Metadata in the submission's Summary), send out queries to colleagues for the names of colleagues with expertise in the identified areas.</li>
+	<li>Visit other online proceedings in this field to identify authors who could serve as reviewers for a specific paper in need of a reviewer.</li>
+</ol>
+		]]>
+	</section>
+	<section title="8. What are the different ways in which a conference proceedings might be able to publish in an open access format, making the proceedings' contents free to readers?">
+		<![CDATA[
+<p>You might consult John Willinsky's <a href="http://www.jpgmonline.com/article.asp?issn=0022-3859;year=2003;volume=49;issue=3;spage=263;epage=267;aulast=Willinsky;type=0" target="_blank">"The Nine Flavours of Open Access Scholarly Publishing"</a> in the Journal of Postgraduate Medicine. As well, the Soros Foundation has prepared a <a href="http://www.soros.org/openaccess/scholarly_guide.shtml" target="_blank">Guide to Open Access Publishing and Scholarly Societies</a> which is "a guide meant to help scholarly societies &mdash; and small publishers &mdash; assess the options available to them for the future of their journal publishing programmes." <a href="http://www.arl.org/sparc/" target="_blank">SPARC</a>, the Scholarly Publishing and Academic Resources Coalition, also provides a number of resources related to open access publishing.</p>
+		]]>
+	</section>
+</topic>

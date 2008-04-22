@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000003.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Reviewer's Role
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000003" locale="en_US" title="Reviewer's Role" toc="editorial/toc/000000" subtoc="editorial/toc/000003" key="editorial.reviewersRole">
+	<section>
+		<![CDATA[<p>By logging in the conference website or by one-click review access, the Reviewer can provide comments and recommendation for or against the submission as references for the Director Decision. Whether the Reviewer is required and the number of Reviewers is required for a conference track are detailed in Scheduled Conference Setup Step 3.1. The specific judgment criteria and reviewing instructions the Reviewer follows are described in Scheduled Conference Setup Step 3.2. </p>]]>	
+	</section>
+</topic>

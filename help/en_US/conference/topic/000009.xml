@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000009.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Reading Tools
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000009" locale="en_US" title="Reading Tools" toc="conference/toc/000001" subtoc="conference/toc/000009" key="conference.generalManagement.readingTools">
+	<section>
+		<![CDATA[<p>Reading tools are turned off by default, but can be activated as follows:<br />
+		Click on Reading Tools under General Management on Conference Site Management page; on Reading Tools page, select Reading Tool Settings; on Reading Tool Settings page, check "Enable Reading Tools for Designated Tracks of Conference", choose Related Items Field from the dropdown menu, and choose any Optional Tools as desired. </p>
+		<p>Reading Tools engage readers in the online reading environment in all aspects: not only enable the readers to access the abstract and supplementary files of conference papers, but also facilitate their use by providing bibliographic detail, indexing metadata, and printer-friendly version, and by supporting looking up a word online by double-clicking it, and finding references that cited this paper; what's more, strengthen the communication with authors by learning author's biography and by contacting the author, share understanding with other readers known or unknown either by emailing colleague or by posting comments. Reading tools help to maintain an interactive online reading environment with texts and people involved. </p>
+		<p>Once activated, a set of reading tools will appear in a frame beside published items in the tracks of the conference that have been designated for indexing. Conference Manager is able to edit or delete existing resources and add new ones as well. See {help_topic key="user.readingTools" text="Reading Tools"} under Conference Web Site.</p>]]>
+	</section>
+</topic>

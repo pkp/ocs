@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000031.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Roles - Track Directors 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000031" locale="en_US" title="Track Directors" toc="conference/toc/000004" key="conference.roles.trackDirectors">
+	<section>
+		<![CDATA[<p>Assigned by the Director, the Track Directors are responsible for guiding the submissions in their track through the reviewing process, during which the Track Directors have more operational task to do and have more direct contact with Reviewers and Authors. </p>
+		<p>For more information, see {help_topic key="editorial.trackDirectorsRole" text="Track Director's Role"}.</p>]]>	
+	</section>
+</topic>

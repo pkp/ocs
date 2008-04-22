@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000042.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Reading Tools - Versions
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000042" locale="en_US" title="Versions" toc="conference/toc/000009" key="conference.generalManagement.readingTools.versions">
+	<section>
+		<![CDATA[
+            <p>By clicking Versions link under Configuration, what shown on Versions page is a list of Related Items that can be added, deleted, or edited, and also can be restored to defaults. </p>
+            <p><i>Validate Reading Tools</i>. This feature will check the validity of the search URLs that are used with each database to find items that are relevant (by using the author's indexing terms). If the URL is invalid the Conference Manager can fix the settings by finding the new URL, seeking help from someone else, or deleting the database from the set of Reading Tools. As this feature runs through each database, it takes time to complete and will result in a statement for each of the databases attesting to its validity or the source of problem.</p>
+		<p><i>Version Metadata</i>. The metadata for each version provides the title, a key, a brief description, etc., about that field or discipline to be edited. </p>
+		<p><i>Version Contexts</i>. Each version consists of various groupings, or contexts, of databases (e.g., Author's Work, Look up Terms, Related Studies, etc.) with each context in turn consisting of a number of relevant search databases. For further information, see {help_topic key="conference.generalManagement.readingTools.contexts" text="Contexts"}.</p>
+		<p><i>Export Data</i>. If the Conference Manager develops additional reading tools, these can be exported to the Public Knowledge Project for use by other conferences in related fields.</p>
+            ]]>
+	</section>
+</topic>

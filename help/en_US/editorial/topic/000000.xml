@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process Index 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000000" locale="en_US" title="Editorial Process" toc="index/toc/000000" subtoc="editorial/toc/000000" key="editorial.index">
+	<section>
+		<![CDATA[<p>The Editorial Process for a conference submission consists of submission, review, and presentation, and perhaps archive. Firstly, a submission is assigned for review, typically a blind peer review, for or against the submission, followed by the director decision to accept or decline the submission. If accepted, the submission may be moved to layout. Then the submission is scheduled for presentation and the abstracts and/or papers are posted on the conference website. Conference Manager, Director, Track Director, Reviewer, and Author are involved in different phases of Editorial Process to conduct respective tasks. What tasks to conduct depends on the submission process set in Scheduled Conference Setup 2.1. </p>]]>	
+	</section>
+</topic>

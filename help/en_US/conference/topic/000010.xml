@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000010.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Files Browser
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000010" locale="en_US" title="Files Browser" toc="conference/toc/000001" key="conference.generalManagement.filesBrowser">
+	<section>
+		<![CDATA[<p>Files Browser allows to create new directories and to upload files directly, while the files uploaded through submission management are ready to be viewed and manipulated, with their different versions produced in different phases. Files can be viewed, downloaded, and deleted as if interacting with a local file system. </p>
+		<p>Note that this is intended as an administrative facility only and will generally not be needed in the day-to-day management of the conference. Submission information is maintained as a combination of files and database records; deleting submission files with the Files Browser will not delete the associated database records.</p>]]>
+	</section>
+</topic>

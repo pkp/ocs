@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000015.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Reviewer's Role - Review
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000015" locale="en_US" title="Review" toc="editorial/toc/000003" key="editorial.reviewersRole.review">
+	<section>
+		<![CDATA[<p>The Review process is divided into five steps, intended to lead the Reviewer through the Review process.</p>
+		<p><i>Step 1</i><br />First, the Reviewer has to inform the Track Director whether he/she will undertake the review. The decision should be made after reviewing the submission's metadata and abstract and perhaps looking at the submission, by clicking on the file name in Step 2 (depending on the conference's policies, the file may not be available prior to the Reviewer agreeing to review it). Due date under Review Schedule might also be a factor influencing the Reviewer's decision. Once the Reviewer responses, it is recorded under Response of Review Schedule.  </p>
+		<p><i>If unable to do the review</i>. The Reviewer who is unable to do the review clicks on the email icon by "Unable to do the review", which leads to a prepared email to the Track Director, which the Reviewer can modify to indicate, if they wish, why they are unable to do the review (e.g., timing, conflict of interest, lack of expertise, etc.).</p>
+		<p><i>If able to do the review</i>. The Reviewer who is able to do the review clicks on the email icon by "Will do the review", which leads to a prepared email to the Track Director, and which will indicate to Track Director and Author that the review is underway.</p>
+		<p><i>Step 2</i><br />The Reviewer can review the submitted files uploaded by the Author, an abstract or a full paper, or both, or supplementary files, which the Reviewer can download from the conference website to the Reviewer's computer by clicking on the submission manuscript, and supplementary files (if applicable). The submissions can be opened or saved to the computer, and can be printed out or read on the screen. </p>
+		<p><i>Step 3</i><br />The Reviewer clicks on the Review icon and is presented with two text boxes where the Review can be either typed or pasted: one for both Director and Author, and the other for the Director only. The Reviewer may enter or paste reviews into these boxes and press the "Save" button at the bottom of the form to return and make changes later. The Reviewer may return to make any changes until a Recommendation is chosen, indicating the Review process is completed.</p>
+		<p><i>Step 4</i><br />The Reviewer also has the option, in addition to entering a Review, of uploading a file for the reference to the Track Director and/or the Author. The file may be a Reviewer-annotated version of the submission or some relevant data or other materials that will assist Track Director and/or Author. It will be at the Track Director's discretion whether the file should be shown to the Author.</p>
+		<p><i>Step 5</i><br />The Reviewer must select a Recommendation for the submission from the dropdown menu: Accept Submission, Revisions Required, Submit Elsewhere, Decline Submission, See Comments. When the Reviewer selects "Submit Review to Director," it leads to a prepared email to the Track Director, as well as making visible to the Track Director the Recommendation, the saved Review (which are now locked) and any uploaded files. The email can be edited by the Reviewer before sending. Once submitted, it is recorded under Review Submitted of Review Schedule. </p>]]>	
+	</section>
+</topic>

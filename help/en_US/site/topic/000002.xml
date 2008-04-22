@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000002.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Site Administration - Site Management 
+  *
+  * $Id$
+  -->
+
+<topic id="site/topic/000002" locale="en_US" title="Site Management" toc="site/toc/000000" key="site.siteManagement">
+	<section>
+		<![CDATA[<p>OCS is designed to be a multiple conference management system, and the Site Administrator is responsible for configuring site-level settings and creating new conferences to be hosted within a single site. Conference sites are entirely independent, with the exception of user accounts; while a user may participate in any combination of roles and conferences, the same email address and username will refer to the same user regardless of conference.</p>]]>
+	</section>
+	<section title="Site Settings">
+		<![CDATA[<p>Basic information is entered by the Site Administrator that is applicable to all conferences hosted by the site, including a site title text/image, site style sheet, an introductory statement and a description of the site, name and email of principal contact, a minimum password length for registered users, and indexing registration.</p>
+		<p><em>Conference Redirect.</em> Once a hosted conference is set up, it will appear in the dropdown menu to be selected for the redirect field. This setting can be used to ensure that requests to the main site are redirected to a particular conference web site. Typically this setting is used when a site is hosting a single conference. </p>]]>
+	</section>
+	<section title="Hosted Conferences">
+		<![CDATA[<p>As OCS allows any number of individual and distinct conference web sites to be generated; conferences ocurring once or more can be easily established and managed. A new conference can be created by entering information about conference title and description, and a path name to indicate the conference unique URL for accessing. Be sure to check "Enable" to make this conference appear publicly on the site. Once created, this conference will be added to the list of the conferences hosted by the site. <p>
+	             <p>Data can also be imported from OCS 1 to OCS 2 by filling out conference path, ocs 1 path, and selecting importing options, though only certain items can be imported.</p>]]>
+	</section>
+	<section title="Languages">
+		<![CDATA[<p>OCS is designed to be a multilingual system, supporting a wide variety of languages for a site and its hosted conferences. To make more languages for use, the Site Administrator can specify the primary locale and install additional locales as they become available.</p>
+		<p>English, the primary locale, comes as the default language for both the site and the hosted conferences. Additional locales, German, Spanish, French, Italian, and Portuguese, can be selected for installation. Once a new locale is selected to be installed under Install New Locales, it will appear under Installed Locales, and if selected and saved as supported locales under Language Settings, it will appear in language toggle menu for use.</p>]]>
+	</section>
+	<section title="Authentication Sources">
+		<![CDATA[<p>By default, OCS authenticates users against its internal database. It is possible, however, to use other methods of authentication, such as LDAP. Additional authentication sources are implemented as OCS plugins; refer to the documentation shipped with each plugin for details.</p>]]>
+	</section>
+</topic>

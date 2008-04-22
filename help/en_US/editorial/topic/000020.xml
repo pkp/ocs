@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000020.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Submissions - Presentations 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000020" locale="en_US" title="Presentations" toc="editorial/toc/000005" key="editorial.directorsRole.submissions.presentations">
+	<section>
+		<![CDATA[<p>Clicking on Presentations under Submissions on Director Home page, the Director will go to Presentations page. The status is shown as posted for all submissions. </p>]]>	
+	</section>
+</topic>

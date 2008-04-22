@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000012.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Track Director's Role - Presentations 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000012" locale="en_US" title="Presentations" toc="editorial/toc/000002" subtoc="editorial/toc/000012" key="editorial.trackDirectorsRole.presentations">
+	<section>
+		<![CDATA[<p>By clicking on "Complete" button on Review page, the accepted submissions are added to the Presentations queue. Those in Presentations are to be scheduled by the Conference Manager with Scheduler. For more information, see {help_topic key="conference.currentConferences.scheduler" text="Scheduler"}. The scheduled presentations can be viewed by Conference Schedule under Conference Information on Conference Home page. </p>
+                     <p>The presentations (i.e., abstracts, papers in pdf and/or html format) are posted on conference website, which can be accessed by Presentations and Authors under Conference Information on Conference Home page. </p>
+		]]>	
+	</section>
+</topic>

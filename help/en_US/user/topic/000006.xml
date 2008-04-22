@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000006.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * User Interface - Search and Browse
+  *
+  * $Id$
+  -->
+
+<topic id="user/topic/000006" locale="en_US" title="Search and Browse" toc="user/toc/000000" key="user.searchAndBrowse">
+	<section>
+		<![CDATA[<p>In addition to the search function on the top navigation bar, the conference's contents can be searched by authors, title, abstract, index terms, or full text on the right naivgation bar. The full text of the contents can be searched both in HTML and PDF file formats. Alternatively, using the Browse link in the right sidebar, readers can browse the contents of the site grouped by conference, by author, or by title, in alphabetical order. Other conferences published through Open Conference Systems may also be shown while browsing.</p>]]>
+	</section>
+</topic>

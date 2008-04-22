@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000018.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Submissions - Unassigned 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000018" locale="en_US" title="Unassigned" toc="editorial/toc/000005" key="editorial.directorsRole.submissions.unassigned">
+	<section>
+		<![CDATA[<p>Each submission to the conference first enters the Unassigned queue. The Director clicks on Unassigned under Submissions on Director Home page, then on the submission title on Unassigned page. This leads the Director to the Summary page where a Track Director, another Director, or himself/herself can be assigned. Clicking on Add Track Director displays a list of Track Directors available, with their names, conference tracks, and the number of completed and active assignments. Click on "Assign" under Action in the entry of a Track Director, and a prepared email will be generated to that Track Director. When a submission is assigned to a Track Director, it will move from the Unassigned queue to In Review queue.</p>
+         <p>If changes are made to the track, press "Record" button to record the decision. Submission metadata filled in by the author can also be edited and saved, shown as the last modified one. </p>]]>	
+	</section>
+</topic>
