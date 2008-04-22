@@ -9,5 +9,5 @@
  * $Id$
  *}
 <div class="block" id="sidebarDevelopedBy">
-	<a class="blockTitle" href="http://pkp.sfu.ca/ojs/" id="developedBy">{translate key="common.openConferenceSystems"}</a>
+	<a class="blockTitle" href="http://pkp.sfu.ca/ocs/" id="developedBy">{translate key="common.openConferenceSystems"}</a>
 </div>	
