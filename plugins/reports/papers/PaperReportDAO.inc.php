@@ -23,7 +23,7 @@ class PaperReportDAO extends DAO {
 	 * @param $schedConfId int
 	 * @return array
 	 */
-	function &getPaperReport($conferenceId, $schedConfId) {
+	function getPaperReport($conferenceId, $schedConfId) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 

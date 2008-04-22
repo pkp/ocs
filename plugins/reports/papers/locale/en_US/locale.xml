@@ -15,4 +15,5 @@
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.reports.papers.displayName">Papers Report</message>
 	<message key="plugins.reports.papers.description">This plugin implements a CSV report containing a list of papers and their info.</message>
+	<message key="plugins.reports.papers.nodecision">No Decision</message>
 </locale>

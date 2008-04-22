@@ -76,7 +76,8 @@ class PaperReportPlugin extends ReportPlugin {
 			SUBMISSION_DIRECTOR_DECISION_INVITE => Locale::translate('director.paper.decision.invitePresentation'),
 			SUBMISSION_DIRECTOR_DECISION_ACCEPT => Locale::translate('director.paper.decision.accept'),
 			SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS => Locale::translate('director.paper.decision.pendingRevisions'),
-			SUBMISSION_DIRECTOR_DECISION_DECLINE => Locale::translate('director.paper.decision.decline')
+			SUBMISSION_DIRECTOR_DECISION_DECLINE => Locale::translate('director.paper.decision.decline'),
+			null => Locale::translate('plugins.reports.papers.nodecision')
 		);
 
 		$columns = array(
@@ -106,7 +107,11 @@ class PaperReportPlugin extends ReportPlugin {
 			foreach ($columns as $index => $junk) {
 				if ( $index == "paper_id" ){
 					$columns[$index] = $row[$index];
-					$columns['status'] = $decisionMessages[$decisions[$row[$index]]];
+					if (isset($decisions[$row[$index]])) {
+						$columns['status'] = $decisionMessages[$decisions[$row[$index]]];
+					} else {
+						$columns['status'] = $decisionMessages[NULL];
+					}
 				} else if ($index == "status") {
 					continue;
 				} else {
