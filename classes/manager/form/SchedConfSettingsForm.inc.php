@@ -175,7 +175,7 @@ class SchedConfSettingsForm extends Form {
 		$schedConf->updateSetting('title', $this->getData('title'), 'string', true);
 		$schedConf->updateSetting('acronym', $this->getData('acronym'), 'string', true);
 
-		HookRegistry::call('SchedConfSettingsForm::execute', array(&$this, &$conference, &$schedConf, &$section));
+		HookRegistry::call('SchedConfSettingsForm::execute', array(&$this, &$conference, &$schedConf, &$track));
 	}
 }
 
