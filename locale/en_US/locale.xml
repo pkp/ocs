@@ -976,6 +976,9 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="plugins.categories.citationFormats">Citation Format Plugins</message>
 	<message key="plugins.categories.citationFormats.description">Citation format plugins provide users with various formats in which to access paper citations.</message>
  
+	<message key="plugins.categories.reports">Report Plugins</message>
+	<message key="plugins.categories.reports.description">Report Plugins are used to implement various types of reports and data extracts for Conference Managers.</message>
+ 
 	<message key="plugins.categories.blocks">Block Plugins</message>
 	<message key="plugins.categories.blocks.description">Block Plugins are pluggable UI components, such as the various sidebar tools.</message>
  
