@@ -305,7 +305,7 @@ class PresenterAction extends Action {
 		if ($presenterSubmission->getSubmissionProgress() != 0) return true;
 
 		// Published submissions can never be edited.
-		if ($presenterSubmission->getStatus() != STATUS_QUEUED) return false;
+		if ($presenterSubmission->getStatus() != SUBMISSION_STATUS_QUEUED) return false;
 
 		// If the last recorded editorial decision on the current stage
 		// was "Revisions Required", the author may edit the submission.
