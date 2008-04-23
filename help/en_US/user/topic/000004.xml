@@ -12,7 +12,7 @@
   * $Id$
   -->
 
-<topic id="user/topic/000004" locale="en_US" title="Register and Profile" toc="user/toc/000000" key="user.registerAndProfile">
+<topic id="user/topic/000004" locale="en_US" title="Register and Profile" toc="user/toc/000000" key="user.registerProfile">
 	<section>
 		<![CDATA[<p>The conference uses a registration system for all users involved in the editorial and publishing process. The conference's Privacy Policy applies to all registered users. Each registered user has a Profile, which can be edited or added after the user has logged in to the conference. The link for the Profile is found in the right-hand margin under User and on the User Home page.</p>
 		<p>For all users, there is an email update option, which results in the user being notified by email of papers posted for conferences. For conferences operating in more than one language, Reviewers can indicate in their Profile the working languages in which they are comfortable reviewing submissions.</p>]]>	

@@ -12,7 +12,7 @@
   * $Id$
   -->
 
-<topic id="user/topic/000005" locale="en_US" title="Current and Archives" toc="user/toc/000000" key="user.currentAndArchives">
+<topic id="user/topic/000005" locale="en_US" title="Current and Archives" toc="user/toc/000000" key="user.currentArchives">
 	<section>
 		<![CDATA[<p>Depending on the time set in Conference Timeline for conference web site, those that are within the time span go live and appear as Current Conferences, while those beyond the time move to conference Archives. </p>]]>	
 	</section>
