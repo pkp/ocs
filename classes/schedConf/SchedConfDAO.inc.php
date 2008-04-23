@@ -264,7 +264,7 @@ class SchedConfDAO extends DAO {
 			WHERE c.enabled = 1'
 				. ($conferenceId?' AND i.conference_id = ?':'')
 			. ' ORDER BY c.seq, i.seq',
-			$conferenceId===null?-1:$conferenceId);
+			$conferenceId===null?false:$conferenceId);
 
 		$resultFactory = &new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
 		return $resultFactory;
