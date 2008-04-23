@@ -12,7 +12,7 @@
   * $Id$
   -->
 
-<topic id="editorial/topic/000008" locale="en_US" title="History Page" toc="editorial/toc/000001" subtoc="editorial/toc/000008" key="editorial.directorsRole.historyPage">
+<topic id="editorial/topic/000008" locale="en_US" title="History Page" toc="editorial/toc/000001" key="editorial.directorsRole.historyPage">
 	<section>
 		<![CDATA[<p>History Page records recent entries of event log, email log, and submission notes about the submission. </p>]]>	
 	</section>

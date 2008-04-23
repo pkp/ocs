@@ -58,7 +58,8 @@ class SchedConfSettingsDAO extends SettingsDAO {
 			$schedConfDao = &DAORegistry::getDao('SchedConfDAO');
 			$schedConf = &$schedConfDao->getSchedConf($schedConfId);
 			$conference = &$schedConf->getConference();
-			return $conference->getSetting($name, $locale);
+			$returner = $conference->getSetting($name, $locale);
+			return $returner;
 		}
 
 		unset($returner);
