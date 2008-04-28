@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd"[]>
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the fr_CA locale.
+  *
+ -->
+<locale name="fr_CA" full_name="Français (Canada)">
+  <message key="plugins.paymethod.manual.displayName">Paiement manuel</message>
+  <message key="plugins.paymethod.manual.description">Le paiement doit être soumis ailleurs qu'à travers d'OCS et exige la validation d'un responsable de conférence pour activer l'inscription. Le contenu de la zone "informations sur l'inscription" dans la rubrique "Gestion des politiques d'inscription" sera montré aux inscrits et devrait fournir des informations sur comment procéder pour effectuer une inscription manuelle.</message>
+  <message key="plugins.paymethod.manual">Paiement de l'inscription</message>
+</locale>

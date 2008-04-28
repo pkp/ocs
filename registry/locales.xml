@@ -27,7 +27,8 @@
 	<locale key="de_DE" name="Deutsch"/>
 	<locale key="es_ES" name="España Castellano"/>
 	<locale key="en_US" name="English"/>
-	<locale key="fr_FR" name="Français"/>
+	<locale key="fr_CA" name="Français (Canada)"/>
+	<locale key="fr_FR" name="Français (France)"/>
 	<locale key="it_IT" name="Italiano"/>
 	<locale key="pt_BR" name="Português (Brasil)"/>
 </locales>
