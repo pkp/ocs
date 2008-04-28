@@ -175,26 +175,18 @@ class SchedConfHandler extends Handler {
 				$templateMgr->assign('backLinkLabel', 'common.back');
 				$templateMgr->assign('backLink', Request::url(null, null, 'index'));
 				return $templateMgr->display('common/message.tpl');
-			} else {
-				// Otherwise, allow them to try to pay again.
-				$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
-				$registrationType =& $registrationTypeDao->getRegistrationType($registration->getTypeId());
-				$queuedPayment =& $paymentManager->createQueuedPayment($schedConf->getConferenceId(), $schedConf->getSchedConfId(), QUEUED_PAYMENT_TYPE_REGISTRATION, $user->getUserId(), $registrationId, $registrationType->getCost(), $registrationType->getCurrencyCodeAlpha());
-				$queuedPaymentId = $paymentManager->queuePayment($queuedPayment, time() + (60 * 60 * 24 * 30)); // 30 days to complete
-
-				$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
 			}
-		} else {
-			import('registration.form.UserRegistrationForm');
-
-			$form =& new UserRegistrationForm();
-			if ($form->isLocaleResubmit()) {
-				$form->readInputData();
-			} else {
-				$form->initData();
-			}
-			$form->display();
 		}
+
+		import('registration.form.UserRegistrationForm');
+
+		$form =& new UserRegistrationForm();
+		if ($form->isLocaleResubmit()) {
+			$form->readInputData();
+		} else {
+			$form->initData();
+		}
+		$form->display();
 	}
 
 	/**
@@ -209,10 +201,17 @@ class SchedConfHandler extends Handler {
 		$user =& Request::getUser();
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getUserId(), $schedConf->getSchedConfId()))) {
-			// User is already registered. Redirect to a message explaining.
-			Request::redirect(null, null, null, 'registration');
+			// This user has already registered.
+			$registration =& $registrationDao->getRegistration($registrationId);
+			if ( !$registration || $registration->getDatePaid() ) {
+				// And they have already paid. Redirect to a message explaining.
+				Request::redirect(null, null, null, 'registration');
+			} else {
+				// Allow them to resubmit the form to change type or pay again.
+				$registrationDao->deleteRegistrationById($registrationId);
+			}			
 		}
-
+		
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
