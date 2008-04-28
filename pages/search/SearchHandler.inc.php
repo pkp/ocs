@@ -174,6 +174,7 @@ class SearchHandler extends Handler {
 		$schedConfPaperPermissions = array();
 		foreach($allPaperIds as $paperId) {
 			$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId);
+			if (!$publishedPaper) continue; // Bonehead check (e.g. cached IDs)
 			$schedConfId = $publishedPaper->getSchedConfId();
 
 			if(!isset($schedConfAbstractPermissions[$schedConfId])) {
