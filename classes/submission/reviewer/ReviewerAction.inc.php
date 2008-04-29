@@ -85,7 +85,7 @@ class ReviewerAction extends Action {
 			} else {
 				if (!Request::getUserVar('continued')) {
 					$reviewingTrackDirectors = $email->toAssignedTrackDirectors($reviewerSubmission->getPaperId());
-					if (!empty($reviewingTrackDirectors)) $assignedDirectors = $email->ccAssignedDirectors($reviewerSubmission->getPaperId());
+					if (!empty($reviewingTrackDirectors)) $assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getPaperId());
 					else $assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getPaperId());
 					if (empty($assignedDirectors) && empty($reviewingTrackDirectors)) {
 						$schedConf = &Request::getSchedConf();
