@@ -167,7 +167,7 @@ class ReviewerAction extends Action {
 				PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
 			} else {
 				if (!Request::getUserVar('continued')) {
-					$assignedDirectors = $email->ccAssignedDirectors($reviewerSubmission->getPaperId());
+					$assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getPaperId());
 					$reviewingTrackDirectors = $email->toAssignedTrackDirectors($reviewerSubmission->getPaperId());
 					if (empty($assignedDirectors) && empty($reviewingTrackDirectors)) {
 						$schedConf = &Request::getSchedConf();
