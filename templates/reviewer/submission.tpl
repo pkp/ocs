@@ -70,6 +70,7 @@ function confirmSubmissionCheck() {
 			{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
 			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getPaperTitle()|strip_tags paperId=$paperId}
 			{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
+			({if $editAssignment->getIsDirector()}{translate key="user.role.director"}{else}{translate key="user.role.trackDirector"}{/if})
 			<br/>
 {/foreach}
 {if $notFirstEditAssignment}
