@@ -55,7 +55,7 @@
 						</ul>
 					</li>
 				</li>
-				{foreach from=$currentConference->getLoaclizedSetting('navItems') item=navItem}
+				{foreach from=$currentConference->getLocalizedSetting('navItems') item=navItem}
 					<li><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{url page=""}{$navItem.url|escape}{/if}">{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name|escape}{/if}</a></li>
 				{/foreach}
 			</ul>
