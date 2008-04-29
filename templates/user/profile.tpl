@@ -107,7 +107,7 @@
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-	<td class="value"><textarea name="biography" id="biography" rows="5" cols="40" class="textArea">{$biography|escape}</textarea></td>
+	<td class="value"><textarea name="biography[{$formLocale|escape}]" id="biography" rows="5" cols="40" class="textArea">{$biography[$formLocale]|escape}</textarea></td>
 </tr>
 
 {if $allowRegReader || $allowRegPresenter || $allowRegReviewer}
