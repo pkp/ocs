@@ -88,6 +88,9 @@ class TemplateManager extends Smarty {
 			$site = &Request::getSite();
 			$this->assign('siteTitle', $site->getSiteTitle());
 
+			$currentVersion = &DAORegistry::getDAO('VersionDAO')->getCurrentVersion();
+			$this->assign('currentVersionString', $currentVersion->getVersionString());
+
 			$siteStyleFilename = PublicFileManager::getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
 			if (file_exists($siteStyleFilename)) $this->addStyleSheet(Request::getBaseUrl() . '/' . $siteStyleFilename);
 
