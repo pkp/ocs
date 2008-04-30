@@ -454,13 +454,13 @@
 	<message key="schedConf.submission">Submission</message>
 	<message key="schedConf.submissions">Submissions</message>
 
-	<message key="schedConf.cfp.title">{$schedConfAbbrev} Call for Papers</message>
-	<message key="schedConf.overview.title">{$schedConfAbbrev} Overview</message>
-	<message key="schedConf.presentations.title">{$schedConfAbbrev} Presentations and Authors</message>
-	<message key="schedConf.schedule.title">{$schedConfAbbrev} Schedule</message>
-	<message key="schedConf.program.title">{$schedConfAbbrev} Program</message>
-	<message key="schedConf.accommodation.title">{$schedConfAbbrev} Accommodation</message>
-	<message key="schedConf.trackPolicies.title">{$schedConfAbbrev} Track Policies</message>
+	<message key="schedConf.cfp.title">Call for Papers</message>
+	<message key="schedConf.overview.title">Overview</message>
+	<message key="schedConf.presentations.title">Presentations and Authors</message>
+	<message key="schedConf.schedule.title">Schedule</message>
+	<message key="schedConf.program.title">Program</message>
+	<message key="schedConf.accommodation.title">Accommodation</message>
+	<message key="schedConf.trackPolicies.title">Track Policies</message>
 
 	<!-- Reader interface for scheduler -->
 	<message key="schedConf.scheduler.locations">Conference Locations</message>
