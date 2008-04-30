@@ -70,11 +70,13 @@ class ManagerAccommodationHandler extends ManagerHandler {
 				if (!$extension) break;
 				$uploadName = 'accommodation-' . $thisFileKey . '.' . $extension;
 				if ($fileManager->uploadSchedConfFile($schedConf->getSchedConfId(), 'accommodationFile', $uploadName)) {
+					$title = Request::getUserVar('accommodationFileTitle');
+					if ($title == '') $title = Locale::translate('common.file');
 					$value = array(
 						'name' => $oldName,
 						'uploadName' => $uploadName,
 						'dateUploaded' => Core::getCurrentDate(),
-						'title' => Request::getUserVar('accommodationFileTitle')
+						'title' => $title
 					);
 					$accommodationFiles[$settingsForm->getFormLocale()][$thisFileKey] =& $value;
 					$settingsForm->setData('accommodationFiles', $accommodationFiles);
