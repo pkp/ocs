@@ -8,8 +8,7 @@
  *
  * $Id$
  *}
-{translate|assign:"pageTitleTranslated" key="schedConf.schedule.title" schedConfAbbrev=$currentSchedConf->getLocalizedSetting('acronym')}
-{include file="common/header.tpl"}
+{translate|assign:"pageTitleTranslated" key="schedConf.schedule.title"}{include file="common/header.tpl"}
 
 {if !empty($buildingsAndRooms)}
 	{* Display navigation options at the top of the page if buildings and

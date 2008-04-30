@@ -8,8 +8,7 @@
  *
  * $Id$
  *}
-{translate|assign:"pageTitleTranslated" key="schedConf.cfp.title" schedConfAbbrev=$currentSchedConf->getLocalizedSetting('acronym')}
-{include file="common/header.tpl"}
+{translate|assign:"pageTitleTranslated" key="schedConf.cfp.title"}{include file="common/header.tpl"}
 
 <div>{$cfpMessage|nl2br}</div>
 
