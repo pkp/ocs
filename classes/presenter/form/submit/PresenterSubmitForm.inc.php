@@ -107,10 +107,8 @@ class PresenterSubmitForm extends Form {
 				if (!empty($copyAddress)) $mail->addBcc($copyAddress);
 			}
 
-			foreach ($trackDirectors as $trackDirectorEntry) {
-				$trackDirector =& $trackDirectorEntry['user'];
+			foreach ($trackDirectors as $trackDirector) {
 				$mail->addBcc($trackDirector->getEmail(), $trackDirector->getFullName());
-				unset($trackDirectorEntry);
 			}
 
 			$mail->assignParams(array(
@@ -138,10 +136,10 @@ class PresenterSubmitForm extends Form {
 
 		$trackDirectors =& $trackDirectorsDao->getDirectorsByTrackId($schedConf->getSchedConfId(), $trackId);
 
-		foreach ($trackDirectors as $trackDirectorEntry) {
+		foreach ($trackDirectors as $trackDirector) {
 			$editAssignment =& new EditAssignment();
 			$editAssignment->setPaperId($paper->getPaperId());
-			$editAssignment->setDirectorId($trackDirectorEntry['user']->getUserId());
+			$editAssignment->setDirectorId($trackDirector->getUserId());
 			$editAssignmentDao->insertEditAssignment($editAssignment);
 			unset($editAssignment);
 		}

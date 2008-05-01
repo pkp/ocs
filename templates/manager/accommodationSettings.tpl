@@ -40,7 +40,7 @@
 <tr valign="top">
 	<td class="label">{fieldLabel name="accommodationFile" key="common.file"}</td>
 	<td class="value">
-		{translate key="common.fileName"}: <a href="{$publicSchedConfFilesDir}/{$accommodationFile.uploadName}" class="file">{$accommodationFile.name|escape}</a> {$accommodationFile.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteAccommodationFile-{$formLocale|escape}-{$accommodationFileKey|escape}" value="{translate key="common.delete"}" class="button" />
+		{translate key="common.fileName"}: <a href="{$publicSchedConfFilesDir}/{$accommodationFile.uploadName}" target="_new" class="file">{$accommodationFile.name|escape}</a> {$accommodationFile.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteAccommodationFile-{$formLocale|escape}-{$accommodationFileKey|escape}" value="{translate key="common.delete"}" class="button" />
 	</td>
 </tr>
 {/foreach}{* accommodationFiles *}
