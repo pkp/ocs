@@ -124,15 +124,15 @@ class ConferenceSetupForm extends Form {
 	 * Deletes a conference image.
 	 * @param $settingName string setting key associated with the file
 	 */
-	function deleteImage($settingName) {
+	function deleteImage($settingName, $locale = null) {
 		$conference = &Request::getConference();
 		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
 		$setting = $settingsDao->getSetting($conference->getConferenceId(), $settingName);
 
 		import('file.PublicFileManager');
 		$fileManager = &new PublicFileManager();
-		if ($fileManager->removeConferenceFile($conference->getConferenceId(), $setting['uploadName'])) {
-			return $settingsDao->deleteSetting($conference->getConferenceId(), $settingName);
+		if ($fileManager->removeConferenceFile($conference->getConferenceId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
+			return $settingsDao->deleteSetting($conference->getConferenceId(), $settingName, $locale);
 		} else {
 			return false;
 		}
