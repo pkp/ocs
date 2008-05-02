@@ -95,7 +95,8 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 					'dateUploaded' => date("Y-m-d g:i:s")
 				);
 
-				return $settingsDao->updateSetting($conference->getConferenceId(), $settingName, $value, 'object');
+				$settingsDao->updateSetting($conference->getConferenceId(), $settingName, $value, 'object');
+				return true;
 			}
 		}
 		return false;
