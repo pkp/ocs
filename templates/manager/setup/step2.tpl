@@ -56,10 +56,10 @@
 	</tr>
 </table>
 
-{if $homepageImage}
-{translate key="common.fileName"}: {$homepageImage.name} {$homepageImage.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteHomepageImage" value="{translate key="common.delete"}" class="button" />
+{if $homepageImage[$formLocale]}
+{translate key="common.fileName"}: {$homepageImage[$formLocale].name} {$homepageImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteHomepageImage" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicConferenceFilesDir}/{$homepageImage.uploadName}" width="{$homepageImage.width}" height="{$homepageImage.height}" style="border: 0;" alt="" />
+<img src="{$publicConferenceFilesDir}/{$homepageImage[$formLocale].uploadName}" width="{$homepageImage[$formLocale].width}" height="{$homepageImage[$formLocale].height}" style="border: 0;" alt="" />
 {/if}
 
 <h4>{translate key="manager.setup.additionalContent.additionalContent"}</h4>

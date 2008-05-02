@@ -41,6 +41,7 @@ class SchedConfHandler extends Handler {
 		} 
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true)));
+		$templateMgr->assign('homepageImage', $conference->getLocalizedSetting('homepageImage'));
 		$templateMgr->assign('helpTopicId', 'user.currentAndArchives');
 		$templateMgr->display('schedConf/index.tpl');
 

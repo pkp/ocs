@@ -41,7 +41,7 @@
 <br />
 
 {if $homepageImage}
-<div align="center"><img src="{$publicFilesDir}/{$homepageImage.uploadName|escape}" width="{$homepageImage.width}" height="{$homepageImage.height}" style="border: 0;" alt="" /></div>
+<div align="center"><img src="{$publicConferenceFilesDir}/{$homepageImage.uploadName|escape}" width="{$homepageImage.width}" height="{$homepageImage.height}" style="border: 0;" alt="" /></div>
 {/if}
 
 <h3>{translate key="schedConf.contents"}</h3>
