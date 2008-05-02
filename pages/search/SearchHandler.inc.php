@@ -69,6 +69,7 @@ class SearchHandler extends Handler {
 			$middleName = Request::getUserVar('middleName');
 			$lastName = Request::getUserVar('lastName');
 			$affiliation = Request::getUserVar('affiliation');
+			$country = Request::getUserVar('country');
 
 			$schedConf =& Request::getSchedConf();
 			$publishedPapers = $presenterDao->getPublishedPapersForPresenter(
@@ -76,7 +77,8 @@ class SearchHandler extends Handler {
 				$firstName,
 				$middleName,
 				$lastName,
-				$affiliation
+				$affiliation,
+				$country
 			);
 			unset($schedConf);
 

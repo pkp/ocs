@@ -24,7 +24,7 @@
 		<h3>{$firstLetter|escape}</h3>
 	{/if}
 
-	<a href="{url op="presenters" path="view" firstName=$presenter->getFirstName() middleName=$presenter->getMiddleName() lastName=$presenter->getLastName() affiliation=$presenter->getAffiliation()}">
+	<a href="{url op="presenters" path="view" firstName=$presenter->getFirstName() middleName=$presenter->getMiddleName() lastName=$presenter->getLastName() affiliation=$presenter->getAffiliation() country=$presenter->getCountry()}">
 		{$presenter->getLastName(true)|escape},
 		{$presenter->getFirstName()|escape}{if $presenter->getMiddleName()} {$presenter->getMiddleName()|escape}{/if}{if $presenter->getAffiliation()}, {$presenter->getAffiliation()|escape}{/if}
 	</a>

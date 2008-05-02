@@ -66,17 +66,18 @@ class PresenterDAO extends DAO {
 
 	/**
 	 * Retrieve all published papers associated with presenters with
-	 * the given first name, middle name, last name, and affiliation.
+	 * the given first name, middle name, last name, affiliation, and country.
 	 * @param $schedConfId int (null if no restriction desired)
 	 * @param firstName string
 	 * @param middleName string
 	 * @param lastName string
 	 * @param affiliation string
+	 * @param country string
 	 */
-	function &getPublishedPapersForPresenter($schedConfId, $firstName, $middleName, $lastName, $affiliation) {
+	function &getPublishedPapersForPresenter($schedConfId, $firstName, $middleName, $lastName, $affiliation, $country) {
 		$publishedPapers = array();
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
-		$params = array($firstName, $middleName, $lastName, $affiliation);
+		$params = array($firstName, $middleName, $lastName, $affiliation, $country);
 		if ($schedConfId !== null) $params[] = $schedConfId;
 
 		$result = &$this->retrieve(
@@ -88,7 +89,8 @@ class PresenterDAO extends DAO {
 				a.status = ' . SUBMISSION_STATUS_PUBLISHED . ' AND
 				(aa.middle_name = ?' . (empty($middleName)?' OR aa.middle_name IS NULL':'') .  ') AND
 				aa.last_name = ? AND
-				(aa.affiliation = ?' . (empty($affiliation)?' OR aa.affiliation IS NULL':'') . ')' .
+				(aa.affiliation = ?' . (empty($affiliation)?' OR aa.affiliation IS NULL':'') . ') AND
+				(aa.country = ?' . (empty($country)?' OR aa.country IS NULL':'') . ')' .
 				($schedConfId!==null?(' AND a.sched_conf_id = ?'):''),
 			$params
 		);
