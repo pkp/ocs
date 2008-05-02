@@ -87,12 +87,12 @@ function checkSubmissionChecklist() {
 
 {/if}
 
-{if $currentSchedConf->getLocalizedSetting('copyrightNotice') != ''}
+{if $currentConference->getLocalizedSetting('copyrightNotice') != ''}
 <h3>{translate key="about.copyrightNotice"}</h3>
 
-<p>{$currentSchedConf->getLocalizedSetting('copyrightNotice')|nl2br}</p>
+<p>{$currentConference->getLocalizedSetting('copyrightNotice')|nl2br}</p>
 
-{if $currentSchedConf->getSetting('copyrightNoticeAgree')}
+{if $currentConference->getSetting('copyrightNoticeAgree')}
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="5%"><input type="checkbox" name="copyrightNoticeAgree" id="copyrightNoticeAgree" value="1"{if $paperId || $copyrightNoticeAgree} checked="checked"{/if} /></td>
