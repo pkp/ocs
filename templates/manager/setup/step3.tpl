@@ -124,7 +124,75 @@
 
 <div class="separator"></div>
 
-<h3>3.4 {translate key="manager.setup.layout.lists"}</h3>
+<h3>3.4 {translate key="manager.setup.layout.navigationBar"}</h3>
+
+<p>{translate key="manager.setup.layout.itemsDescription"}</p>
+
+<table width="100%" class="data">
+	{foreach name=navItems from=$navItems[$formLocale] key=navItemId item=navItem}
+		<tr valign="top">
+			<td width="20%" class="label">{fieldLabel name="navItems-$navItemId-name" key="manager.setup.layout.labelName"}</td>
+			<td width="80%" class="value">
+				<input type="text" name="navItems[{$formLocale|escape}][{$navItemId}][name]" id="navItems-{$navItemId}-name" value="{$navItem.name|escape}" size="30" maxlength="90" class="textField" /> <input type="submit" name="delNavItem[{$navItemId}]" value="{translate key="common.delete"}" class="button" />
+				<table width="100%">
+					<tr valign="top">
+						<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][{$navItemId}][isLiteral]" id="navItems-{$navItemId}-isLiteral" value="1"{if $navItem.isLiteral} checked="checked"{/if} /></td>
+						<td width="95%"><label for="navItems-{$navItemId}-isLiteral">{translate key="manager.setup.layout.navItemIsLiteral"}</label></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr valign="top">
+			<td width="20%" class="label">{fieldLabel name="navItems-$navItemId-url" key="common.url"}</td>
+			<td width="80%" class="value">
+				<input type="text" name="navItems[{$formLocale|escape}][{$navItemId}][url]" id="navItems-{$navItemId}-url" value="{$navItem.url|escape}" size="60" maxlength="255" class="textField" />
+				<table width="100%">
+					<tr valign="top">
+						<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][{$navItemId}][isAbsolute]" id="navItems-{$navItemId}-isAbsolute" value="1"{if $navItem.isAbsolute} checked="checked"{/if} /></td>
+						<td width="95%"><label for="navItems-{$navItemId}-isAbsolute">{translate key="manager.setup.layout.navItemIsAbsolute"}</label></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		{if !$smarty.foreach.navItems.last}
+			<tr valign="top">
+				<td colspan="2" class="separator">&nbsp;</td>
+			</tr>
+		{/if}
+	{foreachelse}
+		<tr valign="top">
+			<td width="20%" class="label">{fieldLabel name="navItems-0-name" key="manager.setup.layout.labelName"}</td>
+			<td width="80%" class="value">
+				<input type="text" name="navItems[{$formLocale|escape}][0][name]" id="navItems-0-name" size="30" maxlength="90" class="textField" />
+				<table width="100%">
+					<tr valign="top">
+						<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][0][isLiteral]" id="navItems-0-isLiteral" value="1" /></td>
+						<td width="95%"><label for="navItems-0-isLiteral">{translate key="manager.setup.layout.navItemIsLiteral"}</label></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr valign="top">
+			<td width="20%" class="label">{fieldLabel name="navItems-0-url" key="common.url"}</td>
+			<td width="80%" class="value">
+				<input type="text" name="navItems[{$formLocale|escape}][0][url]" id="navItems-0-url" size="60" maxlength="255" class="textField" />
+				<table width="100%">
+					<tr valign="top">
+						<td width="5%"><input type="checkbox" name="[{$formLocale|escape}]navItems[0][isAbsolute]" id="navItems-0-isAbsolute" value="1" /></td>
+						<td width="95%"><label for="navItems-0-isAbsolute">{translate key="manager.setup.layout.navItemIsAbsolute"}</label></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	{/foreach}
+</table>
+
+<p><input type="submit" name="addNavItem" value="{translate key="manager.setup.layout.addNavItem"}" class="button" /></p>
+
+<div class="separator"></div>
+
+
+<h3>3.5 {translate key="manager.setup.layout.lists"}</h3>
 
 <p>{translate key="manager.setup.layout.lists.description"}</p>
 
