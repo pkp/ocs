@@ -27,7 +27,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
-		if ($step >= 1 && $step <= 6) {
+		if ($step >= 1 && $step <= 3) {
 
 			$formClass = "SchedConfSetupStep{$step}Form";
 			import("manager.form.schedConfSetup.$formClass");
@@ -164,6 +164,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('setupStep', $step);
 			$templateMgr->assign('helpTopicId', 'conference.managementPages.setup');
+			if ($step == 3) $templateMgr->assign('showSetupHints',true);
 			$templateMgr->display('manager/schedConfSetup/settingsSaved.tpl');
 		}
 	}

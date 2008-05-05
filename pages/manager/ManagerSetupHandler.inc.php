@@ -207,10 +207,7 @@ class ManagerSetupHandler extends ManagerHandler {
 
 			if($step == 6) {
 				$conference =& Request::getConference();
-
-				if($conference->getSetting('showSetupHints')) {
-					$templateMgr->assign('showSetupHints',true);
-				}
+				$templateMgr->assign('showSetupHints',true);
 			}
 			$templateMgr->display('manager/setup/settingsSaved.tpl');
 		} else {

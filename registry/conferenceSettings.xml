@@ -24,10 +24,6 @@
 ]>
 
 <conference_settings>
-	<setting type="bool" locale="0">
-		<name>showSetupHints</name>
-		<value>true</value>
-	</setting>
 	<setting type="int" locale="0">
 		<name>numPageLinks</name>
 		<value>10</value>

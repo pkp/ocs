@@ -11,7 +11,12 @@
 {assign var="pageTitle" value="manager.schedConfSetup.schedConfSetup"}
 {include file="manager/schedConfSetup/setupHeader.tpl"}
 
-<p>{translate key="manager.setup.conferenceSetupUpdated"}</p>
+{if $showSetupHints}
+	{url|assign:"conferenceManagementUrl" page="manager"}
+	<p>{translate key="manager.setup.finalSchedConfStepSavedNotes" conferenceManagementUrl=$conferenceManagementUrl}</p>
+{else}
+	<p>{translate key="manager.setup.conferenceSetupUpdated"}</p>
+{/if}
 
 {if $setupStep == 1}
 <div><span class="disabled">&lt;&lt; {translate key="navigation.previousStep"}</span> | <a href="{url op="schedConfSetup" path="2"}">{translate key="navigation.nextStep"} &gt;&gt;</a></div>
