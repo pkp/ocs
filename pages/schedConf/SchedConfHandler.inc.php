@@ -284,7 +284,7 @@ class SchedConfHandler extends Handler {
 			);
 			while ($room =& $rooms->next()) {
 				$roomId = $room->getRoomId();
-				$buildingsAndRooms[$buildingId][$roomId] =& $room;
+				$buildingsAndRooms[$buildingId]['rooms'][$roomId] =& $room;
 				$allRooms[$roomId] =& $room;
 				unset($room);
 			}
