@@ -725,10 +725,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	// Director Review
 	//
 
-	function directorReview() {
+	function directorReview($args) {
 		import('paper.Paper');
 
-		$stage = (isset($args[1]) ? $args[1] : REVIEW_STAGE_ABSTRACT);
+		$stage = (isset($args[0]) ? $args[0] : REVIEW_STAGE_ABSTRACT);
 		$paperId = Request::getUserVar('paperId');
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
 

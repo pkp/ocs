@@ -154,20 +154,21 @@ class TrackDirectorHandler extends Handler {
 		} else {
 			$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole');
 			$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
-
-			if ($subclass) {
-				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
-				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), 'paper.submissions');
-			} else {
-				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
-			}
-
-			import('submission.trackDirector.TrackDirectorAction');
-			$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'trackDirector');
-			if (isset($submissionCrumb)) {
-				$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
-			}
 		}
+
+		if ($subclass) {
+			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
+			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), 'paper.submissions');
+		} else {
+			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
+		}
+
+		import('submission.trackDirector.TrackDirectorAction');
+		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'trackDirector');
+		if (isset($submissionCrumb)) {
+			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
+		}
+		
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 
@@ -311,9 +312,9 @@ class TrackDirectorHandler extends Handler {
 		SubmissionEditHandler::saveMetadata();
 	}
 
-	function directorReview() {
+	function directorReview($args) {
 		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::directorReview();
+		SubmissionEditHandler::directorReview($args);
 	}
 
 	function uploadReviewVersion() {

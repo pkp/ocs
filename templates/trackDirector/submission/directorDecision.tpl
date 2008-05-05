@@ -60,7 +60,7 @@
 </tr>
 </table>
 
-<form method="post" action="{url op="directorReview"}" enctype="multipart/form-data">
+<form method="post" action="{url op="directorReview" path=$stage}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 {assign var=presenterFiles value=$submission->getPresenterFileRevisions($stage)}
 {assign var=directorFiles value=$submission->getDirectorFileRevisions($stage)}
