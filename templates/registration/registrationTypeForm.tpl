@@ -82,6 +82,9 @@
 	<td class="label">{fieldLabel name="closeDate" required="true" key="manager.registrationTypes.form.closeDate"}</td>
 	<td class="value">
 		{html_select_date prefix="closeDate" time=$closeDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
+		<input type="hidden" name="closeDateHour" value="23" />
+		<input type="hidden" name="closeDateMinute" value="59" />
+		<input type="hidden" name="closeDateSecond" value="59" />
 	</td>
 </tr>
 <tr valign="top">
@@ -89,6 +92,9 @@
 	<td class="value">
 		<input id="expiryDate" type="checkbox" name="expiryDate" value="1" {if $expiryDate}checked="checked" {/if} />&nbsp;{fieldLabel name="expiryDate" key="manager.registrationTypes.form.expiryDate"}
 		{html_select_date prefix="expiryDate" time=$expiryDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
+		<input type="hidden" name="expiryDateHour" value="23" />
+		<input type="hidden" name="expiryDateMinute" value="59" />
+		<input type="hidden" name="expiryDateSecond" value="59" />
 	</td>
 </tr>
 <tr valign="top">

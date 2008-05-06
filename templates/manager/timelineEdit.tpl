@@ -74,6 +74,9 @@
 		<td width="50%" class="label">{translate key="manager.timeline.closeRegPresenter"}</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="regPresenterCloseDate" time=$regPresenterCloseDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
+			<input type="hidden" name="regPresenterCloseDateHour" value="23" />
+			<input type="hidden" name="regPresenterCloseDateMinute" value="59" />
+			<input type="hidden" name="regPresenterCloseDateSecond" value="59" />
 		</td>
 	<tr valign="top">
 		<td width="50%" class="label">{translate key="manager.timeline.showCFP"}</td>
@@ -91,6 +94,9 @@
 		<td width="50%" class="label">{translate key="manager.timeline.submissionsClosed"}</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="submissionsCloseDate" time=$submissionsCloseDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
+			<input type="hidden" name="submissionsCloseDateHour" value="23" />
+			<input type="hidden" name="submissionsCloseDateMinute" value="59" />
+			<input type="hidden" name="submissionsCloseDateSecond" value="59" />
 		</td>
 	</tr>
 </table>
@@ -110,6 +116,9 @@
 		<td width="50%" class="label">{translate key="manager.timeline.closeRegReviewer"}</td>
 		<td width="50%" class="value">
 			{html_select_date prefix="regReviewerCloseDate" time=$regReviewerCloseDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
+			<input type="hidden" name="regReviewerCloseDateHour" value="23" />
+			<input type="hidden" name="regReviewerCloseDateMinute" value="59" />
+			<input type="hidden" name="regReviewerCloseDateSecond" value="59" />
 		</td>
 	</tr>
 </table>
@@ -173,6 +182,9 @@
 		</td>
 		<td width="50%" class="value">
 				{html_select_date prefix="closeCommentsDate" time=$closeCommentsDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
+			<input type="hidden" name="closeCommentsDateHour" value="23" />
+			<input type="hidden" name="closeCommentsDateMinute" value="59" />
+			<input type="hidden" name="closeCommentsDateSecond" value="59" />
 		</td>
 	</tr>
 	<tr valign="top">
