@@ -57,35 +57,35 @@
 			{/if}
 		</td>
 	</tr>
+	<tr valign="top">
+		<td class="label" width="20%">
+			{translate key="common.uploadedFile"}
+		</td>
+		<td class="value" width="80%">
+			{foreach from=$viewableFiles item=reviewerFiles key=reviewer}
+				{foreach from=$reviewerFiles item=viewableFile key=key}
+					{assign var=thisReviewer value=$start+$reviewer|chr}
+					{translate key="user.role.reviewer"} {$thisReviewer|escape}
+					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$viewableFile->getFileId():$viewableFile->getRevision()}" class="file">{$viewableFile->getFileName()|escape}</a>&nbsp;&nbsp;{$viewableFile->getDateModified()|date_format:$dateFormatShort}<br />
+				{/foreach}
+			{foreachelse}
+				{translate key="common.none"}
+			{/foreach}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="label" width="20%">
+			{translate key="submission.directorVersion"}
+		</td>
+		<td class="value" width="80%">
+			{foreach from=$directorFiles item=directorFile key=key}
+				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$directorFile->getDateModified()|date_format:$dateFormatShort}<br />
+			{foreachelse}
+				{translate key="common.none"}
+			{/foreach}
+		</td>
+	</tr>
 	{if $stage == REVIEW_STAGE_PRESENTATION}
-		<tr valign="top">
-			<td class="label" width="20%">
-				{translate key="common.uploadedFile"}
-			</td>
-			<td class="value" width="80%">
-				{foreach from=$viewableFiles item=reviewerFiles key=reviewer}
-					{foreach from=$reviewerFiles item=viewableFile key=key}
-						{assign var=thisReviewer value=$start+$reviewer|chr}
-						{translate key="user.role.reviewer"} {$thisReviewer|escape}
-						<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$viewableFile->getFileId():$viewableFile->getRevision()}" class="file">{$viewableFile->getFileName()|escape}</a>&nbsp;&nbsp;{$viewableFile->getDateModified()|date_format:$dateFormatShort}<br />
-					{/foreach}
-				{foreachelse}
-					{translate key="common.none"}
-				{/foreach}
-			</td>
-		</tr>
-		<tr valign="top">
-			<td class="label" width="20%">
-				{translate key="submission.directorVersion"}
-			</td>
-			<td class="value" width="80%">
-				{foreach from=$directorFiles item=directorFile key=key}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$directorFile->getFileId():$directorFile->getRevision()}" class="file">{$directorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$directorFile->getDateModified()|date_format:$dateFormatShort}<br />
-				{foreachelse}
-					{translate key="common.none"}
-				{/foreach}
-			</td>
-		</tr>
 		<tr valign="top">
 			<td class="label" width="20%">
 				{translate key="submission.presenterVersion"}
