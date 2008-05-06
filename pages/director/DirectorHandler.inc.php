@@ -288,6 +288,26 @@ class DirectorHandler extends TrackDirectorHandler {
 	}
 
 	/**
+	 * Change the sequence of the papers.
+	 */
+	function movePaper($args) {
+		$paperId = Request::getUserVar('paperId');
+		$schedConf =& Request::getSchedConf();
+		DirectorHandler::validate($paperId);
+
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId);
+
+		if ($publishedPaper != null && $publishedPaper->getSchedConfId() == $schedConf->getSchedConfId()) {
+			$publishedPaper->setSeq($publishedPaper->getSeq() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
+			$publishedPaperDao->updatePublishedPaper($publishedPaper);
+			$publishedPaperDao->resequencePublishedPapers($publishedPaper->getTrackId(), $schedConf->getSchedConfId());
+		}
+
+		Request::redirect(null, null, null, 'submissions', 'submissionsAccepted');
+	}
+
+	/**
 	 * Validate that user is a director in the selected conferences.
 	 * Redirects to user index page if not properly authenticated.
 	 */

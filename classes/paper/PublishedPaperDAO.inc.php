@@ -48,7 +48,6 @@ class PublishedPaperDAO extends DAO {
 		$locale = Locale::getLocale();
 
 		$params = array(
-			$schedConfId,
 			'title',
 			$primaryLocale,
 			'title',
@@ -160,7 +159,6 @@ class PublishedPaperDAO extends DAO {
 		$publishedPapers = array();
 
 		$params = array(
-			$schedConfId,
 			'title',
 			$primaryLocale,
 			'title',

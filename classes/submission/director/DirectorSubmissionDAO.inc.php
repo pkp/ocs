@@ -18,6 +18,9 @@
 import('submission.director.DirectorSubmission');
 import('submission.presenter.PresenterSubmission'); // Bring in director decision constants
 
+define('DIRECTOR_SUBMISSION_SORT_ORDER_NATURAL',	0x00000001);
+define('DIRECTOR_SUBMISSION_SORT_ORDER_PUBLISHED',	0x00000002);
+
 class DirectorSubmissionDAO extends DAO {
 
 	var $paperDao;
@@ -159,11 +162,12 @@ class DirectorSubmissionDAO extends DAO {
 	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
 	 * @param $dateFrom String date to search from
 	 * @param $dateTo String date to search to
-	 * @param $status boolean whether to return active or not
+	 * @param $statusSql string Extra SQL conditions to match
+	 * @param $sortOrder int DIRECTOR_SUBMISSION_SORT_ORDER_...
 	 * @param $rangeInfo object
 	 * @return array result
 	 */
-	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null) {
+	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $sortOrder = DIRECTOR_SUBMISSION_SORT_ORDER_NATURAL, $rangeInfo = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
@@ -217,6 +221,7 @@ class DirectorSubmissionDAO extends DAO {
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
 				INNER JOIN paper_presenters pa ON (pa.paper_id = p.paper_id)
+				LEFT JOIN published_papers pp ON (pp.paper_id = p.paper_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN edit_assignments ea ON (ea.paper_id = p.paper_id)
 				LEFT JOIN users ed ON (ea.director_id = ed.user_id)
@@ -237,8 +242,19 @@ class DirectorSubmissionDAO extends DAO {
 			$params[] = $trackId;
 		}
 
+		$sql .= ' ' . $searchSql . ' ORDER BY ';
+		switch ($sortOrder) {
+			case DIRECTOR_SUBMISSION_SORT_ORDER_PUBLISHED:
+				$sql .= 't.seq ASC, pp.seq ASC';
+				break;
+			case DIRECTOR_SUBMISSION_SORT_ORDER_NATURAL:
+			default:
+				$sql .= 'paper_id ASC';
+				break;
+		}
+
 		$result = &$this->retrieveRange(
-			$sql . ' ' . $searchSql . ' ORDER BY paper_id ASC',
+			$sql,
 			$params,
 			$rangeInfo
 		);
@@ -379,8 +395,7 @@ class DirectorSubmissionDAO extends DAO {
 	function &getDirectorSubmissionsAccepted($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$directorSubmissions = array();
 
-		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, DIRECTOR_SUBMISSION_SORT_ORDER_PUBLISHED, $rangeInfo);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
@@ -402,7 +417,7 @@ class DirectorSubmissionDAO extends DAO {
 	function &getDirectorSubmissionsArchives($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$directorSubmissions = array();
 
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, DIRECTOR_SUBMISSION_SORT_ORDER_NATURAL, $rangeInfo);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
