@@ -299,7 +299,7 @@ class Upgrade extends Installer {
 			'versions', 'site', 'site_settings', 'scheduled_tasks',
 			'sessions', 'conference_settings', 'sched_conf_settings',
 			'plugin_settings', 'roles', 'notification_status', 
-			'track_directors', 'custom_track_orders',
+			'track_directors',
 			'review_stages', 'paper_html_galley_images',
 			'email_templates_default_data', 'email_templates_data',
 			'paper_search_object_keywords', 'oai_resumption_tokens',

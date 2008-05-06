@@ -846,17 +846,6 @@ class TrackDirectorAction extends Action {
 
 			// Resequence the papers.
 			$publishedPaperDao->resequencePublishedPapers($trackDirectorSubmission->getTrackId(), $schedConfId);
-
-			// If we're using custom track ordering, and if this is the first
-			// paper published in a track, make sure we enter a custom ordering
-			// for it. (Default at the end of the list.)
-			$trackDao =& DAORegistry::getDAO('TrackDAO');
-			if ($trackDao->customTrackOrderingExists($schedConfId)) {
-				if ($trackDao->getCustomTrackOrder($schedConfId, $submission->getTrackId()) === null) {
-					$trackDao->insertCustomTrackOrder($schedConfId, $submission->getTrackId(), REALLY_BIG_NUMBER);
-					$trackDao->resequenceCustomTrackOrders($schedConfId);
-				}
-			}
 		}
 		// Add log
 		import('paper.log.PaperLog');

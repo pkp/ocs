@@ -304,10 +304,9 @@ class TrackDAO extends DAO {
 
 		$result = &$this->retrieve(
 			'SELECT DISTINCT t.*,
-				COALESCE(o.seq, t.seq) AS track_seq
+				t.seq AS track_seq
 			FROM tracks t, papers p
 			LEFT JOIN sched_confs i ON (p.sched_conf_id = i.sched_conf_id) AND (i.sched_conf_id = ?)
-			LEFT JOIN custom_track_orders o ON (p.track_id = o.track_id AND o.sched_conf_id = i.sched_conf_id)
 			WHERE t.track_id = p.track_id ORDER BY track_seq',
 			array($schedConfId)
 		);
@@ -408,137 +407,6 @@ class TrackDAO extends DAO {
 	 */
 	function getInsertTrackId() {
 		return $this->getInsertId('tracks', 'track_id');
-	}
-
-	/**
-	 * Delete the custom ordering of an scheduled conference's tracks.
-	 * @param $schedConfId int
-	 */
-	function deleteCustomTrackOrdering($schedConfId) {
-		return $this->update(
-			'DELETE FROM custom_track_orders WHERE sched_conf_id = ?', $schedConfId
-		);
-	}
-
-	/**
-	 * Sequentially renumber custom track orderings in their sequence order.
-	 * @param $schedConfId int
-	 */
-	function resequenceCustomTrackOrders($schedConfId) {
-		$result = &$this->retrieve(
-			'SELECT track_id FROM custom_track_orders WHERE sched_conf_id = ? ORDER BY seq',
-			$schedConfId
-		);
-
-		for ($i=1; !$result->EOF; $i++) {
-			list($trackId) = $result->fields;
-			$this->update(
-				'UPDATE custom_track_orders SET seq = ? WHERE track_id = ? AND sched_conf_id = ?',
-				array(
-					$i,
-					$trackId,
-					$schedConfId
-				)
-			);
-
-			$result->moveNext();
-		}
-
-		$result->close();
-		unset($result);
-	}
-
-	/**
-	 * Check if a scheduled conference has custom track ordering.
-	 * @param $schedConfId int
-	 * @return boolean
-	 */
-	function customTrackOrderingExists($schedConfId) {
-		$result = &$this->retrieve(
-			'SELECT COUNT(*) FROM custom_track_orders WHERE sched_conf_id = ?',
-			$schedConfId
-		);
-		$returner = isset($result->fields[0]) && $result->fields[0] == 0 ? false : true;
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
-	}
-
-	/**
-	 * Get the custom track order of a track.
-	 * @param $schedConfId int
-	 * @param $trackId int
-	 * @return int
-	 */
-	function getCustomTrackOrder($schedConfId, $trackId) {
-		$result = &$this->retrieve(
-			'SELECT seq FROM custom_track_orders WHERE sched_conf_id = ? AND track_id = ?',
-			array($schedConfId, $trackId)
-		);
-
-		$returner = null;
-		if (!$result->EOF) {
-			list($returner) = $result->fields;
-		}
-		$result->Close();
-		unset($result);
-
-		return $returner;
-	}
-
-	/**
-	 * Import the current track orders into the specified scheduled conference as custom
-	 * scheduled conference orderings.
-	 * @param $schedConfId int
-	 */
-	function setDefaultCustomTrackOrders($schedConfId) {
-		$result = &$this->retrieve(
-			'SELECT t.track_id FROM tracks t, sched_confs i WHERE i.sched_conf_id = t.sched_conf_id AND i.sched_conf_id = ? ORDER BY seq',
-			$schedConfId
-		);
-
-		for ($i=1; !$result->EOF; $i++) {
-			list($trackId) = $result->fields;
-			$this->_insertCustomTrackOrder($schedConfId, $trackId, $i);
-			$result->moveNext();
-		}
-
-		$result->close();
-		unset($result);
-	}
-
-	/**
-	 * INTERNAL USE ONLY: Insert a custom track ordering
-	 * @param $schedConfId int
-	 * @param $trackId int
-	 * @param $seq int
-	 */
-	function _insertCustomTrackOrder($schedConfId, $trackId, $seq) {
-		$this->update(
-			'INSERT INTO custom_track_orders (track_id, sched_conf_id, seq) VALUES (?, ?, ?)',
-			array(
-				$trackId,
-				$schedConfId,
-				$seq
-			)
-		);
-	}
-
-	/**
-	 * Move a custom scheduled conference ordering up or down, resequencing as necessary.
-	 * @param $schedConfId int
-	 * @param $trackId int
-	 * @param $newPos int The new position (0-based) of this track
-	 * @param $up boolean Whether we're moving the track up or down
-	 */
-	function moveCustomTrackOrder($schedConfId, $trackId, $newPos, $up) {
-		$this->update(
-			'UPDATE custom_track_orders SET seq = ? ' . ($up?'-':'+') . ' 0.5 WHERE sched_conf_id = ? AND track_id = ?',
-			array($newPos, $schedConfId, $trackId)
-		);
-		$this->resequenceCustomTrackOrders($schedConfId);
 	}
 }
 
