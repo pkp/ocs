@@ -418,18 +418,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		if ($registrationPolicyForm->validate()) {
 			$registrationPolicyForm->execute();
-
-			RegistrationHandler::setupTemplate(true);
-
-			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
-			$templateMgr->assign('registrationPoliciesSaved', '1');
-
-			if (Config::getVar('general', 'scheduled_tasks')) {
-				$templateMgr->assign('scheduledTasksEnabled', true);
-			}
-
-			$registrationPolicyForm->display();
+			Request::redirect(null, null, 'manager', 'registration');
 		}
 	}
 

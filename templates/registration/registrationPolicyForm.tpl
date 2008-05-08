@@ -18,11 +18,6 @@
 	<li class="current"><a href="{url op="registrationPolicies"}">{translate key="manager.registrationPolicies"}</a></li>
 </ul>
 
-{if $registrationPoliciesSaved}
-<br/>
-{translate key="manager.registrationPolicies.registrationPoliciesSaved"}<br />
-{/if}
-
 <form name="registrationPolicies" method="post" action="{url op="saveRegistrationPolicies"}">
 {include file="common/formErrors.tpl"}
 
