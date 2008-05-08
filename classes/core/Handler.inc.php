@@ -57,7 +57,7 @@ class Handler {
 				Request::redirect(null, null, 'about');
 		}
 
-		return array($conference, $schedConf);
+		return array(&$conference, &$schedConf);
 	}
 
 	/**

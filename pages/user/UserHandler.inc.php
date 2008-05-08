@@ -37,6 +37,8 @@ class UserHandler extends Handler {
 		$schedConfsToDisplay = array();
 		$schedConfRolesToDisplay = array();
 
+		$allConferences = $allSchedConfs = array();
+
 		$rolesToDisplay = array();
 
 		if ($conference == null) {
@@ -74,9 +76,11 @@ class UserHandler extends Handler {
 							$conferencesToDisplay[$conferenceId] =& $conference;
 						}
 					}
+					$allSchedConfs[$conference->getConferenceId()][$schedConf->getSchedConfId()] =& $schedConf;
 					unset($schedConf);
 					unset($schedConfRoles);
 				}
+				$allConferences[$conference->getConferenceId()] =& $conference;
 				unset($schedConfs);
 				unset($conference);
 			}
@@ -104,14 +108,20 @@ class UserHandler extends Handler {
 				unset($schedConf);
 			}
 
-			if (empty($roles) && empty($schedConfsToDisplay)) {
-				Request::redirect('index', 'index', 'user');
+			$schedConf =& Request::getSchedConf();
+			if ($schedConf) {
+				import('schedConf.SchedConfAction');
+				$templateMgr->assign('allowRegPresenter', SchedConfAction::allowRegPresenter($schedConf));
+				$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
+				$templateMgr->assign('submissionsOpen', SchedConfAction::submissionsOpen($schedConf));
 			}
 
 			$templateMgr->assign_by_ref('userConference', $conference);
 		}
 
 		$templateMgr->assign('isSiteAdmin', $roleDao->getRole(0, 0, $userId, ROLE_ID_SITE_ADMIN));
+		$templateMgr->assign('allConferences', $allConferences);
+		$templateMgr->assign('allSchedConfs', $allSchedConfs);
 		$templateMgr->assign('userRoles', $rolesToDisplay);
 		$templateMgr->assign('userSchedConfs', $schedConfsToDisplay);
 		$templateMgr->assign('userSchedConfRoles', $schedConfRolesToDisplay);
@@ -149,6 +159,46 @@ class UserHandler extends Handler {
 		}
 
 		Request::redirect(null, null, 'index');
+	}
+
+	function become($args) {
+		list($conference, $schedConf) = parent::validate(true, true);
+		import('schedConf.SchedConfAction');
+		$user =& Request::getUser();
+		if (!$user) Request::redirect(null, null, 'index');
+
+		$schedConfAction =& new SchedConfAction();
+
+		switch (array_shift($args)) {
+			case 'presenter':
+				$roleId = ROLE_ID_PRESENTER;
+				$func = 'allowRegPresenter';
+				$deniedKey = 'presenter.submit.authorRegistrationClosed';
+				break;
+			case 'reviewer':
+				$roleId = ROLE_ID_REVIEWER;
+				$func = 'allowRegReviewer';
+				$deniedKey = 'user.noRoles.regReviewerClosed';
+				break;
+			default:
+				Request::redirect(null, null, 'index');
+		}
+
+		if ($schedConfAction->$func($schedConf)) {
+			$role =& new Role();
+			$role->setSchedConfId($schedConf->getSchedConfId());
+			$role->setConferenceId($schedConf->getConferenceId());
+			$role->setRoleId($roleId);
+			$role->setUserId($user->getUserId());
+
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$roleDao->insertRole($role);
+			Request::redirectUrl(Request::getUserVar('source'));
+		} else {
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->assign('message', $deniedKey);
+			return $templateMgr->display('common/message.tpl');
+		}
 	}
 
 	/**

@@ -529,6 +529,15 @@
 	<message key="user.changeMyPassword">Change My Password</message>
 	<message key="user.myConferences">My Conferences</message>
 	<message key="user.myAccount">My Account</message>
+	<message key="user.noRoles.chooseConference">Your account is not currently associated with any conferences. Please choose a conference:</message>
+	<message key="user.noRoles.noRolesForConference">Your account does not currently have any roles for this conference. Please choose from the actions below:</message>
+	<message key="user.noRoles.submitProposal">Submit a Proposal</message>
+	<message key="user.noRoles.submitProposalRegClosed">Submit a Proposal: Author registration is currently closed.</message>
+	<message key="user.noRoles.submitProposalSubmissionsClosed">Submit a Proposal: Submissions are currently closed.</message>
+	<message key="user.noRoles.regReviewer">Register as a Conference Reviewer</message>
+	<message key="user.noRoles.regReviewerClosed">Register as a Conference Reviewer: Reviewer registration is currently closed.</message>
+	<message key="user.noRoles.register">Register to attend the conference</message>
+	<message key="user.noRoles.registerUnavailable">Register to attend the conference: Registration is not currently accepted.</message>
 
 	<!-- Roles -->
 	<message key="user.role.siteAdmin">Site Administrator</message>

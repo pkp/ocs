@@ -27,22 +27,16 @@ class SubmitHandler extends PresenterHandler {
 		if ($user && $schedConf && !Validation::isPresenter()) {
 			// The user is logged in but not a presenter. If
 			// possible, enroll them as a presenter automatically.
-			import('schedConf.SchedConfAction');
-			$schedConfAction =& new SchedConfAction();
-			if ($schedConfAction->allowRegPresenter($schedConf)) {
-				$role =& new Role();
-				$role->setSchedConfId($schedConf->getSchedConfId());
-				$role->setConferenceId($schedConf->getConferenceId());
-				$role->setRoleId(ROLE_ID_PRESENTER);
-				$role->setUserId($user->getUserId());
-
-				$roleDao =& DAORegistry::getDAO('RoleDAO');
-				$roleDao->insertRole($role);
-			} else {
-				$templateMgr =& TemplateManager::getManager();
-				$templateMgr->assign('message', 'presenter.submit.authorRegistrationClosed');
-				return $templateMgr->display('common/message.tpl');
-			}
+			Request::redirect(
+				null, null,
+				'user', 'become',
+				array('presenter'),
+				array(
+					'source' => Request::url(
+						null, null, 'presenter', 'submit'
+					)
+				)
+			);
 		}
 
 		parent::validate();
