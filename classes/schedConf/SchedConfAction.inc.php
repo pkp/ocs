@@ -123,8 +123,10 @@ class SchedConfAction {
 		}
 
 		if($schedConf->getSetting('postPapers') && time() > $schedConf->getSetting('postPapersDate')) {
-
 			if(SchedConfAction::registeredUser($schedConf)) {
+				return true;
+			}
+			if(SchedConfAction::registeredDomain($schedConf)) {
 				return true;
 			}
 		}

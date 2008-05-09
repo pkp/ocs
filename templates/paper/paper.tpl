@@ -111,7 +111,7 @@
 			{/foreach}
 		{/if}
 	{elseif $schedConf->getSetting('delayOpenAccess') && $schedConf->getSetting('delayOpenAccessDate') > time()}
-		{translate key="reader.fullTextSubscribersOnlyUntil" date=$schedConf->getSetting('delayOpenAccessDate')|date_format:$dateFormatShort}
+		{translate key="reader.fullTextRegistrantsOnlyUntil" date=$schedConf->getSetting('delayOpenAccessDate')|date_format:$dateFormatShort}
 	{elseif $schedConf->getSetting('postPapers') && $schedConf->getSetting('postPapersDate') > time()}
 		{translate key="reader.fullTextNotPostedYet" date=$schedConf->getSetting('postPapersDate')|date_format:$dateFormatShort}
 	{elseif $conference->getSetting('paperAccess') == PAPER_ACCESS_REGISTRATION_REQUIRED}
