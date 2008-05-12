@@ -304,8 +304,8 @@ class PresenterAction extends Action {
 		// Incomplete submissions can always be edited.
 		if ($presenterSubmission->getSubmissionProgress() != 0) return true;
 
-		// Published submissions can never be edited.
-		if ($presenterSubmission->getStatus() != SUBMISSION_STATUS_QUEUED) return false;
+		// Archived or declined submissions can never be edited.
+		if ($presenterSubmission->getStatus() == SUBMISSION_STATUS_ARCHIVED || $presenterSubmission->getStatus() == SUBMISSION_STATUS_DECLINED) return false;
 
 		// If the last recorded editorial decision on the current stage
 		// was "Revisions Required", the author may edit the submission.
@@ -313,9 +313,23 @@ class PresenterAction extends Action {
 		$decision = array_shift($decisions);
 		if ($decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS) return true;
 
-		// If submissions haven't closed, the author may edit the submission.
-		import('schedConf.SchedConfAction');
-		if (SchedConfAction::submissionsOpen($schedConf)) return true;
+		// If there are open reviews for the submission, it may not be edited.
+		$assignments = $presenterSubmission->getReviewAssignments(null);
+		if (is_array($assignments)) foreach ($assignments as $round => $roundAssignments) {
+			if (is_array($roundAssignments)) foreach($roundAssignments as $assignment) {
+				if (	!$assignment->getCancelled() &&
+					!$assignment->getReplaced() &&
+					!$assignment->getDeclined() &&
+					$assignment->getDateCompleted() == null &&
+					$assignment->getDateNotified() != null
+				) {
+					return false;
+				}
+			}
+		}
+
+		// If the conference isn't closed, the author may edit the submission.
+		if (strtotime($schedConf->getEndDate()) > time()) return true;
 
 		// Otherwise, edits are not allowed.
 		return false;
