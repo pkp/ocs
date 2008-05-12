@@ -64,7 +64,7 @@ class ReportPlugin extends Plugin {
 			),
 			array (
 				Request::url(null, null, 'manager', 'reports'),
-				'manager.reports'
+				'manager.statistics.reports'
 			)
 		);
 		if ($isSubclass) $pageCrumbs[] = array(
