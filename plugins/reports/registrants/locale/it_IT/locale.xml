@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.reports.registrants.displayName">Report degli utenti registrati</message>
+	<message key="plugins.reports.registrants.description">Questo plugin implementa un report CSV contenente una lista di chi si registra insieme alle informazioni delle loro registrazioni come i dettagli del contatto, lo stato del pagamento, ecc.</message>
+	<message key="plugins.reports.registrants.userid">ID dell'utente</message>
+</locale>

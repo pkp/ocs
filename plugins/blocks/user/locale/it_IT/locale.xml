@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.block.user.displayName">Blocco dell'utente</message>
+	<message key="plugins.block.user.description">Questo plugin fornisce strumenti per l'account dell'utente alla barra laterale (es. login, logout, link al profilo, ecc).</message>
+	<message key="plugins.block.user.loggedInAs">Hai effettuato il log in come...</message>
+	<message key="plugins.block.user.myConferences">Le mie conferenze</message>
+	<message key="plugins.block.user.myProfile">Il mio profilo</message>
+	<message key="plugins.block.user.logout">Log out</message>
+	<message key="plugins.block.user.signOutAsUser">Log out come utente</message>
+	<message key="plugins.block.user.rememberMe">Memorizzami</message>
+</locale>

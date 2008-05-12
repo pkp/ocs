@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.block.role.displayName">Bloc à rôle spécifique</message>
+	<message key="plugins.block.role.description">Ce plugiciel fournit un bloc de barre de menu contenant de l'information de rôle spécifique tel que le nom de soumission et des liens rapides pour les directeurs, présentateurs, etc.</message>
+</locale>

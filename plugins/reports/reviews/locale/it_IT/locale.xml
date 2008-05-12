@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.reports.reviews.displayName">Report di revisione</message>
+	<message key="plugins.reports.reviews.description">Questo plugin implementa un report CSV contenente una lista degli incarichi di revisione di una conferenza.</message>
+	<message key="plugins.reports.reviews.reviewerId">ID del revisore</message>
+	<message key="plugins.reports.reviews.reviewer">Revisore</message>
+	<message key="plugins.reports.reviews.dateAssigned">Data dell'incarico</message>
+	<message key="plugins.reports.reviews.dateNotified">Data della notifica</message>
+	<message key="plugins.reports.reviews.dateConfirmed">Date Confirmed</message>
+	<message key="plugins.reports.reviews.dateCompleted">Data del completamento</message>
+	<message key="plugins.reports.reviews.dateReminded">Data del sollecito</message>
+</locale>
+

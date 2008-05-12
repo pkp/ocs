@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.users.displayName">Plugin XML per utenti</message>
+	<message key="plugins.importexport.users.description">Importa e esporta utenti</message>
+
+	<message key="plugins.importexport.users.cliUsage">Usage: {$scriptName} {$pluginName} [command] ...
+Commands:
+	import [xmlFileName] [sched_conf_path] [optional flags]
+	export [xmlFileName] [sched_conf_path]
+	export [xmlFileName] [sched_conf_path] [role_path1] [role_path2] ...
+
+Optional flags:
+	continue_on_error: If specified, do not stop importing users if an error occurs
+
+	send_notify: If specified, send notification emails containing usernames
+		and passwords to imported users
+
+Examples:
+	Import users into mySchedConf from myImportFile.xml, continuing on error:
+	{$scriptName} {$pluginName} import myImportFile.xml mySchedConf continue_on_error
+
+	Export all users from mySchedConf:
+	{$scriptName} {$pluginName} export myExportFile.xml mySchedConf
+
+	Export all users registered as reviewers, along with their reviewer roles only:
+	{$scriptName} {$pluginName} export myExportFile.xml mySchedConf reviewer</message>
+	<message key="plugins.importexport.users.import.importUsers">Import Users</message>
+	<message key="plugins.importexport.users.import.instructions"><![CDATA[Seleziona un file di dati XML contenente informazioni sull'utente da importare in questa conferenza programmata. Vedi l'help della conferenza programmatal per dettagli sul formato di questo file.<br /><br />Nota che se il file importato contiene qualsiasi username o indirizzo email già esistente nel sistema, i dati di questi utenti non saranno importati e ogni nuovo ruolo da creare sarà assegnato agli utenti esisenti.]]></message>
+	<message key="plugins.importexport.users.import.failedToImportUser">E' fallito l'import degli utenti</message>
+	<message key="plugins.importexport.users.import.failedToImportRole">E' fallito l'assegnazione agli utenti di un ruolo</message>
+	<message key="plugins.importexport.users.import.dataFile">File di Dati utente</message>
+	<message key="plugins.importexport.users.import.sendNotify">Invia una notifica via email a ogni utente importato contenente il nome utente e la password dell'utente.</message>
+	<message key="plugins.importexport.users.import.continueOnError">Continua a improtare altri utenti se si verifica un errore.</message>
+	<message key="plugins.importexport.users.import.noFileError">Nessun file è stato caricato!</message>
+	<message key="plugins.importexport.users.import.usersWereImported">I seguenti utenti sono stati importati con successo nel sistema</message>
+	<message key="plugins.importexport.users.import.errorsOccurred">Errori verificati durante l'import</message>
+	<message key="plugins.importexport.users.import.confirmUsers">Conferma che questi sono gli utenti che vorresti importare nel sistema</message>
+	<message key="plugins.importexport.users.import.warning">Attenzione</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">Non puoi usare password hashed con {$importHash}; OJS è configurato per usare {$ojsHash}. Se continui, avrai bisogno di resettare le password degli utenti importati.</message>
+	<message key="plugins.importexport.users.unknownSchedConf">E' stato specificato una path "{$schedConfPath}" di conferenza programmata sconosciuta.</message>
+
+	<message key="plugins.importexport.users.export.exportUsers">Esporta utenti</message>
+	<message key="plugins.importexport.users.export.exportByRole">Esporta per ruolo</message>
+	<message key="plugins.importexport.users.export.exportAllUsers">Esporta tutti</message>
+	<message key="plugins.importexport.users.export.errorsOccurred">Errori verificati durante l'export</message>
+	<message key="plugins.importexport.users.export.couldNotWriteFile">Non potresti scrivere sul file "{$fileName}".</message>
+</locale>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.reports.papers.displayName">Rapport des communications</message>
+	<message key="plugins.reports.papers.description">Ce plugiciel met en place un rapport CSV contenant une liste des communications avec l'information y étant reliée.</message>
+	<message key="plugins.reports.papers.nodecision">Aucune décision</message>
+</locale>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this citation plugin in en_US.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.citationFormats.refMan.displayName">Plugiciel du format de référence Reference Manager</message>
+	<message key="plugins.citationFormats.refMan.citationFormatName">Reference Manager - format RIS (Windows uniquement)</message>
+	<message key="plugins.citationFormats.refMan.description">Ce plugiciel met en place le format de référence Reference Manager.</message>
+</locale>

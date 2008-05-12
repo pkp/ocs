@@ -491,5 +491,18 @@ Se avessi qualche domanda, per favore sentiti libero di contattarmi.
 {$registrationContactSignature}</field>
 			<field name="description">Questa email notifica una persona registrata che la sua registrazione &#x00E8; scaduta. Fornisce l'URL del convegno insieme alle istruzione per l'accesso.</field>
 		</row>-->
+		<row>
+			<field name="email_key">USER_VALIDATE</field>
+			<field name="subject">Valida il tuo account</field>
+			<field name="body">{$userFullName}
+
+Hai creato un account per {$conferenceName}, ma prima di poter iniziare a usarla, devi validare il tuo account dell'email. Per farlo, segui semplicemente il link sotto:
+
+{$activateUrl}
+
+Grazie,
+{$principalContactSignature}</field>
+			<field name="description">Questa email viene spedita a un utente creato di recente per dargli il benvenuto nel sistema e per fornirgli un record del suo nome utente e password.</field>
+		</row>
 	</table>
 </data>

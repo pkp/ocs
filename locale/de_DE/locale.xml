@@ -185,8 +185,8 @@
         <message key="email.skip">Email &#252;berspringen</message>
         <message key="email.compose">Email senden</message>
         <message key="email.addToRecipient">Empf&#228;nger hinzuf&#252;gen</message>
-        <message key="email.addCcRecipient">Kopieempf&#228;nger hinzuf&#252;gen</message>
-        <message key="email.addBccRecipient">Blindkopieempf&#228;nger hinzuf&#252;gen</message>
+        <message key="email.addCcRecipient">Kopieempfänger hinzufügen</message>
+        <message key="email.addBccRecipient">Blindkopieempfänger hinzufügen</message>
         <message key="email.bccSender">Kopie dieser Nachricht an meine Adresse ({$address})</message>
         <message key="email.invalid">Diese Adresse {$email} ist ung&#252;ltig.</message>
         <message key="email.multipart">Dies ist eine multi-part message im MIME format.</message>
@@ -406,7 +406,7 @@
         <!-- Submission Notes -->
         <message key="submission.notes">Kommentare zu Einreichung</message>
         <message key="submission.notes.breadcrumb">Kommentare</message>
-        <message key="submission.notes.addNewNote">Neuen Kommentar hinzuf&#252;gen</message>
+        <message key="submission.notes.addNewNote">Neuen Kommentar hinzufügen</message>
         <message key="submission.notes.viewNotes">Kommentare anzeigen</message>
         <message key="submission.notes.expandNotes">Kommentare ausklappen</message>
         <message key="submission.notes.clearAllNotes">Alle Kommentare entfernen</message>
@@ -477,8 +477,7 @@ Tagungen experimentell arbeitender Psychologen verfügbar und
 erleichtern somit die Abwicklung zukünftiger Anmeldungen. Falls Sie mit
 der Weitergabe der Informationen an zukünftige TeaP-Veranstalter nicht
 einverstanden sein sollten, geben Sie dies bitte unten im Feld
-"Bemerkungen" an.				
-]]></message>
+"Bemerkungen" an.]]></message>
         <message key="schedConf.registration."></message>
 
         <!-- User -->
@@ -866,7 +865,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
         <message key="manager.statistics.statistics.note">Anmerkung: Prozentzahlen f&#252;r peer-begutachtete Einreichungen ergeben u.U. insgesamt nicht 100%, da neu eingereichte Objekte noch in Bearbeitung sein k&#246;nnen.</message>
 
         <message key="manager.statistics.reports">Berichterstellung</message>
-        <message key="manager.statistics.reports.description">OCS erstellt Berichte, die die Verarbeitungsschritte von Einreichungen f&#252;r die Konferenz aus der Perspektive der Einreichungen, Leiter, Gutachter oder Tracks &#252;ber einen bestimmten Zeitraum nachverfolgen. Berichte werden im CSV-Format erstellt, f&#252;r deren Anzeige ein Tabellenkalkulationsprogramm ben&#246;tigt wird.</message>
+        <message key="manager.statistics.reports.description">OCS erstellt Berichte, die die Verarbeitungsschritte von Einreichungen für die Konferenz aus der Perspektive der Einreichungen, Leiter, Gutachter oder Tracks über einen bestimmten Zeitraum nachverfolgen. Berichte werden im CSV-Format erstellt, für deren Anzeige ein Tabellenkalkulationsprogramm benötigt wird.</message>
         <message key="manager.statistics.reports.dateFrom">Vom</message>
         <message key="manager.statistics.reports.dateTo">Zum</message>
         <message key="manager.statistics.reports.reportType">Art des Berichts</message>
@@ -973,7 +972,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
         <message key="manager.setup.loggingAndAuditing.title">5. Schritt: Protokollierung und Pr&#252;fung</message>
         <message key="manager.setup.indexing.title">6. Schritt: Indizierung der Konferenz</message>
 
-        <message key="manager.setup.aboutConference.brief">&#220;ber die Konferenz</message>
+        <message key="manager.setup.aboutConference.brief">Über die Konferenz</message>
         <message key="manager.setup.additionalContent.brief">Zus&#228;tzliche Inhalte</message>
         <message key="manager.setup.layout.brief">Kopf- / Fu&#223;zeilen etc.</message>
         <message key="manager.setup.styleSheet.brief">Stylesheet</message>
@@ -1136,7 +1135,7 @@ Falls Ihr Webseitenadministrator diese Seite bereits beim PKP-Ernter registriert
         <message key="manager.schedConfSetup.submissions.submissionProcess">Einreichungsprozedur</message>
         <message key="manager.schedConfSetup.submissions.description"><![CDATA[Autoren k&#246;nnen Abstracts (kurze Beschreibungen der vorgeschlagenen Pr&#228;sentation) und / oder umfangreichere Antr&#228;ge (Papers, Power Point-Pr&#228;sentationen...) f&#252;r eine geplante Konferenz einreichen. Die Einreichungen k&#246;nnen sich auf eine Einzelpr&#228;sentation (durch einen oder mehrere Autoren) oder eine Pr&#228;sentationsreihe, eingereicht durch den Organisator der Reihe, beziehen. Dar&#252;ber hinaus k&#246;nnen die Antr&#228;ge Erg&#228;nzungsdateien (z.B. Datens&#228;tze, Quellenmaterialien, zugeh&#246;rige Papers) beinhalten.]]></message>
         <message key="manager.schedConfSetup.submissions.submissionMaterials">Einreichungsmaterial</message>
-        <message key="manager.schedConfSetup.submissions.abstractsAlone">Abstract ohne Pr&#228;sentation</message>
+        <message key="manager.schedConfSetup.submissions.abstractsAlone">Abstract ohne Präsentation</message>
         <message key="manager.schedConfSetup.submissions.presentationsAlone">Pr&#228;sentation ohne Abstract</message>
         <message key="manager.schedConfSetup.submissions.bothTogether">Abstract und Pr&#228;sentation</message>
         <message key="manager.schedConfSetup.submissions.bothSequential">Zuerst Abstract, dann Pr&#228;sentation</message>
@@ -1204,7 +1203,7 @@ Titel des Klassifikationssystem]]></message>
         <message key="manager.schedConfSetup.review.remindForInvite1">die nicht innerhalb von</message>
         <message key="manager.schedConfSetup.review.remindForInvite2">Tagen auf eine Anfrage nach einem Gutachten reagiert haben.</message>
         <message key="manager.schedConfSetup.review.remindForSubmit1">die ein Gutachten nicht innerhalb von</message>
-        <message key="manager.schedConfSetup.review.remindForSubmit2">Tagen nach dem F&#228;lligkeitsdatum abgeliefert haben.</message>
+        <message key="manager.schedConfSetup.review.remindForSubmit2">Tagen nach dem Fälligkeitsdatum abgeliefert haben.</message>
         <message key="manager.schedConfSetup.review.onQuality">Leiter k&#246;nnen Gutachter auf einer 5-stufigen Skala bewerten.</message>
 
         <!-- Languages -->
@@ -1258,7 +1257,7 @@ Titel des Klassifikationssystem]]></message>
         <message key="manager.timeline.schedConfAppearsOn">Freischaltung (als geplante Konferenz)</message>
         <message key="manager.timeline.schedConfArchivedOn">Archivieren am</message>
 
-        <message key="manager.timeline.submissions">Beitragsanmeldung (Symposien und Einzelbeitr&#228;ge)</message>
+        <message key="manager.timeline.submissions">Beitragsanmeldung (Symposien und Einzelbeiträge)</message>
         <message key="manager.timeline.openRegPresenter">Registrierungszeitraum f&#252;r Autoren ge&#246;ffnet am</message>
         <message key="manager.timeline.closeRegPresenter">Registrierungszeitraum f&#252;r Autoren geschlossen am</message>
         <message key="manager.timeline.showCFP">Call for Papers ver&#246;ffentlicht</message>
@@ -1278,7 +1277,7 @@ Titel des Klassifikationssystem]]></message>
         <message key="manager.timeline.participantRegistrationClosed">Online-Teilnehmerregistrierung bis</message>
         
         
-        <message key="manager.timeline.websitePosting">Ver&#246;ffentlichungen auf Webseite</message>
+        <message key="manager.timeline.websitePosting">Veröffentlichungen auf Webseite</message>
         <message key="manager.timeline.postPresentations">Angenommene Abstracts / Pr&#228;sentationen</message>
         <message key="manager.timeline.postAbstracts">Angenommene Abstracts</message>
         <message key="manager.timeline.postTimeline">Zeitablauf der Konferenz in &quot;Informationen &#252;ber Konferenz&quot; anzeigen</message>
@@ -1325,12 +1324,12 @@ Titel des Klassifikationssystem]]></message>
         <message key="manager.people.editUser">Benutzerkonto bearbeiten</message>
         <message key="manager.people.enrollExistingUser">Bestehendes Benutzerkonto zuteilen</message>
         <message key="manager.people.createUser">Neues Benutzerkonto erstellen</message>
-        <message key="manager.people.mergeUsers">Benutzerkonten &#252;berf&#252;hren</message>
-        <message key="manager.people.mergeUser">Benutzerkonto &#252;berf&#252;hren</message>
+        <message key="manager.people.mergeUsers">Benutzerkonten überführen</message>
+        <message key="manager.people.mergeUser">Benutzerkonto überführen</message>
         <message key="manager.people.enroll">Benutzerkonto zuteilen</message>
         <message key="manager.people.enrollment">Zuteilung</message>
         <message key="manager.people.unenroll">Zuteilung aufheben</message>
-        <message key="manager.people.confirmUnenroll">Zuteilung f&#252;r dieses Benutzerkonto aufheben?</message>
+        <message key="manager.people.confirmUnenroll">Zuteilung für dieses Benutzerkonto aufheben?</message>
         <message key="manager.people.mergeUsers.from.description">W&#228;hlen Sie ein Benutzerkonto aus, das in ein anderes Konto &#252;berf&#252;hrt werden soll. Das gew&#228;hlte Konto wird gel&#246;scht und alle Einreichungen, &#196;nderungsauftrage usw. werden dem anderen Konto zugewiesen.</message>
         <message key="manager.people.mergeUsers.into.description">W&#228;hlen Sie ein Benutzerkonto aus, dem die Pr&#228;sentationen, &#196;nderungsauftr&#228;ge etc. des vorherigen Benutzers zugewiesen werden sollen.</message>
         <message key="manager.people.mergeUsers.confirm">Sind Sie sicher, dass Sie das Konto mit dem Namen &quot;{$oldUsername}&quot; in das Konto mit dem Namen &quot;{$newUsername}&quot; &#252;berf&#252;hren wollen? Das Konto mit dem Namen &quot;{$oldUsername}&quot; wird danach nicht mehr existieren. Diese Aktion ist unumkehrbar.</message>
@@ -1338,13 +1337,13 @@ Titel des Klassifikationssystem]]></message>
         <message key="manager.people.confirmDisable">Dieses Benutzerkonto sperren? Dies hindert den Benutzer daran, sich in das System einzuloggen.Sie k&#246;nnen eine Begr&#252;ndung f&#252;r die Sperrung des Kontos angeben, wenn Sie w&#252;nschen.</message>
         <message key="manager.people.noneEnrolled">Keine Benutzerkonten zugeteilt.</message>
         <message key="manager.people.enrollSelected">Gew&#228;hlte Benutzerkonten zuteilen</message>
-        <message key="manager.people.noMatchingUsers">Keine &#252;bereinstimmenden Benutzerkonten</message>
+        <message key="manager.people.noMatchingUsers">Keine übereinstimmenden Benutzerkonten</message>
         <message key="manager.people.saveAndCreateAnotherUser">Speichern und Neues erstellen</message>
         <message key="manager.people.userCreatedSuccessfully">Benutzerkonto erstellt.</message>
         <message key="manager.people.authSource">Authentifikationsquelle</message>
         <message key="manager.people.enrollUserAs">Zugeteilte Rolle</message>
         <message key="manager.people.doNotEnroll">Keine Rolle</message>
-        <message key="manager.people.enrollUserAsDescription">Falls keine Rolle ausgew&#228;hlt wird, wird das Konto erstellt aber innerhalb dieser Konferenz keiner Rolle zugeteilt sein. Eine Zuteilung zu einer Rolle und deren Aufhebung kann jederzeit erfolgen, nachdem das Benutzerkonto erstellt ist.</message>
+        <message key="manager.people.enrollUserAsDescription">Falls keine Rolle ausgewählt wird, wird das Konto erstellt aber innerhalb dieser Konferenz keiner Rolle zugeteilt sein. Eine Zuteilung zu einer Rolle und deren Aufhebung kann jederzeit erfolgen, nachdem das Benutzerkonto erstellt ist.</message>
         <message key="manager.people.invalidUser">Das gesuchte Benutzerkonto existiert nicht.</message>
         <message key="manager.people.noAdministrativeRights"><![CDATA[Sie haben keine administrativen Rechte bez&#252;glich dieses Benutzerkontos. Dies kann folgende Ursachen haben:
                 <ul>
@@ -1389,7 +1388,7 @@ Titel des Klassifikationssystem]]></message>
         <message key="manager.emails.editEmail">Email bearbeiten</message>
         <message key="manager.emails.confirmDelete">Sind Sie sicher, dass Sie dieses Emailschema l&#246;schen wollen?</message>
         <message key="manager.emails.confirmReset">Sind Sie sicher, dass Sie dieses Emailschema auf seine Voreinstellungen zur&#252;cksetzen wollen?</message>
-        <message key="manager.emails.resetToDefault">Auf Voreinstellungen zur&#252;cksetzen</message>
+        <message key="manager.emails.resetToDefault">Auf Voreinstellungen zurücksetzen</message>
         <message key="manager.emails.resetAll">Alle Schemata zur&#252;cksetzen</message>
         <message key="manager.emails.confirmResetAll">Sind Sie sicher, dass Sie alle Emailschemata dieser Konferenz auf die Voreinstellungen zur&#252;cksetzen wollen? Alle von Ihnen gemachten &#196;nderungen gehen dabei verloren.</message>
         <message key="manager.emails.form.subjectRequired">Die Email muss einen Betreff haben.</message>
@@ -1777,7 +1776,7 @@ Titel des Klassifikationssystem]]></message>
         <message key="presenter.submit.privacyStatement">Datenschutzerkl&#228;rung der Konferenz</message>
         <message key="presenter.submit.reorderInstructions">Benutzen Sie die Pfeile um die Reihenfolge, in der die Autoren erscheinen sollen, zu &#228;ndern.</message>
         <message key="presenter.submit.selectPrincipalContact">Hauptansprechpartner f&#252;r die Bearbeitung betreffende Korrespondenz</message>
-        <message key="presenter.submit.addPresenter">Weiteren Autor hinzuf&#252;gen</message>
+        <message key="presenter.submit.addPresenter">Weiteren Autor hinzufügen</message>
         <message key="presenter.submit.deletePresenter">Autor l&#246;schen</message>
         <message key="presenter.submit.submissionIndexingDescription">W&#228;hlen Sie ein bis zwei Schlagw&#246;rter aus, die Ihren Beitrag charakterisieren. </message>
         <message key="presenter.submit.submissionSupportingAgencies">Unterst&#252;tzer</message>
@@ -2421,7 +2420,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
         <message key="rt.search.order">Reihenfolge</message>
         <message key="rt.search.description">Beschreibung</message>
         <message key="rt.search.searchUrl">URL suchen</message>
-        <message key="rt.search.searchPost">Daten ver&#246;ffentlichen</message>
+        <message key="rt.search.searchPost">Daten veröffentlichen</message>
         <message key="rt.search.suggest">Quelle vorschlagen</message>
 
         <message key="rt.presenterBio">&#220;ber den Autor</message>
