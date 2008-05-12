@@ -154,13 +154,12 @@ class TrackDirectorHandler extends Handler {
 		} else {
 			$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole');
 			$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
-		}
-
-		if ($subclass) {
-			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
-			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), 'paper.submissions');
-		} else {
-			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
+			if ($subclass) {
+				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
+				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), 'paper.submissions');
+			} else {
+				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
+			}
 		}
 
 		import('submission.trackDirector.TrackDirectorAction');
