@@ -13,7 +13,7 @@
   -->
  
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.citationFormats.apa.displayName">Plugiciel du format de référence APA</message>
+	<message key="plugins.citationFormats.apa.displayName">Plugiciel du format de référence bibliographique APA</message>
 	<message key="plugins.citationFormats.apa.citationFormatName">APA</message>
 	<message key="plugins.citationFormats.apa.description">This plugin implements the APA citation format.</message>
 	<message key="plugins.citationFormats.apa.description">This plugin implements the APA citation format.</message>

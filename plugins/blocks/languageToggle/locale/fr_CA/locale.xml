@@ -14,5 +14,5 @@
  
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.block.languageToggle.displayName">Bloc de changement de langue</message>
-	<message key="plugins.block.languageToggle.description">Ce plugiciel fournit un mécanisme de changement de langue dans la barre de menu.</message>
+	<message key="plugins.block.languageToggle.description">Ce plugiciel fournit un mécanisme de changement de langue dans la barre de menus.</message>
 </locale>

@@ -13,7 +13,7 @@
   -->
  
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.citationFormats.mla.displayName">Plugiciel du format de référence MLA</message>
+	<message key="plugins.citationFormats.mla.displayName">Plugiciel du format de référence bibliographique MLA</message>
 	<message key="plugins.citationFormats.mla.citationFormatName">MLA</message>
-	<message key="plugins.citationFormats.mla.description">Ce plugiciel met en place le format de référence MLA.</message>
+	<message key="plugins.citationFormats.mla.description">Ce plugiciel implémente le format de référence bibliographique MLA.</message>
 </locale>

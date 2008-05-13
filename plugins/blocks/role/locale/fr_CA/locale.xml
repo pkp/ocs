@@ -13,6 +13,6 @@
   -->
  
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.block.role.displayName">Bloc à rôle spécifique</message>
-	<message key="plugins.block.role.description">Ce plugiciel fournit un bloc de barre de menu contenant de l'information de rôle spécifique tel que le nom de soumission et des liens rapides pour les directeurs, présentateurs, etc.</message>
+	<message key="plugins.block.role.displayName">Bloc relié à un rôle spécifique</message>
+	<message key="plugins.block.role.description">Ce plugiciel fournit un bloc de barre de menus contenant de l'information relié à un rôle spécifique tel que le nombre de soumissions et des liens rapides pour les responsables, présentateurs, etc.</message>
 </locale>

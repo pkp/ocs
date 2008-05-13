@@ -125,18 +125,6 @@ Obrigado novamente por sua importante participação neste processo.
 {$comments}</field>
 			<field name="description">Este e-mail informa aos revisores de uma submissão que o processo de revisão foi finalizado. Ele inclui informações sobre o artigo e a decisão alcançada, e agradece aos revisores por suas contribuições</field>
 		</row>
-		<row>
-			<field name="email_key">SUBMISSION_DEADLINE_WARN</field>
-			<field name="subject">Aviso de Prazo limite da Submissão</field>
-			<field name="body">O prazo limite para sua submissão, "{$paperTitle}," ao evento: {$conferenceName} expira em alguns dias. De acordo com nossos registros, esta submissão ainda não está completa.
-
-Você deve completar sua submissão (enviando os arquivos faltantes ou atualizando qualquer informação requerida) assim que possível, ou sua submissão será desqualificada para esta conferência.
-
-Quaisquer dúvidas, por favor, sinta a vontade de entrar em contato.
-
-{$editorialContactSignature}</field>
-			<field name="description">Este e-mail informa a um palestrante que suas submissões incompletas serão desqualificada pela chegada do prazo limite.</field>
-		</row>
 
 
 		<!--
@@ -506,5 +494,20 @@ If you have any questions, please feel free to contact me.
 {$registrationContactSignature}</field>
 			<field name="description">This email notifies a registrant that their registration has expired. It provides the conference's URL along with instructions for access.</field>
 		</row>-->
+		<row>
+			<field name="email_key">USER_VALIDATE</field>
+			<field name="subject">Validação de Cadastro</field>
+			<field name="body">{$userFullName}
+
+Seu cadastro foi criado, sob o nome  {$conferenceName}.
+No entanto, para poder usá-lo, é necessário validar seu e-mail.
+Para validar seu e-mail, basta clicar no link a seguir:
+
+{$activateUrl}
+
+Atenciosamente,
+{$principalContactSignature}</field>
+			<field name="description">Este e-mail é enviado ao usuário recentemente cadastrado para validação de conta de e-mail.</field>
+		</row>
 	</table>
 </data>

@@ -14,13 +14,13 @@
 
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.reports.reviews.displayName">Rapport d'évaluation</message>
-	<message key="plugins.reports.reviews.description">Ce plugiciel met en place un rapport CSV contenant une liste des assignements d'évaluation pour une conférence.</message>
+	<message key="plugins.reports.reviews.description">Ce plugiciel implémente un rapport CSV contenant une liste des engagements d'évaluation pour une conférence.</message>
 	<message key="plugins.reports.reviews.reviewerId">ID de l'évaluateur</message>
 	<message key="plugins.reports.reviews.reviewer">Évaluateur</message>
-	<message key="plugins.reports.reviews.dateAssigned">Date d'assignation</message>
+	<message key="plugins.reports.reviews.dateAssigned">Date d'engagement</message>
 	<message key="plugins.reports.reviews.dateNotified">Date d'alerte</message>
 	<message key="plugins.reports.reviews.dateConfirmed">Date de confirmation</message>
-	<message key="plugins.reports.reviews.dateCompleted">Date d'échéance</message>
+	<message key="plugins.reports.reviews.dateCompleted">Date de complétion</message>
 	<message key="plugins.reports.reviews.dateReminded">Date du rappel</message>
 </locale>
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the pt_BR (Portuguese) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="pt_BR" full_name="Portuguese">
+	<message key="plugins.reports.registrants.displayName">Relatório de Inscritos</message>
+	<message key="plugins.reports.registrants.description">Este plugin implemena um relatório no formato CSV contendo a lista de inscritos e dados cadastrais, como contato, situação do pagamente, entre outras.</message>
+	<message key="plugins.reports.registrants.userid">ID do Usuário</message>
+</locale>

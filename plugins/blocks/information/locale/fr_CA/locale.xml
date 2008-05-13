@@ -14,6 +14,6 @@
  
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.block.information.displayName">Bloc d'information</message>
-	<message key="plugins.block.information.description">Ce plugiciel fournit un lien d'information dans la barre de menu.</message>
+	<message key="plugins.block.information.description">Ce plugiciel fournit un lien d'information dans la barre de menus.</message>
 	<message key="plugins.block.information.link">Information</message>
 </locale>

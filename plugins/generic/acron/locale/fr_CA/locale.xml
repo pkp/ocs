@@ -16,5 +16,5 @@
 	<message key="plugins.generic.acron.name">Plugiciel Acron</message>
 	<message key="plugins.generic.acron.description">Ce plugiciel tente de réduire la dépendance d'OCS aux outils de planificiation périodique tel que 'cron.'</message>
 
-	<message key="plugins.generic.acron.reload">Recharger les tâches programmées</message>
+	<message key="plugins.generic.acron.reload">Recharger les tâches planifiées</message>
 </locale>

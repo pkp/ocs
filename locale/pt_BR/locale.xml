@@ -202,8 +202,6 @@
 
 	<!-- Navigation -->
 	<message key="navigation.conferenceHelp">Ajuda</message>
-	<message key="navigation.loggedInAs">Logado como...</message>
-	<message key="navigation.logout">Sair do sistema</message>
 	<message key="navigation.home">Início</message>
 	<message key="navigation.about">Sobre</message>
 	<message key="navigation.userHome">Página do Usuário</message>
@@ -214,14 +212,10 @@
 	<message key="navigation.current">Conferências atuais</message>
 	<message key="navigation.search">Pesquisa</message>
 	<message key="navigation.otherConferences">Outras Conferências</message>
-	<message key="navigation.myProfile">Meu Perfil</message>
-	<message key="navigation.myConferences">Minhas Conferências</message>
-	<message key="navigation.conferenceContent">Conteúdo da Conferência</message>
 	<message key="navigation.browse">Navegar</message>
 	<message key="navigation.browseByConference">Por Conferência</message>
 	<message key="navigation.browseByPresenter">Por Autor</message>
 	<message key="navigation.browseByTitle">Por Título</message>
-	<message key="navigation.info">Informações</message>
 	<message key="navigation.infoForPresenters">Para Autores</message>
 	<message key="navigation.infoForReaders">Para Leitores</message>
 	<message key="navigation.infoForReviewers">Para Avaliadores</message>
@@ -234,8 +228,6 @@
 	<message key="navigation.previousPage"><![CDATA[<<]]></message>
 	<message key="navigation.nextPage"><![CDATA[>>]]></message>
 	<message key="navigation.items">{$from} - {$to} de {$total} Itens</message>
-	<message key="navigation.fontSize">Tamanho de fonte</message>
-
 	<!-- Paper Queues -->
 	<message key="common.queue.long.submissionsUnassigned">Não designado</message>
 	<message key="common.queue.short.submissionsUnassigned">Não designado</message>
@@ -446,11 +438,11 @@
 	<message key="schedConf.submission">Submissão</message>
 	<message key="schedConf.submissions">Submissões</message>
 
-	<message key="schedConf.cfp.title">{$schedConfAbbrev} Chamada para submissões</message>
-	<message key="schedConf.overview.title">{$schedConfAbbrev} Visão Geral</message>
-	<message key="schedConf.presentations.title">{$schedConfAbbrev} Apresentações e Autores</message>
-	<message key="schedConf.program.title">{$schedConfAbbrev} Programa</message>
-	<message key="schedConf.trackPolicies.title">{$schedConfAbbrev} Políticas das Modalidades</message>
+	<message key="schedConf.cfp.title">Chamada para submissões</message>
+	<message key="schedConf.overview.title">Visão Geral</message>
+	<message key="schedConf.presentations.title">Apresentações e Autores</message>
+	<message key="schedConf.program.title">Programa</message>
+	<message key="schedConf.trackPolicies.title">Políticas das Modalidades</message>
 
 	<!-- User self-registration form -->
 	<message key="schedConf.registration.alreadyRegistered"><![CDATA[Embora não tenha sido recebido o pagamento, sua inscrição já foi realizada. Entre em contato com o responsável no Sobre > Contato caso seja um erro, ou deseje alterar sua inscrição.]]></message>
@@ -470,8 +462,6 @@
 	<message key="schedConf.registration.account">Cadastro</message>
 	<message key="schedConf.registration.loggedInAs"><![CDATA[Usuário atualmente logado. Verifique se as informações de cadastro estão corretas. Caso contrário, atualize seus dados clicando em <a href="{$profileUrl}">Meu Perfil</a> ou clique em <a href="{$logoutUrl}">sair do sistem</a> para acessar com outro cadastro.]]></message>
 	<message key="schedConf.registration.createAccount.description"><![CDATA[Usuário não conectado. Para se inscrever na conferência é necessário possuir um cadastro. Caso já possua um, <a href="{$loginUrl}">clique aqui</a> para entrar no sistema; caso contrário, preencha as informações do formulário para criar um novo cadastro.]]></message>
-	<message key="schedConf.registration."></message>
-
 	<!-- User -->
 	<message key="user.userHome">Página do Usuário</message>
 	<message key="user.showAllConferences">Minhas Conferências</message>
@@ -673,8 +663,6 @@ Note que a interface OAI pode ser desativada para este portal nas configuraçõe
 	<message key="admin.languages.installLanguages">Instalar Idiomas</message>
 	<message key="admin.languages.primaryLocaleInstructions">Este será o idioma padrão para o portal e todas as conferências hospedadas.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Os idiomas selecionados estarão disponíveis para todas as conferências no portal, e constarão da lista de idiomas que aparece em cada página do sistema (esta opção pode ser desativada individualmente por conferência). Caso não sejam selecionados vários idiomas, a lista de idiomas não estará disponível e a opção "configurações de idioma" não estará disponível para as conferências.</message>
-	<message key="admin.languages.languageOptions">Opções de Idioma</message>
-	<message key="admin.languages.profileLocales">Ao cadastrar os atores do sistema (gerentes, diretores, etc.), os idiomas de trabalho deverão ser incluídos no Perfil de Usuário para o benefício de todos os diretores de conferência.</message>
 	<message key="admin.languages.installedLocales">Idiomas Instalados</message>
 	<message key="admin.languages.reload">Recarregar Idioma</message>
 	<message key="admin.languages.confirmReload">Deseja realmente recarregar este idioma? A execução irá apagar qualquer informação de idioma específico como customização de e-mails.</message>
@@ -773,8 +761,6 @@ Note que a interface OAI pode ser desativada para este portal nas configuraçõe
 	<message key="manager.payment.form.description">Informe os dados de configuração para o método de pagamento que esta conferência aceita.</message>
 	<message key="manager.payment.form.method">Métodos de Pagamento de Inscrição</message>
 
-	<message key="payment.type.registration">Inscrições</message>
-
 	<!-- Conference Event Log -->
 	<message key="manager.conferenceEventLog">Log de Eventos</message>
 	<message key="conference.event.confirmClearLog">Deseja realmente limpar o log de eventos desta conferência?</message>
@@ -860,28 +846,6 @@ e deve começar e terminar com um caractere alfanumérico.</message>
 
 	<message key="manager.statistics.reports">Relatórios</message>
 	<message key="manager.statistics.reports.description">O sistema gera relatórios que registram os detalhes associados com o processamento da submissão, do ponto de vista de submissões, diretores, avaliadores e modalidades, em um dado período. Relatórios são gerados no formato CSV, que exigem um aplicativo de planilha eletrônica para serem visualizados.</message>
-	<message key="manager.statistics.reports.dateFrom">De</message>
-	<message key="manager.statistics.reports.dateTo">Até</message>
-	<message key="manager.statistics.reports.reportType">Tipo de Relatório</message>
-	<message key="manager.statistics.reports.type.conference">Relatório de Conferência</message>
-	<message key="manager.statistics.reports.type.schedConf">Relatório de Conferência Agendada</message>
-	<message key="manager.statistics.reports.type.director">Relatório de Diretor</message>
-	<message key="manager.statistics.reports.type.reviewer">Relatório do Avaliador</message>
-	<message key="manager.statistics.reports.type.track">Relatório da Modalidade</message>
-	<message key="manager.statistics.reports.generate">Gerar Relatório</message>
-	<message key="manager.statistics.reports.status">Status (Aceito, Rejeitado, Outro)</message>
-	<message key="manager.statistics.reports.dateDecided">Data da Decisão</message>
-	<message key="manager.statistics.reports.presenter">Autor #{$num}</message>
-	<message key="manager.statistics.reports.affiliation">Instituição #{$num}</message>
-	<message key="manager.statistics.reports.country">País #{$num}</message>
-	<message key="manager.statistics.reports.reviewer">Avaliador #{$num}</message>
-	<message key="manager.statistics.reports.director">Diretor #{$num}</message>
-	<message key="manager.statistics.reports.score">Pontuação #{$num}</message>
-	<message key="manager.statistics.reports.singleScore">Pontuação</message>
-	<message key="manager.statistics.reports.recommendation">Recomendação #{$num}</message>
-	<message key="manager.statistics.reports.daysToDecision">Tempo até a Decisão</message>
-	<message key="manager.statistics.reports.daysToPublication">Tempo até a Publicação</message>
-
 	<!-- Plugin Management -->
 	<message key="manager.plugins.pluginManagement">Administração de Plugins</message>
 	<message key="manager.plugins.sitePlugin">Este é um plugin de uso geral. Somente o Administrador do Portal possui permissões de administração.</message>
@@ -925,14 +889,6 @@ e deve começar e terminar com um caractere alfanumérico.</message>
 	<message key="manager.setup.homeHeaderImageInvalid">Formato de imagem inválido. Formatos aceitáveis são .gif, .jpg, ou .png.</message>
 	<message key="manager.setup.pageHeaderTitleImageInvalid">Formato de imagem inválido. Formatos aceitáveis são .gif, .jpg, ou .png.</message>
 	<message key="manager.setup.pageHeaderLogoImageInvalid">Formato de imagem inválido. Formatos aceitáveis são .gif, .jpg, ou .png.</message>
-	<message key="manager.setup.homeHeaderTitleImageAlt1Invalid">Formato de imagem inválido. Formatos aceitáveis são .gif, .jpg, ou .png.</message>
-	<message key="manager.setup.homeHeaderLogoImageAlt1Invalid">Formato de imagem inválido. Formatos aceitáveis são .gif, .jpg, ou .png.</message>
-	<message key="manager.setup.pageHeaderTitleImageAlt1Invalid">Formato de imagem inválido. Formatos aceitáveis são .gif, .jpg, ou .png.</message>
-	<message key="manager.setup.pageHeaderLogoImageAlt1Invalid">Formato de imagem inválido. Formatos aceitáveis são .gif, .jpg, ou .png.</message>
-	<message key="manager.setup.homeHeaderTitleImageAlt2Invalid">Formato de imagem inválido. Formatos aceitáveis são .gif, .jpg, ou .png.</message>
-	<message key="manager.setup.homeHeaderLogoImageAlt2Invalid">Formato de imagem inválido. Formatos aceitáveis são .gif, .jpg, ou .png.</message>
-	<message key="manager.setup.pageHeaderTitleImageAlt2Invalid">Formato de imagem inválido. Formatos aceitáveis são .gif, .jpg, ou .png.</message>
-	<message key="manager.setup.pageHeaderLogoImageAlt2Invalid">Formato de imagem inválido. Formatos aceitáveis são .gif, .jpg, ou .png.</message>
 	<message key="manager.setup.conferenceStyleSheetInvalid">Formato de folha de estilo inválido. Formato aceitável é .css.</message>
 	<message key="manager.setup.conferenceSetupUpdated">Configurações atualizadas.</message>
 	<message key="manager.setup.selectOne">Escolha uma opção</message>
@@ -952,28 +908,24 @@ e deve começar e terminar com um caractere alfanumérico.</message>
 	<message key="manager.setup.aboutConference">Sobre a Conferência</message>
 	<message key="manager.setup.additionalContent">Conteúdo Adicional</message>
 	<message key="manager.setup.layout">Cabeçalho da Página Inicial, conteúdo, cabeçalho interno da conferência, rodapé, barra de navegação e folha de estilo.</message>
-	<message key="manager.setup.styleSheet">Folha de Estilo</message>
 	<message key="manager.setup.loggingAndAuditing">Administração</message>
 	<message key="manager.setup.indexing">Indexação da Conferência</message>
 
 	<message key="manager.setup.aboutConference.title">Passo 1. Sobre a Conferência</message>
 	<message key="manager.setup.additionalContent.title">Passo 2. Conteúdo Adicional</message>
 	<message key="manager.setup.layout.title">Passo 3. Cabeçalho da Página Inicial, conteúdo, cabeçalho interno da conferência, rodapé, barra de navegação.</message>
-	<message key="manager.setup.styleSheet.title">Passo 4. Folha de Estilo</message>
 	<message key="manager.setup.loggingAndAuditing.title">Passo 5. Administração</message>
 	<message key="manager.setup.indexing.title">Passo 6. Indexação da Conferência</message>
 
 	<message key="manager.setup.aboutConference.brief">Sobre</message>
 	<message key="manager.setup.additionalContent.brief">Conteúdo Adicional</message>
 	<message key="manager.setup.layout.brief">Cabeçalhos, Rodapé, etc.</message>
-	<message key="manager.setup.styleSheet.brief">Folha de Estilo</message>
 	<message key="manager.setup.loggingAndAuditing.brief">Administração</message>
 	<message key="manager.setup.indexing.brief">Indexação</message>
 
 	<message key="manager.setup.aboutConference.description">Descrição da Conferência, contato principal, aviso de direito autoral, etc.</message>
 	<message key="manager.setup.additionalContent.description">Conteúdo da página inicial, informações para usuários e avisos.</message>
 	<message key="manager.setup.layout.description">Títulos e logos, cabeçalhos e rodapés, etc.</message>
-	<message key="manager.setup.styleSheet.description">Folha de Estilo para páginas da Conferência</message>
 	<message key="manager.setup.loggingAndAuditing.description">Logs de e-mail, logs de eventos, etc.</message>
 	<message key="manager.setup.indexing.description">Ferramentas de busca e coleta de metadados</message>
 
@@ -1051,9 +1003,6 @@ e deve começar e terminar com um caractere alfanumérico.</message>
 	<message key="manager.setup.layout.conferencePageFooterDescription">No rodapé é possível incluir ou atualizar o conteúdo, colocando código HTML customizado, como outras barras de navegação, contadores, publicidade. O rodapé aparecerá em todas as páginas.</message>
 
 	<!-- Conference setup page 4 -->
-	<message key="manager.setup.styleSheet.conferenceStyleSheet.description">As conferências e o portal utilizam uma folha de estilos comum (no sub-diretório "styles" do portal). O estilo padrão pode ser modificado, enviando um documento css específico.</message>
-	<message key="manager.setup.styleSheet.useConferenceStyleSheet">Folha de Estilo</message>
-
 	<!-- Conference setup page 5 -->
 	<message key="manager.setup.loggingAndAuditing.pageDescription">Manter log das seguintes ações e materiais para todas as conferências.</message>
 	<message key="manager.setup.loggingAndAuditing.submissionEventLogging">Permitir controle de eventos da submissão, mantendo um documento de log de todas as ações (acessível em cada página de "Histórico").</message>
@@ -1201,11 +1150,7 @@ Título do sistema de classificação]]></message>
 	<message key="manager.languages.languageInstructions"><![CDATA[O sistema pode estar disponível para usuários em vários idiomas. O sistema também pode operar como parcialmente multilíngüe, proporcionando a opção de troca de idioma em cada página, e permitindo que algumas informações sejam incluídas em no máximo dois idiomas a mais.<br /><br />Caso o idioma desejado não esteja disponível, solicite ao administrador do portal a sua instalação através da interface de administração. Para informações sobre instalação de novos idiomas, consulte a documentação do sistema.]]></message>
 	<message key="manager.languages.primaryLocaleInstructions">Idioma padrão do sistema.</message>
 	<message key="manager.languages.supportedLocalesInstructions">Escolha todos os idiomas que serão suportados através da lista de idiomas disponível em todas as páginas. A lista aparecerá caso sejam escolhidos mais de um idioma.</message>
-	<message key="manager.languages.alternateLocale1">Idioma Alternativo #1</message>
-	<message key="manager.languages.alternateLocale2">Idioma Alternativo #2</message>
 	<message key="manager.languages.alternateLocaleInstructions">O sistema permite que algumas informações críticas sejam incluídas em no máximo dois idiomas adicionais. Para habilitar esta opção, escolha um ou mais idiomas alternativos e escolha dentre as opções a seguir.</message>
-	<message key="manager.languages.alternativeLanguageOptions">Opções de Idioma</message>
-	<message key="manager.languages.conferenceTitleAltLanguages">Imagem título, cabeçalho da página, entre outros, serão enviados em cada idioma escolhido.</message>
 	<message key="manager.languages.noneAvailable">Nenhum idioma adicional disponível. Informe o administrador do portal para inclusão de idiomas adicionais à revista.</message>
 
 
@@ -1232,8 +1177,6 @@ Título do sistema de classificação]]></message>
 	<message key="manager.tracks.policy">Políticas da Modalidade</message>
 	<message key="manager.tracks.identifyType">Como metadado do documento, identificar itens nesta modalidade como</message>
 	<message key="manager.tracks.identifyTypeExamples">(Exemplo: "Avaliado por Pares", "Paper Não Avaliado por Pares", "Apresentação Convidada", etc.)</message>
-	<message key="manager.tracks.abstractsDisabled">NÃO exigir resumo.</message>
-
 	<!-- Timeline management -->
 	<message key="manager.timeline">Cronograma da Conferência</message>
 	<message key="manager.timeline.conferenceTimeline">Cronograma da Conferência</message>
@@ -1352,7 +1295,6 @@ O usuário só poderá ser encontrado na lista Todos os Usuários.</message>
 	<message key="manager.people.editProfile">Editar Perfil</message>
 
 	<message key="manager.people.signInAsUser">Entrar no sistema como</message>
-	<message key="manager.people.signOutAsUser">Sair do sistema como Usuário</message>
 	<message key="manager.people.signInAs">Entrar como Usuário</message>
 	<message key="manager.people.syncUsers">Sincronizar cadastro de usuários</message>
 	<message key="manager.people.syncUserDescription">Sincronizar Cadastro cadastrará nesta conferência todos os usuários com o papel específico na conferência especificada. Esta função permite que um grupo padrão de usuários (exemplo: avaliadores) seja compartilhado entre conferências.</message>
@@ -1394,7 +1336,6 @@ O usuário só poderá ser encontrado na lista Todos os Usuários.</message>
 	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Aviso:</strong> Para ativar esta opção, o administrador do sistema deverá habilitar a opção <tt>scheduled_tasks</tt> no arquivo de configuração do sistema. Configurações adicionais no servidor podem ser necessárias para o funcionamento correto da opção (que pode não ser possível em todos os servidores!), como indicado na documentação do sistema.]]></message>
 	<message key="manager.registrationPolicies.presenterSelfArchive">Política de Auto-arquivamento pelo Autor</message>
 	<message key="manager.registrationPolicies.presenterSelfArchiveDescription">A política a seguir será exibida no Sobre da revista.</message>
-	<message key="manager.registrationPolicies.registrationPoliciesSaved">Políticas de inscrições atualizadas.</message>
 	<message key="manager.registrationPolicies.expiryReminders">Lembretes de Expiração de Inscrição</message>
 	<message key="manager.registrationPolicies.expiryRemindersDescription">Lembretes automáticos via e-mail (editáveis nas configurações da conferência por Gerentes Gerais, na área de E-mails Padrão) podem ser enviados aos inscritos tanto antes quanto depois da expiração da inscrição</message>
 	<message key="manager.registrationPolicies.expiryRemindersDisabled"><![CDATA[<strong>Aviso:</strong> Para ativar esta opção, o administrador do sistema deverá habilitar a opção <tt>scheduled_tasks</tt> no arquivo de configuração do sistema. Configurações adicionais no servidor podem ser necessárias para o funcionamento correto da opção (que pode não ser possível em todos os servidores!), como indicado na documentação do sistema.]]></message>
@@ -1702,15 +1643,6 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<message key="reviewer.paper.reviewSchedule">Agendar Avaliação</message>
 	<message key="reviewer.paper.reviewSteps">Diretrizes para Avaliação</message>
 	<message key="reviewer.paper.reviewerGuidelines">Diretrizes para Avaliadores</message>
-	<message key="reviewer.paper.reviewerInstruction1a">Notificar ao Diretor da Submissão</message>
-	<message key="reviewer.paper.reviewerInstruction1b">a sua decisão sobre sua disponibilidade para a tarefa de avaliação.</message>
-	<message key="reviewer.paper.reviewerInstruction2">Em caso positivo, consulte as Diretrizes para Avaliadores a seguir.</message>
-	<message key="reviewer.paper.reviewerInstruction3AbstractOnly">Avalie o resumo disponível.</message>
-	<message key="reviewer.paper.reviewerInstruction3Submission">Avalie a submissão</message>
-	<message key="reviewer.paper.reviewerInstruction4a">Clique no ícone para digitar (ou colar) a avaliação da submissão</message>
-	<message key="reviewer.paper.reviewerInstruction4b">eguindo as Diretrizes para Avaliadores a seguir.</message>
-	<message key="reviewer.paper.reviewerInstruction5">Opcionalmente, é possível transferir uma versão do documento com seus comentários para consulta pelo editor e/ou autor.</message>
-	<message key="reviewer.paper.reviewerInstruction6">Escolha a recomendação adequada e submeta a avaliação para concluir o processo. É obrigatório incluir os comentários da avaliação ou transferir uma Versão para Avaliação do documento antes de definir sua avaliação.</message>
 	<message key="reviewer.paper.mustSelectDecision">Não foi selecionada nenhuma recomendação. Deve-se escolher uma recomendação para submeter a avaliação.</message>
 	<message key="reviewer.paper.confirmDecision">Uma vez registrada a decisão não será mais possível modificar a avaliação. Deseja realmente proceder?</message>
 	<message key="reviewer.paper.ensuringBlindReview">Assegurando uma Avaliação Cega segura</message>
@@ -1763,7 +1695,7 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<message key="presenter.submit.selectPrincipalContact">Contato Principal para correspondência.</message>
 	<message key="presenter.submit.addPresenter">Incluir Autor</message>
 	<message key="presenter.submit.deletePresenter">Excluir Autor</message>
-	<message key="presenter.submit.submissionIndexingDescription">Digite termos que descrevam da melhor maneira o conteúdo da submssão, segundo as categorias utilizadas pela revista e os exemplos oferecidos pelo editor. Separe os termos com ponto-e-vírgula(termo1; termo2; termo3).</message>
+	<message key="presenter.submit.submissionIndexingDescription">Digite termos que descrevam da melhor maneira o conteúdo da submissão, segundo as categorias utilizadas pela revista e os exemplos oferecidos pelo editor. Separe os termos com ponto-e-vírgula(termo1; termo2; termo3).</message>
 	<message key="presenter.submit.submissionSupportingAgencies">Agências de Fomento</message>
 	<message key="presenter.submit.submissionSupportingAgenciesDescription">Indique as agências que fomentaram ou patrocinaram o trabalho.</message>
 	<message key="presenter.submit.agencies">Agências</message>
@@ -1926,7 +1858,6 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<message key="user.login.lostPassword.invalidHash">O link acessado expirou ou é inválido. Lamentamos o inconveniente. Tente criar uma senha novamente.</message>
 	<message key="user.login.lostPassword.passwordSent">Uma nova senha foi enviada. Acesse o sistema com a nova senha.</message>
 	<message key="user.login.changePasswordInstructions"><![CDATA[Uma nova senha deve ser definida antes de entrar no sistema.<br /><br />Digite o login e senhas atual e nova para alterar a senha de acesso à conta.]]></message>
-	<message key="user.login.rememberMe">Lembrar quem sou</message>
 	<message key="user.login.registeredEmail">E-mail de usuário Cadastrado</message>
 	<message key="presenter.submit.presenterSubmitLoginMessage">Um cadastro de usuário é necessário para enviar documentos à esta conferência. Isto permite aos diretores acompanhar e controlar a submissão, além de permitir o contato durante o andamento do processo editorial, ou caso seja necessária a atualização de informações</message>
 
@@ -1960,8 +1891,8 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<message key="user.account.createAs">Cadastrar como</message>
 	<message key="user.account.privacyStatement">Política de Privacidade</message>
 	<message key="user.account.completeForm">Preencha o formulário para se cadastrar no sistema.</message>
-	<message key="user.account.hasAccount"><![CDATA[<a href="{$registerUrl}">Clique aqui</a> caso já seja cadastrado no sistema ou em outra conferência do portal.]]></message>
-	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$registerUrl}">Clique aqui</a> caso <b>não</b> seja cadastrado em outra conferência do portal.]]></message>
+	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Clique aqui</a> caso já seja cadastrado no sistema ou em outra conferência do portal.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Clique aqui</a> caso <b>não</b> seja cadastrado em outra conferência do portal.]]></message>
 	<message key="user.account.loginToRegister">Digite o login e senha para cadastrar-se na conferência.</message>
 	<message key="user.account.createAccountDisabled">Cadastro de usuários desativado no momento.</message>
 	<message key="user.account.usernameRestriction">O login deve conter apenas letras minúsculas (a-z), números(0-9), sublinhados(_) e hífens(-).</message>
@@ -2084,8 +2015,6 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<message key="about.openAccessPolicy">Política de Acesso Livre</message>
 	<message key="about.archiveAccessPolicy">Política de Acesso aos Arquivos</message>
 	<message key="about.delayedOpenAccess">Acesso Livre Adiado</message>
-	<message key="about.delayedOpenAccessDescription1">O conteúdo desta conferência estará disponível para Acesso Livre</message>
-	<message key="about.delayedOpenAccessDescription2">mês(es) após a conferência agendada estar disponível aos participantes.</message>
 	<message key="about.presenterSelfArchive">Auto-arquivamento pelo Autor</message>
 	<message key="about.archiving">Arquivamento</message>
 	<message key="about.registration">Inscrições</message>
@@ -2325,7 +2254,6 @@ O servidor atualmente tem suporte a mbstring: <strong>{$supportsMBString}</stron
 
 	<message key="rt.admin.readingToolsEnabled">Ferramentas de Leitura</message>
 	<message key="rt.admin.selectedVersion">Itens Relacionados</message>
-	<message key="rt.admin.rtEnable">Entre em Configuração para habilitar as Ferramentas de Leitura e configurar as opções ou alterar a versão.</message>
 	<message key="rt.admin.settings.description">As ferramentas de leitura são exibidas em um frame ao lado dos itens publicados, nas seções da revistas que cuja indexação foi habilitada. As ferramentas consistem de itens opcionais relacionados ao item publicado, listados abaixo, e um conjunto de outras ferramentas que proporcionam acesso a mais itens relacionados, organizados por área do conhecimento e atividade.</message>
 	<message key="rt.admin.settings.enableReadingTools">Habilitar Ferramentas de Leitura para as seções escolhidas da revista.</message>
 	<message key="rt.admin.settings.abstract">Resumo (apresenta o resumo do item).</message>
@@ -2334,7 +2262,6 @@ O servidor atualmente tem suporte a mbstring: <strong>{$supportsMBString}</stron
 	<message key="rt.admin.options">Ferramentas Opcionais</message>
 
 	<message key="rt.admin.settings.disableRelatedItems">Desabilitar Itens Relacionados</message>
-	<message key="rt.admin.settings.bibFormat">Formato de Referência Bibliográfica</message>
 	<message key="rt.admin.settings.captureCite">Como citar este documento (Exibe a citação de um artigo no formato padrão, com suporte para os seguintes programas de administração de citações: EndNote, Reference Manager, e ProCite)</message>
 	<message key="rt.admin.settings.viewMetadata">Exibir metadados (Exibe a informação de indexação incluída pelo autor e pelo sistema)</message>
 	<message key="rt.admin.settings.supplementaryFiles">Exibir documentos suplementares (Exibe lista de todos os documentos suplementares incluídos pelo autor)</message>
@@ -2453,21 +2380,12 @@ A validação pode falhar em URLs para pesquisa que requeiram dados via o métod
 
 	<message key="rt.captureCite">Citação do documento</message>
 	<message key="rt.captureCite.online">Online</message>
-	<message key="rt.captureCite.available">Disponível em:</message>
-	<message key="rt.captureCite.capture">Baixar Citação</message>
-	<message key="rt.captureCite.acaoLocation">América do Sul</message>
-	<message key="rt.captureCite.capture.endNote"><![CDATA[<a href="{$url}">EndNote</a> - formato EndNote (Macintosh &amp; Windows)]]></message>
-	<message key="rt.captureCite.capture.referenceManager"><![CDATA[<a href="{$url}">Reference Manager</a> - format RIS (Windows apenas)]]></message>
-	<message key="rt.captureCite.capture.proCite"><![CDATA[<a href=">{$url}">ProCite</a> - format RIS (Macintosh &amp; Windows)]]></message>
-
 	<message key="rt.reviewPolicy">Política de Avaliação</message>
 	<message key="rt.printVersion">Versão para impressão</message>
 	<message key="rt.lookUp">Pesquisar Palavra</message>
 	<message key="rt.colleague">Enviar para outros</message>
 	<message key="rt.addComment">Incluir comentário</message>
 	<message key="rt.emailPresenter">E-mail ao autor</message>
-	<message key="rt.beNotifiedWhen">Avisar quando...</message>
-
 	<message key="rt.relatedItems">Itens Relacionados</message>
 	<message key="rt.thisConference">Pesquisar na conferência</message>
 
@@ -2508,9 +2426,9 @@ A validação pode falhar em URLs para pesquisa que requeiram dados via o métod
 	<message key="debug.executionTime">Página gerada em</message>
 	<message key="debug.databaseQueries">Número de requisições ao banco de dados</message>
 	<message key="debug.notes">Notas:</message>
-	<message key="debug.notes.localeLoad">Documento de Tradução</message>
-	<message key="debug.notes.localeListLoad">Lista de traduções</message>
-	<message key="debug.notes.missingLocaleKey">Chave de tradução</message>
+	<message key="debug.notes.localeLoad">Arquivo de tradução "{$localeFile}" carregado do XML</message>
+	<message key="debug.notes.localeListLoad">Lista de traduções "{$localeList}" carregado do XML</message>
+	<message key="debug.notes.missingLocaleKey">Chave de tradução "{$key}" faltando.</message>
 
 	<!--
 	 *
@@ -2544,4 +2462,167 @@ A validação pode falhar em URLs para pesquisa que requeiram dados via o métod
 	<message key="default.schedConfSettings.forReaders"><![CDATA[Estimulamos os leitores a se cadastrarem para receber as notificações de publicação dos documentos a esta conferência. Clique em <a href="{$accountUrl}">Cadastro</a> no menu do sistema. Esta lista permite aos organizadores oferecer um mínimo de suporte ou acesso ao conteúdo. Conheça a <a href="{$privacyStatementUrl}">Declaração de Privacidade</a> que assegura aos leitores e usuários a privacidade de seus nomes e endereços de e-mail, sendo utilizados apenas para esta conferência.]]></message>
 	<message key="default.schedConfSettings.forPresenters"><![CDATA[Deseja enviar contribuições à revista? Convidamos todos a conferir a página <a href="{$aboutUrl}">Sobre a Conferência</a> para conhecer as políticas das modalidades, bem como as <a href="{$presenterGuidelinesUrl}">Normas de Submissão</a>. Os autores devem <a href="{$accountUrl}">se cadastrar</a> no sistema antes de iniciar o processo de submissão, ou <a href="{$loginUrl}">acessar o sistema</a> e iniciar o processo de submissão, caso já possuam um cadastro.]]></message>
 
+	<message key="common.time">Hora</message>
+	<message key="common.discipline">Área do Conhecimento</message>
+	<message key="common.captchaField">Código verificador</message>
+	<message key="common.captchaField.description">Informe os caracteres que aparecem na imagem!</message>
+	<message key="common.captchaField.badCaptcha">Os caracteres informados não coincidem com os caracteres da imagem. Verifique os caracteres e tente novamente.</message>
+	<message key="common.suggest">Sugerir</message>
+	<message key="common.sortBy">Ordenar por...</message>
+	<message key="form.postRequired">Problemas no envio do formulário.</message>
+	<message key="form.formLanguage">Idioma do formulário</message>
+	<message key="form.formLanguage.description">Escolha o idioma desejado para incluir as informações dos campos em idiomas adicionais.</message>
+	<message key="email.compose.tooSoon">Tentativa de envio de mensagem muito próxima do envio de mensagem anterior.
+Aguarde alguns minutos antes de enviar outra mensagem.</message>
+	<message key="email.compose.tooManyRecipients">A mensagem a ser enviada possui excesso de destinatários</message>
+	<message key="schedConf.accommodation">Acomodações</message>
+	<message key="schedConf.schedule.title">Agenda</message>
+	<message key="schedConf.accommodation.title">Acomodações</message>
+	<message key="schedConf.scheduler.locations">Local da conferência</message>
+	<message key="schedConf.registration.typeFuture">(Abertura das Inscrições {$openingDate})</message>
+	<message key="user.salutation">Saudação</message>
+	<message key="user.gender">Sexo</message>
+	<message key="user.masculine">M</message>
+	<message key="user.feminine">F</message>
+	<message key="user.noRoles.chooseConference">Seu cadastro ainda não está associado a nenhuma conferência. Escolha uma:</message>
+	<message key="user.noRoles.noRolesForConference">Seu cadastro não possui papéis nesta conferência. Faça sua escolha a partir das opções a seguir:</message>
+	<message key="user.noRoles.submitProposal">Enviar proposta</message>
+	<message key="user.noRoles.submitProposalRegClosed">Enviar Proposta: Inscrições de autores estão encerradas.</message>
+	<message key="user.noRoles.submitProposalSubmissionsClosed">Enviar Proposta: Envio de submissões está encerrado.</message>
+	<message key="user.noRoles.regReviewer">Inscrever-se como Avaliador da Conferência</message>
+	<message key="user.noRoles.regReviewerClosed">Inscrever-se como Avaliador da Conferência: Inscrição de Avaliadores encerrada.</message>
+	<message key="user.noRoles.register">Inscrever-se para assistir à conferência</message>
+	<message key="user.noRoles.registerUnavailable">Inscrever-se para assistir à conferência: Inscrições não estão sendo aceitas no momento.</message>
+	<message key="reader.accessDenied">Permissão negada para visualizar este documento. Caso possua um cadastro nesta conferência, pode ser necessário entrar no sistema para acessar o seu conteúdo.</message>
+	<message key="admin.settings.siteStyleSheet">Folha de estilos do portal</message>
+	<message key="admin.settings.homeHeaderImageInvalid">Formato de imagem para logo do portal inválido. Formatos aceitos são .gif, .jpg ou .png</message>
+	<message key="admin.settings.siteStyleSheetInvalid">Formato inválido de folha de estilos. O formato aceito é .css.</message>
+	<message key="manager.scheduler.returnToSchedule">Voltar à Agenda</message>
+	<message key="manager.scheduler">Agendamento</message>
+	<message key="manager.scheduler.roomsAndEvents"><![CDATA[Quartos &amp; Eventos]]></message>
+	<message key="manager.scheduler.scheduling">Agendando</message>
+	<message key="manager.scheduler.description"><![CDATA[<p>Gerentes de Conferência podem agendar apresentações e eventos especiais para horários e locais específicos utilizando a Agenda. Nas páginas a seguir, o Gerente de Conferência pode definir locais (prédios e salas) e períodos de tempo, além de designar apresentações e eventos a cada.</p>]]></message>
+	<message key="manager.scheduler.buildingsAndRooms"><![CDATA[Prédios &amp; Salas]]></message>
+	<message key="manager.scheduler.buildings">Prédios</message>
+	<message key="manager.scheduler.building">Prédio</message>
+	<message key="manager.scheduler.building.name">Nome</message>
+	<message key="manager.scheduler.building.abbrev">Abreviação</message>
+	<message key="manager.scheduler.building.description">Descrição</message>
+	<message key="manager.scheduler.building.form.nameRequired">Nome do prédio é obrigatório.</message>
+	<message key="manager.scheduler.building.form.abbrevRequired">Abreviação do prédio é obrigatória.</message>
+	<message key="manager.scheduler.building.confirmDelete">Deseja realmente excluir este prédio? Podem haver apresentações agendadas nesse local.</message>
+	<message key="manager.scheduler.building.saveAndCreateAnother">Salvar e Incluir Outro</message>
+	<message key="manager.scheduler.building.noneCreated">Nenhum prédio foi incluído.</message>
+	<message key="manager.scheduler.building.create">Incluir um novo prédio</message>
+	<message key="manager.scheduler.building.createBuilding">Incluir Prédio</message>
+	<message key="manager.scheduler.building.createBuildingShort">Incluir</message>
+	<message key="manager.scheduler.building.editBuilding">Editar dados do Prédio</message>
+	<message key="manager.scheduler.building.editBuildingShort">Editar</message>
+	<message key="manager.scheduler.rooms">Salas</message>
+	<message key="manager.scheduler.room">Sala</message>
+	<message key="manager.scheduler.room.unassigned">Livre</message>
+	<message key="manager.scheduler.room.name">Nome</message>
+	<message key="manager.scheduler.room.abbrev">Abreviação</message>
+	<message key="manager.scheduler.room.description">Descrição</message>
+	<message key="manager.scheduler.room.form.nameRequired">Nome da sala é obrigatório.</message>
+	<message key="manager.scheduler.room.form.abbrevRequired">Abreviação da sala é obrigatória.</message>
+	<message key="manager.scheduler.room.form.buildingIdValid">Cada sala deve estar associada a um prédio.</message>
+	<message key="manager.scheduler.room.confirmDelete">Deseja realmente excluir esta sala? Podem haver apresentações agendadas nesse local.</message>
+	<message key="manager.scheduler.room.saveAndCreateAnother">Salvar e Incluir Outra</message>
+	<message key="manager.scheduler.room.noneCreated">Nenhuma sala incluída.</message>
+	<message key="manager.scheduler.room.create">Incluir nova sala</message>
+	<message key="manager.scheduler.room.createRoom">Incluir sala</message>
+	<message key="manager.scheduler.room.createRoomShort">Incluir</message>
+	<message key="manager.scheduler.room.editRoom">Editar dados da Sala</message>
+	<message key="manager.scheduler.room.editRoomShort">Editar</message>
+	<message key="manager.scheduler.specialEvents">Eventos Especiais</message>
+	<message key="manager.scheduler.specialEvent.name">Nome</message>
+	<message key="manager.scheduler.specialEvent.description">Descrição</message>
+	<message key="manager.scheduler.specialEvent.isMultiple">O evento especial pode ocorrer várias vezes durante a conferência (ex.: coffee break).</message>
+	<message key="manager.scheduler.specialEvent.form.nameRequired">Nome do evento especial é obrigatório</message>
+	<message key="manager.scheduler.specialEvent.form.checkTimes">Verifique as datas informadas para assegurar-se de que a data de término não seja anterior à de início.</message>
+	<message key="manager.scheduler.specialEvent.confirmDelete">Deseja realmente excluir este evento especial?</message>
+	<message key="manager.scheduler.specialEvent.saveAndCreateAnother">Salvar e Incluir outro</message>
+	<message key="manager.scheduler.specialEvent.noneCreated">Nenhum evento especial incluído.</message>
+	<message key="manager.scheduler.specialEvent.create">Incluir novo evento especial</message>
+	<message key="manager.scheduler.specialEvent.createSpecialEvent">Incluir Evento Especial</message>
+	<message key="manager.scheduler.specialEvent.createSpecialEventShort">Incluir</message>
+	<message key="manager.scheduler.specialEvent.editSpecialEvent">Editar dados do Evento Especial</message>
+	<message key="manager.scheduler.specialEvent.editSpecialEventShort">Editar</message>
+	<message key="manager.scheduler.schedule">Agendar Apresentações</message>
+	<message key="manager.scheduler.startTime">Data de início</message>
+	<message key="manager.scheduler.endTime">Data de término</message>
+	<message key="manager.scheduler.location">Local</message>
+	<message key="manager.scheduler.checkTimes">Verifique as datas informadas para assegurar-se de que a data de término não seja anterior à de início.</message>
+	<message key="payment.type.conferenceRegistration">Inscrição da Conferência; {$schedConfTitle}; {$registrationTypeName}</message>
+	<message key="manager.accommodation.form.description">Incluir informações sobre acomodações, transporte e outros assuntos relativos à logística aqui. Vários arquivos, incluindo informações como mapas, direções e formulários, podem ser enviados.</message>
+	<message key="manager.accommodation.form.accommodationFiles">Arquivos</message>
+	<message key="manager.accommodation.form.accommodationFiles.description">Utilize esta seção para enviar um ou mais arquivos para os inscritos e participantes em potencial, como mapas, formulários, entre outros.</message>
+	<message key="manager.accommodation.form.accommodationText">Descrição da Acomodação</message>
+	<message key="manager.accommodation.form.accommodationText.description">Descreva as acomodações da conferência no campo a seguir.</message>
+	<message key="manager.accommodation">Acomodação</message>
+	<message key="manager.plugins.description">Esta página permite ao Gerente de Conferência rever e potencialmente configurar os plugins atualmente instalados. Os Plugins estão divididos em categorias, de acordo com sua função. As categorias são listadas a seguir, e dentro de cada categoria está o conjunto de plugins relacionados.</message>
+	<message key="plugins.categories.citationFormats">Plugins de Formato de Citação</message>
+	<message key="plugins.categories.citationFormats.description">Plugins de Formato de Citação oferecem ao usuário vários formatos de citação para os documentos publicados.</message>
+	<message key="plugins.categories.reports">Plugins de Relatório</message>
+	<message key="plugins.categories.reports.description">Plugins de Relatório são utilizados para implementar vários tipos de relatórios e extração de dados para Gerentes de Conferência.</message>
+	<message key="plugins.categories.blocks">Plugins de Bloco</message>
+	<message key="plugins.categories.blocks.description">Plugins de Bloco são componentes de Interface Gráfica, como barras laterais.</message>
+	<message key="plugins.categories.themes">Plugins de Tema</message>
+	<message key="plugins.categories.themes.description">Plugins de Tema podem ser utilizados para alterar o visual do sistema.</message>
+	<message key="manager.setup.finalSchedConfStepSavedNotes"><![CDATA[<p>Um conferência agendada foi configurada. Siga para Administração da Conferência <a href="{$conferenceManagementUrl}">clicando aqui</a>.</p>]]></message>
+	<message key="manager.setup.style">Estilo da Conferência</message>
+	<message key="manager.setup.style.title">Passo 4. Estilo da Conferência</message>
+	<message key="manager.setup.style.brief">Estilo</message>
+	<message key="manager.setup.style.description">Folha de estilos e tema da conferência.</message>
+	<message key="manager.setup.additionalContent.redirect">Redirecionamento de Conferência Agendada.</message>
+	<message key="manager.setup.additionalContent.schedConfRedirect">Rederecionamento</message>
+	<message key="manager.setup.additionalContent.redirect.noSchedConfRedirect">Não redirecionar</message>
+	<message key="manager.setup.additionalContent.redirect.invalidSchedConf">Uma conferência inválida foi designada para redirecionamento. Verifique a conferência agendada e tente novamente.</message>
+	<message key="manager.setup.additionalContent.redirect.description">Ao selecionar a seguinte Conferência Agendada, é possível redirecionar usuários que visitam o sistema diretamente à página da Conferência. Isto é útil quando a conferência possui apenas uma única Conferência Agendada, por exemplo.</message>
+	<message key="manager.setup.style.conferenceTheme">Tema da Conferência</message>
+	<message key="manager.setup.style.conferenceStyleSheet.description">Por padrão, as conferência e o sistema em geral utilizam uma folha de estilos comum (localizada na pasta "styles" do sistema). As regras podem ser alteradas ao escolher um tema e/ou enviando uma folha de estilos específica para a conferência.</message>
+	<message key="manager.setup.style.useConferenceStyleSheet">Folha de estilos da conferência.</message>
+	<message key="manager.setup.layout.leftSidebar">Barra Esquerda</message>
+	<message key="manager.setup.layout.unselected">Desmarcado</message>
+	<message key="manager.setup.layout.rightSidebar">Barra Direita</message>
+	<message key="manager.schedConfSetup.review.automatedRemindersDisabled"><![CDATA[<strong>Nota:</strong> Para ativar estas opções, o administrador do sistema deve habilitar  a opção <tt>scheduled_tasks</tt> no arquivo de configuração. Configurações adicionais no servidor podem ser necessárias para dar suporte a esta funcionalidade (podendo não estar disponível em todos os servidores), conforme documentação do sistema.]]></message>
+	<message key="manager.schedConfSetup.review.directorDecision">Decisão do Diretor</message>
+	<message key="manager.schedConfSetup.review.notifyAllPresentersOnDecision">Ao utilizar o e-mail Notificar Autor, inclua os endereços de e-mail de todos os co-autores para submissões com mais de um autor, não apenas o autor que submeteu o trabalho.</message>
+	<message key="manager.timeline.postSchedule">Agenda</message>
+	<message key="manager.people.allEnrolledUsers">Todos os usuários cadastrados</message>
+	<message key="manager.people.allSiteUsers">Cadastrar usuário do portal nesta Conferência</message>
+	<message key="manager.people.mustChooseRole">Escolha o papel no topo da página antes de clicar "Cadastrar usuário".</message>
+	<message key="manager.people.mustProvideName">Informe pelo menos o sobrenome do usuário primeiro.</message>
+	<message key="reviewer.paper.notifyEditorA">Notificar o diretor da submissão</message>
+	<message key="reviewer.paper.notifyEditorB">se assumirá a responsabilidade de avaliação do trabalho.</message>
+	<message key="reviewer.paper.consultGuidelines">Caso deseje realizar a avaliação, consulte as Diretrizes de Avaliação a seguir.</message>
+	<message key="reviewer.paper.downloadSubmissionAbstractOnly">Avaliar o resumo da submissão</message>
+	<message key="reviewer.paper.downloadSubmissionSubmission">Avaliar a submissão</message>
+	<message key="reviewer.paper.enterReviewA">Clique no ícone para digitar (ou colar) sua avaliação da submissão.</message>
+	<message key="reviewer.paper.uploadFile">Adicionalmente, pode-se enviar arquivos para consulta do diretor e/ou autor.</message>
+	<message key="presenter.submit.notAccepting">Esta conferência não está aceitando submissões no momento.</message>
+	<message key="presenter.submit.authorRegistrationClosed">A inscrição de autores está encerrada para esta conferência.</message>
+	<message key="presenter.submit.howToSubmitNoPhone"><![CDATA[Está com dificuldades? Entre em contato com <a href="mailto:{$supportEmail}">{$supportName}</a> para assistência.]]></message>
+	<message key="presenter.submit.supplementaryFiles.saveToUpload">Clique em Salvar para enviar o arquivo (o que permitirá o envio de outros arquivos).</message>
+	<message key="presenter.submit.forgottenSubmitSuppFile">Deseja realmente continuar sem enviar o documento suplementar escolhido?</message>
+	<message key="submission.layout.galleyLocaleRequired">Documento para diagramação obrigatório.</message>
+	<message key="submission.layout.galleyLanguageRequired">Idioma do documento de diagramação obrigatório.</message>
+	<message key="user.login.accountNotValidated">Seu endereço de e-mail não foi validado. Verifique sua caixa de entrada e siga as instruções. Caso não tenha recebido nenhum e-mail, pode ser necessário entrar em contato com o administrador do sistema para assistência.</message>
+	<message key="user.login.activate">Ativar Cadastro</message>
+	<message key="user.login.activated">Agradecemos a ativação de seu cadastro. Agora é possível entrar no sistema utilizando o login e senha informados durante o preenchimento do formulário de cadastro.</message>
+	<message key="user.profile.form.urlInvalid">A URL informada é inválida. Verifique a URL e tente novamente. (Dica: Tente incluir o protocolo http:// no início da URL.)</message>
+	<message key="about.delayedOpenAccessDescription">O conteúdo desta conferência estará disponível para acesso livre em {$delayedOpenAccessDuration} mês(es) após a conferência agendada ser liberada aos participantes.</message>
+	<message key="installer.installationWrongPhp"><![CDATA[<br/><strong>ADVERTÊNCIA: sua versão do PHP não está de acordo com os requisitos mínimos para instalação do sistema. É altamente recomendado atualizar para uma versão mais recente do PHP.</strong>]]></message>
+	<message key="log.timeline.postScheduleDateChanged">A data de publicação de agendamento foi alterada de {$oldPostScheduleDate} para {$newPostScheduleDate}.</message>
+	<message key="log.timeline.postScheduleChanged">A configuração "publicação da agenda" foi alterada de {$oldPostSchedule} para {$newPostSchedule}.</message>
+	<message key="rt.admin.settings.findingReferences">Encontrar Referências</message>
+	<message key="rt.captureCite.format">Formato de Citação</message>
+	<message key="rt.findingReferences">Encontrando Referências</message>
+	<message key="rt.findingReferences.googleScholar">Google Acadêmico</message>
+	<message key="rt.findingReferences.windowsLiveAcademic">Windows Live Acadêmico</message>
+	<message key="director.notifyUsers.allReaders">Todos os leitores ({$count} usuários)</message>
+	<message key="director.notifyUsers.allPresenters">Todos os apresentadores ({$count} usuários)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">Todos os inscritos pagantes ({$count} usuários)</message>
+	<message key="director.notifyUsers.allRegistrants">Todos os inscritos ({$count} usuários)</message>
 </locale>

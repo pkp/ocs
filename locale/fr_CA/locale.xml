@@ -32,18 +32,18 @@
   <message key="common.and">et</message>
   <message key="common.between">entre</message>
   <message key="common.all">Tout</message>
-  <message key="common.on">Allumé</message>
+  <message key="common.on">Démarré</message>
   <message key="common.off">Arrêté</message>
   <message key="common.enabled">Activé</message>
   <message key="common.disabled">Désactivé</message>
   <message key="common.openConferenceSystems">Open Conference Systems</message>
   <message key="common.delete">Supprimer</message>
   <message key="common.edit">Modifier</message>
-  <message key="common.save">Sauvegarder</message>
+  <message key="common.save">Enregistrer</message>
   <message key="common.export">Exporter</message>
   <message key="common.import">Importer</message>
-  <message key="common.saveAndContinue">Sauvegarder et continuer</message>
-  <message key="common.saveAndEmail">Sauvegarder et envoyer par courriel</message>
+  <message key="common.saveAndContinue">Enregistrer et continuer</message>
+  <message key="common.saveAndEmail">Enregistrer et envoyer par courriel</message>
   <message key="common.continue">Continuer</message>
   <message key="common.cancel">Annuler</message>
   <message key="common.done">Terminé</message>
@@ -56,7 +56,7 @@
   <message key="common.order">Ordonner</message>
   <message key="common.back">Précédent</message>
   <message key="common.title">Titre</message>
-  <message key="common.upload">Verser sur le serveur</message>
+  <message key="common.upload">Télécharger vers le serveur</message>
   <message key="common.download">Télécharger</message>
   <message key="common.replaceFile">Remplacer le fichier</message>
   <message key="common.subject">Sujet</message>
@@ -74,12 +74,12 @@
   <message key="common.status">État</message>
   <message key="common.remove">Enlever</message>
   <message key="common.file">Fichier</message>
-  <message key="common.uploadedFile">Fichier versé sur le serveur</message>
+  <message key="common.uploadedFile">Fichier téléchargé vers le serveur</message>
   <message key="common.fileName">Nom du fichier</message>
   <message key="common.dateSubmitted">Date de soumission</message>
   <message key="common.dateRequested">Date de livraison</message>
   <message key="common.dateCompleted">Date d'achèvement</message>
-  <message key="common.dateUploaded">Date de versement sur le serveur</message>
+  <message key="common.dateUploaded">Date de téléchargement vers le serveur</message>
   <message key="common.dateModified">Date de modification</message>
   <message key="common.other">Autre</message>
   <message key="common.fileSize">Taille de fichier</message>
@@ -149,19 +149,19 @@
   <message key="common.path">Chemin</message>
   <message key="common.dateTimeSeparator">à</message>
   <message key="common.ccLicense"><![CDATA[<a target="_new" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
-			<img alt="Creative Commons License" style="border-width:0" src="{$ccLicenseImageUrl}"/>
+			<img alt="Licence Creative Commons" style="border-width:0" src="{$ccLicenseImageUrl}"/>
 		</a>
 		<br/>
 		Ce <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">travail</span> est sous les termes de la <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Licence Creative Commons Version 3.0</a>.]]></message>
   <!-- Common Form Messages -->
   <message key="form.errorsOccurred">Des erreurs se sont produites pendant le traitement du formulaire</message>
-  <message key="form.saveToUpload">Utilisez la sauvegarde pour verser le fichier sur le serveur.</message>
+  <message key="form.saveToUpload">Utiliser Enregistrer pour télécharger le fichier vers le serveur.</message>
   <message key="form.contains">contient</message>
   <message key="form.is">est</message>
   <message key="form.required">(* Obligatoire)</message>
   <message key="form.submit">Soumettre</message>
   <message key="form.send">Envoyer</message>
-  <message key="form.resubmit">Soumettre à nouveau</message>
+  <message key="form.resubmit">Soumettre de nouveau</message>
   <!-- Common Email Messages -->
   <message key="email.email">Courriel</message>
   <message key="email.sender">Expéditeur</message>
@@ -185,8 +185,8 @@
   <message key="email.attachments">Pièces jointes</message>
   <message key="email.addAttachment">Ajouter une pièce jointe</message>
   <!-- Common Localization Terms -->
-  <message key="locale.primary">Région par défaut</message>
-  <message key="locale.supported">Régions supportées</message>
+  <message key="locale.primary">Langue par défaut</message>
+  <message key="locale.supported">Langues supportées</message>
   <!-- Common Error Messages -->
   <message key="common.error.databaseError">Une erreur de base de données est survenue: {$error}</message>
   <message key="common.error.databaseErrorUnknown">Une erreur de connexion à la base de données inconnue est survenue.</message>
@@ -194,7 +194,7 @@
   <!-- Navigation -->
   <message key="navigation.conferenceHelp">Aide pour la conférence</message>
   <message key="navigation.home">Accueil</message>
-  <message key="navigation.about">À propos de</message>
+  <message key="navigation.about">À propos</message>
   <message key="navigation.userHome">Accueil de l'utilisateur</message>
   <message key="navigation.login">Se connecter</message>
   <message key="navigation.account">Compte</message>
@@ -293,9 +293,9 @@
   <message key="submission.submissionHistory">Historique de la soumission</message>
   <message key="submission.submissionManuscript">Manuscrit de la soumission</message>
   <message key="submission.originalFile">Fichier d'origine</message>
-  <message key="submission.uploadFile">Verser la communication sur le serveur</message>
+  <message key="submission.uploadFile">Télécharger la communication vers le serveur</message>
   <message key="submission.addSuppFile">Ajouter un fichier supplémentaire</message>
-  <message key="submission.submitter">Personne effectuant la soumission</message>
+  <message key="submission.submitter">Soumissionnaire</message>
   <message key="submission.changeTrack">Changer à</message>
   <message key="submission.initiated">Initiée</message>
   <message key="submission.lastModified">Dernière modification</message>
@@ -308,7 +308,7 @@
   <message key="submission.rejected">Rejeté</message>
   <message key="submission.acceptance">Accepté pour évaluation</message>
   <message key="submission.due">À échéance</message>
-  <message key="submission.complete">Complété</message>
+  <message key="submission.complete">Complet</message>
   <message key="submission.complete.description">Ajouter la soumission à la liste des présentations acceptées.</message>
   <message key="submission.acknowledge">Envoyer un accusé de réception</message>
   <message key="submission.done">Terminé</message>
@@ -317,13 +317,13 @@
   <message key="submission.noReviewAssignments">Aucune évaluation assignée</message>
   <message key="submission.reviewVersion">Version à évaluer</message>
   <message key="submission.peerReview">Évaluation par un pair</message>
-  <message key="submission.directorDecision">Décision du directeur</message>
+  <message key="submission.directorDecision">Décision du responsable</message>
   <message key="submission.stage"><![CDATA[Étape&nbsp;{$stage}]]></message>
-  <message key="submission.directorReview">Évaluation du directeur</message>
+  <message key="submission.directorReview">Évaluation du responsable</message>
   <message key="submission.notifyPresenter">Alerter l'auteur</message>
-  <message key="submission.notifyDirector">Alerter le directeur</message>
-  <message key="submission.directorPresenterRecord">Enregistrement du courriel du directeur/auteur</message>
-  <message key="submission.directorVersion">Version du directeur</message>
+  <message key="submission.notifyDirector">Alerter le responsable</message>
+  <message key="submission.directorPresenterRecord">Enregistrement du courriel du responsable/auteur</message>
+  <message key="submission.directorVersion">Version du reponsable</message>
   <message key="submission.presentersRevisedVersion">Version du fichier révisée pas l'auteur</message>
   <message key="submission.presenterVersion">Version de l'auteur</message>
   <message key="submission.layout">Mise en page</message>
@@ -342,7 +342,7 @@
   <message key="submissions.completed">Terminé</message>
   <message key="submissions.active">Active</message>
   <message key="submissions.queuedUnassigned">En attente d'assignation</message>
-  <message key="submissions.queuedEditing">En attente de révision</message>
+  <message key="submissions.queuedEditing">En attente de modification</message>
   <message key="submissions.queuedAbstractReview">Résumé en évaluation</message>
   <message key="submissions.queuedPaperReview">Communication en évaluation</message>
   <message key="submissions.archived">Archivé</message>
@@ -353,7 +353,7 @@
   <message key="submissions.reviewStage">Étape d'évaluation</message>
   <message key="submissions.reviewType">Type d'évaluation</message>
   <message key="submissions.incomplete">Incomplète</message>
-  <message key="submissions.pendingPresentation">En attente de versement sur le serveur</message>
+  <message key="submissions.pendingPresentation">En attente de téléchargement vers le serveur</message>
   <message key="submissions.expired">Expiré</message>
   <message key="submissions.submit">Soumettre</message>
   <message key="submissions.directorDecision">Décision du directeur</message>
@@ -363,10 +363,10 @@
   <message key="submission.supplementaryFiles">Fichiers supplémentaires</message>
   <message key="submission.dueDate">Date d'échéance</message>
   <message key="submission.recommendation">Recommandation</message>
-  <message key="submission.galley">Épreuve en placard</message>
+  <message key="submission.galley">Épreuve</message>
   <message key="trackDirector.galley.replaceGalley">Remplacer le fichier</message>
-  <message key="submission.emailLog">Registre des courriels</message>
-  <message key="submission.uploadFileTo">Verser le fichier sur le serveur</message>
+  <message key="submission.emailLog">Registre de courriels</message>
+  <message key="submission.uploadFileTo">Télécharger le fichier vers le serveur</message>
   <message key="submission.abstract">Résumé</message>
   <message key="submission.paper">Communication</message>
   <!-- Submission list search engine -->
@@ -385,7 +385,7 @@
   <message key="submission.notes.confirmDeleteAll">Supprimer toutes les notes de la soumission?</message>
   <message key="submission.notes.collapseNotes">Réduire les notes</message>
   <message key="submission.notes.backToSubmissionNotes">Retour aux notes de la soumission</message>
-  <message key="submission.notes.removeUploadedFile">Supprimer les fichiers versés sur le serveur</message>
+  <message key="submission.notes.removeUploadedFile">Supprimer les fichiers téléchargés vers le serveur</message>
   <message key="submission.notes.deleteNote">Supprimer la note</message>
   <message key="submission.notes.updateNote">Mettre à jour la note</message>
   <message key="submission.notes.createNewNote">Créer une nouvelle note</message>
@@ -436,7 +436,7 @@
   <message key="schedConf.registration.loggedInAs"><![CDATA[Vous êtes actuellement connecté. Vérifier que les informations ci-dessous sont correctes. Si ce n'est pas le cas, corrigez les en utilisant <a href="{$profileUrl}">Mon Profil</a> ou <a href="{$logoutUrl}">Se déconnecter</a> pour utiliser un autre compte.]]></message>
   <message key="schedConf.registration.createAccount.description"><![CDATA[Vous êtes n'est pas connecté actuellement. Vous devez avoir un compte pour vous inscrire à cette conférence. Si vous en possédez un, <a href="{$loginUrl}">cliquez ici</a> pour vous connecter; sinon, veuillez remplir le formulaire ci-dessous pour en créer un.]]></message>
   <!-- User -->
-  <message key="user.userHome">Accueil utilisateur</message>
+  <message key="user.userHome">Accueil de l'utilisateur</message>
   <message key="user.showAllConferences">Afficher mes conférences</message>
   <message key="user.login">Se connecter</message>
   <message key="user.profile">Profil</message>
@@ -500,7 +500,7 @@
   <message key="event.logType.director">Directeur</message>
   <message key="event.logType.review">Évaluer</message>
   <message key="event.logType.conference">Conférence</message>
-  <message key="event.eventLog">Registre d'événement</message>
+  <message key="event.eventLog">Registre d'événements</message>
   <message key="event.logLevel">Niveau</message>
   <message key="event.logLevel.info">Information</message>
   <message key="event.logLevel.notice">Avis</message>
@@ -612,14 +612,14 @@
   <message key="admin.languages.languageSettings">Paramètres de langue</message>
   <message key="admin.languages.installLanguages">Gestion des langues</message>
   <message key="admin.languages.primaryLocaleInstructions">Ceci sera la langue par défaut pour le site et pour toute les conférences hébergées.</message>
-  <message key="admin.languages.supportedLocalesInstructions">Sélectionner toutes les langues régionales à supporter sur le site. Les langues régionales sélectionnées vont être disponibles pour toutes les conférences hébergées sur le site, et vont également apparaître dans un menu de sélection de langue présent sur chaque page (et qui peut être suplanté sur les pages spécifiques à une conférence). Si plusieurs langues régionales ne sont pas sélectionnées, le menu de sélection de langue n'apparaîtra pas et les paramètres d'extension de langues ne seront pas disponibles pour les conférences.</message>
+  <message key="admin.languages.supportedLocalesInstructions">Sélectionner toutes les langues supportées dans le site. Les langues sélectionnées vont être disponibles pour toutes les conférences hébergées sur le site, et vont également apparaître dans un menu de sélection de langue présent sur chaque page (et qui peut être suplanté sur les pages spécifiques à une conférence). Si plusieurs langues ne sont pas sélectionnées, le menu de sélection de langue n'apparaîtra pas et les paramètres d'extension de langues ne seront pas disponibles pour les conférences.</message>
   <message key="admin.languages.installedLocales">Langues installées</message>
   <message key="admin.languages.reload">Recharger la langue</message>
   <message key="admin.languages.confirmReload">Êtes-vous sûr de vouloir recharger cette langue régionale? Ceci effacera toute donnée spécifique à cette langue ainsi que tout modèle de courriel personnalisé.</message>
   <message key="admin.languages.uninstall">Désinstaller la langue</message>
   <message key="admin.languages.confirmUninstall">Êtes-vous sûr de vouloir désinstaller cette langue? Ceci affectera toute conférence actuellement hébergée utilisant cette langue.</message>
   <message key="admin.languages.installNewLocales">Installer de nouvelles langues</message>
-  <message key="admin.languages.installNewLocalesInstructions">Sélectionnez toute autre langue régionale pour en installer le support sur ce système. Les langues doivent être installées avant qu'elles ne puissent être utilisées pas les conférences hébergées. Lisez la documentation OCS pour plus d'information sur le support de nouvelles langues.</message>
+  <message key="admin.languages.installNewLocalesInstructions">Sélectionnez toute autre langue pour en installer le support sur ce système. Les langues doivent être installées avant qu'elles ne puissent être utilisées pas les conférences hébergées. Lisez la documentation OCS pour plus d'information sur le support de nouvelles langues.</message>
   <message key="admin.languages.noLocalesAvailable">Aucune langue supplémentaire disponible.</message>
   <message key="admin.languages.installLocales">Installer</message>
   <message key="admin.auth.ocs">Base de données OCS de l'utilisateur</message>
@@ -634,8 +634,8 @@
 	<li>Si un utilisateur tente de créer un nouveau compte sur ce site avec un nom d'utilisateur déjà existant dans la source d'authentification (mais pas dans la base de données OCS), la tentative d'inscription n'est permise que si le mot de passe fourni est valide pour ce compte.</li>
 </ul>]]></message>
   <!-- System Information -->
-  <message key="admin.systemVersion">Version d'OCS</message>
-  <message key="admin.systemConfiguration">Configuration d'OCS</message>
+  <message key="admin.systemVersion">Version OCS</message>
+  <message key="admin.systemConfiguration">Configuration OCS</message>
   <message key="admin.serverInformation">Information sur le serveur</message>
   <message key="admin.currentVersion">Version actuelle</message>
   <message key="admin.versionHistory">Historique de version</message>
@@ -645,18 +645,18 @@
   <message key="admin.versionRevision">Révision</message>
   <message key="admin.versionBuild">Assemblage</message>
   <message key="admin.dateInstalled">Date d'installation</message>
-  <message key="admin.systemConfigurationDescription"><![CDATA[Les paramètres de configuration d'OCS de <tt>config.inc.php</tt>.]]></message>
+  <message key="admin.systemConfigurationDescription"><![CDATA[Les paramètres de configuration OCS de <tt>config.inc.php</tt>.]]></message>
   <message key="admin.serverInformationDescription"><![CDATA[Versions du système d'exploitation de base et du logiciel serveur. Cliquez sur <span class="highlight">Information détaillée concernant PHP</span> pour avoir plus de détails sur la configuration PHP de ce serveur.]]></message>
   <message key="admin.phpInfo">Information détaillée concernant PHP</message>
-  <message key="admin.server.platform">Plateforme du système d'exploitation</message>
-  <message key="admin.server.phpVersion">Version de PHP</message>
-  <message key="admin.server.apacheVersion">Version d'Apache</message>
+  <message key="admin.server.platform">Système d'exploitation</message>
+  <message key="admin.server.phpVersion">Version PHP</message>
+  <message key="admin.server.apacheVersion">Version Apache</message>
   <message key="admin.server.dbDriver">Pilote de base de données</message>
   <message key="admin.server.dbVersion">Version du serveur de bases de données</message>
-  <message key="admin.editSystemConfigInstructions"><![CDATA[Utilisez ce formulaire pour modifier la configuration de votre système (le fichier <tt>config.inc.php</tt>). Cliquez sur "Sauvegarder" pour enregistrer votre nouvelle configuration, ou "Afficher" pour uniquement voir la mise à jour du fichier de configuration et ne pas modifier la configuration existante.
+  <message key="admin.editSystemConfigInstructions"><![CDATA[Utilisez ce formulaire pour modifier la configuration de votre système (le fichier <tt>config.inc.php</tt>). Cliquez sur "Enregistrer" pour enregistrer votre nouvelle configuration, ou "Afficher" pour uniquement voir la mise à jour du fichier de configuration et ne pas modifier la configuration existante.
 <br /><br />
 <span class="formError">Avertissement: Modifier ces paramètres peut éventuellement rendre votre site inaccessible (vous obligeant à réparer manuellement votre fichier de configuration). Il est fortement déconseillé d'appliquer ces changements si vous ne savez pas exactement ce que vous faites.</span>]]></message>
-  <message key="admin.saveSystemConfig">Sauvegarder la configuration</message>
+  <message key="admin.saveSystemConfig">Enregistrer la configuration</message>
   <message key="admin.displayNewSystemConfig">Afficher la nouvelle configuration</message>
   <message key="admin.systemConfigFileReadError"><![CDATA[Le fichier de configuration <tt>config.inc.php</tt> n'existe pas, n'est pas lisible ou est invalide.]]></message>
   <message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
@@ -707,12 +707,12 @@
   <message key="manager.payment.form.description">Entrez les détails de configuration pour la méthode de paiement que le site de cette conférence peut prendre en charge.</message>
   <message key="manager.payment.form.method">Les méthodes de paiement pour l'inscription aux conférences</message>
   <!-- Conference Event Log -->
-  <message key="manager.conferenceEventLog">Registre d'événement</message>
+  <message key="manager.conferenceEventLog">Registre d'événements</message>
   <message key="conference.event.confirmClearLog">Êtes-vous sûr de vouloir effacer le registre d'événement de cette conférence?</message>
   <message key="conference.event.confirmDeleteLogEntry">Êtes-vous sûr de vouloir effacer cette entrée du registre d'événement?</message>
-  <message key="conference.event.deleteLogEntry">Effacer l'entrée du registre d'événement</message>
+  <message key="conference.event.deleteLogEntry">Effacer l'entrée du registre d'événements</message>
   <message key="conference.event.backToEventLog">Retour au registre d'événement</message>
-  <message key="conference.history.conferenceEventLog">Registre d'événement</message>
+  <message key="conference.history.conferenceEventLog">Registre d'événements</message>
   <message key="conference.history.clearLog">Effacer le registre</message>
   <message key="conference.history.noLogEntries">Registre vide.</message>
   <!-- Scheduled Conference Management -->
@@ -750,7 +750,7 @@
   <message key="manager.filesBrowser">Navigateur de fichiers</message>
   <message key="manager.groups">Équipe organisatrice</message>
   <message key="manager.managementPages">Gestion générale</message>
-  <message key="manager.managementPages.description"><![CDATA[<ol><li>Commencez par la Gestion du site Web pour mettre au point le site de la conférence.</li><li>Utilisez Conférences planifiées pour mettre en place une instance planifiée de la conférence.</li><li>Allez dans les Options de la conférence planifiée pour effectuer un appel à communications, une inscription, etc. et utilisez l'Horaire de la conférence pour fixer les dates pour les affichages, les soumissions, etc.</li></ol>]]></message>
+  <message key="manager.managementPages.description"><![CDATA[<ol><li>Commencez par la Gestion du site Web pour configurer le site de la conférence.</li><li>Utilisez Conférences planifiées pour mettre en place une instance planifiée de la conférence.</li><li>Allez dans les Options de la conférence planifiée pour effectuer un appel à communications, une inscription, etc. et utilisez l'Horaire de la conférence pour fixer les dates pour les affichages, les soumissions, etc.</li></ol>]]></message>
   <message key="manager.program">Programme</message>
   <message key="manager.plugins">Plugiciels du système</message>
   <message key="manager.users">Utilisateurs</message>
@@ -795,18 +795,18 @@
   <message key="plugins.categories.generic.description">Les plugiciels génériques sont utilisés pour étendre l'Open Conference Systems de differentes façons qui ne sont pas supportées pas les autres catégories de plugiciels.</message>
   <message key="plugins.categories.auth">Plugiciels d'autorisation</message>
   <message key="plugins.categories.auth.description">Les plugiciels d'autorisation permettent à l'Open Conference Systems de déléguer l'authentification des utilisateurs à d'autres systèmes, comme les serveurs LDAP.</message>
-  <message key="plugins.categories.importexport">Importation/Exportation de plugiciels</message>
-  <message key="plugins.categories.importexport.description">L'importation/exportation de plugiciels peut être utilisé pour transférer le contenu vers ou à partir d'autres systèmes.</message>
+  <message key="plugins.categories.importexport">Plugiciels d'importation/exportation</message>
+  <message key="plugins.categories.importexport.description">Les plugiciels d'importation/exportation peuvent être utilisés pour transférer le contenu vers ou à partir d'autres systèmes.</message>
   <message key="plugins.categories.gateways">Plugiciels de passerelle</message>
   <message key="plugins.categories.gateways.description">Les plugiciels de passerelle fournissent des données en direct à des systèmes externes.</message>
   <message key="plugins.categories.paymethod">Plugiciels de paiement</message>
   <message key="plugins.categories.paymethod.description">Les plugiciels de paiement mettent en place le support pour une multitude de méthodes de paiement en ligne.</message>
   <!-- Files Browser -->
   <message key="manager.files.indexOfDir">Index de {$dir}</message>
-  <message key="manager.files.uploadedFiles">Fichiers versés sur le serveur</message>
+  <message key="manager.files.uploadedFiles">Fichiers téléchargés vers le serveur</message>
   <message key="manager.files.parentDir">Répertoire parent</message>
   <message key="manager.files.emptyDir">Aucun fichier n'a été trouvé dans ce répertoire.</message>
-  <message key="manager.files.uploadFile">Verser le fichier sur le serveur</message>
+  <message key="manager.files.uploadFile">Télécharger le fichier vers le serveur</message>
   <message key="manager.files.createDir">Créer un répertoire</message>
   <message key="manager.files.confirmDelete">Supprimer ce fichier/répertoire? Notez qu'un répertoire doit être vide pour pouvoir être supprimé.</message>
   <message key="manager.files.note">Note: L'explorateur de fichiers est une fonction avancée qui permet aux fichiers et aux répertoires associés à une conférence d'être vus et manipulés directement.</message>
@@ -826,8 +826,8 @@
   <message key="manager.setup.selectOne">Sélectionnez-en un</message>
   <message key="manager.setup.finalStepSavedNotes"><![CDATA[<p>Presque terminé!</p>
 		<p>La conférence a maintenant été installée, ce qui pourrait entraîner une seule conférence planifiée, une conférence annuelle, ou encore une série de conférences planifiées, qui peuvent toutes être gérées à partir de ce site de conférence. Afin de planifier une instance spécifique de cette conférence allez dans la rubrique <a href="{$schedConfSetupUrl}">Conférences planifiées</a>. Vous pouvez accéder à cette page à tout moment via la page d'accueil du gestionnaire de conférences.</p>
-		<p>Vous pouvez revenir à ces six pages à tout moment en suivant le lien "Accueil Utilisateur > Gestionnaire de conférences > Options".</p>
-		<p>Vous pouvez gérer les conférences planifiées à travers "Accueil Utilisateur > Gestionnaire de Conférences > Options"</p>]]></message>
+		<p>Vous pouvez revenir à ces six pages à tout moment en suivant le lien "Accueil de l'utilisateur > Gestionnaire de conférences > Options".</p>
+		<p>Vous pouvez gérer les conférences planifiées à travers "Accueil de l'utilisateur > Gestionnaire de Conférences > Options"</p>]]></message>
   <message key="manager.setup.htmlSetupInstructions"><![CDATA[Si du HTML est utilisé dans les boîtes de texte des options (pour la taille de la police, la couleur, le gras, etc.), notez que le bouton "Entrée" sera automatiquement traité comme <tt>&lt;br&gt;</tt>.]]></message>
   <!--
 	     ***
@@ -912,7 +912,7 @@
   <message key="manager.setup.layout.useImageLogo">Image du logo</message>
   <message key="manager.setup.layout.noImageFileUploaded">Aucune image n'a été versée sur le serveur.</message>
   <message key="manager.setup.layout.navigationBar">Barre de navigation</message>
-  <message key="manager.setup.layout.itemsDescription">Les éléments de la barre de navigation peuvent être ajoutés à l'ensemble actuel (Page d'Accueil, À propos, Accueil Utilisateur, etc.) et apparaissent en haut de la page.</message>
+  <message key="manager.setup.layout.itemsDescription">Les éléments de la barre de navigation peuvent être ajoutés à l'ensemble actuel (Accueil, À propos, Accueil de l'utilisateur, etc.) et apparaissent en haut de la page.</message>
   <message key="manager.setup.layout.labelName">Nom de l'étiquette</message>
   <message key="manager.setup.layout.addNavItem">Ajouter un élément</message>
   <message key="manager.setup.layout.navItemIsLiteral">La valeur de l'étiquette est une chaîne de caractères textuelle (ex; "Options de Conférence") plutôt qu'une clé de localisation (ex. "responsable.setup")</message>
@@ -1054,40 +1054,40 @@ Titre du système de Classification]]></message>
   <message key="manager.schedConfSetup.review.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> Avec cette option, pour laquelle les évaluateurs n'auront pas à se connecter au site, les directeurs, pour des raisons de sécurité, ne pourront pas modifier les adresses de courriels, ou ajouter des CCs ou des CCIs avant d'envoyer une invitation aux évaluateurs.]]></message>
   <message key="manager.schedConfSetup.review.reviewerReminders">Rappels à l'évaluateur</message>
   <message key="manager.schedConfSetup.review.automatedReminders">Des courriels de rappel automatisés sont envoyés aux évaluateurs</message>
-  <message key="manager.schedConfSetup.review.remindForInvite1">Qui n'a pas répondu à une demande d'évaluation dans les</message>
+  <message key="manager.schedConfSetup.review.remindForInvite1">Qui n'ont pas répondu à une demande d'évaluation dans les</message>
   <message key="manager.schedConfSetup.review.remindForInvite2">jours.</message>
-  <message key="manager.schedConfSetup.review.remindForSubmit1">Qui n'a pas soumis une évaluation dans les</message>
+  <message key="manager.schedConfSetup.review.remindForSubmit1">Qui n'ont pas soumis une évaluation dans les</message>
   <message key="manager.schedConfSetup.review.remindForSubmit2">jours après la date d'échéance.</message>
-  <message key="manager.schedConfSetup.review.onQuality">Les directeurs sont capables de noter les évaluateurs sur une échelle de cinq points.</message>
+  <message key="manager.schedConfSetup.review.onQuality">Les responsables sont capables de noter les évaluateurs sur une échelle de cinq points.</message>
   <!-- Languages -->
   <message key="manager.languages.languageInstructions"><![CDATA[OCS peut être présenté aux utilisateurs dans les différentes langues disponibles. De plus, OCS peut fonctionner comme un système partiellement multilingue, fournissant aux utilisateurs la possibilité de changer de langue à leur guise sur chacune des pages, et autoriser certaines données à être entrées dans un maximum de deux langues supplémentaires.<br /><br/>Si une langue supportée par OCS n'est pas listée ci-dessous, demandez à l'administrateur de votre site de l'installer à partir de l'interface d'administration. Pour les instructions sur l'ajout de nouvelles langues, merci de consulter la documentation OCS.]]></message>
   <message key="manager.languages.primaryLocaleInstructions">Ce sera la langue par défaut pour le site de la conférence.</message>
-  <message key="manager.languages.supportedLocalesInstructions">Sélectionnez toutes les langues régionales à supporter sur le site via un menu de sélection de la langue qui apparaîtra sur chaque page. Le menu apparaîtra si plus d'une langue est sélectionnée.</message>
+  <message key="manager.languages.supportedLocalesInstructions">Sélectionnez toutes les langues supportées par le site via un menu de sélection de la langue qui apparaîtra sur chaque page. Le menu apparaîtra si plus d'une langue est sélectionnée.</message>
   <message key="manager.languages.alternateLocaleInstructions">Ce système permet, en option, d'entrer certaines informations critiques dans un maximum de deux langues supplémentaires. Pour utiliser cette option, sélectionner une ou deux langues supplémentaires à choisir à partir de la liste ci-dessous.</message>
   <message key="manager.languages.noneAvailable">Désolé, il n y a pas d'autres langues disponibles. Contactez votre administrateur si vous souhaitez utiliser des langues supplémentaires pour cette conférence.</message>
   <!-- Track Management -->
-  <message key="manager.tracks.noneCreated">Aucune partie n'a été créée.</message>
-  <message key="manager.tracks.confirmDelete">Êtes-vous sûr de vouloir supprimer définitivement cette partie?</message>
-  <message key="manager.tracks.create">Créer une partie</message>
-  <message key="manager.tracks.directors">Directeur de la partie</message>
-  <message key="manager.tracks.unassigned">Directeurs de partie disponibles</message>
-  <message key="manager.tracks.assigned">Les directeurs de cette partie</message>
-  <message key="manager.tracks.assignDirector">Assigner un directeur</message>
-  <message key="manager.tracks.unassignDirector">Retirer une assignation à un directeur</message>
-  <message key="manager.tracks.form.titleRequired">Un titre est obligatoire pour la partie.</message>
-  <message key="manager.tracks.form.abbrevRequired">Un titre abrégé est obligatoire pour la partie.</message>
-  <message key="manager.tracks.trackDirectorInstructions">Désignez un directeur de partie parmi les directeurs de parties disponibles.</message>
-  <message key="manager.tracks.submissionsToThisTrack">Les soumissions faites pour cette partie de la conférence</message>
-  <message key="manager.tracks.submissionNotReviewed">Indique que cette partie n'a pas été évaluée par les pairs</message>
+  <message key="manager.tracks.noneCreated">Aucune section n'a été créée.</message>
+  <message key="manager.tracks.confirmDelete">Êtes-vous sûr de vouloir supprimer définitivement cette section?</message>
+  <message key="manager.tracks.create">Créer une section</message>
+  <message key="manager.tracks.directors">Responsable des section</message>
+  <message key="manager.tracks.unassigned">Responsables de section disponibles</message>
+  <message key="manager.tracks.assigned">Les responsables de cette section</message>
+  <message key="manager.tracks.assignDirector">Assigner un responsable</message>
+  <message key="manager.tracks.unassignDirector">Retirer un engagement à un responsable</message>
+  <message key="manager.tracks.form.titleRequired">Un titre est obligatoire pour la section.</message>
+  <message key="manager.tracks.form.abbrevRequired">Un titre abrégé est obligatoire pour la section.</message>
+  <message key="manager.tracks.trackDirectorInstructions">Désignez un responsable de section parmi les responsable de section disponibles.</message>
+  <message key="manager.tracks.submissionsToThisTrack">Les soumissions faites pour cette section de la conférence</message>
+  <message key="manager.tracks.submissionNotReviewed">Indique que cette section n'est pas évaluée par les pairs</message>
   <message key="manager.tracks.peerReviewed">Évaluée par les pairs</message>
-  <message key="manager.tracks.directorRestriction">Les éléments peuvent uniquement être proposés par les directeurs et les directeurs de parties.</message>
-  <message key="manager.tracks.hideAbout">Exclure cette partie de la politique régissant les parties</message>
+  <message key="manager.tracks.directorRestriction">Les éléments peuvent uniquement être proposés par les responsables et les responsables de section.</message>
+  <message key="manager.tracks.hideAbout">Exclure cette section des politiques de section</message>
   <message key="manager.tracks.readingTools">Outils de lecture</message>
   <message key="manager.tracks.indexed">Indexée</message>
   <message key="manager.tracks.open">Soumissions ouvertes</message>
-  <message key="manager.tracks.policy">Politique régissant la partie</message>
-  <message key="manager.tracks.identifyType">Décrire les soumissions à cette partie de la conférence comme étant un(e)</message>
-  <message key="manager.tracks.identifyTypeExamples">(Par exemple, "Résumé relu par des pairs", "Communication non révisée", "Présentation invitée", etc.)</message>
+  <message key="manager.tracks.policy">Politique de la section</message>
+  <message key="manager.tracks.identifyType">Décrire les soumissions à cette section de la conférence comme étant un(e)</message>
+  <message key="manager.tracks.identifyTypeExamples">(Par exemple, "Résumé évalué par des pairs", "Communication non référée", "Présentation invitée", etc.)</message>
   <!-- Timeline management -->
   <message key="manager.timeline">Horaire de la conférence</message>
   <message key="manager.timeline.conferenceTimeline">Horaire de la conférence</message>
@@ -1167,10 +1167,10 @@ Titre du système de Classification]]></message>
   <message key="manager.people.noneEnrolled">Aucun utilisateur inscrit.</message>
   <message key="manager.people.enrollSelected">Inscrire les utilisateurs sélectionnés</message>
   <message key="manager.people.noMatchingUsers">Aucun utilisateur correspondant.</message>
-  <message key="manager.people.saveAndCreateAnotherUser">Sauvegarder et en créer un autre</message>
+  <message key="manager.people.saveAndCreateAnotherUser">Enregistrer et en créer un autre</message>
   <message key="manager.people.userCreatedSuccessfully">Utilisateur créé avec succès.</message>
   <message key="manager.people.authSource">Source d'authentification</message>
-  <message key="manager.people.enrollUserAs">Inscrire l'utilisateur en tant que</message>
+  <message key="manager.people.enrollUserAs">Engager l'utilisateur en tant que</message>
   <message key="manager.people.doNotEnroll">Avec aucun rôle</message>
   <message key="manager.people.enrollUserAsDescription">Les utilisateurs peuvent être assignés à rôle ou en être retirés à n'importe quel moment.</message>
   <message key="manager.people.invalidUser">Désolé, l'utilisateur demandé n'existe pas.</message>
@@ -1188,15 +1188,15 @@ Titre du système de Classification]]></message>
   <message key="manager.people.remove">Supprimer</message>
   <message key="manager.people.emailUsers">Envoyer un courriel aux utilisateurs</message>
   <message key="manager.people.emailUsers.emailSelectedUsers">Envoyer un courriel aux utilisateurs sélectionnés</message>
-  <message key="manager.people.emailUsers.emailUsersEnrolledAs">Envoyer un courriel aux utilisateurs inscrits comme</message>
-  <message key="manager.people.emailUsers.selectUsers">Sélectionner les utilisateurs à qui vous voulez envoyer un email en cochant leur noms</message>
-  <message key="manager.people.emailUsers.selectLocale">Sélectionnez une langue régionale</message>
+  <message key="manager.people.emailUsers.emailUsersEnrolledAs">Envoyer un courriel aux utilisateurs engagés comme</message>
+  <message key="manager.people.emailUsers.selectUsers">Sélectionner les utilisateurs à qui vous voulez envoyer un courriel en cochant leur noms</message>
+  <message key="manager.people.emailUsers.selectLocale">Sélectionnez une langue</message>
   <message key="manager.people.editProfile">Modifier le profil</message>
   <message key="manager.people.signInAsUser">Se connecter en tant qu'utilisateur</message>
   <message key="manager.people.signInAs">Se connecter en tant que</message>
   <message key="manager.people.syncUsers">Synchroniser les engagements de l'utilisateur</message>
   <message key="manager.people.syncUserDescription">La synchronisation des engagements va inscrire tous les utilisateurs ayant un rôle donné dans une conférence donnée dans le même rôle pour cette conférence. Cette fonction permet a un ensemble d'utilisateurs (par ex., évaluateurs) d'être synchronisés entre les différentes conférences</message>
-  <message key="manager.people.enrollSync">Synchronisation de l'engagement</message>
+  <message key="manager.people.enrollSync">Synchroniser l'engagement</message>
   <message key="manager.people.enrollSyncRole">Synchroniser les rôles</message>
   <message key="manager.people.enrollSyncConference">Avec la conférence</message>
   <!-- Email Management -->
@@ -1292,7 +1292,7 @@ Titre du système de Classification]]></message>
   <message key="manager.registrationTypes.form.institutional">Les inscrits peuvent être validés via un domaine ou une authentification IP.</message>
   <message key="manager.registrationTypes.form.membership">Les inscrits doivent être membres d'une organisation déclarée.</message>
   <message key="manager.registrationTypes.form.notPublic">Ne pas rendre ce type d'inscription disponible au public.</message>
-  <message key="manager.registrationTypes.form.saveAndCreateAnotherType">Sauvegarder et en créer un autre</message>
+  <message key="manager.registrationTypes.form.saveAndCreateAnotherType">Enregistrer et en créer un autre</message>
   <message key="manager.registrationTypes.form.closeBeforeOpen">La date d'ouverture de ce type d'inscription doit survenir avant la date de fermeture.</message>
   <message key="manager.registrationTypes.access">Accès</message>
   <message key="manager.registrationTypes.access.online">En ligne</message>
@@ -1341,7 +1341,7 @@ Titre du système de Classification]]></message>
   <message key="manager.registration.form.payment.description">Prière de vérifier la date de réception du paiement de cet utilisateur, et d'enregistrer la date.</message>
   <message key="manager.registration.form.specialRequestsInstructions">Prière d'utiliser cet espace pour inclure toute requête ou exigence spéciales pour cette inscription (par ex., restrictions alimentaires, ou handicap)</message>
   <message key="manager.registration.form.notifyEmail">Envoyer un courriel à l'utilisateur avec son nom d'utilisateur et les détails de son inscription.</message>
-  <message key="manager.registration.form.saveAndCreateAnother">Sauvegarder et en créer un autre</message>
+  <message key="manager.registration.form.saveAndCreateAnother">Enregistrer et en créer un autre</message>
   <!-- Announcement Type Management -->
   <message key="manager.announcementTypes.edit">Modifier le type d'annonce</message>
   <message key="manager.announcementTypes.editTitle">Modifer</message>
@@ -1350,7 +1350,7 @@ Titre du système de Classification]]></message>
   <message key="manager.announcementTypes.form.typeNameRequired">Un nom de type d'annonce est obligatoire.</message>
   <message key="manager.announcementTypes.form.typeNameExists">Un type d'annonce portant ce nom existe déjà.</message>
   <message key="manager.announcementTypes.form.typeName">Nom</message>
-  <message key="manager.announcementTypes.form.saveAndCreateAnother">Sauvegarder et en créer un autre</message>
+  <message key="manager.announcementTypes.form.saveAndCreateAnother">Enregistrer et en créer un autre</message>
   <message key="manager.announcementTypes.typeName">Type d'annonce</message>
   <message key="manager.announcementTypes.confirmDelete">Avertissement! Toutes les annonces de ce type seront aussi supprimées. Êtes-vous sûr de vouloir continuer et supprimer ce type d'annonce?</message>
   <message key="manager.announcementTypes.noneCreated">Aucune annonce n'a été créée.</message>
@@ -1374,7 +1374,7 @@ Titre du système de Classification]]></message>
   <message key="manager.announcements.form.descriptionInstructions">Le texte complet de l'annonce.</message>
   <message key="manager.announcements.form.dateExpire">Date d'expiration</message>
   <message key="manager.announcements.form.dateExpireInstructions">Les annonces vont être affichées aux lecteurs jusqu'à cette date. Veuillez laisser vide ce champ si l'annonce doit être affichée indéfiniment.</message>
-  <message key="manager.announcements.form.saveAndCreateAnother">Sauvegarder et en créer un autre</message>
+  <message key="manager.announcements.form.saveAndCreateAnother">Enregistrer et en créer un autre</message>
   <message key="manager.announcements.form.typeIdValid">Prière de sélectionner un type d'annonce valide.</message>
   <message key="manager.announcements.form.titleRequired">Un titre d'annonce est obligatoire.</message>
   <message key="manager.announcements.form.descriptionShortRequired">Une description brève de l'annonce est obligatoire.</message>
@@ -1384,14 +1384,14 @@ Titre du système de Classification]]></message>
   <message key="manager.announcements.form.dateExpireMonthIncompleteDate">Prière de sélectionner une année et/ou un jour en plus du mois d'expiration.</message>
   <message key="manager.announcements.form.dateExpireDayIncompleteDate">Prière de sélectionner une année et/ou un mois en plus du jour d'expiration.</message>
   <!-- Director -->
-  <message key="director.home">Accueil du directeur</message>
+  <message key="director.home">Accueil du responsable</message>
   <message key="director.submissionQueue">Soumissions en attente</message>
   <message key="director.submissionArchive">Archives des soumissions</message>
-  <message key="director.allTracks">Toutes les parties</message>
+  <message key="director.allTracks">Toutes les sections</message>
   <message key="director.submissionQueue.noSubmissions">Aucune soumission en attente.</message>
-  <message key="director.submissionQueue.saveChanges">Sauvegarder les changements aux soumissions en attente?</message>
+  <message key="director.submissionQueue.saveChanges">Enregistrer les changements aux soumissions en attente?</message>
   <message key="director.submissionArchive.noSubmissions">Aucune soumission archivée.</message>
-  <message key="director.submissionArchive.saveChanges">Sauvegarder les changements aux soumissions archivées? Les soumissions sélectionnées pour la suppression vont être définitivement effacées du système.</message>
+  <message key="director.submissionArchive.saveChanges">Enregistrer les changements aux soumissions archivées? Les soumissions sélectionnées pour la suppression vont être définitivement effacées du système.</message>
   <message key="director.submissionArchive.confirmDelete">Êtes-vous sûr de vouloir effacer définitivement cette soumission?</message>
   <message key="director.submissionReview.confirmDecision">Êtes-vous sûr de vouloir enregistrer cette décision?</message>
   <message key="director.submissionReview.confirmToLayout">L'auteur a-t-il été alerté de cette décision? Si non, cliquez sur Annuler et utilisez l'outil Alerter l'auteur avant de deplacer cette soumission à la mise en page.</message>
@@ -1431,7 +1431,7 @@ La dernière est la date de la plus récente évaluation acceptée.<br/>
 La mention active correspond au nombre d'évaluation en délibération ou en cours.]]></message>
   <message key="director.paper.replaceReviewer">Remplacer l'évaluateur</message>
   <message key="director.paper.directorToEnter">Le directeur doit entrer les recommandation/commentaires pour l'évaluateur</message>
-  <message key="director.paper.uploadReviewForReviewer">Verser l'évaluation sur le serveur</message>
+  <message key="director.paper.uploadReviewForReviewer">Télécharger l'évaluation vers le serveur</message>
   <message key="director.paper.peerReviewOptions">Options d'évaluation par les pairs</message>
   <message key="director.paper.decision">Décision</message>
   <message key="director.paper.recordDecision">Enregistrer la décision</message>
@@ -1508,7 +1508,7 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="reviewer.paper.recommendation">Recommandation</message>
   <message key="reviewer.paper.submitReview">Soumettre l'évaluation au directeur</message>
   <message key="reviewer.paper.reviewerComments">Commentaires</message>
-  <message key="reviewer.paper.uploadedFile">Fichiers versés sur le serveur</message>
+  <message key="reviewer.paper.uploadedFile">Fichiers téléchargés vers le serveur</message>
   <message key="reviewer.paper.reviewersAnnotatedVersion">Version versé sur le serveur par l'évaluateur</message>
   <message key="reviewer.paper.reviewersAnnotatedVersionDescription">(Si vous souhaitez annoter ce fichier pour le directeur, enregistrez-le sur votre disque dur puis utilisez Naviguer/Verser sur le serveur.)</message>
   <message key="reviewer.paper.schedule.request">Requête du directeur</message>
@@ -1582,17 +1582,17 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="presenter.submit.form.presenterRequiredFields">Le prénom, le nom de famille et l'adresse de courriel de chaque auteur est obligatoire.</message>
   <message key="presenter.submit.form.titleRequired">Veuillez entrer le titre de votre communication.</message>
   <!-- Paper Submission Step 3 -->
-  <message key="presenter.submit.uploadInstructions"><![CDATA[Pour verser sur le serveur une communication à cette conférence, complétez les étapes suivantes.
+  <message key="presenter.submit.uploadInstructions"><![CDATA[Pour télécharger vers le serveur une communication à cette conférence, complétez les étapes suivantes.
 
 <ol>
 <li>Sur cette page, cliquez sur Parcourir (ou Choisir un fichier) qui ouvre une fenêtre de sélection d'un fichier sur le disque dur de votre ordinateur.</li>
 <li>Sélectionnez le fichier que vous voulez proposer.</li>
 <li>Cliquez sur Ouvrir de la fenêtre de sélection du fichier, ceci placera son nom sur cette page.</li>
 <li>Cliquez sur Verser sur le serveur de cette page, ceci versera le fichier de votre ordinateur au site web de la conférence et le renommera selon les normes de la conférence.</li>
-<li>Une fois la soumission versée sur le serveur, cliquez sur Sauvegarder et continuer au bas de la page.</li>
+<li>Une fois la soumission versée sur le serveur, cliquez sur Enregistrer et continuer au bas de la page.</li>
 </ol>]]></message>
   <message key="presenter.submit.submissionFile">Fichier de la soumission</message>
-  <message key="presenter.submit.uploadSubmissionFile">Verser le fichier de la soumission sur le serveur</message>
+  <message key="presenter.submit.uploadSubmissionFile">Télécharger le fichier de la soumission vers le serveur</message>
   <message key="presenter.submit.replaceSubmissionFile">Remplacer le fichier de le soumission</message>
   <message key="presenter.submit.noSubmissionFile">Aucun fichier de la soumission versé sur le serveur.</message>
   <message key="presenter.submit.noSubmissionConfirm">Etes-vous sûr de vouloir continuer sans verser de fichier de la soumission sur le serveur?</message>
@@ -1623,7 +1623,7 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="presenter.submit.suppFile.dateDescription">Date de collecte des données ou de création de l'instrument.</message>
   <message key="presenter.submit.suppFile.sourceDescription">Nom de l'étude ou autre point d'origine.</message>
   <message key="presenter.submit.suppFile.specifyOtherType">Spécifier un autre</message>
-  <message key="presenter.submit.suppFile.noFile">Aucun fichier versé sur le serveur.</message>
+  <message key="presenter.submit.suppFile.noFile">Aucun fichier téléchargé vers le serveur.</message>
   <message key="presenter.submit.suppFile.form.titleRequired">Veuillez entrer le titre de ce fichier supplémentaire.</message>
   <message key="presenter.submit.suppFile.form.subjectRequired">Veuillez entrer un sujet.</message>
   <message key="presenter.submit.suppFile.form.descriptionRequired">Veuillez entrer une description.</message>
@@ -1641,24 +1641,24 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="presenter.submit.submissionComplete">Soumission complétée. Merci d'avoir soumis votre travail à {$conferenceTitle}.</message>
   <message key="presenter.submit.expedite"><![CDATA[Si cette soumission est déjà dans un format prêt à la publication, sans autre travail d'évaluatino ou de mise en page, elle peut directement être envoyée à la page des Actes en <a href="{$expediteUrl}" class="action">cliquant ici</a>. (Note: Seuls les directeurs de conférence ont droit à cette option pour leurs soumissions.)]]></message>
   <!-- Used in submission review / editing -->
-  <message key="presenter.paper.uploadPresenterVersion">Verser la version de l'auteur sur le serveur</message>
+  <message key="presenter.paper.uploadPresenterVersion">Télécharger la version de l'auteur vers le serveur</message>
   <!-- Submission Tracking - Layout Specific -->
   <message key="submission.layout.layoutVersion">Version de mise en page</message>
   <message key="submission.layout.layoutFile">Fichier de mise en page</message>
-  <message key="submission.layout.galleys">Épreuves en placard</message>
-  <message key="submission.layout.newGalley">Créer une nouvelle épreuve en placard</message>
+  <message key="submission.layout.galleys">Épreuves</message>
+  <message key="submission.layout.newGalley">Créer une nouvelle épreuve</message>
   <message key="submission.layout.initialGalleyCreation">Création de l'épreuve en placard</message>
   <message key="submission.layout.supplementaryFiles">Évaluation du fichier supplémentaire</message>
   <message key="submission.layout.galleyLabelRequired">Une étiquette d'épreuve en placard est obligatoire.</message>
   <message key="submission.layout.confirmDeleteGalley">Êtes-vous sûr de vouloir supprimer définitivement cette épreuve en placard?</message>
   <message key="submission.layout.newSupplementaryFile">Verser un nouveau fichier supplémentaire sur le serveur</message>
   <message key="submission.layout.confirmDeleteSupplementaryFile">Êtes-vous sûr de vouloir supprimer ce fichier supplémentaire?</message>
-  <message key="submission.layout.editGalley">Modifier la mise en page d'une épreuve en placard</message>
-  <message key="submission.layout.addGalley">Ajouter la mise en page d'une épreuve en placard</message>
-  <message key="submission.layout.galleyFileData">Information sur le fichier de l'épreuve en placard</message>
+  <message key="submission.layout.editGalley">Modifier la mise en page d'une épreuve</message>
+  <message key="submission.layout.addGalley">Ajouter la mise en page d'une épreuve</message>
+  <message key="submission.layout.galleyFileData">Information sur le fichier de l'épreuve</message>
   <message key="submission.layout.galleyLabel">Etiquette</message>
   <message key="submission.layout.galleyLabelInstructions">L'étiquette de l'épreuve en placard sert à identifier le format du fichier de l'élément (par ex., HTML, PDF, etc.).</message>
-  <message key="submission.layout.galleyHTMLData">Fichiers HTML de l'épreuve en placard</message>
+  <message key="submission.layout.galleyHTMLData">Fichiers HTML de l'épreuve</message>
   <message key="submission.layout.galleyStylesheet">Fichier de la feuille de style</message>
   <message key="submission.layout.noStyleFile">Aucune feuille de style n'a été ajoutée à cette épreuve en placard.</message>
   <message key="submission.layout.deleteGalleyStylesheet">Supprimer cette feuille de style.</message>
@@ -1667,11 +1667,11 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="submission.layout.confirmDeleteGalleyImage">Êtes-vous sûr de supprimer cette image de l'épreuve en placard?</message>
   <message key="submission.layout.galleyStyle">Style</message>
   <message key="submission.layout.viewingGalley">Voir l'épreuve en placard de la soumission</message>
-  <message key="submission.layout.galleyFormat">Format de l'épreuve en placard</message>
+  <message key="submission.layout.galleyFormat">Format de l'épreuve</message>
   <message key="submission.layout.viewProof">Voir l'épreuve</message>
   <!-- Submission History -->
-  <message key="submission.history.submissionEventLog">Registre des événements</message>
-  <message key="submission.history.submissionEmailLog">Registre des courriels</message>
+  <message key="submission.history.submissionEventLog">Registre d'événements</message>
+  <message key="submission.history.submissionEmailLog">Registre de courriels</message>
   <message key="submission.history.submissionNotes">Notes de la soumission</message>
   <message key="submission.history.noLogEntries">Aucune entrée dans le registre.</message>
   <message key="submission.history.recentLogEntries">Entrées récentes</message>
@@ -1708,8 +1708,8 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="submission.comments.forPresenterDirector">Pour l'auteur et le directeur</message>
   <message key="submission.comments.forDirector">Pour le directeur</message>
   <message key="submission.comments.sendDecisionToReviewers">Envoyer la décision éditoriale aux évaluateurs</message>
-  <message key="submission.comments.saveAndEmailPresenter">Sauvegarder et envoyer un courriel à l'auteur</message>
-  <message key="submission.comments.saveAndEmailDirector">Sauvegarder et envoyer un courriel au directeur</message>
+  <message key="submission.comments.saveAndEmailPresenter">Enregistrer et envoyer un courriel à l'auteur</message>
+  <message key="submission.comments.saveAndEmailDirector">Enregistrer et envoyer un courriel au responsable</message>
   <!-- Login -->
   <message key="user.login.loginError">Nom d'utilisateur ou mot de passe invalide. Veuillez réessayer.</message>
   <message key="user.login.accountDisabled">Votre compte a été désactivé. Veuillez contacter l'administrateur du site pour plus d'information.</message>
@@ -1771,7 +1771,7 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="user.account.presenterRegistrationMessage">Même si vous possédez un compte sur ce site, vous n'êtes pas l'un des auteurs de cette conférence., actuellement</message>
   <!-- Search -->
   <message key="search.browsePresenterIndex">Explorer l'index des auteurs</message>
-  <message key="search.searchFor">Chercher dans les communications pour</message>
+  <message key="search.searchFor">Rechercher les communications pour</message>
   <message key="search.inField">Dans</message>
   <message key="search.allFields">Tout</message>
   <message key="search.presenter">Auteurs</message>
@@ -1943,7 +1943,7 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
 	<li><tt>cache/_db</tt> est disponible en écriture: {$writable_db_cache}</li>
 </ul>
 
-<p>2. Un répertoire pour sauvegarder les fichiers versés sur le serveur doit être créé avec les droits en écriture (voir "Paramètres des fichiers" ci-dessous).</p>
+<p>2. Un répertoire pour enregistrer les fichiers téléchargés vers le serveur doit être créé avec les droits en écriture (voir "Paramètres des fichiers" ci-dessous).</p>
 
 <h4>Installation manuelle</h4>
 
@@ -1951,22 +1951,22 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="installer.upgradeInstructions"><![CDATA[<h4>Version d'OCS{$version}</h4>
 
 <p>Merci de télécharger <strong>Open Conference Systems</strong> du Public Knowledge Project. Avant de continuer, veuillez lire les fichiers<a href="{$baseUrl}/docs/README">README</a> et <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> inclus avec ce logiciel. Pour en savoir plus sur le projet Public Knowledge et ses projets logiciels, veuillez visiter le site Web <a href="http://pkp.sfu.ca/" target="_blank">PKP</a>. Si vous avez des rapports de bogues ou des demandes de soutien à propos d'Open Conference Systems, allez voir <a href="http://pkp.sfu.ca/support/forum"> le forum d'entraide</a> ou visitez <a href="http://pkp.sfu.ca/bugzilla/" target="_blank"> le système de rapport de bogues</a> de la PKP. Même si le forum d'entraide est la méthode de contact recommandée,vous pouvez aussi envoyer un courriel à l'équipe à l'adresse <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
-<p>Il est <strong>fortement recommandé</strong> de sauvegarder une copie de votre base de données, des répertoires, et du repertoire d'instalaltion d'OCS avant de procéder.</p>
+<p>Il est <strong>fortement recommandé</strong> d'enregistrer une copie de votre base de données, des répertoires, et du repertoire d'instalaltion d'OCS avant de procéder.</p>
 <p>Si votre système fonctionne en <a href="http://www.php.net/features.safe-mode" target="_blank">mode en échec</a>, merci de vous assurer que la directive max_execution_time dans votre fichier de configuration php.ini est fixée à une limite élevée. Si cette limite de temps ou une autre (ex., la règle du "Timeout" d'Apache) est atteinte et la procédure de mise à jour est interrompue, une intervention manuelle sera nécessaire.</p>]]></message>
-  <message key="installer.localeSettings">Paramètres régionaux</message>
-  <message key="installer.localeSettingsInstructions"><![CDATA[Pour un support complet d'Unicode (UTF-8), sélectionner UTF-8 pour tous les paramètres des jeux de caractères. Prendre note que ce soutien exige actuellement un serveur de base de données MySQL >= 4.1.1 ou PostgreSQL >= 7.1. Veuillez aussi noter que le plein soutien d'Unicode exige PHP >= 4.3.0 avec le soutien pour la bibliothèque<a href="http://www.php.net/mbstring" target="_blank">mbstring</a>(activé par défaut dans les plus récentes installations PHP). Vous aurez peut-être des problèmes à utiliser les jeux de caractères étendus si votre serveur ne répond pas à ces exigences
+  <message key="installer.localeSettings">Paramètres de langue</message>
+  <message key="installer.localeSettingsInstructions"><![CDATA[Pour un support complet d'Unicode (UTF-8), sélectionner UTF-8 pour tous les paramètres de jeux de caractères. Prendre note que ce soutien exige actuellement un serveur de base de données MySQL >= 4.1.1 ou PostgreSQL >= 7.1. Veuillez aussi noter que le plein soutien d'Unicode exige PHP >= 4.3.0 avec le soutien pour la bibliothèque<a href="http://www.php.net/mbstring" target="_blank">mbstring</a>(activé par défaut dans les plus récentes installations PHP). Vous aurez peut-être des problèmes à utiliser les jeux de caractères étendus si votre serveur ne répond pas à ces exigences.
 <br /><br />
 Votre serveur soutient actuellement mbstring: <strong>{$supportsMBString}</strong>]]></message>
   <message key="installer.localeInstructions">La langue par défaut à utiliser pour ce système. Veuillez consulter la documentation OCS si vous êtes intéressé à la prise en charge de langues non indiquées ici.</message>
-  <message key="installer.additionalLocales">Langues régionales supplémentaires</message>
+  <message key="installer.additionalLocales">Langues supplémentaires</message>
   <message key="installer.additionalLocalesInstructions">Sélectionner une ou plusieurs langues supplémentaires à prendre en charge dans ce système. Ces langues seront disponibles pour utilisation par les conférences hébergées sur le site. D'autres langues peuvent aussi être installées en tout temps à partir de l'interface de gestion du site.</message>
   <message key="installer.clientCharset">Jeu de caractères du client</message>
-  <message key="installer.clientCharsetInstructions">Le codage à utiliser pour les données envoyées et reçues des navigateurs.</message>
+  <message key="installer.clientCharsetInstructions">L'encodage à utiliser pour les données envoyées et reçues des navigateurs.</message>
   <message key="installer.connectionCharset">Jeu de caractères pour la connexion</message>
   <message key="installer.connectionCharsetInstructions"><![CDATA[L'encodage à utiliser pour les données envoyées et reçues de la base de données. Il devrait être le même que le jeu de caractères du client. Prendre note que cette fonctionnalité est seulement documentée avec MySQL >= 4.1.1 ou PostgreSQL >= 7.1. Sélectionner " Non disponible " si le serveur de votre base de données ne respecte pas ces exigences.]]></message>
   <message key="installer.databaseCharset">Jeu de caractères de la base de données</message>
   <message key="installer.databaseCharsetInstructions"><![CDATA[L'encodage à utiliser pour les données stockées dans la base de données. Noter que cette fonctionnalité est seulement documentée avec MySQL >= 4.1.1 ou PostgreSQL >= 7.1. Sélectionner " Non disponible " si le serveur de votre base de données ne respecte pas ces exigences.]]></message>
-  <message key="installer.locale">Langue régionale</message>
+  <message key="installer.locale">Langue</message>
   <message key="installer.fileSettings">Paramètres des fichiers</message>
   <message key="installer.filesDir">Répertoire pour le téléchargement</message>
   <message key="installer.filesDirInstructions">Entrer le nom complet du chemin d'accès à un répertoire existant où les fichiers téléchargés doivent être gardés. Ce répertoire ne doit pas être directement accessible sur le Web. Veuillez vous assurer que ce répertoire existe et qu'il est modifiable avant l'installation. Les noms de chemin d'accès de Windows doivent utiliser des barres obliques, par ex., "C:/myJournal/files".</message>
@@ -1993,7 +1993,7 @@ Votre serveur soutient actuellement mbstring: <strong>{$supportsMBString}</stron
   <message key="installer.upgradeOCS">Mettre à jour Open Conference Systems</message>
   <message key="installer.manualInstall">Installer manuellement</message>
   <message key="installer.manualUpgrade">Mettre à jour manuellement</message>
-  <message key="installer.form.localeRequired">Une langue régionale doit être sélectionnée.</message>
+  <message key="installer.form.localeRequired">Une langue doit être sélectionnée.</message>
   <message key="installer.form.clientCharsetRequired">Un jeu de caractères client doit être sélectionné.</message>
   <message key="installer.form.filesDirRequired">Le répertoire à utiliser pour stocker des fichiers téléchargés est obligatoire.</message>
   <message key="installer.form.encryptionRequired">L'algorithme à utiliser pour l'encryptage des mots de passe des utilisateurs doit être sélectionné.</message>
@@ -2089,7 +2089,7 @@ p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "
   <!-- RT Settings -->
   <message key="rt.admin.settings">Options pour les outils de lecture</message>
   <message key="rt.admin.readingToolsEnabled">Outils de lecture</message>
-  <message key="rt.admin.selectedVersion">Eléments connexes</message>
+  <message key="rt.admin.selectedVersion">Éléments connexes</message>
   <message key="rt.admin.settings.description">Les outils de lecture apparaissent dans un cadre à côté des communications publiées dans les parties de la conférence conçues pour l'indexation. Les outils de lecture comprennent un lot d'outils facultatifs reliés à la communication publiée (voir la liste ci-dessous), et un lot d'outils qui donnent accès à des communications connexes, organisées par champ et par discipline.</message>
   <message key="rt.admin.settings.enableReadingTools">Activer les outils de lecture pour les parties désignées de la conférence.</message>
   <message key="rt.admin.settings.abstract">Résumé (présente le résumé de l'élément).</message>
@@ -2126,7 +2126,7 @@ p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "
   <message key="rt.admin.searches.confirmDelete">Êtes-vous certain de vouloir supprimer cette recherche?</message>
   <message key="rt.admin.searches.createSearch">Créer une recherche</message>
   <message key="rt.admin.validateUrls">Valider les adresses URL pour les outils de lecture</message>
-  <message key="rt.admin.validateUrls.description"><![CDATA[Des URLs possiblement non valides pour des sites de recherche sont affichés ci-dessous.<br/>
+  <message key="rt.admin.validateUrls.description"><![CDATA[Des adresses URL possiblement non valides pour des sites de recherche sont affichés ci-dessous.<br/>
 Vous devez manuellement vérifier toute adresse URL désignée non valide, car ce test n'est pas toujours précis à 100%.<br/>
 La validation peut échouer dans le cas d'adresses URL dont les données de formulaire doivent être affichées.]]></message>
   <message key="rt.admin.validateUrls.validate">Valider</message>
@@ -2203,7 +2203,7 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
   <message key="debug.notes">Notes:</message>
   <message key="debug.notes.localeLoad">Le fichier de langue "{$localeFile}" chargé depuis le XML</message>
   <message key="debug.notes.localeListLoad">La liste des langues "{$localeList}" chargée depuis le XML</message>
-  <message key="debug.notes.missingLocaleKey">Clé locale manquante "{$key}".</message>
+  <message key="debug.notes.missingLocaleKey">Clé de langue manquante "{$key}".</message>
   <!--
 	 *
 	 * DEFAULT - Default settings for setup items.
@@ -2249,7 +2249,7 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="submission.viewMetadata">Voir les métadonnées</message>
 	<message key="submission.editMetadata">Modifier les métadonnées</message>
 	<message key="submission.reviewMetadata">Évaluer les métadonnées</message>
-	<message key="submission.saveMetadata">Savuegarder les métadonnées</message>
+	<message key="submission.saveMetadata">Enregistrer les métadonnées</message>
 	<message key="schedConf.accommodation">Hébergement</message>
 	<message key="schedConf.schedule.title">Calendrier</message>
 	<message key="schedConf.accommodation.title">Hébergement</message>
@@ -2265,9 +2265,9 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="admin.settings.homeHeaderImageInvalid">Image du logo du site de format invalide. Les formats acceptés sont .gif, .jpg ou .png.</message>
 	<message key="admin.settings.siteStyleSheetInvalid">Format de la feuille de style du site invalide. Le format accepté est .css.</message>
 	<message key="manager.scheduler.returnToSchedule">Retour au calendrier</message>
-	<message key="manager.scheduler">Organisateur de programme</message>
+	<message key="manager.scheduler">Responsable du programme</message>
 	<message key="manager.scheduler.roomsAndEvents"><![CDATA[Salles &amp; événements]]></message>
-	<message key="manager.scheduler.scheduling">Organiser le programme</message>
+	<message key="manager.scheduler.scheduling">Établir le programme</message>
 	<message key="manager.scheduler.description"><![CDATA[<p>Les gestionnaires de la conférence peuvent programmer des présentations et des événements spéciaux pour le lieu et l'heure en utilisant l'Organisateur de programme.]]></message>
 	<message key="manager.scheduler.buildingsAndRooms"><![CDATA[Édifices & Salles]]></message>
 	<message key="manager.scheduler.buildings">Édifices</message>
@@ -2278,7 +2278,7 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="manager.scheduler.building.form.nameRequired">Le nom de l'édifice est obligatoire.</message>
 	<message key="manager.scheduler.building.form.abbrevRequired">L'abréviation de l'édifice est obligatoire.</message>
 	<message key="manager.scheduler.building.confirmDelete">Êtes-vous certain de vouloir supprimer cet édifice? Il est possible que des présentations soit prévues à cet endroit.</message>
-	<message key="manager.scheduler.building.saveAndCreateAnother">Sauvegarder et en créer un autre</message>
+	<message key="manager.scheduler.building.saveAndCreateAnother">Enregistrer et en créer un autre</message>
 	<message key="manager.scheduler.building.noneCreated">Aucune édifice n'a été créé.</message>
 	<message key="manager.scheduler.building.create">Créer un nouvel édifice</message>
 	<message key="manager.scheduler.building.createBuilding">Créer un édifice</message>
@@ -2295,7 +2295,7 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="manager.scheduler.room.form.abbrevRequired">L'abréviation de la salle est obligatoire.</message>
 	<message key="manager.scheduler.room.form.buildingIdValid">Chaque salle doit être associée à un édifice valide.</message>
 	<message key="manager.scheduler.room.confirmDelete">Êtes-vous certain de vouloir supprimer cette salle? Il est possible que des présentations soit prévues à cet endroit.</message>
-	<message key="manager.scheduler.room.saveAndCreateAnother">Sauvegarder et en créer une autre</message>
+	<message key="manager.scheduler.room.saveAndCreateAnother">Enregistrer et en créer une autre</message>
 	<message key="manager.scheduler.room.noneCreated">Aucune salle n'a été créée.</message>
 	<message key="manager.scheduler.room.create">Créer une nouvelle salle</message>
 	<message key="manager.scheduler.room.createRoom">Créer une salle</message>
@@ -2309,7 +2309,7 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="manager.scheduler.specialEvent.form.nameRequired">Le nom de l'événement spécial est obligatoire.</message>
 	<message key="manager.scheduler.specialEvent.form.checkTimes">Veuillez vérifier l'heure saisie afin de vous assurer que l'heure de fin ne précède pas l'heure de début.</message>
 	<message key="manager.scheduler.specialEvent.confirmDelete">Êtes-vous certain de vouloir supprimer cet événement spécial?</message>
-	<message key="manager.scheduler.specialEvent.saveAndCreateAnother">Sauvegarder et en créer un autre</message>
+	<message key="manager.scheduler.specialEvent.saveAndCreateAnother">Enregistrer et en créer un autre</message>
 	<message key="manager.scheduler.specialEvent.noneCreated">Aucun événement spécial n'a été créé.</message>
 	<message key="manager.scheduler.specialEvent.create">Créer un nouvel événement spécial</message>
 	<message key="manager.scheduler.specialEvent.createSpecialEvent">Créer un événement spécial</message>
@@ -2335,7 +2335,7 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="plugins.categories.reports.description">Les plugiciels de rapport sont utilisés pour intégrer différents types de rapports et de d'extraits de données pour les gestionnaires de conférence.</message>
 	<message key="plugins.categories.blocks">Plugiciels de bloc</message>
 	<message key="plugins.categories.blocks.description">Les plugiciels de bloc sont des composants IU enfichable, tel que les diverses barres de menus.</message>
-	<message key="plugins.categories.themes">Les plugiciels de thème</message>
+	<message key="plugins.categories.themes">Plugiciels de thème</message>
 	<message key="plugins.categories.themes.description">Les plugiciels de thème peuvent être utilisés pour changer l'apparence du système.</message>
 	<message key="manager.setup.finalSchedConfStepSavedNotes"><![CDATA[<p>Une conférence inscrite au programme vient d'être paramétrées. Poursuivre la gestion de conférence en <a href="{$conferenceManagementUrl}">cliquant ici</a>.</p>]]></message>
 	<message key="manager.setup.style">Modèle de la conférence</message>
@@ -2365,16 +2365,16 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="reviewer.paper.notifyEditorB">à savoir si vous vous chargerez de la révision.</message>
 	<message key="reviewer.paper.consultGuidelines">Si vous compter effectuer la révision, consulter les directives au réviseur ci-dessous.</message>
 	<message key="reviewer.paper.downloadSubmissionAbstractOnly">Réviser le résumé fournit avec la soumission.</message>
-	<message key="reviewer.paper.downloadSubmissionSubmission">Réviser la soumission.</message>
+	<message key="reviewer.paper.downloadSubmissionSubmission">Évaluer la soumission.</message>
 	<message key="reviewer.paper.enterReviewA">Cliquer sur l'icône pour entrer (ou copier) votre révision de cette soumission.</message>
-	<message key="reviewer.paper.uploadFile">En outre, vous pouvez télécharger des fichiers pour lconsultation par le directeur et/ou l'auteur.</message>
+	<message key="reviewer.paper.uploadFile">En outre, vous pouvez télécharger des fichiers pour consultation par le responsable et/ou l'auteur.</message>
 	<message key="presenter.submit.notAccepting">Cette conférence n'accepte pas les soumissions.</message>
 	<message key="presenter.submit.authorRegistrationClosed">L'inscription d'auteur est fermée pour cette conférence.</message>
 	<message key="presenter.submit.howToSubmitNoPhone"><![CDATA[Vous rencontrez des difficultés? Contactez <a href="mailto:{$supportEmail}">{$supportName}</a> pour de l'aide.]]></message>
-	<message key="presenter.submit.supplementaryFiles.saveToUpload">Cliquer sur Sauvegarder pour télécharger le fichier (après quoi des fichiers supplémentaires peuvent être téléchargés).</message>
+	<message key="presenter.submit.supplementaryFiles.saveToUpload">Cliquer sur Enregistrer pour télécharger le fichier (après quoi des fichiers supplémentaires peuvent être téléchargés).</message>
 	<message key="presenter.submit.forgottenSubmitSuppFile">Êtes-vous certain que vous souhaitez continuer sans télécharger le fichier supplémentaire que vous avez sélectionné?</message>
-	<message key="submission.layout.galleyLocaleRequired">Le lieu d'office est obligatoire.</message>
-	<message key="submission.layout.galleyLanguageRequired">La langue d'office est obligatoire.</message>
+	<message key="submission.layout.galleyLocaleRequired">La langue de l'épreuve est obligatoire.</message>
+	<message key="submission.layout.galleyLanguageRequired">La langue de l'épreuve est obligatoire.</message>
 	<message key="user.login.accountNotValidated">Votre adresse de courriel n'a pas été validée. Veuillez vérifier votre courriel et suivre les instructions fournies. Si vous n'avez pas reçu de courriel, il est possible que vous deviez contacter l'administrateur du site pour de l'aide.</message>
 	<message key="user.login.activate">Activer le compte</message>
 	<message key="user.login.activated">Merci d'avoir activer votre compte. Vous pouvez désormais ouvrir une session en utilisant les informations d'authentification que vous avez fournies lorsque vous avez créé votre compte.</message>
@@ -2440,4 +2440,8 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="user.noRoles.regReviewerClosed">S'incrire en tant qu'évaluateur de conférence: L'inscription en tant qu'évaluateur est présentement fermée.</message>
 	<message key="user.noRoles.register">S'incrire pour assister à la conférence</message>
 	<message key="user.noRoles.registerUnavailable">S'incrire pour assister à la conférence: Les inscriptions ne sont pas acceptées pour le moment.</message>
+	<message key="director.notifyUsers.allReaders">Tous les lecteurs ({$count} utilisateurs)</message>
+	<message key="director.notifyUsers.allPresenters">Tous les présentateurs ({$count} utilisateurs)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">Tous les inscrits qui ont payé ({$count} utilisateurs)</message>
+	<message key="director.notifyUsers.allRegistrants">Tous les incrits ({$count} utilisateurs)</message>
 </locale>

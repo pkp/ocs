@@ -13,7 +13,7 @@
   -->
  
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.citationFormats.proCite.displayName">Plugiciel du format de référence ProCite</message>
+	<message key="plugins.citationFormats.proCite.displayName">Plugiciel du format de référence bibliographique ProCite</message>
 	<message key="plugins.citationFormats.proCite.citationFormatName"><![CDATA[ProCite - format RIS (Macintosh & Windows)]]></message>
-	<message key="plugins.citationFormats.proCite.description">Ce plugiciel met en place le format de référence ProCite.</message>
+	<message key="plugins.citationFormats.proCite.description">Ce plugiciel implémente le format de référence bibliographique ProCite.</message>
 </locale>

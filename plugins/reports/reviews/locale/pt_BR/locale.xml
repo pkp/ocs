@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the pt_BR (Portuguese) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="pt_BR" full_name="Portuguese">
+	<message key="plugins.reports.reviews.displayName">Relatório de Avaliação</message>
+	<message key="plugins.reports.reviews.description">Este plugin implementa um relatório no formato CSV contendo a lista de tarefas de availação da conferência.</message>
+	<message key="plugins.reports.reviews.reviewerId">ID do Avaliador</message>
+	<message key="plugins.reports.reviews.reviewer">Avaliador</message>
+	<message key="plugins.reports.reviews.dateAssigned">Designado em</message>
+	<message key="plugins.reports.reviews.dateNotified">Notificado em</message>
+	<message key="plugins.reports.reviews.dateConfirmed">Confirmado em</message>
+	<message key="plugins.reports.reviews.dateCompleted">Concluído em</message>
+	<message key="plugins.reports.reviews.dateReminded">Lembrete em</message>
+</locale>
+

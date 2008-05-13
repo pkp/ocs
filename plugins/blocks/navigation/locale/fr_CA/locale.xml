@@ -14,6 +14,6 @@
  
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.block.navigation.displayName">Bloc de navigation</message>
-	<message key="plugins.block.navigation.description">Ce plugiciel fournit des liens de navigation dans la barre de menu.</message>
+	<message key="plugins.block.navigation.description">Ce plugiciel fournit des liens de navigation dans la barre de menus.</message>
 	<message key="plugins.block.navigation.conferenceContent">Contenu de la conférence</message>
 </locale>

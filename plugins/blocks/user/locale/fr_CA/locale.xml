@@ -13,12 +13,12 @@
   -->
  
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.block.user.displayName">Bloc d'utilisateur</message>
-	<message key="plugins.block.user.description">Ce plugiciel fournit des outils au compte utilisateur (par ex. connexion, déconnexion, lien au profil, etc).</message>
+	<message key="plugins.block.user.displayName">Bloc de l'utilisateur</message>
+	<message key="plugins.block.user.description">Ce plugiciel fournit des outils reliés au compte utilisateur (par ex. se connecter, se déconnecter, lien vers le profil, etc).</message>
 	<message key="plugins.block.user.loggedInAs">Vous êtes connectés en tant que...</message>
 	<message key="plugins.block.user.myConferences">Mes conférences</message>
 	<message key="plugins.block.user.myProfile">Mon profil</message>
-	<message key="plugins.block.user.logout">Déconnexion</message>
-	<message key="plugins.block.user.signOutAsUser">Déconnexion en tant qu'utilisateur</message>
+	<message key="plugins.block.user.logout">Se déconnecter</message>
+	<message key="plugins.block.user.signOutAsUser">Se déconnecter en tant qu'utilisateur</message>
 	<message key="plugins.block.user.rememberMe">Mémoriser mon mot de passe</message>
 </locale>

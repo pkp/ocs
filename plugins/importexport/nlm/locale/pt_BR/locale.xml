@@ -24,7 +24,7 @@
 {$scriptName} {$pluginName} [xmlFileName] [journal_path] documentos [paperId1] [paperId2] ...</message>
 	<message key="plugins.importexport.nlm.cliError">ERRO:</message>
 
-	<message key="plugins.importexport.nlm.export.error.paperNotFound">Nenhum documento encontrado para a ID do documento informado</message>
+	<message key="plugins.importexport.nlm.export.error.paperNotFound">Nenhum documento encontrado para a ID "{$paperId}" do documento informado</message>
 	<message key="plugins.importexport.nlm.export.error.unknownConference">Caminho de conferência desconhecido {$conferencePath}</message>
-	<message key="plugins.importexport.nlm.export.error.couldNotWrite">Não foi possível escrever no documento</message>
+	<message key="plugins.importexport.nlm.export.error.couldNotWrite">Não foi possível escrever no arquivo "{$fileName}".</message>
 </locale>

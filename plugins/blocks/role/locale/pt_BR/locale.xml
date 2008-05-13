@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the pt_BR (Portuguese) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="pt_BR" full_name="Portuguese">
+	<message key="plugins.block.role.displayName">Bloco de Papel Específico</message>
+	<message key="plugins.block.role.description">Este plugin permite incluir um bloco de barra lateral com  informações específicas do papel como total de submissões e links rápidos para Diretores, Apresentadores, etc.</message>
+</locale>

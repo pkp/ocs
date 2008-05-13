@@ -14,6 +14,6 @@
  
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.reports.registrants.displayName">Rapport d'inscription</message>
-	<message key="plugins.reports.registrants.description">Ce plugiciel met en place un rapport CSV contenant une liste des inscrits en parallèle avec l'information reliée à chaque inscription tel que les détails du contact, l'état du paiment, etc.</message>
+	<message key="plugins.reports.registrants.description">Ce plugiciel implémente un rapport CSV contenant une liste des personnes inscrites avec l'information reliée à chaque inscription tel que les détails du contact, l'état du paiment, etc.</message>
 	<message key="plugins.reports.registrants.userid">ID de l'utilisateur</message>
 </locale>

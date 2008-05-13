@@ -13,7 +13,7 @@
   -->
  
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.citationFormats.refMan.displayName">Plugiciel du format de référence Reference Manager</message>
+	<message key="plugins.citationFormats.refMan.displayName">Plugiciel du format de référence bibliographique Reference Manager</message>
 	<message key="plugins.citationFormats.refMan.citationFormatName">Reference Manager - format RIS (Windows uniquement)</message>
-	<message key="plugins.citationFormats.refMan.description">Ce plugiciel met en place le format de référence Reference Manager.</message>
+	<message key="plugins.citationFormats.refMan.description">Ce plugiciel implémente le format de référence bibliographique Reference Manager.</message>
 </locale>
