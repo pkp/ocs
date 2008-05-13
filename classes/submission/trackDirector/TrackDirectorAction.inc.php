@@ -1332,11 +1332,12 @@ import('file.PaperFileManager');
 					'locationCity' => $schedConf->getSetting('locationCity'),
 					'paperTitle' => $trackDirectorSubmission->getPaperTitle()
 				));
-			} else {
-				if (Request::getUserVar('importPeerReviews')) {
-					$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-					$reviewAssignments = &$reviewAssignmentDao->getReviewAssignmentsByPaperId($trackDirectorSubmission->getPaperId(), $trackDirectorSubmission->getCurrentStage());
-					$reviewIndexes = &$reviewAssignmentDao->getReviewIndexesForStage($trackDirectorSubmission->getPaperId(), $trackDirectorSubmission->getCurrentStage());
+			} elseif (Request::getUserVar('importPeerReviews')) {
+				$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+				$hasBody = false;
+				for ($stage = $trackDirectorSubmission->getCurrentStage(); $stage == REVIEW_STAGE_ABSTRACT || $stage == REVIEW_STAGE_PRESENTATION; $stage--) {
+					$reviewAssignments = &$reviewAssignmentDao->getReviewAssignmentsByPaperId($trackDirectorSubmission->getPaperId(), $stage);
+					$reviewIndexes = &$reviewAssignmentDao->getReviewIndexesForStage($trackDirectorSubmission->getPaperId(), $stage);
 
 					$body = '';
 					foreach ($reviewAssignments as $reviewAssignment) {
@@ -1351,16 +1352,20 @@ import('file.PaperFileManager');
 									// If the comment is viewable by the presenter, then add the comment.
 									if ($comment->getViewable()) {
 										$body .= $comment->getComments() . "\n\n";
+										$hasBody = true;
 									}
 								}
 							}
 							$body .= "------------------------------------------------------\n\n";
-						}
+						} // if
+					} // foreach
+					if ($hasBody) {
+						$oldBody = $email->getBody();
+						if (!empty($oldBody)) $oldBody .= "\n";
+						$email->setBody($oldBody . $body);
+						break;
 					}
-					$oldBody = $email->getBody();
-					if (!empty($oldBody)) $oldBody .= "\n";
-					$email->setBody($oldBody . $body);
-				}
+				} // foreach
 			}
 
 			$email->displayEditForm(Request::url(null, null, null, 'emailDirectorDecisionComment', 'send'), array('paperId' => $trackDirectorSubmission->getPaperId()), 'submission/comment/directorDecisionEmail.tpl', array('isADirector' => true));
