@@ -1,9 +1,9 @@
 {$body}
 
 {$conference->getConferenceTitle()}
-{$schedConf->getSchedConfIdentification()}
-{translate key="schedConf.toc"}
-{url page="schedConf" op="view" path=$schedConf->getBestSchedConfId()}
+{$schedConf->getSchedConfTitle()}
+{translate key="schedConf.presentations"}
+{url page="schedConf" op="view" path=$schedConf->getSchedConfId()}
 
 {foreach name=tracks from=$publishedPapers item=track key=trackId}
 {if $track.title}{$track.title}{/if}

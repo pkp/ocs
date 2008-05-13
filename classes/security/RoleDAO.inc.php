@@ -329,6 +329,7 @@ class RoleDAO extends DAO {
 		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
 		return $returner;
 	}
+
 	/**
 	 * Retrieve the number of users associated with the specified conference.
 	 * @param $conferenceId int
@@ -340,6 +341,31 @@ class RoleDAO extends DAO {
 		$result = &$this->retrieve(
 			'SELECT COUNT(DISTINCT(user_id)) FROM roles WHERE conference_id = ?',
 			(int) $conferenceId
+		);
+
+		$returner = $result->fields[0];
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
+	 * Retrieve the number of users associated with the specified scheduled conference.
+	 * @param $schedConfId int
+	 * @param $roleId int ROLE_ID_... (optional) role to count
+	 * @return int
+	 */
+	function getSchedConfUsersCount($schedConfId, $roleId = null) {
+		$userDao =& DAORegistry::getDAO('UserDAO');
+
+		$params = array((int) $schedConfId);
+		if ($roleId !== null) $params[] = (int) $roleId;
+
+		$result =& $this->retrieve(
+			'SELECT COUNT(DISTINCT(user_id)) FROM roles WHERE sched_conf_id = ?' . ($roleId === null?'':' AND role_id = ?'),
+			$params
 		);
 
 		$returner = $result->fields[0];

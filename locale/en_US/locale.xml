@@ -1662,9 +1662,13 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="director.submissionReview.confirmToArchive">Has the author been notified of this decision? If not, press Cancel and use the Notify Author tool before moving this submission to the Archive.</message>
 	<message key="director.submissionReview.notes">Due indicates number of weeks remaining until the review's due date or (-) weeks that it is overdue. It is filled in when a reviewer accepts the request to review.</message>
 	<message key="director.notifyUsers">Notify Users</message>
-	<message key="director.notifyUsers.allUsers">Send this message to all users associated with this conference ({$count} users)</message>
-	<message key="director.notifyUsers.interestedUsers">Send this message to the users associated with this conference who have indicated that they wish to receive updates ({$count} users)</message>
-	<message key="director.notifyUsers.includeToc">Include the presentations for this conference:</message>
+	<message key="director.notifyUsers.allUsers">All users associated with this conference ({$count} users)</message>
+	<message key="director.notifyUsers.interestedUsers">Users associated with this conference who wish to receive updates ({$count} users)</message>
+	<message key="director.notifyUsers.includeToc">Include the presentations for this conference</message>
+	<message key="director.notifyUsers.allReaders">All readers ({$count} users)</message>
+	<message key="director.notifyUsers.allPresenters">All presenters ({$count} users)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">All paid registrants ({$count} users)</message>
+	<message key="director.notifyUsers.allRegistrants">All registrants ({$count} users)</message>
 
 	<!-- Navigation sidebar menu -->
 	<message key="director.navigation.management">Management</message>

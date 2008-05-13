@@ -248,6 +248,53 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve a list of all paid registered users.
+	 * @param $schedConfId int
+	 * @param $paid boolean Whether or not included users must be paid
+	 * @param $dbRangeInfo object DBRangeInfo object describing range of results to return
+	 * @return object ItemIterator containing matching Users
+	 */
+	function &getRegisteredUsers($schedConfId, $paid = true, $dbResultRange = null) {
+		$result = &$this->retrieveRange(
+			'SELECT DISTINCT u.*
+			FROM	users u,
+				registrations r
+			WHERE	u.user_id = r.user_id AND
+				r.sched_conf_id = ?
+				' . ($paid?' AND r.date_paid IS NOT NULL':''),
+			(int) $schedConfId,
+			$dbResultRange
+		);
+
+		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve a count of all paid registered users.
+	 * @param $schedConfId int
+	 * @param $paid boolean Whether or not included users must be paid
+	 * @return int count
+	 */
+	function &getRegisteredUserCount($schedConfId, $paid = true) {
+		$result = &$this->retrieve(
+			'SELECT COUNT(*) AS user_count
+			FROM	users u,
+				registrations r
+			WHERE	u.user_id = r.user_id AND
+				r.sched_conf_id = ?
+				' . ($paid?' AND r.date_paid IS NOT NULL':'') . '
+			GROUP BY u.user_id',
+			(int) $schedConfId
+		);
+
+		$returner = $result->fields['user_count'];
+		$result->Close();
+
+		return $returner;
+	}
+
+	/**
 	 * Check whether there is a valid registration for a given scheduled conference.
 	 * @param $domain string
 	 * @param $IP string

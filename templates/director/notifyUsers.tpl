@@ -50,39 +50,47 @@
 	</td>
 </tr>
 <tr valign="top">
-	<td width="5%">
-		<input type="radio" id="allUsers" name="whichUsers" value="allUsers"/>
-	</td>
-	<td width="95%" class="label">
+	<td><input type="radio" id="allUsers" name="whichUsers" value="allUsers"/></td>
+	<td class="label">
 		<label for="allUsers">{translate key="director.notifyUsers.allUsers" count=$allUsersCount}</label>
+	</td>
+</tr>
+<tr valign="top">
+	<td><input type="radio" id="allReaders" name="whichUsers" value="allReaders"/></td>
+	<td class="label">
+		<label for="allReaders">{translate key="director.notifyUsers.allReaders" count=$allReadersCount}</label>
+	</td>
+</tr>
+<tr valign="top">
+	<td><input type="radio" id="allPresenters" name="whichUsers" value="allPresenters"/></td>
+	<td class="label">
+		<label for="allPresenters">{translate key="director.notifyUsers.allPresenters" count=$allPresentersCount}</label>
+	</td>
+</tr>
+<tr valign="top">
+	<td><input type="radio" id="allRegistrants" name="whichUsers" value="allRegistrants"/></td>
+	<td class="label">
+		<label for="allRegistrants">{translate key="director.notifyUsers.allRegistrants" count=$allRegistrantsCount}</label>
+	</td>
+</tr>
+<tr valign="top">
+	<td><input type="radio" id="allPaidRegistrants" name="whichUsers" value="allPaidRegistrants"/></td>
+	<td class="label">
+		<label for="allPaidRegistrants">{translate key="director.notifyUsers.allPaidRegistrants" count=$allPaidRegistrantsCount}</label>
 	</td>
 </tr>
 {if $senderEmail}
 	<tr valign="top">
-		<td width="5%">
-			<input type="checkbox" name="bccSender" value="1"{if $bccSender} checked{/if}/>
-		<td width="95%" class="label">
+		<td><input type="checkbox" name="bccSender" value="1"{if $bccSender} checked{/if}/></td>
+		<td class="label">
 			{translate key="email.bccSender" address=$senderEmail|escape}
 		</td>
 	</tr>
 {/if}
-</table>
-
-<br/>
-
-<h3>{translate key="schedConf.schedConf"}</h3>
-<table class="data" width="100%">
 <tr valign="top">
-	<td width="5%">
-		<input type="checkbox" name="includeToc" id="includeToc" value="1"/>
-	</td>
-	<td width="75%" class="label">
-		<label for="includeToc">{translate key="director.notifyUsers.includeToc"}</label>&nbsp;
-		<select name="schedConf" id="schedConf" class="selectMenu">
-			{iterate from=schedConfs item=schedConf}
-				<option {if $schedConf->getCurrent()}checked {/if}value="{$schedConf->getSchedConfId()}">{$schedConf->getSchedConfIdentification()|escape}</option>
-			{/iterate}
-		</select>
+	<td><input type="checkbox" name="includeToc" id="includeToc" value="1"/></td>
+	<td class="label">
+		<label for="includeToc">{translate key="director.notifyUsers.includeToc"}</label>
 	</td>
 </tr>
 </table>

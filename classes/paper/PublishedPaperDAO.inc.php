@@ -152,7 +152,7 @@ class PublishedPaperDAO extends DAO {
 	 * @param $schedConfId int
 	 * @return PublishedPaper objects array
 	 */
-	function &getPublishedPapersInTracks($schedConfId, $trackId, $searchField, $searchMatch, $search) {
+	function &getPublishedPapersInTracks($schedConfId, $trackId = null, $searchField = null, $searchMatch = null, $search = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 

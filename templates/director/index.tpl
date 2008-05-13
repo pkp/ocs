@@ -22,4 +22,9 @@
 	{call_hook name="Templates::Director::Index::Submissions"}
 </ul>
 
+<h3>{translate key="director.navigation.management"}</h3>
+<ul class="plain">
+	<li>&#187; <a href="{url op="notifyUsers"}">{translate key="director.notifyUsers"}</a></li>
+</ul>
+
 {include file="common/footer.tpl"}

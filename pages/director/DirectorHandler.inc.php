@@ -308,6 +308,111 @@ class DirectorHandler extends TrackDirectorHandler {
 	}
 
 	/**
+	 * Allows directors to write emails to users associated with the conference.
+	 */
+	function notifyUsers($args) {
+		DirectorHandler::validate();
+		DirectorHandler::setupTemplate(DIRECTOR_TRACK_HOME);
+
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$presenterDao =& DAORegistry::getDAO('PresenterDAO');
+		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+
+		$conference =& Request::getConference();
+		$conferenceId = $conference->getConferenceId();
+		$schedConf =& Request::getSchedConf();
+		$schedConfId = $schedConf->getSchedConfId();
+
+		$user =& Request::getUser();
+		$templateMgr =& TemplateManager::getManager();
+
+		import('mail.MassMail');
+		$email =& new MassMail('PUBLISH_NOTIFY');
+
+		if (Request::getUserVar('send') && !$email->hasErrors()) {
+			$email->addRecipient($user->getEmail(), $user->getFullName());
+
+			switch (Request::getUserVar('whichUsers')) {
+				case 'allReaders':
+					$recipients =& $roleDao->getUsersByRoleId(
+						ROLE_ID_READER,
+						$conferenceId,
+						$schedConfId
+					);
+					break;
+				case 'allPaidRegistrants':
+					$recipients =& $registrationDao->getRegisteredUsers($schedConfId);
+					break;
+				case 'allRegistrants':
+					$recipients =& $registrationDao->getRegisteredUsers($schedConfId, false);
+					break;
+				case 'allPresenters':
+					$recipients =& $presenterDao->getPresentersAlphabetizedBySchedConf($schedConfId);
+					break;
+				case 'allUsers':
+					$recipients =& $roleDao->getUsersBySchedConfId($schedConfId);
+					break;
+				case 'interestedUsers':
+				default:
+					$recipients = $notificationStatusDao->getNotifiableUsersBySchedConfId($schedConfId);
+					break;
+			}
+			while (!$recipients->eof()) {
+				$recipient = &$recipients->next();
+				$email->addRecipient($recipient->getEmail(), $recipient->getFullName());
+				unset($recipient);
+			}
+
+			if (Request::getUserVar('includeToc')=='1') {
+				$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+				$publishedPapers =& $publishedPaperDao->getPublishedPapersInTracks($schedConfId);
+
+				$templateMgr->assign_by_ref('conference', $conference);
+				$templateMgr->assign_by_ref('schedConf', $schedConf);
+				$templateMgr->assign('body', $email->getBody());
+				$templateMgr->assign_by_ref('publishedPapers', $publishedPapers);
+
+				$email->setBody($templateMgr->fetch('director/notifyUsersEmail.tpl'));
+			}
+
+			$callback = array(&$email, 'send');
+			$templateMgr->setProgressFunction($callback);
+			unset($callback);
+
+			$email->setFrequency(10); // 10 emails per callback
+			$callback = array('TemplateManager', 'updateProgressBar');
+			$email->setCallback($callback);
+			unset($callback);
+
+			$templateMgr->assign('message', 'common.inProgress');
+			$templateMgr->display('common/progress.tpl');
+			echo '<script type="text/javascript">window.location = "' . Request::url(null, 'director') . '";</script>';
+		} else {
+			if (!Request::getUserVar('continued')) {
+				$email->assignParams(array(
+					'editorialContactSignature' => $user->getContactSignature()
+				));
+			}
+
+			$email->displayEditForm(
+				Request::url(null, null, null, 'notifyUsers'),
+				array(),
+				'director/notifyUsers.tpl',
+				array(
+					'allReadersCount' => $roleDao->getSchedConfUsersCount($schedConfId, ROLE_ID_READER),
+					'allPresentersCount' => $presenterDao->getPresenterCount($schedConfId),
+					'allPaidRegistrantsCount' => $registrationDao->getRegisteredUserCount($schedConfId),
+					'allRegistrantsCount' => $registrationDao->getRegisteredUserCount($schedConfId, false),
+					'notifiableCount' => $notificationStatusDao->getNotifiableUsersCount($schedConfId),
+					'allUsersCount' => $roleDao->getSchedConfUsersCount($schedConfId)
+				)
+			);
+		}
+	}
+
+	/**
 	 * Validate that user is a director in the selected conferences.
 	 * Redirects to user index page if not properly authenticated.
 	 */

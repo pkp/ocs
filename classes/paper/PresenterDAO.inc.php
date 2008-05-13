@@ -111,17 +111,14 @@ class PresenterDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all published presenters for a scheduled conference in an associative array by
-	 * the first letter of the last name, for example:
-	 * $returnedArray['S'] gives array($misterSmithObject, $misterSmytheObject, ...)
-	 * Keys will appear in sorted order. Note that if schedConfId is null,
-	 * alphabetized presenters for all scheduled conferences are returned.
+	 * Retrieve all published presenters for a scheduled conference.
+	 * Note that if schedConfId is null, alphabetized presenters for all
+	 * scheduled conferences are returned.
 	 * @param $schedConfId int
 	 * @param $initial An initial the last names must begin with
-	 * @return array Presenters ordered by sequence
+	 * @return object ItemIterator Presenters ordered by sequence
 	 */
 	function &getPresentersAlphabetizedBySchedConf($schedConfId = null, $initial = null, $rangeInfo = null) {
-		$presenters = array();
 		$params = array();
 
 		if (isset($schedConfId)) $params[] = $schedConfId;
@@ -160,6 +157,34 @@ class PresenterDAO extends DAO {
 		);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnPresenterFromRow');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve the number of published presenters for a scheduled conference
+	 * @param $schedConfId int
+	 * @return int count
+	 */
+	function &getPresenterCount($schedConfId) {
+		$result = &$this->retrieveRange(
+			'SELECT	COUNT(*) AS presenter_count
+			FROM	paper_presenters pa,
+				published_papers pp,
+				sched_confs sc,
+				papers p
+			WHERE	sc.sched_conf_id = p.sched_conf_id AND
+				pa.paper_id = p.paper_id AND
+				pp.paper_id = p.paper_id AND
+				sc.sched_conf_id = ?
+			GROUP BY
+				pa.first_name, pa.middle_name, pa.last_name,
+				pa.affiliation, pa.country',
+			(int) $schedConfId
+		);
+
+		$returner = $result->fields[0];
+		$result->Close();
+
 		return $returner;
 	}
 
