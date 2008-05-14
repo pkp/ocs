@@ -369,7 +369,7 @@ class AboutHandler extends Handler {
 
 		if ($user) {
 			$rolesByConference = array();
-			$conferences = &$conferenceDao->getConferences();
+			$conferences = &$conferenceDao->getEnabledConferences();
 			// Fetch the user's roles for each conference
 			foreach ($conferences->toArray() as $conference) {
 				$roles = &$roleDao->getRolesByUserId($user->getUserId(), $conference->getConferenceId());
@@ -379,7 +379,7 @@ class AboutHandler extends Handler {
 			}
 		}
 
-		$conferences = &$conferenceDao->getConferences();
+		$conferences = &$conferenceDao->getEnabledConferences();
 		$templateMgr->assign_by_ref('conferences', $conferences->toArray());
 		if (isset($rolesByConference)) {
 			$templateMgr->assign_by_ref('rolesByConference', $rolesByConference);
