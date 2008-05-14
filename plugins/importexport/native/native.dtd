@@ -1,0 +1,180 @@
+<!--
+  * native.dtd
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * DTD for native XML import/export.
+  *
+  * $Id$
+  -->
+
+<!--
+  * BATCH IMPORTING USING OCS 2.x
+  *  OCS 2.x supports XML import/export using this plugin for the following
+  *  base elements:
+  *   - paper / papers
+  *  Be sure to define the document type appropriately using <!DOCTYPE ...>.
+  *
+  * Conventions:
+  *  - Dates should be specified as YYYY-MM-DD
+  -->
+
+<!-- Top-level collection containers for batch importing -->
+<!ELEMENT papers (paper+)>
+
+<!-- Generic elements -->
+<!ELEMENT href EMPTY>
+	<!ATTLIST href
+		src CDATA #REQUIRED
+		mime_type CDATA #REQUIRED>
+
+<!ELEMENT embed (#PCDATA)>
+	<!ATTLIST embed
+		encoding CDATA #FIXED "base64"
+		filename CDATA #REQUIRED
+		mime_type CDATA #REQUIRED>
+
+<!ENTITY % externalformat "href | embed">
+
+<!ELEMENT title (#PCDATA)>
+	<!ATTLIST title
+		locale CDATA #IMPLIED>
+
+<!ELEMENT description (#PCDATA)>
+	<!ATTLIST description
+		locale CDATA #IMPLIED>
+
+<!ELEMENT date_published (#PCDATA)>
+
+<!ELEMENT open_access EMPTY>
+
+<!ELEMENT sponsor (#PCDATA)>
+	<!ATTLIST sponsor
+		locale CDATA #IMPLIED>
+
+<!ELEMENT subject (#PCDATA)>
+	<!ATTLIST subject
+		locale CDATA #IMPLIED>
+		
+<!ELEMENT file (%externalformat;)>
+
+<!ELEMENT image (%externalformat;)>
+
+<!-- Track-related elements -->
+<!ELEMENT track (title+, abbrev*, identify_type*, policy*, paper+)>
+
+<!ELEMENT abbrev (#PCDATA)>
+	<!ATTLIST abbrev
+		locale CDATA #IMPLIED>
+
+<!ELEMENT identify_type (#PCDATA)>
+	<!ATTLIST identify_type
+		locale CDATA #IMPLIED>
+
+<!ELEMENT policy (#PCDATA)>
+	<!ATTLIST policy
+		locale CDATA #IMPLIED>
+
+<!--
+  * Paper-related elements
+  * NOTES:
+  *  - Locale attribute value must correspond to the paper's
+  *    additional locales, if enabled, otherwise an error will be displayed.
+  -->
+<!ELEMENT paper (title+, abstract*, indexing?, sponsor*, author+, pages?, date_published, open_access?, (galley?, htmlgalley?)+, supplemental_file*)>
+	<!ATTLIST paper
+		public_id CDATA #IMPLIED
+		language CDATA "en">
+
+<!ELEMENT author (firstname, middlename?, lastname, affiliation?, country?, email, url?, biography*)>
+	<!-- One author should be designated as the primary contact for this
+	     paper. If no author is designated, the first author with an
+	     email address will be used; if multiple authors are designated, the
+	     last designated author will be used. The designated author should
+	     have a valid email address if possible. -->
+	<!ATTLIST author
+		primary_contact (true|false) "false">
+
+<!ELEMENT firstname (#PCDATA)>
+<!ELEMENT middlename (#PCDATA)>
+<!ELEMENT lastname (#PCDATA)>
+<!ELEMENT affiliation (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT competing_interests (#PCDATA)>
+
+<!ELEMENT biography (#PCDATA)>
+	<!ATTLIST biography
+		locale CDATA #IMPLIED>
+
+<!ELEMENT abstract (#PCDATA)>
+	<!ATTLIST abstract
+		locale CDATA #IMPLIED>
+
+<!ELEMENT pages (#PCDATA)>
+
+<!ELEMENT indexing (discipline*, type*, subject*, subject_class*, coverage?)>
+
+<!ELEMENT discipline (#PCDATA)>
+	<!ATTLIST discipline
+		locale CDATA #IMPLIED>
+
+<!ELEMENT type (#PCDATA)>
+	<!ATTLIST type
+		locale CDATA #IMPLIED>
+
+<!ELEMENT subject_class (#PCDATA)>
+	<!ATTLIST subject_class
+		locale CDATA #IMPLIED>
+
+<!ELEMENT coverage (geographical*, chronological*, sample*)>
+
+<!ELEMENT geographical (#PCDATA)>
+	<!ATTLIST geographical
+		locale CDATA #IMPLIED>
+
+<!ELEMENT chronological (#PCDATA)>
+	<!ATTLIST chronological
+		locale CDATA #IMPLIED>
+
+<!ELEMENT sample (#PCDATA)>
+	<!ATTLIST sample
+		locale CDATA #IMPLIED>
+
+<!ELEMENT label (#PCDATA)>
+
+<!ELEMENT stylesheet (%externalformat;)>
+
+<!ELEMENT galley (label, file)>
+	<!ATTLIST galley
+		locale CDATA #IMPLIED>
+
+<!ELEMENT htmlgalley (label, file, stylesheet?, image*)>
+	<!ATTLIST htmlgalley
+		locale CDATA #IMPLIED>
+
+<!ELEMENT supplemental_file (title+, creator*, subject*, type_other?, description*, publisher*, sponsor*, date_created?, source*, file)>
+	<!ATTLIST supplemental_file
+		type (research_instrument | research_materials | research_results | transcripts | data_analysis | data_set | source_text | other) "other"
+		language CDATA "en"
+		public_id CDATA #IMPLIED>
+
+<!ELEMENT creator (#PCDATA)>
+	<!ATTLIST creator
+		locale CDATA #IMPLIED>
+
+<!ELEMENT type_other (#PCDATA)>
+	<!ATTLIST type_other
+		locale CDATA #IMPLIED>
+
+<!ELEMENT publisher (#PCDATA)>
+	<!ATTLIST publisher
+		locale CDATA #IMPLIED>
+
+<!ELEMENT date_created (#PCDATA)>
+
+<!ELEMENT source (#PCDATA)>
+	<!ATTLIST source
+		locale CDATA #IMPLIED>
