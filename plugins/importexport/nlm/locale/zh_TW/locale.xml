@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2007 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the zh_TW (正體中文) locale.
+  *正體中文由 陳文誌 (長庚大學工業設計系) 與 莊惠茹 共同翻譯 (V1 @ 20080515)
+  * $Id$
+  -->
+ 
+<locale name="zh_TW" full_name="正體中文">
+	<message key="plugins.importexport.nlm.displayName">NLM XML 輸出外掛程式</message>
+	<message key="plugins.importexport.nlm.description">輸出在 NLM 中的文章解釋資料 (metadata) 以符合 XML 的摘要格式作為索引使用。</message>
+
+	<message key="plugins.importexport.nlm.export">輸出日期</message>
+	<message key="plugins.importexport.nlm.export.papers">輪出文章</message>
+	<message key="plugins.importexport.nlm.export.selectPaper">選擇欲輸出的文章。</message>
+	
+	<message key="plugins.importexport.nlm.cliUsage"><![CDATA[使用： 
+{$scriptName} {$pluginName} [xmlFileName] [journal_path] 文章 [paperId1] [paperId2] ...
+]]></message>
+	<message key="plugins.importexport.nlm.cliError">錯誤：</message>
+
+	<message key="plugins.importexport.nlm.export.error.paperNotFound">沒有文章符合指定的文章編號 "{$paperId}"。</message>
+	<message key="plugins.importexport.nlm.export.error.unknownConference">無效的研討會路徑 {$conferencePath}</message>
+	<message key="plugins.importexport.nlm.export.error.couldNotWrite">無效的檔案名稱 "{$fileName}"</message>
+</locale>

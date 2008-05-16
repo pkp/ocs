@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2006-2007 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the zh_TW (正體中文) locale.
+  *正體中文由 陳文誌 (長庚大學工業設計系) 與 莊惠茹 共同翻譯 (V1 @ 20080515)
+ -->
+ 
+<locale name="zh_TW" full_name="正體中文">
+	<message key="plugins.paymethod.paypal.displayName">貝寶 (Paypal)</message>
+
+	<!-- PayPal Settings Form -->
+	<message key="plugins.paymethod.paypal.settings.paypalenable">啟用貝寶 (PayPal)</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl">即時付費通知網址 (IPN URL)</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl.description"><![CDATA[此網址是用來提供即貝寶時付費通知服務 (PayPal's Instant Payment Notification (IPN) service)。如您要測試本服務，請使用以下網址 <u>https://www.sandbox.paypal.com/cgi-bin/webscr</u>；如您要產生系統 (production systems)，請使用下列網址 <u>https://www.paypal.com/cgi-bin/webscr</u>。]]></message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount">銷售員帳號 (Seller Account)</message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount.description">這是貝寶提供銷售員的使用者帳號，一般是以電子郵件信箱作為帳號名稱。</message>
+	<message key="plugins.paymethod.paypal.settings.curlNotInstalled">敬告：支援 PHP 的 CURL 未安裝。貝寶付款系統需 CURL 的資料庫，在其未安裝前無法執行本功能。</message>
+	<message key="plugins.paymethod.paypal.settings">貝寶設定</message>
+
+	<!-- PayPal -->
+	<message key="plugins.paymethod.paypal">貝寶付款</message>
+	<message key="plugins.paymethod.paypal.description"><![CDATA[本服務可以接受所有的信用卡與電子支票，參與者並不限定於合作的夥伴，但需要研討的組織者先行設定一個 <a href="http://www.paypal.com" target="_new">貝寶商業帳號 (PayPal Business Account)</a>。]]></message>
+	<message key="plugins.paymethod.paypal.warning">點一下 "繼續 (Continue)" 將連結到貝寶的網站。在您付款後，可以點選 "返回 (Return to Merchant)" 回到本研討會網站。</message>
+	<message key="plugins.paymethod.paypal.purchase.amount">總計</message>
+	<message key="plugins.paymethod.paypal.purchase.description">描述</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled">您的付費已取消。</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled.title">付費已取消</message>
+</locale>

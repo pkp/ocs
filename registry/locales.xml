@@ -31,4 +31,5 @@
 	<locale key="fr_FR" name="Français (France)"/>
 	<locale key="it_IT" name="Italiano"/>
 	<locale key="pt_BR" name="Português (Brasil)"/>
+	<locale key="zh_TW" name="正體中文"/>
 </locales>
