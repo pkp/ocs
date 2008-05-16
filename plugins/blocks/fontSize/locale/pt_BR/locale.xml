@@ -12,7 +12,7 @@
   * $Id$
   -->
  
-<locale name="pt_BR" full_name="Portuguese">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.block.fontSize.displayName">Bloco Tamanho da Fonte</message>
 	<message key="plugins.block.fontSize.description">Este plugin oferece as ferramentas de tamanho de fonte na barra desejada.</message>
 	<message key="plugins.block.fontSize.title">Tamanho da fonte</message>

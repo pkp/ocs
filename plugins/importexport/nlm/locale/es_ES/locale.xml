@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the es_ES locale.
   *
   * $Id$
   -->
  
-<locale name="es_ES" full_name="Español">
+<locale name="es_ES" full_name="España Castellano">
 	<message key="plugins.importexport.nlm.displayName">NLM XML Plugin de exportación</message>
 	<message key="plugins.importexport.nlm.description"> Exportar metadatos del trabajo al formato NML Meeting Abstracts XML para su indexación.</message>
 

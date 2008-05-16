@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the it_IT locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="it_IT" full_name="Italiano">
 	<message key="plugins.reports.registrants.displayName">Report degli utenti registrati</message>
 	<message key="plugins.reports.registrants.description">Questo plugin implementa un report CSV contenente una lista di chi si registra insieme alle informazioni delle loro registrazioni come i dettagli del contatto, lo stato del pagamento, ecc.</message>
 	<message key="plugins.reports.registrants.userid">ID dell'utente</message>

@@ -12,7 +12,7 @@
   * $Id$
   -->
  
-<locale name="es_ES" full_name="Español">
+<locale name="es_ES" full_name="España Castellano">
 	<message key="plugins.generic.acron.name">Acron Plugin</message>
 	<message key="plugins.generic.acron.description"><![CDATA[Este plugin pretende reducir la dependencia de OCS de las tareas periódicas de programación tales como 'cron.']]></message>
 

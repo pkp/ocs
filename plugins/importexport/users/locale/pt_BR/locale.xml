@@ -12,7 +12,7 @@
   * $Id$
   -->
  
-<locale name="pt_BR" full_name="Portuguese">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.importexport.users.displayName">Plugin Usuários em XML</message>
 	<message key="plugins.importexport.users.description">Importar e exportar usuários</message>
 

@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the fr_CA locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.reports.registrants.displayName">Rapport d'inscription</message>
 	<message key="plugins.reports.registrants.description">Ce plugiciel implémente un rapport CSV contenant une liste des personnes inscrites avec l'information reliée à chaque inscription tel que les détails du contact, l'état du paiment, etc.</message>
 	<message key="plugins.reports.registrants.userid">ID de l'utilisateur</message>

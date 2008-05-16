@@ -11,7 +11,7 @@
   *
  -->
  
-<locale name="es_ES" full_name="Español">
+<locale name="es_ES" full_name="España Castellano">
 	<message key="plugins.paymethod.manual.displayName">Pago Manual</message>
 	<message key="plugins.paymethod.manual.description">El pago debe realizarse fuera del sistema OCS y requiere una validación por parte del responsable de las conferencias antes de que la inscripción sea efectiva. El contenido del campo "Información de la Inscripción" en el "Gestor de Políticas de Inscripción" se mostrará al equipo de inscripciones y debe ofrecer información sobre como se procederà en el envío manual de la misma.</message>
 	<message key="plugins.paymethod.manual">Pago de la inscripción</message>

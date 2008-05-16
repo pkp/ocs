@@ -9,8 +9,9 @@
   * Localization strings for the fr_CA locale.
   *
  -->
+
 <locale name="fr_CA" full_name="Français (Canada)">
-  <message key="plugins.paymethod.manual.displayName">Paiement manuel</message>
-  <message key="plugins.paymethod.manual.description">Le gestionnaire de la conférence enregistrera la réception du paiement d'un utilisateur.</message>
-  <message key="plugins.paymethod.manual">Paiement de l'inscription</message>
+	<message key="plugins.paymethod.manual.displayName">Paiement manuel</message>
+	<message key="plugins.paymethod.manual.description">Le gestionnaire de la conférence enregistrera la réception du paiement d'un utilisateur.</message>
+	<message key="plugins.paymethod.manual">Paiement de l'inscription</message>
 </locale>

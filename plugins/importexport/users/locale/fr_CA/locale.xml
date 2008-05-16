@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the fr_CA locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.importexport.users.displayName">Plugiciel XML des utilisateurs</message>
 	<message key="plugins.importexport.users.description">Importation et exportation des utilisateurs</message>
 

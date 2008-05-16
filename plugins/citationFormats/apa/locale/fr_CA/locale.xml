@@ -7,15 +7,14 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for this citation plugin in en_US.
+  * Localization strings for this citation plugin in fr_CA.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.citationFormats.apa.displayName">Plugiciel du format de référence bibliographique APA</message>
 	<message key="plugins.citationFormats.apa.citationFormatName">APA</message>
-	<message key="plugins.citationFormats.apa.description">This plugin implements the APA citation format.</message>
 	<message key="plugins.citationFormats.apa.description">This plugin implements the APA citation format.</message>
 	<message key="plugins.citationFormats.apa.retrieved"><![CDATA[Téléchargé le {$retrievedDate}, de <a href="{$url}" target="_new">{$url}</a>]]></message>
 </locale>

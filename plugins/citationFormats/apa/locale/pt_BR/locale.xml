@@ -7,14 +7,14 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for this citation plugin in it_IT.
+  * Localization strings for this citation plugin in pt_BR.
   *
   * $Id$
   -->
  
-<locale name="it_IT" full_name="Italiano">
-	<message key="plugins.citationFormats.apa.displayName">Plugin del formato di citazioni APA</message>
+<locale name="pt_BR" full_name="Português (Brasil)">
+	<message key="plugins.citationFormats.apa.displayName">Plugin Formato de Citação APA</message>
 	<message key="plugins.citationFormats.apa.citationFormatName">APA</message>
 	<message key="plugins.citationFormats.apa.description">This plugin implements the APA citation format.</message>
-	<message key="plugins.citationFormats.apa.retrieved"><![CDATA[Recuperato {$retrievedDate}, da <a href="{$url}" target="_new">{$url}</a>]]></message>
+	<message key="plugins.citationFormats.apa.retrieved"><![CDATA[Acesso em {$retrievedDate}, disponível em <a href="{$url}" target="_new">{$url}</a>]]></message>
 </locale>

@@ -12,7 +12,7 @@
   * $Id$
   -->
  
-<locale name="pt_BR" full_name="Portuguese">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.block.role.displayName">Bloco de Papel Específico</message>
 	<message key="plugins.block.role.description">Este plugin permite incluir um bloco de barra lateral com  informações específicas do papel como total de submissões e links rápidos para Diretores, Apresentadores, etc.</message>
 </locale>

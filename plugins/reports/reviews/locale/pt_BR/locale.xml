@@ -12,7 +12,7 @@
   * $Id$
   -->
 
-<locale name="pt_BR" full_name="Portuguese">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.reports.reviews.displayName">Relatório de Avaliação</message>
 	<message key="plugins.reports.reviews.description">Este plugin implementa um relatório no formato CSV contendo a lista de tarefas de availação da conferência.</message>
 	<message key="plugins.reports.reviews.reviewerId">ID do Avaliador</message>

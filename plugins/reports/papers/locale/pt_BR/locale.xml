@@ -12,7 +12,7 @@
   * $Id$
   -->
 
-<locale name="pt_BR" full_name="Portuguese">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.reports.papers.displayName">Relatório de Submissões</message>
 	<message key="plugins.reports.papers.description">Este plugin implementa um relatório CSV com a lista de submissões e informações relacionadas.</message>
 	<message key="plugins.reports.papers.nodecision">Sem decisão</message>

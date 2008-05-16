@@ -122,18 +122,6 @@ Bei der Erstbegutachtung Ihrer Arbeit &quot;{$paperTitle}&quot; wurde deutlich, 
 {$comments}</field>
 			<field name="description">Diese Email benachrichtigt die Gutachter einer Einreichung dar&#252;ber, dass der Begutachtungsprozess abgeschlossen ist. Sie enth&#228;lt Informationen &#252;ber das Paper sowie bez&#252;glich der endg&#252;ltigen Entscheidung und dankt den Gutachtern f&#252;r ihre Beitr&#228;ge.</field>
 		</row>
-		<row>
-			<field name="email_key">SUBMISSION_DEADLINE_WARN</field>
-			<field name="subject">Ablauf der Einreichungsfrist</field>
-			<field name="body">Die Frist f&#252;r die Vervollst&#228;ndigung Ihrer an die Konferenz &quot;{$conferenceName}&quot;  eingereichten Arbeit &quot;{$paperTitle},&quot; l&#228;uft in einigen Tagen ab. Nach unseren Informationen ist die Bearbeitung noch nicht abgeschlossen.
-
-Um einen Ausschluss Ihrer Einreichung von dieser Konferenz zu vermeiden, sollten Sie sie so bald wie m&#246;glich vervollst&#228;ndigen, indem Sie noch fehlende Dateien hochladen oder ben&#246;tigte Informationen angeben.
-
-Sollten Sie Fragen haben, wenden Sie sich bitte an mich.
-
-{$editorialContactSignature}</field>
-			<field name="description">Diese Email benachrichtigt einen Autor dar&#252;ber, dass seine unvollst&#228;ndige Einreichung wegen Ablauf einer Frist ausgeschlossen zu werden droht.</field>
-		</row>
 
 
 		<!--

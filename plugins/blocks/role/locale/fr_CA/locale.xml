@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the fr_CA locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.block.role.displayName">Bloc relié à un rôle spécifique</message>
 	<message key="plugins.block.role.description">Ce plugiciel fournit un bloc de barre de menus contenant de l'information relié à un rôle spécifique tel que le nombre de soumissions et des liens rapides pour les responsables, présentateurs, etc.</message>
 </locale>

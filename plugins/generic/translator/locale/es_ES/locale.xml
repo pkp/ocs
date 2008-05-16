@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the es_ES locale.
   *
   * $Id$
   -->
  
-<locale name="en_US" full_name="U.S. English">
+<locale name="es_ES" full_name="España Castellano">
 	<message key="plugins.generic.translator.name">Plugin traductor</message>
 	<message key="plugins.generic.translator.description">Este plugin permite un mantenimiento a través del web de los archivos traducidos.</message>
 	<message key="plugins.generic.translator.longdescription">Esta área permite al Administrador del sitio web construir, modificar y comprovar las traducciones de OCS. Se trata de una base del código y no debe usarse como editor de una conferencia individual. Si se corrige o crea una traducción, le rogamos que tenga en cuenta la difusión pública de esta para las futuras distribuciones de nuevas ediciones de OCS.</message>

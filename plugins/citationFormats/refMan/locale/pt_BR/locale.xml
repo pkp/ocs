@@ -12,7 +12,7 @@
   * $Id$
   -->
  
-<locale name="pt_BR" full_name="Portuguese">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.citationFormats.refMan.displayName">Plugin Formato de Citação Reference Manager</message>
 	<message key="plugins.citationFormats.refMan.citationFormatName">Reference Manager - formato RIS (Windows apenas)</message>
 	<message key="plugins.citationFormats.refMan.description">Este plugin implementa o formato de citação Reference Manager.</message>

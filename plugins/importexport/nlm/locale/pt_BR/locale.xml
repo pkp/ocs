@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the pt_BR (U.S. English) locale.
+  * Localization strings for the pt_BR locale.
   *
   * $Id$
   -->
  
-<locale name="pt_BR" full_name="U.S. English">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.importexport.nlm.displayName">Plugin de Exportação NLM XML</message>
 	<message key="plugins.importexport.nlm.description">Exporte o documento de metadados no formato NLM Meeting Abstracts XML para indexação.</message>
 

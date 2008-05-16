@@ -11,15 +11,15 @@
   * $Id$
   -->
 <locale name="fr_CA" full_name="Français (Canada)">
-  <message key="plugins.importexport.nlm.displayName">Plugiciel d'exportation NLM (XML)</message>
-  <message key="plugins.importexport.nlm.description">Exporter les métadonnées du fichier en NLM Meeting Abstracts (XML) pour l'indexation.</message>
-  <message key="plugins.importexport.nlm.export">Exporter les données</message>
-  <message key="plugins.importexport.nlm.export.papers">Exporter les communications</message>
-  <message key="plugins.importexport.nlm.export.selectPaper">Sélectionner les communications à exporter.</message>
-  <message key="plugins.importexport.nlm.cliUsage">Utilisation: 
+	<message key="plugins.importexport.nlm.displayName">Plugiciel d'exportation NLM (XML)</message>
+	<message key="plugins.importexport.nlm.description">Exporter les métadonnées du fichier en NLM Meeting Abstracts (XML) pour l'indexation.</message>
+	<message key="plugins.importexport.nlm.export">Exporter les données</message>
+	<message key="plugins.importexport.nlm.export.papers">Exporter les communications</message>
+	<message key="plugins.importexport.nlm.export.selectPaper">Sélectionner les communications à exporter.</message>
+	<message key="plugins.importexport.nlm.cliUsage">Utilisation: 
 {$scriptName} {$pluginName} [xmlFileName] [journal_path] communications [paperId1] [paperId2] ...</message>
-  <message key="plugins.importexport.nlm.cliError">ERREUR:</message>
-  <message key="plugins.importexport.nlm.export.error.paperNotFound">Aucune communication ne correspond à l'ID de la communication "{$paperId}".</message>
-  <message key="plugins.importexport.nlm.export.error.unknownConference">Chemin d'accès spécifié pour la conférence inconnu {$conferencePath}</message>
-  <message key="plugins.importexport.nlm.export.error.couldNotWrite">Écriture du fichier impossible "{$fileName}"</message>
+	<message key="plugins.importexport.nlm.cliError">ERREUR:</message>
+	<message key="plugins.importexport.nlm.export.error.paperNotFound">Aucune communication ne correspond à l'ID de la communication "{$paperId}".</message>
+	<message key="plugins.importexport.nlm.export.error.unknownConference">Chemin d'accès spécifié pour la conférence inconnu {$conferencePath}</message>
+	<message key="plugins.importexport.nlm.export.error.couldNotWrite">Écriture du fichier impossible "{$fileName}"</message>
 </locale>
