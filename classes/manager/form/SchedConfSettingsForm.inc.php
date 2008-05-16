@@ -130,6 +130,7 @@ class SchedConfSettingsForm extends Form {
 
 		if ($schedConf->getSchedConfId() != null) {
 			$schedConfDao->updateSchedConf($schedConf);
+			$track = null; // avoid warning
 		} else {
 			$schedConfId = $schedConfDao->insertSchedConf($schedConf);
 			$schedConfDao->resequenceSchedConfs($this->getData('conferenceId'));
