@@ -32,7 +32,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="title" key="common.title" required="true"}</td>
-		<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" id="title" value="{$title[$formLocale]|escape}" size="30" maxlength="60" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" id="title" value="{$title[$formLocale]|escape}" size="30" maxlength="120" class="textField" /></td>
 	</tr>
 </table>
 

@@ -103,7 +103,7 @@ class Upgrade extends Installer {
 		$siteLocale = 'en_US';
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$siteLocale = $row['locale'];
+			$siteLocale = $row['primary_locale'];
 			$result->MoveNext();
 		}
 		$result->Close();
