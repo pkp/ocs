@@ -47,8 +47,6 @@
 
 <h4>{translate key="manager.setup.additionalContent.homepageImage"}</h4>
 
-<p>{translate key="manager.setup.additionalContent.homepageImage.description"}</p>
-
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="homepageImage" key="manager.setup.additionalContent.homepageImage"}</td>

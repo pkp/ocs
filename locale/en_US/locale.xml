@@ -1094,7 +1094,6 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.additionalContent.redirect.description">By selecting a Scheduled Conference below, it is possible to redirect users who visit the Conference page directly to that Scheduled Conference. This is useful if, for example, this Conference only contains a single Scheduled Conference.</message>
 	<message key="manager.setup.additionalContent.homepage">Homepage</message>
 	<message key="manager.setup.additionalContent.homepageImage">Homepage Image</message>
-	<message key="manager.setup.additionalContent.homepageImage.description"></message>
 	<message key="manager.setup.additionalContent.additionalContent">Additional Content</message>
 	<message key="manager.setup.additionalContent.additionalContent.description">Add the following content, using text/HTML, which will appear below the homepage image, if one is uploaded.</message>
 	<message key="manager.setup.additionalContent.information">Information for Users</message>
