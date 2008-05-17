@@ -156,19 +156,19 @@ class TrackDirectorHandler extends Handler {
 			$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
 			if ($subclass) {
 				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
-				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), 'paper.submissions');
+				$pageHierarchy[] = array(Request::url(null, null, 'trackDirector'), 'paper.submissions');
 			} else {
 				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
 			}
-		}
 
-		import('submission.trackDirector.TrackDirectorAction');
-		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'trackDirector');
-		if (isset($submissionCrumb)) {
-			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
-		}
+			import('submission.trackDirector.TrackDirectorAction');
+			$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'trackDirector');
+			if (isset($submissionCrumb)) {
+				$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
+			}
 		
-		$templateMgr->assign('pageHierarchy', $pageHierarchy);
+			$templateMgr->assign('pageHierarchy', $pageHierarchy);
+		}
 	}
 
 	/**
