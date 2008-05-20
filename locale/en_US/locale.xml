@@ -1314,7 +1314,6 @@ Title of classification system]]></message>
 	<message key="manager.tracks.form.titleRequired">A title is required for the track.</message>
 	<message key="manager.tracks.form.abbrevRequired">An abbreviated title is required for the track</message>
 	<message key="manager.tracks.trackDirectorInstructions">Select from among the available Track Directors and "Assign Director" to this track.</message>
-	<message key="manager.tracks.submissionsToThisTrack">Submissions made to this conference track</message>
 	<message key="manager.tracks.submissionNotReviewed">Indicate that track is not peer-reviewed</message>
 	<message key="manager.tracks.peerReviewed">Peer Reviewed</message>
 	<message key="manager.tracks.directorRestriction">Items can only be submitted by Directors and Track Directors.</message>
