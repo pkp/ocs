@@ -957,7 +957,6 @@ Nota che l'interfaccia OAI pu&#x00F2; essere disabilitata per questo sito modifi
 	<!-- Conference setup page 2 -->
 	<message key="manager.setup.additionalContent.homepage">Homepage</message>
 	<message key="manager.setup.additionalContent.homepageImage">Immagine della Homepage</message>
-	<message key="manager.setup.additionalContent.homepageImage.description"></message>
 	<message key="manager.setup.additionalContent.additionalContent">Contenuto aggiuntivo</message>
 	<message key="manager.setup.additionalContent.additionalContent.description">Aggiungi il seguente contenuto, usando text/HTML, che apparir&#x00E0; sotto l'immagine della homepage.</message>
 	<message key="manager.setup.additionalContent.information">Informazione per gli utenti</message>
@@ -2623,4 +2622,8 @@ Il processo di validazione pu&#x00F2; non funzionare sulle URL di ricerca che ri
 	<message key="user.login.accountNotValidated">Il tuo indirizzo email non è stato validato. Per favore controlla la tua email e segui le istruzioni fornite. Se non hai ricevuto una email, potresti aver bisogno di contattare l'amministratore del sito per assistenza.</message>
 	<message key="log.timeline.postScheduleDateChanged">La data programmata per l'invio è cambiata da {$oldPostScheduleDate} a {$newPostScheduleDate}.</message>
 	<message key="log.timeline.postScheduleChanged">L'impostazione "programma per l'invio" è cambiata da {$oldPostSchedule} a {$newPostSchedule}.</message>
+	<message key="director.notifyUsers.allReaders">Tutti gli utenti ({$count} lettori)</message>
+	<message key="director.notifyUsers.allPresenters">Tutti gli utenti ({$count} relatori)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">Tutti gli utenti ({$count} registrati che hanno pagato)</message>
+	<message key="director.notifyUsers.allRegistrants">Tutti gli utenti ({$count} registrati)</message>
 </locale>

@@ -955,7 +955,6 @@ e deve começar e terminar com um caractere alfanumérico.</message>
 	<!-- Conference setup page 2 -->
 	<message key="manager.setup.additionalContent.homepage">Página Inicial</message>
 	<message key="manager.setup.additionalContent.homepageImage">Imagem de Capa para Página Inicial</message>
-	<message key="manager.setup.additionalContent.homepageImage.description">Inclua uma imagem para exibição no centro da página.</message>
 	<message key="manager.setup.additionalContent.additionalContent">Conteúdo Adicional</message>
 	<message key="manager.setup.additionalContent.additionalContent.description">Incluir o conteúdo a seguir, utilizando texto/HTML, que aparecerá na página incial abaixo da imagem, caso exista.</message>
 	<message key="manager.setup.additionalContent.information">Informações aos Usuários</message>
