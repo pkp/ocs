@@ -300,6 +300,9 @@ class PeopleHandler extends ManagerHandler {
 		$conferenceTitles =& $conferenceDao->getConferenceTitles();
 
 		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		if (!$schedConf) Request::redirect(null, null, 'manager');
+
 		unset($conferenceTitles[$conference->getConferenceId()]);
 
 		$templateMgr =& TemplateManager::getManager();
@@ -319,6 +322,8 @@ class PeopleHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		$rolePath = Request::getUserVar('rolePath');
 		$syncConference = Request::getUserVar('syncConference');
+
+		if (!$schedConf) Request::redirect(null, null, 'manager');
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath($rolePath);
