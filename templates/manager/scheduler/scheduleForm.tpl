@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-{assign var="pageCrumbTitle" value="$scheduleTitle"}
+{assign var="pageTitle" value="manager.scheduler.schedule"}
 {assign var="pageId" value="manager.scheduler.schedule.scheduleForm"}
 {include file="common/header.tpl"}
 
