@@ -23,6 +23,7 @@
 		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
 
+	<script type="text/javascript" src="{$baseUrl}/js/general.js"></script>
 	{$additionalHeadData}
 </head>
 {url|assign:"galleyUrl" op="proofGalleyFile" path=$paperId|to_array:$galleyId}
