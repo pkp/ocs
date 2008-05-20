@@ -182,8 +182,8 @@ class ScheduleForm extends Form {
 					// It may be that we are unscheduling:
 					// if so, set start/end to null
 					if (!$newValue) {
-						$publishedPaper->setStartDate(null);
-						$publishedPaper->setEndDate(null);
+						$publishedPaper->setStartTime(null);
+						$publishedPaper->setEndTime(null);
 						break;
 					}
 					// Otherwise, date was chosen.
