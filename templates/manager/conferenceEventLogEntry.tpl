@@ -38,7 +38,7 @@
 		<td class="label">{translate key="common.user"}</td>
 		<td class="value">
 			{assign var=emailString value="`$logEntry->getUserFullName()` <`$logEntry->getUserEmail()`>"}
-			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getEventTitle()}
+			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getEventTitle()|translate body=$logEntry->getMessage()|escape}
 			{$logEntry->getUserFullName()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
