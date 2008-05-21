@@ -56,7 +56,7 @@
 		<td class="value">
 			{if $logEntry->getSenderFullName()}
 				{assign var=emailString value="`$logEntry->getSenderFullName()` <`$logEntry->getSenderEmail()`>"}
-				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getSubject()|translate|escape body=$logEntry->getBody()|escape paperId=$submission->getPaperId()}
+				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getSubject() body=$logEntry->getBody() paperId=$submission->getPaperId()}
 				{$logEntry->getSenderFullName()|escape} {icon name="mail" url=$url}
 			{else}
 				{translate key="common.notApplicable"}
@@ -65,7 +65,10 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="email.from"}</td>
-		<td class="value">{$logEntry->getFrom()|escape}</td>
+		<td class="value">
+			{url|assign:"url" page="user" op="email" to=$logEntry->getFrom() redirectUrl=$currentUrl subject=$logEntry->getSubject() body=$logEntry->getBody() paperId=$submission->getPaperId()}
+			{$logEntry->getFrom()|escape} {icon name="mail" url=$url}
+		</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="email.to"}</td>
