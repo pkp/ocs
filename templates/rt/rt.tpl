@@ -36,7 +36,7 @@
 
 <h5>{$conference->getConferenceTitle()|escape}<br />{$schedConf->getSchedConfTitle()|escape}</h5>
 
-<p><a href="{url page="presentations"}" target="_parent" class="rtAction">{translate key="schedConf.presentations"}</a></p>
+<p><a href="{url page="schedConf" op="presentations"}" target="_parent" class="rtAction">{translate key="schedConf.presentations.short"}</a></p>
 
 <h5>{translate key="rt.readingTools"}</h5>
 
