@@ -226,6 +226,11 @@ class TrackDirectorHandler extends Handler {
 		SubmissionEditHandler::changeTrack();
 	}
 
+	function changeTypeConst() {
+		import('pages.trackDirector.SubmissionEditHandler');
+		SubmissionEditHandler::changeTypeConst();
+	}
+
 	function recordDecision() {
 		import('pages.trackDirector.SubmissionEditHandler');
 		SubmissionEditHandler::recordDecision();

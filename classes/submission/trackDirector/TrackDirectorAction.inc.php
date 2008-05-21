@@ -31,13 +31,26 @@ class TrackDirectorAction extends Action {
 
 	/**
 	 * Changes the track a paper belongs in.
-	 * @param $trackDirectorSubmission int
+	 * @param $trackDirectorSubmission object
 	 * @param $trackId int
 	 */
-	function changeTrack($trackDirectorSubmission, $trackId) {
+	function changeTrack(&$trackDirectorSubmission, $trackId) {
 		if (!HookRegistry::call('TrackDirectorAction::changeTrack', array(&$trackDirectorSubmission, $trackId))) {
 			$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-			$trackDirectorSubmission->setTrackId($trackId);
+			$trackDirectorSubmission->setTrackId((int) $trackId);
+			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
+		}
+	}
+
+	/**
+	 * Changes the type constant (single, panel) of a paper.
+	 * @param $trackDirectorSubmission object
+	 * @param $typeConst int
+	 */
+	function changeTypeConst(&$trackDirectorSubmission, $typeConst) {
+		if (!HookRegistry::call('TrackDirectorAction::changeTypeConst', array(&$trackDirectorSubmission, $typeConst))) {
+			$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+			$trackDirectorSubmission->setTypeConst((int) $typeConst);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 		}
 	}

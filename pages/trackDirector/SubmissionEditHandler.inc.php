@@ -239,6 +239,9 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->display('trackDirector/submissionHistory.tpl');
 	}
 
+	/**
+	 * Change the track a submission is currently in.
+	 */
 	function changeTrack() {
 		$paperId = Request::getUserVar('paperId');
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
@@ -246,6 +249,20 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$trackId = Request::getUserVar('trackId');
 
 		TrackDirectorAction::changeTrack($submission, $trackId);
+
+		Request::redirect(null, null, null, 'submission', $paperId);
+	}
+
+	/**
+	 * Change the submission type (panel, single) for a submission.
+	 */
+	function changeTypeConst() {
+		$paperId = Request::getUserVar('paperId');
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
+
+		$typeConst = Request::getUserVar('typeConst');
+
+		TrackDirectorAction::changeTypeConst($submission, $typeConst);
 
 		Request::redirect(null, null, null, 'submission', $paperId);
 	}

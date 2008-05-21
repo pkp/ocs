@@ -233,6 +233,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 			// Only update fields that can actually be edited.
 			$paper->setTrackId($trackDirectorSubmission->getTrackId());
+			$paper->setTypeConst($trackDirectorSubmission->getTypeConst());
 			$paper->setCurrentStage($trackDirectorSubmission->getCurrentStage());
 			$paper->setReviewFileId($trackDirectorSubmission->getReviewFileId());
 			$paper->setLayoutFileId($trackDirectorSubmission->getLayoutFileId());

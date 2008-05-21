@@ -26,16 +26,6 @@
 		<td class="label">{translate key="paper.title"}</td>
 		<td colspan="2" class="value">{$submission->getPaperTitle()|strip_unsafe_html}</td>
 	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="submission.paperType"}</td>
-		<td width="80%" colspan="2" class="data">
-			{if $submission->getTypeConst() == SUBMISSION_TYPE_PANEL}
-				{translate key="submission.paperType.panel"}
-			{else}
-				{translate key="submission.paperType.single"}
-			{/if}
-		</td>
-	</tr>
 {if $submissionFile || $submission->getReviewMode() != REVIEW_MODE_ABSTRACTS_ALONE}
 	<tr>
 		<td class="label">{translate key="submission.originalFile"}</td>
@@ -76,6 +66,25 @@
 		<td class="label">{translate key="track.track"}</td>
 		<td class="value">{$submission->getTrackTitle()|escape}</td>
 		<td class="value"><form action="{url op="changeTrack" paperId=$submission->getPaperId()}" method="post">{translate key="submission.changeTrack"} <select name="trackId" size="1" class="selectMenu">{html_options options=$tracks selected=$submission->getTrackId()}</select> <input type="submit" value="{translate key="common.record"}" class="button" /></form></td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label">{translate key="submission.paperType"}</td>
+		<td class="data">
+			{if $submission->getTypeConst() == SUBMISSION_TYPE_PANEL}
+				{translate key="submission.paperType.panel"}
+			{else}{* SUBMISSION_TYPE_PANEL *}
+				{translate key="submission.paperType.single"}
+			{/if}
+		</td>
+		<td class="value">
+			<form action="{url op="changeTypeConst" paperId=$submission->getPaperId()}" method="post">{translate key="submission.changeTrack"}
+				<select name="typeConst" size="1" class="selectMenu">
+					<option value="{$smarty.const.SUBMISSION_TYPE_PANEL}"{if $submission->getTypeConst() == SUBMISSION_TYPE_PANEL} selected="selected"{/if}>{translate key="submission.paperType.panel"}</option>
+					<option value="{$smarty.const.SUBMISSION_TYPE_SINGLE}"{if $submission->getTypeConst() == SUBMISSION_TYPE_SINGLE} selected="selected"{/if}>{translate key="submission.paperType.single"}</option>
+				</select>
+				<input type="submit" value="{translate key="common.record"}" class="button" />
+			</form>
+		</td>
 	</tr>
 	{if $submission->getCommentsToDirector()}
 	<tr valign="top">
