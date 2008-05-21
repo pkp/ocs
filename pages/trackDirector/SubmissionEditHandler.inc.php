@@ -291,9 +291,13 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$paperId = Request::getUserVar('paperId');
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
 
-		TrackDirectorAction::completePaper($submission);
+		if (Request::getUserVar('complete')) $complete = true;
+		elseif (Request::getUserVar('remove')) $complete = false;
+		else Request::redirect(null, null, null, 'index');
 
-		Request::redirect(null, null, null, 'submissions', 'submissionsAccepted');
+		TrackDirectorAction::completePaper($submission, $complete);
+
+		Request::redirect(null, null, null, 'submissions', array($complete?'submissionsAccepted':'submissionsInReview'));
 	}
 
 	//

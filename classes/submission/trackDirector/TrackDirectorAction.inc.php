@@ -832,38 +832,54 @@ class TrackDirectorAction extends Action {
 	}
 
 	/**
-	 * Mark a paper as published.
+	 * Mark a paper as published or move a previously published paper
+	 * back into the queue.
 	 * @param $trackDirectorSubmission object
+	 * @param $complete boolean If true, complete the submission. If false,
+	 * 	return it to the queue (unpublish it).
 	 */
-	function completePaper($trackDirectorSubmission) {
+	function completePaper($trackDirectorSubmission, $complete) {
 		import('file.PaperFileManager');
 		$paperFileManager = &new PaperFileManager($trackDirectorSubmission->getPaperId());
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$user = &Request::getUser();
 
-		$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_PUBLISHED);
-		$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
-		// Add a published paper object
-		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-		if(($publishedPaper = $publishedPaperDao->getPublishedPaperByPaperId($trackDirectorSubmission->getPaperId())) == null) {
-			$schedConfId = $trackDirectorSubmission->getSchedConfId();
-
-			$publishedPaper =& new PublishedPaper();
-			$publishedPaper->setPaperId($trackDirectorSubmission->getPaperId());
-			$publishedPaper->setSchedConfId($schedConfId);
-			$publishedPaper->setDatePublished(Core::getCurrentDate());
-			$publishedPaper->setSeq(REALLY_BIG_NUMBER);
-			$publishedPaper->setViews(0);
-
-			$publishedPaperDao->insertPublishedPaper($publishedPaper);
-
-			// Resequence the papers.
-			$publishedPaperDao->resequencePublishedPapers($trackDirectorSubmission->getTrackId(), $schedConfId);
-		}
-		// Add log
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');
-		PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_PUBLISH, LOG_TYPE_DIRECTOR, $trackDirectorSubmission->getDirectorFileId(), 'log.director.publish');
+
+		if ($complete) { // Publish the paper.
+			$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_PUBLISHED);
+			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
+
+			// Add a published paper object
+			$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+			if(($publishedPaper = $publishedPaperDao->getPublishedPaperByPaperId($trackDirectorSubmission->getPaperId())) == null) {
+				$schedConfId = $trackDirectorSubmission->getSchedConfId();
+
+				$publishedPaper =& new PublishedPaper();
+				$publishedPaper->setPaperId($trackDirectorSubmission->getPaperId());
+				$publishedPaper->setSchedConfId($schedConfId);
+				$publishedPaper->setDatePublished(Core::getCurrentDate());
+				$publishedPaper->setSeq(REALLY_BIG_NUMBER);
+				$publishedPaper->setViews(0);
+
+				$publishedPaperDao->insertPublishedPaper($publishedPaper);
+
+				// Resequence the published papers.
+				$publishedPaperDao->resequencePublishedPapers($trackDirectorSubmission->getTrackId(), $schedConfId);
+			}
+
+			// Add log
+			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_PUBLISH, LOG_TYPE_DIRECTOR, $trackDirectorSubmission->getDirectorFileId(), 'log.director.publish');
+
+		} else { // Un-publish the paper.
+
+			$trackDirectorSubmission->setStatus(SUBMISSION_STATUS_QUEUED);
+			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
+
+			// Add log
+			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_UNPUBLISH, LOG_TYPE_DIRECTOR, $trackDirectorSubmission->getDirectorFileId(), 'log.director.unpublish');
+		}
 	}
 
 	/**
