@@ -15,6 +15,7 @@
 <topic id="conference/topic/000021" locale="en_US" title="Registration" toc="conference/toc/000002"  key="conference.currentConferences.registration">
 	<section>
 		<![CDATA[<p>The Conference Manager can use the Registration feature to create different registration types for the scheduled conference. Registrations can be used to restrict access to online material, and in conjunction with the payment plugin can also manage conference attendance and payment.</p>]]>
+	</section>
 	<section title="Filling out the Registration Policies">
 		<![CDATA[<p>The first step in managing the registration process is to define the registration policies. To visit the Registration Types page, the Conference Manager can click the Registrations link on the Conference Site Management page for the conference in question, and then click on the Registration Policies link. </p>
 		<p>The Conference Manager should fill out the Registration Manager information, and detailed registration in the accompanying text box. This information will be available from the About the Conference page. The Registration Information box can accept HTML.</p> 
@@ -29,5 +30,4 @@
 	<section title="Managing Registrants">
 		<![CDATA[<p>The Conference Manager can add new registrations by clicking the Create New Registration link at the bottom of the page, finding the enrolled user in question, and clicking the Enroll link next to their name. This will bring up a form where the Conference Manager will have to select the registration type; enter the relevant domain name/IP range and membership information, if needed; write any special request items; and mark the payment as received. Registrants can be removed from the main Registrants page by clicking the Delete link next to their name.</p>]]>
 	</section>
-
 </topic>

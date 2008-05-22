@@ -32,7 +32,7 @@
 	{if $parent}
 		{assign var=parentId value=$parent->getCommentId()}
 		{url|assign:"url" page="comment" op="view" path=$paperId|to_array:$parentId}
-		<i>{translate key="comments.inResponseTo" url=$url title=$parent->getTitle()|escape|default:"&nbsp;"}</i><br />
+		<em>{translate key="comments.inResponseTo" url=$url title=$parent->getTitle()|escape|default:"&nbsp;"}</em><br />
 	{/if}
 
 	{assign var="hasPriorAction" value=0}{* Track whether to add "|" between actions *}

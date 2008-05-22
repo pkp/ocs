@@ -657,7 +657,7 @@
 	<message key="admin.settings.oaiRegistration">註冊網站是為了編製索引(Metadata Harvesting)</message>
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[在這一個研究資料庫的全球性地分配系統內，所有被主持過的會議內容都會在這個網站被標註，<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">註冊</a> 您的網址到開放性的全球知識專案案系統 <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. 這個系統會收集您的研討會系統中的metadata 傳送至 <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">點選這裡</a> 並輸入  <span class="highlight">{$siteUrl}</span> 到 <b>Site URL</b>, 以及 <span class="highlight">{$oaiUrl}</span> 到 <b>Base URL for OAI Archive</b>.
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">點選這裡</a> 並輸入  <span class="highlight">{$siteUrl}</span> 到 <strong>Site URL</strong>, 以及 <span class="highlight">{$oaiUrl}</span> 到 <strong>Base URL for OAI Archive</strong>.
 <br /><br />
 注意OAI 接口可能因由OCS系統編輯而在此站點失效。為了各別的研討會，OCS系統的將來的版本將允許OAI接口在站點之內能啟動或失去能力。]]></message>
 
@@ -1077,7 +1077,7 @@ The Public Knowledge Project 建議使用 <a href="http://creativecommons.org">C
 <br /><br />
 注意到如果您的站點管理員以PKP Harvester已經登記這個站點，您的研討會自動地被標註因而您不需要再註冊ㄧ次。
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">點選這裡</a> 輸入 <span class="highlight">{$siteUrl}</span> 到 <b>Site URL</b>, 並將 <span class="highlight">{$oaiUrl}</span> 輸入到 <b>Base URL for OAI Archive</b>.]]></message>
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">點選這裡</a> 輸入 <span class="highlight">{$siteUrl}</span> 到 <strong>Site URL</strong>, 並將 <span class="highlight">{$oaiUrl}</span> 輸入到 <strong>Base URL for OAI Archive</strong>.]]></message>
 
 	<!-- 
 	     ***
@@ -1978,7 +1978,7 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<message key="user.account.privacyStatement">保密聲明</message>
 	<message key="user.account.completeForm">請填妥以下表格來建立一個新帳號。</message>
 	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">點選這裡</a>若您已經有此研討會的帳號。]]></message>
-	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">點選這裡</a>若您 <b>尚未</b> 在此研討會設立帳號。]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">點選這裡</a>若您 <strong>尚未</strong> 在此研討會設立帳號。]]></message>
 	<message key="user.account.loginToRegister">請輸入您目前的使用者名稱和密碼來建立一個新帳號。</message>
 	<message key="user.account.createAccountDisabled">這個研討會目前不接受新的使用者。</message>
 	<message key="user.account.usernameRestriction">使用者名稱必須包含唯一小寫字母、數字、和連字號/底線。</message>
@@ -2026,15 +2026,15 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 <li>搜尋時英文關鍵字沒有大小寫的分別</li>
 <li>共通的字詞被忽略</li>
 <li>一般常用字會省略，如AND。</li>
-<li>系統預定是搜尋包含<i>所有</i>關鍵字的文章。 如<i>AND</i>)</li>
-<li>可以使用<i>OR</i>來搜尋包含單一個關鍵字的文章。如：<i>教育 OR 研究</i></li>
-<li>可用中括號搜尋複雜的組合，如<i> ((journal OR conference) NOT theses)，意思是可包含期刊與研討會，但是不包含論文。</i></li>
-<li>用雙引號可搜尋精確的字句，如<i>"公開發表且免費使用"。</i></li>
-<li>可用<b>-</b> - 和<i>NOT</i> 去除不需要的關鍵字，如<i>online -politics </i> or <i>online NOT politics</i></li>，線上但是不要政治相關。
-<li>可使用<b>*萬用字元來包含所不確定的字詞，如<i>soci* morality</i>會包含"sociological" 或 "societal"。</li>
-<li>可用中括號搜尋複雜的組合，如： <i>"((journal OR conference) NOT theses)，意思是可包含期刊與研討會，但是不包含論文。"</i></li>
-<li>用雙引號可搜尋精確的字句，如<i>"公開發表且免費使用"</i><i>
-<li>在ㄧ個如字元符號的術語內使用<b>*</b>來和任何字元排列相符合; 如： <i>soci* morality</i> 將會和"sociological" or "societal"等文件相符合</li>
+<li>系統預定是搜尋包含<em>所有</em>關鍵字的文章。 如<em>AND</em>)</li>
+<li>可以使用<em>OR</em>來搜尋包含單一個關鍵字的文章。如：<em>教育 OR 研究</em></li>
+<li>可用中括號搜尋複雜的組合，如<em> ((journal OR conference) NOT theses)，意思是可包含期刊與研討會，但是不包含論文。</em></li>
+<li>用雙引號可搜尋精確的字句，如<em>"公開發表且免費使用"。</em></li>
+<li>可用<strong>-</strong> - 和<em>NOT</em> 去除不需要的關鍵字，如<em>online -politics </em> or <em>online NOT politics</em></li>，線上但是不要政治相關。
+<li>可使用<strong>*萬用字元來包含所不確定的字詞，如<em>soci* morality</em>會包含"sociological" 或 "societal"。</li>
+<li>可用中括號搜尋複雜的組合，如： <em>"((journal OR conference) NOT theses)，意思是可包含期刊與研討會，但是不包含論文。"</em></li>
+<li>用雙引號可搜尋精確的字句，如<em>"公開發表且免費使用"</em><em>
+<li>在ㄧ個如字元符號的術語內使用<strong>*</strong>來和任何字元排列相符合; 如： <em>soci* morality</em> 將會和"sociological" or "societal"等文件相符合</li>
 </ul>]]></message>
 	<message key="search.operator.not">不</message>
 	<message key="search.operator.and">和</message>
@@ -2253,7 +2253,7 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<message key="installer.installFileError"><![CDATA[安裝檔 <tt>dbscripts/xml/install.xml</tt> 不存在或者無法讀取。]]></message>
 	<message key="installer.installParseDBFileError"><![CDATA[錯誤剖析資料庫安裝檔 <tt>{$file}</tt>。]]></message>
 	<message key="installer.configFileError"><![CDATA[設定檔案 <tt>config.inc.php</tt> 不存在或者無法讀取。]]></message>
-	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<b>警告：</b>如果安裝失敗部分是因為安裝資料庫的關係，在嘗試重新安裝資料庫之前，您可能需要刪除您的OCS資料庫或者資料表。]]></message>
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>警告：</strong>如果安裝失敗部分是因為安裝資料庫的關係，在嘗試重新安裝資料庫之前，您可能需要刪除您的OCS資料庫或者資料表。]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>重要!</h4>
 <p>安裝檔無法自動覆寫設定檔。在嘗試使用本系統之前，請以合適的編輯器開啟 <tt>config.inc.php</tt>並且變更其內容為下列文字欄位中的內容。</p>]]></message>
 	<message key="installer.contentsOfConfigFile">設定檔的內容</message>
@@ -2264,7 +2264,7 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 <p>要開始使用本系統，請以您在上一個網頁中輸入的使用者名稱和密碼進行 <a href="{$loginUrl}">登入</a> 。</p>
 <p>如果您希望收到新聞和更新訊息，<strong>請至 <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>註冊。</strong>如果您有問題或建議，請訪問 <a href="http://pkp.sfu.ca/support/forum" target="_new">支援論壇</a>。</p>]]></message>
 	<message key="installer.upgradeComplete"><![CDATA[<p>OCS 已經成功升級 {$version} 版本。</p>
-<p>別忘了在您的config.inc.php設定檔中將 "installed" 設定改成 <i>On</i>.</p>
+<p>別忘了在您的config.inc.php設定檔中將 "installed" 設定改成 <em>On</em>.</p>
 <p>如果您尚未註冊但希望收到新聞和更新訊息，<strong>請至 <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a> 註冊。</strong>如果您有問題或建議，請訪問 <a href="http://pkp.sfu.ca/support/forum" target="_new">支援論壇</a>.</p>]]></message>
 	<message key="installer.skipFilesDir">未建立必要的子資料夾 (只對手動安裝過程有用)。</message>
 	<message key="installer.releaseNotes">釋出版本備註</message>
@@ -2536,9 +2536,9 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	 *
 	-->
 	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[作者在投稿前需先同意以下版權條款:<br/>
-<b>a)</b>&nbsp;當作者允許研討會安排尚未出版的作品在 <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>之下時，作者在執行工作時須保留版權，並允許研討會其他參加人員自由存取、使用、及分享其著作及介紹。<br/>
-<b>b)</b>&nbsp;作者能放棄CC執照並將其分開，並以最初在此研討會內的發表感言，另外?這尚未公開分配及之後的出版物來擬訂契約協議安排 (如：在期刊內出版一篇已修正的論文，將其張貼在學會的資料庫內或出版在ㄧ本書內)。<br/>
-<b>c)</b>&nbsp;除此之外，鼓勵作者在研討會前或後任何一時間點，在網路上張貼及分享他們的作品，(如：在學會的資料庫或他們的網站內)。]]></message>
+<strong>a)</strong>&nbsp;當作者允許研討會安排尚未出版的作品在 <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>之下時，作者在執行工作時須保留版權，並允許研討會其他參加人員自由存取、使用、及分享其著作及介紹。<br/>
+<strong>b)</strong>&nbsp;作者能放棄CC執照並將其分開，並以最初在此研討會內的發表感言，另外?這尚未公開分配及之後的出版物來擬訂契約協議安排 (如：在期刊內出版一篇已修正的論文，將其張貼在學會的資料庫內或出版在ㄧ本書內)。<br/>
+<strong>c)</strong>&nbsp;除此之外，鼓勵作者在研討會前或後任何一時間點，在網路上張貼及分享他們的作品，(如：在學會的資料庫或他們的網站內)。]]></message>
 
 	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">本稿件從未出版過，同時也未曾在其他研討會中發表過 (或者提供相燈的解釋與說明給主編)。</message>
 	<message key="default.schedConfSettings.checklist.fileFormat">本稿件的格式是以 Microsoft Word, RTF, or WordPerfect 等的文件格式製作。</message>

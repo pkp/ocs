@@ -2007,12 +2007,12 @@ Actif est le nombre de révisions en cours ou en réflexion.]]></message>
 	<message key="search.syntaxInstructions"><![CDATA[Tuyaux pour la recherche: <ul>
 <li>Les termes de recherche sont insensibles à la casse.</li>
 <li>Les noms communs sont ignorés</li>
-<li>Par défaut, seulement les éléments contenant <i>tous</i> les termes de la recherche sont retournés. (i.e., <i>ET</i> est implicite)</li>
-<li>Combiner plusieurs mots avec <i>OU</i> pour trouver l'un ou l'autre terme. i.e. <i>éducation OU recherche</i></li>
-<li>Utiliser des parenthèses pour faire une recherche plus complexe. i.e. <i>archive ((revue OU conférence) PAS celles-ci)</i></li>
-<li>Rechercher une phrase exacte en la mettant entre des guillemets; i.e. <i>"Publication à libre accès"</i></li>
-<li>Exclure un mot en le préfixant avec <b>-</b> ou <i>PAS</i>; ex. <i>en ligne -politiques</i> ou <i>en ligne NON politiques</i></li>
-<li>Utiliser <b>*</b> comme caractère pour remplacer toute séquence de caractères dans un terme; i.e. <i>soci* moralité</i> feront apparaître les documents contenant «sociologique » ou « socialisme »</li>
+<li>Par défaut, seulement les éléments contenant <em>tous</em> les termes de la recherche sont retournés. (i.e., <em>ET</em> est implicite)</li>
+<li>Combiner plusieurs mots avec <em>OU</em> pour trouver l'un ou l'autre terme. i.e. <em>éducation OU recherche</em></li>
+<li>Utiliser des parenthèses pour faire une recherche plus complexe. i.e. <em>archive ((revue OU conférence) PAS celles-ci)</em></li>
+<li>Rechercher une phrase exacte en la mettant entre des guillemets; i.e. <em>"Publication à libre accès"</em></li>
+<li>Exclure un mot en le préfixant avec <b>-</b> ou <em>PAS</em>; ex. <em>en ligne -politiques</em> ou <em>en ligne NON politiques</em></li>
+<li>Utiliser <b>*</b> comme caractère pour remplacer toute séquence de caractères dans un terme; i.e. <em>soci* moralité</em> feront apparaître les documents contenant «sociologique » ou « socialisme »</li>
 </ul>]]></message>
 	<message key="search.operator.not">non</message>
 	<message key="search.operator.and">et</message>
@@ -2242,7 +2242,7 @@ Votre serveur soutient actuellement mbstring: <strong>{$supportsMBString}</stron
 <p>Pour commencer à utiliser le système, <a href="{$loginUrl}">connectez-vous</a> avec le nom d'utilisateur et le mot de passe entrés à la page précédente.</p>
 <p>Si vous souhaitez recevoir des nouvelles et des mises à jour, <strong>veuillez vous inscrire sur <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Si vous avez des questions ou des commentaires, veuillez visiter le <a href="http://pkp.sfu.ca/support/forum" target="_new">forum de soutien</a>.</p>]]></message>
 	<message key="installer.upgradeComplete"><![CDATA[<p>La mise à jour d'OCS à la version {$version} est terminée avec succès.</p>
-p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "config.inc.php" à <i>On</i>.</p>
+p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "config.inc.php" à <em>On</em>.</p>
 <p>p><p>Si vous n'êtes pas déjà inscrit et voulez recevoir des nouvelles et mises à jour, <strong>veuillez vous inscrire à <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Pour toute question ou commentaire, veuillez visiter <a href="http://pkp.sfu.ca/support/forum" target="_new">forum de soutien</a>.</p>]]></message>
 	<message key="installer.skipFilesDir">Ne pas créer les sous-repertoires demandés (utile uniquement pour une installation manuelle)</message>
 	<message key="installer.releaseNotes">Notes de version</message>

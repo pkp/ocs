@@ -44,7 +44,7 @@
 {else}
 
 	<h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
-	<div><i>{$paper->getPresenterString()|escape}</i></div>
+	<div><em>{$paper->getPresenterString()|escape}</em></div>
 	<br />
 	<h4>{translate key="paper.abstract"}</h4>
 	<br />

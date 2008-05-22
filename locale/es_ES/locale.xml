@@ -2019,12 +2019,12 @@ Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 	<message key="search.syntaxInstructions"><![CDATA[Recomendaciones para las búsquedas: <ul>
 <li>Los términos de búsqueda son susceptibles a las mayúsculas y minúsculas</li>
 <li>Las palabras comunes se ignoran</li>
-<li>Por defecto, sólo se recuperan los trabajos que contengan <i>todos</i> los términos de la misma (es decir, implica el operador <i>AND</i>) </li>
-<li>Combine palabras con <i>OR</i> para buscar trabajos que contengan  algunos de los términos; p.e., <i>educación OR investigación</i></li>
-<li>Use paréntesis para crear peticiones más complejas; p.e., <i>ficheros (revistas OR conferencias) NOT tesis)</i></li>
-<li>Busque la frase exacta poniendo el texto entre comillas; p.e., <i>"open access publishing"</i></li>
-<li>Excluya una palabra con el prefijo<strong>-</strong> o <i>NOT</i>; p.e., <i>online -politics</i> o <i>online NOT politics</i></li>
-<li>Use <strong>*</strong> como comodín dentro de una cadena de caracteres; p.e., <i>soci*</i> se ajusta a documentos que contienen "sociológico" o "social"</li>
+<li>Por defecto, sólo se recuperan los trabajos que contengan <em>todos</em> los términos de la misma (es decir, implica el operador <em>AND</em>) </li>
+<li>Combine palabras con <em>OR</em> para buscar trabajos que contengan  algunos de los términos; p.e., <em>educación OR investigación</em></li>
+<li>Use paréntesis para crear peticiones más complejas; p.e., <em>ficheros (revistas OR conferencias) NOT tesis)</em></li>
+<li>Busque la frase exacta poniendo el texto entre comillas; p.e., <em>"open access publishing"</em></li>
+<li>Excluya una palabra con el prefijo<strong>-</strong> o <em>NOT</em>; p.e., <em>online -politics</em> o <em>online NOT politics</em></li>
+<li>Use <strong>*</strong> como comodín dentro de una cadena de caracteres; p.e., <em>soci*</em> se ajusta a documentos que contienen "sociológico" o "social"</li>
 </ul>]]></message>
 	<message key="search.operator.not">No</message>
 	<message key="search.operator.and">Y</message>
@@ -2252,7 +2252,7 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 <p>Puede empezar a utilizar el sistema, <a href="{$loginUrl}">login</a> con el nombre de usuario y contraseña introducidos en la página anterior.</p>
 <p>Si desea recibir noticias y actualizaciones, <strong>por favor, regístrese en <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Si tiene alguna pregunta o comentarios, por favor vaya al <a href="http://pkp.sfu.ca/support/forum" target="_new">foro de discusión</a>.</p>]]></message>
 	<message key="installer.upgradeComplete"><![CDATA[<p>La actualización del OCS a la versión {$version} se ha completado satisfactoriamente.</p>
-<p>No olvide poner la opción "installed" del fichero de configuración config.inc.php en <i>On</i>.</p>
+<p>No olvide poner la opción "installed" del fichero de configuración config.inc.php en <em>On</em>.</p>
 <p>Si todavía no se ha isncrito y desea recibir noticias y actualizaciones, <strong>por favor regístrese en <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Si tienen alguna pregunta o comentario, por favor consulte  <a href="http://pkp.sfu.ca/support/forum" target="_new">el foro de apoyo técnico</a>.</p>]]></message>
 	<message key="installer.skipFilesDir">No crear subdirectorios (sólo cuando se haga una instalación manual)</message>
 	<message key="installer.releaseNotes">Notas</message>

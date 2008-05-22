@@ -17,5 +17,5 @@
 	{$presenter->getLastName()|escape}, {$firstName|escape}{if $i==$presenterCount-2}, {translate key="rt.context.and"} {elseif $i<$presenterCount-1}, {else}.{/if}
 {/foreach}
 
-"{$paper->getPaperTitle()|strip_unsafe_html}" <i>{$conference->getConferenceTitle()|escape}</i> [{translate key="rt.captureCite.online"}],  {$paper->getDatePublished()|date_format:'%e %b %Y'}
+"{$paper->getPaperTitle()|strip_unsafe_html}" <em>{$conference->getConferenceTitle()|escape}</em> [{translate key="rt.captureCite.online"}],  {$paper->getDatePublished()|date_format:'%e %b %Y'}
 

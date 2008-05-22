@@ -15,7 +15,7 @@
 
 {foreach from=$paper->getPresenters() item=presenter name=presenters}
 <p>
-	<i>{$presenter->getFullName()|escape}</i><br />
+	<em>{$presenter->getFullName()|escape}</em><br />
 	{if $presenter->getUrl()}<a href="{$presenter->getUrl()|escape:"quotes"}">{$presenter->getUrl()|escape}</a><br/>{/if}
 	{if $presenter->getAffiliation()}{$presenter->getAffiliation()|escape}{/if}
 	{if $presenter->getCountry()}<br/>{$presenter->getCountryLocalized()|escape}{/if}

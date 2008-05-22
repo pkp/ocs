@@ -31,9 +31,9 @@
 		<p><em>Language</em> allows you to choose the language supported by OCS.</p>
 		<p>The search field under <em>Conference Content</em> allows you to conduct basic search through the site with a few criteria. For an advanced search, use the Search link on the top navigation bar.</p>	
 		<p><em>Font Size</em> allows you to adjust the font size of the site.</p>]]>
-</section>
+	</section>
 
-<section title="Hosted Conference Home Page">
+	<section title="Hosted Conference Home Page">
 		<![CDATA[<p>A hosted conference Home page can be reached when clicking on <em>View Conference</em> under the conference's title on the site Home page, or when a conference's title is clicked from <em>User Home</em>. The available navigation features on Conference Home page are as follows:</p>
 		<p><strong>Top Navigation Bar</strong></p>
 		<p><em>Home</em> and <em>About</em> provide information about the particular conference.</p>
@@ -53,11 +53,14 @@
 		<p><em>Browse</em> allows you to browse by conference, by author, or by title.</p>
 		<p><em>Font Size</em> allows you to adjust the font size of the site.</p>
 		<p>There is also <em>Information</em> for Readers in the right navigation bar.</p>]]>
-</section>
+	</section>
 
-<section title="Scheduled Conference Home Page">
-	<![CDATA[<p>A hosted conference can have any number of current scheduled conferences (not to mentioned archived conferences), which can be found from the hosted conference Home page. The scheduled conference Home page contains matter pertaining directly to the conference in question (an overview; a call for papers; a link for proposal submissions; track policies; a program; a presentation and authors list; and so on). These items are also linked to from the right navigation bar. Otherwise, the page is identical to the hosted conference Home page.</p>]]>
+	<section title="Scheduled Conference Home Page">
+		<![CDATA[<p>A hosted conference can have any number of current scheduled conferences (not to mentioned archived conferences), which can be found from the hosted conference Home page. The scheduled conference Home page contains matter pertaining directly to the conference in question (an overview; a call for papers; a link for proposal submissions; track policies; a program; a presentation and authors list; and so on). These items are also linked to from the right navigation bar. Otherwise, the page is identical to the hosted conference Home page.</p>]]>
+	</section>
 
-<section><![CDATA[<p>Breadcrumb links are offered at the top of the page, just below top navigation bar, in both situations.</p>
-<p>* Please note that for OCS, the navigation bar resides on the right by default, but elements of the bar, or the whole bar itself, may be repositioned right or left. Some items from this navigation bar may also be disabled.</p>]]></section>
+	<section>
+		<![CDATA[<p>Breadcrumb links are offered at the top of the page, just below top navigation bar, in both situations.</p>
+<p>* Please note that for OCS, the navigation bar resides on the right by default, but elements of the bar, or the whole bar itself, may be repositioned right or left. Some items from this navigation bar may also be disabled.</p>]]>
+	</section>
 </topic>

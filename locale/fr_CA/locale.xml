@@ -597,7 +597,7 @@
   <message key="admin.settings.oaiRegistration">Enregistrer le site pour indexation (collecte de métadonnées)</message>
   <message key="admin.settings.oaiRegistrationDescription"><![CDATA[Pour indexer le contenu de toutes les conférences hébergées sur ce site selon un système distribué de bases de données de recherche, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">inscrire</a> l'adresse URL de votre site dans le <a href="http://pkp.sfu.ca/harvester/" target="_blank">collecteur</a> de métadonnées du Public Knowledge Project. Cet outil récolte les métadonnées de chaque élément indexé de la conférence, permettant ainsi une recherche précise et globale parmi les sites de recherche qui adhèrent à la <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Cliquer ici</a> et entrer <span class="highlight">{$siteUrl}</span> sous <b>Site URL</b>, et <span class="highlight">{$oaiUrl}</span> sous <b>Base URL for OAI Archive</b>.
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Cliquer ici</a> et entrer <span class="highlight">{$siteUrl}</span> sous <strong>Site URL</strong>, et <span class="highlight">{$oaiUrl}</span> sous <strong>Base URL for OAI Archive</strong>.
 <br /><br />
 À noter que l'interface OAI peut être désactivée pour ce site en éditant le système de configuration OCS. Les futures versions d'OCS permettront d'activer ou de désactiver l'interface OAI pour chacune des conférences du site.]]></message>
   <message key="admin.siteManagement">Gestion du site</message>
@@ -940,7 +940,7 @@
 
 À noter que si l'administrateur du site a déjà inscrit le site sur le moissonneur du PKP, votre conférence va automatiquement être indexée et vous n'avez pas besoin d'inscrire votre conférence.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Cliquer ici</a> et entrer <span class="highlight">{$siteUrl}</span> sous <b>l'URL du site</b>, et <span class="highlight">{$oaiUrl}</span> sous <b> l'URL de base pour les archives OAI</b>.]]></message>
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Cliquer ici</a> et entrer <span class="highlight">{$siteUrl}</span> sous <strong>l'URL du site</strong>, et <span class="highlight">{$oaiUrl}</span> sous <strong> l'URL de base pour les archives OAI</strong>.]]></message>
   <!-- 
 	     ***
 	     *** Scheduled Conference Setup
@@ -1757,7 +1757,7 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="user.account.privacyStatement">Déclaration de confidentialité</message>
   <message key="user.account.completeForm">Remplir ce formulaire pour vous inscrire à cette conférence.</message>
   <message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Cliquer ici</a> si vous êtes déjà inscrit à cette conférence ou à une autre sur ce site.]]></message>
-  <message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Cliquer ici</a> si vous n'êtes <b>pas</b> déjà inscrit à cette conférence ou à une autre sur ce site.]]></message>
+  <message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Cliquer ici</a> si vous n'êtes <strong>pas</strong> déjà inscrit à cette conférence ou à une autre sur ce site.]]></message>
   <message key="user.account.loginToRegister">Entrer vos nom d'usager et mot de passe actuels pour vous inscrire à cette conférence.</message>
   <message key="user.account.createAccountDisabled">Cette conférence n'accepte pas l'inscription des usagers pour le moment.</message>
   <message key="user.account.usernameRestriction">Le nom d'utilisateur ne doit contenir que des lettres minuscules, chiffres, et traits d'union/de soulignement.</message>
@@ -1801,12 +1801,12 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="search.syntaxInstructions"><![CDATA[Trucs pour la recherche: <ul>
 <li>Les termes de recherche sont insensibles à la casse.</li>
 <li>Les mots courants sont ignorés</li>
-<li>Par défaut, seulement les communications contenant <i>tous</i> les termes de recherche sont retournés. (c.-à-d., <i>ET</i> est implicite)</li>
-<li>Combiner plusieurs mots avec <i>OU</i> pour trouver des communications contenant l'un ou l'autre terme; par ex., <i>éducation OU recherche</i></li>
-<li>Utiliser des parenthèses pour faire une requête plus complexe; par ex., <i>archives ((revue OU conférence) SAUF thèses)</i></li>
-<li>Rechercher une phrase exacte en la mettant entre guillemets; par ex., <i>"publication en accès libre"</i></li>
-<li>Exclure un mot en le préfixant avec <b>-</b> ou <i>SAUF</i>; par ex., <i>en ligne -politiques</i> ou <i>en ligne SAUF politiques</i></li>
-<li>Utiliser <b>*</b> comme caractère pour remplacer toute séquence de caractères dans un terme; par ex., <i>soci* moralité</i> correspondrait aux documents contenant "sociologique" ou "socialisme"</li>
+<li>Par défaut, seulement les communications contenant <em>tous</em> les termes de recherche sont retournés. (c.-à-d., <em>ET</em> est implicite)</li>
+<li>Combiner plusieurs mots avec <em>OU</em> pour trouver des communications contenant l'un ou l'autre terme; par ex., <em>éducation OU recherche</em></li>
+<li>Utiliser des parenthèses pour faire une requête plus complexe; par ex., <em>archives ((revue OU conférence) SAUF thèses)</em></li>
+<li>Rechercher une phrase exacte en la mettant entre guillemets; par ex., <em>"publication en accès libre"</em></li>
+<li>Exclure un mot en le préfixant avec <strong>-</strong> ou <em>SAUF</em>; par ex., <em>en ligne -politiques</em> ou <em>en ligne SAUF politiques</em></li>
+<li>Utiliser <strong>*</strong> comme caractère pour remplacer toute séquence de caractères dans un terme; par ex., <em>soci* moralité</em> correspondrait aux documents contenant "sociologique" ou "socialisme"</li>
 </ul>]]></message>
   <message key="search.operator.not">sauf</message>
   <message key="search.operator.and">et</message>
@@ -2011,7 +2011,7 @@ Votre serveur soutient actuellement mbstring: <strong>{$supportsMBString}</stron
   <message key="installer.installFileError"><![CDATA[Le fichier d'installation <tt>dbscripts/xml/install.xml</tt> n'existe pas ou n'est pas lisible.]]></message>
   <message key="installer.installParseDBFileError"><![CDATA[Erreur d'analyse du fichier d'installation de la base de données <tt>{$file}</tt>.]]></message>
   <message key="installer.configFileError"><![CDATA[Le fichier de configuration <tt>config.inc.php</tt> n'existe pas ou n'est pas lisible.]]></message>
-  <message key="installer.reinstallAfterDatabaseError"><![CDATA[<b>Avertissement:</b> Si l'installation de la base de données n'a pas réussi, vous devrez peut-être laisser tomber votre base de données OCS ou les tables de votre base de données avant de tenter de réinstaller la base de données.]]></message>
+  <message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Avertissement:</strong> Si l'installation de la base de données n'a pas réussi, vous devrez peut-être laisser tomber votre base de données OCS ou les tables de votre base de données avant de tenter de réinstaller la base de données.]]></message>
   <message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANT!</h4>
 <p>L'installateur n'a pas pu écraser automatiquement le fichier de configuration. Avant d'utiliser le système, veuillez ouvrir <tt>config.inc.php</tt> dans un éditeur de texte approprié et remplacer son contenu par le contenu de la zone de texte simple ci-dessous.</p>]]></message>
   <message key="installer.contentsOfConfigFile">Contenu du fichier de configuration</message>
@@ -2022,7 +2022,7 @@ Votre serveur soutient actuellement mbstring: <strong>{$supportsMBString}</stron
 <p>Pour commencer à utiliser le système, <a href="{$loginUrl}">connectez-vous</a> avec le nom d'utilisateur et le mot de passe entrés à la page précédente.</p>
 <p>Si vous souhaitez recevoir des nouvelles et des mises à jour, <strong>veuillez vous inscrire sur <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Si vous avez des questions ou des commentaires, veuillez visiter le <a href="http://pkp.sfu.ca/support/forum" target="_new">forum de soutien</a>.</p>]]></message>
   <message key="installer.upgradeComplete"><![CDATA[<p>La mise à jour d'OCS à la version {$version} réussie.</p>
-p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "config.inc.php" à <i>On</i>.</p>
+p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "config.inc.php" à <em>On</em>.</p>
 <p>p><p>Si vous n'êtes pas déjà inscrit et voulez recevoir des nouvelles et mises à jour, <strong>veuillez vous inscrire à <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Pour toute question ou commentaire, veuillez visiter le<a href="http://pkp.sfu.ca/support/forum" target="_new">forum de soutien</a>.</p>]]></message>
   <message key="installer.skipFilesDir">Ne pas créer les sous-repertoires demandés (utile uniquement pour une installation manuelle)</message>
   <message key="installer.releaseNotes">Notes de version</message>
@@ -2210,9 +2210,9 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	 *
 	-->
   <message key="default.conferenceSettings.copyrightNotice"><![CDATA[Les auteurs qui soumettent des propositions à cette conférence sont d'accord avec les conditions suivantes:<br/>
-<b>a)</b>&nbsp;Les auteurs conservent les droits sur leur travail, tout en autorisant la conférence à placer ce travail non publié sous une <a href="http://creativecommons.org/licenses/by/3.0/">Licence Creative Commons</a>, qui autorise les autres à y accéder automatiquement, à l'utiliser, et à partager le travail, en reconnaissant la propriété du travail à l'auteur et de sa présentation initiale à cette conférence.<br/>
-<b>b)</b>&nbsp;Les auteurs peuvent renoncer aux termes de la licence CC et entrer dans des arrangements contractuels supplémentaires pour une distribution non exclusive et une publication subséquente de ce travail (par ex., publier une version révisée dans une revue, le poster dans un dépôt institutionnel ou le publier dans un livre), avec une reconnaissance de sa présentation initiale à cette conférence.<br/>
-<b>c)</b>&nbsp;De plus, les auteurs sont encouragés à diffuser et partager leur travail en ligne (par ex., sur un dépôt institutionnel ou sur leur site Web) à n'importe quel moment avant et après la conférence.]]></message>
+<strong>a)</strong>&nbsp;Les auteurs conservent les droits sur leur travail, tout en autorisant la conférence à placer ce travail non publié sous une <a href="http://creativecommons.org/licenses/by/3.0/">Licence Creative Commons</a>, qui autorise les autres à y accéder automatiquement, à l'utiliser, et à partager le travail, en reconnaissant la propriété du travail à l'auteur et de sa présentation initiale à cette conférence.<br/>
+<strong>b)</strong>&nbsp;Les auteurs peuvent renoncer aux termes de la licence CC et entrer dans des arrangements contractuels supplémentaires pour une distribution non exclusive et une publication subséquente de ce travail (par ex., publier une version révisée dans une revue, le poster dans un dépôt institutionnel ou le publier dans un livre), avec une reconnaissance de sa présentation initiale à cette conférence.<br/>
+<strong>c)</strong>&nbsp;De plus, les auteurs sont encouragés à diffuser et partager leur travail en ligne (par ex., sur un dépôt institutionnel ou sur leur site Web) à n'importe quel moment avant et après la conférence.]]></message>
   <message key="default.schedConfSettings.checklist.notPreviouslyPublished">La soumission n'a pas été publiée précédemment, pas plus qu'elle n'a été soumise à une autre conférence pour évaluation (ou une explication a été fournie dans les commentaires au responsable).</message>
   <message key="default.schedConfSettings.checklist.fileFormat">Le format de la soumission est dans le format Microsoft Word, RTF, ou un format de fichier WordPerfect.</message>
   <message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[Toutes les adresses URL dans le texte (par ex., <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) sont actives et prêtes à cliquer.]]></message>

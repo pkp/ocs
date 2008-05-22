@@ -19,6 +19,6 @@
 
 ({$paper->getDatePublished()|date_format:'%Y'}).
 {$apaCapitalized|strip_unsafe_html}.
-<i>{$conference->getConferenceTitle()|escape}</i>.
+<em>{$conference->getConferenceTitle()|escape}</em>.
 {translate key="plugins.citationFormats.apa.retrieved" retrievedDate=$smarty.now|date_format:$dateFormatShort url=$paperUrl}
 

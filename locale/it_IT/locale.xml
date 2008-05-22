@@ -645,7 +645,7 @@
 	<message key="admin.settings.oaiRegistration">Registra il sito per l'indicizzazione (harvest dei metadati)</message>
         <message key="admin.settings.oaiRegistrationDescription"><![CDATA[Per avere i contenuti di tutti i convegni ospitati in questo sito indicizzati all'interno di un sistema globale distribuito di database di ricerca, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registrate</a> l'URL del vostro sito con il Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. Questo strumento raccoglie i metadati di ogni oggetto indicizzato in questo convegno, permettendo cos&#x00EC; una ricerca accurata e globale tra i siti che aderiscono all'<a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clicca qui</a> e inserisci <span class="highlight">{$siteUrl}</span> sotto <b>il sito dell'URL</b>, e <span class="highlight">{$oaiUrl}</span> sotto <b>Base URL for OAI Archive</b>.
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clicca qui</a> e inserisci <span class="highlight">{$siteUrl}</span> sotto <strong>il sito dell'URL</strong>, e <span class="highlight">{$oaiUrl}</span> sotto <strong>Base URL for OAI Archive</strong>.
 <br /><br />
 Nota che l'interfaccia OAI pu&#x00F2; essere disabilitata per questo sito modificando le configurazione di sistema di OCS. Versioni future di OCS permetteranno all'interfaccia OAI di essere abilitata o disabilitata per i singoli convegni all'interno del sito.]]></message>
 
@@ -1020,7 +1020,7 @@ Nota che l'interfaccia OAI pu&#x00F2; essere disabilitata per questo sito modifi
 <br /><br />
 Da notare che se il tuo amministratore del sito ha gi&#x00E0; registrato questo sito con il PKP Harvester, il tuo convegno verr&#x00E0; indicizzato automaticamente e non avrai bisogno di registrare il tuo convegno.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clicca qui</a> e inserisci <span class="highlight">{$siteUrl}</span> sotto <b>l'URL del sito</b>, e <span class="highlight">{$oaiUrl}</span> sotto <b>Base URL per OAI Archive</b>.]]></message>
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clicca qui</a> e inserisci <span class="highlight">{$siteUrl}</span> sotto <strong>l'URL del sito</strong>, e <span class="highlight">{$oaiUrl}</span> sotto <strong>Base URL per OAI Archive</strong>.]]></message>
 
 	<!-- 
 	     ***
@@ -1896,7 +1896,7 @@ Attivo &#x00E8; il numero di quante revisioni si stanno considerando o stanno an
 	<message key="user.account.privacyStatement">Legge sulla privacy</message>
 	<message key="user.account.completeForm">Riempi questo modulo per registrarti a questo convegno.</message>
 	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Clicca qui</a> se hai gi&#x00E0; un account per questo o un altro convegno in questo sito.]]></message>
-	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Clicca qui</a> se <b>non</b> hai gi&#x00E0; un account per questo o un altro convegno in questo sito.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Clicca qui</a> se <strong>non</strong> hai gi&#x00E0; un account per questo o un altro convegno in questo sito.]]></message>
 	<message key="user.account.loginToRegister">Inserisci le tue username e password per creare un account per questo convegno.</message>
 	<message key="user.account.createAccountDisabled">Questo convegno attualmente non sta accettando nuovi utenti.</message>
 	<message key="user.account.usernameRestriction">La username deve contenere solo lettere minuscole, numeri, e trattini/underscores.</message>
@@ -1943,12 +1943,12 @@ Attivo &#x00E8; il numero di quante revisioni si stanno considerando o stanno an
 	<message key="search.syntaxInstructions"><![CDATA[Consigli di ricerca: <ul>
 <li>I termini di ricerca sono case-insensitive</li>
 <li>Le parole comuni sono ignorate</li>
-<li>Per default solo gli interventi contenenti <i>tutti</i> i termini della ricerca vengono restituiti (i.e., <i>AND</i> &#x00E8; sottointeso)</li>
-<li>Combina parole multiple con <i>OR</i> per trovare articoli contenenti entrambi i termini; es., <i>istruzione OR ricerca</i></li>
-<li>Usa le parentesi per creare ricerche pi&#x00F9; complesse; es., <i>archivio ((rivista OR convegno) NOT tesi)</i></li>
-<li>Ricerca esattamente una frase mettendola tra virgolette; es., <i>"pubblicazioni ad accesso aperto"</i></li>
-<li>Escludi una parola mettendo il prefisso con <b>-</b> o <i>NOT</i>; es. <i>online -politiche</i> o <i>online NOT politiche</i></li>
-<li>Usa <b>*</b> in un termine come un carattere speciale per associare ogni sequenza di caratteri; es., <i>soci* moralit&#x00E0;</i> potrebbe associare documenti contenenti "sociologica" o "sociale"</li>
+<li>Per default solo gli interventi contenenti <em>tutti</em> i termini della ricerca vengono restituiti (i.e., <em>AND</em> &#x00E8; sottointeso)</li>
+<li>Combina parole multiple con <em>OR</em> per trovare articoli contenenti entrambi i termini; es., <em>istruzione OR ricerca</em></li>
+<li>Usa le parentesi per creare ricerche pi&#x00F9; complesse; es., <em>archivio ((rivista OR convegno) NOT tesi)</em></li>
+<li>Ricerca esattamente una frase mettendola tra virgolette; es., <em>"pubblicazioni ad accesso aperto"</em></li>
+<li>Escludi una parola mettendo il prefisso con <strong>-</strong> o <em>NOT</em>; es. <em>online -politiche</em> o <em>online NOT politiche</em></li>
+<li>Usa <strong>*</strong> in un termine come un carattere speciale per associare ogni sequenza di caratteri; es., <em>soci* moralit&#x00E0;</em> potrebbe associare documenti contenenti "sociologica" o "sociale"</li>
 </ul>]]></message>
 	<message key="search.operator.not">not</message>
 	<message key="search.operator.and">and</message>
@@ -2165,7 +2165,7 @@ Il vostro server supporta mbstring: <strong>{$supportsMBString}</strong>]]></mes
 	<message key="installer.installFileError"><![CDATA[Il file d&apos; <tt>dbscripts/xml/install.xml</tt> non esiste o  non &#x00E8; dotato di permessi di lettura.]]></message>
 	<message key="installer.installParseDBFileError"><![CDATA[Errore durante l&apos;analisi del file d&apos;installazione del database <tt>{$file}</tt>.]]></message>
 	<message key="installer.configFileError"><![CDATA[Il file di configurazione <tt>config.inc.php</tt> non esiste o non &#x00E8; dotato di permessi di lettura.]]></message>
-	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<b>Attenzione:</b> Se l'installazione &#x00E8; fallita durante la creazione del database potrebbe essere necessario cancellare la base di dati di OCS o le tabelle contenute prima di ripetere il processo.]]></message>
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Attenzione:</strong> Se l'installazione &#x00E8; fallita durante la creazione del database potrebbe essere necessario cancellare la base di dati di OCS o le tabelle contenute prima di ripetere il processo.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANTE!</h4>
 <p>Il programma d'installazione non &#x00E8; riuscito a sovrascrivere il file di configurazione. Prima di utilizzare OCS, aprite il file <tt>config.inc.php</tt> con un editor di testo e sostituitene il contenuto con quello del campo sottostante..</p>]]></message>
 	<message key="installer.contentsOfConfigFile">Contenuti del file di configurazione</message>
@@ -2176,7 +2176,7 @@ Il vostro server supporta mbstring: <strong>{$supportsMBString}</strong>]]></mes
 <p>Per utilizzare OJS effettuate il <a href="{$loginUrl}">login</a> utilizzando lo username e la password inseriti nella pagina precedente.</p>
 <p>Se desideri ricevere news e aggiornamenti, <strong>si prega di registrarsi a <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Se hai domande o commenti, si prega di visitare <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
 	<message key="installer.upgradeComplete"><![CDATA[<p>Aggiornamento di OCS alla versione {$version} completato con successo.</p>
-<p>Non dimenticare di mettere le impostazioni installate nel tuo file di configurazione config.inc.php su <i>On</i>.</p>
+<p>Non dimenticare di mettere le impostazioni installate nel tuo file di configurazione config.inc.php su <em>On</em>.</p>
 <p><p>Se non sei gi&#x00E0; registrato e desideri ricevere news e aggiornamenti, <strong>si prega di registrarsi a <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Se hai domande o commenti, si prega di visitare il <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
 	<message key="installer.skipFilesDir">Non create sottocartelle (utili solo per l'installazione manuale)</message>
 	<message key="installer.releaseNotes">Note sul rilascio</message>
@@ -2436,9 +2436,9 @@ Il processo di validazione pu&#x00F2; non funzionare sulle URL di ricerca che ri
 	 *
 	-->
 	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Gli autori che inviano a questo convegno aderiscono ai seguenti termini:<br/>
-<b>a)</b>&nbsp;Gli autori mantengono il copyright sul loro lavoro, mentre permettono al convegno di mettere questo lavoro inedito sotto una <a href="http://creativecommons.org/licenses/by/3.0/">Licenza Creative Commons Attribution</a>, che permette ad altri di accedere gratuitamente, usare, e condividere il lavoro, con un riconoscimento dell'autorit&#x00E0; del lavoro e la sua presentazione iniziale a questo convegno.<br/>
-<b>b)</b>&nbsp;Gli autori possono rinunciare ai termini della licenza CC e inserire dentro patti contrattuali separati e addizionali per la distribuzione non esclusiva e susseguente pubblicazione di questo lavoro (es., pubblicare una versione revisionata in una rivista, inviarlo a un repository istituzionale o pubblicarlo in un libro), con un riconoscimento della sua presentazione iniziale a questo convegno.<br/>
-<b>c)</b>&nbsp;Inoltre, gli autori sono incoraggiati a inviare e condividere il loro lavoro online (es., in repositories istituzionali o sul loro sito web) in ogni momento prima o dopo il convegno.]]></message>
+<strong>a)</strong>&nbsp;Gli autori mantengono il copyright sul loro lavoro, mentre permettono al convegno di mettere questo lavoro inedito sotto una <a href="http://creativecommons.org/licenses/by/3.0/">Licenza Creative Commons Attribution</a>, che permette ad altri di accedere gratuitamente, usare, e condividere il lavoro, con un riconoscimento dell'autorit&#x00E0; del lavoro e la sua presentazione iniziale a questo convegno.<br/>
+<strong>b)</strong>&nbsp;Gli autori possono rinunciare ai termini della licenza CC e inserire dentro patti contrattuali separati e addizionali per la distribuzione non esclusiva e susseguente pubblicazione di questo lavoro (es., pubblicare una versione revisionata in una rivista, inviarlo a un repository istituzionale o pubblicarlo in un libro), con un riconoscimento della sua presentazione iniziale a questo convegno.<br/>
+<strong>c)</strong>&nbsp;Inoltre, gli autori sono incoraggiati a inviare e condividere il loro lavoro online (es., in repositories istituzionali o sul loro sito web) in ogni momento prima o dopo il convegno.]]></message>
 
 	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">La submission non &#x00E8; stata pubblicata precedentemente, n&#x00E8; &#x00E8; stata considerata prima in un altro convegno (o &#x00E8; stata fornita una spiegazione nei Commenti al direttore).</message>
 	<message key="default.schedConfSettings.checklist.fileFormat">Il file della submission &#x00E8; in formato Microsoft Word, RTF, o WordPerfect.</message>

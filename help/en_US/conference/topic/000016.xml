@@ -15,6 +15,7 @@
 <topic id="conference/topic/000016" locale="en_US" title="Conference Tracks" toc="conference/toc/000002"  key="conference.currentConferences.tracks">
 	<section>
 		<![CDATA[<p>Conferences can be split into multiple "tracks" or sections, with different policies and criteria for each track. OCS comes with one default "General Papers" track, which can be edited or removed. Track directors can be assigned to be responsible for the editorial process regarding submissions to a particular track. At least one track must be open to the public (ie., submissions not restricted to Directors and Track Directors only) for authors to be able to submit; during the submission process, they must choose between any track that is open to them.</p>]]>
+	</section>
 	<section title="Creating a Track">
 		<![CDATA[<p>The Conference Manager can create a new track by clicking the Create Track link at the bottom of the page and filling in the resulting form. A brief track policy statement should describe the scope of the track and type of submissions sought, whether submissions are peer reviewed and the identification of submission type as peer-reviewed abstract, non-refereed paper, invited presentation, etc.</p>
 		<p>Indexing terms can be applied to each track, and the track can be flagged as peer-reviewed or not (this designation will appear in About the Conference under Track Policies, unless the track has been omitted, an option that is also available from this page). </p>
@@ -23,4 +24,5 @@
 	</section>
 	<section title="Managing Tracks">
 		<![CDATA[<p>The Conference Manager can manage existing tracks from the main Conference Tracks page. Tracks can be ordered by using the up and down arrows (changes in track order here will affect the default order in which conference tracks appear in the Table of Contents); can be deleted by clicking the Delete link; and can be edited by pressing the Edit link, which will bring up the same fields as the Create Track page.</p>]]>
+	</section>
 </topic>

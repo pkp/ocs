@@ -1949,12 +1949,12 @@ Titel des Klassifikationssystem]]></message>
         <message key="search.syntaxInstructions"><![CDATA[Suchtipps: <ul>
 <li>Gro&#223;-/Kleinschreibung wird in Suchbegriffen ignoriert</li>
 <li>W&#246;rter wie &quot;ist&quot;, &quot;an&quot;, &quot;bei&quot; etc. werden ignoriert</li>
-<li>Standarm&#228;&#223;ig werden nur Beitr&#228;ge zur&#252;ckgeliefert, die <i>alle</i> Begriffe aus der Suchanfrage beinhalten (i.e. implizites <i>AND</i>)</li>
-<li>Kombinieren Sie Suchbegriffe mit <i>OR</i> um Beitr&#228;ge zu finden, die mindestens einen der Begriffe enthalten (z.B. <i>education OR research</i></li>
-<li>Benutzen Sie Klammern, um komplexere Suchanfragen zu erstellen. Z.B. <i>archive ((journal OR conference) NOT theses)</i></li>
-<li>Phrasensuche durch Setzen von Anf&#252;hrungszeichen. Z.B. <i>&quot;open access publishing&quot;</i></li>
-<li>Schlie&#223;en Sie Begriffe in Ihrer Suche mit <strong>-</strong> oder <i>NOT</i> aus. Z.B. <i>online -politics</i> oder <i>online NOT politics</i></li>
-<li>Benutzen Sie den <strong>*</strong> als Trunkierungszeichen in einem Begriff, um nach Wortst&#228;mmen zu suchen;,<i>sozi* Moralbegriff</i> w&#252;rde z.B. sowohl Dokumente, die &quot;soziologischer/n Moralbegriff&quot; als auch solche, die &quot;sozialer/n Moralbegriff&quot; enthalten, finden.</li>
+<li>Standarm&#228;&#223;ig werden nur Beitr&#228;ge zur&#252;ckgeliefert, die <em>alle</em> Begriffe aus der Suchanfrage beinhalten (i.e. implizites <em>AND</em>)</li>
+<li>Kombinieren Sie Suchbegriffe mit <em>OR</em> um Beitr&#228;ge zu finden, die mindestens einen der Begriffe enthalten (z.B. <em>education OR research</em></li>
+<li>Benutzen Sie Klammern, um komplexere Suchanfragen zu erstellen. Z.B. <em>archive ((journal OR conference) NOT theses)</em></li>
+<li>Phrasensuche durch Setzen von Anf&#252;hrungszeichen. Z.B. <em>&quot;open access publishing&quot;</em></li>
+<li>Schlie&#223;en Sie Begriffe in Ihrer Suche mit <strong>-</strong> oder <em>NOT</em> aus. Z.B. <em>online -politics</em> oder <em>online NOT politics</em></li>
+<li>Benutzen Sie den <strong>*</strong> als Trunkierungszeichen in einem Begriff, um nach Wortst&#228;mmen zu suchen;,<em>sozi* Moralbegriff</em> w&#252;rde z.B. sowohl Dokumente, die &quot;soziologischer/n Moralbegriff&quot; als auch solche, die &quot;sozialer/n Moralbegriff&quot; enthalten, finden.</li>
 </ul>]]></message>
         <message key="search.operator.not">not</message>
         <message key="search.operator.and">and</message>
@@ -2182,7 +2182,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 <p>To begin using the system, <a href="{$loginUrl}">login</a> with the username and password entered on the previous page.</p>
 <p>If you wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
         <message key="installer.upgradeComplete"><![CDATA[<p>Upgrade of OCS to version {$version} has completed successfully.</p>
-<p>Don&apos;t forget to set the &quot;installed&quot; setting in your config.inc.php configuration file back to <i>On</i>.</p>
+<p>Don&apos;t forget to set the &quot;installed&quot; setting in your config.inc.php configuration file back to <em>On</em>.</p>
 <p>If you haven&apos;t already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
         <message key="installer.skipFilesDir">Do not create required subdirectories (only useful for a manual installation)</message>
         <message key="installer.releaseNotes">Release Notes</message>

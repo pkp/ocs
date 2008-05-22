@@ -2119,12 +2119,12 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="search.syntaxInstructions"><![CDATA[Search tips: <ul>
 <li>Search terms are case-insensitive</li>
 <li>Common words are ignored</li>
-<li>By default only papers containing <i>all</i> terms in the query are returned (i.e., <i>AND</i> is implied)</li>
-<li>Combine multiple words with <i>OR</i> to find papers containing either term; e.g., <i>education OR research</i></li>
-<li>Use parentheses to create more complex queries; e.g., <i>archive ((journal OR conference) NOT theses)</i></li>
-<li>Search for an exact phrase by putting it in quotes; e.g., <i>"open access publishing"</i></li>
-<li>Exclude a word by prefixing it with <strong>-</strong> or <i>NOT</i>; e.g. <i>online -politics</i> or <i>online NOT politics</i></li>
-<li>Use <strong>*</strong> in a term as a wildcard to match any sequence of characters; e.g., <i>soci* morality</i> would match documents containing "sociological" or "societal"</li>
+<li>By default only papers containing <em>all</em> terms in the query are returned (i.e., <em>AND</em> is implied)</li>
+<li>Combine multiple words with <em>OR</em> to find papers containing either term; e.g., <em>education OR research</em></li>
+<li>Use parentheses to create more complex queries; e.g., <em>archive ((journal OR conference) NOT theses)</em></li>
+<li>Search for an exact phrase by putting it in quotes; e.g., <em>"open access publishing"</em></li>
+<li>Exclude a word by prefixing it with <strong>-</strong> or <em>NOT</em>; e.g. <em>online -politics</em> or <em>online NOT politics</em></li>
+<li>Use <strong>*</strong> in a term as a wildcard to match any sequence of characters; e.g., <em>soci* morality</em> would match documents containing "sociological" or "societal"</li>
 </ul>]]></message>
 	<message key="search.operator.not">not</message>
 	<message key="search.operator.and">and</message>
@@ -2354,7 +2354,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 <p>To begin using the system, <a href="{$loginUrl}">login</a> with the username and password entered on the previous page.</p>
 <p>If you wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
 	<message key="installer.upgradeComplete"><![CDATA[<p>Upgrade of OCS to version {$version} has completed successfully.</p>
-<p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <i>On</i>.</p>
+<p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <em>On</em>.</p>
 <p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
 	<message key="installer.skipFilesDir">Do not create required subdirectories (only useful for a manual installation)</message>
 	<message key="installer.releaseNotes">Release Notes</message>

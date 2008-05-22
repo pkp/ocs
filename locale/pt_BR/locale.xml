@@ -198,7 +198,7 @@
 	<!-- Common Error Messages -->
 	<message key="common.error.databaseError">Erro de base de dados: {$error}</message>
 	<message key="common.error.databaseErrorUnknown">Erro desconhecido de conexão de base de dados.</message>
-	<message key="common.error.framesRequired"><![CDATA[Esta página exige <i>frames</i>. <a href="{$url}">Clique aqui</a> para uma versão sem <i>frames</i>.]]></message>
+	<message key="common.error.framesRequired"><![CDATA[Esta página exige <em>frames</em>. <a href="{$url}">Clique aqui</a> para uma versão sem <em>frames</em>.]]></message>
 
 	<!-- Navigation -->
 	<message key="navigation.conferenceHelp">Ajuda</message>
@@ -644,7 +644,7 @@
 	<message key="admin.settings.oaiRegistration">Cadastrar Portal para Indexação (Coleta de Metadados)</message>
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Para indexar todo o conteúdo das conferências hospedadas neste portal em um sistema global de bases de dados de pesquisa integradas,  <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">cadastre</a> a URL do portal no <a href="http://pkp.sfu.ca/harvester/" target="_blank">coletador de metadados</a>do Public Knowledge Project. Esta ferramenta coleta os metadados de cada item indexado na revista, permitindo pesquisa coletiva e precisa dentro dos portais que adotam o <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Protocolo de Arquivos Abertos para Coleta de Metadados - OAI PMH</a>. 
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clique aqui</a> e insira <span class="highlight">{$siteUrl}</span> no campo <b>URL do Portal</b>, e <span class="highlight">{$oaiUrl}</span> no campo <b>URL Base para o Arquivo OAI</b>.
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clique aqui</a> e insira <span class="highlight">{$siteUrl}</span> no campo <strong>URL do Portal</strong>, e <span class="highlight">{$oaiUrl}</span> no campo <strong>URL Base para o Arquivo OAI</strong>.
 <br /><br />
 Note que a interface OAI pode ser desativada para este portal nas configurações do sistema. Futuras versões do sistema permitirão ativar ou desativar a interface OAI para conferências, individualmente.]]></message>
 
@@ -894,7 +894,7 @@ e deve começar e terminar com um caractere alfanumérico.</message>
 	<message key="manager.setup.selectOne">Escolha uma opção</message>
 	<message key="manager.setup.finalStepSavedNotes"><![CDATA[<p>Configuração quase pronta!</p>
 			<p>A conferência está configurada, podendo consistir de uma única conferência agendada, uma conferência anual, todas podendo ser administradas a partir deste portal. Para agendar uma instância específica desta conferência, acesse <a href="{$schedConfSetupUrl}">Conferências Agendadas</a>. Esta página pode ser acessada a qualquer tempo, através da página do Gerente Geral.</p>
-<p>Acesse estes seis passos de configuração a qualquer tempo pelos <i>links</i> "Página do Usuário > Gerente Geral > Configuração".</p>
+<p>Acesse estes seis passos de configuração a qualquer tempo pelos <em>links</em> "Página do Usuário > Gerente Geral > Configuração".</p>
 <p>Acesse a administração de Conferências agendadas através de "Página do Usuário > Gerente Geral > Configuração"</p>]]></message>
 
 	<message key="manager.setup.htmlSetupInstructions"><![CDATA[Em caso de utilização de código HTML nas caixas de texto das Configurações (para tamanho de fonte, estilo da fonte, cor, entre outros), as quebras de linha "automáticas (return/enter)" no texto serão automaticamente tratadas como <tt>&lt;br&gt;</tt>.]]></message>
@@ -1018,7 +1018,7 @@ e deve começar e terminar com um caractere alfanumérico.</message>
 <br /><br />
 Caso o administrador do portal já tenha cadastrado o portal do Coletador do PKP, a conferência será automaticamente indexada, sem necessidade de registro individual.
 <br /><br />
-<a href="http://www.pkp.ubc.ca/harvester/add.php" target="_blank">Clique aqui</a> e digite <span class="highlight">{$siteUrl}</span> no campo <b>Site URL</b>, e <span class="highlight">{$oaiUrl}</span> no campo <b>Base URL for OAI Archive</b>.]]></message>
+<a href="http://www.pkp.ubc.ca/harvester/add.php" target="_blank">Clique aqui</a> e digite <span class="highlight">{$siteUrl}</span> no campo <strong>Site URL</strong>, e <span class="highlight">{$oaiUrl}</span> no campo <strong>Base URL for OAI Archive</strong>.]]></message>
 
 	<!-- 
 	     ***
@@ -1891,7 +1891,7 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<message key="user.account.privacyStatement">Política de Privacidade</message>
 	<message key="user.account.completeForm">Preencha o formulário para se cadastrar no sistema.</message>
 	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Clique aqui</a> caso já seja cadastrado no sistema ou em outra conferência do portal.]]></message>
-	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Clique aqui</a> caso <b>não</b> seja cadastrado em outra conferência do portal.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Clique aqui</a> caso <strong>não</strong> seja cadastrado em outra conferência do portal.]]></message>
 	<message key="user.account.loginToRegister">Digite o login e senha para cadastrar-se na conferência.</message>
 	<message key="user.account.createAccountDisabled">Cadastro de usuários desativado no momento.</message>
 	<message key="user.account.usernameRestriction">O login deve conter apenas letras minúsculas (a-z), números(0-9), sublinhados(_) e hífens(-).</message>
@@ -1938,12 +1938,12 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<message key="search.syntaxInstructions"><![CDATA[Dicas para pesquisa: <ul>
 <li>Os termos são indiferentes a maiúsculas ou minúsculas</li>
 <li>Palavras comuns são ignoradas</li>
-<li>São recuperados por padrão apenas artigos contendo <i>todos</i> os termos de busca (ex.: <b>E</b> é implícito)</li>
-<li>Combine múltiplas palavras com <b>OU</b> para encontrar artigos contendo um ou outro termo; ex.: <i>educação OU pesquisa</i></li>
-<li>Use parênteses para criar buscas mais complexas; ex.: <i>arquivo ((revista OU conferência) NÃO teses)</i></li>
-<li>Use aspas duplas para recuperar a frase exata; ex.: <i>"Acesso Livre à informação"</i></li>
-<li>Exclua palavras pré-fixando com o sinal <b>-</b> ou <b>NÃO</b>; ex.: <i>online -políticas</i> ou <i>online NÃO políticas</i></li>
-<li>Use <b>*</b> como caracter curinga; ex.: <i>soci* moralidade</i> recuperaria documentos contendo "sociedade" ou "sociológico"</li>
+<li>São recuperados por padrão apenas artigos contendo <em>todos</em> os termos de busca (ex.: <strong>E</strong> é implícito)</li>
+<li>Combine múltiplas palavras com <strong>OU</strong> para encontrar artigos contendo um ou outro termo; ex.: <em>educação OU pesquisa</em></li>
+<li>Use parênteses para criar buscas mais complexas; ex.: <em>arquivo ((revista OU conferência) NÃO teses)</em></li>
+<li>Use aspas duplas para recuperar a frase exata; ex.: <em>"Acesso Livre à informação"</em></li>
+<li>Exclua palavras pré-fixando com o sinal <strong>-</strong> ou <strong>NÃO</strong>; ex.: <em>online -políticas</em> ou <em>online NÃO políticas</em></li>
+<li>Use <strong>*</strong> como caracter curinga; ex.: <em>soci* moralidade</em> recuperaria documentos contendo "sociedade" ou "sociológico"</li>
 </ul>]]></message>
 	<message key="search.operator.not">NÃO</message>
 	<message key="search.operator.and">E</message>
@@ -2165,7 +2165,7 @@ O servidor atualmente tem suporte a mbstring: <strong>{$supportsMBString}</stron
 	<message key="installer.installFileError"><![CDATA[O documento de instalação <tt>dbscripts/xml/install.xml</tt> não existe ou não possui permissão de leitura.]]></message>
 	<message key="installer.installParseDBFileError"><![CDATA[Erro na execução do documento de instalação do banco de dados <tt>{$file}</tt>.]]></message>
 	<message key="installer.configFileError"><![CDATA[O documento de configuração <tt>config.inc.php</tt> não existe ou não possui permissão de leitura.]]></message>
-	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<b>AVISO:</b> em caso de erro durante a instalação do banco de dados poder ser necessário eliminar o banco de dados ou as tabelas antes de executar novamente a instalação.]]></message>
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>AVISO:</strong> em caso de erro durante a instalação do banco de dados poder ser necessário eliminar o banco de dados ou as tabelas antes de executar novamente a instalação.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANTE!</h4>
 <p>A instalação não conseguiu sobrescrever o documento de configuração. Antes de usar o sistema, edite o documento <tt>config.inc.php</tt> em um editor de texto e substitua todo o conteúdo pelo texto no campo abaixo.</p>]]></message>
 	<message key="installer.contentsOfConfigFile">Conteúdo para documento de configuração</message>
@@ -2175,7 +2175,7 @@ O servidor atualmente tem suporte a mbstring: <strong>{$supportsMBString}</stron
 	<message key="installer.installationComplete"><![CDATA[<p>Instalação do sistema concluída com sucesso.</p>
 <p>Para iniciar o uso do sistema, <a href="{$loginUrl}">acesse o sistema</a> com o login e a senha informadas durante a instalação.</p>]]></message>
 	<message key="installer.upgradeComplete"><![CDATA[<p>Atualização para a versão {$version} concluída com sucesso.</p>
-<p>Defina a variável "instalado", no documento de configuração config.inc.php, de novo para <i>On</i>.</p>
+<p>Defina a variável "instalado", no documento de configuração config.inc.php, de novo para <em>On</em>.</p>
 <p>Caso não tenha se cadastrado para receber notícias e novidades, <strong>faça seu cadastro em <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> Em caso de dúvidas ou comentários, visite o <a href="http://pkp.sfu.ca/support/forum" target="_new">fórum de suporte</a>.</p>]]></message>
 	<message key="installer.skipFilesDir">Não criar sub-diretórios (útil apenas para instalação manual)</message>
 	<message key="installer.releaseNotes">Notas de Lançamento</message>
@@ -2435,9 +2435,9 @@ A validação pode falhar em URLs para pesquisa que requeiram dados via o métod
 	 *
 	-->
 	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Autores que submetem trabalhos a esta conferência aceitam os seguintes termos:<br/>
-<b>a)</b>&nbsp;Autores retêm os direitos de autoria do trabalho, enquanto permitem à conferência disponibilizar o trabalho não publicado sob uma licença <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>, que permite o livre acesso, uso e divulgação/compartilhamento do trabalho, com indicação de autoria e sua apresentação inicial nesta conferência.<br/>
-<b>b)</b>&nbsp;Autores são autorizados a abrir mão dos termos da licença Creative Commons e assumir outros arranjos contratuais separados para a distribuição não-exclusiva e subseqüênte publicação do trabalho (ex.: publicar uma versão revisada em uma revista, armazenar em repositório institucional, ou publicar como capítulo de um livro), com indicação de sua apresentação inicial nesta conferência.<br/>
-<b>c)</b>&nbsp;Autores são estimulados a publicar e distribuir seu trabalho online (ex.: em repositórios institucionais ou no sua página pessoal) a qualquer ponto antes e após a conferência.]]></message>
+<strong>a)</strong>&nbsp;Autores retêm os direitos de autoria do trabalho, enquanto permitem à conferência disponibilizar o trabalho não publicado sob uma licença <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>, que permite o livre acesso, uso e divulgação/compartilhamento do trabalho, com indicação de autoria e sua apresentação inicial nesta conferência.<br/>
+<strong>b)</strong>&nbsp;Autores são autorizados a abrir mão dos termos da licença Creative Commons e assumir outros arranjos contratuais separados para a distribuição não-exclusiva e subseqüênte publicação do trabalho (ex.: publicar uma versão revisada em uma revista, armazenar em repositório institucional, ou publicar como capítulo de um livro), com indicação de sua apresentação inicial nesta conferência.<br/>
+<strong>c)</strong>&nbsp;Autores são estimulados a publicar e distribuir seu trabalho online (ex.: em repositórios institucionais ou no sua página pessoal) a qualquer ponto antes e após a conferência.]]></message>
 
 	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">A contribuição é original e inédita, e não está sendo avaliada para publicação por outra conferência; caso contrário, justificar em "Comentários ao Diretor"</message>
 	<message key="default.schedConfSettings.checklist.fileFormat">Os arquivos para submissão estão em formato Microsoft Word, OpenOffice ou RTF.</message>

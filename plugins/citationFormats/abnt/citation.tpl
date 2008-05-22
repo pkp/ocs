@@ -16,6 +16,6 @@
 	{assign var=firstName value=$presenter->getFirstName()}
 	{$presenter->getLastName()|escape}, {$firstName[0]|escape}.{if $i<$presenterCount-1}; {/if}{/foreach}.
 {$paper->getPaperTitle()|strip_unsafe_html}.
-<b>{$conference->getConferenceTitle()|escape}</b>, {translate key="plugins.citationFormat.acao.location"}
+<strong>{$conference->getConferenceTitle()|escape}</strong>, {translate key="plugins.citationFormat.acao.location"}
 {$paper->getDatePublished()|date_format:'%e %m %Y'}.
 

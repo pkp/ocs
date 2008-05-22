@@ -43,7 +43,7 @@
 <div class="rtSeparator"></div>
 
 <h6>{$paper->getPaperTitle()|strip_unsafe_html|truncate:20:"...":true}</h6>
-<p><i>{$paper->getPresenterString(true)|escape}</i></p>
+<p><em>{$paper->getPresenterString(true)|escape}</em></p>
 
 <div class="rtSeparator"></div>
 
@@ -150,12 +150,12 @@
 {/if}
 
 {if $needsCommentsNote}
-<p><i style="font-size: 0.9em">{translate key="rt.comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}</i></p>
+<p><i style="font-size: 0.9em">{translate key="rt.comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}</em></p>
 {/if}
 
 {if $needsLoginNote}
 {url|assign:"loginUrl" page="user" op="account"}
-<p><i style="font-size: 0.9em">{translate key="rt.email.needLogin" loginUrl=$loginUrl}</i></p>
+<p><i style="font-size: 0.9em">{translate key="rt.email.needLogin" loginUrl=$loginUrl}</em></p>
 {/if}
 
 </div>
