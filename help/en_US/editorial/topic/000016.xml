@@ -14,9 +14,18 @@
 
 <topic id="editorial/topic/000016" locale="en_US" title="Submissions" toc="editorial/toc/000004" key="editorial.authorsRole.submissions">
 	<section>
-		<![CDATA[<p>Once logged in, by selecting Author under a conference title on User Home page, the Author is led to the Active Submissions page, listed with the submissions currently in the editorial process. The Author can turn to past submissions to the conference under Archive, or submit a new one by following the link under "Start Here to Submit a Paper to this Conference".</p>
-		<p>The Author is able to submit items directly to the conference by following five steps in submitting Full Proposal or Abstract and Proposal together. The Author is asked to select conference track and check off submission checklist, to provide metadata or indexing information for the submission, and to upload submission. The Author can also upload supplementary files, in the form of research instruments, data sets, or source texts that will enrich the submission. The Author may complete all steps at one time, or stop at any step and return later. In the latter case, the Author may click on the submission title to continue from the point saved last time. Upon completion, click on Active Submission. </p>
-           <p>For submitting an Abstract, there are only first two steps. </p>
-           <p>For submitting an Abstract followed by Presentation, the Author does the first two steps and leaves the next three steps after "Invite Presentation" is decided by the Track Director.</p>]]>	
+		<![CDATA[<p>Once logged in, an Author can visit their Active Submissions list by checking their Author's User Home page. If the scheduled conference is currently accepting submissions, the Author will see a link to start the submission process at the bottom of the page. The Author can also visit an Archive of past submission by clicking the Archive link under the Active Submissions heading.</p>
+		<p>If the conference is currently accepting submissions, the Author must go through a multi-step submission process, the amount of steps depending on what the scheduled conference requires for a completed submission.</p>
+		<p><em>Abstract Only</em><br />If the scheduled conference only requires an abstract, the submission process will be two steps long. For the first step the Author will have to agree to certain requirements, such as an established submission checklist; potentially a copyright notice; and so on. For the second step the Author will have to provide authorship and indexing information, as well as the submission title and abstract.</p>
+		<p><em>Full Proposal</em><br />If the scheduled conference requires a full proposal, the submission process will be much the same as above, but instead of an abstract the Author will have to upload a full document (for example, a .doc, .wpd or .odt file) to the system.</p>
+		<p><em>Abstract and Proposal Together</em><br />If the scheduled conference requires both an abstract and a proposal, the submission process will involve all above steps before completion.</p>
+		<p><em>Abstract Followed by Presentation</em><br />If the scheduled conference requires an abstract first followed by a presentation later, the Author will initially only have to enter an abstract along with some indexing information. If the abstract passes the review process the Author will be invited to submit their full presentation, which may also go through a review process.</p>
+		
+		<p>There are a handful of other possible configurations:</p>
+		<ul>
+			<li>The system may allow only individual presentations, or it may allow the Author(s) to submit multiple-presentation sessions, or both; </li>
+			<li>The system may also prompt for a supplementary file upload, which is optional.</li>
+				
+		]]>	
 	</section>
 </topic>

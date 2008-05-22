@@ -99,8 +99,8 @@
 	<topic key="editorial.directorsRole.summaryPage" id="editorial/topic/000006"></topic>
 	<topic key="editorial.directorsRole.summaryPage.submissionManagement" id="editorial/topic/000022"></topic>
 	<topic key="editorial.directorsRole.summaryPage.submissionMetadata" id="editorial/topic/000023"></topic>
-      <topic key="editorial.directorsRole.ReviewPage" id="editorial/topic/000007"></topic>
-      <topic key="editorial.directorsRole.HistoryPage" id="editorial/topic/000008"></topic>
+      <topic key="editorial.directorsRole.reviewPage" id="editorial/topic/000007"></topic>
+      <topic key="editorial.directorsRole.historyPage" id="editorial/topic/000008"></topic>
       <topic key="editorial.directorsRole.blindPeerReview" id="editorial/topic/000009"></topic>
 
 	<topic key="editorial.trackDirectorsRole" id="editorial/topic/000002"></topic>

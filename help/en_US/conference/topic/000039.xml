@@ -14,6 +14,6 @@
 
 <topic id="conference/topic/000039" locale="en_US" title="Logging and Auditing" toc="conference/toc/000005" key="conference.generalManagement.websiteManagement.loggingAuditing">
 	<section>
-		<![CDATA[<p>Once checked, a record of submission-related actions and emails for the conference will be kept on {help_topic key="editorial.directorsRole.HistoryPage" text="History Page"}, and changes in conference configuration will be recorded on {help_topic key="conference.generalManagement.eventLog" text="Event Log"}.</p>]]>
+		<![CDATA[<p>Once checked, a record any actions and emails on a submission will be kept in the submission's {help_topic key="editorial.directorsRole.HistoryPage" text="History Page"}, and changes in conference configuration will be recorded in the {help_topic key="conference.generalManagement.eventLog" text="Event Log"} (available from the Conference Site Management page).</p>]]>
 	</section>
 </topic>

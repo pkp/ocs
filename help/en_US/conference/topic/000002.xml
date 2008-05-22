@@ -14,6 +14,6 @@
 
 <topic id="conference/topic/000002" locale="en_US" title="Current Conferences" toc="conference/toc/000000" subtoc="conference/toc/000002" key="conference.currentConferences.index">
 	<section>
-		<![CDATA[<p>In current conferences management, the Conference Manager's tasks are around a particular scheduled conference organizing process - setting up submission process and types, and review policies and guidelines, etc.; in addition, making conference timeline and tracks, conference program, conference organizing team, specifying time and location for presentations and events, providing accommodation information; furthermore, offering registration types and policies, and payment methods for potential registrants; import and/or export data, and conference statistics and reports can be made for viewing. </p>]]>
+		<![CDATA[<p>When a new conference is scheduled, it appears on the Conference Management page under the <strong>Current Conferences</strong> heading, along with links to every configuration item available for that scheduled conference. </p>]]>
 	</section>
 </topic>

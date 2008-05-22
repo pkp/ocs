@@ -14,7 +14,7 @@
 
 <topic id="conference/topic/000040" locale="en_US" title="Conference Indexing" toc="conference/toc/000005" key="conference.generalManagement.websiteManagement.indexing">
 	<section>
-		<![CDATA[<p><i>Search Engine Indexing</i>. Enhance the findability of the conference in search engines by adding a description, keywords, and HTML header tags.</p>
-		<p><i>Register Conference for Indexing</i>. Enhance the findability of the conference in research databases by registering with the PKP Harvester, which will make the conference being indexed in Open Archives Initiative indexes. If the site has already been registered by Site Administrator in Site Settings, this conference will be automatically indexed. </p>]]>
+		<![CDATA[<p><em>Search Engine Indexing:</em><br /> Keywords and descriptions entered here will appear in the hosted conference page's metadata, and will enhance the findability of the conference in search engines.</p>
+		<p><em>Register Conference for Indexing:</em><br /> Registering the hosted conference will enhance the findability of the conference. If the site has already been registered by Site Administrator in Site Settings, this conference will be automatically indexed. </p>]]>
 	</section>
 </topic>

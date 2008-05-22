@@ -14,8 +14,8 @@
 
 <topic id="conference/topic/000034" locale="en_US" title="Readers" toc="conference/toc/000004" key="conference.roles.readers">
 	<section>
-		<![CDATA[<p>Readers can register to read the conference proceedings, whether immediately open access or open after a period of time after initial publication. Registered or not depends on the conference policies. Registered Readers will receive a notification email of the papers published for the conference. </p>
-           <p>On Log In page, non-registered users can create an account with the conference as reader. </p>
+		<![CDATA[<p>Readers can register to read the conference proceedings, whether immediately open access or open after a period of time after initial publication. Registered Readers will receive a notification email of the papers published for the conference, and will be able to receive other email sent by the Director or Conference Manager. </p>
+        <p>New users can enroll themselves as a Reader on registration to a scheduled conference, and can enroll themselves with other scheduled conferences from their profile page.</p>
           ]]>	
 	</section>
 </topic>

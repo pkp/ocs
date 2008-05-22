@@ -461,7 +461,7 @@
         <message key="schedConf.registration.specialRequests">Besondere W&#252;nsche</message>
         <message key="schedConf.registration.specialRequests.description">Bitte geben Sie besondere W&#252;nsche hinsichtlich Verpflegung, Zugang zum Geb&#228;ude etc. an.</message>
         <message key="schedConf.registration.account">Benutzerkonto</message>
-        <message key="schedConf.registration.loggedInAs"><![CDATA[Sie sind zur Zeit eingeloggt. <b>&#220;berpr&#252;fen Sie, ob Ihre Daten korrekt sind, da sie u.a. f&uuml;r Ihr Namensschildchen verwendet werden.</b> Falls nicht, korrigieren Sie sie in <a href="{$profileUrl}">&quot;Mein Profil&quot;</a> und gehen dann bitte erneut auf &quot;Teilnehmerregistrierung&quot;.]]></message>
+        <message key="schedConf.registration.loggedInAs"><![CDATA[Sie sind zur Zeit eingeloggt. <strong>&#220;berpr&#252;fen Sie, ob Ihre Daten korrekt sind, da sie u.a. f&uuml;r Ihr Namensschildchen verwendet werden.</strong> Falls nicht, korrigieren Sie sie in <a href="{$profileUrl}">&quot;Mein Profil&quot;</a> und gehen dann bitte erneut auf &quot;Teilnehmerregistrierung&quot;.]]></message>
         <message key="schedConf.registration.createAccount.description"><![CDATA[Sie sind zur Zeit nicht als Benutzer eingeloggt. <a href="{$loginUrl}">Klicken Sie hier</a> um sich einzuloggen, falls Sie bereits im Rahmen der Beitragseinreichung ein Benutzerkonto angelegt haben. Falls Sie noch keines angelegt haben, geben Sie bitte die unten angeforderten Informationen ein, um sich direkt zur Tagung anzumelden. Wenn Sie dann unten auf "Anmelden" klicken, werden Sie zur Tagung angemeldet und im Rahmen dessen wird ein Benutzerkonto f&#252;r Sie erstellt.<br /><br />
 Die eingegebenen Informationen werden für die Beitragsanmeldung bzw.
 Teilnehmerregistrierung verwendet. Weiterhin bleiben sie für kommende
@@ -652,7 +652,7 @@ einverstanden sein sollten, geben Sie dies bitte unten im Feld
         <message key="admin.settings.oaiRegistration">Register Site for Indexing (Metadata Harvesting)</message>
         <message key="admin.settings.oaiRegistrationDescription"><![CDATA[To have the contents of all conferences hosted on this site indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your site&apos;s URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this conference, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <b>Site URL</b>, and <span class="highlight">{$oaiUrl}</span> under <b>Base URL for OAI Archive</b>.
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.
 <br /><br />
 Note that the OAI interface can be disabled for this site by editing the OCS system configuration. Future versions of OCS will allow the OAI interface to be enabled or disabled for individual conferences within the site.]]></message>
 
@@ -1028,7 +1028,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 <br /><br /> folgen.
 Falls Ihr Webseitenadministrator diese Seite bereits beim PKP-Ernter registriert hat, wird Ihre Konferenz automatisch indiziert und Sie brauchen die Konferenz nicht extra zu registrieren.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Hier klicken</a> und <span class="highlight">{$siteUrl}</span> unter <b>&quot;Site URL&quot;</b> sowie <span class="highlight">{$oaiUrl}</span> unter <b>&quot;Base URL for OAI Archive&quot;</b> eingeben.]]></message>
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Hier klicken</a> und <span class="highlight">{$siteUrl}</span> unter <strong>&quot;Site URL&quot;</strong> sowie <span class="highlight">{$oaiUrl}</span> unter <strong>&quot;Base URL for OAI Archive&quot;</strong> eingeben.]]></message>
 
         <!-- 
              ***
@@ -1902,7 +1902,7 @@ Titel des Klassifikationssystem]]></message>
         <message key="user.account.privacyStatement">Erkl&#228;rung zum Datenschutz</message>
         <message key="user.account.completeForm">Bitte f&#252;llen Sie dieses Formular aus, um ein Benutzerkonto f&#252;r die TeaP zu erstellen.</message>
         <message key="user.account.hasAccount"></message>
-        <message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Klicken Sie</a>, wenn Sie noch <b>kein</b> Benutzerkonto auf dieser Site haben..]]></message>
+        <message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Klicken Sie</a>, wenn Sie noch <strong>kein</strong> Benutzerkonto auf dieser Site haben..]]></message>
         <message key="user.account.loginToRegister">Bitte geben Sie Ihren vorhandenen Benutzernamen und Ihr Passwort ein, um ein Benutzerkonto f&#252;r diese Tagung zu erstellen.</message>
         <message key="user.account.createAccountDisabled">F&#252;r diese Konferenz k&#246;nnen sich zur Zeit keine neuen Benutzer anmelden.</message>
         <message key="user.account.usernameRestriction">Der Benutzername darf nur Kleinbuchstaben, Zahlen, Unterstriche und Bindestriche enthalten.</message>
@@ -1953,8 +1953,8 @@ Titel des Klassifikationssystem]]></message>
 <li>Kombinieren Sie Suchbegriffe mit <i>OR</i> um Beitr&#228;ge zu finden, die mindestens einen der Begriffe enthalten (z.B. <i>education OR research</i></li>
 <li>Benutzen Sie Klammern, um komplexere Suchanfragen zu erstellen. Z.B. <i>archive ((journal OR conference) NOT theses)</i></li>
 <li>Phrasensuche durch Setzen von Anf&#252;hrungszeichen. Z.B. <i>&quot;open access publishing&quot;</i></li>
-<li>Schlie&#223;en Sie Begriffe in Ihrer Suche mit <b>-</b> oder <i>NOT</i> aus. Z.B. <i>online -politics</i> oder <i>online NOT politics</i></li>
-<li>Benutzen Sie den <b>*</b> als Trunkierungszeichen in einem Begriff, um nach Wortst&#228;mmen zu suchen;,<i>sozi* Moralbegriff</i> w&#252;rde z.B. sowohl Dokumente, die &quot;soziologischer/n Moralbegriff&quot; als auch solche, die &quot;sozialer/n Moralbegriff&quot; enthalten, finden.</li>
+<li>Schlie&#223;en Sie Begriffe in Ihrer Suche mit <strong>-</strong> oder <i>NOT</i> aus. Z.B. <i>online -politics</i> oder <i>online NOT politics</i></li>
+<li>Benutzen Sie den <strong>*</strong> als Trunkierungszeichen in einem Begriff, um nach Wortst&#228;mmen zu suchen;,<i>sozi* Moralbegriff</i> w&#252;rde z.B. sowohl Dokumente, die &quot;soziologischer/n Moralbegriff&quot; als auch solche, die &quot;sozialer/n Moralbegriff&quot; enthalten, finden.</li>
 </ul>]]></message>
         <message key="search.operator.not">not</message>
         <message key="search.operator.and">and</message>
@@ -2171,7 +2171,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
         <message key="installer.installFileError"><![CDATA[The installation file <tt>dbscripts/xml/install.xml</tt> does not exist or is not readable.]]></message>
         <message key="installer.installParseDBFileError"><![CDATA[Error parsing the database installation file <tt>{$file}</tt>.]]></message>
         <message key="installer.configFileError"><![CDATA[The configuration file <tt>config.inc.php</tt> does not exist or is not readable.]]></message>
-        <message key="installer.reinstallAfterDatabaseError"><![CDATA[<b>Warning:</b> If installation failed part way through database installation you may need to drop your OCS database or database tables before attempting to reinstall the database.]]></message>
+        <message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Warning:</strong> If installation failed part way through database installation you may need to drop your OCS database or database tables before attempting to reinstall the database.]]></message>
         <message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANT!</h4>
 <p>The installer could not automatically overwrite the configuration file. Before attempting to use the system, please open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
         <message key="installer.contentsOfConfigFile">Contents of configuration file</message>
@@ -2442,9 +2442,9 @@ Validation may fail on search URLs that require posted form data.]]></message>
          *
         -->
         <message key="default.conferenceSettings.copyrightNotice"><![CDATA[Autoren, die Einreichungen an diese Konferenz machen, stimmen den folgenden Bedingungen zu:<br/>
-<b>a)</b>&nbsp;die Autoren behalten das Urheberrecht &#252;ber Ihre Arbeit, erlauben der Konferenz jedoch, diese unver&#246;ffentlichte Arbeit unter einer <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution-Lizenz</a> zu verwenden, welche anderen freien Zugang zu der Arbeit  sowie freie Benutzung und Verbreitung unter Anerkennung der Autorschaft und der urspr&#252;nglichen Pr&#228;sentation auf der Konferenz gestattet.<br/>
-<b>b)</b>&nbsp;Autoren k&#246;nnen die Bedingungen der CC-Lizenz verwirken und neue vertragliche Vereinbarungen &#252;ber die nichtexklusive Verteilung und nachfolgende Ver&#246;ffentlichung dieser Arbeit unter Anerkennung der urspr&#252;nglichen Pr&#228;sentation auf dieser Konferenz eingehen (z.B. Ver&#246;ffentlichung einer &#252;berarbeiteten Version in einer Zeitschrift oder einem Buch, oder &#220;bergabe an einen institutionellen Aufbewahrungsort<br/>
-<b>c)</b>&nbsp;Dar&#252;ber hinaus werden Autoren ermutigt, ihre Arbeit sowohl vor als auch nach der Konferenz online zug&#228;nglich zu machen (z.B. an einem insitutionellen Aufbewahrungsort oder auf ihrer Webseite).]]></message>
+<strong>a)</strong>&nbsp;die Autoren behalten das Urheberrecht &#252;ber Ihre Arbeit, erlauben der Konferenz jedoch, diese unver&#246;ffentlichte Arbeit unter einer <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution-Lizenz</a> zu verwenden, welche anderen freien Zugang zu der Arbeit  sowie freie Benutzung und Verbreitung unter Anerkennung der Autorschaft und der urspr&#252;nglichen Pr&#228;sentation auf der Konferenz gestattet.<br/>
+<strong>b)</strong>&nbsp;Autoren k&#246;nnen die Bedingungen der CC-Lizenz verwirken und neue vertragliche Vereinbarungen &#252;ber die nichtexklusive Verteilung und nachfolgende Ver&#246;ffentlichung dieser Arbeit unter Anerkennung der urspr&#252;nglichen Pr&#228;sentation auf dieser Konferenz eingehen (z.B. Ver&#246;ffentlichung einer &#252;berarbeiteten Version in einer Zeitschrift oder einem Buch, oder &#220;bergabe an einen institutionellen Aufbewahrungsort<br/>
+<strong>c)</strong>&nbsp;Dar&#252;ber hinaus werden Autoren ermutigt, ihre Arbeit sowohl vor als auch nach der Konferenz online zug&#228;nglich zu machen (z.B. an einem insitutionellen Aufbewahrungsort oder auf ihrer Webseite).]]></message>
 
         <message key="default.schedConfSettings.checklist.notPreviouslyPublished">Die Einreichung wurde weder zuvor ver&#246;ffentlicht, noch wird sie zur Zeit f&#252;r die Zulassung zu irgendeiner anderen Konferenz &#252;berpr&#252;ft (oder eine Erkl&#228;rung wird in den Anmerkungen an den Leiter gegeben).</message>
         <message key="default.schedConfSettings.checklist.fileFormat">Das Format der Einreichungsdatei ist ein Microsoft Word-, RTF-, oder WordPerfect-Dokument.</message>

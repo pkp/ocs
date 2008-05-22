@@ -14,6 +14,6 @@
 
 <topic id="conference/topic/000012" locale="en_US" title="Event Log" toc="conference/toc/000001" key="conference.generalManagement.eventLog">
 	<section>
-		<![CDATA[<p>Event log provides the Conference Manager a glimpse of changes made to the system, which can be viewed further in detail. </p>]]>	
+		<![CDATA[<p>The Event Log provides the Conference Manager a glimpse of changes made to the system. These snapshots can be viewed in further detail, and the record can also be deleted. The entire log can be deleted by clicking the "Clear Log" link at the bottom of the list.</p>]]>	
 	</section>
 </topic>

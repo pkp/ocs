@@ -17,7 +17,7 @@
 		<![CDATA[
 <ol>
 	<li><a href="#section1">How do I start a conference with OCS?</a></li>
-	<li><a href="#section2">Where can I find technical support, pose bugs, and suggest improvements in using OCS?</a></li>
+	<li><a href="#section2">Where can I find technical support, post bugs, and suggest improvements in using OCS?</a></li>
 	<li><a href="#section3">How would I go about translating OCS in another language?</a></li>
 	<li><a href="#section4">How can I get word out on the web about my conference proceedings?</a></li>
 	<li><a href="#section5">How can the conference present a record the history of who served on its editorial team?</a></li>
@@ -32,22 +32,22 @@
 <ol type="a">
 	<li><a href="http://pkp.sfu.ca/ocs_download" target="_blank">Download</a> OCS and install the software, following its installation script, on a web server that meets the software's requirements.</li>
 	<li>Use the administration username and password generated in the installation of OCS to log in.</li>
-	<li>Set up a conference web site through the six steps by Website Management under General Management.</li>
-	<li>Create a new conference by Hosted Conferences under General Management.</li>
-	<li>The Site Administrator will automatically be enrolled as a Conference Manager for the new conference, but if necessary, create a new user (or users) in the role of Conference Manager.</li>
-	<li>The Conference Manager then goes into Setup under Current Conferences and works through the three steps, the result of which will be a web site ready to receive submissions, manage the editorial process and publish the conference papers online.</li>
+	<li>Once logged in as an Administrator, create a conference website by going to the Site Administrator's User Home, clicking on Hosted Conferences, and creating a new hosted conference.</li>
+	<li>You will be the first Conference Manager for the resulting conference website. Set up the web site by completing the six Website Management steps, found on the Conference Site Management page under General Management.</li>
+	<li>Create a new scheduled conference by visiting the Hosted Conferences page, also under General Management.</li>
+	<li>When the new scheduled conference is created you will have a number of options that will be displayed under the scheduled conference name. Click the Setup link and fill out the three-step setup process, and at a minimum visit the Conference Timeline page to edit the conference timeline for registering, submitting and publishing conference material. You will now have a conference that will be ready to take registrations and presentation submissions.</li>
 	<li>Consult <a href="http://pkp.sfu.ca/files/OCSinanHour.pdf" target="_blank">OCS in an Hour </a> for more information on getting started with OCS.</li>
 </ol>
 		]]>
 	</section>
-	<section title="2. Where can I find technical support, pose bugs, and suggest improvements in using OCS?">
+	<section title="2. Where can I find technical support, post bugs, and suggest improvements in using OCS?">
 		<![CDATA[
-<p>The Public Knowledge Project operates a <a href="http://pkp.sfu.ca/support/forum/" target="_blank">Support Forum</a> with well over a thousand exchanges where answers can be searched for and questions can be posed. For example, error messages can be searched, leading to proposed solutions for known issues. Failing that, users can send queries to <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>. Bug reports should be submitted through PKP's <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">Bugzilla</a>.</p>
+<p>The Public Knowledge Project operates a <a href="http://pkp.sfu.ca/support/forum/" target="_blank">Support Forum</a> with well over a thousand exchanges where answers can be searched for and questions can be posted. For example, error messages can be searched, leading to proposed solutions for known issues. Failing that, users can send queries to <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>. Bug reports should be submitted through PKP's <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">Bugzilla</a>.</p>
 		]]>
 	</section>
 	<section title="3. How would I go about translating OCS in another language?">
 		<![CDATA[
-<p>Instructions are provided in the docs/README file which is included in the OCS download. Additional information on common translation issues can also be found in the <a href="http://pkp.sfu.ca/ocs-languages" target="_blank">OCS Languages</a>, <a href="http://pkp.sfu.ca/ocs-translating" target="_blank">Translating OCS</a>, <a href="http://pkp.sfu.ca/support/forum/" target="_blank">PKP Support Forum</a>.</p>
+<p>Instructions are provided in the docs/README file which is included in the OCS download. The PKP maintains a page on <a href="http://pkp.sfu.ca/ocs-translating" target="_blank">translating OCS</a>, and keeps a list of <a href="http://pkp.sfu.ca/ocs-languages" target="_blank">languages</a> that OCS has been translated into. You can also enquire for help on the <a href="http://pkp.sfu.ca/support/forum/" target="_blank">PKP Support Forum</a> and <a href="mailto:pkp-support@sfu.ca">by email</a>.</p>
 		]]>
 	</section>
 	<section title="4. How can I get word out on the web about my conference proceedings?">
@@ -57,12 +57,12 @@
 	</section>
 	<section title="5. How can the conference present a record of the history of who served on its editorial team?">
 		<![CDATA[
-<p>The Conference Manager can enter this information by means of Organizing Team under Current Conferences. Alternatively, in step 1.7 under Website Management, the Conference Manager can create a "History of the Editorial Team" page as a new item in About the Conference. On such a page, you can record the name, editorial title and years served for members of the editorial team.</p>
+<p>The Conference Manager can enter this information by clicking the Organizing Team link under Current Conferences, from the Conference Site Management page. Alternatively, in step 1.7 under Website Management, the Conference Manager can create a "History of the Editorial Team" page as a new item in About the Conference. On such a page, you can record the name, editorial title and years served for members of the editorial team.</p>
 		]]>
 	</section>
-	<section title="6. How can I let readers sign up as reviewers for the conference?">
+	<section title="6. How can I let readers sign up as a reviewer for the conference?">
 		<![CDATA[
-<p>On Log In page, those who haven't registered are encouraged to create an account with a scheduled conference. on Account page one may create account as Reviewers, as well as Readers and/or Authors. The Reviewers will then appear among the list the Track Director can select and invite to review submissions. In step 2.3 under Website Management, the Conference Manager can add a note to "For Readers" about the conference's interest in having readers serve as Reviewers for the conference. By the same token, the conference can encourage users to enroll as Readers for purposes of notification and to be able to identify how many regular readers there are.</p>
+<p>On the Log In page, those who haven't registered are encouraged to create an account with a scheduled conference. on the Account page one may create account as Reviewers, as well as Readers and/or Authors. The Reviewers will then appear among the list the Track Director can select and invite to review submissions. In Website Management Setup step 2.3, the Conference Manager can add a note to "For Readers" about the conference's interest in having readers serve as Reviewers for the conference. By the same token, the conference can encourage users to enroll as Readers for purposes of notification and to be able to identify how many regular readers there are.</p>
 		]]>
 	</section>
 	<section title="7. How can I find additional reviewers for a submission to the conference beyond the current list of available reviewers?">

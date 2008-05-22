@@ -14,7 +14,7 @@
 
 <topic id="conference/topic/000041" locale="en_US" title="Reading Tool Settings" toc="conference/toc/000009" key="conference.generalManagement.readingTools.settings">
 	<section>
-		<![CDATA[<p>There is a set of Optional Tools available - Abstract, About the author, How to cite item, Indexing metadata, Supplementary files, Print version, Look up terms, Notify a colleague, Email the author, Find references, Add comment. The selected ones will appear in a frame to the right of items in tracks of conference that are indexed. For each discipline- and field-based related items, there is a range of contexts providing access, each of which is utilized by a range of searches. Contexts can be added or deleted, and context metadata can be edited to enable various options; searches for each context can also be added or deleted, and edited in its URLs. </p>
+		<![CDATA[<p>The Reading Tools can be enabled by checking the box on this settings page and choosing a relevant Related Items Field if desired. Other optional tools can be enabled by checking the box next to their name. All Reading Tools appear in a frame to the right of a presentation, providing that that particular track has indexing enabled. </p>
 		]]>
 	</section>
 </topic>

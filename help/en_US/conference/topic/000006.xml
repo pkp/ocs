@@ -14,6 +14,6 @@
 
 <topic id="conference/topic/000006" locale="en_US" title="Scheduled Conferences" toc="conference/toc/000001" key="conference.generalManagement.scheduledConferences">
 	<section>
-		<![CDATA[<p>Clicking on "Create a Scheduled Conference" leads to Scheduling a Conference page, where information about conference title, acronym and path need to be filled in. This is the establishment of individual conference events. Once done, the newly-created conference will be listed among scheduled conferences on the previous page, and the title of newly-created conference will appear under Current Conferences on Conference Site Management page. </p>]]>
+		<![CDATA[<p>The Scheduled Conference page lists all scheduled conferences you have created, whether they are current or archived. You can create a new scheduled conference from this page by clicking the Create a Scheduled Conference link: this leads to a page where the new scheduled conference title, acronym and path need to be filled in. When this is finished, the newly-created conference will be listed in the Scheduled Conferences list, and it and all its management options will appear under Current Conferences on the Conference Site Management page. </p>]]>
 	</section>
 </topic>

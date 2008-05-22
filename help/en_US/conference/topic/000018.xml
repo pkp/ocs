@@ -14,6 +14,6 @@
 
 <topic id="conference/topic/000018" locale="en_US" title="Program" toc="conference/toc/000002"  key="conference.currentConferences.program">
 	<section>
-		<![CDATA[<p>For conference program, it can be either uploaded or entered as plain text, and can be viewed under Conference Information. </p>]]>
+		<![CDATA[<p>The Conference Manager can upload a program and specify the hyperlink title, or can enter a text/HTML program in a text field. The program will be available from the Conference Information list on the sidebar.</p>]]>
 	</section>
 </topic>

@@ -684,7 +684,7 @@
 	<message key="admin.settings.oaiRegistration">Register Site for Indexing (Metadata Harvesting)</message>
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[To have the contents of all conferences hosted on this site indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your site's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this conference, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <b>Site URL</b>, and <span class="highlight">{$oaiUrl}</span> under <b>Base URL for OAI Archive</b>.
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.
 <br /><br />
 Note that the OAI interface can be disabled for this site by editing the OCS system configuration. Future versions of OCS will allow the OAI interface to be enabled or disabled for individual conferences within the site.]]></message>
 
@@ -1164,7 +1164,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 <br /><br />
 Note that if your site administrator has already registered this site with the PKP Harvester, your conference will be indexed automatically and you do not need to register your conference.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <b>Site URL</b>, and <span class="highlight">{$oaiUrl}</span> under <b>Base URL for OAI Archive</b>.]]></message>
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
 
 	<!-- 
 	     ***
@@ -2072,7 +2072,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.account.privacyStatement">Privacy Statement</message>
 	<message key="user.account.completeForm">Fill in this form to create an account with this conference.</message>
 	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Click here</a> if you already have an account with this or another conference on this site.]]></message>
-	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Click here</a> if you do <b>not</b> already have an account with this or another conference on this site.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Click here</a> if you do <strong>not</strong> already have an account with this or another conference on this site.]]></message>
 	<message key="user.account.loginToRegister">Enter your existing username and password to create an account with this conference.</message>
 	<message key="user.account.createAccountDisabled">This conference is currently not accepting new users.</message>
 	<message key="user.account.usernameRestriction">The username must contain only lowercase letters, numbers, and hyphens/underscores.</message>
@@ -2123,8 +2123,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 <li>Combine multiple words with <i>OR</i> to find papers containing either term; e.g., <i>education OR research</i></li>
 <li>Use parentheses to create more complex queries; e.g., <i>archive ((journal OR conference) NOT theses)</i></li>
 <li>Search for an exact phrase by putting it in quotes; e.g., <i>"open access publishing"</i></li>
-<li>Exclude a word by prefixing it with <b>-</b> or <i>NOT</i>; e.g. <i>online -politics</i> or <i>online NOT politics</i></li>
-<li>Use <b>*</b> in a term as a wildcard to match any sequence of characters; e.g., <i>soci* morality</i> would match documents containing "sociological" or "societal"</li>
+<li>Exclude a word by prefixing it with <strong>-</strong> or <i>NOT</i>; e.g. <i>online -politics</i> or <i>online NOT politics</i></li>
+<li>Use <strong>*</strong> in a term as a wildcard to match any sequence of characters; e.g., <i>soci* morality</i> would match documents containing "sociological" or "societal"</li>
 </ul>]]></message>
 	<message key="search.operator.not">not</message>
 	<message key="search.operator.and">and</message>
@@ -2343,7 +2343,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="installer.installFileError"><![CDATA[The installation file <tt>dbscripts/xml/install.xml</tt> does not exist or is not readable.]]></message>
 	<message key="installer.installParseDBFileError"><![CDATA[Error parsing the database installation file <tt>{$file}</tt>.]]></message>
 	<message key="installer.configFileError"><![CDATA[The configuration file <tt>config.inc.php</tt> does not exist or is not readable.]]></message>
-	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<b>Warning:</b> If installation failed part way through database installation you may need to drop your OCS database or database tables before attempting to reinstall the database.]]></message>
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Warning:</strong> If installation failed part way through database installation you may need to drop your OCS database or database tables before attempting to reinstall the database.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANT!</h4>
 <p>The installer could not automatically overwrite the configuration file. Before attempting to use the system, please open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
 	<message key="installer.contentsOfConfigFile">Contents of configuration file</message>
@@ -2625,9 +2625,9 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	 *
 	-->
 	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Authors who submit to this conference agree to the following terms:<br/>
-<b>a)</b>&nbsp;Authors retain copyright over their work, while allowing the conference to place this unpublished work under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>, which allows others to freely access, use, and share the work, with an acknowledgement of the work's authorship and its initial presentation at this conference.<br/>
-<b>b)</b>&nbsp;Authors are able to waive the terms of the CC license and enter into separate, additional contractual arrangements for the non-exclusive distribution and subsequent publication of this work (e.g., publish a revised version in a journal, post it to an institutional repository or publish it in a book), with an acknowledgement of its initial presentation at this conference.<br/>
-<b>c)</b>&nbsp;In addition, authors are encouraged to post and share their work online (e.g., in institutional repositories or on their website) at any point before and after the conference.]]></message>
+<strong>a)</strong>&nbsp;Authors retain copyright over their work, while allowing the conference to place this unpublished work under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>, which allows others to freely access, use, and share the work, with an acknowledgement of the work's authorship and its initial presentation at this conference.<br/>
+<strong>b)</strong>&nbsp;Authors are able to waive the terms of the CC license and enter into separate, additional contractual arrangements for the non-exclusive distribution and subsequent publication of this work (e.g., publish a revised version in a journal, post it to an institutional repository or publish it in a book), with an acknowledgement of its initial presentation at this conference.<br/>
+<strong>c)</strong>&nbsp;In addition, authors are encouraged to post and share their work online (e.g., in institutional repositories or on their website) at any point before and after the conference.]]></message>
 
 	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another conference for consideration (or an explanation has been provided in Comments to the Director).</message>
 	<message key="default.schedConfSettings.checklist.fileFormat">The submission file is in Microsoft Word, RTF, or WordPerfect document file format.</message>

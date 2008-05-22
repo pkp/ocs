@@ -14,12 +14,20 @@
 
 <topic id="editorial/topic/000022" locale="en_US" title="Submission Management" toc="editorial/toc/000006" key="editorial.directorsRole.summaryPage.submissionManagement">
 	<section>
-		<![CDATA[<p>Various aspects of submission management can be undertaken from a Summary Page.</p>
-		<p><i>Submission</i><br />The Director can have a general picture of the submission, its title, author and submitter names, submission type; email the author and submitter; review the submitted original file and supplementary files; check if the submission is in the appropriate conference track.</p>
-		<p>Before assigning a Track Director to manage the Review phase of the submission, the Director should click on the linked submission title to open the file and ensure that it appears to be suitable for review.</p>
-		<p><i>Directors</i><br />In order for the submission to proceed to the Review phase, the Director must assign a Track Director from the listing. If Track Directors are not used by this conference, the Director may select "Add Self", and personally oversee the review phase. Several Track Directors can be assigned with various tasks to a submission. This action will send an automated email to the Track Director with notification of the assignment.</p>
-		<p><i>Status</i><br />The Director can check the current status of submission, and dates of its initiation and last modification. </p>
-		<p>If the submission is obviously not appropriate for the conference, the Director may click on "Archive Submission", which will initiate an email to the Author indicating that the submission will not be proceeded to review. Once the email is sent, the submission will be moved to the Archives. The assigned Track Director is also able to take this action.</p>
-           <p><i>Submission Metadata</i><br />Metadata entered by the Author while submission is shown here, and can be edited by the Director. The assigned Track Director is also able to take this action. </p>]]>	
+		<![CDATA[<p>Various parts of the overall submission management can be undertaken from the Summary Page.</p>]]>
+	</section>
+	<section title="Submission">
+		<![CDATA[<p>The Submission section gives a general picture of the submission, its title, author and submitter names, and submission type; allows for the Director to email the Author and/or submitter (if different from the Author); allows the Director to review and replace the submitted original file and supplementary files; and allows the Director to change the track to which it has been submitted.</p>
+		<p>Before assigning a Track Director to manage the Review phase of the submission, the Director should click on the linked submission title to open the file and ensure that it appears to be suitable for review.</p>]]>
+	</section>
+	<section title="Directors">
+		<![CDATA[<p>In order for the submission to proceed to the Review phase, the Director must assign a Track Director from the Track Director listing. If Track Directors are not used by this conference, the Director may select "Add Self", and personally oversee the review phase. Several Track Directors can be assigned with various tasks to a submission. This action will send an automated email to the Track Director with notification of the assignment.</p>]]>
+	</section>
+	<section title="Status">
+		<![CDATA[<p>The Director can check the current status of submission, and dates of its initiation and last modification. </p>
+		<p>If the submission is obviously not appropriate for the conference, the Director may click the Archive Submission link, which will initiate a customizable email to the Author indicating that the submission is not suitable and will not continue to publication. Once the email is sent, the submission will be moved to the Archives. The assigned Track Director is also able to take this action.</p>]]>
+	</section>
+	<section title="Submission Metadata">
+           <![CDATA[<p>Metadata entered by the Author while submission is shown here, and can be edited by the Director. The assigned Track Director can also edit submission metadata. </p>]]>	
 	</section>
 </topic>

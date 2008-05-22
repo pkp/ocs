@@ -20,7 +20,7 @@
 		<![CDATA[<p><i>OCS is a conference management and publishing system</i>. OCS covers all aspects of online conference management and publishing, from setting up conference website to operational tasks such as submitting, reviewing, editing, publishing, archiving, and indexing of the conference papers. OCS also helps to manage the people involved in organizing a conference, including keeping track of the work of directors, track directors, reviewers, and authors, notifying readers and registrants, and assisting with the correspondence.</p>
 		<p><i>OCS is flexible and scalable</i>. A single installation of OCS can support the operation of multiple conferences, and multiple years for each conference. Each conference has its own unique URL as well as its own look and feel. OCS can enable a single director to manage all aspects of a conference, or OCS will support an international team of people with diverse responsibilities for a conference's various aspects.</p>
 		<p><i>OCS supports the principle of extending access</i>. This system is intended not only to assist with conference publishing, but also to demonstrate how costs of conference publishing can be reduced to the point where providing readers with "open access" to the contents of proceedings may be a viable option. The concept of open access is elaborated in a number of articles stemming from this project which are freely available under <a href="http://pkp.sfu.ca/pkp_publications" target="_blank">PKP Publications</a> on Public Knowledge Project website.</p>
-		<p><i>The origins of OCS</i>. Largely based on the existing code used for OJS, OCS was developed directly out of <a href="http://pkp.sfu.ca/?q=ojs" target="_blank">Open Journal Systems</a> to meet the needs of scholarly conference organizers. OCS is a research and development initiative of the Public Knowledge Project at the University of British Columbia. Its continuing development is currently overseen by a partnership among UBC's Public Knowledge Project, the Canadian Center for Studies in Publishing, and the Simon Fraser University Library. For more information, see the <a href="http://pkp.sfu.ca/" target="_blank">Public Knowledge Project</a> web site. The latest version of OCS is 2.1, released in April 2008. OCS has been used by over 100 scholarly conferences, as shown by <a href="http://pkp.sfu.ca/ocs-conferences" target="_blank">OCS Conferences</a> on the PKP website. </p>
+		<p><i>The origins of OCS</i>. Largely based on the existing code used for <a href="http://pkp.sfu.ca/?q=ojs" target="_blank">Open Journal Systems</a>, OCS was developed to meet the needs of scholarly conference organizers. OCS is a research and development initiative of the Public Knowledge Project at the University of British Columbia. Its continuing development is currently overseen by a partnership among UBC's Public Knowledge Project, the Canadian Center for Studies in Publishing, and the Simon Fraser University Library. For more information, see the <a href="http://pkp.sfu.ca/" target="_blank">Public Knowledge Project</a> web site. The latest version of OCS is 2.1, released in April 2008. OCS has been used by over 100 scholarly conferences, as shown by <a href="http://pkp.sfu.ca/ocs-conferences" target="_blank">OCS Conferences</a> on the PKP website. </p>
 		<p><i>OCS Features</i>.
 		<p>OCS will allow you to:
 		<ul><li>create a conference Web site</li>
@@ -31,7 +31,7 @@
 		<li>post, if you wish, the original data sets</li>
 		<li>register participants</li>
 		<li>integrate post-conference online discussions</li></ul></p>
-		<p>In OCS 2.0, more features are incorporated:
+		<p>In OCS 2.0, more features were incorporated:
 		<ul><li>manage conferences that occur more than once (e.g. yearly)</li>
 		<li>an expanded, multiple-round review system</li>
 		<li>e-mail template system</li>
@@ -49,17 +49,17 @@
 		<li>Documentation</li></ul></p></p>]]>	
 	</section>
 	<section title="Management Structure">
-<![CDATA[<p><h5>Editorial Process</h5><p>Submissions proceed to the conference publishing through four steps in the editorial process, which involves directors, track directors, reviewers, and authors.</p>
+<![CDATA[<p><h5>Editorial Process</h5><p>New submissions typically go through four steps in the editorial process, involving directors, track directors, reviewers, and authors.</p>
 <ol><li><em>Unassigned Queue:</em> Items wait to be assigned to one or more track directors.</li>
-<li><em>Submission Review:</em> Items undergo peer review and editorial decision.</li>
-<li><em>Submission Editing:</em> Items undergo layout.</li>
+<li><em>Submission Review:</em> Items undergo peer review and are subject to an editorial decision.</li>
+<li><em>Submission Editing:</em> Items undergo layout and copyediting.</li>
 <li><em>Publishing:</em> Items are scheduled for Website posting.</li></ol></p>
 <p><h5>Editorial Roles</h5>
-<ul><li><em>Site Administrator:</em> Oversees the entire installation, and sets up any new conference sites hosted on the installation.</li>
-<li><em>Conference Manager:</em> Oversees a conference site on the installation, including all of the user accounts for that site. Configures the conference site and sets up any of the individual conference sites. </li>
-<li><em>Director:</em> Manages the proposal submission, editing, and publication process for one of the conferences. Sets the conference timeline. </li>
-<li><em>Registration Manager:</em> Responsible for the conference registrations.</li>
-<li><em>Track Director:</em> Responsible for managing the presentation submissions for their track (or stream, category, etc.), seeing them through the review and editing process, and accepting or rejecting them for their conference.</li>
+<ul><li><em>Site Administrator:</em> Oversees the entire OCS installation, and sets up any new conference sites hosted on the installation.</li>
+<li><em>Conference Manager:</em> Oversees a conference site on the installation, including all of the user accounts particular to that site. The Conference Manager creates, configures and maintains any scheduled conference instances for their particular conference site. </li>
+<li><em>Registration Manager:</em> Responsible for conference registrations.</li>
+<li><em>Director:</em> Manages the proposal submission, editing, and publication process for a conference. Sets the conference timeline. The Director can also act as a Track Director.</li>
+<li><em>Track Director:</em> Responsible for managing the submissions for their particular track. They see the submissions through the review and editing process, and are responsible for accepting or rejecting them for the conference.</li>
 <li><em>Reviewer:</em> Provides peer-review of the submissions for the conference. Recommmends for or against the inclusion of the submission to the conference. </li>
 <li><em>Author:</em>Submit their proposals to the conference, and participate in the review and editing process.</li>
 <li><em>Reader:</em>Users that can register to read the proceedings, while some conferences do not require registration for that.</li>

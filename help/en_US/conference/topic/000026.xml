@@ -14,6 +14,6 @@
 
 <topic id="conference/topic/000026" locale="en_US" title="Enroll a User from This Site in This Conference" toc="conference/toc/000003" key="conference.users.enrollExistingUsers">
 	<section>
-		<![CDATA[<p>By selecting "Enroll a User from This Site in This Conference" under Users on Current Conferences page, what we get to is the same as the link "Enroll Existing User" on All Enrolled Users page. The Conference Manager can first select a role to be assigned, then select a user name and click "Enroll Selected Users", or directly click "Enroll User" next to the name of a user.</p> ]]>	
+		<![CDATA[<p>By selecting The Enroll a User from This Site in This Conference link from the Conference Site Management page, the Conference Manager will see a list of all users registered with the system, and will be able to search against the user list, or jump around by letter of the alphabet. The Conference Manager can enroll multiple users at a time by checking the box next to their user name, selecting a user role from the drop-down menu, and clicking the Enroll Selected Users button.</p> ]]>	
 	</section>
 </topic>

@@ -657,7 +657,7 @@
 	<message key="admin.settings.oaiRegistration">Registrar la web para  indización (Metadata Harvesting)</message>
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Para que el contenido de todas las Conferencias/Congresos estén indizados dentro de un sistema distribuido de bases de datos de investigación, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registre</a> su URL en el <a href="http://pkp.sfu.ca/harvester/" target="_blank">recolector de metadatos del Public Knowledge Project</a>. Esta herramienta captura los metadatos  indizados en esta Conferencia/Congreso, lo que permite relizar una búsqueda precisa y colectiva entre los proveedores de datos que cumplen con <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">el protocolo de recolección de metadatos de la Open Archives Initiative</a>.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Haga clic aquí</a> e introduzca <span class="highlight">{$siteUrl}</span> bajo <b>la URL</b>, y <span class="highlight">{$oaiUrl}</span> bajo <b>Base URL para Archivos OAI</b>.
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Haga clic aquí</a> e introduzca <span class="highlight">{$siteUrl}</span> bajo <strong>la URL</strong>, y <span class="highlight">{$oaiUrl}</span> bajo <strong>Base URL para Archivos OAI</strong>.
 <br /><br />
 Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al editar la configuración del sistema. Las futuras versiones del OCS permitirán que la interfaz  OAI pueda ser activada o desactivada para cada una de las Conferencias/Congresos del sitio.]]></message>
 
@@ -1073,7 +1073,7 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 <br /><br />
 Observe que si el administrador del sistema ya ha regisrado este sitio en el recolector PKP, su conferencia se indizará automáticamente si necesidad de que la registre de nuevo.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Pulse aquí</a> y entre <span class="highlight">{$siteUrl}</span> a la  <b>URL</b>, y <span class="highlight">{$oaiUrl}</span> a la  <b>URL de Fichero OAI</b>.]]></message>
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Pulse aquí</a> y entre <span class="highlight">{$siteUrl}</span> a la  <strong>URL</strong>, y <span class="highlight">{$oaiUrl}</span> a la  <strong>URL de Fichero OAI</strong>.]]></message>
 
 	<!-- 
 	     ***
@@ -1972,7 +1972,7 @@ Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 	<message key="user.account.privacyStatement">Condiciones de privacidad</message>
 	<message key="user.account.completeForm">Rellene este formulario para crearse una cuenta en este evento.</message>
 	<message key="user.account.hasAccount"><![CDATA[<a href="{$accountUrl}">Pulse aquí</a> si tiene una cuenta en ésta o en otra conferencia albergada en este sitio.]]></message>
-	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Pulse aquí</a> si <b>no</b>dispone todavía de una cuenta en ésta o en otra conferencia en este sitio.]]></message>
+	<message key="user.account.hasNoAccount"><![CDATA[<a href="{$accountUrl}">Pulse aquí</a> si <strong>no</strong>dispone todavía de una cuenta en ésta o en otra conferencia en este sitio.]]></message>
 	<message key="user.account.loginToRegister">Entre su nombre de usuario y contraseña para crear una cuenta en este evento.</message>
 	<message key="user.account.createAccountDisabled">Este evento no acepta actualmente nuevos usuarios.</message>
 	<message key="user.account.usernameRestriction">El nombre de usuario debe contener sólo caracteres en minúscula, números y guiones o guión bajo.</message>
@@ -2023,8 +2023,8 @@ Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 <li>Combine palabras con <i>OR</i> para buscar trabajos que contengan  algunos de los términos; p.e., <i>educación OR investigación</i></li>
 <li>Use paréntesis para crear peticiones más complejas; p.e., <i>ficheros (revistas OR conferencias) NOT tesis)</i></li>
 <li>Busque la frase exacta poniendo el texto entre comillas; p.e., <i>"open access publishing"</i></li>
-<li>Excluya una palabra con el prefijo<b>-</b> o <i>NOT</i>; p.e., <i>online -politics</i> o <i>online NOT politics</i></li>
-<li>Use <b>*</b> como comodín dentro de una cadena de caracteres; p.e., <i>soci*</i> se ajusta a documentos que contienen "sociológico" o "social"</li>
+<li>Excluya una palabra con el prefijo<strong>-</strong> o <i>NOT</i>; p.e., <i>online -politics</i> o <i>online NOT politics</i></li>
+<li>Use <strong>*</strong> como comodín dentro de una cadena de caracteres; p.e., <i>soci*</i> se ajusta a documentos que contienen "sociológico" o "social"</li>
 </ul>]]></message>
 	<message key="search.operator.not">No</message>
 	<message key="search.operator.and">Y</message>
@@ -2241,7 +2241,7 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="installer.installFileError"><![CDATA[El fichero de instalación <tt>dbscripts/xml/install.xml</tt> no existe o no tiene permiso de escritura.]]></message>
 	<message key="installer.installParseDBFileError"><![CDATA[Error en la sintaxis en el fichero de instalación de la base de datos <tt>{$file}</tt>.]]></message>
 	<message key="installer.configFileError"><![CDATA[El fichero de configuración <tt>config.inc.php</tt> no existe o no tiene permiso de escritura.]]></message>
-	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<b>Atención:</b> Si la instalación falla durante la instalación de la base de datos, necesitará retirar la base de datos del OCS o las tablas de la base antes de reinstalarla.]]></message>
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Atención:</strong> Si la instalación falla durante la instalación de la base de datos, necesitará retirar la base de datos del OCS o las tablas de la base antes de reinstalarla.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>¡IMPORTANTE!</h4>
 <p>El instalador no pudo sobrescribir automáticamente el fichero de configuración. Antes de usar el sistema, por favor abra el fichero <tt>config.inc.php</tt> con un editor de texto y reemplace su contenido con el del texto mencionado más abajo.</p>]]></message>
 	<message key="installer.contentsOfConfigFile">Contenidos del fichero de configuración</message>
@@ -2523,9 +2523,9 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 	 *
 	-->
 	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Los autores que envíen algún trabajo a la conferencia están de acuerdo con los siguientes términos:<br/>
-<b>a)</b>&nbsp; Los autores retienen el copyright de sus trabajos,  y autorizar a la organización de la conferencia  a  que sus trabajos se publiquen con la licencia <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons de Reconocimiento</a>, que permite a terceros el libre acceso a los ficheros, usar y compartir los trabajos, con el reconocimiento de la autoría y como primer punto de referencia de su presentación,  esta conferencia.<br/>
-<b>b)</b>&nbsp;Los autores renuncian  a los términos de la licencia CC y en un texto aparte, señalan los términos del acuerdo para la distribución no exclusiva y ulterior publicación de este trabajo (p.e., publicar en una versión revisada en una revista, depositarlo en un repositorio institucional o publicarlo en un libro), con el reconocimiento, como primer punto de referencia de su presentación, esta conferencia.<br/>
-<b>c)</b>&nbsp; Adicionalmente, se recomienda a los autores, a depositar y compartir sus trabajos a través de la web (p.e., en repositorios institucionales o en sus páginas web) bien antes o después de la conferencia.]]></message>
+<strong>a)</strong>&nbsp; Los autores retienen el copyright de sus trabajos,  y autorizar a la organización de la conferencia  a  que sus trabajos se publiquen con la licencia <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons de Reconocimiento</a>, que permite a terceros el libre acceso a los ficheros, usar y compartir los trabajos, con el reconocimiento de la autoría y como primer punto de referencia de su presentación,  esta conferencia.<br/>
+<strong>b)</strong>&nbsp;Los autores renuncian  a los términos de la licencia CC y en un texto aparte, señalan los términos del acuerdo para la distribución no exclusiva y ulterior publicación de este trabajo (p.e., publicar en una versión revisada en una revista, depositarlo en un repositorio institucional o publicarlo en un libro), con el reconocimiento, como primer punto de referencia de su presentación, esta conferencia.<br/>
+<strong>c)</strong>&nbsp; Adicionalmente, se recomienda a los autores, a depositar y compartir sus trabajos a través de la web (p.e., en repositorios institucionales o en sus páginas web) bien antes o después de la conferencia.]]></message>
 
 	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">El trabajo enviado ni se ha publicado previamente, ni se ha enviado a otro congreso para su evaluación (o se hace una aclaración en el apartado comentarios al Director).</message>
 	<message key="default.schedConfSettings.checklist.fileFormat">El fichero enviado esta en formato Microsoft Word, RTF, or WordPerfect.</message>

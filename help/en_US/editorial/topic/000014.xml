@@ -14,7 +14,8 @@
 
 <topic id="editorial/topic/000014" locale="en_US" title="Submissions" toc="editorial/toc/000003" key="editorial.reviewersRole.submissions">
 	<section>
-		<![CDATA[<p>Once the Reviewer logs in, Active Submissions page appears with a list of the submissions assigned to that Reviewer for review. All completed submission reviews are listed under Archive, with the title and its reviewer recommendation and director decision to be viewed in a glimpse; detailed review information can be reached by clicking on the title. For the submissions (with due date clearly shown) waiting to be reviewed under Active, the Reviewer can click on the submission title and go to Paper Review page. </p>
+		<![CDATA[<p>The Active Submissions page can be found in the Reviewer's User Home page. This page contains a list of the submissions assigned to that Reviewer for review. The Reviewer can complete a review by clicking on an active submission title and following the subsequent steps.</p>
+		<p>All completed submission reviews are listed under the Archive page, with the submission title and its reviewer recommendation and director decision listed. Detailed review information can be reached by clicking on the title. </p>
 		]]>	
 	</section>
 </topic>

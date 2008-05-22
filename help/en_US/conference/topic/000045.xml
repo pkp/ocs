@@ -14,8 +14,18 @@
 
 <topic id="conference/topic/000045" locale="en_US" title="Submissions" toc="conference/toc/000014"  key="conference.currentConferences.setup.submissions">
 	<section>
-		<![CDATA[<p><i>Submission Process</i>. Requirements can be specified for submissions to a scheduled conference: whether abstract or proposal or abstract together with proposal or abstract followed by presentation are required, whether single presentations or multiple presentations are required, whether supplemetary files are required together with abstracts and proposals, and whether an acknowledgement email should be sent to conference primary contact as well as submitters. </p>
-		<p><i>Call for Papers</i> and <i>Author Guidelines</i>. In additon to a call for papers message, author guidelines followed by a set of checklist items, which must be checked by the author before submission, are provided to ensure standardization in formatting. </p>
-		<p><i>Submission Indexing</i> and <i>Identification of Conference Content</i>. For prospective well access to research resources, categories for indexing can be selected, accompanied by examples provided by the Conference Manager, for authors to index their own submissions. An identification system such as DOIs can also be used to uniquely identify presentations and/or supplementary files. </p>]]>
+		<![CDATA[<p>The second step to setting up a scheduled conference concerns all aspects of submission handling. This is broken into five main sections. </p>
+		
+		<p><em>Submission Process:</em><br /> The first section details what kind of submissions will be accepted by the system, and how the system will handle notifications. The Conference Manager can specify whether the submission process will allow abstracts only; proposals only; abstracts and proposals together; or abstracts followed by a proposal after the abstract has been accepted. The Conference Manager can enable different submission types, against which presenters must submit (if both individual and multiple-presentation sessions are selected, the submitter will have to choose one or the other before proceeding). The Conference Manager can also allow for the uploading of supplementary files; and can toggle whether the conference's primary contact and/or another email will receive a notification email every time an author completes a submission.</p>
+		
+		<p>Please note that if the Conference Manager changes the submission process after some submissions have already come in, those submissions will still have to finish their editorial and review workflows according to the submission process they were submitted against. </p>
+
+		<p><em>Call for Papers:</em><br /> The Conference Manager can enter a call for papers message here, using HTML. This message will appear as its own page on the scheduled conference's home page, and from the sidebar. </p>
+		
+		 <em>Author Guidelines:</em><br /> In order to ensure proper formatting and bibliographic standards, the Conference Manager can enter extensive Author Guidelines in HTML, which will be available from the About the Conference page. The Conference Manager can also create and edit a Submission Preparation Checklist (a seven-step checklist is provided by default); Authors will be required to accept each point on this checklist before submitting to the scheduled conference.</p>
+		
+		<p><em>Submission Indexing:</em><br /> The Conference Manager can enable different types of indexing for submissions; Authors will be able to add indexing information themselves for any enabled field on submission, and Directors will be able to view and edit that information once the submission has been completed.</p>
+		
+		<p><em>Identification of Conference Content:</em><br /> Finally, the Conference Manager can allow unique identifiers to be attached to accepted presentations and supplemental files. This has a number of uses: if the conference uses an item registration system like DOI, they can tag items using that system.</p>]]>
 	</section>
 </topic>

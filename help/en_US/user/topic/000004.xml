@@ -14,7 +14,7 @@
 
 <topic id="user/topic/000004" locale="en_US" title="Register and Profile" toc="user/toc/000000" key="user.registerProfile">
 	<section>
-		<![CDATA[<p>The conference uses a registration system for all users involved in the editorial and publishing process. The conference's Privacy Policy applies to all registered users. Each registered user has a Profile, which can be edited or added after the user has logged in to the conference. The link for the Profile is found in the right-hand margin under User and on the User Home page.</p>
+		<![CDATA[<p>The conference uses a registration system for all users involved in the editorial and publishing process. The conference's Privacy Policy applies to all registered users. Each registered user has a Profile, which can be edited or added to after the user has logged in to the conference. The link for the Profile is found in the right-hand margin under User and on the User Home page.</p>
 		<p>For all users, there is an email update option, which results in the user being notified by email of papers posted for conferences. For conferences operating in more than one language, Reviewers can indicate in their Profile the working languages in which they are comfortable reviewing submissions.</p>]]>	
 	</section>
 
@@ -28,7 +28,7 @@
 <![CDATA[<p>The conference's privacy policy applies to all registered users. You can find more information on the conference's privacy policy in About the Conference page.</p>]]>
 </section>
 <section title="How do I register?">
-<![CDATA[<p>You can register by clicking on "Log In" or "Account" on the site home page or on any conference's home page. Alternatively, you can ask a Conference Manager to register you in. Contact information can be found in About the Conference page.</p>]]>
+<![CDATA[<p>You can register by clicking on "Log In" or "Account" on the site home page or on any conference's home page. Alternatively, you can ask a Conference Manager to register you in. Contact information can be found in the About the Conference page.</p>]]>
 </section>
 <section title="Profile">
 <![CDATA[<p>You create a profile (including a username and a password) when you register, and you can edit your profile any time when you log in. In the right navigation bar under the title "User" is the link "My Profile"; click on that link and you are taken to your profile, where you can change your contact information, reviewing interests, roles, and can manage email notifications for registered conferences.</p>]]>
