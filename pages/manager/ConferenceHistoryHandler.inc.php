@@ -24,7 +24,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 
 		$conference =& Request::getConference();
 
-		parent::setupTemplate();
+		parent::setupTemplate(true);
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -63,7 +63,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 		$assocType = isset($args[1]) ? (int) $args[0] : null;
 		$assocId = isset($args[2]) ? (int) $args[1] : null;
 		parent::validate();
-		parent::setupTemplate();
+		parent::setupTemplate(true);
 
 		$conference =& Request::getConference();
 
