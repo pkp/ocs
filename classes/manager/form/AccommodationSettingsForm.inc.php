@@ -39,7 +39,7 @@ class AccommodationSettingsForm extends Form {
 
 		$templateMgr = &TemplateManager::getManager();
 		$site = &Request::getSite();
-		$templateMgr->assign('helpTopicId','conference.managementPages.accommodation');
+		$templateMgr->assign('helpTopicId','conference.currentConferences.accommodation');
 		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
 		$templateMgr->assign('accommodationFiles', $schedConf->getSetting('accommodationFiles', 'object', true));
 		parent::display();

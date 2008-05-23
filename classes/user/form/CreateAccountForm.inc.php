@@ -112,7 +112,7 @@ class CreateAccountForm extends Form {
 		$site = &Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 
-		$templateMgr->assign('helpTopicId', 'user.accountAndProfile');		
+		$templateMgr->assign('helpTopicId', 'conference.users.index');		
 		parent::display();
 	}
 

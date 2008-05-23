@@ -58,7 +58,7 @@ class SpecialEventForm extends Form {
 		$schedConf =& Request::getSchedConf();
 
 		$templateMgr->assign('specialEventId', $this->specialEventId);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.specialEvents');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.specialEvents');
 
 		import('manager.form.TimelineForm');
 		list($earliestDate, $latestDate) = TimelineForm::getOutsideDates($schedConf);

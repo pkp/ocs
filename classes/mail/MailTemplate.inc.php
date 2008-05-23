@@ -290,7 +290,7 @@ class MailTemplate extends Mail {
 		}
 
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.emails');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.emails');
 
 		$form->display();
 	}

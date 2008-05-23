@@ -83,7 +83,7 @@ class SearchForm extends Form {
 			$templateMgr->assign('searchId', $this->searchId);
 		}
 
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.readingTools.contexts');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools.contexts');
 		parent::display();
 	}
 

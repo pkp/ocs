@@ -88,7 +88,7 @@ class TrackForm extends Form {
 
 		$templateMgr->assign('unassignedDirectors', $unassignedDirectors);
 		$templateMgr->assign('assignedDirectors', $assignedDirectors);
-		$templateMgr->assign('helpTopicId','conference.managementPages.tracks');
+		$templateMgr->assign('helpTopicId','conference.currentConferences.tracks');
 
 		parent::display();
 	}

@@ -52,7 +52,7 @@ class RTSetupHandler extends RTAdminHandler {
 			$templateMgr->assign('emailOthers', $rt->getEmailOthers());
 			$templateMgr->assign('findingReferences', $rt->getFindingReferences());
 
-			$templateMgr->assign('helpTopicId', 'conference.managementPages.readingTools.settings');
+			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools.settings');
 			$templateMgr->display('rtadmin/settings.tpl');
 		} else {
 			Request::redirect(null, null, Request::getRequestedPage());

@@ -51,7 +51,7 @@ class BuildingForm extends Form {
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('buildingId', $this->buildingId);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.buildings');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.buildings');
 
 		parent::display();
 	}

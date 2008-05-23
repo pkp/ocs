@@ -79,7 +79,7 @@ class StatisticsHandler extends ManagerHandler {
 		$reportPlugins =& PluginRegistry::loadCategory('reports');
 		$templateMgr->assign_by_ref('reportPlugins', $reportPlugins);
 
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.statsAndReports');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.statsReports');
 
 		$templateMgr->display('manager/statistics/index.tpl');
 	}

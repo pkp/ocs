@@ -39,7 +39,7 @@ class ConferenceSetupForm extends Form {
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('setupStep', $this->step);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.setup');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.websiteManagement');
 		$templateMgr->setCacheability(CACHEABILITY_MUST_REVALIDATE);
 		parent::display();
 	}

@@ -44,7 +44,7 @@ class ProgramSettingsForm extends Form {
 
 		$templateMgr = &TemplateManager::getManager();
 		$site = &Request::getSite();
-		$templateMgr->assign('helpTopicId','conference.managementPages.program');
+		$templateMgr->assign('helpTopicId','conference.currentConferences.program');
 		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
 		$templateMgr->assign('programFile', $schedConf->getSetting('programFile'));
 		parent::display();

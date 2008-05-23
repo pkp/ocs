@@ -39,7 +39,7 @@ class SchedConfSetupForm extends Form {
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('setupStep', $this->step);
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.setup');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.setup');
 		$templateMgr->setCacheability(CACHEABILITY_MUST_REVALIDATE);
 		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
 		parent::display();

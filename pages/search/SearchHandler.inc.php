@@ -310,7 +310,7 @@ class SearchHandler extends Handler {
 	function setupTemplate($subclass = false) {
 		parent::validate();
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('helpTopicId', 'user.searchAndBrowse');
+		$templateMgr->assign('helpTopicId', 'user.searchBrowse');
 		$templateMgr->assign('pageHierarchy',
 			$subclass ? array(array(Request::url(null, null, 'search'), 'navigation.search'))
 				: array()

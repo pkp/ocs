@@ -68,7 +68,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 		switch (array_shift($args)) {
 			case 'confirm':
 				$this->import('UserXMLParser');
-				$templateMgr->assign('helpTopicId', 'schedConf.users.importUsers');
+				$templateMgr->assign('helpTopicId', 'conference.currentConference.importExport');
 
 				$sendNotify = (bool) Request::getUserVar('sendNotify');
 				$continueOnError = (bool) Request::getUserVar('continueOnError');

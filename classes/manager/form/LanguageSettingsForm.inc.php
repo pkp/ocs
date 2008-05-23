@@ -52,7 +52,7 @@ class LanguageSettingsForm extends Form {
 		$templateMgr = &TemplateManager::getManager();
 		$site = &Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
-		$templateMgr->assign('helpTopicId','conference.managementPages.languages');
+		$templateMgr->assign('helpTopicId','conference.generalManagement.languages');
 		parent::display();
 	}
 

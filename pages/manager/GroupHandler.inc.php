@@ -301,7 +301,7 @@ class GroupHandler extends ManagerHandler {
 		if ($group) {
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'editGroup', $group->getGroupId()), $group->getGroupTitle(), true));
 		}
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.groups');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.organizingTeam');
 	}
 
 	/**

@@ -52,7 +52,7 @@ class PresenterSubmitForm extends Form {
 
 		switch($this->step) {
 			case '2':
-				$helpTopicId = 'submission.indexingAndMetadata';
+				$helpTopicId = 'submission.indexingMetadata';
 				break;
 			case '4':
 				$helpTopicId = 'submission.supplementaryFiles';

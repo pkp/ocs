@@ -72,7 +72,7 @@ class ProfileForm extends Form {
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 		$templateMgr->assign_by_ref('countries', $countries);
 		$templateMgr->assign_by_ref('schedConfNotifications', $schedConfNotifications);
-		$templateMgr->assign('helpTopicId', 'user.accountAndProfile');
+		$templateMgr->assign('helpTopicId', 'conference.users.index');
 
 		$schedConf =& Request::getSchedConf();
 		if ($schedConf) {

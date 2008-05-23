@@ -62,7 +62,7 @@ class FilesHandler extends ManagerHandler {
 			$templateMgr->assign_by_ref('files', $files);
 			$templateMgr->assign('currentDir', $currentDir);
 			$templateMgr->assign('parentDir', $parentDir);
-			$templateMgr->assign('helpTopicId','conference.managementPages.fileBrowser');
+			$templateMgr->assign('helpTopicId','conference.generalManagement.filesBrowser');
 			$templateMgr->display('manager/files/index.tpl');
 		}
 	}

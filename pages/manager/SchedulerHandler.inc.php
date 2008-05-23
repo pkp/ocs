@@ -24,7 +24,7 @@ class SchedulerHandler extends ManagerHandler {
 		SchedulerHandler::setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.scheduler');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.scheduler');
 		$templateMgr->display('manager/scheduler/index.tpl');
 	}
 
@@ -48,7 +48,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('buildings', $buildings);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.buildings');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.buildings');
 		$templateMgr->display('manager/scheduler/buildings.tpl');
 	}
 
@@ -191,7 +191,7 @@ class SchedulerHandler extends ManagerHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('rooms', $rooms);
 		$templateMgr->assign('buildingId', $buildingId);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.rooms');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.rooms');
 		$templateMgr->display('manager/scheduler/rooms.tpl');
 	}
 
@@ -358,7 +358,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('specialEvents', $specialEvents);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.specialEvents');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.specialEvents');
 		$templateMgr->display('manager/scheduler/specialEvents.tpl');
 	}
 

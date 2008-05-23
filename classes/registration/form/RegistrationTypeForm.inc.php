@@ -101,7 +101,7 @@ class RegistrationTypeForm extends Form {
 		$templateMgr->assign('typeId', $this->typeId);
 		$templateMgr->assign('validCurrencies', $this->validCurrencies);
 		$templateMgr->assign('validAccessTypes', $this->validAccessTypes);
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
 
 		parent::display();
 	}

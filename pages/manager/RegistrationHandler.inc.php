@@ -36,7 +36,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('registrations', $registrations);
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
 		$templateMgr->display('registration/registrations.tpl');
 	}
 
@@ -157,7 +157,7 @@ class RegistrationHandler extends ManagerHandler {
 			USER_FIELD_EMAIL => 'user.email'
 		));
 		$templateMgr->assign_by_ref('users', $users);
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
 		$templateMgr->assign('registrationId', Request::getUserVar('registrationId'));
 		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 		$templateMgr->display('registration/users.tpl');
@@ -229,7 +229,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('registrationTypes', $registrationTypes);
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
 
 		$templateMgr->display('registration/registrationTypes.tpl');
 	}
@@ -390,7 +390,7 @@ class RegistrationHandler extends ManagerHandler {
 		import('registration.form.RegistrationPolicyForm');
 
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
 
 		if (Config::getVar('general', 'scheduled_tasks')) {
 			$templateMgr->assign('scheduledTasksEnabled', true);

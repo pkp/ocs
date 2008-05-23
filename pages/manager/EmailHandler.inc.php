@@ -57,7 +57,7 @@ class EmailHandler extends ManagerHandler {
 		}
 
 		$templateMgr->assign_by_ref('emailTemplates', $emailTemplates);
-		$templateMgr->assign('helpTopicId','conference.managementPages.emails');
+		$templateMgr->assign('helpTopicId','conference.generalManagement.emails');
 		$templateMgr->display('manager/emails/emails.tpl');
 	}
 

@@ -50,7 +50,7 @@ class AnnouncementTypeForm extends Form {
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('typeId', $this->typeId);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.announcements');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.announcements');
 
 		parent::display();
 	}

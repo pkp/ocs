@@ -42,7 +42,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 
 		} else {
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->assign('helpTopicId','conference.managementPages.setup');
+			$templateMgr->assign('helpTopicId','conference.currentConferences.setup');
 			$templateMgr->display('manager/schedConfSetup/index.tpl');
 		}
 	}
@@ -163,7 +163,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 			parent::setupTemplate(true);
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('setupStep', $step);
-			$templateMgr->assign('helpTopicId', 'conference.managementPages.setup');
+			$templateMgr->assign('helpTopicId', 'conference.currentConferences.setup');
 			if ($step == 3) $templateMgr->assign('showSetupHints',true);
 			$templateMgr->display('manager/schedConfSetup/settingsSaved.tpl');
 		}

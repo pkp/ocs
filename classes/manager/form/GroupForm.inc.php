@@ -51,7 +51,7 @@ class GroupForm extends Form {
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('group', $this->group);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.groups');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.organizingTeam');
 		parent::display();
 	}
 

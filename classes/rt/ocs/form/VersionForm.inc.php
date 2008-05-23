@@ -73,7 +73,7 @@ class VersionForm extends Form {
 			$templateMgr->assign('versionId', $this->versionId);
 		}
 
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.readingTools.versions');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools.versions');
 		parent::display();
 	}
 

@@ -80,7 +80,7 @@ class ContextForm extends Form {
 			$templateMgr->assign('contextId', $this->contextId);
 		}
 
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.readingTools.contexts');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools.contexts');
 		parent::display();
 	}
 

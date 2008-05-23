@@ -42,7 +42,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true)));
 		$templateMgr->assign('homepageImage', $conference->getLocalizedSetting('homepageImage'));
-		$templateMgr->assign('helpTopicId', 'user.currentAndArchives');
+		$templateMgr->assign('helpTopicId', 'user.currentArchives');
 		$templateMgr->display('schedConf/index.tpl');
 
 	}
@@ -71,7 +71,7 @@ class SchedConfHandler extends Handler {
 		}
 		$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
 
-		$templateMgr->assign('helpTopicId', 'schedConf.trackPolicies');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.tracks');
 		$templateMgr->display('schedConf/trackPolicies.tpl');
 	}
 
@@ -89,7 +89,7 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr->assign('overview', $schedConf->getLocalizedSetting('overview'));
 
-		$templateMgr->assign('helpTopicId', 'schedConf.overview');
+		$templateMgr->assign('helpTopicId', 'user.home');
 		$templateMgr->display('schedConf/overview.tpl');
 	}
 
@@ -141,7 +141,7 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr->assign('acceptingSubmissions', $acceptingSubmissions);
 		if (!$acceptingSubmissions) $templateMgr->assign('notAcceptingSubmissionsMessage', $notAcceptingSubmissionsMessage);
-		$templateMgr->assign('helpTopicId', 'schedConf.cfp');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.setup.submissions');
 		$templateMgr->display('schedConf/cfp.tpl');
 	}
 
@@ -253,7 +253,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr->assign('programFileTitle', $schedConf->getLocalizedSetting('programFileTitle'));
 		$templateMgr->assign('programFile', $schedConf->getLocalizedSetting('programFile'));
 
-		$templateMgr->assign('helpTopicId', 'schedConf.program');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.program');
 		$templateMgr->display('schedConf/program.tpl');
 	}
 
@@ -316,7 +316,7 @@ class SchedConfHandler extends Handler {
 		unset($specialEvents);
 
 		$templateMgr->assign_by_ref('itemsByTime', $itemsByTime);
-		$templateMgr->assign('helpTopicId', 'schedConf.schedule');
+		$templateMgr->assign('conference.currentConferences.scheduler');
 		$templateMgr->display('schedConf/schedule.tpl');
 	}
 
@@ -335,7 +335,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr->assign('accommodationDescription', $schedConf->getLocalizedSetting('accommodationDescription'));
 		$templateMgr->assign('accommodationFiles', $schedConf->getLocalizedSetting('accommodationFiles'));
 
-		$templateMgr->assign('helpTopicId', 'schedConf.accommodation');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.accommodation');
 		$templateMgr->display('schedConf/accommodation.tpl');
 	}
 
@@ -355,7 +355,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
-		$templateMgr->assign('helpTopicId', 'FIXME');
+		$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole.presentations');
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
 
 		$templateMgr->assign('mayViewProceedings', $mayViewProceedings);

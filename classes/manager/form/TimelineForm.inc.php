@@ -136,7 +136,7 @@ class TimelineForm extends Form {
 	function display() {
 		$schedConf =& Request::getSchedConf();
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('helpTopicId','conference.managementPages.timeline');
+		$templateMgr->assign('helpTopicId','conference.currentConferences.timeline');
 
 		list($earliestDate, $latestDate) = $this->getOutsideDates($schedConf);
 		$templateMgr->assign('firstYear', strftime('%Y', $earliestDate));

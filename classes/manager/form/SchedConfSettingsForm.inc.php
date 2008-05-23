@@ -49,7 +49,7 @@ class SchedConfSettingsForm extends Form {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('schedConfId', $this->schedConfId);
 		$templateMgr->assign('conferenceId', $this->conferenceId);
-		$templateMgr->assign('helpTopicId', 'manager.schedConfManagement');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.scheduledConferences');
 		parent::display();
 	}
 

@@ -9,7 +9,7 @@
  * $Id$
  *}
 {assign var="pageTitle" value="user.login"}
-{assign var="helpTopicId" value="user.accountAndProfile"}
+{assign var="helpTopicId" value="conference.users.index"}
 {include file="common/header.tpl"}
 
 {if $loginMessage}

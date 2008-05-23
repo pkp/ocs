@@ -91,7 +91,7 @@ class RegistrationForm extends Form {
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
 		$templateMgr->assign('registrationTypes', $registrationTypes);
-		$templateMgr->assign('helpTopicId', 'schedConf.managementPages.registration');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
 
 		parent::display();
 	}

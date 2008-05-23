@@ -37,7 +37,7 @@ class RTAdminHandler extends Handler {
 
 			RTAdminHandler::setupTemplate();
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->assign('helpTopicId', 'conference.managementPages.readingTools');
+			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools');
 			$templateMgr->assign('versionTitle', isset($version)?$version->getTitle():null);
 			$templateMgr->assign('enabled', $rt->getEnabled());
 
@@ -61,7 +61,7 @@ class RTAdminHandler extends Handler {
 			RTAdminHandler::setupTemplate();
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign_by_ref('conferences', $conferences);
-			$templateMgr->assign('helpTopicId', 'conference.managementPages.readingTools');
+			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools');
 			$templateMgr->display('rtadmin/conferences.tpl');
 		} else {
 			// Not logged in.
@@ -123,7 +123,7 @@ class RTAdminHandler extends Handler {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->register_modifier('validate_url', 'smarty_rtadmin_validate_url');
 		$templateMgr->assign_by_ref('versions', $versions);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.readingTools');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools');
 		$templateMgr->display('rtadmin/validate.tpl');
 	}
 

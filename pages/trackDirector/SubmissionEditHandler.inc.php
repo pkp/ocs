@@ -53,7 +53,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		}
 
 		if ($isDirector) {
-			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
+			$templateMgr->assign('helpTopicId', 'editorial.directorsRole.summaryPage');
 		}
 
 		$templateMgr->display('trackDirector/submission.tpl');
@@ -367,7 +367,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign('rateReviewerOnQuality', $schedConf->getSetting('rateReviewerOnQuality', true));
 			$templateMgr->assign('averageQualityRatings', $reviewAssignmentDao->getAverageQualityRatings($schedConf->getSchedConfId()));
 
-			$templateMgr->assign('helpTopicId', 'conference.roles.reviewer');
+			$templateMgr->assign('helpTopicId', 'conference.roles.reviewers');
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 			$templateMgr->display('trackDirector/selectReviewer.tpl');
 		}

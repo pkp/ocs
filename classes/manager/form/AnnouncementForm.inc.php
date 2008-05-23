@@ -80,7 +80,7 @@ class AnnouncementForm extends Form {
 
 		$templateMgr->assign('announcementId', $this->announcementId);
 		$templateMgr->assign('yearOffsetFuture', ANNOUNCEMENT_EXPIRE_YEAR_OFFSET_FUTURE);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.announcements');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.announcements');
 
 		$announcementTypeDao = &DAORegistry::getDAO('AnnouncementTypeDAO');
 		$announcementTypes = &$announcementTypeDao->getAnnouncementTypesByConferenceId($conference->getConferenceId());

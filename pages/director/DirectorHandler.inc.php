@@ -68,7 +68,7 @@ class DirectorHandler extends TrackDirectorHandler {
 				break;
 			case 'submissionsAccepted':
 				$functionName = 'getDirectorSubmissionsAccepted';
-				$helpTopicId = 'editorial.directorsRole.submissions.accepted';
+				$helpTopicId = 'editorial.directorsRole.submissions.presentations';
 				break;
 			case 'submissionsArchives':
 				$functionName = 'getDirectorSubmissionsArchives';
@@ -255,7 +255,7 @@ class DirectorHandler extends TrackDirectorHandler {
 				USER_FIELD_EMAIL => 'user.email'
 			));
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
-			$templateMgr->assign('helpTopicId', 'editorial.directorsRole.submissionSummary.submissionManagement');
+			$templateMgr->assign('helpTopicId', 'editorial.directorsRole.summaryPage.submissionManagement');
 			$templateMgr->display('director/selectTrackDirector.tpl');
 		}
 	}

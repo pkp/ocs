@@ -39,7 +39,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 		$templateMgr->assign_by_ref('conference', $conference);
-		$templateMgr->assign('helpTopicId', 'site.siteManagement');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.scheduledConferences');
 		$templateMgr->display('manager/schedConfs.tpl');
 	}
 

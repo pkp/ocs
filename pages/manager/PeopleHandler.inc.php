@@ -77,22 +77,22 @@ class PeopleHandler extends ManagerHandler {
 					$helpTopicId = 'conference.roles.conferenceManager';
 					break;
 				case ROLE_ID_DIRECTOR:
-					$helpTopicId = 'conference.roles.director';
+					$helpTopicId = 'conference.roles.directors';
 					break;
 				case ROLE_ID_TRACK_DIRECTOR:
-					$helpTopicId = 'conference.roles.trackDirector';
+					$helpTopicId = 'conference.roles.trackDirectors';
 					break;
 				case ROLE_ID_REVIEWER:
-					$helpTopicId = 'conference.roles.reviewer';
+					$helpTopicId = 'conference.roles.reviewers';
 					break;
 				case ROLE_ID_PRESENTER:
-					$helpTopicId = 'conference.roles.presenter';
+					$helpTopicId = 'conference.roles.authors';
 					break;
 				case ROLE_ID_READER:
-					$helpTopicId = 'conference.roles.reader';
+					$helpTopicId = 'conference.roles.readers';
 					break;
 				default:
-					$helpTopicId = 'conference.roles.index';
+					$helpTopicId = 'conference.roles.indexs';
 					break;
 			}
 		} else {
@@ -565,7 +565,7 @@ class PeopleHandler extends ManagerHandler {
 		}
 
 		$templateMgr->assign('currentUrl', Request::url(null, null, null, 'people', 'all'));
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.mergeUsers');
+		$templateMgr->assign('helpTopicId', 'conference.users.mergeUsers');
 		$templateMgr->assign('roleName', $roleName);
 		$templateMgr->assign_by_ref('users', $users);
 		$templateMgr->assign_by_ref('thisUser', Request::getUser());

@@ -46,7 +46,7 @@ class PluginHandler extends ManagerHandler {
 		$templateMgr->assign_by_ref('plugins', $plugins);
 		$templateMgr->assign_by_ref('categories', $categories);
 		$templateMgr->assign('isSiteAdmin', Validation::isSiteAdmin());
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.plugins');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.plugins');
 
 		$templateMgr->display('manager/plugins/plugins.tpl');
 	}

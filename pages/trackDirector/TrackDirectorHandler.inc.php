@@ -42,16 +42,16 @@ class TrackDirectorHandler extends Handler {
 		switch($page) {
 			case 'submissionsAccepted':
 				$functionName = 'getTrackDirectorSubmissionsAccepted';
-				$helpTopicId = 'editorial.trackDirectorsRole.submissions.accepted';
+				$helpTopicId = 'editorial.trackDirectorsRole.presentations';
 				break;
 			case 'submissionsArchives':
 				$functionName = 'getTrackDirectorSubmissionsArchives';
-				$helpTopicId = 'editorial.trackDirectorsRole.submissions.archives';
+				$helpTopicId = 'editorial.trackDirectorsRole.archives';
 				break;
 			default:
 				$page = 'submissionsInReview';
 				$functionName = 'getTrackDirectorSubmissionsInReview';
-				$helpTopicId = 'editorial.trackDirectorsRole.submissions.inReview';
+				$helpTopicId = 'editorial.trackDirectorsRole.review';
 		}
 
 		$rangeInfo = Handler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));

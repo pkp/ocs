@@ -94,7 +94,7 @@ class ScheduleForm extends Form {
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.buildings');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.buildings');
 		$schedConf =& Request::getSchedConf();
 
 		import('manager.form.TimelineForm');

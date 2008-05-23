@@ -59,7 +59,7 @@ class RoomForm extends Form {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('roomId', $this->roomId);
 		$templateMgr->assign('buildingId', $this->buildingId);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.rooms');
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.rooms');
 
 		parent::display();
 	}

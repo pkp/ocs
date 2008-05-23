@@ -66,7 +66,7 @@ class PresenterHandler extends Handler {
 		$templateMgr->assign('acceptingSubmissions', $acceptingSubmissions);
 		if(isset($notAcceptingSubmissionsMessage))
 			$templateMgr->assign('notAcceptingSubmissionsMessage', $notAcceptingSubmissionsMessage);
-		$templateMgr->assign('helpTopicId', 'editorial.presentersRole.submissions');
+		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.submissions');
 		$templateMgr->display('presenter/index.tpl');
 	}
 

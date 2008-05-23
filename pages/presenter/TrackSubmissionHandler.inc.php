@@ -98,7 +98,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		import('submission.trackDirector.TrackDirectorSubmission');
 		$templateMgr->assign_by_ref('directorDecisionOptions', TrackDirectorSubmission::getDirectorDecisionOptions());
 
-		$templateMgr->assign('helpTopicId','editorial.presentersRole');
+		$templateMgr->assign('helpTopicId','editorial.authorsRole');
 		$templateMgr->display('presenter/submission.tpl');
 	}
 
@@ -158,7 +158,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		// Determine whether or not certain features should be disabled (i.e. past deadline)
 		$templateMgr->assign('mayEditPaper', PresenterAction::mayEditPaper($presenterSubmission));
 
-		$templateMgr->assign('helpTopicId', 'editorial.presentersRole.review');
+		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.review');
 		$templateMgr->display('presenter/submissionReview.tpl');
 	}
 

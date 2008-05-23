@@ -47,7 +47,7 @@ class AnnouncementHandler extends ManagerHandler {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('announcements', $announcements);
 		$templateMgr->assign_by_ref('schedConfNames', $schedConfNames);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.announcements');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.announcements');
 		$templateMgr->display('manager/announcement/announcements.tpl');
 	}
 
@@ -187,7 +187,7 @@ class AnnouncementHandler extends ManagerHandler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('announcementTypes', $announcementTypes);
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.announcements');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.announcements');
 		$templateMgr->display('manager/announcement/announcementTypes.tpl');
 	}
 

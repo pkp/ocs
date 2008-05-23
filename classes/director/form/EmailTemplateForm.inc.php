@@ -53,7 +53,7 @@ class EmailTemplateForm extends Form {
 		$emailTemplate = &$emailTemplateDao->getBaseEmailTemplate($this->emailKey, $conferenceId, $eventId);
 		$templateMgr->assign('canDisable', $emailTemplate?$emailTemplate->getCanDisable():false);
 		$templateMgr->assign('supportedLocales', $this->conference->getSupportedLocaleNames());
-		$templateMgr->assign('helpTopicId','conference.managementPages.emails');
+		$templateMgr->assign('helpTopicId','conference.generalManagement.emails');
 		parent::display();
 	}
 

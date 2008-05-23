@@ -136,7 +136,7 @@ class MetadataForm extends Form {
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$templateMgr->assign('countries', $countryDao->getCountries());
 
-		$templateMgr->assign('helpTopicId','submission.indexingAndMetadata');
+		$templateMgr->assign('helpTopicId','submission.indexingMetadata');
 		if ($this->paper) {
 			$templateMgr->assign_by_ref('track', $trackDao->getTrack($this->paper->getTrackId()));
 		}

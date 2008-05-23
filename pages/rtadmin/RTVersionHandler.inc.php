@@ -98,7 +98,7 @@ class RTVersionHandler extends RTAdminHandler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('versions', $rtDao->getVersions($conference->getConferenceId(), $rangeInfo));
-		$templateMgr->assign('helpTopicId', 'conference.managementPages.readingTools.versions');
+		$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools.versions');
 		$templateMgr->display('rtadmin/versions.tpl');
 	}
 

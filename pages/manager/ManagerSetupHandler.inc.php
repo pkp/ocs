@@ -42,7 +42,7 @@ class ManagerSetupHandler extends ManagerHandler {
 
 		} else {
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->assign('helpTopicId','conference.managementPages.setup');
+			$templateMgr->assign('helpTopicId','conference.generalManagement.websiteManagement');
 			$templateMgr->display('manager/setup/index.tpl');
 		}
 	}
@@ -203,7 +203,7 @@ class ManagerSetupHandler extends ManagerHandler {
 			parent::setupTemplate(true);
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('setupStep', $step);
-			$templateMgr->assign('helpTopicId', 'conference.managementPages.setup');
+			$templateMgr->assign('helpTopicId', 'conference.generalManagement.websiteManagement');
 
 			if($step == 6) {
 				$conference =& Request::getConference();

@@ -36,7 +36,7 @@ class TrackHandler extends ManagerHandler {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'manager'), 'manager.schedConfManagement')));
 		$templateMgr->assign_by_ref('tracks', $tracks);
-		$templateMgr->assign('helpTopicId','conference.managementPages.tracks');
+		$templateMgr->assign('helpTopicId','conference.currentConferences.tracks');
 		$templateMgr->display('manager/tracks/tracks.tpl');
 	}
 
