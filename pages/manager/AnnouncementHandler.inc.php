@@ -308,7 +308,7 @@ class AnnouncementHandler extends ManagerHandler {
 		parent::setupTemplate(true);
 		if ($subclass) {
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, null, null, 'manager', 'announcements'), 'manager.announcements'));
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'announcements'), 'manager.announcements'));
 		}
 	}
 }
