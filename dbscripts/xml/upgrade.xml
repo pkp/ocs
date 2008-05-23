@@ -18,11 +18,8 @@
 		<data file="upgrade/2.1.0_preupdate.xml" />
 		<schema file="ocs_schema_stage1.xml" />
 		<code function="dropAllIndexes" />
-	</upgrade>
-
-	<!-- Upgrade to version 2.1.0 -->
-	<upgrade minversion="2.0.0.0" maxversion="2.0.0.1">
 		<code function="setConferencePrimaryLocales" />
+		<code function="migratePaperLocations" />
 		<data file="upgrade/2.1.0_localize.xml" />
 		<code function="localizeConferenceSettings" />
 		<code function="localizeSchedConfSettings" />

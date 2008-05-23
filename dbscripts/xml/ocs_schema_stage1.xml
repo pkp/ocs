@@ -657,6 +657,7 @@
 		<field name="sched_conf_id" type="I8">
 			<NOTNULL/>
 		</field>
+		<field name="room_id" type="I8" />
 		<field name="date_published" type="T">
 			<NOTNULL/>
 		</field>
@@ -1819,4 +1820,114 @@
 			<DEFAULT VALUE="0"/>
 		</field>
 	</table>
+
+	<!-- 
+	  *
+	  * Selected scheduler tables created here so that paper location
+	  * data can be migrated. Bug #3525.
+	  *
+	 -->
+
+	<!--
+	  *
+	  * TABLE buildings
+	  *
+	  -->
+	<table name="buildings">
+		<field name="building_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<descr>Conference scheduler buildings.</descr>
+		<index name="building_sched_conf_id">
+			<col>sched_conf_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE building_settings
+	  *
+	  -->
+	<table name="building_settings">
+		<field name="building_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+		</field>
+		<descr>Locale-specific building data</descr>
+		<index name="building_settings_building_id">
+			<col>building_id</col>
+		</index>
+		<index name="building_settings_pkey">
+			<col>building_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE rooms
+	  *
+	  -->
+	<table name="rooms">
+		<field name="room_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="building_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<descr>Conference scheduler rooms.</descr>
+		<index name="room_building_id">
+			<col>building_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE room_settings
+	  *
+	  -->
+	<table name="room_settings">
+		<field name="room_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+		</field>
+		<descr>Locale-specific room data</descr>
+		<index name="room_settings_room_id">
+			<col>room_id</col>
+		</index>
+		<index name="room_settings_pkey">
+			<col>room_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
+		</index>
+	</table>
+
 </schema>

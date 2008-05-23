@@ -29,7 +29,7 @@
 			<h5>{translate key="help.matchesFound" matches=$searchResults|@count}</h5>
 			<ul>
 			{foreach name=results from=$searchResults item=result}
-				{assign var=tracks value=$result.topic->getTracks()}
+				{assign var=tracks value=$result.topic->getSections()}
 				<li>
 					<a href="{url op="view" path=$result.topic->getId()|explode:"/"}">{$result.topic->getTitle()}</a>
 					{eval var=$tracks[0]->getContent()|strip_tags|truncate:200}

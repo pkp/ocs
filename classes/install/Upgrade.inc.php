@@ -129,6 +129,68 @@ class Upgrade extends Installer {
 	}
 
 	/**
+	 * For upgrade to 2.1.0: Migrate paper locations into scheduler
+	 * @return boolean
+	 */
+	function migratePaperLocations() {
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
+		$roomDao =& DAORegistry::getDAO('RoomDAO');
+
+		$lastSchedConfId = null;
+		$buildingId = null;
+
+		$result =& $paperDao->retrieve("SELECT p.paper_id, c.primary_locale, sc.sched_conf_id, p.location FROM papers p, published_papers pp, sched_confs sc, conferences c WHERE p.paper_id = pp.paper_id AND p.sched_conf_id = sc.sched_conf_id AND sc.conference_id = c.conference_id AND location IS NOT NULL AND location <> '' ORDER BY sched_conf_id");
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+
+			$paperId = $row['paper_id'];
+			$schedConfId = $row['sched_conf_id'];
+			$locale = $row['primary_locale'];
+			$location = $row['location'];
+
+			if ($schedConfId !== $lastSchedConfId) {
+				// Create a default building
+				$defaultText = Locale::translate('common.default');
+				$building =& new Building();
+				$building->setSchedConfId($schedConfId);
+				$building->setName($defaultText, $locale);
+				$building->setAbbrev($defaultText, $locale);
+				$building->setDescription($defaultText, $locale);
+				$buildingId = $buildingDao->insertBuilding($building);
+				unset($building);
+				$rooms = array();
+			}
+
+			if (!isset($rooms[$location])) {
+				$room =& new Room();
+				$room->setBuildingId($buildingId);
+				$room->setName($location, $locale);
+				$room->setAbbrev($location, $locale);
+				$room->setDescription($location, $locale);
+				$roomId = $roomDao->insertRoom($room);
+
+				$rooms[$location] =& $room;
+				unset($room);
+			} else {
+				$room =& $rooms[$location];
+				$roomId = $room->getRoomId();
+				unset($room);
+			}
+
+			$paperDao->update('UPDATE published_papers SET room_id = ? WHERE paper_id = ?', array($roomId, $paperId));
+
+			$result->MoveNext();
+			$lastSchedConfId = $schedConfId;
+
+		}
+		$result->Close();
+		unset($result);
+
+		return true;
+	}
+
+	/**
 	 * Clear the data cache files (needed because of direct tinkering
 	 * with settings tables)
 	 * @return boolean
