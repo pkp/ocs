@@ -97,14 +97,13 @@ class ConferenceSetupForm extends Form {
 			if (!$extension) {
 				return false;
 			}
-
-			$uploadName = $settingName . $extension;
+			$uploadName = $settingName . '_' . $locale . $extension;
 			if ($fileManager->uploadConferenceFile($conference->getConferenceId(), $settingName, $uploadName)) {
 				// Get image dimensions
 				$filePath = $fileManager->getConferenceFilesPath($conference->getConferenceId());
-				list($width, $height) = getimagesize($filePath . '/' . $settingName.$extension);
+				list($width, $height) = getimagesize($filePath . '/' . $uploadName);
 
-				$value = $conference->getSetting('settingName');
+				$value = $conference->getSetting($settingName);
 				$value[$locale] = array(
 					'name' => $fileManager->getUploadedFileName($settingName),
 					'uploadName' => $uploadName,
@@ -124,6 +123,7 @@ class ConferenceSetupForm extends Form {
 	/**
 	 * Deletes a conference image.
 	 * @param $settingName string setting key associated with the file
+	 * @param $locale string
 	 */
 	function deleteImage($settingName, $locale = null) {
 		$conference = &Request::getConference();
