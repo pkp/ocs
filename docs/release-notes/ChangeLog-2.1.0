@@ -1,3 +1,44 @@
+2008-05-23 17:10  asmecher
+
+	* dbscripts/xml/install.xml, dbscripts/xml/upgrade.xml,
+	  dbscripts/xml/version.xml, docs/README, docs/RELEASE,
+	  docs/release-notes/README-2.1.0: #3527# Pre-release updates
+
+2008-05-23 17:08  asmecher
+
+	* classes/schedConf/SchedConfSettingsDAO.inc.php,
+	  templates/conference/archive.tpl,
+	  templates/conference/current.tpl, templates/conference/index.tpl,
+	  templates/schedConf/index.tpl: #3527# Fixed localization bugs
+
+2008-05-23 17:06  asmecher
+
+	* templates/manager/schedConfSetup/step2.tpl: #3148# Tune-up
+
+2008-05-23 16:14  asmecher
+
+	* dbscripts/xml/version.xml: #3148# Forgotten correction
+
+2008-05-23 16:02  asmecher
+
+	* styles/common.css: #3148# Fixed installer style bug
+
+2008-05-23 15:55  asmecher
+
+	* pages/manager/AnnouncementHandler.inc.php: #3526# Fixed
+	  breadcrumb bug
+
+2008-05-23 12:15  asmecher
+
+	* dbscripts/xml/version.xml: #3148# Added patch to version
+	  descriptor
+
+2008-05-23 12:03  asmecher
+
+	* dbscripts/xml/version.xml, docs/ChangeLog, docs/README,
+	  docs/RELEASE, docs/release-notes/ChangeLog-2.1.0,
+	  docs/release-notes/README-2.1.0: #3148# Final commits
+
 2008-05-23 11:31  asmecher
 
 	* classes/install/Upgrade.inc.php,
