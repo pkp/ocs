@@ -18,33 +18,7 @@
  * @param $class string the complete name of the class to be imported (e.g. "core.Core")
  */
 function import($class) {
-	// Unfortunately, failed 'require_once' calls do not print a backtrace, so
-  // it's difficult to determine where the failure actually occurred. This
-  // is a problem for failed 'import' calls (identifying a bug), so the slight
-  // overhead incurred here is unfortunate for production sites.
-
-	$fname =  str_replace('.', '/', $class) . '.inc.php';
-	$found = False;
-
-	$production = False;
-
-	if($production) {
-		require_once($fname);
-	} else {
-		$paths = explode(ENV_SEPARATOR, ini_get('include_path'));
-		foreach($paths as $ini) {
-			if(file_exists($ini . '/' . $fname)) {
-				$found = True;
-				break;
-			}
-		}
-
-		if($found) {
-			require_once($fname);
-		} else {
-			fatalError("Unable to import() '" . $fname . "'.");
-		}
-	}
+	require_once(str_replace('.', '/', $class) . '.inc.php');
 }
 
 /**
