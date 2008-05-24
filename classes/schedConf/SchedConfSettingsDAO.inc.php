@@ -45,25 +45,14 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	function &getSetting($schedConfId, $name, $includeParent = false, $locale = null) {
 		$cache =& $this->_getCache($schedConfId);
 		$returner = $cache->get($name);
-
 		if ($locale !== null) {
-			if (is_array($returner) && isset($returner[$locale])) {
-				return $returner[$locale];
+			if (!isset($returner[$locale]) || !is_array($returner)) {
+				unset($returner);
+				$returner = null;
+				return $returner;
 			}
+			return $returner[$locale];
 		}
-		if ($returner !== null) return $returner;
-
-		/* TODO: this doesn't allow empty scheduled conference overrides */
-		if($includeParent) {
-			$schedConfDao = &DAORegistry::getDao('SchedConfDAO');
-			$schedConf = &$schedConfDao->getSchedConf($schedConfId);
-			$conference = &$schedConf->getConference();
-			$returner = $conference->getSetting($name, $locale);
-			return $returner;
-		}
-
-		unset($returner);
-		$returner = null;
 		return $returner;
 	}
 
