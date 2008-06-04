@@ -114,7 +114,7 @@ class TimelineForm extends Form {
 			'delayOpenAccessDate', 'closeCommentsDate'
 		) as $dateSettingName) {
 			$dateSetting = $schedConf->getSetting($dateSettingName);
-			if ($dateSetting) $dates[] = strtotime($dateSetting);
+			if ($dateSetting) $dates[] = $dateSetting;
 		}
 
 		$earliestDate = $latestDate = time();
