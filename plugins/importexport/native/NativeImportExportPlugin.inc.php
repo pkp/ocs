@@ -105,6 +105,11 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					$context['track'] = $trackDao->getTrack($trackId);
 				}
 
+ 				if (!$temporaryFile) {
+ 					$templateMgr->assign('error', 'plugins.importexport.native.error.uploadFailed');
+ 					return $templateMgr->display($this->getTemplatePath() . 'importError.tpl');
+ 				}
+ 
 				$doc =& $this->getDocument($temporaryFile->getFilePath());
 
 				if (substr($this->getRootNodeName($doc), 0, 5) === 'paper') {
