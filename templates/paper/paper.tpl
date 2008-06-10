@@ -133,16 +133,41 @@
 {assign var=poster value=$comment->getUser()}
 	<li>
 		<a href="{url page="comment" op="view" path=$paper->getPaperId()|to_array:$galleyId:$comment->getCommentId()}" target="_parent">{$comment->getTitle()|escape|default:"&nbsp;"}</a>
-		{if $comment->getChildCommentCount()==1}{translate key="comments.oneReply"}{elseif $comment->getChildCommentCount()>0}{translate key="comments.nReplies" num=$comment->getChildCommentCount()}{/if}<br/>
-		{if $poster}{translate key="comments.authenticated" userName=$comment->getPosterName()|escape}{elseif $comment->getPosterName()}{translate key="comments.anonymousNamed" userName=$comment->getPosterName()|escape}{else}{translate key="comments.anonymous"}{/if} ({$comment->getDatePosted()|date_format:$dateFormatShort})
+		{if $comment->getChildCommentCount()==1}
+			{translate key="comments.oneReply"}
+		{elseif $comment->getChildCommentCount()>0}
+			{translate key="comments.nReplies" num=$comment->getChildCommentCount()}
+		{/if}
+		
+		<br/>
+
+		{if $poster}
+			{translate key="comments.authenticated" userName=$poster->getFullName()|escape}
+		{elseif $comment->getPosterName()}
+			{translate key="comments.anonymousNamed" userName=$comment->getPosterName()|escape}
+		{else}
+			{translate key="comments.anonymous"}
+		{/if}
+		({$comment->getDatePosted()|date_format:$dateFormatShort})
 	</li>
 {/foreach}
 </ul>
 
-<a href="{url page="comment" op="view" path=$paper->getPaperId()|to_array:$galleyId}" class="action" target="_parent">{translate key="comments.viewAllComments"}</a>{if $postingAllowed}&nbsp;|&nbsp;<a class="action" href="{url page="comment" op="add" path=$paper->getPaperId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a>{/if}<br />
-
 {if $commentsClosed}{translate key="comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}<br />{/if}
 
+<a href="{url page="comment" op="view" path=$paper->getPaperId()|to_array:$galleyId}" class="action" target="_parent">{translate key="comments.viewAllComments"}</a>
+
+{assign var=needsSeparator value=1}
+
+{/if}{* $comments *}
+
+{if $postingAllowed}
+	{if $needsSeparator}
+		&nbsp;|&nbsp;
+	{else}
+		<br/><br/>
+	{/if}
+	<a class="action" href="{url page="comment" op="add" path=$paper->getPaperId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a>
 {/if}
 
 </div>
