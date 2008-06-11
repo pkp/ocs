@@ -36,34 +36,41 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="5%" class="label">
-			<input type="radio" name="reviewMode" id="reviewMode-1" value="{$smarty.const.REVIEW_MODE_ABSTRACTS_ALONE}" {if $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE}checked="checked"{/if} />
+			<input type="radio" name="reviewMode" id="reviewMode-1" value="{$smarty.const.REVIEW_MODE_ABSTRACTS_ALONE}" {if $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE}checked="checked"{/if} onclick="document.setupForm.previewAbstracts.disabled=true;" />
 		</td>
 		<td width="95%" class="value">
-			<label for="reviewMode-1">{translate key="manager.schedConfSetup.submissions.abstractsAlone"}</label>
+			{fieldLabel name="reviewMode-1" key="manager.schedConfSetup.submissions.abstractsAlone"}
 		</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">
-			<input type="radio" name="reviewMode" id="reviewMode-2" value="{$smarty.const.REVIEW_MODE_PRESENTATIONS_ALONE}" {if $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE}checked="checked"{/if} />
+			<input type="radio" name="reviewMode" id="reviewMode-2" value="{$smarty.const.REVIEW_MODE_PRESENTATIONS_ALONE}" {if $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE}checked="checked"{/if} onclick="document.setupForm.previewAbstracts.disabled=true;" />
 		</td>
 		<td class="value">
-			<label for="reviewMode-2">{translate key="manager.schedConfSetup.submissions.presentationsAlone"}</label>
+			{fieldLabel name="reviewMode-2" key="manager.schedConfSetup.submissions.presentationsAlone"}
 		</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">
-			<input type="radio" name="reviewMode" id="reviewMode-3" value="{$smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}" {if $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS}checked="checked"{/if} />
+			<input type="radio" name="reviewMode" id="reviewMode-3" value="{$smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}" {if $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS}checked="checked"{/if} onclick="document.setupForm.previewAbstracts.disabled=true;" />
 		</td>
 		<td class="value">
-			<label for="reviewMode-3">{translate key="manager.schedConfSetup.submissions.bothTogether"}</label>
+			{fieldLabel name="reviewMode-3" key="manager.schedConfSetup.submissions.bothTogether"}
 		</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">
-			<input type="radio" name="reviewMode" id="reviewMode-4" value="{$smarty.const.REVIEW_MODE_BOTH_SEQUENTIAL}" {if $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}checked="checked"{/if} />
+			<input type="radio" name="reviewMode" id="reviewMode-4" value="{$smarty.const.REVIEW_MODE_BOTH_SEQUENTIAL}" {if $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL}checked="checked"{/if} onclick="document.setupForm.previewAbstracts.disabled=false;" />
 		</td>
 		<td class="value">
-			<label for="reviewMode-4">{translate key="manager.schedConfSetup.submissions.bothSequential"}</label>
+			{fieldLabel name="reviewMode-4" key="manager.schedConfSetup.submissions.bothSequential"}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="label">&nbsp;</td>
+		<td class="value">
+			<input type="checkbox" name="previewAbstracts" id="previewAbstracts" {if $previewAbstracts}checked="checked" {/if}{if $reviewMode != REVIEW_MODE_BOTH_SEQUENTIAL}disabled="disabled" {/if}/>
+			{fieldLabel name="previewAbstracts" key="manager.schedConfSetup.submissions.previewAbstracts"}
 		</td>
 	</tr>
 </table>
@@ -76,7 +83,7 @@
 			<input type="checkbox" name="allowIndividualSubmissions" id="allowIndividualSubmissions" value="1" {if $allowIndividualSubmissions}checked="checked"{/if} />
 		</td>
 		<td width="95%" class="value">
-			<label for="allowIndividualSubmissions">{translate key="manager.schedConfSetup.submissions.allowIndividualSubmissions"}</label>
+			{fieldLabel name="allowIndividualSubmissions" key="manager.schedConfSetup.submissions.allowIndividualSubmissions"}
 		</td>
 	</tr>
 	<tr valign="top">
@@ -84,7 +91,7 @@
 			<input type="checkbox" name="allowPanelSubmissions" id="allowPanelSubmissions" value="1" {if $allowPanelSubmissions}checked="checked"{/if} />
 		</td>
 		<td class="value">
-			<label for="allowPanelSubmissions">{translate key="manager.schedConfSetup.submissions.allowPanelSubmissions"}</label>
+			{fieldLabel name="allowPanelSubmissions" key="manager.schedConfSetup.submissions.allowPanelSubmissions"}
 		</td>
 	</tr>
 </table>
@@ -97,7 +104,7 @@
 			<input type="checkbox" name="acceptSupplementaryReviewMaterials" id="acceptSupplementaryReviewMaterials" value="1" {if $acceptSupplementaryReviewMaterials}checked="checked"{/if} />
 		</td>
 		<td width="95%" class="value">
-			<label for="acceptSupplementaryReviewMaterials">{translate key="manager.schedConfSetup.submissions.acceptSupplementaryReviewMaterials"}</label>
+			{fieldLabel name="acceptSupplementaryReviewMaterials" key="manager.schedConfSetup.submissions.acceptSupplementaryReviewMaterials"}
 		</td>
 	</tr>
 </table>
@@ -332,11 +339,11 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="5%" class="label"><input type="checkbox" name="enablePublicPaperId" id="enablePublicPaperId" value="1"{if $enablePublicPaperId} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="enablePublicPaperId">{translate key="manager.schedConfSetup.submissions.enablePublicPaperId"}</label></td>
+		<td width="95%" class="value">{fieldLabel name="enablePublicPaperId" key="manager.schedConfSetup.submissions.enablePublicPaperId"}</td>
 	</tr>
 	<tr valign="top">
 		<td width="5%" class="label"><input type="checkbox" name="enablePublicSuppFileId" id="enablePublicSuppFileId" value="1"{if $enablePublicSuppFileId} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="enablePublicSuppFileId">{translate key="manager.schedConfSetup.submissions.enablePublicSuppFileId"}</label></td>
+		<td width="95%" class="value">{fieldLabel name="enablePublicSuppFileId" key="manager.schedConfSetup.submissions.enablePublicSuppFileId"}</td>
 	</tr>
 </table>
 

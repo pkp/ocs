@@ -384,8 +384,12 @@ class SchedConfHandler extends Handler {
 				SUBMISSION_FIELD_PRESENTER => 'user.role.presenter'
 			));
 
+			$previewAbstracts = (
+				$schedConf->getSetting('reviewMode') == REVIEW_MODE_BOTH_SEQUENTIAL &&
+				$schedConf->getSetting('previewAbstracts')
+			);
 
-			$publishedPapers =& $publishedPaperDao->getPublishedPapersInTracks($schedConf->getSchedConfId(), Request::getUserVar('track'), $searchField, $searchMatch, $search);
+			$publishedPapers =& $publishedPaperDao->getPublishedPapersInTracks($schedConf->getSchedConfId(), Request::getUserVar('track'), $searchField, $searchMatch, $search, $previewAbstracts);
 
 			// Set search parameters
 			$duplicateParameters = array(

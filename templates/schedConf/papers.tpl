@@ -41,10 +41,10 @@
 
 					{if !$mayViewPapers || $paper->getPaperAbstract() != ""}<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}" class="file">{if $paper->getPaperAbstract() == ""}{translate key="paper.details"}{else}{translate key="paper.abstract"}{/if}</a>{/if}
 
-					{if $mayViewPapers}
-					{foreach from=$paper->getGalleys() item=galley name=galleyList}
-						<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getGalleyLabel()|escape}</a>
-					{/foreach}
+					{if $mayViewPapers && $paper->getStatus() == $smarty.const.SUBMISSION_STATUS_PUBLISHED}
+						{foreach from=$paper->getGalleys() item=galley name=galleyList}
+							<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getGalleyLabel()|escape}</a>
+						{/foreach}
 					{/if}
 				</td>
 			</tr>

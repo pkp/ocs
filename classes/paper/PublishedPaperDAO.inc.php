@@ -75,7 +75,7 @@ class PublishedPaperDAO extends DAO {
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE	pp.paper_id = p.paper_id
 				AND pp.sched_conf_id = ?
-				AND p.status <> ' . SUBMISSION_STATUS_ARCHIVED;
+				AND p.status = ' . SUBMISSION_STATUS_PUBLISHED;
 
 		switch ($sortOrder) {
 			case PAPER_SORT_ORDER_TIME:
@@ -97,7 +97,7 @@ class PublishedPaperDAO extends DAO {
 	 */
 	function getPublishedPaperCountBySchedConfId($schedConfId) {
 		$result =& $this->retrieve(
-			'SELECT count(*) FROM published_papers pa, papers a WHERE pa.paper_id = a.paper_id AND a.sched_conf_id = ? AND a.status <> ' . SUBMISSION_STATUS_ARCHIVED,
+			'SELECT count(*) FROM published_papers pa, papers a WHERE pa.paper_id = a.paper_id AND a.sched_conf_id = ? AND a.status = ' . SUBMISSION_STATUS_PUBLISHED,
 			$schedConfId
 		);
 		list($count) = $result->fields;
@@ -128,7 +128,7 @@ class PublishedPaperDAO extends DAO {
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE pp.paper_id = p.paper_id
 				AND p.sched_conf_id = ?
-				AND p.status <> ' . SUBMISSION_STATUS_ARCHIVED,
+				AND p.status = ' . SUBMISSION_STATUS_PUBLISHED,
 			array(
 				'title',
 				$primaryLocale,
@@ -150,9 +150,14 @@ class PublishedPaperDAO extends DAO {
 	/**
 	 * Retrieve Published Papers by scheduled conference id
 	 * @param $schedConfId int
+	 * @param $trackId int ID of track to view, or null for all
+	 * @param $searchField int SUBMISSION_FIELD_...
+	 * @param $searchMatch string 'is' or 'contains'
+	 * @param $search string Search value
+	 * @param $previewAbstracts boolean Whether to include unpublished abstracts that have been reviewed
 	 * @return PublishedPaper objects array
 	 */
-	function &getPublishedPapersInTracks($schedConfId, $trackId = null, $searchField = null, $searchMatch = null, $search = null) {
+	function &getPublishedPapersInTracks($schedConfId, $trackId = null, $searchField = null, $searchMatch = null, $search = null, $previewAbstracts = false) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 
@@ -196,18 +201,19 @@ class PublishedPaperDAO extends DAO {
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev,
 				t.seq AS track_seq,
 				pa.seq
-			FROM	published_papers pa,
-				paper_presenters pp,
+			FROM	paper_presenters pp,
 				papers p
+				LEFT JOIN published_papers pa ON (p.paper_id = pa.paper_id)
 				LEFT JOIN tracks t ON t.track_id = p.track_id
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
-			WHERE
-				pa.paper_id = p.paper_id
-				AND pa.sched_conf_id = ?
-				AND p.status = ' . SUBMISSION_STATUS_PUBLISHED . '
+			WHERE	p.sched_conf_id = ?
+				AND (
+					(p.status = ' . SUBMISSION_STATUS_PUBLISHED . ' AND pa.paper_id IS NOT NULL)' .
+					($previewAbstracts ? 'OR (p.status = ' . SUBMISSION_STATUS_QUEUED . ' AND p.current_stage = ' . REVIEW_STAGE_PRESENTATION . ')':'') . '
+				)
 				AND pp.paper_id = p.paper_id
 				' . ($trackId?'AND p.track_id = ?' : ''). '
 				' . $searchSql . '
@@ -263,7 +269,7 @@ class PublishedPaperDAO extends DAO {
 				AND pa.paper_id = a.paper_id
 				AND a.track_id = ?
 				AND pa.sched_conf_id = ?
-				AND a.status <> ' . SUBMISSION_STATUS_ARCHIVED . '
+				AND a.status = ' . SUBMISSION_STATUS_PUBLISHED . '
 			ORDER BY pa.seq ASC', array(
 				'title',
 				$primaryLocale,

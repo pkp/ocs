@@ -21,6 +21,7 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 	function SchedConfSetupStep2Form() {
 		$settings = array(
 			'reviewMode' => 'int',
+			'previewAbstracts' => 'bool',
 			'allowIndividualSubmissions' => 'bool',
 			'allowPanelSubmissions' => 'bool',
 			'acceptSupplementaryReviewMaterials' => 'bool',
