@@ -80,7 +80,7 @@ class PresenterSubmitStep5Form extends PresenterSubmitForm {
 		$user =& Request::getUser();
 
 		$trackDirectors = array();
-		if ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL || $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE) {
+		if ($reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS || $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE) {
 			// Editors have not yet been assigned; assign them.
 			$trackDirectors = $this->assignDirectors($paper);
 		}
