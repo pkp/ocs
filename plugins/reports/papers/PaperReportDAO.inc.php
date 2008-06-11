@@ -47,7 +47,7 @@ class PaperReportDAO extends DAO {
 				p.language AS language
 			FROM
 				papers p
-					LEFT JOIN users u ON p.user_id=u.user_ID
+					LEFT JOIN users u ON p.user_id=u.user_id
 					LEFT JOIN user_settings uspl ON (u.user_id=uspl.user_id AND uspl.setting_name = ? AND uspl.locale = ?)
 					LEFT JOIN user_settings usl ON (u.user_id=usl.user_id AND usl.setting_name = ? AND usl.locale = ?)
 					LEFT JOIN paper_settings pspl1 ON (pspl1.paper_id=p.paper_id AND pspl1.setting_name = ? AND pspl1.locale = ?)
@@ -83,32 +83,32 @@ class PaperReportDAO extends DAO {
 		$papersReturner =& new DBRowIterator($result);
 
 		$result =& $this->retrieve(
-			'SELECT
-				MAX(date_decided) AS date,
-				paper_id AS paper_id
-			FROM
-				edit_decisions
-			GROUP BY
-				paper_id'
-			);
+			'SELECT	MAX(ed.date_decided) AS date,
+				ed.paper_id AS paper_id
+			FROM	edit_decisions ed,
+				papers p
+			WHERE	p.sched_conf_id = ? AND
+				p.paper_id = ed.paper_id
+			GROUP BY paper_id',
+			array($schedConfId)
+		);
 		$decisionDatesIterator =& new DBRowIterator($result);
 		$decisions = array();
 		$decisionsReturner = array();
 		while ($row =& $decisionDatesIterator->next()) {
 			$result =& $this->retrieve(
-				'SELECT
-					decision AS decision,
+				'SELECT	decision AS decision,
 					paper_id AS paper_id
-				FROM
-					edit_decisions
-				WHERE
-					date_decided = ? AND paper_id = ?',
+				FROM	edit_decisions
+				WHERE	date_decided = ? AND
+					paper_id = ?',
 				array(
 					$row['date'],
 					$row['paper_id']
 				)
 			);
 			$decisionsReturner[] =& new DBRowIterator($result);
+			unset($result);
 		}
 
 		return array($papersReturner, $decisionsReturner);
