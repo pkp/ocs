@@ -31,7 +31,6 @@
 
 #body {
 	width: 660px;
-	margin-left:5px;
 }
 
 #main {
@@ -118,3 +117,4 @@ li.current, a.current {
 	margin: 0px;
 	padding: 0px;
 }
+

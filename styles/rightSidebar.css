@@ -34,16 +34,12 @@
 	overflow: hidden;
 }
 
+* html #rightSidebar { margin-right: 5%; }
+
 #main {
 	float: left;
-	width: 53%;
+	width: 63%;
 	margin-left: 10%;
 	display: inline;
 	overflow: hidden;
 }
-
-/* hack to set width for non-IE browsers to to a percentage 
-   width of container (like it should be), not the window */
-html>body #main {
-	width: 63%;
-} 
