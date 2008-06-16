@@ -796,7 +796,7 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<message key="manager.schedConfs.confirmDelete">¿Está seguro de que quiere borrar permanentemente esta Conferencia y todos su contenidos?</message>
 	<message key="manager.schedConfs.scheduledConference">Conferencia/Congreso programada</message>
 	<message key="manager.schedConfs.create">Crear una Conferencia/Congreso</message>
-	<message key="manager.schedConfs.form.createInstructions">El modelo de conferencia periódica se crea introduciendo el título (por ejemplo, si es una conferencia anual, el nombre de la conferencia más el año) y la ruta URL. Usted se convertira en el director de la Conferencia/Congreso Director y podrá designar a otros directores, quienes podrán gestionar los detalles de este evento, comenzando con el calendario de la conferencia/congreso.</message>
+	<message key="manager.schedConfs.form.createInstructions">El modelo de conferencia programada se crea introduciendo el título (por ejemplo, si es una conferencia anual, el nombre de la conferencia más el año) y la ruta URL. Usted se convertira en el director de la Conferencia/Congreso Director y podrá designar a otros directores, quienes podrán gestionar los detalles de este evento, comenzando con el calendario de la conferencia/congreso.</message>
 	<message key="manager.schedConfs.form.urlWillBe">La URL del evento será {$sampleUrl}</message>
 	<message key="manager.schedConfs.form.title">Título de la Conferencia/Congreso</message>
 	<message key="manager.schedConfs.form.acronym">Acrónimo</message>
@@ -1080,8 +1080,8 @@ Observe que si el administrador del sistema ya ha regisrado este sitio en el rec
 	     *** Scheduled Conference Setup
 	     ***
 	-->
-	<message key="manager.schedConfSetup.stepsToSchedConf">Los siguientes pasos están hechos para diseñar un caso de una conferencia periódica. Una vez que la conferencia se haya configurado, se copia  a la siguiente edición  de la conferencia, y los directores de las mismas pueden editarlas.</message>
-	<message key="manager.schedConfSetup.schedConfSetup">Configuración de una Conferencia/Congreso periódica</message>
+	<message key="manager.schedConfSetup.stepsToSchedConf">Los siguientes pasos están hechos para diseñar la programación de una conferencia, ya sea puntual o periódica. En el caso de las periódicas, una vez que la conferencia se haya configurado, se copia  a la siguiente edición  de la conferencia, y los directores de las mismas pueden editarlas.</message>
+	<message key="manager.schedConfSetup.schedConfSetup">Programación de una Conferencia/Congreso</message>
 
 	<message key="manager.schedConfSetup.details">Detalles</message>
 	<message key="manager.schedConfSetup.submissions">Presentaciones</message>
@@ -1096,7 +1096,7 @@ Observe que si el administrador del sistema ya ha regisrado este sitio en el rec
 	<message key="manager.schedConfSetup.review.title">Paso 3. Recensión</message>
 
 	<!-- Scheduled Conference Setup Paso 1 -->
-	<message key="manager.schedConfSetup.details.description">Descripción de la Conferencia/Congreso periódica</message>
+	<message key="manager.schedConfSetup.details.description">Descripción de la Conferencia/Congreso programada</message>
 	<message key="manager.schedConfSetup.details.introduction.description">Breve descripción de la conferencia que puede usarse para publicitar el evento.</message>
 	<message key="manager.schedConfSetup.details.overview.description">Resumen de los temas, disciplina y enfoque de la conferencia.</message>
 	<message key="manager.schedConfSetup.details.location">Lugar de celebración de la Conferencia/Congreso</message>
