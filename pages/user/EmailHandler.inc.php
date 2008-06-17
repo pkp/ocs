@@ -132,24 +132,6 @@ class EmailHandler extends UserHandler {
 			$userDao->updateUser($user);
 			Request::redirectUrl($redirectUrl);
 		} else {
-			if (!Request::getUserVar('continued')) {
-				// Check for special cases.
-
-				// 1. If the parameter presentersPaperId is set, preload
-				// the template with all the presenters of the specified
-				// paper ID as recipients and use the paper title
-				// as a subject.
-				if (Request::getUserVar('presentersPaperId')) {
-					$paperDao = &DAORegistry::getDAO('PaperDAO');
-					$paper = $paperDao->getPaper(Request::getUserVar('presentersPaperId'));
-					if (isset($paper) && $paper != null) {
-						foreach ($paper->getPresenters() as $presenter) {
-							$email->addRecipient($presenter->getEmail(), $presenter->getFullName());
-						}
-						$email->setSubject($email->getSubject() . strip_tags($paper->getPaperTitle()));
-					}
-				}
-			}
 			$email->displayEditForm(Request::url(null, null, null, 'email'), array('redirectUrl' => Request::getUserVar('redirectUrl'), 'paperId' => $paperId), null, array('disableSkipButton' => true));
 		}
 	}

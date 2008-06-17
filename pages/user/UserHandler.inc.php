@@ -161,6 +161,9 @@ class UserHandler extends Handler {
 		Request::redirect(null, null, 'index');
 	}
 
+	/**
+	 * Become a given role.
+	 */
 	function become($args) {
 		list($conference, $schedConf) = parent::validate(true, true);
 		import('schedConf.SchedConfAction');

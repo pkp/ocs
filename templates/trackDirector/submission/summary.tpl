@@ -15,7 +15,7 @@
 	<tr>
 		<td width="20%" class="label">{translate key="paper.presenters"}</td>
 		<td width="80%">
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl presentersPaperId=$submission->getPaperId() paperId=$submission->getPaperId()}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getPresenterEmails() subject=$submission->getPaperTitle() paperId=$submission->getPaperId()}
 			{$submission->getPresenterString()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>

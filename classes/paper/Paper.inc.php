@@ -130,6 +130,19 @@ class Paper extends DataObject {
 	}
 
 	/**
+	 * Return a list of presenter email addresses.
+	 * @return array
+	 */
+	function getPresenterEmails() {
+		import('mail.Mail');
+		$returner = array();
+		foreach ($this->presenters as $a) {
+			$returner[] = Mail::encodeDisplayName($a->getFullName()) . ' <' . $a->getEmail() . '>';
+		}
+		return $returner;
+	}
+
+	/**
 	 * Return first presenter
 	 * @param $lastOnly boolean return lastname only (default false)
 	 * @return string
