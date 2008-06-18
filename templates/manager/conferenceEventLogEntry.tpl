@@ -38,7 +38,13 @@
 		<td class="label">{translate key="common.user"}</td>
 		<td class="value">
 			{assign var=emailString value="`$logEntry->getUserFullName()` <`$logEntry->getUserEmail()`>"}
-			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getEventTitle()|translate body=$logEntry->getMessage()}
+			{translate|assign:"bodyContent" key=$logEntry->getMessage() params=$logEntry->getEntryParams()}
+			{translate|assign:"titleTrans" key=$logEntry->getEventTitle()}
+			{if $logEntry->getIsTranslated()}
+				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$titleTrans body=$bodyContent}
+			{else}{* Legacy entries *}
+				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$titleTrans body=$logEntry->getMessage()}
+			{/if}
 			{$logEntry->getUserFullName()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
@@ -47,7 +53,11 @@
 		<td class="value">
 			<strong>{translate key=$logEntry->getEventTitle()|escape}</strong>
 			<br /><br />
-			{$logEntry->getMessage()|strip_unsafe_html|nl2br}
+			{if $logEntry->getIsTranslated()}
+				{translate key=$logEntry->getMessage() params=$logEntry->getEntryParams()|strip_unsafe_html|nl2br}
+			{else}{* Legacy entries *}
+				{$logEntry->getMessage()|strip_unsafe_html|nl2br}
+			{/if}
 		</td>
 	</tr>
 </table>

@@ -39,7 +39,6 @@ class ConferenceHistoryHandler extends ManagerHandler {
 		if (isset($logEntry)) {
 			$templateMgr->assign('logEntry', $logEntry);
 			$templateMgr->display('manager/conferenceEventLogEntry.tpl');
-
 		} else {
 			$rangeInfo = &Handler::getRangeInfo('eventLogEntries', array());
 

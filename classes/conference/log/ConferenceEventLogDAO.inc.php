@@ -166,6 +166,8 @@ class ConferenceEventLogDAO extends DAO {
 		$entry->setSchedConfTitle($row['sched_conf_title']);
 		$entry->setConferenceTitle($row['conference_title']);
 		$entry->setAssocId($row['assoc_id']);
+		$entry->setIsTranslated($row['is_translated']);
+		$entry->setEntryParams(unserialize($row['entry_params']));
 		$entry->setMessage($row['message']);
 
 		HookRegistry::call('ConferenceEventLogDAO::_returnLogEntryFromRow', array(&$entry, &$row));
@@ -186,9 +188,9 @@ class ConferenceEventLogDAO extends DAO {
 		}
 		$this->update(
 			sprintf('INSERT INTO conference_event_log
-				(conference_id, sched_conf_id, user_id, date_logged, ip_address, log_level, event_type, assoc_type, assoc_id, message)
+				(conference_id, sched_conf_id, user_id, date_logged, ip_address, log_level, event_type, assoc_type, assoc_id, is_translated, entry_params, message)
 				VALUES
-				(?, ?, ?, %s, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, %s, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($entry->getDateLogged())),
 			array(
 				$entry->getConferenceId(),
@@ -199,6 +201,8 @@ class ConferenceEventLogDAO extends DAO {
 				$entry->getEventType(),
 				$entry->getAssocType(),
 				$entry->getAssocId(),
+				1, // is_translated: All new entries are.
+				$entry->getEntryParamsSerialized(),
 				$entry->getMessage()
 			)
 		);

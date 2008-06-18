@@ -121,7 +121,7 @@ class Action {
 				$user = &Request::getUser();
 				import('paper.log.PaperLog');
 				import('paper.log.PaperEventLogEntry');
-				PaperLog::logEvent($paper->getPaperId(), PAPER_LOG_METADATA_UPDATE, LOG_TYPE_DEFAULT, 0, 'log.director.metadataModified', Array('directorName' => $user->getFullName()));
+				PaperLog::logEvent($paper->getPaperId(), PAPER_LOG_METADATA_UPDATE, LOG_TYPE_DEFAULT, 0, 'log.director.metadataModified', array('directorName' => $user->getFullName()));
 
 				return true;
 			}

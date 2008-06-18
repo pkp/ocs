@@ -99,6 +99,8 @@ class PaperEventLogDAO extends DAO {
 		$entry->setEventType($row['event_type']);
 		$entry->setAssocType($row['assoc_type']);
 		$entry->setAssocId($row['assoc_id']);
+		$entry->setIsTranslated($row['is_translated']);
+		$entry->setEntryParams(unserialize($row['entry_params']));
 		$entry->setMessage($row['message']);
 
 		HookRegistry::call('PaperEventLogDAO::_returnLogEntryFromRow', array(&$entry, &$row));
@@ -119,9 +121,9 @@ class PaperEventLogDAO extends DAO {
 		}
 		$this->update(
 			sprintf('INSERT INTO paper_event_log
-				(paper_id, user_id, date_logged, ip_address, log_level, event_type, assoc_type, assoc_id, message)
+				(paper_id, user_id, date_logged, ip_address, log_level, event_type, assoc_type, assoc_id, is_translated, entry_params, message)
 				VALUES
-				(?, ?, %s, ?, ?, ?, ?, ?, ?)',
+				(?, ?, %s, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($entry->getDateLogged())),
 			array(
 				$entry->getPaperId(),
@@ -131,6 +133,8 @@ class PaperEventLogDAO extends DAO {
 				$entry->getEventType(),
 				$entry->getAssocType(),
 				$entry->getAssocId(),
+				1, // is_translated: All new entries are.
+				$entry->getEntryParamsSerialized(),
 				$entry->getMessage()
 			)
 		);

@@ -444,6 +444,8 @@
 		<field name="event_type" type="I8"/>
 		<field name="assoc_type" type="I8"/>
 		<field name="assoc_id" type="I8"/>
+		<field name="is_translated" type="I1"/>
+		<field name="entry_params" type="X"/>
 		<field name="message" type="X"/>
 		<descr>A log of all events associated with a conference or scheduled conference.</descr>
 		<index name="conference_event_log_sched_conf_id">
@@ -1302,6 +1304,8 @@
 		<field name="event_type" type="I8"/>
 		<field name="assoc_type" type="I8"/>
 		<field name="assoc_id" type="I8"/>
+		<field name="is_translated" type="L"/>
+		<field name="entry_params" type="X"/>
 		<field name="message" type="X"/>
 		<descr>A log of all events associated with a submission.</descr>
 		<index name="paper_event_log_paper_id">

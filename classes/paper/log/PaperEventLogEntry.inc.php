@@ -82,8 +82,10 @@ class PaperEventLogEntry extends DataObject {
 	 * @param $params array optional array of parameters
 	 */
 	function setLogMessage($key, $params = array()) {
-		$this->setMessage(Locale::translate($key, $params, Locale::getPrimaryLocale()));
+		$this->setMessage($key);
+		$this->setEntryParams($params);
 	}
+
 
 	//
 	// Get/set methods
@@ -234,7 +236,50 @@ class PaperEventLogEntry extends DataObject {
 	}
 
 	/**
-	 * Get custom log message (non-localized).
+	 * Get is_translated value (0/1).
+	 * @return int
+	 */
+	function getIsTranslated() {
+		return $this->getData('isTranslated');
+	}
+
+	/**
+	 * Set is_translated value.
+	 * WARNING: This is for legacy purposes only and should be
+	 * assumed to be TRUE for all new entries (i.e. messages
+	 * should be locale keys, not translated strings)!
+	 * @param $isTranslated int
+	 */
+	function setIsTranslated($isTranslated) {
+		return $this->setData('isTranslated', $isTranslated);
+	}
+	
+	/**
+	 * Get parameters for log message.
+	 * @return array
+	 */
+	function getEntryParams() {
+		return $this->getData('entryParams');
+	}
+	
+	/**
+	 * Get serialized parameters for log message (to store in database).
+	 * @return array
+	 */
+	function getEntryParamsSerialized() {
+		return serialize($this->getData('entryParams'));
+	}
+	
+	/**
+	 * Set parameters for log message.
+	 * @param $entryParams array
+	 */
+	function setEntryParams($entryParams = array()) {
+		return $this->setData('entryParams', $entryParams);
+	}
+
+	/**
+	 * Get log message key.
 	 * @return string
 	 */
 	function getMessage() {
@@ -242,7 +287,7 @@ class PaperEventLogEntry extends DataObject {
 	}
 
 	/**
-	 * Set custom log message (non-localized).
+	 * Set log message key.
 	 * @param $message string
 	 */
 	function setMessage($message) {

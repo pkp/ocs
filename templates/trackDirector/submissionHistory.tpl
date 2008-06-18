@@ -89,13 +89,23 @@
 		<td>{$logEntry->getAssocTypeString()|escape}</td>
 		<td>
 			{assign var=emailString value="`$logEntry->getUserFullName()` <`$logEntry->getUserEmail()`>"}
-			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getEventTitle()|translate body=$logEntry->getMessage() paperId=$submission->getPaperId()}
+			{translate|assign:"bodyContent" key=$logEntry->getMessage() params=$logEntry->getEntryParams()}
+			{translate|assign:"titleTrans" key=$logEntry->getEventTitle()}
+			{if $logEntry->getIsTranslated()}
+				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$titleTrans body=$bodyContent paperId=$submission->getPaperId()}
+			{else}{* Legacy entries *}
+				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$titleTrans|translate body=$logEntry->getMessage() paperId=$submission->getPaperId()}
+			{/if}
 			{$logEntry->getUserFullName()|escape} {icon name="mail" url=$url}
 		</td>
 		<td>
 			<strong>{translate key=$logEntry->getEventTitle()|escape}</strong>
 			<br />
-			{$logEntry->getMessage()|strip_unsafe_html|truncate:60:"..."}
+			{if $logEntry->getIsTranslated()}
+				{translate key=$logEntry->getMessage() params=$logEntry->getEntryParams()|strip_unsafe_html|truncate:60:"..."|escape}
+			{else}{* Legacy entries *}
+				{$logEntry->getMessage()|strip_unsafe_html|truncate:60:"..."|escape}
+			{/if}
 		</td>
 		<td align="right">{if $logEntry->getAssocType()}<a href="{url op="submissionEventLogType" path=$submission->getPaperId()|to_array:$logEntry->getAssocType():$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="submissionEventLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>{if $isDirector}&nbsp;|&nbsp;<a href="{url op="clearSubmissionEventLog" path=$submission->getPaperId()|to_array:$logEntry->getLogId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmDeleteLogEntry"}')">{translate key="common.delete"}</a>{/if}</td>
 	</tr>
