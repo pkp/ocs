@@ -38,7 +38,7 @@ class RoleBlockPlugin extends BlockPlugin {
 	 * Install default settings on journal creation.
 	 * @return string
 	 */
-	function getNewJournalPluginSettingsFile() {
+	function getNewConferencePluginSettingsFile() {
 		return $this->getPluginPath() . '/settings.xml';
 	}
 
