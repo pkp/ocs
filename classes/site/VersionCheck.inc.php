@@ -15,7 +15,7 @@
  * $Id$
  */
 
-define('VERSION_CHECK_URL', 'http://pkp.sfu.ca/ocs/ocs-version.xml');
+define('VERSION_CHECK_URL', 'http://pkp.sfu.ca/ocs/xml/ocs-version.xml');
 define('VERSION_CODE_PATH', 'dbscripts/xml/version.xml');
 
 import('db.XMLDAO');

@@ -43,8 +43,10 @@ OCS release:
      packages against which to build patches)
 
 
-7. Place the new package, patches, and version descriptor on the OCS web site:
+7. Place the new package, patches, version descriptor, and Doxygen docs on the
+   OCS web site:
 
     http://pkp.sfu.ca/ocs/download/
     http://pkp.sfu.ca/ocs/download/patch/
-    http://pkp.sfu.ca/ocs/ocs-version.xml
+    http://pkp.sfu.ca/ocs/xml/ocs-version.xml
+    http://pkp.sfu.ca/ocs/doxygen
