@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2007 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Cadenes per a ca_ES (català Espanya) mètode manual de pagament.
+  * Traduït per Fermín Cueva Doñate 2008/06/13 17:10.  
+  * -->
+ 
+<locale name="ca_ES" full_name="Català">
+	<message key="plugins.paymethod.manual.displayName">Pagament manual</message>
+	<message key="plugins.paymethod.manual.description">El pagament ha de realitzar-se fora del sistema OCS i requereix una validació per part del responsable de les conferències abans que la inscripció sigui efectiva. El contingut del camp "Informació de la Inscripció" en el "Gestor de Polítiques d'Inscripció" es mostrarà a l'equip d'inscripcions i ha d'oferir informació sobre com es procederà en la tramesa manual de la mateixa.</message>
+	<message key="plugins.paymethod.manual">Pagament de la inscripción</message>
+</locale>

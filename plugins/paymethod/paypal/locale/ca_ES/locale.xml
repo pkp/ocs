@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2006-2007 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Cadenes per a ca_ES (català Espanya) mètode de pagament online.
+  * Traduït per Fermín Cueva Doñate 2008/06/13 17:13.  
+  * -->
+ 
+<locale name="ca_ES" full_name="Català">
+	<message key="plugins.paymethod.paypal.displayName">Pagament online (PayPal)</message>
+
+	<!-- PayPal Settings Form -->
+	<message key="plugins.paymethod.paypal.settings.paypalenable">Permet el pagament online (PayPal)</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl">IPN URL</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl.description"><![CDATA[ Aquesta és la URL del servei de notificació instantani de pagament de PayPal (PayPal's Instant Payment Notification o IPN). Per a proves utilitzi: <u>https://www.sandbox.paypal.com/cgi-bin/webscr</u>; per a sistemes de pagament automàtics utilitzi: <u>https://www.paypal.com/cgi-bin/webscr</u>.]]></message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount">Compte bancari</message>
+	<message key="plugins.paymethod.paypal.settings.selleraccount.description">Aquest és el nom d'usuari del compte PayPal associat al nombre de compte que s'usarà, habitualment un adreça de correu electrònic.</message>
+	<message key="plugins.paymethod.paypal.settings.curlNotInstalled">Atenció: el suport CURL per a PHP no està instal·lat. El suport del sistema de pagaments Paypal requereix la biblioteca CURL. No funcionarà fins que aquesta estigui instal·lada.</message>
+	<message key="plugins.paymethod.paypal.settings">Configuració PayPal</message>
+
+	<!-- PayPal -->
+	<message key="plugins.paymethod.paypal">Pagament online (PayPal)</message>
+	<message key="plugins.paymethod.paypal.description"><![CDATA[S'accepten la mayoria de targetas de crèdit, així com també eChecks; no és necessari que els participants siguin membres de PayPal, però si que requereix que els organitzadors de les conferències (#esdeveniment) creïn un <a href="http://www.paypal.com" target="_new">compte d'empresa PayPal</a>.]]></message>
+	<message key="plugins.paymethod.paypal.warning"><![CDATA[<hr size="1">Prement en 'Continua' se li direccionará al lloc web de PayPal .<br> <strong>Abans de realitzar el pagament meitjançant PayPal pot fer clic al botó "Torna a la Universitat de Barcelona" per a tornar a aquesta pàgina</strong>.<hr size="1"'><br>]]></message>
+	<message key="plugins.paymethod.paypal.purchase.amount">Import</message>
+	<message key="plugins.paymethod.paypal.purchase.description">Descripció</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled">La seva operació ha estat cancel·lada.</message>
+	<message key="plugins.paymethod.paypal.purchase.cancelled.title">Operació cancel·lada</message>
+</locale>
