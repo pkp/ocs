@@ -239,10 +239,11 @@ class PaperHandler extends Handler {
 		$commentsAllowAnonymous = $schedConf->getSetting('commentsAllowAnonymous', true);
 		$closeCommentsDate = $schedConf->getSetting('closeCommentsDate');
 		$commentsClosed = $schedConf->getSetting('closeComments')?true:false && (strtotime($closeCommentsDate < time()));
+		$postingAllowed = $enableComments && !$commentsClosed ? true : false;
 		$templateMgr->assign('closeCommentsDate', $closeCommentsDate);
 		$templateMgr->assign('commentsClosed', $commentsClosed);
-		$templateMgr->assign('postingAllowed', $enableComments && (!$commentsRequireRegistration || Validation::isLoggedIn()) && !$commentsClosed);
-		$templateMgr->assign('postingDisabled', !$enableComments);
+		$templateMgr->assign('postingAllowed', $postingAllowed);
+		$templateMgr->assign('postingDisabled', $postingAllowed && ($commentsRequireRegistration && !Validation::isLoggedIn()));
 
 		$templateMgr->assign_by_ref('conferenceRt', $conferenceRt);
 		if ($conferenceRt->getEnabled()) {
