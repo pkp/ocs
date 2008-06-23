@@ -607,7 +607,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @return DAOResultFactory containing matching Users
 	 */
 	function &getReviewersForPaper($schedConfId, $paperId, $stage, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null) {
-		$paramArray = array($paperId, $stage, $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'));
+		$paramArray = array('interests', $paperId, $stage, $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'));
 		$searchSql = '';
 
 		if (isset($search)) switch ($searchType) {
@@ -632,7 +632,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
 				break;
 			case USER_FIELD_INTERESTS:
-				$searchSql = 'AND LOWER(interests) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
+				$searchSql = 'AND LOWER(s.setting_value) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
 				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
 				break;
 			case USER_FIELD_INITIAL:
@@ -642,18 +642,17 @@ class TrackDirectorSubmissionDAO extends DAO {
 				break;
 		}
 
-		$result = &$this->retrieveRange('
-			SELECT DISTINCT u.*, a.review_id as review_id
-			FROM users u
-			NATURAL JOIN roles r
-			LEFT JOIN review_assignments a ON
-				(a.reviewer_id = u.user_id
-				 AND a.cancelled = 0
-				 AND a.paper_id = ?
-				 AND a.stage = ?)
-			WHERE u.user_id = r.user_id
-				AND r.sched_conf_id = ?
-				AND r.role_id = ? ' . $searchSql . '
+		$result = &$this->retrieveRange(
+			'SELECT DISTINCT
+				u.*,
+				a.review_id
+			FROM	users u
+				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
+				LEFT JOIN roles r ON (r.user_id = u.user_id)
+				LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND a.cancelled = 0 AND a.paper_id = ? AND a.stage = ?)
+			WHERE	u.user_id = r.user_id AND
+				r.sched_conf_id = ? AND
+				r.role_id = ? ' . $searchSql . '
 			ORDER BY last_name, first_name',
 			$paramArray, $rangeInfo
 		);
