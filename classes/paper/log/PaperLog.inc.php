@@ -106,13 +106,16 @@ class PaperLog {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$schedConfId = $paperDao->getPaperSchedConfId($paperId);
 
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+
 		if (!$schedConfId) {
 			// Invalid paper
 			return false;
 		}
 
-		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-		if (!$settingsDao->getSetting($schedConfId, 'paperEmailLog', true)) {
+		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+		if (!$settingsDao->getSetting($schedConf->getConferenceId(), 'paperEmailLog')) {
 			// Email logging is disabled
 			return false;
 		}
