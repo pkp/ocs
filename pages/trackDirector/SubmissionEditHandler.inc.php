@@ -337,7 +337,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 			$rangeInfo = &Handler::getRangeInfo('reviewers', array($submission->getCurrentStage(), (string) $searchType, (string) $search, (string) $searchMatch)); // Paper ID intentionally omitted
 			while (true) {
-			$reviewers = $trackDirectorSubmissionDao->getReviewersForPaper($schedConf->getSchedConfId(), $paperId, $submission->getCurrentStage(), $searchType, $search, $searchMatch, $rangeInfo);
+				$reviewers = $trackDirectorSubmissionDao->getReviewersForPaper($schedConf->getSchedConfId(), $paperId, $submission->getCurrentStage(), $searchType, $search, $searchMatch, $rangeInfo);
 				if ($reviewers->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $reviewers->getLastPageRangeInfo();
