@@ -360,7 +360,7 @@ class TemplateManager extends Smarty {
 
 			$key = $params['key'];
 			unset($params['key']);
-			if (isset($params['params'])) {
+			if (isset($params['params']) && is_array($params['params'])) {
 				$paramsArray = $params['params'];
 				unset($params['params']);
 				$params = array_merge($params, $paramsArray);
