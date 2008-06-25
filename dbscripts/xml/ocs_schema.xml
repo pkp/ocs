@@ -207,6 +207,8 @@
 			<NOTNULL/>
 		</field>
 		<field name="conference_id" type="I8"/>
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
 			<NOTNULL/>
@@ -219,6 +221,7 @@
 			<col>user_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
+			<col>conference_id</col>
 			<UNIQUE />
 		</index>
 	</table>
