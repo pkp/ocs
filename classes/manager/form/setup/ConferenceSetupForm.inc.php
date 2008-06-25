@@ -133,7 +133,16 @@ class ConferenceSetupForm extends Form {
 		import('file.PublicFileManager');
 		$fileManager = &new PublicFileManager();
 		if ($fileManager->removeConferenceFile($conference->getConferenceId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
-			return $settingsDao->deleteSetting($conference->getConferenceId(), $settingName, $locale);
+			$returner = $settingsDao->deleteSetting($conference->getConferenceId(), $settingName, $locale);
+			// Ensure page header is refreshed
+			if ($returner) {
+				$templateMgr = &TemplateManager::getManager();
+				$templateMgr->assign(array(
+					'displayPageHeaderTitle' => $conference->getPageHeaderTitle(),
+					'displayPageHeaderLogo' => $conference->getPageHeaderLogo()
+				));
+			}
+			return $returner;
 		} else {
 			return false;
 		}
