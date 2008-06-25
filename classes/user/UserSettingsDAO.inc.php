@@ -139,7 +139,7 @@ class UserSettingsDAO extends DAO {
 					(user_id, setting_name, conference_id, setting_value, setting_type)
 					VALUES
 					(?, ?, ?, ?, ?)',
-				array($userId, $name, $conferenceId, $value, $type)
+				array($userId, $name, $conferenceId ? $conferenceId : 0, $value, $type)
 			);
 		} else {
 			if ($conferenceId == null) {
