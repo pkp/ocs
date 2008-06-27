@@ -1663,6 +1663,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="director.submissionQueue">Submission Queue</message>
 	<message key="director.submissionArchive">Submission Archive</message>
 	<message key="director.allTracks">All Tracks</message>
+	<message key="director.allDirectors">All Directors</message>
+	<message key="director.me">Me</message>
 	<message key="director.submissionQueue.noSubmissions">No submissions in the queue.</message>
 	<message key="director.submissionQueue.saveChanges">Save changes to queued submissions?</message>
 	<message key="director.submissionArchive.noSubmissions">No submissions in the archive.</message>
@@ -1760,6 +1762,8 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="director.submissions.lastAssigned">Latest</message>
 	<message key="director.submissions.averageTime">Weeks</message>
 	<message key="director.submissions.lastCompleted">Last Complete</message>
+	<message key="director.submissions.assignedTo">Assigned To</message>
+	<message key="director.submissions.inTrack">In Track</message>
 
 	<!-- Track Director -->
 	<message key="trackDirector.presenter.confirmRenotify">Notifying this author again will restart their assignment. Are you sure you wish to do this?</message>

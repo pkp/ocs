@@ -156,6 +156,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * Get all unfiltered submissions for a scheduled conference.
 	 * @param $schedConfId int
 	 * @param $trackId int
+	 * @param $directorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
 	 * @param $search String to look in $searchField for
@@ -167,7 +168,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array result
 	 */
-	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $sortOrder = DIRECTOR_SUBMISSION_SORT_ORDER_NATURAL, $rangeInfo = null) {
+	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $directorId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $sortOrder = DIRECTOR_SUBMISSION_SORT_ORDER_NATURAL, $rangeInfo = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
@@ -242,6 +243,11 @@ class DirectorSubmissionDAO extends DAO {
 			$params[] = $trackId;
 		}
 
+		if ($directorId) {
+			$searchSql .= ' AND ed.user_id = ?';
+			$params[] = $directorId;
+		}
+
 		$sql .= ' ' . $searchSql . ' ORDER BY ';
 		switch ($sortOrder) {
 			case DIRECTOR_SUBMISSION_SORT_ORDER_PUBLISHED:
@@ -286,6 +292,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * Get all submissions unassigned for a scheduled conference.
 	 * @param $schedConfId int
 	 * @param $trackId int
+	 * @param $directorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
 	 * @param $search String to look in $searchField for
@@ -295,11 +302,11 @@ class DirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array DirectorSubmission
 	 */
-	function &getDirectorSubmissionsUnassigned($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getDirectorSubmissionsUnassigned($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$directorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
 		while (!$result->EOF) {
 			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
@@ -328,6 +335,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * Get all submissions in review for a scheduled conference.
 	 * @param $schedConfId int
 	 * @param $trackId int
+	 * @param $directorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
 	 * @param $search String to look in $searchField for
@@ -337,11 +345,11 @@ class DirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array DirectorSubmission
 	 */
-	function &getDirectorSubmissionsInReview($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getDirectorSubmissionsInReview($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$directorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 
@@ -383,6 +391,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * Get all submissions accepted for a scheduled conference.
 	 * @param $schedConfId int
 	 * @param $trackId int
+	 * @param $directorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
 	 * @param $search String to look in $searchField for
@@ -392,10 +401,10 @@ class DirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array DirectorSubmission
 	 */
-	function &getDirectorSubmissionsAccepted($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getDirectorSubmissionsAccepted($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$directorSubmissions = array();
 
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, DIRECTOR_SUBMISSION_SORT_ORDER_PUBLISHED, $rangeInfo);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId,  $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, DIRECTOR_SUBMISSION_SORT_ORDER_PUBLISHED, $rangeInfo);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
@@ -405,6 +414,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * Get all submissions archived for a scheduled conference.
 	 * @param $schedConfId int
 	 * @param $trackId int
+	 * @param $directorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
 	 * @param $search String to look in $searchField for
@@ -414,10 +424,10 @@ class DirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array DirectorSubmission
 	 */
-	function &getDirectorSubmissionsArchives($schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getDirectorSubmissionsArchives($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$directorSubmissions = array();
 
-		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, DIRECTOR_SUBMISSION_SORT_ORDER_NATURAL, $rangeInfo);
+		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, DIRECTOR_SUBMISSION_SORT_ORDER_NATURAL, $rangeInfo);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;

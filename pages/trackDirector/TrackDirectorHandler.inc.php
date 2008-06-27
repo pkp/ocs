@@ -16,6 +16,9 @@
 
 import('submission.trackDirector.TrackDirectorAction');
 
+// Filter track
+define('FILTER_TRACK_ALL', 0);
+
 class TrackDirectorHandler extends Handler {
 
 	/**
@@ -26,6 +29,7 @@ class TrackDirectorHandler extends Handler {
 		TrackDirectorHandler::setupTemplate();
 
 		$schedConf = &Request::getSchedConf();
+		$schedConfId = $schedConf->getSchedConfId();
 		$user = &Request::getUser();
 
 		// Get the user's search conditions, if any
@@ -37,7 +41,11 @@ class TrackDirectorHandler extends Handler {
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
-		$tracks = &$trackDao->getTrackTitles($schedConf->getSchedConfId());
+		$tracks = &$trackDao->getTrackTitles($schedConfId);
+
+		$filterTrackOptions = array(
+			FILTER_TRACK_ALL => Locale::Translate('director.allTracks')
+		) + $tracks;
 
 		switch($page) {
 			case 'submissionsAccepted':
@@ -54,12 +62,23 @@ class TrackDirectorHandler extends Handler {
 				$helpTopicId = 'editorial.trackDirectorsRole.review';
 		}
 
+		$filterTrack = Request::getUserVar('filterTrack');
+		if ($filterTrack != '' && array_key_exists($filterTrack, $filterTrackOptions)) {
+			$user->updateSetting('filterTrack', $filterTrack, 'int', $schedConfId);
+		} else {
+			$filterTrack = $user->getSetting('filterTrack', $schedConfId);
+			if ($filterTrack == null) {
+				$filterTrack = FILTER_TRACK_ALL;
+				$user->updateSetting('filterTrack', $filterTrack, 'int', $schedConfId);
+			}	
+		}
+
 		$rangeInfo = Handler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
 		while (true) {
 			$submissions =& $trackDirectorSubmissionDao->$functionName(
 				$user->getUserId(),
 				$schedConf->getSchedConfId(),
-				Request::getUserVar('track'),
+				$filterTrack,
 				$searchField,
 				$searchMatch,
 				$search,
@@ -76,7 +95,8 @@ class TrackDirectorHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', $helpTopicId);
-		$templateMgr->assign('trackOptions', array(0 => Locale::Translate('director.allTracks')) + $tracks);
+		$templateMgr->assign('trackOptions', $filterTrackOptions);
+		$templateMgr->assign('filterTrack', $filterTrack);
 		$templateMgr->assign_by_ref('submissions', $submissions);
 		$templateMgr->assign('track', Request::getUserVar('track'));
 		$templateMgr->assign('pageToDisplay', $page);

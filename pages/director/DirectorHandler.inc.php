@@ -19,6 +19,10 @@ import('trackDirector.TrackDirectorHandler');
 define('DIRECTOR_TRACK_HOME', 0);
 define('DIRECTOR_TRACK_SUBMISSIONS', 1);
 
+// Filter director
+define('FILTER_DIRECTOR_ALL', 0);
+define('FILTER_DIRECTOR_ME', 1);
+
 import ('submission.director.DirectorAction');
 
 class DirectorHandler extends TrackDirectorHandler {
@@ -48,13 +52,23 @@ class DirectorHandler extends TrackDirectorHandler {
 		DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS);
 
 		$schedConf = &Request::getSchedConf();
+		$schedConfId = $schedConf->getSchedConfId();
 		$user = &Request::getUser();
 
 		$directorSubmissionDao = &DAORegistry::getDAO('DirectorSubmissionDAO');
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
-		$tracks = &$trackDao->getTrackTitles($schedConf->getSchedConfId());
+		$tracks = &$trackDao->getTrackTitles($schedConfId);
+
+		$filterDirectorOptions = array(
+			FILTER_DIRECTOR_ALL => Locale::Translate('director.allDirectors'),
+			FILTER_DIRECTOR_ME => Locale::Translate('director.me')
+		);
+
+		$filterTrackOptions = array(
+			FILTER_TRACK_ALL => Locale::Translate('director.allTracks')
+		) + $tracks;
 
 		// Get the user's search conditions, if any
 		$searchField = Request::getUserVar('searchField');
@@ -80,11 +94,40 @@ class DirectorHandler extends TrackDirectorHandler {
 				$helpTopicId = 'editorial.directorsRole.submissions.inReview';
 		}
 
+		$filterDirector = Request::getUserVar('filterDirector');
+		if ($filterDirector != '' && array_key_exists($filterDirector, $filterDirectorOptions)) {
+			$user->updateSetting('filterDirector', $filterDirector, 'int', $schedConfId);
+		} else {
+			$filterDirector = $user->getSetting('filterDirector', $schedConfId);
+			if ($filterDirector == null) {
+				$filterDirector = FILTER_DIRECTOR_ALL;
+				$user->updateSetting('filterDirector', $filterDirector, 'int', $schedConfId);
+			}	
+		}
+
+		if ($filterDirector == FILTER_DIRECTOR_ME) {
+			$directorId = $user->getUserId();
+		} else {
+			$directorId = FILTER_DIRECTOR_ALL;
+		}
+
+		$filterTrack = Request::getUserVar('filterTrack');
+		if ($filterTrack != '' && array_key_exists($filterTrack, $filterTrackOptions)) {
+			$user->updateSetting('filterTrack', $filterTrack, 'int', $schedConfId);
+		} else {
+			$filterTrack = $user->getSetting('filterTrack', $schedConfId);
+			if ($filterTrack == null) {
+				$filterTrack = FILTER_TRACK_ALL;
+				$user->updateSetting('filterTrack', $filterTrack, 'int', $schedConfId);
+			}	
+		}
+
 		$rangeInfo =& Handler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
 		while (true) {
 			$submissions =& $directorSubmissionDao->$functionName(
-				$schedConf->getSchedConfId(),
-				Request::getUserVar('track'),
+				$schedConfId,
+				$filterTrack,
+				$directorId,
 				$searchField,
 				$searchMatch,
 				$search,
@@ -102,9 +145,11 @@ class DirectorHandler extends TrackDirectorHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign('director', $user->getFullName());
-		$templateMgr->assign('trackOptions', array(0 => Locale::Translate('director.allTracks')) + $tracks);
+		$templateMgr->assign('directorOptions', $filterDirectorOptions);
+		$templateMgr->assign('trackOptions', $filterTrackOptions);
 		$templateMgr->assign_by_ref('submissions', $submissions);
-		$templateMgr->assign('track', Request::getUserVar('track'));
+		$templateMgr->assign('filterDirector', $filterDirector);
+		$templateMgr->assign('filterTrack', $filterTrack);
 		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
 		$templateMgr->assign('durationOptions', TrackDirectorHandler::getDurationOptions());
 

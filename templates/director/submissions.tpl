@@ -18,10 +18,14 @@
 	<li{if $pageToDisplay == "submissionsArchives"} class="current"{/if}><a href="{url op="submissions" path="submissionsArchives"}">{translate key="common.queue.short.submissionsArchives"}</a></li>
 </ul>
 
-<br />
+<form action="#">
+<ul class="filter">
+	<li>{translate key="director.submissions.assignedTo"}: <select name="filterDirector" onchange="location.href='{url|escape path=$pageToDisplay searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth filterDirector="DIRECTOR" escape=false}'.replace('DIRECTOR', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$directorOptions selected=$filterDirector}</select></li>
+	<li>{translate key="director.submissions.inTrack"}: <select name="filterTrack" onchange="location.href='{url|escape path=$pageToDisplay searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth filterTrack="TRACK_ID" escape=false}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$trackOptions selected=$filterTrack}</select></li>
+</ul>
+</form>
 
 <form method="post" name="submit" action="{url op="submissions" path=$pageToDisplay}">
-	{if $track}<input type="hidden" name="track" value="{$track|escape:"quotes"}"/>{/if}
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>
@@ -36,9 +40,6 @@
 &nbsp;
 
 {include file="director/$pageToDisplay.tpl"}
-<form action="#">
-{translate key="track.track"}: <select name="track" onchange="location.href='{url|escape path=$pageToDisplay searchField=$searchField searchMatch=$searchMatch search=$search track="TRACK_ID" escape=false}'.replace('TRACK_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$trackOptions selected=$track}</select>
-</form>
 
 {if ($pageToDisplay == "submissionsInReview")}
 <br />
