@@ -39,6 +39,7 @@
 {url|assign:"url" op="download" path=$paperId|to_array:$galley->getGalleyId()}
 <p>{translate key="paper.nonpdf.note" url=$url}</p>
 
+{call_hook name="Templates::Paper::Interstitial::PageFooter"}
 </div>
 </div>
 </div>

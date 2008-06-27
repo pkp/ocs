@@ -14,6 +14,7 @@
 <input type="button" onclick="window.close()" value="{translate key="common.close"}" class="button defaultButton" />
 {/if}
 
+{call_hook name="Templates::Rt::Footer::PageFooter"}
 </div>
 </div>
 </div>

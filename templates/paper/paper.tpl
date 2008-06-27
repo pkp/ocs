@@ -169,7 +169,7 @@
 	{/if}
 	<a class="action" href="{url page="comment" op="add" path=$paper->getPaperId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a>
 {/if}
-
+{call_hook name="Templates::Paper::Footer::PageFooter"}
 </div>
 
 </div>
