@@ -209,7 +209,7 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 						$form->readInputData();
 						if ($form->validate()) {
 							$form->execute();
-							Request::redirect(null, 'manager', 'plugin');
+							Request::redirect(null, null, 'manager', 'plugin');
 						} else {
 							$this->setBreadCrumbs(true);
 							$form->display();
@@ -220,11 +220,11 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 						$form->display();
 					}
 				} else {
-					Request::redirect(null, 'manager');
+					Request::redirect(null, null, 'manager');
 				}
 				break;
 			default:
-				Request::redirect(null, 'manager');
+				Request::redirect(null, null, 'manager');
 		}
 		return $returner;
 	}
