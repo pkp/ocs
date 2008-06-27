@@ -3,10 +3,10 @@
 /**
  * @file EditableFile.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins.generic.translator
+ * @package file 
  * @class EditableFile
  *
  * Hack-and-slash class to help with editing XML files without losing

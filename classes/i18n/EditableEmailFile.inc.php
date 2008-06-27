@@ -3,16 +3,18 @@
 /**
  * @file EditableEmailFile.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins.generic.translator
+ * @package i18n 
  * @class EditableEmailFile
  *
  * This class supports updating for email XML files.
  *
  * $Id$
  */
+
+import('file.EditableFile');
 
 class EditableEmailFile {
 	var $locale;
