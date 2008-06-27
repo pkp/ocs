@@ -45,22 +45,22 @@
 <div id="headerTitle">
 <h1>
 {if $displaySitePageHeaderLogo}
-	<img src="{$publicFilesDir}/{$displaySitePageHeaderLogo.uploadName|escape:"url"}" width="{$displaySitePageHeaderLogo.width|escape}" height="{$displaySitePageHeaderLogo.height|escape}" style="border: 0;" alt="" />
+	<img src="{$publicFilesDir}/{$displaySitePageHeaderLogo.uploadName|escape:"url"}" width="{$displaySitePageHeaderLogo.width|escape}" height="{$displaySitePageHeaderLogo.height|escape}" alt="" />
 {elseif $displayPageHeaderLogo}
-	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" style="border: 0;" alt="" />
+	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" alt="" />
 {elseif $displayConferencePageHeaderLogo}
-	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderLogo.uploadName|escape:"url"}" width="{$displayConferencePageHeaderLogo.width|escape}" height="{$displayConferencePageHeaderLogo.height|escape}" style="border: 0;" alt="" />
+	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderLogo.uploadName|escape:"url"}" width="{$displayConferencePageHeaderLogo.width|escape}" height="{$displayConferencePageHeaderLogo.height|escape}" alt="" />
 {/if}
 {if $displaySitePageHeaderTitle && is_array($displaySitePageHeaderTitle)}
-	<img src="{$publicFilesDir}/{$displaySitePageHeaderTitle.uploadName|escape:"url"}" width="{$displaySitePageHeaderTitle.width|escape}" height="{$displaySitePageHeaderTitle.height|escape}" style="border: 0;" alt="" />
+	<img src="{$publicFilesDir}/{$displaySitePageHeaderTitle.uploadName|escape:"url"}" width="{$displaySitePageHeaderTitle.width|escape}" height="{$displaySitePageHeaderTitle.height|escape}" alt="" />
 {elseif $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" style="border: 0;" alt="" />
+	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" alt="" />
 {elseif $displayPageHeaderTitle}
 	{$displayPageHeaderTitle}
 {elseif $alternatePageHeader}
 	{$alternatePageHeader}
 {elseif $displayConferencePageHeaderTitle && is_array($displayConferencePageHeaderTitle)}
-	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderTitle.uploadName|escape:"url"}" width="{$displayConferencePageHeaderTitle.width|escape}" height="{$displayConferencePageHeaderTitle.height|escape}" style="border: 0;" alt="" />
+	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderTitle.uploadName|escape:"url"}" width="{$displayConferencePageHeaderTitle.width|escape}" height="{$displayConferencePageHeaderTitle.height|escape}" alt="" />
 {elseif $displayConferencePageHeaderTitle}
 	{$displayConferencePageHeaderTitle}
 {elseif $alternateConferencePageHeader}
