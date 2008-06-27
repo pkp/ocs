@@ -191,6 +191,14 @@ class SchedConf extends DataObject {
 		return $this->setData('endDate', $endDate);
 	}
 
+	/**
+	 * Get the localized introduction of the scheduled conference
+	 * @return string
+	 */
+	function getSchedConfIntroduction() {
+		return $this->getLocalizedSetting('introduction');
+	}
+
 	//
 	// Helper functions making use of both the scheduled conference
 	// and Conference.

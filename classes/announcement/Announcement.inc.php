@@ -105,6 +105,21 @@ class Announcement extends DataObject {
 	}
 
 	/**
+	 * Get full localized announcement title including type name
+	 * @return string
+	 */
+	function getAnnouncementTitleFull() {
+		$typeName = $this->getAnnouncementTypeName();
+		$title = $this->getAnnouncementTitle();
+
+		if (!empty($typeName)) {
+			return $typeName . ': ' . $title;
+		} else {
+			return $title;
+		}
+	}
+
+	/**
 	 * Get announcement title.
 	 * @param $locale
 	 * @return string
@@ -199,11 +214,27 @@ class Announcement extends DataObject {
 	}
 
 	/**
+	 * Get announcement posted datetime.
+	 * @return datetime (YYYY-MM-DD HH:MM:SS)
+	 */
+	function getDatetimePosted() {
+		return $this->getData('datePosted');
+	}
+
+	/**
 	 * Set announcement posted date.
 	 * @param $datePosted date (YYYY-MM-DD)
 	 */
 	function setDatePosted($datePosted) {
 		return $this->setData('datePosted', $datePosted);
+	}
+
+	/**
+	 * Set announcement posted datetime.
+	 * @param $datetimePosted date (YYYY-MM-DD HH:MM:SS)
+	 */
+	function setDatetimePosted($datetimePosted) {
+		return $this->setData('datePosted', $datetimePosted);
 	}
 }
 
