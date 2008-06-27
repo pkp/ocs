@@ -44,27 +44,17 @@
 <div id="header">
 <div id="headerTitle">
 <h1>
-{if $displaySitePageHeaderLogo}
-	<img src="{$publicFilesDir}/{$displaySitePageHeaderLogo.uploadName|escape:"url"}" width="{$displaySitePageHeaderLogo.width|escape}" height="{$displaySitePageHeaderLogo.height|escape}" alt="" />
-{elseif $displayPageHeaderLogo}
-	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" alt="" />
-{elseif $displayConferencePageHeaderLogo}
-	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderLogo.uploadName|escape:"url"}" width="{$displayConferencePageHeaderLogo.width|escape}" height="{$displayConferencePageHeaderLogo.height|escape}" alt="" />
+{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
+	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
 {/if}
 {if $displaySitePageHeaderTitle && is_array($displaySitePageHeaderTitle)}
-	<img src="{$publicFilesDir}/{$displaySitePageHeaderTitle.uploadName|escape:"url"}" width="{$displaySitePageHeaderTitle.width|escape}" height="{$displaySitePageHeaderTitle.height|escape}" alt="" />
+	<img src="{$publicFilesDir}/{$displaySitePageHeaderTitle.uploadName|escape:"url"}" width="{$displaySitePageHeaderTitle.width|escape}" height="{$displaySitePageHeaderTitle.height|escape}" {if $displaySitePageHeaderTitle.altText != ''}alt="{$displaySitePageHeaderTitle.altText|escape}"{else}alt="{translate key="common.sitePageHeader.altText"}"{/if} />
 {elseif $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" alt="" />
+	<img src="{$publicConferenceFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitle.altText != ''}alt="{$displayPageHeaderTitle.altText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if}/>
 {elseif $displayPageHeaderTitle}
 	{$displayPageHeaderTitle}
 {elseif $alternatePageHeader}
 	{$alternatePageHeader}
-{elseif $displayConferencePageHeaderTitle && is_array($displayConferencePageHeaderTitle)}
-	<img src="{$publicConferenceFilesDir}/{$displayConferencePageHeaderTitle.uploadName|escape:"url"}" width="{$displayConferencePageHeaderTitle.width|escape}" height="{$displayConferencePageHeaderTitle.height|escape}" alt="" />
-{elseif $displayConferencePageHeaderTitle}
-	{$displayConferencePageHeaderTitle}
-{elseif $alternateConferencePageHeader}
-	{$alternateConferencePageHeader}
 {elseif $siteTitle}
 	{$siteTitle}
 {else}

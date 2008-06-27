@@ -47,7 +47,18 @@
 {if $homeHeaderTitleImage[$formLocale]}
 {translate key="common.fileName"}: {$homeHeaderTitleImage[$formLocale].name|escape} {$homeHeaderTitleImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteHomeHeaderTitleImage" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicConferenceFilesDir}/{$homeHeaderTitleImage[$formLocale].uploadName|escape}" width="{$homeHeaderTitleImage[$formLocale].width|escape}" height="{$homeHeaderTitleImage[$formLocale].height|escape}" style="border: 0;" alt="" />
+<img src="{$publicConferenceFilesDir}/{$homeHeaderTitleImage[$formLocale].uploadName|escape}" width="{$homeHeaderTitleImage[$formLocale].width|escape}" height="{$homeHeaderTitleImage[$formLocale].height|escape}" style="border: 0;" alt="{translate key="common.homePageHeader.altText"}" />
+<br />
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="homeHeaderTitleImageAltText" key="common.altText"}</td>
+		<td width="80%" class="value"><input type="text" name="homeHeaderTitleImageAltText[{$formLocale|escape}]" value="{$homeHeaderTitleImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td class="value"><span class="instruct">{translate key="common.altTextInstructions"}</span></td>
+	</tr>
+</table>
 {/if}
 
 <h4>{translate key="manager.setup.layout.conferenceLogo"}</h4>
@@ -59,10 +70,21 @@
 	</tr>
 </table>
 
-{if $homeHeaderLogoImage}
+{if $homeHeaderLogoImage[$formLocale]}
 {translate key="common.fileName"}: {$homeHeaderLogoImage[$formLocale].name|escape} {$homeHeaderLogoImage.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteHomeHeaderLogoImage" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicConferenceFilesDir}/{$homeHeaderLogoImage[$formLocale].uploadName|escape}" width="{$homeHeaderLogoImage[$formLocale].width|escape}" height="{$homeHeaderLogoImage[$formLocale].height|escape}" style="border: 0;" alt="" />
+<img src="{$publicConferenceFilesDir}/{$homeHeaderLogoImage[$formLocale].uploadName|escape}" width="{$homeHeaderLogoImage[$formLocale].width|escape}" height="{$homeHeaderLogoImage[$formLocale].height|escape}" style="border: 0;" alt="{translate key="common.homePageHeaderLogo.altText"}" />
+<br />
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="homeHeaderLogoImageAltText" key="common.altText"}</td>
+		<td width="80%" class="value"><input type="text" name="homeHeaderLogoImageAltText[{$formLocale|escape}]" value="{$homeHeaderLogoImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td class="value"><span class="instruct">{translate key="common.altTextInstructions"}</span></td>
+		</tr>
+</table>
 {/if}
 
 <div class="separator"></div>
@@ -87,7 +109,18 @@
 {if $pageHeaderTitleImage[$formLocale]}
 {translate key="common.fileName"}: {$pageHeaderTitleImage[$formLocale].name|escape} {$pageHeaderTitleImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePageHeaderTitleImage" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicConferenceFilesDir}/{$pageHeaderTitleImage[$formLocale].uploadName|escape}" width="{$pageHeaderTitleImage[$formLocale].width|escape}" height="{$pageHeaderTitleImage[$formLocale].height|escape}" style="border: 0;" alt="" />
+<img src="{$publicConferenceFilesDir}/{$pageHeaderTitleImage[$formLocale].uploadName|escape}" width="{$pageHeaderTitleImage[$formLocale].width|escape}" height="{$pageHeaderTitleImage[$formLocale].height|escape}" style="border: 0;" alt="{translate key="common.pageHeader.altText"}" />
+<br />
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="pageHeaderTitleImageAltText" key="common.altText"}</td>
+		<td width="80%" class="value"><input type="text" name="pageHeaderTitleImageAltText[{$formLocale|escape}]" value="{$pageHeaderTitleImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td class="value"><span class="instruct">{translate key="common.altTextInstructions"}</span></td>
+		</tr>
+</table>
 {/if}
 
 <h4>{translate key="manager.setup.layout.conferenceLogo"}</h4>
@@ -102,7 +135,18 @@
 {if $pageHeaderLogoImage[$formLocale]}
 {translate key="common.fileName"}: {$pageHeaderLogoImage[$formLocale].name|escape} {$pageHeaderLogoImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePageHeaderLogoImage" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicConferenceFilesDir}/{$pageHeaderLogoImage[$formLocale].uploadName|escape}" width="{$pageHeaderLogoImage[$formLocale].width|escape}" height="{$pageHeaderLogoImage[$formLocale].height|escape}" style="border: 0;" alt="" />
+<img src="{$publicConferenceFilesDir}/{$pageHeaderLogoImage[$formLocale].uploadName|escape}" width="{$pageHeaderLogoImage[$formLocale].width|escape}" height="{$pageHeaderLogoImage[$formLocale].height|escape}" style="border: 0;" alt="{translate key="common.pageHeaderLogo.altText"}" />
+<br />
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="pageHeaderLogoImageAltText" key="common.altText"}</td>
+		<td width="80%" class="value"><input type="text" name="pageHeaderLogoImageAltText[{$formLocale|escape}]" value="{$pageHeaderLogoImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td class="value"><span class="instruct">{translate key="common.altTextInstructions"}</span></td>
+		</tr>
+</table>
 {/if}
 
 <h4>{translate key="manager.setup.layout.alternateHeader"}</h4>

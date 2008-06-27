@@ -57,7 +57,18 @@
 {if $homepageImage[$formLocale]}
 {translate key="common.fileName"}: {$homepageImage[$formLocale].name} {$homepageImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteHomepageImage" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicConferenceFilesDir}/{$homepageImage[$formLocale].uploadName}" width="{$homepageImage[$formLocale].width}" height="{$homepageImage[$formLocale].height}" style="border: 0;" alt="" />
+<img src="{$publicConferenceFilesDir}/{$homepageImage[$formLocale].uploadName}" width="{$homepageImage[$formLocale].width}" height="{$homepageImage[$formLocale].height}" style="border: 0;" alt="{translate key="common.conferenceHomepageImage.altText"}" />
+<br />
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="homepageImageAltText" key="common.altText"}</td>
+		<td width="80%" class="value"><input type="text" name="homepageImageAltText[{$formLocale|escape}]" value="{$homepageImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td class="value"><span class="instruct">{translate key="common.altTextInstructions"}</span></td>
+		</tr>
+</table>
 {/if}
 
 <h4>{translate key="manager.setup.additionalContent.additionalContent"}</h4>
