@@ -252,6 +252,18 @@ input.defaultButton {
 
 
 /**
+ * Homepage image
+ */
+
+#homepageImage img {
+	display: block;
+	margin: 0 auto;
+	border: 0;
+	text-align: center;
+}
+
+
+/**
  * Footer elements
  */
 
