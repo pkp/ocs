@@ -203,8 +203,8 @@ class SchedConfAction {
 	 * @return bool
 	 */
 	function submissionsOpen(&$schedConf) {
-		$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate', false);
-		$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate', false);
+		$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate');
+		$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate');
 
 		$currentTime = time();
 

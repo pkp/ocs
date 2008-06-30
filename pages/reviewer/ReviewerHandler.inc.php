@@ -78,7 +78,7 @@ class ReviewerHandler extends Handler {
 	 */
 	function &validateAccessKey($userId, $reviewId, $newKey = null) {
 		$schedConf =& Request::getSchedConf();
-		if (!$schedConf || !$schedConf->getSetting('reviewerAccessKeysEnabled', true)) {
+		if (!$schedConf || !$schedConf->getSetting('reviewerAccessKeysEnabled')) {
 			$accessKey = false;
 			return $accessKey;
 		}

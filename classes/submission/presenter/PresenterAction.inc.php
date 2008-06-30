@@ -186,7 +186,7 @@ class PresenterAction extends Action {
 						$email->addRecipient($director->getEmail(), $director->getFullName());
 					}
 				} else {
-					$email->addRecipient($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+					$email->addRecipient($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 				}
 			}
 

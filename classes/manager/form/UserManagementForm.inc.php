@@ -317,7 +317,7 @@ class UserManagementForm extends Form {
 				import('mail.MailTemplate');
 				$mail = &new MailTemplate('USER_REGISTER');
 
-				if ($schedConf) $mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+				if ($schedConf) $mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 				elseif ($conference) $mail->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 				else {
 					$site =& Request::getSite();

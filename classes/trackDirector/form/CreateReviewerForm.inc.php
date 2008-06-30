@@ -44,7 +44,7 @@ class CreateReviewerForm extends Form {
 		// reviewer access, it's not necessary;
 		// otherwise, it should default to on.
 		$schedConf =& Request::getSchedConf();
-		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled', true);
+		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled');
 		$this->setData('sendNotify', $reviewerAccessKeysEnabled?false:true);
 	}
 
@@ -175,7 +175,7 @@ class CreateReviewerForm extends Form {
 			// Send welcome email to user
 			import('mail.MailTemplate');
 			$mail = &new MailTemplate('USER_REGISTER');
-			$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+			$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 			$mail->assignParams(array('username' => $this->getData('username'), 'password' => $password));
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 			$mail->send();

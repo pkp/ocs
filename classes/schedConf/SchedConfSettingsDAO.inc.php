@@ -38,11 +38,10 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	 * Retrieve a scheduled conference setting value.
 	 * @param $schedConfId int
 	 * @param $name string
-	 * @param $includeParent boolean optional
 	 * @param $locale string optional
 	 * @return mixed
 	 */
-	function &getSetting($schedConfId, $name, $includeParent = false, $locale = null) {
+	function &getSetting($schedConfId, $name, $locale = null) {
 		$cache =& $this->_getCache($schedConfId);
 		$returner = $cache->get($name);
 		if ($locale !== null) {
@@ -71,7 +70,7 @@ class SchedConfSettingsDAO extends SettingsDAO {
 	 * @param $schedConfId int
 	 * @return array
 	 */
-	function &getSchedConfSettings($schedConfId, $includeParent = false) {
+	function &getSchedConfSettings($schedConfId) {
 		$schedConfSettings = array();
 
 		$result = &$this->retrieve(

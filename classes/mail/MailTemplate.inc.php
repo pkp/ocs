@@ -123,7 +123,9 @@ class MailTemplate extends Mail {
 		if ($user) {
 			$this->setFrom($user->getEmail(), $user->getFullName());
 		} elseif ($schedConf) {
-			$this->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+			$this->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
+		} elseif ($conference) {
+			$this->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 		} else {
 			$site = &Request::getSite();
 			$this->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
@@ -190,7 +192,9 @@ class MailTemplate extends Mail {
 		$schedConf =& Request::getSchedConf();
 
 		if ($schedConf) {
-			$paramArray['principalContactSignature'] = $schedConf->getSetting('contactName', true);
+			$paramArray['principalContactSignature'] = $schedConf->getSetting('contactName');
+		} elseif ($conference) {
+			$paramArray['principalContactSignature'] = $conference->getSetting('contactName');
 		} else {
 			$site = &Request::getSite();
 			$paramArray['principalContactSignature'] = $site->getSiteContactName();

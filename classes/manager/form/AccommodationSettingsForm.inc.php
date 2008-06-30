@@ -41,7 +41,7 @@ class AccommodationSettingsForm extends Form {
 		$site = &Request::getSite();
 		$templateMgr->assign('helpTopicId','conference.currentConferences.accommodation');
 		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
-		$templateMgr->assign('accommodationFiles', $schedConf->getSetting('accommodationFiles', 'object', true));
+		$templateMgr->assign('accommodationFiles', $schedConf->getSetting('accommodationFiles'));
 		parent::display();
 	}
 
@@ -51,7 +51,7 @@ class AccommodationSettingsForm extends Form {
 	function initData() {
 		$schedConf = &Request::getSchedConf();
 		$this->_data = array();
-		$this->_data['accommodationDescription'] = $schedConf->getSetting('accommodationDescription', 'string', true);
+		$this->_data['accommodationDescription'] = $schedConf->getSetting('accommodationDescription');
 	}
 
 	/**

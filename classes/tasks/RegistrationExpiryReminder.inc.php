@@ -37,11 +37,11 @@ class RegistrationExpiryReminder extends ScheduledTask {
 
 		$registrationType = &$registrationTypeDao->getRegistrationType($registration->getTypeId());
 
-		$registrationName = $schedConf->getSetting('registrationName', true);
-		$registrationEmail = $schedConf->getSetting('registrationEmail', true);
-		$registrationPhone = $schedConf->getSetting('registrationPhone', true);
-		$registrationFax = $schedConf->getSetting('registrationFax', true);
-		$registrationMailingAddress = $schedConf->getSetting('registrationMailingAddress', true);
+		$registrationName = $schedConf->getSetting('registrationName');
+		$registrationEmail = $schedConf->getSetting('registrationEmail');
+		$registrationPhone = $schedConf->getSetting('registrationPhone');
+		$registrationFax = $schedConf->getSetting('registrationFax');
+		$registrationMailingAddress = $schedConf->getSetting('registrationMailingAddress');
 
 		$registrationContactSignature = $registrationName;
 
@@ -83,9 +83,9 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		$curDay = $curDate['day'];
 
 		// Check if expiry notification before months is enabled
-		if ($schedConf->getSetting('enableRegistrationExpiryReminderBeforeMonths', true)) {
+		if ($schedConf->getSetting('enableRegistrationExpiryReminderBeforeMonths')) {
 
-			$beforeMonths = $schedConf->getSetting('numMonthsBeforeRegistrationExpiryReminder', true);
+			$beforeMonths = $schedConf->getSetting('numMonthsBeforeRegistrationExpiryReminder');
 			$beforeYears = (int)floor($beforeMonths/12);
 			$beforeMonths = (int)fmod($beforeMonths,12);
 
@@ -105,9 +105,9 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		}
 
 		// Check if expiry notification before weeks is enabled
-		if ($schedConf->getSetting('enableRegistrationExpiryReminderBeforeWeeks', true)) {
+		if ($schedConf->getSetting('enableRegistrationExpiryReminderBeforeWeeks')) {
 
-			$beforeWeeks = $schedConf->getSetting('numWeeksBeforeRegistrationExpiryReminder', true);
+			$beforeWeeks = $schedConf->getSetting('numWeeksBeforeRegistrationExpiryReminder');
 			$beforeDays = $beforeWeeks * 7;
 
 			$expiryMonth = $curMonth + (int)floor(($curDay+$beforeDays)/31);
@@ -129,7 +129,7 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		// Check if expiry notification after months is enabled
 		if ($schedConf->getSetting('enableRegistrationExpiryReminderAfterMonths')) {
 
-			$afterMonths = $schedConf->getSetting('numMonthsAfterRegistrationExpiryReminder', true);
+			$afterMonths = $schedConf->getSetting('numMonthsAfterRegistrationExpiryReminder');
 			$afterYears = (int)floor($afterMonths/12);
 			$afterMonths = (int)fmod($afterMonths,12);
 
@@ -158,9 +158,9 @@ class RegistrationExpiryReminder extends ScheduledTask {
 		}
 
 		// Check if expiry notification after weeks is enabled
-		if ($schedConf->getSetting('enableRegistrationExpiryReminderAfterWeeks', true)) {
+		if ($schedConf->getSetting('enableRegistrationExpiryReminderAfterWeeks')) {
 
-			$afterWeeks = $schedConf->getSetting('numWeeksAfterRegistrationExpiryReminder', true);
+			$afterWeeks = $schedConf->getSetting('numWeeksAfterRegistrationExpiryReminder');
 			$afterDays = $afterWeeks * 7;
 
 			if (($curDay - $afterDays) <= 0) {

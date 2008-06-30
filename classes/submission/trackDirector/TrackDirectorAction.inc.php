@@ -185,8 +185,8 @@ class TrackDirectorAction extends Action {
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($trackDirectorSubmission->getPaperId(), $reviewerId, $stage);
 
 			$schedConf = &Request::getSchedConf();
-			if ($schedConf->getSetting('numWeeksPerReview', true) != null)
-				TrackDirectorAction::setDueDate($trackDirectorSubmission->getPaperId(), $reviewAssignment->getReviewId(), null, $schedConf->getSetting('numWeeksPerReview',true));
+			if ($schedConf->getSetting('numWeeksPerReview') != null)
+				TrackDirectorAction::setDueDate($trackDirectorSubmission->getPaperId(), $reviewAssignment->getReviewId(), null, $schedConf->getSetting('numWeeksPerReview'));
 
 			// Add log
 			import('paper.log.PaperLog');

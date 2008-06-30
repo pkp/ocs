@@ -100,7 +100,7 @@ class CreateAccountForm extends Form {
 		import('schedConf.SchedConfAction');
 
 		$templateMgr->assign('privacyStatement', $conference->getLocalizedSetting('privacyStatement'));
-		$templateMgr->assign('enableOpenAccessNotification', $schedConf->getSetting('enableOpenAccessNotification', true)==1?1:0);
+		$templateMgr->assign('enableOpenAccessNotification', $schedConf->getSetting('enableOpenAccessNotification')==1?1:0);
 		$templateMgr->assign('allowRegReader', SchedConfAction::allowRegReader($schedConf));
 		$templateMgr->assign('allowRegPresenter', SchedConfAction::allowRegPresenter($schedConf));
 		$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
@@ -177,7 +177,7 @@ class CreateAccountForm extends Form {
 
 			// Send email validation request to user
 			$mail =& new MailTemplate('USER_VALIDATE');
-			$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName'), true);
+			$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 			$mail->assignParams(array(
 				'userFullName' => $user->getFullName(),
 				'activateUrl' => Request::url(null, null, 'user', 'activateUser', array($user->getUsername(), $accessKey))
@@ -189,7 +189,7 @@ class CreateAccountForm extends Form {
 		if ($sendPassword) {
 			// Send welcome email to user
 			$mail = &new MailTemplate('USER_REGISTER');
-			$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+			$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 			$mail->assignParams(array(
 				'username' => $user->getUsername(),
 				'password' => String::substr($password, 0, 30), // Prevent mailer abuse via long passwords

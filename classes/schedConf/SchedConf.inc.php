@@ -221,25 +221,23 @@ class SchedConf extends DataObject {
 
 	/**
 	 * Retrieve array of scheduled conference settings.
-	 * @param $includeParent
 	 * @return array
 	 */
-	function getSettings($includeParent = false) {
+	function getSettings() {
 		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-		return $schedConfSettingsDao->getSchedConfSettings($this->getData('schedConfId'), $includeParent);
+		return $schedConfSettingsDao->getSchedConfSettings($this->getData('schedConfId'));
 	}
 
 	/**
 	 * Get a localized scheduled conference setting.
 	 * @param $name string
-	 * @param $includeParent boolean
 	 * @return mixed
 	 */
-	function &getLocalizedSetting($name, $includeParent = false) {
-		$returner = $this->getSetting($name, $includeParent, Locale::getLocale());
+	function &getLocalizedSetting($name) {
+		$returner = $this->getSetting($name, Locale::getLocale());
 		if ($returner === null) {
 			unset($returner);
-			$returner = $this->getSetting($name, $includeParent, Locale::getPrimaryLocale());
+			$returner = $this->getSetting($name, Locale::getPrimaryLocale());
 		}
 		return $returner;
 	}
@@ -247,13 +245,12 @@ class SchedConf extends DataObject {
 	/**
 	 * Retrieve a scheduled conference setting value.
 	 * @param $name
-	 * @param $includeParent
 	 * @param $locale string
 	 * @return mixed
 	 */
-	function &getSetting($name, $includeParent = false, $locale = null) {
+	function &getSetting($name, $locale = null) {
 		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-		$setting =& $schedConfSettingsDao->getSetting($this->getData('schedConfId'), $name, $includeParent, $locale);
+		$setting =& $schedConfSettingsDao->getSetting($this->getData('schedConfId'), $name, $locale);
 		return $setting;
 	}
 

@@ -35,7 +35,7 @@ class AboutHandler extends Handler {
 
 			if($schedConf) {
 				$templateMgr->assign('showAboutSchedConf', true);
-				$settings = $schedConf->getSettings(true);
+				$settings = $schedConf->getSettings();
 			} else {
 				$templateMgr->assign('showAboutSchedConf', false);
 				$settings = $conference->getSettings();
@@ -100,7 +100,7 @@ class AboutHandler extends Handler {
 		$schedConf = &Request::getSchedConf();
 		$conference =& Request::getConference();
 
-		$settings = ($schedConf? $schedConf->getSettings(true):$conference->getSettings());
+		$settings = ($schedConf? $schedConf->getSettings():$conference->getSettings());
 		$templateMgr = &TemplateManager::getManager();
 
 		$templateMgr->assign_by_ref('conferenceSettings', $settings);
@@ -121,7 +121,7 @@ class AboutHandler extends Handler {
 		$schedConfId = ($schedConf? $schedConf->getSchedConfId():-1);
 
 		if($schedConf)
-			$settings = $schedConf->getSettings(true);
+			$settings = $schedConf->getSettings();
 		else
 			$settings =& $conference->getSettings();
 
@@ -149,8 +149,8 @@ class AboutHandler extends Handler {
 			$eventContributors = $schedConf->getSetting('contributors');
 			if (is_array($eventContributors)) $contributors = array_merge($contributors, $eventContributors);
 
-			$sponsorNote = $schedConf->getLocalizedSetting('sponsorNote', true);
-			$eventSponsors = $schedConf->getSetting('sponsors', false);
+			$sponsorNote = $schedConf->getLocalizedSetting('sponsorNote');
+			$eventSponsors = $schedConf->getSetting('sponsors');
 			if (is_array($eventSponsors)) $sponsors = array_merge($sponsors, $eventSponsors);
 		}
 
@@ -224,7 +224,7 @@ class AboutHandler extends Handler {
 		// FIXME: This is pretty inefficient. Should be cached.
 
 		if($schedConf) {
-			$settings = $schedConf->getSettings(true);
+			$settings = $schedConf->getSettings();
 			$schedConfId = $schedConf->getSchedConfId();
 		} else {
 			$settings = $conference->getSettings();
@@ -287,7 +287,7 @@ class AboutHandler extends Handler {
 		$conference =& Request::getConference();
 
 		$templateMgr = &TemplateManager::getManager();
-		$settings = ($schedConf? $schedConf->getSettings(true): $conference->getSettings());
+		$settings = ($schedConf? $schedConf->getSettings(): $conference->getSettings());
 		$templateMgr->assign('conferenceSettings', $settings);
 
 		$templateMgr->display('about/editorialPolicies.tpl');
@@ -309,11 +309,11 @@ class AboutHandler extends Handler {
 
 		if (!$schedConf || !$conference) Request::redirect(null, null, 'about');
 
-		$registrationName = &$schedConf->getSetting('registrationName', true);
-		$registrationEmail = &$schedConf->getSetting('registrationEmail', true);
-		$registrationPhone = &$schedConf->getSetting('registrationPhone', true);
-		$registrationFax = &$schedConf->getSetting('registrationFax', true);
-		$registrationMailingAddress = &$schedConf->getSetting('registrationMailingAddress', true);
+		$registrationName = &$schedConf->getSetting('registrationName');
+		$registrationEmail = &$schedConf->getSetting('registrationEmail');
+		$registrationPhone = &$schedConf->getSetting('registrationPhone');
+		$registrationFax = &$schedConf->getSetting('registrationFax');
+		$registrationMailingAddress = &$schedConf->getSetting('registrationMailingAddress');
 		$registrationAdditionalInformation = &$schedConf->getLocalizedSetting('registrationAdditionalInformation');
 		$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
 
@@ -339,7 +339,7 @@ class AboutHandler extends Handler {
 		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
 
-		$settings = ($schedConf? $schedConf->getSettings(true):$conference->getSettings());
+		$settings = ($schedConf? $schedConf->getSettings():$conference->getSettings());
 
 		$templateMgr = &TemplateManager::getManager();
 		$submissionChecklist = $schedConf?$schedConf->getLocalizedSetting('submissionChecklist'):null;

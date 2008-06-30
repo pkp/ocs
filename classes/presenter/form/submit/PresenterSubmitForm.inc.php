@@ -92,14 +92,14 @@ class PresenterSubmitForm extends Form {
 		// Send presenter notification email
 		import('mail.PaperMailTemplate');
 		$mail = &new PaperMailTemplate($paper, $mailTemplate);
-		$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+		$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 		if ($mail->isEnabled()) {
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 			// If necessary, BCC the acknowledgement to someone.
 			if($schedConf->getSetting('copySubmissionAckPrimaryContact')) {
 				$mail->addBcc(
-					$schedConf->getSetting('contactEmail', true),
-					$schedConf->getSetting('contactName', true)
+					$schedConf->getSetting('contactEmail'),
+					$schedConf->getSetting('contactName')
 				);
 			}
 			if($schedConf->getSetting('copySubmissionAckSpecified')) {
@@ -114,7 +114,7 @@ class PresenterSubmitForm extends Form {
 			$mail->assignParams(array(
 				'presenterName' => $user->getFullName(),
 				'presenterUsername' => $user->getUsername(),
-				'editorialContactSignature' => $schedConf->getSetting('contactName', true) . "\n" . $conference->getConferenceTitle(),
+				'editorialContactSignature' => $schedConf->getSetting('contactName') . "\n" . $conference->getConferenceTitle(),
 				'submissionUrl' => Request::url(null, null, 'presenter', 'submission', $paper->getPaperId())
 			));
 			$mail->send();

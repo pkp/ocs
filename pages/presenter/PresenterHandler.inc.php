@@ -45,8 +45,8 @@ class PresenterHandler extends Handler {
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign_by_ref('submissions', $submissions);
 
-		$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate', false);
-		$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate', false);
+		$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate');
+		$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate');
 
 		if (Validation::isDirector($schedConf->getConferenceId(), $schedConf->getSchedConfId()) || Validation::isTrackDirector($schedConf->getConferenceId(), $schedConf->getSchedConfId())) {
 			// Directors or track directors may always submit

@@ -35,12 +35,16 @@ class ReviewReminder extends ScheduledTask {
 
 		import('mail.PaperMailTemplate');
 
-		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled',true);
+		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled');
 
 		$email = &new PaperMailTemplate($paper, $reviewerAccessKeysEnabled?'REVIEW_REMIND_AUTO_ONECLICK':'REVIEW_REMIND_AUTO', null, false, $conference, $schedConf);
 		$email->setConference($conference);
 		$email->setSchedConf($schedConf);
-		$email->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+
+		$contactEmail = $schedConf->getSetting('contactEmail') ? $schedConf->getSetting('contactEmail') : $conference->getSetting('contactEmail');
+		$contactName = $schedConf->getSetting('contactName') ? $schedConf->getSetting('contactName') : $conference->getSetting('contactName');
+		$email->setFrom($contactEmail, $contactName);
+
 		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 		$email->setAssoc(PAPER_EMAIL_REVIEW_REMIND, PAPER_EMAIL_TYPE_REVIEW, $reviewId);
 
@@ -53,7 +57,7 @@ class ReviewReminder extends ScheduledTask {
 			$accessKeyManager =& new AccessKeyManager();
 
 			// Key lifetime is the typical review period plus four weeks
-			$keyLifetime = ($schedConf->getSetting('numWeeksPerReview',true) + 4) * 7;
+			$keyLifetime = ($schedConf->getSetting('numWeeksPerReview') + 4) * 7;
 			$urlParams['key'] = $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime);
 		}
 		$submissionReviewUrl = Request::url($conference->getPath(), $schedConf->getPath(), 'reviewer', 'submission', $reviewId, $urlParams);
@@ -65,7 +69,7 @@ class ReviewReminder extends ScheduledTask {
 			'schedConfUrl' => $schedConf->getUrl(),
 			'reviewerPassword' => $reviewer->getPassword(),
 			'reviewDueDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())),
-			'editorialContactSignature' => $schedConf->getSetting('contactName', true) . "\n" . $schedConf->getFullTitle(),
+			'editorialContactSignature' => $contactName . "\n" . $schedConf->getFullTitle(),
 			'passwordResetUrl' => Request::url($conference->getPath(), $schedConf->getPath(), 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId()))),
 			'submissionReviewUrl' => $submissionReviewUrl
 		);
@@ -97,10 +101,10 @@ class ReviewReminder extends ScheduledTask {
 				if ($schedConf == null || $schedConf->getSchedConfId() != $paper->getSchedConfId()) {
 					$schedConf = &$schedConfDao->getSchedConf($paper->getSchedConfId());
 
-					$inviteReminderEnabled = $schedConf->getSetting('remindForInvite', true);
-					$submitReminderEnabled = $schedConf->getSetting('remindForSubmit', true);
-					$inviteReminderDays = $schedConf->getSetting('numDaysBeforeInviteReminder', true);
-					$submitReminderDays = $schedConf->getSetting('numDaysBeforeSubmitReminder', true);
+					$inviteReminderEnabled = $schedConf->getSetting('remindForInvite');
+					$submitReminderEnabled = $schedConf->getSetting('remindForSubmit');
+					$inviteReminderDays = $schedConf->getSetting('numDaysBeforeInviteReminder');
+					$submitReminderDays = $schedConf->getSetting('numDaysBeforeSubmitReminder');
 				}
 			}
 

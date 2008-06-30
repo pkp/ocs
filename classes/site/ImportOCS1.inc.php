@@ -429,7 +429,7 @@ class ImportOCS1 {
 					import('mail.MailTemplate');
 					$mail = &new MailTemplate('USER_REGISTER');
 
-					$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+					$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 					$mail->assignParams(array('username' => $user->getUsername(), 'password' => $password, 'conferenceName' => $schedConf->getFullTitle()));
 					$mail->addRecipient($user->getEmail(), $user->getFullName());
 					$mail->send();
@@ -562,7 +562,7 @@ class ImportOCS1 {
 					import('mail.MailTemplate');
 					$mail = &new MailTemplate('USER_REGISTER');
 
-					$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+					$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 					$mail->assignParams(array('username' => $user->getUsername(), 'password' => $password, 'conferenceName' => $schedConf->getFullTitle()));
 					$mail->addRecipient($user->getEmail(), $user->getFullName());
 					$mail->send();
@@ -651,7 +651,7 @@ class ImportOCS1 {
 					import('mail.MailTemplate');
 					$mail = &new MailTemplate('USER_REGISTER');
 
-					$mail->setFrom($schedConf->getSetting('contactEmail', true), $schedConf->getSetting('contactName', true));
+					$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 					$mail->assignParams(array('username' => $user->getUsername(), 'password' => $password, 'conferenceName' => $schedConf->getFullTitle()));
 					$mail->addRecipient($user->getEmail(), $user->getFullName());
 					$mail->send();

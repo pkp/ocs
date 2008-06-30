@@ -353,7 +353,7 @@ class PaperHandler extends Handler {
 				$schedConf->getConferenceId() == $conference->getConferenceId()) {
 
 			// Check if login is required for viewing.
-			if (!Validation::isLoggedIn() && $schedConf->getSetting('restrictPaperAccess', true)) {
+			if (!Validation::isLoggedIn() && $schedConf->getSetting('restrictPaperAccess')) {
 				Validation::redirectLogin();
 			}
 

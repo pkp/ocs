@@ -70,7 +70,7 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
 		$templateMgr->assign_by_ref('track', $track);
 		if($schedConf)
-			$templateMgr->assign_by_ref('conferenceSettings', $schedConf->getSettings(true));
+			$templateMgr->assign_by_ref('conferenceSettings', $schedConf->getSettings());
 		else
 			$templateMgr->assign_by_ref('conferenceSettings', $conference->getSettings());
 		$templateMgr->display('rt/metadata.tpl');

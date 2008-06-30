@@ -195,7 +195,7 @@ class TemplateManager extends Smarty {
 
 				// Assign scheduled conference stylesheet and footer (after conference stylesheet!)
 				if($schedConf) {
-					$schedConfStyleSheet = $schedConf->getSetting('schedConfStyleSheet', false);
+					$schedConfStyleSheet = $schedConf->getSetting('schedConfStyleSheet');
 					if ($schedConfStyleSheet) {
 						$this->addStyleSheet(Request::getBaseUrl() .
 						'/' .	PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()) .

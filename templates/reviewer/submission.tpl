@@ -165,7 +165,7 @@ function confirmSubmissionCheck() {
 	<td>&nbsp;</td>
 	<td>
 		<table width="100%" class="data">
-			{if ($confirmedStatus and not $declined) or not $schedConf->getSetting('restrictReviewerFileAccess', true)}
+			{if ($confirmedStatus and not $declined) or not $schedConf->getSetting('restrictReviewerFileAccess')}
 				{if $reviewAssignment->getStage() == REVIEW_STAGE_ABSTRACT}
 					<tr valign="top">
 						<td width="30%" class="label">
@@ -182,7 +182,7 @@ function confirmSubmissionCheck() {
 						</td>
 						<td class="value" width="70%">
 							{if $reviewFile}
-							{if $submission->getDateConfirmed() or not $schedConf->getSetting('restrictReviewerAccessToFile', true)}
+							{if $submission->getDateConfirmed() or not $schedConf->getSetting('restrictReviewerAccessToFile')}
 								<a href="{url op="downloadFile" path=$reviewId|to_array:$paperId:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>
 							{else}{$reviewFile->getFileName()|escape}{/if}
 							&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
