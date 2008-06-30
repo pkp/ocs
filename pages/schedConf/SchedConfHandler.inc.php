@@ -27,12 +27,12 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		SchedConfHandler::setupSchedConfTemplate($conference, $schedConf);
-		$enableAnnouncements = $schedConf->getSetting('enableAnnouncements', true);
+		$enableAnnouncements = $conference->getSetting('enableAnnouncements');
 
 		if ($enableAnnouncements) {
-			$enableAnnouncementsHomepage = $schedConf->getSetting('enableAnnouncementsHomepage', true);
+			$enableAnnouncementsHomepage = $conference->getSetting('enableAnnouncementsHomepage');
 			if ($enableAnnouncementsHomepage) {
-				$numAnnouncementsHomepage = $schedConf->getSetting('numAnnouncementsHomepage', true);
+				$numAnnouncementsHomepage = $conference->getSetting('numAnnouncementsHomepage');
 				$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 				$announcements =& $announcementDao->getNumAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $schedConf->getSchedConfId(), $numAnnouncementsHomepage);
 				$templateMgr->assign('announcements', $announcements);
