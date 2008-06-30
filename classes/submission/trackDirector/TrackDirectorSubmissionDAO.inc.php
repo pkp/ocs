@@ -243,6 +243,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$paper->setDateToPresentations($trackDirectorSubmission->getDateToPresentations());
 			$paper->setDateToArchive($trackDirectorSubmission->getDateToArchive());
 			$paper->setLastModified($trackDirectorSubmission->getLastModified());
+			$paper->setCommentsStatus($trackDirectorSubmission->getCommentsStatus());
 
 			$this->paperDao->updatePaper($paper);
 		}

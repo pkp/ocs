@@ -149,6 +149,15 @@
 		{fieldLabel name="hideAbout" key="manager.tracks.hideAbout"}
 	</td>
 </tr>
+{if $commentsEnabled}
+<tr valign="top">
+	<td class="label">{fieldLabel name="disableComments" key="comments.readerComments"}</td>
+	<td class="value">
+		<input type="checkbox" name="disableComments" id="disableComments" value="1" {if $disableComments}checked="checked"{/if} />
+		{fieldLabel name="disableComments" key="manager.tracks.disableComments"}
+	</td>
+</tr>
+{/if}
 </table>
 <div class="separator"></div>
 

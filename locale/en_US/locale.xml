@@ -310,6 +310,9 @@
 	<message key="paper.details">Details</message>
 	<message key="paper.location">Location</message>
 	<message key="paper.time">Time</message>
+	<message key="paper.comments.trackDefault">Default</message>
+	<message key="paper.comments.disable">Disable</message>
+	<message key="paper.comments.enable">Enable</message>
 
 	<!-- Submission Tracking - Common -->
 	<message key="submission.fromTime">From</message>
@@ -335,6 +338,7 @@
 	<message key="submission.addSuppFile">Add a Supplementary File</message>
 	<message key="submission.submitter">Submitter</message>
 	<message key="submission.changeTrack">Change to</message>
+	<message key="submission.changeComments">Change to</message>
 	<message key="submission.initiated">Initiated</message>
 	<message key="submission.lastModified">Last modified</message>
 	<message key="submission.ask">Ask</message>
@@ -1084,7 +1088,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.setup.aboutConference.copyrightNoticeAgree">Require authors to agree to Copyright Notice as part of the submission process.</message>
 	<message key="manager.setup.aboutConference.postCreativeCommons">Post the Creative Commons license logo on the conference website.</message>
 	<message key="manager.setup.aboutConference.archiveAccessPolicy">Archive Access Policy</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">The following settings control access to the conference archives. See section 2.4 for additional settings.</message>
+	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">The following settings control access to the conference archives. See section 2.5 for additional settings.</message>
 	<message key="manager.setup.aboutConference.privacyStatement">Privacy Statement</message>
 
 	<message key="manager.setup.aboutConference.addItemtoAboutConference">Add Item to Appear in "About the Conference"</message>
@@ -1331,6 +1335,7 @@ Title of classification system]]></message>
 	<message key="manager.tracks.peerReviewed">Peer Reviewed</message>
 	<message key="manager.tracks.directorRestriction">Items can only be submitted by Directors and Track Directors.</message>
 	<message key="manager.tracks.hideAbout">Omit this track from Track Policies</message>
+	<message key="manager.tracks.disableComments">Disable reader comments for this track.</message>
 	<message key="manager.tracks.readingTools">Reading Tools</message>
 	<message key="manager.tracks.indexed">Indexed</message>
 	<message key="manager.tracks.open">Open Submissions</message>
@@ -2467,7 +2472,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="rt.admin.settings.printerFriendly">Print version (provides a printer-friendly version of an item).</message>
 	<message key="rt.admin.settings.presenterBio">About the author (displays the bio statements entered by the author).</message>
 	<message key="rt.admin.settings.defineTerms">Look up terms (enables readers to double-click on any word in an item and send the word to a dictionary).</message>
-	<message key="rt.admin.settings.addComment">Add comment (enables readers to post comments, which Conference Directors can delete. Reader Comments must be enabled in Setup, step 2).</message>
+	<message key="rt.admin.settings.addComment">Add comment (enables readers to post comments, which Conference Directors can delete). Reader Comments must be enabled in Website Management, section 1.5).</message>
 	<message key="rt.admin.settings.emailPresenter">Email the author (leads to an email template with author's email).</message>
 	<message key="rt.admin.settings.emailOthers">Notify a colleague (leads to an email template with link to item).</message>
 	<message key="rt.admin.settings.findingReferences">Find References</message>

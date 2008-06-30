@@ -391,6 +391,11 @@ class TrackDirectorHandler extends Handler {
 		SubmissionEditHandler::restoreToQueue($args);
 	}
 
+	function updateCommentsStatus($args) {
+		import('pages.trackDirector.SubmissionEditHandler');
+		SubmissionEditHandler::updateCommentsStatus($args);
+	}
+
 
 	//
 	// Layout Editing

@@ -124,11 +124,11 @@ class PaperHandler extends Handler {
 		}
 
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
-		$enableComments = $schedConf->getSetting('enableComments', true);
-		$commentsRequireRegistration = $schedConf->getSetting('commentsRequireRegistration', true);
-		$commentsAllowAnonymous = $schedConf->getSetting('commentsAllowAnonymous', true);
+		$enableComments = $conference->getSetting('enableComments');
+		$commentsRequireRegistration = $conference->getSetting('commentsRequireRegistration');
+		$commentsAllowAnonymous = $conference->getSetting('commentsAllowAnonymous');
 
-		if ($enableComments) {
+		if ($enableComments && $paper->getEnableComments()) {
 			$comments = &$commentDao->getRootCommentsByPaperId($paper->getPaperId());
 		}
 
@@ -173,7 +173,7 @@ class PaperHandler extends Handler {
 		$commentsClosed = $schedConf->getSetting('closeComments')?true:false && (strtotime($closeCommentsDate < time()));
 		$templateMgr->assign('closeCommentsDate', $closeCommentsDate);
 		$templateMgr->assign('commentsClosed', $commentsClosed);
-		$templateMgr->assign('postingAllowed', $enableComments && (!$commentsRequireRegistration || Validation::isLoggedIn()) && !$commentsClosed);
+		$templateMgr->assign('postingAllowed', ($enableComments && !$commentsClosed && $paper->getEnableComments()) && (!$commentsRequireRegistration || Validation::isLoggedIn()));
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign('defineTermsContextId', isset($defineTermsContextId)?$defineTermsContextId:null);
 		$templateMgr->assign('comments', isset($comments)?$comments:null);
@@ -234,12 +234,14 @@ class PaperHandler extends Handler {
 		// Bring in comment constants.
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
-		$enableComments = $schedConf->getSetting('enableComments', true);
-		$commentsRequireRegistration = $schedConf->getSetting('commentsRequireRegistration', true);
-		$commentsAllowAnonymous = $schedConf->getSetting('commentsAllowAnonymous', true);
+		$enableComments = $conference->getSetting('enableComments');
+		$commentsRequireRegistration = $conference->getSetting('commentsRequireRegistration');
+		$commentsAllowAnonymous = $conference->getSetting('commentsAllowAnonymous');
+
 		$closeCommentsDate = $schedConf->getSetting('closeCommentsDate');
 		$commentsClosed = $schedConf->getSetting('closeComments')?true:false && (strtotime($closeCommentsDate < time()));
-		$postingAllowed = $enableComments && !$commentsClosed ? true : false;
+
+		$postingAllowed = $enableComments && $paper->getEnableComments() && !$commentsClosed ? true : false;
 		$templateMgr->assign('closeCommentsDate', $closeCommentsDate);
 		$templateMgr->assign('commentsClosed', $commentsClosed);
 		$templateMgr->assign('postingAllowed', $postingAllowed);

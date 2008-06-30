@@ -90,6 +90,7 @@ class CommentForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
+		$conference = Request::getConference();
 		$schedConf = Request::getSchedConf();
 
 		$templateMgr = &TemplateManager::getManager();
@@ -122,9 +123,9 @@ class CommentForm extends Form {
 		$commentsClosed = $schedConf->getSetting('closeComments')?true:false && (strtotime($closeCommentsDate < time()));
 		$templateMgr->assign('closeCommentsDate', $closeCommentsDate);
 		$templateMgr->assign('commentsClosed', $commentsClosed);
-		$templateMgr->assign('enableComments', $schedConf->getSetting('enableComments', true));
-		$templateMgr->assign('commentsRequireRegistration', $schedConf->getSetting('commentsRequireRegistration', true));
-		$templateMgr->assign('commentsAllowAnonymous', $schedConf->getSetting('commentsAllowAnonymous', true));
+		$templateMgr->assign('enableComments', $conference->getSetting('enableComments'));
+		$templateMgr->assign('commentsRequireRegistration', $conference->getSetting('commentsRequireRegistration'));
+		$templateMgr->assign('commentsAllowAnonymous', $conference->getSetting('commentsAllowAnonymous'));
 
 		parent::display();
 	}
@@ -153,10 +154,11 @@ class CommentForm extends Form {
 	 * @return int the comment ID
 	 */
 	function execute() {
+		$conference = &Request::getConference();
 		$schedConf = &Request::getSchedConf();
-		$enableComments = $schedConf->getSetting('enableComments', true);
-		$commentsRequireRegistration = $schedConf->getSetting('commentsRequireRegistration', true);
-		$commentsAllowAnonymous = $schedConf->getSetting('commentsAllowAnonymous', true);
+		$enableComments = $conference->getSetting('enableComments');
+		$commentsRequireRegistration = $conference->getSetting('commentsRequireRegistration');
+		$commentsAllowAnonymous = $conference->getSetting('commentsAllowAnonymous');
 
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 

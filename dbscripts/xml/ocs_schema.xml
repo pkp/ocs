@@ -584,6 +584,10 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
+		<field name="disable_comments" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<descr>Scheduled conference tracks.</descr>
 		<index name="tracks_sched_conf_id">
 			<col>sched_conf_id</col>
@@ -723,6 +727,10 @@
 		<field name="pages" type="C2" size="255"/>
 		<field name="date_to_presentations" type="T"/>
 		<field name="date_to_archive" type="T"/>
+		<field name="comments_status" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<descr>Conference papers.</descr>
 		<index name="papers_user_id">
 			<col>user_id</col>

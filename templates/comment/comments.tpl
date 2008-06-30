@@ -71,10 +71,9 @@
 
 <br /><br />
 
-<div class="separator"></div>
-
-{if $comments}<h3>{translate key="comments.replies"}</h3>{/if}
-
+{if $comments}
+	<div class="separator"></div>
+	<h3>{translate key="comments.replies"}</h3>{/if}
 {/if}
 
 {foreach from=$comments item=child}
@@ -154,7 +153,8 @@
 
 {if $commentsClosed}{translate key="comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}<br />{/if}
 
-{if $commentsAllowed}
+{if $postingAllowed}
+	<div class="separator"></div>
 	<p><a class="action" href="{url op="add" path=$paperId|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a></p>
 {/if}
 

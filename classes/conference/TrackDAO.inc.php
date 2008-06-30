@@ -145,6 +145,7 @@ class TrackDAO extends DAO {
 		$track->setMetaReviewed($row['meta_reviewed']);
 		$track->setDirectorRestricted($row['director_restricted']);
 		$track->setHideAbout($row['hide_about']);
+		$track->setDisableComments($row['disable_comments']);
 
 		$this->getDataObjectSettings('track_settings', 'track_id', $row['track_id'], $track);
 
@@ -179,15 +180,16 @@ class TrackDAO extends DAO {
 	function insertTrack(&$track) {
 		$this->update(
 			'INSERT INTO tracks
-				(sched_conf_id, seq, meta_reviewed, director_restricted, hide_about)
+				(sched_conf_id, seq, meta_reviewed, director_restricted, hide_about, disable_comments)
 				VALUES
-				(?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?)',
 			array(
 				$track->getSchedConfId(),
 				$track->getSequence() == null ? 0 : $track->getSequence(),
 				$track->getMetaReviewed() ? 1 : 0,
 				$track->getDirectorRestricted() ? 1 : 0,
-				$track->getHideAbout() ? 1 : 0
+				$track->getHideAbout() ? 1 : 0,
+				$track->getDisableComments() ? 1 : 0
 			)
 		);
 
@@ -207,13 +209,15 @@ class TrackDAO extends DAO {
 					seq = ?,
 					meta_reviewed = ?,
 					director_restricted = ?,
-					hide_about = ?
+					hide_about = ?,
+					disable_comments = ?
 				WHERE track_id = ?',
 			array(
 				$track->getSequence(),
 				$track->getMetaReviewed(),
 				$track->getDirectorRestricted(),
 				$track->getHideAbout(),
+				$track->getDisableComments(),
 				$track->getTrackId()
 			)
 		);

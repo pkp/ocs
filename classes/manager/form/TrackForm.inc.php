@@ -49,6 +49,8 @@ class TrackForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
+		$conference = &Request::getConference();
+		$schedConf = &Request::getSchedConf();
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('trackId', $this->trackId);
 
@@ -76,7 +78,6 @@ class TrackForm extends Form {
 			}
 
 		} else {
-			$schedConf = &Request::getSchedConf();
 			$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
 
 			// Get track directors not assigned to this track
@@ -88,6 +89,7 @@ class TrackForm extends Form {
 
 		$templateMgr->assign('unassignedDirectors', $unassignedDirectors);
 		$templateMgr->assign('assignedDirectors', $assignedDirectors);
+		$templateMgr->assign('commentsEnabled', $conference->getSetting('enableComments'));
 		$templateMgr->assign('helpTopicId','conference.currentConferences.tracks');
 
 		parent::display();
@@ -111,7 +113,8 @@ class TrackForm extends Form {
 					'identifyType' => $track->getIdentifyType(null), // Localized
 					'directorRestriction' => $track->getDirectorRestricted(),
 					'policy' => $track->getPolicy(null), // Localized
-					'hideAbout' => $track->getHideAbout()
+					'hideAbout' => $track->getHideAbout(),
+					'disableComments' => $track->getDisableComments(),
 				);
 			}
 		}
@@ -121,7 +124,7 @@ class TrackForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'abbrev', 'metaNotReviewed', 'identifyType', 'directorRestriction', 'policy', 'hideAbout'));
+		$this->readUserVars(array('title', 'abbrev', 'metaNotReviewed', 'identifyType', 'directorRestriction', 'policy', 'hideAbout', 'disableComments'));
 	}
 
 	/**
@@ -149,6 +152,7 @@ class TrackForm extends Form {
 		$track->setDirectorRestricted($this->getData('directorRestriction') ? 1 : 0);
 		$track->setPolicy($this->getData('policy'), null); // Localized
 		$track->setHideAbout($this->getData('hideAbout'));
+		$track->setDisableComments($this->getData('disableComments') ? 1 : 0);
 
 		if ($track->getTrackId() != null) {
 			$trackDao->updateTrack($track);

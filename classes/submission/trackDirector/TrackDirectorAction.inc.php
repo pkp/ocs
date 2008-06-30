@@ -1553,6 +1553,19 @@ import('file.PaperFileManager');
 	}
 
 	/**
+	 * Changes the submission RT comments status.
+	 * @param $submission object
+	 * @param $commentsStatus int
+	 */
+	function updateCommentsStatus($submission, $commentsStatus) {
+		if (HookRegistry::call('TrackDirectorAction::updateCommentsStatus', array(&$submission, &$commentsStatus))) return;
+
+		$submissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$submission->setCommentsStatus($commentsStatus); // FIXME validate this?
+		$submissionDao->updateTrackDirectorSubmission($submission);
+	}
+
+	/**
 	 * Helper method for building submission breadcrumb
 	 * @param $paperId
 	 * @param $parentPage name of submission component

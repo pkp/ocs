@@ -31,6 +31,8 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$track = &$trackDao->getTrack($submission->getTrackId());
 
+		$enableComments = $conference->getSetting('enableComments');
+
 		$templateMgr = &TemplateManager::getManager();
 
 		$templateMgr->assign_by_ref('submission', $submission);
@@ -42,9 +44,15 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('reviewMode', $submission->getReviewMode());
 		$templateMgr->assign('userId', $user->getUserId());
 		$templateMgr->assign('isDirector', $isDirector);
+		$templateMgr->assign('enableComments', $enableComments);
 
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$templateMgr->assign_by_ref('tracks', $trackDao->getTrackTitles($schedConf->getSchedConfId()));
+		if ($enableComments) {
+			import('paper.Paper');
+			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());
+			$templateMgr->assign_by_ref('commentsStatusOptions', Paper::getCommentsStatusOptions());
+		}
 
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaper = &$publishedPaperDao->getPublishedPaperByPaperId($submission->getPaperId());
@@ -926,6 +934,17 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		if (TrackDirectorAction::unsuitableSubmission($submission, $send)) {
 			Request::redirect(null, null, null, 'submission', $paperId);
 		}
+	}
+
+	/**
+	 * Set RT comments status for paper.
+	 * @param $args array ($paperId)
+	 */
+	function updateCommentsStatus($args) {
+		$paperId = isset($args[0]) ? (int) $args[0] : 0;
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);		
+		TrackDirectorAction::updateCommentsStatus($submission, Request::getUserVar('commentsStatus'));
+		Request::redirect(null, null, null, 'submission', $paperId);
 	}
 
 

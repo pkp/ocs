@@ -48,11 +48,13 @@ class CommentHandler extends Handler {
 		$templateMgr->assign_by_ref('comments', $comments);
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
-		$templateMgr->assign('enableComments', $schedConf->getSetting('enableComments', true));
-		$templateMgr->assign('commentsRequireRegistration', $schedConf->getSetting('commentsRequireRegistration', true));
-		$templateMgr->assign('commentsAllowAnonymous', $schedConf->getSetting('commentsAllowAnonymous', true));
+		$templateMgr->assign('enableComments', $conference->getSetting('enableComments'));
+		$templateMgr->assign('commentsRequireRegistration', $conference->getSetting('commentsRequireRegistration'));
+		$templateMgr->assign('commentsAllowAnonymous', $conference->getSetting('commentsAllowAnonymous'));
+
 		$closeCommentsDate = $schedConf->getSetting('closeCommentsDate');
 		$commentsClosed = $schedConf->getSetting('closeComments')?true:false && (strtotime($closeCommentsDate < time()));
+
 		$templateMgr->assign('closeCommentsDate', $closeCommentsDate);
 		$templateMgr->assign('commentsClosed', $commentsClosed);
 		$templateMgr->assign('isManager', $isManager);
@@ -70,9 +72,14 @@ class CommentHandler extends Handler {
 		// Bring in comment constants
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
-		$enableComments = $schedConf->getSetting('enableComments', true) && (!$schedConf->getSetting('closeComments') || (strtotime($schedConf->getSetting('closeCommentsDate') > time())));
-		$commentsRequireRegistration = $schedConf->getSetting('commentsRequireRegistration', true);
-		$commentsAllowAnonymous = $schedConf->getSetting('commentsAllowAnonymous', true);
+		$enableComments = $conference->getSetting('enableComments');
+		$commentsRequireRegistration = $conference->getSetting('commentsRequireRegistration');
+		$commentsAllowAnonymous = $conference->getSetting('commentsAllowAnonymous');
+
+		$closeCommentsDate = $schedConf->getSetting('closeCommentsDate');
+		$commentsClosed = $schedConf->getSetting('closeComments')?true:false && (strtotime($closeCommentsDate < time()));
+
+		$enableComments = $enableComments && !$commentsClosed && $paper->getEnableComments();
 
 		if (!$enableComments) Request::redirect(null, null, 'index');
 		if ($commentsRequireRegistration && !Request::getUser()) Validation::redirectLogin();
@@ -125,29 +132,27 @@ class CommentHandler extends Handler {
 	 */
 	function validate($paperId) {
 
-		parent::validate();
+		list($conference, $schedConf) = parent::validate(true, true);
 
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
-
-		// Bring in comment constants
-		$commentDao = &DAORegistry::getDAO('CommentDAO');
-
-		$enableComments = $schedConf->getSetting('enableComments', true);
-		$commentsRequireRegistration = $schedConf->getSetting('commentsRequireRegistration', true);
-		$commentsAllowAnonymous = $schedConf->getSetting('commentsAllowAnonymous', true);
-
-
-		if (!Validation::isLoggedIn() && $schedConf->getSetting('restrictPaperAccess', true) || !$enableComments) {
-			Validation::redirectLogin();
-		}
-
-		// Registration Access
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$paper = &$publishedPaperDao->getPublishedPaperByPaperId($paperId);
 
-		if (!isset($paper)) {
+		if ($paper == null) {
 			Request::redirect(null, null, 'index');
+		}
+
+		// Bring in comment and view constants
+		$commentDao = &DAORegistry::getDAO('CommentDAO');
+		$enableComments = $conference->getSetting('enableComments');
+
+		if (!$enableComments || !$paper->getEnableComments()) {
+			Request::redirect(null, null, 'index');
+		}
+
+		$restrictPaperAccess = $conference->getSetting('restrictPaperAccess');
+
+		if ($restrictPaperAccess && !Validation::isLoggedIn()) {
+			Validation::redirectLogin();
 		}
 
 		return array(&$conference, &$schedConf, &$paper);

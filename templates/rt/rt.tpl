@@ -86,12 +86,13 @@
 				{/if}
 			</li>
 		{/if}
-		{if $conferenceRt->getAddComment() && $postingAllowed && !$postingDisabled}
+		{assign var=rtAddComment value=$conferenceRt->getAddComment()}
+		{if $rtAddComment && $postingAllowed && !$postingDisabled}
 			<li><a href="{url page="comment" op="add" path=$paper->getPaperId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a></li>
-		{elseif $commentsClosed}
+		{elseif $rtAddComment && $commentsClosed}
 			{translate key="rt.addComment"}†
 			{assign var=needsCommentsNote value=1}
-		{elseif $postingDisabled}
+		{elseif $rtAddComment && $postingDisabled}
 			{translate key="rt.addComment"}*
 			{assign var=needsLoginNote value=1}
 		{/if}

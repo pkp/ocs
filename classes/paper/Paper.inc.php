@@ -41,6 +41,11 @@ define('SUBMISSION_FIELD_REVIEWER', 4);
 
 define('SUBMISSION_FIELD_DATE_SUBMITTED', 5);
 
+// Paper RT comments
+define ('COMMENTS_TRACK_DEFAULT', 0);
+define ('COMMENTS_DISABLE', 1);
+define ('COMMENTS_ENABLE', 2);
+
 class Paper extends DataObject {
 
 	/** @var array Presenters of this paper */
@@ -913,6 +918,73 @@ class Paper extends DataObject {
 	function setPages($pages) {
 		return $this->setData('pages',$pages);
 	}		
+
+	/**
+	 * Return paper RT comments status.
+	 * @return int 
+	 */
+	function getCommentsStatus() {
+		return $this->getData('commentsStatus');
+	}
+
+	/**
+	 * Set paper RT comments status.
+	 * @param $commentsStatus boolean
+	 */
+	function setCommentsStatus($commentsStatus) {
+		return $this->setData('commentsStatus', $commentsStatus);
+	}
+
+	/**
+	 * Return locale string corresponding to RT comments status.
+	 * @return string
+	 */
+	function getCommentsStatusString() {
+		switch ($this->getCommentsStatus()) {
+			case COMMENTS_DISABLE:
+				return 'paper.comments.disable';
+			case COMMENTS_ENABLE:
+				return 'paper.comments.enable';
+			default:
+				return 'paper.comments.trackDefault';
+		}
+	}
+
+	/**
+	 * Return boolean indicating if paper RT comments should be enabled.
+	 * Checks both the track and paper comments status. Paper status
+	 * overrides track status.
+	 * @return int 
+	 */
+	function getEnableComments() {
+		switch ($this->getCommentsStatus()) {
+			case COMMENTS_DISABLE:
+				return false;
+			case COMMENTS_ENABLE:
+				return true;
+			case COMMENTS_TRACK_DEFAULT:
+				$trackDao =& DAORegistry::getDAO('TrackDAO');
+				$track =& $trackDao->getTrack($this->getTrackId(), $this->getSchedConfId());
+				if ($track->getDisableComments()) {
+					return false;
+				} else {
+					return true;
+				}
+		}
+	}
+
+	/**
+	 * Get an associative array matching RT comments status codes with locale strings.
+	 * @return array comments status => localeString
+	 */
+	function &getCommentsStatusOptions() {
+		static $commentsStatusOptions = array(
+			COMMENTS_TRACK_DEFAULT => 'paper.comments.trackDefault',
+			COMMENTS_DISABLE => 'paper.comments.disable',
+			COMMENTS_ENABLE => 'paper.comments.enable'
+		);
+		return $commentsStatusOptions;
+	}
 }
 
 ?>

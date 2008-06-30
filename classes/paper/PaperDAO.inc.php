@@ -140,6 +140,7 @@ class PaperDAO extends DAO {
 		$paper->setLayoutFileId($row['layout_file_id']);
 		$paper->setDirectorFileId($row['director_file_id']);
 		$paper->setPages($row['pages']);
+		$paper->setCommentsStatus($row['comments_status']);
 
 		$paper->setPresenters($this->presenterDao->getPresentersByPaper($row['paper_id']));
 
@@ -180,9 +181,10 @@ class PaperDAO extends DAO {
 				 review_file_id,
 				 layout_file_id,
 				 director_file_id,
-				 pages)
+				 pages,
+				 comments_status)
 				VALUES
-				(?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getStartTime()), $this->datetimeToDB($paper->getEndTime()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
 			array(
 				$paper->getUserId(),
@@ -200,7 +202,8 @@ class PaperDAO extends DAO {
 				$paper->getReviewFileId(),
 				$paper->getLayoutFileId(),
 				$paper->getDirectorFileId(),
-				$paper->getPages()
+				$paper->getPages(),
+				$paper->getCommentsStatus() === null ? 0 : $paper->getCommentsStatus()
 			)
 		);
 
@@ -248,7 +251,8 @@ class PaperDAO extends DAO {
 					review_file_id = ?,
 					layout_file_id = ?,
 					director_file_id = ?,
-					pages = ?
+					pages = ?,
+					comments_status = ?
 				WHERE paper_id = ?',
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getStartTime()), $this->datetimeToDB($paper->getEndTime()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
 			array(
@@ -267,6 +271,7 @@ class PaperDAO extends DAO {
 				$paper->getLayoutFileId(),
 				$paper->getDirectorFileId(),
 				$paper->getPages(),
+				$paper->getCommentsStatus(),
 				$paper->getPaperId()
 			)
 		);
