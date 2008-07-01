@@ -210,7 +210,7 @@ class Announcement extends DataObject {
 	 * @return date (YYYY-MM-DD)
 	 */
 	function getDatePosted() {
-		return $this->getData('datePosted');
+		return date('Y-m-d', strtotime($this->getData('datePosted')));
 	}
 
 	/**
