@@ -13,7 +13,7 @@
 
 <h3>{translate key="manager.managementPages"}</h3>
 
-<p>{translate key="manager.managementPages.description"}</p>
+{translate key="manager.managementPages.description"}
 
 <ul class="plain">
 	<li>&#187; <a href="{url op="setup"}">{translate key="manager.websiteManagement"}</a></li>

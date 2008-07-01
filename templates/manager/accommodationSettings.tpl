@@ -35,11 +35,11 @@
 {foreach from=$accommodationFiles[$formLocale] key=accommodationFileKey item=accommodationFile}
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="accommodationFileTitle-$accommodationFileKey" key="common.title" suppressId="true"}</td>
-	<td width="80%" class="value">{$accommodationFile.title|escape}</td>
+	<td width="80%" class="value" id="{"accommodationFileTitle-$accommodationFileKey"}">{$accommodationFile.title|escape}</td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="accommodationFile" key="common.file"}</td>
-	<td class="value">
+	<td class="label">{fieldLabel name="accommodationFile-$accommodationFileKey" key="common.file"}</td>
+	<td class="value" id="{"accommodationFile-$accommodationFileKey"}">
 		{translate key="common.fileName"}: <a href="{$publicSchedConfFilesDir}/{$accommodationFile.uploadName}" target="_new" class="file">{$accommodationFile.name|escape}</a> {$accommodationFile.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteAccommodationFile-{$formLocale|escape}-{$accommodationFileKey|escape}" value="{translate key="common.delete"}" class="button" />
 	</td>
 </tr>
@@ -52,7 +52,7 @@
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="accommodationFile" key="common.file"}</td>
 	<td width="80%">
-		<input type="file" name="accommodationFile" class="uploadField" /> <input type="submit" name="uploadAccommodationFile" value="{translate key="common.upload"}" class="button" />
+		<input type="file" id="accommodationFile" name="accommodationFile" class="uploadField" /> <input type="submit" name="uploadAccommodationFile" value="{translate key="common.upload"}" class="button" />
 	</td>
 </tr>
 

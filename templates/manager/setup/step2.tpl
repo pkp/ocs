@@ -62,7 +62,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="homepageImageAltText" key="common.altText"}</td>
-		<td width="80%" class="value"><input type="text" name="homepageImageAltText[{$formLocale|escape}]" value="{$homepageImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" id="homepageImageAltText" name="homepageImageAltText[{$formLocale|escape}]" value="{$homepageImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
 		<td>&nbsp;</td>

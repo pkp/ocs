@@ -112,7 +112,7 @@ function sortBy(sortName) {
 	</tr>
 	{foreach name=publishedPapers from=$publishedPapers item=publishedPaper}
 	<tr valign="top">
-		<td rowspan="4">{$publishedPaper->getPaperId()|escape}</a></td>
+		<td rowspan="4">{$publishedPaper->getPaperId()|escape}</td>
 		<td rowspan="4">
 			<input name="paperIds[]" type="hidden" value="{$publishedPaper->getPaperId()|escape}" />
 			{$publishedPaper->getPaperTitle()|escape}<br />
@@ -139,12 +139,12 @@ function sortBy(sortName) {
 	<tr>
 		<td>&nbsp;</td>
 		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`StartTime" key="manager.scheduler.startTime"}</td>
-		<td>{html_select_time prefix="paper`$publishedPaper->getPaperId()`StartTime" all_extra="class=\"selectMenu\" onchange=\"document.schedule.paper`$publishedPaper->getPaperId()`DateExists.checked = true; changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getStartTime()|default:$defaultStartTime}</td>
+		<td id="{"paper`$publishedPaper->getPaperId()`StartTime"}">{html_select_time prefix="paper`$publishedPaper->getPaperId()`StartTime" all_extra="class=\"selectMenu\" onchange=\"document.schedule.paper`$publishedPaper->getPaperId()`DateExists.checked = true; changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getStartTime()|default:$defaultStartTime}</td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
 		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`EndTime" key="manager.scheduler.endTime"}</td>
-		<td>
+		<td id="{"paper`$publishedPaper->getPaperId()`EndTime"}">
 			{html_select_time prefix="paper`$publishedPaper->getPaperId()`EndTime" all_extra="class=\"selectMenu\" onchange=\"changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getEndTime()|default:$defaultStartTime}
 		</td>
 	</tr>
@@ -158,7 +158,7 @@ function sortBy(sortName) {
 	</tr>
 	<tr>
 		<td colspan="5" class="endseparator">&nbsp;</td>
-	<tr>
+	</tr>
 	{/if}
 </table>
 

@@ -52,7 +52,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="homeHeaderTitleImageAltText" key="common.altText"}</td>
-		<td width="80%" class="value"><input type="text" name="homeHeaderTitleImageAltText[{$formLocale|escape}]" value="{$homeHeaderTitleImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" id="homeHeaderTitleImageAltText" name="homeHeaderTitleImageAltText[{$formLocale|escape}]" value="{$homeHeaderTitleImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
 		<td>&nbsp;</td>
@@ -78,7 +78,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="homeHeaderLogoImageAltText" key="common.altText"}</td>
-		<td width="80%" class="value"><input type="text" name="homeHeaderLogoImageAltText[{$formLocale|escape}]" value="{$homeHeaderLogoImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" id="homeHeaderLogoImageAltText" name="homeHeaderLogoImageAltText[{$formLocale|escape}]" value="{$homeHeaderLogoImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
 		<td>&nbsp;</td>
@@ -114,7 +114,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="pageHeaderTitleImageAltText" key="common.altText"}</td>
-		<td width="80%" class="value"><input type="text" name="pageHeaderTitleImageAltText[{$formLocale|escape}]" value="{$pageHeaderTitleImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" id="pageHeaderTitleImageAltText" name="pageHeaderTitleImageAltText[{$formLocale|escape}]" value="{$pageHeaderTitleImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
 		<td>&nbsp;</td>
@@ -140,7 +140,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="pageHeaderLogoImageAltText" key="common.altText"}</td>
-		<td width="80%" class="value"><input type="text" name="pageHeaderLogoImageAltText[{$formLocale|escape}]" value="{$pageHeaderLogoImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" id="pageHeaderLogoImageAltText" name="pageHeaderLogoImageAltText[{$formLocale|escape}]" value="{$pageHeaderLogoImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
 		<td>&nbsp;</td>

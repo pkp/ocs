@@ -818,7 +818,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.scheduler">Scheduler</message>
 	<message key="manager.scheduler.roomsAndEvents">Rooms &amp;amp; Events</message>
 	<message key="manager.scheduler.scheduling">Scheduling</message>
-	<message key="manager.scheduler.description"><![CDATA[<p>Conference Managers may schedule presentations and special events for times and locations using the Scheduler. In the pages below, the Conference Manager can define locations (buildings and rooms) and blocks of time, and assign presentations and events to each.]]></message>
+	<message key="manager.scheduler.description"><![CDATA[Conference Managers may schedule presentations and special events for times and locations using the Scheduler. In the pages below, the Conference Manager can define locations (buildings and rooms) and blocks of time, and assign presentations and events to each.]]></message>
 
 	<message key="manager.scheduler.buildingsAndRooms">Buildings &amp;amp; Rooms</message>
 	<message key="manager.scheduler.buildings">Buildings</message>
@@ -2144,7 +2144,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="search.reviseSearch">Revise Search</message>
 	<message key="search.noResults">No Results</message>
 	<message key="search.noKeywordError">You must enter at least one search keyword.</message>
-	<message key="search.syntaxInstructions"><![CDATA[Search tips: <ul>
+	<message key="search.syntaxInstructions"><![CDATA[<p>Search tips:</p>
+<ul>
 <li>Search terms are case-insensitive</li>
 <li>Common words are ignored</li>
 <li>By default only papers containing <em>all</em> terms in the query are returned (i.e., <em>AND</em> is implied)</li>

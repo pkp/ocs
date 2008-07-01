@@ -28,7 +28,7 @@
 <tr valign="top">
 	<td class="label">{fieldLabel name="programFile" key="common.file"}</td>
 	<td class="value">
-		<input type="file" name="programFile" class="uploadField" /> <input type="submit" name="uploadProgramFile" value="{translate key="common.upload"}" class="button" />
+		<input type="file" id="programFile" name="programFile" class="uploadField" /> <input type="submit" name="uploadProgramFile" value="{translate key="common.upload"}" class="button" />
 		{if $programFile}
 			<br/>
 			{translate key="common.fileName"}: <a href="{$publicSchedConfFilesDir}/{$programFile.uploadName}" class="file">{$programFile.name}</a> {$programFile.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteProgramFile" value="{translate key="common.delete"}" class="button" />

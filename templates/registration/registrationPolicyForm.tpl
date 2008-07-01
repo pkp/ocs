@@ -96,25 +96,25 @@
 <p>
 	<input type="checkbox" name="enableRegistrationExpiryReminderBeforeMonths" id="enableRegistrationExpiryReminderBeforeMonths" value="1" onclick="toggleAllowSetBeforeMonthsReminder(this.form)"{if !$scheduledTasksEnabled} disabled="disabled" {elseif $enableRegistrationExpiryReminderBeforeMonths} checked="checked"{/if} />&nbsp;
 	<label for="enableRegistrationExpiryReminderBeforeMonths">{translate key="manager.registrationPolicies.expiryReminderBeforeMonths1"}</label>
-	<select name="numMonthsBeforeRegistrationExpiryReminder" id="numMonthsBeforeRegistrationExpiryReminder" class="selectMenu"{if not $enableRegistrationExpiryReminderBeforeMonths || !$scheduledTasksEnabled} disabled="disabled"{/if} />{html_options options=$validNumMonthsBeforeExpiry selected=$numMonthsBeforeRegistrationExpiryReminder}</select>
+	<select name="numMonthsBeforeRegistrationExpiryReminder" id="numMonthsBeforeRegistrationExpiryReminder" class="selectMenu"{if not $enableRegistrationExpiryReminderBeforeMonths || !$scheduledTasksEnabled} disabled="disabled"{/if}>{html_options options=$validNumMonthsBeforeExpiry selected=$numMonthsBeforeRegistrationExpiryReminder}</select>
 	{translate key="manager.registrationPolicies.expiryReminderBeforeMonths2"}
 </p>
 <p>
 	<input type="checkbox" name="enableRegistrationExpiryReminderBeforeWeeks" id="enableRegistrationExpiryReminderBeforeWeeks" value="1" onclick="toggleAllowSetBeforeWeeksReminder(this.form)"{if !$scheduledTasksEnabled} disabled="disabled" {elseif $enableRegistrationExpiryReminderBeforeWeeks} checked="checked"{/if} />&nbsp;
 	<label for="enableRegistrationExpiryReminderBeforeWeeks">{translate key="manager.registrationPolicies.expiryReminderBeforeWeeks1"}</label>
-	<select name="numWeeksBeforeRegistrationExpiryReminder" id="numWeeksBeforeRegistrationExpiryReminder" class="selectMenu"{if not $enableRegistrationExpiryReminderBeforeWeeks || !$scheduledTasksEnabled} disabled="disabled"{/if} />{html_options options=$validNumWeeksBeforeExpiry selected=$numWeeksBeforeRegistrationExpiryReminder}</select>
+	<select name="numWeeksBeforeRegistrationExpiryReminder" id="numWeeksBeforeRegistrationExpiryReminder" class="selectMenu"{if not $enableRegistrationExpiryReminderBeforeWeeks || !$scheduledTasksEnabled} disabled="disabled"{/if}>{html_options options=$validNumWeeksBeforeExpiry selected=$numWeeksBeforeRegistrationExpiryReminder}</select>
 	{translate key="manager.registrationPolicies.expiryReminderBeforeWeeks2"}
 </p>
 <p>
 	<input type="checkbox" name="enableRegistrationExpiryReminderAfterWeeks" id="enableRegistrationExpiryReminderAfterWeeks" value="1" onclick="toggleAllowSetAfterWeeksReminder(this.form)"{if !$scheduledTasksEnabled} disabled="disabled" {elseif $enableRegistrationExpiryReminderAfterWeeks} checked="checked"{/if} />&nbsp;
 	<label for="enableRegistrationExpiryReminderAfterWeeks">{translate key="manager.registrationPolicies.expiryReminderAfterWeeks1"}</label>
-	<select name="numWeeksAfterRegistrationExpiryReminder" id="numWeeksAfterRegistrationExpiryReminder" class="selectMenu"{if not $enableRegistrationExpiryReminderAfterWeeks || !$scheduledTasksEnabled} disabled="disabled"{/if} />{html_options options=$validNumWeeksAfterExpiry selected=$numWeeksAfterRegistrationExpiryReminder}</select>
+	<select name="numWeeksAfterRegistrationExpiryReminder" id="numWeeksAfterRegistrationExpiryReminder" class="selectMenu"{if not $enableRegistrationExpiryReminderAfterWeeks || !$scheduledTasksEnabled} disabled="disabled"{/if}>{html_options options=$validNumWeeksAfterExpiry selected=$numWeeksAfterRegistrationExpiryReminder}</select>
 	{translate key="manager.registrationPolicies.expiryReminderAfterWeeks2"}
 </p>
 <p>
 	<input type="checkbox" name="enableRegistrationExpiryReminderAfterMonths" id="enableRegistrationExpiryReminderAfterMonths" value="1" onclick="toggleAllowSetAfterMonthsReminder(this.form)"{if !$scheduledTasksEnabled} disabled="disabled" {elseif $enableRegistrationExpiryReminderAfterMonths} checked="checked"{/if} />&nbsp;
 	<label for="enableRegistrationExpiryReminderAfterMonths">{translate key="manager.registrationPolicies.expiryReminderAfterMonths1"}</label>
-	<select name="numMonthsAfterRegistrationExpiryReminder" id="numMonthsAfterRegistrationExpiryReminder" class="selectMenu"{if not $enableRegistrationExpiryReminderAfterMonths || !$scheduledTasksEnabled} disabled="disabled"{/if} />{html_options options=$validNumMonthsAfterExpiry selected=$numMonthsAfterRegistrationExpiryReminder}</select>
+	<select name="numMonthsAfterRegistrationExpiryReminder" id="numMonthsAfterRegistrationExpiryReminder" class="selectMenu"{if not $enableRegistrationExpiryReminderAfterMonths || !$scheduledTasksEnabled} disabled="disabled"{/if}>{html_options options=$validNumMonthsAfterExpiry selected=$numMonthsAfterRegistrationExpiryReminder}</select>
 	{translate key="manager.registrationPolicies.expiryReminderAfterMonths2"}
 </p>
 
@@ -147,16 +147,16 @@
 	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 	</p>
 
-<p>
 	<h4>{translate key="manager.registrationPolicies.presenterSelfArchive"}</h4>
+	<p>
 	<input type="checkbox" name="enablePresenterSelfArchive" id="enablePresenterSelfArchive" value="1"{if $enablePresenterSelfArchive} checked="checked"{/if} />&nbsp;
 	<label for="enablePresenterSelfArchive">{translate key="manager.registrationPolicies.presenterSelfArchiveDescription"}</label>
-</p>
-<p>
+	</p>
+	<p>
 	<textarea name="presenterSelfArchivePolicy[{$formLocale|escape}]" id="presenterSelfArchivePolicy" rows="12" cols="60" class="textArea">{$presenterSelfArchivePolicy[$formLocale]|escape}</textarea>
 	<br />
 	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
-</p>
+	</p>
 
 
 <div class="separator"></div>

@@ -26,7 +26,7 @@
 		{if $schedConf->getLocalizedSetting('introduction')}
 			<p>{$schedConf->getLocalizedSetting('introduction')|nl2br}</p>
 		{/if}
-		<p><a href="{url schedConf=$schedConf->getPath()}" class="action">{translate key="site.schedConfView"}</a>
+		<p><a href="{url schedConf=$schedConf->getPath()}" class="action">{translate key="site.schedConfView"}</a></p>
 	{/iterate}
 {else}
 	{translate key="conference.noCurrentConferences"}

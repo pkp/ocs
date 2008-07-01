@@ -49,7 +49,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label"><input type="checkbox" id="statCountAccept" name="statCountAccept" {if $statCountAccept}checked {/if}/>&nbsp;&nbsp;<label for="statCountAccept">{translate key="manager.statistics.statistics.count.accept"}</label></td>
-		<td width="80%" colspan="2" class="value">{translate key="manager.statistics.statistics.count.value" count=$limitedPaperStatistics.submissionsAccept percentage=$limitedPaperStatistics.submissionsAcceptPercent}</label></td>
+		<td width="80%" colspan="2" class="value">{translate key="manager.statistics.statistics.count.value" count=$limitedPaperStatistics.submissionsAccept percentage=$limitedPaperStatistics.submissionsAcceptPercent}</td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label"><input type="checkbox" id="statCountDecline" name="statCountDecline" {if $statCountDecline}checked {/if}/>&nbsp;&nbsp;<label for="statCountDecline">{translate key="manager.statistics.statistics.count.decline"}</label></td>

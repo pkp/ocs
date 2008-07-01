@@ -63,6 +63,7 @@
 		<td width="60%" class="value">
 			{$regPresenterCloseDate|date_format:$dateFormatLong}
 		</td>
+	</tr>
 	<tr valign="top">
 		<td width="40%" class="label">{translate key="manager.timeline.showCFP"}</td>
 		<td width="60%" class="value">

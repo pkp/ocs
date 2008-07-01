@@ -50,7 +50,7 @@
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="description" key="manager.registrationTypes.form.description"}</td>
-	<td class="value"><textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="4" class="textArea" />{$description[$formLocale]|escape}</textarea></td>
+	<td class="value"><textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="4" class="textArea">{$description[$formLocale]|escape}</textarea></td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="cost" required="true" key="manager.registrationTypes.form.cost"}</td>
@@ -62,7 +62,7 @@
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="currency" required="true" key="manager.registrationTypes.form.currency"}</td>
-	<td><select name="currency" id="currency" class="selectMenu" />{html_options options=$validCurrencies selected=$currency}</select></td>
+	<td><select name="currency" id="currency" class="selectMenu">{html_options options=$validCurrencies selected=$currency}</select></td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="code" key="manager.registrationTypes.form.code"}</td>
@@ -74,13 +74,13 @@
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="openDate" required="true" key="manager.registrationTypes.form.openDate"}</td>
-	<td class="value">
+	<td class="value" id="openDate">
 		{html_select_date prefix="openDate" time=$openDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
 	</td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="closeDate" required="true" key="manager.registrationTypes.form.closeDate"}</td>
-	<td class="value">
+	<td class="value" id="closeDate">
 		{html_select_date prefix="closeDate" time=$closeDate all_extra="class=\"selectMenu\"" start_year="+0" end_year=$dateExtentFuture}
 		<input type="hidden" name="closeDateHour" value="23" />
 		<input type="hidden" name="closeDateMinute" value="59" />
@@ -99,7 +99,7 @@
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="access" required="true" key="manager.registrationTypes.form.access"}</td>
-	<td><select id="access" name="access" class="selectMenu" />{html_options options=$validAccessTypes selected=$access}</select></td>
+	<td><select id="access" name="access" class="selectMenu">{html_options options=$validAccessTypes selected=$access}</select></td>
 </tr>
 <tr valign="top">
 	<td rowspan="3">{translate key="common.options"}</td>

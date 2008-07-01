@@ -29,14 +29,14 @@
 <table class="data" width="100%">
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="userId" required="true" key="manager.registration.form.userId"}</td>
-	<td width="80%" class="value">
+	<td width="80%" class="value" id="userId">
 		{$user->getFullName()|escape}&nbsp;&nbsp;<a href="{if $registrationId}{url op="selectRegistrant" registrationId=$registrationId}{else}{url op="selectRegistrant"}{/if}" class="action">{translate key="common.select"}</a>
 		<input type="hidden" name="userId" value="{$user->getUserId()}"/>
 	</td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="typeId" required="true" key="manager.registration.form.typeId"}</td>
-	<td class="value"><select name="typeId" id="typeId" class="selectMenu" />
+	<td class="value"><select name="typeId" id="typeId" class="selectMenu">
 		{iterate from=registrationTypes item=registrationType}
 		<option value="{$registrationType->getTypeId()}"{if $typeId == $registrationType->getTypeId()} selected="selected"{/if}>{$registrationType->getSummaryString()|escape}</option>
 		{/iterate} 
@@ -48,7 +48,7 @@
 		<table width="100%">
 			<tr valign="top">
 				<td width="5%"><input type="checkbox" name="notifyEmail" id="notifyEmail" value="1"{if $notifyEmail} checked="checked"{/if} /></td>
-				<td width="95%"><label for="">{translate key="manager.registration.form.notifyEmail"}</label></td>
+				<td width="95%"><label for="notifyEmail">{translate key="manager.registration.form.notifyEmail"}</label></td>
 			</tr>
 		</table>
 	</td>

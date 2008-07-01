@@ -13,7 +13,7 @@
 
 {assign var=filenameEscaped value=$filename|escape:"url"|escape:"url"}
 
-<form name="reference">
+<form name="reference" action="#">
 {foreach from=referenceLocaleContents key=key item=value}<input type="hidden" name="{$key|escape}" value="{$key|escape}"/>{/foreach}
 </form>
 
@@ -56,9 +56,9 @@
 </textarea>
 			{else}
 				{translate key="plugins.generic.translator.file.reference"}<br/>
-				<input name="junk[]" class="textField" class="textField" type="text" size="50" onkeypress="return (event.keyCode >= 37 && event.keyCode <= 40);" value="{$referenceValue|escape}" /><br/>
+				<input name="junk[]" class="textField" type="text" size="50" onkeypress="return (event.keyCode >= 37 && event.keyCode <= 40);" value="{$referenceValue|escape}" /><br/>
 				{translate key="plugins.generic.translator.file.translation"}<br/>
-				<input name="changes[]" class="textField" class="textField" type="text" size="50" value="{$value|escape}" />
+				<input name="changes[]" class="textField" type="text" size="50" value="{$value|escape}" />
 			{/if}
 		</td>
 		<td>

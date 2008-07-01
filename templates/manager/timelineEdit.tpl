@@ -78,6 +78,7 @@
 			<input type="hidden" name="regPresenterCloseDateMinute" value="59" />
 			<input type="hidden" name="regPresenterCloseDateSecond" value="59" />
 		</td>
+	</tr>
 	<tr valign="top">
 		<td width="50%" class="label">{translate key="manager.timeline.showCFP"}</td>
 		<td width="50%" class="value">
@@ -200,7 +201,7 @@
 <p>
 	{if $errorsExist}<input type="checkbox" name="overrideDates" value="1" id="overrideDates" />&nbsp;&nbsp;<label for="overrideDates">{translate key="manager.timeline.overrideDates"}</label><br />{/if}
 	<input type="submit" value="{translate key="common.save"}" class="button defaultButton" />
-	<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="index" escape=false}'" /></p>
+	<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="index" escape=false}'" />
 </p>
 
 </form>

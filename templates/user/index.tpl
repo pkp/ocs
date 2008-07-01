@@ -37,6 +37,7 @@
 			<li>&#187; <a href="{url conference=$conference->getPath() schedConf="index" page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
 		{/if}
 	{/foreach}
+	</ul>
 
 	{* Iterate over scheduled conference roles *}
 	
@@ -44,16 +45,17 @@
 		{assign var="schedConfId" value=$schedConf->getSchedConfId()}
 		<h5><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getSchedConfTitle()|escape}</a></h5>
 
+		<ul class="plain">
 		{foreach item=role from=$userSchedConfRoles[$schedConfId]}
 			{if $role->getRolePath() != 'reader'}
 				<li>&#187; <a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
 			{/if}
 		{/foreach}
+		</ul>
 
 	{/foreach}
 
 	{call_hook name="Templates::User::Index::Conference" conference=$conference}
-</ul>
 {/foreach}
 
 {else}
@@ -62,7 +64,7 @@
 {if $isSiteAdmin && !$hasOtherConferences}
 	<li>&#187; <a href="{url conference="index" schedConf="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
 {/if}
-	
+
 	{assign var="conferenceId" value=$userConference->getConferenceId()}
 
 	{* Iterate over conference roles *}
@@ -73,6 +75,7 @@
 			<li>&#187; <a href="{url conference=$userConference->getPath() schedConf=index page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
 		{/if}
 	{/foreach}
+	</ul>
 
 	{* Iterate over scheduled conference roles *}
 	
@@ -81,6 +84,7 @@
 		{assign var="schedConfId" value=$schedConf->getSchedConfId()}
 		<h5><a href="{url conference=$userConference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getSchedConfTitle()|escape}</a></h5>
 
+		<ul class="plain">
 		{foreach item=role from=$userSchedConfRoles[$schedConfId]}
 			{if $role->getRolePath() != 'reader'}
 				<li>&#187;
@@ -93,9 +97,9 @@
 				</li>
 			{/if}
 		{/foreach}
+		</ul>
 
 	{/foreach}
-</ul>
 {/if}
 
 {if !$hasRole}

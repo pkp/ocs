@@ -41,8 +41,8 @@ function changePaymentMethod() {
 				<p>{$plugin->getDescription()}</p>
 				{assign var=pluginIndex value=$pluginIndex+1}
 			{/foreach}
-			</select>
 		</td>
+	</tr>
 	{call_hook name="Template::Manager::Payment::displayPaymentSettingsForm" plugin=$paymentMethodPluginName}
 </table>
 

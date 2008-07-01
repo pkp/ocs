@@ -115,6 +115,6 @@ function ensureKeyword() {
 {/if}
 </table>
 
-<p>{translate key="search.syntaxInstructions"}</p>
+{translate key="search.syntaxInstructions"}
 
 {include file="common/footer.tpl"}

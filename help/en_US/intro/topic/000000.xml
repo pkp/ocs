@@ -21,8 +21,8 @@
 		<p><em>OCS is flexible and scalable</em>. A single installation of OCS can support the operation of multiple conferences, and multiple years for each conference. Each conference has its own unique URL as well as its own look and feel. OCS can enable a single director to manage all aspects of a conference, or OCS will support an international team of people with diverse responsibilities for a conference's various aspects.</p>
 		<p><em>OCS supports the principle of extending access</em>. This system is intended not only to assist with conference publishing, but also to demonstrate how costs of conference publishing can be reduced to the point where providing readers with "open access" to the contents of proceedings may be a viable option. The concept of open access is elaborated in a number of articles stemming from this project which are freely available under <a href="http://pkp.sfu.ca/pkp_publications" target="_blank">PKP Publications</a> on Public Knowledge Project website.</p>
 		<p><em>The origins of OCS</em>. Largely based on the existing code used for <a href="http://pkp.sfu.ca/?q=ojs" target="_blank">Open Journal Systems</a>, OCS was developed to meet the needs of scholarly conference organizers. OCS is a research and development initiative of the Public Knowledge Project at the University of British Columbia. Its continuing development is currently overseen by a partnership among UBC's Public Knowledge Project, the Canadian Center for Studies in Publishing, and the Simon Fraser University Library. For more information, see the <a href="http://pkp.sfu.ca/" target="_blank">Public Knowledge Project</a> web site. The latest version of OCS is 2.1, released in April 2008. OCS has been used by over 100 scholarly conferences, as shown by <a href="http://pkp.sfu.ca/ocs-conferences" target="_blank">OCS Conferences</a> on the PKP website. </p>
-		<p><em>OCS Features</em>.
-		<p>OCS will allow you to:
+		<p><em>OCS Features</em>.</p>
+		<p>OCS will allow you to:</p>
 		<ul><li>create a conference Web site</li>
 		<li>compose and send a call for papers</li>
 		<li>electronically accept paper and abstract submissions</li>
@@ -30,8 +30,8 @@
 		<li>post conference proceedings and papers in a searchable format</li>
 		<li>post, if you wish, the original data sets</li>
 		<li>register participants</li>
-		<li>integrate post-conference online discussions</li></ul></p>
-		<p>In OCS 2.0, more features were incorporated:
+		<li>integrate post-conference online discussions</li></ul>
+		<p>In OCS 2.0, more features were incorporated:</p>
 		<ul><li>manage conferences that occur more than once (e.g. yearly)</li>
 		<li>an expanded, multiple-round review system</li>
 		<li>e-mail template system</li>
@@ -40,21 +40,21 @@
 		<li>automated &quot;thanks-for-submitting&quot; messages</li>
 		<li>accept login/password for participants</li>
 		<li>Creative Commons licensing of presentations</li>
-		<li>more customizable, scalable and secure code</li></ul></p>
-		<p>New features incorporated into the latest version OCS 2.1 include:
+		<li>more customizable, scalable and secure code</li></ul>
+		<p>New features incorporated into the latest version OCS 2.1 include:</p>
 		<ul><li>Session Scheduler</li>
 		<li>Reviewer form</li>
 		<li>Multiple languages</li>
 		<li>Help files</li>
-		<li>Documentation</li></ul></p></p>]]>	
+		<li>Documentation</li></ul>]]>	
 	</section>
 	<section title="Management Structure">
-<![CDATA[<p><h5>Editorial Process</h5><p>New submissions typically go through four steps in the editorial process, involving directors, track directors, reviewers, and authors.</p>
+<![CDATA[<h5>Editorial Process</h5><p>New submissions typically go through four steps in the editorial process, involving directors, track directors, reviewers, and authors.</p>
 <ol><li><em>Unassigned Queue:</em> Items wait to be assigned to one or more track directors.</li>
 <li><em>Submission Review:</em> Items undergo peer review and are subject to an editorial decision.</li>
 <li><em>Submission Editing:</em> Items undergo layout and copyediting.</li>
-<li><em>Publishing:</em> Items are scheduled for Website posting.</li></ol></p>
-<p><h5>Editorial Roles</h5>
+<li><em>Publishing:</em> Items are scheduled for Website posting.</li></ol>
+<h5>Editorial Roles</h5>
 <ul><li><em>Site Administrator:</em> Oversees the entire OCS installation, and sets up any new conference sites hosted on the installation.</li>
 <li><em>Conference Manager:</em> Oversees a conference site on the installation, including all of the user accounts particular to that site. The Conference Manager creates, configures and maintains any scheduled conference instances for their particular conference site. </li>
 <li><em>Registration Manager:</em> Responsible for conference registrations.</li>
@@ -63,7 +63,7 @@
 <li><em>Reviewer:</em> Provides peer-review of the submissions for the conference. Recommmends for or against the inclusion of the submission to the conference. </li>
 <li><em>Author:</em>Submit their proposals to the conference, and participate in the review and editing process.</li>
 <li><em>Reader:</em>Users that can register to read the proceedings, while some conferences do not require registration for that.</li>
-</ul></p>
+</ul>
 <p align="center"><a href="{$baseUrl}/locale/{$locale}/edprocesslarge.png"><img src="{$baseUrl}/locale/{$locale}/edprocess.png" width="480" height="542" border="0" alt="" /></a></p>]]>
 	</section>
 	<section title="Support">

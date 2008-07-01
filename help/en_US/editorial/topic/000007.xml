@@ -30,7 +30,7 @@
 	<section title="Director Decision">
 		<![CDATA[<p>The Director Decision section appears on all review pages. The Director uses it to commit a decision on the submission and inform the Author of the decision.</p> 
 		<p>The Invite Presentation decision will move the submission from Abstract to Paper review if the scheduled conference allows abstracts followed by a submission (see note above), and in all cases will initiate an email to the Author to inform on the submission's acceptance. </p>
-		<p>]]>
+		]]>
 	</section>
 	<section title="Complete">
 		<![CDATA[<p>The Complete section appears only in the final stage of a submission's review process. Clicking the Complete button will add the submission to the list of Presentations, and move it out of the Review queue.</p>]]>

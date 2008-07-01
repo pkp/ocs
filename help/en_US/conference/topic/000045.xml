@@ -22,7 +22,7 @@
 
 		<p><em>Call for Papers:</em><br /> The Conference Manager can enter a call for papers message here, using HTML. This message will appear as its own page on the scheduled conference's home page, and from the sidebar. </p>
 		
-		 <em>Author Guidelines:</em><br /> In order to ensure proper formatting and bibliographic standards, the Conference Manager can enter extensive Author Guidelines in HTML, which will be available from the About the Conference page. The Conference Manager can also create and edit a Submission Preparation Checklist (a seven-step checklist is provided by default); Authors will be required to accept each point on this checklist before submitting to the scheduled conference.</p>
+		<p><em>Author Guidelines:</em><br /> In order to ensure proper formatting and bibliographic standards, the Conference Manager can enter extensive Author Guidelines in HTML, which will be available from the About the Conference page. The Conference Manager can also create and edit a Submission Preparation Checklist (a seven-step checklist is provided by default); Authors will be required to accept each point on this checklist before submitting to the scheduled conference.</p>
 		
 		<p><em>Submission Indexing:</em><br /> The Conference Manager can enable different types of indexing for submissions; Authors will be able to add indexing information themselves for any enabled field on submission, and Directors will be able to view and edit that information once the submission has been completed.</p>
 		

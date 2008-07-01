@@ -41,7 +41,7 @@
 {/if}
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="typeId" key="manager.announcements.form.typeId"}</td>
-	<td width="80%" class="value"><select name="typeId" id="typeId" class="selectMenu" />
+	<td width="80%" class="value"><select name="typeId" id="typeId" class="selectMenu">
 		<option value=""></option>
 		{iterate from=announcementTypes item=announcementType}
 		<option value="{$announcementType->getTypeId()}"{if $typeId == $announcementType->getTypeId()} selected="selected"{/if}>{$announcementType->getAnnouncementTypeName()|escape}</option>
@@ -50,7 +50,7 @@
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="schedConfId" key="manager.announcements.form.schedConfId"}</td>
-	<td width="80%" class="value"><select name="schedConfId" id="schedConfId" class="selectMenu" />
+	<td width="80%" class="value"><select name="schedConfId" id="schedConfId" class="selectMenu">
 		<option value="0">{translate key="common.all"}</option>
 		{iterate from=schedConfs item=schedConf}
 		<option value="{$schedConf->getSchedConfId()}"{if $schedConfId == $schedConf->getSchedConfId()} selected="selected"{/if}>{$schedConf->getSchedConfTitle()|escape}</option>
@@ -63,21 +63,21 @@
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="descriptionShort" required="true" key="manager.announcements.form.descriptionShort"}</td>
-	<td class="value"><textarea name="descriptionShort[{$formLocale|escape}]" id="descriptionShort" cols="40" rows="6" class="textArea" />{$descriptionShort[$formLocale]|escape}</textarea>
+	<td class="value"><textarea name="descriptionShort[{$formLocale|escape}]" id="descriptionShort" cols="40" rows="6" class="textArea">{$descriptionShort[$formLocale]|escape}</textarea>
 		<br />
 		<span class="instruct">{translate key="manager.announcements.form.descriptionShortInstructions"}</span>
 	</td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="description" required="true" key="manager.announcements.form.description"}</td>
-	<td class="value"><textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="6" class="textArea" />{$description[$formLocale]|escape}</textarea>
+	<td class="value"><textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="6" class="textArea">{$description[$formLocale]|escape}</textarea>
 		<br />
 		<span class="instruct">{translate key="manager.announcements.form.descriptionInstructions"}</span>
 	</td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="dateExpire" key="manager.announcements.form.dateExpire"}</td>
-	<td class="value">
+	<td class="value" id="dateExpire">
 		{if $dateExpire != null}
 			{html_select_date prefix="dateExpire" all_extra="class=\"selectMenu\"" end_year="$yearOffsetFuture" year_empty="" month_empty="" day_empty="" time="$dateExpire"}
 		{else}

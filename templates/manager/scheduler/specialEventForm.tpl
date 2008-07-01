@@ -43,8 +43,8 @@
 	<td width="80%" class="value"><input type="text" name="name[{$formLocale|escape}]" value="{$name[$formLocale]|escape}" size="40" id="name" maxlength="80" class="textField" /></td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="startDate" required="true" key="common.date"}</td>
-	<td class="value">
+	<td class="label">{fieldLabel name="startTime" required="true" key="common.date"}</td>
+	<td class="value" id="startTime">
 		{html_select_date prefix="startTime" all_extra="class=\"selectMenu\"" time=$startTime|default:$defaultStartTime start_year=$firstYear end_year=$lastYear}
 	</td>
 </tr>
@@ -56,7 +56,7 @@
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="endTime" required="true" key="manager.scheduler.endTime"}</td>
-	<td class="value">
+	<td class="value" id="endTime">
 		<input name="endTimeDay" value="1" type="hidden" />
 		<input name="endTimeMonth" value="1" type="hidden" />
 		<input name="endTimeYear" value="2008" type="hidden" />
