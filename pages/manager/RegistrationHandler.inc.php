@@ -26,8 +26,20 @@ class RegistrationHandler extends ManagerHandler {
 		$schedConf = &Request::getSchedConf();
 		$rangeInfo = &Handler::getRangeInfo('registrations', array());
 		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
+
+		// Get the user's search conditions, if any
+		$searchField = Request::getUserVar('searchField');
+		$dateSearchField = Request::getUserVar('dateSearchField');
+		$searchMatch = Request::getUserVar('searchMatch');
+		$search = Request::getUserVar('search');
+
+		$fromDate = Request::getUserDateVar('dateFrom', 1, 1);
+		if ($fromDate !== null) $fromDate = date('Y-m-d H:i:s', $fromDate);
+		$toDate = Request::getUserDateVar('dateTo', 32, 12, null, 23, 59, 59);
+		if ($toDate !== null) $toDate = date('Y-m-d H:i:s', $toDate);
+
 		while (true) {
-			$registrations = &$registrationDao->getRegistrationsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+			$registrations = &$registrationDao->getRegistrationsBySchedConfId($schedConf->getSchedConfId(), $searchField, $searchMatch, $search, $dateSearchField, $fromDate, $toDate, $rangeInfo);
 			if ($registrations->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $registrations->getLastPageRangeInfo();
@@ -37,7 +49,56 @@ class RegistrationHandler extends ManagerHandler {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('registrations', $registrations);
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
+
+		// Set search parameters
+		foreach (RegistrationHandler::getSearchFormDuplicateParameters() as $param)
+			$templateMgr->assign($param, Request::getUserVar($param));
+
+		$templateMgr->assign('dateFrom', $fromDate);
+		$templateMgr->assign('dateTo', $toDate);
+		$templateMgr->assign('fieldOptions', RegistrationHandler::getSearchFieldOptions());
+		$templateMgr->assign('dateFieldOptions', RegistrationHandler::getDateFieldOptions());
+
 		$templateMgr->display('registration/registrations.tpl');
+	}
+
+	/**
+	 * Get the list of parameter names that should be duplicated when
+	 * displaying the search form (i.e. made available to the template
+	 * based on supplied user data).
+	 * @return array
+	 */
+	function getSearchFormDuplicateParameters() {
+		return array(
+			'searchField', 'searchMatch', 'search',
+			'dateFromMonth', 'dateFromDay', 'dateFromYear',
+			'dateToMonth', 'dateToDay', 'dateToYear',
+			'dateSearchField'
+		);
+	}
+
+	/**
+	 * Get the list of fields that can be searched by contents.
+	 * @return array
+	 */
+	function getSearchFieldOptions() {
+		return array(
+			REGISTRATION_USER => 'manager.registration.user',
+			REGISTRATION_MEMBERSHIP => 'manager.registration.membership',
+			REGISTRATION_DOMAIN => 'manager.registration.domain',
+			REGISTRATION_IP_RANGE => 'manager.registration.ipRange'
+		);
+	}
+
+	/**
+	 * Get the list of date fields that can be searched.
+	 * @return array
+	 */
+	function getDateFieldOptions() {
+		return array(
+			REGISTRATION_DATE_REGISTERED => 'manager.registration.dateRegistered',
+			REGISTRATION_DATE_PAID => 'manager.registration.datePaid'
+		);
 	}
 
 	/**

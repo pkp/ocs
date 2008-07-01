@@ -18,6 +18,14 @@
 import('registration.Registration');
 import('registration.RegistrationType');
 
+define('REGISTRATION_DATE_REGISTERED',	0x01);
+define('REGISTRATION_DATE_PAID',		0x02);
+
+define('REGISTRATION_USER',			0x01);
+define('REGISTRATION_MEMBERSHIP',	0x02);
+define('REGISTRATION_DOMAIN',		0x03);
+define('REGISTRATION_IP_RANGE',		0x04);
+
 class RegistrationDAO extends DAO {
 	/**
 	 * Retrieve a registration by registration ID.
@@ -132,6 +140,25 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
+	 * Internal function to generate user based search query.
+	 * @return string 
+	 */
+	function _generateUserNameSearchSQL($search, $searchMatch, $prefix, &$params) {
+		$first_last = $this->_dataSource->Concat($prefix.'first_name', '\' \'', $prefix.'last_name');
+		$first_middle_last = $this->_dataSource->Concat($prefix.'first_name', '\' \'', $prefix.'middle_name', '\' \'', $prefix.'last_name');
+		$last_comma_first = $this->_dataSource->Concat($prefix.'last_name', '\', \'', $prefix.'first_name');
+		$last_comma_first_middle = $this->_dataSource->Concat($prefix.'last_name', '\', \'', $prefix.'first_name', '\' \'', $prefix.'middle_name');
+		if ($searchMatch === 'is') {
+			$searchSql = " AND (LOWER({$prefix}last_name) = LOWER(?) OR LOWER($first_last) = LOWER(?) OR LOWER($first_middle_last) = LOWER(?) OR LOWER($last_comma_first) = LOWER(?) OR LOWER($last_comma_first_middle) = LOWER(?))";
+		} else {
+			$searchSql = " AND (LOWER({$prefix}last_name) LIKE LOWER(?) OR LOWER($first_last) LIKE LOWER(?) OR LOWER($first_middle_last) LIKE LOWER(?) OR LOWER($last_comma_first) LIKE LOWER(?) OR LOWER($last_comma_first_middle) LIKE LOWER(?))";
+			$search = '%' . $search . '%';
+		}
+		$params[] = $params[] = $params[] = $params[] = $params[] = $search;
+		return $searchSql;
+	}
+
+	/**
 	 * Insert a new Registration.
 	 * @param $registration Registration
 	 * @return boolean 
@@ -235,11 +262,81 @@ class RegistrationDAO extends DAO {
 	/**
 	 * Retrieve an array of registration matching a particular scheduled conference ID.
 	 * @param $schedConfId int
+	 * @param $searchField int
+	 * @param $searchMatch string "is" or "contains"
+	 * @param $search String to look in $searchField for
+	 * @param $dateField int 
+	 * @param $dateFrom String date to search from
+	 * @param $dateTo String date to search to
 	 * @return object DAOResultFactory containing matching Registrations
 	 */
-	function &getRegistrationsBySchedConfId($schedConfId, $rangeInfo = null) {
+	function &getRegistrationsBySchedConfId($schedConfId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$params = array($schedConfId);
+		$searchSql = '';
+
+		if (!empty($search)) switch ($searchField) {
+			case REGISTRATION_USER:
+				$searchSql = $this->_generateUserNameSearchSQL($search, $searchMatch, 'u.', $params);
+				break;
+			case REGISTRATION_MEMBERSHIP:
+				if ($searchMatch === 'is') {
+					$searchSql = ' AND LOWER(r.membership) = LOWER(?)';
+				} else {
+					$searchSql = ' AND LOWER(r.membership) LIKE LOWER(?)';
+					$search = '%' . $search . '%';
+				}
+				$params[] = $search;
+				break;
+			case REGISTRATION_DOMAIN:
+				if ($searchMatch === 'is') {
+					$searchSql = ' AND LOWER(r.domain) = LOWER(?)';
+				} else {
+					$searchSql = ' AND LOWER(r.domain) LIKE LOWER(?)';
+					$search = '%' . $search . '%';
+				}
+				$params[] = $search;
+				break;
+			case REGISTRATION_IP_RANGE:
+				if ($searchMatch === 'is') {
+					$searchSql = ' AND LOWER(r.ip_range) = LOWER(?)';
+				} else {
+					$searchSql = ' AND LOWER(r.ip_range) LIKE LOWER(?)';
+					$search = '%' . $search . '%';
+				}
+				$params[] = $search;
+				break;
+		}
+
+		if (!empty($dateFrom) || !empty($dateTo)) switch($dateField) {
+			case REGISTRATION_DATE_REGISTERED:
+				if (!empty($dateFrom)) {
+					$searchSql .= ' AND r.date_registered >= ' . $this->datetimeToDB($dateFrom);
+				}
+				if (!empty($dateTo)) {
+					$searchSql .= ' AND r.date_registered <= ' . $this->datetimeToDB($dateTo);
+				}
+				break;
+			case REGISTRATION_DATE_PAID:
+				if (!empty($dateFrom)) {
+					$searchSql .= ' AND r.date_paid >= ' . $this->datetimeToDB($dateFrom);
+				}
+				if (!empty($dateTo)) {
+					$searchSql .= ' AND r.date_paid <= ' . $this->datetimeToDB($dateTo);
+				}
+				break;
+		}
+
+		$sql = 'SELECT r.*
+				FROM
+				registrations r,
+				users u
+				WHERE r.user_id = u.user_id
+				AND sched_conf_id = ?';
+ 
 		$result = &$this->retrieveRange(
-			'SELECT r.* FROM registrations r, users u WHERE r.user_id = u.user_id AND sched_conf_id = ? ORDER BY membership, u.last_name, r.registration_id', $schedConfId, $rangeInfo
+			$sql . ' ' . $searchSql . ' ORDER BY membership, u.last_name, r.registration_id',
+			count($params)===1?array_shift($params):$params,
+			$rangeInfo
 		);
 
 		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationFromRow');
