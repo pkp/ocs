@@ -26,6 +26,7 @@
 	{/foreach}
 
 	<script type="text/javascript" src="{$baseUrl}/js/general.js"></script>
+	{$additionalHeadData}
 </head>
 <body>
 
@@ -71,8 +72,18 @@
 </div>
 
 <div id="content">
+	<div id="topBar">
+		<div id="paperFontSize">
+			{translate key="paper.fontSize"}:&nbsp;
+			<a href="#" onclick="setFontSize('{translate|escape:"jsparam" key="paper.fontSize.small.altText"}');" class="icon">{icon path="templates/images/icons/" name="font_small"}</a>&nbsp;
+			<a href="#" onclick="setFontSize('{translate|escape:"jsparam" key="paper.fontSize.medium.altText"}');" class="icon">{icon path="templates/images/icons/" name="font_medium"}</a>&nbsp;
+			<a href="#" onclick="setFontSize('{translate|escape:"jsparam" key="paper.fontSize.large.altText"}');" class="icon">{icon path="templates/images/icons/" name="font_large"}</a>
+		</div>
+	</div>
 {if $galley}
-	{$galley->getHTMLContents()}
+	{if $galley->isHTMLGalley()}
+		{$galley->getHTMLContents()}
+	{/if}
 {else}
 
 	<h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>

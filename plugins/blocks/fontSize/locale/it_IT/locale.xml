@@ -16,7 +16,7 @@
 	<message key="plugins.block.fontSize.displayName">Blocco della dimensione del carattere</message>
 	<message key="plugins.block.fontSize.description">Questo plugin fornisce alla barra laterale un misuratore per la dimensione del carattere.</message>
 	<message key="plugins.block.fontSize.title">Dimensione del carattere</message>
-	<message key="plugins.block.fontSize.small.alt">Piccolo</message>
-	<message key="plugins.block.fontSize.medium.alt">Medio</message>
-	<message key="plugins.block.fontSize.large.alt">Grande</message>
+	<message key="plugins.block.fontSize.small">Piccolo</message>
+	<message key="plugins.block.fontSize.medium">Medio</message>
+	<message key="plugins.block.fontSize.large">Grande</message>
 </locale>

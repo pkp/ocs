@@ -162,6 +162,13 @@ class PaperHandler extends Handler {
 			}
 		}
 
+		// Add font sizer js and css if not already in header
+		$additionalHeadData = $templateMgr->get_template_vars('additionalHeadData');
+		if (stripos($additionalHeadData, 'sizer.js') === false) {
+			$additionalHeadData .= $templateMgr->fetch('common/sizer.tpl');
+			$templateMgr->assign('additionalHeadData', $additionalHeadData);
+		}
+
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
 		$templateMgr->assign_by_ref('conference', $conference);
 		$templateMgr->assign_by_ref('paper', $paper);

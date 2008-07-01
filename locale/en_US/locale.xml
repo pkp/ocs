@@ -313,6 +313,10 @@
 	<message key="paper.comments.trackDefault">Default</message>
 	<message key="paper.comments.disable">Disable</message>
 	<message key="paper.comments.enable">Enable</message>
+	<message key="paper.fontSize">Font Size</message>
+	<message key="paper.fontSize.small.altText">Small</message>
+	<message key="paper.fontSize.medium.altText">Medium</message>
+	<message key="paper.fontSize.large.altText">Large</message>
 
 	<!-- Submission Tracking - Common -->
 	<message key="submission.fromTime">From</message>
@@ -2630,9 +2634,9 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="icon.mail.alt">Mail</message>
 	<message key="icon.info.alt">Info</message>
 	<message key="icon.folder.alt">Folder</message>
-	<message key="icon.small.alt">Small</message>
-	<message key="icon.medium.alt">Medium</message>
-	<message key="icon.large.alt">Large</message>
+	<message key="icon.font_small.alt">Small</message>
+	<message key="icon.font_medium.alt">Medium</message>
+	<message key="icon.font_large.alt">Large</message>
 
 	<!-- Debug messages -->
 	<message key="debug.executionTime">Page generated in</message>

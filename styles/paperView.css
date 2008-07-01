@@ -47,6 +47,23 @@
 	border: none;
 }
 
+#topBar {
+	width: 100%;
+	padding-top: 1em;
+	padding-bottom: 2.5em;
+}
+
+#paperFontSize {
+	float: right;
+}
+
+#paperFontSize img {
+	display: inline;
+	vertical-align: middle;
+	margin: 0;
+	padding: 0;
+}
+
 div.rtSeparator {
 	width: 100%;
 	padding: 0;
