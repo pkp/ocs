@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.manager
  * @class ManagerSchedConfHandler
+ * @ingroup pages_manager
  *
- * Handle requests for scheduled conference management in site administration. 
- *
- * $Id$
+ * @brief Handle requests for scheduled conference management in site administration. 
  */
+
+//$Id$
 
 class ManagerSchedConfHandler extends ManagerHandler {
 

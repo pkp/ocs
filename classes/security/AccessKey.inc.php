@@ -1,18 +1,23 @@
 <?php
 
 /**
+ * @defgroup security
+ */
+ 
+/**
  * @file AccessKey.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package security
  * @class AccessKey
+ * @ingroup security
+ * @see AccessKeyDAO
  *
- * AccessKey class.
- *
- * $Id$
+ * @brief AccessKey class.
  */
+
+//$Id$
 
 class AccessKey extends DataObject {
 

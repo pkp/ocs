@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.manager
  * @class ManagerProgramHandler
+ * @ingroup pages_manager
  *
- * Handle requests for changing scheduled conference program settings. 
- *
- * $Id$
+ * @brief Handle requests for changing scheduled conference program settings. 
  */
+
+//$Id$
 
 class ManagerProgramHandler extends ManagerHandler {
 

@@ -1,18 +1,22 @@
 <?php
 
 /**
+ * @defgroup registration_form
+ */
+ 
+/**
  * @file RegistrationForm.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package registration.form
  * @class RegistrationForm
+ * @ingroup registration_form
  *
- * Form for conference managers to create/edit registration.
- *
- * $Id$
+ * @brief Form for conference managers to create/edit registration.
  */
+
+//$Id$
 
 import('form.Form');
 

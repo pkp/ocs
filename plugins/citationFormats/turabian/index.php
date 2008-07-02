@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup plugins_citationFormats_turabian
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Wrapper for Turabian citation plugin.
+ * @brief Wrapper for Turabian citation plugin.
  *
- * @package plugins.citationFormats.turabian
- *
- * $Id$
+ * @ingroup plugins_citationFormats_turabian
  */
+
+//$Id$
 
 require_once('TurabianCitationPlugin.inc.php');
 

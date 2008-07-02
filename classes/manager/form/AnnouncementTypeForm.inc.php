@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form
  * @class AnnouncementTypeForm
+ * @ingroup manager_form
+ * @see AnnouncementType
  *
- * Form for conference manager to create/edit announcement types.
- *
- * $Id$
+ * @brief Form for conference manager to create/edit announcement types.
  */
+
+//$Id$
 
 import('form.Form');
 

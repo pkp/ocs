@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper
  * @class SuppFileDAO
+ * @ingroup paper
+ * @see SuppFile
  *
- * Class for SuppFile DAO.
- * Operations for retrieving and modifying SuppFile objects.
- *
- * $Id$
+ * @brief Operations for retrieving and modifying SuppFile objects.
  */
+
+//$Id$
 
 import('paper.SuppFile');
 

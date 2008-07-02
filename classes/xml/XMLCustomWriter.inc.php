@@ -1,18 +1,22 @@
 <?php
 
 /**
+ * @defgroup xml
+ */
+ 
+/**
  * @file XMLCustomWriter.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package xml
  * @class XMLCustomWriter
+ * @ingroup xml
  *
- * Wrapper class for writing XML documents using PHP 4.x or 5.x
- *
- * $Id$
+ * @brief Wrapper class for writing XML documents using PHP 4.x or 5.x
  */
+
+//$Id$
 
 import ('xml.XMLNode');
 

@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package db
  * @class XMLDAO
+ * @ingroup db
  *
- * XML Data Access Object base class.
+ * @brief XML Data Access Object base class.
  * Operations for retrieving and modifying objects from an XML data source.
- *
- * $Id$
  */
+
+//$Id$
 
 import('xml.XMLParser');
 

@@ -1,18 +1,22 @@
 <?php
 
 /**
+ * @defgroup oai_format
+ */
+ 
+/**
  * @file OAIMetadataFormat_DC.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package oai.format
  * @class OAIMetadataFormat_DC
+ * @ingroup oai_format
  *
- * OAI metadata format class -- Dublin Core.
- *
- * $Id$
+ * @brief OAI metadata format class -- Dublin Core.
  */
+
+//$Id$
 
 class OAIMetadataFormat_DC extends OAIMetadataFormat {
 

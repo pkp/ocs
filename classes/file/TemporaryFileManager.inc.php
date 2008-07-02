@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package file
  * @class TemporaryFileManager
+ * @ingroup file
+ * @see TemporaryFile
  *
- * Class defining operations for temporary file management.
- *
- * $Id$
+ * @brief Class defining operations for temporary file management.
  */
+
+//$Id$
 
 import('file.FileManager');
 

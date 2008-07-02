@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package submission.form
  * @class PaperGalleyForm
+ * @ingroup submission_form
  *
- * Paper galley editing form.
- *
- * $Id$
+ * @brief Paper galley editing form.
  */
+
+//$Id$
 
 import('form.Form');
 

@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  * 
- * @package plugins.reports.review
  * @class ReviewReportDAO
+ * @ingroup plugins_reports_review
+ * @see ReviewReportPlugin
  *
- * Review report DAO
- *
- * $Id$
+ * @brief Review report DAO
  */
+
+//$Id$
 
 define('DB_ONE', 1);
 

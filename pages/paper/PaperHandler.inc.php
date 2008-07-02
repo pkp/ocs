@@ -6,13 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.paper
  * @class PaperHandler
+ * @ingroup pages_paper
  *
  * Handle requests for paper functions. 
  *
- * $Id$
  */
+
+// $Id$
+
 
 import('rt.ocs.RTDAO');
 import('rt.ocs.ConferenceRT');

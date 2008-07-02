@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package conference
  * @class TrackDirectorsDAO
+ * @ingroup conference
  *
- * Class for DAO relating tracks to directors.
- *
- * $Id$
+ * @brief Class for DAO relating tracks to directors.
  */
+
+//$Id$
 
 class TrackDirectorsDAO extends DAO {
 	/**

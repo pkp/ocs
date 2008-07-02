@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package security
  * @class AccessKeyDAO
+ * @ingroup security
+ * @see AccessKey
  *
- * Class for AccessKey DAO.
- * Operations for retrieving and modifying AccessKey objects.
- *
- * $Id$
+ * @brief Operations for retrieving and modifying AccessKey objects.
  */
+
+//$Id$
 
 import('security.AccessKey');
 

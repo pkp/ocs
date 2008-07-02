@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package file
  * @class CaptchaManager
+ * @ingroup file
  *
- * Class defining operations for temporary file management.
- *
- * $Id$
+ * @brief Class defining operations for temporary file management.
  */
+
+//$Id$
 
 import('file.FileManager');
 

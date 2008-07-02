@@ -1,22 +1,27 @@
 <?php
 
 /**
+ * @defgroup announcement
+ */
+ 
+/**
  * @file Announcement.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package announcement 
  * @class Announcement
+ * @ingroup announcement 
+ * @see AnnouncementDAO
  *
- * Announcement class.
- * Basic class describing a announcement.
+ * @brief Basic class describing a announcement.
  *
- * $Id$
  */
 
-define('ANNOUNCEMENT_EXPIRE_YEAR_OFFSET_FUTURE',	'+10');
+// $Id$
 
+
+define('ANNOUNCEMENT_EXPIRE_YEAR_OFFSET_FUTURE',	'+10');
 
 class Announcement extends DataObject {
 	//

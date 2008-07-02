@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package search
  * @class PaperSearchDAO
+ * @ingroup search
+ * @see PaperSearch
  *
- * DAO class for paper search index.
- *
- * $Id$
+ * @brief DAO class for paper search index.
  */
+
+//$Id$
 
 import('search.PaperSearch');
 

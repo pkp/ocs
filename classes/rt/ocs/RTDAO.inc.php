@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package rt.ocs
  * @class RTDAO
+ * @ingroup rt_ocs
+ * @see RT
  *
- * DAO operations for the OCS Reading Tools interface.
- *
- * $Id$
+ * @brief DAO operations for the OCS Reading Tools interface.
  */
+
+//$Id$
 
 import('rt.ocs.ConferenceRT');
 

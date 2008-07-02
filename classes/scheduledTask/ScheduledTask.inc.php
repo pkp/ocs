@@ -6,14 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package core
  * @class ScheduledTask
+ * @ingroup core
+ * @see ScheduledTaskDAO
  *
- * Base class for executing scheduled tasks.
+ * @brief Base class for executing scheduled tasks.
  * All scheduled task classes must extend this class and implement execute().
- *
- * $Id$
  */
+
+//$Id$
 
 class ScheduledTask {
 

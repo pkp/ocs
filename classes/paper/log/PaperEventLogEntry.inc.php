@@ -1,19 +1,23 @@
 <?php
 
 /**
+ * @defgroup paper_log
+ */
+ 
+/**
  * @file PaperEventLogEntry.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper.log
+ * @ingroup paper_log
  * @class PaperEventLogEntry
+ * @see PaperEventLogDAO
  *
- * Paper event log entry class.
- * Describes an entry in the paper history log.
- *
- * $Id$
+ * @brief Describes an entry in the paper history log.
  */
+
+//$Id$
 
 import('log.EventLogConstants');
 

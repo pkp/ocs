@@ -1,20 +1,25 @@
 <?php
 
 /**
+ * @defgroup search
+ */
+ 
+/**
  * @file PaperSearch.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package search
  * @class PaperSearch
+ * @ingroup search
+ * @see PaperSeachDAO, PaperSearchIndex
  *
- * Class for retrieving paper search results.
+ * @brief Class for retrieving paper search results.
  *
  * FIXME: NEAR; precedence w/o parens?; stemming; weighted counting
- *
- * $Id$
  */
+
+//$Id$
 
 // Search types
 define('PAPER_SEARCH_PRESENTER',		0x00000001);

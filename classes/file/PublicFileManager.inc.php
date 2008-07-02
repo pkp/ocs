@@ -6,14 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package file
  * @class PublicFileManager
+ * @ingroup file
  *
- * PublicFileManager class.
- * Wrapper class for uploading files to a site/conference's public directory.
- *
- * $Id$
+ * @brief Wrapper class for uploading files to a site/conference's public directory.
  */
+
+//$Id$
 
 import('file.FileManager');
 

@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.admin
  * @class AdminFunctionsHandler
+ * @ingroup pages_admin
  *
- * Handle requests for site administrative/maintenance functions. 
- *
- * $Id$
+ * @brief Handle requests for site administrative/maintenance functions. 
  */
+
+//$Id$
 
 import('site.Version');
 import('site.VersionDAO');

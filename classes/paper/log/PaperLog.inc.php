@@ -6,14 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper.log
  * @class PaperLog
+ * @ingroup paper_log
  *
- * PaperLog class.
- * Static class for adding / accessing paper log entries.
- *
- * $Id$
+ * @brief Static class for adding / accessing paper log entries.
  */
+
+//$Id$
 
 class PaperLog {
 

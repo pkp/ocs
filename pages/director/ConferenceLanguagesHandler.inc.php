@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.director
  * @class ConferenceLanguagesHandler
+ * @ingroup pages_director
  *
- * Handle requests for changing conference language settings. 
- *
- * $Id$
+ * @brief Handle requests for changing conference language settings. 
  */
+
+//$Id$
 
 class ConferenceLanguagesHandler extends DirectorHandler {
 

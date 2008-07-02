@@ -1,20 +1,24 @@
 <?php
 
 /**
+ * @defgroup oai_ocs
+ */
+ 
+/**
  * @file ConferenceOAI.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package oai.ocs
  * @class ConferenceOAI
+ * @ingroup oai_ocs
  *
- * OCS-specific OAI interface.
+ * @brief OCS-specific OAI interface.
  * Designed to support site-wide and conference-wide OAI interface
  * (based on where the request is directed).
- *
- * $Id$
  */
+
+//$Id$
 
 import('oai.OAI');
 import('oai.ocs.OAIDAO');

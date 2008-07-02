@@ -1,18 +1,22 @@
 <?php
 
 /**
+ * @defgroup submission
+ */
+ 
+/**
  * @file Action.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package submission
  * @class Action
+ * @ingroup submission
  *
- * Action class.
- *
- * $Id$
+ * @brief Action class.
  */
+
+//$Id$
 
 /* These constants correspond to editing decision "decision codes". */
 define('SUBMISSION_DIRECTOR_DECISION_INVITE', 1);

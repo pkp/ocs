@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package security
  * @class Role
+ * @ingroup security
+ * @see RoleDAO
  *
- * Role class.
- * Describes user roles within the system and the associated permissions.
- *
- * $Id$
+ * @brief Describes user roles within the system and the associated permissions.
  */
+
+//$Id$
 
 /** ID codes for all user roles */
 define('ROLE_ID_SITE_ADMIN',			0x00000001);

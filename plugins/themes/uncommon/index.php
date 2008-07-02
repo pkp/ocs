@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup plugins_themes_uncommon
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Wrapper for "uncommon" theme plugin.
+ * @brief Wrapper for "uncommon" theme plugin.
  *
- * @package plugins.themes.uncommon
- *
- * $Id$
+ * @ingroup plugins_themes_uncommon
  */
+
+//$Id$
 
 require_once('UncommonThemePlugin.inc.php');
 

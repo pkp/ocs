@@ -6,13 +6,15 @@
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package i18n 
  * @class EditableLocaleFile
+ * @ingroup plugins_generic_translator
  *
- * This extension of LocaleFile.inc.php supports updating.
+ * @brief This extension of LocaleFile.inc.php supports updating.
  *
- * $Id$
  */
+
+// $Id$
+
 
 import('file.EditableFile');
 

@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package submission
  * @class EditAssignment
+ * @ingroup submission
+ * @see EditAssignmentDAO
  *
- * EditAssignment class.
- * Describes edit assignment properties.
- *
- * $Id$
+ * @brief Describes edit assignment properties.
  */
+
+//$Id$
 
 class EditAssignment extends DataObject {
 

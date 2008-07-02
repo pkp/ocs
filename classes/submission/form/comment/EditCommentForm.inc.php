@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package submission.form
  * @class EditCommentForm
+ * @ingroup submission_form
  *
- * Edit comment form.
- *
- * $Id$
+ * @brief Edit comment form.
  */
+
+//$Id$
 
 import('form.Form');
 

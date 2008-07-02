@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package admin.form
  * @class ImportOCS1Form
+ * @ingroup admin_form
  *
- * Form for site administrator to migrate data from an OCS 1.x system.
- *
- * $Id$
+ * @brief Form for site administrator to migrate data from an OCS 1.x system.
  */
+
+//$Id$
 
 import('site.ImportOCS1');
 import('form.Form');

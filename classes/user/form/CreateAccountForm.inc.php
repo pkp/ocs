@@ -1,18 +1,24 @@
 <?php
 
 /**
+ * @defgroup user_form
+ */
+
+/**
  * @file CreateAccountForm.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package user.form
  * @class CreateAccountForm
+ * @ingroup user_form
  *
- * Form for user account creation.
+ * @brief Form for user account creation.
  *
- * $Id$
  */
+
+// $Id$
+
 
 import('form.Form');
 

@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.user
  * @class UserHandler
+ * @ingroup pages_user
  *
- * Handle requests for user functions.
- *
- * $Id$
+ * @brief Handle requests for user functions.
  */
+
+//$Id$
 
 class UserHandler extends Handler {
 

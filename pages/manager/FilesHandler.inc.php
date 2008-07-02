@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.manager
  * @class FilesHandler
+ * @ingroup pages_manager
  *
- * Handle requests for files browser functions. 
- *
- * $Id$
+ * @brief Handle requests for files browser functions. 
  */
+
+//$Id$
 
 class FilesHandler extends ManagerHandler {
 

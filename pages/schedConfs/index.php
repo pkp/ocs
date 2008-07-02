@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup pages_schedConfs
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Handle conference index requests.
+ * @brief Handle conference index requests.
  *
- * @package pages.schedConfs
- *
- * $Id$
+ * @ingroup pages_schedConfs
  */
+
+//$Id$
 
 define('HANDLER_CLASS', 'SchedConfsHandler');
 

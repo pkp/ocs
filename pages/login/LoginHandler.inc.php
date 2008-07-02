@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.login
  * @class LoginHandler
+ * @ingroup pages_login
  *
- * Handle login/logout requests. 
- *
- * $Id$
+ * @brief Handle login/logout requests. 
  */
+
+//$Id$
 
 class LoginHandler extends Handler {
 

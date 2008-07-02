@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins.importexport.nlm
  * @class NLMExportDom
+ * @ingroup plugins_importexport_nlm
+ * @see NLMExportPlugin
  *
- * NLM XML export plugin DOM functions
- *
- * $Id$
+ * @brief NLM XML export plugin DOM functions
  */
+
+//$Id$
 
 import('xml.XMLCustomWriter');
 

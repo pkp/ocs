@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package rt.ocs
  * @class ConferenceRTAdmin
+ * @ingroup rt_ocs
  *
- * OCS-specific Reading Tools administration interface.
- *
- * $Id$
+ * @brief OCS-specific Reading Tools administration interface.
  */
+
+//$Id$
 
 import('rt.RTAdmin');
 import('rt.ocs.RTDAO');

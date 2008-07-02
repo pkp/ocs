@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form
  * @class TimelineForm
+ * @ingroup manager_form
  *
- * Form for creating and modifying scheduled conference tracks.
- *
- * $Id$
+ * @brief Form for creating and modifying scheduled conference tracks.
  */
+
+//$Id$
 
 import('form.Form');
 

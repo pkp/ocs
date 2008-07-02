@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package help
  * @class OCSHelpMappingFile
+ * @ingroup help
  * 
- * Abstracts the built-in help mapping XML file.
- *
- * $Id$
+ * @brief Abstracts the built-in help mapping XML file.
  */
+
+//$Id$
 
 import('help.HelpMappingFile');
 

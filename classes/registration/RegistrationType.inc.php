@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package registration 
  * @class RegistrationType
+ * @ingroup registration 
+ * @see RegistrationTypeDAO
  *
- * Registration type class.
- * Basic class describing a registration type.
- *
- * $Id$
+ * @brief Basic class describing a registration type.
  */
+
+//$Id$
 
 /**
  * Registration access types

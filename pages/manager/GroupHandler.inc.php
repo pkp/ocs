@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.manager
  * @class GroupHandler
+ * @ingroup pages_manager
  *
- * Handle requests for organizing team management functions. 
- *
- * $Id$
+ * @brief Handle requests for organizing team management functions. 
  */
+
+//$Id$
 
 class GroupHandler extends ManagerHandler {
 

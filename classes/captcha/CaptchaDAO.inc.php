@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package captcha
  * @class CaptchaDAO
+ * @ingroup captcha
+ * @see Captcha
  *
- * Class for Captcha DAO.
- * Operations for retrieving and modifying Captcha keys.
- *
- * $Id$
+ * @brief Operations for retrieving and modifying Captcha keys.
  */
+
+//$Id$
 
 import('captcha.Captcha');
 

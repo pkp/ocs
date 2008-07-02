@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper
  * @class SuppFile
+ * @ingroup paper
+ * @see SuppFileDAO
  *
- * Supplementary file class.
- *
- * $Id$
+ * @brief Supplementary file class.
  */
+
+//$Id$
 
 import('paper.PaperFile');
 

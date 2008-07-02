@@ -6,10 +6,10 @@
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package file 
  * @class EditableFile
+ * @ingroup plugins_generic_translator
  *
- * Hack-and-slash class to help with editing XML files without losing
+ * @brief Hack-and-slash class to help with editing XML files without losing
  * formatting and comments (i.e. unparsed editing).
  *
  * $Id$

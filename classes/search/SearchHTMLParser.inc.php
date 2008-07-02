@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package search
  * @class SearchHTMLParser
+ * @ingroup search
  *
- * Class to extract text from an HTML file.
- *
- * $Id$
+ * @brief Class to extract text from an HTML file.
  */
+
+//$Id$
 
 import('search.SearchFileParser');
 import('core.String');

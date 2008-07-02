@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper
  * @class Presenter
+ * @ingroup paper
+ * @see PresenterDAO
  *
- * Paper presenter metadata class.
- *
- * $Id$
+ * @brief Paper presenter metadata class.
  */
+
+//$Id$
 
 class Presenter extends DataObject {
 

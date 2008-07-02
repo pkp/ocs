@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.presenter
  * @class SubmissionCommentsHandler
+ * @ingroup pages_presenter
  *
- * Handle requests for submission comments. 
- *
- * $Id$
+ * @brief Handle requests for submission comments. 
  */
+
+//$Id$
 
 import('pages.presenter.TrackSubmissionHandler');
 

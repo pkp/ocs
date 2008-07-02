@@ -1,18 +1,23 @@
 <?php
 
 /**
+ * @defgroup captcha
+ */
+ 
+/**
  * @file Captcha.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package captcha
  * @class Captcha
+ * @ingroup captcha
+ * @see CaptchaDAO
  *
- * Class for Captcha verifiers.
- *
- * $Id$
+ * @brief Class for Captcha verifiers.
  */
+
+//$Id$
 
 class Captcha extends DataObject {
 

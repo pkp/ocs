@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package site
  * @class VersionDAO
+ * @ingroup site
+ * @see version
  *
- * Class for Version DAO.
- * Operations for retrieving and modifying Version objects.
- *
- * $Id$
+ * @brief Operations for retrieving and modifying Version objects.
  */
+
+//$Id$
 
 import('site.Version');
 

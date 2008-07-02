@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package mail
  * @class PaperMailTemplate
+ * @ingroup mail
  *
- * Subclass of MailTemplate for sending emails related to papers.
+ * @brief Subclass of MailTemplate for sending emails related to papers.
  * This allows for paper-specific functionality like logging, etc.
- *
- * $Id$
  */
+
+//$Id$
 
 import('mail.MailTemplate');
 import('paper.log.PaperEmailLogEntry'); // Bring in log constants

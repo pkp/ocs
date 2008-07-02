@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package cache
  * @class FileCache
+ * @ingroup cache
  *
- * Provides caching based on machine-generated PHP code on the filesystem.
- *
- * $Id$
+ * @brief Provides caching based on machine-generated PHP code on the filesystem.
  */
+
+//$Id$
 
 import('cache.GenericCache');
 

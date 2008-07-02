@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package conference
  * @class NotificationStatusDAO
+ * @ingroup conference
  *
- * Operations for retrieving and modifying users' sched conf notification status.
- *
- * $Id$
+ * @brief Operations for retrieving and modifying users' sched conf notification status.
  */
+
+//$Id$
 
 class NotificationStatusDAO extends DAO {
 	function &getSchedConfNotifications($userId) {

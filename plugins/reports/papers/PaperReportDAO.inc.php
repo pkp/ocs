@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  * 
- * @package plugins.reports.paper
  * @class PaperReportDAO
+ * @ingroup plugins_reports_paper
+ * @see PaperReportPlugin
  *
- * Paper report DAO
- *
- * $Id$
+ * @brief Paper report DAO
  */
+
+//$Id$
 
 import('submission.common.Action');
 

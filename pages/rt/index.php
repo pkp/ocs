@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup pages_rt
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Handle Reading Tools requests.
+ * @brief Handle Reading Tools requests.
  *
- * @package pages.rt
- *
- * $Id$
+ * @ingroup pages_rt
  */
+
+//$Id$
 
 define('HANDLER_CLASS', 'RTHandler');
 

@@ -1,18 +1,22 @@
 <?php
 
 /**
+ * @defgroup manager_form_setup
+ */
+ 
+/**
  * @file ConferenceSetupForm.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form.setup
  * @class ConferenceSetupForm
+ * @ingroup manager_form_setup
  *
- * Base class for conference setup forms.
- *
- * $Id$
+ * @brief Base class for conference setup forms.
  */
+
+//$Id$
 
 import("manager.form.setup.ConferenceSetupForm");
 import('form.Form');

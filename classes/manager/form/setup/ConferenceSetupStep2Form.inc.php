@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form.setup
  * @class ConferenceSetupStep2Form
+ * @ingroup manager_form_setup
  *
- * Form for Step 2 of conference setup.
- *
- * $Id$
+ * @brief Form for Step 2 of conference setup.
  */
+
+// $Id$
 
 import("manager.form.setup.ConferenceSetupForm");
 import('schedConf.SchedConf');

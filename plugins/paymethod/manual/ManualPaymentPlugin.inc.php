@@ -6,11 +6,10 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins.paymethod.manual
  * @class ManualPaymentPlugin
+ * @ingroup plugins_paymethod_manual
  *
- * Manual payment plugin class
- *
+ * @brief Manual payment plugin class
  */
 
 import('classes.plugins.PaymethodPlugin');

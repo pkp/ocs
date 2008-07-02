@@ -6,22 +6,24 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package registration
  * @class RegistrationDAO
+ * @ingroup registration
+ * @see Registration
  *
- * Class for Registration DAO.
- * Operations for retrieving and modifying Registration objects.
+ * @brief Operations for retrieving and modifying Registration objects.
  *
- * $Id$
  */
+
+//$Id$
+
 
 import('registration.Registration');
 import('registration.RegistrationType');
 
 define('REGISTRATION_DATE_REGISTERED',	0x01);
-define('REGISTRATION_DATE_PAID',		0x02);
+define('REGISTRATION_DATE_PAID',	0x02);
 
-define('REGISTRATION_USER',			0x01);
+define('REGISTRATION_USER',		0x01);
 define('REGISTRATION_MEMBERSHIP',	0x02);
 define('REGISTRATION_DOMAIN',		0x03);
 define('REGISTRATION_IP_RANGE',		0x04);

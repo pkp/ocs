@@ -1,18 +1,22 @@
 <?php
 
 /**
+ * @defgroup manager_form_scheduler
+ */
+ 
+/**
  * @file ScheduleForm.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form.scheduler
  * @class ScheduleForm
+ * @ingroup manager_form_scheduler
  *
- * Form for conference manager to for schedule presentations.
- *
- * $Id$
+ * @brief Form for conference manager to for schedule presentations.
  */
+
+//$Id$
 
 import('form.Form');
 

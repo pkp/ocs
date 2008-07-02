@@ -1,18 +1,22 @@
 <?php
 
 /**
+ * @defgroup manager_form_schedConfSetup
+ */
+ 
+/**
  * @file SchedConfSetupStep1Form.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form.schedConfSetup
  * @class SchedConfSetupStep1Form
+ * @ingroup manager_form_schedConfSetup
  *
- * Form for Step 1 of scheduled conference setup.
- *
- * $Id$
+ * @brief Form for Step 1 of scheduled conference setup.
  */
+
+//$Id$
 
 import("manager.form.schedConfSetup.SchedConfSetupForm");
 

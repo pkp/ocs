@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package presenter.form.submit
  * @class PresenterSubmitStep1Form
+ * @ingroup presenter_form_submit
  *
- * Form for Step 1 of presenter paper submission.
- *
- * $Id$
+ * @brief Form for Step 1 of presenter paper submission.
  */
+
+//$Id$
 
 import("presenter.form.submit.PresenterSubmitForm");
 

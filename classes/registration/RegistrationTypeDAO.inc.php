@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package registration
  * @class RegistrationTypeDAO
+ * @ingroup registration
+ * @see RegistrationType
  *
- * Class for RegistrationType DAO.
- * Operations for retrieving and modifying RegistrationType objects.
- *
- * $Id$
+ * @brief Operations for retrieving and modifying RegistrationType objects.
  */
+
+//$Id$
 
 import('registration.RegistrationType');
 

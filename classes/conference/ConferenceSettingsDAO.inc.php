@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package conference
  * @class ConferenceSettingsDAO
+ * @ingroup conference
  *
- * Class for Conference Settings DAO.
+ * @brief Class for Conference Settings DAO.
  * Operations for retrieving and modifying conference settings.
- *
- * $Id$
  */
+
+//$Id$
 
 import('db.SettingsDAO');
 class ConferenceSettingsDAO extends SettingsDAO {

@@ -6,13 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package site
  * @class ImportOCS1
+ * @ingroup site
  *
- * Class to import data from an OCS 1.x installation.
+ * @brief Class to import data from an OCS 1.x installation.
  *
- * $Id$
  */
+
+// $Id$
+
 
 import('user.User');
 import('conference.Conference');

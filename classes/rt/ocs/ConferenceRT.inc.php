@@ -1,18 +1,22 @@
 <?php
 
 /**
+ * @defgroup rt_ocs
+ */
+ 
+/**
  * @file ConferenceRT.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package rt.ocs
  * @class ConferenceRT
+ * @ingroup rt_ocs
  *
- * OCS-specific Reading Tools end-user interface.
- *
- * $Id$
+ * @brief OCS-specific Reading Tools end-user interface.
  */
+
+//$Id$
 
 import('rt.RT');
 import('rt.ocs.RTDAO');

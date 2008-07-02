@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package core
  * @class Form
+ * @ingroup core
  *
- * Class defining basic operations for handling HTML forms.
- *
- * $Id$
+ * @brief Class defining basic operations for handling HTML forms.
  */
+
+//$Id$
 
 import('form.FormError');
 import('form.validation.FormValidator');

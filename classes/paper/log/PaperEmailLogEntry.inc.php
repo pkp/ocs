@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper.log
  * @class PaperEmailLogEntry
+ * @ingroup paper_log
+ * @see PaperEmailLogDAO
  *
- * Paper email log entry class.
- * Describes an entry in the paper email log.
- *
- * $Id$
+ * @brief Describes an entry in the paper email log.
  */
+
+//$Id$
 
 // Email associative types. All types must be defined here
 define('PAPER_EMAIL_TYPE_DEFAULT', 		0);

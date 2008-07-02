@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup plugins_citationFormats_apa
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Wrapper for APA citation plugin.
+ * @brief Wrapper for APA citation plugin.
  *
- * @package plugins.citationFormats.apa
- *
- * $Id$
+ * @ingroup plugins_citationFormats_apa
  */
+
+//$Id$
 
 require_once('ApaCitationPlugin.inc.php');
 

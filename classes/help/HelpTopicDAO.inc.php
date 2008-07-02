@@ -6,14 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package help
  * @class HelpTopicDAO
+ * @ingroup help
+ * @see HelpTopic
  *
- * Class for HelpTopic DAO.
+ * @brief Class for HelpTopic DAO.
  * Operations for retrieving HelpTopic objects.
- *
- * $Id$
  */
+
+//$Id$
 
 import('help.HelpTopic');
 

@@ -6,14 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package help
  * @class HelpTopic
+ * @ingroup help
+ * @see HelpTopicDAO
  *
- * Help topic class.
+ * @brief Help topic class.
  * A HelpTopic object is associated with a single HelpToc object and zero or more HelpTopicSection objects.
- *
- * $Id$
  */
+
+//$Id$
 
 class HelpTopic extends DataObject {
 

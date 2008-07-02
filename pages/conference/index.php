@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup pages_conference
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Handle conference index requests. 
+ * @brief Handle conference index requests. 
  *
- * @package pages.conference
- *
- * $Id$
+ * @ingroup pages_conference
  */
+
+//$Id$
 
 define('HANDLER_CLASS', 'ConferenceHandler');
 

@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package form.validation
  * @class FormValidatorLocale
+ * @ingroup form_validation
  *
- * Class to represent a form validation check for localized fields.
- *
- * $Id$
+ * @brief Class to represent a form validation check for localized fields.
  */
+
+//$Id$
 
 class FormValidatorLocale extends FormValidator {
 	/**

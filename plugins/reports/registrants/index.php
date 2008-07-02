@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup plugins_reports_registrant
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Wrapper for registrant report plugin.
+ * @brief Wrapper for registrant report plugin.
  *
- * @package plugins.reports.registrant
- *
- * $Id$
+ * @ingroup plugins_reports_registrant
  */
+
+//$Id$
 
 require_once('RegistrantReportPlugin.inc.php');
 

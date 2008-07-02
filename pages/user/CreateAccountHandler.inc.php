@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.user
  * @class CreateAccountHandler
+ * @ingroup pages_user
  *
- * Handle requests for user account creation. 
- *
- * $Id$
+ * @brief Handle requests for user account creation. 
  */
+
+//$Id$
 
 class CreateAccountHandler extends UserHandler {
 

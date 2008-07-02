@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package xml
  * @class XMLParser
+ * @ingroup xml
  *
- * Generic class for parsing an XML document into a data structure.
- *
- * $Id$
+ * @brief Generic class for parsing an XML document into a data structure.
  */
+
+//$Id$
 
 // The default character encodings
 define('XML_PARSER_SOURCE_ENCODING', Config::getVar('i18n', 'client_charset'));

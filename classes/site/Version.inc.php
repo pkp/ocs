@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package site
  * @class Version
+ * @ingroup site
+ * @see VersionDAO
  *
- * Version class.
- * Describes system version history.
- *
- * $Id$
+ * @brief Describes system version history.
  */
+
+//$Id$
 
 class Version extends DataObject {
 

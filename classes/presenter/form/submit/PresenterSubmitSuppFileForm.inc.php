@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package presenter.form.submit
  * @class PresenterSubmitSuppFileForm
+ * @ingroup presenter_form_submit
  *
- * Supplementary file presenter submission form.
- *
- * $Id$
+ * @brief Supplementary file presenter submission form.
  */
+
+//$Id$
 
 import('form.Form');
 

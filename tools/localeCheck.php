@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package tools
  * @class localeCheck
+ * @ingroup tools
  *
- * CLI tool to check the various locales for consistency.
- *
- * $Id$
+ * @brief CLI tool to check the various locales for consistency.
  */
+
+//$Id$
 
 require(dirname(__FILE__) . '/includes/cliTool.inc.php');
 

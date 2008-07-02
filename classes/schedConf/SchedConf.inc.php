@@ -1,19 +1,25 @@
 <?php
 
 /**
+ * @defgroup schedConf
+ */
+
+/**
  * @file SchedConf.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package schedConf
  * @class SchedConf
+ * @ingroup schedConf
+ * @see SchedConfDAO
  *
- * Scheduled conference class.
- * Describes basic scheduled conference properties.
+ * @brief Describes basic scheduled conference properties.
  *
- * $Id$
  */
+
+// $Id$
+
 
 define('SCHED_CONF_DATE_YEAR_OFFSET_FUTURE',	'+2');
 

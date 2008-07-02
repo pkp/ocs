@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package db
  * @class Transcoder
+ * @ingroup db
  *
- * "iconv"-based transcoder. NOTE: iconv may not always be available.
- *
- * $Id$
+ * @brief "iconv"-based transcoder. NOTE: iconv may not always be available.
  */
+
+//$Id$
 
 class Transcoder {
 	/** @var $fromEncoding string Name of source encoding */

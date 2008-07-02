@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper.log
  * @class PaperEmailLogDAO
+ * @ingroup paper_log
+ * @see PaperEmailLogEntry
  *
- * Class for inserting/accessing paper email log entries.
- *
- * $Id$
+ * @brief Class for inserting/accessing paper email log entries.
  */
+
+//$Id$
 
 import ('paper.log.PaperEmailLogEntry');
 

@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package file
  * @class TemporaryFileDAO
+ * @ingroup file
+ * @see TemporaryFile
  *
- * Class for TemporaryFile DAO.
- * Operations for retrieving and modifying TemporaryFile objects.
- *
- * $Id$
+ * @brief Operations for retrieving and modifying TemporaryFile objects.
  */
+
+//$Id$
 
 import('file.TemporaryFile');
 

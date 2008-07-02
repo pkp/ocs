@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package xml
  * @class XMLParserDOMHandler
+ * @ingroup xml
  *
- * Default handler for XMLParser returning a simple DOM-style object.
+ * @brief Default handler for XMLParser returning a simple DOM-style object.
  * This handler parses an XML document into a tree structure of XMLNode objects.
- * 
- * $Id$
  */
+ 
+// $Id$
 
 import('xml.XMLNode');
 

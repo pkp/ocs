@@ -6,10 +6,10 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package file
  * @class PaperFileManager
+ * @ingroup file
  *
- * Class defining operations for paper file management.
+ * @brief Class defining operations for paper file management.
  *
  * Paper directory structure:
  * [paper id]/note
@@ -20,9 +20,9 @@
  * [paper id]/submission/director
  * [paper id]/submission/layout
  * [paper id]/supp
- *
- * $Id$
  */
+
+//$Id$
 
 import('file.FileManager');
 

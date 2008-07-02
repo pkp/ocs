@@ -1,19 +1,23 @@
 <?php
 
 /**
+ * @defgroup group
+ */
+ 
+/**
  * @file Group.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package group
  * @class Group
+ * @ingroup group
+ * @see GroupDAO
  *
- * Group class.
- * Describes user groups in conferences.
- *
- * $Id$
+ * @brief Describes user groups in conferences.
  */
+
+//$Id$
 
 class Group extends DataObject {
 	/**

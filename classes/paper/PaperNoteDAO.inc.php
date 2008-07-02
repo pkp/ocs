@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper
  * @class PaperNoteDAO
+ * @ingroup paper
+ * @see PaperNote
  *
- * Class for PaperNote DAO.
- * Operations for retrieving and modifying PaperNote objects.
- *
- * $Id$
+ * @brief Operations for retrieving and modifying PaperNote objects.
  */
+
+//$Id$
 
 import('paper.PaperNote');
 

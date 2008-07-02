@@ -6,14 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package db
  * @class DAORegistry
+ * @ingroup db
  *
- * Class for retrieving DAO objects.
- * Maintains a static list of DAO objects so each DAO is instantiated only once. 
- *
- * $Id$
+ * @brief Maintains a static list of DAO objects so each DAO is instantiated only once. 
  */
+
+//$Id$
 
 class DAORegistry {
 

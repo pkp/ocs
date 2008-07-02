@@ -1,19 +1,24 @@
 <?php
 
 /**
+ * @defgroup user
+ */
+
+/**
  * @file User.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package user
  * @class User
+ * @ingroup user
  *
- * User class.
- * Basic class describing users existing in the system.
+ * @brief Basic class describing users existing in the system.
  *
- * $Id$
  */
+
+// $Id$
+
 
 class User extends DataObject {
 

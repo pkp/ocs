@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins.generic.acron
  * @class AcronPlugin
+ * @ingroup plugins_generic_acron
  *
- * Removes dependency on 'cron' for scheduled tasks
- *
- * $Id$
+ * @brief Removes dependency on 'cron' for scheduled tasks
  */
+
+//$Id$
 
 import('classes.plugins.GenericPlugin');
 

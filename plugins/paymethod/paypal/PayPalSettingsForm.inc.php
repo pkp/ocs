@@ -6,13 +6,15 @@
  * Copyright (c) 2006-2008 Gunther Eysenbach, Juan Pablo Alperin, MJ Suhonos
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins.paymethod.paypal
  * @class PayPalSettingsForm
+ * @ingroup plugins_paymethod_paypal
+ * @see PayPalPlugin
  *
- * Form for conference managers to edit the PayPal Settings
+ * @brief Form for conference managers to edit the PayPal Settings
  * 
- * $Id$
  */
+ 
+//$Id$
 
 import('form.Form');
 

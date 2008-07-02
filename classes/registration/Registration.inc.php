@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package registration 
  * @class Registration
+ * @ingroup registration 
+ * @see RegistrationDAO
  *
- * Registration class.
- * Basic class describing a registration.
- *
- * $Id$
+ * @brief Basic class describing a registration.
  */
+
+//$Id$
 
 define('REGISTRATION_IP_RANGE_SEPERATOR', ';');
 define('REGISTRATION_IP_RANGE_RANGE', '-');

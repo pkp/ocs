@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package form.validation
  * @class FormValidatorPost
+ * @ingroup form_validation
  *
- * Form validation check to make sure it's a POSTed form.
- *
- * $Id$
+ * @brief Form validation check to make sure it's a POSTed form.
  */
+
+//$Id$
 
 import ('form.validation.FormValidator');
 

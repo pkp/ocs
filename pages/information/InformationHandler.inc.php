@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.information
  * @class InformationHandler
+ * @ingroup pages_information
  *
- * Display conference information.
- *
- * $Id$
+ * @brief Display conference information.
  */
+
+//$Id$
 
 class InformationHandler extends Handler {
 

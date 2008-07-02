@@ -6,14 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package session
  * @class SessionManager
+ * @ingroup session
  *
- * Class for handling sessions.
- * Implements PHP methods for a custom session storage handler (see http://php.net/session).
- *
- * $Id$
+ * @brief Implements PHP methods for a custom session storage handler (see http://php.net/session).
  */
+
+//$Id$
 
 class SessionManager {
 

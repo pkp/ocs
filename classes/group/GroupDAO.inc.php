@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package group
  * @class GroupDAO
+ * @ingroup group
+ * @see Group
  *
- * Class for Group DAO.
- * Operations for retrieving and modifying Group objects.
- *
- * $Id$
+ * @brief Operations for retrieving and modifying Group objects.
  */
+
+//$Id$
 
 import ('group.Group');
 

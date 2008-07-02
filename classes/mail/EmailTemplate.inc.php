@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package mail
  * @class BaseEmailTemplate
+ * @ingroup mail
+ * @see EmailTemplateDAO
  *
- * EmailTemplate class.
- * Describes basic email template properties.
- *
- * $Id$
+ * @brief Describes basic email template properties.
  */
+
+//$Id$
 
 /**
  * Email template base class.

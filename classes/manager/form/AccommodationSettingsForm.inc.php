@@ -1,18 +1,24 @@
 <?php
 
 /**
+ * @defgroup manager_form
+ */
+
+/**
  * @file AccommodationSettingsForm.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form
  * @class AccommodationForm
+ * @ingroup manager_form
  *
- * Form for modifying scheduled conference accommodation settings.
+ * @brief Form for modifying scheduled conference accommodation settings.
  *
- * $Id$
  */
+
+// $Id$
+
 
 import('form.Form');
 

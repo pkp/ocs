@@ -6,13 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form
  * @class UserManagementForm
+ * @ingroup manager_form
  *
- * Form for conference managers to edit user profiles.
+ * @brief Form for conference managers to edit user profiles.
  *
- * $Id$
  */
+
+// $Id$
+
 
 import('form.Form');
 

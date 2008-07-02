@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package submission
  * @class ReviewAssignmentDAO
+ * @ingroup submission
+ * @see ReviewAssignment
  *
- * Class for DAO relating reviewers to papers.
- *
- * $Id$
+ * @brief Class for DAO relating reviewers to papers.
  */
+
+//$Id$
 
 import('submission.reviewAssignment.ReviewAssignment');
 

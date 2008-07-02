@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form.schedConfSetup
  * @class SchedConfSetupStep3Form
+ * @ingroup manager_form_schedConfSetup
  *
- * Form for Step 3 of scheduled conference setup.
- *
- * $Id$
+ * @brief Form for Step 3 of scheduled conference setup.
  */
+
+//$Id$
 
 import("manager.form.schedConfSetup.SchedConfSetupForm");
 

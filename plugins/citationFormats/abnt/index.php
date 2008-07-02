@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup plugins_citationFormats_abnt
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Wrapper for ABNT citation plugin.
+ * @brief Wrapper for ABNT citation plugin.
  *
- * @package plugins.citationFormats.abnt
- *
- * $Id$
+ * @ingroup plugins_citationFormats_abnt
  */
+
+//$Id$
 
 require_once('AbntCitationPlugin.inc.php');
 

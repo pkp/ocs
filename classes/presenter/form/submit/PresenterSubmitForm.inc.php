@@ -1,18 +1,24 @@
 <?php
 
 /**
+ * @defgroup presenter_form_submit
+ */
+
+/**
  * @file PresenterSubmitForm.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package presenter.form.submit
  * @class PresenterSubmitForm
+ * @ingroup presenter_form_submit
  *
- * Base class for conference presenter submit forms.
+ * @brief Base class for conference presenter submit forms.
  *
- * $Id$
  */
+
+// $Id$
+
 
 import('form.Form');
 

@@ -6,12 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins
+ * @class FontSizeBlockPlugin
+ * @ingroup plugins
  *
- * Class for font size block plugin
+ * @brief Class for font size block plugin
  *
- * $Id$
  */
+
+// $Id$
+
 
 import('plugins.BlockPlugin');
 

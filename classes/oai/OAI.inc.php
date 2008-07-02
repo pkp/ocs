@@ -1,18 +1,23 @@
 <?php
 
 /**
+ * @defgroup oai
+ */
+ 
+/**
  * @file OAI.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package oai
  * @class OAI
+ * @ingroup oai
+ * @see OADIDAO
  *
- * Class to process and respond to OAI requests.
- *
- * $Id$
+ * @brief Class to process and respond to OAI requests.
  */
+
+//$Id$
 
 import('oai.OAIStruct');
 

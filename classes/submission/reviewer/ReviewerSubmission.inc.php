@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package submission
  * @class ReviewerSubmission
+ * @ingroup submission
+ * @see ReviewerSubmissionDAO
  *
- * ReviewerSubmission class.
- *
- * $Id$
+ * @brief ReviewerSubmission class.
  */
+
+//$Id$
 
 import('paper.Paper');
 

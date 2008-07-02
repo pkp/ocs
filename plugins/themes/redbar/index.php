@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup plugins_themes_redbar
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Wrapper for "redbar" theme plugin.
+ * @brief Wrapper for "redbar" theme plugin.
  *
- * @package plugins.themes.redbar
- *
- * $Id$
+ * @ingroup plugins_themes_redbar
  */
+
+//$Id$
 
 require_once('RedbarThemePlugin.inc.php');
 

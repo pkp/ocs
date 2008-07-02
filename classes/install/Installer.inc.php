@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package install
  * @class Installer
+ * @ingroup install
  *
- * Base class for install and upgrade scripts.
- *
- * $Id$
+ * @brief Base class for install and upgrade scripts.
  */
+
+//$Id$
 
 // Database installation files
 define('INSTALLER_DATA_DIR', 'dbscripts/xml');

@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins.themes.classicRed
  * @class ClassicRedThemePlugin
+ * @ingroup plugins_themes_classicRed
  *
- * "ClassicRed" theme plugin
- *
- * $Id$
+ * @brief "ClassicRed" theme plugin
  */
+
+//$Id$
 
 import('classes.plugins.ThemePlugin');
 

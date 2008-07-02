@@ -6,12 +6,12 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Core system initialization code.
+ * @brief Core system initialization code.
  * This file is loaded before any others.
  * Any system-wide imports or initialization code should be placed here. 
- *
- * $Id$
  */
+
+//$Id$
 
 
 /**

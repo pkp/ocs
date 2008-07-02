@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form.scheduler
  * @class BuildingForm
+ * @ingroup manager_form_scheduler
  *
- * Form for conference manager to create/edit buildings for scheduler.
- *
- * $Id$
+ * @brief Form for conference manager to create/edit buildings for scheduler.
  */
+
+//$Id$
 
 import('form.Form');
 

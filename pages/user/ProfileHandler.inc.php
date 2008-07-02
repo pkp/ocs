@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.user
  * @class ProfileHandler
+ * @ingroup pages_user
  *
- * Handle requests for modifying user profiles. 
- *
- * $Id$
+ * @brief Handle requests for modifying user profiles. 
  */
+
+//$Id$
 
 class ProfileHandler extends UserHandler {
 

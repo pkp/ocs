@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package db
  * @class SQLParser
+ * @ingroup db
  *
- * Class for parsing and executing statements in SQL files.
- *
- * $Id$
+ * @brief Class for parsing and executing statements in SQL files.
  */
+
+//$Id$
 
 class SQLParser {
 

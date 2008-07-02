@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package core
  * @class String
+ * @ingroup core
  *
- * String manipulation wrapper class.
- *
- * $Id$
+ * @brief String manipulation wrapper class.
  */
+
+//$Id$
 
 class String {
 	/**

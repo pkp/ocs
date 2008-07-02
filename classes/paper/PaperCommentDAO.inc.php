@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper
  * @class PaperCommentDAO
+ * @ingroup paper
+ * @see PaperComment
  *
- * Class for PaperComment DAO.
- * Operations for retrieving and modifying PaperComment objects.
- *
- * $Id$
+ * @brief Operations for retrieving and modifying PaperComment objects.
  */
+
+//$Id$
 
 import('paper.PaperComment');
 

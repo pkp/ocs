@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package db
  * @class ItemIterator
+ * @ingroup db
  *
- * Generic iterator class; needs to be overloaded by subclasses
+ * @brief Generic iterator class; needs to be overloaded by subclasses
  * providing specific implementations.
- *
- * $Id$
  */
+
+//$Id$
 
 class ItemIterator {
 	/**

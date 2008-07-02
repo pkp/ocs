@@ -1,18 +1,25 @@
 <?php
 
 /**
+ * @defgroup paper
+ */
+
+/**
  * @file Paper.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper
  * @class Paper
+ * @ingroup paper
+ * @see PaperDAO
  *
- * Paper class.
+ * @brief Paper class.
  *
- * $Id$
  */
+
+// $Id$
+
 
 // Submission status constants
 define('SUBMISSION_STATUS_ARCHIVED', 0);

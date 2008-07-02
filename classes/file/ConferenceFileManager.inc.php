@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package file
  * @class ConferenceFileManager
+ * @ingroup file
  *
- * Class defining operations for private conference file management.
- *
- * $Id$
+ * @brief Class defining operations for private conference file management.
  */
+
+//$Id$
 
 import('file.FileManager');
 

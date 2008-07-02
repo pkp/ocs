@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.index
  * @class IndexHandler
+ * @ingroup pages_index
  *
- * Handle site index requests.
- *
- * $Id$
+ * @brief Handle site index requests.
  */
+
+//$Id$
 
 class IndexHandler extends Handler {
 

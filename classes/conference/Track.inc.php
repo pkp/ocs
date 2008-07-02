@@ -6,14 +6,16 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package conference
  * @class Track
+ * @ingroup conference
+ * @see TrackDAO
  *
- * Track class.
- * Describes basic track properties.
+ * @brief Describes basic track properties.
  *
- * $Id$
  */
+
+// $Id$
+
 
 class Track extends DataObject {
 

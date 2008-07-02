@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package conference.log
  * @class ConferenceEventLogEntry
+ * @ingroup conference_log
+ * @see ConferenceEventLogDAO
  *
- * Conference event log entry class.
- * Describes an entry in the conference history log.
- *
- * $Id$
+ * @brief Describes an entry in the conference history log.
  */
+
+//$Id$
 
 import('log.EventLogConstants');
 

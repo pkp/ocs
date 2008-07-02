@@ -6,14 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package schedConf
  * @class SchedConfStatisticsDAO
+ * @ingroup schedConf
  *
- * Class for scheduled conference statistics DAO.
- * Operations for retrieving scheduled conference statistics.
- *
- * $Id$
+ * @brief Operations for retrieving scheduled conference statistics.
  */
+
+//$Id$
 
 define('REPORT_TYPE_CONFERENCE',	0x00001);
 define('REPORT_TYPE_SCHED_CONF',	0x00002);

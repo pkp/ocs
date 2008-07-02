@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup plugins_themes_classicBlue
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Wrapper for "classic blue" theme plugin.
+ * @brief Wrapper for "classic blue" theme plugin.
  *
- * @package plugins.themes.classicBlue
- *
- * $Id$
+ * @ingroup plugins_themes_classicBlue
  */
+
+//$Id$
 
 require_once('ClassicBlueThemePlugin.inc.php');
 

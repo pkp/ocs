@@ -6,13 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.trackDirector
  * @class SubmissionEditHandler
+ * @ingroup pages_trackDirector
  *
- * Handle requests for submission tracking.
+ * @brief Handle requests for submission tracking.
  *
- * $Id$
  */
+
+// $Id$
+
 
 define('TRACK_DIRECTOR_ACCESS_EDIT', 0x00001);
 define('TRACK_DIRECTOR_ACCESS_REVIEW', 0x00002);

@@ -1,19 +1,23 @@
 <?php
 
 /**
+ * @defgroup board
+ */
+ 
+/**
  * @file GroupMembership.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package board
  * @class GroupMembership
+ * @ingroup board
+ * @see GroupMembershipDAO
  *
- * GroupMembership class.
- * Describes memberships for conference board positions.
- *
- * $Id$
+ * @brief Describes memberships for conference board positions.
  */
+
+//$Id$
 
 class GroupMembership extends DataObject {
 

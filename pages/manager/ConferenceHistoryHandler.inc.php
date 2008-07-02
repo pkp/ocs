@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.manager
  * @class ConferenceHistoryHandler
+ * @ingroup pages_manager
  *
- * Handle requests for conference event log funcs.
- *
- * $Id$
+ * @brief Handle requests for conference event log funcs.
  */
+
+//$Id$
 
 class ConferenceHistoryHandler extends ManagerHandler {
 	/**

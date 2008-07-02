@@ -1,18 +1,22 @@
 <?php
 
 /**
+ * @defgroup submission_form
+ */
+ 
+/**
  * @file CommentForm.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package submission.form
  * @class CommentForm
+ * @ingroup submission_form
  *
- * Comment form.
- *
- * $Id$
+ * @brief Comment form.
  */
+
+//$Id$
 
 import('form.Form');
 

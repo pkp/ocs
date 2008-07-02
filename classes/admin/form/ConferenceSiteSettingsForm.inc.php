@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package admin.form
  * @class ConferenceSiteSettingsForm
+ * @ingroup admin_form
  *
- * Form for site administrator to edit basic conference settings.
- *
- * $Id$
+ * @brief Form for site administrator to edit basic conference settings.
  */
+
+//$Id$
 
 import('db.DBDataXMLParser');
 import('form.Form');

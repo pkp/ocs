@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup pages_information
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Handle information requests.
+ * @brief Handle information requests.
  *
- * @package pages.information
- *
- * $Id$
+ * @ingroup pages_information
  */
+
+//$Id$
 
 define('HANDLER_CLASS', 'InformationHandler');
 

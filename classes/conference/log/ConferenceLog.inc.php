@@ -6,14 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package conference.log
  * @class ConferenceLog
+ * @ingroup conference_log
  *
- * ConferenceLog class.
- * Static class for adding / accessing conference log entries.
+ * @brief Static class for adding / accessing conference log entries.
  *
- * $Id$
  */
+
+// $Id$
+
 
 class ConferenceLog {
 

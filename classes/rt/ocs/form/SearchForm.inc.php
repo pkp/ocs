@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package rt.ocs.form
  * @class SearchForm
+ * @ingroup rt_ocs_form
  *
- * Form to change metadata information for an RT search.
- *
- * $Id$
+ * @brief Form to change metadata information for an RT search.
  */
+
+//$Id$
 
 import('form.Form');
 

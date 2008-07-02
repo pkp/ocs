@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package submission
  * @class TrackDirectorAction
+ * @ingroup submission
  *
- * TrackDirectorAction class.
+ * @brief TrackDirectorAction class.
  *
- * $Id$
  */
 
+// $Id$
 import('submission.common.Action');
 
 class TrackDirectorAction extends Action {

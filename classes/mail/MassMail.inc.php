@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package mail
  * @class MassMail
+ * @ingroup mail
  *
- * Helper class to send mass emails
- *
- * $Id$
+ * @brief Helper class to send mass emails
  */
+
+//$Id$
 
 import ('mail.MailTemplate');
 

@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup plugins_paymethod_manual
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Wrapper for manual payment plugin.
+ * @brief Wrapper for manual payment plugin.
  *
- * @package plugins.paymethod.manual
- *
- * $Id$
+ * @ingroup plugins_paymethod_manual
  */
+
+//$Id$
 
 require_once('ManualPaymentPlugin.inc.php');
 

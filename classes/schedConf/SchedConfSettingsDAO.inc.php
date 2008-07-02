@@ -6,14 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package schedConf
  * @class SchedConfSettingsDAO
+ * @ingroup schedConf
  *
- * Class for Scheduled Conference Settings DAO.
- * Operations for retrieving and modifying scheduled conference settings.
+ * @brief Operations for retrieving and modifying scheduled conference settings.
  *
- * $Id$
  */
+
+// $Id$
+
 
 import('db.SettingsDAO');
 class SchedConfSettingsDAO extends SettingsDAO {

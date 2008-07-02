@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins
  * @class Plugin
+ * @ingroup plugins
+ * @see PluginRegistry, PluginSettingsDAO
  *
- * Abstract class for plugins
- *
- * $Id$
+ * @brief Abstract class for plugins
  */
+
+//$Id$
 
 class Plugin {
 	/** @var $pluginPath String Path name to files for this plugin */

@@ -1,18 +1,21 @@
 <?php
 
 /**
+ * @defgroup log
+ */
+ 
+/**
  * @file EventLogConstants.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package log
+ * @ingroup log
  *
- * Log constants.
- * Contains descriptive constants for paper and conference event logs.
- *
- * $Id$
+ * @brief Contains descriptive constants for paper and conference event logs.
  */
+
+//$Id$
 
 // Log levels
 define('LOG_LEVEL_INFO', 'I');

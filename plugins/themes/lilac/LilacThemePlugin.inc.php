@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins.themes.lilac
  * @class LilacThemePlugin
+ * @ingroup plugins_themes_lilac
  *
- * "Lilac" theme plugin
- *
- * $Id$
+ * @brief "Lilac" theme plugin
  */
+
+//$Id$
 
 import('classes.plugins.ThemePlugin');
 

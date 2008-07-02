@@ -1,19 +1,23 @@
 <?php
 
 /**
+ * @defgroup scheduler
+ */
+ 
+/**
  * @file SpecialEvent.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package scheduler
  * @class SpecialEvent
+ * @ingroup scheduler
+ * @see SpecialEvent
  *
- * SpecialEvent class.
- * Basic class describing a specialEvent.
- *
- * $Id$
+ * @brief Basic class describing a specialEvent.
  */
+
+//$Id$
 
 class SpecialEvent extends DataObject {
 	//

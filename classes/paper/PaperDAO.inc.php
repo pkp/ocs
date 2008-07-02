@@ -6,14 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper
  * @class PaperDAO
+ * @ingroup paper
  *
- * Class for Paper DAO.
- * Operations for retrieving and modifying Paper objects.
+ * @brief Operations for retrieving and modifying Paper objects.
  *
- * $Id$
  */
+
+// $Id$
+
 
 import('paper.Paper');
 

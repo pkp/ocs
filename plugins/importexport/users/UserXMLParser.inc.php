@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins.importexport.users
  * @class UserXMLParser
+ * @ingroup plugins_importexport_users
  *
- * Class to import and export user data from an XML format.
+ * @brief Class to import and export user data from an XML format.
  * See dbscripts/xml/dtd/users.dtd for the XML schema used.
- *
- * $Id$
  */
+
+//$Id$
 
 import('xml.XMLParser');
 

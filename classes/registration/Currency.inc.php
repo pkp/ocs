@@ -1,19 +1,23 @@
 <?php
 
 /**
+ * @defgroup currency
+ */
+ 
+/**
  * @file Currency.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package currency 
  * @class Currency
+ * @ingroup currency 
+ * @see CurrencyDAO
  *
- * Currency class.
- * Basic class describing a currency.
- *
- * $Id$
+ * @brief Basic class describing a currency.
  */
+
+//$Id$
 
 class Currency extends DataObject {
 

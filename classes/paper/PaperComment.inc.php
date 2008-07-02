@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper
  * @class PaperComment
+ * @ingroup paper
+ * @see PaperCommentDAO
  *
- * Class for PaperComment.
- *
- * $Id$
+ * @brief Class for PaperComment.
  */
+
+//$Id$
 
 /** Comment associative types. All types must be defined here. */
 define('COMMENT_TYPE_PEER_REVIEW', 0x01);

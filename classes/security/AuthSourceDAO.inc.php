@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package security
+ * @ingroup security
  * @class AuthSourceDAO
+ * @see AuthSource
  *
- * Class for AuthSource DAO.
- * Operations for retrieving and modifying AuthSource objects.
- *
- * $Id$
+ * @brief Operations for retrieving and modifying AuthSource objects.
  */
+
+//$Id$
 
 import('security.AuthSource');
 

@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.rtadmin
  * @class RTAdminHandler
+ * @ingroup pages_rtadmin
  *
- * Handle Reading Tools administration requests.
- *
- * $Id$
+ * @brief Handle Reading Tools administration requests.
  */
+
+//$Id$
 
 import('rt.ocs.ConferenceRTAdmin');
 

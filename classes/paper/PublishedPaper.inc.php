@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper
  * @class PublishedPaper
+ * @ingroup paper
+ * @see PublishedPaperDAO
  *
- * Published paper class.
- *
- * $Id$
+ * @brief Published paper class.
  */
+
+//$Id$
 
 import('paper.Paper');
 

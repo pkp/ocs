@@ -6,13 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package submission
  * @class PresenterAction
+ * @ingroup submission
  *
- * PresenterAction class.
+ * @brief PresenterAction class.
  *
- * $Id$
  */
+
+// $Id$
+
 
 import('submission.common.Action');
 

@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package user
  * @class CountryDAO
+ * @ingroup user
  *
- * Provides methods for loading localized country name data.
- *
- * $Id$
+ * @brief Provides methods for loading localized country name data.
  */
+
+//$Id$
 
 class CountryDAO extends DAO {
 	var $cache;

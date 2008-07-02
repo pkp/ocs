@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  * 
- * @package plugins.reports.review
  * @class ReviewReportPlugin
+ * @ingroup plugins_reports_review
+ * @see ReviewReportDAO
  *
- * Review report plugin
- *
- * $Id$
+ * @brief Review report plugin
  */
+
+//$Id$
 
 import('classes.plugins.ReportPlugin');
 

@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup pages_paper
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Handle requests for paper functions.
+ * @brief Handle requests for paper functions.
  *
- * @package pages.paper
- *
- * $Id$
+ * @ingroup pages_paper
  */
+
+//$Id$
 
 define('HANDLER_CLASS', 'PaperHandler');
 

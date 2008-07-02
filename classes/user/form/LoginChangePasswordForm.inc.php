@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package user.form
  * @class LoginChangePasswordForm
+ * @ingroup user_form
  *
- * Form to change a user's password in order to login.
- *
- * $Id$
+ * @brief Form to change a user's password in order to login.
  */
+
+//$Id$
 
 import('form.Form');
 

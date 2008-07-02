@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package i18n
  * @class TimeZone
+ * @ingroup i18n
  *
- * Time zone management class. 
+ * @brief Time zone management class. 
  * Provides methods for determining local times and dates
- *
- * $Id$
  */
+
+//$Id$
 
 define('TZ_REGISTRY_FILE', Config::getVar('general', 'registry_dir') . '/timezones.xml');
 define('TZ_DATE_FORMAT_DEFAULT', '%c');

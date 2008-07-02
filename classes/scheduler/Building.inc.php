@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package scheduler
  * @class Building
+ * @ingroup scheduler
+ * @see BuildingDAO
  *
- * Building class.
- * Basic class describing a building.
- *
- * $Id$
+ * @brief Basic class describing a building.
  */
+
+//$Id$
 
 class Building extends DataObject {
 	//

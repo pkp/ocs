@@ -1,18 +1,22 @@
 <?php
 
 /**
+ * @defgroup admin_form
+ */
+ 
+/**
  * @file SiteSettingsForm.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package admin.form
  * @class SiteSettingsForm
+ * @ingroup admin_form
  *
- * Form to edit site settings.
- *
- * $Id$
+ * @brief Form to edit site settings.
  */
+
+// $Id$
 
 define('SITE_MIN_PASSWORD_LENGTH', 4);
 import('form.Form');
@@ -173,3 +177,4 @@ class SiteSettingsForm extends Form {
 }
 
 ?>
+

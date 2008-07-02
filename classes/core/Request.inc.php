@@ -6,10 +6,10 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package core
  * @class Request
+ * @ingroup core
  *
- * Class providing operations associated with HTTP requests.
+ * @brief Class providing operations associated with HTTP requests.
  * Requests are assumed to be in the format:
  *    http://host.tld/index.php
  *                   /<conference_id>
@@ -19,9 +19,9 @@
  *                   /<arguments...>
  * <conference_id> is assumed to be "index" for top-level site requests.
  *                 ditto for <sched_conf_id>
- *
- * $Id$
  */
+
+//$Id$
 
 // The base script through which all requests are routed
 define('INDEX_SCRIPTNAME', 'index.php');

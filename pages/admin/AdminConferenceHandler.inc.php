@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.admin
  * @class AdminConferenceHandler
+ * @ingroup pages_admin
  *
- * Handle requests for conference management in site administration. 
- *
- * $Id$
+ * @brief Handle requests for conference management in site administration. 
  */
+
+//$Id$
 
 class AdminConferenceHandler extends AdminHandler {
 

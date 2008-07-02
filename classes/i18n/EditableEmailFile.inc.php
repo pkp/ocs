@@ -6,13 +6,14 @@
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package i18n 
  * @class EditableEmailFile
+ * @ingroup plugins_generic_translator
  *
- * This class supports updating for email XML files.
+ * @brief This class supports updating for email XML files.
  *
- * $Id$
  */
+
+// $Id$
 
 import('file.EditableFile');
 

@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins
  * @class PluginRegistry
+ * @ingroup plugins
+ * @see Plugin, PluginSettingsDAO
  *
- * Registry class for managing plugins.
- *
- * $Id$
+ * @brief Registry class for managing plugins.
  */
+
+//$Id$
 
 import('plugins.Plugin');
 

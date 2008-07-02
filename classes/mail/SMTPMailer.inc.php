@@ -6,15 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package mail
  * @class SMTPMailer
+ * @ingroup mail
  *
- * Class defining a simple SMTP mail client (reference RFCs 821 and 2821).
+ * @brief Class defining a simple SMTP mail client (reference RFCs 821 and 2821).
  *
  * TODO: TLS support
- *
- * $Id$
  */
+
+//$Id$
 
 import('mail.Mail');
 

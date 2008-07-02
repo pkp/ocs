@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package registration.form
  * @class UserRegistrationForm
+ * @ingroup registration_form
  *
- * Form for users to self-register.
- *
- * $Id$
+ * @brief Form for users to self-register.
  */
+
+//$Id$
 
 import('form.Form');
 

@@ -1,19 +1,23 @@
 <?php
 
 /**
+ * @defgroup conference
+ */
+ 
+/**
  * @file Conference.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package conference
  * @class Conference
+ * @ingroup conference
+ * @see ConferenceDAO
  *
- * Conference class.
- * Describes basic conference properties.
- *
- * $Id$
+ * @brief Describes basic conference properties.
  */
+
+//$Id$
 
 define('PAPER_ACCESS_OPEN',			0x00000000);
 define('PAPER_ACCESS_ACCOUNT_REQUIRED',		0x00000001);

@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup plugins_citationFormats_nlm
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Wrapper for NLM Meeting Abstract export plugin.
+ * @brief Wrapper for NLM Meeting Abstract export plugin.
  *
- * @package plugins.citationFormats.nlm
- *
- * $Id$
+ * @ingroup plugins_citationFormats_nlm
  */
+
+//$Id$
 
 require_once('NLMExportPlugin.inc.php');
 

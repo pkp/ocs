@@ -1,18 +1,22 @@
 <?php
 
 /**
+ * @defgroup install_form
+ */
+ 
+/**
  * @file InstallForm.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package install.form
  * @class InstallForm
+ * @ingroup install_form
  *
- * Form for system installation.
- *
- * $Id$
+ * @brief Form for system installation.
  */
+
+//$Id$
 
 import('install.Install');
 import('site.VersionCheck');

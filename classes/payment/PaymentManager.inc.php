@@ -1,18 +1,22 @@
 <?php
 
 /**
+ * @defgroup payment
+ */
+ 
+/**
  * @file PaymentManager.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package payment
  * @class PaymentManager
+ * @ingroup payment
  *
- * Provides payment management functions.
- *
- * $Id$
+ * @brief Provides payment management functions.
  */
+
+//$Id$
 
 class PaymentManager {
 	/**

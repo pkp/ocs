@@ -6,14 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package scheduler
  * @class Room
+ * @ingroup scheduler
+ * @see RoomDAO
  *
- * Room class.
- * Basic class describing a room.
- *
- * $Id$
+ * @brief Basic class describing a room.
  */
+
+//$Id$
 
 class Room extends DataObject {
 	//

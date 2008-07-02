@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup plugins_themes_classicBrown
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Wrapper for "classic brown" theme plugin.
+ * @brief Wrapper for "classic brown" theme plugin.
  *
- * @package plugins.themes.classicBrown
- *
- * $Id$
+ * @ingroup plugins_themes_classicBrown
  */
+
+//$Id$
 
 require_once('ClassicBrownThemePlugin.inc.php');
 

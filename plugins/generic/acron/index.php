@@ -1,17 +1,21 @@
 <?php
 
 /**
+ * @defgroup plugins_generic_acron
+ */
+ 
+/**
  * @file index.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Wrapper for acron plugin
+ * @brief Wrapper for acron plugin
  *
- * @package plugins.generic.acron
- *
- * $Id$
+ * @ingroup plugins_generic_acron
  */
+
+//$Id$
 
 require_once('AcronPlugin.inc.php');
 

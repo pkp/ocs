@@ -1,19 +1,25 @@
 <?php
 
 /**
+ * @defgroup template
+ */
+
+/**
  * @file TemplateManager.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package template
  * @class TemplateManager
+ * @ingroup template
  *
- * Class for accessing the underlying template engine.
+ * @brief Class for accessing the underlying template engine.
  * Currently integrated with Smarty (from http://smarty.php.net/).
  *
- * $Id$
  */
+
+// $Id$
+
 
 /* This definition is required by Smarty */
 define('SMARTY_DIR', Core::getBaseDir() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'smarty' . DIRECTORY_SEPARATOR);

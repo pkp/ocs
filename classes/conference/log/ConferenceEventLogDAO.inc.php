@@ -1,18 +1,23 @@
 <?php
 
 /**
+ * @defgroup conference_log
+ */
+ 
+/**
  * @file ConferenceEventLogDAO.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package conference.log
  * @class ConferenceEventLogDAO
+ * @ingroup conference_log
+ * @see ConferenceEventLogEntry
  *
- * Class for inserting/accessing conference history log entries.
- *
- * $Id$
+ * @brief Class for inserting/accessing conference history log entries.
  */
+
+//$Id$
 
 import ('conference.log.ConferenceEventLogEntry');
 

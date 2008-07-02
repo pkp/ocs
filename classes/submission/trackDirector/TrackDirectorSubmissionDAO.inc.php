@@ -6,14 +6,16 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package submission
  * @class TrackDirectorSubmissionDAO
+ * @ingroup submission
+ * @see TrackDirectorSubmission
  *
- * Class for TrackDirectorSubmission DAO.
- * Operations for retrieving and modifying TrackDirectorSubmission objects.
+ * @brief Operations for retrieving and modifying TrackDirectorSubmission objects.
  *
- * $Id$
  */
+
+// $Id$
+
 
 import('submission.trackDirector.TrackDirectorSubmission');
 import('submission.presenter.PresenterSubmission'); // Bring in director decision constants

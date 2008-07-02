@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper
  * @class PaperFile
+ * @ingroup paper
+ * @see PaperFileDAO
  *
- * Paper file class.
- *
- * $Id$
+ * @brief Paper file class.
  */
+
+//$Id$
 
 class PaperFile extends DataObject {
 

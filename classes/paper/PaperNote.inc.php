@@ -6,13 +6,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package paper
  * @class PaperNote
+ * @ingroup paper
+ * @see PaperNoteDAO
  *
- * Class for PaperNote.
- *
- * $Id$
+ * @brief Class for PaperNote.
  */
+
+//$Id$
 
 import('paper.PaperFile');
 

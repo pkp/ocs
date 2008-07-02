@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package manager.form.scheduler
  * @class SpecialEventForm
+ * @ingroup manager_form_scheduler
  *
- * Form for conference manager to create/edit special events for scheduler.
- *
- * $Id$
+ * @brief Form for conference manager to create/edit special events for scheduler.
  */
+
+//$Id$
 
 import('form.Form');
 

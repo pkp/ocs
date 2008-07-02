@@ -6,13 +6,15 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.schedConf
  * @class SchedConfHandler
+ * @ingroup pages_schedConf
  *
- * Handle requests for scheduled conference functions.
+ * @brief Handle requests for scheduled conference functions.
  *
- * $Id$
  */
+
+// $Id$
+
 
 import ('schedConf.SchedConfAction');
 import('payment.ocs.OCSPaymentManager');

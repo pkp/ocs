@@ -6,9 +6,9 @@
  * Copyright (c) 2003-2005 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package plugins
+ * @ingroup plugins
  *
- * Wrapper for METS export plugin.
+ * @brief Wrapper for METS export plugin.
  *
  */
 

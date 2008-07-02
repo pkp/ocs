@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.manager
  * @class AnnouncementHandler
+ * @ingroup pages_manager
  *
- * Handle requests for announcement management functions. 
- *
- * $Id$
+ * @brief Handle requests for announcement management functions. 
  */
+
+//$Id$
 
 class AnnouncementHandler extends ManagerHandler {
 

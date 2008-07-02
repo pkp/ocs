@@ -6,13 +6,13 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.trackDirector
  * @class SubmissionCommentsHandler
+ * @ingroup pages_trackDirector
  *
- * Handle requests for submission comments. 
- *
- * $Id$
+ * @brief Handle requests for submission comments. 
  */
+
+//$Id$
 
 import('pages.trackDirector.SubmissionEditHandler');
 
