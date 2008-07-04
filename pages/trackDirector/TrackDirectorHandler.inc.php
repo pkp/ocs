@@ -157,7 +157,7 @@ class TrackDirectorHandler extends Handler {
 	 */
 	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null) {
 		$templateMgr = &TemplateManager::getManager();
-		$isDirector = Request::getRequestedPage() == 'director';
+		$isDirector = Validation::isDirector();
 		$pageHierarchy = array();
 
 		$conference =& Request::getConference();
