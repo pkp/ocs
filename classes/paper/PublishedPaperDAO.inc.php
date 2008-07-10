@@ -164,9 +164,13 @@ class PublishedPaperDAO extends DAO {
 		$publishedPapers = array();
 
 		$params = array(
-			'title',
+			'title', // Paper title
 			$primaryLocale,
-			'title',
+			'title', // Paper title
+			$locale,
+			'title', // Track title
+			$primaryLocale,
+			'title', // Track title
 			$locale,
 			'abbrev',
 			$primaryLocale,
@@ -180,12 +184,12 @@ class PublishedPaperDAO extends DAO {
 		if (!empty($search)) switch ($searchField) {
 			case SUBMISSION_FIELD_TITLE:
 				if ($searchMatch === 'is') {
-					$searchSql = ' AND (LOWER(p.title) = LOWER(?) OR LOWER(p.title_alt1) = LOWER(?) OR LOWER(p.title_alt2) = LOWER(?))';
+					$searchSql = ' AND LOWER(COALESCE(ptl.setting_value, ptpl.setting_value)) = LOWER(?)';
 				} else {
-					$searchSql = ' AND (LOWER(p.title) LIKE LOWER(?) OR LOWER(p.title_alt1) LIKE LOWER(?) OR LOWER(p.title_alt2) LIKE LOWER(?))';
+					$searchSql = ' AND LOWER(COALESCE(ptl.setting_value, ptpl.setting_value)) LIKE LOWER(?)';
 					$search = '%' . $search . '%';
 				}
-				$params[] = $params[] = $params[] = $search;
+				$params[] = $search;
 				break;
 			case SUBMISSION_FIELD_PRESENTER:
 				$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
@@ -204,6 +208,8 @@ class PublishedPaperDAO extends DAO {
 			FROM	paper_presenters pp,
 				papers p
 				LEFT JOIN published_papers pa ON (p.paper_id = pa.paper_id)
+				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND ptl.locale = ?)
+				LEFT JOIN paper_settings ptpl ON (p.paper_id = ptpl.paper_id AND ptpl.setting_name = ? AND ptpl.locale = ?)
 				LEFT JOIN tracks t ON t.track_id = p.track_id
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
