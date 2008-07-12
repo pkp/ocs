@@ -69,6 +69,7 @@ class Upgrade extends Installer {
 			'DevelopedByBlockPlugin',
 			'HelpBlockPlugin',
 			'UserBlockPlugin',
+			'RoleBlockPlugin',
 			'LanguageToggleBlockPlugin',
 			'NavigationBlockPlugin',
 			'FontSizeBlockPlugin',
