@@ -14,14 +14,7 @@
   * $Id$
   -->
 
-<!DOCTYPE locales [
-	<!ELEMENT locales (locale+)>
-	<!ELEMENT locale EMPTY>
-		<!ATTLIST locale
-			key CDATA #REQUIRED
-			name CDATA #REQUIRED
-			stylesheet CDATA #IMPLIED>
-]>
+<!DOCTYPE locales SYSTEM "../lib/pkp/dtd/locales.dtd">
 
 <locales>
 	<locale key="ca_ES" name="Català (Espanya)"/>
@@ -29,7 +22,6 @@
 	<locale key="es_ES" name="España Castellano"/>
 	<locale key="en_US" name="English"/>
 	<locale key="fr_CA" name="Français (Canada)"/>
-	<locale key="fr_FR" name="Français (France)"/>
 	<locale key="it_IT" name="Italiano"/>
 	<locale key="pt_BR" name="Português (Brasil)"/>
 	<locale key="zh_TW" name="正體中文"/>

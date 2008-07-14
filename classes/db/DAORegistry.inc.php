@@ -96,7 +96,7 @@ class DAORegistry {
 			case 'HelpTopicDAO': return 'help.HelpTopicDAO';
 			case 'SchedConfDAO': return 'schedConf.SchedConfDAO';
 			case 'ConferenceDAO': return 'conference.ConferenceDAO';
-			case 'CountryDAO': return 'user.CountryDAO';
+			case 'CountryDAO': return 'i18n.CountryDAO';
 			case 'SchedConfStatisticsDAO': return 'schedConf.SchedConfStatisticsDAO';
 			case 'SchedConfSettingsDAO': return 'schedConf.SchedConfSettingsDAO';
 			case 'ConferenceSettingsDAO': return 'conference.ConferenceSettingsDAO';
