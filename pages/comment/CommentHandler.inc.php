@@ -18,6 +18,7 @@
 
 import('rt.ocs.RTDAO');
 import('rt.ocs.ConferenceRT');
+import('core.Handler');
 
 class CommentHandler extends Handler {
 	function view($args) {

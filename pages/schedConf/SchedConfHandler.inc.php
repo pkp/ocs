@@ -16,8 +16,9 @@
 // $Id$
 
 
-import ('schedConf.SchedConfAction');
+import('schedConf.SchedConfAction');
 import('payment.ocs.OCSPaymentManager');
+import('core.Handler');
 
 class SchedConfHandler extends Handler {
 

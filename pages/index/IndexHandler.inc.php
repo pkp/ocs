@@ -14,6 +14,9 @@
 
 //$Id$
 
+
+import('core.Handler');
+
 class IndexHandler extends Handler {
 
 	/**

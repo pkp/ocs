@@ -14,9 +14,11 @@
 
 //$Id$
 
+
 define('SESSION_DISABLE_INIT', 1); // FIXME?
 
 import('oai.ocs.ConferenceOAI');
+import('core.Handler');
 
 class OAIHandler extends Handler {
 

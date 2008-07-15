@@ -10,9 +10,13 @@
  * @ingroup pages_index
  *
  * @brief Handle conference index requests.
+ *
  */
 
-//$Id$
+// $Id$
+
+
+import('core.Handler');
 
 class SchedConfsHandler extends Handler {
 

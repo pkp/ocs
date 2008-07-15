@@ -17,6 +17,7 @@
 
 
 import ('submission.presenter.PresenterAction');
+import('core.Handler');
 
 class PresenterHandler extends Handler {
 

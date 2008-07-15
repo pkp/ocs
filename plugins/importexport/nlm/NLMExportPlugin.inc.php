@@ -76,6 +76,7 @@ class NLMExportPlugin extends ImportExportPlugin {
 				$paperIds = $publishedPaperDao->getPublishedPaperIdsAlphabetizedBySchedConf($conference->getConferenceId());
 				$totalPapers = count($paperIds);
 				if ($rangeInfo->isValid()) $paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
+				import('core.VirtualArrayIterator');
 				$iterator = &new VirtualArrayIterator(PaperSearch::formatResults($paperIds), $totalPapers, $rangeInfo->getPage(), $rangeInfo->getCount());
 				$templateMgr->assign_by_ref('papers', $iterator);
 				$templateMgr->display($this->getTemplatePath() . 'papers.tpl');

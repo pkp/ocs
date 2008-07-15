@@ -61,6 +61,7 @@ class PaperSearchDAO extends DAO {
 	 * @return array of results (associative arrays)
 	 */
 	function &getPhraseResults(&$conference, $phrase, $publishedFrom = null, $publishedTo = null, $type = null, $limit = 500, $cacheHours = 24) {
+		import('db.DBRowIterator');
 		if (empty($phrase)) {
 			$results = false;
 			$returner = &new DBRowIterator($results);

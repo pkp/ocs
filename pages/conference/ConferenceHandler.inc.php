@@ -14,6 +14,9 @@
 
 //$Id$
 
+
+import('core.Handler');
+
 class ConferenceHandler extends Handler {
 
 	/**

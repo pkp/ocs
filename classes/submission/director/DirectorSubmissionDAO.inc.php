@@ -323,6 +323,7 @@ class DirectorSubmissionDAO extends DAO {
 		$result->Close();
 		unset($result);
 
+		import('core.ArrayItemIterator');
 		if (isset($rangeInfo) && $rangeInfo->isValid()) {
 			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
 		} else {
@@ -379,6 +380,7 @@ class DirectorSubmissionDAO extends DAO {
 		$result->Close();
 		unset($result);
 
+		import('core.ArrayItemIterator');
 		if (isset($rangeInfo) && $rangeInfo->isValid()) {
 			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
 		} else {

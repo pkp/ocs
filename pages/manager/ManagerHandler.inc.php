@@ -14,6 +14,9 @@
 
 //$Id$
 
+
+import('core.Handler');
+
 class ManagerHandler extends Handler {
 
 	/**

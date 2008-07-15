@@ -29,6 +29,8 @@ class EmailHandler extends ManagerHandler {
 		$emailTemplatesArray = &$emailTemplateDao->getEmailTemplates(Locale::getLocale(),
 			$conference->getConferenceId(),
 			$schedConf ? $schedConf->getSchedConfId() : 0);
+
+		import('core.ArrayItemIterator');
 		if ($rangeInfo && $rangeInfo->isValid()) {
 			while (true) {
 				$emailTemplates =& new ArrayItemIterator($emailTemplatesArray, $rangeInfo->getPage(), $rangeInfo->getCount());

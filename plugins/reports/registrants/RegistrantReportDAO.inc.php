@@ -11,9 +11,13 @@
  * @see RegistrantReportPlugin
  *
  * @brief Registrant report DAO
+ *
  */
 
-//$Id$
+// $Id$
+
+
+import('db.DBRowIterator');
 
 class RegistrantReportDAO extends DAO {
 	/**

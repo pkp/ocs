@@ -14,14 +14,17 @@
 
 //$Id$
 
+
 define('HELP_DEFAULT_TOPIC', 'index/topic/000000');
 define('HELP_DEFAULT_TOC', 'index/toc/000000');
 
+import('help.Help');
 import('help.HelpToc');
 import('help.HelpTocDAO');
 import('help.HelpTopic');
 import('help.HelpTopicDAO');
 import('help.HelpTopicSection');
+import('core.Handler');
 
 class HelpHandler extends Handler {
 

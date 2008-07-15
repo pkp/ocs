@@ -16,10 +16,11 @@
 // $Id$
 
 
-import('submission.trackDirector.TrackDirectorAction');
-
 // Filter track
 define('FILTER_TRACK_ALL', 0);
+
+import('submission.trackDirector.TrackDirectorAction');
+import('core.Handler');
 
 class TrackDirectorHandler extends Handler {
 

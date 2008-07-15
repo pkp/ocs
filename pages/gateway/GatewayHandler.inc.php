@@ -1,18 +1,22 @@
 <?php
 
 /**
- * @file GatewayHandler.inc.php
+ * @file pages/gateway/GatewayHandler.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @package pages.gateway
  * @class GatewayHandler
+ * @ingroup pages_gateway
  *
- * Handle external gateway requests. 
+ * @brief Handle external gateway requests. 
  *
- * $Id$
  */
+
+//$Id$
+
+
+import('core.Handler');
 
 class GatewayHandler extends Handler {
 

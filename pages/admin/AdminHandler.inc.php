@@ -15,6 +15,9 @@
 
 //$Id$
 
+
+import('core.Handler');
+
 class AdminHandler extends Handler {
 
 	/**

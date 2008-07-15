@@ -11,11 +11,14 @@
  * @see PaperReportPlugin
  *
  * @brief Paper report DAO
+ *
  */
 
-//$Id$
+// $Id$
+
 
 import('submission.common.Action');
+import('db.DBRowIterator');
 
 class PaperReportDAO extends DAO {
 	/**

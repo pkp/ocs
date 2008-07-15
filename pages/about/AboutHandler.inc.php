@@ -16,6 +16,8 @@
 // $Id$
 
 
+import('core.Handler');
+
 class AboutHandler extends Handler {
 
 	/**

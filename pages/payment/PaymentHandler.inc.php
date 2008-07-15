@@ -10,9 +10,13 @@
  * @ingroup pages_payment
  *
  * @brief Handle requests for payment functions.
+ *
  */
 
-//$Id$
+// $Id$
+
+
+import('core.Handler');
 
 class PaymentHandler extends Handler {
 

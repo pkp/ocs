@@ -18,6 +18,7 @@
 
 import('rt.ocs.RTDAO');
 import('rt.ocs.ConferenceRT');
+import('core.Handler');
 
 class PaperHandler extends Handler {
 

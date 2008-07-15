@@ -10,9 +10,13 @@
  * @ingroup pages_user
  *
  * @brief Handle requests for user functions.
+ *
  */
 
-//$Id$
+// $Id$
+
+
+import('core.Handler');
 
 class UserHandler extends Handler {
 
