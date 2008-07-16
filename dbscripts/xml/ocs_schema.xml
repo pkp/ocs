@@ -59,7 +59,7 @@
 	  *
 	  -->
 	<table name="site">
-		<field name="conference_redirect" type="I8">
+		<field name="redirect" type="I8">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 			<descr>If not 0, redirect to the specified conference site.</descr>

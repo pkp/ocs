@@ -230,7 +230,7 @@ class Install extends Installer {
 			$siteDao = &DAORegistry::getDAO('SiteDAO', $this->dbconn);
 			$site = &new Site();
 			$site->setTitle(Locale::translate(INSTALLER_DEFAULT_SITE_TITLE), $locale);
-			$site->setConferenceRedirect(0);
+			$site->setRedirect(0);
 			$site->setMinPasswordLength(INSTALLER_DEFAULT_MIN_PASSWORD_LENGTH);
 			$site->setPrimaryLocale($locale);
 			$site->setInstalledLocales($this->installedLocales);

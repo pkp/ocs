@@ -40,6 +40,15 @@ class OCSApplication extends PKPApplication {
 	}
 
 	/**
+	 * Get the URL to the XML descriptor for the current version of this
+	 * application.
+	 * @return string
+	 */
+	function getVersionDescriptorUrl() {
+		return('http://pkp.sfu.ca/ojs/xml/ocs-version.xml');
+	}
+
+	/**
 	 * Determine whether or not the request is cacheable.
 	 * @return boolean
 	 */

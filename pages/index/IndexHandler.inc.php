@@ -58,9 +58,9 @@ class IndexHandler extends Handler {
 
 			$siteDao = &DAORegistry::getDAO('SiteDAO');
 			$site = &$siteDao->getSite();
-			$conference = $conferenceDao->getConference($site->getConferenceRedirect());
+			$conference = $conferenceDao->getConference($site->getRedirect());
 
-			if ($site->getConferenceRedirect() && $conference) {
+			if ($site->getRedirect() && $conference) {
 				Request::redirect($conference->getPath());
 			}
 
