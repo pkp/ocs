@@ -60,6 +60,74 @@ class OCSApplication extends PKPApplication {
 
 		return false; // FIXME: Not implemented yet.
 	}
+
+	/**
+	 * Get the map of DAOName => full.class.Path for this application.
+	 * @return array
+	 */
+	function getDAOMap() {
+		return array(
+			'ConferenceEventLogDAO' => 'conference.log.ConferenceEventLogDAO',
+			'PaperEmailLogDAO' => 'paper.log.PaperEmailLogDAO',
+			'PaperEventLogDAO' => 'paper.log.PaperEventLogDAO',
+			'PaperCommentDAO' => 'paper.PaperCommentDAO',
+			'PaperDAO' => 'paper.PaperDAO',
+			'PaperFileDAO' => 'paper.PaperFileDAO',
+			'PaperGalleyDAO' => 'paper.PaperGalleyDAO',
+			'PaperNoteDAO' => 'paper.PaperNoteDAO',
+			'PresenterDAO' => 'paper.PresenterDAO',
+			'PublishedPaperDAO' => 'paper.PublishedPaperDAO',
+			'SuppFileDAO' => 'paper.SuppFileDAO',
+			'DAO' => 'db.DAO',
+			'XMLDAO' => 'db.XMLDAO',
+			'OAIDAO' => 'oai.ocs.OAIDAO',
+			'HelpTocDAO' => 'help.HelpTocDAO',
+			'HelpTopicDAO' => 'help.HelpTopicDAO',
+			'SchedConfDAO' => 'schedConf.SchedConfDAO',
+			'ConferenceDAO' => 'conference.ConferenceDAO',
+			'CountryDAO' => 'i18n.CountryDAO',
+			'SchedConfStatisticsDAO' => 'schedConf.SchedConfStatisticsDAO',
+			'SchedConfSettingsDAO' => 'schedConf.SchedConfSettingsDAO',
+			'ConferenceSettingsDAO' => 'conference.ConferenceSettingsDAO',
+			'TrackDAO' => 'conference.TrackDAO',
+			'TrackDirectorsDAO' => 'conference.TrackDirectorsDAO',
+			'NotificationStatusDAO' => 'conference.NotificationStatusDAO',
+			'EmailTemplateDAO' => 'mail.EmailTemplateDAO',
+			'QueuedPaymentDAO' => 'payment.QueuedPaymentDAO',
+			'ScheduledTaskDAO' => 'scheduledTask.ScheduledTaskDAO',
+			'PaperSearchDAO' => 'search.PaperSearchDAO',
+			'RoleDAO' => 'security.RoleDAO',
+			'SessionDAO' => 'session.SessionDAO',
+			'SiteDAO' => 'site.SiteDAO',
+			'SiteSettingsDAO' => 'site.SiteSettingsDAO',
+			'VersionDAO' => 'site.VersionDAO',
+			'PresenterSubmissionDAO' => 'submission.presenter.PresenterSubmissionDAO',
+			'EditAssignmentDAO' => 'submission.editAssignment.EditAssignmentDAO',
+			'DirectorSubmissionDAO' => 'submission.director.DirectorSubmissionDAO',
+			'ReviewAssignmentDAO' => 'submission.reviewAssignment.ReviewAssignmentDAO',
+			'ReviewerSubmissionDAO' => 'submission.reviewer.ReviewerSubmissionDAO',
+			'TrackDirectorSubmissionDAO' => 'submission.trackDirector.TrackDirectorSubmissionDAO',
+			'UserDAO' => 'user.UserDAO',
+			'UserSettingsDAO' => 'user.UserSettingsDAO',
+			'RTDAO' => 'rt.ocs.RTDAO',
+			'CurrencyDAO' => 'registration.CurrencyDAO',
+			'RegistrationDAO' => 'registration.RegistrationDAO',
+			'RegistrationTypeDAO' => 'registration.RegistrationTypeDAO',
+			'AnnouncementDAO' => 'announcement.AnnouncementDAO',
+			'AnnouncementTypeDAO' => 'announcement.AnnouncementTypeDAO',
+			'BuildingDAO' => 'scheduler.BuildingDAO',
+			'RoomDAO' => 'scheduler.RoomDAO',
+			'SpecialEventDAO' => 'scheduler.SpecialEventDAO',
+			'TemporaryFileDAO' => 'file.TemporaryFileDAO',
+			'CommentDAO' => 'comment.CommentDAO',
+			'AuthSourceDAO' => 'security.AuthSourceDAO',
+			'AccessKeyDAO' => 'security.AccessKeyDAO',
+			'PluginSettingsDAO' => 'plugins.PluginSettingsDAO',
+			'GroupDAO' => 'group.GroupDAO',
+			'GroupMembershipDAO' => 'group.GroupMembershipDAO',
+			'CaptchaDAO' => 'captcha.CaptchaDAO'
+		);
+	}
 }
 
 ?>
