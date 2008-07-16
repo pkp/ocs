@@ -32,6 +32,14 @@ class OCSApplication extends PKPApplication {
 	}
 
 	/**
+	 * Get the locale key for the name of this application.
+	 * @return string
+	 */
+	function getNameKey() {
+		return('common.openConferenceSystems');
+	}
+
+	/**
 	 * Determine whether or not the request is cacheable.
 	 * @return boolean
 	 */
