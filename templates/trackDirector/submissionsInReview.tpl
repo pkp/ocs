@@ -45,8 +45,10 @@
 		<td><a href="{url op="submissionReview" path=$submission->getPaperId()|to_array:$submission->getCurrentStage()}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
 		<td>
 		<table width="100%">
+			{assign var=displayedRound value=0}
 			{foreach from=$submission->getReviewAssignments(null) item=reviewAssignmentTypes}
-				{foreach from=$reviewAssignments item=assignment name=assignmentList}
+				{foreach from=$reviewAssignmentTypes item=assignment name=assignmentList}
+					{assign var=displayedRound value=1}
 					{if !$assignment->getCancelled()}
 					<tr valign="top">
 						{assign var="stage" value=$assignment->getStage()}
@@ -56,22 +58,16 @@
 						<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">{if $assignment->getDateCompleted()}{$assignment->getDateCompleted()|date_format:$dateFormatTrunc}{else}&mdash;{/if}</td>
 					</tr>
 					{/if}
-				{foreachelse}
-					<tr valign="top">
-						<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-						<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-						<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-						<td width="25%" style="padding: 0 0 0 0; font-size:1.0em">&mdash;</td>
-					</tr>
 				{/foreach}
-			{foreachelse}
+			{/foreach}
+			{if !$displayedRound}
 				<tr valign="top">
 					<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
 					<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
 					<td width="25%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
 					<td width="25%" style="padding: 0 0 0 0; font-size:1.0em">&mdash;</td>
 				</tr>
-			{/foreach}
+			{/if}
 		</table>
 		</td>
 		<td>
