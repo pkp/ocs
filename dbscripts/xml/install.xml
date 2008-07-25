@@ -15,9 +15,10 @@
 <install version="2.1.0.1">
 	<code function="createDirectories"/>
 	<code function="createDatabase"/>
-	<schema file="ocs_schema.xml"/>
-	<data file="data/email_templates.xml"/>
-	<data file="data/locale/{$installedLocale}/email_templates_data.xml"/>
+	<schema file="lib/pkp/xml/pkp_schema.xml"/>
+	<schema file="dbscripts/xml/ocs_schema.xml"/>
+	<data file="dbscripts/xml/data/email_templates.xml"/>
+	<data file="dbscripts/xml/data/locale/{$installedLocale}/email_templates_data.xml"/>
 	<code function="createData"/>
 	<code function="createConfig"/>
 </install>
