@@ -20,6 +20,17 @@
 import('core.PKPApplication');
 
 class OCSApplication extends PKPApplication {
+	function OCSApplication() {
+		parent::PKPApplication();
+	}
+
+	function initialize(&$application) {
+		PKPApplication::initialize($application);
+
+		import('i18n.Locale');
+		import('core.Request');
+	}
+
 	/**
 	 * Get the "context depth" of this application, i.e. the number of
 	 * parts of the URL after index.php that represent the context of
