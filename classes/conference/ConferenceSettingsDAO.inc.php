@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file ConferenceSettingsDAO.inc.php
+ * @file classes/conference/ConferenceSettingsDAO.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -76,27 +76,20 @@ class ConferenceSettingsDAO extends SettingsDAO {
 			'SELECT setting_name, setting_value, setting_type, locale FROM conference_settings WHERE conference_id = ?', $conferenceId
 		);
 
-		if ($result->RecordCount() == 0) {
-			$returner = null;
-			$result->Close();
-			return $returner;
-
-		} else {
-			while (!$result->EOF) {
-				$row = &$result->getRowAssoc(false);
-				$value = $this->convertFromDB($row['setting_value'], $row['setting_type']);
-				if ($row['locale'] == '') $conferenceSettings[$row['setting_name']] = $value;
-				else $conferenceSettings[$row['setting_name']][$row['locale']] = $value;
-				$result->MoveNext();
-			}
-			$result->close();
-			unset($result);
-
-			$cache =& $this->_getCache($conferenceId);
-			$cache->setEntireCache($conferenceSettings);
-
-			return $conferenceSettings;
+		while (!$result->EOF) {
+			$row = &$result->getRowAssoc(false);
+			$value = $this->convertFromDB($row['setting_value'], $row['setting_type']);
+			if ($row['locale'] == '') $conferenceSettings[$row['setting_name']] = $value;
+			else $conferenceSettings[$row['setting_name']][$row['locale']] = $value;
+			$result->MoveNext();
 		}
+		$result->Close();
+		unset($result);
+
+		$cache =& $this->_getCache($conferenceId);
+		$cache->setEntireCache($conferenceSettings);
+
+		return $conferenceSettings;
 	}
 
 	/**
