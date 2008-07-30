@@ -40,4 +40,3 @@ class SiteSettingsForm extends PKPSiteSettingsForm {
 }
 
 ?>
-
