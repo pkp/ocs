@@ -28,24 +28,12 @@ class User extends PKPUser {
 		parent::PKPUser();
 	}
 
-	//
-	// Get/set methods
-	//
-
-	/**
-	 * Get time zone.
-	 * @return string
-	 */
-	function getTimeZone() {
-		return $this->getData('timeZone');
+	function setTimeZone($timeZone) {
+		return $this->updateSetting('timeZone');
 	}
 
-	/**
-	 * Set time zone.
-	 * @param $timeZone string
-	 */
-	function setTimeZone($timeZone) {
-		return $this->setData('timeZone', $timeZone);
+	function getTimeZone() {
+		return $this->getSetting('timeZone');
 	}
 
 	/**
