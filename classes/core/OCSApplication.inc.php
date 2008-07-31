@@ -139,6 +139,16 @@ class OCSApplication extends PKPApplication {
 			'CaptchaDAO' => 'captcha.CaptchaDAO'
 		);
 	}
+
+	/**
+	 * Instantiate the help object for this application.
+	 * @return object
+	 */
+	function &instantiateHelp() {
+		import('help.Help');
+		$help =& new Help();
+		return $help;
+	}
 }
 
 ?>

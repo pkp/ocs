@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file HelpHandler.inc.php
+ * @file pages/help/HelpHandler.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -12,13 +12,12 @@
  * @brief Handle requests for viewing help pages. 
  */
 
-//$Id$
+// $Id$
 
 
 define('HELP_DEFAULT_TOPIC', 'index/topic/000000');
 define('HELP_DEFAULT_TOC', 'index/toc/000000');
 
-import('help.Help');
 import('help.HelpToc');
 import('help.HelpTocDAO');
 import('help.HelpTopic');
