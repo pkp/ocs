@@ -142,7 +142,6 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$templateMgr->assign_by_ref('reviewAssignments', $presenterSubmission->getReviewAssignments($stage));
 		$templateMgr->assign('stage', $stage);
 		$templateMgr->assign_by_ref('reviewFilesByStage', $reviewFilesByStage);
-		$templateMgr->assign_by_ref('reviewFilesByStage', $reviewFilesByStage);
 		$templateMgr->assign_by_ref('presenterViewableFilesByStage', $presenterViewableFilesByStage);
 		$templateMgr->assign_by_ref('reviewModifiedByStage', $reviewModifiedByStage);
 		$templateMgr->assign('reviewEarliestNotificationByStage', $reviewEarliestNotificationByStage);
