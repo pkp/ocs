@@ -16,8 +16,8 @@
 
 import('classes.plugins.GenericPlugin');
 
-define('TINYMCE_INSTALL_PATH', 'lib' . DIRECTORY_SEPARATOR . 'pkp' . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'tinymce');
-define('TINYMCE_JS_PATH', TINYMCE_INSTALL_PATH . DIRECTORY_SEPARATOR . 'jscripts' . DIRECTORY_SEPARATOR . 'tiny_mce');
+define('TINYMCE_INSTALL_PATH', 'lib/tinymce');
+define('TINYMCE_JS_PATH', TINYMCE_INSTALL_PATH . '/jscripts/tiny_mce');
 
 class TinyMCEPlugin extends GenericPlugin {
 	/**
@@ -261,7 +261,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				$localeList[] = String::substr($key, 0, 2);
 			}
 
-			$tinyMCE_scipt = '
+			$tinymceScript = '
 			<script language="javascript" type="text/javascript" src="'.$baseUrl.'/'.TINYMCE_JS_PATH.'/tiny_mce_gzip.js"></script>
 			<script language="javascript" type="text/javascript">
 				tinyMCE_GZ.init({
@@ -288,7 +288,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				});
 			</script>';
 
-			$templateManager->assign('additionalHeadData', $additionalHeadData."\n".$tinyMCE_scipt);
+			$templateManager->assign('additionalHeadData', $additionalHeadData."\n".$tinymceScript);
 		}
 		return false;
 	}
