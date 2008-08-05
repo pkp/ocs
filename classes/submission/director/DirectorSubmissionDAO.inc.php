@@ -218,6 +218,7 @@ class DirectorSubmissionDAO extends DAO {
 
 		$sql = 'SELECT DISTINCT
 				p.*,
+				t.seq, pp.seq,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
@@ -255,7 +256,7 @@ class DirectorSubmissionDAO extends DAO {
 				break;
 			case DIRECTOR_SUBMISSION_SORT_ORDER_NATURAL:
 			default:
-				$sql .= 'paper_id ASC';
+				$sql .= 'p.paper_id ASC';
 				break;
 		}
 
@@ -323,7 +324,6 @@ class DirectorSubmissionDAO extends DAO {
 		$result->Close();
 		unset($result);
 
-		import('core.ArrayItemIterator');
 		if (isset($rangeInfo) && $rangeInfo->isValid()) {
 			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
 		} else {
@@ -380,7 +380,6 @@ class DirectorSubmissionDAO extends DAO {
 		$result->Close();
 		unset($result);
 
-		import('core.ArrayItemIterator');
 		if (isset($rangeInfo) && $rangeInfo->isValid()) {
 			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
 		} else {
