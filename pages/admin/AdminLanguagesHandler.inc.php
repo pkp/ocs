@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file AdminLanguagesHandler.inc.php
+ * @file pages/admin/AdminLanguagesHandler.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -12,7 +12,8 @@
  * @brief Handle requests for changing site language settings. 
  */
 
-//$Id$
+// $Id$
+
 
 class AdminLanguagesHandler extends AdminHandler {
 
@@ -136,7 +137,7 @@ class AdminLanguagesHandler extends AdminHandler {
 		Request::redirect(null, null, null, 'languages');
 	}
 
-	/*
+	/**
 	 * Reload data for an installed locale.
 	 */
 	function reloadLocale() {
