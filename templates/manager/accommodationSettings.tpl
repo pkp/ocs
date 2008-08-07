@@ -13,7 +13,7 @@
 
 {include file="common/formErrors.tpl"}
 
-<form method="post" action="{url op="saveAccommodationSettings"}" enctype="multipart/form-data">
+<form name="accommodationForm" method="post" action="{url op="saveAccommodationSettings"}" enctype="multipart/form-data">
 
 <p>{translate key="manager.accommodation.form.description"}</p>
 
@@ -25,8 +25,8 @@
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{url|assign:"setupFormUrl" op="schedConfSetup" path="1"}
-			{form_language_chooser form="setupForm" url=$setupFormUrl}
+			{url|assign:"accommodationFormUrl" op="accommodation"}
+			{form_language_chooser form="accommodationForm" url=$accommodationFormUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
 		</td>
 	</tr>
