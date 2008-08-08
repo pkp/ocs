@@ -2100,10 +2100,10 @@ p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "
   <message key="rt.admin.settings.captureCite">Comment citer (fournit les données bibliographiques pour un élément).</message>
   <message key="rt.admin.settings.supplementaryFiles">Fichiers supplémentaires (affiche une liste de fichiers que l'auteur a inclus avec sa soumission).</message>
   <message key="rt.admin.settings.printerFriendly">Version pour impression (fournit une version imprimable d'un élément).</message>
-  <message key="rt.admin.settings.presenterBio">Biographie de l'auteur (affiche les repères biographiques soumis par l'auteur).</message>
+  <message key="rt.admin.settings.authorBio">Biographie de l'auteur (affiche les repères biographiques soumis par l'auteur).</message>
   <message key="rt.admin.settings.defineTerms">Rechercher les termes (permet au lecteur de double-cliquer sur n'importe quel mot dans un élément pour en afficher la définition).</message>
   <message key="rt.admin.settings.addComment">Ajouter un commentaire (permet au lecteur d'afficher un commentaire, que les responsables de la conférence peuvent supprimer; il faut avoir activé au préalable "Commentaires des lecteurs" dans la mise en place, étape 2).</message>
-  <message key="rt.admin.settings.emailPresenter">Envoyer un courriel à l'auteur (amène à un modèle de courriel affichant l'adresse courriel de l'auteur).</message>
+  <message key="rt.admin.settings.emailAuthor">Envoyer un courriel à l'auteur (amène à un modèle de courriel affichant l'adresse courriel de l'auteur).</message>
   <message key="rt.admin.settings.emailOthers">Alerter un collègue (amène à un modèle de courriel permettant d'envoyer un lien à l'élément à un collègue).</message>
   <!-- RT Versions -->
   <message key="rt.admin.versions.restoreVersions">Restaurer les versions à leur version par défaut</message>
@@ -2156,7 +2156,7 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
   <message key="rt.search.searchUrl">Recherche d'URL</message>
   <message key="rt.search.searchPost">Afficher les données</message>
   <message key="rt.search.suggest">Suggérer une source</message>
-  <message key="rt.presenterBio">À propos de l'auteur</message>
+  <message key="rt.authorBio">À propos de l'auteur</message>
   <message key="rt.suppFiles">Fichiers supplémentaires</message>
   <message key="rt.suppFiles.download">Télécharger</message>
   <message key="rt.captureCite">Comment citer un élément</message>
@@ -2166,7 +2166,7 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
   <message key="rt.lookUp">Rechercher les termes</message>
   <message key="rt.colleague">Aviser un collègue</message>
   <message key="rt.addComment">Ajouter un commentaire</message>
-  <message key="rt.emailPresenter">Envoyer un courriel à l'auteur</message>
+  <message key="rt.emailAuthor">Envoyer un courriel à l'auteur</message>
   <message key="rt.relatedItems">Éléments connexes</message>
   <message key="rt.thisConference">Rechercher dans la conférence</message>
   <message key="rt.email.sent">Votre message a été envoyé.</message>

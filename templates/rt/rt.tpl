@@ -54,7 +54,7 @@
 	<ul>
 		{if $conferenceRt->getAbstract() && $galley}<li><a href="{url page="paper" op="view" path=$paperId}" target="_parent">{translate key="paper.abstract"}</a></li>{/if}
 		<li><a href="{url page="about" op="editorialPolicies" anchor="peerReviewProcess"}" target="_parent">{translate key="rt.reviewPolicy"}</a></li>
-		{if $conferenceRt->getPresenterBio()}<li><a href="javascript:openRTWindow('{url page="rt" op="bio" path=$paperId|to_array:$galleyId}');">{translate key="rt.presenterBio"}</a></li>{/if}
+		{if $conferenceRt->getPresenterBio()}<li><a href="javascript:openRTWindow('{url page="rt" op="bio" path=$paperId|to_array:$galleyId}');">{translate key="rt.authorBio"}</a></li>{/if}
 		{if $conferenceRt->getCaptureCite()}<li><a href="javascript:openRTWindow('{url page="rt" op="captureCite" path=$paperId|to_array:$galleyId}');">{translate key="rt.captureCite"}</a></li>{/if}
 		{if $conferenceRt->getViewMetadata()}<li><a href="javascript:openRTWindow('{url page="rt" op="metadata" path=$paperId|to_array:$galleyId}');">{translate key="rt.viewMetadata"}</a></li>{/if}
 		{if $conferenceRt->getSupplementaryFiles() && $paper->getSuppFiles()}<li><a href="javascript:openRTWindow('{url page="rt" op="suppFiles" path=$paperId|to_array:$galleyId}');">{translate key="rt.suppFiles"}</a></li>{/if}
@@ -76,12 +76,12 @@
 				{/if}
 			</li>
 		{/if}
-		{if $conferenceRt->getEmailPresenter()}
+		{if $conferenceRt->getEmailAuthor()}
 			<li>
 				{if $isUserLoggedIn}
-					<a href="javascript:openRTWindow('{url page="rt" op="emailPresenter" path=$paperId|to_array:$galleyId}');">{translate key="rt.emailPresenter"}</a>
+					<a href="javascript:openRTWindow('{url page="rt" op="emailAuthor" path=$paperId|to_array:$galleyId}');">{translate key="rt.emailAuthor"}</a>
 				{else}
-					{translate key="rt.emailPresenter"}*
+					{translate key="rt.emailAuthor"}*
 					{assign var=needsLoginNote value=1}
 				{/if}
 			</li>

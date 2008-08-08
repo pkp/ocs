@@ -36,10 +36,10 @@ class RTDAO extends DAO {
 		$rt->setViewMetadata($conference->getSetting('rtViewMetadata')?true:false);
 		$rt->setSupplementaryFiles($conference->getSetting('rtSupplementaryFiles')?true:false);
 		$rt->setPrinterFriendly($conference->getSetting('rtPrinterFriendly')?true:false);
-		$rt->setPresenterBio($conference->getSetting('rtPresenterBio')?true:false);
+		$rt->setAuthorBio($conference->getSetting('rtPresenterBio')?true:false);
 		$rt->setDefineTerms($conference->getSetting('rtDefineTerms')?true:false);
 		$rt->setAddComment($conference->getSetting('rtAddComment')?true:false);
-		$rt->setEmailPresenter($conference->getSetting('rtEmailPresenter')?true:false);
+		$rt->setEmailAuthor($conference->getSetting('rtEmailPresenter')?true:false);
 		$rt->setEmailOthers($conference->getSetting('rtEmailOthers')?true:false);
 		$rt->setFindingReferences($conference->getSetting('rtFindingReferences')?true:false);
 		return $rt;
@@ -56,10 +56,10 @@ class RTDAO extends DAO {
 		$conference->updateSetting('rtViewMetadata', $rt->getViewMetadata(), 'bool');
 		$conference->updateSetting('rtSupplementaryFiles', $rt->getSupplementaryFiles(), 'bool');
 		$conference->updateSetting('rtPrinterFriendly', $rt->getPrinterFriendly(), 'bool');
-		$conference->updateSetting('rtPresenterBio', $rt->getPresenterBio(), 'bool');
+		$conference->updateSetting('rtPresenterBio', $rt->getAuthorBio(), 'bool');
 		$conference->updateSetting('rtDefineTerms', $rt->getDefineTerms(), 'bool');
 		$conference->updateSetting('rtAddComment', $rt->getAddComment(), 'bool');
-		$conference->updateSetting('rtEmailPresenter', $rt->getEmailPresenter(), 'bool');
+		$conference->updateSetting('rtEmailPresenter', $rt->getEmailAuthor(), 'bool');
 		$conference->updateSetting('rtEmailOthers', $rt->getEmailOthers(), 'bool');
 		$conference->updateSetting('rtFindingReferences', $rt->getFindingReferences());
 		return true;
@@ -203,29 +203,6 @@ class RTDAO extends DAO {
 			$version = &$versions->next();
 			$this->deleteVersion($version->getVersionId(), $conferenceId);
 		}
-	}
-
-	/**
-	 * Return RT object from database row.
-	 * @param $row array
-	 * @return RTVersion
-	 */
-	function &_returnConferenceRTFromRow(&$row) {
-		$rt = &new ConferenceRT($row['conference_id']);
-		$rt->setVersion($row['version_id']);
-		$rt->setCaptureCite($row['capture_cite']);
-		$rt->setViewMetadata($row['view_metadata']);
-		$rt->setSupplementaryFiles($row['supplementary_files']);
-		$rt->setPrinterFriendly($row['printer_friendly']);
-		$rt->setPresenterBio($row['presenter_bio']);
-		$rt->setDefineTerms($row['define_terms']);
-		$rt->setAddComment($row['add_comment']);
-		$rt->setEmailPresenter($row['email_presenter']);
-		$rt->setEmailOthers($row['email_others']);
-
-		HookRegistry::call('RTDAO::_returnConferenceRTFromRow', array(&$rt, &$row));
-
-		return $rt;
 	}
 
 	/**

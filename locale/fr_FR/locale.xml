@@ -2335,10 +2335,10 @@ p><p>N'oubliez pas de remettre "installed" dans votre fichier de configuration "
 	<message key="rt.admin.settings.viewMetadata">Indexer les métadonnées (affiche les métadonnées d'indexation fournies par l'auteur et le système pour un élément).</message>
 	<message key="rt.admin.settings.supplementaryFiles">Fichiers supplémentaires (affiche une liste de fichiers que l'auteur a inclus avec sa proposition).</message>
 	<message key="rt.admin.settings.printerFriendly">Imprimable (mène jusqu'à une version imprimable de l'élément).</message>
-	<message key="rt.admin.settings.presenterBio">Biographie de l'auteur (affiche les repères biographiques soumis par l'auteur).</message>
+	<message key="rt.admin.settings.authorBio">Biographie de l'auteur (affiche les repères biographiques soumis par l'auteur).</message>
 	<message key="rt.admin.settings.defineTerms">Chercher les termes (permet au lecteur de double-cliquer sur tout mot dans un article pour en afficher la définition).</message>
 	<message key="rt.admin.settings.addComment">Ajouter un commentaire (permet au lecteur d'afficher un commentaire, que le responsable de la conférence peut supprimer; il faut avoir activé au préalable "Commentaires des lecteurs" dans la mise en place, étape 2).</message>
-	<message key="rt.admin.settings.emailPresenter">Envoyer un courriel à l'auteur (mène jusqu'à un écran affichant l'adresse courriel de l'auteur).</message>
+	<message key="rt.admin.settings.emailAuthor">Envoyer un courriel à l'auteur (mène jusqu'à un écran affichant l'adresse courriel de l'auteur).</message>
 	<message key="rt.admin.settings.emailOthers">Aviser un collègue et/ou un ami (mène jusqu'à un écran permettant d'envoyer un lien jusqu'à l'élément à un collègue et/ou un ami).</message>
 
 	<!-- RT Versions -->
@@ -2401,7 +2401,7 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="rt.search.searchPost">Afficher les données</message>
 	<message key="rt.search.suggest">Suggérer une source</message>
 
-	<message key="rt.presenterBio">A propos de l'auteur</message>
+	<message key="rt.authorBio">A propos de l'auteur</message>
 
 	<message key="rt.viewMetadata">Indexer les métadonnées</message>
 	<message key="rt.metadata.dublinCore">Dublin Core</message>
@@ -2461,7 +2461,7 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="rt.lookUp">Rechercher les termes</message>
 	<message key="rt.colleague">Aviser un collègue</message>
 	<message key="rt.addComment">Ajouter un commentaire</message>
-	<message key="rt.emailPresenter">Envoyer un courriel à l'auteur</message>
+	<message key="rt.emailAuthor">Envoyer un courriel à l'auteur</message>
 	<message key="rt.beNotifiedWhen">Être informé lorsque...</message>
 
 	<message key="rt.relatedItems">Éléments connexes</message>

@@ -2347,10 +2347,10 @@ El seu servidor actualment suporta mbstring: <strong>{$supportsMBString}</strong
 	<message key="rt.admin.settings.viewMetadata">Metadades para la indexació (mostra les metadades d'indexació d'elements per autor i sistema).</message>
 	<message key="rt.admin.settings.supplementaryFiles">Arxius suplementaris (mostra una llista dels arxius adjunts a la tramesa).</message>
 	<message key="rt.admin.settings.printerFriendly">Versió per a imprimir (Mostra una versió de l'article per a la seva impressió).</message>
-	<message key="rt.admin.settings.presenterBio">Quant l'autor (Mostra una breu descripció proporcionada per l'autor del seu curriculum).</message>
+	<message key="rt.admin.settings.authorBio">Quant l'autor (Mostra una breu descripció proporcionada per l'autor del seu curriculum).</message>
 	<message key="rt.admin.settings.defineTerms">Buscar termes (permet als lectors, mitjançant un doble clic en qualsevol paraula de l'article, buscar-la en un diccionari).</message>
 	<message key="rt.admin.settings.addComment">Afegir comentari (permet als lectors enviar comentaris, que el Director pot esborrar. Aquesta opció ha d'activar-se en el pas 2 de la Configuració "Comentaris de Lectors").</message>
-	<message key="rt.admin.settings.emailPresenter">Email de l'autor (duu a una plantilla de correu amb l'adreça de l'autor).</message>
+	<message key="rt.admin.settings.emailAuthor">Email de l'autor (duu a una plantilla de correu amb l'adreça de l'autor).</message>
 	<message key="rt.admin.settings.emailOthers">Enviar a un col·lega (duu a una plantilla de correu amb un enllaç a l'article).</message>
 
 	<!-- RT Versions -->
@@ -2413,7 +2413,7 @@ La validacio d'URL pot fallar si es requereix la tramesa de dades.]]></message>
 	<message key="rt.search.searchPost">Dades postals</message>
 	<message key="rt.search.suggest">Sugereixi una font documental</message>
 
-	<message key="rt.presenterBio">Quant a l'autor</message>
+	<message key="rt.authorBio">Quant a l'autor</message>
 
 	<message key="rt.viewMetadata">Metadades indexades</message>
 	<message key="rt.metadata.dublinCore">Dublin Core</message>
@@ -2473,7 +2473,7 @@ La validacio d'URL pot fallar si es requereix la tramesa de dades.]]></message>
 	<message key="rt.lookUp">Recerca de termes</message>
 	<message key="rt.colleague">Notifica a un col·lega</message>
 	<message key="rt.addComment">Afegir comentari</message>
-	<message key="rt.emailPresenter">Envia un missatge a l'autor</message>
+	<message key="rt.emailAuthor">Envia un missatge a l'autor</message>
 	<message key="rt.beNotifiedWhen">Notifica quan...</message>
 
 	<message key="rt.relatedItems">Articles relacionats</message>

@@ -2356,10 +2356,10 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<message key="rt.admin.settings.viewMetadata">索引後設資料 (顯示由作者和系統所提供的文章索引後設資料)。</message>
 	<message key="rt.admin.settings.supplementaryFiles">充檔案 (顯示作者包括在稿件中檔案清單)。</message>
 	<message key="rt.admin.settings.printerFriendly">列印版本 (導引至一個項目較適合列印的版本))。</message>
-	<message key="rt.admin.settings.presenterBio">關於作者 (顯示作者所輸入的履歷內容)。</message>
+	<message key="rt.admin.settings.authorBio">關於作者 (顯示作者所輸入的履歷內容)。</message>
 	<message key="rt.admin.settings.defineTerms">查詢詞彙 (讓讀者雙擊一篇文章中任何字詞即可在字典中查閱該字)。</message>
 	<message key="rt.admin.settings.addComment">增加評論 (讓讀者發佈評論意見，而期刊管理員可以刪除。必須要啟用「設定」步驟2的「讀者評論」。)</message>
-	<message key="rt.admin.settings.emailPresenter">電郵作者 (導引到一個含有作者電子郵件地址的電郵樣版中)。</message>
+	<message key="rt.admin.settings.emailAuthor">電郵作者 (導引到一個含有作者電子郵件地址的電郵樣版中)。</message>
 	<message key="rt.admin.settings.emailOthers">通知好友 (導引到一個含有此文章項目連結的電郵樣版中)。</message>
 
 	<!-- RT Versions -->

@@ -2272,10 +2272,10 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
         <message key="rt.admin.settings.viewMetadata">Indexing metadata (displays item&apos;s indexing metadata provided by author and system).</message>
         <message key="rt.admin.settings.supplementaryFiles">Supplementary files (displays list of files author included with submission).</message>
         <message key="rt.admin.settings.printerFriendly">Print version (Leads to a printer-friendly version of an item).</message>
-        <message key="rt.admin.settings.presenterBio">About the author (displays the bio statements entered by the author).</message>
+        <message key="rt.admin.settings.authorBio">About the author (displays the bio statements entered by the author).</message>
         <message key="rt.admin.settings.defineTerms">Look up terms (enables readers to double-click on any word in an item and send the word to a dictionary).</message>
         <message key="rt.admin.settings.addComment">Add comment (enables readers to post comments, which Conference Directors can delete. Reader Comments must be enabled in Setup, step 2).</message>
-        <message key="rt.admin.settings.emailPresenter">Email the author (leads to an email template with author&apos;s email).</message>
+        <message key="rt.admin.settings.emailAuthor">Email the author (leads to an email template with author&apos;s email).</message>
         <message key="rt.admin.settings.emailOthers">Notify a colleague (leads to an email template with link to item).</message>
 
         <!-- RT Versions -->
@@ -2338,7 +2338,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
         <message key="rt.search.searchPost">Daten veröffentlichen</message>
         <message key="rt.search.suggest">Quelle vorschlagen</message>
 
-        <message key="rt.presenterBio">&#220;ber den Autor</message>
+        <message key="rt.authorBio">&#220;ber den Autor</message>
 
         <message key="rt.viewMetadata">Metadaten</message>
         <message key="rt.metadata.dublinCore">Dublin Core</message>
@@ -2391,7 +2391,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
         <message key="rt.lookUp">Begriffe nachschlagen</message>
         <message key="rt.colleague">Kollegen benachrichtigen</message>
         <message key="rt.addComment">Kommentar hinzuf&#252;gen</message>
-        <message key="rt.emailPresenter">Email an Autor</message>
+        <message key="rt.emailAuthor">Email an Autor</message>
         <message key="rt.relatedItems">Verwandte Objekte</message>
         <message key="rt.thisConference">Konferenz durchsuchen</message>
 

@@ -2266,10 +2266,10 @@ Il vostro server supporta mbstring: <strong>{$supportsMBString}</strong>]]></mes
 	<message key="rt.admin.settings.viewMetadata">Informazione di indicizzazione (Mostra informazioni di indicizzazioni dell'oggetto generato dall'autore e dal sistema)</message>
 	<message key="rt.admin.settings.supplementaryFiles">Vedi i file ulteriori (Mostra un elenco degli eventuali altri file che l'autore ha inserito nel documento)</message>
 	<message key="rt.admin.settings.printerFriendly">Vai alla versione per la stampa (Porta il lettore a una versione adattata per la stampa di un documento)</message>
-	<message key="rt.admin.settings.presenterBio">Informazioni sull'autore (Mostra le informazioni bibliografiche inserite dall'autore)</message>
+	<message key="rt.admin.settings.authorBio">Informazioni sull'autore (Mostra le informazioni bibliografiche inserite dall'autore)</message>
 	<message key="rt.admin.settings.defineTerms">Definizioni dei termini (Facendo doppio-click su una parola di un documento, questa verr&#x00E0; inviata ad un dizionario)</message>
 	<message key="rt.admin.settings.addComment">Aggiungi un commento (abilita i lettori a inviare commenti, che il Direttore del convegno pu&#x00F2; cancellare. I Commenti dei Lettori devono essere abilitati nel Setup, fase 2).</message>
-	<message key="rt.admin.settings.emailPresenter">Scrivi all'autore (Porta il lettore a un modulo per l'invio d'email con l'indirizzo dell'autore)</message>
+	<message key="rt.admin.settings.emailAuthor">Scrivi all'autore (Porta il lettore a un modulo per l'invio d'email con l'indirizzo dell'autore)</message>
 	<message key="rt.admin.settings.emailOthers">Notifica un collega (conduce a un modulo per l'invio di email con il link all'oggetto).</message>
 
 	<!-- RT Versions -->
@@ -2332,7 +2332,7 @@ Il processo di validazione pu&#x00F2; non funzionare sulle URL di ricerca che ri
 	<message key="rt.search.searchPost">Dati da inviare</message>
 	<message key="rt.search.suggest">Suggerisci una fonte</message>
 
-	<message key="rt.presenterBio">Informazioni sull'autore</message>
+	<message key="rt.authorBio">Informazioni sull'autore</message>
 
 	<message key="rt.viewMetadata">Informazioni per l'indicizzazione</message>
 	<message key="rt.metadata.dublinCore">Dublin Core</message>
@@ -2385,7 +2385,7 @@ Il processo di validazione pu&#x00F2; non funzionare sulle URL di ricerca che ri
 	<message key="rt.lookUp">Cerca parole</message>
 	<message key="rt.colleague">Invia il link a un collega</message>
 	<message key="rt.addComment">Aggiungi un commento</message>
-	<message key="rt.emailPresenter">Invia una email all'autore</message>
+	<message key="rt.emailAuthor">Invia una email all'autore</message>
 	<message key="rt.relatedItems">Articoli collegati</message>
 	<message key="rt.thisConference">Cerca in questo convegno</message>
 

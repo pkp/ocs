@@ -25,6 +25,9 @@ class ConferenceRT extends RT {
 	var $conferenceId;
 	var $enabled;
 
+	/** @var $addComment boolean */
+	var $addComment;
+
 	function ConferenceRT($conferenceId) {
 		$this->setConferenceId($conferenceId);
 	}
@@ -37,6 +40,14 @@ class ConferenceRT extends RT {
 
 	function setConferenceId($conferenceId) {
 		$this->conferenceId = $conferenceId;
+	}
+
+	function setAddComment($addComment) {
+		$this->addComment = $addComment;
+	}
+
+	function getAddComment() {
+		return $this->addComment;
 	}
 }
 

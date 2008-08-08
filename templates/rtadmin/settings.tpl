@@ -32,8 +32,8 @@
 		<td class="value" width="97%"><label for="abstract">{translate key="rt.admin.settings.abstract"}</label></td>
 	</tr>
 	<tr valign="top">
-		<td class="label"><input type="checkbox" name="presenterBio" id="presenterBio" {if $presenterBio}checked="checked" {/if}/></td>
-		<td class="value"><label for="presenterBio">{translate key="rt.admin.settings.presenterBio"}</label></td>
+		<td class="label"><input type="checkbox" name="authorBio" id="authorBio" {if $authorBio}checked="checked" {/if}/></td>
+		<td class="value"><label for="authorBio">{translate key="rt.admin.settings.authorBio"}</label></td>
 	</tr>
 	<tr valign="top">
 		<td class="label"><input type="checkbox" name="captureCite" id="captureCite" {if $captureCite}checked="checked" {/if}/></td>
@@ -62,8 +62,8 @@
 		<td class="value"><label for="emailOthers">{translate key="rt.admin.settings.emailOthers"}</label></td>
 	</tr>
 	<tr valign="top">
-		<td class="label"><input type="checkbox" name="emailPresenter" id="emailPresenter" {if $emailPresenter}checked="checked" {/if}/></td>
-		<td class="value"><label for="emailPresenter">{translate key="rt.admin.settings.emailPresenter"}</label></td>
+		<td class="label"><input type="checkbox" name="emailAuthor" id="emailAuthor" {if $emailAuthor}checked="checked" {/if}/></td>
+		<td class="value"><label for="emailAuthor">{translate key="rt.admin.settings.emailAuthor"}</label></td>
 	</tr>
 	<tr valign="top">
 		<td class="label"><input type="checkbox" name="findingReferences" id="findingReferences" value="1"{if $findingReferences} checked="checked"{/if} /></td>

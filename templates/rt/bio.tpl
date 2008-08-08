@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-{assign var=pageTitle value="rt.presenterBio"}
+{assign var=pageTitle value="rt.authorBio"}
 {include file="rt/header.tpl"}
 
 <h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>

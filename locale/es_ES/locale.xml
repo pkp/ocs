@@ -2344,10 +2344,10 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="rt.admin.settings.viewMetadata">Metadatos para la indización (muestra los metadatos del para la indización dados por el autor y el sistema).</message>
 	<message key="rt.admin.settings.supplementaryFiles">Ficheros suplementarios (muestra una lista de los ficheros adjuntos con el envío).</message>
 	<message key="rt.admin.settings.printerFriendly">Versión para imprimir (Muestra una versión del artículo para su impresión).</message>
-	<message key="rt.admin.settings.presenterBio">Acerca del autor (Muestra una breve descripción proporcionada por el autor de su curriculum).</message>
+	<message key="rt.admin.settings.authorBio">Acerca del autor (Muestra una breve descripción proporcionada por el autor de su curriculum).</message>
 	<message key="rt.admin.settings.defineTerms">Buscar términos (permite a los lectores, mediante un doble click en cualquier palabra del artículo buscarla en un dicionario).</message>
 	<message key="rt.admin.settings.addComment">Añadir comentario (permite a los lectores enviar comentarios, que el Director puede borrar. Esta opción debe activarse en el paso 2 de la Configuración "Comentarios de Lectores").</message>
-	<message key="rt.admin.settings.emailPresenter">Email del autor (lleva a una plantilla de correo con el mail del autor).</message>
+	<message key="rt.admin.settings.emailAuthor">Email del autor (lleva a una plantilla de correo con el mail del autor).</message>
 	<message key="rt.admin.settings.emailOthers">Enviar a un colega (lleva a una plantilla de email con un enlace al artículo).</message>
 
 	<!-- RT Versions -->
@@ -2410,7 +2410,7 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 	<message key="rt.search.searchPost">Datos postales</message>
 	<message key="rt.search.suggest">Sugiera una fuente documental</message>
 
-	<message key="rt.presenterBio">Acerca del autor</message>
+	<message key="rt.authorBio">Acerca del autor</message>
 
 	<message key="rt.viewMetadata">Metadatos indizados</message>
 	<message key="rt.metadata.dublinCore">Dublin Core</message>
@@ -2470,7 +2470,7 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 	<message key="rt.lookUp">Buscar términos</message>
 	<message key="rt.colleague">Notificar a un colega</message>
 	<message key="rt.addComment">Añadir comentario</message>
-	<message key="rt.emailPresenter">Enviar un email al autor</message>
+	<message key="rt.emailAuthor">Enviar un email al autor</message>
 	<message key="rt.beNotifiedWhen">Notificar cuando...</message>
 
 	<message key="rt.relatedItems">Artículos relacionados</message>

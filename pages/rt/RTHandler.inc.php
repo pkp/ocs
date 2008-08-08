@@ -35,7 +35,7 @@ class RTHandler extends PaperHandler {
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
 
-		if (!$conferenceRt || !$conferenceRt->getPresenterBio()) {
+		if (!$conferenceRt || !$conferenceRt->getAuthorBio()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -281,7 +281,7 @@ class RTHandler extends PaperHandler {
 	/**
 	 * Display the "email presenter"
 	 */
-	function emailPresenter($args) {
+	function emailAuthor($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
@@ -291,7 +291,7 @@ class RTHandler extends PaperHandler {
 		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
 		$user = &Request::getUser();
 
-		if (!$conferenceRt || !$conferenceRt->getEmailPresenter() || !$user) {
+		if (!$conferenceRt || !$conferenceRt->getEmailAuthor() || !$user) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
@@ -310,7 +310,7 @@ class RTHandler extends PaperHandler {
 				$presenter = &$presenters[0];
 				$email->addRecipient($presenter->getEmail(), $presenter->getFullName());
 			}
-			$email->displayEditForm(Request::url(null, null, null, 'emailPresenter', array($paperId, $galleyId)), null, 'rt/email.tpl', array('op' => 'emailPresenter'));
+			$email->displayEditForm(Request::url(null, null, null, 'emailAuthor', array($paperId, $galleyId)), null, 'rt/email.tpl', array('op' => 'emailAuthor'));
 		}
 	}
 
