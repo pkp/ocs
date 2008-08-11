@@ -8,7 +8,9 @@
  *
  * $Id$
  *}
+{strip}
 {include file="common/header.tpl"}
+{/strip}
 
 {if !empty($conflicts)}
 <p>{translate key="admin.conferences.importOCS1.conflict.desc"}</p>

@@ -8,7 +8,9 @@
  *
  * $Id$
  *}
+{strip}
 {include file="submission/comment/header.tpl"}
+{/strip}
 
 <table class="data" width="100%">
 {foreach from=$paperComments item=comment}

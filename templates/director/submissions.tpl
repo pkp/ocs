@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="common.queue.long.$pageToDisplay"}
 {url|assign:"currentUrl" page="director"}{include file="common/header.tpl"}
+{/strip}
 
 <ul class="menu">
 	<li{if $pageToDisplay == "submissionsUnassigned"} class="current"{/if}><a href="{url op="submissions" path="submissionsUnassigned"}">{translate key="common.queue.short.submissionsUnassigned"}</a></li>

@@ -8,9 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="plugins.importexport.native.selectPaper"}
 {assign var="pageCrumbTitle" value="plugins.importexport.native.selectPaper"}
 {include file="common/header.tpl"}
+{/strip}
 
 <script type="text/javascript">
 {literal}

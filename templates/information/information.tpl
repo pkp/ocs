@@ -8,7 +8,9 @@
  *
  * $Id$
  *}
+{strip}
 {include file="common/header.tpl"}
+{/strip}
 
 {if !empty($conferenceContent)}
 	<h2>{$conferenceTitle|escape}</h2>

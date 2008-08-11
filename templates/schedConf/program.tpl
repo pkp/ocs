@@ -8,7 +8,10 @@
  *
  * $Id$
  *}
-{translate|assign:"pageTitleTranslated" key="schedConf.program.title"}{include file="common/header.tpl"}
+{strip}
+{translate|assign:"pageTitleTranslated" key="schedConf.program.title"}
+{include file="common/header.tpl"}
+{/strip}
 
 {if $programFile}
 	<span class="instruct">{translate key="schedConf.program.programFileInstructions"}</span>

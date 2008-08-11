@@ -13,9 +13,11 @@
  * The page and crumb titles differ here since the breadcrumbs already include
  * the conference title, but the page title doesn't.
  *}
+{strip}
 {assign var="pageCrumbTitleTranslated" value=$schedConf->getSchedConfTitle()}
 {assign var="pageTitleTranslated" value=$schedConf->getFullTitle()}
 {include file="common/header.tpl"}
+{/strip}
 
 <h2>{$schedConf->getSetting('locationName')|nl2br}</h2>
 {if $schedConf->getSetting('startDate')}<h2>{$schedConf->getSetting('startDate')|date_format:$dateFormatLong} &ndash; {$schedConf->getSetting('endDate')|date_format:$dateFormatLong}</h2>{/if}

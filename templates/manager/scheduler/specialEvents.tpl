@@ -8,9 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="manager.scheduler.specialEvents"}
 {assign var="pageId" value="manager.scheduler.specialEvents"}
 {include file="common/header.tpl"}
+{/strip}
 
 <br />
 

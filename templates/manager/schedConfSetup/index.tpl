@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="manager.schedConfSetup.schedConfSetup"}
 {include file="common/header.tpl"}
+{/strip}
 
 <span class="instruct">{translate key="manager.schedConfSetup.stepsToSchedConf"}</span>
 

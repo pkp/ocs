@@ -9,10 +9,12 @@
  *
  * $Id$
  *}
+{strip}
 {if $siteTitle}
-{assign var="pageTitleTranslated" value=$siteTitle}
+	{assign var="pageTitleTranslated" value=$siteTitle}
 {/if}
 {include file="common/header.tpl"}
+{/strip}
 
 <br />
 

@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var=pageTitleTranslated value=$context->getTitle()}
 {include file="rt/header.tpl"}
+{/strip}
 
 <script type="text/javascript">
 {literal}

@@ -8,9 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="director.home"}
 {assign var="pageCrumbTitle" value="user.role.director"}
 {include file="common/header.tpl"}
+{/strip}
 
 <h3>{translate key="paper.submissions"}</h3>
 

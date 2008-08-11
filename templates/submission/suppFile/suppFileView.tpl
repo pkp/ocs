@@ -8,9 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="paper.suppFile"}
 {assign var="pageCrumbTitle" value="submission.supplementaryFiles"}
 {include file="common/header.tpl"}
+{/strip}
 
 <h3>{translate key="presenter.submit.supplementaryFileData"}</h3>
 

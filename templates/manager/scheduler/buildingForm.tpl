@@ -8,16 +8,18 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageCrumbTitle" value="$buildingTitle"}
 {if $buildingId}
-{url|assign:"buildingUrl" op="editBuilding" path=$buildingId}
-{assign var="pageTitle" value="manager.scheduler.building.editBuilding"}
+	{url|assign:"buildingUrl" op="editBuilding" path=$buildingId}
+	{assign var="pageTitle" value="manager.scheduler.building.editBuilding"}
 {else}
-{url|assign:"buildingUrl" op="createBuilding"}
-{assign var="pageTitle" value="manager.scheduler.building.createBuilding"}
+	{url|assign:"buildingUrl" op="createBuilding"}
+	{assign var="pageTitle" value="manager.scheduler.building.createBuilding"}
 {/if}
 {assign var="pageId" value="manager.scheduler.building.buildingForm"}
 {include file="common/header.tpl"}
+{/strip}
 
 <ul class="menu">
 	<li class="current"><a href="{$buildingUrl}">{$pageTitle|translate}</a></li>

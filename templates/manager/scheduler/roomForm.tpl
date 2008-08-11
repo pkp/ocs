@@ -8,16 +8,18 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageCrumbTitle" value="$roomTitle"}
 {if $roomId}
-{url|assign:"roomUrl" op="editRoom" path=$buildingId|to_array:$roomId}
-{assign var="pageTitle" value="manager.scheduler.room.editRoom"}
+	{url|assign:"roomUrl" op="editRoom" path=$buildingId|to_array:$roomId}
+	{assign var="pageTitle" value="manager.scheduler.room.editRoom"}
 {else}
-{url|assign:"roomUrl" op="createRoom" path=$buildingId}
-{assign var="pageTitle" value="manager.scheduler.room.createRoom"}
+	{url|assign:"roomUrl" op="createRoom" path=$buildingId}
+	{assign var="pageTitle" value="manager.scheduler.room.createRoom"}
 {/if}
 {assign var="pageId" value="manager.scheduler.room.roomForm"}
 {include file="common/header.tpl"}
+{/strip}
 
 <ul class="menu">
 	<li class="current"><a href="{$roomUrl}">{$pageTitle|translate}</a></li>

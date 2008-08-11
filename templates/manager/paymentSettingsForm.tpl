@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="manager.payment.paymentSettings"}
 {include file="common/header.tpl"}
+{/strip}
 
 {include file="common/formErrors.tpl"}
 

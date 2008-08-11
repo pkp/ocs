@@ -8,7 +8,10 @@
  *
  * $Id$
  *}
-{translate|assign:"pageTitleTranslated" key="schedConf.cfp.title"}{include file="common/header.tpl"}
+{strip}
+{translate|assign:"pageTitleTranslated" key="schedConf.cfp.title"}
+{include file="common/header.tpl"}
+{/strip}
 
 <div>{$cfpMessage|nl2br}</div>
 

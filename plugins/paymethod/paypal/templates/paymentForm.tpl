@@ -7,8 +7,10 @@
  * Form for submitting a PayPal payment
  *
  *}
+{strip}
 {assign var="pageTitle" value="plugins.paymethod.paypal"}
 {include file="common/header.tpl"}
+{/strip}
 
 <table>
 	<tr>

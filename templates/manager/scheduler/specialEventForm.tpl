@@ -8,16 +8,18 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageCrumbTitle" value="$specialEventTitle"}
 {if $specialEventId}
-{url|assign:"specialEventUrl" op="editSpecialEvent" path=$specialEventId}
-{assign var="pageTitle" value="manager.scheduler.specialEvent.editSpecialEvent"}
+	{url|assign:"specialEventUrl" op="editSpecialEvent" path=$specialEventId}
+	{assign var="pageTitle" value="manager.scheduler.specialEvent.editSpecialEvent"}
 {else}
-{url|assign:"specialEventUrl" op="createSpecialEvent"}
-{assign var="pageTitle" value="manager.scheduler.specialEvent.createSpecialEvent"}
+	{url|assign:"specialEventUrl" op="createSpecialEvent"}
+	{assign var="pageTitle" value="manager.scheduler.specialEvent.createSpecialEvent"}
 {/if}
 {assign var="pageId" value="manager.scheduler.specialEvent.specialEventForm"}
 {include file="common/header.tpl"}
+{/strip}
 
 <br/>
 

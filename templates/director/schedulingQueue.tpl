@@ -8,9 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="director.schedulingQueue"}
 {url|assign:"currentUrl" op="schedulingQueue"}
 {include file="common/header.tpl"}
+{/strip}
 
 <ul class="menu">
 	<li><a href="{url op="createIssue"}">{translate key="director.navigation.createIssue"}</a></li>

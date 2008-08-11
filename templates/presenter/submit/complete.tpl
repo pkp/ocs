@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="presenter.track"}
 {include file="common/header.tpl"}
+{/strip}
 
 <p>{translate key="presenter.submit.submissionComplete" conferenceTitle=$conference->getConferenceTitle()}</p>
 

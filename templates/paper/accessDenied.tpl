@@ -8,7 +8,10 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="schedConf.presentations.short"}{include file="common/header.tpl"}
+{strip}
+{assign var="pageTitle" value="schedConf.presentations.short"}
+{include file="common/header.tpl"}
+{/strip}
 
 <h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
 <div><em>{$paper->getPresenterString()|escape}</em></div>

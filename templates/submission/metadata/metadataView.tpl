@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="submission.viewMetadata"}
 {include file="common/header.tpl"}
+{/strip}
 
 {if $canViewPresenters}
 <h3>{translate key="paper.presenters"}</h3>

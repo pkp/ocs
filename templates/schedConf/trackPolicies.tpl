@@ -11,7 +11,10 @@
  *
  * $Id$
  *}
-{translate|assign:"pageTitleTranslated" key="schedConf.trackPolicies.title"}{include file="common/header.tpl"}
+{strip}
+{translate|assign:"pageTitleTranslated" key="schedConf.trackPolicies.title"}
+{include file="common/header.tpl"}
+{/strip}
 
 {foreach from=$tracks item=track}{if !$track->getHideAbout()}
 	<h4>{$track->getTrackTitle()}</h4>

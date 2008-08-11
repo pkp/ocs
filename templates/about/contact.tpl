@@ -8,14 +8,14 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="about.conferenceContact"}
 {include file="common/header.tpl"}
+{/strip}
 
 {if !empty($conferenceSettings.mailingAddress)}
 <h3>{translate key="common.mailingAddress"}</h3>
-<p>
-	{$conferenceSettings.mailingAddress|nl2br}
-</p>
+<p>{$conferenceSettings.mailingAddress|nl2br}</p>
 {/if}
 
 {if not (empty($conferenceSettings.contactTitle) && empty($conferenceSettings.contactAffiliation) && empty($conferenceSettings.contactAffiliation) && empty($conferenceSettings.contactMailingAddress) && empty($conferenceSettings.contactPhone) && empty($conferenceSettings.contactFax) && empty($conferenceSettings.contactEmail))}

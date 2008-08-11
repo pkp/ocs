@@ -8,9 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="manager.registrationPolicies"}
 {assign var="pageId" value="manager.registrationPolicies"}
 {include file="common/header.tpl"}
+{/strip}
 
 <ul class="menu">
 	<li><a href="{url op="registration" clearPageContext=1}">{translate key="manager.registration"}</a></li>

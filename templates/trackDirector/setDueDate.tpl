@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="submission.dueDate"}
 {include file="common/header.tpl"}
+{/strip}
 
 <h3>{translate key="director.paper.designateDueDate"}</h3>
 

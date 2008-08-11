@@ -8,9 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="manager.scheduler.rooms"}
 {assign var="pageId" value="manager.scheduler.rooms"}
 {include file="common/header.tpl"}
+{/strip}
 
 <ul class="menu">
 	<li><a href="{url op="editBuilding" path=$buildingId}">{translate key="manager.scheduler.building.editBuilding"}</a></li>

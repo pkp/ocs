@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="manager.timeline.conferenceTimeline"}
 {include file="common/header.tpl"}
+{/strip}
 
 <h3>{translate key="manager.timeline.conference"}</h3>
 

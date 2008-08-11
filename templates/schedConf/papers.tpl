@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="schedConf.presentations"}
 {include file="common/header.tpl"}
+{/strip}
 
 {if $mayViewProceedings}
 	<form method="post" name="submit" action="{url op="presentations"}">

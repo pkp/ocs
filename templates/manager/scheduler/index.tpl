@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="manager.scheduler"}
 {include file="common/header.tpl"}
+{/strip}
 
 <p>{translate key="manager.scheduler.description"}</p>
 

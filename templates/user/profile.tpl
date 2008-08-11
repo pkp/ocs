@@ -8,8 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="user.profile.editProfile"}
-{url|assign:"url" op="profile"}{include file="common/header.tpl"}
+{url|assign:"url" op="profile"}
+{include file="common/header.tpl"}
+{/strip}
 
 <form name="profile" method="post" action="{url op="saveProfile"}">
 

@@ -8,7 +8,10 @@
  *
  * $Id$
  *}
-{translate|assign:"pageTitleTranslated" key="schedConf.overview.title"}{include file="common/header.tpl"}
+{strip}
+{translate|assign:"pageTitleTranslated" key="schedConf.overview.title"}
+{include file="common/header.tpl"}
+{/strip}
 
 <div>{$overview|nl2br}</div>
 

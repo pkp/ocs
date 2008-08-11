@@ -8,13 +8,15 @@
  *
  * $Id$
  *}
+{strip}
 {if $suppFileId}
-{assign var="pageTitle" value="presenter.submit.editSupplementaryFile"}
+	{assign var="pageTitle" value="presenter.submit.editSupplementaryFile"}
 {else}
-{assign var="pageTitle" value="presenter.submit.addSupplementaryFile"}
+	{assign var="pageTitle" value="presenter.submit.addSupplementaryFile"}
 {/if}
 {assign var="pageCrumbTitle" value="submission.supplementaryFiles"}
 {include file="common/header.tpl"}
+{/strip}
 
 {if count($formLocales) > 1}
 <table width="100%" class="data">

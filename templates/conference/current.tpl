@@ -9,8 +9,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitleTranslated" value=$conferenceTitle}
 {include file="common/header.tpl"}
+{/strip}
 
 {* Display scheduled conferences. *}
 <h3>{translate key="conference.currentConferences"}</h3>

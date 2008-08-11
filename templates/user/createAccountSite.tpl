@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="navigation.account"}
 {include file="common/header.tpl"}
+{/strip}
 
 {translate key="user.account.selectConference"}:
 <ul>

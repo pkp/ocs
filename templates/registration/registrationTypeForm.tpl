@@ -8,14 +8,16 @@
  *
  * $Id$
  *}
+{strip}
 {if $typeId}
-{assign var="pageTitle" value="manager.registrationTypes.edit"}
+	{assign var="pageTitle" value="manager.registrationTypes.edit"}
 {else}
-{assign var="pageTitle" value="manager.registrationTypes.create"}
+	{assign var="pageTitle" value="manager.registrationTypes.create"}
 {/if}
 {assign var="pageId" value="manager.registrationTypes.registrationTypeForm"}
 {assign var="pageCrumbTitle" value=$registrationTypeTitle}
 {include file="common/header.tpl"}
+{/strip}
 
 {if $registrationTypeCreated}
 <br/>

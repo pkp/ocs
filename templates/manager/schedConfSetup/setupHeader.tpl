@@ -8,9 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageCrumbTitle" value="manager.schedConfSetup.schedConfSetup"}
 {url|assign:"currentUrl" op="schedConfSetup"}
 {include file="common/header.tpl"}
+{/strip}
 
 
 <ul class="steplist">

@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="trackDirector.review.createReviewer"}
 {include file="common/header.tpl"}
+{/strip}
 
 <form method="post" action="{url op="createReviewer" path=$paperId|to_array:"create"}">
 

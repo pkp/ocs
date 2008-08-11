@@ -8,7 +8,10 @@
  *
  * $Id$
  *}
-{translate|assign:"pageTitleTranslated" key="schedConf.schedule.title"}{include file="common/header.tpl"}
+{strip}
+{translate|assign:"pageTitleTranslated" key="schedConf.schedule.title"}
+{include file="common/header.tpl"}
+{/strip}
 
 {if !empty($buildingsAndRooms)}
 	{* Display navigation options at the top of the page if buildings and

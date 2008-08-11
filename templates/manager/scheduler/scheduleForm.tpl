@@ -8,9 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="manager.scheduler.schedule"}
 {assign var="pageId" value="manager.scheduler.schedule.scheduleForm"}
 {include file="common/header.tpl"}
+{/strip}
 
 <script type="text/javascript">
 <!--

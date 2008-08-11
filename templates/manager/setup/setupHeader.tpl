@@ -8,9 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageCrumbTitle" value="manager.websiteManagement"}
 {url|assign:"currentUrl" op="setup"}
 {include file="common/header.tpl"}
+{/strip}
 
 <ul class="steplist">
 	<li{if $setupStep == 1} class="current"{/if}><a href="{url op="setup" path="1"}">1. {translate key="manager.setup.aboutConference.brief"}</a></li>

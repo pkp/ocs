@@ -9,8 +9,11 @@
  *
  * $Id$
  *}
-{translate|assign:"pageTitleTranslated" key="submission.page.history" id=$submission->getPaperId()}{assign var="pageCrumbTitle" value="submission.history"}
+{strip}
+{translate|assign:"pageTitleTranslated" key="submission.page.history" id=$submission->getPaperId()}
+{assign var="pageCrumbTitle" value="submission.history"}
 {include file="common/header.tpl"}
+{/strip}
 
 {literal}
 <script type="text/javascript">

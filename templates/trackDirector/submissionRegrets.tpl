@@ -9,10 +9,12 @@
  *
  * $Id$
  *}
+{strip}
 {translate|assign:"pageTitleTranslated" key="trackDirector.regrets.title" paperId=$submission->getPaperId()}
 {assign var=pageTitleTranslated value=$pageTitleTranslated|escape}
 {assign var="pageCrumbTitle" value="trackDirector.regrets.breadcrumb"}
 {include file="common/header.tpl"}
+{/strip}
 
 <ul class="menu">
 	<li><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>

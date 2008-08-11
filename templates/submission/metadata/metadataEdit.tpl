@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="submission.editMetadata"}
 {include file="common/header.tpl"}
+{/strip}
 
 <form name="metadata" method="post" action="{url op="saveMetadata"}">
 <input type="hidden" name="paperId" value="{$paperId|escape}" />

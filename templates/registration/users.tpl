@@ -9,12 +9,14 @@
  * $Id$
  *
  *}
+{strip}
 {if $registrationId}
-{assign var="pageTitle" value="manager.registration.selectRegistrant"}
+	{assign var="pageTitle" value="manager.registration.selectRegistrant"}
 {else}
-{assign var="pageTitle" value="manager.registration.select"}
+	{assign var="pageTitle" value="manager.registration.select"}
 {/if}
 {include file="common/header.tpl"}
+{/strip}
 
 {if $registrationCreated}
 <br/>{translate key="manager.registration.registrationCreatedSuccessfully"}<br/>

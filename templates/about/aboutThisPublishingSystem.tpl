@@ -10,14 +10,16 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="about.aboutThisPublishingSystem"}
 {include file="common/header.tpl"}
+{/strip}
 
 <p>
 {if $currentConference}
-{translate key="about.aboutOCSConference" ocsVersion=$ocsVersion}
+	{translate key="about.aboutOCSConference" ocsVersion=$ocsVersion}
 {else}
-{translate key="about.aboutOCSSite" ocsVersion=$ocsVersion}
+	{translate key="about.aboutOCSSite" ocsVersion=$ocsVersion}
 {/if}
 </p>
 

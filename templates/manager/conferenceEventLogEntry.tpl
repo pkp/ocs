@@ -9,8 +9,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="event.eventLog"}
 {include file="common/header.tpl"}
+{/strip}
 
 <h3>{translate key="conference.history.conferenceEventLog"}</h3>
 <table width="100%" class="data">

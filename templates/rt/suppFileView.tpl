@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="paper.suppFile"}
 {include file="rt/header.tpl"}
+{/strip}
 
 <h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
 

@@ -8,9 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="manager.scheduler.buildings"}
 {assign var="pageId" value="manager.scheduler.buildings"}
 {include file="common/header.tpl"}
+{/strip}
 
 <br />
 

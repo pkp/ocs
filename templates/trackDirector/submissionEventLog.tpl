@@ -9,8 +9,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="event.eventLog"}
 {include file="common/header.tpl"}
+{/strip}
 
 <ul class="menu">
 	<li><a href="{url op="submission" path=$submission->getPaperId()}">{translate key="submission.summary"}</a></li>

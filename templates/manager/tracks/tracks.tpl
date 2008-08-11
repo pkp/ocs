@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="track.tracks"}
 {include file="common/header.tpl"}
+{/strip}
 
 <br/>
 

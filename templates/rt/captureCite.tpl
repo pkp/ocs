@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var=pageTitle value="rt.captureCite"}
 {include file="rt/header.tpl"}
+{/strip}
 
 {if $galleyId}
 	{url|assign:"paperUrl" page="paper" op="view" path=$paperId|to_array:$galleyId}

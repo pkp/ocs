@@ -8,8 +8,11 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="manager.statistics"}
 {include file="common/header.tpl"}
+{/strip}
+
 <br/>
 
 {include file="manager/statistics/statistics.tpl"}

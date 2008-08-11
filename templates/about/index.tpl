@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="about.aboutTheConference"}
 {include file="common/header.tpl"}
+{/strip}
 
 {* Show list of current conferences if one wasn't supplied *}
 {if not $showAboutSchedConf and not $currentSchedConfs->eof()}

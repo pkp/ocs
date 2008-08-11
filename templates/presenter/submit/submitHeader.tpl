@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageCrumbTitle" value="presenter.submit"}
 {include file="common/header.tpl"}
+{/strip}
 
 <ul class="steplist">
 

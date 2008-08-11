@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
+{strip}
 {assign var="pageTitle" value="navigation.account"}
 {include file="common/header.tpl"}
+{/strip}
 
 <form name="createAccount" method="post" action="{url op="createAccount"}">
 
