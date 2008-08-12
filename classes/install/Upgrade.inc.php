@@ -222,6 +222,7 @@ class Upgrade extends Installer {
 			'customAboutItems' => 'customAboutItems',
 			// Setup page 2
 			'additionalHomeContent' => 'additionalHomeContent',
+			'homepageImage' => 'homepageImage',
 			'readerInformation' => 'readerInformation',
 			'presenterInformation' => 'presenterInformation',
 			'announcementsIntroduction' => 'announcementsIntroduction',
