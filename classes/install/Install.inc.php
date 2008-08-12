@@ -72,18 +72,20 @@ class Install extends PKPInstall {
 			$locale = $this->getParam('locale');
 			$siteDao = &DAORegistry::getDAO('SiteDAO', $this->dbconn);
 			$site = &new Site();
-			$site->setTitle(Locale::translate(INSTALLER_DEFAULT_SITE_TITLE), $locale);
 			$site->setRedirect(0);
 			$site->setMinPasswordLength(INSTALLER_DEFAULT_MIN_PASSWORD_LENGTH);
 			$site->setPrimaryLocale($locale);
 			$site->setInstalledLocales($this->installedLocales);
 			$site->setSupportedLocales($this->installedLocales);
-			$site->setContactName($site->getTitle($locale), $locale);
-			$site->setContactEmail($this->getParam('adminEmail'), $locale);
 			if (!$siteDao->insertSite($site)) {
 				$this->setError(INSTALLER_ERROR_DB, $this->dbconn->errorMsg());
 				return false;
 			}
+
+			$siteSettingsDao =& DAORegistry::getDAO('SiteSettingsDAO');
+			$siteSettingsDao->updateSetting('title', array($locale => Locale::translate(INSTALLER_DEFAULT_SITE_TITLE)), null, true);
+			$siteSettingsDao->updateSetting('contactName', array($locale => Locale::translate(INSTALLER_DEFAULT_SITE_TITLE)), null, true);
+			$siteSettingsDao->updateSetting('contactEmail', array($locale => $this->getParam('adminEmail')), null, true);
 
 			// Add initial site administrator user
 			$userDao = &DAORegistry::getDAO('UserDAO', $this->dbconn);
