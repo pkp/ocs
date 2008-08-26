@@ -50,8 +50,8 @@
 		{/if}
 		<li><a href="{url page="search"}" target="_parent">{translate key="navigation.search"}</a></li>
 		{if $currentConference}
-			{if $currentSchedConfsExist}<li><a href="{url schedConf="index" page="schedConfs" op="current"}">{translate key="navigation.current"}</a></li>{/if}
-			{if $archivedSchedConfsExist}<li><a href="{url schedConf="index" page="schedConfs" op="archive"}">{translate key="navigation.archive"}</a></li>{/if}
+			{if $currentSchedConfsExist}<li><a target="_parent" href="{url schedConf="index" page="schedConfs" op="current"}">{translate key="navigation.current"}</a></li>{/if}
+			{if $archivedSchedConfsExist}<li><a target="_parent" href="{url schedConf="index" page="schedConfs" op="archive"}">{translate key="navigation.archive"}</a></li>{/if}
 			{if $enableAnnouncements}
 				<li><a href="{url page="announcement"}" target="_parent">{translate key="announcement.announcements"}</a></li>
 			{/if}
