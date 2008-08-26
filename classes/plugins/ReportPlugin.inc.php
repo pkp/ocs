@@ -89,12 +89,14 @@ class ReportPlugin extends Plugin {
 	 * Display verbs for the management interface.
 	 */
 	function getManagementVerbs() {
-		return array(
+		$schedConf =& Request::getSchedConf();
+		if ($schedConf) return array(
 			array(
 				'reports',
 				Locale::translate('manager.statistics.reports')
 			)
 		);
+		else return array();
 	}
 
 	/**
