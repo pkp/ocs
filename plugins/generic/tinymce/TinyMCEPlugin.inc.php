@@ -94,6 +94,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'presenter/submitSuppFile': $fields[] = 'description'; break;
 			case 'manager/createAnnouncement':
 			case 'manager/editAnnouncement':
+			case 'manager/updateAnnouncement':
 				$fields[] = 'descriptionShort';
 				$fields[] = 'description';
 				break;
