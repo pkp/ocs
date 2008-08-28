@@ -40,6 +40,8 @@ class PluginSettingsDAO extends DAO {
 
 	/**
 	 * Retrieve a plugin setting value.
+	 * @param $conferenceId int
+	 * @param $schedConfIf int
 	 * @param $pluginName string
 	 * @param $name
 	 * @return mixed
@@ -65,6 +67,7 @@ class PluginSettingsDAO extends DAO {
 	/**
 	 * Retrieve and cache all settings for a plugin.
 	 * @param $conferenceId int
+	 * @param $schedConfIf int
 	 * @param $pluginName string
 	 * @return array
 	 */
@@ -100,6 +103,7 @@ class PluginSettingsDAO extends DAO {
 	/**
 	 * Add/update a plugin setting.
 	 * @param $conferenceId int
+	 * @param $schedConfIf int
 	 * @param $pluginName string
 	 * @param $name string
 	 * @param $value mixed
@@ -142,6 +146,7 @@ class PluginSettingsDAO extends DAO {
 	/**
 	 * Delete a plugin setting.
 	 * @param $conferenceId int
+	 * @param $schedConfIf int
 	 * @param $schedConfId int
 	 * @param $pluginName int
 	 * @param $name string
