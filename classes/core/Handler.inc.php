@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file Handler.inc.php
+ * @file classes/core/Handler.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -12,18 +12,12 @@
  * @brief Base request handler class.
  */
 
-//$Id$
+// $Id$
 
-class Handler {
 
-	/**
-	 * Fallback method in case request handler does not implement index method.
-	 */
-	function index() {
-		header('HTTP/1.0 404 Not Found');
-		fatalError('404 Not Found');
-	}
+import('core.PKPHandler');
 
+class Handler extends PKPHandler {
 	/**
 	 * Perform request access validation based on security settings.
 	 * @param $requiresConference boolean

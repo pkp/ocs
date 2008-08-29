@@ -56,7 +56,7 @@ class OCSApplication extends PKPApplication {
 	 * @return string
 	 */
 	function getVersionDescriptorUrl() {
-		return('http://pkp.sfu.ca/ojs/xml/ocs-version.xml');
+		return('http://pkp.sfu.ca/ocs/xml/ocs-version.xml');
 	}
 
 	/**
