@@ -325,11 +325,7 @@ class DirectorSubmissionDAO extends DAO {
 		unset($result);
 
 		import('core.ArrayItemIterator');
-		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
-		} else {
-			$returner = &new ArrayItemIterator($directorSubmissions);
-		}
+		$returner =& ArrayItemIterator::fromRangeInfo($directorSubmissions, $rangeInfo);
 		return $returner;
 	}
 
@@ -382,11 +378,7 @@ class DirectorSubmissionDAO extends DAO {
 		unset($result);
 
 		import('core.ArrayItemIterator');
-		if (isset($rangeInfo) && $rangeInfo->isValid()) {
-			$returner = &new ArrayItemIterator($directorSubmissions, $rangeInfo->getPage(), $rangeInfo->getCount());
-		} else {
-			$returner = &new ArrayItemIterator($directorSubmissions);
-		}
+		$returner =& ArrayItemIterator::fromRangeInfo($directorSubmissions, $rangeInfo);
 		return $returner;
 	}
 
