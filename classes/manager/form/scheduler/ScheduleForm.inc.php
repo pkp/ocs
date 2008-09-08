@@ -177,7 +177,7 @@ class ScheduleForm extends Form {
 		// Apply any relevant changes to the current paper (sub)set
 		$publishedPapersArray = array();
 		while ($publishedPaper =& $publishedPapers->next()) {
-			$paperId =& $publishedPaper->getPaperId();
+			$paperId = $publishedPaper->getPaperId();
 			if (isset($changeList[$paperId])) foreach ($changeList[$paperId] as $type => $newValue) switch ($type) {
 				case 'location':
 					$publishedPaper->setRoomId((int) $newValue);
