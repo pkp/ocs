@@ -298,6 +298,7 @@ class TranslatorHandler extends Handler {
 		}
 
 		$changes = Request::getUserVar('changes');
+		import('file.EditableLocaleFile');
 		$file =& new EditableLocaleFile($locale, $filename);
 
 		if ($file->delete(array_shift($args))) $file->write();
