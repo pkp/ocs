@@ -16,10 +16,9 @@
 // $Id$
 
 
-ini_set('display_errors', E_ALL); // FIXME until I improve error handling
-
 require_once('TranslatorAction.inc.php');
-import('core.Handler');
+
+ini_set('display_errors', E_ALL); // FIXME until I improve error handling
 
 class TranslatorHandler extends Handler {
 	function index() {
@@ -29,7 +28,6 @@ class TranslatorHandler extends Handler {
 		$rangeInfo = Handler::getRangeInfo('locales');
 
 		$templateMgr =& TemplateManager::getManager();
-		import('core.ArrayItemIterator');
 		$templateMgr->assign('locales', new ArrayItemIterator(Locale::getAllLocales(), $rangeInfo->getPage(), $rangeInfo->getCount()));
 		$templateMgr->assign('masterLocale', MASTER_LOCALE);
 
@@ -62,7 +60,6 @@ class TranslatorHandler extends Handler {
 		$miscFilesRangeInfo = Handler::getRangeInfo('miscFiles');
 		$emailsRangeInfo = Handler::getRangeInfo('emails');
 
-		import('core.ArrayItemIterator');
 		$templateMgr->assign('localeFiles', new ArrayItemIterator($localeFiles, $localeFilesRangeInfo->getPage(), $localeFilesRangeInfo->getCount()));
 		$templateMgr->assign('miscFiles', new ArrayItemIterator($miscFiles, $miscFilesRangeInfo->getPage(), $miscFilesRangeInfo->getCount()));
 		$templateMgr->assign('emails', new ArrayItemIterator($emails, $emailsRangeInfo->getPage(), $emailsRangeInfo->getCount()));
@@ -125,7 +122,7 @@ class TranslatorHandler extends Handler {
 		}
 
 		// Save the changes file by file.
-		import('file.EditableLocaleFile');
+		import('i18n.EditableLocaleFile');
 		foreach ($changesByFile as $filename => $changes) {
 			$file =& new EditableLocaleFile($locale, $filename);
 			foreach ($changes as $key => $value) {
@@ -157,7 +154,7 @@ class TranslatorHandler extends Handler {
 		}
 
 		// Deal with email removals
-		import('file.EditableEmailFile');
+		import('i18n.EditableEmailFile');
 		$deleteEmails = Request::getUserVar('deleteEmail');
 		if (!empty($deleteEmails)) {
 			$file =& new EditableEmailFile($locale, Locale::getEmailTemplateFilename($locale));
@@ -204,7 +201,7 @@ class TranslatorHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 
 
-		import('file.EditableLocaleFile');
+		import('i18n.EditableLocaleFile');
 		$localeContentsRangeInfo = Handler::getRangeInfo('localeContents');
 		$localeContents = EditableLocaleFile::load($filename);
 
@@ -230,7 +227,6 @@ class TranslatorHandler extends Handler {
 
 		$templateMgr->assign('filename', $filename);
 		$templateMgr->assign('locale', $locale);
-		import('core.ArrayItemIterator');
 		$templateMgr->assign_by_ref('localeContents', new ArrayItemIterator($localeContents, $localeContentsRangeInfo->getPage(), $localeContentsRangeInfo->getCount()));
 		$templateMgr->assign('referenceLocaleContents', EditableLocaleFile::load(TranslatorAction::determineReferenceFilename($locale, $filename)));
 
@@ -270,7 +266,7 @@ class TranslatorHandler extends Handler {
 			Request::redirect(null, null, null, 'edit', $locale);
 		}
 
-		import('file.EditableLocaleFile');
+		import('i18n.EditableLocaleFile');
 		$changes = Request::getUserVar('changes');
 		$file =& new EditableLocaleFile($locale, $filename);
 
@@ -298,6 +294,7 @@ class TranslatorHandler extends Handler {
 		}
 
 		$changes = Request::getUserVar('changes');
+		import('i18n.EditableLocaleFile');
 		$file =& new EditableLocaleFile($locale, $filename);
 
 		if ($file->delete(array_shift($args))) $file->write();
@@ -377,7 +374,7 @@ class TranslatorHandler extends Handler {
 
 		if (!in_array($emailKey, array_keys($emails))) Request::redirect(null, null, null, 'index');
 
-		import('file.EditableEmailFile');
+		import('i18n.EditableEmailFile');
 		$file =& new EditableEmailFile($locale, Locale::getEmailTemplateFilename($locale));
 
 		$subject = Request::getUserVar('subject');
@@ -401,7 +398,7 @@ class TranslatorHandler extends Handler {
 
 		if (!in_array($emailKey, array_keys($referenceEmails)) && !in_array($emailKey, array_keys($emails))) Request::redirect(null, null, null, 'index');
 
-		import('file.EditableEmailFile');
+		import('i18n.EditableEmailFile');
 		$file =& new EditableEmailFile($locale, Locale::getEmailTemplateFilename($locale));
 
 		$subject = TranslatorHandler::correctCr(Request::getUserVar('subject'));
