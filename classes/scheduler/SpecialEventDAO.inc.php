@@ -139,7 +139,7 @@ class SpecialEventDAO extends DAO {
 			sprintf('UPDATE	special_events
 				SET	sched_conf_id = ?,
 					start_time = %s,
-					end_time = %s,
+					end_time = %s
 				WHERE special_event_id = ?',
 				$this->datetimeToDB($specialEvent->getStartTime()), $this->datetimeToDB($specialEvent->getEndTime())
 			), array(
