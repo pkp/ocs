@@ -1,7 +1,7 @@
 {**
  * localeFile.tpl
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Customize a specific locale file.
@@ -20,7 +20,7 @@
 <form name="localeSearch" action="{plugin_url path="editLocaleFile" key=$locale file=$filenameEscaped  anchor="localeContents"}" method="post">
 	{translate key="plugins.generic.customLocale.localeKey"}&nbsp;&nbsp;
 	<input type="text" name="searchKey" class="textField" />&nbsp;&nbsp;
-	<input type="submit" class="button defaultButton" onclick="document.locale.redirectUrl.value=document.localeSearch.action);document.locale.submit();return false;" value="{translate key="common.search"}" />
+	<input type="submit" class="button defaultButton" onclick="document.locale.redirectUrl.value=document.localeSearch.action);document.locale.submit();return false;" value="{translate key="common.search"}" /> {translate key="plugins.generic.customLocale.localeKey.description"}
 </form>
 
 <br />
