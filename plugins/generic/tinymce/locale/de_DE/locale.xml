@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
 
 <!--
   * locale.xml
@@ -14,6 +14,6 @@
  
 <locale name="de_DE" full_name="German">
 	<message key="plugins.generic.tinymce.name">TinyMCE Einschub</message>
-	<message key="plugins.generic.tinymce.description"><![CDATA[Dieser Einschub aktiviert die WSYWIG Redaktion von OJS Textfeldern mit der <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> Textverarbeitung.]]></message>
-	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Dieser Einschub aktiviert die WSYWIG Redaktion von OJS Textfeldern mit der <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> Textverarbeitung. <strong>TinyMCE ist nicht unbedingt eingerichtet; installieren Sie bitte die Textverarbeitung in {$tinyMcePath}.</strong>]]></message>
+	<message key="plugins.generic.tinymce.description"><![CDATA[Dieser Einschub aktiviert die WSYWIG Redaktion von OCS Textfeldern mit der <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> Textverarbeitung.]]></message>
+	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Dieser Einschub aktiviert die WSYWIG Redaktion von OCS Textfeldern mit der <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> Textverarbeitung. <strong>TinyMCE ist nicht unbedingt eingerichtet; installieren Sie bitte die Textverarbeitung in {$tinyMcePath}.</strong>]]></message>
 </locale>
