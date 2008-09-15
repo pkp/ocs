@@ -101,28 +101,6 @@ class ImportExportPlugin extends Plugin {
 	}
 
 	/**
-	 * Display verbs for the management interface.
-	 */
-	function getManagementVerbs() {
-		return array(
-			array(
-				'importexport',
-				Locale::translate('manager.importExport')
-			)
-		);
-	}
-
-	/**
-	 * Perform management functions
-	 */
-	function manage($verb, $args) {
-		if ($verb === 'importexport') {
-			Request::redirect(null, null, 'manager', 'importexport', array('plugin', $this->getName()));
-		}
-		return false;
-	}
-
-	/**
 	 * Extend the {url ...} smarty to support import/export plugins.
 	 */
 	function smartyPluginUrl($params, &$smarty) {
