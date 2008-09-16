@@ -22,9 +22,6 @@
 		<query driver="mysql">
 			ALTER TABLE user_settings CHANGE COLUMN conference_id conference_id BIGINT NOT NULL DEFAULT 0
 		</query>
-		<query driver="mysql">
-			ALTER TABLE user_settings DROP INDEX user_settings_pkey, ADD INDEX user_settings_pkey (user_id, locale, setting_name, conference_id) 
-		</query>
 
 		<!-- Syntax for PostgreSQL. -->
 		<query driver="postgres7">
@@ -35,12 +32,6 @@
 		</query>
 		<query driver="postgres7">
 			ALTER TABLE user_settings ALTER COLUMN conference_id SET DEFAULT 0 
-		</query>
-		<query driver="postgres7">
-			DROP INDEX user_settings_pkey
-		</query>
-		<query driver="postgres7">
-			CREATE UNIQUE INDEX user_settings_pkey ON user_settings (user_id, locale, setting_name, conference_id)
 		</query>
 	</sql>
 
