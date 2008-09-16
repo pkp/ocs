@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
- * 
+ *
  * @class PubMedExportPlugin
  * @ingroup plugins
  *
@@ -47,36 +47,33 @@ class METSExportPlugin extends ImportExportPlugin {
 	}
 
 	function display(&$args) {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		parent::display($args);
-		$Conference = &Request::getConference();
+		$conference =& Request::getConference();
 		switch (array_shift($args)) {
 			case 'exportschedConf':
-				$ConferenceDAO = &DAORegistry::getDAO('ConferenceDAO');
-				$SchedConfDAO = &DAORegistry::getDAO('SchedConfDAO');
-				$SchedConfId = array_shift($args);
-				if ($SchedConfId)
-				{
-					$schedConf = &$SchedConfDAO->getSchedConf($SchedConfId);
-					$this->exportSchedConf($Conference, $schedConf);
+				$conferenceDAO =& DAORegistry::getDAO('ConferenceDAO');
+				$schedConfDAO =& DAORegistry::getDAO('SchedConfDAO');
+				$schedConfId = array_shift($args);
+				if ($schedConfId) {
+					$schedConf =& $schedConfDAO->getSchedConf($schedConfId);
+					$this->exportSchedConf($conference, $schedConf);
 					return true;
-				}
-				else
-				{
-					$SchedConfIds = Request::getUserVar('SchedConfId');
-					$this->exportSchedConfs($Conference, $SchedConfIds);
+				} else {
+					$schedConfIds = Request::getUserVar('SchedConfId');
+					$this->exportSchedConfs($conference, $schedConfIds);
 					return true;
 				}
 				break;
 			case 'schedConfs':
 				// Display a list of Scheduled Conferences for export
 				$this->setBreadcrumbs(array(), true);
-				$templateMgr = &TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager();
 
-				$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-				$currentSchedConfs = &$schedConfDao->getCurrentSchedConfs($Conference->getConferenceId());
+				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+				$currentSchedConfs =& $schedConfDao->getCurrentSchedConfs($conference->getConferenceId());
 
-				$siteDao = &DAORegistry::getDAO('SiteDAO');
+				$siteDao =& DAORegistry::getDAO('SiteDAO');
 				$site = $siteDao->getSite();
 				$organization = $site->getSiteTitle();
 
@@ -90,73 +87,72 @@ class METSExportPlugin extends ImportExportPlugin {
 		}
 	}
 
-	function exportSchedConf(&$Conference, &$schedConf)
-	{
+	function exportSchedConf(&$conference, &$schedConf) {
 		$this->import('MetsExportDom');
-		$doc = &XMLCustomWriter::createDocument('', null);
-		$root = &XMLCustomWriter::createElement($doc, 'METS:mets');
+		$doc =& XMLCustomWriter::createDocument('', null);
+		$root =& XMLCustomWriter::createElement($doc, 'METS:mets');
 		XMLCustomWriter::setAttribute($root, 'xmlns:METS', 'http://www.loc.gov/METS/');
 		XMLCustomWriter::setAttribute($root, 'xmlns:xlink', 'http://www.w3.org/TR/xlink');
 		XMLCustomWriter::setAttribute($root, 'xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
 		XMLCustomWriter::setAttribute($root, 'PROFILE', 'Australian METS Profile 1.0');
 		XMLCustomWriter::setAttribute($root, 'TYPE', 'conference');
-		XMLCustomWriter::setAttribute($root, 'OBJID', 'C-'.$Conference->getConferenceId());
+		XMLCustomWriter::setAttribute($root, 'OBJID', 'C-'.$conference->getConferenceId());
 		XMLCustomWriter::setAttribute($root, 'xsi:schemaLocation', 'http://www.loc.gov/METS/ http://www.loc.gov/mets/mets.xsd');
-		$HeaderNode = &MetsExportDom::createmetsHdr($doc);
-		XMLCustomWriter::appendChild($root, $HeaderNode);
-		MetsExportDom::generateConfDmdSecDom($doc, $root, $Conference);
-		MetsExportDom::generateSchedConfDmdSecDom($doc, $root, $schedConf);
-		$amdSec = &MetsExportDom::createmetsamdSec($doc, $root, $Conference);
+		$headerNode =& MetsExportDom::createmetsHdr($doc);
+		XMLCustomWriter::appendChild($root, $headerNode);
+		MetsExportDom::generateConfDmdSecDom($doc, $root, $conference);
+		MetsExportDom::generateSchedConfDmdSecDom($doc, $root, $conference, $schedConf);
+		$amdSec =& MetsExportDom::createmetsamdSec($doc, $root, $conference);
 		XMLCustomWriter::appendChild($root, $amdSec);
-		$fileSec = &XMLCustomWriter::createElement($doc, 'METS:fileSec');
-		$fileGrp = &XMLCustomWriter::createElement($doc, 'METS:fileGrp');
-		XMLCustomWriter::setAttribute($fileGrp, 'USE', 'original');		
-		MetsExportDom::generateSchedConfFileSecDom($doc, $fileGrp, $schedConf);
+		$fileSec =& XMLCustomWriter::createElement($doc, 'METS:fileSec');
+		$fileGrp =& XMLCustomWriter::createElement($doc, 'METS:fileGrp');
+		XMLCustomWriter::setAttribute($fileGrp, 'USE', 'original');
+		MetsExportDom::generateSchedConfFileSecDom($doc, $fileGrp, $conference, $schedConf);
 		XMLCustomWriter::appendChild($fileSec, $fileGrp);
 		XMLCustomWriter::appendChild($root, $fileSec);
-		MetsExportDom::generateConfstructMapWithSchedConf($doc, $root, $Conference, $schedConf);
+		MetsExportDom::generateConfstructMapWithSchedConf($doc, $root, $conference, $schedConf);
 		XMLCustomWriter::appendChild($doc, $root);
 		header("Content-Type: application/xml");
 		header("Cache-Control: private");
-		header("Content-Disposition: attachment; filename=\"".$Conference->getPath()."_".$schedConf->getPath()."-mets.xml\"");
+		header("Content-Disposition: attachment; filename=\"".$conference->getPath()."_".$schedConf->getPath()."-mets.xml\"");
 		XMLCustomWriter::printXML($doc);
 		return true;
 	}
 
-	function exportSchedConfs(&$Conference, &$SchedConfIdArray) {
+	function exportSchedConfs(&$conference, &$schedConfIdArray) {
 		$this->import('MetsExportDom');
-		$SchedConfDAO = &DAORegistry::getDAO('SchedConfDAO');
-		$doc = &XMLCustomWriter::createDocument('', null);
-		$root = &XMLCustomWriter::createElement($doc, 'METS:mets');
+		$schedConfDAO =& DAORegistry::getDAO('SchedConfDAO');
+		$doc =& XMLCustomWriter::createDocument('', null);
+		$root =& XMLCustomWriter::createElement($doc, 'METS:mets');
 		XMLCustomWriter::setAttribute($root, 'xmlns:METS', 'http://www.loc.gov/METS/');
 		XMLCustomWriter::setAttribute($root, 'xmlns:xlink', 'http://www.w3.org/TR/xlink');
 		XMLCustomWriter::setAttribute($root, 'xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
 		XMLCustomWriter::setAttribute($root, 'PROFILE', 'Australian METS Profile 1.0');
 		XMLCustomWriter::setAttribute($root, 'TYPE', 'conference');
-		XMLCustomWriter::setAttribute($root, 'OBJID', 'C-'.$Conference->getConferenceId());
+		XMLCustomWriter::setAttribute($root, 'OBJID', 'C-'.$conference->getConferenceId());
 		XMLCustomWriter::setAttribute($root, 'xsi:schemaLocation', 'http://www.loc.gov/METS/ http://www.loc.gov/mets/mets.xsd');
-		$HeaderNode = &MetsExportDom::createmetsHdr($doc);
-		XMLCustomWriter::appendChild($root, $HeaderNode);
-		MetsExportDom::generateConfDmdSecDom($doc, $root, $Conference);
-		$fileSec = &XMLCustomWriter::createElement($doc, 'METS:fileSec');
-		$fileGrp = &XMLCustomWriter::createElement($doc, 'METS:fileGrp');
-		XMLCustomWriter::setAttribute($fileGrp, 'USE', 'original');	
+		$headerNode =& MetsExportDom::createmetsHdr($doc);
+		XMLCustomWriter::appendChild($root, $headerNode);
+		MetsExportDom::generateConfDmdSecDom($doc, $root, $conference);
+		$fileSec =& XMLCustomWriter::createElement($doc, 'METS:fileSec');
+		$fileGrp =& XMLCustomWriter::createElement($doc, 'METS:fileGrp');
+		XMLCustomWriter::setAttribute($fileGrp, 'USE', 'original');
 		$i = 0;
-		while ($i < sizeof($SchedConfIdArray)) {
-			$schedConf = &$SchedConfDAO->getSchedConf($SchedConfIdArray[$i]);
-			MetsExportDom::generateSchedConfDmdSecDom($doc, $root, $schedConf);
-			MetsExportDom::generateSchedConfFileSecDom($doc, $fileGrp, $schedConf);
-			$i++; 
+		while ($i < sizeof($schedConfIdArray)) {
+			$schedConf =& $schedConfDAO->getSchedConf($schedConfIdArray[$i]);
+			MetsExportDom::generateSchedConfDmdSecDom($doc, $root, $conference, $schedConf);
+			MetsExportDom::generateSchedConfFileSecDom($doc, $fileGrp, $conference, $schedConf);
+			$i++;
 		}
-		$amdSec = &MetsExportDom::createmetsamdSec($doc, $root, $Conference);
+		$amdSec =& MetsExportDom::createmetsamdSec($doc, $root, $conference);
 		XMLCustomWriter::appendChild($root, $amdSec);
 		XMLCustomWriter::appendChild($fileSec, $fileGrp);
 		XMLCustomWriter::appendChild($root, $fileSec);
-		MetsExportDom::generateConfstructMapWithSchedConfsIdArray($doc, $root, $Conference, $SchedConfIdArray);
+		MetsExportDom::generateConfstructMapWithSchedConfsIdArray($doc, $root, $conference, $schedConfIdArray);
 		XMLCustomWriter::appendChild($doc, $root);
 		header("Content-Type: application/xml");
 		header("Cache-Control: private");
-		header("Content-Disposition: attachment; filename=\"".$Conference->getPath()."-mets.xml\"");
+		header("Content-Disposition: attachment; filename=\"".$conference->getPath()."-mets.xml\"");
 		XMLCustomWriter::printXML($doc);
 		return true;
 	}
