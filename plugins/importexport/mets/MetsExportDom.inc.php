@@ -258,7 +258,7 @@ class MetsExportDom {
 			$primaryLocale = $conference->getPrimaryLocale();
 			foreach ($paper->getTitle(null) as $locale => $title) {
 				$titleInfo =& XMLCustomWriter::createElement($doc, 'mods:titleInfo');
-				XMLCustomWriter::createChildWithText($doc, $titleInfo, 'mods:title', $paper->getPaperTitle());
+				XMLCustomWriter::createChildWithText($doc, $titleInfo, 'mods:title', $title);
 				if ($locale != $primaryLocale) XMLCustomWriter::setAttribute($titleInfo, 'type', 'alternative');
 				XMLCustomWriter::appendChild($mods, $titleInfo);
 				unset($titleInfo);
@@ -313,6 +313,7 @@ class MetsExportDom {
 			XMLCustomWriter::createChildWithText($doc, $titleInfo, 'mods:title', $title);
 			if ($locale != $primaryLocale) XMLCustomWriter::setAttribute($titleInfo, 'type', 'alternative');
 			XMLCustomWriter::appendChild($mods, $titleInfo);
+			unset($titleInfo);
 		}
 
 		foreach ($paperFile->getCreator(null) as $locale => $creator) {
@@ -324,6 +325,7 @@ class MetsExportDom {
 			XMLCustomWriter::setAttribute($roleTerm, 'type', 'text');
 			XMLCustomWriter::appendChild($creatorNode, $role);
 			XMLCustomWriter::appendChild($mods, $creatorNode);
+			unset($creatorNode, $nameNode, $role, $roleTerm);
 		}
 		foreach ($paperFile->getDescription(null) as $locale => $description) {
 			XMLCustomWriter::createChildWithText($doc, $mods, 'mods:abstract', $description);
@@ -332,6 +334,7 @@ class MetsExportDom {
  			$originInfo =& XMLCustomWriter::createElement($doc, 'mods:originInfo');
 			$sDate = XMLCustomWriter::createChildWithText($doc, $originInfo, 'mods:dateCreated', $paperFile->getDateCreated());
 		 	XMLCustomWriter::appendChild($mods, $originInfo);
+			unset($originInfo);
 		}
 		XMLCustomWriter::createChildWithText($doc, $mods, 'mods:genre', 'additional material');
 		if($paperFile->getType() != '')
@@ -343,6 +346,7 @@ class MetsExportDom {
 			$subjNode =& XMLCustomWriter::createElement($doc, 'mods:subject');
 			XMLCustomWriter::createChildWithText($doc, $subjNode, 'mods:topic', $subject);
 			XMLCustomWriter::appendChild($mods, $subjNode);
+			unset($subjNode);
 		}
 		if($paperFile->getLanguage() != '')
 			XMLCustomWriter::createChildWithText($doc, $mods, 'mods:language', $paperFile->getLanguage());

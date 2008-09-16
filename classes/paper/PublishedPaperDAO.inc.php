@@ -514,8 +514,8 @@ class PublishedPaperDAO extends DAO {
 				papers a
 				' . ($conferenceId?'LEFT JOIN sched_confs e ON e.sched_conf_id = a.sched_conf_id':'') . '
 			WHERE	pa.paper_id = a.paper_id
-				' . ($schedConfId?'AND a.sched_conf_id = ?':'') . '
 				' . ($conferenceId?'AND e.conference_id = ?':'') . '
+				' . ($schedConfId?'AND a.sched_conf_id = ?':'') . '
 			ORDER BY a.sched_conf_id',
 			$params
 		);
