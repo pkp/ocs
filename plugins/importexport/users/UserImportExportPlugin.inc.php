@@ -65,6 +65,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		$schedConf =& Request::getSchedConf();
+
 		switch (array_shift($args)) {
 			case 'confirm':
 				$this->import('UserXMLParser');
