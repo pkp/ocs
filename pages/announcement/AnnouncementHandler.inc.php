@@ -14,9 +14,6 @@
 
 //$Id$
 
-
-import('core.Handler');
-
 class AnnouncementHandler extends Handler {
 
 	/**
@@ -77,7 +74,7 @@ class AnnouncementHandler extends Handler {
 				} else {
 					$templateMgr->assign('announcementTitle', $announcement->getAnnouncementTypeName() . ": " . $announcement->getAnnouncementTitle());
 				}
-				$templateMgr->append('pageHierarchy', array(Request::url(null, 'announcement'), 'announcement.announcements'));
+				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'announcement'), 'announcement.announcements'));
 				$templateMgr->display('announcement/view.tpl');
 			} else {
 				Request::redirect(null, null, null, 'announcement');
@@ -96,7 +93,7 @@ class AnnouncementHandler extends Handler {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
-		$templateMgr->assign('pageHierachy', array(array(Request::url(null, 'announcements'), 'announcement.announcements')));
+		$templateMgr->assign('pageHierachy', array(array(Request::url(null, null, 'announcements'), 'announcement.announcements')));
 	}
 }
 

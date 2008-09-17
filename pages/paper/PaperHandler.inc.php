@@ -18,7 +18,6 @@
 
 import('rt.ocs.RTDAO');
 import('rt.ocs.ConferenceRT');
-import('core.Handler');
 
 class PaperHandler extends Handler {
 
@@ -157,7 +156,7 @@ class PaperHandler extends Handler {
 
 			// Use the paper's CSS file, if set.
 			if ($galley->isHTMLGalley() && $styleFile =& $galley->getStyleFile()) {
-				$templateMgr->addStyleSheet(Request::url(null, 'paper', 'viewFile', array(
+				$templateMgr->addStyleSheet(Request::url(null, null, 'paper', 'viewFile', array(
 					$paper->getPaperId(),
 					$galley->getGalleyId(),
 					$styleFile->getFileId()

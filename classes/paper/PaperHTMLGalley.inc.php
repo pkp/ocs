@@ -48,7 +48,7 @@ class PaperHTMLGalley extends PaperGalley {
 		$images = &$this->getImageFiles();
 
 		foreach ($images as $image) {
-			$imageUrl = Request::url(null, 'paper', 'viewFile', array($this->getPaperId(), $this->getGalleyId(), $image->getFileId()));
+			$imageUrl = Request::url(null, null, 'paper', 'viewFile', array($this->getPaperId(), $this->getGalleyId(), $image->getFileId()));
 			$pattern = preg_quote(rawurlencode($image->getOriginalFileName()));
 			$contents = preg_replace(
 				'/[Ss][Rr][Cc]\s*=\s*"([^"]*' . $pattern .    ')"/', 
