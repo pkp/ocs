@@ -435,7 +435,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 			$templateMgr->assign('message', 'common.inProgress');
 			$templateMgr->display('common/progress.tpl');
-			echo '<script type="text/javascript">window.location = "' . Request::url(null, 'director') . '";</script>';
+			echo '<script type="text/javascript">window.location = "' . Request::url(null, null, 'director') . '";</script>';
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->assignParams(array(

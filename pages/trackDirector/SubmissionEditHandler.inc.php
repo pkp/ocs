@@ -1153,7 +1153,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				$templateMgr = &TemplateManager::getManager();
 				$templateMgr->assign_by_ref('galley', $galley);
 				if ($galley->isHTMLGalley() && $styleFile =& $galley->getStyleFile()) {
-					$templateMgr->addStyleSheet(Request::url(null, 'paper', 'viewFile', array(
+					$templateMgr->addStyleSheet(Request::url(null, null, 'paper', 'viewFile', array(
 						$paperId, $galleyId, $styleFile->getFileId()
 					)));
 				}
