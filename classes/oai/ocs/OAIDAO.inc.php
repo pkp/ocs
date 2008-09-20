@@ -128,7 +128,6 @@ class OAIDAO extends DAO {
 				c.path AS conference_path,
 				c.conference_id AS conference_id,
 				s.path AS sched_conf_path,
-				t.identify_type AS track_item_type,
 				pp.date_published AS date_published,
 			FROM	published_papers pp, conferences c, sched_confs s, papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
@@ -178,8 +177,7 @@ class OAIDAO extends DAO {
 				p.*,
 				c.path AS conference_path,
 				c.conference_id AS conference_id,
-				s.path AS sched_conf_path,
-				t.identify_type AS track_item_type
+				s.path AS sched_conf_path
 			FROM	published_papers pp,
 				conferences c,
 				sched_confs s,
@@ -332,7 +330,7 @@ class OAIDAO extends DAO {
 		// FIXME Use public ID in OAI identifier?
 		// FIXME Use "last-modified" field for datestamp?
 		$record->identifier = $this->oai->paperIdToIdentifier($row['paper_id']);
-		$record->datestamp = $this->oai->UTCDate(strtotime($this->datetimeFromDB($row['date_published'])));
+		$record->datestamp = OAIUtils::UTCDate(strtotime($this->datetimeFromDB($row['date_published'])));
 		$record->sets = array($conference->getPath() . ':' . $track->getTrackAbbrev());
 
 		$record->url = Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', array($paperId));
@@ -415,7 +413,7 @@ class OAIDAO extends DAO {
 		$track =& $this->getTrack($row['track_id']);
 
 		$record->identifier = $this->oai->paperIdToIdentifier($row['paper_id']);
-		$record->datestamp = $this->oai->UTCDate(strtotime($this->datetimeFromDB($row['date_published'])));
+		$record->datestamp = OAIUtils::UTCDate(strtotime($this->datetimeFromDB($row['date_published'])));
 		$record->sets = array($conference->getPath() . ':' . $track->getTrackAbbrev());
 
 		return $record;
