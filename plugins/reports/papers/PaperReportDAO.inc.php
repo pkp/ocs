@@ -32,7 +32,7 @@ class PaperReportDAO extends DAO {
 		$locale = Locale::getLocale();
 
 		$result =& $this->retrieve(
-			'SELECT
+			'SELECT	p.status AS status,
 				p.paper_id AS paper_id,
 				COALESCE(psl1.setting_value, pspl1.setting_value) AS title,
 				COALESCE(psl2.setting_value, pspl2.setting_value) AS abstract,
