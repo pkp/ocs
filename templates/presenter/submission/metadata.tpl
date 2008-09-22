@@ -35,7 +35,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.biography"}</td>
-		<td class="value">{$presenter->getAuthorBiography()|nl2br|strip_unsafe_html|default:"&mdash;"}</td>
+		<td class="value">{$presenter->getPresenterBiography()|nl2br|strip_unsafe_html|default:"&mdash;"}</td>
 	</tr>
 	{if $presenter->getPrimaryContact()}
 	<tr valign="top">
