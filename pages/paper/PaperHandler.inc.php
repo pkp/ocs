@@ -351,13 +351,17 @@ class PaperHandler extends Handler {
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 
 		if ($schedConf->getSetting('enablePublicPaperId')) {
-			$paper = &$publishedPaperDao->getPublishedPaperByBestPaperId($schedConf->getSchedConfId(), $paperId);
+			$paper =& $publishedPaperDao->getPublishedPaperByBestPaperId($schedConf->getSchedConfId(), $paperId);
 		} else {
-			$paper = &$publishedPaperDao->getPublishedPaperByPaperId((int) $paperId);
+			$paper =& $publishedPaperDao->getPublishedPaperByPaperId(
+				(int) $paperId,
+				$schedConf->getSchedConfId(),
+				$schedConf->getSetting('previewAbstracts')?true:false
+			);
 		}
 
-		// if issue or paper do not exist, are not published, or are
-		// not parts of the same conference, redirect to index.
+		// if paper does not exist, is not published, or is not part of
+		// the right conference & sched conf, redirect to index.
 		if (isset($schedConf) && isset($paper) && isset($conference) &&
 				$paper->getSchedConfId() == $schedConf->getSchedConfId() &&
 				$schedConf->getConferenceId() == $conference->getConferenceId()) {

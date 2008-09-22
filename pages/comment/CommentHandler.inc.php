@@ -138,7 +138,7 @@ class CommentHandler extends Handler {
 		list($conference, $schedConf) = parent::validate(true, true);
 
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
-		$paper = &$publishedPaperDao->getPublishedPaperByPaperId($paperId);
+		$paper = &$publishedPaperDao->getPublishedPaperByPaperId($paperId, $schedConf->getSchedConfId(), $schedConf->getSetting('previewAbstracts'));
 
 		if ($paper == null) {
 			Request::redirect(null, null, 'index');
