@@ -335,9 +335,10 @@ class PublishedPaperDAO extends DAO {
 	 * Retrieve published paper by paper id
 	 * @param $paperId int
 	 * @param $schedConfId int optional
+	 * @param $previewAbstracts whether or not to allow access to unpublished papers
 	 * @return PublishedPaper object
 	 */
-	function &getPublishedPaperByPaperId($paperId, $schedConfId = null) {
+	function &getPublishedPaperByPaperId($paperId, $schedConfId = null, $previewAbstracts = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
@@ -353,21 +354,23 @@ class PublishedPaperDAO extends DAO {
 		);
 		if ($schedConfId) $params[] = $schedConfId;
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT pa.*,
 				a.*,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
-			FROM published_papers pa,
-				papers a
+			FROM	papers a
+				LEFT JOIN published_papers pa ON (pa.paper_id = a.paper_id)
 				LEFT JOIN tracks t ON t.track_id = a.track_id
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
-			WHERE pa.paper_id = a.paper_id
-				AND a.paper_id = ?' . (isset($schedConfId)?'
-				AND a.sched_conf_id = ?':''),
+			WHERE	a.paper_id = ?' .
+				(isset($schedConfId)?' AND a.sched_conf_id = ?':'') .
+				($previewAbstracts!==true?' AND pa.paper_id IS NOT NULL':'') .
+				($previewAbstracts===true?' AND (a.status = ' . SUBMISSION_STATUS_PUBLISHED . ' OR (a.status = ' . SUBMISSION_STATUS_QUEUED . ' AND a.current_stage = ' . REVIEW_STAGE_PRESENTATION . '))':'') .
+				($previewAbstracts===false?' AND a.status = ' . SUBMISSION_STATUS_PUBLISHED:''),
 			$params
 		);
 

@@ -18,7 +18,6 @@
 
 import('rt.ocs.RTDAO');
 import('rt.ocs.ConferenceRT');
-import('core.Handler');
 
 class CommentHandler extends Handler {
 	function view($args) {
@@ -138,7 +137,7 @@ class CommentHandler extends Handler {
 		list($conference, $schedConf) = parent::validate(true, true);
 
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
-		$paper = &$publishedPaperDao->getPublishedPaperByPaperId($paperId);
+		$paper = &$publishedPaperDao->getPublishedPaperByPaperId($paperId, $schedConf->getSchedConfId(), $schedConf->getSetting('previewAbstracts'));
 
 		if ($paper == null) {
 			Request::redirect(null, null, 'index');
