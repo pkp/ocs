@@ -31,6 +31,9 @@ class SchedConfStatisticsDAO extends DAO {
 	 * @return array
 	 */
 	function getPaperStatistics($schedConfId, $trackIds = null, $dateStart = null, $dateEnd = null) {
+		// Bring in status constants
+		import('paper.Paper');
+
 		$params = array($schedConfId);
 		if (!empty($trackIds)) {
 			$trackSql = ' AND (a.track_id = ?';
@@ -46,7 +49,8 @@ class SchedConfStatisticsDAO extends DAO {
 				a.date_submitted,
 				pa.date_published,
 				pa.pub_id,
-				d.decision
+				d.decision,
+				a.status
 			FROM	papers a
 				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
 				LEFT JOIN edit_decisions d ON (d.paper_id = a.paper_id)
@@ -88,11 +92,11 @@ class SchedConfStatisticsDAO extends DAO {
 				$paperIds[] = $row['paper_id'];
 				$returner['numSubmissions']++;
 
-				if (!empty($row['pub_id'])) {
+				if (!empty($row['pub_id']) && $row['status'] == SUBMISSION_STATUS_PUBLISHED) {
 					$returner['numPublishedSubmissions']++;
 				}
 
-				if (!empty($row['date_submitted']) && !empty($row['date_published'])) {
+				if (!empty($row['date_submitted']) && !empty($row['date_published']) && $row['status'] == SUBMISSION_STATUS_PUBLISHED) {
 					$timeSubmitted = strtotime($this->datetimeFromDB($row['date_submitted']));
 					$timePublished = strtotime($this->datetimeFromDB($row['date_published']));
 					if ($timePublished > $timeSubmitted) {
@@ -227,47 +231,6 @@ class SchedConfStatisticsDAO extends DAO {
 	}
 
 	/**
-	 * Get statistics about issues in the system.
-	 * Returns a map of name => value pairs.
-	 * @param $schedConfId int The scheduled conference to fetch statistics for
-	 * @param $dateStart date The publish date to search from; optional
-	 * @param $dateEnd date The publish date to search to; optional
-	 * @return array
-	 */
-	function getIssueStatistics($schedConfId, $dateStart = null, $dateEnd = null) {
-		$result = &$this->retrieve(
-			'SELECT COUNT(*) AS count, published FROM issues WHERE sched_conf_id = ?' .
-			($dateStart !== null ? ' AND date_published >= ' . $this->datetimeToDB($dateStart) : '') .
-			($dateEnd !== null ? ' AND date_published <= ' . $this->datetimeToDB($dateEnd) : '') .
-			' GROUP BY published',
-			$schedConfId
-		);
-
-		$returner = array(
-			'numPublishedIssues' => 0,
-			'numUnpublishedIssues' => 0
-		);
-
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-
-			if ($row['published']) {
-				$returner['numPublishedIssues'] = $row['count'];
-			} else {
-				$returner['numUnpublishedIssues'] = $row['count'];
-			}
-			$result->moveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		$returner['numIssues'] = $returner['numPublishedIssues'] + $returner['numUnpublishedIssues'];
-
-		return $returner;
-	}
-
-	/**
 	 * Get statistics about reviewers in the system.
 	 * Returns a map of name => value pairs.
 	 * @param $schedConfId int The scheduled conference to fetch statistics for
@@ -371,243 +334,6 @@ class SchedConfStatisticsDAO extends DAO {
 		$returner['reviewedSubmissionsCount'] = count($paperIds);
 
 		return $returner;
-	}
-
-	function &getCountryDistribution($schedConfId, $locale = null) {
-		if ($locale == null) $locale = Locale::getLocale();
-		$result = &$this->retrieve(
-			'SELECT DISTINCT u.country AS country FROM users u, roles r WHERE r.sched_conf_id = ? AND r.user_id = u.user_id',
-			$schedConfId
-		);
-
-		$countries = array();
-		$countryDao =& DAORegistry::getDAO('CountryDAO');
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			array_push($countries, $countryDao->getCountry($row['country'], $locale));
-			$result->moveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $countries;
-	}
-
-	/**
-	 * Generate a scheduled conference Report between the given dates (optional)
-	 * @param $schedConfId int The scheduled conference to report on
-	 * @param $dateStart string The start date
-	 * @param $dateEnd string The end date
-	 */
-	function &getSchedConfReport($schedConfId, $dateStart = null, $dateEnd = null) {
-		$result = &$this->retrieve(
-			'SELECT	a.paper_id,
-				pa.pub_id AS pub_id,
-				pa.date_published
-				a.date_submitted AS date_submitted,
-				a.status AS status
-			FROM	papers a
-				LEFT JOIN tracks t ON (t.track_id = a.track_id) 
-				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
-			WHERE	a.sched_conf_id = ? ' .
-			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
-			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
-			' ORDER BY a.date_submitted',
-			$schedConfId
-		);
-		import('schedConf.SchedConfReportIterator');
-		$report =& new SchedConfReportIterator($schedConfId, $result, $dateStart, $dateEnd, REPORT_TYPE_SCHED_CONF);
-		return $report;
-	}
-
-	/**
-	 * Generate a Track Report between the given dates (optional)
-	 * @param $schedConfId int The scheduled conference to report on
-	 * @param $dateStart string The start date
-	 * @param $dateEnd string The end date
-	 */
-	function &getTrackReport($schedConfId, $dateStart = null, $dateEnd = null) {
-		$result = &$this->retrieve(
-			'SELECT	a.paper_id,
-				pa.pub_id,
-				pa.date_published,
-				a.date_submitted,
-				a.status
-			FROM	papers a
-				LEFT JOIN tracks s ON (t.track_id = a.track_id)
-				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
-			WHERE	a.sched_conf_id = ?' .
-			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
-			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
-			' ORDER BY t.title, a.date_submitted',
-			$schedConfId
-		);
-		import('schedConf.SchedConfReportIterator');
-		$report =& new SchedConfReportIterator($schedConfId, $result, $dateStart, $dateEnd, REPORT_TYPE_TRACK);
-		return $report;
-	}
-
-	/**
-	 * Generate a Reviewer Report between the given dates (optional)
-	 * @param $schedConfId int The scheduled conference to report on
-	 * @param $dateStart string The start date
-	 * @param $dateEnd string The end date
-	 */
-	function &getReviewerReport($schedConfId, $dateStart = null, $dateEnd = null) {
-		$result = &$this->retrieve(
-			'SELECT	ra.reviewer_id,
-				ra.quality,
-				a.paper_id,
-				pa.pub_id,
-				pa.date_published,
-				a.date_submitted,
-				a.status
-			FROM	review_assignments ra,
-				papers a
-				LEFT JOIN tracks t ON (t.track_id = a.track_id)
-				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
-			WHERE	a.sched_conf_id = ? AND
-				ra.paper_id = a.paper_id ' .
-			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
-			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
-			' ORDER BY ra.reviewer_id, a.date_submitted',
-			$schedConfId
-		);
-		import('schedConf.SchedConfReportIterator');
-		$report =& new SchedConfReportIterator($schedConfId, $result, $dateStart, $dateEnd, REPORT_TYPE_REVIEWER);
-		return $report;
-	}
-
-	/**
-	 * Generate a Director Report between the given dates (optional)
-	 * @param $schedConfId int The scheduled conference to report on
-	 * @param $dateStart string The start date
-	 * @param $dateEnd string The end date
-	 */
-	function &getDirectorReport($schedConfId, $dateStart = null, $dateEnd = null) {
-		$result = &$this->retrieve(
-			'SELECT	ee.director_id,
-				a.paper_id,
-				pa.pub_id,
-				pa.date_published,
-				a.date_submitted,
-				a.status
-			FROM	papers a
-				LEFT JOIN edit_assignments ee ON (ee.paper_id = a.paper_id)
-				LEFT JOIN tracks t ON (t.track_id = a.track_id)
-				LEFT JOIN published_papers pa ON (a.paper_id = pa.paper_id)
-			WHERE	a.sched_conf_id = ? ' .
-			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
-			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
-			' ORDER BY ee.director_id, a.date_submitted',
-			$schedConfId
-		);
-		import('schedConf.schedConfReportIterator');
-		$report =& new SchedConfReportIterator($schedConfId, $result, $dateStart, $dateEnd, REPORT_TYPE_DIRECTOR);
-		return $report;
-	}
-
-	/**
-	 * Determine, within a given scheduled conference and date range (optional),
-	 * the maximum number of presenters that a single submission has.
-	 * @param $schedConfId int
-	 * @param $dateStart string
-	 * @param $dateEnd string
-	 */
-	function getMaxPresenterCount($schedConfId, $dateStart, $dateEnd) {
-		$result =& $this->retrieve(
-			'SELECT	COUNT(aa.presenter_id)
-			FROM	papers a,
-				paper_presenters aa
-			WHERE	a.sched_conf_id = ? AND
-				aa.paper_id = a.paper_id ' .
-			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
-			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
-			' GROUP BY a.paper_id',
-			$schedConfId
-		);
-
-		$max = null;
-		while (!$result->EOF) {
-			if ($max === null || $max < $result->fields[0]) {
-				$max = $result->fields[0];
-			}
-			$result->moveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $max;
-	}
-
-	/**
-	 * Determine, within a given scheduled conference and date range (optional),
-	 * the maximum number of reviewers that a single submission has.
-	 * @param $schedConfId int
-	 * @param $dateStart string
-	 * @param $dateEnd string
-	 */
-	function getMaxReviewerCount($schedConfId, $dateStart, $dateEnd) {
-		$result = &$this->retrieve(
-			'SELECT	COUNT(r.review_id)
-			FROM	papers a,
-				review_assignments r
-			WHERE	a.sched_conf_id = ? AND
-				r.paper_id = a.paper_id ' .
-			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
-			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
-			' GROUP BY r.paper_id',
-			$schedConfId
-		);
-
-		$max = null;
-		while (!$result->EOF) {
-			if ($max === null || $max < $result->fields[0]) {
-				$max = $result->fields[0];
-			}
-			$result->moveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $max;
-	}
-
-	/**
-	 * Determine, within a given scheduled conference and date range (optional),
-	 * the maximum number of directors that a single submission has.
-	 * @param $schedConfId int
-	 * @param $dateStart string
-	 * @param $dateEnd string
-	 */
-	function getMaxDirectorCount($schedConfId, $dateStart, $dateEnd) {
-		$result = &$this->retrieve(
-			'SELECT COUNT(e.director_id)
-			FROM	papers a,
-				edit_assignments e
-			WHERE	a.sched_conf_id = ? AND
-				e.paper_id = a.paper_id ' .
-			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
-			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
-			' GROUP BY e.paper_id',
-			$schedConfId
-		);
-
-		$max = null;
-		while (!$result->EOF) {
-			if ($max === null || $max < $result->fields[0]) {
-				$max = $result->fields[0];
-			}
-			$result->moveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $max;
 	}
 }
 
