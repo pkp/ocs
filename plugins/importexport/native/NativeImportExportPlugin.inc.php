@@ -19,7 +19,7 @@ import('classes.plugins.ImportExportPlugin');
 import('xml.XMLCustomWriter');
 
 define('NATIVE_DTD_URL', 'http://pkp.sfu.ca/ocs/dtds/native.dtd');
-define('NATIVE_DTD_ID', '-//PKP//OJS Papers and Issues XML//EN');
+define('NATIVE_DTD_ID', '-//PKP//OCS Papers XML//EN');
 
 class NativeImportExportPlugin extends ImportExportPlugin {
 	/**
@@ -78,7 +78,6 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				$paperIds = $publishedPaperDao->getPublishedPaperIdsAlphabetizedBySchedConf($conference->getConferenceId(), $schedConf->getSchedConfId());
 				$totalPapers = count($paperIds);
 				if ($rangeInfo->isValid()) $paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
-				import('core.VirtualArrayIterator');
 				$iterator =& new VirtualArrayIterator(PaperSearch::formatResults($paperIds), $totalPapers, $rangeInfo->getPage(), $rangeInfo->getCount());
 				$templateMgr->assign_by_ref('papers', $iterator);
 				$templateMgr->display($this->getTemplatePath() . 'papers.tpl');

@@ -54,7 +54,7 @@ class preCompile extends CommandLineTool {
 		import('form.Form');
 		$this->templateMgr = &TemplateManager::getManager();
 
-		/* Register any additional functions used in OJS so that the
+		/* Register any additional functions used in OCS so that the
 		   templates compile properly.
 		   FIXME: Is there a better way to do this? */
 

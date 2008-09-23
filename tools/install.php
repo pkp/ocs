@@ -13,7 +13,7 @@
  * @class installTool
  * @ingroup tools
  *
- * @brief CLI tool for installing OJS.
+ * @brief CLI tool for installing OCS.
  */
 
 //$Id$
@@ -152,7 +152,7 @@ class installTool extends CommandLineTool {
 		$this->readParamBoolean('manualInstall', 'installer.manualInstall');
 
 		printf("\n*** ");
-		$this->readParamBoolean('install', 'installer.installOJS');
+		$this->readParamBoolean('install', 'installer.installOCS');
 
 		return $this->params['install'];
 	}

@@ -49,7 +49,7 @@ class TinyMCEPlugin extends GenericPlugin {
 
 	/**
 	 * Get the name of the settings file to be installed site-wide when
-	 * OJS is installed.
+	 * OCS is installed.
 	 * @return string
 	 */
 	function getInstallSitePluginSettingsFile() {

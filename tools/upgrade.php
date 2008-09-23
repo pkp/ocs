@@ -9,7 +9,7 @@
  * @class upgradeTool
  * @ingroup tools
  *
- * @brief CLI tool for upgrading OJS.
+ * @brief CLI tool for upgrading OCS.
  *
  * Note: Some functions require fopen wrappers to be enabled.
  */
@@ -184,8 +184,7 @@ class upgradeTool extends CommandLineTool {
 	function download() {
 		$versionInfo = VersionCheck::getLatestVersion();
 		if (!$versionInfo) {
-			$application =& PKPApplication::getApplication();
-			printf("Failed to load version info from %s\n", $application->getVersionDescriptorUrl());
+			printf("Failed to load version info from %s\n", VersionCheck::getVersionCheckUrl());
 			exit(1);
 		}
 
@@ -241,8 +240,7 @@ class upgradeTool extends CommandLineTool {
 	 */
 	function checkVersion($versionInfo, $displayInfo = false) {
 		if (!$versionInfo) {
-			$application =& PKPApplication::getApplication();
-			printf("Failed to load version info from %s\n", $application->getVersionDescriptorUrl());
+			printf("Failed to load version info from %s\n", VersionCheck::getVersionCheckUrl());
 			exit(1);
 		}
 

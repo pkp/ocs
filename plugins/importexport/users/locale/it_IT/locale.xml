@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
 
 <!--
   * locale.xml
@@ -49,7 +49,7 @@ Examples:
 	<message key="plugins.importexport.users.import.errorsOccurred">Errori verificati durante l'import</message>
 	<message key="plugins.importexport.users.import.confirmUsers">Conferma che questi sono gli utenti che vorresti importare nel sistema</message>
 	<message key="plugins.importexport.users.import.warning">Attenzione</message>
-	<message key="plugins.importexport.users.import.encryptionMismatch">Non puoi usare password hashed con {$importHash}; OJS è configurato per usare {$ojsHash}. Se continui, avrai bisogno di resettare le password degli utenti importati.</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">Non puoi usare password hashed con {$importHash}; OCS è configurato per usare {$ocsHash}. Se continui, avrai bisogno di resettare le password degli utenti importati.</message>
 	<message key="plugins.importexport.users.unknownSchedConf">E' stato specificato una path "{$schedConfPath}" di conferenza programmata sconosciuta.</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Esporta utenti</message>

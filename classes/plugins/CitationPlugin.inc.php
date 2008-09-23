@@ -52,7 +52,7 @@ class CitationPlugin extends Plugin {
 
 	/**
 	 * Used by the cite function to embed an HTML citation in the
-	 * templates/rt/captureCite.tpl template, which ships with OJS.
+	 * templates/rt/captureCite.tpl template, which ships with OCS.
 	 */
 	function displayCitation($hookName, $args) {
 		$params =& $args[0];
