@@ -440,11 +440,12 @@ class PublishedPaperDAO extends DAO {
 	 * internal paper ID; public paper ID takes precedence.
 	 * @param $schedConfId int
 	 * @param $paperId string
+	 * @param $previewAbstracts boolean Whether to include unpublished abstracts that have been reviewed
 	 * @return PublishedPaper object
 	 */
-	function &getPublishedPaperByBestPaperId($schedConfId, $paperId) {
+	function &getPublishedPaperByBestPaperId($schedConfId, $paperId, $previewAbstracts = null) {
 		$paper = &$this->getPublishedPaperByPublicPaperId($schedConfId, $paperId);
-		if (!isset($paper)) $paper = &$this->getPublishedPaperByPaperId((int) $paperId, $schedConfId);
+		if (!isset($paper)) $paper = &$this->getPublishedPaperByPaperId((int) $paperId, $schedConfId, $previewAbstracts);
 		return $paper;
 	}
 

@@ -351,7 +351,11 @@ class PaperHandler extends Handler {
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 
 		if ($schedConf->getSetting('enablePublicPaperId')) {
-			$paper =& $publishedPaperDao->getPublishedPaperByBestPaperId($schedConf->getSchedConfId(), $paperId);
+			$paper =& $publishedPaperDao->getPublishedPaperByBestPaperId(
+				$schedConf->getSchedConfId(),
+				$paperId,
+				$schedConf->getSetting('previewAbstracts')?true:false
+			);
 		} else {
 			$paper =& $publishedPaperDao->getPublishedPaperByPaperId(
 				(int) $paperId,
