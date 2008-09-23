@@ -73,10 +73,8 @@ class migrate extends CommandLineTool {
 		if ($importer->import($this->conferencePath, $this->importPath, $this->options)) {
 			printf("Import completed\n"
 					. "Users imported:     %u\n"
-					. "Issues imported:    %u\n"
 					. "Papers imported:  %u\n",
 				$importer->userCount,
-				$importer->issueCount,
 				$importer->paperCount);
 		} else {
 			printf("Import failed!\nERROR: %s\n", $importer->error());
