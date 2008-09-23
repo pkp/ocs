@@ -216,7 +216,7 @@ allowed_html = "<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd> <b
 enable_attachments = On
 
 ; Amount of time required between attempts to send non-editorial emails
-; in seconds. This can be used to help prevent email relaying via OJS.
+; in seconds. This can be used to help prevent email relaying via OCS.
 time_between_emails = 3600
 
 ; Maximum number of recipients that can be included in a single email

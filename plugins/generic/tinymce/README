@@ -6,7 +6,7 @@
 
 About
 -----
-This plugin for OJS 2 converts all textareas to WYSIWYG XHTML editors using the TinyMCE cross-browser Javascript editor (http://tinymce.moxiecode.com/).  This allows authors, managers, etc. to enter valid XHTML into the various forms for more control over the appearance of their content.
+This plugin for OCS 2 converts all textareas to WYSIWYG XHTML editors using the TinyMCE cross-browser Javascript editor (http://tinymce.moxiecode.com/).  This allows authors, managers, etc. to enter valid XHTML into the various forms for more control over the appearance of their content.
 
 License
 -------

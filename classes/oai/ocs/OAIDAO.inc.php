@@ -10,7 +10,7 @@
  * @ingroup oai_ocs
  * @see OAI
  *
- * @brief DAO operations for the OJS OAI interface.
+ * @brief DAO operations for the OCS OAI interface.
  */
 
 //$Id$

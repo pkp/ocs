@@ -13,7 +13,7 @@
   -->
 
 <data>
-	<!-- OJS bug #2961: Localization overhaul -->
+	<!-- Bug #2961: Localization overhaul -->
 	<sql>
 		<rename table="site" column="locale" to="primary_locale" />
 	</sql>

@@ -82,9 +82,9 @@ class UserXMLParser {
 								$newUser->setMustChangePassword($attrib->getAttribute('change') == 'true'?1:0);
 								$encrypted = $attrib->getAttribute('encrypted');
 								if (isset($encrypted) && $encrypted !== 'plaintext') {
-									$ojsEncryptionScheme = Config::getVar('security', 'encryption');
-									if ($encrypted != $ojsEncryptionScheme) {
-										$this->errors[] = Locale::translate('plugins.importexport.users.import.encryptionMismatch', array('importHash' => $encrypted, 'ojsHash' => $ojsEncryptionScheme));
+									$ocsEncryptionScheme = Config::getVar('security', 'encryption');
+									if ($encrypted != $ocsEncryptionScheme) {
+										$this->errors[] = Locale::translate('plugins.importexport.users.import.encryptionMismatch', array('importHash' => $encrypted, 'ocsHash' => $ocsEncryptionScheme));
 									}
 									$newUser->setPassword($attrib->getValue());
 								} else {

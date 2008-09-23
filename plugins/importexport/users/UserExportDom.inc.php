@@ -17,7 +17,7 @@
 import('xml.XMLCustomWriter');
 
 define('USERS_DTD_URL', 'http://pkp.sfu.ca/ocs/dtds/users.dtd');
-define('USERS_DTD_ID', '-//PKP/OJS Users XML//EN');
+define('USERS_DTD_ID', '-//PKP/OCS Users XML//EN');
 
 class UserExportDom {
 	function &exportUsers(&$schedConf, &$users, $allowedRoles = null) {

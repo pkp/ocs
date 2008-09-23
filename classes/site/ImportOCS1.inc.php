@@ -22,7 +22,7 @@ import('conference.Track');
 import('security.Role');
 import('registration.Registration');
 import('registration.RegistrationType');
-import('registration.Currency');
+import('currency.Currency');
 import('paper.Paper');
 import('paper.PaperComment');
 import('paper.PaperFile');
@@ -210,19 +210,18 @@ class ImportOCS1 {
 			unset($conference);
 			$conference =& new Conference();
 			$conference->setPath($this->conferencePath);
-			$conference->setTitle($this->globalConfigInfo['name'], Locale::getLocale());
 			$conference->setPrimaryLocale(Locale::getLocale());
 			$conference->setEnabled(true);
 			$this->conferenceId = $conferenceDao->insertConference($conference);
 			$conferenceDao->resequenceConferences();
+			$conference->updateSetting('title', array(Locale::getLocale() => $this->globalConfigInfo['name']), true);
 
 			$this->conferenceIsNew = true;
 		} else {
 			if ($this->hasOption('verbose')) {
 				printf("Using existing conference\n");
 			}
-			$conference->setTitle($this->globalConfigInfo['name']);
-			$conferenceDao->updateConference($conference);
+			$conference->updateSetting('title', array(Locale::getLocale() => $this->globalConfigInfo['name']), true);
 			$this->conferenceId = $conference->getConferenceId();
 			$this->conferenceIsNew = false;
 		}
@@ -306,13 +305,12 @@ class ImportOCS1 {
 			unset($schedConf);
 			$schedConf = &new SchedConf();
 			$schedConf->setConferenceId($this->conferenceId);
-			$schedConf->setTitle($conferenceInfo['name']);
 			$schedConf->setPath($id);
 			$schedConfDao->insertSchedConf($schedConf);
 			$schedConfDao->resequenceSchedConfs($this->conferenceId);
+			$schedConf->updateSetting('title', array(Locale::getLocale() => $conferenceInfo['name']), null, true);
 		} else {
-			$schedConf->setTitle($conferenceInfo['name']);
-			$schedConfDao->updateSchedConf($schedConf);
+			$schedConf->updateSetting('title', array(Locale::getLocale() => $conferenceInfo['name']), null, true);
 		}
 
 		$this->schedConfMap[$id] =& $schedConf;
@@ -503,7 +501,7 @@ class ImportOCS1 {
 			$track = &new Track();
 			$schedConf =& $this->schedConfMap[$row['cf']];
 			$track->setSchedConfId($schedConf->getSchedConfId());
-			$track->setTitle(Core::cleanVar($row['track']));
+			$track->setTitle(Core::cleanVar($row['track']), Locale::getLocale());
 			$track->setSequence(++$sequence);
 			$track->setDirectorRestricted(0);
 			$track->setMetaReviewed(1);

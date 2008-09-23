@@ -48,7 +48,7 @@ Examplos:
 	<message key="plugins.importexport.users.import.errorsOccurred">Ocorreram erros durante a importação</message>
 	<message key="plugins.importexport.users.import.confirmUsers">Confirme se estes são os usuários que deseja importar</message>
 	<message key="plugins.importexport.users.import.warning">Advertência</message>
-	<message key="plugins.importexport.users.import.encryptionMismatch">Não é possível utilizar senhas criptografadas com {$importHash}; o sistema está configurado para utilizar {$ojsHash}. Caso continue, será necessário resetar as senhas dos usuários importados.</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">Não é possível utilizar senhas criptografadas com {$importHash}; o sistema está configurado para utilizar {$ocsHash}. Caso continue, será necessário resetar as senhas dos usuários importados.</message>
 	<message key="plugins.importexport.users.unknownSchedConf">Foi especificado um caminho desconhecido "{$schedConfPath}" para conferência agendada.</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Exportar Usuários</message>
