@@ -214,14 +214,14 @@ class ImportOCS1 {
 			$conference->setEnabled(true);
 			$this->conferenceId = $conferenceDao->insertConference($conference);
 			$conferenceDao->resequenceConferences();
-			$conference->updateSetting('title', array(Locale::getLocale() => $this->globalConfigInfo['name']), true);
+			$conference->updateSetting('title', array(Locale::getLocale() => $this->globalConfigInfo['name']), null, true);
 
 			$this->conferenceIsNew = true;
 		} else {
 			if ($this->hasOption('verbose')) {
 				printf("Using existing conference\n");
 			}
-			$conference->updateSetting('title', array(Locale::getLocale() => $this->globalConfigInfo['name']), true);
+			$conference->updateSetting('title', array(Locale::getLocale() => $this->globalConfigInfo['name']), null, true);
 			$this->conferenceId = $conference->getConferenceId();
 			$this->conferenceIsNew = false;
 		}
@@ -354,7 +354,7 @@ class ImportOCS1 {
 				$fee = $fees[$key];
 				$registrationType =& new RegistrationType();
 				$registrationType->setSchedConfId($schedConf->getSchedConfId());
-				$registrationType->setTypeName($level);
+				$registrationType->setName($level, Locale::getLocale());
 				$registrationType->setCost($fee);
 				$registrationType->setCurrencyCodeAlpha('USD'); // FIXME?
 				$registrationType->setOpeningDate(Core::cleanVar($conferenceInfo['accept_deadline']));
@@ -373,7 +373,7 @@ class ImportOCS1 {
 				$fee = $feesLate[$key];
 				$registrationType =& new RegistrationType();
 				$registrationType->setSchedConfId($schedConf->getSchedConfId());
-				$registrationType->setTypeName($level . ' (Late)');
+				$registrationType->setName($level . ' (Late)', Locale::getLocale());
 				$registrationType->setCost($fee);
 				$registrationType->setCurrencyCodeAlpha('USD'); // FIXME?
 				$registrationType->setOpeningDate($lateDate);
@@ -711,7 +711,7 @@ class ImportOCS1 {
 			$paper->setTrackId($newTrackId);
 			$paper->setTitle(Core::cleanVar($row['title']), Locale::getLocale());
 			$paper->setAbstract(Core::cleanVar($row['abstract']), Locale::getLocale());
-			$paper->setDiscipline(Core::cleanVar($row['discipline'], Locale::getLocale()));
+			$paper->setDiscipline(Core::cleanVar($row['discipline']), Locale::getLocale());
 			$paper->setSponsor(Core::cleanVar($row['sponsor']), Locale::getLocale());
 			$paper->setSubject(Core::cleanVar($row['topic']), Locale::getLocale());
 			$paper->setLanguage(Core::cleanVar($row['language']));
@@ -719,7 +719,7 @@ class ImportOCS1 {
 			$paper->setDateSubmitted($row['created']);
 			$paper->setDateStatusModified($row['timestamp']);
 
-			$paper->setPaperType($row['present_format'] == 'multiple' ? SUBMISSION_TYPE_PANEL : SUBMISSION_TYPE_SINGLE);
+			$paper->setTypeConst($row['present_format'] == 'multiple' ? SUBMISSION_TYPE_PANEL : SUBMISSION_TYPE_SINGLE);
 			$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
 			$paper->setSubmissionProgress(0);
 			$paper->setPages('');
@@ -739,7 +739,7 @@ class ImportOCS1 {
 				$presenter->setFirstName($firstNames[$key]);
 				$presenter->setLastName($lastNames[$key]);
 				$presenter->setAffiliation($affiliations[$key]);
-				$presenter->setUrl($urls[$key]);
+				@$presenter->setUrl($urls[$key]); // Suppress warnings from inconsistent OCS 1.x data
 				$presenter->setPrimaryContact($key == 0 ? 1 : 0);
 
 				$paper->addPresenter($presenter);
