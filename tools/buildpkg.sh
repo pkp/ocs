@@ -90,7 +90,7 @@ fi
 cd ..
 
 echo -n "Building doxygen documentation... "
-doxygen docs/dev/ojs2.doxygen > /dev/null && cd docs/doxygen && tar czf ../../${BUILD}-doxygen.tar.gz html latex && cd ../..
+doxygen docs/dev/ocs2.doxygen > /dev/null && cd docs/doxygen && tar czf ../../${BUILD}-doxygen.tar.gz html latex && cd ../..
 
 echo "Done"
 
