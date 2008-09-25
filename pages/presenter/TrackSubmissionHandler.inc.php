@@ -370,6 +370,19 @@ class TrackSubmissionHandler extends PresenterHandler {
 			}
 		}
 
+		if ($isValid) {
+			// The user may be coming in on an old URL e.g. from the submission
+			// ack email. If OCS is awaiting the completion of the submission,
+			// send them to the submit page.
+			if ($presenterSubmission->getSubmissionProgress() != 0) {
+				Request::redirect(
+					null, null, null, 'submit',
+					array($presenterSubmission->getSubmissionProgress()),
+					array('paperId' => $presenterSubmission->getPaperId())
+				);
+			}
+		}
+
 		if ($isValid && $requiresEditAccess) {
 			if (!PresenterAction::mayEditPaper($presenterSubmission)) $isValid = false;
 		}
