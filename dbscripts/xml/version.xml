@@ -25,11 +25,12 @@
 
 <version>
 	<application>ocs2</application>
-	<release>2.1.1.0</release>
-	<tag>ocs-2_1_1-0</tag>
-	<date>2008-09-24</date>
+	<release>2.1.1.1</release>
+	<tag>ocs-2_1_1-1</tag>
+	<date>2008-09-25</date>
 	<info>http://pkp.sfu.ca/ocs/</info>
 	<package>http://pkp.sfu.ca/ocs/download/ocs-2.1.1.tar.gz</package>
-	<patch from="2.0.0.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.0.0-1_to_2.1.1.patch.gz</patch><!-- OCS 2.0.0.1 is marked in DB as 2.0.0.0. -->
-	<patch from="2.1.0.1">http://pkp.sfu.ca/ocs/download/patch/ocs-2.1.0-1_to_2.1.1.patch.gz</patch>
+	<patch from="2.0.0.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.0.0-1_to_2.1.1-1.patch.gz</patch><!-- OCS 2.0.0.1 is marked in DB as 2.0.0.0. -->
+	<patch from="2.1.0.1">http://pkp.sfu.ca/ocs/download/patch/ocs-2.1.0-1_to_2.1.1-1.patch.gz</patch>
+	<patch from="2.1.1.0">http://pkp.sfu.ca/ocs/download/patch/ocs-2.1.1_to_2.1.1-1.patch.gz</patch>
 </version>
