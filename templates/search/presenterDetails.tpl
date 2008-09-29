@@ -11,7 +11,7 @@
 {assign var="pageTitle" value="search.presenterDetails"}
 {include file="common/header.tpl"}
 
-<h3>{$lastName|escape}, {$firstName|escape}{if $middleName} {$middleName|escape}{/if}{if $affiliation} {$affiliation|escape}{/if}</h3>
+<h3>{$lastName|escape}, {$firstName|escape}{if $middleName} {$middleName|escape}{/if}{if $affiliation}, {$affiliation|escape}{/if}{if $country}, {$country|escape}{/if}</h3>
 <ul>
 {foreach from=$publishedPapers item=paper}
 	{assign var=schedConfId value=$paper->getSchedConfId()}

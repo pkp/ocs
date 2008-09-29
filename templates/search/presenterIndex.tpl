@@ -24,10 +24,26 @@
 		<h3>{$firstLetter|escape}</h3>
 	{/if}
 
-	<a href="{url op="presenters" path="view" firstName=$presenter->getFirstName() middleName=$presenter->getMiddleName() lastName=$presenter->getLastName() affiliation=$presenter->getAffiliation() country=$presenter->getCountry()}">
-		{$presenter->getLastName(true)|escape},
-		{$presenter->getFirstName()|escape}{if $presenter->getMiddleName()} {$presenter->getMiddleName()|escape}{/if}{if $presenter->getAffiliation()}, {$presenter->getAffiliation()|escape}{/if}
-	</a>
+	{assign var=lastPresenterName value=$presenterName}
+	{assign var=lastPresenterCountry value=$presenterCountry}
+
+	{assign var=presenterAffiliation value=$presenter->getAffiliation()}
+	{assign var=presenterCountry value=$presenter->getCountry()}
+
+	{assign var=presenterFirstName value=$presenter->getFirstName()}
+	{assign var=presenterMiddleName value=$presenter->getMiddleName()}
+	{assign var=presenterLastName value=$presenter->getLastName()}
+	{assign var=presenterName value="$presenterLastName, $presenterFirstName"}
+
+	{if $presenterMiddleName != ''}{assign var=presenterName value="$presenterName $presenterMiddleName"}{/if}
+	{strip}
+		<a href="{url op="presenters" path="view" firstName=$presenterFirstName middleName=$presenterMiddleName lastName=$presenterLastName affiliation=$presenterAffiliation country=$presenterCountry}">{$presenterName|escape}</a>
+		{if $presenterAffiliation}, {$presenterAffiliation|escape}{/if}
+		{if $lastPresenterName == $presenterName && $lastPresenterCountry != $presenterCountry}
+			{* Disambiguate with country if necessary (i.e. if names are the same otherwise) *}
+			{if $presenterCountry} ({$presenter->getCountryLocalized()}){/if}
+		{/if}
+	{/strip}
 	<br/>
 {/iterate}
 {if !$presenters->wasEmpty()}

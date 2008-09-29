@@ -10,13 +10,11 @@
  * @ingroup pages_search
  *
  * @brief Handle site index requests. 
- *
  */
 
-// $Id$
+//$Id$
 
 import('search.PaperSearch');
-import('core.Handler');
 
 class SearchHandler extends Handler {
 
@@ -129,6 +127,11 @@ class SearchHandler extends Handler {
 			$templateMgr->assign('middleName', $middleName);
 			$templateMgr->assign('lastName', $lastName);
 			$templateMgr->assign('affiliation', $affiliation);
+
+			$countryDao =& DAORegistry::getDAO('CountryDAO');
+			$country =& $countryDao->getCountry($country);
+			$templateMgr->assign('country', $country);
+
 			$templateMgr->display('search/presenterDetails.tpl');
 		} else {
 			// Show the presenter index
@@ -195,7 +198,6 @@ class SearchHandler extends Handler {
 
 		$totalResults = count($paperIds);
 		$paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
-		import('core.VirtualArrayIterator');
 		$results = &new VirtualArrayIterator(PaperSearch::formatResults($paperIds), $totalResults, $rangeInfo->getPage(), $rangeInfo->getCount());
 
 		$templateMgr = &TemplateManager::getManager();
