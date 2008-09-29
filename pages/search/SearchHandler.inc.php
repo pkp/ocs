@@ -129,6 +129,11 @@ class SearchHandler extends Handler {
 			$templateMgr->assign('middleName', $middleName);
 			$templateMgr->assign('lastName', $lastName);
 			$templateMgr->assign('affiliation', $affiliation);
+
+			$countryDao =& DAORegistry::getDAO('CountryDAO');
+			$country =& $countryDao->getCountry($country);
+			$templateMgr->assign('country', $country);
+
 			$templateMgr->display('search/presenterDetails.tpl');
 		} else {
 			// Show the presenter index
