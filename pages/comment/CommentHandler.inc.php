@@ -162,6 +162,7 @@ class CommentHandler extends Handler {
 	}
 
 	function setupTemplate($paper, $galleyId, $comment = null) {
+		parent::setupTemplate();
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 

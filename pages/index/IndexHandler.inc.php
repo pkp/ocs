@@ -26,6 +26,7 @@ class IndexHandler extends Handler {
 	 */
 	function index($args) {
 		list($conference, $schedConf) = parent::validate(false, false);
+		parent::setupTemplate();
 
 		if ($schedConf && $conference) {
 

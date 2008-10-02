@@ -228,9 +228,11 @@ class UserHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate($subclass = false) {
+		parent::setupTemplate();
+
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$pageHierarchy = array();
 

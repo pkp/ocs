@@ -30,6 +30,7 @@ class PaperHandler extends Handler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
 		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
+		PaperHandler::setupTemplate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
@@ -64,6 +65,7 @@ class PaperHandler extends Handler {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
+		PaperHandler::setupTemplate();
 
 		if (!$galley) {
 			$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
@@ -86,6 +88,7 @@ class PaperHandler extends Handler {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
+		PaperHandler::setupTemplate();
 
 		if (!$galley) {
 			$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
@@ -108,6 +111,7 @@ class PaperHandler extends Handler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
 		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
+		PaperHandler::setupTemplate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
@@ -211,6 +215,7 @@ class PaperHandler extends Handler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
 		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
+		PaperHandler::setupTemplate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
@@ -278,6 +283,7 @@ class PaperHandler extends Handler {
 		$fileId = isset($args[2]) ? (int) $args[2] : 0;
 
 		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
+		PaperHandler::setupTemplate();
 
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 		$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
@@ -304,6 +310,7 @@ class PaperHandler extends Handler {
 	function download($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int)$args[1] : 0;
+
 		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId, $galleyId);
 
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
@@ -320,6 +327,7 @@ class PaperHandler extends Handler {
 	function downloadSuppFile($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$suppId = isset($args[1]) ? $args[1] : 0;
+
 		list($conference, $schedConf, $paper) = PaperHandler::validate($paperId);
 
 		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
@@ -344,7 +352,6 @@ class PaperHandler extends Handler {
 	 * Validation
 	 */
 	function validate($paperId, $galleyId = null) {
-
 		list($conference, $schedConf) = parent::validate(true, true);
 
 		$conferenceId = $conference->getConferenceId();
@@ -396,6 +403,11 @@ class PaperHandler extends Handler {
 			Request::redirect(null, null, 'index');
 		}
 		return array($conference, $schedConf, $paper);
+	}
+
+	function setupTemplate() {
+		parent::setupTemplate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER));
 	}
 }
 

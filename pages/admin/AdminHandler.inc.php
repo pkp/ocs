@@ -48,6 +48,8 @@ class AdminHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate($subclass = false) {
+		parent::setupTemplate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_ADMIN));
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy',
 			$subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, ROLE_PATH_SITE_ADMIN), 'admin.siteAdmin'))

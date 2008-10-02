@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/ca_ES/director.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ca_ES (Català (Espanya)) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="ca_ES" full_name = "Català (Espanya)">
+	<message key="director.home">Director</message>
+	<message key="director.submissionQueue">Cua de trameses</message>
+	<message key="director.submissionArchive">Arxiu de trameses</message>
+	<message key="director.allTracks">Tots los passos</message>
+	<message key="director.submissionQueue.noSubmissions">No hi ha originals a la cua.</message>
+	<message key="director.submissionQueue.saveChanges">Desa els canvis als originals en cua?</message>
+	<message key="director.submissionArchive.noSubmissions">No hi ha originals a l'arxiu.</message>
+	<message key="director.submissionArchive.saveChanges">Desa els canvis de les trameses arxivades? Les trameses marcades per a ser eliminades s'esborraran permanentment del sistema.</message>
+	<message key="director.submissionArchive.confirmDelete">Està segur que vol esborrar permanentment aquesta tramesa?</message>
+	<message key="director.submissionReview.confirmDecision">Està segur que vol mantenir aquesta decisió?</message>
+	<message key="director.submissionReview.confirmToLayout">S'ha comunicat a l'autor aquesta decisió? Si no, premi Cancel·la i utilitzi l'eina Notifica a l'autor abans de donar-li format al treball .</message>
+	<message key="director.submissionReview.confirmToArchive">S'ha comunicat a l'autor aquesta decisió? Si no, premi Cancel·la i utilitzi l'eina Notifica a l'autor abans d'arxivar el treball.</message>
+	<message key="director.submissionReview.notes">El termini indica el nombre de setmanes donat per a la revisió o (-) les setmanes de demora. S'emplena quan un revisor accepta fer la revisió.</message>
+	<message key="director.notifyUsers">Notifica als Usuaris</message>
+	<message key="director.notifyUsers.allUsers">Envia aquest missatge a tots els usuaris subscrits a aquesta conferència {$count} users)</message>
+	<message key="director.notifyUsers.interestedUsers">Envia aquest missatge a tots els usuaris subscrits a aquesta conferència que desitgin rebre actualitzacions  ({$count} users)</message>
+	<message key="director.notifyUsers.includeToc">Inclou en la conferència les següents presentacions:</message>
+	<message key="director.navigation.management">Gestión</message>
+	<message key="director.paper.sendToArchive">Desa aquesta tramesa</message>
+	<message key="director.paper.designateReviewVersion">Designar al fitxer original Versió Revisada</message>
+	<message key="director.paper.uploadReviewVersion">Dipositar la versió corregida que serà la Versió Revisada</message>
+	<message key="director.paper.uploadDirectorVersion">Actualitza Director de la Versió</message>
+	<message key="director.paper.stageDisabled">No és possible fer aquesta revisió. El resum no està complet o l'autor encara no ha dipositat el treball per a revisió.</message>
+	<message key="director.paper.showSuppFile">lliura l'arxiu als revisors </message>
+	<message key="director.paper.clear">Neteja</message>
+	<message key="director.paper.clearReviewer">Neteja Revisor</message>
+	<message key="director.paper.changeTrack">Canvia Secció</message>
+	<message key="director.paper.setDueDate">Fixar data de venciment</message>
+	<message key="director.paper.addReviewer">Afegir Revisor</message>
+	<message key="director.paper.toReviewer">Per al Revisor</message>
+	<message key="director.paper.notifyReviewer">Notifica al Revisor</message>
+	<message key="director.paper.initiateReview">Inicia la Revisió</message>
+	<message key="director.paper.cancelReview">Cancel·la la sol·licitud de Revisió</message>
+	<message key="director.paper.clearReview">Neteja Revisió</message>
+	<message key="director.paper.enterRecommendation">Introdueix la Recomanació</message>
+	<message key="director.paper.enterReviewerRecommendation">Introdueix la recomanació del revisor</message>
+	<message key="director.paper.recommendation">Recomanació</message>
+	<message key="director.paper.selectReviewer">Selecciona el revisor</message>
+	<message key="director.paper.replaceReviewer">Reemplaça el revisor</message>
+	<message key="director.paper.directorToEnter">El Director que fa alguna recomanació o comentari al revisor</message>
+	<message key="director.paper.uploadReviewForReviewer">Diposita la revisió</message>
+	<message key="director.paper.peerReviewOptions">Opcions de la revisió</message>
+	<message key="director.paper.decision">Decisió</message>
+	<message key="director.paper.recordDecision">Desa la decisió</message>
+	<message key="director.paper.cannotRecord">No es pot desar la decisió sobre el treball; el director d'aquesta secció encara no ha informat o no s'ha dipositat cap fitxer de revisió.</message>
+	<message key="director.paper.cannotRecordYet">Abans que es pugui guardar una decisió, l'enviament ha d'assignar-se a un director de secció. La versió de la revisió, per defecte, es converteix en la versió del Director.</message>
+	<message key="director.paper.cannotRecordTooLate">El treball ja ha s'ha avaluat. Ja no es pot canviar la decisió sobre el mateix.</message>
+	<message key="director.paper.designateDueDate">Dona un termini</message>
+	<message key="director.paper.todaysDate">La data d'avui</message>
+	<message key="director.paper.requestedByDate">Data de revisió</message>
+	<message key="director.paper.dueDateFormat">Format: YYYY-MM-DD</message>
+	<message key="director.paper.numberOfWeeks">Nombre de setmanes</message>
+	<message key="director.paper.showPresenter">Permet a l'autor visualitzar l'arxiu</message>
+	<message key="director.paper.rateReviewer">Puntuació del revisor</message>
+	<message key="director.paper.reviewerRating.veryGood">5 Alta</message>
+	<message key="director.paper.reviewerRating.good">4 Bona</message>
+	<message key="director.paper.reviewerRating.average">3 Mitjana</message>
+	<message key="director.paper.reviewerRating.poor">2 Baixa</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 Molt Baixa</message>
+	<message key="director.paper.quality">Puntuació</message>
+	<message key="director.paper.comments">Comentaris</message>
+	<message key="director.paper.commentsRequired">Empleni el camp de comentaris.</message>
+	<message key="director.paper.archiveSubmission">Arxiva tramesa</message>
+	<message key="director.paper.restoreToQueue">Restableix Activa llista</message>
+	<message key="director.paper.assignTrackDirector">Afegeix director de secció</message>
+	<message key="director.paper.assignDirector">Afegeix director</message>
+	<message key="director.paper.selectDirector">Selecciona {$roleName}</message>
+	<message key="director.paper.selectDecision">Selecciona  decisió</message>
+	<message key="director.paper.decision.invitePresentation">Demana que es faci una presentació</message>
+	<message key="director.paper.decision.accept">Accepta la tramesa</message>
+	<message key="director.paper.decision.pendingRevisions">Cal una revisió</message>
+	<message key="director.paper.decision.decline">Declinar la tramesa</message>
+	<message key="director.paper.moveToLayout">Anar a maquetació</message>
+	<message key="director.paper.createGalley">Aquest arxiu  està preparat per a la seva publicació.</message>
+	<message key="director.paper.completeReview">Marca revisió completada</message>
+	<message key="director.paper.scheduleSubmission">Envia</message>
+	<message key="director.submissions.showBy">Mostra per</message>
+	<message key="director.submissions.submitMMDD">Envia MM-DD</message>
+	<message key="director.submissions.activeAssignments">Activa assignació</message>
+	<message key="director.submissions.invite">Invita</message>
+	<message key="director.submissions.accept">Accepta</message>
+	<message key="director.submissions.noSubmissions">No hi ha trameses</message>
+	<message key="director.submissions.lastAssigned">Com més tard</message>
+	<message key="director.submissions.averageTime">Setmanes</message>
+	<message key="director.submissions.lastCompleted">Resolt l'últim</message>
+</locale>

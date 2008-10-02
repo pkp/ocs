@@ -253,6 +253,9 @@ class RTAdminHandler extends Handler {
 	 * @param $search object The current search, if applicable
 	 */
 	function setupTemplate($subclass = false, $version = null, $context = null, $search = null) {
+		parent::setupTemplate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER));
+
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		$templateMgr = &TemplateManager::getManager();

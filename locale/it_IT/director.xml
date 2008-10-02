@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/it_IT/director.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the it_IT (Italiano) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="it_IT" full_name = "Italiano">
+	<message key="director.home">Home del Direttore</message>
+	<message key="director.submissionQueue">Coda delle submission</message>
+	<message key="director.submissionArchive">Archivio delle submission</message>
+	<message key="director.allTracks">Tutte le sessioni</message>
+	<message key="director.submissionQueue.noSubmissions">Nessuna coda delle submission.</message>
+	<message key="director.submissionQueue.saveChanges">Salvare le modifiche alle submission in coda?</message>
+	<message key="director.submissionArchive.noSubmissions">Nessuna submission nell'archivio.</message>
+	<message key="director.submissionArchive.saveChanges">Salva le modifiche effettuate nell'archivio delle submission? Le submission che avete selezionato per la rimozione saranno definitivamente cancellate dal sistema.</message>
+	<message key="director.submissionArchive.confirmDelete">Sei sicuro di voler cancellare definitivamente questa submission?</message>
+	<message key="director.submissionReview.confirmDecision">Sei sicuro di voler registrare questa decisione?</message>
+	<message key="director.submissionReview.confirmToLayout">Hai notificato l'autore di questa decisione? Se non l'avessi fatto clicca su 'Cancella' e usa lo strumento 'Notifica l'autore' prima di spostare la submission in layout.</message>
+	<message key="director.submissionReview.confirmToArchive">Hai notificato l'autore di questa decisione? Se non l'avessi fatto clicca su 'Cancella' e usa lo strumento 'Notifica l'autore' prima di spostare la submission in archivio.</message>
+	<message key="director.submissionReview.notes">Scadenza indica il numero di settimane restanti fino alla data di scadenza della revisione o (-) le settimane di ritardo. &#x00C8; compilata quando un revisore accetta la richiesta di revisione.</message>
+	<message key="director.notifyUsers">Notifica utenti</message>
+	<message key="director.notifyUsers.allUsers">Invia un messaggio a tutti gli utenti del convegno ({$count} utenti)</message>
+	<message key="director.notifyUsers.interestedUsers">Invia questo messaggio agli utenti del convegno che hanno indicato di voler ricevere gli aggiornamenti ({$count} utenti)</message>
+	<message key="director.notifyUsers.includeToc">Inserisci la presentazione per questo convegno:</message>
+	<message key="director.notifyUsers.allReaders">Tutti gli utenti ({$count} lettori)</message>
+	<message key="director.notifyUsers.allPresenters">Tutti gli utenti ({$count} relatori)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">Tutti gli utenti ({$count} registrati che hanno pagato)</message>
+	<message key="director.notifyUsers.allRegistrants">Tutti gli utenti ({$count} registrati)</message>
+	<message key="director.navigation.management">Gestione</message>
+	<message key="director.paper.sendToArchive">Archivia questa submission</message>
+	<message key="director.paper.designateReviewVersion">Indica il file originale come versione di revisione</message>
+	<message key="director.paper.uploadReviewVersion">Carica un file revisionato che serva come versione di revisione</message>
+	<message key="director.paper.uploadDirectorVersion">Carica le versione del Direttore</message>
+	<message key="director.paper.stageDisabled">Non &#x00E8; ancora possibile terminare questa revisione. O la revisione dell'abstract non &#x00E8; ancora completata, o l'autore non ha ancora fornito una relazione per la revisione.</message>
+	<message key="director.paper.showSuppFile">Presenta il file ai revisori</message>
+	<message key="director.paper.clear">Rimuovi</message>
+	<message key="director.paper.clearReviewer">Rimuovi il revisore</message>
+	<message key="director.paper.changeTrack">Cambia sessione</message>
+	<message key="director.paper.setDueDate">Imposta la data di scadenza</message>
+	<message key="director.paper.addReviewer">Aggiungi un revisore</message>
+	<message key="director.paper.toReviewer">Al revisore</message>
+	<message key="director.paper.notifyReviewer">Notifica il revisore</message>
+	<message key="director.paper.initiateReview">Inizia la revisione</message>
+	<message key="director.paper.cancelReview">Cancella la richiesta di revisione</message>
+	<message key="director.paper.clearReview">Rimuovi il revisore</message>
+	<message key="director.paper.enterRecommendation">Inserisci una raccomandazione</message>
+	<message key="director.paper.enterReviewerRecommendation">Inserisci una raccomandazione del revisore</message>
+	<message key="director.paper.recommendation">Raccomandazione</message>
+	<message key="director.paper.selectReviewer">Seleziona il revisore</message>
+	<message key="director.paper.replaceReviewer">Sostituisci il revisore</message>
+	<message key="director.paper.directorToEnter">Direttore per le segnalazioni e i commenti ai revisori</message>
+	<message key="director.paper.uploadReviewForReviewer">Carica la revisione</message>
+	<message key="director.paper.peerReviewOptions">Opzioni di peer review</message>
+	<message key="director.paper.decision">Decisione</message>
+	<message key="director.paper.recordDecision">Registra la revisione</message>
+	<message key="director.paper.cannotRecord">Impossibile registrare una revisione; non &#x00E8; ancora registrato un direttore di sessione oppure non &#x00E8; stato caricato nessun file di revisione.</message>
+	<message key="director.paper.cannotRecordYet">Prima che la decisione sia registrata, una submission deve essere assegnata a un direttore di sessione. La versione della revisione diventa, di default, la versione del direttore.</message>
+	<message key="director.paper.cannotRecordTooLate">La submission ha gi&#x00E0; completato questa fase di revisione. Non puoi pi&#x00F9; cambiare questa decisione.</message>
+	<message key="director.paper.designateDueDate">Imposta una data di scadenza</message>
+	<message key="director.paper.designateDueDateDescription">Per cambiare la data di scadenza per questo revisore, inserisci un'altra data o cancella la data e inserisci il numero di settimane fino alla scadenza della revisione.</message>
+	<message key="director.paper.todaysDate">Data attuale</message>
+	<message key="director.paper.requestedByDate">Richiesta per la data</message>
+	<message key="director.paper.dueDateFormat">Formato: AAAA-MM-GG</message>
+	<message key="director.paper.numberOfWeeks">Numero di settimane</message>
+	<message key="director.paper.showPresenter">Permetti agli autori di vedere i file</message>
+	<message key="director.paper.rateReviewer">Vota il revisore</message>
+	<message key="director.paper.reviewerRating.veryGood">5 Alto</message>
+	<message key="director.paper.reviewerRating.good">4</message>
+	<message key="director.paper.reviewerRating.average">3 Medio</message>
+	<message key="director.paper.reviewerRating.poor">2</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 Basso</message>
+	<message key="director.paper.quality">Valutazione</message>
+	<message key="director.paper.comments">Commenti</message>
+	<message key="director.paper.commentsRequired">&#x00C8; richiesto il campo dei commenti.</message>
+	<message key="director.paper.archiveSubmission">Archivia la submission</message>
+	<message key="director.paper.restoreToQueue">Ripristina nella lista attiva</message>
+	<message key="director.paper.assignTrackDirector">Aggiungi un direttore della sessione</message>
+	<message key="director.paper.assignDirector">Aggiungi un direttore</message>
+	<message key="director.paper.selectDirector">Aggiungi il {$roleName}</message>
+	<message key="director.paper.selectDecision">Seleziona la decisione</message>
+	<message key="director.paper.decision.invitePresentation">Invita la presentazione</message>
+	<message key="director.paper.decision.accept">Accetta le submission</message>
+	<message key="director.paper.decision.pendingRevisions">Revisioni richieste</message>
+	<message key="director.paper.decision.decline">Rifiuta la submission</message>
+	<message key="director.paper.moveToLayout">Sposta in Layout</message>
+	<message key="director.paper.createGalley">Questo file &#x00E8; pronto per la pubblicazione.</message>
+	<message key="director.paper.completeReview">Contrassegna la revisione come completata</message>
+	<message key="director.paper.scheduleSubmission">Invia</message>
+	<message key="director.submissions.showBy">Mostra per il</message>
+	<message key="director.submissions.submitMMDD">Invia MM-GG</message>
+	<message key="director.submissions.activeAssignments">Incarichi attivi</message>
+	<message key="director.submissions.invite">Invita</message>
+	<message key="director.submissions.accept">Accetta</message>
+	<message key="director.submissions.noSubmissions">Nessuna submission</message>
+	<message key="director.submissions.lastAssigned">Pi&#x00F9; recente</message>
+	<message key="director.submissions.averageTime">Settimane</message>
+	<message key="director.submissions.lastCompleted">Ultimo completato</message>
+</locale>

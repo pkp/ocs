@@ -25,13 +25,12 @@ class AboutHandler extends Handler {
 	 */
 	function index() {
 		parent::validate();
-
-		$templateMgr = &TemplateManager::getManager();
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$conferencePath = Request::getRequestedConferencePath();
-
 		AboutHandler::setupTemplate(false);
+
+		$templateMgr =& TemplateManager::getManager();
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$conferencePath = Request::getRequestedConferencePath();
 
 		if ($conferencePath != 'index' && $conferenceDao->conferenceExistsByPath($conferencePath)) {
 			$schedConf =& Request::getSchedConf();
@@ -78,7 +77,7 @@ class AboutHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate($subclass = true) {
-		parent::validate();
+		parent::setupTemplate();
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
@@ -98,14 +97,13 @@ class AboutHandler extends Handler {
 	 */
 	function contact() {
 		parent::validate(true);
-
 		AboutHandler::setupTemplate();
 
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		$conference =& Request::getConference();
 
 		$settings = ($schedConf? $schedConf->getSettings():$conference->getSettings());
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign_by_ref('conferenceSettings', $settings);
 		$templateMgr->display('about/contact.tpl');
@@ -129,7 +127,7 @@ class AboutHandler extends Handler {
 		else
 			$settings =& $conference->getSettings();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
@@ -211,12 +209,11 @@ class AboutHandler extends Handler {
 	 */
 	function organizingTeamBio($args) {
 		list($conference, $schedConf) = parent::validate(true);
-
 		AboutHandler::setupTemplate();
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$userId = isset($args[0])?(int)$args[0]:0;
 
@@ -243,7 +240,7 @@ class AboutHandler extends Handler {
 					$user =& $potentialUser;
 			}
 
-			$trackDirectors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getConferenceId());
+			$trackDirectors =& $roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getConferenceId());
 			while ($potentialUser =& $trackDirectors->next()) {
 				if ($potentialUser->getUserId() == $userId)
 					$user =& $potentialUser;
@@ -283,14 +280,13 @@ class AboutHandler extends Handler {
 	 */
 	function editorialPolicies() {
 		parent::validate(true);
-
 		AboutHandler::setupTemplate();
 
-		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
-		$schedConf = &Request::getSchedConf();
+		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
+		$schedConf =& Request::getSchedConf();
 		$conference =& Request::getConference();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$settings = ($schedConf? $schedConf->getSettings(): $conference->getSettings());
 		$templateMgr->assign('conferenceSettings', $settings);
 
@@ -302,26 +298,25 @@ class AboutHandler extends Handler {
 	 */
 	function registration() {
 		parent::validate(true);
-
 		AboutHandler::setupTemplate();
 
-		$conferenceDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
-		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
+		$conferenceDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 
-		$schedConf = &Request::getSchedConf();
-		$conference = &Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		$conference =& Request::getConference();
 
 		if (!$schedConf || !$conference) Request::redirect(null, null, 'about');
 
-		$registrationName = &$schedConf->getSetting('registrationName');
-		$registrationEmail = &$schedConf->getSetting('registrationEmail');
-		$registrationPhone = &$schedConf->getSetting('registrationPhone');
-		$registrationFax = &$schedConf->getSetting('registrationFax');
-		$registrationMailingAddress = &$schedConf->getSetting('registrationMailingAddress');
-		$registrationAdditionalInformation = &$schedConf->getLocalizedSetting('registrationAdditionalInformation');
-		$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
+		$registrationName =& $schedConf->getSetting('registrationName');
+		$registrationEmail =& $schedConf->getSetting('registrationEmail');
+		$registrationPhone =& $schedConf->getSetting('registrationPhone');
+		$registrationFax =& $schedConf->getSetting('registrationFax');
+		$registrationMailingAddress =& $schedConf->getSetting('registrationMailingAddress');
+		$registrationAdditionalInformation =& $schedConf->getLocalizedSetting('registrationAdditionalInformation');
+		$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('registrationName', $registrationName);
 		$templateMgr->assign('registrationEmail', $registrationEmail);
 		$templateMgr->assign('registrationPhone', $registrationPhone);
@@ -337,15 +332,14 @@ class AboutHandler extends Handler {
 	 */
 	function submissions() {
 		parent::validate(true);
-
 		AboutHandler::setupTemplate();
 
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$settings = ($schedConf? $schedConf->getSettings():$conference->getSettings());
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$submissionChecklist = $schedConf?$schedConf->getLocalizedSetting('submissionChecklist'):null;
 		if (!empty($submissionChecklist)) {
 			ksort($submissionChecklist);
@@ -362,28 +356,26 @@ class AboutHandler extends Handler {
 	 */
 	function siteMap() {
 		parent::validate();
-
 		AboutHandler::setupTemplate();
-		$templateMgr = &TemplateManager::getManager();
 
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-
-		$user = &Request::getUser();
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$templateMgr =& TemplateManager::getManager();
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$user =& Request::getUser();
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		if ($user) {
 			$rolesByConference = array();
-			$conferences = &$conferenceDao->getEnabledConferences();
+			$conferences =& $conferenceDao->getEnabledConferences();
 			// Fetch the user's roles for each conference
 			foreach ($conferences->toArray() as $conference) {
-				$roles = &$roleDao->getRolesByUserId($user->getUserId(), $conference->getConferenceId());
+				$roles =& $roleDao->getRolesByUserId($user->getUserId(), $conference->getConferenceId());
 				if (!empty($roles)) {
 					$rolesByConference[$conference->getConferenceId()] = &$roles;
 				}
 			}
 		}
 
-		$conferences = &$conferenceDao->getEnabledConferences();
+		$conferences =& $conferenceDao->getEnabledConferences();
 		$templateMgr->assign_by_ref('conferences', $conferences->toArray());
 		if (isset($rolesByConference)) {
 			$templateMgr->assign_by_ref('rolesByConference', $rolesByConference);
@@ -400,13 +392,12 @@ class AboutHandler extends Handler {
 	 */
 	function aboutThisPublishingSystem() {
 		parent::validate();
-
 		AboutHandler::setupTemplate();
 
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('ocsVersion', $version->getVersionString());
 
 		foreach (array(Locale::getLocale(), $primaryLocale = Locale::getPrimaryLocale(), 'en_US') as $locale) {

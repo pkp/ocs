@@ -25,6 +25,7 @@ class PaymentHandler extends Handler {
 	 */
 	function plugin($args) {
 		list($conference, $schedConf) = PaymentHandler::validate();
+		PaymentHandler::setupTemplate();
 		$paymentMethodPlugins =& PluginRegistry::loadCategory('paymethod');
 		$paymentMethodPluginName = array_shift($args);
 		if (empty($paymentMethodPluginName) || !isset($paymentMethodPlugins[$paymentMethodPluginName])) {

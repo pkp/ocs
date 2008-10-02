@@ -25,6 +25,7 @@ class SchedConfsHandler extends Handler {
 	 */
 	function current($args) {
 		list($conference, $schedConf) = parent::validate(true, false);
+		SchedConfsHandler::setupTemplate();
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -53,6 +54,7 @@ class SchedConfsHandler extends Handler {
 	 */
 	function archive($args) {
 		list($conference, $schedConf) = parent::validate(true, false);
+		SchedConfsHandler::setupTemplate();
 
 		$templateMgr = &TemplateManager::getManager();
 

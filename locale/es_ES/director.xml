@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/es_ES/director.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the es_ES (España Castellano) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="es_ES" full_name = "España Castellano">
+	<message key="director.home">Director</message>
+	<message key="director.submissionQueue">Cola de envíos</message>
+	<message key="director.submissionArchive">Archivo de envíos</message>
+	<message key="director.allTracks">Todos los pasos</message>
+	<message key="director.submissionQueue.noSubmissions">No hay originales en cola.</message>
+	<message key="director.submissionQueue.saveChanges">¿Guardar los cambios a los originales en cola?</message>
+	<message key="director.submissionArchive.noSubmissions">No hay originales en el archivo.</message>
+	<message key="director.submissionArchive.saveChanges">¿Guardar los cambios de los envíos archivados? Los envíos marcados para ser eliminados se borrarán permanentemente del sistema.</message>
+	<message key="director.submissionArchive.confirmDelete">¿Está seguro de que quiere borrar permanentemente este envío?</message>
+	<message key="director.submissionReview.confirmDecision">¿Está seguro de que quiere mantener esta decisión?</message>
+	<message key="director.submissionReview.confirmToLayout">¿Se ha comunicado al autor esta decisión?  Si no, pulse Cancelar y utilice la herramienta Notificar al Autor antes de darle formato al trabajo.</message>
+	<message key="director.submissionReview.confirmToArchive">¿Se ha comunicado al autor esta decisión?  Si no, pulse Cancelar y utilice la herramienta Notificar al Autor antes de achivar el trabajo.</message>
+	<message key="director.submissionReview.notes">El plazo indica el número de semanas dado para la recensión o (-) las semanas de demora. Se rellena cuando un recensor acepta hacer la revisión.</message>
+	<message key="director.notifyUsers">Notificar a los Usuarios</message>
+	<message key="director.notifyUsers.allUsers">Enviar este mensaje a todos los usuarios suscritos a esta conferencia ({$count} users)</message>
+	<message key="director.notifyUsers.interestedUsers">Enviar este mensaje a todos los usuarios suscritos a esta conferencia que deseen recibir actualizaciones ({$count} users)</message>
+	<message key="director.notifyUsers.includeToc">Incluir en la conferencia las siguientes presentaciones:</message>
+	<message key="director.navigation.management">Gestión</message>
+	<message key="director.paper.sendToArchive">Guardar este envío</message>
+	<message key="director.paper.designateReviewVersion"> Designar al fichero original Versión Revisada</message>
+	<message key="director.paper.uploadReviewVersion">Depositar la versión corregida que será la Versión Revisada</message>
+	<message key="director.paper.uploadDirectorVersion">Actualizar Director de la Versión</message>
+	<message key="director.paper.stageDisabled">No es posible hacer esta recensión. El resumen no está completo o el autor todavía no ha depositado el trabajo para recensión.</message>
+	<message key="director.paper.showSuppFile">mandar el fichero a los revisores</message>
+	<message key="director.paper.clear">Limpiar</message>
+	<message key="director.paper.clearReviewer">Limpiar Recensor</message>
+	<message key="director.paper.changeTrack">Cambiar Sección</message>
+	<message key="director.paper.setDueDate">Fijar fecha de vencimiento</message>
+	<message key="director.paper.addReviewer">Añadir Recensor</message>
+	<message key="director.paper.toReviewer">Para el Recensor</message>
+	<message key="director.paper.notifyReviewer">Notificar al Recensor</message>
+	<message key="director.paper.initiateReview">Iniciar la Recensión</message>
+	<message key="director.paper.cancelReview">Cancelar la solicitud de Recensión</message>
+	<message key="director.paper.clearReview">Limpiar Recensor</message>
+	<message key="director.paper.enterRecommendation">Introducir la Recomendación</message>
+	<message key="director.paper.enterReviewerRecommendation">Introducir la recomendación del recensor</message>
+	<message key="director.paper.recommendation">Recomendación</message>
+	<message key="director.paper.selectReviewer">Seleccionar el recensor</message>
+	<message key="director.paper.replaceReviewer">Reemplazar el recensor</message>
+	<message key="director.paper.directorToEnter">El Director que hace alguna recomiendación o comentario al recensor</message>
+	<message key="director.paper.uploadReviewForReviewer">Depositar la recensión</message>
+	<message key="director.paper.peerReviewOptions">Opciones  de la recensión</message>
+	<message key="director.paper.decision">Decisión</message>
+	<message key="director.paper.recordDecision">Guardar Decisión</message>
+	<message key="director.paper.cannotRecord">No se puede guardar la decisión sobre el trabajo; el director de esa sección todavía no ha informado o no se ha depositado ningún fichero de recensión.</message>
+	<message key="director.paper.cannotRecordYet">Antes de que se pueda guardar una decisión, el envío debe asignarse a un director de sección. La versión de la recesión, por defecto, se convierte en la version del Director.</message>
+	<message key="director.paper.cannotRecordTooLate">El trabajo ya ha se ha evaluado. Ya no se puede cambiar la decisión sobre el mismo.</message>
+	<message key="director.paper.designateDueDate">Dar un plazo</message>
+	<message key="director.paper.designateDueDateDescription">Para cambiar la fecha asignada a este recensor, introduzca otra o borre la fecha e introduzca el número de semanas que se dan para hacer la recensión.</message>
+	<message key="director.paper.todaysDate">La fecha de hoy</message>
+	<message key="director.paper.requestedByDate">Fecha de recensión</message>
+	<message key="director.paper.dueDateFormat">Formato: YYYY-MM-DD</message>
+	<message key="director.paper.numberOfWeeks">Número de semanas</message>
+	<message key="director.paper.showPresenter">Permitir al autor visualizar el fichero</message>
+	<message key="director.paper.rateReviewer">Puntuación del recensor</message>
+	<message key="director.paper.reviewerRating.veryGood">5 Alta</message>
+	<message key="director.paper.reviewerRating.good">4 Buena</message>
+	<message key="director.paper.reviewerRating.average">3 Media</message>
+	<message key="director.paper.reviewerRating.poor">2 Baja</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 Muy Baja</message>
+	<message key="director.paper.quality">Puntuación</message>
+	<message key="director.paper.comments">Comentarios</message>
+	<message key="director.paper.commentsRequired">Rellene el campo de comentarios.</message>
+	<message key="director.paper.archiveSubmission">Archivar Envío</message>
+	<message key="director.paper.restoreToQueue">Restablecer Activar Lista</message>
+	<message key="director.paper.assignTrackDirector">Añadir directro de sección</message>
+	<message key="director.paper.assignDirector">Añadir Director</message>
+	<message key="director.paper.selectDirector">Seleccionar {$roleName}</message>
+	<message key="director.paper.selectDecision">Seleccionar  decisión</message>
+	<message key="director.paper.decision.invitePresentation">Pedir  que se haga una Presentación</message>
+	<message key="director.paper.decision.accept">Acceptar el envío</message>
+	<message key="director.paper.decision.pendingRevisions">Se precisa una revisión</message>
+	<message key="director.paper.decision.decline">Declinar el envío</message>
+	<message key="director.paper.moveToLayout">Ir a maquetación</message>
+	<message key="director.paper.createGalley">Este fichero esta preparado para su publicación.</message>
+	<message key="director.paper.completeReview">Marcar recensión completada</message>
+	<message key="director.paper.scheduleSubmission">Enviar</message>
+	<message key="director.submissions.showBy">Mostrar por</message>
+	<message key="director.submissions.submitMMDD">Enviar MM-DD</message>
+	<message key="director.submissions.activeAssignments">Activar asignación</message>
+	<message key="director.submissions.invite">Invitar</message>
+	<message key="director.submissions.accept">Acceptar</message>
+	<message key="director.submissions.noSubmissions">No hay envíos</message>
+	<message key="director.submissions.lastAssigned">Lo más tardar</message>
+	<message key="director.submissions.averageTime">Semanas</message>
+	<message key="director.submissions.lastCompleted">Resuelto el último</message>
+</locale>

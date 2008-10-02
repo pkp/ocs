@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/it_IT/presenter.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the it_IT (Italiano) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="it_IT" full_name = "Italiano">
+	<message key="presenter.submit">Nuova submission</message>
+	<message key="presenter.track">Submission attive</message>
+	<message key="presenter.submit.startHere">Comincia qui per sottoporre una relazione a questo convegno.</message>
+	<message key="presenter.submit.startHereLink">Primo passo del processo di submission</message>
+	<message key="presenter.submit.step1">Passo 1. Iniziare la submission</message>
+	<message key="presenter.submit.step2">Passo 2. Inserire i metadati della submission</message>
+	<message key="presenter.submit.step3">Passo 3. Caricare la submission</message>
+	<message key="presenter.submit.step4">Passo 4. Caricare file supplementari</message>
+	<message key="presenter.submit.step4a">Passo 4a. Aggiungi un file supplementare</message>
+	<message key="presenter.submit.step5">Passo 5. Conferma la submission</message>
+	<message key="presenter.submit.step5SkipSupp">Passo 4. Conferma la submission</message>
+	<message key="presenter.submit.start">1. Inizia</message>
+	<message key="presenter.submit.metadata">2. Inserisci i metadati</message>
+	<message key="presenter.submit.upload">3. Caricare la submission</message>
+	<message key="presenter.submit.supplementaryFiles">4. Caricare file supplementari</message>
+	<message key="presenter.submit.confirmation">5. Conferma</message>
+	<message key="presenter.submit.confirmationSkipSupp">4. Conferma</message>
+	<message key="presenter.submit.cancelSubmission">Puoi completare questa submission in data successiva selezionando le submission attive dalla homepage dell'autore.</message>
+	<message key="presenter.submit.notAcceptingYet">Questo convegno non ha ancora iniziato ad accettare submission.</message>
+	<message key="presenter.submit.notAccepting">Questa conferenza non sta accettando submission.</message>
+	<message key="presenter.submit.submissionDeadlinePassed">Le submission per questo convegno si sono chiuse il {$closedDate}.</message>
+	<message key="presenter.submit.authorRegistrationClosed">Le registrazioni di autori sono chiuse per questa conferenza.</message>
+	<message key="presenter.submissions.confirmDelete">Sei sicuro di voler cancellare questa submission incompleta?</message>
+	<message key="presenter.submissions.viewStatus">Visualizza lo stato</message>
+	<message key="presenter.submissions.noSubmissions">Nessuna submission.</message>
+	<message key="presenter.submit.howToSubmit"><![CDATA[Hai qualche difficoltà򯵒 Contatta  <a href="mailto:{$supportEmail}">{$supportName}</a> per assistenza ({$supportPhone}).]]></message>
+	<message key="presenter.submit.howToSubmitNoPhone"><![CDATA[Hai qualche difficoltà? Contatta <a href="mailto:{$supportEmail}">{$supportName}</a> per assistenza.]]></message>
+	<message key="presenter.submit.conferenceTrack">Sessione del convegno</message>
+	<message key="presenter.submit.conferenceTrackDescription"><![CDATA[Seleziona la sessione appropriata per questa submission (vedi <a href="{$aboutUrl}" target="_new">Modalit&#x00E0; della sessione</a>).]]></message>
+	<message key="presenter.submit.selectTrack">Per favore seleziona una sessione...</message>
+	<message key="presenter.submit.submissionChecklist">Lista di controllo della submission</message>
+	<message key="presenter.submit.submissionChecklistDescription">Indica che questa submission è pronta a essere considerata da questo convegno deselezionando i seguenti (commenti al direttore possono essere aggiunti sotto).</message>
+	<message key="presenter.submit.verifyChecklist">Devi essere sicuro che tutti i punti nella lista di controllo della submission siano soddisfatti prima di continuare.</message>
+	<message key="presenter.submit.copyrightNoticeAgree">Gli autori accettano i termini di questo Avviso di copyright, che si applicheranno a questa submission se e quando sarà pubblicata da questo convegno (commenti al direttore possono essere aggiunti sotto).</message>
+	<message key="presenter.submit.copyrightNoticeAgreeRequired">Devi accettare i termini di questo Avviso di copyright prima di continuare.</message>
+	<message key="presenter.submit.commentsForDirector">Commenti per il direttore del convegno</message>
+	<message key="presenter.submit.comments">Inserisci il testo (opzionale)</message>
+	<message key="presenter.submit.form.trackRequired">Per favore seleziona una sessione di convegno appropriata per questa submission.</message>
+	<message key="presenter.submit.form.abstractRequired">Inserisci per favore un abstract per la tua submission.</message>
+	<message key="presenter.submit.privacyStatement">Dichiarazione sulla privacy del convegno</message>
+	<message key="presenter.submit.reorderInstructions">Utilizza le frecce per cambiare l'ordine in cui i nomi degli autori dovranno comparire nella submission.</message>
+	<message key="presenter.submit.selectPrincipalContact">Contatto principale per corrispondenza editoriale.</message>
+	<message key="presenter.submit.addPresenter">Aggiungi autore</message>
+	<message key="presenter.submit.deletePresenter">Cancella autore</message>
+	<message key="presenter.submit.submissionIndexingDescription">Fornisci uno o più termini che descrivano il contenuto della submission. Separa i termini con un punto e virgola (termine1; termine2; termine3).</message>
+	<message key="presenter.submit.submissionSupportingAgencies">Enti finanziatori</message>
+	<message key="presenter.submit.submissionSupportingAgenciesDescription">Identifica le organizzazioni che hanno fornito fondi o supporto per il lavoro presentato in questa submission.</message>
+	<message key="presenter.submit.agencies">Organizzazioni</message>
+	<message key="presenter.submit.subjectClassInstructions">Utilizza il sistema di classificazione ipertestuale per selezionare i termini di classificazione e, se adatto, i numeri.</message>
+	<message key="presenter.submit.languageInstructions"><![CDATA[Inglese=en; Francese=fr; Spagnolo=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">Codici addizionali</a>.]]></message>
+	<message key="presenter.submit.form.presenterRequired">È richiesto almeno un autore.</message>
+	<message key="presenter.submit.form.presenterRequiredFields">Sono richiesti nome, cognome, e indirizzo email di ciascun autore.</message>
+	<message key="presenter.submit.form.titleRequired">Per favore inserisci il titolo della tua relazione.</message>
+	<message key="presenter.submit.submissionFile">File della submission</message>
+	<message key="presenter.submit.uploadSubmissionFile">carica il file della submission</message>
+	<message key="presenter.submit.replaceSubmissionFile">Sostituisci il file della submission</message>
+	<message key="presenter.submit.noSubmissionFile">Nessun file della submission caricato.</message>
+	<message key="presenter.submit.noSubmissionConfirm">Sei sicuro di voler continuare senza caricare un file della submission?</message>
+	<message key="presenter.submit.supplementaryFilesInstructions">Questo passo opzionale nel processo di submission permette agli autori di aggiungere file alla submission che aumenteranno il contributo che la submission far&#x00E0;. File supplementari potrebbero includere (a) strumenti di ricerca, (b) set di dati, i quali si accordano con i termini di revisone della ricerca, (c) risorse che altrimenti non sarebbero disponibili ai lettori, o (d) figure o tabelle che non possono essere integrate nel testo stesso. Anche questi file sono indicizzati dall'autore, identificando la loro relazione alla submission, come anche la loro propriet&#x00E0;. I file supplementari possono essere caricati in qualsiasi formato e saranno disponibili ai lettori nel loro formato originale. Possono essere condivisi con i revisori dei peer, se non compromettono la revisione anonima.</message>
+	<message key="presenter.submit.supplementaryFiles.saveToUpload">Clicca su Salva per caricare un file (dopo il quale è possibile caricare file aggiuntivi).</message>
+	<message key="presenter.submit.forgottenSubmitSuppFile">Sei sicuro di voler continuare senza caricare il file supplementare che hai scelto?</message>
+	<message key="presenter.submit.noSupplementaryFiles">Nessun file supplementare &#x00E8; stato aggiunto a questa submission.</message>
+	<message key="presenter.submit.backToSupplementaryFiles">Torna ai file supplementari</message>
+	<message key="presenter.submit.confirmDeleteSuppFile">Sei sicuro di voler cancellare questo file supplementare?</message>
+	<message key="presenter.submit.uploadSuppFile">Carica un file supplementare</message>
+	<message key="presenter.submit.addSupplementaryFile">Aggiungi un file supplementare</message>
+	<message key="presenter.submit.editSupplementaryFile">Modifica un file supplementare</message>
+	<message key="presenter.submit.supplementaryFileData">Metadati del file supplementare</message>
+	<message key="presenter.submit.supplementaryFileDataDescription">Per indicizzare questo materiale aggiuntivo, fornisci i seguenti metadati per il file supplementare caricato.</message>
+	<message key="presenter.submit.supplementaryFileUpload">File supplementare</message>
+	<message key="presenter.submit.suppFile.createrOrOwner">Creatore (o possessore) del file</message>
+	<message key="presenter.submit.suppFile.researchInstrument">Ricerca strumento</message>
+	<message key="presenter.submit.suppFile.researchMaterials">Ricerca materiali</message>
+	<message key="presenter.submit.suppFile.researchResults">Ricerca risultati</message>
+	<message key="presenter.submit.suppFile.transcripts">Trascrizioni</message>
+	<message key="presenter.submit.suppFile.dataAnalysis">Analisi dei dati</message>
+	<message key="presenter.submit.suppFile.dataSet">Set di dati</message>
+	<message key="presenter.submit.suppFile.sourceText">Testo d'origine</message>
+	<message key="presenter.submit.suppFile.briefDescription">Breve descrizione</message>
+	<message key="presenter.submit.suppFile.contributorOrSponsor">Ente contribuente o sponsorizzante</message>
+	<message key="presenter.submit.suppFile.availableToPeers">Presenta il file ai revisori (senza metadati), visto che non compromette la revisione anonima.</message>
+	<message key="presenter.submit.suppFile.publisherDescription">Usa solamente con materiali pubblicati formalmente.</message>
+	<message key="presenter.submit.suppFile.dateDescription">Data di quando i dati sono stati raccolti o di quando lo strumento &#x00E8; stato creato.</message>
+	<message key="presenter.submit.suppFile.sourceDescription">Nome dello studio o altro punto d'origine.</message>
+	<message key="presenter.submit.suppFile.specifyOtherType">Specifica altro</message>
+	<message key="presenter.submit.suppFile.noFile">Nessun file caricato.</message>
+	<message key="presenter.submit.suppFile.form.titleRequired">Inserisci per favore un titolo per questo file supplementare.</message>
+	<message key="presenter.submit.suppFile.form.subjectRequired">Inserisci un soggetto per favore.</message>
+	<message key="presenter.submit.suppFile.form.descriptionRequired">Inserisci una dedscrizione per favore.</message>
+	<message key="presenter.suppFile.suppFilePublicIdentificationExists">L'identificazione del file supplementare pubblico esiste gi&#x00E0;.</message>
+	<message key="presenter.suppFile.publicSuppFileIdentifier">Identificatore del file supplementare pubblico</message>
+	<message key="presenter.submit.addSubmissionFile">Aggiungi un file supplementare</message>
+	<message key="presenter.submit.submissionFileUpload">File supplementare</message>
+	<message key="presenter.submit.confirmationDescription">Completate le quattro fasi precedenti della procedura di submission, clicca Termina submission per inviare il tuo manoscritto a {$conferenceTitle}. Riceverai una notifica via email e potrai visualizzare l'avanzamento della tua submission attraverso il processo editoriale autenticandoti nel sito web del convegno. Grazie per aver sottomesso il tuo lavoro a {$conferenceTitle}.</message>
+	<message key="presenter.submit.noFiles">Nessun file &#x00E8; stato allegato a questa submission.</message>
+	<message key="presenter.submit.filesSummary">Sommario del file</message>
+	<message key="presenter.submit.finishSubmission">Termina la submission</message>
+	<message key="presenter.submit.submissionComplete">Submission completata. Grazie per aver sottomesso il tuo lavoro a {$conferenceTitle}.</message>
+	<message key="presenter.submit.expedite"><![CDATA[Se questa submission &#x00E8; in un formato tale da esser pronta per essere pubblicata, senza ulteriori revisioni o lavori di modifica, pu&#x00F2; essere inviata direttamente alla pagina Procedure attraverso <a href="{$expediteUrl}" class="action">Cliccando qui</a>. (Notare: Solo i direttori del convegno hanno questa opzione per le loro submission.)]]></message>
+	<message key="presenter.paper.uploadPresenterVersion">Carica la versione dell'autore</message>
+	<message key="presenter.submit.presenterSubmitLoginMessage">&#x00C8; richiesto un account d'utente per sottoporre materiale a questo convegno. Questo permette ai nostri direttori di seguire le tue submission e contattarti quando lo stato della tua submission cambia, o se sono richieste ulteriori informazioni da te.</message>
+</locale>

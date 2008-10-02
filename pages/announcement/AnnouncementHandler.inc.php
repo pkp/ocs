@@ -23,6 +23,7 @@ class AnnouncementHandler extends Handler {
 	 * Display announcement index page.
 	 */
 	function index() {
+		parent::validate();
 		AnnouncementHandler::setupTemplate();
 
 		$conference = &Request::getConference();
@@ -58,6 +59,7 @@ class AnnouncementHandler extends Handler {
 	 * @param $args array optional, first parameter is the ID of the announcement to display 
 	 */
 	function view($args = array()) {
+		parent::validate();
 		AnnouncementHandler::setupTemplate();
 
 		$conference = &Request::getConference();
@@ -92,7 +94,7 @@ class AnnouncementHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate($subclass = false) {
-		parent::validate();
+		parent::setupTemplate();
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);

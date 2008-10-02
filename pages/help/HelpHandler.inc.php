@@ -133,6 +133,7 @@ class HelpHandler extends Handler {
 	 * Initialize the template
 	 */
 	function setupTemplate() {
+		parent::setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 	}

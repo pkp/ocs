@@ -37,7 +37,8 @@ class TranslatorHandler extends Handler {
 	}
 
 	function setupTemplate($subclass = true) {
-		$templateMgr = &TemplateManager::getManager();
+		parent::setupTemplate();
+		$templateMgr =& TemplateManager::getManager();
 		$pageHierarchy = array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'admin'), 'admin.siteAdmin'));
 		if ($subclass) $pageHierarchy[] = array(Request::url(null, null, 'translate'), 'plugins.generic.translator.name');
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);

@@ -45,8 +45,8 @@ class ManagerHandler extends Handler {
 	 */
 	function email($args) {
 		list($conference, $schedConf) = parent::validate();
-
 		ManagerHandler::setupTemplate(true);
+
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'conference.users.emailUsers');
 
@@ -105,6 +105,8 @@ class ManagerHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate($subclass = false) {
+		parent::setupTemplate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OCS_MANAGER));
 		$templateMgr = &TemplateManager::getManager();
 		$pageHierarchy = array();
 

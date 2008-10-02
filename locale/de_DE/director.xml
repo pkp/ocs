@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/de_DE/director.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the de_DE (Deutsch) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="de_DE" full_name = "Deutsch">
+	<message key="director.home">Startseite (Leiter)</message>
+	<message key="director.submissionQueue">Einreichungswarteschlange</message>
+	<message key="director.submissionArchive">Einreichungsarchiv</message>
+	<message key="director.allTracks">Alle Tracks</message>
+	<message key="director.submissionQueue.noSubmissions">Keine Einreichungen in Warteschlange.</message>
+	<message key="director.submissionQueue.saveChanges">&#196;nderungen an Einreichungen in Warteschlange speichern?</message>
+	<message key="director.submissionArchive.noSubmissions">Keine Einreichungen im Archiv.</message>
+	<message key="director.submissionArchive.saveChanges">&#196;nderungen an archivierten Einreichungen speichern? F&#252;r L&#246;schung markierte Einreichungen werden endg&#252;ltig aus dem System gel&#246;scht.</message>
+	<message key="director.submissionArchive.confirmDelete">Sind Sie sicher, dass Sie diese Einreichung endg&#252;ltig l&#246;schen wollen?</message>
+	<message key="director.submissionReview.confirmDecision">Sind Sie sicher, dass Sie diese Entscheidung festhalten wollen?</message>
+	<message key="director.submissionReview.confirmToLayout">Wurde der Autor &#252;ber diese Entscheidung benachrichtigt? Falls nicht, dr&#252;cken Sie &quot;Abbrechen&quot; und benutzen Sie &quot;Autor benachrichtigen&quot;, bevor diese Einreichung zu &quot;Layout&quot; verschoben wird.</message>
+	<message key="director.submissionReview.confirmToArchive">Wurde der Autor &#252;ber diese Entscheidung benachrichtigt? Falls nicht, dr&#252;cken Sie &quot;Abbrechen&quot; und benutzen Sie &quot;Autor benachrichtigen&quot;, bevor diese Einreichung ins Archiv verschoben wird.</message>
+	<message key="director.submissionReview.notes">&quot;F&#228;llig in&quot; zeigt die verbleibenden Wochen bis zum F&#228;lligkeitsdatum des Gutachtens bzw. durch (-) die Wochen, die es &#252;berf&#228;llig ist, an. Der Wert wird angezeigt, sobald ein Gutachter die Anfrage nach einem Gutachten annimmt.</message>
+	<message key="director.notifyUsers">Benutzer benachrichtigen</message>
+	<message key="director.notifyUsers.allUsers">Diese Nachricht an alle dieser Konferenz zugeh&#246;rigen Benutzer schicken ({$count} Benutzer).</message>
+	<message key="director.notifyUsers.interestedUsers">Diese Nachricht an alle dieser Konferenz zugeh&#246;rigen Benutzer schicken, die w&#252;nschen, Neuigkeiten zu erhalten ({$count} Benutzer).</message>
+	<message key="director.notifyUsers.includeToc">Pr&#228;sentationen dieser Konferenz anf&#252;gen:</message>
+	<message key="director.navigation.management">Verwaltung</message>
+	<message key="director.paper.sendToArchive">Diese Einreichung archivieren</message>
+	<message key="director.paper.designateReviewVersion">Die urspr&#252;ngliche Datei als zu begutachtende Version kennzeichnen.</message>
+	<message key="director.paper.uploadReviewVersion">&#220;berarbeitete Datei hochladen, die als zu begutachtende Version dienen soll</message>
+	<message key="director.paper.uploadDirectorVersion">Version des Leiters hochladen</message>
+	<message key="director.paper.stageDisabled">Es ist noch nicht m&#246;glich, dieses Gutachten durchzuf&#252;hren. Entweder ist das Gutachten des Abstracts noch nicht abgeschlossen, oder der Autor hat noch kein Paper zur Begutachtung eingereicht.</message>
+	<message key="director.paper.showSuppFile">Datei Gutachtern zur Verf&#252;gung stellen</message>
+	<message key="director.paper.clear">Zur&#252;cksetzen</message>
+	<message key="director.paper.clearReviewer">Gutachter zur&#252;cksetzen</message>
+	<message key="director.paper.changeTrack">Track wechseln</message>
+	<message key="director.paper.setDueDate">F&#228;lligkeitsdatum setzen</message>
+	<message key="director.paper.addReviewer">Gutachter hinzuf&#252;gen</message>
+	<message key="director.paper.toReviewer">An Gutachter</message>
+	<message key="director.paper.notifyReviewer">Gutachter benachrichtigen</message>
+	<message key="director.paper.initiateReview">Gutachten einleiten</message>
+	<message key="director.paper.cancelReview">Anfrage nach Gutachten zur&#252;cknehmen</message>
+	<message key="director.paper.clearReview">Gutachter zur&#252;cksetzen</message>
+	<message key="director.paper.enterRecommendation">Empfehlung abgeben</message>
+	<message key="director.paper.enterReviewerRecommendation">Empfehlung des Gutachters abgeben</message>
+	<message key="director.paper.recommendation">Empfehlung</message>
+	<message key="director.paper.selectReviewer">Gutachter ausw&#228;hlen</message>
+	<message key="director.paper.replaceReviewer">Gutachter ersetzen</message>
+	<message key="director.paper.directorToEnter">Warte auf Empfehlung / Kommentare des Leiters</message>
+	<message key="director.paper.uploadReviewForReviewer">Gutachten hochladen</message>
+	<message key="director.paper.peerReviewOptions">Peer-Review-Optionen</message>
+	<message key="director.paper.decision">Entscheidung</message>
+	<message key="director.paper.recordDecision">Entscheidung festhalten</message>
+	<message key="director.paper.cannotRecord">Kann Entscheidung nicht festhalten: noch kein Track-Leiter angegeben oder kein Gutachten hochgeladen</message>
+	<message key="director.paper.cannotRecordYet">Bevor eine Entscheidung festgehalten werden kann, muss eine Einreichung einem Track-Leiter zugeteilt werden. Die zu begutachtende Version wird standardm&#228;&#223;ig als Version des Leiters verwendet.</message>
+	<message key="director.paper.cannotRecordTooLate">Diese Phase des Begutachtungsprozesses ist f&#252;r die Einreichung bereits abgeschlossen. Die Entscheidung kann nicht mehr ge&#228;ndert werden.</message>
+	<message key="director.paper.designateDueDate">F&#228;lligkeitsdatum ausgeben</message>
+	<message key="director.paper.designateDueDateDescription">Geben Sie ein anderes Datum ein oder l&#246;schen Sie das Datum und geben Sie an, in wie vielen Wochen das Gutachten f&#228;llig ist, um das F&#228;lligkeitsdatum f&#252;r diesen Gutachter zu &#228;ndern</message>
+	<message key="director.paper.todaysDate">Heutiges Datum</message>
+	<message key="director.paper.requestedByDate">Erw&#252;nscht bis</message>
+	<message key="director.paper.dueDateFormat">Format: JJJJ-MM-TT</message>
+	<message key="director.paper.numberOfWeeks">Anzahl der Wochen</message>
+	<message key="director.paper.showPresenter">Autor Anzeige der Datei erm&#246;glichen</message>
+	<message key="director.paper.rateReviewer">Gutachter bewerten</message>
+	<message key="director.paper.reviewerRating.veryGood">5 Hoch</message>
+	<message key="director.paper.reviewerRating.good">4</message>
+	<message key="director.paper.reviewerRating.average">3 Durchschnittlich</message>
+	<message key="director.paper.reviewerRating.poor">2</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 Niedrig</message>
+	<message key="director.paper.quality">Bewertung</message>
+	<message key="director.paper.comments">Kommentare</message>
+	<message key="director.paper.commentsRequired">Kommentar muss abgegeben werden</message>
+	<message key="director.paper.archiveSubmission">Einreichung archivieren</message>
+	<message key="director.paper.restoreToQueue">Zu aktiven Einreichungen zur&#252;ckbewegen</message>
+	<message key="director.paper.assignTrackDirector">Track-Leiter hinzuf&#252;gen</message>
+	<message key="director.paper.assignDirector">Leiter hinzuf&#252;gen</message>
+	<message key="director.paper.selectDirector">{$roleName} ausw&#228;hlen</message>
+	<message key="director.paper.selectDecision">Entscheidung ausw&#228;hlen</message>
+	<message key="director.paper.decision.invitePresentation">Pr&#228;sentation einladen</message>
+	<message key="director.paper.decision.accept">Einreichung annehmen</message>
+	<message key="director.paper.decision.pendingRevisions">&#220;berarbeitung n&#246;tig</message>
+	<message key="director.paper.decision.decline">Einreichung ablehnen</message>
+	<message key="director.paper.moveToLayout">Zu &quot;Layout&quot; verschieben</message>
+	<message key="director.paper.createGalley">Diese Datei ist bereit f&#252;r die Ver&#246;ffentlichung.</message>
+	<message key="director.paper.completeReview">Gutachten als abgeschlossen markieren</message>
+	<message key="director.paper.scheduleSubmission">Senden</message>
+	<message key="director.submissions.showBy">Anzeigen nach</message>
+	<message key="director.submissions.submitMMDD">Einreichen an MM-TT</message>
+	<message key="director.submissions.activeAssignments">Aktive Auftr&#228;ge</message>
+	<message key="director.submissions.invite">Einladen</message>
+	<message key="director.submissions.accept">Annehmen</message>
+	<message key="director.submissions.noSubmissions">Keine Einreichungen</message>
+	<message key="director.submissions.lastAssigned">Letzte zugeteilte</message>
+	<message key="director.submissions.averageTime">Wochen</message>
+	<message key="director.submissions.lastCompleted">Letzte abgeschlossene</message>
+</locale>

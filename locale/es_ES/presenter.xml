@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/es_ES/presenter.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the es_ES (España Castellano) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="es_ES" full_name = "España Castellano">
+	<message key="presenter.submit">Nuevo envío</message>
+	<message key="presenter.track">Activar envíos</message>
+	<message key="presenter.submit.startHere">Empiece aquí a enviar su trabajo.</message>
+	<message key="presenter.submit.startHereLink">Primer paso del proceso de envío</message>
+	<message key="presenter.submit.step1">Paso 1. Comenzar el envío</message>
+	<message key="presenter.submit.step2">Paso 2. Introduzca los metadatos del trabajo</message>
+	<message key="presenter.submit.step3">Paso 3. Depositar el fichero del trabajo</message>
+	<message key="presenter.submit.step4">Paso 4. Depositar un fichero adicional</message>
+	<message key="presenter.submit.step4a">Paso 4a. Depositar un fichero adicional</message>
+	<message key="presenter.submit.step5">Paso 5. Confirmación</message>
+	<message key="presenter.submit.step5SkipSupp">Paso 4. Confirmación</message>
+	<message key="presenter.submit.start">1. Inicio</message>
+	<message key="presenter.submit.metadata">2. Introducir metadatos</message>
+	<message key="presenter.submit.upload">3. Depositar el original</message>
+	<message key="presenter.submit.supplementaryFiles">4. Depositar ficheros adicionales</message>
+	<message key="presenter.submit.confirmation">5. Confirmación</message>
+	<message key="presenter.submit.confirmationSkipSupp">4. Confirmación</message>
+	<message key="presenter.submit.cancelSubmission">Puede completar este envío más tarde seleccionando "Activar Envío" desde el menú Autor.</message>
+	<message key="presenter.submit.notAcceptingYet">El envío de originales a esta conferencia todavía no se ha abierto.</message>
+	<message key="presenter.submit.submissionDeadlinePassed">El envío de originales se ha cerrado {$closedDate}.</message>
+	<message key="presenter.submissions.viewStatus">Ver estatus del trabajo</message>
+	<message key="presenter.submissions.noSubmissions">No hay envíos.</message>
+	<message key="presenter.submit.howToSubmit"><![CDATA[Los autores envían trabajos a esta conferencia a través de esta web mediante un proceso por pasos  en el que se deposita el material oportuno (algunos eventos permiten al autor depositar tambien ficheros suplementarios, tales como  hojas de datos). Si encuentra dificultad durante el proceso y necesita ayuda,  contacte con <a href="mailto:{$supportEmail}">{$supportName}</a> por email o teléfono {$supportPhone}.]]></message>
+	<message key="presenter.submit.conferenceTrack">Secciones de la Conferencia</message>
+	<message key="presenter.submit.conferenceTrackDescription"><![CDATA[Seleccione la sección apropiada para el envío de su trabajo (see <a href="{$aboutUrl}" target="_new">Política de la sección</a>).]]></message>
+	<message key="presenter.submit.selectTrack">Por favor, seleccione la sección...</message>
+	<message key="presenter.submit.submissionChecklist">Lista de requisitos para el envío de originales</message>
+	<message key="presenter.submit.submissionChecklistDescription">Indicar que el trabajo está preparado para el envío marcando la siguiente lista lo que corresponda (pueden añadirse comentarios en la ventana de abajo).</message>
+	<message key="presenter.submit.verifyChecklist">Debe asegurarse antes de continuar de que su trabajo cumple con todos los puntos que se indican en la lista de requisitos.</message>
+	<message key="presenter.submit.copyrightNoticeAgree">Los autores están de acuerdo con los términos de copyright, que se aplicarán al trabajo si se acepta y cuando se publique  en esta Conferencia (pueden añadirse comentarios en la ventana de abajo).</message>
+	<message key="presenter.submit.copyrightNoticeAgreeRequired">Debe aceptar los términos de copyright antes de continuar.</message>
+	<message key="presenter.submit.commentsForDirector">Comentarios al director de la Conferencia </message>
+	<message key="presenter.submit.comments">Introduzca el texto (optional)</message>
+	<message key="presenter.submit.form.trackRequired">Por favor, seleccione la sección adecuada de la conferencia para el env�o de su trabajo.</message>
+	<message key="presenter.submit.form.abstractRequired">Por favor, introduzca el resumen de su trabajo.</message>
+	<message key="presenter.submit.privacyStatement">Declaración de privacidad de la Conferencia</message>
+	<message key="presenter.submit.reorderInstructions">Utilice las flechas para cambiar el orden en que deben aparecer el nombre de los autores del trabajo.</message>
+	<message key="presenter.submit.selectPrincipalContact">Autor a quien dirigir la correspondencia.</message>
+	<message key="presenter.submit.addPresenter">Añadir autor</message>
+	<message key="presenter.submit.deletePresenter">Borrar autor</message>
+	<message key="presenter.submit.submissionIndexingDescription">Facilite uno o más términos que describan el contenido del trabajo. Separar las palabras mediante punto y coma (term1; term2; term3).</message>
+	<message key="presenter.submit.submissionSupportingAgencies">Entidades patrocinadoras</message>
+	<message key="presenter.submit.submissionSupportingAgenciesDescription">Identifique las agencias que patrocinan o subvencionan el trabajo que presenta a esta Conferencia.</message>
+	<message key="presenter.submit.agencies">Entidades</message>
+	<message key="presenter.submit.subjectClassInstructions">Escoja entre los términos utilizados en el sistema de clasificación (ver hipervínculos) las palabras clave y, si fuera necesario números. Use el sistema de clasificación del enlace para seleccionar los términos de clasificación y, si es necesario, números.</message>
+	<message key="presenter.submit.languageInstructions"><![CDATA[English=en; French=fr; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">Additional codes</a>.]]></message>
+	<message key="presenter.submit.form.presenterRequired">Se requiere al menos un autor.</message>
+	<message key="presenter.submit.form.presenterRequiredFields">Es necesario el nombre, apellido y correo electrónico de cada uno de los autores.</message>
+	<message key="presenter.submit.form.titleRequired">Por favor, introduzca el título de su trabajo.</message>
+	<message key="presenter.submit.submissionFile">Fichero del envío</message>
+	<message key="presenter.submit.uploadSubmissionFile">Depositar el fichero</message>
+	<message key="presenter.submit.replaceSubmissionFile">Reemplazar el fichero de envío</message>
+	<message key="presenter.submit.noSubmissionFile">No se han depositado ficheros.</message>
+	<message key="presenter.submit.noSubmissionConfirm">¿Está seguro de que quiere continuar sin el depósito de ficheros?</message>
+	<message key="presenter.submit.supplementaryFilesInstructions">Este paso opcional en el proceso de envío permite a los autores añadir ficheros que mejoren la contribución del trabajo enviado. Los ficheros adicionales pueden incluir (a) instumentos de la investigación, (b) hojas de datos,(c) otros documentos que de otra manera los lectores no tendrían acceso, o (d) figuras o tablas que se puedan integrar en el texto. El autor indiza estos ficheros, identifica su realización con el envío, asi como su autoría. Los ficheros adicionales pueden depositarse en cualquier formato y estarán disponibles para los lectores en su formato original. Estos pueden compartirse con los recensores, si no comprometen la evaluación "a ciegas".</message>
+	<message key="presenter.submit.noSupplementaryFiles">No se han añadido ficheros adicionales a este envío.</message>
+	<message key="presenter.submit.backToSupplementaryFiles">Volver a los ficheros adicionales</message>
+	<message key="presenter.submit.confirmDeleteSuppFile">¿Está seguro de que quiere eliminar este fichero adicional?</message>
+	<message key="presenter.submit.uploadSuppFile">Depositar el fichero adicional</message>
+	<message key="presenter.submit.addSupplementaryFile">Añadir un fichero adicional</message>
+	<message key="presenter.submit.editSupplementaryFile">Editar un fichero adicional</message>
+	<message key="presenter.submit.supplementaryFileData">Metadatos del fichero adicional</message>
+	<message key="presenter.submit.supplementaryFileDataDescription">Para indizar este material adicional, facilite los siguientes metadatos del fichero adicional.</message>
+	<message key="presenter.submit.supplementaryFileUpload">Fichero adicional</message>
+	<message key="presenter.submit.suppFile.createrOrOwner">Creador (o propietario) del fichero</message>
+	<message key="presenter.submit.suppFile.researchInstrument">Instrumentación</message>
+	<message key="presenter.submit.suppFile.researchMaterials">Materiales de la investigación</message>
+	<message key="presenter.submit.suppFile.researchResults">Resultados de la investigación</message>
+	<message key="presenter.submit.suppFile.transcripts">Transcripcioens</message>
+	<message key="presenter.submit.suppFile.dataAnalysis">Análisis de datos</message>
+	<message key="presenter.submit.suppFile.dataSet">Hoja de datos</message>
+	<message key="presenter.submit.suppFile.sourceText">Texto</message>
+	<message key="presenter.submit.suppFile.briefDescription">Brebe descripción</message>
+	<message key="presenter.submit.suppFile.contributorOrSponsor">Patrocinador</message>
+	<message key="presenter.submit.suppFile.availableToPeers">Facilitar los ficheros a los recensores (sin metadatos), ya que no comprometen la evaluación.</message>
+	<message key="presenter.submit.suppFile.publisherDescription">Usar sólo con material publicado formalmente.</message>
+	<message key="presenter.submit.suppFile.dateDescription">Fecha en la que se tomaron los datos o fecha de la experimentación.</message>
+	<message key="presenter.submit.suppFile.sourceDescription">Nombre del estudio u otro punto de origen.</message>
+	<message key="presenter.submit.suppFile.specifyOtherType">Especificar otros</message>
+	<message key="presenter.submit.suppFile.noFile">No se han depositado ficheros.</message>
+	<message key="presenter.submit.suppFile.form.titleRequired">Por favor, introduzca el título del fichero adicional.</message>
+	<message key="presenter.submit.suppFile.form.subjectRequired">Por favor, introduzca una materia </message>
+	<message key="presenter.submit.suppFile.form.descriptionRequired">Por favor, introduzca una descripción.</message>
+	<message key="presenter.suppFile.suppFilePublicIdentificationExists">La identificación del fichero adicional ya existe.</message>
+	<message key="presenter.suppFile.publicSuppFileIdentifier">Identificador del fichero adicional</message>
+	<message key="presenter.submit.addSubmissionFile">Añadir un fichero adicional</message>
+	<message key="presenter.submit.submissionFileUpload">Fichero adicional</message>
+	<message key="presenter.submit.confirmationDescription">Cuando complete los 4 pasos previos al proceso de envío de su trabajo, pulse Finalizar Envío para remitirlo a  {$conferenceTitle}. Recibirá por email un acuse de recibo y podrá ver en que estado se encuentra su trabajo  si accede a la web de la conferencia. Gracias por su enviar su trabajo a {$conferenceTitle}.</message>
+	<message key="presenter.submit.noFiles">No se adjuntan ficheros a este envío.</message>
+	<message key="presenter.submit.filesSummary">Resumen del fichero</message>
+	<message key="presenter.submit.finishSubmission">Finalizar el envío</message>
+	<message key="presenter.submit.submissionComplete">Envío terminado. Gracias por remitir su trabajo a {$conferenceTitle}.</message>
+	<message key="presenter.submit.expedite"><![CDATA[Si este trabajo está formalmente listo para publicarse, sin que precise mayor revisión o edición de formato, puede enviarse directamente a la página de Actas de la Conferencia <a href="{$expediteUrl}" class="action">Pulsando aquí</a>. (Nota: Sólo los directores de la conferencia  tienen esta opción para sus envíos).]]></message>
+	<message key="presenter.paper.uploadPresenterVersion">Versión depositada por el autor</message>
+	<message key="presenter.submit.presenterSubmitLoginMessage">Se necesita una cuenta de usuario para enviar trabajos a esta conferencia. Esto permite a los organizadores registrar los envíos y contactar con usted cuando haya algún cambio en los mismos, o si se precisa alguna información adicional suya.</message>
+</locale>

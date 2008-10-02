@@ -24,6 +24,7 @@ class ConferenceHandler extends Handler {
 	 */
 	function index($args) {
 		list($conference, $schedConf) = parent::validate(true, false);
+		parent::setupTemplate();
 
 		$templateMgr = &TemplateManager::getManager();
 

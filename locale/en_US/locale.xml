@@ -33,124 +33,11 @@
 	-->
 
 	<!-- Common Messages -->
-	<message key="common.and">and</message>
-	<message key="common.between">between</message>
-	<message key="common.all">All</message>
-	<message key="common.on">On</message>
-	<message key="common.off">Off</message>
-	<message key="common.enabled">Enabled</message>
-	<message key="common.disabled">Disabled</message>
 	<message key="common.openConferenceSystems">Open Conference Systems</message>
-	<message key="common.delete">Delete</message>
-	<message key="common.edit">Edit</message>
-	<message key="common.save">Save</message>
-	<message key="common.export">Export</message>
-	<message key="common.import">Import</message>
-	<message key="common.saveAndContinue">Save and continue</message>
-	<message key="common.saveAndEmail">Save and email</message>
-	<message key="common.continue">Continue</message>
-	<message key="common.cancel">Cancel</message>
-	<message key="common.done">Done</message>
-	<message key="common.search">Search</message>
-	<message key="common.up">Up</message>
-	<message key="common.top">Top</message>
-	<message key="common.url">URL</message>
-	<message key="common.description">Description</message>
-	<message key="common.keywords">Keywords</message>
-	<message key="common.order">Order</message>
-	<message key="common.back">Back</message>
-	<message key="common.title">Title</message>
-	<message key="common.upload">Upload</message>
-	<message key="common.download">Download</message>
-	<message key="common.replaceFile">Replace file</message>
-	<message key="common.subject">Subject</message>
-	<message key="common.type">Type</message>
-	<message key="common.publisher">Publisher</message>
-	<message key="common.note">Note</message>
-	<message key="common.notes">Notes</message>
-	<message key="common.date">Date</message>
 	<message key="common.noDate">(date)</message>
 	<message key="common.time">Time</message>
-	<message key="common.weeks">weeks</message>
 	<message key="common.days">days</message>
-	<message key="common.source">Source</message>
-	<message key="common.language">Language</message>
-	<message key="common.id">ID</message>
-	<message key="common.status">Status</message>
-	<message key="common.remove">Remove</message>
-	<message key="common.file">File</message>
-	<message key="common.uploadedFile">Uploaded file</message>
-	<message key="common.fileName">File name</message>
-	<message key="common.dateSubmitted">Date submitted</message>
-	<message key="common.dateRequested">Date requested</message>
-	<message key="common.dateCompleted">Date completed</message>
-	<message key="common.dateUploaded">Date uploaded</message>
-	<message key="common.dateModified">Date modified</message>
-	<message key="common.other">Other</message>
-	<message key="common.fileSize">File size</message>
-	<message key="common.size">Size</message>
-	<message key="common.fileType">File type</message>
-	<message key="common.originalFileName">Original file name</message>
-	<message key="common.none">None</message>
-	<message key="common.required">Required</message>
-	<message key="common.requiredField">* Denotes required field</message>
-	<message key="common.or">or</message>
-	<message key="common.notAvailable">Not available</message>
-	<message key="common.notApplicable">Not applicable</message>
-	<message key="common.notApplicableShort">N/A</message>
-	<message key="common.yes">Yes</message>
-	<message key="common.no">No</message>
-	<message key="common.languages">Languages</message>
-	<message key="common.changesSaved">Your changes have been saved.</message>
-	<message key="common.chooseOne">Choose One</message>
-	<message key="common.alreadyAssigned">Assigned</message>
-	<message key="common.assign">Assign</message>
-	<message key="common.assigned">Assigned</message>
-	<message key="common.record">Record</message>
-	<message key="common.width">Width</message>
-	<message key="common.height">Height</message>
-	<message key="common.user">User</message>
-	<message key="common.event">Event</message>
-	<message key="common.action">Action</message>
-	<message key="common.select">Select</message>
-	<message key="common.selectAll">Select All</message>
-	<message key="common.selectNone">Select None</message>
-	<message key="common.applyAction">Apply Action</message>
-	<message key="common.deleteSelection">Delete Selection</message>
-	<message key="common.removeSelection">Remove Selection</message>
-	<message key="common.year">Year</message>
-	<message key="common.month">Month</message>
-	<message key="common.day">Day</message>
-	<message key="common.hour">Hour</message>
-	<message key="common.minute">Minute(s)</message>
-	<message key="common.second">Second(s)</message>
-	<message key="common.create">Create</message>
-	<message key="common.modify">Modify</message>
-	<message key="common.notify">Notify</message>
-	<message key="common.noneAssigned">None assigned</message>
-	<message key="common.cancelled">Cancelled</message>
-	<message key="common.inProgress">In progress</message>
-	<message key="common.replaced">Replaced</message>
-	<message key="common.uninitiated">Uninitiated</message>
-	<message key="common.updated">Updated</message>
-	<message key="common.untitled">Untitled</message>
-	<message key="common.view">View</message>
-	<message key="common.related">Related</message>
-	<message key="common.active">Active</message>
-	<message key="common.completed">Completed</message>
-	<message key="common.mailingAddress">Mailing Address</message>
-	<message key="common.country">Country</message>
-	<message key="common.discipline">Discipline</message>
 	<message key="common.timeZone">Time Zone</message>
-	<message key="common.close">Close</message>
-	<message key="common.closeWindow">Close Window</message>
-	<message key="common.initiate">Initiate</message>
-	<message key="common.complete">Complete</message>
-	<message key="common.options">Options</message>
-	<message key="common.plugin">Plugin</message>
-	<message key="common.default">Default</message>
-	<message key="common.addSelf">Add Self</message>
-	<message key="common.alphaList">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</message>
 	<message key="common.ellipsis">...</message>
 	<message key="common.path">Path</message>
 	<message key="common.dateTimeSeparator">at</message>
@@ -161,96 +48,32 @@
 		<br/>
 		This <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">work</span> is licensed under a <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0  License</a>.
 	]]></message>
-	<message key="common.captchaField">Validation</message>
-	<message key="common.captchaField.altText">Validation image</message>
-	<message key="common.captchaField.description">Please enter the letters as they appear in the image above.</message>
-	<message key="common.captchaField.badCaptcha">The characters you entered did not match the characters in the image. Please check the characters and try again.</message>
-	<message key="common.suggest">Suggest</message>
 	<message key="common.sortBy">Sort By...</message>
-	<message key="common.altText">Alternate text</message>
-	<message key="common.altTextInstructions">Please provide alternate text for this image to ensure accessibility for users with text-only browsers or assistive devices.</message>
 	<message key="common.sitePageHeader.altText">Site Header Image</message>
 	<message key="common.pageHeader.altText">Page Header Image</message>
-	<message key="common.pageHeaderLogo.altText">Page Header Logo</message>
 	<message key="common.homePageHeader.altText">Homepage Header Image</message>
-	<message key="common.homePageHeaderLogo.altText">Homepage Header Logo</message>
 	<message key="common.conferenceHomepageImage.altText">Conference Homepage Image</message>
 
 	<!-- Common Form Messages -->
-	<message key="form.errorsOccurred">Errors occurred processing this form</message>
-	<message key="form.postRequired">The form was not submitted properly.</message>
-	<message key="form.saveToUpload">Use Save to upload file.</message>
-	<message key="form.contains">contains</message>
-	<message key="form.is">is</message>
-	<message key="form.required">(* Required)</message>
-	<message key="form.submit">Submit</message>
-	<message key="form.send">Send</message>
-	<message key="form.resubmit">Resubmit</message>
-	<message key="form.formLanguage">Form Language</message>
-	<message key="form.formLanguage.description">To enter the information below in additional languages, first select the language.</message>
 
 	<!-- Common Email Messages -->
-	<message key="email.email">Email</message>
-	<message key="email.sender">Sender</message>
-	<message key="email.recipient">Recipient</message>
-	<message key="email.recipients">Recipients</message>
-	<message key="email.from">From</message>
-	<message key="email.to">To</message>
-	<message key="email.cc">CC</message>
-	<message key="email.bcc">BCC</message>
-	<message key="email.subject">Subject</message>
-	<message key="email.body">Body</message>
-	<message key="email.send">Send</message>
-	<message key="email.skip">Skip Email</message>
-	<message key="email.compose">Send Email</message>
-	<message key="email.compose.tooSoon">You are attempting to send a message too recently after your last message was sent. Please wait before sending another message.</message>
-	<message key="email.compose.tooManyRecipients">The message you are attempting to send has too many recipients.</message>
-	<message key="email.addToRecipient">Add Recipient</message>
-	<message key="email.addCcRecipient">Add CC</message>
-	<message key="email.addBccRecipient">Add BCC</message>
-	<message key="email.bccSender">Send a copy of this message to my address ({$address})</message>
-	<message key="email.invalid">The email address {$email} is invalid.</message>
-	<message key="email.multipart">This is a multi-part message in MIME format.</message>
-	<message key="email.attachments">Attachments</message>
-	<message key="email.addAttachment">Add Attachment</message>
 
 	<!-- Common Localization Terms -->
-	<message key="locale.primary">Primary locale</message>
-	<message key="locale.supported">Supported locales</message>
 
 	<!-- Common Error Messages -->
-	<message key="common.error.databaseError">A database error has occurred: {$error}</message>
-	<message key="common.error.databaseErrorUnknown">An unknown database connection error has occurred.</message>
-	<message key="common.error.framesRequired"><![CDATA[This page requires frames. <a href="{$url}">Click here</a> for the non-frames version.]]></message>
 
 	<!-- Navigation -->
 	<message key="navigation.conferenceHelp">Conference Help</message>
-	<message key="navigation.home">Home</message>
-	<message key="navigation.about">About</message>
-	<message key="navigation.userHome">User Home</message>
-	<message key="navigation.login">Log In</message>
 	<message key="navigation.account">Account</message>
-	<message key="navigation.user">User</message>
 	<message key="navigation.archive">Archive</message>
 	<message key="navigation.current">Current Conferences</message>
-	<message key="navigation.search">Search</message>
 	<message key="navigation.otherConferences">Other Conferences</message>
-	<message key="navigation.browse">Browse</message>
 	<message key="navigation.browseByConference">By Conference</message>
 	<message key="navigation.browseByPresenter">By Author</message>
-	<message key="navigation.browseByTitle">By Title</message>
 	<message key="navigation.infoForPresenters">For Authors</message>
-	<message key="navigation.infoForReaders">For Readers</message>
 	<message key="navigation.infoForReviewers">For Reviewers</message>
 	<message key="navigation.infoForPresenters.long">Information For Authors</message>
-	<message key="navigation.infoForReaders.long">Information For Readers</message>
 	<message key="navigation.infoForReviewers.long">Information For Reviewers</message>
-	<message key="navigation.previousStep">Previous Step</message>
-	<message key="navigation.nextStep">Next Step</message>
-	<message key="navigation.stepNumber">Step {$step}</message>
-	<message key="navigation.previousPage"><![CDATA[&lt;&lt;]]></message>
-	<message key="navigation.nextPage"><![CDATA[&gt;&gt;]]></message>
-	<message key="navigation.items">{$from} - {$to} of {$total} Items</message>
 
 	<!-- Paper Queues -->
 	<message key="common.queue.long.submissionsUnassigned">Unassigned</message>
@@ -321,48 +144,14 @@
 	<!-- Submission Tracking - Common -->
 	<message key="submission.fromTime">From</message>
 	<message key="submission.toTime">To</message>
-	<message key="submission.summary">Summary</message>
-	<message key="submission.review">Review</message>
 	<message key="submission.abstractReview">Abstract Review</message>
 	<message key="submission.paperReview">Paper Review</message>
-	<message key="submission.editing">Editing</message>
-	<message key="submission.history">History</message>
-	<message key="submission.page.summary">#{$id} Summary</message>
 	<message key="submission.page.abstractReview">#{$id} Abstract Review</message>
-	<message key="submission.page.review">#{$id} Review</message>
 	<message key="submission.page.paperReview">#{$id} Paper Review</message>
-	<message key="submission.page.editing">#{$id} Editing</message>
-	<message key="submission.page.history">#{$id} History</message>
-	<message key="submission.submissionReview">Submission Review</message>
-	<message key="submission.submissionHistory">Submission History</message>
-	<message key="submission.submissionManuscript">Submission Manuscript</message>
-	<message key="submission.metadata">Submission Metadata</message>
-	<message key="submission.originalFile">Original file</message>
 	<message key="submission.uploadFile">Upload paper</message>
-	<message key="submission.addSuppFile">Add a Supplementary File</message>
-	<message key="submission.submitter">Submitter</message>
 	<message key="submission.changeTrack">Change to</message>
-	<message key="submission.changeComments">Change to</message>
-	<message key="submission.initiated">Initiated</message>
-	<message key="submission.lastModified">Last modified</message>
-	<message key="submission.ask">Ask</message>
-	<message key="submission.request">Request</message>
-	<message key="submission.underway">Underway</message>
-	<message key="submission.start">Start</message>
-	<message key="submission.response">Response</message>
-	<message key="submission.accepted">Accepted</message>
-	<message key="submission.rejected">Rejected</message>
 	<message key="submission.acceptance">Agreed to Review</message>
-	<message key="submission.due">Due</message>
-	<message key="submission.complete">Complete</message>
 	<message key="submission.complete.description">Add the submission to the list of accepted Presentations.</message>
-	<message key="submission.acknowledge">Acknowledge</message>
-	<message key="submission.done">Done</message>
-	<message key="submission.views">Views</message>
-	<message key="submission.abstractViews">Abstract Views</message>
-	<message key="submission.noReviewAssignments">No Review Assignments</message>
-	<message key="submission.reviewVersion">Review Version</message>
-	<message key="submission.peerReview">Peer&amp;nbsp;Review</message>
 	<message key="submission.directorDecision">Director Decision</message>
 	<message key="submission.stage">Stage&amp;nbsp;{$stage}</message>
 	<message key="submission.directorReview">Director Review</message>
@@ -372,77 +161,31 @@
 	<message key="submission.directorVersion">Director Version</message>
 	<message key="submission.presentersRevisedVersion">Author's revised version of file</message>
 	<message key="submission.presenterVersion">Author Version</message>
-	<message key="submission.layout">Layout</message>
 	<message key="submission.layout.description">This optional step can be used to lay out submissions or change file formats either before or after submissions are sent to Presentations.</message>
-	<message key="submission.files">Files</message>
-	<message key="submission.viewMetadata">View Metadata</message>
-	<message key="submission.editMetadata">Edit Metadata</message>
-	<message key="submission.reviewMetadata">Review Metadata</message>
-	<message key="submission.backToSubmissionEditing">Back to Submission Editing</message>
 
 	<message key="submission.paperType">Submission Type</message>
 	<message key="submission.paperType.single">Single Presentation</message>
 	<message key="submission.paperType.panel">Panel Presentation</message>
 
-	<message key="submission.titleAndAbstract">Title and Abstract</message>
-	<message key="submission.indexing">Indexing</message>
-	<message key="submission.restrictions">Restrictions</message>
-	<message key="submission.supportingAgencies">Supporting Agencies</message>
-	<message key="submission.saveMetadata">Save Metadata</message>
 
 	<message key="submissions.track">Track</message>
-	<message key="submissions.completed">Completed</message>
-	<message key="submissions.active">Active</message>
-	<message key="submissions.queuedUnassigned">Awaiting assignment</message>
-	<message key="submissions.queuedEditing">Queued for editing</message>
 	<message key="submissions.queuedAbstractReview">Abstract in review</message>
 	<message key="submissions.queuedPaperReview">Paper in review</message>
-	<message key="submissions.archived">Archived</message>
 	<message key="submissions.published">Posted</message>
 	<message key="submissions.accepted">Accepted</message>
-	<message key="submissions.declined">Declined</message>
-	<message key="submissions.queued">Queued</message>
 	<message key="submissions.reviewStage">Review Stage</message>
 	<message key="submissions.reviewType">Review Type</message>
-	<message key="submissions.incomplete">Incomplete</message>
 	<message key="submissions.pendingPresentation">Awaiting Upload</message>
 	<message key="submissions.expired">Expired</message>
-	<message key="submissions.submit">Submit</message>
 	<message key="submissions.directorDecision">Director Decision</message>
 	<message key="submissions.directorRuling">Director Ruling</message>
-	<message key="submissions.ruling">Ruling</message>
-	<message key="submissions.noSubmissions">No Submissions</message>
-	<message key="submission.supplementaryFiles">Supplementary Files</message>
-	<message key="submission.dueDate">Due Date</message>
-	<message key="submission.recommendation">Recommendation</message>
-	<message key="submission.galley">Galley</message>
 	<message key="trackDirector.galley.replaceGalley">Replace File</message>
-	<message key="submission.emailLog">Email Log</message>
-	<message key="submission.uploadFileTo">Upload file to</message>
 	<message key="submission.abstract">Abstract</message>
 	<message key="submission.paper">Paper</message>
 
 	<!-- Submission list search engine -->
-	<message key="submissions.submitted">Submitted</message>
 
 	<!-- Submission Notes -->
-	<message key="submission.notes">Submission Notes</message>
-	<message key="submission.notes.breadcrumb">Notes</message>
-	<message key="submission.notes.addNewNote">Add New Note</message>
-	<message key="submission.notes.viewNotes">View Notes</message>
-	<message key="submission.notes.expandNotes">Expand Notes</message>
-	<message key="submission.notes.clearAllNotes">Clear All Notes</message>
-	<message key="submission.notes.noSubmissionNotes">No Submission Notes</message>
-	<message key="submission.notes.confirmDelete">Remove This Submission Note?</message>
-	<message key="submission.notes.editNote">Edit Note</message>
-	<message key="submission.notes.attachedFile">File Attachment</message>
-	<message key="submission.notes.confirmDeleteAll">Remove All Submission Notes?</message>
-	<message key="submission.notes.collapseNotes">Collapse Notes</message>
-	<message key="submission.notes.backToSubmissionNotes">Back To Submission Notes</message>
-	<message key="submission.notes.removeUploadedFile">Remove Uploaded File</message>
-	<message key="submission.notes.deleteNote">Delete Note</message>
-	<message key="submission.notes.updateNote">Update Note</message>
-	<message key="submission.notes.createNewNote">Create New Note</message>
 
 	<!-- Common Conference Terms -->
 	<message key="conference.conferences">Conferences</message>
@@ -503,49 +246,10 @@
 	<message key="schedConf.registration.createAccount.description"><![CDATA[You are not currently logged in. In order to register for this conference, you will need an account. If you already have one, <a href="{$loginUrl}">click here</a> to log in; otherwise, fill in the information below in order to create a new account.]]></message>
 
 	<!-- User -->
-	<message key="user.userHome">User Home</message>
 	<message key="user.showAllConferences">Show My Conferences</message>
-	<message key="user.login">Log In</message>
-	<message key="user.profile">Profile</message>
 	<message key="user.createAccount">Create</message>
-	<message key="user.logIn">Log In</message>
-	<message key="user.logOut">Log Out</message>
-	<message key="user.username">Username</message>
-	<message key="user.password">Password</message>
-	<message key="user.sendPassword">Confirmation</message>
-	<message key="user.sendPassword.description">Send me a confirmation email including my username and password</message>
-	<message key="user.salutation">Salutation</message>
-	<message key="user.name">Name</message>
-	<message key="user.firstName">First name</message>
-	<message key="user.middleName">Middle name</message>
-	<message key="user.lastName">Last name</message>
-	<message key="user.initials">Initials</message>
-	<message key="user.initialsExample">Joan Alice Smith = JAS</message>
-	<message key="user.gender">Gender</message>
-	<message key="user.masculine">M</message>
-	<message key="user.feminine">F</message>
-	<message key="user.title">Title</message>
-	<message key="user.signature">Signature</message>
-	<message key="user.affiliation">Affiliation</message>
-	<message key="user.affiliations">Affiliations</message>
-	<message key="user.email">Email</message>
-	<message key="user.url">URL</message>
-	<message key="user.phone">Phone</message>
-	<message key="user.fax">Fax</message>
-	<message key="user.interests">Reviewing interests</message>
-	<message key="user.mailingAddress">Mailing address</message>
-	<message key="user.biography">Bio statement</message>
-	<message key="user.biography.description">(E.g., department and rank)</message>
-	<message key="user.workingLanguages">Working languages</message>
-	<message key="user.dateRegistered">Date Created</message>
-	<message key="user.dateLastLogin">Last login</message>
 	<message key="user.createAccountForOtherConferences">Create an Account for Other Conferences</message>
-	<message key="user.roles">Roles</message>
-	<message key="user.changePassword">Change Password</message>
-	<message key="user.editMyProfile">Edit My Profile</message>
-	<message key="user.changeMyPassword">Change My Password</message>
 	<message key="user.myConferences">My Conferences</message>
-	<message key="user.myAccount">My Account</message>
 	<message key="user.noRoles.chooseConference">Your account is not currently associated with any conferences. Please choose a conference:</message>
 	<message key="user.noRoles.noRolesForConference">Your account does not currently have any roles for this conference. Please choose from the actions below:</message>
 	<message key="user.noRoles.submitProposal">Submit a Proposal</message>
@@ -557,21 +261,15 @@
 	<message key="user.noRoles.registerUnavailable">Register to attend the conference: Registration is not currently accepted.</message>
 
 	<!-- Roles -->
-	<message key="user.role.siteAdmin">Site Administrator</message>
 	<message key="user.role.manager">Conference Manager</message>
 	<message key="user.role.director">Director</message>
 	<message key="user.role.trackDirector">Track Director</message>
-	<message key="user.role.reviewer">Reviewer</message>
 	<message key="user.role.presenter">Author</message>
-	<message key="user.role.reader">Reader</message>
 
-	<message key="user.role.siteAdmins">Site Administrators</message>
 	<message key="user.role.managers">Conference Managers</message>
 	<message key="user.role.directors">Directors</message>
 	<message key="user.role.trackDirectors">Track Directors</message>
-	<message key="user.role.reviewers">Reviewers</message>
 	<message key="user.role.presenters">Authors</message>
-	<message key="user.role.readers">Readers</message>
 
 	<!--
 	 *
@@ -599,8 +297,6 @@
 	
 	<message key="submission.event.general.abstractSubmitted">Abstract submitted</message>
 	<message key="submission.event.general.presentationSubmitted">Presentation submitted</message>
-	<message key="submission.event.general.metadataUpdated">Submission metadata updated</message>
-	<message key="submission.event.general.suppFileUpdated">Submission file updated</message>
 	<message key="submission.event.general.paperPublished">Paper published</message>
 
 	<message key="submission.event.presenter.presenterRevision">Author revision submitted</message>
@@ -614,20 +310,6 @@
 	<message key="submission.event.director.submissionArchived">Submission sent to archive</message>
 	<message key="submission.event.director.submissionRestored">Submission restored from archive</message>
 
-	<message key="submission.event.reviewer.reviewerAssigned">Reviewer assigned to submission</message>
-	<message key="submission.event.reviewer.reviewerUnassigned">Reviewer unassigned from submission</message>
-	<message key="submission.event.reviewer.reviewInitiated">Review assignment initiated</message>
-	<message key="submission.event.reviewer.reviewCancelled">Review assignment cancelled</message>
-	<message key="submission.event.reviewer.reviewReinitiated">Review assignment reinitiated</message>
-	<message key="submission.event.reviewer.reviewAccepted">Review assignment accepted</message>
-	<message key="submission.event.reviewer.reviewAcceptedByProxy">Review assignment accepted by proxy</message>
-	<message key="submission.event.reviewer.reviewDeclined">Review assignment declined</message>
-	<message key="submission.event.reviewer.reviewRevision">Reviewer revisions file updated</message>
-	<message key="submission.event.reviewer.reviewRecommendation">Review recommendation file</message>
-	<message key="submission.event.reviewer.reviewerRated">Reviewer rating submitted</message>
-	<message key="submission.event.reviewer.reviewDueDate">Review due date modified</message>
-	<message key="submission.event.reviewer.reviewResubmitted">Review resubmitted</message>
-	<message key="submission.event.reviewer.reviewFile">Review file updated</message>
 
 	<!-- Conference events -->
 	<message key="conference.event.general.configuration">Conference configuration changed</message>
@@ -641,7 +323,6 @@
 	-->
 
 	<!-- Reader paper view -->
-	<message key="reader.fullText">Full Text:</message>
 	<message key="reader.fullTextNotAvailable">Conference papers are not currently available.</message>
 	<message key="reader.accessDenied">You are not currently permitted to view this paper. If you have an account for this conference website, you may need to log in to view content.</message>
 	<message key="reader.fullTextRegistrationRequired">Conference registration is required in order to view papers.</message>
@@ -650,56 +331,16 @@
 	<message key="reader.fullTextNotPostedYet">Papers for this conference will be posted on {$date}.</message>
 
 	<!-- Reader Comments -->
-	<message key="comments.viewAllComments">View all comments</message>
-	<message key="comments.noComments">No reader comments have been posted.</message>
-	<message key="comments.anonymous">Anonymous User</message>
-	<message key="comments.anonymousNamed">"{$userName}"</message>
 	<message key="comments.authenticated">{$userName}</message>
-	<message key="comments.nReplies">({$num} Replies)</message>
-	<message key="comments.oneReply">(1 Reply)</message>
-	<message key="comments.readerComments">Reader Comments</message>
-	<message key="comments.inResponseTo">In response to <![CDATA[<a href="]]>{$url}<![CDATA[">]]>{$title}<![CDATA[</a>]]></message>
-	<message key="comments.emailReply">Email Reply</message>
-	<message key="comments.postReply">Post Reply</message>
-	<message key="comments.delete">Delete this comment</message>
-	<message key="comments.replies">Replies</message>
-	<message key="comments.enterComment">Enter Comment</message>
-	<message key="comments.name">Poster Name</message>
-	<message key="comments.email">Poster Email</message>
-	<message key="comments.title">Title</message>
-	<message key="comments.body">Body</message>
 	<message key="comments.commentsOnPaper">Comments On Paper</message>
 	<message key="comments.commentsClosed">Comments closed on {$closeCommentsDate}.</message>
-	<message key="comments.postAnonymously">Post this comment anonymously</message>
-	<message key="comments.readMore">Read more</message>
-	<message key="comments.confirmDeleteChildren">Deleting this comment will also delete any replies to it. Are you sure you wish to do this?</message>
 
 	<!-- Site Administration -->
-	<message key="admin.siteAdmin">Site Administration</message>
-	<message key="admin.siteSettings">Site Settings</message>
 	<message key="admin.hostedConferences">Hosted Conferences</message>
-	<message key="admin.authSources">Authentication Sources</message>
 
-	<message key="admin.settings.siteTitle">Site title</message>
-	<message key="admin.settings.introduction">Introduction</message>
-	<message key="admin.settings.aboutDescription">About the Site description</message>
-	<message key="admin.settings.form.titleRequired">A title is required.</message>
 	<message key="admin.settings.conferenceRedirect">Conference redirect</message>
 	<message key="admin.settings.conferenceRedirectInstructions">Requests to the main site will be redirected to this conference. This may be useful if the site is hosting only a single conference, for example.</message>
 	<message key="admin.settings.noConferenceRedirect">Do not redirect</message>
-	<message key="admin.settings.contactName">Name of principal contact</message>
-	<message key="admin.settings.contactEmail">Email of principal contact</message>
-	<message key="admin.settings.minPasswordLength">Minimum password length</message>
-	<message key="admin.settings.siteStyleSheet">Site style sheet</message>
-	<message key="admin.settings.homeHeaderImage.altText">Site Logo</message>
-	<message key="admin.settings.homeHeaderImageInvalid">Invalid site logo image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="admin.settings.siteStyleSheetInvalid">Invalid site stylesheet format. Accepted format is .css.</message>
-	<message key="admin.settings.form.contactNameRequired">The name of the principal contact is required.</message>
-	<message key="admin.settings.form.contactEmailRequired">The email address of the principal contact is required.</message>
-	<message key="admin.settings.form.minPasswordLengthRequired">You must enter a minimum password length of at least 4 characters.</message>
-	<message key="admin.settings.passwordCharacters">characters</message>
-	<message key="admin.settings.siteLanguage">Site language</message>
-	<message key="admin.settings.oaiRegistration">Register Site for Indexing (Metadata Harvesting)</message>
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[To have the contents of all conferences hosted on this site indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your site's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this conference, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.
@@ -707,34 +348,14 @@
 Note that the OAI interface can be disabled for this site by editing the OCS system configuration. Future versions of OCS will allow the OAI interface to be enabled or disabled for individual conferences within the site.]]></message>
 
 
-	<message key="admin.siteManagement">Site Management</message>
-	<message key="admin.adminFunctions">Administrative Functions</message>
-	<message key="admin.expireSessions">Expire User Sessions</message>
-	<message key="admin.confirmExpireSessions">Are you sure you want to expire all user sessions? All users who are currently logged into the system will be forced to log in again (yourself included).</message>
-	<message key="admin.clearTemplateCache">Clear Template Cache</message>
-	<message key="admin.clearDataCache">Clear Data Caches</message>
-	<message key="admin.confirmClearTemplateCache">Are you sure you want to clear the cache of compiled templates?</message>
-	<message key="admin.systemInformation">System Information</message>
 
 	<!-- Languages -->
-	<message key="admin.languages.languageSettings">Language Settings</message>
-	<message key="admin.languages.installLanguages">Manage Locales</message>
 	<message key="admin.languages.primaryLocaleInstructions">This will be the default language for the site and any hosted conferences.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Select all locales to support on the site. The selected locales will be available for use by all conferences hosted on the site, and also appear in a language select menu to appear on each site page (which can be overridden on conference-specific pages). If multiple locales are not selected, the language toggle menu will not appear and extended language settings will not be available to conferences.</message>
-	<message key="admin.languages.installedLocales">Installed Locales</message>
-	<message key="admin.languages.reload">Reload Locale</message>
-	<message key="admin.languages.confirmReload">Are you sure you want to reload this locale? This will erase any existing locale-specific data such as customized email templates.</message>
-	<message key="admin.languages.uninstall">Uninstall Locale</message>
 	<message key="admin.languages.confirmUninstall">Are you sure you want to uninstall this locale? This may affect any hosted conferences currently using the locale.</message>
-	<message key="admin.languages.installNewLocales">Install New Locales</message>
 	<message key="admin.languages.installNewLocalesInstructions">Select any additional locales to install support for in this system. Locales must be installed before they can be used by hosted conferences. See the OCS documentation for information on adding support for new languages.</message>
-	<message key="admin.languages.noLocalesAvailable">No additional locales are available for installation.</message>
-	<message key="admin.languages.installLocales">Install</message>
 
 	<message key="admin.auth.ocs">OCS User Database</message>
-	<message key="admin.auth.create">Create authentication source</message>
-	<message key="admin.auth.confirmDelete">Are you sure you want to permanently delete this authentication source?</message>
-	<message key="admin.auth.noneCreated">No authentication sources have been defined.</message>
 	<message key="admin.auth.enableSyncProfiles">Enable user profile synchronization (if supported by this authentication plug-in). User profile information will be automatically updated from the remote source when a user logs in, and profile changes (including password changes) made within OCS will be automatically updated on the remote source. If this option is not enabled OCS profile information will be kept separate from remote source profile information.</message>
 	<message key="admin.auth.enableSyncPasswords">Enable user password modification (if supported by this authentication plug-in). Enabling this option allows users to modify their password from within OCS and to use the OCS "lost password" feature to reset a forgotten password. These functions will be unavailable to users with this authentication source if this option is not enabled.</message>
 	<message key="admin.auth.enableCreateUsers">Enable user creation (if supported by this authentication plug-in). Users created within OCS with this authentication source will be automatically added to the remote authentication source if they do not already exist. Additionally, if this source is the default authentication source, OCS accounts created through user registration will also be added to the remote authentication source.</message>
@@ -746,41 +367,12 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<!-- System Information -->
 	<message key="admin.systemVersion">OCS Version</message>
 	<message key="admin.systemConfiguration">OCS Configuration</message>
-	<message key="admin.serverInformation">Server Information</message>
-	<message key="admin.currentVersion">Current version</message>
-	<message key="admin.versionHistory">Version history</message>
-	<message key="admin.version">Version</message>
-	<message key="admin.versionMajor">Major</message>
-	<message key="admin.versionMinor">Minor</message>
-	<message key="admin.versionRevision">Revision</message>
-	<message key="admin.versionBuild">Build</message>
-	<message key="admin.dateInstalled">Date installed</message>
 	<message key="admin.systemConfigurationDescription"><![CDATA[OCS configuration settings from <tt>config.inc.php</tt>.]]></message>
-	<message key="admin.serverInformationDescription"><![CDATA[Basic operating system and server software versions. Click on <span class="highlight">Extended PHP Information</span> to view extended details of this server's PHP configuration.]]></message>
-	<message key="admin.phpInfo">Extended PHP Information</message>
-	<message key="admin.server.platform">OS platform</message>
-	<message key="admin.server.phpVersion">PHP version</message>
-	<message key="admin.server.apacheVersion">Apache version</message>
-	<message key="admin.server.dbDriver">Database driver</message>
-	<message key="admin.server.dbVersion">Database server version</message>
 	<message key="admin.editSystemConfigInstructions"><![CDATA[Use this form to modify your system configuration (the <tt>config.inc.php</tt> file). Click Save to save your new configuration, or "Display" to simply display the updated configuration file and not modify your existing configuration.
 <br /><br />
 <span class="formError">Warning: Modifying these settings can potentially leave your site in an inaccessible state (requiring your configuration file to be manually fixed). It is strongly recommended that you do not make any changes unless you know exactly what you are doing.</span>]]></message>
-	<message key="admin.saveSystemConfig">Save Configuration</message>
-	<message key="admin.displayNewSystemConfig">Display New Configuration</message>
-	<message key="admin.systemConfigFileReadError"><![CDATA[The configuration file <tt>config.inc.php</tt> does not exist, is not readable, or is invalid.]]></message>
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
 <p>The system could not automatically overwrite the configuration file. To apply your configuration changes you must open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
-	<message key="admin.displayConfigFileInstructions"><![CDATA[The contents of your updated configuration are displayed below. To apply the configuration changes you must open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.]]></message>
-	<message key="admin.configFileUpdatedInstructions"><![CDATA[Your configuration file has been successfully updated. Please note that if your site no longer functions correctly you may need to manually fix your configuration by editing <tt>config.inc.php</tt> directly.]]></message>
-	<message key="admin.contentsOfConfigFile">Contents of configuration file</message>
-	<message key="admin.version.checkForUpdates">Check for updates</message>
-	<message key="admin.version.latest">Latest version</message>
-	<message key="admin.version.upToDate">Your system is up-to-date</message>
-	<message key="admin.version.updateAvailable">An updated version is available</message>
-	<message key="admin.version.downloadPackage">Download</message>
-	<message key="admin.version.downloadPatch">Download Patch</message>
-	<message key="admin.version.moreInfo">More Information</message>
 
 	<message key="admin.conferences.conferenceSettings">Conference Settings</message>
 	<message key="admin.conferences.noneCreated">No conferences have been created.</message>
@@ -811,82 +403,18 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="admin.conferences.importErrors">Importing failed to complete successfully</message>
 
 	<!-- Registration Management -->
-	<message key="manager.registrationManagement">Registration Management</message>
 
 	<!-- Scheduler -->
-	<message key="manager.scheduler.returnToSchedule">Return to Schedule</message>
-	<message key="manager.scheduler">Scheduler</message>
-	<message key="manager.scheduler.roomsAndEvents">Rooms &amp;amp; Events</message>
-	<message key="manager.scheduler.scheduling">Scheduling</message>
-	<message key="manager.scheduler.description"><![CDATA[Conference Managers may schedule presentations and special events for times and locations using the Scheduler. In the pages below, the Conference Manager can define locations (buildings and rooms) and blocks of time, and assign presentations and events to each.]]></message>
 
-	<message key="manager.scheduler.buildingsAndRooms">Buildings &amp;amp; Rooms</message>
-	<message key="manager.scheduler.buildings">Buildings</message>
-	<message key="manager.scheduler.building">Building</message>
-	<message key="manager.scheduler.building.name">Name</message>
-	<message key="manager.scheduler.building.abbrev">Abbreviation</message>
-	<message key="manager.scheduler.building.description">Description</message>
-	<message key="manager.scheduler.building.form.nameRequired">A building name is required.</message>
-	<message key="manager.scheduler.building.form.abbrevRequired">A building abbreviation is required.</message>
-	<message key="manager.scheduler.building.confirmDelete">Are you sure you wish to delete this building? There may be presentations scheduled to appear here.</message>
-	<message key="manager.scheduler.building.saveAndCreateAnother">Save and Create Another</message>
-	<message key="manager.scheduler.building.noneCreated">No buildings have been created.</message>
-	<message key="manager.scheduler.building.create">Create a new building</message>
-	<message key="manager.scheduler.building.createBuilding">Create Building</message>
-	<message key="manager.scheduler.building.createBuildingShort">Create</message>
-	<message key="manager.scheduler.building.editBuilding">Edit Building</message>
-	<message key="manager.scheduler.building.editBuildingShort">Edit</message>
 
-	<message key="manager.scheduler.rooms">Rooms</message>
-	<message key="manager.scheduler.room">Room</message>
-	<message key="manager.scheduler.room.unassigned">Unassigned</message>
-	<message key="manager.scheduler.room.name">Name</message>
-	<message key="manager.scheduler.room.abbrev">Abbreviation</message>
-	<message key="manager.scheduler.room.description">Description</message>
-	<message key="manager.scheduler.room.form.nameRequired">A room name is required.</message>
-	<message key="manager.scheduler.room.form.abbrevRequired">A room abbreviation is required.</message>
-	<message key="manager.scheduler.room.form.buildingIdValid">Each room must be associated with a valid building.</message>
-	<message key="manager.scheduler.room.confirmDelete">Are you sure you wish to delete this room? There may be presentations scheduled to appear here.</message>
-	<message key="manager.scheduler.room.saveAndCreateAnother">Save and Create Another</message>
-	<message key="manager.scheduler.room.noneCreated">No rooms have been created.</message>
-	<message key="manager.scheduler.room.create">Create a new room</message>
-	<message key="manager.scheduler.room.createRoom">Create room</message>
-	<message key="manager.scheduler.room.createRoomShort">Create</message>
-	<message key="manager.scheduler.room.editRoom">Edit Room</message>
-	<message key="manager.scheduler.room.editRoomShort">Edit</message>
 
-	<message key="manager.scheduler.specialEvents">Special Events</message>
-	<message key="manager.scheduler.specialEvent.name">Name</message>
-	<message key="manager.scheduler.specialEvent.description">Description</message>
-	<message key="manager.scheduler.specialEvent.isMultiple">This special event may occur several times during the conference (e.g. coffee breaks).</message>
-	<message key="manager.scheduler.specialEvent.form.nameRequired">A special event name is required.</message>
-	<message key="manager.scheduler.specialEvent.form.checkTimes">Please check the times entered to ensure that the end time is not before the start time.</message>
-	<message key="manager.scheduler.specialEvent.confirmDelete">Are you sure you wish to delete this special event?</message>
-	<message key="manager.scheduler.specialEvent.saveAndCreateAnother">Save and Create Another</message>
-	<message key="manager.scheduler.specialEvent.noneCreated">No special events have been created.</message>
-	<message key="manager.scheduler.specialEvent.create">Create a new special event</message>
-	<message key="manager.scheduler.specialEvent.createSpecialEvent">Create Special Event</message>
-	<message key="manager.scheduler.specialEvent.createSpecialEventShort">Create</message>
-	<message key="manager.scheduler.specialEvent.editSpecialEvent">Edit Special Event</message>
-	<message key="manager.scheduler.specialEvent.editSpecialEventShort">Edit</message>
 
-	<message key="manager.scheduler.schedule">Schedule Presentations &amp;amp; Events</message>
-	<message key="manager.scheduler.schedule">Schedule Presentations</message>
-	<message key="manager.scheduler.startTime">Start Time</message>
-	<message key="manager.scheduler.endTime">End Time</message>
-	<message key="manager.scheduler.location">Location</message>
-	<message key="manager.scheduler.checkTimes">Please check the start and end times for the presentations indicated in red to ensure that they are valid.</message>
 
 	<!-- Payment Handling -->
-	<message key="manager.payment.paymentSettings">Payment Methods</message>
-	<message key="manager.payment.paymentPluginInvalid">You must choose a valid payment method.</message>
-	<message key="manager.payment.form.description">Enter the configuration details for the method of payment this conference website is able to accept.</message>
-	<message key="manager.payment.form.method">Conference Registration Payment Methods</message>
 
 	<message key="payment.type.conferenceRegistration">Conference Registration; {$schedConfTitle}; {$registrationTypeName}</message>
 
 	<!-- Conference Event Log -->
-	<message key="manager.conferenceEventLog">Event Log</message>
 	<message key="conference.event.confirmClearLog">Are you sure you want to clear the event log for this conference?</message>
 	<message key="conference.event.confirmDeleteLogEntry">Are you sure you want to delete this event log entry?</message>
 	<message key="conference.event.deleteLogEntry">Delete Log Entry</message>
@@ -896,146 +424,37 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="conference.history.noLogEntries">No log entries.</message>
 
 	<!-- Scheduled Conference Management -->
-	<message key="manager.schedConfs">Scheduled Conferences</message>
-	<message key="manager.schedConfSetup">Setup</message>
-	<message key="manager.schedConfManagement">Scheduled Conference Management</message>
-	<message key="manager.schedConfs.schedulingAConference">Scheduling a Conference</message>
-	<message key="manager.schedConfs.noneCreated">No events have been created.</message>
-	<message key="manager.schedConfs.confirmDelete">Are you sure you want to permanently delete this scheduled conference and all of its contents?</message>
-	<message key="manager.schedConfs.scheduledConference">Scheduled Conference</message>
-	<message key="manager.schedConfs.create">Create a Scheduled Conference</message>
-	<message key="manager.schedConfs.form.createInstructions">A scheduled instance of the conference is created by entering a title (for example, if it is an annual conference, the name of the conference plus the year) and a URL path. You will be made a Conference Director and can designate other Conference Directors, who are able to manage the details of this event, beginning with the scheduling of the conference in Conference Timeline.</message>
-	<message key="manager.schedConfs.form.urlWillBe">The event's URL will be {$sampleUrl}</message>
-	<message key="manager.schedConfs.form.title">Scheduled Conference Title</message>
-	<message key="manager.schedConfs.form.acronym">Acronym</message>
-	<message key="manager.schedConfs.form.titleRequired">A title is required.</message>
-	<message key="manager.schedConfs.form.acronymRequired">An acronym is required.</message>
-	<message key="manager.schedConfs.form.pathRequired">A path is required.</message>
-	<message key="manager.schedConfs.form.pathExists">The selected path is already in use in this conference.</message>
-	<message key="manager.schedConfs.form.pathAlphaNumeric">The path can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
 
 	<!-- Program settings -->
-	<message key="manager.program.form.description">When the conference program is ready to be presented to users, upload it here or enter it as plain text.</message>
-	<message key="manager.program.form.programFile">Program File</message>
-	<message key="manager.program.form.programFile.description">If the program is available as a file, upload it here.</message>
-	<message key="manager.program.form.programText">Plain Text Program</message>
-	<message key="manager.program.form.programText.description">Enter a text-based version of your conference program here.</message>
 
 	<!-- Accommodation settings -->
-	<message key="manager.accommodation.form.description">Enter information about accommodation, transportation, and other related logistics here. Several files including information like directions and forms may also be uploaded.</message>
-	<message key="manager.accommodation.form.accommodationFiles">Files</message>
-	<message key="manager.accommodation.form.accommodationFiles.description">Use this section to upload one or more files for registrants and potential registrants, such as maps, forms, etc.</message>
-	<message key="manager.accommodation.form.accommodationText">Accommodation Description</message>
-	<message key="manager.accommodation.form.accommodationText.description">Enter text describing conference accommodations in the field below.</message>
 
 	<!-- Conference Management -->
-	<message key="manager.conferenceSiteManagement">Conference Site Management</message>
-	<message key="manager.websiteManagement">Website Management</message>
-	<message key="manager.currentConferences">Current Conferences</message>
-	<message key="manager.emails">Prepared Emails</message>
-	<message key="manager.statistics"><![CDATA[Stats &amp; Reports]]></message>
-	<message key="manager.readingTools">Reading Tools</message>
-	<message key="manager.people">People</message>
-	<message key="manager.filesBrowser">Files Browser</message>
-	<message key="manager.groups">Organizing Team</message>
-	<message key="manager.managementPages">General Management</message>
-	<message key="manager.managementPages.description"><![CDATA[<ol><li>Begin with Website Management to set up the conference website.</li><li>Use Scheduled Conferences to establish a scheduled instance of the conference.</li><li>Go to scheduled conference's Setup to post Call for Papers, Registration, etc. and use its Timeline to set dates for postings, submissions, etc.</li></ol>]]></message>
-	<message key="manager.program">Program</message>
-	<message key="manager.plugins">System Plugins</message>
-	<message key="manager.users">Users</message>
-	<message key="manager.roles">Roles</message>
-	<message key="manager.registrationTypes">Registration Types</message>
-	<message key="manager.registration">Registrations</message>
-	<message key="manager.registrationPolicies">Registration Policies</message>
-	<message key="manager.accommodation">Accommodation</message>
-	<message key="manager.announcements">Announcements</message>
-	<message key="manager.announcementTypes">Announcement Types</message>
 
 	<!-- Statistics & Reports -->
-	<message key="manager.statistics.statistics">Scheduled Conference Statistics</message>
-	<message key="manager.statistics.statistics.description">OCS calculates the following statistics for each scheduled conference. The "days to review" is calculated from date of submission (or designation of Review Version) to the initial Director Decision, while the "days to publish" is measured for accepted submissions from its original uploading to its publication.</message>
-	<message key="manager.statistics.statistics.makePublic">Check items to be made available to readers in About the Conference.</message>
-	<message key="manager.statistics.statistics.selectTracks">Select the tracks for calculating this conference's peer-reviewed statistics.</message>
-	<message key="manager.statistics.statistics.itemsPublished">Items Published:</message>
-	<message key="manager.statistics.statistics.numSubmissions">Total submissions:</message>
-	<message key="manager.statistics.statistics.peerReviewed">Peer reviewed:</message>
-	<message key="manager.statistics.statistics.count.accept">Accept (%):</message>
-	<message key="manager.statistics.statistics.count.decline">Decline (%):</message>
-	<message key="manager.statistics.statistics.count.value">{$count} ({$percentage}%)</message>
-	<message key="manager.statistics.statistics.reviewers">Reviewers:</message>
-	<message key="manager.statistics.statistics.reviewerCount">No. Assigned:</message>
-	<message key="manager.statistics.statistics.reviewsPerReviewer">No. of Reviews:</message>
-	<message key="manager.statistics.statistics.daysPerReview">Days To Review:</message>
-	<message key="manager.statistics.statistics.reviewerScore">Director Score:</message>
-	<message key="manager.statistics.statistics.daysToPublication">Days To Publication:</message>
-	<message key="manager.statistics.statistics.users">Users:</message>
-	<message key="manager.statistics.statistics.readers">Readers:</message>
-	<message key="manager.statistics.statistics.totalNewValue">{$numTotal} ({$numNew} new)</message>
-	<message key="manager.statistics.statistics.registrations">Registrations:</message>
-	<message key="manager.statistics.statistics.note">Note: Percentages for peer reviewed submissions may not add up to 100%, as items resubmitted are either accepted, declined, or still in process.</message>
 
-	<message key="manager.statistics.reports">Reports</message>
-	<message key="manager.statistics.reports.description">Choose a report from the list below.</message>
 
 	<!-- Plugin Management -->
-	<message key="manager.plugins.description">This page allows the Conference Manager to review and potentially configure the plugins that are currently installed. Plugins are divided into categories, according to their function. The categories are listed below, and within each category, its current set of plugins.</message>
-	<message key="manager.plugins.pluginManagement">Plugin Management</message>
-	<message key="manager.plugins.sitePlugin">This is a site-wide plugin. Only the Site Administrator may manage this plugin.</message>
-	<message key="manager.plugins.action">Action:</message>
-	<message key="manager.plugins.disable">Disable</message>
-	<message key="manager.plugins.enable">Enable</message>
 
 	<!-- General plugin information -->
-	<message key="plugins.categories.generic">Generic Plugins</message>
 	<message key="plugins.categories.generic.description">Generic plugins are used to extend Open Conference Systems in a variety of ways that are not supported by the other plugin categories.</message>
-	<message key="plugins.categories.auth">Authorization Plugins</message>
 	<message key="plugins.categories.auth.description">Authorization Plugins allow Open Conference Systems to delegate user authentication tasks to other systems, such as LDAP servers.</message>
 
-	<message key="plugins.categories.importexport">Import/Export Plugins</message>
-	<message key="plugins.categories.importexport.description">Import/Export Plugins can be used to transfer content to and from other systems.</message>
 
-	<message key="plugins.categories.gateways">Gateway Plugins</message>
-	<message key="plugins.categories.gateways.description">Gateway Plugins provide live data to external systems.</message>
 
-	<message key="plugins.categories.paymethod">Payment Plugins</message>
-	<message key="plugins.categories.paymethod.description">Payment Method plugins implement support for various ways of processing payments online.</message>
 
-	<message key="plugins.categories.citationFormats">Citation Format Plugins</message>
 	<message key="plugins.categories.citationFormats.description">Citation format plugins provide users with various formats in which to access paper citations.</message>
  
-	<message key="plugins.categories.reports">Report Plugins</message>
-	<message key="plugins.categories.reports.description">Report Plugins are used to implement various types of reports and data extracts for Conference Managers.</message>
  
-	<message key="plugins.categories.blocks">Block Plugins</message>
-	<message key="plugins.categories.blocks.description">Block Plugins are pluggable UI components, such as the various sidebar tools.</message>
  
-	<message key="plugins.categories.themes">Theme Plugins</message>
-	<message key="plugins.categories.themes.description">Theme Plugins can be used to change the system's appearance.</message>
  
 	<!-- Files Browser -->
-	<message key="manager.files.indexOfDir">Index of {$dir}</message>
-	<message key="manager.files.uploadedFiles">Uploaded Files</message>
-	<message key="manager.files.parentDir">Parent Directory</message>
-	<message key="manager.files.emptyDir">No files were found in this directory.</message>
-	<message key="manager.files.uploadFile">Upload File</message>
-	<message key="manager.files.createDir">Create Directory</message>
-	<message key="manager.files.confirmDelete">Delete this file or directory? Note that a directory must be empty before it can be deleted.</message>
-	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a conference to be viewed and manipulated directly.</message>
 
 	<!--
 	     ***
 	     *** Generic setup locale keys
 	     ***
 	-->
-	<message key="manager.setup.conferenceTitle">Conference Title</message>
-	<message key="manager.setup.homepageImageInvalid">Invalid homepage image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.homeTitleImageInvalid">Invalid homepage header title image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.homeHeaderImageInvalid">Invalid homepage header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.pageHeaderTitleImageInvalid">Invalid page header title image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.pageHeaderLogoImageInvalid">Invalid page header logo image format. Accepted formats are .gif, .jpg, or .png.</message>
-	<message key="manager.setup.conferenceStyleSheetInvalid">Invalid conference stylesheet format. Accepted format is .css.</message>
-	<message key="manager.setup.conferenceSetupUpdated">Your conference setup has been updated.</message>
-	<message key="manager.setup.selectOne">Select one</message>
 	<message key="manager.setup.finalStepSavedNotes"><![CDATA[
 			<p>Almost Done!</p>
 			<p>A conference has now been set up, which may entail a single scheduled conference, an annual conference, or a series of scheduled conferences, all of which can be managed from this conference site. In order to schedule a specific instance of this conference, go to <a href="{$schedConfSetupUrl}">Scheduled Conferences</a>. You may access this page at any time via the Conference Manager's homepage.</p>
@@ -1043,9 +462,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 			<p>You can manage scheduled conferences through "User Home > Conference Manager > Setup"</p>
 	]]></message>
 
-	<message key="manager.setup.finalSchedConfStepSavedNotes"><![CDATA[<p>A scheduled conference has now been set up. Continue to Conference Management by <a href="{$conferenceManagementUrl}">clicking here</a>.</p>]]></message>
 
-	<message key="manager.setup.htmlSetupInstructions"><![CDATA[If using HTML in Setup text boxes (for font size, bold, color, etc.), note that "returns" in the text are automatically treated as <tt>&lt;br&gt;</tt>.]]></message>
 
 	<!--
 	     ***
@@ -1053,133 +470,23 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	     ***
 	-->
 
-	<message key="manager.setup.aboutConference">About the Conference</message>
-	<message key="manager.setup.additionalContent">Additional Website Content</message>
-	<message key="manager.setup.layout">Website Headers, Footers, Lists and Navigation Bar</message>
-	<message key="manager.setup.style">Conference Style</message>
-	<message key="manager.setup.loggingAndAuditing">Logging and Auditing</message>
-	<message key="manager.setup.indexing">Conference Indexing</message>
 
-	<message key="manager.setup.aboutConference.title">Step 1. About the Conference</message>
-	<message key="manager.setup.additionalContent.title">Step 2. Additional Website Content</message>
-	<message key="manager.setup.layout.title">Step 3. Website Headers, Footers, Lists and Navigation Bar</message>
-	<message key="manager.setup.style.title">Step 4. Conference Style</message>
-	<message key="manager.setup.loggingAndAuditing.title">Step 5. Logging and Auditing</message>
-	<message key="manager.setup.indexing.title">Step 6. Conference Indexing</message>
 
-	<message key="manager.setup.aboutConference.brief">About</message>
-	<message key="manager.setup.additionalContent.brief">Additional Content</message>
-	<message key="manager.setup.layout.brief">Headers, Footers, etc.</message>
-	<message key="manager.setup.style.brief">Style</message>
-	<message key="manager.setup.loggingAndAuditing.brief">Logging &amp; Auditing</message>
-	<message key="manager.setup.indexing.brief">Indexing</message>
 
-	<message key="manager.setup.aboutConference.description">Conference description, principal contact, copyright notice, etc.</message>
-	<message key="manager.setup.additionalContent.description">Homepage content, user information, and announcements</message>
-	<message key="manager.setup.layout.description">Titles and logos, headers, footers, etc.</message>
-	<message key="manager.setup.style.description">Cascading Style Sheet and theme for conference pages</message>
-	<message key="manager.setup.loggingAndAuditing.description">Email logs, event logs, etc.</message>
-	<message key="manager.setup.indexing.description">Search engines and metadata harvesting</message>
 
-	<message key="manager.setup.stepsToConferenceSite">Six Steps to a Conference Web Site</message>
 
 	<!-- Conference setup page 1 -->
-	<message key="manager.setup.aboutConference.conferenceDescription">Conference Description</message>
-	<message key="manager.setup.aboutConference.conferenceDescription.description">This description outlines the overall scope and focus of the conferences scheduled on this site.</message>
-	<message key="manager.setup.aboutConference.principalContact">Principal Contact for Conference Website</message>
-	<message key="manager.setup.aboutConference.copyrightNotice">Copyright Notice</message>
-	<message key="manager.setup.aboutConference.copyrightNotice.description"><![CDATA[The Copyright Notice will also appear in the metadata accompanying posted conference materials and as a statement that authors need to agree to on submitting to the conference. The Public Knowledge Project recommends the use of a <a href="http://creativecommons.org">Creative Commons</a> license, and provides a sample Copyright Notice below.]]></message>
-	<message key="manager.setup.aboutConference.copyrightNoticeAgree">Require authors to agree to Copyright Notice as part of the submission process.</message>
-	<message key="manager.setup.aboutConference.postCreativeCommons">Post the Creative Commons license logo on the conference website.</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy">Archive Access Policy</message>
-	<message key="manager.setup.aboutConference.archiveAccessPolicy.description">The following settings control access to the conference archives. See section 2.5 for additional settings.</message>
-	<message key="manager.setup.aboutConference.privacyStatement">Privacy Statement</message>
 
-	<message key="manager.setup.aboutConference.addItemtoAboutConference">Add Item to Appear in "About the Conference"</message>
-	<message key="manager.setup.aboutConference.aboutItemContent">Content</message>
-	<message key="manager.setup.aboutConference.addAboutItem">Add About Item</message>
-	<message key="manager.setup.aboutConference.restrictPaperAccess">Visitors must create Reader accounts to view archived conference abstracts and presentations.</message>
-	<message key="manager.setup.aboutConference.comments">Reader Comments</message>
-	<message key="manager.setup.aboutConference.comments.enable">Permit commenting on archived presentations</message>
-	<message key="manager.setup.aboutConference.comments.requireRegistration">Only users with accounts can comment on archived presentations.</message>
-	<message key="manager.setup.aboutConference.comments.allowAnonymous">Anonymous commenting is permitted.</message>
 
 	<!-- Conference setup page 2 -->
-	<message key="manager.setup.additionalContent.redirect">Scheduled Conference Redirect</message>
-	<message key="manager.setup.additionalContent.schedConfRedirect">Redirect</message>
-	<message key="manager.setup.additionalContent.redirect.noSchedConfRedirect">Do not redirect</message>
-	<message key="manager.setup.additionalContent.redirect.invalidSchedConf">An invalid scheduled conference was chosen for redirects. Please check the chosen scheduled conference and try again.</message>
-	<message key="manager.setup.additionalContent.redirect.description">By selecting a Scheduled Conference below, it is possible to redirect users who visit the Conference page directly to that Scheduled Conference. This is useful if, for example, this Conference only contains a single Scheduled Conference.</message>
-	<message key="manager.setup.additionalContent.homepage">Homepage</message>
-	<message key="manager.setup.additionalContent.homepageImage">Homepage Image</message>
-	<message key="manager.setup.additionalContent.additionalContent">Additional Content</message>
-	<message key="manager.setup.additionalContent.additionalContent.description">Add the following content, using text/HTML, which will appear below the homepage image, if one is uploaded.</message>
-	<message key="manager.setup.additionalContent.information">Information for Users</message>
-	<message key="manager.setup.additionalContent.information.description">Brief descriptions of the conference for prospective authors and readers are available in the "Information" section of the sidebar.</message>
-	<message key="manager.setup.additionalContent.information.forReaders">For Readers</message>
-	<message key="manager.setup.additionalContent.information.forPresenters">For Authors</message>
-	<message key="manager.setup.additionalContent.announcements">Announcements</message>
-	<message key="manager.setup.additionalContent.announcementsDescription">Announcements may be published to inform readers of conference news and events. Published announcements will appear on the Announcements page.</message>
-	<message key="manager.setup.additionalContent.enableAnnouncements">Enable Conference Managers to add conference announcements.</message>
-	<message key="manager.setup.additionalContent.enableAnnouncementsHomepage1">Display</message>
-	<message key="manager.setup.additionalContent.enableAnnouncementsHomepage2">of the most recent announcements on the conference homepage.</message>
-	<message key="manager.setup.additionalContent.announcementsIntroduction">Additional Information</message>
-	<message key="manager.setup.additionalContent.announcementsIntroductionDescription">Enter any additional information that should be displayed to readers on the Announcements page.</message>
-	<message key="manager.setup.additionalContent.archiveAccess">Access to Conference Presentations</message>
-	<message key="manager.setup.additionalContent.archiveAccess.description">The date for allowing access to presentations is set in Conference Timeline, while access to archived conferences is controlled by the Conference Manager in Conference Setup.</message>
-	<message key="manager.setup.additionalContent.archiveAccess.open">Provide open access to all visitors to the website.</message>
-	<message key="manager.setup.additionalContent.archiveAccess.accountRequired">Require visitors to sign up with the website.</message>
-	<message key="manager.setup.additionalContent.archiveAccess.registrationRequired">Require registration to attend the conference.</message>
 
 	<!-- Conference setup page 3 -->
-	<message key="manager.setup.layout.homepageTitle">Conference Homepage Title</message>
-	<message key="manager.setup.layout.useTextTitle">Title text</message>
-	<message key="manager.setup.layout.useImageTitle">Title image</message>
-	<message key="manager.setup.layout.homepageHeader">Conference Homepage Header</message>
-	<message key="manager.setup.layout.homepageHeader.altText">Conference Homepage Header</message>
-	<message key="manager.setup.layout.homepageHeader.description">A graphic version of the conference's title and logo (as a .gif, .jpg, or .png file) can be uploaded for the homepage, which will replace the text version that otherwise appears.</message>
-	<message key="manager.setup.layout.conferenceTitle">Conference Title</message>
-	<message key="manager.setup.layout.conferenceLogo">Conference Logo</message>
-	<message key="manager.setup.layout.conferenceLogo.altText">Conference Logo</message>
-	<message key="manager.setup.layout.lists">Lists</message>
-	<message key="manager.setup.layout.lists.description">Enter the maximum number of items (for example, submissions, users, or editing assignments) that appear on each page of a list, and the number of pages links to display on each page.</message>
-	<message key="manager.setup.layout.itemsPerPage">Items per page</message>
-	<message key="manager.setup.layout.numPageLinks">Page links</message>
-	<message key="manager.setup.layout.useImageLogo">Logo image</message>
-	<message key="manager.setup.layout.noImageFileUploaded">No image file uploaded.</message>
-	<message key="manager.setup.layout.navigationBar">Navigation Bar</message>
-	<message key="manager.setup.layout.itemsDescription">Navigation bar items can be added to the current set (Home, About, User Home, etc.) that appear at the top of the page.</message>
-	<message key="manager.setup.layout.labelName">Label name</message>
-	<message key="manager.setup.layout.addNavItem">Add Item</message>
-	<message key="manager.setup.layout.navItemIsLiteral">The label value is a literal string (e.g., "Conference Setup") rather than a localization message key (e.g., "manager.setup")</message>
-	<message key="manager.setup.layout.navItemIsAbsolute">URL is an absolute URL (e.g., "http://www.example.com") rather than a path relative to the site (e.g., "/manager/setup")</message>
-	<message key="manager.setup.layout.conferencePageHeader">Website Header</message>
-	<message key="manager.setup.layout.conferencePageHeader.description">A graphic version of the conference's title and logo (.gif, .jpg, or .png file), possibly a smaller version of the one used on the homepage</message>
-	<message key="manager.setup.layout.alternateHeader">Alternate Header</message>
-	<message key="manager.setup.layout.alternateHeaderDescription">Instead of title and logo, an HTML version of the header can be inserted.</message>
-	<message key="manager.setup.layout.conferencePageFooter">Website Footer</message>
-	<message key="manager.setup.layout.conferencePageFooterDescription">This is the footer of your conference. To change or update the footer, paste the HTML code in the textbox below. Examples could be another navigation bar, a counter, etc. This footer will appear on every page.</message>
 
 	<!-- Conference setup page 4 -->
-	<message key="manager.setup.style.conferenceTheme">Conference Theme</message>
-	<message key="manager.setup.style.conferenceStyleSheet.description">By default conferences and the site use a common style sheet (located in the "styles" subdirectory of the site). The default style rules can be overridden by choosing a theme and/or uploading a conference-specific cascading style sheet.</message>
-	<message key="manager.setup.style.useConferenceStyleSheet">Conference style sheet</message>
-	<message key="manager.setup.layout.leftSidebar">Left Sidebar</message>
-	<message key="manager.setup.layout.unselected">Unselected</message>
-	<message key="manager.setup.layout.rightSidebar">Right Sidebar</message>
 
 	<!-- Conference setup page 5 -->
-	<message key="manager.setup.loggingAndAuditing.pageDescription">Maintain a log of the following actions and materials for all conferences.</message>
-	<message key="manager.setup.loggingAndAuditing.submissionEventLogging">Submission-related actions, recorded on submission's "History" page.</message>
-	<message key="manager.setup.loggingAndAuditing.submissionEmailLogging">Submission-related emails, recorded on submission's "History" page.</message>
-	<message key="manager.setup.loggingAndAuditing.conferenceEventLogging">Conference event logging.</message>
 
 	<!-- Conference setup page 6 -->
-	<message key="manager.setup.indexing.searchEngineIndexing">Search Engine Indexing</message>
-	<message key="manager.setup.indexing.searchEngineIndexing.description">To assist the users of search engines in discovering this conference, provide a brief description of the conference and relevant keywords (separated by semicolons).</message>
-	<message key="manager.setup.indexing.customTags">Custom tags</message>
-	<message key="manager.setup.indexing.customTagsDescription">Custom HTML header tags to be inserted in the header of every page (e.g., META tags).</message>
-	<message key="manager.setup.indexing.registerConferenceForIndexing">Register Conference for Indexing (Metadata Harvesting)</message>
 	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[To have the contents of this conference indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your conference's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this conference, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
 Note that if your site administrator has already registered this site with the PKP Harvester, your conference will be indexed automatically and you do not need to register your conference.
@@ -1191,262 +498,40 @@ Note that if your site administrator has already registered this site with the P
 	     *** Scheduled Conference Setup
 	     ***
 	-->
-	<message key="manager.schedConfSetup.stepsToSchedConf">These steps are designed to set up a scheduled instance of the conference. Once a conference is set up, it is copied to the next instance of the conference, and can be edited by the conference directors.</message>
-	<message key="manager.schedConfSetup.schedConfSetup">Scheduled Conference Setup</message>
 
-	<message key="manager.schedConfSetup.details">Details</message>
-	<message key="manager.schedConfSetup.submissions">Submissions</message>
-	<message key="manager.schedConfSetup.review">Review</message>
 
-	<message key="manager.schedConfSetup.details.pageDescription">Description, location, contacts, email identification, and sponsors.</message>
-	<message key="manager.schedConfSetup.submissions.pageDescription">Submission process and types, call for papers, guidelines, indexing, and identification.</message>
-	<message key="manager.schedConfSetup.review.pageDescription">Review policies, guidelines, and access.</message>
 
-	<message key="manager.schedConfSetup.details.title">Step 1. Details</message>
-	<message key="manager.schedConfSetup.submissions.title">Step 2. Submissions</message>
-	<message key="manager.schedConfSetup.review.title">Step 3. Review Process</message>
 
 	<!-- Scheduled Conference Setup Step 1 -->
-	<message key="manager.schedConfSetup.details.description">Scheduled Conference Description</message>
-	<message key="manager.schedConfSetup.details.introduction.description">A brief description of the conference that can be used to publicize the event.</message>
-	<message key="manager.schedConfSetup.details.overview.description">An overview of the theme, scope, and focus.</message>
-	<message key="manager.schedConfSetup.details.location">Scheduled Conference Location</message>
-	<message key="manager.schedConfSetup.details.location.nameOf">Name of Location</message>
-	<message key="manager.schedConfSetup.details.location.city">City</message>
-	<message key="manager.schedConfSetup.details.principalContact">Principal Contact for Scheduled Conference</message>
-	<message key="manager.schedConfSetup.details.technicalSupportContact">Technical Support Contact</message>
-	<message key="manager.schedConfSetup.details.technicalSupportContact.description">This person will be listed on the scheduled conference's Contact page for the use of authors and reviewers, and should have experience working through the system from the perspective of all of its roles. As this conference system requires very little technical support, this should be seen as a part-time assignment. There may be occasions, for example, when authors and reviewers have difficulties with the instructions or file formats, or there's a need to ensure that the conference is regularly backed up on the server.</message>
-	<message key="manager.schedConfSetup.details.emails">Email Identification</message>
-	<message key="manager.schedConfSetup.details.emailSignature">Signature</message>
-	<message key="manager.schedConfSetup.details.emailSignature.description">The prepared emails that are sent by the system on behalf of the conference will have the following signature added to the end. The body of the prepared emails are available for editing under Conference Management.</message>
-	<message key="manager.schedConfSetup.details.emailBounceAddress">Bounce Address</message>
-	<message key="manager.schedConfSetup.details.emailBounceAddress.description">Any undeliverable emails will result in an error message to this address.</message>
-	<message key="manager.schedConfSetup.details.emailBounceAddressDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>allow_envelope_sender</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
-	<message key="manager.schedConfSetup.details.sponsors">Sponsoring Organizations</message>
-	<message key="manager.schedConfSetup.details.sponsors.description">The name of the organizations (e.g., scholarly associations, university department, etc.) sponsoring the conference, to appear on the conference homepage and may be accompanied by a note of acknowledgement.</message>
-	<message key="manager.schedConfSetup.details.addSponsor">Add Sponsoring Organization</message>
-	<message key="manager.schedConfSetup.details.institution">Institution</message>
-	<message key="manager.schedConfSetup.details.contributors">Sources of Support</message>
-	<message key="manager.schedConfSetup.details.contributors.description">Additional agencies or organizations that provide financial or in-kind support for the conference will appear on the conference homepage and may be accompanied by a note of acknowledgement.</message>
-	<message key="manager.schedConfSetup.details.contributor">Contributor</message>
-	<message key="manager.schedConfSetup.details.addContributor">Add Contributor</message>
-	<message key="manager.schedConfSetup.details.note">Note</message>
-	<message key="manager.schedConfSetup.details.contactNameRequired">The primary contact name is required.</message>
-	<message key="manager.schedConfSetup.details.contactEmailRequired">The primary contact email is required.</message>
-	<message key="manager.schedConfSetup.details.supportNameRequired">The support name is required.</message>
-	<message key="manager.schedConfSetup.details.supportEmailRequired">The support email is required.</message>
 
 	<!-- Scheduled Conference Setup Step 2 -->
-	<message key="manager.schedConfSetup.submissions.submissionProcess">Submission Process</message>
-	<message key="manager.schedConfSetup.submissions.description"><![CDATA[Authors can submit abstracts (short descriptions of the proposed presentation) and/or longer proposals (e.g., papers, PowerPoint slides, etc.) for a scheduled conference. The submissions can be for a single presentation (with one or more authors) and/or for a multiple presentation session, submitted by the session organizer. In addition, authors can include supplementary files (e.g., data sets, source materials, related paper) with their abstracts and/or presentations.]]></message>
-	<message key="manager.schedConfSetup.submissions.submissionMaterials">Submission Materials</message>
-	<message key="manager.schedConfSetup.submissions.abstractsAlone">Abstract</message>
-	<message key="manager.schedConfSetup.submissions.presentationsAlone">Full proposal</message>
-	<message key="manager.schedConfSetup.submissions.bothTogether">Abstract and proposal together</message>
-	<message key="manager.schedConfSetup.submissions.bothSequential">Abstract followed by presentation</message>
-	<message key="manager.schedConfSetup.submissions.previewAbstracts">Post abstracts once the abstract review has been completed</message>
-	<message key="manager.schedConfSetup.submissions.typeOfSubmission">Type of Submission</message>
-	<message key="manager.schedConfSetup.submissions.allowIndividualSubmissions">Enable individual presentations, submitted by authors</message>
-	<message key="manager.schedConfSetup.submissions.allowPanelSubmissions">Enable multiple-presentation sessions, submitted by panel organizers</message>
-	<message key="manager.schedConfSetup.submissions.suppFiles">Supplementary Materials</message>
-	<message key="manager.schedConfSetup.submissions.acceptSupplementaryReviewMaterials">Supplementary files can be submitted with abstracts and presentations.</message>
-	<message key="manager.schedConfSetup.submissions.submissionLayout">Submission Layout</message>
-	<message key="manager.schedConfSetup.submissions.submissionLayout.toggle">Enable layout (PDF, HTML, etc.) by director of submission materials</message>
-	<message key="manager.schedConfSetup.notifications">Submission Notification</message>
-	<message key="manager.schedConfSetup.submissions.notifications.description">Copies of acknowledgement email to submitter should go to the following:</message>
-	<message key="manager.schedConfSetup.submissions.notifications.copyPrimaryContact">The conference’s primary contact.</message>
-	<message key="manager.schedConfSetup.submissions.notifications.copySpecifiedAddress">This email address</message>
-	<message key="manager.schedConfSetup.submissions.notifications.submissionAckDisabled"><![CDATA[<strong>Note:</strong> The submission acknowledgement email is currently disabled. To use this feature, enable the SUBMISSION_ACK email in <a class="action" href="{$preparedEmailsUrl}">Prepared Emails</a>.]]></message>
-	<message key="manager.schedConfSetup.submissions.callForPapers">Call for Papers (CFP)</message>
-	<message key="manager.schedConfSetup.submissions.cfpMessage">CFP message</message>
-	<message key="manager.schedConfSetup.submissions.cfpMessageDescription"><![CDATA[This information is displayed in the "call-for-papers" link on this conference's home page.]]></message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelines">Author Guidelines</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelinesDescription"><![CDATA[Set out for authors bibliographic and formatting standards for submitting materials to the conference, possibly with examples. If supplementary files are permitted, suggest types (e.g., data-sets, research instruments, etc.) which authors should be encouraged to upload to enhance readers' engagement with their work.]]></message>
-	<message key="manager.schedConfSetup.submissions.preparationChecklist">Submission Preparation Checklist</message>
-	<message key="manager.schedConfSetup.submissions.preparationChecklist.description">On making a submission to the conference, authors are required to check off items on the Submission Preparation Checklist. The checklist also appears in the Author Guidelines. The list below can be edited. All items on the list must be checked by the author before submission will be accepted.</message>
-	<message key="manager.schedConfSetup.submissions.addChecklistItem">Add Checklist Item</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWork">Submission Indexing</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWorkDescription"><![CDATA[OCS adheres to the <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting, which is the emerging standard for providing well-indexed access to electronic research resources on a global scale. Authors will use a similar template to provide metadata for their submission. The Conference Manager should select the categories for indexing and present authors with relevant examples to assist them in indexing their work, separating terms with a semi-colon (e.g., term1; term2). The entries should be introduced as examples by using "E.g.," or "For example,".]]></message>
-	<message key="manager.schedConfSetup.submissions.discipline">Academic Discipline and Sub-Disciplines</message>
-	<message key="manager.schedConfSetup.submissions.disciplineDescription">Useful when conference crosses disciplinary boundaries and/or authors submit multidisciplinary items.</message>
-	<message key="manager.schedConfSetup.submissions.disciplineProvideExamples">Provide examples of relevant academic disciplines for this conference</message>
-	<message key="manager.schedConfSetup.submissions.disciplineExamples">(E.g., History; Education; Sociology; Psychology; Cultural Studies; Law)</message>
-	<message key="manager.schedConfSetup.submissions.subjectClassification">Subject Classification</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[[Conference will use a subject classification system available on the web.<br />
 Title of classification system]]></message>
-	<message key="manager.schedConfSetup.submissions.subjectClassificationExamples">(E.g., Mathematics Subject Classification; Library of Congress Classification)</message>
-	<message key="manager.schedConfSetup.submissions.subjectKeywordTopic">Keywords</message>
-	<message key="manager.schedConfSetup.submissions.subjectProvideExamples">Provide examples of keywords or topics as a guide for authors</message>
-	<message key="manager.schedConfSetup.submissions.subjectExamples">(E.g., Photosynthesis; Black Holes; Four-Color Map Problem; Bayesian Theory)</message>
-	<message key="manager.schedConfSetup.submissions.coverage">Coverage</message>
-	<message key="manager.schedConfSetup.submissions.coverageDescription">Refers to geo-spatial location, chronological or historical coverage, and/or characteristics of research sample.</message>
-	<message key="manager.schedConfSetup.submissions.coverageGeoProvideExamples">Provide examples of relevant geo-spatial or geographical terms for this field</message>
-	<message key="manager.schedConfSetup.submissions.coverageGeoExamples">(E.g., Iberian Peninsula; Stratosphere; Boreal Forest; etc.)</message>
-	<message key="manager.schedConfSetup.submissions.coverageChronProvideExamples">Provide examples of relevant chronological or historical terms for this field</message>
-	<message key="manager.schedConfSetup.submissions.coverageChronExamples">(E.g., European Renaissance; Jurassic Period; Third Trimester; etc.)</message>
-	<message key="manager.schedConfSetup.submissions.coverageResearchSampleProvideExamples">Provide examples of research sample characteristics for this field</message>
-	<message key="manager.schedConfSetup.submissions.coverageResearchSampleExamples">(E.g., Age; Gender; Ethnicity; etc.)</message>
-	<message key="manager.schedConfSetup.submissions.typeMethodApproach">Type (Method/Approach)</message>
-	<message key="manager.schedConfSetup.submissions.typeProvideExamples">Provide examples of relevant research types, methods, and approaches for this field</message>
-	<message key="manager.schedConfSetup.submissions.typeExamples">(E.g., Historical Inquiry; Quasi-Experimental; Literary Analysis; Survey/Interview)</message>
-	<message key="manager.schedConfSetup.submissions.publicIdentifier">Identification of Conference Content</message>
-	<message key="manager.schedConfSetup.submissions.uniqueIdentifierDescription">Papers can be tagged with an identification number or string, if the conference is using an item registration system such as the Digital Object Identifier System (DOI).</message>
-	<message key="manager.schedConfSetup.submissions.enablePublicPaperId">Identifiers will be added to accepted presentations.</message>
-	<message key="manager.schedConfSetup.submissions.enablePublicSuppFileId">Identifiers will be added to supplemental files with accepted presentations.</message>
 
 	<!-- Scheduled Conference Setup Step 3 -->
-	<message key="manager.schedConfSetup.review.reviewPolicy">Review Policy</message>
-	<message key="manager.schedConfSetup.review.reviewDescription">Outline the conference's review policy and processes for readers and authors, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Conference.</message>
-	<message key="manager.schedConfSetup.review.peerReview">Peer Review</message>
-	<message key="manager.schedConfSetup.review.reviewGuidelinesDescription">The Review Guidelines provide reviewers with criteria for judging a submission's suitability for acceptance to the conference, as well as any special instructions for preparing an effective and helpful review.</message>
-	<message key="manager.schedConfSetup.review.numWeeksPerReview1">Allow reviewers</message>
-	<message key="manager.schedConfSetup.review.numWeeksPerReview2">weeks to review submissions.</message>
-	<message key="manager.schedConfSetup.review.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
-	<message key="manager.schedConfSetup.review.reviewerAccessKeysEnabled">Enable one-click reviewer access.</message>
-	<message key="manager.schedConfSetup.review.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> With this option, in which reviewers do not need to log in to the site, directors are not able for security reasons to modify email addresses or add CCs or BCCs prior to sending request to reviewers.]]></message>
-	<message key="manager.schedConfSetup.review.reviewerReminders">Reviewer Reminders</message>
-	<message key="manager.schedConfSetup.review.automatedReminders">Automated email reminders are sent to reviewers</message>
-	<message key="manager.schedConfSetup.review.remindForInvite1">Who have not responded to a review request within</message>
-	<message key="manager.schedConfSetup.review.remindForInvite2">days.</message>
-	<message key="manager.schedConfSetup.review.remindForSubmit1">Who have not submitted a review within</message>
-	<message key="manager.schedConfSetup.review.remindForSubmit2">days after its due date.</message>
-	<message key="manager.schedConfSetup.review.automatedRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
-	<message key="manager.schedConfSetup.review.onQuality">Directors are able to rate reviewers on a five-point scale.</message>
-	<message key="manager.schedConfSetup.review.directorDecision">Director Decision</message>
-	<message key="manager.schedConfSetup.review.notifyAllPresentersOnDecision">When using the Notify Author email, include the email addresses of all co-authors for multiple-author submissions, and not just the submitting user.</message>
 
 	<!-- Languages -->
-	<message key="manager.languages.languageInstructions"><![CDATA[OCS can be made available to users in any of several supported languages. As well, OCS can operate as a partially multilingual system, providing users with an ability to toggle between languages on each page, and allowing certain data to be entered in several additional languages.<br /><br/>If a language supported by OCS is not listed below, ask your site administrator to install the language from the site administration interface. For instructions on adding support for new languages, please consult the OCS documentation.]]></message>
-	<message key="manager.languages.primaryLocaleInstructions">This will be the default language for the conference site.</message>
-	<message key="manager.languages.supportedLocalesInstructions">Select all locales to support on the site via a language select menu to appear on each page. The menu will only appear if more than one locale is selected.</message>
-	<message key="manager.languages.alternateLocaleInstructions">This system optionally allows certain critical information to be entered in several additional languages. To use this feature, select alternate locales and choose from the options listed below.</message>
-	<message key="manager.languages.noneAvailable">Sorry, no additional languages are available. Contact your site administrator if you wish to use additional languages with this conference.</message>
 
 
 	<!-- Track Management -->
-	<message key="manager.tracks.noneCreated">No tracks have been created.</message>
-	<message key="manager.tracks.confirmDelete">Are you sure you want to permanently delete this track?</message>
-	<message key="manager.tracks.create">Create Track</message>
-	<message key="manager.tracks.directors">Track directors</message>
-	<message key="manager.tracks.unassigned">Available Track Directors</message>
-	<message key="manager.tracks.assigned">This Track's Directors</message>
-	<message key="manager.tracks.assignDirector">Assign Director</message>
-	<message key="manager.tracks.unassignDirector">Un-assign Director</message>
-	<message key="manager.tracks.form.titleRequired">A title is required for the track.</message>
-	<message key="manager.tracks.form.abbrevRequired">An abbreviated title is required for the track</message>
-	<message key="manager.tracks.trackDirectorInstructions">Select from among the available Track Directors and "Assign Director" to this track.</message>
-	<message key="manager.tracks.submissionNotReviewed">Indicate that track is not peer-reviewed</message>
-	<message key="manager.tracks.peerReviewed">Peer Reviewed</message>
-	<message key="manager.tracks.directorRestriction">Items can only be submitted by Directors and Track Directors.</message>
-	<message key="manager.tracks.hideAbout">Omit this track from Track Policies</message>
-	<message key="manager.tracks.disableComments">Disable reader comments for this track.</message>
-	<message key="manager.tracks.readingTools">Reading Tools</message>
-	<message key="manager.tracks.indexed">Indexed</message>
-	<message key="manager.tracks.open">Open Submissions</message>
-	<message key="manager.tracks.policy">Track Policy</message>
-	<message key="manager.tracks.identifyType">Describe submissions to this conference track as</message>
-	<message key="manager.tracks.identifyTypeExamples">(For example, "Peer-reviewed abstract", "Non-refereed paper", "Invited presentation", etc.)</message>
 
 	<!-- Timeline management -->
-	<message key="manager.timeline">Conference Timeline</message>
-	<message key="manager.timeline.conferenceTimeline">Conference Timeline</message>
-	<message key="manager.timeline.overrideDates">Override error message(s)</message>
-	<message key="manager.timeline.description">The dates recorded here will be utilized for this scheduled conference, and can be posted on the website by checking "Conference timeline" at the bottom of the page.</message>
 
-	<message key="manager.timeline.conference">Conference</message>
-	<message key="manager.timeline.schedConfStartsOn">First day of conference</message>
-	<message key="manager.timeline.schedConfEndsOn">Last day of conference</message>
 	
-	<message key="manager.timeline.website">Website</message>
-	<message key="manager.timeline.schedConfAppearsOn">Go Live (as a Current Conference)</message>
-	<message key="manager.timeline.schedConfArchivedOn">Move to Conference Archive</message>
 
-	<message key="manager.timeline.submissions">Submissions</message>
-	<message key="manager.timeline.openRegPresenter">Author registration opened</message>
-	<message key="manager.timeline.closeRegPresenter">Author registration closed</message>
-	<message key="manager.timeline.showCFP">Call for Papers posted</message>
-	<message key="manager.timeline.submissionsOpen">Submissions accepted</message>
-	<message key="manager.timeline.submissionsClosed">Submissions closed</message>
 
-	<message key="manager.timeline.reviews">Reviews</message>
-	<message key="manager.timeline.openRegReviewer">Reviewer registration opened</message>
-	<message key="manager.timeline.closeRegReviewer">Reviewer registration closed</message>
-	<message key="manager.timeline.closeReviewProcess">Review process closed</message>
 	
-	<message key="manager.timeline.websitePosting">Website Posting</message>
-	<message key="manager.timeline.postPresentations">Accepted abstracts/presentations</message>
-	<message key="manager.timeline.postAbstracts">Accepted abstracts</message>
-	<message key="manager.timeline.postTimeline">Conference timeline (included in Conference Information)</message>
-	<message key="manager.timeline.postPapers">Accepted papers</message>
-	<message key="manager.timeline.postSchedule">Schedule</message>
-	<message key="manager.timeline.delayOpenAccess">Delay open access until</message>
-	<message key="manager.timeline.closeComments">Close comments (activate Reading Tools)</message>
-	<message key="manager.timeline.closeComments.plain">Close comments</message>
-	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">The conference end date must come after the conference start date.</message>
-	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">The conference site cannot be moved to the archive before the conference start date.</message>
-	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">The conference cannot start before submissions are closed.</message>
-	<message key="manager.timeline.form.siteEndDateBeforeSiteStart">The website "Go Live" date must come before the "Move to Conference Archive" date.</message>
-	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">The website "Go Live" date must come before the conference start date.</message>
-	<message key="manager.timeline.form.siteEndBeforeLastDay">The "Move to Conference Archive" date must come after the last day of the conference.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate">The author registration open date must come before the author registration close date.</message>
-	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">The reviewer registration open date must come before the reviewer registration close date.</message>
-	<message key="manager.timeline.form.submissionsCloseBeforeCFP">The Call for Papers must be posted before submissions close.</message>
 
 	<!-- Import/Export -->
-	<message key="manager.importExport">Import/Export Data</message>
-	<message key="manager.importExport.noPlugins">There are no import/export plugins currently installed.</message>
 
 	<!-- Groups / Organizing Team -->
-	<message key="manager.groups.editTitle">Edit Title</message>
-	<message key="manager.groups.createTitle">Create Title</message>
-	<message key="manager.groups.title">Title</message>
-	<message key="manager.groups.confirmDelete">Are you sure you wish to delete this group?</message>
-	<message key="manager.groups.noneCreated">No organizing team positions have been created.</message>
-	<message key="manager.groups.create">Create Organizing Team Title</message>
-	<message key="manager.groups.form.groupTitleRequired">A group title is required.</message>
 
-	<message key="manager.groups.enableBoard.description"><![CDATA[For the <a href="{$aboutOrganizingTeamUrl}">Organizing Team</a> in About the Conference:]]></message>
-	<message key="manager.groups.enableBoard">The Conference Manager will create organizing team titles, and add the appropriate people under each title.</message>
-	<message key="manager.groups.disableBoard">The system will generate a list of people under their assigned roles (Conference Director, Reviewer, etc.)</message>
 
-	<message key="manager.groups.membership">Membership</message>
-	<message key="manager.groups.membership.confirmDelete">Are you sure you wish to delete this group membership?</message>
-	<message key="manager.groups.membership.noneCreated">This group has no members.</message>
-	<message key="manager.groups.membership.addMember">Add Member</message>
-	<message key="manager.groups.membership.noUsers">No users were found.</message>
 
 	<!-- People Management -->
-	<message key="manager.people.allUsers">All Users</message>
-	<message key="manager.people.allEnrolledUsers">All Enrolled Users</message>
-	<message key="manager.people.allSiteUsers">Enroll a User from this Site in this Conference</message>
-	<message key="manager.people.mustChooseRole">Please select a role at the top of the page before clicking "Enroll User".</message>
-	<message key="manager.people.allConferences">All Conferences</message>
-	<message key="manager.people.editUser">Edit User</message>
-	<message key="manager.people.enrollExistingUser">Enroll Existing User</message>
-	<message key="manager.people.createUser">Create New User</message>
-	<message key="manager.people.mergeUsers">Merge Users</message>
-	<message key="manager.people.mergeUser">Merge User</message>
-	<message key="manager.people.enroll">Enroll User</message>
-	<message key="manager.people.enrollment">Enrollment</message>
-	<message key="manager.people.unenroll">Unenroll</message>
-	<message key="manager.people.confirmUnenroll">Unenroll this user?</message>
-	<message key="manager.people.mergeUsers.from.description">Select a user to merge into another account. The account you select here will be deleted and any submissions, editing assignments, etc. will be attributed to another account.</message>
-	<message key="manager.people.mergeUsers.into.description">Select a user to whom to attribute the previous user's presentations, editing assignments, etc.</message>
-	<message key="manager.people.mergeUsers.confirm">Are you sure you wish to merge the account with the username "{$oldUsername}" into the account with the username "{$newUsername}"? The account with the username "{$oldUsername}" will not exist afterwards. This action is not reversible.</message>
-	<message key="manager.people.confirmRemove">Remove this user from this conference? This action will unenroll the user from all roles within this conference.</message>
 	<message key="manager.people.confirmDisable">Disable this user? This will prevent the user from logging into the system.
 
 You may optionally provide the user with a reason for disabling their account.</message>
-	<message key="manager.people.noneEnrolled">No enrolled users.</message>
-	<message key="manager.people.enrollSelected">Enroll Selected Users</message>
-	<message key="manager.people.noMatchingUsers">No matching users.</message>
-	<message key="manager.people.saveAndCreateAnotherUser">Save and Create Another</message>
-	<message key="manager.people.userCreatedSuccessfully">User created successfully.</message>
-	<message key="manager.people.authSource">Authentication source</message>
-	<message key="manager.people.enrollUserAs">Enroll user as</message>
-	<message key="manager.people.doNotEnroll">With no role</message>
-	<message key="manager.people.enrollUserAsDescription">Users can be assigned to, or removed from, a role at any point.</message>
-	<message key="manager.people.invalidUser">Sorry, the requested user does not exist.</message>
 	<message key="manager.people.noAdministrativeRights"><![CDATA[Sorry, you do not have administrative rights over this user. This may be because:
 		<ul>
 			<li>The user is a site administrator</li>
@@ -1454,327 +539,33 @@ You may optionally provide the user with a reason for disabling their account.</
 		</ul>
 	This task must be performed by a site administrator.
 	]]></message>
-	<message key="manager.people.createUserGeneratePassword">Generate a random password.</message>
-	<message key="manager.people.createUserSendNotify">Send the user a welcome email containing their username and password.</message>
-	<message key="manager.people.mustProvideName">Please provide at least a last name for the user first.</message>
-	<message key="manager.people.userMustChangePassword">Require the user to change their password the next time they log in.</message>
-	<message key="manager.people.disable">Disable</message>
-	<message key="manager.people.enable">Enable</message>
-	<message key="manager.people.remove">Remove</message>
-	<message key="manager.people.emailUsers">Email Users</message>
-	<message key="manager.people.emailUsers.emailSelectedUsers">Email selected users</message>
-	<message key="manager.people.emailUsers.emailUsersEnrolledAs">Email users enrolled as</message>
-	<message key="manager.people.emailUsers.selectUsers">Select the users you would like to email by checking the boxes beside their names</message>
-	<message key="manager.people.emailUsers.selectLocale">Select a locale</message>
 
-	<message key="manager.people.editProfile">Edit Profile</message>
 
-	<message key="manager.people.signInAsUser">Log In as User</message>
-	<message key="manager.people.signInAs">Log In As</message>
-	<message key="manager.people.syncUsers">Synchronize User Enrollment</message>
-	<message key="manager.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified conference into the same role in this conference. This function allows a common set of users (e.g., Reviewers) to be synchronized between conferences.</message>
-	<message key="manager.people.enrollSync">Sync Enrollment</message>
-	<message key="manager.people.enrollSyncRole">Synchronize role</message>
-	<message key="manager.people.enrollSyncConference">With conference</message>
 
 	<!-- Email Management -->
-	<message key="manager.emails.emailKey">Email Key</message>
-	<message key="manager.emails.emailKeyExists">An email with the given key already exists. Email keys must be unique.</message>
-	<message key="manager.emails.emailTemplate">Email Template</message>
-	<message key="manager.emails.emailTemplates">Email Templates</message>
-	<message key="manager.emails.enabled">Enable this email template</message>
-	<message key="manager.emails.enable">Enable</message>
-	<message key="manager.emails.disable">Disable</message>
-	<message key="manager.emails.reset">Reset</message>
-	<message key="manager.emails.createEmail">Create Email</message>
-	<message key="manager.emails.editEmail">Edit Email</message>
-	<message key="manager.emails.confirmDelete">Are you sure you want to delete this email template?</message>
-	<message key="manager.emails.confirmReset">Are you sure you want to reset this email template to its default values?</message>
-	<message key="manager.emails.resetToDefault">Reset To Default</message>
-	<message key="manager.emails.resetAll">Reset All Templates</message>
-	<message key="manager.emails.confirmResetAll">Are you sure you want to reset all email templates in this conference? You will lose any customizations you have made.</message>
-	<message key="manager.emails.form.subjectRequired">A subject is required for the email.</message>
-	<message key="manager.emails.form.bodyRequired">A body is required for the email.</message>
-	<message key="manager.emails.editTestExample">Edit Email Test Example</message>
 
 	<!-- Registration Policy Management -->
-	<message key="manager.registrationPolicies.registrationContact">Registration Manager</message>
-	<message key="manager.registrationPolicies.registrationContactDescription">The contact listed under Registrations in About the Conference.</message>
-	<message key="manager.registrationPolicies.registrationAdditionalInformation">Registration Information</message>
-	<message key="manager.registrationPolicies.registrationAdditionalInformationDescription">The Registration Types and fee structure will be automatically placed under Registrations on the About the Conference page, along with the name and contact information for the Registration Manager. Additional information about registration, such as methods of payment or support for registrants in developing countries, can be added here.</message>
-	<message key="manager.registrationPolicies.htmlInstructions"><![CDATA[HTML can be used in textarea (for font size, color, etc.), with "returns" treated as <tt>&lt;br&gt;</tt>; HTML editor works with Firefox browsers.]]></message>
-	<message key="manager.registrationPolicies.openAccessOptions">Open Access Options For Registration Conferences</message>
-	<message key="manager.registrationPolicies.openAccessOptionsDescription">Registration conferences can provide "delayed open access" and/or "author self-archiving" (which increase readership and citation of content). The selected policies will appear in About the Conference.</message>
-	<message key="manager.registrationPolicies.delayedOpenAccess">Delayed Open Access</message>
-	<message key="manager.registrationPolicies.openAccessNotificationDescription">Users with Reader accounts will have the option of receiving the contents by email when a conference becomes open access.</message>
-	<message key="manager.registrationPolicies.delayedOpenAccessPolicyDescription">The following statement will be posted in About the Conference under Delayed Open Access.</message>
-	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
-	<message key="manager.registrationPolicies.presenterSelfArchive">Author Self-Archiving Policy</message>
-	<message key="manager.registrationPolicies.presenterSelfArchiveDescription">The following policy will be included in About the Conference.</message>
-	<message key="manager.registrationPolicies.expiryReminders">Registration Expiry Reminders</message>
-	<message key="manager.registrationPolicies.expiryRemindersDescription">Automated email reminders (available for editing by Conference Managers in OCS's Prepared Emails) can be sent to registrants both before and after a registration has expired.</message>
-	<message key="manager.registrationPolicies.expiryRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
-	<message key="manager.registrationPolicies.expiryReminderBeforeMonths1">Notify registrants by email</message>
-	<message key="manager.registrationPolicies.expiryReminderBeforeMonths2">month(s) before registration expiry.</message>
-	<message key="manager.registrationPolicies.expiryReminderBeforeWeeks1">Notify registrants by email</message>
-	<message key="manager.registrationPolicies.expiryReminderBeforeWeeks2">week(s) before registration expiry.</message>
-	<message key="manager.registrationPolicies.expiryReminderAfterMonths1">Notify registrants by email</message>
-	<message key="manager.registrationPolicies.expiryReminderAfterMonths2">month(s) after registration expiry.</message>
-	<message key="manager.registrationPolicies.expiryReminderAfterWeeks1">Notify registrants by email</message>
-	<message key="manager.registrationPolicies.expiryReminderAfterWeeks2">week(s) after registration expiry.</message>
-	<message key="manager.registrationPolicies.registrationContactEmailValid">Please enter a valid email.</message>
-	<message key="manager.registrationPolicies.enableRegistrationExpiryReminderBeforeMonthsValid">Please use the checkbox provided.</message>
-	<message key="manager.registrationPolicies.numMonthsBeforeRegistrationExpiryReminderValid">Please select a valid value for the number of months before registration expiry.</message>
-	<message key="manager.registrationPolicies.numWeeksBeforeRegistrationExpiryReminderValid">Please select a valid value for the number of weeks before registration expiry.</message>
-	<message key="manager.registrationPolicies.numMonthsAfterRegistrationExpiryReminderValid">Please select a valid value for the number of months after registration expiry.</message>
-	<message key="manager.registrationPolicies.numWeeksAfterRegistrationExpiryReminderValid">Please select a valid value for the number of weeks after registration expiry.</message>
 
 	<!-- Registration Type Management -->
-	<message key="manager.registrationTypes.createTitle">Create</message>
-	<message key="manager.registrationTypes.create">Create New Registration Type</message>
-	<message key="manager.registrationTypes.confirmDelete">Warning! All registrations with this registration type will also be deleted. Are you sure you want to continue and delete this registration type?</message>
-	<message key="manager.registrationTypes.noneCreated">No registration types have been created.</message>
-	<message key="manager.registrationTypes.name">Registration type</message>
-	<message key="manager.registrationTypes.cost">Cost</message>
-	<message key="manager.registrationTypes.currency">Currency</message>
-	<message key="manager.registrationTypes.openDate">Available From</message>
-	<message key="manager.registrationTypes.closeDate">Available Until</message>
-	<message key="manager.registrationTypes.expiryDate">Access Expires</message>
-	<message key="manager.registrationTypes.registrationTypeCreatedSuccessfully">Registration type created successfully.</message>
-	<message key="manager.registrationTypes.editTitle">Edit</message>
-	<message key="manager.registrationTypes.edit">Edit Registration Type</message>
-	<message key="manager.registrationTypes.year">year</message>
-	<message key="manager.registrationTypes.years">years</message>
-	<message key="manager.registrationTypes.month">month</message>
-	<message key="manager.registrationTypes.months">months</message>
-	<message key="manager.registrationTypes.form.typeNameRequired">A registration type name is required.</message>
-	<message key="manager.registrationTypes.form.typeNameExists">A registration type with this name already exists.</message>
-	<message key="manager.registrationTypes.form.costRequired">A cost is required.</message>
-	<message key="manager.registrationTypes.form.costNumeric">The cost must be a positive, numeric value.</message>
-	<message key="manager.registrationTypes.form.currencyRequired">A currency is required.</message>
-	<message key="manager.registrationTypes.form.currencyValid">Please select a valid currency.</message>
-	<message key="manager.registrationTypes.form.accessRequired">A registration access type is required.</message>
-	<message key="manager.registrationTypes.form.accessValid">Please select a valid registration access type.</message>
-	<message key="manager.registrationTypes.form.institutionalValid">Please use the checkbox provided.</message>
-	<message key="manager.registrationTypes.form.membershipValid">Please use the checkbox provided.</message>
-	<message key="manager.registrationTypes.form.notPublicValid">Please use the checkbox provided.</message>
-	<message key="manager.registrationTypes.form.typeName">Name</message>
-	<message key="manager.registrationTypes.form.description">Description</message>
-	<message key="manager.registrationTypes.form.cost">Cost</message>
-	<message key="manager.registrationTypes.form.costInstructions">Enter a numeric value (e.g., 40 or 40.00). Do not include any other text (e.g., $).</message>
-	<message key="manager.registrationTypes.form.code">Code</message>
-	<message key="manager.registrationTypes.form.code.instructions">Enter a code (e.g., 1234) if registration in this type is to be restricted to those who have been issued the code to use when registering (such as invited presenters who can register at no charge).</message>
-	<message key="manager.registrationTypes.form.currency">Currency</message>
-	<message key="manager.registrationTypes.form.openDate">Opens for Registration</message>
-	<message key="manager.registrationTypes.form.closeDate">Closes for Registration</message>
-	<message key="manager.registrationTypes.form.expiryDate">Expiry date for access to conference's online content</message>
-	<message key="manager.registrationTypes.form.access">Access</message>
-	<message key="manager.registrationTypes.form.institutional">Registrants can be validated via domain or IP authentication.</message>
-	<message key="manager.registrationTypes.form.membership">Registrants must be members of a designated organization.</message>
-	<message key="manager.registrationTypes.form.notPublic">Do not make this registration type publicly available.</message>
-	<message key="manager.registrationTypes.form.saveAndCreateAnotherType">Save and Create Another</message>
-	<message key="manager.registrationTypes.form.closeBeforeOpen">The open date for this registration type must come before the close date.</message>
-	<message key="manager.registrationTypes.access">Access</message>
-	<message key="manager.registrationTypes.access.online">Online</message>
-	<message key="manager.registrationTypes.access.physical">Physical</message>
-	<message key="manager.registrationTypes.access.both">Online and Physical</message>
 
 	<!-- Registration Management -->
-	<message key="manager.registration">Registration</message>
-	<message key="manager.registration.createTitle">Create</message>
-	<message key="manager.registration.create">Create New Registration</message>
-	<message key="manager.registration.select">Enroll Registrant</message>
-	<message key="manager.registration.selectRegistrant">Select Registrant</message>
-	<message key="manager.registration.selectRegistrant.desc">Registration access privileges are automatically granted to the conference's Conference Directors, Directors, and Track Directors.</message>
-	<message key="manager.registration.enroll">Enroll</message>
-	<message key="manager.registration.confirmDelete">Are you sure you want to delete this registration?</message>
-	<message key="manager.registration.noneCreated">No registrations</message>
-	<message key="manager.registration.user">User</message>
-	<message key="manager.registration.registrationType">Registration Type</message>
-	<message key="manager.registration.dateRegistered">Registered</message>
-	<message key="manager.registration.datePaid">Paid</message>
-	<message key="manager.registration.membership">Membership</message>
-	<message key="manager.registration.domain">Domain</message>
-	<message key="manager.registration.ipRange">IP Range</message>
-	<message key="manager.registration.registrationCreatedSuccessfully">Registration created successfully.</message>
-	<message key="manager.registration.editTitle">Edit</message>
-	<message key="manager.registration.edit">Edit Registration</message>
-	<message key="manager.registration.form.userIdRequired">A user is required.</message>
-	<message key="manager.registration.form.userIdValid">Please select a valid user.</message>
-	<message key="manager.registration.form.registrationExists">This user already has a registration for this conference.</message>
-	<message key="manager.registration.form.typeIdRequired">A registration type is required.</message>
-	<message key="manager.registration.form.typeIdValid">Please select a valid registration type.</message>
-	<message key="manager.registration.form.feeCodeValid">Please double-check the fee code and try again.</message>
-	<message key="manager.registration.form.membershipRequired">The selected registration type requires membership information.</message>
-	<message key="manager.registration.form.domainIPRangeRequired">The selected registration type requires a domain and/or an IP range for registration authentication.</message>
-	<message key="manager.registration.form.domainValid">Please enter a valid domain.</message>
-	<message key="manager.registration.form.ipRangeValid">Please enter a valid IP range.</message>
-	<message key="manager.registration.form.notifyEmailValid">Please use the checkbox provided.</message>
-	<message key="manager.registration.form.registrationContactRequired">In order to send the user a notification email, the registration contact name and email address must be specified in the Conference Setup.</message>
-	<message key="manager.registration.form.userId">User</message>
-	<message key="manager.registration.form.typeId">Registration type</message>
-	<message key="manager.registration.form.membership">Membership</message>
-	<message key="manager.registration.form.membershipInstructions">Enter membership information if the registration type requires that registrants belong to an association or organization.</message>
-	<message key="manager.registration.form.domain">Domain</message>
-	<message key="manager.registration.form.domainInstructions">Enter a domain if the registration type is for institutions. If a domain is entered here, the IP range is optional. Valid values are domain names (e.g. lib.sfu.ca).</message>
-	<message key="manager.registration.form.ipRange">IP range</message>
-	<message key="manager.registration.form.ipRangeInstructions">Enter an IP range if the registration type is for institutions. If an IP range is entered here, the domain is optional. Valid values include an IP (e.g. 142.58.103.1), a CIDR IP range (e.g. 142.58.100.0/24), an IP range (e.g. 142.58.103.1 - 142.58.103.4), an IP range with '*' (e.g. 142.58.103.*), or any combination of these separated by a ';' (e.g. 142.58.103.* - 142.58.107.* ; 142.58.108.1/24 ; 142.58.106.*)</message>
-	<message key="manager.registration.form.specialRequests">Special Requests</message>
-	<message key="manager.registration.form.payment">Payment Received</message>
-	<message key="manager.registration.form.payment.description">Please check when payment is received for this user, and record the date.</message>
-	<message key="manager.registration.form.specialRequestsInstructions">Please use this space to include any special requests or requirements for this registration (e.g. dietary restrictions, or disabilities.)</message>
-	<message key="manager.registration.form.notifyEmail">Send the user an email with their username and registration details.</message>
-	<message key="manager.registration.form.saveAndCreateAnother">Save and Create Another</message>
 
 	<!-- Announcement Type Management -->
-	<message key="manager.announcementTypes.edit">Edit Announcement Type</message>
-	<message key="manager.announcementTypes.editTitle">Edit</message>
-	<message key="manager.announcementTypes.create">Create Announcement Type</message>
-	<message key="manager.announcementTypes.createTitle">Create</message>
-	<message key="manager.announcementTypes.form.typeNameRequired">An announcement type name is required.</message>
-	<message key="manager.announcementTypes.form.typeNameExists">An announcement type with this name already exists.</message>
-	<message key="manager.announcementTypes.form.typeName">Name</message>
-	<message key="manager.announcementTypes.form.saveAndCreateAnother">Save and Create Another</message>
-	<message key="manager.announcementTypes.typeName">Announcement Type</message>
-	<message key="manager.announcementTypes.confirmDelete">Warning! All announcements with this announcement type will also be deleted. Are you sure you want to continue and delete this announcement type?</message>
-	<message key="manager.announcementTypes.noneCreated">No announcement types have been created.</message>
 
 	<!-- Announcements Management -->
-	<message key="manager.announcements.type">Type</message>
-	<message key="manager.announcements.schedConf">Scheduled Conference</message>
-	<message key="manager.announcements.dateExpire">Expiry</message>
-	<message key="manager.announcements.title">Title</message>
-	<message key="manager.announcements.confirmDelete">Are you sure you want to permanently delete this announcement?</message>
-	<message key="manager.announcements.noneCreated">No announcements have been created.</message>
-	<message key="manager.announcements.createTitle">Create</message>
-	<message key="manager.announcements.create">Create New Announcement</message>
-	<message key="manager.announcements.editTitle">Edit</message>
-	<message key="manager.announcements.edit">Edit Announcement</message>
-	<message key="manager.announcements.form.typeId">Type</message>
-	<message key="manager.announcements.form.schedConfId">Scheduled Conference</message>
-	<message key="manager.announcements.form.title">Title</message>
-	<message key="manager.announcements.form.descriptionShort">Short Description</message>
-	<message key="manager.announcements.form.descriptionShortInstructions">A brief description to appear along with the announcement title.</message>
-	<message key="manager.announcements.form.description">Description</message>
-	<message key="manager.announcements.form.descriptionInstructions">The full text of the announcement.</message>
-	<message key="manager.announcements.form.dateExpire">Expiry Date</message>
-	<message key="manager.announcements.form.dateExpireInstructions">The announcement will be displayed to readers until this date. Leave blank if the announcement should be displayed indefinitely.</message>
-	<message key="manager.announcements.form.saveAndCreateAnother">Save and Create Another</message>
-	<message key="manager.announcements.form.typeIdValid">Please select a valid announcement type.</message>
-	<message key="manager.announcements.form.titleRequired">An announcement title is required.</message>
-	<message key="manager.announcements.form.descriptionShortRequired">A short announcement description is required.</message>
-	<message key="manager.announcements.form.descriptionRequired">An announcement description is required.</message>
-	<message key="manager.announcements.form.dateExpireValid">Please select a valid announcement expiry date.</message>
-	<message key="manager.announcements.form.dateExpireYearIncompleteDate">Please select a month and/or day in addition to the expiry date year.</message>
-	<message key="manager.announcements.form.dateExpireMonthIncompleteDate">Please select a year and/or day in addition to the expiry date month.</message>
-	<message key="manager.announcements.form.dateExpireDayIncompleteDate">Please select a year and/or month in addition to the expiry date day.</message>
 
 	<!-- Director -->
-	<message key="director.home">Director Home</message>
-	<message key="director.submissionQueue">Submission Queue</message>
-	<message key="director.submissionArchive">Submission Archive</message>
-	<message key="director.allTracks">All Tracks</message>
-	<message key="director.allDirectors">All Directors</message>
-	<message key="director.me">Me</message>
-	<message key="director.submissionQueue.noSubmissions">No submissions in the queue.</message>
-	<message key="director.submissionQueue.saveChanges">Save changes to queued submissions?</message>
-	<message key="director.submissionArchive.noSubmissions">No submissions in the archive.</message>
-	<message key="director.submissionArchive.saveChanges">Save changes to archived submissions? Submissions marked for deletion will be permanently deleted from the system.</message>
-	<message key="director.submissionArchive.confirmDelete">Are you sure you want to permanently delete this submission?</message>
-	<message key="director.submissionReview.confirmDecision">Are you sure you wish to record this decision?</message>
-	<message key="director.submissionReview.confirmToLayout">Has the author been notified of this decision? If not, press Cancel and use the Notify Author tool before moving this submission to layout.</message>
-	<message key="director.submissionReview.confirmToArchive">Has the author been notified of this decision? If not, press Cancel and use the Notify Author tool before moving this submission to the Archive.</message>
-	<message key="director.submissionReview.notes">Due indicates number of weeks remaining until the review's due date or (-) weeks that it is overdue. It is filled in when a reviewer accepts the request to review.</message>
-	<message key="director.notifyUsers">Notify Users</message>
-	<message key="director.notifyUsers.allUsers">All users associated with this conference ({$count} users)</message>
-	<message key="director.notifyUsers.interestedUsers">Users associated with this conference who wish to receive updates ({$count} users)</message>
-	<message key="director.notifyUsers.includeToc">Include the presentations for this conference</message>
-	<message key="director.notifyUsers.allReaders">All readers ({$count} users)</message>
-	<message key="director.notifyUsers.allPresenters">All presenters ({$count} users)</message>
-	<message key="director.notifyUsers.allPaidRegistrants">All paid registrants ({$count} users)</message>
-	<message key="director.notifyUsers.allRegistrants">All registrants ({$count} users)</message>
 
 	<!-- Navigation sidebar menu -->
-	<message key="director.navigation.management">Management</message>
 
 	<!-- Used by director in submission review / editing -->
-	<message key="director.paper.sendToArchive">Archive this submission</message>
-	<message key="director.paper.designateReviewVersion">Designate the original file as the Review Version</message>
-	<message key="director.paper.uploadReviewVersion">Upload a revised file to serve as the Review Version</message>
-	<message key="director.paper.uploadDirectorVersion">Upload Director Version</message>
-	<message key="director.paper.stageDisabled">It's not yet possible to perform this review. Either the abstract review is not yet complete, or the author has not yet provided a paper for review.</message>
-	<message key="director.paper.showSuppFile">Present file to reviewers</message>
-	<message key="director.paper.clear">Clear</message>
-	<message key="director.paper.clearReviewer">Clear reviewer</message>
-	<message key="director.paper.changeTrack">Change Track</message>
-	<message key="director.paper.setDueDate">Set Due Date</message>
-	<message key="director.paper.addReviewer">Add Reviewer</message>
-	<message key="director.paper.toReviewer">To Reviewer</message>
-	<message key="director.paper.notifyReviewer">Notify Reviewer</message>
-	<message key="director.paper.initiateReview">Initiate Review</message>
-	<message key="director.paper.cancelReview">Cancel Review Request</message>
-	<message key="director.paper.clearReview">Clear Reviewer</message>
-	<message key="director.paper.enterRecommendation">Enter Recommendation</message>
-	<message key="director.paper.enterReviewerRecommendation">Enter Reviewer Recommendation</message>
-	<message key="director.paper.recommendation">Recommendation</message>
-	<message key="director.paper.selectReviewer">Select Reviewer</message>
 	<message key="director.paper.selectReviewerNotes"><![CDATA[Name links to reviewer's profile.<br/>
 Ratings is out of 5 (Excellent).<br/>
 Weeks refers to average period of time to complete a review.<br/>
 Latest is date of most recently accepted review.<br/>
 Active is how many reviews are currently being considered or underway.]]></message>
-	<message key="director.paper.replaceReviewer">Replace Reviewer</message>
-	<message key="director.paper.directorToEnter">Director to enter recommendation/comments for reviewer</message>
-	<message key="director.paper.uploadReviewForReviewer">Upload review</message>
-	<message key="director.paper.peerReviewOptions">Peer Review Options</message>
-	<message key="director.paper.decision">Decision</message>
-	<message key="director.paper.recordDecision">Record Decision</message>
-	<message key="director.paper.cannotRecord">Cannot record a decision; a track director not yet recorded or no review file has been uploaded.</message>
-	<message key="director.paper.cannotRecordYet">Before a decision can be recorded, a submission must be assigned to a Track Director. The Review Version becomes, by default, the Director Version.</message>
-	<message key="director.paper.cannotRecordTooLate">The submission has already completed this review stage. You can no longer change this decision.</message>
-	<message key="director.paper.designateDueDate">Designate a Due Date</message>
-	<message key="director.paper.designateDueDateDescription">To change the due date for this Reviewer, enter another date or delete the date and enter the number of weeks until the review is due.</message>
-	<message key="director.paper.todaysDate">Today's Date</message>
-	<message key="director.paper.requestedByDate">Requested By Date</message>
-	<message key="director.paper.dueDateFormat">Format: YYYY-MM-DD</message>
-	<message key="director.paper.numberOfWeeks">Number of Weeks</message>
-	<message key="director.paper.showPresenter">Let author view file</message>
-	<message key="director.paper.rateReviewer">Rate Reviewer</message>
-	<message key="director.paper.reviewerRating.veryGood">5 High</message>
-	<message key="director.paper.reviewerRating.good">4</message>
-	<message key="director.paper.reviewerRating.average">3 Average</message>
-	<message key="director.paper.reviewerRating.poor">2</message>
-	<message key="director.paper.reviewerRating.veryPoor">1 Low</message>
-	<message key="director.paper.quality">Rating</message>
-	<message key="director.paper.comments">Comments</message>
-	<message key="director.paper.commentsRequired">The comments field is required.</message>
-	<message key="director.paper.archiveSubmission">Archive Submission</message>
-	<message key="director.paper.restoreToQueue">Restore to Active List</message>
-	<message key="director.paper.assignTrackDirector">Add Track Director</message>
-	<message key="director.paper.assignDirector">Add Director</message>
-	<message key="director.paper.selectDirector">Select {$roleName}</message>
-	<message key="director.paper.selectDecision">Select decision</message>
-	<message key="director.paper.decision.invitePresentation">Invite Presentation</message>
-	<message key="director.paper.decision.accept">Accept Submission</message>
-	<message key="director.paper.decision.pendingRevisions">Revisions Required</message>
-	<message key="director.paper.decision.decline">Decline Submission</message>
-	<message key="director.paper.moveToLayout">Move to Layout</message>
-	<message key="director.paper.createGalley">This file is ready for publication.</message>
-	<message key="director.paper.completeReview">Mark review as completed</message>
 
-	<message key="director.paper.scheduleSubmission">Send</message>
 
-	<message key="director.submissions.showBy">Show By</message>
-	<message key="director.submissions.submitMMDD">Submit MM-DD</message>
-	<message key="director.submissions.activeAssignments">Active Assignments</message>
-	<message key="director.submissions.invite">Invite</message>
-	<message key="director.submissions.accept">Accept</message>
-	<message key="director.submissions.noSubmissions">No Submissions</message>
-	<message key="director.submissions.lastAssigned">Latest</message>
-	<message key="director.submissions.averageTime">Weeks</message>
-	<message key="director.submissions.lastCompleted">Last Complete</message>
-	<message key="director.submissions.assignedTo">Assigned To</message>
-	<message key="director.submissions.inTrack">In Track</message>
 
 	<!-- Track Director -->
 	<message key="trackDirector.presenter.confirmRenotify">Notifying this author again will restart their assignment. Are you sure you wish to do this?</message>
@@ -1840,65 +631,12 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="reviewer.paper.ensuringBlindReview">Ensuring a Blind Review</message>
 
 	<!-- Presenter -->
-	<message key="presenter.submit">New Submission</message>
-	<message key="presenter.track">Active Submissions</message>
-	<message key="presenter.submit.startHere">Start here to submit a paper to this conference.</message>
-	<message key="presenter.submit.startHereLink">Step one of the submission process</message>
-	<message key="presenter.submit.step1">Step 1. Starting the Submission</message>
-	<message key="presenter.submit.step2">Step 2. Entering the Submission's Metadata</message>
-	<message key="presenter.submit.step3">Step 3. Uploading the Submission</message>
-	<message key="presenter.submit.step4">Step 4. Uploading Supplementary Files</message>
-	<message key="presenter.submit.step4a">Step 4a. Add a Supplementary File</message>
-	<message key="presenter.submit.step5">Step 5. Confirming the Submission</message>
-	<message key="presenter.submit.step5SkipSupp">Step 4. Confirming the Submission</message>
-	<message key="presenter.submit.start">1. Start</message>
-	<message key="presenter.submit.metadata">2. Enter Metadata</message>
-	<message key="presenter.submit.upload">3. Upload Submission</message>
-	<message key="presenter.submit.supplementaryFiles">4. Upload Supplementary Files</message>
-	<message key="presenter.submit.confirmation">5. Confirmation</message>
-	<message key="presenter.submit.confirmationSkipSupp">4. Confirmation</message>
-	<message key="presenter.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
-	<message key="presenter.submit.notAcceptingYet">This conference has not yet started accepting submissions.</message>
-	<message key="presenter.submit.notAccepting">This conference is not accepting submissions.</message>
-	<message key="presenter.submit.submissionDeadlinePassed">Submissions for this conference were closed on {$closedDate}.</message>
-	<message key="presenter.submit.authorRegistrationClosed">Author registration is closed for this conference.</message>
 
-	<message key="presenter.submissions.confirmDelete">Are you sure you want to delete this incomplete submission?</message>
-	<message key="presenter.submissions.viewStatus">View Status</message>
-	<message key="presenter.submissions.noSubmissions">No submissions.</message>
 
 	<!-- Paper Submission Step 1 -->
-	<message key="presenter.submit.howToSubmit"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance ({$supportPhone}).]]></message>
-	<message key="presenter.submit.howToSubmitNoPhone"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance.]]></message>
-	<message key="presenter.submit.conferenceTrack">Conference Track</message>
-	<message key="presenter.submit.conferenceTrackDescription"><![CDATA[Select the appropriate track for this submission (see <a href="{$aboutUrl}" target="_new">Track Policies</a>).]]></message>
-	<message key="presenter.submit.selectTrack">Please select a track...</message>
 
-	<message key="presenter.submit.submissionChecklist">Submission Checklist</message>
-	<message key="presenter.submit.submissionChecklistDescription">Indicate that this submission is ready to be considered by this conference by checking off the following (comments to the director can be added below).</message>
-	<message key="presenter.submit.verifyChecklist">You must make sure all items in the submission checklist are satisfied before continuing.</message>
-	<message key="presenter.submit.copyrightNoticeAgree">The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this conference (comments to the director can be added below).</message>
-	<message key="presenter.submit.copyrightNoticeAgreeRequired">You must agree to the terms of the Copyright Notice before continuing.</message>
-	<message key="presenter.submit.commentsForDirector">Comments for Conference Director</message>
-	<message key="presenter.submit.comments">Enter text (optional)</message>
-	<message key="presenter.submit.form.trackRequired">Please select an appropriate conference track for this submission.</message>
-	<message key="presenter.submit.form.abstractRequired">Please enter an abstract for your submission.</message>
 
 	<!-- Paper Submission Step 2 -->
-	<message key="presenter.submit.privacyStatement">Conference's Privacy Statement</message>
-	<message key="presenter.submit.reorderInstructions">Reorder authors to appear in the order they will be listed on publication.</message>
-	<message key="presenter.submit.selectPrincipalContact">Principal contact for editorial correspondence.</message>
-	<message key="presenter.submit.addPresenter">Add Author</message>
-	<message key="presenter.submit.deletePresenter">Delete Author</message>
-	<message key="presenter.submit.submissionIndexingDescription">Provide terms for indexing the submission; separate terms with a semi-colon (term1; term2; term3).</message>
-	<message key="presenter.submit.submissionSupportingAgencies">Supporting Agencies</message>
-	<message key="presenter.submit.submissionSupportingAgenciesDescription">Identify agencies that provided funding or support for the work presented in this submission.</message>
-	<message key="presenter.submit.agencies">Agencies</message>
-	<message key="presenter.submit.subjectClassInstructions">Use the hyperlinked classification system to select classification terms and, if appropriate, numbers.</message>
-	<message key="presenter.submit.languageInstructions"><![CDATA[English=en; French=fr; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Additional codes</a>.]]></message>
-	<message key="presenter.submit.form.presenterRequired">At least one author is required.</message>
-	<message key="presenter.submit.form.presenterRequiredFields">The first name, last name, and email address of each author is required.</message>
-	<message key="presenter.submit.form.titleRequired">Please enter the title of your paper.</message>
 
 	<!-- Paper Submission Step 3 -->
 	<message key="presenter.submit.uploadInstructions"><![CDATA[
@@ -1911,180 +649,46 @@ Active is how many reviews are currently being considered or underway.]]></messa
 <li>Click Upload on this page, which uploads the file from the computer to the conference's web site and renames it following the conference's conventions.</li>
 <li>Once the submission is uploaded, click Save and Continue at the bottom of this page.</li>
 </ol>]]></message>
-	<message key="presenter.submit.submissionFile">Submission File</message>
-	<message key="presenter.submit.uploadSubmissionFile">Upload submission file</message>
-	<message key="presenter.submit.replaceSubmissionFile">Replace submission file</message>
-	<message key="presenter.submit.noSubmissionFile">No submission file uploaded.</message>
-	<message key="presenter.submit.noSubmissionConfirm">Are you sure you wish to continue without uploading a submission file?</message>
 
 	<!-- Paper Submission Step 4 -->
-	<message key="presenter.submit.supplementaryFilesInstructions">This optional step allows Supplementary Files to be added to a submission. The files, which can be in any format, might include (a) research instruments, (b) data sets, which comply with the terms of the study's research ethics review, (c) sources that otherwise would be unavailable to readers, (d) figures and tables that cannot be integrated into the text itself, or other materials that add to the contribution of the work.</message>
-	<message key="presenter.submit.supplementaryFiles.saveToUpload">Click Save to upload file (after which additional files can be uploaded).</message>
-	<message key="presenter.submit.forgottenSubmitSuppFile">Are you sure you wish to continue without uploading the supplementary file you have chosen?</message>
 
-	<message key="presenter.submit.noSupplementaryFiles">No supplementary files have been added to this submission.</message>
-	<message key="presenter.submit.backToSupplementaryFiles">Back to Supplementary Files</message>
-	<message key="presenter.submit.confirmDeleteSuppFile">Are you sure you want to delete this supplementary file?</message>
-	<message key="presenter.submit.uploadSuppFile">Upload supplementary file</message>
 
 	<!-- Paper Submission Step 4a: Supplementary Files -->
-	<message key="presenter.submit.addSupplementaryFile">Add a Supplementary File</message>
-	<message key="presenter.submit.editSupplementaryFile">Edit a Supplementary File</message>
-	<message key="presenter.submit.supplementaryFileData">Supplementary File Metadata</message>
-	<message key="presenter.submit.supplementaryFileDataDescription">To index this supplementary material, provide the following metadata for the uploaded supplementary file.</message>
-	<message key="presenter.submit.supplementaryFileUpload">Supplementary File</message>
-	<message key="presenter.submit.suppFile.createrOrOwner">Creator (or owner) of file</message>
-	<message key="presenter.submit.suppFile.researchInstrument">Research Instrument</message>
-	<message key="presenter.submit.suppFile.researchMaterials">Research Materials</message>
-	<message key="presenter.submit.suppFile.researchResults">Research Results</message>
-	<message key="presenter.submit.suppFile.transcripts">Transcripts</message>
-	<message key="presenter.submit.suppFile.dataAnalysis">Data Analysis</message>
-	<message key="presenter.submit.suppFile.dataSet">Data Set</message>
-	<message key="presenter.submit.suppFile.sourceText">Source Text</message>
-	<message key="presenter.submit.suppFile.briefDescription">Brief description</message>
-	<message key="presenter.submit.suppFile.contributorOrSponsor">Contributor or sponsoring agency</message>
-	<message key="presenter.submit.suppFile.availableToPeers">Present file to reviewers (without metadata), as it will not compromise blind review.</message>
-	<message key="presenter.submit.suppFile.publisherDescription">Use only with formally published materials.</message>
-	<message key="presenter.submit.suppFile.dateDescription">Date when data was collected or instrument created.</message>
-	<message key="presenter.submit.suppFile.sourceDescription">Name of study or other point of origin.</message>
-	<message key="presenter.submit.suppFile.specifyOtherType">Specify other</message>
-	<message key="presenter.submit.suppFile.noFile">No file uploaded.</message>
-	<message key="presenter.submit.suppFile.form.titleRequired">Please enter the title of this supplementary file.</message>
-	<message key="presenter.submit.suppFile.form.subjectRequired">Please enter a subject.</message>
-	<message key="presenter.submit.suppFile.form.descriptionRequired">Please enter a description.</message>
-	<message key="presenter.suppFile.suppFilePublicIdentificationExists">Public supplemental file identification already exists.</message>
-	<message key="presenter.suppFile.publicSuppFileIdentifier">Public supplemental file identifier</message>
 
 	<!-- Paper Submission: upload file -->
 	<message key="submission.submissionFiles">Submission Files</message>
-	<message key="presenter.submit.addSubmissionFile">Add a Supplementary File</message>
-	<message key="presenter.submit.submissionFileUpload">Supplementary File</message>
 
 	<!-- Paper Submission Step 5 -->
-	<message key="presenter.submit.confirmationDescription">To submit your manuscript to {$conferenceTitle} click Finish Submission. The submission's principal contact will receive an acknowledgement by email and will be able to view the submission's progress through the editorial process by logging in to the journal web site. Thank you for your interest in publishing with {$conferenceTitle}.</message>
-	<message key="presenter.submit.noFiles">No files have been attached to this submission.</message>
-	<message key="presenter.submit.filesSummary">File Summary</message>
-	<message key="presenter.submit.finishSubmission">Finish Submission</message>
-	<message key="presenter.submit.submissionComplete">Submission complete. Thank you for submitting your work to {$conferenceTitle}.</message>
-	<message key="presenter.submit.expedite"><![CDATA[If this submission is in a format that is ready to be published, without further review or editing work, it can be sent directly to the Proceedings page by <a href="{$expediteUrl}" class="action">Clicking here</a>. (Note: Only conference directors have this option for their submissions.)]]></message>
 
 	<!-- Used in submission review / editing -->
-	<message key="presenter.paper.uploadPresenterVersion">Upload Author Version</message>
 
 	<!-- Submission Tracking - Layout Specific -->
-	<message key="submission.layout.layoutVersion">Layout Version</message>
-	<message key="submission.layout.layoutFile">Layout File</message>
-	<message key="submission.layout.galleys">Galleys</message>
-	<message key="submission.layout.newGalley">Create New Galley</message>
-	<message key="submission.layout.initialGalleyCreation">Initial Galley Creation</message>
-	<message key="submission.layout.supplementaryFiles">Supplementary File Review</message>
-	<message key="submission.layout.galleyLabelRequired">A galley label is required.</message>
-	<message key="submission.layout.galleyLocaleRequired">A galley locale is required.</message>
-	<message key="submission.layout.galleyLanguageRequired">A galley language is required.</message>
-	<message key="submission.layout.confirmDeleteGalley">Are you sure you want to permanently delete this galley?</message>
-	<message key="submission.layout.newSupplementaryFile">Upload New Supplementary File</message>
-	<message key="submission.layout.confirmDeleteSupplementaryFile">Are you sure you want to permanently delete this supplementary file?</message>
-	<message key="submission.layout.editGalley">Edit a Layout Galley</message>
-	<message key="submission.layout.addGalley">Add a Layout Galley</message>
-	<message key="submission.layout.galleyFileData">Galley File Information</message>
-	<message key="submission.layout.galleyLabel">Label</message>
-	<message key="submission.layout.galleyLabelInstructions">The galley label is used to identify the item's file format (e.g. HTML, PDF, etc.).</message>
-	<message key="submission.layout.galleyHTMLData">HTML Galley Files</message>
-	<message key="submission.layout.galleyStylesheet">Stylesheet File</message>
-	<message key="submission.layout.noStyleFile">No stylesheet file has been added to this galley.</message>
-	<message key="submission.layout.deleteGalleyStylesheet">Delete this stylesheet.</message>
-	<message key="submission.layout.galleyImages">Images</message>
-	<message key="submission.layout.galleyNoImages">No images have been added to this galley.</message>
-	<message key="submission.layout.confirmDeleteGalleyImage">Are you sure you want to remove this image from the galley?</message>
-	<message key="submission.layout.galleyStyle">Style</message>
-	<message key="submission.layout.viewingGalley">Viewing Submission Galley</message>
-	<message key="submission.layout.galleyFormat">Galley Format</message>
-	<message key="submission.layout.viewProof">View Proof</message>
 
 
 	<!-- Submission History -->
-	<message key="submission.history.submissionEventLog">Event Log</message>
-	<message key="submission.history.submissionEmailLog">Email Log</message>
-	<message key="submission.history.submissionNotes">Submission Notes</message>
-	<message key="submission.history.noLogEntries">No log entries.</message>
-	<message key="submission.history.recentLogEntries">Recent Entries</message>
-	<message key="submission.history.viewLog">View Log</message>
-	<message key="submission.history.clearLog">Clear Log</message>
 
 	<!-- Submission Event Log -->
-	<message key="submission.event.confirmClearLog">Are you sure you want to clear the event log for this submission?</message>
-	<message key="submission.event.confirmDeleteLogEntry">Are you sure you want to delete this event log entry?</message>
-	<message key="submission.event.deleteLogEntry">Delete Log Entry</message>
-	<message key="submission.event.backToEventLog">Back to Event Log</message>
 
 	<!-- Submission Email Log -->
-	<message key="submission.email.confirmClearLog">Are you sure you want to clear the email log for this submission?</message>
-	<message key="submission.email.confirmDeleteLogEntry">Are you sure you want to delete this email log entry?</message>
-	<message key="submission.email.deleteLogEntry">Delete Log Entry</message>
-	<message key="submission.email.backToEmailLog">Back to Email Log</message>
 
 	<!-- Submission Comments -->
-	<message key="submission.comments.comments">Comments</message>
-	<message key="submission.comments.review">Review</message>
 	<message key="submission.comments.directorPresenterCorrespondence">Director/Author Correspondence</message>
-	<message key="submission.comments.corrections">Corrections</message>
-	<message key="submission.comments.noComments">No Comments</message>
-	<message key="submission.comments.noReviews">No Reviews</message>
-	<message key="submission.comments.subject">Subject</message>
 	<message key="submission.comments.viewableDescription"><![CDATA[These comments can be shared with the author.<br />
 (After saving, further comments can be added.)]]></message>
 	<message key="submission.comments.canShareWithPresenter">For author and director</message>
 	<message key="submission.comments.cannotShareWithPresenter">For director</message>
-	<message key="submission.comments.addComment">Add Comment</message>
-	<message key="submission.comments.editComment">Edit Comment</message>
-	<message key="submission.comments.confirmDelete">Are you sure you would like to delete this comment?</message>
-	<message key="submission.comments.importPeerReviews">Import Peer Reviews</message>
 	<message key="submission.comments.blindCcReviewers">After sending, present a blind carbon copy of editorial decision for emailing to reviewers.</message>
-	<message key="submission.comments.importPeerReviews.reviewerLetter">Reviewer {$reviewerLetter}:</message>
 	<message key="submission.comments.forPresenterDirector">For author and director</message>
 	<message key="submission.comments.forDirector">For director</message>
-	<message key="submission.comments.sendDecisionToReviewers">Send Reviewers editorial decision</message>
 	<message key="submission.comments.saveAndEmailPresenter">Save and Email Author</message>
 	<message key="submission.comments.saveAndEmailDirector">Save and Email Director</message>
 
 	<!-- Login -->
-	<message key="user.login.loginError">Invalid username or password. Please try again.</message>
-	<message key="user.login.accountDisabled">Your account has been disabled. Please contact the administrator for more information.</message>
-	<message key="user.login.accountDisabledWithReason">Your account has been disabled for the following reason: {$reason}</message>
-	<message key="user.login.accountNotValidated">Your email address has not been validated. Please check your email and follow the provided instructions. If you have not received an email, you may need to contact the site administrator for assistance.</message>
-	<message key="user.login.activate">Activate Account</message>
-	<message key="user.login.activated">Thank you for activating your account. You may now log in using the credentials you supplied when you created your account.</message>
-	<message key="user.login.rememberUsernameAndPassword">Remember my username and password</message>
 	<message key="user.login.createAccount">Not a user? Create an account with this site</message>
-	<message key="user.login.forgotPassword">Forgot your password?</message>
-	<message key="user.login.resetPassword">Reset Password</message>
 	<message key="user.login.resetPasswordInstructions"><![CDATA[For security reasons, this system emails a reset password to registered users, rather than recalling the
 current password.<br /><br />Enter your email address below to reset your password. A confirmation will be sent to this email address.]]></message>
-	<message key="user.login.lostPassword.invalidUser">No user exists with the specified email address.</message>
-	<message key="user.login.lostPassword.confirmationSent">A confirmation has been sent to your email address. Please follow the instructions in the email to reset your password.</message>
-	<message key="user.login.lostPassword.invalidHash">Sorry, the link you clicked on has expired or is not valid. Please try resetting your password again.</message>
-	<message key="user.login.lostPassword.passwordSent">A new password has been sent to your email address. You may now login to the site with your new password.</message>
-	<message key="user.login.changePasswordInstructions"><![CDATA[You must choose a new password before you can log in to this site.<br /><br />Please enter your username and your current and new passwords below to change the password for your account.]]></message>
-	<message key="user.login.registeredEmail">Registered user's email</message>
-	<message key="presenter.submit.presenterSubmitLoginMessage">A user account is required to submit materials to this conference. This allows our directors to track your submissions and contact you when the status of your submission changes, or if additional information is required from you.</message>
 
 	<!-- Profile -->
-	<message key="user.profile.editProfile">Edit Profile</message>
-	<message key="user.profile.form.firstNameRequired">A first name is required.</message>
-	<message key="user.profile.form.lastNameRequired">A last name is required.</message>
-	<message key="user.profile.form.emailRequired">A valid email address is required.</message>
-	<message key="user.profile.form.urlInvalid">The specified URL is not valid. Please double-check the URL and try again. (Hint: Try adding http:// to the beginning of the URL.)</message>
-	<message key="user.profile.form.usernameRequired">A username is required.</message>
-	<message key="user.profile.form.passwordRequired">A password is required.</message>
-	<message key="user.profile.leavePasswordBlank">Leave the password fields blank to keep the current password.</message>
-	<message key="user.profile.oldPassword">Current password</message>
-	<message key="user.profile.newPassword">New password</message>
-	<message key="user.profile.repeatNewPassword">Repeat new password</message>
-	<message key="user.profile.changePasswordInstructions">Enter your current and new passwords below to change the password for your account.</message>
-	<message key="user.profile.form.oldPasswordInvalid">The current password you entered was incorrect.</message>
-	<message key="user.profile.form.newPasswordRequired">You must enter your new password.</message>
-	<message key="user.profile.form.publishedNotifications">Email notifications for new content</message>
-	<message key="user.profile.form.openAccessNotifications">Email notifications for open access</message>
 
 	<!-- Registration -->
 	<message key="user.account.repeatPassword">Repeat password</message>
@@ -2119,31 +723,11 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="search.browsePresenterIndex">Browse Author Index</message>
 	<message key="search.searchFor">Search papers for</message>
 	<message key="search.inField">In</message>
-	<message key="search.allFields">All</message>
 	<message key="search.presenter">Authors</message>
-	<message key="search.title">Title</message>
-	<message key="search.abstract">Abstract</message>
-	<message key="search.fullText">Full Text</message>
-	<message key="search.indexTerms">Index terms</message>
 	<message key="search.withinConference">Within</message>
 	<message key="search.allConferences">All Conferences</message>
-	<message key="search.searchAllCategories">Search all categories for</message>
-	<message key="search.searchCategories">Search categories</message>
-	<message key="search.date">Date</message>
-	<message key="search.dateFrom">From</message>
-	<message key="search.dateTo">Until</message>
-	<message key="search.discipline">Discipline(s)</message>
-	<message key="search.subject">Keyword(s)</message>
-	<message key="search.typeMethodApproach">Type (method/approach)</message>
-	<message key="search.coverage">Coverage</message>
-	<message key="search.matchAll">Match all categories</message>
 	<message key="search.presenterIndex">Browse Author Index</message>
-	<message key="search.titleIndex">Browse Title Index</message>
 	<message key="search.presenterDetails">Author Details</message>
-	<message key="search.searchResults">Search Results</message>
-	<message key="search.reviseSearch">Revise Search</message>
-	<message key="search.noResults">No Results</message>
-	<message key="search.noKeywordError">You must enter at least one search keyword.</message>
 	<message key="search.syntaxInstructions"><![CDATA[<p>Search tips:</p>
 <ul>
 <li>Search terms are case-insensitive</li>
@@ -2155,9 +739,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 <li>Exclude a word by prefixing it with <strong>-</strong> or <em>NOT</em>; e.g. <em>online -politics</em> or <em>online NOT politics</em></li>
 <li>Use <strong>*</strong> in a term as a wildcard to match any sequence of characters; e.g., <em>soci* morality</em> would match documents containing "sociological" or "societal"</li>
 </ul>]]></message>
-	<message key="search.operator.not">not</message>
-	<message key="search.operator.and">and</message>
-	<message key="search.operator.or">or</message>
 
 	<!-- Interstitial page for PDFs -->
 	<message key="paper.pdf.title">Portable Document Format (PDF)</message>
@@ -2195,13 +776,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="schedConf.program.viewProgramFile">View the program</message>
 	
 	<!-- About The Conference -->
-	<message key="about.aboutSite">About the Site</message>
-	<message key="about.contact">Contact</message>
-	<message key="about.contact.principalContact">Principal Contact</message>
-	<message key="about.contact.supportContact">Support Contact</message>
-	<message key="about.contact.phone">Phone</message>
-	<message key="about.contact.fax">Fax</message>
-	<message key="about.contact.email">Email</message>
 	<message key="about.statistics">Statistics</message>
 	<message key="about.conferenceContact">Conference Contact</message>
 	<message key="about.aboutTheConference">About the Conference</message>
@@ -2230,40 +804,17 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.registration">Registration</message>
 	<message key="about.registrationContact">Registration Contact</message>
 	<message key="about.availableRegistrationTypes">Registration Types</message>
-	<message key="about.siteMap">Site Map</message>
 	<message key="about.aboutThisPublishingSystem">About this Conference System</message>
 	<message key="about.aboutThisPublishingSystem.altText">OCS Submission, Review, and Publishing Process</message>
 	<message key="about.currentConferences">Current Conferences</message>
-	<message key="about.people">People</message>
-	<message key="about.policies">Policies</message>
-	<message key="about.other">Other</message>
 	<message key="about.aboutOCSConference"><![CDATA[This conference uses Open Conference Systems {$ocsVersion}, which is open source conference management software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
 	<message key="about.aboutOCSSite"><![CDATA[This site uses Open Conference Systems {$ocsVersion}, which is open source conference management software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
 
 	<!-- Announcement -->
-	<message key="announcement.announcements">Announcements</message>
-	<message key="announcement.announcementsHome">Announcements</message>
-	<message key="announcement.moreAnnouncements">More Announcements...</message>
-	<message key="announcement.view">View Announcement</message>
-	<message key="announcement.posted">Posted</message>
-	<message key="announcement.viewLink">More...</message>
-	<message key="announcement.noneExist">No announcements have been published.</message>
 
 	<!-- Help -->
-	<message key="help.help">Help</message>
 	<message key="help.ocsHelp">Open Conference Systems Help</message>
 	<message key="help.ocsHelpAbbrev">OCS Help</message>
-	<message key="help.toc">Table of Contents</message>
-	<message key="help.searchResults">Search Results</message>
-	<message key="help.searchResultsFor">Results for</message>
-	<message key="help.matchesFound">{$matches} matches found</message>
-	<message key="help.noMatchingTopics">No matching help topics were found.</message>
-	<message key="help.helpIndex">Help Index</message>
-	<message key="help.contents">Contents</message>
-	<message key="help.upALevel">Up a Level</message>
-	<message key="help.relatedTopics">Related Topics</message>
-	<message key="help.search">Search Help</message>
-	<message key="help.searchFor">Search help topics for</message>
 
 	<!-- Installer -->
 	<message key="installer.ocsInstallation">OCS Installation</message>
@@ -2310,87 +861,31 @@ current password.<br /><br />Enter your email address below to reset your passwo
 <h4>Manual installation</h4>
 
 <p>Select <strong>Manual Install</strong> to display the SQL statements necessary to create the OCS database schema and initial data so that database installation can be performed manually. This option is useful when debugging installation problems, particularly on unsupported platforms. Note that this installation method will not attempt to create the database or any tables, although the configuration file will still be written with the supplied database settings.</p>]]></message>
-	 <message key="installer.installationWrongPhp"><![CDATA[<br/><strong>WARNING: Your current version of PHP does not meet the minimum requirements for installation. It is recommended to upgrade to a more recent release of PHP.</strong>]]></message>
 	<message key="installer.upgradeInstructions"><![CDATA[<h4>OCS Version {$version}</h4>
 
 <p>Thank you for downloading the Public Knowledge Project's <strong>Open Conference Systems</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> and <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> files included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Conference Systems, see the <a href="http://pkp.sfu.ca/support/forum">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
 <p>It is <strong>strongly recommended</strong> that you back up your database, files directory, and OCS installation directory before proceeding.</p>
 <p>If you are running in <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Safe Mode</a>, please ensure that the max_execution_time directive in your php.ini configuration file is set to a high limit. If this or any other time limit (e.g. Apache's "Timeout" directive) is reached and the upgrade process is interrupted, manual intervention will be required.</p>]]></message>
-	<message key="installer.localeSettings">Locale Settings</message>
 	<message key="installer.localeSettingsInstructions"><![CDATA[For complete Unicode (UTF-8) support, select UTF-8 for all character set settings. Note that this support currently requires a MySQL >= 4.1.1 or PostgreSQL >= 7.1 database server. Please also note that full Unicode support requires PHP >= 4.3.0 compiled with support for the <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> library (enabled by default in most recent PHP installations). You may experience problems using extended character sets if your server does not meet these requirements.
 <br /><br />
 Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]></message>
 	<message key="installer.localeInstructions">The primary language to use for this system. Please consult the OCS documentation if you are interested in support for languages not listed here.</message>
-	<message key="installer.additionalLocales">Additional locales</message>
 	<message key="installer.additionalLocalesInstructions">Select any additional languages to support in this system. These languages will be available for use by conferences hosted on the site. Additional languages can also be installed at any time from the site administration interface.</message>
-	<message key="installer.clientCharset">Client character set</message>
-	<message key="installer.clientCharsetInstructions">The encoding to use for data sent to and received from browsers.</message>
-	<message key="installer.connectionCharset">Connection character set</message>
-	<message key="installer.connectionCharsetInstructions">The encoding to use for data sent to and received from the database. This should be the same as the client character set. Note that this capability is only supported with MySQL >= 4.1.1 or PostgreSQL >= 7.1. Select "Not applicable" if your database server does not meet these requirements.</message>
-	<message key="installer.databaseCharset">Database character set</message>
-	<message key="installer.databaseCharsetInstructions">The encoding to use for data stored in the database. Note that this capability is only supported with MySQL >= 4.1.1 or PostgreSQL >= 7.1. Select "Not applicable" if your database server does not meet these requirements.</message>
-	<message key="installer.locale">Locale</message>
-	<message key="installer.fileSettings">File Settings</message>
-	<message key="installer.filesDir">Directory for uploads</message>
 	<message key="installer.filesDirInstructions"><![CDATA[Enter full pathname to an existing directory where uploaded files are to be kept. This directory should not be directly web-accessible. <strong>Please ensure that this directory exists and is writable prior to installation.</strong> Windows path names should use forward slashes, e.g. "C:/myconference/files".]]></message>
-	<message key="installer.securitySettings">Security Settings</message>
-	<message key="installer.encryption">Password encryption algorithm</message>
-	<message key="installer.encryptionInstructions">SHA1 is recommended if your system supports it (requires PHP >= 4.3.0).</message>
-	<message key="installer.administratorAccount">Administrator Account</message>
-	<message key="installer.administratorAccountInstructions">This user account will become the site administrator and have complete access to the system. Additional user accounts can be created after installation.</message>
-	<message key="installer.databaseSettings">Database Settings</message>
 	<message key="installer.databaseSettingsInstructions">OCS requires access to a SQL database to store its data. See the system requirements above for a list of supported databases. In the fields below, provide the settings to be used to connect to the database.</message>
-	<message key="installer.databaseDriver">Database driver</message>
-	<message key="installer.databaseHost">Host</message>
-	<message key="installer.databaseUsername">Username</message>
-	<message key="installer.databasePassword">Password</message>
-	<message key="installer.databaseName">Database name</message>
-	<message key="installer.databaseDriverInstructions"><![CDATA[<strong>Database drivers listed in brackets do not appear to have the required PHP extension loaded and installation will likely fail if selected.</strong><br />Any unsupported database drivers listed above are listed solely for academic purposes and are unlikely to work.]]></message>
-	<message key="installer.databaseHostInstructions">Leave the hostname blank to connect using domain sockets instead of over TCP/IP. This is not necessary with MySQL, which will automatically use sockets if "localhost" is entered, but is required with some other database servers such as PostgreSQL.</message>
-	<message key="installer.createDatabase">Create new database</message>
-	<message key="installer.createDatabaseInstructions">To use this option your database system must support remote database creation and your user account must have the appropriate permissions to create new databases. If installation fails with this option selected, manually create the database on your server and run the installer again with this option disabled.</message>
-	<message key="installer.miscSettings">Miscellaneous Settings</message>
-	<message key="installer.oaiRepositoryId">OAI repository identifier</message>
-	<message key="installer.oaiRepositoryIdInstructions"><![CDATA[A unique identifier used to identify metadata records indexed from this site using the <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting.]]></message>
 	<message key="installer.installOCS">Install Open Conference Systems</message>
 	<message key="installer.upgradeOCS">Upgrade Open Conference Systems</message>
-	<message key="installer.manualInstall">Manual Install</message>
-	<message key="installer.manualUpgrade">Manual Upgrade</message>
-	<message key="installer.form.localeRequired">A locale must be selected.</message>
-	<message key="installer.form.clientCharsetRequired">A client character set must be selected.</message>
-	<message key="installer.form.filesDirRequired">The directory to be used for storing uploaded files is required.</message>
-	<message key="installer.form.encryptionRequired">The algorithm to use for encrypting user passwords must be selected.</message>
-	<message key="installer.form.databaseDriverRequired">A database driver must be selected.</message>
-	<message key="installer.form.databaseNameRequired">The database name is required.</message>
-	<message key="installer.form.usernameRequired">A username for the administrator account is required.</message>
-	<message key="installer.form.passwordRequired">A password for the administrator account is required.</message>
-	<message key="installer.form.usernameAlphaNumeric">The administrator username can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
-	<message key="installer.form.passwordsDoNotMatch">The administrator passwords do not match.</message>
-	<message key="installer.form.emailRequired">A valid email address for the administrator account is required.</message>
-	<message key="installer.form.separateMultiple">Separate multiple values with commas</message>
-	<message key="installer.installErrorsOccurred">Errors occurred during installation</message>
-	<message key="installer.installFilesDirError">The directory specified for uploaded files does not exist or is not writable.</message>
-	<message key="installer.publicFilesDirError">The public files directory does not exist or is not writable.</message>
-	<message key="installer.installFileError"><![CDATA[The installation file <tt>dbscripts/xml/install.xml</tt> does not exist or is not readable.]]></message>
-	<message key="installer.installParseDBFileError"><![CDATA[Error parsing the database installation file <tt>{$file}</tt>.]]></message>
-	<message key="installer.configFileError"><![CDATA[The configuration file <tt>config.inc.php</tt> does not exist or is not readable.]]></message>
 	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Warning:</strong> If installation failed part way through database installation you may need to drop your OCS database or database tables before attempting to reinstall the database.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANT!</h4>
 <p>The installer could not automatically overwrite the configuration file. Before attempting to use the system, please open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
-	<message key="installer.contentsOfConfigFile">Contents of configuration file</message>
 	<message key="installer.manualSQLInstructions"><![CDATA[<h4>Manual installation</h4>
 <p>The SQL statements to create the OCS database schema and initial data are displayed below. Note that the system will be unusable until these statements have been executed manually. You will also have to manually configure the <tt>config.inc.php</tt> configuration file.</p>]]></message>
-	<message key="installer.installerSQLStatements">SQL statements for installation</message>
 	<message key="installer.installationComplete"><![CDATA[<p>Installation of OCS has completed successfully.</p>
 <p>To begin using the system, <a href="{$loginUrl}">login</a> with the username and password entered on the previous page.</p>
 <p>If you wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
 	<message key="installer.upgradeComplete"><![CDATA[<p>Upgrade of OCS to version {$version} has completed successfully.</p>
 <p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <em>On</em>.</p>
 <p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ocs/register" target="_new">http://pkp.sfu.ca/ocs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
-	<message key="installer.skipFilesDir">Do not create required subdirectories (only useful for a manual installation)</message>
-	<message key="installer.releaseNotes">Release Notes</message>
-	<message key="installer.checkYes">Yes</message>
-	<message key="installer.checkNo"><![CDATA[<span class="formError">NO</span>]]></message>
 
 
 	<!-- Paper Logs -->
@@ -2455,172 +950,49 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.timeline.closeCommentsChanged">The close comments setting was changed from {$oldCloseComments} to {$newCloseComments}.</message>
 	
 	<!-- Reading Tools entries -->
-	<message key="rt.readingTools">Reading Tools</message>
 
-	<message key="rt.admin.status">Status</message>
-	<message key="rt.admin.configuration">Configuration</message>
-	<message key="rt.admin.management">Management</message>
 
 	<!-- RT Settings -->
 	<message key="rt.admin.settings">Reading Tool Settings</message>
 
-	<message key="rt.admin.readingToolsEnabled">Reading tools</message>
-	<message key="rt.admin.selectedVersion">Related items</message>
 	<message key="rt.admin.settings.description">The reading tools appear in a frame beside published items in the tracks of the conference that have been designated for indexing. The reading tools consist of a set of optional tools related to the published item, listed below, and a set of tools that provide access to related items, organized by field and discipline.</message>
 	<message key="rt.admin.settings.enableReadingTools">Enable Reading Tools for designated tracks of conference.</message>
-	<message key="rt.admin.settings.abstract">Abstract (presents the item's abstract).</message>
 	<message key="rt.admin.settings.relatedItems">Related Items Field</message>
 
 	<message key="rt.admin.options">Optional Tools</message>
 
-	<message key="rt.admin.settings.disableRelatedItems">Disable Related Items</message>
-	<message key="rt.admin.settings.captureCite">How to cite item (provides bibliographic detail for item).</message>
-	<message key="rt.admin.settings.viewMetadata">Indexing metadata (displays item's indexing metadata provided by author and system).</message>
-	<message key="rt.admin.settings.supplementaryFiles">Supplementary files (displays list of files author included with submission).</message>
-	<message key="rt.admin.settings.printerFriendly">Print version (provides a printer-friendly version of an item).</message>
-	<message key="rt.admin.settings.authorBio">About the author (displays the bio statements entered by the author).</message>
-	<message key="rt.admin.settings.defineTerms">Look up terms (enables readers to double-click on any word in an item and send the word to a dictionary).</message>
 	<message key="rt.admin.settings.addComment">Add comment (enables readers to post comments, which Conference Directors can delete). Reader Comments must be enabled in Website Management, section 1.5).</message>
-	<message key="rt.admin.settings.emailAuthor">Email the author (leads to an email template with author's email).</message>
-	<message key="rt.admin.settings.emailOthers">Notify a colleague (leads to an email template with link to item).</message>
-	<message key="rt.admin.settings.findingReferences">Find References</message>
 
 	<!-- RT Versions -->
-	<message key="rt.admin.versions.restoreVersions">Restore Versions to Defaults</message>
-	<message key="rt.admin.versions.createVersion">Create Version</message>
-	<message key="rt.admin.versions.confirmRestore">Are you sure you wish to irreversibly restore all versions to their defaults? If so, you will need to choose an active Version on the Settings page.</message>
-	<message key="rt.admin.versions.confirmDelete">Are you sure you wish to delete this Version and all associated Contexts and Searches?</message>
-	<message key="rt.admin.versions.edit.editVersion">Edit Version</message>
-	<message key="rt.admin.versions.metadata">Metadata</message>
-	<message key="rt.admin.versions.export">Export</message>
-	<message key="rt.admin.versions.importVersion">Import Version</message>
 
 	<!-- RT Contexts -->
-	<message key="rt.admin.contexts.edit.editContext">Edit Context</message>
-	<message key="rt.admin.contexts.createContext">Create Context</message>
-	<message key="rt.admin.contexts.confirmDelete">Are you sure you wish to delete this Context and all associated Searches?</message>
-	<message key="rt.admin.contexts.metadata">Metadata</message>
-	<message key="rt.admin.contexts.options">Options</message>
-	<message key="rt.admin.contexts.options.citedBy">Use author names as default search terms and describe the context as a search for citations to the paper.</message>
-	<message key="rt.admin.contexts.options.authorTerms">Use author names as default search terms to enable users to find other works by the authors for this item (e.g., for an "Other Works" context)</message>
-	<message key="rt.admin.contexts.options.geoTerms">Use geographical indexing data as default search terms.</message>
-	<message key="rt.admin.contexts.options.defineTerms"><![CDATA[Use the word highlighted by the reader as default search term or be left blank if none has been selected for this item (e.g., for a "Definition of terms" context). The "Definition of terms" option must be enabled in the <a href="{$settingsUrl}">RST Settings</a> to allow double-clicking on words to open this context.]]></message>
 
 	<!-- RT Searches -->
-	<message key="rt.admin.searches.edit.editSearch">Edit Search</message>
-	<message key="rt.admin.searches.confirmDelete">Are you sure you wish to delete this Search?</message>
-	<message key="rt.admin.searches.createSearch">Create Search</message>
 
-	<message key="rt.admin.validateUrls">Validate URLs for Reading Tools</message>
 	<message key="rt.admin.validateUrls.description"><![CDATA[Possibly invalid URLs for search sites are displayed below.<br/>
 You should manually verify any URLs marked as invalid, as this test is not 100% accurate.<br/>
 Validation may fail on search URLs that require posted form data.]]></message>
-	<message key="rt.admin.validateUrls.validate">Validate</message>
-	<message key="rt.admin.validateUrls.urlIsInvalid">{$url} is not valid.</message>
-	<message key="rt.admin.validateUrls.ok">OK</message>
-	<message key="rt.admin.validateUrls.complete">Validation complete.</message>
 
 	<!-- RT Entities -->
-	<message key="rt.version">Version</message>
-	<message key="rt.versions">Versions</message>
-	<message key="rt.version.title">Title</message>
-	<message key="rt.version.locale">Locale</message>
-	<message key="rt.version.key">Key</message>
-	<message key="rt.version.description">Description</message>
 
-	<message key="rt.context">Context</message>
-	<message key="rt.contexts">Contexts</message>
-	<message key="rt.context.title">Title</message>
-	<message key="rt.context.abbrev">Abbrev</message>
-	<message key="rt.context.description">Description</message>
-	<message key="rt.context.order">Order</message>
 
-	<message key="rt.search">Search</message>
-	<message key="rt.searches">Searches</message>
-	<message key="rt.search.title">Title</message>
-	<message key="rt.search.url">URL</message>
-	<message key="rt.search.order">Order</message>
-	<message key="rt.search.description">Description</message>
-	<message key="rt.search.searchUrl">Search URL</message>
-	<message key="rt.search.searchPost">Post data</message>
-	<message key="rt.search.suggest">Suggest a source</message>
 
-	<message key="rt.authorBio">About the author</message>
 
-	<message key="rt.viewMetadata">Indexing metadata</message>
-	<message key="rt.metadata.dublinCore">Dublin Core</message>
-	<message key="rt.metadata.pkpItem">PKP Metadata Items</message>
-	<message key="rt.metadata.forThisDocument">Metadata for this Document</message>
-	<message key="rt.metadata.dublinCore.title">Title</message>
 	<message key="rt.metadata.dublinCore.primaryPresenter">Creator</message>
-	<message key="rt.metadata.dublinCore.subject">Subject</message>
-	<message key="rt.metadata.dublinCore.description">Description</message>
-	<message key="rt.metadata.dublinCore.publisher">Publisher</message>
-	<message key="rt.metadata.dublinCore.contributor">Contributor</message>
-	<message key="rt.metadata.dublinCore.date">Date</message>
-	<message key="rt.metadata.dublinCore.type">Type</message>
-	<message key="rt.metadata.dublinCore.format">Format</message>
-	<message key="rt.metadata.dublinCore.identifier">Identifier</message>
-	<message key="rt.metadata.dublinCore.source">Source</message>
-	<message key="rt.metadata.dublinCore.language">Language</message>
-	<message key="rt.metadata.dublinCore.relation">Relation</message>
-	<message key="rt.metadata.dublinCore.coverage">Coverage</message>
-	<message key="rt.metadata.dublinCore.rights">Rights</message>
 
-	<message key="rt.metadata.pkp.title">Title of document</message>
 	<message key="rt.metadata.pkp.primaryPresenter">Author's name, affiliation, country</message>
-	<message key="rt.metadata.pkp.discipline">Discipline(s)</message>
-	<message key="rt.metadata.pkp.subject">Keyword(s)</message>
-	<message key="rt.metadata.pkp.subjectClass">Subject classification</message>
-	<message key="rt.metadata.pkp.abstract">Abstract</message>
-	<message key="rt.metadata.pkp.publisher">Organizing agency, location</message>
-	<message key="rt.metadata.pkp.sponsors">Sponsor(s)</message>
-	<message key="rt.metadata.pkp.date">(YYYY-MM-DD)</message>
-	<message key="rt.metadata.pkp.type">Type</message>
-	<message key="rt.metadata.pkp.genre">Status &amp; genre</message>
 	<message key="rt.metadata.pkp.peerReviewed">Peer-reviewed Paper</message>
-	<message key="rt.metadata.pkp.format">File format</message>
-	<message key="rt.metadata.pkp.uri">Universal Resource Indicator</message>
-	<message key="rt.metadata.pkp.source">Journal/conference title; vol., no. (year)</message>
-	<message key="rt.metadata.pkp.language">English=en</message>
-	<message key="rt.metadata.pkp.suppFiles">Supp. Files</message>
-	<message key="rt.metadata.pkp.coverage">Geo-spatial location, chronological period, research sample (gender, age, etc.)</message>
-	<message key="rt.metadata.pkp.copyright">Copyright and permissions</message>
 
-	<message key="rt.suppFiles">Supplementary files</message>
-	<message key="rt.suppFiles.viewMetadata">Indexing metadata</message>
-	<message key="rt.suppFiles.download">Download</message>
 
-	<message key="rt.captureCite">How to cite item</message>
-	<message key="rt.captureCite.format">Citation Format</message>
-	<message key="rt.captureCite.online">Online</message>
 
-	<message key="rt.reviewPolicy">Review policy</message>
-	<message key="rt.printVersion">Print version</message>
-	<message key="rt.lookUp">Look up terms</message>
-	<message key="rt.colleague">Notify colleague</message>
-	<message key="rt.addComment">Add comment</message>
-	<message key="rt.emailAuthor">Email the author</message>
 
-	<message key="rt.findingReferences">Finding References</message>
-	<message key="rt.findingReferences.googleScholar">Google Scholar</message>
-	<message key="rt.findingReferences.windowsLiveAcademic">Windows Live Academic</message>
 
-	<message key="rt.relatedItems">Related items</message>
 	<message key="rt.thisConference">Search conference</message>
 
-	<message key="rt.email.sent">Your message has been sent.</message>
 	<message key="rt.comments.commentsClosed">† Comments closed on {$closeCommentsDate}</message>
-	<message key="rt.email.needLogin"><![CDATA[* Requires <a target="_parent" href="{$loginUrl}">registration</a>]]></message>
 
-	<message key="rt.context.searchTerms">Search Terms</message>
-	<message key="rt.context.termToDefine">Word to define</message>
-	<message key="rt.context.searchDescription">The search terms have been selected by the author(s). They can be altered or deleted by the reader, as two or three short, precise terms or phrases produced the best Boolean (AND) searches. To learn more about the resources searched, click on ABOUT. These resources have been selected for their relevance and open (free) access to all or part of their contents.</message>
-	<message key="rt.context.defineTermsDescription">If the item is a HTML file (rather than a PDF), double clicking on any word in the text will make it appear in the Word-to-Define box. Otherwise, words can be typed or pasted in the box. To learn more about the resource searched, click on ABOUT. These resources have been selected because of their relevance and their open (free) access to all or part of their contents.</message>
 	<message key="rt.context.authorTermsDescription">For items with more than one author, leave all names checked to search for similarly co-presented work, or search one at a time by checking only a single name. To learn more about the resource searched, click on ABOUT. These resources have been selected because of their relevance and their open (free) access to all or part of their contents.</message>
-	<message key="rt.context.citesContextDescription">If the paper is indexed in Google Scholar, it may be accompanied by a "Cited by X" link, which leads to a list of works that cite it. As well, Google Scholar will list all items quoting the title and author. To access online resources that are only available through your research library, you may be able to go to Scholar Preferences in Google Scholar and activate the Library Links for your institution.</message>
 
-	<message key="rt.context.and">AND</message>
 
 	<!--
 	 *
@@ -2628,28 +1000,8 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	 *
 	-->
 	<!-- Icons: Default "alt" text -->
-	<message key="icon.view.alt">View</message>
-	<message key="icon.checked.alt">Checked</message>
-	<message key="icon.unchecked.alt">Unchecked</message>
-	<message key="icon.comment.alt">Comment</message>
-	<message key="icon.edit.alt">Edit</message>
-	<message key="icon.delete.alt">Delete</message>
-	<message key="icon.letter.alt">Letter</message>
-	<message key="icon.mail.alt">Mail</message>
-	<message key="icon.info.alt">Info</message>
-	<message key="icon.folder.alt">Folder</message>
-	<message key="icon.font_small.alt">Small</message>
-	<message key="icon.font_medium.alt">Medium</message>
-	<message key="icon.font_large.alt">Large</message>
 
 	<!-- Debug messages -->
-	<message key="debug.executionTime">Page generated in</message>
-	<message key="debug.databaseQueries">Number of database queries</message>
-	<message key="debug.memoryUsage">Memory usage</message>
-	<message key="debug.notes">Notes:</message>
-	<message key="debug.notes.localeLoad">Loaded locale file "{$localeFile}" from XML</message>
-	<message key="debug.notes.localeListLoad">Loaded locale list "{$localeList}" from XML</message>
-	<message key="debug.notes.missingLocaleKey">Missing locale key "{$key}".</message>
 
 	<!--
 	 *

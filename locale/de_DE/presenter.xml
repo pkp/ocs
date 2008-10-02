@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/de_DE/presenter.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the de_DE (Deutsch) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="de_DE" full_name = "Deutsch">
+	<message key="presenter.submit">Neue Einreichung</message>
+	<message key="presenter.track">Aktive Einreichungen</message>
+	<message key="presenter.submit.startHere">Beginnen Sie hier, um ein Paper f&#252;r diese Konferenz einzureichen.</message>
+	<message key="presenter.submit.startHereLink">Erster Schritt der Einreichungsprozedur</message>
+	<message key="presenter.submit.step1">1. Schritt: Beitragsart ausw&#228;hlen</message>
+	<message key="presenter.submit.step2">2. Schritt: Eingabe der Beitragsinformationen</message>
+	<message key="presenter.submit.step3">3. Schritt: Hochladen der Einreichung</message>
+	<message key="presenter.submit.step4">4. Schritt: Hochladen der Erg&#228;nzungsdateien</message>
+	<message key="presenter.submit.step4a">Zwischenschritt: Erg&#228;nzungsdatei hinzuf&#252;gen</message>
+	<message key="presenter.submit.step5">5. Schritt: Best&#228;tigung der Einreichung</message>
+	<message key="presenter.submit.step5SkipSupp">4. Schritt: Best&#228;tigung der Einreichung</message>
+	<message key="presenter.submit.start">1. Start</message>
+	<message key="presenter.submit.metadata">2. Eingabe der Daten</message>
+	<message key="presenter.submit.upload">3. Einreichung hochladen</message>
+	<message key="presenter.submit.supplementaryFiles">4. Erg&#228;nzungsdateien hochladen</message>
+	<message key="presenter.submit.confirmation">5. Best&#228;tigung</message>
+	<message key="presenter.submit.confirmationSkipSupp">4. Best&#228;tigung</message>
+	<message key="presenter.submit.cancelSubmission">Sie k&#246;nnen diese Einreichung unter &quot;Aktive Einreichungen&quot; in &quot;Startseite (Autor)&quot; zu einem sp&#228;teren Zeitpunkt abschlie&#223;en</message>
+	<message key="presenter.submit.notAcceptingYet">Diese Konferenz nimmt noch keine Einreichungen an.</message>
+	<message key="presenter.submit.submissionDeadlinePassed">Der Einreichungszeitraum dieser Konferenz schloss am {$closedDate}.</message>
+	<message key="presenter.submissions.confirmDelete">Sind Sie sicher, dass Sie diese unvollst&#228;ndige Einreichung l&#246;schen wollen?</message>
+	<message key="presenter.submissions.viewStatus">Status anzeigen</message>
+	<message key="presenter.submissions.noSubmissions">Keine Einreichungen.</message>
+	<message key="presenter.submit.howToSubmit"><![CDATA[]]></message>
+	<message key="presenter.submit.conferenceTrack">Beitragsart</message>
+	<message key="presenter.submit.conferenceTrackDescription"><![CDATA[W&#228;hlen Sie die Beitragsart f&#252;r Ihre Einreichung.]]></message>
+	<message key="presenter.submit.selectTrack">Bitte w&#228;hlen Sie eine Beitragsart.</message>
+	<message key="presenter.submit.submissionChecklist">Checkliste f&#252;r Einreichungen</message>
+	<message key="presenter.submit.submissionChecklistDescription">Signalisieren Sie, dass diese Einreichung f&#252;r die Begutachtung ist, indem Sie die folgenden Punkte abhaken (Anmerkungen an den Leiter k&#246;nnen unten hinzugef&#252;gt werden).</message>
+	<message key="presenter.submit.verifyChecklist">Sie m&#252;ssen sicherstellen, dass alle Punkte der Checkliste erf&#252;llt sind, bevor Sie fortfahren.</message>
+	<message key="presenter.submit.copyrightNoticeAgree">Die Autoren stimmen den Bedingungen dieses Urheberrechtshinweises, welcher f&#252;r diese Einreichung g&#252;ltig sein wird, falls und sobald sie im Rahmen dieser Konferenz ver&#246;ffentlicht wird, zu (Anmerkungen an den Leiter k&#246;nnen unten hinzugef&#252;gt werden).</message>
+	<message key="presenter.submit.copyrightNoticeAgreeRequired">Sie m&#252;ssen den Bedingungen des Urheberrechtshinweises zustimmen, bevor Sie fortfahren k&#246;nnen.</message>
+	<message key="presenter.submit.commentsForDirector">Anmerkungen an Konferenzleiter</message>
+	<message key="presenter.submit.comments">Geben Sie einen Text ein (optional)</message>
+	<message key="presenter.submit.form.trackRequired">Bitte w&#228;hlen Sie einen passenden Konferenztrack f&#252;r diese Einreichung</message>
+	<message key="presenter.submit.form.abstractRequired">Bitte geben Sie einen Abstract f&#252;r diese Einreichung ein.</message>
+	<message key="presenter.submit.privacyStatement">Datenschutzerkl&#228;rung der Konferenz</message>
+	<message key="presenter.submit.reorderInstructions">Benutzen Sie die Pfeile um die Reihenfolge, in der die Autoren erscheinen sollen, zu &#228;ndern.</message>
+	<message key="presenter.submit.selectPrincipalContact">Hauptansprechpartner f&#252;r die Bearbeitung betreffende Korrespondenz</message>
+	<message key="presenter.submit.addPresenter">Weiteren Autor hinzufügen</message>
+	<message key="presenter.submit.deletePresenter">Autor l&#246;schen</message>
+	<message key="presenter.submit.submissionIndexingDescription">W&#228;hlen Sie ein bis zwei Schlagw&#246;rter aus, die Ihren Beitrag charakterisieren. </message>
+	<message key="presenter.submit.submissionSupportingAgencies">Unterst&#252;tzer</message>
+	<message key="presenter.submit.submissionSupportingAgenciesDescription">Geben Sie Einrichtungen an, welche die in dieser Einreichung pr&#228;sentierte Arbeit finanziert oder unterst&#252;tzt haben.</message>
+	<message key="presenter.submit.agencies">Einrichtungen</message>
+	<message key="presenter.submit.subjectClassInstructions">Benutzen Sie das verlinkte Klassifikationssystem, um Klassifikationsbegriffe und (wenn erforderlich) -nummern zu w&#228;hlen.</message>
+	<message key="presenter.submit.languageInstructions"><![CDATA[Englisch=en; Franz&#246;sisch=fr; Spanisch=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">Weitere Codes</a>.]]></message>
+	<message key="presenter.submit.form.presenterRequired">Mindestens ein Autor muss angegeben werden.</message>
+	<message key="presenter.submit.form.presenterRequiredFields">Der Vor- und Nachname sowie die Emailadresse, die Abteilung und die Institution jedes Autors werden ben&#246;tigt.</message>
+	<message key="presenter.submit.form.titleRequired">Bitte geben Sie den Titel Ihres Papers an.</message>
+	<message key="presenter.submit.submissionFile">Einreichungsdatei</message>
+	<message key="presenter.submit.uploadSubmissionFile">Einreichungsdatei hochladen</message>
+	<message key="presenter.submit.replaceSubmissionFile">Einreichungsdatei ersetzen</message>
+	<message key="presenter.submit.noSubmissionFile">Keine Einreichungsdatei hochgeladen.</message>
+	<message key="presenter.submit.noSubmissionConfirm">Sind Sie sicher, dass Sie fortfahren wollen, ohne eine Einreichungsdatei hochgeladen zu haben?</message>
+	<message key="presenter.submit.supplementaryFilesInstructions">Dieser optionale Schritt der Einreichungsprozedur erm&#246;glicht es Autoren, der Einreichung Dateien beizuf&#252;gen, die die Einreichung vervollst&#228;ndigen. Erg&#228;nzungsdateien k&#246;nnen (a) Forschungshilfsmittel, (b) Datens&#228;tze, die den Vorgaben der Forschungsethikspr&#252;fung gen&#252;gen, (c) den Lesern sonst unzug&#228;ngliche Quellen oder (d) Abbildungen oder Tabellen, welche nicht in den Text integriert werden k&#246;nnen, enthalten. Diese Dateien werden nach Autor indiziert, so dass ihr Zusammenhang zu der Einreichung sowie ihre Eigent&#252;merschaft erkenntlich ist. Erg&#228;nzungsdateien k&#246;nnen in einem beliebigen Format hochgeladen werden und sind Lesern in diesem urspr&#252;nglichen Format zug&#228;nglich. Sie k&#246;nnen Gutachtern zug&#228;nglich gemacht werden, solange dadurch die Blindbegutachtung nicht gef&#228;hrdet ist.</message>
+	<message key="presenter.submit.noSupplementaryFiles">Keine Erg&#228;nzungsdateien wurden der Einreichung beigef&#252;gt.</message>
+	<message key="presenter.submit.backToSupplementaryFiles">Zur&#252;ck zu &quot;Erg&#228;nzungsdateien&quot;</message>
+	<message key="presenter.submit.confirmDeleteSuppFile">Sind Sie sicher, dass Sie diese Erg&#228;nzungsdatei l&#246;schen wollen?</message>
+	<message key="presenter.submit.uploadSuppFile">Erg&#228;nzungsdatei hochladen</message>
+	<message key="presenter.submit.addSupplementaryFile">Erg&#228;nzungsdatei hinzuf&#252;gen</message>
+	<message key="presenter.submit.editSupplementaryFile">Erg&#228;nzungsdatei bearbeiten</message>
+	<message key="presenter.submit.supplementaryFileData">Metadaten der Erg&#228;nzungsdatei</message>
+	<message key="presenter.submit.supplementaryFileDataDescription">Geben Sie die folgenden Metadaten f&#252;r die hochgeladene Erg&#228;nzungsdatei an, um die Indizierung des Materials zu erm&#246;glichen</message>
+	<message key="presenter.submit.supplementaryFileUpload">Erg&#228;nzungsdatei</message>
+	<message key="presenter.submit.suppFile.createrOrOwner">Urheber (oder Eigent&#252;mer) der Datei</message>
+	<message key="presenter.submit.suppFile.researchInstrument">Forschungshilfsmittel</message>
+	<message key="presenter.submit.suppFile.researchMaterials">Forschungsmaterialien</message>
+	<message key="presenter.submit.suppFile.researchResults">Forschungsergebnisse</message>
+	<message key="presenter.submit.suppFile.transcripts">Niederschriften</message>
+	<message key="presenter.submit.suppFile.dataAnalysis">Datenanalyse</message>
+	<message key="presenter.submit.suppFile.dataSet">Datensatz</message>
+	<message key="presenter.submit.suppFile.sourceText">Quellentext</message>
+	<message key="presenter.submit.suppFile.briefDescription">Kurze Beschreibung</message>
+	<message key="presenter.submit.suppFile.contributorOrSponsor">Unterst&#252;tzer oder Sponsoreinrichtung</message>
+	<message key="presenter.submit.suppFile.availableToPeers">Datei (ohne Metadaten) Gutachtern zug&#228;nglich machen, da keine Gef&#228;hrdung der Blindbegutachtung vorliegt.</message>
+	<message key="presenter.submit.suppFile.publisherDescription">Nur zusammen mit auf formellem Weg ver&#246;ffentlichtem Material benutzen.</message>
+	<message key="presenter.submit.suppFile.dateDescription">Datum der Datenerfassung oder der Herstellung des Hilfsmittels</message>
+	<message key="presenter.submit.suppFile.sourceDescription">Bezugspunkt (Name der entsprechenden Studie oder anderer Quelle)</message>
+	<message key="presenter.submit.suppFile.specifyOtherType">Andere angeben</message>
+	<message key="presenter.submit.suppFile.noFile">Keine Datei hochgeladen.</message>
+	<message key="presenter.submit.suppFile.form.titleRequired">Bitte geben Sie den Titel dieser Erg&#228;nzungsdatei an.</message>
+	<message key="presenter.submit.suppFile.form.subjectRequired">Bitte geben Sie einen Gegenstandsbereich an.</message>
+	<message key="presenter.submit.suppFile.form.descriptionRequired">Bitte geben Sie eine Beschreibung an.</message>
+	<message key="presenter.suppFile.suppFilePublicIdentificationExists">Identifikator f&#252;r Erg&#228;nzungsdatei besteht bereits</message>
+	<message key="presenter.suppFile.publicSuppFileIdentifier">Identifikator der Erg&#228;nzungsdatei</message>
+	<message key="presenter.submit.addSubmissionFile">Erg&#228;nzungsdatei hinzuf&#252;gen</message>
+	<message key="presenter.submit.submissionFileUpload">Erg&#228;nzungsdatei</message>
+	<message key="presenter.submit.confirmationDescription">Sind die vorhergehenden Schritte der Prozedur abgeschlossen, klicken Sie auf &quot;Einreichung fertigstellen&quot;, um Ihr Manuskript an die Konferenz {$conferenceTitle} zu schicken. Sie werden per Email eine Empfangsbest&#228;tigung erhalten und die Fortschritte Ihrer Einreichung in der Bearbeitungsprozedur verfolgen k&#246;nnen, indem Sie sich in die Konferenzwebseite einloggen. Vielen Dank f&#252;r die &#220;bermittlung Ihrer Arbeit an {$conferenceTitle}.</message>
+	<message key="presenter.submit.noFiles">Keine Dateien wurden dieser Einreichung angeh&#228;ngt.</message>
+	<message key="presenter.submit.filesSummary">Datei&#252;bersicht</message>
+	<message key="presenter.submit.finishSubmission">Einreichung fertigstellen</message>
+	<message key="presenter.submit.submissionComplete">Die Einreichung ist abgeschlossen. Vielen Dank f&#252;r die &#220;bermittlung Ihrer Arbeit an {$conferenceTitle}.</message>
+	<message key="presenter.submit.expedite"><![CDATA[Falls diese Einreichung bereits in einem f&#252;r die Ver&#246;ffentlichung fertigen Zustand ist, ohne dass weitere Begutachtung oder Bearbeitung n&#246;tig w&#228;re, kann sie <a href="{$expediteUrl}" class="action">hiermit</a> direkt an die Seite &quot;Ablauf&quot; geschickt werden. (Hinweis: Nur Konferenzleitern steht diese M&#246;glichkeit f&#252;r ihre Einreichungen offen.]]></message>
+	<message key="presenter.paper.uploadPresenterVersion">Version des Autors hochladen</message>
+	<message key="presenter.submit.presenterSubmitLoginMessage">Sie ben&#246;tigen einen Benutzerkonto, um Material f&#252;r diese Konferenz einzureichen. Dies erlaubt es uns, Ihre Einreichungen nachzuverfolgen und Sie zu kontaktieren, wenn sich der Status Ihrer Einreichung ge&#228;ndert hat oder wenn wir weitere Informationen von Ihnen ben&#246;tigen.</message>
+</locale>

@@ -32,6 +32,7 @@ class InstallHandler extends Handler {
 		@ini_set('display_errors', E_ALL);
 
 		InstallHandler::validate();
+		InstallHandler::setupTemplate();
 
 		if (($setLocale = Request::getUserVar('setLocale')) != null && Locale::isLocaleValid($setLocale)) {
 			Request::setCookieVar('currentLocale', $setLocale);
@@ -56,6 +57,7 @@ class InstallHandler extends Handler {
 	 */
 	function install() {
 		InstallHandler::validate();
+		InstallHandler::setupTemplate();
 
 		$installForm = &new InstallForm();
 		$installForm->readInputData();
@@ -73,6 +75,7 @@ class InstallHandler extends Handler {
 	 */
 	function upgrade() {
 		InstallHandler::validate();
+		InstallHandler::setupTemplate();
 
 		if (($setLocale = Request::getUserVar('setLocale')) != null && Locale::isLocaleValid($setLocale)) {
 			Request::setCookieVar('currentLocale', $setLocale);
@@ -100,6 +103,10 @@ class InstallHandler extends Handler {
 		}
 	}
 
+	function setupTemplate() {
+		parent::setupTemplate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_INSTALL));
+	}
 }
 
 ?>

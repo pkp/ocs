@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/fr_FR/director.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the fr_FR (Français (France)) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="fr_FR" full_name = "Français (France)">
+	<message key="director.home">Accueil responsable</message>
+	<message key="director.submissionQueue">Propositions en attente</message>
+	<message key="director.submissionArchive">Archives des propositions</message>
+	<message key="director.allTracks">Toutes les parties</message>
+	<message key="director.submissionQueue.noSubmissions">Aucune proposition en attente.</message>
+	<message key="director.submissionQueue.saveChanges">Sauvegarder les changements des propositions en attente?</message>
+	<message key="director.submissionArchive.noSubmissions">Aucune proposition archivée.</message>
+	<message key="director.submissionArchive.saveChanges">Sauvegarder les changements des propositions archivées? Les Propositions marquées comme " à supprimer" vont être définitivement effacées du système.</message>
+	<message key="director.submissionArchive.confirmDelete">Etes-vous sûr de vouloir effacer définitivement cette proposition?</message>
+	<message key="director.submissionReview.confirmDecision">Etes vous sûr de vouloir enregistrer cette décision?</message>
+	<message key="director.submissionReview.confirmToLayout">L'auteur a-t-il été alerté de cette décision? Si non, cliquez sur Annuler et utilisez l'outil Alerter l'Auteur avant de deplacer cette proposition à la mise en page.</message>
+	<message key="director.submissionReview.confirmToArchive">L'auteur a-t-il été alerté de cette décision? Si non, cliquez sur Annuler et utilisez l'outil Alerter l'Auteur avant de deplacer cette proposition aux archives.</message>
+	<message key="director.submissionReview.notes">L'échéance indique le nombre de semaines restant avant la date limite des révisions ou bien (-) le nombre de semaines passées depuis. Elle est remplie quand un évaluateur accepte la demande de faire la révision.</message>
+	<message key="director.notifyUsers">Alerter les utilisateurs</message>
+	<message key="director.notifyUsers.allUsers">Envoyer ce message à tous les utilisateurs associés à cette conférence ({$count} users)</message>
+	<message key="director.notifyUsers.interestedUsers">Envoyer ce message à tous les utilisateurs associés à cette conférence qui ont souhaité recevoir les mises à jours ({$count} users)</message>
+	<message key="director.notifyUsers.includeToc">Inclure la présentation pour cette conférence:</message>
+	<message key="director.navigation.management">Gestion</message>
+	<message key="director.paper.sendToArchive">Archiver cette proposition</message>
+	<message key="director.paper.designateReviewVersion">Désigner le fichier original comme le Fichier révisé</message>
+	<message key="director.paper.uploadReviewVersion">Envoyer au serveur la version d'évaluation révisée</message>
+	<message key="director.paper.uploadDirectorVersion">Envoyer au serveur la version du responsable</message>
+	<message key="director.paper.stageDisabled">Il n'est pas encore possible d'effectuer cette révision. Soit la révision du résumé n'est pas encore finie, soit l'auteur n'a pas encore fourni un papier à évaluer.</message>
+	<message key="director.paper.showSuppFile">Présenter le fichier aux évaluateurs</message>
+	<message key="director.paper.clear">Effacer</message>
+	<message key="director.paper.clearReviewer">Supprimer l'évaluateur</message>
+	<message key="director.paper.changeTrack">Changer la partie</message>
+	<message key="director.paper.setDueDate">Fixer l'échéance</message>
+	<message key="director.paper.addReviewer">Ajouter un évaluateur</message>
+	<message key="director.paper.toReviewer">A l'évaluateur</message>
+	<message key="director.paper.notifyReviewer">Alerter l'évaluateur</message>
+	<message key="director.paper.initiateReview">Commencer la révision</message>
+	<message key="director.paper.cancelReview">Annuler la Demande d'e révision</message>
+	<message key="director.paper.clearReview">Effacer l'évaluateur</message>
+	<message key="director.paper.enterRecommendation">Entrer la recommandation</message>
+	<message key="director.paper.enterReviewerRecommendation">Entrer la recommandations de l'évaluateur</message>
+	<message key="director.paper.recommendation">Recommandation</message>
+	<message key="director.paper.selectReviewer">Sélectionner l'évaluateur</message>
+	<message key="director.paper.replaceReviewer">Remplacer l'évaluateur</message>
+	<message key="director.paper.directorToEnter">Le responsable doit entrer les recommandation/commentaires pour l'évaluateur</message>
+	<message key="director.paper.uploadReviewForReviewer">Envoyer une révision au serveur</message>
+	<message key="director.paper.peerReviewOptions">Options d'évaluation par les pairs</message>
+	<message key="director.paper.decision">Décision</message>
+	<message key="director.paper.recordDecision">Enregistrer la écision</message>
+	<message key="director.paper.cannotRecord">Impossible d'enregistrer une décision; aucun Directeur de partie n'a encore été défini ou aucun fichier n'a été envoyé au serveur.</message>
+	<message key="director.paper.cannotRecordYet">Avant qu'une décision ne puisse être enregistrée, une proposition doit être assignée à un Responsable de partie. La version d'évaluation devient alors, par défaut, la version du responsable.</message>
+	<message key="director.paper.cannotRecordTooLate">La proposition a déjà achevé sa phase de révision. Vous ne pouvez plus modifier cette décision.</message>
+	<message key="director.paper.designateDueDate">Désigner une échéance</message>
+	<message key="director.paper.designateDueDateDescription">Pour modifier l'échéance pour cet évaluateur, entrez une autre date ou supprimez la date et entrez le nombre limite de semaines nécessaires pour effectuer ce travail.</message>
+	<message key="director.paper.todaysDate">Date d'Aujourd'hui</message>
+	<message key="director.paper.requestedByDate">Demandée par date</message>
+	<message key="director.paper.dueDateFormat">Format: AAAA-MM-JJ</message>
+	<message key="director.paper.numberOfWeeks">Nombre de semaines</message>
+	<message key="director.paper.showPresenter">Permettre à l'auteur de voir le fichier</message>
+	<message key="director.paper.rateReviewer">Noter l'évaluateur</message>
+	<message key="director.paper.reviewerRating.veryGood">5 Très bien</message>
+	<message key="director.paper.reviewerRating.good">4 Bien</message>
+	<message key="director.paper.reviewerRating.average">3 Moyen</message>
+	<message key="director.paper.reviewerRating.poor">2 Faible</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 Très faible</message>
+	<message key="director.paper.quality">Note</message>
+	<message key="director.paper.comments">Commentaires</message>
+	<message key="director.paper.commentsRequired">Le champ de commentaires est exigé.</message>
+	<message key="director.paper.archiveSubmission">Archiver la proposition</message>
+	<message key="director.paper.restoreToQueue">Restituer à la liste active</message>
+	<message key="director.paper.assignTrackDirector">Ajouter un responsable de partie</message>
+	<message key="director.paper.assignDirector">Ajouter un responsable</message>
+	<message key="director.paper.selectDirector">Sélectionnez {$roleName}</message>
+	<message key="director.paper.selectDecision">Sélectionnez une décision</message>
+	<message key="director.paper.decision.invitePresentation">Inviter présentation</message>
+	<message key="director.paper.decision.accept">Accepter proposition</message>
+	<message key="director.paper.decision.pendingRevisions">Révisions exigées</message>
+	<message key="director.paper.decision.decline">Refuser proposition</message>
+	<message key="director.paper.moveToLayout">Soumettre à l'affichage</message>
+	<message key="director.paper.createGalley">Ce fichier est prêt pour la publication.</message>
+	<message key="director.paper.completeReview">Marquer la révision comme complète</message>
+	<message key="director.paper.scheduleSubmission">Envoyer</message>
+	<message key="director.submissions.showBy">Montrer Par</message>
+	<message key="director.submissions.submitMMDD">Soumettre MM-JJ</message>
+	<message key="director.submissions.activeAssignments">Tâches en cours</message>
+	<message key="director.submissions.invite">Inviter</message>
+	<message key="director.submissions.accept">Accepter</message>
+	<message key="director.submissions.noSubmissions">Aucune Proposition</message>
+	<message key="director.submissions.lastAssigned">Dernier</message>
+	<message key="director.submissions.averageTime">Semaines</message>
+	<message key="director.submissions.lastCompleted">Achevée en Dernier</message>
+</locale>

@@ -485,6 +485,7 @@ class DirectorHandler extends TrackDirectorHandler {
 	 * @param $level int set to 0 if caller is at the same level as this handler in the hierarchy; otherwise the number of levels below this handler
 	 */
 	function setupTemplate($level = DIRECTOR_TRACK_HOME, $paperId = 0, $parentPage = null) {
+		parent::setupTemplate();
 		$templateMgr = &TemplateManager::getManager();
 
 		$conference =& Request::getConference();

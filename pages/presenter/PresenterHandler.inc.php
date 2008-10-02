@@ -95,7 +95,9 @@ class PresenterHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null) {
-		$templateMgr = &TemplateManager::getManager();
+		parent::setupTemplate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_PRESENTER, LOCALE_COMPONENT_PKP_SUBMISSION));
+		$templateMgr =& TemplateManager::getManager();
 
 		$pageHierarchy = $subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'presenter'), 'user.role.presenter'), array(Request::url(null, null, 'presenter'), 'paper.submissions'))
 			: array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, 'presenter'), 'user.role.presenter'));

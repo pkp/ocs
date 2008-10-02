@@ -157,7 +157,9 @@ class TrackDirectorHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate($subclass = false, $paperId = 0, $parentPage = null) {
-		$templateMgr = &TemplateManager::getManager();
+		parent::setupTemplate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_PKP_SUBMISSION));
+		$templateMgr =& TemplateManager::getManager();
 		$isDirector = Validation::isDirector();
 		$pageHierarchy = array();
 
@@ -171,27 +173,26 @@ class TrackDirectorHandler extends Handler {
 		}
 
 		if (Request::getRequestedPage() == 'director') {
-			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $paperId, $parentPage);
 			$templateMgr->assign('helpTopicId', 'editorial.directorsRole');
 
 		} else {
 			$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole');
-			$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
-			if ($subclass) {
-				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
-				$pageHierarchy[] = array(Request::url(null, null, 'trackDirector'), 'paper.submissions');
-			} else {
-				$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
-			}
-
-			import('submission.trackDirector.TrackDirectorAction');
-			$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'trackDirector');
-			if (isset($submissionCrumb)) {
-				$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
-			}
-		
-			$templateMgr->assign('pageHierarchy', $pageHierarchy);
 		}
+		$pageHierarchy[] = array(Request::url(null, null, 'user'), 'navigation.user');
+		if ($subclass) {
+			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
+			$pageHierarchy[] = array(Request::url(null, null, 'trackDirector'), 'paper.submissions');
+		} else {
+			$pageHierarchy[] = array(Request::url(null, null, $isDirector?'director':'trackDirector'), $isDirector?'user.role.director':'user.role.trackDirector');
+		}
+
+		import('submission.trackDirector.TrackDirectorAction');
+		$submissionCrumb = TrackDirectorAction::submissionBreadcrumb($paperId, $parentPage, 'trackDirector');
+		if (isset($submissionCrumb)) {
+			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
+		}
+	
+		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 
 	/**

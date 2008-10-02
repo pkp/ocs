@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/pt_BR/director.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the pt_BR (Português (Brasil)) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="pt_BR" full_name = "Português (Brasil)">
+	<message key="director.home">Página Inicial do Diretor</message>
+	<message key="director.submissionQueue">Fila de Submissão</message>
+	<message key="director.submissionArchive">Arquivo de Submissões</message>
+	<message key="director.allTracks">Todas as Modalidades</message>
+	<message key="director.submissionQueue.noSubmissions">Nenhuma submissão em fila.</message>
+	<message key="director.submissionQueue.saveChanges">Salvar alterações a submissões em fila?</message>
+	<message key="director.submissionArchive.noSubmissions">Nenhuma submissão no arquivo.</message>
+	<message key="director.submissionArchive.saveChanges">Salvar alterações a submissões arquivadas? Submissões marcadas para exclusão serão excluídas permanentemente do sistema.</message>
+	<message key="director.submissionArchive.confirmDelete">Deseja realmente excluir esta submissão?</message>
+	<message key="director.submissionReview.confirmDecision">Deseja realmente registrar a decisão?</message>
+	<message key="director.submissionReview.confirmToLayout">O autor foi notificado da decisão? Em caso negativo, pressione Cancelar e utilize a ferramenta Notificar Autor antes de enviar a submissão para o layout.</message>
+	<message key="director.submissionReview.confirmToArchive">O autor foi notificado da decisão? Em caso negativo, pressione Cancelar e utilize a ferramenta Notificar Autor antes de enviar a submissão para o arquivo.</message>
+	<message key="director.submissionReview.notes">Prazo indica o número de semanas para a data de entrega da avaliação ou (-) semanas o quanto está atrasado. O prazo é controlado a partir da aceitação de avaliação por parte do avaliador.</message>
+	<message key="director.notifyUsers">Notificar Usuários</message>
+	<message key="director.notifyUsers.allUsers">Enviar esta mensagem a todos os usuários associados a esta conferência ({$count} usuários)</message>
+	<message key="director.notifyUsers.interestedUsers">Enviar esta mensagem a todos os usuários associados a esta conferência que indicaram desejar receber notificações ({$count} usuários)</message>
+	<message key="director.notifyUsers.includeToc">Incluir as apresentações da conferência:</message>
+	<message key="director.notifyUsers.allReaders">Todos os leitores ({$count} usuários)</message>
+	<message key="director.notifyUsers.allPresenters">Todos os apresentadores ({$count} usuários)</message>
+	<message key="director.notifyUsers.allPaidRegistrants">Todos os inscritos pagantes ({$count} usuários)</message>
+	<message key="director.notifyUsers.allRegistrants">Todos os inscritos ({$count} usuários)</message>
+	<message key="director.navigation.management">Administração do Diretor</message>
+	<message key="director.paper.sendToArchive">Arquivar esta submissão</message>
+	<message key="director.paper.designateReviewVersion">Designar documento original como Versão para Avaliação.</message>
+	<message key="director.paper.uploadReviewVersion">Enviar Versão atualizada para Avaliação</message>
+	<message key="director.paper.uploadDirectorVersion">Enviar Versão do Diretor</message>
+	<message key="director.paper.stageDisabled">Não é possível realizar a avaliação. A avaliação do resumo não foi concluída, ou o autor não enviou um documento para avaliação.</message>
+	<message key="director.paper.showSuppFile">Habilitar documento aos avaliadores</message>
+	<message key="director.paper.clear">Liberar</message>
+	<message key="director.paper.clearReviewer">Liberar Avaliador</message>
+	<message key="director.paper.changeTrack">Alterar Modalidade</message>
+	<message key="director.paper.setDueDate">Definir Prazo</message>
+	<message key="director.paper.addReviewer">Incluir Avaliador</message>
+	<message key="director.paper.toReviewer">Para Avaliador</message>
+	<message key="director.paper.notifyReviewer">Notificar Avaliador</message>
+	<message key="director.paper.initiateReview">Iniciar Avaliação</message>
+	<message key="director.paper.cancelReview">Cancelar solicitação de avaliação</message>
+	<message key="director.paper.clearReview">Liberar Avaliador</message>
+	<message key="director.paper.enterRecommendation">Informar recomendação</message>
+	<message key="director.paper.enterReviewerRecommendation">Informar recomendação do avaliador</message>
+	<message key="director.paper.recommendation">Recomendação</message>
+	<message key="director.paper.selectReviewer">Escolher Avaliador</message>
+	<message key="director.paper.replaceReviewer">Substituir Avaliador</message>
+	<message key="director.paper.directorToEnter">Diretor deve incluir a recomendação/comentários pelo avaliador</message>
+	<message key="director.paper.uploadReviewForReviewer">Enviar arquivo de Avaliação</message>
+	<message key="director.paper.peerReviewOptions">Opções de Avaliação pelos Pares</message>
+	<message key="director.paper.decision">Decisão</message>
+	<message key="director.paper.recordDecision">Registrar Decisão</message>
+	<message key="director.paper.cannotRecord">Não é possível registrar decisão. Diretor de Modalidade não designado ou nenhum arquivo de avaliação foi enviado.</message>
+	<message key="director.paper.cannotRecordYet">Antes de registrar uma decisão, a submissão deve ser designada a um Diretor de Modalidade. A Versão para Avaliação se torna, por padrão, a Versão do Diretor.</message>
+	<message key="director.paper.cannotRecordTooLate">O processo de avaliação da submissão foi concluído. Não é mais possível alterar a decisão.</message>
+	<message key="director.paper.designateDueDate">Definir Prazo</message>
+	<message key="director.paper.designateDueDateDescription">Informe outra data ou o número de semanas para alterar o prazo para conclusão da avaliação.</message>
+	<message key="director.paper.todaysDate">Data de hoje</message>
+	<message key="director.paper.requestedByDate">Data de Conclusão</message>
+	<message key="director.paper.dueDateFormat">Formato: YYYY-MM-DD</message>
+	<message key="director.paper.numberOfWeeks">Número de semanas</message>
+	<message key="director.paper.showPresenter">Permitir acesso ao autor</message>
+	<message key="director.paper.rateReviewer">Classificar o Avaliador</message>
+	<message key="director.paper.reviewerRating.veryGood">5 ótimo</message>
+	<message key="director.paper.reviewerRating.good">4</message>
+	<message key="director.paper.reviewerRating.average">3 Médio</message>
+	<message key="director.paper.reviewerRating.poor">2</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 Péssimo</message>
+	<message key="director.paper.quality">Classificação</message>
+	<message key="director.paper.comments">Comentários</message>
+	<message key="director.paper.commentsRequired">Comentário obrigatório.</message>
+	<message key="director.paper.archiveSubmission">Arquivar submissão</message>
+	<message key="director.paper.restoreToQueue">Restaurar para fila de submissões ativas</message>
+	<message key="director.paper.assignTrackDirector">Incluir Diretor de Modalidade</message>
+	<message key="director.paper.assignDirector">Incluir Diretor</message>
+	<message key="director.paper.selectDirector">Escolher {$roleName}</message>
+	<message key="director.paper.selectDecision">Escolher Decisão</message>
+	<message key="director.paper.decision.invitePresentation">Convidar Apresentação</message>
+	<message key="director.paper.decision.accept">Aceitar</message>
+	<message key="director.paper.decision.pendingRevisions">Alterações necessárias</message>
+	<message key="director.paper.decision.decline">Rejeitar</message>
+	<message key="director.paper.moveToLayout">Enviar para layout</message>
+	<message key="director.paper.createGalley">Arquivo pronto para publicação</message>
+	<message key="director.paper.completeReview">Definir Avaliação como concluída</message>
+	<message key="director.paper.scheduleSubmission">Enviar</message>
+	<message key="director.submissions.showBy">Exibir em</message>
+	<message key="director.submissions.submitMMDD">Enviar MM-DD</message>
+	<message key="director.submissions.activeAssignments">Tarefas Ativas</message>
+	<message key="director.submissions.invite">Convidar</message>
+	<message key="director.submissions.accept">Aceitar</message>
+	<message key="director.submissions.noSubmissions">Nenhuma submissão</message>
+	<message key="director.submissions.lastAssigned">Última</message>
+	<message key="director.submissions.averageTime">Semanas</message>
+	<message key="director.submissions.lastCompleted">Última concluída</message>
+</locale>

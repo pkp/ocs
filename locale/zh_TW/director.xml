@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/zh_TW/director.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the zh_TW (正體中文) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="zh_TW" full_name = "正體中文">
+	<message key="director.home">主席首頁</message>
+	<message key="director.submissionQueue">投稿排列</message>
+	<message key="director.submissionArchive">投稿檔案</message>
+	<message key="director.allTracks">所有主題</message>
+	<message key="director.submissionQueue.noSubmissions">無投稿排列’</message>
+	<message key="director.submissionQueue.saveChanges">儲存投稿排列的變更？</message>
+	<message key="director.submissionArchive.noSubmissions">無投稿檔案。</message>
+	<message key="director.submissionArchive.saveChanges">儲存投稿檔案的變更嗎?投稿記號將會從系統內被永久刪除。</message>
+	<message key="director.submissionArchive.confirmDelete">您確定您要永久刪除此投稿？</message>
+	<message key="director.submissionReview.confirmDecision">您確定希望記錄這個決定嗎?</message>
+	<message key="director.submissionReview.confirmToLayout">作者有被通報了這個決定?若沒有，在移動這項投稿之前請先按取消和使用通報作者工具。</message>
+	<message key="director.submissionReview.confirmToArchive">作者有被通報了這個決定嗎?若沒有，請在移動這項投稿檔案之前先按取消和使用通報作者工具。</message>
+	<message key="director.submissionReview.notes">截止日標示審稿的剩餘天數，如為負數則表示已經超過審稿期限。此欄將在審查接接受審查此稿件後才會出現數數值。</message>
+	<message key="director.notifyUsers">通知使用者</message>
+	<message key="director.notifyUsers.allUsers">將這則與研討會相關的消息寄發給所有使用者({$count} users)</message>
+	<message key="director.notifyUsers.interestedUsers">將這則與研討會相關的消息寄發給希望接受更新的使用者({$count} users)</message>
+	<message key="director.notifyUsers.includeToc">包括這個研討會的介紹：</message>
+	<message key="director.navigation.management">管理</message>
+	<message key="director.paper.sendToArchive">歸檔到檔案庫</message>
+	<message key="director.paper.designateReviewVersion">楆示原始檔案作為審查用版本</message>
+	<message key="director.paper.uploadReviewVersion">上傳修改後的檔案作為審查用的版本</message>
+	<message key="director.paper.uploadDirectorVersion">上傳主編的版本</message>
+	<message key="director.paper.stageDisabled">目前當無法進行審查工作，可能是因為摘要審查尚未完成或者作者尚未提供論文完稿供審查.</message>
+	<message key="director.paper.showSuppFile">提供檔案給審查者</message>
+	<message key="director.paper.clear">清除</message>
+	<message key="director.paper.clearReviewer">清除審查者</message>
+	<message key="director.paper.changeTrack">變更主題</message>
+	<message key="director.paper.setDueDate">設定截止日</message>
+	<message key="director.paper.addReviewer">新增審查者</message>
+	<message key="director.paper.toReviewer">給審查者</message>
+	<message key="director.paper.notifyReviewer">通知審查者</message>
+	<message key="director.paper.initiateReview">開始審查</message>
+	<message key="director.paper.cancelReview">取消審查要求</message>
+	<message key="director.paper.clearReview">清除審查者</message>
+	<message key="director.paper.enterRecommendation">輸入建議</message>
+	<message key="director.paper.enterReviewerRecommendation">輸入審查者建議</message>
+	<message key="director.paper.recommendation">建議</message>
+	<message key="director.paper.selectReviewer">選擇審查者</message>
+	<message key="director.paper.replaceReviewer">取代審查者</message>
+	<message key="director.paper.directorToEnter">主編輸入建議/意見給審查者</message>
+	<message key="director.paper.uploadReviewForReviewer">上傳審查意見</message>
+	<message key="director.paper.peerReviewOptions">同儕審查選項</message>
+	<message key="director.paper.decision">決策</message>
+	<message key="director.paper.recordDecision">記錄決策</message>
+	<message key="director.paper.cannotRecord">無法記決策；主題主編尚未作決定或者尚未有審查的相關檔案上傳.</message>
+	<message key="director.paper.cannotRecordYet">在做出決策之前，稿件必需分配給主題主編，審查用的版本將預設成為主編的版本。</message>
+	<message key="director.paper.cannotRecordTooLate">稿件已經完成查程序，您無法再變更決策的結果。</message>
+	<message key="director.paper.designateDueDate">設定截止日期</message>
+	<message key="director.paper.designateDueDateDescription">請輪入另一個日期或設定審查的周數以變更截止日期。</message>
+	<message key="director.paper.todaysDate">今天日期</message>
+	<message key="director.paper.requestedByDate">依日期進行要求</message>
+	<message key="director.paper.dueDateFormat">格式：YYYY-MM-DD</message>
+	<message key="director.paper.numberOfWeeks">周數</message>
+	<message key="director.paper.showPresenter">作者觀看檔案</message>
+	<message key="director.paper.rateReviewer">審查者得分</message>
+	<message key="director.paper.reviewerRating.veryGood">5 高</message>
+	<message key="director.paper.reviewerRating.good">4</message>
+	<message key="director.paper.reviewerRating.average">3 一般</message>
+	<message key="director.paper.reviewerRating.poor">2</message>
+	<message key="director.paper.reviewerRating.veryPoor">1 低</message>
+	<message key="director.paper.quality">評分</message>
+	<message key="director.paper.comments">意見</message>
+	<message key="director.paper.commentsRequired">意見欄不可以空白。</message>
+	<message key="director.paper.archiveSubmission">稿件歸檔</message>
+	<message key="director.paper.restoreToQueue">移至啟動清單中</message>
+	<message key="director.paper.assignTrackDirector">增加主題主編</message>
+	<message key="director.paper.assignDirector">增加主編</message>
+	<message key="director.paper.selectDirector">選擇 {$roleName}</message>
+	<message key="director.paper.selectDecision">選擇決策</message>
+	<message key="director.paper.decision.invitePresentation">邀請稿件</message>
+	<message key="director.paper.decision.accept">接受</message>
+	<message key="director.paper.decision.pendingRevisions">需要修改</message>
+	<message key="director.paper.decision.decline">拒絕</message>
+	<message key="director.paper.moveToLayout">移到版面編輯</message>
+	<message key="director.paper.createGalley">本檔案已經完成編輯可出版。</message>
+	<message key="director.paper.completeReview">標記已完成審查</message>
+	<message key="director.paper.scheduleSubmission">寄出</message>
+	<message key="director.submissions.showBy">展示依</message>
+	<message key="director.submissions.submitMMDD">投稿 MM-DD</message>
+	<message key="director.submissions.activeAssignments">啟動分配</message>
+	<message key="director.submissions.invite">邀請</message>
+	<message key="director.submissions.accept">接受</message>
+	<message key="director.submissions.noSubmissions">未投稿</message>
+	<message key="director.submissions.lastAssigned">最新</message>
+	<message key="director.submissions.averageTime">周</message>
+	<message key="director.submissions.lastCompleted">最近完成</message>
+</locale>

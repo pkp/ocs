@@ -25,6 +25,7 @@ class LoginHandler extends Handler {
 	 */
 	function index() {
 		parent::validate();
+		LoginHandler::setupTemplate();
 		if (Validation::isLoggedIn()) {
 			Request::redirect(null, null, 'user');
 		}
@@ -59,6 +60,7 @@ class LoginHandler extends Handler {
 	 */
 	function signIn() {
 		parent::validate();
+		LoginHandler::setupTemplate();
 		if (Validation::isLoggedIn()) {
 			Request::redirect(null, null, 'user');
 		}
@@ -108,6 +110,7 @@ class LoginHandler extends Handler {
 	 */
 	function signOut() {
 		parent::validate();
+		LoginHandler::setupTemplate();
 		if (Validation::isLoggedIn()) {
 			Validation::logout();
 		}
@@ -125,7 +128,8 @@ class LoginHandler extends Handler {
 	 */
 	function lostPassword() {
 		parent::validate();
-		$templateMgr = &TemplateManager::getManager();
+		LoginHandler::setupTemplate();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->display('user/lostPassword.tpl');
 	}
 
@@ -134,22 +138,23 @@ class LoginHandler extends Handler {
 	 */
 	function requestResetPassword() {
 		parent::validate();
-		$templateMgr = &TemplateManager::getManager();
+		LoginHandler::setupTemplate();
+		$templateMgr =& TemplateManager::getManager();
 
 		$email = Request::getUserVar('email');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &$userDao->getUserByEmail($email);
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& $userDao->getUserByEmail($email);
 
 		if ($user == null || ($hash = Validation::generatePasswordResetHash($user->getUserId())) == false) {
 			$templateMgr->assign('error', 'user.login.lostPassword.invalidUser');
 			$templateMgr->display('user/lostPassword.tpl');
 
 		} else {
-			$site = &Request::getSite();
+			$site =& Request::getSite();
 
 			// Send email confirming password reset
 			import('mail.MailTemplate');
-			$mail = &new MailTemplate('PASSWORD_RESET_CONFIRM');
+			$mail =& new MailTemplate('PASSWORD_RESET_CONFIRM');
 			$mail->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
 			$mail->assignParams(array(
 				'url' => Request::url(null, null, 'login', 'resetPassword', $user->getUsername(), array('confirm' => $hash)),
@@ -171,9 +176,10 @@ class LoginHandler extends Handler {
 	 */
 	function resetPassword($args) {
 		parent::validate();
+		LoginHandler::setupTemplate();
 
 		$username = isset($args[0]) ? $args[0] : null;
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		$confirmHash = Request::getUserVar('confirm');
 
 		if ($username == null || ($user = &$userDao->getUserByUsername($username)) == null) {
@@ -235,10 +241,11 @@ class LoginHandler extends Handler {
 	 */
 	function changePassword($args = array()) {
 		parent::validate();
+		LoginHandler::setupTemplate();
 
 		import('user.form.LoginChangePasswordForm');
 
-		$passwordForm = &new LoginChangePasswordForm();
+		$passwordForm =& new LoginChangePasswordForm();
 		$passwordForm->initData();
 		if (isset($args[0])) {
 			$passwordForm->setData('username', $args[0]);
@@ -251,10 +258,11 @@ class LoginHandler extends Handler {
 	 */
 	function savePassword() {
 		parent::validate();
+		LoginHandler::setupTemplate();
 
 		import('user.form.LoginChangePasswordForm');
 
-		$passwordForm = &new LoginChangePasswordForm();
+		$passwordForm =& new LoginChangePasswordForm();
 		$passwordForm->readInputData();
 
 		if ($passwordForm->validate()) {
@@ -267,7 +275,6 @@ class LoginHandler extends Handler {
 			$passwordForm->display();
 		}
 	}
-
 }
 
 ?>
