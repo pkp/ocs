@@ -13,6 +13,7 @@
  * @brief Form for conference managers to modify Payment Plugin content
  * 
  * $Id$
+ */
 
 import('form.Form');
 
