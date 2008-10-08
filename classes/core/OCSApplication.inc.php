@@ -43,6 +43,14 @@ class OCSApplication extends PKPApplication {
 	}
 
 	/**
+	 * Get the symbolic name of this application
+	 * @return string
+	 */
+	function getName() {
+		return 'ocs2';
+	}
+
+	/**
 	 * Get the locale key for the name of this application.
 	 * @return string
 	 */

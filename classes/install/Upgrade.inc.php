@@ -20,11 +20,12 @@ class Upgrade extends Installer {
 
 	/**
 	 * Constructor.
-	 * @param $params array upgrade parameters
-	 */
-	function Upgrade($params) {
-		parent::Installer('upgrade.xml', $params);
-	}
+	 * @param $params array installer parameters
+	 * @param $installFile string descriptor path
+	 * @param $isPlugin boolean true iff a plugin is being installed		 */
+	function Upgrade($params, $installFile = 'upgrade.xml', $isPlugin = false) {
+		parent::Installer($installFile, $params, $isPlugin);
+ 	}
 
 
 	/**
