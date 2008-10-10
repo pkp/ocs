@@ -23,6 +23,7 @@
 	{if $announcementsEnabled}
 		<li>&#187; <a href="{url op="announcements" clearPageContext=1}">{translate key="manager.announcements"}</a></li>
 	{/if}
+	<li>&#187; <a href="{url op="reviewForms"}">{translate key="manager.reviewForms"}</a></li>
 	<li>&#187; <a href="{url op="emails" clearPageContext=1}">{translate key="manager.emails"}</a></li>
 	<li>&#187; <a href="{url page="rtadmin"}">{translate key="manager.readingTools"}</a></li>
 	<li>&#187; <a href="{url op="files"}">{translate key="manager.filesBrowser"}</a></li>

@@ -101,6 +101,9 @@ class TrackForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
+		$conference = &Request::getJournal();
+		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDao');
+		
 		if (isset($this->trackId)) {
 			$trackDao = &DAORegistry::getDAO('TrackDAO');
 			$track = &$trackDao->getTrack($this->trackId);
@@ -119,6 +122,11 @@ class TrackForm extends Form {
 					'disableComments' => $track->getDisableComments(),
 				);
 			}
+		} else {
+			$this->_data = array(
+				'unassignedDirectors' => $trackDirectorsDao->getDirectorsNotInTrack($conference->getConferenceId(), null)
+			);
+
 		}
 	}
 
@@ -149,6 +157,9 @@ class TrackForm extends Form {
 
 		$track->setTitle($this->getData('title'), null); // Localized
 		$track->setAbbrev($this->getData('abbrev'), null); // Localized
+		$reviewFormId = $this->getData('reviewFormId');
+		if ($reviewFormId === '') $reviewFormId = null;
+		$track->setReviewFormId($reviewFormId);
 		$track->setMetaReviewed($this->getData('metaNotReviewed') ? 0 : 1);
 		$track->setIdentifyType($this->getData('identifyType'), null); // Localized
 		$track->setDirectorRestricted($this->getData('directorRestriction') ? 1 : 0);

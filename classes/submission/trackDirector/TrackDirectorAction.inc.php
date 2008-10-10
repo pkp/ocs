@@ -714,6 +714,77 @@ class TrackDirectorAction extends Action {
 	}	 
 
 	/**
+	 * Clear a review form
+	 * @param $trackDirectorSubmission object
+	 * @param $reviewId int
+	 */
+	function clearReviewForm($trackDirectorSubmission, $reviewId) {
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+
+		if (HookRegistry::call('TrackDirectorAction::clearReviewForm', array(&$trackDirectorSubmission, &$reviewAssignment, &$reviewId))) return $reviewId;
+
+		if (isset($reviewAssignment) && $reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
+			$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+			$responses = $reviewFormResponseDao->getReviewReviewFormResponseValues($reviewId);
+			if (!empty($responses)) {
+				$reviewFormResponseDao->deleteReviewFormResponseByReviewId($reviewId);
+			}
+			$reviewAssignment->setReviewFormId(null);
+			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+		}
+	}
+
+	/**
+	 * Assigns a review form to a review.
+	 * @param $trackDirectorSubmission object
+	 * @param $reviewId int
+	 * @param $reviewFormId int
+	 */
+	function addReviewForm($trackDirectorSubmission, $reviewId, $reviewFormId) {
+		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
+
+		if (HookRegistry::call('TrackDirectorAction::addReviewForm', array(&$trackDirectorSubmission, &$reviewAssignment, &$reviewId, &$reviewFormId))) return $reviewFormId;
+
+		if (isset($reviewAssignment) && $reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
+			// Only add the review form if it has not already
+			// been assigned to the review.
+			if ($reviewAssignment->getReviewFormId() != $reviewFormId) {
+				$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+				$responses = $reviewFormResponseDao->getReviewReviewFormResponseValues($reviewId);
+				if (!empty($responses)) {
+					$reviewFormResponseDao->deleteReviewFormResponseByReviewId($reviewId);
+				}
+				$reviewAssignment->setReviewFormId($reviewFormId);
+				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			}
+		}
+	}
+
+	/**
+	 * View review form response.
+	 * @param $trackDirectorSubmission object
+	 * @param $reviewId int
+	 */
+	function viewReviewFormResponse($trackDirectorSubmission, $reviewId) {
+		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
+
+		if (HookRegistry::call('TrackDirectorAction::viewReviewFormResponse', array(&$trackDirectorSubmission, &$reviewAssignment, &$reviewId))) return $reviewId;
+
+		if (isset($reviewAssignment) && $reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
+			$reviewFormId = $reviewAssignment->getReviewFormId();
+			if ($reviewFormId != null) {
+				import('submission.form.ReviewFormResponseForm');
+				$reviewForm =& new ReviewFormResponseForm($reviewId, $reviewFormId);
+				$reviewForm->initData();
+				$reviewForm->display();
+			}
+		}
+	}
+
+	/**
 	 * Set the file to use as the default editing file.
 	 * @param $trackDirectorSubmission object
 	 * @param $fileId int

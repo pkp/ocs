@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/es_ES/admin.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the es_ES (España Castellano) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="es_ES" full_name = "España Castellano">
+	<message key="admin.languages.primaryLocaleInstructions">Este será el idioma por defecto para todo el sitio y las Conferencias que aloje.</message>
+	<message key="admin.languages.supportedLocalesInstructions">Seleccione las interfaces de idiomas que podrán usarse en este sitio. Los idiomas seleccionados estarán disponibles para su uso por todas las Conferencias/Congresos, y también aparecen en el menú "Idioma" en cada página del sitio (se puede cambiar en las páginas de cada Conferencia/Congreso). Si no selecciona múltiples interfaces, no aparecerá el menú para cambiar de idioma y la configuración de idioma no estará disponible en la Conferencia/Congreso.</message>
+	<message key="admin.languages.confirmUninstall">¿Está seguro de desinstalar este idioma? Esto puede afectar a cualquier Conferencia/Congreso asociada a ese lugar.</message>
+	<message key="admin.languages.installNewLocalesInstructions">Seleccione cualquier idioma adicional para instalar en este sistema. Las interfaces de idiomas deben instalarse antes de usarse en las conferecias alojadas. Vea la documentation de OCS para saber cómo instalar nuevas interfaces de idiomas.</message>
+	<message key="admin.auth.enableSyncProfiles">Activar sincronización de perfil de usuario (si puede hacerse con este plug-in de identificación). La información del perfil de usuario se actualiza automáticamente desde el origen remoto cuando un usuario se conecta, y los cambios de perfil (incluidos los cambios de contraseña) dentro de OCS se actualizan automáticamente en el origen remoto. Si esta opción no está habilitada el perfil de la información OCS se separará de la información del perfil en el origen remoto.</message>
+	<message key="admin.auth.enableSyncPasswords">Habilitar modificación de la contraseña de usuario (si puede hacerse con este plug-in de identificación). Habilitar esta opción permite a los usuarios modificar su contraseñaa desde dentro de OCS y de utilizar la opción "pérdida de contraseña" para restablecer una contraseña olvidada. Esta función no estará disponible para los usuarios con esta fuente de autenticación, si la opción está deshabilitada.</message>
+	<message key="admin.auth.enableCreateUsers">Habilitar la creación de usuarios (si puede hacerse con este plug-in de identificación). Los usuarios creados, dentro de OCS con esta fuente de autentificación se añadirán automáticamente a la fuente de autenticación remota, si no existen. Además, si esa fuente es la fuente de autenticación por defecto, las uentas de usuario creadas en OCS a través de registro de usuarios también se añadirán a la fuente de autenticación remota.</message>
+	<message key="admin.systemVersion">Versión del OCS</message>
+	<message key="admin.systemConfiguration">Configuración del OCS</message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[Configuración OCS de <tt>config.inc.php</tt>.]]></message>
+	<message key="admin.hostedConferences">Conferencias/Congresos Alojados</message>
+	<message key="admin.settings.conferenceRedirect">Conferencias/Congreso redireccionado</message>
+	<message key="admin.settings.conferenceRedirectInstructions">Hacer que la página principal de inicio se redirecione a esta Conferencia/Congreso. Esto puede ser útil por ejemplo, si esta web es la sede de una única Conferencia/Congreso</message>
+	<message key="admin.settings.noConferenceRedirect">No redirigir</message>
+	<message key="admin.auth.ocs">Base de datos de los usuarios del OCS</message>
+	<message key="admin.conferences.conferenceSettings">Configuración de Conferencia/Congreso</message>
+	<message key="admin.conferences.noneCreated">No se han creado Conferencias/Congresos.</message>
+	<message key="admin.conferences.confirmDelete">¿Está seguro de que quiere suprimir definitivamente esta Conferencia/Congreso y todo su contenido?</message>
+	<message key="admin.conferences.create">Crear Conferencia/Congreso</message>
+	<message key="admin.conferences.createInstructions">Usted será inscrito automáticamente como el gestor de esta Conferencia/Congreso. Después de la creación de una nueva Conferencia/Congreso, entre en calidad de gestor para continuar con su configuración y su inscripción de usuario.</message>
+	<message key="admin.conferences.urlWillBe">La URL de la Conferencia/Congreso será {$sampleUrl}</message>
+	<message key="admin.conferences.form.titleRequired">El título es obligatorio.</message>
+	<message key="admin.conferences.form.pathRequired">La ruta es obligatoria.</message>
+	<message key="admin.conferences.form.pathAlphaNumeric">La ruta sólo puede contener caracteres alfanuméricos, guiones bajos y guiones, y debe comenzar y terminar con caracteres alfanuméricos.</message>
+	<message key="admin.conferences.form.pathExists">La ruta seleccionada ya está en uso por otra Conferencia/Congreso.</message>
+	<message key="admin.conferences.enableConferenceInstructions">Active la Conferencia/Congreso para que se publique en la web</message>
+	<message key="admin.conferences.conferenceDescription">Descripción de la Conferencia/Congreso</message>
+	<message key="admin.conferences.conferenceDescriptionInstructions">La descripción de la Conferencia/Congreso identifica la Conferencia/Congreso. Aparece en la pagina principal de la Conferencia/Congreso, así como en todas sus páginas.</message>
+	<message key="admin.conferences.importOCS1">Importar desde OCS 1</message>
+	<message key="admin.conferences.importOCS1.editMigratedConference">Editar la Conferencia/Congreso migrada</message>
+	<message key="admin.conferences.importOCS1.conflict.desc">Algunas cuentas de los usuarios contenían información. OCS 1.x permite múltiples cuentas de usuario que compartan la misma dirección de correo electrónico, mientras que OCS 2.x no. En la siguiente lista, a la segunda de las cuentas mostrada se le ha asignado una cuenta de correo electrónico de carácter temporal. Estas deben corregirse a mano, ya sea mediante la asignación de otra cuenta de correo electrónico, o mediante la fusión de las cuentas.</message>
+	<message key="admin.conferences.importOCS1.errors.desc">Se han encontrado los siguientes errores al migrar de OCS 1.x a OCS 2.x.</message>
+	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) y {$secondUsername} ({$secondName})</message>
+	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consulte el documento de ACTUALIZACION distribuido con  el OCS con información detallada sobre la migración de datos de OCS 1 al OCS 2. Tenga en cuenta que este proceso NO crea una Conferencia/Congreso completamente configurada en OCS 2 ; sólo se importarán determinados elementos (por ejemplo documentos). <strong>Todos los usuarios importados  tendrán que restablecer sus contraseñas. Es importante que el Director de la Conferencia/Congreso revise toda la información antes de activar la importación del sitio web.</strong>]]></message>
+	<message key="admin.conference.pathImportInstructions">Ruta existente para la Conferencia/Congreso o ruta a crear (p.e., "ocs").</message>
+	<message key="admin.conference.importPath">Ruta a OCS 1</message>
+	<message key="admin.conference.importPathInstructions">Ruta completa al sistema de ficheros donde se instaló OCS  1 (p.e., "/var/www/ocs").</message>
+	<message key="admin.conferences.emailUsers">Email creado con la información de acceso de los usuarios, incluyendo una contraseña al azar</message>
+	<message key="admin.conferences.transcode">Codificación de documentos de metadatos de ISO8859-1</message>
+	<message key="admin.conferences.form.importPathRequired"> La ruta de importación es obligatoria.</message>
+	<message key="admin.conferences.importErrors">La importación no se ha completado con éxito</message>
+</locale>

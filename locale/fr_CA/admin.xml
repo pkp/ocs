@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/fr_CA/admin.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the fr_CA (Français (Canada)) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="fr_CA" full_name = "Français (Canada)">
+	<message key="admin.languages.primaryLocaleInstructions">Ceci sera la langue par défaut pour le site et pour toute les conférences hébergées.</message>
+	<message key="admin.languages.supportedLocalesInstructions">Sélectionner toutes les langues supportées dans le site. Les langues sélectionnées vont être disponibles pour toutes les conférences hébergées sur le site, et vont également apparaître dans un menu de sélection de langue présent sur chaque page (qui peut être désactivé pour les pages spécifiques à une conférence). S'il n'y a pas plusieurs langues sélectionnées, le menu de sélection de langue n'apparaîtra pas et les paramètres d'extension de langues ne seront pas disponibles pour les conférences.</message>
+	<message key="admin.languages.confirmUninstall">Êtes-vous sûr de vouloir désinstaller cette langue? Ceci affectera toute conférence actuellement hébergée utilisant cette langue.</message>
+	<message key="admin.languages.installNewLocalesInstructions">Sélectionner toute autre langue pour en installer le support sur ce système. Les langues doivent être installées avant qu'elles ne puissent être utilisées pas les conférences hébergées. Lire la documentation OCS pour plus d'information sur le support de nouvelles langues.</message>
+	<message key="admin.auth.enableSyncProfiles">Activer la synchronisation du profil de l'utilisateur (si supporté par ce plugiciel d'authentification). Les informations du profil de l'utilisateur seront automatiquement mises à jour depuis la source distante quand un utilisateur se connecte, et les modifications du profil (y compris le mot de passe) effectuées avec OCS vont automatiquement être mises à jour sur la source distante. Si cette option n'est pas activée, les informations du profil OCS vont rester séparées de celles du profil sur la source distante.</message>
+	<message key="admin.auth.enableSyncPasswords">Permettre la modification du mot de passe de l'utilisateur (si supporté par ce plugiciel d'authentification). Activer cette option permettra aux utilisateurs de modifier leurs mot de passe OCS et d'utiliser la fonction "mot de passe oublié" pour réinitialiser un mot de passe perdu. Ces fonctions seront indisponibles pour les utilisateurs utilisant une source d'authentification où cette option n'est pas activée.</message>
+	<message key="admin.auth.enableCreateUsers">Permettre la création d'utilisateurs (si supporté par ce plugiciel d'authentification).Les utilisateurs créés avec OCS à l'aide de cette source d'authentification vont automatiquement être ajoutés à la source d'authentification distante s'ils n'existent pas déjà. De plus, si cette source est la source d'authentification par défaut, les comptes OCS créés par une inscription d'un utilisateur vont aussi être ajoutés à la source distante d'authentification.</message>
+	<message key="admin.systemVersion">Version d'OCS</message>
+	<message key="admin.systemConfiguration">Configuration OCS</message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[Les paramètres de configuration OCS de <tt>config.inc.php</tt>.]]></message>
+	<message key="admin.hostedConferences">Conférences hébergées</message>
+	<message key="admin.settings.conferenceRedirect">Redirection de la conférence</message>
+	<message key="admin.settings.conferenceRedirectInstructions">Les requêtes au site principal vont être redirigées à cette conférence. Ceci pourrait être pratique si le site n'héberge qu'une seule conférence, par exemple.</message>
+	<message key="admin.settings.noConferenceRedirect">Ne pas rediriger</message>
+	<message key="admin.auth.ocs">Base de données OCS de l'utilisateur</message>
+	<message key="admin.conferences.conferenceSettings">Paramètres de la conférence</message>
+	<message key="admin.conferences.noneCreated">Aucune conférence n'a été créée.</message>
+	<message key="admin.conferences.confirmDelete">Êtes-vous sûr de vouloir supprimer définitivement cette conférence et tout son contenu?</message>
+	<message key="admin.conferences.create">Créer une conférence</message>
+	<message key="admin.conferences.createInstructions">Vous serez automatiquement gestionnaire de cette conférence. Après la création d'une nouvelle conférence, entrez-y en tant que gestionnaire pour poursuivre sa configuration et pour l'inscription des utilisateurs.</message>
+	<message key="admin.conferences.urlWillBe">L'URL de la conférence sera {$sampleUrl}</message>
+	<message key="admin.conferences.form.titleRequired">Le titre est obligatoire.</message>
+	<message key="admin.conferences.form.pathRequired">Le chemin est obligatoire.</message>
+	<message key="admin.conferences.form.pathAlphaNumeric">Le chemin ne peut contenir que des caractères alphanumériques, des caractères de soulignement, et des tirets, et doit commencer et finir par un caractère alphanumérique.</message>
+	<message key="admin.conferences.form.pathExists">Le chemin sélectionné est déjà utilisé par une autre conférence.</message>
+	<message key="admin.conferences.enableConferenceInstructions">Permettre à cette conférence d'apparaître publiquement sur le site</message>
+	<message key="admin.conferences.conferenceDescription">Description de la conférence</message>
+	<message key="admin.conferences.conferenceDescriptionInstructions">La description de la conférence identifie les tâches en cours pour cette conférence. Elle apparaît dans la page d'accueil de la conférence, ainsi que dans toutes les pages qui lui sont associées.</message>
+	<message key="admin.conferences.importOCS1">Importer d'OCS 1</message>
+	<message key="admin.conferences.importOCS1.editMigratedConference">Modifier la conférence importée</message>
+	<message key="admin.conferences.importOCS1.conflict.desc">Certains comptes utilisateurs ont des informations contradictoires. OCS 1.x permet en effet le partage d'une adresse courriel par plusieurs utilisateurs, ce qui n'est pas le cas d'OCS 2.x. Dans la liste ci-dessous, le second compte s'est vu affecter une adresse de courriel temporaire. Ceci doit être corrigé manuellement, soit en changeant l'adresse de courriel, soit en fusionnant les comptes.</message>
+	<message key="admin.conferences.importOCS1.errors.desc">Les erreurs suivantes ont été rencontrées lors de la migration de la conférence d'OCS 1.x à OCS 2.x.</message>
+	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) et {$secondUsername} ({$secondName})</message>
+	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consulter le document UPGRADE distribué avec OCS pour plus d'information sur la migration des données d'OCS 1 à OCS 2. À noter que ce processus ne créera pas une conférence OCS 2 parfaitement configurée; seulement certains éléments (par ex. les communications) vont être importés. <strong>Tous les utilisateurs importés vont devoir réinitialiser leur mot de passe. Il est fortement recommandé que le gestionnaire vérifie toutes les informations importées avant de lancer le site web de la conférence.</strong>]]></message>
+	<message key="admin.conference.pathImportInstructions">Chemin d'accès à la conférence existant ou chemin à créer (par ex., "ocs").</message>
+	<message key="admin.conference.importPath">Chemin OCS 1</message>
+	<message key="admin.conference.importPathInstructions">Compléter le chemin d'accès local vers le dossier d'installation d'OCS 1 (par ex., "/var/www/ocs").</message>
+	<message key="admin.conferences.importRegistrations">Importer les inscriptions</message>
+	<message key="admin.conferences.emailUsers">Courriel créé avec les informations de l'utilisateur, y compris un mot de passe aléatoire</message>
+	<message key="admin.conferences.transcode">Conversion des métadonnées de la communication à partir de la norme ISO 8859-1</message>
+	<message key="admin.conferences.form.importPathRequired">Le chemin d'importation est obligatoire.</message>
+	<message key="admin.conferences.importErrors">L'importation a échoué</message>
+</locale>

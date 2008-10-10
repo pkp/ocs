@@ -47,6 +47,56 @@
 		<br/>
 		Este <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">trabajo</span> se distribuye con la licencia <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0  License</a>.
 	]]></message>
+	
+	<!-- Review Forms -->
+	<message key="manager.reviewForms">Formularios Revisión</message>
+	<message key="manager.reviewForms.noneChosen">Ninguno / Revisión libre</message>
+	<message key="manager.reviewForms.noneCreated">No se han creado formularios de revisión.</message>
+	<message key="manager.reviewForms.noneUsed">No se han usado formularios de revisión.</message>
+	<message key="manager.reviewForms.create">Crear Formulario Revisión</message>
+	<message key="manager.reviewForms.edit">Formulario Revisión</message>
+	<message key="manager.reviewForms.reviewFormData">Datos Formulario Revisión</message>
+	<message key="manager.reviewForms.title">Título</message>
+	<message key="manager.reviewForms.description">Descripción e Instrucciones</message>
+	<message key="manager.reviewForms.preview">Previsualizar Formulario</message>
+	<message key="manager.reviewForms.completed">Completado</message>
+	<message key="manager.reviewForms.inReview">En Revisión</message>
+	<message key="manager.reviewForms.confirmDeletePublished">Confirmar borrado del formulario de revisión publicado...</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Confirmar borrado del formulario de revisión no publicado...</message>
+	<message key="manager.reviewForms.form.titleRequired">Un título es necesario para el formulario de revisión.</message>
+	<message key="manager.reviewFormElements">Elementos del Formulario</message>
+	<message key="manager.reviewFormElements.create">Crear Nuevo Elemento</message>
+	<message key="manager.reviewFormElements.edit">Editar Elementos Formulario</message>
+	<message key="manager.reviewFormElements.noneCreated">No se han creado elementos de formulario.</message>
+	<message key="manager.reviewFormElements.confirmDelete">Confirma borrado de un elemento de formulario publicado...</message>
+	<message key="manager.reviewFormElements.copyTo">Copia a:</message>
+	<message key="manager.reviewFormElements.question">Elemento</message>
+	<message key="manager.reviewFormElements.required">Se requieren Revisiores para completar el elemento</message>
+	<message key="manager.reviewFormElements.viewable">Visible (por autores)</message>
+	<message key="manager.reviewFormElements.elementType">Tipo de elemento</message>
+	<message key="manager.reviewFormElements.possibleResponse">Selección</message>
+	<message key="manager.reviewFormElements.addResponseItem">Añadir selección</message>
+	<message key="manager.reviewFormElements.chooseType">Escojer tipo de elemento</message>
+	<message key="manager.reviewFormElement.changeType">Cambiando el tipo de elemento del formulario...</message>
+	<message key="manager.reviewFormElements.form.questionRequired">Se requiere una pregunta para el elemento de formulario.</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">Se requiere un tipo de elemento para el elemento de formulario.</message>
+	<message key="manager.reviewFormElements.smalltextfield">Caja de texto de una palabra</message>
+	<message key="manager.reviewFormElements.textfield">Caja de texto de una línea</message>
+	<message key="manager.reviewFormElements.textarea">Caja de texto extendida.</message>
+	<message key="manager.reviewFormElements.checkboxes">Casillas de selección (checkboxes: selección múltiple)</message>
+	<message key="manager.reviewFormElements.radiobuttons">Botones radio (radiobuttons: selección única)</message>
+	<message key="manager.reviewFormElements.dropdownbox">Caja desplegable</message>
+	<message key="submission.reviewForm">Formulario de revisión</message>
+	<message key="submission.reviewFormResponse">Respuesta al Formulario de Revisión</message>
+	<message key="editor.paper.reviewForms">Formularios de Revisión</message>
+	<message key="editor.paper.selectReviewForm">Escoger Formulario de Revisión</message>
+	<message key="editor.paper.clearReviewForm">Limpiar Formulario de Revisión</message>
+	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Por favor llene los campos requeridos</message>
+	<message key="reviewer.paper.enterReviewForm">Haga "click" en el ícono para llenar el formulario de revisión</message>
+	<message key="editor.paper.confirmChangeReviewForm">Cambiar el formulario de revisión removerá las respuestas...</message>
+	<message key="manager.reviewForms.list.description">Los formularios de revisión creados aquí serán presentados a los revisores para ser completados, en vez del formulario por defecto el cual consiste en dos cajas de texto, la primera "para autor y editor", y la segunda "para editor". Formularios de revisión pueden ser designados para una sección específica de una revista, y los editores tendrán la opción de seleccionar cuál formulario usar al asignar la revisión. En todos los casos, los editores tendrán la opción de incluir las revisiones en correspondencia con el autor.</message>
+	<message key="manager.sections.form.reviewFormId">Por favor asegúrese de que usted ha escogido un formulario de revisión válido</message>
+
 
 	<!-- Common Form Messages -->
 
@@ -314,11 +364,7 @@
 	<message key="comments.commentsClosed">Cierre de comentarios el día {$closeCommentsDate}.</message>
 
 	<!-- Site Administration -->
-	<message key="admin.hostedConferences">Conferencias/Congresos Alojados</message>
 
-	<message key="admin.settings.conferenceRedirect">Conferencias/Congreso redireccionado</message>
-	<message key="admin.settings.conferenceRedirectInstructions">Hacer que la página principal de inicio se redirecione a esta Conferencia/Congreso. Esto puede ser útil por ejemplo, si esta web es la sede de una única Conferencia/Congreso</message>
-	<message key="admin.settings.noConferenceRedirect">No redirigir</message>
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Para que el contenido de todas las Conferencias/Congresos estén indizados dentro de un sistema distribuido de bases de datos de investigación, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registre</a> su URL en el <a href="http://pkp.sfu.ca/harvester/" target="_blank">recolector de metadatos del Public Knowledge Project</a>. Esta herramienta captura los metadatos  indizados en esta Conferencia/Congreso, lo que permite relizar una búsqueda precisa y colectiva entre los proveedores de datos que cumplen con <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">el protocolo de recolección de metadatos de la Open Archives Initiative</a>.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Haga clic aquí</a> e introduzca <span class="highlight">{$siteUrl}</span> bajo <strong>la URL</strong>, y <span class="highlight">{$oaiUrl}</span> bajo <strong>Base URL para Archivos OAI</strong>.
@@ -328,58 +374,21 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 
 
 	<!-- Languages -->
-	<message key="admin.languages.primaryLocaleInstructions">Este será el idioma por defecto para todo el sitio y las Conferencias que aloje.</message>
-	<message key="admin.languages.supportedLocalesInstructions">Seleccione las interfaces de idiomas que podrán usarse en este sitio. Los idiomas seleccionados estarán disponibles para su uso por todas las Conferencias/Congresos, y también aparecen en el menú "Idioma" en cada página del sitio (se puede cambiar en las páginas de cada Conferencia/Congreso). Si no selecciona múltiples interfaces, no aparecerá el menú para cambiar de idioma y la configuración de idioma no estará disponible en la Conferencia/Congreso.</message>
 	<message key="admin.languages.languageOptions">Opciones de idiomas</message>
 	<message key="admin.languages.profileLocales">Cuando se asignen los roles (gestores, directores, recensores, etc.), deben indicarse los idiomas de trabajo de cada persona en sus perfiles para facilitar el trabajo de los directores de las Conferencia.</message>
-	<message key="admin.languages.confirmUninstall">¿Está seguro de desinstalar este idioma? Esto puede afectar a cualquier Conferencia/Congreso asociada a ese lugar.</message>
-	<message key="admin.languages.installNewLocalesInstructions">Seleccione cualquier idioma adicional para instalar en este sistema. Las interfaces de idiomas deben instalarse antes de usarse en las conferecias alojadas. Vea la documentation de OCS para saber cómo instalar nuevas interfaces de idiomas.</message>
 
-	<message key="admin.auth.ocs">Base de datos de los usuarios del OCS</message>
-	<message key="admin.auth.enableSyncProfiles">Activar sincronización de perfil de usuario (si puede hacerse con este plug-in de identificación). La información del perfil de usuario se actualiza automáticamente desde el origen remoto cuando un usuario se conecta, y los cambios de perfil (incluidos los cambios de contraseña) dentro de OCS se actualizan automáticamente en el origen remoto. Si esta opción no está habilitada el perfil de la información OCS se separará de la información del perfil en el origen remoto.</message>
-	<message key="admin.auth.enableSyncPasswords">Habilitar modificación de la contraseña de usuario (si puede hacerse con este plug-in de identificación). Habilitar esta opción permite a los usuarios modificar su contraseñaa desde dentro de OCS y de utilizar la opción "pérdida de contraseña" para restablecer una contraseña olvidada. Esta función no estará disponible para los usuarios con esta fuente de autenticación, si la opción está deshabilitada.</message>
-	<message key="admin.auth.enableCreateUsers">Habilitar la creación de usuarios (si puede hacerse con este plug-in de identificación). Los usuarios creados, dentro de OCS con esta fuente de autentificación se añadirán automáticamente a la fuente de autenticación remota, si no existen. Además, si esa fuente es la fuente de autenticación por defecto, las uentas de usuario creadas en OCS a través de registro de usuarios también se añadirán a la fuente de autenticación remota.</message>
 	<message key="admin.auth.defaultSourceDescription"><![CDATA[Especificar por defecto una  fuente de autenticación que no sea válida para OCS tiene los siguientes efectos:
 <ul>
 	<li>Si un usuario intenta crear una nueva cuenta con este sitio con un nombre de usuario que existe en la fuente de autenticación (pero no en la base de datos OCS), el intento de registro sólo estará permitido si la contraseña proporcionada es válida para la cuenta de usuario.</li>
 </ul>]]></message>
 
 	<!-- System Information -->
-	<message key="admin.systemVersion">Versión del OCS</message>
-	<message key="admin.systemConfiguration">Configuración del OCS</message>
-	<message key="admin.systemConfigurationDescription"><![CDATA[Configuración OCS de <tt>config.inc.php</tt>.]]></message>
 	<message key="admin.editSystemConfigInstructions"><![CDATA[Use este formulario para modificar la configuración de su sistema (el fichero <tt>config.inc.php</tt>). Haga Clic en Guardar para guardar la nueva configuración, or "Visualizar"  simplemente para visualizar la configuración modificada y no modificar la configuración existente.<br /><br />
 <span class="formError">Atención: Modificando estos parámetros puede hacer que su web quede en un  estado inaccesible (que requiere modificar manualmente su fichero de configuración). Se recomienda encarecidamente que usted no haga cambios a menos que sepa exactamente lo que está haciendo.</span>]]></message>
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTA!</div>
 <p>El sistema no puede sobrescribir automáticamente el fichero de configuración. Para aplicar los cambios de configuración debe abrir <tt>config.inc.php</ tt> con un editor de texto adecuado y sustituir los contenido de los siguientes campos de texto.</p>]]></message>
 
-	<message key="admin.conferences.conferenceSettings">Configuración de Conferencia/Congreso</message>
-	<message key="admin.conferences.noneCreated">No se han creado Conferencias/Congresos.</message>
-	<message key="admin.conferences.confirmDelete">¿Está seguro de que quiere suprimir definitivamente esta Conferencia/Congreso y todo su contenido?</message>
-	<message key="admin.conferences.create">Crear Conferencia/Congreso</message>
-	<message key="admin.conferences.createInstructions">Usted será inscrito automáticamente como el gestor de esta Conferencia/Congreso. Después de la creación de una nueva Conferencia/Congreso, entre en calidad de gestor para continuar con su configuración y su inscripción de usuario.</message>
-	<message key="admin.conferences.urlWillBe">La URL de la Conferencia/Congreso será {$sampleUrl}</message>
-	<message key="admin.conferences.form.titleRequired">El título es obligatorio.</message>
-	<message key="admin.conferences.form.pathRequired">La ruta es obligatoria.</message>
-	<message key="admin.conferences.form.pathAlphaNumeric">La ruta sólo puede contener caracteres alfanuméricos, guiones bajos y guiones, y debe comenzar y terminar con caracteres alfanuméricos.</message>
-	<message key="admin.conferences.form.pathExists">La ruta seleccionada ya está en uso por otra Conferencia/Congreso.</message>
-	<message key="admin.conferences.enableConferenceInstructions">Active la Conferencia/Congreso para que se publique en la web</message>
-	<message key="admin.conferences.conferenceDescription">Descripción de la Conferencia/Congreso</message>
-	<message key="admin.conferences.conferenceDescriptionInstructions">La descripción de la Conferencia/Congreso identifica la Conferencia/Congreso. Aparece en la pagina principal de la Conferencia/Congreso, así como en todas sus páginas.</message>
-	<message key="admin.conferences.importOCS1">Importar desde OCS 1</message>
-	<message key="admin.conferences.importOCS1.editMigratedConference">Editar la Conferencia/Congreso migrada</message>
-	<message key="admin.conferences.importOCS1.conflict.desc">Algunas cuentas de los usuarios contenían información. OCS 1.x permite múltiples cuentas de usuario que compartan la misma dirección de correo electrónico, mientras que OCS 2.x no. En la siguiente lista, a la segunda de las cuentas mostrada se le ha asignado una cuenta de correo electrónico de carácter temporal. Estas deben corregirse a mano, ya sea mediante la asignación de otra cuenta de correo electrónico, o mediante la fusión de las cuentas.</message>
-	<message key="admin.conferences.importOCS1.errors.desc">Se han encontrado los siguientes errores al migrar de OCS 1.x a OCS 2.x.</message>
-	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) y {$secondUsername} ({$secondName})</message>
-	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consulte el documento de ACTUALIZACION distribuido con  el OCS con información detallada sobre la migración de datos de OCS 1 al OCS 2. Tenga en cuenta que este proceso NO crea una Conferencia/Congreso completamente configurada en OCS 2 ; sólo se importarán determinados elementos (por ejemplo documentos). <strong>Todos los usuarios importados  tendrán que restablecer sus contraseñas. Es importante que el Director de la Conferencia/Congreso revise toda la información antes de activar la importación del sitio web.</strong>]]></message>
-	<message key="admin.conference.pathImportInstructions">Ruta existente para la Conferencia/Congreso o ruta a crear (p.e., "ocs").</message>
-	<message key="admin.conference.importPath">Ruta a OCS 1</message>
-	<message key="admin.conference.importPathInstructions">Ruta completa al sistema de ficheros donde se instaló OCS  1 (p.e., "/var/www/ocs").</message>
 	<message key="admin.conferences.importRegistros">Importar registros</message>
-	<message key="admin.conferences.emailUsers">Email creado con la información de acceso de los usuarios, incluyendo una contraseña al azar</message>
-	<message key="admin.conferences.transcode">Codificación de documentos de metadatos de ISO8859-1</message>
-	<message key="admin.conferences.form.importPathRequired"> La ruta de importación es obligatoria.</message>
-	<message key="admin.conferences.importErrors">La importación no se ha completado con éxito</message>
 
 	<!-- Registro Management -->
 

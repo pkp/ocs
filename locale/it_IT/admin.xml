@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/it_IT/admin.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the it_IT (Italiano) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="it_IT" full_name = "Italiano">
+	<message key="admin.languages.primaryLocaleInstructions">Questa sar&#x00E0; la lingua di default per il sito e i convegni ospitati.</message>
+	<message key="admin.languages.supportedLocalesInstructions">Seleziona tutte le lingue aggiuntive che saranno supportate dal sito. Le lingue scelte potranno essere selezionate da tutti le riviste ospitate tramite un menu presente in tutte le pagine del sito (in ogni caso il layout potr&#x00E0; sempre essere modificato personalizzando le pagine del singolo convegno). Se non vengono impostate pi&#x00F9; lingue, il menu di selezione sar&#x00E0; presente e non saranno disponibili le impostazioni estese per le lingue.</message>
+	<message key="admin.languages.confirmUninstall">Sei sicuro di voler disinstallare questa lingua aggiuntiva? Questo potr&#x00E0; avere effetti sulle riviste che attualmente la utilizzano.</message>
+	<message key="admin.languages.installNewLocalesInstructions">Seleziona le lingue aggiuntive che devono essere installate nel sistema. Per potere essere utilizzate dalle riviste le lingue aggiuntive devono essere prima installate. Per maggiori informazioni sul supporto per le lingue aggiuntive consultare la documentazione di OCS.</message>
+	<message key="admin.auth.enableSyncProfiles">Abilita la sincronizzazione del profilo dell'utente (se supportato da questo plug-in di autenticazione). Le informazione sul profilo dell'utente saranno automaticamente aggiornate in remoto quando un utente accede, e i cambiamenti del profilo (inclusi cambi di password) fatti all'interno di OCS saranno automaticamente aggiornati in remoto. Se questa opzione &#x00E8; disabilitata le informazioni del profilo OCS saranno mantenute separate dalle informazioni del profilo in remoto.</message>
+	<message key="admin.auth.enableSyncPasswords">Abilita la modifica della password dell'utente (se supportato da questo plug-in di autenticazione). L'abilitazione di questa opzione permette agli utenti di modificare la password all'interno di OCS and e di usare il comando OCS "password smarrita" per resettare una password dimenticata. Queste funzioni non saranno disponibili all'utente con questa fonte di autenticazione se questa opzione &#x00E8; disabilitata.</message>
+	<message key="admin.auth.enableCreateUsers">Abilita la creazione di un utente (se supportato da questo plug-in di autenticazione). Gli utenti creati all'interno di OCS con questa fonte di autenticazione  saranno automaticamente aggiunti alla fonte di autenticazione in remoto se ancora non esiste. Inoltre, se questa fonte &#x00E8; la fonte di autenticazione di default, gli account di OCS creati tramite la registrazione dell'utente saranno aggiunti alla fonte di autenticazione in remoto.</message>
+	<message key="admin.systemVersion">Versione di OCS</message>
+	<message key="admin.systemConfiguration">Configurazione di OCS</message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[Impostazioni di configurazione di OCS prese da <tt>config.inc.php</tt>.]]></message>
+	<message key="admin.hostedConferences">Elenco dei convegni</message>
+	<message key="admin.settings.conferenceRedirect">Reindirizzamento del convegno</message>
+	<message key="admin.settings.conferenceRedirectInstructions">Le richieste al sito principale verranno indirizzate a questo convegno. Questo pu&#x00F2; essere utile, ad esempio, se il sito ospita solo un convegno.</message>
+	<message key="admin.settings.noConferenceRedirect">Nessun reindirizzamento</message>
+	<message key="admin.auth.ocs">Utente del database di OCS </message>
+	<message key="admin.conferences.conferenceSettings">Impostazioni del convegno</message>
+	<message key="admin.conferences.noneCreated">Nessun convegno &#x00E8; stato creato.</message>
+	<message key="admin.conferences.confirmDelete">Siete sicuri di voler cancellare definitivamente questo convegno e tutti i suoi contenuti?</message>
+	<message key="admin.conferences.create">Crea un convegno</message>
+	<message key="admin.conferences.createInstructions">Sarete automaticamente registrati come amministratore di questo convegno. Dopo aver creato un nuovo convegno, effettuate il log in come amministratore per continuare ad effettuare il setup e la registrazione degli utenti.</message>
+	<message key="admin.conferences.urlWillBe"><![CDATA[La URL del convegno sar&#x00E0; {$sampleUrl}]]></message>
+	<message key="admin.conferences.form.titleRequired">&#x00C8; necessario inserire un titolo</message>
+	<message key="admin.conferences.form.pathRequired">&#x00C8; necessario inserire un percorso.</message>
+	<message key="admin.conferences.form.pathAlphaNumeric">Il percorso pu&#x00F2; contenere solo caratteri alfanumerici, underscore e trattini, e deve iniziare e finire con un carattere alfanumerico.</message>
+	<message key="admin.conferences.form.pathExists">Il percorso selezionato &#x00E8; gi&#x00E0; utilizzato da un altro convegno.</message>
+	<message key="admin.conferences.enableConferenceInstructions">Consenti a questo convegno di apparire pubblicamente sul sito</message>
+	<message key="admin.conferences.conferenceDescription">Descrizione del convegno</message>
+	<message key="admin.conferences.conferenceDescriptionInstructions">La descrizione del convegno identifica la missione in corso di questo convegno. Appare nella pagina principale del convegno, come anche in tutte le pagine dell'assemblea del convegno.</message>
+	<message key="admin.conferences.importOCS1">Importa da OCS 1</message>
+	<message key="admin.conferences.importOCS1.editMigratedConference">Modifica il convegno importato</message>
+	<message key="admin.conferences.importOCS1.conflict.desc">Alcuni account hanno informazioni in conflitto. OCS 1.x permette a user account multipli di condividere lo stesso indirizzo email, mentre OCS 2.x no. Nell'elenco qui sotto, al secondo account &#x00E8; stato assegnato un account email temporaneo. Questo dovrebbe essere corretto a mano, assegnandogli un diverso account email, oppure fondendo gli account.</message>
+	<message key="admin.conferences.importOCS1.errors.desc">Si incontreranno i seguenti errori durante la migrazione da un convegno in OCS 1.x a uno in OCS 2.x.</message>
+	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) e {$secondUsername} ({$secondName})</message>
+	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consulta il documento UPGRADE distributo con OCS per informazioni dettagliate sulla migrazione dei dati da OCS 1 a OCS 2. Nota che questo processo NON creer&#x00E0; un convegno in OCS 2 completamente configurato; solo alcuni oggetti (es. interventi) saranno importati. <strong>Tutti gli utenti importati dovranno resettare le loro password. &#x00C8; fortemente suggerito al Direttore del convegno di rivedere tutte le informazioni importate prima di far partire il sito web del convegno.</strong>]]></message>
+	<message key="admin.conference.pathImportInstructions">Path di un convegno esistente o path da creare (es., "ocs").</message>
+	<message key="admin.conference.importPath">OCS 1 path</message>
+	<message key="admin.conference.importPathInstructions">Completa il path del filesystem locale  per l'installazione di OCS 1 (es., "/var/www/ocs").</message>
+	<message key="admin.conferences.importRegistrations">Importa le registrazioni</message>
+	<message key="admin.conferences.emailUsers">Invia una email agli utenti creati con le informazioni di login, includendo una password casuale</message>
+	<message key="admin.conferences.transcode">Converti i metadati degli interventi da ISO8859-1</message>
+	<message key="admin.conferences.form.importPathRequired">&#x00C8; richiesto il path dell'importazione.</message>
+	<message key="admin.conferences.importErrors">Importazione fallita</message>
+</locale>

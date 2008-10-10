@@ -180,6 +180,20 @@ class ReviewerHandler extends Handler {
 		import('pages.reviewer.SubmissionReviewHandler');
 		SubmissionReviewHandler::downloadFile($args);
 	}
+	
+	//
+	// Submission Review Form
+	//
+
+	function editReviewFormResponse($args) {
+		import('pages.reviewer.SubmissionReviewHandler');
+		SubmissionReviewHandler::editReviewFormResponse($args);
+	}
+
+	function saveReviewFormResponse($args) {
+		import('pages.reviewer.SubmissionReviewHandler');
+		SubmissionReviewHandler::saveReviewFormResponse($args);
+	}
 
 	//
 	// Submission Comments

@@ -618,6 +618,28 @@ class TrackDirectorHandler extends Handler {
 			60 * 60 * 7	=> '8:00',
 		);
 	}
+	
+	// Submission Review Form
+
+	function clearReviewForm($args) {
+		import('pages.trackDirector.SubmissionEditHandler');
+		SubmissionEditHandler::clearReviewForm($args);
+	}
+
+	function selectReviewForm($args) {
+		import('pages.trackDirector.SubmissionEditHandler');
+		SubmissionEditHandler::selectReviewForm($args);
+	}
+
+	function previewReviewForm($args) {
+		import('pages.trackDirector.SubmissionEditHandler');
+		SubmissionEditHandler::previewReviewForm($args);
+	}
+
+	function viewReviewFormResponse($args) {
+		import('pages.trackDirector.SubmissionEditHandler');
+		SubmissionEditHandler::viewReviewFormResponse($args);
+	}
 }
 
 ?>

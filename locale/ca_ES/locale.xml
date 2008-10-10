@@ -314,11 +314,7 @@
 	<message key="comments.commentsClosed">Tancament de comentaris el dia {$closeCommentsDate}.</message>
 
 	<!-- Site Administration -->
-	<message key="admin.hostedConferences">Conferències/Congresos Allotjats</message>
 
-	<message key="admin.settings.conferenceRedirect">Conferència/Congrés redreçat</message>
-	<message key="admin.settings.conferenceRedirectInstructions">Fer que la pàgina principal d'inici es redreci cap aquesta Conferència/Congrés. Això pot ser útil, per exemple, si aquesta web és la seu d'una única Conferència/Congrés</message>
-	<message key="admin.settings.noConferenceRedirect">No redreçar</message>
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Per a que el contingut de totes les Confèrencies/Congressos estiguin indexats en un sistema distribuït de bases de dades d\'investigació, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registri</a> la seva URL al <a href="http://pkp.sfu.ca/harvester/" target="_blank">recolector de metadades del "Public Knowledge Project"</a>. Aquesta eina captura les metadades indexats en aquesta Conferència/Congrés, el que permet realitzar  una recerca precisa i col·lectiva entre els proveïdors de dades que compleixen amb <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">el protocol de recol·lecció de metadades de l'Open Archives Initiative</a>.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Faci clic aquí</a> i introdueixi <span class="highlight">{$siteUrl}</span> sota <b>la URL</b>, i <span class="highlight">{$oaiUrl}</span> sota <b>Base URL per a Arxius OAI</b>.
@@ -328,58 +324,21 @@ Tingui en compte que la interfície OAI pot ser desactivada per a aquest lloc a 
 
 
 	<!-- Languages -->
-	<message key="admin.languages.primaryLocaleInstructions">Aquest serà l'idioma per defecte per a tot el lloc i les Conferències que allotgi.</message>
-	<message key="admin.languages.supportedLocalesInstructions">Seleccioni les interfícies d'idiomes que podran usar-se en aquest lloc. Els idiomes seleccionats estaran disponibles per al seu ús per totes les Conferències/Congressos, i també apareixen en el menú "Idioma" en cada pàgina del lloc (es pot canviar en les pàgines de cada Conferència/Congrés). Si no selecciona múltiples interfícies, no apareixerà el menú per a canviar d'idioma i la configuració d'idioma no estarà disponible en la Conferència/Congrés.</message>
 	<message key="admin.languages.languageOptions">Opcions d'idiomes</message>
 	<message key="admin.languages.profileLocales">Quan s'assignin els rols (gestors, directors, revisors, etc.), han d'indicar-s'hi els idiomes de treball de cada persona en els seus perfils per a facilitar el treball dels directors de les Conferència.</message>
-	<message key="admin.languages.confirmUninstall">Està segur de desinstal·lar aquest idioma? Això pot afectar a qualsevol Conferència/Congrés associada a aquest lloc.</message>
-	<message key="admin.languages.installNewLocalesInstructions">Seleccioni qualsevol idioma addicional per a instal·lar en aquest sistema. Les interfícies d'idiomes han d'instal·lar-se abans d'usar-se en les conferències allotjades. Vegi la documentació de l'OCS per a saber com instal·lar noves interfícies d'idiomes.</message>
 
-	<message key="admin.auth.ocs">Base de dades dels usuaris de l'OCS</message>
-	<message key="admin.auth.enableSyncProfiles">Activa sincronització de perfil d'usuari (si pot fer-se amb aquest plug-in d'identificació). La informació del perfil d'usuari s'actualitza automàticament des de l'origen remot quan un usuari es connecta, i els canvis de perfil (inclosos els canvis de contrasenya) dintre de l'OCS s'actualitzen automàticament en l'origen remot. Si aquesta opció no està habilitada el perfil de la informació l'OCS es separarà de la informació del perfil en l'origen remot.</message>
-	<message key="admin.auth.enableSyncPasswords">Habilita modificació de la contrasenya d'usuari (si pot fer-se amb aquest plug-in d'identificació). Habilitar aquesta opció permet als usuaris modificar la seva paraula de pas des de dintre de l'OCS i d'utilitzar l'opció "pèrdua de contrasenya" per a restablir una paraula de pas oblidada. Aquesta funció no estarà disponible per als usuaris amb aquesta font d'autenticació, si l'opció està deshabilitada.</message>
-	<message key="admin.auth.enableCreateUsers">Habilita la creació d'usuaris (si pot fer-se amb aquest plug-in d'identificació). Els usuaris creats, dintre de l'OCS amb aquesta font d'autenticació s'afegiran automàticament a la font d'autenticació remota, si no existeixen. A més, si aquesta font és la font d'autenticació per defecte, els comptes d'usuari creades en OCS a través de registre d'usuaris també s'afegiran a la font d'autenticació remota.</message>
 	<message key="admin.auth.defaultSourceDescription"><![CDATA[Especificar per defecte una font d'autenticació que no sigui vàlida per a OCS té els següents efectes:
 <ul>
 	<li>Si un usuari intenta crear un nou compte amb aquest lloc amb un nom d'usuari que existeix en la font d'autenticació (però no en la base de dades OCS), l'intent de registre només estarà permès si la contrasenya proporcionada és vàlida per al compte d'usuari.</li>
 </ul>]]></message>
 
 	<!-- System Information -->
-	<message key="admin.systemVersion">Versió de l'OCS</message>
-	<message key="admin.systemConfiguration">Configuració de l'OCS</message>
-	<message key="admin.systemConfigurationDescription"><![CDATA[Configuració OCS de <tt>config.inc.php</tt>.]]></message>
 	<message key="admin.editSystemConfigInstructions"><![CDATA[Utilitzi aquest formulari per a modificar la configuració del seu sistema (l'arxiu <tt>config.inc.php</tt>). Faci clic a Desa per a desar la nova configuració, o "Visualitza"  simplement per a visualitzar la configuració modificada i no modificar la configuració existent.<br /><br />
 <span class="formError">Atenció: Modificant aquests paràmetres pot fer que la seva web quedi en un estat inaccessible (que requereix modificar manualment el seu fitxer de configuració). Es recomana encaridament que no faci canvis tret que sàpiga exactament el que està fent .</span>]]></message>
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTA!</div>
 <p>El sistema no pot sobreescriure automàticament l'arxiu de configuració. Per a aplicar els canvis de configuració ha d'obrir  <tt>config.inc.php</ tt> amb un editor de text adequat i substituir els contingut dels següents camps de text.</p>]]></message>
 
-	<message key="admin.conferences.conferenceSettings">Configuració de Conferència/Congrés</message>
-	<message key="admin.conferences.noneCreated">No s'han creat Conferències/Congressos.</message>
-	<message key="admin.conferences.confirmDelete">Està segur que vol suprimir definitivament aquesta Conferència/Congrés i tot el seu contingut?</message>
-	<message key="admin.conferences.create">Crea Conferència/Congrés</message>
-	<message key="admin.conferences.createInstructions">Vostè serà inscrit automàticament com el gestor d'aquesta Conferència/Congrés. Després de la creació d'una nova Conferència/Congrés, entri en qualitat de gestor per continuar amb la seva configuració i la seva inscripció d'usuari.</message>
-	<message key="admin.conferences.urlWillBe">La URL de la Conferència/Congrés serà {$sampleUrl}</message>
-	<message key="admin.conferences.form.titleRequired">El títol és obligatori.</message>
-	<message key="admin.conferences.form.pathRequired">La ruta és obligatòria.</message>
-	<message key="admin.conferences.form.pathAlphaNumeric">La ruta només pot contenir caràcters alfanumèrics, guions baixos i guions, i ha de començar i acabar amb caràcters alfanumèrics.</message>
-	<message key="admin.conferences.form.pathExists">﻿La ruta seleccionada ja està en ús per una altra Conferència/Congrés.</message>
-	<message key="admin.conferences.enableConferenceInstructions">Activi la Conferència/Congrés per a que ese publiqui a la web</message>
-	<message key="admin.conferences.conferenceDescription">Descripció de la Conferència/Congrés</message>
-	<message key="admin.conferences.conferenceDescriptionInstructions">La descripció de la Conferència/Congrés identifica la Conferència/Congrés. Apareix en la pagina principal de la Conferència/Congrés, així com en totes les seves pàgines.</message>
-	<message key="admin.conferences.importOCS1">Importar des de l'OCS 1</message>
-	<message key="admin.conferences.importOCS1.editMigratedConference">Editar la Conferència/Congrés migrada</message>
-	<message key="admin.conferences.importOCS1.conflict.desc">Alguns comptes dels usuaris contenien informació. L'OCS 1.x permet múltiples comptes d'usuari que comparteixin la mateixa adreça de correu electrònic, mentre que l'OCS 2.x no. A la següent llista, al segon dels comptes mostrat se li ha assignat un compte de correu electrònic de caràcter temporal. Aquests han de corregir-se a mà, ja sigui mitjançant l'assignació d'altre compte de correu electrònic, o mitjançant la fusió dels comptes.</message>
-	<message key="admin.conferences.importOCS1.errors.desc">S'han trobat els següents errors al migrar de l'OCS 1.x a l'OCS 2.x.</message>
-	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) i {$secondUsername} ({$secondName})</message>
-	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consulti el document de ACTUALITZACIÓ distribuït amb l'OCS amb informació detallada sobre la migració de dades de l'OCS 1 al l'OCS 2. Tingui en compte que aquest procés NO crea una Conferència/Congrés completament configurada en l'OCS 2 ; només s'importaran determinats elements (per exemple documents). <strong>Tots els usuaris importats haurien de restablir les seves contrasenyes. És important que el Director de la Conferència/Congrés revisi tota la informació abans d'activar la importació del lloc web.</strong>]]></message>
-	<message key="admin.conference.pathImportInstructions">Ruta existent per a la Conferència/Congrés o ruta a crear (p.e., "ocs").</message>
-	<message key="admin.conference.importPath">Ruta a l'OCS 1</message>
-	<message key="admin.conference.importPathInstructions">Ruta completa al sistema d'arxius on es va instal·lar l'OCS   1 (p.e., "/var/www/ocs").</message>
 	<message key="admin.conferences.importRegistros">Importa registres</message>
-	<message key="admin.conferences.emailUsers">Email creat amb la informació d'accés dels usuaris, incloent una contrasenya a l'atzar</message>
-	<message key="admin.conferences.transcode">Codificació de documents de metadades de ISO8859-1</message>
-	<message key="admin.conferences.form.importPathRequired">La ruta d'importació és obligatòria.</message>
-	<message key="admin.conferences.importErrors">La importació no ha estat completada amb èxit</message>
 
 	<!-- Registro Management -->
 

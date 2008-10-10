@@ -151,6 +151,7 @@ class SchedConfSettingsForm extends Form {
 			$title = $this->getData('title');
 			$title = $title[$this->getFormLocale()];
 
+			Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DEFAULT));
 			$schedConfSettingsDao->installSettings($schedConfId, 'registry/schedConfSettings.xml', array(
 				'presenterGuidelinesUrl' => Request::url($conference->getPath(), $this->getData('path'), 'about', 'submissions', null, null, 'presenterGuidelines'),
 				'indexUrl' => Request::getIndexUrl(),

@@ -169,6 +169,20 @@
 
 		<table width="100%" class="data">
 		<tr valign="top">
+		<td class="label">{translate key="submission.reviewForm"}</td>
+		<td>
+		{if $reviewAssignment->getReviewFormId()}
+			{assign var="reviewFormId" value=$reviewAssignment->getReviewFormId()}
+			{$reviewFormTitles[$reviewFormId]}
+		{else}
+			{translate key="manager.reviewForms.noneChosen"}
+		{/if}
+		{if !$reviewAssignment->getDateCompleted()}
+			&nbsp;&nbsp;&nbsp;&nbsp;<a class="action" href="{url op="selectReviewForm" path=$submission->getPaperId()|to_array:$reviewAssignment->getReviewId()}"{if $reviewFormResponses[$reviewId]} onclick="return confirm('{translate|escape:"jsparam" key="editor.paper.confirmChangeReviewForm"}')"{/if}>{translate key="editor.paper.selectReviewForm"}</a>{if $reviewAssignment->getReviewFormId()}&nbsp;&nbsp;&nbsp;&nbsp;<a class="action" href="{url op="clearReviewForm" path=$submission->getPaperId()|to_array:$reviewAssignment->getReviewId()}"{if $reviewFormResponses[$reviewId]} onclick="return confirm('{translate|escape:"jsparam" key="editor.paper.confirmChangeReviewForm"}')"{/if}>{translate key="editor.paper.clearReviewForm"}</a>{/if}
+		{/if}
+		</td>
+	</tr>
+		<tr valign="top">
 			<td class="label" width="20%">&nbsp;</td>
 			<td width="80%">
 				<table width="100%" class="info">
@@ -258,6 +272,14 @@
 					{/if}
 				</td>
 			</tr>
+			{if $reviewFormResponses[$reviewId]}
+			<tr valign="top">
+				<td class="label">{translate key="submission.reviewFormResponse"}</td>
+				<td>
+					<a href="javascript:openComments('{url op="viewReviewFormResponse" path=$submission->getPaperId()|to_array:$reviewAssignment->getReviewId()}');" class="icon">{icon name="letter"}</a>
+				</td>
+			</tr>
+			{/if}
 			<tr valign="top">
 				<td class="label">{translate key="reviewer.paper.uploadedFile"}</td>
 				<td>

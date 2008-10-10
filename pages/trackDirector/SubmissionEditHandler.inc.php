@@ -79,13 +79,23 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$reviewFilesByStage = $reviewAssignmentDao->getReviewFilesByStage($paperId);
 
 		$stages = $submission->getReviewAssignments();
+		$numStages = $submission->getCurrentStage();
 
 		$directorDecisions = $submission->getDecisions();
+
+		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+		$reviewFormResponses = array();
+		if (isset($stages[$numStages-1])) {
+			foreach ($stages[$numStages-1] as $stage) {
+				$reviewFormResponses[$stage->getReviewId()] = $reviewFormResponseDao->reviewFormResponseExists($stage->getReviewId());
+			}
+		}
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('reviewMode', $submission->getReviewMode());
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('reviewAssignmentStages', $stages);
+		$templateMgr->assign('reviewFormResponses', $reviewFormResponses);
 		$templateMgr->assign_by_ref('cancelsAndRegrets', $cancelsAndRegrets);
 		$templateMgr->assign_by_ref('reviewFilesByStage', $reviewFilesByStage);
 		$templateMgr->assign_by_ref('directorDecisions', $directorDecisions);
@@ -123,6 +133,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$tracks = &$trackDao->getSchedConfTracks($schedConf->getSchedConfId());
@@ -159,6 +170,25 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				}
 			}
 		}
+		
+		// get conference published review form titles
+		$reviewFormTitles =& $reviewFormDao->getConferenceReviewFormTitles($conference->getConferenceId(), 1);
+
+		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+		$reviewFormResponses = array();
+
+		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormTitles = array();
+
+		foreach ($submission->getReviewAssignments($stage) as $reviewAssignment) {
+			$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId());
+			if ($reviewForm) {
+				$reviewFormTitles[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
+			}
+			unset($reviewForm);
+			$reviewFormResponses[$reviewAssignment->getReviewId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getReviewId());
+		}
+		
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -166,6 +196,8 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForStage($paperId, $stage));
 		$templateMgr->assign('stage', $stage);
 		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($stage));
+		$templateMgr->assign('reviewFormResponses', $reviewFormResponses);
+		$templateMgr->assign('reviewFormTitles', $reviewFormTitles);
 		$templateMgr->assign_by_ref('notifyReviewerLogs', $notifyReviewerLogs);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
@@ -750,6 +782,100 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		if (TrackDirectorAction::saveMetadata($submission)) {
 			Request::redirect(null, null, null, 'submission', $paperId);
 		}
+	}
+	
+	//
+	// Review Form
+	//
+
+	/**
+	 * Preview a review form.
+	 * @param $args array ($reviewId, $reviewFormId)
+	 */
+	function previewReviewForm($args) {
+		parent::validate();
+		parent::setupTemplate(true);
+
+		$reviewId = isset($args[0]) ? (int) $args[0] : null;
+		$reviewFormId = isset($args[1]) ? (int)$args[1] : null;			
+
+		$conference =& Request::getConference();
+		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $conference->getConferenceId());
+		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('pageTitle', 'manager.reviewForms.preview');	
+		$templateMgr->assign_by_ref('reviewForm', $reviewForm);
+		$templateMgr->assign('reviewFormElements', $reviewFormElements);
+		$templateMgr->assign('reviewId', $reviewId);
+		$templateMgr->assign('paperId', $reviewAssignment->getPaperId());
+		//$templateMgr->assign('helpTopicId','conference.managementPages.reviewForms');
+		$templateMgr->display('trackDirector/previewReviewForm.tpl');
+	}
+
+	/**
+	 * Clear a review form, i.e. remove review form assignment to the review.
+	 * @param $args array ($paperId, $reviewId)
+	 */
+	function clearReviewForm($args) {
+		$paperId = isset($args[0]) ? (int) $args[0] : 0;
+		$reviewId = isset($args[1]) ? (int) $args[1] : null;
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		
+		TrackDirectorAction::clearReviewForm($submission, $reviewId);
+
+		Request::redirect(null, null, null, 'submissionReview', $paperId);
+	}
+	
+	/**
+	 * Select a review form
+	 * @param $args array ($paperId, $reviewId, $reviewFormId)
+	 */
+	function selectReviewForm($args) {
+		$paperId = isset($args[0]) ? (int) $args[0] : 0;
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		
+		$reviewId = isset($args[1]) ? (int) $args[1] : null;
+		$reviewFormId = isset($args[2]) ? (int) $args[2] : null;
+
+		if ($reviewFormId != null) {
+			TrackDirectorAction::addReviewForm($submission, $reviewId, $reviewFormId);
+			Request::redirect(null, null, null, 'submissionReview', $paperId);
+		} else {
+			$conference =& Request::getConference();
+			$rangeInfo =& Handler::getRangeInfo('reviewForms');
+			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+			$reviewForms =& $reviewFormDao->getConferenceActiveReviewForms($conference->getConferenceId(), $rangeInfo);
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+
+			parent::setupTemplate(true, $paperId, 'review');
+			$templateMgr =& TemplateManager::getManager();
+				
+			$templateMgr->assign('paperId', $paperId);
+			$templateMgr->assign('reviewId', $reviewId);
+			$templateMgr->assign('assignedReviewFormId', $reviewAssignment->getReviewFormId());
+			$templateMgr->assign_by_ref('reviewForms', $reviewForms);
+			//$templateMgr->assign('helpTopicId','conference.managementPages.reviewForms');
+			$templateMgr->display('trackDirector/selectReviewForm.tpl');
+		}
+	}
+	
+	/**
+	 * View review form response.
+	 * @param $args array ($paperId, $reviewId)
+	 */
+	function viewReviewFormResponse($args) {
+		$paperId = isset($args[0]) ? (int) $args[0] : 0;
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+
+		$reviewId = isset($args[1]) ? (int) $args[1] : null;
+
+		TrackDirectorAction::viewReviewFormResponse($submission, $reviewId);	
 	}
 
 	//

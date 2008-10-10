@@ -46,6 +46,55 @@
 		<br/>
 		Este <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">trabalho</span> está sob a licença <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Licença Creative Commons Attribution 3.0</a>.]]></message>
 
+	<!-- Review Forms -->
+	<message key="manager.reviewForms">Formulários de Avaliação</message>
+	<message key="manager.reviewForms.noneCreated">Nenhum formulário de avaliação criado.</message>
+	<message key="manager.reviewForms.create">Criar formulário de avaliação</message>
+	<message key="manager.reviewForms.edit">Editar formulário de avaliação</message>
+	<message key="manager.reviewForms.reviewFormData">Dados do formulário de avaliação</message>
+	<message key="manager.reviewForms.title">Título</message>
+	<message key="manager.reviewForms.description">Descrição</message>
+	<message key="manager.reviewForms.preview">Visualizar formulário de avaliação</message>
+	<message key="manager.reviewForms.completed">Concluído</message>
+	<message key="manager.reviewForms.inReview">Em avaliação</message>
+	<message key="manager.reviewForms.confirmDeletePublished">Confirmar exclusão de formulário de avaliação publicado</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Confirmar exclusão de formulário de avaliação não publicado</message>
+	<message key="manager.reviewForms.form.titleRequired">Título do formulário de avaliação obrigatório.</message>
+	<message key="manager.reviewFormElements">Campos do formulário de avaliação</message>
+	<message key="manager.reviewFormElements.create">Criar novo campo</message>
+	<message key="manager.reviewFormElements.edit">Editar campo</message>
+	<message key="manager.reviewFormElements.noneCreated">Nenhum campo de formulário criado .</message>
+	<message key="manager.reviewFormElements.confirmDelete">Confimar exclusão de campo do formulário de avaliação publicado</message>
+	<message key="manager.reviewFormElements.copyTo">Copiar para</message>
+	<message key="manager.reviewFormElements.question">Pergunta</message>
+	<message key="manager.reviewFormElements.required">Campo de avaliação obrigatório</message>
+	<message key="manager.reviewFormElements.viewable">Disponível (aos autores)</message>
+	<message key="manager.reviewFormElements.elementType">Tipo de campo</message>
+	<message key="manager.reviewFormElements.possibleResponse">Resposta possível</message>
+	<message key="manager.reviewFormElements.addResponseItem">Incluir resposta possível</message>
+	<message key="manager.reviewFormElements.chooseType">Escolher tipo de campo</message>
+	<message key="manager.reviewFormElement.changeType">Alterando o tipo de campo do formluário</message>
+	<message key="manager.reviewFormElements.form.questionRequired">Uma pergunta para o campo do formulário é obrigatória</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">O tipo do campo do formulário é obrigatório.</message>
+	<message key="manager.reviewFormElements.smalltextfield">Campo de texto pequeno</message>
+	<message key="manager.reviewFormElements.textfield">Campo de texto de uma linha</message>
+	<message key="manager.reviewFormElements.textarea">Campo de texto longo</message>
+	<message key="manager.reviewFormElements.checkboxes">Campo de seleção</message>
+	<message key="manager.reviewFormElements.radiobuttons">Campo de botão de rádio</message>
+	<message key="manager.reviewFormElements.dropdownbox">Campo de menu de opções</message>
+	<message key="submission.reviewForm">Formulário de avaliação</message>
+	<message key="submission.reviewFormResponse">Resposta do formulário de avaliação</message>
+	<message key="editor.paper.reviewForms">Formulários de avaliação</message>
+	<message key="editor.paper.selectReviewForm">Escolher formulário de avaliação</message>
+	<message key="editor.paper.clearReviewForm">Limpar formulário de avaliação</message>
+	<message key="editor.paper.confirmChangeReviewForm">Alterações no formulário de avaliação removerá as respostas...</message>
+	<message key="reviewer.paper.enterReviewForm">Clique no ícone para preencher o formulário de avaliação</message>
+	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Preencha os campos obrigatórios.</message>
+	<message key="manager.reviewForms.list.description">Os formulários de avaliação pelos pares criados aqui estarão disponíveis aos avaliadores para preenchimento, em vez do formulário padrão que consiste em duas caixas de texto de comentários com comentários exclusivos para o autor e outra para o  Editor e o Autor. Formulários de avaliação podem ser designados a seções específicas, e os editores poderão escolher qual formulário utilizar no momento da avaliação. em todos os casos, os editores poderão incluir as avaliações nas correspondências com o autor.</message>
+	<message key="manager.reviewForms.noneChosen">Nenhuma / Formulário de avaliação padrão</message>
+	<message key="manager.reviewForms.noneUsed">Nenhum formulário de avaliação foi utilizado.</message>
+	<message key="manager.sections.form.reviewFormId">É necessário escolher um formulário de avaliação válido</message>
+	
 	<!-- Common Form Messages -->
 
 	<!-- Common Email Messages -->
@@ -301,11 +350,7 @@
 	<message key="comments.commentsClosed">Comentários encerrados em {$closeCommentsDate}.</message>
 
 	<!-- Site Administration -->
-	<message key="admin.hostedConferences">Conferências Hospedadas</message>
 
-	<message key="admin.settings.conferenceRedirect">Redirecionar para Conferência</message>
-	<message key="admin.settings.conferenceRedirectInstructions">As solicitações realizadas ao Portal Principal serão direcionadas a esta conferência. Esta opção pode ser útil caso o Portal hospede apenas uma conferência.</message>
-	<message key="admin.settings.noConferenceRedirect">Não redirecionar</message>
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Para indexar todo o conteúdo das conferências hospedadas neste portal em um sistema global de bases de dados de pesquisa integradas,  <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">cadastre</a> a URL do portal no <a href="http://pkp.sfu.ca/harvester/" target="_blank">coletador de metadados</a>do Public Knowledge Project. Esta ferramenta coleta os metadados de cada item indexado na revista, permitindo pesquisa coletiva e precisa dentro dos portais que adotam o <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Protocolo de Arquivos Abertos para Coleta de Metadados - OAI PMH</a>. 
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clique aqui</a> e insira <span class="highlight">{$siteUrl}</span> no campo <strong>URL do Portal</strong>, e <span class="highlight">{$oaiUrl}</span> no campo <strong>URL Base para o Arquivo OAI</strong>.
@@ -315,57 +360,19 @@ Note que a interface OAI pode ser desativada para este portal nas configuraçõe
 
 
 	<!-- Languages -->
-	<message key="admin.languages.primaryLocaleInstructions">Este será o idioma padrão para o portal e todas as conferências hospedadas.</message>
-	<message key="admin.languages.supportedLocalesInstructions">Os idiomas selecionados estarão disponíveis para todas as conferências no portal, e constarão da lista de idiomas que aparece em cada página do sistema (esta opção pode ser desativada individualmente por conferência). Caso não sejam selecionados vários idiomas, a lista de idiomas não estará disponível e a opção "configurações de idioma" não estará disponível para as conferências.</message>
-	<message key="admin.languages.confirmUninstall">Deseja realmente remover este idioma? A execução pode afetar conferências hospedas que podem estar utilizando o idioma.</message>
-	<message key="admin.languages.installNewLocalesInstructions">Selecionar idiomas adicionais para uso no sistema. Os idiomas devem ser instalados antes que possam ser utilizados pelas revistas hospedadas. Veja a documentação para informações sobre como incluir novos idiomas no sistema.</message>
 
-	<message key="admin.auth.ocs">Usuários da Base de Dados padrão</message>
-	<message key="admin.auth.enableSyncProfiles">Habilitar sincronização de perfil de usuários (caso suportado pelo plugin de autenticação!). Os perfis dos usuários serão atualizados com o conteúdo da fonte remota assim que o usuário acessar o sistema, e alterações no perfil (incluindo alteração de senha) realizadas dentro do sistema atualizarão a fonte remota. Caso esta opção não esteja habilitada, os perfis no sistema serão mantidos separados da fonte remota.</message>
-	<message key="admin.auth.enableSyncPasswords">Habilitar alteração de senha de usuário (caso suportado pelo plugin de autenticação!). Habilitar esta opção permite ao usuário modificar a senha do sistema e fazer uso da opção de recuperação de senha para criar uma nova senha. Estas funcionalidades não estarão disponíveis aos usuários com esta fonte de autenticação, caso não seja habilitada.</message>
-	<message key="admin.auth.enableCreateUsers">Habilitar criação de usuários (caso suportado pelo plugin de autenticação!). Usuários criados no sistema serão automaticamente incluídos na fonte de autenticação remota, caso não existam ainda. Inclusive, usuários criados através do cadastro de usuários também serão incluídos automaticamente na fonte remota, caso esta seja a fonte de autenticação padrão.</message>
 	<message key="admin.auth.defaultSourceDescription"><![CDATA[Definir uma fonte de autenticação padrão diferente da do sistema implica em:
 <ul>
 	<li>Caso um usuário tente cadastrar uma nova conta com um login já existente na fonte de autenticação (mas não na base do sistema), o cadastro só será permitido se a senha informada for válida para a conta em questão.</li>
 </ul>]]></message>
 
 	<!-- System Information -->
-	<message key="admin.systemVersion">Versão do sistema</message>
-	<message key="admin.systemConfiguration">Configuração</message>
-	<message key="admin.systemConfigurationDescription"><![CDATA[Configurações do sistema do arquivo <tt>config.inc.php</tt>.]]></message>
 	<message key="admin.editSystemConfigInstructions"><![CDATA[Utilize o formulário para modificar as configurações do sistema (o documento <tt>config.inc.php</tt>). Clique em "Salvar" para concluir as alterações de configuração, ou "Exibir" para apenas mostrar as configurações atualizadas sem realizar as modificações.
 <br /><br />
 <span class="formError">Advertência: Alterações nas configurações podem deixar o portal inacessível (obrigando a alterar manualmente o documento). É altamente recomendado que as alterações sejam realizadas por um especialista.</span>]]></message>
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>AVISO!</div>
 <p>O sistema não pôde alterar automaticamente o arquivo de configuração. Para aplicar as alterações é necessário editar o documento <tt>config.inc.php</tt> manualmente em algum editor de texto, substituindo-o com o conteúdo do campo a seguir.</p>]]></message>
 
-	<message key="admin.conferences.conferenceSettings">Configurações da Conferência</message>
-	<message key="admin.conferences.noneCreated">Nenhuma conferência criada</message>
-	<message key="admin.conferences.confirmDelete">Deseja realmente excluir permanentemente esta conferência e seu conteúdo?</message>
-	<message key="admin.conferences.create">Criar Conferência</message>
-	<message key="admin.conferences.createInstructions">Seu cadastro como Gerente Geral da conferência será automático. Após criação de uma conferência, acesse-a como gerente e continue com as configurações e cadastro de usuários.</message>
-	<message key="admin.conferences.urlWillBe">A URL da revista será: {$sampleUrl}</message>
-	<message key="admin.conferences.form.titleRequired">Título obrigatório.</message>
-	<message key="admin.conferences.form.pathRequired">Caminho obrigatório</message>
-	<message key="admin.conferences.form.pathAlphaNumeric">O caminho pode conter apenas caracteres alfanuméricos, sublinhado, hífens, e deve começar e terminar com um caractere alfanumérico.</message>
-	<message key="admin.conferences.form.pathExists">O caminho selecionado já está em uso por outra conferência</message>
-	<message key="admin.conferences.enableConferenceInstructions">Permitir Acesso Livre a esta revista no portal</message>
-	<message key="admin.conferences.conferenceDescription">Descrição da conferência</message>
-	<message key="admin.conferences.conferenceDescriptionInstructions">A descrição da conferência identifica a sua missão constante, sendo exibida na página principal da conferência, bem como em todas as páginas de eventos da conferência.</message>
-	<message key="admin.conferences.importOCS1">Importar de OCS 1</message>
-	<message key="admin.conferences.importOCS1.editMigratedConference">Editar Conferência Migrada</message>
-	<message key="admin.conferences.importOCS1.conflict.desc">Alguns usuários possuem cadastros conflitantes. A versão 1.x permite vários usuários com o mesmo e-mail, enquanto a versão 2.x não permite. Nos cadastros abaixo, foi designado um e-mail temporário à segunda lista dos cadastros. Estes deverão ser corrigidos manualmente, informando um novo e-mail ou mesclando as contas.</message>
-	<message key="admin.conferences.importOCS1.errors.desc">Os seguintes erros foram encontrados durante a migração.</message>
-	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) e {$secondUsername} ({$secondName})</message>
-	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consulte o UPGRADE distribuído com o sistema para informações detalhadas sobre como migrar da versão 1.x para a versão 2. Note que este processo NÃO criará uma conferência completamente configurada; apenas alguns itens (ex. papers) serão importados. <strong>Todos os usuários importados deverão configurar novas senhas. É altamente recomendado que o Diretor da Conferência verifica todas as informações importadas antes do lançamento da conferência.</strong>]]></message>
-	<message key="admin.conference.pathImportInstructions">Caminho existente ou caminho a ser criado (ex.: "conf1")</message>
-	<message key="admin.conference.importPath">Caminho físico da versão 1</message>
-	<message key="admin.conference.importPathInstructions">Caminho físico completo da instalação da versão 1.x (ex.: "/var/www/ocs") </message>
-	<message key="admin.conferences.importRegistrations">Importar cadastros</message>
-	<message key="admin.conferences.emailUsers">Os e-mails criaram usuários com dados de login, incluindo uma senha automática</message>
-	<message key="admin.conferences.transcode">Transcodificar metadados da submissão de ISO8859-1</message>
-	<message key="admin.conferences.form.importPathRequired">Caminho da importação obrigatório</message>
-	<message key="admin.conferences.importErrors">Importação não concluída com êxito</message>
 
 	<!-- Registration Management -->
 

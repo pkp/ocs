@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/zh_TW/admin.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the zh_TW (正體中文) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="zh_TW" full_name = "正體中文">
+	<message key="admin.languages.primaryLocaleInstructions">這網站和所有被主持的研討會這將會是個內定值的語言。</message>
+	<message key="admin.languages.supportedLocalesInstructions">選擇所有地點來支持這個網站。在這個網站所選擇的地點將能被所有研討會主持人使用，並且每個網站頁面都會出現一個語言選擇單(這些可能會在研討會的特定頁面裡被忽略掉). 倘若這多項地點未被選擇，語言雙態元件選擇單就不會出現，研討會內也無法使用擴展用語言設置。</message>
+	<message key="admin.languages.confirmUninstall">您確定要移除安裝地點？這也許會影響所有被主持的研討會目前所使用的地點。</message>
+	<message key="admin.languages.installNewLocalesInstructions">選擇所有額外增加的地點來安裝支持這個系統。地點必須在主持會議之前被安裝方能使用。 對於新語言資訊的增加支持請參考OCS文獻。</message>
+	<message key="admin.auth.enableSyncProfiles">能夠讓使用者的資料檔案同步 (如果是由此認證支持著). 當使用者登錄時使用者的資料檔案將會在遠端自動更新，並且遠端也會自動更新資料檔案在OCS內變動 (包含密碼變更)。如果此選項未開啟，OCS的檔案資訊將會和遠端的資料保持分離狀態.</message>
+	<message key="admin.auth.enableSyncPasswords">能使使用者更改密碼類別 (如果是由此認證加入支持)。這個建議能准予使用者在OCS內去更改他們的密碼，並且能使用OCS的“失去密碼”的特徵來崇設備遺忘的密碼。倘若這個建議不能被使用，使用者也無法獲得這些功能及認證來源。</message>
+	<message key="admin.auth.enableCreateUsers">能使使用者創造 (如果是由此認證加入支持)。 倘若他門已不存在，使用者被創造在有OCS伴隨著認證來源之內而將自動地增加遠端的認證來源。除此之外，如果這個來源是已設定好的認證來源，OCS帳號會透過使用者的登記而被建立，且也會被增加至遠端的認證來源。</message>
+	<message key="admin.systemVersion">OCS 版本</message>
+	<message key="admin.systemConfiguration">OCS配置</message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[OCS配置設置是從<tt>config.inc.php</tt>.]]></message>
+	<message key="admin.hostedConferences">被主持的研討會</message>
+	<message key="admin.settings.conferenceRedirect">更改研討會方向</message>
+	<message key="admin.settings.conferenceRedirectInstructions">主要網站將被要求改變方向的至某一研討會。如果網站只主持此唯一研討會這或許是有用的方式。</message>
+	<message key="admin.settings.noConferenceRedirect">請勿改變方向</message>
+	<message key="admin.auth.ocs">OCS使用者資料庫</message>
+	<message key="admin.conferences.conferenceSettings">研討會設定</message>
+	<message key="admin.conferences.noneCreated">無研討會被建立。</message>
+	<message key="admin.conferences.confirmDelete">您確定您要永遠刪除這個研討會及所有的內容？</message>
+	<message key="admin.conferences.create">建立研討會</message>
+	<message key="admin.conferences.createInstructions">您將會被自動地加入成為這個研討會的經理。再建立一個新的研討會後，輸入如經理來繼續它的設定和使用者的註冊。</message>
+	<message key="admin.conferences.urlWillBe">這個研討會的網址將會是{$sampleUrl}</message>
+	<message key="admin.conferences.form.titleRequired">ㄧ個題目是被需要的。</message>
+	<message key="admin.conferences.form.pathRequired">ㄧ個路徑是被需要的</message>
+	<message key="admin.conferences.form.pathAlphaNumeric">路徑可能包含唯一字母或數字字符、底線，和連字號，並且開始及結束都必須包含ㄧ個字母或數字字符。</message>
+	<message key="admin.conferences.form.pathExists">被選擇的路徑是已經被其他研討會所使用。</message>
+	<message key="admin.conferences.enableConferenceInstructions">使這個研討會能夠出現在公開的網站</message>
+	<message key="admin.conferences.conferenceDescription">會議描述</message>
+	<message key="admin.conferences.conferenceDescriptionInstructions">這個研討會描述驗證了這個研討會的持續使命。他不但顯示在研討會首頁，也顯示在所有研討會的大會頁上。</message>
+	<message key="admin.conferences.importOCS1">從OCS1輸入資料</message>
+	<message key="admin.conferences.importOCS1.editMigratedConference">編輯轉移的會議</message>
+	<message key="admin.conferences.importOCS1.conflict.desc">有些使用者的帳號有矛盾的資訊。OCS 1.x 允許多個用戶帳號去分享同樣電子郵件， 當OCS 2.x不行時。在這個名單如下，被列出的第二個帳戶有一個臨時電子郵件被分配到在裡面。這些應該用手合併改正，或被分配至另外ㄧ個電子郵件或帳戶。</message>
+	<message key="admin.conferences.importOCS1.errors.desc">以下錯誤是遇到當OCS 1.x 研討會移入OCS 2.x 。</message>
+	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) 及{$secondUsername} ({$secondName})</message>
+	<message key="admin.conferences.importOCS1Instructions"><![CDATA[與OCS 諮詢關於升級文件對於詳細的資訊被分佈，將資料從OCS 1 移至OCS 2。注意這個過程將不會創造一個完全地配置的OCS 2 研討會；只有某些項目(如論文)將被轉入。<strong>所有被轉入的使用者將需要重新設置他們的密碼。強烈建議研討會主席在公佈研討會之前，應審查所有被轉入的資訊。</strong>]]></message>
+	<message key="admin.conference.pathImportInstructions">創造現有的會議路徑(例如："OCS")。</message>
+	<message key="admin.conference.importPath">OCS 1路徑</message>
+	<message key="admin.conference.importPathInstructions">完成局部的檔案系統路徑至OCS 1安裝設備(例如："/var/www/ocs").</message>
+	<message key="admin.conferences.importRegistrations">輸入註冊</message>
+	<message key="admin.conferences.emailUsers">電子郵件結合登入資訊創造了使用者，包含一組任意的密碼</message>
+	<message key="admin.conferences.transcode">自動譯碼紙的後資料庫從ISO8859-1</message>
+	<message key="admin.conferences.form.importPathRequired">一個進口的路徑是必需的.</message>
+	<message key="admin.conferences.importErrors">輸入失敗無法成功</message>
+</locale>

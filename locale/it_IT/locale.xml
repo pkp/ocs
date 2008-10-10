@@ -47,7 +47,54 @@
 		<br/>
 		Questo <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">work</span> &#x00E8; sotto una licenza <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a>.
 	]]></message>
-
+	<!-- Review Forms -->
+	<message key="manager.reviewForms">Modulo di revisione</message>
+	<message key="manager.reviewForms.noneChosen">Nessuno / Revisione del modulo libero</message>
+	<message key="manager.reviewForms.noneCreated">Non è stato creato nessun modulo di revisione</message>
+	<message key="manager.reviewForms.noneUsed">Non è stato usato nessun modulo di revisione</message>
+	<message key="manager.reviewForms.create">Crea un modulo di revisione</message>
+	<message key="manager.reviewForms.edit">Modulo di revisione</message>
+	<message key="manager.reviewForms.reviewFormData">Data del modulo di revisione</message>
+	<message key="manager.reviewForms.title">Titolo</message>
+	<message key="manager.reviewForms.description">Descrizione e Istruzioni</message>
+	<message key="manager.reviewForms.preview">Modulo di anteprima</message>
+	<message key="manager.reviewForms.completed">Completato</message>
+	<message key="manager.reviewForms.inReview">In revisione</message>
+	<message key="manager.reviewForms.confirmDeletePublished">Conferma la cancellazione di un modulo di revisione pubblicato...</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Conferma la cancellazione di un modulo di revisione non pubblicato ...</message>
+	<message key="manager.reviewForms.form.titleRequired">E' necessario inserire un titolo per il modulo</message>
+	<message key="manager.reviewFormElements">Item del modulo</message>
+	<message key="manager.reviewFormElements.create">Crea un nuovo item</message>
+	<message key="manager.reviewFormElements.edit">Compila l'item</message>
+	<message key="manager.reviewFormElements.noneCreated">Non è stato creato nessun item</message>
+	<message key="manager.reviewFormElements.confirmDelete">Conferma la cancellazione di un documento pubblicato</message>
+	<message key="manager.reviewFormElements.copyTo">Copia in:</message>
+	<message key="manager.reviewFormElements.question">Item</message>
+	<message key="manager.reviewFormElements.required">E' necessario che i revisori completino il documento</message>
+	<message key="manager.reviewFormElements.viewable">Visibile (per gli autori)</message>
+	<message key="manager.reviewFormElements.elementType">Tipo di item</message>
+	<message key="manager.reviewFormElements.possibleResponse">Selezione</message>
+	<message key="manager.reviewFormElements.addResponseItem">Aggiungi una selezione</message>
+	<message key="manager.reviewFormElements.chooseType">Scegli il tipo</message>
+	<message key="manager.reviewFormElement.changeType">Cambia il tipo</message>
+	<message key="manager.reviewFormElements.form.questionRequired">E' necessario inserire una domanda</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">E' necessario inserire il tipo di item</message>
+	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Per favore riempi i campi obbligatori</message>
+	<message key="manager.reviewFormElements.smalltextfield">Text box per una sola parola</message>
+	<message key="manager.reviewFormElements.textfield">Text box su una linea</message>
+	<message key="manager.reviewFormElements.textarea">Text box per testi lunghi</message>
+	<message key="manager.reviewFormElements.checkboxes">Checkbox (Possibile una o più scelte)</message>
+	<message key="manager.reviewFormElements.radiobuttons">Radio button (Una sola scelta possibile)</message>
+	<message key="reviewer.paper.enterReviewForm">Cliccare sull'icona per riempire la form di revisione</message>
+	<message key="manager.reviewFormElements.dropdownbox">Menù a tendina</message>
+	<message key="submission.reviewForm">Modulo di revisione</message>
+	<message key="submission.reviewFormResponse">Risposta del modulo di revisione</message>
+	<message key="editor.paper.reviewForms">Moduli di revisione</message>
+	<message key="editor.paper.selectReviewForm">Seleziona il modulo di revisione</message>
+	<message key="editor.paper.clearReviewForm">Pulisci il modulo di revisione</message>
+	<message key="editor.paper.confirmChangeReviewForm">Modifcare il modulo di revisione rimuoverà le risposte</message>
+	<message key="manager.sections.form.reviewFormId">Assicurati che hai scelto una forma di revisione valida</message>
+	<message key="manager.reviewForms.list.description">I moduli di peer review creati qui verranno presentati ai revisori per essere completati, invece del modulo di default che consiste di due caselle di testo vuote, la prima "per l'autore e per il curatore", e la seconda "per il curatore". I moduli di revisione possono essere designati per una sezione specifica della rivista, e i curatori avranno l'opzione di scegliere quale modulo usare nell'assegnare la revisione. In tutti i casi, i curatori avranno l'opzione di includere le revisioni in corrispondenza dell'autore.</message>
 	<!-- Common Form Messages -->
 
 	<!-- Common Email Messages -->
@@ -303,11 +350,7 @@
 	<message key="comments.commentsClosed">Commenti chiusi il {$closeCommentsDate}.</message>
 
 	<!-- Site Administration -->
-	<message key="admin.hostedConferences">Elenco dei convegni</message>
 
-	<message key="admin.settings.conferenceRedirect">Reindirizzamento del convegno</message>
-	<message key="admin.settings.conferenceRedirectInstructions">Le richieste al sito principale verranno indirizzate a questo convegno. Questo pu&#x00F2; essere utile, ad esempio, se il sito ospita solo un convegno.</message>
-	<message key="admin.settings.noConferenceRedirect">Nessun reindirizzamento</message>
         <message key="admin.settings.oaiRegistrationDescription"><![CDATA[Per avere i contenuti di tutti i convegni ospitati in questo sito indicizzati all'interno di un sistema globale distribuito di database di ricerca, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">registrate</a> l'URL del vostro sito con il Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. Questo strumento raccoglie i metadati di ogni oggetto indicizzato in questo convegno, permettendo cos&#x00EC; una ricerca accurata e globale tra i siti che aderiscono all'<a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clicca qui</a> e inserisci <span class="highlight">{$siteUrl}</span> sotto <strong>il sito dell'URL</strong>, e <span class="highlight">{$oaiUrl}</span> sotto <strong>Base URL for OAI Archive</strong>.
@@ -317,57 +360,19 @@ Nota che l'interfaccia OAI pu&#x00F2; essere disabilitata per questo sito modifi
 
 
 	<!-- Languages -->
-	<message key="admin.languages.primaryLocaleInstructions">Questa sar&#x00E0; la lingua di default per il sito e i convegni ospitati.</message>
-	<message key="admin.languages.supportedLocalesInstructions">Seleziona tutte le lingue aggiuntive che saranno supportate dal sito. Le lingue scelte potranno essere selezionate da tutti le riviste ospitate tramite un menu presente in tutte le pagine del sito (in ogni caso il layout potr&#x00E0; sempre essere modificato personalizzando le pagine del singolo convegno). Se non vengono impostate pi&#x00F9; lingue, il menu di selezione sar&#x00E0; presente e non saranno disponibili le impostazioni estese per le lingue.</message>
-	<message key="admin.languages.confirmUninstall">Sei sicuro di voler disinstallare questa lingua aggiuntiva? Questo potr&#x00E0; avere effetti sulle riviste che attualmente la utilizzano.</message>
-	<message key="admin.languages.installNewLocalesInstructions">Seleziona le lingue aggiuntive che devono essere installate nel sistema. Per potere essere utilizzate dalle riviste le lingue aggiuntive devono essere prima installate. Per maggiori informazioni sul supporto per le lingue aggiuntive consultare la documentazione di OCS.</message>
 
-	<message key="admin.auth.ocs">Utente del database di OCS </message>
-	<message key="admin.auth.enableSyncProfiles">Abilita la sincronizzazione del profilo dell'utente (se supportato da questo plug-in di autenticazione). Le informazione sul profilo dell'utente saranno automaticamente aggiornate in remoto quando un utente accede, e i cambiamenti del profilo (inclusi cambi di password) fatti all'interno di OCS saranno automaticamente aggiornati in remoto. Se questa opzione &#x00E8; disabilitata le informazioni del profilo OCS saranno mantenute separate dalle informazioni del profilo in remoto.</message>
-	<message key="admin.auth.enableSyncPasswords">Abilita la modifica della password dell'utente (se supportato da questo plug-in di autenticazione). L'abilitazione di questa opzione permette agli utenti di modificare la password all'interno di OCS and e di usare il comando OCS "password smarrita" per resettare una password dimenticata. Queste funzioni non saranno disponibili all'utente con questa fonte di autenticazione se questa opzione &#x00E8; disabilitata.</message>
-	<message key="admin.auth.enableCreateUsers">Abilita la creazione di un utente (se supportato da questo plug-in di autenticazione). Gli utenti creati all'interno di OCS con questa fonte di autenticazione  saranno automaticamente aggiunti alla fonte di autenticazione in remoto se ancora non esiste. Inoltre, se questa fonte &#x00E8; la fonte di autenticazione di default, gli account di OCS creati tramite la registrazione dell'utente saranno aggiunti alla fonte di autenticazione in remoto.</message>
 	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Specificare una fonte di autenticazione di default fuori da  OCS ha i seguenti effetti:</p>
 <ul>
 	<li>Se un utente cerca di registrare un nuovo account in questo sito con una username che esiste nella fonte di autenticazione (ma non nel database di OCS), il tentativo di registrazione &#x00E8; permesso solo se la password fornita &#x00E8; valida per quell'account dell'utente.</li>
 </ul>]]></message>
 
 	<!-- System Information -->
-	<message key="admin.systemVersion">Versione di OCS</message>
-	<message key="admin.systemConfiguration">Configurazione di OCS</message>
-	<message key="admin.systemConfigurationDescription"><![CDATA[Impostazioni di configurazione di OCS prese da <tt>config.inc.php</tt>.]]></message>
 	<message key="admin.editSystemConfigInstructions"><![CDATA[Utilizzate questo modulo per modificare le configurazioni del vostro sistema (il file <tt>config.inc.php</tt>). Fate click su "Salva" per memorizzare la nuova configurazione, o "Visualizza" per mostrare la versione aggiornata della configurazione, senza effettuare nessuna modifica.
 <br /><br />
 <span class="formError">Avvertimento: la modifica di queste impostazioni pu&#x00F2; potenzialmente rendere il sistema inaccessibile (con la conseguenza di dover sistemare manualmente il file di configurazione). Si consiglia fortemente di non effettuare nessuna modifica a meno che non sappiate esattamente quello che state facendo.</span>]]></message>
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTA!</div>
 <p>Il sistema non &#x00E8; riuscito a sovrascrivere il file di configurazione. Per effettuare delle modifiche &#x00E8; necessario aprire il file <tt>config.inc.php</tt> con un redattore di testo e sostituirne il contenuto con il testo del modulo sottostante.</p>]]></message>
 
-	<message key="admin.conferences.conferenceSettings">Impostazioni del convegno</message>
-	<message key="admin.conferences.noneCreated">Nessun convegno &#x00E8; stato creato.</message>
-	<message key="admin.conferences.confirmDelete">Siete sicuri di voler cancellare definitivamente questo convegno e tutti i suoi contenuti?</message>
-	<message key="admin.conferences.create">Crea un convegno</message>
-	<message key="admin.conferences.createInstructions">Sarete automaticamente registrati come amministratore di questo convegno. Dopo aver creato un nuovo convegno, effettuate il log in come amministratore per continuare ad effettuare il setup e la registrazione degli utenti.</message>
-	<message key="admin.conferences.urlWillBe"><![CDATA[La URL del convegno sar&#x00E0; {$sampleUrl}]]></message>
-	<message key="admin.conferences.form.titleRequired">&#x00C8; necessario inserire un titolo</message>
-	<message key="admin.conferences.form.pathRequired">&#x00C8; necessario inserire un percorso.</message>
-	<message key="admin.conferences.form.pathAlphaNumeric">Il percorso pu&#x00F2; contenere solo caratteri alfanumerici, underscore e trattini, e deve iniziare e finire con un carattere alfanumerico.</message>
-	<message key="admin.conferences.form.pathExists">Il percorso selezionato &#x00E8; gi&#x00E0; utilizzato da un altro convegno.</message>
-	<message key="admin.conferences.enableConferenceInstructions">Consenti a questo convegno di apparire pubblicamente sul sito</message>
-	<message key="admin.conferences.conferenceDescription">Descrizione del convegno</message>
-	<message key="admin.conferences.conferenceDescriptionInstructions">La descrizione del convegno identifica la missione in corso di questo convegno. Appare nella pagina principale del convegno, come anche in tutte le pagine dell'assemblea del convegno.</message>
-	<message key="admin.conferences.importOCS1">Importa da OCS 1</message>
-	<message key="admin.conferences.importOCS1.editMigratedConference">Modifica il convegno importato</message>
-	<message key="admin.conferences.importOCS1.conflict.desc">Alcuni account hanno informazioni in conflitto. OCS 1.x permette a user account multipli di condividere lo stesso indirizzo email, mentre OCS 2.x no. Nell'elenco qui sotto, al secondo account &#x00E8; stato assegnato un account email temporaneo. Questo dovrebbe essere corretto a mano, assegnandogli un diverso account email, oppure fondendo gli account.</message>
-	<message key="admin.conferences.importOCS1.errors.desc">Si incontreranno i seguenti errori durante la migrazione da un convegno in OCS 1.x a uno in OCS 2.x.</message>
-	<message key="admin.conferences.importOCS1.conflict">{$firstUsername} ({$firstName}) e {$secondUsername} ({$secondName})</message>
-	<message key="admin.conferences.importOCS1Instructions"><![CDATA[Consulta il documento UPGRADE distributo con OCS per informazioni dettagliate sulla migrazione dei dati da OCS 1 a OCS 2. Nota che questo processo NON creer&#x00E0; un convegno in OCS 2 completamente configurato; solo alcuni oggetti (es. interventi) saranno importati. <strong>Tutti gli utenti importati dovranno resettare le loro password. &#x00C8; fortemente suggerito al Direttore del convegno di rivedere tutte le informazioni importate prima di far partire il sito web del convegno.</strong>]]></message>
-	<message key="admin.conference.pathImportInstructions">Path di un convegno esistente o path da creare (es., "ocs").</message>
-	<message key="admin.conference.importPath">OCS 1 path</message>
-	<message key="admin.conference.importPathInstructions">Completa il path del filesystem locale  per l'installazione di OCS 1 (es., "/var/www/ocs").</message>
-	<message key="admin.conferences.importRegistrations">Importa le registrazioni</message>
-	<message key="admin.conferences.emailUsers">Invia una email agli utenti creati con le informazioni di login, includendo una password casuale</message>
-	<message key="admin.conferences.transcode">Converti i metadati degli interventi da ISO8859-1</message>
-	<message key="admin.conferences.form.importPathRequired">&#x00C8; richiesto il path dell'importazione.</message>
-	<message key="admin.conferences.importErrors">Importazione fallita</message>
 
 	<!-- Registration Management -->
 
