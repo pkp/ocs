@@ -186,8 +186,8 @@ class TrackDAO extends DAO {
 				VALUES
 				(?, ?, ?, ?, ?, ?)',
 			array(
-				$track->getSchedConfId(),
-				$track->getSequence() == null ? 0 : $track->getSequence(),
+				(int) $track->getSchedConfId(),
+				(int) $track->getSequence(),
 				$track->getMetaReviewed() ? 1 : 0,
 				$track->getDirectorRestricted() ? 1 : 0,
 				$track->getHideAbout() ? 1 : 0,
@@ -215,12 +215,12 @@ class TrackDAO extends DAO {
 					disable_comments = ?
 				WHERE track_id = ?',
 			array(
-				$track->getSequence(),
-				$track->getMetaReviewed(),
-				$track->getDirectorRestricted(),
-				$track->getHideAbout(),
-				$track->getDisableComments(),
-				$track->getTrackId()
+				(int) $track->getSequence(),
+				$track->getMetaReviewed()?1:0,
+				$track->getDirectorRestricted()?1:0,
+				$track->getHideAbout()?1:0,
+				$track->getDisableComments()?1:0,
+				(int) $track->getTrackId()
 			)
 		);
 		$this->updateLocaleFields($track);
