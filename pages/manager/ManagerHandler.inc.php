@@ -15,9 +15,9 @@
 //$Id$
 
 
-import('core.Handler');
+import('core.PKPHandler');
 
-class ManagerHandler extends Handler {
+class ManagerHandler extends PKPHandler {
 
 	/**
 	 * Display conference management index page.
@@ -91,7 +91,7 @@ class ManagerHandler extends Handler {
 	 * Redirects to user index page if not properly authenticated.
 	 */
 	function validate() {
-		list($conference, $schedConf) = Handler::validate(true, false);
+		list($conference, $schedConf) = PKPHandler::validate(true, false);
 
 		if (!$conference || (!Validation::isConferenceManager() && !Validation::isSiteAdmin())) {
 			Validation::redirectLogin();

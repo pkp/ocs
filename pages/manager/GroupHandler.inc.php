@@ -25,7 +25,7 @@ class GroupHandler extends ManagerHandler {
 
 		$schedConfId = $schedConf? $schedConf->getSchedConfId():0;
 
-		$rangeInfo = &Handler::getRangeInfo('groups', array());
+		$rangeInfo =& PKPHandler::getRangeInfo('groups', array());
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		while (true) {
 			$groups =& $groupDao->getGroups($conference->getConferenceId(), $schedConfId, $rangeInfo);
@@ -157,7 +157,7 @@ class GroupHandler extends ManagerHandler {
 		$groupId = isset($args[0])?(int)$args[0]:0;
 		list($conference, $schedConf, $group) = GroupHandler::validate($groupId);
 
-		$rangeInfo = &Handler::getRangeInfo('membership', array($groupId));
+		$rangeInfo =& PKPHandler::getRangeInfo('membership', array($groupId));
 
 		GroupHandler::setupTemplate($group, true);
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
@@ -219,7 +219,7 @@ class GroupHandler extends ManagerHandler {
 				$search = $searchInitial;
 			}
 
-			$rangeInfo = &Handler::getRangeInfo('users', array($groupId, (string) $search, (string) $searchMatch, (string) $searchType));
+			$rangeInfo =& PKPHandler::getRangeInfo('users', array($groupId, (string) $search, (string) $searchMatch, (string) $searchType));
 
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			while (true) {

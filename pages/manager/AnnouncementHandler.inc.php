@@ -27,7 +27,7 @@ class AnnouncementHandler extends ManagerHandler {
 		list($conference, $schedConf) = parent::validate();
 		AnnouncementHandler::setupTemplate();
 
-		$rangeInfo = &Handler::getRangeInfo('announcements', array());
+		$rangeInfo =& PKPHandler::getRangeInfo('announcements', array());
 		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
 		while (true) {
 			$announcements = &$announcementDao->getAnnouncementsByConferenceId($conference->getConferenceId(), -1, $rangeInfo);
@@ -176,7 +176,7 @@ class AnnouncementHandler extends ManagerHandler {
 		AnnouncementHandler::setupTemplate(true);
 
 		$conference = &Request::getConference();
-		$rangeInfo = &Handler::getRangeInfo('announcementTypes', array());
+		$rangeInfo =& PKPHandler::getRangeInfo('announcementTypes', array());
 		$announcementTypeDao = &DAORegistry::getDAO('AnnouncementTypeDAO');
 		while (true) {
 			$announcementTypes = &$announcementTypeDao->getAnnouncementTypesByConferenceId($conference->getConferenceId(), $rangeInfo);

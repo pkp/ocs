@@ -25,7 +25,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		$conference = &Request::getConference();
 
-		$rangeInfo = Handler::getRangeInfo('schedConfs', array());
+		$rangeInfo = PKPHandler::getRangeInfo('schedConfs', array());
 
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		while (true) {

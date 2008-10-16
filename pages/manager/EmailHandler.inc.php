@@ -23,7 +23,7 @@ class EmailHandler extends ManagerHandler {
 		list($conference, $schedConf) = EmailHandler::validate();
 		parent::setupTemplate(true);
 
-		$rangeInfo = Handler::getRangeInfo('emails', array());
+		$rangeInfo = PKPHandler::getRangeInfo('emails', array());
 
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplatesArray = &$emailTemplateDao->getEmailTemplates(Locale::getLocale(),

@@ -15,9 +15,9 @@
 //$Id$
 
 
-import('core.Handler');
+import('core.PKPHandler');
 
-class ConferenceHandler extends Handler {
+class ConferenceHandler extends PKPHandler {
 
 	/**
 	 * Display the home page for the current conference.

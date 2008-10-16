@@ -17,9 +17,9 @@
 
 
 import('rt.ocs.ConferenceRTAdmin');
-import('core.Handler');
+import('core.PKPHandler');
 
-class RTAdminHandler extends Handler {
+class RTAdminHandler extends PKPHandler {
 
 	/**
 	 * If no conference is selected, display list of conferences.

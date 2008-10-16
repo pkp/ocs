@@ -60,7 +60,7 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType, $roleId));
+		$rangeInfo =& PKPHandler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType, $roleId));
 
 		if ($roleId) {
 			while (true) {
@@ -164,7 +164,7 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
+		$rangeInfo =& PKPHandler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 
 		while (true) {
 			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
@@ -543,7 +543,7 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo =& Handler::getRangeInfo('users', array($roleId, (string) $search, (string) $searchMatch, (string) $searchType));
+		$rangeInfo =& PKPHandler::getRangeInfo('users', array($roleId, (string) $search, (string) $searchMatch, (string) $searchType));
 
 		if ($roleId) {
 			while (true) {
@@ -815,7 +815,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Restore original user account after signing in as a user.
 	 */
 	function signOutAsUser() {
-		Handler::validate();
+		PKPHandler::validate();
 
 		$session =& Request::getSession();
 		$signedInAs = $session->getSessionVar('signedInAs');

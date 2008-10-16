@@ -40,7 +40,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 			$templateMgr->assign('logEntry', $logEntry);
 			$templateMgr->display('manager/conferenceEventLogEntry.tpl');
 		} else {
-			$rangeInfo = &Handler::getRangeInfo('eventLogEntries', array());
+			$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries', array());
 
 			import('conference.log.ConferenceLog');
 			while (true) {
@@ -66,7 +66,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 
 		$conference =& Request::getConference();
 
-		$rangeInfo = &Handler::getRangeInfo('eventLogEntries', array($assocType, $assocId));
+		$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries', array($assocType, $assocId));
 		$logDao = &DAORegistry::getDAO('ConferenceEventLogDAO');
 		while (true) {
 			$eventLogEntries = &$logDao->getConferenceLogEntriesByAssoc($conference->getConferenceId(), null, $assocType, $assocId, $rangeInfo);

@@ -16,9 +16,9 @@
 // $Id$
 
 
-import('core.Handler');
+import('core.PKPHandler');
 
-class SchedConfsHandler extends Handler {
+class SchedConfsHandler extends PKPHandler {
 
 	/**
 	 * Display the home page for the current conference.

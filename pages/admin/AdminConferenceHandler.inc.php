@@ -23,7 +23,7 @@ class AdminConferenceHandler extends AdminHandler {
 		parent::validate();
 		parent::setupTemplate(true);
 
-		$rangeInfo = Handler::getRangeInfo('conferences');
+		$rangeInfo = PKPHandler::getRangeInfo('conferences');
 
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
 		$conferences = &$conferenceDao->getConferences($rangeInfo);

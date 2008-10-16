@@ -40,6 +40,8 @@ class TemplateManager extends PKPTemplateManager {
 			$schedConf = &Request::getSchedConf();
 			$site = &Request::getSite();
 			$this->assign('siteTitle', $site->getSiteTitle());
+			
+			$this->assign('homeContext', array('conference' => 'index', 'schedConf' => 'index'));
 
 			$siteStyleFilename = PublicFileManager::getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
 			if (file_exists($siteStyleFilename)) $this->addStyleSheet(Request::getBaseUrl() . '/' . $siteStyleFilename);
@@ -212,17 +214,22 @@ class TemplateManager extends PKPTemplateManager {
 		// Extract the variables named in $paramList, and remove them
 		// from the params array. Variables remaining in params will be
 		// passed along to Request::url as extra parameters.
-		$paramList = array('conference', 'schedConf', 'page', 'op', 'path', 'anchor', 'escape');
-		foreach ($paramList as $param) {
-			if (isset($params[$param])) {
-				$$param = $params[$param];
-				unset($params[$param]);
-			} else {
-				$$param = null;
-			}
-		}
+		$context = array();
+		$contextList = OCSApplication::getContextList();
 
-		return Request::url($conference, $schedConf, $page, $op, $path, $params, $anchor, !isset($escape) || $escape);
+		if ( !isset($params['context']) ) {
+			foreach ($contextList as $contextName) {
+				if (isset($params[$contextName])) {
+					$context[$contextName] = $params[$contextName];
+					unset($params[$contextName]);
+				} else {
+					$context[$contextName] = null;				
+				}
+			}
+			$params['context'] = $context;
+		}
+		
+		return parent::smartyUrl($params, &$smarty);
 	}
 
 	/**

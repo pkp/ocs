@@ -18,9 +18,9 @@
 
 import('rt.ocs.RTDAO');
 import('rt.ocs.ConferenceRT');
-import('core.Handler');
+import('core.PKPHandler');
 
-class CommentHandler extends Handler {
+class CommentHandler extends PKPHandler {
 	function view($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;

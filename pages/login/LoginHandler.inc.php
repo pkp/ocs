@@ -15,9 +15,9 @@
 //$Id$
 
 
-import('core.Handler');
+import('core.PKPHandler');
 
-class LoginHandler extends Handler {
+class LoginHandler extends PKPHandler {
 
 	/**
 	 * Display user login form.

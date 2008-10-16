@@ -36,7 +36,7 @@ class SchedulerHandler extends ManagerHandler {
 		SchedulerHandler::setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
-		$rangeInfo =& Handler::getRangeInfo('buildings', array());
+		$rangeInfo =& PKPHandler::getRangeInfo('buildings', array());
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 		while (true) {
 			$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
@@ -178,7 +178,7 @@ class SchedulerHandler extends ManagerHandler {
 			Request::redirect(null, null, null, 'scheduler');
 		}
 
-		$rangeInfo =& Handler::getRangeInfo('rooms', array($buildingId));
+		$rangeInfo =& PKPHandler::getRangeInfo('rooms', array($buildingId));
 		$roomDao =& DAORegistry::getDAO('RoomDAO');
 		while (true) {
 			$rooms =& $roomDao->getRoomsByBuildingId($buildingId, $rangeInfo);
@@ -346,7 +346,7 @@ class SchedulerHandler extends ManagerHandler {
 		SchedulerHandler::setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
-		$rangeInfo =& Handler::getRangeInfo('specialEvents', array());
+		$rangeInfo =& PKPHandler::getRangeInfo('specialEvents', array());
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 		while (true) {
 			$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);

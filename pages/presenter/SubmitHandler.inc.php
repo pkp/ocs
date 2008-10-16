@@ -317,7 +317,7 @@ class SubmitHandler extends PresenterHandler {
 		}
 
 		$paper = null;
-
+		
 		if (isset($paperId)) {
 			// Check that paper exists for this conference and user and that submission is incomplete
 			$paper =& $paperDao->getPaper((int) $paperId);
@@ -339,6 +339,7 @@ class SubmitHandler extends PresenterHandler {
 				Request::redirect(null, null, 'presenter', 'index');
 			}
 		}
+
 		return array(&$conference, &$schedConf, &$paper);
 	}
 }

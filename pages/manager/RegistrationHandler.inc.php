@@ -26,7 +26,7 @@ class RegistrationHandler extends ManagerHandler {
 		RegistrationHandler::setupTemplate();
 
 		$schedConf = &Request::getSchedConf();
-		$rangeInfo = &Handler::getRangeInfo('registrations', array());
+		$rangeInfo =& PKPHandler::getRangeInfo('registrations', array());
 		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
 
 		// Get the user's search conditions, if any
@@ -196,7 +196,7 @@ class RegistrationHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = &Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
+		$rangeInfo =& PKPHandler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 
 		while (true) {
 			$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
@@ -280,7 +280,7 @@ class RegistrationHandler extends ManagerHandler {
 		RegistrationHandler::setupTemplate(true);
 
 		$schedConf = &Request::getSchedConf();
-		$rangeInfo = &Handler::getRangeInfo('registrationTypes', array());
+		$rangeInfo =& PKPHandler::getRangeInfo('registrationTypes', array());
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 		while (true) {
 			$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);

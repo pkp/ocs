@@ -239,7 +239,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		// submission notes
 		$paperNoteDao = &DAORegistry::getDAO('PaperNoteDAO');
 
-		$rangeInfo = &Handler::getRangeInfo('submissionNotes', array($paperId));
+		$rangeInfo =& PKPHandler::getRangeInfo('submissionNotes', array($paperId));
 		while (true) {
 			$submissionNotes =& $paperNoteDao->getPaperNotes($paperId, $rangeInfo);
 			unset($rangeInfo);
@@ -250,7 +250,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		import('paper.log.PaperLog');
 
-		$rangeInfo = &Handler::getRangeInfo('eventLogEntries', array($paperId));
+		$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries', array($paperId));
 		while (true) {
 			$eventLogEntries =& PaperLog::getEventLogEntries($paperId, $rangeInfo);
 			unset($rangeInfo);
@@ -259,7 +259,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			unset($eventLogEntries);
 		}
 
-		$rangeInfo = &Handler::getRangeInfo('emailLogEntries', array($paperId));
+		$rangeInfo =& PKPHandler::getRangeInfo('emailLogEntries', array($paperId));
 		while (true) {
 			$emailLogEntries =& PaperLog::getEmailLogEntries($paperId, $rangeInfo);
 			unset($rangeInfo);
@@ -377,7 +377,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				$search = $searchInitial;
 			}
 
-			$rangeInfo = &Handler::getRangeInfo('reviewers', array($submission->getCurrentStage(), (string) $searchType, (string) $search, (string) $searchMatch)); // Paper ID intentionally omitted
+			$rangeInfo =& PKPHandler::getRangeInfo('reviewers', array($submission->getCurrentStage(), (string) $searchType, (string) $search, (string) $searchMatch)); // Paper ID intentionally omitted
 			while (true) {
 				$reviewers = $trackDirectorSubmissionDao->getReviewersForPaper($schedConf->getSchedConfId(), $paperId, $submission->getCurrentStage(), $searchType, $search, $searchMatch, $rangeInfo);
 				if ($reviewers->isInBounds()) break;
@@ -489,7 +489,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = Handler::getRangeInfo('users', array((string) $searchType, (string) $searchMatch, (string) $search)); // Paper ID intentionally omitted
+		$rangeInfo = PKPHandler::getRangeInfo('users', array((string) $searchType, (string) $searchMatch, (string) $search)); // Paper ID intentionally omitted
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		while (true) {
 			$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, false, $rangeInfo);
@@ -1351,7 +1351,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->display('trackDirector/submissionEventLogEntry.tpl');
 
 		} else {
-			$rangeInfo = &Handler::getRangeInfo('eventLogEntries', array($paperId));
+			$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries', array($paperId));
 
 			import('paper.log.PaperLog');
 			while (true) {
@@ -1376,7 +1376,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		parent::setupTemplate(true, $paperId, 'history');
 
-		$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array($paperId, $assocType, $assocId));
+		$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries', array($paperId, $assocType, $assocId));
 		$logDao = &DAORegistry::getDAO('PaperEventLogDAO');
 		while (true) {
 			$eventLogEntries =& $logDao->getPaperLogEntriesByAssoc($paperId, $assocType, $assocId, $rangeInfo);
@@ -1439,7 +1439,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->display('trackDirector/submissionEmailLogEntry.tpl');
 
 		} else {
-			$rangeInfo = &Handler::getRangeInfo('emailLogEntries', array($paperId));
+			$rangeInfo =& PKPHandler::getRangeInfo('emailLogEntries', array($paperId));
 
 			import('paper.log.PaperLog');
 			while (true) {
@@ -1464,7 +1464,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		parent::setupTemplate(true, $paperId, 'history');
 
-		$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array($paperId, $assocType, $assocId));
+		$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries', array($paperId, $assocType, $assocId));
 		$logDao = &DAORegistry::getDAO('PaperEmailLogDAO');
 		while (true) {
 			$emailLogEntries =& $logDao->getPaperLogEntriesByAssoc($paperId, $assocType, $assocId, $rangeInfo);
@@ -1583,7 +1583,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		if ($noteViewType == 'edit' || $noteViewType == 'add') {
 			$templateMgr->assign('showBackLink', true);
 		} else {
-			$rangeInfo =& Handler::getRangeInfo('submissionNotes', array($paperId));
+			$rangeInfo =& PKPHandler::getRangeInfo('submissionNotes', array($paperId));
 			while (true) {
 				$submissionNotes =& $paperNoteDao->getPaperNotes($paperId, $rangeInfo);
 				if ($submissionNotes->isInBounds()) break;

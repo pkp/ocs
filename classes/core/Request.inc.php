@@ -94,6 +94,45 @@ class Request extends PKPRequest {
 
 		return $schedConf;
 	}
+	
+	function getRequestedContextPath($contextLevel = null) {
+		switch ($contextLevel) {
+			case 1:
+				return array(Request::getRequestedConferencePath());
+				break;
+			case 2:
+				return array(Request::getRequestedSchedConfPath());
+				break;
+			default:
+				return array(Request::getRequestedConferencePath(), Request::getRequestedSchedConfPath());
+		}
+	}
+	
+	function &getContext($level = 1) {
+		$returner = false;
+		switch ($level) {
+			case 1:
+				$returner =& Request::getConference();
+				break;
+			case 2:
+				$returner =& Request::getSchedConf();
+				break;	
+		}
+		return $returner;	
+	}
+	
+	function &getContextByName($contextName) {
+		$returner = false;
+		switch ($contextName) {
+			case 'conference':
+				$returner =& Request::getConference();
+				break;
+			case 'schedConf':
+				$returner =& Request::getSchedConf();
+				break;	
+		}
+		return $returner;
+	}
 
 	/**
 	 * Get the conference associated with the current request.
@@ -144,110 +183,7 @@ class Request extends PKPRequest {
 	 */
 	function url($conferencePath = null, $schedConfPath = null, $page = null,
 			$op = null, $path = null, $params = null, $anchor = null, $escape = false) {
-		$pathInfoDisabled = !Request::isPathInfoEnabled();
-
-		$amp = $escape?'&amp;':'&';
-		$prefix = $pathInfoDisabled?$amp:'?';
-
-		// Establish defaults for page and op
-		$defaultPage = Request::getRequestedPage();
-		$defaultOp = Request::getRequestedOp();
-
-		if($page == 'install') {
-			$conferencePath = 'index';
-			$schedConfPath = 'index';
-		} else {
-			if (isset($conferencePath)) {
-				$conferencePath = rawurlencode($conferencePath);
-				$conferencePathProvided = true;
-			} else {
-				$conference =& Request::getConference();
-				if ($conference) $conferencePath = $conference->getPath();
-				else $conferencePath = 'index';
-			}
-
-			if(isset($schedConfPath)) {
-				$schedConfPath = rawurlencode($schedConfPath);
-				$schedConfPathProvided = true;
-			} else {
-				$schedConf =& Request::getSchedConf();
-				if ($schedConf) $schedConfPath = $schedConf->getPath();
-				else $schedConfPath = 'index';
-			}
-		}
-
-		// If a conference and scheduled conference have been specified, don't supply default
-		// page or op.
-		if(isset($schedConfPathProvided) || isset($conferencePathProvided)) {
-			$defaultPage = null;
-			$defaultOp = null;
-		}
-
-		// Get overridden base URLs (if available).
-		$overriddenBaseUrl = Config::getVar('general', "base_url[$conferencePath]");
-
-		// If a page has been specified, don't supply a default op.
-		if ($page) {
-			$page = rawurlencode($page);
-			$defaultOp = null;
-		} else {
-			$page = $defaultPage;
-		}
-
-		// Encode the op.
-		if ($op) $op = rawurlencode($op);
-		else $op = $defaultOp;
-
-		// Process additional parameters
-		$additionalParams = '';
-		if (!empty($params)) foreach ($params as $key => $value) {
-			if (is_array($value)) foreach($value as $element) {
-				$additionalParams .= $prefix . $key . '%5B%5D=' . rawurlencode($element);
-				$prefix = $amp;
-			} else {
-				$additionalParams .= $prefix . $key . '=' . rawurlencode($value);
-				$prefix = $amp;
-			}
-		}
-
-		// Process anchor
-		if (!empty($anchor)) $anchor = '#' . rawurlencode($anchor);
-		else $anchor = '';
-
-		if (!empty($path)) {
-			if (is_array($path)) $path = array_map('rawurlencode', $path);
-			else $path = array(rawurlencode($path));
-			if (!$page) $page = 'index';
-			if (!$op) $op = 'index';
-		}
-
-		$pathString = '';
-		if ($pathInfoDisabled) {
-			$joiner = $amp . 'path%5B%5D=';
-			if (!empty($path)) $pathString = $joiner . implode($joiner, $path);
-			if (empty($overriddenBaseUrl)) $baseParams = "?conference=$conferencePath&schedConf=$schedConfPath";
-			else $baseParams = '';
-
-			if (!empty($page) || !empty($overriddenBaseUrl)) {
-				$baseParams .= empty($baseParams)?'?':$amp . "page=$page";
-				if (!empty($op)) {
-					$baseParams .= $amp . "op=$op";
-				}
-			}
-		} else {
-			if (!empty($path)) $pathString = '/' . implode('/', $path);
-			if (empty($overriddenBaseUrl)) $baseParams = "/$conferencePath/$schedConfPath";
-			else $baseParams = '';
-
-			if (!empty($page)) {
-				$baseParams .= "/$page";
-				if (!empty($op)) {
-					$baseParams .= "/$op";
-				}
-			}
-		}
-
-		return ((empty($overriddenBaseUrl)?Request::getIndexUrl():$overriddenBaseUrl) . $baseParams . $pathString . $additionalParams . $anchor);
+		return parent::url(array($conferencePath, $schedConfPath), $page, $op, $path, $params, $anchor, $escape);
 	}
 }
 

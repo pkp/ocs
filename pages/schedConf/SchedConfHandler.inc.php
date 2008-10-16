@@ -18,9 +18,9 @@
 
 import('schedConf.SchedConfAction');
 import('payment.ocs.OCSPaymentManager');
-import('core.Handler');
+import('core.PKPHandler');
 
-class SchedConfHandler extends Handler {
+class SchedConfHandler extends PKPHandler {
 
 	/**
 	 * Display scheduled conference view page.
@@ -445,7 +445,7 @@ class SchedConfHandler extends Handler {
 	}
 
 	function validate() {
-		list($conference, $schedConf) = parent::validate(true, true);
+		list($conference, $schedConf) = parent::validate(array(true, true));
 
 		if(!SchedConfAction::mayViewSchedConf($schedConf)) {
 			Request::redirect(null, 'index');

@@ -94,7 +94,7 @@ class RTVersionHandler extends RTAdminHandler {
 		$conference = Request::getConference();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$rangeInfo = Handler::getRangeInfo('versions');
+		$rangeInfo = PKPHandler::getRangeInfo('versions');
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign_by_ref('versions', $rtDao->getVersions($conference->getConferenceId(), $rangeInfo));

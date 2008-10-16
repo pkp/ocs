@@ -15,9 +15,9 @@
 //$Id$
 
 
-import('core.Handler');
+import('core.PKPHandler');
 
-class AnnouncementHandler extends Handler {
+class AnnouncementHandler extends PKPHandler {
 
 	/**
 	 * Display announcement index page.
@@ -33,7 +33,7 @@ class AnnouncementHandler extends Handler {
 
 		if ($announcementsEnabled) {
 			$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-			$rangeInfo = &Handler::getRangeInfo('announcements');
+			$rangeInfo =& PKPHandler::getRangeInfo('announcements');
 
 			if($schedConf) {
 				$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $schedConf->getSchedConfId(), $rangeInfo);

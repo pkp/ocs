@@ -74,7 +74,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				// Display a list of papers for export
 				$this->setBreadcrumbs(array(), true);
 				$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
-				$rangeInfo = Handler::getRangeInfo('papers');
+				$rangeInfo = PKPHandler::getRangeInfo('papers');
 				$paperIds = $publishedPaperDao->getPublishedPaperIdsAlphabetizedBySchedConf($conference->getConferenceId(), $schedConf->getSchedConfId());
 				$totalPapers = count($paperIds);
 				if ($rangeInfo->isValid()) $paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());

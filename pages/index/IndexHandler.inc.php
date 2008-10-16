@@ -15,9 +15,9 @@
 //$Id$
 
 
-import('core.Handler');
+import('core.PKPHandler');
 
-class IndexHandler extends Handler {
+class IndexHandler extends PKPHandler {
 
 	/**
 	 * If a scheduled conference in a conference is specified, display it.

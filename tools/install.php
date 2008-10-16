@@ -38,7 +38,7 @@ class OCSInstallTool extends InstallTool {
 
 		parent::readParams();
 
-		$this->readParamBoolean('install', 'installer.installOCS');
+		$this->readParamBoolean('install', 'installer.installApplication');
 
 		return $this->params['install'];
 	}

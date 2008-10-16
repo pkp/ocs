@@ -18,9 +18,9 @@
 
 import('rt.ocs.RTDAO');
 import('rt.ocs.ConferenceRT');
-import('core.Handler');
+import('core.PKPHandler');
 
-class PaperHandler extends Handler {
+class PaperHandler extends PKPHandler {
 
 	/**
 	 * View Paper.

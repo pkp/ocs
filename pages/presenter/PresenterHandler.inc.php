@@ -17,9 +17,9 @@
 
 
 import ('submission.presenter.PresenterAction');
-import('core.Handler');
+import('core.PKPHandler');
 
-class PresenterHandler extends Handler {
+class PresenterHandler extends PKPHandler {
 
 	/**
 	 * Display conference presenter index page.
@@ -29,7 +29,7 @@ class PresenterHandler extends Handler {
 		PresenterHandler::setupTemplate();
 
 		$user = &Request::getUser();
-		$rangeInfo = &Handler::getRangeInfo('submissions');
+		$rangeInfo =& PKPHandler::getRangeInfo('submissions');
 		$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';

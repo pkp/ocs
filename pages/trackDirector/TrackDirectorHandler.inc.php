@@ -20,9 +20,9 @@
 define('FILTER_TRACK_ALL', 0);
 
 import('submission.trackDirector.TrackDirectorAction');
-import('core.Handler');
+import('core.PKPHandler');
 
-class TrackDirectorHandler extends Handler {
+class TrackDirectorHandler extends PKPHandler {
 
 	/**
 	 * Display track director index page.
@@ -76,7 +76,7 @@ class TrackDirectorHandler extends Handler {
 			}	
 		}
 
-		$rangeInfo = Handler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
+		$rangeInfo = PKPHandler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
 		while (true) {
 			$submissions =& $trackDirectorSubmissionDao->$functionName(
 				$user->getUserId(),

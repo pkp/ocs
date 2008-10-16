@@ -41,6 +41,10 @@ class OCSApplication extends PKPApplication {
 	function getContextDepth() {
 		return 2;
 	}
+	
+	function getContextList() {
+		return array('conference', 'schedConf');
+	}
 
 	/**
 	 * Get the symbolic name of this application

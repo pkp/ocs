@@ -23,7 +23,7 @@ class TrackHandler extends ManagerHandler {
 		list($conference, $schedConf) = parent::validate();
 		parent::setupTemplate(true);
 
-		$rangeInfo = &Handler::getRangeInfo('tracks', array());
+		$rangeInfo =& PKPHandler::getRangeInfo('tracks', array());
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		while (true) {
 			$tracks = &$trackDao->getSchedConfTracks($schedConf->getSchedConfId(), $rangeInfo);
