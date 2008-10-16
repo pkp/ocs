@@ -861,8 +861,8 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<message key="installer.additionalLocalesInstructions">選擇附加的語言以支援本系統。這些語言可以讓不同的研討會來使用。不同語言的安裝可以隨時由系統管理員介面中進行。.</message>
 	<message key="installer.filesDirInstructions"><![CDATA[請輸入檔案上傳與保存的完整路徑，本資料匣不會直接經由 WEB 連結。<strong>請確認本資料匣已經存在並且在安裝期間設定為可寫入的屬性。</strong> Windows 的路徑必需使用斜線/，例如 "C:/myconference/files"。]]></message>
 	<message key="installer.databaseSettingsInstructions">OCS 需要連結到一個 SQL 資料庫，以儲存資料。請參閱上面的說明以了解可支援本軟體的資料系統。請在下方的欄位中入連結到資料庫的相關設定資訊。</message>
-	<message key="installer.installOCS">安裝開放研討會系統</message>
-	<message key="installer.upgradeOCS">升級開放研討會系統</message>
+	<message key="installer.installApplication">安裝開放研討會系統</message>
+	<message key="installer.upgradeApplication">升級開放研討會系統</message>
 	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>警告：</strong>如果安裝失敗部分是因為安裝資料庫的關係，在嘗試重新安裝資料庫之前，您可能需要刪除您的OCS資料庫或者資料表。]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>重要!</h4>
 <p>安裝檔無法自動覆寫設定檔。在嘗試使用本系統之前，請以合適的編輯器開啟 <tt>config.inc.php</tt>並且變更其內容為下列文字欄位中的內容。</p>]]></message>

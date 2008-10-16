@@ -902,8 +902,8 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="installer.additionalLocalesInstructions">Seleccione otros idomas para este sistema. Estos idomas estarán disponibles para el uso de eventos albergados en este sitio. Pueden instalarse otros idomas desde la interfaz del administrador.</message>
 	<message key="installer.filesDirInstructions"><![CDATA[Introduzca la ruta completa del directorio existente para guardar los ficheros cargados. este directorio no debería ser accesible directamente a través  de la web. <strong>Por favor, asegúrese de que este directorio existe y tiene permiso de escritura antes de la instalación.</strong> Los nombres de los directorios de las rutas en Windows deben utilizar barras, p.e.. "C:/myconference/files".]]></message>
 	<message key="installer.databaseSettingsInstructions">OCS requiere access a la base de datos  SQL para almacenar sus datos. Consulte los la lista de tipos de bases de datos que pueden emplearse. En los campos que vienen a continuaci�n, debe indicar las opciones para to conectar a la base de datos.</message>
-	<message key="installer.installOCS">Instalar Open Conference System</message>
-	<message key="installer.upgradeOCS">Actualizar Open Conference System</message>
+	<message key="installer.installApplication">Instalar Open Conference System</message>
+	<message key="installer.upgradeApplication">Actualizar Open Conference System</message>
 	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Atención:</strong> Si la instalación falla durante la instalación de la base de datos, necesitará retirar la base de datos del OCS o las tablas de la base antes de reinstalarla.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>¡IMPORTANTE!</h4>
 <p>El instalador no pudo sobrescribir automáticamente el fichero de configuración. Antes de usar el sistema, por favor abra el fichero <tt>config.inc.php</tt> con un editor de texto y reemplace su contenido con el del texto mencionado más abajo.</p>]]></message>

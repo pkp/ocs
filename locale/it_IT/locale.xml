@@ -816,8 +816,8 @@ Il vostro server supporta mbstring: <strong>{$supportsMBString}</strong>]]></mes
 	<message key="installer.additionalLocalesInstructions">Selezionate le altre lingue che devono essere supportate dal sistema, in modo che possano essere utilizzate dai convegni presenti nel sito. Ulteriori aggiunte possono essere fatte in qualsiasi momento dall'interfaccia di amministrazione del sito.</message>
 	<message key="installer.filesDirInstructions">Inserite il percorso completo di una cartella esistente dove conservare i file di cui &#x00E8; stato fatto il caricamento. Questa cartella non dovrebbe essere accessibile direttamente dal web. Assicuratevi che la cartella esista e siano gi&#x00E0; stati concessi i permessi di scrittura. I percorsi Windows devono avere il separatore "/", come ad esempio "C:/myconference/files".></message>
 	<message key="installer.databaseSettingsInstructions">OCS richiede l'accesso a un database SQL per depositare i suoi dati. Vedi i requisiti di sistema in alto per una lista di database supportati. Nei campi qui sotto, fornisci le configurazione da usare per connettersi al database.</message>
-	<message key="installer.installOCS">Installa Open Conference Systems</message>
-	<message key="installer.upgradeOCS">Upgrade Open Conference Systems</message>
+	<message key="installer.installApplication">Installa Open Conference Systems</message>
+	<message key="installer.upgradeApplication">Upgrade Open Conference Systems</message>
 	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Attenzione:</strong> Se l'installazione &#x00E8; fallita durante la creazione del database potrebbe essere necessario cancellare la base di dati di OCS o le tabelle contenute prima di ripetere il processo.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANTE!</h4>
 <p>Il programma d'installazione non &#x00E8; riuscito a sovrascrivere il file di configurazione. Prima di utilizzare OCS, aprite il file <tt>config.inc.php</tt> con un editor di testo e sostituitene il contenuto con quello del campo sottostante..</p>]]></message>

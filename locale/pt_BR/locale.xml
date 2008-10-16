@@ -820,8 +820,8 @@ O servidor atualmente tem suporte a mbstring: <strong>{$supportsMBString}</stron
 	<message key="installer.additionalLocalesInstructions">Escolha qualquer idioma adicional para incluir no sistema. Os idiomas estarão disponíveis para todas as revistas hospedadas. Idiomas adicionais também podem ser instalados a qualquer tempo através da interface web de administração.</message>
 	<message key="installer.filesDirInstructions">Digite o caminho físico completo para um diretório existente no servidor onde serão armazenados os documentos submetidos. Este diretório não deve possuir acesso direto via web. Verifique se o diretório existe e se possui permissões de escrita antes da instalação. Os caminhos no Windows devem utilizar a barra delimitadora para frente, ex.: "C:/myconference/files".</message>
 	<message key="installer.databaseSettingsInstructions">O sistema exige acesso a uma base de dados SQL para armazenar os dados. Veja os requisitos do sistema para a lista de bases de dados suportadas. Nos campos a seguir, informe as configurações para conexão com a base de dados.</message>
-	<message key="installer.installOCS">Instalar o sistema</message>
-	<message key="installer.upgradeOCS">Atualizar o sistema</message>
+	<message key="installer.installApplication">Instalar o sistema</message>
+	<message key="installer.upgradeApplication">Atualizar o sistema</message>
 	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>AVISO:</strong> em caso de erro durante a instalação do banco de dados poder ser necessário eliminar o banco de dados ou as tabelas antes de executar novamente a instalação.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANTE!</h4>
 <p>A instalação não conseguiu sobrescrever o documento de configuração. Antes de usar o sistema, edite o documento <tt>config.inc.php</tt> em um editor de texto e substitua todo o conteúdo pelo texto no campo abaixo.</p>]]></message>

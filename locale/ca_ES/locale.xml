@@ -856,8 +856,8 @@ El seu servidor actualment suporta mbstring: <strong>{$supportsMBString}</strong
 	<message key="installer.additionalLocalesInstructions">Seleccioni altres idiomes per a aquest sistema. Aquests idiomes estaran disponibles per a l'ús d'esdeveniments albergats en aquest lloc. Poden instal·lar-se altres idiomes des de la interfície de l'administrador.</message>
 	<message key="installer.filesDirInstructions"><![CDATA[Introdueixi la ruta completa del directori existent per a guardar els fitxers carregats. aquest directori no hauria de ser accessible directament a través de la web. <strong>Per favor, asseguri's que aquest directori existeix i té permís d'escriptura abans de la instal·lació.</strong> Els noms dels directoris de les rutes en Windows han d'utilitzar barres, p.ex. "C:/myconference/files".]]></message>
 	<message key="installer.databaseSettingsInstructions">L'OCS requereix accés a la base de dades SQL per a emmagatzemar les seves dades. Consulti la llista de tipus de bases de dades que poden emprar-se. En els camps que vénen a continuació, ha d'indicar les opcions per a connectar a la base de dades.</message>
-	<message key="installer.installOCS">Instal·la l'Open Conference System</message>
-	<message key="installer.upgradeOCS">Actualitza l'Open Conference System</message>
+	<message key="installer.installApplication">Instal·la l'Open Conference System</message>
+	<message key="installer.upgradeApplication">Actualitza l'Open Conference System</message>
 	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<b>Atenció:</b> Si la instal·lació falla durant la creació de la base de dades, necessitarà retirar la base de dades de l'OCS o les taules de la base abans de reinstal·lar-la .]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>¡IMPORTANTE!</h4>
 <p>L'instal·lador no ha pogut sobreescriure automàticament l'arxiu de configuració. Abans d'usar el sistema, per favor obri l'arxiu <tt>config.inc.php</tt> amb un editor de text i reemplaci el seu contingut amb el del text esmentat més avall.</p>]]></message>
