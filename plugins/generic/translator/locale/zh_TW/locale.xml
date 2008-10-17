@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.translator.name">翻譯插件</message>
+	<message key="plugins.generic.translator.description">本插件可以讓您使用網路界面直接進行翻譯檔的編輯工作。</message>
+	<message key="plugins.generic.translator.longdescription">本區塊可以讓網站管理者建立、修改，以及檢查 OCS 相關的翻譯內容。本翻譯的內容將會套用到所有的研討會中，如果您完成翻譯的工作，歡迎您將它提供給 Public Knowledge Project 小組，以提供人使用。</message>
+	<message key="plugins.generic.translator.localeDescription">本頁列出 OCS 所有需要翻譯的內容，同時提供翻譯器讓您可以輕鬆的完成翻譯的工作。一個完整的翻譯需要完成所有內容的翻譯。</message>
+
+	<message key="plugins.generic.translator.localeName">語系名稱</message>
+	<message key="plugins.generic.translator.localeKey">Key</message>
+	<message key="plugins.generic.translator.localeKey.description">請輸入語系的 key 來搜尋。</message>
+	<message key="plugins.generic.translator.localeKeyValue">值</message>
+	<message key="plugins.generic.translator.translate">翻譯</message>
+	<message key="plugins.generic.translator.availableLocales">可用的語系</message>
+	<message key="plugins.generic.translator.check">檢查</message>
+
+	<message key="plugins.generic.translator.errors">語系錯誤</message>
+
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_KEY.title">遺失 Keys</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_EXTRA_KEY.title">額外的Keys</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_SUSPICIOUS_LENGTH.title">Key 的長庚有問題</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_DIFFERING_PARAMS.title">不同的參數清單</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_FILE.title">語系檔案遺失</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_MISSING_EMAIL.title">遺失的電子郵件</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_EXTRA_EMAIL.title">額外的子郵件</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_DIFFERING_PARAMS.title">不同的電子郵件參數清單</message>
+
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_KEY.message">"{$filename}" 的 key "{$key}" 已經遺失，將使用英文作預設語系。</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_EXTRA_KEY.message">這個 key "{$key}" 無法長期使用，請將其從 "{$filename}" 中移除。</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_SUSPICIOUS_LENGTH.message"><![CDATA[本語系的 key "{$key}" 在 "{$filename}" 與所使用的參考值長度不同:<ul>
+		<li>{$value} ({$locale})</li>
+		<li>{$reference} ({$referenceLocale})</li>
+	</ul>]]></message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_DIFFERING_PARAMS.message">本語系的 key "{$key}" 在 "{$filename}" 中與所選定參考語系的參數不同，請點選下列連結檢查所有的內容。未符合的參數如下：</message>
+	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_FILE.message">語系檔 "{$filename}" 已遺失或無法讀取。</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_MISSING_EMAIL.message">電子郵件 "{$key}" 的翻譯遺失。</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_EXTRA_EMAIL.message">電子郵件 "{$key}" 無法長期使用可以移除。</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_DIFFERING_PARAMS.message">電子郵件訊息 "{$key}" 和參考語系的內容參數不同，請點選相關內容進行檢查。不相符的參數為：</message>
+
+	<message key="plugins.generic.translator.locale">{$locale} 語系</message>
+	<message key="plugins.generic.translator.localeFiles">語系檔案</message>
+	<message key="plugins.generic.translator.miscFiles">其他檔案</message>
+	<message key="plugins.generic.translator.emails">電子郵件樣版</message>
+	<message key="plugins.generic.translator.file.filename">檔案名稱</message>
+	<message key="plugins.generic.translator.file.edit">編輯 {$filename}</message>
+	<message key="plugins.generic.translator.email.edit">編輯 {$emailKey}</message>
+	<message key="plugins.generic.translator.file.reference">參考版本</message>
+	<message key="plugins.generic.translator.file.translation">譯</message>
+	<message key="plugins.generic.translator.email.reference">參考版本</message>
+	<message key="plugins.generic.translator.email.translation">翻譯</message>
+	<message key="plugins.generic.translator.file.reset">Reset</message>
+	<message key="plugins.generic.translator.file.resetToReference">重設為參考版本</message>
+	<message key="plugins.generic.translator.email.reset">重設</message>
+	<message key="plugins.generic.translator.email.resetToReference">重設為參考版本</message>
+	<message key="plugins.generic.translator.file.resetConfirm">是否確定重新設定檔案內容?</message>
+	<message key="plugins.generic.translator.email.resetConfirm">是否確定重新設定電子郵件內容?</message>
+	<message key="plugins.generic.translator.file.doesNotExistNote">* 此檔案尚未進行翻譯.</message>
+	<message key="plugins.generic.translator.file.confirmCreate">此檔案 "{$filename}" 將以英文版本建立，你需要在檔案建立後進行翻譯。是否繼續?</message>
+	<message key="plugins.generic.translator.email.description">請依下列欄位，翻譯電子郵件樣版的標題、內文與說明。其中說明欄位僅提供參考。</message>
+	<message key="plugins.generic.translator.confirmDelete">是否要刪除此項目? 此動作無法復原。</message>
+	<message key="plugins.generic.translator.deleteKey">刪除此 key</message>
+	<message key="plugins.generic.translator.deleteEmail">刪除此郵件</message>
+	<message key="plugins.generic.translator.saveBeforeContinuing">請在繼續之前先確定本頁面所做的改變，以避免遺失相關的資料。您是否繼續下面的動作，您未存檔的內容將會消失。</message>
+</locale>

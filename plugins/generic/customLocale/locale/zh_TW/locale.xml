@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.customLocale.name">客製化語系插件</message>
+	<message key="plugins.generic.customLocale.description">此客製化的插件可以讓您變更 OCS 使用者介面中的預設的文字內容.</message>
+
+	<message key="plugins.generic.customLocale.longDescription">此頁面中列出此系統目前已安裝的語系清單.</message>
+	<message key="plugins.generic.customLocale.localeDescription">此頁面列出您可以安裝的語系清單.</message>
+	<message key="plugins.generic.customLocale.fileDescription">請在相對應的欄位中輸入您的自訂文字, 如欲使用 OCS 的預設文字, 請讓該欄位請保持空白.</message>
+	<message key="plugins.generic.customLocale.localeName">語系名稱</message>
+	<message key="plugins.generic.customLocale.localeKey">代碼</message>
+	<message key="plugins.generic.customLocale.localeKey.description">輸入完整的語系代碼來進行搜尋.</message>
+	<message key="plugins.generic.customLocale.localeKeyValue">Value</message>
+	<message key="plugins.generic.customLocale.customize">客製化</message>
+	<message key="plugins.generic.customLocale.availableLocales">可用的語系</message>
+
+	<message key="plugins.generic.customLocale.locale">{$locale} 語系</message>
+	<message key="plugins.generic.customLocale.localeFiles">語系檔案</message>
+	<message key="plugins.generic.customLocale.file.filename">檔案名稱</message>
+	<message key="plugins.generic.customLocale.file.edit">編輯 {$filename}</message>
+	<message key="plugins.generic.customLocale.file.reference">預設文字</message>
+	<message key="plugins.generic.customLocale.file.custom">自訂文字</message>
+</locale>

@@ -26,4 +26,8 @@
 	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdInstructions">À partir de Google Analytics, cliquez sur Vérifier l'état pour voir le code de localisation de votre site. Le numéro de compte est affiché dans le code de localisation : _uacct = "###". Entrez le texte correspondant à ###.</message>
 	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdRequired">Veuillez entrer un numéro de compte.</message>
 
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCode">Code de suivi</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCodeRequired">Prière de sélectionner un code de suivi.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.urchin">Code suivi existants (urchin.js)</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.ga">Nouveau code de suivi (ga.js)</message>
 </locale>

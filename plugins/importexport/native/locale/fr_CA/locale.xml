@@ -107,4 +107,5 @@ Les formats suivants sont acceptés:
 	<message key="plugins.importexport.native.import.success">Importation effectuée avec succès</message>
 	<message key="plugins.importexport.native.import.success.description">L'importation a été effectuée avec succès. Les éléments importés avec succès sont listés ci-bas.</message>
 
+	<message key="plugins.importexport.native.error.uploadFailed">Le téléchargement a échoué; prière de vous assurer que les téléchargements sont permis sur votre serveur et que le fichier n'est pas trop volumineux pour votre configuration PHP et serveur Web.</message>
 </locale>

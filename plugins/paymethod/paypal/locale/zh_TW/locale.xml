@@ -16,7 +16,7 @@
 
 	<!-- PayPal Settings Form -->
 	<message key="plugins.paymethod.paypal.settings.paypalenable">啟用貝寶 (PayPal)</message>
-	<message key="plugins.paymethod.paypal.settings.paypalurl">即時付費通知網址 (IPN URL)</message>
+	<message key="plugins.paymethod.paypal.settings.paypalurl">即時付費通知網址</message>
 	<message key="plugins.paymethod.paypal.settings.paypalurl.description"><![CDATA[此網址是用來提供即貝寶時付費通知服務 (PayPal's Instant Payment Notification (IPN) service)。如您要測試本服務，請使用以下網址 <u>https://www.sandbox.paypal.com/cgi-bin/webscr</u>；如您要產生系統 (production systems)，請使用下列網址 <u>https://www.paypal.com/cgi-bin/webscr</u>。]]></message>
 	<message key="plugins.paymethod.paypal.settings.selleraccount">銷售員帳號 (Seller Account)</message>
 	<message key="plugins.paymethod.paypal.settings.selleraccount.description">這是貝寶提供銷售員的使用者帳號，一般是以電子郵件信箱作為帳號名稱。</message>
