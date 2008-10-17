@@ -51,29 +51,23 @@
 	<message key="manager.reviewForms.noneCreated">Nenhum formulário de avaliação criado.</message>
 	<message key="manager.reviewForms.create">Criar formulário de avaliação</message>
 	<message key="manager.reviewForms.edit">Editar formulário de avaliação</message>
-	<message key="manager.reviewForms.reviewFormData">Dados do formulário de avaliação</message>
 	<message key="manager.reviewForms.title">Título</message>
 	<message key="manager.reviewForms.description">Descrição</message>
 	<message key="manager.reviewForms.preview">Visualizar formulário de avaliação</message>
 	<message key="manager.reviewForms.completed">Concluído</message>
 	<message key="manager.reviewForms.inReview">Em avaliação</message>
-	<message key="manager.reviewForms.confirmDeletePublished">Confirmar exclusão de formulário de avaliação publicado</message>
-	<message key="manager.reviewForms.confirmDeleteUnpublished">Confirmar exclusão de formulário de avaliação não publicado</message>
 	<message key="manager.reviewForms.form.titleRequired">Título do formulário de avaliação obrigatório.</message>
 	<message key="manager.reviewFormElements">Campos do formulário de avaliação</message>
 	<message key="manager.reviewFormElements.create">Criar novo campo</message>
 	<message key="manager.reviewFormElements.edit">Editar campo</message>
 	<message key="manager.reviewFormElements.noneCreated">Nenhum campo de formulário criado .</message>
-	<message key="manager.reviewFormElements.confirmDelete">Confimar exclusão de campo do formulário de avaliação publicado</message>
 	<message key="manager.reviewFormElements.copyTo">Copiar para</message>
 	<message key="manager.reviewFormElements.question">Pergunta</message>
 	<message key="manager.reviewFormElements.required">Campo de avaliação obrigatório</message>
-	<message key="manager.reviewFormElements.viewable">Disponível (aos autores)</message>
 	<message key="manager.reviewFormElements.elementType">Tipo de campo</message>
 	<message key="manager.reviewFormElements.possibleResponse">Resposta possível</message>
 	<message key="manager.reviewFormElements.addResponseItem">Incluir resposta possível</message>
 	<message key="manager.reviewFormElements.chooseType">Escolher tipo de campo</message>
-	<message key="manager.reviewFormElement.changeType">Alterando o tipo de campo do formluário</message>
 	<message key="manager.reviewFormElements.form.questionRequired">Uma pergunta para o campo do formulário é obrigatória</message>
 	<message key="manager.reviewFormElements.form.elementTypeRequired">O tipo do campo do formulário é obrigatório.</message>
 	<message key="manager.reviewFormElements.smalltextfield">Campo de texto pequeno</message>
@@ -87,12 +81,10 @@
 	<message key="editor.paper.reviewForms">Formulários de avaliação</message>
 	<message key="editor.paper.selectReviewForm">Escolher formulário de avaliação</message>
 	<message key="editor.paper.clearReviewForm">Limpar formulário de avaliação</message>
-	<message key="editor.paper.confirmChangeReviewForm">Alterações no formulário de avaliação removerá as respostas...</message>
 	<message key="reviewer.paper.enterReviewForm">Clique no ícone para preencher o formulário de avaliação</message>
 	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Preencha os campos obrigatórios.</message>
 	<message key="manager.reviewForms.list.description">Os formulários de avaliação pelos pares criados aqui estarão disponíveis aos avaliadores para preenchimento, em vez do formulário padrão que consiste em duas caixas de texto de comentários com comentários exclusivos para o autor e outra para o  Editor e o Autor. Formulários de avaliação podem ser designados a seções específicas, e os editores poderão escolher qual formulário utilizar no momento da avaliação. em todos os casos, os editores poderão incluir as avaliações nas correspondências com o autor.</message>
 	<message key="manager.reviewForms.noneChosen">Nenhuma / Formulário de avaliação padrão</message>
-	<message key="manager.reviewForms.noneUsed">Nenhum formulário de avaliação foi utilizado.</message>
 	<message key="manager.sections.form.reviewFormId">É necessário escolher um formulário de avaliação válido</message>
 	
 	<!-- Common Form Messages -->
