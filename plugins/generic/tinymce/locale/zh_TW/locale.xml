@@ -13,7 +13,8 @@
   -->
  
 <locale name="zh_TW" full_name="繁體中文">
-	<message key="plugins.generic.tinymce.name">TinyMCE Plugin</message>
-	<message key="plugins.generic.tinymce.description"><![CDATA[This plugin enables WSYWIG editing of OCS textareas using the <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> content editor.]]></message>
-	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[This plugin enables WSYWIG editing of OCS textareas using the <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> content editor. <strong>TinyMCE is not currently installed; please install it in {$tinyMcePath}.</strong>]]></message>
+	<message key="plugins.generic.tinymce.name">TinyMCE 插件</message>
+	<message key="plugins.generic.tinymce.description"><![CDATA[本插件讓您可以使用 WSYWIG 方式編輯 OCS 文字框內的內容，本插件使用 <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> 內容編輯器。]]></message>
+	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[本插作讓怹可以使用 WSYWIG 方式編輯 OCS 文字框內的文字，本插件使用 <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> 編輯器。 <strong>TinyMCE 目前未安裝，請點選下列連結進行安裝 {$tinyMcePath}。</strong>]]></message>
+	<message key="plugins.generic.tinymce.settings">設定</message>
 </locale>

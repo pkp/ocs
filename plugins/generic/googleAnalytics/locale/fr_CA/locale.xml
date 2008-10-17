@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
 
 <!--
   * locale.xml
   *
-  * Copyright (c) 2000-2008 John Willinsky
+  * Copyright (c) 2003-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Google Analytics plugin localization strings for the fr_CA (Français (Canada)) locale.
@@ -26,4 +26,8 @@
 	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdInstructions">À partir de Google Analytics, cliquez sur Vérifier l'état pour voir le code de localisation de votre site. Le numéro de compte est affiché dans le code de localisation : _uacct = "###". Entrez le texte correspondant à ###.</message>
 	<message key="plugins.generic.googleAnalytics.manager.settings.googleAnalyticsSiteIdRequired">Veuillez entrer un numéro de compte.</message>
 
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCode">Code de suivi</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.trackingCodeRequired">Prière de sélectionner un code de suivi.</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.urchin">Code suivi existants (urchin.js)</message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.ga">Nouveau code de suivi (ga.js)</message>
 </locale>

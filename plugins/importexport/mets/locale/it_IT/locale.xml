@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2005 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.METSExport.displayName">Plugin per l'export METS XML</message>
+	<message key="plugins.importexport.METSExport.description">Export delle conferenze in METS XML</message>
+	<message key="plugins.importexport.METSExport.settings">Impostazioni</message>
+	<message key="plugins.importexport.METSExport.export">Export dei dati</message>
+	<message key="plugins.importexport.METSExport.export.schedConfs">Export delle conferenze in programma</message>
+	<message key="plugins.importexport.METSExport.export.selectschedConfs">Seleziona le conferenze in programma per l’export.</message>
+	<message key="plugins.importexport.METSExport.export.error.SchedConfNotFound">Nessuna conferenza in programma combacia con l’ID "{$SchedConfId}" del paper specificato.</message>
+	<message key="plugins.importexport.METSExport.export.error.unknownConference">Path {$conferencePath} della conferenza sconosciuto</message>
+	<message key="plugins.importexport.METSExport.settings.FContent">Utilizza un codice base 64 per il contenitore</message>
+	<message key="plugins.importexport.METSExport.settings.FLocat">Usa l’URL del bitsream per il contenitore</message>
+	<message key="plugins.importexport.METSExport.settings.organization">METS:agent element organization attribute</message>
+	<message key="plugins.importexport.METSExport.settings.preservationLevel">Livello di preservazione PREMIS</message>
+	<message key="plugins.importexport.METSExport.settings.exportSuppFiles">Export dei file supplementari</message>
+</locale>

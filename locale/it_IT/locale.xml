@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+<!DOCTYPE locale SYSTEM "../locale.dtd">
 
 <!--
   * locale.xml
@@ -312,7 +312,7 @@
 	<message key="submission.uploadFile">Aggiorna l'intervento</message>
 	<message key="submission.addSuppFile">Aggiungi un file supplementare</message>
 	<message key="submission.submitter">Utente che sottomette</message>
-	<message key="submission.changeTrack">Cambia a </message>
+	<message key="submission.changeTrack">Cambia a</message>
 	<message key="submission.initiated">Iniziato</message>
 	<message key="submission.lastModified">Ultima modifica</message>
 	<message key="submission.ask">Chiedi</message>
@@ -1167,7 +1167,6 @@ Titolo del sistema di classificazione]]></message>
 	<message key="manager.tracks.form.titleRequired">&#x00C8; richiesto un titolo per la sessione.</message>
 	<message key="manager.tracks.form.abbrevRequired">&#x00C8; richiesto un titolo abbreviato per la sessione.</message>
 	<message key="manager.tracks.trackDirectorInstructions">Seleziona dai direttori di sessione disponibili e "Assegna un direttore" alla sessione.</message>
-	<message key="manager.tracks.submissionsToThisTrack">Submission effettuate per questa sessione di convegno</message>
 	<message key="manager.tracks.submissionNotReviewed">Indica che la sessione non &#x00E8; peer-reviewed</message>
 	<message key="manager.tracks.peerReviewed">Peer Reviewed</message>
 	<message key="manager.tracks.directorRestriction">Gli articoli possono essere inviati solo dai direttori e dai direttori della sessione.</message>
@@ -1414,7 +1413,7 @@ Puoi facoltativamente fornire all'utente una ragione per disattivare il loro acc
 	<message key="manager.registration.selectRegistrant.desc">I privilegi d'accesso con registrazione sono automaticamente garantiti ai direttori del convegno, ai direttori, e ai direttori delle sessioni.</message>
 	<message key="manager.registration.enroll">Iscrivi</message>
 	<message key="manager.registration.confirmDelete">Sei sicuro di voler cancellare questa registrazione?</message>
-	<message key="manager.registration.noneCreated">Non &#x00E8; stata creata nessuna registrazione.</message>
+	<message key="manager.registration.noneCreated">Non è stata creata nessuna registrazione.</message>
 	<message key="manager.registration.user">Utente</message>
 	<message key="manager.registration.registrationType">Tipo di registrazione</message>
 	<message key="manager.registration.dateRegistered">Registrato</message>
@@ -2418,10 +2417,6 @@ Il processo di validazione pu&#x00F2; non funzionare sulle URL di ricerca che ri
 	<message key="icon.mail.alt">Mail</message>
 	<message key="icon.info.alt">Informazioni</message>
 	<message key="icon.folder.alt">Cartella</message>
-	<message key="icon.small.alt">Piccolo</message>
-	<message key="icon.medium.alt">Medio</message>
-	<message key="icon.large.alt">Largo</message>
-
 	<!-- Debug messages -->
 	<message key="debug.executionTime">Pagina generata in</message>
 	<message key="debug.databaseQueries">Numero di interrogazioni del database</message>
@@ -2626,4 +2621,38 @@ Il processo di validazione pu&#x00F2; non funzionare sulle URL di ricerca che ri
 	<message key="director.notifyUsers.allPresenters">Tutti gli utenti ({$count} relatori)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">Tutti gli utenti ({$count} registrati che hanno pagato)</message>
 	<message key="director.notifyUsers.allRegistrants">Tutti gli utenti ({$count} registrati)</message>
+	<message key="common.captchaField.altText">Immagine di validazione</message>
+	<message key="paper.comments.disable">Disabilita</message>
+	<message key="paper.comments.enable">Abilita</message>
+	<message key="paper.fontSize">Dimensione del carattere</message>
+	<message key="paper.fontSize.small.altText">Piccolo</message>
+	<message key="paper.fontSize.medium.altText">Medio</message>
+	<message key="paper.fontSize.large.altText">Grande</message>
+	<message key="submission.changeComments">Modifica a</message>
+	<message key="common.conferenceHomepageImage.altText">Immagine dell'homepage della conferenza</message>
+	<message key="paper.comments.trackDefault">Default</message>
+	<message key="admin.settings.homeHeaderImage.altText">Logo del sito</message>
+	<message key="manager.setup.layout.conferenceLogo.altText">Logo della conferenza</message>
+	<message key="manager.schedConfSetup.submissions.previewAbstracts">Invia gli abstracts una volta che la revisione dell'abstract è stata completata</message>
+	<message key="manager.tracks.disableComments">Disabilita i commenti dei lettori per questa traccia.</message>
+	<message key="director.me">Io</message>
+	<message key="director.submissions.assignedTo">Assegnato a</message>
+	<message key="common.altText">Testo alternativo</message>
+	<message key="common.altTextInstructions">Per favore fornisci un testo alternativo a questa immagine per assicurare l'accessibilità agli utenti che utilizzano browser testuali o strumenti di assistenza per disabili.</message>
+	<message key="common.sitePageHeader.altText">Immagine d'intestazione del sito</message>
+	<message key="common.pageHeader.altText">Immagine d'intestazione della pagina</message>
+	<message key="common.pageHeaderLogo.altText">Logo d'intestazione della pagina</message>
+	<message key="common.homePageHeader.altText">Immagine d'intestazione della homepage</message>
+	<message key="common.homePageHeaderLogo.altText">Logo d'intestazione della homepage</message>
+	<message key="manager.setup.layout.homepageHeader.altText">Intestazione della homepage della conferenza</message>
+	<message key="manager.registration.membership">Gruppo d'appartenenza</message>
+	<message key="manager.registration.domain">Dominio</message>
+	<message key="director.allDirectors">Tutti i direttori</message>
+	<message key="director.submissions.inTrack">In corso</message>
+	<message key="about.aboutThisPublishingSystem.altText">Processo di submission, revisione e pubblicazione di OCS</message>
+	<message key="announcement.posted">Inviato</message>
+	<message key="log.director.unpublish">Il paper è stato spostato nella coda</message>
+	<message key="icon.font_small.alt">Piccolo</message>
+	<message key="icon.font_medium.alt">Medio</message>
+	<message key="icon.font_large.alt">Grande</message>
 </locale>

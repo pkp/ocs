@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.customLocale.name">Plugiciel de langue personnalisée</message>
+	<message key="plugins.generic.customLocale.description">Ce plugiciel permet de personnaliser le texte de l'interface utilisateur par défaut utilisé par OCS.</message>
+
+	<message key="plugins.generic.customLocale.longDescription">Cette page liste toutes les langues actuellement installées pour la conférence.</message>
+	<message key="plugins.generic.customLocale.localeDescription">Cette page liste les fichiers qui sont disponibles pour la langue sélectionnée.</message>
+	<message key="plugins.generic.customLocale.fileDescription">Saisir le texte dans le champ de texte personnalisé correspondant. Laisser vide le champ de texte personnalisé si vous souhaitez que le texte par défaut d'OCS soit utilisé.</message>
+	<message key="plugins.generic.customLocale.localeName">Nom de langue</message>
+	<message key="plugins.generic.customLocale.localeKey">Clé</message>
+	<message key="plugins.generic.customLocale.localeKey.description">Saisir une clé de langue complète pour fins de recherche.</message>
+	<message key="plugins.generic.customLocale.localeKeyValue">Valeur</message>
+	<message key="plugins.generic.customLocale.customize">Personnaliser</message>
+	<message key="plugins.generic.customLocale.availableLocales">Langues disponibles</message>
+
+	<message key="plugins.generic.customLocale.locale">Langue {$locale}</message>
+	<message key="plugins.generic.customLocale.localeFiles">Fichiers de langue</message>
+	<message key="plugins.generic.customLocale.file.filename">Nom de fichier</message>
+	<message key="plugins.generic.customLocale.file.edit">Modification de {$filename}</message>
+	<message key="plugins.generic.customLocale.file.reference">Texte par défaut</message>
+	<message key="plugins.generic.customLocale.file.custom">Texte personnalisé</message>
+</locale>

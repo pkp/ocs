@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
-
+<!DOCTYPE locale SYSTEM "../locale.dtd"[]>
 <!--
   * locale.xml
   *
@@ -54,10 +53,10 @@
   <message key="common.url">URL</message>
   <message key="common.description">Description</message>
   <message key="common.keywords">Mots-clés</message>
-  <message key="common.order">Ordonner</message>
+  <message key="common.order">Classer</message>
   <message key="common.back">Précédent</message>
   <message key="common.title">Titre</message>
-  <message key="common.upload">Télécharger vers le serveur</message>
+  <message key="common.upload">Télécharger</message>
   <message key="common.download">Télécharger</message>
   <message key="common.replaceFile">Remplacer le fichier</message>
   <message key="common.subject">Sujet</message>
@@ -72,21 +71,21 @@
   <message key="common.source">Source</message>
   <message key="common.language">Langue</message>
   <message key="common.id">ID</message>
-  <message key="common.status">Statut</message>
-  <message key="common.remove">Enlever</message>
+  <message key="common.status">État</message>
+  <message key="common.remove">Supprimer</message>
   <message key="common.file">Fichier</message>
-  <message key="common.uploadedFile">Fichier téléchargé vers le serveur</message>
+  <message key="common.uploadedFile">Fichier téléchargé</message>
   <message key="common.fileName">Nom du fichier</message>
   <message key="common.dateSubmitted">Date de soumission</message>
   <message key="common.dateRequested">Date de livraison</message>
   <message key="common.dateCompleted">Date d'achèvement</message>
-  <message key="common.dateUploaded">Date de téléchargement vers le serveur</message>
+  <message key="common.dateUploaded">Date du téléchargement</message>
   <message key="common.dateModified">Date de modification</message>
   <message key="common.other">Autre</message>
   <message key="common.fileSize">Taille de fichier</message>
   <message key="common.size">Taille</message>
   <message key="common.fileType">Type de fichier</message>
-  <message key="common.originalFileName">Nom d'origine du fichier</message>
+  <message key="common.originalFileName">Nom original du fichier</message>
   <message key="common.none">Aucun</message>
   <message key="common.required">Obligatoire</message>
   <message key="common.requiredField">* Indique les champs obligatoires</message>
@@ -97,7 +96,7 @@
   <message key="common.yes">Oui</message>
   <message key="common.no">Non</message>
   <message key="common.languages">Langues</message>
-  <message key="common.changesSaved">Les changements effectués ont été sauvegardés.</message>
+  <message key="common.changesSaved">Les changements effectués ont été enregistrés.</message>
   <message key="common.chooseOne">En choisir un</message>
   <message key="common.alreadyAssigned">Déjà assigné</message>
   <message key="common.assign">Assigner</message>
@@ -129,7 +128,7 @@
   <message key="common.replaced">Remplacé</message>
   <message key="common.uninitiated">Non engagé</message>
   <message key="common.updated">Mis à jour</message>
-  <message key="common.untitled">Sans Titre</message>
+  <message key="common.untitled">Sans titre</message>
   <message key="common.view">Voir</message>
   <message key="common.related">Connexe</message>
   <message key="common.active">Actif</message>
@@ -153,10 +152,10 @@
 			<img alt="Licence Creative Commons" style="border-width:0" src="{$ccLicenseImageUrl}"/>
 		</a>
 		<br/>
-		Ce <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">travail</span> est sous les termes de la <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Licence Creative Commons Version 3.0</a>.]]></message>
+		Ce <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">travail</span> est autorisé sous les termes de la <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Licence Creative Commons Version 3.0</a>.]]></message>
   <!-- Common Form Messages -->
   <message key="form.errorsOccurred">Des erreurs se sont produites pendant le traitement du formulaire</message>
-  <message key="form.saveToUpload">Utiliser Enregistrer pour télécharger le fichier vers le serveur.</message>
+  <message key="form.saveToUpload">Utiliser Enregistrer pour télécharger le fichier.</message>
   <message key="form.contains">contient</message>
   <message key="form.is">est</message>
   <message key="form.required">(* Obligatoire)</message>
@@ -172,7 +171,7 @@
   <message key="email.to">À</message>
   <message key="email.cc">CC</message>
   <message key="email.bcc">CCI</message>
-  <message key="email.subject">Sujet</message>
+  <message key="email.subject">Objet</message>
   <message key="email.body">Corps</message>
   <message key="email.send">Envoyer</message>
   <message key="email.skip">Sauter le courriel</message>
@@ -181,7 +180,7 @@
   <message key="email.addCcRecipient">Ajouter un CC</message>
   <message key="email.addBccRecipient">Ajouter un CCI</message>
   <message key="email.bccSender">Envoyer une copie de ce message à mon adresse ({$address})</message>
-  <message key="email.invalid">L'adresse de courriel {$email} n'est pas valide.</message>
+  <message key="email.invalid">L'adresse courriel {$email} n'est pas valide.</message>
   <message key="email.multipart">Ceci est un message en plusieurs parties dans un format MIME.</message>
   <message key="email.attachments">Pièces jointes</message>
   <message key="email.addAttachment">Ajouter une pièce jointe</message>
@@ -193,7 +192,7 @@
   <message key="common.error.databaseErrorUnknown">Une erreur de connexion à la base de données inconnue est survenue.</message>
   <message key="common.error.framesRequired"><![CDATA[Cette page nécessite des cadres. <a href="{$url}">Cliquer ici</a> pour la version sans cadre.]]></message>
   <!-- Navigation -->
-  <message key="navigation.conferenceHelp">Aide de la conférence</message>
+  <message key="navigation.conferenceHelp">Aide pour la conférence</message>
   <message key="navigation.home">Accueil</message>
   <message key="navigation.about">À propos</message>
   <message key="navigation.userHome">Accueil de l'utilisateur</message>
@@ -259,15 +258,15 @@
   <message key="paper.suppFiles">Fichier(s) supplémentaire(s)</message>
   <message key="paper.suppFilesAbbrev">Fichiers suppl.</message>
   <message key="paper.discipline">Discipline et sous-disciplines académiques</message>
-  <message key="paper.subjectClassification">Classification par sujets</message>
+  <message key="paper.subjectClassification">Classification par sujet</message>
   <message key="paper.subject">Mots-clés</message>
   <message key="paper.coverage">Couverture</message>
-  <message key="paper.coverageGeo">Couverture géo-spatial</message>
+  <message key="paper.coverageGeo">Couverture géo-spatiale</message>
   <message key="paper.coverageChron">Couverture chronologique ou historique</message>
   <message key="paper.coverageSample">Caractéristiques de l'échantillon de recherche</message>
   <message key="paper.type">Type, méthode ou approche</message>
   <message key="paper.language">Langue</message>
-  <message key="paper.trackDirector">TE</message>
+  <message key="paper.trackDirector">RS</message>
   <message key="paper.commentsToDirector">Commentaires de l'auteur</message>
   <message key="paper.submission">Soumission</message>
   <message key="paper.submissions">Soumissions</message>
@@ -280,50 +279,50 @@
   <message key="submission.toTime">À</message>
   <message key="submission.summary">Résumé</message>
   <message key="submission.review">Évaluation</message>
-  <message key="submission.abstractReview">Résumé d'évaluation</message>
-  <message key="submission.paperReview">Évaluation de la communication</message>
+  <message key="submission.abstractReview">Évaluation de résumé</message>
+  <message key="submission.paperReview">Évaluation de communication</message>
   <message key="submission.editing">Révision</message>
   <message key="submission.history">Historique</message>
   <message key="submission.page.summary">#{$id} Résumé</message>
-  <message key="submission.page.abstractReview">#{$id} Résumé d'évaluation</message>
+  <message key="submission.page.abstractReview">#{$id} Évaluation de résumé</message>
   <message key="submission.page.review">#{$id} Évaluation</message>
-  <message key="submission.page.paperReview">#{$id} Évaluation de la communication</message>
+  <message key="submission.page.paperReview">#{$id} Évaluation de communication</message>
   <message key="submission.page.editing">#{$id} Révision</message>
   <message key="submission.page.history">#{$id} Historique</message>
   <message key="submission.submissionReview">Évaluation de la soumission</message>
   <message key="submission.submissionHistory">Historique de la soumission</message>
   <message key="submission.submissionManuscript">Manuscrit de la soumission</message>
-  <message key="submission.originalFile">Fichier d'origine</message>
-  <message key="submission.uploadFile">Télécharger la communication vers le serveur</message>
+  <message key="submission.originalFile">Fichier original</message>
+  <message key="submission.uploadFile">Télécharger la communication</message>
   <message key="submission.addSuppFile">Ajouter un fichier supplémentaire</message>
   <message key="submission.submitter">Soumissionnaire</message>
-  <message key="submission.changeTrack">Changer à</message>
-  <message key="submission.initiated">Initiée</message>
+  <message key="submission.changeTrack">Changer pour</message>
+  <message key="submission.initiated">Commencé</message>
   <message key="submission.lastModified">Dernière modification</message>
   <message key="submission.ask">Demander</message>
-  <message key="submission.request">Demander</message>
+  <message key="submission.request">Solliciter</message>
   <message key="submission.underway">En cours</message>
   <message key="submission.start">Commencer</message>
   <message key="submission.response">Réponse</message>
   <message key="submission.accepted">Accepté</message>
   <message key="submission.rejected">Rejeté</message>
   <message key="submission.acceptance">Accepté pour évaluation</message>
-  <message key="submission.due">À échéance</message>
+  <message key="submission.due">Échéance</message>
   <message key="submission.complete">Complet</message>
   <message key="submission.complete.description">Ajouter la soumission à la liste des présentations acceptées.</message>
   <message key="submission.acknowledge">Envoyer un accusé de réception</message>
   <message key="submission.done">Terminer</message>
   <message key="submission.views">Vues</message>
   <message key="submission.abstractViews">Vues des résumés</message>
-  <message key="submission.noReviewAssignments">Aucune évaluation assignée</message>
+  <message key="submission.noReviewAssignments">Aucune personne désignée pour l'évaluation</message>
   <message key="submission.reviewVersion">Version à évaluer</message>
   <message key="submission.peerReview">Évaluation par un pair</message>
   <message key="submission.directorDecision">Décision du responsable</message>
   <message key="submission.stage"><![CDATA[Étape&nbsp;{$stage}]]></message>
   <message key="submission.directorReview">Évaluation du responsable</message>
-  <message key="submission.notifyPresenter">Alerter l'auteur</message>
-  <message key="submission.notifyDirector">Alerter le responsable</message>
-  <message key="submission.directorPresenterRecord">Enregistrement du courriel du responsable/auteur</message>
+  <message key="submission.notifyPresenter">Aviser l'auteur</message>
+  <message key="submission.notifyDirector">Aviser le responsable</message>
+  <message key="submission.directorPresenterRecord">Registre des échanges entre le responsable et l'auteur</message>
   <message key="submission.directorVersion">Version du reponsable</message>
   <message key="submission.presentersRevisedVersion">Version du fichier révisée pas l'auteur</message>
   <message key="submission.presenterVersion">Version de l'auteur</message>
@@ -341,8 +340,8 @@
   <message key="submission.supportingAgencies">Organismes de soutien</message>
   <message key="submissions.track">Section</message>
   <message key="submissions.completed">Terminé</message>
-  <message key="submissions.active">Active</message>
-  <message key="submissions.queuedUnassigned">En attente d'assignation</message>
+  <message key="submissions.active">Actif</message>
+  <message key="submissions.queuedUnassigned">N'a pas encore été assigné</message>
   <message key="submissions.queuedEditing">En attente de révision</message>
   <message key="submissions.queuedAbstractReview">Résumé en évaluation</message>
   <message key="submissions.queuedPaperReview">Communication en évaluation</message>
@@ -353,8 +352,8 @@
   <message key="submissions.queued">En attente</message>
   <message key="submissions.reviewStage">Étape d'évaluation</message>
   <message key="submissions.reviewType">Type d'évaluation</message>
-  <message key="submissions.incomplete">Incomplète</message>
-  <message key="submissions.pendingPresentation">En attente de téléchargement vers le serveur</message>
+  <message key="submissions.incomplete">Incomplet</message>
+  <message key="submissions.pendingPresentation">En attente de téléchargement</message>
   <message key="submissions.expired">Expiré</message>
   <message key="submissions.submit">Soumettre</message>
   <message key="submissions.directorDecision">Décision du responsable</message>
@@ -367,11 +366,11 @@
   <message key="submission.galley">Épreuve</message>
   <message key="trackDirector.galley.replaceGalley">Remplacer le fichier</message>
   <message key="submission.emailLog">Registre de courriels</message>
-  <message key="submission.uploadFileTo">Télécharger le fichier vers le serveur</message>
+  <message key="submission.uploadFileTo">Télécharger le fichier vers</message>
   <message key="submission.abstract">Résumé</message>
   <message key="submission.paper">Communication</message>
   <!-- Submission list search engine -->
-  <message key="submissions.submitted">Soumise</message>
+  <message key="submissions.submitted">Soumis</message>
   <!-- Submission Notes -->
   <message key="submission.notes">Notes sur la soumission</message>
   <message key="submission.notes.breadcrumb">Notes</message>
@@ -379,14 +378,14 @@
   <message key="submission.notes.viewNotes">Voir les notes</message>
   <message key="submission.notes.expandNotes">Développer les notes</message>
   <message key="submission.notes.clearAllNotes">Supprimer toutes les notes</message>
-  <message key="submission.notes.noSubmissionNotes">Aucune note pour la soumission</message>
-  <message key="submission.notes.confirmDelete">Supprimer cette note de la soumission?</message>
+  <message key="submission.notes.noSubmissionNotes">Aucune note de soumission</message>
+  <message key="submission.notes.confirmDelete">Supprimer cette note de soumission?</message>
   <message key="submission.notes.editNote">Modifier la note</message>
   <message key="submission.notes.attachedFile">Fichier en pièce jointe</message>
-  <message key="submission.notes.confirmDeleteAll">Supprimer toutes les notes de la soumission?</message>
+  <message key="submission.notes.confirmDeleteAll">Supprimer toutes les notes de soumission?</message>
   <message key="submission.notes.collapseNotes">Réduire les notes</message>
-  <message key="submission.notes.backToSubmissionNotes">Retour aux notes de la soumission</message>
-  <message key="submission.notes.removeUploadedFile">Supprimer les fichiers téléchargés vers le serveur</message>
+  <message key="submission.notes.backToSubmissionNotes">Retour aux notes de soumission</message>
+  <message key="submission.notes.removeUploadedFile">Supprimer les fichiers téléchargés</message>
   <message key="submission.notes.deleteNote">Supprimer la note</message>
   <message key="submission.notes.updateNote">Mettre à jour la note</message>
   <message key="submission.notes.createNewNote">Créer une nouvelle note</message>
@@ -419,22 +418,22 @@
   <message key="schedConf.program.title">Programme</message>
   <message key="schedConf.trackPolicies.title">Politiques de section</message>
   <!-- User self-registration form -->
-  <message key="schedConf.registration.alreadyRegistered">Vous êtes déjà inscrit pour cette conférence, cependant, le paiement n'a toujours pas été reçu. Veuillez contacter le principal contact dans le menu "À propos de" s'il s'agit d'une erreur ou si vous voulez modifier votre inscription.</message>
-  <message key="schedConf.registration.alreadyRegisteredAndPaid">Vous êtes déjà inscrit pour cette conférence et votre paiement a été reçu. Veuillez contacter le principal contact dans le menu "À propos de" s'il s'agit d'une erreur ou si vous voulez modifier votre inscription.</message>
-  <message key="schedConf.registration.noPaymentMethodAvailable">Votre inscription a été enregistrée. Vous serez joint pour le paiement en cas de réponse favorable.</message>
+  <message key="schedConf.registration.alreadyRegistered">Vous êtes déjà inscrit pour cette conférence, cependant, le paiement n'a toujours pas été reçu. Veuillez contacter le contact principal du menu "À propos" s'il s'agit d'une erreur ou si vous voulez modifier votre inscription.</message>
+  <message key="schedConf.registration.alreadyRegisteredAndPaid">Vous êtes déjà inscrit pour cette conférence et votre paiement a été reçu. Veuillez contacter le contact principal du menu "À propos" s'il s'agit d'une erreur ou si vous voulez modifier votre inscription.</message>
+  <message key="schedConf.registration.noPaymentMethodAvailable">Votre inscription a été enregistrée. Nous vous contacterons pour le paiement, si nécessaire.</message>
   <message key="schedConf.registration.conferenceFees">Frais de conférence</message>
   <message key="schedConf.registration.type">Type d'inscription</message>
   <message key="schedConf.registration.cost">Prix</message>
   <message key="schedConf.registration.noneAvailable">Aucun type d'inscription disponible.</message>
   <message key="schedConf.registration.register">S'inscrire</message>
-  <message key="schedConf.registration.typeCloses">(Ferment le {$closingDate})</message>
-  <message key="schedConf.registration.typeClosed">(Inscriptions fermées le {$closingDate})</message>
+  <message key="schedConf.registration.typeCloses">(Ferme le {$closingDate})</message>
+  <message key="schedConf.registration.typeClosed">(Inscription fermée le {$closingDate})</message>
   <message key="schedConf.registration.feeCode">Tarif</message>
-  <message key="schedConf.registration.feeCode.description">Si vous avez reçu un code secret pour votre inscription, entrez-le ici en vous assurant que vous avez choisi le bon type d'inscription précédemment. Sinon, laisser le champ Tarif vide.</message>
+  <message key="schedConf.registration.feeCode.description">Si vous avez reçu un code secret pour votre inscription, pirère de l'entrer ici en vous assurant que vous avez choisi le bon type d'inscription précédemment. Sinon, laisser le champ Tarif vide.</message>
   <message key="schedConf.registration.specialRequests">Requêtes particulières</message>
   <message key="schedConf.registration.specialRequests.description">Veuillez décrire toute requête ou exigence particulière, qu'elle soit alimentaire, d'accès, etc.</message>
   <message key="schedConf.registration.account">Compte utilisateur</message>
-  <message key="schedConf.registration.loggedInAs"><![CDATA[Vous êtes actuellement connecté. Vérifier que les informations ci-dessous sont correctes. Si ce n'est pas le cas, corrigez-les en utilisant <a href="{$profileUrl}">Mon Profil</a> ou <a href="{$logoutUrl}">Se déconnecter</a> pour utiliser un autre compte.]]></message>
+  <message key="schedConf.registration.loggedInAs"><![CDATA[Vous êtes actuellement connecté. Vérifier que les informations ci-dessous sont correctes. Si ce n'est pas le cas, corrigez-les en utilisant <a href="{$profileUrl}">Mon Profil</a> ou <a href="{$logoutUrl}">Fermer la session</a> pour utiliser un autre compte.]]></message>
   <message key="schedConf.registration.createAccount.description"><![CDATA[Vous n'êtes pas connecté actuellement. Vous devez avoir un compte pour vous inscrire à cette conférence. Si vous en possédez un, <a href="{$loginUrl}">cliquer ici</a> pour vous connecter; sinon, veuillez remplir le formulaire ci-dessous pour en créer un.]]></message>
   <!-- User -->
   <message key="user.userHome">Accueil de l'utilisateur</message>
@@ -443,14 +442,14 @@
   <message key="user.profile">Profil</message>
   <message key="user.createAccount">Créer un compte</message>
   <message key="user.logIn">Se connecter</message>
-  <message key="user.logOut">Se déconnecter</message>
+  <message key="user.logOut">Fermer la session</message>
   <message key="user.username">Nom d'utilisateur</message>
   <message key="user.password">Mot de passe</message>
   <message key="user.sendPassword">Confirmation</message>
   <message key="user.sendPassword.description">Envoyez-moi un courriel de confirmation contenant mon nom d'utilisateur et mon mot de passe</message>
   <message key="user.name">Nom</message>
   <message key="user.firstName">Prénom</message>
-  <message key="user.middleName">Second prénom</message>
+  <message key="user.middleName">Autre(s) prénom(s)</message>
   <message key="user.initials">Initiales</message>
   <message key="user.initialsExample">Joan Alice Smith = JAS</message>
   <message key="user.lastName">Nom de famille</message>
@@ -464,15 +463,15 @@
   <message key="user.fax">Télécopieur</message>
   <message key="user.interests">Intérêts</message>
   <message key="user.mailingAddress">Adresse postale</message>
-  <message key="user.biography">Biographie</message>
+  <message key="user.biography">Note biographique</message>
   <message key="user.biography.description">(Par ex., département et poste)</message>
   <message key="user.workingLanguages">Langues de travail</message>
-  <message key="user.dateRegistered">Date d'inscription</message>
+  <message key="user.dateRegistered">Date de création du compte</message>
   <message key="user.dateLastLogin">Dernière connexion</message>
   <message key="user.createAccountForOtherConferences">Créer un compte pour d'autres conférences</message>
   <message key="user.roles">Rôles</message>
   <message key="user.changePassword">Modifier le mot de passe</message>
-  <message key="user.editMyProfile">Modifier Mon profil</message>
+  <message key="user.editMyProfile">Modifier mon profil</message>
   <message key="user.changeMyPassword">Changer mon mot de passe</message>
   <message key="user.myConferences">Mes conférences</message>
   <message key="user.myAccount">Mon compte</message>
@@ -523,9 +522,9 @@
   <message key="submission.event.director.submissionRestored">Soumission restaurée à partir des archives</message>
   <message key="submission.event.reviewer.reviewerAssigned">Évaluateur assigné à une soumission</message>
   <message key="submission.event.reviewer.reviewerUnassigned">Évaluateur non assigné à une soumission</message>
-  <message key="submission.event.reviewer.reviewInitiated">Évaluation entamée</message>
+  <message key="submission.event.reviewer.reviewInitiated">Évaluation commencée</message>
   <message key="submission.event.reviewer.reviewCancelled">Évaluation annulée</message>
-  <message key="submission.event.reviewer.reviewReinitiated">Évaluation réentamée</message>
+  <message key="submission.event.reviewer.reviewReinitiated">Évaluation recommencée</message>
   <message key="submission.event.reviewer.reviewAccepted">Évaluation acceptée</message>
   <message key="submission.event.reviewer.reviewAcceptedByProxy">Évaluation acceptée par procuration</message>
   <message key="submission.event.reviewer.reviewDeclined">Évaluation refusée</message>
@@ -547,13 +546,13 @@
   <!-- Reader paper view -->
   <message key="reader.fullText">Texte intégral:</message>
   <message key="reader.fullTextNotAvailable">Les communications de la conférence ne sont pas disponibles actuellement.</message>
-  <message key="reader.fullTextRegistrationRequired">L'inscription à la conférence est obligatoire afin de pouvoir consulter les communications.</message>
-  <message key="reader.fullTextAccountRequired"><![CDATA[Un compte sur ce site est obligatoire afin de pouvoir consulter les communications. <a href="{$registerUrl}">Cliquer ici</a> pour créer un compte.]]></message>
+  <message key="reader.fullTextRegistrationRequired">L'inscription à la conférence est obligatoire pour la consultation des communications.</message>
+  <message key="reader.fullTextAccountRequired"><![CDATA[Un compte sur ce site est obligatoire pour la consultation des communications. <a href="{$registerUrl}">Cliquer ici</a> pour créer un compte.]]></message>
   <message key="reader.fullTextRegistrantsOnlyUntil">L'accès libre à cette conférence va débuter le {$date}.</message>
   <message key="reader.fullTextNotPostedYet">Les communications pour cette conférence vont être publiées le {$date}.</message>
   <!-- Reader Comments -->
   <message key="comments.viewAllComments">Voir tous les commentaires</message>
-  <message key="comments.noComments">Aucun commentaire de lecture n'a été fait.</message>
+  <message key="comments.noComments">Aucun commentaire des lecteurs n'a été fait.</message>
   <message key="comments.anonymous">Utilisateur anonyme</message>
   <message key="comments.anonymousNamed">"{$userName}"</message>
   <message key="comments.authenticated">{$userName}</message>
@@ -626,7 +625,7 @@
   <message key="admin.auth.ocs">Base de données OCS de l'utilisateur</message>
   <message key="admin.auth.create">Créer la source d'authentification</message>
   <message key="admin.auth.confirmDelete">Êtes-vous sûr de bien vouloir supprimer définitivement cette source d'authentification?</message>
-  <message key="admin.auth.noneCreated">Aucune source d'authentification n'a été définie</message>
+  <message key="admin.auth.noneCreated">Aucune source d'authentification n'a été définie.</message>
   <message key="admin.auth.enableSyncProfiles">Activer la synchronisation du profil de l'utilisateur (si supporté par ce plugiciel d'authentification). Les informations du profil de l'utilisateur seront automatiquement mises à jour depuis la source distante quand un utilisateur se connecte, et les modifications du profil (y compris le mot de passe) effectuées avec OCS vont automatiquement être mises à jour sur la source distante. Si cette option n'est pas activée, les informations du profil OCS vont rester séparées de celles du profil sur la source distante.</message>
   <message key="admin.auth.enableSyncPasswords">Permettre la modification du mot de passe de l'utilisateur (si supporté par ce plugiciel d'authentification). Activer cette option permettra aux utilisateurs de modifier leurs mot de passe OCS et d'utiliser la fonction "mot de passe oublié" pour réinitialiser un mot de passe perdu. Ces fonctions seront indisponibles pour les utilisateurs utilisant une source d'authentification où cette option n'est pas activée.</message>
   <message key="admin.auth.enableCreateUsers">Permettre la création d'utilisateurs (si supporté par ce plugiciel d'authentification).Les utilisateurs créés avec OCS à l'aide de cette source d'authentification vont automatiquement être ajoutés à la source d'authentification distante s'ils n'existent pas déjà. De plus, si cette source est la source d'authentification par défaut, les comptes OCS créés par une inscription d'un utilisateur vont aussi être ajoutés à la source distante d'authentification.</message>
@@ -804,10 +803,10 @@
   <message key="plugins.categories.paymethod.description">Les plugiciels de paiement mettent en place le support pour une multitude de méthodes de paiement en ligne.</message>
   <!-- Files Browser -->
   <message key="manager.files.indexOfDir">Index de {$dir}</message>
-  <message key="manager.files.uploadedFiles">Fichiers téléchargés vers le serveur</message>
+  <message key="manager.files.uploadedFiles">Fichiers téléchargés</message>
   <message key="manager.files.parentDir">Répertoire parent</message>
   <message key="manager.files.emptyDir">Aucun fichier n'a été trouvé dans ce répertoire.</message>
-  <message key="manager.files.uploadFile">Télécharger le fichier vers le serveur</message>
+  <message key="manager.files.uploadFile">Télécharger le fichier</message>
   <message key="manager.files.createDir">Créer un répertoire</message>
   <message key="manager.files.confirmDelete">Supprimer ce fichier/répertoire? Noter qu'un répertoire doit être vide pour pouvoir être supprimé.</message>
   <message key="manager.files.note">Note: L'explorateur de fichiers est une fonction avancée qui permet aux fichiers et aux répertoires associés à une conférence d'être vus et manipulés directement.</message>
@@ -878,8 +877,6 @@
   <!-- Conference setup page 2 -->
   <message key="manager.setup.additionalContent.homepage">Page d'accueil</message>
   <message key="manager.setup.additionalContent.homepageImage">Image de la page d'accueil</message>
-  <message key="manager.setup.additionalContent.homepageImage.description">
-  </message>
   <message key="manager.setup.additionalContent.additionalContent">Contenu supplémentaire</message>
   <message key="manager.setup.additionalContent.additionalContent.description">Ajouter le contenu suivant, en utilisant texte/HTML, qui va apparaître en dessous de l'image de la page d'accueil, s'il est uploadé.</message>
   <message key="manager.setup.additionalContent.information">Informations pour les utilisateurs</message>
@@ -911,7 +908,7 @@
   <message key="manager.setup.layout.itemsPerPage">Éléments par page</message>
   <message key="manager.setup.layout.numPageLinks">Liens aux pages</message>
   <message key="manager.setup.layout.useImageLogo">Image du logo</message>
-  <message key="manager.setup.layout.noImageFileUploaded">Aucune image n'a été téléchargée vers le serveur.</message>
+  <message key="manager.setup.layout.noImageFileUploaded">Aucune image n'a été téléchargée.</message>
   <message key="manager.setup.layout.navigationBar">Barre de navigation</message>
   <message key="manager.setup.layout.itemsDescription">Les éléments de la barre de navigation peuvent être ajoutés à l'ensemble actuel (Accueil, À propos, Accueil de l'utilisateur, etc.) et apparaissent en haut de la page.</message>
   <message key="manager.setup.layout.labelName">Nom de l'étiquette</message>
@@ -1078,7 +1075,6 @@ Titre du système de Classification]]></message>
   <message key="manager.tracks.form.titleRequired">Le titre est obligatoire pour la section.</message>
   <message key="manager.tracks.form.abbrevRequired">Le titre abrégé est obligatoire pour la section.</message>
   <message key="manager.tracks.trackDirectorInstructions">Désigner un responsable de section parmi les responsables de section disponibles.</message>
-  <message key="manager.tracks.submissionsToThisTrack">Les soumissions faites pour cette section de la conférence</message>
   <message key="manager.tracks.submissionNotReviewed">Indiquer que cette section n'est pas évaluée par les pairs</message>
   <message key="manager.tracks.peerReviewed">Évaluée par les pairs</message>
   <message key="manager.tracks.directorRestriction">Les éléments peuvent uniquement être proposés par les responsables et les responsables de section.</message>
@@ -1408,7 +1404,7 @@ Titre du système de Classification]]></message>
   <message key="director.paper.sendToArchive">Archiver cette soumission</message>
   <message key="director.paper.designateReviewVersion">Désigner le fichier original en tant que fichier évalué</message>
   <message key="director.paper.uploadReviewVersion">Télécharger une version révisée du fichier vers le serveur pour fins d'évaluation</message>
-  <message key="director.paper.uploadDirectorVersion">Télécharger la version du responsable vers le serveur</message>
+  <message key="director.paper.uploadDirectorVersion">Télécharger la version du responsable</message>
   <message key="director.paper.stageDisabled">Il n'est pas encore possible d'effectuer cette évaluation. Soit l'évaluation du résumé n'est pas encore finie, soit l'auteur n'a pas encore fourni une communication à évaluer.</message>
   <message key="director.paper.showSuppFile">Présenter le fichier aux évaluateurs</message>
   <message key="director.paper.clear">Effacer</message>
@@ -1432,7 +1428,7 @@ La dernière est la date de la plus récente évaluation acceptée.<br/>
 La mention active correspond au nombre d'évaluation en délibération ou en cours.]]></message>
   <message key="director.paper.replaceReviewer">Remplacer l'évaluateur</message>
   <message key="director.paper.directorToEnter">Le responsable doit entrer les recommandation/commentaires pour l'évaluateur</message>
-  <message key="director.paper.uploadReviewForReviewer">Télécharger l'évaluation vers le serveur</message>
+  <message key="director.paper.uploadReviewForReviewer">Télécharger l'évaluation</message>
   <message key="director.paper.peerReviewOptions">Options d'évaluation par les pairs</message>
   <message key="director.paper.decision">Décision</message>
   <message key="director.paper.recordDecision">Enregistrer la décision</message>
@@ -1509,7 +1505,7 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="reviewer.paper.recommendation">Recommandation</message>
   <message key="reviewer.paper.submitReview">Soumettre l'évaluation au responsable</message>
   <message key="reviewer.paper.reviewerComments">Commentaires</message>
-  <message key="reviewer.paper.uploadedFile">Fichiers téléchargés vers le serveur</message>
+  <message key="reviewer.paper.uploadedFile">Fichiers téléchargés</message>
   <message key="reviewer.paper.reviewersAnnotatedVersion">Version téléchargée vers le serveur par l'évaluateur</message>
   <message key="reviewer.paper.reviewersAnnotatedVersionDescription">(Si vous souhaitez annoter ce fichier pour le responsable, enregistrez-le sur votre disque dur puis utiliser Naviguer/Télécharger vers le serveur.)</message>
   <message key="reviewer.paper.schedule.request">Requête du responsable</message>
@@ -1543,8 +1539,8 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="presenter.submit.step5SkipSupp">Étape 4. Confirmer la soumission</message>
   <message key="presenter.submit.start">1. S'inscrire</message>
   <message key="presenter.submit.metadata">2. Saisir les métadonnées</message>
-  <message key="presenter.submit.upload">3. Télécharger la soumission vers le serveur</message>
-  <message key="presenter.submit.supplementaryFiles">4. Télécharger les fichiers supplémentaires vers le serveur</message>
+  <message key="presenter.submit.upload">3. Télécharger la soumission</message>
+  <message key="presenter.submit.supplementaryFiles">4. Télécharger les fichiers supplémentaires</message>
   <message key="presenter.submit.confirmation">5. Confirmation</message>
   <message key="presenter.submit.confirmationSkipSupp">4. Confirmation</message>
   <message key="presenter.submit.cancelSubmission">Vous pouvez compléter cette soumission à une date ultérieure en sélectionnant les soumissions actives de l'accueil de l'auteur.</message>
@@ -1593,16 +1589,16 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
 <li>Une fois la soumission téléchargée vers le serveur, cliquer sur Enregistrer et continuer au bas de la page.</li>
 </ol>]]></message>
   <message key="presenter.submit.submissionFile">Fichier de la soumission</message>
-  <message key="presenter.submit.uploadSubmissionFile">Télécharger le fichier de la soumission vers le serveur</message>
+  <message key="presenter.submit.uploadSubmissionFile">Télécharger le fichier de la soumission</message>
   <message key="presenter.submit.replaceSubmissionFile">Remplacer le fichier de le soumission</message>
-  <message key="presenter.submit.noSubmissionFile">Aucun fichier de la soumission téléchargé vers le serveur.</message>
+  <message key="presenter.submit.noSubmissionFile">Aucun fichier de la soumission téléchargé.</message>
   <message key="presenter.submit.noSubmissionConfirm">Êtes-vous sûr de vouloir continuer sans télécharger un fichier de la soumission vers le serveur?</message>
   <!-- Paper Submission Step 4 -->
   <message key="presenter.submit.supplementaryFilesInstructions">Cette étape optionnelle permet d'ajouter des fichiers supplémentaires à la soumission. Les fichiers, de tout format, peuvent inclure (a) des instruments de recherche, (b) des fichiers de données, lesquels sont conformes aux limites de la revue d'éthique de recherche de l'étude, (c) sources qui ne sont pas disponibles aux lecteurs autrement, (d) figures et tableaux qui ne peuvent être intégrés au texte lui-même, ou autres documents ou données qui améliorent la contribution à la soumission.</message>
   <message key="presenter.submit.noSupplementaryFiles">Aucun fichier supplémentaire n'a été ajouté à cette soumission.</message>
   <message key="presenter.submit.backToSupplementaryFiles">Retour aux fichiers supplémentaires</message>
   <message key="presenter.submit.confirmDeleteSuppFile">Êtes-vous sûr de vouloir supprimer ce fichier supplémentaire?</message>
-  <message key="presenter.submit.uploadSuppFile">Télécharger un fichier supplémentaire vers le serveur</message>
+  <message key="presenter.submit.uploadSuppFile">Télécharger un fichier supplémentaire</message>
   <!-- Paper Submission Step 4a: Supplementary Files -->
   <message key="presenter.submit.addSupplementaryFile">Ajouter un fichier supplémentaire</message>
   <message key="presenter.submit.editSupplementaryFile">Modifier un fichier supplémentaire</message>
@@ -1624,7 +1620,7 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="presenter.submit.suppFile.dateDescription">Date de collecte des données ou de création de l'instrument.</message>
   <message key="presenter.submit.suppFile.sourceDescription">Nom de l'étude ou autre point d'origine.</message>
   <message key="presenter.submit.suppFile.specifyOtherType">Spécifier un autre</message>
-  <message key="presenter.submit.suppFile.noFile">Aucun fichier téléchargé vers le serveur.</message>
+  <message key="presenter.submit.suppFile.noFile">Aucun fichier téléchargé.</message>
   <message key="presenter.submit.suppFile.form.titleRequired">Veuillez entrer le titre de ce fichier supplémentaire.</message>
   <message key="presenter.submit.suppFile.form.subjectRequired">Veuillez entrer un sujet.</message>
   <message key="presenter.submit.suppFile.form.descriptionRequired">Veuillez entrer une description.</message>
@@ -1642,7 +1638,7 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="presenter.submit.submissionComplete">Soumission complétée. Merci d'avoir soumis votre travail à {$conferenceTitle}.</message>
   <message key="presenter.submit.expedite"><![CDATA[Si cette soumission est déjà dans un format prêt à être publié, sans autre travail d'évaluation ou de mise en page, elle peut directement être envoyée à la page des Actes en <a href="{$expediteUrl}" class="action">cliquant ici</a>. (Note: Seuls les responsables de conférence ont droit à cette option pour leurs soumissions.)]]></message>
   <!-- Used in submission review / editing -->
-  <message key="presenter.paper.uploadPresenterVersion">Télécharger la version de l'auteur vers le serveur</message>
+  <message key="presenter.paper.uploadPresenterVersion">Télécharger la version de l'auteur</message>
   <!-- Submission Tracking - Layout Specific -->
   <message key="submission.layout.layoutVersion">Version de mise en page</message>
   <message key="submission.layout.layoutFile">Fichier de mise en page</message>
@@ -1652,7 +1648,7 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="submission.layout.supplementaryFiles">Évaluation du fichier supplémentaire</message>
   <message key="submission.layout.galleyLabelRequired">L'étiquette d'épreuve est obligatoire.</message>
   <message key="submission.layout.confirmDeleteGalley">Êtes-vous sûr de vouloir supprimer définitivement cette épreuve?</message>
-  <message key="submission.layout.newSupplementaryFile">Télécharger un nouveau fichier supplémentaire vers le serveur</message>
+  <message key="submission.layout.newSupplementaryFile">Télécharger un nouveau fichier supplémentaire</message>
   <message key="submission.layout.confirmDeleteSupplementaryFile">Êtes-vous sûr de vouloir supprimer ce fichier supplémentaire?</message>
   <message key="submission.layout.editGalley">Modifier la mise en page d'une épreuve</message>
   <message key="submission.layout.addGalley">Ajouter la mise en page d'une épreuve</message>
@@ -1738,14 +1734,14 @@ La mention active correspond au nombre d'évaluation en délibération ou en cou
   <message key="user.profile.leavePasswordBlank">Laisser les champs de mot de passe vides pour conserver le mot de passe actuel.</message>
   <message key="user.profile.oldPassword">Mot de passe actuel</message>
   <message key="user.profile.newPassword">Nouveau mot de passe</message>
-  <message key="user.profile.repeatNewPassword">Entrer de nouveau le nouveau mot de passe</message>
+  <message key="user.profile.repeatNewPassword">Entrer le nouveau mot de passe de nouveau</message>
   <message key="user.profile.changePasswordInstructions">Entrer votre mot de passe actuel et votre nouveau mot de passe ci-dessous pour modifier le mot de passe de votre compte.</message>
   <message key="user.profile.form.oldPasswordInvalid">Le mot de passe actuel entré est incorrect.</message>
   <message key="user.profile.form.newPasswordRequired">Vous devez entrer un nouveau mot de passe valide.</message>
   <message key="user.profile.form.publishedNotifications">Courriel d'alerte de nouveaux contenus</message>
   <message key="user.profile.form.openAccessNotifications">Courriel d'alerte pour l'accès libre</message>
   <!-- Registration -->
-  <message key="user.account.repeatPassword">Entrer de nouveau le mot de passe</message>
+  <message key="user.account.repeatPassword">Entrer le mot de passe de nouveau</message>
   <message key="user.account.form.usernameExists">Le nom d'utilisateur fourni existe déjà.</message>
   <message key="user.account.form.usernameAlphaNumeric">Le nom d'utilisateur peut contenir seulement des caractères alphanumériques, traits de soulignement, et traits d'union, et doit commencer et se terminer par un caractère alphanumérique.</message>
   <message key="user.account.form.emailExists">L'adresse de courriel sélectionnée est déjà utilisée par un autre utilisateur.</message>
@@ -2195,9 +2191,6 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
   <message key="icon.mail.alt">Courriel</message>
   <message key="icon.info.alt">Info</message>
   <message key="icon.folder.alt">Dossier</message>
-  <message key="icon.small.alt">Petit</message>
-  <message key="icon.medium.alt">Moyen</message>
-  <message key="icon.large.alt">Grand</message>
   <!-- Debug messages -->
   <message key="debug.executionTime">Page créée en</message>
   <message key="debug.databaseQueries">Nombre de requêtes de la base de données</message>
@@ -2445,4 +2438,38 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="director.notifyUsers.allPresenters">Tous les présentateurs ({$count} utilisateurs)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">Tous les inscrits qui ont payé ({$count} utilisateurs)</message>
 	<message key="director.notifyUsers.allRegistrants">Tous les incrits ({$count} utilisateurs)</message>
+	<message key="common.captchaField.altText">Image de validation</message>
+	<message key="common.altText">Texte optionnel</message>
+	<message key="common.altTextInstructions">Prière de fournir un texte optionnel pour cette image afin d'en assurer l'accessibilité pour les utilisateurs se servant uniquement de navigateurs textuels ou d'appareils et accessoires fonctionnels.</message>
+	<message key="common.sitePageHeader.altText">Image de l'en-tête du site</message>
+	<message key="common.pageHeader.altText">Image d'en-tête de la page</message>
+	<message key="common.pageHeaderLogo.altText">Logo d'en-tête de la page</message>
+	<message key="common.homePageHeader.altText">Image d'en-tête de la page d'accueil</message>
+	<message key="common.homePageHeaderLogo.altText">Logo d'en-tête</message>
+	<message key="common.conferenceHomepageImage.altText">Image de la page d'accueil de la conférence</message>
+	<message key="paper.comments.trackDefault">Par défaut</message>
+	<message key="paper.comments.disable">Désactiver</message>
+	<message key="paper.comments.enable">Activer</message>
+	<message key="paper.fontSize">Taille de police</message>
+	<message key="paper.fontSize.small.altText">Petit</message>
+	<message key="paper.fontSize.medium.altText">Moyen</message>
+	<message key="paper.fontSize.large.altText">Grand</message>
+	<message key="submission.changeComments">Modifier pour</message>
+	<message key="admin.settings.homeHeaderImage.altText">Logo du site</message>
+	<message key="manager.setup.layout.homepageHeader.altText">En-tête de la page d'accueil de la conférence</message>
+	<message key="manager.setup.layout.conferenceLogo.altText">Logo de la conférence</message>
+	<message key="manager.tracks.disableComments">Désactiver les commentaires de lecteurs pour cette section.</message>
+	<message key="manager.registration.domain">Domaine</message>
+	<message key="director.me">Moi</message>
+	<message key="director.submissions.assignedTo">Assigner à</message>
+	<message key="icon.font_small.alt">Petit</message>
+	<message key="icon.font_medium.alt">Moyen</message>
+	<message key="icon.font_large.alt">Grand</message>
+	<message key="manager.schedConfSetup.submissions.previewAbstracts">Afficher les résumés dès que l'évaluation de résumé a été complétée.</message>
+	<message key="manager.registration.membership">Adhésion</message>
+	<message key="director.allDirectors">Tous les responsables</message>
+	<message key="about.aboutThisPublishingSystem.altText">Processus de soumission, d'évaluation et de publication d'OCS</message>
+	<message key="announcement.posted">Affiché</message>
+	<message key="log.director.unpublish">La communication a été déplacée de nouveau dans la file d'attente.</message>
+	<message key="director.submissions.inTrack">En suivi</message>
 </locale>

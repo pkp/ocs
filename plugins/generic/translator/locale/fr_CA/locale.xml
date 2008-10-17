@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
 
 <!--
   * locale.xml
@@ -33,7 +33,7 @@
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_DIFFERING_PARAMS.title">Listes de paramètres divergents</message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_FILE.title">Fichiers de langues manquants</message>
 	<message key="plugins.generic.translator.errors.EMAIL_ERROR_MISSING_EMAIL.title">Courriels manquants</message>
-	<message key="plugins.generic.translator.errors.EMAIL_ERROR_EXTRA_EMAIL.title">Courriels supplémentaires</message>
+	<message key="plugins.generic.translator.errors.EMAIL_ERROR_EXTRA_EMAIL.title">Courriels supp.</message>
 	<message key="plugins.generic.translator.errors.EMAIL_ERROR_DIFFERING_PARAMS.title">Listes de paramètres de courriels divergents</message>
 
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_KEY.message">La clé "{$key}" est absente de "{$filename}". La version anglaise a été fournie par défaut.</message>
@@ -48,7 +48,7 @@
 	<message key="plugins.generic.translator.errors.EMAIL_ERROR_EXTRA_EMAIL.message">Le message "{$key}" n'est plus utilisé et peut être supprimé.</message>
 	<message key="plugins.generic.translator.errors.EMAIL_ERROR_DIFFERING_PARAMS.message">Le message "{$key}" diffère de la langue de référence dans son utilisation des paramètres. Veuillez vérifier qu'il contient tous les paramètres pertinents. Le ou les paramètres qui ne correspondent pas sont :</message>
 
-	<message key="plugins.generic.translator.locale">{$locale} Langue</message>
+	<message key="plugins.generic.translator.locale">Langue {$locale}</message>
 	<message key="plugins.generic.translator.localeFiles">Fichiers de langue</message>
 	<message key="plugins.generic.translator.miscFiles">Fichiers divers</message>
 	<message key="plugins.generic.translator.emails">Modèles de courriel</message>
@@ -72,4 +72,5 @@
 	<message key="plugins.generic.translator.deleteKey">Supprimer cette clé</message>
 	<message key="plugins.generic.translator.deleteEmail">Supprimer ce courriel</message>
 	<message key="plugins.generic.translator.saveBeforeContinuing">Assurez-vous d'enregistrer tous les changements effectués sur cette page avant de continuer ou ils seront perdus. Voulez-vous continuer? Si c'est le cas, tout changement non enregistré sera perdu.</message>
+	<message key="plugins.generic.translator.localeKey.description">Saisir une clé de langue complète pour fins de recherche.</message>
 </locale>

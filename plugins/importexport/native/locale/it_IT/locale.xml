@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.native.displayName">Plugin dei paper XML</message>
+	<message key="plugins.importexport.native.description">Import e export dei paper</message>
+
+	<message key="plugins.importexport.native.cliUsage"><![CDATA[Utilizza: {$scriptName} {$pluginName} [command] ...
+Comandi:
+	import [xmlFileName] [conference_path] [sched_conf_path] [user_name] ...
+	export [xmlFileName] [conference_path] [sched_conf_path] papers [paperId1] [paperId2] ...
+	export [xmlFileName] [conference_path] [sched_conf_path] paper [paperId]
+
+Ulteriori parametri sono richiesti per importare i dati come segue, a secondo del nodo root per il documento XML. 
+
+Se il nodo root è <paper> o <papers>, sono richiesti ulteriori parametri.
+Sono accettati i seguenti formati:
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_id [trackId]
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_name [trackName]
+
+{$scriptName} {$pluginName} import [xmlFileName] [conference_path]
+	[sched_conf_path] [user_name] track_abbrev [trackAbbrev]]]></message>
+	<message key="plugins.importexport.native.export">Export dei dati</message>
+	<message key="plugins.importexport.native.export.tracks">Percorso dell'export</message>
+	<message key="plugins.importexport.native.export.papers">Export dei paper</message>
+
+	<message key="plugins.importexport.native.selectPaper">Selezizona il paper</message>
+
+	<message key="plugins.importexport.native.import.papers">Import dei paper</message>
+	<message key="plugins.importexport.native.import.papers.description">Il file che stai importando contiene uno o più paper. Devi scegliere un percorso dove effettuare l’import dei paper; se non desideri importarli tutti nello stesso percorso, dovresti separarli  in diversi file XML o spostarli in percorsi appropriati dopo l’import.</message>
+
+	<message key="plugins.importexport.native.import">Import dei dati</message>
+	<message key="plugins.importexport.native.import.description"><![CDATA[Questo plugin supporta l’import dei dati basato su native.dtd Document Type Definition. I nodi root supportati sono &lt;paper&gt; e &lt;papers&gt;.]]></message>
+
+	<message key="plugins.importexport.native.import.error">Error nell'import</message>
+	<message key="plugins.importexport.native.import.error.description">Uno o più errori si sono verificati durante l’import. Per favore controlla e assicurati che il formato del file di import corrisponda correttamente le specifiche. I dettagli specifici degli errori dell’import sono elencati qui di seguito.</message>
+
+	<message key="plugins.importexport.native.cliError">ERRORE:</message>
+	<message key="plugins.importexport.native.error.uploadFailed">L’upload è fallito; per favore assicurati che gli upload siano permessi sul tuo server e che il file non sia troppo grande per la configurazione del tuo server web e PHP.</message>
+	<message key="plugins.importexport.native.error.unknownUser">L’utente specificato, "{$userName}", non esiste.</message>
+	<message key="plugins.importexport.native.error.unknownConference">La conferenza specificata o il path della conferenza in programma, rispettivamente "{$conferencePath}" o "{$schedConfPath}", non esiste.</message>
+	<message key="plugins.importexport.native.export.error.couldNotWrite">Non è stato possibile scrivere sul file "{$fileName}".</message>
+	<message key="plugins.importexport.native.export.error.trackNotFound">Nessun percorso corrisponde al "{$trackIdentifier}" specificato.</message>
+	<message key="plugins.importexport.native.export.error.paperNotFound">Nessun paper corrisponde al paper ID "{$paperId}" specificato.</message>
+	<message key="plugins.importexport.native.import.error.unsupportedRoot">Questo plugin non supporta il nodo root fornito "{$rootName}". Per favore assicurati che il file sia composto correttamente e prova di nuovo.</message>
+
+	<message key="plugins.importexport.native.import.error.invalidBooleanValue">E’ stato specificato un valore booleano "{$value}" non valido. Per favore utilizza "true" o "false".</message>
+	<message key="plugins.importexport.native.import.error.invalidDate">E' stata specificata una data non valida "{$value}".</message>
+	<message key="plugins.importexport.native.import.error.unknownEncoding">E’ stata inclusa una data usando un tipo di codice sconosciuto "{$type}".</message>
+	<message key="plugins.importexport.native.import.error.couldNotWriteFile">E’ impossibile salvare una copia in locale di "{$originalName}".</message>
+	<message key="plugins.importexport.native.import.error.illegalUrl">L’URL specificato "{$url}" non è legittimo. Gli import inviati da web supportano solo metodi http, https, ftp, o ftps.</message>
+	<message key="plugins.importexport.native.import.error.unknownSuppFileType">E’ stato specificato un tipo di file supplementare "{$suppFileType}" sconosciuto.</message>
+	<message key="plugins.importexport.native.import.error.couldNotCopy">E’ impossibile copiare un URL specificato "{$url}" su un file locale.</message>
+	<message key="plugins.importexport.native.import.error.paperTitleLocaleUnsupported">E’ stato fornito un titolo di paper ("{$paperTitle}") in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperAbstractLocaleUnsupported">E’ stato fornito l’abstract per il paper  "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.galleyLabelMissing">Al paper "{$paperTitle}" nel percorso "{$trackTitle}" manca un’etichetta per la bozza.</message>
+	<message key="plugins.importexport.native.import.error.suppFileMissing">Al paper "{$paperTitle}" nel percorso "{$trackTitle}" manca un file supplementare.</message>
+	<message key="plugins.importexport.native.import.error.galleyFileMissing">Al paper "{$paperTitle}" nel percorso "{$trackTitle}" manca un file di bozza.</message>
+
+	<message key="plugins.importexport.native.import.error.trackTitleLocaleUnsupported">E’ stato fornito un titolo del percorso ("{$trackTitle}") in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevLocaleUnsupported">E’ stata fornita un’abbreviazione al percorso ("{$trackAbbrev}") in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.trackIdentifyTypeLocaleUnsupported">E’ stato fornito un tipo di identificativo ("{$trackIdentifyType}") per il percorso in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.trackPolicyLocaleUnsupported">E’ stata fornita una politica ("{$trackPolicy}") per il percorso in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+
+	<message key="plugins.importexport.native.import.error.trackTitleMismatch">Il titolo del percorso "{$track1Title}" e il titolo del percorso "{$track2Title}" combaciano con i percorsi di differenti conferenze esistenti.</message>
+	<message key="plugins.importexport.native.import.error.trackTitleMatch">Il titolo del percorso "{$trackTitle}" coincide con il percorso di una conferenza esistente, ma un altro titolo di questo percorso non coincide con un altro titolo della conferenza esistente.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevMismatch">L’abbreviazione del percorso "{$track1Abbrev}" e l’abbreviazione del percorso "{$track2Abbrev}" coincidono con percorsi di una differente conferenza esistente.</message>
+	<message key="plugins.importexport.native.import.error.trackAbbrevMatch">L’abbreviazione del percorso "{$trackAbbrev}" combacia con un percorso di una conferenza esistente, ma un’altra abbreviazione di questo percorso non coincide con un’altra abbreviazione del percorso della conferenza esistente.</message>
+
+	<message key="plugins.importexport.native.import.error.paperDisciplineLocaleUnsupported">E’ stata fornita una disciplina per il paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperTypeLocaleUnsupported">E’ stata fornita una tipologia per il paper"{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperSubjectLocaleUnsupported">E’ stato fornito un soggetto per il paper"{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperSubjectClassLocaleUnsupported">E’ stata fornita una classificazione per il paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageGeoLocaleUnsupported">E’ stata fornita una copertura geografica per il paper"{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageChronLocaleUnsupported">E’ stata fornita una copertura cronologica per il paper"{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperCoverageSampleLocaleUnsupported">E’ stata fornita una copertura d’esempio per il paper"{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperSponsorLocaleUnsupported">E’ stata fornito uno sponsor per il paper"{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+
+	<message key="plugins.importexport.native.import.error.paperAuthorCompetingInterestsLocaleUnsupported">E’ stata fornito un conflitto d’interessi per l’autore "{$authorFullName}" del paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported">E’ stata fornita una biografia per l’autore "{$authorFullName}" del paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+
+	<message key="plugins.importexport.native.import.error.galleyLocaleUnsupported">E’ stata fornita una bozza del paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+
+	<message key="plugins.importexport.native.import.error.paperSuppFileTitleLocaleUnsupported">E’ stato fornito un titolo di file supplementare ("{$suppFileTitle}") per il paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileCreatorLocaleUnsupported">E’ stato fornito un autore del file supplementare ("{$suppFileTitle}") per il paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSubjectLocaleUnsupported">E’ stato fornito un soggetto del file supplementare ("{$suppFileTitle}") per il paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileTypeOtherLocaleUnsupported">E’ stato fornito un tipo personalizzato di file supplementare ("{$suppFileTitle}") per il paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileDescriptionLocaleUnsupported">E’ stata fornita una descrizione del file supplementare ("{$suppFileTitle}") per il paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFilePublisherLocaleUnsupported">E’ stato fornito un editore del file supplementare ("{$suppFileTitle}") per il paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSponsorLocaleUnsupported">E’ stato fornito uno sponsor del file supplementare ("{$suppFileTitle}") per il paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+	<message key="plugins.importexport.native.import.error.paperSuppFileSourceLocaleUnsupported">E’ stata fornita una fonte del file supplementare ("{$suppFileTitle}") per il paper "{$paperTitle}" in una lingua ("{$locale}") che questa conferenza non supporta.</message>
+
+	<message key="plugins.importexport.native.import.success">Import concluso con successo</message>
+	<message key="plugins.importexport.native.import.success.description">Import concluso con successofully-imported items are listed below.</message>
+
+</locale>

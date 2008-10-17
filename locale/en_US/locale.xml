@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+<!DOCTYPE locale SYSTEM "../locale.dtd">
 
 <!--
   * locale.xml
@@ -249,7 +249,7 @@
 	<message key="navigation.nextStep">Next Step</message>
 	<message key="navigation.stepNumber">Step {$step}</message>
 	<message key="navigation.previousPage"><![CDATA[&lt;&lt;]]></message>
-	<message key="navigation.nextPage"><![CDATA[&gt;&gt;]]></message>
+	<message key="navigation.nextPage"><![CDATA[>>]]></message>
 	<message key="navigation.items">{$from} - {$to} of {$total} Items</message>
 
 	<!-- Paper Queues -->

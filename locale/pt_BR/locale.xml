@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+<!DOCTYPE locale SYSTEM "../locale.dtd">
 
 <!--
   * locale.xml
@@ -398,7 +398,7 @@
 	<message key="submission.notes">Comentários da Submissão</message>
 	<message key="submission.notes.breadcrumb">Comentários</message>
 	<message key="submission.notes.addNewNote">Incluir novo comentário</message>
-	<message key="submission.notes.viewNotes">Visualizar comentários</message>
+	<message key="submission.notes.viewNotes">Visualizar notas</message>
 	<message key="submission.notes.expandNotes">Expandir comentários</message>
 	<message key="submission.notes.clearAllNotes">Limpar comentários</message>
 	<message key="submission.notes.noSubmissionNotes">Sem comentários da submissão</message>
@@ -845,7 +845,7 @@ e deve começar e terminar com um caractere alfanumérico.</message>
 	<message key="manager.statistics.statistics.note">Aviso: Percentuais para submissões avaliadas pelos pares podem não somar 100%, já que itens submetidos novamente podem ser aceitos, rejeitados ou ainda estarem em algum processo.</message>
 
 	<message key="manager.statistics.reports">Relatórios</message>
-	<message key="manager.statistics.reports.description">O sistema gera relatórios que registram os detalhes associados com o processamento da submissão, do ponto de vista de submissões, diretores, avaliadores e modalidades, em um dado período. Relatórios são gerados no formato CSV, que exigem um aplicativo de planilha eletrônica para serem visualizados.</message>
+	<message key="manager.statistics.reports.description">Escolha um relatório da lista.</message>
 	<!-- Plugin Management -->
 	<message key="manager.plugins.pluginManagement">Administração de Plugins</message>
 	<message key="manager.plugins.sitePlugin">Este é um plugin de uso geral. Somente o Administrador do Portal possui permissões de administração.</message>
@@ -1005,7 +1005,7 @@ e deve começar e terminar com um caractere alfanumérico.</message>
 	<!-- Conference setup page 5 -->
 	<message key="manager.setup.loggingAndAuditing.pageDescription">Manter log das seguintes ações e materiais para todas as conferências.</message>
 	<message key="manager.setup.loggingAndAuditing.submissionEventLogging">Permitir controle de eventos da submissão, mantendo um documento de log de todas as ações (acessível em cada página de "Histórico").</message>
-	<message key="manager.setup.loggingAndAuditing.submissionEmailLogging">Permitir controle de e-mails da submissão, que mantém um log de cada e-mail enviado relacionado com a submissão (acessível em cada página de "Histórico").</message>
+	<message key="manager.setup.loggingAndAuditing.submissionEmailLogging">E-mails relativos à submissão, registrados na página de "Histórico" da submissão.</message>
 	<message key="manager.setup.loggingAndAuditing.conferenceEventLogging">Log de atividades de conferência.</message>
 
 	<!-- Conference setup page 6 -->
@@ -1138,7 +1138,7 @@ Título do sistema de classificação]]></message>
 	<message key="manager.schedConfSetup.review.reviewerAccessKeysEnabled">Habilitar Acesso 1-Clique para avaliadores</message>
 	<message key="manager.schedConfSetup.review.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Aviso:</strong> O convite ao avaliador conterá uma URL especial que levará os avaliadores diretamente à página de Avaliação para a submissão em questão (sendo necessário realizar o login para acessar outras páginas). Para garantir a segurança do processo ao usar esta opção, não é permitdo a Diretores alterar endereços de e-mail, Cópias Carbono (CCs) ou Cópias Ocultas (BCCs) antes de enviar a mensagem aos avaliadores.]]></message>
 	<message key="manager.schedConfSetup.review.reviewerReminders">Lembretes aos Avaliadores</message>
-	<message key="manager.schedConfSetup.review.automatedReminders">E-mails automatizados serão enviados ao avaliador (o editor também pode enviar lembretes ao avaliador)</message>
+	<message key="manager.schedConfSetup.review.automatedReminders">Lembretes automáticos serão enviados ao avaliador</message>
 	<message key="manager.schedConfSetup.review.remindForInvite1">Caso o avaliador não responda a uma solicitação de avaliação dentro de</message>
 	<message key="manager.schedConfSetup.review.remindForInvite2">dias.</message>
 	<message key="manager.schedConfSetup.review.remindForSubmit1">Caso o avaliador não submeteu sua recomendação dentro de</message>
@@ -1155,7 +1155,7 @@ Título do sistema de classificação]]></message>
 
 	<!-- Track Management -->
 	<message key="manager.tracks.noneCreated">Nenhuma modalidade criada.</message>
-	<message key="manager.tracks.confirmDelete">Deseja realmente excluir permanentemente esta modalidade? Os documentos desta modalidade deverão ser publicados novamente.</message>
+	<message key="manager.tracks.confirmDelete">Deseja realmente excluir permanentemente esta modalidade?</message>
 	<message key="manager.tracks.create">Criar Modalidade</message>
 	<message key="manager.tracks.directors">Diretores de Modalidade</message>
 	<message key="manager.tracks.unassigned">Diretores de Modalidade Disponíveis</message>
@@ -1165,7 +1165,6 @@ Título do sistema de classificação]]></message>
 	<message key="manager.tracks.form.titleRequired">Título obrigratório.</message>
 	<message key="manager.tracks.form.abbrevRequired">Abreviatura do Título obrigatória.</message>
 	<message key="manager.tracks.trackDirectorInstructions">Escolha dentre os Diretores de Modalidade disponíveis e clique em "Designar Diretor" para esta modalidade.</message>
-	<message key="manager.tracks.submissionsToThisTrack">Submissões desta modalidade</message>
 	<message key="manager.tracks.submissionNotReviewed">Submissões desta modalidade NÃO serão avaliadas pelos pares</message>
 	<message key="manager.tracks.peerReviewed">Avaliada pelos Pares</message>
 	<message key="manager.tracks.directorRestriction">Restrita a Diretores e Diretores de Modalidade.</message>
@@ -1270,8 +1269,7 @@ Pode ser incluído o motivo para desabilitar a conta.</message>
 	<message key="manager.people.authSource">Fonte de autenticação</message>
 	<message key="manager.people.enrollUserAs">Cadastrar usuário como</message>
 	<message key="manager.people.doNotEnroll">Sem papel</message>
-	<message key="manager.people.enrollUserAsDescription">O sistema permite o cadastrado de usuários sem função. Papéis podem ser atribuídos ou removidos a qualquer momento após a criação do cadastro.
-O usuário só poderá ser encontrado na lista Todos os Usuários.</message>
+	<message key="manager.people.enrollUserAsDescription">Papéis podem ser atribuídos ou removidos a qualquer momento durante e após a criação do cadastro.</message>
 	<message key="manager.people.invalidUser">Usuário não existe.</message>
 	<message key="manager.people.noAdministrativeRights"><![CDATA[Você não possui direitos administrativos sobre este usuário porque:
 		<ul>
@@ -1542,7 +1540,7 @@ Dias refere-se ao tempo médio para concluir uma avaliação.<br />
 com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<message key="director.paper.replaceReviewer">Substituir Avaliador</message>
 	<message key="director.paper.directorToEnter">Diretor deve incluir a recomendação/comentários pelo avaliador</message>
-	<message key="director.paper.uploadReviewForReviewer">Enviar arquivo de Avaliação</message>
+	<message key="director.paper.uploadReviewForReviewer">Enviar versão de Avaliação</message>
 	<message key="director.paper.peerReviewOptions">Opções de Avaliação pelos Pares</message>
 	<message key="director.paper.decision">Decisão</message>
 	<message key="director.paper.recordDecision">Registrar Decisão</message>
@@ -1786,7 +1784,7 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<message key="submission.layout.galleyFileData">Informação sobre versão de Composição Final</message>
 	<message key="submission.layout.galleyLabel">Rótulo</message>
 	<message key="submission.layout.galleyLabelInstructions">O rótulo é utilizado para identificar o formato do documento (ex.: HTML, PDF, etc).</message>
-	<message key="submission.layout.galleyHTMLData">Documentos da Composição Final HTML</message>
+	<message key="submission.layout.galleyHTMLData">Arquivos da Composição Final HTML</message>
 	<message key="submission.layout.galleyStylesheet">Folha de Estilo (CSS)</message>
 	<message key="submission.layout.noStyleFile">Nenhuma folha de estilo incluída.</message>
 	<message key="submission.layout.deleteGalleyStylesheet">Excluir folha de estilo.</message>
@@ -2261,7 +2259,7 @@ O servidor atualmente tem suporte a mbstring: <strong>{$supportsMBString}</stron
 	<message key="rt.admin.options">Ferramentas Opcionais</message>
 
 	<message key="rt.admin.settings.disableRelatedItems">Desabilitar Itens Relacionados</message>
-	<message key="rt.admin.settings.captureCite">Como citar este documento (Exibe a citação de um artigo no formato padrão, com suporte para os seguintes programas de administração de citações: EndNote, Reference Manager, e ProCite)</message>
+	<message key="rt.admin.settings.captureCite">Como citar este documento (Exibe informações bibliográficas sobre o item).</message>
 	<message key="rt.admin.settings.viewMetadata">Exibir metadados (Exibe a informação de indexação incluída pelo autor e pelo sistema)</message>
 	<message key="rt.admin.settings.supplementaryFiles">Exibir documentos suplementares (Exibe lista de todos os documentos suplementares incluídos pelo autor)</message>
 	<message key="rt.admin.settings.printerFriendly">Versão para impressão (Apresenta ao leitor uma versão para impressão)</message>
@@ -2417,10 +2415,6 @@ A validação pode falhar em URLs para pesquisa que requeiram dados via o métod
 	<message key="icon.mail.alt">Correio</message>
 	<message key="icon.info.alt">Informação</message>
 	<message key="icon.folder.alt">Pasta</message>
-	<message key="icon.small.alt">Pequena</message>
-	<message key="icon.medium.alt">Média</message>
-	<message key="icon.large.alt">Grande</message>
-
 	<!-- Debug messages -->
 	<message key="debug.executionTime">Página gerada em</message>
 	<message key="debug.databaseQueries">Número de requisições ao banco de dados</message>
@@ -2624,4 +2618,38 @@ Aguarde alguns minutos antes de enviar outra mensagem.</message>
 	<message key="director.notifyUsers.allPresenters">Todos os apresentadores ({$count} usuários)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">Todos os inscritos pagantes ({$count} usuários)</message>
 	<message key="director.notifyUsers.allRegistrants">Todos os inscritos ({$count} usuários)</message>
+	<message key="common.captchaField.altText">Imagem de segurança</message>
+	<message key="common.altText">Texto alternativo</message>
+	<message key="common.altTextInstructions">Informe o texto alternativo para imagem, assegurando a acessibilidade a usuários com navegadores de texto ou aparelhos de apoio.</message>
+	<message key="common.sitePageHeader.altText">Imagem de cabeçalho do portal</message>
+	<message key="common.pageHeader.altText">Imagem de cabeçalho de páginas</message>
+	<message key="common.pageHeaderLogo.altText">Logo para o cabeçalho das páginas</message>
+	<message key="common.homePageHeader.altText">Imagem de de cabeçalho da página inicial</message>
+	<message key="common.conferenceHomepageImage.altText">Imagem de cabeçalho da página inicial da Conferencia</message>
+	<message key="paper.comments.trackDefault">Padrão</message>
+	<message key="paper.comments.disable">Desabilitar</message>
+	<message key="paper.comments.enable">Habilitar</message>
+	<message key="paper.fontSize">Tamanho da fonte</message>
+	<message key="paper.fontSize.small.altText">Menor</message>
+	<message key="paper.fontSize.medium.altText">Médio</message>
+	<message key="paper.fontSize.large.altText">Maior</message>
+	<message key="submission.changeComments">Alterar para</message>
+	<message key="admin.settings.homeHeaderImage.altText">Logo do portal</message>
+	<message key="manager.setup.layout.homepageHeader.altText">Cabeçalho da página inicial da Conferência</message>
+	<message key="manager.setup.layout.conferenceLogo.altText">Logo da Conferência</message>
+	<message key="manager.schedConfSetup.submissions.previewAbstracts">Publicar resumos</message>
+	<message key="manager.tracks.disableComments">Desabilitar comentários dos leitores para esta modalidade.</message>
+	<message key="manager.registration.membership">Filiação</message>
+	<message key="manager.registration.domain">Domínio</message>
+	<message key="director.allDirectors">Todos os diretores</message>
+	<message key="director.me">mim</message>
+	<message key="director.submissions.assignedTo">Designado a</message>
+	<message key="director.submissions.inTrack">Na modalidade</message>
+	<message key="about.aboutThisPublishingSystem.altText">Processo de Submissão, Avaliação e Publicação do OCS</message>
+	<message key="announcement.posted">Publicado</message>
+	<message key="log.director.unpublish">O documento foi movido de volta à fila.</message>
+	<message key="icon.font_small.alt">Menor</message>
+	<message key="icon.font_medium.alt">Médio</message>
+	<message key="icon.font_large.alt">Maior</message>
+	<message key="common.homePageHeaderLogo.altText">Logo de cabeçalho da página inicial</message>
 </locale>

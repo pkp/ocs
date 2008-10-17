@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
 
 <!--
   * locale.xml
@@ -13,6 +13,6 @@
  
 <locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.paymethod.manual.displayName">Pagamento Manual</message>
-	<message key="plugins.paymethod.manual.description">O Pagamento deve ser enviado fora do Sistema e requer que o Gerente valide-o antes de ativar o registro. O conteúdo dos campos de Informação de Registro na Gestão das Políticas de Registro será visualizado pelos usuários, ao se registrarem, e deve prover informações sobre como proceder no envio do registro manual.</message>
-	<message key="plugins.paymethod.manual">Pagamento de Registro</message>
+	<message key="plugins.paymethod.manual.description">O Gerente da Conferência será responsável por registrar o recebimento do pagamento realizado pelos usuários.</message>
+	<message key="plugins.paymethod.manual">Pagamento de Inscrição</message>
 </locale>

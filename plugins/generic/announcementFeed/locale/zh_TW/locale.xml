@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.announcementfeed.displayName">公告聚合 (RSS) 插件</message>
+	<message key="plugins.generic.announcementfeed.description">本插件可以產生 RSS/Atom 網路聚合資料，提供其他網站同步取得本研討會的公告內容。</message>
+
+	<message key="plugins.generic.announcementfeed.settings">設定</message>
+	<message key="plugins.generic.announcementfeed.settings.all">在研討會網頁上顯示 RSS 的連結。</message>
+	<message key="plugins.generic.announcementfeed.settings.homepage">僅在研討會首頁及公告頁面顯示 RSS 連結。</message>
+	<message key="plugins.generic.announcementfeed.settings.announcement">僅在公告頁面顯示 RSS 連結。</message>
+	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements1">限制 RSS 條目的數量為</message>
+	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements2">最新公告。</message>
+	<message key="plugins.generic.announcementfeed.settings.recentItemsRequired">請輸入所要顯示的最新公告數量 (需為整數)。</message>
+	<message key="plugins.generic.announcementfeed.atom.altText">Atom 圖像</message>
+	<message key="plugins.generic.announcementfeed.rss1.altText">RSS1 圖像</message>
+	<message key="plugins.generic.announcementfeed.rss2.altText">RSS2 圖像</message>
+</locale>
