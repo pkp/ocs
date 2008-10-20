@@ -901,6 +901,11 @@ class ManagerHandler extends PKPHandler {
 		import('pages.manager.PluginHandler');
 		PluginHandler::plugin($args);
 	}
+	
+	function pluginManagement($args) {
+		import('pages.manager.PluginManagementHandler');
+		PluginManagementHandler::managePlugins($args);
+	}
 
 	//
 	// Timeline Management
