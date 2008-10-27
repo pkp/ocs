@@ -14,8 +14,7 @@
 {assign var=presenterCount value=$presenters|@count}
 {foreach from=$presenters item=presenter name=presenters key=i}
 	{assign var=firstName value=$presenter->getFirstName()}
-	{$presenter->getLastName()|escape}, {$firstName[0]|escape}.{if $i<$presenterCount-1}; {/if}{/foreach}.
+	{$presenter->getLastName()|escape|upper}, {$firstName[0]|escape}.{if $i<$presenterCount-1}; {/if}{/foreach}.
 {$paper->getPaperTitle()|strip_unsafe_html}.
-<strong>{$conference->getConferenceTitle()|escape}</strong>, {translate key="plugins.citationFormat.acao.location"}
-{$paper->getDatePublished()|date_format:'%e %m %Y'}.
-
+<strong>{$conference->getConferenceTitle()|escape}</strong>, {translate key="plugins.citationFormat.abnt.location"},
+{$paper->getDatePublished()|date_format:'%b. %Y'|lower}. {translate key="plugins.citationFormats.abnt.retrieved" retrievedDate=$smarty.now|date_format:'%d %b. %Y' url=$paperUrl}.
