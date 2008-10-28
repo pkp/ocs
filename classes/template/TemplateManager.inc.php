@@ -108,7 +108,7 @@ class TemplateManager extends PKPTemplateManager {
 
 					// Schedule displayed
 					$postScheduleDate = $schedConf->getSetting('postScheduleDate');
-					if ($postScheduleDate && $currentTime > $postScheduleDate) {
+					if ($postScheduleDate && $currentTime > $postScheduleDate && $schedConf->getSetting('postSchedule')) {
 						$this->assign('schedConfPostSchedule', true);
 					}
 
