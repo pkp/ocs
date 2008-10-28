@@ -60,11 +60,12 @@ class PaperReportPlugin extends ReportPlugin {
 		header('content-disposition: attachment; filename=report.csv');
 
 		$paperReportDao =& DAORegistry::getDAO('PaperReportDAO');
-		list($papersIterator, $decisionsIteratorsArray) = $paperReportDao->getPaperReport(
+		list($papersIterator, $presentersIterator, $decisionsIteratorsArray) = $paperReportDao->getPaperReport(
 			$conference->getConferenceId(),
 			$schedConf->getSchedConfId()
 		);
-
+		$maxPresenters = $this->getMaxPresenterCount($presentersIterator);
+		
 		$decisions = array();
 		foreach ($decisionsIteratorsArray as $decisionsIterator){
 			while ($row =& $decisionsIterator->next()) {
@@ -85,22 +86,27 @@ class PaperReportPlugin extends ReportPlugin {
 			'paper_id' => Locale::translate('paper.submissionId'),
 			'title' => Locale::translate('paper.title'),
 			'abstract' => Locale::translate('paper.abstract'),
-			'fname' => Locale::translate('user.firstName'),
-			'mname' => Locale::translate('user.middleName'),
-			'lname' => Locale::translate('user.lastName'),
-			'phone' => Locale::translate('user.phone'),
-			'fax' => Locale::translate('user.fax'),
-			'address' => Locale::translate('common.mailingAddress'),
-			'country' => Locale::translate('common.country'),
-			'affiliation' => Locale::translate('user.affiliation'),
-			'email' => Locale::translate('user.email'),
-			'url' => Locale::translate('user.url'),
-			'biography' => Locale::translate('user.biography'),
+		);
+		
+		for ($a = 1; $a <= $maxPresenters; $a++) {
+			$columns = array_merge($columns, array(
+				'fname' . $a => Locale::translate('user.firstName') . " (" . Locale::translate('user.role.presenter') . " $a)",
+				'mname' . $a => Locale::translate('user.middleName') . " (" . Locale::translate('user.role.presenter') . " $a)",
+				'lname' . $a => Locale::translate('user.lastName') . " (" . Locale::translate('user.role.presenter') . " $a)",
+				'country' . $a => Locale::translate('common.country') . " (" . Locale::translate('user.role.presenter') . " $a)",
+				'affiliation' . $a => Locale::translate('user.affiliation') . " (" . Locale::translate('user.role.presenter') . " $a)",
+				'email' . $a => Locale::translate('user.email') . " (" . Locale::translate('user.role.presenter') . " $a)",
+				'url' . $a => Locale::translate('user.url') . " (" . Locale::translate('user.role.presenter') . " $a)",
+				'biography' . $a => Locale::translate('user.biography') . " (" . Locale::translate('user.role.presenter') . " $a)"
+			));
+		}
+		
+		$columns = array_merge($columns, array(
 			'track_title' => Locale::translate('track.title'),
 			'language' => Locale::translate('common.language'),
 			'director_decision' => Locale::translate('submission.directorDecision'),
 			'status' => Locale::translate('common.status')
-		);
+		));
 
 		$fp = fopen('php://output', 'wt');
 		String::fputcsv($fp, array_values($columns));
@@ -108,7 +114,9 @@ class PaperReportPlugin extends ReportPlugin {
 		import('paper.Paper'); // Bring in getStatusMap function
 		$statusMap =& Paper::getStatusMap();
 
+		$presenterIndex = 0;
 		while ($row =& $papersIterator->next()) {
+			$presenters = $this->mergePresenters($presentersIterator[$presenterIndex]->toArray());
 			foreach ($columns as $index => $junk) switch ($index) {
 				case 'director_decision':
 					if (isset($decisions[$row['paper_id']])) {
@@ -120,15 +128,59 @@ class PaperReportPlugin extends ReportPlugin {
 				case 'status':
 					$columns[$index] = Locale::translate($statusMap[$row[$index]]);
 					break;
+				case 'abstract':
+					$columns[$index] = strip_tags($row[$index]);
+					break;
 				default:
-					$columns[$index] = $row[$index];
+					if (isset($row[$index])) {
+						$columns[$index] = $row[$index];
+					} else if (isset($presenters[$index])) {
+						$columns[$index] = $presenters[$index];
+					} else $columns[$index] = '';
 					break;
 			}
 			String::fputcsv($fp, $columns);
+			$presenterIndex++;
 			unset($row);
 		}
 		
 		fclose($fp);
+	}
+	
+	/**
+	 * Get the highest presenter count for any paper (to determine how many columns to set)
+	 * @param $presentersIterator DBRowIterator
+	 * @return int
+	 */
+	function getMaxPresenterCount($presentersIterator) {
+		$maxPresenters = 0;
+		foreach ($presentersIterator as $presenterIterator) {
+			$maxPresenters = $presenterIterator->getCount() > $maxPresenters ? $presenterIterator->getCount() : $maxPresenters;
+		}
+		return $maxPresenters;
+	}
+	
+	/**
+	 * Flatten an array of presenter information into one array and append presenter sequence to each key
+	 * @param $presenters array
+	 * @return array
+	 */
+	function mergePresenters($presenters) {
+		$returner = array();
+		$seq = 0;
+		foreach($presenters as $presenter) {
+			$seq++;
+			
+			$returner['fname' . $seq] = isset($presenter['fname']) ? $presenter['fname'] : '';
+			$returner['mname' . $seq] = isset($presenter['mname']) ? $presenter['mname'] : '';
+			$returner['lname' . $seq] = isset($presenter['lname']) ? $presenter['lname'] : '';
+			$returner['email' . $seq] = isset($presenter['email']) ? $presenter['email'] : '';
+			$returner['affiliation'] = isset($presenter['affiliation']) ? $presenter['affiliation'] : '';
+			$returner['country' . $seq] = isset($presenter['country']) ? $presenter['country'] : '';
+			$returner['url' . $seq] = isset($presenter['url']) ? $presenter['url'] : '';
+			$returner['biography' . $seq] = isset($presenter['biography']) ? $presenter['biography'] : '';
+		}
+		return $returner;
 	}
 }
 
