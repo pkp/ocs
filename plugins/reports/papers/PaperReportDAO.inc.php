@@ -36,24 +36,10 @@ class PaperReportDAO extends DAO {
 				p.paper_id AS paper_id,
 				COALESCE(psl1.setting_value, pspl1.setting_value) AS title,
 				COALESCE(psl2.setting_value, pspl2.setting_value) AS abstract,
-				u.first_name AS fname,
-				u.middle_name AS mname,
-				u.last_name AS lname,
-				u.email AS email,
-				u.affiliation AS affiliation,
-				u.country AS country,
-				u.phone AS phone,
-				u.fax AS fax,
-				u.url AS url,
-				u.mailing_address AS address,
-				COALESCE(usl.setting_value, uspl.setting_value) AS biography,
 				COALESCE(tl.setting_value, tpl.setting_value) AS track_title,
 				p.language AS language
 			FROM
 				papers p
-					LEFT JOIN users u ON p.user_id=u.user_id
-					LEFT JOIN user_settings uspl ON (u.user_id=uspl.user_id AND uspl.setting_name = ? AND uspl.locale = ?)
-					LEFT JOIN user_settings usl ON (u.user_id=usl.user_id AND usl.setting_name = ? AND usl.locale = ?)
 					LEFT JOIN paper_settings pspl1 ON (pspl1.paper_id=p.paper_id AND pspl1.setting_name = ? AND pspl1.locale = ?)
 					LEFT JOIN paper_settings psl1 ON (psl1.paper_id=p.paper_id AND psl1.setting_name = ? AND psl1.locale = ?)
 					LEFT JOIN paper_settings pspl2 ON (pspl2.paper_id=p.paper_id AND pspl2.setting_name = ? AND pspl2.locale = ?)
@@ -65,10 +51,6 @@ class PaperReportDAO extends DAO {
 			ORDER BY
 				title',
 			array(
-				'biography',
-				$primaryLocale,
-				'biography',
-				$locale,
 				'title',
 				$primaryLocale,
 				'title',
@@ -97,7 +79,6 @@ class PaperReportDAO extends DAO {
 			array($schedConfId)
 		);
 		$decisionDatesIterator =& new DBRowIterator($result);
-		$decisions = array();
 		$decisionsReturner = array();
 		while ($row =& $decisionDatesIterator->next()) {
 			$result =& $this->retrieve(
@@ -115,7 +96,36 @@ class PaperReportDAO extends DAO {
 			unset($result);
 		}
 
-		return array($papersReturner, $decisionsReturner);
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$papers =& $paperDao->getPapersBySchedConfId($schedConfId);
+		$presentersReturner = array();
+		$index = 1;
+		while ($paper =& $papers->next()) {
+			$result =& $this->retrieve(
+				'SELECT	pp.first_name AS fname,
+					pp.middle_name AS mname,
+					pp.last_name AS lname,
+					pp.email AS email,
+					pp.affiliation AS affiliation,
+					pp.country AS country,
+					pp.url AS url,
+					pps.setting_value AS biography
+				FROM paper_presenters pp
+					LEFT JOIN papers p ON pp.paper_id=p.paper_id
+					LEFT JOIN paper_presenter_settings pps ON pp.presenter_id=pps.presenter_id
+				WHERE
+					p.sched_conf_id = ? AND
+					pp.paper_id = ? AND
+					pps.setting_name = \'biography\'',
+				array($schedConfId, $paper->getPaperId())
+			);
+			$presenterIterator =& new DBRowIterator($result);
+			$presentersReturner[] = $presenterIterator;
+			$index++;
+			unset($paper);
+		}
+
+		return array($papersReturner, $presentersReturner, $decisionsReturner);
 	}
 }
 
