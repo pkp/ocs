@@ -16,9 +16,8 @@
 // $Id$
 
 
-import('schedConf.SchedConfAction');
+import ('schedConf.SchedConfAction');
 import('payment.ocs.OCSPaymentManager');
-import('core.Handler');
 
 class SchedConfHandler extends Handler {
 
@@ -267,7 +266,7 @@ class SchedConfHandler extends Handler {
 		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
 
 		$postScheduleDate = $schedConf->getSetting('postScheduleDate');
-		if (!$postScheduleDate || time() < $postScheduleDate) Request::redirect(null, null, 'schedConf');
+		if (!$postScheduleDate || time() < $postScheduleDate || !$schedConf->getSetting('postSchedule')) Request::redirect(null, null, 'schedConf');
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
