@@ -152,7 +152,7 @@ class PluginSettingsDAO extends DAO {
 	 * @param $name string
 	 */
 	function deleteSetting($conferenceId, $schedConfId, $pluginName, $name) {
-		$cache =& $this->_getCache($pluginName);
+		$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
 		$cache->setCache($name, null);
 
 		return $this->update(
@@ -165,7 +165,7 @@ class PluginSettingsDAO extends DAO {
 	 * Delete all settings for a plugin.
 	 * @param $pluginName string
 	 */
-	function deleteSettingsByPlugin($pluginName) {
+	function deleteSettingsByPlugin($pluginName, $conferenceId = null, $schedConfId = null) {
 		$cache =& $this->_getCache($pluginName);
 		$cache->flush();
 
