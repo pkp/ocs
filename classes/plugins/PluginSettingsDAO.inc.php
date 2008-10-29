@@ -166,12 +166,28 @@ class PluginSettingsDAO extends DAO {
 	 * @param $pluginName string
 	 */
 	function deleteSettingsByPlugin($pluginName, $conferenceId = null, $schedConfId = null) {
-		$cache =& $this->_getCache($pluginName);
-		$cache->flush();
+		if ( $conferenceId && $schedConfId) { 
+			$cache =& $this->_getCache($conferenceId, $schedConfId, $pluginName);
+			$cache->flush();
 
-		return $this->update(
-				'DELETE FROM plugin_settings WHERE plugin_name = ?', $pluginName
-		);
+			return $this->update(
+					'DELETE FROM plugin_settings WHERE plugin_name = ? AND conference_id = ? AND sched_conf_id = ?', 
+					array($pluginName, $conferenceId, $schedConfId)
+			);
+		} else {
+			import('cache.CacheManager');
+			$cacheManager =& CacheManager::getManager();
+			// NB: this actually deletes all plugins' settings cache			
+			$cacheManager->flush('pluginSettings');
+			
+			$params = array($pluginName);
+			if ($conferenceId) $params[] = $conferenceId;
+
+			return $this->update(
+				'DELETE FROM plugin_settings WHERE plugin_name = ?' . (($conferenceId)?' AND conference_id = ?':''), 
+				$params
+			);
+		}		
 	}
 
 	/**
