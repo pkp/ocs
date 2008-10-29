@@ -119,6 +119,7 @@ class OCSApplication extends PKPApplication {
 			'RoleDAO' => 'security.RoleDAO',
 			'RegistrationDAO' => 'registration.RegistrationDAO',
 			'RegistrationTypeDAO' => 'registration.RegistrationTypeDAO',
+			'RegistrationOptionDAO' => 'registration.RegistrationOptionDAO',			
 			'ReviewAssignmentDAO' => 'submission.reviewAssignment.ReviewAssignmentDAO',
 			'ReviewerSubmissionDAO' => 'submission.reviewer.ReviewerSubmissionDAO',
 			'ReviewFormDAO' => 'reviewForm.ReviewFormDAO',

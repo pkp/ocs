@@ -444,6 +444,177 @@ class RegistrationHandler extends ManagerHandler {
 	}
 
 	/**
+	 * Display a list of registration options for the current scheduled conference.
+	 */
+	function registrationOptions() {
+		parent::validate();
+		RegistrationHandler::setupTemplate(true);
+
+		$schedConf =& Request::getSchedConf();
+		$rangeInfo =& PKPHandler::getRangeInfo('registrationOptions', array());
+		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		while (true) {
+			$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+			if ($registrationOptions->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $registrationOptions->getLastPageRangeInfo();
+			unset($registrationOptions);
+		}
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('registrationOptions', $registrationOptions);
+		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
+
+		$templateMgr->display('registration/registrationOptions.tpl');
+	}
+
+	/**
+	 * Rearrange the order of registration options.
+	 */
+	function moveRegistrationOption($args) {
+		parent::validate();
+
+		$registrationOptionId = isset($args[0])?$args[0]:0;
+		$schedConf =& Request::getSchedConf();
+
+		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOption =& $registrationOptionDao->getRegistrationOption($registrationOptionId);
+
+		if ($registrationOption && $registrationOption->getSchedConfId() == $schedConf->getSchedConfId()) {
+			$isDown = Request::getUserVar('dir')=='d';
+			$registrationOption->setSequence($registrationOption->getSequence()+($isDown?1.5:-1.5));
+			$registrationOptionDao->updateRegistrationOption($registrationOption);
+			$registrationOptionDao->resequenceRegistrationOptions($registrationOption->getSchedConfId());
+		}
+
+		Request::redirect(null, null, null, 'registrationOptions');
+	}
+
+	/**
+	 * Delete a registration option.
+	 * @param $args array first parameter is the ID of the registration type to delete
+	 */
+	function deleteRegistrationOption($args) {
+		parent::validate();
+
+		if (isset($args) && !empty($args)) {
+			$schedConf = &Request::getSchedConf();
+			$registrationOptionId = (int) $args[0];
+
+			$registrationOptionDao = &DAORegistry::getDAO('RegistrationOptionDAO');
+
+			// Ensure registration option is for this scheduled conference.
+			if ($registrationOptionDao->getRegistrationOptionSchedConfId($registrationOptionId) == $schedConf->getSchedConfId()) {
+				$registrationOptionDao->deleteRegistrationOptionById($registrationOptionId);
+			}
+		}
+
+		Request::redirect(null, null, null, 'registrationOptions');
+	}
+
+	/**
+	 * Display form to edit a registration option.
+	 * @param $args array optional, first parameter is the ID of the registration option to edit
+	 */
+	function editRegistrationOption($args = array()) {
+		parent::validate();
+		RegistrationHandler::setupTemplate(true);
+
+		$schedConf =& Request::getSchedConf();
+		$registrationOptionId = !isset($args) || empty($args) ? null : (int) $args[0];
+		$registrationOptionDao = &DAORegistry::getDAO('RegistrationOptionDAO');
+
+		// Ensure registration option is valid and for this scheduled conference.
+		if (($registrationOptionId != null && $registrationOptionDao->getRegistrationOptionSchedConfId($registrationOptionId) == $schedConf->getSchedConfId()) || $registrationOptionId == null) {
+
+			import('registration.form.RegistrationOptionForm');
+
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrationOptions'), 'manager.registrationOptions'));
+
+			if ($registrationOptionId == null) {
+				$templateMgr->assign('registrationOptionTitle', 'manager.registrationOptions.createTitle');
+			} else {
+				$templateMgr->assign('registrationOptionTitle', 'manager.registrationOptions.editTitle');	
+			}
+
+			$registrationOptionForm =& new RegistrationOptionForm($registrationOptionId);
+			if ($registrationOptionForm->isLocaleResubmit()) {
+				$registrationOptionForm->readInputData();
+			} else {
+				$registrationOptionForm->initData();
+			}
+			$registrationOptionForm->display();
+
+		} else {
+				Request::redirect(null, null, null, 'registrationOptions');
+		}
+	}
+
+	/**
+	 * Display form to create new registration option.
+	 */
+	function createRegistrationOption() {
+		RegistrationHandler::editRegistrationOption();
+	}
+
+	/**
+	 * Save changes to a registration option.
+	 */
+	function updateRegistrationOption() {
+		parent::validate();
+
+		import('registration.form.RegistrationOptionForm');
+
+		$schedConf =& Request::getSchedConf();
+		$registrationOptionId = Request::getUserVar('optionId') == null ? null : (int) Request::getUserVar('optionId');
+		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+
+		if (($registrationOptionId != null && $registrationOptionDao->getRegistrationOptionSchedConfId($registrationOptionId) == $schedConf->getSchedConfId()) || $registrationOptionId == null) {
+
+			$registrationOptionForm =& new RegistrationOptionForm($registrationOptionId);
+			$registrationOptionForm->readInputData();
+
+			if ($registrationOptionForm->validate()) {
+				$registrationOptionForm->execute();
+
+				if (Request::getUserVar('createAnother')) {
+					RegistrationHandler::setupTemplate(true);
+
+					$templateMgr =& TemplateManager::getManager();
+					$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrationOptions'), 'manager.registrationOptions'));
+					$templateMgr->assign('registrationOptionTitle', 'manager.registrationOptions.createTitle');
+					$templateMgr->assign('registrationOptionCreated', '1');
+
+					$registrationOptionForm =& new RegistrationOptionForm($registrationOptionId);
+					$registrationOptionForm->initData();
+					$registrationOptionForm->display();
+
+				} else {
+					Request::redirect(null, null, null, 'registrationOptions');
+				}
+
+			} else {
+				RegistrationHandler::setupTemplate(true);
+
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrationOptions'), 'manager.registrationOptions'));
+
+				if ($registrationOptionId == null) {
+					$templateMgr->assign('registrationOptionTitle', 'manager.registrationOptions.createTitle');
+				} else {
+					$templateMgr->assign('registrationOptionTitle', 'manager.registrationOptions.editTitle');	
+				}
+
+				$registrationOptionForm->display();
+			}
+
+		} else {
+				Request::redirect(null, null, null, 'registrationOptions');
+		}
+	}
+
+	/**
 	 * Display registration policies for the current scheduled conference.
 	 */
 	function registrationPolicies() {

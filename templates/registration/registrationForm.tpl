@@ -44,6 +44,25 @@
 		{/iterate} 
 	</select></td>
 </tr>
+{foreach from=$registrationOptions item=registrationOption name=registrationOptions}
+{assign var=optionId value=$registrationOption->getOptionId()}
+<tr valign="top">
+	{if $smarty.foreach.registrationOptions.first}
+		<td rowspan="{$registrationOptions|@count}" class="label">{translate key="schedConf.registration.options"}</td>
+	{/if}
+	<td>&nbsp;</td>
+	<td class="value">
+	<input id="registrationOptions-{$optionId|escape}" {if in_array($optionId, $registrationOptionIds)}checked="checked" {/if}type="checkbox" name="registrationOptionIds[]" value="{$optionId|escape}]"/> <label for="registrationOptions-{$optionId|escape}">{$registrationOption->getRegistrationOptionName()}</label>	</td>
+</tr>
+<tr valign="top">
+	<td class="label">{fieldLabel name="membership" key="manager.registration.form.membership"}</td>
+	<td class="value">
+		<input type="text" name="membership" value="{$membership|escape}" id="membership" size="40" maxlength="40" class="textField" />
+		<br />
+		<span class="instruct">{translate key="manager.registration.form.membershipInstructions"}</span>
+	</td>
+</tr>
+{/foreach}
 <tr valign="top">
 	<td>&nbsp;</td>
 	<td class="value">
@@ -53,14 +72,6 @@
 				<td width="95%"><label for="notifyEmail">{translate key="manager.registration.form.notifyEmail"}</label></td>
 			</tr>
 		</table>
-	</td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="membership" key="manager.registration.form.membership"}</td>
-	<td class="value">
-		<input type="text" name="membership" value="{$membership|escape}" id="membership" size="40" maxlength="40" class="textField" />
-		<br />
-		<span class="instruct">{translate key="manager.registration.form.membershipInstructions"}</span>
 	</td>
 </tr>
 <tr valign="top">

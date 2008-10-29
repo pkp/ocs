@@ -92,9 +92,15 @@ class RegistrationForm extends Form {
 
 		$templateMgr->assign_by_ref('user', $user);
 
-		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
-		$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
+		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
 		$templateMgr->assign('registrationTypes', $registrationTypes);
+
+		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getSchedConfId());
+		$registrationOptionsArray =& $registrationOptions->toArray();
+		$templateMgr->assign('registrationOptions', $registrationOptionsArray);
+
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
 
 		parent::display();
@@ -103,10 +109,11 @@ class RegistrationForm extends Form {
 	/**
 	 * Initialize form data from current registration.
 	 */
-	function initData() {
+	function initData() {	
 		if (isset($this->registrationId)) {
-			$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
-			$registration = &$registrationDao->getRegistration($this->registrationId);
+			$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+			$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+			$registration =& $registrationDao->getRegistration($this->registrationId);
 
 			if ($registration != null) {
 				$this->_data = array(
@@ -116,7 +123,8 @@ class RegistrationForm extends Form {
 					'domain' => $registration->getDomain(),
 					'ipRange' => $registration->getIPRange(),
 					'specialRequests' => $registration->getSpecialRequests(),
-					'datePaid' => $registration->getDatePaid()
+					'datePaid' => $registration->getDatePaid(),
+					'registrationOptionIds' => $registrationOptionDao->getRegistrationOptions($this->registrationId)
 				);
 
 			} else {
@@ -129,7 +137,7 @@ class RegistrationForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('userId', 'typeId', 'membership', 'domain', 'ipRange', 'notifyEmail', 'specialRequests', 'datePaid'));
+		$this->readUserVars(array('userId', 'typeId', 'membership', 'domain', 'ipRange', 'notifyEmail', 'specialRequests', 'datePaid', 'registrationOptionIds'));
 
 		$this->_data['datePaid'] = Request::getUserVar('paid')?Request::getUserDateVar('datePaid'):null;
 
@@ -185,6 +193,19 @@ class RegistrationForm extends Form {
 			$registrationDao->updateRegistration($registration);
 		} else {
 			$registrationDao->insertRegistration($registration);
+		}
+
+		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getSchedConfId());
+		$registrationOptionIds = (array) $this->getData('registrationOptionIds');
+		$registrationOptionDao->deleteRegistrationOptionAssocByRegistrationId($this->registrationId);
+
+		while ($registrationOption =& $registrationOptions->next()) {
+			$optionId = (int) $registrationOption->getOptionId();
+			if (in_array($optionId, $registrationOptionIds)) {
+				$registrationOptionDao->insertRegistrationOptionAssoc($this->registrationId, $registrationOption->getOptionId());
+			}
+			unset($registrationOption);
 		}
 
 		if ($this->getData('notifyEmail')) {

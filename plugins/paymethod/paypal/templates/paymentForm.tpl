@@ -27,7 +27,7 @@
 	<table class="data" width="100%">
 		<tr>
 			<td class="label" width="20%">{translate key="plugins.paymethod.paypal.purchase.amount"}</td>
-			<td class="value" width="80%"><strong>{$params.amount|escape}{if $params.currency_code} ({$params.currency_code|escape}){/if}</strong></td>
+			<td class="value" width="80%"><strong>{$params.amount|string_format:"%.2f"}{if $params.currency_code} ({$params.currency_code|escape}){/if}</strong></td>			
 		</tr>
 	</table>
 	{/if}

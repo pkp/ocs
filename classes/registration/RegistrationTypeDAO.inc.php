@@ -360,16 +360,17 @@ class RegistrationTypeDAO extends DAO {
 	 */
 	function deleteRegistrationTypeById($typeId) {
 		// Delete registration type
-		$returner = $this->update('DELETE FROM registration_types WHERE type_id = ?', $typeId);
+		$this->update(
+			'DELETE FROM registration_types WHERE type_id = ?',
+			array((int) $typeId)
+		);
 
 		// Delete all localization settings and registrations associated with this registration type
-		if ($returner) {
-			$this->update('DELETE FROM registration_type_settings WHERE type_id = ?', $typeId);
-			$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
-			return $registrationDao->deleteRegistrationByTypeId($typeId);
-		} else {
-			return $returner;
-		}
+		$this->deleteRegistrationOptionCosts($typeId);
+		$this->update('DELETE FROM registration_type_settings WHERE type_id = ?', $typeId);
+
+		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		return $registrationDao->deleteRegistrationByTypeId($typeId);
 	}
 
 	function deleteRegistrationTypesBySchedConf($schedConfId) {
@@ -427,6 +428,62 @@ class RegistrationTypeDAO extends DAO {
 
 		$result->close();
 		unset($result);
+	}
+
+	/**
+	 * Insert pricing for a registration type for a registration option.
+	 * @param $typeId int
+	 * @param $optionId int
+	 * @param $cost number
+	 * @return boolean 
+	 */
+	function insertRegistrationOptionCost($typeId, $optionId, $cost) {
+		return $this->update(
+			'INSERT INTO registration_option_costs
+				(type_id, option_id, cost)
+				VALUES
+				(?, ?, ?)',
+			array(
+				(int) $typeId,
+				(int) $optionId,
+				$cost
+			)
+		);
+	}
+
+	/**
+	 * Get cost information for a registration type.
+	 * @param $typeId int
+	 * @return array $optionId => $cost
+	 */
+	function getRegistrationOptionCosts($typeId) {
+		$result =& $this->retrieve(
+			'SELECT option_id, cost FROM registration_option_costs WHERE type_id = ?',
+			array((int) $typeId)
+		);
+		
+		$returner = array();
+		for ($i=1; !$result->EOF; $i++) {
+			list($optionId, $cost) = $result->fields;
+			$returner[$optionId] = $cost;
+			$result->moveNext();
+		}
+
+		$result->close();
+		unset($result);
+		return $returner;
+	}
+
+	/**
+	 * Delete registration options for a type.
+	 * @param $typeId int
+	 */
+	function deleteRegistrationOptionCosts($typeId) {
+		return $this->update(
+			'DELETE FROM registration_option_costs WHERE type_id = ?',
+			array((int) $typeId)
+		);
+		
 	}
 }
 

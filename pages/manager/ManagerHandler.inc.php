@@ -521,6 +521,41 @@ class ManagerHandler extends PKPHandler {
 
 
 	//
+	// Registration Options
+	//
+
+	function registrationOptions() {
+		import('pages.manager.RegistrationHandler');
+		RegistrationHandler::registrationOptions();
+	}
+
+	function deleteRegistrationOption($args) {
+		import('pages.manager.RegistrationHandler');
+		RegistrationHandler::deleteRegistrationOption($args);
+	}
+
+	function createRegistrationOption() {
+		import('pages.manager.RegistrationHandler');
+		RegistrationHandler::createRegistrationOption();
+	}
+
+	function editRegistrationOption($args) {
+		import('pages.manager.RegistrationHandler');
+		RegistrationHandler::editRegistrationOption($args);
+	}
+
+	function updateRegistrationOption($args) {
+		import('pages.manager.RegistrationHandler');
+		RegistrationHandler::updateRegistrationOption($args);
+	}
+
+	function moveRegistrationOption($args) {
+		import('pages.manager.RegistrationHandler');
+		RegistrationHandler::moveRegistrationOption($args);
+	}
+	
+		
+	//
 	// Registration
 	//
 
