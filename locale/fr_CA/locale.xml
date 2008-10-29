@@ -153,6 +153,60 @@
 		</a>
 		<br/>
 		Ce <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">travail</span> est autorisé sous les termes de la <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Licence Creative Commons Version 3.0</a>.]]></message>
+  <!-- Review Forms -->
+  <message key="manager.reviewForms">Formulaires d'évaluation</message>
+  <message key="manager.reviewForms.title">Titre</message>
+  <message key="manager.reviewForms.completed">Complété</message>
+  <message key="manager.reviewFormElements.possibleResponse">Sélection</message>
+  <message key="manager.reviewFormElements.addResponseItem">Ajouter la sélection</message>
+  <message key="manager.reviewFormElements.smalltextfield">Zone de texte uniterme</message>
+  <message key="manager.reviewFormElements.textfield">Zone de texte simple</message>
+  <message key="manager.reviewFormElements.textarea">Zone de texte multiligne</message>
+  <message key="manager.reviewFormElements.checkboxes">Cases à cocher (en choisir une ou plusieurs)</message>
+  <message key="manager.reviewFormElements.radiobuttons">Boutons radio (en choisir un seulement)</message>
+  <message key="manager.reviewFormElements.dropdownbox">Zone déroulante</message>
+  <message key="manager.reviewForms.noneChosen">Aucun / Formulaire d'évaluation libre</message>
+  <message key="manager.reviewForms.noneCreated">Aucun formulaire d'évaluation n'a été créé.</message>
+  <message key="manager.reviewForms.create">Créer un formulaire d'évaluation</message>
+  <message key="manager.reviewForms.edit">Formulaire d'évaluation</message>
+  <message key="manager.reviewForms.description">Description et directives</message>
+  <message key="manager.reviewForms.preview">Prévisualiser le formulaire</message>
+  <message key="manager.reviewForms.inReview">En évaluation</message>
+  <message key="manager.reviewForms.form.titleRequired">Le titre est obligatoire pour le formulaire d'évaluation.</message>
+  <message key="manager.reviewFormElements">Éléments du formulaire</message>
+  <message key="manager.reviewFormElements.create">Créer un nouvel élément</message>
+  <message key="manager.reviewFormElements.edit">Modifier un élément du formulaire</message>
+  <message key="manager.reviewFormElements.noneCreated">Aucun élément de formulaire n'a été créé.</message>
+  <message key="manager.reviewFormElements.copyTo">Copier vers :</message>
+  <message key="manager.reviewFormElements.question">Élément</message>
+  <message key="manager.reviewFormElements.required">Les évaluateurs doivent compléter l'élément</message>
+  <message key="manager.reviewFormElements.elementType">Type d'élément</message>
+  <message key="manager.reviewFormElements.chooseType">Choisir un type d'élément</message>
+  <message key="manager.reviewFormElements.form.questionRequired">La question est obligatoire pour l'élément du formulaire.</message>
+  <message key="manager.reviewFormElements.form.elementTypeRequired">Le type d'élément est obligatoire pour l'élément du formulaire.</message>
+  <message key="submission.reviewForm">Formulaire d'évaluation</message>
+  <message key="submission.reviewFormResponse">Réponse au formulaire d'évaluation</message>
+  <message key="editor.paper.reviewForms">Formulaires d'évaluation</message>
+  <message key="editor.paper.selectReviewForm">Sélectionner un formulaire d'évaluation</message>
+  <message key="editor.paper.clearReviewForm">Effacer le formulaire d'évaluation</message>
+  <message key="reviewer.paper.enterReviewForm">Cliquer sur l'icône pour compléter le formulaire d'évaluation.</message>
+  <message key="manager.reviewForms.list.description">Les formulaires d'évaluation par les pairs créés ici seront présentés aux évaluateurs pour complétion, au lieu du formulaire par défaut qui consiste en deux boîtes de texte libre, la première "pour l'auteur et le rédacteur" et la deuxième "pour le rédacteur". Des formulaire d'évaluation peuvent être attribués à une section spécifique de la revue, et les rédacteurs auront l'option de choisir quel formulaire utiliser en assignant l'évaluation. Dans tous les cas, les rédacteurs auront l'option d'inclure les évaluations lors de leurs communications avec l'auteur.</message>
+  <message key="manager.sections.form.reviewFormId">Prière de vous assurer que vous avez choisi un formulaire d'évaluation valide.</message>
+	<!-- Common Messages -->
+
+  <message key="common.openConferenceSystems">Open Conference Systems</message>
+  <message key="common.noDate">(date)</message>
+  <message key="common.days">jours</message>
+  <message key="common.timeZone">Fuseau horaire</message>
+  <message key="common.ellipsis">...</message>
+  <message key="common.path">Chemin</message>
+  <message key="common.dateTimeSeparator">à</message>
+  <message key="common.ccLicense"><![CDATA[<a target="_new" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+			<img alt="Licence Creative Commons" style="border-width:0" src="{$ccLicenseImageUrl}"/>
+		</a>
+		<br/>
+		Ce <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">travail</span> est sous les termes de la <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Licence Creative Commons Version 3.0</a>.]]></message>
+  
   <!-- Common Form Messages -->
   <message key="form.errorsOccurred">Des erreurs se sont produites pendant le traitement du formulaire</message>
   <message key="form.saveToUpload">Utiliser Enregistrer pour télécharger le fichier.</message>

@@ -105,6 +105,15 @@ class TinyMCEPlugin extends GenericPlugin {
 				$fields[] = 'mailingAddress';
 				$fields[] = 'biography';
 				break;
+			case 'manager/editReviewForm':
+			case 'manager/createReviewForm':
+				$fields[] = 'description';
+				break;
+			case 'manager/editReviewFormElement':
+			case 'manager/createReviewFormElement':
+			case 'manager/updateReviewFormElement':
+				$fields[] = 'question';
+				break;
 			case 'manager/editTrack':
 			case 'manager/updateTrack':
 			case 'manager/createTrack':

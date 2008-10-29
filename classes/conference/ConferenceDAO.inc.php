@@ -149,6 +149,9 @@ class ConferenceDAO extends DAO {
 
 		$pluginSettingsDao = &DAORegistry::getDAO('PluginSettingsDAO');
 		$pluginSettingsDao->deleteSettingsByConferenceId($conferenceId);
+		
+		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao->deleteReviewFormsByConferenceId($conferenceId);
 
 		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
 		$announcementDao->deleteAnnouncementsByConference($conferenceId);

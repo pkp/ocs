@@ -16,11 +16,10 @@
 // $Id$
 
 
+import('submission.trackDirector.TrackDirectorAction');
+
 // Filter track
 define('FILTER_TRACK_ALL', 0);
-
-import('submission.trackDirector.TrackDirectorAction');
-import('core.Handler');
 
 class TrackDirectorHandler extends Handler {
 
@@ -616,6 +615,28 @@ class TrackDirectorHandler extends Handler {
 			60 * 60 * 6	=> '7:00',
 			60 * 60 * 7	=> '8:00',
 		);
+	}
+	
+	// Submission Review Form
+
+	function clearReviewForm($args) {
+		import('pages.trackDirector.SubmissionEditHandler');
+		SubmissionEditHandler::clearReviewForm($args);
+	}
+
+	function selectReviewForm($args) {
+		import('pages.trackDirector.SubmissionEditHandler');
+		SubmissionEditHandler::selectReviewForm($args);
+	}
+
+	function previewReviewForm($args) {
+		import('pages.trackDirector.SubmissionEditHandler');
+		SubmissionEditHandler::previewReviewForm($args);
+	}
+
+	function viewReviewFormResponse($args) {
+		import('pages.trackDirector.SubmissionEditHandler');
+		SubmissionEditHandler::viewReviewFormResponse($args);
 	}
 }
 

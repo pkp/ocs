@@ -82,6 +82,7 @@
 {assign var="start" value="A"|ord}
 
 {foreach from=$stageAssignments item=reviewAssignment key=reviewKey}
+{assign var="reviewId" value=$reviewAssignment->getReviewId()}
 
 {if !$reviewAssignment->getCancelled()}
 <div class="separator"></div>
@@ -137,6 +138,14 @@
 			{/if}
 		</td>
 	</tr>
+	{if $reviewFormResponses[$reviewId]}
+		<tr valign="top">
+			<td class="label">{translate key="submission.reviewFormResponse"}</td>
+			<td>
+				<a href="javascript:openComments('{url op="viewReviewFormResponse" path=$submission->getPaperId()|to_array:$reviewAssignment->getReviewId()}');" class="icon">{icon name="letter"}</a>
+			</td>
+		</tr>
+	{/if}
 	<tr valign="top">
 		<td class="label">{translate key="reviewer.paper.reviewerComments"}</td>
 		<td colspan="4">
