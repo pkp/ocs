@@ -50,9 +50,9 @@
 	{if $smarty.foreach.registrationOptions.first}
 		<td rowspan="{$registrationOptions|@count}" class="label">{translate key="schedConf.registration.options"}</td>
 	{/if}
-	<td>&nbsp;</td>
 	<td class="value">
-	<input id="registrationOptions-{$optionId|escape}" {if in_array($optionId, $registrationOptionIds)}checked="checked" {/if}type="checkbox" name="registrationOptionIds[]" value="{$optionId|escape}]"/> <label for="registrationOptions-{$optionId|escape}">{$registrationOption->getRegistrationOptionName()}</label>	</td>
+	<input id="registrationOptions-{$optionId|escape}" {if $registrationOptionIds && in_array($optionId, $registrationOptionIds)}checked="checked" {/if}type="checkbox" name="registrationOptionIds[]" value="{$optionId|escape}]"/> <label for="registrationOptions-{$optionId|escape}">{$registrationOption->getRegistrationOptionName()}</label>	
+	</td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="membership" key="manager.registration.form.membership"}</td>
