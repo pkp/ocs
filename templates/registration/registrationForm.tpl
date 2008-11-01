@@ -54,6 +54,7 @@
 	<input id="registrationOptions-{$optionId|escape}" {if $registrationOptionIds && in_array($optionId, $registrationOptionIds)}checked="checked" {/if}type="checkbox" name="registrationOptionIds[]" value="{$optionId|escape}]"/> <label for="registrationOptions-{$optionId|escape}">{$registrationOption->getRegistrationOptionName()}</label>	
 	</td>
 </tr>
+{/foreach}
 <tr valign="top">
 	<td class="label">{fieldLabel name="membership" key="manager.registration.form.membership"}</td>
 	<td class="value">
@@ -62,7 +63,6 @@
 		<span class="instruct">{translate key="manager.registration.form.membershipInstructions"}</span>
 	</td>
 </tr>
-{/foreach}
 <tr valign="top">
 	<td>&nbsp;</td>
 	<td class="value">
