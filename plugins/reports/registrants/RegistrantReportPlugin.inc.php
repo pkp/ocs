@@ -60,11 +60,11 @@ class RegistrantReportPlugin extends ReportPlugin {
 		header('content-disposition: attachment; filename=report.csv');
 
 		$registrantReportDao =& DAORegistry::getDAO('RegistrantReportDAO');
-		$iterator =& $registrantReportDao->getRegistrantReport(
+		list($registrants, $registrantOptions) = $registrantReportDao->getRegistrantReport(
 			$conference->getConferenceId(),
 			$schedConf->getSchedConfId()
 		);
-
+				
 		$columns = array(
 			'userid' => Locale::translate('plugins.reports.registrants.userid'),
 			'uname' => Locale::translate('user.username'),
@@ -78,23 +78,63 @@ class RegistrantReportPlugin extends ReportPlugin {
 			'fax' => Locale::translate('user.fax'),
 			'address' => Locale::translate('common.mailingAddress'),
 			'country' => Locale::translate('common.country'),
-			'type' => Locale::translate('manager.registration.registrationType'),
+			'type' => Locale::translate('manager.registration.registrationType')
+		);
+		
+		$registrationOptionDAO =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptions =& $registrationOptionDAO->getRegistrationOptionsBySchedConfId($schedConf->getSchedConfId());
+		
+		// column name = 'option' + optionId => column value = name of the registration option
+		while ($registrationOption =& $registrationOptions->next()) {
+			$registrationOptionIds[] = $registrationOption->getOptionId();
+			$columns = array_merge($columns, array('option' . $registrationOption->getOptionId() => $registrationOption->getRegistrationOptionName()));
+			unset($registrationOption);
+		} 
+		
+		$columns = array_merge($columns, array(
 			'regdate' => Locale::translate('manager.registration.dateRegistered'),
 			'paiddate' => Locale::translate('manager.registration.datePaid'),
 			'specialreq' => Locale::translate('schedConf.registration.specialRequests')
-		);
+			));
+
 
 		$fp = fopen('php://output', 'wt');
 		String::fputcsv($fp, array_values($columns));
 
-		while ($row =& $iterator->next()) {
-			foreach ($columns as $index => $junk) {
-				$columns[$index] = $row[$index];
+		while ($row =& $registrants->next()) {
+			if ( isset($registrantOptions[$row['registration_id']]) ) { 
+				$options = $this->mergeRegistrantOptions($registrationOptionIds, $registrantOptions[$row['registration_id']]);
+			} else {
+				$options = $this->mergeRegistrantOptions($registrationOptionIds);
 			}
+			
+			foreach ($columns as $index => $junk) {
+				if (isset($row[$index])) {
+					$columns[$index] = $row[$index];
+				} else if (isset($options[$index])) {
+					$columns[$index] = $options[$index];
+				} else $columns[$index] = '';
+			}
+			
 			String::fputcsv($fp, $columns);
 			unset($row);
 		}
 		fclose($fp);
+	}
+
+	
+	/**
+	 * Make a single array of "Yes"/"No" for each option id
+	 * @param $registrationOptionIds array list of Option Ids for a given schedConfId
+	 * @param $registrantOptions array list of Option Ids for a given Registrant
+	 * @return array
+	 */
+	function mergeRegistrantOptions($registrationOptionIds, $registrantOptions = array()) {
+		$returner = array();
+		foreach ( $registrationOptionIds as $id ) { 
+			$returner['option'. $id] = ( in_array($id, $registrantOptions) )?Locale::translate('common.yes'):Locale::translate('common.no');
+		}
+		return $returner;
 	}
 }
 
