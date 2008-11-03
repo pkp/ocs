@@ -212,6 +212,9 @@ class SchedConfDAO extends DAO {
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationTypeDao->deleteRegistrationTypesBySchedConf($schedConfId);
 
+		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptionDao->deleteRegistrationOptionsBySchedConf($schedConfId);
+
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		$announcementDao->deleteAnnouncementsBySchedConf($schedConfId);
 

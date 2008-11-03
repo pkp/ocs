@@ -124,6 +124,7 @@ class DAORegistry {
 			case 'CurrencyDAO': return 'registration.CurrencyDAO';
 			case 'RegistrationDAO': return 'registration.RegistrationDAO';
 			case 'RegistrationTypeDAO': return 'registration.RegistrationTypeDAO';
+			case 'RegistrationOptionDAO': return 'registration.RegistrationOptionDAO';
 			case 'AnnouncementDAO': return 'announcement.AnnouncementDAO';
 			case 'AnnouncementTypeDAO': return 'announcement.AnnouncementTypeDAO';
 			case 'BuildingDAO': return 'scheduler.BuildingDAO';

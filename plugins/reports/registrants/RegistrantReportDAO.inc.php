@@ -11,13 +11,9 @@
  * @see RegistrantReportPlugin
  *
  * @brief Registrant report DAO
- *
  */
 
-// $Id$
-
-
-import('db.DBRowIterator');
+//$Id$
 
 class RegistrantReportDAO extends DAO {
 	/**
@@ -26,12 +22,13 @@ class RegistrantReportDAO extends DAO {
 	 * @param $schedConfId int
 	 * @return array
 	 */
-	function &getRegistrantReport($conferenceId, $schedConfId) {
+	function getRegistrantReport($conferenceId, $schedConfId) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 
 		$result =& $this->retrieve(
 			'SELECT
+				r.registration_id AS registration_id,
 				r.user_id AS userid,
 				u.username AS uname,
 				u.first_name AS fname,
@@ -66,8 +63,30 @@ class RegistrantReportDAO extends DAO {
 			)
 		);
 
-		$returner =& new DBRowIterator($result);
-		return $returner;
+		// prepare an iterator of all the registration information
+		$registrationReturner =& new DBRowIterator($result);
+
+		$result =& $this->retrieve(
+			'SELECT 
+				r.registration_id as registration_id,
+				roa.option_id as option_id
+			FROM
+				registrations r 
+					LEFT JOIN registration_option_assoc roa ON (r.registration_id = roa.registration_id)
+			WHERE 
+				r.sched_conf_id= ?',
+			$schedConfId
+		);
+		
+		// Prepare an array of registration Options by registration Id
+		$registrationOptionDAO =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$iterator =& new DBRowIterator($result);
+		while ($row =& $iterator->next()) {
+			$registrationId = $row['registration_id'];
+			$registrationOptionReturner[$registrationId] =& $registrationOptionDAO->getRegistrationOptions($registrationId);
+		}
+
+		return array($registrationReturner, $registrationOptionReturner);
 	}
 }
 

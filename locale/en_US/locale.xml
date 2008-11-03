@@ -557,6 +557,9 @@
 	<message key="schedConf.registration.typeCloses">(Closes {$closingDate})</message>
 	<message key="schedConf.registration.typeClosed">(Registration Closed {$closingDate})</message>
 	<message key="schedConf.registration.typeFuture">(Registration Opening {$openingDate})</message>
+	<message key="schedConf.registration.optionCloses">(Closes {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(Registration Closed {$closingDate})</message>
+	<message key="schedConf.registration.optionFuture">(Registration Opening {$openingDate})</message>
 	<message key="schedConf.registration.feeCode">Fee Code</message>
 	<message key="schedConf.registration.feeCode.description">If you were given a secret code for registration, please enter it here and make sure you've chosen the correct registration type above. Otherwise, leave the Fee Code field blank.</message>
 	<message key="schedConf.registration.specialRequests">Special Requests</message>
@@ -564,6 +567,7 @@
 	<message key="schedConf.registration.account">User Account</message>
 	<message key="schedConf.registration.loggedInAs"><![CDATA[You are currently logged in. Verify the account information below is correct. If it is not, correct it using <a href="{$profileUrl}">My Profile</a> or <a href="{$logoutUrl}">log out</a> to use another account.]]></message>
 	<message key="schedConf.registration.createAccount.description"><![CDATA[You are not currently logged in. In order to register for this conference, you will need an account. If you already have one, <a href="{$loginUrl}">click here</a> to log in; otherwise, fill in the information below in order to create a new account.]]></message>
+	<message key="schedConf.registration.options">Registration Options</message>
 
 	<!-- User -->
 	<message key="user.userHome">User Home</message>
@@ -1010,6 +1014,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="manager.registrationTypes">Registration Types</message>
 	<message key="manager.registration">Registrations</message>
 	<message key="manager.registrationPolicies">Registration Policies</message>
+	<message key="manager.registrationOptions">Registration Options</message>
 	<message key="manager.accommodation">Accommodation</message>
 	<message key="manager.announcements">Announcements</message>
 	<message key="manager.announcementTypes">Announcement Types</message>
@@ -1641,6 +1646,43 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registrationTypes.access.online">Online</message>
 	<message key="manager.registrationTypes.access.physical">Physical</message>
 	<message key="manager.registrationTypes.access.both">Online and Physical</message>
+
+	<!-- Registration Option Management -->
+	<message key="manager.registrationOptions.description">Registration Options are additional items that can be added to a registration, such as banquet tickets. Pricing for Registration Options is set as part of each Registration Type.</message>
+	<message key="manager.registrationOptions.costs">Registration Option Costs</message>
+	<message key="manager.registrationOptions.createTitle">Create</message>
+	<message key="manager.registrationOptions.create">Create New Registration Option</message>
+	<message key="manager.registrationOptions.confirmDelete">Warning! Deleting this option will affect all registrations that currently use it. Are you sure you want to continue and delete this registration option?</message>
+	<message key="manager.registrationOptions.noneCreated">No registration options have been created.</message>
+	<message key="manager.registrationOptions.name">Registration option</message>
+	<message key="manager.registrationOptions.cost">Cost</message>
+	<message key="manager.registrationOptions.costSetInRegistrationType">The cost for all registration options must be set once in each registration type.</message>		
+	<message key="manager.registrationOptions.currency">Currency</message>
+	<message key="manager.registrationOptions.openDate">Available From</message>
+	<message key="manager.registrationOptions.closeDate">Available Until</message>
+	<message key="manager.registrationOptions.registrationOptionCreatedSuccessfully">Registration option created successfully.</message>
+	<message key="manager.registrationOptions.editTitle">Edit</message>
+	<message key="manager.registrationOptions.edit">Edit Registration Option</message>
+	<message key="manager.registrationOptions.form.optionNameRequired">A registration option name is required.</message>
+	<message key="manager.registrationOptions.form.optionNameExists">A registration option with this name already exists.</message>
+	<message key="manager.registrationOptions.form.costRequired">A cost is required.</message>
+	<message key="manager.registrationOptions.form.costNumeric">The cost must be a positive, numeric value.</message>
+	<message key="manager.registrationOptions.form.currencyRequired">A currency is required.</message>
+	<message key="manager.registrationOptions.form.currencyValid">Please select a valid currency.</message>
+	<message key="manager.registrationOptions.form.membershipValid">Please use the checkbox provided.</message>
+	<message key="manager.registrationOptions.form.notPublicValid">Please use the checkbox provided.</message>
+	<message key="manager.registrationOptions.form.optionName">Name</message>
+	<message key="manager.registrationOptions.form.description">Description</message>
+	<message key="manager.registrationOptions.form.cost">Cost</message>
+	<message key="manager.registrationOptions.form.costInstructions">Enter a numeric value (e.g., 40 or 40.00). Do not include any other text (e.g., $).</message>
+	<message key="manager.registrationOptions.form.code">Code</message>
+	<message key="manager.registrationOptions.form.code.instructions">Enter a code (e.g., 1234) if registration in this option is to be restricted to those who have been issued the code to use when registering (such as invited presenters who can register at no charge).</message>
+	<message key="manager.registrationOptions.form.currency">Currency</message>
+	<message key="manager.registrationOptions.form.openDate">Opens for Registration</message>
+	<message key="manager.registrationOptions.form.closeDate">Closes for Registration</message>
+	<message key="manager.registrationOptions.form.notPublic">Do not make this registration option publicly available.</message>
+	<message key="manager.registrationOptions.form.saveAndCreateAnotherOption">Save and Create Another</message>
+	<message key="manager.registrationOptions.form.closeBeforeOpen">The open date for this registration option must come before the close date.</message>
 
 	<!-- Registration Management -->
 	<message key="manager.registration">Registration</message>

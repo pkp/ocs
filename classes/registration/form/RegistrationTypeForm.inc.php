@@ -26,11 +26,18 @@ class RegistrationTypeForm extends Form {
 	/** @var validCurrencies array keys are valid registration type currencies */	
 	var $validCurrencies;
 
+	/** @var $registrationOptionCosts array Associates registration option ID with cost */
+	var $registrationOptionCosts;
+
+	/** @var $registrationTypeDao object */
+	var $registrationTypeDao;
+
 	/**
 	 * Constructor
 	 * @param typeId int leave as default for new registration type
 	 */
 	function RegistrationTypeForm($typeId = null) {
+		$this->registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 
 		$this->validAccessTypes = array (
 			REGISTRATION_TYPE_ACCESS_ONLINE => Locale::translate('manager.registrationTypes.access.online'),
@@ -45,8 +52,12 @@ class RegistrationTypeForm extends Form {
 			$this->validCurrencies[$currency->getCodeAlpha()] = $currency->getName() . ' (' . $currency->getCodeAlpha() . ')';
 		}
 
-		$this->typeId = isset($typeId) ? (int) $typeId : null;
-		$schedConf = &Request::getSchedConf();
+		if (isset($typeId)) {
+			$this->typeId = (int) $typeId;
+			$this->registrationOptionCosts = $this->registrationTypeDao->getRegistrationOptionCosts($this->typeId);
+		} else {
+			$this->typeId = null;
+		}
 
 		parent::Form('registration/registrationTypeForm.tpl');
 
@@ -88,8 +99,7 @@ class RegistrationTypeForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
-		return $registrationTypeDao->getLocaleFieldNames();
+		return $this->registrationTypeDao->getLocaleFieldNames();
 	}
 
 	/**
@@ -101,7 +111,14 @@ class RegistrationTypeForm extends Form {
 		$templateMgr->assign('typeId', $this->typeId);
 		$templateMgr->assign('validCurrencies', $this->validCurrencies);
 		$templateMgr->assign('validAccessTypes', $this->validAccessTypes);
+		$templateMgr->assign('registrationOptionCosts', $this->registrationOptionCosts);
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
+
+		$schedConf =& Request::getSchedConf();
+		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getSchedConfId());
+		$registrationOptionsArray =& $registrationOptions->toArray();
+		$templateMgr->assign_by_ref('registrationOptions', $registrationOptionsArray);
 
 		parent::display();
 	}
@@ -111,8 +128,7 @@ class RegistrationTypeForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->typeId)) {
-			$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
-			$registrationType = &$registrationTypeDao->getRegistrationType($this->typeId);
+			$registrationType =& $this->registrationTypeDao->getRegistrationType($this->typeId);
 
 			if ($registrationType != null) {
 				$this->_data = array(
@@ -144,7 +160,7 @@ class RegistrationTypeForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('name', 'description', 'cost', 'currency', 'access', 'institutional', 'membership', 'notPublic', 'code'));
+		$this->readUserVars(array('name', 'description', 'cost', 'currency', 'access', 'institutional', 'membership', 'notPublic', 'code', 'registrationOptionCosts'));
 		$this->_data['openDate'] = Request::getUserDateVar('openDate');
 		$this->_data['closeDate'] = Request::getUserDateVar('closeDate');
 		$this->_data['expiryDate'] = Request::getUserVar('expiryDate')?Request::getUserDateVar('expiryDate'):null;
@@ -154,11 +170,10 @@ class RegistrationTypeForm extends Form {
 	 * Save registration type. 
 	 */
 	function execute() {
-		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 		$schedConf = &Request::getSchedConf();
 
 		if (isset($this->typeId)) {
-			$registrationType = &$registrationTypeDao->getRegistrationType($this->typeId);
+			$registrationType =& $this->registrationTypeDao->getRegistrationType($this->typeId);
 		}
 
 		if (!isset($registrationType)) {
@@ -181,13 +196,19 @@ class RegistrationTypeForm extends Form {
 
 		// Update or insert registration type
 		if ($registrationType->getTypeId() != null) {
-			$registrationTypeDao->updateRegistrationType($registrationType);
+			$this->registrationTypeDao->updateRegistrationType($registrationType);
+			$this->registrationTypeDao->deleteRegistrationOptionCosts($registrationType->getTypeId());
 		} else {
 			$registrationType->setSequence(REALLY_BIG_NUMBER);
-			$registrationTypeDao->insertRegistrationType($registrationType);
+			$this->registrationTypeDao->insertRegistrationType($registrationType);
 
 			// Re-order the registration types so the new one is at the end of the list.
-			$registrationTypeDao->resequenceRegistrationTypes($registrationType->getSchedConfId());
+			$this->registrationTypeDao->resequenceRegistrationTypes($registrationType->getSchedConfId());
+		}
+
+		$registrationOptionCosts = (array) $this->getData('registrationOptionCosts');
+		foreach ($registrationOptionCosts as $optionId => $cost) {
+			$this->registrationTypeDao->insertRegistrationOptionCost($registrationType->getTypeId(), $optionId, $cost);
 		}
 	}
 }

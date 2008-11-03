@@ -181,15 +181,25 @@ class SchedConfHandler extends Handler {
 			}
 		}
 
-		import('registration.form.UserRegistrationForm');
+		$typeId = (int) Request::getUserVar('registrationTypeId');
+		if ($typeId) {
+			// A registration type has been chosen
+			import('registration.form.UserRegistrationForm');
 
-		$form =& new UserRegistrationForm();
-		if ($form->isLocaleResubmit()) {
-			$form->readInputData();
+			$form =& new UserRegistrationForm($typeId);
+			if ($form->isLocaleResubmit()) {
+				$form->readInputData();
+			} else {
+				$form->initData();
+			}
+			$form->display();
 		} else {
-			$form->initData();
+			// A registration type has not been chosen; prompt for one.
+			$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
+			$registrationTypes =& $registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId());
+			$templateMgr->assign_by_ref('registrationTypes', $registrationTypes);
+			return $templateMgr->display('registration/selectRegistrationType.tpl');
 		}
-		$form->display();
 	}
 
 	/**
@@ -222,7 +232,8 @@ class SchedConfHandler extends Handler {
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
 
 		import('registration.form.UserRegistrationForm');
-		$form =& new UserRegistrationForm();
+		$typeId = (int) Request::getUserVar('registrationTypeId');
+		$form =& new UserRegistrationForm($typeId);
 		$form->readInputData();
 		if ($form->validate()) {
 			if (!$form->execute()) {
