@@ -18,6 +18,11 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<form name="suppFile" method="post" action="{url page=$rolePath op="saveSuppFile" path=$suppFileId}" enctype="multipart/form-data">
+<input type="hidden" name="paperId" value="{$paperId|escape}" />
+<input type="hidden" name="from" value="{$from|escape}" />
+{include file="common/formErrors.tpl"}
+
 {if count($formLocales) > 1}
 <table width="100%" class="data">
 	<tr valign="top">
@@ -33,10 +38,6 @@
 </table>
 
 {/if}
-<form name="suppFile" method="post" action="{url page=$rolePath op="saveSuppFile" path=$suppFileId}" enctype="multipart/form-data">
-<input type="hidden" name="paperId" value="{$paperId|escape}" />
-<input type="hidden" name="from" value="{$from|escape}" />
-{include file="common/formErrors.tpl"}
 
 <h3>{translate key="presenter.submit.supplementaryFileData"}</h3>
 <p>{translate key="presenter.submit.supplementaryFileDataDescription"}</p>
@@ -62,7 +63,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="type" key="common.type"}</td>
-		<td class="value"><select name="type" size="1" id="type" class="selectMenu">{html_options_translate output=$typeOptionsOutput values=$typeOptionsValues translateValues="true" selected=$type}</select><br />{translate key="presenter.submit.suppFile.specifyOtherType"}: <input type="text" name="typeOther[$formLocale|escape}]" value="{$typeOther[$formLocale]|escape}" size="45" maxlength="255" class="textField" /></td>
+		<td class="value"><select name="type" size="1" id="type" class="selectMenu">{html_options_translate output=$typeOptionsOutput values=$typeOptionsValues translateValues="true" selected=$type}</select><br />{translate key="presenter.submit.suppFile.specifyOtherType"}: <input type="text" name="typeOther[{$formLocale|escape}]" value="{$typeOther[$formLocale]|escape}" size="45" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="description" key="presenter.submit.suppFile.briefDescription"}</td>
