@@ -134,7 +134,7 @@ class AnnouncementForm extends Form {
 		}
 
 		if (!isset($announcement)) {
-			$announcement = &new Announcement();
+			$announcement = new Announcement();
 		}
 
 		$announcement->setConferenceId($conference->getConferenceId());

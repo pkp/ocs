@@ -28,7 +28,7 @@ class ManagerProgramHandler extends ManagerHandler {
 
 		import('manager.form.ProgramSettingsForm');
 
-		$settingsForm = &new ProgramSettingsForm();
+		$settingsForm = new ProgramSettingsForm();
 		$settingsForm->initData();
 		$settingsForm->display();
 	}
@@ -45,14 +45,14 @@ class ManagerProgramHandler extends ManagerHandler {
 
 		import('manager.form.ProgramSettingsForm');
 
-		$settingsForm = &new ProgramSettingsForm();
+		$settingsForm = new ProgramSettingsForm();
 		$settingsForm->readInputData();
 
 		$editData = false;
 
 		if (Request::getUserVar('uploadProgramFile')) {
 			import('file.PublicFileManager');
-			$fileManager =& new PublicFileManager();
+			$fileManager = new PublicFileManager();
 			if ($fileManager->uploadedFileExists('programFile')) {
 				$oldName = $fileManager->getUploadedFileName('programFile');
 				$extension = $fileManager->getExtension($oldName);
@@ -72,7 +72,7 @@ class ManagerProgramHandler extends ManagerHandler {
 		} elseif (Request::getUserVar('deleteProgramFile')) {
 			$setting = $schedConf->getSetting('programFile');
 			import('file.PublicFileManager');
-			$fileManager = &new PublicFileManager();
+			$fileManager = new PublicFileManager();
 			if ($fileManager->removeSchedConfFile($schedConf->getSchedConfId(), $setting['uploadName'])) {
 				$schedConf->updateSetting('programFile', null);
 			}

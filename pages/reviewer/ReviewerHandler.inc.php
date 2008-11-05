@@ -89,7 +89,7 @@ class ReviewerHandler extends PKPHandler {
 		define('REVIEWER_ACCESS_KEY_SESSION_VAR', 'ReviewerAccessKey');
 
 		import('security.AccessKeyManager');
-		$accessKeyManager =& new AccessKeyManager();
+		$accessKeyManager = new AccessKeyManager();
 
 		$session =& Request::getSession();
 		// Check to see if a new access key is being used.

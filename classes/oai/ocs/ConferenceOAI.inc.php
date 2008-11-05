@@ -99,7 +99,7 @@ class ConferenceOAI extends OAI {
 	 * @see OAI#repositoryInfo
 	 */
 	function &repositoryInfo() {
-		$info = &new OAIRepository();
+		$info = new OAIRepository();
 
 		if (isset($this->conference)) {
 			$info->repositoryName = $this->conference->getConferenceTitle();
@@ -201,7 +201,7 @@ class ConferenceOAI extends OAI {
 	 * @see OAI#saveResumptionToken
 	 */
 	function &saveResumptionToken($offset, $params) {
-		$token = &new OAIResumptionToken(null, $offset, $params, time() + $this->config->tokenLifetime);
+		$token = new OAIResumptionToken(null, $offset, $params, time() + $this->config->tokenLifetime);
 		$this->dao->insertToken($token);
 		return $token;
 	}

@@ -88,7 +88,7 @@ class SpecialEventDAO extends DAO {
 	 * @return SpecialEvent
 	 */
 	function &_returnSpecialEventFromRow(&$row) {
-		$specialEvent = &new SpecialEvent();
+		$specialEvent = new SpecialEvent();
 		$specialEvent->setSpecialEventId($row['special_event_id']);
 		$specialEvent->setSchedConfId($row['sched_conf_id']);
 		$specialEvent->setStartTime($this->datetimeFromDB($row['start_time']));
@@ -190,7 +190,7 @@ class SpecialEventDAO extends DAO {
 	 */
 	function &getSpecialEventsBySchedConfId($schedConfId, $rangeInfo = null) {
 		$result = &$this->retrieveRange('SELECT * FROM special_events WHERE sched_conf_id = ? ORDER BY start_time, end_time', $schedConfId, $rangeInfo);
-		$returner = &new DAOResultFactory($result, $this, '_returnSpecialEventFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnSpecialEventFromRow');
 		return $returner;
 	}
 

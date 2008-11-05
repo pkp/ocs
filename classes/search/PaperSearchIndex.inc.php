@@ -65,7 +65,7 @@ class PaperSearchIndex {
 	 */
 	function updateFileIndex($paperId, $type, $fileId) {
 		import('file.PaperFileManager');
-		$fileMgr = &new PaperFileManager($paperId);
+		$fileMgr = new PaperFileManager($paperId);
 		$file = &$fileMgr->getFile($fileId);
 
 		if (isset($file)) {

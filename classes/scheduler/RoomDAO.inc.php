@@ -76,7 +76,7 @@ class RoomDAO extends DAO {
 	 * @return Room
 	 */
 	function &_returnRoomFromRow(&$row) {
-		$room = &new Room();
+		$room = new Room();
 		$room->setRoomId($row['room_id']);
 		$room->setBuildingId($row['building_id']);
 		$this->getDataObjectSettings('room_settings', 'room_id', $row['room_id'], $room);
@@ -178,7 +178,7 @@ class RoomDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnRoomFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnRoomFromRow');
 		return $returner;
 	}
 

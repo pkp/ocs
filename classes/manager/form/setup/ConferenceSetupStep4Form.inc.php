@@ -81,7 +81,7 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
 
 		import('file.PublicFileManager');
-		$fileManager = &new PublicFileManager();
+		$fileManager = new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$type = $fileManager->getUploadedFileType($settingName);
 			if ($type != 'text/plain' && $type != 'text/css') {

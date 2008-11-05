@@ -77,7 +77,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				import('file.FileManager');
 				if (($userFile = FileManager::getUploadedFilePath('userFile')) !== false) {
 					// Import the uploaded file
-					$parser =& new UserXMLParser($schedConf->getConferenceId(), $schedConf->getSchedConfId());
+					$parser = new UserXMLParser($schedConf->getConferenceId(), $schedConf->getSchedConfId());
 					$users =& $parser->parseData($userFile);
 
 					$i = 0;
@@ -109,7 +109,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 
 				$users = array();
 				foreach ($userKeys as $i) {
-					$newUser =& new ImportedUser();
+					$newUser = new ImportedUser();
 					$newUser->setFirstName(Request::getUserVar($i.'_firstName'));
 					$newUser->setMiddleName(Request::getUserVar($i.'_middleName'));
 					$newUser->setLastName(Request::getUserVar($i.'_lastName'));
@@ -143,7 +143,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 					if (is_array($newUserRoles) && count($newUserRoles) > 0) {
 						foreach ($newUserRoles as $newUserRole) {
 							if ($newUserRole != '') {
-								$role =& new Role();
+								$role = new Role();
 								$role->setRoleId(RoleDAO::getRoleIdFromPath($newUserRole));
 								$newUser->AddRole($role);
 							}
@@ -152,7 +152,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 					array_push($users, $newUser);
 				}
 
-				$parser =& new UserXMLParser($schedConf->getConferenceId(), $schedConf->getSchedConfId());
+				$parser = new UserXMLParser($schedConf->getConferenceId(), $schedConf->getSchedConfId());
 				$parser->setUsersToImport($users);
 				if (!$parser->importUsers($sendNotify, $continueOnError)) {
 					// Failures occurred
@@ -230,7 +230,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				import('file.FileManager');
 
 				// Import the uploaded file
-				$parser =& new UserXMLParser($schedConf->getConferenceId(), $schedConf->getSchedConfId());
+				$parser = new UserXMLParser($schedConf->getConferenceId(), $schedConf->getSchedConfId());
 				$users =& $parser->parseData($xmlFile);
 
 				if (!$parser->importUsers($sendNotify, $continueOnError)) {

@@ -32,7 +32,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 			$formClass = "SchedConfSetupStep{$step}Form";
 			import("manager.form.schedConfSetup.$formClass");
 
-			$setupForm = &new $formClass();
+			$setupForm = new $formClass();
 			if ($setupForm->isLocaleResubmit()) {
 				$setupForm->readInputData();
 			} else {
@@ -63,7 +63,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 			$formClass = "SchedConfSetupStep{$step}Form";
 			import("manager.form.schedConfSetup.$formClass");
 
-			$setupForm = &new $formClass();
+			$setupForm = new $formClass();
 			$setupForm->readInputData();
 			$formLocale = $setupForm->getFormLocale();
 

@@ -28,7 +28,7 @@ class RegistrantReportPlugin extends ReportPlugin {
 		$success = parent::register($category, $path);
 		if ($success) {
 			$this->import('RegistrantReportDAO');
-			$registrantReportDAO =& new RegistrantReportDAO();
+			$registrantReportDAO = new RegistrantReportDAO();
 			DAORegistry::registerDAO('RegistrantReportDAO', $registrantReportDAO);
 		}
 		$this->addLocaleData();

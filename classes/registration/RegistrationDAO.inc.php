@@ -124,7 +124,7 @@ class RegistrationDAO extends DAO {
 	 * @return Registration
 	 */
 	function &_returnRegistrationFromRow(&$row) {
-		$registration = &new Registration();
+		$registration = new Registration();
 		$registration->setRegistrationId($row['registration_id']);
 		$registration->setSchedConfId($row['sched_conf_id']);
 		$registration->setUserId($row['user_id']);
@@ -341,7 +341,7 @@ class RegistrationDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnRegistrationFromRow');
 
 		return $returner;
 	}
@@ -365,7 +365,7 @@ class RegistrationDAO extends DAO {
 			$dbResultRange
 		);
 
-		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
+		$returner = new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
 		return $returner;
 	}
 

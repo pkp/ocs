@@ -28,7 +28,7 @@ class ImportOCS1Form extends Form {
 	 */
 	function ImportOCS1Form() {
 		parent::Form('admin/importOCS1.tpl');
-		$this->importer = &new ImportOCS1();
+		$this->importer = new ImportOCS1();
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'conferencePath', 'required', 'admin.conferences.form.pathRequired'));

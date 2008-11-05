@@ -25,7 +25,7 @@ class OAIHandler extends PKPHandler {
 	function index() {
 		OAIHandler::validate();
 
-		$oai = &new ConferenceOAI(new OAIConfig(Request::getRequestUrl(), Config::getVar('oai', 'repository_id')));
+		$oai = new ConferenceOAI(new OAIConfig(Request::getRequestUrl(), Config::getVar('oai', 'repository_id')));
 		$oai->execute();
 	}
 

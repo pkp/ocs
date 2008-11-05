@@ -206,7 +206,7 @@ class MetadataForm extends Form {
 
 			} else {
 				// Create a new presenter
-				$presenter = &new Presenter();
+				$presenter = new Presenter();
 				$isExistingPresenter = false;
 			}
 

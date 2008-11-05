@@ -47,7 +47,7 @@ require('functions.inc.php');
  */
 
 import('core.OCSApplication');
-$ocsApplication =& new OCSApplication();
+$ocsApplication = new OCSApplication();
 PKPApplication::initialize($ocsApplication);
 
 ?>

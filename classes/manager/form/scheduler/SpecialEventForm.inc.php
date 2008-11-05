@@ -124,7 +124,7 @@ class SpecialEventForm extends Form {
 		}
 
 		if (!isset($specialEvent)) {
-			$specialEvent = &new SpecialEvent();
+			$specialEvent = new SpecialEvent();
 		}
 
 		$specialEvent->setSchedConfId($schedConf->getSchedConfId());

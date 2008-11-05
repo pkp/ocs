@@ -32,7 +32,7 @@ class Action {
 	function viewMetadata($paper, $roleId) {
 		if (!HookRegistry::call('Action::viewMetadata', array(&$paper, &$roleId))) {
 			import("submission.form.MetadataForm");
-			$metadataForm = &new MetadataForm($paper, $roleId);
+			$metadataForm = new MetadataForm($paper, $roleId);
 			if ($metadataForm->getCanEdit() && $metadataForm->isLocaleResubmit()) {
 				$metadataForm->readInputData();
 			} else {
@@ -49,7 +49,7 @@ class Action {
 	function saveMetadata($paper) {
 		if (!HookRegistry::call('Action::saveMetadata', array(&$paper))) {
 			import("submission.form.MetadataForm");
-			$metadataForm = &new MetadataForm($paper);
+			$metadataForm = new MetadataForm($paper);
 			$metadataForm->readInputData();
 
 			if (!$metadataForm->validate()) {
@@ -140,7 +140,7 @@ class Action {
 	 */
 	function downloadFile($paperId, $fileId, $revision = null) {
 		import('file.PaperFileManager');
-		$paperFileManager = &new PaperFileManager($paperId);
+		$paperFileManager = new PaperFileManager($paperId);
 		return $paperFileManager->downloadFile($fileId, $revision);
 	}
 
@@ -152,7 +152,7 @@ class Action {
 	 */
 	function viewFile($paperId, $fileId, $revision = null) {
 		import('file.PaperFileManager');
-		$paperFileManager = &new PaperFileManager($paperId);
+		$paperFileManager = new PaperFileManager($paperId);
 		return $paperFileManager->viewFile($fileId, $revision);
 	}
 
@@ -164,7 +164,7 @@ class Action {
 		if (!HookRegistry::call('Action::editComment', array(&$paper, &$comment))) {
 			import("submission.form.comment.EditCommentForm");
 
-			$commentForm = &new EditCommentForm($paper, $comment);
+			$commentForm = new EditCommentForm($paper, $comment);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -178,7 +178,7 @@ class Action {
 		if (!HookRegistry::call('Action::saveComment', array(&$paper, &$comment, &$emailComment))) {
 			import("submission.form.comment.EditCommentForm");
 
-			$commentForm = &new EditCommentForm($paper, $comment);
+			$commentForm = new EditCommentForm($paper, $comment);
 			$commentForm->readInputData();
 
 			if ($commentForm->validate()) {

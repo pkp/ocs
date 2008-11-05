@@ -101,7 +101,7 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 			$schedConf =& Request::getSchedConf();
 			$user =& Request::getUser();
 
-			$this->paper = &new Paper();
+			$this->paper = new Paper();
 			$this->paper->setUserId($user->getUserId());
 			$this->paper->setSchedConfId($schedConf->getSchedConfId());
 			$this->paper->setTrackId($this->getData('trackId'));
@@ -124,7 +124,7 @@ class PresenterSubmitStep1Form extends PresenterSubmitForm {
 
 			// Set user to initial presenter
 			$user = &Request::getUser();
-			$presenter = &new Presenter();
+			$presenter = new Presenter();
 			$presenter->setFirstName($user->getFirstName());
 			$presenter->setMiddleName($user->getMiddleName());
 			$presenter->setLastName($user->getLastName());

@@ -144,7 +144,7 @@ class ImportOCS1 {
 
 		// Assumes no character set (not supported by OCS 1.x)
 		// Forces open a new connection
-		$this->importDBConn = &new DBConnection($db_type, $db_host, $db_login, $db_password, $db_name, false, false, true, false, true);
+		$this->importDBConn = new DBConnection($db_type, $db_host, $db_login, $db_password, $db_name, false, false, true, false, true);
 		$dbconn = &$this->importDBConn->getDBConn();
 
 		if (!$this->importDBConn->isConnected()) {
@@ -153,7 +153,7 @@ class ImportOCS1 {
 		}
 
 		$this->dbtable = $dbtable;
-		$this->importDao = &new DAO($dbconn);
+		$this->importDao = new DAO($dbconn);
 
 		if (!$this->loadGlobalConfig()) {
 			$this->error('Unsupported or unrecognized OCS version');
@@ -208,7 +208,7 @@ class ImportOCS1 {
 				printf("Creating conference\n");
 			}
 			unset($conference);
-			$conference =& new Conference();
+			$conference = new Conference();
 			$conference->setPath($this->conferencePath);
 			$conference->setPrimaryLocale(Locale::getLocale());
 			$conference->setEnabled(true);
@@ -232,7 +232,7 @@ class ImportOCS1 {
 			// All site admins should get a manager role by default
 			$admins = $roleDao->getUsersByRoleId(ROLE_ID_SITE_ADMIN);
 			foreach ($admins->toArray() as $admin) {
-				$role = &new Role();
+				$role = new Role();
 				$role->setConferenceId($this->conferenceId);
 				$role->setUserId($admin->getUserId());
 				$role->setRoleId(ROLE_ID_CONFERENCE_MANAGER);
@@ -241,7 +241,7 @@ class ImportOCS1 {
 
 			// Install the default RT versions.
 			import('rt.ocs.ConferenceRTAdmin');
-			$conferenceRtAdmin = &new ConferenceRTAdmin($this->conferenceId);
+			$conferenceRtAdmin = new ConferenceRTAdmin($this->conferenceId);
 			$conferenceRtAdmin->restoreVersions(false);
 
 			$confSettings = array(
@@ -303,7 +303,7 @@ class ImportOCS1 {
 		// Create/fetch scheduled conference
 		if (!$schedConf =& $schedConfDao->getSchedConfByPath($id, $this->conferenceId)) {
 			unset($schedConf);
-			$schedConf = &new SchedConf();
+			$schedConf = new SchedConf();
 			$schedConf->setConferenceId($this->conferenceId);
 			$schedConf->setPath($id);
 			$schedConfDao->insertSchedConf($schedConf);
@@ -352,7 +352,7 @@ class ImportOCS1 {
 
 			foreach ($levels as $key => $level) {
 				$fee = $fees[$key];
-				$registrationType =& new RegistrationType();
+				$registrationType = new RegistrationType();
 				$registrationType->setSchedConfId($schedConf->getSchedConfId());
 				$registrationType->setName($level, Locale::getLocale());
 				$registrationType->setCost($fee);
@@ -371,7 +371,7 @@ class ImportOCS1 {
 
 			foreach ($levelsLate as $key => $level) {
 				$fee = $feesLate[$key];
-				$registrationType =& new RegistrationType();
+				$registrationType = new RegistrationType();
 				$registrationType->setSchedConfId($schedConf->getSchedConfId());
 				$registrationType->setName($level . ' (Late)', Locale::getLocale());
 				$registrationType->setCost($fee);
@@ -404,7 +404,7 @@ class ImportOCS1 {
 				$lastName = array_pop($nameParts);
 				$firstName = join(' ', $nameParts);
 
-				$user =& new User();
+				$user = new User();
 				$user->setEmail($email);
 				$user->setFirstName($firstName);
 				$user->setLastName($lastName);
@@ -427,7 +427,7 @@ class ImportOCS1 {
 
 				if ($this->hasOption('emailUsers')) {
 					import('mail.MailTemplate');
-					$mail = &new MailTemplate('USER_REGISTER');
+					$mail = new MailTemplate('USER_REGISTER');
 
 					$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 					$mail->assignParams(array('username' => $user->getUsername(), 'password' => $password, 'conferenceName' => $schedConf->getFullTitle()));
@@ -458,7 +458,7 @@ class ImportOCS1 {
 			if ($registrationDao->registrationExistsByUser($user->getUserId(), $schedConf->getSchedConfId())) {
 				$this->errors[] = "A duplicate registration (level \"$seekingRegLevel\") was skipped for user with email $email.";
 			} else {
-				$registration =& new Registration();
+				$registration = new Registration();
 				$registration->setSchedConfId($schedConf->getSchedConfId());
 				$registration->setUserId($user->getUserId());
 				$registration->setTypeId($registrationType->getTypeId());
@@ -498,7 +498,7 @@ class ImportOCS1 {
 				$oldConferenceId = $row['cf'];
 			}
 
-			$track = &new Track();
+			$track = new Track();
 			$schedConf =& $this->schedConfMap[$row['cf']];
 			$track->setSchedConfId($schedConf->getSchedConfId());
 			$track->setTitle(Core::cleanVar($row['track']), Locale::getLocale());
@@ -541,7 +541,7 @@ class ImportOCS1 {
 			$user = $userDao->getUserByUsername(Core::cleanVar($row['login']));
 			if (!$user) {
 				unset($user);
-				$user =& new User();
+				$user = new User();
 				$user->setUsername(Core::cleanVar($row['login']));
 
 				$nameParts = split(' ', Core::cleanVar($row['name']));
@@ -560,7 +560,7 @@ class ImportOCS1 {
 
 				if ($this->hasOption('emailUsers')) {
 					import('mail.MailTemplate');
-					$mail = &new MailTemplate('USER_REGISTER');
+					$mail = new MailTemplate('USER_REGISTER');
 
 					$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 					$mail->assignParams(array('username' => $user->getUsername(), 'password' => $password, 'conferenceName' => $schedConf->getFullTitle()));
@@ -582,7 +582,7 @@ class ImportOCS1 {
 				$userDao->insertUser($user);
 
 				// Make this user a presenter
-				$role =& new Role();
+				$role = new Role();
 				$role->setSchedConfId($schedConf->getSchedConfId());
 				$role->setConferenceId($schedConf->getConferenceId());
 				$role->setUserId($user->getUserId());
@@ -631,7 +631,7 @@ class ImportOCS1 {
 			$user = $userDao->getUserByUsername(Core::cleanVar($row['login']));
 			if (!$user) {
 				unset($user);
-				$user =& new User();
+				$user = new User();
 				$user->setUsername(Core::cleanVar($row['login']));
 				$user->setFirstName(Core::cleanVar($row['first_name']));
 				$user->setLastName(Core::cleanVar($row['surname']));
@@ -649,7 +649,7 @@ class ImportOCS1 {
 
 				if ($this->hasOption('emailUsers')) {
 					import('mail.MailTemplate');
-					$mail = &new MailTemplate('USER_REGISTER');
+					$mail = new MailTemplate('USER_REGISTER');
 
 					$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 					$mail->assignParams(array('username' => $user->getUsername(), 'password' => $password, 'conferenceName' => $schedConf->getFullTitle()));
@@ -671,7 +671,7 @@ class ImportOCS1 {
 				$userDao->insertUser($user);
 
 				// Make this user a presenter
-				$role =& new Role();
+				$role = new Role();
 				$role->setSchedConfId($schedConf->getSchedConfId());
 				$role->setConferenceId($schedConf->getConferenceId());
 				$role->setUserId($user->getUserId());
@@ -682,7 +682,7 @@ class ImportOCS1 {
 			$userId = $user->getUserId();
 
 			// Bring in the basic entry for the paper
-			$paper =& new Paper();
+			$paper = new Paper();
 			$paper->setUserId($userId);
 			$paper->setSchedConfId($schedConfId);
 
@@ -694,7 +694,7 @@ class ImportOCS1 {
 				if (!$unassignedTrackId) {
 					// Create an "Unassigned" track to use for submissions
 					// that didn't have a track in OCS 1.x.
-					$track = &new Track();
+					$track = new Track();
 					$track->setSchedConfId($schedConf->getSchedConfId());
 					$track->setTitle('UNASSIGNED', Locale::getLocale());
 					$track->setSequence(REALLY_BIG_NUMBER);
@@ -733,7 +733,7 @@ class ImportOCS1 {
 			foreach ($emails as $key => $email) {
 				if (empty($email)) continue;
 
-				$presenter =& new Presenter();
+				$presenter = new Presenter();
 
 				$presenter->setEmail($email);
 				$presenter->setFirstName($firstNames[$key]);
@@ -751,7 +751,7 @@ class ImportOCS1 {
 				case 'true':
 					$paper->setStatus(SUBMISSION_STATUS_PUBLISHED);
 					$paperId = $paperDao->insertPaper($paper);
-					$publishedPaper =& new PublishedPaper();
+					$publishedPaper = new PublishedPaper();
 					$publishedPaper->setPaperId($paperId);
 					$publishedPaper->setSchedConfId($schedConfId);
 					$publishedPaper->setDatePublished(Core::getCurrentDate());
@@ -771,7 +771,7 @@ class ImportOCS1 {
 
 			$this->paperMap[$row['id']] =& $paper;
 
-			$paperFileManager =& new PaperFileManager($paperId);
+			$paperFileManager = new PaperFileManager($paperId);
 			if (!empty($row['paper']) && $row['paper'] != 'PDF') {
 				$format = 'text/html';
 				$extension = $paperFileManager->getDocumentExtension($format);
@@ -783,10 +783,10 @@ class ImportOCS1 {
 				$fileId = $paperFileManager->writePublicFile('migratedGalley' . $extension, $row['paper'], $format);
 				PaperSearchIndex::updateFileIndex($paperId, PAPER_SEARCH_GALLEY_FILE, $fileId);
 				if (strstr($format, 'html')) {
-					$galley =& new PaperHTMLGalley();
+					$galley = new PaperHTMLGalley();
 					$galley->setLabel('HTML');
 				} else {
-					$galley =& new PaperGalley();
+					$galley = new PaperGalley();
 					switch ($format) {
 						case 'application/pdf': $galley->setLabel('PDF'); break;
 						case 'application/postscript': $galley->setLabel('PostScript'); break;
@@ -809,7 +809,7 @@ class ImportOCS1 {
 
 				$fileId = $paperFileManager->copyPublicFile($this->importPath . '/papers/' . $row['pdf'], 'application/pdf');
 				PaperSearchIndex::updateFileIndex($paperId, PAPER_SEARCH_GALLEY_FILE, $fileId);
-				$galley =& new PaperGalley();
+				$galley = new PaperGalley();
 				$galley->setLabel('PDF');
 				$galley->setLocale(Locale::getLocale());
 				$galley->setPaperId($paperId);
@@ -874,7 +874,7 @@ class ImportOCS1 {
 			$paperId = $paper->getPaperId();
 			$reviewerId = $reviewer->getUserId();
 
-			$reviewAssignment =& new ReviewAssignment();
+			$reviewAssignment = new ReviewAssignment();
 			$reviewAssignment->setReviewerId($reviewerId);
 			$reviewAssignment->setPaperId($paperId);
 			$reviewAssignment->setStage(REVIEW_STAGE_ABSTRACT); // Won't always be accurate
@@ -905,7 +905,7 @@ class ImportOCS1 {
 
 			$reviewId = $reviewAssignmentDao->insertReviewAssignment($reviewAssignment);
 
-			$paperComment =& new PaperComment();
+			$paperComment = new PaperComment();
 			$paperComment->setCommentType(COMMENT_TYPE_PEER_REVIEW);
 			$paperComment->setRoleId(ROLE_ID_REVIEWER);
 			$paperComment->setPaperId($paperId);

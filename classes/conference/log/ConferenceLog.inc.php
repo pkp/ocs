@@ -82,7 +82,7 @@ class ConferenceLog {
 	 * @param $messageParams array
 	 */
 	function logEventLevel($conferenceId, $schedConfId, $logLevel, $eventType, $assocType = 0, $assocId = 0, $messageKey = null, $messageParams = array()) {
-		$entry = &new ConferenceEventLogEntry();
+		$entry = new ConferenceEventLogEntry();
 		$entry->setLogLevel($logLevel);
 		$entry->setEventType($eventType);
 		$entry->setAssocType($assocType);

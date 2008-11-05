@@ -37,7 +37,7 @@ class PresenterAction extends Action {
 	 */
 	function designateReviewVersion($presenterSubmission) {
 		import('file.PaperFileManager');
-		$paperFileManager = &new PaperFileManager($presenterSubmission->getPaperId());
+		$paperFileManager = new PaperFileManager($presenterSubmission->getPaperId());
 		$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');
 
 		if (!HookRegistry::call('PresenterAction::designateReviewVersion', array(&$presenterSubmission))) {
@@ -70,7 +70,7 @@ class PresenterAction extends Action {
 	function deletePaperFile($paper, $fileId, $revisionId) {
 		import('file.PaperFileManager');
 
-		$paperFileManager = &new PaperFileManager($paper->getPaperId());
+		$paperFileManager = new PaperFileManager($paper->getPaperId());
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 		$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');
 
@@ -98,7 +98,7 @@ class PresenterAction extends Action {
 	 */
 	function uploadRevisedVersion($presenterSubmission) {
 		import("file.PaperFileManager");
-		$paperFileManager = &new PaperFileManager($presenterSubmission->getPaperId());
+		$paperFileManager = new PaperFileManager($presenterSubmission->getPaperId());
 		$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');
 
 		$fileName = 'upload';
@@ -136,7 +136,7 @@ class PresenterAction extends Action {
 		if (!HookRegistry::call('PresenterAction::viewDirectorDecisionComments', array(&$paper))) {
 			import("submission.form.comment.DirectorDecisionCommentForm");
 
-			$commentForm = &new DirectorDecisionCommentForm($paper, ROLE_ID_PRESENTER);
+			$commentForm = new DirectorDecisionCommentForm($paper, ROLE_ID_PRESENTER);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -154,7 +154,7 @@ class PresenterAction extends Action {
 
 		$user = &Request::getUser();
 		import('mail.PaperMailTemplate');
-		$email = &new PaperMailTemplate($presenterSubmission);
+		$email = new PaperMailTemplate($presenterSubmission);
 
 		$editAssignments = $presenterSubmission->getEditAssignments();
 		$directors = array();
@@ -167,7 +167,7 @@ class PresenterAction extends Action {
 			$email->send();
 
 			$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
-			$paperComment =& new PaperComment();
+			$paperComment = new PaperComment();
 			$paperComment->setCommentType(COMMENT_TYPE_DIRECTOR_DECISION);
 			$paperComment->setRoleId(ROLE_ID_PRESENTER);
 			$paperComment->setPaperId($presenterSubmission->getPaperId());

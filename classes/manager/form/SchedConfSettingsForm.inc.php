@@ -122,7 +122,7 @@ class SchedConfSettingsForm extends Form {
 		}
 
 		if (!isset($schedConf)) {
-			$schedConf = &new SchedConf();
+			$schedConf = new SchedConf();
 		}
 
 		$schedConf->setConferenceId($this->getData('conferenceId'));
@@ -164,7 +164,7 @@ class SchedConfSettingsForm extends Form {
 
 			// Create a default "Papers" track
 			$trackDao = &DAORegistry::getDAO('TrackDAO');
-			$track = &new Track();
+			$track = new Track();
 			$track->setSchedConfId($schedConfId);
 			$track->setMetaReviewed(true);
 			$track->setTitle(Locale::translate('track.default.title'), $conference->getPrimaryLocale());

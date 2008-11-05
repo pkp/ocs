@@ -94,7 +94,7 @@ class AcronPlugin extends GenericPlugin {
 
 					// Load and execute the task
 					import($className);
-					$task = &new $baseClassName($args);
+					$task = new $baseClassName($args);
 					$task->execute();
 				}
 			}
@@ -107,7 +107,7 @@ class AcronPlugin extends GenericPlugin {
 	 * parseCrontab: reload the scheduled tasks XML.
 	 */
 	function parseCrontab() {
-		$xmlParser = &new XMLParser();
+		$xmlParser = new XMLParser();
 
 		// TODO: make this a plugin setting, rather than assuming.
 		$tree = $xmlParser->parse(Config::getVar('general', 'registry_dir') . '/scheduledTasks.xml');

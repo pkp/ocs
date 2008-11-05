@@ -88,7 +88,7 @@ class BuildingDAO extends DAO {
 	 * @return Building
 	 */
 	function &_returnBuildingFromRow(&$row) {
-		$building = &new Building();
+		$building = new Building();
 		$building->setBuildingId($row['building_id']);
 		$building->setSchedConfId($row['sched_conf_id']);
 		$this->getDataObjectSettings('building_settings', 'building_id', $row['building_id'], $building);
@@ -194,7 +194,7 @@ class BuildingDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnBuildingFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnBuildingFromRow');
 		return $returner;
 	}
 

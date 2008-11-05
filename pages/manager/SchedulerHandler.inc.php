@@ -95,7 +95,7 @@ class SchedulerHandler extends ManagerHandler {
 				$templateMgr->assign('buildingTitle', 'manager.scheduler.building.editBuildingShort');
 			}
 
-			$buildingForm =& new BuildingForm($buildingId);
+			$buildingForm = new BuildingForm($buildingId);
 			if ($buildingForm->isLocaleResubmit()) {
 				$buildingForm->readInputData();
 			} else {
@@ -129,7 +129,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (($buildingId != null && $buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getSchedConfId()) || $buildingId == null) {
 
-			$buildingForm =& new BuildingForm($buildingId);
+			$buildingForm = new BuildingForm($buildingId);
 			$buildingForm->readInputData();
 
 			if ($buildingForm->validate()) {
@@ -260,7 +260,7 @@ class SchedulerHandler extends ManagerHandler {
 				$templateMgr->assign('roomTitle', 'manager.scheduler.room.editRoomShort');
 			}
 
-			$roomForm =& new RoomForm($roomId, $buildingId);
+			$roomForm = new RoomForm($roomId, $buildingId);
 			if ($roomForm->isLocaleResubmit()) {
 				$roomForm->readInputData();
 			} else {
@@ -306,7 +306,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (($roomId != null && $roomDao->getRoomBuildingId($roomId) == $buildingId) || $roomId == null) {
 
-			$roomForm =& new RoomForm($roomId, $buildingId);
+			$roomForm = new RoomForm($roomId, $buildingId);
 			$roomForm->readInputData();
 
 			if ($roomForm->validate()) {
@@ -405,7 +405,7 @@ class SchedulerHandler extends ManagerHandler {
 				$templateMgr->assign('specialEventTitle', 'manager.scheduler.specialEvent.editSpecialEventShort');
 			}
 
-			$specialEventForm =& new SpecialEventForm($specialEventId);
+			$specialEventForm = new SpecialEventForm($specialEventId);
 			if ($specialEventForm->isLocaleResubmit()) {
 				$specialEventForm->readInputData();
 			} else {
@@ -439,7 +439,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getSchedConfId()) || $specialEventId == null) {
 
-			$specialEventForm =& new SpecialEventForm($specialEventId);
+			$specialEventForm = new SpecialEventForm($specialEventId);
 			$specialEventForm->readInputData();
 
 			if ($specialEventForm->validate()) {
@@ -481,7 +481,7 @@ class SchedulerHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 
 		import('manager.form.scheduler.ScheduleForm');
-		$scheduleForm =& new ScheduleForm();
+		$scheduleForm = new ScheduleForm();
 
 		$scheduleForm->initData();
 		$scheduleForm->display();
@@ -497,7 +497,7 @@ class SchedulerHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 
 		import('manager.form.scheduler.ScheduleForm');
-		$scheduleForm =& new ScheduleForm();
+		$scheduleForm = new ScheduleForm();
 
 		$scheduleForm->readInputData();
 		if ($scheduleForm->validate()) {

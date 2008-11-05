@@ -313,7 +313,7 @@ class OAIDAO extends DAO {
 	 * @return OAIRecord
 	 */
 	function &_returnRecordFromRow(&$row) {
-		$record =& new OAIRecord();
+		$record = new OAIRecord();
 
 		$paperId = $row['paper_id'];
 		if ($this->conferenceSettingsDao->getSetting($row['conference_id'], 'enablePublicPaperId')) {
@@ -407,7 +407,7 @@ class OAIDAO extends DAO {
 	 * @return OAIIdentifier
 	 */
 	function &_returnIdentifierFromRow(&$row) {
-		$record =& new OAIRecord();
+		$record = new OAIRecord();
 		$conference =& $this->getConference($row['conference_id']);
 		$schedConf =& $this->getSchedConf($row['sched_conf_id']);
 		$track =& $this->getTrack($row['track_id']);
@@ -446,7 +446,7 @@ class OAIDAO extends DAO {
 
 		} else {
 			$row =& $result->getRowAssoc(false);
-			$token =& new OAIResumptionToken($row['token'], $row['record_offset'], unserialize($row['params']), $row['expire']);
+			$token = new OAIResumptionToken($row['token'], $row['record_offset'], unserialize($row['params']), $row['expire']);
 		}
 
 		$result->Close();

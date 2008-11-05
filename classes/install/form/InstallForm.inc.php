@@ -188,7 +188,7 @@ class InstallForm extends Form {
 	 */
 	function execute() {
 		$templateMgr = &TemplateManager::getManager();
-		$installer = &new Install($this->_data);
+		$installer = new Install($this->_data);
 
 		// FIXME Use logger?
 

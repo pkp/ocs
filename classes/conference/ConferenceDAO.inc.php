@@ -62,7 +62,7 @@ class ConferenceDAO extends DAO {
 	 * @return Conference
 	 */
 	function &_returnConferenceFromRow(&$row) {
-		$conference = &new Conference();
+		$conference = new Conference();
 		$conference->setConferenceId($row['conference_id']);
 		$conference->setPath($row['path']);
 		$conference->setSequence($row['seq']);
@@ -177,7 +177,7 @@ class ConferenceDAO extends DAO {
 			false, $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnConferenceFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnConferenceFromRow');
 		return $returner;
 	}
 
@@ -190,7 +190,7 @@ class ConferenceDAO extends DAO {
 			'SELECT * FROM conferences WHERE enabled=1 ORDER BY seq'
 		);
 
-		$resultFactory = &new DAOResultFactory($result, $this, '_returnConferenceFromRow');
+		$resultFactory = new DAOResultFactory($result, $this, '_returnConferenceFromRow');
 		return $resultFactory;
 	}
 

@@ -151,7 +151,7 @@ class RegistrationHandler extends ManagerHandler {
 				$templateMgr->assign('registrationTitle', 'manager.registration.editTitle');	
 			}
 
-			$registrationForm = &new RegistrationForm($registrationId, $userId);
+			$registrationForm = new RegistrationForm($registrationId, $userId);
 			if ($registrationForm->isLocaleResubmit()) {
 				$registrationForm->readInputData();
 			} else {
@@ -240,7 +240,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		if (($registrationId != null && $registrationDao->getRegistrationSchedConfId($registrationId) == $schedConf->getSchedConfId()) || $registrationId == null) {
 
-			$registrationForm = &new RegistrationForm($registrationId);
+			$registrationForm = new RegistrationForm($registrationId);
 			$registrationForm->readInputData();
 
 			if ($registrationForm->validate()) {
@@ -367,7 +367,7 @@ class RegistrationHandler extends ManagerHandler {
 				$templateMgr->assign('registrationTypeTitle', 'manager.registrationTypes.editTitle');	
 			}
 
-			$registrationTypeForm = &new RegistrationTypeForm($registrationTypeId);
+			$registrationTypeForm = new RegistrationTypeForm($registrationTypeId);
 			if ($registrationTypeForm->isLocaleResubmit()) {
 				$registrationTypeForm->readInputData();
 			} else {
@@ -401,7 +401,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		if (($registrationTypeId != null && $registrationTypeDao->getRegistrationTypeSchedConfId($registrationTypeId) == $schedConf->getSchedConfId()) || $registrationTypeId == null) {
 
-			$registrationTypeForm = &new RegistrationTypeForm($registrationTypeId);
+			$registrationTypeForm = new RegistrationTypeForm($registrationTypeId);
 			$registrationTypeForm->readInputData();
 
 			if ($registrationTypeForm->validate()) {
@@ -415,7 +415,7 @@ class RegistrationHandler extends ManagerHandler {
 					$templateMgr->assign('registrationTypeTitle', 'manager.registrationTypes.createTitle');
 					$templateMgr->assign('registrationTypeCreated', '1');
 
-					$registrationTypeForm = &new RegistrationTypeForm($registrationTypeId);
+					$registrationTypeForm = new RegistrationTypeForm($registrationTypeId);
 					$registrationTypeForm->initData();
 					$registrationTypeForm->display();
 
@@ -538,7 +538,7 @@ class RegistrationHandler extends ManagerHandler {
 				$templateMgr->assign('registrationOptionTitle', 'manager.registrationOptions.editTitle');	
 			}
 
-			$registrationOptionForm =& new RegistrationOptionForm($registrationOptionId);
+			$registrationOptionForm = new RegistrationOptionForm($registrationOptionId);
 			if ($registrationOptionForm->isLocaleResubmit()) {
 				$registrationOptionForm->readInputData();
 			} else {
@@ -572,7 +572,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		if (($registrationOptionId != null && $registrationOptionDao->getRegistrationOptionSchedConfId($registrationOptionId) == $schedConf->getSchedConfId()) || $registrationOptionId == null) {
 
-			$registrationOptionForm =& new RegistrationOptionForm($registrationOptionId);
+			$registrationOptionForm = new RegistrationOptionForm($registrationOptionId);
 			$registrationOptionForm->readInputData();
 
 			if ($registrationOptionForm->validate()) {
@@ -586,7 +586,7 @@ class RegistrationHandler extends ManagerHandler {
 					$templateMgr->assign('registrationOptionTitle', 'manager.registrationOptions.createTitle');
 					$templateMgr->assign('registrationOptionCreated', '1');
 
-					$registrationOptionForm =& new RegistrationOptionForm($registrationOptionId);
+					$registrationOptionForm = new RegistrationOptionForm($registrationOptionId);
 					$registrationOptionForm->initData();
 					$registrationOptionForm->display();
 
@@ -630,7 +630,7 @@ class RegistrationHandler extends ManagerHandler {
 			$templateMgr->assign('scheduledTasksEnabled', true);
 		}
 
-		$registrationPolicyForm = &new RegistrationPolicyForm();
+		$registrationPolicyForm = new RegistrationPolicyForm();
 		if ($registrationPolicyForm->isLocaleResubmit()) {
 			$registrationPolicyForm->readInputData();
 		} else {
@@ -647,7 +647,7 @@ class RegistrationHandler extends ManagerHandler {
 
 		import('registration.form.RegistrationPolicyForm');
 
-		$registrationPolicyForm = &new RegistrationPolicyForm();
+		$registrationPolicyForm = new RegistrationPolicyForm();
 		$registrationPolicyForm->readInputData();
 
 		if ($registrationPolicyForm->validate()) {

@@ -57,7 +57,7 @@ class TrackHandler extends ManagerHandler {
 
 		import('manager.form.TrackForm');
 
-		$trackForm = &new TrackForm(!isset($args) || empty($args) ? null : $args[0]);
+		$trackForm = new TrackForm(!isset($args) || empty($args) ? null : $args[0]);
 		if ($trackForm->isLocaleResubmit()) {
 			$trackForm->readInputData();
 		} else {
@@ -74,7 +74,7 @@ class TrackHandler extends ManagerHandler {
 
 		import('manager.form.TrackForm');
 
-		$trackForm = &new TrackForm(Request::getUserVar('trackId'));
+		$trackForm = new TrackForm(Request::getUserVar('trackId'));
 		$trackForm->readInputData();
 
 		if ($trackForm->validate()) {

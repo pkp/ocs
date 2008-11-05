@@ -74,7 +74,7 @@ class SchedConfDAO extends DAO {
 	 * @return SchedConf
 	 */
 	function &_returnSchedConfFromRow(&$row) {
-		$schedConf = &new SchedConf();
+		$schedConf = new SchedConf();
 		$schedConf->setSchedConfId($row['sched_conf_id']);
 		$schedConf->setPath($row['path']);
 		$schedConf->setSequence($row['seq']);
@@ -172,7 +172,7 @@ class SchedConfDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
 		return $returner;
 	}
 
@@ -251,7 +251,7 @@ class SchedConfDAO extends DAO {
 			false, $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
 		return $returner;
 	}
 
@@ -269,7 +269,7 @@ class SchedConfDAO extends DAO {
 			. ' ORDER BY c.seq, i.seq',
 			$conferenceId===null?false:$conferenceId);
 
-		$resultFactory = &new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
+		$resultFactory = new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
 		return $resultFactory;
 	}
 
@@ -339,7 +339,7 @@ class SchedConfDAO extends DAO {
 			ORDER BY c.seq, i.seq',
 			$conferenceId);
 
-		$resultFactory = &new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
+		$resultFactory = new DAOResultFactory($result, $this, '_returnSchedConfFromRow');
 		return $resultFactory;
 	}
 

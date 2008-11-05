@@ -203,7 +203,7 @@ class PaperFileDAO extends DAO {
 	 * @return PaperFile
 	 */
 	function &_returnPaperFileFromRow(&$row) {
-		$paperFile = &new PaperFile();
+		$paperFile = new PaperFile();
 		$paperFile->setFileId($row['file_id']);
 		$paperFile->setRevision($row['revision']);
 		$paperFile->setPaperId($row['paper_id']);

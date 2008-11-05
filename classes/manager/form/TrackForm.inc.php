@@ -150,7 +150,7 @@ class TrackForm extends Form {
 		}
 
 		if (!isset($track)) {
-			$track = &new Track();
+			$track = new Track();
 			$track->setSchedConfId($schedConf->getSchedConfId());
 			$track->setSequence(REALLY_BIG_NUMBER);
 		}

@@ -28,7 +28,7 @@ class ReviewReportPlugin extends ReportPlugin {
 		$success = parent::register($category, $path);
 		if ($success) {
 			$this->import('ReviewReportDAO');
-			$reviewReportDAO =& new ReviewReportDAO();
+			$reviewReportDAO = new ReviewReportDAO();
 			DAORegistry::registerDAO('ReviewReportDAO', $reviewReportDAO);
 		}
 		$this->addLocaleData();

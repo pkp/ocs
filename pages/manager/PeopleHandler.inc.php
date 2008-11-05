@@ -243,7 +243,7 @@ class PeopleHandler extends ManagerHandler {
 						return;
 					}
 
-					$role =& new Role();
+					$role = new Role();
 					$role->setConferenceId($conference->getConferenceId());
 					if ($schedConf) {
 						$role->setSchedConfId($schedConfId);
@@ -392,7 +392,7 @@ class PeopleHandler extends ManagerHandler {
 
 		$templateMgr->assign('currentUrl', Request::url(null, null, null, 'people', 'all'));
 
-		$userForm =& new UserManagementForm($userId);
+		$userForm = new UserManagementForm($userId);
 		if ($userForm->isLocaleResubmit()) {
 			$userForm->readInputData();
 		} else {
@@ -695,7 +695,7 @@ class PeopleHandler extends ManagerHandler {
 
 		import('manager.form.UserManagementForm');
 
-		$userForm =& new UserManagementForm($userId);
+		$userForm = new UserManagementForm($userId);
 		$userForm->readInputData();
 
 		if ($userForm->validate()) {
@@ -705,7 +705,7 @@ class PeopleHandler extends ManagerHandler {
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('currentUrl', Request::url(null, null, null, 'people', 'all'));
 				$templateMgr->assign('userCreated', true);
-				$userForm =& new UserManagementForm();
+				$userForm = new UserManagementForm();
 				$userForm->initData();
 				$userForm->display();
 

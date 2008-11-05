@@ -117,7 +117,7 @@ class RTAdminHandler extends PKPHandler {
 			// Validate the URLs for a single version
 			$versions = array(&$version);
 			import('core.ArrayItemIterator');
-			$versions = &new ArrayItemIterator($versions, 1, 1);
+			$versions = new ArrayItemIterator($versions, 1, 1);
 		} else {
 			// Validate all URLs for this conference
 			$versions = $rtDao->getVersions($conferenceId);

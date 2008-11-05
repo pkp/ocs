@@ -105,7 +105,7 @@ class RoomForm extends Form {
 		}
 
 		if (!isset($room)) {
-			$room = &new Room();
+			$room = new Room();
 		}
 
 		$room->setBuildingId($this->buildingId);

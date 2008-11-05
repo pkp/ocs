@@ -132,7 +132,7 @@ class PaperMailTemplate extends MailTemplate {
 	function log() {
 		import('paper.log.PaperEmailLogEntry');
 		import('paper.log.PaperLog');
-		$entry = &new PaperEmailLogEntry();
+		$entry = new PaperEmailLogEntry();
 
 		// Log data
 		$entry->setEventType($this->eventType);

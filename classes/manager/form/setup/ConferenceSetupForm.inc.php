@@ -94,7 +94,7 @@ class ConferenceSetupForm extends Form {
 		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
 
 		import('file.PublicFileManager');
-		$fileManager = &new PublicFileManager();
+		$fileManager = new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$type = $fileManager->getUploadedFileType($settingName);
 			$extension = $fileManager->getImageExtension($type);
@@ -135,7 +135,7 @@ class ConferenceSetupForm extends Form {
 		$setting = $settingsDao->getSetting($conference->getConferenceId(), $settingName);
 
 		import('file.PublicFileManager');
-		$fileManager = &new PublicFileManager();
+		$fileManager = new PublicFileManager();
 		if ($fileManager->removeConferenceFile($conference->getConferenceId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
 			$returner = $settingsDao->deleteSetting($conference->getConferenceId(), $settingName, $locale);
 			// Ensure page header is refreshed

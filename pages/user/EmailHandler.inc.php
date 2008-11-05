@@ -96,13 +96,13 @@ class EmailHandler extends UserHandler {
 
 			if ($hasAccess) {
 				import('mail.PaperMailTemplate');
-				$email =& new PaperMailTemplate($paperDao->getPaper($paperId));
+				$email = new PaperMailTemplate($paperDao->getPaper($paperId));
 			}
 		}
 
 		if ($email === null) {
 			import('mail.MailTemplate');
-			$email = &new MailTemplate();
+			$email = new MailTemplate();
 		}
 
 		if (Request::getUserVar('send') && !$email->hasErrors()) {

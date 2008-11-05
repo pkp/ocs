@@ -25,7 +25,7 @@ class TimelineHandler extends ManagerHandler {
 
 		import('manager.form.TimelineForm');
 
-		$timelineForm = &new TimelineForm(Request::getUserVar('overrideDates'));
+		$timelineForm = new TimelineForm(Request::getUserVar('overrideDates'));
 		$timelineForm->initData();
 		$timelineForm->display();
 
@@ -36,7 +36,7 @@ class TimelineHandler extends ManagerHandler {
 
 		import('manager.form.TimelineForm');
 
-		$timelineForm = &new TimelineForm(Request::getUserVar('overrideDates'));
+		$timelineForm = new TimelineForm(Request::getUserVar('overrideDates'));
 		$timelineForm->readInputData();
 
 		if ($timelineForm->validate()) {

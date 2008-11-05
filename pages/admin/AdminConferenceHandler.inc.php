@@ -51,7 +51,7 @@ class AdminConferenceHandler extends AdminHandler {
 
 		import('admin.form.ConferenceSiteSettingsForm');
 
-		$settingsForm = &new ConferenceSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
+		$settingsForm = new ConferenceSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
 		} else {
@@ -68,7 +68,7 @@ class AdminConferenceHandler extends AdminHandler {
 
 		import('admin.form.ConferenceSiteSettingsForm');
 
-		$settingsForm = &new ConferenceSiteSettingsForm(Request::getUserVar('conferenceId'));
+		$settingsForm = new ConferenceSiteSettingsForm(Request::getUserVar('conferenceId'));
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {
@@ -97,13 +97,13 @@ class AdminConferenceHandler extends AdminHandler {
 				// Delete conference file tree
 				// FIXME move this somewhere better.
 				import('file.FileManager');
-				$fileManager = &new FileManager();
+				$fileManager = new FileManager();
 
 				$conferencePath = Config::getVar('files', 'files_dir') . '/conferences/' . $conferenceId;
 				$fileManager->rmtree($conferencePath);
 
 				import('file.PublicFileManager');
-				$publicFileManager = &new PublicFileManager();
+				$publicFileManager = new PublicFileManager();
 				$publicFileManager->rmtree($publicFileManager->getConferenceFilesPath($conferenceId));
 			}
 		}
@@ -138,7 +138,7 @@ class AdminConferenceHandler extends AdminHandler {
 
 		import('admin.form.ImportOCS1Form');
 
-		$importForm = &new ImportOCS1Form();
+		$importForm = new ImportOCS1Form();
 		$importForm->initData();
 		$importForm->display();
 	}
@@ -151,7 +151,7 @@ class AdminConferenceHandler extends AdminHandler {
 
 		import('admin.form.ImportOCS1Form');
 
-		$importForm = &new ImportOCS1Form();
+		$importForm = new ImportOCS1Form();
 		$importForm->readInputData();
 
 		if ($importForm->validate() && ($conferenceId = $importForm->execute()) !== false) {

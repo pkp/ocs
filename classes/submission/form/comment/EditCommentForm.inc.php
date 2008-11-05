@@ -184,7 +184,7 @@ class EditCommentForm extends Form {
 	 */
 	function email($recipients) {
 		import('mail.PaperMailTemplate');
-		$email = &new PaperMailTemplate($this->paper, 'SUBMISSION_COMMENT');
+		$email = new PaperMailTemplate($this->paper, 'SUBMISSION_COMMENT');
 
 		foreach ($recipients as $emailAddress => $name) {
 			$email->addRecipient($emailAddress, $name);

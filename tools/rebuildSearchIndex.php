@@ -38,6 +38,6 @@ class rebuildSearchIndex extends CommandLineTool {
 
 }
 
-$tool = &new rebuildSearchIndex(isset($argv) ? $argv : array());
+$tool = new rebuildSearchIndex(isset($argv) ? $argv : array());
 $tool->execute();
 ?>

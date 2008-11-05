@@ -148,7 +148,7 @@ class ConferenceEventLogDAO extends DAO {
 			$params, $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnLogEntryFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnLogEntryFromRow');
 		return $returner;
 	}
 
@@ -158,7 +158,7 @@ class ConferenceEventLogDAO extends DAO {
 	 * @return ConferenceEventLogEntry
 	 */
 	function &_returnLogEntryFromRow(&$row) {
-		$entry = &new ConferenceEventLogEntry();
+		$entry = new ConferenceEventLogEntry();
 		$entry->setLogId($row['log_id']);
 		$entry->setConferenceId($row['conference_id']);
 		$entry->setSchedConfId($row['sched_conf_id']);

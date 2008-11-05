@@ -28,7 +28,7 @@ class ManagerPaymentHandler extends ManagerHandler {
 
 		import('manager.form.PaymentSettingsForm');
 
-		$settingsForm = &new PaymentSettingsForm();
+		$settingsForm = new PaymentSettingsForm();
 		$settingsForm->initData();
 		$settingsForm->display();
 	}
@@ -45,7 +45,7 @@ class ManagerPaymentHandler extends ManagerHandler {
 
 		import('manager.form.PaymentSettingsForm');
 
-		$settingsForm = &new PaymentSettingsForm();
+		$settingsForm = new PaymentSettingsForm();
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {

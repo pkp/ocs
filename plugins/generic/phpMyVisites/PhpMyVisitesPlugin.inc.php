@@ -204,7 +204,7 @@ class PhpMyVisitesPlugin extends GenericPlugin {
 			case 'settings':
 				if ($this->getEnabled()) {
 					$this->import('PhpMyVisitesSettingsForm');
-					$form = &new PhpMyVisitesSettingsForm($this, $conference->getConferenceId());
+					$form = new PhpMyVisitesSettingsForm($this, $conference->getConferenceId());
 					if (Request::getUserVar('save')) {
 						$form->readInputData();
 						if ($form->validate()) {

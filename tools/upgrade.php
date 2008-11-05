@@ -32,7 +32,7 @@ class OCSUpgradeTool extends UpgradeTool {
 	}
 }
 
-$tool =& new OCSUpgradeTool(isset($argv) ? $argv : array());
+$tool = new OCSUpgradeTool(isset($argv) ? $argv : array());
 $tool->execute();
 
 ?>

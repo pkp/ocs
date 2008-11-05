@@ -72,7 +72,7 @@ class PaperLog {
 	 * @param $messageParams array
 	 */
 	function logEventLevel($paperId, $logLevel, $eventType, $assocType = 0, $assocId = 0, $messageKey = null, $messageParams = array()) {
-		$entry = &new PaperEventLogEntry();
+		$entry = new PaperEventLogEntry();
 		$entry->setLogLevel($logLevel);
 		$entry->setEventType($eventType);
 		$entry->setAssocType($assocType);

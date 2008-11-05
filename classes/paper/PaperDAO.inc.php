@@ -97,7 +97,7 @@ class PaperDAO extends DAO {
 	 * @return Paper
 	 */
 	function &_returnPaperFromRow(&$row) {
-		$paper = &new Paper();
+		$paper = new Paper();
 		$this->_paperFromRow($paper, $row);
 		return $paper;
 	}
@@ -359,7 +359,7 @@ class PaperDAO extends DAO {
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 		$paperFiles = &$paperFileDao->getPaperFilesByPaper($paperId);
 
-		$paperFileManager = &new PaperFileManager($paperId);
+		$paperFileManager = new PaperFileManager($paperId);
 		foreach ($paperFiles as $paperFile) {
 			$paperFileManager->deleteFile($paperFile->getFileId());
 		}
@@ -410,7 +410,7 @@ class PaperDAO extends DAO {
 			$params
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnPaperFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnPaperFromRow');
 		return $returner;
 	}
 

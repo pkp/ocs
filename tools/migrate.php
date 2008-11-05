@@ -69,7 +69,7 @@ class migrate extends CommandLineTool {
 	 * Execute the import command.
 	 */
 	function execute() {
-		$importer = &new ImportOCS1();
+		$importer = new ImportOCS1();
 		if ($importer->import($this->conferencePath, $this->importPath, $this->options)) {
 			printf("Import completed\n"
 					. "Users imported:     %u\n"
@@ -83,6 +83,6 @@ class migrate extends CommandLineTool {
 
 }
 
-$tool = &new migrate(isset($argv) ? $argv : array());
+$tool = new migrate(isset($argv) ? $argv : array());
 $tool->execute();
 ?>

@@ -174,7 +174,7 @@ class RegistrationForm extends Form {
 		}
 
 		if (!isset($registration)) {
-			$registration = &new Registration();
+			$registration = new Registration();
 		}
 
 		$registration->setSchedConfId($schedConf->getSchedConfId());
@@ -247,7 +247,7 @@ class RegistrationForm extends Form {
 			);
 
 			import('mail.MailTemplate');
-			$mail = &new MailTemplate('REGISTRATION_NOTIFY');
+			$mail = new MailTemplate('REGISTRATION_NOTIFY');
 			$mail->setFrom($registrationEmail, $registrationName);
 			$mail->assignParams($paramArray);
 			$mail->addRecipient($user->getEmail(), $user->getFullName());

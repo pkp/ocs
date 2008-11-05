@@ -174,7 +174,7 @@ class UserHandler extends PKPHandler {
 		$user =& Request::getUser();
 		if (!$user) Request::redirect(null, null, 'index');
 
-		$schedConfAction =& new SchedConfAction();
+		$schedConfAction = new SchedConfAction();
 
 		switch (array_shift($args)) {
 			case 'presenter':
@@ -192,7 +192,7 @@ class UserHandler extends PKPHandler {
 		}
 
 		if ($schedConfAction->$func($schedConf)) {
-			$role =& new Role();
+			$role = new Role();
 			$role->setSchedConfId($schedConf->getSchedConfId());
 			$role->setConferenceId($schedConf->getConferenceId());
 			$role->setRoleId($roleId);
@@ -310,7 +310,7 @@ class UserHandler extends PKPHandler {
 	function viewCaptcha($args) {
 		$captchaId = (int) array_shift($args);
 		import('captcha.CaptchaManager');
-		$captchaManager =& new CaptchaManager();
+		$captchaManager = new CaptchaManager();
 		if ($captchaManager->isEnabled()) {
 			$captchaDao =& DAORegistry::getDAO('CaptchaDAO');
 			$captcha =& $captchaDao->getCaptcha($captchaId);

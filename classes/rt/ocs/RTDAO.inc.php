@@ -28,7 +28,7 @@ class RTDAO extends DAO {
 	 * @return RT
 	 */
 	function &getConferenceRTByConference(&$conference) {
-		$rt = &new ConferenceRT($conference->getConferenceId());
+		$rt = new ConferenceRT($conference->getConferenceId());
 		$rt->setEnabled($conference->getSetting('rtEnabled')?true:false);
 		$rt->setVersion((int) $conference->getSetting('rtVersionId'));
 		$rt->setAbstract($conference->getSetting('rtAbstract')?true:false);
@@ -92,7 +92,7 @@ class RTDAO extends DAO {
 			$pagingInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnVersionFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnVersionFromRow');
 		return $returner;
 	}
 
@@ -211,7 +211,7 @@ class RTDAO extends DAO {
 	 * @return RTVersion
 	 */
 	function &_returnVersionFromRow(&$row) {
-		$version = &new RTVersion();
+		$version = new RTVersion();
 		$version->setVersionId($row['version_id']);
 		$version->setKey($row['version_key']);
 		$version->setLocale($row['locale']);
@@ -232,7 +232,7 @@ class RTDAO extends DAO {
 	 * @return RTSearch
 	 */
 	function &_returnSearchFromRow(&$row) {
-		$search = &new RTSearch();
+		$search = new RTSearch();
 		$search->setSearchId($row['search_id']);
 		$search->setContextId($row['context_id']);
 		$search->setTitle($row['title']);
@@ -290,7 +290,7 @@ class RTDAO extends DAO {
 			$pagingInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnContextFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnContextFromRow');
 		return $returner;
 	}
 
@@ -402,7 +402,7 @@ class RTDAO extends DAO {
 	 * @return RTContext
 	 */
 	function &_returnContextFromRow(&$row) {
-		$context = &new RTContext();
+		$context = new RTContext();
 		$context->setContextId($row['context_id']);
 		$context->setVersionId($row['version_id']);
 		$context->setTitle($row['title']);
@@ -465,7 +465,7 @@ class RTDAO extends DAO {
 			$pagingInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnSearchFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnSearchFromRow');
 		return $returner;
 	}
 

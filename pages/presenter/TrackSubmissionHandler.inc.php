@@ -27,7 +27,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		// If the submission is incomplete, allow the presenter to delete it.
 		if ($presenterSubmission->getSubmissionProgress()!=0 && $presenterSubmission->getCurrentStage()==REVIEW_STAGE_ABSTRACT) {
 			import('file.PaperFileManager');
-			$paperFileManager = &new PaperFileManager($paperId);
+			$paperFileManager = new PaperFileManager($paperId);
 			$paperFileManager->deletePaperTree();
 
 			$paperDao = &DAORegistry::getDAO('PaperDAO');
@@ -172,7 +172,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 
 		import('submission.form.SuppFileForm');
 
-		$submitForm = &new SuppFileForm($presenterSubmission);
+		$submitForm = new SuppFileForm($presenterSubmission);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -219,7 +219,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 
 		import('submission.form.SuppFileForm');
 
-		$submitForm = &new SuppFileForm($presenterSubmission, $suppFileId);
+		$submitForm = new SuppFileForm($presenterSubmission, $suppFileId);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -260,7 +260,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 
 		import('submission.form.SuppFileForm');
 
-		$submitForm = &new SuppFileForm($presenterSubmission, $suppFileId);
+		$submitForm = new SuppFileForm($presenterSubmission, $suppFileId);
 		$submitForm->readInputData();
 
 		if ($submitForm->validate()) {

@@ -82,7 +82,7 @@ class GroupForm extends Form {
 		$schedConf = &Request::getSchedConf();
 
 		if (!isset($this->group)) {
-			$this->group = &new Group();
+			$this->group = new Group();
 		}
 
 		$this->group->setConferenceId($conference->getConferenceId());

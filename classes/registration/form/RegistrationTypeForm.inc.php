@@ -177,7 +177,7 @@ class RegistrationTypeForm extends Form {
 		}
 
 		if (!isset($registrationType)) {
-			$registrationType = &new RegistrationType();
+			$registrationType = new RegistrationType();
 		}
 
 		$registrationType->setSchedConfId($schedConf->getSchedConfId());

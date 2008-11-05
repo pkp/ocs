@@ -79,7 +79,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				$totalPapers = count($paperIds);
 				if ($rangeInfo->isValid()) $paperIds = array_slice($paperIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
 				import('core.VirtualArrayIterator');
-				$iterator =& new VirtualArrayIterator(PaperSearch::formatResults($paperIds), $totalPapers, $rangeInfo->getPage(), $rangeInfo->getCount());
+				$iterator = new VirtualArrayIterator(PaperSearch::formatResults($paperIds), $totalPapers, $rangeInfo->getPage(), $rangeInfo->getCount());
 				$templateMgr->assign_by_ref('papers', $iterator);
 				$templateMgr->display($this->getTemplatePath() . 'papers.tpl');
 				break;
@@ -87,7 +87,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				import('file.TemporaryFileManager');
 				$trackDao =& DAORegistry::getDAO('TrackDAO');
 				$user =& Request::getUser();
-				$temporaryFileManager =& new TemporaryFileManager();
+				$temporaryFileManager = new TemporaryFileManager();
 
 				if (($existingFileId = Request::getUserVar('temporaryFileId'))) {
 					// The user has just entered more context. Fetch an existing file.
@@ -188,7 +188,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	}
 
 	function &getDocument($fileName) {
-		$parser =& new XMLParser();
+		$parser = new XMLParser();
 		$returner =& $parser->parse($fileName);
 		return $returner;
 	}

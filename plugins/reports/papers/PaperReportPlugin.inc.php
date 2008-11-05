@@ -28,7 +28,7 @@ class PaperReportPlugin extends ReportPlugin {
 		$success = parent::register($category, $path);
 		if ($success) {
 			$this->import('PaperReportDAO');
-			$paperReportDAO =& new PaperReportDAO();
+			$paperReportDAO = new PaperReportDAO();
 			DAORegistry::registerDAO('PaperReportDAO', $paperReportDAO);
 		}
 		$this->addLocaleData();

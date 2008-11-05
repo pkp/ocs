@@ -173,7 +173,7 @@ class RegistrationOptionDAO extends DAO {
 	 * @return RegistrationOption
 	 */
 	function &_returnRegistrationOptionFromRow(&$row) {
-		$registrationOption =& new RegistrationOption();
+		$registrationOption = new RegistrationOption();
 		$registrationOption->setOptionId($row['option_id']);
 		$registrationOption->setSchedConfId($row['sched_conf_id']);
 		$registrationOption->setCode($row['code']);
@@ -371,7 +371,7 @@ class RegistrationOptionDAO extends DAO {
 			$schedConfId, $rangeInfo
 		);
 
-		$returner =& new DAOResultFactory($result, $this, '_returnRegistrationOptionFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnRegistrationOptionFromRow');
 		return $returner;
 	}
 

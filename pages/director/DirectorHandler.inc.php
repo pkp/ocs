@@ -324,7 +324,7 @@ class DirectorHandler extends TrackDirectorHandler {
 		if ($paper->getSchedConfId() == $schedConf->getSchedConfId() && ($status == SUBMISSION_STATUS_DECLINED || $status == SUBMISSION_STATUS_ARCHIVED)) {
 			// Delete paper files
 			import('file.PaperFileManager');
-			$paperFileManager = &new PaperFileManager($paperId);
+			$paperFileManager = new PaperFileManager($paperId);
 			$paperFileManager->deletePaperTree();
 
 			// Delete paper database entries
@@ -376,7 +376,7 @@ class DirectorHandler extends TrackDirectorHandler {
 		$templateMgr =& TemplateManager::getManager();
 
 		import('mail.MassMail');
-		$email =& new MassMail('PUBLISH_NOTIFY');
+		$email = new MassMail('PUBLISH_NOTIFY');
 
 		if (Request::getUserVar('send') && !$email->hasErrors()) {
 			$email->addRecipient($user->getEmail(), $user->getFullName());

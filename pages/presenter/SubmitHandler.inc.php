@@ -50,7 +50,7 @@ class SubmitHandler extends PresenterHandler {
 		$formClass = "PresenterSubmitStep{$step}Form";
 		import("presenter.form.submit.$formClass");
 
-		$submitForm = &new $formClass($paper);
+		$submitForm = new $formClass($paper);
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
 		} else {
@@ -75,7 +75,7 @@ class SubmitHandler extends PresenterHandler {
 		$formClass = "PresenterSubmitStep{$step}Form";
 		import("presenter.form.submit.$formClass");
 
-		$submitForm = &new $formClass($paper);
+		$submitForm = new $formClass($paper);
 		$submitForm->readInputData();
 
 		// Check for any special cases before trying to save
@@ -198,7 +198,7 @@ class SubmitHandler extends PresenterHandler {
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
 		if ($schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
 			import("presenter.form.submit.PresenterSubmitSuppFileForm");
-			$submitForm = &new PresenterSubmitSuppFileForm($paper);
+			$submitForm = new PresenterSubmitSuppFileForm($paper);
 			$submitForm->setData('title', Locale::translate('common.untitled'));
 			$suppFileId = $submitForm->execute();
 		}
@@ -222,7 +222,7 @@ class SubmitHandler extends PresenterHandler {
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
 		import("presenter.form.submit.PresenterSubmitSuppFileForm");
-		$submitForm = &new PresenterSubmitSuppFileForm($paper, $suppFileId);
+		$submitForm = new PresenterSubmitSuppFileForm($paper, $suppFileId);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -247,7 +247,7 @@ class SubmitHandler extends PresenterHandler {
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
 		import("presenter.form.submit.PresenterSubmitSuppFileForm");
-		$submitForm = &new PresenterSubmitSuppFileForm($paper, $suppFileId);
+		$submitForm = new PresenterSubmitSuppFileForm($paper, $suppFileId);
 		$submitForm->readInputData();
 
 		if ($submitForm->validate()) {
@@ -279,7 +279,7 @@ class SubmitHandler extends PresenterHandler {
 		$suppFileDao->deleteSuppFileById($suppFileId, $paperId);
 
 		if ($suppFile->getFileId()) {
-			$paperFileManager = &new PaperFileManager($paperId);
+			$paperFileManager = new PaperFileManager($paperId);
 			$paperFileManager->deleteFile($suppFile->getFileId());
 		}
 

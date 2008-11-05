@@ -97,7 +97,7 @@ class BuildingForm extends Form {
 		}
 
 		if (!isset($building)) {
-			$building = &new Building();
+			$building = new Building();
 		}
 
 		$building->setSchedConfId($schedConf->getSchedConfId());

@@ -66,7 +66,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		import('mail.MailTemplate');
 		$contactName = $schedConf->getSetting('registrationName');
 		$contactEmail = $schedConf->getSetting('registrationEmail');
-		$mail = &new MailTemplate('MANUAL_PAYMENT_NOTIFICATION');
+		$mail = new MailTemplate('MANUAL_PAYMENT_NOTIFICATION');
 		$mail->setFrom($contactEmail, $contactName);
 		$mail->addRecipient($contactEmail, $contactName);
 		$mail->assignParams(array(

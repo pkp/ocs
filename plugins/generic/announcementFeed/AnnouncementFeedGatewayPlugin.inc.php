@@ -101,7 +101,7 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 		}
 		if ($limitRecentItems && $recentItems > 0) {
 			import('db.DBResultRange');
-			$rangeInfo =& new DBResultRange($recentItems, 1);
+			$rangeInfo = new DBResultRange($recentItems, 1);
 			$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId, $rangeInfo);
 		} else {
 			$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId);

@@ -109,7 +109,7 @@ class CommentForm extends Form {
 		$paper = $this->paper;
 
 		// Insert new comment		
-		$comment = &new PaperComment();
+		$comment = new PaperComment();
 		$comment->setCommentType($this->commentType);
 		$comment->setRoleId($this->roleId);
 		$comment->setPaperId($paper->getPaperId());
@@ -133,7 +133,7 @@ class CommentForm extends Form {
 		$schedConf = &Request::getSchedConf();
 
 		import('mail.PaperMailTemplate');
-		$email = &new PaperMailTemplate($paper, 'SUBMISSION_COMMENT');
+		$email = new PaperMailTemplate($paper, 'SUBMISSION_COMMENT');
 		$email->setFrom($this->user->getEmail(), $this->user->getFullName());
 
 		$commentText = $this->getData('comments');

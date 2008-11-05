@@ -66,7 +66,7 @@ class PaperReportDAO extends DAO {
 				$schedConfId
 			)
 		);
-		$papersReturner =& new DBRowIterator($result);
+		$papersReturner = new DBRowIterator($result);
 
 		$result =& $this->retrieve(
 			'SELECT	MAX(ed.date_decided) AS date,
@@ -78,7 +78,7 @@ class PaperReportDAO extends DAO {
 			GROUP BY paper_id',
 			array($schedConfId)
 		);
-		$decisionDatesIterator =& new DBRowIterator($result);
+		$decisionDatesIterator = new DBRowIterator($result);
 		$decisionsReturner = array();
 		while ($row =& $decisionDatesIterator->next()) {
 			$result =& $this->retrieve(
@@ -92,7 +92,7 @@ class PaperReportDAO extends DAO {
 					$row['paper_id']
 				)
 			);
-			$decisionsReturner[] =& new DBRowIterator($result);
+			$decisionsReturner[] = new DBRowIterator($result);
 			unset($result);
 		}
 
@@ -119,7 +119,7 @@ class PaperReportDAO extends DAO {
 					pps.setting_name = \'biography\'',
 				array($schedConfId, $paper->getPaperId())
 			);
-			$presenterIterator =& new DBRowIterator($result);
+			$presenterIterator = new DBRowIterator($result);
 			$presentersReturner[] = $presenterIterator;
 			$index++;
 			unset($paper);

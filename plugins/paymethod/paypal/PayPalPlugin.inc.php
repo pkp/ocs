@@ -34,7 +34,7 @@ class PayPalPlugin extends PaymethodPlugin {
 		if (parent::register($category, $path)) {			
 			$this->addLocaleData();
 			$this->import('PayPalDAO');
-			$payPalDao =& new PayPalDAO();
+			$payPalDao = new PayPalDAO();
 			DAORegistry::registerDAO('PayPalDAO', $payPalDao);
 			return true;
 		}
@@ -111,7 +111,7 @@ class PayPalPlugin extends PaymethodPlugin {
 		import('mail.MailTemplate');
 		$contactName = $schedConf->getSetting('contactName');
 		$contactEmail = $schedConf->getSetting('contactEmail');
-		$mail = &new MailTemplate('PAYPAL_INVESTIGATE_PAYMENT');
+		$mail = new MailTemplate('PAYPAL_INVESTIGATE_PAYMENT');
 		$mail->setFrom($contactEmail, $contactName);
 		$mail->addRecipient($contactEmail, $contactName);
 

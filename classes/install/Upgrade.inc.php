@@ -154,7 +154,7 @@ class Upgrade extends Installer {
 			if ($schedConfId !== $lastSchedConfId) {
 				// Create a default building
 				$defaultText = Locale::translate('common.default');
-				$building =& new Building();
+				$building = new Building();
 				$building->setSchedConfId($schedConfId);
 				$building->setName($defaultText, $locale);
 				$building->setAbbrev($defaultText, $locale);
@@ -165,7 +165,7 @@ class Upgrade extends Installer {
 			}
 
 			if (!isset($rooms[$location])) {
-				$room =& new Room();
+				$room = new Room();
 				$room->setBuildingId($buildingId);
 				$room->setName($location, $locale);
 				$room->setAbbrev($location, $locale);

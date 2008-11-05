@@ -153,7 +153,7 @@ class PresenterSubmitSuppFileForm extends Form {
 	 */
 	function execute() {
 		import("file.PaperFileManager");
-		$paperFileManager = &new PaperFileManager($this->paperId);
+		$paperFileManager = new PaperFileManager($this->paperId);
 		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 
 		$fileName = 'uploadSuppFile';
@@ -182,7 +182,7 @@ class PresenterSubmitSuppFileForm extends Form {
 			}
 
 			// Insert new supplementary file		
-			$suppFile = &new SuppFile();
+			$suppFile = new SuppFile();
 			$suppFile->setPaperId($this->paperId);
 			$suppFile->setFileId($fileId);
 			$this->setSuppFileData($suppFile);

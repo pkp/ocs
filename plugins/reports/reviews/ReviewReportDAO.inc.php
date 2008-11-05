@@ -44,7 +44,7 @@ class ReviewReportDAO extends DAO {
 			)
 		);
 		import('db.DBRowIterator');
-		$commentsReturner =& new DBRowIterator($result);
+		$commentsReturner = new DBRowIterator($result);
 
 		$result =& $this->retrieve(
 			'SELECT
@@ -82,7 +82,7 @@ class ReviewReportDAO extends DAO {
 				$schedConfId
 			)
 		);
-		$reviewsReturner =& new DBRowIterator($result);
+		$reviewsReturner = new DBRowIterator($result);
 
 		return array($commentsReturner, $reviewsReturner);
 	}

@@ -44,7 +44,7 @@ class OCSInstallTool extends InstallTool {
 	}
 }
 
-$tool =& new OCSInstallTool(isset($argv) ? $argv : array());
+$tool = new OCSInstallTool(isset($argv) ? $argv : array());
 $tool->execute();
 
 ?>

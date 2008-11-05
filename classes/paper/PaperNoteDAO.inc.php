@@ -28,7 +28,7 @@ class PaperNoteDAO extends DAO {
 
 		$result = &$this->retrieveRange($sql, array($paperId, $paperId), $rangeInfo);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnPaperNoteFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnPaperNoteFromRow');
 		return $returner;
 	}
 
@@ -42,7 +42,7 @@ class PaperNoteDAO extends DAO {
 
 		$result = &$this->retrieveRange($sql, $userId, $rangeInfo);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnPaperNoteFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnPaperNoteFromRow');
 		return $returner;
 	}
 
@@ -69,7 +69,7 @@ class PaperNoteDAO extends DAO {
 	 * @return PaperNote object
 	 */
 	function &_returnPaperNoteFromRow($row) {
-		$paperNote = &new PaperNote();
+		$paperNote = new PaperNote();
 		$paperNote->setNoteId($row['note_id']);
 		$paperNote->setPaperId($row['paper_id']);
 		$paperNote->setUserId($row['user_id']);

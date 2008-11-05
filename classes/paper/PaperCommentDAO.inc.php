@@ -142,7 +142,7 @@ class PaperCommentDAO extends DAO {
 	 * @return PaperComment object
 	 */
 	function &_returnPaperCommentFromRow($row) {
-		$paperComment = &new PaperComment();
+		$paperComment = new PaperComment();
 		$paperComment->setCommentId($row['comment_id']);
 		$paperComment->setCommentType($row['comment_type']);
 		$paperComment->setRoleId($row['role_id']);

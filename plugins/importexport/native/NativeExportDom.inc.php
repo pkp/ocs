@@ -203,7 +203,7 @@ class NativeExportDom {
 		$isHtml = $galley->isHTMLGalley();
 
 		import('file.PaperFileManager');
-		$paperFileManager = &new PaperFileManager($paper->getPaperId());
+		$paperFileManager = new PaperFileManager($paper->getPaperId());
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
 
 		$root = &XMLCustomWriter::createElement($doc, $isHtml?'htmlgalley':'galley');
@@ -329,7 +329,7 @@ class NativeExportDom {
 		}
 		
 		import('file.PaperFileManager');
-		$paperFileManager = &new PaperFileManager($paper->getPaperId());
+		$paperFileManager = new PaperFileManager($paper->getPaperId());
 		$fileNode = &XMLCustomWriter::createElement($doc, 'file');
 		XMLCustomWriter::appendChild($root, $fileNode);
 		$embedNode = &XMLCustomWriter::createChildWithText($doc, $fileNode, 'embed', base64_encode($paperFileManager->readFile($suppFile->getFileId())));

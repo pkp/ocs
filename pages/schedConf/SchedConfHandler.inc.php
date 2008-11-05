@@ -108,7 +108,7 @@ class SchedConfHandler extends PKPHandler {
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 		import('manager.form.TimelineForm');
-		$timelineForm =& new TimelineForm(false, true);
+		$timelineForm = new TimelineForm(false, true);
 		$timelineForm->initData();
 		$timelineForm->display();
 	}
@@ -187,7 +187,7 @@ class SchedConfHandler extends PKPHandler {
 			// A registration type has been chosen
 			import('registration.form.UserRegistrationForm');
 
-			$form =& new UserRegistrationForm($typeId);
+			$form = new UserRegistrationForm($typeId);
 			if ($form->isLocaleResubmit()) {
 				$form->readInputData();
 			} else {
@@ -234,7 +234,7 @@ class SchedConfHandler extends PKPHandler {
 
 		import('registration.form.UserRegistrationForm');
 		$typeId = (int) Request::getUserVar('registrationTypeId');
-		$form =& new UserRegistrationForm($typeId);
+		$form = new UserRegistrationForm($typeId);
 		$form->readInputData();
 		if ($form->validate()) {
 			if (!$form->execute()) {
@@ -448,7 +448,7 @@ class SchedConfHandler extends PKPHandler {
 
 		if ($styleFileName = $schedConf->getStyleFileName()) {
 			import('file.PublicFileManager');
-			$publicFileManager =& new PublicFileManager();
+			$publicFileManager = new PublicFileManager();
 			$templateMgr->addStyleSheet(
 				Request::getBaseUrl() . '/' . $publicFileManager->getConferenceFilesPath($conference->getConferenceId()) . '/' . $styleFileName
 			);

@@ -97,7 +97,7 @@ class PresenterSubmitForm extends Form {
 
 		// Send presenter notification email
 		import('mail.PaperMailTemplate');
-		$mail = &new PaperMailTemplate($paper, $mailTemplate);
+		$mail = new PaperMailTemplate($paper, $mailTemplate);
 		$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 		if ($mail->isEnabled()) {
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
@@ -143,7 +143,7 @@ class PresenterSubmitForm extends Form {
 		$trackDirectors =& $trackDirectorsDao->getDirectorsByTrackId($schedConf->getSchedConfId(), $trackId);
 
 		foreach ($trackDirectors as $trackDirector) {
-			$editAssignment =& new EditAssignment();
+			$editAssignment = new EditAssignment();
 			$editAssignment->setPaperId($paper->getPaperId());
 			$editAssignment->setDirectorId($trackDirector->getUserId());
 			$editAssignmentDao->insertEditAssignment($editAssignment);

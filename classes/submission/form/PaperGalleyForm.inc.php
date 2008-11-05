@@ -111,7 +111,7 @@ class PaperGalleyForm extends Form {
 	 */
 	function execute($fileName = null) {
 		import('file.PaperFileManager');
-		$paperFileManager = &new PaperFileManager($this->paperId);
+		$paperFileManager = new PaperFileManager($this->paperId);
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 
 		$fileName = isset($fileName) ? $fileName : 'galleyFile';
@@ -166,9 +166,9 @@ class PaperGalleyForm extends Form {
 
 			if (isset($fileType) && strstr($fileType, 'html')) {
 				// Assume HTML galley
-				$galley = &new PaperHTMLGalley();
+				$galley = new PaperHTMLGalley();
 			} else {
-				$galley = &new PaperGalley();
+				$galley = new PaperGalley();
 			}
 
 			$galley->setPaperId($this->paperId);
@@ -217,7 +217,7 @@ class PaperGalleyForm extends Form {
 	 */
 	function uploadImage() {
 		import('file.PaperFileManager');
-		$fileManager = &new PaperFileManager($this->paperId);
+		$fileManager = new PaperFileManager($this->paperId);
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 
 		$fileName = 'imageFile';
@@ -246,7 +246,7 @@ class PaperGalleyForm extends Form {
 	 */
 	function deleteImage($imageId) {
 		import('file.PaperFileManager');
-		$fileManager = &new PaperFileManager($this->paperId);
+		$fileManager = new PaperFileManager($this->paperId);
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 
 		if (isset($this->galley)) {

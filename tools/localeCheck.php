@@ -80,7 +80,7 @@ class localeCheck extends CommandLineTool {
 		$errors = array(
 		);
 
-		$xmlParser =& new XMLParser();
+		$xmlParser = new XMLParser();
 		$referenceEmails =& $xmlParser->parse(
 			INSTALLER_DATA_DIR . "/data/locale/$referenceLocale/email_templates_data.xml"
 		);
@@ -324,7 +324,7 @@ class localeCheck extends CommandLineTool {
 	}
 }
 
-$tool = &new localeCheck(isset($argv) ? $argv : array());
+$tool = new localeCheck(isset($argv) ? $argv : array());
 $tool->execute();
 
 ?>

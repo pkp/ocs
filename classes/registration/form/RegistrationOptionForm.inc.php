@@ -119,7 +119,7 @@ class RegistrationOptionForm extends Form {
 		}
 
 		if (!isset($registrationOption)) {
-			$registrationOption =& new RegistrationOption();
+			$registrationOption = new RegistrationOption();
 		}
 
 		$registrationOption->setSchedConfId($schedConf->getSchedConfId());

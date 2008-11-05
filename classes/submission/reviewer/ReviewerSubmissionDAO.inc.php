@@ -98,7 +98,7 @@ class ReviewerSubmissionDAO extends DAO {
 	 * @return ReviewerSubmission
 	 */
 	function &_returnReviewerSubmissionFromRow(&$row) {
-		$reviewerSubmission = &new ReviewerSubmission();
+		$reviewerSubmission = new ReviewerSubmission();
 
 		// Director Assignment
 		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByPaperId($row['paper_id']);
@@ -237,7 +237,7 @@ class ReviewerSubmissionDAO extends DAO {
 		);
 
 
-		$returner = &new DAOResultFactory($result, $this, '_returnReviewerSubmissionFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnReviewerSubmissionFromRow');
 		return $returner;
 	}
 

@@ -84,7 +84,7 @@ class PeerReviewCommentForm extends CommentForm {
 		$this->insertedComments = array();
 
 		// Assign all common information	
-		$comment = &new PaperComment();
+		$comment = new PaperComment();
 		$comment->setCommentType($this->commentType);
 		$comment->setRoleId($this->roleId);
 		$comment->setPaperId($this->paper->getPaperId());

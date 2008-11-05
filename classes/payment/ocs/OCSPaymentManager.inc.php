@@ -23,13 +23,13 @@ class OCSPaymentManager extends PaymentManager {
 	function &getManager() {
 		static $manager;
 		if (!isset($manager)) {
-			$manager =& new OCSPaymentManager();
+			$manager = new OCSPaymentManager();
 		}
 		return $manager;
 	}
 
 	function &createQueuedPayment($conferenceId, $schedConfId, $type, $userId, $assocId, $amount, $currencyCode) {
-		$payment =& new OCSQueuedPayment($amount, $currencyCode, $userId, $assocId);
+		$payment = new OCSQueuedPayment($amount, $currencyCode, $userId, $assocId);
 		$payment->setConferenceId($conferenceId);
 		$payment->setSchedConfId($schedConfId);
 		$payment->setType($type);

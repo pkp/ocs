@@ -69,7 +69,7 @@ class PresenterSubmitStep3Form extends PresenterSubmitForm {
 	function uploadSubmissionFile($fileName) {
 		import("file.PaperFileManager");
 
-		$paperFileManager = &new PaperFileManager($this->paperId);
+		$paperFileManager = new PaperFileManager($this->paperId);
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 
 		if ($paperFileManager->uploadedFileExists($fileName)) {

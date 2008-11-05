@@ -28,7 +28,7 @@ class CreateAccountHandler extends UserHandler {
 			// We're trying to create an account for a specific scheduled conference
 			import('user.form.CreateAccountForm');
 
-			$regForm = &new CreateAccountForm();
+			$regForm = new CreateAccountForm();
 			if ($regForm->isLocaleResubmit()) {
 				$regForm->readInputData();
 			} else {
@@ -71,7 +71,7 @@ class CreateAccountHandler extends UserHandler {
 		CreateAccountHandler::validate();
 		import('user.form.CreateAccountForm');
 
-		$regForm = &new CreateAccountForm();
+		$regForm = new CreateAccountForm();
 		$regForm->readInputData();
 
 		if ($regForm->validate()) {
@@ -130,7 +130,7 @@ class CreateAccountHandler extends UserHandler {
 
 		// Checks user & token
 		import('security.AccessKeyManager');
-		$accessKeyManager =& new AccessKeyManager();
+		$accessKeyManager = new AccessKeyManager();
 		$accessKeyHash = AccessKeyManager::generateKeyHash($accessKeyCode);
 		$accessKey =& $accessKeyManager->validateKey(
 			'RegisterContext',

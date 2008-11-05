@@ -227,7 +227,7 @@ class RegistrationTypeDAO extends DAO {
 	 * @return RegistrationType
 	 */
 	function &_returnRegistrationTypeFromRow(&$row) {
-		$registrationType = &new RegistrationType();
+		$registrationType = new RegistrationType();
 		$registrationType->setTypeId($row['type_id']);
 		$registrationType->setSchedConfId($row['sched_conf_id']);
 		$registrationType->setCode($row['code']);
@@ -392,7 +392,7 @@ class RegistrationTypeDAO extends DAO {
 			$schedConfId, $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationTypeFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnRegistrationTypeFromRow');
 		return $returner;
 	}
 

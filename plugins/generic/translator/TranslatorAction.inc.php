@@ -63,7 +63,7 @@ class TranslatorAction {
 	}
 
 	function getEmailTemplates($locale) {
-		$xmlParser =& new XMLParser();
+		$xmlParser = new XMLParser();
 		$emails = $xmlParser->parse(Locale::getEmailTemplateFilename($locale));
 		$emailsTable =& $emails->getChildByName('table');
 

@@ -134,7 +134,7 @@ class TemporaryFileManager extends FileManager {
 
 		if ($this->uploadFile($fileName, $this->filesDir . $newFileName)) {
 			$temporaryFileDao = &DAORegistry::getDAO('TemporaryFileDAO');
-			$temporaryFile = &new TemporaryFile();
+			$temporaryFile = new TemporaryFile();
 
 			$temporaryFile->setUserId($userId);
 			$temporaryFile->setFileName($newFileName);
@@ -172,7 +172,7 @@ class TemporaryFileManager extends FileManager {
 
 		if (copy($paperFile->getFilePath(), $this->filesDir . $newFileName)) {
 			$temporaryFileDao = &DAORegistry::getDAO('TemporaryFileDAO');
-			$temporaryFile = &new TemporaryFile();
+			$temporaryFile = new TemporaryFile();
 
 			$temporaryFile->setUserId($userId);
 			$temporaryFile->setFileName($newFileName);

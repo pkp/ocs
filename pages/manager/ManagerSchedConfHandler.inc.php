@@ -76,7 +76,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		import('manager.form.SchedConfSettingsForm');
 
-		$settingsForm = &new SchedConfSettingsForm($args);
+		$settingsForm = new SchedConfSettingsForm($args);
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
 		} else {
@@ -93,7 +93,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		import('manager.form.SchedConfSettingsForm');
 
-		$settingsForm = &new SchedConfSettingsForm(
+		$settingsForm = new SchedConfSettingsForm(
 			array(Request::getUserVar('conferenceId'), Request::getUserVar('schedConfId')));
 		$settingsForm->readInputData();
 
@@ -122,14 +122,14 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 			// Look up the scheduled conference path before we delete the scheduled conference.
 			import('file.PublicFileManager');
-			$publicFileManager = &new PublicFileManager();
+			$publicFileManager = new PublicFileManager();
 			$schedConfFilesPath = $publicFileManager->getSchedConfFilesPath($schedConfId);
 
 			if ($schedConfDao->deleteSchedConfById($schedConfId)) {
 				// Delete scheduled conference file tree
 				// FIXME move this somewhere better.
 				import('file.FileManager');
-				$fileManager = &new FileManager();
+				$fileManager = new FileManager();
 				$schedConfPath = Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId;
 				$fileManager->rmtree($schedConfPath);
 

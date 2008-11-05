@@ -47,7 +47,7 @@ class DirectorAction extends TrackDirectorAction {
 		if (!isset($trackDirector)) return true;
 
 		import('mail.PaperMailTemplate');
-		$email = &new PaperMailTemplate($directorSubmission, 'DIRECTOR_ASSIGN');
+		$email = new PaperMailTemplate($directorSubmission, 'DIRECTOR_ASSIGN');
 
 		if ($user->getUserId() === $trackDirectorId || !$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('DirectorAction::assignDirector', array(&$directorSubmission, &$trackDirector, &$isDirector, &$email));
@@ -56,7 +56,7 @@ class DirectorAction extends TrackDirectorAction {
 				$email->send();
 			}
 
-			$editAssignment = &new EditAssignment();
+			$editAssignment = new EditAssignment();
 			$editAssignment->setPaperId($paperId);
 
 			// Make the selected director the new director
@@ -137,13 +137,13 @@ class DirectorAction extends TrackDirectorAction {
 			import('file.PaperFileManager');
 			$copyeditFile =& $trackDirectorSubmission->getCopyeditFile();
 			$fileType = $copyeditFile->getFileType();
-			$paperFileManager =& new PaperFileManager($paper->getPaperId());
+			$paperFileManager = new PaperFileManager($paper->getPaperId());
 			$fileId = $paperFileManager->copyPublicFile($copyeditFile->getFilePath(), $fileType);
 
 			if (strstr($fileType, 'html')) {
-				$galley =& new PaperHTMLGalley();
+				$galley = new PaperHTMLGalley();
 			} else {
-				$galley =& new PaperGalley();
+				$galley = new PaperGalley();
 			}
 			$galley->setPaperId($paper->getPaperId());
 			$galley->setFileId($fileId);

@@ -88,7 +88,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * @return DirectorSubmission
 	 */
 	function &_returnDirectorSubmissionFromRow(&$row) {
-		$directorSubmission = &new DirectorSubmission();
+		$directorSubmission = new DirectorSubmission();
 
 		// Paper attributes
 		$this->paperDao->_paperFromRow($directorSubmission, $row);
@@ -401,7 +401,7 @@ class DirectorSubmissionDAO extends DAO {
 
 		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId,  $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, DIRECTOR_SUBMISSION_SORT_ORDER_PUBLISHED, $rangeInfo);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
 	}
 
@@ -424,7 +424,7 @@ class DirectorSubmissionDAO extends DAO {
 
 		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, DIRECTOR_SUBMISSION_SORT_ORDER_NATURAL, $rangeInfo);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnDirectorSubmissionFromRow');
 		return $returner;
 	}
 
@@ -588,7 +588,7 @@ class DirectorSubmissionDAO extends DAO {
 			$paramArray, $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRow');
+		$returner = new DAOResultFactory($result, $this->userDao, '_returnUserFromRow');
 		return $returner;
 	}
 

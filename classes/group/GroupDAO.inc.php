@@ -67,7 +67,7 @@ class GroupDAO extends DAO {
 			);
 		}
 
-		$returner =& new DAOResultFactory($result, $this, '_returnGroupFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnGroupFromRow');
 		return $returner;
 	}
 
@@ -85,7 +85,7 @@ class GroupDAO extends DAO {
 	 * @return Group
 	 */
 	function &_returnGroupFromRow(&$row) {
-		$group = &new Group();
+		$group = new Group();
 		$group->setGroupId($row['group_id']);
 		$group->setAboutDisplayed($row['about_displayed']);
 		$group->setSequence($row['seq']);

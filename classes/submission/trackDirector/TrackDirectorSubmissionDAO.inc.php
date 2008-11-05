@@ -102,7 +102,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @return TrackDirectorSubmission
 	 */
 	function &_returnTrackDirectorSubmissionFromRow(&$row) {
-		$trackDirectorSubmission = &new TrackDirectorSubmission();
+		$trackDirectorSubmission = new TrackDirectorSubmission();
 
 		// Paper attributes
 		$this->paperDao->_paperFromRow($trackDirectorSubmission, $row);
@@ -390,7 +390,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
 
 	}
@@ -415,7 +415,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
 	}
 
@@ -438,7 +438,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
 	}
 
@@ -660,7 +660,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$paramArray, $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
 		return $returner;
 	}
 

@@ -52,7 +52,7 @@ class ReviewerAction extends Action {
 		// he has not previously done so.
 		if ($reviewAssignment->getDateConfirmed() == null) {
 			import('mail.PaperMailTemplate');
-			$email = &new PaperMailTemplate($reviewerSubmission, $decline?'REVIEW_DECLINE':'REVIEW_CONFIRM');
+			$email = new PaperMailTemplate($reviewerSubmission, $decline?'REVIEW_DECLINE':'REVIEW_CONFIRM');
 			// Must explicitly set sender because we may be here on an access
 			// key, in which case the user is not technically logged in
 			$email->setFrom($reviewer->getEmail(), $reviewer->getFullName());
@@ -72,7 +72,7 @@ class ReviewerAction extends Action {
 				import('paper.log.PaperLog');
 				import('paper.log.PaperEventLogEntry');
 
-				$entry = &new PaperEventLogEntry();
+				$entry = new PaperEventLogEntry();
 				$entry->setPaperId($reviewAssignment->getPaperId());
 				$entry->setUserId($reviewer->getUserId());
 				$entry->setDateLogged(Core::getCurrentDate());
@@ -136,7 +136,7 @@ class ReviewerAction extends Action {
 		// no recommendation has previously been submitted.
 		if ($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation === '') {
 			import('mail.PaperMailTemplate');
-			$email = &new PaperMailTemplate($reviewerSubmission, 'REVIEW_COMPLETE');
+			$email = new PaperMailTemplate($reviewerSubmission, 'REVIEW_COMPLETE');
 			// Must explicitly set sender because we may be here on an access
 			// key, in which case the user is not technically logged in
 			$email->setFrom($reviewer->getEmail(), $reviewer->getFullName());
@@ -157,7 +157,7 @@ class ReviewerAction extends Action {
 				import('paper.log.PaperLog');
 				import('paper.log.PaperEventLogEntry');
 
-				$entry = &new PaperEventLogEntry();
+				$entry = new PaperEventLogEntry();
 				$entry->setPaperId($reviewAssignment->getPaperId());
 				$entry->setUserId($reviewer->getUserId());
 				$entry->setDateLogged(Core::getCurrentDate());
@@ -209,7 +209,7 @@ class ReviewerAction extends Action {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');		
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
-		$paperFileManager = &new PaperFileManager($reviewAssignment->getPaperId());
+		$paperFileManager = new PaperFileManager($reviewAssignment->getPaperId());
 
 		// Only upload the file if the reviewer has yet to submit a recommendation
 		if (($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation() === '') && !$reviewAssignment->getCancelled()) {
@@ -236,7 +236,7 @@ class ReviewerAction extends Action {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 
-			$entry = &new PaperEventLogEntry();
+			$entry = new PaperEventLogEntry();
 			$entry->setPaperId($reviewAssignment->getPaperId());
 			$entry->setUserId($reviewer->getUserId());
 			$entry->setDateLogged(Core::getCurrentDate());
@@ -263,7 +263,7 @@ class ReviewerAction extends Action {
 		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 		if (!HookRegistry::call('ReviewerAction::deleteReviewerVersion', array(&$reviewAssignment, &$fileId, &$revision))) {
-			$paperFileManager = &new PaperFileManager($reviewAssignment->getPaperId());
+			$paperFileManager = new PaperFileManager($reviewAssignment->getPaperId());
 			$paperFileManager->deleteFile($fileId, $revision);
 		}
         }
@@ -278,7 +278,7 @@ class ReviewerAction extends Action {
 		if (!HookRegistry::call('ReviewerAction::viewPeerReviewComments', array(&$user, &$paper, &$reviewId))) {
 			import("submission.form.comment.PeerReviewCommentForm");
 
-			$commentForm = &new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_REVIEWER);
+			$commentForm = new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_REVIEWER);
 			$commentForm->setUser($user);
 			$commentForm->initData();
 			$commentForm->setData('reviewId', $reviewId);
@@ -297,7 +297,7 @@ class ReviewerAction extends Action {
 		if (!HookRegistry::call('ReviewerAction::postPeerReviewComment', array(&$user, &$paper, &$reviewId, &$emailComment))) {
 			import("submission.form.comment.PeerReviewCommentForm");
 
-			$commentForm = &new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_REVIEWER);
+			$commentForm = new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_REVIEWER);
 			$commentForm->setUser($user);
 			$commentForm->readInputData();
 
@@ -325,7 +325,7 @@ class ReviewerAction extends Action {
 		if (!HookRegistry::call('ReviewerAction::editReviewFormResponse', array($reviewId, $reviewFormId))) {
 			import('submission.form.ReviewFormResponseForm');
 
-			$reviewForm =& new ReviewFormResponseForm($reviewId, $reviewFormId);
+			$reviewForm = new ReviewFormResponseForm($reviewId, $reviewFormId);
 			$reviewForm->initData();
 			$reviewForm->display();
 		}
@@ -340,7 +340,7 @@ class ReviewerAction extends Action {
 		if (!HookRegistry::call('ReviewerAction::saveReviewFormResponse', array($reviewId, $reviewFormId))) {
 			import('submission.form.ReviewFormResponseForm');
 
-			$reviewForm =& new ReviewFormResponseForm($reviewId, $reviewFormId);
+			$reviewForm = new ReviewFormResponseForm($reviewId, $reviewFormId);
 			$reviewForm->readInputData();
 			if ($reviewForm->validate()) {
 				$reviewForm->execute();
@@ -410,7 +410,7 @@ class ReviewerAction extends Action {
 		if (!HookRegistry::call('ReviewerAction::editComment', array(&$paper, &$comment, &$reviewId))) {
 			import ("submission.form.comment.EditCommentForm");
 
-			$commentForm =& new EditCommentForm ($paper, $comment);
+			$commentForm = new EditCommentForm ($paper, $comment);
 			$commentForm->initData();
 			$commentForm->setData('reviewId', $reviewId);
 			$commentForm->display(array('reviewId' => $reviewId));

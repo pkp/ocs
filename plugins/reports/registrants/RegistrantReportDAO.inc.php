@@ -68,7 +68,7 @@ class RegistrantReportDAO extends DAO {
 		);
 
 		// prepare an iterator of all the registration information
-		$registrationReturner =& new DBRowIterator($result);
+		$registrationReturner = new DBRowIterator($result);
 
 		$result =& $this->retrieve(
 			'SELECT 

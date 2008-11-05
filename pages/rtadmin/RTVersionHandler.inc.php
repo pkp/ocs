@@ -25,7 +25,7 @@ class RTVersionHandler extends RTAdminHandler {
 		$conference = Request::getConference();
 
 		import('rt.ocs.form.VersionForm');
-		$versionForm = &new VersionForm(null, $conference->getConferenceId());
+		$versionForm = new VersionForm(null, $conference->getConferenceId());
 
 		if (isset($args[0]) && $args[0]=='save') {
 			$versionForm->readInputData();
@@ -61,7 +61,7 @@ class RTVersionHandler extends RTAdminHandler {
 
 		$fileField = 'versionFile';
 		if (isset($_FILES[$fileField]['tmp_name']) && is_uploaded_file($_FILES[$fileField]['tmp_name'])) {
-			$rtAdmin = &new ConferenceRTAdmin($conference->getConferenceId());
+			$rtAdmin = new ConferenceRTAdmin($conference->getConferenceId());
 			$rtAdmin->importVersion($_FILES[$fileField]['tmp_name']);
 		}
 		Request::redirect(null, null, null, 'versions');
@@ -71,7 +71,7 @@ class RTVersionHandler extends RTAdminHandler {
 		RTAdminHandler::validate();
 
 		$conference = &Request::getConference();
-		$rtAdmin = &new ConferenceRTAdmin($conference->getConferenceId());
+		$rtAdmin = new ConferenceRTAdmin($conference->getConferenceId());
 		$rtAdmin->restoreVersions();
 
 		// If the conference RT was configured, change its state to
@@ -114,7 +114,7 @@ class RTVersionHandler extends RTAdminHandler {
 		if (isset($version)) {
 			import('rt.ocs.form.VersionForm');
 			RTAdminHandler::setupTemplate(true, $version);
-			$versionForm = &new VersionForm($versionId, $conference->getConferenceId());
+			$versionForm = new VersionForm($versionId, $conference->getConferenceId());
 			$versionForm->initData();
 			$versionForm->display();
 		}
@@ -145,7 +145,7 @@ class RTVersionHandler extends RTAdminHandler {
 
 		if (isset($version)) {
 			import('rt.ocs.form.VersionForm');
-			$versionForm = &new VersionForm($versionId, $conference->getConferenceId());
+			$versionForm = new VersionForm($versionId, $conference->getConferenceId());
 			$versionForm->readInputData();
 			$versionForm->execute();
 		}

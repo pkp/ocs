@@ -25,7 +25,7 @@ class ProfileHandler extends UserHandler {
 
 		import('user.form.ProfileForm');
 
-		$profileForm = &new ProfileForm();
+		$profileForm = new ProfileForm();
 		if ($profileForm->isLocaleResubmit()) {
 			$profileForm->readInputData();
 		} else {
@@ -42,7 +42,7 @@ class ProfileHandler extends UserHandler {
 
 		import('user.form.ProfileForm');
 
-		$profileForm = &new ProfileForm();
+		$profileForm = new ProfileForm();
 		$profileForm->readInputData();
 
 		if ($profileForm->validate()) {
@@ -64,7 +64,7 @@ class ProfileHandler extends UserHandler {
 
 		import('user.form.ChangePasswordForm');
 
-		$passwordForm = &new ChangePasswordForm();
+		$passwordForm = new ChangePasswordForm();
 		$passwordForm->initData();
 		$passwordForm->display();
 	}
@@ -77,7 +77,7 @@ class ProfileHandler extends UserHandler {
 
 		import('user.form.ChangePasswordForm');
 
-		$passwordForm = &new ChangePasswordForm();
+		$passwordForm = new ChangePasswordForm();
 		$passwordForm->readInputData();
 
 		if ($passwordForm->validate()) {

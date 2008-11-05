@@ -32,7 +32,7 @@ class FilesHandler extends ManagerHandler {
 		$currentPath = FilesHandler::getRealFilesDir($currentDir);
 
 		if (@is_file($currentPath)) {
-			$fileMgr = &new FileManager();
+			$fileMgr = new FileManager();
 			if (Request::getUserVar('download')) {
 				$fileMgr->downloadFile($currentPath);
 			} else {
@@ -77,7 +77,7 @@ class FilesHandler extends ManagerHandler {
 		$currentPath = FilesHandler::getRealFilesDir($currentDir);
 
 		import('file.FileManager');
-		$fileMgr = &new FileManager();
+		$fileMgr = new FileManager();
 		if ($fileMgr->uploadedFileExists('file')) {
 			$destPath = $currentPath . '/' . FilesHandler::cleanFileName($fileMgr->getUploadedFileName('file'));
 			@$fileMgr->uploadFile('file', $destPath);
@@ -100,7 +100,7 @@ class FilesHandler extends ManagerHandler {
 			$newDir = $currentPath . '/' . FilesHandler::cleanFileName($dirName);
 
 			import('file.FileManager');
-			$fileMgr = &new FileManager();
+			$fileMgr = new FileManager();
 			@$fileMgr->mkdir($newDir);
 		}
 
@@ -114,7 +114,7 @@ class FilesHandler extends ManagerHandler {
 		$currentPath = FilesHandler::getRealFilesDir($currentDir);
 
 		import('file.FileManager');
-		$fileMgr = &new FileManager();
+		$fileMgr = new FileManager();
 
 		if (@is_file($currentPath)) {
 			$fileMgr->deleteFile($currentPath);

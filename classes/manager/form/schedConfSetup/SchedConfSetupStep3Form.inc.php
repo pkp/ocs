@@ -52,7 +52,7 @@ class SchedConfSetupStep3Form extends SchedConfSetupForm {
 	 */
 	function display() {
 		import('mail.MailTemplate');
-		$mail = &new MailTemplate('SUBMISSION_ACK');
+		$mail = new MailTemplate('SUBMISSION_ACK');
 		if ($mail->isEnabled()) {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('submissionAckEnabled', true);

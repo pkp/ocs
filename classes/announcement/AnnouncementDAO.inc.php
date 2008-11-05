@@ -63,7 +63,7 @@ class AnnouncementDAO extends DAO {
 	 * @return Announcement
 	 */
 	function &_returnAnnouncementFromRow(&$row) {
-		$announcement = &new Announcement();
+		$announcement = new Announcement();
 		$announcement->setAnnouncementId($row['announcement_id']);
 		$announcement->setConferenceId($row['conference_id']);
 		$announcement->setSchedConfId($row['sched_conf_id']);
@@ -218,7 +218,7 @@ class AnnouncementDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
 		return $returner;
 	}
 
@@ -232,7 +232,7 @@ class AnnouncementDAO extends DAO {
 			'SELECT * FROM announcements WHERE type_id = ? ORDER BY announcement_id DESC', $typeId, $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
 		return $returner;
 	}
 
@@ -252,7 +252,7 @@ class AnnouncementDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
 		return $returner;
 	}
 
@@ -273,7 +273,7 @@ class AnnouncementDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
 		return $returner;
 	}
 
@@ -293,7 +293,7 @@ class AnnouncementDAO extends DAO {
 			array($conferenceId, $schedConfId, $numAnnouncements), $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnAnnouncementFromRow');
 		return $returner;
 	}
 

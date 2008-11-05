@@ -25,7 +25,7 @@ class Help extends PKPHelp {
 	function Help() {
 		parent::PKPHelp();
 		import('help.OCSHelpMappingFile');
-		$mainMappingFile =& new OCSHelpMappingFile();
+		$mainMappingFile = new OCSHelpMappingFile();
 		$this->addMappingFile($mainMappingFile);
 	}
 }

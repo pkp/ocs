@@ -220,7 +220,7 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 
 			} else {
 				// Create a new presenter
-				$presenter = &new Presenter();
+				$presenter = new Presenter();
 				$isExistingPresenter = false;
 			}
 

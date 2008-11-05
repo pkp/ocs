@@ -78,7 +78,7 @@ class PaperEmailLogDAO extends DAO {
 			$params, $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnLogEntryFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnLogEntryFromRow');
 		return $returner;
 	}
 
@@ -88,7 +88,7 @@ class PaperEmailLogDAO extends DAO {
 	 * @return PaperEmailLogEntry
 	 */
 	function &_returnLogEntryFromRow(&$row) {
-		$entry = &new PaperEmailLogEntry();
+		$entry = new PaperEmailLogEntry();
 		$entry->setLogId($row['log_id']);
 		$entry->setPaperId($row['paper_id']);
 		$entry->setSenderId($row['sender_id']);

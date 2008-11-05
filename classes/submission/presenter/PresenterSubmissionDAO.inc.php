@@ -94,7 +94,7 @@ class PresenterSubmissionDAO extends DAO {
 	 * @return PresenterSubmission
 	 */
 	function &_returnPresenterSubmissionFromRow(&$row) {
-		$presenterSubmission = &new PresenterSubmission();
+		$presenterSubmission = new PresenterSubmission();
 
 		// Paper attributes
 		$this->paperDao->_paperFromRow($presenterSubmission, $row);
@@ -233,7 +233,7 @@ class PresenterSubmissionDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnPresenterSubmissionFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnPresenterSubmissionFromRow');
 		return $returner;
 	}
 

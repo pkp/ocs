@@ -33,14 +33,14 @@ class EmailHandler extends ManagerHandler {
 		import('core.ArrayItemIterator');
 		if ($rangeInfo && $rangeInfo->isValid()) {
 			while (true) {
-				$emailTemplates =& new ArrayItemIterator($emailTemplatesArray, $rangeInfo->getPage(), $rangeInfo->getCount());
+				$emailTemplates = new ArrayItemIterator($emailTemplatesArray, $rangeInfo->getPage(), $rangeInfo->getCount());
 				if ($emailTemplates->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $emailTemplates->getLastPageRangeInfo();
 				unset($emailTemplates);
 			}
 		} else {
-			$emailTemplates =& new ArrayItemIterator($emailTemplatesArray);
+			$emailTemplates = new ArrayItemIterator($emailTemplatesArray);
 		}
 
 		$templateMgr = &TemplateManager::getManager();
@@ -82,7 +82,7 @@ class EmailHandler extends ManagerHandler {
 
 		import('manager.form.EmailTemplateForm');
 
-		$emailTemplateForm = &new EmailTemplateForm($emailKey, $conference, $schedConf);
+		$emailTemplateForm = new EmailTemplateForm($emailKey, $conference, $schedConf);
 		$emailTemplateForm->initData();
 		$emailTemplateForm->display();
 	}
@@ -97,7 +97,7 @@ class EmailHandler extends ManagerHandler {
 
 		$emailKey = Request::getUserVar('emailKey');
 
-		$emailTemplateForm = &new EmailTemplateForm($emailKey, $conference, $schedConf);
+		$emailTemplateForm = new EmailTemplateForm($emailKey, $conference, $schedConf);
 		$emailTemplateForm->readInputData();
 
 		if ($emailTemplateForm->validate()) {

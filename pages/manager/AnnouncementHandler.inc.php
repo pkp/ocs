@@ -102,7 +102,7 @@ class AnnouncementHandler extends ManagerHandler {
 			$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
 			$templateMgr->assign('schedConfs', $schedConfs);
 
-			$announcementForm = &new AnnouncementForm($announcementId);
+			$announcementForm = new AnnouncementForm($announcementId);
 			if ($announcementForm->isLocaleResubmit()) {
 				$announcementForm->readInputData();
 			} else {
@@ -136,7 +136,7 @@ class AnnouncementHandler extends ManagerHandler {
 
 		if (($announcementId != null && $announcementDao->getAnnouncementConferenceId($announcementId) == $conference->getConferenceId()) || $announcementId == null) {
 
-			$announcementForm = &new AnnouncementForm($announcementId);
+			$announcementForm = new AnnouncementForm($announcementId);
 			$announcementForm->readInputData();
 
 			if ($announcementForm->validate()) {
@@ -238,7 +238,7 @@ class AnnouncementHandler extends ManagerHandler {
 				$templateMgr->assign('announcementTypeTitle', 'manager.announcementTypes.editTitle');	
 			}
 
-			$announcementTypeForm = &new AnnouncementTypeForm($typeId);
+			$announcementTypeForm = new AnnouncementTypeForm($typeId);
 			if ($announcementTypeForm->isLocaleResubmit()) {
 				$announcementTypeForm->readInputData();
 			} else {
@@ -272,7 +272,7 @@ class AnnouncementHandler extends ManagerHandler {
 
 		if (($typeId != null && $announcementTypeDao->getAnnouncementTypeConferenceId($typeId) == $conference->getConferenceId()) || $typeId == null) {
 
-			$announcementTypeForm = &new AnnouncementTypeForm($typeId);
+			$announcementTypeForm = new AnnouncementTypeForm($typeId);
 			$announcementTypeForm->readInputData();
 
 			if ($announcementTypeForm->validate()) {

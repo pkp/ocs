@@ -236,7 +236,7 @@ class EmailTemplateDAO extends DAO {
 	 * @return BaseEmailTemplate
 	 */
 	function &_returnBaseEmailTemplateFromRow(&$row) {
-		$emailTemplate = &new BaseEmailTemplate();
+		$emailTemplate = new BaseEmailTemplate();
 		$emailTemplate->setEmailId($row['email_id']);
 		$emailTemplate->setConferenceId($row['conference_id']);
 		$emailTemplate->setSchedConfId($row['sched_conf_id']);
@@ -257,7 +257,7 @@ class EmailTemplateDAO extends DAO {
 	 * @return LocaleEmailTemplate
 	 */
 	function &_returnLocaleEmailTemplateFromRow(&$row) {
-		$emailTemplate = &new LocaleEmailTemplate();
+		$emailTemplate = new LocaleEmailTemplate();
 		$emailTemplate->setEmailId($row['email_id']);
 		$emailTemplate->setConferenceId($row['conference_id']);
 		$emailTemplate->setSchedConfId($row['sched_conf_id']);
@@ -328,7 +328,7 @@ class EmailTemplateDAO extends DAO {
 	 * @return EmailTemplate
 	 */
 	function &_returnEmailTemplateFromRow(&$row, $isCustomTemplate=null) {
-		$emailTemplate = &new EmailTemplate();
+		$emailTemplate = new EmailTemplate();
 		$emailTemplate->setEmailId($row['email_id']);
 		$emailTemplate->setConferenceId($row['conference_id']);
 		$emailTemplate->setSchedConfId($row['sched_conf_id']);

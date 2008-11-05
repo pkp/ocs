@@ -66,7 +66,7 @@ class EditAssignmentDAO extends DAO {
 			$paperId
 			);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
 		return $returner;
 	}
 
@@ -81,7 +81,7 @@ class EditAssignmentDAO extends DAO {
 			$paperId
 			);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
 		return $returner;
 	}
 
@@ -102,7 +102,7 @@ class EditAssignmentDAO extends DAO {
 			$paperId
 			);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
 		return $returner;
 	}
 
@@ -122,7 +122,7 @@ class EditAssignmentDAO extends DAO {
 			$userId
 			);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
 		return $returner;
 	}
 
@@ -132,7 +132,7 @@ class EditAssignmentDAO extends DAO {
 	 * @return EditAssignment
 	 */
 	function &_returnEditAssignmentFromRow(&$row) {
-		$editAssignment = &new EditAssignment();
+		$editAssignment = new EditAssignment();
 		$editAssignment->setEditId($row['edit_id']);
 		$editAssignment->setPaperId($row['paper_id']);
 		$editAssignment->setDirectorId($row['director_id']);

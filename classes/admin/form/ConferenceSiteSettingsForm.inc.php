@@ -109,7 +109,7 @@ class ConferenceSiteSettingsForm extends Form {
 		}
 
 		if (!isset($conference)) {
-			$conference = &new Conference();
+			$conference = new Conference();
 		}
 
 		$conference->setPath($this->getData('path'));
@@ -132,7 +132,7 @@ class ConferenceSiteSettingsForm extends Form {
 			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($conferenceId)) {
 				$roleDao = &DAORegistry::getDAO('RoleDAO');
 
-				$role = &new Role();
+				$role = new Role();
 				$role->setConferenceId($conferenceId);
 				$role->setSchedConfId(0);
 				$role->setUserId($userSession->getUserId());
@@ -164,7 +164,7 @@ class ConferenceSiteSettingsForm extends Form {
 
 			// Install the default RT versions.
 			import('rt.ocs.ConferenceRTAdmin');
-			$conferenceRtAdmin = &new ConferenceRTAdmin($conferenceId);
+			$conferenceRtAdmin = new ConferenceRTAdmin($conferenceId);
 			$conferenceRtAdmin->restoreVersions(false);
 		}
 

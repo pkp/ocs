@@ -39,7 +39,7 @@ class ReviewReminder extends ScheduledTask {
 
 		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled');
 
-		$email = &new PaperMailTemplate($paper, $reviewerAccessKeysEnabled?'REVIEW_REMIND_AUTO_ONECLICK':'REVIEW_REMIND_AUTO', null, false, $conference, $schedConf);
+		$email = new PaperMailTemplate($paper, $reviewerAccessKeysEnabled?'REVIEW_REMIND_AUTO_ONECLICK':'REVIEW_REMIND_AUTO', null, false, $conference, $schedConf);
 		$email->setConference($conference);
 		$email->setSchedConf($schedConf);
 
@@ -56,7 +56,7 @@ class ReviewReminder extends ScheduledTask {
 		$urlParams = array();
 		if ($reviewerAccessKeysEnabled) {
 			import('security.AccessKeyManager');
-			$accessKeyManager =& new AccessKeyManager();
+			$accessKeyManager = new AccessKeyManager();
 
 			// Key lifetime is the typical review period plus four weeks
 			$keyLifetime = ($schedConf->getSetting('numWeeksPerReview') + 4) * 7;

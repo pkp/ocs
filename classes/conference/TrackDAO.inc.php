@@ -140,7 +140,7 @@ class TrackDAO extends DAO {
 	 * @return Track
 	 */
 	function &_returnTrackFromRow(&$row) {
-		$track = &new Track();
+		$track = new Track();
 		$track->setTrackId($row['track_id']);
 		$track->setSchedConfId($row['sched_conf_id']);
 		$track->setSequence($row['seq']);
@@ -339,7 +339,7 @@ class TrackDAO extends DAO {
 			$schedConfId, $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnTrackFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnTrackFromRow');
 		return $returner;
 	}
 

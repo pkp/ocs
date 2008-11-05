@@ -211,7 +211,7 @@ class ProfileForm extends Form {
 		$schedConf =& Request::getSchedConf();
 		if ($schedConf) {
 			import('schedConf.SchedConfAction');
-			$role =& new Role();
+			$role = new Role();
 			$role->setUserId($user->getUserId());
 			$role->setConferenceId($schedConf->getConferenceId());
 			$role->setSchedConfId($schedConf->getSchedConfId());

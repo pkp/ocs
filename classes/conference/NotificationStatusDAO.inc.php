@@ -82,7 +82,7 @@ class NotificationStatusDAO extends DAO {
 			$schedConfId
 		);
 
-		$returner = &new DAOResultFactory($result, $userDao, '_returnUserFromRow');
+		$returner = new DAOResultFactory($result, $userDao, '_returnUserFromRow');
 		return $returner;
 	}
 

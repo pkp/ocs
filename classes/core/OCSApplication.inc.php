@@ -147,7 +147,7 @@ class OCSApplication extends PKPApplication {
 	 */
 	function &instantiateHelp() {
 		import('help.Help');
-		$help =& new Help();
+		$help = new Help();
 		return $help;
 	}
 }

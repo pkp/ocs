@@ -106,7 +106,7 @@ class PaperGalleyDAO extends DAO {
 	 */
 	function &_returnGalleyFromRow(&$row) {
 		if ($row['html_galley']) {
-			$galley = &new PaperHTMLGalley();
+			$galley = new PaperHTMLGalley();
 
 			// HTML-specific settings
 			$galley->setStyleFileId($row['style_file_id']);
@@ -119,7 +119,7 @@ class PaperGalleyDAO extends DAO {
 			$galley->setImageFiles($images); 
 
 		} else {
-			$galley = &new PaperGalley();
+			$galley = new PaperGalley();
 		}
 		$galley->setGalleyId($row['galley_id']);
 		$galley->setPaperId($row['paper_id']);

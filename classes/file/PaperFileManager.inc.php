@@ -357,7 +357,7 @@ class PaperFileManager extends FileManager {
 	 */
 	function copyAndRenameFile($sourceFileId, $sourceRevision, $destType, $destFileId = null) {
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		$paperFile = &new PaperFile();
+		$paperFile = new PaperFile();
 
 		$destTypePath = $this->typeToPath($destType);
 		$destDir = $this->filesDir . $destTypePath . '/';
@@ -418,7 +418,7 @@ class PaperFileManager extends FileManager {
 	 */
 	function &generateDummyFile(&$paper) {
 		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		$paperFile = &new PaperFile();
+		$paperFile = new PaperFile();
 		$paperFile->setPaperId($paper->getPaperId());
 		$paperFile->setFileName('temp');
 		$paperFile->setOriginalFileName('temp');
@@ -483,7 +483,7 @@ class PaperFileManager extends FileManager {
 			$paperFile = &$this->generateDummyFile($this->paper);
 		} else {
 			$dummyFile = false;
-			$paperFile = &new PaperFile();
+			$paperFile = new PaperFile();
 			$paperFile->setRevision($paperFileDao->getRevisionNumber($fileId)+1);
 			$paperFile->setPaperId($this->paperId);
 			$paperFile->setFileId($fileId);
@@ -537,7 +537,7 @@ class PaperFileManager extends FileManager {
 			$paperFile = &$this->generateDummyFile($this->paper);
 		} else {
 			$dummyFile = false;
-			$paperFile = &new PaperFile();
+			$paperFile = new PaperFile();
 			$paperFile->setRevision($paperFileDao->getRevisionNumber($fileId)+1);
 			$paperFile->setPaperId($this->paperId);
 			$paperFile->setFileId($fileId);
@@ -590,7 +590,7 @@ class PaperFileManager extends FileManager {
 			$paperFile = &$this->generateDummyFile($this->paper);
 		} else {
 			$dummyFile = false;
-			$paperFile = &new PaperFile();
+			$paperFile = new PaperFile();
 			$paperFile->setRevision($paperFileDao->getRevisionNumber($fileId)+1);
 			$paperFile->setPaperId($this->paperId);
 			$paperFile->setFileId($fileId);

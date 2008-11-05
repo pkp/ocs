@@ -88,7 +88,7 @@ class PublishedPaperDAO extends DAO {
 		}
 
 		$result =& $this->retrieve($sql, $params);
-		$returner =& new DAOResultFactory($result, $this, '_returnPublishedPaperFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnPublishedPaperFromRow');
 		return $returner;
 	}
 
@@ -143,7 +143,7 @@ class PublishedPaperDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner =& new DAOResultFactory($result, $this, '_returnPublishedPaperFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnPublishedPaperFromRow');
 		return $returner;
 	}
 
@@ -314,7 +314,7 @@ class PublishedPaperDAO extends DAO {
 		);
 		$row = $result->GetRowAssoc(false);
 
-		$publishedPaper = &new PublishedPaper();
+		$publishedPaper = new PublishedPaper();
 		$publishedPaper->setPubId($row['pub_id']);
 		$publishedPaper->setPaperId($row['paper_id']);
 		$publishedPaper->setSchedConfId($row['sched_conf_id']);
@@ -542,7 +542,7 @@ class PublishedPaperDAO extends DAO {
 	 * @return PublishedPaper object
 	 */
 	function &_returnPublishedPaperFromRow($row) {
-		$publishedPaper = &new PublishedPaper();
+		$publishedPaper = new PublishedPaper();
 		$publishedPaper->setPubId($row['pub_id']);
 		$publishedPaper->setSchedConfId($row['sched_conf_id']);
 		$publishedPaper->setDatePublished($this->datetimeFromDB($row['date_published']));
@@ -723,7 +723,7 @@ class PublishedPaperDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$presenter = &new Presenter();
+			$presenter = new Presenter();
 			$presenter->setPresenterId($row['presenter_id']);
 			$presenter->setPaperId($row['paper_id']);
 			$presenter->setFirstName($row['first_name']);

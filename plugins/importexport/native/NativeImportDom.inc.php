@@ -201,7 +201,7 @@ class NativeImportDom {
 			// we're not maintaining a list of created
 			// tracks to delete in case the import fails.
 			unset($track);
-			$track = &new Track();
+			$track = new Track();
 
 			$track->setTitle($titles, null);
 			$track->setAbbrev($abbrevs, null);
@@ -399,7 +399,7 @@ class NativeImportDom {
 		);
 
 		// Insert published paper entry.
-		$publishedPaper = &new PublishedPaper();
+		$publishedPaper = new PublishedPaper();
 		$publishedPaper->setPaperId($paper->getPaperId());
 		$publishedPaper->setSchedConfId($schedConf->getSchedConfId());
 
@@ -423,7 +423,7 @@ class NativeImportDom {
 
 		/* --- Galleys (html or otherwise handled simultaneously) --- */
 		import('file.PaperFileManager');
-		$paperFileManager = &new PaperFileManager($paper->getPaperId());
+		$paperFileManager = new PaperFileManager($paper->getPaperId());
 
 		/* --- Handle galleys --- */
 		$hasErrors = false;
@@ -467,7 +467,7 @@ class NativeImportDom {
 		$conferenceSupportedLocales = array_keys($conference->getSupportedLocaleNames()); // => conference locales must be set up before
 		$conferencePrimaryLocale = $conference->getPrimaryLocale();
 		
-		$presenter = &new Presenter();
+		$presenter = new Presenter();
 		if (($node = $presenterNode->getChildByName('firstname'))) $presenter->setFirstName($node->getValue());
 		if (($node = $presenterNode->getChildByName('middlename'))) $presenter->setMiddleName($node->getValue());
 		if (($node = $presenterNode->getChildByName('lastname'))) $presenter->setLastName($node->getValue());
@@ -501,8 +501,8 @@ class NativeImportDom {
 
 		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 
-		if ($isHtml) $galley = &new PaperHtmlGalley();
-		else $galley = &new PaperGalley();
+		if ($isHtml) $galley = new PaperHtmlGalley();
+		else $galley = new PaperGalley();
 
 		$galley->setPaperId($paper->getPaperId());
 		$galley->setSequence($galleyCount);
@@ -630,7 +630,7 @@ class NativeImportDom {
 
 		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 			
-		$suppFile = &new SuppFile();
+		$suppFile = new SuppFile();
 		$suppFile->setPaperId($paper->getPaperId());
 
 		for ($index=0; ($node = $suppNode->getChildByName('title', $index)); $index++) {

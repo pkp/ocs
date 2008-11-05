@@ -61,7 +61,7 @@ class GroupMembershipDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner =& new DAOResultFactory($result, $this, '_returnMembershipFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnMembershipFromRow');
 		return $returner;
 	}
 
@@ -81,7 +81,7 @@ class GroupMembershipDAO extends DAO {
 			$users[$userId] =& $this->userDao->getUser($userId);
 		}
 
-		$membership = &new GroupMembership();
+		$membership = new GroupMembership();
 		$membership->setGroupId($row['group_id']);
 		$membership->setUserId($row['user_id']);
 		$membership->setUser($users[$userId]);

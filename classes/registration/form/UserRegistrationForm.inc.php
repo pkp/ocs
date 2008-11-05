@@ -37,7 +37,7 @@ class UserRegistrationForm extends Form {
 		$this->addCheck(new FormValidatorCustom($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdValid', create_function('$registrationTypeId, $schedConfId, $typeId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->openRegistrationTypeExistsByTypeId($typeId, $schedConfId);'), array($schedConf->getSchedConfId(), $typeId)));
 
 		import('captcha.CaptchaManager');
-		$captchaManager =& new CaptchaManager();
+		$captchaManager = new CaptchaManager();
 		$this->captchaEnabled = ($captchaManager->isEnabled() && Config::getVar('captcha', 'captcha_on_register'))?true:false;
 
 		$user =& Request::getUser();
@@ -101,7 +101,7 @@ class UserRegistrationForm extends Form {
 
 		if ($this->captchaEnabled) {
 			import('captcha.CaptchaManager');
-			$captchaManager =& new CaptchaManager();
+			$captchaManager = new CaptchaManager();
 			$captcha =& $captchaManager->createCaptcha();
 			if ($captcha) {
 				$templateMgr->assign('captchaEnabled', $this->captchaEnabled);
@@ -180,7 +180,7 @@ class UserRegistrationForm extends Form {
 
 		if (!$user) {
 			// New user
-			$user = &new User();
+			$user = new User();
 
 			$user->setUsername($this->getData('username'));
 			$user->setFirstName($this->getData('firstName'));
@@ -210,7 +210,7 @@ class UserRegistrationForm extends Form {
 
 			$conference =& Request::getConference();
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$role =& new Role();
+			$role = new Role();
 			$role->setRoleId(ROLE_ID_READER);
 			$role->setSchedConfId($schedConf->getSchedConfId());
 			$role->setConferenceId($conference->getConferenceId());
@@ -241,7 +241,7 @@ class UserRegistrationForm extends Form {
 		if (!$paymentManager->isConfigured()) return false;
 
 		import('registration.Registration');
-		$registration = &new Registration();
+		$registration = new Registration();
 
 		$registration->setSchedConfId($schedConf->getSchedConfId());
 		$registration->setUserId($user->getUserId());

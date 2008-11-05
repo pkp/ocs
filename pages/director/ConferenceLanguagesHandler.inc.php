@@ -25,7 +25,7 @@ class ConferenceLanguagesHandler extends DirectorHandler {
 
 		import('director.form.LanguageSettingsForm');
 
-		$settingsForm = &new LanguageSettingsForm();
+		$settingsForm = new LanguageSettingsForm();
 		$settingsForm->initData();
 		$settingsForm->display();
 	}
@@ -39,7 +39,7 @@ class ConferenceLanguagesHandler extends DirectorHandler {
 
 		import('director.form.LanguageSettingsForm');
 
-		$settingsForm = &new LanguageSettingsForm();
+		$settingsForm = new LanguageSettingsForm();
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {

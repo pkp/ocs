@@ -319,7 +319,7 @@ class PaperHandler extends PKPHandler {
 
 		if ($paper && $galley) {
 			import('file.PaperFileManager');
-			$paperFileManager = &new PaperFileManager($paper->getPaperId());
+			$paperFileManager = new PaperFileManager($paper->getPaperId());
 			$paperFileManager->downloadFile($galley->getFileId());
 		}
 	}
@@ -339,7 +339,7 @@ class PaperHandler extends PKPHandler {
 
 		if ($paper && $suppFile) {
 			import('file.PaperFileManager');
-			$paperFileManager = &new PaperFileManager($paper->getPaperId());
+			$paperFileManager = new PaperFileManager($paper->getPaperId());
 			if ($suppFile->isInlineable()) {
 				$paperFileManager->viewFile($suppFile->getFileId());
 			} else {

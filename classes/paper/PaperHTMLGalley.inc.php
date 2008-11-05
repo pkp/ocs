@@ -41,7 +41,7 @@ class PaperHTMLGalley extends PaperGalley {
 	 */
 	function getHTMLContents() {
 		import('file.PaperFileManager');
-		$fileManager = &new PaperFileManager($this->getPaperId());
+		$fileManager = new PaperFileManager($this->getPaperId());
 		$contents = $fileManager->readFile($this->getFileId());
 
 		// Replace image references
@@ -164,14 +164,14 @@ class PaperHTMLGalley extends PaperGalley {
 			case 'sitepublic':
 					array_shift($urlParts);
 					import ('file.PublicFileManager');
-					$publicFileManager = &new PublicFileManager();
+					$publicFileManager = new PublicFileManager();
 					$url = Request::getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath() . '/' . implode('/', $urlParts) . ($anchor?'#' . $anchor:'');
 				break;
 			case 'public':
 					array_shift($urlParts);
 					$schedConf = &Request::getSchedConf();
 					import ('file.PublicFileManager');
-					$publicFileManager = &new PublicFileManager();
+					$publicFileManager = new PublicFileManager();
 					$url = Request::getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getSchedConfId()) . '/' . implode('/', $urlParts) . ($anchor?'#' . $anchor:'');
 				break;
 		}

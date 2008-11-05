@@ -156,7 +156,7 @@ class PresenterDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnPresenterFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnPresenterFromRow');
 		return $returner;
 	}
 
@@ -237,7 +237,7 @@ class PresenterDAO extends DAO {
 	 * @return Presenter
 	 */
 	function &_returnPresenterFromRow(&$row) {
-		$presenter = &new Presenter();
+		$presenter = new Presenter();
 		$presenter->setPresenterId($row['presenter_id']);
 		$presenter->setPaperId($row['paper_id']);
 		$presenter->setFirstName($row['first_name']);

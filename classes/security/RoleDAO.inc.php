@@ -61,7 +61,7 @@ class RoleDAO extends DAO {
 	 * @return Role
 	 */
 	function &_returnRoleFromRow(&$row) {
-		$role = &new Role();
+		$role = new Role();
 		$role->setConferenceId($row['conference_id']);
 		$role->setSchedConfId($row['sched_conf_id']);
 		$role->setUserId($row['user_id']);
@@ -208,7 +208,7 @@ class RoleDAO extends DAO {
 			$dbResultRange
 		);
 
-		$returner =& new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
+		$returner = new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
 		return $returner;
 	}
 
@@ -267,7 +267,7 @@ class RoleDAO extends DAO {
 			$dbResultRange
 		);
 
-		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
+		$returner = new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
 		return $returner;
 	}
 
@@ -326,7 +326,7 @@ class RoleDAO extends DAO {
 			$dbResultRange
 		);
 
-		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
+		$returner = new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
 		return $returner;
 	}
 
@@ -398,7 +398,7 @@ class RoleDAO extends DAO {
 			$params
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnRoleFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnRoleFromRow');
 		return $returner;
 	}
 

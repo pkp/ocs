@@ -220,7 +220,7 @@ class UserManagementForm extends Form {
 		}
 
 		if (!isset($user)) {
-			$user = &new User();
+			$user = new User();
 		}
 
 		$user->setSalutation($this->getData('salutation'));
@@ -304,7 +304,7 @@ class UserManagementForm extends Form {
 					$roleDao = &DAORegistry::getDAO('RoleDAO');
 					$roleId = $roleDao->getRoleIdFromPath($roleName);
 					if ($roleId != null) {
-						$role = &new Role();
+						$role = new Role();
 						$role->setConferenceId($conference->getConferenceId());
 						$role->setSchedConfId($schedConf?$schedConf->getSchedConfId():0);
 						$role->setUserId($userId);
@@ -317,7 +317,7 @@ class UserManagementForm extends Form {
 			if ($sendNotify) {
 				// Send welcome email to user
 				import('mail.MailTemplate');
-				$mail = &new MailTemplate('USER_REGISTER');
+				$mail = new MailTemplate('USER_REGISTER');
 
 				if ($schedConf) $mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 				elseif ($conference) $mail->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));

@@ -117,7 +117,7 @@ class CreateReviewerForm extends Form {
 	 */
 	function execute() {
 		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &new User();
+		$user = new User();
 
 		$user->setSalutation($this->getData('salutation'));
 		$user->setFirstName($this->getData('firstName'));
@@ -170,7 +170,7 @@ class CreateReviewerForm extends Form {
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$schedConf = &Request::getSchedConf();
-		$role = &new Role();
+		$role = new Role();
 		$role->setConferenceId($schedConf->getConferenceId());
 		$role->setSchedConfId($schedConf->getSchedConfId());
 		$role->setUserId($userId);
@@ -180,7 +180,7 @@ class CreateReviewerForm extends Form {
 		if ($sendNotify) {
 			// Send welcome email to user
 			import('mail.MailTemplate');
-			$mail = &new MailTemplate('USER_REGISTER');
+			$mail = new MailTemplate('USER_REGISTER');
 			$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 			$mail->assignParams(array('username' => $this->getData('username'), 'password' => $password));
 			$mail->addRecipient($user->getEmail(), $user->getFullName());

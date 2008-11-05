@@ -382,7 +382,7 @@ class ReviewAssignmentDAO extends DAO {
 	 * @return ReviewAssignment
 	 */
 	function &_returnReviewAssignmentFromRow(&$row) {
-		$reviewAssignment = &new ReviewAssignment();
+		$reviewAssignment = new ReviewAssignment();
 		$reviewAssignment->setReviewId($row['review_id']);
 		$reviewAssignment->setPaperId($row['paper_id']);
 		$reviewAssignment->setReviewerId($row['reviewer_id']);
