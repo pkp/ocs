@@ -54,7 +54,7 @@
 
 <script type="text/javascript">
 <!--
-	document.login.{if $username}password{else}username{/if}.focus();
+	document.login.{if $username}loginPassword{else}loginUsername{/if}.focus();
 // -->
 </script>
 </form>
