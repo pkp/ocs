@@ -19,8 +19,5 @@
 
 		<rename table="paper_presenter_settings" column="presenter_id" to="author_id" />		
 		<rename table="paper_presenter_settings" to="paper_author_settings" />
-		
-		<!-- Need to clear out the instances of $presenterName and $presenterUsername -->
-		<sql>DELETE FROM email_templates_default_data</sql>
 	</sql>
 </data>
