@@ -15,8 +15,8 @@
 	<tr>
 		<td width="20%" class="label">{translate key="paper.authors"}</td>
 		<td width="80%">
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getPresenterEmails() subject=$submission->getPaperTitle() paperId=$submission->getPaperId()}
-			{$submission->getPresenterString()|escape} {icon name="mail" url=$url}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getPaperTitle() paperId=$submission->getPaperId()}
+			{$submission->getAuthorString()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
 	<tr>

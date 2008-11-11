@@ -29,9 +29,9 @@
 		<br />
 		<div class="commentNote">
 			{if $comment->getViewable()}
-				{translate key="submission.comments.canShareWithPresenter"}
+				{translate key="submission.comments.canShareWithAuthor"}
 			{else}
-				{translate key="submission.comments.cannotShareWithPresenter"}
+				{translate key="submission.comments.cannotShareWithAuthor"}
 			{/if}
 		</div>
 	</td>
@@ -74,7 +74,7 @@
 	<td class="value"><input type="text" name="commentTitle" id="commentTitle" value="{$commentTitle|escape}" size="50" maxlength="100" class="textField" /></td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="authorComments"}{translate key="submission.comments.forPresenterDirector"}</td>
+	<td class="label">{fieldLabel name="authorComments"}{translate key="submission.comments.forAuthorDirector"}</td>
 	<td class="value"><textarea id="authorComments" name="authorComments" rows="10" cols="50" class="textArea">{$authorComments|escape}</textarea></td>
 </tr>
 <tr valign="top">

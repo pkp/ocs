@@ -10,11 +10,11 @@
  *}
 <div class="separator"></div>
 
-{assign var=presenters value=$paper->getPresenters()}
-{assign var=presenterCount value=$presenters|@count}
-{foreach from=$presenters item=presenter name=presenters key=i}
-	{assign var=firstName value=$presenter->getFirstName()}
-	{$presenter->getLastName()|escape}, {$firstName|escape}{if $i==$presenterCount-2}, {translate key="rt.context.and"} {elseif $i<$presenterCount-1}, {else}.{/if}
+{assign var=authors value=$paper->getAuthors()}
+{assign var=authorCount value=$authors|@count}
+{foreach from=$authors item=author name=authors key=i}
+	{assign var=firstName value=$author->getFirstName()}
+	{$author->getLastName()|escape}, {$firstName|escape}{if $i==$authorCount-2}, {translate key="rt.context.and"} {elseif $i<$authorCount-1}, {else}.{/if}
 {/foreach}
 
 "{$paper->getPaperTitle()|strip_unsafe_html}" <em>{$conference->getConferenceTitle()|escape}</em> [{translate key="rt.captureCite.online"}],  {$paper->getDatePublished()|date_format:'%e %b %Y'}

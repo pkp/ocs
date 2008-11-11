@@ -14,35 +14,35 @@
 {if $mayEditPaper}<p><a href="{url op="viewMetadata" path=$submission->getPaperId()}" class="action">{translate key="submission.editMetadata"}</a></p>{/if}
 
 
-<h4>{translate key="paper.presenters"}</h4>
+<h4>{translate key="paper.authors"}</h4>
 	
 <table width="100%" class="data">
-	{foreach name=presenters from=$submission->getPresenters() item=presenter}
+	{foreach name=authors from=$submission->getAuthors() item=author}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.name"}</td>
 
-		{assign var=emailString value="`$presenter->getFullName()` <`$presenter->getEmail()`>"}
+		{assign var=emailString value="`$author->getFullName()` <`$author->getEmail()`>"}
 		{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getPaperTitle()|strip_tags paperId=$submission->getPaperId()}
-		<td width="80%" class="value">{$presenter->getFullName()|escape} {icon name="mail" url=$url}</td>
+		<td width="80%" class="value">{$author->getFullName()|escape} {icon name="mail" url=$url}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.affiliation"}</td>
-		<td class="value">{$presenter->getAffiliation()|escape|default:"&mdash;"}</td>
+		<td class="value">{$author->getAffiliation()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="common.country"}</td>
-		<td class="value">{$presenter->getCountryLocalized()|escape|default:"&mdash;"}</td>
+		<td class="value">{$author->getCountryLocalized()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.biography"}</td>
-		<td class="value">{$presenter->getPresenterBiography()|nl2br|strip_unsafe_html|default:"&mdash;"}</td>
+		<td class="value">{$author->getAuthorBiography()|nl2br|strip_unsafe_html|default:"&mdash;"}</td>
 	</tr>
-	{if $presenter->getPrimaryContact()}
+	{if $author->getPrimaryContact()}
 	<tr valign="top">
-		<td colspan="2" class="label">{translate key="presenter.submit.selectPrincipalContact"}</td>
+		<td colspan="2" class="label">{translate key="author.submit.selectPrincipalContact"}</td>
 	</tr>
 	{/if}
-	{if !$smarty.foreach.presenters.last}
+	{if !$smarty.foreach.authors.last}
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
@@ -150,7 +150,7 @@
 	
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="presenter.submit.agencies"}</td>
+		<td width="20%" class="label">{translate key="author.submit.agencies"}</td>
 		<td width="80%" class="value">{$submission->getPaperSponsor()|escape|default:"&mdash;"}</td>
 	</tr>
 </table>

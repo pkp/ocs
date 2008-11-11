@@ -4,23 +4,23 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Step 5 of presenter paper submission.
+ * Step 5 of author paper submission.
  *
  * $Id$
  *}
 {if $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials')}
-{assign var="pageTitle" value="presenter.submit.step5"}
+{assign var="pageTitle" value="author.submit.step5"}
 {else}
-{assign var="pageTitle" value="presenter.submit.step5SkipSupp"}
+{assign var="pageTitle" value="author.submit.step5SkipSupp"}
 {/if}
-{include file="presenter/submit/submitHeader.tpl"}
+{include file="author/submit/submitHeader.tpl"}
 
-<p>{translate key="presenter.submit.confirmationDescription" conferenceTitle=$conference->getConferenceTitle()}</p>
+<p>{translate key="author.submit.confirmationDescription" conferenceTitle=$conference->getConferenceTitle()}</p>
 
 <form method="post" action="{url op="saveSubmit" path=$submitStep}">
 <input type="hidden" name="paperId" value="{$paperId|escape}" />
 
-<h3>{translate key="presenter.submit.filesSummary"}</h3>
+<h3>{translate key="author.submit.filesSummary"}</h3>
 <table class="listing" width="100%">
 <tr>
 	<td colspan="5" class="headseparator">&nbsp;</td>
@@ -39,20 +39,20 @@
 <tr valign="top">
 	<td>{$file->getFileId()}</td>
 	<td><a class="file" href="{url op="download" path=$paperId|to_array:$file->getFileId()}">{$file->getOriginalFileName()|escape}</a></td>
-	<td>{if ($file->getType() == 'supp')}{translate key="paper.suppFile"}{else}{translate key="presenter.submit.submissionFile"}{/if}</td>
+	<td>{if ($file->getType() == 'supp')}{translate key="paper.suppFile"}{else}{translate key="author.submit.submissionFile"}{/if}</td>
 	<td>{$file->getNiceFileSize()}</td>
 	<td>{$file->getDateUploaded()|date_format:$dateFormatTrunc}</td>
 </tr>
 {foreachelse}
 <tr valign="top">
-<td colspan="5" class="nodata">{translate key="presenter.submit.noFiles"}</td>
+<td colspan="5" class="nodata">{translate key="author.submit.noFiles"}</td>
 </tr>
 {/foreach}
 </table>
 
 <div class="separator"></div>
 
-<p><input type="submit" value="{translate key="presenter.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="presenter"}', '{translate|escape:"jsparam" key="presenter.submit.cancelSubmission"}')" /></p>
+<p><input type="submit" value="{translate key="author.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
 
 </form>
 

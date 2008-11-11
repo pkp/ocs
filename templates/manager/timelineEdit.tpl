@@ -67,18 +67,18 @@
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.openRegPresenter"}</td>
+		<td width="50%" class="label">{translate key="manager.timeline.openRegAuthor"}</td>
 		<td width="50%" class="value">
-			{html_select_date prefix="regPresenterOpenDate" time=$regPresenterOpenDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
+			{html_select_date prefix="regAuthorOpenDate" time=$regAuthorOpenDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="50%" class="label">{translate key="manager.timeline.closeRegPresenter"}</td>
+		<td width="50%" class="label">{translate key="manager.timeline.closeRegAuthor"}</td>
 		<td width="50%" class="value">
-			{html_select_date prefix="regPresenterCloseDate" time=$regPresenterCloseDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
-			<input type="hidden" name="regPresenterCloseDateHour" value="23" />
-			<input type="hidden" name="regPresenterCloseDateMinute" value="59" />
-			<input type="hidden" name="regPresenterCloseDateSecond" value="59" />
+			{html_select_date prefix="regAuthorCloseDate" time=$regAuthorCloseDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
+			<input type="hidden" name="regAuthorCloseDateHour" value="23" />
+			<input type="hidden" name="regAuthorCloseDateMinute" value="59" />
+			<input type="hidden" name="regAuthorCloseDateSecond" value="59" />
 		</td>
 	</tr>
 	<tr valign="top">

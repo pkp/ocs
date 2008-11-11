@@ -17,16 +17,16 @@
 <input type="hidden" name="paperId" value="{$paperId|escape}" />
 {include file="common/formErrors.tpl"}
 
-{if $canViewPresenters}
+{if $canViewAuthors}
 {literal}
 <script type="text/javascript">
 <!--
 // Move author up/down
-function movePresenter(dir, authorIndex) {
+function moveAuthor(dir, authorIndex) {
 	var form = document.metadata;
-	form.movePresenter.value = 1;
-	form.movePresenterDir.value = dir;
-	form.movePresenterIndex.value = authorIndex;
+	form.moveAuthor.value = 1;
+	form.moveAuthorDir.value = dir;
+	form.moveAuthorIndex.value = authorIndex;
 	form.submit();
 }
 // -->
@@ -54,10 +54,10 @@ function movePresenter(dir, authorIndex) {
 
 <h3>{translate key="paper.authors"}</h3>
 
-<input type="hidden" name="deletedPresenters" value="{$deletedPresenters|escape}" />
-<input type="hidden" name="movePresenter" value="0" />
-<input type="hidden" name="movePresenterDir" value="" />
-<input type="hidden" name="movePresenterIndex" value="" />
+<input type="hidden" name="deletedAuthors" value="{$deletedAuthors|escape}" />
+<input type="hidden" name="moveAuthor" value="0" />
+<input type="hidden" name="moveAuthorDir" value="" />
+<input type="hidden" name="moveAuthorIndex" value="" />
 
 <table width="100%" class="data">
 	{foreach name=authors from=$authors key=authorIndex item=author}
@@ -108,7 +108,7 @@ function movePresenter(dir, authorIndex) {
 	{if $smarty.foreach.authors.total > 1}
 	<tr valign="top">
 		<td class="label">Reorder author's name</td>
-		<td class="value"><a href="javascript:movePresenter('u', '{$authorIndex|escape}')" class="action plain">&uarr;</a> <a href="javascript:movePresenter('d', '{$authorIndex|escape}')" class="action plain">&darr;</a></td>
+		<td class="value"><a href="javascript:moveAuthor('u', '{$authorIndex|escape}')" class="action plain">&uarr;</a> <a href="javascript:moveAuthor('d', '{$authorIndex|escape}')" class="action plain">&darr;</a></td>
 	</tr>
 	<tr valign="top">
 		<td>&nbsp;</td>
@@ -117,7 +117,7 @@ function movePresenter(dir, authorIndex) {
 	</tr>
 	<tr valign="top">
 		<td>&nbsp;</td>
-		<td class="value"><input type="submit" name="delPresenter[{$authorIndex|escape}]" value="{translate key="author.submit.deletePresenter"}" class="button" /></td>
+		<td class="value"><input type="submit" name="delAuthor[{$authorIndex|escape}]" value="{translate key="author.submit.deleteAuthor"}" class="button" /></td>
 	</tr>
 	{/if}
 	{if !$smarty.foreach.authors.last}
@@ -161,7 +161,7 @@ function movePresenter(dir, authorIndex) {
 	{/foreach}
 </table>
 
-<p><input type="submit" class="button" name="addPresenter" value="{translate key="author.submit.addPresenter"}" /></p>
+<p><input type="submit" class="button" name="addAuthor" value="{translate key="author.submit.addAuthor"}" /></p>
 
 
 <div class="separator"></div>

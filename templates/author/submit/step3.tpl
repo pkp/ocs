@@ -4,29 +4,29 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Step 3 of presenter paper submission.
+ * Step 3 of author paper submission.
  *
  * $Id$
  *}
-{assign var="pageTitle" value="presenter.submit.step3"}
-{include file="presenter/submit/submitHeader.tpl"}
+{assign var="pageTitle" value="author.submit.step3"}
+{include file="author/submit/submitHeader.tpl"}
 
 <form method="post" action="{url op="saveSubmit" path=$submitStep}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$paperId|escape}" />
 {include file="common/formErrors.tpl"}
 
-<p>{translate key="presenter.submit.uploadInstructions"}</p>
+<p>{translate key="author.submit.uploadInstructions"}</p>
 {if $currentSchedConf->getSetting('supportPhone')}
-	{assign var="howToKeyName" value="presenter.submit.howToSubmit"}
+	{assign var="howToKeyName" value="author.submit.howToSubmit"}
 {else}
-	{assign var="howToKeyName" value="presenter.submit.howToSubmitNoPhone"}
+	{assign var="howToKeyName" value="author.submit.howToSubmitNoPhone"}
 {/if}
 
 <p>{translate key=$howToKeyName supportName=$currentSchedConf->getSetting('supportName') supportEmail=$currentSchedConf->getSetting('supportEmail') supportPhone=$currentSchedConf->getSetting('supportPhone')}</p>
 
 <div class="separator"></div>
 
-<h3>{translate key="presenter.submit.submissionFile"}</h3>
+<h3>{translate key="author.submit.submissionFile"}</h3>
 <table class="data" width="100%">
 {if $submissionFile}
 <tr valign="top">
@@ -47,7 +47,7 @@
 </tr>
 {else}
 <tr valign="top">
-	<td colspan="2" class="nodata">{translate key="presenter.submit.noSubmissionFile"}</td>
+	<td colspan="2" class="nodata">{translate key="author.submit.noSubmissionFile"}</td>
 </tr>
 {/if}
 </table>
@@ -58,9 +58,9 @@
 <tr>
 	<td width="30%" class="label">
 		{if $submissionFile}
-			{fieldLabel name="submissionFile" key="presenter.submit.replaceSubmissionFile"}
+			{fieldLabel name="submissionFile" key="author.submit.replaceSubmissionFile"}
 		{else}
-			{fieldLabel name="submissionFile" key="presenter.submit.uploadSubmissionFile"}
+			{fieldLabel name="submissionFile" key="author.submit.uploadSubmissionFile"}
 		{/if}
 	</td>
 	<td width="70%" class="value"><input type="file" class="uploadField" name="submissionFile" id="submissionFile" /> <input name="uploadSubmissionFile" type="submit" class="button" value="{translate key="common.upload"}" /></td>
@@ -69,7 +69,7 @@
 
 <div class="separator"></div>
 
-<p><input type="submit"{if !$submissionFile} onclick="return confirm('{translate|escape:"jsparam" key="presenter.submit.noSubmissionConfirm"}')"{/if} value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="presenter"}', '{translate|escape:"jsparam" key="presenter.submit.cancelSubmission"}')" /></p>
+<p><input type="submit"{if !$submissionFile} onclick="return confirm('{translate|escape:"jsparam" key="author.submit.noSubmissionConfirm"}')"{/if} value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
 
 </form>
 

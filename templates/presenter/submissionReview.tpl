@@ -4,7 +4,7 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Presenter's submission review.
+ * Author's submission review.
  *
  * $Id$
  *}
@@ -37,14 +37,14 @@
 </ul>
 
 
-{include file="presenter/submission/summary.tpl"}
+{include file="author/submission/summary.tpl"}
 
 <div class="separator"></div>
 
-{include file="presenter/submission/peerReview.tpl"}
+{include file="author/submission/peerReview.tpl"}
 
 <div class="separator"></div>
 
-{include file="presenter/submission/directorDecision.tpl"}
+{include file="author/submission/directorDecision.tpl"}
 
 {include file="common/footer.tpl"}

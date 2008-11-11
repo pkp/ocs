@@ -4,14 +4,14 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Subtemplate defining the presenter's director decision table.
+ * Subtemplate defining the author's director decision table.
  *
  * $Id$
  *}
 <a name="directorDecision"></a>
 <h3>{translate key="submission.directorDecision"}</h3>
 
-{assign var=presenterFiles value=$submission->getPresenterFileRevisions($submission->getCurrentStage())}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions($submission->getCurrentStage())}
 {assign var=directorFiles value=$submission->getDirectorFileRevisions($submission->getCurrentStage())}
 
 <table width="100%" class="data">
@@ -31,10 +31,10 @@
 			{translate key="submission.notifyDirector"}
 		</td>
 		<td class="value" width="80%">
-			{url|assign:"notifyPresenterUrl" op="emailDirectorDecisionComment" paperId=$submission->getPaperId()}
-			{icon name="mail" url=$notifyPresenterUrl}
+			{url|assign:"notifyAuthorUrl" op="emailDirectorDecisionComment" paperId=$submission->getPaperId()}
+			{icon name="mail" url=$notifyAuthorUrl}
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			{translate key="submission.directorPresenterRecord"}
+			{translate key="submission.directorAuthorRecord"}
 			{if $submission->getMostRecentDirectorDecisionComment()}
 				{assign var="comment" value=$submission->getMostRecentDirectorDecisionComment()}
 				<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}
@@ -57,14 +57,14 @@
 	</tr>
 	<tr valign="top">
 		<td class="label" width="20%">
-			{translate key="submission.presenterVersion"}
+			{translate key="submission.authorVersion"}
 		</td>
 		<td class="value" width="80%">
-			{foreach from=$presenterFiles item=presenterFile key=key}
-				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$presenterFile->getFileId():$presenterFile->getRevision()}" class="file">{$presenterFile->getFileName()|escape}</a>&nbsp;&nbsp;{$presenterFile->getDateModified()|date_format:$dateFormatShort}
+			{foreach from=$authorFiles item=authorFile key=key}
+				<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$authorFile->getDateModified()|date_format:$dateFormatShort}
 				{if $mayEditPaper}
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="{url op="deletePaperFile" path=$submission->getPaperId()|to_array:$presenterFile->getFileId():$presenterFile->getRevision()}" class="action">{translate key="common.delete"}</a>
+					<a href="{url op="deletePaperFile" path=$submission->getPaperId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="action">{translate key="common.delete"}</a>
 				{/if}
 				<br />
 			{foreachelse}
@@ -74,7 +74,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label" width="20%">
-			{translate key="presenter.paper.uploadPresenterVersion"}
+			{translate key="author.paper.uploadAuthorVersion"}
 		</td>
 		<td class="value" width="80%">
 			<form method="post" action="{url op="uploadRevisedVersion"}" enctype="multipart/form-data">
@@ -89,5 +89,5 @@
 
 <div class="separator"></div>
 
-{include file="presenter/submission/layout.tpl"}
+{include file="author/submission/layout.tpl"}
 

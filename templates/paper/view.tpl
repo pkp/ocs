@@ -15,7 +15,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset|escape}" />
-	<title>{$paper->getFirstPresenter(true)|escape}</title>
+	<title>{$paper->getFirstAuthor(true)|escape}</title>
 
 	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
 	<link rel="stylesheet" href="{$baseUrl}/styles/paperView.css" type="text/css" />

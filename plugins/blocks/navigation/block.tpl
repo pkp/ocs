@@ -39,7 +39,7 @@
 				<li>&#187; <a href="{url page="schedConf" op="cfp"}">{translate key="schedConf.cfp"}</a>{if $submissionsOpenDate} ({$submissionsOpenDate|date_format:$dateFormatLong} - {$submissionsCloseDate|date_format:$dateFormatLong}){/if}</li>
 			{/if}
 			{if $schedConfShowSubmissionLink}
-				<li>&#187; <a href="{url page="presenter" op="submit" requiresPresenter="1"}">{translate key="schedConf.proposalSubmission"}</a></li>
+				<li>&#187; <a href="{url page="author" op="submit" requiresAuthor="1"}">{translate key="schedConf.proposalSubmission"}</a></li>
 			{/if}
 			<li>&#187; <a href="{url page="schedConf" op="trackPolicies"}">{translate key="schedConf.trackPolicies"}</a></li>
 			{if $schedConfShowProgram}<li>&#187; <a href="{url page="schedConf" op="program"}">{translate key="schedConf.program"}</a></li>{/if}
@@ -56,7 +56,7 @@
 		<span class="blockSubtitle">{translate key="navigation.browse"}</span>
 		<ul>
 			<li><a href="{url page="search" op="schedConfs"}">{translate key="navigation.browseByConference"}</a></li>
-			<li><a href="{url page="search" op="presenters"}">{translate key="navigation.browseByPresenter"}</a></li>
+			<li><a href="{url page="search" op="authors"}">{translate key="navigation.browseByAuthor"}</a></li>
 			<li><a href="{url page="search" op="titles"}">{translate key="navigation.browseByTitle"}</a></li>
 			{if $hasOtherConferences}
 			<li><a href="{url conference="index"}">{translate key="navigation.otherConferences"}</a></li>

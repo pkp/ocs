@@ -15,8 +15,8 @@
 	<tr>
 		<td width="20%" class="label">{translate key="paper.authors"}</td>
 		<td width="80%">
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getPresenterEmails() subject=$submission->getPaperTitle() paperId=$submission->getPaperId()}
-			{$submission->getPresenterString()|escape} {icon name="mail" url=$url}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getPaperTitle() paperId=$submission->getPaperId()}
+			{$submission->getAuthorString()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
 	<tr>
@@ -293,7 +293,7 @@
 									<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 									<input type="hidden" name="fileId" value="{$reviewerFile->getFileId()}" />
 									<input type="hidden" name="revision" value="{$reviewerFile->getRevision()}" />
-									{translate key="director.paper.showPresenter"} <input type="checkbox" name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if} />
+									{translate key="director.paper.showAuthor"} <input type="checkbox" name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if} />
 									<input type="submit" value="{translate key="common.record"}" class="button" />
 								</form>
 							</td>

@@ -57,7 +57,7 @@
 				</li>
 				<li><a href="{url conference=`$currentConference->getPath()` page="search"}">{translate key="navigation.search"}</a><br />
 					<ul class="plain">
-						<li><a href="{url conference=`$currentConference->getPath()` page="search" op="authors"}">{translate key="navigation.browseByPresenter"}</a></li>
+						<li><a href="{url conference=`$currentConference->getPath()` page="search" op="authors"}">{translate key="navigation.browseByAuthor"}</a></li>
 						<li><a href="{url conference=`$currentConference->getPath()` page="search" op="titles"}">{translate key="navigation.browseByTitle"}</a></li>
 					</ul>
 				</li>

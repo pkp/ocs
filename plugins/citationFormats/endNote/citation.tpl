@@ -13,8 +13,8 @@
 {else}
 {url|assign:"paperUrl" page="paper" op="view" path=$paperId}
 {/if}
-{foreach from=$paper->getPresenters() item=presenter}
-%A {$presenter->getFullName(true)|escape}
+{foreach from=$paper->getAuthors() item=author}
+%A {$author->getFullName(true)|escape}
 {/foreach}
 %D {$paper->getDatePublished()|date_format:"%Y"}
 %T {$paper->getPaperTitle()|strip_tags}

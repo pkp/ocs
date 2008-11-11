@@ -42,7 +42,7 @@
 	<tr valign="top">
 		<td>{$paperId|escape}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
-		<td>{$submission->getPresenterString(true)|truncate:40:"..."|escape}</td>
+		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionReview" path=$paperId}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td>
 			<a href="{url op="movePaper" d=u paperId=$submission->getPaperId()}" class="plain">&uarr;</a>

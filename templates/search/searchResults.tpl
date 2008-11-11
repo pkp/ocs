@@ -93,7 +93,7 @@ function ensureKeyword() {
 </tr>
 <tr>
 	<td colspan="{$numCols|escape}" style="padding-left: 30px;font-style: italic;">
-		{foreach from=$paper->getPresenters() item=authorItem name=authorList}
+		{foreach from=$paper->getAuthors() item=authorItem name=authorList}
 			{$authorItem->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
 		{/foreach}
 	</td>

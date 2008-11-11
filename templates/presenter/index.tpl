@@ -4,7 +4,7 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Conference presenter index.
+ * Conference author index.
  *
  * $Id$
  *}
@@ -20,12 +20,12 @@
 
 <br />
 
-{include file="presenter/$pageToDisplay.tpl"}
+{include file="author/$pageToDisplay.tpl"}
 
 {if $acceptingSubmissions}
 	<p>
-		{translate key="presenter.submit.startHere"}<br/>
-		<a href="{url op="submit"}" class="action">{translate key="presenter.submit.startHereLink"}</a><br />
+		{translate key="author.submit.startHere"}<br/>
+		<a href="{url op="submit"}" class="action">{translate key="author.submit.startHereLink"}</a><br />
 	</p>
 {else}
 	<p>

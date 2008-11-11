@@ -38,7 +38,7 @@
 	{if $currentConference->getLocalizedSetting('reviewPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if $currentConference->getLocalizedSetting('pubFreqPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="publicationFrequency"}">{translate key="about.publicationFrequency"}</a></li>{/if}
 	{if $currentConference->getLocalizedSetting('archiveAccessPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiveAccessPolicy"}">{translate key="about.archiveAccessPolicy"}</a></li>{/if}
-	{if $conferenceSettings.enableDelayedOpenAccess || $conferenceSettings.enablePresenterSelfArchive}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
+	{if $conferenceSettings.enableDelayedOpenAccess || $conferenceSettings.enableAuthorSelfArchive}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{if $conferenceSettings.enableLockss && $currentConference->getLocalizedSetting('lockssLicense') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiving"}">{translate key="about.archiving"}</a></li>{/if}
 	{if $showAboutSchedConf && $schedConfPaymentsEnabled}<li>&#187; <a href="{url op="registration"}">{translate key="about.registration"}</a></li>{/if}
 	{foreach key=key from=$customAboutItems item=customAboutItem}

@@ -170,7 +170,7 @@
 							<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 							<input type="hidden" name="fileId" value="{$reviewerFile->getFileId()}" />
 							<input type="hidden" name="revision" value="{$reviewerFile->getRevision()}" />
-							{translate key="director.paper.showPresenter"} <input type="checkbox" name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if} />
+							{translate key="director.paper.showAuthor"} <input type="checkbox" name="viewable" value="1"{if $reviewerFile->getViewable()} checked="checked"{/if} />
 							<input type="submit" value="{translate key="common.record"}" class="button" />
 						</form>
 					</td>
@@ -191,7 +191,7 @@
 
 <h4>{translate key="trackDirector.regrets.decisionStage" stage=$stagePlusOne}</h4>
 
-{assign var=authorFiles value=$submission->getPresenterFileRevisions($stagePlusOne)}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions($stagePlusOne)}
 {assign var=directorFiles value=$submission->getDirectorFileRevisions($stagePlusOne)}
 
 <table class="data" width="100%">
@@ -208,9 +208,9 @@
 		</td>
 	</tr>
 	<tr valign="top">
-		<td class="label" width="20%">{translate key="submission.notifyPresenter"}</td>
+		<td class="label" width="20%">{translate key="submission.notifyAuthor"}</td>
 		<td class="value" width="80%">
-			{translate key="submission.directorPresenterRecord"}
+			{translate key="submission.directorAuthorRecord"}
 			{if $submission->getMostRecentDirectorDecisionComment()}
 				{assign var="comment" value=$submission->getMostRecentDirectorDecisionComment()}
 				<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}

@@ -54,7 +54,7 @@ function invokeWLA() {
 <table width="100%" class="data">
 	<tr valign="top">
 		<td class="label" width="20%"><label for="author">{translate key="user.role.author"}</label></td>
-		<td class="value" width="80%"><input name="author" id="author" type="text" size="20" maxlength="40" class="textField" value="{$paper->getPresenterString()|escape}" /></td>
+		<td class="value" width="80%"><input name="author" id="author" type="text" size="20" maxlength="40" class="textField" value="{$paper->getAuthorString()|escape}" /></td>
 	</tr>
 	<tr valign="top">
 		<td class="label"><label for="title">{translate key="paper.title"}</label></td>

@@ -122,15 +122,15 @@
 		<ul class="plain">
 			<li>
 				&#187;
-				{if $allowRegPresenter}
+				{if $allowRegAuthor}
 					{if $submissionsOpen}
 						<a href="{url page="author" op="submit"}">{translate key="user.noRoles.submitProposal"}</a>
 					{else}{* $submissionsOpen *}
 						{translate key="user.noRoles.submitProposalSubmissionsClosed"}
 					{/if}{* $submissionsOpen *}
-				{else}{* $allowRegPresenter *}
+				{else}{* $allowRegAuthor *}
 					{translate key="user.noRoles.submitProposalRegClosed"}
-				{/if}{* $allowRegPresenter *}
+				{/if}{* $allowRegAuthor *}
 			</li>
 			<li>
 				&#187;

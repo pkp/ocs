@@ -14,8 +14,8 @@
 {url|assign:"paperUrl" page="paper" op="view" path=$paperId}
 {/if}
 TY  - JOUR
-{foreach from=$paper->getPresenters() item=presenter}
-AU  - {$presenter->getFullName(true)|escape}
+{foreach from=$paper->getAuthors() item=author}
+AU  - {$author->getFullName(true)|escape}
 {/foreach}
 PY  - {$paper->getDatePublished()|date_format:"%Y"}
 TI  - {$paper->getPaperTitle()|strip_tags}

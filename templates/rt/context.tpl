@@ -83,7 +83,7 @@
 			<td width="80%" class="value"><input name="searchTerm" value="{$defineTerm|escape}" length="40" class="textField" />
 		</tr>
 	{elseif $context->getAuthorTerms() || $context->getCitedBy()}
-		{foreach from=$paper->getPresenters() item=author key=key}
+		{foreach from=$paper->getAuthors() item=author key=key}
 			<tr valign="top">
 				<td width="20%" class="label" align="right">
 					<input type="checkbox" checked="checked" style="checkbox" name="searchTerm{$key+1}Check" value="1" />

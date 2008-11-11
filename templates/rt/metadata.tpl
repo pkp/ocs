@@ -32,12 +32,12 @@
 	<td>{translate key="rt.metadata.pkp.title"}</td>
 	<td>{$paper->getPaperTitle()|strip_unsafe_html}</td>
 </tr>
-{foreach from=$paper->getPresenters() item=author}
+{foreach from=$paper->getAuthors() item=author}
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>
 <tr valign="top">
 	<td>2.</td>
-	<td width="25%">{translate key="rt.metadata.dublinCore.primaryPresenter"}</td>
-	<td>{translate key="rt.metadata.pkp.primaryPresenter"}</td>
+	<td width="25%">{translate key="rt.metadata.dublinCore.primaryAuthor"}</td>
+	<td>{translate key="rt.metadata.pkp.primaryAuthor"}</td>
 	<td>
 		{$author->getFullName()|escape}{if $author->getAffiliation()}; {$author->getAffiliation()|escape}{/if}{if $author->getCountry()}; {$author->getCountryLocalized()|escape}{/if}
 		</td>

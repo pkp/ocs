@@ -18,7 +18,7 @@
 	{if $currentConference->getLocalizedSetting('reviewPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if $currentConference->getLocalizedSetting('pubFreqPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="publicationFrequency"}">{translate key="about.publicationFrequency"}</a></li>{/if}
 	{if $currentConference->getLocalizedSetting('archiveAccessPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiveAccessPolicy"}">{translate key="about.archiveAccessPolicy"}</a></li>{/if}
-	{if !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
+	{if !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enableAuthorSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{if $conferenceSettings.enableLockss && $currentConference->getLocalizedSetting('lockssLicense') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiving"}">{translate key="about.archiving"}</a></li>{/if}
 	{foreach key=key from=$currentConference->getLocalizedSetting('customAboutItems') item=customAboutItem}
 		{if !empty($customAboutItem.title)}
@@ -54,13 +54,13 @@
 <div class="separator">&nbsp;</div>
 {/if}
 
-{if !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enablePresenterSelfArchive)}
+{if !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enableAuthorSelfArchive)}
 <a name="openAccessPolicy"></a><h3>{translate key="about.openAccessPolicy"}</h3>
 	{if $conferenceSettings.enableDelayedOpenAccess}
 		<h4>{translate key="about.delayedOpenAccess"}</h4> 
 		<p>{translate key="about.delayedOpenAccessDescription" delayedOpenAccessDuration=$conferenceSettings.delayedOpenAccessDuration|escape}</p>
 	{/if}
-	{if $conferenceSettings.enablePresenterSelfArchive} 
+	{if $conferenceSettings.enableAuthorSelfArchive} 
 		<h4>{translate key="about.authorSelfArchive"}</h4> 
 		<p>{$currentConference->getLocalizedSetting('authorSelfArchivePolicy')|nl2br}</p>
 	{/if}

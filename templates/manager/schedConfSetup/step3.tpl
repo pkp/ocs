@@ -102,7 +102,7 @@
 <h3>3.3 {translate key="manager.schedConfSetup.review.directorDecision"}</h3>
 
 <p>
-	<input type="checkbox" name="notifyAllPresentersOnDecision" id="notifyAllPresentersOnDecision" value="1"{if $notifyAllPresentersOnDecision} checked="checked"{/if} />&nbsp;<label for="notifyAllPresentersOnDecision">{translate key="manager.schedConfSetup.review.notifyAllPresentersOnDecision"}</label>
+	<input type="checkbox" name="notifyAllAuthorsOnDecision" id="notifyAllAuthorsOnDecision" value="1"{if $notifyAllAuthorsOnDecision} checked="checked"{/if} />&nbsp;<label for="notifyAllAuthorsOnDecision">{translate key="manager.schedConfSetup.review.notifyAllAuthorsOnDecision"}</label>
 </p>
 
 <div class="separator"></div>

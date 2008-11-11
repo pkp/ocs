@@ -16,7 +16,7 @@
 		<td width="5%">{translate key="common.id"}</td>
 		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="submissions.submit"}</td>
 		<td width="5%">{translate key="submissions.track"}</td>
-		<td width="25%">{translate key="paper.presenters"}</td>
+		<td width="25%">{translate key="paper.authors"}</td>
 		<td width="35%">{translate key="paper.title"}</td>
 		<td width="25%" align="right">{translate key="common.status"}</td>
 	</tr>
@@ -32,7 +32,7 @@
 		<td>{$paperId|escape}</td>
 		<td>{if $submission->getDateSubmitted()}{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}{else}&mdash;{/if}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
-		<td>{$submission->getPresenterString(true)|truncate:40:"..."|escape}</td>
+		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		{if $submissionProgress == 0}
 			<td><a href="{url op="submission" path=$paperId}" class="action">{if $submission->getPaperTitle()}{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
 			<td align="right">
@@ -55,7 +55,7 @@
 				{if $currentStage==REVIEW_STAGE_ABSTRACT}
 					{translate key="submissions.incomplete"}
 					<br />
-					<a href="{url op="deleteSubmission" path=$paperId}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="presenter.submissions.confirmDelete"}')">
+					<a href="{url op="deleteSubmission" path=$paperId}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="author.submissions.confirmDelete"}')">
 						{translate key="common.delete"}
 					</a>
 				{else}

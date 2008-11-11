@@ -4,7 +4,7 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Presenter's submission summary.
+ * Author's submission summary.
  *
  * $Id$
  *}
@@ -28,14 +28,14 @@
 	{/if}
 </ul>
 
-{include file="presenter/submission/management.tpl"}
+{include file="author/submission/management.tpl"}
 
 <div class="separator"></div>
 
-{include file="presenter/submission/status.tpl"}
+{include file="author/submission/status.tpl"}
 
 <div class="separator"></div>
 
-{include file="presenter/submission/metadata.tpl"}
+{include file="author/submission/metadata.tpl"}
 
 {include file="common/footer.tpl"}

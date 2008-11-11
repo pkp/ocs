@@ -185,7 +185,7 @@
 {/if}
 {/if}
 	
-{if ($allowRegReader || $allowRegReader === null) or $enableOpenAccessNotification or ($allowRegPresenter || $allowRegPresenter === null) or ($allowRegReviewer || $allowRegReviewer === null)}
+{if ($allowRegReader || $allowRegReader === null) or $enableOpenAccessNotification or ($allowRegAuthor || $allowRegAuthor === null) or ($allowRegReviewer || $allowRegReviewer === null)}
 <tr valign="top">
 	<td class="label">{fieldLabel suppressId="true" name="createAs" key="user.account.createAs"}</td>
 	<td class="value">
@@ -195,8 +195,8 @@
 		{if $enableOpenAccessNotification}
 			<input type="checkbox" name="openAccessNotification" id="openAccessNotification" value="1"{if $openAccessNotification} checked="checked"{/if} /> <label for="openAccessNotification">{translate key="user.role.reader"}</label>: {translate key="user.account.openAccessNotificationDescription"}<br />
 		{/if}
-		{if $allowRegPresenter || $allowRegPresenter === null}
-			<input type="checkbox" name="createAsPresenter" id="createAsPresenter" value="1"{if $createAsPresenter} checked="checked"{/if} /> <label for="createAsPresenter">{translate key="user.role.author"}</label>: {translate key="user.account.authorDescription"}<br />
+		{if $allowRegAuthor || $allowRegAuthor === null}
+			<input type="checkbox" name="createAsAuthor" id="createAsAuthor" value="1"{if $createAsAuthor} checked="checked"{/if} /> <label for="createAsAuthor">{translate key="user.role.author"}</label>: {translate key="user.account.authorDescription"}<br />
 		{/if}
 		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="createAsReviewer" id="createAsReviewer" value="1"{if $createAsReviewer} checked="checked"{/if} /> <label for="createAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.account.reviewerDescriptionNoInterests"}{else}{translate key="user.account.reviewerDescription"} <input type="text" name="interests[{$formLocale|escape}]" value="{$interests[$formLocale]|escape}" size="20" maxlength="255" class="textField" />{/if}
 		{/if}

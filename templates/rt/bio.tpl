@@ -15,7 +15,7 @@
 
 <h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
 
-{foreach from=$paper->getPresenters() item=author name=authors}
+{foreach from=$paper->getAuthors() item=author name=authors}
 <p>
 	<em>{$author->getFullName()|escape}</em><br />
 	{if $author->getUrl()}<a href="{$author->getUrl()|escape:"quotes"}">{$author->getUrl()|escape}</a><br/>{/if}
@@ -23,7 +23,7 @@
 	{if $author->getCountry()}<br/>{$author->getCountryLocalized()|escape}{/if}
 </p>
 
-<p>{$author->getPresenterBiography()|strip_unsafe_html|nl2br}</p>
+<p>{$author->getAuthorBiography()|strip_unsafe_html|nl2br}</p>
 
 {if !$smarty.foreach.authors.last}<div class="separator"></div>{/if}
 

@@ -4,7 +4,7 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Subtemplate defining the presenter's submission summary table.
+ * Subtemplate defining the author's submission summary table.
  *
  * $Id$
  *}
@@ -13,10 +13,10 @@
 
 <table width="100%" class="data">
 	<tr>
-		<td width="20%" class="label">{translate key="paper.presenters"}</td>
+		<td width="20%" class="label">{translate key="paper.authors"}</td>
 		<td width="80%">
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getPresenterEmails() subject=$submission->getPaperTitle() paperId=$submission->getPaperId()}
-			{$submission->getPresenterString()|escape} {icon name="mail" url=$url}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getPaperTitle() paperId=$submission->getPaperId()}
+			{$submission->getAuthorString()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
 	<tr>

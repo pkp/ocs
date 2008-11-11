@@ -10,11 +10,11 @@
  *}
 <div class="separator"></div>
 
-{assign var=presenters value=$paper->getPresenters()}
-{assign var=presenterCount value=$presenters|@count}
-{foreach from=$presenters item=presenter name=presenters key=i}
-	{assign var=firstName value=$presenter->getFirstName()}
-	{$presenter->getLastName()|escape}, {$firstName[0]|escape}.{if $i==$presenterCount-2}, &amp; {elseif $i<$presenterCount-1}, {/if}
+{assign var=authors value=$paper->getAuthors()}
+{assign var=authorCount value=$authors|@count}
+{foreach from=$authors item=author name=authors key=i}
+	{assign var=firstName value=$author->getFirstName()}
+	{$author->getLastName()|escape}, {$firstName[0]|escape}.{if $i==$authorCount-2}, &amp; {elseif $i<$authorCount-1}, {/if}
 {/foreach}
 
 ({$paper->getDatePublished()|date_format:'%Y'}).

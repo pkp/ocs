@@ -118,7 +118,7 @@ function sortBy(sortName) {
 		<td rowspan="4">
 			<input name="paperIds[]" type="hidden" value="{$publishedPaper->getPaperId()|escape}" />
 			{$publishedPaper->getPaperTitle()|escape}<br />
-			<em>{$publishedPaper->getPresenterString()|escape}</em>
+			<em>{$publishedPaper->getAuthorString()|escape}</em>
 		</td>
 		<td width="4%"><input id="paper{$publishedPaper->getPaperId()|escape}RoomExists" type="checkbox" {if $publishedPaper->getRoomId()}checked="checked" {/if}name="paper{$publishedPaper->getPaperId()|escape}RoomExists" onchange="changeLocation({$publishedPaper->getPaperId()|escape});" /></td>
 		<td width="9%">{fieldLabel name="paper`$publishedPaper->getPaperId()`RoomExists" key="manager.scheduler.location"}</td>

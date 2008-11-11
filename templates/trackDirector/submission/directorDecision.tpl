@@ -39,12 +39,12 @@
 	</td>
 </tr>
 <tr valign="top">
-	<td class="label">{translate key="submission.notifyPresenter"}</td>
+	<td class="label">{translate key="submission.notifyAuthor"}</td>
 	<td class="value" colspan="2">
-		{url|assign:"notifyPresenterUrl" op="emailDirectorDecisionComment" paperId=$submission->getPaperId()}
-		{icon name="mail" url=$notifyPresenterUrl}
+		{url|assign:"notifyAuthorUrl" op="emailDirectorDecisionComment" paperId=$submission->getPaperId()}
+		{icon name="mail" url=$notifyAuthorUrl}
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		{translate key="submission.directorPresenterRecord"}
+		{translate key="submission.directorAuthorRecord"}
 		{if $submission->getMostRecentDirectorDecisionComment()}
 			{assign var="comment" value=$submission->getMostRecentDirectorDecisionComment()}
 			<a href="javascript:openComments('{url op="viewDirectorDecisionComments" path=$submission->getPaperId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a>&nbsp;&nbsp;{$comment->getDatePosted()|date_format:$dateFormatShort}
@@ -62,7 +62,7 @@
 
 <form method="post" action="{url op="directorReview" path=$stage}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
-{assign var=authorFiles value=$submission->getPresenterFileRevisions($stage)}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions($stage)}
 {assign var=directorFiles value=$submission->getDirectorFileRevisions($stage)}
 {assign var=reviewFile value=$submission->getReviewFile()}
 {assign var="authorRevisionExists" value=false}

@@ -13,7 +13,7 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>{$paper->getFirstPresenter(true)|escape}</title>
+	<title>{$paper->getFirstAuthor(true)|escape}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset|escape}" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -76,7 +76,7 @@
 	<a href="{url schedConf=""}" target="_parent">{$conference->getConferenceTitle()|escape}</a> &gt;
 	<a href="{url page="index"}" target="_parent">{$schedConf->getSchedConfTitle()|escape}</a> &gt;
 	<a href="{url page="schedConf" op="presentations"}" target="_parent">{$track->getTrackTitle()|escape}</a> &gt;
-	<a href="{url page="paper" op="view" path=$paperId|to_array:$galleyId}" class="current" target="_parent">{$paper->getFirstPresenter(true)|escape}</a>
+	<a href="{url page="paper" op="view" path=$paperId|to_array:$galleyId}" class="current" target="_parent">{$paper->getFirstAuthor(true)|escape}</a>
 </div>
 
 <div id="content">
@@ -95,7 +95,7 @@
 {else}
 
 	<h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
-	<div><em>{$paper->getPresenterString()|escape}</em></div>
+	<div><em>{$paper->getAuthorString()|escape}</em></div>
 	<br />
 
 	<blockquote>

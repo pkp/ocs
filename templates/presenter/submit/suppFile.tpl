@@ -8,10 +8,10 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="presenter.submit.step4a"}
-{include file="presenter/submit/submitHeader.tpl"}
+{assign var="pageTitle" value="author.submit.step4a"}
+{include file="author/submit/submitHeader.tpl"}
 
-<p><a href="{url op="submit" path=4 paperId=$paperId}">&lt;&lt; {translate key="presenter.submit.backToSupplementaryFiles"}</a></p>
+<p><a href="{url op="submit" path=4 paperId=$paperId}">&lt;&lt; {translate key="author.submit.backToSupplementaryFiles"}</a></p>
 
 <form name="submit" method="post" action="{url op="saveSubmitSuppFile" path=$suppFileId}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$paperId|escape}" />
@@ -30,9 +30,9 @@
 </table>
 {/if}
 
-<h3>{translate key="presenter.submit.supplementaryFileData"}</h3>
+<h3>{translate key="author.submit.supplementaryFileData"}</h3>
 
-<p>{translate key="presenter.submit.supplementaryFileDataDescription"}</p>
+<p>{translate key="author.submit.supplementaryFileDataDescription"}</p>
 
 <table class="data" width="100%">
 <tr valign="top">
@@ -40,7 +40,7 @@
 	<td width="80%" class="value"><input type="text" class="textField" name="title[{$formLocale|escape}]" id="title" value="{$title[$formLocale]|escape}" size="60" maxlength="255" /></td>
 </tr>
 <tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="creator" key="presenter.submit.suppFile.createrOrOwner"}</td>
+	<td width="20%" class="label">{fieldLabel name="creator" key="author.submit.suppFile.createrOrOwner"}</td>
 	<td width="80%" class="value"><input type="text" name="creator[{$formLocale|escape}]" class="textField" id="creator" value="{$creator[$formLocale]|escape}" size="60" maxlength="255" /></td>
 </tr>
 <tr valign="top">
@@ -49,10 +49,10 @@
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="type" key="common.type"}</td>
-	<td width="80%" class="value"><select name="type" class="selectMenu" id="type" size="1">{html_options_translate output=$typeOptionsOutput values=$typeOptionsValues translateValues="true" selected=$type}</select><br /><label for="typeOther">{translate key="presenter.submit.suppFile.specifyOtherType"}</label> <input type="text" name="typeOther[{$formLocale|escape}]" id="typeOther" class="textField" value="{$typeOther[$formLocale]|escape}" size="45" maxlength="255" /></td>
+	<td width="80%" class="value"><select name="type" class="selectMenu" id="type" size="1">{html_options_translate output=$typeOptionsOutput values=$typeOptionsValues translateValues="true" selected=$type}</select><br /><label for="typeOther">{translate key="author.submit.suppFile.specifyOtherType"}</label> <input type="text" name="typeOther[{$formLocale|escape}]" id="typeOther" class="textField" value="{$typeOther[$formLocale]|escape}" size="45" maxlength="255" /></td>
 </tr>
 <tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="description" key="presenter.submit.suppFile.briefDescription"}</td>
+	<td width="20%" class="label">{fieldLabel name="description" key="author.submit.suppFile.briefDescription"}</td>
 	<td width="80%" class="value"><textarea name="description[{$formLocale|escape}]" class="textArea" id="description" rows="5" cols="60">{$description[$formLocale]|escape}</textarea></td>
 </tr>
 <tr valign="top">
@@ -62,10 +62,10 @@
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>
-	<td><span class="instruct">{translate key="presenter.submit.suppFile.publisherDescription"}</span></td>
+	<td><span class="instruct">{translate key="author.submit.suppFile.publisherDescription"}</span></td>
 </tr>
 <tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="sponsor" key="presenter.submit.suppFile.contributorOrSponsor"}</td>
+	<td width="20%" class="label">{fieldLabel name="sponsor" key="author.submit.suppFile.contributorOrSponsor"}</td>
 	<td width="80%" class="value"><input type="text" name="sponsor[{$formLocale|escape}]" class="textField" id="sponsor" value="{$sponsor[$formLocale]|escape}" size="60" maxlength="255" /></td>
 </tr>
 <tr valign="top">
@@ -74,7 +74,7 @@
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>
-	<td><span class="instruct">{translate key="presenter.submit.suppFile.dateDescription"}</span></td>
+	<td><span class="instruct">{translate key="author.submit.suppFile.dateDescription"}</span></td>
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="source" key="common.source"}</td>
@@ -82,7 +82,7 @@
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>
-	<td><span class="instruct">{translate key="presenter.submit.suppFile.sourceDescription"}</span></td>
+	<td><span class="instruct">{translate key="author.submit.suppFile.sourceDescription"}</span></td>
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="language" key="common.language"}</td>
@@ -90,13 +90,13 @@
 </tr>
 <tr valign="top">
 	<td>&nbsp;</td>
-	<td><span class="instruct">{translate key="presenter.submit.languageInstructions"}</span></td>
+	<td><span class="instruct">{translate key="author.submit.languageInstructions"}</span></td>
 </tr>
 </table>
 
 <div class="separator"></div>
 
-<h3>{translate key="presenter.submit.supplementaryFileUpload"}</h3>
+<h3>{translate key="author.submit.supplementaryFileUpload"}</h3>
 
 <table class="data" width="100%">
 {if $suppFile && $suppFile->getFileId()}
@@ -122,12 +122,12 @@
 <tr valign="top">
 	<td>&nbsp;</td>
 	<td class="value"><input type="checkbox" name="showReviewers" id="showReviewers" value="1"{if $showReviewers==1} checked="checked"{/if} /> 
-	<label for="showReviewers">{translate key="presenter.submit.suppFile.availableToPeers"}</label></td>
+	<label for="showReviewers">{translate key="author.submit.suppFile.availableToPeers"}</label></td>
 </tr>
 </table>
 {else}
 <tr valign="top">
-	<td colspan="2" class="nodata">{translate key="presenter.submit.suppFile.noFile"}</td>
+	<td colspan="2" class="nodata">{translate key="author.submit.suppFile.noFile"}</td>
 </tr>
 </table>
 {/if}
@@ -143,7 +143,7 @@
 <tr valign="top">
 	<td>&nbsp;</td>
         <td class="value"><input type="checkbox" name="showReviewers" id="showReviewers" value="1"{if $showReviewers==1} checked="checked"{/if} />&nbsp;
-	<label for="showReviewers">{translate key="presenter.submit.suppFile.availableToPeers"}</label></td>
+	<label for="showReviewers">{translate key="author.submit.suppFile.availableToPeers"}</label></td>
 </tr>
 {/if}
 </table>

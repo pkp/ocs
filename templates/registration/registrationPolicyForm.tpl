@@ -152,8 +152,8 @@
 
 	<h4>{translate key="manager.registrationPolicies.authorSelfArchive"}</h4>
 	<p>
-	<input type="checkbox" name="enablePresenterSelfArchive" id="enablePresenterSelfArchive" value="1"{if $enablePresenterSelfArchive} checked="checked"{/if} />&nbsp;
-	<label for="enablePresenterSelfArchive">{translate key="manager.registrationPolicies.authorSelfArchiveDescription"}</label>
+	<input type="checkbox" name="enableAuthorSelfArchive" id="enableAuthorSelfArchive" value="1"{if $enableAuthorSelfArchive} checked="checked"{/if} />&nbsp;
+	<label for="enableAuthorSelfArchive">{translate key="manager.registrationPolicies.authorSelfArchiveDescription"}</label>
 	</p>
 	<p>
 	<textarea name="authorSelfArchivePolicy[{$formLocale|escape}]" id="authorSelfArchivePolicy" rows="12" cols="60" class="textArea">{$authorSelfArchivePolicy[$formLocale]|escape}</textarea>

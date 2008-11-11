@@ -55,15 +55,15 @@
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="40%" class="label">{translate key="manager.timeline.openRegPresenter"}</td>
+		<td width="40%" class="label">{translate key="manager.timeline.openRegAuthor"}</td>
 		<td width="60%" class="value">
-			{$regPresenterOpenDate|date_format:$dateFormatLong}
+			{$regAuthorOpenDate|date_format:$dateFormatLong}
 		</td>
 	</tr>
 	<tr valign="top">
-		<td width="40%" class="label">{translate key="manager.timeline.closeRegPresenter"}</td>
+		<td width="40%" class="label">{translate key="manager.timeline.closeRegAuthor"}</td>
 		<td width="60%" class="value">
-			{$regPresenterCloseDate|date_format:$dateFormatLong}
+			{$regAuthorCloseDate|date_format:$dateFormatLong}
 		</td>
 	</tr>
 	<tr valign="top">

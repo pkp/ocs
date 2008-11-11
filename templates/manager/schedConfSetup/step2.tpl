@@ -184,9 +184,9 @@
 
 <div class="separator"></div>
 
-<h3>2.4 {translate key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWork"}</h3>
+<h3>2.4 {translate key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWork"}</h3>
 
-<p>{translate key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWorkDescription"}</p>
+<p>{translate key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWorkDescription"}</p>
 
 <table width="100%" class="data">
 	<tr valign="top">

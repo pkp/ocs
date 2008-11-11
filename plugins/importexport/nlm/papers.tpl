@@ -42,7 +42,7 @@ function toggleChecked() {
 		<td width="5%">&nbsp;</td>
 		<td width="25%">{translate key="track.track"}</td>
 		<td width="40%">{translate key="paper.title"}</td>
-		<td width="25%">{translate key="paper.presenters"}</td>
+		<td width="25%">{translate key="paper.authors"}</td>
 		<td width="5%" align="right">{translate key="common.action"}</td>
 	</tr>
 	<tr>
@@ -56,7 +56,7 @@ function toggleChecked() {
 		<td><input type="checkbox" name="paperId[]" value="{$paper->getPaperId()}"/></td>
 		<td>{$paper->getTrackTitle()}</td>
 		<td>{$paper->getPaperTitle()|strip_unsafe_html}</td>
-		<td>{$paper->getPresenterString()|escape}</td>
+		<td>{$paper->getAuthorString()|escape}</td>
 		<td align="right"><a href="{plugin_url path="exportPaper"|to_array:$paper->getPaperId()}" class="action">{translate key="common.export"}</a></td>
 	</tr>
 	<tr>

@@ -87,7 +87,7 @@
 
 <p><textarea name="readerInformation[{$formLocale|escape}]" id="readerInformation" rows="10" cols="60" class="textArea">{$readerInformation[$formLocale]|escape}</textarea></p>
 
-<h4>{translate key="manager.setup.additionalContent.information.forPresenters"}</h4>
+<h4>{translate key="manager.setup.additionalContent.information.forAuthors"}</h4>
 
 <p><textarea name="authorInformation[{$formLocale|escape}]" id="authorInformation" rows="10" cols="60" class="textArea">{$authorInformation[$formLocale]|escape}</textarea></p>
 

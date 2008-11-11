@@ -113,15 +113,15 @@
 	<td class="value"><textarea name="biography[{$formLocale|escape}]" id="biography" rows="5" cols="40" class="textArea">{$biography[$formLocale]|escape}</textarea></td>
 </tr>
 
-{if $allowRegReader || $allowRegPresenter || $allowRegReviewer}
+{if $allowRegReader || $allowRegAuthor || $allowRegReviewer}
 	<tr valign="top">
 		<td class="label">{translate key="user.roles"}</td>
 		<td class="value">
 			{if $allowRegReader}
 				<input type="checkbox" id="readerRole" name="readerRole" {if $isReader}checked="checked" {/if}>&nbsp;{fieldLabel name="readerRole" key="user.role.reader"}<br/>
 			{/if}
-			{if $allowRegPresenter}
-				<input type="checkbox" id="authorRole" name="authorRole" {if $isPresenter}checked="checked" {/if}>&nbsp;{fieldLabel name="authorRole" key="user.role.author"}<br/>
+			{if $allowRegAuthor}
+				<input type="checkbox" id="authorRole" name="authorRole" {if $isAuthor}checked="checked" {/if}>&nbsp;{fieldLabel name="authorRole" key="user.role.author"}<br/>
 			{/if}
 			{if $allowRegReviewer}
 				<input type="checkbox" id="reviewerRole" name="reviewerRole" {if $isReviewer}checked="checked" {/if}>&nbsp;{fieldLabel name="reviewerRole" key="user.role.reviewer"}<br/>

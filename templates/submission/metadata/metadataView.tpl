@@ -13,7 +13,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{if $canViewPresenters}
+{if $canViewAuthors}
 <h3>{translate key="paper.authors"}</h3>
 	
 <table width="100%" class="data">

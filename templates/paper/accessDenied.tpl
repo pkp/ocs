@@ -14,7 +14,7 @@
 {/strip}
 
 <h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
-<div><em>{$paper->getPresenterString()|escape}</em></div>
+<div><em>{$paper->getAuthorString()|escape}</em></div>
 <br />
 
 <p>{translate key="reader.accessDenied"}</p>

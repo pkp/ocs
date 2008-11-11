@@ -64,9 +64,9 @@
 	</td>
 </tr>
 <tr valign="top">
-	<td><input type="radio" id="allPresenters" name="whichUsers" value="allPresenters"/></td>
+	<td><input type="radio" id="allAuthors" name="whichUsers" value="allAuthors"/></td>
 	<td class="label">
-		<label for="allPresenters">{translate key="director.notifyUsers.allPresenters" count=$allPresentersCount}</label>
+		<label for="allAuthors">{translate key="director.notifyUsers.allAuthors" count=$allAuthorsCount}</label>
 	</td>
 </tr>
 <tr valign="top">

@@ -12,7 +12,7 @@
 
 {literal}
 <pre style="font-size: 1.5em;">@paper{{/literal}{$schedConf->getLocalizedSetting('acronym')|escape}{$paperId|escape}{literal},
-	author = {{/literal}{assign var=presenters value=$paper->getPresenters()}{foreach from=$presenters item=presenter name=presenters key=i}{assign var=firstName value=$presenter->getFirstName()}{assign var=presenterCount value=$presenters|@count}{$firstName|escape} {$presenter->getLastName()|escape}{if $i<$presenterCount-1} and {/if}{/foreach}{literal}},
+	author = {{/literal}{assign var=authors value=$paper->getAuthors()}{foreach from=$authors item=author name=authors key=i}{assign var=firstName value=$author->getFirstName()}{assign var=authorCount value=$authors|@count}{$firstName|escape} {$author->getLastName()|escape}{if $i<$authorCount-1} and {/if}{/foreach}{literal}},
 	title = {{/literal}{$paper->getPaperTitle()|strip_unsafe_html}{literal}},
 	conference = {{/literal}{$conference->getConferenceTitle()|escape}{literal}},
 	year = {{/literal}{$paper->getDatePublished()|date_format:'%Y'}{literal}},
