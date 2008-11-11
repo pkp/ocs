@@ -54,8 +54,8 @@
 </tr>
 <tr>
 	<td colspan="{$numCols|escape}" style="padding-left: 30px;font-style: italic;">
-		{foreach from=$paper->getPresenters() item=presenter name=presenterList}
-			{$presenter->getFullName()|escape}{if !$smarty.foreach.presenterList.last},{/if}
+		{foreach from=$paper->getPresenters() item=author name=authorList}
+			{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
 		{/foreach}
 	</td>
 </tr>

@@ -19,7 +19,7 @@ import('submission.reviewer.ReviewerSubmission');
 
 class ReviewerSubmissionDAO extends DAO {
 	var $paperDao;
-	var $presenterDao;
+	var $authorDao;
 	var $userDao;
 	var $reviewAssignmentDao;
 	var $editAssignmentDao;
@@ -33,7 +33,7 @@ class ReviewerSubmissionDAO extends DAO {
 	function ReviewerSubmissionDAO() {
 		parent::DAO();
 		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->presenterDao = &DAORegistry::getDAO('PresenterDAO');
+		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
 		$this->userDao = &DAORegistry::getDAO('UserDAO');
 		$this->reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');

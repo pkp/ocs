@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 2.3.0_preupdate.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 2.3.0 database updates XML file, run prior schema sync.
+  *
+  -->
+
+<data>
+	<!-- Bug #3859: presenter to author rename -->
+	<sql>
+		<!-- Need to clear out the instances of $presenterName and $presenterUsername -->
+		<sql>DELETE FROM email_templates_default_data</sql>
+		
+		<sql>UPDATE conference_settings SET setting_name = 'authorSelfArchivePolicy' WHERE setting_name = 'presenterSelfArchivePolicy'</sql>
+		<sql>UPDATE conference_settings SET setting_name = 'authorInformation' WHERE setting_name = 'presenterInformation'</sql>
+		<sql>UPDATE conference_settings SET setting_name = 'rtAuthorBio' WHERE setting_name = 'rtPresenterBio'</sql>
+		<sql>UPDATE conference_settings SET setting_name = 'rtEmailAuthor' WHERE setting_name = 'rtEmailPresenter'</sql>				
+	</sql>
+</data>

@@ -108,7 +108,7 @@ class CreateAccountForm extends Form {
 		$templateMgr->assign('privacyStatement', $conference->getLocalizedSetting('privacyStatement'));
 		$templateMgr->assign('enableOpenAccessNotification', $schedConf->getSetting('enableOpenAccessNotification')==1?1:0);
 		$templateMgr->assign('allowRegReader', SchedConfAction::allowRegReader($schedConf));
-		$templateMgr->assign('allowRegPresenter', SchedConfAction::allowRegPresenter($schedConf));
+		$templateMgr->assign('allowRegAuthor', SchedConfAction::allowRegAuthor($schedConf));
 		$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
 		$templateMgr->assign('source', Request::getUserVar('source'));
 		$templateMgr->assign('pageHierarchy', array(
@@ -132,7 +132,7 @@ class CreateAccountForm extends Form {
 	 */
 	function initData() {
 		$this->setData('createAsReader', 1);
-		if (Request::getUserVar('requiresPresenter')) $this->setData('createAsPresenter', 1);
+		if (Request::getUserVar('requiresAuthor')) $this->setData('createAsAuthor', 1);
 		$this->setData('existingUser', $this->existingUser);
 		$this->setData('userLocales', array());
 		$this->setData('sendPassword', 1);
@@ -148,7 +148,7 @@ class CreateAccountForm extends Form {
 			'gender', 'initials', 'country',
 			'affiliation', 'email', 'userUrl', 'phone', 'fax', 'signature',
 			'mailingAddress', 'biography', 'interests', 'userLocales',
-			'createAsReader', 'openAccessNotification', 'createAsPresenter',
+			'createAsReader', 'openAccessNotification', 'createAsAuthor',
 			'createAsReviewer', 'existingUser', 'sendPassword'
 		);
 		if ($this->captchaEnabled) {
@@ -289,14 +289,14 @@ class CreateAccountForm extends Form {
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 
 		// Roles users are allowed to register themselves in
-		$allowedRoles = array('reader' => 'createAsReader', 'presenter' => 'createAsPresenter', 'reviewer' => 'createAsReviewer');
+		$allowedRoles = array('reader' => 'createAsReader', 'author' => 'createAsAuthor', 'reviewer' => 'createAsReviewer');
 
 		import('schedConf.SchedConfAction');
 		if (!SchedConfAction::allowRegReader($schedConf)) {
 			unset($allowedRoles['reader']);
 		}
-		if (!SchedConfAction::allowRegPresenter($schedConf)) {
-			unset($allowedRoles['presenter']);
+		if (!SchedConfAction::allowRegAuthor($schedConf)) {
+			unset($allowedRoles['author']);
 		}
 		if (!SchedConfAction::allowRegReviewer($schedConf)) {
 			unset($allowedRoles['reviewer']);

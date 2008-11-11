@@ -81,7 +81,7 @@ class NavigationBlockPlugin extends BlockPlugin {
 	function getContents(&$templateMgr) {
 		$templateMgr->assign('paperSearchByOptions', array(
 			'' => 'search.allFields',
-			PAPER_SEARCH_PRESENTER => 'search.presenter',
+			PAPER_SEARCH_AUTHOR => 'search.author',
 			PAPER_SEARCH_TITLE => 'paper.title',
 			PAPER_SEARCH_ABSTRACT => 'search.abstract',
 			PAPER_SEARCH_INDEX_TERMS => 'search.indexTerms',

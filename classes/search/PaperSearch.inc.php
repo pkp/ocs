@@ -22,7 +22,7 @@
 //$Id$
 
 // Search types
-define('PAPER_SEARCH_PRESENTER',		0x00000001);
+define('PAPER_SEARCH_AUTHOR',		0x00000001);
 define('PAPER_SEARCH_TITLE',			0x00000002);
 define('PAPER_SEARCH_ABSTRACT',			0x00000004);
 define('PAPER_SEARCH_DISCIPLINE',		0x00000008);
@@ -296,7 +296,7 @@ class PaperSearch {
 	 * Return an array of search results matching the supplied
 	 * keyword IDs in decreasing order of match quality.
 	 * Keywords are supplied in an array of the following format:
-	 * $keywords[PAPER_SEARCH_PRESENTER] = array('John', 'Doe');
+	 * $keywords[PAPER_SEARCH_AUTHOR] = array('John', 'Doe');
 	 * $keywords[PAPER_SEARCH_...] = array(...);
 	 * $keywords[null] = array('Matches', 'All', 'Fields');
 	 * @param $conference object The conference to search

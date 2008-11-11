@@ -89,7 +89,7 @@
 
 <h4>{translate key="manager.setup.additionalContent.information.forPresenters"}</h4>
 
-<p><textarea name="presenterInformation[{$formLocale|escape}]" id="presenterInformation" rows="10" cols="60" class="textArea">{$presenterInformation[$formLocale]|escape}</textarea></p>
+<p><textarea name="authorInformation[{$formLocale|escape}]" id="authorInformation" rows="10" cols="60" class="textArea">{$authorInformation[$formLocale]|escape}</textarea></p>
 
 <div class="separator"></div>
 

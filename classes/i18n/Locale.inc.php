@@ -19,7 +19,7 @@
 import('i18n.PKPLocale');
 
 define('LOCALE_COMPONENT_APPLICATION_COMMON',		0x00000101);
-define('LOCALE_COMPONENT_OCS_PRESENTER',	0x00000102);
+define('LOCALE_COMPONENT_OCS_AUTHOR',	0x00000102);
 define('LOCALE_COMPONENT_OCS_DIRECTOR',		0x00000103);
 define('LOCALE_COMPONENT_OCS_MANAGER',		0x00000104);
 define('LOCALE_COMPONENT_OCS_DEFAULT',		0x00000105);
@@ -154,7 +154,7 @@ class Locale extends PKPLocale {
 		$componentMap = parent::makeComponentMap($locale);
 		$baseDir = "locale/$locale/";
 		$componentMap[LOCALE_COMPONENT_APPLICATION_COMMON] = $baseDir . 'locale.xml';
-		$componentMap[LOCALE_COMPONENT_OCS_PRESENTER] = $baseDir . 'presenter.xml';
+		$componentMap[LOCALE_COMPONENT_OCS_AUTHOR] = $baseDir . 'author.xml';
 		$componentMap[LOCALE_COMPONENT_OCS_DIRECTOR] = $baseDir . 'director.xml';
 		$componentMap[LOCALE_COMPONENT_OCS_MANAGER] = $baseDir . 'manager.xml';
 		$componentMap[LOCALE_COMPONENT_OCS_DEFAULT] = $baseDir . 'default.xml';

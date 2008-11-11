@@ -79,37 +79,37 @@ Thank you,
 		<row>
 			<field name="email_key">SUBMISSION_ACK</field>
 			<field name="subject">Submission Acknowledgement</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Thank you for your submission, "{$paperTitle}" to {$conferenceName}. With the online conference management system that we are using, you will be able to track its progress through the editorial process by logging in to the conference web site:
 
 Submission URL: {$submissionUrl}
-Username: {$presenterUsername}
+Username: {$authorUsername}
 
 If you have any questions, please contact me. Thank you for considering this conference as a venue for your work.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email, when enabled, is automatically sent to a presenter when he or she completes the process of submitting a paper or abstract to the conference. It provides information about tracking the submission through the process and thanks the presenter for the submission.</field>
+			<field name="description">This email, when enabled, is automatically sent to a author when he or she completes the process of submitting a paper or abstract to the conference. It provides information about tracking the submission through the process and thanks the author for the submission.</field>
 		</row>
 		<row>
 			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
 			<field name="subject">Submission Upload Acknowledgement</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Thank you for uploading your presentation, "{$paperTitle}" to {$conferenceName}. With the online conference management system that we are using, you will be able to track its progress through the editorial process by logging in to the conference web site:
 
 Submission URL: {$submissionUrl}
-Username: {$presenterUsername}
+Username: {$authorUsername}
 
 If you have any questions, please contact me. Thank you for considering this conference as a venue for your work.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email, when enabled, is automatically sent to a presenter when he or she completes the process of submitting a paper or abstract to the conference. It provides information about tracking the submission through the process and thanks the presenter for the submission.</field>
+			<field name="description">This email, when enabled, is automatically sent to a author when he or she completes the process of submitting a paper or abstract to the conference. It provides information about tracking the submission through the process and thanks the author for the submission.</field>
 		</row>
 		<row>
 			<field name="email_key">SUBMISSION_UNSUITABLE</field>
 			<field name="subject">Unsuitable Submission</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 An initial review of "{$paperTitle}" has made it clear that this submission does not fit within the scope and focus of {$conferenceName}. I recommend that you consult the description of this conference under About, as well as any previous scheduled conferences, to learn more about the work that we accept. You might also consider submitting this paper or abstract to another, more suitable conference.
 
@@ -128,7 +128,7 @@ An initial review of "{$paperTitle}" has made it clear that this submission does
 		<row>
 			<field name="email_key">SUBMISSION_DECISION_REVIEWERS</field>
 			<field name="subject">Decision on "{$paperTitle}"</field>
-			<field name="body">As one of the reviewers for the submission, "{$paperTitle}," to {$conferenceName}, I am sending you the reviews and editorial decision sent to the presenter of this piece. Thank you again for your important contribution to this process.
+			<field name="body">As one of the reviewers for the submission, "{$paperTitle}," to {$conferenceName}, I am sending you the reviews and editorial decision sent to the author of this piece. Thank you again for your important contribution to this process.
  
 {$editorialContactSignature}
 
@@ -347,73 +347,73 @@ Please confirm your ability to complete this vital contribution to the work of t
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_ACCEPT</field>
 			<field name="subject">Editorial Decision on Paper</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Congratulations, your submission {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate} at {$locationCity}. 
 
 Thank you and looking forward to your participation in this event.
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_DECLINE</field>
 			<field name="subject">Editorial Decision on Paper</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 We have now completed the review of your submission "{$paperTitle}." As a result...
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
  		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_REVISE</field>
 			<field name="subject">Editorial Decision on Paper</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 After a careful review of your submission, "{$paperTitle}" will be considered for presentation at {$conferenceTitle} if the following revisions are successfully implemented.
 
 Thank you and looking forward to your participation in this event.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_ACCEPT</field>
 			<field name="subject">Editorial Decision on Paper</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Congratulations, your submission {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate} at {$locationCity}. 
 
 Thank you and looking forward to your participation in this event.
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_DECLINE</field>
 			<field name="subject">Editorial Decision on Paper</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 We have now completed the review of your submission "{$paperTitle}." As a result...
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_REVISE</field>
 			<field name="subject">Editorial Decision on Paper</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 After a careful review of your submission, "{$paperTitle}" will be considered for presentation at {$conferenceTitle} if the following revisions are successfully implemented.
 
 Thank you and looking forward to your participation in this event.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent by a Track Director to a submission's Presenter to notify them that a decision has been reached in regard to a submission.</field>
+			<field name="description">This email is sent by a Track Director to a submission's Author to notify them that a decision has been reached in regard to a submission.</field>
 		</row>
 
 

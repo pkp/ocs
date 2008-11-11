@@ -61,8 +61,8 @@
 		<p>{translate key="about.delayedOpenAccessDescription" delayedOpenAccessDuration=$conferenceSettings.delayedOpenAccessDuration|escape}</p>
 	{/if}
 	{if $conferenceSettings.enablePresenterSelfArchive} 
-		<h4>{translate key="about.presenterSelfArchive"}</h4> 
-		<p>{$currentConference->getLocalizedSetting('presenterSelfArchivePolicy')|nl2br}</p>
+		<h4>{translate key="about.authorSelfArchive"}</h4> 
+		<p>{$currentConference->getLocalizedSetting('authorSelfArchivePolicy')|nl2br}</p>
 	{/if}
 
 <div class="separator">&nbsp;</div>

@@ -29,7 +29,7 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 			'copySubmissionAckSpecified' => 'bool',
 			'copySubmissionAckAddress' => 'string',
 			'cfpMessage' => 'string',
-			'presenterGuidelines' => 'string',
+			'authorGuidelines' => 'string',
 			'submissionChecklist' => 'object',
 			'metaDiscipline' => 'bool',
 			'metaDisciplineExamples' => 'string',
@@ -58,7 +58,7 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('cfpMessage', 'presenterGuidelines', 'submissionChecklist', 'metaDisciplineExamples', 'metaSubjectClassTitle', 'metaSubjectExamples', 'metaCoverageGeoExamples', 'metaCoverageChronExamples', 'metaCoverageResearchSampleExamples', 'metaTypeExamples');
+		return array('cfpMessage', 'authorGuidelines', 'submissionChecklist', 'metaDisciplineExamples', 'metaSubjectClassTitle', 'metaSubjectExamples', 'metaCoverageGeoExamples', 'metaCoverageChronExamples', 'metaCoverageResearchSampleExamples', 'metaTypeExamples');
 	}
 
 	function display() {

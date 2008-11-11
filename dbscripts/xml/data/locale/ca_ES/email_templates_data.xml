@@ -69,12 +69,12 @@ Gràcies,
 		<row>
 			<field name="email_key">SUBMISSION_ACK</field>
 			<field name="subject">Agraïment de tramesa</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Gràcies per la tramesa de "{$paperTitle}" a {$conferenceName}. Mitjançant el sistema de gestió de les conferències amb el qual treballem, podrà seguir el seu progrés a través del procés editorial validant-se a la web de les conferències.
 
 URL de l'original: {$submissionUrl}
-Nom d'usuari: {$presenterUsername}
+Nom d'usuari: {$authorUsername}
 
 Si té qualsevol dubte, per favor contacti'ns. Gràcies per considerar aquestes conferències l'espai per al seu treball.
 
@@ -84,14 +84,14 @@ Si té qualsevol dubte, per favor contacti'ns. Gràcies per considerar aquestes 
 		<row>
 			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
 			<field name="subject">Agraïment de tramesa d'original</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Gràcies per trametre la seva [presentació], "{$paperTitle}" a {$conferenceName}. 
 
 Mitjançant el sistema de gestió de conferències amb el qual treballem, podrà seguir el seu progrés a través del procés editorial validant-se en la web de les conferències.
 
 URL de l'original: {$submissionUrl}
-Nom d'usuari: {$presenterUsername}
+Nom d'usuari: {$authorUsername}
 
 Si té qualsevol dubte, per favor contacti'ns. Gràcies per considerar aquestes conferències l'espai per al seu treball.
 
@@ -101,7 +101,7 @@ Si té qualsevol dubte, per favor contacti'ns. Gràcies per considerar aquestes 
 		<row>
 			<field name="email_key">SUBMISSION_UNSUITABLE</field>
 			<field name="subject">tramesa d'original no apte</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Una revisió inicial de "{$paperTitle}" indica clarament que aquest no s'ajusta a l'enfocament i orientació de {$conferenceName}. Li recomanem que consulti la descripció de les conferències, així com altres ponències ja proposades en el programa, per a conèixer amb més detall el tipus de treballs que s'accepten. Pot considerar l'enviament de l'original o resum a altres conferències mes relatives al seu àmbit.
 
@@ -356,7 +356,7 @@ Li preguem que ens confirmi la seva disponibilitat per a completar aquesta vital
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_ACCEPT</field>
 			<field name="subject">Decisió editorial sobre l'original</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Felicitats, el seu treba "{$paperTitle}" ha sigut acceptat per a ser presentat a {$conferenceTitle} que tindrà lloc el {$conferenceDate} a {$locationCity}.
 
@@ -370,7 +370,7 @@ Gràcies per considerar la seva participació en aquest esdeveniment.
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_DECLINE</field>
 			<field name="subject">Decisió editorial sobre l'original</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Hem completat la revisió del seu original "{$paperTitle}." Amb el resultat...
 
@@ -381,7 +381,7 @@ Hem completat la revisió del seu original "{$paperTitle}." Amb el resultat...
  		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_REVISE</field>
 			<field name="subject">Decisió editorial sobre l'original</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Després d'una detinguda revisió del seu original, "{$paperTitle}" ha estat considerada positivament en {$conferenceTitle} si es realitzen les següents revisions.
 
@@ -395,7 +395,7 @@ Gràcies per considerar la seva participació en aquest esdeveniment.
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_ACCEPT</field>
 			<field name="subject">Decisión editorial sobre l'original</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Felicitats, el seu treball "{$paperTitle}" ha estat acceptat per a ser presentat en {$conferenceTitle} que tindrà lloc el {$conferenceDate} en {$locationCity}.
 
@@ -410,7 +410,7 @@ Gràcies per considerar la seva participació en aquest esdeveniment.
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_DECLINE</field>
 			<field name="subject">Decisión editorial sobre l'original</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Hem completat la revisió del original rebut "{$paperTitle}." Amb el resultat...
 
@@ -422,7 +422,7 @@ Hem completat la revisió del original rebut "{$paperTitle}." Amb el resultat...
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_REVISE</field>
 			<field name="subject">Decisión editorial sobre l'original</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Després d'una detinguda revisió del seu original, "{$paperTitle}" ha estat considerada positivament en {$conferenceTitle} si es realitzen les següents revisions.
 

@@ -41,16 +41,16 @@
 		<value>{translate key="default.conferenceSettings.privacyStatement"}</value>
 	</setting>
 	<setting type="string" locale="1">
-		<name>presenterSelfArchivePolicy</name>
-		<value>{translate key="default.conferenceSettings.presenterSelfArchivePolicy"}</value>
+		<name>authorSelfArchivePolicy</name>
+		<value>{translate key="default.conferenceSettings.authorSelfArchivePolicy"}</value>
 	</setting>
 	<setting type="string" locale="1">
 		<name>readerInformation</name>
 		<value>{translate key="default.conferenceSettings.forReaders"}</value>
 	</setting>
 	<setting type="string" locale="1">
-		<name>presenterInformation</name>
-		<value>{translate key="default.conferenceSettings.forPresenters"}</value>
+		<name>authorInformation</name>
+		<value>{translate key="default.conferenceSettings.forAuthors"}</value>
 	</setting>
 	<setting type="string" locale="1">
 		<name>lockssLicense</name>
@@ -91,7 +91,7 @@
 		<value>true</value>
 	</setting>
 	<setting type="bool" locale="0">
-		<name>rtPresenterBio</name>
+		<name>rtAuthorBio</name>
 		<value>true</value>
 	</setting>
 	<setting type="bool" locale="0">
@@ -103,7 +103,7 @@
 		<value>true</value>
 	</setting>
 	<setting type="bool" locale="0">
-		<name>rtEmailPresenter</name>
+		<name>rtEmailAuthor</name>
 		<value>true</value>
 	</setting>
 	<setting type="bool" locale="0">

@@ -102,7 +102,7 @@ class TrackDirectorAction extends Action {
 
 	/**
 	 * After a decision has been recorded, bumps the paper to the next stage.
-	 * If the submission requires completion, it's sent back to the presenter.
+	 * If the submission requires completion, it's sent back to the author.
 	 * If not, review is complete, and the paper can be released.
 	 * @param $schedConf object
 	 * @param $trackDirectorSubmission object
@@ -113,7 +113,7 @@ class TrackDirectorAction extends Action {
 
 		if($trackDirectorSubmission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL) {
 			// two-stage submission; paper required
-			// The submission is incomplete, and needs the presenter to submit
+			// The submission is incomplete, and needs the author to submit
 			// more materials (potentially for another stage of reviews)
 
 			if($trackDirectorSubmission->getCurrentStage() == REVIEW_STAGE_ABSTRACT) {
@@ -122,11 +122,11 @@ class TrackDirectorAction extends Action {
 				// review process.
 				$trackDirectorSubmission->setCurrentStage(REVIEW_STAGE_PRESENTATION);
 
-				// The paper itself needs to be collected. Flag it so the presenter
+				// The paper itself needs to be collected. Flag it so the author
 				// may complete it.
 				$trackDirectorSubmission->setSubmissionProgress(3);
 
-				// TODO: notify the presenter the submission must be completed.
+				// TODO: notify the author the submission must be completed.
 				// Q: should the director be given this option explicitly?
 
 				// Now, reassign all reviewers that submitted a review for the last
@@ -562,7 +562,7 @@ class TrackDirectorAction extends Action {
 	}
 
 	/**
-	 * Makes a reviewer's annotated version of a paper available to the presenter.
+	 * Makes a reviewer's annotated version of a paper available to the author.
 	 * @param $paperId int
 	 * @param $reviewId int
 	 * @param $viewable boolean
@@ -638,7 +638,7 @@ class TrackDirectorAction extends Action {
 	}
 
 	/**
-	 * Notifies an presenter that a submission was unsuitable.
+	 * Notifies an author that a submission was unsuitable.
 	 * @param $trackDirectorSubmission object
 	 * @return boolean true iff ready for redirect
 	 */
@@ -650,16 +650,16 @@ class TrackDirectorAction extends Action {
 		$schedConf =& Request::getSchedConf();
 		$user = &Request::getUser();
 
-		$presenter = &$userDao->getUser($trackDirectorSubmission->getUserId());
-		if (!isset($presenter)) return true;
+		$author = &$userDao->getUser($trackDirectorSubmission->getUserId());
+		if (!isset($author)) return true;
 
 		import('mail.PaperMailTemplate');
 		$email = new PaperMailTemplate($trackDirectorSubmission, 'SUBMISSION_UNSUITABLE');
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('TrackDirectorAction::unsuitableSubmission', array(&$trackDirectorSubmission, &$presenter, &$email));
+			HookRegistry::call('TrackDirectorAction::unsuitableSubmission', array(&$trackDirectorSubmission, &$author, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(PAPER_EMAIL_DIRECTOR_NOTIFY_PRESENTER_UNSUITABLE, PAPER_EMAIL_TYPE_DIRECTOR, $user->getUserId());
+				$email->setAssoc(PAPER_EMAIL_DIRECTOR_NOTIFY_AUTHOR_UNSUITABLE, PAPER_EMAIL_TYPE_DIRECTOR, $user->getUserId());
 				$email->send();
 			}
 			TrackDirectorAction::archiveSubmission($trackDirectorSubmission);
@@ -668,11 +668,11 @@ class TrackDirectorAction extends Action {
 			if (!Request::getUserVar('continued')) {
 				$paramArray = array(
 					'editorialContactSignature' => $user->getContactSignature(),
-					'presenterName' => $presenter->getFullName(),
+					'authorName' => $author->getFullName(),
 					'locationCity' => $schedConf->getSetting('locationCity')
 				);
 				$email->assignParams($paramArray);
-				$email->addRecipient($presenter->getEmail(), $presenter->getFullName());
+				$email->addRecipient($author->getEmail(), $author->getFullName());
 			}
 			$email->displayEditForm(Request::url(null, null, null, 'unsuitableSubmission'), array('paperId' => $trackDirectorSubmission->getPaperId()));
 			return false;
@@ -1417,17 +1417,17 @@ import('file.PaperFileManager');
 			return true;
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$presenterUser =& $userDao->getUser($trackDirectorSubmission->getUserId());
-				$presenterEmail = $presenterUser->getEmail();
-				$email->addRecipient($presenterEmail, $presenterUser->getFullName());
-				if ($schedConf->getSetting('notifyAllPresentersOnDecision')) foreach ($trackDirectorSubmission->getPresenters() as $presenter) {
-					if ($presenter->getEmail() != $presenterEmail) {
-						$email->addCc ($presenter->getEmail(), $presenter->getFullName());
+				$authorUser =& $userDao->getUser($trackDirectorSubmission->getUserId());
+				$authorEmail = $authorUser->getEmail();
+				$email->addRecipient($authorEmail, $authorUser->getFullName());
+				if ($schedConf->getSetting('notifyAllAuthorsOnDecision')) foreach ($trackDirectorSubmission->getAuthors() as $author) {
+					if ($author->getEmail() != $authorEmail) {
+						$email->addCc ($author->getEmail(), $author->getFullName());
 					}
 				}
 				$email->assignParams(array(
 					'conferenceDate' => strftime(Config::getVar('general', 'date_format_short'), $schedConf->getSetting('startDate')),
-					'presenterName' => $presenterUser->getFullName(),
+					'authorName' => $authorUser->getFullName(),
 					'conferenceTitle' => $conference->getConferenceTitle(),
 					'editorialContactSignature' => $user->getContactSignature(),
 					'locationCity' => $schedConf->getSetting('locationCity'),
@@ -1452,7 +1452,7 @@ import('file.PaperFileManager');
 								$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n";
 								if (is_array($paperComments)) {
 									foreach ($paperComments as $comment) {
-										// If the comment is viewable by the presenter, then add the comment.
+										// If the comment is viewable by the author, then add the comment.
 										if ($comment->getViewable()) {
 											$body .= $comment->getComments() . "\n\n";
 											$hasBody = true;

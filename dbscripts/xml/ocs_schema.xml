@@ -746,11 +746,11 @@
 
 	<!--
 	  *
-	  * TABLE paper_presenters
+	  * TABLE paper_authors
 	  *
 	  -->
-	<table name="paper_presenters">
-		<field name="presenter_id" type="I8">
+	<table name="paper_authors">
+		<field name="author_id" type="I8">
 			<KEY />
 			<AUTOINCREMENT/>
 		</field>
@@ -779,18 +779,18 @@
 		</field>
 		<field name="url" type="C2" size="255"/>
 		<descr>Presenter metadata for papers.</descr>
-		<index name="paper_presenters_paper_id">
+		<index name="paper_authors_paper_id">
 			<col>paper_id</col>
 		</index>
 	</table>
 	
 	<!--
 	  *
-	  * TABLE paper_presenter_settings
+	  * TABLE paper_author_settings
 	  *
 	  -->
-	<table name="paper_presenter_settings">
-		<field name="presenter_id" type="I8">
+	<table name="paper_author_settings">
+		<field name="author_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
@@ -805,12 +805,12 @@
 			<NOTNULL/>
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
-		<descr>Paper presenter settings.</descr>
-		<index name="presenter_settings_presenter_id">
-			<col>presenter_id</col>
+		<descr>Paper author settings.</descr>
+		<index name="author_settings_author_id">
+			<col>author_id</col>
 		</index>
-		<index name="paper_presenter_settings_pkey">
-			<col>presenter_id</col>
+		<index name="paper_author_settings_pkey">
+			<col>author_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE/>

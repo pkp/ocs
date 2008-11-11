@@ -45,7 +45,7 @@ class SuppFileForm extends Form {
 		}
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'presenter.submit.suppFile.form.titleRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'author.submit.suppFile.form.titleRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -71,13 +71,13 @@ class SuppFileForm extends Form {
 		$templateMgr->assign('suppFileId', $this->suppFileId);
 
 		$typeOptionsOutput = array(
-			'presenter.submit.suppFile.researchInstrument',
-			'presenter.submit.suppFile.researchMaterials',
-			'presenter.submit.suppFile.researchResults',
-			'presenter.submit.suppFile.transcripts',
-			'presenter.submit.suppFile.dataAnalysis',
-			'presenter.submit.suppFile.dataSet',
-			'presenter.submit.suppFile.sourceText'
+			'author.submit.suppFile.researchInstrument',
+			'author.submit.suppFile.researchMaterials',
+			'author.submit.suppFile.researchResults',
+			'author.submit.suppFile.transcripts',
+			'author.submit.suppFile.dataAnalysis',
+			'author.submit.suppFile.dataSet',
+			'author.submit.suppFile.sourceText'
 		);
 		$typeOptionsValues = $typeOptionsOutput;
 		array_push($typeOptionsOutput, 'common.other');
@@ -110,7 +110,7 @@ class SuppFileForm extends Form {
 
 		$publicSuppFileId = $this->getData('publicSuppFileId');
 		if ($publicSuppFileId && $suppFileDao->suppFileExistsByPublicId($publicSuppFileId, $this->suppFileId, $conference->getConferenceId())) {
-			$this->addError('publicSchedConfId', Locale::translate('presenter.suppFile.suppFilePublicIdentificationExists'));
+			$this->addError('publicSchedConfId', Locale::translate('author.suppFile.suppFilePublicIdentificationExists'));
 			$this->addErrorField('publicSuppFileId');
 		}
 

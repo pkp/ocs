@@ -61,12 +61,12 @@ Merci,
     <row>
 			<field name="email_key">SUBMISSION_ACK</field>
 			<field name="subject">Accusé de réception de la soumission</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Nous vous remercions d'avoir soumis la communication intitulée "{$paperTitle}" à {$conferenceName}. Grâce à notre système de gestion en ligne, vous pourrez suivre votre soumission tout au long du processus éditorial en accédant au site Web de la conférence.
 
 URL de la soumission: {$submissionUrl}
-Nom d'utilisateur: {$presenterUsername}
+Nom d'utilisateur: {$authorUsername}
 
 Si vous avez des questions, veuillez me contacter. Merci d'avoir pensé à notre conférence pour la publication de vos travaux.
 
@@ -76,12 +76,12 @@ Si vous avez des questions, veuillez me contacter. Merci d'avoir pensé à notre
     <row>
 			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
 			<field name="subject">Accusé de réception du téléchargement de la soumission</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Nous vous remercions d'avoir téléchargé vers le serveur la communication intitulée "{$paperTitle}" à {$conferenceName}. Grâce à notre système de gestion en ligne, vous pourrez suivre votre soumission tout au long du processus éditorial en accédant au site Web de la conférence.
 
 URL de la proposition: {$submissionUrl}
-Nom d'utilisateur: {$presenterUsername}
+Nom d'utilisateur: {$authorUsername}
 
 Si vous avez des questions, veuillez me contacter. Merci d'avoir pensé à notre conférence pour la publication de vos travaux.
 
@@ -91,7 +91,7 @@ Si vous avez des questions, veuillez me contacter. Merci d'avoir pensé à notre
     <row>
 			<field name="email_key">SUBMISSION_UNSUITABLE</field>
 			<field name="subject">Soumission inappropriée</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Une évaluation initiale de "{$paperTitle}" a démontré clairement que cette soumission n'entre pas dans le domaine de {$conferenceName}. Je vous suggère de consulter la description de cette conférence en allant dans "À propos de la conférence", en plus de consulter toute conférence planifiée passée, afin d'en savoir plus sur les travaux que nous acceptons. Vous pourriez aussi songer à soumettre cette communication à une autre conférence plus appropriée.
 
@@ -324,7 +324,7 @@ Veuillez nous confirmer que vous êtes bien en mesure de compléter cet importan
     <row>
 			<field name="email_key">SUBMISSION_ABSTRACT_ACCEPT</field>
 			<field name="subject">Décision éditoriale à propos de la communication</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Félicitations, votre communication {$paperTitle} a été acceptée pour la présentation de {$conferenceTitle} tenue le {$conferenceDate} à {$locationCity}. 
 
@@ -335,7 +335,7 @@ Merci, et nous serions ravis de vous voir participer à cet événement.
     <row>
 			<field name="email_key">SUBMISSION_ABSTRACT_DECLINE</field>
 			<field name="subject">Décision éditoriale à propos de la communication</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Nous avons terminé l'évaluation de votre soumission "{$paperTitle}." Et le résultat est...
 
@@ -345,7 +345,7 @@ Nous avons terminé l'évaluation de votre soumission "{$paperTitle}." Et le ré
     <row>
 			<field name="email_key">SUBMISSION_ABSTRACT_REVISE</field>
 			<field name="subject">Décision éditoriale à propos de la communication</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Après une évaluation attentive de votre communication, "{$paperTitle}" sera considéré pour une présentation à {$conferenceTitle} si les révisions suivantes sont effectuées.
 
@@ -357,7 +357,7 @@ Merci, et nous serions ravis de vous voir participer à cet événement.
     <row>
 			<field name="email_key">SUBMISSION_PAPER_ACCEPT</field>
 			<field name="subject">Décision éditoriale à propos de la communication</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Félicitations, votre soumission {$paperTitle} a été acceptée pour la présentation de {$conferenceTitle} tenue le {$conferenceDate} à {$locationCity}.  
 
@@ -368,7 +368,7 @@ Merci, et nous serions ravis de vous voir participer à cet événement.
     <row>
 			<field name="email_key">SUBMISSION_PAPER_DECLINE</field>
 			<field name="subject">Décision éditoriale à propos de la communication</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Nous avons terminé l'évaluation de votre soumission "{$paperTitle}." Et le résultat est...
 
@@ -378,7 +378,7 @@ Nous avons terminé l'évaluation de votre soumission "{$paperTitle}." Et le ré
     <row>
 			<field name="email_key">SUBMISSION_PAPER_REVISE</field>
 			<field name="subject">Décision éditoriale à propos de la communication</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Après une évaluation attentive de votre communication, "{$paperTitle}" sera considérée pour une présentation à {$conferenceTitle} si les révisions suivantes sont effectuées.
 

@@ -119,7 +119,7 @@ class NLMExportDom {
 		XMLCustomWriter::setAttribute($authorListNode, 'CompleteYN', 'Y');
 		XMLCustomWriter::appendChild($articleNode, $authorListNode);
 
-		foreach ($paper->getPresenters() as $author) {
+		foreach ($paper->getAuthors() as $author) {
 			$authorNode =& NLMExportDom::generateAuthorDom($doc, $author);
 			XMLCustomWriter::appendChild($authorListNode, $authorNode);
 		}

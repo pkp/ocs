@@ -19,14 +19,14 @@
 import('paper.Paper');
 
 class PaperDAO extends DAO {
-	var $presenterDao;
+	var $authorDao;
 
 	/**
 	 * Constructor.
 	 */
 	function PaperDAO() {
 		parent::DAO();
-		$this->presenterDao = &DAORegistry::getDAO('PresenterDAO');
+		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
 	}
 
 	/**
@@ -143,7 +143,7 @@ class PaperDAO extends DAO {
 		$paper->setPages($row['pages']);
 		$paper->setCommentsStatus($row['comments_status']);
 
-		$paper->setPresenters($this->presenterDao->getPresentersByPaper($row['paper_id']));
+		$paper->setAuthors($this->authorDao->getAuthorsByPaper($row['paper_id']));
 
 		$this->getDataObjectSettings('paper_settings', 'paper_id', $row['paper_id'], $paper);
 
@@ -211,11 +211,11 @@ class PaperDAO extends DAO {
 		$paper->setPaperId($this->getInsertPaperId());
 		$this->updateLocaleFields($paper);
 
-		// Insert presenters for this paper
-		$presenters = &$paper->getPresenters();
-		for ($i=0, $count=count($presenters); $i < $count; $i++) {
-			$presenters[$i]->setPaperId($paper->getPaperId());
-			$this->presenterDao->insertPresenter($presenters[$i]);
+		// Insert authors for this paper
+		$authors = &$paper->getAuthors();
+		for ($i=0, $count=count($authors); $i < $count; $i++) {
+			$authors[$i]->setPaperId($paper->getPaperId());
+			$this->authorDao->insertAuthor($authors[$i]);
 		}
 
 		return $paper->getPaperId();
@@ -277,26 +277,26 @@ class PaperDAO extends DAO {
 			)
 		);
 
-		// update presenters for this paper
-		$presenters = &$paper->getPresenters();
-		for ($i=0, $count=count($presenters); $i < $count; $i++) {
-			if ($presenters[$i]->getPresenterId() > 0) {
-				$this->presenterDao->updatePresenter($presenters[$i]);
+		// update authors for this paper
+		$authors = &$paper->getAuthors();
+		for ($i=0, $count=count($authors); $i < $count; $i++) {
+			if ($authors[$i]->getAuthorId() > 0) {
+				$this->authorDao->updateAuthor($authors[$i]);
 			} else {
-				$this->presenterDao->insertPresenter($presenters[$i]);
+				$this->authorDao->insertAuthor($authors[$i]);
 			}
 		}
 
-		// Remove deleted presenters
-		$removedPresenters = $paper->getRemovedPresenters();
-		for ($i=0, $count=count($removedPresenters); $i < $count; $i++) {
-			$this->presenterDao->deletePresenterById($removedPresenters[$i], $paper->getPaperId());
+		// Remove deleted authors
+		$removedAuthors = $paper->getRemovedAuthors();
+		for ($i=0, $count=count($removedAuthors); $i < $count; $i++) {
+			$this->authorDao->deleteAuthorById($removedAuthors[$i], $paper->getPaperId());
 		}
 
 		$this->updateLocaleFields($paper);
 
-		// Update presenter sequence numbers
-		$this->presenterDao->resequencePresenters($paper->getPaperId());
+		// Update author sequence numbers
+		$this->authorDao->resequenceAuthors($paper->getPaperId());
 	}
 
 	/**
@@ -312,7 +312,7 @@ class PaperDAO extends DAO {
 	 * @param $paperId int
 	 */
 	function deletePaperById($paperId) {
-		$this->presenterDao->deletePresentersByPaper($paperId);
+		$this->authorDao->deleteAuthorsByPaper($paperId);
 
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaperDao->deletePublishedPaperByPaperId($paperId);

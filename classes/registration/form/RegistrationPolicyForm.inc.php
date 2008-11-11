@@ -110,8 +110,8 @@ class RegistrationPolicyForm extends Form {
 			'registrationAdditionalInformation' => $schedConfSettingsDao->getSetting($schedConfId, 'registrationAdditionalInformation'),
 			'delayedOpenAccessPolicy' => $schedConfSettingsDao->getSetting($schedConfId, 'delayedOpenAccessPolicy'),
 			'enableOpenAccessNotification' => $schedConfSettingsDao->getSetting($schedConfId, 'enableOpenAccessNotification'),
-			'enablePresenterSelfArchive' => $schedConfSettingsDao->getSetting($schedConfId, 'enablePresenterSelfArchive'),
-			'presenterSelfArchivePolicy' => $schedConfSettingsDao->getSetting($schedConfId, 'presenterSelfArchivePolicy'),
+			'enableAuthorSelfArchive' => $schedConfSettingsDao->getSetting($schedConfId, 'enableAuthorSelfArchive'),
+			'authorSelfArchivePolicy' => $schedConfSettingsDao->getSetting($schedConfId, 'authorSelfArchivePolicy'),
 			'enableRegistrationExpiryReminderBeforeMonths' => $schedConfSettingsDao->getSetting($schedConfId, 'enableRegistrationExpiryReminderBeforeMonths'),
 			'numMonthsBeforeRegistrationExpiryReminder' => $schedConfSettingsDao->getSetting($schedConfId, 'numMonthsBeforeRegistrationExpiryReminder'),
 			'enableRegistrationExpiryReminderBeforeWeeks' => $schedConfSettingsDao->getSetting($schedConfId, 'enableRegistrationExpiryReminderBeforeWeeks'),
@@ -127,7 +127,7 @@ class RegistrationPolicyForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('registrationName', 'registrationEmail', 'registrationPhone', 'registrationFax', 'registrationMailingAddress', 'registrationAdditionalInformation', 'enableDelayedOpenAccess', 'delayedOpenAccessDuration', 'delayedOpenAccessPolicy', 'enableOpenAccessNotification', 'enablePresenterSelfArchive', 'presenterSelfArchivePolicy', 'enableRegistrationExpiryReminderBeforeMonths', 'numMonthsBeforeRegistrationExpiryReminder', 'enableRegistrationExpiryReminderBeforeWeeks', 'numWeeksBeforeRegistrationExpiryReminder', 'enableRegistrationExpiryReminderAfterWeeks', 'numWeeksAfterRegistrationExpiryReminder', 'enableRegistrationExpiryReminderAfterMonths', 'numMonthsAfterRegistrationExpiryReminder'));
+		$this->readUserVars(array('registrationName', 'registrationEmail', 'registrationPhone', 'registrationFax', 'registrationMailingAddress', 'registrationAdditionalInformation', 'enableDelayedOpenAccess', 'delayedOpenAccessDuration', 'delayedOpenAccessPolicy', 'enableOpenAccessNotification', 'enableAuthorSelfArchive', 'authorSelfArchivePolicy', 'enableRegistrationExpiryReminderBeforeMonths', 'numMonthsBeforeRegistrationExpiryReminder', 'enableRegistrationExpiryReminderBeforeWeeks', 'numWeeksBeforeRegistrationExpiryReminder', 'enableRegistrationExpiryReminderAfterWeeks', 'numWeeksAfterRegistrationExpiryReminder', 'enableRegistrationExpiryReminderAfterMonths', 'numMonthsAfterRegistrationExpiryReminder'));
 
 		// If expiry reminder before months is selected, ensure a valid month value is provided
 		if ($this->_data['enableRegistrationExpiryReminderBeforeMonths'] == 1) {
@@ -174,8 +174,8 @@ class RegistrationPolicyForm extends Form {
 		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationAdditionalInformation', $this->getData('registrationAdditionalInformation'), 'string', true); // Localized
 		$schedConfSettingsDao->updateSetting($schedConfId, 'delayedOpenAccessPolicy', $this->getData('delayedOpenAccessPolicy'), 'string', true); // Localized
 		$schedConfSettingsDao->updateSetting($schedConfId, 'enableOpenAccessNotification', $this->getData('enableOpenAccessNotification') == null ? 0 : $this->getData('enableOpenAccessNotification'), 'bool');
-		$schedConfSettingsDao->updateSetting($schedConfId, 'enablePresenterSelfArchive', $this->getData('enablePresenterSelfArchive') == null ? 0 : $this->getData('enablePresenterSelfArchive'), 'bool');
-		$schedConfSettingsDao->updateSetting($schedConfId, 'presenterSelfArchivePolicy', $this->getData('presenterSelfArchivePolicy'), 'string', true); // Localized
+		$schedConfSettingsDao->updateSetting($schedConfId, 'enableAuthorSelfArchive', $this->getData('enableAuthorSelfArchive') == null ? 0 : $this->getData('enableAuthorSelfArchive'), 'bool');
+		$schedConfSettingsDao->updateSetting($schedConfId, 'authorSelfArchivePolicy', $this->getData('authorSelfArchivePolicy'), 'string', true); // Localized
 		$schedConfSettingsDao->updateSetting($schedConfId, 'enableRegistrationExpiryReminderBeforeMonths', $this->getData('enableRegistrationExpiryReminderBeforeMonths') == null ? 0 : $this->getData('enableRegistrationExpiryReminderBeforeMonths'), 'bool');
 		$schedConfSettingsDao->updateSetting($schedConfId, 'numMonthsBeforeRegistrationExpiryReminder', $this->getData('numMonthsBeforeRegistrationExpiryReminder'), 'int');
 		$schedConfSettingsDao->updateSetting($schedConfId, 'enableRegistrationExpiryReminderBeforeWeeks', $this->getData('enableRegistrationExpiryReminderBeforeWeeks') == null ? 0 : $this->getData('enableRegistrationExpiryReminderBeforeWeeks'), 'bool');

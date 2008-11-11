@@ -429,6 +429,63 @@ class Upgrade extends Installer {
 		unset($result);
 		return true;
 	}
+
+	/**
+	 * For 2.3 upgrade.  Presenter is renamed to Author and so indexes that have
+	 * presenter in the name need to be replaced with indexes with author in the name
+	 * We can drop the indexes from those few tables and the schema sync
+	 * will recreate them with the appropriate name
+	 */
+	function dropPresenterIndexes() {
+		$siteDao =& DAORegistry::getDAO('SiteDAO');
+		$dict = NewDataDictionary($siteDao->_dataSource);
+		$dropIndexSql = array();
+
+		// This is a list of tables that had indexes with 
+		// 'presenter' in the name prior to the 2.3 upgrade
+		$tables = array(
+			'paper_presenters', 'paper_presenter_settings'
+		);
+
+		// Assemble a list of indexes to be dropped
+		foreach ($tables as $tableName) {
+			$indexes = $dict->MetaIndexes($tableName);
+			if (is_array($indexes)) foreach ($indexes as $indexName => $indexData) {
+				$dropIndexSql = array_merge($dropIndexSql, $dict->DropIndexSQL($indexName, $tableName));
+			}
+		}
+
+		// Execute the DROP INDEX statements.
+		foreach ($dropIndexSql as $sql) {
+			$siteDao->update($sql);
+		}
+		
+		return true;
+	}
+
+	/**
+	 * For 2.3 update.  Go through all user email templates and change {$presenter to {$author
+	 */	
+	function changePresenterInUserEmailTemplates() {
+		$emailTemplateDAO =& DAORegistry::getDAO('EmailTemplateDAO');
+		
+		$result =& $emailTemplateDAO->retrieve('SELECT email_key, locale, body, subject FROM email_templates_data');
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			$newBody = str_replace('{$presenterName}', '{$authorName}', $row['body']);
+			$newBody = str_replace('{$presenterUsername}', '{$authorUsername}', $row['body']);
+			$newSubject = str_replace('{$presenterName}', '{$authorName}', $row['subject']);
+			$newSubject = str_replace('{$presenterUsername}', '{$authorUsername}', $row['subject']);
+			 
+			$emailTemplateDAO->update('UPDATE email_templates_data SET body = ?, subject = ? WHERE email_key = ? AND locale = ?', array($newBody, $newSubject, $row['email_key'], $row['locale']));
+			$result->MoveNext();
+		}
+		$result->Close();
+		unset($result);
+
+		return true;
+	}	
+
 }
 
 ?>

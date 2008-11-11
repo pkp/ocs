@@ -121,7 +121,7 @@ class PaperSearchIndex {
 		// Split into words
 		$words = preg_split('/\s+/', $cleanText);
 
-		// FIXME Do not perform further filtering for some fields, e.g., presenter names?
+		// FIXME Do not perform further filtering for some fields, e.g., author names?
 
 		// Remove stopwords
 		$keywords = array();
@@ -155,24 +155,24 @@ class PaperSearchIndex {
 	 * @param $paper Paper
 	 */
 	function indexPaperMetadata(&$paper) {
-		// Build presenter keywords
-		$presenterText = array();
-		$presenters = $paper->getPresenters();
-		for ($i=0, $count=count($presenters); $i < $count; $i++) {
-			$presenter = &$presenters[$i];
-			array_push($presenterText, $presenter->getFirstName());
-			array_push($presenterText, $presenter->getMiddleName());
-			array_push($presenterText, $presenter->getLastName());
-			array_push($presenterText, $presenter->getAffiliation());
-			$bios = $presenter->getBiography(null);
+		// Build author keywords
+		$authorText = array();
+		$authors = $paper->getAuthors();
+		for ($i=0, $count=count($authors); $i < $count; $i++) {
+			$author = &$authors[$i];
+			array_push($authorText, $author->getFirstName());
+			array_push($authorText, $author->getMiddleName());
+			array_push($authorText, $author->getLastName());
+			array_push($authorText, $author->getAffiliation());
+			$bios = $author->getBiography(null);
 			if (is_array($bios)) foreach ($bios as $bio) { // Localized
-				array_push($presenterText, strip_tags($bio));
+				array_push($authorText, strip_tags($bio));
 			}
 		}
 
 		// Update search index
 		$paperId = $paper->getPaperId();
-		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_PRESENTER, $presenterText);
+		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_AUTHOR, $authorText);
 		PaperSearchIndex::updateTextIndex($paperId, PAPER_SEARCH_TITLE, $paper->getTitle(null));
 
 		$trackDao = &DAORegistry::getDAO('TrackDAO');

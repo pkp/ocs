@@ -35,8 +35,8 @@ define('PAPER_LOG_PAPER_PUBLISH', 		0x10000007);
 define('PAPER_LOG_PAPER_IMPORT',		0x10000008);
 define('PAPER_LOG_PAPER_EXPIRE',		0x10000009);
 
-// Presenter events 				0x20000000
-define('PAPER_LOG_PRESENTER_REVISION', 		0x20000001);
+// Author events 				0x20000000
+define('PAPER_LOG_AUTHOR_REVISION', 		0x20000001);
 
 // Director events 				0x30000000
 define('PAPER_LOG_DIRECTOR_ASSIGN', 		0x30000001);
@@ -339,9 +339,9 @@ class PaperEventLogEntry extends DataObject {
 			case PAPER_LOG_PAPER_PUBLISH:
 				return 'submission.event.general.paperPublished';
 
-			// Presenter events
-			case PAPER_LOG_PRESENTER_REVISION:
-				return 'submission.event.presenter.presenterRevision';
+			// Author events
+			case PAPER_LOG_AUTHOR_REVISION:
+				return 'submission.event.author.authorRevision';
 
 			// Director events
 			case PAPER_LOG_DIRECTOR_ASSIGN:
@@ -430,7 +430,7 @@ class PaperEventLogEntry extends DataObject {
 	 */
 	function getAssocTypeString() {
 		switch ($this->getData('assocType')) {
-			case LOG_TYPE_PRESENTER:
+			case LOG_TYPE_AUTHOR:
 				return 'AUT';
 			case LOG_TYPE_DIRECTOR:
 				return 'DIR';
@@ -447,8 +447,8 @@ class PaperEventLogEntry extends DataObject {
 	 */
 	function getAssocTypeLongString() {
 		switch ($this->getData('assocType')) {
-			case LOG_TYPE_PRESENTER:
-				return 'event.logType.presenter';
+			case LOG_TYPE_AUTHOR:
+				return 'event.logType.author';
 			case LOG_TYPE_DIRECTOR:
 				return 'event.logType.director';
 			case LOG_TYPE_REVIEW:

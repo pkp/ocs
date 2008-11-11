@@ -322,12 +322,12 @@ class Validation {
 	}
 
 	/**
-	 * Shortcut for checking authorization as presenter.
+	 * Shortcut for checking authorization as author.
 	 * @param $conferenceId int
 	 * @return boolean
 	 */
-	function isPresenter($conferenceId = -1, $schedConfId = -1) {
-		return Validation::isAuthorized(ROLE_ID_PRESENTER, $conferenceId, $schedConfId);
+	function isAuthor($conferenceId = -1, $schedConfId = -1) {
+		return Validation::isAuthorized(ROLE_ID_AUTHOR, $conferenceId, $schedConfId);
 	}
 
 	/**

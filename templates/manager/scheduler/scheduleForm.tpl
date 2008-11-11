@@ -167,7 +167,7 @@ function sortBy(sortName) {
 <p>
 	{translate key="common.sortBy"}
 	<a href="javascript:sortBy('startTime');">{translate key="manager.scheduler.startTime"}</a>&nbsp;|
-	<a href="javascript:sortBy('presenter');">{translate key="user.role.presenter"}</a>&nbsp;|
+	<a href="javascript:sortBy('author');">{translate key="user.role.author"}</a>&nbsp;|
 	<a href="javascript:sortBy('room');">{translate key="paper.location"}</a>&nbsp;|
 	<a href="javascript:sortBy('title');">{translate key="paper.title"}</a>
 </p>

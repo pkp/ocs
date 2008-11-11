@@ -19,7 +19,7 @@
 function ensureKeyword() {
 	var allBlank = document.search.query.value == '';
 
-	if (allBlank) {allBlank = document.search.presenter.value == '';}
+	if (allBlank) {allBlank = document.search.author.value == '';}
 	if (allBlank) {allBlank = document.search.title.value == '';}
 	if (allBlank) {allBlank = document.search.discipline.value == '';}
 	if (allBlank) {allBlank = document.search.subject.value == '';}
@@ -65,8 +65,8 @@ function ensureKeyword() {
 	<td>&nbsp;</td>
 </tr>
 <tr valign="top">
-	<td class="label"><label for="presenter">{translate key="search.presenter"}</label></td>
-	<td class="value"><input type="text" name="presenter" id="presenter" size="40" maxlength="255" value="{$presenter|escape}" class="textField" /></td>
+	<td class="label"><label for="author">{translate key="search.author"}</label></td>
+	<td class="value"><input type="text" name="author" id="author" size="40" maxlength="255" value="{$author|escape}" class="textField" /></td>
 </tr>
 <tr valign="top">
 	<td class="label"><label for="title">{translate key="paper.title"}</label></td>

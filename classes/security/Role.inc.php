@@ -31,11 +31,11 @@ define('ROLE_PATH_TRACK_DIRECTOR', 		'trackDirector');
 define('ROLE_ID_REVIEWER',			0x00000100);
 define('ROLE_PATH_REVIEWER',			'reviewer');
 
-define('ROLE_ID_PRESENTER',			0x00001000);
-define('ROLE_PATH_PRESENTER',			'presenter');
+define('ROLE_ID_AUTHOR',			0x00001000);
+define('ROLE_PATH_AUTHOR',			'author');
 
-//define('ROLE_ID_INVITED_PRESENTER',		0x00001001);
-//define('ROLE_PATH_INVITED_PRESENTER',		'invitedPresenter');
+//define('ROLE_ID_INVITED_AUTHOR',		0x00001001);
+//define('ROLE_PATH_INVITED_AUTHOR',		'invitedAuthor');
 
 //define('ROLE_ID_DISCUSSANT',			0x00010000);
 //define('ROLE_PATH_DISCUSSANT',		'discussant');

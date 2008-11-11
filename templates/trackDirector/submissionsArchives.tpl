@@ -16,7 +16,7 @@
 		<td width="5%">{translate key="common.id"}</td>
 		<td width="15%">{translate key="submissions.submitted"}</td>
 		<td width="5%">{translate key="submissions.track"}</td>
-		<td width="25%">{translate key="paper.presenters"}</td>
+		<td width="25%">{translate key="paper.authors"}</td>
 		<td width="30%">{translate key="paper.title"}</td>
 		<td width="20%" align="right">{translate key="common.status"}</td>
 	</tr>

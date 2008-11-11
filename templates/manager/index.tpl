@@ -57,7 +57,7 @@
 				<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people" path="directors" clearPageContext=1}">{translate key="user.role.directors"}</a></li>
 				<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people" path="trackDirectors" clearPageContext=1}">{translate key="user.role.trackDirectors"}</a></li>
 				<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people" path="reviewers" clearPageContext=1}">{translate key="user.role.reviewers"}</a></li>
-				<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people" path="presenters" clearPageContext=1}">{translate key="user.role.presenters"}</a></li>
+				<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people" path="authors" clearPageContext=1}">{translate key="user.role.authors"}</a></li>
 				<li>&#187; <a href="{url schedConf=$schedConf->getPath() page="manager" op="people" path="readers" clearPageContext=1}">{translate key="user.role.readers"}</a></li>
 				{call_hook name="Templates::Manager::Index::SchedConfRoles"}
 			</ul>

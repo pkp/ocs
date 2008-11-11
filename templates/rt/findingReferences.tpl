@@ -53,7 +53,7 @@ function invokeWLA() {
 <!-- Display the form fields -->
 <table width="100%" class="data">
 	<tr valign="top">
-		<td class="label" width="20%"><label for="author">{translate key="user.role.presenter"}</label></td>
+		<td class="label" width="20%"><label for="author">{translate key="user.role.author"}</label></td>
 		<td class="value" width="80%"><input name="author" id="author" type="text" size="20" maxlength="40" class="textField" value="{$paper->getPresenterString()|escape}" /></td>
 	</tr>
 	<tr valign="top">

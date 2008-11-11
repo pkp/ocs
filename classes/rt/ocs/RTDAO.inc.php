@@ -36,10 +36,10 @@ class RTDAO extends DAO {
 		$rt->setViewMetadata($conference->getSetting('rtViewMetadata')?true:false);
 		$rt->setSupplementaryFiles($conference->getSetting('rtSupplementaryFiles')?true:false);
 		$rt->setPrinterFriendly($conference->getSetting('rtPrinterFriendly')?true:false);
-		$rt->setAuthorBio($conference->getSetting('rtPresenterBio')?true:false);
+		$rt->setAuthorBio($conference->getSetting('rtAuthorBio')?true:false);
 		$rt->setDefineTerms($conference->getSetting('rtDefineTerms')?true:false);
 		$rt->setAddComment($conference->getSetting('rtAddComment')?true:false);
-		$rt->setEmailAuthor($conference->getSetting('rtEmailPresenter')?true:false);
+		$rt->setEmailAuthor($conference->getSetting('rtEmailAuthor')?true:false);
 		$rt->setEmailOthers($conference->getSetting('rtEmailOthers')?true:false);
 		$rt->setFindingReferences($conference->getSetting('rtFindingReferences')?true:false);
 		return $rt;
@@ -56,10 +56,10 @@ class RTDAO extends DAO {
 		$conference->updateSetting('rtViewMetadata', $rt->getViewMetadata(), 'bool');
 		$conference->updateSetting('rtSupplementaryFiles', $rt->getSupplementaryFiles(), 'bool');
 		$conference->updateSetting('rtPrinterFriendly', $rt->getPrinterFriendly(), 'bool');
-		$conference->updateSetting('rtPresenterBio', $rt->getAuthorBio(), 'bool');
+		$conference->updateSetting('rtAuthorBio', $rt->getAuthorBio(), 'bool');
 		$conference->updateSetting('rtDefineTerms', $rt->getDefineTerms(), 'bool');
 		$conference->updateSetting('rtAddComment', $rt->getAddComment(), 'bool');
-		$conference->updateSetting('rtEmailPresenter', $rt->getEmailAuthor(), 'bool');
+		$conference->updateSetting('rtEmailAuthor', $rt->getEmailAuthor(), 'bool');
 		$conference->updateSetting('rtEmailOthers', $rt->getEmailOthers(), 'bool');
 		$conference->updateSetting('rtFindingReferences', $rt->getFindingReferences());
 		return true;

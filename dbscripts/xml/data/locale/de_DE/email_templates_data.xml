@@ -66,12 +66,12 @@ Mit freundlichen Gr&#252;&#223;en,
 		<row>
 			<field name="email_key">SUBMISSION_ACK</field>
 			<field name="subject">Ihre Einreichung an die Konferenz &quot;{$conferenceName}&quot;</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Vielen Dank f&#252;r die Einreichung Ihrer Arbeit &quot;{$paperTitle}&quot; an die Konferenz &quot;{$conferenceName}&quot;. Mithilfe des Online-Konferenzverwaltungssystems, welches wir benutzen, sind Sie in der Lage, die Fortschritte der Einreichung durch den Bearbeitungsprozess nachzuverfolgen, indem Sie sich in die Konferenzwebseite einloggen:
 
 URL f&#252;r die Einreichung: {$submissionUrl}
-Benutzername: {$presenterUsername}
+Benutzername: {$authorUsername}
 
 Sollten Sie Fragen haben, wenden Sie sich bitte an mich. Vielen Dank, dass Sie diese Konferenz f&#252;r eine Vorstellung Ihrer Arbeit in Erw&#228;gung ziehen.
 
@@ -81,12 +81,12 @@ Sollten Sie Fragen haben, wenden Sie sich bitte an mich. Vielen Dank, dass Sie d
 		<row>
 			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
 			<field name="subject">Upload Ihrer Einreichung an die Konferenz &quot;{$conferenceName}&quot;</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Vielen Dank, dass Sie Ihre Pr&#228;sentation &quot;{$paperTitle}&quot; auf die Seite der Konferenz &quot;{$conferenceName}&quot; hochgeladen haben. Mithilfe des Online-Konferenzverwaltungssystems, welches wir benutzen, sind Sie in der Lage, die Fortschritte der Einreichung durch den Bearbeitungsprozess nachzuverfolgen, indem Sie sich in die Konferenzwebseite einloggen:
 
 URL f&#252;r Einreichung: {$submissionUrl}
-Benutzername: {$presenterUsername}
+Benutzername: {$authorUsername}
 
 Sollten Sie Fragen haben, wenden Sie sich bitte an mich. Vielen Dank, dass Sie diese Konferenz f&#252;r eine Vorstellung Ihrer Arbeit in Erw&#228;gung ziehen.
 
@@ -96,7 +96,7 @@ Sollten Sie Fragen haben, wenden Sie sich bitte an mich. Vielen Dank, dass Sie d
 		<row>
 			<field name="email_key">SUBMISSION_UNSUITABLE</field>
 			<field name="subject">Eignung Ihrer Einreichung</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Bei der Erstbegutachtung Ihrer Arbeit &quot;{$paperTitle}&quot; wurde deutlich, dass die Einreichung nicht zu dem Themenbereich und den Schwerpunkten der Konferenz &quot;{$conferenceName}&quot; passt. Es empfiehlt sich, das Paper / den Abstract an eine andere, geeignetere Konferenz erneut einzureichen.Um Details dar&#252;ber zu erfahren, welche Arten von Arbeiten wir annehmen, konsultieren Sie bitte die Beschreibung der Konferenz unter &quot;&#220;ber die Konferenz&quot; (sowie die Beschreibungen vergangener Konferenzen). 
 
@@ -334,7 +334,7 @@ Bitte geben Sie uns dar&#252;ber bescheid, ob Sie in der Lage sind, diesen wicht
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_ACCEPT</field>
 			<field name="subject">Gutachterliche Entscheidung &#252;ber Ihre Arbeit "{$paperTitle}"</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Hiermit m&#246;chte ich Sie zu der Zulassung Ihrer Arbeit &quot;{$paperTitle}&quot; zur Vorstellung auf der Konferenz &quot;{$conferenceTitle}&quot; in {$locationCity} am {$conferenceDate} begl&#252;ckw&#252;nschen.. 
 
@@ -347,7 +347,7 @@ Ich bedanke mich herzlich und freue mich auf Ihre Teilnahme an dieser Veranstalt
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_DECLINE</field>
 			<field name="subject">Gutachterliche Entscheidung &#252;ber Ihre Arbeit &quot;{$paperTitle}&quot;</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Wir haben die Begutachtung Ihrer Einreichung &quot;{$paperTitle}&quot; abgeschlossen. Wir kamen zu dem Entschluss, ...{$editorialContactSignature}</field>
 			<field name="description">Diese Email vom Track-Leiter an den Autor einer Einreichung benachrichtigt diesen &#252;ber die Entscheidung, welche hinsichtlich der Einreichung gef&#228;llt wurde.</field>
@@ -356,7 +356,7 @@ Wir haben die Begutachtung Ihrer Einreichung &quot;{$paperTitle}&quot; abgeschlo
  		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_REVISE</field>
 			<field name="subject">Gutachterliche Entscheidung &#252;ber Ihre Arbeit &quot;{$paperTitle}&quot;</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Eine sorgf&#228;ltige Begutachtung Ihrer Einreichung &quot;{$paperTitle}&quot; hat ergeben, dass folgende &#196;nderungen notwendig sind, damit eine Zulassung zu der Konferenz &quot;{$conferenceTitle}&quot; erwogen werden kann:
 
@@ -369,7 +369,7 @@ Ich bedanke mich herzlich und hoffe auf Ihre Teilnahme an der Veranstaltung,
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_ACCEPT</field>
 			<field name="subject">Gutachterliche Entscheidung &#252;ber Ihre Arbeit &quot;{$paperTitle}&quot;</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Hiermit m&#246;chte ich Sie zu der Zulassung Ihrer Arbeit &quot;{$paperTitle}&quot; zur Vorstellung auf der Konferenz &quot;{$conferenceTitle}&quot; in {$locationCity} am {$conferenceDate} begl&#252;ckw&#252;nschen.
 
@@ -382,7 +382,7 @@ Ich bedanke mich herzlich und freue mich auf Ihre Teilnahme an dieser Veranstalt
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_DECLINE</field>
 			<field name="subject">Gutachterliche Entscheidung &#252;ber Ihre Arbeit &quot;{$paperTitle}&quot;</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Wir haben die Begutachtung Ihrer Einreichung &quot;{$paperTitle}&quot; abgeschlossen. Wir kamen zu dem Entschluss, ...
 
@@ -393,7 +393,7 @@ Wir haben die Begutachtung Ihrer Einreichung &quot;{$paperTitle}&quot; abgeschlo
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_REVISE</field>
 			<field name="subject">Gutachterliche Entscheidung &#252;ber Ihre Arbeit &quot;{$paperTitle}&quot;</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Eine sorgf&#228;ltige Begutachtung Ihrer Einreichung &quot;{$paperTitle}&quot; hat ergeben, dass folgende &#196;nderungen notwendig sind, damit eine Zulassung zu der Konferenz &quot;{$conferenceTitle}&quot; erwogen werden kann:
 

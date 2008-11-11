@@ -18,13 +18,13 @@
 
 
 import('submission.trackDirector.TrackDirectorSubmission');
-import('submission.presenter.PresenterSubmission'); // Bring in director decision constants
+import('submission.author.AuthorSubmission'); // Bring in director decision constants
 import('submission.reviewer.ReviewerSubmission'); // Bring in director decision constants
 
 class TrackDirectorSubmissionDAO extends DAO {
 
 	var $paperDao;
-	var $presenterDao;
+	var $authorDao;
 	var $userDao;
 	var $editAssignmentDao;
 	var $reviewAssignmentDao;
@@ -40,7 +40,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	function TrackDirectorSubmissionDAO() {
 		parent::DAO();
 		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->presenterDao = &DAORegistry::getDAO('PresenterDAO');
+		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
 		$this->userDao = &DAORegistry::getDAO('UserDAO');
 		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 		$this->reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -129,7 +129,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 		for ($i = 1; $i <= $row['current_stage']; $i++) {
 			$trackDirectorSubmission->setDirectorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['director_file_id'], $i), $i);
-			$trackDirectorSubmission->setPresenterFileRevisions($this->paperFileDao->getPaperFileRevisions($row['revised_file_id'], $i), $i);
+			$trackDirectorSubmission->setAuthorFileRevisions($this->paperFileDao->getPaperFileRevisions($row['revised_file_id'], $i), $i);
 		}
 
 		// Review Stages
@@ -295,7 +295,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				}
 				$params[] = $search;
 				break;
-			case SUBMISSION_FIELD_PRESENTER:
+			case SUBMISSION_FIELD_AUTHOR:
 				$first_last = $this->_dataSource->Concat('pa.first_name', '\' \'', 'pa.last_name');
 				$first_middle_last = $this->_dataSource->Concat('pa.first_name', '\' \'', 'pa.middle_name', '\' \'', 'pa.last_name');
 				$last_comma_first = $this->_dataSource->Concat('pa.last_name', '\', \'', 'pa.first_name');
@@ -341,7 +341,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
-				INNER JOIN paper_presenters pa ON (pa.paper_id = p.paper_id)
+				INNER JOIN paper_authors pa ON (pa.paper_id = p.paper_id)
 				LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
 				LEFT JOIN users ed ON (e.director_id = ed.user_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)

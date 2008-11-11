@@ -16,7 +16,7 @@
 		<td width="5%">{translate key="common.id"}</td>
 		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="submissions.submit"}</td>
 		<td width="5%">{translate key="submissions.track"}</td>
-		<td width="20%">{translate key="paper.presenters"}</td>
+		<td width="20%">{translate key="paper.authors"}</td>
 		<td width="20%">{translate key="paper.title"}</td>
 		<td width="40%">
 			<center>{translate key="submission.peerReview"}</center>

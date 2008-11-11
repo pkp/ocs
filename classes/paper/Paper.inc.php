@@ -31,7 +31,7 @@ define('SUBMISSION_STATUS_DECLINED', 4);
 define('SUBMISSION_TYPE_SINGLE', 0);
 define('SUBMISSION_TYPE_PANEL', 1);
 
-// PresenterSubmission::getSubmissionStatus will return one of these in place of QUEUED:
+// AuthorSubmission::getSubmissionStatus will return one of these in place of QUEUED:
 define ('SUBMISSION_STATUS_QUEUED_UNASSIGNED', 6);
 define ('SUBMISSION_STATUS_QUEUED_REVIEW', 7);
 define ('SUBMISSION_STATUS_QUEUED_EDITING', 8);
@@ -41,7 +41,7 @@ define ('REVIEW_STAGE_ABSTRACT', 1);
 define ('REVIEW_STAGE_PRESENTATION', 2);
 
 /* These constants are used as search fields for the various submission lists */
-define('SUBMISSION_FIELD_PRESENTER', 1);
+define('SUBMISSION_FIELD_AUTHOR', 1);
 define('SUBMISSION_FIELD_DIRECTOR', 2);
 define('SUBMISSION_FIELD_TITLE', 3);
 define('SUBMISSION_FIELD_REVIEWER', 4);
@@ -57,55 +57,55 @@ import('document.Document');
 
 class Paper extends Document {
 
-	/** @var array Presenters of this paper */
-	var $presenters;
+	/** @var array Authors of this paper */
+	var $authors;
 
-	/** @var array IDs of Presenters removed from this paper */
-	var $removedPresenters;
+	/** @var array IDs of Authors removed from this paper */
+	var $removedAuthors;
 
 	/**
 	 * Constructor.
 	 */
 	function Paper() {
 		parent::Document();
-		$this->presenters = array();
-		$this->removedPresenters = array();
+		$this->authors = array();
+		$this->removedAuthors = array();
 	}
 
 	/**
-	 * Add an presenter.
-	 * @param $presenter Presenter
+	 * Add an author.
+	 * @param $author Author
 	 */
-	function addPresenter($presenter) {
-		if ($presenter->getPaperId() == null) {
-			$presenter->setPaperId($this->getPaperId());
+	function addAuthor($author) {
+		if ($author->getPaperId() == null) {
+			$author->setPaperId($this->getPaperId());
 		}
-		if ($presenter->getSequence() == null) {
-			$presenter->setSequence(count($this->presenters) + 1);
+		if ($author->getSequence() == null) {
+			$author->setSequence(count($this->authors) + 1);
 		}
-		array_push($this->presenters, $presenter);
+		array_push($this->authors, $author);
 	}
 
 	/**
-	 * Remove an presenter.
-	 * @param $presenterId ID of the presenter to remove
-	 * @return boolean presenter was removed
+	 * Remove an author.
+	 * @param $authorId ID of the author to remove
+	 * @return boolean author was removed
 	 */
-	function removePresenter($presenterId) {
+	function removeAuthor($authorId) {
 		$found = false;
 
-		if ($presenterId != 0) {
-			// FIXME maintain a hash of ID to presenter for quicker get/remove
-			$presenters = array();
-			for ($i=0, $count=count($this->presenters); $i < $count; $i++) {
-				if ($this->presenters[$i]->getPresenterId() == $presenterId) {
-					array_push($this->removedPresenters, $presenterId);
+		if ($authorId != 0) {
+			// FIXME maintain a hash of ID to author for quicker get/remove
+			$authors = array();
+			for ($i=0, $count=count($this->authors); $i < $count; $i++) {
+				if ($this->authors[$i]->getAuthorId() == $authorId) {
+					array_push($this->removedAuthors, $authorId);
 					$found = true;
 				} else {
-					array_push($presenters, $this->presenters[$i]);
+					array_push($authors, $this->authors[$i]);
 				}
 			}
-			$this->presenters = $presenters;
+			$this->authors = $authors;
 		}
 		return $found;
 	}
@@ -127,14 +127,14 @@ class Paper extends Document {
 	}
 
 	/**
-	 * Return string of presenter names, separated by the specified token
+	 * Return string of author names, separated by the specified token
 	 * @param $lastOnly boolean return list of lastnames only (default false)
 	 * @param $separator string separator for names (default comma+space)
 	 * @return string
 	 */
-	function getPresenterString($lastOnly = false, $separator = ', ') {
+	function getAuthorString($lastOnly = false, $separator = ', ') {
 		$str = '';
-		foreach ($this->presenters as $a) {
+		foreach ($this->authors as $a) {
 			if (!empty($str)) {
 				$str .= $separator;
 			}
@@ -144,26 +144,26 @@ class Paper extends Document {
 	}
 
 	/**
-	 * Return a list of presenter email addresses.
+	 * Return a list of author email addresses.
 	 * @return array
 	 */
-	function getPresenterEmails() {
+	function getAuthorEmails() {
 		import('mail.Mail');
 		$returner = array();
-		foreach ($this->presenters as $a) {
+		foreach ($this->authors as $a) {
 			$returner[] = Mail::encodeDisplayName($a->getFullName()) . ' <' . $a->getEmail() . '>';
 		}
 		return $returner;
 	}
 
 	/**
-	 * Return first presenter
+	 * Return first author
 	 * @param $lastOnly boolean return lastname only (default false)
 	 * @return string
 	 */
-	function getFirstPresenter($lastOnly = false) {
-		$presenter = $this->presenters[0];
-		return $lastOnly ? $presenter->getLastName() : $presenter->getFullName();
+	function getFirstAuthor($lastOnly = false) {
+		$author = $this->authors[0];
+		return $lastOnly ? $author->getLastName() : $author->getFullName();
 	}
 
 
@@ -188,45 +188,45 @@ class Paper extends Document {
 	}
 
 	/**
-	 * Get all presenters of this paper.
-	 * @return array Presenters
+	 * Get all authors of this paper.
+	 * @return array Authors
 	 */
-	function &getPresenters() {
-		return $this->presenters;
+	function &getAuthors() {
+		return $this->authors;
 	}
 
 	/**
-	 * Get a specific presenter of this paper.
-	 * @param $presenterId int
-	 * @return array Presenters
+	 * Get a specific author of this paper.
+	 * @param $authorId int
+	 * @return array Authors
 	 */
-	function &getPresenter($presenterId) {
-		$presenter = null;
+	function &getAuthor($authorId) {
+		$author = null;
 
-		if ($presenterId != 0) {
-			for ($i=0, $count=count($this->presenters); $i < $count && $presenter == null; $i++) {
-				if ($this->presenters[$i]->getPresenterId() == $presenterId) {
-					$presenter = &$this->presenters[$i];
+		if ($authorId != 0) {
+			for ($i=0, $count=count($this->authors); $i < $count && $author == null; $i++) {
+				if ($this->authors[$i]->getAuthorId() == $authorId) {
+					$author = &$this->authors[$i];
 				}
 			}
 		}
-		return $presenter;
+		return $author;
 	}
 
 	/**
-	 * Get the IDs of all presenters removed from this paper.
+	 * Get the IDs of all authors removed from this paper.
 	 * @return array int
 	 */
-	function &getRemovedPresenters() {
-		return $this->removedPresenters;
+	function &getRemovedAuthors() {
+		return $this->removedAuthors;
 	}
 
 	/**
-	 * Set presenters of this paper.
-	 * @param $presenters array Presenters
+	 * Set authors of this paper.
+	 * @param $authors array Authors
 	 */
-	function setPresenters($presenters) {
-		return $this->presenters = $presenters;
+	function setAuthors($authors) {
+		return $this->authors = $authors;
 	}
 
 	/**

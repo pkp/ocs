@@ -37,11 +37,11 @@ class ScheduleForm extends Form {
 		$this->publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 	}
 
-	function presenterSort($a, $b) {
-		$presenterA = $a->getPresenterString();
-		$presenterB = $b->getPresenterString();
+	function authorSort($a, $b) {
+		$authorA = $a->getAuthorString();
+		$authorB = $b->getAuthorString();
 
-		return strcmp($presenterA, $presenterB);
+		return strcmp($authorA, $authorB);
 	}
 
 	function roomSort($a, $b) {
@@ -109,7 +109,7 @@ class ScheduleForm extends Form {
 		// Sort the data.
 		$sort = Request::getUserVar('sort');
 		$sortFuncMap = array(
-			'presenter' => array(&$this, 'presenterSort'),
+			'author' => array(&$this, 'authorSort'),
 			'title' => array(&$this, 'titleSort'),
 			'startTime' => array(&$this, 'startTimeSort'),
 			'room' => array(&$this, 'roomSort')

@@ -13,7 +13,7 @@
 
 <table width="100%" class="data">
 	<tr>
-		<td width="20%" class="label">{translate key="paper.presenters"}</td>
+		<td width="20%" class="label">{translate key="paper.authors"}</td>
 		<td width="80%">
 			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getPresenterEmails() subject=$submission->getPaperTitle() paperId=$submission->getPaperId()}
 			{$submission->getPresenterString()|escape} {icon name="mail" url=$url}
@@ -287,7 +287,7 @@
 						{foreach from=$reviewAssignment->getReviewerFileRevisions() item=reviewerFile key=key}
 						<tr valign="top">
 							<td valign="middle">
-								<form name="presenterView{$reviewAssignment->getReviewId()}" method="post" action="{url op="makeReviewerFileViewable"}">
+								<form name="authorView{$reviewAssignment->getReviewId()}" method="post" action="{url op="makeReviewerFileViewable"}">
 									<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}" class="file">{$reviewerFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewerFile->getDateModified()|date_format:$dateFormatShort}
 									<input type="hidden" name="reviewId" value="{$reviewAssignment->getReviewId()}" />
 									<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />

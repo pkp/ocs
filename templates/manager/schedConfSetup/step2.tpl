@@ -148,12 +148,12 @@
 
 <div class="separator"></div>
 
-<h3>2.3 {translate key="manager.schedConfSetup.submissions.presenterGuidelines"}</h3>
+<h3>2.3 {translate key="manager.schedConfSetup.submissions.authorGuidelines"}</h3>
 
-<p>{translate key="manager.schedConfSetup.submissions.presenterGuidelinesDescription"}</p>
+<p>{translate key="manager.schedConfSetup.submissions.authorGuidelinesDescription"}</p>
 
 <p>
-	<textarea name="presenterGuidelines[{$formLocale|escape}]" id="presenterGuidelines" rows="12" cols="60" class="textArea">{$presenterGuidelines[$formLocale]|escape}</textarea>
+	<textarea name="authorGuidelines[{$formLocale|escape}]" id="authorGuidelines" rows="12" cols="60" class="textArea">{$authorGuidelines[$formLocale]|escape}</textarea>
 	<br />
 	<span class="instruct">{translate key="manager.setup.htmlSetupInstructions"}</span>
 </p>

@@ -57,16 +57,16 @@ class SearchHandler extends PKPHandler {
 	}
 
 	/**
-	 * Show index of published papers by presenter.
+	 * Show index of published papers by author.
 	 */
-	function presenters($args) {
+	function authors($args) {
 		parent::validate();
 		SearchHandler::setupTemplate(true);
 
-		$presenterDao = &DAORegistry::getDAO('PresenterDAO');
+		$authorDao = &DAORegistry::getDAO('AuthorDAO');
 
 		if (isset($args[0]) && $args[0] == 'view') {
-			// View a specific presenter
+			// View a specific author
 			$firstName = Request::getUserVar('firstName');
 			$middleName = Request::getUserVar('middleName');
 			$lastName = Request::getUserVar('lastName');
@@ -74,7 +74,7 @@ class SearchHandler extends PKPHandler {
 			$country = Request::getUserVar('country');
 
 			$schedConf =& Request::getSchedConf();
-			$publishedPapers = $presenterDao->getPublishedPapersForPresenter(
+			$publishedPapers = $authorDao->getPublishedPapersForAuthor(
 				$schedConf?$schedConf->getSchedConfId():null,
 				$firstName,
 				$middleName,
@@ -134,15 +134,15 @@ class SearchHandler extends PKPHandler {
 			$country =& $countryDao->getCountry($country);
 			$templateMgr->assign('country', $country);
 
-			$templateMgr->display('search/presenterDetails.tpl');
+			$templateMgr->display('search/authorDetails.tpl');
 		} else {
-			// Show the presenter index
+			// Show the author index
 			$searchInitial = Request::getUserVar('searchInitial');
-			$rangeInfo = PKPHandler::getRangeInfo('presenters');
+			$rangeInfo = PKPHandler::getRangeInfo('authors');
 
 			$schedConf =& Request::getSchedConf();
 
-			$presenters = &$presenterDao->getPresentersAlphabetizedBySchedConf(
+			$authors = &$authorDao->getAuthorsAlphabetizedBySchedConf(
 				isset($schedConf)?$schedConf->getSchedConfId():null,
 				$searchInitial,
 				$rangeInfo
@@ -151,8 +151,8 @@ class SearchHandler extends PKPHandler {
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
-			$templateMgr->assign_by_ref('presenters', $presenters);
-			$templateMgr->display('search/presenterIndex.tpl');
+			$templateMgr->assign_by_ref('authors', $authors);
+			$templateMgr->display('search/authorIndex.tpl');
 		}
 	}
 
@@ -287,7 +287,7 @@ class SearchHandler extends PKPHandler {
 
 		// Load the keywords array with submitted values
 		$keywords = array(null => PaperSearch::parseQuery(Request::getUserVar('query')));
-		$keywords[PAPER_SEARCH_PRESENTER] = PaperSearch::parseQuery(Request::getUserVar('presenter'));
+		$keywords[PAPER_SEARCH_AUTHOR] = PaperSearch::parseQuery(Request::getUserVar('author'));
 		$keywords[PAPER_SEARCH_TITLE] = PaperSearch::parseQuery(Request::getUserVar('title'));
 		$keywords[PAPER_SEARCH_DISCIPLINE] = PaperSearch::parseQuery(Request::getUserVar('discipline'));
 		$keywords[PAPER_SEARCH_SUBJECT] = PaperSearch::parseQuery(Request::getUserVar('subject'));
@@ -330,7 +330,7 @@ class SearchHandler extends PKPHandler {
 	function assignAdvancedSearchParameters(&$templateMgr) {
 		$templateMgr->assign('query', Request::getUserVar('query'));
 		$templateMgr->assign('searchConference', Request::getUserVar('searchConference'));
-		$templateMgr->assign('presenter', Request::getUserVar('presenter'));
+		$templateMgr->assign('author', Request::getUserVar('author'));
 		$templateMgr->assign('title', Request::getUserVar('title'));
 		$templateMgr->assign('fullText', Request::getUserVar('fullText'));
 		$templateMgr->assign('supplementaryFiles', Request::getUserVar('supplementaryFiles'));

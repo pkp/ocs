@@ -50,17 +50,17 @@ class SchedConfAction {
 	}
 
 	/**
-	 * Get whether or not we permit users to register as presenters
+	 * Get whether or not we permit users to register as authors
 	 */
-	function allowRegPresenter($schedConf) {
-		$allowRegPresenter = false;
-		if($schedConf->getSetting('regPresenterOpenDate') && time() > $schedConf->getSetting('regPresenterOpenDate')) {
-			$allowRegPresenter = true;
+	function allowRegAuthor($schedConf) {
+		$allowRegAuthor = false;
+		if($schedConf->getSetting('regAuthorOpenDate') && time() > $schedConf->getSetting('regAuthorOpenDate')) {
+			$allowRegAuthor = true;
 		}
-		if($schedConf->getSetting('regPresenterCloseDate') && time() > $schedConf->getSetting('regPresenterCloseDate')) {
-			$allowRegPresenter = false;
+		if($schedConf->getSetting('regAuthorCloseDate') && time() > $schedConf->getSetting('regAuthorCloseDate')) {
+			$allowRegAuthor = false;
 		}
-		return $allowRegPresenter;
+		return $allowRegAuthor;
 	}
 
 	/**

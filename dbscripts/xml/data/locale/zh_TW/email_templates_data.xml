@@ -165,12 +165,12 @@
 		<row>
 			<field name="email_key">SUBMISSION_ACK</field>
 			<field name="subject">投稿感謝函</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 感謝您投稿 "{$paperTitle}" 至 {$conferenceName}。我們所使用的線上研討會管理系統，在登入後您能夠透過編輯審查來追蹤作業進展以及通過審查的過程。請由下列網址登錄到會議網站:
 
 投稿網站: {$submissionUrl}
-使用者名稱: {$presenterUsername}
+使用者名稱: {$authorUsername}
 
 倘若您有任何的疑問，請聯絡我們。謝謝您將此研討會視為您的工作之一。
 
@@ -180,12 +180,12 @@
 		<row>
 			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
 			<field name="subject">稿件上傳感謝函</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 感謝您上傳您的發表文章 "{$paperTitle}" 至 {$conferenceName}。我們所使用的線上研討會管理系統，在登入後您能夠透過編輯審查來追蹤作業進展以及通過審查的過程。請由下列網址登錄到會議網站:
 
 投稿網站: {$submissionUrl}
-使用者名稱: {$presenterUsername}
+使用者名稱: {$authorUsername}
 
 倘若您有任何的疑問，請聯絡我們。謝謝您將此研討會視為您的工作之一。
 
@@ -195,7 +195,7 @@
 		<row>
 			<field name="email_key">SUBMISSION_UNSUITABLE</field>
 			<field name="subject">不適當的投稿</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 您的文章 "{$paperTitle}" 經過初審發現其不符合 {$conferenceName} 的範圍和焦點。建議您查詢關於研討會的內容，及任何已預定的研討會來學習更多關於我們可以接受的作業。抑或您可以投稿您的論文或摘要至其他或更適當的研討會。
 
@@ -428,7 +428,7 @@
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_ACCEPT</field>
 			<field name="subject">關於編輯論文決定</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 恭喜您，您的稿件{$paperTitle}已被接受並會在{$conferenceTitle}發表，研討會將會在{$conferenceDate}地點{$locationCity}舉行。 
 
@@ -439,7 +439,7 @@
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_DECLINE</field>
 			<field name="subject">關於編輯論文決定</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 我們已完成審查您的稿件"{$paperTitle}." 結果為...
 
@@ -449,7 +449,7 @@
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_REVISE</field>
 			<field name="subject">關於編輯論文決定</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 在我們小心仔細的審查您的稿件之後，"{$paperTitle}"，倘若以下的修正成功地被執行，將考慮將您的論文在{$conferenceTitle}發表。
 
@@ -461,7 +461,7 @@
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_ACCEPT</field>
 			<field name="subject">關於編輯論文決定</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 恭喜您，您的論文{$paperTitle}已被接受並會在{$conferenceTitle}發表，研討會將會在{$conferenceDate}地點{$locationCity}舉行。
 
@@ -472,7 +472,7 @@
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_DECLINE</field>
 			<field name="subject">關於編輯論文決定</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 我們已完成審查您的稿件"{$paperTitle}." 結果為...
 
@@ -482,7 +482,7 @@
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_REVISE</field>
 			<field name="subject">關於編輯論文決定</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 在我們小心仔細的審查您的稿件之後，"{$paperTitle}"，倘若以下的修正成功地被執行，將考慮將您的論文在{$conferenceTitle}發表。
 

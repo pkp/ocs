@@ -4,7 +4,7 @@
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Paper reading tools -- presenter bio page.
+ * Paper reading tools -- author bio page.
  *
  * $Id$
  *}
@@ -15,17 +15,17 @@
 
 <h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
 
-{foreach from=$paper->getPresenters() item=presenter name=presenters}
+{foreach from=$paper->getPresenters() item=author name=authors}
 <p>
-	<em>{$presenter->getFullName()|escape}</em><br />
-	{if $presenter->getUrl()}<a href="{$presenter->getUrl()|escape:"quotes"}">{$presenter->getUrl()|escape}</a><br/>{/if}
-	{if $presenter->getAffiliation()}{$presenter->getAffiliation()|escape}{/if}
-	{if $presenter->getCountry()}<br/>{$presenter->getCountryLocalized()|escape}{/if}
+	<em>{$author->getFullName()|escape}</em><br />
+	{if $author->getUrl()}<a href="{$author->getUrl()|escape:"quotes"}">{$author->getUrl()|escape}</a><br/>{/if}
+	{if $author->getAffiliation()}{$author->getAffiliation()|escape}{/if}
+	{if $author->getCountry()}<br/>{$author->getCountryLocalized()|escape}{/if}
 </p>
 
-<p>{$presenter->getPresenterBiography()|strip_unsafe_html|nl2br}</p>
+<p>{$author->getPresenterBiography()|strip_unsafe_html|nl2br}</p>
 
-{if !$smarty.foreach.presenters.last}<div class="separator"></div>{/if}
+{if !$smarty.foreach.authors.last}<div class="separator"></div>{/if}
 
 {/foreach}
 

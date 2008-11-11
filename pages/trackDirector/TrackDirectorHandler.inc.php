@@ -121,7 +121,7 @@ class TrackDirectorHandler extends PKPHandler {
 
 		$templateMgr->assign('fieldOptions', Array(
 			SUBMISSION_FIELD_TITLE => 'paper.title',
-			SUBMISSION_FIELD_PRESENTER => 'user.role.presenter',
+			SUBMISSION_FIELD_AUTHOR => 'user.role.author',
 			SUBMISSION_FIELD_DIRECTOR => 'user.role.director'
 		));
 

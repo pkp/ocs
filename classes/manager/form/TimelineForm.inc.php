@@ -74,10 +74,10 @@ class TimelineForm extends Form {
 				'return ($siteEndDate >= $form->getData(\'endDate\'));'),
 				array(&$this)));
 
-			// regPresenterOpenDate must be before regPresenterCloseDate
-			$this->addCheck(new FormValidatorCustom($this, 'regPresenterOpenDate', 'required', 'manager.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate',
-				create_function('$regPresenterOpenDate,$form',
-				'return ($regPresenterOpenDate <= $form->getData(\'regPresenterCloseDate\'));'),
+			// regAuthorOpenDate must be before regAuthorCloseDate
+			$this->addCheck(new FormValidatorCustom($this, 'regAuthorOpenDate', 'required', 'manager.timeline.form.regAuthorCloseDateBeforeRegAuthorOpenDate',
+				create_function('$regAuthorOpenDate,$form',
+				'return ($regAuthorOpenDate <= $form->getData(\'regAuthorCloseDate\'));'),
 				array(&$this)));
 
 			// regReviewerOpenDate must be before regReviewerCloseDate
@@ -106,7 +106,7 @@ class TimelineForm extends Form {
 		if ($schedConf->getEndDate()) $dates[] = strtotime($schedConf->getEndDate());
 		foreach (array(
 			'startDate', 'endDate',
-			'regPresenterOpenDate', 'regPresenterCloseDate',
+			'regAuthorOpenDate', 'regAuthorCloseDate',
 			'showCFPDate',
 			'submissionsOpenDate', 'submissionsCloseDate',
 			'regReviewerOpenDate', 'regReviewerCloseDate', 'closeReviewProcessDate',
@@ -158,8 +158,8 @@ class TimelineForm extends Form {
 			'startDate' => $schedConf->getSetting('startDate'),
 			'endDate' => $schedConf->getSetting('endDate'),
 
-			'regPresenterOpenDate' => $schedConf->getSetting('regPresenterOpenDate'),
-			'regPresenterCloseDate' => $schedConf->getSetting('regPresenterCloseDate'),
+			'regAuthorOpenDate' => $schedConf->getSetting('regAuthorOpenDate'),
+			'regAuthorCloseDate' => $schedConf->getSetting('regAuthorCloseDate'),
 			'showCFPDate' => $schedConf->getSetting('showCFPDate'),
 			'submissionsOpenDate' => $schedConf->getSetting('submissionsOpenDate'),
 			'submissionsCloseDate' => $schedConf->getSetting('submissionsCloseDate'),
@@ -187,7 +187,7 @@ class TimelineForm extends Form {
 		$this->readUserDateVars(array(
 			'siteStartDate', 'siteEndDate',
 			'startDate', 'endDate',
-			'regPresenterOpenDate', 'regPresenterCloseDate',
+			'regAuthorOpenDate', 'regAuthorCloseDate',
 			'showCFPDate',
 			'submissionsOpenDate', 'submissionsCloseDate',
 			'regReviewerOpenDate', 'regReviewerCloseDate', 'closeReviewProcessDate',
@@ -266,27 +266,27 @@ class TimelineForm extends Form {
 			$schedConf->updateSetting('endDate', $this->_data['endDate'], 'date');
 		}
 
-		if ($schedConf->getSetting('regPresenterOpenDate') != $this->_data['regPresenterOpenDate']) {
+		if ($schedConf->getSetting('regAuthorOpenDate') != $this->_data['regAuthorOpenDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
 				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
-				0, 'log.timeline.regPresenterOpenDateChanged',
-				array('oldRegPresenterOpenDate' => strftime($dateFormatShort, $schedConf->getSetting('regPresenterOpenDate')),
-					'newRegPresenterOpenDate' => strftime($dateFormatShort, $this->_data['regPresenterOpenDate'])));
-			$schedConf->updateSetting('regPresenterOpenDate', $this->_data['regPresenterOpenDate'], 'date');
+				0, 'log.timeline.regAuthorOpenDateChanged',
+				array('oldRegAuthorOpenDate' => strftime($dateFormatShort, $schedConf->getSetting('regAuthorOpenDate')),
+					'newRegAuthorOpenDate' => strftime($dateFormatShort, $this->_data['regAuthorOpenDate'])));
+			$schedConf->updateSetting('regAuthorOpenDate', $this->_data['regAuthorOpenDate'], 'date');
 		}
-		if ($schedConf->getSetting('regPresenterCloseDate') != $this->_data['regPresenterCloseDate']) {
+		if ($schedConf->getSetting('regAuthorCloseDate') != $this->_data['regAuthorCloseDate']) {
 			ConferenceLog::logEvent(
 				$schedConf->getConferenceId(),
 				$schedConf->getSchedConfId(),
 				CONFERENCE_LOG_CONFIGURATION,
 				LOG_TYPE_DEFAULT,
-				0, 'log.timeline.regPresenterCloseDateChanged',
-				array('oldRegPresenterCloseDate' => strftime($dateFormatShort, $schedConf->getSetting('regPresenterCloseDate')),
-					'newRegPresenterCloseDate' => strftime($dateFormatShort, $this->_data['regPresenterCloseDate'])));
-			$schedConf->updateSetting('regPresenterCloseDate', $this->_data['regPresenterCloseDate'], 'date');
+				0, 'log.timeline.regAuthorCloseDateChanged',
+				array('oldRegAuthorCloseDate' => strftime($dateFormatShort, $schedConf->getSetting('regAuthorCloseDate')),
+					'newRegAuthorCloseDate' => strftime($dateFormatShort, $this->_data['regAuthorCloseDate'])));
+			$schedConf->updateSetting('regAuthorCloseDate', $this->_data['regAuthorCloseDate'], 'date');
 		}
 		if ($schedConf->getSetting('showCFPDate') != $this->_data['showCFPDate']) {
 			ConferenceLog::logEvent(

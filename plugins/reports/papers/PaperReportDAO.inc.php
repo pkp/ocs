@@ -98,7 +98,7 @@ class PaperReportDAO extends DAO {
 
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$papers =& $paperDao->getPapersBySchedConfId($schedConfId);
-		$presentersReturner = array();
+		$authorsReturner = array();
 		$index = 1;
 		while ($paper =& $papers->next()) {
 			$result =& $this->retrieve(
@@ -110,22 +110,22 @@ class PaperReportDAO extends DAO {
 					pp.country AS country,
 					pp.url AS url,
 					pps.setting_value AS biography
-				FROM paper_presenters pp
+				FROM paper_authors pp
 					LEFT JOIN papers p ON pp.paper_id=p.paper_id
-					LEFT JOIN paper_presenter_settings pps ON pp.presenter_id=pps.presenter_id
+					LEFT JOIN paper_author_settings pps ON pp.author_id=pps.author_id
 				WHERE
 					p.sched_conf_id = ? AND
 					pp.paper_id = ? AND
 					pps.setting_name = \'biography\'',
 				array($schedConfId, $paper->getPaperId())
 			);
-			$presenterIterator = new DBRowIterator($result);
-			$presentersReturner[] = $presenterIterator;
+			$authorIterator = new DBRowIterator($result);
+			$authorsReturner[] = $authorIterator;
 			$index++;
 			unset($paper);
 		}
 
-		return array($papersReturner, $presentersReturner, $decisionsReturner);
+		return array($papersReturner, $authorsReturner, $decisionsReturner);
 	}
 }
 

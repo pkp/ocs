@@ -16,7 +16,7 @@
  */
 
 import('submission.director.DirectorSubmission');
-import('submission.presenter.PresenterSubmission'); // Bring in director decision constants
+import('submission.author.AuthorSubmission'); // Bring in director decision constants
 
 define('DIRECTOR_SUBMISSION_SORT_ORDER_NATURAL',	0x00000001);
 define('DIRECTOR_SUBMISSION_SORT_ORDER_PUBLISHED',	0x00000002);
@@ -24,7 +24,7 @@ define('DIRECTOR_SUBMISSION_SORT_ORDER_PUBLISHED',	0x00000002);
 class DirectorSubmissionDAO extends DAO {
 
 	var $paperDao;
-	var $presenterDao;
+	var $authorDao;
 	var $userDao;
 	var $editAssignmentDao;
 
@@ -34,7 +34,7 @@ class DirectorSubmissionDAO extends DAO {
 	function DirectorSubmissionDAO() {
 		parent::DAO();
 		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->presenterDao = &DAORegistry::getDAO('PresenterDAO');
+		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
 		$this->userDao = &DAORegistry::getDAO('UserDAO');
 		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
 	}
@@ -195,7 +195,7 @@ class DirectorSubmissionDAO extends DAO {
 				}
 				$params[] = $search;
 				break;
-			case SUBMISSION_FIELD_PRESENTER:
+			case SUBMISSION_FIELD_AUTHOR:
 				$searchSql = $this->_generateUserNameSearchSQL($search, $searchMatch, 'pa.', $params);
 				break;
 			case SUBMISSION_FIELD_DIRECTOR:
@@ -222,7 +222,7 @@ class DirectorSubmissionDAO extends DAO {
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
-				INNER JOIN paper_presenters pa ON (pa.paper_id = p.paper_id)
+				INNER JOIN paper_authors pa ON (pa.paper_id = p.paper_id)
 				LEFT JOIN published_papers pp ON (pp.paper_id = p.paper_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN edit_assignments ea ON (ea.paper_id = p.paper_id)

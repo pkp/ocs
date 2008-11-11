@@ -66,12 +66,12 @@ Grazie,
 		<row>
 			<field name="email_key">SUBMISSION_ACK</field>
 			<field name="subject">Accettazione della submission</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Grazie per la tua submission, "{$paperTitle}" a {$conferenceName}. Con il sistema online di gestione del convegno che stiamo usando, potrai seguire il suo sviluppo attraverso il processo registrandoti al sito web del convegno:
 
 Submission URL: {$submissionUrl}
-Username: {$presenterUsername}
+Username: {$authorUsername}
 
 Se hai qualche domanda, si prega di contattarmi. Grazie per aver considerato questo convegno come luogo d'incontro per il tuo lavoro.
 
@@ -81,12 +81,12 @@ Se hai qualche domanda, si prega di contattarmi. Grazie per aver considerato que
 		<row>
 			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
 			<field name="subject">Accettazione del caricamento della submission</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Grazie per aver caricato la tua presentazione, "{$paperTitle}" alla {$conferenceName}. Con il sistema online di gestione del convegno che stiamo usando, potrai seguire il suo sviluppo attraverso il processo registrandoti al sito web del convegno:
 
 Submission URL: {$submissionUrl}
-Username: {$presenterUsername}
+Username: {$authorUsername}
 
 Se hai qualche domanda, si prega di contattarmi. Grazie per aver considerato questo convegno come luogo per il tuo lavoro.
 
@@ -96,7 +96,7 @@ Se hai qualche domanda, si prega di contattarmi. Grazie per aver considerato que
 		<row>
 			<field name="email_key">SUBMISSION_UNSUITABLE</field>
 			<field name="subject">Submission non idonea</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Una prima revisione di "{$paperTitle}" ha reso evidente che questa submission non &#x00E8; adatta allo scopo e al focus della {$conferenceName}. Si raccomanda di consultare la descrizione di questo convegno in Riguardo al convegno, come anche qualsiasi precedente convegno programmato, per sapere di pi&#x00F9; sui lavori che vengono accettati. Potresti anche considerare di inviare questa relazione o abstract ad altri convegni pi&#x00F9; adatti.
 
@@ -334,7 +334,7 @@ Per favore conferma la tua disponibilit&#x00E0; a completare questo contributo v
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_ACCEPT</field>
 			<field name="subject">Decisione editoriale sulla relazione</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Congratulazioni, la tua submission {$paperTitle} &#x00E8; stata accettata per la presentazione alla {$conferenceTitle} che si terr&#x00E0; il {$conferenceDate} a {$locationCity}. 
 
@@ -346,7 +346,7 @@ Ti ringraziamo e rimaniamo in attesa della tua partecipazione a quest'evento.
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_DECLINE</field>
 			<field name="subject">Decisione editoriale sulla relazione</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Ora abbiamo completato la revisione della tua submission "{$paperTitle}." Con risultato...
 
@@ -357,7 +357,7 @@ Ora abbiamo completato la revisione della tua submission "{$paperTitle}." Con ri
  		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_REVISE</field>
 			<field name="subject">Decisione editoriale sulla relazione</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Dopo un'attenta revisione della tua submission, "{$paperTitle}" sar&#x00E0; considerato per la presentazione alla {$conferenceTitle} se le seguenti revisioni verranno eseguite con successo.
 
@@ -370,7 +370,7 @@ Ti ringraziamo e rimaniamo in attesa della tua partecipazione a quest'evento.
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_ACCEPT</field>
 			<field name="subject">Decisione editoriale sulla relazione</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Congratulazioni, la tua submission {$paperTitle}&#x00E8; stata accettata per la presentazione alla {$conferenceTitle} che si terr&#x00E0; il {$conferenceDate} a {$locationCity}. 
 
@@ -382,7 +382,7 @@ Ti ringraziamo e rimaniamo in attesa della tua partecipazione a quest'evento.
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_DECLINE</field>
 			<field name="subject">Decisione editoriale sulla relazione</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Ora abbiamo completato la revisione della tua submission "{$paperTitle}." Con risultato...
 
@@ -393,7 +393,7 @@ Ora abbiamo completato la revisione della tua submission "{$paperTitle}." Con ri
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_REVISE</field>
 			<field name="subject">Decisione editoriale sulla relazione</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Dopo un'attenta revisione della tua submission, "{$paperTitle}" sar&#x00E0; considerato per la presentazione alla {$conferenceTitle} se le seguenti revisioni verranno eseguite con successo.
 

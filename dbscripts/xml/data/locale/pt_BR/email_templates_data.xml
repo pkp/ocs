@@ -66,12 +66,12 @@ Obrigado,
 		<row>
 			<field name="email_key">SUBMISSION_ACK</field>
 			<field name="subject">Aviso de recebimento de Submissão</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Obrigado por sua submissão, "{$paperTitle}" ao evento: {$conferenceName}. Com o nosso sistema de gestão de conferências on-line, você será capaz de acompanhar o progresso de sua submissão, através processo editorial ao acessar o portal da conferência:
 
 URL da submissão: {$submissionUrl}
-Nome de usuário: {$presenterUsername}
+Nome de usuário: {$authorUsername}
 
 Quaisquer dúvidas, por favor entre em contato. Obrigado por considerar esta conferência um local para o seu trabalho.
 
@@ -81,12 +81,12 @@ Quaisquer dúvidas, por favor entre em contato. Obrigado por considerar esta con
 		<row>
 			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
 			<field name="subject">Aviso de recebimento de arquivo de submissão</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Obrigado por enviar sua apresentação, "{$paperTitle}" ao evento: {$conferenceName}. Com o nosso sistema de gestão de conferências on-line, você será capaz de acompanhar o progresso de sua submissão, através processo editorial ao acessar o portal da conferência:
 
 URL da submissão: {$submissionUrl}
-Nome de usuário: {$presenterUsername}
+Nome de usuário: {$authorUsername}
 
 Quaisquer dúvidas, por favor entre em contato. Obrigado por considerar esta conferência um local para o seu trabalho.
 
@@ -96,7 +96,7 @@ Quaisquer dúvidas, por favor entre em contato. Obrigado por considerar esta con
 		<row>
 			<field name="email_key">SUBMISSION_UNSUITABLE</field>
 			<field name="subject">Submissão não apropriada</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Após uma revisão inicial de "{$paperTitle}", ficou claro que a submissão não é direcionada ao escopo e foco do evento: {$conferenceName}. Recomendo que consulte a descrição desta conferência no menu "Sobre", assim como outras conferência anteriores, para aprender mais sobre os trabalhos que aceitamos. Considere efetuar sua submissão deste artigo ou resumo "abstract" a outra conferência mais apropriada.
 
@@ -336,7 +336,7 @@ Por favor confirme sua disponibilidade para completar essa importante contribui�
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_ACCEPT</field>
 			<field name="subject">Decisão Editorial</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Parabéns, o resumo de seu documento {$paperTitle} foi aceito para ser apresentado na(o) {$conferenceTitle} que acontecerá {$conferenceDate} em {$locationCity}. 
 
@@ -348,7 +348,7 @@ Obrigado e aguardamos sua participação no evento.
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_DECLINE</field>
 			<field name="subject">Decisão Editorial</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Completamos a revisão do resumo de seu documento "{$paperTitle}." O resultado foi ...
 
@@ -359,7 +359,7 @@ Completamos a revisão do resumo de seu documento "{$paperTitle}." O resultado f
  		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_REVISE</field>
 			<field name="subject">Decisão Editorial</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Após cuidadosa revisão do resumo de seu documento, "{$paperTitle}" nós o aceitaremos para ser apresentado na(o) {$conferenceTitle} desde que as seguintes modificações sejam realizadas.
 
@@ -372,7 +372,7 @@ Obrigado e aguardamos sua participação no evento.
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_ACCEPT</field>
 			<field name="subject">Decisão Editorial</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Parabéns, o seu documento {$paperTitle} foi aceito para ser apresentado na(o) {$conferenceTitle} que acontecerá {$conferenceDate} em {$locationCity}. 
 
@@ -384,7 +384,7 @@ Obrigado e aguardamos sua participação no evento.
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_DECLINE</field>
 			<field name="subject">Decisão Editorial</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Completamos a revisão de seu documento "{$paperTitle}." O resultado foi ...
 
@@ -395,7 +395,7 @@ Completamos a revisão de seu documento "{$paperTitle}." O resultado foi ...
 		<row>
 			<field name="email_key">SUBMISSION_PAPER_REVISE</field>
 			<field name="subject">Decisão Editorial</field>
-			<field name="body">{$presenterName}:
+			<field name="body">{$authorName}:
 
 Após cuidadosa revisão de seu documento, "{$paperTitle}" nós o aceitaremos para ser apresentado na(o) {$conferenceTitle} desde que as seguintes modificações sejam realizadas.
 

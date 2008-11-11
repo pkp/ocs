@@ -164,7 +164,7 @@
 				{foreach from=$reviewAssignment->getReviewerFileRevisions() item=reviewerFile key=key}
 				<tr valign="top">
 					<td valign="middle">
-						<form name="presenterView{$reviewAssignment->getReviewId()}" method="post" action="{url op="makeReviewerFileViewable"}">
+						<form name="authorView{$reviewAssignment->getReviewId()}" method="post" action="{url op="makeReviewerFileViewable"}">
 							<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}" class="file">{$reviewerFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewerFile->getDateModified()|date_format:$dateFormatShort}
 							<input type="hidden" name="reviewId" value="{$reviewAssignment->getReviewId()}" />
 							<input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
@@ -191,7 +191,7 @@
 
 <h4>{translate key="trackDirector.regrets.decisionStage" stage=$stagePlusOne}</h4>
 
-{assign var=presenterFiles value=$submission->getPresenterFileRevisions($stagePlusOne)}
+{assign var=authorFiles value=$submission->getPresenterFileRevisions($stagePlusOne)}
 {assign var=directorFiles value=$submission->getDirectorFileRevisions($stagePlusOne)}
 
 <table class="data" width="100%">
@@ -219,17 +219,17 @@
 			{/if}
 		</td>
 	</tr>
-	{foreach from=$presenterFiles item=presenterFile key=key}
+	{foreach from=$authorFiles item=authorFile key=key}
 		<tr valign="top">
-			{if !$presenterRevisionExists}
-				{assign var="presenterRevisionExists" value=true}
-				<td width="20%" class="label" rowspan="{$presenterFiles|@count}" class="label">{translate key="submission.presenterVersion"}</td>
+			{if !$authorRevisionExists}
+				{assign var="authorRevisionExists" value=true}
+				<td width="20%" class="label" rowspan="{$authorFiles|@count}" class="label">{translate key="submission.authorVersion"}</td>
 			{/if}
-			<td width="80%" class="value"><a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$presenterFile->getFileId():$presenterFile->getRevision()}" class="file">{$presenterFile->getFileName()|escape}</a>&nbsp;&nbsp;{$presenterFile->getDateModified()|date_format:$dateFormatShort}</td>
+			<td width="80%" class="value"><a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$authorFile->getDateModified()|date_format:$dateFormatShort}</td>
 		</tr>
 	{foreachelse}
 		<tr valign="top">
-			<td width="20%" class="label">{translate key="submission.presenterVersion"}</td>
+			<td width="20%" class="label">{translate key="submission.authorVersion"}</td>
 			<td width="80%" colspan="4" class="nodata">{translate key="common.none"}</td>
 		</tr>
 	{/foreach}

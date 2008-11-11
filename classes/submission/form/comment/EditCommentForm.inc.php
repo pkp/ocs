@@ -24,7 +24,7 @@ class EditCommentForm extends Form {
 	/** @var PaperComment the comment */
 	var $comment;
 
-	/** @var int the role of the comment presenter */
+	/** @var int the role of the comment author */
 	var $roleId;
 
 	/** @var User the user */
@@ -151,8 +151,8 @@ class EditCommentForm extends Form {
 			$reviewer = null;
 		}
 
-		// Get presenter
-		$presenter = &$userDao->getUser($this->paper->getUserId());
+		// Get author
+		$author = &$userDao->getUser($this->paper->getUserId());
 
 		switch ($this->comment->getCommentType()) {
 		case COMMENT_TYPE_PEER_REVIEW:
@@ -166,8 +166,8 @@ class EditCommentForm extends Form {
 
 		case COMMENT_TYPE_DIRECTOR_DECISION:
 			if ($this->roleId == ROLE_ID_DIRECTOR || $this->roleId == ROLE_ID_TRACK_DIRECTOR) {
-				// Then add presenter
-				if (isset($presenter)) $recipients = array_merge($recipients, array($presenter->getEmail() => $presenter->getFullName()));
+				// Then add author
+				if (isset($author)) $recipients = array_merge($recipients, array($author->getEmail() => $author->getFullName()));
 			} else {
 				// Then add directors
 				$recipients = array_merge($recipients, $directorAddresses);

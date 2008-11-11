@@ -12,8 +12,8 @@
   * $Id$
   -->
 <data>
-	<!-- Bug #3791: Presenter country is sometimes null, sometimes empty. Disambiguate. -->
+	<!-- Bug #3791: Author country is sometimes null, sometimes empty. Disambiguate. -->
 	<sql>
-		<query>UPDATE paper_presenters SET country = '' WHERE country IS NULL</query>
+		<query>UPDATE paper_authors SET country = '' WHERE country IS NULL</query>
 	</sql>
 </data>

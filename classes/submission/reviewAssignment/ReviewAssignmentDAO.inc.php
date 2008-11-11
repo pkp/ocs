@@ -259,11 +259,11 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get all presenter-viewable reviewer files for a paper for each stage.
+	 * Get all author-viewable reviewer files for a paper for each stage.
 	 * @param $paperId int
 	 * @return array returned[stage][reviewer_index] = array of PaperFiles
 	 */
-	function &getPresenterViewableFilesByStage($paperId) {
+	function &getAuthorViewableFilesByStage($paperId) {
 		$files = array();
 
 		$result = &$this->retrieve(

@@ -83,7 +83,7 @@ class RoleBlockPlugin extends BlockPlugin {
 		$templateMgr =& TemplateManager::getManager();
 
 		switch (Request::getRequestedPage()) {
-			case 'presenter': switch (Request::getRequestedOp()) {
+			case 'author': switch (Request::getRequestedOp()) {
 				case 'submit':
 				case 'saveSubmit':
 				case 'submitSuppFile':
@@ -93,10 +93,10 @@ class RoleBlockPlugin extends BlockPlugin {
 					// Block disabled for submission
 					return null;
 				default:
-					$presenterSubmissionDao =& DAORegistry::getDAO('PresenterSubmissionDAO');
-					$submissionsCount = $presenterSubmissionDao->getSubmissionsCount($userId, $schedConfId);
+					$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+					$submissionsCount = $authorSubmissionDao->getSubmissionsCount($userId, $schedConfId);
 					$templateMgr->assign('submissionsCount', $submissionsCount);
-					return 'presenter.tpl';
+					return 'author.tpl';
 			}
 			case 'director':
 				if (Request::getRequestedOp() == 'index') return null;

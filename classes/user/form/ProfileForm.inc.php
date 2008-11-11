@@ -82,7 +82,7 @@ class ProfileForm extends Form {
 			foreach ($roles as $role) $roleNames[$role->getRolePath()] = $role->getRoleName();
 			import('schedConf.SchedConfAction');
 			$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
-			$templateMgr->assign('allowRegPresenter', SchedConfAction::allowRegPresenter($schedConf));
+			$templateMgr->assign('allowRegAuthor', SchedConfAction::allowRegAuthor($schedConf));
 			$templateMgr->assign('allowRegReader', SchedConfAction::allowRegReader($schedConf));
 			$templateMgr->assign('roles', $roleNames);
 		}
@@ -124,7 +124,7 @@ class ProfileForm extends Form {
 			'biography' => $user->getBiography(null), // Localized
 			'interests' => $user->getInterests(null), // Localized
 			'userLocales' => $user->getLocales(),
-			'isPresenter' => Validation::isPresenter(),
+			'isAuthor' => Validation::isAuthor(),
 			'isReader' => Validation::isReader(),
 			'isReviewer' => Validation::isReviewer()
 		);
@@ -156,7 +156,7 @@ class ProfileForm extends Form {
 			'interests',
 			'userLocales',
 			'readerRole',
-			'presenterRole',
+			'authorRole',
 			'reviewerRole'
 		));
 
@@ -222,10 +222,10 @@ class ProfileForm extends Form {
 				if ($hasRole && !$wantsRole) $roleDao->deleteRole($role);
 				if (!$hasRole && $wantsRole) $roleDao->insertRole($role);
 			}
-			if (SchedConfAction::allowRegPresenter($schedConf)) {
-				$role->setRoleId(ROLE_ID_PRESENTER);
-				$hasRole = Validation::isPresenter();
-				$wantsRole = Request::getUserVar('presenterRole');
+			if (SchedConfAction::allowRegAuthor($schedConf)) {
+				$role->setRoleId(ROLE_ID_AUTHOR);
+				$hasRole = Validation::isAuthor();
+				$wantsRole = Request::getUserVar('authorRole');
 				if ($hasRole && !$wantsRole) $roleDao->deleteRole($role);
 				if (!$hasRole && $wantsRole) $roleDao->insertRole($role);
 			}

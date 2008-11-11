@@ -38,7 +38,7 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 			array(
 				'additionalHomeContent' => 'string',
 				'readerInformation' => 'string',
-				'presenterInformation' => 'string',
+				'authorInformation' => 'string',
 				'enableAnnouncements' => 'bool',
 				'enableAnnouncementsHomepage' => 'bool',
 				'numAnnouncementsHomepage' => 'int',
@@ -56,7 +56,7 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('additionalHomeContent', 'readerInformation', 'presenterInformation', 'announcementsIntroduction');
+		return array('additionalHomeContent', 'readerInformation', 'authorInformation', 'announcementsIntroduction');
 	}
 
 	/**

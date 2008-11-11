@@ -31,7 +31,7 @@ class CommentForm extends Form {
 	/** @var Paper current paper */
 	var $paper;
 
-	/** @var User comment presenter */
+	/** @var User comment author */
 	var $user;
 
 	/** @var int the ID of the comment after insertion */

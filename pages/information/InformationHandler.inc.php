@@ -40,10 +40,10 @@ class InformationHandler extends PKPHandler {
 				$pageTitle = 'navigation.infoForReaders.long';
 				$pageCrumbTitle = 'navigation.infoForReaders';
 				break;
-			case 'presenters':
-				$conferenceContent = $conference->getLocalizedSetting('presenterInformation');
-				$pageTitle = 'navigation.infoForPresenters.long';
-				$pageCrumbTitle = 'navigation.infoForPresenters';
+			case 'authors':
+				$conferenceContent = $conference->getLocalizedSetting('authorInformation');
+				$pageTitle = 'navigation.infoForAuthors.long';
+				$pageCrumbTitle = 'navigation.infoForAuthors';
 				break;
 			default:
 				Request::redirect($conference->getPath());
@@ -68,8 +68,8 @@ class InformationHandler extends PKPHandler {
 		InformationHandler::index(array('readers'));
 	}
 
-	function presenters() {
-		InformationHandler::index(array('presenters'));
+	function authors() {
+		InformationHandler::index(array('authors'));
 	}
 
 	/**

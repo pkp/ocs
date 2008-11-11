@@ -32,7 +32,7 @@ class DirectorDecisionCommentForm extends CommentForm {
 	 */
 	function display() {
 		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('pageTitle', 'submission.comments.directorPresenterCorrespondence');
+		$templateMgr->assign('pageTitle', 'submission.comments.directorAuthorCorrespondence');
 		$templateMgr->assign('paperId', $this->paper->getPaperId());
 		$templateMgr->assign('commentAction', 'postDirectorDecisionComment');
 		$templateMgr->assign('hiddenFormParams', 
@@ -76,12 +76,12 @@ class DirectorDecisionCommentForm extends CommentForm {
 
 		// Create list of recipients:
 
-		// Director Decision comments are to be sent to the director or presenter,
+		// Director Decision comments are to be sent to the director or author,
 		// the opposite of whomever wrote the comment.
 		$recipients = array();
 
 		if ($this->roleId == ROLE_ID_DIRECTOR || $this->roleId == ROLE_ID_TRACK_DIRECTOR) {
-			// Then add presenter
+			// Then add author
 			$user = &$userDao->getUser($this->paper->getUserId());
 
 			if ($user) $recipients = array_merge($recipients, array($user->getEmail() => $user->getFullName()));

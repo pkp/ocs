@@ -55,7 +55,7 @@ function confirmAndPrompt(userId) {
 			<option {if $roleSymbolic=='directors'}selected="selected" {/if}value="directors">{translate key="user.role.directors"}</option>
 			<option {if $roleSymbolic=='trackDirectors'}selected="selected" {/if}value="trackDirectors">{translate key="user.role.trackDirectors"}</option>
 			<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
-			<option {if $roleSymbolic=='presenters'}selected="selected" {/if}value="presenters">{translate key="user.role.presenters"}</option>
+			<option {if $roleSymbolic=='authors'}selected="selected" {/if}value="authors">{translate key="user.role.authors"}</option>
 			<option {if $roleSymbolic=='readers'}selected="selected" {/if}value="readers">{translate key="user.role.readers"}</option>
 		{/if}
 	</select>
@@ -80,7 +80,7 @@ function confirmAndPrompt(userId) {
 		<li><a href="{url path="directors"}">{translate key="user.role.directors"}</a></li>
 		<li><a href="{url path="trackDirectors"}">{translate key="user.role.trackDirectors"}</a></li>
 		<li><a href="{url path="reviewers"}">{translate key="user.role.reviewers"}</a></li>
-		<li><a href="{url path="presenters"}">{translate key="user.role.presenters"}</a></li>
+		<li><a href="{url path="authors"}">{translate key="user.role.authors"}</a></li>
 		<li><a href="{url path="readers"}">{translate key="user.role.readers"}</a></li>
 	{/if}
 </ul>

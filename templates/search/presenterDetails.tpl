@@ -1,15 +1,15 @@
 {**
- * presenterDetails.tpl
+ * authorDetails.tpl
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Index of published papers by presenter.
+ * Index of published papers by author.
  *
  * $Id$
  *}
 {strip}
-{assign var="pageTitle" value="search.presenterDetails"}
+{assign var="pageTitle" value="search.authorDetails"}
 {include file="common/header.tpl"}
 {/strip}
 

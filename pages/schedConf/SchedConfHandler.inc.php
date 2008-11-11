@@ -133,11 +133,11 @@ class SchedConfHandler extends PKPHandler {
 		if(!$submissionsOpenDate || !$submissionsCloseDate || time() < $submissionsOpenDate) {
 			// Too soon
 			$acceptingSubmissions = false;
-			$notAcceptingSubmissionsMessage = Locale::translate('presenter.submit.notAcceptingYet');
+			$notAcceptingSubmissionsMessage = Locale::translate('author.submit.notAcceptingYet');
 		} elseif (time() > $submissionsCloseDate) {
 			// Too late
 			$acceptingSubmissions = false;
-			$notAcceptingSubmissionsMessage = Locale::translate('presenter.submit.submissionDeadlinePassed', array('closedDate' => strftime(Config::getVar('general', 'date_format_short'), $submissionsCloseDate)));
+			$notAcceptingSubmissionsMessage = Locale::translate('author.submit.submissionDeadlinePassed', array('closedDate' => strftime(Config::getVar('general', 'date_format_short'), $submissionsCloseDate)));
 		} else {
 			$acceptingSubmissions = true;
 		}
@@ -388,14 +388,14 @@ class SchedConfHandler extends PKPHandler {
 
 			$searchInitial = Request::getUserVar('searchInitial');
 			if (isset($searchInitial)) {
-				$searchField = SUBMISSION_FIELD_PRESENTER;
+				$searchField = SUBMISSION_FIELD_AUTHOR;
 				$searchMatch = 'initial';
 				$search = $searchInitial;
 			}
 
 			$templateMgr->assign('fieldOptions', Array(
 				SUBMISSION_FIELD_TITLE => 'paper.title',
-				SUBMISSION_FIELD_PRESENTER => 'user.role.presenter'
+				SUBMISSION_FIELD_AUTHOR => 'user.role.author'
 			));
 
 			$previewAbstracts = (

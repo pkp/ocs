@@ -39,7 +39,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('track', $track);
-		$templateMgr->assign_by_ref('presenters', $submission->getPresenters());
+		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());

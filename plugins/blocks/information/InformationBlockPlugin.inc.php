@@ -75,7 +75,7 @@ class InformationBlockPlugin extends BlockPlugin {
 		if (!$conference) return '';
 
 		$templateMgr->assign('forReaders', $conference->getLocalizedSetting('readerInformation'));
-		$templateMgr->assign('forPresenters', $conference->getLocalizedSetting('presenterInformation'));
+		$templateMgr->assign('forAuthors', $conference->getLocalizedSetting('authorInformation'));
 		return parent::getContents($templateMgr);
 	}
 }

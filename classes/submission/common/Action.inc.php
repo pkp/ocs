@@ -57,61 +57,61 @@ class Action {
 			}
 
 			// Check for any special cases before trying to save
-			if (Request::getUserVar('addPresenter')) {
-				// Add an presenter
+			if (Request::getUserVar('addAuthor')) {
+				// Add an author
 				$editData = true;
-				$presenters = $metadataForm->getData('presenters');
-				array_push($presenters, array());
-				$metadataForm->setData('presenters', $presenters);
+				$authors = $metadataForm->getData('authors');
+				array_push($authors, array());
+				$metadataForm->setData('authors', $authors);
 
-			} else if (($delPresenter = Request::getUserVar('delPresenter')) && count($delPresenter) == 1) {
-				// Delete an presenter
+			} else if (($delAuthor = Request::getUserVar('delAuthor')) && count($delAuthor) == 1) {
+				// Delete an author
 				$editData = true;
-				list($delPresenter) = array_keys($delPresenter);
-				$delPresenter = (int) $delPresenter;
-				$presenters = $metadataForm->getData('presenters');
-				if (isset($presenters[$delPresenter]['presenterId']) && !empty($presenters[$delPresenter]['presenterId'])) {
-					$deletedPresenters = explode(':', $metadataForm->getData('deletedPresenters'));
-					array_push($deletedPresenters, $presenters[$delPresenter]['presenterId']);
-					$metadataForm->setData('deletedPresenters', join(':', $deletedPresenters));
+				list($delAuthor) = array_keys($delAuthor);
+				$delAuthor = (int) $delAuthor;
+				$authors = $metadataForm->getData('authors');
+				if (isset($authors[$delAuthor]['authorId']) && !empty($authors[$delAuthor]['authorId'])) {
+					$deletedAuthors = explode(':', $metadataForm->getData('deletedAuthors'));
+					array_push($deletedAuthors, $authors[$delAuthor]['authorId']);
+					$metadataForm->setData('deletedAuthors', join(':', $deletedAuthors));
 				}
-				array_splice($presenters, $delPresenter, 1);
-				$metadataForm->setData('presenters', $presenters);
+				array_splice($authors, $delAuthor, 1);
+				$metadataForm->setData('authors', $authors);
 
-				if ($metadataForm->getData('primaryContact') == $delPresenter) {
+				if ($metadataForm->getData('primaryContact') == $delAuthor) {
 					$metadataForm->setData('primaryContact', 0);
 				}
 
-			} else if (Request::getUserVar('movePresenter')) {
-				// Move an presenter up/down
+			} else if (Request::getUserVar('moveAuthor')) {
+				// Move an author up/down
 				$editData = true;
-				$movePresenterDir = Request::getUserVar('movePresenterDir');
-				$movePresenterDir = $movePresenterDir == 'u' ? 'u' : 'd';
-				$movePresenterIndex = (int) Request::getUserVar('movePresenterIndex');
-				$presenters = $metadataForm->getData('presenters');
+				$moveAuthorDir = Request::getUserVar('moveAuthorDir');
+				$moveAuthorDir = $moveAuthorDir == 'u' ? 'u' : 'd';
+				$moveAuthorIndex = (int) Request::getUserVar('moveAuthorIndex');
+				$authors = $metadataForm->getData('authors');
 
-				if (!(($movePresenterDir == 'u' && $movePresenterIndex <= 0) || ($movePresenterDir == 'd' && $movePresenterIndex >= count($presenters) - 1))) {
-					$tmpPresenter = $presenters[$movePresenterIndex];
+				if (!(($moveAuthorDir == 'u' && $moveAuthorIndex <= 0) || ($moveAuthorDir == 'd' && $moveAuthorIndex >= count($authors) - 1))) {
+					$tmpAuthor = $authors[$moveAuthorIndex];
 					$primaryContact = $metadataForm->getData('primaryContact');
-					if ($movePresenterDir == 'u') {
-						$presenters[$movePresenterIndex] = $presenters[$movePresenterIndex - 1];
-						$presenters[$movePresenterIndex - 1] = $tmpPresenter;
-						if ($primaryContact == $movePresenterIndex) {
-							$metadataForm->setData('primaryContact', $movePresenterIndex - 1);
-						} else if ($primaryContact == ($movePresenterIndex - 1)) {
-							$metadataForm->setData('primaryContact', $movePresenterIndex);
+					if ($moveAuthorDir == 'u') {
+						$authors[$moveAuthorIndex] = $authors[$moveAuthorIndex - 1];
+						$authors[$moveAuthorIndex - 1] = $tmpAuthor;
+						if ($primaryContact == $moveAuthorIndex) {
+							$metadataForm->setData('primaryContact', $moveAuthorIndex - 1);
+						} else if ($primaryContact == ($moveAuthorIndex - 1)) {
+							$metadataForm->setData('primaryContact', $moveAuthorIndex);
 						}
 					} else {
-						$presenters[$movePresenterIndex] = $presenters[$movePresenterIndex + 1];
-						$presenters[$movePresenterIndex + 1] = $tmpPresenter;
-						if ($primaryContact == $movePresenterIndex) {
-							$metadataForm->setData('primaryContact', $movePresenterIndex + 1);
-						} else if ($primaryContact == ($movePresenterIndex + 1)) {
-							$metadataForm->setData('primaryContact', $movePresenterIndex);
+						$authors[$moveAuthorIndex] = $authors[$moveAuthorIndex + 1];
+						$authors[$moveAuthorIndex + 1] = $tmpAuthor;
+						if ($primaryContact == $moveAuthorIndex) {
+							$metadataForm->setData('primaryContact', $moveAuthorIndex + 1);
+						} else if ($primaryContact == ($moveAuthorIndex + 1)) {
+							$metadataForm->setData('primaryContact', $moveAuthorIndex);
 						}
 					}
 				}
-				$metadataForm->setData('presenters', $presenters);
+				$metadataForm->setData('authors', $authors);
 			}
 
 			if (isset($editData)) {

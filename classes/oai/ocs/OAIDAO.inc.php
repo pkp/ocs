@@ -26,7 +26,7 @@ class OAIDAO extends DAO {
  	var $conferenceDao;
  	var $trackDao;
 	var $paperDao;
- 	var $presenterDao;
+ 	var $authorDao;
  	var $suppFileDao;
  	var $conferenceSettingsDao;
 
@@ -43,7 +43,7 @@ class OAIDAO extends DAO {
 		$this->schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$this->trackDao =& DAORegistry::getDAO('TrackDAO');
 		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
-		$this->presenterDao =& DAORegistry::getDAO('PresenterDAO');
+		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$this->conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 
@@ -364,16 +364,16 @@ class OAIDAO extends DAO {
 			$record->publishers = $publisherInstitution;
 		}
 
-		// Get presenter names
-		$presenters = $this->presenterDao->getPresentersByPaper($row['paper_id']);
+		// Get author names
+		$authors = $this->authorDao->getAuthorsByPaper($row['paper_id']);
 		$record->creator = array();
-		for ($i = 0, $num = count($presenters); $i < $num; $i++) {
-			$presenterName = $presenters[$i]->getFullName();
-			$affiliation = $presenters[$i]->getAffiliation();
+		for ($i = 0, $num = count($authors); $i < $num; $i++) {
+			$authorName = $authors[$i]->getFullName();
+			$affiliation = $authors[$i]->getAffiliation();
 			if (!empty($affiliation)) {
-				$presenterName .= '; ' . $affiliation;
+				$authorName .= '; ' . $affiliation;
 			}
-			$record->creator[] = $presenterName;
+			$record->creator[] = $authorName;
 		}
 
 		// Get galley formats

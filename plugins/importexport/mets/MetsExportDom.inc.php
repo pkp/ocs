@@ -268,7 +268,7 @@ class MetsExportDom {
 				XMLCustomWriter::createChildWithText($doc, $mods, 'mods:abstract', $abstract);
 			}
 
-			MetsExportDom::generatePresentersDom($doc, $mods, $paper->getPaperId());
+			MetsExportDom::generateAuthorsDom($doc, $mods, $paper->getPaperId());
 			XMLCustomWriter::createChildWithText($doc, $mods, 'mods:genre', 'submission');
 			if($paper->getDatePublished() != ''){
  				$originInfo =& XMLCustomWriter::createElement($doc, 'mods:originInfo');
@@ -479,34 +479,34 @@ class MetsExportDom {
 	}
 
 	/**
-	 *  Process All presenters for the Given Paper
+	 *  Process All authors for the Given Paper
 	 */
-	function generatePresentersDom(&$doc, &$root, $paperID) {
-		$presenterDAO =& DAORegistry::getDAO('PresenterDAO');
+	function generateAuthorsDom(&$doc, &$root, $paperID) {
+		$authorDAO =& DAORegistry::getDAO('AuthorDAO');
 		$i = 0;
-		$presentersArray =& $presenterDAO->getPresentersByPaper($paperID);
-		while ($i < sizeof($presentersArray)) {
-			$presenterNode =  &MetsExportDom::generatePresenterDom($doc, $presentersArray[$i]);
-			XMLCustomWriter::appendChild($root, $presenterNode);
+		$authorsArray =& $authorDAO->getAuthorsByPaper($paperID);
+		while ($i < sizeof($authorsArray)) {
+			$authorNode =  &MetsExportDom::generateAuthorDom($doc, $authorsArray[$i]);
+			XMLCustomWriter::appendChild($root, $authorNode);
 			$i++;
 		}
 	}
 
 	/**
-	 *  Create mods:name for a presenter
+	 *  Create mods:name for a author
 	 */
-	function &generatePresenterDom(&$doc, $presenter) {
-		$presenterNode =& XMLCustomWriter::createElement($doc, 'mods:name');
-		XMLCustomWriter::setAttribute($presenterNode, 'type', 'personal');
-		$fNameNode =& XMLCustomWriter::createChildWithText($doc, $presenterNode, 'mods:namePart', $presenter->getFirstName().' '.$presenter->getMiddleName());
+	function &generateAuthorDom(&$doc, $author) {
+		$authorNode =& XMLCustomWriter::createElement($doc, 'mods:name');
+		XMLCustomWriter::setAttribute($authorNode, 'type', 'personal');
+		$fNameNode =& XMLCustomWriter::createChildWithText($doc, $authorNode, 'mods:namePart', $author->getFirstName().' '.$author->getMiddleName());
 		XMLCustomWriter::setAttribute($fNameNode, 'type', 'given');
-		$lNameNode =& XMLCustomWriter::createChildWithText($doc, $presenterNode, 'mods:namePart', $presenter->getLastName());
+		$lNameNode =& XMLCustomWriter::createChildWithText($doc, $authorNode, 'mods:namePart', $author->getLastName());
 		XMLCustomWriter::setAttribute($lNameNode, 'type', 'family');
 		$role =& XMLCustomWriter::createElement($doc, 'mods:role');
 		$roleTerm =& XMLCustomWriter::createChildWithText($doc, $role, 'mods:roleTerm', 'author');
 		XMLCustomWriter::setAttribute($roleTerm, 'type', 'text');
-		XMLCustomWriter::appendChild($presenterNode, $role);
-		return $presenterNode;
+		XMLCustomWriter::appendChild($authorNode, $role);
+		return $authorNode;
 	}
 
 	/**

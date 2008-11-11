@@ -25,7 +25,7 @@ import('paper.PaperHandler');
 
 class RTHandler extends PaperHandler {
 	/**
-	 * Display a presenter biography
+	 * Display a author biography
 	 */
 	function bio($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
@@ -103,7 +103,7 @@ class RTHandler extends PaperHandler {
 		// with a minimum of client-side processing.
 		$searches = array();
 		// Some searches use parameters other than the "default" for
-		// the search (i.e. keywords, presenter name, etc). If additional
+		// the search (i.e. keywords, author name, etc). If additional
 		// parameters are used, they should be displayed as part of the
 		// form for ALL searches in that context.
 		$searchParams = array();
@@ -133,8 +133,8 @@ class RTHandler extends PaperHandler {
 		$searchValues = array();
 
 		foreach ($searchParams as $key => $param) switch ($param) {
-			case 'presenter':
-				$searchValues[$param] = $paper->getPresenterString();
+			case 'author':
+				$searchValues[$param] = $paper->getAuthorString();
 				break;
 			case 'coverageGeo':
 				$searchValues[$param] = $paper->getPaperCoverageGeo();
@@ -263,14 +263,14 @@ class RTHandler extends PaperHandler {
 			$templateMgr->display('rt/sent.tpl');
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$primaryPresenter = $paper->getPresenters();
-				$primaryPresenter = $primaryPresenter[0];
+				$primaryAuthor = $paper->getAuthors();
+				$primaryAuthor = $primaryAuthor[0];
 
 				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getPaperTitle()));
 				$email->assignParams(array(
 					'paperTitle' => strip_tags($paper->getPaperTitle()),
 					'schedConf' => $schedConf->getSchedConfTitle(),
-					'presenterName' => $primaryPresenter->getFullName(),
+					'authorName' => $primaryAuthor->getFullName(),
 					'paperUrl' => Request::url(null, null, 'paper', 'view', $paper->getBestPaperId())
 				));
 			}
@@ -279,7 +279,7 @@ class RTHandler extends PaperHandler {
 	}
 
 	/**
-	 * Display the "email presenter"
+	 * Display the "email author"
 	 */
 	function emailAuthor($args) {
 		$paperId = isset($args[0]) ? $args[0] : 0;
@@ -306,9 +306,9 @@ class RTHandler extends PaperHandler {
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getPaperTitle()));
-				$presenters = &$paper->getPresenters();
-				$presenter = &$presenters[0];
-				$email->addRecipient($presenter->getEmail(), $presenter->getFullName());
+				$authors = &$paper->getAuthors();
+				$author = &$authors[0];
+				$email->addRecipient($author->getEmail(), $author->getFullName());
 			}
 			$email->displayEditForm(Request::url(null, null, null, 'emailAuthor', array($paperId, $galleyId)), null, 'rt/email.tpl', array('op' => 'emailAuthor'));
 		}

@@ -1,56 +1,56 @@
 {**
- * presenterIndex.tpl
+ * authorIndex.tpl
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Index of published papers by presenter.
+ * Index of published papers by author.
  *
  * $Id$
  *}
 {strip}
-{assign var="pageTitle" value="search.presenterIndex"}
+{assign var="pageTitle" value="search.authorIndex"}
 {include file="common/header.tpl"}
 {/strip}
 
-<p>{foreach from=$alphaList item=letter}<a href="{url op="presenters" searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="presenters"}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
+<p>{foreach from=$alphaList item=letter}<a href="{url op="authors" searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="authors"}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
 
-<a name="presenters"></a>
+<a name="authors"></a>
 
-{iterate from=presenters item=presenter}
+{iterate from=authors item=author}
 	{assign var=lastFirstLetter value=$firstLetter}
-	{assign var=firstLetter value=$presenter->getLastName()|String_substr:0:1}
+	{assign var=firstLetter value=$author->getLastName()|String_substr:0:1}
 
 	{if $lastFirstLetter != $firstLetter}
 		<a name="{$firstLetter|escape}"></a>
 		<h3>{$firstLetter|escape}</h3>
 	{/if}
 
-	{assign var=lastPresenterName value=$presenterName}
-	{assign var=lastPresenterCountry value=$presenterCountry}
+	{assign var=lastPresenterName value=$authorName}
+	{assign var=lastPresenterCountry value=$authorCountry}
 
-	{assign var=presenterAffiliation value=$presenter->getAffiliation()}
-	{assign var=presenterCountry value=$presenter->getCountry()}
+	{assign var=authorAffiliation value=$author->getAffiliation()}
+	{assign var=authorCountry value=$author->getCountry()}
 
-	{assign var=presenterFirstName value=$presenter->getFirstName()}
-	{assign var=presenterMiddleName value=$presenter->getMiddleName()}
-	{assign var=presenterLastName value=$presenter->getLastName()}
-	{assign var=presenterName value="$presenterLastName, $presenterFirstName"}
+	{assign var=authorFirstName value=$author->getFirstName()}
+	{assign var=authorMiddleName value=$author->getMiddleName()}
+	{assign var=authorLastName value=$author->getLastName()}
+	{assign var=authorName value="$authorLastName, $authorFirstName"}
 
-	{if $presenterMiddleName != ''}{assign var=presenterName value="$presenterName $presenterMiddleName"}{/if}
+	{if $authorMiddleName != ''}{assign var=authorName value="$authorName $authorMiddleName"}{/if}
 	{strip}
-		<a href="{url op="presenters" path="view" firstName=$presenterFirstName middleName=$presenterMiddleName lastName=$presenterLastName affiliation=$presenterAffiliation country=$presenterCountry}">{$presenterName|escape}</a>
-		{if $presenterAffiliation}, {$presenterAffiliation|escape}{/if}
-		{if $lastPresenterName == $presenterName && $lastPresenterCountry != $presenterCountry}
+		<a href="{url op="authors" path="view" firstName=$authorFirstName middleName=$authorMiddleName lastName=$authorLastName affiliation=$authorAffiliation country=$authorCountry}">{$authorName|escape}</a>
+		{if $authorAffiliation}, {$authorAffiliation|escape}{/if}
+		{if $lastPresenterName == $authorName && $lastPresenterCountry != $authorCountry}
 			{* Disambiguate with country if necessary (i.e. if names are the same otherwise) *}
-			{if $presenterCountry} ({$presenter->getCountryLocalized()}){/if}
+			{if $authorCountry} ({$author->getCountryLocalized()}){/if}
 		{/if}
 	{/strip}
 	<br/>
 {/iterate}
-{if !$presenters->wasEmpty()}
+{if !$authors->wasEmpty()}
 	<br />
-	{page_info iterator=$presenters}&nbsp;&nbsp;&nbsp;&nbsp;{page_links anchor="presenters" iterator=$presenters name="presenters" searchInitial=$searchInitial}
+	{page_info iterator=$authors}&nbsp;&nbsp;&nbsp;&nbsp;{page_links anchor="authors" iterator=$authors name="authors" searchInitial=$searchInitial}
 {else}
 {/if}
 

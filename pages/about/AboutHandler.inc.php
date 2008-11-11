@@ -347,7 +347,7 @@ class AboutHandler extends PKPHandler {
 		}
 		$templateMgr->assign('submissionChecklist', $submissionChecklist);
 		$templateMgr->assign_by_ref('conferenceSettings', $settings);
-		$templateMgr->assign('helpTopicId','submission.presenterGuidelines');
+		$templateMgr->assign('helpTopicId','submission.authorGuidelines');
 		$templateMgr->display('about/submissions.tpl');
 	}
 

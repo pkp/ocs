@@ -78,20 +78,20 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'admin/editConference':
 				$fields[] = 'description';
 				break;
-			case 'presenter/submit':
-			case 'presenter/saveSubmit':
+			case 'author/submit':
+			case 'author/saveSubmit':
 				switch (array_shift(Request::getRequestedArgs())) {
 					case 1: $fields[] = 'commentsToDirector'; break;
 					case 2:
-						$count = max(1, count($templateMgr->get_template_vars('presenters')));
+						$count = max(1, count($templateMgr->get_template_vars('authors')));
 						for ($i=0; $i<$count; $i++) {
-							$fields[] = "presenters-$i-biography";
+							$fields[] = "authors-$i-biography";
 						}
 						$fields[] = 'abstract';
 						break;
 				}
 				break;
-			case 'presenter/submitSuppFile': $fields[] = 'description'; break;
+			case 'author/submitSuppFile': $fields[] = 'description'; break;
 			case 'manager/createAnnouncement':
 			case 'manager/editAnnouncement':
 			case 'manager/updateAnnouncement':
@@ -136,7 +136,7 @@ class TinyMCEPlugin extends GenericPlugin {
 					case 2:
 						$fields[] = 'additionalHomeContent';
 						$fields[] = 'readerInformation';
-						$fields[] = 'presenterInformation';
+						$fields[] = 'authorInformation';
 						$fields[] = 'announcementsIntroduction';
 
 						break;
@@ -163,7 +163,7 @@ class TinyMCEPlugin extends GenericPlugin {
 						break;
 					case 2:
 						$fields[] = 'cfpMessage';
-						$fields[] = 'presenterGuidelines';
+						$fields[] = 'authorGuidelines';
 						$submissionChecklist = $templateMgr->get_template_vars('submissionChecklist');
 						$count = max(1, isset($submissionChecklist[$formLocale])?count($submissionChecklist[$formLocale]):0);
 						for ($i=0; $i<$count; $i++) {
@@ -214,15 +214,15 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'trackDirector/submissionNotes':
 				$fields[] = 'note';
 				break;
-			case 'presenter/viewMetadata':
+			case 'author/viewMetadata':
 			case 'trackDirector/viewMetadata':
 			case 'director/viewMetadata':
-			case 'presenter/saveMetadata':
+			case 'author/saveMetadata':
 			case 'trackDirector/saveMetadata':
 			case 'director/saveMetadata':
-				$count = max(1, count($templateMgr->get_template_vars('presenters')));
+				$count = max(1, count($templateMgr->get_template_vars('authors')));
 				for ($i=0; $i<$count; $i++) {
-					$fields[] = "presenter-$i-biography";
+					$fields[] = "author-$i-biography";
 				}
 				$fields[] = 'abstract';
 				break;
@@ -236,7 +236,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				$fields[] = 'registrationMailingAddress';
 				$fields[] = 'registrationAdditionalInformation';
 				$fields[] = 'delayedOpenAccessPolicy';
-				$fields[] = 'presenterSelfArchivePolicy';
+				$fields[] = 'authorSelfArchivePolicy';
 				break;
 			case 'manager/editRegistrationType':
 			case 'manager/createRegistrationType':

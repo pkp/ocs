@@ -118,7 +118,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					// import papers within an appropriate context. If not,
 					// prompt them for the.
 					if (!isset($context['track'])) {
-						$templateMgr->assign('trackOptions', array('0' => Locale::translate('presenter.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getSchedConfId(), false));
+						$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getSchedConfId(), false));
 						$templateMgr->assign('temporaryFileId', $temporaryFile->getFileId());
 						return $templateMgr->display($this->getTemplatePath() . 'paperContext.tpl');
 					}

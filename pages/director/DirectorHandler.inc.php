@@ -169,7 +169,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 		$templateMgr->assign('fieldOptions', Array(
 			SUBMISSION_FIELD_TITLE => 'paper.title',
-			SUBMISSION_FIELD_PRESENTER => 'user.role.presenter',
+			SUBMISSION_FIELD_AUTHOR => 'user.role.author',
 			SUBMISSION_FIELD_DIRECTOR => 'user.role.director',
 			SUBMISSION_FIELD_REVIEWER => 'user.role.reviewer'
 		));
@@ -364,7 +364,7 @@ class DirectorHandler extends TrackDirectorHandler {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$presenterDao =& DAORegistry::getDAO('PresenterDAO');
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 
 		$conference =& Request::getConference();
@@ -395,8 +395,8 @@ class DirectorHandler extends TrackDirectorHandler {
 				case 'allRegistrants':
 					$recipients =& $registrationDao->getRegisteredUsers($schedConfId, false);
 					break;
-				case 'allPresenters':
-					$recipients =& $presenterDao->getPresentersAlphabetizedBySchedConf($schedConfId);
+				case 'allAuthors':
+					$recipients =& $authorDao->getAuthorsAlphabetizedBySchedConf($schedConfId);
 					break;
 				case 'allUsers':
 					$recipients =& $roleDao->getUsersBySchedConfId($schedConfId);
@@ -449,7 +449,7 @@ class DirectorHandler extends TrackDirectorHandler {
 				'director/notifyUsers.tpl',
 				array(
 					'allReadersCount' => $roleDao->getSchedConfUsersCount($schedConfId, ROLE_ID_READER),
-					'allPresentersCount' => $presenterDao->getPresenterCount($schedConfId),
+					'allAuthorsCount' => $authorDao->getAuthorCount($schedConfId),
 					'allPaidRegistrantsCount' => $registrationDao->getRegisteredUserCount($schedConfId),
 					'allRegistrantsCount' => $registrationDao->getRegisteredUserCount($schedConfId, false),
 					'notifiableCount' => $notificationStatusDao->getNotifiableUsersCount($schedConfId),

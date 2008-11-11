@@ -15,7 +15,7 @@
 
 <ul class="plain">
 	<li>&#187; <a href="{url page="about" op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
-	{if $currentConference->getLocalizedSetting('presenterGuidelines') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="presenterGuidelines"}">{translate key="about.presenterGuidelines"}</a></li>{/if}
+	{if $currentConference->getLocalizedSetting('authorGuidelines') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="authorGuidelines"}">{translate key="about.authorGuidelines"}</a></li>{/if}
 	{if $currentConference->getLocalizedSetting('copyrightNotice') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
 	{if $currentConference->getLocalizedSetting('privacyStatement') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
 </ul>
@@ -33,9 +33,9 @@
 
 <div class="separator">&nbsp;</div>
 
-{if $currentConference->getLocalizedSetting('presenterGuidelines') != ''}
-<a name="presenterGuidelines"></a><h3>{translate key="about.presenterGuidelines"}</h3>
-<p>{$currentConference->getLocalizedSetting('presenterGuidelines')|nl2br}</p>
+{if $currentConference->getLocalizedSetting('authorGuidelines') != ''}
+<a name="authorGuidelines"></a><h3>{translate key="about.authorGuidelines"}</h3>
+<p>{$currentConference->getLocalizedSetting('authorGuidelines')|nl2br}</p>
 
 <div class="separator">&nbsp;</div>
 {/if}

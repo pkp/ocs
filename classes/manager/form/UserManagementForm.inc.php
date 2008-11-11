@@ -79,7 +79,7 @@ class UserManagementForm extends Form {
 					'director' => 'user.role.director',
 					'trackDirector' => 'user.role.trackDirector',
 					'reviewer' => 'user.role.reviewer',
-					'presenter' => 'user.role.presenter',
+					'author' => 'user.role.author',
 					'reader' => 'user.role.reader'
 				)
 			);

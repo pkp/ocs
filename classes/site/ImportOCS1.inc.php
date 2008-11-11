@@ -29,11 +29,11 @@ import('paper.PaperFile');
 import('paper.PaperGalley');
 import('paper.PaperHTMLGalley');
 import('paper.PaperNote');
-import('paper.Presenter');
+import('paper.Author');
 import('paper.PublishedPaper');
 import('paper.SuppFile');
 import('submission.common/Action');
-import('submission.presenter.PresenterSubmission');
+import('submission.author.AuthorSubmission');
 import('submission.reviewer.ReviewerSubmission');
 import('submission.editAssignment.EditAssignment');
 import('submission.reviewAssignment.ReviewAssignment');
@@ -581,7 +581,7 @@ class ImportOCS1 {
 
 				$userDao->insertUser($user);
 
-				// Make this user a presenter
+				// Make this user a author
 				$role = new Role();
 				$role->setSchedConfId($schedConf->getSchedConfId());
 				$role->setConferenceId($schedConf->getConferenceId());
@@ -670,12 +670,12 @@ class ImportOCS1 {
 
 				$userDao->insertUser($user);
 
-				// Make this user a presenter
+				// Make this user a author
 				$role = new Role();
 				$role->setSchedConfId($schedConf->getSchedConfId());
 				$role->setConferenceId($schedConf->getConferenceId());
 				$role->setUserId($user->getUserId());
-				$role->setRoleId(ROLE_ID_PRESENTER);
+				$role->setRoleId(ROLE_ID_AUTHOR);
 				$roleDao->insertRole($role);
 				unset($role);
 			}
@@ -733,18 +733,18 @@ class ImportOCS1 {
 			foreach ($emails as $key => $email) {
 				if (empty($email)) continue;
 
-				$presenter = new Presenter();
+				$author = new Author();
 
-				$presenter->setEmail($email);
-				$presenter->setFirstName($firstNames[$key]);
-				$presenter->setLastName($lastNames[$key]);
-				$presenter->setAffiliation($affiliations[$key]);
-				@$presenter->setUrl($urls[$key]); // Suppress warnings from inconsistent OCS 1.x data
-				$presenter->setPrimaryContact($key == 0 ? 1 : 0);
+				$author->setEmail($email);
+				$author->setFirstName($firstNames[$key]);
+				$author->setLastName($lastNames[$key]);
+				$author->setAffiliation($affiliations[$key]);
+				@$author->setUrl($urls[$key]); // Suppress warnings from inconsistent OCS 1.x data
+				$author->setPrimaryContact($key == 0 ? 1 : 0);
 
-				$paper->addPresenter($presenter);
+				$paper->addAuthor($author);
 
-				unset($presenter);
+				unset($author);
 			}
 
 			switch ($row['accepted']) {

@@ -62,10 +62,10 @@
 
 <form method="post" action="{url op="directorReview" path=$stage}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
-{assign var=presenterFiles value=$submission->getPresenterFileRevisions($stage)}
+{assign var=authorFiles value=$submission->getPresenterFileRevisions($stage)}
 {assign var=directorFiles value=$submission->getDirectorFileRevisions($stage)}
 {assign var=reviewFile value=$submission->getReviewFile()}
-{assign var="presenterRevisionExists" value=false}
+{assign var="authorRevisionExists" value=false}
 {assign var="directorRevisionExists" value=false}
 {assign var="sendableVersionExists" value=false}
 
@@ -84,24 +84,24 @@
 				</td>
 			</tr>
 		{/if}
-		{foreach from=$presenterFiles item=presenterFile key=key}
+		{foreach from=$authorFiles item=authorFile key=key}
 			<tr valign="top">
-				{if !$presenterRevisionExists}
-					{assign var="presenterRevisionExists" value=true}
-					<td width="20%" rowspan="{$presenterFiles|@count}" class="label">{translate key="submission.presenterVersion"}</td>
+				{if !$authorRevisionExists}
+					{assign var="authorRevisionExists" value=true}
+					<td width="20%" rowspan="{$authorFiles|@count}" class="label">{translate key="submission.authorVersion"}</td>
 				{/if}
 				<td width="80%" class="value" colspan="2">
 					{if $lastDecision == SUBMISSION_DIRECTOR_DECISION_ACCEPT}
-						<input type="radio" name="directorDecisionFile" value="{$presenterFile->getFileId()},{$presenterFile->getRevision()}" />
+						<input type="radio" name="directorDecisionFile" value="{$authorFile->getFileId()},{$authorFile->getRevision()}" />
 						{assign var="sendableVersionExists" value=true}
 					{/if}
-					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$presenterFile->getFileId():$presenterFile->getRevision()}" class="file">{$presenterFile->getFileName()}</a>&nbsp;&nbsp;
-						{$presenterFile->getDateModified()|date_format:$dateFormatShort}
+					<a href="{url op="downloadFile" path=$submission->getPaperId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()}</a>&nbsp;&nbsp;
+						{$authorFile->getDateModified()|date_format:$dateFormatShort}
 				</td>
 			</tr>
 		{foreachelse}
 			<tr valign="top">
-				<td width="20%" class="label">{translate key="submission.presenterVersion"}</td>
+				<td width="20%" class="label">{translate key="submission.authorVersion"}</td>
 				<td width="80%" colspan="2" class="nodata">{translate key="common.none"}</td>
 			</tr>
 		{/foreach}

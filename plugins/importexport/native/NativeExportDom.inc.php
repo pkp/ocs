@@ -145,12 +145,12 @@ class NativeExportDom {
 
 		/* --- */
 
-		/* --- Presenters --- */
+		/* --- Authors --- */
 
-		foreach ($paper->getPresenters() as $presenter) {
-			$presenterNode =& NativeExportDom::generatePresenterDom($doc, $schedConf, $paper, $presenter);
-			XMLCustomWriter::appendChild($root, $presenterNode);
-			unset($presenterNode);
+		foreach ($paper->getAuthors() as $author) {
+			$authorNode =& NativeExportDom::generateAuthorDom($doc, $schedConf, $paper, $author);
+			XMLCustomWriter::appendChild($root, $authorNode);
+			unset($authorNode);
 		}
 
 		/* --- */
@@ -178,19 +178,19 @@ class NativeExportDom {
 		return $root;
 	}
 
-	function &generatePresenterDom(&$doc, &$schedConf, &$paper, &$presenter) {
+	function &generateAuthorDom(&$doc, &$schedConf, &$paper, &$author) {
 		$root = &XMLCustomWriter::createElement($doc, 'author');
-		if ($presenter->getPrimaryContact()) XMLCustomWriter::setAttribute($root, 'primary_contact', 'true');
+		if ($author->getPrimaryContact()) XMLCustomWriter::setAttribute($root, 'primary_contact', 'true');
 
-		XMLCustomWriter::createChildWithText($doc, $root, 'firstname', $presenter->getFirstName());
-		XMLCustomWriter::createChildWithText($doc, $root, 'middlename', $presenter->getMiddleName(), false);
-		XMLCustomWriter::createChildWithText($doc, $root, 'lastname', $presenter->getLastName());
+		XMLCustomWriter::createChildWithText($doc, $root, 'firstname', $author->getFirstName());
+		XMLCustomWriter::createChildWithText($doc, $root, 'middlename', $author->getMiddleName(), false);
+		XMLCustomWriter::createChildWithText($doc, $root, 'lastname', $author->getLastName());
 
-		XMLCustomWriter::createChildWithText($doc, $root, 'affiliation', $presenter->getAffiliation(), false);
-		XMLCustomWriter::createChildWithText($doc, $root, 'country', $presenter->getCountry(), false);
-		XMLCustomWriter::createChildWithText($doc, $root, 'email', $presenter->getEmail(), false);
-		XMLCustomWriter::createChildWithText($doc, $root, 'url', $presenter->getUrl(), false);
-		if (is_array($presenter->getBiography(null))) foreach ($presenter->getBiography(null) as $locale => $biography) {
+		XMLCustomWriter::createChildWithText($doc, $root, 'affiliation', $author->getAffiliation(), false);
+		XMLCustomWriter::createChildWithText($doc, $root, 'country', $author->getCountry(), false);
+		XMLCustomWriter::createChildWithText($doc, $root, 'email', $author->getEmail(), false);
+		XMLCustomWriter::createChildWithText($doc, $root, 'url', $author->getUrl(), false);
+		if (is_array($author->getBiography(null))) foreach ($author->getBiography(null) as $locale => $biography) {
 			$biographyNode = &XMLCustomWriter::createChildWithText($doc, $root, 'biography', strip_tags($biography), false);
 			if ($biographyNode) XMLCustomWriter::setAttribute($biographyNode, 'locale', $locale);
 			unset($biographyNode);
@@ -254,25 +254,25 @@ class NativeExportDom {
 
 		// FIXME: These should be constants!
 		switch ($suppFile->getType()) {
-			case Locale::translate('presenter.submit.suppFile.researchInstrument'):
+			case Locale::translate('author.submit.suppFile.researchInstrument'):
 				$suppFileType = 'research_instrument';
 				break;
-			case Locale::translate('presenter.submit.suppFile.researchMaterials'):
+			case Locale::translate('author.submit.suppFile.researchMaterials'):
 				$suppFileType = 'research_materials';
 				break;
-			case Locale::translate('presenter.submit.suppFile.researchResults'):
+			case Locale::translate('author.submit.suppFile.researchResults'):
 				$suppFileType = 'research_results';
 				break;
-			case Locale::translate('presenter.submit.suppFile.transcripts'):
+			case Locale::translate('author.submit.suppFile.transcripts'):
 				$suppFileType = 'transcripts';
 				break;
-			case Locale::translate('presenter.submit.suppFile.dataAnalysis'):
+			case Locale::translate('author.submit.suppFile.dataAnalysis'):
 				$suppFileType = 'data_analysis';
 				break;
-			case Locale::translate('presenter.submit.suppFile.dataSet'):
+			case Locale::translate('author.submit.suppFile.dataSet'):
 				$suppFileType = 'data_set';
 				break;
-			case Locale::translate('presenter.submit.suppFile.sourceText'):
+			case Locale::translate('author.submit.suppFile.sourceText'):
 				$suppFileType = 'source_text';
 				break;
 			default:

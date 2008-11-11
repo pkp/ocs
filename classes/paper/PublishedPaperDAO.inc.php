@@ -22,7 +22,7 @@ define('PAPER_SORT_ORDER_TIME', 1);
 
 class PublishedPaperDAO extends DAO {
 	var $paperDao;
-	var $presenterDao;
+	var $authorDao;
 	var $galleyDao;
 	var $suppFileDao;
 
@@ -32,7 +32,7 @@ class PublishedPaperDAO extends DAO {
 	function PublishedPaperDAO() {
 		parent::DAO();
 		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->presenterDao = &DAORegistry::getDAO('PresenterDAO');
+		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
 		$this->galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
 	}
@@ -191,7 +191,7 @@ class PublishedPaperDAO extends DAO {
 				}
 				$params[] = $search;
 				break;
-			case SUBMISSION_FIELD_PRESENTER:
+			case SUBMISSION_FIELD_AUTHOR:
 				$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
 				$searchSql = $directorSubmissionDao->_generateUserNameSearchSQL($search, $searchMatch, 'pp.', $params);
 				break;
@@ -205,7 +205,7 @@ class PublishedPaperDAO extends DAO {
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev,
 				t.seq AS track_seq,
 				pa.seq
-			FROM	paper_presenters pp,
+			FROM	paper_authors pp,
 				papers p
 				LEFT JOIN published_papers pa ON (p.paper_id = pa.paper_id)
 				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND ptl.locale = ?)
@@ -711,37 +711,37 @@ class PublishedPaperDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all presenters from published papers
+	 * Retrieve all authors from published papers
 	 * @param $schedConfId int
-	 * @return $presenters array Presenter Objects
+	 * @return $authors array Author Objects
 	 */
-	function getPublishedPaperPresenters($schedConfId) {
-		$presenters = array();
+	function getPublishedPaperAuthors($schedConfId) {
+		$authors = array();
 		$result = &$this->retrieve(
-			'SELECT aa.* FROM paper_presenters aa, published_papers pa WHERE aa.paper_id = pa.paper_id AND pa.sched_conf_id = ? ORDER BY pa.sched_conf_id', $schedConfId
+			'SELECT aa.* FROM paper_authors aa, published_papers pa WHERE aa.paper_id = pa.paper_id AND pa.sched_conf_id = ? ORDER BY pa.sched_conf_id', $schedConfId
 		);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$presenter = new Presenter();
-			$presenter->setPresenterId($row['presenter_id']);
-			$presenter->setPaperId($row['paper_id']);
-			$presenter->setFirstName($row['first_name']);
-			$presenter->setMiddleName($row['middle_name']);
-			$presenter->setLastName($row['last_name']);
-			$presenter->setAffiliation($row['affiliation']);
-			$presenter->setEmail($row['email']);
-			$presenter->setBiography($row['biography']);
-			$presenter->setPrimaryContact($row['primary_contact']);
-			$presenter->setSequence($row['seq']);
-			$presenters[] = $presenter;
+			$author = new Author();
+			$author->setAuthorId($row['author_id']);
+			$author->setPaperId($row['paper_id']);
+			$author->setFirstName($row['first_name']);
+			$author->setMiddleName($row['middle_name']);
+			$author->setLastName($row['last_name']);
+			$author->setAffiliation($row['affiliation']);
+			$author->setEmail($row['email']);
+			$author->setBiography($row['biography']);
+			$author->setPrimaryContact($row['primary_contact']);
+			$author->setSequence($row['seq']);
+			$authors[] = $author;
 			$result->moveNext();
 		}
 
 		$result->Close();
 		unset($result);
 
-		return $presenters;
+		return $authors;
 	}
 
 	/**

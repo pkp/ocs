@@ -373,11 +373,11 @@ class NativeImportDom {
 		if (($node = $paperNode->getChildByName('pages'))) $paper->setPages($node->getValue());
 		if (($language = $paperNode->getAttribute('language'))) $paper->setLanguage($language); 
 
-		/* --- Handle presenters --- */
+		/* --- Handle authors --- */
 		$hasErrors = false;
 		for ($index = 0; ($node = $paperNode->getChildByName('author', $index)); $index++) {
-			if (!NativeImportDom::handlePresenterNode($conference, $schedConf, $node, $track, $paper, $presenterErrors)) {
-				$errors = array_merge($errors, $presenterErrors);
+			if (!NativeImportDom::handleAuthorNode($conference, $schedConf, $node, $track, $paper, $authorErrors)) {
+				$errors = array_merge($errors, $authorErrors);
 				$hasErrors = true;
 			}
 		}
@@ -461,33 +461,33 @@ class NativeImportDom {
 		return true;
 	}
 
-	function handlePresenterNode(&$conference, &$schedConf, &$presenterNode, &$track, &$paper, &$errors) {
+	function handleAuthorNode(&$conference, &$schedConf, &$authorNode, &$track, &$paper, &$errors) {
 		$errors = array();
 
 		$conferenceSupportedLocales = array_keys($conference->getSupportedLocaleNames()); // => conference locales must be set up before
 		$conferencePrimaryLocale = $conference->getPrimaryLocale();
 		
-		$presenter = new Presenter();
-		if (($node = $presenterNode->getChildByName('firstname'))) $presenter->setFirstName($node->getValue());
-		if (($node = $presenterNode->getChildByName('middlename'))) $presenter->setMiddleName($node->getValue());
-		if (($node = $presenterNode->getChildByName('lastname'))) $presenter->setLastName($node->getValue());
-		if (($node = $presenterNode->getChildByName('affiliation'))) $presenter->setAffiliation($node->getValue());
-		if (($node = $presenterNode->getChildByName('country'))) $presenter->setCountry($node->getValue());
-		if (($node = $presenterNode->getChildByName('email'))) $presenter->setEmail($node->getValue());
-		if (($node = $presenterNode->getChildByName('url'))) $presenter->setUrl($node->getValue());
-		for ($index=0; ($node = $presenterNode->getChildByName('biography', $index)); $index++) {
+		$author = new Author();
+		if (($node = $authorNode->getChildByName('firstname'))) $author->setFirstName($node->getValue());
+		if (($node = $authorNode->getChildByName('middlename'))) $author->setMiddleName($node->getValue());
+		if (($node = $authorNode->getChildByName('lastname'))) $author->setLastName($node->getValue());
+		if (($node = $authorNode->getChildByName('affiliation'))) $author->setAffiliation($node->getValue());
+		if (($node = $authorNode->getChildByName('country'))) $author->setCountry($node->getValue());
+		if (($node = $authorNode->getChildByName('email'))) $author->setEmail($node->getValue());
+		if (($node = $authorNode->getChildByName('url'))) $author->setUrl($node->getValue());
+		for ($index=0; ($node = $authorNode->getChildByName('biography', $index)); $index++) {
 			$locale = $node->getAttribute('locale');
 			if ($locale == '') {
 				$locale = $conferencePrimaryLocale;
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-				$errors[] = array('plugins.importexport.native.import.error.paperPresenterBiographyLocaleUnsupported', array('presenterFullName' => $presenter->getFullName(), 'paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+				$errors[] = array('plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported', array('authorFullName' => $author->getFullName(), 'paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
 				return false;
 			} 
-			$presenter->setBiography($node->getValue(), $locale);
+			$author->setBiography($node->getValue(), $locale);
 		}
 		
-		$presenter->setPrimaryContact($presenterNode->getAttribute('primary_contact')==='true'?1:0);
-		$paper->addPresenter($presenter);		// instead of $presenter->setSequence($index+1);
+		$author->setPrimaryContact($authorNode->getAttribute('primary_contact')==='true'?1:0);
+		$paper->addAuthor($author);		// instead of $author->setSequence($index+1);
 
 		return true;
 
@@ -719,13 +719,13 @@ class NativeImportDom {
 		}
 
 		switch (($suppType = $suppNode->getAttribute('type'))) {
-			case 'research_instrument': $suppFile->setType(Locale::translate('presenter.submit.suppFile.researchInstrument')); break;
-			case 'research_materials': $suppFile->setType(Locale::translate('presenter.submit.suppFile.researchMaterials')); break;
-			case 'research_results': $suppFile->setType(Locale::translate('presenter.submit.suppFile.researchResults')); break;
-			case 'transcripts': $suppFile->setType(Locale::translate('presenter.submit.suppFile.transcripts')); break;
-			case 'data_analysis': $suppFile->setType(Locale::translate('presenter.submit.suppFile.dataAnalysis')); break;
-			case 'data_set': $suppFile->setType(Locale::translate('presenter.submit.suppFile.dataSet')); break;
-			case 'source_text': $suppFile->setType(Locale::translate('presenter.submit.suppFile.sourceText')); break;
+			case 'research_instrument': $suppFile->setType(Locale::translate('author.submit.suppFile.researchInstrument')); break;
+			case 'research_materials': $suppFile->setType(Locale::translate('author.submit.suppFile.researchMaterials')); break;
+			case 'research_results': $suppFile->setType(Locale::translate('author.submit.suppFile.researchResults')); break;
+			case 'transcripts': $suppFile->setType(Locale::translate('author.submit.suppFile.transcripts')); break;
+			case 'data_analysis': $suppFile->setType(Locale::translate('author.submit.suppFile.dataAnalysis')); break;
+			case 'data_set': $suppFile->setType(Locale::translate('author.submit.suppFile.dataSet')); break;
+			case 'source_text': $suppFile->setType(Locale::translate('author.submit.suppFile.sourceText')); break;
 			case 'other': $suppFile->setType(''); break;
 			default:
 				$errors[] = array('plugins.importexport.native.import.error.unknownSuppFileType', array('suppFileType' => $suppType));

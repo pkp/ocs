@@ -115,7 +115,7 @@ class UserHandler extends PKPHandler {
 			$schedConf =& Request::getSchedConf();
 			if ($schedConf) {
 				import('schedConf.SchedConfAction');
-				$templateMgr->assign('allowRegPresenter', SchedConfAction::allowRegPresenter($schedConf));
+				$templateMgr->assign('allowRegAuthor', SchedConfAction::allowRegAuthor($schedConf));
 				$templateMgr->assign('allowRegReviewer', SchedConfAction::allowRegReviewer($schedConf));
 				$templateMgr->assign('submissionsOpen', SchedConfAction::submissionsOpen($schedConf));
 			}
@@ -177,10 +177,10 @@ class UserHandler extends PKPHandler {
 		$schedConfAction = new SchedConfAction();
 
 		switch (array_shift($args)) {
-			case 'presenter':
-				$roleId = ROLE_ID_PRESENTER;
-				$func = 'allowRegPresenter';
-				$deniedKey = 'presenter.submit.authorRegistrationClosed';
+			case 'author':
+				$roleId = ROLE_ID_AUTHOR;
+				$func = 'allowRegAuthor';
+				$deniedKey = 'author.submit.authorRegistrationClosed';
 				break;
 			case 'reviewer':
 				$roleId = ROLE_ID_REVIEWER;

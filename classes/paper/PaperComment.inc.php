@@ -120,7 +120,7 @@ class PaperComment extends DataObject {
 	}	
 
 	/**
-	 * get presenter id
+	 * get author id
 	 * @return int
 	 */
 	function getAuthorId() {
@@ -128,41 +128,41 @@ class PaperComment extends DataObject {
 	}
 
 	/**
-	 * set presenter id
-	 * @param $presenterId int
+	 * set author id
+	 * @param $authorId int
 	 */
 	function setAuthorId($authorId) {
 		return $this->setData('authorId', $authorId);
 	}
 
 	/**
-	 * get presenter name
+	 * get author name
 	 * @return string
 	 */
-	function getPresenterName() {
-		static $presenterFullName;
+	function getAuthorName() {
+		static $authorFullName;
 
-		if(!isset($presenterFullName)) {
+		if(!isset($authorFullName)) {
 			$userDao = &DAORegistry::getDAO('UserDAO');
-			$presenterFullName = $userDao->getUserFullName($this->getPresenterId(), true);
+			$authorFullName = $userDao->getUserFullName($this->getAuthorId(), true);
 		}
 
-		return $presenterFullName ? $presenterFullName : '';
+		return $authorFullName ? $authorFullName : '';
 	}
 
 	/**
-	 * get presenter email
+	 * get author email
 	 * @return string
 	 */
-	function getPresenterEmail() {
-		static $presenterEmail;
+	function getAuthorEmail() {
+		static $authorEmail;
 
-		if(!isset($presenterEmail)) {
+		if(!isset($authorEmail)) {
 			$userDao = &DAORegistry::getDAO('UserDAO');
-			$presenterEmail = $userDao->getUserEmail($this->getPresenterId(), true);
+			$authorEmail = $userDao->getUserEmail($this->getAuthorId(), true);
 		}
 
-		return $presenterEmail ? $presenterEmail : '';
+		return $authorEmail ? $authorEmail : '';
 	}
 
 	/**

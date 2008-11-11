@@ -150,13 +150,13 @@
 	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 	</p>
 
-	<h4>{translate key="manager.registrationPolicies.presenterSelfArchive"}</h4>
+	<h4>{translate key="manager.registrationPolicies.authorSelfArchive"}</h4>
 	<p>
 	<input type="checkbox" name="enablePresenterSelfArchive" id="enablePresenterSelfArchive" value="1"{if $enablePresenterSelfArchive} checked="checked"{/if} />&nbsp;
-	<label for="enablePresenterSelfArchive">{translate key="manager.registrationPolicies.presenterSelfArchiveDescription"}</label>
+	<label for="enablePresenterSelfArchive">{translate key="manager.registrationPolicies.authorSelfArchiveDescription"}</label>
 	</p>
 	<p>
-	<textarea name="presenterSelfArchivePolicy[{$formLocale|escape}]" id="presenterSelfArchivePolicy" rows="12" cols="60" class="textArea">{$presenterSelfArchivePolicy[$formLocale]|escape}</textarea>
+	<textarea name="authorSelfArchivePolicy[{$formLocale|escape}]" id="authorSelfArchivePolicy" rows="12" cols="60" class="textArea">{$authorSelfArchivePolicy[$formLocale]|escape}</textarea>
 	<br />
 	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 	</p>

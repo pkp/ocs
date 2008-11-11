@@ -14,7 +14,7 @@
 {/strip}
 
 {if $canViewPresenters}
-<h3>{translate key="paper.presenters"}</h3>
+<h3>{translate key="paper.authors"}</h3>
 	
 <table width="100%" class="data">
 	<tr valign="top">
@@ -27,28 +27,28 @@
 			</form>
 		</td>
 	</tr>
-	{foreach name=presenters from=$presenters key=presenterIndex item=presenter}
+	{foreach name=authors from=$authors key=authorIndex item=author}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.name"}</td>
 		<td width="80%" class="value">
-			{assign var=emailString value="`$presenter.firstName` `$presenter.middleName` `$presenter.lastName` <`$presenter.email`>"}
+			{assign var=emailString value="`$author.firstName` `$author.middleName` `$author.lastName` <`$author.email`>"}
 			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl paperId=$paperId}
-			{$presenter.firstName|escape} {$presenter.middleName|escape} {$presenter.lastName|escape} {icon name="mail" url=$url}
+			{$author.firstName|escape} {$author.middleName|escape} {$author.lastName|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.url"}</td>
-		<td class="value">{$presenter.url|escape|default:"&mdash;"}</td>
+		<td class="value">{$author.url|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.affiliation"}</td>
-		<td class="value">{$presenter.affiliation|escape|default:"&mdash;"}</td>
+		<td class="value">{$author.affiliation|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.biography"}</td>
-		<td class="value">{$presenter.biography.$formLocale|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
+		<td class="value">{$author.biography.$formLocale|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
-	{if !$smarty.foreach.presenters.last}
+	{if !$smarty.foreach.authors.last}
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
@@ -161,7 +161,7 @@
 	
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="presenter.submit.agencies"}</td>
+		<td width="20%" class="label">{translate key="author.submit.agencies"}</td>
 		<td width="80%" class="value">{$sponsor[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 </table>

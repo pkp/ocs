@@ -124,7 +124,7 @@
 				&#187;
 				{if $allowRegPresenter}
 					{if $submissionsOpen}
-						<a href="{url page="presenter" op="submit"}">{translate key="user.noRoles.submitProposal"}</a>
+						<a href="{url page="author" op="submit"}">{translate key="user.noRoles.submitProposal"}</a>
 					{else}{* $submissionsOpen *}
 						{translate key="user.noRoles.submitProposalSubmissionsClosed"}
 					{/if}{* $submissionsOpen *}

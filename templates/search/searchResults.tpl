@@ -41,7 +41,7 @@ function ensureKeyword() {
 	<form name="revise" action="{url op="advanced"}" method="post">
 		<input type="hidden" name="query" value="{$query|escape}"/>
 		<input type="hidden" name="searchConference" value="{$searchConference|escape}"/>
-		<input type="hidden" name="presenter" value="{$presenter|escape}"/>
+		<input type="hidden" name="author" value="{$author|escape}"/>
 		<input type="hidden" name="title" value="{$title|escape}"/>
 		<input type="hidden" name="fullText" value="{$fullText|escape}"/>
 		<input type="hidden" name="supplementaryFiles" value="{$supplementaryFiles|escape}"/>
@@ -93,8 +93,8 @@ function ensureKeyword() {
 </tr>
 <tr>
 	<td colspan="{$numCols|escape}" style="padding-left: 30px;font-style: italic;">
-		{foreach from=$paper->getPresenters() item=presenterItem name=presenterList}
-			{$presenterItem->getFullName()|escape}{if !$smarty.foreach.presenterList.last},{/if}
+		{foreach from=$paper->getPresenters() item=authorItem name=authorList}
+			{$authorItem->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
 		{/foreach}
 	</td>
 </tr>
@@ -111,7 +111,7 @@ function ensureKeyword() {
 		{if $basicQuery}
 			<td colspan="2" align="right">{page_links anchor="results" iterator=$results name="search" query=$basicQuery searchField=$searchField}</td>
 		{else}
-			<td colspan="2" align="right">{page_links anchor="results" iterator=$results name="search" query=$query searchConference=$searchConference presenter=$presenter title=$title fullText=$fullText supplementaryFiles=$supplementaryFiles discipline=$discipline subject=$subject type=$type coverage=$coverage dateFromMonth=$dateFromMonth dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateToMonth=$dateToMonth dateToDay=$dateToDay dateToYear=$dateToYear}</td>
+			<td colspan="2" align="right">{page_links anchor="results" iterator=$results name="search" query=$query searchConference=$searchConference author=$author title=$title fullText=$fullText supplementaryFiles=$supplementaryFiles discipline=$discipline subject=$subject type=$type coverage=$coverage dateFromMonth=$dateFromMonth dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateToMonth=$dateToMonth dateToDay=$dateToDay dateToYear=$dateToYear}</td>
 		{/if}
 	</tr>
 {/if}

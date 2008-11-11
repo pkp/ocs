@@ -15,8 +15,8 @@ Content-Transfer-Encoding: quoted-printable
 {foreach from=$track.papers item=paper}
 {$paper->getPaperTitle()|strip_tags}{if $paper->getPages()} ({$paper->getPages()}){/if}
 
-{foreach from=$paper->getPresenters() item=presenter name=presenterList}
-	{$presenter->getFullName()}{if !$smarty.foreach.presenterList.last},{/if}{/foreach}
+{foreach from=$paper->getPresenters() item=author name=authorList}
+	{$author->getFullName()}{if !$smarty.foreach.authorList.last},{/if}{/foreach}
 
 {/foreach}
 
@@ -63,8 +63,8 @@ Content-Transfer-Encoding: quoted-printable
 					</tr>
 					<tr>
 						<td style="padding-left: 30px;font-style: italic;">
-							{foreach from=$paper->getPresenters() item=presenter name=presenterList}
-								{$presenter->getFullName()|escape}{if !$smarty.foreach.presenterList.last},{/if}
+							{foreach from=$paper->getPresenters() item=author name=authorList}
+								{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
 							{/foreach}
 						</td>
 						<td align="right">{if $paper->getPages()}{$paper->getPages()|escape}{else}&nbsp;{/if}</td>

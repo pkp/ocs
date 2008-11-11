@@ -202,7 +202,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	//
 
 	/**
-	 * Validate that the user is the presenter of the comment.
+	 * Validate that the user is the author of the comment.
 	 */
 	function validate($commentId) {
 		parent::validate();

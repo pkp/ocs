@@ -51,7 +51,7 @@ class LoginHandler extends PKPHandler {
 		$templateMgr->assign('source', Request::getUserVar('source'));
 		$templateMgr->assign('showRemember', Config::getVar('general', 'session_lifetime') > 0);
 		// Helper to prevent registering authors from getting lost
-		$templateMgr->assign('requiresPresenter', Request::getUserVar('requiresPresenter'));
+		$templateMgr->assign('requiresAuthor', Request::getUserVar('requiresAuthor'));
 		$templateMgr->display('user/login.tpl');
 	}
 

@@ -1,32 +1,32 @@
 <?php
 
 /**
- * @file Presenter.inc.php
+ * @file Author.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class Presenter
+ * @class Author
  * @ingroup paper
- * @see PresenterDAO
+ * @see AuthorDAO
  *
- * @brief Paper presenter metadata class.
+ * @brief Paper author metadata class.
  */
 
 //$Id$
 
-class Presenter extends DataObject {
+class Author extends DataObject {
 
 	/**
 	 * Constructor.
 	 */
-	function Presenter() {
+	function Author() {
 		parent::DataObject();
-		$this->setPresenterId(0);
+		$this->setAuthorId(0);
 	}
 
 	/**
-	 * Get the presenter's complete name.
+	 * Get the author's complete name.
 	 * Includes first name, middle name (if applicable), and last name.
 	 * @return string
 	 */
@@ -39,19 +39,19 @@ class Presenter extends DataObject {
 	//
 
 	/**
-	 * Get ID of presenter.
+	 * Get ID of author.
 	 * @return int
 	 */
-	function getPresenterId() {
-		return $this->getData('presenterId');
+	function getAuthorId() {
+		return $this->getData('authorId');
 	}
 
 	/**
-	 * Set ID of presenter.
-	 * @param $presenterId int
+	 * Set ID of author.
+	 * @param $authorId int
 	 */
-	function setPresenterId($presenterId) {
-		return $this->setData('presenterId', $presenterId);
+	function setAuthorId($authorId) {
+		return $this->setData('authorId', $authorId);
 	}
 
 	/**
@@ -197,14 +197,14 @@ class Presenter extends DataObject {
 	}
 
 	/**
-	 * Get the localized biography for this presenter
+	 * Get the localized biography for this author
 	 */
-	function getPresenterBiography() {
+	function getAuthorBiography() {
 		return $this->getLocalizedData('biography');
 	}
 
 	/**
-	 * Get presenter biography.
+	 * Get author biography.
 	 * @param $locale string
 	 * @return string
 	 */
@@ -213,7 +213,7 @@ class Presenter extends DataObject {
 	}
 
 	/**
-	 * Set presenter biography.
+	 * Set author biography.
 	 * @param $biography string
 	 * @param $locale string
 	 */
@@ -238,7 +238,7 @@ class Presenter extends DataObject {
 	}
 
 	/**
-	 * Get sequence of presenter in paper's presenter list.
+	 * Get sequence of author in paper's author list.
 	 * @return float
 	 */
 	function getSequence() {
@@ -246,7 +246,7 @@ class Presenter extends DataObject {
 	}
 
 	/**
-	 * Set sequence of presenter in paper's presenter list.
+	 * Set sequence of author in paper's author list.
 	 * @param $sequence float
 	 */
 	function setSequence($sequence) {

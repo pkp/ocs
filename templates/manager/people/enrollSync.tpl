@@ -34,7 +34,7 @@
 					<option value="director">{translate key="user.role.director"}</option>
 					<option value="trackDirector">{translate key="user.role.trackDirector"}</option>
 					<option value="reviewer">{translate key="user.role.reviewer"}</option>
-					<option value="presenter">{translate key="user.role.presenter"}</option>
+					<option value="author">{translate key="user.role.author"}</option>
 					<option value="reader">{translate key="user.role.reader"}</option>
 				</select>
 			{/if}
