@@ -110,11 +110,11 @@
 	<message key="navigation.myConferences">Mi evento</message>
 	<message key="navigation.conferenceContent">Contenido de la Conferencia/Congreso</message>
 	<message key="navigation.browseByConference">Por evento</message>
-	<message key="navigation.browseByPresenter">Por autor</message>
+	<message key="navigation.browseByAuthor">Por autor</message>
 	<message key="navigation.info">Información</message>
-	<message key="navigation.infoForPresenters">Para autores</message>
+	<message key="navigation.infoForAuthors">Para autores</message>
 	<message key="navigation.infoForReviewers">Para evaluadores</message>
-	<message key="navigation.infoForPresenters.long">Informació para autores</message>
+	<message key="navigation.infoForAuthors.long">Informació para autores</message>
 	<message key="navigation.infoForReviewers.long">Información para los evaluadores</message>
 	<message key="navigation.fontSize">Tamaño de letra</message>
 
@@ -153,7 +153,7 @@
 	<message key="paper.papers">Comunicaciones</message>
 	<message key="paper.submissionId">ID envío</message>
 	<message key="paper.title">Título</message>
-	<message key="paper.presenters">Autores</message>
+	<message key="paper.authors">Autores</message>
 	<message key="paper.conferenceTrack">Secciones de la conferencia</message>
 	<message key="paper.file">Fichero</message>
 	<message key="paper.suppFile">Fichero suplementario</message>
@@ -191,12 +191,12 @@
 	<message key="submission.directorDecision">Director que toma de decisiones</message>
 	<message key="submission.stage">Estado del envío&amp;nbsp;{$stage}</message>
 	<message key="submission.directorReview">Director de la recensión</message>
-	<message key="submission.notifyPresenter">Notificar al autor</message>
+	<message key="submission.notifyAuthor">Notificar al autor</message>
 	<message key="submission.notifyDirector">Notificar al director</message>
-	<message key="submission.directorPresenterRecord">Director/Autor Email</message>
+	<message key="submission.directorAuthorRecord">Director/Autor Email</message>
 	<message key="submission.directorVersion">Director de la versión</message>
-	<message key="submission.presentersRevisedVersion">Fichero corregigo por los autores</message>
-	<message key="submission.presenterVersion">Versión del autor</message>
+	<message key="submission.authorsRevisedVersion">Fichero corregigo por los autores</message>
+	<message key="submission.authorVersion">Versión del autor</message>
 	<message key="submission.layout.description">este paso es opcional y sirve para aplicar una palntilla a los trabajos enviados o cambiar los formatos de los ficheros antes o después de que los manuscritos se pasen a Presentaciones.</message>
 
 	<message key="submission.paperType">Tipo de envío</message>
@@ -285,12 +285,12 @@
 	<message key="user.role.manager">Gestor del evento</message>
 	<message key="user.role.director">Director</message>
 	<message key="user.role.trackDirector">Director de al sección</message>
-	<message key="user.role.presenter">Autor</message>
+	<message key="user.role.author">Autor</message>
 
 	<message key="user.role.managers">Gestores del evento</message>
 	<message key="user.role.directors">Directores</message>
 	<message key="user.role.trackDirectors">Directores de la sección</message>
-	<message key="user.role.presenters">Autores</message>
+	<message key="user.role.authors">Autores</message>
 
 	<!--
 	 *
@@ -299,7 +299,7 @@
 	-->
 	
 	<message key="event.logType.paper">Tipo de Documento</message>
-	<message key="event.logType.presenter">Autor</message>
+	<message key="event.logType.author">Autor</message>
 	<message key="event.logType.director">Director</message>
 	<message key="event.logType.review">Revisor</message>
 	<message key="event.logType.conference">Conferencia/Congreso</message>
@@ -320,9 +320,9 @@
 	<message key="submission.event.general.presentationSubmitted">Presentación enviada</message>
 	<message key="submission.event.general.paperPublished">Articulo publicado</message>
 
-	<message key="submission.event.presenter.presenterRevision">Trabajo revisado por el autor</message>
+	<message key="submission.event.presenter.authorRevision">Trabajo revisado por el autor</message>
 
-	<message key="submission.event.general.presenterRevision">Fichero actualizado del trabajo revisado por el autor</message>
+	<message key="submission.event.general.authorRevision">Fichero actualizado del trabajo revisado por el autor</message>
 
 	<message key="submission.event.director.directorAssigned">Director asignado al envío</message>
 	<message key="submission.event.director.directorUnassigned">No se ha asignado director desde el envío</message>
@@ -416,7 +416,7 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<message key="manager.statistics.reports.generate">Generar informe</message>
 	<message key="manager.statistics.reports.status">Estado (Acceptado, rechazado, otro)</message>
 	<message key="manager.statistics.reports.dateDecided">Fecha de decisión</message>
-	<message key="manager.statistics.reports.presenter">Autor #{$num}</message>
+	<message key="manager.statistics.reports.author">Autor #{$num}</message>
 	<message key="manager.statistics.reports.affiliation">Afiliación #{$num}</message>
 	<message key="manager.statistics.reports.country">País #{$num}</message>
 	<message key="manager.statistics.reports.reviewer">Recensor #{$num}</message>
@@ -585,7 +585,7 @@ En activo significa cuantas recensiones están actualmente en marcha.]]></messag
 
 
 	<!-- Track Director -->
-	<message key="trackDirector.presenter.confirmRenotify">Notificar al autor que debe reiniciar la asignación de evaluadores. ¿Está seguro de que quiere hacer esto?</message>
+	<message key="trackDirector.author.confirmRenotify">Notificar al autor que debe reiniciar la asignación de evaluadores. ¿Está seguro de que quiere hacer esto?</message>
 
 	<message key="trackDirector.regrets.breadcrumb">Renuncias</message>
 	<message key="trackDirector.regrets.title">#{$paperId} Renuncias de recensores &amp; Cancelaciones</message>
@@ -650,18 +650,18 @@ En activo significa cuantas recensiones están actualmente en marcha.]]></messag
 
 	<!-- Presenter -->
 
-<message key="presenter.submissions.confirmDelete">¿Está seguro de que quiere borrar el envío incompleto?</message>
+<message key="author.submissions.confirmDelete">¿Está seguro de que quiere borrar el envío incompleto?</message>
 
 	<!-- Paper Submission Step 1 -->
 
 
 	<!-- Paper Submission Step 2 -->
-	<message key="presenter.submit.metadataDescription">Esta Conferencia recopila los metadatos de cada trabajo, de acuerdo con los estándares de la Open Archives Initiative, que permiten la identificación objetos digitales. Esto permite  una búsqueda selectiva uy precisa en bases de datos OAI, lo que aumenta la probabilidad de que los lectores encuentren  trabajos como este. El Comité organizador debe insistir en que los metadatos  conviene  enviarlos antes de iniciarse el proceso editorial de manejo de originales</message>
-	<message key="presenter.submit.presentersDescription">Para envíos con más de un  autor, ordene los nombres tal y como deban aparecer en la referencia bibliográfica.</message>
-	<message key="presenter.submit.reorderPresenterName">Reordenar el nombre del autor</message>
+	<message key="author.submit.metadataDescription">Esta Conferencia recopila los metadatos de cada trabajo, de acuerdo con los estándares de la Open Archives Initiative, que permiten la identificación objetos digitales. Esto permite  una búsqueda selectiva uy precisa en bases de datos OAI, lo que aumenta la probabilidad de que los lectores encuentren  trabajos como este. El Comité organizador debe insistir en que los metadatos  conviene  enviarlos antes de iniciarse el proceso editorial de manejo de originales</message>
+	<message key="presenter.submit.authorsDescription">Para envíos con más de un  autor, ordene los nombres tal y como deban aparecer en la referencia bibliográfica.</message>
+	<message key="author.submit.reorderAuthorName">Reordenar el nombre del autor</message>
 
 	<!-- Paper Submission Step 3 -->
-	<message key="presenter.submit.uploadInstructions"><![CDATA[
+	<message key="author.submit.uploadInstructions"><![CDATA[
 Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 
 <ol>
@@ -695,15 +695,15 @@ Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 	<!-- Submission Email Log -->
 
 	<!-- Submission Comments -->
-	<message key="submission.comments.directorPresenterCorrespondence">Director/Autor para la correspondencia</message>
+	<message key="submission.comments.directorAuthorCorrespondence">Director/Autor para la correspondencia</message>
 	<message key="submission.comments.viewableDescription"><![CDATA[Estos comentario pueden compartirse con el autor.<br />
 (Después de guardar, pueden añadirse más comentarios.)]]></message>
-	<message key="submission.comments.canShareWithPresenter">Para el autor y el director</message>
-	<message key="submission.comments.cannotShareWithPresenter">Para el director</message>
+	<message key="submission.comments.canShareWithAuthor">Para el autor y el director</message>
+	<message key="submission.comments.cannotShareWithAuthor">Para el director</message>
 	<message key="submission.comments.blindCcReviewers">Después del envío, haga una copia de la decisión editorial, sin cabeceras ni nombres, para mandársela a los recensores.</message>
-	<message key="submission.comments.forPresenterDirector">Para el autor y el director</message>
+	<message key="submission.comments.forAuthorDirector">Para el autor y el director</message>
 	<message key="submission.comments.forDirector">Para el director</message>
-	<message key="submission.comments.saveAndEmailPresenter">Guardar y enviar un correo electrónico al autor</message>
+	<message key="submission.comments.saveAndEmailAuthor">Guardar y enviar un correo electrónico al autor</message>
 	<message key="submission.comments.saveAndEmailDirector">Guardar y enviar un correo electrónico al Director</message>
 
 	<!-- Login -->
@@ -736,22 +736,22 @@ Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 	<message key="user.account.form.passwordLengthTooShort">La contraseña que ha introducido no es lo suficientemente larga.</message>
 	<message key="user.account.readerDescription">Notificar por email cuando se publiquen presentaciones.</message>
 	<message key="user.account.openAccessNotificationDescription">Notificar por email cuando la conferencia sea de acceso abierto.</message>
-	<message key="user.account.presenterDescription">Pueden enviarse artículos a la conferencia.</message>
+	<message key="user.account.authorDescription">Pueden enviarse artículos a la conferencia.</message>
 	<message key="user.account.reviewerDescriptionNoInterests">Acepto hacer la recensión de trabajos de esta conferencia.</message>
 	<message key="user.account.reviewerDescription">Acepto hacer la recensión de trabajos de esta conferencia. Señale los temas de su interés ( áreas y métodos de trabajo).</message>
-	<message key="user.account.presenterRegistrationMessage">Aunque tienen una cuenta en de usuario en este sitio, actualmente no es autor de ningún trabajo de esta conferencia.</message>
+	<message key="user.account.authorRegistrationMessage">Aunque tienen una cuenta en de usuario en este sitio, actualmente no es autor de ningún trabajo de esta conferencia.</message>
 
 
 
 	<!-- Search -->
-	<message key="search.browsePresenterIndex">Listar el índice de autores</message>
+	<message key="search.browseAuthorIndex">Listar el índice de autores</message>
 	<message key="search.searchFor">Búsqueda de trabajos por</message>
 	<message key="search.inField">En</message>
-	<message key="search.presenter">Autores</message>
+	<message key="search.author">Autores</message>
 	<message key="search.withinConference">En</message>
 	<message key="search.allConferences">Todos los eventos</message>
-	<message key="search.presenterIndex">Listar por autores</message>
-	<message key="search.presenterDetails">Detalles del autor</message>
+	<message key="search.authorIndex">Listar por autores</message>
+	<message key="search.authorDetails">Detalles del autor</message>
 	<message key="search.syntaxInstructions"><![CDATA[Recomendaciones para las búsquedas: <ul>
 <li>Los términos de búsqueda son susceptibles a las mayúsculas y minúsculas</li>
 <li>Las palabras comunes se ignoran</li>
@@ -813,7 +813,7 @@ Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 	<message key="about.onlineSubmissions.needAccount">¿Necesita un nombre de Usuario/Password?</message>
 	<message key="about.onlineSubmissions.registration">Vaya a la página de registro</message>
 	<message key="about.onlineSubmissions.registrationRequired">Se necesita estar registrado y clave de acceso para el envío online de trabajos y poder consultar el estatus de los mismos.</message>
-	<message key="about.presenterGuidelines">Instrucciones para autores</message>
+	<message key="about.authorGuidelines">Instrucciones para autores</message>
 	<message key="about.submissionPreparationChecklist">Lista de requisitos para los envíos online </message>
 	<message key="about.copyrightNotice">Términos sobre el Copyright</message>
 	<message key="about.privacyStatement">Declaración de privacidad</message>
@@ -823,7 +823,7 @@ Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 	<message key="about.delayedOpenAccess">Open Access pospuesto </message>
 	<message key="about.delayedOpenAccessDescription1">Los contenidos de esta conferencia estarán disponibles en acceso abierto</message>
 	<message key="about.delayedOpenAccessDescription2">meses después de que los contenidos de la conferencia se distribuyan entre los participantes.</message>
-	<message key="about.presenterSelfArchive">Auto-archivo del autor</message>
+	<message key="about.authorSelfArchive">Auto-archivo del autor</message>
 	<message key="about.archiving">Archivo</message>
 	<message key="about.registration">Inscripción</message>
 	<message key="about.registrationContact">Contacto para la inscripción</message>
@@ -912,9 +912,9 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 	<!-- Paper Logs -->
 	<message key="log.default.abstractPeriodExpired">La ventana para el envío de resúmenes de trabajos incompletos {$paperId} ha expirado. El trabajo se ha retirado.</message>
 	<message key="log.default.paperPeriodExpired">La ventana para el envío de trabajos incompletos {$paperId} ha expirado. El trabajo se ha retirado.</message>
-	<message key="log.presenter.abstractSubmitted">{$presenterName} ha enviado un resumen, ID {$submissionId}.</message>
-	<message key="log.presenter.presentationSubmitted">{$presenterName} ha depositado una presentación, ID {$submissionId}.</message>
-	<message key="log.presenter.documentRevised">{$presenterName} ha revisado el trabajo {$paperId}. El nuevo ID del fichero es {$fileId}.</message>
+	<message key="log.author.abstractSubmitted">{$authorName} ha enviado un resumen, ID {$submissionId}.</message>
+	<message key="log.author.presentationSubmitted">{$authorName} ha depositado una presentación, ID {$submissionId}.</message>
+	<message key="log.author.documentRevised">{$authorName} ha revisado el trabajo {$paperId}. El nuevo ID del fichero es {$fileId}.</message>
 	<message key="log.review.reviewerAssigned">{$reviewerName} se ha asignado {$paperId} para revisión {$stage}.</message>
 	<message key="log.review.reviewerUnassigned">{$reviewerName} no se ha asignado {$paperId} para revisión {$stage}.</message>
 	<message key="log.review.reviewInitiated">La paso {$stage} de revisión {$reviewerName} del envío {$paperId} ha comenzado.</message>
@@ -953,8 +953,8 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="log.timeline.endDateChanged">La fecha de finalización de la conferencia ha cambiado de {$oldEndDate} a {$newEndDate}.</message>
 	<message key="log.timeline.regReviewerOpenDateChanged">La fecha de inscripción ha cambiado de {$oldRegReviewerOpenDate} a {$newRegReviewerOpenDate}.</message>
 	<message key="log.timeline.regReviewerCloseDateChanged">la fecha de cierre de inscripción ha cambiado de {$oldRegReviewerCloseDate} a {$newRegReviewerCloseDate}.</message>
-	<message key="log.timeline.regPresenterOpenDateChanged">La fecha de inicio de inscripción para los autores ha cambiado de {$oldRegPresenterOpenDate} a {$newRegPresenterOpenDate}.</message>
-	<message key="log.timeline.regPresenterCloseDateChanged">La fecha de cierre de inscripción de los autores ha cambiado de {$oldRegPresenterCloseDate} a {$newRegPresenterCloseDate}.</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">La fecha de inicio de inscripción para los autores ha cambiado de {$oldRegPresenterOpenDate} a {$newRegPresenterOpenDate}.</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">La fecha de cierre de inscripción de los autores ha cambiado de {$oldRegPresenterCloseDate} a {$newRegPresenterCloseDate}.</message>
 	<message key="log.timeline.showCFPDateChanged">La fecha del "call for papers" ha cambiado de {$oldShowCFPDate} a {$newShowCFPDate}.</message>
 	<message key="log.timeline.submissionsOpenDateChanged">La fecha de envío de trabajos ha cambiado de {$oldSubmissionsOpenDate} a {$newSubmissionsOpenDate}</message>
 	<message key="log.timeline.submissionsCloseDateChanged">La fecha de envío de trabajos ha cambiado de {$oldSubmissionsCloseDate} a {$newSubmissionsCloseDate}</message>
@@ -998,9 +998,9 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 
 
 
-	<message key="rt.metadata.dublinCore.primaryPresenter">Creador</message>
+	<message key="rt.metadata.dublinCore.primaryAuthor">Creador</message>
 
-	<message key="rt.metadata.pkp.primaryPresenter">Nombre del autor, afiliación, país</message>
+	<message key="rt.metadata.pkp.primaryAuthor">Nombre del autor, afiliación, país</message>
 	<message key="rt.metadata.pkp.peerReviewed">Trabajo revisado (Peer-reviewed)</message>
 
 
@@ -1049,21 +1049,21 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 	<message key="default.schedConfSettings.checklist.anonymous">Cuando se envía a evaluar, los nombres de los autores y el año se eliminan, se utilizará "Autor"  y año usado en la bibliografía y notas a pie de página, en lugar de los nombres de los autores, título del trabajo, etc.</message>
 	<message key="default.schedConfSettings.checklist.personalInformationRemoved">Cuando se envía a recensión, todos los ficheros de Microsoft Office (incluyendo los ficheros adicionales) se guardan yendo al menú Ficheros y seleccionando "Guardar como"; pulsando herramientas (u opciones en Mac); Pulsando Seguridad; seleccionando "Sustraer información personal de las propiedades del fichero mientras se guarda"; pulsando Guardar.</message>
 	<message key="default.conferenceSettings.privacyStatement">Los nombres y direcciones de correo introducidos se usarán exclusivamente con los fines de esta Conferencia y  no se facilitarán a terceros.</message>
-	<message key="default.conferenceSettings.presenterSelfArchivePolicy">Los autores están autorizados a depositar sus trabajos en páginas personales o repositorios institucionales antes y después de esta Conferencia (mientras se facilite la referencia bibliográfica).</message>
+	<message key="default.conferenceSettings.authorSelfArchivePolicy">Los autores están autorizados a depositar sus trabajos en páginas personales o repositorios institucionales antes y después de esta Conferencia (mientras se facilite la referencia bibliográfica).</message>
 	<message key="default.conferenceSettings.emailSignature"><![CDATA[________________________________________________________________________
 {$conferenceName}
 {$conferenceUrl}
 ]]></message>
 	<message key="default.conferenceSettings.forReaders"><![CDATA[Recomendamos a los lectores que acepten el servicio de alerta de  los trabajos que se depositan en esa conferencia. Recomendamos que lea <a href="{$aboutUrl}">Acerca de la Conferencia"</a> la página sobre las políticas de la conferencia, y visite la <a href="{$conferenceUrl}">Página de Inicio</a> para ver las conferencias que se aproximan.]]></message>
-	<message key="default.conferenceSettings.forPresenters"><![CDATA[¿Está interesado en hacer un envío a esta conferencia? Recomendamos que lea <a href="{$aboutUrl}">Acerca de la Conferencia"</a> la página sobre las políticas de la conferencia, y viste la <a href="{$conferenceUrl}">Página de Inicio</a> para ver las conferencias que se aproximan.]]></message>
+	<message key="default.conferenceSettings.forAuthors"><![CDATA[¿Está interesado en hacer un envío a esta conferencia? Recomendamos que lea <a href="{$aboutUrl}">Acerca de la Conferencia"</a> la página sobre las políticas de la conferencia, y viste la <a href="{$conferenceUrl}">Página de Inicio</a> para ver las conferencias que se aproximan.]]></message>
 	<message key="default.conferenceSettings.lockssLicense"><![CDATA[Esta conferencia uliliza el sistema LOCKSS para crear un sistema de archivos distribuidos entre las bibliotecas participantes, y permite a esas bibliotecas crear ficheros permanentes de la conferencia con fines de preservación y restablecimiento. <a href="http://lockss.stanford.edu/">Más....</a>]]></message>
 
 	<message key="default.schedConfSettings.emailSignature"><![CDATA[________________________________________________________________________
 {$conferenceName} {$schedConfName}
 {$schedConfUrl}
 ]]></message>
-	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[El texto debe tener el formato y estilo de referencias bibliográficas descrito en <a href="{$presenterGuidelinesUrl}">Instrucciones para Autores</a>, que se encuentran un el menú "Acerca de esta Conferencia".]]></message>
+	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[El texto debe tener el formato y estilo de referencias bibliográficas descrito en <a href="{$authorGuidelinesUrl}">Instrucciones para Autores</a>, que se encuentran un el menú "Acerca de esta Conferencia".]]></message>
 	<message key="default.schedConfSettings.forReaders"><![CDATA[Recomendamos que los lectores opten por el envío de notificación del envío de  nuevos trabajos a esta conferencia. Utilice el enlace<a href="{$accountUrl}">Cuenta</a> situado en la parte superior de la página de inicio de al conferencia. Esto permite a la conferencia una colaboración a nivel de usuarios-lectores. Consulte la <a href="{$privacyStatementUrl}"> Declaración de Privacidad</a> de la conferencia, que asegura que la identidad de los y su email no se usarán con otros fines.]]></message>
-	<message key="default.schedConfSettings.forPresenters"><![CDATA[¿está interesado en enviar un trabajo a esta conferencia? le recomendamos que consulte en <a href="{$aboutUrl}">Acerca de esta Conferencia</a> para conocer las políticas de la misma, así como las <a href="{$presenterGuidelinesUrl}">Instrucciones para Autores</a>. Los autores necesitan <a href="{$accountUrl}">crear una cuenta</a> en la web de la conferencia antes de hacer el envío, y si ya disponían de ella, simplemente deben <a href="{$loginUrl}">acceder</a> al sistema e iniciar el envío.]]></message>
+	<message key="default.schedConfSettings.forAuthors"><![CDATA[¿está interesado en enviar un trabajo a esta conferencia? le recomendamos que consulte en <a href="{$aboutUrl}">Acerca de esta Conferencia</a> para conocer las políticas de la misma, así como las <a href="{$authorGuidelinesUrl}">Instrucciones para Autores</a>. Los autores necesitan <a href="{$accountUrl}">crear una cuenta</a> en la web de la conferencia antes de hacer el envío, y si ya disponían de ella, simplemente deben <a href="{$loginUrl}">acceder</a> al sistema e iniciar el envío.]]></message>
 
 </locale>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/ca_ES/author.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the ca_ES (Català (Espanya)) locale.
+  *
+  -->
+
+<locale name="ca_ES" full_name = "Català (Espanya)">
+	<message key="author.submit">Nova tramesa</message>
+	<message key="author.track">Activa trameses</message>
+	<message key="author.submit.startHere">Comenci aquí a trametre el seu treball.</message>
+	<message key="author.submit.startHereLink">Primer pas del procés de tramesa</message>
+	<message key="author.submit.step1">Pas 1. Comença la tramesa</message>
+	<message key="author.submit.step2">Pas 2. Introdueix les metadades del treball</message>
+	<message key="author.submit.step3">Pas 3. Diposita l'arxiu del treball</message>
+	<message key="author.submit.step4">Pas 4. Diposita un arxiu addicional</message>
+	<message key="author.submit.step4a">Pas 4a. Diposita un altre arxiu addicional</message>
+	<message key="author.submit.step5">Pas 5. Confirma</message>
+	<message key="author.submit.step5SkipSupp">Pas 4. Confirma</message>
+	<message key="author.submit.start">1. Inicia</message>
+	<message key="author.submit.metadata">2. Introdueix metadades</message>
+	<message key="author.submit.upload">3. Diposita l'original</message>
+	<message key="author.submit.supplementaryFiles">4. Diposita arxius addicionals</message>
+	<message key="author.submit.confirmation">5. Confirma</message>
+	<message key="author.submit.confirmationSkipSupp">4. Confirma</message>
+	<message key="author.submit.cancelSubmission">Pot completar aquesta tramesa més tard seleccionant "Activa Tramesa" des del menú Autor.</message>
+	<message key="author.submit.notAcceptingYet">La tramesa d'originals a aquesta conferència encara no s'ha obert.</message>
+	<message key="author.submit.submissionDeadlinePassed">La tramesa d'originals s'ha tancat el {$closedDate}.</message>
+	<message key="author.submissions.viewStatus">Visualitza estat del treball</message>
+	<message key="author.submissions.noSubmissions">No hi ha trameses.</message>
+	<message key="author.submit.howToSubmit"><![CDATA[Els autors envien treballs a aquesta conferència a través d'aquesta web mitjançant un procés per passos en el qual es diposita el material oportú (alguns esdeveniments permeten a l'autor dipositar també arxius suplementaris, tals com fulls de dades). Si troba dificultat durant el procés i necessita ajuda, contacti amb <a href="mailto:{$supportEmail}">{$supportName}</a> mitjançant el correu electrònic o telèfon {$supportPhone}.]]></message>
+	<message key="author.submit.conferenceTrack">Seccions de la Conferència</message>
+	<message key="author.submit.conferenceTrackDescription"><![CDATA[Seleccioni la secció apropiada per a la tramesa del seu treball (veure <a href="{$aboutUrl}" target="_new">Política de la secció</a>).]]></message>
+	<message key="author.submit.selectTrack">Per favor, seleccioni la secció...</message>
+	<message key="author.submit.submissionChecklist">Llista de requisits per a la tramesa d'originals</message>
+	<message key="author.submit.submissionChecklistDescription">Indicar que el treball està preparat per a la tramesa marcant la següent llista el que correspongui (poden afegir-se comentaris en la finestra de baix).</message>
+	<message key="author.submit.verifyChecklist">Ha d'assegurar-se abans de continuar que el seu treball complix amb tots els punts que s'indiquen en la llista de requisits.</message>
+	<message key="author.submit.copyrightNoticeAgree">Els autors estan d'acord amb els termes de copyright, que s'aplicaran al treball si s'accepta i quan es publiqui en aquesta Conferència (poden afegir-se comentaris en la finestra de baix).</message>
+	<message key="author.submit.copyrightNoticeAgreeRequired">Ha d'acceptar els termes de 'copyright' abans de continuar.</message>
+	<message key="author.submit.commentsForDirector">Comentaris al director de la Conferència </message>
+	<message key="author.submit.comments">Introdueixi el text (opcional)</message>
+	<message key="author.submit.form.trackRequired">Per favor, seleccioni la secció adequada de la conferència per a la tramesa del seu treball .</message>
+	<message key="author.submit.form.abstractRequired">Per favor, introdueixi el resum del seu treball.</message>
+	<message key="author.submit.privacyStatement">Declaració de privacitat de la Conferència</message>
+	<message key="author.submit.reorderInstructions">Utilitzi les fletxes per a canviar l'ordre en que ha d'aparèixer el nom dels autors del treball.</message>
+	<message key="author.submit.selectPrincipalContact">Autor al que dirigir la correspondència.</message>
+	<message key="author.submit.addAuthor">Afegeix autor</message>
+	<message key="author.submit.deleteAuthor">Esborra autor</message>
+	<message key="author.submit.submissionIndexingDescription">Faciliti un o més termes que descriguin el contingut del treball. Separar les paraules mitjançant punt i coma (term1; term2; term3).</message>
+	<message key="author.submit.submissionSupportingAgencies">Entitats patrocinadores</message>
+	<message key="author.submit.submissionSupportingAgenciesDescription">Identifiqui les agències que patrocinen o subvencionen el treball que presenta a aquesta conferència.</message>
+	<message key="author.submit.agencies">Entitats</message>
+	<message key="author.submit.subjectClassInstructions">Esculli entre els termes utilitzats en el sistema de classificació (veure hiperenllaços) les paraules clau i, si fos necessari nombres. Usi el sistema de classificació de l'enllaç per a seleccionar els termes de classificació i, si és necessari, nombres.</message>
+	<message key="author.submit.languageInstructions"><![CDATA[Anglès=en; Català=ca; Espanyol=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">Més codis</a>.]]></message>
+	<message key="presenter.submit.form.authorRequired">Es requereix, al menys, un autor.</message>
+	<message key="presenter.submit.form.authorRequiredFields">És necessari el nom, cognom i correu electrònic de cadascun dels autors.</message>
+	<message key="author.submit.form.titleRequired">Per favor, introdueixi el títol del seu treball.</message>
+	<message key="author.submit.submissionFile">Arxiu de la tramesa</message>
+	<message key="author.submit.uploadSubmissionFile">Diposita l'arxiu</message>
+	<message key="author.submit.replaceSubmissionFile">Reemplaça l'arxiu de tramesa</message>
+	<message key="author.submit.noSubmissionFile">No s'han dipositat arxius.</message>
+	<message key="author.submit.noSubmissionConfirm">Està segur que vol continuar sense el dipòsit d'arxius?</message>
+	<message key="author.submit.supplementaryFilesInstructions">Aquest pas opcional en el procés d'enviament permet als autors afegir arxius que millorin la contribució del treball enviat. Els arxius addicionals poden incloure (a) instruments de la investigació, (b) fulls de dades,(c) altres documents als quals, d'altra manera, els lectors no tindrien accés, o (d) figures o taules que es puguin integrar en el text. L'autor indexa aquests arxius, identifica la seva realització amb l'enviament, així com la seva autoria. Els arxius addicionals poden dipositar-se en qualsevol format i estaran disponibles per als lectors en el seu format original. Aquests poden compartir-se amb els revisors, si no comprometen l'avaluació "a cegues".</message>
+	<message key="author.submit.noSupplementaryFiles">No s'han afegit arxius addicionals a aquesta tramesa.</message>
+	<message key="author.submit.backToSupplementaryFiles">Torna als arxius addicionals</message>
+	<message key="author.submit.confirmDeleteSuppFile">Està segur que vol eliminar aquest arxiu addicional?</message>
+	<message key="author.submit.uploadSuppFile">Diposita arxiu addicional</message>
+	<message key="author.submit.addSupplementaryFile">Afegeix un arxiu addicional</message>
+	<message key="author.submit.editSupplementaryFile">Edita un arxiu addicional</message>
+	<message key="author.submit.supplementaryFileData">Metadades de l'arxiu addicional</message>
+	<message key="author.submit.supplementaryFileDataDescription">Per a indexar aquest material addicional, faciliti les següents metadades del fitxer addicional .</message>
+	<message key="author.submit.supplementaryFileUpload">Arxiu addicional</message>
+	<message key="author.submit.suppFile.createrOrOwner">Creador (o propietari) de l'arxiu</message>
+	<message key="author.submit.suppFile.researchInstrument">Instrumentació</message>
+	<message key="author.submit.suppFile.researchMaterials">Materials de la investigació</message>
+	<message key="author.submit.suppFile.researchResults">Resultats de la investigació</message>
+	<message key="author.submit.suppFile.transcripts">Transcripcions</message>
+	<message key="author.submit.suppFile.dataAnalysis">Anàlisi de dades</message>
+	<message key="author.submit.suppFile.dataSet">Full de dades</message>
+	<message key="author.submit.suppFile.sourceText">Text</message>
+	<message key="author.submit.suppFile.briefDescription">Breu descripció</message>
+	<message key="author.submit.suppFile.contributorOrSponsor">Patrocinador</message>
+	<message key="author.submit.suppFile.availableToPeers">Facilita els arxius als revisors (sense metadades), ja que no comprometen l'avaluació.</message>
+	<message key="author.submit.suppFile.publisherDescription">Usa només amb material publicat formalment.</message>
+	<message key="author.submit.suppFile.dateDescription">Data en la qual es van prendre les dades o data de l'experimentació.</message>
+	<message key="author.submit.suppFile.sourceDescription">Nom de l'estudi o altre punt d'origen.</message>
+	<message key="author.submit.suppFile.specifyOtherType">Especifica altres</message>
+	<message key="author.submit.suppFile.noFile">No s'han dipositat arxius.</message>
+	<message key="author.submit.suppFile.form.titleRequired">Per favor, introdueixi el títol de l'arxiu addicional.</message>
+	<message key="author.submit.suppFile.form.subjectRequired">Per favor, introdueixi una matèria </message>
+	<message key="author.submit.suppFile.form.descriptionRequired">Per favor, introdueixi una descripció.</message>
+	<message key="author.suppFile.suppFilePublicIdentificationExists">La identificació de l'arxiu adicional ja existeix.</message>
+	<message key="author.suppFile.publicSuppFileIdentifier">Identificador de l'arxiu addicional</message>
+	<message key="author.submit.addSubmissionFile">Afegir un arxiu addicional</message>
+	<message key="author.submit.submissionFileUpload">Arxiu addicional</message>
+	<message key="author.submit.confirmationDescription">Quan completi els 4 passos previs al procés de tramesa del seu treball, premi Finalitza Tramesa per a remetre'l a  {$conferenceTitle}. Rebrà per email un justificant de recepció i podrà veure que estat es troba el seu treball si accedeix a la web de la conferència. Gràcies per enviar el seu treball a {$conferenceTitle}.</message>
+	<message key="author.submit.noFiles">No s'adjunten fitxers a aquesta tramesa.</message>
+	<message key="author.submit.filesSummary">Resum de l'arxiu</message>
+	<message key="author.submit.finishSubmission">Finalitza la tramesa</message>
+	<message key="author.submit.submissionComplete">Tramesa acabada. Gràcies per remetre el seu treball a {$conferenceTitle}.</message>
+	<message key="author.submit.expedite"><![CDATA[Si aquest treball està formalment llest per a publicar-se, sense que precisi major revisió o edició de format, pot enviar-se directament a la pàgina d'actes de la conferència <a href="{$expediteUrl}" class="action">prement aquí</a>. (Nota: Només els directors de la conferència tenen aquesta opció per a les seves trameses).]]></message>
+	<message key="author.paper.uploadAuthorVersion">Versió dipositada per l'autor</message>
+	<message key="presenter.submit.authorSubmitLoginMessage">Es necessita un compte d'usuari per a enviar treballs a aquesta conferència. Això permet als organitzadors registrar els enviaments i contactar amb vostè quan hagi algun canvi en els mateixos, o si es precisa alguna informació addicional seva.</message>
+</locale>

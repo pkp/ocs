@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/fr_FR/author.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the fr_FR (Français (France)) locale.
+  *
+  -->
+
+<locale name="fr_FR" full_name = "Français (France)">
+	<message key="author.submit">Nouvelle Proposition</message>
+	<message key="author.track">Propositions Actives</message>
+	<message key="author.submit.startHere">Commencez ici pour proposer un papier à la conférence.</message>
+	<message key="author.submit.startHereLink">Première Étape du processus de proposition</message>
+	<message key="author.submit.step1">Étape 1. Commencer la proposition</message>
+	<message key="author.submit.step2">Étape 2. Entrer les métadonnées de la proposition</message>
+	<message key="author.submit.step3">Étape 3. Envoyer la proposition au serveur</message>
+	<message key="author.submit.step4">Étape 4. Envoyer les fichiers supplémentaires au serveur</message>
+	<message key="author.submit.step4a">Étape 4a. Ajouter un fichier supplémentaire</message>
+	<message key="author.submit.step5">Étape 5. Confirmer la proposition</message>
+	<message key="author.submit.step5SkipSupp">Étape 4. Confirmer la Proposition</message>
+	<message key="author.submit.start">1. Commencer</message>
+	<message key="author.submit.metadata">2. Entrer les métadonnées</message>
+	<message key="author.submit.upload">3. Envoyer la proposition au serveur</message>
+	<message key="author.submit.supplementaryFiles">4. Envoyer les Fichiers Supplémentaires au serveur</message>
+	<message key="author.submit.confirmation">5. Confirmation</message>
+	<message key="author.submit.confirmationSkipSupp">4. Confirmation</message>
+	<message key="author.submit.cancelSubmission">Vous pouvez compléter cette proposition à une date ultérieure en sélectionnant les Propositions actives de l'Accueil de l'Auteur.</message>
+	<message key="author.submit.notAcceptingYet">Cette conférence n'a pas encore commencé à accepter les propositions.</message>
+	<message key="author.submit.submissionDeadlinePassed">Les propositions pour cette conférence sont arrêtées depuis le {$closedDate}.</message>
+	<message key="author.submissions.confirmDelete">Etes-vous sûr de vouloir supprimer cette proposition imcomplète?</message>
+	<message key="author.submissions.viewStatus">Voir l'état</message>
+	<message key="author.submissions.noSubmissions">Aucune proposition.</message>
+	<message key="author.submit.howToSubmit"><![CDATA[Les auteurs proposeront des éléments à cette conférence à travers ce site web en passant par une procédure à plusieurs étapes pour uploader une information pertinente (certaines conférences autorisent les auteurs à uploader aussi bien les fichiers supplémentaires que les données de recherche ou encore les instruments). Si vous rencontrez des difficultés lors de cette procédure, contactez <a href="mailto:{$supportEmail}">{$supportName}</a> par email ou téléphone {$supportPhone} pour avoir de l'aide.]]></message>
+	<message key="author.submit.conferenceTrack">Partie de conférence</message>
+	<message key="author.submit.conferenceTrackDescription"><![CDATA[Sélectionnez une partie appropriée pour cette proposition (voir <a href="{$aboutUrl}" target="_new">Politiques de Parties</a>).]]></message>
+	<message key="author.submit.selectTrack">Veuillez sélectionner une partie...</message>
+	<message key="author.submit.submissionChecklist">Checklist de la proposition</message>
+	<message key="author.submit.submissionChecklistDescription">Les auteurs indiquent si cette proposition est prête à être envisagée pour cette conférence en cochant ce qui suit (Les commentaires au responsable pourront être ajoutés plus bas).</message>
+	<message key="author.submit.verifyChecklist">Vous devez vous assurer que tous les éléments de cette checklist de proposition sont satisfaits avant de continuer.</message>
+	<message key="author.submit.copyrightNoticeAgree">Les auteurs sont d'accord avec cet Avertissement Copyright qui va être appliqué à cette proposition si elle est acceptée et publiée par cette conférence (les commentaires au responsable peuvent être ajoutés plus bas).</message>
+	<message key="author.submit.copyrightNoticeAgreeRequired">Vous devez être d'accord avec les termes du Copyright avant de pouvoir continuer.</message>
+	<message key="author.submit.commentsForDirector">Commentaires pour le Responsable de conférence</message>
+	<message key="author.submit.comments">Entrez un texte (optionnel)</message>
+	<message key="author.submit.form.trackRequired">Veuillez sélectionner une partie de conférence pertinente pour cette proposition.</message>
+	<message key="author.submit.form.abstractRequired">Veuillez entrer un résumé de votre proposition.</message>
+	<message key="author.submit.privacyStatement">Protection des données personnelles de la conférence</message>
+	<message key="author.submit.reorderInstructions">Utiliser les flèches pour changer l'ordre dans lequel apparaîtront les noms des auteurs dans la proposition.</message>
+	<message key="author.submit.selectPrincipalContact">Contact principal pour la correspondance éditoriale.</message>
+	<message key="author.submit.addAuthor">Ajouter un auteur</message>
+	<message key="author.submit.deleteAuthor">Supprimer un auteur</message>
+	<message key="author.submit.submissionIndexingDescription">Fournir un ou plusieurs termes pour décrire le contenu de la proposition. Séparez les termes par des points-virgules (terme1; terme2; terme3).</message>
+	<message key="author.submit.submissionSupportingAgencies">Organismes de soutien</message>
+	<message key="author.submit.submissionSupportingAgenciesDescription">Identifier les organismes apportant des fonds ou un soutien au travail présenté par la proposition.</message>
+	<message key="author.submit.agencies">Organismes</message>
+	<message key="author.submit.subjectClassInstructions">Utiliser le système de  classification hypertextuelle pour sélectionner les termes de classification et, si appropriés, les nombres.</message>
+	<message key="author.submit.languageInstructions"><![CDATA[Anglais=en; Français=fr; Espagnol=es. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Codes Supplémentaires</a>.]]></message>
+	<message key="presenter.submit.form.authorRequired">Au moins un auteur est exigé.</message>
+	<message key="presenter.submit.form.authorRequiredFields">Le prénom, le nom et l'adresse électronique de chacun des auteurs sont exigés.</message>
+	<message key="author.submit.form.titleRequired">Veuillez entrer le titre de votre papier.</message>
+	<message key="author.submit.submissionFile">Fichier de la proposition</message>
+	<message key="author.submit.uploadSubmissionFile">Envoyer le fichier de la proposition au serveur</message>
+	<message key="author.submit.replaceSubmissionFile">Remplacer Fichier de Proposition</message>
+	<message key="author.submit.noSubmissionFile">Aucun Fichier de la proposition envoyé au serveur.</message>
+	<message key="author.submit.noSubmissionConfirm">Etes-vous sûr de vouloir continuer sans envoyer un fichier de proposition au serveur?</message>
+	<message key="author.submit.supplementaryFilesInstructions">Cette étape optionnelle dans la procédure de proposition permet aux auteurs d'ajouter des fichiers à la proposition améliorant ainsi la contribution de la proposition. Les fichiers supplémentaires peuvent inclure (a) des instruments de recherche, (b) des fichiers de données, qui suivent l'éthique de la recherche avec des êtres humains, (c) sources qui ne sont pas disponibles au lecteur autrement, ou (d) figures ou tableaux qui ne peuvent être integrés au texte en lui même. Ces fichier sont aussi indexés par l'auteur, identifiant leur relation avec la proposition, ainsi que leur propriété. Des fichiers supplémentaires peuvent être uploadés dans n'importe quel format et va être rendu disponible aux lecteurs dans sont format d'origine. Ils peuvent être partagés avec les évaluateurs dans la mesure où ces derniers ne peuvent pas apprendre l'identité de l'auteur.</message>
+	<message key="author.submit.noSupplementaryFiles">Aucun fichier supplémentaire n'a été ajouté à cette proposition.</message>
+	<message key="author.submit.backToSupplementaryFiles">Retour aux fichiers supplémentaires</message>
+	<message key="author.submit.confirmDeleteSuppFile">Etes-vous sûr de vouloir supprimer ce fichier supplémentaire?</message>
+	<message key="author.submit.uploadSuppFile">Envoyer un Fichier Supplémentaire au serveur</message>
+	<message key="author.submit.addSupplementaryFile">Ajouter un fichier supplémentaire</message>
+	<message key="author.submit.editSupplementaryFile">Modifier un fichier supplémentaire</message>
+	<message key="author.submit.supplementaryFileData">Métadonnées du fichier supplémentaire</message>
+	<message key="author.submit.supplementaryFileDataDescription">Pour indexer cet élément supplémentaire, veuillez fournir les métadonnées suivantes pour le fichier supplémentaire uploadé.</message>
+	<message key="author.submit.supplementaryFileUpload">Fichier supplémentaire</message>
+	<message key="author.submit.suppFile.createrOrOwner">Créateur (or propriétaire) du fichier</message>
+	<message key="author.submit.suppFile.researchInstrument">Instrument de recherche</message>
+	<message key="author.submit.suppFile.researchMaterials">Documents de recherche</message>
+	<message key="author.submit.suppFile.researchResults">Résultats de recherche</message>
+	<message key="author.submit.suppFile.transcripts">Transcriptions</message>
+	<message key="author.submit.suppFile.dataAnalysis">Analyses de données</message>
+	<message key="author.submit.suppFile.dataSet">Fichier de données</message>
+	<message key="author.submit.suppFile.sourceText">Texte source</message>
+	<message key="author.submit.suppFile.briefDescription">Brève description</message>
+	<message key="author.submit.suppFile.contributorOrSponsor">Donateur ou organisme soutenant la conférence</message>
+	<message key="author.submit.suppFile.availableToPeers">Présenter le fichier aux évaluateurs (sans métadonnées), puisqu'il ne compromettra pas la révision anonyme.</message>
+	<message key="author.submit.suppFile.publisherDescription">Utiliser uniquement avec les éléments officiellement publiés.</message>
+	<message key="author.submit.suppFile.dateDescription">Date de collecte des donnée ou de création de l'instrument.</message>
+	<message key="author.submit.suppFile.sourceDescription">Nom de l'étude ou autre point d'origine.</message>
+	<message key="author.submit.suppFile.specifyOtherType">Spécifier Autre</message>
+	<message key="author.submit.suppFile.noFile">Aucun fichier envoyé au serveur.</message>
+	<message key="author.submit.suppFile.form.titleRequired">Veuillez entrer le titre de ce fichier supplémentaire.</message>
+	<message key="author.submit.suppFile.form.subjectRequired">Veuillez entrer un sujet.</message>
+	<message key="author.submit.suppFile.form.descriptionRequired">Veuillez entrer une description.</message>
+	<message key="author.suppFile.suppFilePublicIdentificationExists">L'identification publique du fichier supplémentaire existe déjà.</message>
+	<message key="author.suppFile.publicSuppFileIdentifier">Identification publique du fichier supplémentaire</message>
+	<message key="author.submit.addSubmissionFile">Ajouter un fichier supplémentaire</message>
+	<message key="author.submit.submissionFileUpload">Fichier supplémentaire</message>
+	<message key="author.submit.confirmationDescription">Vous avez fini les quatre étapes de la proposition, cliquez sur Terminer la proposition pour soumettre votre manuscrit à {$conferenceTitle}. Vous recevrez un accusé de réception par courriel et vous pourrez suivre la progression de votre proposition sur le processus éditorial en vous connectant au site web de la conférence. Merci d'avoir proposé votre travail à {$conferenceTitle}.</message>
+	<message key="author.submit.noFiles">Aucun fichier n'a été joint à cette proposition.</message>
+	<message key="author.submit.filesSummary">Résumé du fichier</message>
+	<message key="author.submit.finishSubmission">Terminer la proposition</message>
+	<message key="author.submit.submissionComplete">Proposition achevée. Merci d'avoir proposé votre travail à {$conferenceTitle}.</message>
+	<message key="author.submit.expedite"><![CDATA[Si cette proposition est déjà dans un format prêt à la publication, sans autre travail de révision ou de mise en page, elle peut directement être envoyée à la page de Jugement en <a href="{$expediteUrl}" class="action">Cliquant ici</a>. (Remarque: Seuls les responsables de conférences ont droit à cette option pour leurs propositions.)]]></message>
+	<message key="author.paper.uploadAuthorVersion">Envoyer la version de l'auteur au serveur</message>
+	<message key="presenter.submit.authorSubmitLoginMessage">Un compte utilisateur est exigé pour pouvoir soumettre des documents à cette conférence. Ceci permet aux responsables de suivre vos propositions, vous contacter quand le statut de vos propositions change, ou pour vous demander plus de renseignements.</message>
+</locale>

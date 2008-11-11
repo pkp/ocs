@@ -113,8 +113,8 @@
 	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Hinweis:</strong> Um diese Option zu aktivieren, muss der Webseitenadministrator die Option <tt>scheduled_tasks</tt> in der OCS-Konfigurationsdatei aktivieren. Weitergehende Konfiguration des Servers, wie in der OCS-Dokumentation beschrieben,  kann n&#246;tig sein, um diese Funktion zu erm&#246;glichen (kann auf einigen Servern nicht m&#246;glich sein)]]></message>
 	<message key="manager.registrationPolicies.openAccessOptions">Optionen zu freien Zugang f&#252;r anmeldungspflichtige Konferenzen</message>
 	<message key="manager.registrationPolicies.openAccessOptionsDescription">F&#252;r anmeldungspflichtige Konferenzen kann &quot;verz&#246;gerter freier Zugang&quot; und/oder &quot;Selbstarchivierung durch Autoren&quot; (welche die Leserzahl und die Zitationsh&#228;ufigkeit erh&#246;hen) erlaubt werden. Die gew&#228;hlten Regelungen werden in &quot;&#220;ber die Konferenz&quot; angezeigt.</message>
-	<message key="manager.registrationPolicies.presenterSelfArchive">Regelungen f&#252;r Selbstarchivierung durch Autoren</message>
-	<message key="manager.registrationPolicies.presenterSelfArchiveDescription">Die folgenden Regelungen werden in &quot;&#220;ber die Konferenz&quot; angezeigt.</message>
+	<message key="manager.registrationPolicies.authorSelfArchive">Regelungen f&#252;r Selbstarchivierung durch Autoren</message>
+	<message key="manager.registrationPolicies.authorSelfArchiveDescription">Die folgenden Regelungen werden in &quot;&#220;ber die Konferenz&quot; angezeigt.</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformation">Informationen zur Anmeldung</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformationDescription">Die Anmeldungsformen und die Geb&#252;hrenform werden automatisch unter &quot;Anmeldungen&quot; auf der Seite &quot;&#220;ber die Konferenz&quot; angezeigt, zusammen mit dem Namen des Anmeldungsverwalters und dessen Kontaktinformation. Zus&#228;tzliche Informationen &#252;ber die Anmeldung, etwa die Zahlungsm&#246;glichkeiten oder Unterst&#252;tzung f&#252;r Teilnehmer aus Entwicklungsl&#228;ndern, k&#246;nnen hier angegeben werden.</message>
 	<message key="manager.registrationPolicies.registrationContact">Anmeldungsverwaltung</message>
@@ -259,8 +259,8 @@
 	<message key="manager.schedConfSetup.submissions.disciplineProvideExamples">Geben Sie Beispiele von akademische F&#228;chern, welche f&#252;r die Konferenz relevant sind.</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicPaperId">Angenommene Pr&#228;sentationen mit Identifikatoren versehen.</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicSuppFileId">Erg&#228;nzungsdateien von angenommenen Pr&#228;sentationen mit Identifikatoren versehen.</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWork">Indizierung der Einreichungen</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWorkDescription"><![CDATA[OCS folgt dem Protokoll f&#252;r Metadatenernte der<a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a>, welches der sich abzeichnende Standard f&#252;r die Sicherstellung eines weltweiten Zugangs zu elektronischen Forschungsressourcen auf Grundlage einer sauberen Indizierung ist. Die Autoren sollen die Metadaten f&#252;r ihre Einreichung in einem &#228;hnlichen Schema zur Verf&#252;gung stellen. Als Konferenzverwalter sollten Sie die zu indizierenden Kategorien ausw&#228;hlen und anhand von Beispielen illustrieren, wie Autoren ihre Arbeiten indizieren sollten. Die Beispiele sollten als solche gekennzeichnet sein (etwa durch &quot;z.B.&quot;) und durch Semikola getrennt sein (z.B. &quot;Begriff 1; Begriff 2&quot;).]]></message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWork">Indizierung der Einreichungen</message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWorkDescription"><![CDATA[OCS folgt dem Protokoll f&#252;r Metadatenernte der<a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a>, welches der sich abzeichnende Standard f&#252;r die Sicherstellung eines weltweiten Zugangs zu elektronischen Forschungsressourcen auf Grundlage einer sauberen Indizierung ist. Die Autoren sollen die Metadaten f&#252;r ihre Einreichung in einem &#228;hnlichen Schema zur Verf&#252;gung stellen. Als Konferenzverwalter sollten Sie die zu indizierenden Kategorien ausw&#228;hlen und anhand von Beispielen illustrieren, wie Autoren ihre Arbeiten indizieren sollten. Die Beispiele sollten als solche gekennzeichnet sein (etwa durch &quot;z.B.&quot;) und durch Semikola getrennt sein (z.B. &quot;Begriff 1; Begriff 2&quot;).]]></message>
 	<message key="manager.schedConfSetup.submissions.notifications.copyPrimaryContact">Hauptansprechpartner der Konferenz</message>
 	<message key="manager.schedConfSetup.submissions.notifications.copySpecifiedAddress">Diese Emailadresse</message>
 	<message key="manager.schedConfSetup.submissions.notifications.description">Kopien der Email &#252;ber Kenntnisnahme der Einreichung an:</message>
@@ -269,8 +269,8 @@
 	<message key="manager.schedConfSetup.submissions.preparationChecklist">Checkliste f&#252;r die Anforderungen an Einreichungen</message>
 	<message key="manager.schedConfSetup.submissions.preparationChecklist.description">Um eine Einreichung an die Konferenz vorzunehmen, m&#252;ssen die Autoren die Items dieser Checkliste ankreuzen. Alle Items m&#252;ssen angekreuzt sein, damit die Einreichung angenommen wird. Die Liste kann hier bearbeitet werden. Sie erscheint auch in den Richtlinien f&#252;r Autoren. </message>
 	<message key="manager.schedConfSetup.submissions.presentationsAlone">Pr&#228;sentation ohne Abstract</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelines">Richtlinien f&#252;r Autoren</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelinesDescription"><![CDATA[Geben Sie hier bibliographische und Formatierungsstandards f&#252;r einzureichendes Material an. Falls Erg&#228;nzungsdateien erlaubt sind, machen Sie Vorschl&#228;ge, welche Arten von Daten (z.B. Datens&#228;tze, Informationen &#252;ber Hilfsmittel...) Autoren zur Verf&#252;gung stellen sollten, um das Interesse der Leser an ihrer Arbeit zu steigern.]]></message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelines">Richtlinien f&#252;r Autoren</message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelinesDescription"><![CDATA[Geben Sie hier bibliographische und Formatierungsstandards f&#252;r einzureichendes Material an. Falls Erg&#228;nzungsdateien erlaubt sind, machen Sie Vorschl&#228;ge, welche Arten von Daten (z.B. Datens&#228;tze, Informationen &#252;ber Hilfsmittel...) Autoren zur Verf&#252;gung stellen sollten, um das Interesse der Leser an ihrer Arbeit zu steigern.]]></message>
 	<message key="manager.schedConfSetup.submissions.publicIdentifier">Identifikation der Konferenzinhalte</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassification">Gegenstandseinordnung</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassificationExamples">(z.B. Mathematics Subject Classification; CR Classification)</message>
@@ -400,7 +400,7 @@
 	<message key="manager.setup.additionalContent.homepageImage">Homepage-Bild</message>
 	<message key="manager.setup.additionalContent.information">Benutzerinformation</message>
 	<message key="manager.setup.additionalContent.information.description">Kurze Beschreibungen der Konferenz f&#252;r eventuelle Autoren und Leser sind im Abschnitt &quot;Information&quot; &#252;ber die Seitenleiste erreichbar. </message>
-	<message key="manager.setup.additionalContent.information.forPresenters">F&#252;r Autoren</message>
+	<message key="manager.setup.additionalContent.information.forAuthors">F&#252;r Autoren</message>
 	<message key="manager.setup.additionalContent.information.forReaders">F&#252;r Leser</message>
 	<message key="manager.setup.additionalContent.title">2. Schritt: Zus&#228;tzliche Webseiteninhalte</message>
 	<message key="manager.setup.conferenceSetupUpdated">Ihr Konferenz-Setup wurde aktualisiert.</message>
@@ -477,7 +477,7 @@
 	<message key="manager.timeline">Termine</message>
 	<message key="manager.timeline.closeComments">Kommentare schlie&#223;en und Lesewerkzeuge aktivieren am</message>
 	<message key="manager.timeline.closeComments.plain">Kommentare schlie&#223;en am</message>
-	<message key="manager.timeline.closeRegPresenter">Registrierungszeitraum f&#252;r Autoren geschlossen am</message>
+	<message key="manager.timeline.closeRegAuthor">Registrierungszeitraum f&#252;r Autoren geschlossen am</message>
 	<message key="manager.timeline.closeRegReviewer">Anmeldezeitraum f&#252;r Gutachter geschlossen am</message>
 	<message key="manager.timeline.closeReviewProcess">Begutachtungsprozess geschlossen am</message>
 	<message key="manager.timeline.conference">Tagung</message>
@@ -487,13 +487,13 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">Das Ende der Konferenz muss hinter ihrem Anfang liegen.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">Das Freischaltungsdatum der Webseite muss vor dem Konferenzbeginn liegen.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">Die Konferenz kann nicht beginnen, bevor der Einreichungszeitraum geschlossen ist.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate">Die &#214;ffnung des Anmeldezeitraums f&#252;r Autoren muss vor der Schlie&#223;ung liegen.</message>
+	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">Die &#214;ffnung des Anmeldezeitraums f&#252;r Autoren muss vor der Schlie&#223;ung liegen.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">Die &#214;ffnung des Anmeldezeitraums f&#252;r Gutachter muss vor der Schlie&#223;ung liegen.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">Das Archivierungsdatum muss hinter dem letzten Konferenztag liegen.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">Die Konferenzseite kann nicht vor dem Beginn der Konferenz archiviert werden.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeSiteStart">Das Freischaltungsdatum der Webseite muss vor dem Archivierungsdatum liegen.</message>
 	<message key="manager.timeline.form.submissionsCloseBeforeCFP">Der Call for Papers muss vor der Schlie&#223;ung des Einreichungszeitraums ver&#246;ffentlicht werden.</message>
-	<message key="manager.timeline.openRegPresenter">Registrierungszeitraum f&#252;r Autoren ge&#246;ffnet am</message>
+	<message key="manager.timeline.openRegAuthor">Registrierungszeitraum f&#252;r Autoren ge&#246;ffnet am</message>
 	<message key="manager.timeline.openRegReviewer">Anmeldezeitraum f&#252;r Gutachter ge&#246;ffnet am</message>
 	<message key="manager.timeline.overrideDates">Fehlermeldung(en) ignorieren</message>
 	<message key="manager.timeline.postAbstracts">Angenommene Abstracts</message>

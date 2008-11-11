@@ -66,7 +66,7 @@
 	<message key="director.paper.requestedByDate">依日期進行要求</message>
 	<message key="director.paper.dueDateFormat">格式：YYYY-MM-DD</message>
 	<message key="director.paper.numberOfWeeks">周數</message>
-	<message key="director.paper.showPresenter">作者觀看檔案</message>
+	<message key="director.paper.showAuthor">作者觀看檔案</message>
 	<message key="director.paper.rateReviewer">審查者得分</message>
 	<message key="director.paper.reviewerRating.veryGood">5 高</message>
 	<message key="director.paper.reviewerRating.good">4</message>

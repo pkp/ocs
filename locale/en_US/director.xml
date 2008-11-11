@@ -33,7 +33,7 @@
 	<message key="director.notifyUsers.interestedUsers">Users associated with this conference who wish to receive updates ({$count} users)</message>
 	<message key="director.notifyUsers.includeToc">Include the presentations for this conference</message>
 	<message key="director.notifyUsers.allReaders">All readers ({$count} users)</message>
-	<message key="director.notifyUsers.allPresenters">All presenters ({$count} users)</message>
+	<message key="director.notifyUsers.allAuthors">All presenters ({$count} users)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">All paid registrants ({$count} users)</message>
 	<message key="director.notifyUsers.allRegistrants">All registrants ({$count} users)</message>
 	<message key="director.navigation.management">Management</message>
@@ -72,7 +72,7 @@
 	<message key="director.paper.requestedByDate">Requested By Date</message>
 	<message key="director.paper.dueDateFormat">Format: YYYY-MM-DD</message>
 	<message key="director.paper.numberOfWeeks">Number of Weeks</message>
-	<message key="director.paper.showPresenter">Let author view file</message>
+	<message key="director.paper.showAuthor">Let author view file</message>
 	<message key="director.paper.rateReviewer">Rate Reviewer</message>
 	<message key="director.paper.reviewerRating.veryGood">5 High</message>
 	<message key="director.paper.reviewerRating.good">4</message>

@@ -31,7 +31,7 @@
 	<message key="director.notifyUsers.interestedUsers">Enviar esta mensagem a todos os usuários associados a esta conferência que indicaram desejar receber notificações ({$count} usuários)</message>
 	<message key="director.notifyUsers.includeToc">Incluir as apresentações da conferência:</message>
 	<message key="director.notifyUsers.allReaders">Todos os leitores ({$count} usuários)</message>
-	<message key="director.notifyUsers.allPresenters">Todos os apresentadores ({$count} usuários)</message>
+	<message key="director.notifyUsers.allAuthors">Todos os apresentadores ({$count} usuários)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">Todos os inscritos pagantes ({$count} usuários)</message>
 	<message key="director.notifyUsers.allRegistrants">Todos os inscritos ({$count} usuários)</message>
 	<message key="director.navigation.management">Administração do Diretor</message>
@@ -70,7 +70,7 @@
 	<message key="director.paper.requestedByDate">Data de Conclusão</message>
 	<message key="director.paper.dueDateFormat">Formato: YYYY-MM-DD</message>
 	<message key="director.paper.numberOfWeeks">Número de semanas</message>
-	<message key="director.paper.showPresenter">Permitir acesso ao autor</message>
+	<message key="director.paper.showAuthor">Permitir acesso ao autor</message>
 	<message key="director.paper.rateReviewer">Classificar o Avaliador</message>
 	<message key="director.paper.reviewerRating.veryGood">5 ótimo</message>
 	<message key="director.paper.reviewerRating.good">4</message>

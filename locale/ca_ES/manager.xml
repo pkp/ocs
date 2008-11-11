@@ -107,8 +107,8 @@
 	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Nota:</strong> per a activar aquesta opció, l'administrador de la web ha d'habilitar l'opció <tt>scheduled_tasks</tt> en el fitxer de configuració del OCS. El servidor podria necessitar modificar la seva configuració per a poder suportar aquesta funcionalitat (ja que no és possible en tots els servidors), tal com s'indica en la documentació de l'OCS.]]></message>
 	<message key="manager.registrationPolicies.openAccessOptions">Opcions Open Access per a conferències amb inscripció</message>
 	<message key="manager.registrationPolicies.openAccessOptionsDescription">Les conferències amb inscripció poden oferir "accés obert amb embargament", i/o "autoarxivament" (el que augmenta l'audiència i les cites). La política per la que s'opti apareixerà en "Quant aquesta conferència"..</message>
-	<message key="manager.registrationPolicies.presenterSelfArchive">Política d'autoarxiu</message>
-	<message key="manager.registrationPolicies.presenterSelfArchiveDescription">La política següent s'inclou a "Quan a" d'aquesta Conferència/Congrés.</message>
+	<message key="manager.registrationPolicies.authorSelfArchive">Política d'autoarxiu</message>
+	<message key="manager.registrationPolicies.authorSelfArchiveDescription">La política següent s'inclou a "Quan a" d'aquesta Conferència/Congrés.</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformation">Informació sobre la inscripció</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformationDescription">Els tipus d'inscripció s'inclourà automàticament en "Quant a..." d'aquesta Conferència/Congrés, juntament amb el nom i la informació sobre la persona de contacte per al gestor d'inscripcions. La informació addicional, així com la forma de pagament de la inscripció o el patrocini per a assistents de països en vies de desenvolupament, poden incloure's aquí.</message>
 	<message key="manager.registrationPolicies.registrationContact">Gestor d'inscripcions</message>
@@ -253,8 +253,8 @@
 	<message key="manager.schedConfSetup.submissions.disciplineProvideExamples">Faciliti exemples de disciplines acadèmiques rellevants per a aquesta conferència</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicPaperId">S'afegiran identificadors a les presentacions acceptades.</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicSuppFileId">S'afegiran identificadors als fitxers suplementaris de les presentacions acceptades.</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWork">Indexació de les trameses</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWorkDescription"><![CDATA[OCS adherit a  <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative (OAI)</a> compleix amb el Protocol per a la Recol·lecció de Metadatos OAI-PMH. Els autors utilitzaran una plantilla similar per a facilitar els metadatos dels treballs enviats. El gestor de la Conferència/Congrés seleccionarà les categories per a la indización i mostrarà exemples que serveixin d'ajuda als autors per a indexar el seu treball, els termes triats es separaran mitjançant punt i coma (p. ex. term1; term2). Els exemples aniran precedits de "p.ex." o "Per exemple, ".]]></message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWork">Indexació de les trameses</message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWorkDescription"><![CDATA[OCS adherit a  <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative (OAI)</a> compleix amb el Protocol per a la Recol·lecció de Metadatos OAI-PMH. Els autors utilitzaran una plantilla similar per a facilitar els metadatos dels treballs enviats. El gestor de la Conferència/Congrés seleccionarà les categories per a la indización i mostrarà exemples que serveixin d'ajuda als autors per a indexar el seu treball, els termes triats es separaran mitjançant punt i coma (p. ex. term1; term2). Els exemples aniran precedits de "p.ex." o "Per exemple, ".]]></message>
 	<message key="manager.schedConfSetup.submissions.notifications.copyPrimaryContact">Contacte Principal de la Conferència/Congrés.</message>
 	<message key="manager.schedConfSetup.submissions.notifications.copySpecifiedAddress">Aqusta adreça de correu electrònic</message>
 	<message key="manager.schedConfSetup.submissions.notifications.description">Les còpies del missatge de justificant de recepció al remitent han de lliurar-se a.:</message>
@@ -263,8 +263,8 @@
 	<message key="manager.schedConfSetup.submissions.preparationChecklist">Llista de requisits per a la preparació de trameses</message>
 	<message key="manager.schedConfSetup.submissions.preparationChecklist.description">Quan s'envia un treball a la conferència, els autors han de comprovar que els originals satisfan la Llista de requisits per a la preparació de treballs. Aquesta Llista també apareixerà en les instruccions per a autors. La llista pot editar-se. L'autor ha de tenir en compte tots els punts de la llista abans que s'accepti el treball.</message>
 	<message key="manager.schedConfSetup.submissions.presentationsAlone">Treball complert</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelines">Instruccions pels autors</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelinesDescription"><![CDATA[Indiqui els estàndards bibliogràfics i de format per a l'enviament de treballs, preferentment amb exemples. Si es permet la tramesa d'arxius suplementaris, suggereixi els tipus (p.ex. fulls de dades, instrumentació etc.) perquè els autors impliquin més als lectors amb el seu treball.]]></message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelines">Instruccions pels autors</message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelinesDescription"><![CDATA[Indiqui els estàndards bibliogràfics i de format per a l'enviament de treballs, preferentment amb exemples. Si es permet la tramesa d'arxius suplementaris, suggereixi els tipus (p.ex. fulls de dades, instrumentació etc.) perquè els autors impliquin més als lectors amb el seu treball.]]></message>
 	<message key="manager.schedConfSetup.submissions.publicIdentifier">Contingut de la Conferència/Congrés</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassification">Classificació de Matèries</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassificationExamples">(p. ex. Classificació de Matemàtiques; Classificació de la Biblioteca del Congrés)</message>
@@ -337,7 +337,7 @@
 	<message key="manager.setup.additionalContent.homepageImage">Imatge de la pàgina d'Inici</message>
 	<message key="manager.setup.additionalContent.information">Informació per als Usuaris</message>
 	<message key="manager.setup.additionalContent.information.description">En la secció d'Informació del marc lateral de la pàgina es dóna una breu descripció de la conferència per a potencials autors i lectors.</message>
-	<message key="manager.setup.additionalContent.information.forPresenters">Per a Autors</message>
+	<message key="manager.setup.additionalContent.information.forAuthors">Per a Autors</message>
 	<message key="manager.setup.additionalContent.information.forReaders">Per a Lectors</message>
 	<message key="manager.setup.additionalContent.title">Pas 2. Contingut addicional del lloc web</message>
 	<message key="manager.setup.conferenceSetupUpdated">La configuració de la seva Conferència/Congrés ha estat actualitzada.</message>
@@ -414,7 +414,7 @@
 	<message key="manager.timeline">Calendari de la Conferència/Congrés</message>
 	<message key="manager.timeline.closeComments">S'ha acabat el termini per a comentaris (activa les eines de lectura)</message>
 	<message key="manager.timeline.closeComments.plain">Tancament de  comentaris</message>
-	<message key="manager.timeline.closeRegPresenter">Tancament del termini d'inscripció</message>
+	<message key="manager.timeline.closeRegAuthor">Tancament del termini d'inscripció</message>
 	<message key="manager.timeline.closeRegReviewer">Tancament de la inscripció de revisors</message>
 	<message key="manager.timeline.closeReviewProcess">Tancament del procés d'avaluació</message>
 	<message key="manager.timeline.conference">Conferència/Congrés</message>
@@ -424,13 +424,13 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">La data d'acabament de la conferència ha de ser després de la data en la qual comenci la conferència.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">La data que figura com "Posta en la Web" ha de ser abans de la data d'inici de la conferència.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">La conferència no pot començar abans que es tanqui el termini de tramesa d'originals.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate">La data d'inici d'inscripció d'autors ha de ser abans de la data de tancament de la mateixa.</message>
+	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">La data d'inici d'inscripció d'autors ha de ser abans de la data de tancament de la mateixa.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">La data d'inici d'inscripció dels avaluadors ha de ser abans del tancament de la mateixa.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">La data d'"Arxiu de la Conferència" ha de ser després de l'últim dia de la conferència.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">La web de conferència no s'ha d'arxivar abans que comenci la conferència.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeSiteStart">La data que figura com "Posta en la Web" ha de ser abans de la data d'"Arxivar la Conferència".</message>
 	<message key="manager.timeline.form.submissionsCloseBeforeCFP">"Call for papers" ha de fer-se abans que es tanqui el termini d'enviament d'originals.</message>
-	<message key="manager.timeline.openRegPresenter">Obertura del termini d'inscripció</message>
+	<message key="manager.timeline.openRegAuthor">Obertura del termini d'inscripció</message>
 	<message key="manager.timeline.openRegReviewer">Obertura de la inscripció de revisors</message>
 	<message key="manager.timeline.overrideDates">Anula el(s) missatge(s) d'error</message>
 	<message key="manager.timeline.postAbstracts">Resums acceptats</message>

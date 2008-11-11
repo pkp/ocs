@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * ocs2-devel/locale/zh_TW/author.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the zh_TW (正體中文) locale.
+  *
+  -->
+
+<locale name="zh_TW" full_name = "正體中文">
+	<message key="author.submit">新投稿</message>
+	<message key="author.track">有效投稿</message>
+	<message key="author.submit.startHere">這裡開始投稿一份論文給研討會。</message>
+	<message key="author.submit.startHereLink">投稿過程的步驟一</message>
+	<message key="author.submit.step1">步驟 1. 開始投稿</message>
+	<message key="author.submit.step2">步驟 2. 輸入投稿的相關資料</message>
+	<message key="author.submit.step3">步驟 3.上載投稿</message>
+	<message key="author.submit.step4">步驟 4. 上載補充文件</message>
+	<message key="author.submit.step4a">步驟 4a. 增加一個補充文件</message>
+	<message key="author.submit.step5">步驟 5. 投稿確認</message>
+	<message key="author.submit.step5SkipSupp">步驟 4. 投稿確認</message>
+	<message key="author.submit.start">1. 開始</message>
+	<message key="author.submit.metadata">2.輸入後資料</message>
+	<message key="author.submit.upload">3. 上載投稿</message>
+	<message key="author.submit.supplementaryFiles">4. 上載補充文件</message>
+	<message key="author.submit.confirmation">5. 確認</message>
+	<message key="author.submit.confirmationSkipSupp">4. 確認</message>
+	<message key="author.submit.cancelSubmission">經由從作者首頁選擇有效投稿，在之後的時間您能完成這項投稿。</message>
+	<message key="author.submit.notAcceptingYet">這個研討會尚未開始接受投稿。</message>
+	<message key="author.submit.submissionDeadlinePassed">研討會投稿將會在 {$closedDate} 結束。</message>
+	<message key="author.submissions.confirmDelete">您確定要刪除這還未完成的投稿嗎？</message>
+	<message key="author.submissions.viewStatus">觀看狀態</message>
+	<message key="author.submissions.noSubmissions">無投稿。</message>
+	<message key="author.submit.howToSubmit"><![CDATA[作者會經由此網站的一個多重步驟過程來上傳繳交和稿件有關的訊息(有些研討會允許作者上傳附加檔案，例如研究數據及工具)。若您在這過程中遇到任何的困難，請以電子郵件<a href="mailto:{$supportEmail}">{$supportName}</a>或電話聯絡 {$supportPhone} 尋求協助。]]></message>
+	<message key="author.submit.conferenceTrack">研討會主題</message>
+	<message key="author.submit.conferenceTrackDescription"><![CDATA[選擇您的稿件所欲投稿的主題 (請參閱 <a href="{$aboutUrl}" target="_new">主題方針</a>).]]></message>
+	<message key="author.submit.selectTrack">請選擇一個研討會主題...</message>
+	<message key="author.submit.submissionChecklist">投稿清單</message>
+	<message key="author.submit.submissionChecklistDescription">表示這項投稿已在此研討會之考慮檢查下準備好(給主席的建議將會在下面增加)。</message>
+	<message key="author.submit.verifyChecklist">在繼續進行之前您必須確定在投稿清單內所有項目都是滿意的。</message>
+	<message key="author.submit.copyrightNoticeAgree">作者讚成這個版權告示的期限，如果和當它由這個研討會出版時將適用於這項投稿(給主席的建議將會在下面增加)。</message>
+	<message key="author.submit.copyrightNoticeAgreeRequired">在繼續進行之前您必須讚成版權告示的期限。</message>
+	<message key="author.submit.commentsForDirector">給研討會主席的建議</message>
+	<message key="author.submit.comments">建議 (如無可不填寫)</message>
+	<message key="author.submit.form.trackRequired">請為此投稿選擇一個適當的研討會主題。</message>
+	<message key="author.submit.form.abstractRequired">請輸入您的投稿摘要。</message>
+	<message key="author.submit.privacyStatement">研討會的保密性聲明</message>
+	<message key="author.submit.reorderInstructions">使用箭頭符號變更出現在投稿內的作者的名字。</message>
+	<message key="author.submit.selectPrincipalContact">主要聯絡作者</message>
+	<message key="author.submit.addAuthor">增加作者</message>
+	<message key="author.submit.deleteAuthor">刪除作者</message>
+	<message key="author.submit.submissionIndexingDescription">提供一個或更多描述投稿內容的專有名詞。以分號來將這些專有名詞分開(專有名詞1；專有名詞2；專有名詞3)。</message>
+	<message key="author.submit.submissionSupportingAgencies">計畫補助單位</message>
+	<message key="author.submit.submissionSupportingAgenciesDescription">提供本發表論文研究經費補助或贊助的單位或組織, 如國科會</message>
+	<message key="author.submit.agencies">研究經費補助單位</message>
+	<message key="author.submit.subjectClassInstructions">使用高連接的分類系統去選擇分類專有名詞和適當的數字。</message>
+	<message key="author.submit.languageInstructions"><![CDATA[English=en; 中文=zh; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/langcodes.html" target="_blank">查詢代碼</a>.]]></message>
+	<message key="presenter.submit.form.authorRequired">至少一位作者是必須的。</message>
+	<message key="presenter.submit.form.authorRequiredFields">每ㄧ位作者的姓、名和典子郵件信箱是必須的。</message>
+	<message key="author.submit.form.titleRequired">請輸入您的論文題目</message>
+	<message key="author.submit.submissionFile">投稿文件</message>
+	<message key="author.submit.uploadSubmissionFile">上傳投稿文件</message>
+	<message key="author.submit.replaceSubmissionFile">替換投稿文件</message>
+	<message key="author.submit.noSubmissionFile">無投稿文件被上傳</message>
+	<message key="author.submit.noSubmissionConfirm">您確定您要繼續尚未上傳的投稿文件嗎?</message>
+	<message key="author.submit.supplementaryFilesInstructions">此投稿過程之選擇性步驟允許作者增加補充文件來使投稿的內容更豐富。補充文件也許包括(a) 研究儀器、(b)資料庫，遵照研究概念回顧的期限、(c) 尚未提共給讀者的資料來源，或(d) 圖表或表格未完整的呈現在原文裡。這些文件也已經由作者編列，標示著作者所有權和投稿稿件的相互關係。補充文件可以以任一個文件格式上傳並且能讓讀者在他們的原始格式內利用。若這些文件不會影響審查，也能和審查者依起分享。</message>
+	<message key="author.submit.noSupplementaryFiles">無補充文件未增加來這項投稿。</message>
+	<message key="author.submit.backToSupplementaryFiles">回至補充文件</message>
+	<message key="author.submit.confirmDeleteSuppFile">您確定要刪除此補充文件？</message>
+	<message key="author.submit.uploadSuppFile">上傳補充文件</message>
+	<message key="author.submit.addSupplementaryFile">增加一個補充文件</message>
+	<message key="author.submit.editSupplementaryFile">編輯一個補充文件</message>
+	<message key="author.submit.supplementaryFileData">補充Metadata 文件</message>
+	<message key="author.submit.supplementaryFileDataDescription">標註這補充資料，提供下列已被上傳的metadata補充文件。</message>
+	<message key="author.submit.supplementaryFileUpload">補充文件</message>
+	<message key="author.submit.suppFile.createrOrOwner">文件的建立者(或擁有者) </message>
+	<message key="author.submit.suppFile.researchInstrument">研究工具</message>
+	<message key="author.submit.suppFile.researchMaterials">研究資料</message>
+	<message key="author.submit.suppFile.researchResults">研究結果</message>
+	<message key="author.submit.suppFile.transcripts">文字記錄</message>
+	<message key="author.submit.suppFile.dataAnalysis">研究數據分析</message>
+	<message key="author.submit.suppFile.dataSet">資料集</message>
+	<message key="author.submit.suppFile.sourceText">資料正本</message>
+	<message key="author.submit.suppFile.briefDescription">簡單描述</message>
+	<message key="author.submit.suppFile.contributorOrSponsor">捐贈者或贊助廠商</message>
+	<message key="author.submit.suppFile.availableToPeers">呈送文件給審查者(不含metadata), 因為它不會隱蔽的建議。</message>
+	<message key="author.submit.suppFile.publisherDescription">只使用正式出版的資料。</message>
+	<message key="author.submit.suppFile.dateDescription">當資料被收集了或工具被創造了實記錄時間。</message>
+	<message key="author.submit.suppFile.sourceDescription">研究的名字或其它問題的起源。</message>
+	<message key="author.submit.suppFile.specifyOtherType">指定其他</message>
+	<message key="author.submit.suppFile.noFile">無文件被上傳</message>
+	<message key="author.submit.suppFile.form.titleRequired">請輸入補充文件的名稱。</message>
+	<message key="author.submit.suppFile.form.subjectRequired">請輸入主題。</message>
+	<message key="author.submit.suppFile.form.descriptionRequired">請輸入描述。</message>
+	<message key="author.suppFile.suppFilePublicIdentificationExists">公開補充文件來證明他已經存在。</message>
+	<message key="author.suppFile.publicSuppFileIdentifier">公開補充文件的標識符號</message>
+	<message key="author.submit.addSubmissionFile">增加一個補充文件</message>
+	<message key="author.submit.submissionFileUpload">補充文件</message>
+	<message key="author.submit.confirmationDescription">當四個投稿步驟已完成，請點入投稿完成來繳交您的稿件至 {$conferenceTitle}。您將會收到一封由電子郵件寄出的確認信函，並且當您登入此研討會後您能夠在編輯過程查看您的投稿進度。感謝您繳交您的稿件至 {$conferenceTitle}。</message>
+	<message key="author.submit.noFiles">文件內未附有這項投稿。</message>
+	<message key="author.submit.filesSummary">文件敘述</message>
+	<message key="author.submit.finishSubmission">完成投稿</message>
+	<message key="author.submit.submissionComplete">投稿完成。感謝您投稿至 {$conferenceTitle}.</message>
+	<message key="author.submit.expedite"><![CDATA[倘若此論文格式是為準備出版的格式，沒有進一步的修改或編輯， 它能被直接經由 <a href="{$expediteUrl}" class="action">Clicking here</a>公佈在研討會論文集。(注意:只有研討會主席可以做論文的篩選。)]]></message>
+	<message key="author.paper.uploadAuthorVersion">上傳作者版本</message>
+	<message key="presenter.submit.authorSubmitLoginMessage">若要傳送資料給研討會一個使用者帳號是必須的。當您的投稿狀況有所變更或需要您增加訊息時，這允許我們的主席能夠追蹤您的投稿並與您聯繫。</message>
+</locale>

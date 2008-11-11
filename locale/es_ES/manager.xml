@@ -107,8 +107,8 @@
 	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Nota:</strong> para activar esta opción, el administrador de la web debe habilitar la opción <tt>scheduled_tasks</tt> en el fichero de configuración del OCS. Els ervidor podria necesitar modificar su configuración para poder soportar esta funcionalidad (ya que no es posible en todos los servidores), tal y como se indica en la documentación del OCS.]]></message>
 	<message key="manager.registrationPolicies.openAccessOptions">Opciones Open Access para conferencias con inscripción</message>
 	<message key="manager.registrationPolicies.openAccessOptionsDescription">Las conferencias con inscripción pueden ofrecer "open access con embargo", y/o "auto-archivo" (lo que aumenta la audiencia y las citas). La política por al que se opte aparecerá en Acerca de esta conferencia.</message>
-	<message key="manager.registrationPolicies.presenterSelfArchive">Política de auto-archivo</message>
-	<message key="manager.registrationPolicies.presenterSelfArchiveDescription">La política siguiente se incluye en "Acerca de" esta Conferencia/Congreso.</message>
+	<message key="manager.registrationPolicies.authorSelfArchive">Política de auto-archivo</message>
+	<message key="manager.registrationPolicies.authorSelfArchiveDescription">La política siguiente se incluye en "Acerca de" esta Conferencia/Congreso.</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformation">Información sobre la inscripción</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformationDescription">Los tipos de inscripción se incluirá automáticamente en "Acerca de" esta Conferencia/Congreso, junto con el nombre y la información sobre de la persona de contacto para el gestor de inscripciones. La información adicional, asi como  la forma de pago de la inscripción o el patrocinio para asistentes de países en vías de desarrollo, pueden incluirse aquí.</message>
 	<message key="manager.registrationPolicies.registrationContact">Gestor de Inscripciones</message>
@@ -253,8 +253,8 @@
 	<message key="manager.schedConfSetup.submissions.disciplineProvideExamples">Facilite ejemplos de disciplinas académicas relevantes para esta conferencia</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicPaperId">Se añadirán identificadores a las presentaciones aceptadas.</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicSuppFileId">Se añadirán identificadores a los ficheros suplementarios de las presentaciones aceptadas.</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWork">Indización de los envíos</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWorkDescription"><![CDATA[OCS se adhiere a la  <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative (OAI)</a> y cumple con el Protocolo para la Recolección de Metadatos OAI-PMH. Los autores utilizarán una plantilla similar para facilitar los metadatos de los trabajos enviados. El gestor de la Conferencia/Congreso seleccionará las categorías para la indización  y mostrará ejemplos que sirvan de ayuda a los autores para indexar su trabajo, los términos elegidos se separarán mediante punto y coma (p.e., term1; term2). Los ejemplos irán precedidos de  "p.e.," o  "Por ejemplo,".]]></message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWork">Indización de los envíos</message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWorkDescription"><![CDATA[OCS se adhiere a la  <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative (OAI)</a> y cumple con el Protocolo para la Recolección de Metadatos OAI-PMH. Los autores utilizarán una plantilla similar para facilitar los metadatos de los trabajos enviados. El gestor de la Conferencia/Congreso seleccionará las categorías para la indización  y mostrará ejemplos que sirvan de ayuda a los autores para indexar su trabajo, los términos elegidos se separarán mediante punto y coma (p.e., term1; term2). Los ejemplos irán precedidos de  "p.e.," o  "Por ejemplo,".]]></message>
 	<message key="manager.schedConfSetup.submissions.notifications.copyPrimaryContact">Principal Contacto de la Conferencia/Congreso.</message>
 	<message key="manager.schedConfSetup.submissions.notifications.copySpecifiedAddress">Esta dirección de correo electrónico</message>
 	<message key="manager.schedConfSetup.submissions.notifications.description">Las copias del mensaje de acuse de recibo al remitente deben mandarse a:</message>
@@ -263,8 +263,8 @@
 	<message key="manager.schedConfSetup.submissions.preparationChecklist">Lista de requisitos para la preparación de envíos</message>
 	<message key="manager.schedConfSetup.submissions.preparationChecklist.description">Cuando se envía un trabajo a la conferencia, los autores deben comprobar que los originales satisfacen la Lista de requisitos para la preparación de trabajos. Esta Lista también aparecerá en las instrucciones para autores. La lista puede editarse. El autor debe tener en cuenta todos los puntos de la lista antes de que se acepte el trabajo.</message>
 	<message key="manager.schedConfSetup.submissions.presentationsAlone">Trabajo completo</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelines">Instrucciones para los autores</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelinesDescription"><![CDATA[Indique los estandares bibliográficos y de formato para el envío de trabajos, preferentemente con ejemplos. Si se permite el ennvío de ficheros suplementarios, sugiera los tipos (p.e., hojas de datos, instrumentación etc.) para que los autores impliquen más a los lectores con su trabajo.]]></message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelines">Instrucciones para los autores</message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelinesDescription"><![CDATA[Indique los estandares bibliográficos y de formato para el envío de trabajos, preferentemente con ejemplos. Si se permite el ennvío de ficheros suplementarios, sugiera los tipos (p.e., hojas de datos, instrumentación etc.) para que los autores impliquen más a los lectores con su trabajo.]]></message>
 	<message key="manager.schedConfSetup.submissions.publicIdentifier">Contenido de la Conferencia/Congreso</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassification">Clasificación de Materias</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassificationExamples">(p. e.,Clasificación de Matemáticas; Clasificación de la Biblioteca del Congreso)</message>
@@ -336,7 +336,7 @@
 	<message key="manager.setup.additionalContent.homepageImage">Imagen de la Página de Inicio</message>
 	<message key="manager.setup.additionalContent.information">Información para los Usuarios</message>
 	<message key="manager.setup.additionalContent.information.description">En la sección de "Información" del marco lateral de la página se da una breve descripción de la conferencia para potenciales autores y lectores.</message>
-	<message key="manager.setup.additionalContent.information.forPresenters">Para Autores</message>
+	<message key="manager.setup.additionalContent.information.forAuthors">Para Autores</message>
 	<message key="manager.setup.additionalContent.information.forReaders">Para Lectores</message>
 	<message key="manager.setup.additionalContent.title">Paso 2. Contenido adicional del sitio web</message>
 	<message key="manager.setup.conferenceSetupUpdated">La configuración de su Conferencia/Congreso ha sido actualizada.</message>
@@ -413,7 +413,7 @@
 	<message key="manager.timeline">Calendario de la Conferencia/Congreso</message>
 	<message key="manager.timeline.closeComments">Se ha terminado el plazo para comentarios (activar las Herramientas de Lectura)</message>
 	<message key="manager.timeline.closeComments.plain">Cierre de  comentarios</message>
-	<message key="manager.timeline.closeRegPresenter">Cierre del plazo de inscripción</message>
+	<message key="manager.timeline.closeRegAuthor">Cierre del plazo de inscripción</message>
 	<message key="manager.timeline.closeRegReviewer">Cierre de la inscripción de recensores</message>
 	<message key="manager.timeline.closeReviewProcess">Cierre del proceso de evaluación</message>
 	<message key="manager.timeline.conference">Conferencia/Congreso</message>
@@ -423,13 +423,13 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">La fecha de finalización de la conferencia debe ser después de la fecha en que comience la conferencia.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">La fecha que figura com "Puesta en la web" debe ser antes de la fecha de inicio de la conferencia.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">La conferencia no puede empezar antes de que se cierre el plazo de envío de originales.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate">La fecha de inicio de inscripción de autores debe ser antes de la fecha de cierre de la misma.</message>
+	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">La fecha de inicio de inscripción de autores debe ser antes de la fecha de cierre de la misma.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">La fecha de inicio de inscripción de los evaluadores debe ser antes del cierre de la misma.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">La fecha de "Archivar la Conferencia" debe ser después del último día de la conferencia.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">La web de conferencia no debe archivarse antes de que empiece la conferencia.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeSiteStart">La fecha que figura como "Puesta en la Web" debe ser antes de la fecha de  "Archivar la Conferencia".</message>
 	<message key="manager.timeline.form.submissionsCloseBeforeCFP">"Call for papers" debe hacerse antes de que se cierre el plazo de envío de originales.</message>
-	<message key="manager.timeline.openRegPresenter">Apertura del plazo de inscripción</message>
+	<message key="manager.timeline.openRegAuthor">Apertura del plazo de inscripción</message>
 	<message key="manager.timeline.openRegReviewer">Apertura de la inscripción de recensores</message>
 	<message key="manager.timeline.overrideDates">Anular el mensaje(s) de error</message>
 	<message key="manager.timeline.postAbstracts">Resúmenes aceptados</message>

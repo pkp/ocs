@@ -65,7 +65,7 @@
 	<message key="director.paper.requestedByDate">Data de revisió</message>
 	<message key="director.paper.dueDateFormat">Format: YYYY-MM-DD</message>
 	<message key="director.paper.numberOfWeeks">Nombre de setmanes</message>
-	<message key="director.paper.showPresenter">Permet a l'autor visualitzar l'arxiu</message>
+	<message key="director.paper.showAuthor">Permet a l'autor visualitzar l'arxiu</message>
 	<message key="director.paper.rateReviewer">Puntuació del revisor</message>
 	<message key="director.paper.reviewerRating.veryGood">5 Alta</message>
 	<message key="director.paper.reviewerRating.good">4 Bona</message>

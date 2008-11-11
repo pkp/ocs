@@ -121,8 +121,8 @@
 	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Nota:</strong> Per attivare questa opzione, l'amministratore del sito deve abilitare l'opzione <tt>scheduled_tasks</tt> nel file di configurazione di OCS. Ulteriori configurazioni di server potrebbero essere richieste per supportare questa funzionalit&#x00E0; (che potrebbe non essere possibile in tutti i server), come indicato nella documentazione di OCS.]]></message>
 	<message key="manager.registrationPolicies.openAccessOptions">Opzioni di accesso aperto per i convegni con registrazione</message>
 	<message key="manager.registrationPolicies.openAccessOptionsDescription">I convegni con registrazione possono stabilire un "accesso aperto ritardato" e/o un'"autoarchiviazione dell'autore" (che incrementano la lettura e la citazione dei contenuti). Le modalit&#x00E0; selezionate appariranno in Informazioni generali.</message>
-	<message key="manager.registrationPolicies.presenterSelfArchive">Modalit&#x00E0; per l'autoarchiviazione dell'autore</message>
-	<message key="manager.registrationPolicies.presenterSelfArchiveDescription">La seguente modalit&#x00E0; sar&#x00E0; inclusa in Informazioni generali.</message>
+	<message key="manager.registrationPolicies.authorSelfArchive">Modalit&#x00E0; per l'autoarchiviazione dell'autore</message>
+	<message key="manager.registrationPolicies.authorSelfArchiveDescription">La seguente modalit&#x00E0; sar&#x00E0; inclusa in Informazioni generali.</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformation">Informazioni sulla registrazione</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformationDescription">Il tipo di registrazione e lo schema delle tariffe saranno automaticamente inseriti sotto Registrazioni nella pagina Informazioni generali, insieme al nome e alle informazioni sul contatto per l'amministratore delle registrazioni. Ulteriori informazioni sulla registrazione, come metodi di pagamento o supporti per chi si registra dai paesi di sviluppo, possono essere aggiunte qui.</message>
 	<message key="manager.registrationPolicies.registrationContact">Gestione della registrazione</message>
@@ -224,7 +224,7 @@
 	<message key="manager.schedConfSetup.review.automatedReminders">Email di promemoria automatici sono inviati ai revisori</message>
 	<message key="manager.schedConfSetup.review.automatedRemindersDisabled"><![CDATA[<strong>Nota:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
 	<message key="manager.schedConfSetup.review.directorDecision">Decisione del direttore</message>
-	<message key="manager.schedConfSetup.review.notifyAllPresentersOnDecision">Quando viene usata la email di notifica all'autore, includi gli indirizzi email di tutti i coautori per le submission di autori multipli, e non solo dell'utente che sottomette.</message>
+	<message key="manager.schedConfSetup.review.notifyAllAuthorsOnDecision">Quando viene usata la email di notifica all'autore, includi gli indirizzi email di tutti i coautori per le submission di autori multipli, e non solo dell'utente che sottomette.</message>
 	<message key="manager.schedConfSetup.review.numWeeksPerReview1">Permetti ai revisori:</message>
 	<message key="manager.schedConfSetup.review.numWeeksPerReview2">settimane.</message>
 	<message key="manager.schedConfSetup.review.onQuality">I direttori possono valutare i revisori in scala da 1 a 5.</message>
@@ -270,8 +270,8 @@
 	<message key="manager.schedConfSetup.submissions.disciplineProvideExamples">Fornisce esempi di discipline accademiche rilevanti per questo convegno</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicPaperId">Saranno aggiunti degli identificatori alle presentazioni accettate.</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicSuppFileId">Saranno aggiunti degli identificatori ai file supplementari di presentazioni accettate.</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWork">Indicizzazione della submission</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWorkDescription"><![CDATA[OCS aderisce all'<a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting (OAI-PMH), lo standard emergente per la creazione di un accesso indicizzato su scala globale alle risorse elettroniche per la ricerca. Gli autori utlizzeranno un modello simile per fornire i metadati relativi alle loro submission. Il manager del convegno selezioner&#x00E0; le categorie relative all'indicizzazione, fornendo agli autori esempi utili per la classificazione dei loro lavori, separando i termini con un punto e virgola (es. primo termine; secondo termine). Le varie voci saranno presentate come esempi utilizzando "Es." oppure "Ad esempio".]]></message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWork">Indicizzazione della submission</message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWorkDescription"><![CDATA[OCS aderisce all'<a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting (OAI-PMH), lo standard emergente per la creazione di un accesso indicizzato su scala globale alle risorse elettroniche per la ricerca. Gli autori utlizzeranno un modello simile per fornire i metadati relativi alle loro submission. Il manager del convegno selezioner&#x00E0; le categorie relative all'indicizzazione, fornendo agli autori esempi utili per la classificazione dei loro lavori, separando i termini con un punto e virgola (es. primo termine; secondo termine). Le varie voci saranno presentate come esempi utilizzando "Es." oppure "Ad esempio".]]></message>
 	<message key="manager.schedConfSetup.submissions.notifications.copyPrimaryContact">Contatto principale del convegno.</message>
 	<message key="manager.schedConfSetup.submissions.notifications.copySpecifiedAddress">Questo indirizzo email</message>
 	<message key="manager.schedConfSetup.submissions.notifications.description">Copie di email di accettazione a chi sottopone dovrebbero andare al seguente indirizzo:</message>
@@ -280,8 +280,8 @@
 	<message key="manager.schedConfSetup.submissions.preparationChecklist">Lista di controllo della preparazione della submission</message>
 	<message key="manager.schedConfSetup.submissions.preparationChecklist.description">Nell'inviare una submission una submission al convegno, viene richiesto agli autori di contrassegnare i punti nella Lista di controllo della preparazione della submission. La lista di controllo appare anche nelle Linee guida degli autori. La lista qui sotto pu&#x00F2; essere modificata. Tutti i punti sulla lista devono essere controllati dall'autore prima che la submission sia accettata.</message>
 	<message key="manager.schedConfSetup.submissions.presentationsAlone">Proposta completa</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelines">Linee guida degli autori</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelinesDescription"><![CDATA[Predisponi per gli autori degli standard bibliografici e di formattazione per il materiale da sottoporre al convegno, possibilmente con esempi. Se sono permessi file addizionali, indicare la tipologia (set di dati, strumenti di ricerca, ecc.) che gli autori sono invitati a utilizzare.]]></message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelines">Linee guida degli autori</message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelinesDescription"><![CDATA[Predisponi per gli autori degli standard bibliografici e di formattazione per il materiale da sottoporre al convegno, possibilmente con esempi. Se sono permessi file addizionali, indicare la tipologia (set di dati, strumenti di ricerca, ecc.) che gli autori sono invitati a utilizzare.]]></message>
 	<message key="manager.schedConfSetup.submissions.publicIdentifier">Identificazione dei contenuti del convegno</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassification">Classificazione per soggetto</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassificationExamples">(Es., Classificazione per soggetto matematica; Classificazione della Library of Congress)</message>
@@ -411,7 +411,7 @@
 	<message key="manager.setup.additionalContent.homepageImage">Immagine della Homepage</message>
 	<message key="manager.setup.additionalContent.information">Informazione per gli utenti</message>
 	<message key="manager.setup.additionalContent.information.description">Brevi descrizioni del convegno per eventuali autori e lettori sono disponibili nella sezione "Informazioni" della barra laterale.</message>
-	<message key="manager.setup.additionalContent.information.forPresenters">Per gli autori</message>
+	<message key="manager.setup.additionalContent.information.forAuthors">Per gli autori</message>
 	<message key="manager.setup.additionalContent.information.forReaders">Per i lettori</message>
 	<message key="manager.setup.additionalContent.redirect">Reindirizzamento della conferenza programmata</message>
 	<message key="manager.setup.additionalContent.redirect.description">Selezionando una conferenza programmata qui sotto, è possibile reindirizzare gli utenti che visitano la pagina della conferenza direttamente a quella conferenza programmata. Questo è utile se, per esempio, questa conferenza contiene solo una singola conferenza in programma.</message>
@@ -501,7 +501,7 @@
 	<message key="manager.timeline">Calendario del convegno</message>
 	<message key="manager.timeline.closeComments">Chiudi i commenti (attiva gli strumenti di lettura)</message>
 	<message key="manager.timeline.closeComments.plain">Chiudi i commenti</message>
-	<message key="manager.timeline.closeRegPresenter">Registrazione dell'autore chiusa</message>
+	<message key="manager.timeline.closeRegAuthor">Registrazione dell'autore chiusa</message>
 	<message key="manager.timeline.closeRegReviewer">Registrazione del revisore chiusa</message>
 	<message key="manager.timeline.closeReviewProcess">Processo di revisione chiuso</message>
 	<message key="manager.timeline.conference">Convegno</message>
@@ -511,13 +511,13 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">La data di fine del convegno deve essere successiva alla data di inizio del convegno.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">La data del sito web "Vedi dal vivo" deve essere antecedente alla data dell'inizio del convegno.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">Il convegno non pu&#x00F2; iniziare prima che le submission siano chiuse.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate">La data d'inizio della registrazione dell'autore deve essere antecedente alla data di chiusura della registrazione dell'autore.</message>
+	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">La data d'inizio della registrazione dell'autore deve essere antecedente alla data di chiusura della registrazione dell'autore.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">La data d'inizio della registrazione del revisore deve essere antecedente alla data di chiusura della registrazione del revisore.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">La data "Sposta nell'archivio del convegno" deve essere successiva all'ultimo giorno del convegno.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">Il sito del convegno non pu&#x00F2; essere spostato in archivio prima della data d'inizio del convegno.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeSiteStart">La data del sito web "Vedi dal vivo" deve essere antecedente alla data del "Sposta nell'archivio del convegno".</message>
 	<message key="manager.timeline.form.submissionsCloseBeforeCFP">I call for papers devono essere inviati prima della chiusura delle submission.</message>
-	<message key="manager.timeline.openRegPresenter">Registrazione dell'autore aperta</message>
+	<message key="manager.timeline.openRegAuthor">Registrazione dell'autore aperta</message>
 	<message key="manager.timeline.openRegReviewer">Registrazione del revisore aperta</message>
 	<message key="manager.timeline.overrideDates">Annulla il/i messaggio/i d'errore</message>
 	<message key="manager.timeline.postAbstracts">Abstract accettati</message>

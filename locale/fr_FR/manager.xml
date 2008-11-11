@@ -112,8 +112,8 @@
 	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Remarque:</strong> Pour activer cette option, l'administrateur du site doit activer l'option <tt>scheduled_tasks</tt> dans le fichier de configuration de OCS. Des configurations supplémentaires du serveur peuvent être nécessaires pour supporter cette fonctionnalité (qui peut ne pas fonctionner sur tous les serveurs) comme indiqué sur la Documentation de OCS.]]></message>
 	<message key="manager.registrationPolicies.openAccessOptions">Options de l'Accès Libre pour les Conférences Nécessitant une Inscription</message>
 	<message key="manager.registrationPolicies.openAccessOptionsDescription">Les Conférences nécessitant une inscription peuvent fournir un "accès libre différé" et/ou " auto-archivage par l'auteur" (qui augmente le lectorat et les citations du contenu). Les politiques choisies à cet égard apparaîtront dans la page "A Propos de la Conférence".</message>
-	<message key="manager.registrationPolicies.presenterSelfArchive">Règles de l'auto-archivage par l'auteur</message>
-	<message key="manager.registrationPolicies.presenterSelfArchiveDescription">La politique suivante sera dans "A Propos de la Conférence".</message>
+	<message key="manager.registrationPolicies.authorSelfArchive">Règles de l'auto-archivage par l'auteur</message>
+	<message key="manager.registrationPolicies.authorSelfArchiveDescription">La politique suivante sera dans "A Propos de la Conférence".</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformation">Informations sur les inscriptions</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformationDescription">Les types d'inscriptions et la grille des tarifs vont automatiquement apparaître sous les inscriptions dans la page "A Propos de la Conférence" avec le nom et le contact de l'administrateur des inscriptions. Plus d'informations sur les inscriptions, tel les méthodes de paiement et le soutien pour les inscrits des pays en voie de développement, peuvent être ajoutées ici.</message>
 	<message key="manager.registrationPolicies.registrationContact">Contact pour les inscriptions</message>
@@ -258,8 +258,8 @@
 	<message key="manager.schedConfSetup.submissions.disciplineProvideExamples">Fournir des exemples pertinents quand aux disciplines académiques de cette conférence</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicPaperId">Les identificateurs vont être ajoutés aux présentations acceptées.</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicSuppFileId">Les identificateurs vont être ajoutés aux fichiers supplémentaires acceptées.</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWork">Indexation de la Proposition</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWorkDescription"><![CDATA[OCS adhère au protocole de collecte de métadata <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a>, qui est le standard montant permettant de fournir un accès bien indexé par les moteurs de recherche. Les auteurs utiliseront un format similaire pour fournir des métadonnées de leurs propositions. Le responsable de conférence devrait sélectionner les catégories à indexer et présenter aux auteurs des exemples pertinents pour les aider à indexer leur travail, en séparant les termes par des points-virgules (ex. terme1; terme2). Les exemples peuvent être introduits en utilisant "Ex.", "E.g.," ou encore "Par exemple,".]]></message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWork">Indexation de la Proposition</message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWorkDescription"><![CDATA[OCS adhère au protocole de collecte de métadata <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a>, qui est le standard montant permettant de fournir un accès bien indexé par les moteurs de recherche. Les auteurs utiliseront un format similaire pour fournir des métadonnées de leurs propositions. Le responsable de conférence devrait sélectionner les catégories à indexer et présenter aux auteurs des exemples pertinents pour les aider à indexer leur travail, en séparant les termes par des points-virgules (ex. terme1; terme2). Les exemples peuvent être introduits en utilisant "Ex.", "E.g.," ou encore "Par exemple,".]]></message>
 	<message key="manager.schedConfSetup.submissions.notifications.copyPrimaryContact">Le contact de base de la conférence.</message>
 	<message key="manager.schedConfSetup.submissions.notifications.copySpecifiedAddress">Cette adresse courriel</message>
 	<message key="manager.schedConfSetup.submissions.notifications.description">Des copies des accusés de réception doivent aller à:</message>
@@ -268,8 +268,8 @@
 	<message key="manager.schedConfSetup.submissions.preparationChecklist">Checklist de la Préparation de la Proposition</message>
 	<message key="manager.schedConfSetup.submissions.preparationChecklist.description">En faisant une proposition à la conférence, les auteurs sont priés de cocher caqhe poste pour indiquer que leur proposition répond aux critères. La checklist apparaît aussi dans les directives de l'auteur. La liste ci-dessous peut être modifiée. Tous les éléments de la liste doivent être vérifiés par l'auteur avant que la proposition ne soit acceptée.</message>
 	<message key="manager.schedConfSetup.submissions.presentationsAlone">Proposition Pleine</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelines">Directives de l'auteur</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelinesDescription"><![CDATA[Expose la bibliographie des auteurs et les formats standards pour les documents de la conférence, avec, si possible, des exemples. Si des fichiers supplémentaires sont permis, suggrérez les types (ex. données, instruments de recherche, tec.) que les auteurs seront encouragés à utiliser pour améliorer l'engagement des lecteurs pour leur travail.]]></message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelines">Directives de l'auteur</message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelinesDescription"><![CDATA[Expose la bibliographie des auteurs et les formats standards pour les documents de la conférence, avec, si possible, des exemples. Si des fichiers supplémentaires sont permis, suggrérez les types (ex. données, instruments de recherche, tec.) que les auteurs seront encouragés à utiliser pour améliorer l'engagement des lecteurs pour leur travail.]]></message>
 	<message key="manager.schedConfSetup.submissions.publicIdentifier">Identificateur du Contenu de Conférence</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassification">Classification par Sujet</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassificationExamples">(Ex. Mathématiques-Classification par sujet; Classification de la Library of Congress)</message>
@@ -342,7 +342,7 @@
 	<message key="manager.setup.additionalContent.homepageImage">Image de la page d'accueil</message>
 	<message key="manager.setup.additionalContent.information">Informations pour les utilisateurs</message>
 	<message key="manager.setup.additionalContent.information.description">Une brève description de la conférence, pour les auteurs et les lecteurs potentiels, est disponible dans la rubrique "Informations" de la barre latérale.</message>
-	<message key="manager.setup.additionalContent.information.forPresenters">Pour les Auteurs</message>
+	<message key="manager.setup.additionalContent.information.forAuthors">Pour les Auteurs</message>
 	<message key="manager.setup.additionalContent.information.forReaders">Pour les Lecteurs</message>
 	<message key="manager.setup.additionalContent.title">Étape 2. Contenu supplémentaire du site</message>
 	<message key="manager.setup.conferenceSetupUpdated">L'installation de votre conférence a été mise à jour.</message>
@@ -419,7 +419,7 @@
 	<message key="manager.timeline">Timeline de la Conférence</message>
 	<message key="manager.timeline.closeComments">Fermer les Commentaires (activer les outils de lecture)</message>
 	<message key="manager.timeline.closeComments.plain">Fermer les commentaires</message>
-	<message key="manager.timeline.closeRegPresenter">Inscriptions des Auteurs fermées</message>
+	<message key="manager.timeline.closeRegAuthor">Inscriptions des Auteurs fermées</message>
 	<message key="manager.timeline.closeRegReviewer">Inscriptions des Evaluateurs fermées</message>
 	<message key="manager.timeline.closeReviewProcess">Processus de d'évaluation fermé</message>
 	<message key="manager.timeline.conference">Conférence</message>
@@ -429,13 +429,13 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">La date de la fin de la conférence doit arriver après la date de début.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">L'entrée en service sur site web doit arriver avant la date du début de la conférence.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">La conférence ne peut commencer avant la fermeture des propositions.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate">La date d'ouverture des inscriptions des auteurs doit arriver avant sa date de fermeture.</message>
+	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">La date d'ouverture des inscriptions des auteurs doit arriver avant sa date de fermeture.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">La date d'ouverture des inscriptions des évaluateurs doit arriver avant sa date de fermeture.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">La date d'Archivage doit arriver après le dernier jour de conférence.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">Le site de la conférence ne peut pas être déplacé aux archives avant la date de début.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeSiteStart">L'entrée en service sur site web doit avoir lieu avant la date de son Archivage.</message>
 	<message key="manager.timeline.form.submissionsCloseBeforeCFP">Les Appel à Papiers doivent être postés avant la date de la fermeture des propositions.</message>
-	<message key="manager.timeline.openRegPresenter">Inscriptions des Auteurs ouvertes</message>
+	<message key="manager.timeline.openRegAuthor">Inscriptions des Auteurs ouvertes</message>
 	<message key="manager.timeline.openRegReviewer">Inscriptions des Evaluateurs ouvertes</message>
 	<message key="manager.timeline.overrideDates">Ignorer le(s) message(s) d'erreur</message>
 	<message key="manager.timeline.postAbstracts">Résumés Acceptés</message>

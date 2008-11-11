@@ -68,11 +68,11 @@
 	<message key="navigation.myConferences">El meu esdeveniment</message>
 	<message key="navigation.conferenceContent">Contingut de la Conferència/Congrés</message>
 	<message key="navigation.browseByConference">Per esdeveniment</message>
-	<message key="navigation.browseByPresenter">Per autor</message>
+	<message key="navigation.browseByAuthor">Per autor</message>
 	<message key="navigation.info">Informació</message>
-	<message key="navigation.infoForPresenters">Per a autors</message>
+	<message key="navigation.infoForAuthors">Per a autors</message>
 	<message key="navigation.infoForReviewers">Per a avaluadors</message>
-	<message key="navigation.infoForPresenters.long">Informació per a autors</message>
+	<message key="navigation.infoForAuthors.long">Informació per a autors</message>
 	<message key="navigation.infoForReviewers.long">Informació per als avaluadors</message>
 	<message key="navigation.fontSize">Grandària de lletra</message>
 
@@ -111,7 +111,7 @@
 	<message key="paper.papers">Comunicacions</message>
 	<message key="paper.submissionId">ID enviament</message>
 	<message key="paper.title">Títol</message>
-	<message key="paper.presenters">Autors</message>
+	<message key="paper.authors">Autors</message>
 	<message key="paper.conferenceTrack">Seccions de la conferència</message>
 	<message key="paper.file">Arxiu</message>
 	<message key="paper.suppFile">Arxiu suplementari</message>
@@ -149,12 +149,12 @@
 	<message key="submission.directorDecision">Director que pren decisions</message>
 	<message key="submission.stage">Estat de la tramesa&amp;nbsp;{$stage}</message>
 	<message key="submission.directorReview">Director de la revisió</message>
-	<message key="submission.notifyPresenter">Notifica a l'autor</message>
+	<message key="submission.notifyAuthor">Notifica a l'autor</message>
 	<message key="submission.notifyDirector">Notifica al director</message>
-	<message key="submission.directorPresenterRecord">Director/Autor Email</message>
+	<message key="submission.directorAuthorRecord">Director/Autor Email</message>
 	<message key="submission.directorVersion">Director de la versió</message>
-	<message key="submission.presentersRevisedVersion">Arxiu corregit pels autors</message>
-	<message key="submission.presenterVersion">Versió de l'autor</message>
+	<message key="submission.authorsRevisedVersion">Arxiu corregit pels autors</message>
+	<message key="submission.authorVersion">Versió de l'autor</message>
 	<message key="submission.layout.description">aquest pas és opcional i serveix per a aplicar una plantilla als treballs enviats o canviar els formats dels fitxers abans o després que els manuscrits es passin a Presentacions .</message>
 
 	<message key="submission.paperType">Tipus de tramesa</message>
@@ -243,12 +243,12 @@
 	<message key="user.role.manager">Gestor de l'esdeveniment</message>
 	<message key="user.role.director">Director</message>
 	<message key="user.role.trackDirector">Director de la secció</message>
-	<message key="user.role.presenter">Autor</message>
+	<message key="user.role.author">Autor</message>
 
 	<message key="user.role.managers">Gestors de l'esdeveniment</message>
 	<message key="user.role.directors">Directors</message>
 	<message key="user.role.trackDirectors">Directors de la secció</message>
-	<message key="user.role.presenters">Autors</message>
+	<message key="user.role.authors">Autors</message>
 
 	<!--
 	 *
@@ -257,7 +257,7 @@
 	-->
 	
 	<message key="event.logType.paper">Tipus de Document</message>
-	<message key="event.logType.presenter">Autor</message>
+	<message key="event.logType.author">Autor</message>
 	<message key="event.logType.director">Director</message>
 	<message key="event.logType.review">Revisor</message>
 	<message key="event.logType.conference">Conferència/Congrés</message>
@@ -278,9 +278,9 @@
 	<message key="submission.event.general.presentationSubmitted">Presentació enviada</message>
 	<message key="submission.event.general.paperPublished">Article publicat</message>
 
-	<message key="submission.event.presenter.presenterRevision">Treball revisat per l'autor</message>
+	<message key="submission.event.presenter.authorRevision">Treball revisat per l'autor</message>
 
-	<message key="submission.event.general.presenterRevision">Arxiu actualitzat del treball revisat per l'autor</message>
+	<message key="submission.event.general.authorRevision">Arxiu actualitzat del treball revisat per l'autor</message>
 
 	<message key="submission.event.director.directorAssigned">Director assignat a la trameses</message>
 	<message key="submission.event.director.directorUnassigned">No s'ha assignat director des de la tramesa</message>
@@ -374,7 +374,7 @@ Tingui en compte que la interfície OAI pot ser desactivada per a aquest lloc a 
 	<message key="manager.statistics.reports.generate">Generar informe</message>
 	<message key="manager.statistics.reports.status">Estat (acceptat, rebutjat, altre)</message>
 	<message key="manager.statistics.reports.dateDecided">Data de decisió</message>
-	<message key="manager.statistics.reports.presenter">Autor #{$num}</message>
+	<message key="manager.statistics.reports.author">Autor #{$num}</message>
 	<message key="manager.statistics.reports.affiliation">Afiliació #{$num}</message>
 	<message key="manager.statistics.reports.country">Pais #{$num}</message>
 	<message key="manager.statistics.reports.reviewer">Revisor #{$num}</message>
@@ -546,7 +546,7 @@ Per a canviar la data assignada a aquest revisor, introdueixi altra o esborri la
 
 
 	<!-- Track Director -->
-	<message key="trackDirector.presenter.confirmRenotify">Notifica a l'autor que ha de reiniciar l'assignació d'avaluadors. Està segur que vol fer això?</message>
+	<message key="trackDirector.author.confirmRenotify">Notifica a l'autor que ha de reiniciar l'assignació d'avaluadors. Està segur que vol fer això?</message>
 
 	<message key="trackDirector.regrets.breadcrumb">Renúncies</message>
 	<message key="trackDirector.regrets.title">#{$paperId} Renúncies de revisors &amp; Cancel·lacions</message>
@@ -611,19 +611,19 @@ Per a canviar la data assignada a aquest revisor, introdueixi altra o esborri la
 
 	<!-- Presenter -->
 
-<message key="presenter.submissions.confirmDelete">Està segur que vol esborrar la tramesa incompleta?</message>
+<message key="author.submissions.confirmDelete">Està segur que vol esborrar la tramesa incompleta?</message>
 
 	<!-- Paper Submission Step 1 -->
 
 
 	<!-- Paper Submission Step 2 -->
-	<message key="presenter.submit.metadataDescription">Aquesta Conferència recopila les metadades de cada treball, d'acord amb els estàndards de l'Open Arxives Initiative, que permeten la identificació objectes digitals. Això permet una recerca selectiva i precisa en bases de dades OAI, el que augmenta la probabilitat que els lectors trobin treballs com aquest. El Comitè organitzador ha d'insistir que les metadades convé enviar-los abans d'iniciar-se el procés editorial de manipulació d'originals </message>
-	<message key="presenter.submit.presentersDescription">Per a trameses amb més d'un autor, ordeni els noms tal com hagin d'aparèixer en la referència bibliogràfica
+	<message key="author.submit.metadataDescription">Aquesta Conferència recopila les metadades de cada treball, d'acord amb els estàndards de l'Open Arxives Initiative, que permeten la identificació objectes digitals. Això permet una recerca selectiva i precisa en bases de dades OAI, el que augmenta la probabilitat que els lectors trobin treballs com aquest. El Comitè organitzador ha d'insistir que les metadades convé enviar-los abans d'iniciar-se el procés editorial de manipulació d'originals </message>
+	<message key="presenter.submit.authorsDescription">Per a trameses amb més d'un autor, ordeni els noms tal com hagin d'aparèixer en la referència bibliogràfica
 .</message>
-	<message key="presenter.submit.reorderPresenterName">Reordena el nom de l'autor</message>
+	<message key="author.submit.reorderAuthorName">Reordena el nom de l'autor</message>
 
 	<!-- Paper Submission Step 3 -->
-	<message key="presenter.submit.uploadInstructions"><![CDATA[
+	<message key="author.submit.uploadInstructions"><![CDATA[
 Per a dipositar un treball en aquesta conferència, segueixi els següents passos.
 
 <ol>
@@ -657,15 +657,15 @@ Per a dipositar un treball en aquesta conferència, segueixi els següents passo
 	<!-- Submission Email Log -->
 
 	<!-- Submission Comments -->
-	<message key="submission.comments.directorPresenterCorrespondence">Director/Autor per a la correspondència</message>
+	<message key="submission.comments.directorAuthorCorrespondence">Director/Autor per a la correspondència</message>
 	<message key="submission.comments.viewableDescription"><![CDATA[Aquests comentaris poden compartir-se amb l'autor.<br />
 (Després de desar, poden afegir-se més comentaris.)]]></message>
-	<message key="submission.comments.canShareWithPresenter">Per a l'autor i el director</message>
-	<message key="submission.comments.cannotShareWithPresenter">Per al director</message>
+	<message key="submission.comments.canShareWithAuthor">Per a l'autor i el director</message>
+	<message key="submission.comments.cannotShareWithAuthor">Per al director</message>
 	<message key="submission.comments.blindCcReviewers">Després de la tramesa, faci una còpia de la decisió editorial, sense capçaleres ni noms, per a enviar-se-la als revisors .</message>
-	<message key="submission.comments.forPresenterDirector">Per a l'autor i el director</message>
+	<message key="submission.comments.forAuthorDirector">Per a l'autor i el director</message>
 	<message key="submission.comments.forDirector">Per al director</message>
-	<message key="submission.comments.saveAndEmailPresenter">Desa i envia un correu electrònic a l'autor</message>
+	<message key="submission.comments.saveAndEmailAuthor">Desa i envia un correu electrònic a l'autor</message>
 	<message key="submission.comments.saveAndEmailDirector">Desa i envia un correu electrònic al director</message>
 
 	<!-- Login -->
@@ -698,22 +698,22 @@ Per a dipositar un treball en aquesta conferència, segueixi els següents passo
 	<message key="user.account.form.passwordLengthTooShort">La contrasenya que ha introduït no és prou llarga.</message>
 	<message key="user.account.readerDescription">Notificar per correu electrònic quan es publiquin presentacions.</message>
 	<message key="user.account.openAccessNotificationDescription">Notificar per correu electrònic quan la conferència sigui d'accés obert.</message>
-	<message key="user.account.presenterDescription">Poden enviar-se articles a la conferència.</message>
+	<message key="user.account.authorDescription">Poden enviar-se articles a la conferència.</message>
 	<message key="user.account.reviewerDescriptionNoInterests">Accepto fer la revisió de treballs d'aquesta conferència.</message>
 	<message key="user.account.reviewerDescription">Accepto fer la revisió de treballs d'aquesta conferència. Assenyali els temes del seu interès (àrees i mètodes de treball).</message>
-	<message key="user.account.presenterRegistrationMessage">Encara que té un compte en d'usuari en aquest lloc, actualment no és autor de cap treball d'aquesta conferència.</message>
+	<message key="user.account.authorRegistrationMessage">Encara que té un compte en d'usuari en aquest lloc, actualment no és autor de cap treball d'aquesta conferència.</message>
 
 
 
 	<!-- Search -->
-	<message key="search.browsePresenterIndex">Llistar l'índex d'autors</message>
+	<message key="search.browseAuthorIndex">Llistar l'índex d'autors</message>
 	<message key="search.searchFor">Recerca de treballs per</message>
 	<message key="search.inField">A</message>
-	<message key="search.presenter">Autors</message>
+	<message key="search.author">Autors</message>
 	<message key="search.withinConference">A</message>
 	<message key="search.allConferences">Tots els esdeveniments</message>
-	<message key="search.presenterIndex">Llistar per autors</message>
-	<message key="search.presenterDetails">Detalls de l'autor</message>
+	<message key="search.authorIndex">Llistar per autors</message>
+	<message key="search.authorDetails">Detalls de l'autor</message>
 	<message key="search.syntaxInstructions"><![CDATA[Recomanacions per a les recerques: <ul>
 <li>Els termes de recerca són susceptibles a les majúscules i minúscules</li>
 <li>Les paraules comunes s'ignoren</li>
@@ -775,7 +775,7 @@ Per a dipositar un treball en aquesta conferència, segueixi els següents passo
 	<message key="about.onlineSubmissions.needAccount">Li cal un usuari o contrasenya?</message>
 	<message key="about.onlineSubmissions.registration">Vagi a la pàgina d'inscripció</message>
 	<message key="about.onlineSubmissions.registrationRequired">Es necessita estar registrat i clau d'accés per a l'enviament online de treballs i poder consultar l'estatus dels mateixos.</message>
-	<message key="about.presenterGuidelines">Instruccions per a autors</message>
+	<message key="about.authorGuidelines">Instruccions per a autors</message>
 	<message key="about.submissionPreparationChecklist">Llista de requisits per a les trameses 'online'</message>
 	<message key="about.copyrightNotice">Termes sobre el 'Copyright'</message>
 	<message key="about.privacyStatement">Declaració de privacitat</message>
@@ -785,7 +785,7 @@ Per a dipositar un treball en aquesta conferència, segueixi els següents passo
 	<message key="about.delayedOpenAccess">Accés obert posposat</message>
 	<message key="about.delayedOpenAccessDescription1">Els continguts d'aquesta conferència estaran disponibles en accés obert</message>
 	<message key="about.delayedOpenAccessDescription2">mesos després que els continguts de la conferència es distribueixin entre els participants.</message>
-	<message key="about.presenterSelfArchive">Autoarxiu de l'autor</message>
+	<message key="about.authorSelfArchive">Autoarxiu de l'autor</message>
 	<message key="about.archiving">Arxiu</message>
 	<message key="about.registration">Inscripció</message>
 	<message key="about.registrationContact">Contacte per a la inscripció</message>
@@ -874,9 +874,9 @@ El seu servidor actualment suporta mbstring: <strong>{$supportsMBString}</strong
 	<!-- Paper Logs -->
 	<message key="log.default.abstractPeriodExpired">La finestra per a l'enviament de resums de treballs incomplets {$paperId} ha expirat. El treball s'ha retirat.</message>
 	<message key="log.default.paperPeriodExpired">La finestra per a la tramesa de treballs incomplets {$paperId} ha expirat. El treball s'ha retirat.</message>
-	<message key="log.presenter.abstractSubmitted">{$presenterName} ha enviat un resum, ID {$submissionId}.</message>
-	<message key="log.presenter.presentationSubmitted">{$presenterName} ha dipositat una presentació, ID {$submissionId}.</message>
-	<message key="log.presenter.documentRevised">{$presenterName} ha revisat el treball {$paperId}. El nou ID de l'arxiu és {$fileId}.</message>
+	<message key="log.author.abstractSubmitted">{$authorName} ha enviat un resum, ID {$submissionId}.</message>
+	<message key="log.author.presentationSubmitted">{$authorName} ha dipositat una presentació, ID {$submissionId}.</message>
+	<message key="log.author.documentRevised">{$authorName} ha revisat el treball {$paperId}. El nou ID de l'arxiu és {$fileId}.</message>
 	<message key="log.review.reviewerAssigned">{$reviewerName} s'ha assignat {$paperId} per a revisió {$stage}.</message>
 	<message key="log.review.reviewerUnassigned">{$reviewerName} no s'ha assignat {$paperId} per a revisió {$stage}.</message>
 	<message key="log.review.reviewInitiated">El pas {$stage} de revisió {$reviewerName} de la tramesa {$paperId} ha començat.</message>
@@ -915,8 +915,8 @@ El seu servidor actualment suporta mbstring: <strong>{$supportsMBString}</strong
 	<message key="log.timeline.endDateChanged">La data de finalització de la conferència ha canviat de {$oldEndDate} a {$newEndDate}.</message>
 	<message key="log.timeline.regReviewerOpenDateChanged">La data d'inscripció ha canviat de {$oldRegReviewerOpenDate} a {$newRegReviewerOpenDate}.</message>
 	<message key="log.timeline.regReviewerCloseDateChanged">la data de tancament d'inscripció ha canviat de {$oldRegReviewerCloseDate} a {$newRegReviewerCloseDate}.</message>
-	<message key="log.timeline.regPresenterOpenDateChanged">La data d'inici d'inscripció per als autors ha canviat de {$oldRegPresenterOpenDate} a {$newRegPresenterOpenDate}.</message>
-	<message key="log.timeline.regPresenterCloseDateChanged">La data de tancament d'inscripció dels autors ha canviat de {$oldRegPresenterCloseDate} a {$newRegPresenterCloseDate}.</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">La data d'inici d'inscripció per als autors ha canviat de {$oldRegPresenterOpenDate} a {$newRegPresenterOpenDate}.</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">La data de tancament d'inscripció dels autors ha canviat de {$oldRegPresenterCloseDate} a {$newRegPresenterCloseDate}.</message>
 	<message key="log.timeline.showCFPDateChanged">La data del "call for papers" ha canviat de {$oldShowCFPDate} a {$newShowCFPDate}.</message>
 	<message key="log.timeline.submissionsOpenDateChanged">La data de tramesa de treballs ha canviat de {$oldSubmissionsOpenDate} a {$newSubmissionsOpenDate}</message>
 	<message key="log.timeline.submissionsCloseDateChanged">La data de tramesa de treballs ha canviat de {$oldSubmissionsCloseDate} a {$newSubmissionsCloseDate}</message>
@@ -960,9 +960,9 @@ La validacio d'URL pot fallar si es requereix la tramesa de dades.]]></message>
 
 
 
-	<message key="rt.metadata.dublinCore.primaryPresenter">Creador</message>
+	<message key="rt.metadata.dublinCore.primaryAuthor">Creador</message>
 
-	<message key="rt.metadata.pkp.primaryPresenter">Nom de l'autor, afiliació, país</message>
+	<message key="rt.metadata.pkp.primaryAuthor">Nom de l'autor, afiliació, país</message>
 	<message key="rt.metadata.pkp.peerReviewed">Treball revisat</message>
 
 
@@ -1011,21 +1011,21 @@ La validacio d'URL pot fallar si es requereix la tramesa de dades.]]></message>
 	<message key="default.schedConfSettings.checklist.anonymous">Quan s'envia a avaluar, els noms dels autors i l'any s'eliminen, s'utilitzarà "Autor" i any usat en la bibliografia i notes a peu de pàgina, en lloc dels noms dels autors, títol del treball, etc.</message>
 	<message key="default.schedConfSettings.checklist.personalInformationRemoved">Quan s'envia a revisió, tots els arxius de text (incloent els fitxers addicionals) es guarden anant al menú Arxius i seleccionant "Anomena i desa"; prement eines (o opcions en Mac); Prement Seguretat; seleccionant "Sostreure informació personal de les propietats del fitxer en desar-lo" i prement Desa.</message>
 	<message key="default.conferenceSettings.privacyStatement">Els noms i adreces de correu introduïts s'usaran exclusivament amb les fins d'aquesta Conferència i no es facilitaran a tercers.</message>
-	<message key="default.conferenceSettings.presenterSelfArchivePolicy">Els autors estan autoritzats a dipositar els seus treballs en pàginas personals o repositoris institucionals abans i després d'aquesta Conferència (mentre es faciliti la referència bibliogràfica).</message>
+	<message key="default.conferenceSettings.authorSelfArchivePolicy">Els autors estan autoritzats a dipositar els seus treballs en pàginas personals o repositoris institucionals abans i després d'aquesta Conferència (mentre es faciliti la referència bibliogràfica).</message>
 	<message key="default.conferenceSettings.emailSignature"><![CDATA[________________________________________________________________________
 {$conferenceName}
 {$conferenceUrl}
 ]]></message>
 	<message key="default.conferenceSettings.forReaders"><![CDATA[Recomanem als lectors que acceptin el servei d'alerta dels treballs que es dipositen en aquesta conferència. Recomanem que llegeixi a <a href="{$aboutUrl}">"Quant a aquesta Conferència"</a> la pàgina sobre les polítiques de la conferència, i visiti la <a href="{$conferenceUrl}">Pàgina d'Inici</a> per a veure les conferències que s'acosten.]]></message>
-	<message key="default.conferenceSettings.forPresenters"><![CDATA[Està interessat a fer una tramesa a aquesta conferència? Recomanem que llegeixi <a href="{$aboutUrl}">"Quant a aquesta Conferència"</a> la pàgina sobre les polítiques de la conferència, i visiti la <a href="{$conferenceUrl}">Pàgina d'Inici</a> per a veure les conferències que s'acosten.]]></message>
+	<message key="default.conferenceSettings.forAuthors"><![CDATA[Està interessat a fer una tramesa a aquesta conferència? Recomanem que llegeixi <a href="{$aboutUrl}">"Quant a aquesta Conferència"</a> la pàgina sobre les polítiques de la conferència, i visiti la <a href="{$conferenceUrl}">Pàgina d'Inici</a> per a veure les conferències que s'acosten.]]></message>
 	<message key="default.conferenceSettings.lockssLicense"><![CDATA[Aquesta conferència utilitza el sistema LOCKSS per a crear un sistema d'arxius distribuïts entre les biblioteques participants, i permet a aquestes biblioteques crear fitxers permanents de la conferència amb fins de preservació i restabliment. <a href="http://lockss.stanford.edu/">Més...</a>]]></message>
 
 	<message key="default.schedConfSettings.emailSignature"><![CDATA[________________________________________________________________________
 {$conferenceName} {$schedConfName}
 {$schedConfUrl}
 ]]></message>
-	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[El text ha de tenir el format i estil de referències bibliogràfiques descrit a <a href="{$presenterGuidelinesUrl}">Instruccions per a Autors</a>, que es troben al menú "Quant a aquesta Conferència".]]></message>
+	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[El text ha de tenir el format i estil de referències bibliogràfiques descrit a <a href="{$authorGuidelinesUrl}">Instruccions per a Autors</a>, que es troben al menú "Quant a aquesta Conferència".]]></message>
 	<message key="default.schedConfSettings.forReaders"><![CDATA[Recomanem que els lectors optin per l'enviament de notificació de l'enviament de nous treballs a aquesta conferència. Utilitzi l'enllaç <a href="{$accountUrl}">Compte</a> situat a la part superior de la pàgina d'inici del conferència. Això permet a la conferència una col·laboració a nivell d'usuaris-lectors. Consulti la <a href="{$privacyStatementUrl}"> Declaració de Privacitat</a> de la conferència, que assegura que la identitat dels lectors i la seva adreça electrònica no s'usaran amb altres fins.]]></message>
-	<message key="default.schedConfSettings.forPresenters"><![CDATA[està interessat a enviar un treball a aquesta conferència? li recomananem que consulti a <a href="{$aboutUrl}">"Quant a aquesta Conferència"</a> per a conèixer les polítiques de la mateixa, així com les <a href="{$presenterGuidelinesUrl}">Instruccions per a Autors</a>. Els autors han de <a href="{$accountUrl}">crear un compte</a> a la web de la conferència abans de fer la tramesa, i si ja disposen d'ella, simplement han de <a href="{$loginUrl}">accedir</a> al sistema i iniciar la tramesa.]]></message>
+	<message key="default.schedConfSettings.forAuthors"><![CDATA[està interessat a enviar un treball a aquesta conferència? li recomananem que consulti a <a href="{$aboutUrl}">"Quant a aquesta Conferència"</a> per a conèixer les polítiques de la mateixa, així com les <a href="{$authorGuidelinesUrl}">Instruccions per a Autors</a>. Els autors han de <a href="{$accountUrl}">crear un compte</a> a la web de la conferència abans de fer la tramesa, i si ja disposen d'ella, simplement han de <a href="{$loginUrl}">accedir</a> al sistema i iniciar la tramesa.]]></message>
 
 </locale>

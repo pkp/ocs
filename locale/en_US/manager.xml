@@ -182,8 +182,8 @@
 	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
 	<message key="manager.registrationPolicies.openAccessOptions">Open Access Options For Registration Conferences</message>
 	<message key="manager.registrationPolicies.openAccessOptionsDescription">Registration conferences can provide "delayed open access" and/or "author self-archiving" (which increase readership and citation of content). The selected policies will appear in About the Conference.</message>
-	<message key="manager.registrationPolicies.presenterSelfArchive">Author Self-Archiving Policy</message>
-	<message key="manager.registrationPolicies.presenterSelfArchiveDescription">The following policy will be included in About the Conference.</message>
+	<message key="manager.registrationPolicies.authorSelfArchive">Author Self-Archiving Policy</message>
+	<message key="manager.registrationPolicies.authorSelfArchiveDescription">The following policy will be included in About the Conference.</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformation">Registration Information</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformationDescription">The Registration Types and fee structure will be automatically placed under Registrations on the About the Conference page, along with the name and contact information for the Registration Manager. Additional information about registration, such as methods of payment or support for registrants in developing countries, can be added here.</message>
 	<message key="manager.registrationPolicies.registrationContact">Registration Manager</message>
@@ -285,7 +285,7 @@
 	<message key="manager.schedConfSetup.review.automatedReminders">Automated email reminders are sent to reviewers</message>
 	<message key="manager.schedConfSetup.review.automatedRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
 	<message key="manager.schedConfSetup.review.directorDecision">Director Decision</message>
-	<message key="manager.schedConfSetup.review.notifyAllPresentersOnDecision">When using the Notify Author email, include the email addresses of all co-authors for multiple-author submissions, and not just the submitting user.</message>
+	<message key="manager.schedConfSetup.review.notifyAllAuthorsOnDecision">When using the Notify Author email, include the email addresses of all co-authors for multiple-author submissions, and not just the submitting user.</message>
 	<message key="manager.schedConfSetup.review.numWeeksPerReview1">Allow reviewers</message>
 	<message key="manager.schedConfSetup.review.numWeeksPerReview2">weeks to review submissions.</message>
 	<message key="manager.schedConfSetup.review.onQuality">Directors are able to rate reviewers on a five-point scale.</message>
@@ -331,8 +331,8 @@
 	<message key="manager.schedConfSetup.submissions.disciplineProvideExamples">Provide examples of relevant academic disciplines for this conference</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicPaperId">Identifiers will be added to accepted presentations.</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicSuppFileId">Identifiers will be added to supplemental files with accepted presentations.</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWork">Submission Indexing</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWorkDescription"><![CDATA[OCS adheres to the <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting, which is the emerging standard for providing well-indexed access to electronic research resources on a global scale. Authors will use a similar template to provide metadata for their submission. The Conference Manager should select the categories for indexing and present authors with relevant examples to assist them in indexing their work, separating terms with a semi-colon (e.g., term1; term2). The entries should be introduced as examples by using "E.g.," or "For example,".]]></message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWork">Submission Indexing</message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWorkDescription"><![CDATA[OCS adheres to the <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting, which is the emerging standard for providing well-indexed access to electronic research resources on a global scale. Authors will use a similar template to provide metadata for their submission. The Conference Manager should select the categories for indexing and present authors with relevant examples to assist them in indexing their work, separating terms with a semi-colon (e.g., term1; term2). The entries should be introduced as examples by using "E.g.," or "For example,".]]></message>
 	<message key="manager.schedConfSetup.submissions.notifications.copyPrimaryContact">The conference’s primary contact.</message>
 	<message key="manager.schedConfSetup.submissions.notifications.copySpecifiedAddress">This email address</message>
 	<message key="manager.schedConfSetup.submissions.notifications.description">Copies of acknowledgement email to submitter should go to the following:</message>
@@ -341,8 +341,8 @@
 	<message key="manager.schedConfSetup.submissions.preparationChecklist">Submission Preparation Checklist</message>
 	<message key="manager.schedConfSetup.submissions.preparationChecklist.description">On making a submission to the conference, authors are required to check off items on the Submission Preparation Checklist. The checklist also appears in the Author Guidelines. The list below can be edited. All items on the list must be checked by the author before submission will be accepted.</message>
 	<message key="manager.schedConfSetup.submissions.presentationsAlone">Full proposal</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelines">Author Guidelines</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelinesDescription"><![CDATA[Set out for authors bibliographic and formatting standards for submitting materials to the conference, possibly with examples. If supplementary files are permitted, suggest types (e.g., data-sets, research instruments, etc.) which authors should be encouraged to upload to enhance readers' engagement with their work.]]></message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelines">Author Guidelines</message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelinesDescription"><![CDATA[Set out for authors bibliographic and formatting standards for submitting materials to the conference, possibly with examples. If supplementary files are permitted, suggest types (e.g., data-sets, research instruments, etc.) which authors should be encouraged to upload to enhance readers' engagement with their work.]]></message>
 	<message key="manager.schedConfSetup.submissions.previewAbstracts">Post abstracts once the abstract review has been completed</message>
 	<message key="manager.schedConfSetup.submissions.publicIdentifier">Identification of Conference Content</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassification">Subject Classification</message>
@@ -473,7 +473,7 @@
 	<message key="manager.setup.additionalContent.homepageImage">Homepage Image</message>
 	<message key="manager.setup.additionalContent.information">Information for Users</message>
 	<message key="manager.setup.additionalContent.information.description">Brief descriptions of the conference for prospective authors and readers are available in the "Information" section of the sidebar.</message>
-	<message key="manager.setup.additionalContent.information.forPresenters">For Authors</message>
+	<message key="manager.setup.additionalContent.information.forAuthors">For Authors</message>
 	<message key="manager.setup.additionalContent.information.forReaders">For Readers</message>
 	<message key="manager.setup.additionalContent.redirect">Scheduled Conference Redirect</message>
 	<message key="manager.setup.additionalContent.redirect.description">By selecting a Scheduled Conference below, it is possible to redirect users who visit the Conference page directly to that Scheduled Conference. This is useful if, for example, this Conference only contains a single Scheduled Conference.</message>
@@ -565,7 +565,7 @@
 	<message key="manager.timeline">Conference Timeline</message>
 	<message key="manager.timeline.closeComments">Close comments (activate Reading Tools)</message>
 	<message key="manager.timeline.closeComments.plain">Close comments</message>
-	<message key="manager.timeline.closeRegPresenter">Author registration closed</message>
+	<message key="manager.timeline.closeRegAuthor">Author registration closed</message>
 	<message key="manager.timeline.closeRegReviewer">Reviewer registration closed</message>
 	<message key="manager.timeline.closeReviewProcess">Review process closed</message>
 	<message key="manager.timeline.conference">Conference</message>
@@ -575,13 +575,13 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">The conference end date must come after the conference start date.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">The website "Go Live" date must come before the conference start date.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">The conference cannot start before submissions are closed.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate">The author registration open date must come before the author registration close date.</message>
+	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">The author registration open date must come before the author registration close date.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">The reviewer registration open date must come before the reviewer registration close date.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">The "Move to Conference Archive" date must come after the last day of the conference.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">The conference site cannot be moved to the archive before the conference start date.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeSiteStart">The website "Go Live" date must come before the "Move to Conference Archive" date.</message>
 	<message key="manager.timeline.form.submissionsCloseBeforeCFP">The Call for Papers must be posted before submissions close.</message>
-	<message key="manager.timeline.openRegPresenter">Author registration opened</message>
+	<message key="manager.timeline.openRegAuthor">Author registration opened</message>
 	<message key="manager.timeline.openRegReviewer">Reviewer registration opened</message>
 	<message key="manager.timeline.overrideDates">Override error message(s)</message>
 	<message key="manager.timeline.postAbstracts">Accepted abstracts</message>

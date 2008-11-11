@@ -68,11 +68,11 @@
 	<message key="navigation.myConferences">我的研討會</message>
 	<message key="navigation.conferenceContent">研討會內容</message>
 	<message key="navigation.browseByConference">根據研討會</message>
-	<message key="navigation.browseByPresenter">根據作者</message>
+	<message key="navigation.browseByAuthor">根據作者</message>
 	<message key="navigation.info">資訊</message>
-	<message key="navigation.infoForPresenters">給作者</message>
+	<message key="navigation.infoForAuthors">給作者</message>
 	<message key="navigation.infoForReviewers">給審稿者</message>
-	<message key="navigation.infoForPresenters.long">給作者的相關資訊</message>
+	<message key="navigation.infoForAuthors.long">給作者的相關資訊</message>
 	<message key="navigation.infoForReviewers.long">給審稿者的相關資訊</message>
 	<message key="navigation.fontSize">字型大小</message>
 
@@ -111,7 +111,7 @@
 	<message key="paper.papers">文章</message>
 	<message key="paper.submissionId">繳交身份</message>
 	<message key="paper.title">題目</message>
-	<message key="paper.presenters">作者</message>
+	<message key="paper.authors">作者</message>
 	<message key="paper.conferenceTrack">研討會主題</message>
 	<message key="paper.file">檔案</message>
 	<message key="paper.suppFile">附加檔案</message>
@@ -149,12 +149,12 @@
 	<message key="submission.directorDecision">審查結果</message>
 	<message key="submission.stage">步驟 {$stage}</message>
 	<message key="submission.directorReview">審查主編</message>
-	<message key="submission.notifyPresenter">通知作者</message>
+	<message key="submission.notifyAuthor">通知作者</message>
 	<message key="submission.notifyDirector">通知主編</message>
-	<message key="submission.directorPresenterRecord">主編/作者電子郵件紀錄</message>
+	<message key="submission.directorAuthorRecord">主編/作者電子郵件紀錄</message>
 	<message key="submission.directorVersion">主編改編後的版本</message>
-	<message key="submission.presentersRevisedVersion">作者修改後的版本</message>
-	<message key="submission.presenterVersion">作者修改的版本</message>
+	<message key="submission.authorsRevisedVersion">作者修改後的版本</message>
+	<message key="submission.authorVersion">作者修改的版本</message>
 	<message key="submission.layout.description">這個步驟可以使用來編排計畫提案或者來改變檔案形式不管是在將提議寄給發表者之前或之後。</message>
 
 	<message key="submission.paperType">文章類別</message>
@@ -243,12 +243,12 @@
 	<message key="user.role.manager">會議管理者</message>
 	<message key="user.role.director">會議主席</message>
 	<message key="user.role.trackDirector">主題主編</message>
-	<message key="user.role.presenter">作者</message>
+	<message key="user.role.author">作者</message>
 
 	<message key="user.role.managers">會議管理者</message>
 	<message key="user.role.directors">會議主席</message>
 	<message key="user.role.trackDirectors">主題主編</message>
-	<message key="user.role.presenters">作者</message>
+	<message key="user.role.authors">作者</message>
 
 	<!--
 	 *
@@ -257,7 +257,7 @@
 	-->
 	
 	<message key="event.logType.paper">文章</message>
-	<message key="event.logType.presenter">作者</message>
+	<message key="event.logType.author">作者</message>
 	<message key="event.logType.director">主編</message>
 	<message key="event.logType.review">審查</message>
 	<message key="event.logType.conference">研討會</message>
@@ -278,9 +278,9 @@
 	<message key="submission.event.general.presentationSubmitted">發表媒体繳交</message>
 	<message key="submission.event.general.paperPublished">已被發表之文章</message>
 
-	<message key="submission.event.presenter.presenterRevision">作者修正後文稿</message>
+	<message key="submission.event.presenter.authorRevision">作者修正後文稿</message>
 
-	<message key="submission.event.general.presenterRevision">作者更新修正後的檔案</message>
+	<message key="submission.event.general.authorRevision">作者更新修正後的檔案</message>
 
 	<message key="submission.event.director.directorAssigned">主編被指派到的負責主題</message>
 	<message key="submission.event.director.directorUnassigned">主編尚未被指派負責的主題</message>
@@ -375,7 +375,7 @@
 	<message key="manager.statistics.reports.generate">ㄧ般報告</message>
 	<message key="manager.statistics.reports.status">狀態 (被接受、被刪除，其他)</message>
 	<message key="manager.statistics.reports.dateDecided">時間選擇</message>
-	<message key="manager.statistics.reports.presenter">作者 #{$num}</message>
+	<message key="manager.statistics.reports.author">作者 #{$num}</message>
 	<message key="manager.statistics.reports.affiliation">戶籍 #{$num}</message>
 	<message key="manager.statistics.reports.country">國家 #{$num}</message>
 	<message key="manager.statistics.reports.reviewer">審查者 #{$num}</message>
@@ -547,7 +547,7 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 
 
 	<!-- Track Director -->
-	<message key="trackDirector.presenter.confirmRenotify">通知作者他的稿件將重新開始程序。您是否確認執行此通知?</message>
+	<message key="trackDirector.author.confirmRenotify">通知作者他的稿件將重新開始程序。您是否確認執行此通知?</message>
 
 	<message key="trackDirector.regrets.breadcrumb">謝絕</message>
 	<message key="trackDirector.regrets.title">#{$paperId} 審查者謝絕 &amp; 取消</message>
@@ -617,12 +617,12 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 
 
 	<!-- Paper Submission Step 2 -->
-	<message key="presenter.submit.metadataDescription">這個研討會會集有關各項投稿的metadata，根據由開放檔案現行的標準設置，這是&#29234;辨認研究資源設置的新線上標準。這使能橫跨OAI 資料庫集體的和準確的搜尋，增加讀者發現投稿的可能譬如這一個。主席或許堅持metadata 被提供在開始編輯建議過程之前。</message>
-	<message key="presenter.submit.presentersDescription">為了不只一位作者投稿，告知作者們他們將會出現在引用文內。</message>
-	<message key="presenter.submit.reorderPresenterName">重新安排作者的名字</message>
+	<message key="author.submit.metadataDescription">這個研討會會集有關各項投稿的metadata，根據由開放檔案現行的標準設置，這是&#29234;辨認研究資源設置的新線上標準。這使能橫跨OAI 資料庫集體的和準確的搜尋，增加讀者發現投稿的可能譬如這一個。主席或許堅持metadata 被提供在開始編輯建議過程之前。</message>
+	<message key="presenter.submit.authorsDescription">為了不只一位作者投稿，告知作者們他們將會出現在引用文內。</message>
+	<message key="author.submit.reorderAuthorName">重新安排作者的名字</message>
 
 	<!-- Paper Submission Step 3 -->
-	<message key="presenter.submit.uploadInstructions"><![CDATA[
+	<message key="author.submit.uploadInstructions"><![CDATA[
 請完成下列步驟來上傳論文至此研討會。
 
 <ol>
@@ -656,15 +656,15 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<!-- Submission Email Log -->
 
 	<!-- Submission Comments -->
-	<message key="submission.comments.directorPresenterCorrespondence">主編/作者 通信記錄</message>
+	<message key="submission.comments.directorAuthorCorrespondence">主編/作者 通信記錄</message>
 	<message key="submission.comments.viewableDescription"><![CDATA[本意見能夠分享給作者。<br />
 (在儲存之後仍可以再增加意見。)]]></message>
-	<message key="submission.comments.canShareWithPresenter">給作者與主編</message>
-	<message key="submission.comments.cannotShareWithPresenter">給主編</message>
+	<message key="submission.comments.canShareWithAuthor">給作者與主編</message>
+	<message key="submission.comments.cannotShareWithAuthor">給主編</message>
 	<message key="submission.comments.blindCcReviewers">在件寄出後，同時寄送一個不具名的複本給審查者。</message>
-	<message key="submission.comments.forPresenterDirector">給作者與主編</message>
+	<message key="submission.comments.forAuthorDirector">給作者與主編</message>
 	<message key="submission.comments.forDirector">給主編</message>
-	<message key="submission.comments.saveAndEmailPresenter">儲存並寄電子郵件給作者</message>
+	<message key="submission.comments.saveAndEmailAuthor">儲存並寄電子郵件給作者</message>
 	<message key="submission.comments.saveAndEmailDirector">儲存並寄電子郵件給主編</message>
 
 	<!-- Login -->
@@ -697,22 +697,22 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<message key="user.account.form.passwordLengthTooShort">您輸入的密碼長度不夠長。</message>
 	<message key="user.account.readerDescription">由電子郵件公佈所介紹的出版物。</message>
 	<message key="user.account.openAccessNotificationDescription">當研討會已被開放時會以電子郵件來公佈。</message>
-	<message key="user.account.presenterDescription">能遞交項目給研討會。</message>
+	<message key="user.account.authorDescription">能遞交項目給研討會。</message>
 	<message key="user.account.reviewerDescriptionNoInterests">願意對於此研討會來管理同事審查投稿。</message>
 	<message key="user.account.reviewerDescription">願意對於此研討會來管理同儕審查投稿。對審查有興趣 (實質的領域和研究方法)。</message>
-	<message key="user.account.presenterRegistrationMessage">雖然您在此網站擁有一個帳號，但並不表示您目前為此研討會的作者。</message>
+	<message key="user.account.authorRegistrationMessage">雖然您在此網站擁有一個帳號，但並不表示您目前為此研討會的作者。</message>
 
 
 
 	<!-- Search -->
-	<message key="search.browsePresenterIndex">瀏覽作者索引</message>
+	<message key="search.browseAuthorIndex">瀏覽作者索引</message>
 	<message key="search.searchFor">查尋文章為</message>
 	<message key="search.inField">在</message>
-	<message key="search.presenter">作者</message>
+	<message key="search.author">作者</message>
 	<message key="search.withinConference">內部研討會</message>
 	<message key="search.allConferences">所有研討會</message>
-	<message key="search.presenterIndex">瀏覽作者索引</message>
-	<message key="search.presenterDetails">作者詳述</message>
+	<message key="search.authorIndex">瀏覽作者索引</message>
+	<message key="search.authorDetails">作者詳述</message>
 	<message key="search.syntaxInstructions"><![CDATA[查尋要訣: <ul>
 <li>搜尋時英文關鍵字沒有大小寫的分別</li>
 <li>共通的字詞被忽略</li>
@@ -778,7 +778,7 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<message key="about.onlineSubmissions.needAccount">您需要一個使用者名稱/密碼嗎？</message>
 	<message key="about.onlineSubmissions.registration">至註冊</message>
 	<message key="about.onlineSubmissions.registrationRequired">您必須要在網站內註冊及登入才能投遞稿件及查詢目前的投稿狀態。</message>
-	<message key="about.presenterGuidelines">作者指南</message>
+	<message key="about.authorGuidelines">作者指南</message>
 	<message key="about.submissionPreparationChecklist">投稿準備清單</message>
 	<message key="about.copyrightNotice">版權告示</message>
 	<message key="about.privacyStatement">保密性聲明</message>
@@ -788,7 +788,7 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<message key="about.delayedOpenAccess">延遲開放存取</message>
 	<message key="about.delayedOpenAccessDescription1">這個研討會內容將開放利用在一個開放存取格式內</message>
 	<message key="about.delayedOpenAccessDescription2">月在預定的研討會發布給參加者之後。</message>
-	<message key="about.presenterSelfArchive">作者自行歸檔</message>
+	<message key="about.authorSelfArchive">作者自行歸檔</message>
 	<message key="about.archiving">歸檔</message>
 	<message key="about.registration">註冊</message>
 	<message key="about.registrationContact">註冊連絡</message>
@@ -879,9 +879,9 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<!-- Paper Logs -->
 	<message key="log.default.abstractPeriodExpired">論文編號 {$paperId} 的摘要繳交已經過期，該文章已經移到癈棄區。</message>
 	<message key="log.default.paperPeriodExpired">論文編號 {$paperId} 的稿件繳交已經過期，該文章已經移到癈棄區。</message>
-	<message key="log.presenter.abstractSubmitted">{$presenterName} 已經繳交 {$submissionId} 文章的摘要。</message>
-	<message key="log.presenter.presentationSubmitted">{$presenterName} 已經上傳發表媒體，文章編號 {$submissionId}.</message>
-	<message key="log.presenter.documentRevised">{$presenterName} 已經修改編號 {$paperId} 的文章。新的檔案編號為 {$fileId}。</message>
+	<message key="log.author.abstractSubmitted">{$authorName} 已經繳交 {$submissionId} 文章的摘要。</message>
+	<message key="log.author.presentationSubmitted">{$authorName} 已經上傳發表媒體，文章編號 {$submissionId}.</message>
+	<message key="log.author.documentRevised">{$authorName} 已經修改編號 {$paperId} 的文章。新的檔案編號為 {$fileId}。</message>
 	<message key="log.review.reviewerAssigned">{$reviewerName} 已經指派審查 {$paperId} 稿件，目前進行審查步驟 {$stage}。</message>
 	<message key="log.review.reviewerUnassigned">{$reviewerName} 已經取消其審查 {$paperId} 稿件的任務，目前審查步驟 {$stage}。</message>
 	<message key="log.review.reviewInitiated">步驟 {$stage} 由審查者 {$reviewerName} 審查的 {$paperId} 稿件任務已經開始。</message>
@@ -920,8 +920,8 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<message key="log.timeline.endDateChanged">研討會結束日期已經從 {$oldEndDate} 變更為 {$newEndDate}。</message>
 	<message key="log.timeline.regReviewerOpenDateChanged">開放作者註冊的日期已經從 {$oldRegReviewerOpenDate} 變更為 {$newRegReviewerOpenDate}。</message>
 	<message key="log.timeline.regReviewerCloseDateChanged">關閉作者註冊的日期已經從 {$oldRegReviewerCloseDate} 變更為 {$newRegReviewerCloseDate}。</message>
-	<message key="log.timeline.regPresenterOpenDateChanged">作者註冊開放日期已經從 {$oldRegPresenterOpenDate} 變更為 {$newRegPresenterOpenDate}。</message>
-	<message key="log.timeline.regPresenterCloseDateChanged">作者註冊關閉日期已經從 {$oldRegPresenterCloseDate} 變更為 {$newRegPresenterCloseDate}。</message>
+	<message key="log.timeline.regAuthorOpenDateChanged">作者註冊開放日期已經從 {$oldRegPresenterOpenDate} 變更為 {$newRegPresenterOpenDate}。</message>
+	<message key="log.timeline.regAuthorCloseDateChanged">作者註冊關閉日期已經從 {$oldRegPresenterCloseDate} 變更為 {$newRegPresenterCloseDate}。</message>
 	<message key="log.timeline.showCFPDateChanged">徵稿顯示日期已經從 {$oldShowCFPDate} 變更為 {$newShowCFPDate}。</message>
 	<message key="log.timeline.submissionsOpenDateChanged">開放投稿日期已經從 {$oldSubmissionsOpenDate} 變更為 {$newSubmissionsOpenDate}。</message>
 	<message key="log.timeline.submissionsCloseDateChanged">關閉投稿日期已經從 {$oldSubmissionsCloseDate} 變更為 {$newSubmissionsCloseDate}。</message>
@@ -1017,22 +1017,22 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<message key="default.schedConfSettings.checklist.anonymous">如果是投稿至同儕匿名審查的主題，請於稿件中移除所有與作者有關的資訊。</message>
 	<message key="default.schedConfSettings.checklist.personalInformationRemoved">如果是投稿到同儕匿名審查的稿件，所有稿件檔案 (包含補充檔案) 中關於作者的所有資訊都必須移除。</message>
 	<message key="default.conferenceSettings.privacyStatement">您在本網站所輸入的個人資料僅使用於本研討會的各項活動中，不會使用在其他非本研討會相關的活動中。</message>
-	<message key="default.conferenceSettings.presenterSelfArchivePolicy">作者可以將自己的論文檔案放在自己或者所屬機構的網站上 (但需清楚標示該論文的出版資訊)。</message>
+	<message key="default.conferenceSettings.authorSelfArchivePolicy">作者可以將自己的論文檔案放在自己或者所屬機構的網站上 (但需清楚標示該論文的出版資訊)。</message>
 	<message key="default.conferenceSettings.emailSignature"><![CDATA[________________________________________________________________________
 {$conferenceName}
 {$conferenceUrl}
 ]]></message>
 	<message key="default.conferenceSettings.forReaders"><![CDATA[我們鼓勵讀者們登錄本站以收到有關本研討會論文的通知。同時建議您訪問 <a href="{$aboutUrl}">關於研討會</a> 的網頁了解相關的策略，以及訪問 <a href="{$conferenceUrl}">研討會首頁</a> 查看即將舉辦的研討會訊息。]]></message>
-	<message key="default.conferenceSettings.forPresenters"><![CDATA[如果您有興趣投稿本研討會，請造訪 <a href="{$aboutUrl}">關於研討會</a> 網頁了解相燈的策略與訊息，並訪問 <a href="{$conferenceUrl}">研討會首頁</a> 查看即將舉辦的研討會訊息。]]></message>
+	<message key="default.conferenceSettings.forAuthors"><![CDATA[如果您有興趣投稿本研討會，請造訪 <a href="{$aboutUrl}">關於研討會</a> 網頁了解相燈的策略與訊息，並訪問 <a href="{$conferenceUrl}">研討會首頁</a> 查看即將舉辦的研討會訊息。]]></message>
 	<message key="default.conferenceSettings.lockssLicense"><![CDATA[本研討會使用 LOCKSS 系統由參與的圖書館建立分散式典藏系統，同時充許這些圖書館在維護與典藏的目的下建立永久性的典藏檔案庫。<a href="http://lockss.stanford.edu/">更多...</a>]]></message>
 
 	<message key="default.schedConfSettings.emailSignature"><![CDATA[________________________________________________________________________
 {$conferenceName} {$schedConfName}
 {$schedConfUrl}
 ]]></message>
-	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[您可以在 <a href="{$presenterGuidelinesUrl}">作者指引</a> 網頁中找到有關本研討會文章與文獻寫作格式與相關要求的說明。]]></message>
+	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[您可以在 <a href="{$authorGuidelinesUrl}">作者指引</a> 網頁中找到有關本研討會文章與文獻寫作格式與相關要求的說明。]]></message>
 	<message key="default.schedConfSettings.forReaders"><![CDATA[我們鼓勵讀者們登錄研討會網站以取得本研討會論文的相關通知。您可以點選 <a href="{$accountUrl}">帳號</a> 選單連結到研討會的首頁，本清單充許研討會要求特定的支援或者讀者們。請參閱研討會的 <a href="{$privacyStatementUrl}">穩私條款</a> 本研討會不會將您的姓名與電子郵件用在研討會以外的用途上。]]></message>
-	<message key="default.schedConfSettings.forPresenters"><![CDATA[有果您有興趣投稿本研討會，建議您訪問<a href="{$aboutUrl}">關於研討會</a> 網頁了解研討會的相關策略，以及 <a href="{$presenterGuidelinesUrl}">作者指引</a> 網頁。作者們需要 <a href="{$accountUrl}">建立一個帳號</a> 以便在研討會網站中進行投稿。如果您已經擁有本網站的帳號，請 <a href="{$loginUrl}">登入</a> 並開始投稿的步驟。]]></message>
+	<message key="default.schedConfSettings.forAuthors"><![CDATA[有果您有興趣投稿本研討會，建議您訪問<a href="{$aboutUrl}">關於研討會</a> 網頁了解研討會的相關策略，以及 <a href="{$authorGuidelinesUrl}">作者指引</a> 網頁。作者們需要 <a href="{$accountUrl}">建立一個帳號</a> 以便在研討會網站中進行投稿。如果您已經擁有本網站的帳號，請 <a href="{$loginUrl}">登入</a> 並開始投稿的步驟。]]></message>
 
 	<message key="common.time">時間</message>
 	<message key="common.sortBy">排序依據...</message>

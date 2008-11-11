@@ -66,7 +66,7 @@
 	<message key="director.paper.requestedByDate">Demandée par date</message>
 	<message key="director.paper.dueDateFormat">Format: AAAA-MM-JJ</message>
 	<message key="director.paper.numberOfWeeks">Nombre de semaines</message>
-	<message key="director.paper.showPresenter">Permettre à l'auteur de voir le fichier</message>
+	<message key="director.paper.showAuthor">Permettre à l'auteur de voir le fichier</message>
 	<message key="director.paper.rateReviewer">Noter l'évaluateur</message>
 	<message key="director.paper.reviewerRating.veryGood">5 Très bien</message>
 	<message key="director.paper.reviewerRating.good">4 Bien</message>

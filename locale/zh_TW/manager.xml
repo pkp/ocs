@@ -113,8 +113,8 @@
 	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Note:</strong> 要啟用使功能必需同時啟用 OCS 設定檔中的 <tt>scheduled_tasks</tt> 功能. 同時合伺服器必需支援此功能 (有些伺服器可能不支援此功能), 請依 OCS 的說明文件進行設定.]]></message>
 	<message key="manager.registrationPolicies.openAccessOptions">為了註冊研討會而開啟選擇路徑</message>
 	<message key="manager.registrationPolicies.openAccessOptionsDescription">研討會註冊能提供“延遲開啟存取”和/或“作者自行歸檔“(這些增加讀者群和內容的引證)。被選出來的方針將會顯示在關於研會內。</message>
-	<message key="manager.registrationPolicies.presenterSelfArchive">作者自行歸檔的規範</message>
-	<message key="manager.registrationPolicies.presenterSelfArchiveDescription">以下方針被包含在關於研討會內。</message>
+	<message key="manager.registrationPolicies.authorSelfArchive">作者自行歸檔的規範</message>
+	<message key="manager.registrationPolicies.authorSelfArchiveDescription">以下方針被包含在關於研討會內。</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformation">註冊資訊</message>
 	<message key="manager.registrationPolicies.registrationAdditionalInformationDescription">註冊類型和結構自動地將會與名字與聯絡資訊一起被安置在研會頁面內的註冊欄下。關於有關註冊的其它資訊，譬如於被登記者在發展中國家的付款或支持方法對，也可以增加在此處。</message>
 	<message key="manager.registrationPolicies.registrationContact">註冊管理者</message>
@@ -255,8 +255,8 @@
 	<message key="manager.schedConfSetup.submissions.disciplineProvideExamples">為此研討會提供相關的學術學科例子</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicPaperId">識別號將會被增加來標示已被接收的演講稿。</message>
 	<message key="manager.schedConfSetup.submissions.enablePublicSuppFileId">識別號將增加來標示已被接收的演講稿的補充文件。</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWork">投稿索引</message>
-	<message key="manager.schedConfSetup.submissions.forPresentersToIndexTheirWorkDescription"><![CDATA[OCS遵守 <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a>協定案為後資料庫收集的成果，它是目前最新的標準用來提供全球電子研究資源的很好通入。作者將使用一個相似的樣板來提供他們投稿的資料庫。研討會主管應該選擇索引類別，和呈獻作者以相關的例子來協助他們在標註上的工作，並以分號分開期間 (如：期間1; 期間2)。登入也應該被介紹如使用"如："或"例如"。]]></message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWork">投稿索引</message>
+	<message key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWorkDescription"><![CDATA[OCS遵守 <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a>協定案為後資料庫收集的成果，它是目前最新的標準用來提供全球電子研究資源的很好通入。作者將使用一個相似的樣板來提供他們投稿的資料庫。研討會主管應該選擇索引類別，和呈獻作者以相關的例子來協助他們在標註上的工作，並以分號分開期間 (如：期間1; 期間2)。登入也應該被介紹如使用"如："或"例如"。]]></message>
 	<message key="manager.schedConfSetup.submissions.notifications.copyPrimaryContact">研討會主要聯絡人。</message>
 	<message key="manager.schedConfSetup.submissions.notifications.copySpecifiedAddress">電子郵件地址</message>
 	<message key="manager.schedConfSetup.submissions.notifications.description">對於電子郵件確認信件的拷貝，投稿者應該去以下：</message>
@@ -265,8 +265,8 @@
 	<message key="manager.schedConfSetup.submissions.preparationChecklist">投稿準備清單</message>
 	<message key="manager.schedConfSetup.submissions.preparationChecklist.description">在此研討會投稿上，請作者必須檢查投稿準備清單上的項目。 檢查項目列表同時也會出現在作者指南上。下面列表可被編輯。在稿件被接受之前，所有在列表內的項目必須由作者本人檢查。</message>
 	<message key="manager.schedConfSetup.submissions.presentationsAlone">提案全文</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelines">作者指南</message>
-	<message key="manager.schedConfSetup.submissions.presenterGuidelinesDescription"><![CDATA[開始為作者的自傳即將其標準格式化並傳送至研討會，可能如例子。若附加檔案是被准許的，建議型式(如：資料集、研究工具等。)能鼓勵作者上傳資料來增進讀者們的使用。]]></message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelines">作者指南</message>
+	<message key="manager.schedConfSetup.submissions.authorGuidelinesDescription"><![CDATA[開始為作者的自傳即將其標準格式化並傳送至研討會，可能如例子。若附加檔案是被准許的，建議型式(如：資料集、研究工具等。)能鼓勵作者上傳資料來增進讀者們的使用。]]></message>
 	<message key="manager.schedConfSetup.submissions.publicIdentifier">研討會內容確認</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassification">附屬分類</message>
 	<message key="manager.schedConfSetup.submissions.subjectClassificationExamples">(如：數學附屬的分類、國會圖書館分類)</message>
@@ -366,7 +366,7 @@
 	<message key="manager.setup.additionalContent.homepageImage">主頁圖像</message>
 	<message key="manager.setup.additionalContent.information">使用者資訊</message>
 	<message key="manager.setup.additionalContent.information.description">預期作者和讀者可利用在側邊功能表中的“資訊”來查看研討會的簡要描述。</message>
-	<message key="manager.setup.additionalContent.information.forPresenters">作者</message>
+	<message key="manager.setup.additionalContent.information.forAuthors">作者</message>
 	<message key="manager.setup.additionalContent.information.forReaders">讀者</message>
 	<message key="manager.setup.additionalContent.title">步驟2. 附加的網站內容</message>
 	<message key="manager.setup.conferenceSetupUpdated">您的研討會設定已被更新</message>
@@ -443,7 +443,7 @@
 	<message key="manager.timeline">研討會時間安排</message>
 	<message key="manager.timeline.closeComments">關閉評論 (啟動閱讀工具)</message>
 	<message key="manager.timeline.closeComments.plain">關閉評論</message>
-	<message key="manager.timeline.closeRegPresenter">關閉作者註冊</message>
+	<message key="manager.timeline.closeRegAuthor">關閉作者註冊</message>
 	<message key="manager.timeline.closeRegReviewer">關閉審查者註冊</message>
 	<message key="manager.timeline.closeReviewProcess">關閉審查過程</message>
 	<message key="manager.timeline.conference">研討會</message>
@@ -453,13 +453,13 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">研討會的截止時間必需在研討會開始時間之後.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">網站 "啟用上線" 日期必需在研討會開始日期之前.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">研討會不能在投截止日之前開始.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegPresenterOpenDate">作者開始註冊日期必需在作者註冊截止日期之前.</message>
+	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">作者開始註冊日期必需在作者註冊截止日期之前.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">審查者開始註冊日期必需在審查者註冊截止日期之前.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">網站 "移動到檔案庫 (歸檔)" 日期必需在研討會結束日期之後.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">研討會網站在研討會開始日期之前不能進行歸檔動作.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeSiteStart">網站 "啟用上線" 日期必需在 "移動到檔案庫 (歸檔)" 日期之前.</message>
 	<message key="manager.timeline.form.submissionsCloseBeforeCFP">論文徵稿訊息必需在投稿截止日期之前公布.</message>
-	<message key="manager.timeline.openRegPresenter">開放作者註冊</message>
+	<message key="manager.timeline.openRegAuthor">開放作者註冊</message>
 	<message key="manager.timeline.openRegReviewer">開放審查者註冊</message>
 	<message key="manager.timeline.overrideDates">撤銷錯誤資訊</message>
 	<message key="manager.timeline.postAbstracts">已接受的摘要</message>
