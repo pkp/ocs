@@ -41,7 +41,7 @@ class PaperMailTemplate extends MailTemplate {
 	/**
 	 * Constructor.
 	 * @param $paper object
-	 * @param $emailType int optional
+	 * @param $emailType string optional
 	 * @param $locale string optional
 	 * @param $enableAttachments boolean optional
 	 * @param $conference object optional
