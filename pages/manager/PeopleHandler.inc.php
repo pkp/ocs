@@ -245,7 +245,7 @@ class PeopleHandler extends ManagerHandler {
 
 					$role =& new Role();
 					$role->setConferenceId($conference->getConferenceId());
-					if ($schedConf) {
+					if ($schedConf && $rolePath != ROLE_PATH_CONFERENCE_MANAGER) {
 						$role->setSchedConfId($schedConfId);
 					} else {
 						$role->setSchedConfId(0);

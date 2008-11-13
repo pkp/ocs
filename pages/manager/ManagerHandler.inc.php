@@ -20,10 +20,13 @@ class ManagerHandler extends Handler {
 	 * Display conference management index page.
 	 */
 	function index() {
+		// Manager requests should come to the Conference context, not Sched Conf
+		if (Request::getRequestedSchedConfPath() != 'index') Request::redirect(null, 'index', 'manager');
+
 		list($conference, $schedConf) = ManagerHandler::validate(true, false);
 		ManagerHandler::setupTemplate();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
