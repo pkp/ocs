@@ -68,11 +68,11 @@ class AuthorDAO extends DAO {
 	 * Retrieve all published papers associated with authors with
 	 * the given first name, middle name, last name, affiliation, and country.
 	 * @param $schedConfId int (null if no restriction desired)
-	 * @param firstName string
-	 * @param middleName string
-	 * @param lastName string
-	 * @param affiliation string
-	 * @param country string
+	 * @param $firstName string
+	 * @param $middleName string
+	 * @param $lastName string
+	 * @param $affiliation string
+	 * @param $country string
 	 */
 	function &getPublishedPapersForAuthor($schedConfId, $firstName, $middleName, $lastName, $affiliation, $country) {
 		$publishedPapers = array();
