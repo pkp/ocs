@@ -15,9 +15,9 @@
 
 <ul class="plain">
 	<li>&#187; <a href="{url page="about" op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
-	{if $currentConference->getLocalizedSetting('authorGuidelines') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="authorGuidelines"}">{translate key="about.authorGuidelines"}</a></li>{/if}
-	{if $currentConference->getLocalizedSetting('copyrightNotice') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
-	{if $currentConference->getLocalizedSetting('privacyStatement') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
+	{if $authorGuidelines != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="authorGuidelines"}">{translate key="about.authorGuidelines"}</a></li>{/if}
+	{if $copyrightNotice != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
+	{if $privacyStatement != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
 </ul>
 
 <a name="onlineSubmissions"></a><h3>{translate key="about.onlineSubmissions"}</h3>
@@ -31,35 +31,35 @@
 </p>
 <p>{translate key="about.onlineSubmissions.registrationRequired"}</p>
 
-<div class="separator">&nbsp;</div>
+{if $authorGuidelines != ''}
+	<div class="separator">&nbsp;</div>
 
-{if $currentConference->getLocalizedSetting('authorGuidelines') != ''}
-<a name="authorGuidelines"></a><h3>{translate key="about.authorGuidelines"}</h3>
-<p>{$currentConference->getLocalizedSetting('authorGuidelines')|nl2br}</p>
-
-<div class="separator">&nbsp;</div>
+	<a name="authorGuidelines"></a><h3>{translate key="about.authorGuidelines"}</h3>
+	<p>{$authorGuidelines|nl2br}</p>
 {/if}
 
 {if $submissionChecklist}
-<a name="submissionPreparationChecklist"></a><h3>{translate key="about.submissionPreparationChecklist"}</h3>
-<ol>
-	{foreach from=$submissionChecklist item=checklistItem}
-		<li>{$checklistItem.content|nl2br}</li>	
-	{/foreach}
-</ol>
+	<div class="separator">&nbsp;</div>
 
-<div class="separator">&nbsp;</div>
+	<a name="submissionPreparationChecklist"></a><h3>{translate key="about.submissionPreparationChecklist"}</h3>
+	<ol>
+		{foreach from=$submissionChecklist item=checklistItem}
+			<li>{$checklistItem.content|nl2br}</li>	
+		{/foreach}
+	</ol>
 {/if}
 
-{if $currentConference->getLocalizedSetting('copyrightNotice') != ''}
-<a name="copyrightNotice"></a><h3>{translate key="about.copyrightNotice"}</h3>
-<p>{$currentConference->getLocalizedSetting('copyrightNotice')|nl2br}</p>
+{if $copyrightNotice != ''}
+	<div class="separator">&nbsp;</div>
 
-<div class="separator">&nbsp;</div>
+	<a name="copyrightNotice"></a><h3>{translate key="about.copyrightNotice"}</h3>
+	<p>{$copyrightNotice|nl2br}</p>
 {/if}
 
-{if $currentConference->getLocalizedSetting('privacyStatement') != ''}<a name="privacyStatement"></a><h3>{translate key="about.privacyStatement"}</h3>
-<p>{$currentConference->getLocalizedSetting('privacyStatement')|nl2br}</p>
+{if $privacyStatement != ''}<a name="privacyStatement"></a><h3>{translate key="about.privacyStatement"}</h3>
+	<div class="separator">&nbsp;</div>
+
+	<p>{$privacyStatement|nl2br}</p>
 {/if}
 
 {include file="common/footer.tpl"}

@@ -346,7 +346,12 @@ class AboutHandler extends PKPHandler {
 			reset($submissionChecklist);
 		}
 		$templateMgr->assign('submissionChecklist', $submissionChecklist);
-		$templateMgr->assign_by_ref('conferenceSettings', $settings);
+		if ($schedConf) {
+			$templateMgr->assign('authorGuidelines', $schedConf->getLocalizedSetting('authorGuidelines'));
+		}
+		$templateMgr->assign('copyrightNotice', $conference->getLocalizedSetting('copyrightNotice'));
+		$templateMgr->assign('privacyStatement', $conference->getLocalizedSetting('privacyStatement'));
+
 		$templateMgr->assign('helpTopicId','submission.authorGuidelines');
 		$templateMgr->display('about/submissions.tpl');
 	}

@@ -13,7 +13,12 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<div>{$cfpMessage|nl2br}</div>
+<p>{$cfpMessage|nl2br}</p>
+
+{if $authorGuidelines != ''}
+	<h3>{translate key="about.authorGuidelines"}</h3>
+	<p>{$authorGuidelines|nl2br}</p>
+{/if}
 
 {if $acceptingSubmissions}
 	<p>
