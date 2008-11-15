@@ -259,24 +259,7 @@ function confirmSubmissionCheck() {
 		<td colspan="2">&nbsp;</td>
 	</tr>
 {/if}{* $reviewAssignment->getReviewFormId() *}
-<tr valign="top">
-	<td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
-	<td><span class="instruct">{translate key="reviewer.paper.enterReviewA"}</span></td>
-</tr>
-<tr valign="top">
-	<td>&nbsp;</td>
-	<td>
-		{translate key="submission.review"} 
-		{if $confirmedStatus and not $declined}
-			<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$paperId|to_array:$reviewId}');" class="icon">{icon name="comment"}</a>
-		{else}
-			 {icon name="comment" disabled="disabled"}
-		{/if}
-	</td>
-</tr>
-<tr>
-	<td colspan="2">&nbsp;</td>
-</tr>
+
 <tr valign="top">
 	<td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
 	<td><span class="instruct">{translate key="reviewer.paper.uploadFile"}</span></td>
