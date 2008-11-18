@@ -21,11 +21,11 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 */
 	function deleteSubmission($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		list($conference, $schedConf, $authorSubmission) = TrackSubmissionHandler::validate($paperId);
+		list($conference, $schedConf, $authorSubmission) = TrackSubmissionHandler::validate($paperId, null, true);
 		parent::setupTemplate(true);
 
 		// If the submission is incomplete, allow the author to delete it.
-		if ($authorSubmission->getSubmissionProgress()!=0 && $authorSubmission->getCurrentStage()==REVIEW_STAGE_ABSTRACT) {
+		if ($authorSubmission->getSubmissionProgress()!=0) {
 			import('file.PaperFileManager');
 			$paperFileManager = new PaperFileManager($paperId);
 			$paperFileManager->deletePaperTree();
@@ -346,8 +346,10 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 * @param $requiresEditAccess boolean True means that the author must
 	 * 	  have edit access over the specified paper in order for
 	 * 	  validation to be successful.
+	 * @param $isDeleting boolean True iff user is deleting a paper, and is not
+	 *	  coming from an old URL (e.g. submission ack email)
 	 */
-	function validate($paperId, $requiresEditAccess = false) {
+	function validate($paperId, $requiresEditAccess = false, $isDeleting = false) {
 		parent::validate();
 
 		$authorSubmissionDao = &DAORegistry::getDAO('AuthorSubmissionDAO');
@@ -370,7 +372,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 			}
 		}
 
-		if ($isValid) {
+		if ($isValid && !$isDeleting) {
 			// The user may be coming in on an old URL e.g. from the submission
 			// ack email. If OCS is awaiting the completion of the submission,
 			// send them to the submit page.
