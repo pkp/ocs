@@ -22,28 +22,86 @@ class OAIMetadataFormat_MARC extends OAIMetadataFormat {
 	 * @see OAIMetadataFormat#toXML
 	 */
 	function toXML(&$record) {
+		$conference =& $record->getData('conference');
+		$schedConf =& $record->getData('schedConf');
+		$paper =& $record->getData('paper');
+		$track =& $record->getData('track');
+		$galleys =& $record->getData('galleys');
+
+		// Add page information to sources
+		$source = $conference->getConferenceTitle() . '; ' . $schedConf->getSchedConfTitle();
+		if ($paper->getPages() != '') {
+			$source .= '; ' . $paper->getPages();
+		}
+
+		// Get author names
+		$creators = array();
+		foreach ($paper->getAuthors() as $author) {
+			$authorName = $author->getFullName();
+			$affiliation = $author->getAffiliation();
+			if (!empty($affiliation)) {
+				$authorName .= '; ' . $affiliation;
+			}
+			$creators[] = $authorName;
+		}
+
+		// Subjects
+		$subject = array(
+			$paper->getPaperDiscipline(null),
+			$paper->getPaperSubject(null),
+			$paper->getPaperSubjectClass(null)
+		);
+
+		// Publishers
+		$publisher = $conference->getConferenceTitle(); // Default
+		$publisherInstitution = $conference->getSetting('publisherInstitution');
+		if (!empty($publisherInstitution)) {
+			$publisher = $publisherInstitution;
+		}
+
+		// Types
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+		$type = Locale::translate('rt.metadata.pkp.peerReviewed');
+
+		// Formats
+		$format = array();
+		foreach ($galleys as $galley) {
+			$format[] = $galley->getFileType();
+		}
+
+		// Get supplementary files
+		$relation = array();
+		foreach ($paper->getSuppFiles() as $suppFile) {
+			// FIXME replace with correct URL
+			$relation[] = Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'download', array($paperId, $suppFile->getFileId()));
+		}
+
 		$response = "<oai_marc status=\"c\" type=\"a\" level=\"m\" encLvl=\"3\" catForm=\"u\"\n" .
 			"\txmlns=\"http://www.openarchives.org/OAI/1.1/oai_marc\"\n" .
 			"\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" .
 			"\txsi:schemaLocation=\"http://www.openarchives.org/OAI/1.1/oai_marc\n" .
 			"\thttp://www.openarchives.org/OAI/1.1/oai_marc.xsd\">\n" .
-			"\t<fixfield id=\"008\">\"" . date('ymd', strtotime($record->date)) . ' ' . date('Y', strtotime($record->date)) . '												eng  "</fixfield>' . "\n" .
+			"\t<fixfield id=\"008\">\"" . date('ymd Y', strtotime($paper->getDatePublished())) . '												eng  "</fixfield>' . "\n" .
 			$this->formatElement('042', ' ', ' ', 'a', 'dc') .
-			$this->formatElement('245', '0', '0', 'a', $record->titles[$record->primaryLocale]) .
-			$this->formatElement('720', ' ', ' ', 'a', $record->creator) .
-			$this->formatElement('653', ' ', ' ', 'a', $this->getLocalizedData($record->subjects, $record->primaryLocale)) .
-			$this->formatElement('520', ' ', ' ', 'a', $this->getLocalizedData($record->descriptions, $record->primaryLocale)) .
-			$this->formatElement('260', ' ', ' ', 'b', $record->publishers[$record->primaryLocale]) .
-			$this->formatElement('720', ' ', ' ', 'a', $this->getLocalizedData($record->contributors, $record->primaryLocale)) .
-			$this->formatElement('260', ' ', ' ', 'c', $record->date) .
-			$this->formatElement('655', ' ', '7', 'a', $record->types[$record->primaryLocale]) .
-			$this->formatElement('856', ' ', ' ', 'q', $record->format) .
-			$this->formatElement('856', '4', '0', 'u', $record->url) .
-			$this->formatElement('786', '0', ' ', 'n', $record->sources[$record->primaryLocale] . (!empty($record->pages)?"; " . $record->pages:"")) .
-			$this->formatElement('546', ' ', ' ', 'a', $record->language) .
-			$this->formatElement('787', '0', ' ', 'n', $record->relation) .
-			$this->formatElement('500', ' ', ' ', 'a', $this->getLocalizedData($record->coverage, $record->primaryLocale)) .
-			$this->formatElement('540', ' ', ' ', 'a', $record->rights) .
+			$this->formatElement('245', '0', '0', 'a', $paper->getPaperTitle()) .
+			$this->formatElement('720', ' ', ' ', 'a', $creators) .
+			$this->formatElement('653', ' ', ' ', 'a', $subject) .
+			$this->formatElement('520', ' ', ' ', 'a', strip_tags($paper->getPaperAbstract())) .
+			$this->formatElement('260', ' ', ' ', 'b', $publisher) .
+			$this->formatElement('720', ' ', ' ', 'a', $paper->getPaperSponsor()) .
+			$this->formatElement('260', ' ', ' ', 'c', $paper->getDatePublished()) .
+			$this->formatElement('655', ' ', '7', 'a', $type) .
+			$this->formatElement('856', ' ', ' ', 'q', $format) .
+			$this->formatElement('856', '4', '0', 'u', Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', array($paper->getBestPaperId()))) .
+			$this->formatElement('786', '0', ' ', 'n', $source) .
+			$this->formatElement('546', ' ', ' ', 'a', $paper->getLanguage()) .
+			$this->formatElement('787', '0', ' ', 'n', $relation) .
+			$this->formatElement('500', ' ', ' ', 'a', array(
+				$paper->getPaperCoverageGeo(null),
+				$paper->getPaperCoverageChron(null),
+				$paper->getPaperCoverageSample(null)
+			)) .
+			$this->formatElement('540', ' ', ' ', 'a', $conference->getLocalizedSetting('copyrightNotice')) .
 			"</oai_marc>\n";
 
 		return $response;

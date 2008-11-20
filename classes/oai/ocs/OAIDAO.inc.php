@@ -25,7 +25,8 @@ class OAIDAO extends DAO {
  	/** Helper DAOs */
  	var $conferenceDao;
  	var $trackDao;
-	var $paperDao;
+	var $publishedPaperDao;
+	var $paperGalleyDao;
  	var $authorDao;
  	var $suppFileDao;
  	var $conferenceSettingsDao;
@@ -42,7 +43,8 @@ class OAIDAO extends DAO {
 		$this->conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 		$this->schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$this->trackDao =& DAORegistry::getDAO('TrackDAO');
-		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
+		$this->publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$this->paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$this->conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
@@ -98,7 +100,7 @@ class OAIDAO extends DAO {
 	 * @return boolean
 	 */
 	function recordExists($paperId, $conferenceId = null) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*)
 			FROM published_papers pp'
 			. (isset($conferenceId) ? ', sched_confs s' : '')
@@ -229,7 +231,7 @@ class OAIDAO extends DAO {
 		if (isset($trackId)) {
 			array_push($params, $trackId);
 		}
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT	pp.paper_id,
 				pp.date_published,
 				c.path AS conference_path,
@@ -316,87 +318,29 @@ class OAIDAO extends DAO {
 		$record = new OAIRecord();
 
 		$paperId = $row['paper_id'];
-		if ($this->conferenceSettingsDao->getSetting($row['conference_id'], 'enablePublicPaperId')) {
+/*		if ($this->conferenceSettingsDao->getSetting($row['conference_id'], 'enablePublicPaperId')) {
 			if (!empty($row['public_paper_id'])) {
 				$paperId = $row['public_paper_id'];
 			}
-		}
+		} */
 
-		$paper =& $this->paperDao->getPaper($paperId);
+		$paper =& $this->publishedPaperDao->getPublishedPaperByPaperId($paperId);
 		$conference =& $this->getConference($row['conference_id']);
 		$schedConf =& $this->getSchedConf($row['sched_conf_id']);
 		$track =& $this->getTrack($row['track_id']);
+		$galleys =& $this->paperGalleyDao->getGalleysByPaper($paperId);
 
+		$record->setData('paper', $paper);
+		$record->setData('conference', $conference);
+		$record->setData('schedConf', $schedConf);
+		$record->setData('track', $track);
+		$record->setData('galleys', $galleys);
+		
 		// FIXME Use public ID in OAI identifier?
 		// FIXME Use "last-modified" field for datestamp?
 		$record->identifier = $this->oai->paperIdToIdentifier($row['paper_id']);
 		$record->datestamp = OAIUtils::UTCDate(strtotime($this->datetimeFromDB($row['date_published'])));
 		$record->sets = array($conference->getPath() . ':' . $track->getTrackAbbrev());
-
-		$record->url = Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', array($paperId));
-		$record->titles = $this->stripAssocArray((array) $paper->getPaperTitle(null));
-		$record->subjects = array_merge_recursive(
-			$this->stripAssocArray((array) $paper->getDiscipline(null)),
-			$this->stripAssocArray((array) $paper->getSubject(null)),
-			$this->stripAssocArray((array) $paper->getSubjectClass(null))
-		);
-		$record->descriptions = $this->stripAssocArray((array) $paper->getAbstract(null));
-		$record->publishers = $this->stripAssocArray((array) $conference->getTitle(null)); // Provide a default; may be overridden later
-		$record->contributors = $this->stripAssocArray((array) $paper->getSponsor(null));
-		$record->date = date('Y-m-d', strtotime($this->datetimeFromDB($row['date_published'])));
-		$types = $this->stripAssocArray((array) $track->getIdentifyType(null));
-		$record->types = empty($row['track_item_type']) ? array(Locale::getLocale() => Locale::translate('rt.metadata.pkp.peerReviewed')) : $row['track_item_type'].$row['type'];
-		$record->format = array();
-		$record->sources = array($conference->getConferenceTitle() . '; ' . $schedConf->getSchedConfTitle());
-		$record->language = strip_tags($paper->getLanguage());
-		$record->relation = array();
-		$record->coverage = array_merge_recursive(
-			$this->stripAssocArray((array) $paper->getCoverageGeo(null)),
-			$this->stripAssocArray((array) $paper->getCoverageChron(null)),
-			$this->stripAssocArray((array) $paper->getCoverageSample(null))
-		);
-		$record->rights = (array) $this->conferenceSettingsDao->getSetting($row['conference_id'], 'copyrightNotice');
-		$record->pages = $paper->getPages();
-
-		// Get publisher (may override earlier publisher)
-		$publisherInstitution = (array) $conference->getSetting('publisherInstitution');
-		if (!empty($publisherInstitution)) {
-			$record->publishers = $publisherInstitution;
-		}
-
-		// Get author names
-		$authors = $this->authorDao->getAuthorsByPaper($row['paper_id']);
-		$record->creator = array();
-		for ($i = 0, $num = count($authors); $i < $num; $i++) {
-			$authorName = $authors[$i]->getFullName();
-			$affiliation = $authors[$i]->getAffiliation();
-			if (!empty($affiliation)) {
-				$authorName .= '; ' . $affiliation;
-			}
-			$record->creator[] = $authorName;
-		}
-
-		// Get galley formats
-		$result =& $this->retrieve(
-			'SELECT DISTINCT(f.file_type) FROM paper_galleys g, paper_files f WHERE g.file_id = f.file_id AND g.paper_id = ?',
-			$row['paper_id']
-		);
-		while (!$result->EOF) {
-			$record->format[] = $result->fields[0];
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		// Get supplementary files
-		$suppFiles =& $this->suppFileDao->getSuppFilesByPaper($row['paper_id']);
-		for ($i = 0, $num = count($suppFiles); $i < $num; $i++) {
-			// FIXME replace with correct URL
-			$record->relation[] = Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'download', array($paperId, $suppFiles[$i]->getFileId()));
-		}
-
-		$record->primaryLocale = $conference->getPrimaryLocale();
 
 		return $record;
 	}

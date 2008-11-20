@@ -12,11 +12,13 @@
  * @brief Abstract class for OAI Metadata format plugins
  */
 
+// $Id$
+
+
 import('plugins.Plugin');
 import('oai.OAIStruct');
 
 class OAIMetadataFormatPlugin extends Plugin {
-
 	/**
 	 * Called as a plugin is registered to the registry
 	 * @param $category String Name of category plugin was registered to
@@ -24,7 +26,6 @@ class OAIMetadataFormatPlugin extends Plugin {
 	 * 	the plugin will not be registered.
 	 */
 	function register($category, $path) {
-
 		if (parent::register($category, $path)) {
 			$this->addLocaleData();
 			HookRegistry::register('OAI::metadataFormats', array(&$this, 'callback_formatRequest'));
@@ -87,10 +88,10 @@ class OAIMetadataFormatPlugin extends Plugin {
 		if ($namesOnly) {
 			$formats = array_merge($formats,array($this->getMetadataPrefix()));
 		} else {
-			$format_class = $this->getFormatClass();
+			$formatClass = $this->getFormatClass();
 			$formats = array_merge(
 				$formats,
-				array($this->getMetadataPrefix()=>new $format_class($this->getMetadataPrefix(),$this->getSchema(),$this->getNamespace()))
+				array($this->getMetadataPrefix() => new $formatClass($this->getMetadataPrefix(), $this->getSchema(), $this->getNamespace()))
 			);
 		}
 		return false;

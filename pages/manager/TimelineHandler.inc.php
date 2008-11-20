@@ -33,6 +33,7 @@ class TimelineHandler extends ManagerHandler {
 
 	function updateTimeline($args) {
 		parent::validate();
+		parent::setupTemplate(true);
 
 		import('manager.form.TimelineForm');
 

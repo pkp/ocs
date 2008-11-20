@@ -16,19 +16,68 @@
  *
  * @brief OAI metadata format class -- Dublin Core.
  */
- 
+
 // $Id$
 
 
 class OAIMetadataFormat_DC extends OAIMetadataFormat {
-
 	/**
 	 * @see OAIMetadataFormat#toXML
 	 */
 	function toXML(&$record) {
+		$conference =& $record->getData('conference');
+		$schedConf =& $record->getData('schedConf');
+		$paper =& $record->getData('paper');
+		$track =& $record->getData('track');
+		$galleys =& $record->getData('galleys');
+
 		// Add page information to sources
-		if (!empty($record->pages)) foreach ((array) $record->sources as $a => $b) {
-			$record->sources[$a] .= '; ' . $record->pages;
+		$sources = array($conference->getConferenceTitle() . '; ' . $schedConf->getSchedConfTitle());
+		if ($paper->getPages() != '') foreach ($sources as $a => $b) {
+			$sources[$a] .= '; ' . $paper->getPages();
+		}
+
+		// Get author names
+		$creator = array();
+		foreach ($paper->getAuthors() as $author) {
+			$authorName = $author->getFullName();
+			$affiliation = $author->getAffiliation();
+			if (!empty($affiliation)) {
+				$authorName .= '; ' . $affiliation;
+			}
+			$creator[] = $authorName;
+		}
+
+		// Subjects
+		$subjects = array_merge_recursive(
+			$this->stripAssocArray((array) $paper->getDiscipline(null)),
+			$this->stripAssocArray((array) $paper->getSubject(null)),
+			$this->stripAssocArray((array) $paper->getSubjectClass(null))
+		);
+
+		// Publishers
+		$publishers = $this->stripAssocArray((array) $conference->getTitle(null)); // Default
+		$publisherInstitution = (array) $conference->getSetting('publisherInstitution');
+		if (!empty($publisherInstitution)) {
+			$publishers = $publisherInstitution;
+		}
+
+		// Types
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+		$types = $this->stripAssocArray((array) $track->getIdentifyType(null));
+		$types = array(Locale::getLocale() => Locale::translate('rt.metadata.pkp.peerReviewed'));
+
+		// Formats
+		$format = array();
+		foreach ($galleys as $galley) {
+			$format[] = $galley->getFileType();
+		}
+
+		// Get supplementary files
+		$relation = array();
+		foreach ($paper->getSuppFiles() as $suppFile) {
+			// FIXME replace with correct URL
+			$relation[] = Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'download', array($paperId, $suppFile->getFileId()));
 		}
 
 		$response = "<oai_dc:dc\n" .
@@ -37,21 +86,25 @@ class OAIMetadataFormat_DC extends OAIMetadataFormat {
 			"\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" .
 			"\txsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\n" .
 			"\thttp://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n" .
-			$this->formatElement('title', $record->titles, true) .
-			$this->formatElement('creator', $record->creator) .
-			$this->formatElement('subject', $record->subjects, true) .
-			$this->formatElement('description', $record->descriptions, true) .
-			$this->formatElement('publisher', $record->publishers, true) .
-			$this->formatElement('contributor', $record->contributors, true) .
-			$this->formatElement('date', $record->date) .
-			$this->formatElement('type', $record->types, true) .
-			$this->formatElement('format', $record->format) .
-			$this->formatElement('identifier', $record->url) .
-			$this->formatElement('source', $record->sources, true) .
-			$this->formatElement('language', $record->language) .
-			$this->formatElement('relation', $record->relation) .
-			$this->formatElement('coverage', $record->coverage, true) .
-			$this->formatElement('rights', $record->rights) .
+			$this->formatElement('title', $this->stripAssocArray((array) $paper->getPaperTitle(null)), true) .
+			$this->formatElement('creator', $creator) .
+			$this->formatElement('subject', $subjects, true) .
+			$this->formatElement('description', $this->stripAssocArray((array) $paper->getAbstract(null)), true) .
+			$this->formatElement('publisher', $publishers, true) .
+			$this->formatElement('contributor', $this->stripAssocArray((array) $paper->getSponsor(null)), true) .
+			$this->formatElement('date', $paper->getDatePublished()) .
+			$this->formatElement('type', $types, true) .
+			$this->formatElement('format', $format) .
+			$this->formatElement('identifier', Request::url($conference->getPath(), $schedConf->getPath(), 'paper', 'view', array($paper->getBestPaperId()))) .
+			$this->formatElement('source', $sources, true) .
+			$this->formatElement('language', $paper->getLanguage()) .
+			$this->formatElement('relation', $relation) .
+			$this->formatElement('coverage', array_merge_recursive(
+				$this->stripAssocArray((array) $paper->getCoverageGeo(null)),
+				$this->stripAssocArray((array) $paper->getCoverageChron(null)),
+				$this->stripAssocArray((array) $paper->getCoverageSample(null))
+			), true) .
+			$this->formatElement('rights', (array) $conference->getSetting('copyrightNotice')) .
 			"</oai_dc:dc>\n";
 
 		return $response;

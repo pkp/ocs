@@ -43,10 +43,10 @@ class ConferenceOAI extends OAI {
 	function ConferenceOAI($config) {
 		parent::OAI($config);
 
-		$this->site = &Request::getSite();
-		$this->conference = &Request::getConference();
+		$this->site =& Request::getSite();
+		$this->conference =& Request::getConference();
 		$this->conferenceId = isset($this->conference) ? $this->conference->getConferenceId() : null;
-		$this->dao = &DAORegistry::getDAO('OAIDAO');
+		$this->dao =& DAORegistry::getDAO('OAIDAO');
 		$this->dao->setOAI($this);
 	}
 
@@ -141,7 +141,7 @@ class ConferenceOAI extends OAI {
 	function &record($identifier) {
 		$paperId = $this->identifierToPaperId($identifier);
 		if ($paperId) {
-			$record = &$this->dao->getRecord($paperId, $this->conferenceId);
+			$record =& $this->dao->getRecord($paperId, $this->conferenceId);
 		}
 		if (!isset($record)) {
 			$record = false;
@@ -159,7 +159,7 @@ class ConferenceOAI extends OAI {
 		} else {
 			$conferenceId = $this->conferenceId;
 		}
-		$records = &$this->dao->getRecords($conferenceId, $trackId, $from, $until, $offset, $limit, $total);
+		$records =& $this->dao->getRecords($conferenceId, $trackId, $from, $until, $offset, $limit, $total);
 		return $records;
 	}
 
@@ -173,7 +173,7 @@ class ConferenceOAI extends OAI {
 		} else {
 			$conferenceId = $this->conferenceId;
 		}
-		$records = &$this->dao->getIdentifiers($conferenceId, $trackId, $from, $until, $offset, $limit, $total);
+		$records =& $this->dao->getIdentifiers($conferenceId, $trackId, $from, $until, $offset, $limit, $total);
 		return $records;
 	}
 
@@ -181,7 +181,7 @@ class ConferenceOAI extends OAI {
 	 * @see OAI#sets
 	 */
 	function &sets($offset, &$total) {
-		$sets = &$this->dao->getConferenceSets($this->conferenceId, $offset, $total);
+		$sets =& $this->dao->getConferenceSets($this->conferenceId, $offset, $total);
 		return $sets;
 	}
 
