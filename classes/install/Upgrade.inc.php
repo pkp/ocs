@@ -242,7 +242,11 @@ class Upgrade extends Installer {
 			// Setup page 6
 			'searchDescription' => 'searchDescription',
 			'searchKeywords' => 'searchKeywords',
-			'customHeaders' => 'customHeaders'
+			'customHeaders' => 'customHeaders',
+			// Registration policies
+			'registrationAdditionalInformation',
+			'delayedOpenAccessPolicy',
+			'presenterSelfArchivePolicy'
 		);
 
 		foreach ($settingNames as $oldName => $newName) {
