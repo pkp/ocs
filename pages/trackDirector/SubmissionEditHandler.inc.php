@@ -847,7 +847,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			Request::redirect(null, null, null, 'submissionReview', $paperId);
 		} else {
 			$conference =& Request::getConference();
-			$rangeInfo =& Handler::getRangeInfo('reviewForms');
+			$rangeInfo =& PKPHandler::getRangeInfo('reviewForms');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 			$reviewForms =& $reviewFormDao->getConferenceActiveReviewForms($conference->getConferenceId(), $rangeInfo);
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
