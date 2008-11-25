@@ -18,9 +18,9 @@
 
 class OAIMetadataFormat_MARC21 extends OAIMetadataFormat {
 	/**
-	 * @see OAIMetadataFormat#toXML
+	 * @see OAIMetadataFormat#toXml
 	 */
-	function toXML(&$record) {
+	function toXml(&$record, $format = null) {
 		$conference =& $record->getData('conference');
 		$schedConf =& $record->getData('schedConf');
 		$paper =& $record->getData('paper');
