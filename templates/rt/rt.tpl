@@ -151,12 +151,12 @@
 {/if}
 
 {if $needsCommentsNote}
-<p><i style="font-size: 0.9em">{translate key="rt.comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}</em></p>
+<p><em style="font-size: 0.9em">{translate key="rt.comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}</em></p>
 {/if}
 
 {if $needsLoginNote}
 {url|assign:"loginUrl" page="user" op="account"}
-<p><i style="font-size: 0.9em">{translate key="rt.email.needLogin" loginUrl=$loginUrl}</em></p>
+<p><em style="font-size: 0.9em">{translate key="rt.email.needLogin" loginUrl=$loginUrl}</em></p>
 {/if}
 
 </div>
