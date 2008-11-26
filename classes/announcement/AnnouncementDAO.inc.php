@@ -191,7 +191,10 @@ class AnnouncementDAO extends DAO {
 
 		$announcements =& $this->getAnnouncementsByConferenceId($schedConf->getConferenceId(), $schedConf->getSchedConfId());
 		while (($announcement =& $announcements->next())) {
-			$this->deleteAnnouncementById($announcement->getAnnouncementId());
+			// Watch out for conference-level announcements; do not delete those
+			if ($announcement->getSchedConfId() == $schedConfId) {
+				$this->deleteAnnouncementById($announcement->getAnnouncementId());
+			}
 			unset($announcement);
 		}
 		return true;
