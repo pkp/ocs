@@ -49,7 +49,7 @@ class AdminSettingsHandler extends AdminHandler {
 
 		if (Request::getUserVar('uploadSiteStyleSheet')) {
 			if (!$settingsForm->uploadSiteStyleSheet()) {
-				$settingsForm->addError('siteStyleSheet', 'admin.settings.siteStyleSheetInvalid');
+				$settingsForm->addError('siteStyleSheet', Locale::translate('admin.settings.siteStyleSheetInvalid'));
 			}
 		} elseif (Request::getUserVar('deleteSiteStyleSheet')) {
 			$publicFileManager =& new PublicFileManager();
