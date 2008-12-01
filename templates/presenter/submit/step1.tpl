@@ -25,21 +25,28 @@
 <p>{translate key="presenter.submit.notAccepting"}</p>
 {else}
 
-<h3>{translate key="presenter.submit.conferenceTrack"}</h3>
-
-{url|assign:"url" page="schedConf" op="trackPolicies"}
-<p>{translate key="presenter.submit.conferenceTrackDescription" aboutUrl=$url}</p>
-
 <form name="submit" method="post" action="{url op="saveSubmit" path=$submitStep}" onsubmit="return checkSubmissionChecklist()">
 
-<table class="data" width="100%">
-<tr valign="top">	
-	<td width="20%" class="label">{fieldLabel name="trackId" required="true" key="track.track"}</td>
-	<td width="80%" class="value"><select name="trackId" id="trackId" size="1" class="selectMenu">{html_options options=$trackOptions selected=$trackId}</select></td>
-</tr>
-</table>
+{if count($trackOptions) == 2}{* Only one track: don't display the selection dropdown *}
+	{foreach from=$trackOptions key="trackOptionKey" item="trackOption"}
+		{* Get the last key (which will be the single track ID) *}
+	{/foreach}
+	<input type="hidden" name="trackId" value="{$trackOptionKey|escape}" />
+{else}{* More than one track; display the selection dropdown *}
+	<h3>{translate key="presenter.submit.conferenceTrack"}</h3>
 
-<div class="separator"></div>
+	{url|assign:"url" page="schedConf" op="trackPolicies"}
+	<p>{translate key="presenter.submit.conferenceTrackDescription" aboutUrl=$url}</p>
+
+	<table class="data" width="100%">
+	<tr valign="top">	
+		<td width="20%" class="label">{fieldLabel name="trackId" required="true" key="track.track"}</td>
+		<td width="80%" class="value"><select name="trackId" id="trackId" size="1" class="selectMenu">{html_options options=$trackOptions selected=$trackId}</select></td>
+	</tr>
+	</table>
+
+	<div class="separator"></div>
+{/if}{* count($trackOptions) == 2 *}
 
 <script type="text/javascript">
 {literal}
