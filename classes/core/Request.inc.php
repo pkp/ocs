@@ -138,7 +138,7 @@ class Request extends PKPRequest {
 	 * Get the conference associated with the current request.
 	 * @return Conference
 	 */
-	static function &getConference() {
+	function &getConference() {
 		static $conference;
 
 		if (!isset($conference)) {
@@ -156,7 +156,7 @@ class Request extends PKPRequest {
 	 * Get the scheduled conference associated with the current request.
 	 * @return schedConf object
 	 */
-	static function &getSchedConf() {
+	function &getSchedConf() {
 		static $schedConf;
 
 		if (!isset($schedConf)) {
@@ -181,7 +181,7 @@ class Request extends PKPRequest {
 	 * @param $anchor string Optional name of anchor to add to URL
 	 * @param $escape boolean Whether or not to escape ampersands for this URL; default false.
 	 */
-	static function url($conferencePath = null, $schedConfPath = null, $page = null,
+	function url($conferencePath = null, $schedConfPath = null, $page = null,
 			$op = null, $path = null, $params = null, $anchor = null, $escape = false) {
 		return parent::url(array($conferencePath, $schedConfPath), $page, $op, $path, $params, $anchor, $escape);
 	}

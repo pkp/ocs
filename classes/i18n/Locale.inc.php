@@ -49,7 +49,7 @@ class Locale extends PKPLocale {
 	 * is "en_US" for U.S. English).
 	 * @return string 
 	 */
-	static function getLocale() {
+	function getLocale() {
 		static $currentLocale;
 		if (!isset($currentLocale)) {
 			if (defined('SESSION_DISABLE_INIT') || !Config::getVar('general', 'installed')) {
