@@ -68,6 +68,31 @@ class ScheduleForm extends Form {
 		);
 	}
 
+	function trackSort($a, $b) {
+		static $trackMap = array();
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
+
+		$aTrackId = $a->getTrackId();
+		$bTrackId = $b->getTrackId();
+
+		// Make sure we have the track info
+		foreach (array($aTrackId, $bTrackId) as $trackId) {
+			if (!isset($trackMap[$trackId])) {
+				$track =& $trackDao->getTrack($trackId);
+				if ($track) $trackMap[$trackId] =& $track;
+				unset($track);
+			}
+		}
+
+		if (!isset($trackMap[$aTrackId])) return 1;
+		if (!isset($trackMap[$bTrackId])) return -1;
+		return strcmp(
+			$trackMap[$aTrackId]->getTrackName(),
+			$trackMap[$bTrackId]->getTrackName()
+		);
+	}
+
+
 	function titleSort($a, $b) {
 		$titleA = $a->getPaperTitle();
 		$titleB = $b->getPaperTitle();
@@ -112,6 +137,7 @@ class ScheduleForm extends Form {
 			'presenter' => array(&$this, 'presenterSort'),
 			'title' => array(&$this, 'titleSort'),
 			'startTime' => array(&$this, 'startTimeSort'),
+			'track' => array(&$this, 'trackSort'),
 			'room' => array(&$this, 'roomSort')
 		);
 		if ($sort && isset($sortFuncMap[$sort])) {
