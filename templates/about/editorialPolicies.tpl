@@ -29,25 +29,25 @@
 
 {if $currentConference->getLocalizedSetting('focusScopeDesc') != ''}
 <div id="focusAndScope"><h3>{translate key="about.focusAndScope"}</h3>
-	<p>{$currentConference->getLocalizedSetting('focusScopeDesc')|nl2br}</p>
-	
-	<div class="separator">&nbsp;</div>
+<p>{$currentConference->getLocalizedSetting('focusScopeDesc')|nl2br}</p>
+
+<div class="separator">&nbsp;</div>
 </div>
 {/if}
 
 {if $currentConference->getLocalizedSetting('reviewPolicy') != ''}
 <div id="peerReviewProcess"><h3>{translate key="about.peerReviewProcess"}</h3>
-	<p>{$currentConference->getLocalizedSetting('reviewPolicy')|nl2br}</p>
-	
-	<div class="separator">&nbsp;</div>
+<p>{$currentConference->getLocalizedSetting('reviewPolicy')|nl2br}</p>
+
+<div class="separator">&nbsp;</div>
 </div>
 {/if}
 
 {if $currentConference->getLocalizedSetting('pubFreqPolicy') != ''}
 <div id="publicationFrequency"><h3>{translate key="about.publicationFrequency"}</h3>
-	<p>{$currentConference->getLocalizedSetting('pubFreqPolicy')|nl2br}</p>
-	
-	<div class="separator">&nbsp;</div>
+<p>{$currentConference->getLocalizedSetting('pubFreqPolicy')|nl2br}</p>
+
+<div class="separator">&nbsp;</div>
 </div>
 {/if}
 
@@ -55,7 +55,7 @@
 <div id="archiveAccessPolicy"><h3>{translate key="about.archiveAccessPolicy"}</h3>
 	<p>{$currentConference->getLocalizedSetting('archiveAccessPolicy')|nl2br}</p>
 
-	<div class="separator">&nbsp;</div>
+<div class="separator">&nbsp;</div>
 </div>
 {/if}
 
@@ -70,23 +70,23 @@
 		<p>{$currentConference->getLocalizedSetting('authorSelfArchivePolicy')|nl2br}</p>
 	{/if}
 
-	<div class="separator">&nbsp;</div>
+<div class="separator">&nbsp;</div>
 </div>
 {/if}
 
 {if $conferenceSettings.enableLockss && $currentConference->getLocalizedSetting('lockssLicense') != ''}
 <div id="archiving"><h3>{translate key="about.archiving"}</h3>
-	<p>{$currentConference->getLocalizedSetting('lockssLicense')|nl2br}</p>
-	
-	<div class="separator">&nbsp;</div>
+<p>{$currentConference->getLocalizedSetting('lockssLicense')|nl2br}</p>
+
+<div class="separator">&nbsp;</div>
 </div>
 {/if}
 
 {foreach key=key from=$currentConference->getLocalizedSetting('customAboutItems') item=customAboutItem name=customAboutItems}
 	{if !empty($customAboutItem.title)}
 		<div id="custom{$key|escape}"></a><h3>{$customAboutItem.title|escape}</h3>
-			<p>{$customAboutItem.content|nl2br}</p>
-			{if !$smarty.foreach.customAboutItems.last}<div class="separator">&nbsp;</div>{/if}
+		<p>{$customAboutItem.content|nl2br}</p>
+		{if !$smarty.foreach.customAboutItems.last}<div class="separator">&nbsp;</div>{/if}
 		</div>
 	{/if}
 {/foreach}

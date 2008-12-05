@@ -59,47 +59,47 @@
 <br />
 
 <div id="registrations">
-	<table width="100%" class="listing">
-		<tr>
-			<td colspan="5" class="headseparator">&nbsp;</td>
-		</tr>
-		<tr class="heading" valign="bottom">
-			<td width="32%">{translate key="manager.registration.user"}</td>
-			<td width="25%">{translate key="manager.registration.registrationType"}</td>
-			<td width="15%">{translate key="manager.registration.dateRegistered"}</td>
-			<td width="15%">{translate key="manager.registration.datePaid"}</td>
-			<td width="13%">{translate key="common.action"}</td>
-		</tr>
-		<tr>
-			<td colspan="5" class="headseparator">&nbsp;</td>
-		</tr>
-	{iterate from=registrations item=registration}
-		<tr valign="top">
-			<td>{$registration->getUserFullName()|escape}</td>
-			<td>{$registration->getRegistrationTypeName()|escape}</td>
-			<td>{$registration->getDateRegistered()|date_format:$dateFormatShort}</td>
-			<td>{$registration->getDatePaid()|date_format:$dateFormatShort}</td>
-			<td><a href="{url op="editRegistration" path=$registration->getRegistrationId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteRegistration" path=$registration->getRegistrationId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.registration.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
-		</tr>
-		<tr>
-			<td colspan="5" class="{if $registrations->eof()}end{/if}separator">&nbsp;</td>
-		</tr>
-	{/iterate}
-	{if $registrations->wasEmpty()}
-		<tr>
-			<td colspan="5" class="nodata">{translate key="manager.registration.noneCreated"}</td>
-		</tr>
-		<tr>
-			<td colspan="5" class="endseparator">&nbsp;</td>
-		</tr>
-	{else}
-		<tr>
-			<td colspan="2" align="left">{page_info iterator=$registrations}</td>
-			<td colspan="3" align="right">{page_links anchor="registrations" name="registrations" iterator=$registrations}</td>
-		</tr>
-	{/if}
-	</table>
-	
-	<a href="{url op="selectRegistrant"}" class="action">{translate key="manager.registration.create"}</a>
+<table width="100%" class="listing">
+	<tr>
+		<td colspan="5" class="headseparator">&nbsp;</td>
+	</tr>
+	<tr class="heading" valign="bottom">
+		<td width="32%">{translate key="manager.registration.user"}</td>
+		<td width="25%">{translate key="manager.registration.registrationType"}</td>
+		<td width="15%">{translate key="manager.registration.dateRegistered"}</td>
+		<td width="15%">{translate key="manager.registration.datePaid"}</td>
+		<td width="13%">{translate key="common.action"}</td>
+	</tr>
+	<tr>
+		<td colspan="5" class="headseparator">&nbsp;</td>
+	</tr>
+{iterate from=registrations item=registration}
+	<tr valign="top">
+		<td>{$registration->getUserFullName()|escape}</td>
+		<td>{$registration->getRegistrationTypeName()|escape}</td>
+		<td>{$registration->getDateRegistered()|date_format:$dateFormatShort}</td>
+		<td>{$registration->getDatePaid()|date_format:$dateFormatShort}</td>
+		<td><a href="{url op="editRegistration" path=$registration->getRegistrationId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteRegistration" path=$registration->getRegistrationId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.registration.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
+	</tr>
+	<tr>
+		<td colspan="5" class="{if $registrations->eof()}end{/if}separator">&nbsp;</td>
+	</tr>
+{/iterate}
+{if $registrations->wasEmpty()}
+	<tr>
+		<td colspan="5" class="nodata">{translate key="manager.registration.noneCreated"}</td>
+	</tr>
+	<tr>
+		<td colspan="5" class="endseparator">&nbsp;</td>
+	</tr>
+{else}
+	<tr>
+		<td colspan="2" align="left">{page_info iterator=$registrations}</td>
+		<td colspan="3" align="right">{page_links anchor="registrations" name="registrations" iterator=$registrations}</td>
+	</tr>
+{/if}
+</table>
+
+<a href="{url op="selectRegistrant"}" class="action">{translate key="manager.registration.create"}</a>
 </div>
 {include file="common/footer.tpl"}

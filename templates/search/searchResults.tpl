@@ -66,56 +66,56 @@ function ensureKeyword() {
 {/if}
 
 <div id="results">
-	<table width="100%" class="listing">
-	<tr><td colspan="{$numCols|escape}" class="headseparator">&nbsp;</td></tr>
-	<tr class="heading" valign="bottom">
-		{if !$currentConference}<td width="20%">{translate key="conference.conference"}</td>{/if}
-		<td width="{if !$currentConference}20%{else}40%{/if}">{translate key="schedConf.schedConf"}</td>
-		<td width="60%" colspan="2">{translate key="paper.title"}</td>
-	</tr>
-	<tr><td colspan="{$numCols|escape}" class="headseparator">&nbsp;</td></tr>
-	
-	{iterate from=results item=result}
-	{assign var=publishedPaper value=$result.publishedPaper}
-	{assign var=paper value=$result.paper}
-	{assign var=schedConf value=$result.schedConf}
-	{assign var=schedConfAvailable value=$result.schedConfAvailable}
-	{assign var=conference value=$result.conference}
-	{assign var=track value=$result.track}
-	<tr valign="top">
-		{if !$currentConference}<td><a href="{url conference=$conference->getPath()}">{$conference->getConferenceTitle()|escape}</a></td>{/if}
-		<td><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath()}">{$schedConf->getSchedConfTitle()|escape}</a></td>
-		<td width="30%">{$paper->getPaperTitle()|strip_unsafe_html}</td>
-		<td width="30%" align="right">
-			<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>{foreach from=$publishedPaper->getLocalizedGalleys() item=galley name=galleyList}&nbsp;<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getGalleyLabel()|escape}</a>{/foreach}
-		</td>
-	</tr>
+<table width="100%" class="listing">
+<tr><td colspan="{$numCols|escape}" class="headseparator">&nbsp;</td></tr>
+<tr class="heading" valign="bottom">
+	{if !$currentConference}<td width="20%">{translate key="conference.conference"}</td>{/if}
+	<td width="{if !$currentConference}20%{else}40%{/if}">{translate key="schedConf.schedConf"}</td>
+	<td width="60%" colspan="2">{translate key="paper.title"}</td>
+</tr>
+<tr><td colspan="{$numCols|escape}" class="headseparator">&nbsp;</td></tr>
+
+{iterate from=results item=result}
+{assign var=publishedPaper value=$result.publishedPaper}
+{assign var=paper value=$result.paper}
+{assign var=schedConf value=$result.schedConf}
+{assign var=schedConfAvailable value=$result.schedConfAvailable}
+{assign var=conference value=$result.conference}
+{assign var=track value=$result.track}
+<tr valign="top">
+	{if !$currentConference}<td><a href="{url conference=$conference->getPath()}">{$conference->getConferenceTitle()|escape}</a></td>{/if}
+	<td><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath()}">{$schedConf->getSchedConfTitle()|escape}</a></td>
+	<td width="30%">{$paper->getPaperTitle()|strip_unsafe_html}</td>
+	<td width="30%" align="right">
+		<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)}" class="file">{translate key="paper.abstract"}</a>{foreach from=$publishedPaper->getLocalizedGalleys() item=galley name=galleyList}&nbsp;<a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="paper" op="view" path=$publishedPaper->getBestPaperId($conference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getGalleyLabel()|escape}</a>{/foreach}
+	</td>
+</tr>
+<tr>
+	<td colspan="{$numCols|escape}" style="padding-left: 30px;font-style: italic;">
+		{foreach from=$paper->getAuthors() item=authorItem name=authorList}
+			{$authorItem->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
+		{/foreach}
+	</td>
+</tr>
+<tr><td colspan="{$numCols|escape}" class="{if $results->eof()}end{/if}separator">&nbsp;</td></tr>
+{/iterate}
+{if !$results || $results->wasEmpty()}
+<tr>
+<td colspan="{$numCols|escape}" class="nodata">{translate key="search.noResults"}</td>
+</tr>
+<tr><td colspan="{$numCols|escape}" class="endseparator">&nbsp;</td></tr>
+{else}
 	<tr>
-		<td colspan="{$numCols|escape}" style="padding-left: 30px;font-style: italic;">
-			{foreach from=$paper->getAuthors() item=authorItem name=authorList}
-				{$authorItem->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
-			{/foreach}
-		</td>
+		<td {if !$currentConference}colspan="2" {/if}align="left">{page_info iterator=$results}</td>
+		{if $basicQuery}
+			<td colspan="2" align="right">{page_links anchor="results" iterator=$results name="search" query=$basicQuery searchField=$searchField}</td>
+		{else}
+			<td colspan="2" align="right">{page_links anchor="results" iterator=$results name="search" query=$query searchConference=$searchConference author=$author title=$title fullText=$fullText supplementaryFiles=$supplementaryFiles discipline=$discipline subject=$subject type=$type coverage=$coverage dateFromMonth=$dateFromMonth dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateToMonth=$dateToMonth dateToDay=$dateToDay dateToYear=$dateToYear}</td>
+		{/if}
 	</tr>
-	<tr><td colspan="{$numCols|escape}" class="{if $results->eof()}end{/if}separator">&nbsp;</td></tr>
-	{/iterate}
-	{if !$results || $results->wasEmpty()}
-	<tr>
-	<td colspan="{$numCols|escape}" class="nodata">{translate key="search.noResults"}</td>
-	</tr>
-	<tr><td colspan="{$numCols|escape}" class="endseparator">&nbsp;</td></tr>
-	{else}
-		<tr>
-			<td {if !$currentConference}colspan="2" {/if}align="left">{page_info iterator=$results}</td>
-			{if $basicQuery}
-				<td colspan="2" align="right">{page_links anchor="results" iterator=$results name="search" query=$basicQuery searchField=$searchField}</td>
-			{else}
-				<td colspan="2" align="right">{page_links anchor="results" iterator=$results name="search" query=$query searchConference=$searchConference author=$author title=$title fullText=$fullText supplementaryFiles=$supplementaryFiles discipline=$discipline subject=$subject type=$type coverage=$coverage dateFromMonth=$dateFromMonth dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateToMonth=$dateToMonth dateToDay=$dateToDay dateToYear=$dateToYear}</td>
-			{/if}
-		</tr>
-	{/if}
-	</table>
-	
-	{translate key="search.syntaxInstructions"}
+{/if}
+</table>
+
+{translate key="search.syntaxInstructions"}
 </div>
 {include file="common/footer.tpl"}

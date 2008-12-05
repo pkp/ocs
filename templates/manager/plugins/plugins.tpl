@@ -40,8 +40,8 @@
 		{if $plugin->getCategory() != $category}
 			{assign var=category value=$plugin->getCategory()}
 			<div id="{$category|escape}">
-				<h3>{translate key="plugins.categories.$category"}</h3>
-				<p>{translate key="plugins.categories.$category.description"}</p>
+			<h3>{translate key="plugins.categories.$category"}</h3>
+			<p>{translate key="plugins.categories.$category.description"}</p>
 			</div>
 		{/if}
 		<li><h4>{$plugin->getDisplayName()|escape}</h4>

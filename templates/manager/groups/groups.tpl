@@ -28,46 +28,46 @@
 <br />
 
 <div id="groups">
-	<table width="100%" class="listing">
-		<tr>
-			<td colspan="2" class="headseparator">&nbsp;</td>
-		</tr>
-		<tr class="heading" valign="bottom">
-			<td width="75%">{translate key="manager.groups.title"}</td>
-			<td width="25%">{translate key="common.action"}</td>
-		</tr>
-		<tr>
-			<td colspan="2" class="headseparator">&nbsp;</td>
-		</tr>
-	{iterate from=groups item=group}
-		<tr valign="top">
-			<td>
-				{url|assign:"url" page="manager" op="email" toGroup=$group->getGroupId()}
-				{$group->getGroupTitle()|escape}&nbsp;{icon name="mail" url=$url}
-			</td>
-			<td>
-				<a href="{url op="editGroup" path=$group->getGroupId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="groupMembership" path=$group->getGroupId() clearPageContext=1}" class="action">{translate key="manager.groups.membership"}</a>&nbsp;|&nbsp;<a href="{url op="deleteGroup" path=$group->getGroupId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.groups.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveGroup" d=u groupId=$group->getGroupId()}">&uarr;</a>&nbsp;<a href="{url op="moveGroup" d=d groupId=$group->getGroupId()}">&darr;</a>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" class="{if $groups->eof()}end{/if}separator">&nbsp;</td>
-		</tr>
-	{/iterate}
-	{if $groups->wasEmpty()}
-		<tr>
-			<td colspan="2" class="nodata">{translate key="manager.groups.noneCreated"}</td>
-		</tr>
-		<tr>
-			<td colspan="2" class="endseparator">&nbsp;</td>
-		</tr>
-	{else}
-		<tr>
-			<td align="left">{page_info iterator=$groups}</td>
-			<td align="right">{page_links anchor="groups" name="groups" iterator=$groups}</td>
-		</tr>
-	{/if}
-	</table>
-	
-	<a href="{url op="createGroup"}" class="action">{translate key="manager.groups.create"}</a>
+<table width="100%" class="listing">
+	<tr>
+		<td colspan="2" class="headseparator">&nbsp;</td>
+	</tr>
+	<tr class="heading" valign="bottom">
+		<td width="75%">{translate key="manager.groups.title"}</td>
+		<td width="25%">{translate key="common.action"}</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="headseparator">&nbsp;</td>
+	</tr>
+{iterate from=groups item=group}
+	<tr valign="top">
+		<td>
+			{url|assign:"url" page="manager" op="email" toGroup=$group->getGroupId()}
+			{$group->getGroupTitle()|escape}&nbsp;{icon name="mail" url=$url}
+		</td>
+		<td>
+			<a href="{url op="editGroup" path=$group->getGroupId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="groupMembership" path=$group->getGroupId() clearPageContext=1}" class="action">{translate key="manager.groups.membership"}</a>&nbsp;|&nbsp;<a href="{url op="deleteGroup" path=$group->getGroupId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.groups.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveGroup" d=u groupId=$group->getGroupId()}">&uarr;</a>&nbsp;<a href="{url op="moveGroup" d=d groupId=$group->getGroupId()}">&darr;</a>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="{if $groups->eof()}end{/if}separator">&nbsp;</td>
+	</tr>
+{/iterate}
+{if $groups->wasEmpty()}
+	<tr>
+		<td colspan="2" class="nodata">{translate key="manager.groups.noneCreated"}</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="endseparator">&nbsp;</td>
+	</tr>
+{else}
+	<tr>
+		<td align="left">{page_info iterator=$groups}</td>
+		<td align="right">{page_links anchor="groups" name="groups" iterator=$groups}</td>
+	</tr>
+{/if}
+</table>
+
+<a href="{url op="createGroup"}" class="action">{translate key="manager.groups.create"}</a>
 </div>
 {include file="common/footer.tpl"}
