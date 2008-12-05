@@ -80,7 +80,6 @@
 	<message key="director.paper.quality">Valutazione</message>
 	<message key="director.paper.comments">Commenti</message>
 	<message key="director.paper.commentsRequired">&#x00C8; richiesto il campo dei commenti.</message>
-	<message key="director.paper.archiveSubmission">Archivia la submission</message>
 	<message key="director.paper.restoreToQueue">Ripristina nella lista attiva</message>
 	<message key="director.paper.assignTrackDirector">Aggiungi un direttore della sessione</message>
 	<message key="director.paper.assignDirector">Aggiungi un direttore</message>

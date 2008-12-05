@@ -80,7 +80,6 @@
 	<message key="director.paper.quality">Classificação</message>
 	<message key="director.paper.comments">Comentários</message>
 	<message key="director.paper.commentsRequired">Comentário obrigatório.</message>
-	<message key="director.paper.archiveSubmission">Arquivar submissão</message>
 	<message key="director.paper.restoreToQueue">Restaurar para fila de submissões ativas</message>
 	<message key="director.paper.assignTrackDirector">Incluir Diretor de Modalidade</message>
 	<message key="director.paper.assignDirector">Incluir Diretor</message>

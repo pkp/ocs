@@ -76,7 +76,6 @@
 	<message key="director.paper.quality">Bewertung</message>
 	<message key="director.paper.comments">Kommentare</message>
 	<message key="director.paper.commentsRequired">Kommentar muss abgegeben werden</message>
-	<message key="director.paper.archiveSubmission">Einreichung archivieren</message>
 	<message key="director.paper.restoreToQueue">Zu aktiven Einreichungen zur&#252;ckbewegen</message>
 	<message key="director.paper.assignTrackDirector">Track-Leiter hinzuf&#252;gen</message>
 	<message key="director.paper.assignDirector">Leiter hinzuf&#252;gen</message>

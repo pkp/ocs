@@ -76,7 +76,6 @@
 	<message key="director.paper.quality">Note</message>
 	<message key="director.paper.comments">Commentaires</message>
 	<message key="director.paper.commentsRequired">Le champ de commentaires est exigé.</message>
-	<message key="director.paper.archiveSubmission">Archiver la proposition</message>
 	<message key="director.paper.restoreToQueue">Restituer à la liste active</message>
 	<message key="director.paper.assignTrackDirector">Ajouter un responsable de partie</message>
 	<message key="director.paper.assignDirector">Ajouter un responsable</message>

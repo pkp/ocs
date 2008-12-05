@@ -75,7 +75,6 @@
 	<message key="director.paper.quality">Puntuació</message>
 	<message key="director.paper.comments">Comentaris</message>
 	<message key="director.paper.commentsRequired">Empleni el camp de comentaris.</message>
-	<message key="director.paper.archiveSubmission">Arxiva tramesa</message>
 	<message key="director.paper.restoreToQueue">Restableix Activa llista</message>
 	<message key="director.paper.assignTrackDirector">Afegeix director de secció</message>
 	<message key="director.paper.assignDirector">Afegeix director</message>

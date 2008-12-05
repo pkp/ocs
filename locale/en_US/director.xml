@@ -82,7 +82,7 @@
 	<message key="director.paper.quality">Rating</message>
 	<message key="director.paper.comments">Comments</message>
 	<message key="director.paper.commentsRequired">The comments field is required.</message>
-	<message key="director.paper.archiveSubmission">Archive Submission</message>
+	<message key="director.paper.archiveSubmission">Reject and Archive Submission</message>
 	<message key="director.paper.restoreToQueue">Restore to Active List</message>
 	<message key="director.paper.assignTrackDirector">Add Track Director</message>
 	<message key="director.paper.assignDirector">Add Director</message>

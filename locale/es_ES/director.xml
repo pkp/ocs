@@ -76,7 +76,6 @@
 	<message key="director.paper.quality">Puntuación</message>
 	<message key="director.paper.comments">Comentarios</message>
 	<message key="director.paper.commentsRequired">Rellene el campo de comentarios.</message>
-	<message key="director.paper.archiveSubmission">Archivar Envío</message>
 	<message key="director.paper.restoreToQueue">Restablecer Activar Lista</message>
 	<message key="director.paper.assignTrackDirector">Añadir directro de sección</message>
 	<message key="director.paper.assignDirector">Añadir Director</message>

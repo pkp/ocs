@@ -76,7 +76,6 @@
 	<message key="director.paper.quality">評分</message>
 	<message key="director.paper.comments">意見</message>
 	<message key="director.paper.commentsRequired">意見欄不可以空白。</message>
-	<message key="director.paper.archiveSubmission">稿件歸檔</message>
 	<message key="director.paper.restoreToQueue">移至啟動清單中</message>
 	<message key="director.paper.assignTrackDirector">增加主題主編</message>
 	<message key="director.paper.assignDirector">增加主編</message>
