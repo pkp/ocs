@@ -1529,7 +1529,7 @@ import('file.PaperFileManager');
 
 		$commentsText = "";
 		foreach ($comments as $comment) {
-			$commentsText .= $comment->getComments() . "\n\n";
+			$commentsText .= String::html2utf(strip_tags($comment->getComments())) . "\n\n";
 		}
 
 		$user = &Request::getUser();
