@@ -98,7 +98,7 @@ function sortBy(sortName) {
 <input name="sort" type="hidden" value="{$sort|truncate:20|escape}" />
 {include file="common/formErrors.tpl"}
 
-<a name="publishedPapers"></a>
+<div id="publishedPapers">
 
 <table width="100%" class="listing">
 	<tr>
@@ -178,5 +178,5 @@ function sortBy(sortName) {
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-
+</div>
 {include file="common/footer.tpl"}

@@ -28,34 +28,39 @@
 </ul>
 
 {if $currentConference->getLocalizedSetting('focusScopeDesc') != ''}
-<a name="focusAndScope"></a><h3>{translate key="about.focusAndScope"}</h3>
-<p>{$currentConference->getLocalizedSetting('focusScopeDesc')|nl2br}</p>
-
-<div class="separator">&nbsp;</div>
+<div id="focusAndScope"><h3>{translate key="about.focusAndScope"}</h3>
+	<p>{$currentConference->getLocalizedSetting('focusScopeDesc')|nl2br}</p>
+	
+	<div class="separator">&nbsp;</div>
+</div>
 {/if}
 
-{if $currentConference->getLocalizedSetting('reviewPolicy') != ''}<a name="peerReviewProcess"></a><h3>{translate key="about.peerReviewProcess"}</h3>
-<p>{$currentConference->getLocalizedSetting('reviewPolicy')|nl2br}</p>
-
-<div class="separator">&nbsp;</div>
+{if $currentConference->getLocalizedSetting('reviewPolicy') != ''}
+<div id="peerReviewProcess"><h3>{translate key="about.peerReviewProcess"}</h3>
+	<p>{$currentConference->getLocalizedSetting('reviewPolicy')|nl2br}</p>
+	
+	<div class="separator">&nbsp;</div>
+</div>
 {/if}
 
 {if $currentConference->getLocalizedSetting('pubFreqPolicy') != ''}
-<a name="publicationFrequency"></a><h3>{translate key="about.publicationFrequency"}</h3>
-<p>{$currentConference->getLocalizedSetting('pubFreqPolicy')|nl2br}</p>
-
-<div class="separator">&nbsp;</div>
+<div id="publicationFrequency"><h3>{translate key="about.publicationFrequency"}</h3>
+	<p>{$currentConference->getLocalizedSetting('pubFreqPolicy')|nl2br}</p>
+	
+	<div class="separator">&nbsp;</div>
+</div>
 {/if}
 
 {if $currentConference->getLocalizedSetting('archiveAccessPolicy') != ''}
-<a name="archiveAccessPolicy"></a><h3>{translate key="about.archiveAccessPolicy"}</h3>
+<div id="archiveAccessPolicy"><h3>{translate key="about.archiveAccessPolicy"}</h3>
 	<p>{$currentConference->getLocalizedSetting('archiveAccessPolicy')|nl2br}</p>
 
-<div class="separator">&nbsp;</div>
+	<div class="separator">&nbsp;</div>
+</div>
 {/if}
 
 {if !empty($conferenceSettings.enableDelayedOpenAccess) || !empty($conferenceSettings.enableAuthorSelfArchive)}
-<a name="openAccessPolicy"></a><h3>{translate key="about.openAccessPolicy"}</h3>
+<div id="openAccessPolicy"><h3>{translate key="about.openAccessPolicy"}</h3>
 	{if $conferenceSettings.enableDelayedOpenAccess}
 		<h4>{translate key="about.delayedOpenAccess"}</h4> 
 		<p>{translate key="about.delayedOpenAccessDescription" delayedOpenAccessDuration=$conferenceSettings.delayedOpenAccessDuration|escape}</p>
@@ -65,21 +70,24 @@
 		<p>{$currentConference->getLocalizedSetting('authorSelfArchivePolicy')|nl2br}</p>
 	{/if}
 
-<div class="separator">&nbsp;</div>
+	<div class="separator">&nbsp;</div>
+</div>
 {/if}
 
 {if $conferenceSettings.enableLockss && $currentConference->getLocalizedSetting('lockssLicense') != ''}
-<a name="archiving"></a><h3>{translate key="about.archiving"}</h3>
-<p>{$currentConference->getLocalizedSetting('lockssLicense')|nl2br}</p>
-
-<div class="separator">&nbsp;</div>
+<div id="archiving"><h3>{translate key="about.archiving"}</h3>
+	<p>{$currentConference->getLocalizedSetting('lockssLicense')|nl2br}</p>
+	
+	<div class="separator">&nbsp;</div>
+</div>
 {/if}
 
 {foreach key=key from=$currentConference->getLocalizedSetting('customAboutItems') item=customAboutItem name=customAboutItems}
 	{if !empty($customAboutItem.title)}
-		<a name="custom{$key|escape}"></a><h3>{$customAboutItem.title|escape}</h3>
-		<p>{$customAboutItem.content|nl2br}</p>
-		{if !$smarty.foreach.customAboutItems.last}<div class="separator">&nbsp;</div>{/if}
+		<div id="custom{$key|escape}"></a><h3>{$customAboutItem.title|escape}</h3>
+			<p>{$customAboutItem.content|nl2br}</p>
+			{if !$smarty.foreach.customAboutItems.last}<div class="separator">&nbsp;</div>{/if}
+		</div>
 	{/if}
 {/foreach}
 

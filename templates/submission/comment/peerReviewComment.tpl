@@ -39,10 +39,11 @@
 		{if $comment->getAuthorId() eq $userId and not $isLocked}
 			<div style="float: right"><a href="{if $reviewId}{url op="editComment" path=$paperId|to_array:$comment->getCommentId() reviewId=$reviewId}{else}{url op="editComment" path=$paperId|to_array:$comment->getCommentId()}{/if}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{if $reviewId}{url op="deleteComment" path=$paperId|to_array:$comment->getCommentId() reviewId=$reviewId}{else}{url op="deleteComment" path=$paperId|to_array:$comment->getCommentId()}{/if}" onclick="return confirm('{translate|escape:"jsparam" key="submission.comments.confirmDelete"}')" class="action">{translate key="common.delete"}</a></div>
 		{/if}
-		<a name="{$comment->getCommentId()}"></a>
+		<div id="{$comment->getCommentId()}">
 		{if $comment->getCommentTitle()}
 			<div class="commentTitle">{translate key="submission.comments.subject"}: {$comment->getCommentTitle()|escape}</div>
 		{/if}
+		</div>
 		<div class="comments">{$comment->getComments()|escape|nl2br}</div>
 	</td>
 </tr>
@@ -65,28 +66,28 @@
 {/if}
 
 
-<a name="new"></a>
-{include file="common/formErrors.tpl"}
-
-<table class="data" width="100%">
-<tr valign="top">
-	<td class="label">{fieldLabel name="commentTitle" key="submission.comments.subject"}</td>
-	<td class="value"><input type="text" name="commentTitle" id="commentTitle" value="{$commentTitle|escape}" size="50" maxlength="100" class="textField" /></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="authorComments"}{translate key="submission.comments.forAuthorDirector"}</td>
-	<td class="value"><textarea id="authorComments" name="authorComments" rows="10" cols="50" class="textArea">{$authorComments|escape}</textarea></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="comments"}{translate key="submission.comments.forDirector"}</td>
-	<td class="value"><textarea id="comments" name="comments" rows="10" cols="50" class="textArea">{$comments|escape}</textarea></td>
-</tr>
-</table>
-
-<p><input type="submit" name="save" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.close"}" class="button" onclick="window.opener.location.reload(); window.close()" /></p>
-
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-
+<div id="new">
+	{include file="common/formErrors.tpl"}
+	
+	<table class="data" width="100%">
+	<tr valign="top">
+		<td class="label">{fieldLabel name="commentTitle" key="submission.comments.subject"}</td>
+		<td class="value"><input type="text" name="commentTitle" id="commentTitle" value="{$commentTitle|escape}" size="50" maxlength="100" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td class="label">{fieldLabel name="authorComments"}{translate key="submission.comments.forAuthorDirector"}</td>
+		<td class="value"><textarea id="authorComments" name="authorComments" rows="10" cols="50" class="textArea">{$authorComments|escape}</textarea></td>
+	</tr>
+	<tr valign="top">
+		<td class="label">{fieldLabel name="comments"}{translate key="submission.comments.forDirector"}</td>
+		<td class="value"><textarea id="comments" name="comments" rows="10" cols="50" class="textArea">{$comments|escape}</textarea></td>
+	</tr>
+	</table>
+	
+	<p><input type="submit" name="save" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.close"}" class="button" onclick="window.opener.location.reload(); window.close()" /></p>
+	
+	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
+</div>
 </form>
 
 {else}

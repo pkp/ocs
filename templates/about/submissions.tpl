@@ -20,46 +20,57 @@
 	{if $privacyStatement != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
 </ul>
 
-<a name="onlineSubmissions"></a><h3>{translate key="about.onlineSubmissions"}</h3>
-<p>
-	{translate key="about.onlineSubmissions.haveAccount" conferenceTitle=$siteTitle|escape}<br />
-	<a href="{url page="login"}" class="action">{translate key="about.onlineSubmissions.login"}</a>
-</p>
-<p>
-	{translate key="about.onlineSubmissions.needAccount"}<br />
-	<a href="{url page="user" op="account"}" class="action">{translate key="about.onlineSubmissions.registration"}</a>
-</p>
-<p>{translate key="about.onlineSubmissions.registrationRequired"}</p>
+<div id="onlineSubmissions">
+	<h3>{translate key="about.onlineSubmissions"}</h3>
+	<p>
+		{translate key="about.onlineSubmissions.haveAccount" conferenceTitle=$siteTitle|escape}<br />
+		<a href="{url page="login"}" class="action">{translate key="about.onlineSubmissions.login"}</a>
+	</p>
+	<p>
+		{translate key="about.onlineSubmissions.needAccount"}<br />
+		<a href="{url page="user" op="account"}" class="action">{translate key="about.onlineSubmissions.registration"}</a>
+	</p>
+	<p>{translate key="about.onlineSubmissions.registrationRequired"}</p>
+</div>
 
 {if $authorGuidelines != ''}
 	<div class="separator">&nbsp;</div>
 
-	<a name="authorGuidelines"></a><h3>{translate key="about.authorGuidelines"}</h3>
-	<p>{$authorGuidelines|nl2br}</p>
+	<div id="authorGuidelines">
+		<h3>{translate key="about.authorGuidelines"}</h3>
+		<p>{$authorGuidelines|nl2br}</p>
+	</div>
 {/if}
 
 {if $submissionChecklist}
 	<div class="separator">&nbsp;</div>
 
-	<a name="submissionPreparationChecklist"></a><h3>{translate key="about.submissionPreparationChecklist"}</h3>
-	<ol>
-		{foreach from=$submissionChecklist item=checklistItem}
-			<li>{$checklistItem.content|nl2br}</li>	
-		{/foreach}
-	</ol>
+	<div id="submissionPreparationChecklist">
+		<h3>{translate key="about.submissionPreparationChecklist"}</h3>
+		<ol>
+			{foreach from=$submissionChecklist item=checklistItem}
+				<li>{$checklistItem.content|nl2br}</li>	
+			{/foreach}
+		</ol>
+	</div>
 {/if}
 
 {if $copyrightNotice != ''}
 	<div class="separator">&nbsp;</div>
 
-	<a name="copyrightNotice"></a><h3>{translate key="about.copyrightNotice"}</h3>
-	<p>{$copyrightNotice|nl2br}</p>
+	<div id="copyrightNotice">
+		<h3>{translate key="about.copyrightNotice"}</h3>
+		<p>{$copyrightNotice|nl2br}</p>
+	</div>
 {/if}
 
-{if $privacyStatement != ''}<a name="privacyStatement"></a><h3>{translate key="about.privacyStatement"}</h3>
-	<div class="separator">&nbsp;</div>
-
-	<p>{$privacyStatement|nl2br}</p>
+{if $privacyStatement != ''}
+	<div id="privacyStatement">
+		<h3>{translate key="about.privacyStatement"}</h3>
+		<div class="separator">&nbsp;</div>
+	
+		<p>{$privacyStatement|nl2br}</p>
+	</div>
 {/if}
 
 {include file="common/footer.tpl"}
