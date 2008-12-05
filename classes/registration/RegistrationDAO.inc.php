@@ -152,9 +152,12 @@ class RegistrationDAO extends DAO {
 		$last_comma_first_middle = $this->_dataSource->Concat($prefix.'last_name', '\', \'', $prefix.'first_name', '\' \'', $prefix.'middle_name');
 		if ($searchMatch === 'is') {
 			$searchSql = " AND (LOWER({$prefix}last_name) = LOWER(?) OR LOWER($first_last) = LOWER(?) OR LOWER($first_middle_last) = LOWER(?) OR LOWER($last_comma_first) = LOWER(?) OR LOWER($last_comma_first_middle) = LOWER(?))";
-		} else {
+		} elseif ($searchMatch === 'contains') {
 			$searchSql = " AND (LOWER({$prefix}last_name) LIKE LOWER(?) OR LOWER($first_last) LIKE LOWER(?) OR LOWER($first_middle_last) LIKE LOWER(?) OR LOWER($last_comma_first) LIKE LOWER(?) OR LOWER($last_comma_first_middle) LIKE LOWER(?))";
 			$search = '%' . $search . '%';
+		} else { // $searchMatch === 'startsWith'
+			$searchSql = " AND (LOWER({$prefix}last_name) LIKE LOWER(?) OR LOWER($first_last) LIKE LOWER(?) OR LOWER($first_middle_last) LIKE LOWER(?) OR LOWER($last_comma_first) LIKE LOWER(?) OR LOWER($last_comma_first_middle) LIKE LOWER(?))";
+			$search = $search . '%';
 		}
 		$params[] = $params[] = $params[] = $params[] = $params[] = $search;
 		return $searchSql;
@@ -265,7 +268,7 @@ class RegistrationDAO extends DAO {
 	 * Retrieve an array of registration matching a particular scheduled conference ID.
 	 * @param $schedConfId int
 	 * @param $searchField int
-	 * @param $searchMatch string "is" or "contains"
+	 * @param $searchMatch string "is" or "contains" or "startsWith"
 	 * @param $search String to look in $searchField for
 	 * @param $dateField int 
 	 * @param $dateFrom String date to search from
@@ -283,27 +286,36 @@ class RegistrationDAO extends DAO {
 			case REGISTRATION_MEMBERSHIP:
 				if ($searchMatch === 'is') {
 					$searchSql = ' AND LOWER(r.membership) = LOWER(?)';
-				} else {
+				} elseif ($searchMatch === 'contains') {
 					$searchSql = ' AND LOWER(r.membership) LIKE LOWER(?)';
 					$search = '%' . $search . '%';
+				} else { // $searchMatch === 'startsWith'
+					$searchSql = ' AND LOWER(r.membership) LIKE LOWER(?)';
+					$search = $search . '%';
 				}
 				$params[] = $search;
 				break;
 			case REGISTRATION_DOMAIN:
 				if ($searchMatch === 'is') {
 					$searchSql = ' AND LOWER(r.domain) = LOWER(?)';
-				} else {
+				} elseif ($searchMatch === 'contains') {
 					$searchSql = ' AND LOWER(r.domain) LIKE LOWER(?)';
 					$search = '%' . $search . '%';
+				} else { // $searchMatch === 'startsWith'
+					$searchSql = ' AND LOWER(r.domain) LIKE LOWER(?)';
+					$search = $search . '%';
 				}
 				$params[] = $search;
 				break;
 			case REGISTRATION_IP_RANGE:
 				if ($searchMatch === 'is') {
 					$searchSql = ' AND LOWER(r.ip_range) = LOWER(?)';
-				} else {
+				} elseif ($searchMatch === 'contains') {
 					$searchSql = ' AND LOWER(r.ip_range) LIKE LOWER(?)';
 					$search = '%' . $search . '%';
+				} else { // $searchName === 'startsWith'
+					$searchSql = ' AND LOWER(r.ip_range) LIKE LOWER(?)';
+					$search = $search . '%';
 				}
 				$params[] = $search;
 				break;
