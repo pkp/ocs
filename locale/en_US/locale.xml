@@ -2066,7 +2066,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="presenter.submit.submissionFileUpload">Supplementary File</message>
 
 	<!-- Paper Submission Step 5 -->
-	<message key="presenter.submit.confirmationDescription">To submit your manuscript to {$conferenceTitle} click Finish Submission. The submission's principal contact will receive an acknowledgement by email and will be able to view the submission's progress through the editorial process by logging in to the journal web site. Thank you for your interest in publishing with {$conferenceTitle}.</message>
+	<message key="presenter.submit.confirmationDescription">To submit your manuscript to {$conferenceTitle} click Finish Submission. The submission's principal contact will receive an acknowledgement by email and will be able to view the submission's progress through the editorial process by logging in to the conference web site. Thank you for your interest in publishing with {$conferenceTitle}.</message>
 	<message key="presenter.submit.noFiles">No files have been attached to this submission.</message>
 	<message key="presenter.submit.filesSummary">File Summary</message>
 	<message key="presenter.submit.finishSubmission">Finish Submission</message>
