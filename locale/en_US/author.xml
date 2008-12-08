@@ -105,7 +105,7 @@
 	<message key="author.suppFile.publicSuppFileIdentifier">Public supplemental file identifier</message>
 	<message key="author.submit.addSubmissionFile">Add a Supplementary File</message>
 	<message key="author.submit.submissionFileUpload">Supplementary File</message>
-	<message key="author.submit.confirmationDescription">To submit your manuscript to {$conferenceTitle} click Finish Submission. The submission's principal contact will receive an acknowledgement by email and will be able to view the submission's progress through the editorial process by logging in to the journal web site. Thank you for your interest in publishing with {$conferenceTitle}.</message>
+	<message key="author.submit.confirmationDescription">To submit your manuscript to {$conferenceTitle} click Finish Submission. The submission's principal contact will receive an acknowledgement by email and will be able to view the submission's progress through the editorial process by logging in to the conference web site. Thank you for your interest in publishing with {$conferenceTitle}.</message>
 	<message key="author.submit.noFiles">No files have been attached to this submission.</message>
 	<message key="author.submit.filesSummary">File Summary</message>
 	<message key="author.submit.finishSubmission">Finish Submission</message>
