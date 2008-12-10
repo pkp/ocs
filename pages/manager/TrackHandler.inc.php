@@ -57,7 +57,8 @@ class TrackHandler extends ManagerHandler {
 
 		import('manager.form.TrackForm');
 
-		$trackForm = new TrackForm(!isset($args) || empty($args) ? null : $args[0]);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$trackForm =& new TrackForm(!isset($args) || empty($args) ? null : $args[0]);
 		if ($trackForm->isLocaleResubmit()) {
 			$trackForm->readInputData();
 		} else {
@@ -74,7 +75,8 @@ class TrackHandler extends ManagerHandler {
 
 		import('manager.form.TrackForm');
 
-		$trackForm = new TrackForm(Request::getUserVar('trackId'));
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$trackForm =& new TrackForm(Request::getUserVar('trackId'));
 		$trackForm->readInputData();
 
 		if ($trackForm->validate()) {

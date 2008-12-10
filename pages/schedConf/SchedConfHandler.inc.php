@@ -109,7 +109,8 @@ class SchedConfHandler extends PKPHandler {
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER)); // FIXME: For timeline constants
 		import('manager.form.TimelineForm');
-		$timelineForm = new TimelineForm(false, true);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$timelineForm =& new TimelineForm(false, true);
 		$timelineForm->initData();
 		$timelineForm->display();
 	}
@@ -190,7 +191,8 @@ class SchedConfHandler extends PKPHandler {
 			// A registration type has been chosen
 			import('registration.form.UserRegistrationForm');
 
-			$form = new UserRegistrationForm($typeId);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$form =& new UserRegistrationForm($typeId);
 			if ($form->isLocaleResubmit()) {
 				$form->readInputData();
 			} else {
@@ -237,7 +239,8 @@ class SchedConfHandler extends PKPHandler {
 
 		import('registration.form.UserRegistrationForm');
 		$typeId = (int) Request::getUserVar('registrationTypeId');
-		$form = new UserRegistrationForm($typeId);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$form =& new UserRegistrationForm($typeId);
 		$form->readInputData();
 		if ($form->validate()) {
 			if (!$form->execute()) {

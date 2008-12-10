@@ -28,7 +28,8 @@ class ManagerProgramHandler extends ManagerHandler {
 
 		import('manager.form.ProgramSettingsForm');
 
-		$settingsForm = new ProgramSettingsForm();
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$settingsForm =& new ProgramSettingsForm();
 		$settingsForm->initData();
 		$settingsForm->display();
 	}
@@ -45,7 +46,8 @@ class ManagerProgramHandler extends ManagerHandler {
 
 		import('manager.form.ProgramSettingsForm');
 
-		$settingsForm = new ProgramSettingsForm();
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$settingsForm =& new ProgramSettingsForm();
 		$settingsForm->readInputData();
 
 		$editData = false;

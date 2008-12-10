@@ -777,7 +777,8 @@ class TrackDirectorAction extends Action {
 			$reviewFormId = $reviewAssignment->getReviewFormId();
 			if ($reviewFormId != null) {
 				import('submission.form.ReviewFormResponseForm');
-				$reviewForm = new ReviewFormResponseForm($reviewId, $reviewFormId);
+				// FIXME: Need construction by reference or validation always fails on PHP 4.x
+				$reviewForm =& new ReviewFormResponseForm($reviewId, $reviewFormId);
 				$reviewForm->initData();
 				$reviewForm->display();
 			}
@@ -1284,7 +1285,8 @@ import('file.PaperFileManager');
 
 		import('submission.form.comment.PeerReviewCommentForm');
 
-		$commentForm = new PeerReviewCommentForm($paper, $reviewId, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$commentForm =& new PeerReviewCommentForm($paper, $reviewId, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -1300,7 +1302,8 @@ import('file.PaperFileManager');
 
 		import('submission.form.comment.PeerReviewCommentForm');
 
-		$commentForm = new PeerReviewCommentForm($paper, $reviewId, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$commentForm =& new PeerReviewCommentForm($paper, $reviewId, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -1326,7 +1329,8 @@ import('file.PaperFileManager');
 
 		import('submission.form.comment.DirectorDecisionCommentForm');
 
-		$commentForm = new DirectorDecisionCommentForm($paper, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$commentForm =& new DirectorDecisionCommentForm($paper, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -1341,7 +1345,7 @@ import('file.PaperFileManager');
 
 		import('submission.form.comment.DirectorDecisionCommentForm');
 
-		$commentForm = new DirectorDecisionCommentForm($paper, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
+		$commentForm =& new DirectorDecisionCommentForm($paper, Validation::isDirector()?ROLE_ID_DIRECTOR:ROLE_ID_TRACK_DIRECTOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {

@@ -245,7 +245,8 @@ class LoginHandler extends PKPHandler {
 
 		import('user.form.LoginChangePasswordForm');
 
-		$passwordForm = new LoginChangePasswordForm();
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$passwordForm =& new LoginChangePasswordForm();
 		$passwordForm->initData();
 		if (isset($args[0])) {
 			$passwordForm->setData('username', $args[0]);
@@ -262,7 +263,8 @@ class LoginHandler extends PKPHandler {
 
 		import('user.form.LoginChangePasswordForm');
 
-		$passwordForm = new LoginChangePasswordForm();
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$passwordForm =& new LoginChangePasswordForm();
 		$passwordForm->readInputData();
 
 		if ($passwordForm->validate()) {

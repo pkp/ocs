@@ -95,7 +95,8 @@ class SchedulerHandler extends ManagerHandler {
 				$templateMgr->assign('buildingTitle', 'manager.scheduler.building.editBuildingShort');
 			}
 
-			$buildingForm = new BuildingForm($buildingId);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$buildingForm =& new BuildingForm($buildingId);
 			if ($buildingForm->isLocaleResubmit()) {
 				$buildingForm->readInputData();
 			} else {
@@ -129,7 +130,8 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (($buildingId != null && $buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getSchedConfId()) || $buildingId == null) {
 
-			$buildingForm = new BuildingForm($buildingId);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$buildingForm =& new BuildingForm($buildingId);
 			$buildingForm->readInputData();
 
 			if ($buildingForm->validate()) {
@@ -260,7 +262,8 @@ class SchedulerHandler extends ManagerHandler {
 				$templateMgr->assign('roomTitle', 'manager.scheduler.room.editRoomShort');
 			}
 
-			$roomForm = new RoomForm($roomId, $buildingId);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$roomForm =& new RoomForm($roomId, $buildingId);
 			if ($roomForm->isLocaleResubmit()) {
 				$roomForm->readInputData();
 			} else {
@@ -306,7 +309,8 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (($roomId != null && $roomDao->getRoomBuildingId($roomId) == $buildingId) || $roomId == null) {
 
-			$roomForm = new RoomForm($roomId, $buildingId);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$roomForm =& new RoomForm($roomId, $buildingId);
 			$roomForm->readInputData();
 
 			if ($roomForm->validate()) {
@@ -405,7 +409,8 @@ class SchedulerHandler extends ManagerHandler {
 				$templateMgr->assign('specialEventTitle', 'manager.scheduler.specialEvent.editSpecialEventShort');
 			}
 
-			$specialEventForm = new SpecialEventForm($specialEventId);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$specialEventForm =& new SpecialEventForm($specialEventId);
 			if ($specialEventForm->isLocaleResubmit()) {
 				$specialEventForm->readInputData();
 			} else {
@@ -439,7 +444,8 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getSchedConfId()) || $specialEventId == null) {
 
-			$specialEventForm = new SpecialEventForm($specialEventId);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$specialEventForm =& new SpecialEventForm($specialEventId);
 			$specialEventForm->readInputData();
 
 			if ($specialEventForm->validate()) {
@@ -481,7 +487,8 @@ class SchedulerHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 
 		import('manager.form.scheduler.ScheduleForm');
-		$scheduleForm = new ScheduleForm();
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$scheduleForm =& new ScheduleForm();
 
 		$scheduleForm->initData();
 		$scheduleForm->display();
@@ -497,7 +504,8 @@ class SchedulerHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 
 		import('manager.form.scheduler.ScheduleForm');
-		$scheduleForm = new ScheduleForm();
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$scheduleForm =& new ScheduleForm();
 
 		$scheduleForm->readInputData();
 		if ($scheduleForm->validate()) {

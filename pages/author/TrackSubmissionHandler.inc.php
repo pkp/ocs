@@ -172,7 +172,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		import('submission.form.SuppFileForm');
 
-		$submitForm = new SuppFileForm($authorSubmission);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$submitForm =& new SuppFileForm($authorSubmission);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -219,7 +220,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		import('submission.form.SuppFileForm');
 
-		$submitForm = new SuppFileForm($authorSubmission, $suppFileId);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$submitForm =& new SuppFileForm($authorSubmission, $suppFileId);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -260,7 +262,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		import('submission.form.SuppFileForm');
 
-		$submitForm = new SuppFileForm($authorSubmission, $suppFileId);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$submitForm =& new SuppFileForm($authorSubmission, $suppFileId);
 		$submitForm->readInputData();
 
 		if ($submitForm->validate()) {

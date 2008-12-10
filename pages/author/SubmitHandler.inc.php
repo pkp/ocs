@@ -50,7 +50,7 @@ class SubmitHandler extends AuthorHandler {
 		$formClass = "AuthorSubmitStep{$step}Form";
 		import("author.form.submit.$formClass");
 
-		$submitForm = new $formClass($paper);
+		$submitForm =& new $formClass($paper);
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
 		} else {
@@ -75,7 +75,7 @@ class SubmitHandler extends AuthorHandler {
 		$formClass = "AuthorSubmitStep{$step}Form";
 		import("author.form.submit.$formClass");
 
-		$submitForm = new $formClass($paper);
+		$submitForm =& new $formClass($paper);
 		$submitForm->readInputData();
 
 		// Check for any special cases before trying to save
@@ -198,7 +198,8 @@ class SubmitHandler extends AuthorHandler {
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
 		if ($schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
 			import("author.form.submit.AuthorSubmitSuppFileForm");
-			$submitForm = new AuthorSubmitSuppFileForm($paper);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$submitForm =& new AuthorSubmitSuppFileForm($paper);
 			$submitForm->setData('title', Locale::translate('common.untitled'));
 			$suppFileId = $submitForm->execute();
 		}
@@ -222,7 +223,8 @@ class SubmitHandler extends AuthorHandler {
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
 		import("author.form.submit.AuthorSubmitSuppFileForm");
-		$submitForm = new AuthorSubmitSuppFileForm($paper, $suppFileId);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$submitForm =& new AuthorSubmitSuppFileForm($paper, $suppFileId);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -247,7 +249,8 @@ class SubmitHandler extends AuthorHandler {
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
 		import("author.form.submit.AuthorSubmitSuppFileForm");
-		$submitForm = new AuthorSubmitSuppFileForm($paper, $suppFileId);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$submitForm =& new AuthorSubmitSuppFileForm($paper, $suppFileId);
 		$submitForm->readInputData();
 
 		if ($submitForm->validate()) {

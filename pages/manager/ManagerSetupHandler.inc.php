@@ -32,7 +32,7 @@ class ManagerSetupHandler extends ManagerHandler {
 			$formClass = "ConferenceSetupStep{$step}Form";
 			import("manager.form.setup.$formClass");
 
-			$setupForm = new $formClass();
+			$setupForm =& new $formClass();
 			if ($setupForm->isLocaleResubmit()) {
 				$setupForm->readInputData();
 			} else {
@@ -63,7 +63,7 @@ class ManagerSetupHandler extends ManagerHandler {
 			$formClass = "ConferenceSetupStep{$step}Form";
 			import("manager.form.setup.$formClass");
 
-			$setupForm = new $formClass();
+			$setupForm =& new $formClass();
 			$setupForm->readInputData();
 			$formLocale = $setupForm->getFormLocale();
 

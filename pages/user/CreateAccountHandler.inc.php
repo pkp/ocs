@@ -28,7 +28,8 @@ class CreateAccountHandler extends UserHandler {
 			// We're trying to create an account for a specific scheduled conference
 			import('user.form.CreateAccountForm');
 
-			$regForm = new CreateAccountForm();
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$regForm =& new CreateAccountForm();
 			if ($regForm->isLocaleResubmit()) {
 				$regForm->readInputData();
 			} else {
@@ -71,7 +72,8 @@ class CreateAccountHandler extends UserHandler {
 		CreateAccountHandler::validate();
 		import('user.form.CreateAccountForm');
 
-		$regForm = new CreateAccountForm();
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$regForm =& new CreateAccountForm();
 		$regForm->readInputData();
 
 		if ($regForm->validate()) {

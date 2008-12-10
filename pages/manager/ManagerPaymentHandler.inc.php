@@ -28,7 +28,8 @@ class ManagerPaymentHandler extends ManagerHandler {
 
 		import('manager.form.PaymentSettingsForm');
 
-		$settingsForm = new PaymentSettingsForm();
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$settingsForm =& new PaymentSettingsForm();
 		$settingsForm->initData();
 		$settingsForm->display();
 	}
@@ -45,7 +46,8 @@ class ManagerPaymentHandler extends ManagerHandler {
 
 		import('manager.form.PaymentSettingsForm');
 
-		$settingsForm = new PaymentSettingsForm();
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$settingsForm =& new PaymentSettingsForm();
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {

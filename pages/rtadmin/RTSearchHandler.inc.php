@@ -30,7 +30,8 @@ class RTSearchHandler extends RTAdminHandler {
 		$context = &$rtDao->getContext($contextId);
 
 		import('rt.ocs.form.SearchForm');
-		$searchForm = new SearchForm(null, $contextId, $versionId);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$searchForm =& new SearchForm(null, $contextId, $versionId);
 
 		if (isset($args[2]) && $args[2]=='save') {
 			$searchForm->readInputData();
@@ -88,7 +89,8 @@ class RTSearchHandler extends RTAdminHandler {
 		if (isset($version) && isset($context) && isset($search) && $context->getVersionId() == $version->getVersionId() && $search->getContextId() == $context->getContextId()) {
 			import('rt.ocs.form.SearchForm');
 			RTAdminHandler::setupTemplate(true, $version, $context, $search);
-			$searchForm = new SearchForm($searchId, $contextId, $versionId);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$searchForm =& new SearchForm($searchId, $contextId, $versionId);
 			$searchForm->initData();
 			$searchForm->display();
 		}
@@ -132,7 +134,8 @@ class RTSearchHandler extends RTAdminHandler {
 
 		if (isset($version) && isset($context) && isset($search) && $context->getVersionId() == $version->getVersionId() && $search->getContextId() == $context->getContextId()) {
 			import('rt.ocs.form.SearchForm');
-			$searchForm = new SearchForm($searchId, $contextId, $versionId);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$searchForm =& new SearchForm($searchId, $contextId, $versionId);
 			$searchForm->readInputData();
 			$searchForm->execute();
 		}

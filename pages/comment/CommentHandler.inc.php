@@ -93,7 +93,8 @@ class CommentHandler extends PKPHandler {
 		}
 
 		import('comment.form.CommentForm');
-		$commentForm = new CommentForm(null, $paperId, $galleyId, isset($parent)?$parentId:null);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$commentForm =& new CommentForm(null, $paperId, $galleyId, isset($parent)?$parentId:null);
 		$commentForm->initData();
 
 		if (isset($args[3]) && $args[3]=='save') {

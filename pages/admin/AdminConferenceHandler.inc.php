@@ -51,7 +51,8 @@ class AdminConferenceHandler extends AdminHandler {
 
 		import('admin.form.ConferenceSiteSettingsForm');
 
-		$settingsForm = new ConferenceSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$settingsForm =& new ConferenceSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
 		} else {
@@ -68,7 +69,8 @@ class AdminConferenceHandler extends AdminHandler {
 
 		import('admin.form.ConferenceSiteSettingsForm');
 
-		$settingsForm = new ConferenceSiteSettingsForm(Request::getUserVar('conferenceId'));
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$settingsForm =& new ConferenceSiteSettingsForm(Request::getUserVar('conferenceId'));
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {
@@ -138,7 +140,8 @@ class AdminConferenceHandler extends AdminHandler {
 
 		import('admin.form.ImportOCS1Form');
 
-		$importForm = new ImportOCS1Form();
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$importForm =& new ImportOCS1Form();
 		$importForm->initData();
 		$importForm->display();
 	}
@@ -151,7 +154,8 @@ class AdminConferenceHandler extends AdminHandler {
 
 		import('admin.form.ImportOCS1Form');
 
-		$importForm = new ImportOCS1Form();
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$importForm =& new ImportOCS1Form();
 		$importForm->readInputData();
 
 		if ($importForm->validate() && ($conferenceId = $importForm->execute()) !== false) {

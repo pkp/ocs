@@ -207,7 +207,8 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 			case 'settings':
 				if ($this->getEnabled()) {
 					$this->import('GoogleAnalyticsSettingsForm');
-					$form = new GoogleAnalyticsSettingsForm($this, $conference->getConferenceId());
+					// FIXME: Need construction by reference or validation always fails on PHP 4.x
+					$form =& new GoogleAnalyticsSettingsForm($this, $conference->getConferenceId());
 					if (Request::getUserVar('save')) {
 						$form->readInputData();
 						if ($form->validate()) {

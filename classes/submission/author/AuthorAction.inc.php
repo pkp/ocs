@@ -136,7 +136,8 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::viewDirectorDecisionComments', array(&$paper))) {
 			import("submission.form.comment.DirectorDecisionCommentForm");
 
-			$commentForm = new DirectorDecisionCommentForm($paper, ROLE_ID_AUTHOR);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$commentForm =& new DirectorDecisionCommentForm($paper, ROLE_ID_AUTHOR);
 			$commentForm->initData();
 			$commentForm->display();
 		}

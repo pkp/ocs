@@ -32,7 +32,8 @@ class Action {
 	function viewMetadata($paper, $roleId) {
 		if (!HookRegistry::call('Action::viewMetadata', array(&$paper, &$roleId))) {
 			import("submission.form.MetadataForm");
-			$metadataForm = new MetadataForm($paper, $roleId);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$metadataForm =& new MetadataForm($paper, $roleId);
 			if ($metadataForm->getCanEdit() && $metadataForm->isLocaleResubmit()) {
 				$metadataForm->readInputData();
 			} else {
@@ -49,7 +50,8 @@ class Action {
 	function saveMetadata($paper) {
 		if (!HookRegistry::call('Action::saveMetadata', array(&$paper))) {
 			import("submission.form.MetadataForm");
-			$metadataForm = new MetadataForm($paper);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$metadataForm =& new MetadataForm($paper);
 			$metadataForm->readInputData();
 
 			if (!$metadataForm->validate()) {
@@ -164,7 +166,8 @@ class Action {
 		if (!HookRegistry::call('Action::editComment', array(&$paper, &$comment))) {
 			import("submission.form.comment.EditCommentForm");
 
-			$commentForm = new EditCommentForm($paper, $comment);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$commentForm =& new EditCommentForm($paper, $comment);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -178,7 +181,8 @@ class Action {
 		if (!HookRegistry::call('Action::saveComment', array(&$paper, &$comment, &$emailComment))) {
 			import("submission.form.comment.EditCommentForm");
 
-			$commentForm = new EditCommentForm($paper, $comment);
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
+			$commentForm =& new EditCommentForm($paper, $comment);
 			$commentForm->readInputData();
 
 			if ($commentForm->validate()) {
