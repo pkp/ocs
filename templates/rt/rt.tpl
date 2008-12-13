@@ -58,7 +58,7 @@
 		{if $conferenceRt->getCaptureCite()}<li><a href="javascript:openRTWindow('{url page="rt" op="captureCite" path=$paperId|to_array:$galleyId}');">{translate key="rt.captureCite"}</a></li>{/if}
 		{if $conferenceRt->getViewMetadata()}<li><a href="javascript:openRTWindow('{url page="rt" op="metadata" path=$paperId|to_array:$galleyId}');">{translate key="rt.viewMetadata"}</a></li>{/if}
 		{if $conferenceRt->getSupplementaryFiles() && $paper->getSuppFiles()}<li><a href="javascript:openRTWindow('{url page="rt" op="suppFiles" path=$paperId|to_array:$galleyId}');">{translate key="rt.suppFiles"}</a></li>{/if}
-		{if $conferenceRt->getPrinterFriendly()}<li><a href="{if !$galley || $galley->isHtmlGalley()}javascript:openRTWindow('{url page="rt" op="printerFriendly" path=$paperId|to_array:$galleyId}');{else}{url page="paper" op="download" path=$paperId|to_array:$galley->getFileId()}{/if}">{translate key="rt.printVersion"}</a></li>{/if}
+		{if $conferenceRt->getPrinterFriendly()}<li><a href="{if !$galley || $galley->isHtmlGalley()}javascript:openRTWindow('{url page="rt" op="printerFriendly" path=$paperId|to_array:$galleyId}');{else}{url page="paper" op="download" path=$paperId|to_array:$galley->getGalleyId()}{/if}">{translate key="rt.printVersion"}</a></li>{/if}
 		{if $conferenceRt->getDefineTerms() && $version}
 			{foreach from=$version->getContexts() item=context}
 				{if $context->getDefineTerms()}
