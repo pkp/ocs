@@ -125,6 +125,7 @@ class SchedConfHandler extends Handler {
 		SchedConfHandler::setupSchedConfTemplate($conference,$schedConf);
 
 		$templateMgr->assign('cfpMessage', $schedConf->getLocalizedSetting('cfpMessage'));
+		$templateMgr->assign('presenterGuidelines', $schedConf->getLocalizedSetting('presenterGuidelines'));
 
 		$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate');
 		$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate');

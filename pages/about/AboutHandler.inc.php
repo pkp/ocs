@@ -16,8 +16,6 @@
 // $Id$
 
 
-import('core.Handler');
-
 class AboutHandler extends Handler {
 
 	/**
@@ -340,8 +338,8 @@ class AboutHandler extends Handler {
 
 		AboutHandler::setupTemplate();
 
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$settings = ($schedConf? $schedConf->getSettings():$conference->getSettings());
 
@@ -352,7 +350,12 @@ class AboutHandler extends Handler {
 			reset($submissionChecklist);
 		}
 		$templateMgr->assign('submissionChecklist', $submissionChecklist);
-		$templateMgr->assign_by_ref('conferenceSettings', $settings);
+		if ($schedConf) {
+			$templateMgr->assign('presenterGuidelines', $schedConf->getLocalizedSetting('presenterGuidelines'));
+		}
+		$templateMgr->assign('copyrightNotice', $conference->getLocalizedSetting('copyrightNotice'));
+		$templateMgr->assign('privacyStatement', $conference->getLocalizedSetting('privacyStatement'));
+
 		$templateMgr->assign('helpTopicId','submission.presenterGuidelines');
 		$templateMgr->display('about/submissions.tpl');
 	}

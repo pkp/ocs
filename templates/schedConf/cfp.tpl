@@ -10,7 +10,12 @@
  *}
 {translate|assign:"pageTitleTranslated" key="schedConf.cfp.title"}{include file="common/header.tpl"}
 
-<div>{$cfpMessage|nl2br}</div>
+<p>{$cfpMessage|nl2br}</p>
+
+{if $presenterGuidelines != ''}
+	<h3>{translate key="about.presenterGuidelines"}</h3>
+	<p>{$presenterGuidelines|nl2br}</p>
+{/if}
 
 {if $acceptingSubmissions}
 	<p>
