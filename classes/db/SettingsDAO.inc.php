@@ -29,7 +29,7 @@ class SettingsDAO extends DAO {
 	 * @returns string
 	 */
 	function _performReplacement($rawInput, $paramArray = array()) {
-		$value = preg_replace_callback('{{translate key="([^"]+)"}}', '_installer_regexp_callback', $rawInput);
+		$value = preg_replace_callback('{{translate key="([^"]+)"}}', array(&$this, '_installer_regexp_callback'), $rawInput);
 		foreach ($paramArray as $pKey => $pValue) {
 			$value = str_replace('{$' . $pKey . '}', $pValue, $value);
 		}
@@ -107,13 +107,13 @@ class SettingsDAO extends DAO {
 		$xmlParser->destroy();
 
 	}
-}
 
-/**
- * Used internally by conference setting installation code to perform translation function.
- */
-function _installer_regexp_callback($matches) {
-	return Locale::translate($matches[1]);
+	/**
+	 * Used internally by conference setting installation code to perform translation function.
+	 */
+	function _installer_regexp_callback($matches) {
+		return Locale::translate($matches[1]);
+	}
 }
 
 ?>
