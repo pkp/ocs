@@ -396,7 +396,7 @@ class SuppFile extends PaperFile {
 		// Retrieve the sched conf, if necessary.
 		if (!isset($schedConf)) {
 			$paperDao = &DAORegistry::getDAO('PaperDAO');
-			$paper = &$paperDao->getPaperById($this->getPaperId());
+			$paper = &$paperDao->getPaper($this->getPaperId());
 			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 			$schedConf = &$schedConfDao->getSchedConf($paper->getSchedConfId());
 		}
