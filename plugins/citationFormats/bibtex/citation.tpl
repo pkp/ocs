@@ -17,7 +17,7 @@
 	conference = {{/literal}{$conference->getConferenceTitle()|escape}{literal}},
 	year = {{/literal}{$paper->getDatePublished()|date_format:'%Y'}{literal}},
 	keywords = {{/literal}{$paper->getPaperSubject()|escape}{literal}},
-	abstract = {{/literal}{$paper->getPaperAbstract()|escape}{literal}},
+	abstract = {{/literal}{$paper->getPaperAbstract()|strip_tags:false}{literal}},
 {/literal}{assign var=onlineIssn value=$conference->getSetting('onlineIssn')|escape}
 {assign var=issn value=$conference->getSetting('issn')|escape}{if $issn}{literal}	issn = {{/literal}{$issn|escape}{literal}},{/literal}
 {elseif $onlineIssn}{literal}  issn = {{/literal}{$onlineIssn|escape}{literal}},{/literal}{/if}
