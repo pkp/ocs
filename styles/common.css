@@ -364,6 +364,23 @@ table.announcementsMore td {
 
 
 /**
+ * Organizing Team Lists
+ */
+
+ol.organizingTeam {
+}
+
+ol.organizingTeam li {
+	list-style: none;
+}
+
+ol.organizingTeam, ol.organizingTeam li {
+	margin-left: 0;
+	padding-left: 0;
+}
+
+
+/**
  * Footer elements
  */
 

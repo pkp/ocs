@@ -20,10 +20,11 @@
 		<h4>{translate key="user.role.directors"}</h4>
 	{/if}
 
-{foreach from=$directors item=director}
-	<a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$director->getUserId()}')">{$director->getFullName()|escape}</a>{if $director->getAffiliation()}, {$director->getAffiliation()|escape}{/if}{if $director->getCountry()}{assign var=countryCode value=$director->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}
-	<br/>
-{/foreach}
+	<ol class="organizingTeam">
+		{foreach from=$directors item=director}
+			<li><a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$director->getUserId()}')">{$director->getFullName()|escape}</a>{if $director->getAffiliation()}, {$director->getAffiliation()|escape}{/if}{if $director->getCountry()}{assign var=countryCode value=$director->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li>
+		{/foreach}
+	</ol>
 {/if}
 
 {if count($trackDirectors) > 0}
@@ -33,10 +34,11 @@
 		<h4>{translate key="user.role.trackDirectors"}</h4>
 	{/if}
 
-{foreach from=$trackDirectors item=trackDirector}
-	<a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$trackDirector->getUserId()}')">{$trackDirector->getFullName()|escape}</a>{if $trackDirector->getAffiliation()}, {$trackDirector->getAffiliation()|escape}{/if}{if $trackDirector->getCountry()}{assign var=countryCode value=$trackDirector->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}
-	<br/>
-{/foreach}
+	<ol class="organizingTeam">
+		{foreach from=$trackDirectors item=trackDirector}
+			<li><a href="javascript:openRTWindow('{url op="organizingTeamBio" path=$trackDirector->getUserId()}')">{$trackDirector->getFullName()|escape}</a>{if $trackDirector->getAffiliation()}, {$trackDirector->getAffiliation()|escape}{/if}{if $trackDirector->getCountry()}{assign var=countryCode value=$trackDirector->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li>
+		{/foreach}
+	</ol>
 {/if}
 
 {include file="about/conferenceSponsorship.tpl"}
