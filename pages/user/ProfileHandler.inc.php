@@ -20,8 +20,8 @@ class ProfileHandler extends UserHandler {
 	 * Display form to edit user's profile.
 	 */
 	function profile() {
-		parent::validate();
-		parent::setupTemplate(true);
+		ProfileHandler::validate();
+		ProfileHandler::setupTemplate(true);
 
 		import('user.form.ProfileForm');
 
@@ -39,7 +39,8 @@ class ProfileHandler extends UserHandler {
 	 * Validate and save changes to user's profile.
 	 */
 	function saveProfile() {
-		parent::validate();
+		ProfileHandler::validate();
+		ProfileHandler::setupTemplate();
 
 		import('user.form.ProfileForm');
 
@@ -52,7 +53,7 @@ class ProfileHandler extends UserHandler {
 			Request::redirect(null, null, Request::getRequestedPage());
 
 		} else {
-			parent::setupTemplate(true);
+			ProfileHandler::setupTemplate(true);
 			$profileForm->display();
 		}
 	}
@@ -61,8 +62,8 @@ class ProfileHandler extends UserHandler {
 	 * Display form to change user's password.
 	 */
 	function changePassword() {
-		parent::validate();
-		parent::setupTemplate(true);
+		ProfileHandler::validate();
+		ProfileHandler::setupTemplate(true);
 
 		import('user.form.ChangePasswordForm');
 
@@ -76,7 +77,7 @@ class ProfileHandler extends UserHandler {
 	 * Save user's new password.
 	 */
 	function savePassword() {
-		parent::validate();
+		ProfileHandler::validate();
 
 		import('user.form.ChangePasswordForm');
 
@@ -89,7 +90,7 @@ class ProfileHandler extends UserHandler {
 			Request::redirect(null, null, Request::getRequestedPage());
 
 		} else {
-			parent::setupTemplate(true);
+			ProfileHandler::setupTemplate(true);
 			$passwordForm->display();
 		}
 	}
