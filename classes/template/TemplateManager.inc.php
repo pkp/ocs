@@ -229,7 +229,7 @@ class TemplateManager extends PKPTemplateManager {
 			$params['context'] = $context;
 		}
 		
-		return parent::smartyUrl($params, &$smarty);
+		return parent::smartyUrl($params, $smarty);
 	}
 
 	/**
