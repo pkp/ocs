@@ -142,6 +142,24 @@ class OCSApplication extends PKPApplication {
 	}
 
 	/**
+	 * Get the list of plugin categories for this application.
+	 */
+	function getPluginCategories() {
+		return array(
+			'auth',
+			'blocks',
+			'citationFormats',
+			'gateways',
+			'generic',
+			'implicitAuth',
+			'importexport',
+			'paymethod',
+			'reports',
+			'themes'
+		);
+	}
+
+	/**
 	 * Instantiate the help object for this application.
 	 * @return object
 	 */
