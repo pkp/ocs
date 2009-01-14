@@ -134,10 +134,14 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 		return $verbs;
 	}
 
-	/**
-	 * Perform management functions
-	 */
-	function manage($verb, $args) {
+ 	/*
+ 	 * Execute a management verb on this plugin
+ 	 * @param $verb string
+ 	 * @param $args array
+	 * @param $message string Location for the plugin to put a result msg
+ 	 * @return boolean
+ 	 */
+	function manage($verb, $args, &$message) {
 		$returner = true;
 		$conference =& Request::getConference();
 
@@ -165,14 +169,15 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 				break;
 			case 'enable':
 				$this->updateSetting($conference->getConferenceId(), 0, 'enabled', true);
+				$message = Locale::translate('plugins.generic.announcementFeed.enabled');
 				$returner = false;
 				break;
 			case 'disable':
 				$this->updateSetting($conference->getConferenceId(), 0, 'enabled', false);
+				$message = Locale::translate('plugins.generic.announcementFeed.enabled');
 				$returner = false;
 				break;	
 		}
-
 		return $returner;		
 	}
 }

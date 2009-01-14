@@ -186,10 +186,14 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 		return false;
 	}
 
-	/**
-	 * Perform management functions
-	 */
-	function manage($verb, $args) {
+ 	/*
+ 	 * Execute a management verb on this plugin
+ 	 * @param $verb string
+ 	 * @param $args array
+	 * @param $message string Location for the plugin to put a result msg
+ 	 * @return boolean
+ 	 */
+	function manage($verb, $args, &$message) {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
 		$conference = &Request::getConference();
@@ -199,10 +203,12 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 			case 'enable':
 				$this->setEnabled(true);
 				$returner = false;
+				$message = Locale::translate('plugins.generic.googleAnalytics.enabled');
 				break;
 			case 'disable':
 				$this->setEnabled(false);
 				$returner = false;
+				$message = Locale::translate('plugins.generic.googleAnalytics.disabled');
 				break;
 			case 'settings':
 				if ($this->getEnabled()) {

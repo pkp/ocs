@@ -25,5 +25,7 @@
 	<message key="plugins.generic.announcementfeed.settings.recentItemsRequired">Please enter a positive integer for recent announcements.</message>
 	<message key="plugins.generic.announcementfeed.atom.altText">Atom logo</message>
 	<message key="plugins.generic.announcementfeed.rss1.altText">RSS1 logo</message>
-	<message key="plugins.generic.announcementfeed.rss2.altText">RSS2 logo</message>
+	<message key="plugins.generic.announcementfeed.rss2.altText">RSS2 logo</message>	
+	<message key="plugins.generic.announcementfeed.enabled">The Announcement Feed Plugin has been enabled.</message>
+	<message key="plugins.generic.announcementfeed.disabled">The Announcement Feed Plugin has been disabled.</message>
 </locale>

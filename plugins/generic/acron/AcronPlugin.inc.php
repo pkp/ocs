@@ -280,13 +280,22 @@ class AcronPlugin extends GenericPlugin {
 		return $verbs;
 	}
 
-	function manage($verb, $args) {
+ 	/*
+ 	 * Execute a management verb on this plugin
+ 	 * @param $verb string
+ 	 * @param $args array
+	 * @param $message string Location for the plugin to put a result msg
+ 	 * @return boolean
+ 	 */
+	function manage($verb, $args, &$message) {
 		switch ($verb) {
 			case 'enable':
 				$this->updateSetting(0, 0, 'enabled', true);
+				$message = Locale::translate('plugins.generic.acron.enabled');
 				break;
 			case 'disable':
 				$this->updateSetting(0, 0, 'enabled', false);
+				$message = Locale::translate('plugins.generic.acron.disabled');
 				break;
 			case 'reload':
 				$this->parseCrontab();

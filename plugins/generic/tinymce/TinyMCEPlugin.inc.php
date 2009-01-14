@@ -372,21 +372,24 @@ class TinyMCEPlugin extends GenericPlugin {
 		return $verbs;
 	}
 
-	/**
-	 * Execute a management verb on this plugin
-	 * @param $verb string
-	 * @param $args array
-	 * @return boolean
-	 */
-	function manage($verb, $args) {
+ 	/*
+ 	 * Execute a management verb on this plugin
+ 	 * @param $verb string
+ 	 * @param $args array
+	 * @param $message string Location for the plugin to put a result msg
+ 	 * @return boolean
+ 	 */
+	function manage($verb, $args, &$message) {
 		$conference =& Request::getConference();
 		$conferenceId = $conference?$conference->getConferenceId():0;
 		switch ($verb) {
 			case 'enable':
 				$this->updateSetting($conferenceId, 0, 'enabled', true);
+				$message = Locale::translate('plugins.generic.tinymce.enabled');
 				break;
 			case 'disable':
 				$this->updateSetting($conferenceId, 0, 'enabled', false);
+				$message = Locale::translate('plugins.generic.tinymce.disabled');
 				break;
 		}
 		return false;
