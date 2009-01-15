@@ -15,13 +15,12 @@
 //$Id$
 
 class TrackHandler extends ManagerHandler {
-
 	/**
 	 * Display a list of the tracks within the current conference.
 	 */
 	function tracks() {
 		list($conference, $schedConf) = parent::validate();
-		parent::setupTemplate(true);
+		TrackHandler::setupTemplate();
 
 		$rangeInfo =& PKPHandler::getRangeInfo('tracks', array());
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
@@ -53,7 +52,7 @@ class TrackHandler extends ManagerHandler {
 	 */
 	function editTrack($args = array()) {
 		parent::validate();
-		parent::setupTemplate(true);
+		TrackHandler::setupTemplate();
 
 		import('manager.form.TrackForm');
 
@@ -84,7 +83,7 @@ class TrackHandler extends ManagerHandler {
 			Request::redirect(null, null, null, 'tracks');
 
 		} else {
-			parent::setupTemplate(true);
+			TrackHandler::setupTemplate();
 			$trackForm->display();
 		}
 	}
@@ -122,5 +121,10 @@ class TrackHandler extends ManagerHandler {
 		Request::redirect(null, null, null, 'tracks');
 	}
 
+	function setupTemplate() {
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_READER));
+		return parent::setupTemplate(true);
+	}
 }
+
 ?>
