@@ -73,6 +73,11 @@ disable_path_info = Off
 ; base_url[myConference] = http://www.myUrl.com/myConference
 ; base_url[myOtherConference] = http://myOtherConference.myUrl.com
 
+; Generate RESTful URLs using mod_rewrite.  This requires the
+; rewrite directive to be enabled in your .htaccess or httpd.conf.
+; See README for more details.
+restful_urls = Off
+
 ;;;;;;;;;;;;;;;;;;;;;
 ; Database Settings ;
 ;;;;;;;;;;;;;;;;;;;;;
@@ -138,7 +143,7 @@ database_charset = Off
 charset_normalization = On
 
 ; Default time zone
-; default_timezone = 
+; default_timezone =
 
 ;;;;;;;;;;;;;;;;;
 ; File Settings ;
