@@ -1,5 +1,5 @@
 config.inc.php
-
 files
-.project
 cache
+.project
+.htaccess
