@@ -30,9 +30,11 @@ OCS release:
     cp docs/release-notes/README-<VERSION> docs/RELEASE
 
 
-5. After committing any pending modifications, tag the release in CVS:
+5. After committing any pending modifications, tag the release in CVS (both the
+OCS codebase and the PKP library to be distributed with it):
 
     cvs rtag ocs-<MAJOR>_<MINOR>_<REVISION>-<BUILD> ocs2
+    cvs rtag ocs-<MAJOR>_<MINOR>_<REVISION>-<BUILD> pkp
 
 
 6. Build the OCS package and patch files:
