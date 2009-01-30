@@ -28,6 +28,7 @@ class RTHandler extends PaperHandler {
 	 * Display a author biography
 	 */
 	function bio($args) {
+		parent::setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
@@ -50,6 +51,7 @@ class RTHandler extends PaperHandler {
 	 * Display the paper metadata
 	 */
 	function metadata($args) {
+		parent::setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
@@ -82,6 +84,7 @@ class RTHandler extends PaperHandler {
 	 * Display an RT search context
 	 */
 	function context($args) {
+		parent::setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$contextId = Isset($args[2]) ? (int) $args[2] : 0;
@@ -168,6 +171,7 @@ class RTHandler extends PaperHandler {
 	 * Display citation information
 	 */
 	function captureCite($args) {
+		parent::setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$citeType = isset($args[2]) ? $args[2] : null;
@@ -208,6 +212,7 @@ class RTHandler extends PaperHandler {
 	 * Display a printer-friendly version of the paper
 	 */
 	function printerFriendly($args) {
+		parent::setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
@@ -240,6 +245,7 @@ class RTHandler extends PaperHandler {
 	 * Display the "Email Colleague" form
 	 */
 	function emailColleague($args) {
+		parent::setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
@@ -282,6 +288,7 @@ class RTHandler extends PaperHandler {
 	 * Display the "email author"
 	 */
 	function emailAuthor($args) {
+		parent::setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
@@ -318,6 +325,7 @@ class RTHandler extends PaperHandler {
 	 * Display a list of supplementary files
 	 */
 	function suppFiles($args) {
+		parent::setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($conference, $schedConf, $paper) = RTHandler::validate($paperId, $galleyId);
@@ -342,6 +350,7 @@ class RTHandler extends PaperHandler {
 	 * Display the metadata of a supplementary file
 	 */
 	function suppFileMetadata($args) {
+		parent::setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$suppFileId = isset($args[2]) ? (int) $args[2] : 0;
@@ -371,6 +380,7 @@ class RTHandler extends PaperHandler {
 	 * Display the "finding references" search engine list
 	 */
 	function findingReferences($args) {
+		parent::setupTemplate();
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($conference, $issue, $paper) = RTHandler::validate($paperId, $galleyId);

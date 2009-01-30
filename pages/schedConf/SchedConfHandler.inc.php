@@ -371,6 +371,7 @@ class SchedConfHandler extends PKPHandler {
 		$mayViewPapers = SchedConfAction::mayViewPapers($schedConf, $conference);
 
 		$templateMgr =& TemplateManager::getManager();
+		SchedConfHandler::setupTemplate($conference, $schedConf);
 
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
