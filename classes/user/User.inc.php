@@ -29,7 +29,7 @@ class User extends PKPUser {
 	}
 
 	function setTimeZone($timeZone) {
-		return $this->updateSetting('timeZone');
+		return $this->updateSetting('timeZone', $timeZone);
 	}
 
 	function getTimeZone() {
