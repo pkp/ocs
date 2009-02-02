@@ -53,7 +53,7 @@ class Request extends PKPRequest {
 				$conference = '';
 				if (isset($_SERVER['PATH_INFO'])) {
 					$vars = explode('/', $_SERVER['PATH_INFO']);
-					if (count($vars) >= 3) {
+					if (count($vars) >= 2) {
 						$conference = Core::cleanFileVar($vars[1]);
 					}
 				}
