@@ -186,7 +186,7 @@ class TrackDirectorAction extends Action {
 
 			$schedConf = &Request::getSchedConf();
 			if ($schedConf->getSetting('numWeeksPerReview') != null)
-				TrackDirectorAction::setDueDate($trackDirectorSubmission->getPaperId(), $reviewAssignment->getReviewId(), null, $schedConf->getSetting('numWeeksPerReview'));
+				TrackDirectorAction::setDueDate($trackDirectorSubmission->getPaperId(), $reviewAssignment->getReviewId(), null, $schedConf->getSetting('numWeeksPerReview'), false);
 
 			// Add log
 			import('paper.log.PaperLog');
@@ -586,8 +586,9 @@ class TrackDirectorAction extends Action {
 	 * @param $reviewId int
 	 * @param $dueDate string
 	 * @param $numWeeks int
+	 * @param $logChange boolean
 	 */
-	function setDueDate($paperId, $reviewId, $dueDate = null, $numWeeks = null) {
+	function setDueDate($paperId, $reviewId, $dueDate = null, $numWeeks = null, $logChange = true) {
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao = &DAORegistry::getDAO('UserDAO');
 		$user = &Request::getUser();
@@ -618,22 +619,24 @@ class TrackDirectorAction extends Action {
 			$reviewAssignment->stampModified();
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
 
-			// Add log
-			import('paper.log.PaperLog');
-			import('paper.log.PaperEventLogEntry');
-			PaperLog::logEvent(
-				$paperId,
-				PAPER_LOG_REVIEW_SET_DUE_DATE,
-				LOG_TYPE_REVIEW,
-				$reviewAssignment->getReviewId(),
-				'log.review.reviewDueDateSet',
-				array(
-					'reviewerName' => $reviewer->getFullName(),
-					'dueDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())),
-					'paperId' => $paperId,
-					'stage' => $reviewAssignment->getStage()
-				)
-			);
+			if ($logChange) {
+				// Add log
+				import('paper.log.PaperLog');
+				import('paper.log.PaperEventLogEntry');
+				PaperLog::logEvent(
+					$paperId,
+					PAPER_LOG_REVIEW_SET_DUE_DATE,
+					LOG_TYPE_REVIEW,
+					$reviewAssignment->getReviewId(),
+					'log.review.reviewDueDateSet',
+					array(
+						'reviewerName' => $reviewer->getFullName(),
+						'dueDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())),
+						'paperId' => $paperId,
+						'stage' => $reviewAssignment->getStage()
+					)
+				);
+			} // $logChange
 		}
 	}
 
