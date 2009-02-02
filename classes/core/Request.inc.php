@@ -739,7 +739,7 @@ class Request {
 		} else {
 			if (!empty($path)) $pathString = '/' . implode('/', $path);
 			if (empty($overriddenBaseUrl)) $baseParams = "/$conferencePath/$schedConfPath";
-			else $baseParams = '';
+			else $baseParams = "/$schedConfPath/";
 
 			if (!empty($page)) {
 				$baseParams .= "/$page";
