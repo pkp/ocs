@@ -1402,7 +1402,7 @@ Title of classification system]]></message>
 	<message key="manager.tracks.unassignDirector">Un-assign Director</message>
 	<message key="manager.tracks.form.titleRequired">A title is required for the track.</message>
 	<message key="manager.tracks.form.abbrevRequired">An abbreviated title is required for the track</message>
-	<message key="manager.tracks.trackDirectorInstructions">Select from among the available Track Directors and "Assign Director" to this track.</message>
+	<message key="manager.tracks.trackDirectorInstructions">Add a Track Director to this track to have submissions automatically assigned to the Track Director. (Otherwise, Track Directors can be assigned manually, after a submission comes in.) Track Directors are created by clicking Track Directors under Roles in Conference Management.</message>
 	<message key="manager.tracks.submissionNotReviewed">Indicate that track is not peer-reviewed</message>
 	<message key="manager.tracks.peerReviewed">Peer Reviewed</message>
 	<message key="manager.tracks.directorRestriction">Items can only be submitted by Directors and Track Directors.</message>
