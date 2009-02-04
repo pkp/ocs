@@ -230,13 +230,13 @@ class PaperFileDAO extends DAO {
 		$fileId = $paperFile->getFileId();
 		$params = array(
 			$paperFile->getRevision() === null ? 1 : $paperFile->getRevision(),
-			$paperFile->getPaperId(),
+			(int) $paperFile->getPaperId(),
 			$paperFile->getFileName(),
 			$paperFile->getFileType(),
 			$paperFile->getFileSize(),
 			$paperFile->getOriginalFileName(),
 			$paperFile->getType(),
-			$paperFile->getStage(),
+			(int) $paperFile->getStage(),
 			$paperFile->getStatus(),
 			$paperFile->getViewable()
 		);
@@ -283,14 +283,14 @@ class PaperFileDAO extends DAO {
 				WHERE file_id = ? AND revision = ?',
 				$this->datetimeToDB($paperFile->getDateUploaded()), $this->datetimeToDB($paperFile->getDateModified())),
 			array(
-				$paperFile->getPaperId(),
+				(int) $paperFile->getPaperId(),
 				$paperFile->getFileName(),
 				$paperFile->getFileType(),
 				$paperFile->getFileSize(),
 				$paperFile->getOriginalFileName(),
 				$paperFile->getType(),
 				$paperFile->getStatus(),
-				$paperFile->getStage(),
+				(int) $paperFile->getStage(),
 				$paperFile->getViewable(),
 				$paperFile->getFileId(),
 				$paperFile->getRevision()
