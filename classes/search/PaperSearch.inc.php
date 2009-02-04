@@ -251,16 +251,16 @@ class PaperSearch {
 				$publishedPaperCache[$paperId] = &$publishedPaperDao->getPublishedPaperByPaperId($paperId);
 				$paperCache[$paperId] = &$paperDao->getPaper($paperId);
 			}
-			unset($paper);
+			unset($paper, $publishedPaper);
 			$paper = &$paperCache[$paperId];
 			$publishedPaper = &$publishedPaperCache[$paperId];
 
-			$trackId = $paper->getTrackId();
-			if (!isset($trackCache[$trackId])) {
-				$trackCache[$trackId] = &$trackDao->getTrack($trackId);
-			}
-
 			if ($publishedPaper && $paper) {
+				$trackId = $paper->getTrackId();
+				if (!isset($trackCache[$trackId])) {
+					$trackCache[$trackId] =& $trackDao->getTrack($trackId);
+				}
+
 				// Get the conference, storing in cache if necessary.
 				$schedConfId = $publishedPaper->getSchedConfId();
 				$schedConf =& $schedConfDao->getSchedConf($schedConfId);
@@ -342,7 +342,6 @@ class PaperSearch {
 		$results =& PaperSearch::formatResults($results);
 
 		// Return the appropriate iterator.
-		import('core.VirtualArrayIterator');
 		$returner = &new VirtualArrayIterator($results, $totalResults, $page, $itemsPerPage);
 		return $returner;
 	}
