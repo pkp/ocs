@@ -135,7 +135,7 @@ class PaperSearch {
 
 		foreach ($keyword['+'] as $phrase) {
 			$results = &PaperSearch::_getMergedPhraseResults($conference, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
-			if ($mergedResults == null) {
+			if ($mergedResults === null) {
 				$mergedResults = $results;
 			} else {
 				foreach ($mergedResults as $paperId => $count) {
