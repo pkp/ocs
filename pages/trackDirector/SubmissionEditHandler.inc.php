@@ -25,6 +25,9 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		parent::setupTemplate(true, $paperId);
 
+		// FIXME? For comments.readerComments under Status
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER));
+
 		$user = &Request::getUser();
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
