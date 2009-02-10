@@ -11,10 +11,10 @@
 {strip}
 {assign var="pageCrumbTitle" value="$specialEventTitle"}
 {if $specialEventId}
-	{url|assign:"specialEventUrl" op="editSpecialEvent" path=$specialEventId}
+	{url|assign:"specialEventUrl" op="editSpecialEvent" path=$specialEventId escape=false}
 	{assign var="pageTitle" value="manager.scheduler.specialEvent.editSpecialEvent"}
 {else}
-	{url|assign:"specialEventUrl" op="createSpecialEvent"}
+	{url|assign:"specialEventUrl" op="createSpecialEvent" escape=false}
 	{assign var="pageTitle" value="manager.scheduler.specialEvent.createSpecialEvent"}
 {/if}
 {assign var="pageId" value="manager.scheduler.specialEvent.specialEventForm"}

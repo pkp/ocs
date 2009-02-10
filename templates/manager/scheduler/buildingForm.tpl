@@ -11,10 +11,10 @@
 {strip}
 {assign var="pageCrumbTitle" value="$buildingTitle"}
 {if $buildingId}
-	{url|assign:"buildingUrl" op="editBuilding" path=$buildingId}
+	{url|assign:"buildingUrl" op="editBuilding" path=$buildingId escape=false}
 	{assign var="pageTitle" value="manager.scheduler.building.editBuilding"}
 {else}
-	{url|assign:"buildingUrl" op="createBuilding"}
+	{url|assign:"buildingUrl" op="createBuilding" escape=false}
 	{assign var="pageTitle" value="manager.scheduler.building.createBuilding"}
 {/if}
 {assign var="pageId" value="manager.scheduler.building.buildingForm"}

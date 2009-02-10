@@ -29,7 +29,7 @@
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
 			{if $suppFileId}{url|assign:"formUrl" op="editSuppFile" path=$paperId|to_array:$suppFileId from=$from}
-			{else}{url|assign:"formUrl" op="addSuppFile" path=$paperId from=$from}
+			{else}{url|assign:"formUrl" op="addSuppFile" path=$paperId from=$from escape=false}
 			{/if}
 			{form_language_chooser form="suppFile" url=$formUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>

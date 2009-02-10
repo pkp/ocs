@@ -11,10 +11,10 @@
 {strip}
 {assign var="pageCrumbTitle" value="$roomTitle"}
 {if $roomId}
-	{url|assign:"roomUrl" op="editRoom" path=$buildingId|to_array:$roomId}
+	{url|assign:"roomUrl" op="editRoom" path=$buildingId|to_array:$roomId escape=false}
 	{assign var="pageTitle" value="manager.scheduler.room.editRoom"}
 {else}
-	{url|assign:"roomUrl" op="createRoom" path=$buildingId}
+	{url|assign:"roomUrl" op="createRoom" path=$buildingId escape=false}
 	{assign var="pageTitle" value="manager.scheduler.room.createRoom"}
 {/if}
 {assign var="pageId" value="manager.scheduler.room.roomForm"}

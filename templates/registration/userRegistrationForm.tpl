@@ -23,7 +23,7 @@
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{url|assign:"registerUrl" op="registration"}
+			{url|assign:"registerUrl" op="registration" escape=false}
 			{form_language_chooser form="registration" url=$registerUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
 		</td>

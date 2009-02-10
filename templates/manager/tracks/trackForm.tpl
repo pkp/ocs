@@ -105,7 +105,7 @@
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{if $trackId}{url|assign:"trackFormUrl" op="editTrack" path=$trackId}
+			{if $trackId}{url|assign:"trackFormUrl" op="editTrack" path=$trackId escape=false}
 			{else}{url|assign:"trackFormUrl" op="createTrack" path=$trackId}
 			{/if}
 			{form_language_chooser form="track" url=$trackFormUrl}

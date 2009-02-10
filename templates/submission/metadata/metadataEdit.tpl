@@ -38,7 +38,7 @@ function moveAuthor(dir, authorIndex) {
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{url|assign:"formUrl" path=$paperId}
+			{url|assign:"formUrl" path=$paperId escape=false}
 			{* Maintain localized author bios across requests *}
 			{foreach from=$authors key=authorIndex item=author}
 				{foreach from=$author.biography key="thisLocale" item="thisBiography"}
