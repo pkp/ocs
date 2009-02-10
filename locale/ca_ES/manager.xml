@@ -233,7 +233,6 @@
 	<message key="manager.schedConfSetup.submissions.addChecklistItem">Afegir un element a la llista de requisits</message>
 	<message key="manager.schedConfSetup.submissions.allowIndividualSubmissions">Permet la tramesa de presentacions individuals</message>
 	<message key="manager.schedConfSetup.submissions.allowPanelSubmissions">Permet la tramesa de presentacions múltiples, presentades pels organitzadors de sessions amb panells concrets.</message>
-	<message key="manager.schedConfSetup.submissions.bothSequential">Resum seguit de la presentació</message>
 	<message key="manager.schedConfSetup.submissions.bothTogether">Resum i treball junts</message>
 	<message key="manager.schedConfSetup.submissions.callForPapers">Recepció de documents (CFP)</message>
 	<message key="manager.schedConfSetup.submissions.cfpMessage">Missatge per a recepció de documents </message>

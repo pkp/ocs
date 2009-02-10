@@ -236,7 +236,6 @@
 	<message key="manager.schedConfSetup.submissions.addChecklistItem">增加檢查列表項目</message>
 	<message key="manager.schedConfSetup.submissions.allowIndividualSubmissions">使能獨自的介紹並由作者遞交</message>
 	<message key="manager.schedConfSetup.submissions.allowPanelSubmissions">使能在綜合演獎單元內，由專題討論小組投遞</message>
-	<message key="manager.schedConfSetup.submissions.bothSequential">摘要隨著演講稿被介紹</message>
 	<message key="manager.schedConfSetup.submissions.bothTogether">摘要和全文一起</message>
 	<message key="manager.schedConfSetup.submissions.callForPapers">徵稿 (CFP)</message>
 	<message key="manager.schedConfSetup.submissions.cfpMessage">徵稿訊息</message>

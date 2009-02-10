@@ -250,7 +250,6 @@
 	<message key="manager.schedConfSetup.submissions.addChecklistItem">Ajouter un élément à la liste</message>
 	<message key="manager.schedConfSetup.submissions.allowIndividualSubmissions">Permettre les présentations individuelles, proposées par des auteurs</message>
 	<message key="manager.schedConfSetup.submissions.allowPanelSubmissions">Permettre les séances multi-présentations, proposées par un groupe d'organisateurs</message>
-	<message key="manager.schedConfSetup.submissions.bothSequential">Résumé suivi d'une présentation</message>
 	<message key="manager.schedConfSetup.submissions.bothTogether">Résumé et soumission réunis</message>
 	<message key="manager.schedConfSetup.submissions.callForPapers">Appel à communications (AAC)</message>
 	<message key="manager.schedConfSetup.submissions.cfpMessage">Message d'AAC</message>

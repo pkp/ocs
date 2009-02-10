@@ -233,7 +233,6 @@
 	<message key="manager.schedConfSetup.submissions.addChecklistItem">Añadir un elemento a la lista de requisitos</message>
 	<message key="manager.schedConfSetup.submissions.allowIndividualSubmissions">Permitir el envío de presentaciones individuales</message>
 	<message key="manager.schedConfSetup.submissions.allowPanelSubmissions">Permitir el envío de presentaciones múltiples, presentadas por los organizadores de sesiones con paneles concretos.</message>
-	<message key="manager.schedConfSetup.submissions.bothSequential">Resumen seguido de la presentación</message>
 	<message key="manager.schedConfSetup.submissions.bothTogether">Resumen y trabajo juntos</message>
 	<message key="manager.schedConfSetup.submissions.callForPapers">Call for papers (CFP)</message>
 	<message key="manager.schedConfSetup.submissions.cfpMessage">Mensaje para Call for papers </message>

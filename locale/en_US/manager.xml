@@ -311,7 +311,7 @@
 	<message key="manager.schedConfSetup.submissions.addChecklistItem">Add Checklist Item</message>
 	<message key="manager.schedConfSetup.submissions.allowIndividualSubmissions">Enable individual presentations, submitted by authors</message>
 	<message key="manager.schedConfSetup.submissions.allowPanelSubmissions">Enable multiple-presentation sessions, submitted by panel organizers</message>
-	<message key="manager.schedConfSetup.submissions.bothSequential">Abstract followed by presentation</message>
+	<message key="manager.schedConfSetup.submissions.bothSequential">Abstract followed by proposal</message>
 	<message key="manager.schedConfSetup.submissions.bothTogether">Abstract and proposal together</message>
 	<message key="manager.schedConfSetup.submissions.callForPapers">Call for Papers (CFP)</message>
 	<message key="manager.schedConfSetup.submissions.cfpMessage">CFP message</message>

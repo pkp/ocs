@@ -249,7 +249,6 @@
 	<message key="manager.schedConfSetup.submissions.addChecklistItem">Incluir Item de Verificação</message>
 	<message key="manager.schedConfSetup.submissions.allowIndividualSubmissions">Habilitar apresentações individuais, enviadas por autores</message>
 	<message key="manager.schedConfSetup.submissions.allowPanelSubmissions">Habilitar sessões de apresentação múltipla, enviadas pelos organizadores dos painéis.</message>
-	<message key="manager.schedConfSetup.submissions.bothSequential">Resumo seguido de apresentação</message>
 	<message key="manager.schedConfSetup.submissions.bothTogether">Resumo e proposta</message>
 	<message key="manager.schedConfSetup.submissions.callForPapers">Chamada Para Submissões (CPS)</message>
 	<message key="manager.schedConfSetup.submissions.cfpMessage">Mensagem CPS</message>

@@ -239,7 +239,6 @@
 	<message key="manager.schedConfSetup.submissions.addChecklistItem">Item hinzuf&#252;gen</message>
 	<message key="manager.schedConfSetup.submissions.allowIndividualSubmissions">Einzelpr&#228;sentationen (von Autoren eingereicht) erlauben</message>
 	<message key="manager.schedConfSetup.submissions.allowPanelSubmissions">Pr&#228;sentationsreihen (von Organisatoren eingereicht) erlauben</message>
-	<message key="manager.schedConfSetup.submissions.bothSequential">Zuerst Abstract, dann Pr&#228;sentation</message>
 	<message key="manager.schedConfSetup.submissions.bothTogether">Abstract und Pr&#228;sentation</message>
 	<message key="manager.schedConfSetup.submissions.callForPapers">Call for Papers (CFP)</message>
 	<message key="manager.schedConfSetup.submissions.cfpMessage">Informationen zum CFP </message>
