@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+<!DOCTYPE locale SYSTEM "../locale.dtd">
 
 <!--
   * locale.xml
   *
-  * Copyright (c) 2000-2008 John Willinsky
+  * Copyright (c) 2000-2007 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Cadenes per a ca_ES (català Espanya) locale.
@@ -288,7 +288,7 @@
 	<message key="paper.coverageSample">Característiques de les mostres</message>
 	<message key="paper.type">Tipus, mètode o aproximació</message>
 	<message key="paper.language">Idioma</message>
-	<message key="paper.trackDirector">TE</message>
+	<message key="paper.trackDirector">DS</message>
 	<message key="paper.commentsToDirector">Comentaris de l'autor</message>
 	<message key="paper.submission">Enviament</message>
 	<message key="paper.submissions">Enviaments</message>

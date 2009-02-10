@@ -327,7 +327,7 @@
 	<message key="paper.coverageSample">Caratteristiche del campione di ricerca</message>
 	<message key="paper.type">Tipo, metodo o approccio</message>
 	<message key="paper.language">Lingua</message>
-	<message key="paper.trackDirector">TE</message>
+	<message key="paper.trackDirector">DS</message>
 	<message key="paper.commentsToDirector">Commenti dell'autore</message>
 	<message key="paper.submission">Submission</message>
 	<message key="paper.submissions">Submissions</message>
