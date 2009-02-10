@@ -365,7 +365,7 @@
 	<message key="paper.coverageSample"> Research sample characteristics</message>
 	<message key="paper.type">Type, method or approach</message>
 	<message key="paper.language">Language</message>
-	<message key="paper.trackDirector">TE</message>
+	<message key="paper.trackDirector">TD</message>
 	<message key="paper.commentsToDirector">Author comments</message>
 	<message key="paper.submission">Submission</message>
 	<message key="paper.submissions">Submissions</message>
