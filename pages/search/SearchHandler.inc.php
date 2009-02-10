@@ -43,15 +43,20 @@ class SearchHandler extends PKPHandler {
 		parent::validate();
 		SearchHandler::setupTemplate(false);
 		$templateMgr = &TemplateManager::getManager();
+		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 
 		if (Request::getConference() == null) {
 			$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
 			$conferences = &$conferenceDao->getEnabledConferenceTitles();  //Enabled added
 			$templateMgr->assign('siteSearch', true);
 			$templateMgr->assign('conferenceOptions', array('' => Locale::Translate('search.allConferences')) + $conferences);
-		}
+			$yearRange = $publishedPaperDao->getPaperYearRange(null);
+		} else {
+			$conference =& Request::getConference();
+			$yearRange = $publishedPaperDao->getPaperYearRange($conference->getConferenceId());
+		}	
 
-		SearchHandler::assignAdvancedSearchParameters($templateMgr);
+		SearchHandler::assignAdvancedSearchParameters($templateMgr, $yearRange);
 
 		$templateMgr->display('search/advancedSearch.tpl');
 	}
@@ -277,12 +282,15 @@ class SearchHandler extends PKPHandler {
 
 		$rangeInfo = PKPHandler::getRangeInfo('search');
 
+		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$searchConferenceId = Request::getUserVar('searchConference');
 		if (!empty($searchConferenceId)) {
 			$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
 			$conference = &$conferenceDao->getConference($searchConferenceId);
+			$yearRange = $publishedPaperDao->getPaperYearRange($conference->getConferenceId());
 		} else {
 			$conference =& Request::getConference();
+			$yearRange = $publishedPaperDao->getPaperYearRange(null);
 		}
 
 		// Load the keywords array with submitted values
@@ -306,7 +314,7 @@ class SearchHandler extends PKPHandler {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_NO_STORE);
 		$templateMgr->assign_by_ref('results', $results);
-		SearchHandler::assignAdvancedSearchParameters($templateMgr);
+		SearchHandler::assignAdvancedSearchParameters($templateMgr, $yearRange);
 
 		$templateMgr->display('search/searchResults.tpl');
 	}
@@ -327,7 +335,7 @@ class SearchHandler extends PKPHandler {
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 	}
 
-	function assignAdvancedSearchParameters(&$templateMgr) {
+	function assignAdvancedSearchParameters(&$templateMgr, $yearRange) {
 		$templateMgr->assign('query', Request::getUserVar('query'));
 		$templateMgr->assign('searchConference', Request::getUserVar('searchConference'));
 		$templateMgr->assign('author', Request::getUserVar('author'));
@@ -353,6 +361,11 @@ class SearchHandler extends PKPHandler {
 		$templateMgr->assign('dateToDay', $toDay);
 		$templateMgr->assign('dateToYear', $toYear);
 		if (!empty($toYear)) $templateMgr->assign('dateTo', date('Y-m-d H:i:s',mktime(0,0,0,$toMonth==null?12:$toMonth,$toDay==null?31:$toDay,$toYear)));
+	
+		$startYear = substr($yearRange[1], 0, 4);
+		$endYear = substr($yearRange[0], 0, 4);
+		$templateMgr->assign('endYear', $endYear);
+		$templateMgr->assign('startYear', $startYear);
 	}
 }
 

@@ -774,6 +774,24 @@ class PublishedPaperDAO extends DAO {
 
 		return $returner;
 	}
+	
+	/**
+	 * Return years of oldest/youngest published paper within the site or a specific scheduled conference
+	 * @param $conferenceId int
+	 * @return array
+	 */
+	function getPaperYearRange($conferenceId = null) {
+		$result = &$this->retrieve(
+			'SELECT MAX(pp.date_published), MIN(pp.date_published) FROM published_papers pp, papers p, sched_confs sc WHERE pp.paper_id = p.paper_id AND pp.sched_conf_id = sc.sched_conf_id ' . (isset($conferenceId)?' AND sc.conference_id = ?':''),
+			isset($conferenceId)?$conferenceId:false
+		);
+		$returner = array($result->fields[0], $result->fields[1]);
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
 }
 
 ?>
