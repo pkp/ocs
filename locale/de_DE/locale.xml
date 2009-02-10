@@ -158,7 +158,7 @@
         <message key="paper.coverageSample">Stichprobenmerkmale</message>
         <message key="paper.type">Titel und Leiter des Symposiums bitte in folgender Form eingeben: Titel (Leiter)</message>
         <message key="paper.language">Sprache</message>
-        <message key="paper.trackDirector">Leitung des Tracks</message>
+        <message key="paper.trackDirector">TL</message>
         <message key="paper.commentsToDirector">Kommentare des Autors</message>
         <message key="paper.submission">Einreichung</message>
         <message key="paper.submissions">Einreichungen</message>

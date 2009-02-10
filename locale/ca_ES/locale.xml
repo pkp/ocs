@@ -126,7 +126,7 @@
 	<message key="paper.coverageSample">Característiques de les mostres</message>
 	<message key="paper.type">Tipus, mètode o aproximació</message>
 	<message key="paper.language">Idioma</message>
-	<message key="paper.trackDirector">TE</message>
+	<message key="paper.trackDirector">DS</message>
 	<message key="paper.commentsToDirector">Comentaris de l'autor</message>
 	<message key="paper.submission">Enviament</message>
 	<message key="paper.submissions">Enviaments</message>

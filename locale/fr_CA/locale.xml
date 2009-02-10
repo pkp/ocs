@@ -146,7 +146,7 @@
   <message key="paper.coverageSample">Caractéristiques de l'échantillon de recherche</message>
   <message key="paper.type">Type, méthode ou approche</message>
   <message key="paper.language">Langue</message>
-  <message key="paper.trackDirector">TE</message>
+  <message key="paper.trackDirector">RS</message>
   <message key="paper.commentsToDirector">Commentaires de l'auteur</message>
   <message key="paper.submission">Soumission</message>
   <message key="paper.submissions">Soumissions</message>

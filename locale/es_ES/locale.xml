@@ -168,7 +168,7 @@
 	<message key="paper.coverageSample">Características de las muestra</message>
 	<message key="paper.type">Tipo, método o aproximación</message>
 	<message key="paper.language">Idioma</message>
-	<message key="paper.trackDirector">TE</message>
+	<message key="paper.trackDirector">DS</message>
 	<message key="paper.commentsToDirector">Comentarios del autor</message>
 	<message key="paper.submission">Envío</message>
 	<message key="paper.submissions">Envíos</message>
