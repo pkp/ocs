@@ -31,9 +31,9 @@
 			<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 			<td width="80%" class="value">
 				{if $schedConfId}
-					{url|assign:"settingsUrl" op="editSchedConf" path=$conferenceId|to_array:$schedConfId}
+					{url|assign:"settingsUrl" op="editSchedConf" path=$conferenceId|to_array:$schedConfId escape=false}
 				{else}
-					{url|assign:"settingsUrl" op="createSchedConf"}
+					{url|assign:"settingsUrl" op="createSchedConf" escape=false}
 				{/if}
 				{form_language_chooser form="schedConf" url=$settingsUrl}
 				<span class="instruct">{translate key="form.formLanguage.description"}</span>

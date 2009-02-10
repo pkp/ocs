@@ -29,7 +29,7 @@
 		<tr valign="top">
 			<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 			<td width="80%" class="value">
-				{url|assign:"settingsUrl" op="editConference" path=$conferenceId}
+				{url|assign:"settingsUrl" op="editConference" path=$conferenceId escape=false}
 				{form_language_chooser form="conference" url=$settingsUrl}
 				<span class="instruct">{translate key="form.formLanguage.description"}</span>
 			</td>

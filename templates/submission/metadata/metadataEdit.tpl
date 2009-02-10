@@ -36,7 +36,7 @@ function movePresenter(dir, presenterIndex) {
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{url|assign:"formUrl" path=$paperId}
+			{url|assign:"formUrl" path=$paperId escape=false}
 			{* Maintain localized presenter bios across requests *}
 			{foreach from=$presenters key=presenterIndex item=presenter}
 				{foreach from=$presenter.biography key="thisLocale" item="thisBiography"}

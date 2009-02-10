@@ -35,8 +35,8 @@
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{if $optionId}{url|assign:"registrationOptionUrl" op="editRegistrationOption" path=$optionId}
-			{else}{url|assign:"registrationOptionUrl" op="createRegistrationOption"}
+			{if $optionId}{url|assign:"registrationOptionUrl" op="editRegistrationOption" path=$optionId escape=false}
+			{else}{url|assign:"registrationOptionUrl" op="createRegistrationOption" escape=false}
 			{/if}
 			{form_language_chooser form="registrationOption" url=$registrationOptionUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
