@@ -219,7 +219,7 @@ class PeopleHandler extends ManagerHandler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$rolePath = $roleDao->getRolePath($roleId);
 
-		$isConferenceManager = Validation::isConferenceManager($conference->getConferenceId());
+		$isConferenceManager = Validation::isConferenceManager($conference->getConferenceId()) || Validation::isSiteAdmin();
 
 		// Don't allow scheduled conference directors (who can end up here) to enroll
 		// conference managers or scheduled conference directors.
@@ -268,7 +268,7 @@ class PeopleHandler extends ManagerHandler {
 		parent::validate();
 
 		$conference =& Request::getConference();
-		$isConferenceManager = Validation::isConferenceManager($conference->getConferenceId());
+		$isConferenceManager = Validation::isConferenceManager($conference->getConferenceId()) || Validation::isSiteAdmin();
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		// Don't allow scheduled conference managers to unenroll scheduled conference managers or
