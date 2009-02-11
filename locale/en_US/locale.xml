@@ -232,8 +232,8 @@
 
 
 	<message key="submissions.track">Track</message>
-	<message key="submissions.queuedAbstractReview">Abstract in review</message>
-	<message key="submissions.queuedPaperReview">Paper in review</message>
+	<message key="submissions.queuedAbstractReview">Abstract In Review</message>
+	<message key="submissions.queuedPaperReview">Paper In Review</message>
 	<message key="submissions.published">Posted</message>
 	<message key="submissions.accepted">Accepted</message>
 	<message key="submissions.reviewStage">Review Stage</message>

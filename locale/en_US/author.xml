@@ -34,6 +34,8 @@
 	<message key="author.submit.notAccepting">This conference is not accepting submissions.</message>
 	<message key="author.submit.submissionDeadlinePassed">Submissions for this conference were closed on {$closedDate}.</message>
 	<message key="author.submit.authorRegistrationClosed">Author registration is closed for this conference.</message>
+	<message key="author.submissions.queuedAbstractReviewRevisions">Abstract In Review: Revisions Required</message>
+	<message key="author.submissions.queuedPaperReviewRevisions">Paper In Review: Revisions Required</message>
 	<message key="author.submissions.confirmDelete">Are you sure you want to delete this incomplete submission?</message>
 	<message key="author.submissions.viewStatus">View Status</message>
 	<message key="author.submissions.noSubmissions">No submissions.</message>
