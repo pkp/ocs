@@ -36,16 +36,25 @@
 		{if $submissionProgress == 0}
 			<td><a href="{url op="submission" path=$paperId}" class="action">{if $submission->getPaperTitle()}{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
 			<td align="right">
-				{if $status==SUBMISSION_STATUS_ARCHIVED}{translate key="submissions.archived"}
-				{elseif $status==SUBMISSION_STATUS_QUEUED_UNASSIGNED}{translate key="submissions.queuedUnassigned"}
-				{elseif $status==SUBMISSION_STATUS_PUBLISHED}{translate key="submissions.published"}
-				{elseif $status==SUBMISSION_STATUS_DECLINED}{translate key="submissions.declined"}
-				{else}{* SUBMISSION_STATUS_EDITING *}
+				{if $status==SUBMISSION_STATUS_QUEUED_UNASSIGNED}{translate key="submissions.queuedUnassigned"}
+				{elseif $status == SUBMISSION_STATUS_QUEUED_REVIEW}
+					{assign var=decision value=$submission->getMostRecentDecision()}
 					{if $currentStage==REVIEW_STAGE_PRESENTATION}
-						<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">{translate key="submissions.queuedPaperReview"}</a>
+						<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">
+							{if $decision == $smarty.const.SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS}{translate key="presenter.submissions.queuedPaperReviewRevisions"}
+							{else}{translate key="submissions.queuedPaperReview"}
+							{/if}
+						</a>
 					{else}
-						<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">{translate key="submissions.queuedAbstractReview"}</a>
+						<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">
+							{if $decision == $smarty.const.SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS}{translate key="presenter.submissions.queuedAbstractReviewRevisions"}
+
+							{else}{translate key="submissions.queuedAbstractReview"}
+							{/if}
+						</a>
 					{/if}
+				{elseif $status == SUBMISSION_STATUS_QUEUED_EDITING}
+					<a href="{url op="submissionReview" path=$paperId|to_array}" class="action">{translate key="submissions.queuedEditing"}</a>
 				{/if}
 			</td>
 		{else}

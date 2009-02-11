@@ -457,9 +457,9 @@
 	<message key="submissions.completed">Completed</message>
 	<message key="submissions.active">Active</message>
 	<message key="submissions.queuedUnassigned">Awaiting assignment</message>
-	<message key="submissions.queuedEditing">Queued for editing</message>
-	<message key="submissions.queuedAbstractReview">Abstract in review</message>
-	<message key="submissions.queuedPaperReview">Paper in review</message>
+	<message key="submissions.queuedEditing">In Editing</message>
+	<message key="submissions.queuedAbstractReview">Abstract In Review</message>
+	<message key="submissions.queuedPaperReview">Paper In Review</message>
 	<message key="submissions.archived">Archived</message>
 	<message key="submissions.published">Posted</message>
 	<message key="submissions.accepted">Accepted</message>
@@ -1968,6 +1968,8 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="presenter.submit.submissionDeadlinePassed">Submissions for this conference were closed on {$closedDate}.</message>
 	<message key="presenter.submit.authorRegistrationClosed">Author registration is closed for this conference.</message>
 
+	<message key="presenter.submissions.queuedAbstractReviewRevisions">Abstract In Review: Revisions Required</message>
+	<message key="presenter.submissions.queuedPaperReviewRevisions">Paper In Review: Revisions Required</message>
 	<message key="presenter.submissions.confirmDelete">Are you sure you want to delete this incomplete submission?</message>
 	<message key="presenter.submissions.viewStatus">View Status</message>
 	<message key="presenter.submissions.noSubmissions">No submissions.</message>

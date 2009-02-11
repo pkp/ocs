@@ -215,7 +215,7 @@ class PresenterSubmissionDAO extends DAO {
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 			WHERE	p.sched_conf_id = ?
 				AND p.user_id = ?' .
-				($active?' AND p.status = 1':(
+				($active?(' AND p.status = ' . (int) SUBMISSION_STATUS_QUEUED):(
 					' AND ((p.status <> ' . (int) SUBMISSION_STATUS_QUEUED . ' AND p.submission_progress = 0) OR (p.status = ' . (int) SUBMISSION_STATUS_ARCHIVED . '))'
 				)),
 			array(
