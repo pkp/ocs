@@ -1675,6 +1675,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 					$wasFound = true;
 				}
 			}
+			if (!$wasFound) $isValid = false;
 		}
 
 		if (!$isValid) {
