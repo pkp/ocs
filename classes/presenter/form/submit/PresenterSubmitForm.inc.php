@@ -97,7 +97,7 @@ class PresenterSubmitForm extends Form {
 
 		// Send presenter notification email
 		import('mail.PaperMailTemplate');
-		$mail = &new PaperMailTemplate($paper, $mailTemplate);
+		$mail = &new PaperMailTemplate($paper, $mailTemplate, null, null, null, null, false);
 		$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 		if ($mail->isEnabled()) {
 			$mail->addRecipient($user->getEmail(), $user->getFullName());

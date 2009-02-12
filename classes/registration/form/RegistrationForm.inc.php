@@ -247,7 +247,7 @@ class RegistrationForm extends Form {
 			);
 
 			import('mail.MailTemplate');
-			$mail = &new MailTemplate('REGISTRATION_NOTIFY');
+			$mail =& new MailTemplate('REGISTRATION_NOTIFY', null, null, null, null, false);
 			$mail->setFrom($registrationEmail, $registrationName);
 			$mail->assignParams($paramArray);
 			$mail->addRecipient($user->getEmail(), $user->getFullName());

@@ -55,8 +55,9 @@ class MailTemplate extends Mail {
 	 * @param $locale string locale of the template
 	 * @param $enableAttachments boolean optional Whether or not to enable paper attachments in the template
 	 * @param $conference object optional The conference this message relates to
+	 * @param $includeSignature boolean optional
 	 */
-	function MailTemplate($emailKey = null, $locale = null, $enableAttachments = null, $conference = null, $schedConf = null) {
+	function MailTemplate($emailKey = null, $locale = null, $enableAttachments = null, $conference = null, $schedConf = null, $includeSignature = true) {
 		$this->emailKey = isset($emailKey) ? $emailKey : null;
 
 
@@ -74,7 +75,7 @@ class MailTemplate extends Mail {
 
 		$userSig = '';
 		$user =& Request::getUser();
-		if ($user) {
+		if ($user && $includeSignature) {
 			$userSig = $user->getUserSignature();
 			if (!empty($userSig)) $userSig = "\n" . $userSig;
 		}
