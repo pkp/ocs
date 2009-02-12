@@ -46,10 +46,11 @@ class PaperMailTemplate extends MailTemplate {
 	 * @param $enableAttachments boolean optional
 	 * @param $conference object optional
 	 * @param $schedConf object optional
+	 * @param $includeSignature boolean optional
 	 * @see MailTemplate::MailTemplate()
 	 */
-	function PaperMailTemplate($paper, $emailKey = null, $locale = null, $enableAttachments = null, $conference = null, $schedConf = null) {
-		parent::MailTemplate($emailKey, $locale, $enableAttachments, $conference, $schedConf);
+	function PaperMailTemplate($paper, $emailKey = null, $locale = null, $enableAttachments = null, $conference = null, $schedConf = null, $includeSignature = true) {
+		parent::MailTemplate($emailKey, $locale, $enableAttachments, $conference, $schedConf, $includeSignature);
 		$this->paper = $paper;
 	}
 
