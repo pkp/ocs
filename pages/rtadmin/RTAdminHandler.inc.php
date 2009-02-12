@@ -77,7 +77,7 @@ class RTAdminHandler extends PKPHandler {
 	 */
 	function validate() {
 		parent::validate(true);
-		if (!Validation::isConferenceManager()) {
+		if (!Validation::isConferenceManager() && !Validation::isSiteAdmin()) {
 			Validation::redirectLogin();
 		}
 	}
