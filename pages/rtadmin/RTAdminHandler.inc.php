@@ -10,14 +10,11 @@
  * @ingroup pages_rtadmin
  *
  * @brief Handle Reading Tools administration requests.
- *
  */
 
-// $Id$
-
+//$Id$
 
 import('rt.ocs.ConferenceRTAdmin');
-import('core.Handler');
 
 class RTAdminHandler extends Handler {
 
@@ -77,7 +74,7 @@ class RTAdminHandler extends Handler {
 	 */
 	function validate() {
 		parent::validate(true);
-		if (!Validation::isConferenceManager()) {
+		if (!Validation::isConferenceManager() && !Validation::isSiteAdmin()) {
 			Validation::redirectLogin();
 		}
 	}
@@ -116,7 +113,6 @@ class RTAdminHandler extends Handler {
 		if ($version) {
 			// Validate the URLs for a single version
 			$versions = array(&$version);
-			import('core.ArrayItemIterator');
 			$versions = &new ArrayItemIterator($versions, 1, 1);
 		} else {
 			// Validate all URLs for this conference
