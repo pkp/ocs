@@ -331,7 +331,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		$fileId = isset($args[1]) ? $args[1] : 0;
 		$revision = isset($args[2]) ? $args[2] : null;
 
-		list($conference, $schedConf, $submission) = TrackSubmissionHandler::validate($paperId);
+		list($conference, $schedConf, $submission) = TrackSubmissionHandler::validate($paperId, null, true);
 		Action::downloadFile($paperId, $fileId, $revision);
 	}
 
@@ -347,7 +347,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 	 * 	  have edit access over the specified paper in order for
 	 * 	  validation to be successful.
 	 */
-	function validate($paperId, $requiresEditAccess = false) {
+	function validate($paperId, $requiresEditAccess = false, $isDownloadingSubmission = false) {
 		parent::validate();
 
 		$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');
@@ -370,7 +370,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 			}
 		}
 
-		if ($isValid) {
+		if ($isValid && !$isDownloadingSubmission) {
 			// The user may be coming in on an old URL e.g. from the submission
 			// ack email. If OCS is awaiting the completion of the submission,
 			// send them to the submit page.
