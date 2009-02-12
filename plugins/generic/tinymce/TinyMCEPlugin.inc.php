@@ -222,7 +222,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'director/saveMetadata':
 				$count = max(1, count($templateMgr->get_template_vars('presenters')));
 				for ($i=0; $i<$count; $i++) {
-					$fields[] = "presenter-$i-biography";
+					$fields[] = "presenters-$i-biography";
 				}
 				$fields[] = 'abstract';
 				break;
