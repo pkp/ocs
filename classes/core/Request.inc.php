@@ -38,7 +38,7 @@ class Request {
 			return;
 		}
 
-		header("Location: $url");
+		header("Refresh: 0; url=$url");
 		exit();
 	}
 
