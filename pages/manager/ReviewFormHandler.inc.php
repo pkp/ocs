@@ -476,7 +476,7 @@ class ReviewFormHandler extends ManagerHandler {
 		$conference =& Request::getConference();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
-		if ($reviewFormDao->unusedReviewFormExists($targetReviewFormId, $conference->getConferenceId())) {
+		if (is_array($copy) && $reviewFormDao->unusedReviewFormExists($targetReviewFormId, $conference->getConferenceId())) {
 			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 			foreach ($copy as $reviewFormElementId) {
 				$reviewFormElement =& $reviewFormElementDao->getReviewFormElement($reviewFormElementId);
