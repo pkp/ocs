@@ -27,7 +27,7 @@
 {/if}
 
 {if $source}
-	<input type="hidden" name="source" value={$source|escape}/>
+	<input type="hidden" name="source" value="{$source|escape}" />
 {/if}
 
 <h3>{translate key="user.profile"}</h3>
