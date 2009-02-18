@@ -14,9 +14,6 @@
 
 //$Id$
 
-
-import('core.Handler');
-
 class LoginHandler extends Handler {
 
 	/**
@@ -145,12 +142,21 @@ class LoginHandler extends Handler {
 			$templateMgr->display('user/lostPassword.tpl');
 
 		} else {
-			$site = &Request::getSite();
+			$site =& Request::getSite();
+			$conference =& Request::getConference();
+			$schedConf =& Request::getSchedConf();
 
 			// Send email confirming password reset
 			import('mail.MailTemplate');
 			$mail = &new MailTemplate('PASSWORD_RESET_CONFIRM');
-			$mail->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
+			// Set the sender to one of three different settings, based on context
+			if ($schedConf) {
+				$mail->setFrom($schedConf->getSetting('supportEmail'), $schedConf->getSetting('supportName'));
+			} elseif ($conference) {
+				$mail->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
+			} else {
+				$mail->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
+			}
 			$mail->assignParams(array(
 				'url' => Request::url(null, null, 'login', 'resetPassword', $user->getUsername(), array('confirm' => $hash)),
 				'siteTitle' => $site->getSiteTitle()
@@ -210,10 +216,22 @@ class LoginHandler extends Handler {
 			$userDao->updateUser($user);
 
 			// Send email with new password
-			$site = &Request::getSite();
+			$site =& Request::getSite();
+			$conference =& Request::getConference();
+			$schedConf =& Request::getSchedConf();
+
 			import('mail.MailTemplate');
-			$mail = &new MailTemplate('PASSWORD_RESET');
-			$mail->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
+			$mail =& new MailTemplate('PASSWORD_RESET');
+
+			// Set the sender to one of three different settings, based on context
+			if ($schedConf) {
+				$mail->setFrom($schedConf->getSetting('supportEmail'), $schedConf->getSetting('supportName'));
+			} elseif ($conference) {
+				$mail->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
+			} else {
+				$mail->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
+			}
+
 			$mail->assignParams(array(
 				'username' => $user->getUsername(),
 				'password' => $newPassword,
@@ -267,7 +285,6 @@ class LoginHandler extends Handler {
 			$passwordForm->display();
 		}
 	}
-
 }
 
 ?>
