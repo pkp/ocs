@@ -28,6 +28,10 @@ class UserHandler extends PKPHandler {
 
 		$user =& Request::getUser();
 		$userId = $user->getUserId();
+		
+		$setupIncomplete = array();
+		$submissionsCount = array();
+		$isValid = array();
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
@@ -37,34 +41,32 @@ class UserHandler extends PKPHandler {
 
 		$conference = &Request::getConference();
 		$templateMgr->assign('helpTopicId', 'user.userHome');
-
-		$schedConfsToDisplay = array();
-		$schedConfRolesToDisplay = array();
-
+		
 		$allConferences = $allSchedConfs = array();
 
-		$rolesToDisplay = array();
-
-		if ($conference == null) {
-			// Prevent variable clobbering
+		if ($conference == null) { // Curently at site level
 			unset($conference);
 
 			// Show roles for all conferences
 			$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
 			$conferences = &$conferenceDao->getConferences();
 
-			$conferencesToDisplay = array();
-			$rolesToDisplay = array();
 			// Fetch the user's roles for each conference
 			while ($conference =& $conferences->next()) {
 				$conferenceId = $conference->getConferenceId();
-
+				$schedConfId = 0;
+				
 				// First, the generic roles for this conference
 				$roles = &$roleDao->getRolesByUserId($userId, $conferenceId, 0);
 				if (!empty($roles)) {
 					$conferencesToDisplay[$conferenceId] =& $conference;
 					$rolesToDisplay[$conferenceId] = &$roles;
 				}
+
+				// Determine if conference setup is incomplete, to provide a message for JM
+				$setupIncomplete[$conferenceId] = UserHandler::checkCompleteSetup($conference);
+				
+				UserHandler::getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
 
 				// Second, scheduled conference-specific roles
 				// TODO: don't display scheduled conference roles if granted at conference level too?
@@ -74,15 +76,11 @@ class UserHandler extends PKPHandler {
 
 					$schedConfRoles =& $roleDao->getRolesByUserId($userId, $conferenceId, $schedConfId);
 					if(!empty($schedConfRoles)) {
-						$schedConfRolesToDisplay[$schedConfId] =& $schedConfRoles;
 						$schedConfsToDisplay[$conferenceId][$schedConfId] =& $schedConf;
-						if (!isset($conferencesToDisplay[$conferenceId])) {
-							$conferencesToDisplay[$conferenceId] =& $conference;
-						}
+						UserHandler::getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
 					}
 					$allSchedConfs[$conference->getConferenceId()][$schedConf->getSchedConfId()] =& $schedConf;
 					unset($schedConf);
-					unset($schedConfRoles);
 				}
 				$allConferences[$conference->getConferenceId()] =& $conference;
 				unset($schedConfs);
@@ -91,24 +89,21 @@ class UserHandler extends PKPHandler {
 
 			$templateMgr->assign('showAllConferences', 1);
 			$templateMgr->assign_by_ref('userConferences', $conferencesToDisplay);
-
-		} else {
-			// Show roles for the currently selected conference
+		} else {  // Currently within a conference's context
 			$conferenceId = $conference->getConferenceId();
-			$roles =& $roleDao->getRolesByUserId($userId, $conferenceId, 0);
-			if(!empty($roles)) {
-				$rolesToDisplay[$conferenceId] =& $roles;
-			}
+			$userConferences = array($conference);
+			
+			UserHandler::getRoleDataForConference($userId, $conferenceId, 0, $submissionsCount, $isValid);
 
 			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
 			while($schedConf =& $schedConfs->next()) {
 				$schedConfId = $schedConf->getSchedConfId();
 				$schedConfRoles =& $roleDao->getRolesByUserId($userId, $conferenceId, $schedConfId);
 				if(!empty($schedConfRoles)) {
-					$schedConfRolesToDisplay[$schedConfId] =& $schedConfRoles;
+					UserHandler::getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
 					$schedConfsToDisplay[$conferenceId][$schedConfId] =& $schedConf;
 				}
-				unset($schedConfRoles);
+
 				unset($schedConf);
 			}
 
@@ -120,16 +115,65 @@ class UserHandler extends PKPHandler {
 				$templateMgr->assign('submissionsOpen', SchedConfAction::submissionsOpen($schedConf));
 			}
 
-			$templateMgr->assign_by_ref('userConference', $conference);
+			$templateMgr->assign_by_ref('userConferences', $userConferences);
 		}
 
 		$templateMgr->assign('isSiteAdmin', $roleDao->getRole(0, 0, $userId, ROLE_ID_SITE_ADMIN));
 		$templateMgr->assign('allConferences', $allConferences);
 		$templateMgr->assign('allSchedConfs', $allSchedConfs);
-		$templateMgr->assign('userRoles', $rolesToDisplay);
 		$templateMgr->assign('userSchedConfs', $schedConfsToDisplay);
-		$templateMgr->assign('userSchedConfRoles', $schedConfRolesToDisplay);
+		$templateMgr->assign('isValid', $isValid);
+		$templateMgr->assign('submissionsCount', $submissionsCount);
+		$templateMgr->assign('setupIncomplete', $setupIncomplete); 
 		$templateMgr->display('user/index.tpl');
+	}
+
+	/**
+	 * Gather information about a user's role within a conference.
+	 * @param $userId int
+	 * @param $conferenceId int 
+	 * @param $submissionsCount array reference
+	 * @param $isValid array reference
+	
+	 */
+	function getRoleDataForConference($userId, $conferenceId, $schedConfId, &$submissionsCount, &$isValid) {
+		if (Validation::isConferenceManager($conferenceId)) {
+			$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
+			$isValid["ConferenceManager"][$conferenceId][$schedConfId] = true;
+		}
+		if (Validation::isDirector($conferenceId, $schedConfId)) {
+			$isValid["Director"][$conferenceId][$schedConfId] = true;
+			$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
+			$submissionsCount["Director"][$conferenceId][$schedConfId] = $directorSubmissionDao->getDirectorSubmissionsCount($schedConfId);
+		}
+		if (Validation::isTrackDirector($conferenceId, $schedConfId)) {
+			$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+			$submissionsCount["TrackDirector"][$conferenceId][$schedConfId] = $trackDirectorSubmissionDao->getTrackDirectorSubmissionsCount($userId, $schedConfId);
+			$isValid["TrackDirector"][$conferenceId][$schedConfId] = true;
+		}
+		if (Validation::isReviewer($conferenceId, $schedConfId)) {
+			$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+			$submissionsCount["Reviewer"][$conferenceId][$schedConfId] = $reviewerSubmissionDao->getSubmissionsCount($userId, $schedConfId);
+			$isValid["Reviewer"][$conferenceId][$schedConfId] = true;
+		} 
+		if (Validation::isAuthor($conferenceId, $schedConfId)) {
+			$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+			$submissionsCount["Author"][$conferenceId][$schedConfId] = $authorSubmissionDao->getSubmissionsCount($userId, $schedConfId);
+			$isValid["Author"][$conferenceId][$schedConfId] = true;
+		}
+	}
+	
+	/**
+	 * Determine if the conference's setup has been sufficiently completed.
+	 * @param $conference Object 
+	 * @return boolean True iff setup is incomplete
+	 */
+	function checkCompleteSetup($conference) {
+		if($conference->getSetting('contactEmail') == "" ||  
+			$conference->getSetting('contactName') == "" || 
+			$conference->getLocalizedSetting('abbreviation') == "") {
+			return true;
+		} else return false;
 	}
 
 	/**
@@ -229,6 +273,7 @@ class UserHandler extends PKPHandler {
 	 */
 	function setupTemplate($subclass = false) {
 		parent::setupTemplate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_AUTHOR, LOCALE_COMPONENT_OCS_DIRECTOR, LOCALE_COMPONENT_OCS_MANAGER));
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();

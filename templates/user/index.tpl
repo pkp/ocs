@@ -13,96 +13,129 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{if $showAllConferences}
+{if !$currentConference}<h3>{translate key="user.myConferences"}</h3>{/if}
 
-<h3>{translate key="user.myConferences"}</h3>
-
-{if $isSiteAdmin}
+{if $isSiteAdmin && !$currentConference}
 {assign var="hasRole" value=1}
 <h4><a href="{url page="user"}">{$siteTitle|escape}</a></h4>
-<ul class="plain">
-	<li>&#187; <a href="{url conference="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
+	&#187; <a href="{url conference="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a>
 	{call_hook name="Templates::User::Index::Admin"}
-</ul>
 {/if}
 
 {foreach from=$userConferences item=conference}
 {assign var="hasRole" value=1}
 <h4><a href="{url conference=$conference->getPath() page="user"}">{$conference->getConferenceTitle()|escape}</a></h4>
-	<ul class="plain">
 	{assign var="conferenceId" value=$conference->getConferenceId()}
-
-	{* Iterate over conference roles *}
+	{assign var="conferencePath" value=$conference->getPath()}
+	{* Display conference roles *}
 	
-	{foreach item=role from=$userRoles[$conferenceId]}
-		{if $role->getRolePath() != 'reader'}
-			<li>&#187; <a href="{url conference=$conference->getPath() schedConf="index" page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
+	<table width="100%" class="info">
+		{if $isSiteAdmin && !$hasOtherConferences && $currentConference}
+			<tr>
+				<td>&#187; <a href="{url conference="index" schedConf="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
 		{/if}
-	{/foreach}
-	</ul>
+		{if $isValid.ConferenceManager.$conferenceId.0}
+			<tr>
+				<td>&#187; <a href="{url conference=$conferencePath page="manager"}">{translate key="user.role.manager"}</a></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td align="right">{if $setupIncomplete.$conferenceId}[<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="manager" op="setup" path="1"}">{translate key="manager.schedConfSetup"}</a>]{/if}</td>
+			</tr>
+		{/if}
+	</table>
 
-	{* Iterate over scheduled conference roles *}
-	
+	{* Display scheduled conference roles *}
 	{foreach from=$userSchedConfs[$conferenceId] item=schedConf}
 		{assign var="schedConfId" value=$schedConf->getSchedConfId()}
+		{assign var="schedConfPath" value=$schedConf->getPath()}
 		<h5><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getSchedConfTitle()|escape}</a></h5>
 
-		<ul class="plain">
-		{foreach item=role from=$userSchedConfRoles[$schedConfId]}
-			{if $role->getRolePath() != 'reader'}
-				<li>&#187; <a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
+		<table width="100%" class="info">
+			{if $isValid.Director.$conferenceId.$schedConfId}
+				<tr>
+					{assign var="directorSubmissionsCount" value=$submissionsCount.Director.$conferenceId.$schedConfId}
+					<td>&#187; <a href="{url conference=$conferencePath schedConf=$schedConfPath  schedConf=$schedConfPath page="director"}">{translate key="user.role.director"}</a></td>
+					<td>{if $directorSubmissionsCount[0]}
+							<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="director" op="submissions" path="submissionsUnassigned"}">{$directorSubmissionsCount[0]}</a> {translate key="common.queue.short.submissionsUnassigned"}
+						{else}<span class="disabled">0 {translate key="common.queue.short.submissionsUnassigned"}</span>{/if}
+					</td>
+					<td>{if $directorSubmissionsCount[1]}
+							<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="director" op="submissions" path="submissionsInReview"}">{$directorSubmissionsCount[1]}</a> {translate key="common.queue.short.submissionsInReview"}
+						{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInReview"}</span>{/if}
+					</td>
+					<td>{if $directorSubmissionsCount[2]}
+							<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="director" op="submissions" path="submissionsInEditing"}">{$directorSubmissionsCount[2]}</a> {translate key="common.queue.short.submissionsInEditing"}
+						{else}<span class="disabled">0 {translate key="common.queue.long.submissionsAccepted"}</span>{/if}
+					</td>
+					<td align="right">[<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="director" op="notifyUsers"}">{translate key="director.notifyUsers"}</a>]</td>
+				</tr>
 			{/if}
-		{/foreach}
-		</ul>
-
+			{if $isValid.TrackDirector.$conferenceId.$schedConfId}
+				{assign var="trackDirectorSubmissionsCount" value=$submissionsCount.TrackDirector.$conferenceId.$schedConfId}
+				<tr>
+					<td>&#187; <a href="{url conference=$conferencePath schedConf=$schedConfPath  page="trackDirector"}">{translate key="user.role.trackDirector"}</a></td>
+					<td></td>
+					<td>{if $trackDirectorSubmissionsCount[0]}
+							<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="trackDirector" op="index" path="submissionsInReview"}">{$trackDirectorSubmissionsCount[0]}</a> {translate key="common.queue.short.submissionsInReview"}
+						{else}<span class="disabled">0 {translate key="common.queue.short.submissionsInReview"}</span>{/if}
+					</td>
+					<td>{if $trackDirectorSubmissionsCount[1]}
+							<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="trackDirector" op="index" path="submissionsInEditing"}">{$trackDirectorSubmissionsCount[1]}</a> {translate key="common.queue.short.submissionsInEditing"}
+						{else}<span class="disabled">0 {translate key="common.queue.short.submissionsAccepted"}</span>{/if}
+					</td>
+					<td align="right"></td>
+				</tr>
+			{/if}
+			{if $isValid.Author.$conferenceId.$schedConfId || $isValid.Reviewer.$conferenceId.$schedConfId}
+				<tr><td class="separator" width="100%" colspan="5">&nbsp;</td></tr>
+			{/if}
+			{if $isValid.Author.$conferenceId.$schedConfId}
+				{assign var="authorSubmissionsCount" value=$submissionsCount.Author.$conferenceId.$schedConfId}
+				<tr>
+					<td>&#187; <a href="{url conference=$conferencePath schedConf=$schedConfPath  page="author"}">{translate key="user.role.author"}</a></td>
+					<td></td>
+					<td></td>
+					<td>{if $authorSubmissionsCount[0]}
+							<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="author"}">{$authorSubmissionsCount[0]}</a> {translate key="common.queue.short.active"}
+						{else}<span class="disabled">0 {translate key="common.queue.short.active"}</span>{/if}
+					</td>
+					<td align="right">[<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="author" op="submit"}">{translate key="author.submit"}</a>]</td>
+				</tr>
+			{/if}
+			{if $isValid.Reviewer.$conferenceId.$schedConfId}
+				{assign var="reviewerSubmissionsCount" value=$submissionsCount.Reviewer.$conferenceId.$schedConfId}
+				<tr>
+					<td>&#187; <a href="{url conference=$conferencePath schedConf=$schedConfPath  page="reviewer"}">{translate key="user.role.reviewer"}</a></td>
+					<td></td>
+					<td></td>
+					<td>{if $reviewerSubmissionsCount[0]}
+							<a href="{url conference=$conferencePath schedConf=$schedConfPath  page="reviewer"}">{$reviewerSubmissionsCount[0]}</a> {translate key="common.queue.short.active"}
+						{else}<span class="disabled">0 {translate key="common.queue.short.active"}</span>{/if}
+					</td>
+					</td align="right"></td>
+				</tr>
+			{/if}
+			{* Add a row to the bottom of each table to ensure all have same width*}
+			<tr>
+				<td width="25%"></td>
+				<td width="14%"></td>
+				<td width="14%"></td>
+				<td width="14%"></td>
+				<td width="33%"></td>
+			</tr>
+				
+		</table>
 	{/foreach}
 
 	{call_hook name="Templates::User::Index::Conference" conference=$conference}
 {/foreach}
 
-{else}
-<h3>{$userConference->getConferenceTitle()}</h3>
-<ul class="plain">
-{if $isSiteAdmin && !$hasOtherConferences}
-	<li>&#187; <a href="{url conference="index" schedConf="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
-{/if}
-
-	{assign var="conferenceId" value=$userConference->getConferenceId()}
-
-	{* Iterate over conference roles *}
-	
-	{foreach item=role from=$userRoles[$conferenceId]}
-		{if $role->getRolePath() != 'reader'}
-			{assign var="hasRole" value=1}
-			<li>&#187; <a href="{url conference=$userConference->getPath() schedConf=index page=$role->getRolePath()}">{translate key=$role->getRoleName()}</a></li>
-		{/if}
-	{/foreach}
-	</ul>
-
-	{* Iterate over scheduled conference roles *}
-	
-	{foreach from=$userSchedConfs[$conferenceId] item=schedConf}
-		{assign var="hasRole" value=1}
-		{assign var="schedConfId" value=$schedConf->getSchedConfId()}
-		<h5><a href="{url conference=$userConference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getSchedConfTitle()|escape}</a></h5>
-
-		<ul class="plain">
-		{foreach item=role from=$userSchedConfRoles[$schedConfId]}
-			{if $role->getRolePath() != 'reader'}
-				<li>&#187;
-					<a href="{url
-							conference=$userConference->getPath() 
-							schedConf=$schedConf->getPath()
-							page=$role->getRolePath()}">
-						{translate key=$role->getRoleName()}
-					</a>
-				</li>
-			{/if}
-		{/foreach}
-		</ul>
-
-	{/foreach}
-{/if}
 
 {if !$hasRole}
 	{if !$currentSchedConf}
