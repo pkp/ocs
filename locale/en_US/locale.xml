@@ -550,6 +550,7 @@
 	<message key="schedConf.registration.alreadyRegisteredAndPaid">You are already registered for this conference and your registration has been paid. Please contact the principal contact in "About" if this is in error or you would like to change your registration.</message>
 	<message key="schedConf.registration.noPaymentMethodAvailable">Your registration has been recorded. If applicable, you will be contacted regarding payment.</message>
 	<message key="schedConf.registration.conferenceFees">Conference Fees</message>
+	<message key="schedConf.registration.failed">Your registration has failed.  Please try again.</message>
 	<message key="schedConf.registration.type">Registration Type</message>
 	<message key="schedConf.registration.cost">Cost</message>
 	<message key="schedConf.registration.noneAvailable">No registration types are available.</message>

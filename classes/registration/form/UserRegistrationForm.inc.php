@@ -16,6 +16,11 @@
 
 import('form.Form');
 
+define('REGISTRATION_SUCCESSFUL', 0x100000001);
+define('REGISTRATION_FAILED', 0x100000002);
+define('REGISTRATION_NO_PAYMENT', 0x100000003);
+
+
 class UserRegistrationForm extends Form {
 	/** @var captchaEnabled boolean whether or not captcha is enabled for this form */
 	var $captchaEnabled;
@@ -202,10 +207,9 @@ class UserRegistrationForm extends Form {
 			$user->setPassword(Validation::encryptCredentials($this->getData('username'), $this->getData('password')));
 
 			$userDao = &DAORegistry::getDAO('UserDAO');
-			$userDao->insertUser($user);
-			$userId = $user->getUserId();
+			$userId = $userDao->insertUser($user);
 			if (!$userId) {
-				return false;
+				return REGISTRATION_FAILED;
 			}
 
 			$conference =& Request::getConference();
@@ -238,7 +242,7 @@ class UserRegistrationForm extends Form {
 		import('payment.ocs.OCSPaymentManager');
 		$paymentManager =& OCSPaymentManager::getManager();
 
-		if (!$paymentManager->isConfigured()) return false;
+		if (!$paymentManager->isConfigured()) return REGISTRATION_NO_PAYMENT;
 
 		import('registration.Registration');
 		$registration = &new Registration();
@@ -277,7 +281,7 @@ class UserRegistrationForm extends Form {
 
 		$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
 
-		return true;
+		return REGISTRATION_SUCCESSFUL;
 	}
 }
 
