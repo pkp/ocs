@@ -32,6 +32,8 @@ class UserHandler extends PKPHandler {
 		$setupIncomplete = array();
 		$submissionsCount = array();
 		$isValid = array();
+		$schedConfsToDisplay = array();
+		$conferencesToDisplay = array();
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
@@ -82,6 +84,13 @@ class UserHandler extends PKPHandler {
 					$allSchedConfs[$conference->getConferenceId()][$schedConf->getSchedConfId()] =& $schedConf;
 					unset($schedConf);
 				}
+				
+				// If the user has Sched. Conf. roles and no Conf. roles, push the conf. object
+				// into the conference array so it gets shown
+				if(empty($roles) && !empty($schedConfsToDisplay)) {
+					$conferencesToDisplay[$conferenceId] =& $conference;
+				}
+				
 				$allConferences[$conference->getConferenceId()] =& $conference;
 				unset($schedConfs);
 				unset($conference);
