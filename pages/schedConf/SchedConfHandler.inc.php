@@ -243,13 +243,21 @@ class SchedConfHandler extends PKPHandler {
 		$form =& new UserRegistrationForm($typeId);
 		$form->readInputData();
 		if ($form->validate()) {
-			if (!$form->execute()) {
-				// Automatic payment failed; display a generic
-				// "you will be contacted" message.
-				$templateMgr->assign('message', 'schedConf.registration.noPaymentMethodAvailable');
-				$templateMgr->assign('backLinkLabel', 'common.back');
-				$templateMgr->assign('backLink', Request::url(null, null, 'index'));
-				$templateMgr->display('common/message.tpl');
+			if ($registrationError = $form->execute() != REGISTRATION_SUCCESSFUL) {
+				if($registrationError == REGISTRATION_FAILED) {
+					// User not created
+					$templateMgr->assign('message', 'schedConf.registration.failed');
+					$templateMgr->assign('backLinkLabel', 'common.back');
+					$templateMgr->assign('backLink', Request::url(null, null, 'index'));
+					$templateMgr->display('common/message.tpl');
+				} elseif ($registrationError == REGISTRATION_NO_PAYMENT) {				
+					// Automatic payment failed; display a generic
+					// "you will be contacted" message.
+					$templateMgr->assign('message', 'schedConf.registration.noPaymentMethodAvailable');
+					$templateMgr->assign('backLinkLabel', 'common.back');
+					$templateMgr->assign('backLink', Request::url(null, null, 'index'));
+					$templateMgr->display('common/message.tpl');
+				}
 			}
 			// Otherwise, payment is handled for us.
 		} else {
