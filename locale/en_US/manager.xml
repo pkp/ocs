@@ -257,6 +257,7 @@
 	<message key="manager.schedConfSetup.details.contactNameRequired">The primary contact name is required.</message>
 	<message key="manager.schedConfSetup.details.contributor">Contributor</message>
 	<message key="manager.schedConfSetup.details.contributors">Sources of Support</message>
+	<message key="manager.schedConfSetup.details.contributors.noteDescription">This text will appear below the "Sources of Support" heading and above the list of supporting organization names and urls under "Organizing Team" on the "About" page.</message>
 	<message key="manager.schedConfSetup.details.contributors.description">Additional agencies or organizations that provide financial or in-kind support for the conference will appear on the conference homepage and may be accompanied by a note of acknowledgement.</message>
 	<message key="manager.schedConfSetup.details.description">Scheduled Conference Description</message>
 	<message key="manager.schedConfSetup.details.emailBounceAddress">Bounce Address</message>
@@ -275,6 +276,7 @@
 	<message key="manager.schedConfSetup.details.pageDescription">Description, location, contacts, email identification, and sponsors.</message>
 	<message key="manager.schedConfSetup.details.principalContact">Principal Contact for Scheduled Conference</message>
 	<message key="manager.schedConfSetup.details.sponsors">Sponsoring Organizations</message>
+	<message key="manager.schedConfSetup.details.sponsors.noteDescription">This text will appear below the "Sponsors" heading and above the list of sponsor names and urls under "Organizing Team" on the "About" page.</message>
 	<message key="manager.schedConfSetup.details.sponsors.description">The name of the organizations (e.g., scholarly associations, university department, etc.) sponsoring the conference, to appear on the conference homepage and may be accompanied by a note of acknowledgement.</message>
 	<message key="manager.schedConfSetup.details.supportEmailRequired">The support email is required.</message>
 	<message key="manager.schedConfSetup.details.supportNameRequired">The support name is required.</message>
