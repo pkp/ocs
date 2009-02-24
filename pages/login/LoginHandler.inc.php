@@ -86,7 +86,7 @@ class LoginHandler extends PKPHandler {
 				if (isset($source) && !empty($source)) {
 					Request::redirectUrl(Request::getProtocol() . '://' . Request::getServerHost() . $source, false);
 				} else {
-					Request::redirect(null, null, 'user');
+					Request::redirectHome();
 				}
 			}
 

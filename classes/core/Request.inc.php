@@ -185,6 +185,68 @@ class Request extends PKPRequest {
 			$op = null, $path = null, $params = null, $anchor = null, $escape = false) {
 		return parent::url(array($conferencePath, $schedConfPath), $page, $op, $path, $params, $anchor, $escape);
 	}
+	
+		
+	/**
+	 * Redirect to user home page (or the role home page if the user has one role).
+	 */
+	function redirectHome() {
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$user = Request::getUser();
+		$userId = $user->getUserId();
+
+		if ($schedConf =& Request::getSchedConf()) { 
+			// The user is in the sched. conf. context, see if they have one role only
+			$roles =& $roleDao->getRolesByUserId($userId, $schedConf->getConferenceId(), $schedConf->getSchedConfId());
+			if(count($roles) == 1) {
+				$role = array_shift($roles);
+				Request::redirect(null, null, $role->getRolePath());
+			} else {
+				Request::redirect(null, null, 'user');
+			}
+		} elseif ($conference =& Request::getConference()) { 
+			// The user is in the conference context, see if they have one role only 
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$roles =& $roleDao->getRolesByUserId($userId, $conference->getConferenceId());
+			if(count($roles) == 1) {
+				$role = array_shift($roles);
+				$confPath = $conference->getPath();
+				$schedConfPath = 'index';
+
+				if ($role->getSchedConfId()) {
+					$schedConf = $schedConfDao->getSchedConf($role->getSchedConfId());
+					$schedConfPath = $schedConf->getPath();
+				}
+
+				Request::redirect($confPath, $schedConfPath, $role->getRolePath());
+			} else {
+				Request::redirect(null, null,  'user');
+			}
+		} else {
+			// The user is at the site context, check to see if they are
+			// only registered in one conf/SchedConf w/ one role
+			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$roles = $roleDao->getRolesByUserId($userId);
+			
+			if(count($roles) == 1) {
+				$role = array_shift($roles);
+				$confPath = 'index';
+				$schedConfPath = 'index';
+				
+				if ($role->getConferenceId()) {
+					$conference = $conferenceDao->getConference($role->getConferenceId());
+					$confPath = $conference->getPath();
+				}
+				if ($role->getSchedConfId()) {
+					$schedConf = $schedConfDao->getSchedConf($role->getSchedConfId());
+					$schedConfPath = $schedConf->getPath();
+				}
+				
+				Request::redirect($confPath, $schedConfPath, $role->getRolePath());
+			} else Request::redirect('index', 'index', 'user');
+		}
+	}
 }
 
 ?>
