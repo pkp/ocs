@@ -139,6 +139,7 @@
 	<message key="manager.registration.form.membershipInstructions">Enter membership information if the registration type requires that registrants belong to an association or organization.</message>
 	<message key="manager.registration.form.membershipRequired">The selected registration type requires membership information.</message>
 	<message key="manager.registration.form.notifyEmail">Send the user an email with their username and registration details.</message>
+	<message key="manager.registration.form.notifyPaymentEmail">Send the user an email stating that their payment was received.</message>
 	<message key="manager.registration.form.notifyEmailValid">Please use the checkbox provided.</message>
 	<message key="manager.registration.form.payment">Payment Received</message>
 	<message key="manager.registration.form.payment.description">Please check when payment is received for this user, and record the date.</message>

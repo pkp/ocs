@@ -232,6 +232,7 @@ class RegistrationHandler extends ManagerHandler {
 	 */
 	function updateRegistration() {
 		parent::validate();
+		RegistrationHandler::setupTemplate();
 
 		import('registration.form.RegistrationForm');
 

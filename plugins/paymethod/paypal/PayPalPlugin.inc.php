@@ -202,7 +202,38 @@ class PayPalPlugin extends PaymethodPlugin {
 							}
 
 							// Fulfill the queued payment.
-							if ($ocsPaymentManager->fulfillQueuedPayment($queuedPaymentId, $queuedPayment)) exit();
+							if ($ocsPaymentManager->fulfillQueuedPayment($queuedPaymentId, $queuedPayment)) {
+								// Send the registrant a notification that their payment was received
+								$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		
+								$registrationName = $schedConfSettingsDao->getSetting($schedConfId, 'registrationName');
+								$registrationEmail = $schedConfSettingsDao->getSetting($schedConfId, 'registrationEmail');
+								$registrationPhone = $schedConfSettingsDao->getSetting($schedConfId, 'registrationPhone');
+								$registrationFax = $schedConfSettingsDao->getSetting($schedConfId, 'registrationFax');
+								$registrationMailingAddress = $schedConfSettingsDao->getSetting($schedConfId, 'registrationMailingAddress');
+								$registrationContactSignature = $registrationName;
+						
+								if ($registrationMailingAddress != '') $registrationContactSignature .= "\n" . $registrationMailingAddress;
+								if ($registrationPhone != '') $registrationContactSignature .= "\n" . Locale::Translate('user.phone') . ': ' . $registrationPhone;
+								if ($registrationFax != '')	$registrationContactSignature .= "\n" . Locale::Translate('user.fax') . ': ' . $registrationFax;
+						
+								$registrationContactSignature .= "\n" . Locale::Translate('user.email') . ': ' . $registrationEmail;
+
+								$paramArray = array(
+									'registrantName' => $contactName,
+									'schedConfName' => $schedConfName,
+									'registrationContactSignature' => $registrationContactSignature 
+								);
+						
+								import('mail.MailTemplate');
+								$mail = new MailTemplate('MANUAL_PAYMENT_RECEIVED');
+								$mail->setFrom($registrationEmail, $registrationName);
+								$mail->assignParams($paramArray);
+								$mail->addRecipient($contactEmail, $contactName);
+								$mail->send();
+								
+								exit();
+							}
 
 							// If we're still here, it means the payment couldn't be fulfilled.
 							$mail->assignParams(array(

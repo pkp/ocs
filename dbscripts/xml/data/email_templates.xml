@@ -252,5 +252,10 @@
 			<field name="can_disable">0</field>
 			<field name="to_role_id">32768</field>
 		</row>
+		<row>
+			<field name="email_key">MANUAL_PAYMENT_RECEIVED</field>
+			<field name="can_edit">1</field>
+			<field name="can_disable">0</field>
+		</row>
 	</table>
 </data>
