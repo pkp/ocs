@@ -156,7 +156,11 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="sponsorNote" key="manager.schedConfSetup.details.note"}</td>
-		<td width="80%" class="value"><textarea name="sponsorNote[{$formLocale|escape}]" id="sponsorNote" rows="5" cols="40" class="textArea">{$sponsorNote[$formLocale]|escape}</textarea></td>
+		<td width="80%" class="value">
+			<textarea name="sponsorNote[{$formLocale|escape}]" id="sponsorNote" rows="5" cols="40" class="textArea">{$sponsorNote[$formLocale]|escape}</textarea>
+			<br/>
+			<span class="instruct">{translate key="manager.schedConfSetup.details.sponsors.noteDescription"}</span>
+		</td>
 	</tr>
 {foreach name=sponsors from=$sponsors key=sponsorId item=sponsor}
 	<tr valign="top">
@@ -211,7 +215,11 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contributorNote" key="manager.schedConfSetup.details.note"}</td>
-		<td width="80%" class="value"><textarea name="contributorNote[{$formLocale|escape}]" id="contributorNote" rows="5" cols="40" class="textArea">{$contributorNote[$formLocale]|escape}</textarea></td>
+		<td width="80%" class="value">
+			<textarea name="contributorNote[{$formLocale|escape}]" id="contributorNote" rows="5" cols="40" class="textArea">{$contributorNote[$formLocale]|escape}</textarea>
+			<br/>
+			<span class="instruct">{translate key="manager.schedConfSetup.details.contributors.noteDescription"}</span>
+		</td>
 	</tr>
 {foreach name=contributors from=$contributors key=contributorId item=contributor}
 	<tr valign="top">

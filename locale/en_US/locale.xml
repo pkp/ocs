@@ -1292,10 +1292,12 @@ Note that if your site administrator has already registered this site with the P
 	<message key="manager.schedConfSetup.details.emailBounceAddress.description">Any undeliverable emails will result in an error message to this address.</message>
 	<message key="manager.schedConfSetup.details.emailBounceAddressDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>allow_envelope_sender</tt> option in the OCS configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OCS documentation.]]></message>
 	<message key="manager.schedConfSetup.details.sponsors">Sponsoring Organizations</message>
+	<message key="manager.schedConfSetup.details.sponsors.noteDescription">This text will appear below the "Sponsors" heading and above the list of sponsor names and urls under "Organizing Team" on the "About" page.</message>
 	<message key="manager.schedConfSetup.details.sponsors.description">The name of the organizations (e.g., scholarly associations, university department, etc.) sponsoring the conference, to appear on the conference homepage and may be accompanied by a note of acknowledgement.</message>
 	<message key="manager.schedConfSetup.details.addSponsor">Add Sponsoring Organization</message>
 	<message key="manager.schedConfSetup.details.institution">Institution</message>
 	<message key="manager.schedConfSetup.details.contributors">Sources of Support</message>
+	<message key="manager.schedConfSetup.details.contributors.noteDescription">This text will appear below the "Sources of Support" heading and above the list of supporting organization names and urls under "Organizing Team" on the "About" page.</message>
 	<message key="manager.schedConfSetup.details.contributors.description">Additional agencies or organizations that provide financial or in-kind support for the conference will appear on the conference homepage and may be accompanied by a note of acknowledgement.</message>
 	<message key="manager.schedConfSetup.details.contributor">Contributor</message>
 	<message key="manager.schedConfSetup.details.addContributor">Add Contributor</message>
