@@ -8,7 +8,11 @@
  *
  * $Id$
  *}
-{url|assign:"currentUrl" op="people" path="all"}{assign var="pageTitle" value="manager.people"}
+{if $userId}
+	{assign var="pageTitle" value="manager.people.editProfile"}
+{else}
+	{assign var="pageTitle" value="manager.people.createUser"}
+{/if}
 {include file="common/header.tpl"}
 
 {if not $userId}
@@ -65,7 +69,7 @@
 <p>{translate key="manager.people.userCreatedSuccessfully"}</p>
 {/if}
 
-<h3>{if $userId}{translate key="manager.people.editProfile"}{else}{translate key="manager.people.createUser"}{/if}</h3>
+<br />
 
 <form name="userForm" method="post" action="{url op="updateUser"}" onsubmit="enablePasswordFields()">
 <input type="hidden" name="source" value="{$source|escape}" />

@@ -9,7 +9,7 @@
  * $Id$
  *
  *}
-{assign var="pageTitle" value="manager.people.enrollment"}
+{assign var="pageTitle" value="manager.people.enrollExistingUser"}
 {include file="common/header.tpl"}
 
 <form name="disableUser" method="post" action="{url op="disableUser"}">

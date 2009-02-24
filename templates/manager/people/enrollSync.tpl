@@ -8,10 +8,8 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="manager.people.enrollment"}
+{assign var="pageTitle" value="manager.people.syncUsers"}
 {include file="common/header.tpl"}
-
-<h3>{translate key="manager.people.syncUsers"}</h3>
 
 <p><span class="instruct">{translate key="manager.people.syncUserDescription"}</span></p>
 
