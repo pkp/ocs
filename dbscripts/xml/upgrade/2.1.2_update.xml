@@ -16,4 +16,15 @@
 	<sql>
 		<query>UPDATE paper_presenters SET country = '' WHERE country IS NULL</query>
 	</sql>
+	<sql><!-- 3503: Notify registrant of payment being received -->
+		<query>INSERT INTO email_templates_default (email_key, can_edit, can_disable) VALUES ('MANUAL_PAYMENT_RECEIVED', 1, 0)</query>
+		<query>INSERT INTO email_templates_default_data (locale, email_key, subject, body, description) VALUES ('en_US', 'MANUAL_PAYMENT_RECEIVED', 'Your payment for {$conferenceName} has been received', '{$registrantName}:
+
+Your payment for {$conferenceName} has been received and recorded in your account.
+
+If you have any questions, please feel free to contact me.
+
+{$registrationContactSignature}', 'This email is sent to a user after their payment has been registered in the system.')</query>
+	</sql>
+
 </data>

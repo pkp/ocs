@@ -1716,6 +1716,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.registration.form.domainValid">Please enter a valid domain.</message>
 	<message key="manager.registration.form.ipRangeValid">Please enter a valid IP range.</message>
 	<message key="manager.registration.form.notifyEmailValid">Please use the checkbox provided.</message>
+	<message key="manager.registration.form.notifyPaymentEmail">Send the user an email stating that their payment was received.</message>
 	<message key="manager.registration.form.registrationContactRequired">In order to send the user a notification email, the registration contact name and email address must be specified in the Conference Setup.</message>
 	<message key="manager.registration.form.userId">User</message>
 	<message key="manager.registration.form.typeId">Registration type</message>

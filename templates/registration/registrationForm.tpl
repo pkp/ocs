@@ -104,6 +104,17 @@
 		<span class="instruct">{translate key="manager.registration.form.payment.description"}</span>
 	</td>
 </tr>
+<tr valign="top">
+	<td>&nbsp;</td>
+	<td class="value">
+		<table width="100%">
+			<tr valign="top">
+				<td width="5%"><input type="checkbox" name="notifyPaymentEmail" id="notifyPaymentEmail" value="1"{if $notifyPaymentEmail} checked="checked"{/if} /></td>
+				<td width="95%"><label for="notifyPaymentEmail">{translate key="manager.registration.form.notifyPaymentEmail"}</label></td>
+			</tr>
+		</table>
+	</td>
+</tr>
 </table>
 
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> {if not $registrationId}<input type="submit" name="createAnother" value="{translate key="manager.registration.form.saveAndCreateAnother"}" class="button" /> {/if}<input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="registrations" escape=false}'" /></p>
