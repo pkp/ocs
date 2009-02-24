@@ -87,7 +87,7 @@ class UserHandler extends PKPHandler {
 				
 				// If the user has Sched. Conf. roles and no Conf. roles, push the conf. object
 				// into the conference array so it gets shown
-				if(empty($roles) && !empty($schedConfsToDisplay)) {
+				if(empty($roles) && !empty($schedConfsToDisplay[$conferenceId])) {
 					$conferencesToDisplay[$conferenceId] =& $conference;
 				}
 				
