@@ -9,7 +9,11 @@
  * $Id$
  *}
 {strip}
-{assign var="pageTitle" value="manager.people.enrollment"}
+{if $roleSymbolic == 'all'}
+	{assign var="pageTitle" value="manager.people.allEnrolledUsers"}
+{else}
+	{assign var="pageTitle" value="manager.people.enrollment"}
+{/if}
 {include file="common/header.tpl"}
 {/strip}
 

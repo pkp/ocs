@@ -10,7 +10,7 @@
  *
  *}
 {strip}
-{assign var="pageTitle" value="manager.people.enrollment"}
+{assign var="pageTitle" value="manager.people.enrollExistingUser"}
 {include file="common/header.tpl"}
 {/strip}
 

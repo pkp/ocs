@@ -138,6 +138,7 @@ class PeopleHandler extends ManagerHandler {
 	 */
 	function enrollSearch($args) {
 		parent::validate();
+		parent::setupTemplate(true);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -285,6 +286,7 @@ class PeopleHandler extends ManagerHandler {
 	 */
 	function enrollSyncSelect($args) {
 		parent::validate();
+		parent::setupTemplate(true);
 
 		$rolePath = isset($args[0]) ? $args[0] : '';
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
