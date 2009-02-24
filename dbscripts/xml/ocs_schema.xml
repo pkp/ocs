@@ -1933,6 +1933,114 @@
 			<UNIQUE/>
 		</index>
 	</table>
+	
+	<!--
+	*
+	* TABLE registration_options
+	*
+	-->
+	<table name="registration_options">
+		<field name="option_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="code" type="C2" size="80" />
+		<field name="cost" type="F">
+			<NOTNULL/>
+		</field>
+		<field name="currency_code_alpha" type="C2" size="3">
+			<NOTNULL/>
+		</field>
+		<field name="opening_date" type="D"/>
+		<field name="closing_date" type="D">
+			<NOTNULL/>
+		</field>
+		<field name="pub" type="I1">
+			<NOTNULL/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+		</field>
+		<descr>Registration options.</descr>
+	</table>
+
+	<!--
+	  *
+	  * TABLE registration_option_settings
+	  *
+	  -->
+	<table name="registration_option_settings">
+		<field name="option_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+		</field>
+		<descr>Locale-specific registration option data</descr>
+		<index name="registration_option_settings_type_id">
+			<col>option_id</col>
+		</index>
+		<index name="registration_option_settings_pkey">
+			<col>option_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
+		</index>
+	</table>
+
+	<!--
+	 *
+	 * TABLE registration_option_costs
+	 *
+	 -->
+	<table name="registration_option_costs">
+		<field name="type_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="option_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="cost" type="F">
+			<NOTNULL/>
+		</field>
+		<descr>Pricing for registratin options for each registration type</descr>
+		<index name="registration_option_costs_pkey">
+			<col>type_id</col>
+			<col>option_id</col>
+			<UNIQUE/>
+		</index>
+	</table>
+
+	<!--
+	 *
+	 * TABLE registration_option_assoc
+	 *
+	 -->
+	<table name="registration_option_assoc">
+		<field name="option_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="registration_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<descr>Registration options.</descr>
+		<index name="registration_option_assoc_pkey">
+			<col>option_id</col>
+			<col>registration_id</col>
+			<UNIQUE />
+		</index>
+	</table>
 
 	<!--
 	  *
