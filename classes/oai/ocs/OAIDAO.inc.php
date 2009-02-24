@@ -128,7 +128,6 @@ class OAIDAO extends DAO {
 				c.path AS conference_path,
 				c.conference_id AS conference_id,
 				s.path AS sched_conf_path,
-				t.identify_type AS track_item_type,
 				pp.date_published AS date_published,
 			FROM	published_papers pp, conferences c, sched_confs s, papers p
 				LEFT JOIN tracks t ON t.track_id = p.track_id
@@ -178,8 +177,7 @@ class OAIDAO extends DAO {
 				p.*,
 				c.path AS conference_path,
 				c.conference_id AS conference_id,
-				s.path AS sched_conf_path,
-				t.identify_type AS track_item_type
+				s.path AS sched_conf_path
 			FROM	published_papers pp,
 				conferences c,
 				sched_confs s,
@@ -347,8 +345,9 @@ class OAIDAO extends DAO {
 		$record->contributors = $this->stripAssocArray((array) $paper->getSponsor(null));
 		$record->date = date('Y-m-d', strtotime($this->datetimeFromDB($row['date_published'])));
 		$types = $this->stripAssocArray((array) $track->getIdentifyType(null));
-		$record->types = empty($row['track_item_type']) ? array(Locale::getLocale() => Locale::translate('rt.metadata.pkp.peerReviewed')) : $row['track_item_type'].$row['type'];
+		$record->types = empty($types)?array(Locale::getLocale() => Locale::translate('rt.metadata.pkp.peerReviewed')):$types;
 		$record->format = array();
+
 		$record->sources = array($conference->getConferenceTitle() . '; ' . $schedConf->getSchedConfTitle());
 		$record->language = strip_tags($paper->getLanguage());
 		$record->relation = array();
