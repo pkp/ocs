@@ -3,7 +3,7 @@
 /**
  * @file CustomLocalePlugin.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @package plugins.generic.customLocale
@@ -24,26 +24,49 @@ class CustomLocalePlugin extends GenericPlugin {
 			$this->addLocaleData();
 
 			if ($this->getEnabled()) {
-				import('file.FileManager');
+				// Add custom locale data for already registered locale files.
+				// This includes the main locale file and the locale files for all
+				// plugins registered prior to and including this one. 
+				$locale = Locale::getLocale();
+				$localeFiles = Locale::getLocaleFiles($locale);
 				$conference = Request::getConference();
 				$conferenceId = $conference->getConferenceId();
-				$locale = Locale::getLocale();
-				$localeFiles = Locale::getLocaleFiles($locale); 
 				$publicFilesDir = Config::getVar('files', 'public_files_dir');
-				$customLocaleDir = $publicFilesDir . DIRECTORY_SEPARATOR . 'conferences' . DIRECTORY_SEPARATOR . $conferenceId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR;
+				$customLocalePathBase = $publicFilesDir . DIRECTORY_SEPARATOR . 'conferences' . DIRECTORY_SEPARATOR . $conferenceId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR;
 
+				import('file.FileManager');
 				foreach ($localeFiles as $localeFile) {
-					$localeFilename = $localeFile->getFilename();
-					$customLocalePath = $customLocaleDir . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $localeFilename;
+					$customLocalePath = $customLocalePathBase . $localeFile->getFilename();
 					if (FileManager::fileExists($customLocalePath)) {
 						Locale::registerLocaleFile($locale, $customLocalePath, true);
 					}
 				}
+
+				// Add custom locale data for all plugins registered after this one
+				HookRegistry::register('Plugin::addLocaleData', array(&$this, 'addCustomLocalePlugin'));
 			}
 
 			return true;
 		}
 		return false;
+	}
+
+	function addCustomLocalePlugin($hookName, $args) {
+		$locale =& $args[0];		
+		$localeFilename =& $args[1];
+
+		$conference = Request::getConference();
+		$conferenceId = $conference->getConferenceId();
+		$publicFilesDir = Config::getVar('files', 'public_files_dir');
+		$customLocalePath = $publicFilesDir . DIRECTORY_SEPARATOR . 'conferences' . DIRECTORY_SEPARATOR . $conferenceId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $localeFilename;
+
+		import('file.FileManager');
+		if (FileManager::fileExists($customLocalePath)) {
+			Locale::registerLocaleFile($locale, $customLocalePath, true);
+		}
+
+		return true;
+
 	}
 
 	function getName() {

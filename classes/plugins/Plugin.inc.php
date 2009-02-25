@@ -89,6 +89,7 @@ class Plugin {
 		$localeFilename = $this->getLocaleFilename($locale);
 		if ($localeFilename) {
 			Locale::registerLocaleFile($locale, $this->getLocaleFilename($locale));
+			HookRegistry::call('Plugin::addLocaleData', array(&$locale, &$localeFilename));
 			return true;
 		}
 		return false;
