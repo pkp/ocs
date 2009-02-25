@@ -19,6 +19,9 @@
 
 import('core.PKPApplication');
 
+define('ASSOC_TYPE_CONFERENCE',	0x00000001);
+define('ASSOC_TYPE_SCHED_CONF',	0x00000001);
+
 class OCSApplication extends PKPApplication {
 	function OCSApplication() {
 		parent::PKPApplication();
@@ -111,6 +114,8 @@ class OCSApplication extends PKPApplication {
 			'PaperGalleyDAO' => 'paper.PaperGalleyDAO',
 			'PaperNoteDAO' => 'paper.PaperNoteDAO',
 			'PaperSearchDAO' => 'search.PaperSearchDAO',
+			'PaperTypeDAO' => 'paper.PaperTypeDAO',
+			'PaperTypeEntryDAO' => 'paper.PaperTypeEntryDAO',
 			'PluginSettingsDAO' => 'plugins.PluginSettingsDAO',
 			'AuthorDAO' => 'paper.AuthorDAO',
 			'AuthorSubmissionDAO' => 'submission.author.AuthorSubmissionDAO',

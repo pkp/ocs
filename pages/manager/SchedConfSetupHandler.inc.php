@@ -104,7 +104,24 @@ class SchedConfSetupHandler extends ManagerHandler {
 					}
 					break;
 				case 2:
-					if (Request::getUserVar('addChecklist')) {
+					if ($action = Request::getUserVar('paperTypeAction')) {
+						$editData = true;
+						$setupForm->readInputData();
+						$paperTypeId = Request::getUserVar('paperTypeId');
+						switch ($action) {
+							case 'movePaperTypeUp':
+							case 'movePaperTypeDown':
+								if (isset($setupForm->_data['paperTypes'][$paperTypeId]['seq'])) $setupForm->_data['paperTypes'][$paperTypeId]['seq'] += ($action == 'movePaperTypeUp'?-1.5:1.5);
+								uasort($setupForm->_data['paperTypes'], 'seqSortFunction');
+								break;
+							case 'deletePaperType':
+								unset($setupForm->_data['paperTypes'][$paperTypeId]);
+								break;
+							case 'createPaperType':
+								$setupForm->_data['paperTypes']['a' . count($setupForm->_data['paperTypes'])] = array(); // Hack: non-numeric for new
+								break;
+						}
+					} elseif (Request::getUserVar('addChecklist')) {
 						// Add a checklist item
 						$editData = true;
 						$checklist = $setupForm->getData('submissionChecklist');
@@ -169,4 +186,9 @@ class SchedConfSetupHandler extends ManagerHandler {
 		}
 	}
 }
+
+function seqSortFunction($a, $b) {
+	return 2*($a['seq'] - $b['seq']); // Must return integer
+}
+
 ?>

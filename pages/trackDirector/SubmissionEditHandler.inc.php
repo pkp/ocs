@@ -69,6 +69,9 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->assign('helpTopicId', 'editorial.directorsRole.summaryPage');
 		}
 
+		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
+		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId()));
+
 		$templateMgr->display('trackDirector/submission.tpl');
 	}
 
@@ -227,6 +230,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign('reviewingAbstractOnly', $reviewingAbstractOnly);
 
 		$templateMgr->assign('helpTopicId', 'editorial.trackDirectorsRole.review');
+
+		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
+		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('sessionTypes', ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId()));
+
 		$templateMgr->display('trackDirector/submissionReview.tpl');
 	}
 
@@ -299,16 +306,13 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	}
 
 	/**
-	 * Change the submission type (panel, single) for a submission.
+	 * Change the session type for a submission.
 	 */
-	function changeTypeConst() {
+	function changeSessionType() {
 		$paperId = Request::getUserVar('paperId');
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
-
-		$typeConst = Request::getUserVar('typeConst');
-
-		TrackDirectorAction::changeTypeConst($submission, $typeConst);
-
+		$sessionType = Request::getUserVar('sessionType');
+		TrackDirectorAction::changeSessionType($submission, $sessionType);
 		Request::redirect(null, null, null, 'submission', $paperId);
 	}
 

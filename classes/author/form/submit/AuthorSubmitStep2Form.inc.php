@@ -54,7 +54,6 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 				'coverageChron' => $paper->getCoverageChron(null), // Localized
 				'coverageSample' => $paper->getCoverageSample(null), // Localized
 				'type' => $paper->getType(null), // Localized
-				'paperType' => $paper->getTypeConst(),
 				'language' => $paper->getLanguage(),
 				'sponsor' => $paper->getSponsor(null), // Localized
 				'track' => $trackDao->getTrack($paper->getTrackId())
@@ -100,8 +99,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 			'coverageSample',
 			'type',
 			'language',
-			'sponsor',
-			'paperType'
+			'sponsor'
 		);
 
 		$schedConf =& Request::getSchedConf();
@@ -176,15 +174,6 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		$paper->setType($this->getData('type'), null); // Localized
 		$paper->setLanguage($this->getData('language')); // Localized
 		$paper->setSponsor($this->getData('sponsor'), null); // Localized
-
-		$allowIndividualSubmissions = $schedConf->getSetting('allowIndividualSubmissions');
-		$allowPanelSubmissions = $schedConf->getSetting('allowPanelSubmissions');
-
-		$paperType = SUBMISSION_TYPE_SINGLE;
-		if ($allowIndividualSubmissions && $allowPanelSubmissions) {
-			if ($this->getData('paperType') == SUBMISSION_TYPE_PANEL) $paperType = SUBMISSION_TYPE_PANEL;
-		} elseif (!$allowIndividualSubmissions) $paperType = SUBMISSION_TYPE_PANEL;
-		$paper->setTypeConst($paperType);
 
 		// Update the submission progress if necessary.
 		if ($paper->getSubmissionProgress() <= $this->step) {

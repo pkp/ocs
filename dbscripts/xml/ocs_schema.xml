@@ -588,7 +588,6 @@
 		<field name="language" type="C2" size="10">
 			<DEFAULT VALUE="en"/>
 		</field>
-		<field name="paper_type" type="I8"/>
 		<field name="start_time" type="T"/>
 		<field name="end_time" type="T"/>
 		<field name="comments_to_dr" type="X"/>

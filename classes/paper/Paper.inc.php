@@ -27,10 +27,6 @@ define('SUBMISSION_STATUS_QUEUED', 1);
 define('SUBMISSION_STATUS_PUBLISHED', 3);
 define('SUBMISSION_STATUS_DECLINED', 4);
 
-// Submission type constants
-define('SUBMISSION_TYPE_SINGLE', 0);
-define('SUBMISSION_TYPE_PANEL', 1);
-
 // AuthorSubmission::getSubmissionStatus will return one of these in place of QUEUED:
 define ('SUBMISSION_STATUS_QUEUED_UNASSIGNED', 6);
 define ('SUBMISSION_STATUS_QUEUED_REVIEW', 7);
@@ -94,22 +90,6 @@ class Paper extends Submission {
 	//
 	// Get/set methods
 	//
-
-	/**
-	 * Get paper type (SUBMISSION_TYPE_...).
-	 * @return int
-	 */
-	function getTypeConst() {
-		return $this->getData('paperType');
-	}
-
-	/**
-	 * Set paper type (SUBMISSION_TYPE_...).
-	 * @param $type int
-	 */
-	function setTypeConst($typeConst) {
-		return $this->setData('paperType', $typeConst);
-	}
 
 	/**
 	 * Get ID of paper.

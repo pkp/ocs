@@ -64,28 +64,30 @@
 	</tr>
 	<tr>
 		<td class="label">{translate key="track.track"}</td>
-		<td class="value">{$submission->getTrackTitle()|escape}</td>
-		<td class="value"><form action="{url op="changeTrack" paperId=$submission->getPaperId()}" method="post">{translate key="submission.changeTrack"} <select name="trackId" size="1" class="selectMenu">{html_options options=$tracks selected=$submission->getTrackId()}</select> <input type="submit" value="{translate key="common.record"}" class="button" /></form></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="submission.paperType"}</td>
-		<td class="data">
-			{if $submission->getTypeConst() == SUBMISSION_TYPE_PANEL}
-				{translate key="submission.paperType.panel"}
-			{else}{* SUBMISSION_TYPE_PANEL *}
-				{translate key="submission.paperType.single"}
-			{/if}
-		</td>
 		<td class="value">
-			<form action="{url op="changeTypeConst" paperId=$submission->getPaperId()}" method="post">{translate key="submission.changeTrack"}
-				<select name="typeConst" size="1" class="selectMenu">
-					<option value="{$smarty.const.SUBMISSION_TYPE_PANEL}"{if $submission->getTypeConst() == SUBMISSION_TYPE_PANEL} selected="selected"{/if}>{translate key="submission.paperType.panel"}</option>
-					<option value="{$smarty.const.SUBMISSION_TYPE_SINGLE}"{if $submission->getTypeConst() == SUBMISSION_TYPE_SINGLE} selected="selected"{/if}>{translate key="submission.paperType.single"}</option>
-				</select>
+			<form action="{url op="changeTrack" paperId=$submission->getPaperId()}" method="post">
+				<select name="trackId" size="1" class="selectMenu">{html_options options=$tracks selected=$submission->getTrackId()}</select>
 				<input type="submit" value="{translate key="common.record"}" class="button" />
 			</form>
 		</td>
 	</tr>
+
+	{assign var=sessionType value=$submission->getData('sessionType')}
+	{if is_array($sessionTypes) && !empty($sessionTypes) && !(count($sessionTypes) == 1 && !empty($sessionType) && isset($sessionTypes[$sessionType]))}
+		<tr valign="top">
+			<td width="20%" class="label">{translate key="paper.sessionType"}</td>
+			<td class="data" colspan="2">
+				<form action="{url op="changeSessionType" paperId=$submission->getPaperId()}" method="post">
+					<select name="sessionType" size="1" class="selectMenu">
+						{if empty($sessionType) || !isset($sessionTypes[$sessionType])}<option value=""></option>{/if}
+						{html_options options=$sessionTypes selected=$sessionType}
+					</select>
+					<input type="submit" value="{translate key="common.record"}" class="button" />
+				</form>
+			</td>
+		</tr>
+	{/if}{* if we should display session type dropdown *}
+
 	{if $submission->getCommentsToDirector()}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.commentsToDirector"}</td>

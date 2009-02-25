@@ -44,16 +44,15 @@ function confirmSubmissionCheck() {
 	<td width="20%" class="label">{translate key="paper.title"}</td>
 	<td width="80%" class="value">{$submission->getPaperTitle()|strip_unsafe_html}</td>
 </tr>
-<tr valign="top">
-	<td width="20%" class="label">{translate key="submission.paperType"}</td>
-	<td width="80%" colspan="2" class="data">
-		{if $submission->getTypeConst() == SUBMISSION_TYPE_PANEL}
-			{translate key="submission.paperType.panel"}
-		{else}
-			{translate key="submission.paperType.single"}
-		{/if}
-	</td>
-</tr>
+
+{assign var=sessionType value=$submission->getData('sessionType')}
+{if isset($sessionTypes[$sessionType])}
+	<tr valign="top">
+		<td width="20%" class="label">{translate key="paper.sessionType"}</td>
+		<td width="80%" colspan="2" class="data">{$sessionTypes[$sessionType]|escape}</td>
+	</tr>
+{/if}{* isset($sessionTypes[$submissionType]) *}
+
 <tr valign="top">
 	<td class="label">{translate key="paper.conferenceTrack"}</td>
 	<td class="value">{$submission->getTrackTitle()|escape}</td>

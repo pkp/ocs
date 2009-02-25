@@ -31,14 +31,23 @@
 		<note file="docs/release-notes/README-2.1.0" />
 	</upgrade>
 
-	<upgrade minversion="2.0.0.0" maxversion="2.3.0.0">
+	<upgrade minversion="2.0.0.0" maxversion="2.1.2.0">
 		<data file="dbscripts/xml/upgrade/2.3.0_preupdate.xml" />
 	</upgrade>
 
 	<!-- PKP schema components -->
 	<schema file="lib/pkp/xml/schema/common.xml" />
+	<schema file="lib/pkp/xml/schema/controlledVocab.xml" />
 	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
 	<schema file="lib/pkp/xml/schema/temporaryFiles.xml" />
+
+	<upgrade minversion="2.0.0.0" maxversion="2.1.2.0">
+		<!--
+		 - Migrate paper_type column of papers table (single vs.
+		 - panel) to new Controlled Vocabulary basis
+		 -->
+		<code function="upgradePaperType" />
+	</upgrade>
 
 	<!-- OCS schema -->
 	<schema file="dbscripts/xml/ocs_schema.xml" />
@@ -53,7 +62,7 @@
 	</upgrade>
 
 	<!-- #3859: Rename of Presenter to Author -->
-	<upgrade minversion="2.0.0.0" maxversion="2.3.0.0">
+	<upgrade minversion="2.0.0.0" maxversion="2.1.2.0">
 		<data file="dbscripts/xml/upgrade/2.3.0_update.xml" />
 		<data file="dbscripts/xml/data/locale/{$installedLocale}/email_templates_data.xml"/>		
 		<code function="changePresenterInUserEmailTemplates" />

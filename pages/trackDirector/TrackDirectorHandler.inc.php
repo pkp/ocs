@@ -250,9 +250,9 @@ class TrackDirectorHandler extends PKPHandler {
 		SubmissionEditHandler::changeTrack();
 	}
 
-	function changeTypeConst() {
+	function changeSessionType() {
 		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::changeTypeConst();
+		SubmissionEditHandler::changeSessionType();
 	}
 
 	function recordDecision() {

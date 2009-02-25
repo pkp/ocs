@@ -43,14 +43,14 @@ class TrackDirectorAction extends Action {
 	}
 
 	/**
-	 * Changes the type constant (single, panel) of a paper.
+	 * Changes the session type.
 	 * @param $trackDirectorSubmission object
-	 * @param $typeConst int
+	 * @param $sessionType int
 	 */
-	function changeTypeConst(&$trackDirectorSubmission, $typeConst) {
-		if (!HookRegistry::call('TrackDirectorAction::changeTypeConst', array(&$trackDirectorSubmission, $typeConst))) {
-			$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-			$trackDirectorSubmission->setTypeConst((int) $typeConst);
+	function changeSessionType(&$trackDirectorSubmission, $sessionType) {
+		if (!HookRegistry::call('TrackDirectorAction::changeSessionType', array(&$trackDirectorSubmission, $sessionType))) {
+			$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+			$trackDirectorSubmission->setData('sessionType', (int) $sessionType);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 		}
 	}

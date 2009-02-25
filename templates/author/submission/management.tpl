@@ -19,16 +19,15 @@
 		<td width="20%" class="label">{translate key="paper.title"}</td>
 		<td width="80%" colspan="2" class="data">{$submission->getPaperTitle()|strip_unsafe_html}</td>
 	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="submission.paperType"}</td>
-		<td width="80%" colspan="2" class="data">
-			{if $submission->getTypeConst() == SUBMISSION_TYPE_PANEL}
-				{translate key="submission.paperType.panel"}
-			{else}
-				{translate key="submission.paperType.single"}
-			{/if}
-		</td>
-	</tr>
+
+	{assign var=sessionType value=$submission->getData('sessionType')}
+	{if isset($sessionTypes[$sessionType])}
+		<tr valign="top">
+			<td width="20%" class="label">{translate key="paper.sessionType"}</td>
+			<td width="80%" colspan="2" class="data">{$sessionTypes[$sessionType]|escape}</td>
+		</tr>
+	{/if}{* isset($submissionTypes[$submissionType]) *}
+
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="submission.originalFile"}</td>
 		<td width="80%" colspan="2" class="data">
@@ -72,7 +71,7 @@
 	</tr>
 	<tr>
 		<td class="label">{translate key="common.dateSubmitted"}</td>
-		<td>{$submission->getDateSubmitted()|date_format:$datetimeFormatLong}</td>
+		<td colspan="2">{$submission->getDateSubmitted()|date_format:$datetimeFormatLong}</td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="track.track"}</td>
@@ -102,7 +101,7 @@
 	{if $publishedPaper}
 	<tr>
 		<td class="label">{translate key="submission.abstractViews"}</td>
-		<td>{$publishedPaper->getViews()}</td>
+		<td colspan="2">{$publishedPaper->getViews()}</td>
 	</tr>
 	{/if}
 </table>

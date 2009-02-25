@@ -26,6 +26,7 @@
 {else}
 
 <form name="submit" method="post" action="{url op="saveSubmit" path=$submitStep}" onsubmit="return checkSubmissionChecklist()">
+{if $paperId}<input type="hidden" name="paperId" value="{$paperId|escape}" />{/if}
 
 {if count($trackOptions) == 2}{* Only one track: don't display the selection dropdown *}
 	{foreach from=$trackOptions key="trackOptionKey" item="trackOption"}
@@ -47,6 +48,52 @@
 
 	<div class="separator"></div>
 {/if}{* count($trackOptions) == 2 *}
+
+{if is_array($sessionTypes)}
+	{if count($sessionTypes) == 1}
+		{* Only one session type available; force it. *}
+		{foreach from=$sessionTypes item=sessionTypeObject}{/foreach}
+		<input type="hidden" name="sessionType" value="{$sessionTypeObject->getId()|escape}" />
+	{else}{* count($sessionTypes) > 1 *}
+		<h3>Session Information</h3>
+
+		<table width="100%" class="data">
+			{assign var=firstSessionType value=1}
+			{foreach from=$sessionTypes item=sessionTypeObject}
+				<tr valign="top">
+					<td rowspan="2" width="20%" class="label">
+						{if $firstSessionType}
+							{fieldLabel name="sessionType" key="paper.sessionType"}
+						{else}
+							&nbsp;
+						{/if}
+					</td>
+					<td rowspan="2" width="5%" class="value">
+						<input type="radio" class="radioButton" name="sessionType" value="{$sessionTypeObject->getId()}" {if ($sessionType == $sessionTypeObject->getId()) || ($firstSessionType && !$sessionType)}checked="checked" {/if} />
+					</td>
+					<td class="value" width="75%">
+						<strong>{$sessionTypeObject->getLocalizedName()}</strong>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td class="value">
+						{$sessionTypeObject->getLocalizedDescription()}
+						{if $sessionTypeObject->getLength()}
+							<br/>
+							{translate key="manager.schedConfSetup.submissions.typeOfSubmission.length"}: {$sessionTypeObject->getLength()|escape}
+						{/if}
+						{if $sessionTypeObject->getAbstractLength()}
+							<br/>
+							{translate key="manager.schedConfSetup.submissions.typeOfSubmission.abstractLength"}: {$sessionTypeObject->getAbstractLength()|escape}
+						{/if}
+					</td>
+				</tr>
+				{assign var=firstSessionType value=0}
+			{/foreach}
+		</table>
+		<div class="separator"></div>
+	{/if}{* count($sessionTypes) == 1 *}
+{/if}{* is_array($sessionTypes) *}
 
 <script type="text/javascript">
 {literal}

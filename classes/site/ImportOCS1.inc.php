@@ -719,7 +719,7 @@ class ImportOCS1 {
 			$paper->setDateSubmitted($row['created']);
 			$paper->setDateStatusModified($row['timestamp']);
 
-			$paper->setTypeConst($row['present_format'] == 'multiple' ? SUBMISSION_TYPE_PANEL : SUBMISSION_TYPE_SINGLE);
+			// $paper->setTypeConst($row['present_format'] == 'multiple' ? SUBMISSION_TYPE_PANEL : SUBMISSION_TYPE_SINGLE); FIXME
 			$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
 			$paper->setSubmissionProgress(0);
 			$paper->setPages('');

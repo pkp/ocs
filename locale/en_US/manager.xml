@@ -312,8 +312,6 @@
 	<message key="manager.schedConfSetup.submissions.abstractsAlone">Abstract</message>
 	<message key="manager.schedConfSetup.submissions.acceptSupplementaryReviewMaterials">Supplementary files can be submitted with abstracts and presentations.</message>
 	<message key="manager.schedConfSetup.submissions.addChecklistItem">Add Checklist Item</message>
-	<message key="manager.schedConfSetup.submissions.allowIndividualSubmissions">Enable individual presentations, submitted by authors</message>
-	<message key="manager.schedConfSetup.submissions.allowPanelSubmissions">Enable multiple-presentation sessions, submitted by panel organizers</message>
 	<message key="manager.schedConfSetup.submissions.bothSequential">Abstract followed by proposal</message>
 	<message key="manager.schedConfSetup.submissions.bothTogether">Abstract and proposal together</message>
 	<message key="manager.schedConfSetup.submissions.callForPapers">Call for Papers (CFP)</message>
@@ -361,8 +359,13 @@
 	<message key="manager.schedConfSetup.submissions.title">Step 2. Submissions</message>
 	<message key="manager.schedConfSetup.submissions.typeExamples">(E.g., Historical Inquiry; Quasi-Experimental; Literary Analysis; Survey/Interview)</message>
 	<message key="manager.schedConfSetup.submissions.typeMethodApproach">Type (Method/Approach)</message>
-	<message key="manager.schedConfSetup.submissions.typeOfSubmission">Type of Submission</message>
 	<message key="manager.schedConfSetup.submissions.typeProvideExamples">Provide examples of relevant research types, methods, and approaches for this field</message>
+	<message key="manager.schedConfSetup.submissions.typeOfSubmission">Submission Types</message>
+	<message key="manager.schedConfSetup.submissions.typeOfSubmission.create">Create Submission Type</message>
+	<message key="manager.schedConfSetup.submissions.typeOfSubmission.nameMissing">Each submission type name must be included in at least the conference's primary locale ({$primaryLocale}).</message>
+	<message key="manager.schedConfSetup.submissions.typeOfSubmission.abstractLengthInvalid">The abstract length, if specified, must be a positive number (the maximum number of words).</message>
+	<message key="manager.schedConfSetup.submissions.typeOfSubmission.length">Time (minutes)</message>
+	<message key="manager.schedConfSetup.submissions.typeOfSubmission.abstractLength">Abstract Word Limit</message>
 	<message key="manager.schedConfSetup.submissions.uniqueIdentifierDescription">Papers can be tagged with an identification number or string, if the conference is using an item registration system such as the Digital Object Identifier System (DOI).</message>
 	<message key="manager.schedConfs.form.acronym">Acronym</message>
 	<message key="manager.schedConfs.form.acronymRequired">An acronym is required.</message>

@@ -446,6 +446,82 @@ class Upgrade extends Installer {
 		return true;
 	}	
 
+	/**
+	 * For upgrade to 2.3: remove allowIndividualSubmissions and
+	 * allowPanelSubmissions settings in favour of controlled vocabulary
+	 * structure.
+	 */
+	function upgradePaperType() {
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$paperTypeDao =& DAORegistry::getDAO('PaperTypeDAO');
+		$paperTypeEntryDao =& DAORegistry::getDAO('PaperTypeEntryDAO');
+
+		$conferences =& $conferenceDao->getConferences();
+
+		while ($conference =& $conferences->next()) {
+			$locales = array_keys($conference->getSupportedLocaleNames());
+			$locales[] = $conference->getPrimaryLocale();
+			$locales = array_unique($locales);
+
+			foreach ($locales as $locale) Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DEFAULT), $locale);
+
+			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId());
+			while ($schedConf =& $schedConfs->next()) {
+				$allowIndividualSubmissions = $schedConf->getSetting('allowIndividualSubmissions');
+				$allowPanelSubmissions = $schedConf->getSetting('allowPanelSubmissions');
+				if ($allowIndividualSubmissions || $allowPanelSubmissions) {
+					$paperType =& $paperTypeDao->build($schedConf->getSchedConfId());
+				}
+				if ($allowIndividualSubmissions) {
+					$paperTypeEntry =& $paperTypeEntryDao->newDataObject();
+					foreach ($locales as $locale) {
+						$paperTypeEntry->setName(Locale::translate('default.paperType.individual.name', array(), $locale), $locale);
+						$paperTypeEntry->setDescription(Locale::translate('default.paperType.individual.description', array(), $locale), $locale);
+					}
+					$paperTypeEntry->setControlledVocabId($paperType->getId());
+					$paperTypeEntryDao->insertObject($paperTypeEntry);
+					$schedConfDao->update(
+						'INSERT INTO paper_settings (setting_name, setting_type, paper_id, locale, setting_value) SELECT  ?, ?, paper_id, ?, ? FROM papers WHERE sched_conf_id = ? AND paper_type = ?',
+						array(
+							'sessionType',
+							'int',
+							'',
+							(int) $paperTypeEntry->getId(),
+							(int) $schedConf->getSchedConfId(),
+							0 // SUBMISSION_TYPE_SINGLE (since removed)
+						)
+					);
+					unset($paperTypeEntry);
+				}
+				if ($allowPanelSubmissions) {
+					$paperTypeEntry =& $paperTypeEntryDao->newDataObject();
+					foreach ($locales as $locale) {
+						$paperTypeEntry->setName(Locale::translate('default.paperType.panel.name', array(), $locale), $locale);
+						$paperTypeEntry->setDescription(Locale::translate('default.paperType.panel.description', array(), $locale), $locale);
+					}
+					$paperTypeEntry->setControlledVocabId($paperType->getId());
+					$paperTypeEntryDao->insertObject($paperTypeEntry);
+					$schedConfDao->update(
+						'INSERT INTO paper_settings (setting_name, setting_type, paper_id, locale, setting_value) SELECT  ?, ?, paper_id, ?, ? FROM papers WHERE sched_conf_id = ? AND paper_type = ?',
+						array(
+							'sessionType',
+							'int',
+							'',
+							(int) $paperTypeEntry->getId(),
+							(int) $schedConf->getSchedConfId(),
+							1 // SUBMISSION_TYPE_PANEL (since removed)
+						)
+					);
+					unset($paperTypeEntry);
+				}
+				unset($schedConf, $paperType);
+			}
+			unset($schedConfs, $conference);
+		}
+
+		return true;
+	}
 }
 
 ?>

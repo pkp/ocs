@@ -12,6 +12,11 @@
 {include file="manager/schedConfSetup/setupHeader.tpl"}
 
 <form name="setupForm" method="post" action="{url op="saveSchedConfSetup" path="2"}">
+{* For up/down/delete buttons for paper types, it's necessary to perform a
+   form submit so that data is kept, but it's not desirable to use buttons
+   from a UI perspective. Use two hidden form parameters instead. *}
+<input type="hidden" name="paperTypeAction" value="" />
+<input type="hidden" name="paperTypeId" value="" />
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
@@ -78,20 +83,49 @@
 <h4>{translate key="manager.schedConfSetup.submissions.typeOfSubmission"}</h4>
 
 <table width="100%" class="data">
+	{assign var=paperTypeNumber value=1}
+	{foreach from=$paperTypes item=paperType key=paperTypeId}
+		<input type="hidden" name="paperTypes[{$paperTypeId|escape}][seq]" value="{$paperTypeNumber}" />
+		<tr valign="top">
+			<td rowspan="4" width="5%">{$paperTypeNumber}.</td>
+			<td width="15%" class="label">{fieldLabel name="paperTypeName-`$paperTypeId`" key="common.title"}</td>
+			<td width="80%" colspan="2" class="value">
+				<input type="text" size="40" class="textField" name="paperTypes[{$paperTypeId|escape}][name][{$formLocale|escape}]" id="paperTypeName-{$paperTypeId|escape}" value="{$paperType.name[$formLocale]|escape}" />
+			</td>
+		</tr>
+		<tr valign="top">
+			<td class="label">{fieldLabel name="paperTypeDescription-`$paperTypeId`" key="common.description"}</td>
+			<td class="value" colspan="2">
+				<textarea cols="40" rows="4" class="textArea" name="paperTypes[{$paperTypeId|escape}][description][{$formLocale|escape}]" id="paperTypeDescription-{$paperTypeId|escape}">{$paperType.description[$formLocale]|escape}</textarea>
+			</td>
+		</tr>
+		<tr valign="top">
+			<td class="label">&nbsp;</td>
+			<td width="35%" class="value">
+				{fieldLabel name="paperTypeAbstractLength-`$paperTypeId`" key="manager.schedConfSetup.submissions.typeOfSubmission.abstractLength"}&nbsp;
+				<input type="text" size="5" class="textField" name="paperTypes[{$paperTypeId|escape}][abstractLength]" id="paperTypeAbstractLength-{$paperTypeId|escape}" value="{$paperType.abstractLength|escape}" />
+			</td>
+			<td width="45%" class="value">
+				{fieldLabel name="paperTypeLength-`$paperTypeId`" key="manager.schedConfSetup.submissions.typeOfSubmission.length"}&nbsp;
+				<input type="text" size="5" class="textField" name="paperTypes[{$paperTypeId|escape}][length]" id="paperTypeLength-{$paperTypeId|escape}" value="{$paperType.length|escape}" />
+			</td>
+		</tr>
+		<tr valign="top">
+			<td class="label">&nbsp;</td>
+			<td colspan="2" class="label">
+				{strip}
+				<a onclick="document.setupForm.paperTypeAction.value='movePaperTypeUp'; document.setupForm.paperTypeId.value='{$paperTypeId|escape:"jsparam"}'; document.setupForm.submit();" href="#">&uarr;</a>&nbsp;
+				<a onclick="document.setupForm.paperTypeAction.value='movePaperTypeDown'; document.setupForm.paperTypeId.value='{$paperTypeId|escape:"jsparam"}'; document.setupForm.submit();" href="#">&darr;</a>&nbsp;|&nbsp;
+				<a onclick="document.setupForm.paperTypeAction.value='deletePaperType'; document.setupForm.paperTypeId.value='{$paperTypeId|escape:"jsparam"}'; document.setupForm.submit();" href="#" class="action">{translate key="common.delete"}</a>
+				{/strip}
+			</td>
+		</tr>
+		{assign var=paperTypeNumber value=$paperTypeNumber+1}
+	{/foreach}
 	<tr valign="top">
-		<td width="5%" class="label">
-			<input type="checkbox" name="allowIndividualSubmissions" id="allowIndividualSubmissions" value="1" {if $allowIndividualSubmissions}checked="checked"{/if} />
-		</td>
-		<td width="95%" class="value">
-			{fieldLabel name="allowIndividualSubmissions" key="manager.schedConfSetup.submissions.allowIndividualSubmissions"}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">
-			<input type="checkbox" name="allowPanelSubmissions" id="allowPanelSubmissions" value="1" {if $allowPanelSubmissions}checked="checked"{/if} />
-		</td>
-		<td class="value">
-			{fieldLabel name="allowPanelSubmissions" key="manager.schedConfSetup.submissions.allowPanelSubmissions"}
+		<td width="5%" class="label">&nbsp;</td>
+		<td width="95%" colspan="3" class="value">
+			<input type="button" onclick="document.setupForm.paperTypeAction.value='createPaperType'; document.setupForm.submit();" value="{translate key="manager.schedConfSetup.submissions.typeOfSubmission.create"}" />
 		</td>
 	</tr>
 </table>

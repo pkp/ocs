@@ -165,9 +165,6 @@
 	<message key="track.title">Track title</message>
 	<message key="track.abbreviation">Abbreviation</message>
 	<message key="track.abbreviation.example">(For example, General Papers=GEN)</message>
-	<message key="track.default.title">General Papers</message>
-	<message key="track.default.abbrev">GEN</message>
-	<message key="track.default.policy"></message>
 
 	<!-- Common Paper Terms -->
 	<message key="paper.papers">Papers</message>
@@ -203,6 +200,7 @@
 	<message key="paper.fontSize.small.altText">Small</message>
 	<message key="paper.fontSize.medium.altText">Medium</message>
 	<message key="paper.fontSize.large.altText">Large</message>
+	<message key="paper.sessionType">Session Type</message>
 
 	<!-- Submission Tracking - Common -->
 	<message key="submission.fromTime">From</message>
@@ -225,11 +223,6 @@
 	<message key="submission.authorsRevisedVersion">Author's revised version of file</message>
 	<message key="submission.authorVersion">Author Version</message>
 	<message key="submission.layout.description">This optional step can be used to lay out submissions or change file formats either before or after submissions are sent to Presentations.</message>
-
-	<message key="submission.paperType">Submission Type</message>
-	<message key="submission.paperType.single">Single Presentation</message>
-	<message key="submission.paperType.panel">Panel Presentation</message>
-
 
 	<message key="submissions.track">Track</message>
 	<message key="submissions.queuedAbstractReview">Abstract In Review</message>
@@ -1018,49 +1011,4 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="rt.comments.commentsClosed">† Comments closed on {$closeCommentsDate}</message>
 
 	<message key="rt.context.authorTermsDescription">For items with more than one author, leave all names checked to search for similarly co-presented work, or search one at a time by checking only a single name. To learn more about the resource searched, click on ABOUT. These resources have been selected because of their relevance and their open (free) access to all or part of their contents.</message>
-
-
-	<!--
-	 *
-	 * MISC - Entries that do not belong in the other sections.
-	 *
-	-->
-	<!-- Icons: Default "alt" text -->
-
-	<!-- Debug messages -->
-
-	<!--
-	 *
-	 * DEFAULT - Default settings for setup items.
-	 *
-	-->
-	<message key="default.conferenceSettings.copyrightNotice"><![CDATA[Authors who submit to this conference agree to the following terms:<br/>
-<strong>a)</strong>&nbsp;Authors retain copyright over their work, while allowing the conference to place this unpublished work under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a>, which allows others to freely access, use, and share the work, with an acknowledgement of the work's authorship and its initial presentation at this conference.<br/>
-<strong>b)</strong>&nbsp;Authors are able to waive the terms of the CC license and enter into separate, additional contractual arrangements for the non-exclusive distribution and subsequent publication of this work (e.g., publish a revised version in a journal, post it to an institutional repository or publish it in a book), with an acknowledgement of its initial presentation at this conference.<br/>
-<strong>c)</strong>&nbsp;In addition, authors are encouraged to post and share their work online (e.g., in institutional repositories or on their website) at any point before and after the conference.]]></message>
-
-	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another conference for consideration (or an explanation has been provided in Comments to the Director).</message>
-	<message key="default.schedConfSettings.checklist.fileFormat">The submission file is in Microsoft Word, RTF, or WordPerfect document file format.</message>
-	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[All URL addresses in the text (e.g., <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) are activated and ready to click.]]></message>
-	<message key="default.schedConfSettings.checklist.submissionAppearance">The text is single-spaced; uses a 12-point font; employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end.</message>
-	<message key="default.schedConfSettings.checklist.anonymous">If submitting to a peer-reviewed track of the conference, authors' names are removed from submission, with "Author" and year used in the bibliography and footnotes, instead of authors' name, paper title, etc.</message>
-	<message key="default.schedConfSettings.checklist.personalInformationRemoved">If submitting to peer review, all Microsoft Office documents (including Supplementary Files) have been saved by going to File and selecting Save As; clicking Tools (or Options in a Mac); clicking Security; selecting "Remove personal information from file properties on save"; clicking Save.</message>
-	<message key="default.conferenceSettings.privacyStatement">The names and email addresses entered in this conference site will be used exclusively for the stated purposes of this conference and will not be made available for any other purpose or to any other party.</message>
-	<message key="default.conferenceSettings.authorSelfArchivePolicy">Authors are permitted to post their papers on personal or institutional websites prior to and after publication by this conference (while providing the bibliographic details of that publication).</message>
-	<message key="default.conferenceSettings.emailSignature"><![CDATA[________________________________________________________________________
-{$conferenceName}
-{$conferenceUrl}
-]]></message>
-	<message key="default.conferenceSettings.forReaders"><![CDATA[We encourage readers to sign up for notification of papers posted for this conference. We recommend that you review the <a href="{$aboutUrl}">About the Conference</a> page for the conference's policies, and visit the <a href="{$conferenceUrl}">Conference Homepage</a> to find out what conferences are coming up.]]></message>
-	<message key="default.conferenceSettings.forAuthors"><![CDATA[Interested in submitting to this conference? We recommend that you review the <a href="{$aboutUrl}">About the Conference</a> page for the conference's policies, and visit the <a href="{$conferenceUrl}">Conference Homepage</a> to find out what conferences are coming up.]]></message>
-	<message key="default.conferenceSettings.lockssLicense"><![CDATA[This conference utilizes the LOCKSS system to create a distributed archiving system among participating libraries and permits those libraries to create permanent archives of the conference for purposes of preservation and restoration. <a href="http://lockss.stanford.edu/">More...</a>]]></message>
-
-	<message key="default.schedConfSettings.emailSignature"><![CDATA[________________________________________________________________________
-{$conferenceName} {$schedConfName}
-{$schedConfUrl}
-]]></message>
-	<message key="default.schedConfSettings.checklist.bibliographicRequirements"><![CDATA[The text adheres to the stylistic and bibliographic requirements outlined in the <a href="{$authorGuidelinesUrl}">Author Guidelines</a>, which is found in About the Conference.]]></message>
-	<message key="default.schedConfSettings.forReaders"><![CDATA[We encourage readers to sign up for notification of papers posted for this conference. Use the <a href="{$accountUrl}">Account</a> link at the top of the homepage for the conference. This list allows the conference to claim a certain level of support or readership. See the conference's <a href="{$privacyStatementUrl}">Privacy Statement</a> which assures readers that their name and email address will not be used for other purposes.]]></message>
-	<message key="default.schedConfSettings.forAuthors"><![CDATA[Interested in submitting to this conference? We recommend that you review the <a href="{$aboutUrl}">About the Conference</a> page for the conference's track policies, as well as the <a href="{$authorGuidelinesUrl}">Author Guidelines</a>. Authors need to <a href="{$accountUrl}">create an account</a> with the conference prior to submitting, or if an account already exists, can simply <a href="{$loginUrl}">log in</a> and begin the submission process.]]></message>
-
 </locale>

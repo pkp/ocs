@@ -30,6 +30,14 @@ class PaperDAO extends DAO {
 	}
 
 	/**
+	 * Get a list of non-localized additional fields to maintain.
+	 * @return array
+	 */
+	function getAdditionalFieldNames() {
+		return array('sessionType');
+	}
+
+	/**
 	 * Get a list of field names for which data is localized.
 	 * @return array
 	 */
@@ -122,7 +130,6 @@ class PaperDAO extends DAO {
 
 		$paper->setTrackTitle($row['track_title']);
 		$paper->setTrackAbbrev($row['track_abbrev']);
-		$paper->setTypeConst($row['paper_type']);
 		$paper->setLanguage($row['language']);
 		$paper->setCommentsToDirector($row['comments_to_dr']);
 		$paper->setDateSubmitted($this->datetimeFromDB($row['date_submitted']));
@@ -162,7 +169,6 @@ class PaperDAO extends DAO {
 				(user_id,
 				 sched_conf_id,
 				 track_id,
-				 paper_type,
 				 language,
 				 comments_to_dr,
 				 date_submitted,
@@ -185,13 +191,12 @@ class PaperDAO extends DAO {
 				 pages,
 				 comments_status)
 				VALUES
-				(?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getStartTime()), $this->datetimeToDB($paper->getEndTime()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
 			array(
 				$paper->getUserId(),
 				$paper->getSchedConfId(),
 				$paper->getTrackId(),
-				$paper->getTypeConst(),
 				$paper->getLanguage(),
 				$paper->getCommentsToDirector(),
 				$paper->getStatus() === null ? SUBMISSION_STATUS_QUEUED : $paper->getStatus(),
@@ -232,7 +237,6 @@ class PaperDAO extends DAO {
 				SET
 					user_id = ?,
 					track_id = ?,
-					paper_type = ?,
 					language = ?,
 					comments_to_dr = ?,
 					date_submitted = %s,
@@ -259,7 +263,6 @@ class PaperDAO extends DAO {
 			array(
 				$paper->getUserId(),
 				$paper->getTrackId(),
-				$paper->getTypeConst(),
 				$paper->getLanguage(),
 				$paper->getCommentsToDirector(),
 				$paper->getStatus(),

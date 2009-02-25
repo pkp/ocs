@@ -169,26 +169,6 @@ function moveAuthor(dir, authorIndex) {
 
 <div class="separator"></div>
 
-{if $currentSchedConf->getSetting('allowIndividualSubmissions') && $currentSchedConf->getSetting('allowPanelSubmissions')}
-
-<h3>{translate key="submission.paperType"}</h3>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="paperType" key="submission.paperType"}</td>
-		<td width="80%" class="value">
-			<select name="paperType" class="selectMenu" id="paperType">
-				<option {if $paperType==SUBMISSION_TYPE_SINGLE}selected="selected" {/if}value="{$smarty.const.SUBMISSION_TYPE_SINGLE}">{translate key="submission.paperType.single"}</option>
-				<option {if $paperType==SUBMISSION_TYPE_PANEL}selected="selected" {/if}value="{$smarty.const.SUBMISSION_TYPE_PANEL}">{translate key="submission.paperType.panel"}</option>
-			</select>
-		</td>
-	</tr>
-</table>
-
-<div class="separator"></div>
-
-{/if}
-
 {if $collectAbstracts}
 	<h3>{translate key="submission.titleAndAbstract"}</h3>
 {else}

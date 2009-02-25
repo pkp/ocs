@@ -24,37 +24,43 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	function AuthorSubmitStep1Form($paper = null) {
 		parent::AuthorSubmitForm($paper, 1);
 
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'trackId', 'required', 'author.submit.form.trackRequired'));
 		$this->addCheck(new FormValidatorCustom($this, 'trackId', 'required', 'author.submit.form.trackRequired', array(DAORegistry::getDAO('TrackDAO'), 'trackExists'), array($schedConf->getSchedConfId())));
+		$this->addCheck(new FormValidatorControlledVocab($this, 'sessionType', 'optional', 'author.submit.form.sessionTypeRequired', 'paperType', 1, $schedConf->getSchedConfId()));
 	}
 
 	/**
 	 * Display the form.
 	 */
 	function display() {
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		// Get tracks for this conference
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
 
-		// If this user is a track director or a director, they are allowed
-		// to submit to tracks flagged as "director-only" for submissions.
-		// Otherwise, display only tracks they are allowed to submit to.
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		// If this user is a track director or a director, they are
+		// allowed to submit to tracks flagged as "director-only" for
+		// submissions. Otherwise, display only tracks they are allowed
+		// to submit to.
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isDirector = $roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getUserId(), ROLE_ID_DIRECTOR) ||
 			$roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getUserId(), ROLE_ID_TRACK_DIRECTOR) ||
 			$roleDao->roleExists($conference->getConferenceId(), 0, $user->getUserId(), ROLE_ID_DIRECTOR) ||
 			$roleDao->roleExists($conference->getConferenceId(), 0, $user->getUserId(), ROLE_ID_TRACK_DIRECTOR);
 
 		$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getSchedConfId(), !$isDirector));
+
+		$paperTypeDao =& DAORegistry::getDAO('PaperTypeDAO');
+		$sessionTypes =& $paperTypeDao->getPaperTypes($schedConf->getSchedConfId());
+		$templateMgr->assign('sessionTypes', $sessionTypes->toArray());
 
 		parent::display();
 	}
@@ -66,6 +72,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		if (isset($this->paper)) {
 			$this->_data = array(
 				'trackId' => $this->paper->getTrackId(),
+				'sessionType' => $this->paper->getData('sessionType'),
 				'commentsToDirector' => $this->paper->getCommentsToDirector()
 			);
 		}
@@ -75,7 +82,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('submissionChecklist', 'copyrightNoticeAgree', 'trackId', 'commentsToDirector'));
+		$this->readUserVars(array('submissionChecklist', 'copyrightNoticeAgree', 'trackId', 'commentsToDirector', 'sessionType'));
 	}
 
 	/**
@@ -83,12 +90,13 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 * @return int the paper ID
 	 */
 	function execute() {
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
 
 		if (isset($this->paper)) {
 			// Update existing paper
 			$this->paper->setTrackId($this->getData('trackId'));
 			$this->paper->setCommentsToDirector($this->getData('commentsToDirector'));
+			$this->paper->setData('sessionType', $this->getData('sessionType'));
 			if ($this->paper->getSubmissionProgress() <= $this->step) {
 				$this->paper->stampStatusModified();
 				$this->paper->setSubmissionProgress($this->step + 1);
@@ -123,7 +131,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			}
 
 			// Set user to initial author
-			$user = &Request::getUser();
+			$user =& Request::getUser();
 			$author = new Author();
 			$author->setFirstName($user->getFirstName());
 			$author->setMiddleName($user->getMiddleName());
@@ -135,6 +143,8 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$author->setBiography($user->getBiography(null), null);
 			$author->setPrimaryContact(1);
 			$this->paper->addAuthor($author);
+
+			$this->paper->setData('sessionType', $this->getData('sessionType'));
 
 			$paperDao->insertPaper($this->paper);
 			$this->paperId = $this->paper->getPaperId();
