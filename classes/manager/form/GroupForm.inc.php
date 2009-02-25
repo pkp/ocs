@@ -85,12 +85,8 @@ class GroupForm extends Form {
 			$this->group = new Group();
 		}
 
-		$this->group->setConferenceId($conference->getConferenceId());
-		if($schedConf) {
-			$this->group->setSchedConfId($schedConf->getSchedConfId());
-		} else {
-			$this->group->setSchedConfId(0);
-		}
+		$this->group->setAssocType(ASSOC_TYPE_SCHED_CONF);
+		$this->group->setAssocId($schedConf->getSchedConfId());
 		$this->group->setTitle($this->getData('title'), null); // Localized
 
 		// Eventually this will be a general Groups feature; for now,
@@ -105,7 +101,7 @@ class GroupForm extends Form {
 			$groupDao->insertGroup($this->group);
 
 			// Re-order the groups so the new one is at the end of the list.
-			$groupDao->resequenceGroups($this->group->getConferenceId());
+			$groupDao->resequenceGroups($this->group->getAssocType(), $this->group->getAssocId());
 		}
 	}
 

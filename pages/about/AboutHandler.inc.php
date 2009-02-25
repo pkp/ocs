@@ -183,7 +183,7 @@ class AboutHandler extends PKPHandler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 
-			$allGroups =& $groupDao->getGroups($conference->getConferenceId(), $schedConf->getSchedConfId());
+			$allGroups =& $groupDao->getGroups(ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
 			$teamInfo = array();
 			$groups = array();
 			while ($group =& $allGroups->next()) {
@@ -250,7 +250,7 @@ class AboutHandler extends PKPHandler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 
-			$allGroups =& $groupDao->getGroups($conference->getConferenceId(), $schedConfId);
+			$allGroups =& $groupDao->getGroups(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 			while ($group =& $allGroups->next()) {
 				if (!$group->getAboutDisplayed()) continue;
 				$allMemberships =& $groupMembershipDao->getMemberships($group->getGroupId());

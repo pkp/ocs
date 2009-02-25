@@ -16,8 +16,12 @@
 	<sql>
 		<rename table="paper_presenters" column="presenter_id" to="author_id" />
 		<rename table="paper_presenters" to="paper_authors" />
-
-		<rename table="paper_presenter_settings" column="presenter_id" to="author_id" />		
+		<rename table="paper_presenter_settings" column="presenter_id" to="author_id" />
 		<rename table="paper_presenter_settings" to="paper_author_settings" />
+	</sql>
+
+	<!-- Bug #3941: abstract groups -->
+	<sql>
+		<rename table="groups" column="sched_conf_id" to="assoc_id" />
 	</sql>
 </data>

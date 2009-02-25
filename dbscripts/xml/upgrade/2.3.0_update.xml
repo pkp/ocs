@@ -32,4 +32,9 @@ If you have any questions, please feel free to contact me.
 
 {$registrationContactSignature}', 'This email is sent to a user after their payment has been registered in the system.')</query>
 	</sql>
+
+	<!-- Bug #3941: abstract groups -->
+	<sql>
+		<query>UPDATE groups SET assoc_type = 257</query><!-- ASSOC_TYPE_SCHED_CONF -->
+	</sql>
 </data>

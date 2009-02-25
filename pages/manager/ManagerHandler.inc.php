@@ -71,8 +71,8 @@ class ManagerHandler extends PKPHandler {
 					// Special case for emailing entire groups:
 					// Check for a group ID and add recipients.
 					$groupDao =& DAORegistry::getDAO('GroupDAO');
-					$group =& $groupDao->getGroup($groupId);
-					if ($group && $group->getConferenceId() == $conference->getConferenceId()) {
+					$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
+					if ($group) {
 						$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 						$memberships =& $groupMembershipDao->getMemberships($group->getGroupId());
 						$memberships =& $memberships->toArray();

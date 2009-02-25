@@ -28,7 +28,7 @@ class GroupHandler extends ManagerHandler {
 		$rangeInfo =& PKPHandler::getRangeInfo('groups', array());
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		while (true) {
-			$groups =& $groupDao->getGroups($conference->getConferenceId(), $schedConfId, $rangeInfo);
+			$groups =& $groupDao->getGroups(ASSOC_TYPE_SCHED_CONF, $schedConfId, null, $rangeInfo);
 			if ($groups->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $groups->getLastPageRangeInfo();
@@ -51,7 +51,7 @@ class GroupHandler extends ManagerHandler {
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroup($group);
-		$groupDao->resequenceGroups($conference->getConferenceId());
+		$groupDao->resequenceGroups(ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
 
 		Request::redirect(null, null, null, 'groups');
 	}
@@ -66,7 +66,7 @@ class GroupHandler extends ManagerHandler {
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$group->setSequence($group->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
 		$groupDao->updateGroup($group);
-		$groupDao->resequenceGroups($conference->getConferenceId());
+		$groupDao->resequenceGroups(ASSOC_TYPE_SCHED_CONF, $conference->getConferenceId());
 
 		Request::redirect(null, null, null, 'groups');
 	}
@@ -81,8 +81,8 @@ class GroupHandler extends ManagerHandler {
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$group =& $groupDao->getGroup($groupId);
-			if (!$group || $conference->getConferenceId() !== $group->getConferenceId()) {
+			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
+			if (!$group) {
 				Request::redirect(null, null, null, 'groups');
 			}
 		} else $group = null;
@@ -328,20 +328,10 @@ class GroupHandler extends ManagerHandler {
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$group =& $groupDao->getGroup($groupId);
+			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
 
 			if (!$group) {
 				$passedValidation = false;
-
-			} elseif ($group->getConferenceId() !== $conference->getConferenceId()) {
-				$passedValidation = false;
-
-			} elseif (!$schedConf && !Validation::isConferenceManager($conference->getConferenceId())) {
-				$passedValidation = false;
-
-			} elseif ($schedConf->getSchedConfId() != $group->getSchedConfId()) {
-				$passedValidation = false;
-
 			} else {
 				$returner[] = &$group;
 			}

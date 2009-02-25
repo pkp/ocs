@@ -145,7 +145,7 @@ class ConferenceDAO extends DAO {
 		$roleDao->deleteRoleByConferenceId($conferenceId);
 
 		$groupDao = &DAORegistry::getDAO('GroupDAO');
-		$groupDao->deleteGroupsByConferenceId($conferenceId);
+		$groupDao->deleteGroupsByAssocId(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
 		$pluginSettingsDao = &DAORegistry::getDAO('PluginSettingsDAO');
 		$pluginSettingsDao->deleteSettingsByConferenceId($conferenceId);

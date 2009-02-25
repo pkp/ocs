@@ -231,7 +231,7 @@ class SchedConfDAO extends DAO {
 		$roleDao->deleteRoleBySchedConfId($schedConfId);
 
 		$groupDao = &DAORegistry::getDAO('GroupDAO');
-		$groupDao->deleteGroupsBySchedConfId($schedConfId);
+		$groupDao->deleteGroupsByAssocId(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 
 		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
 		$announcementDao->deleteAnnouncementsBySchedConf($schedConfId);
