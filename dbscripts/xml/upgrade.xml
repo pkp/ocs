@@ -35,9 +35,13 @@
 		<data file="dbscripts/xml/upgrade/2.3.0_preupdate.xml" />
 	</upgrade>
 
-	<!-- Common upgrade files -->
-	<schema file="lib/pkp/xml/pkp_schema.xml" />
-	<schema file="dbscripts/xml/ocs_schema.xml"/>
+	<!-- PKP schema components -->
+	<schema file="lib/pkp/xml/schema/common.xml" />
+	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
+	<schema file="lib/pkp/xml/schema/temporaryFiles.xml" />
+
+	<!-- OCS schema -->
+	<schema file="dbscripts/xml/ocs_schema.xml" />
 
 	<upgrade minversion="2.0.0.0" maxversion="2.0.0.1">
 		<code function="setReviewMode" />
