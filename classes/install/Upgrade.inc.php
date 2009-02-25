@@ -193,18 +193,6 @@ class Upgrade extends Installer {
 	}
 
 	/**
-	 * Clear the data cache files (needed because of direct tinkering
-	 * with settings tables)
-	 * @return boolean
-	 */
-	function clearDataCache() {
-		import('cache.CacheManager');
-		$cacheManager =& CacheManager::getManager();
-		$cacheManager->flush();
-		return true;
-	}
-
-	/**
 	 * For 2.1.0 upgrade: add locale data to existing conference settings
 	 * that were not previously localized.
 	 * @return boolean
