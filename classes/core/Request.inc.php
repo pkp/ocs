@@ -236,11 +236,13 @@ class Request extends PKPRequest {
 				
 				if ($role->getConferenceId()) {
 					$conference = $conferenceDao->getConference($role->getConferenceId());
-					$confPath = $conference->getPath();
+					isset($conference) ? $confPath = $conference->getPath() :
+										 $confPath = 'index';
 				}
 				if ($role->getSchedConfId()) {
 					$schedConf = $schedConfDao->getSchedConf($role->getSchedConfId());
-					$schedConfPath = $schedConf->getPath();
+					isset($schedConf) ? $schedConfPath = $schedConf->getPath() :
+										$schedConfPath = 'index';
 				}
 				
 				Request::redirect($confPath, $schedConfPath, $role->getRolePath());
