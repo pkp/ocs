@@ -49,7 +49,7 @@ class AdminHandler extends PKPHandler {
 	 */
 	function setupTemplate($subclass = false) {
 		parent::setupTemplate();
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_ADMIN));
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_OCS_ADMIN));
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy',
 			$subclass ? array(array(Request::url(null, null, 'user'), 'navigation.user'), array(Request::url(null, null, ROLE_PATH_SITE_ADMIN), 'admin.siteAdmin'))
@@ -180,6 +180,16 @@ class AdminHandler extends PKPHandler {
 	function deleteAuthSource($args) {
 		import('pages.admin.AuthSourcesHandler');
 		AuthSourcesHandler::deleteAuthSource($args);
+	}
+
+
+	//
+	// Merge users
+	//
+
+	function mergeUsers($args) {
+		import('pages.admin.AdminPeopleHandler');
+		AdminPeopleHandler::mergeUsers($args);
 	}
 
 
