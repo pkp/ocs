@@ -92,21 +92,41 @@ class UserAction {
 		$accessKeyDao =& DAORegistry::getDAO('AccessKeyDAO');
 		$accessKeyDao->transferAccessKeys($oldUserId, $newUserId);
 
-		// Delete the old user and associated info.
-		$sessionDao =& DAORegistry::getDAO('SessionDAO');
-		$sessionDao->deleteSessionsByUserId($oldUserId);
+		// Transfer old user's valid registrations if new user does not
+		// have similar registrations of if they're invalid
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
+		$oldUserRegistrations =& $registrationDao->getRegistrationsByUser($oldUserId);
+
+		while ($oldUserRegistration =& $oldUserRegistrations->next()) {
+			$schedConfId = $oldUserRegistration->getSchedConfId();
+			$oldUserValidRegistration = $registrationDao->isValidRegistrationByUser($oldUserId, $schedConfId);
+
+			if ($oldUserValidRegistration) {
+				// Check if new user has a valid registration for sched conf
+				$newUserRegistrationId = $registrationDao->getRegistrationIdByUser($newUserId, $schedConfId);
+
+				if (empty($newUserRegistrationId)) {
+					// New user does not have this registration, transfer old user's
+					$oldUserRegistration->setUserId($newUserId);
+					$registrationDao->updateRegistration($oldUserRegistration);
+				} elseif (!$registrationDao->isValidRegistrationByUser($newUserId, $schedConfId)) {
+					// New user has a registration but it's invalid. Delete it and
+					// transfer old user's valid one
+					$registrationDao->deleteRegistrationByUserIdSchedConf($newUserId, $schedConfId);
+					$oldUserRegistration->setUserId($newUserId);
+					$registrationDao->updateRegistration($oldUserRegistration);
+				}
+			}
+		}	
+
+		// Delete any remaining oldUser registrations and associated options 
+		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+		$oldUserRegistrations =& $registrationDao->getRegistrationsByUser($oldUserId);
+
+		while ($oldUserRegistration =& $oldUserRegistrations->next()) {
+			$registrationOptionDao->deleteRegistrationOptionAssocByRegistrationId($oldUserRegistration->getRegistrationId());
+		}
 		$registrationDao->deleteRegistrationsByUserId($oldUserId);
-		$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
-		$temporaryFileDao->deleteTemporaryFilesByUserId($oldUserId);
-		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
-		$notificationStatusDao->deleteNotificationStatusByUserId($oldUserId);
-		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
-		$userSettingsDao->deleteSettings($oldUserId);
-		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-		$groupMembershipDao->deleteMembershipByUserId($oldUserId);
-		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
-		$trackDirectorsDao->deleteDirectorsByUserId($oldUserId);
 
 		// Transfer old user's roles
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -120,7 +140,22 @@ class UserAction {
 			}
 		}
 		$roleDao->deleteRoleByUserId($oldUserId);
+
+		// Delete the old user and all remaining associated info.
+		$sessionDao =& DAORegistry::getDAO('SessionDAO');
+		$sessionDao->deleteSessionsByUserId($oldUserId);
+		$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+		$temporaryFileDao->deleteTemporaryFilesByUserId($oldUserId);
+		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
+		$notificationStatusDao->deleteNotificationStatusByUserId($oldUserId);
+		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
+		$userSettingsDao->deleteSettings($oldUserId);
+		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
+		$groupMembershipDao->deleteMembershipByUserId($oldUserId);
+		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDirectorsDao->deleteDirectorsByUserId($oldUserId);
 		$userDao->deleteUserById($oldUserId);
+
 		return true;
 	}
 
