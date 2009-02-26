@@ -94,6 +94,26 @@ class RegistrationDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve all registrations by user ID.
+	 * @param $userId int
+	 * @return object DAOResultFactory containing matching Registrations
+	 */
+	function getRegistrationsByUser($userId, $rangeInfo = null) {
+		$result = &$this->retrieveRange(
+			'SELECT *
+				FROM registrations
+				WHERE user_id = ?',
+			$userId,
+			$rangeInfo
+		);
+
+		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationFromRow');
+
+		return $returner;
+	}
+
+
+	/**
 	 * Check if a registration exists for a given user and scheduled conf.
 	 * @param $userId int
 	 * @param $schedConfId int
@@ -247,6 +267,23 @@ class RegistrationDAO extends DAO {
 	function deleteRegistrationsByUserId($userId) {
 		return $this->update(
 			'DELETE FROM registrations WHERE user_id = ?', $userId
+		);
+	}
+
+	/**
+	 * Delete registration by user ID and scheduled conference ID.
+	 * @param $schedConfId int
+	 */
+	function deleteRegistrationByUserIdSchedConf($userId, $schedConfId) {
+		return $this->update(
+			'DELETE
+				FROM registrations
+				WHERE user_id = ?
+				AND sched_conf_id = ?',
+				array(
+					$userId,
+					$schedConfId
+				)
 		);
 	}
 
@@ -428,10 +465,8 @@ class RegistrationDAO extends DAO {
 	 */
 	function isValidRegistrationByUser($userId, $schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT 	registrations.registration_id,
-					EXTRACT(DAY FROM expiry_date) AS day,
-					EXTRACT(MONTH FROM expiry_date) AS month,
-					EXTRACT(YEAR FROM expiry_date) AS year
+			'SELECT registrations.registration_id,
+					registration_types.expiry_date
 			FROM registrations, registration_types
 			WHERE registrations.user_id = ?
 			AND   registrations.sched_conf_id = ?
@@ -445,21 +480,12 @@ class RegistrationDAO extends DAO {
 		$returner = false;
 
 		if ($result->RecordCount() != 0) {
-			$dayEnd = $result->fields['day'];
-			$monthEnd = $result->fields['month'];
-			$yearEnd = $result->fields['year'];
+			$expiryDate = $result->fields['expiry_date'];
 			$registrationId = $result->fields['registration_id'];
 
-			// Ensure registration is still valid
-			$curDate = getdate();
-
-			if ( $curDate['year'] < $yearEnd ) {
-				$returner = $registrationId;
-			} elseif (( $curDate['year'] == $yearEnd ) && ( $curDate['mon'] < $monthEnd )) {
-				$returner = $registrationId;
-			} elseif ((( $curDate['year'] == $yearEnd ) && ( $curDate['mon'] == $monthEnd )) && ( $curDate['mday'] <= $dayEnd ) ) {
-				$returner = $registrationId;
-			}
+			if ($expiryDate === null ||
+				strtotime($this->datetimeFromDB($expiryDate)) > time()
+			) $returner = $registrationId;
 		}
 
 		$result->Close();
@@ -476,10 +502,8 @@ class RegistrationDAO extends DAO {
 	 */
 	function isValidRegistrationByDomain($domain, $schedConfId) {
 		$result = &$this->retrieve(
-			'SELECT 	registrations.registration_id,
-					EXTRACT(DAY FROM expiry_date) AS day,
-					EXTRACT(MONTH FROM expiry_date) AS month,
-					EXTRACT(YEAR FROM expiry_date) AS year,
+			'SELECT registrations.registration_id,
+					registration_types.expiry_date,
 					POSITION(UPPER(domain) IN UPPER(?)) AS domain_position
 			FROM registrations, registration_types
 			WHERE POSITION(UPPER(domain) IN UPPER(?)) != 0
@@ -498,9 +522,7 @@ class RegistrationDAO extends DAO {
 
 		if ($result->RecordCount() != 0) {
 			while (!$returner && !$result->EOF) {
-				$dayEnd = $result->fields['day'];
-				$monthEnd = $result->fields['month'];
-				$yearEnd = $result->fields['year'];
+				$expiryDate = $result->fields['expiry_date'];
 				$posMatch = $result->fields['domain_position'];
 				$registrationId = $result->fields['registration_id'];
 
@@ -512,16 +534,9 @@ class RegistrationDAO extends DAO {
 					}
 				}
 
-				// Ensure registration is still valid
-				$curDate = getdate();
-
-				if ( $curDate['year'] < $yearEnd ) {
-					$returner = $registrationId;
-				} elseif (( $curDate['year'] == $yearEnd ) && ( $curDate['mon'] < $monthEnd )) {
-					$returner = $registrationId;
-				} elseif ((( $curDate['year'] == $yearEnd ) && ( $curDate['mon'] == $monthEnd )) && ( $curDate['mday'] <= $dayEnd ) ) {
-					$returner = $registrationId;
-				}
+				if ($expiryDate === null ||
+					strtotime($this->datetimeFromDB($expiryDate)) > time()
+				) $returner = $registrationId;
 
 				$result->moveNext();
 			}
@@ -630,7 +645,7 @@ class RegistrationDAO extends DAO {
 				$registrationId = $result->fields['registration_id'];
 				$expiryDate = $result->fields['expiry_date'];
 
-				if (	$expiryDate === null ||
+				if ($expiryDate === null ||
 					strtotime($this->datetimeFromDB($expiryDate)) > time()
 				) $returner = $registrationId;
 			}
