@@ -15,9 +15,6 @@
 
 //$Id$
 
-
-import('core.Handler');
-
 class AdminHandler extends Handler {
 
 	/**
@@ -178,6 +175,16 @@ class AdminHandler extends Handler {
 	function deleteAuthSource($args) {
 		import('pages.admin.AuthSourcesHandler');
 		AuthSourcesHandler::deleteAuthSource($args);
+	}
+
+
+	//
+	// Merge users
+	//
+
+	function mergeUsers($args) {
+		import('pages.admin.AdminPeopleHandler');
+		AdminPeopleHandler::mergeUsers($args);
 	}
 
 
