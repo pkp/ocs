@@ -101,15 +101,26 @@ class UserAction {
 		$temporaryFileDao->deleteTemporaryFilesByUserId($oldUserId);
 		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
 		$notificationStatusDao->deleteNotificationStatusByUserId($oldUserId);
+		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
+		$userSettingsDao->deleteSettings($oldUserId);
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		$groupMembershipDao->deleteMembershipByUserId($oldUserId);
 		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
 		$trackDirectorsDao->deleteDirectorsByUserId($oldUserId);
+
+		// Transfer old user's roles
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
+
+		$roles =& $roleDao->getRolesByUserId($oldUserId);
+		foreach ($roles as $role) {
+			if (!$roleDao->roleExists($role->getConferenceId(), $role->getSchedConfId(), $newUserId, $role->getRoleId())) {
+				$role->setUserId($newUserId);
+				$roleDao->insertRole($role);
+			}
+		}
 		$roleDao->deleteRoleByUserId($oldUserId);
 		$userDao->deleteUserById($oldUserId);
-
 		return true;
 	}
 
