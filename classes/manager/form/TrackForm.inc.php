@@ -101,8 +101,8 @@ class TrackForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		$conference = &Request::getJournal();
-		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDao');
+		$conference = &Request::getConference();
+		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
 		
 		if (isset($this->trackId)) {
 			$trackDao = &DAORegistry::getDAO('TrackDAO');

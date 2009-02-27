@@ -10,7 +10,7 @@
  *}
 {strip}
 {assign var="pageTitle" value="track.track"}
-{assign var="pageCrumbTitle" value="track.tracks"}
+{assign var="pageCrumbTitle" value="track.track"}
 {include file="common/header.tpl"}
 {/strip}
 
