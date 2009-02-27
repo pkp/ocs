@@ -15,12 +15,13 @@
 	<!-- Bug #3859: presenter to author rename -->
 	<sql>
 		<!-- Need to clear out the instances of $presenterName and $presenterUsername -->
-		<sql>DELETE FROM email_templates_default_data</sql>
+		<query>DELETE FROM email_templates_default_data</query>
 		
-		<sql>UPDATE conference_settings SET setting_name = 'authorSelfArchivePolicy' WHERE setting_name = 'presenterSelfArchivePolicy'</sql>
-		<sql>UPDATE conference_settings SET setting_name = 'authorInformation' WHERE setting_name = 'presenterInformation'</sql>
-		<sql>UPDATE conference_settings SET setting_name = 'rtAuthorBio' WHERE setting_name = 'rtPresenterBio'</sql>
-		<sql>UPDATE conference_settings SET setting_name = 'rtEmailAuthor' WHERE setting_name = 'rtEmailPresenter'</sql>				
+		<query>UPDATE conference_settings SET setting_name = 'authorSelfArchivePolicy' WHERE setting_name = 'presenterSelfArchivePolicy'</query>
+		<query>UPDATE conference_settings SET setting_name = 'authorInformation' WHERE setting_name = 'presenterInformation'</query>
+		<query>UPDATE conference_settings SET setting_name = 'rtAuthorBio' WHERE setting_name = 'rtPresenterBio'</query>
+		<query>UPDATE conference_settings SET setting_name = 'rtEmailAuthor' WHERE setting_name = 'rtEmailPresenter'</query>				
+		<query>UPDATE conference_settings SET setting_name = 'authorGuidelines' WHERE setting_name = 'presenterGuidelines'</query>
 	</sql>
 	<sql><!-- 3503: Notify registrant of payment being received -->
 		<query>INSERT INTO email_templates_default (email_key, can_edit, can_disable) VALUES ('MANUAL_PAYMENT_RECEIVED', 1, 0)</query>
