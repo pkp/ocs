@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="track.track"}{assign var="pageCrumbTitle" value="track.tracks"}{include file="common/header.tpl"}
+{assign var="pageTitle" value="track.track"}{assign var="pageCrumbTitle" value="track.track"}{include file="common/header.tpl"}
 
 <form name="track" method="post" action="{url op="updateTrack"}" onsubmit="return saveSelectedDirectors()">
 {if $trackId}

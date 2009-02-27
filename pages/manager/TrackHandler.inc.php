@@ -53,7 +53,7 @@ class TrackHandler extends ManagerHandler {
 	 */
 	function editTrack($args = array()) {
 		parent::validate();
-		parent::setupTemplate(true);
+		TrackHandler::setupTemplate(true);
 
 		import('manager.form.TrackForm');
 
@@ -82,7 +82,7 @@ class TrackHandler extends ManagerHandler {
 			Request::redirect(null, null, null, 'tracks');
 
 		} else {
-			parent::setupTemplate(true);
+			TrackHandler::setupTemplate(true);
 			$trackForm->display();
 		}
 	}
@@ -118,6 +118,14 @@ class TrackHandler extends ManagerHandler {
 		}
 
 		Request::redirect(null, null, null, 'tracks');
+	}
+
+	function setupTemplate($subclass = false) {
+		parent::setupTemplate(true);
+		if ($subclass) {
+			$templateMgr = &TemplateManager::getManager();
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'tracks'), 'track.tracks'));
+		}
 	}
 
 }
