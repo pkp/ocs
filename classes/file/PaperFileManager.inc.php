@@ -386,7 +386,6 @@ class PaperFileManager extends FileManager {
 		$paperFile->setFileSize($sourcePaperFile->getFileSize());
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($sourcePaperFile->getFileName(), 127));
 		$paperFile->setType($destTypePath);
-		$paperFile->setStatus($sourcePaperFile->getStatus());
 		$paperFile->setDateUploaded(Core::getCurrentDate());
 		$paperFile->setDateModified(Core::getCurrentDate());
 		$paperFile->setStage($this->paper->getCurrentStage());
@@ -425,7 +424,6 @@ class PaperFileManager extends FileManager {
 		$paperFile->setFileType('temp');
 		$paperFile->setFileSize(0);
 		$paperFile->setType('temp');
-		$paperFile->setStatus('temp');
 		$paperFile->setDateUploaded(Core::getCurrentDate());
 		$paperFile->setDateModified(Core::getCurrentDate());
 		$paperFile->setStage(0);
@@ -495,7 +493,6 @@ class PaperFileManager extends FileManager {
 		$paperFile->setFileSize($_FILES[$fileName]['size']);
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($_FILES[$fileName]['name'], 127));
 		$paperFile->setType($typePath);
-		$paperFile->setStatus(''); // FIXME wtf is this for?
 		$paperFile->setStage($this->paper->getCurrentStage());
 
 		$newFileName = $this->generateFilename($paperFile, $type, $this->getUploadedFileName($fileName));
@@ -549,7 +546,6 @@ class PaperFileManager extends FileManager {
 		$paperFile->setFileSize(strlen($contents));
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName($fileName, 127));
 		$paperFile->setType($typePath);
-		$paperFile->setStatus(''); // FIXME wtf is this for?
 		$paperFile->setStage($this->paper->getCurrentStage());
 
 		$newFileName = $this->generateFilename($paperFile, $type, $fileName);
@@ -601,7 +597,6 @@ class PaperFileManager extends FileManager {
 		$paperFile->setFileType($mimeType);
 		$paperFile->setOriginalFileName(PaperFileManager::truncateFileName(basename($url), 127));
 		$paperFile->setType($typePath);
-		$paperFile->setStatus(''); // FIXME wtf is this for?
 		$paperFile->setStage($this->paper->getCurrentStage());
 
 		$newFileName = $this->generateFilename($paperFile, $type, $paperFile->getOriginalFileName());

@@ -212,7 +212,6 @@ class PaperFileDAO extends DAO {
 		$paperFile->setFileSize($row['file_size']);
 		$paperFile->setOriginalFileName($row['original_file_name']);
 		$paperFile->setType($row['type']);
-		$paperFile->setStatus($row['status']);
 		$paperFile->setStage($row['stage']);
 		$paperFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 		$paperFile->setDateModified($this->datetimeFromDB($row['date_modified']));
@@ -237,7 +236,6 @@ class PaperFileDAO extends DAO {
 			$paperFile->getOriginalFileName(),
 			$paperFile->getType(),
 			(int) $paperFile->getStage(),
-			$paperFile->getStatus(),
 			$paperFile->getViewable()
 		);
 
@@ -247,9 +245,9 @@ class PaperFileDAO extends DAO {
 
 		$this->update(
 			sprintf('INSERT INTO paper_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, paper_id, file_name, file_type, file_size, original_file_name, type, stage, status, date_uploaded, date_modified, viewable)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, paper_id, file_name, file_type, file_size, original_file_name, type, stage, date_uploaded, date_modified, viewable)
 				VALUES
-				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?)',
+				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?)',
 				$this->datetimeToDB($paperFile->getDateUploaded()), $this->datetimeToDB($paperFile->getDateModified())),
 			$params
 		);
@@ -275,7 +273,6 @@ class PaperFileDAO extends DAO {
 					file_size = ?,
 					original_file_name = ?,
 					type = ?,
-					status = ?,
 					stage = ?,
 					date_uploaded = %s,
 					date_modified = %s,
@@ -289,7 +286,6 @@ class PaperFileDAO extends DAO {
 				$paperFile->getFileSize(),
 				$paperFile->getOriginalFileName(),
 				$paperFile->getType(),
-				$paperFile->getStatus(),
 				(int) $paperFile->getStage(),
 				$paperFile->getViewable(),
 				$paperFile->getFileId(),
