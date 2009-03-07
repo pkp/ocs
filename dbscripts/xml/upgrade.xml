@@ -60,6 +60,7 @@
 	<upgrade minversion="2.0.0.0" maxversion="2.1.1.0">
 		<data file="dbscripts/xml/upgrade/2.1.2_update.xml" />
 		<note file="docs/release-notes/README-2.1.2" />
+		<code function="localizeProgramSettings" />
 	</upgrade>
 
 	<!-- #3859: Rename of Presenter to Author -->

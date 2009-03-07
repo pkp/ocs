@@ -277,10 +277,9 @@ class SchedConfHandler extends PKPHandler {
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 		SchedConfHandler::setupTemplate($conference,$schedConf);
 
-		$templateMgr->assign('program', $schedConf->getSetting('program'));
-		$templateMgr->assign('programFileTitle', $schedConf->getSetting('programFileTitle'));
-		$templateMgr->assign('programFile', $schedConf->getSetting('programFile'));
-
+		$templateMgr->assign('program', $schedConf->getSetting('program', Locale::getLocale()));
+		$templateMgr->assign('programFile', $schedConf->getSetting('programFile', Locale::getLocale()));
+		$templateMgr->assign('programFileTitle', $schedConf->getSetting('programFileTitle', Locale::getLocale()));
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.program');
 		$templateMgr->display('schedConf/program.tpl');
 	}

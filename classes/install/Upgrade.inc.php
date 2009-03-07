@@ -522,6 +522,30 @@ class Upgrade extends Installer {
 
 		return true;
 	}
+	
+	/**
+	 * For 2.1.2 upgrade: add locale data to program settings
+	 * @return boolean
+	 */
+	function localizeProgramSettings() {
+		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+
+		$settings = array('program', 'programFile', 'programFileTitle');
+
+		foreach ($settings as $setting) {
+			$result =& $schedConfDao->retrieve('SELECT sc.sched_conf_id, c.primary_locale FROM sched_confs sc, conferences c, sched_conf_settings scs WHERE c.conference_id = sc.conference_id AND sc.sched_conf_id = scs.sched_conf_id AND scs.setting_name = ? AND (scs.locale IS NULL OR scs.locale = ?)', array($setting, ''));
+			while (!$result->EOF) {
+				$row = $result->GetRowAssoc(false);
+				$schedConfSettingsDao->update('UPDATE sched_conf_settings SET locale = ? WHERE sched_conf_id = ? AND setting_name = ? AND (locale IS NULL OR locale = ?)', array($row['primary_locale'], $row['sched_conf_id'], $setting, ''));
+				$result->MoveNext();
+			}
+			$result->Close();
+			unset($result);
+		}
+
+		return true;
+	}
 }
 
 ?>

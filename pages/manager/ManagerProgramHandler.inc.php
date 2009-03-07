@@ -30,7 +30,11 @@ class ManagerProgramHandler extends ManagerHandler {
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$settingsForm =& new ProgramSettingsForm();
-		$settingsForm->initData();
+		if ($settingsForm->isLocaleResubmit()) {
+			$settingsForm->readInputData();
+		} else {
+			$settingsForm->initData();
+		};
 		$settingsForm->display();
 	}
 
@@ -49,35 +53,16 @@ class ManagerProgramHandler extends ManagerHandler {
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$settingsForm =& new ProgramSettingsForm();
 		$settingsForm->readInputData();
+		$formLocale = $settingsForm->getFormLocale();
+		$programTitle = Request::getUserVar('programFileTitle');
 
 		$editData = false;
 
 		if (Request::getUserVar('uploadProgramFile')) {
-			import('file.PublicFileManager');
-			$fileManager = new PublicFileManager();
-			if ($fileManager->uploadedFileExists('programFile')) {
-				$oldName = $fileManager->getUploadedFileName('programFile');
-				$extension = $fileManager->getExtension($oldName);
-				if (!$extension) break;
-				$uploadName = 'program.' . $extension;
-				if ($fileManager->uploadSchedConfFile($schedConf->getSchedConfId(), 'programFile', $uploadName)) {
-					$value = array(
-						'name' => $oldName,
-						'uploadName' => $uploadName,
-						'dateUploaded' => Core::getCurrentDate()
-					);
-					$settingsForm->setData('programFile', $value);
-					$schedConf->updateSetting('programFile', $value, 'object');
-				}
-			}
+			$settingsForm->uploadProgram('programFile', $formLocale);
 			$editData = true;
 		} elseif (Request::getUserVar('deleteProgramFile')) {
-			$setting = $schedConf->getSetting('programFile');
-			import('file.PublicFileManager');
-			$fileManager = new PublicFileManager();
-			if ($fileManager->removeSchedConfFile($schedConf->getSchedConfId(), $setting['uploadName'])) {
-				$schedConf->updateSetting('programFile', null);
-			}
+			$settingsForm->deleteProgram('programFile', $formLocale);
 			$editData = true;
 		}
 
