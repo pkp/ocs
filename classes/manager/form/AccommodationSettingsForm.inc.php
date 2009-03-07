@@ -59,6 +59,14 @@ class AccommodationSettingsForm extends Form {
 		$this->_data = array();
 		$this->_data['accommodationDescription'] = $schedConf->getSetting('accommodationDescription');
 	}
+	
+	/**
+	 * Get the list of field names for which localized settings are used.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('accommodationDescription', 'accommodationFileTitle');
+	}
 
 	/**
 	 * Assign form data to user-submitted data.

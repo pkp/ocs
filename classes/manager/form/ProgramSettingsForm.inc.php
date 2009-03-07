@@ -28,7 +28,7 @@ class ProgramSettingsForm extends Form {
 		parent::Form('manager/programSettings.tpl');
 
 		$this->addCheck(new FormValidatorPost($this));
-
+		
 		$this->settings = array(
 			'program' => 'string',
 			'programFileTitle' => 'string'
@@ -40,13 +40,14 @@ class ProgramSettingsForm extends Form {
 	 */
 	function display() {
 		import('file.PublicFileManager');
+		$site = &Request::getSite();
 		$schedConf =& Request::getSchedConf();
 
 		$templateMgr = &TemplateManager::getManager();
-		$site = &Request::getSite();
 		$templateMgr->assign('helpTopicId','conference.currentConferences.program');
 		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
 		$templateMgr->assign('programFile', $schedConf->getSetting('programFile'));
+
 		parent::display();
 	}
 
@@ -55,9 +56,19 @@ class ProgramSettingsForm extends Form {
 	 */
 	function initData() {
 		$schedConf = &Request::getSchedConf();
+		
+		$this->data = array();
 		foreach (array_keys($this->settings) as $settingName) {
 			$this->_data[$settingName] = $schedConf->getSetting($settingName);
 		}
+	}
+
+	/**
+	 * Get the list of field names for which localized settings are used.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array_keys($this->settings);
 	}
 
 	/**
@@ -72,16 +83,68 @@ class ProgramSettingsForm extends Form {
 	 */
 	function execute() {
 		$schedConf = &Request::getSchedConf();
-		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-
+		
 		foreach ($this->_data as $name => $value) {
-			$settingsDao->updateSetting(
-				$schedConf->getSchedConfId(),
+			$schedConf->updateSetting(
 				$name,
 				$value,
-				$this->settings[$name]
+				$this->settings[$name],
+				true
 			);
 		}
+	}
+	
+	/**
+	 * Uploads a program file.
+	 * @param $settingName string setting key associated with the file
+	 * @param $locale string
+	 */
+	function uploadProgram($settingName, $locale) {
+		$schedConf = &Request::getSchedConf();
+
+		import('file.PublicFileManager');
+		$fileManager = &new PublicFileManager();
+		if ($fileManager->uploadedFileExists($settingName)) {
+			$oldName = $fileManager->getUploadedFileName('programFile');
+			$extension = $fileManager->getExtension($oldName);
+			if (!$extension) {
+				return false;
+			}
+			$uploadName = 'program-' . $locale . '.' . $extension;
+			if ($fileManager->uploadSchedConfFile($schedConf->getSchedConfId(), $settingName, $uploadName)) {
+				$value = $schedConf->getSetting($settingName);
+				$value[$locale] = array(
+					'name' => $oldName,
+					'uploadName' => $uploadName,
+					'dateUploaded' => Core::getCurrentDate(),
+				);
+
+				$schedConf->updateSetting($settingName, $value, 'object', true);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Deletes a program file.
+	 * @param $settingName string setting key associated with the file
+	 * @param $locale string
+	 */
+	function deleteProgram($settingName, $locale = null) {
+		$schedConf = &Request::getSchedConf();
+		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		$setting = $schedConf->getSetting($settingName);
+
+		import('file.PublicFileManager');
+		$fileManager = &new PublicFileManager();
+		if ($fileManager->removeSchedConfFile($schedConf->getSchedConfId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
+			return $settingsDao->deleteSetting($schedConf->getSchedConfId(), $settingName, $locale);
+		} else {
+			return false;
+		}
+		
 	}
 }
 
