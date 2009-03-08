@@ -52,10 +52,6 @@ class Action {
 			$metadataForm = &new MetadataForm($paper);
 			$metadataForm->readInputData();
 
-			if (!$metadataForm->validate()) {
-				return $metadataForm->display();
-			}
-
 			// Check for any special cases before trying to save
 			if (Request::getUserVar('addPresenter')) {
 				// Add an presenter
@@ -119,6 +115,9 @@ class Action {
 				return false;
 
 			} else {
+				if (!$metadataForm->validate()) {
+					return $metadataForm->display();
+				}
 				$metadataForm->execute();
 
 				// Add log entry
