@@ -345,7 +345,10 @@ class OAIDAO extends DAO {
 		$record->contributors = $this->stripAssocArray((array) $paper->getSponsor(null));
 		$record->date = date('Y-m-d', strtotime($this->datetimeFromDB($row['date_published'])));
 		$types = $this->stripAssocArray((array) $track->getIdentifyType(null));
-		$record->types = empty($types)?array(Locale::getLocale() => Locale::translate('rt.metadata.pkp.peerReviewed')):$types;
+		$record->types = array_merge_recursive(
+			empty($types)?array(Locale::getLocale() => Locale::translate('rt.metadata.pkp.peerReviewed')):$types,
+			$this->stripAssocArray((array) $paper->getType(null))
+		);
 		$record->format = array();
 
 		$record->sources = array($conference->getConferenceTitle() . '; ' . $schedConf->getSchedConfTitle());
@@ -360,9 +363,9 @@ class OAIDAO extends DAO {
 		$record->pages = $paper->getPages();
 
 		// Get publisher (may override earlier publisher)
-		$publisherInstitution = (array) $conference->getSetting('publisherInstitution');
+		$publisherInstitution = $conference->getSetting('publisherInstitution');
 		if (!empty($publisherInstitution)) {
-			$record->publishers = $publisherInstitution;
+			$record->publishers = array($conference->getPrimaryLocale() => $publisherInstitution);
 		}
 
 		// Get presenter names
