@@ -44,7 +44,6 @@ class SubmitHandler extends PresenterHandler {
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 		$paperId = Request::getUserVar('paperId');
-
 		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, $step);
 
 		$formClass = "PresenterSubmitStep{$step}Form";
@@ -162,7 +161,8 @@ class SubmitHandler extends PresenterHandler {
 			// For the "abstract only" or sequential review models, nothing else needs
 			// to be collected beyond page 2.
 			$reviewMode = $paper?$paper->getReviewMode():null;
-			if (($step == 2 && ($reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL || $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE)) ||
+			if (($step == 2 && $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL) || 
+					($step == 2 && $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) || 
 					($step == 5 )) {
 
 				$templateMgr = &TemplateManager::getManager();
@@ -177,10 +177,11 @@ class SubmitHandler extends PresenterHandler {
 				$templateMgr->display('presenter/submit/complete.tpl');
 			} elseif ($step == 3 && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
 				Request::redirect(null, null, null, 'submit', 5, array('paperId' => $paperId));
+			} elseif ($step == 2 && $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE) {
+				Request::redirect(null, null, null, 'submit', 4, array('paperId' => $paperId));
 			} else {
 				Request::redirect(null, null, null, 'submit', $step+1, array('paperId' => $paperId));
 			}
-
 		} else {
 			$submitForm->display();
 		}

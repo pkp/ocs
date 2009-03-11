@@ -23,6 +23,18 @@
 			{if $submitStep != 2 && $submissionProgress >= 2}<a href="{url op="submit" path="2" paperId=$paperId}">{/if}
 			{translate key="presenter.submit.metadata"}{if $submitStep != 2 && $submissionProgress >= 2}</a>{/if}
 		</li>
+		
+		{if $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials') && !$showPaperSteps}
+			<li{if $submitStep == 4} class="current"{/if}>
+				{if $submitStep != 4 && $submissionProgress >= 4}<a href="{url op="submit" path="4" paperId=$paperId}">{/if}
+				{translate key="presenter.submit.supplementaryFilesAbstractOnly"}{if $submitStep != 4 && $submissionProgress >= 4}</a>{/if}
+			</li>
+
+			<li{if $submitStep == 5} class="current"{/if}>
+				{if $submitStep != 5 && $submissionProgress >= 5}<a href="{url op="submit" path="5" paperId=$paperId}">{/if}
+				{translate key="presenter.submit.confirmationSkipSupp"}{if $submitStep != 5 && $submissionProgress >= 5}</a>{/if}
+			</li>
+		{/if}
 	{/if}
 
 	{if $showPaperSteps}

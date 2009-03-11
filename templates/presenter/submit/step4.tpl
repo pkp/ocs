@@ -8,7 +8,11 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="presenter.submit.step4"}
+{if $showAbstractSteps}
+	{assign var="pageTitle" value="presenter.submit.supplementaryFilesAbstractOnly"}
+{else}
+	{assign var="pageTitle" value="presenter.submit.step4"}
+{/if}
 {include file="presenter/submit/submitHeader.tpl"}
 
 <script type="text/javascript">

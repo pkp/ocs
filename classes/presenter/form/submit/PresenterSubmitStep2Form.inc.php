@@ -202,11 +202,15 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 			} else {
 				$paper->setDateSubmitted(Core::getCurrentDate());
 				$paper->stampStatusModified();
-				$paper->setSubmissionProgress(0);
-
 				$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
 				$trackDirectors = $this->assignDirectors($paper);
-				$this->confirmSubmission($paper, $user, $schedConf, $conference, 'SUBMISSION_ACK', $trackDirectors);
+				
+				if ($schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
+					$paper->setSubmissionProgress($this->step + 2); 
+				} else {
+					$paper->setSubmissionProgress(0); 
+					$this->confirmSubmission($paper, $user, $schedConf, $conference, 'SUBMISSION_ACK', $trackDirectors);
+				}
 			}
 		}
 

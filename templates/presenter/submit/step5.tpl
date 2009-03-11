@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-{if $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials')}
+{if $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials') && !$showAbstractSteps}
 {assign var="pageTitle" value="presenter.submit.step5"}
 {else}
 {assign var="pageTitle" value="presenter.submit.step5SkipSupp"}
