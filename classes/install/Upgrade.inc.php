@@ -216,6 +216,7 @@ class Upgrade extends Installer {
 			'presenterInformation' => 'presenterInformation',
 			'announcementsIntroduction' => 'announcementsIntroduction',
 			// Setup page 3
+			'homeHeaderLogoImage' => 'homeHeaderLogoImage',
 			'homeHeaderTitleType' => 'homeHeaderTitleType',
 			'homeHeaderTitle' => 'homeHeaderTitle',
 			'homeHeaderTitleImage' => 'homeHeaderTitleImage',
