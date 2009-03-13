@@ -185,9 +185,13 @@ class TrackDirectorAction extends Action {
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($trackDirectorSubmission->getPaperId(), $reviewerId, $stage);
 
 			$schedConf = &Request::getSchedConf();
-			if ($schedConf->getSetting('numWeeksPerReview') != null)
-				TrackDirectorAction::setDueDate($trackDirectorSubmission->getPaperId(), $reviewAssignment->getReviewId(), null, $schedConf->getSetting('numWeeksPerReview'), false);
-
+			if ($schedConf->getSetting('reviewDeadlineType') != null) {
+				if ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_ABSOLUTE) {
+					TrackDirectorAction::setDueDate($trackDirectorSubmission->getPaperId(), $reviewAssignment->getReviewId(), $schedConf->getSetting('numWeeksPerReviewAbsolute'), null, false);
+				} elseif ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_RELATIVE) {
+					TrackDirectorAction::setDueDate($trackDirectorSubmission->getPaperId(), $reviewAssignment->getReviewId(), null, $schedConf->getSetting('numWeeksPerReviewRelative'), false);
+				}
+			}
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
@@ -268,7 +272,14 @@ class TrackDirectorAction extends Action {
 						$accessKeyManager = new AccessKeyManager();
 
 						// Key lifetime is the typical review period plus four weeks
-						$keyLifetime = ($schedConf->getSetting('numWeeksPerReview') + 4) * 7;
+						if ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_ABSOLUTE) {
+							// Get number of days from now until review deadline date
+							$reviewDeadlineDate = strtotime($schedConf->getSetting('numWeeksPerReviewAbsolute'));
+							$daysDiff = ($reviewDeadlineDate - strtotime(date("Y-m-d"))) / (60 * 60 * 24);
+							$keyLifetime = (round($daysDiff / 7) + 4) * 7;
+						} elseif ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_RELATIVE) {
+							$keyLifetime = ((int) $schedConf->getSetting('numWeeksPerReviewRelative') + 4) * 7;
+						}
 
 						$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime));
 					}
@@ -293,7 +304,14 @@ class TrackDirectorAction extends Action {
 					if ($reviewAssignment->getDateDue() != null) {
 						$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue()));
 					} else {
-						$numWeeks = max((int) $schedConf->getSetting('numWeeksPerReview'), 2);
+						if ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_ABSOLUTE) {
+							$reviewDeadlineDate = strtotime($schedConf->getSetting('numWeeksPerReviewAbsolute'));
+							$daysDiff = ($reviewDeadlineDate - strtotime(date("Y-m-d"))) / (60 * 60 * 24);
+							$numWeeks = max(round($daysDiff / 7), 2);
+						} elseif ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_RELATIVE) {
+							$numWeeks = max((int) $schedConf->getSetting('numWeeksPerReviewRelative'), 2);
+						}
+						
 						$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 					}
 
@@ -424,7 +442,14 @@ class TrackDirectorAction extends Action {
 				$accessKeyManager = new AccessKeyManager();
 
 				// Key lifetime is the typical review period plus four weeks
-				$keyLifetime = ($schedConf->getSetting('numWeeksPerReview') + 4) * 7;
+				if ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_ABSOLUTE) {
+					// Get number of days from now until review deadline date
+					$reviewDeadlineDate = strtotime($schedConf->getSetting('numWeeksPerReviewAbsolute'));
+					$daysDiff = ($reviewDeadlineDate - strtotime(date("Y-m-d"))) / (60 * 60 * 24);
+					$keyLifetime = (round($daysDiff / 7) + 4) * 7;
+				} elseif ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_RELATIVE) {
+					$keyLifetime = ((int) $schedConf->getSetting('numWeeksPerReviewRelative') + 4) * 7;
+				}
 				$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime));
 			}
 

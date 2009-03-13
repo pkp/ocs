@@ -546,6 +546,38 @@ class Upgrade extends Installer {
 
 		return true;
 	}
+	
+	/**
+	 * For 2.3 upgrade: update default review deadline settings to allow absolute due dates
+	 * @return boolean
+	 */
+	function updateReviewDeadlineSettings() {
+		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+
+
+		$result =& $schedConfDao->retrieve('SELECT scs.sched_conf_id FROM sched_conf_settings scs WHERE scs.setting_name = ?', array('numWeeksPerReview'));
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			$schedConfSettingsDao->update('UPDATE sched_conf_settings SET setting_name = ? WHERE sched_conf_id = ? AND setting_name = ?', 
+							array('numWeeksPerReviewRelative', $row['sched_conf_id'], 'numWeeksPerReview'));
+			$schedConfDao->update(
+				'INSERT INTO sched_conf_settings (sched_conf_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, ?, ?, ?)',
+				array(
+					$row['sched_conf_id'],
+					'',
+					'reviewDeadlineType',
+					REVIEW_DEADLINE_TYPE_RELATIVE,
+					'int',
+				)
+			);
+			$result->MoveNext();
+		}
+		$result->Close();
+		unset($result);
+
+		return true;
+	}
 }
 
 ?>

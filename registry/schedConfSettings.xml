@@ -29,6 +29,11 @@
 		<name>numWeeksPerReview</name>
 		<value>4</value>
 	</setting>
+	
+	<setting type="int" locale="0">
+		<name>reviewDeadlineType</name>
+		<value>4</value> <!-- REVIEW_DEADLINE_TYPE_RELATIVE -->
+	</setting>
 
 	<!-- Policy and default settings -->
 	<setting type="string" locale="1">

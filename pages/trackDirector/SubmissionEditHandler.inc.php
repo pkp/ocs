@@ -692,7 +692,14 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				$templateMgr->assign('dueDate', $reviewAssignment->getDateDue());
 			}
 
-			$numWeeksPerReview = $settings['numWeeksPerReview'] == null ? 0 : $settings['numWeeksPerReview'];
+			if ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_ABSOLUTE) {
+				// Get number of days from now until review deadline date
+				$reviewDeadlineDate = strtotime($schedConf->getSetting('numWeeksPerReviewAbsolute'));
+				$daysDiff = ($reviewDeadlineDate - strtotime(date("Y-m-d"))) / (60 * 60 * 24);
+				$numWeeksPerReview = round($daysDiff / 7);
+			} elseif ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_RELATIVE) {
+				$numWeeksPerReview = ((int) $schedConf->getSetting('numWeeksPerReviewRelative'));
+			} else $numWeeksPerReview = 0;
 
 			$templateMgr->assign('paperId', $paperId);
 			$templateMgr->assign('reviewId', $reviewId);

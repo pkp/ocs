@@ -290,7 +290,9 @@
 	<message key="manager.schedConfSetup.review.directorDecision">Director Decision</message>
 	<message key="manager.schedConfSetup.review.notifyAllAuthorsOnDecision">When using the Notify Author email, include the email addresses of all co-authors for multiple-author submissions, and not just the submitting user.</message>
 	<message key="manager.schedConfSetup.review.numWeeksPerReview1">Allow reviewers</message>
+	<message key="manager.schedConfSetup.review.numWeeksPerReview1b">Allow reviewers until</message>
 	<message key="manager.schedConfSetup.review.numWeeksPerReview2">weeks to review submissions.</message>
+	<message key="manager.schedConfSetup.review.numWeeksPerReview2b">to review submissions.</message>
 	<message key="manager.schedConfSetup.review.onQuality">Directors are able to rate reviewers on a five-point scale.</message>
 	<message key="manager.schedConfSetup.review.pageDescription">Review policies, guidelines, and access.</message>
 	<message key="manager.schedConfSetup.review.peerReview">Peer Review</message>

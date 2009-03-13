@@ -24,14 +24,16 @@ class SchedConfSetupStep3Form extends SchedConfSetupForm {
 			array(
 				'reviewPolicy' => 'string',
 				'reviewGuidelines' => 'string',
-				'numWeeksPerReview' => 'int',
 				'remindForInvite' => 'int',
 				'remindForSubmit' => 'int',
 				'rateReviewerOnQuality' => 'int',
 				'restrictReviewerFileAccess' => 'int',
 				'reviewerAccessKeysEnabled' => 'int',
+				'reviewDeadlineType' => 'int',
 				'numDaysBeforeInviteReminder' => 'int',
 				'numDaysBeforeSubmitReminder' => 'int',
+				'numWeeksPerReviewRelative'	=> 'int',
+				'numWeeksPerReviewAbsolute'	=> 'date',
 				'notifyAllAuthorsOnDecision' => 'bool'
 			)
 		);
@@ -46,16 +48,31 @@ class SchedConfSetupStep3Form extends SchedConfSetupForm {
 	function getLocaleFieldNames() {
 		return array('reviewPolicy', 'reviewGuidelines');
 	}
+	
+	
+	/**
+	 * Assign form data to user-submitted data.
+	 */
+	function readInputData() {
+		$settingNames = array_keys($this->settings);
+		$this->readUserVars($settingNames);
+		$this->readUserDateVars(array('numWeeksPerReviewAbsolute'));
+	}
 
 	/**
 	 * Display the form
 	 */
 	function display() {
+		$templateMgr =& TemplateManager::getManager();
+
 		import('mail.MailTemplate');
 		$mail = new MailTemplate('SUBMISSION_ACK');
 		if ($mail->isEnabled()) {
-			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('submissionAckEnabled', true);
+		}
+
+		if ($this->_data['reviewDeadlineType'] == REVIEW_DEADLINE_TYPE_ABSOLUTE) {
+			$templateMgr->assign('absoluteReviewDate', $this->_data['numWeeksPerReviewAbsolute']);
 		}
 
 		if (Config::getVar('general', 'scheduled_tasks'))
@@ -63,6 +80,8 @@ class SchedConfSetupStep3Form extends SchedConfSetupForm {
 
 		parent::display();
 	}
+	
+
 }
 
 ?>
