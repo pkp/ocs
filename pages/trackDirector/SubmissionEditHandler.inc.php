@@ -152,7 +152,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$isCurrent = ($stage == $submission->getCurrentStage());
 		$showPeerReviewOptions = $isCurrent && $submission->getReviewFile() != null ? true : false;
 
-		$allowRecommendation = $isCurrent &&
+		$allowRecommendation = ($isCurrent  || ($stage == REVIEW_STAGE_ABSTRACT && $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL)) &&
 			($submission->getReviewFileId() || $stage != REVIEW_STAGE_PRESENTATION) &&
 			!empty($editAssignments);
 
@@ -323,16 +323,34 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$stage = $submission->getCurrentStage();
 
 		$decision = Request::getUserVar('decision');
+		
+		// If the director changes the decision from invite to revisions 
+		// required or decline, roll back to abstract review stage
+		if($submission->getCurrentStage() == REVIEW_STAGE_PRESENTATION && 
+				($decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS || $decision == SUBMISSION_DIRECTOR_DECISION_DECLINE)) {
+			$submission->setCurrentStage(REVIEW_STAGE_ABSTRACT);
+			$submission->setSubmissionProgress(2);
+			$stage = REVIEW_STAGE_ABSTRACT;
 
-		switch ($decision) {
-			case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
-			case SUBMISSION_DIRECTOR_DECISION_INVITE:
-			case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
-			case SUBMISSION_DIRECTOR_DECISION_DECLINE:
-				TrackDirectorAction::recordDecision($submission, $decision);
-				break;
+			// Now, unassign all reviewers from the paper review
+			foreach ($submission->getReviewAssignments(REVIEW_STAGE_PRESENTATION) as $reviewAssignment) {
+				if ($reviewAssignment->getRecommendation() !== null && $reviewAssignment->getRecommendation() !== '') {
+					TrackDirectorAction::clearReview($submission, $reviewAssignment->getReviewId());
+				}
+			}
+			
+			TrackDirectorAction::recordDecision($submission, $decision);
+		} else {
+			switch ($decision) {
+				case SUBMISSION_DIRECTOR_DECISION_ACCEPT:
+				case SUBMISSION_DIRECTOR_DECISION_INVITE:
+				case SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS:
+				case SUBMISSION_DIRECTOR_DECISION_DECLINE:
+					TrackDirectorAction::recordDecision($submission, $decision);
+					break;
+			}
 		}
-
+		
 		Request::redirect(null, null, null, 'submissionReview', array($paperId, $stage));
 	}
 
