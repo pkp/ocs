@@ -18,9 +18,7 @@
 
 <br />
 
-{if $intro}
-<p>{$intro|nl2br}</p>
-{/if}
+{if $intro}{$intro|nl2br}{/if}
 
 {iterate from=conferences item=conference}
 
