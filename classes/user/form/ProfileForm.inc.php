@@ -50,7 +50,6 @@ class ProfileForm extends Form {
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$notificationStatusDao = &DAORegistry::getDAO('NotificationStatusDAO');
 		$userSettingsDao = &DAORegistry::getDAO('UserSettingsDAO');
 
 		$schedConfs = &$schedConfDao->getEnabledSchedConfs();
@@ -64,14 +63,11 @@ class ProfileForm extends Form {
 			}
 		}
 
-		$schedConfNotifications = &$notificationStatusDao->getSchedConfNotifications($user->getUserId());
-
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 		$templateMgr->assign_by_ref('countries', $countries);
-		$templateMgr->assign_by_ref('schedConfNotifications', $schedConfNotifications);
 		$templateMgr->assign('helpTopicId', 'conference.users.index');
 
 		$schedConf =& Request::getSchedConf();
@@ -205,7 +201,6 @@ class ProfileForm extends Form {
 
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$notificationStatusDao = &DAORegistry::getDAO('NotificationStatusDAO');
 
 		// Roles
 		$schedConf =& Request::getSchedConf();
@@ -235,21 +230,6 @@ class ProfileForm extends Form {
 				$wantsRole = Request::getUserVar('readerRole');
 				if ($hasRole && !$wantsRole) $roleDao->deleteRole($role);
 				if (!$hasRole && $wantsRole) $roleDao->insertRole($role);
-			}
-		}
-
-		$schedConfs = &$schedConfDao->getSchedConfs();
-		$schedConfs = &$schedConfs->toArray();
-		$schedConfNotifications = $notificationStatusDao->getSchedConfNotifications($user->getUserId());
-
-		$readerNotify = Request::getUserVar('schedConfNotify');
-
-		foreach ($schedConfs as $thisSchedConf) {
-			$thisSchedConfId = $thisSchedConf->getSchedConfId();
-			$currentlyReceives = !empty($schedConfNotifications[$thisSchedConfId]);
-			$shouldReceive = !empty($readerNotify) && in_array($thisSchedConf->getSchedConfId(), $readerNotify);
-			if ($currentlyReceives != $shouldReceive) {
-				$notificationStatusDao->setSchedConfNotifications($thisSchedConfId, $user->getUserId(), $shouldReceive);
 			}
 		}
 

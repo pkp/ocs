@@ -38,4 +38,9 @@ If you have any questions, please feel free to contact me.
 	<sql>
 		<query>UPDATE groups SET assoc_type = 257</query><!-- ASSOC_TYPE_SCHED_CONF -->
 	</sql>
+	<!-- Bug #3922# No need for the notification_status table (it is encapsulated by the notification table) -->
+	<sql>
+		<drop table="notification_status" />
+	</sql>
+
 </data>

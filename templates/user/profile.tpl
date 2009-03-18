@@ -129,23 +129,6 @@
 		</td>
 	</tr>
 {/if}
-{foreach from=$schedConfs name=schedConfNotifications key=thisSchedConfId item=thisSchedConf}
-	{assign var=thisSchedConfId value=$thisSchedConf->getSchedConfId()}
-	{assign var=notificationEnabled value=`$schedConfNotifications.$thisSchedConfId`}
-	{if !$notFirstSchedConf}
-		{assign var=notFirstSchedConf value=1}
-		<tr valign="top">
-			<td class="label">{translate key="user.profile.form.publishedNotifications"}</td>
-			<td class="value">
-	{/if}
-
-			<input type="checkbox" name="schedConfNotify[]" {if $notificationEnabled}checked="checked" {/if}id="schedConfNotify-{$thisSchedConfId|escape}" value="{$thisSchedConfId|escape}" /> <label for="schedConfNotify-{$thisSchedConfId|escape}">{$thisSchedConf->getFullTitle()|escape}</label><br/>
-
-	{if $smarty.foreach.schedConfNotifications.last}
-			</td>
-		</tr>
-	{/if}
-{/foreach}
 
 {if $displayOpenAccessNotification}
 	{assign var=notFirstSchedConf value=0}

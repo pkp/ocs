@@ -1,16 +1,15 @@
 <?php
 
 /**
- * FontSizeBlockPlugin.inc.php
+ * @file NotificationBlockPlugin.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class FontSizeBlockPlugin
- * @ingroup plugins
+ * @class NotificationBlockPlugin
+ * @ingroup plugins_blocks_notification
  *
- * @brief Class for font size block plugin
- *
+ * @brief Class for "notification" block plugin
  */
 
 // $Id$
@@ -18,20 +17,11 @@
 
 import('plugins.BlockPlugin');
 
-class FontSizeBlockPlugin extends BlockPlugin {
+class NotificationBlockPlugin extends BlockPlugin {
 	function register($category, $path) {
 		$success = parent::register($category, $path);
 		if ($success) {
 			$this->addLocaleData();
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign('fontIconPath', 'lib/pkp/templates/images/icons');
-			$additionalHeadData = $templateMgr->get_template_vars('additionalHeadData');
-
-			// Add font sizer js and css if not already in header
-			if (strpos(strtolower($additionalHeadData), 'sizer.js') === false) {
-				$additionalHeadData .= $templateMgr->fetch('common/sizer.tpl');
-				$templateMgr->assign('additionalHeadData', $additionalHeadData);
-			}
 		}
 		return $success;
 	}
@@ -54,10 +44,10 @@ class FontSizeBlockPlugin extends BlockPlugin {
 	}
 
 	/**
-	 * Install default settings on conference creation.
+	 * Install default settings on journal creation.
 	 * @return string
 	 */
-	function getNewConferencePluginSettingsFile() {
+	function getNewJournalPluginSettingsFile() {
 		return $this->getPluginPath() . '/settings.xml';
 	}
 
@@ -84,7 +74,7 @@ class FontSizeBlockPlugin extends BlockPlugin {
 	 * the plugin will be displayed during install.
 	 */
 	function getSeq() {
-		if (!Config::getVar('general', 'installed')) return 3;
+		if (!Config::getVar('general', 'installed')) return 1;
 		return parent::getSeq();
 	}
 
@@ -94,7 +84,7 @@ class FontSizeBlockPlugin extends BlockPlugin {
 	 * @return String name of plugin
 	 */
 	function getName() {
-		return 'FontSizeBlockPlugin';
+		return 'NotificationBlockPlugin';
 	}
 
 	/**
@@ -102,22 +92,27 @@ class FontSizeBlockPlugin extends BlockPlugin {
 	 * @return String
 	 */
 	function getDisplayName() {
-		return Locale::translate('plugins.block.fontSize.displayName');
+		return Locale::translate('plugins.block.notification.displayName');
 	}
 
 	/**
 	 * Get a description of the plugin.
 	 */
 	function getDescription() {
-		return Locale::translate('plugins.block.fontSize.description');
+		return Locale::translate('plugins.block.notification.description');
 	}
-
-	/**
-	 * Get the HTML contents for this block.
-	 * @param $templateMgr object
-	 * @return string
-	 */
+	
+	
 	function getContents(&$templateMgr) {
+		$user =& Request::getUser();
+		$conference =& Request::getConference();
+		
+		if ($user && $conference) {
+			$userId = $user->getUserId();
+			$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+			$templateMgr->assign('unreadNotifications',  $notificationDao->getUnreadNotificationCount($userId));
+		}
+		
 		return parent::getContents($templateMgr);
 	}
 }

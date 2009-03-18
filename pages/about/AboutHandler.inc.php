@@ -471,10 +471,6 @@ class AboutHandler extends PKPHandler {
 		$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getSchedConfId(), $fromDate, $toDate);
 		$templateMgr->assign('registrationStatistics', $registrationStatistics);
 
-		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
-		$notifiableUsers = $notificationStatusDao->getNotifiableUsersCount($schedConf->getSchedConfId());
-		$templateMgr->assign('notifiableUsers', $notifiableUsers);
-
 		$templateMgr->display('about/statistics.tpl');
 	}
 

@@ -1034,6 +1034,18 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		if ($submitForm->validate()) {
 			$submitForm->execute();
+			
+			// Send a notification to associated users
+			import('notification.Notification');
+			$paperDao =& DAORegistry::getDAO('PaperDAO'); 
+			$paper =& $paperDao->getPaper($paperId);
+			$notificationUsers = $paper->getAssociatedUserIds(true, false);
+			foreach ($notificationUsers as $user) {
+				$url = Request::url(null, null, $user['role'], 'submissionEditing', $paper->getPaperId(), null, 'layout');
+				Notification::createNotification($user['id'], "notification.type.suppFileModified",
+					$paper->getPaperTitle(), $url, 1, NOTIFICATION_TYPE_SUPP_FILE_MODIFIED);
+			}
+			
 			Request::redirect(null, null, null, 'submissionReview', $paperId);
 		} else {
 			parent::setupTemplate(true, $paperId, 'summary');
@@ -1226,6 +1238,17 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		if ($submitForm->validate()) {
 			$submitForm->execute();
+			
+			// Send a notification to associated users
+			import('notification.Notification');
+			$paperDao =& DAORegistry::getDAO('PaperDAO'); 
+			$paper =& $paperDao->getPaper($paperId);
+			$notificationUsers = $paper->getAssociatedUserIds(true, false);
+			foreach ($notificationUsers as $user) {
+				$url = Request::url(null, null, $user['role'], 'submissionEditing', $paper->getPaperId(), null, 'layout');
+				Notification::createNotification($user['id'], "notification.type.galleyModified",
+					$paper->getPaperTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED);
+			}
 
 			if (Request::getUserVar('uploadImage')) {
 				$submitForm->uploadImage();

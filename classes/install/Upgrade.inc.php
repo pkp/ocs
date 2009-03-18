@@ -356,7 +356,7 @@ class Upgrade extends Installer {
 		$tables = array(
 			'versions', 'site', 'site_settings', 'scheduled_tasks',
 			'sessions', 'conference_settings', 'sched_conf_settings',
-			'plugin_settings', 'roles', 'notification_status', 
+			'plugin_settings', 'roles',
 			'track_directors',
 			'review_stages', 'paper_html_galley_images',
 			'email_templates_default_data', 'email_templates_data',

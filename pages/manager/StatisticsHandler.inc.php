@@ -73,10 +73,6 @@ class StatisticsHandler extends ManagerHandler {
 		$registrationStatistics = $schedConfStatisticsDao->getRegistrationStatistics($schedConf->getSchedConfId(), $fromDate, $toDate);
 		$templateMgr->assign('registrationStatistics', $registrationStatistics);
 
-		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
-		$notifiableUsers = $notificationStatusDao->getNotifiableUsersCount($schedConf->getSchedConfId());
-		$templateMgr->assign('notifiableUsers', $notifiableUsers);
-
 		$reportPlugins =& PluginRegistry::loadCategory('reports');
 		$templateMgr->assign_by_ref('reportPlugins', $reportPlugins);
 

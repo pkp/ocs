@@ -362,7 +362,6 @@ class DirectorHandler extends TrackDirectorHandler {
 		DirectorHandler::setupTemplate(DIRECTOR_TRACK_HOME);
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
@@ -382,13 +381,6 @@ class DirectorHandler extends TrackDirectorHandler {
 			$email->addRecipient($user->getEmail(), $user->getFullName());
 
 			switch (Request::getUserVar('whichUsers')) {
-				case 'allReaders':
-					$recipients =& $roleDao->getUsersByRoleId(
-						ROLE_ID_READER,
-						$conferenceId,
-						$schedConfId
-					);
-					break;
 				case 'allPaidRegistrants':
 					$recipients =& $registrationDao->getRegisteredUsers($schedConfId);
 					break;
@@ -401,9 +393,13 @@ class DirectorHandler extends TrackDirectorHandler {
 				case 'allUsers':
 					$recipients =& $roleDao->getUsersBySchedConfId($schedConfId);
 					break;
-				case 'interestedUsers':
+				case 'allReaders':
 				default:
-					$recipients = $notificationStatusDao->getNotifiableUsersBySchedConfId($schedConfId);
+					$recipients =& $roleDao->getUsersByRoleId(
+						ROLE_ID_READER,
+						$conferenceId,
+						$schedConfId
+					);
 					break;
 			}
 			while (!$recipients->eof()) {

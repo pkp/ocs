@@ -44,14 +44,6 @@
 <h3>{translate key="email.recipients"}</h3>
 <table class="data" width="100%">
 <tr valign="top">
-	<td width="5%">
-		<input checked type="radio" name="whichUsers" id="interestedUsers" value="interestedUsers"/>
-	</td>
-	<td width="75%" class="label">
-		<label for="interestedUsers">{translate key="director.notifyUsers.interestedUsers" count=$notifiableCount}</label>
-	</td>
-</tr>
-<tr valign="top">
 	<td><input type="radio" id="allUsers" name="whichUsers" value="allUsers"/></td>
 	<td class="label">
 		<label for="allUsers">{translate key="director.notifyUsers.allUsers" count=$allUsersCount}</label>

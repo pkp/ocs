@@ -165,6 +165,24 @@ class SubmitHandler extends AuthorHandler {
 			if (($step == 2 && $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL) || 
 					($step == 2 && $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) || 
 					($step == 5 )) {
+					
+				// Send a notification to associated users
+				import('notification.Notification');
+				$roleDao = &DAORegistry::getDAO('RoleDAO');
+				$notificationUsers = array();
+				$conferenceManagers = $roleDao->getUsersByRoleId(ROLE_ID_CONFERENCE_MANAGER);
+				$allUsers = $conferenceManagers->toArray();
+				$directors = $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR);
+				array_merge($allUsers, $directors->toArray());
+				foreach ($allUsers as $user) {
+					$notificationUsers[] = array('id' => $user->getUserId());
+				}
+
+				foreach ($notificationUsers as $user) {
+					$url = Request::url(null, null, 'editor', 'submission', $paperId);
+					Notification::createNotification($user['id'], "notification.type.paperSubmitted",
+						$paper->getPaperTitle(), $url, 1, NOTIFICATION_TYPE_PAPER_SUBMITTED);
+				}
 
 				$templateMgr = &TemplateManager::getManager();
 				$templateMgr->assign_by_ref('conference', $conference);

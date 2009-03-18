@@ -101,6 +101,18 @@ class CommentHandler extends PKPHandler {
 			$commentForm->readInputData();
 			if ($commentForm->validate()) {
 				$commentForm->execute();
+				
+				// Send a notification to associated users
+				import('notification.Notification');
+				$paperDAO =& DAORegistry::getDAO('PaperDAO');
+				$paper =& $paperDAO->getPaper($paperId);
+				$notificationUsers = $paper->getAssociatedUserIds();
+				foreach ($notificationUsers as $user) {
+					$url = Request::url(null, null, null, 'view', array($paperId, $galleyId, $parentId));
+					Notification::createNotification($user['id'], "notification.type.userComment",
+						$paper->getPaperTitle(), $url, 1, NOTIFICATION_TYPE_USER_COMMENT);
+				}
+	
 				Request::redirect(null, null, null, 'view', array($paperId, $galleyId, $parentId), array('refresh' => 1));
 			}
 		}

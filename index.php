@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', E_ALL);
 
 /**
  * @mainpage OCS API Reference

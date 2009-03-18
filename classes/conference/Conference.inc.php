@@ -101,6 +101,14 @@ class Conference extends DataObject {
 	function getConferenceId() {
 		return $this->getData('conferenceId');
 	}
+	
+	/**
+	 * Get ID of conference (for generic calls in PKP WAL).
+	 * @return int
+	 */
+	function getId() {
+		return $this->getData('conferenceId');
+	}
 
 	/**
 	 * Set ID of conference.

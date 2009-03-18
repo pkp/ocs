@@ -104,7 +104,6 @@ class OCSApplication extends PKPApplication {
 			'EmailTemplateDAO' => 'mail.EmailTemplateDAO',
 			'GroupDAO' => 'group.GroupDAO',
 			'GroupMembershipDAO' => 'group.GroupMembershipDAO',
-			'NotificationStatusDAO' => 'conference.NotificationStatusDAO',
 			'OAIDAO' => 'oai.ocs.OAIDAO',
 			'PaperCommentDAO' => 'paper.PaperCommentDAO',
 			'PaperDAO' => 'paper.PaperDAO',

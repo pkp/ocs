@@ -461,6 +461,57 @@ class Paper extends Submission {
 		);
 		return $commentsStatusOptions;
 	}
+	
+	/**
+	 * Get an array of user IDs associated with this paper
+	 * @param $authors boolean
+	 * @param $reviewers boolean
+	 * @param $trackDirectors boolean
+	 * @param $directors boolean
+	 * @return array User IDs
+	 */
+	function getAssociatedUserIds($authors = true, $reviewers = true, $trackDirectors = true, $directors = true) {
+		$paperId = $this->getPaperId();
+		
+		$userIds = array();
+
+		if($authors) {
+			$authorDao = &DAORegistry::getDAO('AuthorDAO');
+			$authors = $authorDao->getAuthorsByPaper($paperId);
+			foreach ($authors as $author) {
+				$userIds[] = array('id' => $author->getAuthorId(), 'role' => 'author');
+			}
+		}
+			
+		if($reviewers) {
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paperId);
+			foreach ($reviewAssignments as $reviewAssignment) {
+				$userIds[] = array('id' => $reviewAssignment->getReviewerId(), 'role' => 'reviewer');
+				unset($reviewAssignment);
+			}
+		}
+
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+
+		if($trackDirectors) {
+			$editAssignments =& $editAssignmentDao->getTrackDirectorAssignmentsByPaperId($paperId);
+			while ($editAssignment =& $editAssignments->next()) {
+				$userIds[] = array('id' => $editAssignment->getDirectorId(), 'role' => 'trackDirector');
+				unset($editAssignment);
+			}
+		}
+
+		if($directors) {
+			$editAssignments =& $editAssignmentDao->getDirectorAssignmentsByPaperId($paperId);
+			while ($editAssignment =& $editAssignments->next()) {
+				$userIds[] = array('id' =>  $editAssignment->getDirectorId(), 'role' => 'director');
+			}
+		}	
+
+		return $userIds;
+	}
+
 }
 
 ?>
