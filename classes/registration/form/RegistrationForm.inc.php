@@ -62,11 +62,11 @@ class RegistrationForm extends Form {
 		// If provided, IP range has IP address format; IP addresses may contain wildcards
 		$this->addCheck(new FormValidatorRegExp($this, 'ipRange', 'optional', 'manager.registration.form.ipRangeValid','/^' .
 				// IP4 address (with or w/o wildcards) or IP4 address range (with or w/o wildcards) or CIDR IP4 address
-				'((([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}((\s)*[' . REGISTRATION_IP_RANGE_RANGE . '](\s)*([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}){0,1})|(([0-9]{1,3})([.]([0-9]{1,3})){3}([\/](([3][0-2]{0,1})|([1-2]{0,1}[0-9])))))' .
+				'((([0-9]|[1-9][0-9]|[1][0-9]{2}|[2][0-5]{2}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]|[1-9][0-9]|[1][0-9]{2}|[2][0-5]{2}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}((\s)*[' . REGISTRATION_IP_RANGE_RANGE . '](\s)*([0-9]|[1-9][0-9]|[1][0-9]{2}|[2][0-5]{2}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]|[1-9][0-9]|[1][0-9]{2}|[2][0-5]{2}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}){0,1})|(([0-9]|[1-9][0-9]|[1][0-9]{2}|[2][0-5]{2})([.]([0-9]|[1-9][0-9]|[1][0-9]{2}|[2][0-5]{2})){3}([\/](([3][0-2]{0,1})|([1-2]{0,1}[0-9])))))' .
 				// followed by 0 or more delimited IP4 addresses (with or w/o wildcards) or IP4 address ranges
 				// (with or w/o wildcards) or CIDR IP4 addresses
 				'((\s)*' . REGISTRATION_IP_RANGE_SEPERATOR . '(\s)*' .
-				'((([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}((\s)*[' . REGISTRATION_IP_RANGE_RANGE . '](\s)*([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]{1,3}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}){0,1})|(([0-9]{1,3})([.]([0-9]{1,3})){3}([\/](([3][0-2]{0,1})|([1-2]{0,1}[0-9])))))' .
+				'((([0-9]|[1-9][0-9]|[1][0-9]{2}|[2][0-5]{2}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]|[1-9][0-9]|[1][0-9]{2}|[2][0-5]{2}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}((\s)*[' . REGISTRATION_IP_RANGE_RANGE . '](\s)*([0-9]|[1-9][0-9]|[1][0-9]{2}|[2][0-5]{2}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])([.]([0-9]|[1-9][0-9]|[1][0-9]{2}|[2][0-5]{2}|[' . REGISTRATION_IP_RANGE_WILDCARD . '])){3}){0,1})|(([0-9]|[1-9][0-9]|[1][0-9]{2}|[2][0-5]{2})([.]([0-9]|[1-9][0-9]|[1][0-9]{2}|[2][0-5]{2})){3}([\/](([3][0-2]{0,1})|([1-2]{0,1}[0-9])))))' .
 				')*' .
 			'$/i'));
 
