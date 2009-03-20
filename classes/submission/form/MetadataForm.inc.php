@@ -52,9 +52,9 @@ class MetadataForm extends Form {
 		if ($this->canEdit) {
 			parent::Form('submission/metadata/metadataEdit.tpl');
 			$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'presenter.submit.form.titleRequired'));
-			$this->addCheck(new FormValidatorArray($this, 'presenters', 'required', 'presenter.submit.form.presenterRequiredFields', array('firstName')));
-			$this->addCheck(new FormValidatorArray($this, 'presenters', 'required', 'presenter.submit.form.presenterRequiredFields', array('lastName')));
-			$this->addCheck(new FormValidatorArray($this, 'presenters', 'required', 'presenter.submit.form.presenterRequiredFields', array('email')));
+			$this->addCheck(new FormValidatorArray($this, 'presenters', 'required', 'presenter.submit.form.presenterRequiredFields', array('firstName', 'lastName')));
+			$this->addCheck(new FormValidatorArrayCustom($this, 'presenters', 'required', 'presenter.submit.form.presenterRequiredFields', create_function('$email, $regExp', 'return String::regexp_match($regExp, $email);'), array(FormValidatorEmail::getRegexp()), false, array('email')));
+			$this->addCheck(new FormValidatorArrayCustom($this, 'presenters', 'required', 'user.profile.form.urlInvalid', create_function('$url, $regExp', 'return empty($url) ? true : String::regexp_match($regExp, $url);'), array(FormValidatorUrl::getRegexp()), false, array('url')));
 		} else {
 			parent::Form('submission/metadata/metadataView.tpl');
 		}

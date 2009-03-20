@@ -25,7 +25,9 @@ class PresenterSubmitStep2Form extends PresenterSubmitForm {
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorCustom($this, 'presenters', 'required', 'presenter.submit.form.presenterRequired', create_function('$presenters', 'return count($presenters) > 0;')));
-		$this->addCheck(new FormValidatorArray($this, 'presenters', 'required', 'presenter.submit.form.presenterRequiredFields', array('firstName', 'lastName', 'email')));
+		$this->addCheck(new FormValidatorArray($this, 'presenters', 'required', 'presenter.submit.form.presenterRequiredFields', array('firstName', 'lastName')));
+		$this->addCheck(new FormValidatorArrayCustom($this, 'presenters', 'required', 'presenter.submit.form.presenterRequiredFields', create_function('$email, $regExp', 'return String::regexp_match($regExp, $email);'), array(FormValidatorEmail::getRegexp()), false, array('email')));
+		$this->addCheck(new FormValidatorArrayCustom($this, 'presenters', 'required', 'user.profile.form.urlInvalid', create_function('$url, $regExp', 'return empty($url) ? true : String::regexp_match($regExp, $url);'), array(FormValidatorUrl::getRegexp()), false, array('url')));
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'presenter.submit.form.titleRequired'));
 
 		$schedConf =& Request::getSchedConf();
