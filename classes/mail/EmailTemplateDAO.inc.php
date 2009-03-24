@@ -176,7 +176,7 @@ class EmailTemplateDAO extends DAO {
 				COALESCE(e.enabled, 1) AS enabled,
 				d.email_key, d.can_edit, d.can_disable,
 				e.conference_id, e.sched_conf_id, e.email_id,
-				COALESCE(ddl.locale, ddp.locale) AS locale,
+				COALESCE(ddl.locale, ddpl.locale) AS locale,
 				d.from_role_id, d.to_role_id
 			FROM	email_templates_default d
 				LEFT JOIN email_templates_default_data ddpl ON (ddpl.email_key = d.email_key AND ddpl.locale = ?)
