@@ -62,6 +62,12 @@ time_format = "%I:%M %p"
 ; variable.
 disable_path_info = Off
 
+; Use fopen(...) for URL-based reads. Modern versions of dspace
+; will not accept requests using fopen, as it does not provide a
+; User Agent, so this option is disabled by default. If this feature
+; is disabled by PHP's configuration, this setting will be ignored.
+allow_url_fopen = Off
+
 ; Base URL override settings: Entries like the following examples can
 ; be used to override the base URLs used by OCS. If you want to use a
 ; proxy to rewrite URLs to OCS, configure your proxy's URL here.
@@ -327,6 +333,23 @@ captcha_on_comments = on
 
 ; Font location for font to use in Captcha images
 font_location = /usr/share/fonts/truetype/freefont/FreeSerif.ttf
+
+
+;;;;;;;;;;;;;;;;;;
+; Proxy Settings ;
+;;;;;;;;;;;;;;;;;;
+
+[proxy]
+
+; Note that allow_url_fopen must be set to Off before these proxy settings
+; will take effect.
+
+; The HTTP proxy configuration to use
+; http_host = localhost
+; http_port = 80
+; proxy_username = username
+; proxy_password = password
+
 
 ;;;;;;;;;;;;;;;;;;
 ; Debug Settings ;
