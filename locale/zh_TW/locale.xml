@@ -2608,7 +2608,6 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 	<message key="director.allDirectors">所有主題</message>
 	<message key="director.me">我</message>
 	<message key="director.notifyUsers.allReaders">所有讀者 ({$count} users)</message>
-	<message key="director.notifyUsers.allPresenters">所有發表者 ({$count} users)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">所有已付費的註冊者({$count} users)</message>
 	<message key="director.notifyUsers.allRegistrants">所有註冊者 ({$count} users)</message>
 	<message key="director.submissions.assignedTo">分配給</message>

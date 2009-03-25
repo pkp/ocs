@@ -2665,7 +2665,6 @@ Il processo di validazione pu&#x00F2; non funzionare sulle URL di ricerca che ri
 	<message key="log.timeline.postScheduleDateChanged">La data programmata per l'invio è cambiata da {$oldPostScheduleDate} a {$newPostScheduleDate}.</message>
 	<message key="log.timeline.postScheduleChanged">L'impostazione "programma per l'invio" è cambiata da {$oldPostSchedule} a {$newPostSchedule}.</message>
 	<message key="director.notifyUsers.allReaders">Tutti gli utenti ({$count} lettori)</message>
-	<message key="director.notifyUsers.allPresenters">Tutti gli utenti ({$count} relatori)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">Tutti gli utenti ({$count} registrati che hanno pagato)</message>
 	<message key="director.notifyUsers.allRegistrants">Tutti gli utenti ({$count} registrati)</message>
 	<message key="common.captchaField.altText">Immagine di validazione</message>

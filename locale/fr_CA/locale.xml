@@ -2489,7 +2489,6 @@ La validation peut échouer dans le cas d'adresses URL dont les données de form
 	<message key="user.noRoles.register">S'incrire pour assister à la conférence</message>
 	<message key="user.noRoles.registerUnavailable">S'incrire pour assister à la conférence: Les inscriptions ne sont pas acceptées pour le moment.</message>
 	<message key="director.notifyUsers.allReaders">Tous les lecteurs ({$count} utilisateurs)</message>
-	<message key="director.notifyUsers.allPresenters">Tous les présentateurs ({$count} utilisateurs)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">Tous les inscrits qui ont payé ({$count} utilisateurs)</message>
 	<message key="director.notifyUsers.allRegistrants">Tous les incrits ({$count} utilisateurs)</message>
 	<message key="common.captchaField.altText">Image de validation</message>

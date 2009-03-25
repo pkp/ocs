@@ -1808,7 +1808,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="director.notifyUsers.interestedUsers">Users associated with this conference who wish to receive updates ({$count} users)</message>
 	<message key="director.notifyUsers.includeToc">Include the presentations for this conference</message>
 	<message key="director.notifyUsers.allReaders">All readers ({$count} users)</message>
-	<message key="director.notifyUsers.allPresenters">All presenters ({$count} users)</message>
+	<message key="director.notifyUsers.allPresenters">All published presenters ({$count} users)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">All paid registrants ({$count} users)</message>
 	<message key="director.notifyUsers.allRegistrants">All registrants ({$count} users)</message>
 

@@ -2664,7 +2664,6 @@ Aguarde alguns minutos antes de enviar outra mensagem.</message>
 	<message key="rt.findingReferences.googleScholar">Google Acadêmico</message>
 	<message key="rt.findingReferences.windowsLiveAcademic">Windows Live Acadêmico</message>
 	<message key="director.notifyUsers.allReaders">Todos os leitores ({$count} usuários)</message>
-	<message key="director.notifyUsers.allPresenters">Todos os apresentadores ({$count} usuários)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">Todos os inscritos pagantes ({$count} usuários)</message>
 	<message key="director.notifyUsers.allRegistrants">Todos os inscritos ({$count} usuários)</message>
 	<message key="common.captchaField.altText">Imagem de segurança</message>
