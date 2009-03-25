@@ -21,7 +21,6 @@
 			<center>{translate key="submission.peerReview"}</center>
 			<table width="100%">
 				<tr valign="top">
-					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submissions.reviewType"}</td>
 					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submissions.reviewStage"}</td>
 					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submission.ask"}</td>
 					<td width="20%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submission.due"}</td>
