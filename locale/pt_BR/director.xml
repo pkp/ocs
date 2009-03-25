@@ -31,7 +31,6 @@
 	<message key="director.notifyUsers.interestedUsers">Enviar esta mensagem a todos os usuários associados a esta conferência que indicaram desejar receber notificações ({$count} usuários)</message>
 	<message key="director.notifyUsers.includeToc">Incluir as apresentações da conferência:</message>
 	<message key="director.notifyUsers.allReaders">Todos os leitores ({$count} usuários)</message>
-	<message key="director.notifyUsers.allAuthors">Todos os apresentadores ({$count} usuários)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">Todos os inscritos pagantes ({$count} usuários)</message>
 	<message key="director.notifyUsers.allRegistrants">Todos os inscritos ({$count} usuários)</message>
 	<message key="director.navigation.management">Administração do Diretor</message>

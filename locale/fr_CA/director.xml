@@ -31,7 +31,6 @@
 	<message key="director.notifyUsers.interestedUsers">Envoyer ce message à tous les utilisateurs associés à cette conférence qui ont indiqué souhaiter recevoir les mises à jours ({$count} users)</message>
 	<message key="director.notifyUsers.includeToc">Inclure les présentations pour cette conférence:</message>
 	<message key="director.notifyUsers.allReaders">Tous les lecteurs ({$count} utilisateurs)</message>
-	<message key="director.notifyUsers.allAuthors">Tous les présentateurs ({$count} utilisateurs)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">Tous les inscrits qui ont payé ({$count} utilisateurs)</message>
 	<message key="director.notifyUsers.allRegistrants">Tous les incrits ({$count} utilisateurs)</message>
 	<message key="director.navigation.management">Gestion</message>

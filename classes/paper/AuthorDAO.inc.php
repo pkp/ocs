@@ -182,7 +182,11 @@ class AuthorDAO extends DAO {
 			(int) $schedConfId
 		);
 
-		$returner = $result->fields[0];
+		if($result->RecordCount() == 0) {
+			$returner = 0;
+		} else {
+			$returner = $result->fields[0];
+		}
 		$result->Close();
 
 		return $returner;

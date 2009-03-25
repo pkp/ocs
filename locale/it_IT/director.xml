@@ -31,7 +31,6 @@
 	<message key="director.notifyUsers.interestedUsers">Invia questo messaggio agli utenti del convegno che hanno indicato di voler ricevere gli aggiornamenti ({$count} utenti)</message>
 	<message key="director.notifyUsers.includeToc">Inserisci la presentazione per questo convegno:</message>
 	<message key="director.notifyUsers.allReaders">Tutti gli utenti ({$count} lettori)</message>
-	<message key="director.notifyUsers.allAuthors">Tutti gli utenti ({$count} relatori)</message>
 	<message key="director.notifyUsers.allPaidRegistrants">Tutti gli utenti ({$count} registrati che hanno pagato)</message>
 	<message key="director.notifyUsers.allRegistrants">Tutti gli utenti ({$count} registrati)</message>
 	<message key="director.navigation.management">Gestione</message>
