@@ -36,11 +36,10 @@
 		{foreach from=$track.papers item=paper}
 			<table width="100%">
 			<tr valign="top">
-				<td width="75%">{$paper->getPaperTitle()|strip_unsafe_html}</td>
+				<td width="75%">
+				{if !$mayViewPapers || $paper->getPaperAbstract() != ""}<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}"> {$paper->getPaperTitle()|strip_unsafe_html}</a>{else}{$paper->getPaperTitle()|strip_unsafe_html}{/if}
+				</td>
 				<td align="right" width="25%">
-
-					{if !$mayViewPapers || $paper->getPaperAbstract() != ""}<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}" class="file">{if $paper->getPaperAbstract() == ""}{translate key="paper.details"}{else}{translate key="paper.abstract"}{/if}</a>{/if}
-
 					{if $mayViewPapers && $paper->getStatus() == $smarty.const.SUBMISSION_STATUS_PUBLISHED}
 						{foreach from=$paper->getGalleys() item=galley name=galleyList}
 							<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)|to_array:$galley->getGalleyId()}" class="file">{$galley->getGalleyLabel()|escape}</a>
