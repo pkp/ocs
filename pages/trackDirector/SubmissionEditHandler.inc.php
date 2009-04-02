@@ -170,7 +170,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 				}
 			}
 		}
-		
+
 		// get conference published review form titles
 		$reviewFormTitles =& $reviewFormDao->getConferenceReviewFormTitles($conference->getConferenceId(), 1);
 
@@ -188,7 +188,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			unset($reviewForm);
 			$reviewFormResponses[$reviewAssignment->getReviewId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getReviewId());
 		}
-		
+
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -316,10 +316,10 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$stage = $submission->getCurrentStage();
 
 		$decision = Request::getUserVar('decision');
-		
-		// If the director changes the decision from invite to revisions 
+
+		// If the director changes the decision from invite to revisions
 		// required or decline, roll back to abstract review stage
-		if($submission->getCurrentStage() == REVIEW_STAGE_PRESENTATION && 
+		if($submission->getCurrentStage() == REVIEW_STAGE_PRESENTATION &&
 				($decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS || $decision == SUBMISSION_DIRECTOR_DECISION_DECLINE)) {
 			$submission->setCurrentStage(REVIEW_STAGE_ABSTRACT);
 			$submission->setSubmissionProgress(2);
@@ -331,7 +331,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 					TrackDirectorAction::clearReview($submission, $reviewAssignment->getReviewId());
 				}
 			}
-			
+
 			TrackDirectorAction::recordDecision($submission, $decision);
 		} else {
 			switch ($decision) {
@@ -343,7 +343,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 					break;
 			}
 		}
-		
+
 		Request::redirect(null, null, null, 'submissionReview', array($paperId, $stage));
 	}
 
@@ -801,7 +801,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			Request::redirect(null, null, null, 'submission', $paperId);
 		}
 	}
-	
+
 	//
 	// Review Form
 	//
@@ -815,7 +815,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		parent::setupTemplate(true);
 
 		$reviewId = isset($args[0]) ? (int) $args[0] : null;
-		$reviewFormId = isset($args[1]) ? (int)$args[1] : null;			
+		$reviewFormId = isset($args[1]) ? (int)$args[1] : null;
 
 		$conference =& Request::getConference();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
@@ -826,7 +826,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('pageTitle', 'manager.reviewForms.preview');	
+		$templateMgr->assign('pageTitle', 'manager.reviewForms.preview');
 		$templateMgr->assign_by_ref('reviewForm', $reviewForm);
 		$templateMgr->assign('reviewFormElements', $reviewFormElements);
 		$templateMgr->assign('reviewId', $reviewId);
@@ -843,12 +843,12 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		
+
 		TrackDirectorAction::clearReviewForm($submission, $reviewId);
 
 		Request::redirect(null, null, null, 'submissionReview', $paperId);
 	}
-	
+
 	/**
 	 * Select a review form
 	 * @param $args array ($paperId, $reviewId, $reviewFormId)
@@ -856,7 +856,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function selectReviewForm($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-		
+
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
 		$reviewFormId = isset($args[2]) ? (int) $args[2] : null;
 
@@ -873,7 +873,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 			parent::setupTemplate(true, $paperId, 'review');
 			$templateMgr =& TemplateManager::getManager();
-				
+
 			$templateMgr->assign('paperId', $paperId);
 			$templateMgr->assign('reviewId', $reviewId);
 			$templateMgr->assign('assignedReviewFormId', $reviewAssignment->getReviewFormId());
@@ -882,7 +882,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$templateMgr->display('trackDirector/selectReviewForm.tpl');
 		}
 	}
-	
+
 	/**
 	 * View review form response.
 	 * @param $args array ($paperId, $reviewId)
@@ -893,7 +893,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
 
-		TrackDirectorAction::viewReviewFormResponse($submission, $reviewId);	
+		TrackDirectorAction::viewReviewFormResponse($submission, $reviewId);
 	}
 
 	//
@@ -1088,7 +1088,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	 */
 	function updateCommentsStatus($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);		
+		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
 		TrackDirectorAction::updateCommentsStatus($submission, Request::getUserVar('commentsStatus'));
 		Request::redirect(null, null, null, 'submission', $paperId);
 	}
@@ -1693,7 +1693,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 					$wasFound = true;
 				}
 			}
-			if (!$wasFound) $isValid = false;
+			if (!$wasFound && !Validation::isDirector()) $isValid = false;
 		}
 
 		if (!$isValid) {
