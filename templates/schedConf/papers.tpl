@@ -37,7 +37,7 @@
 			<table width="100%">
 			<tr valign="top">
 				<td width="75%">
-				{if !$mayViewPapers || $paper->getPaperAbstract() != ""}<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}"> {$paper->getPaperTitle()|strip_unsafe_html}</a>{else}{$paper->getPaperTitle()|strip_unsafe_html}{/if}
+				{if !$mayViewPapers || $paper->getPaperAbstract() != ""}<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentConference)}">{$paper->getPaperTitle()|strip_unsafe_html}</a>{else}{$paper->getPaperTitle()|strip_unsafe_html}{/if}
 				</td>
 				<td align="right" width="25%">
 					{if $mayViewPapers && $paper->getStatus() == $smarty.const.SUBMISSION_STATUS_PUBLISHED}
