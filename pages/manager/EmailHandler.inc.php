@@ -25,12 +25,11 @@ class EmailHandler extends ManagerHandler {
 
 		$rangeInfo = Handler::getRangeInfo('emails', array());
 
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplatesArray = &$emailTemplateDao->getEmailTemplates(Locale::getLocale(),
-			$conference->getConferenceId(),
-			$schedConf ? $schedConf->getSchedConfId() : 0);
-
-		import('core.ArrayItemIterator');
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplatesArray =& $emailTemplateDao->getEmailTemplates(
+			Locale::getLocale(),
+			$conference->getConferenceId()
+		);
 		if ($rangeInfo && $rangeInfo->isValid()) {
 			while (true) {
 				$emailTemplates =& new ArrayItemIterator($emailTemplatesArray, $rangeInfo->getPage(), $rangeInfo->getCount());
