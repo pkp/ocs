@@ -397,7 +397,7 @@ Please confirm your ability to complete this vital contribution to the work of t
 		  -->
 		<row>
 			<field name="email_key">SUBMISSION_ABSTRACT_ACCEPT</field>
-			<field name="subject">Editorial Decision on Paper</field>
+			<field name="subject">Editorial Decision on Abstract</field>
 			<field name="body">{$authorName}:
 
 Congratulations, your submission {$paperTitle} has been accepted for presentation at {$conferenceTitle} which is being held {$conferenceDate} at {$locationCity}. 
