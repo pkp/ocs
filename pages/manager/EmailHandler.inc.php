@@ -25,10 +25,11 @@ class EmailHandler extends ManagerHandler {
 
 		$rangeInfo = PKPHandler::getRangeInfo('emails', array());
 
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplatesArray = &$emailTemplateDao->getEmailTemplates(Locale::getLocale(),
-			$conference->getConferenceId(),
-			$schedConf ? $schedConf->getSchedConfId() : 0);
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplatesArray =& $emailTemplateDao->getEmailTemplates(
+			Locale::getLocale(),
+			$conference->getConferenceId()
+		);
 
 		import('core.ArrayItemIterator');
 		if ($rangeInfo && $rangeInfo->isValid()) {

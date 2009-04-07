@@ -26,7 +26,7 @@
 	<tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
 {iterate from=emailTemplates item=emailTemplate}
 	<tr valign="top">
-		<td>{$emailTemplate->getEmailKey()|escape|truncate:20:"..."}</td>
+		<td>{$emailTemplate->getEmailKey()|escape|replace:"_":" "}</td>
 		<td>{translate key=$emailTemplate->getFromRoleName()}</td>
 		<td>{translate key=$emailTemplate->getToRoleName()}</td>
 		<td>{$emailTemplate->getSubject()|escape|truncate:50:"..."}</td>
