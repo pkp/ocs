@@ -3,7 +3,7 @@
 /**
  * @file InstallHandler.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class InstallHandler
@@ -14,13 +14,11 @@
 
 //$Id$
 
-
 /* FIXME Prevent classes from trying to initialize the session manager (and thus the database connection) */
 define('SESSION_DISABLE_INIT', 1);
 
 import('install.form.InstallForm');
 import('install.form.UpgradeForm');
-import('core.Handler');
 
 class InstallHandler extends Handler {
 

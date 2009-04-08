@@ -3,7 +3,7 @@
 /**
  * @file ProfileForm.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ProfileForm
@@ -87,7 +87,6 @@ class ProfileForm extends Form {
 			$templateMgr->assign('roles', $roleNames);
 		}
 
-		import('i18n.TimeZone');
 		$timeZones = TimeZone::getTimeZones();
 		$templateMgr->assign_by_ref('timeZones', $timeZones);
 

@@ -3,7 +3,7 @@
 /**
  * @file RTContextHandler.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class RTContextHandler
@@ -57,7 +57,6 @@ class RTContextHandler extends RTAdminHandler {
 
 			$templateMgr->assign_by_ref('version', $version);
 
-			import('core.ArrayItemIterator');
 			$templateMgr->assign_by_ref('contexts', new ArrayItemIterator($version->getContexts(), $rangeInfo->getPage(), $rangeInfo->getCount()));
 
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools.contexts');

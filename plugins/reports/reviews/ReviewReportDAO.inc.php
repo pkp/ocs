@@ -3,7 +3,7 @@
 /**
  * @file ReviewReportDAO.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  * 
  * @class ReviewReportDAO
@@ -15,9 +15,9 @@
 
 //$Id$
 
+define('DB_ONE', 1);
 
 import('classes.paper.PaperComment');
-import('db.DBRowIterator');
 
 class ReviewReportDAO extends DAO {
 	/**
@@ -43,7 +43,6 @@ class ReviewReportDAO extends DAO {
 				COMMENT_TYPE_PEER_REVIEW
 			)
 		);
-		import('db.DBRowIterator');
 		$commentsReturner =& new DBRowIterator($result);
 
 		$result =& $this->retrieve(
@@ -61,8 +60,8 @@ class ReviewReportDAO extends DAO {
 				r.date_confirmed AS dateConfirmed,
 				r.date_completed AS dateCompleted,
 				r.date_reminded AS dateReminded,
-				(r.declined=1) AS declined,
-				(r.cancelled=1) AS cancelled,
+				(r.declined=?) AS declined,
+				(r.cancelled=?) AS cancelled,
 				r.recommendation AS recommendation
 			FROM
 				review_assignments r
@@ -75,6 +74,8 @@ class ReviewReportDAO extends DAO {
 			ORDER BY
 				paper',
 			array(
+				DB_ONE,
+				DB_ONE,
 				$locale,
 				'title',
 				$primaryLocale,

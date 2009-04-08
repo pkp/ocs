@@ -3,7 +3,7 @@
 /**
  * @file RTSearchHandler.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class RTSearchHandler
@@ -63,7 +63,6 @@ class RTSearchHandler extends RTAdminHandler {
 
 			$templateMgr->assign_by_ref('version', $version);
 			$templateMgr->assign_by_ref('context', $context);
-			import('core.ArrayItemIterator');
 			$templateMgr->assign_by_ref('searches', new ArrayItemIterator($context->getSearches(), $rangeInfo->getPage(), $rangeInfo->getCount()));
 
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools.contexts');

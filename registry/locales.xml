@@ -3,7 +3,7 @@
 <!--
   * locales.xml
   *
-  * Copyright (c) 2000-2008 John Willinsky
+  * Copyright (c) 2000-2009 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Locales registry file.
@@ -14,7 +14,14 @@
   * $Id$
   -->
 
-<!DOCTYPE locales SYSTEM "../lib/pkp/dtd/locales.dtd">
+<!DOCTYPE locales [
+	<!ELEMENT locales (locale+)>
+	<!ELEMENT locale EMPTY>
+		<!ATTLIST locale
+			key CDATA #REQUIRED
+			name CDATA #REQUIRED
+			stylesheet CDATA #IMPLIED>
+]>
 
 <locales>
 	<locale key="ca_ES" name="Català (Espanya)"/>
@@ -22,6 +29,7 @@
 	<locale key="es_ES" name="España Castellano"/>
 	<locale key="en_US" name="English"/>
 	<locale key="fr_CA" name="Français (Canada)"/>
+	<locale key="fr_FR" name="Français (France)"/>
 	<locale key="it_IT" name="Italiano"/>
 	<locale key="pt_BR" name="Português (Brasil)"/>
 	<locale key="zh_TW" name="正體中文"/>

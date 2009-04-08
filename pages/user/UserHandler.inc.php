@@ -3,20 +3,16 @@
 /**
  * @file UserHandler.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserHandler
  * @ingroup pages_user
  *
  * @brief Handle requests for user functions.
- *
  */
 
-// $Id$
-
-
-import('core.Handler');
+//$Id$
 
 class UserHandler extends Handler {
 

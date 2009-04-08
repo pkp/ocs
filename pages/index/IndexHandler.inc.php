@@ -3,7 +3,7 @@
 /**
  * @file IndexHandler.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IndexHandler
@@ -13,9 +13,6 @@
  */
 
 //$Id$
-
-
-import('core.Handler');
 
 class IndexHandler extends Handler {
 
@@ -58,9 +55,9 @@ class IndexHandler extends Handler {
 
 			$siteDao = &DAORegistry::getDAO('SiteDAO');
 			$site = &$siteDao->getSite();
-			$conference = $conferenceDao->getConference($site->getRedirect());
+			$conference = $conferenceDao->getConference($site->getConferenceRedirect());
 
-			if ($site->getRedirect() && $conference) {
+			if ($site->getConferenceRedirect() && $conference) {
 				Request::redirect($conference->getPath());
 			}
 

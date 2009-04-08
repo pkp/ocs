@@ -41,7 +41,7 @@
  *
  * @file index.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Front controller for OCS site. Loads required files and dispatches requests to the appropriate handler. 
@@ -51,8 +51,6 @@
  
 // $Id$
 
-
-define('INDEX_FILE_LOCATION', __FILE__);
 
 /**
  * Handle a new request.

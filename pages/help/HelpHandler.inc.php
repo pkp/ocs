@@ -3,7 +3,7 @@
 /**
  * @file HelpHandler.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class HelpHandler
@@ -14,17 +14,14 @@
 
 //$Id$
 
-
 define('HELP_DEFAULT_TOPIC', 'index/topic/000000');
 define('HELP_DEFAULT_TOC', 'index/toc/000000');
 
-import('help.Help');
 import('help.HelpToc');
 import('help.HelpTocDAO');
 import('help.HelpTopic');
 import('help.HelpTopicDAO');
 import('help.HelpTopicSection');
-import('core.Handler');
 
 class HelpHandler extends Handler {
 

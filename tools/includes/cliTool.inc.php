@@ -1,21 +1,17 @@
 <?php
 
 /**
- * @file tools/includes/cliTool.inc.php
+ * cli.inc.php
  *
- * Copyright (c) 2000-2008 John Willinsky
+ * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CommandLineTool
  * @ingroup tools
  *
  * @brief Initialization code for command-line scripts.
  */
 
-// $Id$
-
-
-define('INDEX_FILE_LOCATION', dirname(dirname(dirname(__FILE__))) . '/index.php');
+//$Id$
 
 /** Initialization code */
 define('PWD', getcwd());

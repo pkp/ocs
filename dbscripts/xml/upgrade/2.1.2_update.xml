@@ -2,12 +2,12 @@
 <!DOCTYPE data SYSTEM "../dtd/xmldata.dtd">
 
 <!--
-  * 2.2.3_update.xml
+  * 2.1.2_update.xml
   *
-  * Copyright (c) 2003-2008 John Willinsky
+  * Copyright (c) 2000-2009 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * 2.2.3 database updates XML file.
+  * 2.1.2 database updates XML file.
   *
   * $Id$
   -->
