@@ -22,7 +22,7 @@
 	<message key="plugins.importexport.METSExport.export.error.SchedConfNotFound">Nessuna conferenza in programma combacia con l’ID "{$SchedConfId}" del paper specificato.</message>
 	<message key="plugins.importexport.METSExport.export.error.unknownConference">Path {$conferencePath} della conferenza sconosciuto</message>
 	<message key="plugins.importexport.METSExport.settings.FContent">Utilizza un codice base 64 per il contenitore</message>
-	<message key="plugins.importexport.METSExport.settings.FLocat">Usa l’URL del bitsream per il contenitore</message>
+	<message key="plugins.importexport.METSExport.settings.FLocat">Usa l’URL del bitstream per il contenitore</message>
 	<message key="plugins.importexport.METSExport.settings.organization">METS:agent element organization attribute</message>
 	<message key="plugins.importexport.METSExport.settings.preservationLevel">Livello di preservazione PREMIS</message>
 	<message key="plugins.importexport.METSExport.settings.exportSuppFiles">Export dei file supplementari</message>
