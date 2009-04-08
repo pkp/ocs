@@ -233,9 +233,9 @@ class Upgrade extends Installer {
 			'searchKeywords' => 'searchKeywords',
 			'customHeaders' => 'customHeaders',
 			// Registration policies
-			'registrationAdditionalInformation',
-			'delayedOpenAccessPolicy',
-			'presenterSelfArchivePolicy'
+			'registrationAdditionalInformation' => 'registrationAdditionalInformation',
+			'delayedOpenAccessPolicy' => 'delayedOpenAccessPolicy',
+			'presenterSelfArchivePolicy' => 'presenterSelfArchivePolicy'
 		);
 
 		foreach ($settingNames as $oldName => $newName) {
