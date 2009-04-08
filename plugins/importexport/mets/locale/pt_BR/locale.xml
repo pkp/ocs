@@ -22,7 +22,7 @@
 	<message key="plugins.importexport.METSExport.export.error.SchedConfNotFound">Nenhuma Conferência Agendada encontrada com o ID de submissão "{$SchedConfId}".</message>
 	<message key="plugins.importexport.METSExport.export.error.unknownConference">Caminho de conferência desconhecido {$conferencePath}</message>
 	<message key="plugins.importexport.METSExport.settings.FContent">Utilizar codificação base64 para wrapper de conteúdo</message>
-	<message key="plugins.importexport.METSExport.settings.FLocat">Utilizar URL do bitsream para o wrapper de conteúdo</message>
+	<message key="plugins.importexport.METSExport.settings.FLocat">Utilizar URL do bitstream para o wrapper de conteúdo</message>
 	<message key="plugins.importexport.METSExport.settings.organization">METS:agente elemento organização atributo</message>
 	<message key="plugins.importexport.METSExport.settings.preservationLevel">Nível de preservação PREMIS</message>
 	<message key="plugins.importexport.METSExport.settings.exportSuppFiles">Exportar documentos suplementares</message>

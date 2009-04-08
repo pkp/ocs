@@ -22,7 +22,7 @@
 	<message key="plugins.importexport.METSExport.export.error.SchedConfNotFound">No Scheduled Conference matched the specified paper ID "{$SchedConfId}".</message>
 	<message key="plugins.importexport.METSExport.export.error.unknownConference">Unknown conference path {$conferencePath}</message>
 	<message key="plugins.importexport.METSExport.settings.FContent">Use base64 encoding for content wrapper</message>
-	<message key="plugins.importexport.METSExport.settings.FLocat">Use URL of the bitsream for content wrapper</message>
+	<message key="plugins.importexport.METSExport.settings.FLocat">Use URL of the bitstream for content wrapper</message>
 	<message key="plugins.importexport.METSExport.settings.organization">METS:agent element organization attribute</message>
 	<message key="plugins.importexport.METSExport.settings.preservationLevel">PREMIS preservation Level</message>
 	<message key="plugins.importexport.METSExport.settings.exportSuppFiles">Export supplementary files</message>
