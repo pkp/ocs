@@ -26,5 +26,17 @@ If you have any questions, please feel free to contact me.
 
 {$registrationContactSignature}', 'This email is sent to a user after their payment has been registered in the system.')</query>
 	</sql>
+	<!-- Bug #3833:  Add new Conf. information listing settings to DB and set to 'On' -->
+	<sql>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, setting_name, setting_value, setting_type) SELECT sc.sched_conf_id, 'postOverview', 1, 'bool' FROM sched_confs sc</query>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, setting_name, setting_value, setting_type) SELECT sc.sched_conf_id, 'postCFP', 1, 'bool' FROM sched_confs sc</query>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, setting_name, setting_value, setting_type) SELECT sc.sched_conf_id, 'postProposalSubmission', 1, 'bool' FROM sched_confs sc</query>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, setting_name, setting_value, setting_type) SELECT sc.sched_conf_id, 'postTrackPolicies', 1, 'bool' FROM sched_confs sc</query>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, setting_name, setting_value, setting_type) SELECT sc.sched_conf_id, 'postProgram', 1, 'bool' FROM sched_confs sc</query>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, setting_name, setting_value, setting_type) SELECT sc.sched_conf_id, 'postPresentations', 1, 'bool' FROM sched_confs sc</query>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, setting_name, setting_value, setting_type) SELECT sc.sched_conf_id, 'postAccommodation', 1, 'bool' FROM sched_confs sc</query>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, setting_name, setting_value, setting_type) SELECT sc.sched_conf_id, 'postSupporters', 1, 'bool' FROM sched_confs sc</query>
+		<query>INSERT INTO sched_conf_settings (sched_conf_id, setting_name, setting_value, setting_type) SELECT sc.sched_conf_id, 'postPayment', 1, 'bool' FROM sched_confs sc</query>
+	</sql>
 
 </data>

@@ -157,10 +157,17 @@ class TemplateManager extends Smarty {
 					$submissionsCloseDate = $schedConf->getSetting('submissionsCloseDate');
 					$this->assign('submissionsCloseDate', $submissionsCloseDate);
 					$this->assign('schedConfPostTimeline', $schedConf->getSetting('postTimeline'));
-
+					$this->assign('schedConfPostOverview', $schedConf->getSetting('postOverview'));
+					$this->assign('schedConfPostTrackPolicies', $schedConf->getSetting('postTrackPolicies'));
+					$this->assign('schedConfPostPresentations', $schedConf->getSetting('postPresentations'));
+					$this->assign('schedConfPostAccommodation', $schedConf->getSetting('postAccommodation'));
+					$this->assign('schedConfPostSupporters', $schedConf->getSetting('postSupporters'));
+					$this->assign('schedConfPostPayment', $schedConf->getSetting('postPayment'));
+					
 					// CFP displayed
 					$showCFPDate = $schedConf->getSetting('showCFPDate');
-					if ($showCFPDate && $submissionsCloseDate && $currentTime > $showCFPDate && $currentTime < $submissionsCloseDate) {
+					$postCFP = $schedConf->getSetting('postCFP');
+					if ($postCFP && $showCFPDate && $submissionsCloseDate && $currentTime > $showCFPDate && $currentTime < $submissionsCloseDate) {
 						$this->assign('schedConfShowCFP', true);
 					}
 
@@ -171,21 +178,22 @@ class TemplateManager extends Smarty {
 					}
 
 					// Program
-					if ($schedConf->getSetting('program') || $schedConf->getSetting('programFile')) {
+					if ($schedConf->getSetting('postProgram') && ($schedConf->getSetting('program') || $schedConf->getSetting('programFile'))) {
 						$this->assign('schedConfShowProgram', true);
 					}
 
 					// Submissions open
 					$submissionsOpenDate = $schedConf->getSetting('submissionsOpenDate');
+					$postSubmission = $schedConf->getSetting('postProposalSubmission');
 					$this->assign('submissionsOpenDate', $submissionsOpenDate);
-					if ($currentTime > $submissionsOpenDate && $currentTime < $submissionsCloseDate) {
+					if ($postSubmission && $currentTime > $submissionsOpenDate && $currentTime < $submissionsCloseDate) {
 						$this->assign('schedConfShowSubmissionLink', true);
 					}
-
+	
 					import('payment.ocs.OCSPaymentManager');
 					$paymentManager =& OCSPaymentManager::getManager();
 					$this->assign('schedConfPaymentsEnabled', $paymentManager->isConfigured());
-
+					
 				} else {
 
 					$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
