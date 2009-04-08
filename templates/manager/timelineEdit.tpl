@@ -25,9 +25,13 @@
 
 {include file="common/formErrors.tpl"}
 
-<h3>{translate key="manager.timeline.conference"}</h3>
+<h3>{translate key="manager.timeline.scheduleEvents"}</h3>
 
 <table width="100%" class="data">
+	<tr valign="top">
+		<td width="50%" class="heading"><h4>{translate key="manager.timeline.conference"}</h4></td>
+		<td width="50%" class="heading"><h4>{translate key="manager.timeline.postDate"}</h4></td>
+	</tr>
 	<tr valign="top">
 		<td width="50%" class="label">{translate key="manager.timeline.schedConfStartsOn"}</td>
 		<td width="50%" class="value">
@@ -44,9 +48,11 @@
 
 <br/>
 
-<h3>{translate key="manager.timeline.website"}</h3>
-
 <table width="100%" class="data">
+	<tr valign="top">
+		<td width="50%" class="heading"><h4>{translate key="manager.timeline.website"}</h4></td>
+		<td width="50%" class="heading"><h4>{translate key="manager.timeline.postDate"}</h4></td>
+	</tr>
 	<tr valign="top">
 		<td width="50%" class="label">{translate key="manager.timeline.schedConfAppearsOn"}</td>
 		<td width="50%" class="value">
@@ -63,9 +69,11 @@
 
 <br/>
 
-<h3>{translate key="manager.timeline.submissions"}</h3>
-
 <table width="100%" class="data">
+<tr valign="top">
+		<td width="50%" class="heading"><h4>{translate key="manager.timeline.submissions"}</h4></td>
+		<td width="50%" class="heading"><h4>{translate key="manager.timeline.postDate"}</h4></td>
+	</tr>
 	<tr valign="top">
 		<td width="50%" class="label">{translate key="manager.timeline.openRegAuthor"}</td>
 		<td width="50%" class="value">
@@ -106,9 +114,11 @@
 
 <br/>
 
-<h3>{translate key="manager.timeline.reviews"}</h3>
-
 <table width="100%" class="data">
+	<tr valign="top">
+		<td width="50%" class="heading"><h4>{translate key="manager.timeline.reviews"}</h4></td>
+		<td width="50%" class="heading"><h4>{translate key="manager.timeline.postDate"}</h4></td>
+	</tr>
 	<tr valign="top">
 		<td width="50%" class="label">{translate key="manager.timeline.openRegReviewer"}</td>
 		<td width="50%" class="value">
@@ -142,14 +152,73 @@
 		</td>
 	</tr>
 	*}
+	
+	
 	<tr valign="top">
-		<td width="50%" class="label">
-			<input type="checkbox" name="postAbstracts" id="postAbstracts" value="1" {if $postAbstracts}checked="checked"{/if} />
-			{fieldLabel name="postAbstracts" key="manager.timeline.postAbstracts"}
+		<td class="label" colspan="2">
+			<input type="checkbox" name="postTimeline" id="postTimeline" value="1" {if $postTimeline}checked="checked"{/if} />
+			{fieldLabel name="postTimeline" key="manager.timeline.postTimeline"}
 		</td>
-		<td width="50%" class="value">
-				{html_select_date prefix="postAbstractsDate" time=$postAbstractsDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
+	</tr>
+	
+	<tr valign="top">
+		<td class="label" colspan="2">
+			<input type="checkbox" name="postOverview" id="postOverview" value="1" {if $postOverview}checked="checked"{/if} />
+			{fieldLabel name="postOverview" key="manager.timeline.postOverview"}
 		</td>
+	</tr>
+	<tr valign="top">
+		<td class="label" colspan="2">
+			<input type="checkbox" name="postCFP" id="postCFP" value="1" {if $postCFP}checked="checked"{/if} />
+			{fieldLabel name="postCFP" key="manager.timeline.postCFP"}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="label" colspan="2">
+			<input type="checkbox" name="postProposalSubmission" id="postProposalSubmission" value="1" {if $postProposalSubmission}checked="checked"{/if} />
+			{fieldLabel name="postProposalSubmission" key="manager.timeline.postProposalSubmission"}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="label" colspan="2">
+			<input type="checkbox" name="postTrackPolicies" id="postTrackPolicies" value="1" {if $postTrackPolicies}checked="checked"{/if} />
+			{fieldLabel name="postTrackPolicies" key="manager.timeline.postTrackPolicies"}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="label" colspan="2">
+			<input type="checkbox" name="postProgram" id="postProgram" value="1" {if $postProgram}checked="checked"{/if} /> 
+			{fieldLabel name="postProgram" key="manager.timeline.postProgram"}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="label" colspan="2">
+			<input type="checkbox" name="postPresentations" id="postPresentations" value="1" {if $postPresentations}checked="checked"{/if} />
+			{fieldLabel name="postPresentations" key="manager.timeline.postPresentations"}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="label" colspan="2">
+			<input type="checkbox" name="postAccommodation" id="postAccommodation" value="1" {if $postAccommodation}checked="checked"{/if} />
+			{fieldLabel name="postAccommodation" key="manager.timeline.postAccommodation"}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="label" colspan="2">
+			<input type="checkbox" name="postSupporters" id="postSupporters" value="1" {if $postSupporters}checked="checked"{/if} />
+			{fieldLabel name="postSupporters" key="manager.timeline.postSupporters"}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="label" colspan="2">
+			<input type="checkbox" name="postPayment" id="postPayment" value="1" {if $postPayment}checked="checked"{/if} />
+			{fieldLabel name="postPayment" key="manager.timeline.postRegistration"}
+		</td>
+	</tr>
+	
+	<tr valign="top">
+		<td width="50%"><h4>{translate key="manager.timeline.include"}</h4></td>
+		<td width="50%" class="heading"><h4>{translate key="manager.timeline.postDate"}</h4></td>
 	</tr>
 	<tr valign="top">
 		<td width="50%" class="label">
@@ -157,7 +226,16 @@
 			{fieldLabel name="postSchedule" key="manager.timeline.postSchedule"}
 		</td>
 		<td width="50%" class="value">
-				{html_select_date prefix="postScheduleDate" time=$postScheduleDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
+			{html_select_date prefix="postScheduleDate" time=$postScheduleDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" class="label">
+			<input type="checkbox" name="postAbstracts" id="postAbstracts" value="1" {if $postAbstracts}checked="checked"{/if} />
+			{fieldLabel name="postAbstracts" key="manager.timeline.postAbstracts"}
+		</td>
+		<td width="50%" class="value">
+				{html_select_date prefix="postAbstractsDate" time=$postAbstractsDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 		</td>
 	</tr>
 	<tr valign="top">
@@ -190,12 +268,7 @@
 			<input type="hidden" name="closeCommentsDateSecond" value="59" />
 		</td>
 	</tr>
-	<tr valign="top">
-		<td class="label" colspan="2">
-			<input type="checkbox" name="postTimeline" id="postTimeline" value="1" {if $postTimeline}checked="checked"{/if} />
-			{fieldLabel name="postTimeline" key="manager.timeline.postTimeline"}
-		</td>
-	</tr>
+	
 </table>
 
 <br/>

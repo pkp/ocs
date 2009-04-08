@@ -173,6 +173,15 @@ class TimelineForm extends Form {
 			'postPapers' => $schedConf->getSetting('postPapers'),
 			'postPapersDate' => $schedConf->getSetting('postPapersDate'),
 			'postTimeline' => $schedConf->getSetting('postTimeline'),
+			'postOverview' => $schedConf->getSetting('postOverview'),
+			'postCFP' => $schedConf->getSetting('postCFP'),
+			'postProposalSubmission' => $schedConf->getSetting('postProposalSubmission'),
+			'postTrackPolicies' => $schedConf->getSetting('postTrackPolicies'),
+			'postProgram' => $schedConf->getSetting('postProgram'),
+			'postPresentations' => $schedConf->getSetting('postPresentations'),
+			'postAccommodation' => $schedConf->getSetting('postAccommodation'),
+			'postSupporters' => $schedConf->getSetting('postSupporters'),
+			'postPayment' => $schedConf->getSetting('postPayment'),
 			'delayOpenAccess' => $schedConf->getSetting('delayOpenAccess'),
 			'delayOpenAccessDate' => $schedConf->getSetting('delayOpenAccessDate'),
 			'closeComments' => $schedConf->getSetting('closeComments'),
@@ -202,7 +211,16 @@ class TimelineForm extends Form {
 			'postSchedule',
 			'delayOpenAccess',
 			'closeComments',
-			'postTimeline'
+			'postTimeline',
+			'postOverview',
+			'postCFP',
+			'postProposalSubmission',
+			'postTrackPolicies',
+			'postProgram',
+			'postPresentations',
+			'postAccommodation',
+			'postSupporters',
+			'postPayment'
 		));
 	}
 
@@ -232,8 +250,18 @@ class TimelineForm extends Form {
 			$schedConfDao->updateSchedConf($schedConf);
 		}
 
-		// Post timeline flag
+		// Conference Information display flags
 		$schedConf->updateSetting('postTimeline', $this->getData('postTimeline'), 'bool');
+		$schedConf->updateSetting('postOverview', $this->getData('postOverview'), 'bool');
+		$schedConf->updateSetting('postCFP', $this->getData('postCFP'), 'bool');
+		$schedConf->updateSetting('postProposalSubmission', $this->getData('postProposalSubmission'), 'bool');
+		$schedConf->updateSetting('postTrackPolicies', $this->getData('postTrackPolicies'), 'bool');
+		$schedConf->updateSetting('postProgram', $this->getData('postProgram'), 'bool');
+		$schedConf->updateSetting('postPresentations', $this->getData('postPresentations'), 'bool');
+		$schedConf->updateSetting('postAccommodation', $this->getData('postAccommodation'), 'bool');
+		$schedConf->updateSetting('postSupporters', $this->getData('postSupporters'), 'bool');
+		$schedConf->updateSetting('postPayment', $this->getData('postPayment'), 'bool');
+		
 
 		//
 		// Log the rest.
