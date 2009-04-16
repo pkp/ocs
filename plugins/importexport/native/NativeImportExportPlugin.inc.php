@@ -18,7 +18,7 @@ import('classes.plugins.ImportExportPlugin');
 
 import('xml.XMLCustomWriter');
 
-define('NATIVE_DTD_URL', 'http://pkp.sfu.ca/ocs/dtds/native.dtd');
+define('NATIVE_DTD_URL', 'http://pkp.sfu.ca/ocs/dtds/2.1.2/native.dtd');
 define('NATIVE_DTD_ID', '-//PKP//OCS Papers XML//EN');
 
 class NativeImportExportPlugin extends ImportExportPlugin {
