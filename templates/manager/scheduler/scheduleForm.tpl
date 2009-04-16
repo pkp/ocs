@@ -147,7 +147,7 @@ function sortBy(sortName) {
 		<td>&nbsp;</td>
 		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`EndTime" key="manager.scheduler.endTime"}</td>
 		<td id="{"paper`$publishedPaper->getPaperId()`EndTime"}">
-			{html_select_time prefix="paper`$publishedPaper->getPaperId()`EndTime" all_extra="class=\"selectMenu\" onchange=\"changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getEndTime()|default:$defaultStartTime}
+			{html_select_time prefix="paper`$publishedPaper->getPaperId()`EndTime" all_extra="class=\"selectMenu\" onchange=\"document.schedule.paper`$publishedPaper->getPaperId()`DateExists.checked = true; changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getEndTime()|default:$defaultStartTime}
 		</td>
 	</tr>
 	<tr>
