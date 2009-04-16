@@ -8,6 +8,7 @@
  *
  * $Id$
  *}
+{assign var="helpTopicId" value="user.conferenceInformation"}
 {translate|assign:"pageTitleTranslated" key="schedConf.schedule.title"}{include file="common/header.tpl"}
 
 {if !empty($buildingsAndRooms)}

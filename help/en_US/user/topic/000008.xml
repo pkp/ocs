@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000008.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * User Interface - Conference Information
+  *
+  * $Id$
+  -->
+
+<topic id="user/topic/000008" locale="en_US" title="Conference Information" toc="user/toc/000000" key="user.conferenceInformation">
+	<section>
+		<![CDATA[<p>Every scheduled conference organizes and collects pertinent information into a "Conference Information" listing, available from the live scheduled conference home page and from the scheduled conference's sidebar.  Each link goes to a unique page. Please note that not all links may be visible and active at all times, as certain parts of the conference timeline may not yet be active.</p>
+		
+		<p>The possible links are as follows:</p>]]>
+	</section>
+	<section title="Overview">
+		<![CDATA[<p>The Overview page lists a general overview of the scheduled conference's theme and focus. This page  provides information on what kind of submissions are appropriate for the conference, and what kind of general topics are to be covered. </p>]]>
+      </section>
+<section title="Call for Papers">
+	<![CDATA[<p>The Call for Papers page presents a general call for papers blurb explaining exactly what kind of submission the conference is looking for; Author Guidelines, to be carefully followed by the submitting author; and a link to submit an article (please note that you must register with this system in order to be able to submit an article).</p>
+
+	<p>The Call for Papers page is only available while the conference is accepting submissions, and disappears when the "submissions accepted" date ends.</p>]]>
+</section>
+<section title="Proposal Submission">
+	<![CDATA[<p>the Proposal Submission link leads directly to the first step of the submission process. It only appears when submissions are open.</p>]]>
+</section>
+<section title="Track Policies">
+	<![CDATA[<p>The Track Policies page lists all conference tracks available for submission, and their properties. Specifically, it lists whether any given track is open for submissions from the general public, and whether submissions will be vetted through a peer review process.</p>]]>
+</section>
+<section title="Presentations and Authors">
+	<![CDATA[<p>The Presentations and Authors page lists all accepted presentations by track. Abstracts only may be shown; if full presentations have also been uploaded to the site, these may also be available.</p>]]>
+</section>
+<section title="Conference Schedule">
+	<![CDATA[<p>The Conference Schedule page displays the location and time of all scheduled events, from conference workshops and presentations to special events such as dinners.</p>]]>
+</section>
+<section title="Registration">
+	<![CDATA[<p>Users can register to attend the conference from the Registration page. The conference may offer different levels of registration fees, early registrations, and even special registration items such as conference dinners.</p>]]>
+</section>
+<section title="Accommodation">
+	<![CDATA[<p>The Accommodation page lists any special accommodation information that the conference organizers may want to make available, including special rates, locations, and directions.</p>]]>
+</section>
+<section title="Organizers and Partners">
+	<![CDATA[<p>The Organizers and Partners page lists any members of the organizing team, and other people who are involved in the conference. Clicking on a person's name will display a brief biography (if available), and an option to email that person.</p>]]>
+</section>
+<section title="Timeline">
+	<![CDATA[<p>The Conference Timeline page displays the overall dates for the entire conference: the first and last day of the conference; when the website will go live; when the site will no longer be current; when submissions and registrations are open and closed; and so on. The timeline also displays when parts of the conference, such as abstracts, the schedule, accepted papers, and so on will be available online.</p>]]>
+</section>
+</topic>

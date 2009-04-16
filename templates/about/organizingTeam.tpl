@@ -8,6 +8,7 @@
  *
  * $Id$
  *}
+{assign var="helpTopicId" value="user.conferenceInformation"}
 {assign var="pageTitle" value="about.organizingTeam"}
 {include file="common/header.tpl"}
 

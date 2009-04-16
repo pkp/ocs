@@ -9,6 +9,7 @@
  * $Id$
  *}
 {translate|assign:"pageTitleTranslated" key="schedConf.accommodation.title"}{include file="common/header.tpl"}
+{assign var="helpTopicId" value="user.conferenceInformation"}
 
 <div>{$accommodationDescription|nl2br}</div>
 

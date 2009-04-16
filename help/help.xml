@@ -135,5 +135,5 @@
 	<topic key="user.currentArchives" id="user/topic/000005"></topic>
 	<topic key="user.searchBrowse" id="user/topic/000006"></topic>
 	<topic key="user.readingTools" id="user/topic/000007"></topic>
-
+	<topic key="user.conferenceInformation" id="user/topic/000008"></topic>
 </help>
