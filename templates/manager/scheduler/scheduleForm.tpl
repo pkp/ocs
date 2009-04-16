@@ -33,6 +33,14 @@ function changeLocation(paperId) {
 	document.schedule.changes.value += "\n" + paperId + " location " + roomId;
 }
 
+function checkScheduled(paperId) {
+	var isChecked = eval("document.schedule.paper" + paperId + "DateExists.checked");
+	if (!isChecked) {
+		eval("document.schedule.paper" + paperId + "DateExists.checked = true;");
+		changeDate(paperId);
+	}
+}
+
 // Used to update the actions list when the date of a paper is changed
 // or the corresponding checkbox is toggled. A date of 0 indicates that a
 // date has not been chosen for the presentation.
@@ -65,7 +73,6 @@ function changeTime(paperId) {
 	var paperMeridian = eval(timePrefixName + "Meridian.value");
 
 	var paperTime = paperHour + ":" + paperMinute + ' ' + paperMeridian;
-
 	document.schedule.changes.value += "\n" + paperId + " startTime" + " " + paperTime;
 
 	var timePrefixName = "document.schedule.paper" + paperId + "EndTime";
@@ -134,18 +141,18 @@ function sortBy(sortName) {
 	<tr>
 		<td><input type="checkbox" {if $publishedPaper->getStartTime()}checked="checked" {/if}id="paper{$publishedPaper->getPaperId()|escape}DateExists" name="paper{$publishedPaper->getPaperId()|escape}DateExists" onchange="changeDate({$publishedPaper->getPaperId()|escape});" /></td>
 		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`DateExists" key="common.date"}</td>
-		<td>{html_select_date prefix="paper`$publishedPaper->getPaperId()`Date" all_extra="class=\"selectMenu\" onchange=\"document.schedule.paper`$publishedPaper->getPaperId()`DateExists.checked = true; changeDate(`$publishedPaper->getPaperId()`);\"" time=$publishedPaper->getStartTime()|default:$defaultStartTime start_year=$firstYear end_year=$lastYear}</td>
+		<td>{html_select_date prefix="paper`$publishedPaper->getPaperId()`Date" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getPaperId()`); changeDate(`$publishedPaper->getPaperId()`);\"" time=$publishedPaper->getStartTime()|default:$defaultStartTime start_year=$firstYear end_year=$lastYear}</td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
 		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`StartTime" key="manager.scheduler.startTime"}</td>
-		<td id="{"paper`$publishedPaper->getPaperId()`StartTime"}">{html_select_time prefix="paper`$publishedPaper->getPaperId()`StartTime" all_extra="class=\"selectMenu\" onchange=\"document.schedule.paper`$publishedPaper->getPaperId()`DateExists.checked = true; changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getStartTime()|default:$defaultStartTime}</td>
+		<td id="{"paper`$publishedPaper->getPaperId()`StartTime"}">{html_select_time prefix="paper`$publishedPaper->getPaperId()`StartTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getPaperId()`); changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getStartTime()|default:$defaultStartTime}</td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
 		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`EndTime" key="manager.scheduler.endTime"}</td>
 		<td id="{"paper`$publishedPaper->getPaperId()`EndTime"}">
-			{html_select_time prefix="paper`$publishedPaper->getPaperId()`EndTime" all_extra="class=\"selectMenu\" onchange=\"document.schedule.paper`$publishedPaper->getPaperId()`DateExists.checked = true; changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getEndTime()|default:$defaultStartTime}
+			{html_select_time prefix="paper`$publishedPaper->getPaperId()`EndTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getPaperId()`); changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getEndTime()|default:$defaultStartTime}
 		</td>
 	</tr>
 	<tr>
