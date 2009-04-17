@@ -26,7 +26,6 @@ class RTSetupHandler extends RTAdminHandler {
 		if ($conference) {
 			$this->setupTemplate(true);
 			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->assign_by_ref('conferences', $conferences);
 
 			$rtDao = &DAORegistry::getDAO('RTDAO');
 			$rt = $rtDao->getConferenceRTByConference($conference);

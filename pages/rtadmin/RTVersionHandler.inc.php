@@ -18,7 +18,7 @@ import('rt.ocs.ConferenceRTAdmin');
 
 class RTVersionHandler extends RTAdminHandler {
 	function createVersion($args) {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 
@@ -33,13 +33,13 @@ class RTVersionHandler extends RTAdminHandler {
 			$versionForm->execute();
 			Request::redirect(null, null, null, 'versions');
 		} else {
-			RTAdminHandler::setupTemplate(true);
+			$this->setupTemplate(true);
 			$versionForm->display();
 		}
 	}
 
 	function exportVersion($args) {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 
@@ -57,7 +57,7 @@ class RTVersionHandler extends RTAdminHandler {
 	}
 
 	function importVersion() {
-		RTAdminHandler::validate();
+		$this->validate();
 		$conference = &Request::getConference();
 
 		$fileField = 'versionFile';
@@ -69,7 +69,7 @@ class RTVersionHandler extends RTAdminHandler {
 	}
 
 	function restoreVersions() {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$conference = &Request::getConference();
 		$rtAdmin = new ConferenceRTAdmin($conference->getConferenceId());
@@ -89,8 +89,8 @@ class RTVersionHandler extends RTAdminHandler {
 	}
 
 	function versions() {
-		RTAdminHandler::validate();
-		RTAdminHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$conference = Request::getConference();
 
@@ -104,7 +104,7 @@ class RTVersionHandler extends RTAdminHandler {
 	}
 
 	function editVersion($args) {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 
@@ -114,7 +114,7 @@ class RTVersionHandler extends RTAdminHandler {
 
 		if (isset($version)) {
 			import('rt.ocs.form.VersionForm');
-			RTAdminHandler::setupTemplate(true, $version);
+			$this->setupTemplate(true, $version);
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$versionForm =& new VersionForm($versionId, $conference->getConferenceId());
 			$versionForm->initData();
@@ -124,7 +124,7 @@ class RTVersionHandler extends RTAdminHandler {
 	}
 
 	function deleteVersion($args) {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 
@@ -137,7 +137,7 @@ class RTVersionHandler extends RTAdminHandler {
 	}
 
 	function saveVersion($args) {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 

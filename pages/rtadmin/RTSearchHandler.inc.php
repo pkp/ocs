@@ -18,7 +18,7 @@ import('rt.ocs.ConferenceRTAdmin');
 
 class RTSearchHandler extends RTAdminHandler {
 	function createSearch($args) {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$conference = Request::getConference();
 
@@ -38,13 +38,13 @@ class RTSearchHandler extends RTAdminHandler {
 			$searchForm->execute();
 			Request::redirect(null, null, null, 'searches', array($versionId, $contextId));
 		} else {
-			RTAdminHandler::setupTemplate(true, $version, $context);
+			$this->setupTemplate(true, $version, $context);
 			$searchForm->display();
 		}
 	}
 
 	function searches($args) {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$conference = Request::getConference();
 
@@ -58,7 +58,7 @@ class RTSearchHandler extends RTAdminHandler {
 		$context = &$rtDao->getContext($contextId);
 
 		if ($context && $version && $context->getVersionId() == $version->getVersionId()) {
-			RTAdminHandler::setupTemplate(true, $version, $context);
+			$this->setupTemplate(true, $version, $context);
 
 			$templateMgr = &TemplateManager::getManager();
 
@@ -74,7 +74,7 @@ class RTSearchHandler extends RTAdminHandler {
 	}
 
 	function editSearch($args) {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 
@@ -88,7 +88,7 @@ class RTSearchHandler extends RTAdminHandler {
 
 		if (isset($version) && isset($context) && isset($search) && $context->getVersionId() == $version->getVersionId() && $search->getContextId() == $context->getContextId()) {
 			import('rt.ocs.form.SearchForm');
-			RTAdminHandler::setupTemplate(true, $version, $context, $search);
+			$this->setupTemplate(true, $version, $context, $search);
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$searchForm =& new SearchForm($searchId, $contextId, $versionId);
 			$searchForm->initData();
@@ -100,7 +100,7 @@ class RTSearchHandler extends RTAdminHandler {
 	}
 
 	function deleteSearch($args) {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 
@@ -120,7 +120,7 @@ class RTSearchHandler extends RTAdminHandler {
 	}
 
 	function saveSearch($args) {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 
@@ -144,7 +144,7 @@ class RTSearchHandler extends RTAdminHandler {
 	}
 
 	function moveSearch($args) {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 
