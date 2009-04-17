@@ -155,7 +155,7 @@ class RegistrationPolicyForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('registrationAdditionalInformation', 'delayedOpenAccessPolicy', 'authorSelfArchivePolicy');
+		return array('registrationAdditionalInformation', 'delayedOpenAccessPolicy', 'presenterSelfArchivePolicy');
 	}
 
 	/**

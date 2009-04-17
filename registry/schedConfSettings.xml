@@ -86,4 +86,8 @@
 			</array>
 		</value>
 	</setting>
+	<setting type="string" locale="1">
+		<name>presenterSelfArchivePolicy</name>
+		<value>{translate key="default.conferenceSettings.presenterSelfArchivePolicy"}</value>
+	</setting>
 </sched_conf_settings>
