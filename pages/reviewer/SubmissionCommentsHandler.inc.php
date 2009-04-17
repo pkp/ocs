@@ -25,8 +25,13 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperId = $args[0];
 		$reviewId = $args[1];
 
-		list($schedConf, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
-		ReviewerHandler::setupTemplate(true);
+		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler->validate($reviewId);
+		$submission =& $submission->submission;
+		
+		$user =& RequestUser();
+
+		$this->setupTemplate(true);
 		ReviewerAction::viewPeerReviewComments($user, $submission, $reviewId);
 
 	}
@@ -41,9 +46,12 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		list($schedConf, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
+		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler->validate($reviewId);
+		$submission =& $submission->submission;
+		$user =& $submissionReviewHandler->user;
 
-		ReviewerHandler::setupTemplate(true);
+		$this->setupTemplate(true);
 		if (ReviewerAction::postPeerReviewComment($user, $submission, $reviewId, $emailComment)) {
 			ReviewerAction::viewPeerReviewComments($user, $submission, $reviewId);
 		}
@@ -60,10 +68,13 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$paper = $paperDao->getPaper($paperId);
 
-		list($schedConf, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
-		list($comment) = SubmissionCommentsHandler::validate($user, $commentId);
+		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler->validate($reviewId);
+		$user =& $submissionReviewHandler->user;
+		$this->validate($user, $commentId);
+		$comment =& $this->comment;
 
-		ReviewerHandler::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		ReviewerAction::editComment($paper, $comment, $reviewId);
 	}
@@ -79,13 +90,16 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$paper = $paperDao->getPaper($paperId);
 
-		list($schedConf, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
-		list($comment) = SubmissionCommentsHandler::validate($user, $commentId);
-
+		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler->validate($reviewId);
+		$user =& $submissionReviewHandler->user;
+		$this->validate($user, $commentId);
+		$comment =& $this->comment;
+		
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		ReviewerHandler::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		ReviewerAction::saveComment($paper, $comment, $emailComment);
 
@@ -107,10 +121,13 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$commentId = $args[1];
 		$reviewId = Request::getUserVar('reviewId');
 
-		list($schedConf, $submission, $user) = SubmissionReviewHandler::validate($reviewId);
-		list($comment) = SubmissionCommentsHandler::validate($user, $commentId);
+		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler->validate($reviewId);
+		$user =& $submissionReviewHandler->user;
+		$this->validate($user, $commentId);
+		$comment =& $this->comment;
 
-		ReviewerHandler::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		ReviewerAction::deleteComment($commentId, $user);
 
@@ -144,7 +161,8 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
-		return array($comment);
+		$this->comment =& $comment;
+		return true;
 	}
 }
 ?>
