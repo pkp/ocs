@@ -17,11 +17,6 @@
 import('handler.Handler');
 
 class ManagerHandler extends Handler {
-	function ManagerHandler() {
-		$this->addCheck(new HandlerValidatorConference(&$this));		
-		$this->addCheck(new HandlerValidatorRoles(&$this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_CONFERENCE_MANAGER)));
-	}
-
 	/**
 	 * Display conference management index page.
 	 */
@@ -93,6 +88,12 @@ class ManagerHandler extends Handler {
 			$email->displayEditForm(Request::url(null, null, null, 'email'), array(), 'manager/people/email.tpl');
 		}
 	}
+
+	function validate() {
+		$this->addCheck(new HandlerValidatorConference(&$this));		
+		$this->addCheck(new HandlerValidatorRoles(&$this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_CONFERENCE_MANAGER)));
+		parent::validate();
+	}		
 
 	/**
 	 * Setup common template variables.
