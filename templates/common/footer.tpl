@@ -15,7 +15,7 @@
 
 {if $postCreativeCommons}
 	<br />
-	{translate key="common.ccLicense" ccLicenseImageUrl=`$baseUrl`/templates/images/ccLicense.png}
+	{translate key="common.ccLicense"}
 {/if}
 
 {call_hook name="Templates::Common::Footer::PageFooter"}
