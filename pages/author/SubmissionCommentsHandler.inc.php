@@ -17,17 +17,21 @@
 import('pages.author.TrackSubmissionHandler');
 
 class SubmissionCommentsHandler extends AuthorHandler {
+	/** comment associated with the request **/
+	var $comment;
 
 	/**
 	 * View director decision comments.
 	 */
 	function viewDirectorDecisionComments($args) {
-		AuthorHandler::validate();
-		AuthorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$paperId = $args[0];
 
-		list($conference, $schedConf, $authorSubmission) = TrackSubmissionHandler::validate($paperId);
+		$trackSubmissionHandler =& new TrackSubmissionHandler();
+		$trackSubmissionHandler->validate($paperId);
+		$authorSubmission =& $trackSubmissionHandler->submission;
 		AuthorAction::viewDirectorDecisionComments($authorSubmission);
 	}
 
@@ -36,9 +40,11 @@ class SubmissionCommentsHandler extends AuthorHandler {
 	 */
 	function emailDirectorDecisionComment() {
 		$paperId = (int) Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = TrackSubmissionHandler::validate($paperId);
+		$trackSubmissionHandler =& new TrackSubmissionHandler();
+		$trackSubmissionHandler->validate($paperId);
+		$submission =& $trackSubmissionHandler->submission;
 
-		parent::setupTemplate(true);		
+		$this->setupTemplate(true);		
 		if (AuthorAction::emailDirectorDecisionComment($submission, Request::getUserVar('send'))) {
 			Request::redirect(null, null, null, 'submissionReview', array($paperId));
 		}
@@ -48,14 +54,17 @@ class SubmissionCommentsHandler extends AuthorHandler {
 	 * Edit comment.
 	 */
 	function editComment($args) {
-		AuthorHandler::validate();
-		AuthorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$paperId = $args[0];
 		$commentId = $args[1];
 
-		list($conference, $schedConf, $authorSubmission) = TrackSubmissionHandler::validate($paperId);
-		list($comment) = SubmissionCommentsHandler::validate($commentId);
+		$trackSubmissionHandler =& new TrackSubmissionHandler();
+		$trackSubmissionHandler->validate($paperId);
+		$authorSubmission =& $trackSubmissionHandler->submission;
+		$this->validate($commentId);
+		$comment =& $this->comment;
 
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			// Cannot edit a director decision comment.
@@ -70,8 +79,8 @@ class SubmissionCommentsHandler extends AuthorHandler {
 	 * Save comment.
 	 */
 	function saveComment() {
-		AuthorHandler::validate();
-		AuthorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$paperId = Request::getUserVar('paperId');
 		$commentId = Request::getUserVar('commentId');
@@ -79,8 +88,11 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		list($conference, $schedConf, $authorSubmission) = TrackSubmissionHandler::validate($paperId);
-		list($comment) = SubmissionCommentsHandler::validate($commentId);
+		$trackSubmissionHandler =& new TrackSubmissionHandler();
+		$trackSubmissionHandler->validate($paperId);
+		$authorSubmission =& $trackSubmissionHandler->submission;
+		$this->validate($commentId);
+		$comment =& $this->comment;
 
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			// Cannot edit a director decision comment.
@@ -102,8 +114,8 @@ class SubmissionCommentsHandler extends AuthorHandler {
 	 * Delete comment.
 	 */
 	function deleteComment($args) {
-		AuthorHandler::validate();
-		AuthorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$paperId = $args[0];
 		$commentId = $args[1];
@@ -111,8 +123,11 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
 		$comment = &$paperCommentDao->getPaperCommentById($commentId);
 
-		list($conference, $schedConf, $authorSubmission) = TrackSubmissionHandler::validate($paperId);
-		list($comment) = SubmissionCommentsHandler::validate($commentId);
+		$trackSubmissionHandler =& new TrackSubmissionHandler();
+		$trackSubmissionHandler->validate($paperId);
+		$authorSubmission =& $trackSubmissionHandler->submission;
+		$this->validate($commentId);
+		$comment =& $this->comment;
 		AuthorAction::deleteComment($commentId);
 
 		// Redirect back to initial comments page
@@ -149,7 +164,8 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		if (!$isValid) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
-
+		
+		$this->comment =& $comment;
 		return array($comment);
 	}
 }

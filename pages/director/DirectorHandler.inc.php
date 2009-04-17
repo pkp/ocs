@@ -26,6 +26,7 @@ define('FILTER_DIRECTOR_ALL', 0);
 define('FILTER_DIRECTOR_ME', 1);
 
 import ('submission.director.DirectorAction');
+import('handler.validation.HandlerValidatorRoles');
 
 class DirectorHandler extends TrackDirectorHandler {
 
@@ -34,8 +35,8 @@ class DirectorHandler extends TrackDirectorHandler {
 	 */
 
 	function index($args) {
-		DirectorHandler::validate();
-		DirectorHandler::setupTemplate(DIRECTOR_TRACK_HOME);
+		$this->validate();
+		$this->setupTemplate(DIRECTOR_TRACK_HOME);
 
 		$templateMgr = &TemplateManager::getManager();
 		$schedConf = &Request::getSchedConf();
@@ -50,8 +51,8 @@ class DirectorHandler extends TrackDirectorHandler {
 	 * Display director submission queue pages.
 	 */
 	function submissions($args) {
-		DirectorHandler::validate();
-		DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS);
+		$this->validate();
+		$this->setupTemplate(DIRECTOR_TRACK_SUBMISSIONS);
 
 		$schedConf = &Request::getSchedConf();
 		$schedConfId = $schedConf->getSchedConfId();
@@ -124,7 +125,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			}	
 		}
 
-		$rangeInfo =& PKPHandler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
+		$rangeInfo =& Handler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
 		while (true) {
 			$submissions =& $directorSubmissionDao->$functionName(
 				$schedConfId,
@@ -179,14 +180,14 @@ class DirectorHandler extends TrackDirectorHandler {
 	}
 
 	function updateSubmissionArchive() {
-		DirectorHandler::submissionArchive();
+		$this->submissionArchive();
 	}
 
 	/**
 	 * Delete the specified edit assignment.
 	 */
 	function deleteEditAssignment($args) {
-		DirectorHandler::validate();
+		$this->validate();
 
 		$schedConf = &Request::getSchedConf();
 		$editId = (int) (isset($args[0])?$args[0]:0);
@@ -211,7 +212,7 @@ class DirectorHandler extends TrackDirectorHandler {
 	 * Assigns the selected director to the submission.
 	 */
 	function assignDirector($args) {
-		DirectorHandler::validate();
+		$this->validate();
 
 		$schedConf = &Request::getSchedConf();
 		$paperId = Request::getUserVar('paperId');
@@ -227,7 +228,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			// has been done, send the email and store the director
 			// selection.
 
-			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $paperId, 'summary');
+			$this->setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $paperId, 'summary');
 
 			// FIXME: Prompt for due date.
 			if (DirectorAction::assignDirector($paperId, $directorId, $isDirector, Request::getUserVar('send'))) {
@@ -235,7 +236,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			}
 		} else {
 			// Allow the user to choose a track director or director.
-			DirectorHandler::setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $paperId, 'summary');
+			$this->setupTemplate(DIRECTOR_TRACK_SUBMISSIONS, $paperId, 'summary');
 
 			$searchType = null;
 			$searchMatch = null;
@@ -252,7 +253,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			}
 
 			$forDirectors = isset($args[0]) && $args[0] === 'director';
-			$rangeInfo =& PKPHandler::getRangeInfo('directors', array($forDirectors, (string) $searchType, (string) $search, (string) $searchMatch));
+			$rangeInfo =& Handler::getRangeInfo('directors', array($forDirectors, (string) $searchType, (string) $search, (string) $searchMatch));
 			$directorSubmissionDao = &DAORegistry::getDAO('DirectorSubmissionDAO');
 
 			if ($forDirectors) {
@@ -312,7 +313,7 @@ class DirectorHandler extends TrackDirectorHandler {
 	 */
 	function deleteSubmission($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		DirectorHandler::validate($paperId);
+		$this->validate();
 
 		$schedConf = &Request::getSchedConf();
 
@@ -340,7 +341,7 @@ class DirectorHandler extends TrackDirectorHandler {
 	function movePaper($args) {
 		$paperId = Request::getUserVar('paperId');
 		$schedConf =& Request::getSchedConf();
-		DirectorHandler::validate($paperId);
+		$this->validate();
 
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId);
@@ -358,8 +359,8 @@ class DirectorHandler extends TrackDirectorHandler {
 	 * Allows directors to write emails to users associated with the conference.
 	 */
 	function notifyUsers($args) {
-		DirectorHandler::validate();
-		DirectorHandler::setupTemplate(DIRECTOR_TRACK_HOME);
+		$this->validate();
+		$this->setupTemplate(DIRECTOR_TRACK_HOME);
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -460,20 +461,11 @@ class DirectorHandler extends TrackDirectorHandler {
 	 * Redirects to user index page if not properly authenticated.
 	 */
 	function validate() {
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
-
-		if(!isset($schedConf) || !isset($conference)) {
-			Validation::redirectLogin();
-		}
-
-		if($schedConf->getConferenceId() != $conference->getConferenceId()) {
-			Validation::redirectLogin();
-		}
-
-		if (!Validation::isDirector($conference->getConferenceId(), $schedConf->getSchedConfId())) {
-			Validation::redirectLogin();
-		}
+		$this->addCheck(new HandlerValidatorConference(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorRoles(&$this, true, null, null, array(ROLE_ID_DIRECTOR)));
+		
+		return parent::validate();
 	}
 
 	/**

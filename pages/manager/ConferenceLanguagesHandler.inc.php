@@ -20,8 +20,8 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 	 * Display form to edit language settings.
 	 */
 	function languages() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.LanguageSettingsForm');
 
@@ -35,8 +35,8 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 	 * Save changes to language settings.
 	 */
 	function saveLanguageSettings() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.LanguageSettingsForm');
 

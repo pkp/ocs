@@ -15,17 +15,26 @@
 //$Id$
 
 class GroupHandler extends ManagerHandler {
+	/** group associated with the request **/
+	var $group;
+	
+	/** user associated with the request **/
+	var $user;
+	
+	/** group membership associated with the request **/
+	var $groupMembership;
 
 	/**
 	 * Display a list of groups for the current conference.
 	 */
 	function groups() {
-		list($conference, $schedConf) = GroupHandler::validate();
-		GroupHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
+		$schedConf =& Request::getConference();
 		$schedConfId = $schedConf? $schedConf->getSchedConfId():0;
 
-		$rangeInfo =& PKPHandler::getRangeInfo('groups', array());
+		$rangeInfo =& Handler::getRangeInfo('groups', array());
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		while (true) {
 			$groups =& $groupDao->getGroups(ASSOC_TYPE_SCHED_CONF, $schedConfId, null, $rangeInfo);
@@ -47,8 +56,10 @@ class GroupHandler extends ManagerHandler {
 	 */
 	function deleteGroup($args) {
 		$groupId = isset($args[0])?(int)$args[0]:0;
-		list($conference, $schedConf, $group) = GroupHandler::validate($groupId);
-
+		$this->validate($groupId);
+		$schedConf =& Request::getSchedConf();
+		$group =& $this->group;		
+		
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroup($group);
 		$groupDao->resequenceGroups(ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
@@ -61,12 +72,16 @@ class GroupHandler extends ManagerHandler {
 	 */
 	function moveGroup() {
 		$groupId = (int) Request::getUserVar('groupId');
-		list($conference, $schedConf, $group) = GroupHandler::validate($groupId);
+		$this->validate($groupId);
 
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		$group =& $this->group;
+		
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$group->setSequence($group->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
 		$groupDao->updateGroup($group);
-		$groupDao->resequenceGroups(ASSOC_TYPE_SCHED_CONF, $conference->getConferenceId());
+		$groupDao->resequenceGroups(ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
 
 		Request::redirect(null, null, null, 'groups');
 	}
@@ -77,7 +92,7 @@ class GroupHandler extends ManagerHandler {
 	 */
 	function editGroup($args = array()) {
 		$groupId = isset($args[0])?(int)$args[0]:null;
-		list($conference, $schedConf) = GroupHandler::validate($groupId);
+		$this->validate();
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
@@ -87,7 +102,7 @@ class GroupHandler extends ManagerHandler {
 			}
 		} else $group = null;
 
-		GroupHandler::setupTemplate($group, true);
+		$this->setupTemplate($group, true);
 		import('manager.form.GroupForm');
 
 		$templateMgr = &TemplateManager::getManager();
@@ -112,7 +127,7 @@ class GroupHandler extends ManagerHandler {
 	 * Display form to create new group.
 	 */
 	function createGroup($args) {
-		GroupHandler::editGroup($args);
+		$this->editGroup($args);
 	}
 
 	/**
@@ -121,10 +136,11 @@ class GroupHandler extends ManagerHandler {
 	function updateGroup() {
 		$groupId = Request::getUserVar('groupId') === null? null : (int) Request::getUserVar('groupId');
 		if ($groupId === null) {
-			list($conference, $schedConf) = GroupHandler::validate();
+			$this->validate();
 			$group = null;
 		} else {
-			list($conference, $schedConf, $group) = GroupHandler::validate($groupId);
+			$this->validate($groupId);
+			$group =& $this->group;
 		}
 
 		import('manager.form.GroupForm');
@@ -137,7 +153,7 @@ class GroupHandler extends ManagerHandler {
 			$groupForm->execute();
 			Request::redirect(null, null, null, 'groups');
 		} else {
-			GroupHandler::setupTemplate($group);
+			$this->setupTemplate($group);
 
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'groups'), 'manager.groups'));
@@ -157,11 +173,12 @@ class GroupHandler extends ManagerHandler {
 	 */
 	function groupMembership($args) {
 		$groupId = isset($args[0])?(int)$args[0]:0;
-		list($conference, $schedConf, $group) = GroupHandler::validate($groupId);
+		$this->validate($groupId);
+		$group =& $this->group;
+		
+		$rangeInfo =& Handler::getRangeInfo('membership', array($groupId));
 
-		$rangeInfo =& PKPHandler::getRangeInfo('membership', array($groupId));
-
-		GroupHandler::setupTemplate($group, true);
+		$this->setupTemplate($group, true);
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		while (true) {
 			$memberships =& $groupMembershipDao->getMemberships($group->getGroupId(), $rangeInfo);
@@ -188,7 +205,11 @@ class GroupHandler extends ManagerHandler {
 		// If a user has been selected, add them to the group.
 		// Otherwise list users.
 		if ($userId !== null) {
-			list($conference, $schedConf, $group, $user) = GroupHandler::validate($groupId, $userId);
+			$this->validate($groupId, $userId);
+			$schedConf =& Request::getSchedConf();
+			$group =& $this->group;
+			$user =& $this->user;
+
 			// A valid user has been chosen. Add them to
 			// the membership list and redirect.
 
@@ -205,8 +226,13 @@ class GroupHandler extends ManagerHandler {
 			}
 			Request::redirect(null, null, null, 'groupMembership', $group->getGroupId());
 		} else {
-			list($conference, $schedConf, $group) = GroupHandler::validate($groupId);
-			GroupHandler::setupTemplate($group, true);
+			$this->validate($groupId);
+			$groupDao =& DAORegistry::getDAO('GroupDAO');
+			$conference =& Request::getConference();
+			$schedConf =& Request::getSchedConf();
+			$group =& $this->group;
+
+			$this->setupTemplate($group, true);
 			$searchType = null;
 			$searchMatch = null;
 			$search = $searchQuery = Request::getUserVar('search');
@@ -221,7 +247,7 @@ class GroupHandler extends ManagerHandler {
 				$search = $searchInitial;
 			}
 
-			$rangeInfo =& PKPHandler::getRangeInfo('users', array($groupId, (string) $search, (string) $searchMatch, (string) $searchType));
+			$rangeInfo =& Handler::getRangeInfo('users', array($groupId, (string) $search, (string) $searchMatch, (string) $searchType));
 
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			while (true) {
@@ -260,7 +286,11 @@ class GroupHandler extends ManagerHandler {
 		$groupId = isset($args[0])?(int)$args[0]:0;
 		$userId = isset($args[1])?(int)$args[1]:0;
 
-		list($conference, $schedConf, $group, $user, $groupMembership) = GroupHandler::validate($groupId, $userId, true);
+		$this->validate($groupId, $userId, true);
+		$schedConf =& Request::getSchedConf();
+		$group =& $this->group;
+		$user =& $this->user;
+		$groupMembership =& $this->groupMembership;
 
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		$groupMembershipDao->deleteMembershipById($group->getGroupId(), $user->getUserId());
@@ -275,7 +305,11 @@ class GroupHandler extends ManagerHandler {
 	function moveMembership() {
 		$groupId = (int) Request::getUserVar('groupId');
 		$userId = (int) Request::getUserVar('userId');
-		list($conference, $schedConf, $group, $user, $groupMembership) = GroupHandler::validate($groupId, $userId, true);
+		$this->validate($groupId, $userId, true);
+		$schedConf =& Request::getSchedConf();
+		$group =& $this->group;
+		$user =& $this->user;
+		$groupMembership =& $this->groupMembership;
 
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		$groupMembership->setSequence($groupMembership->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
@@ -286,7 +320,7 @@ class GroupHandler extends ManagerHandler {
 	}
 
 	function setBoardEnabled($args) {
-		GroupHandler::validate();
+		$this->validate();
 		$conference = &Request::getConference();
 		$boardEnabled = Request::getUserVar('boardEnabled')==1?true:false;
 		$schedConf =& Request::getSchedConf();
@@ -317,7 +351,7 @@ class GroupHandler extends ManagerHandler {
 	 * @return array [$conference] iff $groupId is null, [$conference, $group] iff $userId is null and $groupId is supplied, and [$conference, $group, $user] iff $userId and $groupId are both supplied. $fetchMembership===true will append membership info to the last case, redirecting if it doesn't exist.
 	 */
 	function validate($groupId = null, $userId = null, $fetchMembership = false) {
-		parent::validate(false);
+		parent::validate();
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
@@ -333,7 +367,7 @@ class GroupHandler extends ManagerHandler {
 			if (!$group) {
 				$passedValidation = false;
 			} else {
-				$returner[] = &$group;
+				$this->group =& $group;
 			}
 
 			if ($userId !== null) {
@@ -341,13 +375,13 @@ class GroupHandler extends ManagerHandler {
 				$user =& $userDao->getUser($userId);
 
 				if (!$user) $passedValidation = false;
-				else $returner[] = &$user;
+				else $this->user =& $user;
 
 				if ($fetchMembership === true) {
 					$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 					$groupMembership =& $groupMembershipDao->getMembership($groupId, $userId);
 					if (!$groupMembership) $validationPassed = false;
-					else $returner[] = &$groupMembership;
+					else $this->groupMembership =& $groupMembership;
 				}
 			}
 		}

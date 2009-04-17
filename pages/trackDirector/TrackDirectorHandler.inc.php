@@ -20,16 +20,16 @@
 define('FILTER_TRACK_ALL', 0);
 
 import('submission.trackDirector.TrackDirectorAction');
-import('core.PKPHandler');
+import('handler.Handler');
 
-class TrackDirectorHandler extends PKPHandler {
+class TrackDirectorHandler extends Handler {
 
 	/**
 	 * Display track director index page.
 	 */
 	function index($args) {
-		TrackDirectorHandler::validate();
-		TrackDirectorHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$schedConf = &Request::getSchedConf();
 		$schedConfId = $schedConf->getSchedConfId();
@@ -76,7 +76,7 @@ class TrackDirectorHandler extends PKPHandler {
 			}	
 		}
 
-		$rangeInfo = PKPHandler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
+		$rangeInfo = Handler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
 		while (true) {
 			$submissions =& $trackDirectorSubmissionDao->$functionName(
 				$user->getUserId(),
@@ -105,7 +105,7 @@ class TrackDirectorHandler extends PKPHandler {
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign('trackDirector', $user->getFullName());
 		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
-		$templateMgr->assign('durationOptions', TrackDirectorHandler::getDurationOptions());
+		$templateMgr->assign('durationOptions', $this->getDurationOptions());
 
 		// Set search parameters
 		$duplicateParameters = array(
@@ -206,399 +206,6 @@ class TrackDirectorHandler extends PKPHandler {
 		}
 	}
 
-	//
-	// Submission Tracking
-	//
-
-	function enrollSearch($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::enrollSearch($args);
-	}
-
-	function createReviewer($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::createReviewer($args);
-	}
-
-	function enroll($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::enroll($args);
-	}
-
-	function submission($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::submission($args);
-	}
-
-	function submissionRegrets($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::submissionRegrets($args);
-	}
-
-	function submissionReview($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::submissionReview($args);
-	}
-
-	function submissionHistory($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::submissionHistory($args);
-	}
-
-	function changeTrack() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::changeTrack();
-	}
-
-	function changeSessionType() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::changeSessionType();
-	}
-
-	function recordDecision() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::recordDecision();
-	}
-
-	function selectReviewer($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::selectReviewer($args);
-	}
-
-	function notifyReviewer($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::notifyReviewer($args);
-	}
-
-	function notifyAllReviewers($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::notifyAllReviewers($args);
-	}
-
-	function userProfile($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::userProfile($args);
-	}
-
-	function clearReview($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::clearReview($args);
-	}
-
-	function cancelReview($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::cancelReview($args);
-	}
-
-	function remindReviewer($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::remindReviewer($args);
-	}
-
-	function thankReviewer($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::thankReviewer($args);
-	}
-
-	function rateReviewer() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::rateReviewer();
-	}
-
-	function confirmReviewForReviewer($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::confirmReviewForReviewer($args);
-	}
-
-	function uploadReviewForReviewer($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::uploadReviewForReviewer($args);
-	}
-
-	function enterReviewerRecommendation($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::enterReviewerRecommendation($args);
-	}
-
-	function makeReviewerFileViewable() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::makeReviewerFileViewable();
-	}
-
-	function setDueDate($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::setDueDate($args);
-	}
-
-	function viewMetadata($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::viewMetadata($args);
-	}
-
-	function saveMetadata() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::saveMetadata();
-	}
-
-	function directorReview($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::directorReview($args);
-	}
-
-	function uploadReviewVersion() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::uploadReviewVersion();
-	}
-
-	function addSuppFile($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::addSuppFile($args);
-	}
-
-	function setSuppFileVisibility($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::setSuppFileVisibility($args);
-	}
-
-	function editSuppFile($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::editSuppFile($args);
-	}
-
-	function saveSuppFile($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::saveSuppFile($args);
-	}
-
-	function deleteSuppFile($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::deleteSuppFile($args);
-	}
-
-	function deletePaperFile($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::deletePaperFile($args);
-	}
-
-	function archiveSubmission($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::archiveSubmission($args);
-	}
-
-	function unsuitableSubmission($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::unsuitableSubmission($args);
-	}
-
-	function restoreToQueue($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::restoreToQueue($args);
-	}
-
-	function updateCommentsStatus($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::updateCommentsStatus($args);
-	}
-
-
-	//
-	// Layout Editing
-	//
-
-	function deletePaperImage($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::deletePaperImage($args);
-	}
-
-	function uploadLayoutFile() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::uploadLayoutFile();
-	}
-
-	function uploadLayoutVersion() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::uploadLayoutVersion();
-	}
-
-	function uploadGalley() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::uploadGalley();
-	}
-
-	function editGalley($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::editGalley($args);
-	}
-
-	function saveGalley($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::saveGalley($args);
-	}
-
-	function orderGalley() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::orderGalley();
-	}
-
-	function deleteGalley($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::deleteGalley($args);
-	}
-
-	function proofGalley($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::proofGalley($args);
-	}
-
-	function proofGalleyTop($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::proofGalleyTop($args);
-	}
-
-	function proofGalleyFile($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::proofGalleyFile($args);
-	}	
-
-	function uploadSuppFile() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::uploadSuppFile();
-	}
-
-	function orderSuppFile() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::orderSuppFile();
-	}
-
-	function completePaper($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::completePaper($args);
-	}
-
-
-	//
-	// Submission History
-	//
-
-	function submissionEventLog($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::submissionEventLog($args);
-	}		
-
-	function submissionEventLogType($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::submissionEventLogType($args);
-	}
-
-	function clearSubmissionEventLog($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::clearSubmissionEventLog($args);
-	}
-
-	function submissionEmailLog($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::submissionEmailLog($args);
-	}
-
-	function submissionEmailLogType($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::submissionEmailLogType($args);
-	}
-
-	function clearSubmissionEmailLog($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::clearSubmissionEmailLog($args);
-	}
-
-	function addSubmissionNote() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::addSubmissionNote();
-	}
-
-	function removeSubmissionNote() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::removeSubmissionNote();
-	}		
-
-	function updateSubmissionNote() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::updateSubmissionNote();
-	}
-
-	function clearAllSubmissionNotes() {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::clearAllSubmissionNotes();
-	}
-
-	function submissionNotes($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::submissionNotes($args);
-	}
-
-
-	//
-	// Misc.
-	//
-
-	function downloadFile($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::downloadFile($args);
-	}
-
-	function viewFile($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::viewFile($args);
-	}
-
-	//
-	// Submission Comments
-	//
-
-	function viewPeerReviewComments($args) {
-		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::viewPeerReviewComments($args);
-	}
-
-	function postPeerReviewComment() {
-		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::postPeerReviewComment();
-	}
-
-	function viewDirectorDecisionComments($args) {
-		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::viewDirectorDecisionComments($args);
-	}
-
-	function blindCcReviewsToReviewers($args) {
-		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::blindCcReviewsToReviewers($args);
-	}
-
-	function postDirectorDecisionComment() {
-		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::postDirectorDecisionComment();
-	}
-
-	function emailDirectorDecisionComment() {
-		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::emailDirectorDecisionComment();
-	}
-
-	function editComment($args) {
-		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::editComment($args);
-	}
-
-	function saveComment() {
-		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::saveComment();
-	}
-
-	function deleteComment($args) {
-		import('pages.trackDirector.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::deleteComment($args);
-	}
-
 	function getDurationOptions() {
 		return array(
 			60 * 10		=> '0:10',
@@ -617,28 +224,6 @@ class TrackDirectorHandler extends PKPHandler {
 			60 * 60 * 6	=> '7:00',
 			60 * 60 * 7	=> '8:00',
 		);
-	}
-	
-	// Submission Review Form
-
-	function clearReviewForm($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::clearReviewForm($args);
-	}
-
-	function selectReviewForm($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::selectReviewForm($args);
-	}
-
-	function previewReviewForm($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::previewReviewForm($args);
-	}
-
-	function viewReviewFormResponse($args) {
-		import('pages.trackDirector.SubmissionEditHandler');
-		SubmissionEditHandler::viewReviewFormResponse($args);
 	}
 }
 

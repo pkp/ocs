@@ -16,14 +16,14 @@
 
 class EmailHandler extends UserHandler {
 	function email($args) {
-		list($conference, $schedConf) = parent::validate();
-
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
+		
+		$conference =& Request::getConference();
 
 		$templateMgr = &TemplateManager::getManager();
 
 		$userDao = &DAORegistry::getDAO('UserDAO');
-
 		$user = &Request::getUser();
 
 		// See if this is the Director or Manager and an email template has been chosen

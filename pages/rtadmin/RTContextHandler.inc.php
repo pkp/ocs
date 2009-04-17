@@ -46,7 +46,7 @@ class RTContextHandler extends RTAdminHandler {
 		$conference = Request::getConference();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$rangeInfo = PKPHandler::getRangeInfo('contexts');
+		$rangeInfo = Handler::getRangeInfo('contexts');
 
 		$versionId = isset($args[0])?$args[0]:0;
 		$version = &$rtDao->getVersion($versionId, $conference->getConferenceId());

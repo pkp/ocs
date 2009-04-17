@@ -23,8 +23,8 @@ class AuthSourcesHandler extends AdminHandler {
 	 * Display a list of authentication sources.
 	 */
 	function auth() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$authDao = &DAORegistry::getDAO('AuthSourceDAO');
 		$sources = &$authDao->getSources();
@@ -46,7 +46,7 @@ class AuthSourcesHandler extends AdminHandler {
 	 * Update the default authentication source.
 	 */
 	function updateAuthSources() {
-		parent::validate();
+		$this->validate();
 
 		$authDao = &DAORegistry::getDAO('AuthSourceDAO');
 		$authDao->setDefault((int) Request::getUserVar('defaultAuthId'));
@@ -58,7 +58,7 @@ class AuthSourcesHandler extends AdminHandler {
 	 * Create an authentication source.
 	 */
 	function createAuthSource() {
-		parent::validate();
+		$this->validate();
 
 		$auth = new AuthSource();
 		$auth->setPlugin(Request::getUserVar('plugin'));
@@ -75,8 +75,8 @@ class AuthSourcesHandler extends AdminHandler {
 	 * Display form to edit an authentication source.
 	 */
 	function editAuthSource($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('security.form.AuthSourceSettingsForm');
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
@@ -89,7 +89,7 @@ class AuthSourcesHandler extends AdminHandler {
 	 * Update an authentication source.
 	 */
 	function updateAuthSource($args) {
-		parent::validate();
+		$this->validate();
 
 		import('security.form.AuthSourceSettingsForm');
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
@@ -103,7 +103,7 @@ class AuthSourcesHandler extends AdminHandler {
 	 * Delete an authentication source.
 	 */
 	function deleteAuthSource($args) {
-		parent::validate();
+		$this->validate();
 
 		$authId = (int)@$args[0];
 		$authDao = &DAORegistry::getDAO('AuthSourceDAO');

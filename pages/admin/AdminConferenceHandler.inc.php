@@ -20,10 +20,10 @@ class AdminConferenceHandler extends AdminHandler {
 	 * Display a list of the conferences hosted on the site.
 	 */
 	function conferences() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
-		$rangeInfo = PKPHandler::getRangeInfo('conferences');
+		$rangeInfo = Handler::getRangeInfo('conferences');
 
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
 		$conferences = &$conferenceDao->getConferences($rangeInfo);
@@ -46,8 +46,8 @@ class AdminConferenceHandler extends AdminHandler {
 	 * @param $args array optional, if set the first parameter is the ID of the conference to edit
 	 */
 	function editConference($args = array()) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('admin.form.ConferenceSiteSettingsForm');
 
@@ -65,7 +65,7 @@ class AdminConferenceHandler extends AdminHandler {
 	 * Save changes to a conference's settings.
 	 */
 	function updateConference() {
-		parent::validate();
+		$this->validate();
 
 		import('admin.form.ConferenceSiteSettingsForm');
 
@@ -79,7 +79,7 @@ class AdminConferenceHandler extends AdminHandler {
 			Request::redirect(null, null, null, 'conferences');
 
 		} else {
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 			$settingsForm->display();
 		}
 	}
@@ -89,7 +89,7 @@ class AdminConferenceHandler extends AdminHandler {
 	 * @param $args array first parameter is the ID of the conference to delete
 	 */
 	function deleteConference($args) {
-		parent::validate();
+		$this->validate();
 
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
 
@@ -117,7 +117,7 @@ class AdminConferenceHandler extends AdminHandler {
 	 * Change the sequence of a conference on the site index page.
 	 */
 	function moveConference() {
-		parent::validate();
+		$this->validate();
 
 		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
 		$conference = &$conferenceDao->getConference(Request::getUserVar('conferenceId'));
@@ -135,8 +135,8 @@ class AdminConferenceHandler extends AdminHandler {
 	 * Show form to import data from an OCS 1.x conference.
 	 */
 	function importOCS1() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('admin.form.ImportOCS1Form');
 
@@ -150,7 +150,7 @@ class AdminConferenceHandler extends AdminHandler {
 	 * Import data from an OCS 1.x conference.
 	 */
 	function doImportOCS1() {
-		parent::validate();
+		$this->validate();
 
 		import('admin.form.ImportOCS1Form');
 
@@ -171,7 +171,7 @@ class AdminConferenceHandler extends AdminHandler {
 				Request::redirect(null, null, null, 'editConference', $conferenceId);
 			}
 		} else {
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 			$importForm->display();
 		}
 	}

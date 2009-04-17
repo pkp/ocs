@@ -37,11 +37,11 @@
 		<td colspan="5" class="headseparator">&nbsp;</td>
 	</tr>
 {iterate from=announcements item=announcement}
-	{assign var=schedConfId value=$announcement->getSchedConfId()}
+	{assign var=schedConfId value=$announcement->getAssocId()}
 	<tr valign="top">
 		<td>{$announcement->getDateExpire()|date_format:$dateFormatShort}</td>
 		<td>{$announcement->getAnnouncementTypeName()}</td>
-		<td>{$schedConfNames[$schedConfId]}</td>
+		<td>{if $announcement->getAssocType() == ASSOC_TYPE_SCHED_CONF}{$schedConfNames[$schedConfId]}{/if}</td>
 		<td>{$announcement->getAnnouncementTitle()|escape}</td>
 		<td><a href="{url op="editAnnouncement" path=$announcement->getAnnouncementId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteAnnouncement" path=$announcement->getAnnouncementId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.announcements.confirmDelete"}')" class="action">{translate key="common.delete"}</a></td>
 	</tr>

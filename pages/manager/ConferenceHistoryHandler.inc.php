@@ -20,11 +20,11 @@ class ConferenceHistoryHandler extends ManagerHandler {
 	 */
 	function conferenceEventLog($args) {
 		$logId = isset($args[0]) ? (int) $args[0] : 0;
-		parent::validate();
+		$this->validate();
 
 		$conference =& Request::getConference();
 
-		parent::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -40,7 +40,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 			$templateMgr->assign('logEntry', $logEntry);
 			$templateMgr->display('manager/conferenceEventLogEntry.tpl');
 		} else {
-			$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries', array());
+			$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array());
 
 			import('conference.log.ConferenceLog');
 			while (true) {
@@ -61,12 +61,12 @@ class ConferenceHistoryHandler extends ManagerHandler {
 	function conferenceEventLogType($args) {
 		$assocType = isset($args[1]) ? (int) $args[0] : null;
 		$assocId = isset($args[2]) ? (int) $args[1] : null;
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$conference =& Request::getConference();
 
-		$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries', array($assocType, $assocId));
+		$rangeInfo =& Handler::getRangeInfo('eventLogEntries', array($assocType, $assocId));
 		$logDao = &DAORegistry::getDAO('ConferenceEventLogDAO');
 		while (true) {
 			$eventLogEntries = &$logDao->getConferenceLogEntriesByAssoc($conference->getConferenceId(), null, $assocType, $assocId, $rangeInfo);
@@ -90,7 +90,7 @@ class ConferenceHistoryHandler extends ManagerHandler {
 	 */
 	function clearConferenceEventLog($args) {
 		$logId = isset($args[0]) ? (int) $args[0] : 0;
-		parent::validate();
+		$this->validate();
 		$conference =& Request::getConference();
 
 		$logDao = &DAORegistry::getDAO('ConferenceEventLogDAO');

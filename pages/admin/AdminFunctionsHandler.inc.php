@@ -24,8 +24,8 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * Show system information summary.
 	 */
 	function systemInfo() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$configData = &Config::getData();
 
@@ -62,8 +62,8 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * Edit the system configuration settings.
 	 */
 	function editSystemConfig() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->append('pageHierarchy', array(Request::url(null, null, null, ROLE_PATH_SITE_ADMIN, 'systemInfo'), 'admin.systemInformation'));
@@ -80,8 +80,8 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * Save modified system configuration settings.
 	 */
 	function saveSystemConfig() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$configData = &Config::getData();
 
@@ -136,7 +136,7 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * Show full PHP configuration information.
 	 */
 	function phpinfo() {
-		parent::validate();
+		$this->validate();
 		phpinfo();
 	}
 
@@ -144,7 +144,7 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * Expire all user sessions (will log out all users currently logged in).
 	 */
 	function expireSessions() {
-		parent::validate();
+		$this->validate();
 		$sessionDao = &DAORegistry::getDAO('SessionDAO');
 		$sessionDao->deleteAllSessions();
 		Request::redirect(null, null, ROLE_PATH_SITE_ADMIN);
@@ -154,7 +154,7 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * Clear compiled templates.
 	 */
 	function clearTemplateCache() {
-		parent::validate();
+		$this->validate();
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->clearTemplateCache();
 		Request::redirect(null, null, ROLE_PATH_SITE_ADMIN);
@@ -164,7 +164,7 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * Clear the data cache.
 	 */
 	function clearDataCache() {
-		parent::validate();
+		$this->validate();
 
 		// Clear the CacheManager's caches
 		import('cache.CacheManager');

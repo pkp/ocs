@@ -17,19 +17,25 @@
 
 
 import ('submission.author.AuthorAction');
-import('core.PKPHandler');
+import('handler.Handler');
+import('handler.validation.HandlerValidatorConference');
+import('handler.validation.HandlerValidatorSchedConf');
+import('handler.validation.HandlerValidatorRoles');
 
-class AuthorHandler extends PKPHandler {
+class AuthorHandler extends Handler {
 
 	/**
 	 * Display conference author index page.
 	 */
 	function index($args) {
-		list($conference, $schedConf) = AuthorHandler::validate();
-		AuthorHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
+		
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$user = &Request::getUser();
-		$rangeInfo =& PKPHandler::getRangeInfo('submissions');
+		$rangeInfo =& Handler::getRangeInfo('submissions');
 		$authorSubmissionDao = &DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
@@ -78,16 +84,11 @@ class AuthorHandler extends PKPHandler {
 	 * scheduled conference. Redirects to login page if not properly authenticated.
 	 */
 	function validate($reason = null) {
-		parent::validate();
-
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
-
-		if (!$conference || !$schedConf || !Validation::isAuthor($conference->getConferenceId(), $schedConf->getSchedConfId())) {
-			Validation::redirectLogin($reason, array('requiresAuthor' => Request::getUserVar('requiresAuthor')));
-		}
-
-		return array(&$conference, &$schedConf);
+		$this->addCheck(new HandlerValidatorConference(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorRoles(&$this, true, $reason, array('requiresAuthor' => Request::getUserVar('requiresAuthor')), array(ROLE_ID_AUTHOR)));
+		
+		return parent::validate();
 	}
 
 	/**
@@ -110,151 +111,6 @@ class AuthorHandler extends PKPHandler {
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 
-	//
-	// Paper Submission
-	//
-
-	function submit($args) {
-		import('pages.author.SubmitHandler');
-		SubmitHandler::submit($args);
-	}
-
-	function saveSubmit($args) {
-		import('pages.author.SubmitHandler');
-		SubmitHandler::saveSubmit($args);
-	}
-
-	function submitSuppFile($args) {
-		import('pages.author.SubmitHandler');
-		SubmitHandler::submitSuppFile($args);
-	}
-
-	function saveSubmitSuppFile($args) {
-		import('pages.author.SubmitHandler');
-		SubmitHandler::saveSubmitSuppFile($args);
-	}
-
-	function deleteSubmitSuppFile($args) {
-		import('pages.author.SubmitHandler');
-		SubmitHandler::deleteSubmitSuppFile($args);
-	}
-
-	function expediteSubmission($args) {
-		import('pages.author.SubmitHandler');
-		SubmitHandler::expediteSubmission($args);
-	}
-
-	//
-	// Submission Tracking
-	//
-
-	function deletePaperFile($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::deletePaperFile($args);
-	}
-
-	function deleteSubmission($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::deleteSubmission($args);
-	}
-
-	function submission($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::submission($args);
-	}
-
-	function viewSuppFile($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::viewSuppFile($args);
-	}
-
-	function editSuppFile($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::editSuppFile($args);
-	}
-
-	function setSuppFileVisibility($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::setSuppFileVisibility($args);
-	}
-
-	function saveSuppFile($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::saveSuppFile($args);
-	}
-
-	function addSuppFile($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::addSuppFile($args);
-	}
-
-	function submissionReview($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::submissionReview($args);
-	}
-
-	function uploadRevisedVersion() {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::uploadRevisedVersion();
-	}
-
-	function viewMetadata($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::viewMetadata($args);
-	}
-
-	function saveMetadata() {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::saveMetadata();
-	}
-
-	//
-	// Misc.
-	//
-
-	function downloadFile($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::downloadFile($args);
-	}
-
-	function viewFile($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::viewFile($args);
-	}
-
-	function download($args) {
-		import('pages.author.TrackSubmissionHandler');
-		TrackSubmissionHandler::download($args);
-	}
-
-	//
-	// Submission Comments
-	//
-
-	function viewDirectorDecisionComments($args) {
-		import('pages.author.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::viewDirectorDecisionComments($args);
-	}
-
-	function emailDirectorDecisionComment() {
-		import('pages.author.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::emailDirectorDecisionComment();
-	}
-
-	function editComment($args) {
-		import('pages.author.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::editComment($args);
-	}
-
-	function saveComment() {
-		import('pages.author.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::saveComment();
-	}
-
-	function deleteComment($args) {
-		import('pages.author.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::deleteComment($args);
-	}
 }
 
 ?>

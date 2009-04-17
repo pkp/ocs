@@ -22,8 +22,8 @@ class SchedConfSetupHandler extends ManagerHandler {
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
 	function setup($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
@@ -52,13 +52,13 @@ class SchedConfSetupHandler extends ManagerHandler {
 	 * @param $args array first parameter is the step being saved
 	 */
 	function saveSetup($args) {
-		parent::validate();
+		$this->validate();
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 3) {
 
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 
 			$formClass = "SchedConfSetupStep{$step}Form";
 			import("manager.form.schedConfSetup.$formClass");
@@ -172,12 +172,12 @@ class SchedConfSetupHandler extends ManagerHandler {
 	 * Display a "Scheduled conference settings saved" page
 	 */
 	function schedConfSetupSaved($args) {
-		parent::validate();
+		$this->validate();
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 3) {
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('setupStep', $step);
 			$templateMgr->assign('helpTopicId', 'conference.currentConferences.setup');

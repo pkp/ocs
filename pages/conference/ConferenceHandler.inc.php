@@ -15,16 +15,18 @@
 //$Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 
-class ConferenceHandler extends PKPHandler {
+class ConferenceHandler extends Handler {
 
 	/**
 	 * Display the home page for the current conference.
 	 */
 	function index($args) {
-		list($conference, $schedConf) = parent::validate(true, false);
-		parent::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
+		
+		$conference =& Request::getConference();
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -53,12 +55,20 @@ class ConferenceHandler extends PKPHandler {
 			if ($enableAnnouncementsHomepage) {
 				$numAnnouncementsHomepage = $conference->getSetting('numAnnouncementsHomepage');
 				$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-				$announcements = &$announcementDao->getNumAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), 0, $numAnnouncementsHomepage);
+				$announcements = &$announcementDao->getNumAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getConferenceId(), $numAnnouncementsHomepage);
 				$templateMgr->assign('announcements', $announcements);
 				$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
 			}
 		} 
 		$templateMgr->display('conference/index.tpl');
+	}
+	
+	/**
+	 * Validate that there is a valid conference
+	 */	
+	function validate() {
+		$this->addCheck(new HandlerValidatorConference(&$this));
+		return parent::validate();
 	}
 }
 

@@ -22,11 +22,11 @@ class RegistrationHandler extends ManagerHandler {
 	 * Display a list of registrations for the current scheduled conference.
 	 */
 	function registration() {
-		parent::validate();
-		RegistrationHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$schedConf = &Request::getSchedConf();
-		$rangeInfo =& PKPHandler::getRangeInfo('registrations', array());
+		$rangeInfo =& Handler::getRangeInfo('registrations', array());
 		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
 
 		// Get the user's search conditions, if any
@@ -53,13 +53,13 @@ class RegistrationHandler extends ManagerHandler {
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
 
 		// Set search parameters
-		foreach (RegistrationHandler::getSearchFormDuplicateParameters() as $param)
+		foreach ($this->getSearchFormDuplicateParameters() as $param)
 			$templateMgr->assign($param, Request::getUserVar($param));
 
 		$templateMgr->assign('dateFrom', $fromDate);
 		$templateMgr->assign('dateTo', $toDate);
-		$templateMgr->assign('fieldOptions', RegistrationHandler::getSearchFieldOptions());
-		$templateMgr->assign('dateFieldOptions', RegistrationHandler::getDateFieldOptions());
+		$templateMgr->assign('fieldOptions', $this->getSearchFieldOptions());
+		$templateMgr->assign('dateFieldOptions', $this->getDateFieldOptions());
 
 		$templateMgr->display('registration/registrations.tpl');
 	}
@@ -108,7 +108,7 @@ class RegistrationHandler extends ManagerHandler {
 	 * @param $args array first parameter is the ID of the registration to delete
 	 */
 	function deleteRegistration($args) {
-		parent::validate();
+		$this->validate();
 
 		if (isset($args) && !empty($args)) {
 			$schedConf = &Request::getSchedConf();
@@ -130,8 +130,8 @@ class RegistrationHandler extends ManagerHandler {
 	 * @param $args array optional, first parameter is the ID of the registration to edit
 	 */
 	function editRegistration($args = array()) {
-		parent::validate();
-		RegistrationHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$schedConf = &Request::getSchedConf();
 		$registrationId = !isset($args) || empty($args) ? null : (int) $args[0];
@@ -169,16 +169,16 @@ class RegistrationHandler extends ManagerHandler {
 	 * Display form to create new registration.
 	 */
 	function createRegistration() {
-		RegistrationHandler::editRegistration();
+		$this->editRegistration();
 	}
 
 	/**
 	 * Display a list of users from which to choose a registrant.
 	 */
 	function selectRegistrant() {
-		parent::validate();
+		$this->validate();
 		$templateMgr = &TemplateManager::getManager();
-		RegistrationHandler::setupTemplate();
+		$this->setupTemplate();
 		$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registration'), 'manager.registration'));
 
 		$userDao = &DAORegistry::getDAO('UserDAO');
@@ -197,7 +197,7 @@ class RegistrationHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo =& PKPHandler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
+		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 
 		while (true) {
 			$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
@@ -231,8 +231,8 @@ class RegistrationHandler extends ManagerHandler {
 	 * Save changes to a registration.
 	 */
 	function updateRegistration() {
-		parent::validate();
-		RegistrationHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		import('registration.form.RegistrationForm');
 
@@ -256,7 +256,7 @@ class RegistrationHandler extends ManagerHandler {
 				}
 
 			} else {
-				RegistrationHandler::setupTemplate();
+				$this->setupTemplate();
 
 				$templateMgr = &TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registration'), 'manager.registration'));
@@ -279,11 +279,11 @@ class RegistrationHandler extends ManagerHandler {
 	 * Display a list of registration types for the current scheduled conference.
 	 */
 	function registrationTypes() {
-		parent::validate();
-		RegistrationHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf = &Request::getSchedConf();
-		$rangeInfo =& PKPHandler::getRangeInfo('registrationTypes', array());
+		$rangeInfo =& Handler::getRangeInfo('registrationTypes', array());
 		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
 		while (true) {
 			$registrationTypes = &$registrationTypeDao->getRegistrationTypesBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
@@ -304,7 +304,7 @@ class RegistrationHandler extends ManagerHandler {
 	 * Rearrange the order of registration types.
 	 */
 	function moveRegistrationType($args) {
-		parent::validate();
+		$this->validate();
 
 		$registrationTypeId = isset($args[0])?$args[0]:0;
 		$schedConf = &Request::getSchedConf();
@@ -327,7 +327,7 @@ class RegistrationHandler extends ManagerHandler {
 	 * @param $args array first parameter is the ID of the registration type to delete
 	 */
 	function deleteRegistrationType($args) {
-		parent::validate();
+		$this->validate();
 
 		if (isset($args) && !empty($args)) {
 			$schedConf = &Request::getSchedConf();
@@ -349,8 +349,8 @@ class RegistrationHandler extends ManagerHandler {
 	 * @param $args array optional, first parameter is the ID of the registration type to edit
 	 */
 	function editRegistrationType($args = array()) {
-		parent::validate();
-		RegistrationHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf = &Request::getSchedConf();
 		$registrationTypeId = !isset($args) || empty($args) ? null : (int) $args[0];
@@ -388,14 +388,14 @@ class RegistrationHandler extends ManagerHandler {
 	 * Display form to create new registration type.
 	 */
 	function createRegistrationType() {
-		RegistrationHandler::editRegistrationType();
+		$this->editRegistrationType();
 	}
 
 	/**
 	 * Save changes to a registration type.
 	 */
 	function updateRegistrationType() {
-		parent::validate();
+		$this->validate();
 
 		import('registration.form.RegistrationTypeForm');
 
@@ -413,7 +413,7 @@ class RegistrationHandler extends ManagerHandler {
 				$registrationTypeForm->execute();
 
 				if (Request::getUserVar('createAnother')) {
-					RegistrationHandler::setupTemplate(true);
+					$this->setupTemplate(true);
 
 					$templateMgr = &TemplateManager::getManager();
 					$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrationTypes'), 'manager.registrationTypes'));
@@ -430,7 +430,7 @@ class RegistrationHandler extends ManagerHandler {
 				}
 
 			} else {
-				RegistrationHandler::setupTemplate(true);
+				$this->setupTemplate(true);
 
 				$templateMgr = &TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrationTypes'), 'manager.registrationTypes'));
@@ -453,11 +453,11 @@ class RegistrationHandler extends ManagerHandler {
 	 * Display a list of registration options for the current scheduled conference.
 	 */
 	function registrationOptions() {
-		parent::validate();
-		RegistrationHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
-		$rangeInfo =& PKPHandler::getRangeInfo('registrationOptions', array());
+		$rangeInfo =& Handler::getRangeInfo('registrationOptions', array());
 		$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
 		while (true) {
 			$registrationOptions =& $registrationOptionDao->getRegistrationOptionsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
@@ -478,7 +478,7 @@ class RegistrationHandler extends ManagerHandler {
 	 * Rearrange the order of registration options.
 	 */
 	function moveRegistrationOption($args) {
-		parent::validate();
+		$this->validate();
 
 		$registrationOptionId = isset($args[0])?$args[0]:0;
 		$schedConf =& Request::getSchedConf();
@@ -501,7 +501,7 @@ class RegistrationHandler extends ManagerHandler {
 	 * @param $args array first parameter is the ID of the registration type to delete
 	 */
 	function deleteRegistrationOption($args) {
-		parent::validate();
+		$this->validate();
 
 		if (isset($args) && !empty($args)) {
 			$schedConf = &Request::getSchedConf();
@@ -523,8 +523,8 @@ class RegistrationHandler extends ManagerHandler {
 	 * @param $args array optional, first parameter is the ID of the registration option to edit
 	 */
 	function editRegistrationOption($args = array()) {
-		parent::validate();
-		RegistrationHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
 		$registrationOptionId = !isset($args) || empty($args) ? null : (int) $args[0];
@@ -562,14 +562,14 @@ class RegistrationHandler extends ManagerHandler {
 	 * Display form to create new registration option.
 	 */
 	function createRegistrationOption() {
-		RegistrationHandler::editRegistrationOption();
+		$this->editRegistrationOption();
 	}
 
 	/**
 	 * Save changes to a registration option.
 	 */
 	function updateRegistrationOption() {
-		parent::validate();
+		$this->validate();
 
 		import('registration.form.RegistrationOptionForm');
 
@@ -587,7 +587,7 @@ class RegistrationHandler extends ManagerHandler {
 				$registrationOptionForm->execute();
 
 				if (Request::getUserVar('createAnother')) {
-					RegistrationHandler::setupTemplate(true);
+					$this->setupTemplate(true);
 
 					$templateMgr =& TemplateManager::getManager();
 					$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrationOptions'), 'manager.registrationOptions'));
@@ -604,7 +604,7 @@ class RegistrationHandler extends ManagerHandler {
 				}
 
 			} else {
-				RegistrationHandler::setupTemplate(true);
+				$this->setupTemplate(true);
 
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrationOptions'), 'manager.registrationOptions'));
@@ -627,8 +627,8 @@ class RegistrationHandler extends ManagerHandler {
 	 * Display registration policies for the current scheduled conference.
 	 */
 	function registrationPolicies() {
-		parent::validate();
-		RegistrationHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('registration.form.RegistrationPolicyForm');
 
@@ -653,7 +653,7 @@ class RegistrationHandler extends ManagerHandler {
 	 * Save registration policies for the current scheduled conference.
 	 */
 	function saveRegistrationPolicies($args = array()) {
-		parent::validate();
+		$this->validate();
 
 		import('registration.form.RegistrationPolicyForm');
 

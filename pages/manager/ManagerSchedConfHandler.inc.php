@@ -20,12 +20,12 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	 * Display a list of the scheduled conferences hosted on the site.
 	 */
 	function schedConfs() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$conference = &Request::getConference();
 
-		$rangeInfo = PKPHandler::getRangeInfo('schedConfs', array());
+		$rangeInfo = Handler::getRangeInfo('schedConfs', array());
 
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		while (true) {
@@ -71,8 +71,8 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	 * @param $args array optional, if set the first parameter is the ID of the scheduled conference to edit
 	 */
 	function editSchedConf($args = array()) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.SchedConfSettingsForm');
 
@@ -90,7 +90,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	 * Save changes to a scheduled conference's settings.
 	 */
 	function updateSchedConf() {
-		parent::validate();
+		$this->validate();
 
 		import('manager.form.SchedConfSettingsForm');
 
@@ -104,7 +104,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 			Request::redirect(null, null, null, 'schedConfs');
 
 		} else {
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 			$settingsForm->display();
 		}
 	}
@@ -114,7 +114,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	 * @param $args array first parameter is the ID of the scheduled conference to delete
 	 */
 	function deleteSchedConf($args) {
-		parent::validate();
+		$this->validate();
 
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 
@@ -146,7 +146,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	 * Change the sequence of a schedConf on the site index page.
 	 */
 	function moveSchedConf() {
-		parent::validate();
+		$this->validate();
 
 		$conference =& Request::getConference();
 

@@ -23,7 +23,7 @@ class PluginHandler extends ManagerHandler {
 		$categories = PluginRegistry::getCategories();
 
 		$templateMgr =& TemplateManager::getManager();
-		parent::validate();
+		$this->validate();
 
 		if (isset($category)) {
 			// The user specified a category of plugins to view;
@@ -31,7 +31,7 @@ class PluginHandler extends ManagerHandler {
 			$mainPage = false;
 			$plugins =& PluginRegistry::loadCategory($category);
 			
-			parent::setupTemplate(false);
+			$this->setupTemplate(false);
 			$templateMgr->assign('pageTitle', 'plugins.categories.' . $category);
 			$templateMgr->assign('pageHierarchy', PluginHandler::setBreadcrumbs(true));
 		} else {
@@ -45,7 +45,7 @@ class PluginHandler extends ManagerHandler {
 				}
 			}
 			
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 			$templateMgr->assign('pageTitle', 'manager.plugins.pluginManagement');
 			$templateMgr->assign('pageHierarchy', PluginHandler::setBreadcrumbs(false));
 		}
@@ -69,7 +69,7 @@ class PluginHandler extends ManagerHandler {
 		$plugin = array_shift($args);
 		$verb = array_shift($args);
 
-		parent::validate();
+		$this->validate();
 
 		$plugins =& PluginRegistry::loadCategory($category);
 		$message = null;

@@ -19,12 +19,12 @@ import('rt.ocs.ConferenceRTAdmin');
 class RTSetupHandler extends RTAdminHandler {
 
 	function settings() {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$conference = Request::getConference();
 
 		if ($conference) {
-			RTAdminHandler::setupTemplate(true);
+			$this->setupTemplate(true);
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign_by_ref('conferences', $conferences);
 
@@ -60,7 +60,7 @@ class RTSetupHandler extends RTAdminHandler {
 	}
 
 	function saveSettings() {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$conference = Request::getConference();
 

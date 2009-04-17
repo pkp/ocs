@@ -20,8 +20,11 @@ class CreateAccountHandler extends UserHandler {
 	 * Display account form for new users.
 	 */
 	function account() {
-		list($conference, $schedConf) = CreateAccountHandler::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
+		
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		if ($conference != null && $schedConf != null) {
 
@@ -69,7 +72,7 @@ class CreateAccountHandler extends UserHandler {
 	 * Validate user information and create new user.
 	 */
 	function createAccount() {
-		CreateAccountHandler::validate();
+		$this->validate();
 		import('user.form.CreateAccountForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
@@ -85,7 +88,7 @@ class CreateAccountHandler extends UserHandler {
 			}
 			Validation::login($regForm->getData('username'), $regForm->getData('password'), $reason);
 			if ($reason !== null) {
-				parent::setupTemplate(true);
+				$this->setupTemplate(true);
 				$templateMgr = &TemplateManager::getManager();
 				$templateMgr->assign('pageTitle', 'user.login');
 				$templateMgr->assign('errorMsg', $reason==''?'user.login.accountDisabled':'user.login.accountDisabledWithReason');
@@ -100,7 +103,7 @@ class CreateAccountHandler extends UserHandler {
 			else Request::redirect(null, null, 'login');
 
 		} else {
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 			$regForm->display();
 		}
 	}
@@ -109,7 +112,7 @@ class CreateAccountHandler extends UserHandler {
 	 * Show error message if user account creation is not allowed.
 	 */
 	function createAccountDisabled() {
-		parent::setupTemplate(true);
+		$this->setupTemplate(true);
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageTitle', 'navigation.account');
 		$templateMgr->assign('errorMsg', 'user.account.createAccountDisabled');
@@ -159,18 +162,19 @@ class CreateAccountHandler extends UserHandler {
 	 * Checks if conference allows user account creation.
 	 */	
 	function validate() {
-		list($conference, $schedConf) = parent::validate(false);
+		parent::validate(false);
+		$conference =& Request::getConference();
 
 		if ($conference != null) {
 			$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
 			if ($conferenceSettingsDao->getSetting($conference->getConferenceId(), 'disableUserReg')) {
 				// Users cannot create accounts for this conference
-				CreateAccountHandler::createAccountDisabled();
+				$this->createAccountDisabled();
 				exit;
 			}
 		}
 
-		return array($conference, $schedConf);
+		return true;
 	}
 
 }

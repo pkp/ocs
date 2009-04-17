@@ -17,16 +17,16 @@
 
 
 import('rt.ocs.ConferenceRTAdmin');
-import('core.PKPHandler');
+import('handler.Handler');
 
-class RTAdminHandler extends PKPHandler {
+class RTAdminHandler extends Handler {
 
 	/**
 	 * If no conference is selected, display list of conferences.
 	 * Otherwise, display the index page for the selected conference.
 	 */
 	function index() {
-		RTAdminHandler::validate();
+		$this->validate();
 		$conference = Request::getConference();
 		$user = Request::getUser();
 		if ($conference) {
@@ -38,7 +38,7 @@ class RTAdminHandler extends PKPHandler {
 
 			// Display the administration menu for this conference.
 
-			RTAdminHandler::setupTemplate();
+			$this->setupTemplate();
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools');
 			$templateMgr->assign('versionTitle', isset($version)?$version->getTitle():null);
@@ -61,7 +61,7 @@ class RTAdminHandler extends PKPHandler {
 				}
 			}
 
-			RTAdminHandler::setupTemplate();
+			$this->setupTemplate();
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools');
@@ -83,22 +83,8 @@ class RTAdminHandler extends PKPHandler {
 	}
 
 
-	//
-	// General
-	//
-
-	function settings() {
-		import('pages.rtadmin.RTSetupHandler');
-		RTSetupHandler::settings();
-	}
-
-	function saveSettings() {
-		import('pages.rtadmin.RTSetupHandler');
-		RTSetupHandler::saveSettings();
-	}
-
 	function validateUrls($args) {
-		RTAdminHandler::validate();
+		$this->validate();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
 		$conference = Request::getConference();
@@ -123,126 +109,12 @@ class RTAdminHandler extends PKPHandler {
 			$versions = $rtDao->getVersions($conferenceId);
 		}
 
-		RTAdminHandler::setupTemplate(true, $version);
+		$this->setupTemplate(true, $version);
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->register_modifier('validate_url', 'smarty_rtadmin_validate_url');
 		$templateMgr->assign_by_ref('versions', $versions);
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools');
 		$templateMgr->display('rtadmin/validate.tpl');
-	}
-
-	//
-	// Versions
-	//
-
-	function createVersion($args) {
-		import('pages.rtadmin.RTVersionHandler');
-		RTVersionHandler::createVersion($args);
-	}
-
-	function exportVersion($args) {
-		import('pages.rtadmin.RTVersionHandler');
-		RTVersionHandler::exportVersion($args);
-	}
-
-	function importVersion($args) {
-		import('pages.rtadmin.RTVersionHandler');
-		RTVersionHandler::importVersion($args);
-	}
-
-	function restoreVersions() {
-		import('pages.rtadmin.RTVersionHandler');
-		RTVersionHandler::restoreVersions();
-	}
-
-	function versions() {
-		import('pages.rtadmin.RTVersionHandler');
-		RTVersionHandler::versions();
-	}
-
-	function editVersion($args) {
-		import('pages.rtadmin.RTVersionHandler');
-		RTVersionHandler::editVersion($args);
-	}
-
-	function deleteVersion($args) {
-		import('pages.rtadmin.RTVersionHandler');
-		RTVersionHandler::deleteVersion($args);
-	}
-
-	function saveVersion($args) {
-		import('pages.rtadmin.RTVersionHandler');
-		RTVersionHandler::saveVersion($args);
-	}
-
-
-	//
-	// Contexts
-	//
-
-	function createContext($args) {
-		import('pages.rtadmin.RTContextHandler');
-		RTContextHandler::createContext($args);
-	}
-
-	function contexts($args) {
-		import('pages.rtadmin.RTContextHandler');
-		RTContextHandler::contexts($args);
-	}
-
-	function editContext($args) {
-		import('pages.rtadmin.RTContextHandler');
-		RTContextHandler::editContext($args);
-	}
-
-	function saveContext($args) {
-		import('pages.rtadmin.RTContextHandler');
-		RTContextHandler::saveContext($args);
-	}
-
-	function deleteContext($args) {
-		import('pages.rtadmin.RTContextHandler');
-		RTContextHandler::deleteContext($args);
-	}
-
-	function moveContext($args) {
-		import('pages.rtadmin.RTContextHandler');
-		RTContextHandler::moveContext($args);
-	}
-
-
-	//
-	// Searches
-	//
-
-	function createSearch($args) {
-		import('pages.rtadmin.RTSearchHandler');
-		RTSearchHandler::createSearch($args);
-	}
-
-	function searches($args) {
-		import('pages.rtadmin.RTSearchHandler');
-		RTSearchHandler::searches($args);
-	}
-
-	function editSearch($args) {
-		import('pages.rtadmin.RTSearchHandler');
-		RTSearchHandler::editSearch($args);
-	}
-
-	function saveSearch($args) {
-		import('pages.rtadmin.RTSearchHandler');
-		RTSearchHandler::saveSearch($args);
-	}
-
-	function deleteSearch($args) {
-		import('pages.rtadmin.RTSearchHandler');
-		RTSearchHandler::deleteSearch($args);
-	}
-
-	function moveSearch($args) {
-		import('pages.rtadmin.RTSearchHandler');
-		RTSearchHandler::moveSearch($args);
 	}
 
 	/**

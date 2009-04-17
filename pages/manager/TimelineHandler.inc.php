@@ -20,8 +20,8 @@ class TimelineHandler extends ManagerHandler {
 	 * Display a list of the tracks within the current conference.
 	 */
 	function timeline($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.TimelineForm');
 
@@ -33,8 +33,8 @@ class TimelineHandler extends ManagerHandler {
 	}
 
 	function updateTimeline($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.TimelineForm');
 
@@ -46,7 +46,7 @@ class TimelineHandler extends ManagerHandler {
 			$timelineForm->execute();
 			Request::redirect(null, null, null, 'index');
 		} else {
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 			$timelineForm->setData('errorsExist', true);
 			$timelineForm->display();
 		}

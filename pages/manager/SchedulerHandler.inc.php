@@ -20,8 +20,8 @@ class SchedulerHandler extends ManagerHandler {
 	 * Display the scheduler index page
 	 */
 	function scheduler() {
-		parent::validate();
-		SchedulerHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.scheduler');
@@ -32,11 +32,11 @@ class SchedulerHandler extends ManagerHandler {
 	 * Display a list of buildings to manage.
 	 */
 	function buildings() {
-		parent::validate();
-		SchedulerHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
-		$rangeInfo =& PKPHandler::getRangeInfo('buildings', array());
+		$rangeInfo =& Handler::getRangeInfo('buildings', array());
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 		while (true) {
 			$buildings =& $buildingDao->getBuildingsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
@@ -57,7 +57,7 @@ class SchedulerHandler extends ManagerHandler {
 	 * @param $args array first parameter is the ID of the building to delete
 	 */
 	function deleteBuilding($args) {
-		parent::validate();
+		$this->validate();
 		$buildingId = (int) array_shift($args);
 		$schedConf =& Request::getSchedConf();
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
@@ -75,8 +75,8 @@ class SchedulerHandler extends ManagerHandler {
 	 * @param $args array optional, first parameter is the ID of the building to edit
 	 */
 	function editBuilding($args = array()) {
-		parent::validate();
-		SchedulerHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
 		$buildingId = !isset($args) || empty($args) ? null : (int) $args[0];
@@ -113,14 +113,14 @@ class SchedulerHandler extends ManagerHandler {
 	 * Display form to create new building.
 	 */
 	function createBuilding() {
-		SchedulerHandler::editBuilding();
+		$this->editBuilding();
 	}
 
 	/**
 	 * Save changes to a building.
 	 */
 	function updateBuilding() {
-		parent::validate();
+		$this->validate();
 
 		import('manager.form.scheduler.BuildingForm');
 
@@ -144,7 +144,7 @@ class SchedulerHandler extends ManagerHandler {
 				}
 
 			} else {
-				SchedulerHandler::setupTemplate(true);
+				$this->setupTemplate(true);
 
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'buildings'), 'manager.scheduler.buildings'));
@@ -170,8 +170,8 @@ class SchedulerHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		$buildingId = (int) array_shift($args);
 
-		parent::validate();
-		SchedulerHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 		$building =& $buildingDao->getBuilding($buildingId);
@@ -180,7 +180,7 @@ class SchedulerHandler extends ManagerHandler {
 			Request::redirect(null, null, null, 'scheduler');
 		}
 
-		$rangeInfo =& PKPHandler::getRangeInfo('rooms', array($buildingId));
+		$rangeInfo =& Handler::getRangeInfo('rooms', array($buildingId));
 		$roomDao =& DAORegistry::getDAO('RoomDAO');
 		while (true) {
 			$rooms =& $roomDao->getRoomsByBuildingId($buildingId, $rangeInfo);
@@ -202,7 +202,7 @@ class SchedulerHandler extends ManagerHandler {
 	 * @param $args array first parameter is the ID of the room to delete
 	 */
 	function deleteRoom($args) {
-		parent::validate();
+		$this->validate();
 		$roomId = (int) array_shift($args);
 		$schedConf =& Request::getSchedConf();
 
@@ -229,8 +229,8 @@ class SchedulerHandler extends ManagerHandler {
 	 * @param $args array optional, first parameter is the ID of the room to edit
 	 */
 	function editRoom($args) {
-		parent::validate();
-		SchedulerHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
 		$buildingId = (int) array_shift($args);
@@ -280,14 +280,14 @@ class SchedulerHandler extends ManagerHandler {
 	 * Display form to create new room.
 	 */
 	function createRoom($args) {
-		SchedulerHandler::editRoom($args);
+		$this->editRoom($args);
 	}
 
 	/**
 	 * Save changes to a room.
 	 */
 	function updateRoom() {
-		parent::validate();
+		$this->validate();
 
 		import('manager.form.scheduler.RoomForm');
 
@@ -323,7 +323,7 @@ class SchedulerHandler extends ManagerHandler {
 				}
 
 			} else {
-				SchedulerHandler::setupTemplate(true);
+				$this->setupTemplate(true);
 
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'rooms', array($buildingId)), 'manager.scheduler.rooms'));
@@ -346,11 +346,11 @@ class SchedulerHandler extends ManagerHandler {
 	 * Display a list of special events to manage.
 	 */
 	function specialEvents() {
-		parent::validate();
-		SchedulerHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
-		$rangeInfo =& PKPHandler::getRangeInfo('specialEvents', array());
+		$rangeInfo =& Handler::getRangeInfo('specialEvents', array());
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 		while (true) {
 			$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
@@ -371,7 +371,7 @@ class SchedulerHandler extends ManagerHandler {
 	 * @param $args array first parameter is the ID of the special event to delete
 	 */
 	function deleteSpecialEvent($args) {
-		parent::validate();
+		$this->validate();
 		$specialEventId = (int) array_shift($args);
 		$schedConf =& Request::getSchedConf();
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
@@ -389,8 +389,8 @@ class SchedulerHandler extends ManagerHandler {
 	 * @param $args array optional, first parameter is the ID of the specialEvent to edit
 	 */
 	function editSpecialEvent($args = array()) {
-		parent::validate();
-		SchedulerHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
 		$specialEventId = !isset($args) || empty($args) ? null : (int) $args[0];
@@ -427,14 +427,14 @@ class SchedulerHandler extends ManagerHandler {
 	 * Display form to create new special event.
 	 */
 	function createSpecialEvent() {
-		SchedulerHandler::editSpecialEvent();
+		$this->editSpecialEvent();
 	}
 
 	/**
 	 * Save changes to a special event.
 	 */
 	function updateSpecialEvent() {
-		parent::validate();
+		$this->validate();
 
 		import('manager.form.scheduler.SpecialEventForm');
 
@@ -458,7 +458,7 @@ class SchedulerHandler extends ManagerHandler {
 				}
 
 			} else {
-				SchedulerHandler::setupTemplate(true);
+				$this->setupTemplate(true);
 
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'specialEvents'), 'manager.scheduler.specialEvents'));
@@ -481,8 +481,8 @@ class SchedulerHandler extends ManagerHandler {
 	 * Display the conference schedule.
 	 */
 	function schedule($args) {
-		parent::validate();
-		SchedulerHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
 
@@ -498,8 +498,8 @@ class SchedulerHandler extends ManagerHandler {
 	 * Save the schedule.
 	 */
 	function saveSchedule() {
-		parent::validate();
-		SchedulerHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
 
@@ -523,7 +523,7 @@ class SchedulerHandler extends ManagerHandler {
 	 * opposed to the index)
 	 */
 	function setupTemplate($subclass = false) {
-		parent::setupTemplate(true);
+		$this->setupTemplate(true);
 		if ($subclass) {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'scheduler'), 'manager.scheduler'));

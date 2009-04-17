@@ -22,8 +22,8 @@ class ManagerSetupHandler extends ManagerHandler {
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
 	function setup($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
@@ -52,13 +52,13 @@ class ManagerSetupHandler extends ManagerHandler {
 	 * @param $args array first parameter is the step being saved
 	 */
 	function saveSetup($args) {
-		parent::validate();
+		$this->validate();
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 6) {
 
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 
 			$formClass = "ConferenceSetupStep{$step}Form";
 			import("manager.form.setup.$formClass");
@@ -195,12 +195,12 @@ class ManagerSetupHandler extends ManagerHandler {
 	 * Display the "settings saved" page
 	 */
 	function setupSaved($args) {
-		parent::validate();
+		$this->validate();
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 6) {
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 			$templateMgr = &TemplateManager::getManager();
 			$templateMgr->assign('setupStep', $step);
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.websiteManagement');

@@ -16,9 +16,9 @@
 // $Id$
 
 import('search.PaperSearch');
-import('core.PKPHandler');
+import('handler.Handler');
 
-class SearchHandler extends PKPHandler {
+class SearchHandler extends Handler {
 
 	/**
 	 * Show the advanced form
@@ -143,7 +143,7 @@ class SearchHandler extends PKPHandler {
 		} else {
 			// Show the author index
 			$searchInitial = Request::getUserVar('searchInitial');
-			$rangeInfo = PKPHandler::getRangeInfo('authors');
+			$rangeInfo = Handler::getRangeInfo('authors');
 
 			$schedConf =& Request::getSchedConf();
 
@@ -175,7 +175,7 @@ class SearchHandler extends PKPHandler {
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 
-		$rangeInfo = PKPHandler::getRangeInfo('search');
+		$rangeInfo = Handler::getRangeInfo('search');
 
 		$allPaperIds = &$publishedPaperDao->getPublishedPaperIdsAlphabetizedByTitle(
 			$conference? $conference->getConferenceId():null,
@@ -248,7 +248,7 @@ class SearchHandler extends PKPHandler {
 		parent::validate();
 		SearchHandler::setupTemplate(true);
 
-		$rangeInfo = PKPHandler::getRangeInfo('search');
+		$rangeInfo = Handler::getRangeInfo('search');
 
 		$searchConferenceId = Request::getUserVar('searchConference');
 		if (!empty($searchConferenceId)) {
@@ -280,7 +280,7 @@ class SearchHandler extends PKPHandler {
 		parent::validate();
 		SearchHandler::setupTemplate(true);
 
-		$rangeInfo = PKPHandler::getRangeInfo('search');
+		$rangeInfo = Handler::getRangeInfo('search');
 
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$searchConferenceId = Request::getUserVar('searchConference');

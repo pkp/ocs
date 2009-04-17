@@ -20,8 +20,8 @@ class ManagerPaymentHandler extends ManagerHandler {
 	 * Display form to edit program settings.
 	 */
 	function paymentSettings() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect (null, null, 'index');
@@ -38,8 +38,8 @@ class ManagerPaymentHandler extends ManagerHandler {
 	 * Save changes to payment settings.
 	 */
 	function savePaymentSettings() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect (null, null, 'index');

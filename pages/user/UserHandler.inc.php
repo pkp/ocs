@@ -16,15 +16,15 @@
 // $Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 
-class UserHandler extends PKPHandler {
+class UserHandler extends Handler {
 
 	/**
 	 * Display user index page.
 	 */
 	function index() {
-		UserHandler::validate();
+		$this->validate();
 
 		$user =& Request::getUser();
 		$userId = $user->getUserId();
@@ -38,7 +38,7 @@ class UserHandler extends PKPHandler {
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 
-		UserHandler::setupTemplate();
+		$this->setupTemplate();
 		$templateMgr = &TemplateManager::getManager();
 
 		$conference = &Request::getConference();
@@ -66,9 +66,9 @@ class UserHandler extends PKPHandler {
 				}
 
 				// Determine if conference setup is incomplete, to provide a message for JM
-				$setupIncomplete[$conferenceId] = UserHandler::checkCompleteSetup($conference);
+				$setupIncomplete[$conferenceId] = $this->checkCompleteSetup($conference);
 				
-				UserHandler::getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
+				$this->getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
 
 				// Second, scheduled conference-specific roles
 				// TODO: don't display scheduled conference roles if granted at conference level too?
@@ -79,7 +79,7 @@ class UserHandler extends PKPHandler {
 					$schedConfRoles =& $roleDao->getRolesByUserId($userId, $conferenceId, $schedConfId);
 					if(!empty($schedConfRoles)) {
 						$schedConfsToDisplay[$conferenceId][$schedConfId] =& $schedConf;
-						UserHandler::getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
+						$this->getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
 					}
 					$allSchedConfs[$conference->getConferenceId()][$schedConf->getSchedConfId()] =& $schedConf;
 					unset($schedConf);
@@ -102,14 +102,14 @@ class UserHandler extends PKPHandler {
 			$conferenceId = $conference->getConferenceId();
 			$userConferences = array($conference);
 			
-			UserHandler::getRoleDataForConference($userId, $conferenceId, 0, $submissionsCount, $isValid);
+			$this->getRoleDataForConference($userId, $conferenceId, 0, $submissionsCount, $isValid);
 
 			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
 			while($schedConf =& $schedConfs->next()) {
 				$schedConfId = $schedConf->getSchedConfId();
 				$schedConfRoles =& $roleDao->getRolesByUserId($userId, $conferenceId, $schedConfId);
 				if(!empty($schedConfRoles)) {
-					UserHandler::getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
+					$this->getRoleDataForConference($userId, $conferenceId, $schedConfId, $submissionsCount, $isValid);
 					$schedConfsToDisplay[$conferenceId][$schedConfId] =& $schedConf;
 				}
 
@@ -222,7 +222,11 @@ class UserHandler extends PKPHandler {
 	 * Become a given role.
 	 */
 	function become($args) {
-		list($conference, $schedConf) = parent::validate(true, true);
+		$this->addCheck(new HandlerValidatorConference(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->validate();
+		$schedConf =& Request::getSchedConf();
+		
 		import('schedConf.SchedConfAction');
 		$user =& Request::getUser();
 		if (!$user) Request::redirect(null, null, 'index');
@@ -267,13 +271,13 @@ class UserHandler extends PKPHandler {
 	 * @param $loginCheck boolean check if user is logged in
 	 */
 	function validate($loginCheck = true) {
-		list($conference, $schedConf) = parent::validate();
+		parent::validate();
 
 		if ($loginCheck && !Validation::isLoggedIn()) {
 			Validation::redirectLogin();
 		}
 
-		return array($conference, $schedConf);
+		return true;
 	}
 
 	/**
@@ -301,60 +305,6 @@ class UserHandler extends PKPHandler {
 		}
 
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
-	}
-
-
-	//
-	// Profiles
-	//
-
-	function profile() {
-		import('pages.user.ProfileHandler');
-		ProfileHandler::profile();
-	}
-
-	function saveProfile() {
-		import('pages.user.ProfileHandler');
-		ProfileHandler::saveProfile();
-	}
-
-	function changePassword() {
-		import('pages.user.ProfileHandler');
-		ProfileHandler::changePassword();
-	}
-
-	function savePassword() {
-		import('pages.user.ProfileHandler');
-		ProfileHandler::savePassword();
-	}
-
-
-	//
-	// Create Account
-	//
-
-	function account() {
-		import('pages.user.CreateAccountHandler');
-		CreateAccountHandler::account();
-	}
-
-	function createAccount() {
-		import('pages.user.CreateAccountHandler');
-		CreateAccountHandler::createAccount();
-	}
-
-	function activateUser($args) {
-		import('pages.user.CreateAccountHandler');
-		CreateAccountHandler::activateUser($args);
-	}
-
-	//
-	// Email
-	//
-
-	function email($args) {
-		import('pages.user.EmailHandler');
-		EmailHandler::email($args);
 	}
 
 	//

@@ -15,16 +15,17 @@
 //$Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 
-class InformationHandler extends PKPHandler {
+class InformationHandler extends Handler {
 
 	/**
 	 * Display the information page for the conference..
 	 */
 	function index($args) {
-		parent::validate();
-		InformationHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
+		
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		$schedConfContent = null;
@@ -65,18 +66,18 @@ class InformationHandler extends PKPHandler {
 	}
 
 	function readers() {
-		InformationHandler::index(array('readers'));
+		$this->index(array('readers'));
 	}
 
 	function authors() {
-		InformationHandler::index(array('authors'));
+		$this->index(array('authors'));
 	}
 
 	/**
 	 * Initialize the template.
 	 */
 	function setupTemplate() {
-		parent::setupTemplate();
+		$this->setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 	}

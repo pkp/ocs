@@ -21,8 +21,8 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array first parameter is the role ID to display
 	 */	
 	function people($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
@@ -60,7 +60,7 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo =& PKPHandler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType, $roleId));
+		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType, $roleId));
 
 		if ($roleId) {
 			while (true) {
@@ -137,8 +137,8 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array first parameter is the selected role ID
 	 */
 	function enrollSearch($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -148,8 +148,6 @@ class PeopleHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 
 		$templateMgr =& TemplateManager::getManager();
-
-		parent::setupTemplate(true);
 
 		$searchType = null;
 		$searchMatch = null;
@@ -165,7 +163,7 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo =& PKPHandler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
+		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 
 		while (true) {
 			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
@@ -202,7 +200,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Enroll a user in a role.
 	 */
 	function enroll($args) {
-		parent::validate();
+		$this->validate();
 
 		$roleId = (int)(isset($args[0])?$args[0]:Request::getUserVar('roleId'));
 
@@ -266,7 +264,7 @@ class PeopleHandler extends ManagerHandler {
 	 */
 	function unEnroll($args) {
 		$roleId = isset($args[0])?$args[0]:0;
-		parent::validate();
+		$this->validate();
 
 		$conference =& Request::getConference();
 		$isConferenceManager = Validation::isConferenceManager($conference->getConferenceId()) || Validation::isSiteAdmin();
@@ -285,8 +283,8 @@ class PeopleHandler extends ManagerHandler {
 	 * Show form to synchronize user enrollment with another conference.
 	 */
 	function enrollSyncSelect($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$rolePath = isset($args[0]) ? $args[0] : '';
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -318,7 +316,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Synchronize user enrollment with another conference.
 	 */
 	function enrollSync($args) {
-		parent::validate();
+		$this->validate();
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
@@ -350,7 +348,7 @@ class PeopleHandler extends ManagerHandler {
 	 * already used by the system. (Poor-man's AJAX.)
 	 */
 	function suggestUsername() {
-		parent::validate();
+		$this->validate();
 		$suggestion = Validation::suggestUsername(
 			Request::getUserVar('firstName'),
 			Request::getUserVar('lastName')
@@ -370,8 +368,8 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array optional, if set the first parameter is the ID of the user to edit
 	 */
 	function editUser($args = array()) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$conference =& Request::getConference();
 
@@ -408,8 +406,8 @@ class PeopleHandler extends ManagerHandler {
 	 * Allow the Conference Manager to merge user accounts, including attributed papers etc.
 	 */
 	function mergeUsers($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -475,7 +473,7 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo =& PKPHandler::getRangeInfo('users', array($roleId, (string) $search, (string) $searchMatch, (string) $searchType));
+		$rangeInfo =& Handler::getRangeInfo('users', array($roleId, (string) $search, (string) $searchMatch, (string) $searchType));
 
 		if ($roleId) {
 			while (true) {
@@ -532,8 +530,8 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array the ID of the user to disable
 	 */
 	function disableUser($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:Request::getUserVar('userId');
 		$user =& Request::getUser();
@@ -567,8 +565,8 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array the ID of the user to enable
 	 */
 	function enableUser($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:null;
 		$user =& Request::getUser();
@@ -590,8 +588,8 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array the ID of the user to remove
 	 */
 	function removeUser($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:null;
 		$user =& Request::getUser();
@@ -609,7 +607,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Save changes to a user profile.
 	 */
 	function updateUser() {
-		parent::validate();
+		$this->validate();
 
 		$conference =& Request::getConference();
 		$userId = Request::getUserVar('userId');
@@ -649,7 +647,7 @@ class PeopleHandler extends ManagerHandler {
 			}
 
 		} else {
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 			$userForm->display();
 		}
 	}
@@ -659,8 +657,8 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array first parameter is the ID or username of the user to display
 	 */
 	function userProfile($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentUrl', Request::url(null, null, null, 'people', 'all'));
@@ -712,7 +710,7 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array ($userId)
 	 */
 	function signInAsUser($args) {
-		parent::validate();
+		$this->validate();
 
 		if (isset($args[0]) && !empty($args[0])) {
 			$userId = (int)$args[0];
@@ -749,7 +747,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Restore original user account after signing in as a user.
 	 */
 	function signOutAsUser() {
-		PKPHandler::validate();
+		Handler::validate();
 
 		$session =& Request::getSession();
 		$signedInAs = $session->getSessionVar('signedInAs');

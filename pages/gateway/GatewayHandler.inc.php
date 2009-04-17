@@ -16,9 +16,9 @@
 //$Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 
-class GatewayHandler extends PKPHandler {
+class GatewayHandler extends Handler {
 
 	function index() {
 		Request::redirect(null, 'index');
@@ -28,7 +28,7 @@ class GatewayHandler extends PKPHandler {
 	 * Handle requests for gateway plugins.
 	 */
 	function plugin($args) {
-		parent::validate();
+		$this->validate();
 		$pluginName = array_shift($args);
 
 		$plugins =& PluginRegistry::loadCategory('gateways');

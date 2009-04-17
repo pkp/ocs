@@ -49,7 +49,7 @@ class RTSearchHandler extends RTAdminHandler {
 		$conference = Request::getConference();
 
 		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$rangeInfo = PKPHandler::getRangeInfo('searches');
+		$rangeInfo = Handler::getRangeInfo('searches');
 
 		$versionId = isset($args[0])?$args[0]:0;
 		$version = &$rtDao->getVersion($versionId, $conference->getConferenceId());

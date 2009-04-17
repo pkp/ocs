@@ -17,8 +17,111 @@
 
 //$Id$
 
-define('HANDLER_CLASS', 'TrackDirectorHandler');
-
-import('pages.trackDirector.TrackDirectorHandler');
-
+switch ($op) {
+	//
+	// Submission Tracking
+	//
+	case 'enrollSearch':
+	case 'createReviewer':
+	case 'enroll':
+	case 'submission':
+	case 'submissionRegrets':
+	case 'submissionReview':
+	case 'submissionHistory':
+	case 'changeTrack':
+	case 'changeSessionType':
+	case 'recordDecision':
+	case 'selectReviewer':
+	case 'notifyReviewer':
+	case 'notifyAllReviewers':
+	case 'userProfile':
+	case 'clearReview':
+	case 'cancelReview':
+	case 'remindReviewer':
+	case 'thankReviewer':
+	case 'rateReviewer':
+	case 'confirmReviewForReviewer':
+	case 'uploadReviewForReviewer':
+	case 'enterReviewerRecommendation':
+	case 'makeReviewerFileViewable':
+	case 'setDueDate':
+	case 'viewMetadata':
+	case 'saveMetadata':
+	case 'directorReview':
+	case 'uploadReviewVersion':
+	case 'addSuppFile':
+	case 'setSuppFileVisibility':
+	case 'editSuppFile':
+	case 'saveSuppFile':
+	case 'deleteSuppFile':
+	case 'deletePaperFile':
+	case 'archiveSubmission':
+	case 'unsuitableSubmission':
+	case 'restoreToQueue':
+	case 'updateCommentsStatus':
+	//
+	// Layout Editing
+	//
+	case 'deletePaperImage':
+	case 'uploadLayoutFile':
+	case 'uploadLayoutVersion':
+	case 'uploadGalley':
+	case 'editGalley':
+	case 'saveGalley':
+	case 'orderGalley':
+	case 'deleteGalley':
+	case 'proofGalley':
+	case 'proofGalleyTop':
+	case 'proofGalleyFile':
+	case 'uploadSuppFile':
+	case 'orderSuppFile':
+	case 'completePaper':
+	//
+	// Submission History
+	//
+	case 'submissionEventLog':
+	case 'submissionEventLogType':
+	case 'clearSubmissionEventLog':
+	case 'submissionEmailLog':
+	case 'submissionEmailLogType':
+	case 'clearSubmissionEmailLog':
+	case 'addSubmissionNote':
+	case 'removeSubmissionNote':
+	case 'updateSubmissionNote':
+	case 'clearAllSubmissionNotes':
+	case 'submissionNotes':
+	//
+	// Submission Review Form
+	//
+	case 'clearReviewForm':
+	case 'selectReviewForm':
+	case 'previewReviewForm':
+	case 'viewReviewFormResponse':
+	//
+	// Misc.
+	//
+	case 'downloadFile':
+	case 'viewFile':
+		define('HANDLER_CLASS', 'SubmissionEditHandler');
+		import('pages.trackDirector.SubmissionEditHandler');
+		break;
+	//
+	// Submission Comments
+	//
+	case 'viewPeerReviewComments':
+	case 'postPeerReviewComment':
+	case 'viewDirectorDecisionComments':
+	case 'blindCcReviewsToReviewers':
+	case 'postDirectorDecisionComment':
+	case 'emailDirectorDecisionComment':
+	case 'editComment':
+	case 'saveComment':
+	case 'deleteComment':
+		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
+		import('pages.trackDirector.SubmissionCommentsHandler');
+		break;
+	default:	
+		define('HANDLER_CLASS', 'TrackDirectorHandler');
+		import('pages.trackDirector.TrackDirectorHandler');
+}
 ?>

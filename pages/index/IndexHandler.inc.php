@@ -15,9 +15,9 @@
 //$Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 
-class IndexHandler extends PKPHandler {
+class IndexHandler extends Handler {
 
 	/**
 	 * If a scheduled conference in a conference is specified, display it.
@@ -25,8 +25,11 @@ class IndexHandler extends PKPHandler {
 	 * If no conference is specified, display list of conferences.
 	 */
 	function index($args) {
-		list($conference, $schedConf) = parent::validate(false, false);
-		parent::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
+		
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		if ($schedConf && $conference) {
 

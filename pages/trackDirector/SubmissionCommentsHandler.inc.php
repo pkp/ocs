@@ -22,8 +22,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 * View peer review comments.
 	 */
 	function viewPeerReviewComments($args) {
-		TrackDirectorHandler::validate();
-		TrackDirectorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$paperId = $args[0];
 		$reviewId = $args[1];
@@ -37,8 +37,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 * Post peer review comments.
 	 */
 	function postPeerReviewComment() {
-		TrackDirectorHandler::validate();
-		TrackDirectorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$paperId = Request::getUserVar('paperId');
 		$reviewId = Request::getUserVar('reviewId');
@@ -56,8 +56,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 * View director decision comments.
 	 */
 	function viewDirectorDecisionComments($args) {
-		TrackDirectorHandler::validate();
-		TrackDirectorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$paperId = $args[0];
 
@@ -70,8 +70,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 * Post peer review comments.
 	 */
 	function postDirectorDecisionComment() {
-		TrackDirectorHandler::validate();
-		TrackDirectorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$paperId = Request::getUserVar('paperId');
 
@@ -121,8 +121,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 * Edit comment.
 	 */
 	function editComment($args) {
-		TrackDirectorHandler::validate();
-		TrackDirectorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$paperId = $args[0];
 		$commentId = $args[1];
@@ -143,8 +143,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 * Save comment.
 	 */
 	function saveComment() {
-		TrackDirectorHandler::validate();
-		TrackDirectorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$paperId = Request::getUserVar('paperId');
 		$commentId = Request::getUserVar('commentId');
@@ -178,8 +178,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 * Delete comment.
 	 */
 	function deleteComment($args) {
-		TrackDirectorHandler::validate();
-		TrackDirectorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$paperId = $args[0];
 		$commentId = $args[1];

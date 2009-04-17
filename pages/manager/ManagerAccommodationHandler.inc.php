@@ -20,8 +20,8 @@ class ManagerAccommodationHandler extends ManagerHandler {
 	 * Display form to edit accommodation settings.
 	 */
 	function accommodation() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect (null, null, 'index');
@@ -42,8 +42,8 @@ class ManagerAccommodationHandler extends ManagerHandler {
 	 * Save changes to accommodation settings.
 	 */
 	function saveAccommodationSettings() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect (null, null, 'index');

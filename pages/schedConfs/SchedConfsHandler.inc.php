@@ -16,16 +16,18 @@
 // $Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 
-class SchedConfsHandler extends PKPHandler {
+class SchedConfsHandler extends Handler {
 
 	/**
 	 * Display the home page for the current conference.
 	 */
 	function current($args) {
-		list($conference, $schedConf) = parent::validate(true, false);
-		SchedConfsHandler::setupTemplate();
+		$this->addCheck(new HandlerValidatorConference(&$this));
+		$this->validate();
+		$conference =& Request::getConference();
+		$this->setupTemplate();
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -53,8 +55,10 @@ class SchedConfsHandler extends PKPHandler {
 	 * Display the home page for the current conference.
 	 */
 	function archive($args) {
-		list($conference, $schedConf) = parent::validate(true, false);
-		SchedConfsHandler::setupTemplate();
+		$this->addCheck(new HandlerValidatorConference(&$this));
+		$this->validate();
+		$conference =& Request::getConference();
+		$this->setupTemplate();
 
 		$templateMgr = &TemplateManager::getManager();
 

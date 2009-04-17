@@ -15,17 +15,17 @@
 //$Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 
-class LoginHandler extends PKPHandler {
+class LoginHandler extends Handler {
 
 	/**
 	 * Display user login form.
 	 * Redirect to user index page if user is already validated.
 	 */
 	function index() {
-		parent::validate();
-		LoginHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 		if (Validation::isLoggedIn()) {
 			Request::redirect(null, null, 'user');
 		}
@@ -59,8 +59,8 @@ class LoginHandler extends PKPHandler {
 	 * Validate a user's credentials and log the user in.
 	 */
 	function signIn() {
-		parent::validate();
-		LoginHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 		if (Validation::isLoggedIn()) {
 			Request::redirect(null, null, 'user');
 		}
@@ -109,8 +109,8 @@ class LoginHandler extends PKPHandler {
 	 * Log a user out.
 	 */
 	function signOut() {
-		parent::validate();
-		LoginHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 		if (Validation::isLoggedIn()) {
 			Validation::logout();
 		}
@@ -127,8 +127,8 @@ class LoginHandler extends PKPHandler {
 	 * Display form to reset a user's password.
 	 */
 	function lostPassword() {
-		parent::validate();
-		LoginHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->display('user/lostPassword.tpl');
 	}
@@ -137,8 +137,8 @@ class LoginHandler extends PKPHandler {
 	 * Send a request to reset a user's password
 	 */
 	function requestResetPassword() {
-		parent::validate();
-		LoginHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
 
 		$email = Request::getUserVar('email');
@@ -186,8 +186,8 @@ class LoginHandler extends PKPHandler {
 	 * @param $args array first param contains the username of the user whose password is to be reset
 	 */
 	function resetPassword($args) {
-		parent::validate();
-		LoginHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$username = isset($args[0]) ? $args[0] : null;
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -263,8 +263,8 @@ class LoginHandler extends PKPHandler {
 	 * @param $args array first argument may contain user's username
 	 */
 	function changePassword($args = array()) {
-		parent::validate();
-		LoginHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		import('user.form.LoginChangePasswordForm');
 
@@ -281,8 +281,8 @@ class LoginHandler extends PKPHandler {
 	 * Save user's new password.
 	 */
 	function savePassword() {
-		parent::validate();
-		LoginHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		import('user.form.LoginChangePasswordForm');
 

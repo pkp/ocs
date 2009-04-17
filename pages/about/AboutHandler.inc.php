@@ -16,16 +16,16 @@
 // $Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 
-class AboutHandler extends PKPHandler {
+class AboutHandler extends Handler {
 
 	/**
 	 * Display about index page.
 	 */
 	function index() {
-		parent::validate();
-		AboutHandler::setupTemplate(false);
+		$this->validate();
+		$this->setupTemplate(false);
 
 		$templateMgr =& TemplateManager::getManager();
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
@@ -96,8 +96,8 @@ class AboutHandler extends PKPHandler {
 	 * Display contact page.
 	 */
 	function contact() {
-		parent::validate(true);
-		AboutHandler::setupTemplate();
+		$this->validate(true);
+		$this->setupTemplate();
 
 		$schedConf =& Request::getSchedConf();
 		$conference =& Request::getConference();
@@ -113,8 +113,8 @@ class AboutHandler extends PKPHandler {
 	 * Display organizingTeam page.
 	 */
 	function organizingTeam() {
-		parent::validate(true);
-		AboutHandler::setupTemplate();
+		$this->validate(true);
+		$this->setupTemplate();
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
@@ -208,8 +208,12 @@ class AboutHandler extends PKPHandler {
 	 * Display a biography for an organizing team member.
 	 */
 	function organizingTeamBio($args) {
-		list($conference, $schedConf) = parent::validate(true);
-		AboutHandler::setupTemplate();
+		$this->addCheck(new HandlerValidatorConference(&$this));
+		$this->validate();
+		$this->setupTemplate();
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
@@ -280,7 +284,7 @@ class AboutHandler extends PKPHandler {
 	 */
 	function editorialPolicies() {
 		parent::validate(true);
-		AboutHandler::setupTemplate();
+		$this->setupTemplate();
 
 		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
 		$schedConf =& Request::getSchedConf();
@@ -298,7 +302,7 @@ class AboutHandler extends PKPHandler {
 	 */
 	function registration() {
 		parent::validate(true);
-		AboutHandler::setupTemplate();
+		$this->setupTemplate();
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
@@ -332,7 +336,7 @@ class AboutHandler extends PKPHandler {
 	 */
 	function submissions() {
 		parent::validate(true);
-		AboutHandler::setupTemplate();
+		$this->setupTemplate();
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
@@ -360,8 +364,8 @@ class AboutHandler extends PKPHandler {
 	 * Display siteMap page.
 	 */
 	function siteMap() {
-		parent::validate();
-		AboutHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
@@ -396,8 +400,8 @@ class AboutHandler extends PKPHandler {
 	 * Display aboutThisPublishingSystem page.
 	 */
 	function aboutThisPublishingSystem() {
-		parent::validate();
-		AboutHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();
@@ -420,8 +424,8 @@ class AboutHandler extends PKPHandler {
 	 * with the reader's statistics view in the About pages.
 	 */
 	function statistics() {
-		parent::validate();
-		AboutHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file AnnouncementHandler.inc.php
+ * @file pages/announcement/AnnouncementHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -15,90 +15,61 @@
 //$Id$
 
 
-import('core.PKPHandler');
+import('announcement.PKPAnnouncementHandler');
+import('handler.validation.HandlerValidatorConference');
 
-class AnnouncementHandler extends PKPHandler {
-
-	/**
-	 * Display announcement index page.
-	 */
-	function index() {
+class AnnouncementHandler extends PKPAnnouncementHandler {
+	function validate() {
+		$this->addCheck(new HandlerValidatorConference(&$this));
 		parent::validate();
-		AnnouncementHandler::setupTemplate();
-
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
-
-		$announcementsEnabled = $conference->getSetting('enableAnnouncements');
-
-		if ($announcementsEnabled) {
-			$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-			$rangeInfo =& PKPHandler::getRangeInfo('announcements');
-
-			if($schedConf) {
-				$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $schedConf->getSchedConfId(), $rangeInfo);
-				$announcementsIntroduction = $schedConf->getLocalizedSetting('announcementsIntroduction');
-			} else {
-				$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), 0, $rangeInfo);
-				$announcementsIntroduction = $conference->getLocalizedSetting('announcementsIntroduction');
-			}
-
-
-			$templateMgr = &TemplateManager::getManager();
-			$templateMgr->assign('announcements', $announcements);
-			$templateMgr->assign('announcementsIntroduction', $announcementsIntroduction);
-			$templateMgr->display('announcement/index.tpl');
-		} else {
-			Request::redirect();
-		}
-
 	}
 
-	/**
-	 * View announcement details.
-	 * @param $args array optional, first parameter is the ID of the announcement to display 
-	 */
-	function view($args = array()) {
-		parent::validate();
-		AnnouncementHandler::setupTemplate();
-
-		$conference = &Request::getConference();
-
-		$announcementsEnabled = $conference->getSetting('enableAnnouncements');
-		$announcementId = !isset($args) || empty($args) ? null : (int) $args[0];
-		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-
-		if ($announcementsEnabled && $announcementId != null && $announcementDao->getAnnouncementConferenceId($announcementId) == $conference->getConferenceId()) {
-			$announcement = &$announcementDao->getAnnouncement($announcementId);
-
-			if ($announcement->getDateExpire() == null || strtotime($announcement->getDateExpire()) > time()) {
-				$templateMgr = &TemplateManager::getManager();
-				$templateMgr->assign('announcement', $announcement);
-				if ($announcement->getTypeId() == null) {
-					$templateMgr->assign('announcementTitle', $announcement->getAnnouncementTitle());
-				} else {
-					$templateMgr->assign('announcementTitle', $announcement->getAnnouncementTypeName() . ": " . $announcement->getAnnouncementTitle());
-				}
-				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'announcement'), 'announcement.announcements'));
-				$templateMgr->display('announcement/view.tpl');
-			} else {
-				Request::redirect(null, null, null, 'announcement');
-			}
-		} else {
-				Request::redirect(null, null, null, 'announcement');
-		}
+	function _getAnnouncementsEnabled() {
+		$conference =& Request::getConference();
+		return $conference->getSetting('enableAnnouncements');
 	}
 
-	/**
-	 * Setup common template variables.
-	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
-	 */
-	function setupTemplate($subclass = false) {
-		parent::setupTemplate();
+	function &_getAnnouncements($rangeInfo = null) {
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
-		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
-		$templateMgr->assign('pageHierachy', array(array(Request::url(null, null, 'announcements'), 'announcement.announcements')));
+		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+		if($schedConf) {
+			$announcements =& $announcementDao->getAnnouncementsNotExpiredByConferenceId($conference->getConferenceId(), $schedConf->getSchedConfId(), $rangeInfo);
+			$announcementsIntroduction = $schedConf->getLocalizedSetting('announcementsIntroduction');
+		} else {
+			$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getConferenceId(), $rangeInfo);
+			$announcementsIntroduction = $conference->getLocalizedSetting('announcementsIntroduction');
+		}
+
+		return $announcements;
+	}
+	
+	function _getAnnouncementsIntroduction() {
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		
+		if($schedConf) {
+			return $schedConf->getLocalizedSetting('announcementsIntroduction');
+		} else {
+			return $conference->getLocalizedSetting('announcementsIntroduction');
+		}
+	}
+		
+	function _announcementIsValid($announcementId) {
+		if ( $announcementId == null ) return false;
+
+		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+		switch ( $announcementDao->getAnnouncementAssocType($announcementId) ) {
+			case ASSOC_TYPE_CONFERENCE:
+				$conference =& Request::getConference();
+				return $announcementDao->getAnnouncementAssocId($announcementId) == $conference->getConferenceId();
+			case ASSOC_TYPE_SCHED_CONF:
+				$schedConf =& Request::getSchedConf(); 
+				return $announcementDao->getAnnouncementAssocId($announcementId) == $schedConf->getSchedConfId();
+			default:
+				return false;
+		}
 	}
 }
 

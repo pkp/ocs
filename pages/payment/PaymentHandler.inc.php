@@ -16,16 +16,17 @@
 // $Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 
-class PaymentHandler extends PKPHandler {
+class PaymentHandler extends Handler {
 
 	/**
 	 * Display scheduled conference view page.
 	 */
 	function plugin($args) {
-		list($conference, $schedConf) = PaymentHandler::validate();
-		PaymentHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
+		
 		$paymentMethodPlugins =& PluginRegistry::loadCategory('paymethod');
 		$paymentMethodPluginName = array_shift($args);
 		if (empty($paymentMethodPluginName) || !isset($paymentMethodPlugins[$paymentMethodPluginName])) {
@@ -41,14 +42,10 @@ class PaymentHandler extends PKPHandler {
 	}
 
 	function validate() {
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
-
-		if (!$conference || !$schedConf) {
-			Request::redirect(null, 'index');
-		}
-
-		return array(&$conference, &$schedConf);
+		$this->addCheck(new HandlerValidatorConference(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		
+		parent::validate();
 	}
 }
 

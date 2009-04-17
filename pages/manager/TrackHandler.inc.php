@@ -19,10 +19,11 @@ class TrackHandler extends ManagerHandler {
 	 * Display a list of the tracks within the current conference.
 	 */
 	function tracks() {
-		list($conference, $schedConf) = parent::validate();
-		TrackHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
-		$rangeInfo =& PKPHandler::getRangeInfo('tracks', array());
+		$schedConf =& Request::getSchedConf();
+		$rangeInfo =& Handler::getRangeInfo('tracks', array());
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		while (true) {
 			$tracks = &$trackDao->getSchedConfTracks($schedConf->getSchedConfId(), $rangeInfo);
@@ -43,7 +44,7 @@ class TrackHandler extends ManagerHandler {
 	 * Display form to create a new track.
 	 */
 	function createTrack() {
-		TrackHandler::editTrack();
+		$this->editTrack();
 	}
 
 	/**
@@ -51,8 +52,8 @@ class TrackHandler extends ManagerHandler {
 	 * @param $args array optional, if set the first parameter is the ID of the track to edit
 	 */
 	function editTrack($args = array()) {
-		parent::validate();
-		TrackHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.TrackForm');
 
@@ -83,7 +84,7 @@ class TrackHandler extends ManagerHandler {
 			Request::redirect(null, null, null, 'tracks');
 
 		} else {
-			TrackHandler::setupTemplate(true);
+			$this->setupTemplate(true);
 			$trackForm->display();
 		}
 	}
@@ -93,8 +94,9 @@ class TrackHandler extends ManagerHandler {
 	 * @param $args array first parameter is the ID of the track to delete
 	 */
 	function deleteTrack($args) {
-		list($conference, $schedConf) = parent::validate();
+		$this->validate();
 
+		$schedConf =& Request::getSchedConf();
 		if (isset($args) && !empty($args)) {
 			$trackDao = &DAORegistry::getDAO('TrackDAO');
 			$trackDao->deleteTrackById($args[0], $schedConf->getSchedConfId());
@@ -107,8 +109,9 @@ class TrackHandler extends ManagerHandler {
 	 * Change the sequence of a track.
 	 */
 	function moveTrack() {
-		list($conference, $schedConf) = parent::validate();
+		$this->validate();
 
+		$schedConf =& Request::getSchedConf();
 		$trackDao = &DAORegistry::getDAO('TrackDAO');
 		$track = &$trackDao->getTrack(Request::getUserVar('trackId'), $schedConf->getSchedConfId());
 

@@ -18,18 +18,22 @@
 
 import('schedConf.SchedConfAction');
 import('payment.ocs.OCSPaymentManager');
-import('core.PKPHandler');
+import('handler.Handler');
 
-class SchedConfHandler extends PKPHandler {
+class SchedConfHandler extends Handler {
 
 	/**
 	 * Display scheduled conference view page.
 	 */
 	function index($args) {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->validate();
 
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		
 		$templateMgr =& TemplateManager::getManager();
-		SchedConfHandler::setupTemplate($conference, $schedConf);
+		$this->setupTemplate($conference, $schedConf);
 		$enableAnnouncements = $conference->getSetting('enableAnnouncements');
 
 		if ($enableAnnouncements) {
@@ -54,7 +58,11 @@ class SchedConfHandler extends PKPHandler {
 	 * Display track policies
 	 */
 	function trackPolicies() {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->validate();
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
@@ -82,7 +90,11 @@ class SchedConfHandler extends PKPHandler {
 	 * Display conference overview page
 	 */
 	function overview() {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->validate();
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
@@ -100,7 +112,11 @@ class SchedConfHandler extends PKPHandler {
 	 * Display read-only timeline
 	 */
 	function timeline() {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->validate();
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
@@ -119,7 +135,11 @@ class SchedConfHandler extends PKPHandler {
 	 * Display conference CFP page
 	 */
 	function cfp() {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->validate();
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
@@ -156,7 +176,11 @@ class SchedConfHandler extends PKPHandler {
 	 * Display conference registration page
 	 */
 	function registration() {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->validate();
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$paymentManager =& OCSPaymentManager::getManager();
 		if (!$paymentManager->isConfigured()) Request::redirect(null, null, 'index');
@@ -212,7 +236,11 @@ class SchedConfHandler extends PKPHandler {
 	 * Handle submission of the user registration form
 	 */
 	function register() {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->validate();
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$paymentManager =& OCSPaymentManager::getManager();
 		if (!$paymentManager->isConfigured()) Request::redirect(null, null, 'index');
@@ -269,7 +297,11 @@ class SchedConfHandler extends PKPHandler {
 	 * Display conference program page
 	 */
 	function program() {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->validate();
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
@@ -288,7 +320,11 @@ class SchedConfHandler extends PKPHandler {
 	 * Display conference schedule page
 	 */
 	function schedule() {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->validate();
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$postScheduleDate = $schedConf->getSetting('postScheduleDate');
 		if (!$postScheduleDate || time() < $postScheduleDate || !$schedConf->getSetting('postSchedule')) Request::redirect(null, null, 'schedConf');
@@ -351,7 +387,11 @@ class SchedConfHandler extends PKPHandler {
 	 * Display conference accommodation page
 	 */
 	function accommodation() {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->validate();
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
@@ -370,7 +410,10 @@ class SchedConfHandler extends PKPHandler {
 	 * Display the presentations
 	 */
 	function presentations() {
-		list($conference, $schedConf) = SchedConfHandler::validate(true, true);
+		$this->validate();
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		import('schedConf.SchedConfAction');
 
@@ -470,13 +513,16 @@ class SchedConfHandler extends PKPHandler {
 	}
 
 	function validate() {
-		list($conference, $schedConf) = parent::validate(array(true, true));
+		$this->addCheck(new HandlerValidatorConference(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		parent::validate();
 
+		$schedConf =& Request::getSchedConf();
 		if(!SchedConfAction::mayViewSchedConf($schedConf)) {
 			Request::redirect(null, 'index');
 		}
 
-		return array($conference, $schedConf);
+		return true;
 	}
 }
 

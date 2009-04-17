@@ -21,8 +21,8 @@ class AdminPeopleHandler extends AdminHandler {
 	 * Allow the Site Administrator to merge user accounts.
 	 */
 	function mergeUsers($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -74,7 +74,7 @@ class AdminPeopleHandler extends AdminHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo =& PKPHandler::getRangeInfo('users', array($roleId, (string) $search, (string) $searchMatch, (string) $searchType));
+		$rangeInfo =& Handler::getRangeInfo('users', array($roleId, (string) $search, (string) $searchMatch, (string) $searchType));
 
 		if ($roleId) {
 			while (true) {

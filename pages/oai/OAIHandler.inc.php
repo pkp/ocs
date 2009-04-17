@@ -18,12 +18,12 @@
 define('SESSION_DISABLE_INIT', 1); // FIXME?
 
 import('oai.ocs.ConferenceOAI');
-import('core.PKPHandler');
+import('handler.Handler');
 
-class OAIHandler extends PKPHandler {
+class OAIHandler extends Handler {
 
 	function index() {
-		OAIHandler::validate();
+		$this->validate();
 		PluginRegistry::loadCategory('oaiMetadataFormats', true);
 
 		$oai = new ConferenceOAI(new OAIConfig(Request::getRequestUrl(), Config::getVar('oai', 'repository_id')));

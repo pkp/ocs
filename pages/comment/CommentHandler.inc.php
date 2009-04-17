@@ -18,16 +18,22 @@
 
 import('rt.ocs.RTDAO');
 import('rt.ocs.ConferenceRT');
-import('core.PKPHandler');
+import('handler.Handler');
 
-class CommentHandler extends PKPHandler {
+class CommentHandler extends Handler {
+	/** the paper associated with the comment **/
+	var $paper;
+	
 	function view($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$commentId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $schedConf, $paper) = CommentHandler::validate($paperId);
-
+		$this->validate($paperId);
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		$paper =& $this->paper;
+		
 		$user = &Request::getUser();
 		$userId = isset($user)?$user->getUserId():null;
 
@@ -40,7 +46,7 @@ class CommentHandler extends PKPHandler {
 		if (!$comment) $comments = &$commentDao->getRootCommentsByPaperId($paperId, 1);
 		else $comments = &$comment->getChildren();
 
-		CommentHandler::setupTemplate($paper, $galleyId, $comment);
+		$this->setupTemplate($paper, $galleyId, $comment);
 
 		$templateMgr = &TemplateManager::getManager();
 		if (Request::getUserVar('refresh')) $templateMgr->setCacheability(CACHEABILITY_NO_CACHE);
@@ -70,8 +76,9 @@ class CommentHandler extends PKPHandler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$parentId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $schedConf, $paper) = CommentHandler::validate($paperId);
-
+		$this->validate($paperId);
+		$paper =& $this->paper;
+		
 		// Bring in comment constants
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
@@ -117,7 +124,7 @@ class CommentHandler extends PKPHandler {
 			}
 		}
 
-		CommentHandler::setupTemplate($paper, $galleyId, $parent);
+		$this->setupTemplate($paper, $galleyId, $parent);
 		$commentForm->display();
 	}
 
@@ -129,7 +136,7 @@ class CommentHandler extends PKPHandler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$commentId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($conference, $schedConf, $paper) = CommentHandler::validate($paperId);
+		$this->validate($paperId);
 		$user = &Request::getUser();
 		$userId = isset($user)?$user->getUserId():null;
 
@@ -149,8 +156,12 @@ class CommentHandler extends PKPHandler {
 	 * Validation
 	 */
 	function validate($paperId) {
+		$this->addCheck(new HandlerValidatorConference(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf(&$this));
 
-		list($conference, $schedConf) = parent::validate(true, true);
+		parent::validate();
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
 		$paper = &$publishedPaperDao->getPublishedPaperByPaperId($paperId, $schedConf->getSchedConfId(), $schedConf->getSetting('previewAbstracts'));
@@ -173,7 +184,7 @@ class CommentHandler extends PKPHandler {
 			Validation::redirectLogin();
 		}
 
-		return array(&$conference, &$schedConf, &$paper);
+		return true
 	}
 
 	function setupTemplate($paper, $galleyId, $comment = null) {

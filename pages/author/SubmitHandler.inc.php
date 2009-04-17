@@ -15,6 +15,8 @@
 //$Id$
 
 class SubmitHandler extends AuthorHandler {
+	/** the paper associated with the request **/
+	var $paper;
 
 	/**
 	 * Display conference author paper submission.
@@ -39,13 +41,13 @@ class SubmitHandler extends AuthorHandler {
 			);
 		}
 
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 		$paperId = Request::getUserVar('paperId');
 
-		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, $step);
+		$paper =& $this->paper;
 
 		$formClass = "AuthorSubmitStep{$step}Form";
 		import("author.form.submit.$formClass");
@@ -64,13 +66,13 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array first parameter is the step being saved
 	 */
 	function saveSubmit($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 		$paperId = Request::getUserVar('paperId');
 
-		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, $step);
+		$paper =& $this->paper;
 
 		$formClass = "AuthorSubmitStep{$step}Form";
 		import("author.form.submit.$formClass");
@@ -211,12 +213,15 @@ class SubmitHandler extends AuthorHandler {
 	 * Create new supplementary file with a uploaded file.
 	 */
 	function submitUploadSuppFile() {
-		parent::validate();
-		parent::setupTemplate(true);
-
 		$paperId = Request::getUserVar('paperId');
-
-		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
+		$this->validate($paperId, 4);
+		
+		$this->setupTemplate(true);
+		
+		$paper =& $this->paper;
+		
+		$schedConf =& Request::getSchedConf();
+ 
 		if ($schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
 			import("author.form.submit.AuthorSubmitSuppFileForm");
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
@@ -233,13 +238,13 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array optional, if set the first parameter is the supplementary file to edit
 	 */
 	function submitSuppFile($args) {
-		parent::validate();
-		parent::setupTemplate(true);
-
 		$paperId = Request::getUserVar('paperId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
-		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
+		$this->validate($paperId, 4);
+		$this->setupTemplate(true);
+		
+		$paper =& $this->paper;
 
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
@@ -260,13 +265,15 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array optional, if set the first parameter is the supplementary file to update
 	 */
 	function saveSubmitSuppFile($args) {
-		parent::validate();
-		parent::setupTemplate(true);
-
 		$paperId = Request::getUserVar('paperId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
-		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
+		$this->validate($paperId, 4);
+		$this->setupTemplate(true);
+		
+		$schedConf =& Request::getSchedConf();
+		$paper =& $this->paper;
+
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
 		import("author.form.submit.AuthorSubmitSuppFileForm");
@@ -289,13 +296,15 @@ class SubmitHandler extends AuthorHandler {
 	function deleteSubmitSuppFile($args) {
 		import("file.PaperFileManager");
 
-		parent::validate();
-		parent::setupTemplate(true);
-
 		$paperId = Request::getUserVar('paperId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
-		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId, 4);
+		$this->validate($paperId, 4);
+		$this->setupTemplate(true);
+		
+		$schedConf =& Request::getSchedConf();
+		$paper =& $this->paper;
+
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
 		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
@@ -312,7 +321,14 @@ class SubmitHandler extends AuthorHandler {
 
 	function expediteSubmission() {
 		$paperId = (int) Request::getUserVar('paperId');
-		list($conference, $schedConf, $paper) = SubmitHandler::validate($paperId);
+
+		$this->validate($paperId);
+		$this->setupTemplate(true);
+		
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+
+		$paper =& $this->paper;
 
 		// The author must also be a director to perform this task.
 		if (Validation::isDirector($conference->getConferenceId()) && $paper->getSubmissionFileId()) {
@@ -331,7 +347,10 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $step int
 	 */
 	function validate($paperId = null, $step = false) {
-		list($conference, $schedConf) = parent::validate();
+		parent::validate();
+		
+		$conference =& Request::getConference();
+		$shedConf =& Request::getSchedConf();
 
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$user = &Request::getUser();
@@ -364,7 +383,8 @@ class SubmitHandler extends AuthorHandler {
 			}
 		}
 
-		return array(&$conference, &$schedConf, &$paper);
+		$this->paper =& $paper;
+		return true;
 	}
 }
 

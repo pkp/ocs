@@ -20,10 +20,10 @@ class EmailHandler extends ManagerHandler {
 	 * Display a list of the emails within the current conference.
 	 */
 	function emails() {
-		list($conference, $schedConf) = EmailHandler::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
-		$rangeInfo = PKPHandler::getRangeInfo('emails', array());
+		$rangeInfo = Handler::getRangeInfo('emails', array());
 
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplatesArray =& $emailTemplateDao->getEmailTemplates(
@@ -73,8 +73,11 @@ class EmailHandler extends ManagerHandler {
 	 * @param $args array optional, if set the first parameter is the key of the email template to edit
 	 */
 	function editEmail($args = array()) {
-		list($conference, $schedConf) = EmailHandler::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
+
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->append('pageHierarchy', array(Request::url(null, null, null, 'emails'), 'manager.emails'));
@@ -93,7 +96,7 @@ class EmailHandler extends ManagerHandler {
 	 * Save changes to an email.
 	 */
 	function updateEmail() {
-		list($conference, $schedConf) = EmailHandler::validate();
+		$this->validate();
 
 		import('manager.form.EmailTemplateForm');
 
@@ -118,7 +121,9 @@ class EmailHandler extends ManagerHandler {
 	 * @param $args array first parameter is the key of the email to delete
 	 */
 	function deleteCustomEmail($args) {
-		list($conference, $schedConf) = EmailHandler::validate();
+		$this->validate();
+		$schedConf =& Request::getSchedConf();
+
 		$emailKey = array_shift($args);
 		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
@@ -134,8 +139,8 @@ class EmailHandler extends ManagerHandler {
 	 * @param $args array first parameter is the key of the email to reset
 	 */
 	function resetEmail($args) {
-		list($conference, $schedConf) = EmailHandler::validate();
-
+		$this->validate();
+		$schedConf =& Request::getSchedConf();
 		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
 
 		if (isset($args) && !empty($args)) {
@@ -152,9 +157,11 @@ class EmailHandler extends ManagerHandler {
 	 * resets all email templates associated with the conference.
 	 */
 	function resetAllEmails() {
-		list($conference, $schedConf) = EmailHandler::validate();
+		$this->validate();
 
 		$conference = &Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
 
 		if(Request::isConferenceManager()) {
@@ -171,8 +178,8 @@ class EmailHandler extends ManagerHandler {
 	 * @param $args array first parameter is the key of the email to disable
 	 */
 	function disableEmail($args) {
-		list($conference, $schedConf) = EmailHandler::validate();
-
+		$this->validate();
+		$schedConf =& Request::getSchedConf();
 		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
 
 		if (isset($args) && !empty($args)) {
@@ -212,8 +219,8 @@ class EmailHandler extends ManagerHandler {
 	 * @param $args array first parameter is the key of the email to enable
 	 */
 	function enableEmail($args) {
-		list($conference, $schedConf) = EmailHandler::validate();
-
+		$this->validate();
+		$schedConf =& Request::getSchedConf();
 		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
 
 		if (isset($args) && !empty($args)) {
@@ -241,11 +248,9 @@ class EmailHandler extends ManagerHandler {
 	 * Redirects to user index page if not properly authenticated.
 	 */
 	function validate() {
-		if(Validation::isConferenceManager()) {
-			list($conference, $schedConf) = parent::validate(false);
-		} else {
-			list($conference, $schedConf) = parent::validate(true);
-		}
+		parent::validate();
+		
+		$schedConf =& Request::getSchedConf();
 
 		// If the user is a Conference Manager, but has specified a scheduled conference,
 		// redirect so no scheduled conference is present (otherwise they would end up managing
@@ -254,7 +259,7 @@ class EmailHandler extends ManagerHandler {
 			Request::redirect(null, 'index', Request::getRequestedPage(), Request::getRequestedOp());
 		}
 
-		return array($conference, $schedConf);
+		return true;
 	}
 }
 
