@@ -9,7 +9,7 @@
  * @class PaperHandler
  * @ingroup pages_paper
  *
- * Handle requests for paper functions. 
+ * Handle requests for paper functions.
  *
  */
 
@@ -69,6 +69,8 @@ class PaperHandler extends Handler {
 			$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
 		}
 
+		if (!$galley) Request::redirect(null, null, 'view', $paperId);
+
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
@@ -90,6 +92,8 @@ class PaperHandler extends Handler {
 			$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 			$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
 		}
+
+		if (!$galley) Request::redirect(null, null, 'view', $paperId);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
@@ -199,7 +203,7 @@ class PaperHandler extends Handler {
 			$templateMgr->assign_by_ref('building', $building);
 		}
 
-		$templateMgr->display('paper/paper.tpl');	
+		$templateMgr->display('paper/paper.tpl');
 	}
 
 	/**
@@ -264,7 +268,7 @@ class PaperHandler extends Handler {
 			}
 		}
 
-		$templateMgr->display('rt/rt.tpl');	
+		$templateMgr->display('rt/rt.tpl');
 	}
 
 	/**
