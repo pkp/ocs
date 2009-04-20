@@ -21,6 +21,15 @@ import('payment.ocs.OCSPaymentManager');
 import('handler.Handler');
 
 class SchedConfHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function SchedConfHandler() {
+		parent::Handler();
+
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));		
+	}
 
 	/**
 	 * Display scheduled conference view page.
@@ -513,8 +522,6 @@ class SchedConfHandler extends Handler {
 	}
 
 	function validate() {
-		$this->addCheck(new HandlerValidatorConference($this));
-		$this->addCheck(new HandlerValidatorSchedConf($this));
 		parent::validate();
 
 		$schedConf =& Request::getSchedConf();

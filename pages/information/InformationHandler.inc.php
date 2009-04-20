@@ -18,6 +18,12 @@
 import('handler.Handler');
 
 class InformationHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function InformationHandler() {
+		parent::Handler();
+	}
 
 	/**
 	 * Display the information page for the conference..

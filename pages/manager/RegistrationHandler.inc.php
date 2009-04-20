@@ -18,6 +18,12 @@
 import('pages.manager.ManagerHandler');
 
 class RegistrationHandler extends ManagerHandler {
+	/**
+	 * Constructor
+	 **/
+	function RegistrationHandler() {
+		parent::ManagerHandler();
+	}
 
 	/**
 	 * Display a list of registrations for the current scheduled conference.

@@ -18,6 +18,12 @@ import('pages.manager.ManagerHandler');
 
 class TrackHandler extends ManagerHandler {
 	/**
+	 * Constructor
+	 **/
+	function TrackHandler() {
+		parent::ManagerHandler();
+	}
+	/**
 	 * Display a list of the tracks within the current conference.
 	 */
 	function tracks() {

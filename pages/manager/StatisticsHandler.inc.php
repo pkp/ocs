@@ -18,6 +18,12 @@ import('pages.manager.ManagerHandler');
 
 class StatisticsHandler extends ManagerHandler {
 	/**
+	 * Constructor
+	 **/
+	function StatisticsHandler() {
+		parent::ManagerHandler();
+	}
+	/**
 	 * Display a list of scheduled conference statistics.
 	 * WARNING: This implementation should be kept roughly synchronized
 	 * with the reader's statistics view in the About pages.

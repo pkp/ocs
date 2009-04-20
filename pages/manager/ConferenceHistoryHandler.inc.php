@@ -18,6 +18,12 @@ import('pages.manager.ManagerHandler');
 
 class ConferenceHistoryHandler extends ManagerHandler {
 	/**
+	 * Constructor
+	 **/
+	function ConferenceHistoryHandler() {
+		parent::ManagerHandler();
+	}
+	/**
 	 * View conference event log.
 	 */
 	function conferenceEventLog($args) {

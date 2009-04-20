@@ -19,6 +19,12 @@
 import('handler.Handler');
 
 class GatewayHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function GatewayHandler() {
+		parent::Handler();
+	}
 
 	function index() {
 		Request::redirect(null, 'index');

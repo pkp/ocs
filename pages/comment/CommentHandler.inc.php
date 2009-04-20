@@ -23,6 +23,16 @@ import('handler.Handler');
 class CommentHandler extends Handler {
 	/** the paper associated with the comment **/
 	var $paper;
+		
+	/**
+	 * Constructor
+	 **/
+	function CommentHandler() {
+		parent::Handler();
+
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
+	}
 	
 	function view($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
@@ -156,9 +166,6 @@ class CommentHandler extends Handler {
 	 * Validation
 	 */
 	function validate($paperId) {
-		$this->addCheck(new HandlerValidatorConference($this));
-		$this->addCheck(new HandlerValidatorSchedConf($this));
-
 		parent::validate();
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();

@@ -18,6 +18,12 @@ import('rt.ocs.ConferenceRTAdmin');
 import('pages.rtadmin.RTAdminHandler');
 
 class RTSetupHandler extends RTAdminHandler {
+	/**
+	 * Constructor
+	 **/
+	function RTSetupHandler() {
+		parent::RTAdminHandler();
+	}
 
 	function settings() {
 		$this->validate();

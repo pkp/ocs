@@ -20,6 +20,15 @@ import('rt.ocs.ConferenceRTAdmin');
 import('handler.Handler');
 
 class RTAdminHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function RTAdminHandler() {
+		parent::Handler();
+
+		$this->addCheck(new HandlerValidatorConference($this));		
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_CONFERENCE_MANAGER)));		
+	}
 
 	/**
 	 * If no conference is selected, display list of conferences.
@@ -71,17 +80,6 @@ class RTAdminHandler extends Handler {
 			Validation::redirectLogin();
 		}
 	}
-
-	/**
-	 * Ensure that this page is available to the user.
-	 */
-	function validate() {
-		parent::validate(true);
-		if (!Validation::isConferenceManager() && !Validation::isSiteAdmin()) {
-			Validation::redirectLogin();
-		}
-	}
-
 
 	function validateUrls($args) {
 		$this->validate();

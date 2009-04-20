@@ -17,6 +17,12 @@
 import('pages.manager.ManagerHandler');
 
 class ConferenceLanguagesHandler extends ManagerHandler {
+	/**
+	 * Constructor
+	 **/
+	function ConferenceLanguagesHandler() {
+		parent::ManagerHandler();
+	}
 
 	/**
 	 * Display form to edit language settings.

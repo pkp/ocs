@@ -19,6 +19,12 @@ import('search.PaperSearch');
 import('handler.Handler');
 
 class SearchHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function SearchHandler() {
+		parent::Handler();
+	}
 
 	/**
 	 * Show the advanced form

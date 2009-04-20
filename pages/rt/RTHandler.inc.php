@@ -25,6 +25,13 @@ import('paper.PaperHandler');
 
 class RTHandler extends PaperHandler {
 	/**
+	 * Constructor
+	 **/
+	function RTHandler() {
+		parent::PaperHandler();
+	}
+	
+	/**
 	 * Display a author biography
 	 */
 	function bio($args) {

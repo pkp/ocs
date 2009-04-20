@@ -17,6 +17,12 @@
 import('pages.manager.ManagerHandler');
 
 class TimelineHandler extends ManagerHandler {
+	/**
+	 * Constructor
+	 **/
+	function TimelineHandler() {
+		parent::ManagerHandler();
+	}
 
 	/**
 	 * Display a list of the tracks within the current conference.

@@ -21,6 +21,12 @@ import('oai.ocs.ConferenceOAI');
 import('handler.Handler');
 
 class OAIHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function OAIHandler() {
+		parent::Handler();
+	}
 
 	function index() {
 		$this->validate();

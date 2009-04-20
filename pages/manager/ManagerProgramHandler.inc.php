@@ -17,6 +17,12 @@
 import('pages.manager.ManagerHandler');
 
 class ManagerProgramHandler extends ManagerHandler {
+	/**
+	 * Constructor
+	 **/
+	function ManagerProgramHandler() {
+		parent::ManagerHandler();
+	}
 
 	/**
 	 * Display form to edit program settings.

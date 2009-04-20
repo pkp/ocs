@@ -23,6 +23,12 @@ import('submission.trackDirector.TrackDirectorAction');
 import('handler.Handler');
 
 class TrackDirectorHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function TrackDirectorHandler() {
+		parent::Handler();
+	}
 
 	/**
 	 * Display track director index page.

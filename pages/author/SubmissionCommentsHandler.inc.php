@@ -19,6 +19,13 @@ import('pages.author.TrackSubmissionHandler');
 class SubmissionCommentsHandler extends AuthorHandler {
 	/** comment associated with the request **/
 	var $comment;
+	
+	/**
+	 * Constructor
+	 **/
+	function SubmissionCommentsHandler() {
+		parent::AuthorHandler();
+	}
 
 	/**
 	 * View director decision comments.
@@ -166,7 +173,7 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		}
 		
 		$this->comment =& $comment;
-		return array($comment);
+		return true;
 	}
 }
 ?>

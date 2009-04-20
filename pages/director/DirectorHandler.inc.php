@@ -29,6 +29,16 @@ import ('submission.director.DirectorAction');
 import('handler.validation.HandlerValidatorRoles');
 
 class DirectorHandler extends TrackDirectorHandler {
+	/**
+	 * Constructor
+	 **/
+	function DirectorHandler() {
+		parent::TrackDirectorHandler();
+
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_DIRECTOR)));		
+	}
 
 	/**
 	 * Displays the director role selection page.
@@ -454,18 +464,6 @@ class DirectorHandler extends TrackDirectorHandler {
 				)
 			);
 		}
-	}
-
-	/**
-	 * Validate that user is a director in the selected conferences.
-	 * Redirects to user index page if not properly authenticated.
-	 */
-	function validate() {
-		$this->addCheck(new HandlerValidatorConference($this));
-		$this->addCheck(new HandlerValidatorSchedConf($this));
-		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_DIRECTOR)));
-		
-		return parent::validate();
 	}
 
 	/**

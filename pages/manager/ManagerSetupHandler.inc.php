@@ -17,6 +17,12 @@
 import('pages.manager.ManagerHandler');
 
 class ManagerSetupHandler extends ManagerHandler {
+	/**
+	 * Constructor
+	 **/
+	function ManagerSetupHandler() {
+		parent::ManagerHandler();
+	}
 
 	/**
 	 * Display conference setup form for the selected step.

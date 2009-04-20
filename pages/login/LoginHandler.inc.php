@@ -18,6 +18,12 @@
 import('handler.Handler');
 
 class LoginHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function LoginHandler() {
+		parent::Handler();
+	}
 
 	/**
 	 * Display user login form.

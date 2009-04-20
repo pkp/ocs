@@ -18,6 +18,14 @@
 import('handler.Handler');
 
 class ConferenceHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function ConferenceHandler() {
+		parent::Handler();
+
+		$this->addCheck(new HandlerValidatorConference($this));		
+	}
 
 	/**
 	 * Display the home page for the current conference.
@@ -61,14 +69,6 @@ class ConferenceHandler extends Handler {
 			}
 		} 
 		$templateMgr->display('conference/index.tpl');
-	}
-	
-	/**
-	 * Validate that there is a valid conference
-	 */	
-	function validate() {
-		$this->addCheck(new HandlerValidatorConference($this));
-		return parent::validate();
 	}
 }
 

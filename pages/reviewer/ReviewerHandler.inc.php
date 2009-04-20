@@ -20,6 +20,16 @@ import('submission.reviewer.ReviewerAction');
 import('handler.Handler');
 
 class ReviewerHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function ReviewerHandler() {
+		parent::Handler();
+
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_REVIEWER)));		
+	}
 
 	/**
 	 * Display reviewer index page.
@@ -56,19 +66,6 @@ class ReviewerHandler extends Handler {
 
 		$templateMgr->assign('helpTopicId', 'editorial.reviewersRole.submissions');
 		$templateMgr->display('reviewer/index.tpl');
-	}
-
-	/**
-	 * Validate that user is a reviewer in the selected conference.
-	 * Redirects to user index page if not properly authenticated.
-	 * Note that subclasses using access keys should not call this method.
-	 */
-	function validate() {
-		$this->addCheck(new HandlerValidatorConference($this));
-		$this->addCheck(new HandlerValidatorSchedConf($this));
-		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_REVIEWER)));
-		
-		return parent::validate();
 	}
 
 	/**

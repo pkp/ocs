@@ -23,6 +23,16 @@ import('handler.validation.HandlerValidatorSchedConf');
 import('handler.validation.HandlerValidatorRoles');
 
 class AuthorHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function AuthorHandler() {
+		parent::Handler();
+
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
+		$this->addCheck(new HandlerValidatorRoles($this, true, $reason, array('requiresAuthor' => Request::getUserVar('requiresAuthor')), array(ROLE_ID_AUTHOR)));
+	}
 
 	/**
 	 * Display conference author index page.
@@ -77,18 +87,6 @@ class AuthorHandler extends Handler {
 			$templateMgr->assign('notAcceptingSubmissionsMessage', $notAcceptingSubmissionsMessage);
 		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.submissions');
 		$templateMgr->display('author/index.tpl');
-	}
-
-	/**
-	 * Validate that user has author permissions in the selected conference and
-	 * scheduled conference. Redirects to login page if not properly authenticated.
-	 */
-	function validate($reason = null) {
-		$this->addCheck(new HandlerValidatorConference($this));
-		$this->addCheck(new HandlerValidatorSchedConf($this));
-		$this->addCheck(new HandlerValidatorRoles($this, true, $reason, array('requiresAuthor' => Request::getUserVar('requiresAuthor')), array(ROLE_ID_AUTHOR)));
-		
-		return parent::validate();
 	}
 
 	/**

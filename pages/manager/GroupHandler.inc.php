@@ -25,6 +25,13 @@ class GroupHandler extends ManagerHandler {
 	
 	/** group membership associated with the request **/
 	var $groupMembership;
+		
+	/**
+	 * Constructor
+	 **/
+	function GroupHandler() {
+		parent::ManagerHandler();
+	}
 
 	/**
 	 * Display a list of groups for the current conference.
@@ -358,8 +365,6 @@ class GroupHandler extends ManagerHandler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$returner = array(&$conference, &$schedConf);
-
 		$passedValidation = true;
 
 		if ($groupId !== null) {
@@ -388,7 +393,7 @@ class GroupHandler extends ManagerHandler {
 			}
 		}
 		if (!$passedValidation) Request::redirect(null, null, null, 'groups');
-		return $returner;
+		return true;
 	}
 }
 

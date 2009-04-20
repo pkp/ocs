@@ -17,6 +17,12 @@
 import('pages.manager.ManagerHandler');
 
 class PeopleHandler extends ManagerHandler {
+	/**
+	 * Constructor
+	 **/
+	function PeopleHandler() {
+		parent::ManagerHandler();
+	}
 
 	/**
 	 * Display list of people in the selected role.

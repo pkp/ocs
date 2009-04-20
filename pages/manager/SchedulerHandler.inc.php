@@ -17,6 +17,12 @@
 import('pages.manager.ManagerHandler');
 
 class SchedulerHandler extends ManagerHandler {
+	/**
+	 * Constructor
+	 **/
+	function SchedulerHandler() {
+		parent::ManagerHandler();
+	}
 
 	/**
 	 * Display the scheduler index page

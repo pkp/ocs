@@ -17,6 +17,12 @@
 import('pages.manager.ManagerHandler');
 
 class ManagerAccommodationHandler extends ManagerHandler {
+	/**
+	 * Constructor
+	 **/
+	function ManagerAccommodationHandler() {
+		parent::ManagerHandler();
+	}
 
 	/**
 	 * Display form to edit accommodation settings.

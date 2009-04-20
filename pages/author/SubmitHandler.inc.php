@@ -19,6 +19,13 @@ import('pages.author.AuthorHandler');
 class SubmitHandler extends AuthorHandler {
 	/** the paper associated with the request **/
 	var $paper;
+		
+	/**
+	 * Constructor
+	 **/
+	function SubmitHandler() {
+		parent::AuthorHandler();
+	}
 
 	/**
 	 * Display conference author paper submission.

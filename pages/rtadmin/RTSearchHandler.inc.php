@@ -18,6 +18,13 @@ import('rt.ocs.ConferenceRTAdmin');
 import('pages.rtadmin.RTAdminHandler');
 
 class RTSearchHandler extends RTAdminHandler {
+	/**
+	 * Constructor
+	 **/
+	function RTSearchHandler() {
+		parent::RTAdminHandler();
+	}
+	
 	function createSearch($args) {
 		$this->validate();
 

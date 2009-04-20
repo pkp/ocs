@@ -23,6 +23,16 @@ import('handler.Handler');
 class PaperHandler extends Handler {
 	/** the paper associated with this request **/
 	var $paper;
+		
+	/**
+	 * Constructor
+	 **/
+	function PaperHandler() {
+		parent::Handler();
+
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
+	}
 
 	/**
 	 * View Paper.
@@ -372,9 +382,6 @@ class PaperHandler extends Handler {
 	 * Validation
 	 */
 	function validate($paperId, $galleyId = null) {
-		$this->addCheck(new HandlerValidatorConference($this));
-		$this->addCheck(new HandlerValidatorSchedConf($this));
-
 		parent::validate();
 
 		$conferenceId = $conference->getConferenceId();
@@ -427,6 +434,7 @@ class PaperHandler extends Handler {
 		}
 
 		$this->paper =& $paper;
+		return true;
 	}
 
 	function setupTemplate() {

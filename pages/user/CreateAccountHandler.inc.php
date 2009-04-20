@@ -17,6 +17,12 @@
 import('pages.user.UserHandler');
 
 class CreateAccountHandler extends UserHandler {
+	/**
+	 * Constructor
+	 **/
+	function CreateAccountHandler() {
+		parent::UserHandler();
+	}
 
 	/**
 	 * Display account form for new users.

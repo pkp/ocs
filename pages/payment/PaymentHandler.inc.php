@@ -19,6 +19,15 @@
 import('handler.Handler');
 
 class PaymentHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function PaymentHandler() {
+		parent::Handler();
+
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));		
+	}
 
 	/**
 	 * Display scheduled conference view page.
@@ -39,13 +48,6 @@ class PaymentHandler extends Handler {
 		}
 
 		$paymentMethodPlugin->handle($args);
-	}
-
-	function validate() {
-		$this->addCheck(new HandlerValidatorConference($this));
-		$this->addCheck(new HandlerValidatorSchedConf($this));
-		
-		parent::validate();
 	}
 }
 

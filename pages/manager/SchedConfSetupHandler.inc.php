@@ -17,6 +17,12 @@
 import('pages.manager.ManagerHandler');
 
 class SchedConfSetupHandler extends ManagerHandler {
+	/**
+	 * Constructor
+	 **/
+	function SchedConfSetupHandler() {
+		parent::ManagerHandler();
+	}
 
 	/**
 	 * Display conference setup form for the selected step.

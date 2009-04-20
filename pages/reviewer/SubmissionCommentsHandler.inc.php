@@ -17,6 +17,15 @@
 import('pages.reviewer.SubmissionReviewHandler');
 
 class SubmissionCommentsHandler extends ReviewerHandler {
+	/** comment associated with the request **/
+	var $comment;
+	
+	/**
+	 * Constructor
+	 **/
+	function SubmissionCommentsHandler() {
+		parent::ReviewerHandler();
+	}
 
 	/**
 	 * View peer review comments.

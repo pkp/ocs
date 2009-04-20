@@ -17,6 +17,12 @@
 import('pages.manager.ManagerHandler');
 
 class ManagerSchedConfHandler extends ManagerHandler {
+	/**
+	 * Constructor
+	 **/
+	function ManagerSchedConfHandler() {
+		parent::ManagerHandler();
+	}
 
 	/**
 	 * Display a list of the scheduled conferences hosted on the site.

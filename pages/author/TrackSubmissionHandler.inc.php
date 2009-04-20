@@ -19,6 +19,13 @@ import('pages.author.AuthorHandler');
 class TrackSubmissionHandler extends AuthorHandler {
 	/** submission associated with the request **/
 	var $submission;
+		
+	/**
+	 * Constructor
+	 **/
+	function TrackSubmissionHandler() {
+		parent::AuthorHandler();
+	}
 
 	/**
 	 * Delete a submission.

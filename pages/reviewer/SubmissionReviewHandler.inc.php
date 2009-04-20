@@ -22,6 +22,13 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	
 	/** user associated with the request **/
 	var $user;
+		
+	/**
+	 * Constructor
+	 **/
+	function SubmissionReviewHandler() {
+		parent::ReviewerHandler();
+	}
 
 	function submission($args) {
 		$reviewId = $args[0];

@@ -19,6 +19,12 @@
 import('handler.Handler');
 
 class UserHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function UserHandler() {
+		parent::Handler();
+	}
 
 	/**
 	 * Display user index page.

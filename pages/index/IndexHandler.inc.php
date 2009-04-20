@@ -18,6 +18,12 @@
 import('handler.Handler');
 
 class IndexHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function IndexHandler() {
+		parent::Handler();
+	}
 
 	/**
 	 * If a scheduled conference in a conference is specified, display it.

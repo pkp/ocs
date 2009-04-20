@@ -19,6 +19,12 @@
 import('handler.Handler');
 
 class SchedConfsHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
+	function SchedConfsHandler() {
+		parent::Handler();
+	}
 
 	/**
 	 * Display the home page for the current conference.

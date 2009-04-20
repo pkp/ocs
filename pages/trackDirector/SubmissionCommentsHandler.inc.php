@@ -17,6 +17,15 @@
 import('pages.trackDirector.SubmissionEditHandler');
 
 class SubmissionCommentsHandler extends TrackDirectorHandler {
+	/** comment associated with the request **/
+	var $comment;
+	
+	/**
+	 * Constructor
+	 **/
+	function SubmissionCommentsHandler() {
+		parent::TrackDirectorHandler();
+	}
 
 	/**
 	 * View peer review comments.
@@ -28,7 +37,9 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$paperId = $args[0];
 		$reviewId = $args[1];
 
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($paperId);
+		$submission =& $submission->submission;
 		TrackDirectorAction::viewPeerReviewComments($submission, $reviewId);
 
 	}
@@ -46,7 +57,10 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($paperId);
+		$submission =& $submission->submission;
+
 		if (TrackDirectorAction::postPeerReviewComment($submission, $reviewId, $emailComment)) {
 			TrackDirectorAction::viewPeerReviewComments($submission, $reviewId);
 		}
@@ -61,7 +75,9 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 
 		$paperId = $args[0];
 
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($paperId);
+		$submission =& $submission->submission;
 		TrackDirectorAction::viewDirectorDecisionComments($submission);
 
 	}
@@ -78,7 +94,9 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($paperId);
+		$submission =& $submission->submission;
 		if (TrackDirectorAction::postDirectorDecisionComment($submission, $emailComment)) {
 			TrackDirectorAction::viewDirectorDecisionComments($submission);
 		}
@@ -89,7 +107,10 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 */
 	function blindCcReviewsToReviewers($args = array()) {
 		$paperId = Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($paperId);
+		$submission =& $submission->submission;
+
 
 		$send = Request::getUserVar('send')?true:false;
 		$inhibitExistingEmail = Request::getUserVar('blindCcReviewers')?true:false;
@@ -105,12 +126,14 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 */
 	function emailDirectorDecisionComment() {
 		$paperId = (int) Request::getUserVar('paperId');
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($paperId);
+		$submission =& $submission->submission;
 
 		parent::setupTemplate(true);		
 		if (TrackDirectorAction::emailDirectorDecisionComment($submission, Request::getUserVar('send'))) {
 			if (Request::getUserVar('blindCcReviewers')) {
-				SubmissionCommentsHandler::blindCcReviewsToReviewers();
+				$this->blindCcReviewsToReviewers();
 			} else {
 				Request::redirect(null, null, null, 'submissionReview', array($paperId));
 			}
@@ -127,8 +150,11 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$paperId = $args[0];
 		$commentId = $args[1];
 
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
-		list($comment) = SubmissionCommentsHandler::validate($commentId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($paperId);
+		$submission =& $submission->submission;
+		$this->validate($commentId);
+		$comment =& $this->comment;
 
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			// Cannot edit a director decision comment.
@@ -152,8 +178,11 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
-		list($comment) = SubmissionCommentsHandler::validate($commentId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($paperId);
+		$submission =& $submission->submission;
+		$this->validate($commentId);
+		$comment =& $this->comment;
 
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			// Cannot edit a director decision comment.
@@ -184,8 +213,11 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$paperId = $args[0];
 		$commentId = $args[1];
 
-		list($conference, $schedConf, $submission) = SubmissionEditHandler::validate($paperId);
-		list($comment) = SubmissionCommentsHandler::validate($commentId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($paperId);
+		$submission =& $submission->submission;
+		$this->validate($commentId);
+		$comment =& $this->comment;
 		TrackDirectorAction::deleteComment($commentId);
 
 		// Redirect back to initial comments page
@@ -219,7 +251,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
-		return array($comment);
+		$this->comment =& $comment;
+		return true;
 	}
 }
 ?>

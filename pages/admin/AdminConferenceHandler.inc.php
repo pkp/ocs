@@ -17,6 +17,12 @@
 import('pages.admin.AdminHandler');
 
 class AdminConferenceHandler extends AdminHandler {
+	/**
+	 * Constructor
+	 **/
+	function AdminConferenceHandler() {
+		parent::AdminHandler();
+	}
 
 	/**
 	 * Display a list of the conferences hosted on the site.

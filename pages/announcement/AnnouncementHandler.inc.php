@@ -19,9 +19,13 @@ import('announcement.PKPAnnouncementHandler');
 import('handler.validation.HandlerValidatorConference');
 
 class AnnouncementHandler extends PKPAnnouncementHandler {
-	function validate() {
+	/**
+	 * Constructor
+	 **/
+	function AnnouncementHandler() {
+		parent::PKPAnnouncementHandler();
+
 		$this->addCheck(new HandlerValidatorConference($this));
-		parent::validate();
 	}
 
 	function _getAnnouncementsEnabled() {
