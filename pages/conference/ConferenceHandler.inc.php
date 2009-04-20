@@ -67,7 +67,7 @@ class ConferenceHandler extends Handler {
 	 * Validate that there is a valid conference
 	 */	
 	function validate() {
-		$this->addCheck(new HandlerValidatorConference(&$this));
+		$this->addCheck(new HandlerValidatorConference($this));
 		return parent::validate();
 	}
 }

@@ -156,8 +156,8 @@ class CommentHandler extends Handler {
 	 * Validation
 	 */
 	function validate($paperId) {
-		$this->addCheck(new HandlerValidatorConference(&$this));
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 
 		parent::validate();
 		$conference =& Request::getConference();

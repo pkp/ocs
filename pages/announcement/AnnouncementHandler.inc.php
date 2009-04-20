@@ -20,7 +20,7 @@ import('handler.validation.HandlerValidatorConference');
 
 class AnnouncementHandler extends PKPAnnouncementHandler {
 	function validate() {
-		$this->addCheck(new HandlerValidatorConference(&$this));
+		$this->addCheck(new HandlerValidatorConference($this));
 		parent::validate();
 	}
 

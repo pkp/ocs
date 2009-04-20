@@ -461,9 +461,9 @@ class DirectorHandler extends TrackDirectorHandler {
 	 * Redirects to user index page if not properly authenticated.
 	 */
 	function validate() {
-		$this->addCheck(new HandlerValidatorConference(&$this));
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
-		$this->addCheck(new HandlerValidatorRoles(&$this, true, null, null, array(ROLE_ID_DIRECTOR)));
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_DIRECTOR)));
 		
 		return parent::validate();
 	}

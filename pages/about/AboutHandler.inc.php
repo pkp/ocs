@@ -208,7 +208,7 @@ class AboutHandler extends Handler {
 	 * Display a biography for an organizing team member.
 	 */
 	function organizingTeamBio($args) {
-		$this->addCheck(new HandlerValidatorConference(&$this));
+		$this->addCheck(new HandlerValidatorConference($this));
 		$this->validate();
 		$this->setupTemplate();
 

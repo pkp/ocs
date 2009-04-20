@@ -84,9 +84,9 @@ class AuthorHandler extends Handler {
 	 * scheduled conference. Redirects to login page if not properly authenticated.
 	 */
 	function validate($reason = null) {
-		$this->addCheck(new HandlerValidatorConference(&$this));
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
-		$this->addCheck(new HandlerValidatorRoles(&$this, true, $reason, array('requiresAuthor' => Request::getUserVar('requiresAuthor')), array(ROLE_ID_AUTHOR)));
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
+		$this->addCheck(new HandlerValidatorRoles($this, true, $reason, array('requiresAuthor' => Request::getUserVar('requiresAuthor')), array(ROLE_ID_AUTHOR)));
 		
 		return parent::validate();
 	}

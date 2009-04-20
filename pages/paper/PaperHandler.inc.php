@@ -372,8 +372,8 @@ class PaperHandler extends Handler {
 	 * Validation
 	 */
 	function validate($paperId, $galleyId = null) {
-		$this->addCheck(new HandlerValidatorConference(&$this));
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 
 		parent::validate();
 

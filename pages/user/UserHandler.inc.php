@@ -222,8 +222,8 @@ class UserHandler extends Handler {
 	 * Become a given role.
 	 */
 	function become($args) {
-		$this->addCheck(new HandlerValidatorConference(&$this));
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 		$schedConf =& Request::getSchedConf();
 		

@@ -26,7 +26,7 @@ class SchedConfHandler extends Handler {
 	 * Display scheduled conference view page.
 	 */
 	function index($args) {
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 
 		$conference =& Request::getConference();
@@ -58,7 +58,7 @@ class SchedConfHandler extends Handler {
 	 * Display track policies
 	 */
 	function trackPolicies() {
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 
 		$conference =& Request::getConference();
@@ -90,7 +90,7 @@ class SchedConfHandler extends Handler {
 	 * Display conference overview page
 	 */
 	function overview() {
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 
 		$conference =& Request::getConference();
@@ -112,7 +112,7 @@ class SchedConfHandler extends Handler {
 	 * Display read-only timeline
 	 */
 	function timeline() {
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 
 		$conference =& Request::getConference();
@@ -135,7 +135,7 @@ class SchedConfHandler extends Handler {
 	 * Display conference CFP page
 	 */
 	function cfp() {
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 
 		$conference =& Request::getConference();
@@ -176,7 +176,7 @@ class SchedConfHandler extends Handler {
 	 * Display conference registration page
 	 */
 	function registration() {
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 
 		$conference =& Request::getConference();
@@ -236,7 +236,7 @@ class SchedConfHandler extends Handler {
 	 * Handle submission of the user registration form
 	 */
 	function register() {
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 
 		$conference =& Request::getConference();
@@ -297,7 +297,7 @@ class SchedConfHandler extends Handler {
 	 * Display conference program page
 	 */
 	function program() {
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 
 		$conference =& Request::getConference();
@@ -320,7 +320,7 @@ class SchedConfHandler extends Handler {
 	 * Display conference schedule page
 	 */
 	function schedule() {
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 
 		$conference =& Request::getConference();
@@ -387,7 +387,7 @@ class SchedConfHandler extends Handler {
 	 * Display conference accommodation page
 	 */
 	function accommodation() {
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		$this->validate();
 
 		$conference =& Request::getConference();
@@ -513,8 +513,8 @@ class SchedConfHandler extends Handler {
 	}
 
 	function validate() {
-		$this->addCheck(new HandlerValidatorConference(&$this));
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		parent::validate();
 
 		$schedConf =& Request::getSchedConf();

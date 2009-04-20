@@ -42,8 +42,8 @@ class PaymentHandler extends Handler {
 	}
 
 	function validate() {
-		$this->addCheck(new HandlerValidatorConference(&$this));
-		$this->addCheck(new HandlerValidatorSchedConf(&$this));
+		$this->addCheck(new HandlerValidatorConference($this));
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 		
 		parent::validate();
 	}
