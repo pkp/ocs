@@ -16,6 +16,8 @@
 
 define('IMPORTEXPORT_PLUGIN_CATEGORY', 'importexport');
 
+import('pages.manager.ManagerHandler');
+
 class ImportExportHandler extends ManagerHandler {
 	function importexport($args) {
 		$this->validate();

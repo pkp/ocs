@@ -19,6 +19,8 @@
 define('TRACK_DIRECTOR_ACCESS_EDIT', 0x00001);
 define('TRACK_DIRECTOR_ACCESS_REVIEW', 0x00002);
 
+import('pages.trackDirector.TrackDirectorHandler');
+
 class SubmissionEditHandler extends TrackDirectorHandler {
 	function submission($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;

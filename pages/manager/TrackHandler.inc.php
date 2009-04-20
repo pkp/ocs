@@ -14,6 +14,8 @@
 
 //$Id$
 
+import('pages.manager.ManagerHandler');
+
 class TrackHandler extends ManagerHandler {
 	/**
 	 * Display a list of the tracks within the current conference.

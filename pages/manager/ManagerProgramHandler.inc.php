@@ -14,6 +14,8 @@
 
 //$Id$
 
+import('pages.manager.ManagerHandler');
+
 class ManagerProgramHandler extends ManagerHandler {
 
 	/**

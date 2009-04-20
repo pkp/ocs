@@ -14,6 +14,8 @@
 
 //$Id$
 
+import('pages.manager.ManagerHandler');
+
 class ManagerSetupHandler extends ManagerHandler {
 
 	/**

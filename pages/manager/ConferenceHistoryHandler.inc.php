@@ -14,6 +14,8 @@
 
 //$Id$
 
+import('pages.manager.ManagerHandler');
+
 class ConferenceHistoryHandler extends ManagerHandler {
 	/**
 	 * View conference event log.

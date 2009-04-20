@@ -15,6 +15,7 @@
 
 // $Id$
 
+import('pages.manager.ManagerHandler');
 
 class RegistrationHandler extends ManagerHandler {
 

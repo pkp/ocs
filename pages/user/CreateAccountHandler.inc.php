@@ -14,6 +14,8 @@
 
 //$Id$
 
+import('pages.user.UserHandler');
+
 class CreateAccountHandler extends UserHandler {
 
 	/**

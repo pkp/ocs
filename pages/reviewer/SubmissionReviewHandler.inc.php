@@ -14,6 +14,8 @@
 
 //$Id$
 
+import('pages.reviewer.ReviewerHandler');
+
 class SubmissionReviewHandler extends ReviewerHandler {
 	/** submission associated with the request **/
 	var $submission;

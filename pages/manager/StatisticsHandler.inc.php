@@ -14,6 +14,8 @@
 
 //$Id$
 
+import('pages.manager.ManagerHandler');
+
 class StatisticsHandler extends ManagerHandler {
 	/**
 	 * Display a list of scheduled conference statistics.

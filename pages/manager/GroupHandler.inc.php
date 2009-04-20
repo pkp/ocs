@@ -14,6 +14,8 @@
 
 //$Id$
 
+import('pages.manager.ManagerHandler');
+
 class GroupHandler extends ManagerHandler {
 	/** group associated with the request **/
 	var $group;

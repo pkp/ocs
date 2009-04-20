@@ -17,6 +17,7 @@
 import('site.Version');
 import('site.VersionDAO');
 import('site.VersionCheck');
+import('pages.admin.AdminHandler');
 
 class AdminFunctionsHandler extends AdminHandler {
 

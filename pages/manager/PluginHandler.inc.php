@@ -14,6 +14,8 @@
 
 //$Id$
 
+import('pages.manager.ManagerHandler');
+
 class PluginHandler extends ManagerHandler {
 	/**
 	 * Display a list of plugins along with management options.
