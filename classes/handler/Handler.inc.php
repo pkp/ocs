@@ -25,7 +25,7 @@ class Handler extends PKPHandler {
 		$conference =& Request::getConference();
 		$page = Request::getRequestedPage();
 		if ( $conference && $conference->getSetting('restrictSiteAccess')) { 
-			$this->addCheck(new HandlerValidatorCustom(&$this, create_function('$page', 'if (!Validation::isLoggedIn() && !in_array($page, Handler::getLoginExemptions())) return false; else return true;'), array($page)));
+			$this->addCheck(new HandlerValidatorCustom($this, null, null, null, create_function('$page', 'if (!Validation::isLoggedIn() && !in_array($page, Handler::getLoginExemptions())) return false; else return true;'), array($page)));
 		}
 	}
 }
