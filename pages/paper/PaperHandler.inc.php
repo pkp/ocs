@@ -9,7 +9,7 @@
  * @class PaperHandler
  * @ingroup pages_paper
  *
- * Handle requests for paper functions. 
+ * Handle requests for paper functions.
  *
  */
 
@@ -77,6 +77,8 @@ class PaperHandler extends Handler {
 			$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
 		}
 
+		if (!$galley) Request::redirect(null, null, 'view', $paperId);
+
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
@@ -101,6 +103,8 @@ class PaperHandler extends Handler {
 			$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
 			$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
 		}
+
+		if (!$galley) Request::redirect(null, null, 'view', $paperId);
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
@@ -213,7 +217,7 @@ class PaperHandler extends Handler {
 			$templateMgr->assign_by_ref('building', $building);
 		}
 
-		$templateMgr->display('paper/paper.tpl');	
+		$templateMgr->display('paper/paper.tpl');
 	}
 
 	/**
@@ -224,7 +228,7 @@ class PaperHandler extends Handler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 
 		$this->validate($paperId, $galleyId);
-		
+
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		$paper =& $this->paper;
@@ -283,7 +287,7 @@ class PaperHandler extends Handler {
 			}
 		}
 
-		$templateMgr->display('rt/rt.tpl');	
+		$templateMgr->display('rt/rt.tpl');
 	}
 
 	/**
@@ -370,7 +374,7 @@ class PaperHandler extends Handler {
 	function validate($paperId, $galleyId = null) {
 		$this->addCheck(new HandlerValidatorConference(&$this));
 		$this->addCheck(new HandlerValidatorSchedConf(&$this));
-		
+
 		parent::validate();
 
 		$conferenceId = $conference->getConferenceId();
@@ -421,7 +425,7 @@ class PaperHandler extends Handler {
 		} else {
 			Request::redirect(null, null, 'index');
 		}
-		
+
 		$this->paper =& $paper;
 	}
 
