@@ -55,7 +55,7 @@
 {iterate from=registrationTypes item=registrationType}
 	{if $registrationType->getPublic()}
 		<tr valign="top">
-			<td>{$registrationType->getRegistrationTypeName()|escape}<br />{$registrationType->getRegistrationTypeDescription()|escape|nl2br}</td>
+			<td>{$registrationType->getRegistrationTypeName()|escape}<br />{$registrationType->getRegistrationTypeDescription()|strip_unsafe_html|nl2br}</td>
 			<td>{translate key=$registrationType->getAccessString()}</td>
 			<td>{$registrationType->getOpeningDate()}</td>
 			<td>{$registrationType->getClosingDate()}</td>
