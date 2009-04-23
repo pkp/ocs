@@ -65,6 +65,10 @@
 			</array>
 		</value>
 	</setting>
+	<setting type="string" locale="0">
+		<name>paymentMethodPluginName</name>
+		<value>ManualPayment</value>
+	</setting>
 
 	<setting type="bool" locale="0">
 		<name>rtAbstract</name>
