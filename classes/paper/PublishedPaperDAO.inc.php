@@ -218,7 +218,7 @@ class PublishedPaperDAO extends DAO {
 			WHERE	p.sched_conf_id = ?
 				AND (
 					(p.status = ' . SUBMISSION_STATUS_PUBLISHED . ' AND pa.paper_id IS NOT NULL)' .
-					($previewAbstracts ? 'OR (p.status = ' . SUBMISSION_STATUS_QUEUED . ' AND p.current_stage = ' . REVIEW_STAGE_PRESENTATION . ')':'') . '
+					($previewAbstracts ? 'OR (p.review_mode <> ' . REVIEW_MODE_BOTH_SIMULTANEOUS . ' AND p.status = ' . SUBMISSION_STATUS_QUEUED . ' AND p.current_stage = ' . REVIEW_STAGE_PRESENTATION . ')':'') . '
 				)
 				AND pp.paper_id = p.paper_id
 				' . ($trackId?'AND p.track_id = ?' : ''). '
@@ -369,7 +369,7 @@ class PublishedPaperDAO extends DAO {
 			WHERE	a.paper_id = ?' .
 				(isset($schedConfId)?' AND a.sched_conf_id = ?':'') .
 				($previewAbstracts!==true?' AND pa.paper_id IS NOT NULL':'') .
-				($previewAbstracts===true?' AND (a.status = ' . SUBMISSION_STATUS_PUBLISHED . ' OR (a.status = ' . SUBMISSION_STATUS_QUEUED . ' AND a.current_stage = ' . REVIEW_STAGE_PRESENTATION . '))':'') .
+				($previewAbstracts===true?' AND (a.status = ' . SUBMISSION_STATUS_PUBLISHED . ' OR (a.review_mode <> ' . REVIEW_MODE_BOTH_SIMULTANEOUS . ' AND a.status = ' . SUBMISSION_STATUS_QUEUED . ' AND a.current_stage = ' . REVIEW_STAGE_PRESENTATION . '))':'') .
 				($previewAbstracts===false?' AND a.status = ' . SUBMISSION_STATUS_PUBLISHED:''),
 			$params
 		);
