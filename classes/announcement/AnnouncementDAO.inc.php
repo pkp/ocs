@@ -97,7 +97,7 @@ class AnnouncementDAO extends DAO {
 				(conference_id, sched_conf_id, type_id, date_expire, date_posted)
 				VALUES
 				(?, ?, ?, %s, %s)',
-				$this->dateToDB($announcement->getDateExpire()), $this->dateToDB($announcement->getDatetimePosted())),
+				$this->datetimeToDB($announcement->getDateExpire()), $this->datetimeToDB($announcement->getDatetimePosted())),
 			array(
 				$announcement->getConferenceId(),
 				$announcement->getSchedConfId(),
@@ -123,7 +123,7 @@ class AnnouncementDAO extends DAO {
 					type_id = ?,
 					date_expire = %s
 				WHERE announcement_id = ?',
-				$this->dateToDB($announcement->getDateExpire())),
+				$this->datetimeToDB($announcement->getDateExpire())),
 			array(
 				$announcement->getConferenceId(),
 				$announcement->getSchedConfId(),

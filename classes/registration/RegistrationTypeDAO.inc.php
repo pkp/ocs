@@ -280,8 +280,8 @@ class RegistrationTypeDAO extends DAO {
 				VALUES
 				(?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?)',
 				$this->dateToDB($registrationType->getOpeningDate()),
-				$this->dateToDB($registrationType->getClosingDate()),
-				$expiryDate === null?'null':$this->dateToDB($expiryDate)
+				$this->datetimeToDB($registrationType->getClosingDate()),
+				$expiryDate === null?'null':$this->datetimeToDB($expiryDate)
 			), array(
 				$registrationType->getSchedConfId(),
 				$registrationType->getCost(),
@@ -324,8 +324,8 @@ class RegistrationTypeDAO extends DAO {
 					code = ?
 				WHERE type_id = ?',
 				$this->dateToDB($registrationType->getOpeningDate()),
-				$this->dateToDB($registrationType->getClosingDate()),
-				$expiryDate === null?'null':$this->dateToDB($expiryDate)
+				$this->datetimeToDB($registrationType->getClosingDate()),
+				$expiryDate === null?'null':$this->datetimeToDB($expiryDate)
 			), array(
 				$registrationType->getSchedConfId(),
 				$registrationType->getCost(),

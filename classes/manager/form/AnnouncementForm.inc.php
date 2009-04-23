@@ -118,7 +118,7 @@ class AnnouncementForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array('typeId', 'schedConfId', 'title', 'descriptionShort', 'description', 'dateExpireYear', 'dateExpireMonth', 'dateExpireDay'));
-		$this->_data['dateExpire'] = $this->_data['dateExpireYear'] . '-' . $this->_data['dateExpireMonth'] . '-' . $this->_data['dateExpireDay'];
+		$this->_data['dateExpire'] = Request::getUserDateVar('dateExpire');
 
 	}
 
@@ -150,7 +150,7 @@ class AnnouncementForm extends Form {
 		}
 
 		if ($this->getData('dateExpireYear') != null) {
-			$announcement->setDateExpire($this->getData('dateExpireYear') . '-' . $this->getData('dateExpireMonth') . '-' . $this->getData('dateExpireDay'));
+			$announcement->setDateExpire($this->getData('dateExpire'));
 		} else {
 			$announcement->setDateExpire(null);
 		}
@@ -162,6 +162,7 @@ class AnnouncementForm extends Form {
 			$announcement->setDatetimePosted(Core::getCurrentDate());
 			$announcementDao->insertAnnouncement($announcement);
 		}
+		
 	}
 }
 
