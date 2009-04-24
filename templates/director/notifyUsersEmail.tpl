@@ -12,9 +12,7 @@
 {foreach from=$track.papers item=paper}
 {$paper->getPaperTitle()|strip_tags}{if $paper->getPages()} ({$paper->getPages()}){/if}
 
-{foreach from=$paper->getAuthors() item=author name=authorList}
-	{$author->getFullName()}{if !$smarty.foreach.authorList.last},{/if}{/foreach}
-
+{foreach from=$paper->getAuthors() item=author name=authorList}{$author->getFullName()}{if !$smarty.foreach.authorList.last}, {/if}{/foreach}
 
 {/foreach}
 
