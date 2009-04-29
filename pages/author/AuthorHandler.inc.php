@@ -31,7 +31,7 @@ class AuthorHandler extends Handler {
 
 		$this->addCheck(new HandlerValidatorConference($this));
 		$this->addCheck(new HandlerValidatorSchedConf($this));
-		$this->addCheck(new HandlerValidatorRoles($this, true, $reason, array('requiresAuthor' => Request::getUserVar('requiresAuthor')), array(ROLE_ID_AUTHOR)));
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, array('requiresAuthor' => Request::getUserVar('requiresAuthor')), array(ROLE_ID_AUTHOR)));
 	}
 
 	/**

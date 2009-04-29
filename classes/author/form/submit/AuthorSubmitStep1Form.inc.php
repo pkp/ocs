@@ -59,7 +59,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getSchedConfId(), !$isDirector));
 
 		$paperTypeDao =& DAORegistry::getDAO('PaperTypeDAO');
-		$sessionTypes =& $paperTypeDao->getPaperTypes($schedConf->getSchedConfId());
+		$sessionTypes = $paperTypeDao->getPaperTypes($schedConf->getSchedConfId());
 		$templateMgr->assign('sessionTypes', $sessionTypes->toArray());
 
 		parent::display();

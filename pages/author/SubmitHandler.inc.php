@@ -53,7 +53,7 @@ class SubmitHandler extends AuthorHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$step = isset($args[0]) ? (int) $args[0] : 0;
+		$step = isset($args[0]) ? (int) $args[0] : 1;
 		$paperId = Request::getUserVar('paperId');
 
 		$paper =& $this->paper;

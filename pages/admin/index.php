@@ -67,7 +67,7 @@ switch ($op) {
 	// Merge users
 	//
 	case 'mergeUsers':
-		define('HANDLER_CLASS', 'AdminPeopleHandler'):
+		define('HANDLER_CLASS', 'AdminPeopleHandler');
 		import('pages.admin.AdminPeopleHandler');
 		break;
 	//
