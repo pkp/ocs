@@ -50,11 +50,11 @@ class SubmitHandler extends AuthorHandler {
 			);
 		}
 
-		$this->validate();
-		$this->setupTemplate(true);
-
 		$step = isset($args[0]) ? (int) $args[0] : 1;
 		$paperId = Request::getUserVar('paperId');
+
+		$this->validate($paperId, $step);
+		$this->setupTemplate(true);
 
 		$paper =& $this->paper;
 
@@ -75,11 +75,11 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array first parameter is the step being saved
 	 */
 	function saveSubmit($args) {
-		$this->validate();
-		$this->setupTemplate(true);
-
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 		$paperId = Request::getUserVar('paperId');
+
+		$this->validate($paperId, $step);
+		$this->setupTemplate(true);
 
 		$paper =& $this->paper;
 
@@ -359,7 +359,7 @@ class SubmitHandler extends AuthorHandler {
 		parent::validate();
 		
 		$conference =& Request::getConference();
-		$shedConf =& Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
 		$user = &Request::getUser();
