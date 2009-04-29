@@ -1,5 +1,6 @@
 config.inc.php
 files
 cache
+lib
 .project
 .htaccess
