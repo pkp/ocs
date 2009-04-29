@@ -85,9 +85,11 @@ class TinyMCEPlugin extends GenericPlugin {
 					case 2:
 						$count = max(1, count($templateMgr->get_template_vars('authors')));
 						for ($i=0; $i<$count; $i++) {
+							$fields[] = "authors-$i-affiliation";
 							$fields[] = "authors-$i-biography";
 						}
 						$fields[] = 'abstract';
+						$fields[] = 'citations';
 						break;
 				}
 				break;
@@ -232,9 +234,11 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'director/saveMetadata':
 				$count = max(1, count($templateMgr->get_template_vars('authors')));
 				for ($i=0; $i<$count; $i++) {
-					$fields[] = "author-$i-biography";
+					$fields[] = "authors-$i-affiliation";
+					$fields[] = "authors-$i-biography";
 				}
 				$fields[] = 'abstract';
+				$fields[] = 'citations';
 				break;
 			case 'trackDirector/editSuppFile':
 			case 'director/editSuppFile':

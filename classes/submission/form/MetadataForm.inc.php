@@ -88,7 +88,8 @@ class MetadataForm extends Form {
 				'coverageSample' => $paper->getCoverageSample(null), // Localized
 				'type' => $paper->getType(null), // Localized
 				'language' => $paper->getLanguage(),
-				'sponsor' => $paper->getSponsor(null) // Localized
+				'sponsor' => $paper->getSponsor(null), // Localized
+				'citations' => $paper->getCitations()
 			);
 
 			$authors = &$paper->getAuthors();
@@ -120,7 +121,7 @@ class MetadataForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'abstract', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
+		return array('title', 'abstract', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor', 'citations');
 	}
 
 	/**
@@ -167,7 +168,8 @@ class MetadataForm extends Form {
 				'coverageSample',
 				'type',
 				'language',
-				'sponsor'
+				'sponsor',
+				'citations'
 			)
 		);
 	}
@@ -198,6 +200,7 @@ class MetadataForm extends Form {
 		$paper->setType($this->getData('type'), null); // Localized
 		$paper->setLanguage($this->getData('language'));
 		$paper->setSponsor($this->getData('sponsor'), null); // Localized
+		$paper->setCitations($this->getData('citations'));
 
 		// Update authors
 		$authors = $this->getData('authors');

@@ -576,6 +576,7 @@
 		<field name="start_time" type="T"/>
 		<field name="end_time" type="T"/>
 		<field name="comments_to_dr" type="X"/>
+		<field name="citations" type="X"/>
 		<field name="date_submitted" type="T"/>
 		<field name="date_reminded" type="T"/>
 		<field name="last_modified" type="T"/>

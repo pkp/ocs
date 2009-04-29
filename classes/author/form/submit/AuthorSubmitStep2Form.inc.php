@@ -58,6 +58,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 				'type' => $paper->getType(null), // Localized
 				'language' => $paper->getLanguage(),
 				'sponsor' => $paper->getSponsor(null), // Localized
+				'citations' => $paper->getCitations(),
 				'track' => $trackDao->getTrack($paper->getTrackId())
 			);
 
@@ -101,7 +102,8 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 			'coverageSample',
 			'type',
 			'language',
-			'sponsor'
+			'sponsor',
+			'citations'
 		);
 
 		$schedConf =& Request::getSchedConf();
@@ -176,6 +178,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		$paper->setType($this->getData('type'), null); // Localized
 		$paper->setLanguage($this->getData('language')); // Localized
 		$paper->setSponsor($this->getData('sponsor'), null); // Localized
+		$paper->setCitations($this->getData('citations'));
 
 		// Update the submission progress if necessary.
 		if ($paper->getSubmissionProgress() <= $this->step) {
@@ -195,11 +198,11 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 				$paper->stampStatusModified();
 				$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
 				$trackDirectors = $this->assignDirectors($paper);
-				
+
 				if ($schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
-					$paper->setSubmissionProgress($this->step + 2); 
+					$paper->setSubmissionProgress($this->step + 2);
 				} else {
-					$paper->setSubmissionProgress(0); 
+					$paper->setSubmissionProgress(0);
 					$this->confirmSubmission($paper, $user, $schedConf, $conference, 'SUBMISSION_ACK', $trackDirectors);
 				}
 			}

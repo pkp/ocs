@@ -132,6 +132,7 @@ class PaperDAO extends DAO {
 		$paper->setTrackAbbrev($row['track_abbrev']);
 		$paper->setLanguage($row['language']);
 		$paper->setCommentsToDirector($row['comments_to_dr']);
+		$paper->setCitations($row['citations']);
 		$paper->setDateSubmitted($this->datetimeFromDB($row['date_submitted']));
 		$paper->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
 		$paper->setLastModified($this->datetimeFromDB($row['last_modified']));
@@ -161,7 +162,7 @@ class PaperDAO extends DAO {
 	/**
 	 * Insert a new Paper.
 	 * @param $paper Paper
-	 */	
+	 */
 	function insertPaper(&$paper) {
 		$paper->stampModified();
 		$this->update(
@@ -171,6 +172,7 @@ class PaperDAO extends DAO {
 				 track_id,
 				 language,
 				 comments_to_dr,
+				 citations,
 				 date_submitted,
 				 date_status_modified,
 				 last_modified,
@@ -191,7 +193,7 @@ class PaperDAO extends DAO {
 				 pages,
 				 comments_status)
 				VALUES
-				(?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($paper->getDateSubmitted()), $this->datetimeToDB($paper->getDateStatusModified()), $this->datetimeToDB($paper->getLastModified()), $this->datetimeToDB($paper->getDateReminded()), $this->datetimeToDB($paper->getStartTime()), $this->datetimeToDB($paper->getEndTime()), $this->datetimeToDB($paper->getDateToPresentations()), $this->datetimeToDB($paper->getDateToArchive())),
 			array(
 				$paper->getUserId(),
@@ -199,6 +201,7 @@ class PaperDAO extends DAO {
 				$paper->getTrackId(),
 				$paper->getLanguage(),
 				$paper->getCommentsToDirector(),
+				$paper->getCitations(),
 				$paper->getStatus() === null ? SUBMISSION_STATUS_QUEUED : $paper->getStatus(),
 				$paper->getSubmissionProgress() === null ? 1 : $paper->getSubmissionProgress(),
 				$paper->getReviewMode(),
@@ -239,6 +242,7 @@ class PaperDAO extends DAO {
 					track_id = ?,
 					language = ?,
 					comments_to_dr = ?,
+					citations = ?,
 					date_submitted = %s,
 					date_status_modified = %s,
 					last_modified = %s,
@@ -265,6 +269,7 @@ class PaperDAO extends DAO {
 				$paper->getTrackId(),
 				$paper->getLanguage(),
 				$paper->getCommentsToDirector(),
+				$paper->getCitations(),
 				$paper->getStatus(),
 				$paper->getSubmissionProgress(),
 				$paper->getReviewMode(),

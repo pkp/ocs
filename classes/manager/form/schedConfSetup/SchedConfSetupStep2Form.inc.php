@@ -42,6 +42,7 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 			'metaCoverageResearchSampleExamples' => 'string',
 			'metaType' => 'bool',
 			'metaTypeExamples' => 'string',
+			'metaCitations' => 'bool',
 			'enablePublicPaperId' => 'bool',
 			'enablePublicSuppFileId' => 'bool'
 		);
@@ -166,7 +167,7 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 					$paperTypeEntryDao->updateObject($paperTypeEntry);
 				} else {
 					$paperTypeEntryDao->insertObject($paperTypeEntry);
-					
+
 				}
 				$paperTypeIds[] = $paperTypeEntry->getId();
 			}

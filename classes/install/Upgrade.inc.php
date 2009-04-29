@@ -279,6 +279,7 @@ class Upgrade extends Installer {
 			'metaCoverageChronExamples' => 'metaCoverageChronExamples',
 			'metaCoverageResearchSampleExamples' => 'metaCoverageResearchSampleExamples',
 			'metaTypeExamples' => 'metaTypeExamples',
+			'metaCitations' => 'metaCitations',
 			// Setup page 3
 			'reviewPolicy' => 'reviewPolicy',
 			'reviewGuidelines' => 'reviewGuidelines'
@@ -425,19 +426,19 @@ class Upgrade extends Installer {
 
 	/**
 	 * For 2.3 update.  Go through all user email templates and change {$presenter to {$author
-	 */	
+	 */
 	function changePresenterInUserEmailTemplates() {
 		$emailTemplateDAO =& DAORegistry::getDAO('EmailTemplateDAO');
-		
+
 		$result =& $emailTemplateDAO->retrieve('SELECT email_key, locale, body, subject FROM email_templates_data');
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			
+
 			$newBody = str_replace('{$presenterName}', '{$authorName}', $row['body']);
 			$newBody = str_replace('{$presenterUsername}', '{$authorUsername}', $newBody);
 			$newSubject = str_replace('{$presenterName}', '{$authorName}', $row['subject']);
 			$newSubject = str_replace('{$presenterUsername}', '{$authorUsername}', $newSubject);
-			 
+
 			$emailTemplateDAO->update('UPDATE email_templates_data SET body = ?, subject = ? WHERE email_key = ? AND locale = ?', array($newBody, $newSubject, $row['email_key'], $row['locale']));
 			$result->MoveNext();
 		}
@@ -445,7 +446,7 @@ class Upgrade extends Installer {
 		unset($result);
 
 		return true;
-	}	
+	}
 
 	/**
 	 * For upgrade to 2.3: remove allowIndividualSubmissions and
@@ -523,7 +524,7 @@ class Upgrade extends Installer {
 
 		return true;
 	}
-	
+
 	/**
 	 * For 2.1.2 upgrade: add locale data to program settings
 	 * @return boolean
@@ -547,7 +548,7 @@ class Upgrade extends Installer {
 
 		return true;
 	}
-	
+
 	/**
 	 * For 2.3 upgrade: update default review deadline settings to allow absolute due dates
 	 * @return boolean
@@ -560,7 +561,7 @@ class Upgrade extends Installer {
 		$result =& $schedConfDao->retrieve('SELECT scs.sched_conf_id FROM sched_conf_settings scs WHERE scs.setting_name = ?', array('numWeeksPerReview'));
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$schedConfSettingsDao->update('UPDATE sched_conf_settings SET setting_name = ? WHERE sched_conf_id = ? AND setting_name = ?', 
+			$schedConfSettingsDao->update('UPDATE sched_conf_settings SET setting_name = ? WHERE sched_conf_id = ? AND setting_name = ?',
 							array('numWeeksPerReviewRelative', $row['sched_conf_id'], 'numWeeksPerReview'));
 			$schedConfDao->update(
 				'INSERT INTO sched_conf_settings (sched_conf_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, ?, ?, ?)',
