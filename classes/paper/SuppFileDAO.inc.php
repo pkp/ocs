@@ -29,7 +29,7 @@ class SuppFileDAO extends DAO {
 		if ($paperId) $params[] = $paperId;
 
 		$result = &$this->retrieve(
-			'SELECT s.*, a.file_name, a.original_file_name, a.file_type, a.file_size, a.status, a.date_uploaded, a.date_modified FROM paper_supplementary_files s LEFT JOIN paper_files a ON (s.file_id = a.file_id) WHERE s.supp_id = ?' . ($paperId?' AND s.paper_id = ?':''),
+			'SELECT s.*, a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified FROM paper_supplementary_files s LEFT JOIN paper_files a ON (s.file_id = a.file_id) WHERE s.supp_id = ?' . ($paperId?' AND s.paper_id = ?':''),
 			$params
 		);
 
@@ -52,7 +52,7 @@ class SuppFileDAO extends DAO {
 	 */
 	function &getSuppFileByPublicSuppFileId($publicSuppId, $paperId) {
 		$result = &$this->retrieve(
-			'SELECT s.*, a.file_name, a.original_file_name, a.file_type, a.file_size, a.status, a.date_uploaded, a.date_modified FROM paper_supplementary_files s LEFT JOIN paper_files a ON (s.file_id = a.file_id) WHERE s.public_supp_file_id = ? AND s.paper_id = ?',
+			'SELECT s.*, a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified FROM paper_supplementary_files s LEFT JOIN paper_files a ON (s.file_id = a.file_id) WHERE s.public_supp_file_id = ? AND s.paper_id = ?',
 			array($publicSuppId, $paperId)
 		);
 
@@ -76,7 +76,7 @@ class SuppFileDAO extends DAO {
 		$suppFiles = array();
 
 		$result = &$this->retrieve(
-			'SELECT s.*, a.file_name, a.original_file_name, a.file_type, a.file_size, a.status, a.date_uploaded, a.date_modified FROM paper_supplementary_files s LEFT JOIN paper_files a ON (s.file_id = a.file_id) WHERE s.paper_id = ? ORDER BY s.seq',
+			'SELECT s.*, a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified FROM paper_supplementary_files s LEFT JOIN paper_files a ON (s.file_id = a.file_id) WHERE s.paper_id = ? ORDER BY s.seq',
 			$paperId
 		);
 

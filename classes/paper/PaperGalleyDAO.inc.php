@@ -40,7 +40,7 @@ class PaperGalleyDAO extends DAO {
 		if (isset($paperId)) {
 			$result = &$this->retrieve(
 				'SELECT g.*,
-				a.file_name, a.original_file_name, a.file_type, a.file_size, a.status, a.date_uploaded, a.date_modified
+				a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified
 				FROM paper_galleys g
 				LEFT JOIN paper_files a ON (g.file_id = a.file_id)
 				WHERE g.galley_id = ? AND g.paper_id = ?',
@@ -50,7 +50,7 @@ class PaperGalleyDAO extends DAO {
 		} else {
 			$result = &$this->retrieve(
 				'SELECT g.*,
-				a.file_name, a.original_file_name, a.file_type, a.file_size, a.status, a.date_uploaded, a.date_modified
+				a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified
 				FROM paper_galleys g
 				LEFT JOIN paper_files a ON (g.file_id = a.file_id)
 				WHERE g.galley_id = ?',
@@ -79,7 +79,7 @@ class PaperGalleyDAO extends DAO {
 
 		$result = &$this->retrieve(
 			'SELECT g.*,
-			a.file_name, a.original_file_name, a.file_type, a.file_size, a.status, a.date_uploaded, a.date_modified
+			a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified
 			FROM paper_galleys g
 			LEFT JOIN paper_files a ON (g.file_id = a.file_id)
 			WHERE g.paper_id = ? ORDER BY g.seq',
