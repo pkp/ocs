@@ -9,7 +9,7 @@
  * @class SubmitHandler
  * @ingroup pages_author
  *
- * @brief Handle requests for author paper submission. 
+ * @brief Handle requests for author paper submission.
  */
 
 //$Id$
@@ -19,7 +19,7 @@ import('pages.author.AuthorHandler');
 class SubmitHandler extends AuthorHandler {
 	/** the paper associated with the request **/
 	var $paper;
-		
+
 	/**
 	 * Constructor
 	 **/
@@ -86,83 +86,87 @@ class SubmitHandler extends AuthorHandler {
 		$formClass = "AuthorSubmitStep{$step}Form";
 		import("author.form.submit.$formClass");
 
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$submitForm =& new $formClass($paper);
 		$submitForm->readInputData();
 
-		// Check for any special cases before trying to save
-		switch ($step) {
-			case 2:
-				if (Request::getUserVar('addAuthor')) {
-					// Add a sponsor
-					$editData = true;
-					$authors = $submitForm->getData('authors');
-					array_push($authors, array());
-					$submitForm->setData('authors', $authors);
+		if (!HookRegistry::call('SubmitHandler::saveSubmit', array($step, &$paper, &$submitForm))) {
 
-				} else if (($delAuthor = Request::getUserVar('delAuthor')) && count($delAuthor) == 1) {
-					// Delete an author
-					$editData = true;
-					list($delAuthor) = array_keys($delAuthor);
-					$delAuthor = (int) $delAuthor;
-					$authors = $submitForm->getData('authors');
-					if (isset($authors[$delAuthor]['authorId']) && !empty($authors[$delAuthor]['authorId'])) {
-						$deletedAuthors = explode(':', $submitForm->getData('deletedAuthors'));
-						array_push($deletedAuthors, $authors[$delAuthor]['authorId']);
-						$submitForm->setData('deletedAuthors', join(':', $deletedAuthors));
+			// Check for any special cases before trying to save
+			switch ($step) {
+				case 2:
+					if (Request::getUserVar('uploadSubmissionFile')) {
+						$submitForm->uploadSubmissionFile('submissionFile');
+						$editData = true;
 					}
-					array_splice($authors, $delAuthor, 1);
-					$submitForm->setData('authors', $authors);
+					break;
 
-					if ($submitForm->getData('primaryContact') == $delAuthor) {
-						$submitForm->setData('primaryContact', 0);
-					}
+				case 3:
+					if (Request::getUserVar('addAuthor')) {
+						// Add a sponsor
+						$editData = true;
+						$authors = $submitForm->getData('authors');
+						array_push($authors, array());
+						$submitForm->setData('authors', $authors);
 
-				} else if (Request::getUserVar('moveAuthor')) {
-					// Move an author up/down
-					$editData = true;
-					$moveAuthorDir = Request::getUserVar('moveAuthorDir');
-					$moveAuthorDir = $moveAuthorDir == 'u' ? 'u' : 'd';
-					$moveAuthorIndex = (int) Request::getUserVar('moveAuthorIndex');
-					$authors = $submitForm->getData('authors');
+					} else if (($delAuthor = Request::getUserVar('delAuthor')) && count($delAuthor) == 1) {
+						// Delete an author
+						$editData = true;
+						list($delAuthor) = array_keys($delAuthor);
+						$delAuthor = (int) $delAuthor;
+						$authors = $submitForm->getData('authors');
+						if (isset($authors[$delAuthor]['authorId']) && !empty($authors[$delAuthor]['authorId'])) {
+							$deletedAuthors = explode(':', $submitForm->getData('deletedAuthors'));
+							array_push($deletedAuthors, $authors[$delAuthor]['authorId']);
+							$submitForm->setData('deletedAuthors', join(':', $deletedAuthors));
+						}
+						array_splice($authors, $delAuthor, 1);
+						$submitForm->setData('authors', $authors);
 
-					if (!(($moveAuthorDir == 'u' && $moveAuthorIndex <= 0) || ($moveAuthorDir == 'd' && $moveAuthorIndex >= count($authors) - 1))) {
-						$tmpAuthor = $authors[$moveAuthorIndex];
-						$primaryContact = $submitForm->getData('primaryContact');
-						if ($moveAuthorDir == 'u') {
-							$authors[$moveAuthorIndex] = $authors[$moveAuthorIndex - 1];
-							$authors[$moveAuthorIndex - 1] = $tmpAuthor;
-							if ($primaryContact == $moveAuthorIndex) {
-								$submitForm->setData('primaryContact', $moveAuthorIndex - 1);
-							} else if ($primaryContact == ($moveAuthorIndex - 1)) {
-								$submitForm->setData('primaryContact', $moveAuthorIndex);
-							}
-						} else {
-							$authors[$moveAuthorIndex] = $authors[$moveAuthorIndex + 1];
-							$authors[$moveAuthorIndex + 1] = $tmpAuthor;
-							if ($primaryContact == $moveAuthorIndex) {
-								$submitForm->setData('primaryContact', $moveAuthorIndex + 1);
-							} else if ($primaryContact == ($moveAuthorIndex + 1)) {
-								$submitForm->setData('primaryContact', $moveAuthorIndex);
+						if ($submitForm->getData('primaryContact') == $delAuthor) {
+							$submitForm->setData('primaryContact', 0);
+						}
+
+					} else if (Request::getUserVar('moveAuthor')) {
+						// Move an author up/down
+						$editData = true;
+						$moveAuthorDir = Request::getUserVar('moveAuthorDir');
+						$moveAuthorDir = $moveAuthorDir == 'u' ? 'u' : 'd';
+						$moveAuthorIndex = (int) Request::getUserVar('moveAuthorIndex');
+						$authors = $submitForm->getData('authors');
+
+						if (!(($moveAuthorDir == 'u' && $moveAuthorIndex <= 0) || ($moveAuthorDir == 'd' && $moveAuthorIndex >= count($authors) - 1))) {
+							$tmpAuthor = $authors[$moveAuthorIndex];
+							$primaryContact = $submitForm->getData('primaryContact');
+							if ($moveAuthorDir == 'u') {
+								$authors[$moveAuthorIndex] = $authors[$moveAuthorIndex - 1];
+								$authors[$moveAuthorIndex - 1] = $tmpAuthor;
+								if ($primaryContact == $moveAuthorIndex) {
+									$submitForm->setData('primaryContact', $moveAuthorIndex - 1);
+								} else if ($primaryContact == ($moveAuthorIndex - 1)) {
+									$submitForm->setData('primaryContact', $moveAuthorIndex);
+								}
+							} else {
+								$authors[$moveAuthorIndex] = $authors[$moveAuthorIndex + 1];
+								$authors[$moveAuthorIndex + 1] = $tmpAuthor;
+								if ($primaryContact == $moveAuthorIndex) {
+									$submitForm->setData('primaryContact', $moveAuthorIndex + 1);
+								} else if ($primaryContact == ($moveAuthorIndex + 1)) {
+									$submitForm->setData('primaryContact', $moveAuthorIndex);
+								}
 							}
 						}
+						$submitForm->setData('authors', $authors);
 					}
-					$submitForm->setData('authors', $authors);
-				}
-				break;
+					break;
 
-			case 3:
-				if (Request::getUserVar('uploadSubmissionFile')) {
-					$submitForm->uploadSubmissionFile('submissionFile');
-					$editData = true;
-				}
-				break;
-
-			case 4:
-				if (Request::getUserVar('submitUploadSuppFile')) {
-					SubmitHandler::submitUploadSuppFile();
-					return;
-				}
-				break;
+				case 4:
+					if (Request::getUserVar('submitUploadSuppFile')) {
+						SubmitHandler::submitUploadSuppFile();
+						return;
+					}
+					break;
+			}
 		}
 
 		if (!isset($editData) && $submitForm->validate()) {
@@ -173,10 +177,10 @@ class SubmitHandler extends AuthorHandler {
 			// For the "abstract only" or sequential review models, nothing else needs
 			// to be collected beyond page 2.
 			$reviewMode = $paper?$paper->getReviewMode():null;
-			if (($step == 2 && $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL) || 
-					($step == 2 && $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) || 
+			if (($step == 2 && $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL) ||
+					($step == 2 && $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) ||
 					($step == 5 )) {
-					
+
 				// Send a notification to associated users
 				import('notification.Notification');
 				$roleDao = &DAORegistry::getDAO('RoleDAO');
@@ -224,13 +228,13 @@ class SubmitHandler extends AuthorHandler {
 	function submitUploadSuppFile() {
 		$paperId = Request::getUserVar('paperId');
 		$this->validate($paperId, 4);
-		
+
 		$this->setupTemplate(true);
-		
+
 		$paper =& $this->paper;
-		
+
 		$schedConf =& Request::getSchedConf();
- 
+
 		if ($schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
 			import("author.form.submit.AuthorSubmitSuppFileForm");
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
@@ -252,7 +256,7 @@ class SubmitHandler extends AuthorHandler {
 
 		$this->validate($paperId, 4);
 		$this->setupTemplate(true);
-		
+
 		$paper =& $this->paper;
 
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
@@ -279,7 +283,7 @@ class SubmitHandler extends AuthorHandler {
 
 		$this->validate($paperId, 4);
 		$this->setupTemplate(true);
-		
+
 		$schedConf =& Request::getSchedConf();
 		$paper =& $this->paper;
 
@@ -310,7 +314,7 @@ class SubmitHandler extends AuthorHandler {
 
 		$this->validate($paperId, 4);
 		$this->setupTemplate(true);
-		
+
 		$schedConf =& Request::getSchedConf();
 		$paper =& $this->paper;
 
@@ -333,7 +337,7 @@ class SubmitHandler extends AuthorHandler {
 
 		$this->validate($paperId);
 		$this->setupTemplate(true);
-		
+
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
@@ -357,7 +361,7 @@ class SubmitHandler extends AuthorHandler {
 	 */
 	function validate($paperId = null, $step = false) {
 		parent::validate();
-		
+
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
@@ -369,7 +373,7 @@ class SubmitHandler extends AuthorHandler {
 		}
 
 		$paper = null;
-		
+
 		if (isset($paperId)) {
 			// Check that paper exists for this conference and user and that submission is incomplete
 			$paper =& $paperDao->getPaper((int) $paperId);

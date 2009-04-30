@@ -23,7 +23,7 @@
 
 		<li{if $submitStep == 2} class="current"{/if}>
 			{if $submitStep != 2 && $submissionProgress >= 2}<a href="{url op="submit" path="2" paperId=$paperId}">{/if}
-			{translate key="author.submit.metadata"}{if $submitStep != 2 && $submissionProgress >= 2}</a>{/if}
+			{translate key="author.submit.upload"}{if $submitStep != 2 && $submissionProgress >= 2}</a>{/if}
 		</li>
 		
 		{if $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials') && !$showPaperSteps}
@@ -42,7 +42,7 @@
 	{if $showPaperSteps}
 		<li{if $submitStep == 3} class="current"{/if}>
 			{if $submitStep != 3 && $submissionProgress >= 3}<a href="{url op="submit" path="3" paperId=$paperId}">{/if}
-			{translate key="author.submit.upload"}{if $submitStep != 3 && $submissionProgress >= 3}</a>{/if}
+			{translate key="author.submit.metadata"}{if $submitStep != 3 && $submissionProgress >= 3}</a>{/if}
 		</li>
 
 		{if $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials')}

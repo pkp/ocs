@@ -57,10 +57,10 @@ class AuthorSubmitForm extends Form {
 		$templateMgr->assign('submitStep', $this->step);
 
 		switch($this->step) {
-			case '2':
+			case 3:
 				$helpTopicId = 'submission.indexingMetadata';
 				break;
-			case '4':
+			case 4:
 				$helpTopicId = 'submission.supplementaryFiles';
 				break;
 			default:
