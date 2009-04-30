@@ -531,7 +531,7 @@ class SchedulerHandler extends ManagerHandler {
 	 * opposed to the index)
 	 */
 	function setupTemplate($subclass = false) {
-		$this->setupTemplate(true);
+		parent::setupTemplate(true);
 		if ($subclass) {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'scheduler'), 'manager.scheduler'));

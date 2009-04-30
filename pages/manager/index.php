@@ -262,6 +262,7 @@ switch ($op) {
 	case 'saveAccommodationSettings':
 		define('HANDLER_CLASS', 'ManagerAccommodationHandler');
 		import('pages.manager.ManagerAccommodationHandler');
+		break;
 	//
 	// Payment
 	//

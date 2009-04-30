@@ -28,7 +28,8 @@ class EmailHandler extends UserHandler {
 		$this->setupTemplate(true);
 		
 		$conference =& Request::getConference();
-
+		$schedConf =& Request::getSchedConf();
+		
 		$templateMgr = &TemplateManager::getManager();
 
 		$userDao = &DAORegistry::getDAO('UserDAO');

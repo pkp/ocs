@@ -60,7 +60,7 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 
 		$schedConf =& Request::getSchedConf();
 		$paperTypeDao =& DAORegistry::getDAO('PaperTypeDAO');
-		$paperTypeEntryIterator =& $paperTypeDao->getPaperTypes($schedConf->getSchedConfId());
+		$paperTypeEntryIterator = $paperTypeDao->getPaperTypes($schedConf->getSchedConfId());
 		$paperTypes = array();
 		$i=0;
 		while ($paperTypeEntry =& $paperTypeEntryIterator->next()) {
@@ -174,7 +174,7 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 		}
 
 		// Find and handle deletions
-		$paperTypeEntryIterator =& $paperTypeDao->getPaperTypes($schedConf->getSchedConfId());
+		$paperTypeEntryIterator = $paperTypeDao->getPaperTypes($schedConf->getSchedConfId());
 		while ($paperTypeEntry =& $paperTypeEntryIterator->next()) {
 			if (!in_array($paperTypeEntry->getId(), $paperTypeIds))
 				$paperTypeEntryDao->deleteObject($paperTypeEntry);

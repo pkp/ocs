@@ -31,7 +31,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 * View peer review comments.
 	 */
 	function viewPeerReviewComments($args) {
-		$this->validate();
+		parent::validate();
 		$this->setupTemplate(true);
 
 		$paperId = $args[0];
@@ -39,16 +39,17 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 
 		$submissionEditHandler =& new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
-		$submission =& $submission->submission;
+		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$submission = &$paperDao->getPaper($paperId);
+		
 		TrackDirectorAction::viewPeerReviewComments($submission, $reviewId);
-
 	}
 
 	/**
 	 * Post peer review comments.
 	 */
 	function postPeerReviewComment() {
-		$this->validate();
+		parent::validate();
 		$this->setupTemplate(true);
 
 		$paperId = Request::getUserVar('paperId');
@@ -59,7 +60,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 
 		$submissionEditHandler =& new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
-		$submission =& $submission->submission;
+		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$submission = &$paperDao->getPaper($paperId);
 
 		if (TrackDirectorAction::postPeerReviewComment($submission, $reviewId, $emailComment)) {
 			TrackDirectorAction::viewPeerReviewComments($submission, $reviewId);
@@ -70,23 +72,24 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 * View director decision comments.
 	 */
 	function viewDirectorDecisionComments($args) {
-		$this->validate();
+		parent::validate();
 		$this->setupTemplate(true);
 
 		$paperId = $args[0];
 
 		$submissionEditHandler =& new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
-		$submission =& $submission->submission;
+		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$submission = &$paperDao->getPaper($paperId);
+		
 		TrackDirectorAction::viewDirectorDecisionComments($submission);
-
 	}
 
 	/**
 	 * Post peer review comments.
 	 */
 	function postDirectorDecisionComment() {
-		$this->validate();
+		parent::validate();
 		$this->setupTemplate(true);
 
 		$paperId = Request::getUserVar('paperId');
@@ -96,7 +99,9 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 
 		$submissionEditHandler =& new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
-		$submission =& $submission->submission;
+		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$submission = &$paperDao->getPaper($paperId);
+		
 		if (TrackDirectorAction::postDirectorDecisionComment($submission, $emailComment)) {
 			TrackDirectorAction::viewDirectorDecisionComments($submission);
 		}
@@ -109,8 +114,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$paperId = Request::getUserVar('paperId');
 		$submissionEditHandler =& new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
-		$submission =& $submission->submission;
-
+		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$submission = &$paperDao->getPaper($paperId);
 
 		$send = Request::getUserVar('send')?true:false;
 		$inhibitExistingEmail = Request::getUserVar('blindCcReviewers')?true:false;
@@ -128,7 +133,8 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$paperId = (int) Request::getUserVar('paperId');
 		$submissionEditHandler =& new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
-		$submission =& $submission->submission;
+		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$submission = &$paperDao->getPaper($paperId);
 
 		parent::setupTemplate(true);		
 		if (TrackDirectorAction::emailDirectorDecisionComment($submission, Request::getUserVar('send'))) {
@@ -144,15 +150,16 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 * Edit comment.
 	 */
 	function editComment($args) {
-		$this->validate();
-		$this->setupTemplate(true);
-
 		$paperId = $args[0];
 		$commentId = $args[1];
 
+		$this->validate($commentId);
+		$this->setupTemplate(true);
+
 		$submissionEditHandler =& new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
-		$submission =& $submission->submission;
+		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$submission = &$paperDao->getPaper($paperId);
 		$this->validate($commentId);
 		$comment =& $this->comment;
 
@@ -169,18 +176,20 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 * Save comment.
 	 */
 	function saveComment() {
-		$this->validate();
-		$this->setupTemplate(true);
-
 		$paperId = Request::getUserVar('paperId');
 		$commentId = Request::getUserVar('commentId');
+
+		$this->validate($commentId);
+		$this->setupTemplate(true);
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		$submissionEditHandler =& new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
-		$submission =& $submission->submission;
+		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$submission = &$paperDao->getPaper($paperId);
+		
 		$this->validate($commentId);
 		$comment =& $this->comment;
 
@@ -207,15 +216,18 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 * Delete comment.
 	 */
 	function deleteComment($args) {
-		$this->validate();
-		$this->setupTemplate(true);
-
 		$paperId = $args[0];
 		$commentId = $args[1];
+		
+		$this->validate($commentId);
+		$this->setupTemplate(true);
+
 
 		$submissionEditHandler =& new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
-		$submission =& $submission->submission;
+		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$submission = &$paperDao->getPaper($paperId);
+		
 		$this->validate($commentId);
 		$comment =& $this->comment;
 		TrackDirectorAction::deleteComment($commentId);

@@ -36,6 +36,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$this->validate($reviewId);
 		$reviewerSubmission =& $this->submission;
 		$user =& $this->user;
+		$schedConf =& Request::getSchedConf();
 		
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = $reviewAssignmentDao->getReviewAssignmentById($reviewId);
@@ -48,19 +49,19 @@ class SubmissionReviewHandler extends ReviewerHandler {
 			$confirmedStatus = 1;
 		}
 
-		$this->setupTemplate(true, $submission->getPaperId(), $reviewId);
+		$this->setupTemplate(true, $reviewerSubmission->getPaperId(), $reviewId);
 
 		$templateMgr = &TemplateManager::getManager();
 
 		$templateMgr->assign_by_ref('user', $user);
-		$templateMgr->assign_by_ref('submission', $submission);
+		$templateMgr->assign_by_ref('submission', $reviewerSubmission);
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
 		$templateMgr->assign('confirmedStatus', $confirmedStatus);
-		$templateMgr->assign('declined', $submission->getDeclined());
+		$templateMgr->assign('declined', $reviewerSubmission->getDeclined());
 		$templateMgr->assign('reviewFormResponseExists', $reviewFormResponseDao->reviewFormResponseExists($reviewId));
 		$templateMgr->assign_by_ref('reviewFile', $reviewAssignment->getReviewFile());
-		$templateMgr->assign_by_ref('reviewerFile', $submission->getReviewerFile());
-		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
+		$templateMgr->assign_by_ref('reviewerFile', $reviewerSubmission->getReviewerFile());
+		$templateMgr->assign_by_ref('suppFiles', $reviewerSubmission->getSuppFiles());
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
 		$templateMgr->assign_by_ref('reviewGuidelines', $schedConf->getLocalizedSetting('reviewGuidelines'));
 

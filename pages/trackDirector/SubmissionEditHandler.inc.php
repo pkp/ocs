@@ -136,8 +136,11 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function submissionReview($args) {
 		$paperId = (isset($args[0]) ? $args[0] : null);
 
-		list($conference, $schedConf, $submission) = $this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
-
+		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_REVIEW);
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		$submission =& $this->submission;
+		
 		$stage = (isset($args[1]) ? (int) $args[1] : null);
 		$reviewMode = $submission->getReviewMode();
 		switch ($reviewMode) {
@@ -155,7 +158,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$this->setupTemplate(true, $paperId);
 
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 

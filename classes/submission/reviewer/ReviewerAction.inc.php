@@ -280,6 +280,7 @@ class ReviewerAction extends Action {
 
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$commentForm =& new PeerReviewCommentForm($paper, $reviewId, ROLE_ID_REVIEWER);
+
 			$commentForm->setUser($user);
 			$commentForm->initData();
 			$commentForm->setData('reviewId', $reviewId);

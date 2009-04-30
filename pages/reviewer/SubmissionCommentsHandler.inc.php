@@ -36,9 +36,10 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 
 		$submissionReviewHandler =& new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
-		$submission =& $submission->submission;
+		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$submission =& $paperDao->getPaper($paperId);
 		
-		$user =& RequestUser();
+		$user =& Request::getUser();
 
 		$this->setupTemplate(true);
 		ReviewerAction::viewPeerReviewComments($user, $submission, $reviewId);
@@ -57,7 +58,8 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 
 		$submissionReviewHandler =& new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
-		$submission =& $submission->submission;
+		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$submission =& $paperDao->getPaper($paperId);
 		$user =& $submissionReviewHandler->user;
 
 		$this->setupTemplate(true);
@@ -75,7 +77,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$reviewId = Request::getUserVar('reviewId');
 
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$paper = $paperDao->getPaper($paperId);
+		$submission = $paperDao->getPaper($paperId);
 
 		$submissionReviewHandler =& new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
@@ -85,7 +87,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 
 		$this->setupTemplate(true);
 
-		ReviewerAction::editComment($paper, $comment, $reviewId);
+		ReviewerAction::editComment($submission, $comment, $reviewId);
 	}
 
 	/**
@@ -97,7 +99,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$reviewId = Request::getUserVar('reviewId');
 
 		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$paper = $paperDao->getPaper($paperId);
+		$submission = $paperDao->getPaper($paperId);
 
 		$submissionReviewHandler =& new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
@@ -110,7 +112,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 
 		$this->setupTemplate(true);
 
-		ReviewerAction::saveComment($paper, $comment, $emailComment);
+		ReviewerAction::saveComment($submission, $comment, $emailComment);
 
 		// Refresh the comment
 		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');

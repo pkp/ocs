@@ -29,7 +29,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 	 * Displays setup index page if a valid step is not specified.
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
-	function setup($args) {
+	function schedConfSetup($args) {
 		$this->validate();
 		$this->setupTemplate(true);
 
@@ -59,7 +59,7 @@ class SchedConfSetupHandler extends ManagerHandler {
 	 * Save changes to conference settings.
 	 * @param $args array first parameter is the step being saved
 	 */
-	function saveSetup($args) {
+	function saveSchedConfSetup($args) {
 		$this->validate();
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;

@@ -73,6 +73,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function submission($args) {
 		$user = &Request::getUser();
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
+		$schedConf =& Request::getSchedConf();
 
 		$this->validate($paperId);
 		$submission =& $this->submission;

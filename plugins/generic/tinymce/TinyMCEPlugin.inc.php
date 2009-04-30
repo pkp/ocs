@@ -219,7 +219,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				break;
 			case 'reviewer/viewPeerReviewComments':
   			case 'reviewer/postPeerReviewComment':
-				$fields[] = 'presenterComments';
+				$fields[] = 'authorComments';
 				$fields[] = 'comments';
 				break;
 			case 'director/submissionNotes':

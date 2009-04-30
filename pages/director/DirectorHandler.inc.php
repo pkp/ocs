@@ -459,7 +459,6 @@ class DirectorHandler extends TrackDirectorHandler {
 					'allAuthorsCount' => $authorDao->getAuthorCount($schedConfId),
 					'allPaidRegistrantsCount' => $registrationDao->getRegisteredUserCount($schedConfId),
 					'allRegistrantsCount' => $registrationDao->getRegisteredUserCount($schedConfId, false),
-					'notifiableCount' => $notificationStatusDao->getNotifiableUsersCount($schedConfId),
 					'allUsersCount' => $roleDao->getSchedConfUsersCount($schedConfId)
 				)
 			);

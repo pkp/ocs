@@ -40,7 +40,7 @@ class GroupHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate();
 
-		$schedConf =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 		$schedConfId = $schedConf? $schedConf->getSchedConfId():0;
 
 		$rangeInfo =& Handler::getRangeInfo('groups', array());
