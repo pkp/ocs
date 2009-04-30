@@ -23,7 +23,7 @@ import('handler.Handler');
 class CommentHandler extends Handler {
 	/** the paper associated with the comment **/
 	var $paper;
-		
+
 	/**
 	 * Constructor
 	 **/
@@ -33,7 +33,7 @@ class CommentHandler extends Handler {
 		$this->addCheck(new HandlerValidatorConference($this));
 		$this->addCheck(new HandlerValidatorSchedConf($this));
 	}
-	
+
 	function view($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
@@ -43,7 +43,7 @@ class CommentHandler extends Handler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		$paper =& $this->paper;
-		
+
 		$user = &Request::getUser();
 		$userId = isset($user)?$user->getUserId():null;
 
@@ -88,7 +88,7 @@ class CommentHandler extends Handler {
 
 		$this->validate($paperId);
 		$paper =& $this->paper;
-		
+
 		// Bring in comment constants
 		$commentDao = &DAORegistry::getDAO('CommentDAO');
 
@@ -118,7 +118,7 @@ class CommentHandler extends Handler {
 			$commentForm->readInputData();
 			if ($commentForm->validate()) {
 				$commentForm->execute();
-				
+
 				// Send a notification to associated users
 				import('notification.Notification');
 				$paperDAO =& DAORegistry::getDAO('PaperDAO');
@@ -129,7 +129,7 @@ class CommentHandler extends Handler {
 					Notification::createNotification($user['id'], "notification.type.userComment",
 						$paper->getPaperTitle(), $url, 1, NOTIFICATION_TYPE_USER_COMMENT);
 				}
-	
+
 				Request::redirect(null, null, null, 'view', array($paperId, $galleyId, $parentId), array('refresh' => 1));
 			}
 		}
@@ -191,7 +191,7 @@ class CommentHandler extends Handler {
 			Validation::redirectLogin();
 		}
 
-		return true
+		return true;
 	}
 
 	function setupTemplate($paper, $galleyId, $comment = null) {
