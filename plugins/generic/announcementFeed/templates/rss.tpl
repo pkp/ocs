@@ -43,12 +43,12 @@
 {foreach from=$announcements item=announcement}
 	<item rdf:about="{url page="announcement" op="view" path=$announcement->getAnnouncementId()}">
 		{* required elements *}
-		<title>{$announcement->getAnnouncementTitleFull()|strip|escape:"html"}</title>
+		<title>{$announcement->getLocalizedTitleFull()|strip|escape:"html"}</title>
 		<link>{url page="announcement" op="view" path=$announcement->getAnnouncementId()}</link>
 
 		{* optional elements *}
-		{if $announcement->getAnnouncementDescription()}
-		<description>{$announcement->getAnnouncementDescription()|strip|escape:"html"}</description>
+		{if $announcement->getLocalizedDescription()}
+		<description>{$announcement->getLocalizedDescription()|strip|escape:"html"}</description>
 		{/if}
 		<dc:creator>{if $schedConf}{$schedConf->getSchedConfTitle()|escape:"html"|strip}{else}{$conference->getConferenceTitle()|escape:"html"|strip}{/if}</dc:creator>
 		<dc:date>{$announcement->getDatePosted()|date_format:"%Y-%m-%d"}</dc:date>
