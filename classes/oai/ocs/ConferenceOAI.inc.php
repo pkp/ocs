@@ -106,8 +106,8 @@ class ConferenceOAI extends OAI {
 			$info->adminEmail = $this->conference->getSetting('contactEmail');
 
 		} else {
-			$info->repositoryName = $this->site->getSiteTitle();
-			$info->adminEmail = $this->site->getSiteContactEmail();
+			$info->repositoryName = $this->site->getLocalizedTitle();
+			$info->adminEmail = $this->site->getLocalizedContactEmail();
 		}
 
 		$info->sampleIdentifier = $this->paperIdToIdentifier(1);

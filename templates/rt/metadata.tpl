@@ -98,7 +98,7 @@
 	<td>8.</td>
 	<td>{translate key="rt.metadata.dublinCore.type"}</td>
 	<td>{translate key="rt.metadata.pkp.genre"}</td>
-	<td>{if $track && $track->getTrackIdentifyType()}{$track->getTrackIdentifyType()|escape}{else}{translate key="rt.metadata.pkp.peerReviewed"}{/if}</td>
+	<td>{if $track && $track->getLocalizedIdentifyType()}{$track->getLocalizedIdentifyType()|escape}{else}{translate key="rt.metadata.pkp.peerReviewed"}{/if}</td>
 </tr>
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>
 <tr valign="top">

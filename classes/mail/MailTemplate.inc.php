@@ -97,7 +97,7 @@ class MailTemplate extends PKPMailTemplate {
 			$this->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 		} else {
 			$site = &Request::getSite();
-			$this->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
+			$this->setFrom($site->getLocalizedContactEmail(), $site->getLocalizedContactName());
 		}
 
 		if ($schedConf && !Request::getUserVar('continued')) {
@@ -123,7 +123,7 @@ class MailTemplate extends PKPMailTemplate {
 			$paramArray['principalContactSignature'] = $conference->getSetting('contactName');
 		} else {
 			$site =& Request::getSite();
-			$paramArray['principalContactSignature'] = $site->getSiteContactName();
+			$paramArray['principalContactSignature'] = $site->getLocalizedContactName();
 		}
 
 		if (isset($conference)) {

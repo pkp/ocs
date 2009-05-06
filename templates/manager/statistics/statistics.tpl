@@ -18,7 +18,7 @@
 <form action="{url op="saveStatisticsTracks"}" method="post">
 	<select name="trackIds[]" class="selectMenu" multiple="multiple" size="5">
 		{foreach from=$tracks item=track}
-			<option {if in_array($track->getTrackId(), $trackIds)}selected {/if}value="{$track->getTrackId()}">{$track->getTrackTitle()}</option>
+			<option {if in_array($track->getTrackId(), $trackIds)}selected {/if}value="{$track->getTrackId()}">{$track->getLocalizedTitle()}</option>
 		{/foreach}
 	</select><br/>&nbsp;<br/>
 	<input type="submit" value="{translate key="common.record"}" class="button defaultButton"/>

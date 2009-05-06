@@ -39,7 +39,7 @@ class TemplateManager extends PKPTemplateManager {
 			$conference = &Request::getConference();
 			$schedConf = &Request::getSchedConf();
 			$site = &Request::getSite();
-			$this->assign('siteTitle', $site->getSiteTitle());
+			$this->assign('siteTitle', $site->getLocalizedTitle());
 			
 			$this->assign('homeContext', array('conference' => 'index', 'schedConf' => 'index'));
 
@@ -160,7 +160,7 @@ class TemplateManager extends PKPTemplateManager {
 				}
 			} else { // Not within conference context
 				// Add the site-wide logo, if set for this locale or the primary locale
-				$this->assign('displaySitePageHeaderTitle', $site->getSitePageHeaderTitle());
+				$this->assign('displaySitePageHeaderTitle', $site->getLocalizedPageHeaderTitle());
 
 				$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath());
 			}

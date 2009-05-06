@@ -352,7 +352,7 @@ class TrackDAO extends DAO {
 		$tracksIterator =& $this->getSchedConfTracks($schedConfId);
 		while (($track =& $tracksIterator->next())) {
 			if (!$submittableOnly || !$track->getDirectorRestricted()) {
-				$tracks[$track->getTrackId()] = $track->getTrackTitle();
+				$tracks[$track->getTrackId()] = $track->getLocalizedTitle();
 			}
 
 			unset($track);

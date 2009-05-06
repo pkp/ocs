@@ -96,7 +96,7 @@ class Notification extends PKPNotification {
 		}
 		
 		$mail = new MailTemplate($template);
-		$mail->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
+		$mail->setFrom($site->getLocalizedContactEmail(), $site->getLocalizedContactName());
 		$mail->assignParams($params);
 		$mail->addRecipient($email);
 		$mail->send();

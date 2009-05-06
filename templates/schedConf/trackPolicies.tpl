@@ -17,9 +17,9 @@
 {/strip}
 
 {foreach from=$tracks item=track}{if !$track->getHideAbout()}
-	<h4>{$track->getTrackTitle()}</h4>
-	{if strlen($track->getTrackPolicy()) > 0}
-		<p>{$track->getTrackPolicy()|nl2br}</p>
+	<h4>{$track->getLocalizedTitle()}</h4>
+	{if strlen($track->getLocalizedPolicy()) > 0}
+		<p>{$track->getLocalizedPolicy()|nl2br}</p>
 	{/if}
 
 	{assign var="hasDirectors" value=0}

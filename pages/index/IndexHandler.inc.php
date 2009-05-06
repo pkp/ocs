@@ -76,7 +76,7 @@ class IndexHandler extends Handler {
 
 			// Otherwise, show a list of hosted conferences.
 
-			$templateMgr->assign('intro', $site->getSiteIntro());
+			$templateMgr->assign('intro', $site->getLocalizedIntro());
 			$conferences = &$conferenceDao->getEnabledConferences();
 			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);

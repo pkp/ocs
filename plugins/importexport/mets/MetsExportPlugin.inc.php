@@ -75,7 +75,7 @@ class METSExportPlugin extends ImportExportPlugin {
 
 				$siteDao =& DAORegistry::getDAO('SiteDAO');
 				$site = $siteDao->getSite();
-				$organization = $site->getSiteTitle();
+				$organization = $site->getLocalizedTitle();
 
 				$templateMgr->assign_by_ref('organization', $organization);
 				$templateMgr->assign_by_ref('schedConfs', $currentSchedConfs);

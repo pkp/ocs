@@ -30,15 +30,25 @@ class Track extends DataObject {
 	 * Get localized title of conference track.
 	 * @return string
 	 */
-	function getTrackTitle() {
+	function getLocalizedTitle() {
 		return $this->getLocalizedData('title');
+	}
+
+	function getTrackTitle() {
+		trigger_error('Deprecated function.');
+		return $this->getLocalizedTitle();
 	}
 
 	/**
 	 * Get localized abbreviation of conference track.
 	 */
-	function getTrackAbbrev() {
+	function getLocalizedAbbrev() {
 		return $this->getLocalizedData('abbrev');
+	}
+
+	function getTrackAbbrev() {
+		trigger_error('Deprecated function.');
+		return $this->getLocalizedAbbrev();
 	}
 
 	//
@@ -149,8 +159,13 @@ class Track extends DataObject {
 	 * Get localized string identifying type of items in this track.
 	 * @return string
 	 */
-	function getTrackIdentifyType() {
+	function getLocalizedIdentifyType() {
 		return $this->getLocalizedData('identifyType');
+	}
+
+	function getTrackIdentifyType() {
+		trigger_error('Deprecated function.');
+		return $this->getLocalizedIdentifyType();
 	}
 
 	/**
@@ -223,8 +238,13 @@ class Track extends DataObject {
 	 * Get localized track policy.
 	 * @return string
 	 */
-	function getTrackPolicy() {
+	function getLocalizedPolicy() {
 		return $this->getLocalizedData('policy');
+	}
+
+	function getTrackPolicy() {
+		trigger_error('Deprecated function.');
+		return $this->getLocalizedPolicy();
 	}
 
 	/**

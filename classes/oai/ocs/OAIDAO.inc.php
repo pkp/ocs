@@ -340,7 +340,7 @@ class OAIDAO extends DAO {
 		// FIXME Use "last-modified" field for datestamp?
 		$record->identifier = $this->oai->paperIdToIdentifier($row['paper_id']);
 		$record->datestamp = OAIUtils::UTCDate(strtotime($this->datetimeFromDB($row['date_published'])));
-		$record->sets = array($conference->getPath() . ':' . $track->getTrackAbbrev());
+		$record->sets = array($conference->getPath() . ':' . $track->getLocalizedAbbrev());
 
 		return $record;
 	}
@@ -358,7 +358,7 @@ class OAIDAO extends DAO {
 
 		$record->identifier = $this->oai->paperIdToIdentifier($row['paper_id']);
 		$record->datestamp = OAIUtils::UTCDate(strtotime($this->datetimeFromDB($row['date_published'])));
-		$record->sets = array($conference->getPath() . ':' . $track->getTrackAbbrev());
+		$record->sets = array($conference->getPath() . ':' . $track->getLocalizedAbbrev());
 
 		return $record;
 	}
@@ -456,7 +456,7 @@ class OAIDAO extends DAO {
 
 			$tracks =& $this->trackDao->getConferenceTracks($conference->getConferenceId());
 			foreach ($tracks->toArray() as $track) {
-				array_push($sets, new OAISet($abbrev . ':' . $track->getTrackAbbrev(), $track->getTrackTitle(), ''));
+				array_push($sets, new OAISet($abbrev . ':' . $track->getLocalizedAbbrev(), $track->getTrackTitle(), ''));
 			}
 		}
 

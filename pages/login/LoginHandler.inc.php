@@ -170,12 +170,12 @@ class LoginHandler extends Handler {
 			} elseif ($conference) {
 				$mail->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 			} else {
-				$mail->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
+				$mail->setFrom($site->getLocalizedContactEmail(), $site->getLocalizedContactName());
 			}
 
 			$mail->assignParams(array(
 				'url' => Request::url(null, null, 'login', 'resetPassword', $user->getUsername(), array('confirm' => $hash)),
-				'siteTitle' => $site->getSiteTitle()
+				'siteTitle' => $site->getLocalizedTitle()
 			));
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 			$mail->send();
@@ -246,13 +246,13 @@ class LoginHandler extends Handler {
 			} elseif ($conference) {
 				$mail->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 			} else {
-				$mail->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
+				$mail->setFrom($site->getLocalizedContactEmail(), $site->getLocalizedContactName());
 			}
 
 			$mail->assignParams(array(
 				'username' => $user->getUsername(),
 				'password' => $newPassword,
-				'siteTitle' => $site->getSiteTitle()
+				'siteTitle' => $site->getLocalizedTitle()
 			));
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 			$mail->send();

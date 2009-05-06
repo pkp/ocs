@@ -47,7 +47,7 @@
 	<td>
 		{assign var=thisDirectorTracks value=$directorTracks[$directorId]}
 		{foreach from=$thisDirectorTracks item=track}
-			{$track->getTrackAbbrev()|escape}&nbsp;
+			{$track->getLocalizedAbbrev()|escape}&nbsp;
 		{foreachelse}
 			&mdash;
 		{/foreach}

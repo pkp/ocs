@@ -554,7 +554,7 @@ class MetsExportDom {
 		if($organization == ''){
 		  $siteDao =& DAORegistry::getDAO('SiteDAO');
 		  $site = $siteDao->getSite();
-		  $organization = $site->getSiteTitle();
+		  $organization = $site->getLocalizedTitle();
 		}
 		XMLCustomWriter::createChildWithText($doc, $agentNode, 'METS:name', $organization, false);
 		XMLCustomWriter::appendChild($root, $agentNode);
