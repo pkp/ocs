@@ -71,21 +71,24 @@ class Paper extends Submission {
 	}
 
 	/**
-	 * Get "localized" paper title (if applicable).
+	 * Get "localized" paper title (if applicable). DEPRECATED
+	 * in favour of getLocalizedTitle.
 	 * @return string
 	 */
 	function getPaperTitle() {
-		return $this->getLocalizedData('title');
+		trigger_error('Deprecated function');
+		return $this->getLocalizedTitle();
 	}
 
 	/**
-	 * Get "localized" paper abstract (if applicable).
+	 * Get "localized" paper abstract (if applicable). DEPRECATED
+	 * in favour of getLocalizedAbstract.
 	 * @return string
 	 */
 	function getPaperAbstract() {
-		return $this->getLocalizedData('abstract');
+		trigger_error('Deprecated function');
+		return $this->getLocalizedAbstract();
 	}
-
 
 	//
 	// Get/set methods
@@ -172,69 +175,85 @@ class Paper extends Submission {
 	}
 
 	/**
-	 * Return the localized discipline
+	 * Return the localized discipline. DEPRECATED in favour
+	 * of getLocalizedDiscipline.
 	 * @param $locale string
 	 * @return string
 	 */
 	function getPaperDiscipline() {
-		return $this->getLocalizedData('discipline');
+		trigger_error('Deprecated function');
+		return $this->getLocalizedDiscipline();
 	}
 
 	/**
-	 * Return the localized subject classification
+	 * Return the localized subject classification. DEPRECATED
+	 * in favour of getLocalizedSubjectClass.
 	 * @param $locale string
 	 * @return string
 	 */
 	function getPaperSubjectClass() {
-		return $this->getLocalizedData('subjectClass');
+		trigger_error('Deprecated function.');
+		return $this->getLocalizedSubjectClass();
 	}
 
 	/**
-	 * Return the localized subject
+	 * Return the localized subject. DEPRECATED
+	 * in favour of getLocalizedSubject.
 	 * @return string
 	 */
 	function getPaperSubject() {
-		return $this->getLocalizedData('subject');
+		trigger_error('Deprecated function.');
+		return $this->getLocalizedSubject();
 	}
 
 	/**
-	 * Return the localized geo coverage
+	 * Return the localized geo coverage. DEPRECATED in favour of
+	 * getLocalizedCoverageGeo.
 	 * @return string
 	 */
 	function getPaperCoverageGeo() {
-		return $this->getLocalizedData('coverageGeo');
+		trigger_error('Deprecated function.');
+		return $this->getLocalizedCoverageGeo();
 	}
 
 	/**
-	 * Return the localized chron coverage
+	 * Return the localized chron coverage. DEPRECATED in favour
+	 * of getLocalizedCoverageChron.
 	 * @return string
 	 */
 	function getPaperCoverageChron() {
-		return $this->getLocalizedData('coverageChron');
+		trigger_error('Deprecated function.');
+		return $this->getLocalizedCoverageChron();
 	}
 
 	/**
-	 * Return the localized sample coverage
+	 * Return the localized sample coverage. DEPRECATED in favour
+	 * of getLocalizedCoverageSample.
 	 * @return string
 	 */
 	function getPaperCoverageSample() {
-		return $this->getLocalizedData('coverageSample');
+		trigger_error('Deprecated function.');
+		return $this->getLocalizedCoverageSample();
 	}
 
 	/**
-	 * Return the localized type
+	 * Return the localized type. DEPRECATED in favour of
+	 * getLocalizedType.
 	 * @return string
 	 */
 	function getPaperType() {
-		return $this->getLocalizedData('type');
+		trigger_error('Deprecated function.');
+		return $this->getLocalizedType();
 	}
 
 	/**
-	 * Return the localized sponsor
+	 * Return the localized sponsor. DEPRECATED in favour of
+	 * getLocalizedSponsor.
 	 * @return string
 	 */
 	function getPaperSponsor() {
-		return $this->getLocalizedData('sponsor');
+		trigger_error('Deprecated function.');
+		return $this->getLocalizedSponsor();
 	}
 
 	/**

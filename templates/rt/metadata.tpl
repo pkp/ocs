@@ -13,7 +13,7 @@
 {include file="rt/header.tpl"}
 {/strip}
 
-<h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
+<h3>{$paper->getLocalizedTitle()|strip_unsafe_html}</h3>
 
 <br />
 
@@ -30,7 +30,7 @@
 	<td>1.</td>
 	<td>{translate key="rt.metadata.dublinCore.title"}</td>
 	<td>{translate key="rt.metadata.pkp.title"}</td>
-	<td>{$paper->getPaperTitle()|strip_unsafe_html}</td>
+	<td>{$paper->getLocalizedTitle()|strip_unsafe_html}</td>
 </tr>
 {foreach from=$paper->getAuthors() item=author}
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>
@@ -48,22 +48,22 @@
 	<td>3.</td>
 	<td>{translate key="rt.metadata.dublinCore.subject"}</td>
 	<td>{translate key="rt.metadata.pkp.discipline"}</td>
-	<td>{$paper->getPaperDiscipline()|escape}</td>
+	<td>{$paper->getLocalizedDiscipline()|escape}</td>
 </tr>
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>
 <tr valign="top">
 	<td>3.</td>
 	<td>{translate key="rt.metadata.dublinCore.subject"}</td>
 	<td>{translate key="rt.metadata.pkp.subject"}</td>
-	<td>{$paper->getPaperSubject()|escape}</td>
+	<td>{$paper->getLocalizedSubject()|escape}</td>
 </tr>
-{if $paper->getPaperSubjectClass()}
+{if $paper->getLocalizedSubjectClass()}
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>
 <tr valign="top">
 	<td>3.</td>
 	<td>{translate key="rt.metadata.dublinCore.subject"}</td>
 	<td>{translate key="rt.metadata.pkp.subjectClass"}</td>
-	<td>{$paper->getPaperSubjectClass()|escape}</td>
+	<td>{$paper->getLocalizedSubjectClass()|escape}</td>
 </tr>
 {/if}
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>
@@ -71,7 +71,7 @@
 	<td>4.</td>
 	<td>{translate key="rt.metadata.dublinCore.description"}</td>
 	<td>{translate key="rt.metadata.pkp.abstract"}</td>
-	<td>{if $track}{$paper->getPaperAbstract()|strip_unsafe_html|nl2br}{/if}</td>
+	<td>{if $track}{$paper->getLocalizedAbstract()|strip_unsafe_html|nl2br}{/if}</td>
 </tr>
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>
 <tr valign="top">
@@ -84,7 +84,7 @@
 	<td>6.</td>
 	<td>{translate key="rt.metadata.dublinCore.contributor"}</td>
 	<td>{translate key="rt.metadata.pkp.sponsors"}</td>
-	<td>{$paper->getPaperSponsor()|escape}</td>
+	<td>{$paper->getLocalizedSponsor()|escape}</td>
 </tr>
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>
 <tr valign="top">
@@ -105,7 +105,7 @@
 	<td>8.</td>
 	<td>{translate key="rt.metadata.dublinCore.type"}</td>
 	<td>{translate key="rt.metadata.pkp.type"}</td>
-	<td>{$paper->getPaperType()|escape}</td>
+	<td>{$paper->getLocalizedType()|escape}</td>
 </tr>
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>
 <tr valign="top">
@@ -158,7 +158,7 @@
 	<td>{translate key="rt.metadata.dublinCore.coverage"}</td>
 	<td>{translate key="rt.metadata.pkp.coverage"}</td>
 	<td>
-		{if $paper->getPaperCoverageGeo()}{$paper->getPaperCoverageGeo()|escape}{assign var=notFirstItem value=1}{/if}{if $paper->getPaperCoverageChron()}{if $notFirstItem}, <br/>{/if}{$paper->getPaperCoverageChron()|escape}{assign var=notFirstItem value=1}{/if}{if $paper->getPaperCoverageSample()}{if $notFirstItem}, <br/>{/if}{$paper->getPaperCoverageSample()|escape}{assign var=notFirstItem value=1}{/if}
+		{if $paper->getLocalizedCoverageGeo()}{$paper->getLocalizedCoverageGeo()|escape}{assign var=notFirstItem value=1}{/if}{if $paper->getLocalizedCoverageChron()}{if $notFirstItem}, <br/>{/if}{$paper->getLocalizedCoverageChron()|escape}{assign var=notFirstItem value=1}{/if}{if $paper->getLocalizedCoverageSample()}{if $notFirstItem}, <br/>{/if}{$paper->getLocalizedCoverageSample()|escape}{assign var=notFirstItem value=1}{/if}
 	</td>
 </tr>
 <tr><td colspan="4" class="separator">&nbsp;</td></tr>

@@ -42,7 +42,7 @@ function confirmSubmissionCheck() {
 <table width="100%" class="data">
 <tr valign="top">
 	<td width="20%" class="label">{translate key="paper.title"}</td>
-	<td width="80%" class="value">{$submission->getPaperTitle()|strip_unsafe_html}</td>
+	<td width="80%" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 </tr>
 
 {assign var=sessionType value=$submission->getData('sessionType')}
@@ -59,7 +59,7 @@ function confirmSubmissionCheck() {
 </tr>
 <tr valign="top">
 	<td class="label">{translate key="paper.abstract"}</td>
-	<td class="value">{$submission->getPaperAbstract()|strip_unsafe_html|nl2br}</td>
+	<td class="value">{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br}</td>
 </tr>
 {assign var=editAssignments value=$submission->getEditAssignments()}
 {foreach from=$editAssignments item=editAssignment}
@@ -70,7 +70,7 @@ function confirmSubmissionCheck() {
 			<td class="value">
 	{/if}
 			{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
-			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getPaperTitle()|strip_tags paperId=$paperId}
+			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getLocalizedTitle()|strip_tags paperId=$paperId}
 			{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
 			({if $editAssignment->getIsDirector()}{translate key="user.role.director"}{else}{translate key="user.role.trackDirector"}{/if})
 			<br/>
@@ -174,7 +174,7 @@ function confirmSubmissionCheck() {
 							{translate key="submission.abstract"}
 						</td>
 						<td class="value" width="70%">
-							{$submission->getPaperAbstract()|strip_unsafe_html|nl2br}
+							{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br}
 						</td>
 					</tr>
 				{else}

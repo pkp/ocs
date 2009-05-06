@@ -51,7 +51,7 @@ class ApaCitationPlugin extends CitationPlugin {
 	 * @param $paper object
 	 */
 	function cite(&$paper) {
-		$loweredTitle = String::strtolower($paper->getPaperTitle());
+		$loweredTitle = String::strtolower($paper->getLocalizedTitle());
 		$apaCapitalized = String::ucfirst($loweredTitle);
 
 		HookRegistry::register('Template::RT::CaptureCite', array(&$this, 'displayCitation'));

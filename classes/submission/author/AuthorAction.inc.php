@@ -183,7 +183,7 @@ class AuthorAction extends Action {
 			return true;
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$email->setSubject($authorSubmission->getPaperTitle());
+				$email->setSubject($authorSubmission->getLocalizedTitle());
 				if (!empty($directors)) {
 					foreach ($directors as $director) {
 						$email->addRecipient($director->getEmail(), $director->getFullName());

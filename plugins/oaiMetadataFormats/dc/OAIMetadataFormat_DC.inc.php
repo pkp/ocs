@@ -89,7 +89,7 @@ class OAIMetadataFormat_DC extends OAIMetadataFormat {
 			"\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" .
 			"\txsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\n" .
 			"\thttp://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n" .
-			$this->formatElement('title', $this->stripAssocArray((array) $paper->getPaperTitle(null)), true) .
+			$this->formatElement('title', $this->stripAssocArray((array) $paper->getLocalizedTitle(null)), true) .
 			$this->formatElement('creator', $creator) .
 			$this->formatElement('subject', $subjects, true) .
 			$this->formatElement('description', $this->stripAssocArray((array) $paper->getAbstract(null)), true) .

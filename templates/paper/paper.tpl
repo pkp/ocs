@@ -24,7 +24,7 @@
 	{/if}
 {else}
 
-	<h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
+	<h3>{$paper->getLocalizedTitle()|strip_unsafe_html}</h3>
 	<div><em>{$paper->getAuthorString()|escape}</em></div>
 	<br />
 
@@ -41,10 +41,10 @@
 	{translate key="submission.lastModified"}:&nbsp;{$paper->getLastModified()|date_format:$dateFormatShort}<br/>
 	</blockquote>
 
-	{if $paper->getPaperAbstract()}
+	{if $paper->getLocalizedAbstract()}
 	<h4>{translate key="paper.abstract"}</h4>
 	<br />
-	<div>{$paper->getPaperAbstract()|strip_unsafe_html|nl2br}</div>
+	<div>{$paper->getLocalizedAbstract()|strip_unsafe_html|nl2br}</div>
 	<br />
 	{/if}
 

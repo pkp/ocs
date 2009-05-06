@@ -47,9 +47,9 @@ class OAIMetadataFormat_MARC extends OAIMetadataFormat {
 
 		// Subjects
 		$subject = array(
-			$paper->getPaperDiscipline(null),
-			$paper->getPaperSubject(null),
-			$paper->getPaperSubjectClass(null)
+			$paper->getLocalizedDiscipline(null),
+			$paper->getLocalizedSubject(null),
+			$paper->getLocalizedSubjectClass(null)
 		);
 
 		// Publishers
@@ -83,12 +83,12 @@ class OAIMetadataFormat_MARC extends OAIMetadataFormat {
 			"\thttp://www.openarchives.org/OAI/1.1/oai_marc.xsd\">\n" .
 			"\t<fixfield id=\"008\">\"" . date('ymd Y', strtotime($paper->getDatePublished())) . '												eng  "</fixfield>' . "\n" .
 			$this->formatElement('042', ' ', ' ', 'a', 'dc') .
-			$this->formatElement('245', '0', '0', 'a', $paper->getPaperTitle()) .
+			$this->formatElement('245', '0', '0', 'a', $paper->getLocalizedTitle()) .
 			$this->formatElement('720', ' ', ' ', 'a', $creators) .
 			$this->formatElement('653', ' ', ' ', 'a', $subject) .
-			$this->formatElement('520', ' ', ' ', 'a', strip_tags($paper->getPaperAbstract())) .
+			$this->formatElement('520', ' ', ' ', 'a', strip_tags($paper->getLocalizedAbstract())) .
 			$this->formatElement('260', ' ', ' ', 'b', $publisher) .
-			$this->formatElement('720', ' ', ' ', 'a', $paper->getPaperSponsor()) .
+			$this->formatElement('720', ' ', ' ', 'a', $paper->getLocalizedSponsor()) .
 			$this->formatElement('260', ' ', ' ', 'c', $paper->getDatePublished()) .
 			$this->formatElement('655', ' ', '7', 'a', $type) .
 			$this->formatElement('856', ' ', ' ', 'q', $format) .
@@ -97,9 +97,9 @@ class OAIMetadataFormat_MARC extends OAIMetadataFormat {
 			$this->formatElement('546', ' ', ' ', 'a', $paper->getLanguage()) .
 			$this->formatElement('787', '0', ' ', 'n', $relation) .
 			$this->formatElement('500', ' ', ' ', 'a', array(
-				$paper->getPaperCoverageGeo(null),
-				$paper->getPaperCoverageChron(null),
-				$paper->getPaperCoverageSample(null)
+				$paper->getLocalizedCoverageGeo(null),
+				$paper->getLocalizedCoverageChron(null),
+				$paper->getLocalizedCoverageSample(null)
 			)) .
 			$this->formatElement('540', ' ', ' ', 'a', $conference->getLocalizedSetting('copyrightNotice')) .
 			"</oai_marc>\n";

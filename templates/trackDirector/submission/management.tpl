@@ -18,13 +18,13 @@
 	<tr>
 		<td width="20%" class="label">{translate key="paper.authors"}</td>
 		<td width="80%" colspan="2" class="value">
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getPaperTitle() paperId=$submission->getPaperId()}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getLocalizedTitle() paperId=$submission->getPaperId()}
 			{$submission->getAuthorString()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
 	<tr>
 		<td class="label">{translate key="paper.title"}</td>
-		<td colspan="2" class="value">{$submission->getPaperTitle()|strip_unsafe_html}</td>
+		<td colspan="2" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 	</tr>
 {if $submissionFile || $submission->getReviewMode() != REVIEW_MODE_ABSTRACTS_ALONE}
 	<tr>
@@ -54,7 +54,7 @@
 		<td colspan="2" class="value">
 			{assign var="submitter" value=$submission->getUser()}
 			{assign var=emailString value="`$submitter->getFullName()` <`$submitter->getEmail()`>"}
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getPaperTitle|strip_tags paperId=$submission->getPaperId()}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags paperId=$submission->getPaperId()}
 			{$submitter->getFullName()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>

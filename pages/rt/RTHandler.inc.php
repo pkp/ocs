@@ -155,10 +155,10 @@ class RTHandler extends PaperHandler {
 				$searchValues[$param] = $paper->getAuthorString();
 				break;
 			case 'coverageGeo':
-				$searchValues[$param] = $paper->getPaperCoverageGeo();
+				$searchValues[$param] = $paper->getLocalizedCoverageGeo();
 				break;
 			case 'title':
-				$searchValues[$param] = $paper->getPaperTitle();
+				$searchValues[$param] = $paper->getLocalizedTitle();
 				break;
 			default:
 				// UNKNOWN parameter! Remove it from the list.
@@ -176,8 +176,8 @@ class RTHandler extends PaperHandler {
 		$templateMgr->assign('searchParams', $searchParams);
 		$templateMgr->assign('searchValues', $searchValues);
 		$templateMgr->assign('defineTerm', Request::getUserVar('defineTerm'));
-		$templateMgr->assign('keywords', explode(';', $paper->getPaperSubject()));
-		$templateMgr->assign('coverageGeo', $paper->getPaperCoverageGeo());
+		$templateMgr->assign('keywords', explode(';', $paper->getLocalizedSubject()));
+		$templateMgr->assign('coverageGeo', $paper->getLocalizedCoverageGeo());
 		$templateMgr->assign_by_ref('conferenceSettings', $conference->getSettings());
 		$templateMgr->display('rt/context.tpl');
 	}
@@ -293,9 +293,9 @@ class RTHandler extends PaperHandler {
 				$primaryAuthor = $paper->getAuthors();
 				$primaryAuthor = $primaryAuthor[0];
 
-				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getPaperTitle()));
+				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getLocalizedTitle()));
 				$email->assignParams(array(
-					'paperTitle' => strip_tags($paper->getPaperTitle()),
+					'paperTitle' => strip_tags($paper->getLocalizedTitle()),
 					'schedConf' => $schedConf->getSchedConfTitle(),
 					'authorName' => $primaryAuthor->getFullName(),
 					'paperUrl' => Request::url(null, null, 'paper', 'view', $paper->getBestPaperId())
@@ -335,7 +335,7 @@ class RTHandler extends PaperHandler {
 			$templateMgr->display('rt/sent.tpl');
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getPaperTitle()));
+				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getLocalizedTitle()));
 				$authors = &$paper->getAuthors();
 				$author = &$authors[0];
 				$email->addRecipient($author->getEmail(), $author->getFullName());

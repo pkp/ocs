@@ -17,11 +17,11 @@
 %A {$author->getFullName(true)|escape}
 {/foreach}
 %D {$paper->getDatePublished()|date_format:"%Y"}
-%T {$paper->getPaperTitle()|strip_tags}
+%T {$paper->getLocalizedTitle()|strip_tags}
 %B {$paper->getDatePublished()|date_format:"%Y"}
-%9 {$paper->getPaperSubject()|escape}
-%! {$paper->getPaperTitle()|strip_tags}
-%K {$paper->getPaperSubject()|escape}
-%X {$paper->getPaperAbstract()|strip_tags|replace:"\n":" "|replace:"\r":" "}
+%9 {$paper->getLocalizedSubject()|escape}
+%! {$paper->getLocalizedTitle()|strip_tags}
+%K {$paper->getLocalizedSubject()|escape}
+%X {$paper->getLocalizedAbstract()|strip_tags|replace:"\n":" "|replace:"\r":" "}
 %U {$paperUrl}
 

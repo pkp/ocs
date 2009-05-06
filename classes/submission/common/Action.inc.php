@@ -128,7 +128,7 @@ class Action {
 				foreach ($notificationUsers as $user) {
 					$url = Request::url(null, null, $user['role'], 'submission', $paper->getPaperId(), null, 'metadata');
 					Notification::createNotification($user['id'], "notification.type.metadataModified",
-						$paper->getPaperTitle(), $url, 1, NOTIFICATION_TYPE_METADATA_MODIFIED);
+						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_METADATA_MODIFIED);
 				}
 
 
@@ -203,7 +203,7 @@ class Action {
 				foreach ($notificationUsers as $user) {
 					$url = Request::url(null, null, $user['role'], 'submissionReview', $paper->getPaperId(), null, 'editorDecision');
 					Notification::createNotification($user['id'], "notification.type.submissionComment",
-						$paper->getPaperTitle(), $url, 1, NOTIFICATION_TYPE_SUBMISSION_COMMENT);
+						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUBMISSION_COMMENT);
 				}
 
 

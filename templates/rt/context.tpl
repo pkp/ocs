@@ -70,7 +70,7 @@
 {/literal}
 </script>
 
-<h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
+<h3>{$paper->getLocalizedTitle()|strip_unsafe_html}</h3>
 
 
 <p>{if $context->getDefineTerms()}{translate key="rt.context.defineTermsDescription"}{elseif $context->getAuthorTerms()}{translate key="rt.context.authorTermsDescription"}{elseif $context->getCitedBy()}{translate key="rt.context.citesContextDescription}{else}{translate key="rt.context.searchDescription"}{/if}</p>

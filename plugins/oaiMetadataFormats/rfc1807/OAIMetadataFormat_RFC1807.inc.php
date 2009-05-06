@@ -47,9 +47,9 @@ class OAIMetadataFormat_RFC1807 extends OAIMetadataFormat {
 
 		// Subjects
 		$subject = array(
-			$paper->getPaperDiscipline(null),
-			$paper->getPaperSubject(null),
-			$paper->getPaperSubjectClass(null)
+			$paper->getLocalizedDiscipline(null),
+			$paper->getLocalizedSubject(null),
+			$paper->getLocalizedSubjectClass(null)
 		);
 
 		// Publishers
@@ -71,9 +71,9 @@ class OAIMetadataFormat_RFC1807 extends OAIMetadataFormat {
 
 		// Subjects
 		$subject = array(
-			$paper->getPaperDiscipline(null),
-			$paper->getPaperSubject(null),
-			$paper->getPaperSubjectClass(null)
+			$paper->getLocalizedDiscipline(null),
+			$paper->getLocalizedSubject(null),
+			$paper->getLocalizedSubjectClass(null)
 		);
 
 		// Get supplementary files
@@ -95,7 +95,7 @@ class OAIMetadataFormat_RFC1807 extends OAIMetadataFormat {
 			$this->formatElement('entry', $record->datestamp) .
 			$this->formatElement('organization', $publisher) .
 			$this->formatElement('organization', $source) .
-			$this->formatElement('title', $paper->getPaperTitle()) .
+			$this->formatElement('title', $paper->getLocalizedTitle()) .
 			$this->formatElement('type', $type) .
 			$this->formatElement('type', $relation) .
 			$this->formatElement('author', $creators) .
@@ -104,13 +104,13 @@ class OAIMetadataFormat_RFC1807 extends OAIMetadataFormat {
 			$this->formatElement('other_access', "url:$url") .
 			$this->formatElement('keyword', $subject) .
 			$this->formatElement('period', array(
-				$paper->getPaperCoverageGeo(null),
-				$paper->getPaperCoverageChron(null),
-				$paper->getPaperCoverageSample(null)
+				$paper->getLocalizedCoverageGeo(null),
+				$paper->getLocalizedCoverageChron(null),
+				$paper->getLocalizedCoverageSample(null)
 			)) .
-			$this->formatElement('monitoring', $paper->getPaperSponsor()) .
+			$this->formatElement('monitoring', $paper->getLocalizedSponsor()) .
 			$this->formatElement('language', $paper->getLanguage()) .
-			$this->formatElement('abstract', strip_tags($paper->getPaperAbstract())) .
+			$this->formatElement('abstract', strip_tags($paper->getLocalizedAbstract())) .
 			"</rfc1807>\n";
 
 		return $response;

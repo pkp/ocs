@@ -314,7 +314,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					echo Locale::translate('plugins.importexport.native.import.success.description') . "\n\n";
 					if (!empty($papers)) echo Locale::translate('paper.papers') . ":\n";
 					foreach ($papers as $paper) {
-						echo "\t" . $paper->getPaperTitle() . "\n";
+						echo "\t" . $paper->getLocalizedTitle() . "\n";
 					}
 				} else {
 					echo Locale::translate('plugins.importexport.native.cliError') . "\n";

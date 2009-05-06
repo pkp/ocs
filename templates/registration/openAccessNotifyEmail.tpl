@@ -13,7 +13,7 @@ Content-Transfer-Encoding: quoted-printable
 {if $track.title}{$track.title}{/if}
 --------
 {foreach from=$track.papers item=paper}
-{$paper->getPaperTitle()|strip_tags}{if $paper->getPages()} ({$paper->getPages()}){/if}
+{$paper->getLocalizedTitle()|strip_tags}{if $paper->getPages()} ({$paper->getPages()}){/if}
 
 {foreach from=$paper->getAuthors() item=author name=authorList}
 	{$author->getFullName()}{if !$smarty.foreach.authorList.last},{/if}{/foreach}
@@ -50,9 +50,9 @@ Content-Transfer-Encoding: quoted-printable
 			{foreach from=$track.papers item=paper}
 				<table width="100%">
 					<tr>
-						<td>{$paper->getPaperTitle()|strip_unsafe_html}</td>
+						<td>{$paper->getLocalizedTitle()|strip_unsafe_html}</td>
 						<td align="right">
-							<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentSchedConf)}" class="file">{if $paper->getPaperAbstract() == ""}{translate key="paper.details"}{else}{translate key="paper.abstract"}{/if}</a>
+							<a href="{url page="paper" op="view" path=$paper->getBestPaperId($currentSchedConf)}" class="file">{if $paper->getLocalizedAbstract() == ""}{translate key="paper.details"}{else}{translate key="paper.abstract"}{/if}</a>
 							{if $mayViewPaper}
 								{foreach from=$paper->getGalleys() item=galley name=galleyList}
 									&nbsp;

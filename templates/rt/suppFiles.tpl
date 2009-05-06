@@ -13,7 +13,7 @@
 {include file="rt/header.tpl"}
 {/strip}
 
-<h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
+<h3>{$paper->getLocalizedTitle()|strip_unsafe_html}</h3>
 
 {foreach from=$paper->getSuppFiles() item=suppFile key=key}
 <h4>{$key+1}. {$suppFile->getSuppFileTitle()|escape}</h4>

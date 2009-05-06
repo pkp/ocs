@@ -31,7 +31,7 @@
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		{translate|assign:"untitledPaper" key="common.untitled"}
-		<td><a href="{url op="submission" path=$submission->getPaperId()}" class="action">{$submission->getPaperTitle()|default:$untitledPaper|strip_unsafe_html|truncate:60:"..."}</a></td>
+		<td><a href="{url op="submission" path=$submission->getPaperId()}" class="action">{$submission->getLocalizedTitle()|default:$untitledPaper|strip_unsafe_html|truncate:60:"..."}</a></td>
 	</tr>
 	<tr>
 		<td colspan="5" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>

@@ -24,7 +24,7 @@
 		<td width="20%" class="label">{translate key="user.name"}</td>
 		<td width="80%" class="value">
 			{assign var=emailString value="`$author->getFullName()` <`$author->getEmail()`>"}
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getPaperTitle|strip_tags paperId=$submission->getPaperId()}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags paperId=$submission->getPaperId()}
 			{$author->getFullName()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
@@ -62,7 +62,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.title"}</td>
-		<td width="80%" class="value">{$submission->getPaperTitle()|strip_unsafe_html|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html|default:"&mdash;"}</td>
 	</tr>
 
 	<tr>
@@ -70,7 +70,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="paper.abstract"}</td>
-		<td class="value">{$submission->getPaperAbstract()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
+		<td class="value">{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
 </table>
 
@@ -80,7 +80,7 @@
 	{if $currentSchedConf->getSetting('metaDiscipline')}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.discipline"}</td>
-		<td width="80%" class="value">{$submission->getPaperDiscipline()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedDiscipline()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -89,7 +89,7 @@
 	{if $currentSchedConf->getSetting('metaSubjectClass')}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.subjectClassification"}</td>
-		<td width="80%" class="value">{$submission->getPaperSubjectClass()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedSubjectClass()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -98,7 +98,7 @@
 	{if $currentSchedConf->getSetting('metaSubject')}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.subject"}</td>
-		<td width="80%" class="value">{$submission->getPaperSubject()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedSubject()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -107,21 +107,21 @@
 	{if $currentSchedConf->getSetting('metaCoverage')}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.coverageGeo"}</td>
-		<td width="80%" class="value">{$submission->getPaperCoverageGeo()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedCoverageGeo()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="paper.coverageChron"}</td>
-		<td class="value">{$submission->getPaperCoverageChron()|escape|default:"&mdash;"}</td>
+		<td class="value">{$submission->getLocalizedCoverageChron()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="paper.coverageSample"}</td>
-		<td class="value">{$submission->getPaperCoverageSample()|escape|default:"&mdash;"}</td>
+		<td class="value">{$submission->getLocalizedCoverageSample()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -130,7 +130,7 @@
 	{if $currentSchedConf->getSetting('metaType')}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="paper.type"}</td>
-		<td width="80%" class="value">{$submission->getPaperType()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedType()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -147,7 +147,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="author.submit.agencies"}</td>
-		<td width="80%" class="value">{$submission->getPaperSponsor()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedSponsor()|escape|default:"&mdash;"}</td>
 	</tr>
 </table>
 

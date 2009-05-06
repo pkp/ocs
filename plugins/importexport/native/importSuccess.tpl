@@ -19,7 +19,7 @@
 <h3>{translate key="paper.papers"}</h3>
 <ul>
 	{foreach from=$papers item=paper}
-		<li>{$paper->getPaperTitle()|strip_unsafe_html}</li>
+		<li>{$paper->getLocalizedTitle()|strip_unsafe_html}</li>
 	{/foreach}
 	</ul>
 {/if}

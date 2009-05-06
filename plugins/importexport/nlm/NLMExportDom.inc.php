@@ -81,7 +81,7 @@ class NLMExportDom {
 
 		/* --- ArticleTitle --- */
 		// NLM requires english titles for PaperTitle
-		XMLCustomWriter::createChildWithText($doc, $articleNode, 'ArticleTitle', $paper->getPaperTitle());
+		XMLCustomWriter::createChildWithText($doc, $articleNode, 'ArticleTitle', $paper->getLocalizedTitle());
 
 		/* --- Pagination --- */
 		// If there is no page number, then use abstract number
@@ -105,10 +105,10 @@ class NLMExportDom {
 		$abstractNode = &XMLCustomWriter::createElement($doc, 'Abstract');
 		XMLCustomWriter::appendChild($articleNode, $abstractNode);
 
-		XMLCustomWriter::createChildWithText($doc, $abstractNode, 'AbstractText', strip_tags($paper->getPaperAbstract()), false);
+		XMLCustomWriter::createChildWithText($doc, $abstractNode, 'AbstractText', strip_tags($paper->getLocalizedAbstract()), false);
 
 		/* --- Affiliation --- */
-		$sponsor = $paper->getPaperSponsor();
+		$sponsor = $paper->getLocalizedSponsor();
 
 		if ($sponsor != '') {
 			XMLCustomWriter::createChildWithText($doc, $articleNode, 'Affiliation', $sponsor);

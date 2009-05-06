@@ -30,7 +30,7 @@
 		<td>{$paperId|escape}</td>
 		<td>{$submission->getDateNotified()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
-		<td><a href="{url op="submission" path=$reviewId}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
+		<td><a href="{url op="submission" path=$reviewId}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td class="nowrap">{$submission->getDateDue()|date_format:$dateFormatTrunc}</td>
 		{if $submission->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL}
 			<td>

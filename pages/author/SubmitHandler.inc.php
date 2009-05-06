@@ -196,7 +196,7 @@ class SubmitHandler extends AuthorHandler {
 				foreach ($notificationUsers as $user) {
 					$url = Request::url(null, null, 'editor', 'submission', $paperId);
 					Notification::createNotification($user['id'], "notification.type.paperSubmitted",
-						$paper->getPaperTitle(), $url, 1, NOTIFICATION_TYPE_PAPER_SUBMITTED);
+						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_PAPER_SUBMITTED);
 				}
 
 				$templateMgr = &TemplateManager::getManager();

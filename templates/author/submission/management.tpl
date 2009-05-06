@@ -17,7 +17,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="paper.title"}</td>
-		<td width="80%" colspan="2" class="data">{$submission->getPaperTitle()|strip_unsafe_html}</td>
+		<td width="80%" colspan="2" class="data">{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 	</tr>
 
 	{assign var=sessionType value=$submission->getData('sessionType')}
@@ -65,7 +65,7 @@
 		<td colspan="2" class="value">
 			{assign var="submitter" value=$submission->getUser()}
 			{assign var=emailString value="`$submitter->getFullName()` <`$submitter->getEmail()`>"}
-			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getPaperTitle|strip_tags paperId=$submission->getPaperId()}
+			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getLocalizedTitle|strip_tags paperId=$submission->getPaperId()}
 			{$submitter->getFullName()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
@@ -83,7 +83,7 @@
 		<td width="80%" colspan="2" class="data">
 			{foreach from=$editAssignments item=editAssignment}
 				{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
-				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getPaperTitle|strip_tags paperId=$submission->getPaperId()}
+				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getLocalizedTitle|strip_tags paperId=$submission->getPaperId()}
 				{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
 				({if $editAssignment->getIsDirector()}{translate key="user.role.director"}{else}{translate key="user.role.trackDirector"}{/if})
 				<br/>

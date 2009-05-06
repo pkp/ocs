@@ -94,8 +94,8 @@ class ScheduleForm extends Form {
 
 
 	function titleSort($a, $b) {
-		$titleA = $a->getPaperTitle();
-		$titleB = $b->getPaperTitle();
+		$titleA = $a->getLocalizedTitle();
+		$titleB = $b->getLocalizedTitle();
 
 		return strcmp($titleA, $titleB);
 	}

@@ -59,11 +59,11 @@ class PaperMailTemplate extends MailTemplate {
 		$conference = isset($this->conference)?$this->conference:Request::getConference();
 		$schedConf = isset($this->schedConf)?$this->schedConf:Request::getSchedConf();
 
-		$paramArray['paperTitle'] = strip_tags($paper->getPaperTitle());
+		$paramArray['paperTitle'] = strip_tags($paper->getLocalizedTitle());
 		$paramArray['conferenceName'] = strip_tags($conference->getConferenceTitle());
 		$paramArray['schedConfName'] = strip_tags($schedConf->getSchedConfTitle());
 		$paramArray['trackName'] = strip_tags($paper->getTrackTitle());
-		$paramArray['paperAbstract'] = strip_tags($paper->getPaperAbstract());
+		$paramArray['paperAbstract'] = strip_tags($paper->getLocalizedAbstract());
 		$paramArray['authorString'] = strip_tags($paper->getAuthorString());
 
 		parent::assignParams($paramArray);

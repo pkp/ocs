@@ -277,7 +277,7 @@ class NativeImportDom {
 			if ($locale == '') {
 				$locale = $conferencePrimaryLocale;
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-				$errors[] = array('plugins.importexport.native.import.error.paperAbstractLocaleUnsupported', array('paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+				$errors[] = array('plugins.importexport.native.import.error.paperAbstractLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
 			}
 			$paper->setAbstract($node->getValue(), $locale);
@@ -289,7 +289,7 @@ class NativeImportDom {
 				if ($locale == '') {
 					$locale = $conferencePrimaryLocale;
 				} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-					$errors[] = array('plugins.importexport.native.import.error.paperDisciplineLocaleUnsupported', array('paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+					$errors[] = array('plugins.importexport.native.import.error.paperDisciplineLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 					return false;
 				}
 				$paper->setDiscipline($node->getValue(), $locale);
@@ -299,7 +299,7 @@ class NativeImportDom {
 				if ($locale == '') {
 					$locale = $conferencePrimaryLocale;
 				} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-					$errors[] = array('plugins.importexport.native.import.error.paperTypeLocaleUnsupported', array('paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+					$errors[] = array('plugins.importexport.native.import.error.paperTypeLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 					return false;
 				}
 				$paper->setType($node->getValue(), $locale);
@@ -309,7 +309,7 @@ class NativeImportDom {
 				if ($locale == '') {
 					$locale = $conferencePrimaryLocale;
 				} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-					$errors[] = array('plugins.importexport.native.import.error.paperSubjectLocaleUnsupported', array('paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+					$errors[] = array('plugins.importexport.native.import.error.paperSubjectLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 					return false;
 				}
 				$paper->setSubject($node->getValue(), $locale);
@@ -319,7 +319,7 @@ class NativeImportDom {
 				if ($locale == '') {
 					$locale = $conferencePrimaryLocale;
 				} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-					$errors[] = array('plugins.importexport.native.import.error.paperSubjectClassLocaleUnsupported', array('paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+					$errors[] = array('plugins.importexport.native.import.error.paperSubjectClassLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 					return false;
 				}
 				$paper->setSubjectClass($node->getValue(), $locale);
@@ -331,7 +331,7 @@ class NativeImportDom {
 					if ($locale == '') {
 						$locale = $conferencePrimaryLocale;
 					} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-						$errors[] = array('plugins.importexport.native.import.error.paperCoverageGeoLocaleUnsupported', array('paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+						$errors[] = array('plugins.importexport.native.import.error.paperCoverageGeoLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 						return false;
 					}
 					$paper->setCoverageGeo($node->getValue(), $locale);
@@ -341,7 +341,7 @@ class NativeImportDom {
 					if ($locale == '') {
 						$locale = $conferencePrimaryLocale;
 					} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-						$errors[] = array('plugins.importexport.native.import.error.paperCoverageChronLocaleUnsupported', array('paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+						$errors[] = array('plugins.importexport.native.import.error.paperCoverageChronLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 						return false;
 					}
 					$paper->setCoverageChron($node->getValue(), $locale);
@@ -351,7 +351,7 @@ class NativeImportDom {
 					if ($locale == '') {
 						$locale = $conferencePrimaryLocale;
 					} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-						$errors[] = array('plugins.importexport.native.import.error.paperCoverageSampleLocaleUnsupported', array('paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+						$errors[] = array('plugins.importexport.native.import.error.paperCoverageSampleLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 						return false;
 					}
 					$paper->setCoverageSample($node->getValue(), $locale);
@@ -364,7 +364,7 @@ class NativeImportDom {
 			if ($locale == '') {
 				$locale = $conferencePrimaryLocale;
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-				$errors[] = array('plugins.importexport.native.import.error.paperSponsorLocaleUnsupported', array('paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+				$errors[] = array('plugins.importexport.native.import.error.paperSponsorLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
 			}
 			$paper->setSponsor($node->getValue(), $locale);
@@ -480,7 +480,7 @@ class NativeImportDom {
 			if ($locale == '') {
 				$locale = $conferencePrimaryLocale;
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-				$errors[] = array('plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported', array('authorFullName' => $author->getFullName(), 'paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+				$errors[] = array('plugins.importexport.native.import.error.paperAuthorBiographyLocaleUnsupported', array('authorFullName' => $author->getFullName(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;
 			} 
 			$author->setBiography($node->getValue(), $locale);
@@ -512,21 +512,21 @@ class NativeImportDom {
 		if ($locale == '') {
 			$locale = $conferencePrimaryLocale;
 		} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-			$errors[] = array('plugins.importexport.native.import.error.galleyLocaleUnsupported', array('paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+			$errors[] = array('plugins.importexport.native.import.error.galleyLocaleUnsupported', array('paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 			return false;
 		} 
 		$galley->setLocale($locale); 
 		
 		/* --- Galley Label --- */
 		if (!($node = $galleyNode->getChildByName('label'))) {
-			$errors[] = array('plugins.importexport.native.import.error.galleyLabelMissing', array('paperTitle' => $paper->getPaperTitle(), 'trackTitle' => $track->getTrackTitle()));
+			$errors[] = array('plugins.importexport.native.import.error.galleyLabelMissing', array('paperTitle' => $paper->getLocalizedTitle(), 'trackTitle' => $track->getTrackTitle()));
 			return false;
 		}
 		$galley->setLabel($node->getValue());
 
 		/* --- Galley File --- */
 		if (!($node = $galleyNode->getChildByName('file'))) {
-			$errors[] = array('plugins.importexport.native.import.error.galleyFileMissing', array('paperTitle' => $paper->getPaperTitle(), 'trackTitle' => $track->getTrackTitle()));
+			$errors[] = array('plugins.importexport.native.import.error.galleyFileMissing', array('paperTitle' => $paper->getLocalizedTitle(), 'trackTitle' => $track->getTrackTitle()));
 			return false;
 		}
 
@@ -556,7 +556,7 @@ class NativeImportDom {
 			}
 		}
 		if (!isset($fileId)) {
-			$errors[] = array('plugins.importexport.native.import.error.galleyFileMissing', array('paperTitle' => $paper->getPaperTitle(), 'trackTitle' => $track->getTrackTitle()));
+			$errors[] = array('plugins.importexport.native.import.error.galleyFileMissing', array('paperTitle' => $paper->getLocalizedTitle(), 'trackTitle' => $track->getTrackTitle()));
 			return false;
 		}
 		$galley->setFileId($fileId);
@@ -638,7 +638,7 @@ class NativeImportDom {
 			if ($locale == '') {
 				$locale = $conferencePrimaryLocale;
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileTitleLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileTitleLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;			
 			}
 			$suppFile->setTitle($node->getValue(), $locale);
@@ -648,7 +648,7 @@ class NativeImportDom {
 			if ($locale == '') {
 				$locale = $conferencePrimaryLocale;
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileCreatorLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileCreatorLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;			
 			}
 			$suppFile->setCreator($node->getValue(), $locale);
@@ -658,7 +658,7 @@ class NativeImportDom {
 			if ($locale == '') {
 				$locale = $conferencePrimaryLocale;
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileSubjectLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileSubjectLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;			
 			}
 			$suppFile->setSubject($node->getValue(), $locale);
@@ -668,7 +668,7 @@ class NativeImportDom {
 			if ($locale == '') {
 				$locale = $conferencePrimaryLocale;
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileTypeOtherLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileTypeOtherLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;			
 			}
 			$suppFile->setTypeOther($node->getValue(), $locale);
@@ -678,7 +678,7 @@ class NativeImportDom {
 			if ($locale == '') {
 				$locale = $conferencePrimaryLocale;
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileDescriptionLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileDescriptionLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;			
 			}
 			$suppFile->setDescription($node->getValue(), $locale);
@@ -688,7 +688,7 @@ class NativeImportDom {
 			if ($locale == '') {
 				$locale = $conferencePrimaryLocale;
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-				$errors[] = array('plugins.importexport.native.import.error.paperSuppFilePublisherLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+				$errors[] = array('plugins.importexport.native.import.error.paperSuppFilePublisherLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;			
 			}
 			$suppFile->setPublisher($node->getValue(), $locale);
@@ -698,7 +698,7 @@ class NativeImportDom {
 			if ($locale == '') {
 				$locale = $conferencePrimaryLocale;
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileSponsorLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileSponsorLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;			
 			}
 			$suppFile->setSponsor($node->getValue(), $locale);
@@ -708,7 +708,7 @@ class NativeImportDom {
 			if ($locale == '') {
 				$locale = $conferencePrimaryLocale;
 			} elseif (!in_array($locale, $conferenceSupportedLocales)) {
-				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileSourceLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getPaperTitle(), 'locale' => $locale));
+				$errors[] = array('plugins.importexport.native.import.error.paperSuppFileSourceLocaleUnsupported', array('suppFileTitle' => $node->getValue(), 'paperTitle' => $paper->getLocalizedTitle(), 'locale' => $locale));
 				return false;			
 			}
 			$suppFile->setSource($node->getValue(), $locale);
@@ -736,7 +736,7 @@ class NativeImportDom {
 		$suppFile->setPublicSuppFileId($suppNode->getAttribute('public_id'));
 
 		if (!($fileNode = $suppNode->getChildByName('file'))) {
-			$errors[] = array('plugins.importexport.native.import.error.suppFileMissing', array('paperTitle' => $paper->getPaperTitle(), 'trackTitle' => $track->getTrackTitle()));
+			$errors[] = array('plugins.importexport.native.import.error.suppFileMissing', array('paperTitle' => $paper->getLocalizedTitle(), 'trackTitle' => $track->getTrackTitle()));
 			return false;
 		}
 
@@ -767,7 +767,7 @@ class NativeImportDom {
 		}
 
 		if (!$fileId) {
-			$errors[] = array('plugins.importexport.native.import.error.suppFileMissing', array('paperTitle' => $paper->getPaperTitle(), 'trackTitle' => $track->getTrackTitle()));
+			$errors[] = array('plugins.importexport.native.import.error.suppFileMissing', array('paperTitle' => $paper->getLocalizedTitle(), 'trackTitle' => $track->getTrackTitle()));
 			return false;
 		}
 

@@ -43,12 +43,12 @@
 	{$galley->getHTMLContents()}
 {else}
 
-	<h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
+	<h3>{$paper->getLocalizedTitle()|strip_unsafe_html}</h3>
 	<div><em>{$paper->getAuthorString()|escape}</em></div>
 	<br />
 	<h4>{translate key="paper.abstract"}</h4>
 	<br />
-	<div>{$paper->getPaperAbstract()|strip_unsafe_html|nl2br}</div>
+	<div>{$paper->getLocalizedAbstract()|strip_unsafe_html|nl2br}</div>
 {/if}
 </div>
 

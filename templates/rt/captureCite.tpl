@@ -19,7 +19,7 @@
 	{url|assign:"paperUrl" page="paper" op="view" path=$paperId}
 {/if}
 
-<h3>{$paper->getPaperTitle()|strip_unsafe_html}</h3>
+<h3>{$paper->getLocalizedTitle()|strip_unsafe_html}</h3>
 
 <form action="#">
 <label for="citeType">{translate key="rt.captureCite.format"}</label>&nbsp;&nbsp;<select onchange="document.location='{url path=$paperId|to_array:$galleyId:"REPLACE"}'.replace('REPLACE', this.options[this.selectedIndex].value)">

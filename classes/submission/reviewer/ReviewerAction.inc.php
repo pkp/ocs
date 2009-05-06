@@ -186,7 +186,7 @@ class ReviewerAction extends Action {
 					$email->assignParams(array(
 						'editorialContactName' => $editorialContactName,
 						'reviewerName' => $reviewer->getFullName(),
-						'paperTitle' => strip_tags($reviewerSubmission->getPaperTitle()),
+						'paperTitle' => strip_tags($reviewerSubmission->getLocalizedTitle()),
 						'recommendation' => Locale::translate($reviewerRecommendationOptions[$recommendation])
 					));
 				}
@@ -313,7 +313,7 @@ class ReviewerAction extends Action {
 				foreach ($notificationUsers as $user) {
 					$url = Request::url(null, null, $user['role'], 'submissionReview', $paper->getPaperId(), null, 'peerReview');
 					Notification::createNotification($user['id'], "notification.type.reviewerComment",
-						$paper->getPaperTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT);
+						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT);
 				}
 
 
@@ -371,7 +371,7 @@ class ReviewerAction extends Action {
 				foreach ($notificationUsers as $user) {
 					$url = Request::url(null, null, $user['role'], 'submissionReview', $paper->getPaperId(), null, 'peerReview');
 					Notification::createNotification($user['id'], "notification.type.reviewerFormComment",
-						$paper->getPaperTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT);
+						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT);
 				}
 
 			} else {

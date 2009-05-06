@@ -1343,7 +1343,7 @@ import('file.PaperFileManager');
 			foreach ($notificationUsers as $user) {
 				$url = Request::url(null, null, $user['role'], 'submissionReview', $paper->getPaperId(), null, 'peerReview');
 				Notification::createNotification($user['id'], "notification.type.reviewerComment",
-					$paper->getPaperTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT);
+					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT);
 			}
 
 			if ($emailComment) {
@@ -1394,7 +1394,7 @@ import('file.PaperFileManager');
 			foreach ($notificationUsers as $user) {
 				$url = Request::url(null, null, $user['role'], 'submissionReview', $paper->getPaperId(), null, 'editorDecision');
 				Notification::createNotification($user['id'], "notification.type.directorDecisionComment",
-					$paper->getPaperTitle(), $url, 1, NOTIFICATION_TYPE_DIRECTOR_DECISION_COMMENT);
+					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_DIRECTOR_DECISION_COMMENT);
 			}
 				
 			if ($emailComment) {
@@ -1481,7 +1481,7 @@ import('file.PaperFileManager');
 					'conferenceTitle' => $conference->getConferenceTitle(),
 					'editorialContactSignature' => $user->getContactSignature(),
 					'locationCity' => $schedConf->getSetting('locationCity'),
-					'paperTitle' => $trackDirectorSubmission->getPaperTitle()
+					'paperTitle' => $trackDirectorSubmission->getLocalizedTitle()
 				));
 			} elseif (Request::getUserVar('importPeerReviews')) {
 				$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');

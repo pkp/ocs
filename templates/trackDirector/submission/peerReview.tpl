@@ -15,13 +15,13 @@
 	<tr>
 		<td width="20%" class="label">{translate key="paper.authors"}</td>
 		<td width="80%">
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getPaperTitle() paperId=$submission->getPaperId()}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getLocalizedTitle() paperId=$submission->getPaperId()}
 			{$submission->getAuthorString()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
 	<tr>
 		<td class="label">{translate key="paper.title"}</td>
-		<td>{$submission->getPaperTitle()|strip_unsafe_html}</td>
+		<td>{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 	</tr>
 	<tr>
 		<td class="label">{translate key="track.track"}</td>
@@ -33,7 +33,7 @@
 			{assign var=editAssignments value=$submission->getEditAssignments()}
 			{foreach from=$editAssignments item=editAssignment}
 				{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
-				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getPaperTitle|strip_tags paperId=$submission->getPaperId()}
+				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags paperId=$submission->getPaperId()}
 				{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
 				<br/>
 			{foreachelse}
@@ -50,7 +50,7 @@
 		<tr valign="top">
 			<td class="label" width="20%">{translate key="submission.abstract"}</td>
 			<td width="80%" class="value">
-				{$submission->getPaperAbstract()}
+				{$submission->getLocalizedAbstract()}
 			</td>
 		</tr>
 
