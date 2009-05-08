@@ -372,7 +372,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 			}
 		}
 
-		if ($isValid && !$isDownloadingSubmission) {
+		if ($isValid && !$isDownloadingSubmission && !$isDeleting) {
 			// The user may be coming in on an old URL e.g. from the submission
 			// ack email. If OCS is awaiting the completion of the submission,
 			// send them to the submit page.
@@ -389,7 +389,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 			if (!PresenterAction::mayEditPaper($presenterSubmission)) $isValid = false;
 		}
 
-		if ($isValid && !$isDeleting) {
+		if ($isValid) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
