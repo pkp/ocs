@@ -32,6 +32,10 @@
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		{translate|assign:"untitledPaper" key="common.untitled"}
 		<td><a href="{url op="submission" path=$submission->getPaperId()}" class="action">{$submission->getLocalizedTitle()|default:$untitledPaper|strip_unsafe_html|truncate:60:"..."}</a></td>
+			{if $submissionProgress != 0 && ($currentStage == REVIEW_STAGE_ABSTRACT || ($currentStage == REVIEW_STAGE_PRESENTATION && $submissionProgress < 3))}
+				(<a href="{url op="deleteSubmission" path=$paperId}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="presenter.submissions.confirmDelete"}')">{translate key="common.delete"}</a>)
+			{/if}
+		</td>
 	</tr>
 	<tr>
 		<td colspan="5" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>

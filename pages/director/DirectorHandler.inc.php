@@ -331,8 +331,11 @@ class DirectorHandler extends TrackDirectorHandler {
 		$paper = &$paperDao->getPaper($paperId);
 
 		$status = $paper->getStatus();
+		$progress = $paper->getSubmissionProgress();
+		$stage = $paper->getCurrentStage();
 
-		if ($paper->getSchedConfId() == $schedConf->getSchedConfId() && ($status == SUBMISSION_STATUS_DECLINED || $status == SUBMISSION_STATUS_ARCHIVED)) {
+		if ($paper->getSchedConfId() == $schedConf->getSchedConfId() && ($status == SUBMISSION_STATUS_DECLINED || $status == SUBMISSION_STATUS_ARCHIVED
+			|| ($progress != 0 && ($stage == REVIEW_STAGE_ABSTRACT || ($stage == REVIEW_STAGE_PRESENTATION && $progress < 3))))) {
 			// Delete paper files
 			import('file.PaperFileManager');
 			$paperFileManager = new PaperFileManager($paperId);
