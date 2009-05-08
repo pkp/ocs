@@ -38,8 +38,8 @@ class ScheduleForm extends Form {
 	}
 
 	function presenterSort($a, $b) {
-		$presenterA = $a->getPresenterString();
-		$presenterB = $b->getPresenterString();
+		$presenterA = $a->getFirstPresenter(true);
+		$presenterB = $b->getFirstPresenter(true);
 
 		return strcmp($presenterA, $presenterB);
 	}
