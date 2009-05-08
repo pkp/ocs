@@ -26,12 +26,21 @@
 	</tr>
 	
 	{iterate from=submissions item=submission}
+	{assign var="currentStage" value=$submission->getCurrentStage()}
+	{assign var="paperId" value=$submission->getPaperId()}
+	{assign var="submissionProgress" value=$submission->getSubmissionProgress()}
+
 	<tr valign="top">
-		<td>{$submission->getPaperId()}</td>
+		<td>{$paperId}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getTrackAbbrev()|escape}</td>
 		<td>{$submission->getPresenterString(true)|truncate:40:"..."|escape}</td>
-		<td><a href="{url op="submission" path=$submission->getPaperId()}" class="action">{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
+		{translate|assign:"untitledPaper" key="common.untitled"}
+		<td><a href="{url op="submission" path=$submission->getPaperId()}" class="action">{$submission->getPaperTitle()|default:$untitledPaper|strip_unsafe_html|truncate:60:"..."}</a>
+			{if $submissionProgress != 0 && ($currentStage == REVIEW_STAGE_ABSTRACT || ($currentStage == REVIEW_STAGE_PRESENTATION && $submissionProgress < 3))}
+				(<a href="{url op="deleteSubmission" path=$paperId}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="presenter.submissions.confirmDelete"}')">{translate key="common.delete"}</a>)
+			{/if}
+		</td>
 	</tr>
 	<tr>
 		<td colspan="5" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>

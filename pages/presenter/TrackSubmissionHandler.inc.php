@@ -25,7 +25,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 		parent::setupTemplate(true);
 
 		// If the submission is incomplete, allow the presenter to delete it.
-		if ($presenterSubmission->getSubmissionProgress()!=0 && $presenterSubmission->getCurrentStage()==REVIEW_STAGE_ABSTRACT) {
+		if ($presenterSubmission->getSubmissionProgress()!=0) {
 			import('file.PaperFileManager');
 			$paperFileManager = &new PaperFileManager($paperId);
 			$paperFileManager->deletePaperTree();
@@ -346,8 +346,10 @@ class TrackSubmissionHandler extends PresenterHandler {
 	 * @param $requiresEditAccess boolean True means that the author must
 	 * 	  have edit access over the specified paper in order for
 	 * 	  validation to be successful.
+	 * @param $isDeleting boolean True iff user is deleting a paper, and is not
+	 *	  coming from an old URL (e.g. submission ack email)
 	 */
-	function validate($paperId, $requiresEditAccess = false, $isDownloadingSubmission = false) {
+	function validate($paperId, $requiresEditAccess = false, $isDownloadingSubmission = false, $isDeleting = false) {
 		parent::validate();
 
 		$presenterSubmissionDao = &DAORegistry::getDAO('PresenterSubmissionDAO');
@@ -387,7 +389,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 			if (!PresenterAction::mayEditPaper($presenterSubmission)) $isValid = false;
 		}
 
-		if (!$isValid) {
+		if ($isValid && !$isDeleting) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 

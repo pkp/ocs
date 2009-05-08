@@ -61,7 +61,7 @@
 			{url|assign:"submitUrl" op="submit" path=$submission->getSubmissionProgress() paperId=$paperId}
 			<td><a href="{$submitUrl}" class="action">{if $submission->getPaperTitle()}{$submission->getPaperTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
 			<td align="right">
-				{if $currentStage==REVIEW_STAGE_ABSTRACT}
+				{if $currentStage == REVIEW_STAGE_ABSTRACT || ($currentStage == REVIEW_STAGE_PRESENTATION && $submissionProgress < 3)}
 					{translate key="submissions.incomplete"}
 					<br />
 					<a href="{url op="deleteSubmission" path=$paperId}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="presenter.submissions.confirmDelete"}')">
@@ -69,7 +69,7 @@
 					</a>
 				{else}
 					<a class="action" href="{$submitUrl}">{translate key="submissions.pendingPresentation"}</a>
-				{/if}
+				{/if}	
 			</td>
 		{/if}
 
