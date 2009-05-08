@@ -38,8 +38,8 @@ class ScheduleForm extends Form {
 	}
 
 	function authorSort($a, $b) {
-		$authorA = $a->getAuthorString();
-		$authorB = $b->getAuthorString();
+		$authorA = $a->getFirstAuthor(true);
+		$authorB = $b->getFirstAuthor(true);
 
 		return strcmp($authorA, $authorB);
 	}
