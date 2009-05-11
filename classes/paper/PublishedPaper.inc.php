@@ -43,22 +43,6 @@ class PublishedPaper extends Paper {
 	}
 
 	/**
-	 * Get ID of associated paper.
-	 * @return int
-	 */
-	function getPaperId() {
-		return $this->getData('paperId');
-	}
-
-	/**
-	 * Set ID of associated paper.
-	 * @param $paperId int
-	 */
-	function setPaperId($paperId) {
-		return $this->setData('paperId', $paperId);
-	}
-
-	/**
 	 * Get ID of the scheduled conference this paper is in.
 	 * @return int
 	 */
