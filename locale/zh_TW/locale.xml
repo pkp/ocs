@@ -1011,7 +1011,7 @@ Active 為目前被考慮或進行中的審查稿件數量。]]></message>
 <strong>c)</strong>&nbsp;除此之外，鼓勵作者在研討會前或後任何一時間點，在網路上張貼及分享他們的作品，(如：在學會的資料庫或他們的網站內)。]]></message>
 
 	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">本稿件從未出版過，同時也未曾在其他研討會中發表過 (或者提供相燈的解釋與說明給主編)。</message>
-	<message key="default.schedConfSettings.checklist.fileFormat">本稿件的格式是以 Microsoft Word, RTF, or WordPerfect 等的文件格式製作。</message>
+	<message key="default.schedConfSettings.checklist.fileFormat">本稿件的格式是以 OpenOffice, Microsoft Word, RTF, or WordPerfect 等的文件格式製作。</message>
 	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[所有在文字中的連結 (例如 <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) 已經設定完成並可以正常運作。]]></message>
 	<message key="default.schedConfSettings.checklist.submissionAppearance">文字內容為單行行距；使用12pt字體大小；採用斜體而不用底線 (除非是帶有網址)；而所有的圖解、圖示和表格都放在文中恰當位置，而非文末。</message>
 	<message key="default.schedConfSettings.checklist.anonymous">如果是投稿至同儕匿名審查的主題，請於稿件中移除所有與作者有關的資訊。</message>

@@ -26,7 +26,7 @@
 <strong>c)</strong>&nbsp;In addition, authors are encouraged to post and share their work online (e.g., in institutional repositories or on their website) at any point before and after the conference.]]></message>
 
 	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another conference for consideration (or an explanation has been provided in Comments to the Director).</message>
-	<message key="default.schedConfSettings.checklist.fileFormat">The submission file is in Microsoft Word, RTF, or WordPerfect document file format.</message>
+	<message key="default.schedConfSettings.checklist.fileFormat">The submission file is in OpenOffice, Microsoft Word, RTF, or WordPerfect document file format.</message>
 	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[All URL addresses in the text (e.g., <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) are activated and ready to click.]]></message>
 	<message key="default.schedConfSettings.checklist.submissionAppearance">The text is single-spaced; uses a 12-point font; employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end.</message>
 	<message key="default.schedConfSettings.checklist.anonymous">If submitting to a peer-reviewed track of the conference, authors' names are removed from submission, with "Author" and year used in the bibliography and footnotes, instead of authors' name, paper title, etc.</message>

@@ -1043,7 +1043,7 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 <strong>c)</strong>&nbsp; Adicionalmente, se recomienda a los autores, a depositar y compartir sus trabajos a través de la web (p.e., en repositorios institucionales o en sus páginas web) bien antes o después de la conferencia.]]></message>
 
 	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">El trabajo enviado ni se ha publicado previamente, ni se ha enviado a otro congreso para su evaluación (o se hace una aclaración en el apartado comentarios al Director).</message>
-	<message key="default.schedConfSettings.checklist.fileFormat">El fichero enviado esta en formato Microsoft Word, RTF, or WordPerfect.</message>
+	<message key="default.schedConfSettings.checklist.fileFormat">El fichero enviado esta en formato OpenOffice, Microsoft Word, RTF, or WordPerfect.</message>
 	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[todas las direcciones URL del texto (p.e., <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) están activas y listas para utilizar.]]></message>
 	<message key="default.schedConfSettings.checklist.submissionAppearance">El texto debe enviarse con interlineado sencillo, con un tamaño de letra de 12 puntos; utilice cursiva, en lugar de subrayado (excepto con direcciones URL); todas las imágenes, figuras y tablas se insertan en el texto en el lugar adecuado, en lugar de ponerlas todas al final.</message>
 	<message key="default.schedConfSettings.checklist.anonymous">Cuando se envía a evaluar, los nombres de los autores y el año se eliminan, se utilizará "Autor"  y año usado en la bibliografía y notas a pie de página, en lugar de los nombres de los autores, título del trabajo, etc.</message>

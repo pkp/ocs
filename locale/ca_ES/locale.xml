@@ -1005,7 +1005,7 @@ La validacio d'URL pot fallar si es requereix la tramesa de dades.]]></message>
 <b>c)</b>&nbsp; Addicionalment, es recomana als autors, a dipositar i compartir els seus treballs a través de la web (p.ex. en repositoris institucionals o en les seves pàginas web) bé abans o després de la conferència.]]></message>
 
 	<message key="default.schedConfSettings.checklist.notPreviouslyPublished">El treball enviat ni s'ha publicat prèviament, ni s'ha enviat a altre congrés per a la seva avaluació (o es fa un aclariment en l'apartat comentaris al Director).</message>
-	<message key="default.schedConfSettings.checklist.fileFormat">El fitxer enviat està en format Microsoft Word, RTF, WordPerfect o OpenOffice Writer.</message>
+	<message key="default.schedConfSettings.checklist.fileFormat">El fitxer enviat està en format OpenOffice, Microsoft Word, RTF, WordPerfect o OpenOffice Writer.</message>
 	<message key="default.schedConfSettings.checklist.addressesLinked"><![CDATA[totes les adreces URL del text (p.ex. <a href="http://pkp.sfu.ca">http://pkp.sfu.ca</a>) estan actives llestes per a utilitzar.]]></message>
 	<message key="default.schedConfSettings.checklist.submissionAppearance">El text ha d'enviar-se amb interlineat senzill, amb una grandària de lletra de 12 punts; utilitzi cursiva, en lloc de subratllat (excepte amb adreces URL); totes les imatges, figures i taules s'insereixen en el text en el lloc adequat, en lloc de posar-les totes al final.</message>
 	<message key="default.schedConfSettings.checklist.anonymous">Quan s'envia a avaluar, els noms dels autors i l'any s'eliminen, s'utilitzarà "Autor" i any usat en la bibliografia i notes a peu de pàgina, en lloc dels noms dels autors, títol del treball, etc.</message>
