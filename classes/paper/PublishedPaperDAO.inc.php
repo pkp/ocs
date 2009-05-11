@@ -724,7 +724,7 @@ class PublishedPaperDAO extends DAO {
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			$author = new Author();
-			$author->setAuthorId($row['author_id']);
+			$author->setId($row['author_id']);
 			$author->setPaperId($row['paper_id']);
 			$author->setFirstName($row['first_name']);
 			$author->setMiddleName($row['middle_name']);

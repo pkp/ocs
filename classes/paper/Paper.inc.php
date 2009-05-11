@@ -498,7 +498,7 @@ class Paper extends Submission {
 			$authorDao = &DAORegistry::getDAO('AuthorDAO');
 			$authors = $authorDao->getAuthorsByPaper($paperId);
 			foreach ($authors as $author) {
-				$userIds[] = array('id' => $author->getAuthorId(), 'role' => 'author');
+				$userIds[] = array('id' => $author->getId(), 'role' => 'author');
 			}
 		}
 			

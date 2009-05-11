@@ -119,7 +119,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					// prompt them for the.
 					if (!isset($context['track'])) {
 						$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getSchedConfId(), false));
-						$templateMgr->assign('temporaryFileId', $temporaryFile->getFileId());
+						$templateMgr->assign('temporaryFileId', $temporaryFile->getId());
 						return $templateMgr->display($this->getTemplatePath() . 'paperContext.tpl');
 					}
 				}

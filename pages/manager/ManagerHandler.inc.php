@@ -85,7 +85,7 @@ class ManagerHandler extends Handler {
 					$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
 					if ($group) {
 						$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-						$memberships =& $groupMembershipDao->getMemberships($group->getGroupId());
+						$memberships =& $groupMembershipDao->getMemberships($group->getId());
 						$memberships =& $memberships->toArray();
 						foreach ($memberships as $membership) {
 							$user =& $membership->getUser();

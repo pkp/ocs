@@ -288,7 +288,7 @@ class PaperDAO extends DAO {
 		// update authors for this paper
 		$authors = &$paper->getAuthors();
 		for ($i=0, $count=count($authors); $i < $count; $i++) {
-			if ($authors[$i]->getAuthorId() > 0) {
+			if ($authors[$i]->getId() > 0) {
 				$this->authorDao->updateAuthor($authors[$i]);
 			} else {
 				$this->authorDao->insertAuthor($authors[$i]);

@@ -195,13 +195,13 @@ class AboutHandler extends Handler {
 			while ($group =& $allGroups->next()) {
 				if (!$group->getAboutDisplayed()) continue;
 				$memberships = array();
-				$allMemberships =& $groupMembershipDao->getMemberships($group->getGroupId());
+				$allMemberships =& $groupMembershipDao->getMemberships($group->getId());
 				while ($membership =& $allMemberships->next()) {
 					if (!$membership->getAboutDisplayed()) continue;
 					$memberships[] =& $membership;
 				}
 				if (!empty($memberships)) $groups[] =& $group;
-				$teamInfo[$group->getGroupId()] = $memberships;
+				$teamInfo[$group->getId()] = $memberships;
 			}
 
 			$templateMgr->assign_by_ref('groups', $groups);
@@ -263,7 +263,7 @@ class AboutHandler extends Handler {
 			$allGroups =& $groupDao->getGroups(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 			while ($group =& $allGroups->next()) {
 				if (!$group->getAboutDisplayed()) continue;
-				$allMemberships =& $groupMembershipDao->getMemberships($group->getGroupId());
+				$allMemberships =& $groupMembershipDao->getMemberships($group->getId());
 				while ($membership =& $allMemberships->next()) {
 					if (!$membership->getAboutDisplayed()) continue;
 					$potentialUser =& $membership->getUser();
