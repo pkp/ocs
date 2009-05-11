@@ -21,7 +21,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 	 */
 	function deleteSubmission($args) {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
-		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId, null, true);
+		list($conference, $schedConf, $presenterSubmission) = TrackSubmissionHandler::validate($paperId, null, false, true);
 		parent::setupTemplate(true);
 
 		// If the submission is incomplete, allow the presenter to delete it.
@@ -389,7 +389,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 			if (!PresenterAction::mayEditPaper($presenterSubmission)) $isValid = false;
 		}
 
-		if ($isValid) {
+		if ($isValid && !$isDeleting) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
