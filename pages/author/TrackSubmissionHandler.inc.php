@@ -43,7 +43,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 			$paperFileManager = new PaperFileManager($paperId);
 			$paperFileManager->deletePaperTree();
 
-			$paperDao = &DAORegistry::getDAO('PaperDAO');
+			$paperDao =& DAORegistry::getDAO('PaperDAO');
 			$paperDao->deletePaperById($args[0]);
 		}
 
@@ -71,7 +71,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 * Display a summary of the status of an author's submission.
 	 */
 	function submission($args) {
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$schedConf =& Request::getSchedConf();
 
@@ -94,14 +94,14 @@ class TrackSubmissionHandler extends AuthorHandler {
 				break;
 		}
 
-		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($submission->getPaperId());
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('mayEditPaper', AuthorAction::mayEditPaper($submission));
 
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$track = &$trackDao->getTrack($submission->getTrackId());
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$track =& $trackDao->getTrack($submission->getTrackId());
 		$templateMgr->assign_by_ref('track', $track);
 
 		$templateMgr->assign_by_ref('submission', $submission);
@@ -127,7 +127,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 	 */
 	function submissionReview($args) {
 		import('paper.Paper'); // for REVIEW_PROGRESS constants
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 
 		$this->validate($paperId);
@@ -149,16 +149,16 @@ class TrackSubmissionHandler extends AuthorHandler {
 				break;
 		}
 
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewModifiedByStage = $reviewAssignmentDao->getLastModifiedByStage($paperId);
 		$reviewEarliestNotificationByStage = $reviewAssignmentDao->getEarliestNotificationByStage($paperId);
 		$reviewFilesByStage =& $reviewAssignmentDao->getReviewFilesByStage($paperId);
-		$authorViewableFilesByStage = &$reviewAssignmentDao->getAuthorViewableFilesByStage($paperId);
+		$authorViewableFilesByStage =& $reviewAssignmentDao->getAuthorViewableFilesByStage($paperId);
 
 		$directorDecisions = $authorSubmission->getDecisions($authorSubmission->getCurrentStage());
 		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1] : null;
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $authorSubmission);
 		$templateMgr->assign_by_ref('reviewAssignments', $authorSubmission->getReviewAssignments($stage));
 		$templateMgr->assign('stage', $stage);
@@ -217,14 +217,14 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$this->setupTemplate(true, $paperId, 'summary');
 
 		// View supplementary file only
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-		$suppFile = &$suppFileDao->getSuppFile($suppFileId, $paperId);
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $paperId);
 
 		if (!isset($suppFile)) {
 			Request::redirect(null, null, null, 'submission', $paperId);
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign_by_ref('suppFile', $suppFile);
 		$templateMgr->display('submission/suppFile/suppFileView.tpl');	
@@ -265,7 +265,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$authorSubmission =& $this->submission;
 
 		$suppFileId = Request::getUserVar('fileId');
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paperId);
 
 		if (isset($suppFile) && $suppFile != null) {
@@ -386,15 +386,15 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function validate($paperId, $requiresEditAccess = false, $isDeleting = false) {
 		parent::validate();
 
-		$authorSubmissionDao = &DAORegistry::getDAO('AuthorSubmissionDAO');
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
-		$user = &Request::getUser();
+		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		$user =& Request::getUser();
 
 		$isValid = true;
 
-		$authorSubmission = &$authorSubmissionDao->getAuthorSubmission($paperId);
+		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($paperId);
 
 		if ($authorSubmission == null) {
 			$isValid = false;

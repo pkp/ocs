@@ -36,9 +36,9 @@ class ConferenceHandler extends Handler {
 		
 		$conference =& Request::getConference();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 
 		$templateMgr->assign('helpTopicId', 'user.home');
 
@@ -50,9 +50,9 @@ class ConferenceHandler extends Handler {
 		$templateMgr->assign('description', $conference->getLocalizedSetting('description'));
 		$templateMgr->assign('conferenceTitle', $conference->getConferenceTitle());
 
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$currentSchedConfs = &$schedConfDao->getCurrentSchedConfs($conference->getConferenceId());
-//		$pastSchedConfs = &$schedConfDao->getEnabledSchedConfs($conference->getConferenceId());
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$currentSchedConfs =& $schedConfDao->getCurrentSchedConfs($conference->getConferenceId());
+//		$pastSchedConfs =& $schedConfDao->getEnabledSchedConfs($conference->getConferenceId());
 
 		$templateMgr->assign_by_ref('currentSchedConfs', $currentSchedConfs);
 //		$templateMgr->assign_by_ref('pastSchedConfs', $pastSchedConfs);
@@ -62,8 +62,8 @@ class ConferenceHandler extends Handler {
 			$enableAnnouncementsHomepage = $conference->getSetting('enableAnnouncementsHomepage');
 			if ($enableAnnouncementsHomepage) {
 				$numAnnouncementsHomepage = $conference->getSetting('numAnnouncementsHomepage');
-				$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-				$announcements = &$announcementDao->getNumAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getConferenceId(), $numAnnouncementsHomepage);
+				$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+				$announcements =& $announcementDao->getNumAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_CONFERENCE, $conference->getConferenceId(), $numAnnouncementsHomepage);
 				$templateMgr->assign('announcements', $announcements);
 				$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
 			}

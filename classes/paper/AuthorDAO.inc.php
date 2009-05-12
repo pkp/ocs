@@ -25,13 +25,13 @@ class AuthorDAO extends DAO {
 	 * @return Author
 	 */
 	function &getAuthor($authorId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM paper_authors WHERE author_id = ?', $authorId
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnAuthorFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnAuthorFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -48,13 +48,13 @@ class AuthorDAO extends DAO {
 	function &getAuthorsByPaper($paperId) {
 		$authors = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM paper_authors WHERE paper_id = ? ORDER BY seq',
 			$paperId
 		);
 
 		while (!$result->EOF) {
-			$authors[] = &$this->_returnAuthorFromRow($result->GetRowAssoc(false));
+			$authors[] =& $this->_returnAuthorFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -76,11 +76,11 @@ class AuthorDAO extends DAO {
 	 */
 	function &getPublishedPapersForAuthor($schedConfId, $firstName, $middleName, $lastName, $affiliation, $country) {
 		$publishedPapers = array();
-		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$params = array($firstName, $middleName, $lastName, $affiliation, $country);
 		if ($schedConfId !== null) $params[] = $schedConfId;
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT DISTINCT
 				aa.paper_id
 			FROM paper_authors aa
@@ -96,10 +96,10 @@ class AuthorDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			$row = &$result->getRowAssoc(false);
-			$publishedPaper = &$publishedPaperDao->getPublishedPaperByPaperId($row['paper_id']);
+			$row =& $result->getRowAssoc(false);
+			$publishedPaper =& $publishedPaperDao->getPublishedPaperByPaperId($row['paper_id']);
 			if ($publishedPaper) {
-				$publishedPapers[] = &$publishedPaper;
+				$publishedPapers[] =& $publishedPaper;
 			}
 			$result->moveNext();
 		}
@@ -129,7 +129,7 @@ class AuthorDAO extends DAO {
 			$initialSql = '';
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT	DISTINCT CAST(\'\' AS CHAR) AS url,
 				0 AS author_id,
 				0 AS paper_id,
@@ -166,7 +166,7 @@ class AuthorDAO extends DAO {
 	 * @return int count
 	 */
 	function &getAuthorCount($schedConfId) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT	COUNT(*) AS author_count
 			FROM	paper_authors pa,
 				published_papers pp,
@@ -200,7 +200,7 @@ class AuthorDAO extends DAO {
 	function &getAuthorIdsByPaper($paperId) {
 		$authors = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT author_id FROM paper_authors WHERE paper_id = ? ORDER BY seq',
 			$paperId
 		);
@@ -366,7 +366,7 @@ class AuthorDAO extends DAO {
 	 * @param $paperId int
 	 */
 	function resequenceAuthors($paperId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT author_id FROM paper_authors WHERE paper_id = ? ORDER BY seq', $paperId
 		);
 

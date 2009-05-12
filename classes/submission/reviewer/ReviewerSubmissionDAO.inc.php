@@ -32,14 +32,14 @@ class ReviewerSubmissionDAO extends DAO {
 	 */
 	function ReviewerSubmissionDAO() {
 		parent::DAO();
-		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
-		$this->userDao = &DAORegistry::getDAO('UserDAO');
-		$this->reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-		$this->paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-		$this->paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
+		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
+		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$this->userDao =& DAORegistry::getDAO('UserDAO');
+		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$this->paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$this->paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
 	}
 
 	/**
@@ -83,7 +83,7 @@ class ReviewerSubmissionDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnReviewerSubmissionFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnReviewerSubmissionFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -260,7 +260,7 @@ class ReviewerSubmissionDAO extends DAO {
 				LEFT JOIN review_stages r2 ON (r.paper_id = r2.paper_id AND r.stage = r2.stage)
 			WHERE a.sched_conf_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';
 
-		$result = &$this->retrieve($sql, array($schedConfId, $reviewerId));
+		$result =& $this->retrieve($sql, array($schedConfId, $reviewerId));
 
 		while (!$result->EOF) {
 			if ($result->fields['date_completed'] == null && $result->fields['declined'] != 1 && $result->fields['cancelled'] != 1) {
@@ -290,7 +290,7 @@ class ReviewerSubmissionDAO extends DAO {
 			$args[] = $stage;
 		}
 
-		$result = &$this->retrieve('
+		$result =& $this->retrieve('
 			SELECT edit_decision_id, director_id, decision, date_decided
 			FROM edit_decisions
 			WHERE paper_id = ?'

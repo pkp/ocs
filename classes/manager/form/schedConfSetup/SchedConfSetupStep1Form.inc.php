@@ -89,7 +89,7 @@ class SchedConfSetupStep1Form extends SchedConfSetupForm {
 	}
 
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		if (Config::getVar('email', 'allow_envelope_sender'))
 			$templateMgr->assign('envelopeSenderEnabled', true);
 

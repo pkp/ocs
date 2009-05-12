@@ -27,7 +27,7 @@ class PaperGalleyDAO extends DAO {
 	 */
 	function PaperGalleyDAO() {
 		parent::DAO();
-		$this->paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$this->paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 	}
 
 	/**
@@ -38,7 +38,7 @@ class PaperGalleyDAO extends DAO {
 	 */
 	function &getGalley($galleyId, $paperId = null) {
 		if (isset($paperId)) {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT g.*,
 				a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified
 				FROM paper_galleys g
@@ -48,7 +48,7 @@ class PaperGalleyDAO extends DAO {
 			);
 
 		} else {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT g.*,
 				a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified
 				FROM paper_galleys g
@@ -60,7 +60,7 @@ class PaperGalleyDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnGalleyFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnGalleyFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -77,7 +77,7 @@ class PaperGalleyDAO extends DAO {
 	function &getGalleysByPaper($paperId) {
 		$galleys = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT g.*,
 			a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified
 			FROM paper_galleys g
@@ -87,7 +87,7 @@ class PaperGalleyDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			$galleys[] = &$this->_returnGalleyFromRow($result->GetRowAssoc(false));
+			$galleys[] =& $this->_returnGalleyFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -115,7 +115,7 @@ class PaperGalleyDAO extends DAO {
 			}
 
 			// Retrieve images
-			$images = &$this->getGalleyImages($row['galley_id']);
+			$images =& $this->getGalleyImages($row['galley_id']);
 			$galley->setImageFiles($images); 
 
 		} else {
@@ -227,7 +227,7 @@ class PaperGalleyDAO extends DAO {
 	 * @param $paperId int
 	 */
 	function deleteGalleysByPaper($paperId) {
-		$galleys = &$this->getGalleysByPaper($paperId);
+		$galleys =& $this->getGalleysByPaper($paperId);
 		foreach ($galleys as $galley) {
 			$this->deleteGalleyById($galley->getGalleyId(), $paperId);
 		}
@@ -240,7 +240,7 @@ class PaperGalleyDAO extends DAO {
 	 * @return boolean
 	 */
 	function galleyExistsByFileId($paperId, $fileId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM paper_galleys
 			WHERE paper_id = ? AND file_id = ?',
 			array($paperId, $fileId)
@@ -270,7 +270,7 @@ class PaperGalleyDAO extends DAO {
 	 * @param $paperId int
 	 */
 	function resequenceGalleys($paperId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT galley_id FROM paper_galleys WHERE paper_id = ? ORDER BY seq',
 			$paperId
 		);
@@ -294,7 +294,7 @@ class PaperGalleyDAO extends DAO {
 	 * @return int
 	 */
 	function getNextGalleySequence($paperId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT MAX(seq) + 1 FROM paper_galleys WHERE paper_id = ?',
 			$paperId
 		);
@@ -327,14 +327,14 @@ class PaperGalleyDAO extends DAO {
 	function &getGalleyImages($galleyId) {
 		$images = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT a.* FROM paper_html_galley_images i, paper_files a
 			WHERE i.file_id = a.file_id AND i.galley_id = ?',
 			$galleyId
 		);
 
 		while (!$result->EOF) {
-			$images[] = &$this->paperFileDao->_returnPaperFileFromRow($result->GetRowAssoc(false));
+			$images[] =& $this->paperFileDao->_returnPaperFileFromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 

@@ -53,17 +53,17 @@ class UserXMLParser {
 	 * @return array ImportedUsers the collection of users read from the file
 	 */
 	function &parseData($file) {	
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		$success = true;
 		$this->usersToImport = array();
 		$tree = $this->parser->parse($file);
 
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$schedConf = &$schedConfDao->getSchedConf($this->schedConfId);
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf($this->schedConfId);
 		$schedConfPrimaryLocale = Locale::getPrimaryLocale();
 
-		$site = &Request::getSite();
+		$site =& Request::getSite();
 		$siteSupportedLocales = $site->getSupportedLocales();
 
 		if ($tree !== false) {
@@ -183,21 +183,21 @@ class UserXMLParser {
 		$this->importedUsers = array();
 		$this->errors = array();
 
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		if ($sendNotify) {
 			// Set up mail template to send to added users
 			import('mail.MailTemplate');
 			$mail = new MailTemplate('USER_REGISTER');
 
-			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-			$schedConf = &$schedConfDao->getSchedConf($this->schedConfId);
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConf =& $schedConfDao->getSchedConf($this->schedConfId);
 			$mail->setFrom($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 		}
 
 		for ($i=0, $count=count($this->usersToImport); $i < $count; $i++) {
-			$user = &$this->usersToImport[$i];
+			$user =& $this->usersToImport[$i];
 			// If the email address already exists in the system,
 			// then assign the user the username associated with that email address.
 			if ($user->getEmail() != null) {
@@ -337,7 +337,7 @@ class UserXMLParser {
 	 * @param $user ImportedUser the user to be modified by this function
 	 */
 	function generateUsername(&$user) {
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		$baseUsername = String::regexp_replace('/[^A-Z0-9]/i', '', $user->getLastName());
 		if (empty($baseUsername)) {
 			$baseUsername = String::regexp_replace('/[^A-Z0-9]/i', '', $user->getFirstName());

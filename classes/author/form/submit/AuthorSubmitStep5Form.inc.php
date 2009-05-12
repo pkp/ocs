@@ -29,10 +29,10 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		// Get paper file for this paper
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 		$paperFiles =& $paperFileDao->getPaperFilesByPaper($this->paperId);
 
 		$templateMgr->assign_by_ref('files', $paperFiles);
@@ -45,14 +45,14 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 	 * Save changes to paper.
 	 */
 	function execute() {
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		$conference = Request::getConference();
 		$schedConf = Request::getSchedConf();
 
 		// Update paper
-		$paper = &$this->paper;
+		$paper =& $this->paper;
 		$paper->setDateSubmitted(Core::getCurrentDate());
 		$paper->setSubmissionProgress(0);
 		$paper->stampStatusModified();
@@ -70,7 +70,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		// Update any review assignments so they may access the file
 		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($paper->getPaperId());
-		$reviewAssignments = &$reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getPaperId(), REVIEW_STAGE_PRESENTATION);
+		$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getPaperId(), REVIEW_STAGE_PRESENTATION);
 		foreach($reviewAssignments as $reviewAssignment) {
 			$reviewAssignment->setReviewFileId($authorSubmission->getReviewFileId());
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);

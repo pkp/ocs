@@ -141,7 +141,7 @@ class CustomLocaleHandler extends Handler {
 			Request::redirect(null, null, null, null, $path);
 		}
 
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$conferenceId = $conference->getConferenceId();
 		$changes = Request::getUserVar('changes');
 		$customFilesDir = Config::getVar('files', 'public_files_dir') . DIRECTORY_SEPARATOR . 'conferences' . DIRECTORY_SEPARATOR . $conferenceId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale;
@@ -207,7 +207,7 @@ class CustomLocaleHandler extends Handler {
 			Validation::redirectLogin();
 		}
 
-		$plugin = &PluginRegistry::getPlugin('generic', 'CustomLocalePlugin');
+		$plugin =& PluginRegistry::getPlugin('generic', 'CustomLocalePlugin');
 		return array(&$plugin);
 	}
 

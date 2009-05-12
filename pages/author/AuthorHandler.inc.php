@@ -44,9 +44,9 @@ class AuthorHandler extends Handler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 		$rangeInfo =& Handler::getRangeInfo('submissions');
-		$authorSubmissionDao = &DAORegistry::getDAO('AuthorSubmissionDAO');
+		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
 		switch($page) {
@@ -60,7 +60,7 @@ class AuthorHandler extends Handler {
 
 		$submissions = $authorSubmissionDao->getAuthorSubmissions($user->getUserId(), $schedConf->getSchedConfId(), $active, $rangeInfo);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign_by_ref('submissions', $submissions);
 

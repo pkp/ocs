@@ -46,11 +46,11 @@ class PaperHandler extends Handler {
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
 
-		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-		$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 
 		if (!$conferenceRt->getEnabled()) {
 			if (!$galley || $galley->isHtmlGalley()) return PaperHandler::viewPaper($args);
@@ -63,7 +63,7 @@ class PaperHandler extends Handler {
 			return;
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign_by_ref('paper', $paper);
 		$templateMgr->assign('galleyId', $galleyId);
@@ -83,13 +83,13 @@ class PaperHandler extends Handler {
 		$this->setupTemplate();
 
 		if (!$galley) {
-			$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-			$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
+			$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+			$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 		}
 
 		if (!$galley) Request::redirect(null, null, 'view', $paperId);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign_by_ref('galley', $galley);
@@ -110,13 +110,13 @@ class PaperHandler extends Handler {
 		$this->setupTemplate();
 
 		if (!$galley) {
-			$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-			$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
+			$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+			$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 		}
 
 		if (!$galley) Request::redirect(null, null, 'view', $paperId);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign_by_ref('galley', $galley);
@@ -136,11 +136,11 @@ class PaperHandler extends Handler {
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
 
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$track = &$trackDao->getTrack($paper->getTrackId());
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$track =& $trackDao->getTrack($paper->getTrackId());
 
 		if ($conferenceRt->getVersion()!=null && $conferenceRt->getDefineTerms()) {
 			// Determine the "Define Terms" context ID.
@@ -153,19 +153,19 @@ class PaperHandler extends Handler {
 			}
 		}
 
-		$commentDao = &DAORegistry::getDAO('CommentDAO');
+		$commentDao =& DAORegistry::getDAO('CommentDAO');
 		$enableComments = $conference->getSetting('enableComments');
 		$commentsRequireRegistration = $conference->getSetting('commentsRequireRegistration');
 		$commentsAllowAnonymous = $conference->getSetting('commentsAllowAnonymous');
 
 		if ($enableComments && $paper->getEnableComments()) {
-			$comments = &$commentDao->getRootCommentsByPaperId($paper->getPaperId());
+			$comments =& $commentDao->getRootCommentsByPaperId($paper->getPaperId());
 		}
 
-		$paperGalleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-		$galley = &$paperGalleyDao->getGalley($galleyId, $paper->getPaperId());
+		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$galley =& $paperGalleyDao->getGalley($galleyId, $paper->getPaperId());
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		if (!$galley) {
 			// Get the registration status if displaying the abstract;
@@ -176,7 +176,7 @@ class PaperHandler extends Handler {
 			$templateMgr->assign('registeredDomain', SchedConfAction::registeredDomain($schedConf));
 
 			// Increment the published paper's abstract views count
-			$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+			$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 			$publishedPaperDao->incrementViewsByPaperId($paper->getPaperId());
 		} else {
 			// Increment the galley's views count
@@ -244,17 +244,17 @@ class PaperHandler extends Handler {
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conferenceRt = $rtDao->getConferenceRTByConference($conference);
 
 		// The RST needs to know whether this galley is HTML or not. Fetch the galley.
-		$paperGalleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-		$galley = &$paperGalleyDao->getGalley($galleyId, $paper->getPaperId());
+		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$galley =& $paperGalleyDao->getGalley($galleyId, $paper->getPaperId());
 
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$track = &$trackDao->getTrack($paper->getTrackId());
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$track =& $trackDao->getTrack($paper->getTrackId());
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign_by_ref('schedConf', $schedConf);
 		$templateMgr->assign_by_ref('paper', $paper);
@@ -274,7 +274,7 @@ class PaperHandler extends Handler {
 		));
 
 		// Bring in comment constants.
-		$commentDao = &DAORegistry::getDAO('CommentDAO');
+		$commentDao =& DAORegistry::getDAO('CommentDAO');
 
 		$enableComments = $conference->getSetting('enableComments');
 		$commentsRequireRegistration = $conference->getSetting('commentsRequireRegistration');
@@ -313,8 +313,8 @@ class PaperHandler extends Handler {
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
-		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-		$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 
 		if (!$galley) Request::redirect(null, null, null, null, 'view', $paperId);
 
@@ -342,8 +342,8 @@ class PaperHandler extends Handler {
 		$this->validate($paperId, $galleyId);
 		$paper =& $this->paper;
 
-		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-		$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 		$galleyDao->incrementViews($galleyId);
 
 		if ($paper && $galley) {
@@ -360,11 +360,11 @@ class PaperHandler extends Handler {
 		$this->validate($paperId);
 		$paper =& $this->paper;
 
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		if ($schedConf->getSetting('enablePublicSuppFileId')) {
-			$suppFile = &$suppFileDao->getSuppFileByBestSuppFileId($paper->getPaperId(), $suppId);
+			$suppFile =& $suppFileDao->getSuppFileByBestSuppFileId($paper->getPaperId(), $suppId);
 		} else {
-			$suppFile = &$suppFileDao->getSuppFile((int) $suppId, $paper->getPaperId());
+			$suppFile =& $suppFileDao->getSuppFile((int) $suppId, $paper->getPaperId());
 		}
 
 		if ($paper && $suppFile) {
@@ -385,7 +385,7 @@ class PaperHandler extends Handler {
 		parent::validate();
 
 		$conferenceId = $conference->getConferenceId();
-		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 
 		if ($schedConf->getSetting('enablePublicPaperId')) {
 			$paper =& $publishedPaperDao->getPublishedPaperByBestPaperId(

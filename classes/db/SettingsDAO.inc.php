@@ -46,7 +46,7 @@ class SettingsDAO extends DAO {
 		$value = array();
 		foreach ($node->getChildren() as $element) {
 			$key = $element->getAttribute('key');
-			$childArray = &$element->getChildByName('array');
+			$childArray =& $element->getChildByName('array');
 			if (isset($childArray)) {
 				$content = $this->_buildObject($childArray, $paramArray);
 			} else {
@@ -76,18 +76,18 @@ class SettingsDAO extends DAO {
 		}
 
 		foreach ($tree->getChildren() as $setting) {
-			$nameNode = &$setting->getChildByName('name');
-			$valueNode = &$setting->getChildByName('value');
+			$nameNode =& $setting->getChildByName('name');
+			$valueNode =& $setting->getChildByName('value');
 
 			if (isset($nameNode) && isset($valueNode)) {
 				$type = $setting->getAttribute('type');
 				$isLocaleField = $setting->getAttribute('locale');
-				$name = &$nameNode->getValue();
+				$name =& $nameNode->getValue();
 
 				if ($type == 'date') {
 					$value = strtotime($valueNode->getValue());
 				} elseif ($type == 'object') {
-					$arrayNode = &$valueNode->getChildByName('array');
+					$arrayNode =& $valueNode->getChildByName('array');
 					$value = $this->_buildObject($arrayNode, $paramArray);
 				} else {
 					$value = $this->_performReplacement($valueNode->getValue(), $paramArray);

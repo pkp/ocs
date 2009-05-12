@@ -30,10 +30,10 @@ class EmailHandler extends UserHandler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &Request::getUser();
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& Request::getUser();
 
 		// See if this is the Director or Manager and an email template has been chosen
 		$template = Request::getUserVar('template');

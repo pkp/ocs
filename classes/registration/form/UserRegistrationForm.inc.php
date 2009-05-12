@@ -39,7 +39,7 @@ class UserRegistrationForm extends Form {
 
 		parent::Form('registration/userRegistrationForm.tpl');
 
-		$this->addCheck(new FormValidatorCustom($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdValid', create_function('$registrationTypeId, $schedConfId, $typeId', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->openRegistrationTypeExistsByTypeId($typeId, $schedConfId);'), array($schedConf->getSchedConfId(), $typeId)));
+		$this->addCheck(new FormValidatorCustom($this, 'registrationTypeId', 'required', 'manager.registration.form.typeIdValid', create_function('$registrationTypeId, $schedConfId, $typeId', '$registrationTypeDao =& DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->openRegistrationTypeExistsByTypeId($typeId, $schedConfId);'), array($schedConf->getSchedConfId(), $typeId)));
 
 		import('captcha.CaptchaManager');
 		$captchaManager = new CaptchaManager();
@@ -47,7 +47,7 @@ class UserRegistrationForm extends Form {
 
 		$user =& Request::getUser();
 		if (!$user) {
-			$site = &Request::getSite();
+			$site =& Request::getSite();
 			$this->addCheck(new FormValidator($this, 'username', 'required', 'user.profile.form.usernameRequired'));
 			$this->addCheck(new FormValidator($this, 'password', 'required', 'user.profile.form.passwordRequired'));
 
@@ -63,8 +63,8 @@ class UserRegistrationForm extends Form {
 				$this->addCheck(new FormValidatorCaptcha($this, 'captcha', 'captchaId', 'common.captchaField.badCaptcha'));
 			}
 
-			$authDao = &DAORegistry::getDAO('AuthSourceDAO');
-			$this->defaultAuth = &$authDao->getDefaultPlugin();
+			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+			$this->defaultAuth =& $authDao->getDefaultPlugin();
 			if (isset($this->defaultAuth)) {
 				$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.account.form.usernameExists', create_function('$username,$form,$auth', 'return (!$auth->userExists($username) || $auth->authenticate($username, $form->getData(\'password\')));'), array(&$this, $this->defaultAuth)));
 			}
@@ -78,7 +78,7 @@ class UserRegistrationForm extends Form {
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 		$registrationType =& $registrationTypeDao->getRegistrationType($this->getData('registrationTypeId'));
 		if ($registrationType && $registrationType->getCode() != '') {
-			$this->addCheck(new FormValidatorCustom($this, 'feeCode', 'required', 'manager.registration.form.feeCodeValid', create_function('$feeCode, $schedConfId, $form', '$registrationTypeDao = &DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->checkCode($form->getData(\'registrationTypeId\'), $schedConfId, $feeCode);'), array($schedConf->getSchedConfId(), $this)));
+			$this->addCheck(new FormValidatorCustom($this, 'feeCode', 'required', 'manager.registration.form.feeCodeValid', create_function('$feeCode, $schedConfId, $form', '$registrationTypeDao =& DAORegistry::getDAO(\'RegistrationTypeDAO\'); return $registrationTypeDao->checkCode($form->getData(\'registrationTypeId\'), $schedConfId, $feeCode);'), array($schedConf->getSchedConfId(), $this)));
 		}
 		return parent::validate();
 	}
@@ -172,7 +172,7 @@ class UserRegistrationForm extends Form {
 		$this->readUserVars($userVars);
 
 		// If registration type requires it, membership is provided
-		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 		$needMembership = $registrationTypeDao->getRegistrationTypeMembership($this->getData('typeId'));
 	}
 
@@ -206,7 +206,7 @@ class UserRegistrationForm extends Form {
 
 			$user->setPassword(Validation::encryptCredentials($this->getData('username'), $this->getData('password')));
 
-			$userDao = &DAORegistry::getDAO('UserDAO');
+			$userDao =& DAORegistry::getDAO('UserDAO');
 			$userId = $userDao->insertUser($user);
 			if (!$userId) {
 				return REGISTRATION_FAILED;
@@ -221,8 +221,8 @@ class UserRegistrationForm extends Form {
 			$role->setUserId($user->getUserId());
 			$roleDao->insertRole($role);
 
-			$sessionManager = &SessionManager::getManager();
-			$session = &$sessionManager->getUserSession();
+			$sessionManager =& SessionManager::getManager();
+			$session =& $sessionManager->getUserSession();
 			$session->setSessionVar('username', $user->getUsername());
 
 			// Make sure subsequent requests to Request::getUser work

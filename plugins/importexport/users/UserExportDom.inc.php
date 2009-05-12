@@ -21,13 +21,13 @@ define('USERS_DTD_ID', '-//PKP/OCS Users XML//EN');
 
 class UserExportDom {
 	function &exportUsers(&$schedConf, &$users, $allowedRoles = null) {
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		$doc = &XMLCustomWriter::createDocument('issue', USERS_DTD_ID, USERS_DTD_URL);
-		$root = &XMLCustomWriter::createElement($doc, 'users');
+		$doc =& XMLCustomWriter::createDocument('issue', USERS_DTD_ID, USERS_DTD_URL);
+		$root =& XMLCustomWriter::createElement($doc, 'users');
 
 		foreach ($users as $user) {
-			$userNode = &XMLCustomWriter::createElement($doc, 'user');
+			$userNode =& XMLCustomWriter::createElement($doc, 'user');
 
 			XMLCustomWriter::createChildWithText($doc, $userNode, 'username', $user->getUserName(), false);
 			$passwordNode =& XMLCustomWriter::createChildWithText($doc, $userNode, 'password', $user->getPassword());
@@ -73,13 +73,13 @@ class UserExportDom {
 				}
 			}
 			XMLCustomWriter::createChildWithText($doc, $userNode, 'locales', join(':', $user->getLocales()), false);
-			$roles = &$roleDao->getRolesByUserId($user->getUserId(), $schedConf->getSchedConfId());
+			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $schedConf->getSchedConfId());
 			foreach ($roles as $role) {
 				$rolePath = $role->getRolePath();
 				if ($allowedRoles !== null && !in_array($rolePath, $allowedRoles)) {
 					continue;
 				}
-				$roleNode = &XMLCustomWriter::createElement($doc, 'role');
+				$roleNode =& XMLCustomWriter::createElement($doc, 'role');
 				XMLCustomWriter::setAttribute($roleNode, 'type', $rolePath);
 				XMLCustomWriter::appendChild($userNode, $roleNode);
 				unset($roleNode);

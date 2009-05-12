@@ -41,10 +41,10 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	 * Initialize form data from current paper.
 	 */
 	function initData() {
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
 
 		if (isset($this->paper)) {
-			$paper = &$this->paper;
+			$paper =& $this->paper;
 			$this->_data = array(
 				'authors' => array(),
 				'title' => $paper->getTitle(null), // Localized
@@ -62,7 +62,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 				'track' => $trackDao->getTrack($paper->getTrackId())
 			);
 
-			$authors = &$paper->getAuthors();
+			$authors =& $paper->getAuthors();
 			for ($i=0, $count=count($authors); $i < $count; $i++) {
 				array_push(
 					$this->_data['authors'],
@@ -115,8 +115,8 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 
 		// Load the track. This is used in the step 2 form to
 		// determine whether or not to display indexing options.
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$this->_data['track'] = &$trackDao->getTrack($this->paper->getTrackId());
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$this->_data['track'] =& $trackDao->getTrack($this->paper->getTrackId());
 	}
 
 	/**
@@ -154,11 +154,11 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	 * @return int the paper ID
 	 */
 	function execute() {
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$authorDao = &DAORegistry::getDAO('AuthorDAO');
-		$paper = &$this->paper;
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$paper =& $this->paper;
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 		$user =& Request::getUser();
 
 		// Update paper
@@ -213,7 +213,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		for ($i=0, $count=count($authors); $i < $count; $i++) {
 			if ($authors[$i]['authorId'] > 0) {
 				// Update an existing author
-				$author = &$paper->getAuthor($authors[$i]['authorId']);
+				$author =& $paper->getAuthor($authors[$i]['authorId']);
 				$isExistingAuthor = true;
 
 			} else {

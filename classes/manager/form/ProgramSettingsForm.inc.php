@@ -40,10 +40,10 @@ class ProgramSettingsForm extends Form {
 	 */
 	function display() {
 		import('file.PublicFileManager');
-		$site = &Request::getSite();
+		$site =& Request::getSite();
 		$schedConf =& Request::getSchedConf();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId','conference.currentConferences.program');
 		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
 		$templateMgr->assign('programFile', $schedConf->getSetting('programFile'));
@@ -55,7 +55,7 @@ class ProgramSettingsForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		
 		$this->data = array();
 		foreach (array_keys($this->settings) as $settingName) {
@@ -82,7 +82,7 @@ class ProgramSettingsForm extends Form {
 	 * Save modified settings.
 	 */
 	function execute() {
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		
 		foreach ($this->_data as $name => $value) {
 			$schedConf->updateSetting(
@@ -100,10 +100,10 @@ class ProgramSettingsForm extends Form {
 	 * @param $locale string
 	 */
 	function uploadProgram($settingName, $locale) {
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 
 		import('file.PublicFileManager');
-		$fileManager = &new PublicFileManager();
+		$fileManager =& new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$oldName = $fileManager->getUploadedFileName('programFile');
 			$extension = $fileManager->getExtension($oldName);
@@ -133,12 +133,12 @@ class ProgramSettingsForm extends Form {
 	 * @param $locale string
 	 */
 	function deleteProgram($settingName, $locale = null) {
-		$schedConf = &Request::getSchedConf();
-		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConf =& Request::getSchedConf();
+		$settingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 		$setting = $schedConf->getSetting($settingName);
 
 		import('file.PublicFileManager');
-		$fileManager = &new PublicFileManager();
+		$fileManager =& new PublicFileManager();
 		if ($fileManager->removeSchedConfFile($schedConf->getSchedConfId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
 			return $settingsDao->deleteSetting($schedConf->getSchedConfId(), $settingName, $locale);
 		} else {

@@ -54,7 +54,7 @@ class SpecialEventForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$schedConf =& Request::getSchedConf();
 
 		$templateMgr->assign('specialEventId', $this->specialEventId);
@@ -78,8 +78,8 @@ class SpecialEventForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->specialEventId)) {
-			$specialEventDao = &DAORegistry::getDAO('SpecialEventDAO');
-			$specialEvent = &$specialEventDao->getSpecialEvent($this->specialEventId);
+			$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
+			$specialEvent =& $specialEventDao->getSpecialEvent($this->specialEventId);
 
 			if ($specialEvent != null) {
 				$this->_data = array(
@@ -120,7 +120,7 @@ class SpecialEventForm extends Form {
 		$schedConf =& Request::getSchedConf();
 
 		if (isset($this->specialEventId)) {
-			$specialEvent = &$specialEventDao->getSpecialEvent($this->specialEventId);
+			$specialEvent =& $specialEventDao->getSpecialEvent($this->specialEventId);
 		}
 
 		if (!isset($specialEvent)) {

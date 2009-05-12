@@ -48,13 +48,13 @@ class EmailTemplateForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$conferenceId = $this->conference->getConferenceId();
 		$eventId = 0;
 
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplate = &$emailTemplateDao->getBaseEmailTemplate($this->emailKey, $conferenceId, $eventId);
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplate =& $emailTemplateDao->getBaseEmailTemplate($this->emailKey, $conferenceId, $eventId);
 		$templateMgr->assign('canDisable', $emailTemplate?$emailTemplate->getCanDisable():false);
 		$templateMgr->assign('supportedLocales', $this->conference->getSupportedLocaleNames());
 		$templateMgr->assign('helpTopicId','conference.generalManagement.emails');
@@ -68,17 +68,17 @@ class EmailTemplateForm extends Form {
 		$eventId = 0;
 		$conferenceId = $this->conference->getConferenceId();
 
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 
 		// If there's already an event-level template, grab it. This will grab
 		// the conference-level template if no event is specified.
-		$emailTemplate = &$emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId, $eventId, false);
+		$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId, $eventId, false);
 
 		// If not, initialize with the conference template (if one exists). Note
 		// it's necessary to blank the ID field if it exists, since we don't want
 		// to overwrite the conference template with an event template.
 		if(!$emailTemplate && $eventId !== 0) {
-			$emailTemplate = &$emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId, $eventId, true);
+			$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId, $eventId, true);
 			if($emailTemplate) {
 				$emailTemplate->setEmailId(null);
 			}
@@ -124,8 +124,8 @@ class EmailTemplateForm extends Form {
 		$eventId = 0;
 		$conferenceId = $this->conference->getConferenceId();
 
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplate = &$emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId, $eventId, false);
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId, $eventId, false);
 
 		if (!$emailTemplate) {
 			$emailTemplate = new LocaleEmailTemplate();

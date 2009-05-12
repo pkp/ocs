@@ -58,16 +58,16 @@ class IndexHandler extends Handler {
 		} else {
 
 			// Otherwise, display a list of conferences to choose from.
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 
-			$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
+			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 			$templateMgr->assign('helpTopicId', 'user.home');
 
 			// If the site specifies that we should redirect to a specific conference
 			// by default, do it.
 
-			$siteDao = &DAORegistry::getDAO('SiteDAO');
-			$site = &$siteDao->getSite();
+			$siteDao =& DAORegistry::getDAO('SiteDAO');
+			$site =& $siteDao->getSite();
 			$conference = $conferenceDao->getConference($site->getRedirect());
 
 			if ($site->getRedirect() && $conference) {
@@ -77,7 +77,7 @@ class IndexHandler extends Handler {
 			// Otherwise, show a list of hosted conferences.
 
 			$templateMgr->assign('intro', $site->getLocalizedIntro());
-			$conferences = &$conferenceDao->getEnabledConferences();
+			$conferences =& $conferenceDao->getEnabledConferences();
 			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 			$templateMgr->display('index/site.tpl');

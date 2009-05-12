@@ -94,8 +94,8 @@ class SchedConfSetupStep2Form extends SchedConfSetupForm {
 	}
 
 	function display() {
-		$schedConf = &Request::getSchedConf();
-		$templateMgr = &TemplateManager::getManager();
+		$schedConf =& Request::getSchedConf();
+		$templateMgr =& TemplateManager::getManager();
 
 		import('mail.MailTemplate');
 		$mail = new MailTemplate('SUBMISSION_ACK');

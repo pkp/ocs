@@ -37,7 +37,7 @@ class SchedConfSetupForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('setupStep', $this->step);
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.setup');
 		$templateMgr->setCacheability(CACHEABILITY_MUST_REVALIDATE);
@@ -49,7 +49,7 @@ class SchedConfSetupForm extends Form {
 	 * Initialize data from current settings.
 	 */
 	function initData() {
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		$this->_data = $schedConf->getSettings();
 	}
 
@@ -64,8 +64,8 @@ class SchedConfSetupForm extends Form {
 	 * Save modified settings.
 	 */
 	function execute() {
-		$schedConf = &Request::getSchedConf();
-		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConf =& Request::getSchedConf();
+		$settingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 
 		foreach ($this->_data as $name => $value) {
 			if (isset($this->settings[$name])) {

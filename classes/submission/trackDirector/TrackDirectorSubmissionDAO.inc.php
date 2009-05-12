@@ -39,16 +39,16 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 */
 	function TrackDirectorSubmissionDAO() {
 		parent::DAO();
-		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
-		$this->userDao = &DAORegistry::getDAO('UserDAO');
-		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-		$this->reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-		$this->galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-		$this->paperEmailLogDao = &DAORegistry::getDAO('PaperEmailLogDAO');
-		$this->paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
+		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
+		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$this->userDao =& DAORegistry::getDAO('UserDAO');
+		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$this->paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$this->galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$this->paperEmailLogDao =& DAORegistry::getDAO('PaperEmailLogDAO');
+		$this->paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
 	}
 
 	/**
@@ -59,7 +59,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	function &getTrackDirectorSubmission($paperId) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT	p.*,
 				r2.review_revision,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
@@ -87,7 +87,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnTrackDirectorSubmissionFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnTrackDirectorSubmissionFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -231,7 +231,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		// Update paper
 		if ($trackDirectorSubmission->getPaperId()) {
 
-			$paper = &$this->paperDao->getPaper($trackDirectorSubmission->getPaperId());
+			$paper =& $this->paperDao->getPaper($trackDirectorSubmission->getPaperId());
 
 			// Only update fields that can actually be edited.
 			$paper->setTrackId($trackDirectorSubmission->getTrackId());
@@ -372,7 +372,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$searchSql .= ' AND p.track_id = ?';
 		}
 
-		$result = &$this->retrieveRange($sql . ' ' . $searchSql . ' ORDER BY paper_id ASC',
+		$result =& $this->retrieveRange($sql . ' ' . $searchSql . ' ORDER BY paper_id ASC',
 			$params,
 			$rangeInfo
 		);
@@ -466,7 +466,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$trackDirectorSubmission = &$this->_returnTrackDirectorSubmissionFromRow($row);
+			$trackDirectorSubmission =& $this->_returnTrackDirectorSubmissionFromRow($row);
 
 			// check if submission is still in review
 			$inReview = true;
@@ -531,7 +531,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$params = array($paperId);
 		if($stage != null) $params[] = $stage;
 
-		$result = &$this->retrieve('
+		$result =& $this->retrieve('
 			SELECT edit_decision_id, director_id, decision, date_decided
 				FROM edit_decisions
 				WHERE paper_id = ?'
@@ -560,7 +560,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @return int
 	 */
 	function getMaxReviewStage($paperId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT MAX(stage) FROM review_stages WHERE paper_id = ?', array($paperId)
 		);
 		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;
@@ -578,7 +578,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @return boolean
 	 */
 	function reviewStageExists($paperId, $stage) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM review_stages WHERE paper_id = ? AND stage = ?', array($paperId, $stage)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
@@ -596,7 +596,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @return boolean
 	 */
 	function reviewerExists($paperId, $reviewerId, $stage) {
-		$result = &$this->retrieve('
+		$result =& $this->retrieve('
 			SELECT COUNT(*)
 			FROM review_assignments
 			WHERE paper_id = ?
@@ -659,7 +659,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				break;
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT DISTINCT
 				u.*,
 				a.review_id
@@ -679,7 +679,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	}
 
 	function &_returnReviewerUserFromRow(&$row) { // FIXME
-		$user = &$this->userDao->_returnUserFromRowWithData($row);
+		$user =& $this->userDao->_returnUserFromRowWithData($row);
 		$user->review_id = $row['review_id'];
 
 		HookRegistry::call('TrackDirectorSubmissionDAO::_returnReviewerUserFromRow', array(&$user, &$row));
@@ -696,13 +696,13 @@ class TrackDirectorSubmissionDAO extends DAO {
 	function &getReviewersNotAssignedToPaper($schedConfId, $paperId) {
 		$users = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT u.* FROM users u NATURAL JOIN roles r LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND a.paper_id = ?) WHERE r.sched_conf_id = ? AND r.role_id = ? AND a.paper_id IS NULL ORDER BY last_name, first_name',
 			array($paperId, $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'))
 		);
 
 		while (!$result->EOF) {
-			$users[] = &$this->userDao->_returnUserFromRowWithData($result->GetRowAssoc(false));
+			$users[] =& $this->userDao->_returnUserFromRowWithData($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -720,7 +720,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result = &$this->retrieve('SELECT ra.reviewer_id AS reviewer_id, MAX(ra.date_notified) AS last_notified FROM review_assignments ra, papers p WHERE ra.paper_id = p.paper_id AND p.sched_conf_id = ? GROUP BY ra.reviewer_id', $schedConfId);
+		$result =& $this->retrieve('SELECT ra.reviewer_id AS reviewer_id, MAX(ra.date_notified) AS last_notified FROM review_assignments ra, papers p WHERE ra.paper_id = p.paper_id AND p.sched_conf_id = ? GROUP BY ra.reviewer_id', $schedConfId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
@@ -732,7 +732,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get completion status
-		$result = &$this->retrieve('SELECT r.reviewer_id AS reviewer_id, COUNT(*) AS incomplete FROM review_assignments r, papers p WHERE r.paper_id = p.paper_id AND r.date_notified IS NOT NULL AND r.date_completed IS NULL AND r.cancelled = 0 AND p.sched_conf_id = ? GROUP BY r.reviewer_id', $schedConfId);
+		$result =& $this->retrieve('SELECT r.reviewer_id AS reviewer_id, COUNT(*) AS incomplete FROM review_assignments r, papers p WHERE r.paper_id = p.paper_id AND r.date_notified IS NOT NULL AND r.date_completed IS NULL AND r.cancelled = 0 AND p.sched_conf_id = ? GROUP BY r.reviewer_id', $schedConfId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
@@ -744,7 +744,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Calculate time taken for completed reviews
-		$result = &$this->retrieve('SELECT r.reviewer_id, r.date_notified, r.date_completed FROM review_assignments r, papers p WHERE r.paper_id = p.paper_id AND r.date_notified IS NOT NULL AND r.date_completed IS NOT NULL AND p.sched_conf_id = ?', $schedConfId);
+		$result =& $this->retrieve('SELECT r.reviewer_id, r.date_notified, r.date_completed FROM review_assignments r, papers p WHERE r.paper_id = p.paper_id AND r.date_notified IS NOT NULL AND r.date_completed IS NOT NULL AND p.sched_conf_id = ?', $schedConfId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();

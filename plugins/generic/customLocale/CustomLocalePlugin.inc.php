@@ -80,13 +80,13 @@ class CustomLocalePlugin extends GenericPlugin {
 	}
 
 	function getEnabled() {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		if (!$conference) return false;
 		return $this->getSetting($conference->getConferenceId(), 0, 'enabled');
 	}
 
 	function setEnabled($enabled) {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		if ($conference) {
 			$this->updateSetting($conference->getConferenceId(), 0, 'enabled', $enabled ? true : false);
 			return true;

@@ -52,7 +52,7 @@ class AuthorSubmitForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $this->paperId);
 		$templateMgr->assign('submitStep', $this->step);
 
@@ -68,8 +68,8 @@ class AuthorSubmitForm extends Form {
 		}
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 
-		$schedConf = &Request::getSchedConf();
-		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConf =& Request::getSchedConf();
+		$settingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 
 		// Determine which submission steps should be shown
 

@@ -26,19 +26,19 @@ class PaperEventLogDAO extends DAO {
 	 */
 	function &getLogEntry($logId, $paperId = null) {
 		if (isset($paperId)) {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT * FROM paper_event_log WHERE log_id = ? AND paper_id = ?',
 				array($logId, $paperId)
 			);
 		} else {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT * FROM paper_event_log WHERE log_id = ?', $logId
 			);
 		}
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnLogEntryFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnLogEntryFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -53,7 +53,7 @@ class PaperEventLogDAO extends DAO {
 	 * @return DAOResultFactory containing matching PaperEventLogEntry PaperEventLogEntry ordered by sequence
 	 */
 	function &getPaperLogEntries($paperId, $rangeInfo = null) {
-		$returner = &$this->getPaperLogEntriesByAssoc($paperId, null, null, $rangeInfo);
+		$returner =& $this->getPaperLogEntriesByAssoc($paperId, null, null, $rangeInfo);
 		return $returner;
 	}
 
@@ -75,7 +75,7 @@ class PaperEventLogDAO extends DAO {
 			}
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM paper_event_log WHERE paper_id = ?' . (isset($assocType) ? ' AND assoc_type = ?' . (isset($assocId) ? ' AND assoc_id = ?' : '') : '') . ' ORDER BY log_id DESC',
 			$params, $rangeInfo
 		);

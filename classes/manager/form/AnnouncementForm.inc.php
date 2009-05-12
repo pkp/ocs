@@ -28,20 +28,20 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	function AnnouncementForm($announcementId = null) {
 		parent::PKPAnnouncementForm($announcementId);
 
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 
 		// If provided, announcement type is valid 
-		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'manager.announcements.form.typeIdValid', create_function('$typeId, $conferenceId', '$announcementTypeDao = &DAORegistry::getDAO(\'AnnouncementTypeDAO\'); return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, ASSOC_TYPE_CONFERENCE, $conferenceId);'), array($conference->getConferenceId())));
+		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'manager.announcements.form.typeIdValid', create_function('$typeId, $conferenceId', '$announcementTypeDao =& DAORegistry::getDAO(\'AnnouncementTypeDAO\'); return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, ASSOC_TYPE_CONFERENCE, $conferenceId);'), array($conference->getConferenceId())));
 
 		// If supplied, the scheduled conference exists and belongs to the conference
-		$this->addCheck(new FormValidatorCustom($this, 'schedConfId', 'required', 'manager.announcements.form.schedConfIdValid', create_function('$schedConfId, $conferenceId', 'if ($schedConfId == 0) return true; $schedConfDao = &DAORegistry::getDAO(\'SchedConfDAO\'); $schedConf =& $schedConfDao->getSchedConf($schedConfId); if(!$schedConf) return false; return ($schedConf->getConferenceId() == $conferenceId);'), array($conference->getConferenceId())));
+		$this->addCheck(new FormValidatorCustom($this, 'schedConfId', 'required', 'manager.announcements.form.schedConfIdValid', create_function('$schedConfId, $conferenceId', 'if ($schedConfId == 0) return true; $schedConfDao =& DAORegistry::getDAO(\'SchedConfDAO\'); $schedConf =& $schedConfDao->getSchedConf($schedConfId); if(!$schedConf) return false; return ($schedConf->getConferenceId() == $conferenceId);'), array($conference->getConferenceId())));
 	}
 
 	/**
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.announcements');
 
 		$conference =& Request::getConference();
@@ -59,8 +59,8 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		parent::initData();
 
 		if (isset($this->announcementId)) {
-			$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-			$announcement = &$announcementDao->getAnnouncement($this->announcementId);
+			$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+			$announcement =& $announcementDao->getAnnouncement($this->announcementId);
 
 			if ($announcement != null) {
 				$this->_data['schedConfId'] = ($announcement->getAssocType() == ASSOC_TYPE_SCHED_CONF)?$announcement->getAssocId():null;
@@ -87,7 +87,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	 */
 	function _setAnnouncementAssocId(&$announcement) {
 		if ( $this->getData('schedConfId') == 0 ) {
-			$conference = &Request::getConference();
+			$conference =& Request::getConference();
 			$announcement->setAssocType(ASSOC_TYPE_CONFERENCE);
 			$announcement->setAssocId($conference->getConferenceId());
 		} else {
@@ -106,11 +106,11 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		
 		// Send a notification to associated users
 		import('notification.Notification');
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$notificationUsers = array();
 		$allUsers = $roleDao->getUsersByConferenceId($conferenceId);
 		while (!$allUsers->eof()) {
-			$user = &$allUsers->next();
+			$user =& $allUsers->next();
 			$notificationUsers[] = array('id' => $user->getUserId());
 			unset($user);
 		}
@@ -119,7 +119,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 			Notification::createNotification($user['id'], "notification.type.newAnnouncement",
 				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT);
 		}
-		$notificationDao = &DAORegistry::getDAO('NotificationDAO');
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
 		$notificationDao->sendToMailingList(Notification::createNotification(0, "notification.type.newAnnouncement",
 				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT));
 	}

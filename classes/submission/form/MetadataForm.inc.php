@@ -30,10 +30,10 @@ class MetadataForm extends Form {
 	 * Constructor.
 	 */
 	function MetadataForm($paper) {
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		$schedConf = &Request::getSchedConf();
-		$user = &Request::getUser();
+		$schedConf =& Request::getSchedConf();
+		$user =& Request::getUser();
 		$roleId = $roleDao->getRoleIdFromPath(Request::getRequestedPage());
 
 		// If the user is a director of this paper, make the form editable.
@@ -75,7 +75,7 @@ class MetadataForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->paper)) {
-			$paper = &$this->paper;
+			$paper =& $this->paper;
 			$this->_data = array(
 				'authors' => array(),
 				'title' => $paper->getTitle(null), // Localized
@@ -92,7 +92,7 @@ class MetadataForm extends Form {
 				'citations' => $paper->getCitations()
 			);
 
-			$authors = &$paper->getAuthors();
+			$authors =& $paper->getAuthors();
 			for ($i=0, $count=count($authors); $i < $count; $i++) {
 				array_push(
 					$this->_data['authors'],
@@ -128,11 +128,11 @@ class MetadataForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$schedConf = &Request::getSchedConf();
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$schedConf =& Request::getSchedConf();
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', isset($this->paper)?$this->paper->getPaperId():null);
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('canViewAuthors', $this->canViewAuthors);
@@ -179,16 +179,16 @@ class MetadataForm extends Form {
 	 * @return int the paper ID
 	 */
 	function execute() {
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$authorDao = &DAORegistry::getDAO('AuthorDAO');
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
 
 		// Update paper
 
-		$paper = &$this->paper;
+		$paper =& $this->paper;
 		$paper->setTitle($this->getData('title'), null); // Localized
 
-		$track = &$trackDao->getTrack($paper->getTrackId());
+		$track =& $trackDao->getTrack($paper->getTrackId());
 		$paper->setAbstract($this->getData('abstract'), null); // Localized
 
 		$paper->setDiscipline($this->getData('discipline'), null); // Localized
@@ -207,7 +207,7 @@ class MetadataForm extends Form {
 		for ($i=0, $count=count($authors); $i < $count; $i++) {
 			if ($authors[$i]['authorId'] > 0) {
 				// Update an existing author
-				$author = &$paper->getAuthor($authors[$i]['authorId']);
+				$author =& $paper->getAuthor($authors[$i]['authorId']);
 				$isExistingAuthor = true;
 
 			} else {

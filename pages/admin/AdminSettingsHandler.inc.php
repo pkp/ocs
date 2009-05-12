@@ -80,13 +80,13 @@ class AdminSettingsHandler extends AdminHandler {
 				$siteSettingsDao->deleteSetting('pageHeaderTitleImage', $formLocale);
 
 				// Refresh site header
-				$templateMgr = &TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('displaySitePageHeaderTitle', $site->getLocalizedPageHeaderTitle());
 			}
 		} elseif ($settingsForm->validate()) {
 			$settingsForm->execute();
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign(array(
 				'currentUrl' => Request::url(null, null, null, 'settings'),
 				'pageTitle' => 'admin.siteSettings',

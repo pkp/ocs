@@ -31,7 +31,7 @@ class SettingsForm extends Form {
 	 */
 	function SettingsForm(&$plugin, $conferenceId) {
 		$this->conferenceId = $conferenceId;
-		$this->plugin = &$plugin;
+		$this->plugin =& $plugin;
 
 		parent::Form($plugin->getTemplatePath() . 'settingsForm.tpl');
 		$this->addCheck(new FormValidatorPost($this));
@@ -42,7 +42,7 @@ class SettingsForm extends Form {
 	 */
 	function initData() {
 		$conferenceId = $this->conferenceId;
-		$plugin = &$this->plugin;
+		$plugin =& $this->plugin;
 
 		$this->setData('displayPage', $plugin->getSetting($conferenceId, 0, 'displayPage'));
 		$this->setData('limitRecentItems', $plugin->getSetting($conferenceId, 0, 'limitRecentItems'));
@@ -63,7 +63,7 @@ class SettingsForm extends Form {
 	 * Save settings. 
 	 */
 	function execute() {
-		$plugin = &$this->plugin;
+		$plugin =& $this->plugin;
 		$conferenceId = $this->conferenceId;
 
 		$plugin->updateSetting($conferenceId, 0, 'displayPage', $this->getData('displayPage'));

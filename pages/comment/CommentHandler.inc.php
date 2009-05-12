@@ -44,21 +44,21 @@ class CommentHandler extends Handler {
 		$schedConf =& Request::getSchedConf();
 		$paper =& $this->paper;
 
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 		$userId = isset($user)?$user->getUserId():null;
 
-		$commentDao = &DAORegistry::getDAO('CommentDAO');
-		$comment = &$commentDao->getComment($commentId, $paperId, 2);
+		$commentDao =& DAORegistry::getDAO('CommentDAO');
+		$comment =& $commentDao->getComment($commentId, $paperId, 2);
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isManager = Validation::isConferenceManager($conference->getConferenceId());
 
-		if (!$comment) $comments = &$commentDao->getRootCommentsByPaperId($paperId, 1);
-		else $comments = &$comment->getChildren();
+		if (!$comment) $comments =& $commentDao->getRootCommentsByPaperId($paperId, 1);
+		else $comments =& $comment->getChildren();
 
 		$this->setupTemplate($paper, $galleyId, $comment);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		if (Request::getUserVar('refresh')) $templateMgr->setCacheability(CACHEABILITY_NO_CACHE);
 		if ($comment) {
 			$templateMgr->assign_by_ref('comment', $comment);
@@ -90,7 +90,7 @@ class CommentHandler extends Handler {
 		$paper =& $this->paper;
 
 		// Bring in comment constants
-		$commentDao = &DAORegistry::getDAO('CommentDAO');
+		$commentDao =& DAORegistry::getDAO('CommentDAO');
 
 		$enableComments = $conference->getSetting('enableComments');
 		$commentsRequireRegistration = $conference->getSetting('commentsRequireRegistration');
@@ -104,7 +104,7 @@ class CommentHandler extends Handler {
 		if (!$enableComments) Request::redirect(null, null, 'index');
 		if ($commentsRequireRegistration && !Request::getUser()) Validation::redirectLogin();
 
-		$parent = &$commentDao->getComment($parentId, $paperId);
+		$parent =& $commentDao->getComment($parentId, $paperId);
 		if (isset($parent) && $parent->getPaperId() != $paperId) {
 			Request::redirect(null, null, null, 'view', array($paperId, $galleyId));
 		}
@@ -147,16 +147,16 @@ class CommentHandler extends Handler {
 		$commentId = isset($args[2]) ? (int) $args[2] : 0;
 
 		$this->validate($paperId);
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 		$userId = isset($user)?$user->getUserId():null;
 
-		$commentDao = &DAORegistry::getDAO('CommentDAO');
+		$commentDao =& DAORegistry::getDAO('CommentDAO');
 
 		if (!Validation::isConferenceManager()) {
 			Request::redirect(null, null, 'index');
 		}
 
-		$comment = &$commentDao->getComment($commentId, $paperId, PAPER_COMMENT_RECURSE_ALL);
+		$comment =& $commentDao->getComment($commentId, $paperId, PAPER_COMMENT_RECURSE_ALL);
 		if ($comment)$commentDao->deleteComment($comment);
 
 		Request::redirect(null, null, null, 'view', array($paperId, $galleyId), array('refresh' => 1));
@@ -170,15 +170,15 @@ class CommentHandler extends Handler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
-		$paper = &$publishedPaperDao->getPublishedPaperByPaperId($paperId, $schedConf->getSchedConfId(), $schedConf->getSetting('previewAbstracts'));
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$paper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId, $schedConf->getSchedConfId(), $schedConf->getSetting('previewAbstracts'));
 
 		if ($paper == null) {
 			Request::redirect(null, null, 'index');
 		}
 
 		// Bring in comment and view constants
-		$commentDao = &DAORegistry::getDAO('CommentDAO');
+		$commentDao =& DAORegistry::getDAO('CommentDAO');
 		$enableComments = $conference->getSetting('enableComments');
 
 		if (!$enableComments || !$paper->getEnableComments()) {
@@ -196,7 +196,7 @@ class CommentHandler extends Handler {
 
 	function setupTemplate($paper, $galleyId, $comment = null) {
 		parent::setupTemplate();
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 
 		$pageHierarchy = array(

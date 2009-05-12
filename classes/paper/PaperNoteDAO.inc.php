@@ -26,7 +26,7 @@ class PaperNoteDAO extends DAO {
 	function &getPaperNotes($paperId, $rangeInfo = NULL) {
 		$sql = 'SELECT n.*, a.file_name, a.original_file_name FROM paper_notes n LEFT JOIN paper_files a ON (n.file_id = a.file_id) WHERE a.paper_id = ? OR (n.file_id = 0 AND n.paper_id = ?) ORDER BY n.date_created DESC';
 
-		$result = &$this->retrieveRange($sql, array($paperId, $paperId), $rangeInfo);
+		$result =& $this->retrieveRange($sql, array($paperId, $paperId), $rangeInfo);
 
 		$returner = new DAOResultFactory($result, $this, '_returnPaperNoteFromRow');
 		return $returner;
@@ -40,7 +40,7 @@ class PaperNoteDAO extends DAO {
 	function &getPaperNotesByUserId($userId, $rangeInfo = NULL) {
 		$sql = 'SELECT n.*, a.file_name, a.original_file_name FROM paper_notes n LEFT JOIN paper_files a ON (n.file_id = a.file_id) WHERE n.user_id = ? ORDER BY n.date_created DESC';
 
-		$result = &$this->retrieveRange($sql, $userId, $rangeInfo);
+		$result =& $this->retrieveRange($sql, $userId, $rangeInfo);
 
 		$returner = new DAOResultFactory($result, $this, '_returnPaperNoteFromRow');
 		return $returner;
@@ -52,10 +52,10 @@ class PaperNoteDAO extends DAO {
 	 * @return PaperNote object
 	 */
 	function getPaperNoteById($noteId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT n.*, a.file_name, a.original_file_name FROM paper_notes n LEFT JOIN paper_files a ON (n.file_id = a.file_id) WHERE n.note_id = ?', $noteId
 		);
-		$paperNote = &$this->_returnPaperNoteFromRow($result->GetRowAssoc(false));
+		$paperNote =& $this->_returnPaperNoteFromRow($result->GetRowAssoc(false));
 
 		$result->Close();
 		unset($result);
@@ -162,7 +162,7 @@ class PaperNoteDAO extends DAO {
 	function getAllPaperNoteFileIds($paperId) {
 		$fileIds = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT a.file_id FROM paper_notes a WHERE paper_id = ? AND file_id > ?', array($paperId, 0)
 		);
 
@@ -183,7 +183,7 @@ class PaperNoteDAO extends DAO {
 	 * @param fileIds array
 	 */
 	function clearAllPaperNotes($paperId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'DELETE FROM paper_notes WHERE paper_id = ?', $paperId
 		);
 

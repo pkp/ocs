@@ -26,7 +26,7 @@ class PaperDAO extends DAO {
 	 */
 	function PaperDAO() {
 		parent::DAO();
-		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
+		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
 	}
 
 	/**
@@ -90,7 +90,7 @@ class PaperDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnPaperFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnPaperFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -117,8 +117,8 @@ class PaperDAO extends DAO {
 	 */
 	function _paperFromRow(&$paper, &$row) {
 		$schedConfId = $row['sched_conf_id'];
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$schedConf = &$schedConfDao->getSchedConf($schedConfId);
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 		$conferenceId = $schedConf->getConferenceId();
 
 		$paper->setPaperId($row['paper_id']);
@@ -220,7 +220,7 @@ class PaperDAO extends DAO {
 		$this->updateLocaleFields($paper);
 
 		// Insert authors for this paper
-		$authors = &$paper->getAuthors();
+		$authors =& $paper->getAuthors();
 		for ($i=0, $count=count($authors); $i < $count; $i++) {
 			$authors[$i]->setPaperId($paper->getPaperId());
 			$this->authorDao->insertAuthor($authors[$i]);
@@ -286,7 +286,7 @@ class PaperDAO extends DAO {
 		);
 
 		// update authors for this paper
-		$authors = &$paper->getAuthors();
+		$authors =& $paper->getAuthors();
 		for ($i=0, $count=count($authors); $i < $count; $i++) {
 			if ($authors[$i]->getId() > 0) {
 				$this->authorDao->updateAuthor($authors[$i]);
@@ -322,50 +322,50 @@ class PaperDAO extends DAO {
 	function deletePaperById($paperId) {
 		$this->authorDao->deleteAuthorsByPaper($paperId);
 
-		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaperDao->deletePublishedPaperByPaperId($paperId);
 
-		$commentDao = &DAORegistry::getDAO('CommentDAO');
+		$commentDao =& DAORegistry::getDAO('CommentDAO');
 		$commentDao->deleteCommentsByPaper($paperId);
 
-		$paperNoteDao = &DAORegistry::getDAO('PaperNoteDAO');
+		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
 		$paperNoteDao->clearAllPaperNotes($paperId);
 
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$trackDirectorSubmissionDao->deleteDecisionsByPaper($paperId);
 		$trackDirectorSubmissionDao->deleteReviewStagesByPaper($paperId);
 
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignmentDao->deleteReviewAssignmentsByPaper($paperId);
 
-		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignmentDao->deleteEditAssignmentsByPaper($paperId);
 
-		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
+		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
 		$paperCommentDao->deletePaperComments($paperId);
 
-		$paperGalleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
+		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 		$paperGalleyDao->deleteGalleysByPaper($paperId);
 
-		$paperSearchDao = &DAORegistry::getDAO('PaperSearchDAO');
+		$paperSearchDao =& DAORegistry::getDAO('PaperSearchDAO');
 		$paperSearchDao->deletePaperKeywords($paperId);
 
-		$paperEventLogDao = &DAORegistry::getDAO('PaperEventLogDAO');
+		$paperEventLogDao =& DAORegistry::getDAO('PaperEventLogDAO');
 		$paperEventLogDao->deletePaperLogEntries($paperId);
 
-		$paperEmailLogDao = &DAORegistry::getDAO('PaperEmailLogDAO');
+		$paperEmailLogDao =& DAORegistry::getDAO('PaperEmailLogDAO');
 		$paperEmailLogDao->deletePaperLogEntries($paperId);
 
-		$paperEventLogDao = &DAORegistry::getDAO('PaperEventLogDAO');
+		$paperEventLogDao =& DAORegistry::getDAO('PaperEventLogDAO');
 		$paperEventLogDao->deletePaperLogEntries($paperId);
 
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$suppFileDao->deleteSuppFilesByPaper($paperId);
 
 		// Delete paper files -- first from the filesystem, then from the database
 		import('file.PaperFileManager');
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		$paperFiles = &$paperFileDao->getPaperFilesByPaper($paperId);
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+		$paperFiles =& $paperFileDao->getPaperFilesByPaper($paperId);
 
 		$paperFileManager = new PaperFileManager($paperId);
 		foreach ($paperFiles as $paperFile) {
@@ -403,7 +403,7 @@ class PaperDAO extends DAO {
 		if ($trackId) $params[] = $trackId;
 
 		$papers = array();
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT	p.*,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
@@ -430,7 +430,7 @@ class PaperDAO extends DAO {
 		$papers = $this->getPapersBySchedConfId($schedConfId);
 
 		while (!$papers->eof()) {
-			$paper = &$papers->next();
+			$paper =& $papers->next();
 			$this->deletePaperById($paper->getPaperId());
 		}
 	}
@@ -461,7 +461,7 @@ class PaperDAO extends DAO {
 
 		$papers = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT p.*,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
@@ -476,7 +476,7 @@ class PaperDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			$papers[] = &$this->_returnPaperFromRow($result->GetRowAssoc(false));
+			$papers[] =& $this->_returnPaperFromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 
@@ -492,7 +492,7 @@ class PaperDAO extends DAO {
 	 * @return int
 	 */
 	function getPaperSchedConfId($paperId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT sched_conf_id FROM papers WHERE paper_id = ?', $paperId
 		);
 		$returner = isset($result->fields[0]) ? $result->fields[0] : false;
@@ -511,7 +511,7 @@ class PaperDAO extends DAO {
 	 * @return int the submission progress
 	 */
 	function incompleteSubmissionExists($paperId, $userId, $schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT submission_progress FROM papers WHERE paper_id = ? AND user_id = ? AND sched_conf_id = ? AND date_submitted IS NULL',
 			array($paperId, $userId, $schedConfId)
 		);

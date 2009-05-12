@@ -46,7 +46,7 @@ class SchedConfSettingsForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('schedConfId', $this->schedConfId);
 		$templateMgr->assign('conferenceId', $this->conferenceId);
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.scheduledConferences');
@@ -58,8 +58,8 @@ class SchedConfSettingsForm extends Form {
 	 */
 	function initData() {
 		if(isset($this->schedConfId)) {
-			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-			$schedConf = &$schedConfDao->getSchedConf($this->schedConfId);
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConf =& $schedConfDao->getSchedConf($this->schedConfId);
 
 			if($schedConf != null) {
 				$this->_data = array(
@@ -73,8 +73,8 @@ class SchedConfSettingsForm extends Form {
 			}
 		}
 
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$conference = &$conferenceDao->getConference($this->conferenceId);
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conference =& $conferenceDao->getConference($this->conferenceId);
 		if ($conference == null) {
 			// TODO: redirect?
 			$this->conferenceId = null;
@@ -94,8 +94,8 @@ class SchedConfSettingsForm extends Form {
 		$this->readUserVars(array('conferenceId', 'acronym', 'title', 'path'));
 
 		if (isset($this->schedConfId)) {
-			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-			$schedConf = &$schedConfDao->getSchedConf($this->schedConfId);
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConf =& $schedConfDao->getSchedConf($this->schedConfId);
 			$this->setData('oldPath', $schedConf->getPath());
 		}
 	}
@@ -112,13 +112,13 @@ class SchedConfSettingsForm extends Form {
 	 * Save scheduled conference settings.
 	 */
 	function execute() {
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 
 		$conference =& $conferenceDao->getConference($this->getData('conferenceId'));
 
 		if (isset($this->schedConfId)) {
-			$schedConf = &$schedConfDao->getSchedConf($this->schedConfId);
+			$schedConf =& $schedConfDao->getSchedConf($this->schedConfId);
 		}
 
 		if (!isset($schedConf)) {
@@ -146,7 +146,7 @@ class SchedConfSettingsForm extends Form {
 			FileManager::mkdirtree($publicBasePath);
 
 			// Install default scheduled conference settings
-			$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+			$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 
 			$title = $this->getData('title');
 			$title = $title[$this->getFormLocale()];
@@ -163,7 +163,7 @@ class SchedConfSettingsForm extends Form {
 			));
 
 			// Create a default "Papers" track
-			$trackDao = &DAORegistry::getDAO('TrackDAO');
+			$trackDao =& DAORegistry::getDAO('TrackDAO');
 			$track = new Track();
 			$track->setSchedConfId($schedConfId);
 			$track->setMetaReviewed(true);

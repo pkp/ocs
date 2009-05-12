@@ -57,7 +57,7 @@ class InformationHandler extends Handler {
 				return;
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		if($schedConf) {
 			$templateMgr->assign('schedConfTitle', $schedConf->getFullTitle());

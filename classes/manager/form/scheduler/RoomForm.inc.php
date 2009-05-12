@@ -38,7 +38,7 @@ class RoomForm extends Form {
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.scheduler.room.form.nameRequired'));
 		
 		// If provided, building ID is valid
-		$this->addCheck(new FormValidatorCustom($this, 'buildingId', 'required', 'manager.scheduler.room.form.buildingIdValid', create_function('$buildingId, $schedConfId', '$buildingDao = &DAORegistry::getDAO(\'BuildingDAO\'); return $buildingDao->buildingExistsForSchedConf($buildingId, $schedConfId);'), array($schedConf->getSchedConfId())));
+		$this->addCheck(new FormValidatorCustom($this, 'buildingId', 'required', 'manager.scheduler.room.form.buildingIdValid', create_function('$buildingId, $schedConfId', '$buildingDao =& DAORegistry::getDAO(\'BuildingDAO\'); return $buildingDao->buildingExistsForSchedConf($buildingId, $schedConfId);'), array($schedConf->getSchedConfId())));
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -56,7 +56,7 @@ class RoomForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('roomId', $this->roomId);
 		$templateMgr->assign('buildingId', $this->buildingId);
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.rooms');
@@ -69,8 +69,8 @@ class RoomForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->roomId)) {
-			$roomDao = &DAORegistry::getDAO('RoomDAO');
-			$room = &$roomDao->getRoom($this->roomId);
+			$roomDao =& DAORegistry::getDAO('RoomDAO');
+			$room =& $roomDao->getRoom($this->roomId);
 
 			if ($room != null) {
 				$this->_data = array(
@@ -101,7 +101,7 @@ class RoomForm extends Form {
 		$schedConf =& Request::getSchedConf();
 
 		if (isset($this->roomId)) {
-			$room = &$roomDao->getRoom($this->roomId);
+			$room =& $roomDao->getRoom($this->roomId);
 		}
 
 		if (!isset($room)) {

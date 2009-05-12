@@ -24,13 +24,13 @@ class RoomDAO extends DAO {
 	 * @return object Room
 	 */
 	function &getRoom($roomId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM rooms WHERE room_id = ?', $roomId
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnRoomFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnRoomFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -42,7 +42,7 @@ class RoomDAO extends DAO {
 	 * @return int
 	 */
 	function getRoomBuildingId($roomId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT building_id FROM rooms WHERE room_id = ?', $roomId
 		);
 
@@ -55,7 +55,7 @@ class RoomDAO extends DAO {
 	 * @return int
 	 */
 	function getRoomSchedConfId($roomId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT b.sched_conf_id FROM rooms r LEFT JOIN buildings b ON (r.building_id = b.building_id) WHERE r.room_id = ?', $roomId
 		);
 
@@ -172,7 +172,7 @@ class RoomDAO extends DAO {
 	 * @return object DAOResultFactory containing matching Rooms
 	 */
 	function &getRoomsByBuildingId($buildingId, $rangeInfo = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM rooms WHERE building_id = ? ORDER BY building_id',
 			$buildingId,
 			$rangeInfo

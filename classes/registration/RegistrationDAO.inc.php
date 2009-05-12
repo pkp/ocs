@@ -35,13 +35,13 @@ class RegistrationDAO extends DAO {
 	 * @return Registration
 	 */
 	function &getRegistration($registrationId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM registrations WHERE registration_id = ?', $registrationId
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnRegistrationFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnRegistrationFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -55,7 +55,7 @@ class RegistrationDAO extends DAO {
 	 * @return int
 	 */
 	function getRegistrationSchedConfId($registrationId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT sched_conf_id FROM registrations WHERE registration_id = ?', $registrationId
 		);
 
@@ -74,7 +74,7 @@ class RegistrationDAO extends DAO {
 	 * @return int
 	 */
 	function getRegistrationIdByUser($userId, $schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT registration_id
 				FROM registrations
 				WHERE user_id = ?
@@ -99,7 +99,7 @@ class RegistrationDAO extends DAO {
 	 * @return object DAOResultFactory containing matching Registrations
 	 */
 	function getRegistrationsByUser($userId, $rangeInfo = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT *
 				FROM registrations
 				WHERE user_id = ?',
@@ -107,7 +107,7 @@ class RegistrationDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnRegistrationFromRow');
+		$returner =& new DAOResultFactory($result, $this, '_returnRegistrationFromRow');
 
 		return $returner;
 	}
@@ -120,7 +120,7 @@ class RegistrationDAO extends DAO {
 	 * @return boolean
 	 */
 	function registrationExistsByUser($userId, $schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*)
 				FROM registrations
 				WHERE user_id = ?
@@ -384,7 +384,7 @@ class RegistrationDAO extends DAO {
 				WHERE r.user_id = u.user_id
 				AND sched_conf_id = ?';
  
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			$sql . ' ' . $searchSql . ' ORDER BY membership, u.last_name, r.registration_id',
 			count($params)===1?array_shift($params):$params,
 			$rangeInfo
@@ -403,7 +403,7 @@ class RegistrationDAO extends DAO {
 	 * @return object ItemIterator containing matching Users
 	 */
 	function &getRegisteredUsers($schedConfId, $paid = true, $dbResultRange = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT DISTINCT u.*
 			FROM	users u,
 				registrations r
@@ -425,7 +425,7 @@ class RegistrationDAO extends DAO {
 	 * @return int count
 	 */
 	function &getRegisteredUserCount($schedConfId, $paid = true) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) AS user_count
 			FROM	users u,
 				registrations r
@@ -476,7 +476,7 @@ class RegistrationDAO extends DAO {
 	 * @return boolean
 	 */
 	function isValidRegistrationByUser($userId, $schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT registrations.registration_id,
 					registration_types.expiry_date
 			FROM registrations, registration_types
@@ -513,7 +513,7 @@ class RegistrationDAO extends DAO {
 	 * @return boolean
 	 */
 	function isValidRegistrationByDomain($domain, $schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT registrations.registration_id,
 					registration_types.expiry_date,
 					POSITION(UPPER(domain) IN UPPER(?)) AS domain_position
@@ -568,7 +568,7 @@ class RegistrationDAO extends DAO {
 	 * @return boolean
 	 */
 	function isValidRegistrationByIP($IP, $schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT 	r.registration_id,
 					rt.expiry_date,
 					r.ip_range 

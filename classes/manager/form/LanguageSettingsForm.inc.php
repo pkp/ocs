@@ -34,7 +34,7 @@ class LanguageSettingsForm extends Form {
 			'supportedLocales' => 'object'
 		);
 
-		$site = &Request::getSite();
+		$site =& Request::getSite();
 		$this->availableLocales = $site->getSupportedLocales();
 
 		$localeCheck = create_function('$locale,$availableLocales', 'return in_array($locale,$availableLocales);');
@@ -49,8 +49,8 @@ class LanguageSettingsForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
-		$site = &Request::getSite();
+		$templateMgr =& TemplateManager::getManager();
+		$site =& Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 		$templateMgr->assign('helpTopicId','conference.generalManagement.languages');
 		parent::display();
@@ -60,7 +60,7 @@ class LanguageSettingsForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
                 foreach (array_keys($this->settings) as $settingName) {
 			$this->_data[$settingName] = $conference->getSetting($settingName);
 		}
@@ -89,8 +89,8 @@ class LanguageSettingsForm extends Form {
 	 * Save modified settings.
 	 */
 	function execute() {
-		$conference = &Request::getConference();
-		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+		$conference =& Request::getConference();
+		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 
 		// Verify additional locales
 		$supportedLocales = array();

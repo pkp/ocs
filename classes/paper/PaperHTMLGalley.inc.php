@@ -45,7 +45,7 @@ class PaperHTMLGalley extends PaperGalley {
 		$contents = $fileManager->readFile($this->getFileId());
 
 		// Replace image references
-		$images = &$this->getImageFiles();
+		$images =& $this->getImageFiles();
 
 		foreach ($images as $image) {
 			$imageUrl = Request::url(null, 'paper', 'viewFile', array($this->getPaperId(), $this->getGalleyId(), $image->getFileId()));
@@ -169,7 +169,7 @@ class PaperHTMLGalley extends PaperGalley {
 				break;
 			case 'public':
 					array_shift($urlParts);
-					$schedConf = &Request::getSchedConf();
+					$schedConf =& Request::getSchedConf();
 					import ('file.PublicFileManager');
 					$publicFileManager = new PublicFileManager();
 					$url = Request::getBaseUrl() . '/' . $publicFileManager->getSchedConfFilesPath($schedConf->getSchedConfId()) . '/' . implode('/', $urlParts) . ($anchor?'#' . $anchor:'');
@@ -216,7 +216,7 @@ class PaperHTMLGalley extends PaperGalley {
 	 * @return PaperFile
 	 */
 	function &getStyleFile() {
-		$styleFile = &$this->getData('styleFile');
+		$styleFile =& $this->getData('styleFile');
 		return $styleFile;
 	}
 
@@ -233,7 +233,7 @@ class PaperHTMLGalley extends PaperGalley {
 	 * @return array
 	 */
 	function &getImageFiles() {
-		$images = &$this->getData('images');
+		$images =& $this->getData('images');
 		return $images;
 	}
 

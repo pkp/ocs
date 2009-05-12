@@ -24,13 +24,13 @@ class ConferenceDAO extends DAO {
 	 * @return Conference
 	 */
 	function &getConference($conferenceId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM conferences WHERE conference_id = ?', $conferenceId
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnConferenceFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnConferenceFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		unset($result);
@@ -44,12 +44,12 @@ class ConferenceDAO extends DAO {
 	 */
 	function &getConferenceByPath($path) {
 		$returner = null;
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM conferences WHERE path = ?', $path
 		);
 
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnConferenceFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnConferenceFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		unset($result);
@@ -132,34 +132,34 @@ class ConferenceDAO extends DAO {
 	 * @param $conferenceId int
 	 */
 	function deleteConferenceById($conferenceId) {
-		$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 		$conferenceSettingsDao->deleteSettingsByConference($conferenceId);
 
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplateDao->deleteEmailTemplatesByConference($conferenceId);
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$rtDao->deleteVersionsByConference($conferenceId);
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$roleDao->deleteRoleByConferenceId($conferenceId);
 
-		$groupDao = &DAORegistry::getDAO('GroupDAO');
+		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroupsByAssocId(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
-		$pluginSettingsDao = &DAORegistry::getDAO('PluginSettingsDAO');
+		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
 		$pluginSettingsDao->deleteSettingsByConferenceId($conferenceId);
 		
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormDao->deleteReviewFormsByConferenceId($conferenceId);
 
-		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
+		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		$announcementDao->deleteAnnouncementsByConference($conferenceId);
 
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
 		$announcementTypeDao->deleteAnnouncementTypesByConference($conferenceId);
 
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$schedConfDao->deleteSchedConfsByConferenceId($conferenceId);
 
 		return $this->update(
@@ -172,7 +172,7 @@ class ConferenceDAO extends DAO {
 	 * @return DAOResultFactory containing matching conferences
 	 */
 	function &getConferences($rangeInfo = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM conferences ORDER BY seq',
 			false, $rangeInfo
 		);
@@ -186,7 +186,7 @@ class ConferenceDAO extends DAO {
 	 * @return array Conferences ordered by sequence
 	 */
 	function &getEnabledConferences() {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM conferences WHERE enabled=1 ORDER BY seq'
 		);
 
@@ -228,7 +228,7 @@ class ConferenceDAO extends DAO {
 	 * @return boolean
 	 */
 	function conferenceExistsByPath($path) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM conferences WHERE path = ?', $path
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
@@ -243,7 +243,7 @@ class ConferenceDAO extends DAO {
 	 * Sequentially renumber conferences in their sequence order.
 	 */
 	function resequenceConferences() {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT conference_id FROM conferences ORDER BY seq'
 		);
 

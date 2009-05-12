@@ -32,10 +32,10 @@ class StatisticsHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect(null, 'index');
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$statisticsYear = Request::getUserVar('statisticsYear');
 		if (empty($statisticsYear)) $statisticsYear = date('Y');
@@ -95,7 +95,7 @@ class StatisticsHandler extends ManagerHandler {
 
 		$this->validate();
 
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		if (!$schedConf) Request::redirect(null, 'index');
 
 		$trackIds = Request::getUserVar('trackIds');

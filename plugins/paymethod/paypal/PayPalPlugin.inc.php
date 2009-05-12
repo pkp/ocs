@@ -204,7 +204,7 @@ class PayPalPlugin extends PaymethodPlugin {
 							// Fulfill the queued payment.
 							if ($ocsPaymentManager->fulfillQueuedPayment($queuedPaymentId, $queuedPayment)) {
 								// Send the registrant a notification that their payment was received
-								$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+								$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 		
 								$registrationName = $schedConfSettingsDao->getSetting($schedConfId, 'registrationName');
 								$registrationEmail = $schedConfSettingsDao->getSetting($schedConfId, 'registrationEmail');

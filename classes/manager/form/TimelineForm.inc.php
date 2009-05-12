@@ -135,7 +135,7 @@ class TimelineForm extends Form {
 	 */
 	function display() {
 		$schedConf =& Request::getSchedConf();
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId','conference.currentConferences.timeline');
 
 		list($earliestDate, $latestDate) = $this->getOutsideDates($schedConf);
@@ -229,7 +229,7 @@ class TimelineForm extends Form {
 	 */
 	function execute() {
 		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 
 		import('conference.log.ConferenceLog');
 		import('conference.log.ConferenceEventLogEntry');

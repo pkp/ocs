@@ -74,7 +74,7 @@ class PluginSettingsDAO extends DAO {
 	function &getPluginSettings($conferenceId, $schedConfId, $pluginName) {
 		$pluginSettings[$pluginName] = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT setting_name, setting_value, setting_type FROM plugin_settings WHERE plugin_name = ? AND conference_id = ? AND sched_conf_id = ?', array($pluginName, $conferenceId, $schedConfId)
 		);
 
@@ -85,7 +85,7 @@ class PluginSettingsDAO extends DAO {
 
 		} else {
 			while (!$result->EOF) {
-				$row = &$result->getRowAssoc(false);
+				$row =& $result->getRowAssoc(false);
 				$value = $this->convertFromDB($row['setting_value'], $row['setting_type']);
 				$pluginSettings[$pluginName][$row['setting_name']] = $value;
 				$result->MoveNext();
@@ -224,7 +224,7 @@ class PluginSettingsDAO extends DAO {
 		$value = array();
 		foreach ($node->getChildren() as $element) {
 			$key = $element->getAttribute('key');
-			$childArray = &$element->getChildByName('array');
+			$childArray =& $element->getChildByName('array');
 			if (isset($childArray)) {
 				$content = $this->_buildObject($childArray, $paramArray);
 			} else {
@@ -256,15 +256,15 @@ class PluginSettingsDAO extends DAO {
 		}
 
 		foreach ($tree->getChildren() as $setting) {
-			$nameNode = &$setting->getChildByName('name');
-			$valueNode = &$setting->getChildByName('value');
+			$nameNode =& $setting->getChildByName('name');
+			$valueNode =& $setting->getChildByName('value');
 
 			if (isset($nameNode) && isset($valueNode)) {
 				$type = $setting->getAttribute('type');
-				$name = &$nameNode->getValue();
+				$name =& $nameNode->getValue();
 
 				if ($type == 'object') {
-					$arrayNode = &$valueNode->getChildByName('array');
+					$arrayNode =& $valueNode->getChildByName('array');
 					$value = $this->_buildObject($arrayNode, $paramArray);
 				} else {
 					$value = $this->_performReplacement($valueNode->getValue(), $paramArray);

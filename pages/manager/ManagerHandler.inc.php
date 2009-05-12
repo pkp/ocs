@@ -61,13 +61,13 @@ class ManagerHandler extends Handler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'conference.users.emailUsers');
 
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$site = &Request::getSite();
-		$user = &Request::getUser();
+		$site =& Request::getSite();
+		$user =& Request::getUser();
 
 		import('mail.MailTemplate');
 		$email = new MailTemplate(Request::getUserVar('template'), Request::getUserVar('locale'));
@@ -106,7 +106,7 @@ class ManagerHandler extends Handler {
 	function setupTemplate($subclass = false) {
 		parent::setupTemplate();
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OCS_MANAGER));
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$pageHierarchy = array();
 
 		$conference =& Request::getConference();

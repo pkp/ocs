@@ -27,7 +27,7 @@ class RegistrationTypeDAO extends DAO {
 	function &getRegistrationType($typeId, $code = null) {
 		$params = array($typeId);
 		if ($code !== null) $params[] = $code;
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM registration_types WHERE type_id = ?' .
 			($code !== null ? ' AND code = ?':''),
 			$params
@@ -35,7 +35,7 @@ class RegistrationTypeDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnRegistrationTypeFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnRegistrationTypeFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -50,7 +50,7 @@ class RegistrationTypeDAO extends DAO {
 	 * @return int
 	 */
 	function getRegistrationTypeSchedConfId($typeId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT sched_conf_id FROM registration_types WHERE type_id = ?', $typeId
 		);
 
@@ -68,7 +68,7 @@ class RegistrationTypeDAO extends DAO {
 	 * @return string
 	 */
 	function getRegistrationTypeName($typeId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COALESCE(l.setting_value, p.setting_value) FROM registration_type_settings l LEFT JOIN registration_type_settings p ON (p.type_id = ? AND p.setting_name = ? AND p.locale = ?) WHERE l.type_id = ? AND l.setting_name = ? AND l.locale = ?', 
 			array(
 				$typeId, 'name', Locale::getLocale(),
@@ -90,7 +90,7 @@ class RegistrationTypeDAO extends DAO {
 	 * @return int
 	 */
 	function getRegistrationTypeInstitutional($typeId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT institutional FROM registration_types WHERE type_id = ?', $typeId
 		);
 
@@ -108,7 +108,7 @@ class RegistrationTypeDAO extends DAO {
 	 * @return int
 	 */
 	function getRegistrationTypeMembership($typeId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT membership FROM registration_types WHERE type_id = ?', $typeId
 		);
 
@@ -126,7 +126,7 @@ class RegistrationTypeDAO extends DAO {
 	 * @return int
 	 */
 	function getRegistrationTypePublic($typeId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT pub FROM registration_types WHERE type_id = ?', $typeId
 		);
 
@@ -145,7 +145,7 @@ class RegistrationTypeDAO extends DAO {
 	 * @return boolean
 	 */
 	function registrationTypeExistsByTypeId($typeId, $schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*)
 				FROM registration_types
 				WHERE type_id = ?
@@ -172,7 +172,7 @@ class RegistrationTypeDAO extends DAO {
 	function openRegistrationTypeExistsByTypeId($typeId, $schedConfId) {
 		$time = $this->dateToDB(time());
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*)
 				FROM registration_types
 				WHERE type_id = ?
@@ -201,7 +201,7 @@ class RegistrationTypeDAO extends DAO {
 	 * @return boolean
 	 */
 	function checkCode($typeId, $schedConfId, $code) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*)
 				FROM registration_types
 				WHERE type_id = ?
@@ -387,7 +387,7 @@ class RegistrationTypeDAO extends DAO {
 	 * @return object DAOResultFactory containing matching RegistrationTypes
 	 */
 	function &getRegistrationTypesBySchedConfId($schedConfId, $rangeInfo = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM registration_types WHERE sched_conf_id = ? ORDER BY seq',
 			$schedConfId, $rangeInfo
 		);
@@ -408,7 +408,7 @@ class RegistrationTypeDAO extends DAO {
 	 * Sequentially renumber registration types in their sequence order.
 	 */
 	function resequenceRegistrationTypes($schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT type_id FROM registration_types WHERE sched_conf_id = ? ORDER BY seq',
 			$schedConfId
 		);

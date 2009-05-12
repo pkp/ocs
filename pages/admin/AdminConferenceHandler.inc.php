@@ -33,10 +33,10 @@ class AdminConferenceHandler extends AdminHandler {
 
 		$rangeInfo = Handler::getRangeInfo('conferences');
 
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$conferences = &$conferenceDao->getConferences($rangeInfo);
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferences =& $conferenceDao->getConferences($rangeInfo);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('conferences', $conferences);
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
 		$templateMgr->display('admin/conferences.tpl');
@@ -99,7 +99,7 @@ class AdminConferenceHandler extends AdminHandler {
 	function deleteConference($args) {
 		$this->validate();
 
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 
 		if (isset($args) && !empty($args) && !empty($args[0])) {
 			$conferenceId = $args[0];
@@ -127,8 +127,8 @@ class AdminConferenceHandler extends AdminHandler {
 	function moveConference() {
 		$this->validate();
 
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$conference = &$conferenceDao->getConference(Request::getUserVar('conferenceId'));
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conference =& $conferenceDao->getConference(Request::getUserVar('conferenceId'));
 
 		if ($conference != null) {
 			$conference->setSequence($conference->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));

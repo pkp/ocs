@@ -37,8 +37,8 @@ class SuppFileForm extends Form {
 		$this->paper = $paper;
 
 		if (isset($suppFileId) && !empty($suppFileId)) {
-			$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-			$this->suppFile = &$suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
+			$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+			$this->suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
 			if (isset($this->suppFile)) {
 				$this->suppFileId = $suppFileId;
 			}
@@ -62,9 +62,9 @@ class SuppFileForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('enablePublicSuppFileId', $conference->getSetting('enablePublicSuppFileId'));
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('paperId', $this->paper->getPaperId());
@@ -105,8 +105,8 @@ class SuppFileForm extends Form {
 	 * Validate the form
 	 */
 	function validate() {
-		$conference = &Request::getConference();
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$conference =& Request::getConference();
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 
 		$publicSuppFileId = $this->getData('publicSuppFileId');
 		if ($publicSuppFileId && $suppFileDao->suppFileExistsByPublicId($publicSuppFileId, $this->suppFileId, $conference->getConferenceId())) {
@@ -122,7 +122,7 @@ class SuppFileForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->suppFile)) {
-			$suppFile = &$this->suppFile;
+			$suppFile =& $this->suppFile;
 			$this->_data = array(
 				'title' => $suppFile->getTitle(null), // Localized
 				'creator' => $suppFile->getCreator(null), // Localized
@@ -178,12 +178,12 @@ class SuppFileForm extends Form {
 	function execute($fileName = null) {
 		import("file.PaperFileManager");
 		$paperFileManager = new PaperFileManager($this->paper->getPaperId());
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 
 		$fileName = isset($fileName) ? $fileName : 'uploadSuppFile';
 
 		if (isset($this->suppFile)) {
-			$suppFile = &$this->suppFile;
+			$suppFile =& $this->suppFile;
 
 			// Upload file, if file selected.
 			if ($paperFileManager->uploadedFileExists($fileName)) {

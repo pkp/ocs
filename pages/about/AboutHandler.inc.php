@@ -67,11 +67,11 @@ class AboutHandler extends Handler {
 			$templateMgr->assign_by_ref('conferenceSettings', $settings);
 			$templateMgr->display('about/index.tpl');
 		} else {
-			$site = &Request::getSite();
+			$site =& Request::getSite();
 			$about = $site->getLocalizedAbout();
 			$templateMgr->assign('about', $about);
 
-			$conferences = &$conferenceDao->getEnabledConferences(); //Enabled Added
+			$conferences =& $conferenceDao->getEnabledConferences(); //Enabled Added
 			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->display('about/site.tpl');
 		}
@@ -88,7 +88,7 @@ class AboutHandler extends Handler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 
 		$pageHierarchy = array();
@@ -172,13 +172,13 @@ class AboutHandler extends Handler {
 		if (!$schedConf->getSetting('boardEnabled')) {
 			// Don't use the Organizing Team feature. Generate
 			// Organizing Team information using Role info.
-			$roleDao = &DAORegistry::getDAO('RoleDAO');
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-			$directors = &$roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId(), $schedConfId);
-			$directors = &$directors->toArray();
+			$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId(), $schedConfId);
+			$directors =& $directors->toArray();
 
-			$trackDirectors = &$roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getConferenceId(), $schedConfId);
-			$trackDirectors = &$trackDirectors->toArray();
+			$trackDirectors =& $roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getConferenceId(), $schedConfId);
+			$trackDirectors =& $trackDirectors->toArray();
 
 			$templateMgr->assign_by_ref('directors', $directors);
 			$templateMgr->assign_by_ref('trackDirectors', $trackDirectors);
@@ -244,7 +244,7 @@ class AboutHandler extends Handler {
 
 		$user = null;
 		if (!isset($settings['boardEnabled']) || $settings['boardEnabled'] != true) {
-			$directors = &$roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
+			$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
 			while ($potentialUser =& $directors->next()) {
 				if ($potentialUser->getUserId() == $userId)
 					$user =& $potentialUser;
@@ -385,7 +385,7 @@ class AboutHandler extends Handler {
 			foreach ($conferences->toArray() as $conference) {
 				$roles =& $roleDao->getRolesByUserId($user->getUserId(), $conference->getConferenceId());
 				if (!empty($roles)) {
-					$rolesByConference[$conference->getConferenceId()] = &$roles;
+					$rolesByConference[$conference->getConferenceId()] =& $roles;
 				}
 			}
 		}
@@ -435,7 +435,7 @@ class AboutHandler extends Handler {
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId','user.about');
 
 		$statisticsYear = Request::getUserVar('statisticsYear');

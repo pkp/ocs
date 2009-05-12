@@ -122,7 +122,7 @@ class ScheduleForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.buildings');
 		$schedConf =& Request::getSchedConf();
 

@@ -25,7 +25,7 @@ class GroupForm extends Form {
 	 * @param group Group object; null to create new
 	 */
 	function GroupForm($group = null) {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 
 		parent::Form('manager/groups/groupForm.tpl');
 
@@ -49,7 +49,7 @@ class GroupForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('group', $this->group);
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.organizingTeam');
 		parent::display();
@@ -77,9 +77,9 @@ class GroupForm extends Form {
 	 * Save group group. 
 	 */
 	function execute() {
-		$groupDao = &DAORegistry::getDAO('GroupDAO');
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
+		$groupDao =& DAORegistry::getDAO('GroupDAO');
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		if (!isset($this->group)) {
 			$this->group = new Group();

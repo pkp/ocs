@@ -60,7 +60,7 @@ class SchedConfStatisticsDAO extends DAO {
 			$trackSql .
 			' ORDER BY a.paper_id, d.date_decided DESC';
 
-		$result = &$this->retrieve($sql, $params);
+		$result =& $this->retrieve($sql, $params);
 
 		$returner = array(
 			'numSubmissions' => 0,
@@ -154,7 +154,7 @@ class SchedConfStatisticsDAO extends DAO {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		// Get count of total users for this scheduled conference
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(DISTINCT r.user_id) FROM roles r, users u WHERE r.user_id = u.user_id AND r.sched_conf_id = ?' .
 			($dateStart !== null ? ' AND u.date_registered >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND u.date_registered <= ' . $this->datetimeToDB($dateEnd) : ''),
@@ -169,7 +169,7 @@ class SchedConfStatisticsDAO extends DAO {
 		unset($result);
 
 		// Get user counts for each role.
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT r.role_id, COUNT(r.user_id) AS role_count FROM roles r LEFT JOIN users u ON (r.user_id = u.user_id) WHERE r.sched_conf_id = ?' .
 			($dateStart !== null ? ' AND u.date_registered >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND u.date_registered <= ' . $this->datetimeToDB($dateEnd) : '') .
@@ -197,7 +197,7 @@ class SchedConfStatisticsDAO extends DAO {
 	 * @return array
 	 */
 	function getRegistrationStatistics($schedConfId, $dateStart = null, $dateEnd = null) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT	st.type_id,
 				rts.setting_value AS type_name,
 				COUNT(s.registration_id) AS type_count
@@ -239,7 +239,7 @@ class SchedConfStatisticsDAO extends DAO {
 	 * @return array
 	 */
 	function getIssueStatistics($schedConfId, $dateStart = null, $dateEnd = null) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) AS count, published FROM issues WHERE sched_conf_id = ?' .
 			($dateStart !== null ? ' AND date_published >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND date_published <= ' . $this->datetimeToDB($dateEnd) : '') .
@@ -311,7 +311,7 @@ class SchedConfStatisticsDAO extends DAO {
 			($dateStart !== null ? ' AND a.date_submitted >= ' . $this->datetimeToDB($dateStart) : '') .
 			($dateEnd !== null ? ' AND a.date_submitted <= ' . $this->datetimeToDB($dateEnd) : '') .
 			$trackSql;
-		$result = &$this->retrieve($sql, $params);
+		$result =& $this->retrieve($sql, $params);
 
 		$returner = array(
 			'reviewsCount' => 0,

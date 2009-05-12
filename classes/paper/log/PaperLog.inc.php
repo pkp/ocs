@@ -22,7 +22,7 @@ class PaperLog {
 	 * @param $entry PaperEventLogEntry
 	 */
 	function logEventEntry($paperId, &$entry) {
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$schedConfId = $paperDao->getPaperSchedConfId($paperId);
 
 		if (!$schedConfId) {
@@ -30,7 +30,7 @@ class PaperLog {
 			return false;
 		}
 
-		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		$settingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 		if (!$settingsDao->getSetting($schedConfId, 'paperEventLog', true)) {
 			// Event logging is disabled
 			return false;
@@ -40,11 +40,11 @@ class PaperLog {
 		$entry->setPaperId($paperId);
 
 		if ($entry->getUserId() == null) {
-			$user = &Request::getUser();
+			$user =& Request::getUser();
 			$entry->setUserId($user == null ? 0 : $user->getUserId());
 		}
 
-		$logDao = &DAORegistry::getDAO('PaperEventLogDAO');
+		$logDao =& DAORegistry::getDAO('PaperEventLogDAO');
 		return $logDao->insertLogEntry($entry);
 	}
 
@@ -91,8 +91,8 @@ class PaperLog {
 	 * @return array PaperEventLogEntry
 	 */
 	function &getEventLogEntries($paperId, $rangeInfo = null) {
-		$logDao = &DAORegistry::getDAO('PaperEventLogDAO');
-		$returner = &$logDao->getPaperLogEntries($paperId, $rangeInfo);
+		$logDao =& DAORegistry::getDAO('PaperEventLogDAO');
+		$returner =& $logDao->getPaperLogEntries($paperId, $rangeInfo);
 		return $returner;
 	}
 
@@ -102,7 +102,7 @@ class PaperLog {
 	 * @param $entry PaperEmailLogEntry
 	 */
 	function logEmailEntry($paperId, &$entry) {
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$schedConfId = $paperDao->getPaperSchedConfId($paperId);
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
@@ -113,7 +113,7 @@ class PaperLog {
 			return false;
 		}
 
-		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 		if (!$settingsDao->getSetting($schedConf->getConferenceId(), 'paperEmailLog')) {
 			// Email logging is disabled
 			return false;
@@ -123,11 +123,11 @@ class PaperLog {
 		$entry->setPaperId($paperId);
 
 		if ($entry->getSenderId() == null) {
-			$user = &Request::getUser();
+			$user =& Request::getUser();
 			$entry->setSenderId($user == null ? 0 : $user->getUserId());
 		}
 
-		$logDao = &DAORegistry::getDAO('PaperEmailLogDAO');
+		$logDao =& DAORegistry::getDAO('PaperEmailLogDAO');
 		return $logDao->insertLogEntry($entry);
 	}
 
@@ -137,8 +137,8 @@ class PaperLog {
 	 * @return array PaperEmailLogEntry
 	 */
 	function &getEmailLogEntries($paperId, $rangeInfo = null) {
-		$logDao = &DAORegistry::getDAO('PaperEmailLogDAO');
-		$result = &$logDao->getPaperLogEntries($paperId, $rangeInfo);
+		$logDao =& DAORegistry::getDAO('PaperEmailLogDAO');
+		$result =& $logDao->getPaperLogEntries($paperId, $rangeInfo);
 		return $result;
 	}
 

@@ -43,8 +43,8 @@ class AccommodationSettingsForm extends Form {
 		import('file.PublicFileManager');
 		$schedConf =& Request::getSchedConf();
 
-		$templateMgr = &TemplateManager::getManager();
-		$site = &Request::getSite();
+		$templateMgr =& TemplateManager::getManager();
+		$site =& Request::getSite();
 		$templateMgr->assign('helpTopicId','conference.currentConferences.accommodation');
 		$templateMgr->assign('publicSchedConfFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getSchedConfFilesPath($schedConf->getSchedConfId()));
 		$templateMgr->assign('accommodationFiles', $schedConf->getSetting('accommodationFiles'));
@@ -55,7 +55,7 @@ class AccommodationSettingsForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		$this->_data = array();
 		$this->_data['accommodationDescription'] = $schedConf->getSetting('accommodationDescription');
 	}
@@ -79,8 +79,8 @@ class AccommodationSettingsForm extends Form {
 	 * Save modified settings.
 	 */
 	function execute() {
-		$schedConf = &Request::getSchedConf();
-		$settingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConf =& Request::getSchedConf();
+		$settingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 
 		foreach ($this->_data as $name => $value) {
 			$settingsDao->updateSetting(

@@ -37,17 +37,17 @@ class HandlerValidatorRoles extends HandlerValidator {
 	 */
 	function isValid() {
 		// Get conference ID from request
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$conferenceId = $conference ? $conference->getConferenceId() : 0;
 
 		// Get scheduled conference ID from request
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		$schedConfId = $schedConf ? $schedConf->getSchedConfId() : 0;
 		
 		$user = Request::getUser();
 		if ( !$user ) return false;
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$returner = true;
 		foreach ( $this->roles as $roleId ) {
 			if ( $roleId == ROLE_ID_SITE_ADMIN ) {

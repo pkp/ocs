@@ -33,7 +33,7 @@ class FilesHandler extends ManagerHandler {
 
 		import('file.FileManager');
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'manager'), 'manager.conferenceSiteManagement')));
 
 		FilesHandler::parseDirArg($args, $currentDir, $parentDir);
@@ -148,7 +148,7 @@ class FilesHandler extends ManagerHandler {
 	}
 
 	function getRealFilesDir($currentDir) {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$base = '/conferences/' . $conference->getConferenceId();
 
 		return Config::getVar('files', 'files_dir') . $base .'/' . $currentDir;

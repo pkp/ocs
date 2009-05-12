@@ -24,7 +24,7 @@ class EditAssignmentDAO extends DAO {
 	 * @return EditAssignment
 	 */
 	function &getEditAssignment($editId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT e.*,
 				u.first_name,
 				u.last_name,
@@ -41,7 +41,7 @@ class EditAssignmentDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnEditAssignmentFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnEditAssignmentFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -56,7 +56,7 @@ class EditAssignmentDAO extends DAO {
 	 * @return EditAssignment
 	 */
 	function &getEditAssignmentsByPaperId($paperId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS director_role_id
 			FROM papers p
 				LEFT JOIN edit_assignments e ON (p.paper_id = e.paper_id)
@@ -76,7 +76,7 @@ class EditAssignmentDAO extends DAO {
 	 * @return EditAssignment
 	 */
 	function &getDirectorAssignmentsByPaperId($paperId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS director_role_id FROM papers a, edit_assignments e, users u, roles r WHERE r.user_id = e.director_id AND r.role_id = ' . ROLE_ID_DIRECTOR . ' AND e.paper_id = ? AND r.sched_conf_id = a.sched_conf_id AND a.paper_id = e.paper_id AND e.director_id = u.user_id ORDER BY e.date_notified ASC',
 			$paperId
 			);
@@ -92,7 +92,7 @@ class EditAssignmentDAO extends DAO {
 	 * @return EditAssignment
 	 */
 	function &getTrackDirectorAssignmentsByPaperId($paperId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS director_role_id
 			FROM papers p
 				LEFT JOIN edit_assignments e ON (p.paper_id = e.paper_id)
@@ -112,7 +112,7 @@ class EditAssignmentDAO extends DAO {
 	 * @return EditAssignment
 	 */
 	function &getEditAssignmentsByUserId($userId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS director_role_id
 			FROM papers p
 				LEFT JOIN edit_assignments e ON (p.paper_id = e.paper_id)

@@ -33,13 +33,13 @@ class NLMExportDom {
 
 	function &generateNLMDom() {
 		// create the output XML document in DOM with a root node
-		$doc = &XMLCustomWriter::createDocument('InputMeetingAbstractSet', NLM_DTD_ID, NLM_DTD_URL);
+		$doc =& XMLCustomWriter::createDocument('InputMeetingAbstractSet', NLM_DTD_ID, NLM_DTD_URL);
 
 		return $doc;
 	}
 
 	function &generatePaperSetDom(&$doc) {
-		$root = &XMLCustomWriter::createElement($doc, 'InputMeetingAbstractSet');
+		$root =& XMLCustomWriter::createElement($doc, 'InputMeetingAbstractSet');
 		XMLCustomWriter::appendChild($doc, $root);
 
 		return $root;
@@ -48,14 +48,14 @@ class NLMExportDom {
 	function &generatePaperDom(&$doc, &$conference, &$track, &$paper) {
 
 		// register the editor submission DAO for use later
-//		$editorSubmissionDao = &DAORegistry::getDAO('EditorSubmissionDAO');
+//		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
 
 		/* --- MeetingAbstract --- */
-		$root = &XMLCustomWriter::createElement($doc, 'MeetingAbstract');
+		$root =& XMLCustomWriter::createElement($doc, 'MeetingAbstract');
 		XMLCustomWriter::setAttribute($root, 'Status', 'Completed');
 
 		/* --- DateCreated --- */
-		$dateNode = &XMLCustomWriter::createElement($doc, 'DateCreated');
+		$dateNode =& XMLCustomWriter::createElement($doc, 'DateCreated');
 		XMLCustomWriter::appendChild($root, $dateNode);
 
 		XMLCustomWriter::createChildWithText($doc, $dateNode, 'Year', date('Y') );
@@ -63,7 +63,7 @@ class NLMExportDom {
 		XMLCustomWriter::createChildWithText($doc, $dateNode, 'Day', date('d') );
 
 		/* --- Article/Paper --- */
-		$articleNode = &XMLCustomWriter::createElement($doc, 'Article');
+		$articleNode =& XMLCustomWriter::createElement($doc, 'Article');
 		XMLCustomWriter::setAttribute($articleNode, 'PubModel', 'Electronic');
 		XMLCustomWriter::appendChild($root, $articleNode);
 
@@ -71,11 +71,11 @@ class NLMExportDom {
 		// FIXME: at the moment this is a null element required by NLM
 		$journalNode =& XMLCustomWriter::createChildWithText($doc, $articleNode, 'Journal', null);
 
-		$journalIssueNode = &XMLCustomWriter::createElement($doc, 'JournalIssue');
+		$journalIssueNode =& XMLCustomWriter::createElement($doc, 'JournalIssue');
 		XMLCustomWriter::setAttribute($journalIssueNode, 'CitedMedium', 'Internet');
 		XMLCustomWriter::appendChild($journalNode, $journalIssueNode);
 
-		$journalDateNode = &XMLCustomWriter::createElement($doc, 'PubDate');
+		$journalDateNode =& XMLCustomWriter::createElement($doc, 'PubDate');
 		XMLCustomWriter::appendChild($journalIssueNode, $journalDateNode);
 		XMLCustomWriter::createChildWithText($doc, $journalDateNode, 'MedlineDate', date('Y') );
 
@@ -85,7 +85,7 @@ class NLMExportDom {
 
 		/* --- Pagination --- */
 		// If there is no page number, then use abstract number
-		$paginationNode = &XMLCustomWriter::createElement($doc, 'Pagination');
+		$paginationNode =& XMLCustomWriter::createElement($doc, 'Pagination');
 		XMLCustomWriter::appendChild($articleNode, $paginationNode);
 
 		$pages = $paper->getPages();
@@ -102,7 +102,7 @@ class NLMExportDom {
 		}
 
 		/* --- Abstract --- */
-		$abstractNode = &XMLCustomWriter::createElement($doc, 'Abstract');
+		$abstractNode =& XMLCustomWriter::createElement($doc, 'Abstract');
 		XMLCustomWriter::appendChild($articleNode, $abstractNode);
 
 		XMLCustomWriter::createChildWithText($doc, $abstractNode, 'AbstractText', strip_tags($paper->getLocalizedAbstract()), false);
@@ -115,7 +115,7 @@ class NLMExportDom {
 		}
 
 		/* --- AuthorList --- */
-		$authorListNode = &XMLCustomWriter::createElement($doc, 'AuthorList');
+		$authorListNode =& XMLCustomWriter::createElement($doc, 'AuthorList');
 		XMLCustomWriter::setAttribute($authorListNode, 'CompleteYN', 'Y');
 		XMLCustomWriter::appendChild($articleNode, $authorListNode);
 
@@ -125,7 +125,7 @@ class NLMExportDom {
 		}
 
 		/* --- Conference --- */ 
-		$conferenceNode = &XMLCustomWriter::createElement($doc, 'Author');
+		$conferenceNode =& XMLCustomWriter::createElement($doc, 'Author');
 		XMLCustomWriter::appendChild($authorListNode, $conferenceNode);
 
 		XMLCustomWriter::createChildWithText($doc, $conferenceNode, 'CollectiveName', $conference->getConferenceTitle());
@@ -144,7 +144,7 @@ class NLMExportDom {
 	}
 
 	function &generateAuthorDom(&$doc, &$author) {
-		$root = &XMLCustomWriter::createElement($doc, 'Author');
+		$root =& XMLCustomWriter::createElement($doc, 'Author');
 
 		$foreName = trim($author->getFirstName() .' '.$author->getMiddleName());
 

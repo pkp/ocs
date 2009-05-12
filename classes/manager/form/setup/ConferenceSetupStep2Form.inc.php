@@ -71,8 +71,8 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
-		$conference = &Request::getConference();
+		$templateMgr =& TemplateManager::getManager();
+		$conference =& Request::getConference();
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$schedConfTitles =& $schedConfDao->getSchedConfTitles($conference->getConferenceId());
@@ -87,10 +87,10 @@ class ConferenceSetupStep2Form extends ConferenceSetupForm {
 
 	function execute() {
 		// Save alt text for images
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$conferenceId = $conference->getConferenceId();
 		$locale = $this->getFormLocale();
-		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 		$images = $this->images;
 
 		foreach($images as $settingName) {

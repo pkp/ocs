@@ -23,8 +23,8 @@ class ChangePasswordForm extends Form {
 	 */
 	function ChangePasswordForm() {
 		parent::Form('user/changePassword.tpl');
-		$user = &Request::getUser();
-		$site = &Request::getSite();
+		$user =& Request::getUser();
+		$site =& Request::getSite();
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorCustom($this, 'oldPassword', 'required', 'user.profile.form.oldPasswordInvalid', create_function('$password,$username', 'return Validation::checkCredentials($username,$password);'), array($user->getUsername())));
@@ -38,9 +38,9 @@ class ChangePasswordForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$user = &Request::getUser();
-		$templateMgr = &TemplateManager::getManager();
-		$site = &Request::getSite();
+		$user =& Request::getUser();
+		$templateMgr =& TemplateManager::getManager();
+		$site =& Request::getSite();
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
 		$templateMgr->assign('username', $user->getUsername());
 		parent::display();
@@ -57,11 +57,11 @@ class ChangePasswordForm extends Form {
 	 * Save new password.
 	 */
 	function execute() {
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 
 		if ($user->getAuthId()) {
-			$authDao = &DAORegistry::getDAO('AuthSourceDAO');
-			$auth = &$authDao->getPlugin($user->getAuthId());
+			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+			$auth =& $authDao->getPlugin($user->getAuthId());
 		}
 
 		if (isset($auth)) {
@@ -71,7 +71,7 @@ class ChangePasswordForm extends Form {
 			$user->setPassword(Validation::encryptCredentials($user->getUsername(), $this->getData('password')));
 		}
 
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		$userDao->updateUser($user);
 	}
 

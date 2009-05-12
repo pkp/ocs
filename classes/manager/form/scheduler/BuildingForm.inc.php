@@ -49,7 +49,7 @@ class BuildingForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('buildingId', $this->buildingId);
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.buildings');
 
@@ -61,8 +61,8 @@ class BuildingForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->buildingId)) {
-			$buildingDao = &DAORegistry::getDAO('BuildingDAO');
-			$building = &$buildingDao->getBuilding($this->buildingId);
+			$buildingDao =& DAORegistry::getDAO('BuildingDAO');
+			$building =& $buildingDao->getBuilding($this->buildingId);
 
 			if ($building != null) {
 				$this->_data = array(
@@ -93,7 +93,7 @@ class BuildingForm extends Form {
 		$schedConf =& Request::getSchedConf();
 
 		if (isset($this->buildingId)) {
-			$building = &$buildingDao->getBuilding($this->buildingId);
+			$building =& $buildingDao->getBuilding($this->buildingId);
 		}
 
 		if (!isset($building)) {

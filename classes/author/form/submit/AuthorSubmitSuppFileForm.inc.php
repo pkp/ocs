@@ -39,8 +39,8 @@ class AuthorSubmitSuppFileForm extends Form {
 		$this->paperId = $paper->getPaperId();
 
 		if (isset($suppFileId) && !empty($suppFileId)) {
-			$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-			$this->suppFile = &$suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
+			$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+			$this->suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
 			if (isset($this->suppFile)) {
 				$this->suppFileId = $suppFileId;
 			}
@@ -64,7 +64,7 @@ class AuthorSubmitSuppFileForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $this->paperId);
 		$templateMgr->assign('suppFileId', $this->suppFileId);
 		$templateMgr->assign('submitStep', 4);
@@ -101,7 +101,7 @@ class AuthorSubmitSuppFileForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->suppFile)) {
-			$suppFile = &$this->suppFile;
+			$suppFile =& $this->suppFile;
 			$this->_data = array(
 				'title' => $suppFile->getTitle(null), // Localized
 				'creator' => $suppFile->getCreator(null), // Localized
@@ -154,17 +154,17 @@ class AuthorSubmitSuppFileForm extends Form {
 	function execute() {
 		import("file.PaperFileManager");
 		$paperFileManager = new PaperFileManager($this->paperId);
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 
 		$fileName = 'uploadSuppFile';
 
 		// edit an existing supp file, otherwise create new supp file entry	
 		if (isset($this->suppFile)) {
-			$suppFile = &$this->suppFile;
+			$suppFile =& $this->suppFile;
 
 			// Remove old file and upload new, if file is selected.
 			if ($paperFileManager->uploadedFileExists($fileName)) {
-				$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+				$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 				$suppFileId = $paperFileManager->uploadSuppFile($fileName, $suppFile->getFileId(), true);
 				$suppFile->setFileId($suppFileId);
 			}

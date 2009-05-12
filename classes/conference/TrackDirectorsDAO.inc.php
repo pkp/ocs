@@ -61,15 +61,15 @@ class TrackDirectorsDAO extends DAO {
 	function &getTracksByUserId($schedConfId, $userId) {
 		$tracks = array();
 
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT t.* FROM tracks t, track_directors td WHERE t.track_id = td.track_id AND t.sched_conf_id = ? AND td.user_id = ?',
 			array($schedConfId, $userId)
 		);
 
 		while (!$result->EOF) {
-			$tracks[] = &$trackDao->_returnTrackFromRow($result->GetRowAssoc(false));
+			$tracks[] =& $trackDao->_returnTrackFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -88,15 +88,15 @@ class TrackDirectorsDAO extends DAO {
 	function &getDirectorsByTrackId($schedConfId, $trackId) {
 		$users = array();
 
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT u.* FROM users AS u, track_directors AS e WHERE u.user_id = e.user_id AND e.sched_conf_id = ? AND e.track_id = ? ORDER BY last_name, first_name',
 			array($schedConfId, $trackId)
 		);
 
 		while (!$result->EOF) {
-			$users[] = &$userDao->_returnUserFromRow($result->GetRowAssoc(false));
+			$users[] =& $userDao->_returnUserFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -115,9 +115,9 @@ class TrackDirectorsDAO extends DAO {
 	function &getDirectorsNotInTrack($schedConfId, $trackId) {
 		$users = array();
 
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT	u.*
 			FROM	users u
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
@@ -130,7 +130,7 @@ class TrackDirectorsDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			$users[] = &$userDao->_returnUserFromRow($result->GetRowAssoc(false));
+			$users[] =& $userDao->_returnUserFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -189,7 +189,7 @@ class TrackDirectorsDAO extends DAO {
 	 * @return boolean
 	 */
 	function directorExists($schedConfId, $trackId, $userId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM track_directors WHERE sched_conf_id = ? AND track_id = ? AND user_id = ?', array($schedConfId, $trackId, $userId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;

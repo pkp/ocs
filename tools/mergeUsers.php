@@ -90,6 +90,6 @@ class mergeUsers extends CommandLineTool {
 	}
 }
 
-$tool = &new mergeUsers(isset($argv) ? $argv : array());
+$tool =& new mergeUsers(isset($argv) ? $argv : array());
 $tool->execute();
 ?>

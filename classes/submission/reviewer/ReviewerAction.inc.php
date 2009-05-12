@@ -39,13 +39,13 @@ class ReviewerAction extends Action {
 	 * @param $send boolean
 	 */
 	function confirmReview($reviewerSubmission, $decline, $send) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$reviewId = $reviewerSubmission->getReviewId();
 
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
 
 		// Only confirm the review for the reviewer if 
@@ -90,7 +90,7 @@ class ReviewerAction extends Action {
 					if (!empty($reviewingTrackDirectors)) $assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getPaperId());
 					else $assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getPaperId());
 					if (empty($assignedDirectors) && empty($reviewingTrackDirectors)) {
-						$schedConf = &Request::getSchedConf();
+						$schedConf =& Request::getSchedConf();
 						$email->addRecipient($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 						$editorialContactName = $schedConf->getSetting('contactName');
 					} else {
@@ -121,15 +121,15 @@ class ReviewerAction extends Action {
 	 * @param $send boolean
 	 */
 	function recordRecommendation(&$reviewerSubmission, $recommendation, $send) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		// Check validity of selected recommendation
 		$reviewerRecommendationOptions =& ReviewAssignment::getReviewerRecommendationOptions();
 		if (!isset($reviewerRecommendationOptions[$recommendation])) return true;
 
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewerSubmission->getReviewId());
-		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewerSubmission->getReviewId());
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
 
 		// Only record the reviewers recommendation if
@@ -172,7 +172,7 @@ class ReviewerAction extends Action {
 					$assignedDirectors = $email->toAssignedDirectors($reviewerSubmission->getPaperId());
 					$reviewingTrackDirectors = $email->toAssignedTrackDirectors($reviewerSubmission->getPaperId());
 					if (empty($assignedDirectors) && empty($reviewingTrackDirectors)) {
-						$schedConf = &Request::getSchedConf();
+						$schedConf =& Request::getSchedConf();
 						$email->addRecipient($schedConf->getSetting('contactEmail'), $schedConf->getSetting('contactName'));
 						$editorialContactName = $schedConf->getSetting('contactName');
 					} else {
@@ -181,7 +181,7 @@ class ReviewerAction extends Action {
 						$editorialContactName = $editorialContact->getDirectorFullName();
 					}
 
-					$reviewerRecommendationOptions = &ReviewAssignment::getReviewerRecommendationOptions();
+					$reviewerRecommendationOptions =& ReviewAssignment::getReviewerRecommendationOptions();
 
 					$email->assignParams(array(
 						'editorialContactName' => $editorialContactName,
@@ -206,8 +206,8 @@ class ReviewerAction extends Action {
 	 */
 	function uploadReviewerVersion($reviewId) {
 		import("file.PaperFileManager");
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');		
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');		
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 		$paperFileManager = new PaperFileManager($reviewAssignment->getPaperId());
 
@@ -259,8 +259,8 @@ class ReviewerAction extends Action {
 		import("file.PaperFileManager");
 
 		$paperId = Request::getUserVar('paperId');
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 		if (!HookRegistry::call('ReviewerAction::deleteReviewerVersion', array(&$reviewAssignment, &$fileId, &$revision))) {
 			$paperFileManager = new PaperFileManager($reviewAssignment->getPaperId());
@@ -394,9 +394,9 @@ class ReviewerAction extends Action {
 	 * @param $revision int
 	 */
 	function downloadReviewerFile($reviewId, &$paper, $fileId, $revision = null) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');		
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		$conference = &Request::getConference();
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');		
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$conference =& Request::getConference();
 
 		$canDownload = false;
 

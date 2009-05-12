@@ -44,7 +44,7 @@ class ReviewerSubmission extends Paper {
 	 * @return array
 	 */
 	function &getEditAssignments() {
-		$editAssignments = &$this->getData('editAssignments');
+		$editAssignments =& $this->getData('editAssignments');
 		return $editAssignments;
 	}
 

@@ -31,7 +31,7 @@ class DirectorDecisionCommentForm extends CommentForm {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageTitle', 'submission.comments.directorAuthorCorrespondence');
 		$templateMgr->assign('paperId', $this->paper->getPaperId());
 		$templateMgr->assign('commentAction', 'postDirectorDecisionComment');
@@ -70,9 +70,9 @@ class DirectorDecisionCommentForm extends CommentForm {
 	 * Email the comment.
 	 */
 	function email() {
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$conference = &Request::getConference();
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$conference =& Request::getConference();
 
 		// Create list of recipients:
 
@@ -82,13 +82,13 @@ class DirectorDecisionCommentForm extends CommentForm {
 
 		if ($this->roleId == ROLE_ID_DIRECTOR || $this->roleId == ROLE_ID_TRACK_DIRECTOR) {
 			// Then add author
-			$user = &$userDao->getUser($this->paper->getUserId());
+			$user =& $userDao->getUser($this->paper->getUserId());
 
 			if ($user) $recipients = array_merge($recipients, array($user->getEmail() => $user->getFullName()));
 		} else {
 			// Then add director
-			$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments = &$editAssignmentDao->getEditAssignmentsByPaperId($this->paper->getPaperId());
+			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+			$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($this->paper->getPaperId());
 			$directorAddresses = array();
 			while (!$editAssignments->eof()) {
 				$editAssignment =& $editAssignments->next();
@@ -98,9 +98,9 @@ class DirectorDecisionCommentForm extends CommentForm {
 			// If no directors are currently assigned to this paper,
 			// send the email to all directors for the conference
 			if (empty($directorAddresses)) {
-				$directors = &$roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
+				$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
 				while (!$directors->eof()) {
-					$director = &$directors->next();
+					$director =& $directors->next();
 					$directorAddresses[$director->getEmail()] = $director->getFullName();
 				}
 			}

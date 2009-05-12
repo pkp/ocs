@@ -48,10 +48,10 @@ class NLMExportPlugin extends ImportExportPlugin {
 	}
 
 	function display(&$args) {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		parent::display($args);
 
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 
 		switch (array_shift($args)) {
 			case 'exportPaper':
@@ -65,13 +65,13 @@ class NLMExportPlugin extends ImportExportPlugin {
 				$paperIds = Request::getUserVar('paperId');
 				if (!isset($paperIds)) $paperIds = array();
 				else array_pop($paperIds);
-				$results = &PaperSearch::formatResults($paperIds);
+				$results =& PaperSearch::formatResults($paperIds);
 				$this->exportPapers($results);
 				break;
 			case 'papers':
 				// Display a list of papers for export
 				$this->setBreadcrumbs(array(), true);
-				$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+				$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 				$rangeInfo = Handler::getRangeInfo('papers');
 				$paperIds = $publishedPaperDao->getPublishedPaperIdsAlphabetizedBySchedConf($conference->getConferenceId());
 				$totalPapers = count($paperIds);
@@ -89,15 +89,15 @@ class NLMExportPlugin extends ImportExportPlugin {
 
 	function exportPapers(&$results, $outputFile = null) {
 		$this->import('NLMExportDom');
-		$doc = &NLMExportDom::generateNLMDom();
-		$paperSetNode = &NLMExportDom::generatePaperSetDom($doc);
+		$doc =& NLMExportDom::generateNLMDom();
+		$paperSetNode =& NLMExportDom::generatePaperSetDom($doc);
 
 		foreach ($results as $result) {
-			$conference = &$result['conference'];
-			$track = &$result['track'];
-			$paper = &$result['publishedPaper'];
+			$conference =& $result['conference'];
+			$track =& $result['track'];
+			$paper =& $result['publishedPaper'];
 
-			$paperNode = &NLMExportDom::generatePaperDom($doc, $conference, $track, $paper);
+			$paperNode =& NLMExportDom::generatePaperDom($doc, $conference, $track, $paper);
 			XMLCustomWriter::appendChild($paperSetNode, $paperNode);
 		}
 
@@ -124,11 +124,11 @@ class NLMExportPlugin extends ImportExportPlugin {
 		$xmlFile = array_shift($args);
 		$conferencePath = array_shift($args);
 
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 
-		$conference = &$conferenceDao->getConferenceByPath($conferencePath);
+		$conference =& $conferenceDao->getConferenceByPath($conferencePath);
 
 		if (!$conference) {
 			if ($conferencePath != '') {
@@ -141,7 +141,7 @@ class NLMExportPlugin extends ImportExportPlugin {
 
 		if ($xmlFile != '') switch (array_shift($args)) {
 			case 'papers':
-				$results = &PaperSearch::formatResults($args);
+				$results =& PaperSearch::formatResults($args);
 				if (!$this->exportPapers($results, $xmlFile)) {
 					echo Locale::translate('plugins.importexport.nlm.cliError') . "\n";
 					echo Locale::translate('plugins.importexport.nlm.export.error.couldNotWrite', array('fileName' => $xmlFile)) . "\n\n";

@@ -26,13 +26,13 @@ class TrackDAO extends DAO {
 	 * @return Track
 	 */
 	function &getTrack($trackId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM tracks WHERE track_id = ?', $trackId
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnTrackFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnTrackFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -55,11 +55,11 @@ class TrackDAO extends DAO {
 			$sql .= ' AND l.locale = ?';
 			$params[] = $locale;
 		}
-		$result = &$this->retrieve($sql, $params);
+		$result =& $this->retrieve($sql, $params);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnTrackFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnTrackFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -82,11 +82,11 @@ class TrackDAO extends DAO {
 			$sql .= ' AND l.locale = ?';
 			$params[] = $locale;
 		}
-		$result = &$this->retrieve($sql, $params);
+		$result =& $this->retrieve($sql, $params);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnTrackFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnTrackFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -125,7 +125,7 @@ class TrackDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnTrackFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnTrackFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -241,16 +241,16 @@ class TrackDAO extends DAO {
 	 * @param $schedConfId int optional
 	 */
 	function deleteTrackById($trackId, $schedConfId = null) {
-		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
 		$trackDirectorsDao->deleteDirectorsByTrackId($trackId, $schedConfId);
 
 		// Remove papers from this track
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$paperDao->removePapersFromTrack($trackId);
 
 		// Delete published paper entries from this track -- they must
 		// be re-published.
-		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPaperDao->deletePublishedPapersByTrackId($trackId);
 
 		if (isset($schedConfId) && !$this->trackExists($trackId, $schedConfId)) return false;
@@ -278,14 +278,14 @@ class TrackDAO extends DAO {
 	function &getDirectorTracks($schedConfId) {
 		$returner = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT t.*, td.user_id AS director_id FROM track_directors td, tracks t WHERE td.track_id = t.track_id AND t.sched_conf_id = td.sched_conf_id AND t.sched_conf_id = ?',
 			$schedConfId
 		);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$track = &$this->_returnTrackFromRow($row);
+			$track =& $this->_returnTrackFromRow($row);
 			if (!isset($returner[$row['director_id']])) {
 				$returner[$row['director_id']] = array($track);
 			} else {
@@ -308,7 +308,7 @@ class TrackDAO extends DAO {
 	function &getTracksBySchedConfId($schedConfId) {
 		$returner = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT DISTINCT t.*,
 				t.seq AS track_seq
 			FROM tracks t, papers p
@@ -319,7 +319,7 @@ class TrackDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$returner[] = &$this->_returnTrackFromRow($row);
+			$returner[] =& $this->_returnTrackFromRow($row);
 			$result->moveNext();
 		}
 
@@ -334,7 +334,7 @@ class TrackDAO extends DAO {
 	 * @return DAOResultFactory containing Tracks ordered by sequence
 	 */
 	function &getSchedConfTracks($schedConfId, $rangeInfo = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM tracks WHERE sched_conf_id = ? ORDER BY seq',
 			$schedConfId, $rangeInfo
 		);
@@ -368,7 +368,7 @@ class TrackDAO extends DAO {
 	 * @return boolean
 	 */
 	function trackExists($trackId, $schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM tracks WHERE track_id = ? AND sched_conf_id = ?',
 			array($trackId, $schedConfId)
 		);
@@ -385,7 +385,7 @@ class TrackDAO extends DAO {
 	 * @param $schedConfId int
 	 */
 	function resequenceTracks($schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT track_id FROM tracks WHERE sched_conf_id = ? ORDER BY seq',
 			$schedConfId
 		);

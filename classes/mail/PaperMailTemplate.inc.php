@@ -55,7 +55,7 @@ class PaperMailTemplate extends MailTemplate {
 	}
 
 	function assignParams($paramArray = array()) {
-		$paper = &$this->paper;
+		$paper =& $this->paper;
 		$conference = isset($this->conference)?$this->conference:Request::getConference();
 		$schedConf = isset($this->schedConf)?$this->schedConf:Request::getSchedConf();
 
@@ -149,7 +149,7 @@ class PaperMailTemplate extends MailTemplate {
 		$entry->setBccs($this->getBccString());
 
 		// Add log entry
-		$paper = &$this->paper;
+		$paper =& $this->paper;
 		PaperLog::logEmailEntry($paper->getPaperId(), $entry);
 	}
 

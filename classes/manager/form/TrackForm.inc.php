@@ -51,9 +51,9 @@ class TrackForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
-		$templateMgr = &TemplateManager::getManager();
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('trackId', $this->trackId);
 
 		if (Request::getUserVar('assignedDirectors') != null) {
@@ -61,13 +61,13 @@ class TrackForm extends Form {
 			$unassignedDirectorIds = explode(':', Request::getUserVar('unassignedDirectors'));
 			$assignedDirectorIds = explode(':', Request::getUserVar('assignedDirectors'));
 
-			$userDao = &DAORegistry::getDAO('UserDAO');
+			$userDao =& DAORegistry::getDAO('UserDAO');
 
 			// Get track directors not assigned to this track
 			$unassignedDirectors = array();
 			foreach ($unassignedDirectorIds as $edUserId) {
 				if (!empty($edUserId)) {
-					$unassignedDirectors[] = &$userDao->getUser($edUserId);
+					$unassignedDirectors[] =& $userDao->getUser($edUserId);
 				}
 			}
 
@@ -75,18 +75,18 @@ class TrackForm extends Form {
 			$assignedDirectors = array();
 			foreach ($assignedDirectorIds as $edUserId) {
 				if (!empty($edUserId)) {
-					$assignedDirectors[] = &$userDao->getUser($edUserId);
+					$assignedDirectors[] =& $userDao->getUser($edUserId);
 				}
 			}
 
 		} else {
-			$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
+			$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
 
 			// Get track directors not assigned to this track
-			$unassignedDirectors = &$trackDirectorsDao->getDirectorsNotInTrack($schedConf->getSchedConfId(), $this->trackId);
+			$unassignedDirectors =& $trackDirectorsDao->getDirectorsNotInTrack($schedConf->getSchedConfId(), $this->trackId);
 
 			// Get track directors assigned to this track
-			$assignedDirectors = &$trackDirectorsDao->getDirectorsByTrackId($schedConf->getSchedConfId(), $this->trackId);
+			$assignedDirectors =& $trackDirectorsDao->getDirectorsByTrackId($schedConf->getSchedConfId(), $this->trackId);
 		}
 
 		$templateMgr->assign('unassignedDirectors', $unassignedDirectors);
@@ -101,12 +101,12 @@ class TrackForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
 		
 		if (isset($this->trackId)) {
-			$trackDao = &DAORegistry::getDAO('TrackDAO');
-			$track = &$trackDao->getTrack($this->trackId);
+			$trackDao =& DAORegistry::getDAO('TrackDAO');
+			$track =& $trackDao->getTrack($this->trackId);
 
 			if ($track == null) {
 				unset($this->trackId);
@@ -141,12 +141,12 @@ class TrackForm extends Form {
 	 * Save track.
 	 */
 	function execute() {
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
 
 		if (isset($this->trackId)) {
-			$track = &$trackDao->getTrack($this->trackId);
+			$track =& $trackDao->getTrack($this->trackId);
 		}
 
 		if (!isset($track)) {
@@ -176,7 +176,7 @@ class TrackForm extends Form {
 		}
 
 		// Save assigned directors
-		$trackDirectorsDao = &DAORegistry::getDAO('TrackDirectorsDAO');
+		$trackDirectorsDao =& DAORegistry::getDAO('TrackDirectorsDAO');
 		$trackDirectorsDao->deleteDirectorsByTrackId($trackId, $schedConf->getSchedConfId());
 		$directors = explode(':', Request::getUserVar('assignedDirectors'));
 		foreach ($directors as $edUserId) {

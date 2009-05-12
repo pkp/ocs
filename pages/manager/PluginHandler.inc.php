@@ -95,7 +95,7 @@ class PluginHandler extends ManagerHandler {
 	 * @param $subclass boolean
 	 */
 	function setBreadcrumbs($subclass = false) {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$pageCrumbs = array(
 			array(
 				Request::url(null, null, 'user'),

@@ -77,7 +77,7 @@ class ManagerProgramHandler extends ManagerHandler {
 		if (!$editData && $settingsForm->validate()) {
 			$settingsForm->execute();
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign(array(
 				'currentUrl' => Request::url(null, null, null, 'program'),
 				'pageTitle' => 'schedConf.program',

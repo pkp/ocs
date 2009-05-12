@@ -24,13 +24,13 @@ class BuildingDAO extends DAO {
 	 * @return object Building
 	 */
 	function &getBuilding($buildingId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM buildings WHERE building_id = ?', $buildingId
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnBuildingFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnBuildingFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -42,7 +42,7 @@ class BuildingDAO extends DAO {
 	 * @return int
 	 */
 	function getBuildingSchedConfId($buildingId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT sched_conf_id FROM buildings WHERE building_id = ?', $buildingId
 		);
 
@@ -56,7 +56,7 @@ class BuildingDAO extends DAO {
 	 * @return boolean
 	 */
 	function buildingExistsForSchedConf($buildingId, $schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT	COUNT(*)
 				FROM buildings
 				WHERE building_id = ?
@@ -188,7 +188,7 @@ class BuildingDAO extends DAO {
 	 * @return object DAOResultFactory containing matching Buildings
 	 */
 	function &getBuildingsBySchedConfId($schedConfId, $rangeInfo = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM buildings WHERE sched_conf_id = ? ORDER BY sched_conf_id',
 			$schedConfId,
 			$rangeInfo

@@ -30,7 +30,7 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 	 * Display the form.
 	 */
 	function display() {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 
 		$allThemes =& PluginRegistry::loadCategory('themes', true);
 		$conferenceThemes = array();
@@ -41,7 +41,7 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 		}
 
 		// Ensure upload file settings are reloaded when the form is displayed.
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign(array(
 			'conferenceStyleSheet' => $conference->getSetting('conferenceStyleSheet'),
 			'conferenceThemes' => $conferenceThemes
@@ -77,8 +77,8 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 	 * @param $settingName string setting key associated with the file
 	 */
 	function uploadStyleSheet($settingName) {
-		$conference = &Request::getConference();
-		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+		$conference =& Request::getConference();
+		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 
 		import('file.PublicFileManager');
 		$fileManager = new PublicFileManager();

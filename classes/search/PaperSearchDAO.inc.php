@@ -26,7 +26,7 @@ class PaperSearchDAO extends DAO {
 	function insertKeyword($keyword) {
 		static $paperSearchKeywordIds = array();
 		if (isset($paperSearchKeywordIds[$keyword])) return $paperSearchKeywordIds[$keyword];
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT keyword_id FROM paper_search_keyword_list WHERE keyword_text = ?',
 			$keyword
 		);
@@ -102,7 +102,7 @@ class PaperSearchDAO extends DAO {
 			$params[] = $conference->getConferenceId();
 		}
 
-		$result = &$this->retrieveCached(
+		$result =& $this->retrieveCached(
 			'SELECT
 				o.paper_id,
 				COUNT(*) AS count
@@ -146,7 +146,7 @@ class PaperSearchDAO extends DAO {
 			$params[] = $assocId;
 		}
 
-		$result = &$this->retrieve($sql, $params);
+		$result =& $this->retrieve($sql, $params);
 		while (!$result->EOF) {
 			$objectId = $result->fields[0];
 			$this->update('DELETE FROM paper_search_object_keywords WHERE object_id = ?', $objectId);
@@ -165,7 +165,7 @@ class PaperSearchDAO extends DAO {
 	 * @return int the object ID
 	 */
 	function insertObject($paperId, $type, $assocId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT object_id FROM paper_search_objects WHERE paper_id = ? AND type = ? AND assoc_id = ?',
 			array($paperId, $type, $assocId)
 		);

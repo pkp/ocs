@@ -29,9 +29,9 @@ class Validation {
 	function &login($username, $password, &$reason, $remember = false) {
 		$reason = null;
 		$valid = false;
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$user = &$userDao->getUserByUsername($username, true);
+		$user =& $userDao->getUserByUsername($username, true);
 
 		if (!isset($user)) {
 			// User does not exist
@@ -39,8 +39,8 @@ class Validation {
 		}
 
 		if ($user->getAuthId()) {
-			$authDao = &DAORegistry::getDAO('AuthSourceDAO');
-			$auth = &$authDao->getPlugin($user->getAuthId());
+			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+			$auth =& $authDao->getPlugin($user->getAuthId());
 		}
 
 		if (isset($auth)) {
@@ -76,12 +76,12 @@ class Validation {
 			}
 
 			// The user is valid, mark user as logged in in current session
-			$sessionManager = &SessionManager::getManager();
+			$sessionManager =& SessionManager::getManager();
 
 			// Regenerate session ID first
 			$sessionManager->regenerateSessionId();
 
-			$session = &$sessionManager->getUserSession();
+			$session =& $sessionManager->getUserSession();
 			$session->setSessionVar('userId', $user->getUserId());
 			$session->setUserId($user->getUserId());
 			$session->setSessionVar('username', $user->getUsername());
@@ -104,8 +104,8 @@ class Validation {
 	 * @return boolean
 	 */
 	function logout() {
-		$sessionManager = &SessionManager::getManager();
-		$session = &$sessionManager->getUserSession();
+		$sessionManager =& SessionManager::getManager();
+		$session =& $sessionManager->getUserSession();
 		$session->unsetSessionVar('userId');
 		$session->unsetSessionVar('signedInAs');
 		$session->setUserId(null);
@@ -115,7 +115,7 @@ class Validation {
 			$sessionManager->updateSessionLifetime(0);
 		}
 
-		$sessionDao = &DAORegistry::getDAO('SessionDAO');
+		$sessionDao =& DAORegistry::getDAO('SessionDAO');
 		$sessionDao->updateSession($session);
 
 		return true;
@@ -143,14 +143,14 @@ class Validation {
 	 * @return boolean
 	 */
 	function checkCredentials($username, $password) {
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &$userDao->getUserByUsername($username, false);
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& $userDao->getUserByUsername($username, false);
 
 		$valid = false;
 		if (isset($user)) {
 			if ($user->getAuthId()) {
-				$authDao = &DAORegistry::getDAO('AuthSourceDAO');
-				$auth = &$authDao->getPlugin($user->getAuthId());
+				$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+				$auth =& $authDao->getPlugin($user->getAuthId());
 			}
 
 			if (isset($auth)) {
@@ -176,21 +176,21 @@ class Validation {
 
 		if ($conferenceId === -1) {
 			// Get conference ID from request
-			$conference = &Request::getConference();
+			$conference =& Request::getConference();
 			$conferenceId = $conference ? $conference->getConferenceId() : 0;
 		}
 
 		if ($schedConfId === -1) {
 			// Get scheduled conference ID from request
-			$schedConf = &Request::getSchedConf();
+			$schedConf =& Request::getSchedConf();
 			$schedConfId = $schedConf ? $schedConf->getSchedConfId() : 0;
 		}
 
-		$sessionManager = &SessionManager::getManager();
-		$session = &$sessionManager->getUserSession();
-		$user = &$session->getUser();
+		$sessionManager =& SessionManager::getManager();
+		$session =& $sessionManager->getUserSession();
+		$user =& $session->getUser();
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		return $roleDao->roleExists($conferenceId, $schedConfId, $user->getUserId(), $roleId);
 	}
 
@@ -244,7 +244,7 @@ class Validation {
 	 * @return string (boolean false if user is invalid)
 	 */
 	function generatePasswordResetHash($userId) {
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		if (($user = $userDao->getUser($userId)) == null) {
 			// No such user
 			return false;
@@ -270,8 +270,8 @@ class Validation {
 	 * @return boolean
 	 */
 	function isLoggedIn() {
-		$sessionManager = &SessionManager::getManager();
-		$session = &$sessionManager->getUserSession();
+		$sessionManager =& SessionManager::getManager();
+		$session =& $sessionManager->getUserSession();
 
 		$userId = $session->getUserId();
 		return isset($userId) && !empty($userId);
@@ -352,8 +352,8 @@ class Validation {
 
 		// Check for roles in other conferences that this user
 		// doesn't have administrative rights over.
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$roles = &$roleDao->getRolesByUserId($userId);
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roles =& $roleDao->getRolesByUserId($userId);
 		foreach ($roles as $role) {
 			// Other user cannot be site admin
 			if ($role->getRoleId() == ROLE_ID_SITE_ADMIN) return false;

@@ -28,16 +28,16 @@ class PaperCommentDAO extends DAO {
 		$paperComments = array();
 
 		if ($commentType == null) {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT a.* FROM paper_comments a WHERE paper_id = ? ORDER BY date_posted',	$paperId
 			);
 		} else {
 			if ($assocId == null) {
-				$result = &$this->retrieve(
+				$result =& $this->retrieve(
 					'SELECT a.* FROM paper_comments a WHERE paper_id = ? AND comment_type = ? ORDER BY date_posted',	array($paperId, $commentType)
 				);
 			} else {
-				$result = &$this->retrieve(
+				$result =& $this->retrieve(
 					'SELECT a.* FROM paper_comments a WHERE paper_id = ? AND comment_type = ? AND assoc_id = ? ORDER BY date_posted',
 					array($paperId, $commentType, $assocId)
 				);
@@ -45,7 +45,7 @@ class PaperCommentDAO extends DAO {
 		}
 
 		while (!$result->EOF) {
-			$paperComments[] = &$this->_returnPaperCommentFromRow($result->GetRowAssoc(false));
+			$paperComments[] =& $this->_returnPaperCommentFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -63,12 +63,12 @@ class PaperCommentDAO extends DAO {
 	function &getPaperCommentsByUserId($userId) {
 		$paperComments = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT a.* FROM paper_comments a WHERE author_id = ? ORDER BY date_posted',	$userId
 		);
 
 		while (!$result->EOF) {
-			$paperComments[] = &$this->_returnPaperCommentFromRow($result->GetRowAssoc(false));
+			$paperComments[] =& $this->_returnPaperCommentFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -86,20 +86,20 @@ class PaperCommentDAO extends DAO {
 	 */
 	function getMostRecentPaperComment($paperId, $commentType = null, $assocId = null) {
 		if ($commentType == null) {
-			$result = &$this->retrieveLimit(
+			$result =& $this->retrieveLimit(
 				'SELECT a.* FROM paper_comments a WHERE paper_id = ? ORDER BY date_posted DESC',
 				$paperId,
 				1
 			);
 		} else {
 			if ($assocId == null) {
-				$result = &$this->retrieveLimit(
+				$result =& $this->retrieveLimit(
 					'SELECT a.* FROM paper_comments a WHERE paper_id = ? AND comment_type = ? ORDER BY date_posted DESC',
 					array($paperId, $commentType),
 					1
 				);
 			} else {
-				$result = &$this->retrieveLimit(
+				$result =& $this->retrieveLimit(
 					'SELECT a.* FROM paper_comments a WHERE paper_id = ? AND comment_type = ? AND assoc_id = ? ORDER BY date_posted DESC',
 					array($paperId, $commentType, $assocId),
 					1
@@ -109,7 +109,7 @@ class PaperCommentDAO extends DAO {
 
 		$returner = null;
 		if (isset($result) && $result->RecordCount() != 0) {
-			$returner = &$this->_returnPaperCommentFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnPaperCommentFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -124,11 +124,11 @@ class PaperCommentDAO extends DAO {
 	 * @return PaperComment object
 	 */
 	function &getPaperCommentById($commentId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT a.* FROM paper_comments a WHERE comment_id = ?', $commentId
 		);
 
-		$paperComment = &$this->_returnPaperCommentFromRow($result->GetRowAssoc(false));
+		$paperComment =& $this->_returnPaperCommentFromRow($result->GetRowAssoc(false));
 
 		$result->Close();
 		unset($result);

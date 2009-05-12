@@ -57,7 +57,7 @@ class ConferenceEventLogDAO extends DAO {
 		if (isset($schedConfId))
 			$args[] = $schedConfId;
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT	e.*,
 				COALESCE(sctl.setting_value, sct.setting_value) AS sched_conf_title,
 				COALESCE(ctl.setting_value, ct.setting_value) AS conference_title
@@ -76,7 +76,7 @@ class ConferenceEventLogDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnLogEntryFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnLogEntryFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -92,7 +92,7 @@ class ConferenceEventLogDAO extends DAO {
 	 * @return DAOResultFactory containing matching ConferenceEventLogEntry ordered by sequence
 	 */
 	function &getConferenceLogEntries($conferenceId, $schedConfId = null, $rangeInfo = null) {
-		$returner = &$this->getConferenceLogEntriesByAssoc($conferenceId, $schedConfId, null, null, $rangeInfo);
+		$returner =& $this->getConferenceLogEntriesByAssoc($conferenceId, $schedConfId, null, null, $rangeInfo);
 		return $returner;
 	}
 
@@ -130,7 +130,7 @@ class ConferenceEventLogDAO extends DAO {
 				$params[] = $assocId;
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT	e.*,
 				COALESCE(sctl.setting_value, sct.setting_value) AS sched_conf_title,
 				COALESCE(ctl.setting_value, ct.setting_value)

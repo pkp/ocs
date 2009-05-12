@@ -39,7 +39,7 @@ class RTAdminHandler extends Handler {
 		$conference = Request::getConference();
 		$user = Request::getUser();
 		if ($conference) {
-			$rtDao = &DAORegistry::getDAO('RTDAO');
+			$rtDao =& DAORegistry::getDAO('RTDAO');
 			$rt = $rtDao->getConferenceRTByConference($conference);
 			if (isset($rt)) {
 				$version = $rtDao->getVersion($rt->getVersion(), $conference->getConferenceId());
@@ -48,7 +48,7 @@ class RTAdminHandler extends Handler {
 			// Display the administration menu for this conference.
 
 			$this->setupTemplate();
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools');
 			$templateMgr->assign('versionTitle', isset($version)?$version->getTitle():null);
 			$templateMgr->assign('enabled', $rt->getEnabled());
@@ -56,13 +56,13 @@ class RTAdminHandler extends Handler {
 			$templateMgr->display('rtadmin/index.tpl');
 		} elseif ($user) {
 			// Display a list of conferences.
-			$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-			$roleDao = &DAORegistry::getDAO('RoleDAO');
+			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 			$conferences = array();
 
-			$allConferences = &$conferenceDao->getConferences();
-			$allConferences = &$allConferences->toArray();
+			$allConferences =& $conferenceDao->getConferences();
+			$allConferences =& $allConferences->toArray();
 
 			foreach ($allConferences as $conference) {
 				if ($roleDao->roleExists($conference->getConferenceId(), 0, $user->getUserId(), ROLE_ID_CONFERENCE_MANAGER)) {
@@ -71,7 +71,7 @@ class RTAdminHandler extends Handler {
 			}
 
 			$this->setupTemplate();
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools');
 			$templateMgr->display('rtadmin/conferences.tpl');
@@ -84,7 +84,7 @@ class RTAdminHandler extends Handler {
 	function validateUrls($args) {
 		$this->validate();
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$conference = Request::getConference();
 
 		if (!$conference) {
@@ -108,7 +108,7 @@ class RTAdminHandler extends Handler {
 		}
 
 		$this->setupTemplate(true, $version);
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->register_modifier('validate_url', 'smarty_rtadmin_validate_url');
 		$templateMgr->assign_by_ref('versions', $versions);
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.readingTools');
@@ -128,7 +128,7 @@ class RTAdminHandler extends Handler {
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$pageHierarchy = array();
 

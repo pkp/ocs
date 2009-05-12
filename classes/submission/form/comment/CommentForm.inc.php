@@ -55,7 +55,7 @@ class CommentForm extends Form {
 		$this->roleId = $roleId;
 		$this->assocId = $assocId == null ? $paper->getPaperId() : $assocId;
 
-		$this->user = &Request::getUser();
+		$this->user =& Request::getUser();
 
 		if ($commentType != COMMENT_TYPE_PEER_REVIEW) $this->addCheck(new FormValidator($this, 'comments', 'required', 'director.paper.commentsRequired'));
 
@@ -76,10 +76,10 @@ class CommentForm extends Form {
 	function display() {
 		$paper = $this->paper;
 
-		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
-		$paperComments = &$paperCommentDao->getPaperComments($paper->getPaperId(), $this->commentType, $this->assocId);
+		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$paperComments =& $paperCommentDao->getPaperComments($paper->getPaperId(), $this->commentType, $this->assocId);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paper->getPaperId());
 		$templateMgr->assign('commentTitle', strip_tags($paper->getLocalizedTitle()));
 		$templateMgr->assign('userId', $this->user->getUserId());
@@ -105,7 +105,7 @@ class CommentForm extends Form {
 	 * Add the comment.
 	 */
 	function execute() {
-		$commentDao = &DAORegistry::getDAO('PaperCommentDAO');
+		$commentDao =& DAORegistry::getDAO('PaperCommentDAO');
 		$paper = $this->paper;
 
 		// Insert new comment		
@@ -129,8 +129,8 @@ class CommentForm extends Form {
 	 */
 	function email($recipients) {
 		$paper = $this->paper;
-		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
-		$schedConf = &Request::getSchedConf();
+		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$schedConf =& Request::getSchedConf();
 
 		import('mail.PaperMailTemplate');
 		$email = new PaperMailTemplate($paper, 'SUBMISSION_COMMENT');

@@ -141,12 +141,12 @@ class SchedConfAction {
 	 * @return bool
 	 */
 	function entitledUser(&$schedConf) {
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 
 		if (isset($user) && isset($schedConf)) {
 			// If the user is a conference manager, director, or track director,
 			// it is assumed that they are allowed to view the scheduled conference as a registrant.
-			$roleDao = &DAORegistry::getDAO('RoleDAO');
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			$registrationAssumedRoles = array(
 				ROLE_ID_CONFERENCE_MANAGER,
 				ROLE_ID_DIRECTOR,
@@ -154,13 +154,13 @@ class SchedConfAction {
 			);
 
 			// First check for scheduled conference roles
-			$roles = &$roleDao->getRolesByUserId($user->getUserId(), $schedConf->getConferenceId(), $schedConf->getSchedConfId());
+			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $schedConf->getConferenceId(), $schedConf->getSchedConfId());
 			foreach ($roles as $role) {
 				if (in_array($role->getRoleId(), $registrationAssumedRoles)) return true;
 			}
 
 			// Second, conference-level roles
-			$roles = &$roleDao->getRolesByUserId($user->getUserId(), $schedConf->getConferenceId(), 0);
+			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $schedConf->getConferenceId(), 0);
 			foreach ($roles as $role) {
 				if (in_array($role->getRoleId(), $registrationAssumedRoles)) return true;
 			}
@@ -176,8 +176,8 @@ class SchedConfAction {
 	 * @return bool
 	 */
 	function registeredUser(&$schedConf) {
-		$user = &Request::getUser();
-		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
+		$user =& Request::getUser();
+		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 
 		if (isset($user) && isset($schedConf)) {
 
@@ -194,7 +194,7 @@ class SchedConfAction {
 	 * @return bool
 	 */
 	function registeredDomain(&$schedConf) {
-		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		$result = $registrationDao->isValidRegistration(Request::getRemoteDomain(), Request::getRemoteAddr(), null, $schedConf->getSchedConfId());
 		HookRegistry::call('SchedConfAction::registeredDomain', array(&$schedConf, &$result));
 		return $result;

@@ -36,9 +36,9 @@ class TemplateManager extends PKPTemplateManager {
 			 * installer pages).
 			 */
 
-			$conference = &Request::getConference();
-			$schedConf = &Request::getSchedConf();
-			$site = &Request::getSite();
+			$conference =& Request::getConference();
+			$schedConf =& Request::getSchedConf();
+			$site =& Request::getSite();
 			$this->assign('siteTitle', $site->getLocalizedTitle());
 			
 			$this->assign('homeContext', array('conference' => 'index', 'schedConf' => 'index'));

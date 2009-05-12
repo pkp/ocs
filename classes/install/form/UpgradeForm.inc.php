@@ -31,7 +31,7 @@ class UpgradeForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('version', VersionCheck::getCurrentCodeVersion());
 
 		parent::display();
@@ -50,7 +50,7 @@ class UpgradeForm extends Form {
 	 * Perform installation.
 	 */
 	function execute() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$installer = new Upgrade($this->_data);
 
 		// FIXME Use logger?
@@ -93,7 +93,7 @@ class UpgradeForm extends Form {
 	 * @param $errorMsg string
 	 */
 	function installError($errorMsg) {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign(array('isInstallError' => true, 'errorMsg' => $errorMsg));
 		$this->display();
 	}
@@ -103,7 +103,7 @@ class UpgradeForm extends Form {
 	 * @param $errorMsg string
 	 */
 	function dbInstallError($errorMsg) {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign(array('isInstallError' => true, 'dbErrorMsg' => empty($errorMsg) ? Locale::translate('common.error.databaseErrorUnknown') : $errorMsg));
 		$this->display();
 	}

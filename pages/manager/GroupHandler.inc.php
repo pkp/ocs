@@ -53,7 +53,7 @@ class GroupHandler extends ManagerHandler {
 			unset($groups);
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('groups', $groups);
 		$templateMgr->assign('boardEnabled', $schedConf->getSetting('boardEnabled'));
 		$templateMgr->display('manager/groups/groups.tpl');
@@ -114,7 +114,7 @@ class GroupHandler extends ManagerHandler {
 		$this->setupTemplate($group, true);
 		import('manager.form.GroupForm');
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign('pageTitle',
 			$group === null?
@@ -164,7 +164,7 @@ class GroupHandler extends ManagerHandler {
 		} else {
 			$this->setupTemplate($group);
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'groups'), 'manager.groups'));
 
 			$templateMgr->assign('pageTitle',
@@ -196,7 +196,7 @@ class GroupHandler extends ManagerHandler {
 			$rangeInfo =& $memberships->getLastPageRangeInfo();
 			unset($memberships);
 		}
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('memberships', $memberships);
 		$templateMgr->assign_by_ref('group', $group);
 		$templateMgr->display('manager/groups/memberships.tpl');
@@ -267,7 +267,7 @@ class GroupHandler extends ManagerHandler {
 				unset($users);
 			}
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 
 			$templateMgr->assign('searchField', $searchType);
 			$templateMgr->assign('searchMatch', $searchMatch);
@@ -330,7 +330,7 @@ class GroupHandler extends ManagerHandler {
 
 	function setBoardEnabled($args) {
 		$this->validate();
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$boardEnabled = Request::getUserVar('boardEnabled')==1?true:false;
 		$schedConf =& Request::getSchedConf();
 		$schedConf->updateSetting('boardEnabled', $boardEnabled);
@@ -339,7 +339,7 @@ class GroupHandler extends ManagerHandler {
 
 	function setupTemplate($group = null, $subclass = false) {
 		parent::setupTemplate(true);
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		if ($subclass) {
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'groups'), 'manager.groups'));
 		}

@@ -48,10 +48,10 @@ class DirectorHandler extends TrackDirectorHandler {
 		$this->validate();
 		$this->setupTemplate(DIRECTOR_TRACK_HOME);
 
-		$templateMgr = &TemplateManager::getManager();
-		$schedConf = &Request::getSchedConf();
-		$directorSubmissionDao = &DAORegistry::getDAO('DirectorSubmissionDAO');
-		$submissionsCount = &$directorSubmissionDao->getDirectorSubmissionsCount($schedConf->getSchedConfId());
+		$templateMgr =& TemplateManager::getManager();
+		$schedConf =& Request::getSchedConf();
+		$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
+		$submissionsCount =& $directorSubmissionDao->getDirectorSubmissionsCount($schedConf->getSchedConfId());
 		$templateMgr->assign('submissionsCount', $submissionsCount);
 		$templateMgr->assign('helpTopicId', 'editorial.directorsRole');
 		$templateMgr->display('director/index.tpl');
@@ -64,15 +64,15 @@ class DirectorHandler extends TrackDirectorHandler {
 		$this->validate();
 		$this->setupTemplate(DIRECTOR_TRACK_SUBMISSIONS);
 
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		$schedConfId = $schedConf->getSchedConfId();
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 
-		$directorSubmissionDao = &DAORegistry::getDAO('DirectorSubmissionDAO');
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
-		$tracks = &$trackDao->getTrackTitles($schedConfId);
+		$tracks =& $trackDao->getTrackTitles($schedConfId);
 
 		$filterDirectorOptions = array(
 			FILTER_DIRECTOR_ALL => Locale::Translate('director.allDirectors'),
@@ -199,7 +199,7 @@ class DirectorHandler extends TrackDirectorHandler {
 	function deleteEditAssignment($args) {
 		$this->validate();
 
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		$editId = (int) (isset($args[0])?$args[0]:0);
 
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
@@ -224,10 +224,10 @@ class DirectorHandler extends TrackDirectorHandler {
 	function assignDirector($args) {
 		$this->validate();
 
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		$paperId = Request::getUserVar('paperId');
 		$directorId = Request::getUserVar('directorId');
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		$isDirector = $roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $directorId, ROLE_ID_DIRECTOR) || $roleDao->roleExists($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_DIRECTOR);
 		$isTrackDirector = $roleDao->roleExists($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $directorId, ROLE_ID_TRACK_DIRECTOR) || $roleDao->roleExists($schedConf->getConferenceId(), 0, $directorId, ROLE_ID_TRACK_DIRECTOR);
@@ -264,7 +264,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 			$forDirectors = isset($args[0]) && $args[0] === 'director';
 			$rangeInfo =& Handler::getRangeInfo('directors', array($forDirectors, (string) $searchType, (string) $search, (string) $searchMatch));
-			$directorSubmissionDao = &DAORegistry::getDAO('DirectorSubmissionDAO');
+			$directorSubmissionDao =& DAORegistry::getDAO('DirectorSubmissionDAO');
 
 			if ($forDirectors) {
 				$roleName = 'user.role.director';
@@ -286,16 +286,16 @@ class DirectorHandler extends TrackDirectorHandler {
 				}
 			}
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 
 			$templateMgr->assign_by_ref('directors', $directors);
 			$templateMgr->assign('roleName', $roleName);
 			$templateMgr->assign('paperId', $paperId);
 
-			$trackDao = &DAORegistry::getDAO('TrackDAO');
-			$trackDirectorTracks = &$trackDao->getDirectorTracks($schedConf->getSchedConfId());
+			$trackDao =& DAORegistry::getDAO('TrackDAO');
+			$trackDirectorTracks =& $trackDao->getDirectorTracks($schedConf->getSchedConfId());
 
-			$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
+			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$directorStatistics = $editAssignmentDao->getDirectorStatistics($schedConf->getSchedConfId());
 
 			$templateMgr->assign_by_ref('directorTracks', $trackDirectorTracks);
@@ -325,10 +325,10 @@ class DirectorHandler extends TrackDirectorHandler {
 		$paperId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate();
 
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$paper = &$paperDao->getPaper($paperId);
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paper =& $paperDao->getPaper($paperId);
 
 		$status = $paper->getStatus();
 		$progress = $paper->getSubmissionProgress();
@@ -417,7 +417,7 @@ class DirectorHandler extends TrackDirectorHandler {
 					break;
 			}
 			while (!$recipients->eof()) {
-				$recipient = &$recipients->next();
+				$recipient =& $recipients->next();
 				$email->addRecipient($recipient->getEmail(), $recipient->getFullName());
 				unset($recipient);
 			}
@@ -474,7 +474,7 @@ class DirectorHandler extends TrackDirectorHandler {
 	 */
 	function setupTemplate($level = DIRECTOR_TRACK_HOME, $paperId = 0, $parentPage = null) {
 		parent::setupTemplate();
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();

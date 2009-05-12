@@ -31,7 +31,7 @@ class ConferenceRTAdmin extends RTAdmin {
 
 	function ConferenceRTAdmin($conferenceId) {
 		$this->conferenceId = $conferenceId;
-		$this->dao = &DAORegistry::getDAO('RTDAO');
+		$this->dao =& DAORegistry::getDAO('RTDAO');
 	}
 
 	function restoreVersions($deleteBeforeLoad = true) {
@@ -62,7 +62,7 @@ class ConferenceRTAdmin extends RTAdmin {
 		import ('rt.RTXMLParser');
 		$parser = new RTXMLParser();
 
-		$version = &$parser->parse($filename);
+		$version =& $parser->parse($filename);
 		$this->dao->insertVersion($this->conferenceId, $version);
 	}
 }

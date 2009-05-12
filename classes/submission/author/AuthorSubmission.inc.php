@@ -48,7 +48,7 @@ class AuthorSubmission extends Paper {
 	 * @return array
 	 */
 	function &getEditAssignments() {
-		$editAssignments = &$this->getData('editAssignments');
+		$editAssignments =& $this->getData('editAssignments');
 		return $editAssignments;
 	}
 
@@ -164,7 +164,7 @@ class AuthorSubmission extends Paper {
 	function getSubmissionStatus() {
 		// Optimization: Use the Request scheduled conference object
 		// if available and if it's the same as the paper's sched conf
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		if (!$schedConf || $this->getSchedConfId() != $schedConf->getSchedConfId()) {
 			unset($schedConf);
 			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
@@ -324,7 +324,7 @@ class AuthorSubmission extends Paper {
 	 * @return array PaperGalley
 	 */
 	function &getGalleys() {
-		$galleys = &$this->getData('galleys');
+		$galleys =& $this->getData('galleys');
 		return $galleys;
 	}
 

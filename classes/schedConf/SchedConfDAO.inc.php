@@ -27,13 +27,13 @@ class SchedConfDAO extends DAO {
 	function &getSchedConf($schedConfId, $conferenceId = null) {
 		$params = array($schedConfId);
 		if ($conferenceId !== null) $params[] = $conferenceId;
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM sched_confs WHERE sched_conf_id = ?' . ($conferenceId !== null?' AND conference_id = ?':''), $params
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnSchedConfFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnSchedConfFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		unset($result);
@@ -47,7 +47,7 @@ class SchedConfDAO extends DAO {
 	 */
 	function &getSchedConfByPath($path, $conferenceId = null) {
 		if($conferenceId == null) {
-			$conference = &Request::getConference();
+			$conference =& Request::getConference();
 
 			if(!$conference)
 				$conferenceId = -1;
@@ -56,12 +56,12 @@ class SchedConfDAO extends DAO {
 		}
 
 		$returner = null;
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM sched_confs WHERE path = ? and conference_id = ?',
 			array($path, $conferenceId));
 
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnSchedConfFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnSchedConfFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		unset($result);
@@ -163,7 +163,7 @@ class SchedConfDAO extends DAO {
 	 * @param $rangeInfo object
 	 */
 	function &getSchedConfsByConferenceId($conferenceId, $rangeInfo = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT i.*
 			FROM sched_confs i
 				WHERE i.conference_id = ?
@@ -184,7 +184,7 @@ class SchedConfDAO extends DAO {
 		$schedConfs = $this->getSchedConfsByConferenceId($conferenceId);
 
 		while (!$schedConfs->eof()) {
-			$schedConf = &$schedConfs->next();
+			$schedConf =& $schedConfs->next();
 			$this->deleteSchedConfById($schedConf->getSchedConfId());
 		}
 	}
@@ -194,16 +194,16 @@ class SchedConfDAO extends DAO {
 	 * @param $schedConfId int
 	 */
 	function deleteSchedConfById($schedConfId) {
-		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 		$schedConfSettingsDao->deleteSettingsBySchedConf($schedConfId);
 
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$trackDao->deleteTracksBySchedConf($schedConfId);
 
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplateDao->deleteEmailTemplatesBySchedConf($schedConfId);
 
-		$registrationDao = &DAORegistry::getDAO('RegistrationDAO');
+		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		$registrationDao->deleteRegistrationsBySchedConf($schedConfId);
 
 		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
@@ -221,16 +221,16 @@ class SchedConfDAO extends DAO {
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 		$specialEventDao->deleteSpecialEventsBySchedConfId($schedConfId);
 
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$paperDao->deletePapersBySchedConfId($schedConfId);
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$roleDao->deleteRoleBySchedConfId($schedConfId);
 
-		$groupDao = &DAORegistry::getDAO('GroupDAO');
+		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroupsByAssocId(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 
-		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
+		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		$announcementDao->deleteAnnouncementsBySchedConf($schedConfId);
 
 		return $this->update(
@@ -243,7 +243,7 @@ class SchedConfDAO extends DAO {
 	 * @return DAOResultFactory containing matching scheduled conferences
 	 */
 	function &getSchedConfs($rangeInfo = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM sched_confs ORDER BY seq',
 			false, $rangeInfo
 		);
@@ -258,7 +258,7 @@ class SchedConfDAO extends DAO {
 	 * @return array SchedConfs ordered by sequence
 	 */
 	function &getEnabledSchedConfs($conferenceId = null) {
-		$result = &$this->retrieve('
+		$result =& $this->retrieve('
 			SELECT i.* FROM sched_confs i
 				LEFT JOIN conferences c ON (i.conference_id = c.conference_id)
 			WHERE c.enabled = 1'
@@ -276,7 +276,7 @@ class SchedConfDAO extends DAO {
 	 * @return boolean
 	 */
 	function schedConfExistsByPath($path) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM sched_confs WHERE path = ?', $path
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
@@ -291,7 +291,7 @@ class SchedConfDAO extends DAO {
 	 * Sequentially renumber scheduled conferences in their sequence order.
 	 */
 	function resequenceSchedConfs($conferenceId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT sched_conf_id FROM sched_confs WHERE conference_id = ? ORDER BY seq',
 			$conferenceId
 		);
@@ -326,7 +326,7 @@ class SchedConfDAO extends DAO {
 	 * @return array SchedConfs ordered by sequence
 	 */
 	function &getCurrentSchedConfs($conferenceId) {
-		$result = &$this->retrieve('
+		$result =& $this->retrieve('
 			SELECT i.* FROM sched_confs i
 				LEFT JOIN conferences c ON (i.conference_id = c.conference_id)
 			WHERE c.enabled = 1
@@ -346,7 +346,7 @@ class SchedConfDAO extends DAO {
 	 * @return boolean
 	 */
 	function archivedSchedConfsExist($conferenceId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM sched_confs WHERE conference_id = ? AND end_date < now()', $conferenceId
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] >= 1 ? true : false;
@@ -363,7 +363,7 @@ class SchedConfDAO extends DAO {
 	 * @return boolean
 	 */
 	function currentSchedConfsExist($conferenceId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM sched_confs WHERE conference_id = ? AND start_date < now() AND end_date > now()', $conferenceId
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] >= 1 ? true : false;

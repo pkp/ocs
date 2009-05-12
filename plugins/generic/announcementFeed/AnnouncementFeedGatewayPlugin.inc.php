@@ -102,9 +102,9 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 		if ($limitRecentItems && $recentItems > 0) {
 			import('db.DBResultRange');
 			$rangeInfo = new DBResultRange($recentItems, 1);
-			$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId, $rangeInfo);
+			$announcements =& $announcementDao->getAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId, $rangeInfo);
 		} else {
-			$announcements = &$announcementDao->getAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId);
+			$announcements =& $announcementDao->getAnnouncementsNotExpiredByConferenceId($conferenceId, $schedConfId);
 		}
 
 		// Get date of most recent announcement
@@ -117,7 +117,7 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 				$dateUpdated = $lastDateUpdated;
 			}
 		} else {
-			$mostRecentAnnouncement = &$announcementDao->getMostRecentAnnouncementByConferenceId($conferenceId, $schedConfId);
+			$mostRecentAnnouncement =& $announcementDao->getMostRecentAnnouncementByConferenceId($conferenceId, $schedConfId);
 			$dateUpdated = $mostRecentAnnouncement->getDatetimePosted();
 			if (empty($lastDateUpdated) || (strtotime($dateUpdated) > strtotime($lastDateUpdated))) { 
 				$announcementFeedPlugin->updateSetting($conference->getConferenceId(), $schedConfId, 'dateUpdated', $dateUpdated, 'string');			
@@ -127,7 +127,7 @@ class AnnouncementFeedGatewayPlugin extends GatewayPlugin {
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('selfUrl', Request::getCompleteUrl()); 
 		$templateMgr->assign('dateUpdated', $dateUpdated);
 		$templateMgr->assign('ocsVersion', $version->getVersionString());

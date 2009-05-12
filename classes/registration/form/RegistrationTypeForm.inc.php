@@ -45,8 +45,8 @@ class RegistrationTypeForm extends Form {
 			REGISTRATION_TYPE_ACCESS_BOTH => Locale::translate('manager.registrationTypes.access.both')
 		);
 
-		$currencyDao = &DAORegistry::getDAO('CurrencyDAO');
-		$currencies = &$currencyDao->getCurrencies();
+		$currencyDao =& DAORegistry::getDAO('CurrencyDAO');
+		$currencies =& $currencyDao->getCurrencies();
 		$this->validCurrencies = array();
 		while (list(, $currency) = each($currencies)) {
 			$this->validCurrencies[$currency->getCodeAlpha()] = $currency->getName() . ' (' . $currency->getCodeAlpha() . ')';
@@ -106,7 +106,7 @@ class RegistrationTypeForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('dateExtentFuture', REGISTRATION_TYPE_YEAR_OFFSET_FUTURE);
 		$templateMgr->assign('typeId', $this->typeId);
 		$templateMgr->assign('validCurrencies', $this->validCurrencies);
@@ -170,7 +170,7 @@ class RegistrationTypeForm extends Form {
 	 * Save registration type. 
 	 */
 	function execute() {
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 
 		if (isset($this->typeId)) {
 			$registrationType =& $this->registrationTypeDao->getRegistrationType($this->typeId);

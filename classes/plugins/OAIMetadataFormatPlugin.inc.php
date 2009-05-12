@@ -83,7 +83,7 @@ class OAIMetadataFormatPlugin extends Plugin {
 	function callback_formatRequest($hookName, $args) {
 		$namesOnly = $args[0];
 		$identifier = $args[1];
-		$formats = &$args[2];
+		$formats =& $args[2];
 
 		if ($namesOnly) {
 			$formats = array_merge($formats,array($this->getMetadataPrefix()));

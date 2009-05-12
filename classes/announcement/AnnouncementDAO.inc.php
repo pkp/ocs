@@ -35,7 +35,7 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 			$schedConfArgs = array(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT *
 			FROM announcements
 			WHERE (assoc_type = ? AND assoc_id = ?)' .
@@ -65,7 +65,7 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 			$schedConfArgs = array(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT *
 			FROM announcements
 			WHERE (assoc_type = ? AND assoc_id = ?)' .
@@ -95,7 +95,7 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 			$schedConfArgs = array(ASSOC_TYPE_SCHED_CONF, $schedConfId);
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT *
 			FROM announcements
 			WHERE (assoc_type = ? AND assoc_id = ?)' .

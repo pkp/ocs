@@ -158,7 +158,7 @@ class TrackDirectorSubmission extends Paper {
 	 * @return array
 	 */
 	function &getEditAssignments() {
-		$editAssignments = &$this->getData('editAssignments');
+		$editAssignments =& $this->getData('editAssignments');
 		return $editAssignments;
 	}
 
@@ -422,7 +422,7 @@ class TrackDirectorSubmission extends Paper {
 	 * @return array PaperGalley
 	 */
 	function &getGalleys() {
-		$galleys = &$this->getData('galleys');
+		$galleys =& $this->getData('galleys');
 		return $galleys;
 	}
 

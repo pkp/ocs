@@ -133,7 +133,7 @@ class Action {
 
 
 				// Add log entry
-				$user = &Request::getUser();
+				$user =& Request::getUser();
 				import('paper.log.PaperLog');
 				import('paper.log.PaperEventLogEntry');
 				PaperLog::logEvent($paper->getPaperId(), PAPER_LOG_METADATA_UPDATE, LOG_TYPE_DEFAULT, 0, 'log.director.metadataModified', array('directorName' => $user->getFullName()));
@@ -223,10 +223,10 @@ class Action {
 	 * @param $user object The user who owns the comment, or null to default to Request::getUser
 	 */
 	function deleteComment($commentId, $user = null) {
-		if ($user == null) $user = &Request::getUser();
+		if ($user == null) $user =& Request::getUser();
 
-		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
-		$comment = &$paperCommentDao->getPaperCommentById($commentId);
+		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$comment =& $paperCommentDao->getPaperCommentById($commentId);
 
 		if ($comment->getAuthorId() == $user->getUserId()) {
 			if (!HookRegistry::call('Action::deleteComment', array(&$comment))) {

@@ -36,7 +36,7 @@ class TrackDirectorAction extends Action {
 	 */
 	function changeTrack(&$trackDirectorSubmission, $trackId) {
 		if (!HookRegistry::call('TrackDirectorAction::changeTrack', array(&$trackDirectorSubmission, $trackId))) {
-			$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+			$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 			$trackDirectorSubmission->setTrackId((int) $trackId);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 		}
@@ -64,8 +64,8 @@ class TrackDirectorAction extends Action {
 		$editAssignments =& $trackDirectorSubmission->getEditAssignments();
 		if (empty($editAssignments)) return;
 
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$user = &Request::getUser();
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$user =& Request::getUser();
 		$directorDecision = array(
 			'editDecisionId' => null,
 			'directorId' => $user->getUserId(),
@@ -145,7 +145,7 @@ class TrackDirectorAction extends Action {
 		$trackDirectorSubmission->stampStatusModified();
 
 		// Commit the paper changes
-		$paperDao = &DAORegistry::getDao('PaperDAO');
+		$paperDao =& DAORegistry::getDao('PaperDAO');
 		$paperDao->updatePaper($trackDirectorSubmission);
 	}
 
@@ -156,12 +156,12 @@ class TrackDirectorAction extends Action {
 	 * @param $stage int
 	 */
 	function addReviewer($trackDirectorSubmission, $reviewerId, $stage) {
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &Request::getUser();
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& Request::getUser();
 
-		$reviewer = &$userDao->getUser($reviewerId);
+		$reviewer =& $userDao->getUser($reviewerId);
 
 		// Check to see if the requested reviewer is not already
 		// assigned to review this paper.
@@ -184,7 +184,7 @@ class TrackDirectorAction extends Action {
 
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($trackDirectorSubmission->getPaperId(), $reviewerId, $stage);
 
-			$schedConf = &Request::getSchedConf();
+			$schedConf =& Request::getSchedConf();
 			if ($schedConf->getSetting('reviewDeadlineType') != null) {
 				if ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_ABSOLUTE) {
 					TrackDirectorAction::setDueDate($trackDirectorSubmission->getPaperId(), $reviewAssignment->getReviewId(), $schedConf->getSetting('numWeeksPerReviewAbsolute'), null, false);
@@ -205,15 +205,15 @@ class TrackDirectorAction extends Action {
 	 * @param $reviewId int
 	 */
 	function clearReview($trackDirectorSubmission, $reviewId) {
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &Request::getUser();
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& Request::getUser();
 
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 		if (isset($reviewAssignment) && $reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId() && !HookRegistry::call('TrackDirectorAction::clearReview', array(&$trackDirectorSubmission, $reviewAssignment))) {
-			$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return false;
 			$trackDirectorSubmission->removeReviewAssignment($reviewId);
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
@@ -232,15 +232,15 @@ class TrackDirectorAction extends Action {
 	 * @return boolean true iff ready for redirect
 	 */
 	function notifyReviewer($trackDirectorSubmission, $reviewId, $send = false) {
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
-		$user = &Request::getUser();
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		$user =& Request::getUser();
 
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled');
 
@@ -259,7 +259,7 @@ class TrackDirectorAction extends Action {
 		}
 
 		if ($reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
-			$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return true;
 
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -345,15 +345,15 @@ class TrackDirectorAction extends Action {
 	 * @return boolean true iff ready for redirect
 	 */
 	function cancelReview($trackDirectorSubmission, $reviewId, $send = false) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$conference = &Request::getConference();
-		$user = &Request::getUser();
+		$conference =& Request::getConference();
+		$user =& Request::getUser();
 
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
 
 		if ($reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
@@ -407,14 +407,14 @@ class TrackDirectorAction extends Action {
 	 * @return boolean true iff no error was encountered
 	 */
 	function remindReviewer($trackDirectorSubmission, $reviewId, $send = false) {
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
-		$user = &Request::getUser();
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		$user =& Request::getUser();
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 		$reviewerAccessKeysEnabled = $schedConf->getSetting('reviewerAccessKeysEnabled');
 
 		// If we're using access keys, disable the address fields
@@ -434,7 +434,7 @@ class TrackDirectorAction extends Action {
 			HookRegistry::call('TrackDirectorAction::remindReviewer', array(&$trackDirectorSubmission, &$reviewAssignment, &$email));
 			$email->setAssoc(PAPER_EMAIL_REVIEW_REMIND, PAPER_EMAIL_TYPE_REVIEW, $reviewId);
 
-			$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 
 			if ($reviewerAccessKeysEnabled) {
 				import('security.AccessKeyManager');
@@ -466,7 +466,7 @@ class TrackDirectorAction extends Action {
 			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
 			return true;
 		} elseif ($reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
-			$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 
 			if (!Request::getUserVar('continued')) {
 				if (!isset($reviewer)) return true;
@@ -509,20 +509,20 @@ class TrackDirectorAction extends Action {
 	 * @return boolean true iff ready for redirect
 	 */
 	function thankReviewer($trackDirectorSubmission, $reviewId, $send = false) {
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$conference = &Request::getConference();
-		$user = &Request::getUser();
+		$conference =& Request::getConference();
+		$user =& Request::getUser();
 
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 		import('mail.PaperMailTemplate');
 		$email = new PaperMailTemplate($trackDirectorSubmission, 'REVIEW_ACK');
 
 		if ($reviewAssignment->getPaperId() == $trackDirectorSubmission->getPaperId()) {
-			$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return true;
 
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -559,12 +559,12 @@ class TrackDirectorAction extends Action {
 	 * @param $quality int
 	 */
 	function rateReviewer($paperId, $reviewId, $quality = null) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &Request::getUser();
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& Request::getUser();
 
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
 		if ($reviewAssignment->getPaperId() == $paperId && !HookRegistry::call('TrackDirectorAction::rateReviewer', array(&$reviewAssignment, &$reviewer, &$quality))) {
@@ -593,11 +593,11 @@ class TrackDirectorAction extends Action {
 	 * @param $viewable boolean
 	 */
 	function makeReviewerFileViewable($paperId, $reviewId, $fileId, $revision, $viewable = false) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		$paperFile = &$paperFileDao->getPaperFile($fileId, $revision);
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$paperFile =& $paperFileDao->getPaperFile($fileId, $revision);
 
 		if ($reviewAssignment->getPaperId() == $paperId && $reviewAssignment->getReviewerFileId() == $fileId && !HookRegistry::call('TrackDirectorAction::makeReviewerFileViewable', array(&$reviewAssignment, &$paperFile, &$viewable))) {
 			$paperFile->setViewable($viewable);
@@ -614,12 +614,12 @@ class TrackDirectorAction extends Action {
 	 * @param $logChange boolean
 	 */
 	function setDueDate($paperId, $reviewId, $dueDate = null, $numWeeks = null, $logChange = true) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &Request::getUser();
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& Request::getUser();
 
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
 		if ($reviewAssignment->getPaperId() == $paperId && !HookRegistry::call('TrackDirectorAction::setDueDate', array(&$reviewAssignment, &$reviewer, &$dueDate, &$numWeeks))) {
@@ -671,14 +671,14 @@ class TrackDirectorAction extends Action {
 	 * @return boolean true iff ready for redirect
 	 */
 	function unsuitableSubmission($trackDirectorSubmission, $send = false) {
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 
-		$author = &$userDao->getUser($trackDirectorSubmission->getUserId());
+		$author =& $userDao->getUser($trackDirectorSubmission->getUserId());
 		if (!isset($author)) return true;
 
 		import('mail.PaperMailTemplate');
@@ -715,12 +715,12 @@ class TrackDirectorAction extends Action {
 	 * @param $recommendation int
 	 */
 	function setReviewerRecommendation($paperId, $reviewId, $recommendation, $acceptOption) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &Request::getUser();
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& Request::getUser();
 
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId(), true);
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId(), true);
 
 		if ($reviewAssignment->getPaperId() == $paperId && !HookRegistry::call('TrackDirectorAction::setReviewerRecommendation', array(&$reviewAssignment, &$reviewer, &$recommendation, &$acceptOption))) {
 			$reviewAssignment->setRecommendation($recommendation);
@@ -770,8 +770,8 @@ class TrackDirectorAction extends Action {
 	 * @param $reviewFormId int
 	 */
 	function addReviewForm($trackDirectorSubmission, $reviewId, $reviewFormId) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 		if (HookRegistry::call('TrackDirectorAction::addReviewForm', array(&$trackDirectorSubmission, &$reviewAssignment, &$reviewId, &$reviewFormId))) return $reviewFormId;
 
@@ -796,8 +796,8 @@ class TrackDirectorAction extends Action {
 	 * @param $reviewId int
 	 */
 	function viewReviewFormResponse($trackDirectorSubmission, $reviewId) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 		if (HookRegistry::call('TrackDirectorAction::viewReviewFormResponse', array(&$trackDirectorSubmission, &$reviewAssignment, &$reviewId))) return $reviewId;
 
@@ -824,9 +824,9 @@ class TrackDirectorAction extends Action {
 	function setEditingFile($trackDirectorSubmission, $fileId, $revision, $createGalley = false) {
 		import('file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($trackDirectorSubmission->getPaperId());
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		$user = &Request::getUser();
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+		$user =& Request::getUser();
 
 		if (!HookRegistry::call('TrackDirectorAction::setEditingFile', array(&$trackDirectorSubmission, &$fileId, &$revision))) {
 			// Copy the file from the director decision file folder to the copyedit file folder
@@ -879,7 +879,7 @@ class TrackDirectorAction extends Action {
 	function uploadReviewVersion($trackDirectorSubmission) {
 		import('file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($trackDirectorSubmission->getPaperId());
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
 		$fileName = 'upload';
 		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadReviewVersion', array(&$trackDirectorSubmission))) {
@@ -909,8 +909,8 @@ class TrackDirectorAction extends Action {
 	function uploadDirectorVersion($trackDirectorSubmission) {
 		import('file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($trackDirectorSubmission->getPaperId());
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$user = &Request::getUser();
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$user =& Request::getUser();
 
 		$fileName = 'upload';
 		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadDirectorVersion', array(&$trackDirectorSubmission))) {
@@ -942,8 +942,8 @@ class TrackDirectorAction extends Action {
 	function completePaper($trackDirectorSubmission, $complete) {
 		import('file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($trackDirectorSubmission->getPaperId());
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$user = &Request::getUser();
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$user =& Request::getUser();
 
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');
@@ -988,8 +988,8 @@ class TrackDirectorAction extends Action {
 	 * @param $trackDirectorSubmission object
 	 */
 	function archiveSubmission($trackDirectorSubmission) {
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-		$user = &Request::getUser();
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$user =& Request::getUser();
 
 		if (HookRegistry::call('TrackDirectorAction::archiveSubmission', array(&$trackDirectorSubmission))) return;
 
@@ -1012,7 +1012,7 @@ class TrackDirectorAction extends Action {
 	function restoreToQueue($trackDirectorSubmission) {
 		if (HookRegistry::call('TrackDirectorAction::restoreToQueue', array(&$trackDirectorSubmission))) return;
 
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
 		// Determine which queue to return the paper to: the
 		// scheduling queue or the editing queue.
@@ -1046,7 +1046,7 @@ class TrackDirectorAction extends Action {
 	function uploadLayoutVersion($submission) {
 		import('file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($submission->getPaperId());
-		$submissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$submissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
 		$fileName = 'layoutFile';
 		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadLayoutVersion', array(&$submission))) {
@@ -1064,8 +1064,8 @@ class TrackDirectorAction extends Action {
 	 * @param $direction char u = up, d = down
 	 */
 	function orderGalley($paper, $galleyId, $direction) {
-		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-		$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 		if (isset($galley)) {
 			$galley->setSequence($galley->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
 			$galleyDao->updateGalley($galley);
@@ -1081,8 +1081,8 @@ class TrackDirectorAction extends Action {
 	function deleteGalley($paper, $galleyId) {
 import('file.PaperFileManager');
 
-		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-		$galley = &$galleyDao->getGalley($galleyId, $paper->getPaperId());
+		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$galley =& $galleyDao->getGalley($galleyId, $paper->getPaperId());
 
 		if (isset($galley) && !HookRegistry::call('TrackDirectorAction::deleteGalley', array(&$paper, &$galley))) {
 			$paperFileManager = new PaperFileManager($paper->getPaperId());
@@ -1111,8 +1111,8 @@ import('file.PaperFileManager');
 	 * @param $direction char u = up, d = down
 	 */
 	function orderSuppFile($paper, $suppFileId, $direction) {
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-		$suppFile = &$suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
 		if (isset($suppFile)) {
 			$suppFile->setSequence($suppFile->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
 			$suppFileDao->updateSuppFile($suppFile);
@@ -1128,9 +1128,9 @@ import('file.PaperFileManager');
 	function deleteSuppFile($paper, $suppFileId) {
 		import('file.PaperFileManager');
 
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 
-		$suppFile = &$suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
+		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
 		if (isset($suppFile) && !HookRegistry::call('TrackDirectorAction::deleteSuppFile', array(&$paper, &$suppFile))) {
 			if ($suppFile->getFileId()) {
 				$paperFileManager = new PaperFileManager($paper->getPaperId());
@@ -1187,8 +1187,8 @@ import('file.PaperFileManager');
 	function addSubmissionNote($paperId) {
 		import('file.PaperFileManager');
 
-		$paperNoteDao = &DAORegistry::getDAO('PaperNoteDAO');
-		$user = &Request::getUser();
+		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
+		$user =& Request::getUser();
 
 		$paperNote = new PaperNote();
 		$paperNote->setPaperId($paperId);
@@ -1229,7 +1229,7 @@ import('file.PaperFileManager');
 			$paperFileManager->deleteFile($fileId);
 		}
 
-		$paperNoteDao = &DAORegistry::getDAO('PaperNoteDAO');
+		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
 		$paperNoteDao->deletePaperNoteById($noteId);
 	}
 
@@ -1240,8 +1240,8 @@ import('file.PaperFileManager');
 	function updateSubmissionNote($paperId) {
 		import('file.PaperFileManager');
 
-		$paperNoteDao = &DAORegistry::getDAO('PaperNoteDAO');
-		$user = &Request::getUser();
+		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
+		$user =& Request::getUser();
 
 		$paperNote = new PaperNote();
 		$paperNote->setNoteId(Request::getUserVar('noteId'));
@@ -1282,12 +1282,12 @@ import('file.PaperFileManager');
 
 		import('file.PaperFileManager');
 
-		$paperNoteDao = &DAORegistry::getDAO('PaperNoteDAO');
+		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
 
 		$fileIds = $paperNoteDao->getAllPaperNoteFileIds($paperId);
 
 		if (!empty($fileIds)) {
-			$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+			$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 			$paperFileManager = new PaperFileManager($paperId);
 
 			foreach ($fileIds as $fileId) {
@@ -1444,7 +1444,7 @@ import('file.PaperFileManager');
 				break;
 		}
 
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 		import('mail.PaperMailTemplate');
 		$email = new PaperMailTemplate($trackDirectorSubmission, $templateName);
 
@@ -1484,18 +1484,18 @@ import('file.PaperFileManager');
 					'paperTitle' => $trackDirectorSubmission->getLocalizedTitle()
 				));
 			} elseif (Request::getUserVar('importPeerReviews')) {
-				$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 				$hasBody = false;
 				for ($stage = $trackDirectorSubmission->getCurrentStage(); $stage == REVIEW_STAGE_ABSTRACT || $stage == REVIEW_STAGE_PRESENTATION; $stage--) {
-					$reviewAssignments = &$reviewAssignmentDao->getReviewAssignmentsByPaperId($trackDirectorSubmission->getPaperId(), $stage);
-					$reviewIndexes = &$reviewAssignmentDao->getReviewIndexesForStage($trackDirectorSubmission->getPaperId(), $stage);
+					$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($trackDirectorSubmission->getPaperId(), $stage);
+					$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForStage($trackDirectorSubmission->getPaperId(), $stage);
 
 					$body = '';
 					foreach ($reviewAssignments as $reviewAssignment) {
 						// If the reviewer has completed the assignment, then import the review.
 						if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
 							// Get the comments associated with this review assignment
-							$paperComments = &$paperCommentDao->getPaperComments($trackDirectorSubmission->getPaperId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getReviewId());
+							$paperComments =& $paperCommentDao->getPaperComments($trackDirectorSubmission->getPaperId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getReviewId());
 							
 							if ($paperComments) {
 								$body .= "------------------------------------------------------\n";
@@ -1569,20 +1569,20 @@ import('file.PaperFileManager');
 	 * @return boolean true iff ready for redirect
 	 */
 	function blindCcReviewsToReviewers($paper, $send = false, $inhibitExistingEmail = false) {
-		$commentDao = &DAORegistry::getDAO('PaperCommentDAO');
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$conference = &Request::getConference();
+		$commentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$conference =& Request::getConference();
 
-		$comments = &$commentDao->getPaperComments($paper->getPaperId(), COMMENT_TYPE_DIRECTOR_DECISION);
-		$reviewAssignments = &$reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getPaperId(), $paper->getCurrentStage());
+		$comments =& $commentDao->getPaperComments($paper->getPaperId(), COMMENT_TYPE_DIRECTOR_DECISION);
+		$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paper->getPaperId(), $paper->getCurrentStage());
 
 		$commentsText = "";
 		foreach ($comments as $comment) {
 			$commentsText .= String::html2utf(strip_tags($comment->getComments())) . "\n\n";
 		}
 
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 		import('mail.PaperMailTemplate');
 		$email = new PaperMailTemplate($paper, 'SUBMISSION_DECISION_REVIEWERS');
 
@@ -1595,7 +1595,7 @@ import('file.PaperFileManager');
 				$email->clearRecipients();
 				foreach ($reviewAssignments as $reviewAssignment) {
 					if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
-						$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+						$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 
 						if (isset($reviewer)) $email->addBcc($reviewer->getEmail(), $reviewer->getFullName());
 					}
@@ -1618,12 +1618,12 @@ import('file.PaperFileManager');
 	 * @param $reviewId int
 	 */
 	function confirmReviewForReviewer($reviewId) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &Request::getUser();
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& Request::getUser();
 
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId(), true);
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId(), true);
 
 		if (HookRegistry::call('TrackDirectorAction::confirmReviewForReviewer', array(&$reviewAssignment, &$reviewer))) return;
 
@@ -1657,12 +1657,12 @@ import('file.PaperFileManager');
 	 * @param $reviewId int
 	 */
 	function uploadReviewForReviewer($reviewId) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$user = &Request::getUser();
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& Request::getUser();
 
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($reviewId);
-		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId(), true);
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId(), true);
 
 		if (HookRegistry::call('TrackDirectorAction::uploadReviewForReviewer', array(&$reviewAssignment, &$reviewer))) return;
 
@@ -1718,7 +1718,7 @@ import('file.PaperFileManager');
 	function updateCommentsStatus($submission, $commentsStatus) {
 		if (HookRegistry::call('TrackDirectorAction::updateCommentsStatus', array(&$submission, &$commentsStatus))) return;
 
-		$submissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$submissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 		$submission->setCommentsStatus($commentsStatus); // FIXME validate this?
 		$submissionDao->updateTrackDirectorSubmission($submission);
 	}

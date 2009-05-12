@@ -74,10 +74,10 @@ class ConferenceSetupStep3Form extends ConferenceSetupForm {
 	 * Display the form.
 	 */
 	function display() {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 
 		// Ensure upload file settings are reloaded when the form is displayed.
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign(array(
 			'homeHeaderTitleImage' => $conference->getSetting('homeHeaderTitleImage'),
 			'homeHeaderLogoImage'=> $conference->getSetting('homeHeaderLogoImage'),
@@ -90,10 +90,10 @@ class ConferenceSetupStep3Form extends ConferenceSetupForm {
 
 	function execute() {
 		// Save alt text for images
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$conferenceId = $conference->getConferenceId();
 		$locale = $this->getFormLocale();
-		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 		$images = $this->images;
 
 		foreach($images as $settingName) {

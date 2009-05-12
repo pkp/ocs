@@ -31,7 +31,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 */
 	function initData() {
 		if (isset($this->paper)) {
-			$paper = &$this->paper;
+			$paper =& $this->paper;
 			$this->_data = array(
 			);
 		}
@@ -51,10 +51,10 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		// Get supplementary files for this paper
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 		if ($this->paper->getSubmissionFileId() != null) {
 			$templateMgr->assign_by_ref('submissionFile', $paperFileDao->getPaperFile($this->paper->getSubmissionFileId()));
 		}
@@ -70,7 +70,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		import("file.PaperFileManager");
 
 		$paperFileManager = new PaperFileManager($this->paperId);
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
 
 		if ($paperFileManager->uploadedFileExists($fileName)) {
 			// upload new submission file, overwriting previous if necessary
@@ -92,8 +92,8 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 */
 	function execute() {
 		// Update paper
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$paper = &$this->paper;
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$paper =& $this->paper;
 
 		if ($paper->getSubmissionProgress() <= $this->step) {
 			$schedConf =& Request::getSchedConf();

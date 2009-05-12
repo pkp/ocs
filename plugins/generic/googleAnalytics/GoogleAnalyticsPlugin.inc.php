@@ -94,7 +94,7 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 	 * @param $subclass boolean
 	 */
 	function setBreadcrumbs($isSubclass = false) {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$pageCrumbs = array(
 			array(
 				Request::url(null, null,  'user'),
@@ -140,7 +140,7 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 	 * Determine whether or not this plugin is enabled.
 	 */
 	function getEnabled() {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		if (!$conference) return false;
 		return $this->getSetting($conference->getConferenceId(), 0, 'enabled');
 	}
@@ -149,7 +149,7 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 	 * Set the enabled/disabled state of this plugin
 	 */
 	function setEnabled($enabled) {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		if ($conference) {
 			$this->updateSetting($conference->getConferenceId(), 0, 'enabled', $enabled ? true : false);
 			return true;
@@ -162,13 +162,13 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 	 */  
 	function insertFooter($hookName, $params) {
 		if ($this->getEnabled()) {
-			$smarty = &$params[1];
-			$output = &$params[2];
-			$templateMgr = &TemplateManager::getManager();
+			$smarty =& $params[1];
+			$output =& $params[2];
+			$templateMgr =& TemplateManager::getManager();
 			$currentConference = $templateMgr->get_template_vars('currentConference');
 
 			if (!empty($currentConference)) {
-				$conference = &Request::getConference();
+				$conference =& Request::getConference();
 				$conferenceId = $conference->getConferenceId();
 				$googleAnalyticsSiteId = $this->getSetting($conferenceId, 0, 'googleAnalyticsSiteId');
 
@@ -194,9 +194,9 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
  	 * @return boolean
  	 */
 	function manage($verb, $args, &$message) {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$returner = true;
 
 		switch ($verb) {

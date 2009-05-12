@@ -33,15 +33,15 @@ class AuthorSubmissionDAO extends DAO {
 	 */
 	function AuthorSubmissionDAO() {
 		parent::DAO();
-		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
-		$this->userDao = &DAORegistry::getDAO('UserDAO');
-		$this->reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-		$this->paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-		$this->paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
-		$this->galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
+		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
+		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$this->userDao =& DAORegistry::getDAO('UserDAO');
+		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$this->paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$this->paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$this->galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 	}
 
 	/**
@@ -79,7 +79,7 @@ class AuthorSubmissionDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnAuthorSubmissionFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnAuthorSubmissionFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -140,7 +140,7 @@ class AuthorSubmissionDAO extends DAO {
 	function updateAuthorSubmission(&$authorSubmission) {
 		// Update paper
 		if ($authorSubmission->getPaperId()) {
-			$paper = &$this->paperDao->getPaper($authorSubmission->getPaperId());
+			$paper =& $this->paperDao->getPaper($authorSubmission->getPaperId());
 
 			// Only update fields that an author can actually edit.
 			$paper->setRevisedFileId($authorSubmission->getRevisedFileId());
@@ -189,7 +189,7 @@ class AuthorSubmissionDAO extends DAO {
 		);
 
 		while(!$result->EOF) {
-			$incompleteSubmissions[] = &$this->_returnAuthorSubmissionFromRow($result->getRowAssoc(false));
+			$incompleteSubmissions[] =& $this->_returnAuthorSubmissionFromRow($result->getRowAssoc(false));
 			$result->moveNext();
 		}
 		return $incompleteSubmissions;
@@ -253,7 +253,7 @@ class AuthorSubmissionDAO extends DAO {
 			$args[] = $stage;
 		}
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT edit_decision_id, director_id, decision, date_decided
 			FROM edit_decisions
 			WHERE paper_id = ? ' .
@@ -295,7 +295,7 @@ class AuthorSubmissionDAO extends DAO {
 				p.user_id = ?
 			GROUP BY p.status';
 
-		$result = &$this->retrieve($sql, array($schedConfId, $authorId));
+		$result =& $this->retrieve($sql, array($schedConfId, $authorId));
 
 		while (!$result->EOF) {
 			if ($result->fields['status'] != 1) {

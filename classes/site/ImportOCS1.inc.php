@@ -133,7 +133,7 @@ class ImportOCS1 {
 		$this->options = $options;
 
 		// Force a new database connection
-		$dbconn = &DBConnection::getInstance();
+		$dbconn =& DBConnection::getInstance();
 		$dbconn->reconnect(true);
 
 		// Create a connection to the old database
@@ -145,7 +145,7 @@ class ImportOCS1 {
 		// Assumes no character set (not supported by OCS 1.x)
 		// Forces open a new connection
 		$this->importDBConn = new DBConnection($db_type, $db_host, $db_login, $db_password, $db_name, false, false, true, false, true);
-		$dbconn = &$this->importDBConn->getDBConn();
+		$dbconn =& $this->importDBConn->getDBConn();
 
 		if (!$this->importDBConn->isConnected()) {
 			$this->error('Database connection error: ' . $dbconn->errorMsg());
@@ -184,8 +184,8 @@ class ImportOCS1 {
 	function loadGlobalConfig() {
 		$dbtable = $this->dbtable;
 		// Load global config
-		$result = &$this->importDao->retrieve("SELECT * FROM $dbtable[conference_global]");
-		$this->globalConfigInfo = &$result->fields;
+		$result =& $this->importDao->retrieve("SELECT * FROM $dbtable[conference_global]");
+		$this->globalConfigInfo =& $result->fields;
 		$result->Close();
 
 		if (!isset($this->globalConfigInfo['admin_login'])) {
@@ -227,7 +227,7 @@ class ImportOCS1 {
 		}
 		$this->conference =& $conference;
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		if ($this->conferenceIsNew) {
 			// All site admins should get a manager role by default
 			$admins = $roleDao->getUsersByRoleId(ROLE_ID_SITE_ADMIN);
@@ -268,10 +268,10 @@ class ImportOCS1 {
 		}
 
 		$dbtable = $this->dbtable;
-		$result = &$this->importDao->retrieve("SELECT id FROM $dbtable[conference] ORDER BY id");
+		$result =& $this->importDao->retrieve("SELECT id FROM $dbtable[conference] ORDER BY id");
 		$conferenceIds = array();
 		while (!$result->EOF) {
-			$conferenceIds[] = &$result->fields[0];
+			$conferenceIds[] =& $result->fields[0];
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -295,8 +295,8 @@ class ImportOCS1 {
 		$dbtable = $this->dbtable;
 
 		// Load sched conf config
-		$result = &$this->importDao->retrieve("SELECT * FROM $dbtable[conference] WHERE id = ?", array($id));
-		$this->conferenceInfo[$id] = &$result->fields;
+		$result =& $this->importDao->retrieve("SELECT * FROM $dbtable[conference] WHERE id = ?", array($id));
+		$this->conferenceInfo[$id] =& $result->fields;
 		$result->Close();
 
 		$conferenceInfo =& $this->conferenceInfo[$id];
@@ -389,9 +389,9 @@ class ImportOCS1 {
 			}
 		}
 
-		$result = &$this->importDao->retrieve('SELECT * FROM registrants ORDER BY cf, id');
+		$result =& $this->importDao->retrieve('SELECT * FROM registrants ORDER BY cf, id');
 		while (!$result->EOF) {
-			$row = &$result->fields;
+			$row =& $result->fields;
 			$schedConf =& $this->schedConfMap[$row['cf']];
 
 			$email = Core::cleanVar($row['email']);
@@ -487,12 +487,12 @@ class ImportOCS1 {
 			printf("Importing tracks\n");
 		}
 
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
 
-		$result = &$this->importDao->retrieve('SELECT * FROM tracks ORDER BY cf, track_order');
+		$result =& $this->importDao->retrieve('SELECT * FROM tracks ORDER BY cf, track_order');
 		$oldConferenceId = null;
 		while (!$result->EOF) {
-			$row = &$result->fields;
+			$row =& $result->fields;
 			if ($oldConferenceId != $row['cf']) {
 				$sequence = 0;
 				$oldConferenceId = $row['cf'];
@@ -529,12 +529,12 @@ class ImportOCS1 {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
-		$result = &$this->importDao->retrieve('SELECT * FROM reviewers');
+		$result =& $this->importDao->retrieve('SELECT * FROM reviewers');
 		while (!$result->EOF) {
-			$row = &$result->fields;
+			$row =& $result->fields;
 			$schedConf =& $this->schedConfMap[$row['cf']];
 			$schedConfId = $schedConf->getSchedConfId();
 
@@ -615,15 +615,15 @@ class ImportOCS1 {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
-		$galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
 
 		$unassignedTrackId = null;
 
-		$result = &$this->importDao->retrieve('SELECT * FROM papers ORDER by id');
+		$result =& $this->importDao->retrieve('SELECT * FROM papers ORDER by id');
 		while (!$result->EOF) {
-			$row = &$result->fields;
+			$row =& $result->fields;
 			$schedConf =& $this->schedConfMap[$row['cf']];
 			$schedConfId = $schedConf->getSchedConfId();
 
@@ -843,15 +843,15 @@ class ImportOCS1 {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
 
 		$unassignedTrackId = null;
 
-		$result = &$this->importDao->retrieve('SELECT * FROM reviews ORDER by timestamp');
+		$result =& $this->importDao->retrieve('SELECT * FROM reviews ORDER by timestamp');
 		while (!$result->EOF) {
-			$row = &$result->fields;
+			$row =& $result->fields;
 
 			$schedConf =& $this->schedConfMap[$row['cf']];
 			$paper =& $this->paperMap[$row['paper']];

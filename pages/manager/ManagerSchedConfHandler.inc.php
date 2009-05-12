@@ -31,20 +31,20 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 
 		$rangeInfo = Handler::getRangeInfo('schedConfs', array());
 
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		while (true) {
-			$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId(), $rangeInfo);
+			$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conference->getConferenceId(), $rangeInfo);
 			if ($schedConfs->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $schedConfs->getLastPageRangeInfo();
 			unset($schedConfs);
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 		$templateMgr->assign_by_ref('conference', $conference);
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.scheduledConferences');
@@ -124,7 +124,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 	function deleteSchedConf($args) {
 		$this->validate();
 
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 
 		if (isset($args) && !empty($args) && !empty($args[0])) {
 			$schedConfId = $args[0];
@@ -158,8 +158,8 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		$conference =& Request::getConference();
 
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$schedConf = &$schedConfDao->getSchedConf(Request::getUserVar('schedConfId'), $conference->getConferenceId());
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf(Request::getUserVar('schedConfId'), $conference->getConferenceId());
 
 		if ($schedConf != null) {
 			$schedConf->setSequence($schedConf->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));

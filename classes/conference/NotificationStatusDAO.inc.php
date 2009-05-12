@@ -18,13 +18,13 @@ class NotificationStatusDAO extends DAO {
 	function &getSchedConfNotifications($userId) {
 		$returner = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT j.sched_conf_id AS sched_conf_id, n.sched_conf_id AS notification FROM sched_confs j LEFT JOIN notification_status n ON j.sched_conf_id = n.sched_conf_id AND n.user_id = ? ORDER BY j.seq',
 			$userId
 		);
 
 		while (!$result->EOF) {
-			$row = &$result->GetRowAssoc(false);
+			$row =& $result->GetRowAssoc(false);
 			$returner[$row['sched_conf_id']] = $row['notification'];
 			$result->moveNext();
 		}
@@ -75,9 +75,9 @@ class NotificationStatusDAO extends DAO {
 	 * @return DAOResultFactory matching Users
 	 */
 	function &getNotifiableUsersBySchedConfId($schedConfId) {
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT u.* FROM users u, notification_status n WHERE u.user_id = n.user_id AND n.sched_conf_id = ?',
 			$schedConfId
 		);
@@ -92,9 +92,9 @@ class NotificationStatusDAO extends DAO {
 	 * @return int
 	 */
 	function getNotifiableUsersCount($schedConfId) {
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT count(*) FROM notification_status n WHERE n.sched_conf_id = ?',
 			$schedConfId
 		);

@@ -108,8 +108,8 @@ class SubmissionCommentsHandler extends AuthorHandler {
 
 		AuthorAction::saveComment($authorSubmission, $comment, $emailComment);
 
-		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
-		$comment = &$paperCommentDao->getPaperCommentById($commentId);
+		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$comment =& $paperCommentDao->getPaperCommentById($commentId);
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
@@ -127,8 +127,8 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		$paperId = $args[0];
 		$commentId = $args[1];
 
-		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
-		$comment = &$paperCommentDao->getPaperCommentById($commentId);
+		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$comment =& $paperCommentDao->getPaperCommentById($commentId);
 
 		$trackSubmissionHandler =& new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($paperId);
@@ -156,10 +156,10 @@ class SubmissionCommentsHandler extends AuthorHandler {
 
 		$isValid = true;
 
-		$paperCommentDao = &DAORegistry::getDAO('PaperCommentDAO');
-		$user = &Request::getUser();
+		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
+		$user =& Request::getUser();
 
-		$comment = &$paperCommentDao->getPaperCommentById($commentId);
+		$comment =& $paperCommentDao->getPaperCommentById($commentId);
 
 		if ($comment == null) {
 			$isValid = false;

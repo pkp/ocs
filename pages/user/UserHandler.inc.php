@@ -41,13 +41,13 @@ class UserHandler extends Handler {
 		$schedConfsToDisplay = array();
 		$conferencesToDisplay = array();
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 
 		$this->setupTemplate();
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$templateMgr->assign('helpTopicId', 'user.userHome');
 		
 		$allConferences = $allSchedConfs = array();
@@ -56,8 +56,8 @@ class UserHandler extends Handler {
 			unset($conference);
 
 			// Show roles for all conferences
-			$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-			$conferences = &$conferenceDao->getConferences();
+			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conferences =& $conferenceDao->getConferences();
 
 			// Fetch the user's roles for each conference
 			while ($conference =& $conferences->next()) {
@@ -65,10 +65,10 @@ class UserHandler extends Handler {
 				$schedConfId = 0;
 				
 				// First, the generic roles for this conference
-				$roles = &$roleDao->getRolesByUserId($userId, $conferenceId, 0);
+				$roles =& $roleDao->getRolesByUserId($userId, $conferenceId, 0);
 				if (!empty($roles)) {
 					$conferencesToDisplay[$conferenceId] =& $conference;
-					$rolesToDisplay[$conferenceId] = &$roles;
+					$rolesToDisplay[$conferenceId] =& $roles;
 				}
 
 				// Determine if conference setup is incomplete, to provide a message for JM
@@ -78,7 +78,7 @@ class UserHandler extends Handler {
 
 				// Second, scheduled conference-specific roles
 				// TODO: don't display scheduled conference roles if granted at conference level too?
-				$schedConfs = &$schedConfDao->getSchedConfsByConferenceId($conferenceId);
+				$schedConfs =& $schedConfDao->getSchedConfsByConferenceId($conferenceId);
 				while ($schedConf =& $schedConfs->next()) {
 					$schedConfId = $schedConf->getSchedConfId();
 
@@ -153,7 +153,7 @@ class UserHandler extends Handler {
 	 */
 	function getRoleDataForConference($userId, $conferenceId, $schedConfId, &$submissionsCount, &$isValid) {
 		if (Validation::isConferenceManager($conferenceId)) {
-			$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
+			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 			$isValid["ConferenceManager"][$conferenceId][$schedConfId] = true;
 		}
 		if (Validation::isDirector($conferenceId, $schedConfId)) {
@@ -198,8 +198,8 @@ class UserHandler extends Handler {
 	function setLocale($args) {
 		$setLocale = isset($args[0]) ? $args[0] : null;
 
-		$site = &Request::getSite();
-		$conference = &Request::getConference();
+		$site =& Request::getSite();
+		$conference =& Request::getConference();
 		if ($conference != null) {
 			$conferenceSupportedLocales = $conference->getSetting('supportedLocales');
 			if (!is_array($conferenceSupportedLocales)) {
@@ -208,7 +208,7 @@ class UserHandler extends Handler {
 		}
 
 		if (Locale::isLocaleValid($setLocale) && (!isset($conferenceSupportedLocales) || in_array($setLocale, $conferenceSupportedLocales)) && in_array($setLocale, $site->getSupportedLocales())) {
-			$session = &Request::getSession();
+			$session =& Request::getSession();
 			$session->setSessionVar('currentLocale', $setLocale);
 		}
 

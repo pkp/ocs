@@ -43,7 +43,7 @@ class ConferenceSiteSettingsForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('conferenceId', $this->conferenceId);
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
 		parent::display();
@@ -54,8 +54,8 @@ class ConferenceSiteSettingsForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->conferenceId)) {
-			$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-			$conference = &$conferenceDao->getConference($this->conferenceId);
+			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conference =& $conferenceDao->getConference($this->conferenceId);
 
 			if ($conference != null) {
 				$this->_data = array(
@@ -92,8 +92,8 @@ class ConferenceSiteSettingsForm extends Form {
 		$this->setData('enabled', (int)$this->getData('enabled'));
 
 		if (isset($this->conferenceId)) {
-			$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-			$conference = &$conferenceDao->getConference($this->conferenceId);
+			$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conference =& $conferenceDao->getConference($this->conferenceId);
 			$this->setData('oldPath', $conference->getPath());
 		}
 	}
@@ -102,10 +102,10 @@ class ConferenceSiteSettingsForm extends Form {
 	 * Save conference settings.
 	 */
 	function execute() {
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 
 		if (isset($this->conferenceId)) {
-			$conference = &$conferenceDao->getConference($this->conferenceId);
+			$conference =& $conferenceDao->getConference($this->conferenceId);
 		}
 
 		if (!isset($conference)) {
@@ -127,10 +127,10 @@ class ConferenceSiteSettingsForm extends Form {
 			$conferenceDao->resequenceConferences();
 
 			// Make the site administrator the conference manager
-			$sessionManager = &SessionManager::getManager();
-			$userSession = &$sessionManager->getUserSession();
+			$sessionManager =& SessionManager::getManager();
+			$userSession =& $sessionManager->getUserSession();
 			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($conferenceId)) {
-				$roleDao = &DAORegistry::getDAO('RoleDAO');
+				$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 				$role = new Role();
 				$role->setConferenceId($conferenceId);
@@ -148,7 +148,7 @@ class ConferenceSiteSettingsForm extends Form {
 			FileManager::mkdir(Config::getVar('files', 'public_files_dir') . '/conferences/' . $conferenceId . '/schedConfs');
 
 			// Install default conference settings
-			$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+			$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 			$titles = $this->getData('title');
 			Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DEFAULT_SETTINGS, LOCALE_COMPONENT_OCS_DEFAULT));
 			$conferenceSettingsDao->installSettings($conferenceId, 'registry/conferenceSettings.xml', array(

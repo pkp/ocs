@@ -31,10 +31,10 @@ class PublishedPaperDAO extends DAO {
 	 */
 	function PublishedPaperDAO() {
 		parent::DAO();
-		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
-		$this->galleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
+		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$this->galleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 	}
 
 	/**
@@ -197,7 +197,7 @@ class PublishedPaperDAO extends DAO {
 				break;
 		}
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT DISTINCT
 				pa.*,
 				p.*,
@@ -228,8 +228,8 @@ class PublishedPaperDAO extends DAO {
 
 		$currTrackId = 0;
 		while (!$result->EOF) {
-			$row = &$result->GetRowAssoc(false);
-			$publishedPaper = &$this->_returnPublishedPaperFromRow($row);
+			$row =& $result->GetRowAssoc(false);
+			$publishedPaper =& $this->_returnPublishedPaperFromRow($row);
 			if ($publishedPaper->getTrackId() != $currTrackId) {
 				$currTrackId = $publishedPaper->getTrackId();
 				$publishedPapers[$currTrackId] = array(
@@ -259,7 +259,7 @@ class PublishedPaperDAO extends DAO {
 
 		$publishedPapers = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT pa.*,
 				a.*,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
@@ -292,7 +292,7 @@ class PublishedPaperDAO extends DAO {
 
 		$currTrackId = 0;
 		while (!$result->EOF) {
-			$publishedPaper = &$this->_returnPublishedPaperFromRow($result->GetRowAssoc(false));
+			$publishedPaper =& $this->_returnPublishedPaperFromRow($result->GetRowAssoc(false));
 			$publishedPapers[] = $publishedPaper;
 			$result->moveNext();
 		}
@@ -309,7 +309,7 @@ class PublishedPaperDAO extends DAO {
 	 * @return PublishedPaper object
 	 */
 	function &getPublishedPaperById($pubId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM published_papers WHERE pub_id = ?', $pubId
 		);
 		$row = $result->GetRowAssoc(false);
@@ -376,7 +376,7 @@ class PublishedPaperDAO extends DAO {
 
 		$publishedPaper = null;
 		if ($result->RecordCount() != 0) {
-			$publishedPaper = &$this->_returnPublishedPaperFromRow($result->GetRowAssoc(false));
+			$publishedPaper =& $this->_returnPublishedPaperFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -395,7 +395,7 @@ class PublishedPaperDAO extends DAO {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT	pa.*,
 				a.*,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
@@ -426,7 +426,7 @@ class PublishedPaperDAO extends DAO {
 
 		$publishedPaper = null;
 		if ($result->RecordCount() != 0) {
-			$publishedPaper = &$this->_returnPublishedPaperFromRow($result->GetRowAssoc(false));
+			$publishedPaper =& $this->_returnPublishedPaperFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -444,8 +444,8 @@ class PublishedPaperDAO extends DAO {
 	 * @return PublishedPaper object
 	 */
 	function &getPublishedPaperByBestPaperId($schedConfId, $paperId, $previewAbstracts = null) {
-		$paper = &$this->getPublishedPaperByPublicPaperId($schedConfId, $paperId);
-		if (!isset($paper)) $paper = &$this->getPublishedPaperByPaperId((int) $paperId, $schedConfId, $previewAbstracts);
+		$paper =& $this->getPublishedPaperByPublicPaperId($schedConfId, $paperId);
+		if (!isset($paper)) $paper =& $this->getPublishedPaperByPaperId((int) $paperId, $schedConfId, $previewAbstracts);
 		return $paper;
 	}
 
@@ -623,7 +623,7 @@ class PublishedPaperDAO extends DAO {
 	 * @param $trackId int
 	 */
 	function deletePublishedPapersByTrackId($trackId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT pa.paper_id AS paper_id FROM published_papers pa, papers a WHERE pa.paper_id = a.paper_id AND a.track_id = ?', $trackId
 		);
 
@@ -691,7 +691,7 @@ class PublishedPaperDAO extends DAO {
 	 * Sequentially renumber published papers in their sequence order.
 	 */
 	function resequencePublishedPapers($trackId, $schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT pa.pub_id FROM published_papers pa, papers a WHERE a.track_id = ? AND a.paper_id = pa.paper_id AND pa.sched_conf_id = ? ORDER BY pa.seq',
 			array($trackId, $schedConfId)
 		);
@@ -717,7 +717,7 @@ class PublishedPaperDAO extends DAO {
 	 */
 	function getPublishedPaperAuthors($schedConfId) {
 		$authors = array();
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT aa.* FROM paper_authors aa, published_papers pa WHERE aa.paper_id = pa.paper_id AND pa.sched_conf_id = ? ORDER BY pa.sched_conf_id', $schedConfId
 		);
 
@@ -763,7 +763,7 @@ class PublishedPaperDAO extends DAO {
 	 * @return boolean
 	 */
 	function publicPaperIdExists($publicPaperId, $paperId, $schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM published_papers pa, papers a WHERE pa.paper_id = a.paper_id AND a.sched_conf_id = ? AND pa.public_paper_id = ? AND pa.paper_id <> ?',
 			array($schedConfId, $publicPaperId, $paperId)
 		);
@@ -781,7 +781,7 @@ class PublishedPaperDAO extends DAO {
 	 * @return array
 	 */
 	function getPaperYearRange($conferenceId = null) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT MAX(pp.date_published), MIN(pp.date_published) FROM published_papers pp, papers p, sched_confs sc WHERE pp.paper_id = p.paper_id AND pp.sched_conf_id = sc.sched_conf_id ' . (isset($conferenceId)?' AND sc.conference_id = ?':''),
 			isset($conferenceId)?$conferenceId:false
 		);

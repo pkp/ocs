@@ -54,7 +54,7 @@ class SchedConf extends DataObject {
 	 * @return string
 	 */
 	function &getConference() {
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 		$returner =& $conferenceDao->getConference($this->getConferenceId());
 		return $returner;
 	}
@@ -233,7 +233,7 @@ class SchedConf extends DataObject {
 	 * @return array
 	 */
 	function getSettings() {
-		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 		return $schedConfSettingsDao->getSchedConfSettings($this->getData('schedConfId'));
 	}
 
@@ -258,7 +258,7 @@ class SchedConf extends DataObject {
 	 * @return mixed
 	 */
 	function &getSetting($name, $locale = null) {
-		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
 		$setting =& $schedConfSettingsDao->getSetting($this->getData('schedConfId'), $name, $locale);
 		return $setting;
 	}

@@ -395,10 +395,10 @@ class SuppFile extends PaperFile {
 	function getBestSuppFileId($schedConf = null) {
 		// Retrieve the sched conf, if necessary.
 		if (!isset($schedConf)) {
-			$paperDao = &DAORegistry::getDAO('PaperDAO');
-			$paper = &$paperDao->getPaper($this->getPaperId());
-			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-			$schedConf = &$schedConfDao->getSchedConf($paper->getSchedConfId());
+			$paperDao =& DAORegistry::getDAO('PaperDAO');
+			$paper =& $paperDao->getPaper($this->getPaperId());
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
 		}
 
 		if ($schedConf->getSetting('enablePublicSuppFileId')) {

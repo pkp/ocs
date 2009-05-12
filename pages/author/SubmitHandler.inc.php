@@ -171,8 +171,8 @@ class SubmitHandler extends AuthorHandler {
 
 		if (!isset($editData) && $submitForm->validate()) {
 			$paperId = $submitForm->execute();
-			$conference = &Request::getConference();
-			$schedConf = &Request::getSchedConf();
+			$conference =& Request::getConference();
+			$schedConf =& Request::getSchedConf();
 
 			// For the "abstract only" or sequential review models, nothing else needs
 			// to be collected beyond page 2.
@@ -183,7 +183,7 @@ class SubmitHandler extends AuthorHandler {
 
 				// Send a notification to associated users
 				import('notification.Notification');
-				$roleDao = &DAORegistry::getDAO('RoleDAO');
+				$roleDao =& DAORegistry::getDAO('RoleDAO');
 				$notificationUsers = array();
 				$conferenceManagers = $roleDao->getUsersByRoleId(ROLE_ID_CONFERENCE_MANAGER);
 				$allUsers = $conferenceManagers->toArray();
@@ -199,7 +199,7 @@ class SubmitHandler extends AuthorHandler {
 						$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_PAPER_SUBMITTED);
 				}
 
-				$templateMgr = &TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign_by_ref('conference', $conference);
 				// If this is a director and there is a
 				// submission file, paper can be expedited.
@@ -320,7 +320,7 @@ class SubmitHandler extends AuthorHandler {
 
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paperId);
 		$suppFileDao->deleteSuppFileById($suppFileId, $paperId);
 
@@ -365,8 +365,8 @@ class SubmitHandler extends AuthorHandler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$user = &Request::getUser();
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$user =& Request::getUser();
 
 		if ($step !== false && ($step < 1 || $step > 5 || (!isset($paperId) && $step != 1))) {
 			Request::redirect(null, null, null, 'submit', array(1));

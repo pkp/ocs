@@ -23,9 +23,9 @@ class ProfileForm extends Form {
 	function ProfileForm() {
 		parent::Form('user/profile.tpl');
 
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 
-		$site = &Request::getSite();
+		$site =& Request::getSite();
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'user.profile.form.firstNameRequired'));
@@ -40,20 +40,20 @@ class ProfileForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('username', $user->getUsername());
 
-		$site = &Request::getSite();
+		$site =& Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$userSettingsDao = &DAORegistry::getDAO('UserSettingsDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
 
-		$schedConfs = &$schedConfDao->getEnabledSchedConfs();
-		$schedConfs = &$schedConfs->toArray();
+		$schedConfs =& $schedConfDao->getEnabledSchedConfs();
+		$schedConfs =& $schedConfs->toArray();
 
 		foreach ($schedConfs as $thisSchedConf) {
 			if ($thisSchedConf->getSetting('enableOpenAccessNotification') == true) {
@@ -99,7 +99,7 @@ class ProfileForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 
 		$this->_data = array(
 			'salutation' => $user->getSalutation(),
@@ -165,7 +165,7 @@ class ProfileForm extends Form {
 	 * Save profile settings.
 	 */
 	function execute() {
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 
 		$user->setSalutation($this->getData('salutation'));
 		$user->setFirstName($this->getData('firstName'));
@@ -185,7 +185,7 @@ class ProfileForm extends Form {
 		$user->setBiography($this->getData('biography'), null); // Localized
 		$user->setInterests($this->getData('interests'), null); // Localized
 
-		$site = &Request::getSite();
+		$site =& Request::getSite();
 		$availableLocales = $site->getSupportedLocales();
 
 		$locales = array();
@@ -196,11 +196,11 @@ class ProfileForm extends Form {
 		}
 		$user->setLocales($locales);
 
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		$userDao->updateUser($user);
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 
 		// Roles
 		$schedConf =& Request::getSchedConf();
@@ -235,9 +235,9 @@ class ProfileForm extends Form {
 
 		$openAccessNotify = Request::getUserVar('openAccessNotify');
 
-		$userSettingsDao = &DAORegistry::getDAO('UserSettingsDAO');
-		$schedConfs = &$schedConfDao->getSchedConfs();
-		$schedConfs = &$schedConfs->toArray();
+		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
+		$schedConfs =& $schedConfDao->getSchedConfs();
+		$schedConfs =& $schedConfs->toArray();
 
 		foreach ($schedConfs as $thisSchedConf) {
 			if ($thisSchedConf->getSetting('enableOpenAccessNotification') == true) {
@@ -250,8 +250,8 @@ class ProfileForm extends Form {
 		}
 
 		if ($user->getAuthId()) {
-			$authDao = &DAORegistry::getDAO('AuthSourceDAO');
-			$auth = &$authDao->getPlugin($user->getAuthId());
+			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+			$auth =& $authDao->getPlugin($user->getAuthId());
 		}
 
 		if (isset($auth)) {

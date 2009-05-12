@@ -33,10 +33,10 @@ class DirectorSubmissionDAO extends DAO {
 	 */
 	function DirectorSubmissionDAO() {
 		parent::DAO();
-		$this->paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
-		$this->userDao = &DAORegistry::getDAO('UserDAO');
-		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
+		$this->paperDao =& DAORegistry::getDAO('PaperDAO');
+		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$this->userDao =& DAORegistry::getDAO('UserDAO');
+		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 	}
 
 	/**
@@ -73,7 +73,7 @@ class DirectorSubmissionDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -127,7 +127,7 @@ class DirectorSubmissionDAO extends DAO {
 		$directorSubmission->setEditId($this->getInsertEditId());
 
 		// Insert review assignments.
-		$reviewAssignments = &$directorSubmission->getReviewAssignments();
+		$reviewAssignments =& $directorSubmission->getReviewAssignments();
 		for ($i=0, $count=count($reviewAssignments); $i < $count; $i++) {
 			$reviewAssignments[$i]->setPaperId($directorSubmission->getPaperId());
 			$this->reviewAssignmentDao->insertReviewAssignment($reviewAssignments[$i]);
@@ -263,7 +263,7 @@ class DirectorSubmissionDAO extends DAO {
 				break;
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			$sql,
 			$params,
 			$rangeInfo
@@ -316,7 +316,7 @@ class DirectorSubmissionDAO extends DAO {
 		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
 		while (!$result->EOF) {
-			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
+			$directorSubmission =& $this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 
 			// used to check if director exists for this submission
 			$editAssignments =& $directorSubmission->getEditAssignments();
@@ -355,14 +355,14 @@ class DirectorSubmissionDAO extends DAO {
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredDirectorSubmissions($schedConfId, $trackId, $directorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
 
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		// If the submission has passed this review stage, it's out of review.
 		$schedConfDao =& DAORegistry::getDao('SchedConfDAO');
 		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 
 		while (!$result->EOF) {
-			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
+			$directorSubmission =& $this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 			$paperId = $directorSubmission->getPaperId();
 			for ($i = 1; $i <= $directorSubmission->getCurrentStage(); $i++) {
 				$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paperId, $i);
@@ -450,7 +450,7 @@ class DirectorSubmissionDAO extends DAO {
 		$result = $this->getUnfilteredDirectorSubmissions($schedConfId);
 
 		while (!$result->EOF) {
-			$directorSubmission = &$this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
+			$directorSubmission =& $this->_returnDirectorSubmissionFromRow($result->GetRowAssoc(false));
 
 			// used to check if director exists for this submission
 			$editAssignments = $directorSubmission->getEditAssignments();
@@ -489,7 +489,7 @@ class DirectorSubmissionDAO extends DAO {
 			$args[] = $stage;
 		}
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT	edit_decision_id,
 				director_id,
 				decision,

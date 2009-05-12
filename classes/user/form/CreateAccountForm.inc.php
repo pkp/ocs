@@ -53,7 +53,7 @@ class CreateAccountForm extends Form {
 			$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.login.loginError', create_function('$username,$form', 'return Validation::checkCredentials($form->getData(\'username\'), $form->getData(\'password\'));'), array(&$this)));
 		} else {
 			// New user -- check required profile fields
-			$site = &Request::getSite();
+			$site =& Request::getSite();
 
 			$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.account.form.usernameExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByUsername'), array(), true));
 			$this->addCheck(new FormValidatorAlphaNum($this, 'username', 'required', 'user.account.form.usernameAlphaNumeric'));
@@ -68,8 +68,8 @@ class CreateAccountForm extends Form {
 				$this->addCheck(new FormValidatorCaptcha($this, 'captcha', 'captchaId', 'common.captchaField.badCaptcha'));
 			}
 
-			$authDao = &DAORegistry::getDAO('AuthSourceDAO');
-			$this->defaultAuth = &$authDao->getDefaultPlugin();
+			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+			$this->defaultAuth =& $authDao->getDefaultPlugin();
 			if (isset($this->defaultAuth)) {
 				$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.account.form.usernameExists', create_function('$username,$form,$auth', 'return (!$auth->userExists($username) || $auth->authenticate($username, $form->getData(\'password\')));'), array(&$this, $this->defaultAuth)));
 			}
@@ -83,11 +83,11 @@ class CreateAccountForm extends Form {
 	 */
 	function display() {
 
-		$templateMgr = &TemplateManager::getManager();
-		$site = &Request::getSite();
+		$templateMgr =& TemplateManager::getManager();
+		$site =& Request::getSite();
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		if ($this->captchaEnabled) {
 			import('captcha.CaptchaManager');
@@ -115,7 +115,7 @@ class CreateAccountForm extends Form {
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
 
-		$site = &Request::getSite();
+		$site =& Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 
 		$templateMgr->assign('helpTopicId', 'conference.users.index');		
@@ -213,8 +213,8 @@ class CreateAccountForm extends Form {
 		$requireValidation = Config::getVar('email', 'require_validation');
 		if ($this->existingUser) {
 			// Existing user in the system
-			$userDao = &DAORegistry::getDAO('UserDAO');
-			$user = &$userDao->getUserByUsername($this->getData('username'));
+			$userDao =& DAORegistry::getDAO('UserDAO');
+			$user =& $userDao->getUserByUsername($this->getData('username'));
 			if ($user == null) {
 				return false;
 			}
@@ -244,7 +244,7 @@ class CreateAccountForm extends Form {
 			$user->setDateRegistered(Core::getCurrentDate());
 			$user->setCountry($this->getData('country'));
 
-			$site = &Request::getSite();
+			$site =& Request::getSite();
 			$availableLocales = $site->getSupportedLocales();
 
 			$locales = array();
@@ -270,23 +270,23 @@ class CreateAccountForm extends Form {
 				$user->setDisabledReason(Locale::translate('user.login.accountNotValidated'));
 			}
 
-			$userDao = &DAORegistry::getDAO('UserDAO');
+			$userDao =& DAORegistry::getDAO('UserDAO');
 			$userDao->insertUser($user);
 			$userId = $user->getUserId();
 			if (!$userId) {
 				return false;
 			}
 
-			$sessionManager = &SessionManager::getManager();
-			$session = &$sessionManager->getUserSession();
+			$sessionManager =& SessionManager::getManager();
+			$session =& $sessionManager->getUserSession();
 			$session->setSessionVar('username', $user->getUsername());
 
 		}
 
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		// Roles users are allowed to register themselves in
 		$allowedRoles = array('reader' => 'createAsReader', 'author' => 'createAsAuthor', 'reviewer' => 'createAsReviewer');
@@ -320,7 +320,7 @@ class CreateAccountForm extends Form {
 		}
 
 		if (isset($allowedRoles['reader']) && $this->getData('openAccessNotification')) {
-			$userSettingsDao = &DAORegistry::getDAO('UserSettingsDAO');
+			$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
 			$userSettingsDao->updateSetting($userId, 'openAccessNotification', true, 'bool', $conference->getConferenceId());
 		}
 	}

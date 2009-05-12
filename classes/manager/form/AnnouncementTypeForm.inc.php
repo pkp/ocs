@@ -41,7 +41,7 @@ class AnnouncementTypeForm extends PKPAnnouncementTypeForm {
 	 * @param Announcement the announcement to be modified
 	 */
 	function _setAnnouncementTypeAssocId(&$announcementType) {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$announcementType->setAssocType(ASSOC_TYPE_CONFERENCE);
 		$announcementType->setAssocId($conference->getConferenceId());
 	}

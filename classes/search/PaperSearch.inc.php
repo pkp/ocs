@@ -117,7 +117,7 @@ class PaperSearch {
 			if (!empty($keyword['-']))
 				$mergedKeywords['-'][] = array('type' => $type, '+' => array(), '' => $keyword['-'], '-' => array());
 		}
-		$mergedResults = &PaperSearch::_getMergedKeywordResults($conference, $mergedKeywords, null, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
+		$mergedResults =& PaperSearch::_getMergedKeywordResults($conference, $mergedKeywords, null, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
 
 		$resultCount = count($mergedResults);
 		return $mergedResults;
@@ -134,7 +134,7 @@ class PaperSearch {
 		}
 
 		foreach ($keyword['+'] as $phrase) {
-			$results = &PaperSearch::_getMergedPhraseResults($conference, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
+			$results =& PaperSearch::_getMergedPhraseResults($conference, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
 			if ($mergedResults == null) {
 				$mergedResults = $results;
 			} else {
@@ -154,7 +154,7 @@ class PaperSearch {
 
 		if (!empty($mergedResults) || empty($keyword['+'])) {
 			foreach ($keyword[''] as $phrase) {
-				$results = &PaperSearch::_getMergedPhraseResults($conference, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
+				$results =& PaperSearch::_getMergedPhraseResults($conference, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
 				foreach ($results as $paperId => $count) {
 					if (isset($mergedResults[$paperId])) {
 						$mergedResults[$paperId] += $count;
@@ -165,7 +165,7 @@ class PaperSearch {
 			}
 
 			foreach ($keyword['-'] as $phrase) {
-				$results = &PaperSearch::_getMergedPhraseResults($conference, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
+				$results =& PaperSearch::_getMergedPhraseResults($conference, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
 				foreach ($results as $paperId => $count) {
 					if (isset($mergedResults[$paperId])) {
 						unset($mergedResults[$paperId]);
@@ -182,13 +182,13 @@ class PaperSearch {
 	 */
 	function &_getMergedPhraseResults(&$conference, &$phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours) {
 		if (isset($phrase['+'])) {
-			$mergedResults = &PaperSearch::_getMergedKeywordResults($conference, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
+			$mergedResults =& PaperSearch::_getMergedKeywordResults($conference, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
 			return $mergedResults;
 		}
 
 		$mergedResults = array();
-		$paperSearchDao = &DAORegistry::getDAO('PaperSearchDAO');
-		$results = &$paperSearchDao->getPhraseResults(
+		$paperSearchDao =& DAORegistry::getDAO('PaperSearchDAO');
+		$results =& $paperSearchDao->getPhraseResults(
 			$conference,
 			$phrase,
 			$publishedFrom,
@@ -198,7 +198,7 @@ class PaperSearch {
 			$resultCacheHours
 		);
 		while (!$results->eof()) {
-			$result = &$results->next();
+			$result =& $results->next();
 			$paperId = $result['paper_id'];
 			if (!isset($mergedResults[$paperId])) {
 				$mergedResults[$paperId] = $result['count'];
@@ -231,11 +231,11 @@ class PaperSearch {
 	 * results for the title index, and possibly elsewhere.
 	 */
 	function &formatResults(&$results) {
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
 
 		$publishedPaperCache = array();
 		$paperCache = array();
@@ -248,12 +248,12 @@ class PaperSearch {
 		foreach ($results as $paperId) {
 			// Get the paper, storing in cache if necessary.
 			if (!isset($paperCache[$paperId])) {
-				$publishedPaperCache[$paperId] = &$publishedPaperDao->getPublishedPaperByPaperId($paperId);
-				$paperCache[$paperId] = &$paperDao->getPaper($paperId);
+				$publishedPaperCache[$paperId] =& $publishedPaperDao->getPublishedPaperByPaperId($paperId);
+				$paperCache[$paperId] =& $paperDao->getPaper($paperId);
 			}
 			unset($paper, $publishedPaper);
-			$paper = &$paperCache[$paperId];
-			$publishedPaper = &$publishedPaperCache[$paperId];
+			$paper =& $paperCache[$paperId];
+			$publishedPaper =& $publishedPaperCache[$paperId];
 
 			if ($publishedPaper && $paper) {
 				$trackId = $paper->getTrackId();
@@ -271,7 +271,7 @@ class PaperSearch {
 
 				// Get the scheduled conference, storing in cache if necessary.
 				if (!isset($schedConfCache[$schedConfId])) {
-					$schedConfCache[$schedConfId] = &$schedConf;
+					$schedConfCache[$schedConfId] =& $schedConf;
 					import('schedConf.SchedConfAction');
 					$schedConfAvailabilityCache[$schedConfId] = SchedConfAction::mayViewProceedings($schedConf);
 				}
@@ -311,7 +311,7 @@ class PaperSearch {
 		// = sum of all the occurences for all keywords associated with
 		// that paper ID.
 		// resultCount contains the sum of result counts for all keywords.
-		$mergedResults = &PaperSearch::_getMergedArray($conference, $keywords, $publishedFrom, $publishedTo, $resultCount);
+		$mergedResults =& PaperSearch::_getMergedArray($conference, $keywords, $publishedFrom, $publishedTo, $resultCount);
 
 		// Convert mergedResults into an array (frequencyIndicator =>
 		// $paperId).
@@ -319,7 +319,7 @@ class PaperSearch {
 		// where higher is better, indicating the quality of the match.
 		// It is generated here in such a manner that matches with
 		// identical frequency do not collide.
-		$results = &PaperSearch::_getSparseArray($mergedResults, $resultCount);
+		$results =& PaperSearch::_getSparseArray($mergedResults, $resultCount);
 
 		$totalResults = count($results);
 

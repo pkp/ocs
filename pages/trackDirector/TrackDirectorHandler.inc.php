@@ -37,20 +37,20 @@ class TrackDirectorHandler extends Handler {
 		$this->validate();
 		$this->setupTemplate();
 
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 		$schedConfId = $schedConf->getSchedConfId();
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 
 		// Get the user's search conditions, if any
 		$searchField = Request::getUserVar('searchField');
 		$searchMatch = Request::getUserVar('searchMatch');
 		$search = Request::getUserVar('search');
 
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$trackDirectorSubmissionDao = &DAORegistry::getDAO('TrackDirectorSubmissionDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
-		$tracks = &$trackDao->getTrackTitles($schedConfId);
+		$tracks =& $trackDao->getTrackTitles($schedConfId);
 
 		$filterTrackOptions = array(
 			FILTER_TRACK_ALL => Locale::Translate('director.allTracks')
@@ -102,7 +102,7 @@ class TrackDirectorHandler extends Handler {
 			unset($submissions);
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 		$templateMgr->assign('trackOptions', $filterTrackOptions);
 		$templateMgr->assign('filterTrack', $filterTrack);
@@ -140,8 +140,8 @@ class TrackDirectorHandler extends Handler {
 	 */
 	function validate() {
 		parent::validate();
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		$page = Request::getRequestedPage();
 

@@ -30,7 +30,7 @@ class UserManagementForm extends Form {
 		parent::Form('manager/people/userProfileForm.tpl');
 
 		$this->userId = isset($userId) ? (int) $userId : null;
-		$site = &Request::getSite();
+		$site =& Request::getSite();
 
 		// Validation checks for this form
 		if ($userId == null) {
@@ -56,16 +56,16 @@ class UserManagementForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
-		$site = &Request::getSite();
-		$schedConf = &Request::getSchedConf();
+		$templateMgr =& TemplateManager::getManager();
+		$site =& Request::getSite();
+		$schedConf =& Request::getSchedConf();
 
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
 		$templateMgr->assign('source', Request::getUserVar('source'));
 		$templateMgr->assign('userId', $this->userId);
 		if (isset($this->userId)) {
-			$userDao = &DAORegistry::getDAO('UserDAO');
-			$user = &$userDao->getUser($this->userId);
+			$userDao =& DAORegistry::getDAO('UserDAO');
+			$user =& $userDao->getUser($this->userId);
 			$templateMgr->assign('username', $user->getUsername());
 			$helpTopicId = 'conference.users.index';
 		} else {
@@ -91,7 +91,7 @@ class UserManagementForm extends Form {
 				)
 			);
 		}
-		$site = &Request::getSite();
+		$site =& Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 
 		$templateMgr->assign('helpTopicId', $helpTopicId);
@@ -100,8 +100,8 @@ class UserManagementForm extends Form {
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
-		$authDao = &DAORegistry::getDAO('AuthSourceDAO');
-		$authSources = &$authDao->getSources();
+		$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+		$authSources =& $authDao->getSources();
 		$authSourceOptions = array();
 		foreach ($authSources->toArray() as $auth) {
 			$authSourceOptions[$auth->getAuthId()] = $auth->getTitle();
@@ -117,8 +117,8 @@ class UserManagementForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->userId)) {
-			$userDao = &DAORegistry::getDAO('UserDAO');
-			$user = &$userDao->getUser($this->userId);
+			$userDao =& DAORegistry::getDAO('UserDAO');
+			$user =& $userDao->getUser($this->userId);
 
 			if ($user != null) {
 				$this->_data = array(
@@ -148,7 +148,7 @@ class UserManagementForm extends Form {
 			}
 		}
 		if (!isset($this->userId)) {
-			$roleDao = &DAORegistry::getDAO('RoleDAO');
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			$roleId = Request::getUserVar('roleId');
 			$roleSymbolic = $roleDao->getRolePath($roleId);
 
@@ -211,12 +211,12 @@ class UserManagementForm extends Form {
 	 * Register a new user.
 	 */
 	function execute() {
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$conference = &Request::getConference();
-		$schedConf = &Request::getSchedConf();
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 
 		if (isset($this->userId)) {
-			$user = &$userDao->getUser($this->userId);
+			$user =& $userDao->getUser($this->userId);
 		}
 
 		if (!isset($user)) {
@@ -242,7 +242,7 @@ class UserManagementForm extends Form {
 		$user->setMustChangePassword($this->getData('mustChangePassword') ? 1 : 0);
 		$user->setAuthId((int) $this->getData('authId'));
 
-		$site = &Request::getSite();
+		$site =& Request::getSite();
 		$availableLocales = $site->getSupportedLocales();
 
 		$locales = array();
@@ -254,8 +254,8 @@ class UserManagementForm extends Form {
 		$user->setLocales($locales);
 
 		if ($user->getAuthId()) {
-			$authDao = &DAORegistry::getDAO('AuthSourceDAO');
-			$auth = &$authDao->getPlugin($user->getAuthId());
+			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+			$auth =& $authDao->getPlugin($user->getAuthId());
 		}
 
 		if ($user->getUserId() != null) {
@@ -301,7 +301,7 @@ class UserManagementForm extends Form {
 			if (!empty($this->_data['enrollAs'])) {
 				foreach ($this->getData('enrollAs') as $roleName) {
 					// Enroll new user into an initial role
-					$roleDao = &DAORegistry::getDAO('RoleDAO');
+					$roleDao =& DAORegistry::getDAO('RoleDAO');
 					$roleId = $roleDao->getRoleIdFromPath($roleName);
 					if ($roleId != null) {
 						$role = new Role();

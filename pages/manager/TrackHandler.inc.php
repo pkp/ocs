@@ -32,16 +32,16 @@ class TrackHandler extends ManagerHandler {
 
 		$schedConf =& Request::getSchedConf();
 		$rangeInfo =& Handler::getRangeInfo('tracks', array());
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		while (true) {
-			$tracks = &$trackDao->getSchedConfTracks($schedConf->getSchedConfId(), $rangeInfo);
+			$tracks =& $trackDao->getSchedConfTracks($schedConf->getSchedConfId(), $rangeInfo);
 			if ($tracks->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $tracks->getLastPageRangeInfo();
 			unset($tracks);
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, null, 'manager'), 'manager.schedConfManagement')));
 		$templateMgr->assign_by_ref('tracks', $tracks);
 		$templateMgr->assign('helpTopicId','conference.currentConferences.tracks');
@@ -106,7 +106,7 @@ class TrackHandler extends ManagerHandler {
 
 		$schedConf =& Request::getSchedConf();
 		if (isset($args) && !empty($args)) {
-			$trackDao = &DAORegistry::getDAO('TrackDAO');
+			$trackDao =& DAORegistry::getDAO('TrackDAO');
 			$trackDao->deleteTrackById($args[0], $schedConf->getSchedConfId());
 		}
 
@@ -120,8 +120,8 @@ class TrackHandler extends ManagerHandler {
 		$this->validate();
 
 		$schedConf =& Request::getSchedConf();
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$track = &$trackDao->getTrack(Request::getUserVar('trackId'), $schedConf->getSchedConfId());
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$track =& $trackDao->getTrack(Request::getUserVar('trackId'), $schedConf->getSchedConfId());
 
 		if ($track != null) {
 			$track->setSequence($track->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
@@ -136,7 +136,7 @@ class TrackHandler extends ManagerHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_READER));
 		parent::setupTemplate(true);
 		if ($subclass) {
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'tracks'), 'track.tracks'));
 		}
 	}

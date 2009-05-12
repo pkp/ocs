@@ -28,11 +28,11 @@ class ReviewReminder extends ScheduledTask {
 	}
 
 	function sendReminder ($reviewAssignment, $paper, $conference, $schedConf) {
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		$reviewId = $reviewAssignment->getReviewId();
 
-		$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
 		import('mail.PaperMailTemplate');
@@ -97,18 +97,18 @@ class ReviewReminder extends ScheduledTask {
 		$conference = null;
 		$schedConf = null;
 
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 
-		$incompleteAssignments = &$reviewAssignmentDao->getIncompleteReviewAssignments();
+		$incompleteAssignments =& $reviewAssignmentDao->getIncompleteReviewAssignments();
 		foreach ($incompleteAssignments as $reviewAssignment) {
 			// Fetch the Paper and the Sched Conf if necessary.
 			if ($paper == null || $paper->getPaperId() != $reviewAssignment->getPaperId()) {
-				$paper = &$paperDao->getPaper($reviewAssignment->getPaperId());
+				$paper =& $paperDao->getPaper($reviewAssignment->getPaperId());
 				if ($schedConf == null || $schedConf->getSchedConfId() != $paper->getSchedConfId()) {
-					$schedConf = &$schedConfDao->getSchedConf($paper->getSchedConfId());
+					$schedConf =& $schedConfDao->getSchedConf($paper->getSchedConfId());
 
 					$inviteReminderEnabled = $schedConf->getSetting('remindForInvite');
 					$submitReminderEnabled = $schedConf->getSetting('remindForSubmit');
@@ -140,7 +140,7 @@ class ReviewReminder extends ScheduledTask {
 			if ($shouldRemind) {
 				// We may still have to look up the conference.
 				if(!$conference || $schedConf->getConferenceId() != $conference->getConferenceId()) {
-					$conference = &$conferenceDao->getConference($schedConf->getConferenceId());
+					$conference =& $conferenceDao->getConference($schedConf->getConferenceId());
 				}
 				$this->sendReminder ($reviewAssignment, $paper, $conference, $schedConf);
 			}

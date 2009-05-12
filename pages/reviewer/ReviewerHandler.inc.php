@@ -38,9 +38,9 @@ class ReviewerHandler extends Handler {
 		$this->validate();
 		$this->setupTemplate();
 
-		$schedConf = &Request::getSchedConf();
-		$user = &Request::getUser();
-		$reviewerSubmissionDao = &DAORegistry::getDAO('ReviewerSubmissionDAO');
+		$schedConf =& Request::getSchedConf();
+		$user =& Request::getUser();
+		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$rangeInfo = Handler::getRangeInfo('submissions');
 
 		$page = isset($args[0]) ? $args[0] : '';
@@ -55,7 +55,7 @@ class ReviewerHandler extends Handler {
 
 		$submissions = $reviewerSubmissionDao->getReviewerSubmissionsByReviewerId($user->getUserId(), $schedConf->getSchedConfId(), $active, $rangeInfo);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign_by_ref('submissions', $submissions);

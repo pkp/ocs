@@ -18,33 +18,33 @@ import('xml.XMLCustomWriter');
 
 class NativeExportDom {
 	function &generateTrackDom(&$doc, &$schedConf, &$track) {
-		$root = &XMLCustomWriter::createElement($doc, 'track');
+		$root =& XMLCustomWriter::createElement($doc, 'track');
 
 		if (is_array($track->getTitle(null))) foreach ($track->getTitle(null) as $locale => $title) {
-			$titleNode = &XMLCustomWriter::createChildWithText($doc, $root, 'title', $title, false);
+			$titleNode =& XMLCustomWriter::createChildWithText($doc, $root, 'title', $title, false);
 			if ($titleNode) XMLCustomWriter::setAttribute($titleNode, 'locale', $locale);
 			unset($titleNode);
 		}
 
 		if (is_array($track->getAbbrev(null))) foreach ($track->getAbbrev(null) as $locale => $abbrev) {
-			$abbrevNode = &XMLCustomWriter::createChildWithText($doc, $root, 'abbrev', $abbrev, false);
+			$abbrevNode =& XMLCustomWriter::createChildWithText($doc, $root, 'abbrev', $abbrev, false);
 			if ($abbrevNode) XMLCustomWriter::setAttribute($abbrevNode, 'locale', $locale);
 			unset($abbrevNode);
 		}
 		
 		if (is_array($track->getIdentifyType(null))) foreach ($track->getIdentifyType(null) as $locale => $identifyType) {
-			$identifyTypeNode = &XMLCustomWriter::createChildWithText($doc, $root, 'identify_type', $identifyType, false);
+			$identifyTypeNode =& XMLCustomWriter::createChildWithText($doc, $root, 'identify_type', $identifyType, false);
 			if ($identifyTypeNode) XMLCustomWriter::setAttribute($identifyTypeNode, 'locale', $locale);
 			unset($identifyTypeNode);
 		}
 
 		if (is_array($track->getPolicy(null))) foreach ($track->getPolicy(null) as $locale => $policy) {
-			$policyNode = &XMLCustomWriter::createChildWithText($doc, $root, 'policy', $policy, false);
+			$policyNode =& XMLCustomWriter::createChildWithText($doc, $root, 'policy', $policy, false);
 			if ($policyNode) XMLCustomWriter::setAttribute($policyNode, 'locale', $locale);
 			unset($policyNode);
 		}
 
-		$publishedPaperDao = &DAORegistry::getDAO('PublishedPaperDAO');
+		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		foreach ($publishedPaperDao->getPublishedPapersByTrackId($track->getTrackId(), $schedConf->getSchedConfId()) as $paper) {
 			$paperNode =& NativeExportDom::generatePaperDom($doc, $schedConf, $track, $paper);
 			XMLCustomWriter::appendChild($root, $paperNode);
@@ -55,28 +55,28 @@ class NativeExportDom {
 	}
 
 	function &generatePaperDom(&$doc, &$schedConf, &$track, &$paper) {
-		$root = &XMLCustomWriter::createElement($doc, 'paper');
+		$root =& XMLCustomWriter::createElement($doc, 'paper');
 
 		/* --- Titles and Abstracts --- */
 		if (is_array($paper->getTitle(null))) foreach ($paper->getTitle(null) as $locale => $title) {
-			$titleNode = &XMLCustomWriter::createChildWithText($doc, $root, 'title', $title, false);
+			$titleNode =& XMLCustomWriter::createChildWithText($doc, $root, 'title', $title, false);
 			if ($titleNode) XMLCustomWriter::setAttribute($titleNode, 'locale', $locale);
 			unset($titleNode);
 		}
 
 		if (is_array($paper->getAbstract(null))) foreach ($paper->getAbstract(null) as $locale => $abstract) {
-			$abstractNode = &XMLCustomWriter::createChildWithText($doc, $root, 'abstract', $abstract, false);
+			$abstractNode =& XMLCustomWriter::createChildWithText($doc, $root, 'abstract', $abstract, false);
 			if ($abstractNode) XMLCustomWriter::setAttribute($abstractNode, 'locale', $locale);
 			unset($abstractNode);
 		}
 
 		/* --- Indexing --- */
 
-		$indexingNode = &XMLCustomWriter::createElement($doc, 'indexing');
+		$indexingNode =& XMLCustomWriter::createElement($doc, 'indexing');
 		$isIndexingNecessary = false;
 
 		if (is_array($paper->getDiscipline(null))) foreach ($paper->getDiscipline(null) as $locale => $discipline) {
-			$disciplineNode = &XMLCustomWriter::createChildWithText($doc, $indexingNode, 'discipline', $discipline, false);
+			$disciplineNode =& XMLCustomWriter::createChildWithText($doc, $indexingNode, 'discipline', $discipline, false);
 			if ($disciplineNode) {
 				XMLCustomWriter::setAttribute($disciplineNode, 'locale', $locale);
 				$isIndexingNecessary = true;
@@ -84,7 +84,7 @@ class NativeExportDom {
 			unset($disciplineNode);
 		}
 		if (is_array($paper->getType(null))) foreach ($paper->getType(null) as $locale => $type) {
-			$typeNode = &XMLCustomWriter::createChildWithText($doc, $indexingNode, 'type', $type, false);
+			$typeNode =& XMLCustomWriter::createChildWithText($doc, $indexingNode, 'type', $type, false);
 			if ($typeNode) {
 				XMLCustomWriter::setAttribute($typeNode, 'locale', $locale);
 				$isIndexingNecessary = true;
@@ -92,7 +92,7 @@ class NativeExportDom {
 			unset($typeNode);
 		}
 		if (is_array($paper->getSubject(null))) foreach ($paper->getSubject(null) as $locale => $subject) {
-			$subjectNode = &XMLCustomWriter::createChildWithText($doc, $indexingNode, 'subject', $subject, false);
+			$subjectNode =& XMLCustomWriter::createChildWithText($doc, $indexingNode, 'subject', $subject, false);
 			if ($subjectNode) {
 				XMLCustomWriter::setAttribute($subjectNode, 'locale', $locale);
 				$isIndexingNecessary = true;
@@ -100,7 +100,7 @@ class NativeExportDom {
 			unset($subjectNode);
 		}
 		if (is_array($paper->getSubjectClass(null))) foreach ($paper->getSubjectClass(null) as $locale => $subjectClass) {
-			$subjectClassNode = &XMLCustomWriter::createChildWithText($doc, $indexingNode, 'subject_class', $subjectClass, false);
+			$subjectClassNode =& XMLCustomWriter::createChildWithText($doc, $indexingNode, 'subject_class', $subjectClass, false);
 			if ($subjectClassNode) {
 				XMLCustomWriter::setAttribute($subjectClassNode, 'locale', $locale);
 				$isIndexingNecessary = true;
@@ -108,11 +108,11 @@ class NativeExportDom {
 			unset($subjectClassNode);
 		}
 
-		$coverageNode = &XMLCustomWriter::createElement($doc, 'coverage');
+		$coverageNode =& XMLCustomWriter::createElement($doc, 'coverage');
 		$isCoverageNecessary = false;
 
 		if (is_array($paper->getCoverageGeo(null))) foreach ($paper->getCoverageGeo(null) as $locale => $geographical) {
-			$geographicalNode = &XMLCustomWriter::createChildWithText($doc, $coverageNode, 'geographical', $geographical, false);
+			$geographicalNode =& XMLCustomWriter::createChildWithText($doc, $coverageNode, 'geographical', $geographical, false);
 			if ($geographicalNode) {
 				XMLCustomWriter::setAttribute($geographicalNode, 'locale', $locale);
 				$isCoverageNecessary = true;
@@ -120,7 +120,7 @@ class NativeExportDom {
 			unset($geographicalNode);
 		}
 		if (is_array($paper->getCoverageChron(null))) foreach ($paper->getCoverageChron(null) as $locale => $chronological) {
-			$chronologicalNode = &XMLCustomWriter::createChildWithText($doc, $coverageNode, 'chronological', $chronological, false);
+			$chronologicalNode =& XMLCustomWriter::createChildWithText($doc, $coverageNode, 'chronological', $chronological, false);
 			if ($chronologicalNode) {
 				XMLCustomWriter::setAttribute($chronologicalNode, 'locale', $locale);
 				$isCoverageNecessary = true;
@@ -128,7 +128,7 @@ class NativeExportDom {
 			unset($chronologicalNode);
 		}
 		if (is_array($paper->getCoverageSample(null))) foreach ($paper->getCoverageSample(null) as $locale => $sample) {
-			$sampleNode = &XMLCustomWriter::createChildWithText($doc, $coverageNode, 'sample', $sample, false);
+			$sampleNode =& XMLCustomWriter::createChildWithText($doc, $coverageNode, 'sample', $sample, false);
 			if ($sampleNode) {
 				XMLCustomWriter::setAttribute($sampleNode, 'locale', $locale);
 				$isCoverageNecessary = true;
@@ -179,7 +179,7 @@ class NativeExportDom {
 	}
 
 	function &generateAuthorDom(&$doc, &$schedConf, &$paper, &$author) {
-		$root = &XMLCustomWriter::createElement($doc, 'author');
+		$root =& XMLCustomWriter::createElement($doc, 'author');
 		if ($author->getPrimaryContact()) XMLCustomWriter::setAttribute($root, 'primary_contact', 'true');
 
 		XMLCustomWriter::createChildWithText($doc, $root, 'firstname', $author->getFirstName());
@@ -191,7 +191,7 @@ class NativeExportDom {
 		XMLCustomWriter::createChildWithText($doc, $root, 'email', $author->getEmail(), false);
 		XMLCustomWriter::createChildWithText($doc, $root, 'url', $author->getUrl(), false);
 		if (is_array($author->getBiography(null))) foreach ($author->getBiography(null) as $locale => $biography) {
-			$biographyNode = &XMLCustomWriter::createChildWithText($doc, $root, 'biography', strip_tags($biography), false);
+			$biographyNode =& XMLCustomWriter::createChildWithText($doc, $root, 'biography', strip_tags($biography), false);
 			if ($biographyNode) XMLCustomWriter::setAttribute($biographyNode, 'locale', $locale);
 			unset($biographyNode);
 		}
@@ -204,18 +204,18 @@ class NativeExportDom {
 
 		import('file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($paper->getPaperId());
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 
-		$root = &XMLCustomWriter::createElement($doc, $isHtml?'htmlgalley':'galley');
+		$root =& XMLCustomWriter::createElement($doc, $isHtml?'htmlgalley':'galley');
 		if ($root) XMLCustomWriter::setAttribute($root, 'locale', $galley->getLocale());
 
 		XMLCustomWriter::createChildWithText($doc, $root, 'label', $galley->getLabel());
 
 		/* --- Galley file --- */
-		$fileNode = &XMLCustomWriter::createElement($doc, 'file');
+		$fileNode =& XMLCustomWriter::createElement($doc, 'file');
 		XMLCustomWriter::appendChild($root, $fileNode);
-		$embedNode = &XMLCustomWriter::createChildWithText($doc, $fileNode, 'embed', base64_encode($paperFileManager->readFile($galley->getFileId())));
-		$paperFile = &$paperFileDao->getPaperFile($galley->getFileId());
+		$embedNode =& XMLCustomWriter::createChildWithText($doc, $fileNode, 'embed', base64_encode($paperFileManager->readFile($galley->getFileId())));
+		$paperFile =& $paperFileDao->getPaperFile($galley->getFileId());
 		if (!$paperFile) return $paperFile; // Stupidity check
 		XMLCustomWriter::setAttribute($embedNode, 'filename', $paperFile->getOriginalFileName());
 		XMLCustomWriter::setAttribute($embedNode, 'encoding', 'base64');
@@ -226,18 +226,18 @@ class NativeExportDom {
 		if ($isHtml) {
 			$styleFile = $galley->getStyleFile();
 			if ($styleFile) {
-				$styleNode = &XMLCustomWriter::createElement($doc, 'stylesheet');
+				$styleNode =& XMLCustomWriter::createElement($doc, 'stylesheet');
 				XMLCustomWriter::appendChild($root, $styleNode);
-				$embedNode = &XMLCustomWriter::createChildWithText($doc, $styleNode, 'embed', base64_encode($paperFileManager->readFile($styleFile->getFileId())));
+				$embedNode =& XMLCustomWriter::createChildWithText($doc, $styleNode, 'embed', base64_encode($paperFileManager->readFile($styleFile->getFileId())));
 				XMLCustomWriter::setAttribute($embedNode, 'filename', $styleFile->getOriginalFileName());
 				XMLCustomWriter::setAttribute($embedNode, 'encoding', 'base64');
 				XMLCustomWriter::setAttribute($embedNode, 'mime_type', 'text/css');
 			}
 
 			foreach ($galley->getImageFiles() as $imageFile) {
-				$imageNode = &XMLCustomWriter::createElement($doc, 'image');
+				$imageNode =& XMLCustomWriter::createElement($doc, 'image');
 				XMLCustomWriter::appendChild($root, $imageNode);
-				$embedNode = &XMLCustomWriter::createChildWithText($doc, $imageNode, 'embed', base64_encode($paperFileManager->readFile($imageFile->getFileId())));
+				$embedNode =& XMLCustomWriter::createChildWithText($doc, $imageNode, 'embed', base64_encode($paperFileManager->readFile($imageFile->getFileId())));
 				XMLCustomWriter::setAttribute($embedNode, 'filename', $imageFile->getOriginalFileName());
 				XMLCustomWriter::setAttribute($embedNode, 'encoding', 'base64');
 				XMLCustomWriter::setAttribute($embedNode, 'mime_type', $imageFile->getFileType());
@@ -250,7 +250,7 @@ class NativeExportDom {
 	}
 	
 	function &generateSuppFileDom(&$doc, &$schedConf, &$paper, &$suppFile) {
-		$root = &XMLCustomWriter::createElement($doc, 'supplemental_file');
+		$root =& XMLCustomWriter::createElement($doc, 'supplemental_file');
 
 		// FIXME: These should be constants!
 		switch ($suppFile->getType()) {
@@ -285,54 +285,54 @@ class NativeExportDom {
 		XMLCustomWriter::setAttribute($root, 'language', $suppFile->getLanguage(), false);
 
 		if (is_array($suppFile->getTitle(null))) foreach ($suppFile->getTitle(null) as $locale => $title) {
-			$titleNode = &XMLCustomWriter::createChildWithText($doc, $root, 'title', $title, false);
+			$titleNode =& XMLCustomWriter::createChildWithText($doc, $root, 'title', $title, false);
 			if ($titleNode) XMLCustomWriter::setAttribute($titleNode, 'locale', $locale);
 			unset($titleNode);
 		}
 		if (is_array($suppFile->getCreator(null))) foreach ($suppFile->getCreator(null) as $locale => $creator) {
-			$creatorNode = &XMLCustomWriter::createChildWithText($doc, $root, 'creator', $creator, false);
+			$creatorNode =& XMLCustomWriter::createChildWithText($doc, $root, 'creator', $creator, false);
 			if ($creatorNode) XMLCustomWriter::setAttribute($creatorNode, 'locale', $locale);
 			unset($creatorNode);
 		}
 		if (is_array($suppFile->getSubject(null))) foreach ($suppFile->getSubject(null) as $locale => $subject) {
-			$subjectNode = &XMLCustomWriter::createChildWithText($doc, $root, 'subject', $subject, false);
+			$subjectNode =& XMLCustomWriter::createChildWithText($doc, $root, 'subject', $subject, false);
 			if ($subjectNode) XMLCustomWriter::setAttribute($subjectNode, 'locale', $locale);
 			unset($subjectNode);
 		}
 		if ($suppFileType == 'other') {
 			if (is_array($suppFile->getTypeOther(null))) foreach ($suppFile->getTypeOther(null) as $locale => $typeOther) {
-				$typeOtherNode = &XMLCustomWriter::createChildWithText($doc, $root, 'type_other', $typeOther, false);
+				$typeOtherNode =& XMLCustomWriter::createChildWithText($doc, $root, 'type_other', $typeOther, false);
 				if ($typeOtherNode) XMLCustomWriter::setAttribute($typeOtherNode, 'locale', $locale);
 				unset($typeOtherNode);
 			}		
 		}
 		if (is_array($suppFile->getDescription(null))) foreach ($suppFile->getDescription(null) as $locale => $description) {
-			$descriptionNode = &XMLCustomWriter::createChildWithText($doc, $root, 'description', $description, false);
+			$descriptionNode =& XMLCustomWriter::createChildWithText($doc, $root, 'description', $description, false);
 			if ($descriptionNode) XMLCustomWriter::setAttribute($descriptionNode, 'locale', $locale);
 			unset($descriptionNode);
 		}
 		if (is_array($suppFile->getPublisher(null))) foreach ($suppFile->getPublisher(null) as $locale => $publisher) {
-			$publisherNode = &XMLCustomWriter::createChildWithText($doc, $root, 'publisher', $publisher, false);
+			$publisherNode =& XMLCustomWriter::createChildWithText($doc, $root, 'publisher', $publisher, false);
 			if ($publisherNode) XMLCustomWriter::setAttribute($publisherNode, 'locale', $locale);
 			unset($publisherNode);
 		}
 		if (is_array($suppFile->getSponsor(null))) foreach ($suppFile->getSponsor(null) as $locale => $sponsor) {
-			$sponsorNode = &XMLCustomWriter::createChildWithText($doc, $root, 'sponsor', $sponsor, false);
+			$sponsorNode =& XMLCustomWriter::createChildWithText($doc, $root, 'sponsor', $sponsor, false);
 			if ($sponsorNode) XMLCustomWriter::setAttribute($sponsorNode, 'locale', $locale);
 			unset($sponsorNode);
 		}
 		XMLCustomWriter::createChildWithText($doc, $root, 'date_created', NativeExportDom::formatDate($suppFile->getDateCreated()), false);
 		if (is_array($suppFile->getSource(null))) foreach ($suppFile->getSource(null) as $locale => $source) {
-			$sourceNode = &XMLCustomWriter::createChildWithText($doc, $root, 'source', $source, false);
+			$sourceNode =& XMLCustomWriter::createChildWithText($doc, $root, 'source', $source, false);
 			if ($sourceNode) XMLCustomWriter::setAttribute($sourceNode, 'locale', $locale);
 			unset($sourceNode);
 		}
 		
 		import('file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($paper->getPaperId());
-		$fileNode = &XMLCustomWriter::createElement($doc, 'file');
+		$fileNode =& XMLCustomWriter::createElement($doc, 'file');
 		XMLCustomWriter::appendChild($root, $fileNode);
-		$embedNode = &XMLCustomWriter::createChildWithText($doc, $fileNode, 'embed', base64_encode($paperFileManager->readFile($suppFile->getFileId())));
+		$embedNode =& XMLCustomWriter::createChildWithText($doc, $fileNode, 'embed', base64_encode($paperFileManager->readFile($suppFile->getFileId())));
 		XMLCustomWriter::setAttribute($embedNode, 'filename', $suppFile->getOriginalFileName());
 		XMLCustomWriter::setAttribute($embedNode, 'encoding', 'base64');
 		XMLCustomWriter::setAttribute($embedNode, 'mime_type', $suppFile->getFileType());

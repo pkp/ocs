@@ -144,7 +144,7 @@ class Request extends PKPRequest {
 		if (!isset($conference)) {
 			$path = Request::getRequestedConferencePath();
 			if ($path != 'index') {
-				$conferenceDao = &DAORegistry::getDAO('ConferenceDAO');
+				$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 				$conference = $conferenceDao->getConferenceByPath(Request::getRequestedConferencePath());
 			}
 		}
@@ -162,7 +162,7 @@ class Request extends PKPRequest {
 		if (!isset($schedConf)) {
 			$path = Request::getRequestedSchedConfPath();
 			if ($path != 'index') {
-				$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
+				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 				$schedConf = $schedConfDao->getSchedConfByPath(Request::getRequestedSchedConfPath());
 			}
 		}

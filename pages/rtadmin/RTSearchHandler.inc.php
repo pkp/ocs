@@ -30,12 +30,12 @@ class RTSearchHandler extends RTAdminHandler {
 
 		$conference = Request::getConference();
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$rtDao =& DAORegistry::getDAO('RTDAO');
 
 		$versionId = isset($args[0])?$args[0]:0;
-		$version = &$rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
 		$contextId = isset($args[1])?$args[1]:0;
-		$context = &$rtDao->getContext($contextId);
+		$context =& $rtDao->getContext($contextId);
 
 		import('rt.ocs.form.SearchForm');
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
@@ -56,19 +56,19 @@ class RTSearchHandler extends RTAdminHandler {
 
 		$conference = Request::getConference();
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$rangeInfo = Handler::getRangeInfo('searches');
 
 		$versionId = isset($args[0])?$args[0]:0;
-		$version = &$rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
 
 		$contextId = isset($args[1])?$args[1]:0;
-		$context = &$rtDao->getContext($contextId);
+		$context =& $rtDao->getContext($contextId);
 
 		if ($context && $version && $context->getVersionId() == $version->getVersionId()) {
 			$this->setupTemplate(true, $version, $context);
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 
 			$templateMgr->assign_by_ref('version', $version);
 			$templateMgr->assign_by_ref('context', $context);
@@ -84,15 +84,15 @@ class RTSearchHandler extends RTAdminHandler {
 	function editSearch($args) {
 		$this->validate();
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$rtDao =& DAORegistry::getDAO('RTDAO');
 
 		$conference = Request::getConference();
 		$versionId = isset($args[0])?$args[0]:0;
-		$version = &$rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
 		$contextId = isset($args[1])?$args[1]:0;
-		$context = &$rtDao->getContext($contextId);
+		$context =& $rtDao->getContext($contextId);
 		$searchId = isset($args[2])?$args[2]:0;
-		$search = &$rtDao->getSearch($searchId);
+		$search =& $rtDao->getSearch($searchId);
 
 		if (isset($version) && isset($context) && isset($search) && $context->getVersionId() == $version->getVersionId() && $search->getContextId() == $context->getContextId()) {
 			import('rt.ocs.form.SearchForm');
@@ -110,15 +110,15 @@ class RTSearchHandler extends RTAdminHandler {
 	function deleteSearch($args) {
 		$this->validate();
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$rtDao =& DAORegistry::getDAO('RTDAO');
 
 		$conference = Request::getConference();
 		$versionId = isset($args[0])?$args[0]:0;
-		$version = &$rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
 		$contextId = isset($args[1])?$args[1]:0;
-		$context = &$rtDao->getContext($contextId);
+		$context =& $rtDao->getContext($contextId);
 		$searchId = isset($args[2])?$args[2]:0;
-		$search = &$rtDao->getSearch($searchId);
+		$search =& $rtDao->getSearch($searchId);
 
 		if (isset($version) && isset($context) && isset($search) && $context->getVersionId() == $version->getVersionId() && $search->getContextId() == $context->getContextId()) {
 			$rtDao->deleteSearch($searchId, $contextId);
@@ -130,15 +130,15 @@ class RTSearchHandler extends RTAdminHandler {
 	function saveSearch($args) {
 		$this->validate();
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$rtDao =& DAORegistry::getDAO('RTDAO');
 
 		$conference = Request::getConference();
 		$versionId = isset($args[0])?$args[0]:0;
-		$version = &$rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
 		$contextId = isset($args[1])?$args[1]:0;
-		$context = &$rtDao->getContext($contextId);
+		$context =& $rtDao->getContext($contextId);
 		$searchId = isset($args[2])?$args[2]:0;
-		$search = &$rtDao->getSearch($searchId);
+		$search =& $rtDao->getSearch($searchId);
 
 		if (isset($version) && isset($context) && isset($search) && $context->getVersionId() == $version->getVersionId() && $search->getContextId() == $context->getContextId()) {
 			import('rt.ocs.form.SearchForm');
@@ -154,15 +154,15 @@ class RTSearchHandler extends RTAdminHandler {
 	function moveSearch($args) {
 		$this->validate();
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$rtDao =& DAORegistry::getDAO('RTDAO');
 
 		$conference = Request::getConference();
 		$versionId = isset($args[0])?$args[0]:0;
-		$version = &$rtDao->getVersion($versionId, $conference->getConferenceId());
+		$version =& $rtDao->getVersion($versionId, $conference->getConferenceId());
 		$contextId = isset($args[1])?$args[1]:0;
-		$context = &$rtDao->getContext($contextId);
+		$context =& $rtDao->getContext($contextId);
 		$searchId = isset($args[2])?$args[2]:0;
-		$search = &$rtDao->getSearch($searchId);
+		$search =& $rtDao->getSearch($searchId);
 
 		if (isset($version) && isset($context) && isset($search) && $context->getVersionId() == $version->getVersionId() && $search->getContextId() == $context->getContextId()) {
 			$isDown = Request::getUserVar('dir')=='d';

@@ -85,7 +85,7 @@ class Registration extends DataObject {
 	 * @return string 
 	 */
 	function getUserFullName() {
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		return $userDao->getUserFullName($this->getData('userId'));
 	}
 
@@ -110,7 +110,7 @@ class Registration extends DataObject {
 	 * @return string
 	 */
 	function getRegistrationTypeName() {
-		$registrationTypeDao = &DAORegistry::getDAO('RegistrationTypeDAO');
+		$registrationTypeDao =& DAORegistry::getDAO('RegistrationTypeDAO');
 		return $registrationTypeDao->getRegistrationTypeName($this->getData('typeId'));
 	}
 

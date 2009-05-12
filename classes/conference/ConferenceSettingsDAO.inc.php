@@ -72,12 +72,12 @@ class ConferenceSettingsDAO extends SettingsDAO {
 	function &getConferenceSettings($conferenceId) {
 		$conferenceSettings = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT setting_name, setting_value, setting_type, locale FROM conference_settings WHERE conference_id = ?', $conferenceId
 		);
 
 		while (!$result->EOF) {
-			$row = &$result->getRowAssoc(false);
+			$row =& $result->getRowAssoc(false);
 			$value = $this->convertFromDB($row['setting_value'], $row['setting_type']);
 			if ($row['locale'] == '') $conferenceSettings[$row['setting_name']] = $value;
 			else $conferenceSettings[$row['setting_name']][$row['locale']] = $value;

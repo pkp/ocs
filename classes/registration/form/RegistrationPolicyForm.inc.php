@@ -84,7 +84,7 @@ class RegistrationPolicyForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('validNumMonthsBeforeExpiry', $this->validNumMonthsBeforeExpiry);
 		$templateMgr->assign('validNumWeeksBeforeExpiry', $this->validNumWeeksBeforeExpiry);
 		$templateMgr->assign('validNumMonthsAfterExpiry', $this->validNumMonthsAfterExpiry);
@@ -97,8 +97,8 @@ class RegistrationPolicyForm extends Form {
 	 * Initialize form data from current registration policies.
 	 */
 	function initData() {
-		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-		$schedConf = &Request::getSchedConf();
+		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConf =& Request::getSchedConf();
 		$schedConfId = $schedConf->getSchedConfId();
 
 		$this->_data = array(
@@ -162,8 +162,8 @@ class RegistrationPolicyForm extends Form {
 	 * Save registration policies. 
 	 */
 	function execute() {
-		$schedConfSettingsDao = &DAORegistry::getDAO('SchedConfSettingsDAO');
-		$schedConf = &Request::getSchedConf();
+		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
+		$schedConf =& Request::getSchedConf();
 		$schedConfId = $schedConf->getSchedConfId();
 
 		$schedConfSettingsDao->updateSetting($schedConfId, 'registrationName', $this->getData('registrationName'), 'string');

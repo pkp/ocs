@@ -88,7 +88,7 @@ class MailTemplate extends PKPMailTemplate {
 		}
 
 		// Default "From" to user if available, otherwise site/conference principal contact
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 		if ($user) {
 			$this->setFrom($user->getEmail(), $user->getFullName());
 		} elseif ($schedConf) {
@@ -96,7 +96,7 @@ class MailTemplate extends PKPMailTemplate {
 		} elseif ($conference) {
 			$this->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 		} else {
-			$site = &Request::getSite();
+			$site =& Request::getSite();
 			$this->setFrom($site->getLocalizedContactEmail(), $site->getLocalizedContactName());
 		}
 
@@ -114,7 +114,7 @@ class MailTemplate extends PKPMailTemplate {
 	 */
 	function assignParams($paramArray = array()) {
 		// Add commonly-used variables to the list
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
 		if ($schedConf) {
@@ -155,7 +155,7 @@ class MailTemplate extends PKPMailTemplate {
 	 * @param $clearAttachments boolean Whether to delete attachments after
 	 */
 	function send($clearAttachments = true) {
-		$schedConf = &Request::getSchedConf();
+		$schedConf =& Request::getSchedConf();
 
 		if($schedConf) {
 			$envelopeSender = $schedConf->getSetting('envelopeSender');

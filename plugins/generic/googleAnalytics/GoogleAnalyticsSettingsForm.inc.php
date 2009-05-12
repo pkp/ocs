@@ -31,7 +31,7 @@ class GoogleAnalyticsSettingsForm extends Form {
 	 */
 	function GoogleAnalyticsSettingsForm(&$plugin, $conferenceId) {
 		$this->conferenceId = $conferenceId;
-		$this->plugin = &$plugin;
+		$this->plugin =& $plugin;
 
 		parent::Form($plugin->getTemplatePath() . 'settingsForm.tpl');
 
@@ -45,7 +45,7 @@ class GoogleAnalyticsSettingsForm extends Form {
 	 */
 	function initData() {
 		$conferenceId = $this->conferenceId;
-		$plugin = &$this->plugin;
+		$plugin =& $this->plugin;
 
 		$this->_data = array(
 			'googleAnalyticsSiteId' => $plugin->getSetting($conferenceId, 0, 'googleAnalyticsSiteId'),
@@ -64,7 +64,7 @@ class GoogleAnalyticsSettingsForm extends Form {
 	 * Save settings. 
 	 */
 	function execute() {
-		$plugin = &$this->plugin;
+		$plugin =& $this->plugin;
 		$conferenceId = $this->conferenceId;
 
 		$plugin->updateSetting($conferenceId, 0, 'googleAnalyticsSiteId', trim($this->getData('googleAnalyticsSiteId'), "\"\';"), 'string');

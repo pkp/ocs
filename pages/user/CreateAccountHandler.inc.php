@@ -51,10 +51,10 @@ class CreateAccountHandler extends UserHandler {
 		} elseif ($conference != null) {
 
 			// We have the conference, but need to select a scheduled conference
-			$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-			$schedConfs = &$schedConfDao->getEnabledSchedConfs($conference->getConferenceId());
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConfs =& $schedConfDao->getEnabledSchedConfs($conference->getConferenceId());
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('pageHierarchy', array(
 				array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true)));
 			$templateMgr->assign('source', Request::getUserVar('source'));
@@ -66,10 +66,10 @@ class CreateAccountHandler extends UserHandler {
 			// We have neither conference nor scheduled conference; start by selecting a
 			// conference and we'll end up above after a redirect.
 
-			$conferencesDao = &DAORegistry::getDAO('ConferenceDAO');
-			$conferences = &$conferencesDao->getEnabledConferences();
+			$conferencesDao =& DAORegistry::getDAO('ConferenceDAO');
+			$conferences =& $conferencesDao->getEnabledConferences();
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('source', Request::getUserVar('source'));
 			$templateMgr->assign_by_ref('conferences', $conferences);
 			$templateMgr->display('user/createAccountSite.tpl');
@@ -97,7 +97,7 @@ class CreateAccountHandler extends UserHandler {
 			Validation::login($regForm->getData('username'), $regForm->getData('password'), $reason);
 			if ($reason !== null) {
 				$this->setupTemplate(true);
-				$templateMgr = &TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('pageTitle', 'user.login');
 				$templateMgr->assign('errorMsg', $reason==''?'user.login.accountDisabled':'user.login.accountDisabledWithReason');
 				$templateMgr->assign('errorParams', array('reason' => $reason));
@@ -121,7 +121,7 @@ class CreateAccountHandler extends UserHandler {
 	 */
 	function createAccountDisabled() {
 		$this->setupTemplate(true);
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageTitle', 'navigation.account');
 		$templateMgr->assign('errorMsg', 'user.account.createAccountDisabled');
 		$templateMgr->assign('backLink', Request::url(null, null, null, 'login'));
@@ -174,7 +174,7 @@ class CreateAccountHandler extends UserHandler {
 		$conference =& Request::getConference();
 
 		if ($conference != null) {
-			$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+			$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 			if ($conferenceSettingsDao->getSetting($conference->getConferenceId(), 'disableUserReg')) {
 				// Users cannot create accounts for this conference
 				$this->createAccountDisabled();

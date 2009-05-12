@@ -52,7 +52,7 @@ class EmailHandler extends ManagerHandler {
 			$emailTemplates = new ArrayItemIterator($emailTemplatesArray);
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		// The bread crumbs depends on whether we're doing scheduled conference or conference
 		// management. FIXME: this is going to be a common situation, and this isn't
@@ -87,7 +87,7 @@ class EmailHandler extends ManagerHandler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->append('pageHierarchy', array(Request::url(null, null, null, 'emails'), 'manager.emails'));
 
 		$emailKey = !isset($args) || empty($args) ? null : $args[0];
@@ -134,7 +134,7 @@ class EmailHandler extends ManagerHandler {
 
 		$emailKey = array_shift($args);
 		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		if ($emailTemplateDao->customTemplateExistsByKey($emailKey, $conference->getConferenceId(), $schedConfId)) {
 			$emailTemplateDao->deleteEmailTemplateByKey($emailKey, $conference->getConferenceId(), $schedConfId);
 		}
@@ -152,9 +152,9 @@ class EmailHandler extends ManagerHandler {
 		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
 
 		if (isset($args) && !empty($args)) {
-			$conference = &Request::getConference();
+			$conference =& Request::getConference();
 
-			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 			$emailTemplateDao->deleteEmailTemplateByKey($args[0], $conference->getConferenceId(), $schedConfId);
 		}
 
@@ -167,10 +167,10 @@ class EmailHandler extends ManagerHandler {
 	function resetAllEmails() {
 		$this->validate();
 
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 
 		if(Request::isConferenceManager()) {
 			$emailTemplateDao->deleteEmailTemplatesByConference($conference->getConferenceId());
@@ -191,9 +191,9 @@ class EmailHandler extends ManagerHandler {
 		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
 
 		if (isset($args) && !empty($args)) {
-			$conference = &Request::getConference();
+			$conference =& Request::getConference();
 
-			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $conference->getConferenceId(), $schedConfId);
 
 			if (isset($emailTemplate)) {
@@ -232,7 +232,7 @@ class EmailHandler extends ManagerHandler {
 		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
 
 		if (isset($args) && !empty($args)) {
-			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $conference->getConferenceId(), $schedConfId);
 
 			if (isset($emailTemplate)) {

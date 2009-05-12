@@ -43,14 +43,14 @@ class RTHandler extends PaperHandler {
 		$conference =& Request::getConference();
 		$paper =& $this->paper;
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
+		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getAuthorBio()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign_by_ref('paper', $paper);
 		$templateMgr->assign('galleyId', $galleyId);
@@ -69,17 +69,17 @@ class RTHandler extends PaperHandler {
 		$paper =& $this->paper;
 
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
+		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getViewMetadata()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$track = &$trackDao->getTrack($paper->getTrackId());
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$track =& $trackDao->getTrack($paper->getTrackId());
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign_by_ref('conferenceRt', $conferenceRt);
@@ -106,11 +106,11 @@ class RTHandler extends PaperHandler {
 		$conference =& Request::getConference();
 		$paper =& $this->paper;
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
+		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
-		$context = &$rtDao->getContext($contextId);
-		if ($context) $version = &$rtDao->getVersion($context->getVersionId(), $conference->getConferenceId());
+		$context =& $rtDao->getContext($contextId);
+		if ($context) $version =& $rtDao->getVersion($context->getVersionId(), $conference->getConferenceId());
 
 		if (!$context || !$version || !$conferenceRt || $conferenceRt->getVersion()==null || $conferenceRt->getVersion() != $context->getVersionId()) {
 			Request::redirect(null, null, 'paper', 'view', array($paperId, $galleyId));
@@ -166,7 +166,7 @@ class RTHandler extends PaperHandler {
 				break;
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign_by_ref('paper', $paper);
@@ -195,14 +195,14 @@ class RTHandler extends PaperHandler {
 		$conference =& Request::getConference();
 		$paper =& $this->paper;
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
+		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getCaptureCite()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign_by_ref('conferenceRt', $conferenceRt);
@@ -236,20 +236,20 @@ class RTHandler extends PaperHandler {
 		$conference =& Request::getConference();
 		$paper =& $this->paper;
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
+		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getPrinterFriendly()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
-		$paperGalleyDao = &DAORegistry::getDAO('PaperGalleyDAO');
-		$galley = &$paperGalleyDao->getGalley($galleyId, $paper->getPaperId());
+		$paperGalleyDao =& DAORegistry::getDAO('PaperGalleyDAO');
+		$galley =& $paperGalleyDao->getGalley($galleyId, $paper->getPaperId());
 
-		$trackDao = &DAORegistry::getDAO('TrackDAO');
-		$track = &$trackDao->getTrack($paper->getTrackId());
+		$trackDao =& DAORegistry::getDAO('TrackDAO');
+		$track =& $trackDao->getTrack($paper->getTrackId());
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('galley', $galley);
 		$templateMgr->assign_by_ref('paper', $paper);
 		$templateMgr->assign_by_ref('track', $track);
@@ -272,9 +272,9 @@ class RTHandler extends PaperHandler {
 		$conference =& Request::getConference();
 		$paper =& $this->paper;
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
-		$user = &Request::getUser();
+		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
+		$user =& Request::getUser();
 
 		if (!$conferenceRt || !$conferenceRt->getEmailOthers() || !$user) {
 			Request::redirect(null, null, Request::getRequestedPage());
@@ -286,7 +286,7 @@ class RTHandler extends PaperHandler {
 		if (Request::getUserVar('send') && !$email->hasErrors()) {
 			$email->send();
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->display('rt/sent.tpl');
 		} else {
 			if (!Request::getUserVar('continued')) {
@@ -317,9 +317,9 @@ class RTHandler extends PaperHandler {
 		$conference =& Request::getConference();
 		$paper =& $this->paper;
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
-		$user = &Request::getUser();
+		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
+		$user =& Request::getUser();
 
 		if (!$conferenceRt || !$conferenceRt->getEmailAuthor() || !$user) {
 			Request::redirect(null, null, Request::getRequestedPage());
@@ -331,13 +331,13 @@ class RTHandler extends PaperHandler {
 		if (Request::getUserVar('send') && !$email->hasErrors()) {
 			$email->send();
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->display('rt/sent.tpl');
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->setSubject('[' . $schedConf->getLocalizedSetting('acronym') . '] ' . strip_tags($paper->getLocalizedTitle()));
-				$authors = &$paper->getAuthors();
-				$author = &$authors[0];
+				$authors =& $paper->getAuthors();
+				$author =& $authors[0];
 				$email->addRecipient($author->getEmail(), $author->getFullName());
 			}
 			$email->displayEditForm(Request::url(null, null, null, 'emailAuthor', array($paperId, $galleyId)), null, 'rt/email.tpl', array('op' => 'emailAuthor'));
@@ -356,14 +356,14 @@ class RTHandler extends PaperHandler {
 		$conference =& Request::getConference();
 		$paper =& $this->paper;
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
+		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
 		if (!$conferenceRt || !$conferenceRt->getSupplementaryFiles()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign_by_ref('conferenceRt', $conferenceRt);
@@ -384,17 +384,17 @@ class RTHandler extends PaperHandler {
 		$conference =& Request::getConference();
 		$paper =& $this->paper;
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
+		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
 
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $paper->getPaperId());
 
 		if (!$conferenceRt || !$conferenceRt->getSupplementaryFiles() || !$suppFile) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign_by_ref('suppFile', $suppFile);
@@ -415,14 +415,14 @@ class RTHandler extends PaperHandler {
 		$conference =& Request::getConference();
 		$paper =& $this->paper;
  
-		$rtDao = &DAORegistry::getDAO('RTDAO');
-		$conferenceRt = &$rtDao->getConferenceRTByConference($conference);
+		$rtDao =& DAORegistry::getDAO('RTDAO');
+		$conferenceRt =& $rtDao->getConferenceRTByConference($conference);
  
 		if (!$conferenceRt || !$conferenceRt->getFindingReferences()) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
  
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', $paperId);
 		$templateMgr->assign('galleyId', $galleyId);
 		$templateMgr->assign_by_ref('conferenceRt', $conferenceRt);

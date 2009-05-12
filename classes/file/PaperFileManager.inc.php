@@ -53,11 +53,11 @@ class PaperFileManager extends FileManager {
 	 */
 	function PaperFileManager($paperId) {
 		$this->paperId = $paperId;
-		$paperDao = &DAORegistry::getDAO('PaperDAO');
-		$this->paper = &$paperDao->getPaper($paperId);
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$this->paper =& $paperDao->getPaper($paperId);
 		$schedConfId = $this->paper->getSchedConfId();
-		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
-		$schedConf = &$schedConfDao->getSchedConf($schedConfId);
+		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+		$schedConf =& $schedConfDao->getSchedConf($schedConfId);
 		$this->filesDir = Config::getVar('files', 'files_dir') . '/conferences/' . $schedConf->getConferenceId() . '/schedConfs/' . $schedConfId .
 		'/papers/' . $paperId . '/';
 	}
@@ -210,8 +210,8 @@ class PaperFileManager extends FileManager {
 	 * @return PaperFile
 	 */
 	function &getFile($fileId, $revision = null) {
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
-		$paperFile = &$paperFileDao->getPaperFile($fileId, $revision, $this->paperId);
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
+		$paperFile =& $paperFileDao->getPaperFile($fileId, $revision, $this->paperId);
 		return $paperFile;
 	}
 
@@ -221,7 +221,7 @@ class PaperFileManager extends FileManager {
 	 * @return boolean
 	 */
 	function readFile($fileId, $revision = null, $output = false) {
-		$paperFile = &$this->getFile($fileId, $revision);
+		$paperFile =& $this->getFile($fileId, $revision);
 
 		if (isset($paperFile)) {
 			$fileType = $paperFile->getFileType();
@@ -242,11 +242,11 @@ class PaperFileManager extends FileManager {
 	 * @return int number of files removed
 	 */
 	function deleteFile($fileId, $revision = null) {
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 
 		$files = array();
 		if (isset($revision)) {
-			$file = &$paperFileDao->getPaperFile($fileId, $revision);
+			$file =& $paperFileDao->getPaperFile($fileId, $revision);
 			if (isset($file)) {
 				$files[] = $file;
 			}
@@ -279,7 +279,7 @@ class PaperFileManager extends FileManager {
 	 * @return boolean
 	 */
 	function downloadFile($fileId, $revision = null, $inline = false) {
-		$paperFile = &$this->getFile($fileId, $revision);
+		$paperFile =& $this->getFile($fileId, $revision);
 		if (isset($paperFile)) {
 			$fileType = $paperFile->getFileType();
 			$filePath = $this->filesDir . $paperFile->getType() . '/' . $paperFile->getFileName();
@@ -356,7 +356,7 @@ class PaperFileManager extends FileManager {
 	 * @param $destFileId int (optional)
 	 */
 	function copyAndRenameFile($sourceFileId, $sourceRevision, $destType, $destFileId = null) {
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 		$paperFile = new PaperFile();
 
 		$destTypePath = $this->typeToPath($destType);
@@ -416,7 +416,7 @@ class PaperFileManager extends FileManager {
 	 * @return object paperFile
 	 */
 	function &generateDummyFile(&$paper) {
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 		$paperFile = new PaperFile();
 		$paperFile->setPaperId($paper->getPaperId());
 		$paperFile->setFileName('temp');
@@ -438,7 +438,7 @@ class PaperFileManager extends FileManager {
 	 * PRIVATE routine to remove all prior revisions of a file.
 	 */
 	function removePriorRevisions($fileId, $revision) {
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 		$revisions = $paperFileDao->getPaperFileRevisions($fileId);
 		foreach ($revisions as $revisionFile) {
 			if ($revisionFile->getRevision() != $revision) {
@@ -470,7 +470,7 @@ class PaperFileManager extends FileManager {
 	 * @return int the file ID (false if upload failed)
 	 */
 	function handleUpload($fileName, $type, $fileId = null, $overwrite = false) {
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 
 		$typePath = $this->typeToPath($type);
 		$dir = $this->filesDir . $typePath . '/';
@@ -478,7 +478,7 @@ class PaperFileManager extends FileManager {
 		if (!$fileId) {
 			// Insert dummy file to generate file id FIXME?
 			$dummyFile = true;
-			$paperFile = &$this->generateDummyFile($this->paper);
+			$paperFile =& $this->generateDummyFile($this->paper);
 		} else {
 			$dummyFile = false;
 			$paperFile = new PaperFile();
@@ -523,7 +523,7 @@ class PaperFileManager extends FileManager {
 	 * @return int the file ID (false if upload failed)
 	 */
 	function handleWrite($fileName, &$contents, $mimeType, $type, $fileId = null, $overwrite = false) {
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 
 		$typePath = $this->typeToPath($type);
 		$dir = $this->filesDir . $typePath . '/';
@@ -531,7 +531,7 @@ class PaperFileManager extends FileManager {
 		if (!$fileId) {
 			// Insert dummy file to generate file id FIXME?
 			$dummyFile = true;
-			$paperFile = &$this->generateDummyFile($this->paper);
+			$paperFile =& $this->generateDummyFile($this->paper);
 		} else {
 			$dummyFile = false;
 			$paperFile = new PaperFile();
@@ -575,7 +575,7 @@ class PaperFileManager extends FileManager {
 	 * @return int the file ID (false if upload failed)
 	 */
 	function handleCopy($url, $mimeType, $type, $fileId = null, $overwrite = false) {
-		$paperFileDao = &DAORegistry::getDAO('PaperFileDAO');
+		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 
 		$typePath = $this->typeToPath($type);
 		$dir = $this->filesDir . $typePath . '/';
@@ -583,7 +583,7 @@ class PaperFileManager extends FileManager {
 		if (!$fileId) {
 			// Insert dummy file to generate file id FIXME?
 			$dummyFile = true;
-			$paperFile = &$this->generateDummyFile($this->paper);
+			$paperFile =& $this->generateDummyFile($this->paper);
 		} else {
 			$dummyFile = false;
 			$paperFile = new PaperFile();

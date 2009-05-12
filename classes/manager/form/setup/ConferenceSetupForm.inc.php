@@ -41,7 +41,7 @@ class ConferenceSetupForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('setupStep', $this->step);
 		$templateMgr->assign('helpTopicId', 'conference.generalManagement.websiteManagement');
 		$templateMgr->setCacheability(CACHEABILITY_MUST_REVALIDATE);
@@ -52,7 +52,7 @@ class ConferenceSetupForm extends Form {
 	 * Initialize data from current settings.
 	 */
 	function initData() {
-		$conference = &Request::getConference();
+		$conference =& Request::getConference();
 		$this->_data = $conference->getSettings();
 	}
 
@@ -67,8 +67,8 @@ class ConferenceSetupForm extends Form {
 	 * Save modified settings.
 	 */
 	function execute() {
-		$conference = &Request::getConference();
-		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+		$conference =& Request::getConference();
+		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 
 		foreach ($this->_data as $name => $value) {
 			if (isset($this->settings[$name])) {
@@ -90,8 +90,8 @@ class ConferenceSetupForm extends Form {
 	 * @param $locale string
 	 */
 	function uploadImage($settingName, $locale) {
-		$conference = &Request::getConference();
-		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+		$conference =& Request::getConference();
+		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 
 		import('file.PublicFileManager');
 		$fileManager = new PublicFileManager();
@@ -130,8 +130,8 @@ class ConferenceSetupForm extends Form {
 	 * @param $locale string
 	 */
 	function deleteImage($settingName, $locale = null) {
-		$conference = &Request::getConference();
-		$settingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
+		$conference =& Request::getConference();
+		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
 		$setting = $settingsDao->getSetting($conference->getConferenceId(), $settingName);
 
 		import('file.PublicFileManager');
@@ -140,7 +140,7 @@ class ConferenceSetupForm extends Form {
 			$returner = $settingsDao->deleteSetting($conference->getConferenceId(), $settingName, $locale);
 			// Ensure page header is refreshed
 			if ($returner) {
-				$templateMgr = &TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign(array(
 					'displayPageHeaderTitle' => $conference->getPageHeaderTitle(),
 					'displayPageHeaderLogo' => $conference->getPageHeaderLogo()

@@ -160,8 +160,8 @@ class Conference extends DataObject {
 	 * @return array
 	 */
 	function &getSettings() {
-		$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
-		$settings = &$conferenceSettingsDao->getConferenceSettings($this->getData('conferenceId'));
+		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$settings =& $conferenceSettingsDao->getConferenceSettings($this->getData('conferenceId'));
 		return $settings;
 	}
 
@@ -181,8 +181,8 @@ class Conference extends DataObject {
 	 * @return mixed
 	 */
 	function &getSetting($name, $locale = null) {
-		$conferenceSettingsDao = &DAORegistry::getDAO('ConferenceSettingsDAO');
-		$setting = &$conferenceSettingsDao->getSetting($this->getData('conferenceId'), $name, $locale);
+		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$setting =& $conferenceSettingsDao->getSetting($this->getData('conferenceId'), $name, $locale);
 		return $setting;
 	}
 
@@ -224,7 +224,7 @@ class Conference extends DataObject {
 
 		if (!isset($supportedLocales)) {
 			$supportedLocales = array();
-			$localeNames = &Locale::getAllLocales();
+			$localeNames =& Locale::getAllLocales();
 
 			$locales = $this->getSetting('supportedLocales');
 			if (!isset($locales) || !is_array($locales)) {

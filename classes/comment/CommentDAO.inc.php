@@ -28,10 +28,10 @@ class CommentDAO extends DAO {
 	function &getRootCommentsByPaperId($paperId, $childLevels = 0) {
 		$comments = array();
 
-		$result = &$this->retrieve('SELECT * FROM comments WHERE paper_id = ? AND parent_comment_id IS NULL ORDER BY date_posted', $paperId);
+		$result =& $this->retrieve('SELECT * FROM comments WHERE paper_id = ? AND parent_comment_id IS NULL ORDER BY date_posted', $paperId);
 
 		while (!$result->EOF) {
-			$comments[] = &$this->_returnCommentFromRow($result->GetRowAssoc(false), $childLevels);
+			$comments[] =& $this->_returnCommentFromRow($result->GetRowAssoc(false), $childLevels);
 			$result->moveNext();
 		}
 
@@ -49,10 +49,10 @@ class CommentDAO extends DAO {
 	function &getCommentsByParentId($parentId, $childLevels = 0) {
 		$comments = array();
 
-		$result = &$this->retrieve('SELECT * FROM comments WHERE parent_comment_id = ? ORDER BY date_posted', $parentId);
+		$result =& $this->retrieve('SELECT * FROM comments WHERE parent_comment_id = ? ORDER BY date_posted', $parentId);
 
 		while (!$result->EOF) {
-			$comments[] = &$this->_returnCommentFromRow($result->GetRowAssoc(false), $childLevels);
+			$comments[] =& $this->_returnCommentFromRow($result->GetRowAssoc(false), $childLevels);
 			$result->moveNext();
 		}
 
@@ -70,10 +70,10 @@ class CommentDAO extends DAO {
 	function &getCommentsByUserId($userId) {
 		$comments = array();
 
-		$result = &$this->retrieve('SELECT * FROM comments WHERE user_id = ?', $userId);
+		$result =& $this->retrieve('SELECT * FROM comments WHERE user_id = ?', $userId);
 
 		while (!$result->EOF) {
-			$comments[] = &$this->_returnCommentFromRow($result->GetRowAssoc(false));
+			$comments[] =& $this->_returnCommentFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -89,13 +89,13 @@ class CommentDAO extends DAO {
 	 * @return Comment object
 	 */
 	function &getComment($commentId, $paperId, $childLevels = 0) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM comments WHERE comment_id = ? and paper_id = ?', array($commentId, $paperId)
 		);
 
 		$comment = null;
 		if ($result->RecordCount() != 0) {
-			$comment = &$this->_returnCommentFromRow($result->GetRowAssoc(false), $childLevels);
+			$comment =& $this->_returnCommentFromRow($result->GetRowAssoc(false), $childLevels);
 		}
 
 		$result->Close();
@@ -110,7 +110,7 @@ class CommentDAO extends DAO {
 	 * @return Comment object
 	 */
 	function &_returnCommentFromRow($row, $childLevels = 0) {
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$comment = new Comment();
 		$comment->setCommentId($row['comment_id']);

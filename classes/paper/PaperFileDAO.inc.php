@@ -39,13 +39,13 @@ class PaperFileDAO extends DAO {
 		}
 		if ($revision == null) {
 			if ($paperId != null) {
-				$result = &$this->retrieveLimit(
+				$result =& $this->retrieveLimit(
 					'SELECT a.* FROM paper_files a WHERE file_id = ? AND paper_id = ? ORDER BY revision DESC',
 					array($fileId, $paperId),
 					1
 				);
 			} else {
-				$result = &$this->retrieveLimit(
+				$result =& $this->retrieveLimit(
 					'SELECT a.* FROM paper_files a WHERE file_id = ? ORDER BY revision DESC',
 					$fileId,
 					1
@@ -54,12 +54,12 @@ class PaperFileDAO extends DAO {
 
 		} else {
 			if ($paperId != null) {
-				$result = &$this->retrieve(
+				$result =& $this->retrieve(
 					'SELECT a.* FROM paper_files a WHERE file_id = ? AND revision = ? AND paper_id = ?',
 					array($fileId, $revision, $paperId)
 				);
 			} else {
-				$result = &$this->retrieve(
+				$result =& $this->retrieve(
 					'SELECT a.* FROM paper_files a WHERE file_id = ? AND revision = ?',
 					array($fileId, $revision)
 				);
@@ -68,7 +68,7 @@ class PaperFileDAO extends DAO {
 
 		$returner = null;
 		if (isset($result) && $result->RecordCount() != 0) {
-			$returner = &$this->_returnPaperFileFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnPaperFileFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -92,7 +92,7 @@ class PaperFileDAO extends DAO {
 		$params = array($fileId);
 		if ($stage !== null) $params[] = $stage;
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT a.* FROM paper_files a WHERE file_id = ? ' .
 			($stage!==null?'AND a.stage = ? ':'') .
 			'ORDER BY revision',
@@ -100,7 +100,7 @@ class PaperFileDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			$paperFiles[] = &$this->_returnPaperFileFromRow($result->GetRowAssoc(false));
+			$paperFiles[] =& $this->_returnPaperFileFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -123,19 +123,19 @@ class PaperFileDAO extends DAO {
 		$paperFiles = array();
 
 		if ($end == null) {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT a.* FROM paper_files a WHERE file_id = ? AND revision >= ?',
 				array($fileId, $start)
 			);
 		} else {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT a.* FROM paper_files a WHERE file_id = ? AND revision >= ? AND revision <= ?',
 				array($fileId, $start, $end)
 			);		
 		}
 
 		while (!$result->EOF) {
-			$paperFiles[] = &$this->_returnPaperFileFromRow($result->GetRowAssoc(false));
+			$paperFiles[] =& $this->_returnPaperFileFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -155,7 +155,7 @@ class PaperFileDAO extends DAO {
 			$returner = null;
 			return $returner;
 		}
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT MAX(revision) AS max_revision FROM paper_files a WHERE file_id = ?',
 			$fileId
 		);
@@ -181,13 +181,13 @@ class PaperFileDAO extends DAO {
 	function &getPaperFilesByPaper($paperId) {
 		$paperFiles = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM paper_files WHERE paper_id = ?',
 			$paperId
 		);
 
 		while (!$result->EOF) {
-			$paperFiles[] = &$this->_returnPaperFileFromRow($result->GetRowAssoc(false));
+			$paperFiles[] =& $this->_returnPaperFileFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 

@@ -86,7 +86,7 @@ class RTDAO extends DAO {
 	function &getVersions($conferenceId, $pagingInfo = null) {
 		$versions = array();
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM rt_versions WHERE conference_id = ? ORDER BY version_key',
 			(int) $conferenceId,
 			$pagingInfo
@@ -103,14 +103,14 @@ class RTDAO extends DAO {
 	 * @return RTVersion
 	 */
 	function &getVersion($versionId, $conferenceId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM rt_versions WHERE version_id = ? AND conference_id = ?',
 			array((int) $versionId, (int) $conferenceId)
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnVersionFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnVersionFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -174,7 +174,7 @@ class RTDAO extends DAO {
 	 * @param $conferenceId int
 	 */
 	function deleteVersionsByConferenceId($conferenceId) {
-		$versions = &$this->getVersions($conferenceId);
+		$versions =& $this->getVersions($conferenceId);
 		foreach ($versions->toArray() as $version) {
 			$this->deleteVersion($version->getVersionId(), $conferenceId);
 		}
@@ -198,9 +198,9 @@ class RTDAO extends DAO {
 	 * @param $conferenceId int
 	 */
 	function deleteVersionsByConference($conferenceId) {
-		$versions = &RTDAO::getVersions($conferenceId);
+		$versions =& RTDAO::getVersions($conferenceId);
 		while (!$versions->eof()) {
-			$version = &$versions->next();
+			$version =& $versions->next();
 			$this->deleteVersion($version->getVersionId(), $conferenceId);
 		}
 	}
@@ -219,7 +219,7 @@ class RTDAO extends DAO {
 		$version->setDescription($row['description']);
 
 		if (!HookRegistry::call('RTDAO::_returnVersionFromRow', array(&$version, &$row))) {
-			$contextsIterator = &$this->getContexts($row['version_id']);
+			$contextsIterator =& $this->getContexts($row['version_id']);
 			$version->setContexts($contextsIterator->toArray());
 		}
 
@@ -259,14 +259,14 @@ class RTDAO extends DAO {
 	 * @return RT
 	 */
 	function &getContext($contextId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM rt_contexts WHERE context_id = ?',
 			array((int) $contextId)
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnContextFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnContextFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -284,7 +284,7 @@ class RTDAO extends DAO {
 	function &getContexts($versionId, $pagingInfo = null) {
 		$contexts = array();
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM rt_contexts WHERE version_id = ? ORDER BY seq',
 			array((int) $versionId),
 			$pagingInfo
@@ -347,7 +347,7 @@ class RTDAO extends DAO {
 	 * @param $versionId int
 	 */
 	function deleteContextsByVersionId($versionId) {
-		$contexts = &$this->getContexts($versionId);
+		$contexts =& $this->getContexts($versionId);
 		foreach ($contexts->toArray() as $context) {
 			$this->deleteContext(
 				$context->getContextId(),
@@ -374,7 +374,7 @@ class RTDAO extends DAO {
 	 * Sequentially renumber contexts in their sequence order.
 	 */
 	function resequenceContexts($versionId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT context_id FROM rt_contexts WHERE version_id = ? ORDER BY seq',
 			array((int) $versionId)
 		);
@@ -415,7 +415,7 @@ class RTDAO extends DAO {
 		$context->setOrder($row['seq']);
 
 		if (!HookRegistry::call('RTDAO::_returnContextFromRow', array(&$context, &$row))) {
-			$searchesIterator = &$this->getSearches($row['context_id']);
+			$searchesIterator =& $this->getSearches($row['context_id']);
 			$context->setSearches($searchesIterator->toArray());
 		}
 
@@ -434,14 +434,14 @@ class RTDAO extends DAO {
 	 * @return RTSearch
 	 */
 	function &getSearch($searchId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM rt_searches WHERE search_id = ?',
 			array((int) $searchId)
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnSearchFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnSearchFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -459,7 +459,7 @@ class RTDAO extends DAO {
 	function &getSearches($contextId, $pagingInfo = null) {
 		$searches = array();
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM rt_searches WHERE context_id = ? ORDER BY seq',
 			array((int) $contextId),
 			$pagingInfo
@@ -543,7 +543,7 @@ class RTDAO extends DAO {
 	 * Sequentially renumber searches in their sequence order.
 	 */
 	function resequenceSearches($contextId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT search_id FROM rt_searches WHERE context_id = ? ORDER BY seq',
 			array((int) $contextId)
 		);

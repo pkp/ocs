@@ -42,7 +42,7 @@ class EditCommentForm extends Form {
 		$this->roleId = $comment->getRoleId();
 
 		$this->paper = $paper;
-		$this->user = &Request::getUser();
+		$this->user =& Request::getUser();
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -51,7 +51,7 @@ class EditCommentForm extends Form {
 	 * Initialize form data from current comment.
 	 */
 	function initData() {
-		$comment = &$this->comment;
+		$comment =& $this->comment;
 		$this->_data = array(
 			'commentId' => $comment->getCommentId(),
 			'commentTitle' => $comment->getCommentTitle(),
@@ -72,7 +72,7 @@ class EditCommentForm extends Form {
 			$hiddenFormParams = array_merge ($hiddenFormParams, $additionalHiddenParams);
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$isPeerReviewComment = $this->comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW;
 		$templateMgr->assign('isPeerReviewComment', $isPeerReviewComment); // FIXME
@@ -100,7 +100,7 @@ class EditCommentForm extends Form {
 	 * Update the comment.
 	 */
 	function execute() {
-		$commentDao = &DAORegistry::getDAO('PaperCommentDAO');
+		$commentDao =& DAORegistry::getDAO('PaperCommentDAO');
 
 		// Update comment		
 		$comment = $this->comment;
@@ -117,15 +117,15 @@ class EditCommentForm extends Form {
 	 * @return $recipients array of recipients (email address => name)
 	 */
 	function emailHelper() {
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$conference = &Request::getConference();
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$conference =& Request::getConference();
 
 		$recipients = array();
 
 		// Get directors for paper
-		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments = &$editAssignmentDao->getEditAssignmentsByPaperId($this->paper->getPaperId());
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($this->paper->getPaperId());
 		$editAssignments =& $editAssignments->toArray();
 		$directorAddresses = array();
 		foreach ($editAssignments as $editAssignment) {
@@ -135,24 +135,24 @@ class EditCommentForm extends Form {
 		// If no directors are currently assigned, send this message to
 		// all of the conference's directors.
 		if (empty($directorAddresses)) {
-			$directors = &$roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
+			$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
 			while (!$directors->eof()) {
-				$director = &$directors->next();
+				$director =& $directors->next();
 				$directorAddresses[$director->getEmail()] = $director->getFullName();
 			}
 		}
 
 		// Get reviewer
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment = &$reviewAssignmentDao->getReviewAssignmentById($this->comment->getAssocId());
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($this->comment->getAssocId());
 		if ($reviewAssignment != null && $reviewAssignment->getReviewerId() != null) {
-			$reviewer = &$userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		} else {
 			$reviewer = null;
 		}
 
 		// Get author
-		$author = &$userDao->getUser($this->paper->getUserId());
+		$author =& $userDao->getUser($this->paper->getUserId());
 
 		switch ($this->comment->getCommentType()) {
 		case COMMENT_TYPE_PEER_REVIEW:

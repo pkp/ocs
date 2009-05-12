@@ -24,13 +24,13 @@ class SpecialEventDAO extends DAO {
 	 * @return object SpecialEvent
 	 */
 	function &getSpecialEvent($specialEventId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM special_events WHERE special_event_id = ?', $specialEventId
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnSpecialEventFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnSpecialEventFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -42,7 +42,7 @@ class SpecialEventDAO extends DAO {
 	 * @return int
 	 */
 	function getSpecialEventSchedConfId($specialEventId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT sched_conf_id FROM special_events WHERE special_event_id = ?', $specialEventId
 		);
 
@@ -56,7 +56,7 @@ class SpecialEventDAO extends DAO {
 	 * @return boolean
 	 */
 	function specialEventExistsForSchedConf($specialEventId, $schedConfId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT	COUNT(*)
 				FROM special_events
 				WHERE special_event_id = ?
@@ -189,7 +189,7 @@ class SpecialEventDAO extends DAO {
 	 * @return object DAOResultFactory containing matching special events
 	 */
 	function &getSpecialEventsBySchedConfId($schedConfId, $rangeInfo = null) {
-		$result = &$this->retrieveRange('SELECT * FROM special_events WHERE sched_conf_id = ? ORDER BY start_time, end_time', $schedConfId, $rangeInfo);
+		$result =& $this->retrieveRange('SELECT * FROM special_events WHERE sched_conf_id = ? ORDER BY start_time, end_time', $schedConfId, $rangeInfo);
 		$returner = new DAOResultFactory($result, $this, '_returnSpecialEventFromRow');
 		return $returner;
 	}
