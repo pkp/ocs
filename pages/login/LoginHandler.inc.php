@@ -230,7 +230,7 @@ class LoginHandler extends Handler {
 			}
 
 			$user->setMustChangePassword(1);
-			$userDao->updateUser($user);
+			$userDao->updateObject($user);
 
 			// Send email with new password
 			$site =& Request::getSite();

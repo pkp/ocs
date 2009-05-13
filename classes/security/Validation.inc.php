@@ -93,7 +93,7 @@ class Validation {
 			}
 
 			$user->setDateLastLogin(Core::getCurrentDate());
-			$userDao->updateUser($user);
+			$userDao->updateObject($user);
 
 			return $user;
 		}
@@ -116,7 +116,7 @@ class Validation {
 		}
 
 		$sessionDao =& DAORegistry::getDAO('SessionDAO');
-		$sessionDao->updateSession($session);
+		$sessionDao->updateObject($session);
 
 		return true;
 	}

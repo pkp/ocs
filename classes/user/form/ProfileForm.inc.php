@@ -197,7 +197,7 @@ class ProfileForm extends Form {
 		$user->setLocales($locales);
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$userDao->updateUser($user);
+		$userDao->updateObject($user);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');

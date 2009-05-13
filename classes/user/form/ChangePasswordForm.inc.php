@@ -72,9 +72,8 @@ class ChangePasswordForm extends Form {
 		}
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$userDao->updateUser($user);
+		$userDao->updateObject($user);
 	}
-
 }
 
 ?>

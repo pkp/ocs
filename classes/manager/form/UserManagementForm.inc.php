@@ -273,7 +273,7 @@ class UserManagementForm extends Form {
 				$auth->doSetUserInfo($user);
 			}
 
-			$userDao->updateUser($user);
+			$userDao->updateObject($user);
 
 		} else {
 			$user->setUsername($this->getData('username'));
