@@ -258,7 +258,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 
 		if (
 			$comment == null ||
-			$comment->getAuthorId() != $user->getUserId()
+			$comment->getAuthorId() != $user->getId()
 		) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}

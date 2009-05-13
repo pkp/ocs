@@ -89,7 +89,7 @@ class PeerReviewCommentForm extends CommentForm {
 		$comment->setRoleId($this->roleId);
 		$comment->setPaperId($this->paper->getPaperId());
 		$comment->setAssocId($this->assocId);
-		$comment->setAuthorId($this->user->getUserId());
+		$comment->setAuthorId($this->user->getId());
 		$comment->setCommentTitle($this->getData('commentTitle'));
 		$comment->setDatePosted(Core::getCurrentDate());
 

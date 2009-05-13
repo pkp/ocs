@@ -193,7 +193,7 @@ class Request extends PKPRequest {
 	function redirectHome() {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user = Request::getUser();
-		$userId = $user->getUserId();
+		$userId = $user->getId();
 
 		if ($schedConf =& Request::getSchedConf()) { 
 			// The user is in the sched. conf. context, see if they have one role only

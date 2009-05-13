@@ -89,7 +89,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');
-		PaperLog::logEvent($this->paperId, PAPER_LOG_PRESENTATION_SUBMIT, LOG_TYPE_AUTHOR, $user->getUserId(), 'log.author.presentationSubmitted', array('submissionId' => $paper->getPaperId(), 'authorName' => $user->getFullName()));
+		PaperLog::logEvent($this->paperId, PAPER_LOG_PRESENTATION_SUBMIT, LOG_TYPE_AUTHOR, $user->getId(), 'log.author.presentationSubmitted', array('submissionId' => $paper->getPaperId(), 'authorName' => $user->getFullName()));
 
 		return $this->paperId;
 	}

@@ -120,7 +120,7 @@ class AuthorAction extends Action {
 			$user =& Request::getUser();
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($authorSubmission->getPaperId(), PAPER_LOG_AUTHOR_REVISION, LOG_TYPE_AUTHOR, $user->getUserId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'paperId' => $authorSubmission->getPaperId()));
+			PaperLog::logEvent($authorSubmission->getPaperId(), PAPER_LOG_AUTHOR_REVISION, LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'paperId' => $authorSubmission->getPaperId()));
 		}
 	}
 

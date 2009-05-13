@@ -85,7 +85,7 @@ class TrackDirectorHandler extends Handler {
 		$rangeInfo = Handler::getRangeInfo('submissions', array($functionName, (string) $searchField, (string) $searchMatch, (string) $search));
 		while (true) {
 			$submissions =& $trackDirectorSubmissionDao->$functionName(
-				$user->getUserId(),
+				$user->getId(),
 				$schedConf->getSchedConfId(),
 				$filterTrack,
 				$searchField,

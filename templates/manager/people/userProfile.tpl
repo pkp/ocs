@@ -17,7 +17,7 @@
 
 <h4>{translate key="user.profile"}</h4>
 
-<p><a href="{url op="editUser" path=$user->getUserId()}" class="action">{translate key="manager.people.editProfile"}</a></p>
+<p><a href="{url op="editUser" path=$user->getId()}" class="action">{translate key="manager.people.editProfile"}</a></p>
 
 <table width="100%" class="data">
 	<tr valign="top">
@@ -127,7 +127,7 @@
 			<a href="{url 
 					op="unEnroll"
 					path=$userRoles[role]->getRoleId()
-					userId=$user->getUserId()}"
+					userId=$user->getId()}"
 					onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmUnenroll"}')"
 					class="action">
 				{translate key="manager.people.unenroll"}

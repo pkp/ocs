@@ -33,7 +33,7 @@
 	<td width="20%" class="label">{fieldLabel name="userId" required="true" key="manager.registration.form.userId"}</td>
 	<td width="80%" class="value" id="userId">
 		{$user->getFullName()|escape}&nbsp;&nbsp;<a href="{if $registrationId}{url op="selectRegistrant" registrationId=$registrationId}{else}{url op="selectRegistrant"}{/if}" class="action">{translate key="common.select"}</a>
-		<input type="hidden" name="userId" value="{$user->getUserId()}"/>
+		<input type="hidden" name="userId" value="{$user->getId()}"/>
 	</td>
 </tr>
 <tr valign="top">

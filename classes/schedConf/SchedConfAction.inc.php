@@ -154,13 +154,13 @@ class SchedConfAction {
 			);
 
 			// First check for scheduled conference roles
-			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $schedConf->getConferenceId(), $schedConf->getSchedConfId());
+			$roles =& $roleDao->getRolesByUserId($user->getId(), $schedConf->getConferenceId(), $schedConf->getSchedConfId());
 			foreach ($roles as $role) {
 				if (in_array($role->getRoleId(), $registrationAssumedRoles)) return true;
 			}
 
 			// Second, conference-level roles
-			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $schedConf->getConferenceId(), 0);
+			$roles =& $roleDao->getRolesByUserId($user->getId(), $schedConf->getConferenceId(), 0);
 			foreach ($roles as $role) {
 				if (in_array($role->getRoleId(), $registrationAssumedRoles)) return true;
 			}
@@ -183,7 +183,7 @@ class SchedConfAction {
 
 			if(SchedConfAction::entitledUser($schedConf)) return true;
 
-			$result = $registrationDao->isValidRegistration(null, null, $user->getUserId(), $schedConf->getSchedConfId());
+			$result = $registrationDao->isValidRegistration(null, null, $user->getId(), $schedConf->getSchedConfId());
 		}
 		HookRegistry::call('SchedConfAction::registeredUser', array(&$schedConf, &$result));
 		return $result;

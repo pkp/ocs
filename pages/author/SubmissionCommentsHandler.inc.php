@@ -164,7 +164,7 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		if ($comment == null) {
 			$isValid = false;
 
-		} else if ($comment->getAuthorId() != $user->getUserId()) {
+		} else if ($comment->getAuthorId() != $user->getId()) {
 			$isValid = false;
 		}
 

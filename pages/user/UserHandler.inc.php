@@ -33,7 +33,7 @@ class UserHandler extends Handler {
 		$this->validate();
 
 		$user =& Request::getUser();
-		$userId = $user->getUserId();
+		$userId = $user->getId();
 		
 		$setupIncomplete = array();
 		$submissionsCount = array();
@@ -259,7 +259,7 @@ class UserHandler extends Handler {
 			$role->setSchedConfId($schedConf->getSchedConfId());
 			$role->setConferenceId($schedConf->getConferenceId());
 			$role->setRoleId($roleId);
-			$role->setUserId($user->getUserId());
+			$role->setUserId($user->getId());
 
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			$roleDao->insertRole($role);

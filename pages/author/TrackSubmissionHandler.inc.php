@@ -401,7 +401,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		} else if ($authorSubmission->getSchedConfId() != $schedConf->getSchedConfId()) {
 			$isValid = false;
 		} else {
-			if ($authorSubmission->getUserId() != $user->getUserId()) {
+			if ($authorSubmission->getUserId() != $user->getId()) {
 				$isValid = false;
 			}
 		}

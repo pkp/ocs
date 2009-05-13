@@ -46,7 +46,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$user =& Request::getUser();
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isDirector = $roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getUserId(), ROLE_ID_DIRECTOR);
+		$isDirector = $roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getId(), ROLE_ID_DIRECTOR);
 
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$track =& $trackDao->getTrack($submission->getTrackId());
@@ -62,7 +62,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
 		$templateMgr->assign_by_ref('reviewMode', $submission->getReviewMode());
-		$templateMgr->assign('userId', $user->getUserId());
+		$templateMgr->assign('userId', $user->getId());
 		$templateMgr->assign('isDirector', $isDirector);
 		$templateMgr->assign('enableComments', $enableComments);
 
@@ -1858,7 +1858,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$editAssignments =& $trackDirectorSubmission->getEditAssignments();
 			$wasFound = false;
 			foreach ($editAssignments as $editAssignment) {
-				if ($editAssignment->getDirectorId() == $user->getUserId()) {
+				if ($editAssignment->getDirectorId() == $user->getId()) {
 					$wasFound = true;
 				}
 			}
@@ -1873,7 +1873,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $trackDirectorSubmission->getEditAssignments();
 		foreach ($editAssignments as $editAssignment) {
-			if ($editAssignment->getDirectorId() == $user->getUserId() && $editAssignment->getDateUnderway() === null) {
+			if ($editAssignment->getDirectorId() == $user->getId() && $editAssignment->getDateUnderway() === null) {
 				$editAssignment->setDateUnderway(Core::getCurrentDate());
 				$editAssignmentDao->updateEditAssignment($editAssignment);
 			}

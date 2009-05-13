@@ -147,7 +147,7 @@ class CreateAccountHandler extends UserHandler {
 		$accessKeyHash = AccessKeyManager::generateKeyHash($accessKeyCode);
 		$accessKey =& $accessKeyManager->validateKey(
 			'RegisterContext',
-			$user->getUserId(),
+			$user->getId(),
 			$accessKeyHash
 		);
 

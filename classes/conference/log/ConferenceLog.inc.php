@@ -49,7 +49,7 @@ class ConferenceLog {
 
 		if ($entry->getUserId() == null) {
 			$user =& Request::getUser();
-			$entry->setUserId($user == null ? 0 : $user->getUserId());
+			$entry->setUserId($user == null ? 0 : $user->getId());
 		}
 
 		$logDao =& DAORegistry::getDAO('ConferenceEventLogDAO');

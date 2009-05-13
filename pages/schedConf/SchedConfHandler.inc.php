@@ -205,7 +205,7 @@ class SchedConfHandler extends Handler {
 
 		$user =& Request::getUser();
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
-		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getUserId(), $schedConf->getSchedConfId()))) {
+		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getSchedConfId()))) {
 			// This user has already registered.
 			$registration =& $registrationDao->getRegistration($registrationId);
 
@@ -259,7 +259,7 @@ class SchedConfHandler extends Handler {
 
 		$user =& Request::getUser();
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
-		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getUserId(), $schedConf->getSchedConfId()))) {
+		if ($user && ($registrationId = $registrationDao->getRegistrationIdByUser($user->getId(), $schedConf->getSchedConfId()))) {
 			// This user has already registered.
 			$registration =& $registrationDao->getRegistration($registrationId);
 			if ( !$registration || $registration->getDatePaid() ) {

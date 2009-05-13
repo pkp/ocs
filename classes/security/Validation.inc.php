@@ -82,8 +82,8 @@ class Validation {
 			$sessionManager->regenerateSessionId();
 
 			$session =& $sessionManager->getUserSession();
-			$session->setSessionVar('userId', $user->getUserId());
-			$session->setUserId($user->getUserId());
+			$session->setSessionVar('userId', $user->getId());
+			$session->setUserId($user->getId());
 			$session->setSessionVar('username', $user->getUsername());
 			$session->setRemember($remember);
 
@@ -191,7 +191,7 @@ class Validation {
 		$user =& $session->getUser();
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		return $roleDao->roleExists($conferenceId, $schedConfId, $user->getUserId(), $roleId);
+		return $roleDao->roleExists($conferenceId, $schedConfId, $user->getId(), $roleId);
 	}
 
 	/**
@@ -249,7 +249,7 @@ class Validation {
 			// No such user
 			return false;
 		}
-		return substr(md5($user->getUserId() . $user->getUsername() . $user->getPassword()), 0, 6);
+		return substr(md5($user->getId() . $user->getUsername() . $user->getPassword()), 0, 6);
 	}
 
 	/**

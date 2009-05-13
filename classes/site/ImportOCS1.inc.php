@@ -234,7 +234,7 @@ class ImportOCS1 {
 			foreach ($admins->toArray() as $admin) {
 				$role = new Role();
 				$role->setConferenceId($this->conferenceId);
-				$role->setUserId($admin->getUserId());
+				$role->setUserId($admin->getId());
 				$role->setRoleId(ROLE_ID_CONFERENCE_MANAGER);
 				$roleDao->insertRole($role);
 			}
@@ -455,12 +455,12 @@ class ImportOCS1 {
 				continue;
 			}
 
-			if ($registrationDao->registrationExistsByUser($user->getUserId(), $schedConf->getSchedConfId())) {
+			if ($registrationDao->registrationExistsByUser($user->getId(), $schedConf->getSchedConfId())) {
 				$this->errors[] = "A duplicate registration (level \"$seekingRegLevel\") was skipped for user with email $email.";
 			} else {
 				$registration = new Registration();
 				$registration->setSchedConfId($schedConf->getSchedConfId());
-				$registration->setUserId($user->getUserId());
+				$registration->setUserId($user->getId());
 				$registration->setTypeId($registrationType->getTypeId());
 				if ($row['has_paid'] == 'paid') $registration->setDatePaid(Core::cleanVar($row['date_paid']));
 				$registration->setSpecialRequests(Core::cleanVar($row['special_requests']));
@@ -585,7 +585,7 @@ class ImportOCS1 {
 				$role = new Role();
 				$role->setSchedConfId($schedConf->getSchedConfId());
 				$role->setConferenceId($schedConf->getConferenceId());
-				$role->setUserId($user->getUserId());
+				$role->setUserId($user->getId());
 				$role->setRoleId(ROLE_ID_REVIEWER);
 				$roleDao->insertRole($role);
 				unset($role);
@@ -674,12 +674,12 @@ class ImportOCS1 {
 				$role = new Role();
 				$role->setSchedConfId($schedConf->getSchedConfId());
 				$role->setConferenceId($schedConf->getConferenceId());
-				$role->setUserId($user->getUserId());
+				$role->setUserId($user->getId());
 				$role->setRoleId(ROLE_ID_AUTHOR);
 				$roleDao->insertRole($role);
 				unset($role);
 			}
-			$userId = $user->getUserId();
+			$userId = $user->getId();
 
 			// Bring in the basic entry for the paper
 			$paper = new Paper();
@@ -872,7 +872,7 @@ class ImportOCS1 {
 
 			$schedConfId = $schedConf->getSchedConfId();
 			$paperId = $paper->getPaperId();
-			$reviewerId = $reviewer->getUserId();
+			$reviewerId = $reviewer->getId();
 
 			$reviewAssignment = new ReviewAssignment();
 			$reviewAssignment->setReviewerId($reviewerId);

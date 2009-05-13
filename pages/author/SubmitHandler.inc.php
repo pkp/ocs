@@ -190,7 +190,7 @@ class SubmitHandler extends AuthorHandler {
 				$directors = $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR);
 				array_merge($allUsers, $directors->toArray());
 				foreach ($allUsers as $user) {
-					$notificationUsers[] = array('id' => $user->getUserId());
+					$notificationUsers[] = array('id' => $user->getId());
 				}
 
 				foreach ($notificationUsers as $user) {
@@ -377,7 +377,7 @@ class SubmitHandler extends AuthorHandler {
 		if (isset($paperId)) {
 			// Check that paper exists for this conference and user and that submission is incomplete
 			$paper =& $paperDao->getPaper((int) $paperId);
-			if (!$paper || $paper->getUserId() !== $user->getUserId() || $paper->getSchedConfId() !== $schedConf->getSchedConfId()) {
+			if (!$paper || $paper->getUserId() !== $user->getId() || $paper->getSchedConfId() !== $schedConf->getSchedConfId()) {
 				Request::redirect(null, null, null, 'submit');
 			}
 

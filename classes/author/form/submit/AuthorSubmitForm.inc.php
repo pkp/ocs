@@ -145,7 +145,7 @@ class AuthorSubmitForm extends Form {
 		foreach ($trackDirectors as $trackDirector) {
 			$editAssignment = new EditAssignment();
 			$editAssignment->setPaperId($paper->getPaperId());
-			$editAssignment->setDirectorId($trackDirector->getUserId());
+			$editAssignment->setDirectorId($trackDirector->getId());
 			$editAssignmentDao->insertEditAssignment($editAssignment);
 			unset($editAssignment);
 		}

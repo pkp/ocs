@@ -151,7 +151,7 @@ class LoginHandler extends Handler {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getUserByEmail($email);
 
-		if ($user == null || ($hash = Validation::generatePasswordResetHash($user->getUserId())) == false) {
+		if ($user == null || ($hash = Validation::generatePasswordResetHash($user->getId())) == false) {
 			$templateMgr->assign('error', 'user.login.lostPassword.invalidUser');
 			$templateMgr->display('user/lostPassword.tpl');
 
@@ -206,7 +206,7 @@ class LoginHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$hash = Validation::generatePasswordResetHash($user->getUserId());
+		$hash = Validation::generatePasswordResetHash($user->getId());
 		if ($hash == false || $confirmHash != $hash) {
 			$templateMgr->assign('errorMsg', 'user.login.lostPassword.invalidHash');
 			$templateMgr->assign('backLink', Request::url(null, null, null, 'lostPassword'));
@@ -224,7 +224,7 @@ class LoginHandler extends Handler {
 
 			if (isset($auth)) {
 				$auth->doSetUserPassword($user->getUsername(), $newPassword);
-				$user->setPassword(Validation::encryptCredentials($user->getUserId(), Validation::generatePassword())); // Used for PW reset hash only
+				$user->setPassword(Validation::encryptCredentials($user->getId(), Validation::generatePassword())); // Used for PW reset hash only
 			} else {
 				$user->setPassword(Validation::encryptCredentials($user->getUsername(), $newPassword));
 			}

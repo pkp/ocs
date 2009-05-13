@@ -235,7 +235,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		if (!$reviewerSubmission || $reviewerSubmission->getSchedConfId() != $schedConf->getSchedConfId()) {
 			$isValid = false;
 		} elseif ($user && empty($newKey)) {
-			if ($reviewerSubmission->getReviewerId() != $user->getUserId()) {
+			if ($reviewerSubmission->getReviewerId() != $user->getId()) {
 				$isValid = false;
 			}
 		} else {

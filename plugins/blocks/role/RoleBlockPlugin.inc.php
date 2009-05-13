@@ -76,7 +76,7 @@ class RoleBlockPlugin extends BlockPlugin {
 		$user =& Request::getUser();
 		if (!$conference || !$schedConf || !$user) return null;
 
-		$userId = $user->getUserId();
+		$userId = $user->getId();
 		$conferenceId = $conference->getConferenceId();
 		$schedConfId = $schedConf->getSchedConfId();
 

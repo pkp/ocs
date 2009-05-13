@@ -180,7 +180,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 					$roleId = $roleDao->getRoleIdFromPath($rolePath);
 					$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $schedConf->getSchedConfId());
 					foreach ($thisRoleUsers->toArray() as $user) {
-						$users[$user->getUserId()] = $user;
+						$users[$user->getId()] = $user;
 					}
 					$rolePaths[] = $rolePath;
 				}
@@ -264,7 +264,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 						$roleId = $roleDao->getRoleIdFromPath($rolePath);
 						$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $schedConf->getSchedConfId());
 						foreach ($thisRoleUsers->toArray() as $user) {
-							$users[$user->getUserId()] = $user;
+							$users[$user->getId()] = $user;
 						}
 						$rolePaths[] = $rolePath;
 					}

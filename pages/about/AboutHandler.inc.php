@@ -246,13 +246,13 @@ class AboutHandler extends Handler {
 		if (!isset($settings['boardEnabled']) || $settings['boardEnabled'] != true) {
 			$directors =& $roleDao->getUsersByRoleId(ROLE_ID_DIRECTOR, $conference->getConferenceId());
 			while ($potentialUser =& $directors->next()) {
-				if ($potentialUser->getUserId() == $userId)
+				if ($potentialUser->getId() == $userId)
 					$user =& $potentialUser;
 			}
 
 			$trackDirectors =& $roleDao->getUsersByRoleId(ROLE_ID_TRACK_DIRECTOR, $conference->getConferenceId());
 			while ($potentialUser =& $trackDirectors->next()) {
-				if ($potentialUser->getUserId() == $userId)
+				if ($potentialUser->getId() == $userId)
 					$user =& $potentialUser;
 			}
 
@@ -267,7 +267,7 @@ class AboutHandler extends Handler {
 				while ($membership =& $allMemberships->next()) {
 					if (!$membership->getAboutDisplayed()) continue;
 					$potentialUser =& $membership->getUser();
-					if ($potentialUser->getUserId() == $userId)
+					if ($potentialUser->getId() == $userId)
 						$user = $potentialUser;
 				}
 			}
@@ -383,7 +383,7 @@ class AboutHandler extends Handler {
 			$conferences =& $conferenceDao->getEnabledConferences();
 			// Fetch the user's roles for each conference
 			foreach ($conferences->toArray() as $conference) {
-				$roles =& $roleDao->getRolesByUserId($user->getUserId(), $conference->getConferenceId());
+				$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getConferenceId());
 				if (!empty($roles)) {
 					$rolesByConference[$conference->getConferenceId()] =& $roles;
 				}
@@ -396,7 +396,7 @@ class AboutHandler extends Handler {
 			$templateMgr->assign_by_ref('rolesByConference', $rolesByConference);
 		}
 		if ($user) {
-			$templateMgr->assign('isSiteAdmin', $roleDao->getRole(0, 0, $user->getUserId(), ROLE_ID_SITE_ADMIN));
+			$templateMgr->assign('isSiteAdmin', $roleDao->getRole(0, 0, $user->getId(), ROLE_ID_SITE_ADMIN));
 		}
 
 		$templateMgr->display('about/siteMap.tpl');

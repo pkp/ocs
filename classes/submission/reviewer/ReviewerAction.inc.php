@@ -74,7 +74,7 @@ class ReviewerAction extends Action {
 
 				$entry = new PaperEventLogEntry();
 				$entry->setPaperId($reviewAssignment->getPaperId());
-				$entry->setUserId($reviewer->getUserId());
+				$entry->setUserId($reviewer->getId());
 				$entry->setDateLogged(Core::getCurrentDate());
 				$entry->setEventType($decline?PAPER_LOG_REVIEW_DECLINE:PAPER_LOG_REVIEW_ACCEPT);
 				$entry->setLogMessage($decline?'log.review.reviewDeclined':'log.review.reviewAccepted', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'stage' => $reviewAssignment->getStage()));
@@ -159,7 +159,7 @@ class ReviewerAction extends Action {
 
 				$entry = new PaperEventLogEntry();
 				$entry->setPaperId($reviewAssignment->getPaperId());
-				$entry->setUserId($reviewer->getUserId());
+				$entry->setUserId($reviewer->getId());
 				$entry->setDateLogged(Core::getCurrentDate());
 				$entry->setEventType(PAPER_LOG_REVIEW_RECOMMENDATION);
 				$entry->setLogMessage('log.review.reviewRecommendationSet', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'stage' => $reviewAssignment->getStage()));
@@ -238,7 +238,7 @@ class ReviewerAction extends Action {
 
 			$entry = new PaperEventLogEntry();
 			$entry->setPaperId($reviewAssignment->getPaperId());
-			$entry->setUserId($reviewer->getUserId());
+			$entry->setUserId($reviewer->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(PAPER_LOG_REVIEW_FILE);
 			$entry->setLogMessage('log.review.reviewerFile');

@@ -179,7 +179,7 @@ class CreateAccountForm extends Form {
 			// Create an access key
 			import('security.AccessKeyManager');
 			$accessKeyManager = new AccessKeyManager();
-			$accessKey = $accessKeyManager->createKey('RegisterContext', $user->getUserId(), null, Config::getVar('email', 'validation_timeout'));
+			$accessKey = $accessKeyManager->createKey('RegisterContext', $user->getId(), null, Config::getVar('email', 'validation_timeout'));
 
 			// Send email validation request to user
 			$mail = new MailTemplate('USER_VALIDATE');
@@ -219,7 +219,7 @@ class CreateAccountForm extends Form {
 				return false;
 			}
 
-			$userId = $user->getUserId();
+			$userId = $user->getId();
 
 		} else {
 			// New user
@@ -272,7 +272,7 @@ class CreateAccountForm extends Form {
 
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$userDao->insertUser($user);
-			$userId = $user->getUserId();
+			$userId = $user->getId();
 			if (!$userId) {
 				return false;
 			}

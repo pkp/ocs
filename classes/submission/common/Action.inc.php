@@ -228,7 +228,7 @@ class Action {
 		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
 		$comment =& $paperCommentDao->getPaperCommentById($commentId);
 
-		if ($comment->getAuthorId() == $user->getUserId()) {
+		if ($comment->getAuthorId() == $user->getId()) {
 			if (!HookRegistry::call('Action::deleteComment', array(&$comment))) {
 				$paperCommentDao->deletePaperComment($comment);
 			}

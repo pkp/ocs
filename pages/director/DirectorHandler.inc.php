@@ -119,7 +119,7 @@ class DirectorHandler extends TrackDirectorHandler {
 		}
 
 		if ($filterDirector == FILTER_DIRECTOR_ME) {
-			$directorId = $user->getUserId();
+			$directorId = $user->getId();
 		} else {
 			$directorId = FILTER_DIRECTOR_ALL;
 		}

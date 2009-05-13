@@ -45,7 +45,7 @@ class CommentHandler extends Handler {
 		$paper =& $this->paper;
 
 		$user =& Request::getUser();
-		$userId = isset($user)?$user->getUserId():null;
+		$userId = isset($user)?$user->getId():null;
 
 		$commentDao =& DAORegistry::getDAO('CommentDAO');
 		$comment =& $commentDao->getComment($commentId, $paperId, 2);
@@ -148,7 +148,7 @@ class CommentHandler extends Handler {
 
 		$this->validate($paperId);
 		$user =& Request::getUser();
-		$userId = isset($user)?$user->getUserId():null;
+		$userId = isset($user)?$user->getId():null;
 
 		$commentDao =& DAORegistry::getDAO('CommentDAO');
 

@@ -68,7 +68,7 @@ class TrackDirectorAction extends Action {
 		$user =& Request::getUser();
 		$directorDecision = array(
 			'editDecisionId' => null,
-			'directorId' => $user->getUserId(),
+			'directorId' => $user->getId(),
 			'decision' => $decision,
 			'dateDecided' => date(Core::getCurrentDate())
 		);
@@ -87,7 +87,7 @@ class TrackDirectorAction extends Action {
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_DECISION, LOG_TYPE_DIRECTOR, $user->getUserId(), 'log.director.decision', array('directorName' => $user->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'decision' => Locale::translate($decisions[$decision])));
+			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_DECISION, LOG_TYPE_DIRECTOR, $user->getId(), 'log.director.decision', array('directorName' => $user->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
 
 		if($decision == SUBMISSION_DIRECTOR_DECISION_ACCEPT || $decision == SUBMISSION_DIRECTOR_DECISION_INVITE) {
@@ -281,7 +281,7 @@ class TrackDirectorAction extends Action {
 							$keyLifetime = ((int) $schedConf->getSetting('numWeeksPerReviewRelative') + 4) * 7;
 						}
 
-						$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime));
+						$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getId(), $reviewId, $keyLifetime));
 					}
 
 					if ($preventAddressChanges) {
@@ -326,7 +326,7 @@ class TrackDirectorAction extends Action {
 						'editorialContactSignature' => $user->getContactSignature(),
 						'reviewGuidelines' => $schedConf->getLocalizedSetting('reviewGuidelines'),
 						'submissionReviewUrl' => $submissionUrl,
-						'passwordResetUrl' => Request::url(null, null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId())))
+						'passwordResetUrl' => Request::url(null, null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId())))
 					);
 					$email->assignParams($paramArray);
 					$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
@@ -450,7 +450,7 @@ class TrackDirectorAction extends Action {
 				} elseif ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_RELATIVE) {
 					$keyLifetime = ((int) $schedConf->getSetting('numWeeksPerReviewRelative') + 4) * 7;
 				}
-				$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime));
+				$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getId(), $reviewId, $keyLifetime));
 			}
 
 			if ($preventAddressChanges) {
@@ -483,7 +483,7 @@ class TrackDirectorAction extends Action {
 					'reviewerPassword' => $reviewer->getPassword(),
 					'reviewDueDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())),
 					'editorialContactSignature' => $user->getContactSignature(),
-					'passwordResetUrl' => Request::url(null, null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId()))),
+					'passwordResetUrl' => Request::url(null, null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
 					'submissionReviewUrl' => $submissionUrl
 				);
 				$email->assignParams($paramArray);
@@ -492,7 +492,7 @@ class TrackDirectorAction extends Action {
 			$email->displayEditForm(
 				Request::url(null, null, null, 'remindReviewer', 'send'),
 				array(
-					'reviewerId' => $reviewer->getUserId(),
+					'reviewerId' => $reviewer->getId(),
 					'paperId' => $trackDirectorSubmission->getPaperId(),
 					'reviewId' => $reviewId
 				)
@@ -687,7 +687,7 @@ class TrackDirectorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('TrackDirectorAction::unsuitableSubmission', array(&$trackDirectorSubmission, &$author, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(PAPER_EMAIL_DIRECTOR_NOTIFY_AUTHOR_UNSUITABLE, PAPER_EMAIL_TYPE_DIRECTOR, $user->getUserId());
+				$email->setAssoc(PAPER_EMAIL_DIRECTOR_NOTIFY_AUTHOR_UNSUITABLE, PAPER_EMAIL_TYPE_DIRECTOR, $user->getId());
 				$email->send();
 			}
 			TrackDirectorAction::archiveSubmission($trackDirectorSubmission);
@@ -1192,7 +1192,7 @@ import('file.PaperFileManager');
 
 		$paperNote = new PaperNote();
 		$paperNote->setPaperId($paperId);
-		$paperNote->setUserId($user->getUserId());
+		$paperNote->setUserId($user->getId());
 		$paperNote->setDateCreated(Core::getCurrentDate());
 		$paperNote->setDateModified(Core::getCurrentDate());
 		$paperNote->setTitle(Request::getUserVar('title'));
@@ -1246,7 +1246,7 @@ import('file.PaperFileManager');
 		$paperNote = new PaperNote();
 		$paperNote->setNoteId(Request::getUserVar('noteId'));
 		$paperNote->setPaperId($paperId);
-		$paperNote->setUserId($user->getUserId());
+		$paperNote->setUserId($user->getId());
 		$paperNote->setDateModified(Core::getCurrentDate());
 		$paperNote->setTitle(Request::getUserVar('title'));
 		$paperNote->setNote(Request::getUserVar('note'));
@@ -1641,7 +1641,7 @@ import('file.PaperFileManager');
 
 			$entry = new PaperEventLogEntry();
 			$entry->setPaperId($reviewAssignment->getPaperId());
-			$entry->setUserId($user->getUserId());
+			$entry->setUserId($user->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(PAPER_LOG_REVIEW_ACCEPT_BY_PROXY);
 			$entry->setLogMessage('log.review.reviewAcceptedByProxy', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'stage' => $reviewAssignment->getStage(), 'userName' => $user->getFullName()));
@@ -1699,7 +1699,7 @@ import('file.PaperFileManager');
 
 			$entry = new PaperEventLogEntry();
 			$entry->setPaperId($reviewAssignment->getPaperId());
-			$entry->setUserId($user->getUserId());
+			$entry->setUserId($user->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(PAPER_LOG_REVIEW_FILE_BY_PROXY);
 			$entry->setLogMessage('log.review.reviewFileByProxy', array('reviewerName' => $reviewer->getFullName(), 'paperId' => $reviewAssignment->getPaperId(), 'stage' => $reviewAssignment->getStage(), 'userName' => $user->getFullName()));

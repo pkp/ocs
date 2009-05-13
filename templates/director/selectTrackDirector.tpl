@@ -41,7 +41,7 @@
 </tr>
 <tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
 {iterate from=directors item=director}
-{assign var=directorId value=$director->getUserId()}
+{assign var=directorId value=$director->getId()}
 <tr valign="top">
 	<td><a class="action" href="{url op="userProfile" path=$directorId}">{$director->getFullName()}</a></td>
 	<td>

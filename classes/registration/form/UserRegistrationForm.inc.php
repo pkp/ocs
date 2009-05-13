@@ -218,7 +218,7 @@ class UserRegistrationForm extends Form {
 			$role->setRoleId(ROLE_ID_READER);
 			$role->setSchedConfId($schedConf->getSchedConfId());
 			$role->setConferenceId($conference->getConferenceId());
-			$role->setUserId($user->getUserId());
+			$role->setUserId($user->getId());
 			$roleDao->insertRole($role);
 
 			$sessionManager =& SessionManager::getManager();
@@ -248,7 +248,7 @@ class UserRegistrationForm extends Form {
 		$registration = new Registration();
 
 		$registration->setSchedConfId($schedConf->getSchedConfId());
-		$registration->setUserId($user->getUserId());
+		$registration->setUserId($user->getId());
 		$registration->setTypeId($this->getData('registrationTypeId'));
 		$registration->setSpecialRequests($this->getData('specialRequests') ? $this->getData('specialRequests') : null);
 		$registration->setDateRegistered(time());
@@ -276,7 +276,7 @@ class UserRegistrationForm extends Form {
 			unset($registrationOption);
 		}
 
-		$queuedPayment =& $paymentManager->createQueuedPayment($schedConf->getConferenceId(), $schedConf->getSchedConfId(), QUEUED_PAYMENT_TYPE_REGISTRATION, $user->getUserId(), $registrationId, $cost, $registrationType->getCurrencyCodeAlpha());
+		$queuedPayment =& $paymentManager->createQueuedPayment($schedConf->getConferenceId(), $schedConf->getSchedConfId(), QUEUED_PAYMENT_TYPE_REGISTRATION, $user->getId(), $registrationId, $cost, $registrationType->getCurrencyCodeAlpha());
 		$queuedPaymentId = $paymentManager->queuePayment($queuedPayment, time() + (60 * 60 * 24 * 30)); // 30 days to complete
 
 		$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);

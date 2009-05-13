@@ -49,10 +49,10 @@ class DirectorAction extends TrackDirectorAction {
 		import('mail.PaperMailTemplate');
 		$email = new PaperMailTemplate($directorSubmission, 'DIRECTOR_ASSIGN');
 
-		if ($user->getUserId() === $trackDirectorId || !$email->isEnabled() || ($send && !$email->hasErrors())) {
+		if ($user->getId() === $trackDirectorId || !$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('DirectorAction::assignDirector', array(&$directorSubmission, &$trackDirector, &$isDirector, &$email));
-			if ($email->isEnabled() && $user->getUserId() !== $trackDirectorId) {
-				$email->setAssoc(PAPER_EMAIL_DIRECTOR_ASSIGN, PAPER_EMAIL_TYPE_DIRECTOR, $trackDirector->getUserId());
+			if ($email->isEnabled() && $user->getId() !== $trackDirectorId) {
+				$email->setAssoc(PAPER_EMAIL_DIRECTOR_ASSIGN, PAPER_EMAIL_TYPE_DIRECTOR, $trackDirector->getId());
 				$email->send();
 			}
 
@@ -112,13 +112,13 @@ class DirectorAction extends TrackDirectorAction {
 		// Add a long entry before doing anything.
 		import('paper.log.PaperLog');
 		import('paper.log.PaperEventLogEntry');
-		PaperLog::logEvent($paper->getPaperId(), PAPER_LOG_DIRECTOR_EXPEDITE, LOG_TYPE_DIRECTOR, $user->getUserId(), 'log.director.submissionExpedited', array('directorName' => $user->getFullName(), 'paperId' => $paper->getPaperId()));
+		PaperLog::logEvent($paper->getPaperId(), PAPER_LOG_DIRECTOR_EXPEDITE, LOG_TYPE_DIRECTOR, $user->getId(), 'log.director.submissionExpedited', array('directorName' => $user->getFullName(), 'paperId' => $paper->getPaperId()));
 
 		// 1. Ensure that a director is assigned.
 		$editAssignments =& $trackDirectorSubmission->getEditAssignments();
 		if (empty($editAssignments)) {
 			// No directors are currently assigned; assign self.
-			DirectorAction::assignDirector($paper->getPaperId(), $user->getUserId(), true);
+			DirectorAction::assignDirector($paper->getPaperId(), $user->getId(), true);
 		}
 
 		// 2. Accept the submission and send to copyediting.

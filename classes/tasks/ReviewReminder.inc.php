@@ -67,7 +67,7 @@ class ReviewReminder extends ScheduledTask {
 			} elseif ($schedConf->getSetting('reviewDeadlineType') == REVIEW_DEADLINE_TYPE_RELATIVE) {
 				$keyLifetime = ((int) $schedConf->getSetting('numWeeksPerReviewRelative') + 4) * 7;
 			}
-			$urlParams['key'] = $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime);
+			$urlParams['key'] = $accessKeyManager->createKey('ReviewerContext', $reviewer->getId(), $reviewId, $keyLifetime);
 		}
 		$submissionReviewUrl = Request::url($conference->getPath(), $schedConf->getPath(), 'reviewer', 'submission', $reviewId, $urlParams);
 
@@ -79,7 +79,7 @@ class ReviewReminder extends ScheduledTask {
 			'reviewerPassword' => $reviewer->getPassword(),
 			'reviewDueDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())),
 			'editorialContactSignature' => $contactName . "\n" . $schedConf->getFullTitle(),
-			'passwordResetUrl' => Request::url($conference->getPath(), $schedConf->getPath(), 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId()))),
+			'passwordResetUrl' => Request::url($conference->getPath(), $schedConf->getPath(), 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
 			'submissionReviewUrl' => $submissionReviewUrl
 		);
 		$email->assignParams($paramArray);

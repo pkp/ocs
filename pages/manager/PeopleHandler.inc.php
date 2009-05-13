@@ -545,7 +545,7 @@ class PeopleHandler extends ManagerHandler {
 		$user =& Request::getUser();
 		$conference =& Request::getConference();
 
-		if ($userId != null && $userId != $user->getUserId()) {
+		if ($userId != null && $userId != $user->getId()) {
 			if (!Validation::canAdminister($conference->getConferenceId(), $userId)) {
 				// We don't have administrative rights
 				// over this user. Display an error.
@@ -579,7 +579,7 @@ class PeopleHandler extends ManagerHandler {
 		$userId = isset($args[0])?$args[0]:null;
 		$user =& Request::getUser();
 
-		if ($userId != null && $userId != $user->getUserId()) {
+		if ($userId != null && $userId != $user->getId()) {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$user =& $userDao->getUser($userId, true);
 			if ($user) {
@@ -603,7 +603,7 @@ class PeopleHandler extends ManagerHandler {
 		$user =& Request::getUser();
 		$conference =& Request::getConference();
 
-		if ($userId != null && $userId != $user->getUserId()) {
+		if ($userId != null && $userId != $user->getId()) {
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			$roleDao->deleteRoleByUserId($userId, $conference->getConferenceId());
 		}
@@ -694,7 +694,7 @@ class PeopleHandler extends ManagerHandler {
 			$site =& Request::getSite();
 			$conference =& Request::getConference();
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $conference->getConferenceId());
+			$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getConferenceId());
 
 			$countryDao =& DAORegistry::getDAO('CountryDAO');
 			$country = null;
@@ -740,7 +740,7 @@ class PeopleHandler extends ManagerHandler {
 			$session =& Request::getSession();
 
 			// FIXME Support "stack" of signed-in-as user IDs?
-			if (isset($newUser) && $session->getUserId() != $newUser->getUserId()) {
+			if (isset($newUser) && $session->getUserId() != $newUser->getId()) {
 				$session->setSessionVar('signedInAs', $session->getUserId());
 				$session->setSessionVar('userId', $userId);
 				$session->setUserId($userId);

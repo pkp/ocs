@@ -178,7 +178,7 @@
 	<td width="20%">&nbsp;</td>
 	<td><select name="unassigned" size="15" style="width: 150px" class="selectMenu">
 		{foreach from=$unassignedDirectors item=director}
-			<option value="{$director->getUserId()}">{$director->getFullName()|escape}</option>
+			<option value="{$director->getId()}">{$director->getFullName()|escape}</option>
 		{foreachelse}
 			<option value="" disabled="disabled">{translate key="common.none"}</option>
 		{/foreach}
@@ -188,7 +188,7 @@
 		<input type="button" value="&lt;&lt; {translate key="manager.tracks.unassignDirector"}" onclick="moveSelectItem(this.form.assigned, this.form.unassigned)" class="button" /></td>
 	<td><select name="assigned" size="15" style="width: 150px" class="selectMenu">
 		{foreach from=$assignedDirectors item=director}
-			<option value="{$director->getUserId()}">{$director->getFullName()|escape}</option>
+			<option value="{$director->getId()}">{$director->getFullName()|escape}</option>
 		{foreachelse}
 			<option value="" disabled="disabled">{translate key="common.none"}</option>
 		{/foreach}

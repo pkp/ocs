@@ -86,7 +86,7 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 	 */
 	function execute() {		
 		$user = Request::getUser();
-		$userId = $user->getUserId();
+		$userId = $user->getId();
 		
 		// Notification settings
 		$settings = array();

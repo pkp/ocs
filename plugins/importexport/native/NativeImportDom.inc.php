@@ -246,7 +246,7 @@ class NativeImportDom {
 
 		$paper = new Paper();
 		$paper->setSchedConfId($schedConf->getSchedConfId());
-		$paper->setUserId($user->getUserId());
+		$paper->setUserId($user->getId());
 		$paper->setTrackId($track->getTrackId());
 		$paper->setStatus(SUBMISSION_STATUS_PUBLISHED);
 		$paper->setSubmissionProgress(0);

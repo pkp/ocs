@@ -54,7 +54,7 @@ class EmailHandler extends UserHandler {
 		);
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		if ($conference) {
-			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $conference->getConferenceId());
+			$roles =& $roleDao->getRolesByUserId($user->getId(), $conference->getConferenceId());
 			foreach ($roles as $role) {
 				if (in_array($role->getRoleId(), $unlimitedEmailRoles)) $canSendUnlimitedEmails = true;
 			}
@@ -86,18 +86,18 @@ class EmailHandler extends UserHandler {
 
 			// First, conditions where access is OK.
 			// 1. User is submitter
-			if ($paper && $paper->getUserId() == $user->getUserId()) $hasAccess = true;
+			if ($paper && $paper->getUserId() == $user->getId()) $hasAccess = true;
 			// 2. User is director
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($paperId);
 			while ($editAssignment =& $editAssignments->next()) {
-				if ($editAssignment->getDirectorId() === $user->getUserId()) $hasAccess = true;
+				if ($editAssignment->getDirectorId() === $user->getId()) $hasAccess = true;
 			}
 			if (Validation::isDirector()) $hasAccess = true;
 			// 3. User is reviewer
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			foreach ($reviewAssignmentDao->getReviewAssignmentsByPaperId($paperId) as $reviewAssignment) {
-				if ($reviewAssignment->getReviewerId() === $user->getUserId()) $hasAccess = true;
+				if ($reviewAssignment->getReviewerId() === $user->getId()) $hasAccess = true;
 			}
 
 			// Last, "deal-breakers" -- access is not allowed.

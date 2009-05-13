@@ -51,10 +51,10 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		// submissions. Otherwise, display only tracks they are allowed
 		// to submit to.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isDirector = $roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getUserId(), ROLE_ID_DIRECTOR) ||
-			$roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getUserId(), ROLE_ID_TRACK_DIRECTOR) ||
-			$roleDao->roleExists($conference->getConferenceId(), 0, $user->getUserId(), ROLE_ID_DIRECTOR) ||
-			$roleDao->roleExists($conference->getConferenceId(), 0, $user->getUserId(), ROLE_ID_TRACK_DIRECTOR);
+		$isDirector = $roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getId(), ROLE_ID_DIRECTOR) ||
+			$roleDao->roleExists($conference->getConferenceId(), $schedConf->getSchedConfId(), $user->getId(), ROLE_ID_TRACK_DIRECTOR) ||
+			$roleDao->roleExists($conference->getConferenceId(), 0, $user->getId(), ROLE_ID_DIRECTOR) ||
+			$roleDao->roleExists($conference->getConferenceId(), 0, $user->getId(), ROLE_ID_TRACK_DIRECTOR);
 
 		$templateMgr->assign('trackOptions', array('0' => Locale::translate('author.submit.selectTrack')) + $trackDao->getTrackTitles($schedConf->getSchedConfId(), !$isDirector));
 
@@ -110,7 +110,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$user =& Request::getUser();
 
 			$this->paper = new Paper();
-			$this->paper->setUserId($user->getUserId());
+			$this->paper->setUserId($user->getId());
 			$this->paper->setSchedConfId($schedConf->getSchedConfId());
 			$this->paper->setTrackId($this->getData('trackId'));
 			$this->paper->stampStatusModified();
