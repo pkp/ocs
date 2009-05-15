@@ -377,7 +377,7 @@
 	<message key="manager.schedConfs.form.pathRequired">A path is required.</message>
 	<message key="manager.schedConfs.form.title">Scheduled Conference Title</message>
 	<message key="manager.schedConfs.form.titleRequired">A title is required.</message>
-	<message key="manager.schedConfs.form.urlWillBe">The event's URL will be {$sampleUrl}</message>
+	<message key="manager.schedConfs.form.urlWillBe">This should be a single short word or acronym that identifies the event. The event's URL will be {$sampleUrl}</message>
 	<message key="manager.schedConfs.noneCreated">No events have been created.</message>
 	<message key="manager.schedConfs.scheduledConference">Scheduled Conference</message>
 	<message key="manager.schedConfs.schedulingAConference">Scheduling a Conference</message>
