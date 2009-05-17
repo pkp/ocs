@@ -50,17 +50,14 @@ switch ($op) {
 	// Scheduled Conference Setup
 	//
 	case 'schedConfSetup':
-		$op = 'setup';
 		define('HANDLER_CLASS', 'SchedConfSetupHandler');
 		import('pages.manager.SchedConfSetupHandler');
 		break;
 	case 'saveSchedConfSetup':
-		$op = 'saveSetup';
 		define('HANDLER_CLASS', 'SchedConfSetupHandler');
 		import('pages.manager.SchedConfSetupHandler');
 		break;	
 	case 'schedConfSetupSaved':
-		$op = 'schedConfSetupSaved';
 		define('HANDLER_CLASS', 'SchedConfSetupHandler');
 		import('pages.manager.SchedConfSetupHandler');
 		break;
