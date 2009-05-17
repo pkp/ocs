@@ -35,9 +35,9 @@ class LoginHandler extends PKPLoginHandler {
 		$schedConf =& Request::getSchedConf();
 		
 		// Set the sender to one of three different settings, based on context
-		if ($schedConf) {
+		if ($schedConf && $schedConf->getSetting('supportEmail')) {
 			$mail->setFrom($schedConf->getSetting('supportEmail'), $schedConf->getSetting('supportName'));
-		} elseif ($conference) {
+		} elseif ($conference && $conference->getSetting('contactEmail')) {
 			$mail->setFrom($conference->getSetting('contactEmail'), $conference->getSetting('contactName'));
 		} else {
 			$mail->setFrom($site->getLocalizedContactEmail(), $site->getLocalizedContactName());
