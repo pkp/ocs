@@ -255,7 +255,7 @@ class UserManagementForm extends Form {
 
 		if ($user->getAuthId()) {
 			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
-			$auth =& $authDao->getPlugin($user->getAuthId())
+			$auth =& $authDao->getPlugin($user->getAuthId());
 		}
 
 		if ($user->getId() != null) {
