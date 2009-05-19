@@ -68,6 +68,14 @@ class OCSQueuedPayment extends QueuedPayment {
 					$registration?$registration->getTypeId():0
 				);
 
+				$registrationOptionDao =& DAORegistry::getDAO('RegistrationOptionDAO');
+				$registrationOptions =& $registrationOptionDao->getRegistrationOptions($this->getAssocId());
+
+				$options = '';
+				foreach ($registrationOptions as $optionId) {
+					$options .= ';' . $registrationOptionDao->getRegistrationOptionName($optionId);				
+				}
+				
 				$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 				$schedConf =& $schedConfDao->getSchedConf(
 					$registrationType?$registrationType->getSchedConfId():0
@@ -76,7 +84,7 @@ class OCSQueuedPayment extends QueuedPayment {
 				return Locale::translate('payment.type.conferenceRegistration', array(
 					'schedConfTitle' => ($schedConf?$schedConf->getFullTitle():Locale::translate('common.none')),
 					'registrationTypeName' => ($registrationType?$registrationType->getRegistrationTypeName():Locale::translate('common.none')),
-				));
+				)) . $options;
 		}
 	}
 }
