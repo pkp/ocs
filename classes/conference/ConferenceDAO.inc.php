@@ -154,10 +154,10 @@ class ConferenceDAO extends DAO {
 		$reviewFormDao->deleteReviewFormsByConferenceId($conferenceId);
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		$announcementDao->deleteAnnouncementsByConference($conferenceId);
+		$announcementDao->deleteAnnouncementsByAssocId(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
-		$announcementTypeDao->deleteAnnouncementTypesByConference($conferenceId);
+		$announcementTypeDao->deleteAnnouncementTypesByAssocId(ASSOC_TYPE_CONFERENCE, $conferenceId);
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$schedConfDao->deleteSchedConfsByConferenceId($conferenceId);

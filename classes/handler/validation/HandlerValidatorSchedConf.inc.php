@@ -33,7 +33,7 @@ class HandlerValidatorSchedConf extends HandlerValidator {
 		$schedConf =& Request::getSchedConf();
 		
 		if ( !$conference || !$schedConf ) return false;
-		return $conference->getConferenceId() == $schedConf->getSchedConfId();
+		return true;
 	}
 }
 

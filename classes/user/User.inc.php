@@ -43,7 +43,7 @@ class User extends PKPUser {
 	 */
 	function &getSettings($conferenceId = null) {
 		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
-		$settings =& $userSettingsDao->getSettingsByConference($this->getData('userId'), $conferenceId);
+		$settings =& $userSettingsDao->getSettingsByConference($this->getId(), $conferenceId);
 		return $settings;
 	}
 
@@ -55,7 +55,7 @@ class User extends PKPUser {
 	 */
 	function &getSetting($name, $conferenceId = null) {
 		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
-		$setting =& $userSettingsDao->getSetting($this->getData('userId'), $name, $conferenceId);
+		$setting =& $userSettingsDao->getSetting($this->getId(), $name, $conferenceId);
 		return $setting;
 	}
 
@@ -67,7 +67,7 @@ class User extends PKPUser {
 	 */
 	function updateSetting($name, $value, $type = null, $conferenceId = null) {
 		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
-		return $userSettingsDao->updateSetting($this->getData('userId'), $name, $value, $type, $conferenceId);
+		return $userSettingsDao->updateSetting($this->getId(), $name, $value, $type, $conferenceId);
 	}
 }
 
