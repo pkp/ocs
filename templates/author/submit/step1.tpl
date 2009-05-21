@@ -22,7 +22,7 @@
 <div class="separator"></div>
 
 {if count($trackOptions) <= 1}
-<p>{translate key="author.submit.notAccepting"}</p>
+	<p>{translate key="author.submit.notAccepting"}</p>
 {else}
 
 <form name="submit" method="post" action="{url op="saveSubmit" path=$submitStep}" onsubmit="return checkSubmissionChecklist()">

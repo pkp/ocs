@@ -26,19 +26,16 @@ class ReviewReportDAO extends DAO {
 	 * @param $schedConfId int
 	 * @return array
 	 */
-	function getReviewReport($conferenceId, $schedConfId) {
+	function getReviewReport($schedConfId) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 
 		$result =& $this->retrieve(
-			'SELECT
-				paper_id,
+			'SELECT	paper_id,
 				comments,
 				author_id
-			FROM
-				paper_comments
-			WHERE
-				comment_type=?',
+			FROM	paper_comments
+			WHERE	comment_type = ?',
 			array(
 				COMMENT_TYPE_PEER_REVIEW
 			)
@@ -47,8 +44,7 @@ class ReviewReportDAO extends DAO {
 		$commentsReturner = new DBRowIterator($result);
 
 		$result =& $this->retrieve(
-			'SELECT
-				r.stage AS reviewStage,
+			'SELECT	r.stage AS reviewStage,
 				COALESCE(psl.setting_value, pspl.setting_value) AS paper,
 				p.paper_id AS paperId,
 				u.user_id AS reviewerId,
@@ -64,16 +60,13 @@ class ReviewReportDAO extends DAO {
 				(r.declined=1) AS declined,
 				(r.cancelled=1) AS cancelled,
 				r.recommendation AS recommendation
-			FROM
-				review_assignments r
-					LEFT JOIN papers p ON r.paper_id=p.paper_id
-					LEFT JOIN paper_settings psl ON (p.paper_id=psl.paper_id AND psl.locale=? AND psl.setting_name=?)
-					LEFT JOIN paper_settings pspl ON (p.paper_id=pspl.paper_id AND pspl.locale=? AND pspl.setting_name=?),
+			FROM	review_assignments r
+				LEFT JOIN papers p ON r.paper_id=p.paper_id
+				LEFT JOIN paper_settings psl ON (p.paper_id=psl.paper_id AND psl.locale=? AND psl.setting_name=?)
+				LEFT JOIN paper_settings pspl ON (p.paper_id=pspl.paper_id AND pspl.locale=? AND pspl.setting_name=?),
 				users u
-			WHERE
-				u.user_id=r.reviewer_id AND p.sched_conf_id= ?
-			ORDER BY
-				paper',
+			WHERE	u.user_id=r.reviewer_id AND p.sched_conf_id= ?
+			ORDER BY paper',
 			array(
 				$locale,
 				'title',

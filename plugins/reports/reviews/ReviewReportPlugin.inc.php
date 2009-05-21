@@ -60,16 +60,13 @@ class ReviewReportPlugin extends ReportPlugin {
 		header('content-disposition: attachment; filename=report.csv');
 
 		$reviewReportDao =& DAORegistry::getDAO('ReviewReportDAO');
-		list($commentsIterator, $reviewsIterator) = $reviewReportDao->getReviewReport(
-			$conference->getConferenceId(),
-			$schedConf->getSchedConfId()
-		);
+		list($commentsIterator, $reviewsIterator) = $reviewReportDao->getReviewReport($schedConf->getSchedConfId());
 
 		$comments = array();
 		while ($row =& $commentsIterator->next()) {
-			if ( isset($comments[$row['paper_id']][$row['author_id']]) ){
+			if (isset($comments[$row['paper_id']][$row['author_id']])) {
 				$comments[$row['paper_id']][$row['author_id']] .= "; " . $row['comments'];
-			}else{
+			} else {
 				$comments[$row['paper_id']][$row['author_id']] = $row['comments'];
 			}
 		}
@@ -113,19 +110,19 @@ class ReviewReportPlugin extends ReportPlugin {
 
 		while ($row =& $reviewsIterator->next()) {
 			foreach ($columns as $index => $junk) {
-				if (in_array($index, $yesNoArray)){
+				if (in_array($index, $yesNoArray)) {
 					$columns[$index] = $yesnoMessages[$row[$index]];
-				}else if ($index == "reviewstage"){
+				} elseif ($index == "reviewstage") {
 					$columns[$index] = $reviewTypes[$row[$index]];
-				}else if ($index == "recommendation"){
+				} elseif ($index == "recommendation") {
 					$columns[$index] = (!isset($row[$index])) ? Locale::translate('common.none') : Locale::translate($recommendations[$row[$index]]);
-				}else if ($index == "comments"){
-					if ( isset($comments[$row['paperid']][$row['reviewerid']]) ){
+				} elseif ($index == "comments") {
+					if (isset($comments[$row['paperid']][$row['reviewerid']])) {
 						$columns[$index] = $comments[$row['paperid']][$row['reviewerid']];
-					}else{
+					} else {
 						$columns[$index] = "";
 					}
-				}else{
+				} else {
 					$columns[$index] = $row[$index];
 				}
 			}
