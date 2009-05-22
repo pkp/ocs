@@ -46,31 +46,31 @@
 <tr valign="top">
 	<td><input type="radio" id="allUsers" name="whichUsers" value="allUsers"/></td>
 	<td class="label">
-		<label for="allUsers">{translate key="director.notifyUsers.allUsers" count=$allUsersCount}</label>
+		<label for="allUsers">{translate key="director.notifyUsers.allUsers" count=$allUsersCount|default:0}</label>
 	</td>
 </tr>
 <tr valign="top">
 	<td><input type="radio" id="allReaders" name="whichUsers" value="allReaders"/></td>
 	<td class="label">
-		<label for="allReaders">{translate key="director.notifyUsers.allReaders" count=$allReadersCount}</label>
+		<label for="allReaders">{translate key="director.notifyUsers.allReaders" count=$allReadersCount|default:0}</label>
 	</td>
 </tr>
 <tr valign="top">
 	<td><input type="radio" id="allAuthors" name="whichUsers" value="allAuthors"/></td>
 	<td class="label">
-		<label for="allAuthors">{translate key="director.notifyUsers.allAuthors" count=$allAuthorsCount}</label>
+		<label for="allAuthors">{translate key="director.notifyUsers.allAuthors" count=$allAuthorsCount|default:0}</label>
 	</td>
 </tr>
 <tr valign="top">
 	<td><input type="radio" id="allRegistrants" name="whichUsers" value="allRegistrants"/></td>
 	<td class="label">
-		<label for="allRegistrants">{translate key="director.notifyUsers.allRegistrants" count=$allRegistrantsCount}</label>
+		<label for="allRegistrants">{translate key="director.notifyUsers.allRegistrants" count=$allRegistrantsCount|default:0}</label>
 	</td>
 </tr>
 <tr valign="top">
 	<td><input type="radio" id="allPaidRegistrants" name="whichUsers" value="allPaidRegistrants"/></td>
 	<td class="label">
-		<label for="allPaidRegistrants">{translate key="director.notifyUsers.allPaidRegistrants" count=$allPaidRegistrantsCount}</label>
+		<label for="allPaidRegistrants">{translate key="director.notifyUsers.allPaidRegistrants" count=$allPaidRegistrantsCount|default:0}</label>
 	</td>
 </tr>
 {if $senderEmail}
