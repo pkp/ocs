@@ -455,8 +455,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 			// FIXME: There should be a better way of doing this.
 			$authors =& $authorDao->getAuthorsAlphabetizedBySchedConf($schedConfId);
-			$authorsCount = $authors->getCount();
-			$authors->_cleanup();
+			$authorCount = $authors->getCount();
 
 			$email->displayEditForm(
 				Request::url(null, null, null, 'notifyUsers'),
