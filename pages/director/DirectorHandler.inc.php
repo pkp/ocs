@@ -448,8 +448,7 @@ class DirectorHandler extends TrackDirectorHandler {
 
 			// FIXME: There should be a better way of doing this.
 			$presenters =& $presenterDao->getPresentersAlphabetizedBySchedConf($schedConfId);
-			$presentersCount = $presenters->getCount();
-			$presenters->_cleanup();
+			$presenterCount = $presenters->getCount();
 
 			$email->displayEditForm(
 				Request::url(null, null, null, 'notifyUsers'),
