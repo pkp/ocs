@@ -453,13 +453,18 @@ class DirectorHandler extends TrackDirectorHandler {
 				));
 			}
 
+			// FIXME: There should be a better way of doing this.
+			$authors =& $authorDao->getAuthorsAlphabetizedBySchedConf($schedConfId);
+			$authorsCount = $authors->getCount();
+			$authors->_cleanup();
+
 			$email->displayEditForm(
 				Request::url(null, null, null, 'notifyUsers'),
 				array(),
 				'director/notifyUsers.tpl',
 				array(
 					'allReadersCount' => $roleDao->getSchedConfUsersCount($schedConfId, ROLE_ID_READER),
-					'allAuthorsCount' => $authorDao->getAuthorCount($schedConfId),
+					'allAuthorsCount' => $authorCount,
 					'allPaidRegistrantsCount' => $registrationDao->getRegisteredUserCount($schedConfId),
 					'allRegistrantsCount' => $registrationDao->getRegisteredUserCount($schedConfId, false),
 					'allUsersCount' => $roleDao->getSchedConfUsersCount($schedConfId)
