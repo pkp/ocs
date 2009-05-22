@@ -161,38 +161,6 @@ class PresenterDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve the number of published presenters for a scheduled conference
-	 * @param $schedConfId int
-	 * @return int count
-	 */
-	function &getPresenterCount($schedConfId) {
-		$result = &$this->retrieveRange(
-			'SELECT	COUNT(*) AS presenter_count
-			FROM	paper_presenters pa,
-				published_papers pp,
-				sched_confs sc,
-				papers p
-			WHERE	sc.sched_conf_id = p.sched_conf_id AND
-				pa.paper_id = p.paper_id AND
-				pp.paper_id = p.paper_id AND
-				sc.sched_conf_id = ?
-			GROUP BY
-				pa.first_name, pa.middle_name, pa.last_name,
-				pa.affiliation, pa.country',
-			(int) $schedConfId
-		);
-
-		if($result->RecordCount() == 0) {
-			$returner = 0;
-		} else {
-			$returner = $result->fields[0];
-		}
-		$result->Close();
-
-		return $returner;
-	}
-
-	/**
 	 * Retrieve the IDs of all presenters for a paper.
 	 * @param $paperId int
 	 * @return array int ordered by sequence
