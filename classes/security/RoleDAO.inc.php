@@ -150,7 +150,8 @@ class RoleDAO extends DAO {
 	 * @return array matching Users
 	 */
 	function &getUsersByRoleId($roleId = null, $conferenceId = null, $schedConfId = null,
-			$searchType = null, $search = null, $searchMatch = null, $dbResultRange = null) {
+			$searchType = null, $search = null, $searchMatch = null, $dbResultRange = null,
+			$sortBy = null, $sortDirection = 'ASC' ) {
 
 		$users = array();
 
@@ -200,7 +201,7 @@ class RoleDAO extends DAO {
 				break;
 		}
 
-		$searchSql .= ' ORDER  BY u.last_name, u.first_name';
+		$searchSql .= ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : '');
 
 		$result =& $this->retrieveRange(
 			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id ' .
@@ -225,7 +226,7 @@ class RoleDAO extends DAO {
 	 * @param $dbRangeInfo object DBRangeInfo object describing range of results to return
 	 * @return array matching Users
 	 */
-	function &getUsersByConferenceId($conferenceId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null) {
+	function &getUsersByConferenceId($conferenceId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null, $sortBy = null, $sortDirection = 'ASC') {
 		$users = array();
 
 		$paramArray = array('interests', (int) $conferenceId);
@@ -266,7 +267,7 @@ class RoleDAO extends DAO {
 				break;
 		}
 
-		$searchSql .= ' ORDER BY u.last_name, u.first_name'; // FIXME Add "sort field" parameter?
+		$searchSql .= ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : '');
 
 		$result =& $this->retrieveRange(
 
@@ -288,7 +289,7 @@ class RoleDAO extends DAO {
 	 * @param $dbRangeInfo object DBRangeInfo object describing range of results to return
 	 * @return array matching Users
 	 */
-	function &getUsersBySchedConfId($schedConfId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null) {
+	function &getUsersBySchedConfId($schedConfId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null, $sortBy = null, $sortDirection = 'ASC') {
 		$users = array();
 
 		$paramArray = array('interests', (int) $schedConfId);
@@ -325,8 +326,8 @@ class RoleDAO extends DAO {
 				break;
 		}
 
-		$searchSql .= ' ORDER BY u.last_name, u.first_name'; // FIXME Add "sort field" parameter?
-
+		$searchSql .= ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : '');
+		
 		$result =& $this->retrieveRange(
 
 			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id AND r.sched_conf_id = ? ' . $searchSql,
@@ -548,6 +549,21 @@ class RoleDAO extends DAO {
 				return null;
 		}
 	}
+	
+	/**
+	 * Map a column heading value to a database value for sorting
+	 * @param string
+	 * @return string
+	 */
+	function getSortMapping($heading) {
+		switch ($heading) {
+			case 'username': return 'u.username';
+			case 'name': return 'u.last_name';
+			case 'email': return 'u.email';
+			default: return null;
+		}
+	}
+
 }
 
 ?>

@@ -312,7 +312,7 @@ class RegistrationDAO extends DAO {
 	 * @param $dateTo String date to search to
 	 * @return object DAOResultFactory containing matching Registrations
 	 */
-	function &getRegistrationsBySchedConfId($schedConfId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getRegistrationsBySchedConfId($schedConfId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
 		$params = array($schedConfId);
 		$searchSql = '';
 
@@ -379,13 +379,13 @@ class RegistrationDAO extends DAO {
 
 		$sql = 'SELECT r.*
 				FROM
-				registrations r,
-				users u
+					registrations r,
+					users u
 				WHERE r.user_id = u.user_id
 				AND sched_conf_id = ?';
  
 		$result =& $this->retrieveRange(
-			$sql . ' ' . $searchSql . ' ORDER BY membership, u.last_name, r.registration_id',
+			$sql . ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : ''),
 			count($params)===1?array_shift($params):$params,
 			$rangeInfo
 		);
@@ -675,6 +675,21 @@ class RegistrationDAO extends DAO {
 	 */
 	function getInsertRegistrationId() {
 		return $this->getInsertId('registrations', 'registration_id');
+	}
+
+	/**
+	 * Map a column heading value to a database value for sorting
+	 * @param string
+	 * @return string
+	 */
+	function getSortMapping($heading) {
+		switch ($heading) {
+			case 'user': return 'u.last_name';
+			case 'type': return 'r.type_id';
+			case 'registered': return 'r.date_registered';
+			case 'paid': return 'r.date_paid';
+			default: return null;
+		}
 	}
 }
 

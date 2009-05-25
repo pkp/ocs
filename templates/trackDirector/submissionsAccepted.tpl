@@ -12,11 +12,11 @@
 <table width="100%" class="listing">
 	<tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
-		<td width="3%">{translate key="common.id"}</td>
-		<td width="4%">{translate key="submissions.track"}</td>
-		<td width="15%">{translate key="paper.authors"}</td>
-		<td>{translate key="paper.title"}</td>
-		<td width="10%" align="right">{translate key="common.status"}</td>
+		<td width="3%">{sort_search key="common.id" heading="id"}</td>
+		<td width="4%">{sort_search key="submissions.track" heading="track"}</td>
+		<td width="15%">{sort_search key="paper.authors" heading="authors"}</td>
+		<td>{sort_search key="paper.title" heading="title"}</td>
+		<td width="10%" align="right">{sort_search key="common.status" heading="status"}</td>
 	</tr>
 	<tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
 

@@ -200,14 +200,19 @@ class AuthorSubmissionDAO extends DAO {
 	 * @param $authorId int
 	 * @return DAOResultFactory containing AuthorSubmissions
 	 */
-	function &getAuthorSubmissions($authorId, $schedConfId, $active = true, $rangeInfo = null) {
+	function &getAuthorSubmissions($authorId, $schedConfId, $active = true, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$result =& $this->retrieveRange(
 			'SELECT	p.*,
+				ptl.setting_value AS submission_title,
+				pa.last_name AS author_name,
+				(SELECT SUM(g.views) FROM paper_galleys g WHERE (g.paper_id = p.paper_id AND g.locale = ?)) AS galley_views,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
+				LEFT JOIN paper_authors pa ON (pa.paper_id = p.paper_id AND pa.primary_contact = 1)
+				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND ptl.locale = ?)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
@@ -217,8 +222,12 @@ class AuthorSubmissionDAO extends DAO {
 				AND p.user_id = ?' .
 				($active?(' AND p.status = ' . (int) SUBMISSION_STATUS_QUEUED):(
 					' AND ((p.status <> ' . (int) SUBMISSION_STATUS_QUEUED . ' AND p.submission_progress = 0) OR (p.status = ' . (int) SUBMISSION_STATUS_ARCHIVED . '))'
-				)),
+				)) .
+				($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : ''),
 			array(
+				$locale,
+				'title',
+				$locale,
 				'title',
 				$primaryLocale,
 				'title',
@@ -311,6 +320,25 @@ class AuthorSubmissionDAO extends DAO {
 
 		return $submissionsCount;
 	}
+	
+	/**
+	 * Map a column heading value to a database value for sorting
+	 * @param string
+	 * @return string
+	 */
+	function getSortMapping($heading) {
+		switch ($heading) {
+			case 'id': return 'p.paper_id';
+			case 'submitDate': return 'p.date_submitted';
+			case 'track': return 'track_abbrev';
+			case 'authors': return 'author_name';
+			case 'title': return 'submission_title';
+			case 'active': return 'p.submission_progress';
+			case 'views': return 'galley_views';
+			default: return null;
+		}
+	}
+
 }
 
 ?>

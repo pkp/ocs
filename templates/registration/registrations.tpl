@@ -14,6 +14,18 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script type="text/javascript">
+{literal}
+<!--
+function sortSearch(heading, direction) {
+	document.submit.sort.value = heading;
+	document.submit.sortDirection.value = direction;
+	document.submit.submit();
+}
+// -->
+{/literal}
+</script>
+
 <ul class="menu">
 	<li class="current"><a href="{url op="registration" clearPageContext=1}">{translate key="manager.registration"}</a></li>
 	<li><a href="{url op="registrationTypes" clearPageContext=1}">{translate key="manager.registrationTypes"}</a></li>
@@ -32,6 +44,8 @@
 {/if}
 
 <form method="post" name="submit" action="{url op="registration"}">
+	<input type="hidden" name="sort" value="id"/>
+	<input type="hidden" name="sortDirection" value="ASC"/>
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>
@@ -64,10 +78,10 @@
 		<td colspan="5" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr class="heading" valign="bottom">
-		<td width="32%">{translate key="manager.registration.user"}</td>
-		<td width="25%">{translate key="manager.registration.registrationType"}</td>
-		<td width="15%">{translate key="manager.registration.dateRegistered"}</td>
-		<td width="15%">{translate key="manager.registration.datePaid"}</td>
+		<td width="32%">{sort_search key="manager.registration.user" heading="user"}</td>
+		<td width="25%">{sort_search key="manager.registration.registrationType" heading="type"}</td>
+		<td width="15%">{sort_search key="manager.registration.dateRegistered" heading="registered"}</td>
+		<td width="15%">{sort_search key="manager.registration.datePaid" heading="paid"}</td>
 		<td width="13%">{translate key="common.action"}</td>
 	</tr>
 	<tr>

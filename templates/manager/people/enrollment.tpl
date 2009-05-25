@@ -43,12 +43,18 @@ function confirmAndPrompt(userId) {
 
 	document.disableUser.submit();
 }
+
+function sortSearch(heading, direction) {
+	document.submit.sort.value = heading;
+	document.submit.sortDirection.value = direction;
+	document.submit.submit();
+}
 // -->
 {/literal}
 </script>
 
 <h3>{translate key=$roleName}</h3>
-<form method="post" action="{url path=$roleSymbolic}">
+<form name="submit" method="post" action="{url path=$roleSymbolic}">
 	<select name="roleSymbolic" class="selectMenu">
 		<option {if $roleSymbolic=='all'}selected="selected" {/if}value="all">{translate key="manager.people.allUsers"}</option>
 
@@ -105,9 +111,9 @@ function confirmAndPrompt(userId) {
 	</tr>
 	<tr class="heading" valign="bottom">
 		<td width="5%">&nbsp;</td>
-		<td width="12%">{translate key="user.username"}</td>
-		<td width="20%">{translate key="user.name"}</td>
-		<td width="23%">{translate key="user.email"}</td>
+		<td width="12%">{sort_search key="user.username" heading="username"}</td>
+		<td width="20%">{sort_search key="user.name" heading="name"}</td>
+		<td width="23%">{sort_search key="user.email" heading="email"}</td>
 		<td width="40%" align="right">{translate key="common.action"}</td>
 	</tr>
 	<tr>

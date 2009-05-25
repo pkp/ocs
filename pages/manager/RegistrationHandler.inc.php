@@ -41,6 +41,11 @@ class RegistrationHandler extends ManagerHandler {
 		$dateSearchField = Request::getUserVar('dateSearchField');
 		$searchMatch = Request::getUserVar('searchMatch');
 		$search = Request::getUserVar('search');
+		
+		$sort = Request::getUserVar('sort');
+		$sort = isset($sort) ? $sort : 'user';
+		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
 
 		$fromDate = Request::getUserDateVar('dateFrom', 1, 1);
 		if ($fromDate !== null) $fromDate = date('Y-m-d H:i:s', $fromDate);
@@ -48,7 +53,7 @@ class RegistrationHandler extends ManagerHandler {
 		if ($toDate !== null) $toDate = date('Y-m-d H:i:s', $toDate);
 
 		while (true) {
-			$registrations =& $registrationDao->getRegistrationsBySchedConfId($schedConf->getSchedConfId(), $searchField, $searchMatch, $search, $dateSearchField, $fromDate, $toDate, $rangeInfo);
+			$registrations =& $registrationDao->getRegistrationsBySchedConfId($schedConf->getSchedConfId(), $searchField, $searchMatch, $search, $dateSearchField, $fromDate, $toDate, $rangeInfo, $registrationDao->getSortMapping($sort), $sortDirection);
 			if ($registrations->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $registrations->getLastPageRangeInfo();
@@ -67,6 +72,8 @@ class RegistrationHandler extends ManagerHandler {
 		$templateMgr->assign('dateTo', $toDate);
 		$templateMgr->assign('fieldOptions', $this->getSearchFieldOptions());
 		$templateMgr->assign('dateFieldOptions', $this->getDateFieldOptions());
+		$templateMgr->assign('sort', $sort);
+		$templateMgr->assign('sortDirection', $sortDirection);
 
 		$templateMgr->display('registration/registrations.tpl');
 	}
@@ -189,7 +196,8 @@ class RegistrationHandler extends ManagerHandler {
 		$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registration'), 'manager.registration'));
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
-
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		
 		$searchType = null;
 		$searchMatch = null;
 		$search = $searchQuery = Request::getUserVar('search');
@@ -204,10 +212,15 @@ class RegistrationHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
+		$sort = Request::getUserVar('heading');
+		$sort = isset($sort) ? $sort : 'name';
+		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
+		
 		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 
 		while (true) {
-			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
+			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo, $roleDao->getSortMapping($sort), $sortDirection);
 			if ($users->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $users->getLastPageRangeInfo();
@@ -231,6 +244,8 @@ class RegistrationHandler extends ManagerHandler {
 		$templateMgr->assign('helpTopicId', 'conference.currentConferences.registration');
 		$templateMgr->assign('registrationId', Request::getUserVar('registrationId'));
 		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
+		$templateMgr->assign('sort', $sort);
+		$templateMgr->assign('sortDirection', $sortDirection);
 		$templateMgr->display('registration/users.tpl');
 	}
 

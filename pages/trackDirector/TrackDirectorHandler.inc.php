@@ -51,6 +51,11 @@ class TrackDirectorHandler extends Handler {
 
 		$page = isset($args[0]) ? $args[0] : '';
 		$tracks =& $trackDao->getTrackTitles($schedConfId);
+		
+		$sort = Request::getUserVar('sort');
+		$sort = isset($sort) ? $sort : 'id';
+		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
 
 		$filterTrackOptions = array(
 			FILTER_TRACK_ALL => Locale::Translate('director.allTracks')
@@ -94,12 +99,27 @@ class TrackDirectorHandler extends Handler {
 				null,
 				null,
 				null,
-				$rangeInfo
+				$rangeInfo,
+				$trackDirectorSubmissionDao->getSortMapping($sort),
+				$sortDirection
 			);
 			if ($submissions->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $submissions->getLastPageRangeInfo();
 			unset($submissions);
+		}
+		
+		if ($sort == 'status') {
+			// Sort all submissions by status, which is too complex to do in the DB
+			$submissionsArray = $submissions->toArray();
+			$compare = create_function('$s1, $s2', 'return strcmp($s1->getSubmissionStatus(), $s2->getSubmissionStatus());');
+			usort ($submissionsArray, $compare);
+			if($sortDirection == 'DESC') {
+				$submissionsArray = array_reverse($submissionsArray);
+			}
+			// Convert submission array back to an ItemIterator class
+			import('core.ArrayItemIterator');
+			$submissions =& ArrayItemIterator::fromRangeInfo($submissionsArray, $rangeInfo);
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -112,7 +132,8 @@ class TrackDirectorHandler extends Handler {
 		$templateMgr->assign('trackDirector', $user->getFullName());
 		$templateMgr->assign('yearOffsetFuture', SCHED_CONF_DATE_YEAR_OFFSET_FUTURE);
 		$templateMgr->assign('durationOptions', $this->getDurationOptions());
-
+		$templateMgr->assign('sort', $sort);
+		$templateMgr->assign('sortDirection', $sortDirection);
 		// Set search parameters
 		$duplicateParameters = array(
 			'searchField', 'searchMatch', 'search'

@@ -412,6 +412,11 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
 		$submission =& $this->submission;
+		
+		$sort = Request::getUserVar('sort');
+		$sort = isset($sort) ? $sort : 'name';
+		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
 
 		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
@@ -442,7 +447,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 			$rangeInfo =& Handler::getRangeInfo('reviewers', array($submission->getCurrentStage(), (string) $searchType, (string) $search, (string) $searchMatch)); // Paper ID intentionally omitted
 			while (true) {
-				$reviewers = $trackDirectorSubmissionDao->getReviewersForPaper($schedConf->getSchedConfId(), $paperId, $submission->getCurrentStage(), $searchType, $search, $searchMatch, $rangeInfo);
+				$reviewers = $trackDirectorSubmissionDao->getReviewersForPaper($schedConf->getSchedConfId(), $paperId, $submission->getCurrentStage(), $searchType, $search, $searchMatch, $rangeInfo, $trackDirectorSubmissionDao->getSortMapping($sort), $sortDirection);
 				if ($reviewers->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $reviewers->getLastPageRangeInfo();
@@ -474,6 +479,8 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 			$templateMgr->assign('helpTopicId', 'conference.roles.reviewers');
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
+			$templateMgr->assign('sort', $sort);
+			$templateMgr->assign('sortDirection', $sortDirection);
 			$templateMgr->display('trackDirector/selectReviewer.tpl');
 		}
 	}

@@ -40,12 +40,20 @@ function toggleChecked() {
 		}
 	}
 }
+
+function sortSearch(heading, direction) {
+	document.submit.sort.value = heading;
+	document.submit.sortDirection.value = direction;
+	document.submit.submit();
+}
 // -->
 {/literal}
 </script>
 
 <form method="post" name="submit" action="{url op="enrollSearch"}">
 	<input type="hidden" name="roleId" value="{$roleId|escape}"/>
+	<input type="hidden" name="sort" value="id"/>
+	<input type="hidden" name="sortDirection" value="ASC"/>
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>
@@ -98,9 +106,9 @@ function toggleChecked() {
 <tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
 <tr class="heading" valign="bottom">
 	<td width="5%">&nbsp;</td>
-	<td width="25%">{translate key="user.username"}</td>
-	<td width="30%">{translate key="user.name"}</td>
-	<td width="30%">{translate key="user.email"}</td>
+	<td width="25%">{sort_heading key="user.username" heading="username"}</td>
+	<td width="30%">{sort_heading key="user.name" heading="name"}</td>
+	<td width="30%">{sort_heading key="user.email" heading="email"}</td>
 	<td width="10%" align="right">{translate key="common.action"}</td>
 </tr>
 <tr><td colspan="5" class="headseparator">&nbsp;</td></tr>

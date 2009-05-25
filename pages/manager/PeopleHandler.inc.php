@@ -48,6 +48,11 @@ class PeopleHandler extends ManagerHandler {
 			$roleId = 0;
 			$roleName = 'manager.people.allUsers';
 		}
+		
+		$sort = Request::getUserVar('sort');
+		$sort = isset($sort) ? $sort : 'name';
+		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
@@ -73,7 +78,7 @@ class PeopleHandler extends ManagerHandler {
 		if ($roleId) {
 			while (true) {
 				$users =& $roleDao->getUsersByRoleId($roleId, $conference->getConferenceId(),
-					($schedConf? $schedConf->getSchedConfId() : null), $searchType, $search, $searchMatch, $rangeInfo);
+					($schedConf? $schedConf->getSchedConfId() : null), $searchType, $search, $searchMatch, $rangeInfo, $roleDao->getSortMapping($sort), $sortDirection);
 				if ($users->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $users->getLastPageRangeInfo();
@@ -104,7 +109,7 @@ class PeopleHandler extends ManagerHandler {
 					break;
 			}
 		} else {
-			$users =& $roleDao->getUsersByConferenceId($conference->getConferenceId(), $searchType, $search, $searchMatch, $rangeInfo);
+			$users =& $roleDao->getUsersByConferenceId($conference->getConferenceId(), $searchType, $search, $searchMatch, $rangeInfo, $roleDao->getSortMapping($sort), $sortDirection);
 			$helpTopicId = 'conference.users.allUsers';
 		}
 
@@ -137,6 +142,8 @@ class PeopleHandler extends ManagerHandler {
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
 		$templateMgr->assign('isSchedConfManagement', $schedConf ? true : false);
 		$templateMgr->assign('isConferenceManagement', $schedConf ? false : true);
+		$templateMgr->assign('sort', $sort);
+		$templateMgr->assign('sortDirection', $sortDirection);
 		$templateMgr->display('manager/people/enrollment.tpl');
 	}
 
@@ -170,11 +177,16 @@ class PeopleHandler extends ManagerHandler {
 			$searchType = USER_FIELD_INITIAL;
 			$search = $searchInitial;
 		}
-
+		
+		$sort = Request::getUserVar('heading');
+		$sort = isset($sort) ? $sort : 'name';
+		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
+		
 		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 
 		while (true) {
-			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
+			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo, $roleDao->getSortMapping($sort), $sortDirection);
 			if ($users->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $users->getLastPageRangeInfo();
@@ -201,6 +213,8 @@ class PeopleHandler extends ManagerHandler {
 		$templateMgr->assign_by_ref('thisUser', Request::getUser());
 		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 		$templateMgr->assign('helpTopicId', 'conference.users.index');
+		$templateMgr->assign('sort', $sort);
+		$templateMgr->assign('sortDirection', $sortDirection);
 		$templateMgr->display('manager/people/searchUsers.tpl');
 	}
 

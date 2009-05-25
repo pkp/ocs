@@ -14,6 +14,19 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script type="text/javascript">
+{literal}
+<!--
+function sortSearch(heading, direction) {
+  document.submit.sort.value = heading;
+  document.submit.sortDirection.value = direction;
+  document.submit.submit() ;
+}
+// -->
+{/literal}
+</script> 
+
+
 <ul class="menu">
 	<li{if ($pageToDisplay == "submissionsInReview")} class="current"{/if}><a href="{url path="submissionsInReview"}">{translate key="common.queue.short.submissionsInReview"}</a></li>
 	<li{if ($pageToDisplay == "submissionsAccepted")} class="current"{/if}><a href="{url path="submissionsAccepted"}">{translate key="common.queue.short.submissionsAccepted}</a></li>
@@ -27,6 +40,8 @@
 </form>
 
 <form method="post" name="submit" action="{url op="submissions" path=$pageToDisplay}">
+	<input type="hidden" name="sort" value="id"/>
+	<input type="hidden" name="sortDirection" value="ASC"/>
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>

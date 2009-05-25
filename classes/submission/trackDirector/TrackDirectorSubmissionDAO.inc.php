@@ -266,7 +266,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	/**
 	 * Retrieve unfiltered track director submissions
 	 */
-	function &getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null) {
+	function &getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 
@@ -348,10 +348,13 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$sql = 'SELECT DISTINCT
 				p.*,
 				r2.review_revision,
+				ptl.setting_value AS submission_title,
+				pap.last_name AS author_name,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
 				INNER JOIN paper_authors pa ON (pa.paper_id = p.paper_id)
+				LEFT JOIN paper_authors pap ON (pap.paper_id = p.paper_id AND pap.primary_contact = 1)
 				LEFT JOIN edit_assignments e ON (e.paper_id = p.paper_id)
 				LEFT JOIN users ed ON (e.director_id = ed.user_id)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
@@ -372,7 +375,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$searchSql .= ' AND p.track_id = ?';
 		}
 
-		$result =& $this->retrieveRange($sql . ' ' . $searchSql . ' ORDER BY paper_id ASC',
+		$result =& $this->retrieveRange($sql . ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : ''),
 			$params,
 			$rangeInfo
 		);
@@ -394,11 +397,11 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array DirectorSubmission
 	 */
-	function &getTrackDirectorSubmissionsInReview($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getTrackDirectorSubmissionsInReview($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo);
+		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, null, null, $sortBy, $sortDirection);
 
 		$returner = new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
@@ -419,11 +422,11 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array DirectorSubmission
 	 */
-	function &getTrackDirectorSubmissionsAccepted($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getTrackDirectorSubmissionsAccepted($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo);
+		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status = ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
 
 		$returner = new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
@@ -443,10 +446,10 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array DirectorSubmission
 	 */
-	function &getTrackDirectorSubmissionsArchives($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getTrackDirectorSubmissionsArchives($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
 		$submissions = array();
 
-		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo);
+		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
 
 		$returner = new DAOResultFactory($result, $this, '_returnTrackDirectorSubmissionFromRow');
 		return $returner;
@@ -619,8 +622,8 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $paperId int
 	 * @return DAOResultFactory containing matching Users
 	 */
-	function &getReviewersForPaper($schedConfId, $paperId, $stage, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null) {
-		$paramArray = array('interests', $paperId, $stage, $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'));
+	function &getReviewersForPaper($schedConfId, $paperId, $stage, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
+		$paramArray = array($paperId, $stage, 'interests', $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'));
 		$searchSql = '';
 
 		$searchTypeMap = array(
@@ -661,16 +664,25 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 		$result =& $this->retrieveRange(
 			'SELECT DISTINCT
-				u.*,
-				a.review_id
+				u.user_id,
+				u.last_name,
+				ar.review_id,
+				AVG(a.quality) AS average_quality,
+				COUNT(ac.review_id) AS completed,
+				COUNT(ai.review_id) AS incomplete,
+				MAX(ac.date_notified) AS latest,
+				AVG(ac.date_completed-ac.date_notified) AS average
 			FROM	users u
+				LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id)
+				LEFT JOIN review_assignments ac ON (ac.reviewer_id = u.user_id AND ac.date_completed IS NOT NULL)
+				LEFT JOIN review_assignments ai ON (ai.reviewer_id = u.user_id AND ai.date_completed IS NULL)
+				LEFT JOIN review_assignments ar ON (ar.reviewer_id = u.user_id AND ar.cancelled = 0 AND ar.paper_id = ? AND ar.stage = ?)
 				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
-				LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND a.cancelled = 0 AND a.paper_id = ? AND a.stage = ?)
 			WHERE	u.user_id = r.user_id AND
 				r.sched_conf_id = ? AND
-				r.role_id = ? ' . $searchSql . '
-			ORDER BY last_name, first_name',
+				r.role_id = ? ' . $searchSql . 'GROUP BY u.user_id, u.last_name, ar.review_id' .
+			($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : ''),
 			$paramArray, $rangeInfo
 		);
 
@@ -679,7 +691,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	}
 
 	function &_returnReviewerUserFromRow(&$row) { // FIXME
-		$user =& $this->userDao->_returnUserFromRowWithData($row);
+		$user =& $this->userDao->getUser($row['user_id']);
 		$user->review_id = $row['review_id'];
 
 		HookRegistry::call('TrackDirectorSubmissionDAO::_returnReviewerUserFromRow', array(&$user, &$row));
@@ -769,6 +781,31 @@ class TrackDirectorSubmissionDAO extends DAO {
 
 		return $statistics;
 	}
+	
+	/**
+	 * Map a column heading value to a database value for sorting
+	 * @param string
+	 * @return string
+	 */
+	function getSortMapping($heading) {
+		switch ($heading) {
+			case 'id': return 'p.paper_id';
+			case 'submitDate': return 'p.date_submitted';
+			case 'track': return 'track_abbrev';
+			case 'authors': return 'author_name';
+			case 'title': return 'submission_title';
+			case 'active': return 'incomplete';		
+			case 'reviewerName': return 'u.last_name';
+			case 'quality': return 'average_quality';
+			case 'done': return 'completed';
+			case 'latest': return 'latest';
+			case 'active': return 'active';
+			case 'average': return 'average';
+	
+			default: return null;
+		}
+	}
+
 }
 
 ?>

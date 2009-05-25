@@ -88,6 +88,11 @@ class DirectorHandler extends TrackDirectorHandler {
 		$searchMatch = Request::getUserVar('searchMatch');
 		$search = Request::getUserVar('search');
 
+		$sort = Request::getUserVar('sort');
+		$sort = isset($sort) ? $sort : 'id';
+		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
+
 		switch($page) {
 			case 'submissionsUnassigned':
 				$functionName = 'getDirectorSubmissionsUnassigned';
@@ -147,12 +152,27 @@ class DirectorHandler extends TrackDirectorHandler {
 				null,
 				null,
 				null,
-				$rangeInfo
+				$rangeInfo,
+				$directorSubmissionDao->getSortMapping($sort),
+				$sortDirection
 			);
 			if ($submissions->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $submissions->getLastPageRangeInfo();
 			unset($submissions);
+		}
+
+		if ($sort == 'status') {
+			// Sort all submissions by status, which is too complex to do in the DB
+			$submissionsArray = $submissions->toArray();
+			$compare = create_function('$s1, $s2', 'return strcmp($s1->getSubmissionStatus(), $s2->getSubmissionStatus());');
+			usort ($submissionsArray, $compare);
+			if($sortDirection == 'DESC') {
+				$submissionsArray = array_reverse($submissionsArray);
+			}
+			// Convert submission array back to an ItemIterator class
+			import('core.ArrayItemIterator');
+			$submissions =& ArrayItemIterator::fromRangeInfo($submissionsArray, $rangeInfo);
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -186,6 +206,8 @@ class DirectorHandler extends TrackDirectorHandler {
 		));
 
 		$templateMgr->assign('helpTopicId', $helpTopicId);
+		$templateMgr->assign('sort', $sort);
+		$templateMgr->assign('sortDirection', $sortDirection);
 		$templateMgr->display('director/submissions.tpl');
 	}
 

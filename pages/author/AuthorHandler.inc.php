@@ -57,8 +57,30 @@ class AuthorHandler extends Handler {
 				$page = 'active';
 				$active = true;
 		}
+		
+		$sort = Request::getUserVar('heading');
+		$sort = isset($sort) ? $sort : 'id';
+		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
 
-		$submissions = $authorSubmissionDao->getAuthorSubmissions($user->getId(), $schedConf->getSchedConfId(), $active, $rangeInfo);
+		if ($sort == 'status') {
+			// FIXME Does not pass $rangeInfo else we only get partial results
+			$submissions = $authorSubmissionDao->getAuthorSubmissions($user->getId(), $schedConf->getSchedConfId(), $active, null, $authorSubmissionDao->getSortMapping($sort), $sortDirection);
+
+			// Sort all submissions by status, which is too complex to do in the DB
+			$submissionsArray = $submissions->toArray();
+			if($sortDirection == 'DESC') {
+				$submissionsArray = array_reverse($submissionsArray);
+			}
+			$compare = create_function('$s1, $s2', 'return strcmp($s1->getSubmissionStatus(), $s2->getSubmissionStatus());');
+			usort ($submissionsArray, $compare);
+			
+			// Convert submission array back to an ItemIterator class
+			import('core.ArrayItemIterator');
+			$submissions =& ArrayItemIterator::fromRangeInfo($submissionsArray, $rangeInfo);
+		} else {
+			$submissions = $authorSubmissionDao->getAuthorSubmissions($user->getId(), $schedConf->getSchedConfId(), $active, $rangeInfo, $authorSubmissionDao->getSortMapping($sort), $sortDirection);
+		}
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);
@@ -86,6 +108,8 @@ class AuthorHandler extends Handler {
 		if(isset($notAcceptingSubmissionsMessage))
 			$templateMgr->assign('notAcceptingSubmissionsMessage', $notAcceptingSubmissionsMessage);
 		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.submissions');
+		$templateMgr->assign('sort', $sort);
+		$templateMgr->assign('sortDirection', $sortDirection);
 		$templateMgr->display('author/index.tpl');
 	}
 
