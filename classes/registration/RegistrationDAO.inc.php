@@ -312,7 +312,7 @@ class RegistrationDAO extends DAO {
 	 * @param $dateTo String date to search to
 	 * @return object DAOResultFactory containing matching Registrations
 	 */
-	function &getRegistrationsBySchedConfId($schedConfId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
+	function &getRegistrationsBySchedConfId($schedConfId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$params = array($schedConfId);
 		$searchSql = '';
 
@@ -385,7 +385,7 @@ class RegistrationDAO extends DAO {
 				AND sched_conf_id = ?';
  
 		$result =& $this->retrieveRange(
-			$sql . ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : ''),
+			$sql . ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			count($params)===1?array_shift($params):$params,
 			$rangeInfo
 		);

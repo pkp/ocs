@@ -91,7 +91,6 @@ class DirectorHandler extends TrackDirectorHandler {
 		$sort = Request::getUserVar('sort');
 		$sort = isset($sort) ? $sort : 'id';
 		$sortDirection = Request::getUserVar('sortDirection');
-		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
 
 		switch($page) {
 			case 'submissionsUnassigned':

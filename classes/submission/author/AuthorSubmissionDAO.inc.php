@@ -200,7 +200,7 @@ class AuthorSubmissionDAO extends DAO {
 	 * @param $authorId int
 	 * @return DAOResultFactory containing AuthorSubmissions
 	 */
-	function &getAuthorSubmissions($authorId, $schedConfId, $active = true, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
+	function &getAuthorSubmissions($authorId, $schedConfId, $active = true, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$result =& $this->retrieveRange(
@@ -223,7 +223,7 @@ class AuthorSubmissionDAO extends DAO {
 				($active?(' AND p.status = ' . (int) SUBMISSION_STATUS_QUEUED):(
 					' AND ((p.status <> ' . (int) SUBMISSION_STATUS_QUEUED . ' AND p.submission_progress = 0) OR (p.status = ' . (int) SUBMISSION_STATUS_ARCHIVED . '))'
 				)) .
-				($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : ''),
+				($sortBy?(' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			array(
 				$locale,
 				'title',

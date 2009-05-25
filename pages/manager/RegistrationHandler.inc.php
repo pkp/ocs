@@ -45,7 +45,6 @@ class RegistrationHandler extends ManagerHandler {
 		$sort = Request::getUserVar('sort');
 		$sort = isset($sort) ? $sort : 'user';
 		$sortDirection = Request::getUserVar('sortDirection');
-		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
 
 		$fromDate = Request::getUserDateVar('dateFrom', 1, 1);
 		if ($fromDate !== null) $fromDate = date('Y-m-d H:i:s', $fromDate);
@@ -215,7 +214,6 @@ class RegistrationHandler extends ManagerHandler {
 		$sort = Request::getUserVar('heading');
 		$sort = isset($sort) ? $sort : 'name';
 		$sortDirection = Request::getUserVar('sortDirection');
-		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
 		
 		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 

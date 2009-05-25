@@ -61,7 +61,6 @@ class AuthorHandler extends Handler {
 		$sort = Request::getUserVar('heading');
 		$sort = isset($sort) ? $sort : 'id';
 		$sortDirection = Request::getUserVar('sortDirection');
-		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
 
 		if ($sort == 'status') {
 			// FIXME Does not pass $rangeInfo else we only get partial results

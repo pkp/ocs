@@ -167,7 +167,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array result
 	 */
-	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $directorId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
+	function &getUnfilteredDirectorSubmissions($schedConfId, $trackId = 0, $directorId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
@@ -254,7 +254,7 @@ class DirectorSubmissionDAO extends DAO {
 			$params[] = $directorId;
 		}
 
-		$sql .= ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : '');
+		$sql .= ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection)) : '');
 
 		$result =& $this->retrieveRange(
 			$sql,
@@ -302,7 +302,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array DirectorSubmission
 	 */
-	function &getDirectorSubmissionsUnassigned($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
+	function &getDirectorSubmissionsUnassigned($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$directorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
@@ -342,7 +342,7 @@ class DirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array DirectorSubmission
 	 */
-	function &getDirectorSubmissionsInReview($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
+	function &getDirectorSubmissionsInReview($schedConfId, $trackId, $directorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$directorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results

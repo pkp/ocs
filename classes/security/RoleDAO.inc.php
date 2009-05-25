@@ -151,7 +151,7 @@ class RoleDAO extends DAO {
 	 */
 	function &getUsersByRoleId($roleId = null, $conferenceId = null, $schedConfId = null,
 			$searchType = null, $search = null, $searchMatch = null, $dbResultRange = null,
-			$sortBy = null, $sortDirection = 'ASC' ) {
+			$sortBy = null, $sortDirection = SORT_DIRECTION_ASC ) {
 
 		$users = array();
 
@@ -201,7 +201,7 @@ class RoleDAO extends DAO {
 				break;
 		}
 
-		$searchSql .= ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : '');
+		$searchSql .= ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection)) : '');
 
 		$result =& $this->retrieveRange(
 			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id ' .
@@ -226,7 +226,7 @@ class RoleDAO extends DAO {
 	 * @param $dbRangeInfo object DBRangeInfo object describing range of results to return
 	 * @return array matching Users
 	 */
-	function &getUsersByConferenceId($conferenceId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null, $sortBy = null, $sortDirection = 'ASC') {
+	function &getUsersByConferenceId($conferenceId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$users = array();
 
 		$paramArray = array('interests', (int) $conferenceId);
@@ -267,7 +267,7 @@ class RoleDAO extends DAO {
 				break;
 		}
 
-		$searchSql .= ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : '');
+		$searchSql .= ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection)) : '');
 
 		$result =& $this->retrieveRange(
 
@@ -289,7 +289,7 @@ class RoleDAO extends DAO {
 	 * @param $dbRangeInfo object DBRangeInfo object describing range of results to return
 	 * @return array matching Users
 	 */
-	function &getUsersBySchedConfId($schedConfId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null, $sortBy = null, $sortDirection = 'ASC') {
+	function &getUsersBySchedConfId($schedConfId, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$users = array();
 
 		$paramArray = array('interests', (int) $schedConfId);
@@ -326,7 +326,7 @@ class RoleDAO extends DAO {
 				break;
 		}
 
-		$searchSql .= ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : '');
+		$searchSql .= ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection)) : '');
 		
 		$result =& $this->retrieveRange(
 

@@ -52,7 +52,6 @@ class PeopleHandler extends ManagerHandler {
 		$sort = Request::getUserVar('sort');
 		$sort = isset($sort) ? $sort : 'name';
 		$sortDirection = Request::getUserVar('sortDirection');
-		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
@@ -181,7 +180,6 @@ class PeopleHandler extends ManagerHandler {
 		$sort = Request::getUserVar('heading');
 		$sort = isset($sort) ? $sort : 'name';
 		$sortDirection = Request::getUserVar('sortDirection');
-		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
 		
 		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 

@@ -266,7 +266,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	/**
 	 * Retrieve unfiltered track director submissions
 	 */
-	function &getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
+	function &getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $statusSql = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 
@@ -375,7 +375,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$searchSql .= ' AND p.track_id = ?';
 		}
 
-		$result =& $this->retrieveRange($sql . ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : ''),
+		$result =& $this->retrieveRange($sql . ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			$params,
 			$rangeInfo
 		);
@@ -397,7 +397,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array DirectorSubmission
 	 */
-	function &getTrackDirectorSubmissionsInReview($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
+	function &getTrackDirectorSubmissionsInReview($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
@@ -422,7 +422,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array DirectorSubmission
 	 */
-	function &getTrackDirectorSubmissionsAccepted($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
+	function &getTrackDirectorSubmissionsAccepted($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
@@ -446,7 +446,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array DirectorSubmission
 	 */
-	function &getTrackDirectorSubmissionsArchives($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
+	function &getTrackDirectorSubmissionsArchives($trackDirectorId, $schedConfId, $trackId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$submissions = array();
 
 		$result = $this->getUnfilteredTrackDirectorSubmissions($trackDirectorId, $schedConfId, $trackId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, 'p.status <> ' . SUBMISSION_STATUS_QUEUED . ' AND p.status <> ' . SUBMISSION_STATUS_PUBLISHED, $rangeInfo, $sortBy, $sortDirection);
@@ -622,7 +622,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 	 * @param $paperId int
 	 * @return DAOResultFactory containing matching Users
 	 */
-	function &getReviewersForPaper($schedConfId, $paperId, $stage, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null, $sortBy = null, $sortDirection = 'ASC') {
+	function &getReviewersForPaper($schedConfId, $paperId, $stage, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$paramArray = array($paperId, $stage, 'interests', $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'));
 		$searchSql = '';
 
@@ -682,7 +682,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			WHERE	u.user_id = r.user_id AND
 				r.sched_conf_id = ? AND
 				r.role_id = ? ' . $searchSql . 'GROUP BY u.user_id, u.last_name, ar.review_id' .
-			($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : ''),
+			($sortBy?(' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			$paramArray, $rangeInfo
 		);
 
