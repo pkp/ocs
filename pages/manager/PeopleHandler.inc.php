@@ -628,6 +628,7 @@ class PeopleHandler extends ManagerHandler {
 	 */
 	function updateUser() {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		$conference =& Request::getConference();
 		$userId = Request::getUserVar('userId');
