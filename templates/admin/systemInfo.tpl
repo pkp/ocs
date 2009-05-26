@@ -12,8 +12,9 @@
 {assign var="pageTitle" value="admin.systemInformation"}
 {include file="common/header.tpl"}
 {/strip}
-
+<div id="systemVersion">
 <h3>{translate key="admin.systemVersion"}</h3>
+<div id="currentVersion">
 <h4>{translate key="admin.currentVersion"}</h4>
 <p>{$currentVersion->getVersionString()} ({$currentVersion->getDateInstalled()|date_format:$datetimeFormatLong})</p>
 
@@ -27,7 +28,8 @@
 {else}
 <p><a href="{url versionCheck=1}">{translate key="admin.version.checkForUpdates"}</a></p>
 {/if}
-
+</div>
+<div id="versionHistory">
 <h4>{translate key="admin.versionHistory"}</h4>
 <table class="listing" width="100%">
 	<tr>
@@ -58,12 +60,15 @@
 	</tr>
 {/foreach}
 </table>
-
+</div>
+</div>
+<div id="systemConfiguration">
 <h3>{translate key="admin.systemConfiguration"}</h3>
 <a class="action" href="{url op="editSystemConfig"}">{translate key="common.edit"}</a>
 <p>{translate key="admin.systemConfigurationDescription"}</p>
 
 {foreach from=$configData key=sectionName item=sectionData}
+<div id="sectionData">
 {if !empty($sectionData)}{* Empty tables cause validation problems *}
 <h4>{$sectionName|escape}</h4>
 
@@ -76,23 +81,25 @@
 {/foreach}
 </table>
 {/if}{* !empty($sectionData) *}
-
+</div>
 {/foreach}
-
+</div>
 <div class="separator"></div>
-
+<div id="serverInformation">
 <h3>{translate key="admin.serverInformation"}</h3>
 <p>{translate key="admin.serverInformationDescription"}</p>
 
 <table class="data" width="100%">
 {foreach from=$serverInfo key=settingName item=settingValue}
+<div id="setting">
 <tr valign="top">
 	<td width="30%" class="label">{translate key=$settingName|escape}</td>
 	<td width="70%" class="value">{$settingValue|escape}</td>
 </tr>
+</div>
 {/foreach}
 </table>
 
 <a href="{url op="phpInfo"}" target="_blank">{translate key="admin.phpInfo"}</a>
-
+</div>
 {include file="common/footer.tpl"}

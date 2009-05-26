@@ -50,7 +50,7 @@
 <br />
 
 {if $conferenceRt->getEnabled()}
-<div class="rtBlock">
+<div id="paperInfo" class="rtBlock">
 	<ul>
 		{if $conferenceRt->getAbstract() && $galley}<li><a href="{url page="paper" op="view" path=$paperId}" target="_parent">{translate key="paper.abstract"}</a></li>{/if}
 		<li><a href="{url page="about" op="editorialPolicies" anchor="peerReviewProcess"}" target="_parent">{translate key="rt.reviewPolicy"}</a></li>
@@ -105,7 +105,7 @@
 {/if}
 
 {if $version}
-<div class="rtBlock">
+<div id="relatedItems" class="rtBlock">
 	<span class="rtSubtitle">{translate key="rt.relatedItems"}</span>
 	<ul>
 		{foreach from=$version->getContexts() item=context}
@@ -119,7 +119,7 @@
 
 <br />
 
-<div class="rtBlock">
+<div id="thisConference" class="rtBlock">
 	<span class="rtSubtitle">{translate key="rt.thisConference"}</span>
 	<form method="post" action="{url page="search" op="results"}" target="_parent">
 	<table>

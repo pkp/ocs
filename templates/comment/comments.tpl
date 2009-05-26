@@ -8,6 +8,7 @@
  *
  * $Id$
  *}
+<div id="comments">
 {strip}
 {if $comment}
 	{assign var=pageTitle value="comments.readerComments"}
@@ -79,7 +80,7 @@
 {/if}
 
 {foreach from=$comments item=child}
-
+<div id="childComment">
 {assign var=user value=$child->getUser()}
 {assign var=childId value=$child->getCommentId()}
 <h4><a href="{url op="view" path=$paperId|to_array:$galleyId:$childId}" target="_parent">{$child->getTitle()|escape|default:"&nbsp;"}</a></h4>
@@ -122,6 +123,7 @@
 {assign var=grandChildren value=$child->getChildren()}
 {if $grandChildren}<ul>{/if}
 {foreach from=$child->getChildren() item=grandChild}
+<div id="grandchildComment">
 {assign var=user value=$grandChild->getUser()}
 	<li>
 		<a href="{url op="view" path=$paperId|to_array:$galleyId:$grandChild->getCommentId()}" target="_parent">{$grandChild->getTitle()|escape|default:"&nbsp;"}</a>
@@ -142,22 +144,23 @@
 		{/if}
 		({$grandChild->getDatePosted()|date_format:$dateFormatShort})
 	</li>
+</div>
 {/foreach}
 {if $grandChildren}
 	</ul>
 {/if}
-
+</div>
 {foreachelse}
 	{if !$comment}
-		{translate key="comments.noComments"}
+		<div id="noComments">{translate key="comments.noComments"}</div>
 	{/if}
 {/foreach}
 
-{if $commentsClosed}{translate key="comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}<br />{/if}
+{if $commentsClosed}<div id="commentsClosed">{translate key="comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}<br /></div>{/if}
 
 {if $postingAllowed}
 	<div class="separator"></div>
-	<p><a class="action" href="{url op="add" path=$paperId|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a></p>
+	<div id="addComment"<p><a class="action" href="{url op="add" path=$paperId|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a></p></div>
 {/if}
 
 {include file="common/footer.tpl"}

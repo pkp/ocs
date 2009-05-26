@@ -48,7 +48,7 @@ function ensureKeyword() {
 {/if}
 
 <form method="post" name="search" action="{url op="advancedResults"}">
-
+<div id="advancedResults">
 <table class="data" width="100%">
 <tr valign="top">
 	<td width="25%" class="label"><label for="advancedQuery">{translate key="search.searchAllCategories"}</label></td>
@@ -115,7 +115,7 @@ function ensureKeyword() {
 </table>
 
 <p><input type="button" onclick="ensureKeyword();" value="{translate key="common.search"}" class="button defaultButton" /></p>
-
+</div>
 <script type="text/javascript">
 <!--
 	document.search.query.focus();

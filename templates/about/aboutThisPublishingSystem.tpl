@@ -14,7 +14,7 @@
 {assign var="pageTitle" value="about.aboutThisPublishingSystem"}
 {include file="common/header.tpl"}
 {/strip}
-
+<div id="aboutThisPublishingSystem">
 <p>
 {if $currentConference}
 	{translate key="about.aboutOCSConference" ocsVersion=$ocsVersion}
@@ -26,5 +26,5 @@
 <p align="center">
 	<img src="{$baseUrl}/{$edProcessFile}" style="border: 0;" alt="{translate key="about.aboutThisPublishingSystem.altText"}" />
 </p>
-
+</div>
 {include file="common/footer.tpl"}

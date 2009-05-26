@@ -15,6 +15,7 @@
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
+<div id="locales">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
@@ -25,8 +26,9 @@
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
-
+<div id="searchEngineIndexing">
 <h3>6.1 {translate key="manager.setup.indexing.searchEngineIndexing"}</h3>
 
 <p>{translate key="manager.setup.indexing.searchEngineIndexing.description"}</p>
@@ -49,15 +51,15 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
-
+<div id="registerConferenceForIndexing">
 <h3>6.2 {translate key="manager.setup.indexing.registerConferenceForIndexing"}</h3>
 
 {url|assign:"oaiSiteUrl" conference=$currentConference->getPath()}
 {url|assign:"oaiUrl" page="oai"}
 <p>{translate key="manager.setup.indexing.registerConferenceForIndexing.description" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
-
+</div>
 <div class="separator"></div>
 
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>

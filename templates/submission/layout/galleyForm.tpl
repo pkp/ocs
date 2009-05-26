@@ -19,7 +19,7 @@
 
 <form method="post" action="{url op="saveGalley" path=$paperId|to_array:$galleyId:$stage}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
-
+<div id="galleyFileData">
 <p>{translate key="submission.layout.galleyFileData"}</p>
 <table class="data" width="100%">
 <tr valign="top">
@@ -68,9 +68,10 @@
 	</td>
 </tr>
 </table>
+</div>
 <br/>
 {if $galley->isHTMLGalley()}
-
+<div id="galleyHTMLData">
 <h3>{translate key="submission.layout.galleyHTMLData"}</h3>
 
 <p><strong>{translate key="submission.layout.galleyStylesheet"}</strong></p>
@@ -104,7 +105,8 @@
 </tr>
 {/if}
 </table>
-
+</div>
+<div id="upload">
 <table class="data" width="100%">
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="styleFile" key="common.upload"}</td>
@@ -113,9 +115,9 @@
 	</td>
 </tr>
 </table>
-
+</div>
 <br />
-
+<div id="galleyImages">
 <p><strong>{translate key="submission.layout.galleyImages"}</strong></p>
 
 <table width="100%" class="listing">
@@ -148,7 +150,7 @@
 </tr>
 {/foreach}
 </table>
-
+</div>
 <input type="file" name="imageFile" class="uploadField" />&nbsp;
 <input type="submit" name="uploadImage" class="button" value="{translate key="common.upload"}" />
 

@@ -39,7 +39,7 @@ function handleAnonymousCheckbox(theBox) {
 {include file="common/formErrors.tpl"}
 
 {assign var=parentId value=$parentId|default:"0"}
-
+<div id="comment">
 <form name="submit" action="{if $commentId}{url op="edit" path=$paperId|to_array:$galleyId:$commentId}{else}{url op="add" path=$paperId|to_array:$galleyId:$parentId:"save"}{/if}" method="post">
 <table class="data" width="100%">
 	<tr valign="top">
@@ -87,7 +87,7 @@ function handleAnonymousCheckbox(theBox) {
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="location.href='{url page="comment" op="view" path=$paperId|to_array:$galleyId:$parentId}';" /></p>
 
 </form>
-
+</div>
 {if $commentsClosed}{translate key="comments.commentsClosed" closeCommentsDate=$closeCommentsDate|date_format:$dateFormatShort}<br />{/if}
 
 {include file="common/footer.tpl"}

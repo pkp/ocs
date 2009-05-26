@@ -15,7 +15,7 @@
 {if $mainPage}
 	<p>{translate key="manager.plugins.description"}</p>
 
-	<ul class="plain">
+	<ul id="plugins" class="plain">
 	{foreach from=$plugins item=plugin}
 		{if $plugin->getCategory() != $category}
 			{assign var=category value=$plugin->getCategory()}
@@ -41,7 +41,7 @@
 		</ul>
 	{/if}
 		
-	<ul class="plain">
+	<ul id="plugins" class="plain">
 	{foreach from=$plugins item=plugin}
 		{if $plugin->getCategory() != $category}
 			{assign var=category value=$plugin->getCategory()}

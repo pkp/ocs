@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="rt.readingTools"}
 {include file="common/header.tpl"}
 {/strip}
-
+<div id="myConferences">
 <h3>{translate key="user.myConferences"}</h3>
 
 <ul class="plain">
@@ -20,5 +20,5 @@
 <li>&#187; <a href="{url conference=$conference->getPath() schedConf="index" page="rtadmin"}">{$conference->getConferenceTitle()|escape}</a></li>
 {/foreach}
 </ul>
-
+</div>
 {include file="common/footer.tpl"}

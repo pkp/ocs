@@ -25,6 +25,7 @@
 
 {include file="common/formErrors.tpl"}
 
+<div id="scheduleEvents">
 <h3>{translate key="manager.timeline.scheduleEvents"}</h3>
 
 <table width="100%" class="data">
@@ -45,9 +46,10 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <br/>
 
+<div id="websiteTimeline">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="50%" class="heading"><h4>{translate key="manager.timeline.website"}</h4></td>
@@ -66,9 +68,10 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <br/>
 
+<div id="submissionsTimeline">
 <table width="100%" class="data">
 <tr valign="top">
 		<td width="50%" class="heading"><h4>{translate key="manager.timeline.submissions"}</h4></td>
@@ -111,9 +114,10 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <br/>
 
+<div id="reviewsTimeline">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="50%" class="heading"><h4>{translate key="manager.timeline.reviews"}</h4></td>
@@ -135,9 +139,10 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <br/>
 
+<div id="websitePosting">
 <h3>{translate key="manager.timeline.websitePosting"}</h3>
 
 <table width="100%" class="data">
@@ -270,7 +275,7 @@
 	</tr>
 	
 </table>
-
+</div>
 <br/>
 
 <p>

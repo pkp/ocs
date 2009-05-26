@@ -8,6 +8,7 @@
  *
  * $Id$
  *}
+<div id="conferenceSponsorship">
 {if not(empty($publisher.note) && empty($publisher.institution))}
 <div class="separator"></div>
 
@@ -59,3 +60,4 @@
 	{/foreach}
 </ul>
 {/if}
+</div>

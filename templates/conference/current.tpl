@@ -13,7 +13,7 @@
 {assign var="pageTitleTranslated" value=$conferenceTitle}
 {include file="common/header.tpl"}
 {/strip}
-
+<div id="currentConferences">
 {* Display scheduled conferences. *}
 <h3>{translate key="conference.currentConferences"}</h3>
 {if not $schedConfs->eof()}
@@ -33,5 +33,5 @@
 {else}
 	{translate key="conference.noCurrentConferences"}
 {/if}
-
+</div>
 {include file="common/footer.tpl"}

@@ -14,7 +14,7 @@
 {/strip}
 
 <br />
-
+<div id="conferenceSettings">
 <form name="conference" method="post" action="{url op="updateConference"}">
 {if $conferenceId}
 <input type="hidden" name="conferenceId" value="{$conferenceId|escape}" />
@@ -71,5 +71,5 @@
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-
+</div>
 {include file="common/footer.tpl"}

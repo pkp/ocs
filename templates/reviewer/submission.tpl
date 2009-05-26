@@ -36,7 +36,7 @@ function confirmSubmissionCheck() {
 // -->
 {/literal}
 </script>
-
+<div id="submissionToBeReviewed">
 <h3>{translate key="reviewer.paper.submissionToBeReviewed"}</h3>
 
 <table width="100%" class="data">
@@ -86,9 +86,9 @@ function confirmSubmissionCheck() {
 	</td>
 </tr>
 </table>
-
+</div>
 <div class="separator"></div>
-
+<div id="reviewSchedule">
 <h3>{translate key="reviewer.paper.reviewSchedule"}</h3>
 <table width="100%" class="data">
 <tr valign="top">
@@ -108,9 +108,9 @@ function confirmSubmissionCheck() {
 	<td class="value">{if $submission->getDateDue()}{$submission->getDateDue()|date_format:$dateFormatShort}{else}&mdash;{/if}</td>
 </tr>
 </table>
-
+</div>
 <div class="separator"></div>
-
+<div id="reviewSteps">
 <h3>{translate key="reviewer.paper.reviewSteps"}</h3>
 
 {include file="common/formErrors.tpl"}
@@ -342,11 +342,13 @@ function confirmSubmissionCheck() {
 	</td>
 </tr>
 </table>
-
+</div>
 {if $schedConf->getLocalizedSetting('reviewGuidelines') != ''}
 <div class="separator"></div>
+<div id="reviewerGuidelines">
 <h3>{translate key="reviewer.paper.reviewerGuidelines"}</h3>
 <p>{$schedConf->getLocalizedSetting('reviewGuidelines')|nl2br}</p>
+</div>
 {/if}
 
 {include file="common/footer.tpl"}

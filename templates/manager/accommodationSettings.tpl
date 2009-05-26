@@ -18,7 +18,7 @@
 <form name="accommodationForm" method="post" action="{url op="saveAccommodationSettings"}" enctype="multipart/form-data">
 
 <p>{translate key="manager.accommodation.form.description"}</p>
-
+<div id="accommodationFiles">
 <h4>{translate key="manager.accommodation.form.accommodationFiles"}</h4>
 <p>{translate key="manager.accommodation.form.accommodationFiles.description"}</p>
 
@@ -59,7 +59,8 @@
 </tr>
 
 </table>
-
+</div>
+<div id="accommodationText">
 <h4>{translate key="manager.accommodation.form.accommodationText"}</h4>
 <p>{translate key="manager.accommodation.form.accommodationText.description"}</p>
 
@@ -70,7 +71,7 @@
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="manager"}'" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-
+</div>
 </form>
 
 {include file="common/footer.tpl"}

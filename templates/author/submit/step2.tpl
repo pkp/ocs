@@ -26,6 +26,7 @@
 
 <div class="separator"></div>
 
+<div id="submissionFile">
 <h3>{translate key="author.submit.submissionFile"}</h3>
 <table class="data" width="100%">
 {if $submissionFile}
@@ -51,9 +52,11 @@
 </tr>
 {/if}
 </table>
+</div>
 
 <div class="separator"></div>
 
+<div id="uploadFile">
 <table class="data" width="100%">
 <tr>
 	<td width="30%" class="label">
@@ -66,6 +69,7 @@
 	<td width="70%" class="value"><input type="file" class="uploadField" name="submissionFile" id="submissionFile" /> <input name="uploadSubmissionFile" type="submit" class="button" value="{translate key="common.upload"}" /></td>
 </tr>
 </table>
+</div>
 
 <div class="separator"></div>
 

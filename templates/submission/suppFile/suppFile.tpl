@@ -25,6 +25,7 @@
 
 {if count($formLocales) > 1}
 <table width="100%" class="data">
+<div id="locales">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
@@ -36,9 +37,9 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 {/if}
-
+<div id="supplementaryFileData">
 <h3>{translate key="author.submit.supplementaryFileData"}</h3>
 <p>{translate key="author.submit.supplementaryFileDataDescription"}</p>
 
@@ -106,9 +107,9 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
-
+<div id="supplementaryFileUpload">
 <h3>{translate key="author.submit.supplementaryFileUpload"}</h3>
 
 <table class="data">
@@ -131,7 +132,7 @@
 	</tr>
 </table>
 
-<table width="100%"  class="data">
+<table id="availability" width="100%"  class="data">
 	<tr valign="top">
 		<td width="5%" class="label"><input type="checkbox" name="showReviewers" id="showReviewers" value="1"{if $showReviewers==1} checked="checked"{/if} /></td>
 		<td width="95%" class="value"><label for="showReviewers">{translate key="author.submit.suppFile.availableToPeers"}</label></td>
@@ -146,7 +147,7 @@
 
 <br />
 
-<table width="100%" class="data">
+<table id="replaceFile" width="100%" class="data">
 	<tr valign="top">
 		<td class="label">
 			{if $suppFile}
@@ -167,7 +168,7 @@
 	</tr>
 	{/if}
 </table>
-
+</div>
 
 <div class="separator"></div>
 

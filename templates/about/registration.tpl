@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="about.registration"}
 {include file="common/header.tpl"}
 {/strip}
-
+<div id="registrationContact">
 <h3>{translate key="about.registrationContact"}</h3>
 <p>
 	{if !empty($registrationName)}
@@ -34,7 +34,8 @@
 		{$registrationAdditionalInformation|nl2br}<br />
 	{/if}
 </p>
-
+</div>
+<div id="availableRegistrationTypes">
 <h3>{translate key="about.availableRegistrationTypes"}</h3>
 <p>
 <table width="100%" class="listing">
@@ -67,5 +68,5 @@
 {/iterate}
 </table>
 </p>
-
+</div>
 {include file="common/footer.tpl"}

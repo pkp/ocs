@@ -20,6 +20,7 @@
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
+<div id="locales">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
@@ -30,8 +31,10 @@
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
 
+<div id="submissionProcess">
 <h3>2.1 {translate key="manager.schedConfSetup.submissions.submissionProcess"}</h3>
 
 <p>{translate key="manager.schedConfSetup.submissions.description"}</p>
@@ -80,6 +83,7 @@
 	</tr>
 </table>
 
+<div id="typeOfSubmission">
 <h4>{translate key="manager.schedConfSetup.submissions.typeOfSubmission"}</h4>
 
 <table width="100%" class="data">
@@ -129,7 +133,9 @@
 		</td>
 	</tr>
 </table>
+</div>
 
+<div id="suppFiles">
 <h4>{translate key="manager.schedConfSetup.submissions.suppFiles"}</h4>
 
 <table width="100%" class="data">
@@ -142,7 +148,9 @@
 		</td>
 	</tr>
 </table>
+</div>
 
+<div id="notifications">
 <h4>{translate key="manager.schedConfSetup.notifications"}</h4>
 
 <p>{translate key="manager.schedConfSetup.submissions.notifications.description"}</p>
@@ -164,9 +172,11 @@
 	</tr>
 	{/if}
 </table>
-
+</div>
+</div>
 <div class="separator"></div>
 
+<div id="callForPapers">
 <h3>2.2 {translate key="manager.schedConfSetup.submissions.callForPapers"}</h3>
 
 <table width="100%" class="data">
@@ -179,9 +189,11 @@
 		</td>
 	</tr>
 </table>
+</div>
 
 <div class="separator"></div>
 
+<div id="authorGuidelines">
 <h3>2.3 {translate key="manager.schedConfSetup.submissions.authorGuidelines"}</h3>
 
 <p>{translate key="manager.schedConfSetup.submissions.authorGuidelinesDescription"}</p>
@@ -202,6 +214,7 @@
 	</tr>
 </table>
 
+<div id="preparationChecklist">
 <h4>{translate key="manager.schedConfSetup.submissions.preparationChecklist"}</h4>
 
 <p>{translate key="manager.schedConfSetup.submissions.preparationChecklist.description"}</p>
@@ -225,9 +238,11 @@
 </table>
 
 <p><input type="submit" name="addChecklist" value="{translate key="manager.schedConfSetup.submissions.addChecklistItem"}" class="button" /></p>
-
+</div>
+</div>
 <div class="separator"></div>
 
+<div id="forAuthorsToIndexTheirWork">
 <h3>2.4 {translate key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWork"}</h3>
 
 <p>{translate key="manager.schedConfSetup.submissions.forAuthorsToIndexTheirWorkDescription"}</p>
@@ -373,9 +388,10 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
 
+<div id="publicIdentifier">
 <h3>2.5 {translate key="manager.schedConfSetup.submissions.publicIdentifier"}</h3>
 
 <p>{translate key="manager.schedConfSetup.submissions.uniqueIdentifierDescription"}</p>
@@ -390,7 +406,7 @@
 		<td width="95%" class="value">{fieldLabel name="enablePublicSuppFileId" key="manager.schedConfSetup.submissions.enablePublicSuppFileId"}</td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
 
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="schedConfSetup" escape=false}'" /></p>

@@ -9,7 +9,7 @@
  * $Id$
  *}
 <div class="separator"></div>
-
+<div id="citation">
 {assign var=authors value=$paper->getAuthors()}
 {assign var=authorCount value=$authors|@count}
 {foreach from=$authors item=author name=authors key=i}
@@ -21,4 +21,4 @@
 {$apaCapitalized|strip_unsafe_html}.
 <em>{$conference->getConferenceTitle()|escape}</em>.
 {translate key="plugins.citationFormats.apa.retrieved" retrievedDate=$smarty.now|date_format:$dateFormatShort url=$paperUrl}
-
+</div>

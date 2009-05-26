@@ -96,6 +96,7 @@ function prepBlockFields() {
 
 {* There are no localized settings on this page.
 {if count($formLocales) > 1}
+<div id="locales">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
@@ -106,9 +107,10 @@ function prepBlockFields() {
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
 *}
-
+<div id="confStyleSheet">
 <p>{translate key="manager.setup.style.conferenceStyleSheet.description"}</p>
 
 <table width="100%" class="data">
@@ -133,7 +135,8 @@ function prepBlockFields() {
 {if $conferenceStyleSheet}
 {translate key="common.fileName"}: <a href="{$publicConferenceFilesDir}/{$conferenceStyleSheet.uploadName}" class="file">{$conferenceStyleSheet.name|escape}</a> {$conferenceStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteConferenceStyleSheet" value="{translate key="common.delete"}" class="button" />
 {/if}
-
+</div>
+<div id="sidebars">
 <table border="0" align="center">
 	<tr align="center">
 		<td rowspan="2">
@@ -184,7 +187,7 @@ function prepBlockFields() {
 <input type="hidden" name="blockSelectLeft" value="" />
 <input type="hidden" name="blockSelectRight" value="" />
 <input type="hidden" name="blockUnselected" value="" />
-
+</div>
 <div class="separator"></div>
 
 <p><input type="submit" onclick="prepBlockFields()" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>

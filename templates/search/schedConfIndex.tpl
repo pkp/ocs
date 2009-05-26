@@ -16,6 +16,7 @@
 <br />
 
 {foreach from=$conferenceIndex item=conference key=conferenceId}
+	<div id="conference">
 	<h3><a href="{url conference=$conference->getPath() page="index"}">{$conference->getConferenceTitle()|escape}</a></h3>
 	{assign var=description value=$conference->getLocalizedSetting('description')}
 	{if !empty($description)}
@@ -35,6 +36,7 @@
 			{/foreach}
 		</ul>
 	{/if}
+	</div>
 {/foreach}
 
 {include file="common/footer.tpl"}

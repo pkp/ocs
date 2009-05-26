@@ -43,7 +43,7 @@
 </p>
 {/if}
 
-
+<div id="localeSettings">
 <h3>{translate key="installer.localeSettings"}</h3>
 
 <p>{translate key="installer.localeSettingsInstructions" supportsMBString=$supportsMBString}</p>
@@ -99,11 +99,11 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 
 <div class="separator"></div>
 
-
+<div id="fileSettings">
 <h3>{translate key="installer.fileSettings"}</h3>
 
 <table width="100%" class="data">
@@ -120,11 +120,11 @@
 		<td class="value"><input type="checkbox" name="skipFilesDir" id="skipFilesDir" value="1"{if $skipFilesDir} checked="checked"{/if} /> <label for="skipFilesDir">{translate key="installer.skipFilesDir"}</label></td>
 	</tr>
 </table>
-
+</div>
 
 <div class="separator"></div>
 
-
+<div id="securitySettings">
 <h3>{translate key="installer.securitySettings"}</h3>
 
 
@@ -140,11 +140,11 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 
 <div class="separator"></div>
 
-
+<div id="administratorAccount">
 <h3>{translate key="installer.administratorAccount"}</h3>
 
 <p>{translate key="installer.administratorAccountInstructions"}</p>
@@ -167,11 +167,11 @@
 		<td width="80%" class="value"><input type="text" name="adminEmail" id="adminEmail" value="{$adminEmail|escape}" size="30" maxlength="90" class="textField" /></td>
 	</tr>
 </table>
-
+</div>
 
 <div class="separator"></div>
 
-
+<div id="databaseSettings">
 <h3>{translate key="installer.databaseSettings"}</h3>
 
 <p>{translate key="installer.databaseSettingsInstructions"}</p>
@@ -216,11 +216,11 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 
 <div class="separator"></div>
 
-
+<div id="miscSettings">
 <h3>{translate key="installer.miscSettings"}</h3>
 
 <table width="100%" class="data">
@@ -233,7 +233,7 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 
 <div class="separator"></div>
 

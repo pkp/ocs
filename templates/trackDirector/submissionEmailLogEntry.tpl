@@ -38,7 +38,7 @@
 {include file="trackDirector/submission/summary.tpl"}
 
 <div class="separator"></div>
-
+<div id="submissionEmailLog">
 <h3>{translate key="submission.history.submissionEmailLog"}</h3>
 <table width="100%" class="data">
 	<tr valign="top">
@@ -98,5 +98,5 @@
 {/if}
 
 <a href="{url op="submissionEmailLog" path=$submission->getPaperId()}" class="action">{translate key="submission.email.backToEmailLog"}</a>
-
+</div>
 {include file="common/footer.tpl"}

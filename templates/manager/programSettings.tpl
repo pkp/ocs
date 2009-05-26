@@ -17,6 +17,7 @@
 
 <form name="programForm" method="post" action="{url op="saveProgramSettings"}" enctype="multipart/form-data">
 
+<div id="programForm">
 <p>{translate key="manager.program.form.description"}</p>
 
 <br />
@@ -52,9 +53,10 @@
 		{/if}
 	</td>
 </tr>
-
 </table>
+</div>
 
+<div id="programText">
 <h4>{translate key="manager.program.form.programText"}</h4>
 <p>{translate key="manager.program.form.programText.description"}</p>
 
@@ -65,7 +67,7 @@
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="manager"}'" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-
+</div>
 </form>
 
 {include file="common/footer.tpl"}

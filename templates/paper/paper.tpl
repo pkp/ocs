@@ -24,8 +24,8 @@
 	{/if}
 {else}
 
-	<h3>{$paper->getLocalizedTitle()|strip_unsafe_html}</h3>
-	<div><em>{$paper->getAuthorString()|escape}</em></div>
+	<div id="title">{$paper->getLocalizedTitle()|strip_unsafe_html}</h3></div>
+	<div id="author"><em>{$paper->getAuthorString()|escape}</em></div>
 	<br />
 
 	<blockquote>
@@ -42,10 +42,12 @@
 	</blockquote>
 
 	{if $paper->getLocalizedAbstract()}
+	<div id="abstract">
 	<h4>{translate key="paper.abstract"}</h4>
 	<br />
 	<div>{$paper->getLocalizedAbstract()|strip_unsafe_html|nl2br}</div>
 	<br />
+	</div>
 	{/if}
 
 	{if $paper->getCitations()}
@@ -54,7 +56,8 @@
 		<div>{$paper->getCitations()|strip_unsafe_html|nl2br}</div>
 		<br />
 	{/if}
-
+	
+	<div id="paper">
 	{if $mayViewPaper}
 		{assign var=galleys value=$paper->getLocalizedGalleys()}
 		{if $galleys}
@@ -78,6 +81,7 @@
 	{else}
 		{translate key="reader.fullTextNotAvailable"}
 	{/if}
+	</div>
 {/if}
 
 {include file="paper/comments.tpl"}

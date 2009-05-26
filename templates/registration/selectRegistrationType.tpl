@@ -12,7 +12,7 @@
 {include file="common/header.tpl"}
 
 <form action="{url op="registration"}" method="post">
-
+<div id="registrationType">
 <table class="listing" width="100%">
 	<tr>
 		<td colspan="2" class="headseparator">&nbsp;</td>
@@ -69,10 +69,11 @@
 		<td colspan="2" class="endseparator">&nbsp;</td>
 	</tr>
 </table>
-
+</div>
 {if $currentSchedConf->getSetting('registrationName')}
 
 <div class="separator"></div>
+<div id="registrationContact">
 <h3>{translate key="manager.registrationPolicies.registrationContact"}</h3>
 
 <table class="data" width="100%">
@@ -97,7 +98,7 @@
 		<td class="value">{$currentSchedConf->getSetting('registrationMailingAddress')|nl2br}</td>
 	</tr>{/if}
 </table>
-
+</div>
 {/if}{* if displaying reg manager info *}
 
 <p><input type="submit" value="{translate key="schedConf.registration.register"}" {if !$registrationMethodAvailable}disabled="disabled" class="button" {else}class="button defaultButton" {/if}/></p>

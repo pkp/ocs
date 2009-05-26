@@ -50,7 +50,7 @@
 </table>
 
 {if $isError}
-<p>
+<p id="errorsOccurred>
 	<span class="formError">{translate key="plugins.importexport.users.import.errorsOccurred"}:</span>
 	<ul class="formErrorList">
 	{foreach key=field item=message from=$errors}

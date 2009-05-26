@@ -15,6 +15,7 @@
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
+<div id="locales">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
@@ -25,8 +26,9 @@
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
-
+<div id="reviewPolicy">
 <h3>3.1 {translate key="manager.schedConfSetup.review.reviewPolicy"}</h3>
 
 <p>{translate key="manager.schedConfSetup.review.reviewDescription"}</p>
@@ -34,9 +36,9 @@
 <h4>{translate key="manager.schedConfSetup.review.reviewPolicy"}</h4>
 
 <p><textarea name="reviewPolicy[{$formLocale|escape}]" id="reviewPolicy" rows="12" cols="60" class="textArea">{$reviewPolicy[$formLocale]|escape}</textarea></p>
-
+</div>
 <div class="separator"></div>
-
+<div id="peerReview">
 <h3>3.2 {translate key="manager.schedConfSetup.review.peerReview"}</h3>
 
 <p>{translate key="manager.schedConfSetup.review.reviewGuidelinesDescription"}</p>
@@ -103,15 +105,15 @@
 <p>
 	<input type="checkbox" name="rateReviewerOnQuality" id="rateReviewerOnQuality" value="1"{if $rateReviewerOnQuality} checked="checked"{/if} />&nbsp;<label for="rateReviewerOnQuality">{translate key="manager.schedConfSetup.review.onQuality"}</label>
 </p>
-
+</div>
 <div class="separator"></div>
-
+<div id="directorDecision">
 <h3>3.3 {translate key="manager.schedConfSetup.review.directorDecision"}</h3>
 
 <p>
 	<input type="checkbox" name="notifyAllAuthorsOnDecision" id="notifyAllAuthorsOnDecision" value="1"{if $notifyAllAuthorsOnDecision} checked="checked"{/if} />&nbsp;<label for="notifyAllAuthorsOnDecision">{translate key="manager.schedConfSetup.review.notifyAllAuthorsOnDecision"}</label>
 </p>
-
+</div>
 <div class="separator"></div>
 
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="schedConfSetup" escape=false}'" /></p>

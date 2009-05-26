@@ -9,6 +9,7 @@
  * $Id$
  *}
 <div id="stages">
+<div id="regretsAndCancels">
 <h3>{translate|escape key="trackDirector.regrets.regretsAndCancels"}</h3>
 
 <table width="100%" class="listing">
@@ -51,7 +52,7 @@
 	</tr>
 {/foreach}
 </table>
-
+</div>
 {assign var=numStages value=$reviewAssignmentStages|@count}
 {section name=stage loop=$numStages}
 {assign var=stage value=$smarty.section.stage.index}
@@ -60,7 +61,7 @@
 {assign var=stageDecisions value=$directorDecisions[$stagePlusOne]}
 
 {if $submission->getCurrentStage() != $stagePlusOne}
-
+<div id="reviewStage">
 <h4>{translate key="trackDirector.regrets.reviewStage" stage=$stagePlusOne}</h4>
 
 {if $stage != REVIEW_STAGE_ABSTRACT}
@@ -77,6 +78,7 @@
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
 
 {assign var="start" value="A"|ord}
@@ -86,6 +88,7 @@
 
 {if !$reviewAssignment->getCancelled()}
 <div class="separator"></div>
+<div id="reviewer">
 <h5>{translate key="user.role.reviewer"} {$reviewKey+$start|chr} {$reviewAssignment->getReviewerFullName()|escape}</h5>
 
 <table width="100%" class="listing">
@@ -184,11 +187,12 @@
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
 {/foreach}
 
 <div class="separator"></div>
-
+<div id="decisionStage">
 <h4>{translate key="trackDirector.regrets.decisionStage" stage=$stagePlusOne}</h4>
 
 {assign var=authorFiles value=$submission->getAuthorFileRevisions($stagePlusOne)}
@@ -249,7 +253,7 @@
 		</tr>
 	{/foreach}
 </table>
-
+</div>
 <div class="separator"></div>
 
 {/if} {* End check to see that this is actually a past review, not the current one *}

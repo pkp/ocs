@@ -15,6 +15,7 @@
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
+<div id="locales">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
@@ -25,8 +26,9 @@
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
-
+<div id="description">
 <h3>1.1 {translate key="manager.schedConfSetup.details.description"}</h3>
 
 <p><label for="introduction">{translate key="manager.schedConfSetup.details.introduction.description"}</label></p>
@@ -36,9 +38,9 @@
 <p><label for="overview">{translate key="manager.schedConfSetup.details.overview.description"}</label></p>
 
 <p><textarea name="overview[{$formLocale|escape}]" id="overview" rows="10" cols="60" class="textArea">{$overview[$formLocale]|escape}</textarea></p>
-
+</div>
 <div class="separator"></div>
-
+<div id="location">
 <h3>1.2 {translate key="manager.schedConfSetup.details.location"}</h3>
 
 <table width="100%" class="data">
@@ -64,9 +66,9 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
-
+<div id="principalContact">
 <h3>1.3 {translate key="manager.schedConfSetup.details.principalContact"}</h3>
 
 <table width="100%" class="data">
@@ -99,9 +101,9 @@
 		<td width="80%" class="value"><textarea name="contactMailingAddress" id="contactMailingAddress" rows="3" cols="40" class="textArea">{$contactMailingAddress|escape}</textarea></td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
-
+<div id="technicalSupportContact">
 <h3>1.4 {translate key="manager.schedConfSetup.details.technicalSupportContact"}</h3>
 
 <p>{translate key="manager.schedConfSetup.details.technicalSupportContact.description"}</p>
@@ -120,9 +122,9 @@
 		<td width="80%" class="value"><input type="text" name="supportPhone" id="supportPhone" value="{$supportPhone|escape}" size="15" maxlength="24" class="textField" /></td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
-
+<div id="emails">
 <h3>1.5 {translate key="manager.schedConfSetup.details.emails"}</h3>
 <table width="100%" class="data">
 	<tr valign="top"><td colspan="2">{translate key="manager.schedConfSetup.details.emailSignature.description"}<br />&nbsp;</td></tr>
@@ -145,10 +147,10 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 
 <div class="separator"></div>
-
+<div id="sponsors">
 <h3>1.6 {translate key="manager.schedConfSetup.details.sponsors"}</h3>
 
 <p>{translate key="manager.schedConfSetup.details.sponsors.description"}</p>
@@ -203,7 +205,7 @@
 	</tr>
 {/foreach}
 </table>
-
+</div>
 <p><input type="submit" name="addSponsor" value="{translate key="manager.schedConfSetup.details.addSponsor"}" class="button" /></p>
 
 <div class="separator"></div>

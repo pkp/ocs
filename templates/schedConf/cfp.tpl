@@ -12,7 +12,7 @@
 {translate|assign:"pageTitleTranslated" key="schedConf.cfp.title"}
 {include file="common/header.tpl"}
 {/strip}
-
+<div id="cfp">
 <p>{$cfpMessage|nl2br}</p>
 
 {if $authorGuidelines != ''}
@@ -30,5 +30,5 @@
 		{$notAcceptingSubmissionsMessage}
 	</p>
 {/if}
-
+</div>
 {include file="common/footer.tpl"}

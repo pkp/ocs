@@ -15,6 +15,7 @@
 {/strip}
 
 {* Display scheduled conferences. *}
+<div id="archive">
 <h3>{translate key="conference.archive"}</h3>
 {if not $schedConfs->eof()}
 	{iterate from=schedConfs item=schedConf}
@@ -33,5 +34,5 @@
 {else}
 	{translate key="conference.noCurrentConferences"}
 {/if}
-
+</div>
 {include file="common/footer.tpl"}

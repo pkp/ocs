@@ -16,6 +16,7 @@
 
 {* There are no localized settings on this page.
 {if count($formLocales) > 1}
+<div id="locales">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
@@ -26,9 +27,10 @@
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
 *}
-
+<div id="pageDescription">
 <p>{translate key="manager.setup.loggingAndAuditing.pageDescription"}</p>
 
 <table width="100%" class="data">
@@ -45,7 +47,7 @@
 		<td width="95%" class="value"><label for="conferenceEventLog">{translate key="manager.setup.loggingAndAuditing.conferenceEventLogging"}</label></td>
 	</tr>
 </table>
-
+</div>
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>

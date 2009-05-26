@@ -11,7 +11,7 @@
 {strip}
 {include file="submission/comment/header.tpl"}
 {/strip}
-
+<div id="paperComments">
 <table class="data" width="100%">
 {foreach from=$paperComments item=comment}
 <tr valign="top">
@@ -37,7 +37,7 @@
 </tr>
 {/foreach}
 </table>
-
+</div>
 <br />
 <br />
 

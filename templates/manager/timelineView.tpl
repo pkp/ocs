@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="manager.timeline.conferenceTimeline"}
 {include file="common/header.tpl"}
 {/strip}
-
+<div id="conferenceTimeline">
 <h3>{translate key="manager.timeline.conference"}</h3>
 
 <table width="100%" class="data">
@@ -29,9 +29,9 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <br/>
-
+<div id="websiteTimeline">
 <h3>{translate key="manager.timeline.website"}</h3>
 
 <table width="100%" class="data">
@@ -48,9 +48,9 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <br/>
-
+<div id="submissionsTimeline">
 <h3>{translate key="manager.timeline.submissions"}</h3>
 
 <table width="100%" class="data">
@@ -85,9 +85,9 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <br/>
-
+<div id="reviewsTimeline">
 <h3>{translate key="manager.timeline.reviews"}</h3>
 
 <table width="100%" class="data">
@@ -104,11 +104,11 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 {if $postAbstracts || $postSchedule || $postPapers || $delayOpenAccess || $closeComments}
 
 <br/>
-
+<div id="websitePosting">
 <h3>{translate key="manager.timeline.websitePosting"}</h3>
 
 <table width="100%" class="data">
@@ -163,7 +163,7 @@
 		</tr>
 	{/if}
 </table>
-
+</div>
 {/if}
 
 {include file="common/footer.tpl"}

@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-<a name="directorDecision"></a>
+<div id="directorDecision">
 <h3>{translate key="submission.directorDecision"}</h3>
 
 {assign var=authorFiles value=$submission->getAuthorFileRevisions($submission->getCurrentStage())}
@@ -86,7 +86,7 @@
 		</td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
 
 {include file="author/submission/layout.tpl"}

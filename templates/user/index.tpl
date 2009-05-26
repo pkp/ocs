@@ -24,6 +24,7 @@
 
 {foreach from=$userConferences item=conference}
 {assign var="hasRole" value=1}
+<div id="conference">
 <h4><a href="{url conference=$conference->getPath() page="user"}">{$conference->getConferenceTitle()|escape}</a></h4>
 	{assign var="conferenceId" value=$conference->getConferenceId()}
 	{assign var="conferencePath" value=$conference->getPath()}
@@ -52,6 +53,7 @@
 
 	{* Display scheduled conference roles *}
 	{foreach from=$userSchedConfs[$conferenceId] item=schedConf}
+		<div id="schedConf">
 		{assign var="schedConfId" value=$schedConf->getSchedConfId()}
 		{assign var="schedConfPath" value=$schedConf->getPath()}
 		<h5><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getSchedConfTitle()|escape}</a></h5>
@@ -131,9 +133,11 @@
 			</tr>
 				
 		</table>
+	</div>
 	{/foreach}
 
 	{call_hook name="Templates::User::Index::Conference" conference=$conference}
+	</div>
 {/foreach}
 
 
@@ -186,7 +190,7 @@
 	{/if}{* !$currentSchedConf *}
 {/if}
 
-
+<div id="myAccount">
 <h3>{translate key="user.myAccount"}</h3>
 <ul class="plain">
 	{if $hasOtherConferences}
@@ -201,5 +205,6 @@
 	<li>&#187; <a href="{url page="login" op="signOut"}">{translate key="user.logOut"}</a></li>
 	{call_hook name="Templates::User::Index::MyAccount"}
 </ul>
+</div>
 
 {include file="common/footer.tpl"}

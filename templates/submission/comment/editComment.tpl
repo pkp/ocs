@@ -1,4 +1,4 @@
-{**
+{        n m*
  * editComment.tpl
  *
  * Copyright (c) 2000-2009 John Willinsky

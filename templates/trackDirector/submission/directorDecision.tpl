@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-<a name="directorDecision"></a>
+<div id="directorDecision">
 <h3>{translate key="submission.directorDecision"}</h3>
 
 <table width="100%" class="data">
@@ -59,7 +59,7 @@
 	</td>
 </tr>
 </table>
-
+</div>
 <form method="post" action="{url op="directorReview" path=$stage}" enctype="multipart/form-data">
 <input type="hidden" name="paperId" value="{$submission->getPaperId()}" />
 {assign var=authorFiles value=$submission->getAuthorFileRevisions($stage)}

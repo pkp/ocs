@@ -15,7 +15,7 @@
 {if !empty($conflicts)}
 <p>{translate key="admin.conferences.importOCS1.conflict.desc"}</p>
 
-<ul>
+<ul id="conflicts">
 {foreach from=$conflicts item=conflict}
 	{assign var=firstUser value=$conflict[0]}
 	{assign var=secondUser value=$conflict[1]}
@@ -28,7 +28,7 @@
 {if !empty($errors)}
 <p>{translate key="admin.conferences.importOCS1.errors.desc"}</p>
 
-<ul>
+<ul id="errors">
 {foreach from=$errors item=error}
 	<li>{$error|escape}</li>
 {/foreach}

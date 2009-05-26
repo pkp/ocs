@@ -13,7 +13,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul>
+<ul id="plugins">
 	{foreach from=$plugins item=plugin}
 	<li><a href="{url op="importexport" path="plugin"|to_array:$plugin->getName()}">{$plugin->getDisplayName()|escape}</a>:&nbsp;{$plugin->getDescription()|escape}</li>
 	{foreachelse}

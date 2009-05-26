@@ -36,6 +36,7 @@
 {$additionalHomeContent}
 
 {* Display current scheduled conferences. *}
+<div id="schedConfs">
 <h3>{translate key="conference.currentConferences"}</h3>
 {if not $currentSchedConfs->eof()}
 	{iterate from=currentSchedConfs item=schedConf}
@@ -54,5 +55,5 @@
 {else}
 	{translate key="conference.noCurrentConferences"}
 {/if}
-
+</div>
 {include file="common/footer.tpl"}

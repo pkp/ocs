@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="navigation.account"}
 {include file="common/header.tpl"}
 {/strip}
-
+<div id="createAccountConference">
 {translate key="user.account.selectSchedConf"}:
 <ul>
 {iterate from=schedConfs item=schedConf}
@@ -28,5 +28,5 @@
 {if $schedConfs->wasEmpty()}
 	{translate key="user.account.noSchedConfs"}
 {/if}
-
+</div>
 {include file="common/footer.tpl"}

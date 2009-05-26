@@ -12,7 +12,7 @@
 {assign var=pageTitle value="rt.captureCite"}
 {include file="rt/header.tpl"}
 {/strip}
-
+<div id="captureCite">
 {if $galleyId}
 	{url|assign:"paperUrl" page="paper" op="view" path=$paperId|to_array:$galleyId}
 {else}
@@ -31,7 +31,7 @@
 </form>
 
 {call_hook name="Template::RT::CaptureCite"}
-
+</div>
 <div class="separator"></div>
 
 {include file="rt/footer.tpl"}

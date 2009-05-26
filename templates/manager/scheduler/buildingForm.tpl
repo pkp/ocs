@@ -20,7 +20,7 @@
 {assign var="pageId" value="manager.scheduler.building.buildingForm"}
 {include file="common/header.tpl"}
 {/strip}
-
+<div id="buildingForm">
 <ul class="menu">
 	<li class="current"><a href="{$buildingUrl}">{$pageTitle|translate}</a></li>
 	{if $buildingId}
@@ -68,5 +68,5 @@
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-
+</div>
 {include file="common/footer.tpl"}

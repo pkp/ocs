@@ -42,7 +42,7 @@
 		// -->
 		{/literal}
 	</script>
-
+<div id="registrationContact">
 <h3>{translate key="manager.registrationPolicies.registrationContact"}</h3>
 <p>{translate key="manager.registrationPolicies.registrationContactDescription"}</p>
 <table width="100%" class="data">
@@ -76,11 +76,11 @@
 		<td width="80%" class="value"><textarea name="registrationMailingAddress" id="registrationMailingAddress" rows="6" cols="40" class="textArea">{$registrationMailingAddress|escape}</textarea></td>
 	</tr>
 </table>
-
+</div>
 
 <div class="separator"></div>
 
-
+<div id="registrationAdditionalInformation">
 <h3>{translate key="manager.registrationPolicies.registrationAdditionalInformation"}</h3>
 <p>{translate key="manager.registrationPolicies.registrationAdditionalInformationDescription"}</p>
 <p>
@@ -88,11 +88,11 @@
 	<br />
 	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 </p>
-
+</div>
 
 <div class="separator"></div>
 
-
+<div id="expiryReminders">
 <h3>{translate key="manager.registrationPolicies.expiryReminders"}</h3>
 <p>{translate key="manager.registrationPolicies.expiryRemindersDescription"}</p>
 
@@ -125,11 +125,11 @@
 	<br/>
 	{translate key="manager.registrationPolicies.expiryRemindersDisabled"}
 {/if}
-
+</div>
 
 <div class="separator"></div>
 
-
+<div id="openAccessOptions">
 <h3>{translate key="manager.registrationPolicies.openAccessOptions"}</h3>
 <p>{translate key="manager.registrationPolicies.openAccessOptionsDescription"}</p>
 
@@ -160,7 +160,7 @@
 	<br />
 	<span class="instruct">{translate key="manager.registrationPolicies.htmlInstructions"}</span>
 	</p>
-
+</div>
 
 <div class="separator"></div>
 

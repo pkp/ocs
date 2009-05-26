@@ -14,18 +14,19 @@
 {/strip}
 
 <p>{translate key="manager.scheduler.description"}</p>
-
+<div id="roomsAndEvents">
 <h3>{translate key="manager.scheduler.roomsAndEvents"}</h3>
 
 <ul class="plain">
 	<li>&#187; <a href="{url op="buildings" clearPageContext=1}">{translate key="manager.scheduler.buildingsAndRooms"}</a></li>
 	<li>&#187; <a href="{url op="specialEvents" clearPageContext=1}">{translate key="manager.scheduler.specialEvents"}</a></li>
 </ul>
-
+</div>
+<div id="scheduling">
 <h3>{translate key="manager.scheduler.scheduling"}</h3>
 
 <ul class="plain">
 	<li>&#187; <a href="{url op="schedule"}">{translate key="manager.scheduler.schedule"}</a></li>
 </ul>
-
+</div>
 {include file="common/footer.tpl"}

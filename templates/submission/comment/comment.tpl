@@ -11,7 +11,7 @@
 {strip}
 {include file="submission/comment/header.tpl"}
 {/strip}
-
+<div id="comment">
 <table class="data" width="100%">
 {foreach from=$paperComments item=comment}
 <tr valign="top">
@@ -73,5 +73,5 @@
 {else}
 <input type="button" value="{translate key="common.close"}" class="button defaultButton" style="width: 5em" onclick="window.close()" />
 {/if}
-
+</div>
 {include file="submission/comment/footer.tpl"}

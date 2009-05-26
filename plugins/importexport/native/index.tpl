@@ -14,16 +14,17 @@
 {/strip}
 
 <br/>
-
+<div id="export">
 <h3>{translate key="plugins.importexport.native.export"}</h3>
 <ul class="plain">
 	<li>&#187; <a href="{plugin_url path="papers"}">{translate key="plugins.importexport.native.export.papers"}</a></li>
 </ul>
-
+</div>
+<div id="import">
 <h3>{translate key="plugins.importexport.native.import"}</h3>
 <p>{translate key="plugins.importexport.native.import.description"}</p>
 <form action="{plugin_url path="import"}" method="post" enctype="multipart/form-data">
 <input type="file" class="uploadField" name="importFile" id="import" /> <input name="import" type="submit" class="button" value="{translate key="common.import"}" />
 </form>
-
+</div>
 {include file="common/footer.tpl"}

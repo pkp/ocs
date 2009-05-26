@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="author.track"}
 {include file="common/header.tpl"}
 {/strip}
-
+<div id="submissionComplete">
 <p>{translate key="author.submit.submissionComplete" conferenceTitle=$conference->getConferenceTitle()}</p>
 
 {* TODO: expedite handler is incomplete
@@ -23,5 +23,5 @@
 *}
 
 <p>&#187; <a href="{url op="track"}">{translate key="author.track"}</a></p>
-
+</div>
 {include file="common/footer.tpl"}

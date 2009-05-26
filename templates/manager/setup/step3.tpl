@@ -15,6 +15,7 @@
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
+<div id="locales">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
@@ -25,12 +26,13 @@
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
-
+<div id="homepageHeader">
 <h3>3.1 {translate key="manager.setup.layout.homepageHeader"}</h3>
 
 <p>{translate key="manager.setup.layout.homepageHeader.description"}</p>
-
+<div id="conferenceTitle">
 <h4>{translate key="manager.setup.layout.conferenceTitle"}</h4>
 
 <table width="100%" class="data">
@@ -60,7 +62,8 @@
 	</tr>
 </table>
 {/if}
-
+</div>
+<div id="conferenceLogo">
 <h4>{translate key="manager.setup.layout.conferenceLogo"}</h4>
 
 <table width="100%" class="data">
@@ -86,13 +89,14 @@
 		</tr>
 </table>
 {/if}
-
+</div>
+</div>
 <div class="separator"></div>
-
+<div id="conferencePageHeader">
 <h3>3.2 {translate key="manager.setup.layout.conferencePageHeader"}</h3>
 
 <p>{translate key="manager.setup.layout.conferencePageHeader.description"}</p>
-
+<div id="conferenceTitle">
 <h4>{translate key="manager.setup.layout.conferenceTitle"}</h4>
 
 <table width="100%" class="data">
@@ -122,7 +126,8 @@
 		</tr>
 </table>
 {/if}
-
+</div>
+<div id="conferenceLogo">
 <h4>{translate key="manager.setup.layout.conferenceLogo"}</h4>
 
 <table width="100%" class="data">
@@ -148,26 +153,28 @@
 		</tr>
 </table>
 {/if}
-
+</div>
+<div id="alternateHeader">
 <h4>{translate key="manager.setup.layout.alternateHeader"}</h4>
 
 <p>{translate key="manager.setup.layout.alternateHeaderDescription"}</p>
 
 <p><textarea name="conferencePageHeader[{$formLocale|escape}]" id="conferencePageHeader" rows="10" cols="60" class="textArea">{$conferencePageHeader[$formLocale]|escape}</textarea></p>
-
+</div>
+</div>
 
 <div class="separator"></div>
 
-
+<div id="conferencePageFooter">
 <h3>3.3 {translate key="manager.setup.layout.conferencePageFooter"}</h3>
 
 <p>{translate key="manager.setup.layout.conferencePageFooterDescription"}</p>
 
 <p><textarea name="conferencePageFooter[{$formLocale|escape}]" id="conferencePageFooter" rows="10" cols="60" class="textArea">{$conferencePageFooter[$formLocale]|escape}</textarea></p>
-
+</div>
 
 <div class="separator"></div>
-
+<div id="navigationBar">
 <h3>3.4 {translate key="manager.setup.layout.navigationBar"}</h3>
 
 <p>{translate key="manager.setup.layout.itemsDescription"}</p>
@@ -232,10 +239,10 @@
 </table>
 
 <p><input type="submit" name="addNavItem" value="{translate key="manager.setup.layout.addNavItem"}" class="button" /></p>
-
+</div>
 <div class="separator"></div>
 
-
+<div id="lists">
 <h3>3.5 {translate key="manager.setup.layout.lists"}</h3>
 
 <p>{translate key="manager.setup.layout.lists.description"}</p>
@@ -250,7 +257,7 @@
 		<td width="80%" class="value"><input type="text" size="3" name="numPageLinks" class="textField" value="{$numPageLinks|escape}" /></td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
 
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>

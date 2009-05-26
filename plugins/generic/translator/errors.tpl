@@ -33,6 +33,7 @@
 {/if}
 
 {foreach from=$errors key=type item=categoryErrors}
+	<div id="errors">
 	{if !empty($categoryErrors)}
 		<h2>{translate key="plugins.generic.translator.errors.$type.title"}</h2>
 		<ul>
@@ -101,9 +102,11 @@
 	{if $categoryCount}
 		&nbsp;&nbsp;&nbsp;&nbsp;(Total {$categoryCount|escape} Words)
 	{/if}
+	</div>
 {/foreach}
 
 {foreach from=$emailErrors key=type item=categoryErrors}
+	<div id="emailErrors">
 	{if !empty($categoryErrors)}
 		<h2>{translate key="plugins.generic.translator.errors.$type.title"}</h2>
 		<ul>
@@ -129,6 +132,7 @@
 		</li>
 	{/foreach}
 	</ul>
+	</div>
 {/foreach}
 
 {if !empty($errors)}

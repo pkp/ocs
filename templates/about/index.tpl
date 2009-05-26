@@ -22,7 +22,7 @@
 		{/iterate}
 	</ul>
 {/if}
-
+<div id="people">
 <h3>{translate key="about.people"}</h3>
 <ul class="plain">
 	<li>&#187; <a href="{url op="contact"}">{translate key="about.contact"}</a></li>
@@ -31,7 +31,8 @@
 	{/if}
 	{call_hook name="Templates::About::Index::People"}
 </ul>
-
+</div>
+<div id="policies">
 <h3>{translate key="about.policies"}</h3>
 <ul class="plain">
 	{if $currentConference->getLocalizedSetting('focusScopeDesc') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}
@@ -46,7 +47,8 @@
 	{/foreach}
 	{call_hook name="Templates::About::Index::Policies"}
 </ul>
-
+</div>
+<div id="submissions">
 <h3>{translate key="about.submissions"}</h3>
 <ul class="plain">
 	<li>&#187; <a href="{url op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
@@ -55,7 +57,8 @@
 	{if $currentConference->getLocalizedSetting('privacyStatement') != ''}<li>&#187; <a href="{url op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
 	{call_hook name="Templates::About::Index::Submissions"}
 </ul>
-
+</div>
+<div id="other">
 <h3>{translate key="about.other"}</h3>
 <ul class="plain">
 	<li>&#187; <a href="{url op="siteMap"}">{translate key="about.siteMap"}</a></li>
@@ -63,5 +66,5 @@
 	{if $publicStatisticsEnabled}<li>&#187; <a href="{url op="statistics"}">{translate key="about.statistics"}</a></li>{/if}
 	{call_hook name="Templates::About::Index::Other"}
 </ul>
-
+</div>
 {include file="common/footer.tpl"}

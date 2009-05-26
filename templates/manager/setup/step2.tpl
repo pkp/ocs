@@ -15,6 +15,7 @@
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
+<div id="locales">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
@@ -25,8 +26,9 @@
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
-
+<div id="redirect">
 <h3>2.1 {translate key="manager.setup.additionalContent.redirect"}</h3>
 
 <p>{translate key="manager.setup.additionalContent.redirect.description"}</p>
@@ -42,9 +44,10 @@
 		</td>
 	</tr>
 </table>
-
+</div>
+<div id="homepage">
 <h3>2.2 {translate key="manager.setup.additionalContent.homepage"}</h3>
-
+<div id="homepageImage">
 <h4>{translate key="manager.setup.additionalContent.homepageImage"}</h4>
 
 <table width="100%" class="data">
@@ -70,29 +73,33 @@
 		</tr>
 </table>
 {/if}
-
+</div>
+<div id="additionalContent">
 <h4>{translate key="manager.setup.additionalContent.additionalContent"}</h4>
 
 <p>{translate key="manager.setup.additionalContent.additionalContent.description"}</p>
 
 <p><textarea name="additionalHomeContent[{$formLocale|escape}]" id="additionalHomeContent" rows="10" cols="60" class="textArea">{$additionalHomeContent[$formLocale]|escape}</textarea></p>
-
+</div>
+</div>
 <div class="separator"></div>
-
+<div id="additionalInformation">
 <h3>2.3 {translate key="manager.setup.additionalContent.information"}</h3>
 
 <p>{translate key="manager.setup.additionalContent.information.description"}</p>
-
+<div id="infoForReaders">
 <h4>{translate key="manager.setup.additionalContent.information.forReaders"}</h4>
 
 <p><textarea name="readerInformation[{$formLocale|escape}]" id="readerInformation" rows="10" cols="60" class="textArea">{$readerInformation[$formLocale]|escape}</textarea></p>
-
+</div>
+<div id="forAuthors">
 <h4>{translate key="manager.setup.additionalContent.information.forAuthors"}</h4>
 
 <p><textarea name="authorInformation[{$formLocale|escape}]" id="authorInformation" rows="10" cols="60" class="textArea">{$authorInformation[$formLocale]|escape}</textarea></p>
-
+</div>
+</div>
 <div class="separator"></div>
-
+<div id="announcements">
 <h3>2.4 {translate key="manager.setup.additionalContent.announcements"}</h3>
 
 <p>{translate key="manager.setup.additionalContent.announcementsDescription"}</p>
@@ -122,15 +129,16 @@
 	</select>
 	{translate key="manager.setup.additionalContent.enableAnnouncementsHomepage2"}
 </p>
-
+<div id="announcementsIntroduction">
 <h4>{translate key="manager.setup.additionalContent.announcementsIntroduction"}</h4>
 
 <p>{translate key="manager.setup.additionalContent.announcementsIntroductionDescription"}</p>
 
 <p><textarea name="announcementsIntroduction[{$formLocale|escape}]" id="announcementsIntroduction" rows="10" cols="60" class="textArea">{$announcementsIntroduction[$formLocale]|escape}</textarea></p>
-
+</div>
+</div>
 <div class="separator"></div>
-
+<div id="archiveAccess">
 <h3>2.5 {translate key="manager.setup.additionalContent.archiveAccess"}</h3>
 
 <p>{translate key="manager.setup.additionalContent.archiveAccess.description"}</p>
@@ -140,7 +148,7 @@
 	<input type="radio" name="paperAccess" id="paperAccess-2" value="{$smarty.const.PAPER_ACCESS_ACCOUNT_REQUIRED}" {if $paperAccess == PAPER_ACCESS_ACCOUNT_REQUIRED} checked="checked"{/if} />&nbsp;<label for="paperAccess-2">{translate key="manager.setup.additionalContent.archiveAccess.accountRequired"}</label><br/>
 	<input type="radio" name="paperAccess" id="paperAccess-3" value="{$smarty.const.PAPER_ACCESS_REGISTRATION_REQUIRED}" {if $paperAccess == PAPER_ACCESS_REGISTRATION_REQUIRED} checked="checked"{/if} />&nbsp;<label for="paperAccess-3">{translate key="manager.setup.additionalContent.archiveAccess.registrationRequired"}</label><br/>
 </p>
-
+</div>
 
 <div class="separator"></div>
 

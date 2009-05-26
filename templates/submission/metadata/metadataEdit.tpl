@@ -34,6 +34,7 @@ function moveAuthor(dir, authorIndex) {
 {/literal}
 
 {if count($formLocales) > 1}
+<div id="locales">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
@@ -50,8 +51,10 @@ function moveAuthor(dir, authorIndex) {
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
 
+<div id="authors">
 <h3>{translate key="paper.authors"}</h3>
 
 <input type="hidden" name="deletedAuthors" value="{$deletedAuthors|escape}" />
@@ -162,12 +165,12 @@ function moveAuthor(dir, authorIndex) {
 </table>
 
 <p><input type="submit" class="button" name="addAuthor" value="{translate key="author.submit.addAuthor"}" /></p>
-
+</div>
 
 <div class="separator"></div>
 {/if}
 
-
+<div id="titleAndAbstract">
 <h3>{translate key="submission.titleAndAbstract"}</h3>
 
 <table width="100%" class="data">
@@ -184,11 +187,11 @@ function moveAuthor(dir, authorIndex) {
 		<td class="value"><textarea name="abstract[{$formLocale|escape}]" id="abstract" rows="15" cols="60" class="textArea">{$abstract[$formLocale]|escape}</textarea></td>
 	</tr>
 </table>
-
+</div>
 
 <div class="separator"></div>
 
-
+<div id="indexing">
 <h3>{translate key="submission.indexing"}</h3>
 
 {if $currentSchedConf->getSetting('metaDiscipline') || $currentSchedConf->getSetting('metaSubjectClass') || $currentSchedConf->getSetting('metaSubject') || $currentSchedConf->getSetting('metaCoverage') || $currentSchedConf->getSetting('metaType')}<p>{translate key="author.submit.submissionIndexingDescription"}</p>{/if}
@@ -301,9 +304,11 @@ function moveAuthor(dir, authorIndex) {
 		</td>
 	</tr>
 </table>
+</div>
 
 <div class="separator"></div>
 
+<div id="supportingAgencies">
 <h3>{translate key="submission.supportingAgencies"}</h3>
 
 <p>{translate key="author.submit.submissionSupportingAgenciesDescription"}</p>
@@ -316,10 +321,12 @@ function moveAuthor(dir, authorIndex) {
 		</td>
 	</tr>
 </table>
+</div>
 
 <div class="separator"></div>
 
 {if $currentSchedConf->getSetting('metaCitations')}
+<div id="citations">
 <h3>{translate key="submission.citations"}</h3>
 
 <p>{translate key="author.submit.submissionCitations"}</p>
@@ -330,7 +337,7 @@ function moveAuthor(dir, authorIndex) {
 	<td width="80%" class="value"><textarea name="citations" id="citations" class="textArea" rows="15" cols="60">{$citations|escape}</textarea></td>
 </tr>
 </table>
-
+</div>
 <div class="separator"></div>
 {/if}
 

@@ -42,7 +42,7 @@
 {/if}
 
 <h3>{translate key="email.recipients"}</h3>
-<table class="data" width="100%">
+<table id="recipients" class="data" width="100%">
 <tr valign="top">
 	<td><input type="radio" id="allUsers" name="whichUsers" value="allUsers"/></td>
 	<td class="label">
@@ -91,7 +91,7 @@
 
 <br/>
 
-<table class="data" width="100%">
+<table id="body" class="data" width="100%">
 <tr valign="top">
 	<td class="label">{translate key="email.from"}</td>
 	<td class="value">{$from|escape}</td>

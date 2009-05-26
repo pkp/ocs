@@ -118,7 +118,7 @@ function checkSubmissionChecklist() {
 </script>
 
 {if $currentSchedConf->getLocalizedSetting('submissionChecklist')}
-
+<div id="submissionChecklist">
 {foreach name=checklist from=$currentSchedConf->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
 	{if $checklistItem.content}
 		{if !$notFirstChecklistItem}
@@ -138,10 +138,11 @@ function checkSubmissionChecklist() {
 	</table>
 	<div class="separator"></div>
 {/if}
-
+</div>
 {/if}
 
 {if $currentConference->getLocalizedSetting('copyrightNotice') != ''}
+<div id="copyrightNotice">
 <h3>{translate key="about.copyrightNotice"}</h3>
 
 <p>{$currentConference->getLocalizedSetting('copyrightNotice')|nl2br}</p>
@@ -154,18 +155,20 @@ function checkSubmissionChecklist() {
 	</tr>
 </table>
 {/if}
-
+</div>
 <div class="separator"></div>
 {/if}
 
 {if ($currentSchedConf->getLocalizedSetting('privacyStatement')) != ''}
+<div id="privacyStatement">
 <h3>{translate key="author.submit.privacyStatement"}</h3>
 <br />
 {$currentSchedConf->getLocalizedSetting('privacyStatement')|nl2br}
 
 <div class="separator"></div>
+</div>
 {/if}
-
+<div id="commentsForDirector">
 <h3>{translate key="author.submit.commentsForDirector"}</h3>
 <table width="100%" class="data">
 
@@ -175,7 +178,7 @@ function checkSubmissionChecklist() {
 </tr>
 
 </table>
-
+</div>
 <div class="separator"></div>
 
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="{if $paperId}confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}'){else}document.location.href='{url page="author" escape=false}'{/if}" /></p>

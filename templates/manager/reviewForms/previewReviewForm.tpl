@@ -25,6 +25,7 @@
 <p>{$reviewForm->getReviewFormDescription()}</p>
 
 {foreach from=$reviewFormElements name=reviewFormElements item=reviewFormElement}
+	<div id="reviewFormElement">
 	<p>{$reviewFormElement->getReviewFormElementQuestion()}{if $reviewFormElement->getRequired()}*{/if}</p>
 	<p>
 		{if $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_SMALL_TEXT_FIELD}
@@ -56,6 +57,7 @@
 			</select>
 		{/if}
 	</p>
+	</div>
 {/foreach}
 
 <br/>

@@ -14,7 +14,7 @@
 {/strip}
 
 <h3>{$user->getFullName()|escape}</h3>
-
+<div id="profile">
 <h4>{translate key="user.profile"}</h4>
 
 <p><a href="{url op="editUser" path=$user->getId()}" class="action">{translate key="manager.people.editProfile"}</a></p>
@@ -114,9 +114,9 @@
 		<td class="value">{$user->getDateLastLogin()|date_format:$datetimeFormatLong}</td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
-
+<div id="enrollment">
 <h4>{translate key="manager.people.enrollment"}</h4>
 <ul>
 {section name=role loop=$userRoles}
@@ -136,5 +136,5 @@
 	</li>
 {/section}
 </ul>
-
+</div>
 {include file="common/footer.tpl"}

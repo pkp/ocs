@@ -14,7 +14,7 @@
 {/strip}
 
 <h3>{translate key="manager.managementPages"}</h3>
-
+<div id="description">
 {translate key="manager.managementPages.description"}
 
 <ul class="plain">
@@ -32,8 +32,8 @@
 	<li>&#187; <a href="{url op="plugins"}">{translate key="manager.plugins"}</a></li>
 	{call_hook name="Templates::Manager::Index::ManagementPages"}
 </ul>
-
-
+</div>
+<div id="currentConfs">
 <h3>{translate key="manager.currentConferences"}</h3>
 {iterate from=schedConfs item=schedConf}
 	<h4>{$schedConf->getFullTitle()}</h4>
@@ -65,8 +65,8 @@
 		{call_hook name="Templates::Manager::Index::SchedConfFuncs" schedConf=$schedConf}
 </ul>
 {/iterate}
-
-
+</div>
+<div id="users">
 <h3>{translate key="manager.users"}</h3>
 
 <ul class="plain">
@@ -77,13 +77,14 @@
 	<li>&#187; <a href="{url op="mergeUsers"}">{translate key="manager.people.mergeUsers"}</a></li>
 	{call_hook name="Templates::Manager::Index::Users"}
 </ul>
+</div>
 
-
+<div id="roles">
 <h3>{translate key="manager.roles"}</h3>
 
 <ul class="plain">
 	<li>&#187; <a href="{url op="people" path="managers" clearPageContext=1}">{translate key="user.role.managers"}</a></li>
 	{call_hook name="Templates::Manager::Index::Roles"}
 </ul>
-
+</div>
 {include file="common/footer.tpl"}

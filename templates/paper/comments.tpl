@@ -10,11 +10,13 @@
  *}
 {if $comments}
 <div class="separator"></div>
+<div id="paperComments">
 <h4>{translate key="comments.commentsOnPaper"}</h4>
 
 <ul>
 {foreach from=$comments item=comment}
 {assign var=poster value=$comment->getUser()}
+<div id="comment">
 	<li>
 		<a href="{url page="comment" op="view" path=$paper->getPaperId()|to_array:$galleyId:$comment->getCommentId()}" target="_parent">{$comment->getTitle()|escape|default:"&nbsp;"}</a>
 		{if $comment->getChildCommentCount()==1}
@@ -34,6 +36,7 @@
 		{/if}
 		({$comment->getDatePosted()|date_format:$dateFormatShort})
 	</li>
+</div>
 {/foreach}
 </ul>
 
@@ -53,3 +56,4 @@
 	{/if}
 	<a class="action" href="{url page="comment" op="add" path=$paper->getPaperId()|to_array:$galleyId}" target="_parent">{translate key="rt.addComment"}</a>
 {/if}
+</div>

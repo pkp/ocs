@@ -15,6 +15,7 @@
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
+<div id="locales">
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
@@ -25,8 +26,9 @@
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
-
+<div id="title">
 <h3>1.1 {translate key="common.title"}</h3>
 
 <table width="100%" class="data">
@@ -35,16 +37,16 @@
 		<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" id="title" value="{$title[$formLocale]|escape}" size="30" maxlength="120" class="textField" /></td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
-
+<div id="">
 <h3><label for="description">1.2 {translate key="manager.setup.aboutConference.conferenceDescription"}</label></h3>
 <span class="instruct">{translate key="manager.setup.aboutConference.conferenceDescription.description"}</span>
 
 <textarea name="description[{$formLocale|escape}]" id="description" rows="5" cols="60" class="textArea">{$description[$formLocale]|escape}</textarea>
-
+</div>
 <div class="separator"></div>
-
+<div id="principalContact">
 <h3>1.3 {translate key="manager.setup.aboutConference.principalContact"}</h3>
 
 <table width="100%" class="data">
@@ -77,9 +79,9 @@
 		<td width="80%" class="value"><textarea name="contactMailingAddress" id="contactMailingAddress" rows="3" cols="40" class="textArea">{$contactMailingAddress|escape}</textarea></td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
-
+<div id="copyrightNotice">
 <h3><label for="copyrightNotice">1.4 {translate key="manager.setup.aboutConference.copyrightNotice"}</label></h3>
 <p>{translate key="manager.setup.aboutConference.copyrightNotice.description"}</p>
 
@@ -87,9 +89,9 @@
 
 <p><input type="checkbox" name="copyrightNoticeAgree" id="copyrightNoticeAgree" value="1"{if $copyrightNoticeAgree} checked="checked"{/if} /> <label for="copyrightNoticeAgree">{translate key="manager.setup.aboutConference.copyrightNoticeAgree"}</label><br/>
 <input type="checkbox" name="postCreativeCommons" id="postCreativeCommons" value="1"{if $postCreativeCommons} checked="checked"{/if} /> <label for="postCreativeCommons">{translate key="manager.setup.aboutConference.postCreativeCommons"}</label><br/></p>
-
+</div>
 <div class="separator"></div>
-
+<div id="archiveAccessPolicy">
 <h3>1.5 {translate key="manager.setup.aboutConference.archiveAccessPolicy"}</h3>
 <p>{translate key="manager.setup.aboutConference.archiveAccessPolicy.description"}</p>
 
@@ -113,19 +115,20 @@
 		<td width="90%" class="value"><label for="commentsAllowAnonymous">{translate key="manager.setup.aboutConference.comments.allowAnonymous"}</label></td>
 	</tr>
 </table>
-
+<div id="policy">
 <h4>{translate key="manager.setup.aboutConference.archiveAccessPolicy"}</h4>
 
 <p><textarea name="archiveAccessPolicy[{$formLocale|escape}]" id="archiveAccessPolicy" rows="10" cols="60" class="textArea">{$archiveAccessPolicy[$formLocale]|escape}</textarea></p>
-
+</div>
+</div>
 <div class="separator"></div>
-
+<div id="privacyStatement">
 <h3>1.6 {translate key="manager.setup.aboutConference.privacyStatement"}</h3>
 
 <p><textarea name="privacyStatement[{$formLocale|escape}]" id="privacyStatement" rows="10" cols="60" class="textArea">{$privacyStatement[$formLocale]|escape}</textarea></p>
-
+</div>
 <div class="separator"></div>
-
+<div id="addItemtoAboutConference">
 <h3>1.7 {translate key="manager.setup.aboutConference.addItemtoAboutConference"}</h3>
 
 <table width="100%" class="data">
@@ -156,7 +159,7 @@
 </table>
 
 <p><input type="submit" name="addCustomAboutItem" value="{translate key="manager.setup.aboutConference.addAboutItem"}" class="button" /></p>
-
+</div>
 <div class="separator"></div>
 
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>

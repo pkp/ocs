@@ -19,6 +19,7 @@
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1 && !$existingUser}
+<div id="locales">
 <table class="data" width="100%">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
@@ -29,17 +30,19 @@
 		</td>
 	</tr>
 </table>
+</div>
 {/if}
 
 {assign var="registrationAdditionalInformation" value=$schedConf->getLocalizedSetting('registrationAdditionalInformation')}
 {if $registrationAdditionalInformation}
+<div id="registrationAdditionalInformation">
 	<h3>{translate key="manager.registrationPolicies.registrationAdditionalInformation"}</h3>
 
 	<p>{$registrationAdditionalInformation|nl2br}</p>
-
+</div>
 	<div class="separator"></div>
 {/if}
-
+<div id="conferenceFees">
 <h3>{translate key="schedConf.registration.conferenceFees"}</h3>
 
 <table class="listing" width="100%">
@@ -100,9 +103,9 @@
 	<label for="feeCode">{translate key="schedConf.registration.feeCode"}</label>&nbsp;&nbsp;<input id="feeCode" name="feeCode" type="text" value="{$feeCode|escape}" class="textField" /><br />
 	{translate key="schedConf.registration.feeCode.description"}
 </p>
-
+</div>
 <div class="separator"></div>
-
+<div id="account">
 <h3>{translate key="schedConf.registration.account"}</h3>
 {if $userLoggedIn}
 	{url|assign:"logoutUrl" page="login" op="signOut" source=$requestUri}
@@ -240,18 +243,19 @@
 </table>
 
 {/if}{* user is logged in *}
-
+</div>
 <div class="separator"></div>
-
+<div id="specialRequests">
 <h3>{translate key="schedConf.registration.specialRequests"}</h3>
 
 <p><label for="specialRequests">{translate key="schedConf.registration.specialRequests.description"}</label></p>
 
 <p><textarea name="specialRequests" id="specialRequests" cols="60" rows="10" class="textArea">{$specialRequests|escape}</textarea></p>
-
+</div>
 <div class="separator"></div>
 
 {if $currentSchedConf->getSetting('registrationName')}
+<div id="registrationContact">
 <h3>{translate key="manager.registrationPolicies.registrationContact"}</h3>
 
 <table class="data" width="100%">
@@ -276,7 +280,7 @@
 		<td class="value">{$currentSchedConf->getSetting('registrationMailingAddress')|nl2br}</td>
 	</tr>{/if}
 </table>
-
+</div>
 <div class="separator"></div>
 {/if}{* if displaying reg manager info *}
 

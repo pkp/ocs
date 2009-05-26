@@ -16,7 +16,7 @@
 <h3>{$paper->getLocalizedTitle()|strip_unsafe_html}</h3>
 
 <br />
-
+<div id="supplementaryFileData">
 <h3>{translate key="author.submit.supplementaryFileData"}</h3>
 
 <table width="100%" class="data">
@@ -61,11 +61,11 @@
 		<td class="value">{$suppFile->getLanguage()|escape|default:"&mdash;"}</td>
 	</tr>
 </table>
-
+</div>
 
 <div class="separator"></div>
 
-
+<div id="supplementaryFileUpload">
 <h3>{translate key="author.submit.supplementaryFileUpload"}</h3>
 
 <table width="100%" class="data">
@@ -93,5 +93,5 @@
 	</tr>
 {/if}
 </table>
-
+</div>
 {include file="rt/footer.tpl"}

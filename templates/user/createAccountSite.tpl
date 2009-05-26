@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="navigation.account"}
 {include file="common/header.tpl"}
 {/strip}
-
+<div id="selectConference">
 {translate key="user.account.selectConference"}:
 <ul>
 {iterate from=conferences item=conference}
@@ -28,5 +28,5 @@
 {if $conferences->wasEmpty()}
 	{translate key="user.account.noConferences"}
 {/if}
-
+</div>
 {include file="common/footer.tpl"}
