@@ -92,7 +92,7 @@
 </div>
 </div>
 <div class="separator"></div>
-<div id="conferencePageHeader">
+<div id="conferencePageHeaderInfo">
 <h3>3.2 {translate key="manager.setup.layout.conferencePageHeader"}</h3>
 
 <p>{translate key="manager.setup.layout.conferencePageHeader.description"}</p>
@@ -165,7 +165,7 @@
 
 <div class="separator"></div>
 
-<div id="conferencePageFooter">
+<div id="conferencePageFooterInfo">
 <h3>3.3 {translate key="manager.setup.layout.conferencePageFooter"}</h3>
 
 <p>{translate key="manager.setup.layout.conferencePageFooterDescription"}</p>
