@@ -39,9 +39,6 @@ class TemplateManager extends Smarty {
 	/** @var $styleSheets array of URLs to stylesheets */
 	var $styleSheets;
 
-	/** @var $progressFunctionCallback callback */
-	var $progressFunctionCallback;
-
 	/** @var $initialized Kludge because of reference problems with
 	    TemplateManager::getManager() invoked during constructor process */
 	var $initialized;
@@ -656,13 +653,14 @@ class TemplateManager extends Smarty {
 		return Request::url($conference, $schedConf, $page, $op, $path, $params, $anchor, !isset($escape) || $escape);
 	}
 
-	function setProgressFunction(&$progressFunction) {
-		$this->progressFunctionCallback =& $progressFunction;
+	function setProgressFunction($progressFunction) {
+		Registry::set('progressFunctionCallback', $progressFunction);
 	}
 
 	function smartyCallProgressFunction($params, &$smarty) {
-		if ($this->progressFunctionCallback) {
-			call_user_func($this->progressFunctionCallback);
+		$progressFunctionCallback =& Registry::get('progressFunctionCallback');
+		if ($progressFunctionCallback) {
+			call_user_func($progressFunctionCallback);
 		}
 	}
 

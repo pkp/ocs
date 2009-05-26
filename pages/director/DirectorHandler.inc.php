@@ -432,7 +432,7 @@ class DirectorHandler extends TrackDirectorHandler {
 			unset($callback);
 
 			$email->setFrequency(10); // 10 emails per callback
-			$callback = array('TemplateManager', 'updateProgressBar');
+			$callback = array(&$templateMgr, 'updateProgressBar');
 			$email->setCallback($callback);
 			unset($callback);
 
