@@ -1457,7 +1457,7 @@ import('file.PaperFileManager');
 									foreach ($paperComments as $comment) {
 										// If the comment is viewable by the presenter, then add the comment.
 										if ($comment->getViewable()) {
-											$body .= String::html2utf(strip_tags($comment->getComments())) . "\n\n";
+											$body .= $comment->getComments() . "\n\n";
 											$hasBody = true;
 										}
 									}
@@ -1532,7 +1532,7 @@ import('file.PaperFileManager');
 
 		$commentsText = "";
 		foreach ($comments as $comment) {
-			$commentsText .= String::html2utf(strip_tags($comment->getComments())) . "\n\n";
+			$commentsText .= $comment->getComments() . "\n\n";
 		}
 
 		$user = &Request::getUser();

@@ -25,7 +25,7 @@
 		{if $comment->getCommentTitle() neq ""}
 			<div class="commentTitle">{translate key="submission.comments.subject"}: {$comment->getCommentTitle()|escape}</div>
 		{/if}
-		<div class="comments">{$comment->getComments()|strip_unsafe_html|escape|nl2br}</div>
+		<div class="comments">{$comment->getComments()|escape|nl2br}</div>
 	</td>
 </tr>
 {foreachelse}

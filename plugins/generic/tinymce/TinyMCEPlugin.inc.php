@@ -206,19 +206,10 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'rtadmin/createVersion':
 				$fields[] = 'description';
 				break;
-			case 'director/viewDirectorDecisionComments':
-			case 'director/postDirectorDecisionComment':
-				$fields[] = 'comments';
-				break;
 			case 'director/createReviewer':
 			case 'trackDirector/createReviewer':
 				$fields[] = 'mailingAddress';
 				$fields[] = 'biography';
-				break;
-			case 'reviewer/viewPeerReviewComments':
-  			case 'reviewer/postPeerReviewComment':
-				$fields[] = 'presenterComments';
-				$fields[] = 'comments';
 				break;
 			case 'director/submissionNotes':
 			case 'trackDirector/submissionNotes':
@@ -253,10 +244,6 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'manager/updateRegistrationType':
 				$fields[] = 'description';
 				break;
-			case 'comment/add':
-				$fields[] = 'bodyField';
-				break;
-
 		}
 		HookRegistry::call('TinyMCEPlugin::getEnableFields', array(&$this, &$fields));
 		return $fields;
