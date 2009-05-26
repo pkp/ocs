@@ -28,7 +28,7 @@ Si vous n'avez pas fait cette demande, veuillez ne pas tenir compte du présent 
 Réinitialisation du mot de passe : {$url}
 
 {$principalContactSignature}</field>
-			<field name="description">Ce courriel est envoyé aux utilisateurs qui nous informent d'un oubli de leur mot de passe, ou qui sont incapables d'ouvrir une session. Il fournit le lien URL pour réinitialiser leur mot de passe.</field>
+			<field name="description">Ce courriel est envoyé aux utilisateurs qui nous informent de l'oubli de leur mot de passe, ou qui sont incapables d'ouvrir une session. Il fournit le lien URL pour réinitialiser leur mot de passe.</field>
 		</row>
     <row>
 			<field name="email_key">PASSWORD_RESET</field>
@@ -71,14 +71,14 @@ Nom d'utilisateur: {$presenterUsername}
 Si vous avez des questions, veuillez me contacter. Merci d'avoir pensé à notre conférence pour la publication de vos travaux.
 
 {$editorialContactSignature}</field>
-			<field name="description">Ce courriel, lorsqu'il est activé, est envoyé automatiquement à un auteur quand il a complété le processus de soumission d'une communication à la conférence. Il fournit les informations sur comment suivre la soumission à travers le processus éditorial, et remercie l'auteur de sa soumission.</field>
+			<field name="description">Ce courriel, lorsqu'il est activé, est envoyé automatiquement à un auteur quand il a complété le processus de soumission d'une communication à la conférence. Il fournit les informations lui permettant de suivre la soumission à travers le processus éditorial, et remercie l'auteur de sa soumission.</field>
 		</row>
     <row>
 			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
 			<field name="subject">Accusé de réception du téléchargement de la soumission</field>
 			<field name="body">{$presenterName}:
 
-Nous vous remercions d'avoir téléchargé vers le serveur la communication intitulée "{$paperTitle}" à {$conferenceName}. Grâce à notre système de gestion en ligne, vous pourrez suivre votre soumission tout au long du processus éditorial en accédant au site Web de la conférence.
+Nous vous remercions d'avoir chargé sur le serveur la communication intitulée "{$paperTitle}" à {$conferenceName}. Grâce à notre système de gestion en ligne, vous pourrez suivre votre soumission tout au long du processus éditorial en accédant au site Web de la conférence.
 
 URL de la proposition: {$submissionUrl}
 Nom d'utilisateur: {$presenterUsername}
@@ -86,7 +86,7 @@ Nom d'utilisateur: {$presenterUsername}
 Si vous avez des questions, veuillez me contacter. Merci d'avoir pensé à notre conférence pour la publication de vos travaux.
 
 {$editorialContactSignature}</field>
-			<field name="description">Ce courriel, lorsqu'il est activé, est envoyé automatiquement à un auteur quand il a complété le processus de soumission d'une communication à la conférence. Il fournit les informations sur comment suivre la soumission à travers le processus éditorial, et remercie l'auteur de sa soumission.</field>
+			<field name="description">Ce courriel, lorsqu'il est activé, est envoyé automatiquement à un auteur quand il a complété le processus de soumission d'une communication à la conférence. Il fournit les informations lui permettant de suivre la soumission à travers le processus éditorial, et remercie l'auteur de sa soumission.</field>
 		</row>
     <row>
 			<field name="email_key">SUBMISSION_UNSUITABLE</field>
@@ -100,7 +100,7 @@ Une évaluation initiale de "{$paperTitle}" a démontré clairement que cette so
 		</row>
     <row>
 			<field name="email_key">SUBMISSION_COMMENT</field>
-			<field name="subject">Commentaire à la soumission</field>
+			<field name="subject">Commentaire relatif à la soumission</field>
 			<field name="body">{$name}:
 
 {$commentName} a ajouté un commentaire à la soumission, "{$paperTitle}" dans {$conferenceName}:
@@ -116,7 +116,7 @@ Une évaluation initiale de "{$paperTitle}" a démontré clairement que cette so
 {$editorialContactSignature}
 
 {$comments}</field>
-			<field name="description">Ce courriel avise les évaluateurs d'une soumission que le processus d'évaluation est complété. Il inclut des informations au sujet de l'article et de la décision prise, et remercie les évaluateurs de leur contribution.</field>
+			<field name="description">Ce courriel avise les évaluateurs d'une soumission que le processus d'évaluation est complété. Il inclut des informations au sujet de la communication et de la décision prise, et remercie les évaluateurs de leur contribution.</field>
 		</row>
     <!--
 		  *
@@ -128,7 +128,7 @@ Une évaluation initiale de "{$paperTitle}" a démontré clairement que cette so
 			<field name="subject">Attribution d'un engagement par le responsable</field>
 			<field name="body">{$editorialContactName}:
 
-La soumission "{$paperTitle}," à {$conferenceName} vous a été attribué. Vous êtes donc chargé, en tant que responsable de section, de suivre cette communication durant le processus d'évaluation.
+La soumission "{$paperTitle}", à {$conferenceName} vous a été attribuée. Vous êtes donc chargé, en tant que responsable de section, de suivre cette communication durant le processus d'évaluation.
 
 L'adresse URL de la soumission: {$submissionUrl}
 Nom d'utilisateur: {$directorUsername}
@@ -147,7 +147,7 @@ Merci,
 			<field name="subject">Demande d'évaluation d'une communication</field>
 			<field name="body">{$reviewerName}:
 
-Je crois que pourriez être un excellent évaluateur pour la soumission "{$paperTitle}," qui a été proposée à {$conferenceName}. Vous trouverez un résumé de la soumission ci-dessous. J'espère que vous accepterez cet important travail pour la conférence.
+Je crois que pourriez être un excellent évaluateur pour la soumission "{$paperTitle}", qui a été proposée à {$conferenceName}. Vous trouverez un résumé de la soumission ci-dessous. J'espère que vous accepterez cet important travail pour la conférence.
 
 Veuillez accéder au site Web de la conférence avant le {$weekLaterDate} pour nous laisser savoir si vous effectuerez l'évaluation ou non. Vous pouvez également y consulter la soumission et y enregistrer votre évaluation et votre recommandation. Le site Web se trouve à l'adresse suivante : {$conferenceUrl}
 
@@ -157,7 +157,7 @@ Si vous n'avez pas de nom d'utilisateur ou de mot de passe pour le site Web de l
 
 L'adresse URL de la soumission: {$submissionReviewUrl}
 
-Merci pour bien vouloir considérer cette demande,
+Merci de bien vouloir considérer cette demande,
 
 {$editorialContactSignature}
 
@@ -174,7 +174,7 @@ Résumé
 			<field name="subject">Demande d'évaluation d'une communication</field>
 			<field name="body">{$reviewerName}:
 
-Je crois que pourriez être un excellent évaluateur pour la soumission "{$paperTitle}," qui a été proposée à {$conferenceName}. Vous trouverez un résumé de la soumission ci-dessous. J'espère que vous accepterez cet important travail pour la conférence.
+Je crois que pourriez être un excellent évaluateur pour la soumission "{$paperTitle}", qui a été proposée à {$conferenceName}. Vous trouverez un résumé de la soumission ci-dessous. J'espère que vous accepterez cet important travail pour la conférence.
 
 Veuillez accéder au site Web de la conférence avant le {$weekLaterDate} pour nous laisser savoir si vous effectuerez l'évaluation ou non. Vous pouvez également y consulter la soumission et y enregistrer votre évaluation et votre recommandation. 
 
@@ -182,7 +182,7 @@ La date d'échéance de l'évaluation a été fixée au {$reviewDueDate}.
 
 L'adresse URL de la soumission: {$submissionReviewUrl}
 
-Merci pour bien vouloir considérer cette demande,
+Merci de bien vouloir considérer cette demande,
 
 {$editorialContactSignature}
 
@@ -199,7 +199,7 @@ Résumé
 			<field name="subject">Annulation de la demande d'évaluation</field>
 			<field name="body">{$reviewerName}:
 
-Nous avons décidé d'annuler notre demande concernant l'évaluation de la communication intitulée "{$paperTitle}," pour {$conferenceName}. Nous sommes désolés de tout inconvénient que cela pourrait vous causer et nous espérons que nous pourrons compter sur votre collaboration pour un autre projet.
+Nous avons décidé d'annuler notre demande concernant l'évaluation de la communication intitulée "{$paperTitle}", pour {$conferenceName}. Nous sommes désolés de tout inconvénient que cela pourrait vous causer et nous espérons que nous pourrons compter sur votre collaboration pour un autre projet.
 
 Si vous avez des questions, n'hésitez pas à communiquer avec nous.
 
@@ -211,7 +211,7 @@ Si vous avez des questions, n'hésitez pas à communiquer avec nous.
 			<field name="subject">Confirmation de l'évaluation</field>
 			<field name="body">{$editorialContactName}:
 
-Je suis en mesure d'évaluer la soumission intitulée "{$paperTitle}," pour {$conferenceName}. Je vous remercie d'avoir pensé à moi. Je devrais pouvoir compléter l'évaluation à la date d'échéance fixée au {$reviewDueDate}, si ce n'est avant.
+Je suis en mesure d'évaluer la soumission intitulée "{$paperTitle}", pour {$conferenceName}. Je vous remercie d'avoir pensé à moi. Je devrais pouvoir compléter l'évaluation à la date d'échéance fixée au {$reviewDueDate}, si ce n'est avant.
 
 {$reviewerName}</field>
 			<field name="description">Ce courriel est envoyé par l'évaluateur au responsable de section en réponse à la demande d'évaluation faite, pour aviser ce dernier que la demande a été acceptée et que l'évaluation sera complétée au plus tard à la date spécifiée.</field>
@@ -403,7 +403,7 @@ Vous êtes maintenant inscrit à notre système de gestion de conférence en lig
 
 Pour accéder au contenu accessible uniquement aux abonnés, entrez dans le système à l'aide de votre nom d'utilisateur: "{$username}".
 
-Une fois dans le système, vous pouvez changer votre profil et votre mot de passe en tout temps.
+Une fois dans le système, vous pouvez modifier votre profil et votre mot de passe en tout temps.
 
 Veuillez prendre note que si vous avez une inscription institutionnelle, les utilisateurs de votre institution n'ont pas à entrer de nom d'utilisateur puisque le système authentifiera automatiquement les demandes.
 
@@ -478,15 +478,27 @@ If you have any questions, please feel free to contact me.
   	<row>
 			<field name="email_key">USER_VALIDATE</field>
 			<field name="subject">Valider votre compte</field>
-			<field name="body"><![CDATA[{$userFullName}
+			<field name="body">{$userFullName}
 
-Vous avez créé un compte avec {$conferenceName}, mais avant que vous puissiez commencer à l'utiliser, vous devez valider votre adresse de courriel. Pour ce faire, cliquez sur le lien ci-dessous&#x00A0;:
+Vous avez créé un compte avec {$conferenceName}, mais avant que vous puissiez commencer à l'utiliser, vous devez valider votre adresse de courriel. Pour ce faire, cliquez sur le lien ci-dessous :
 
 {$activateUrl}
 
 Merci,
-{$principalContactSignature}]]></field>
+{$principalContactSignature}</field>
 			<field name="description">Ce message est envoyé à un nouvel utilisateur pour lui souhaiter la bienvenue dans le système et lui fournir un enregistrement de ses nom d'utilisateur et mot de passe.</field>
+		</row>
+		<row>
+			<field name="email_key">MANUAL_PAYMENT_RECEIVED</field>
+			<field name="subject">Confirmation de réception de votre paiement pour {$conferenceName}</field>
+			<field name="body">{$registrantName}:
+
+Votre paiement pour {$conferenceName} a été reçu et enregistré dans votre compte.
+
+Si vous avez des questions, n'hésitez pas à me contacter.
+
+{$registrationContactSignature}</field>
+			<field name="description">Ce courriel alerte un lecteur inscrit que le Gestionnaire a créé une inscription pour lui. Il fournit l'URL de la conférence avec les instructions d'accès.</field>
 		</row>
 	</table>
 </data>

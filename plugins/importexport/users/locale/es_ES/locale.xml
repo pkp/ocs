@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the es_ES (España Castellano) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="es_ES" full_name="España Castellano">
+	<message key="plugins.importexport.users.displayName">Plugin XML de Usuarios</message>
+	<message key="plugins.importexport.users.description">Importar y exportar usuarios</message>
+
+	<message key="plugins.importexport.users.cliUsage"><![CDATA[Usage: {$scriptName} {$pluginName} [command] ...
+Commands:
+	import [xmlFileName] [sched_conf_path] [optional flags]
+	export [xmlFileName] [sched_conf_path]
+	export [xmlFileName] [sched_conf_path] [role_path1] [role_path2] ...
+
+Marcadores opcionales:
+	continue_on_error: Si se especifica, no detenga la importación de usuarios cuando ocurre un error.
+
+	send_notify: Si se especifica, envíe correos de notificación que contengan los nombres de usuario y contraseña a los usuarios importados.
+
+Ejemplo:
+	Al importar usuarios hacia mySchedConf desde myImportFile.xml, continuar cuando ocurre un error:
+	{$scriptName} {$pluginName} import myImportFile.xml mySchedConf continue_on_error
+
+	Exportar todos los usuarios desde from mySchedConf:
+	{$scriptName} {$pluginName} export myExportFile.xml mySchedConf
+
+	Exportar todos los usuarios registrados y revisores, junto a sus funciones como revisores solamente:
+	{$scriptName} {$pluginName} export myExportFile.xml mySchedConf reviewer
+]]></message>
+	<message key="plugins.importexport.users.import.importUsers">Importar Usuarios</message>
+	<message key="plugins.importexport.users.import.instructions"><![CDATA[Seleccione un archivo XML con la información de los usuarios que se importará a esta conferencia programada. Vea la ayuda de la conferencia programada para obtener detalles sobre el formato de archivo.<br /><br />Tenga en cuenta que si el archivo importado contiene algún nombre de usuario o dirección de correo que ya existe en el sistema, los datos de ese usuario no serán importados y ninguna nueva función les será asignada a los usuarios existentes.]]></message>
+	<message key="plugins.importexport.users.import.failedToImportUser">No se pudo importar usuario</message>
+	<message key="plugins.importexport.users.import.failedToImportRole">No se pudo asignar función</message>
+	<message key="plugins.importexport.users.import.dataFile">Archivo de datos de usuario</message>
+	<message key="plugins.importexport.users.import.sendNotify">Envíe correos de notificación que contengan los nombres de usuario y contraseña a los usuarios importados.</message>
+	<message key="plugins.importexport.users.import.continueOnError">Continúe importando otros usuarios si ocurre un error.</message>
+	<message key="plugins.importexport.users.import.noFileError">No se cargó ningún archivo!</message>
+	<message key="plugins.importexport.users.import.usersWereImported">Los siguientes usuarios fueron importados al sistema.</message>
+	<message key="plugins.importexport.users.import.errorsOccurred">Ocurrieron errores durante el proceso</message>
+	<message key="plugins.importexport.users.import.confirmUsers">Confirme que estos son los usuarios que desea importar al sistema</message>
+	<message key="plugins.importexport.users.import.warning">Advertencia</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">No se pueden emplear las contraseñas generadas con las funciones de importación {$importHash}; el OJS está configurados para emplear las funciones {$ojsHash}. Si continua tendrá que reconfigurar las contraseñas de los usuarios importados.</message>
+	<message key="plugins.importexport.users.unknownSchedConf">Se especificó una ruta de conferencia programada desconocida "{$schedConfPath}".</message>
+
+	<message key="plugins.importexport.users.export.exportUsers">Exportar Usuarios</message>
+	<message key="plugins.importexport.users.export.exportByRole">Exportar por funciones</message>
+	<message key="plugins.importexport.users.export.exportAllUsers">Exportar Todo</message>
+	<message key="plugins.importexport.users.export.errorsOccurred">Ocurrieron errores durante el proceso</message>
+	<message key="plugins.importexport.users.export.couldNotWriteFile">No se pudo copiar al archivo "{$fileName}".</message>
+</locale>

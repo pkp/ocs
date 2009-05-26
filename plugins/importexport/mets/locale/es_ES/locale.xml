@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2005 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the es_ES (España Castellano) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="es_ES" full_name="España Castellano">
+	<message key="plugins.importexport.METSExport.displayName">Plugin de Exportación METS XML </message>
+	<message key="plugins.importexport.METSExport.description">Exportar Conferencias en METS XML</message>
+	<message key="plugins.importexport.METSExport.settings">Configuración</message>
+	<message key="plugins.importexport.METSExport.export">Exportar Datos</message>
+	<message key="plugins.importexport.METSExport.export.schedConfs">Exportar Conferencias Programadas</message>
+	<message key="plugins.importexport.METSExport.export.selectschedConfs">Seleccionar Conferencias Programadas para exportar.</message>
+	<message key="plugins.importexport.METSExport.export.error.SchedConfNotFound">Ninguna Conferencia Programada concuerda con el ID especificado "{$SchedConfId}".</message>
+	<message key="plugins.importexport.METSExport.export.error.unknownConference">Ruta de Conferencia Desconocida{$conferencePath}</message>
+	<message key="plugins.importexport.METSExport.settings.FContent">Emplear codificación base64 para cubrir contenidos</message>
+	<message key="plugins.importexport.METSExport.settings.FLocat">Emplear el URL del flujo de bits para cubrir contenidos</message>
+	<message key="plugins.importexport.METSExport.settings.organization">METS:atributo de organización</message>
+	<message key="plugins.importexport.METSExport.settings.preservationLevel">Nivel de preservación PREMIS</message>
+	<message key="plugins.importexport.METSExport.settings.exportSuppFiles">Exportar archivos complementarios</message>
+</locale>

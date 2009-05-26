@@ -164,16 +164,13 @@
 	<message key="manager.reviewForms">Formularios Revisión</message>
 	<message key="manager.reviewForms.noneChosen">Ninguno / Revisión libre</message>
 	<message key="manager.reviewForms.noneCreated">No se han creado formularios de revisión.</message>
-	<message key="manager.reviewForms.noneUsed">No se han usado formularios de revisión.</message>
 	<message key="manager.reviewForms.create">Crear Formulario Revisión</message>
 	<message key="manager.reviewForms.edit">Formulario Revisión</message>
-	<message key="manager.reviewForms.reviewFormData">Datos Formulario Revisión</message>
 	<message key="manager.reviewForms.title">Título</message>
 	<message key="manager.reviewForms.description">Descripción e Instrucciones</message>
 	<message key="manager.reviewForms.preview">Previsualizar Formulario</message>
 	<message key="manager.reviewForms.completed">Completado</message>
 	<message key="manager.reviewForms.inReview">En Revisión</message>
-	<message key="manager.reviewForms.confirmDeletePublished">Confirmar borrado del formulario de revisión publicado...</message>
 	<message key="manager.reviewForms.confirmDeleteUnpublished">Confirmar borrado del formulario de revisión no publicado...</message>
 	<message key="manager.reviewForms.form.titleRequired">Un título es necesario para el formulario de revisión.</message>
 	<message key="manager.reviewFormElements">Elementos del Formulario</message>
@@ -184,7 +181,6 @@
 	<message key="manager.reviewFormElements.copyTo">Copia a:</message>
 	<message key="manager.reviewFormElements.question">Elemento</message>
 	<message key="manager.reviewFormElements.required">Se requieren Revisiores para completar el elemento</message>
-	<message key="manager.reviewFormElements.viewable">Visible (por autores)</message>
 	<message key="manager.reviewFormElements.elementType">Tipo de elemento</message>
 	<message key="manager.reviewFormElements.possibleResponse">Selección</message>
 	<message key="manager.reviewFormElements.addResponseItem">Añadir selección</message>
@@ -207,9 +203,6 @@
 	<message key="reviewer.paper.enterReviewForm">Haga "click" en el ícono para llenar el formulario de revisión</message>
 	<message key="editor.paper.confirmChangeReviewForm">Cambiar el formulario de revisión removerá las respuestas...</message>
 	<message key="manager.reviewForms.list.description">Los formularios de revisión creados aquí serán presentados a los revisores para ser completados, en vez del formulario por defecto el cual consiste en dos cajas de texto, la primera "para autor y editor", y la segunda "para editor". Formularios de revisión pueden ser designados para una sección específica de una revista, y los editores tendrán la opción de seleccionar cuál formulario usar al asignar la revisión. En todos los casos, los editores tendrán la opción de incluir las revisiones en correspondencia con el autor.</message>
-	<message key="manager.sections.form.reviewFormId">Por favor asegúrese de que usted ha escogido un formulario de revisión válido</message>
-
-
 	<!-- Common Form Messages -->
 	<message key="form.errorsOccurred">Ha ocurrido un error mientras se procesaba este formulario</message>
 	<message key="form.saveToUpload">Pulse para depositar su fichero.</message>
@@ -254,8 +247,6 @@
 
 	<!-- Navigation -->
 	<message key="navigation.conferenceHelp">Ayuda</message>
-	<message key="navigation.loggedInAs">Ha accecido como...</message>
-	<message key="navigation.logout">Salir</message>
 	<message key="navigation.home">Inicio</message>
 	<message key="navigation.about">Acerca de </message>
 	<message key="navigation.userHome">Usuario</message>
@@ -266,14 +257,10 @@
 	<message key="navigation.current">Eventos en curso</message>
 	<message key="navigation.search">Buscar</message>
 	<message key="navigation.otherConferences">Otros eventos</message>
-	<message key="navigation.myProfile">Mi perfil</message>
-	<message key="navigation.myConferences">Mi evento</message>
-	<message key="navigation.conferenceContent">Contenido de la Conferencia/Congreso</message>
 	<message key="navigation.browse">Listar</message>
 	<message key="navigation.browseByConference">Por evento</message>
 	<message key="navigation.browseByPresenter">Por autor</message>
 	<message key="navigation.browseByTitle">Por título</message>
-	<message key="navigation.info">Información</message>
 	<message key="navigation.infoForPresenters">Para autores</message>
 	<message key="navigation.infoForReaders">Para lectores</message>
 	<message key="navigation.infoForReviewers">Para evaluadores</message>
@@ -286,8 +273,6 @@
 	<message key="navigation.previousPage">&lt;&lt;</message>
 	<message key="navigation.nextPage">&gt;&gt;</message>
 	<message key="navigation.items">{$from} - {$to} de {$total} Artículos</message>
-	<message key="navigation.fontSize">Tamaño de letra</message>
-
 	<!-- Paper Queues -->
 	<message key="common.queue.long.submissionsUnassigned">Sin asignar</message>
 	<message key="common.queue.short.submissionsUnassigned">Sin asignar</message>
@@ -522,8 +507,6 @@
 	<message key="schedConf.registration.account">Cuenta de Usuario</message>
 	<message key="schedConf.registration.loggedInAs"><![CDATA[Ahora está conectado. Verifique si la información de sus cuentas es correcta. Si no lo es  vaya a <a href="{$profileUrl}">Mi Perfil</a> o <a href="{$logoutUrl}">salir</a> para usar otra cuenta.]]></message>
 	<message key="schedConf.registration.createAccount.description"><![CDATA[Actualmente no está conectado. Para inscribirse en esta Conferencia/Congreso, es necesario disponer de una cuenta. Si ya tiene una, <a href="{$loginUrl}"> haga clic aquí </ a> para acceder, de lo contrario, rellene la información que aparece a continuación para de crear una nueva cuenta.]]></message>
-	<message key="schedConf.registration."></message>
-
 	<!-- User -->
 	<message key="user.userHome">Inicio Usuario</message>
 	<message key="user.showAllConferences">Mostrar mis eventos</message>
@@ -548,7 +531,6 @@
 	<message key="user.affiliations">Afiliaciones</message>
 	<message key="user.email">Email</message>
 	<message key="user.url">URL</message>
-	<message key="user.url.description">Esto aparecerá como un hipervínculo URL en la parte inferior de la biografía del "Acerca del autor" y en la página "Grupo de trabajo".</message>
 	<message key="user.phone">Teléfono</message>
 	<message key="user.fax">Fax</message>
 	<message key="user.interests">Temas de interés</message>
@@ -653,7 +635,6 @@
 	<!-- Reader paper view -->
 	<message key="reader.fullText">Texto completo:</message>
 	<message key="reader.fullTextNotAvailable">Los textos de la conferencia/Congreso no están disponibles actualmente.</message>
-	<message key="reader.fullTextRegistroRequired">Es necesario registrarse en la Conferencia/Congreso para ver los documentos.</message>
 	<message key="reader.fullTextAccountRequired"><![CDATA[Se necesita una cuenta en este sitio para poder ver los documentos. <Un href = "($ registerUrl)"> Haga clic aquí </ a> para crear una cuenta.]]></message>
 	<message key="reader.fullTextRegistrantsOnlyUntil">El acceso a este evento se iniciará el día {$date}.</message>
 	<message key="reader.fullTextNotPostedYet">Los documentos de esta Conferencia/Congreso se publicarán el día {$date}.</message>
@@ -726,8 +707,6 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<message key="admin.languages.installLanguages">Instalar interfaces en otros idiomas</message>
 	<message key="admin.languages.primaryLocaleInstructions">Este será el idioma por defecto para todo el sitio y las Conferencias que aloje.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Seleccione las interfaces de idiomas que podrán usarse en este sitio. Los idiomas seleccionados estarán disponibles para su uso por todas las Conferencias/Congresos, y también aparecen en el menú "Idioma" en cada página del sitio (se puede cambiar en las páginas de cada Conferencia/Congreso). Si no selecciona múltiples interfaces, no aparecerá el menú para cambiar de idioma y la configuración de idioma no estará disponible en la Conferencia/Congreso.</message>
-	<message key="admin.languages.languageOptions">Opciones de idiomas</message>
-	<message key="admin.languages.profileLocales">Cuando se asignen los roles (gestores, directores, recensores, etc.), deben indicarse los idiomas de trabajo de cada persona en sus perfiles para facilitar el trabajo de los directores de las Conferencia.</message>
 	<message key="admin.languages.installedLocales">Idiomas instalados</message>
 	<message key="admin.languages.reload">Recargar interfaces de idiomas</message>
 	<message key="admin.languages.confirmReload">¿Está seguro de recargar este idioma? Esto borrará cualquier personalización realizada para este lugar como las plantillas de correo electrónico.</message>
@@ -810,7 +789,6 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<message key="admin.conference.pathImportInstructions">Ruta existente para la Conferencia/Congreso o ruta a crear (p.e., "ocs").</message>
 	<message key="admin.conference.importPath">Ruta a OCS 1</message>
 	<message key="admin.conference.importPathInstructions">Ruta completa al sistema de ficheros donde se instaló OCS  1 (p.e., "/var/www/ocs").</message>
-	<message key="admin.conferences.importRegistros">Importar registros</message>
 	<message key="admin.conferences.emailUsers">Email creado con la información de acceso de los usuarios, incluyendo una contraseña al azar</message>
 	<message key="admin.conferences.transcode">Codificación de documentos de metadatos de ISO8859-1</message>
 	<message key="admin.conferences.form.importPathRequired"> La ruta de importación es obligatoria.</message>
@@ -824,8 +802,6 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<message key="manager.payment.paymentPluginInvalid">Debe elegir una forma de pago válida.</message>
 	<message key="manager.payment.form.description">Introduzca los detalles de la configuración de las formas de pago que esta Conferencia/Congreso puede aceptar.</message>
 	<message key="manager.payment.form.method">Formas de pago</message>
-
-	<message key="payment.type.registration">Inscripción a la Conferencia/Congreso</message>
 
 	<!-- Conference Event Log -->
 	<message key="manager.conferenceEventLog">Logs del Evento</message>
@@ -910,28 +886,6 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 
 	<message key="manager.statistics.reports">Generador de informes</message>
 	<message key="manager.statistics.reports.description">OCS genera informes que facilitan el seguimiento de los detalles relacionados con el estado de los trabajos presentados a la Conferencia/Congreso desde el punto de vista de las presentaciones, directores y recensores en un periodo de tiempo. Los informes se generan en formato CSV, que requieren una de hoja de cálculo.</message>
-	<message key="manager.statistics.reports.dateFrom">De</message>
-	<message key="manager.statistics.reports.dateTo">Hasta</message>
-	<message key="manager.statistics.reports.reportType">Tipo de Informe</message>
-	<message key="manager.statistics.reports.type.conference">Informe de la Conferencia/Congreso</message>
-	<message key="manager.statistics.reports.type.schedConf">Informe de la Conferencia/Congreso programada</message>
-	<message key="manager.statistics.reports.type.director">Informe del Director</message>
-	<message key="manager.statistics.reports.type.reviewer">Informe del Recensor</message>
-	<message key="manager.statistics.reports.type.track">Informe</message>
-	<message key="manager.statistics.reports.generate">Generar informe</message>
-	<message key="manager.statistics.reports.status">Estado (Acceptado, rechazado, otro)</message>
-	<message key="manager.statistics.reports.dateDecided">Fecha de decisión</message>
-	<message key="manager.statistics.reports.presenter">Autor #{$num}</message>
-	<message key="manager.statistics.reports.affiliation">Afiliación #{$num}</message>
-	<message key="manager.statistics.reports.country">País #{$num}</message>
-	<message key="manager.statistics.reports.reviewer">Recensor #{$num}</message>
-	<message key="manager.statistics.reports.director">Director #{$num}</message>
-	<message key="manager.statistics.reports.score">Resultado #{$num}</message>
-	<message key="manager.statistics.reports.singleScore">Resultado</message>
-	<message key="manager.statistics.reports.recommendation">Recomendaciones #{$num}</message>
-	<message key="manager.statistics.reports.daysToDecision">Días pendientes para la decisión dobre el trabajo</message>
-	<message key="manager.statistics.reports.daysToPublication">Días pendientes para la publicación</message>
-
 	<!-- Plugin Management -->
 	<message key="manager.plugins.pluginManagement">Gestión de Plugins</message>
 	<message key="manager.plugins.sitePlugin">Este sitio usa plugins. Sólo el administrador de la web puede modificar este plugin.</message>
@@ -975,14 +929,6 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<message key="manager.setup.homeHeaderImageInvalid">Formato de imagen no válido para el logo de la cabecera de página de inicio. Los formatos permitidos son .gif, .jpg, or .png.</message>
 	<message key="manager.setup.pageHeaderTitleImageInvalid">Formato de imagen no válido para el título de la cabecera de página. Los formatos permitidos son .gif, .jpg, or .png.</message>
 	<message key="manager.setup.pageHeaderLogoImageInvalid">Formato de imagen no válido para el logo de la cabecera de página. Los formatos permitidos son .gif, .jpg, or .png.</message>
-	<message key="manager.setup.homeHeaderTitleImageAlt1Invalid">Formato de imagen no válido para el título de la cabecera de la página de inicio alternativa. Los formatos permitidos  son .gif, .jpg, or .png.</message>
-	<message key="manager.setup.homeHeaderLogoImageAlt1Invalid">Formato de imagen no válido para el logo de la cabecera de la página de inicio alternativa. Los formatos aceptados son .gif, .jpg, or .png.</message>
-	<message key="manager.setup.pageHeaderTitleImageAlt1Invalid">Formato de imagen no válido para el título de la cabecera de página alternativa. Los formatos permitidos son .gif, .jpg, or .png.</message>
-	<message key="manager.setup.pageHeaderLogoImageAlt1Invalid">Formato de imagen no válido para el logo de la cabecera de página alternativa. Los formatos permitidos son .gif, .jpg, or .png.</message>
-	<message key="manager.setup.homeHeaderTitleImageAlt2Invalid">Formato de imagen no válido para el título de la cabecera de la segunda página de inicio alternativa. Los formatos permitivos son .gif, .jpg, or .png.</message>
-	<message key="manager.setup.homeHeaderLogoImageAlt2Invalid">Formato de imagen no válido para el logo de la cabecera de la segunda página de inicio alternativa. Los formatos permitivos son .gif, .jpg, or .png.</message>
-	<message key="manager.setup.pageHeaderTitleImageAlt2Invalid">Formato de imagen no válido para el título de la cabecera de  página de la segunda alternativa. Los formatos permitidos son .gif, .jpg, or .png.</message>
-	<message key="manager.setup.pageHeaderLogoImageAlt2Invalid">Formato de imagen no válido para el título de la cabecera de página de la segunda alternativa. Los formatos permitivos son .gif, .jpg, or .png.</message>
 	<message key="manager.setup.conferenceStyleSheetInvalid">Formato de estilos no válido. El formato permitido es .css.</message>
 	<message key="manager.setup.conferenceSetupUpdated">La configuración de su Conferencia/Congreso ha sido actualizada.</message>
 	<message key="manager.setup.selectOne">Seleccione uno</message>
@@ -1005,28 +951,24 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<message key="manager.setup.aboutConference">Acerca de esta Conferencia/Congreso</message>
 	<message key="manager.setup.additionalContent">Contenidos adicionales de esta Web</message>
 	<message key="manager.setup.layout">Cabeceras, Pies, Listas y Barra de Navegación</message>
-	<message key="manager.setup.styleSheet">Hoja de estilo de la Conferencia/Congreso</message>
 	<message key="manager.setup.loggingAndAuditing">Control de accesos (logs)</message>
 	<message key="manager.setup.indexing">Conferencia/Congreso Indizado </message>
 
 	<message key="manager.setup.aboutConference.title">Paso 1. Acerca de esta Conferencia/Congreso</message>
 	<message key="manager.setup.additionalContent.title">Paso 2. Contenido adicional del sitio web</message>
 	<message key="manager.setup.layout.title">Paso 3. Cabeceras del sitio web, Pies de página, Listas y Barra de Navegación</message>
-	<message key="manager.setup.styleSheet.title">Paso 4. Hoja de Estilo de la Conferencia/Congreso</message>
 	<message key="manager.setup.loggingAndAuditing.title">Paso 5. Control de Accesos</message>
 	<message key="manager.setup.indexing.title">Paso 6. Indización de la Conferencia/Congreso</message>
 
 	<message key="manager.setup.aboutConference.brief">Acerca de</message>
 	<message key="manager.setup.additionalContent.brief">Contenido adicional </message>
 	<message key="manager.setup.layout.brief">Cabeceras, Pies, etc.</message>
-	<message key="manager.setup.styleSheet.brief">Hoja de Estilo</message>
 	<message key="manager.setup.loggingAndAuditing.brief">Accesos &amp; Control</message>
 	<message key="manager.setup.indexing.brief">Indización</message>
 
 	<message key="manager.setup.aboutConference.description">Descripción de la Conferencia/Congreso, contacto principal, nota sobre el copyright, etc.</message>
 	<message key="manager.setup.additionalContent.description">Contenido de la página de inicio, información sobre el usuario  y anuncios</message>
 	<message key="manager.setup.layout.description">Títulos, logos, cabeceras, pies, etc.</message>
-	<message key="manager.setup.styleSheet.description">Hojas de estilos CSS para las páginas de la Conferencia/Congreso</message>
 	<message key="manager.setup.loggingAndAuditing.description">Logs de email, logs de eventos, etc.</message>
 	<message key="manager.setup.indexing.description">Motores de búsqueda y recolección de metadatos</message>
 
@@ -1050,13 +992,11 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<message key="manager.setup.aboutConference.restrictPaperAccess">Para poder acceder a los resúmenes y presentaciones de la conferencia debe crearse una cuenta para su lectura.</message>
 	<message key="manager.setup.aboutConference.comments">Comentarios de los lectores</message>
 	<message key="manager.setup.aboutConference.comments.enable">Se permite hacer comentarios sobre las presentaciones archivadas</message>
-	<message key="manager.setup.aboutConference.comments.requireRegistro">Sólo los usuarios con cuentas pueden comentar las presentaciones archivadas.</message>
 	<message key="manager.setup.aboutConference.comments.allowAnonymous">Se permiten los comentarios Anónimos.</message>
 
 	<!-- Conference setup page 2 -->
 	<message key="manager.setup.additionalContent.homepage">Página de inicio</message>
 	<message key="manager.setup.additionalContent.homepageImage">Imagen de la Página de Inicio</message>
-	<message key="manager.setup.additionalContent.homepageImage.description"></message>
 	<message key="manager.setup.additionalContent.additionalContent">Contenido Adicional</message>
 	<message key="manager.setup.additionalContent.additionalContent.description">Añadir el contenido, usando texto/HTML, que aparecerá bajo la imagen de la página de inicio, si se deposita alguna.</message>
 	<message key="manager.setup.additionalContent.information">Información para los Usuarios</message>
@@ -1104,9 +1044,6 @@ Tenga en cuenta que la interfaz OAI puede ser desactivada para este sitio al edi
 	<message key="manager.setup.layout.conferencePageFooterDescription">Este es el pie de página de su conferencia. Para cambiar o actualizar el pie de la página, pegue el código HTML en la siguiente casilla. Como ejemplos, podrían ser otra barra de navegación, un contador de visitas, etc. Este pie aparecerá en todas las páginas.</message>
 
 	<!-- Conference setup page 4 -->
-	<message key="manager.setup.styleSheet.conferenceStyleSheet.description">Por defecto, las conferencias y esta web utiliza una hoja de estilo común (localizada en el subdirectorio "estilos"). Esta hoja de estilo puede sustituirse por otra hoja propia de la conferencia del tipo CCS.</message>
-	<message key="manager.setup.styleSheet.useConferenceStyleSheet">Hoja de estilo de la Conferencia/Congreso</message>
-
 	<!-- Conference setup page 5 -->
 	<message key="manager.setup.loggingAndAuditing.pageDescription">Mantener un control de accesos (logs) de las siguientes acciones y del  material de todas las conferencias.</message>
 	<message key="manager.setup.loggingAndAuditing.submissionEventLogging">Las acciones relacionadas con envíos, se archivan en la página de "Historia" del envío.</message>
@@ -1196,7 +1133,7 @@ Observe que si el administrador del sistema ya ha regisrado este sitio en el rec
 	<message key="manager.schedConfSetup.submissions.notifications.copySpecifiedAddress">Esta dirección de correo electrónico</message>
 	<message key="manager.schedConfSetup.submissions.notifications.submissionAckDisabled"><![CDATA[<strong>Nota:</strong> la opción de acuse de recibo por email está actualmente inactiva. Para usar esta opción, habilite SUBMISSION_ACK email en <a class="action" href="{$preparedEmailsUrl}">Plantillas de correo</a>.]]></message>
 	<message key="manager.schedConfSetup.submissions.callForPapers">Call for papers (CFP)</message>
-	<message key="manager.schedConfSetup.submissions.cfpMessage">Mensaje para Call for papers </message>
+	<message key="manager.schedConfSetup.submissions.cfpMessage">Mensaje para Call for papers</message>
 	<message key="manager.schedConfSetup.submissions.cfpMessageDescription"><![CDATA[Esta información se encuentra en el enlace "call-for-papers" de la página de inicio de la conferencia.]]></message>
 	<message key="manager.schedConfSetup.submissions.presenterGuidelines">Instrucciones para los autores</message>
 	<message key="manager.schedConfSetup.submissions.presenterGuidelinesDescription"><![CDATA[Indique los estandares bibliográficos y de formato para el envío de trabajos, preferentemente con ejemplos. Si se permite el ennvío de ficheros suplementarios, sugiera los tipos (p.e., hojas de datos, instrumentación etc.) para que los autores impliquen más a los lectores con su trabajo.]]></message>
@@ -1254,11 +1191,7 @@ Nombre del sistema de clasificación]]></message>
 	<message key="manager.languages.languageInstructions"><![CDATA[OCS está disponible en varios idiomas. También puede operar parcialmente como un sistema multilingüe, facilitando a los usuarios poder cambiar de idioma en cada página, y permitiendo la introducción de ciertos datos en otros dos idiomas.<br /><br/>Si en la  lista de idiomas, no aparece el que necesita, pregunte al administrador de su sistema para que lo instale desde la interfaz del administrador. Consulte la documentación de OCS para la instalación de interfaces en nuevos idiomas.]]></message>
 	<message key="manager.languages.primaryLocaleInstructions">Este será el idioma por defecto de la conferencia.</message>
 	<message key="manager.languages.supportedLocalesInstructions">Seleccionar del menú el idioma que aparecerá en cada página. Este menú aparecerá sólo si selecciona más de un idioma para la interfaz.</message>
-	<message key="manager.languages.alternateLocale1">Interfaz #1</message>
-	<message key="manager.languages.alternateLocale2">Interfaz #2</message>
 	<message key="manager.languages.alternateLocaleInstructions">Este sistema permite opcionalmente añadir cierta información en dos idiomas más. Para utilizar esta opción, seleccionar una o dos interfaces entre las alternativas del menú.</message>
-	<message key="manager.languages.alternativeLanguageOptions">Opciones de idioma</message>
-	<message key="manager.languages.conferenceTitleAltLanguages">La imagen para el nombre, la cabecera de la página, etc. se cargarán en cada uno de los idiomas oficiales de la Conferencia.</message>
 	<message key="manager.languages.noneAvailable">Disculpe, no hay idiomas adicionales. Contacte con el administrador del sistema si desea utilizar otros idiomas en este eventos.</message>
 
 	<!-- Track Management -->
@@ -1273,7 +1206,6 @@ Nombre del sistema de clasificación]]></message>
 	<message key="manager.tracks.form.titleRequired">Es obligatorio un nombre para la sección.</message>
 	<message key="manager.tracks.form.abbrevRequired">Es obligatorio una abreviatura para esta sección</message>
 	<message key="manager.tracks.trackDirectorInstructions">Seleccionar de los Directores de sección disponibles y  "Asignar Director" a esta sección.</message>
-	<message key="manager.tracks.submissionsToThisTrack">Los envíos hechos a esta sección</message>
 	<message key="manager.tracks.submissionNotReviewed">Indicar que la sección no se evaluará por pares</message>
 	<message key="manager.tracks.peerReviewed">Evaluado por pares</message>
 	<message key="manager.tracks.directorRestriction">Los trabajos sólo pueden enviarse a los  Directores de la Conferencia o a los Directores de sección.</message>
@@ -1284,8 +1216,6 @@ Nombre del sistema de clasificación]]></message>
 	<message key="manager.tracks.policy">Política de la Sección</message>
 	<message key="manager.tracks.identifyType">Describir los envíos a esta sección de la Conferencia como</message>
 	<message key="manager.tracks.identifyTypeExamples">(Por ejemplo,"Resumen evaluado por pares", "Trabajo no evaluado", "Presentación invitada", etc.)</message>
-	<message key="manager.tracks.abstractsDisabled">No se requiere resumen para hacer el envío.</message>
-
 	<!-- Timeline management -->
 	<message key="manager.timeline">Calendario de la Conferencia/Congreso</message>
 	<message key="manager.timeline.conferenceTimeline">Calendario de la Conferencia/Congreso</message>
@@ -1404,7 +1334,6 @@ Opcionalmente usted puede proporcionar al usuario la razón para la inhabilitaci
 	<message key="manager.people.editProfile">Editar Perfil</message>
 
 	<message key="manager.people.signInAsUser">Acceder como usuario</message>
-	<message key="manager.people.signOutAsUser">Salir Como usuario</message>
 	<message key="manager.people.signInAs">Acceder como</message>
 	<message key="manager.people.syncUsers">Sincronizar los roles de usuario</message>
 	<message key="manager.people.syncUserDescription">La sincronización de de tareas involucrará a todos los usuarios con el mismo rol  en la conferencia. Esta función permite a un conjunto de usuarios (p.e. Recensores) que se sincronicen entre conferencias.</message>
@@ -1447,7 +1376,6 @@ Opcionalmente usted puede proporcionar al usuario la razón para la inhabilitaci
 	<message key="manager.registrationPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Nota:</strong> para activar esta opción, el administrador de la web debe habilitar la opción <tt>scheduled_tasks</tt> en el fichero de configuración del OCS. Els ervidor podria necesitar modificar su configuración para poder soportar esta funcionalidad (ya que no es posible en todos los servidores), tal y como se indica en la documentación del OCS.]]></message>
 	<message key="manager.registrationPolicies.presenterSelfArchive">Política de auto-archivo</message>
 	<message key="manager.registrationPolicies.presenterSelfArchiveDescription">La política siguiente se incluye en "Acerca de" esta Conferencia/Congreso.</message>
-	<message key="manager.registrationPolicies.registrationPoliciesSaved">La configuración de la política de inscripción, se ha actualizado.</message>
 	<message key="manager.registrationPolicies.expiryReminders">Recordatorios del cierre de inscripción</message>
 	<message key="manager.registrationPolicies.expiryRemindersDescription">Recordatorios automatizados por correo electrónico (disponible en Emails Preparados en el Gestor de Conferencias/Congreso) se pueden enviar a los inscritos antes y después de que caduque su inscripción.</message>
 	<message key="manager.registrationPolicies.expiryRemindersDisabled"><![CDATA[<strong>Nota:</strong> para activar estas opciones, el administrador de la web debe habilitar la opción <tt>scheduled_tasks</tt> en el fichero de configuración del OCS. La configuración del servidor  debe modificarse para que tenga esta funcionalidad (que puede no ser posible en todos los servidores), tal y cómo se indica en la documentación de OCS.]]></message>
@@ -1460,12 +1388,6 @@ Opcionalmente usted puede proporcionar al usuario la razón para la inhabilitaci
 	<message key="manager.registrationPolicies.expiryReminderAfterWeeks1">Notificación a los inscritos por email</message>
 	<message key="manager.registrationPolicies.expiryReminderAfterWeeks2">Semanas(s) antes de que caduque su registo.</message>
 	<message key="manager.registrationPolicies.registrationContactEmailValid">Por favor, introduzca un email válido.</message>
-	<message key="manager.registrationPolicies.enableRegistroExpiryReminderBeforeMonthsValid">Por favor, utilice la casilla de verificación prevista.</message>
-	<message key="manager.registrationPolicies.numMonthsBeforeRegistroExpiryReminderValid">Por favor, seleccione un valor válido para el número de meses antes de que caduque su registro.</message>
-	<message key="manager.registrationPolicies.numWeeksBeforeRegistroExpiryReminderValid">Por favor, seleccione un valor válido para el número de semanas antes de que caduque su registro.</message>
-	<message key="manager.registrationPolicies.numMonthsAfterRegistroExpiryReminderValid">Por favor, seleccione un valor válido para el número de meses después de que caduque su registro.</message>
-	<message key="manager.registrationPolicies.numWeeksAfterRegistroExpiryReminderValid">Por favor, seleccione un valor válido para el número de semanas después de que caduque su registro.</message>
-
 	<!-- Registro Type Management -->
 	<message key="manager.registrationTypes.createTitle">Crear</message>
 	<message key="manager.registrationTypes.create">Crear nuevo tipo de inscripción </message>
@@ -1754,15 +1676,6 @@ En activo significa cuantas recensiones están actualmente en marcha.]]></messag
 	<message key="reviewer.paper.reviewSchedule">Plazo para la recensión</message>
 	<message key="reviewer.paper.reviewSteps">Pasos de la recensión</message>
 	<message key="reviewer.paper.reviewerGuidelines">Instrucciones para los recensores</message>
-	<message key="reviewer.paper.reviewerInstruction1a">Notificar al director del envío</message>
-	<message key="reviewer.paper.reviewerInstruction1b">Sí realizará la recensión.</message>
-	<message key="reviewer.paper.reviewerInstruction2">Si hace la recensión, consulte las instrucciones para recensores.</message>
-	<message key="reviewer.paper.reviewerInstruction3AbstractOnly">Revise el resumen facilitado con el original.</message>
-	<message key="reviewer.paper.reviewerInstruction3Submission">Revisar el original.</message>
-	<message key="reviewer.paper.reviewerInstruction4a">Pulse el icono para introducir (o pegar) la  recensión de este manuscrito.</message>
-	<message key="reviewer.paper.reviewerInstruction4b">De acuerdo con las Instrucciones a los Recensores que se indican.</message>
-	<message key="reviewer.paper.reviewerInstruction5">Adicionalmente, puede depositar ficheros para que puedan consultar el director o los autores.</message>
-	<message key="reviewer.paper.reviewerInstruction6">Seleccionar una recomendación y enviar la recensión para completar el proceso de evaluación. Debe introducir la recensión o depositar un fichero antes de seleccionar una recomendación.</message>
 	<message key="reviewer.paper.mustSelectDecision">No se ha seleccionado una recomendación. Debe elegir una recomendación.</message>
 	<message key="reviewer.paper.confirmDecision">Una vez haya seleccionado y archivado su decisión respecto al trabajo, no podrá hacer cambios en la recensión. ¿Está seguro de que queire continuar?</message>
 	<message key="reviewer.paper.ensuringBlindReview">Asegurar una recensión anónima</message>
@@ -1810,10 +1723,7 @@ En activo significa cuantas recensiones están actualmente en marcha.]]></messag
 	<message key="presenter.submit.form.abstractRequired">Por favor, introduzca el resumen de su trabajo.</message>
 
 	<!-- Paper Submission Step 2 -->
-	<message key="presenter.submit.metadataDescription">Esta Conferencia recopila los metadatos de cada trabajo, de acuerdo con los estándares de la Open Archives Initiative, que permiten la identificación objetos digitales. Esto permite  una búsqueda selectiva uy precisa en bases de datos OAI, lo que aumenta la probabilidad de que los lectores encuentren  trabajos como este. El Comité organizador debe insistir en que los metadatos  conviene  enviarlos antes de iniciarse el proceso editorial de manejo de originales</message>
 	<message key="presenter.submit.privacyStatement">Declaración de privacidad de la Conferencia</message>
-	<message key="presenter.submit.presentersDescription">Para envíos con más de un  autor, ordene los nombres tal y como deban aparecer en la referencia bibliográfica.</message>
-	<message key="presenter.submit.reorderPresenterName">Reordenar el nombre del autor</message>
 	<message key="presenter.submit.reorderInstructions">Utilice las flechas para cambiar el orden en que deben aparecer el nombre de los autores del trabajo.</message>
 	<message key="presenter.submit.selectPrincipalContact">Autor a quien dirigir la correspondencia.</message>
 	<message key="presenter.submit.addPresenter">Añadir autor</message>
@@ -1987,7 +1897,6 @@ Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 	<message key="user.login.lostPassword.invalidHash">Lo sentimos, el enlace ha expirado o no es válido. Por favor intente de nuevo un cambio contraseña.</message>
 	<message key="user.login.lostPassword.passwordSent">Se ha enviado una nueva contraseña a su dirección de correo. Para acceder al sistema debe utilizar la nueva contraseña.</message>
 	<message key="user.login.changePasswordInstructions"><![CDATA[Usted debe elegir una nueva pasword antes de acceder al sistema.<br /><br />Por favor, introduzca su nombre de usuario, la contraseña actual y la nueva para cambiar la clave de su cuenta.]]></message>
-	<message key="user.login.rememberMe">Recordar</message>
 	<message key="user.login.registeredEmail">Email registrado</message>
 	<message key="presenter.submit.presenterSubmitLoginMessage">Se necesita una cuenta de usuario para enviar trabajos a esta conferencia. Esto permite a los organizadores registrar los envíos y contactar con usted cuando haya algún cambio en los mismos, o si se precisa alguna información adicional suya.</message>
 
@@ -2145,8 +2054,6 @@ Para depositar un trabajo en esta conferencia, siga los siguientes pasos.
 	<message key="about.openAccessPolicy">Política Open Access</message>
 	<message key="about.archiveAccessPolicy">Política sobre el acceso a los ficheros</message>
 	<message key="about.delayedOpenAccess">Open Access pospuesto </message>
-	<message key="about.delayedOpenAccessDescription1">Los contenidos de esta conferencia estarán disponibles en acceso abierto</message>
-	<message key="about.delayedOpenAccessDescription2">meses después de que los contenidos de la conferencia se distribuyan entre los participantes.</message>
 	<message key="about.presenterSelfArchive">Auto-archivo del autor</message>
 	<message key="about.archiving">Archivo</message>
 	<message key="about.registration">Inscripción</message>
@@ -2380,7 +2287,6 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 
 	<message key="rt.admin.readingToolsEnabled">Herramientas de Lectura</message>
 	<message key="rt.admin.selectedVersion">Artículos relacionados</message>
-	<message key="rt.admin.rtEnable">Para activar las Herramientas de Lectura, seleccione las opciones y elija el campo para los artículos relacionados, pulse Configuración.</message>
 	<message key="rt.admin.settings.description">Las Herramientas de Lectura aparecen en un marco junto a los artículos publicados en las secciones de la conferencia que se han indizado. Las Herramientas de Lectura consisten en una serie de herramientas opcionales relacionadas con los artículos publicados, listadas abajo, y una serie de herramientas que permiten el accesso a los artículos, organizados por área y disciplina.</message>
 	<message key="rt.admin.settings.enableReadingTools">Activar Herramientas de Lectura para determinadas secciones de la conferencia.</message>
 	<message key="rt.admin.settings.abstract">Resumen (resumen del artículo).</message>
@@ -2389,7 +2295,6 @@ Su servidor actualmente soporta mbstring: <strong>{$supportsMBString}</strong>]]
 	<message key="rt.admin.options">Herramientas opcionales</message>
 
 	<message key="rt.admin.settings.disableRelatedItems">Desactivar Temas Relacionados</message>
-	<message key="rt.admin.settings.bibFormat">Formato de la bibliografía</message>
 	<message key="rt.admin.settings.captureCite">Cómo citar un trabajo (proporciona los detalles bibliográficos de la fuente original).</message>
 	<message key="rt.admin.settings.viewMetadata">Metadatos para la indización (muestra los metadatos del para la indización dados por el autor y el sistema).</message>
 	<message key="rt.admin.settings.supplementaryFiles">Ficheros suplementarios (muestra una lista de los ficheros adjuntos con el envío).</message>
@@ -2508,21 +2413,12 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 
 	<message key="rt.captureCite">Como citar el artículo</message>
 	<message key="rt.captureCite.online">Online</message>
-	<message key="rt.captureCite.available">Disponible:</message>
-	<message key="rt.captureCite.capture">Descargar la referencia</message>
-	<message key="rt.captureCite.acaoLocation">Norte América</message>
-	<message key="rt.captureCite.capture.endNote"><![CDATA[<a href="]]>{$url}<![CDATA[">EndNote</a> - Formato EndNote  (Macintosh &amp; Windows)]]></message>
-	<message key="rt.captureCite.capture.referenceManager"><![CDATA[<a href="]]>{$url}<![CDATA[">Reference Manager</a> - Formato RIS (Solo para Windows)]]></message>
-	<message key="rt.captureCite.capture.proCite"><![CDATA[<a href="]]>{$url}<![CDATA[">ProCite</a> - Foramto RIS (Macintosh &amp; Windows)]]></message>
-
 	<message key="rt.reviewPolicy">Revisar la política</message>
 	<message key="rt.printVersion">Versión para imprimir</message>
 	<message key="rt.lookUp">Buscar términos</message>
 	<message key="rt.colleague">Notificar a un colega</message>
 	<message key="rt.addComment">Añadir comentario</message>
 	<message key="rt.emailPresenter">Enviar un email al autor</message>
-	<message key="rt.beNotifiedWhen">Notificar cuando...</message>
-
 	<message key="rt.relatedItems">Artículos relacionados</message>
 	<message key="rt.thisConference">Buscar evento</message>
 
@@ -2555,10 +2451,6 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 	<message key="icon.mail.alt">Correo Postal</message>
 	<message key="icon.info.alt">Información</message>
 	<message key="icon.folder.alt">Carpeta</message>
-	<message key="icon.small.alt">Pequeño</message>
-	<message key="icon.medium.alt">Mediano</message>
-	<message key="icon.large.alt">Grande</message>
-
 	<!-- Debug messages -->
 	<message key="debug.executionTime">Página generada en</message>
 	<message key="debug.databaseQueries">Número de peticiones a la base de datos</message>
@@ -2601,4 +2493,44 @@ La validacion de URLs  puede fallar si requieren el envío de datos.]]></message
 	<message key="default.schedConfSettings.forReaders"><![CDATA[Recomendamos que los lectores opten por el envío de notificación del envío de  nuevos trabajos a esta conferencia. Utilice el enlace<a href="{$accountUrl}">Cuenta</a> situado en la parte superior de la página de inicio de al conferencia. Esto permite a la conferencia una colaboración a nivel de usuarios-lectores. Consulte la <a href="{$privacyStatementUrl}"> Declaración de Privacidad</a> de la conferencia, que asegura que la identidad de los y su email no se usarán con otros fines.]]></message>
 	<message key="default.schedConfSettings.forPresenters"><![CDATA[¿está interesado en enviar un trabajo a esta conferencia? le recomendamos que consulte en <a href="{$aboutUrl}">Acerca de esta Conferencia</a> para conocer las políticas de la misma, así como las <a href="{$presenterGuidelinesUrl}">Instrucciones para Autores</a>. Los autores necesitan <a href="{$accountUrl}">crear una cuenta</a> en la web de la conferencia antes de hacer el envío, y si ya disponían de ella, simplemente deben <a href="{$loginUrl}">acceder</a> al sistema e iniciar el envío.]]></message>
 
+	<message key="common.copy">Copia</message>
+	<message key="common.preview">Vista previa</message>
+	<message key="common.activate">Activar</message>
+	<message key="common.deactivate">Desactivar</message>
+	<message key="common.discipline">Disciplina</message>
+	<message key="common.captchaField">Validación</message>
+	<message key="common.captchaField.altText">Imagen de validación</message>
+	<message key="common.captchaField.description">Por favor, introduzca los caracteres como aparecen en la imagen.</message>
+	<message key="common.captchaField.badCaptcha">Los caracteres proporcionados no se corresponden con los de la imagen. Por favor, revise los caracteres e intente nuevamente.</message>
+	<message key="common.suggest">Sugerir</message>
+	<message key="common.sortBy">Ordenado por</message>
+	<message key="common.altText">Texto alternativo</message>
+	<message key="common.altTextInstructions">Por favor, proporcione un texto alternativo para esta imagen para asegurar la accesibilidad de usuarios con exploradores de texto solamente o con dispositivos auxiliares.</message>
+	<message key="common.sitePageHeader.altText">Imagen de encabezado del sitio</message>
+	<message key="common.pageHeader.altText">Imagen de encabezado de página</message>
+	<message key="common.pageHeaderLogo.altText">Logo de encabezado de página</message>
+	<message key="common.homePageHeader.altText">Imagen de encabezado de la página inicial</message>
+	<message key="common.homePageHeaderLogo.altText">Logo de encabezado de la página inicial</message>
+	<message key="common.conferenceHomepageImage.altText">Imagen de la página inicial de conferencia</message>
+	<message key="form.postRequired">El formulario no fue correctamente completado</message>
+	<message key="form.formLanguage">Idioma del formulario</message>
+	<message key="form.formLanguage.description">Para introducir la información siguiente en otros idiomas, selecciones primero el idioma</message>
+	<message key="email.compose.tooSoon">Hace muy poco que envió el último mensaje. Por favor, espere antes de intentarlo nuevamente.</message>
+	<message key="email.compose.tooManyRecipients">El mensaje que intenta enviar tiene demasiados destinatarios.</message>
+	<message key="paper.comments.trackDefault">Predefinido</message>
+	<message key="paper.comments.disable">Deshabilitar</message>
+	<message key="paper.comments.enable">Habilitar</message>
+	<message key="paper.fontSize">Tamaño de fuente</message>
+	<message key="paper.fontSize.small.altText">Pequeño</message>
+	<message key="paper.fontSize.medium.altText">Mediano</message>
+	<message key="paper.fontSize.large.altText">Grande</message>
+	<message key="submission.changeComments">Cambiar a</message>
+	<message key="schedConf.accommodation">Facilidades</message>
+	<message key="schedConf.schedule.title">Programa</message>
+	<message key="schedConf.accommodation.title">Facilidades</message>
+	<message key="schedConf.scheduler.locations">Ubicación de las conferencia</message>
+	<message key="schedConf.registration.failed">Su inscripción no ha sido completada. Por favor, intente de nuevo</message>
+	<message key="schedConf.registration.typeFuture">(Apertura de inscripción {$openingDate})</message>
+	<message key="schedConf.registration.optionCloses">(Cierre {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(Cierre de inscripción {$closingDate})</message>
 </locale>

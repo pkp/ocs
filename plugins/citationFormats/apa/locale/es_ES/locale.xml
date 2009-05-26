@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this citation plugin in es_ES.
+  *
+  * $Id$
+  -->
+ 
+<locale name="es_ES" full_name="España Castellano">
+	<message key="plugins.citationFormats.apa.displayName">Plugin del formato APA de referencias</message>
+	<message key="plugins.citationFormats.apa.citationFormatName">APA</message>
+	<message key="plugins.citationFormats.apa.description">Este plugin implementa el formato APA de referencias.</message>
+	<message key="plugins.citationFormats.apa.retrieved"><![CDATA[Retrieved {$retrievedDate}, from <a href="{$url}" target="_new">{$url}</a>]]></message>
+</locale>

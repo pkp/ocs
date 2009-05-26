@@ -126,18 +126,6 @@ Una revisión inicial de "{$paperTitle}" indica claramente que este no se ajusta
 {$comments}</field>
 			<field name="description">Este e-mail informa a los revisores del original que el proceso de revisión ha sido completado. Incluye información sobre el trabajo y la decisión alcanzada, así como agradece a los revisores su contribución.</field>
 		</row>
-		<row>
-			<field name="email_key">SUBMISSION_DEADLINE_WARN</field>
-			<field name="subject">Aviso de fecha límite para el envío de originales</field>
-			<field name="body">La fecha límite para su original, "{$paperTitle}," en {$conferenceName} termina en algunos días. De acuerdo con nuestra base de datos, los trámites de su envío no han sido todavía completados.
-
-Recuerde que deber completar el envío de su trabajo (mediante la subida de los ficheros completos o actualizando alguna información incompleta que le ha sido requerida) tan pronto como le sea posible, o su propuesta será descalificada de estas conferencias.
-
-Si tiene cualquier pregunta o duda, por favor póngase en contacto con nosotros.
-
-{$editorialContactSignature}</field>
-			<field name="description">Este e-mail informa al ponente que su propuesta incompleta será desestimada en una fecha próxima.</field>
-		</row>
 
 
 		<!--
@@ -167,32 +155,6 @@ Muchas gracias,
 		  * Peer Review
 		  *
 		  -->
-		<row>
-			<field name="email_key">REVIEW_REQUestá</field>
-			<field name="subject">Solicitud de Revisión de original</field>
-			<field name="body">{$reviewerName}:
-
-Consideramos que usted seria un/a revisor/a excelente para la propuesta: "{$paperTitle}," que ha sido enviada a {$conferenceName}. La información útil del original recibido estáadjuntada al presente e-mail, esperamos que considere positivamente encargarse de esta tarea tan importante para nosotros.
-
-Le rogamos que se valide en el sitio web antes de {$weekLaterDate} para indicar si podría asumir el encargo de revisar el original recibido o no, así como acceder a la mismo y aportar su notas de revisión y recomendaciones. El sitio web es {$conferenceUrl}
-
-La revisión finaliza el {$reviewDueDate}.
-
-Si no dispone de nombre de usuario y contraseña para acceder al sitio web de las conferencias, puede usar este enlace para registrarse (registro que le será enviado por e-mail). {$passwordResetUrl}
-
-URL del original: {$submissionReviewUrl}
-
-Gracias por considerar nuestra petición.
-
-{$editorialContactSignature}
-
-
-"{$paperTitle}"
-
-Abstract
-{$paperAbstract}</field>
-			<field name="description">Este e-mail del "Director de Seguimiento" al revisor/es solicita que el revisor acepte o decline la tarea de revisar el original recibido. Facilita información sobre el original recibido, tales como el título y el abstact, la fecha límite de la revisión, o como acceder al propio documento.</field>
-		</row>
 		<row>
 			<field name="email_key">REVIEW_REQUEST_ONECLICK</field>
 			<field name="subject">Solicitud de revisió de orignal</field>

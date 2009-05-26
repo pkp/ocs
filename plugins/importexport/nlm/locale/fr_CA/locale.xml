@@ -20,6 +20,6 @@
 {$scriptName} {$pluginName} [xmlFileName] [journal_path] communications [paperId1] [paperId2] ...</message>
 	<message key="plugins.importexport.nlm.cliError">ERREUR:</message>
 	<message key="plugins.importexport.nlm.export.error.paperNotFound">Aucune communication ne correspond à l'ID de la communication "{$paperId}".</message>
-	<message key="plugins.importexport.nlm.export.error.unknownConference">Chemin d'accès spécifié pour la conférence inconnu {$conferencePath}</message>
-	<message key="plugins.importexport.nlm.export.error.couldNotWrite">Écriture du fichier impossible "{$fileName}"</message>
+	<message key="plugins.importexport.nlm.export.error.unknownConference">Chemin de la conférence {$conferencePath} inconnu</message>
+	<message key="plugins.importexport.nlm.export.error.couldNotWrite">Écriture du fichier "{$fileName}" impossible</message>
 </locale>

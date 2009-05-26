@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.block.user.displayName">使用者區塊</message>
+	<message key="plugins.block.user.description">本插件在遞條中提供使用者帳號工具的連結 (例如 登入、登出、個人簡歷等連結)。</message>
+	<message key="plugins.block.user.loggedInAs">您已登入為</message>
+	<message key="plugins.block.user.myConferences">我的研討會</message>
+	<message key="plugins.block.user.myProfile">我的個人資料</message>
+	<message key="plugins.block.user.logout">登出</message>
+	<message key="plugins.block.user.signOutAsUser">登出成為使用者</message>
+	<message key="plugins.block.user.rememberMe">記住我</message>
+</locale>

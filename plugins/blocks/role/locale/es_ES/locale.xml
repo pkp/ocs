@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the es_ES (España Castellano) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="es_ES" full_name="España Castellano">
+	<message key="plugins.block.role.displayName">Funciones específicas</message>
+	<message key="plugins.block.role.description">Este plugin proporciona un conjunto de información complementaria sobre funciones específicas como el recuento de envíos o vínculos rápidos para Directores, Presentadores, etc.</message>
+</locale>

@@ -442,18 +442,6 @@ Em caso de dúvidas, ente em contacto.
 
 Agradecemos o interesse pelo nosso trabalho,
 {$editorialContactSignature}</field>
-			<field name="description">Este email é enviado aos leitores registados que solicitaram receber um email de notificação quando um artigo está disponível para acesso livre.</field>
-		</row>
-		<row>
-			<field name="email_key">MANUAL_PAYMENT_RECEIVED</field>
-			<field name="subject">O seu pagamento para a {$conferenceName} foi recebido</field>
-			<field name="body">{$registrantName}:
-
-O seu pagamento para a {$conferenceName} foi recebido e registado na sua conta.
-
-Para qualquer esclarecimento adicional, queira contactar-nos.
-
-{$registrationContactSignature}</field>
 			<field name="description">Este email é enviado a leitores inscritos que tenham solicitado receber avisos quando novos artigos estão disponíveis para acesso livre.</field>
 		</row>
 		<!--<row>

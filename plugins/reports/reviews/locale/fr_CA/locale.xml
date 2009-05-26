@@ -21,6 +21,6 @@
 	<message key="plugins.reports.reviews.dateNotified">Date d'alerte</message>
 	<message key="plugins.reports.reviews.dateConfirmed">Date de confirmation</message>
 	<message key="plugins.reports.reviews.dateCompleted">Date de complétion</message>
-	<message key="plugins.reports.reviews.dateReminded">Date du rappel</message>
+	<message key="plugins.reports.reviews.dateReminded">Date de rappel</message>
 </locale>
 

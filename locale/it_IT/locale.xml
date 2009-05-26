@@ -152,27 +152,22 @@
 	    <message key="common.ellipsis">...</message>
 	    <message key="common.path">Path</message>
 	    <message key="common.dateTimeSeparator">a</message>
-	    <message key="common.ccLicense"><![CDATA[
-		<a target="_new" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
-			<img alt="Creative Commons License" style="border-width:0" src="{$ccLicenseImageUrl}"/>
+	    <message key="common.ccLicense"><![CDATA[<a target="_new" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+			<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png"/>
 		</a>
 		<br/>
-		Questo <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" rel="dc:type">work</span> &#x00E8; sotto una licenza <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a>.
-	]]></message>
+		A questo lavoro è stata attribuita una <a rel="license" target="_new" href="http://creativecommons.org/licenses/by/3.0/">Licenza Creative Commons Attribution 3.0  L</a>.]]></message>
 	<!-- Review Forms -->
 	<message key="manager.reviewForms">Modulo di revisione</message>
 	<message key="manager.reviewForms.noneChosen">Nessuno / Revisione del modulo libero</message>
 	<message key="manager.reviewForms.noneCreated">Non è stato creato nessun modulo di revisione</message>
-	<message key="manager.reviewForms.noneUsed">Non è stato usato nessun modulo di revisione</message>
 	<message key="manager.reviewForms.create">Crea un modulo di revisione</message>
 	<message key="manager.reviewForms.edit">Modulo di revisione</message>
-	<message key="manager.reviewForms.reviewFormData">Data del modulo di revisione</message>
 	<message key="manager.reviewForms.title">Titolo</message>
 	<message key="manager.reviewForms.description">Descrizione e Istruzioni</message>
 	<message key="manager.reviewForms.preview">Modulo di anteprima</message>
 	<message key="manager.reviewForms.completed">Completato</message>
 	<message key="manager.reviewForms.inReview">In revisione</message>
-	<message key="manager.reviewForms.confirmDeletePublished">Conferma la cancellazione di un modulo di revisione pubblicato...</message>
 	<message key="manager.reviewForms.confirmDeleteUnpublished">Conferma la cancellazione di un modulo di revisione non pubblicato ...</message>
 	<message key="manager.reviewForms.form.titleRequired">E' necessario inserire un titolo per il modulo</message>
 	<message key="manager.reviewFormElements">Item del modulo</message>
@@ -183,7 +178,6 @@
 	<message key="manager.reviewFormElements.copyTo">Copia in:</message>
 	<message key="manager.reviewFormElements.question">Item</message>
 	<message key="manager.reviewFormElements.required">E' necessario che i revisori completino il documento</message>
-	<message key="manager.reviewFormElements.viewable">Visibile (per gli autori)</message>
 	<message key="manager.reviewFormElements.elementType">Tipo di item</message>
 	<message key="manager.reviewFormElements.possibleResponse">Selezione</message>
 	<message key="manager.reviewFormElements.addResponseItem">Aggiungi una selezione</message>
@@ -205,7 +199,6 @@
 	<message key="editor.paper.selectReviewForm">Seleziona il modulo di revisione</message>
 	<message key="editor.paper.clearReviewForm">Pulisci il modulo di revisione</message>
 	<message key="editor.paper.confirmChangeReviewForm">Modifcare il modulo di revisione rimuoverà le risposte</message>
-	<message key="manager.sections.form.reviewFormId">Assicurati che hai scelto una forma di revisione valida</message>
 	<message key="manager.reviewForms.list.description">I moduli di peer review creati qui verranno presentati ai revisori per essere completati, invece del modulo di default che consiste di due caselle di testo vuote, la prima "per l'autore e per il curatore", e la seconda "per il curatore". I moduli di revisione possono essere designati per una sezione specifica della rivista, e i curatori avranno l'opzione di scegliere quale modulo usare nell'assegnare la revisione. In tutti i casi, i curatori avranno l'opzione di includere le revisioni in corrispondenza dell'autore.</message>
 	<!-- Common Form Messages -->
 	<message key="form.errorsOccurred">Si &#x00E8; verificato un errore durante l'elaborazione del modulo.</message>
@@ -2701,4 +2694,74 @@ Il processo di validazione pu&#x00F2; non funzionare sulle URL di ricerca che ri
 	<message key="icon.font_small.alt">Piccolo</message>
 	<message key="icon.font_medium.alt">Medio</message>
 	<message key="icon.font_large.alt">Grande</message>
+	<message key="common.copy">Copia</message>
+	<message key="common.preview">Anteprima</message>
+	<message key="common.activate">Attiva</message>
+	<message key="common.deactivate">Disattiva</message>
+	<message key="schedConf.registration.failed">La tua registrazione non è riuscita. Per favore prova di nuovo.</message>
+	<message key="schedConf.registration.optionCloses">(Chiude {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(Registrazione chiusa il {$closingDate})</message>
+	<message key="schedConf.registration.optionFuture">(Registrazione aperta il {$openingDate})</message>
+	<message key="schedConf.registration.options">Opzioni per la registrazione</message>
+	<message key="admin.mergeUsers">Unisci gli utenti</message>
+	<message key="admin.mergeUsers.mergeUser">Unisci l'utente</message>
+	<message key="admin.mergeUsers.into.description">Seleziona un utente a cui attibuire le submission dell'utente precedente, modificando gli incarichi, ecc.</message>
+	<message key="admin.mergeUsers.from.description">Seleziona un utente da unire all'account di un altro utente (es., se un utente ha due account). L'account selezionato per primo sarà cancellato e le sue submission, gli incarichi, ecc. saranno attribuiti al secondo account.</message>
+	<message key="admin.mergeUsers.allUsers">Tutti gli utenti iscritti</message>
+	<message key="admin.mergeUsers.confirm">Sei sicuro di voler unire l'account con username "{$oldUsername}" con l'accunt con username "{$oldUsername}"? L'account con username "{$oldUsername}" non esisterà più. Quest'azione non è reversibile.</message>
+	<message key="admin.mergerUsers.noneEnrolled">Nessun utente registrato.</message>
+	<message key="manager.registrationOptions">Opzioni per la registrazione</message>
+	<message key="manager.schedConfSetup.details.sponsors.noteDescription">Questo testo apparirà sotto l'intestazione "Sponsor" e sopra la lista dei nomi e degli url degli sponsor sotto "Organizzazione" nella pagina "Informazioni".</message>
+	<message key="manager.schedConfSetup.details.contributors.noteDescription">Questo testo apparirà sotto l'intestazione "Supporto" e sopra la lista dei nomi e degli url delle organizzazioni di supporto sotto "Organizzazione" nella pagina "Informazioni".</message>
+	<message key="manager.timeline.scheduleEvents">Programma degli eventi</message>
+	<message key="manager.timeline.include">Mostra nel Calendario della conferenza</message>
+	<message key="manager.registrationOptions.createTitle">Crea</message>
+	<message key="manager.registrationOptions.create">Crea una opzione per le nuove registrazioni</message>
+	<message key="manager.registrationOptions.confirmDelete">Attezione! Cancellando questa opzione saranno coinvolte tutte le registrazioni che la usano in questo momento. Sei sicuro di voler continuare e cancellare questa opzione per le registrazioni?</message>
+	<message key="manager.registrationOptions.noneCreated">Non è stata creata nessuna opzione per le registrazioni.</message>
+	<message key="manager.registrationOptions.name">Opzione per la registrazione</message>
+	<message key="manager.registrationOptions.cost">Costo</message>
+	<message key="manager.registrationOptions.costSetInRegistrationType">Il costo per tutte le opzioni di registrazione deve essere impostato una volta in ogni tipologia di registrazione.</message>
+	<message key="manager.registrationOptions.currency">Valuta</message>
+	<message key="manager.registrationOptions.openDate">Disponibile da</message>
+	<message key="manager.registrationOptions.closeDate">Disponibile fino</message>
+	<message key="manager.registrationOptions.registrationOptionCreatedSuccessfully">Opzione di registrazione creata con successo.</message>
+	<message key="manager.registrationOptions.editTitle">Modifica</message>
+	<message key="manager.registrationOptions.edit">Modifica l'opzione per le registrazioni</message>
+	<message key="manager.registrationOptions.form.optionNameRequired">E' necessario inserire un nome per l'opzione di registrazione.</message>
+	<message key="manager.registrationOptions.form.optionNameExists">Una opzione di registrazione esiste già con questo nome.</message>
+	<message key="manager.registrationOptions.form.costRequired">E' necessario inserire un costo.</message>
+	<message key="manager.registrationOptions.form.costNumeric">Il costo deve essere un valore numerico positivo.</message>
+	<message key="manager.registrationOptions.form.currencyRequired">E' necessario inserire una valuta.</message>
+	<message key="manager.registrationOptions.form.currencyValid">Per favore inserisci una valuta valida.</message>
+	<message key="manager.registrationOptions.form.optionName">Nome</message>
+	<message key="manager.registrationOptions.form.description">Descrizione</message>
+	<message key="manager.registrationOptions.form.cost">Costo</message>
+	<message key="manager.registrationOptions.form.costInstructions">Inserisci un valore numerico (es., 40 o 40.00). Non includere nessun altro testo (es., $).</message>
+	<message key="manager.registrationOptions.form.code">Codice</message>
+	<message key="manager.registrationOptions.form.currency">Valuta</message>
+	<message key="manager.registrationOptions.form.notPublic">Non rendere questa opzione di registrazione disponibile pubblicamente.</message>
+	<message key="manager.registrationOptions.form.saveAndCreateAnotherOption">Salva e creane un altro</message>
+	<message key="manager.registrationOptions.form.closeBeforeOpen">La data di apertura per l'opzione di registrazioni deve essere precedente alla data di chiusura.</message>
+	<message key="manager.registration.form.notifyPaymentEmail">Invia all'utente una email che confermi la ricevuta del suo pagamento.</message>
+	<message key="presenter.submit.supplementaryFilesAbstractOnly">3. Carica dei file supplementari</message>
+	<message key="presenter.submissions.queuedAbstractReviewRevisions">Abstract in revisione: revisioni richieste</message>
+	<message key="presenter.submissions.queuedPaperReviewRevisions">Paper in revisione: revisioni richieste</message>
+	<message key="manager.timeline.postDate">Data</message>
+	<message key="manager.timeline.postOverview">Inserisci una introduzione nell'elenco delle informazioni sul convegno</message>
+	<message key="manager.timeline.postCFP">Inserisci una Call for papers nell'elenco delle informazioni sul convegno</message>
+	<message key="manager.timeline.postProposalSubmission">Inserisci una Submission da proporre nell'elenco delle informazioni sul convegno</message>
+	<message key="manager.timeline.postTrackPolicies">Inserisci le modalità della sessione nell'elenco delle informazioni sul convegno</message>
+	<message key="manager.timeline.postProgram">Inserisci un programma nell'elenco delle informazioni sul convegno</message>
+	<message key="manager.timeline.postAccommodation">Inserisci gli alloggi nell'elenco delle informazioni sul convegno</message>
+	<message key="manager.timeline.postSupporters">Inserisci  le organizzazioni di supporto nell'elenco delle informazioni sul convegno</message>
+	<message key="manager.timeline.postRegistration">Iserisci la registrazione nell'elenco delle informazioni sul convegno</message>
+	<message key="manager.registrationOptions.costs">Costi dell'opzione di registrazione</message>
+	<message key="manager.registrationOptions.form.membershipValid">Per favore utilizza la casella di scelta fornita.</message>
+	<message key="manager.registrationOptions.form.notPublicValid">Per favore utilizza la casella di scelta fornita.</message>
+	<message key="manager.registrationOptions.form.code.instructions">Inserisci un codice (es., 1234) se la registrazione con questa opzione deve essere ristretta a coloro che hanno ricevuto il codice da utilizzare durante la registrazione (come  i presentatori invitati che possono registrarsi senza pagare).</message>
+	<message key="manager.registrationOptions.form.openDate">Apre per la registrazione</message>
+	<message key="manager.registrationOptions.form.closeDate">Chiude per la registrazione</message>
+	<message key="director.notifyUsers.allPresenters">Tutti i presentatori pubblicati ({$count} users)</message>
+	<message key="manager.registrationOptions.description">Le opzioni di registrazione sono aggiunte che possono essere incluse a una registrazione, come i biglietti per un banchetto. E' necessario fissare un costo per le opzioni di registrazione in ogni tipologia di registrazione.</message>
 </locale>

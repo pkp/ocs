@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.reports.papers.displayName">文章報告</message>
+	<message key="plugins.reports.papers.description">本插件提供 CSV 格式的報告，提供冒關論文的資料與清單。</message>
+	<message key="plugins.reports.papers.nodecision">尚未決定</message>
+</locale>

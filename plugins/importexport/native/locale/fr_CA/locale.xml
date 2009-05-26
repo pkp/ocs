@@ -42,27 +42,27 @@ Les formats suivants sont acceptés:
 	<message key="plugins.importexport.native.selectPaper">Sélectionner une communication</message>
 
 	<message key="plugins.importexport.native.import.papers">Importer les communications</message>
-	<message key="plugins.importexport.native.import.papers.description">Le fichier que vous importez contient une ou plusieurs communications. Vous devez choisir une section dans laquelle importer ces communications; si vous ne souhaitez pas toutes les importer dans la même session, vous pouvez soit les séparer dans des fichiers XML distincts, soit les déplacer dans la session appropriée suite à l'importation.</message>
+	<message key="plugins.importexport.native.import.papers.description">Le fichier que vous importez contient une ou plusieurs communications. Vous devez choisir une section dans laquelle importer ces communications; si vous ne souhaitez pas toutes les importer dans la même section, vous pouvez soit les séparer dans des fichiers XML distincts, soit les déplacer dans les sections appropriées suite à l'importation.</message>
 
 	<message key="plugins.importexport.native.import">Importation des données</message>
 	<message key="plugins.importexport.native.import.description"><![CDATA[Ce plugiciel supporte l'importation de données basé sur la DTD "native.dtd". Les noeuds racines supportés sont &lt;paper&gt; et &lt;papers&gt;.]]></message>
 
 	<message key="plugins.importexport.native.import.error">Erreur d'importation</message>
-	<message key="plugins.importexport.native.import.error.description">Une ou plusieurs erreurs se sont produites pendant l'importation. Veuillez vous assurer que le format du fichier importé correspond bien à la norme. Le description détaillées des erreurs d'importation sont listés ci-bas.</message>
+	<message key="plugins.importexport.native.import.error.description">Une ou plusieurs erreurs se sont produites pendant l'importation. Veuillez vous assurer que le format du fichier importé correspond bien à la norme. La description détaillée des erreurs d'importation est listée ci-bas.</message>
 
 	<message key="plugins.importexport.native.cliError">ERREUR:</message>
 	<message key="plugins.importexport.native.error.unknownUser">L'utilisateur spécifié, "{$userName}", n'existe pas.</message>
-	<message key="plugins.importexport.native.error.unknownConference">Le chemin d'accès spécifié pour la conférence ou la conférence planifiée, "{$conferencePath}" ou "{$schedConfPath}" (respectivement), n'existe pas.</message>
+	<message key="plugins.importexport.native.error.unknownConference">Le chemin de la conférence ou de la conférence planifiée, "{$conferencePath}" ou "{$schedConfPath}" (respectivement), n'existe pas.</message>
 	<message key="plugins.importexport.native.export.error.couldNotWrite">Impossible d'écrire dans le fichier "{$fileName}".</message>
-	<message key="plugins.importexport.native.export.error.trackNotFound">Aucune session ne correspond à celle spécifiée "{$trackIdentifier}".</message>
-	<message key="plugins.importexport.native.export.error.paperNotFound">Aucune communication ne correspond à l'ID de la communication spécifié"{$paperId}".</message>
+	<message key="plugins.importexport.native.export.error.trackNotFound">Aucune section ne correspond à celle spécifiée "{$trackIdentifier}".</message>
+	<message key="plugins.importexport.native.export.error.paperNotFound">Aucune communication ne correspond à l'ID de la communication spécifiée "{$paperId}".</message>
 	<message key="plugins.importexport.native.import.error.unsupportedRoot">Ce plugiciel ne supporte pas le noeud racine "{$rootName}". Veuillez vous assurer que le fichier est bien formé et essayer de nouveau.</message>
 
-	<message key="plugins.importexport.native.import.error.invalidBooleanValue">Une valeur booléenen invalide "{$value}" a été spécifiée. Veuillez utiliser "true" ou "false".</message>
+	<message key="plugins.importexport.native.import.error.invalidBooleanValue">Une valeur booléenne invalide "{$value}" a été spécifiée. Veuillez utiliser "true" ou "false".</message>
 	<message key="plugins.importexport.native.import.error.invalidDate">Une date invalide "{$value}" a été spécifiée.</message>
 	<message key="plugins.importexport.native.import.error.unknownEncoding">Les données ont été incorporées à l'aide d'un type d'encodage inconnu "{$type}".</message>
 	<message key="plugins.importexport.native.import.error.couldNotWriteFile">Impossible d'enregistrer une copie locale de "{$originalName}".</message>
-	<message key="plugins.importexport.native.import.error.illegalUrl">L'adresse URL spécifiée "{$url}" était illégale. Les importations soumises par l'intermédiaire du Web supportent uniquement les méthodes http, https, ftp, ou ftps.</message>
+	<message key="plugins.importexport.native.import.error.illegalUrl">L'adresse URL spécifiée "{$url}" était illégale. Les importations effectuées par l'intermédiaire du Web supportent uniquement les méthodes http, https, ftp, ou ftps.</message>
 	<message key="plugins.importexport.native.import.error.unknownSuppFileType">Un fichier supplémentaire de type inconnu "{$suppFileType}" a été spécifié.</message>
 	<message key="plugins.importexport.native.import.error.couldNotCopy">Une adresse URL spécifiée "{$url}" n'a pu être copiée dans un fichier local.</message>
 	<message key="plugins.importexport.native.import.error.paperTitleLocaleUnsupported">Un titre de communication ("{$paperTitle}") a été fourni dans une langue ("{$locale}") que cette conférence ne supporte pas.</message>

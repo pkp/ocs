@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.METSExport.displayName">METS XML 輸出插件</message>
+	<message key="plugins.importexport.METSExport.description">以 METS XML 格式輸出研討會</message>
+	<message key="plugins.importexport.METSExport.settings">設定</message>
+	<message key="plugins.importexport.METSExport.export">輸出資料</message>
+	<message key="plugins.importexport.METSExport.export.schedConfs">輸出清單中的研討會</message>
+	<message key="plugins.importexport.METSExport.export.selectschedConfs">選擇要輸出的研討會。</message>
+	<message key="plugins.importexport.METSExport.export.error.SchedConfNotFound">沒有符合論文編號為 "{$SchedConfId}" 的研討會。</message>
+	<message key="plugins.importexport.METSExport.export.error.unknownConference">無效的研討會路徑 {$conferencePath}</message>
+	<message key="plugins.importexport.METSExport.settings.FContent">使用 base64 編碼方式進行封包</message>
+	<message key="plugins.importexport.METSExport.settings.FLocat">使用 URL of the bitstream 進行內容的封包</message>
+	<message key="plugins.importexport.METSExport.settings.organization">METS:agent element organization attribute</message>
+	<message key="plugins.importexport.METSExport.settings.preservationLevel">PREMIS 維護水準</message>
+	<message key="plugins.importexport.METSExport.settings.exportSuppFiles">輸出附件檔案</message>
+</locale>

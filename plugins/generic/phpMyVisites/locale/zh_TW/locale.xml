@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * phpMyVisites plugin localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+
+	<!-- phpMyVisites -->
+	<message key="plugins.generic.phpmv.displayName">php 我的訪問者 插件</message>
+	<message key="plugins.generic.phpmv.description"><![CDATA[要整合 OCS 與 phpMyVisites 插件，您需要安裝相關的應用程式，該程式為免費的開放源碼。詳細的資訊可以參閱下列連結 <a href="http://www.phpmyvisites.us/" title="phpMyVisites site">phpMyVisites site</a> 。]]></message>
+
+	<!-- phpMyVisites Settings Management -->
+	<message key="plugins.generic.phpmv.manager.settings">設定</message>
+	<message key="plugins.generic.phpmv.manager.phpmvSettings">php我的訪問者 設定</message>
+	<message key="plugins.generic.phpmv.manager.settings.description"><![CDATA[<p>使用本插件可以收集與分析網站的使用狀況與流量。如您要使用本功能，請確認您已經正確安裝本插件的軟体。詳細的資訊可以參閱下列連結 <a href="http://www.phpmyvisites.us/" title="phpMyVisites site">phpMyVisites site</a> 。</p>]]></message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvUrl">php我的訪問者 網址</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvUrlInstructions">您的 php 我的訪問者 插件完整的安裝網址 (例如 http://myserver.net/phpmv)。</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvUrlRequired">請輸入有效的連結網址，請包含 http:// 。</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvSiteId">網站資料編號</message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvSiteIdInstructions"><![CDATA[在 phpMyVisites 插件中點選管理 (Administration) ->修改網站 (Modify site)。網站的資料編號會顯示在網站的名稱旁邊。]]></message>
+	<message key="plugins.generic.phpmv.manager.settings.phpmvSiteIdRequired">請輸入網站的資料編號.</message>
+
+</locale>

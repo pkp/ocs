@@ -14,5 +14,5 @@
  
 <locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.block.role.displayName">Bloc relié à un rôle spécifique</message>
-	<message key="plugins.block.role.description">Ce plugiciel fournit un bloc de barre de menus contenant de l'information relié à un rôle spécifique tel que le nombre de soumissions et des liens rapides pour les responsables, présentateurs, etc.</message>
+	<message key="plugins.block.role.description">Ce plugiciel fournit un bloc dans le menu latéral contenant de l'information reliée à un rôle spécifique, tel que le nombre de soumissions, et des liens rapides pour les responsables, présentateurs, etc.</message>
 </locale>

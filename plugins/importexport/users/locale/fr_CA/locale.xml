@@ -23,9 +23,9 @@ Commandes:
 	export [xmlFileName] [sched_conf_path] [role_path1] [role_path2] ...
 
 Indicateurs optionnels:
-	continue_on_error: Si indiqué, n'arrêtez pas l'importation des utilisateurs si une erreur se produit
+	continue_on_error: si indiqué, n'arrêtez pas l'importation des utilisateurs si une erreur se produit
 
-	send_notify: Si indiqué, envoyez des courriels d'avis aux utilisateurs importés contenant leur nom d'utilisateur et mots de passe
+	send_notify: si indiqué, envoyez des courriels d'avis aux utilisateurs importés contenant leur nom d'utilisateur et mots de passe
 
 Exemples:
 	Importez les utilisateurs dans mySchedConf de myImportFile.xml, en poursuivant même s'il se produit une erreur:
@@ -49,7 +49,7 @@ Exemples:
 	<message key="plugins.importexport.users.import.confirmUsers">Confirmer qu'il s'agit bien des utilisateurs que vous souhaitez importer dans le système</message>
 	<message key="plugins.importexport.users.import.warning">Avertissement</message>
 	<message key="plugins.importexport.users.import.encryptionMismatch">Vous ne pouvez utiliser des mots de passe hachés avec {$importHash}; OCS est configuré pour utiliser {$ocsHash}. Si vous continuez, vous devrez réinitialiser les mots de passe des utilisateurs importés.</message>
-	<message key="plugins.importexport.users.unknownSchedConf">Le chemin d'accès spécifié pour la conférence planifié  "{$schedConfPath}" est inconnu.</message>
+	<message key="plugins.importexport.users.unknownSchedConf">Le chemin de la conférence planifié "{$schedConfPath}" est inconnu.</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Exporter les utilisateurs</message>
 	<message key="plugins.importexport.users.export.exportByRole">Exporter par rôle</message>

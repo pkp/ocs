@@ -18,11 +18,11 @@
 
 	<message key="plugins.generic.announcementfeed.settings">Paramètres</message>
 	<message key="plugins.generic.announcementfeed.settings.all">Afficher les liens de flux dans toutes les pages de la conférence.</message>
-	<message key="plugins.generic.announcementfeed.settings.homepage">Afficher les liens de flux uniquement dans la page d'accueil et dans la page de l'annonce.</message>
-	<message key="plugins.generic.announcementfeed.settings.announcement">Afficher les liens de flux uniquement dans la page de l'annonce.</message>
+	<message key="plugins.generic.announcementfeed.settings.homepage">Afficher les liens de flux uniquement dans la page d'accueil et dans la page des annonces.</message>
+	<message key="plugins.generic.announcementfeed.settings.announcement">Afficher les liens de flux uniquement dans la page des annonces.</message>
 	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements1">Limiter le flux aux</message>
 	<message key="plugins.generic.announcementfeed.settings.recentAnnouncements2">annonces les plus récentes.</message>
-	<message key="plugins.generic.announcementfeed.settings.recentItemsRequired">Prière de saisir un entier positif pour les annonces récentes.</message>
+	<message key="plugins.generic.announcementfeed.settings.recentItemsRequired">Veuillez saisir un entier positif pour les annonces récentes.</message>
 	<message key="plugins.generic.announcementfeed.atom.altText">Logo Atom</message>
 	<message key="plugins.generic.announcementfeed.rss1.altText">Logo RSS1</message>
 	<message key="plugins.generic.announcementfeed.rss2.altText">Logo RSS2</message>

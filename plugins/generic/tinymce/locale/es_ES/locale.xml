@@ -14,7 +14,7 @@
   * Traducción de la versión original 1.2 por Juan Pablo Alperin - 2006/06/29
   -->
  
-<locale name="es_ES" full_name="Español (España)">
+<locale name="es_ES" full_name="España Castellano (España)">
 	<message key="plugins.generic.tinymce.name">Plugin TinyMCE</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[Este plugin activa un editor WSYWIG (What You See is What You Get - Lo Que Ve es lo Que Es) para las casillas de texto de OCS usando el editor de contenido <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>.]]></message>
 	<message key="plugins.generic.tinymce.descriptionDisabled"><![CDATA[Este plugin activa un editor WYSIWYG (What You See is What You Get - Lo Que Ve es lo Que Es) para las casillas de texto de OCS usando el editor de contenido <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>. <strong>TinyMCE no esta instalado; por favor instalelo en {$tinyMcePath}.</strong>]]></message>

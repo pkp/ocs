@@ -20,10 +20,10 @@
 	<message key="plugins.importexport.METSExport.export.schedConfs">Exporter les conférences planifiées</message>
 	<message key="plugins.importexport.METSExport.export.selectschedConfs">Selectionner les conférences planifiées à exporter.</message>
 	<message key="plugins.importexport.METSExport.export.error.SchedConfNotFound">Aucune conférence planifiée ne correspond à l'ID de la communication spécifiée "{$SchedConfId}".</message>
-	<message key="plugins.importexport.METSExport.export.error.unknownConference">Chemin d'accès spécifié pour la conférence inconnu {$conferencePath}</message>
+	<message key="plugins.importexport.METSExport.export.error.unknownConference">Chemin de la conférence {$conferencePath} inconnu</message>
 	<message key="plugins.importexport.METSExport.settings.FContent">Utiliser l'encodage base64 pour l'enveloppeur de contenu</message>
 	<message key="plugins.importexport.METSExport.settings.FLocat">Utiliser l'URL du flux binaire pour l'enveloppeur de contenu</message>
-	<message key="plugins.importexport.METSExport.settings.organization">attribut organization de l'élément METS:agent</message>
+	<message key="plugins.importexport.METSExport.settings.organization">attribut "organization" de l'élément "METS:agent"</message>
 	<message key="plugins.importexport.METSExport.settings.preservationLevel">Niveau de conservation PREMIS</message>
 	<message key="plugins.importexport.METSExport.settings.exportSuppFiles">Exporter des fichiers supplémentaires</message>
 </locale>

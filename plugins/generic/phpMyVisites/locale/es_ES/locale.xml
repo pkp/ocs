@@ -7,12 +7,12 @@
   * Copyright (c) 2000-2009 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * phpMyVisites plugin localization strings for the es_ES (Español (España)) locale.
+  * phpMyVisites plugin localization strings for the es_ES (España Castellano (España)) locale.
   *
   * $Id$
   -->
  
-<locale name="es_ES" full_name="Español (España)">
+<locale name="es_ES" full_name="España Castellano (España)">
 
 	<!-- phpMyVisites -->
 	<message key="plugins.generic.phpmv.displayName">Complemento phpMyVisites</message>

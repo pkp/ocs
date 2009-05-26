@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this citation plugin in es_ES.
+  *
+  * $Id$
+  -->
+ 
+<locale name="es_ES" full_name="España Castellano">
+	<message key="plugins.citationFormats.endNote.displayName">Plugin del formato de referencia EndNote</message>
+	<message key="plugins.citationFormats.endNote.citationFormatName">EndNote - formato EndNote  (Macintosh &amp; Windows)</message>
+	<message key="plugins.citationFormats.endNote.description">Este plugin implementa el formato de referencia EndNote.</message>
+</locale>

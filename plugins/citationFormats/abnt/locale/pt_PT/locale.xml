@@ -17,5 +17,4 @@
 	<message key="plugins.citationFormats.abnt.citationFormatName">ABNT</message>
 	<message key="plugins.citationFormats.abnt.description">Este plugin instala o formato de citação ABNT.</message>
 	<message key="plugins.citationFormat.abnt.location">Portugal</message>
-	<message key="plugins.citationFormats.abnt.retrieved"><![CDATA[Disponível em: <a href="{$url}" target="_new">{$url}</a>. Data de acesso: {$retrievedDate}]]></message>
 </locale>

@@ -4,17 +4,16 @@
 <!--
   * locale.xml
   *
-  * Copyright (c) 2000-2009 John Willinsky
+  * Copyright (c) 2000-2008 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale.
+  * Localization strings for the es_ES (España Castellano) locale.
   *
   * $Id$
   -->
  
-<locale name="es_ES" full_name="España Castellano">
-	<message key="plugins.generic.acron.name">Acron Plugin</message>
+<locale name="es_ES" full_name="EspaÃ±ol">
+	<message key="plugins.generic.acron.name">Acron Plugin </message>
 	<message key="plugins.generic.acron.description"><![CDATA[Este plugin pretende reducir la dependencia de OCS de las tareas periódicas de programación tales como 'cron.']]></message>
-
 	<message key="plugins.generic.acron.reload">Recargar las tareas programadas</message>
 </locale>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this citation plugin in en_US.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.citationFormats.abnt.displayName">ABNT 文獻引用格式插件</message>
+	<message key="plugins.citationFormats.abnt.citationFormatName">ABNT</message>
+	<message key="plugins.citationFormats.abnt.description">本插件提供 ABNT 文獻引用格式。</message>
+	<message key="plugins.citationFormat.abnt.location">北美</message>
+	<message key="plugins.citationFormats.abnt.retrieved"><![CDATA[Available at: <a href="{$url}" target="_new">{$url}</a>. Date accessed: {$retrievedDate}]]></message>
+</locale>

@@ -504,5 +504,17 @@ Grazie,
 {$principalContactSignature}</field>
 			<field name="description">Questa email viene spedita a un utente creato di recente per dargli il benvenuto nel sistema e per fornirgli un record del suo nome utente e password.</field>
 		</row>
+		<row>
+			<field name="email_key">MANUAL_PAYMENT_RECEIVED</field>
+			<field name="subject">Il tuo pagamento per {$conferenceName} è stato ricevuto</field>
+			<field name="body">{$registrantName}:
+
+Il tuo pagamento per {$conferenceName} è stato ricevuto e registrato nel tuo account.
+
+Se avessi qualche domanda, per favore contattaci.
+
+{$registrationContactSignature}</field>
+			<field name="description">Questa email avvisa un lettore registrato che l'amministratore ha creato una registrazione per lui. Fornisce l'URL del convegno insieme alle istruzioni per l'accesso.</field>
+		</row>
 	</table>
 </data>

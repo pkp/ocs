@@ -14,6 +14,6 @@
  
 <locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.block.information.displayName">Bloc d'information</message>
-	<message key="plugins.block.information.description">Ce plugiciel fournit un lien d'information dans la barre de menus.</message>
+	<message key="plugins.block.information.description">Ce plugiciel fournit un lien d'information dans le menu latéral.</message>
 	<message key="plugins.block.information.link">Information</message>
 </locale>

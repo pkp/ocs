@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * LDAP authentication plugin localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.auth.ldap.displayName">LDAP</message>
+	<message key="plugins.auth.ldap.description">Este plugin permite a autenticação e sincronização de contas de utilizadores em oposição a uma fonte de dados externa LDAP.</message>
+	
+	<message key="plugins.auth.ldap.settings">Configurações LDAP</message>
+	<message key="plugins.auth.ldap.settings.hostname">Hostname do servidor</message>
+	<message key="plugins.auth.ldap.settings.hostname.description">E.g., "ldap.exemplo.com", or "ldaps://ldap.example.com" (to use SSL)</message>
+	<message key="plugins.auth.ldap.settings.port">Porta do servidor</message>
+	<message key="plugins.auth.ldap.settings.port.description">Opcional. Padrão para 389 (LDAP) ou 636 (LDAP sobre SSL)</message>
+	<message key="plugins.auth.ldap.settings.basedn">Base DN</message>
+	<message key="plugins.auth.ldap.settings.basedn.description">E.g., "ou=pessoa,dc=exemplo,dc=com"</message>
+	<message key="plugins.auth.ldap.settings.managerdn">Administração DN</message>
+	<message key="plugins.auth.ldap.settings.managerdn.description">E.g., "cn=Administração,dc=exemplo,dc=com"</message>
+	<message key="plugins.auth.ldap.settings.managerpwd">Administração senha</message>
+	<message key="plugins.auth.ldap.settings.managerpwd.description">A gestão de DN e senha são apenas requeridos se a sincronização do perfil/senha do utilizador ou opções de criação de utilizador estiverem activadas. Se LDAP for somente usado para autenticação então estas opções podem ser omitidas.</message>
+	<message key="plugins.auth.ldap.settings.uid">Atribuito do nome da conta</message>
+	<message key="plugins.auth.ldap.settings.uid.description">O atributo cujo valor identifica somente um utilizador, tal como uid ou cn ou sAMAccountName.</message>
+	<message key="plugins.auth.ldap.settings.pwhash">Encriptação da Senha</message>
+	<message key="plugins.auth.ldap.settings.pwhash.description"><![CDATA[Formato Hash para senhas armazenadas no servidor. É recomendando SSHA (requer PHP >= 4.3.0).]]></message>
+	<message key="plugins.auth.ldap.settings.saslopt">Configurações SASL (opcional)</message>
+	<message key="plugins.auth.ldap.settings.sasl"><![CDATA[Usar SASL em vez de uma autenticação simples (requer PHP >= 5)]]></message>
+	<message key="plugins.auth.ldap.settings.saslmech">Mecanismo SASL</message>
+	<message key="plugins.auth.ldap.settings.saslmech.description">E.g., "DIGEST-MD5"</message>
+	<message key="plugins.auth.ldap.settings.saslrealm">Realm</message>
+	<message key="plugins.auth.ldap.settings.saslauthzid">Autorização solicitada de ID</message>
+	<message key="plugins.auth.ldap.settings.saslprop">Propriedades de segurança do SASL</message>
+</locale>

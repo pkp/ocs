@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the es_ES (España Castellano) locale.
+  *
+  * $Id$
+  -->
+
+<locale name="es_ES" full_name="España Castellano">
+	<message key="plugins.reports.papers.displayName">Informe de Trabajos</message>
+	<message key="plugins.reports.papers.description">Este plugin implementa un informe CSV con una lista de trabajos y su información.</message>
+	<message key="plugins.reports.papers.nodecision">Sin Decisión</message>
+</locale>

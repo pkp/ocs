@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.reports.registrants.displayName">註冊報告</message>
+	<message key="plugins.reports.registrants.description">本插件提供 CSV 格式的報告，用以列出註冊者的資料與清單，例如聯絡資訊、付款狀況等。</message>
+	<message key="plugins.reports.registrants.userid">使用者編號</message>
+</locale>

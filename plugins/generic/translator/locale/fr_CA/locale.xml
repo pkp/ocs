@@ -14,9 +14,9 @@
  
 <locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.generic.translator.name">Plugiciel de traduction</message>
-	<message key="plugins.generic.translator.description">Ce plugiciel permet l'entretien en ligne des fichiers de traduction.</message>
-	<message key="plugins.generic.translator.longdescription">Cette zone permet à l'administrateur du site de créer, modifier et vérifier les traductions OCS. Elle s'applique à l'ensemble du site et ne devrait pas être utilisée pour personnaliser une conférence en particulier. Si vous corrigez ou créez une traduction, veuillez la soumettre au Public Knowledge Project pour qu'elle puisse être distribuée dans des versions futures.</message>
-	<message key="plugins.generic.translator.localeDescription">Cette page liste toutes les composantes d'une traduction OCS et permet au traducteur de modifier chacune d'entre elles. Une traduction complète devrait inclure les traductions de toutes les composantes.</message>
+	<message key="plugins.generic.translator.description">Ce plugiciel permet la maintenance sur le Web des fichiers de traduction.</message>
+	<message key="plugins.generic.translator.longdescription">Cette zone permet à l'administrateur du site de créer, modifier et vérifier les traductions d'OCS. Elle s'applique à l'ensemble du site et ne devrait pas être utilisée pour personnaliser une conférence en particulier. Si vous corrigez ou créez une traduction, veuillez la soumettre au Public Knowledge Project pour qu'elle puisse être distribuée dans des versions futures.</message>
+	<message key="plugins.generic.translator.localeDescription">Cette page liste toutes les composantes d'une traduction d'OCS et permet au traducteur de modifier chacune d'entre elles. Une traduction complète devrait inclure les traductions de toutes les composantes.</message>
 
 	<message key="plugins.generic.translator.localeName">Nom de la langue</message>
 	<message key="plugins.generic.translator.localeKey">Clé</message>
@@ -67,7 +67,7 @@
 	<message key="plugins.generic.translator.email.resetConfirm">Êtes-vous certain de vouloir réinitialiser le contenu du courriel?</message>
 	<message key="plugins.generic.translator.file.doesNotExistNote">* Ce fichier n'a pas encore été traduit.</message>
 	<message key="plugins.generic.translator.file.confirmCreate">Le fichier "{$filename}" sera créé en utilisant la version anglaise. Vous devrez traduire toutes les chaînes de caractères du fichier. Voulez-vous continuer?</message>
-	<message key="plugins.generic.translator.email.description">Dans les champs suivants, traduiser le titre, le corps et la description du modèle de courriel. La description est à l'usage du gestionnaire de conférence seulement.</message>
+	<message key="plugins.generic.translator.email.description">Dans les champs suivants, traduisez le titre, le corps et la description du modèle de courriel. La description est à l'usage du gestionnaire de conférence seulement.</message>
 	<message key="plugins.generic.translator.confirmDelete">Êtes-vous certain de vouloir supprimer cet élément? Cette action est irréversible.</message>
 	<message key="plugins.generic.translator.deleteKey">Supprimer cette clé</message>
 	<message key="plugins.generic.translator.deleteEmail">Supprimer ce courriel</message>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.users.displayName">使用者 XML 插件</message>
+	<message key="plugins.importexport.users.description">輸入與輸出使用者</message>
+
+	<message key="plugins.importexport.users.cliUsage">Usage: {$scriptName} {$pluginName} [command] ...
+Commands:
+	import [xmlFileName] [sched_conf_path] [optional flags]
+	export [xmlFileName] [sched_conf_path]
+	export [xmlFileName] [sched_conf_path] [role_path1] [role_path2] ...
+
+Optional flags:
+	continue_on_error: If specified, do not stop importing users if an error occurs
+
+	send_notify: If specified, send notification emails containing usernames
+		and passwords to imported users
+
+Examples:
+	Import users into mySchedConf from myImportFile.xml, continuing on error:
+	{$scriptName} {$pluginName} import myImportFile.xml mySchedConf continue_on_error
+
+	Export all users from mySchedConf:
+	{$scriptName} {$pluginName} export myExportFile.xml mySchedConf
+
+	Export all users registered as reviewers, along with their reviewer roles only:
+	{$scriptName} {$pluginName} export myExportFile.xml mySchedConf reviewer</message>
+	<message key="plugins.importexport.users.import.importUsers">輸入使用者</message>
+	<message key="plugins.importexport.users.import.instructions"><![CDATA[請選擇一個包含使用者資料的 XML 檔案輸入到本研討會中。參閱研討會中的幫助檔案了解檔案的格式。<br /><br />注意：如果輸入的使用者帳號已經存在於系統中，該使用者將不被輸入，而所有新增的使用者角色將會被指定。]]></message>
+	<message key="plugins.importexport.users.import.failedToImportUser">輸入使用者失敗</message>
+	<message key="plugins.importexport.users.import.failedToImportRole">指定使用者角色失敗</message>
+	<message key="plugins.importexport.users.import.dataFile">使用者資料檔</message>
+	<message key="plugins.importexport.users.import.sendNotify">寄發通知信件給每一位輸入的使用者，告知其帳號與密碼。</message>
+	<message key="plugins.importexport.users.import.continueOnError">當錯誤發生時繼續輸入其他使用者。</message>
+	<message key="plugins.importexport.users.import.noFileError">沒有檔案上傳!</message>
+	<message key="plugins.importexport.users.import.usersWereImported">以下的使用者已經成功輸入系統中</message>
+	<message key="plugins.importexport.users.import.errorsOccurred">輸入時發生錯誤</message>
+	<message key="plugins.importexport.users.import.confirmUsers">您確認要將這些些使用者輸入系統</message>
+	<message key="plugins.importexport.users.import.warning">警告</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">無法使用 {$importHash} 方式加密；OCS 將會使用 {$ocsHash} 方式加密。如果您繼續操作，您需要重設所有輸出使用者的密碼。</message>
+	<message key="plugins.importexport.users.unknownSchedConf">無法辨認的研討會路徑 "{$schedConfPath}" 。</message>
+
+	<message key="plugins.importexport.users.export.exportUsers">輸出使用者</message>
+	<message key="plugins.importexport.users.export.exportByRole">依據角色輸出</message>
+	<message key="plugins.importexport.users.export.exportAllUsers">全部輸出</message>
+	<message key="plugins.importexport.users.export.errorsOccurred">輸出時發生錯誤</message>
+	<message key="plugins.importexport.users.export.couldNotWriteFile">無法寫入檔案 "{$fileName}".</message>
+</locale>
