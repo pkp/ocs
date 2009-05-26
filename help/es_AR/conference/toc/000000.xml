@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc SYSTEM "../../../toc.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * table of contents for Conference Management. 
+  *
+  * $Id$
+  -->
+
+<toc id="conference/toc/000000" locale="es_AR" title="Gestion del Congreso" parent_topic="conference/topic/000000">
+	<topic id="conference/topic/000001" title="Gestion General" />
+	<topic id="conference/topic/000002" title="Congresos Actuales" />
+	<topic id="conference/topic/000003" title="Usuarios" />
+	<topic id="conference/topic/000004" title="Roles" />
+	
+	<breadcrumb url="conference/topic/000000" title="Gestion del Congreso" />
+</toc>

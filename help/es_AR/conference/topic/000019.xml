@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000019.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Import/Export Data
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000019" locale="es_AR" title="Importar/exportar datos" toc="conference/toc/000002" key="conference.currentConferences.importExport">
+	<section>
+		<![CDATA[<p> El rasgo de importar/exportar datos permite al Gestor del Congreso ingresar datos y extraer datos de OCS.</p> <p> La importacion/exportacion de datos es implementada usando plugins, donde cada formato o tipo de dato es provisto por un plugin diferente. Para mas informacion, refierase a la documentacion de cada plugin, la cual se encuentra en el directorio de plugins en el mismo OCS.</p>
+
+		<p> Actualmente, dos plugins de Importar/exportar funcionan con OCS como esta documentado debajo. Mas opciones para importar y exportar seran desarrolladas in futuras versiones de OCS.</p>
+
+		<p> La funcionalidad de Importar/exportar esta tambien disponible como una herramienta de linea de comando; mire herramientas importar/exportar.php para mas informacion..</p>]]>
+	</section>
+	<section title="Plugin de Usuario XML">
+	         <![CDATA[<p> El Plugin de Usuario XML puede ser usado para importar y exportar usuarios. Mire plugins/importarexportar/usuarios para mas informacion de este plugin.</p>]]>
+	</section>
+	<section title="Plugin de Exportar NLM XML">
+			<![CDATA[<p>Plugin de Exportar NLM XML puede ser usado para exportar datos del congreso en el formato para indexar NLM Meeting Abstracts XML. Mire plugins/importarexportar/nlm para mas informacion de este plugin.</p>]]>	
+	</section>
+</topic>

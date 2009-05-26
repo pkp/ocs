@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000023.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Payment Methods
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000023" locale="es_AR" title="Metodos de Pago" toc="conference/toc/000002"  key="conference.currentConferences.paymentMethods">
+	<section>
+		<![CDATA[<p> El Gestor del Congreso tiene la opcion de habilitar tanto el Pago de Cuota via Manual como el Pago de Cuota via Paypal, lo que determina donde el individuo que se esta registrando debera hacer el pago para asistir al Congreso: dependiendo lo elegido, debera ingresar a la pagina de Paypal o a la de Pago Manual.</p>
+
+		<p><em>Pago de Cuota via Manual </em>. Si esta opcion es seleccionada, puede usarse cheques, ordenes de dinero, informacion de tarjeta de credita enviada por email, telefonos, etc. El Gestor del Congreso validara el pago antes de que la registracion se active.</p>
+		<p><em>Pago de Cuota via Paypal</em>. Si esta opcion es elegida, se puede usar tanto las tarjetas de credito principales como los Cheques Electronicos. Una cuenta de negocios Paypal necesita ser activada, asi como la Informacion de Cuenta del Vendedory el IPN URL deben ser completados. </p> ]]>
+	</section>
+</topic>

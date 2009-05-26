@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000005.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Submissions 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000005" locale="es_AR" title="Envios" toc="editorial/toc/000001" subtoc="editorial/toc/000005" key="editorial.directorsRole.submissions">
+	<section>
+		<![CDATA[<p> Todos los envios al congreso ingresan a una de las cuatro colas ubicadas en Envios, en la Pagina de Inicio del Director, dependiendo de la fase del proceso editorial en la que se encuentran actualmente. El Director puede supervisar cuantos envios estan sin asignar, cuantos en revision, cuantos son aceptados como presentaciones, y cuantos estan en los archivos, asi como esta autorizado para hacer cambios en cualquiera de esos archivos.</p>]]>	
+	</section>
+</topic>

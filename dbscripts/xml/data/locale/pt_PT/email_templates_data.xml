@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../dtd/xmldata.dtd">
+
+<!--
+  * email_templates_data.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Email templates data XML file (Portuguese).
+  *
+  * Translated by José Castro Silva, ISPA - Instituto Superior de Psicologia Aplicada.
+  *
+  * $Id$
+  -->
+
+<data>
+	<table name="email_templates_default_data">
+		<field_default name="locale">pt_PT</field_default>
+
+		<!--
+		  *
+		  * General
+		  *
+		  -->
+		<row>
+			<field name="email_key">PASSWORD_RESET_CONFIRM</field>
+			<field name="subject">Confirmação de Recuperação de Senha</field>
+			<field name="body">Recebemos um pedido de recuperação da sua senha para o portal {$siteTitle}.
+
+Se você não realizou este pedido, por favor ignore este e-mail e a sua senha não será alterada. Se deseja recuperar a sua senha, clique no endereço abaixo.
+
+Recuperar a minha senha: {$url}
+
+{$principalContactSignature}</field>
+			<field name="description">Este e-mail é enviado aos utilizadores inscritos quando esqueceram a sua senha e não conseguem efectuar o login. É enviado um endereço para que eles possam recuperar a sua senha.</field>
+		</row>
+		<row>
+			<field name="email_key">PASSWORD_RESET</field>
+			<field name="subject">Senha Recuperada</field>
+			<field name="body">A sua senha foi recuperada com sucesso para o portal {$siteTitle}. Por favor, guarde o nome de utilizador e senha, estes dados são necessários em futuros contactos com o sistema da conferência.
+
+O seu nome de utilizador: {$username}
+A sua senha: {$password}
+
+{$principalContactSignature}</field>
+			<field name="description">Este e-mail é enviado aos utilizadores inscritos quando eles recuperam a sua senha, ao efectuarem, com sucesso, o processo descrito no e-mail PASSWORD_RESET_CONFIRM.</field>
+		</row>
+		<row>
+			<field name="email_key">USER_REGISTER</field>
+			<field name="subject">Inscrição de Novo Utilizador</field>
+			<field name="body">Obrigado pela sua inscrição no evento: {$conferenceName}. Por favor, anote os seus dados abaixo discriminados, pois serão necessários em futuros contactos.
+
+Utilizador: {$username}
+Senha: {$password}
+
+Obrigado,
+{$principalContactSignature}</field>
+			<field name="description">Este e-mail é enviado aos utilizadores recém inscritos apresentando as boas-vindas ao sistema e informando-os sobre os seus dados de utilizador e senha.</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Submission-related
+		  *
+		  -->
+		<row>
+			<field name="email_key">SUBMISSION_ACK</field>
+			<field name="subject">Aviso de recebimento de Submissão</field>
+			<field name="body">{$presenterName}:
+
+Obrigado pela sua sua submissão, "{$paperTitle}" ao evento: {$conferenceName}. Com o nosso sistema de gestão de conferências on-line, você será capaz de acompanhar o progresso da sua submissão, através do processo editorial, acedendo ao portal da conferência:
+
+URL da submissão: {$submissionUrl}
+Nome de utilizador: {$presenterUsername}
+
+Quaisquer dúvidas, por favor entre em contacto. Obrigado por considerar esta conferência um local para o seu trabalho.
+
+{$editorialContactSignature}</field>
+			<field name="description">Este e-mail, quando activo, é enviado automaticamente para o autor quando ele(a) finaliza o processo de submissão de um artigo ou resumo "Abstract" à conferência. Fornece informações sobre o acompanhamento do processo de submissão e agradece ao autor a submissão feita.</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_UPLOAD_ACK</field>
+			<field name="subject">Aviso de recebimento de arquivo de submissão</field>
+			<field name="body">{$presenterName}:
+
+Obrigado por enviar a sua apresentação, "{$paperTitle}" ao evento: {$conferenceName}. Com o nosso sistema de gestão de conferências on-line, você será capaz de acompanhar o progresso da sua submissão, através do processo editorial ao aceder ao portal da conferência:
+
+URL da submissão: {$submissionUrl}
+Nome de utilizador: {$presenterUsername}
+
+Quaisquer dúvidas, por favor entre em contacto. Obrigado por considerar esta conferência um local para o seu trabalho.
+
+{$editorialContactSignature}</field>
+			<field name="description">Este e-mail, quando activado, é enviado automaticamente para o autor quando ele(a) finaliza o processo de submeter um artigo ou resumo "Abstract" à conferência. Fornece informações sobre o acompanhamento do processo de submissão e agradece ao autor pela submissão.</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_UNSUITABLE</field>
+			<field name="subject">Submissão não apropriada</field>
+			<field name="body">{$presenterName}:
+
+Após uma revisão inicial de "{$paperTitle}", ficou claro que a submissão não é direccionada ao âmbito e foco do evento: {$conferenceName}. Recomendo que consulte a descrição desta conferência no menu "Sobre", assim como outras conferência anteriores, para saber mais sobre os trabalhos que aceitamos. Considere apresentar a submissão deste artigo ou resumo "abstract" a outra conferência mais apropriada.
+
+
+{$editorialContactSignature}</field>
+			<field name="description"></field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_COMMENT</field>
+			<field name="subject">Comentário da Submissão</field>
+			<field name="body">{$name}:
+
+{$commentName} adicionou um comentário à sua submissão, "{$paperTitle}" no evento: {$conferenceName}:
+
+{$comments}</field>
+			<field name="description">Este e-mail notifica várias pessoas envolvidas no processo de editoração de uma submissão que recebeu um novo comentário</field>
+		</row>
+		<row>
+			<field name="email_key">SUBMISSION_DECISION_REVIEWERS</field>
+			<field name="subject">Decisão sobre "{$paperTitle}"</field>
+			<field name="body">Como um dos avaliadores da submissão, "{$paperTitle}," ao evento: {$conferenceName}, envio-lhe as revisões e decisões editorias enviadas ao palestrante desta parte.
+Obrigado novamente pela sua importante participação neste processo.
+ 
+{$editorialContactSignature}
+
+{$comments}</field>
+			<field name="description">Este e-mail informa os avaliadores de uma submissão que o processo de revisão foi finalizado. Inclui informações sobre o artigo e a decisão tomada e agradece aos avaliadores pelas suas contribuições</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Director
+		  *
+		  -->
+		<row>
+			<field name="email_key">DIRECTOR_ASSIGN</field>
+			<field name="subject">Tarefa designada pelo Director</field>
+			<field name="body">{$editorialContactName}:
+
+A submissão, "{$paperTitle}," ao evento: {$conferenceName} foi-lhe designada e permitirá que a consulte como se fosse um coordenador de painel por todo o processo editorial.
+
+URL da submissão: {$submissionUrl}
+Nome do utilizador: {$directorUsername}
+
+Obrigado,
+{$editorialContactSignature}</field>
+			<field name="description">Este e-mail informa o coordenador de painel que o Director designou a tarefa de supervisionar uma submissão através do processo de edição. Contém informações sobre a submissão e como aceder ao portal da conferência</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Peer Review
+		  *
+		  -->
+		<row>
+			<field name="email_key">REVIEW_REQUEST</field>
+			<field name="subject">Pedido de Revisão</field>
+			<field name="body">{$reviewerName}:
+
+Acreditamos que seria um excelente avaliador para a proposta, "{$paperTitle}," a qual foi submetida para {$conferenceName}. O extrato da submissão está inserido abaixo, esperamos que considere o convite desta importante tarefa.
+
+Por favor, entre no site da conferência até {$weekLaterDate} para aceitar, ou não, o convite de revisão. Use o mesmo Site para aceder à submissão, registar a revisão e recomendações. O endereço do site é: {$conferenceUrl}
+
+A revisão tem de ser feita até {$reviewDueDate}.
+
+Caso não possua um utilizador (email) e senha de acesso ao site da conferência, pode-se utilizar este link para trocar a senha (que será enviada para o seu email) : {$passwordResetUrl} 
+
+Endereço de submissão {$submissionReviewUrl}
+
+Grato por considerar o nosso pedido.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Resumo
+{$paperAbstract}</field>
+			<field name="description">Este é email do coordenador de painel para o avaliador para que aceite ou não a tarefa de avaliar uma submissão. Fornece informações sobre a submissão como: um pequeno resumo, a data final para a revisão e como aceder à submissão .</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REQUEST_ONECLICK</field>
+			<field name="subject">pedido de revisão</field>
+			<field name="body">{$reviewerName}:
+
+Acreditamos que seria um excelente avaliador para a proposta, "{$paperTitle}," a qual foi submetida para {$conferenceName}. O extracto da submissão está inserido abaixo, esperamos que considere o convite desta importante tarefa.
+
+Por favor, entre no site da conferência até {$weekLaterDate} para aceitar, ou não, o convite de revisão. Use o mesmo Site para aceder à submissão, registar a revisão e recomendações. O endereço do site é: {$conferenceUrl}
+
+A revisão tem de ser feita até {$reviewDueDate}.
+
+Endereço de submissão {$submissionReviewUrl}
+
+Grato por considerar o nosso pedido.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Resumo
+{$paperAbstract}</field>
+			<field name="description">Este email do coordenador de painel para o avaliador para que aceite ou não a tarefa de avaliar uma submissão. Fornece informações sobre a submissão como: um pequeno resumo, a data final para a revisão e como aceder à submissão. Esta mensagem é utilizada quando o processo de revisão padrão é seleccionado na configuração da conferência, passo 2 e o acesso ao avaliador one-click está disponível.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_CANCEL</field>
+			<field name="subject">Pedido de revisão cancelado</field>
+			<field name="body">{$reviewerName}:
+
+Decidimos cancelar o nosso pedido de revisão para a submissão:  "{$paperTitle}," para a  {$conferenceName}. Pedimos sinceras desculpas pelos inconvenientes que esta decisão possa ter causado. Esperamos poder contar com sua colaboração nesta ou em futuras conferências. 
+
+Caso tenha alguma dúvida, por favor entre em contacto.
+
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado do coordenador de painel para o avaliador que possui uma revisão de uma submissão em progresso, para notificá-lo que a revisão pode ser cancelada.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_CONFIRM</field>
+			<field name="subject">Disponível para Avaliar</field>
+			<field name="body">{$editorialContactName}:
+
+Estou disponível para avaliar a submissão: "{$paperTitle}," para a  {$conferenceName}. Obrigado pela consideração. Espero ter a revisão concluída até: {$reviewDueDate}, podendo ser antes.
+
+{$reviewerName}</field>
+			<field name="description">Este email é enviado para o coordenador de painel em resposta ao pedido de revisão para avisá-lo que o pedido de revisão foi aceite e será concluído na data especificada.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_CONFIRM_ACK</field>
+			<field name="subject">Pedido de Revisão aceite</field>
+			<field name="body">{$reviewerName}:
+
+Grato por aceitar avaliar a  "{$paperTitle}" para a {$conferenceName} até {$reviewDueDate}.
+
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado do coordenador de painel para o avaliador a informá-lo sobre a sua aceitação da tarefa de revisão ou encorajá-lo para concluir a revisão.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_DECLINE</field>
+			<field name="subject">indisponível para avaliar</field>
+			<field name="body">{$editorialContactName}:
+
+Temo que, neste momento, esteja indisponível para avaliar a submissão, "{$paperTitle}," para a  {$conferenceName}. Agradeço o lembrete e espero poder ajudar em outra oportunidade.
+
+{$reviewerName}</field>
+			<field name="description">Este email é enviado do Avaliador para o Director em resposta a um pedido de revisão no sentido de informar o Drector que o pedido de revisão foi cancelado.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_COMPLETE</field>
+			<field name="subject">revisão concluída</field>
+			<field name="body">{$editorialContactName}:
+
+Completei a revisão de  "{$paperTitle}" para {$conferenceName}, e submeti as recomendações: "{$recommendation}."
+
+{$reviewerName}</field>
+			<field name="description">Este email é enviado do Avaliador para o Director a informá-lo que a revisão foi conluída e que os comentários e recomendações foram registadas no site da conferência.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_ACK</field>
+			<field name="subject">Reconhecimento pela revisão</field>
+			<field name="body">{$reviewerName}:
+
+Obrigado por completar a revisão da submissão, "{$paperTitle}," para{$conferenceName}. Agradecemos o seu contributo para a qualidade dos trabalhos produzidos.
+
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado pelo coordenador de painel para confirmar o recebimento da revisão completa e agradecer ao avaliador pela sua contribuição.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REMIND</field>
+			<field name="subject">Lembrete sobre a revisão</field>
+			<field name="body">{$reviewerName}:
+
+Esta mensagem serve para lembrá-lo sobre o pedido de revisão da submissão, "{$paperTitle}," para {$conferenceName}. Esperamos que tenha avaliado até {$reviewDueDate}, e seria conveniente recebermos a sua resposta o quanto antes.
+
+Caso não tenha utilizador e senha para o site do evento, use este link para trocar a senha (será enviado uma mensagem para o utilizador - Email). {$passwordResetUrl}
+
+Link da submissão: {$submissionReviewUrl}
+
+Por favor confirme a sua disponibilidade para completar esta importante contribuição para o trabalho deste evento. Esperamos notícias suas.
+
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado pelo coordenador de painel para lembrar o avaliador sobre a data de entrega da revisão.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REMIND_ONECLICK</field>
+			<field name="subject">Lembrete sobre a revisão</field>
+			<field name="body">{$reviewerName}:
+
+Esta mensagem é apenas para lembrá-lo sobre o pedido de revisão da submissão, "{$paperTitle}," para {$conferenceName}. Esperamos que tenha avaliado até {$reviewDueDate}, e seria conveniente recebermos a sua resposta o quanto antes.
+
+link da submissão: {$submissionReviewUrl}
+
+Por favor confirme a sua disponibilidade para completar esta importante contribuição para o trabalho deste evento. Esparamos notícias suas.
+
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado pelo coordenador de painel para lembrar o avaliador sobre a data limite.</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REMIND_AUTO</field>
+			<field name="subject">Lembrete automático sobre a revisão</field>
+			<field name="body">{$reviewerName}:
+
+Esta mensagem é apenas para lembrá-lo sobre o pedido de revisão da submissão, "{$paperTitle}," para {$conferenceName}. Esperamos que tenha avaliado até {$reviewDueDate}. Este email foi gerado e enviado automaticamente pois o prazo de revisão foi atingido. Seria conveniente recebermos a sua resposta o quanto antes.
+
+Caso não tenha nome de utilizador e senha para o site do evento, use este link para trocar a senha (será enviado uma mensagem para o utilizador - Email). {$passwordResetUrl}
+
+link da submissão: {$submissionReviewUrl}
+
+Por favor confirme a sua disponibilidade para completar esta importante contribuição para o trabalho deste evento. Esperamos notícias suas.
+
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado automaticamente, quando um avaliador ultrapassa uma data  (Veja: opções de revisão sob Configuração da Conferência, passo 2) e o acesso do avaliador ao one-click está indisponível. tarefas esquematizadas Scheduled devem estar disponíveis e configuradas (veja o arquivo de configuração do site).</field>
+		</row>
+		<row>
+			<field name="email_key">REVIEW_REMIND_AUTO_ONECLICK</field>
+			<field name="subject">Lembrete automático sobre a revisão</field>
+			<field name="body">{$reviewerName}:
+
+Esta mensagem é apenas para lembrá-lo sobre o pedido de revisão da submissão, "{$paperTitle}," para {$conferenceName}. Esperamos que tenha avaliado até {$reviewDueDate}, este email foi gerado e enviado automaticamente pois o prazo de revisão foi atingido. Seria conveniente recebermos a sua resposta o quanto antes.
+Submission URL: {$submissionReviewUrl}
+
+Por favor confirme a sua disponibilidade para completar esta importante contribuição para o trabalho deste evento. Esperamos notícias suas.
+
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado automaticamente, quando um avaliador ultrapassa uma data  (Veja: opções de revisão sob Configuração da Conferência, passo 2) e o acesso do avaliador ao one-click está indisponível. tarefas esquematizadas Scheduled  devem estar disponíveis e configuradas (veja o arquivo de configuração do site).</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Director Review
+		  *
+		  -->
+		<row>
+			<field name="email_key">SUBMISSION_ABSTRACT_ACCEPT</field>
+			<field name="subject">Decisão Editorial</field>
+			<field name="body">{$presenterName}:
+
+Parabéns, o resumo do seu documento {$paperTitle} foi aceite para ser apresentado na(o) {$conferenceTitle} que acontecerá {$conferenceDate} em {$locationCity}. 
+
+Obrigado e aguardamos a sua participação no evento.
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado pelo coordenador de painel ao autor da submissão para notificá-lo da sua decisão em relação a esta.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_ABSTRACT_DECLINE</field>
+			<field name="subject">Decisão Editorial</field>
+			<field name="body">{$presenterName}:
+
+Completamos a revisão do resumo do seu documento "{$paperTitle}." O resultado foi ...
+
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado pelo Coordenador de Painel ao autor da submissão para notificá-lo da sua decisão em relação a esta.</field>
+		</row>
+
+ 		<row>
+			<field name="email_key">SUBMISSION_ABSTRACT_REVISE</field>
+			<field name="subject">Decisão Editorial</field>
+			<field name="body">{$presenterName}:
+
+Após rigorosa revisão do resumo do seu documento, "{$paperTitle}" aceitar-se-á para ser apresentado na(o) {$conferenceTitle} desde que as seguintes modificações sejam realizadas.
+
+Obrigado e aguardamos a sua participação no evento.
+
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado pelo coordenador de painel ao autor da submissão para notificá-lo da sua decisão em relação a esta.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_ACCEPT</field>
+			<field name="subject">Decisão Editorial</field>
+			<field name="body">{$presenterName}:
+
+Parabéns, o seu documento {$paperTitle} foi aceite para ser apresentado na(o) {$conferenceTitle} que acontecerá {$conferenceDate} em {$locationCity}. 
+
+Obrigado e aguardamos a sua participação no evento.
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado pelo coordenador de painel ao autor da submissão para notificá-lo da sua decisão em relação a esta.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_DECLINE</field>
+			<field name="subject">Decisão Editorial</field>
+			<field name="body">{$presenterName}:
+
+Completamos a revisão de seu documento "{$paperTitle}." O resultado foi ...
+
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado pelo coordenador de painel ao autor da submissão para notificá-lo da sua decisão em relação a esta.</field>
+		</row>
+
+		<row>
+			<field name="email_key">SUBMISSION_PAPER_REVISE</field>
+			<field name="subject">Decisão Editorial</field>
+			<field name="body">{$presenterName}:
+
+Após rigorosa revisão do seu documento, "{$paperTitle}" aceitar-se-á para ser apresentado na(o) {$conferenceTitle} desde que as seguintes modificações sejam realizadas.
+
+Obrigado e aguardamos a sua participação no evento.
+
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado pelo coordenador de painel ao autor da submissão para notificá-lo da sua decisão em relação a esta.</field>
+		</row>
+
+
+		<!--
+		  *
+		  * Registration 
+		  *
+		  -->
+		<row>
+			<field name="email_key">REGISTRATION_NOTIFY</field>
+			<field name="subject">Notificação de Inscrição</field>
+			<field name="body">{$registrantName}:
+
+Você encontra-se registado neste sistema para a(o) {$conferenceName}, com o seguinte registo:
+
+{$registrationType}
+
+Para aceder ao conteúdo disponível somente a participante registados, entre no sistema com o seu login, "{$username}".
+
+Após aceder ao sistema, poderá alterar o seu perfil e senha a qualquer momento.
+
+Se você possuir uma inscrição institucional, não será necessário aos utilizadores da instituição se conectarem, uma vez que as requisições para o conteúdo restrito serão automaticamente autenticadas pelo sistema.
+
+Em caso de dúvidas, ente em contacto.
+
+{$registrationContactSignature}</field>
+			<field name="description">Este email notifica o leitor que o administrador criou um registo para ele. Informa também sobre a URL da conferência bem como instruções de acesso.</field>
+		</row>
+		<row>
+			<field name="email_key">OPEN_ACCESS_NOTIFY</field>
+			<field name="subject">Acesso Livre</field>
+			<field name="body">Leitores:
+
+{$conferenceName} abriu o acesso a novos artigos. Convidamos a ler o sumário e visitar o nosso portal ({$conferenceUrl}) para aceder aos documentos e artigos do seu interesse.
+
+Agradecemos o interesse pelo nosso trabalho,
+{$editorialContactSignature}</field>
+			<field name="description">Este email é enviado aos leitores registados que solicitaram receber um email de notificação quando um artigo está disponível para acesso livre.</field>
+		</row>
+		<row>
+			<field name="email_key">MANUAL_PAYMENT_RECEIVED</field>
+			<field name="subject">O seu pagamento para a {$conferenceName} foi recebido</field>
+			<field name="body">{$registrantName}:
+
+O seu pagamento para a {$conferenceName} foi recebido e registado na sua conta.
+
+Para qualquer esclarecimento adicional, queira contactar-nos.
+
+{$registrationContactSignature}</field>
+			<field name="description">Este email é enviado a leitores inscritos que tenham solicitado receber avisos quando novos artigos estão disponíveis para acesso livre.</field>
+		</row>
+		<!--<row>
+			<field name="email_key">REGISTRATION_BEFORE_EXPIRY</field>
+			<field name="subject">Notice of Registration Expiry</field>
+			<field name="body">{$registrantName}:
+
+Your {$conferenceName} registration is about to expire.
+
+{$registrationType}
+Expiry date: {$expiryDate}
+
+To ensure the continuity of your access to this conference, please go to the conference website and renew your registration. You are able to log in to the system with your username, "{$username}".
+
+If you have any questions, please feel free to contact me.
+
+{$registrationContactSignature}</field>
+			<field name="description">This email notifies a registrant that their registration will soon expire. It provides the conference's URL along with instructions for access.</field>
+		</row>-->
+		<!--<row>
+			<field name="email_key">REGISTRATION_AFTER_EXPIRY</field>
+			<field name="subject">Registration Expired</field>
+			<field name="body">{$registrantName}:
+
+Your {$conferenceName} registration has expired.
+
+{$registrationType}
+Expiry date: {$expiryDate}
+
+To renew your registration, please go to the conference website. You are able to log in to the system with your username, "{$username}".
+
+If you have any questions, please feel free to contact me.
+
+{$registrationContactSignature}</field>
+			<field name="description">This email notifies a registrant that their registration has expired. It provides the conference's URL along with instructions for access.</field>
+		</row>-->
+		<!--<row>
+			<field name="email_key">REGISTRATION_AFTER_EXPIRY_LAST</field>
+			<field name="subject">Registration Expired - Final Reminder</field>
+			<field name="body">{$registrantName}:
+
+Your {$conferenceName} registration has expired.
+Please note that this is the final reminder that will be emailed to you.
+
+{$registrationType}
+Expiry date: {$expiryDate}
+
+To renew your registration, please go to the conference website. You are able to log in to the system with your username, "{$username}".
+
+If you have any questions, please feel free to contact me.
+
+{$registrationContactSignature}</field>
+			<field name="description">This email notifies a registrant that their registration has expired. It provides the conference's URL along with instructions for access.</field>
+		</row>-->
+		<row>
+			<field name="email_key">USER_VALIDATE</field>
+			<field name="subject">Validação de Registo</field>
+			<field name="body">{$userFullName}
+
+O seu registo foi criado, sob o nome  {$conferenceName}.
+No entanto, para poder usá-lo, é necessário validar o seu e-mail.
+Para validar o seu e-mail, basta clicar no link a seguir:
+
+{$activateUrl}
+
+Atenciosamente,
+{$principalContactSignature}</field>
+			<field name="description">Este e-mail é enviado ao utilizador recentemente registado para validação de conta de e-mail.</field>
+		</row>
+	</table>
+</data>

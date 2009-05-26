@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000010.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Files Browser
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000010" locale="es_AR" title="Examinador de Archivos" toc="conference/toc/000001" key="conference.generalManagement.filesBrowser">
+	<section>
+		<![CDATA[<p> El Examinador de Archivos permite al Gestor del Congreso crear nuevos directorios y actualizar archivos en forma directa. Los archivos pueden ser vistos, descargados, y borrados como si interactuaramos con un sistema de archivos locales. </p>
+
+		<p> Notese que esto es intencionado solo como un facilidad administrativa y generalmente no sera necesitado en la gestion dia a dia del congreso. La informacion de las presentaciones es mantenida como una combinacion de archivos asi como de archivos de datos en la base; eliminar datos de presentacion con el Examinador de Archivos no eliminara los archivos asociados en la base.</p>]]>
+	</section>
+</topic>

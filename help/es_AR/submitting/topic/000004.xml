@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000004.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Submission Process - Supplementary Files 
+  *
+  * $Id$
+  -->
+
+<topic id="submission/topic/000004" locale="es_AR" title="Archivos Suplementarios" toc="submission/toc/000000" key="submission.supplementaryFiles">
+	<section>
+		<![CDATA[<p> Si la casilla al lado de Materiales Suplementarios es aceptada por el Gestor del Congreso en el paso 2.1 de Configuracion del Congreso Programado, el Autor tendra la opcion de subir archivos suplementarios en el Paso Cuatro del proceso de envio. </p>
+		   <p><em>Contenido de los Archivos Suplementarios</em>. La intencion de los archivos suplementarios es incluir instrumentos de busqueda, conjunto de datos, fuentes de texto o figuras y tablas ubicadas en documentos apartes por la dificultad de integrarlas con el texto, o por otros meritos. Los Archivos Suplementarios contribuyen a tener formas mas abiertas y robustas de busqueda y formato academico. El Autor indexara archivos suplementarios independientes de la propuesta enviada, por lo que se debe permitir que los archivos suplementarios sean encontrados por aquellos buscando este tipo particular de items.</p>
+		   <p><em>Formatos de Archivos Suplementarios</em>. Los Arhicos Suplementarios pueden tambien ser subidos en cualquier formato de archivo. Normalmente son subidos en su formato original, y se mantienen sin cambios, en contraste con la propuesta enviada que debe ser estandarizada de acuerdo al formato de envio asi como al formato de publicacion. Se necesitan determinados softwares para abrir y ver archivos suplementarios en su formato original. </p>]]>	
+	</section>
+</topic>

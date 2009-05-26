@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000015.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Current Conferences - Conference Timeline
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000015" locale="es_AR" title="Cronograma del Congreso" toc="conference/toc/000002"  key="conference.currentConferences.timeline">
+	<section>
+		<![CDATA[<p> El Gestor del Congreso puede, desde esta pagina, controlar todos los aspectos del cronograma del congreso programado. Las citas pueden ser fijadas para la fecha de inicio y cierre; para promocionar el congreso o moverlo al archivo; para la registracion de autor y la aprobacion de los tiempos de los pedidos; y para registracion de los revisores. </p>
+		
+		<p> El Gestor del Congreso puede tambien fijar si, y cuando, resumenes aceptados, trabajos aprobados y el programa son subidos al Sitio Web; si existira un retraso para el acceso abierto a los trabajos; cuando el tiempo de comentarios (si estan permitidos) finalizara; y tambien si el cronograma del congreso sera subido. </p>
+		
+		<p> El sistema devolvera un mensaje de error si usted crea una situacion programada "imposible". Por ejemplo, si usted programa que el congreso sea archivado antes del dia de cierre. Los mensajes de error pueden ser anulados por el Gestor del Congreso si se desplaza hacia la parte inferior de la pagina luego de recibir un mensaje de error, y revisa la Casilla de Anulacion de Mensajes de Error.</p>]]>
+	</section>
+</topic>

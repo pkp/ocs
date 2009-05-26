@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Submission Process Index 
+  *
+  * $Id$
+  -->
+
+<topic id="submission/topic/000000" locale="es_AR" title="Proceso de Envio" toc="index/toc/000000" subtoc="submission/toc/000000" key="submission.index">
+	<section>
+		<![CDATA[<p> El congreso programado provee Autores con la habilidad de subir su envio directamente al congreso programado. Si el Gestor del Congreso ha habilitado una ventana de envios en el Cronograma del Congreso y ha configurado los tipos de envio en el paso 2.1 de Configuracion del Congreso Programado, clickeando en el rol del Autor los usuarios seran dirigidos a la pagina de envios, donde se encuentra una lista de los envios actuales asi como los pasados, y donde un nuevo envio a la revista puede ser iniciado. Si la ventana de envios esta cerrada, los Autores veran en la pagina que actualmente no se estan aceptando envios.</p>
+		 <p> El proceso de envio para Autores esta dividido en cinco pasos posibles, con orientacion en cada paso. Dependiendo de las opciones de configuracion elegidas en el paso 2.1 de Configuracion del Congreso Programado, los Autores pueden tener que enviar solo un resumen; una presentacion sin su resumen; el resumen y la presentacion juntas; o un resumen con un trabajo a continuacion, si el resumen es aceptado. Los Autores no necesitan completar todos los pasos en una sola sesion, pudiendo retornar a esta, la cual estara listada en la tabla de envios como "Incompleta". </p>]]>	
+	</section>
+</topic>

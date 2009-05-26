@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000008.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Prepared Emails 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000008" locale="es_AR" title="Emails preparados" toc="conference/toc/000001" key="conference.generalManagement.emails">
+	<section title="Prepared Emails">
+		<![CDATA[<p> OCS usa una variedad de emails preparados para comunicarse durante el flujo de trabajo en proceso, tales como: asignacion de solicitudes por parte del Director a los Director de Seccion; revision de solicitudes y respuestas entre los Directores de Seccion y los Revisores, asi como notificaciones de los Directores de Seccion a Autores. El Gestor del Congreso puede encontrar una lista completa de plantillas de emails haciendo click en "Emails preparadas", link dentro de Gestion General, en el pagina del Sitio de Gestion General del Congreso. Estos puedes ser editados si clickeamos el link de Editar al lado de cada unbo de ellos, asi como tambien pueden ser deshabilitados o restaurados a la plantilla original. Nuevas plantillas de emails pueden ser creadas.</p>]]>
+		
+	</section>
+	<section title="Sending Emails">
+		<![CDATA[<p> En todo el sistema aparecen iconos de emails para varias tareas. Cuando un icono de email es clickeado, se genera un mail estandar listo para ser enviado, que igualmente puede ser editado por el remitente antes de ser enviado. En este email, el destinario previsto es completado en forma automatica (a menos de que para empezar no haya un destinario previsto), y el resto de los campos son llenados con informacion relevante, como el titulo y el resumen del pedido en cuestion, la fecha limite de una revision, o el acceso al pedido. El remitente puede alterar la direccion de email del destinario asi como agregar receptores adicionales, excepto en los casos que involucren envio de contraseñas (por motivos de seguridad).</p>
+
+		<p> Notese que la correcion de la direccion de email del destinario mientras editamos un email no altera la direccion de email cargada en la pagina de Perfil del sistema. Para corregir la direccion de mail del destinario en base permanente, debemos notificar al Gestor del Congreso, quien tiene la autoridad para hacer semejantes cambios en el perfil.</p>]]>
+	</section>
+</topic>

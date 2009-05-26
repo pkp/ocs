@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000027.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Users - Create New User 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000027" locale="es_AR" title="Crear un nuevo usuario" toc="conference/toc/000003" key="conference.users.createNewUser">
+	<section>
+		<![CDATA[<p> El Gestor del Congreso puede crear nuevos usuarios y asignarles roles especificos en un congreso alojado, y opcionalmente a un congreso programado.</p>]]>
+	</section>   
+	<section title="Creando usuario en un Congreso Alojado">
+		<![CDATA[<p> Es posible crear un usuarios sin importar si hay o no un congreso programado actual. El Gestor del Congreso puede hacer click en el link de Crear Nuevo Usuario dentro del encabezado de Usuario, y rellenar la forma subsecuente.</p>
+		<p> Los campos obligatorios son Nombre; Apellido; Nombre de Usuario; Contraseña/Repetir Contraseña; y Email. El Gestor del Congreso puede optar tener un sistema que genere contraseñas en forma aleatoria; puede enviar al usuario un email de bienvenida con su forma de registracion; y puede adicionalmente pedir al usuario que cambie su contraseña la primera vez que ingresa.</p>
+		<p> Note que con este metodo los Gestores del Congreso solo pueden registrar usuarios sin roles asignados, o a los mismos Gestores del Congreso - para crear un usuario con un rol especifico en un congreso alojado, siga el siguiente metodo.</p>  ]]>
+	</section>
+	<section title="Creando usuarios en un Congreso Programado">
+		<![CDATA[<p> Si un Congreso Programado ha sido creado por el Gestor del Congreso, se pueden crear usuarios y darles roles especificos en ese Congreso Programado. Por ejemplo, Director; Director de Seccion; Autor; Revisor; y Lector. Para hacer esto, el Gestor del Congreso puede hacer click el el link de Roles dentro de titulo del congreso programado en cuestion; clickear el link de crear nuevo usuario; y llenar la forma subsecuente, asegurandose de elegir algun rol aplicable.</p>
+		<p> El Gestor del Congreso tambien puede hacer click sobre el titulo de dicho rol, debajo del titulo del congreso programado en cuestion, y crear un nuevo usuario que automaticamente estara enrolado con tal rol.</p> ]]>
+	</section>
+</topic>

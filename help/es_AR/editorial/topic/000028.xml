@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000028.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Author's Role - Review - Peer Review
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000028" locale="es_AR" title="Revision por pares" toc="editorial/toc/000017" key="editorial.authorsRole.review.peerReview">
+	<section>
+		<![CDATA[<p> La fecha de inicio y de ultima modificacion en cuanto a revision son guardadas aqui. Las versiones del envio producidas y usadas durante el proceso de revision por pares - Version de Revision, Version del Director y version del Autor - estan tambien listadas.</p>]]>
+	</section>
+</topic>

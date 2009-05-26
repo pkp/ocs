@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000019.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Submissions - In Review 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000019" locale="es_AR" title="En Revision" toc="editorial/toc/000005" key="editorial.directorsRole.submissions.inReview">
+	<section>
+		<![CDATA[<p> El Director puede ver todas las presentaciones en revision si hace click en el link de En Revision, en la pagina de inicio del Usuario Director. Clickear en el titulo de la presentacion llevara al Director al resumen del envio actual o a la pagina de Revision del trabajo, dependiendo de como el congreso programado ha sido configurado y cuan avanzado se encuentra en proceso de revision. El Director sera capaz de: asignar uno o mas Revisores al envio haciendo click en el link de Seleccionar Revisor; grabar una decision del Director y notificar al autor sometido a dicha decision; enviar el envio de Revision de Resumen a Revision del Trabajo, si ambos pasos estan siendo usados; enviar el envio a la lista de Presentaciones, si aprieta el boton de Completar; y cargar galerias de diseño opcionales y archivos suplementarios, ubicados bajo el titulo de Diseño para presentacion en el sitio web del congreso programado. </p>]]>	
+	</section>
+</topic>

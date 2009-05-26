@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000039.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Website Management - Logging and Auditing
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000039" locale="es_AR" title="Registrando y auditando" toc="conference/toc/000005" key="conference.generalManagement.websiteManagement.loggingAuditing">
+	<section>
+		<![CDATA[<p> Une vez revisados, un archivo con todos las acciones y emails de un envio se mantendran en la {help_topic key="editorial.directorsRole.HistoryPage" text="Pagina de Historia de los Envios"}, y los cambios la configuracion del congreso seran guardados en el {help_topic key="conference.generalManagement.eventLog" text="Registro de Eventos"} (disponible desde la pagina de Gestion del Sitio del Congreso).</p>]]>
+	</section>
+</topic>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000037.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Website Management - Website Headers, Footers, Lists and Navigation Bar
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000037" locale="es_AR" title=" Encabezados, Pies de Pagina, Listas y Barras de Navegaciones del Sitio Web" toc="conference/toc/000005" key="conference.generalManagement.websiteManagement.headersFooters">
+	<section>
+		<![CDATA[<p><em>Encabezado de la pagina de inicio del Congreso:</em><br /> Cualquier imagen o logo puede ser subida aqui, o cualquier titulo de texto escrito aqui aparecera solamente en la pagina de inicio del congreso alojado.</p>
+		<p><em>Encabezado del Sitio Web:</em><br /> Cualquier informacion adherida aqui aparecera en todas las paginas "no paginas de inicio" de los congresos alojados. Un encabezado alternativo, incluyendo codigos de HTML, puede ser agregado aqui.</p>
+		<p><em>Pie de Pagina del Sitio Web:</em><br /> Toda informacion agregada aparecera en la pagina de todo congreso alojado. Puede agregarse HTML al pie de pagina del congreso.</p>
+		<p><em>Barra de Navegacion:</em><br /> Se pueden agregar items adicionales en la barra de navegacion: estos aparecen en forma de link en la barra de navegacion, y pueden llevarnos a tanto una pagina interna como a una externa.</p>
+		<p><em>Listas:</em><br /> Mucha de la informacion en OCS es presentada en forma d elista. El numero de items y numero de links de paginas que aparecen en tales listas puede ser especificado aqui.</p>]]>
+	</section>
+</topic>

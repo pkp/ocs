@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000014.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Reviewer's Role - Submissions 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000014" locale="es_AR" title="Envios" toc="editorial/toc/000003" key="editorial.reviewersRole.submissions">
+	<section>
+		<![CDATA[<p> La pagina de Envios Activos se puede encontrar en la Pagina de Inicio de Usuarios Revisores. Esta pagina contiene una lista de los envios asignados para revisar a ese Revisor. El Revisor puede completar una revision haciendo click en en el titulo de un envio activo y siguiendo los pasos subsecuentes.</p>
+		<p> Todas las revisiones de envios completas son listadas en la pagina de Archivos, con el titulo del envio y la recomendacion del revisor asi como la decision final del director. Se puede alcanzar informacion detallada de la revision haciendo click en el titulo.</p>
+		]]>	
+	</section>
+</topic>

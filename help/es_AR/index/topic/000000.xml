@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Index Help Page 
+  *
+  * $Id$
+  -->
+
+<topic id="index/topic/000000" locale="es_AR" title="Ayuda de OCS" toc="index/toc/000000" key="index.index">
+	<section>
+		<![CDATA[<p> La ayuda online para el Sistema de Congreso Abierto (OCS) esta designada para asistir a los usuarios en el proceso de gestionar un congreso entero - crear un sitio web para el congreso, arreglar tiempos y ubicaciones para las presentaciones y eventos del congreso, envios, revisiones y publicaciones de las presentaciones del congreso, registrar las asistencias, e indexar y compartir los procesos resultantes. Tambien sirve como un manual para OCS que describe el alcance y el flujo de trabajo del software. Este documento de ayuda tambien provee consejos editoriales acerca de las practicas comunes en la publicacion de congresos academicos. Ademas de este documento de ayuda, los usuarios pueden contactar al soporte tecnico del congreso, que esta listado en Personas, en la pagina de Acerca del Congreso. </p>
+		<p> Como OCS emplea roles designados para tareas particulares de una determinada fase - desde el Gestor del Congreso que establece el congreso programado al Autor que carga los materiales de la presentacion -, cada tema cubierto en este documento de ayuda se refiere a cada rol de cada tarea. La ayuda en linea depende del contexto: lo que uno mira depende del rol de ese invidivuo, asi como de donde estan en el sistema.</p>
+		
+		<p> Busqueda y Navegacion son habilitadas dentro del Documento de Ayuda:</p>
+		<p><em>Busqueda</em> En la parte superior derecha de cada pagina de ayuda hay un cuadro de "Buscar". Ingresando una palabra clave y presionando Buscar, encontraremos una lista de todas las coincidencias existentes en el documento de ayuda, una breve descripcion de cada item asi como un link al item.</p>
+		<p><em>Tabla de Contenidos</em> Haciendo click en este link el usuario es llevado a una tabla de contenidos para este documento de ayuda.</p>
+		<p><em>Un nivel mas arriba</em> Hacer click en este link te mueve un nivel mas arriba en la estructura jerarquica para este documento de ayuda.</p>]]>
+   </section>
+</topic>

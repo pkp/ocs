@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000024.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Track Director's Role - Review - Review Version 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000024" locale="es_AR" title="Version de Revision" toc="editorial/toc/000011" key="editorial.trackDirectorsRole.review.reviewVersion">
+	<section>
+		<![CDATA[<p><em> Estableciendo la version revisada del Envio</em>. Con cada envio, el Director de Seccion clickea en el nombre del archivo al lado de la lista de Version Revisada, la cual es casi siempre la version enviada por el Autor, a fin de revisar si el archivo original puede servir como Version Revisada (por ejemplo, no hay marcas identificables en el). Si no, deberia ser descargado, revisado para servir como Version Revisada, y luego subido. El Director de Seccion puede seleccionar entre dos versiones para enviar al Proceso de Revision.</p>
+		<p> El Director de Seccion puede tambien optar para arreglar los problemas menores del archivo original usando un procesador de palabras para hacer los cambios, guardando el archivo en la computadora y luego subiendo el archivo. </p>
+            <p> El Director de Seccion deberia tambien revisar si los Archivos Suplementarios pueden ser compartidos con los Revisores. A pesar de que en la casilla de control se expresa el deseo del Autor de presentar los archivos a los Revisores dek envio, el Director de Seccion puede deshacer esta preferencia y presionar el link de Guardar si estos archivos no son apropiados de algun modo.</p>
+		<p><em>Envios inadecuadamente preparados</em>. Si el Autor claramente fallo para seguir los Requerimientos de  la Guia del Autor y del Envio que tiene el congreso, el Director puede notificar al Autor que el trabajo necesita ser re-enviado. El Autor puede entonces re-enviar la version mejorada por email directamente al Director de Seccion, el que puede subirla como si fuera la Version Revisada. El Director de Seccion puede tambien decidir que el envio es sencillamente no adecuado para el congreso y notificar al Autor a tal efecto, enviando el envio a Archivos.</p>]]>	</section>
+</topic>

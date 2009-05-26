@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000005.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Website Management 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000005" locale="es_AR" title="Gestion del Congreso" toc="conference/toc/000001" subtoc="conference/toc/000005" key="conference.generalManagement.webSiteManagement.websiteManagement">
+	<section>
+		<![CDATA[<p><strong>El Sitio Web de Gestion</strong> es donde el Gestor del Congreso configura el sitio del Congreso alojado. Encontramos seis pasos:</p>
+		<ol>
+			<li>{help_topic key="conference.generalManagement.websiteManagement.about" text="Acerca del Congreso"}<br />
+			Descripcion del Congreso, contacto principal, copyright, etc.</li>
+
+			<li>{help_topic key="conference.generalManagement.websiteManagement.additional" text="Contenidos adicionales del Sitio Web"}<br />
+			Contenido de la pagina de inicio, informacion del usuario, y anuncios</li>
+
+			<li>{help_topic key="conference.generalManagement.websiteManagement.headersFooters" text=" Encabezados y Pies de paginas del Sitio Web, Listas y Barras de Navegacion<br />
+			Titulos y logos, encabezados, pies de paginas, etc.</li>
+
+			<li>{help_topic key="conference.generalManagement.websiteManagement.style" text="Estilo del Congreso"}<br />
+			Hoja de estilo en cascada (CCS) y tema para las paginas del congreso</li>
+
+			<li>{help_topic key="conference.generalManagement.websiteManagement.loggingAuditing" text="Registrando y auditando"}<br />
+			Registro de email, eventos, etc.</li>
+
+			<li>{help_topic key="conference.generalManagement.websiteManagement.indexing" text="Indexacion de Congreso"}<br />
+			Motores de busqueda y recoleccion de metadatos</li>
+		</ol>
+		
+		<p>Más informacion disponible para cada paso en la barra lateral.</p>
+				]]>
+	</section>
+</topic>

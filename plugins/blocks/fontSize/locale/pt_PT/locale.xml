@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the pt_BR (Portuguese) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="pt_PT" full_name="Português">
+	<message key="plugins.block.fontSize.displayName">Bloco Tamanho da Fonte</message>
+	<message key="plugins.block.fontSize.description">Este plugin oferece as ferramentas de tamanho de fonte na barra de menus.</message>
+	<message key="plugins.block.fontSize.title">Tamanho da fonte</message>
+	<message key="plugins.block.fontSize.small">Pequeno</message>
+	<message key="plugins.block.fontSize.medium">Médio</message>
+	<message key="plugins.block.fontSize.large">Grande</message>
+</locale>

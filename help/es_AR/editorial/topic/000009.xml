@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000009.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Ensuring a Blind Peer Review
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000009" locale="es_AR" title="Asegurando una revision ciega por pares" toc="editorial/toc/000001" key="editorial.directorsRole.blindPeerReview">
+	<section>
+		<![CDATA[<p> Para asegurar la integridad de una revision ciega por pares para los envios al congreso, se deberia hacer todo esfuerzo posible para preservar en secreto las identidades de tanto Autores como Revisores . Esto involucra que los Autores, Directores, Directores de Seccion y Revisores (quien cargan documentos como parte de su revision) revisen si se han seguido los siguientes pasos en lo relacionado con el texto y las propiedades de los archivos:</p>
+<ol><li> Los Autores del documento han borrado sus nombres del texto, con "Autor" y año usado en las referencias y pies de paginas, en vez de los nombres de los Autores, titulo del articulo, etc.</li>
+<li> Con los documentos de Microsoft Office, la identificacion del autor tambien deberia ser removida de las propiedades del archivo (mire en Archivo en Word), haciendo click en lo siguientes, empezando con Archivo en el menu principal de la aplicacion de Microsoft: Archivo; Guardar como; Herramientas (o Opciones con una Mac); Opciones de Seguridad; Remover informacion personal de las propiedades del archivo a guardar; Guardar.</li>
+<li> Con PDFs, los nombres de los Autores tambien deberian ser removidos de las Propiedades del Documentos, las cuales se encuentran dentro de Archivo, en el menu principal de Adobe Acrobat.</li>
+</ol>]]>
+	</section>
+</topic>

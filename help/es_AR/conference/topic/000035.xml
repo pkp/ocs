@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000035.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Website Management - About the Conference
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000035" locale="es_AR" title="Acerca del Congreso" toc="conference/toc/000005" key="conference.generalManagement.websiteManagement.about">
+	<section>
+		<![CDATA[<p><em>Titulo</em> y<em>Descripcion del Congreso:</em><br /> Los contenidos de esos campos son automaticamente llenados con informacion especificada por el Gestor del Sitio cuando el congreso alojado fue inicialmente creado, pero puede ser modificado aqui por el Gestor del Congreso. El titulo del Congreso y su descripcion aparecera en la lista de congresos alojados en la pagina de Indice del Sitio.</p>
+		<p><em>Contacto principal para el sitio web del Congreso:</em><br /> Esta es la informacion del contacto principal para el congreso alojado en su totalidad. Los contactos primarios tambien pueden ser asignados a congresos programados individuales. </p>
+		<p><em>Nota del Copyright:</em><br /> OCS viene con una nota default de copyright, la cual puede ser modificada. Puede ser obligatorio que los autores acepten esta nota como parte del proceso de envio, y el logo de licencia de bienes comunes creativos (Creative Commons) puede ser cargado al sitio web del Congreso.</p>
+		<p><em>Politicas de Acceso a los Archivos</em><br />  El Gestor del Congreso puede controlar como acceder a los archivos guardados y que usuarios pueden comentar en presentaciones archivadas, Mire {help_topic key="conference.generalManagement.websiteManagement.additional" text="Acceso a Presentaciones del Congreso"} para ajustes adicionales de acceso.</p>
+		<p><em>Declaracion de privacidad</em><br /> OCS viene con una declaracion default de privacidad, la cual puede ser modificada.</p>
+		<p><em> Agregar item para aparecer en "Acerca del Congreso":</em><br /> Se puede agregar informacion adicional, y sera visualizada como una nueva entrada en la pagina de Acerca de las politicas del Congreso. Clickeando en "Agregar item de Acerca de ..", otra nueva entrada puede ser agregada debajo. </p>]]>
+	</section>
+</topic>

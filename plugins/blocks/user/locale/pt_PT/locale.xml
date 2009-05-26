@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the pt_PT (Portuguese) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="pt_PT" full_name="Português">
+	<message key="plugins.block.user.displayName">Bloco Utilizador</message>
+	<message key="plugins.block.user.description">Este plugin oferece uma barra lateral com ferramentas do registp do utilizador (ex.: entrar no sistema, sair do sistema, acesso ao perfil, etc).</message>
+	<message key="plugins.block.user.loggedInAs">Está conectado como...</message>
+	<message key="plugins.block.user.myConferences">Minhas Conferências</message>
+	<message key="plugins.block.user.myProfile">Meu Perfil</message>
+	<message key="plugins.block.user.logout">Sair</message>
+	<message key="plugins.block.user.signOutAsUser">Sair como utilizador</message>
+	<message key="plugins.block.user.rememberMe">Memorizar login e senha</message>
+</locale>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000033.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Roles - Authors 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000033" locale="es_AR" title="Autores" toc="conference/toc/000004" key="conference.roles.authors">
+	<section>
+		<![CDATA[<p> Los autores son capaces de enviar items en forma directa a un congreso programado a traves del sitio web del congreso. Entonces, ingresando al sitio web del congreso, el Autor puede seguir el estatus de los items enviados, y participar en el proceso editorial.</p>
+        <p> Los nuevos usuarios pueden enrolarse como Autores en registracion a un congreso programado, asi como pueden enrolarse con otros congresos programados desde su pagina de perfil.</p>
+		<p>Para mas informacion, mire {help_topic key="editorial.authorsRole" text="pagina del Rol del Autor"}.</p>]]>	
+	</section>
+</topic>

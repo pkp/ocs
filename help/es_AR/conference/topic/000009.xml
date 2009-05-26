@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000009.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - General Management - Reading Tools
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000009" locale="es_AR" title="Herramientas de Lectura" toc="conference/toc/000001" subtoc="conference/toc/000009" key="conference.generalManagement.readingTools">
+	<section>
+		<![CDATA[<p> Las herramientas de lectura son desactivadas por "default", pero pueden ser activadas si seguimos los siguientes pasos: clickear en el link de Ajuste de Herramientas de Lecura en la pagina de Gestion del Sitio del Congreso; una vez dentro de esta pagina, clickear en el link de Ajuste de Herramientas de Lectura; una vez dentro de la pagina de Ajuste de Herramientas de Lectura, revise la Casilla de Confirmacion de Permisos; elija el campo apropiado de "Items relacionados" del menu desplegable; y, finalmente, eliga las Herramientas Opcionales que usted desee. </p>
+
+		<p> Las Herramientas de Lectura ayudan a los lectores en muchos aspectos: no solo les posibilitan el acceso a resumenes asi como a archivos complementarios de presentacion de congresos, sino que ademas les proveen detalles bibliograficos, indexan metadatos, y versiones de "impresion amistosa"; permite a los usuarios buscar en forma veloz la definicion de una palabra en la red, haciendo doble click en una dicha palabra en la presentacion; buscan datos personales relevantes para referencias y citas relacionadas con la presentacion; proveen la biografia del autor asi como informacion para contactarlo; tambien nos permiten la opcion de enviar por email el articulo a un contacto, o comentar la presentacion misma.</p>
+
+		<p> Una vez activadas, las Herramientas de Lectura apareceran en un marco al lado de todos los elementos publicados que han sido designados para ser indexados. El Gestor del Congreso puede editar o borrar Herramientas de Lecturas existentes, asi como tambien adicionar nuevas. Mire {help_topic key="user.readingTools" text="Herramientas de Lectura"} en la Pagina Web del Congreso.</p>]]>
+	</section>
+</topic>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000004.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Author's Role
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000004" locale="es_AR" title="Rol del Autor" toc="editorial/toc/000000" subtoc="editorial/toc/000004" key="editorial.authorsRole">
+	<section>
+		<![CDATA[<p> Mediante su registro e inicio de sesion en el sitio web del congreso, el Autor puede realizar pedidos online al congreso; seguir el progreso del envio; y participar en el proceso editorial. Si hay mas de un autor para un solo envio, debe identificarse el contacto principal para el bien de la correspondencia editorial y el acesso al sitio web del congreso.</p>]]>	</section>
+</topic>

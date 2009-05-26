@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000030.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Roles - Directors
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000030" locale="es_AR" title="Directores" toc="conference/toc/000004" key="conference.roles.directors">
+	<section>
+		<![CDATA[<p> El Director supervisa los procesos enteros de envio, edicion y publicacion en un congreso. El Director, trabajando junto al Gestor del Congreso, establece las politicas y procedimientos que son cargados a la configuracion del congreso programado. En el proceso editorial, el Director puede asignar envios a Directores de Seccion o manejar los envios ellos mismos, y ve todo el progreso de los envios asi como asiste con cualquier dificultad. </p>
+		<p>Para mas informacion, mire {help_topic key="editorial.directorsRole" text="pagina del Rol del Director"}.</p>]]>	
+	</section>
+</topic>

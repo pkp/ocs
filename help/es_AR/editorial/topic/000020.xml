@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000020.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Submissions - Presentations 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000020" locale="es_AR" title="Presentaciones" toc="editorial/toc/000005" key="editorial.directorsRole.submissions.presentations">
+	<section>
+		<![CDATA[<p> Haciendo click en el link de Presentaciones en la pagina de inicio del Usuario Director, el Director vera una lista de todas las presentaciones aceptadas. El orden en el que se desplega la lista de presentaciones puede ser arreglado usando las flechas de arriba y abajo. Clickeando en el titulo de la presentacion el Director sera llevado a las paginas de revision completada. </p>]]>	
+	</section>
+</topic>

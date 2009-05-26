@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc SYSTEM "../../../toc.dtd">
+
+<!--
+  * 000011.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Track Director's Role - Review
+  *
+  * $Id$
+  -->
+
+<toc id="editorial/toc/000011" locale="es_AR" title="Revision" parent_topic="editorial/topic/000011">
+	<topic id="editorial/topic/000024" title="Version de Revision" />
+	<topic id="editorial/topic/000025" title="Revision por pares" />
+	<topic id="editorial/topic/000026" title="Decision del Director" />
+      <topic id="editorial/topic/000027" title="Diseño" />
+
+	<breadcrumb url="editorial/topic/000000" title="Proceso Editorial" />
+	<breadcrumb url="editorial/topic/000002" title="Rol del Director de Seccion" />
+	<breadcrumb url="editorial/topic/000011" title="Revision" />
+</toc>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000021.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Editorial Process - Director's Role - Submissions - Archives 
+  *
+  * $Id$
+  -->
+
+<topic id="editorial/topic/000021" locale="es_AR" title="Archivos" toc="editorial/toc/000005" key="editorial.directorsRole.submissions.archives">
+	<section>
+		<![CDATA[<p> Haciendo click en Archivos, en la pagina de inicio del Director, llevara al Director a la pagina de Archivos del congreso programado. Los envios en esta cola son aquellos que han sido rechazados antes de avanzar en el proceso editorial, o que han sido archivados con un congreso programado. Los Congresos que han sido archivados por el Director pueden ser borrados usando el link de Eliminar junto a su nombre en esta cola.</p>
+		<p><em> Para restaurar un item archivado a la lista activa.</em> El Director deberia ir a Archivos, en la pagina de inicio del Director, y encontrar el envio. Clickeando en el titulo del envio entraremos a la pagina de Sumario, Revision e Historia del envio, y luego en la pagina de Sumario hay un link, "Restaurar a la lista activa", que movera el envio en la lista de Revision o Edicion, dependiendo en que etapa estaba el envio cuando fue archivado.</p> ]]>	
+	</section>
+</topic>

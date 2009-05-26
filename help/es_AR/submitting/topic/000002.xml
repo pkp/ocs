@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000002.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Submission Process - Submission Requirements 
+  *
+  * $Id$
+  -->
+
+<topic id="submission/topic/000002" locale="es_AR" title="Requerimientos del Envio" toc="submission/toc/000000" key="submission.submissionRequirements">
+	<section>
+		<![CDATA[<p> Para asegurar que los envios al congreso han sido preparados como es debido en cuanto a contenido y forma para ser procesados, el Autor debe satisfacer un numero de pasos configurados por el Gestor del Congreso en el paso 2 de Configuracion del Congreso Programado y en el paso 1 de Gestion del Sitio Web. Estos requerimientos incluyen:</p>
+		<ul>
+			<li> Seleccionar a que seccion enviar el resumen o la presentacion;</li>
+			<li> Aceptar los items en la lista de control del envio (esta lista puede ser modificada por el Gestor del Congreso, y puede tambien ser removida completamente;</li>
+			<li> Aceptar el anuncio de copyright (el Autor puede tener que aprobar fisicamente su acuerdo, si esto esta habilitado por el Gestor del Congreso en el paso 1 de Gestion del Sitio Web);</li>
+			<li> Ingresar comentarios adicionales al Director (opcional).</li>
+		</ul>
+		<p> Una vez que este paso esta completo, el envio aparecera en la cola de Envios activos del Autor. Si el Autor no completa el proceso de envio, este aparecera como "Incompleto".</p>]]>	
+	</section>
+</topic>

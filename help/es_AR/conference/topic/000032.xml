@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000032.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conference Management - Roles - Reviewers 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000032" locale="es_AR" title="Revisores" toc="conference/toc/000004" key="conference.roles.reviewers">
+	<section>
+		<![CDATA[<p> Los revisores son asignados para revisar un envio por parte del Director de Seccion. Los revisores proveen recomendaciones a favor o en contra de los envios via revision online (a pesar de que algunos congresos optan por una revision via email), y pueden subir los archivos revisados para el uso de los Directores de Seccion y el Autor. </p>
+		<p> Los nuevos usuarios pueden enrolarse como Revisores en registracion a un congreso programado, asi como se pueden enrolar con otros congresos programados desde su pagina de perfil.</p>
+		<p> Para mas informacion, mire {help_topic key="editorial.reviewersRole" text="pagina del Rol del Revisor"}.</p>]]>	
+	</section>
+</topic>

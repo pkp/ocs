@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../topic.dtd">
+
+<!--
+  * 000012.xml
+  *
+  * Copyright (c) 2000-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Conferennce Management - General Management - Event Log 
+  *
+  * $Id$
+  -->
+
+<topic id="conference/topic/000012" locale="es_AR" title="Registrador de Eventos" toc="conference/toc/000001" key="conference.generalManagement.eventLog">
+	<section>
+		<![CDATA[<p> El Registrador de Eventos provee al Gestor del Congreso un breve repaso de los cambios hechos al sistema.  Estas diapositivas pueden verse con mas detalle, asi como su archivacion puede ser borrada. El registro entero puede ser borrado clickeando el link de "Borrar Registro" al fondo de la lista.</p>]]>	
+	</section>
+</topic>
