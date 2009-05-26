@@ -91,4 +91,9 @@
 			</array>
 		</value>
 	</setting>
+	<!-- Default payment method -->
+	<setting type="string" locale="0">
+		<name>paymentMethodPluginName</name>
+		<value>ManualPayment</value>
+	</setting>
 </sched_conf_settings>
