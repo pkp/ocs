@@ -194,11 +194,9 @@
 <h3>{translate key="user.myAccount"}</h3>
 <ul class="plain">
 	{if $hasOtherConferences}
-	{if $showAllConferences}
-	<li>&#187; <a href="{url conference="index" page="user" op="account"}">{translate key="user.createAccountForOtherConferences"}</a></li>
-	{else}
-	<li>&#187; <a href="{url conference="index" page="user"}">{translate key="user.showAllConferences"}</a></li>
-	{/if}
+		{if !$showAllConferences}
+			<li>&#187; <a href="{url conference="index" page="user"}">{translate key="user.showAllConferences"}</a></li>
+		{/if}
 	{/if}
 	<li>&#187; <a href="{url page="user" op="profile"}">{translate key="user.editMyProfile"}</a></li>
 	<li>&#187; <a href="{url page="user" op="changePassword"}">{translate key="user.changeMyPassword"}</a></li>
