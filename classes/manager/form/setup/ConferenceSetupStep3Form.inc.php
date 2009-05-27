@@ -28,7 +28,8 @@ class ConferenceSetupStep3Form extends ConferenceSetupForm {
 			'homeHeaderTitleImage',
 			'homeHeaderLogoImage',
 			'pageHeaderTitleImage',
-			'pageHeaderLogoImage'
+			'pageHeaderLogoImage',
+			'conferenceFavicon'
 		);
 
 		$this->image_settings = array(
@@ -59,7 +60,7 @@ class ConferenceSetupStep3Form extends ConferenceSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('homeHeaderTitleType', 'homeHeaderTitle', 'pageHeaderTitleType', 'pageHeaderTitle', 'navItems', 'conferencePageHeader', 'conferencePageFooter');
+		return array('homeHeaderTitleType', 'homeHeaderTitle', 'pageHeaderTitleType', 'pageHeaderTitle', 'navItems', 'conferencePageHeader', 'conferencePageFooter', 'conferenceFavicon');
 	}
 
 	/**
@@ -83,6 +84,7 @@ class ConferenceSetupStep3Form extends ConferenceSetupForm {
 			'homeHeaderLogoImage'=> $conference->getSetting('homeHeaderLogoImage'),
 			'pageHeaderTitleImage' => $conference->getSetting('pageHeaderTitleImage'),
 			'pageHeaderLogoImage' => $conference->getSetting('pageHeaderLogoImage'),
+			'conferenceFavicon' => $conference->getSetting('conferenceFavicon')
 		));
 
 		parent::display();	   

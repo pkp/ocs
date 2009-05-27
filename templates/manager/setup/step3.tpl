@@ -154,6 +154,26 @@
 </table>
 {/if}
 </div>
+
+<div id="conferenceFavicon">
+<h4>{translate key="manager.setup.layout.favicon"}</h4>
+
+<p>{translate key="manager.setup.layout.faviconDescription"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{translate key="manager.setup.layout.useImageLogo"}</td>
+		<td width="80%" class="value"><input type="file" name="conferenceFavicon" class="uploadField" /> <input type="submit" name="uploadConferenceFavicon" value="{translate key="common.upload"}" class="button" /></td>
+	</tr>
+</table>
+
+{if $conferenceFavicon[$formLocale]}
+{translate key="common.fileName"}: {$conferenceFavicon[$formLocale].name|escape} {$conferenceFavicon[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteConferenceFavicon" value="{translate key="common.delete"}" class="button" />
+<br />
+<img src="{$publicFilesDir}/{$conferenceFavicon[$formLocale].uploadName|escape:"url"}" width="16px" height="16px" style="border: 0;" />
+{/if}
+</div>
+
 <div id="alternateHeader">
 <h4>{translate key="manager.setup.layout.alternateHeader"}</h4>
 

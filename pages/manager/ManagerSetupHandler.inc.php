@@ -132,7 +132,18 @@ class ManagerSetupHandler extends ManagerHandler {
 						$editData = true;
 						$setupForm->deleteImage('homeHeaderLogoImage', $formLocale);
 
-					} else if (Request::getUserVar('uploadPageHeaderTitleImage')) {
+					} else if (Request::getUserVar('uploadConferenceFavicon')) {
+						if ($setupForm->uploadImage('conferenceFavicon', $formLocale)) {
+							$editData = true;
+						} else {
+							$setupForm->addError('conferenceFavicon', Locale::translate('manager.setup.layout.faviconInvalid'));
+						}
+
+					} else if (Request::getUserVar('deleteConferenceFavicon')) {
+						$editData = true;
+						$setupForm->deleteImage('conferenceFavicon', $formLocale);
+
+ 					} else if (Request::getUserVar('uploadPageHeaderTitleImage')) {
 						if ($setupForm->uploadImage('pageHeaderTitleImage', $formLocale)) {
 							$editData = true;
 						} else {

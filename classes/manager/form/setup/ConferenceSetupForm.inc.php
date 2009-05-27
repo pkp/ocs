@@ -92,6 +92,7 @@ class ConferenceSetupForm extends Form {
 	function uploadImage($settingName, $locale) {
 		$conference =& Request::getConference();
 		$settingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$faviconTypes = array('.ico', '.png', '.gif');
 
 		import('file.PublicFileManager');
 		$fileManager = new PublicFileManager();
@@ -99,6 +100,9 @@ class ConferenceSetupForm extends Form {
 			$type = $fileManager->getUploadedFileType($settingName);
 			$extension = $fileManager->getImageExtension($type);
 			if (!$extension) {
+				return false;
+			}
+			if ($settingName == 'conferenceFavicon' && !in_array($extension, $faviconTypes)) {
 				return false;
 			}
 			$uploadName = $settingName . '_' . $locale . $extension;

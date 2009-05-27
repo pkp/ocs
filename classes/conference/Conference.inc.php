@@ -275,6 +275,18 @@ class Conference extends DataObject {
 		}
 		return null;
 	}
+	
+	/**
+	 * Get localized favicon
+	 * @return string
+	 */
+	function getLocalizedFavicon() {
+		$faviconArray = $this->getSetting('conferenceFavicon');
+		foreach (array(Locale::getLocale(), Locale::getPrimaryLocale()) as $locale) {
+			if (isset($faviconArray[$locale])) return $faviconArray[$locale];
+		}
+	}
+		
 }
 
 ?>

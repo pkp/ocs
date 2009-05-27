@@ -516,6 +516,9 @@
 	<message key="manager.setup.layout.conferencePageHeader.description">A graphic version of the conference's title and logo (.gif, .jpg, or .png file), possibly a smaller version of the one used on the homepage</message>
 	<message key="manager.setup.layout.conferenceTitle">Conference Title</message>
 	<message key="manager.setup.layout.description">Titles and logos, headers, footers, etc.</message>
+	<message key="manager.setup.layout.favicon">Conference Favicon</message>
+	<message key="manager.setup.layout.faviconDescription">Add a favicon for this conference to display alongside the navigation bar when users are visiting your site.</message>
+	<message key="manager.setup.layout.faviconInvalid">Invalid favicon format. Accepted formats are .ico, .png, and .gif.</message>
 	<message key="manager.setup.layout.homepageHeader">Conference Homepage Header</message>
 	<message key="manager.setup.layout.homepageHeader.altText">Conference Homepage Header</message>
 	<message key="manager.setup.layout.homepageHeader.description">A graphic version of the conference's title and logo (as a .gif, .jpg, or .png file) can be uploaded for the homepage, which will replace the text version that otherwise appears.</message>
