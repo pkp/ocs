@@ -82,7 +82,6 @@ class CreateAccountForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-
 		$templateMgr =& TemplateManager::getManager();
 		$site =& Request::getSite();
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());

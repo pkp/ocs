@@ -13,14 +13,14 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{if !$currentConference}<h3>{translate key="user.myConferences"}</h3>{/if}
-
-{if $isSiteAdmin && !$currentConference}
+{if $isSiteAdmin}
 {assign var="hasRole" value=1}
 <h4><a href="{url page="user"}">{$siteTitle|escape}</a></h4>
 	&#187; <a href="{url conference="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a>
 	{call_hook name="Templates::User::Index::Admin"}
 {/if}
+
+{if !$currentConference}<h3>{translate key="user.myConferences"}</h3>{/if}
 
 {foreach from=$userConferences item=conference}
 {assign var="hasRole" value=1}
@@ -33,7 +33,7 @@
 	<table width="100%" class="info">
 		{if $isSiteAdmin && !$hasOtherConferences && $currentConference}
 			<tr>
-				<td>&#187; <a href="{url conference="index" schedConf="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</td>
+				<td>&#187; <a href="{url conference="index" schedConf="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></td>
 				<td></td>
 				<td></td>
 				<td></td>

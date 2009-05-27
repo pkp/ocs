@@ -18,6 +18,7 @@
 <ul class="plain">
 <li>
 	<a href="{url conference="index" page="index" op="index"}">{translate key="navigation.home"}</a><br/>
+	{if $isUserLoggedIn}<a href="{url conference="index" page="user"}">{translate key="navigation.userHome"}</a><br/>{/if}
 	<ul class="plain">
 	{if $conferences|@count>1 && !$currentConference}
 		{foreach from=$conferences item=conference}
@@ -38,15 +39,11 @@
 				<li>
 					{if $isUserLoggedIn}
 						<ul class="plain">
-							<li><a href="{url conference=`$currentConference->getPath()` page="user"}">{translate key="navigation.userHome"}</a><br/>
-								<ul class="plain">
-									{assign var=currentConferenceId value=$currentConference->getConferenceId()}
-									{foreach from=$rolesByConference[$currentConferenceId] item=role}
-										{translate|assign:"roleName" key=$role->getRoleName()}
-										<li><a href="{url conference=`$currentConference->getPath()` page=`$role->getRolePath()`}">{$roleName|escape}</a></li>
-									{/foreach}
-								</ul>
-							</li>
+							{assign var=currentConferenceId value=$currentConference->getConferenceId()}
+							{foreach from=$rolesByConference[$currentConferenceId] item=role}
+								{translate|assign:"roleName" key=$role->getRoleName()}
+								<li><a href="{url conference=`$currentConference->getPath()` page=`$role->getRolePath()`}">{$roleName|escape}</a></li>
+							{/foreach}
 						</ul>
 					{else}
 						<ul class="plain">
