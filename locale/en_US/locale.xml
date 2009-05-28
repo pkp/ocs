@@ -800,7 +800,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.conferenceContact">Conference Contact</message>
 	<message key="about.aboutTheConference">About the Conference</message>
 	<message key="about.organizingTeam">Organizing Team</message>
-	<message key="about.editorialPolicies">Editorial Policies</message>
+	<message key="about.conferencePolicies">Conference Policies</message>
 	<message key="about.submissions">Submissions</message>
 	<message key="about.sponsors">Sponsors</message>
 	<message key="about.contributors">Sources of Support</message>

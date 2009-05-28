@@ -9,7 +9,7 @@
  * $Id$
  *}
 {strip}
-{assign var="pageTitle" value="about.editorialPolicies"}
+{assign var="pageTitle" value="about.conferencePolicies"}
 {include file="common/header.tpl"}
 {/strip}
 
