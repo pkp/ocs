@@ -193,7 +193,7 @@
 
 <div class="separator"></div>
 
-<div id="authorGuidelines">
+<div id="authorGuidelinesInfo">
 <h3>2.3 {translate key="manager.schedConfSetup.submissions.authorGuidelines"}</h3>
 
 <p>{translate key="manager.schedConfSetup.submissions.authorGuidelinesDescription"}</p>

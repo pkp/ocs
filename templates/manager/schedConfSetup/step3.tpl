@@ -28,7 +28,7 @@
 </table>
 </div>
 {/if}
-<div id="reviewPolicy">
+<div id="reviewPolicyInfo">
 <h3>3.1 {translate key="manager.schedConfSetup.review.reviewPolicy"}</h3>
 
 <p>{translate key="manager.schedConfSetup.review.reviewDescription"}</p>
