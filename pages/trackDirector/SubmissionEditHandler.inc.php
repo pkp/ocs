@@ -57,7 +57,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('track', $track);
-		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
@@ -86,6 +85,8 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$controlledVocabDao =& DAORegistry::getDAO('ControlledVocabDAO');
 		$templateMgr->assign('sessionTypes', $controlledVocabDao->enumerateBySymbolic('paperType', ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId()));
+
+		$templateMgr->assign('mayEditPaper', true);
 
 		$templateMgr->display('trackDirector/submission.tpl');
 	}

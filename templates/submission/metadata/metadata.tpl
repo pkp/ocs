@@ -4,35 +4,36 @@
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Subtemplate defining the submission metadata table.
+ * Subtemplate defining the submission metadata table. Non-form implementation.
  *
  * $Id$
  *}
 <div id="metadata">
-<table class="data">
-	<tr valign="middle">
-		<td><h3>{translate key="submission.metadata"}</h3></td>
-		<td>&nbsp;<br/><a href="{url op="viewMetadata" path=$submission->getPaperId()}" class="action">{translate key="submission.editMetadata"}</a></td>
-	</tr>
-</table>
+<h3>{translate key="submission.metadata"}</h3>
+
+{if $mayEditPaper}
+	<p><a href="{url op="viewMetadata" path=$submission->getPaperId()}" class="action">{translate key="submission.editMetadata"}</a></p>
+{/if}
 
 <div id="authors">
 <h4>{translate key="paper.authors"}</h4>
 	
 <table width="100%" class="data">
-	{foreach name=authors from=$authors item=author}
+	{foreach name=authors from=$submission->getAuthors() item=author}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.name"}</td>
 		<td width="80%" class="value">
 			{assign var=emailString value="`$author->getFullName()` <`$author->getEmail()`>"}
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags paperId=$submission->getPaperId()}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags paperId=$submission->getPaperId()}
 			{$author->getFullName()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
-	{if $author->getEmail()}<tr valign="top">
-		<td class="label">{translate key="user.url"}</td>
-		<td class="value"><a href="{$author->getUrl()|escape:"quotes"}">{$author->getUrl()|escape}</a></td>
-	</tr>{/if}
+	{if $author->getUrl()}
+		<tr valign="top">
+			<td class="label">{translate key="user.url"}</td>
+			<td class="value"><a href="{$author->getUrl()|escape:"quotes"}">{$author->getUrl()|escape}</a></td>
+		</tr>
+	{/if}
 	<tr valign="top">
 		<td class="label">{translate key="user.affiliation"}</td>
 		<td class="value">{$author->getAffiliation()|escape|default:"&mdash;"}</td>
@@ -46,18 +47,18 @@
 		<td class="value">{$author->getAuthorBiography()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
 	{if $author->getPrimaryContact()}
-	<tr valign="top">
-		<td colspan="2" class="label">{translate key="author.submit.selectPrincipalContact"}</td>
-	</tr>
+		<tr valign="top">
+			<td colspan="2" class="label">{translate key="author.submit.selectPrincipalContact"}</td>
+		</tr>
 	{/if}
 	{if !$smarty.foreach.authors.last}
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
+		<tr>
+			<td colspan="2" class="separator">&nbsp;</td>
+		</tr>
 	{/if}
 	{/foreach}
 </table>
-</div>
+</div><!-- authors -->
 
 <div id="titleAndAbstract">
 <h4>{translate key="submission.titleAndAbstract"}</h4>
@@ -67,7 +68,6 @@
 		<td width="20%" class="label">{translate key="paper.title"}</td>
 		<td width="80%" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html|default:"&mdash;"}</td>
 	</tr>
-
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
@@ -76,7 +76,7 @@
 		<td class="value">{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
 </table>
-</div>
+</div><!-- titleAndAbstract -->
 
 <div id="indexing">
 <h4>{translate key="submission.indexing"}</h4>
@@ -146,7 +146,7 @@
 		<td width="80%" class="value">{$submission->getLanguage()|escape|default:"&mdash;"}</td>
 	</tr>
 </table>
-</div>
+</div><!-- indexing -->
 
 <div id="supportingAgencies">
 <h4>{translate key="submission.supportingAgencies"}</h4>
@@ -157,17 +157,19 @@
 		<td width="80%" class="value">{$submission->getLocalizedSponsor()|escape|default:"&mdash;"}</td>
 	</tr>
 </table>
-</div>
+</div><!-- supportingAgencies -->
 
 {if $currentSchedConf->getSetting('metaCitations')}
-<div id="citations">
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label"><h4>{translate key="paper.citations"}</h4></td>
-		<td width="80%" class="value">{$submission->getCitations()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
-	</tr>
-</table>
-</div>
+	<div id="citations">
+	<h4>{translate key="paper.citations"}</h4>
+
+	<table width="100%" class="data">
+		<tr valign="top">
+			<td width="20%" class="label">{translate key="paper.citations"}</td>
+			<td width="80%" class="value">{$submission->getCitations()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
+		</tr>
+	</table>
+	</div><!-- citations -->
 {/if}
 
 </div>

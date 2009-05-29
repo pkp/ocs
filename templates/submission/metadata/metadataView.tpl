@@ -1,10 +1,10 @@
 {**
- * metadata_view.tpl
+ * metadataView.tpl
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * View (but not edit) metadata of a paper.
+ * View (but not edit) metadata of a paper. Used by MetadataForm.
  *
  * $Id$
  *}
@@ -17,16 +17,6 @@
 <h3>{translate key="paper.authors"}</h3>
 	
 <table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td width="80%" class="value">
-			{url|assign:"formUrl" path=$paperId escape=false}
-			<form name="metadata" action="{$formUrl}" method="post">
-			{form_language_chooser form="metadata" url=$formUrl}
-			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-			</form>
-		</td>
-	</tr>
 	{foreach name=authors from=$authors key=authorIndex item=author}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.name"}</td>
