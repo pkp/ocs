@@ -523,6 +523,43 @@ class SchedulerHandler extends ManagerHandler {
 			$scheduleForm->display();
 		}
 	}
+	
+	/**
+	 * Configure the layout of the schedule
+	 */
+	function scheduleLayout($args) {
+		$this->validate();
+		$this->setupTemplate(true);
+
+		import('manager.form.scheduler.ScheduleLayoutForm');
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$scheduleLayoutForm =& new ScheduleLayoutForm();
+
+		$scheduleLayoutForm->initData();
+		$scheduleLayoutForm->display();
+	}
+
+	/**
+	 * Save the schedule.
+	 */
+	function saveScheduleLayout() {
+		$this->validate();
+		$this->setupTemplate(true);
+
+		$schedConf =& Request::getSchedConf();
+
+		import('manager.form.scheduler.ScheduleLayoutForm');
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$scheduleLayoutForm =& new ScheduleLayoutForm();
+
+		$scheduleLayoutForm->readInputData();
+		if ($scheduleLayoutForm->validate()) {
+			$scheduleLayoutForm->execute();
+			Request::redirect(null, null, null, 'scheduler');
+		} else {
+			$scheduleLayoutForm->display();
+		}
+	}
 
 	/**
 	 * Common template configuration function for Scheduler pages.

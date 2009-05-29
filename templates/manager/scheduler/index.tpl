@@ -27,6 +27,7 @@
 
 <ul class="plain">
 	<li>&#187; <a href="{url op="schedule"}">{translate key="manager.scheduler.schedule"}</a></li>
+	<li>&#187; <a href="{url op="scheduleLayout"}">{translate key="manager.scheduler.layout"}</a></li>
 </ul>
 </div>
 {include file="common/footer.tpl"}

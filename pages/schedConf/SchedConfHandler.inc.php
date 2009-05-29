@@ -344,7 +344,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
 			array(Request::url(null, null, 'index'), $schedConf->getSchedConfTitle(), true)));
-		SchedConfHandler::setupTemplate($conference,$schedConf);
+		SchedConfHandler::setupTemplate($conference, $schedConf);
 
 		$buildingDao =& DAORegistry::getDAO('BuildingDAO');
 		$roomDao =& DAORegistry::getDAO('RoomDAO');
@@ -389,10 +389,25 @@ class SchedConfHandler extends Handler {
 			unset($specialEvent);
 		}
 		unset($specialEvents);
-
+		
+		// Read in schedule layout settings
+		if ($schedConf->getSetting('mergeSchedules')) {
+			ksort($itemsByTime);
+		}
+		$templateMgr->assign('showEndTime', $schedConf->getSetting('showEndTime'));
+		$templateMgr->assign('showAuthors', $schedConf->getSetting('showAuthors'));
+		$templateMgr->assign('hideNav', $schedConf->getSetting('hideNav'));
+		$templateMgr->assign('hideLocations', $schedConf->getSetting('hideLocations'));
+		
+		
 		$templateMgr->assign_by_ref('itemsByTime', $itemsByTime);
 		$templateMgr->assign('conference.currentConferences.scheduler');
-		$templateMgr->display('schedConf/schedule.tpl');
+		
+		if($schedConf->getSetting('layoutType') == SCHEDULE_LAYOUT_COMPACT) {
+			$templateMgr->display('schedConf/schedules/compact.tpl');
+		} else if($schedConf->getSetting('layoutType') == SCHEDULE_LAYOUT_EXPANDED || !$schedConf->getSetting('layoutType')) {
+			$templateMgr->display('schedConf/schedules/expanded.tpl');
+		}
 	}
 
 	/**
@@ -499,6 +514,7 @@ class SchedConfHandler extends Handler {
 	function setupTemplate(&$conference, &$schedConf) {
 		parent::setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
+		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_MANAGER));
 
 		// Ensure the user is entitled to view the scheduled conference...
 		if (isset($schedConf) && ($conference->getEnabled() || (

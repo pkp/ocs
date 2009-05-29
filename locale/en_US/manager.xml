@@ -401,6 +401,17 @@
 	<message key="manager.scheduler.checkTimes">Please check the start and end times for the presentations indicated in red to ensure that they are valid.</message>
 	<message key="manager.scheduler.description"><![CDATA[Conference Managers may schedule presentations and special events for times and locations using the Scheduler. In the pages below, the Conference Manager can define locations (buildings and rooms) and blocks of time, and assign presentations and events to each.]]></message>
 	<message key="manager.scheduler.endTime">End Time</message>
+	<message key="manager.scheduler.layout">Schedule Display Settings</message>
+	<message key="manager.scheduler.layout.hideLocations">Hide the Conference locations list at the top of the schedule.</message>
+	<message key="manager.scheduler.layout.hideNav">Hide the navigation menu at the top of the schedule.</message>
+	<message key="manager.scheduler.layout.mergeSchedules">Event Display</message>
+	<message key="manager.scheduler.layout.mergeSchedulesDescription">Display special events within presentations (uncheck to display special events below presentations).</message>	
+	<message key="manager.scheduler.layout.showAuthors">Show authors next to presentation titles.</message>
+	<message key="manager.scheduler.layout.showEndTime">Show the start and end time for every event (uncheck to show only start time).</message>
+	<message key="manager.scheduler.layout.style">Schedule Style</message>
+	<message key="manager.scheduler.layout.style.description">Choose the style to be used for displaying conference events.</message>
+	<message key="manager.scheduler.layout.style.compact">Compact (one line per event)</message>
+	<message key="manager.scheduler.layout.style.expanded">Expanded</message>
 	<message key="manager.scheduler.location">Location</message>
 	<message key="manager.scheduler.returnToSchedule">Return to Schedule</message>
 	<message key="manager.scheduler.room">Room</message>

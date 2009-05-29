@@ -186,6 +186,8 @@ switch ($op) {
 	//
 	case 'scheduler':
 	case 'saveSchedule':
+	case 'scheduleLayout':
+	case 'saveScheduleLayout':
 	// Buildings
 	case 'buildings':
 	case 'deleteBuilding':

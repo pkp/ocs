@@ -1,10 +1,10 @@
 {**
- * schedule.tpl
+ * expanded.tpl
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Scheduled conference schedule page.
+ * Scheduled conference schedule page (expanded version).
  *
  * $Id$
  *}
@@ -17,12 +17,15 @@
 	{* Display navigation options at the top of the page if buildings and
 	 * rooms are used.
 	 *}
-	<ul class="plain">
+	{if !$hideNav && !$hideLocations}
+	<ul id="navigation" class="plain">
 		<li>&#187; <a href="#locations">{translate key="schedConf.scheduler.locations"}</a></li>
 		<li>&#187; <a href="#schedule">{translate key="schedConf.schedule"}</a></li>
 	</ul>
+	{/if}
 
-<div id="schedule">
+{if !$hideLocations}
+<div id="locations">
 <h3>{translate key="schedConf.scheduler.locations"}</h3>
 
 <ul>
@@ -51,6 +54,7 @@
 
 <div class="separator"></div>
 </div>
+{/if}
 
 <div id="schedule">
 <h3>{translate key="schedConf.schedule"}</h3>
@@ -61,6 +65,7 @@
 {assign var=needsUlClose value=0}
 {foreach from=$itemsByTime item=list key=startTime}
 	{foreach from=$list item=item}
+		{assign var=endTime value=$item->getEndTime()}
 		{if !$lastStartTime || $lastStartTime|date_format:$dateFormatShort != $startTime|date_format:$dateFormatShort}
 			{if $needsUlClose}
 				</ul>
@@ -73,7 +78,7 @@
 				</ul>
 				{assign var=needsUlClose value=0}
 			{/if}
-			<h4>{$startTime|date_format:$timeFormat}</h4>
+			<h4>{$startTime|date_format:$timeFormat} {if $showEndTime}- {$endTime|date_format:$timeFormat}{/if}</h4>
 			<ul>
 			{assign var=needsUlClose value=1}
 		{/if}
@@ -83,7 +88,7 @@
 			</li>
 		{else}
 			<li>
-				<a class="action" href="{url page="paper" op="view" path=$item->getBestPaperId()}">{$item->getLocalizedTitle()|escape}</a>
+				{if $showAuthors} {$item->getAuthorString()}, {/if}<a class="action" href="{url page="paper" op="view" path=$item->getBestPaperId()}">{$item->getLocalizedTitle()|escape}</a>
 				{assign var=roomId value=$item->getRoomId()}
 				{if $roomId && $allRooms[$roomId]}
 					{assign var=room value=$allRooms[$roomId]}
