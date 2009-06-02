@@ -34,6 +34,7 @@ Content-Transfer-Encoding: quoted-printable
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset|escape}" />
+		<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/common.css" type="text/css" />
 		<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
 		{foreach from=$stylesheets item=cssUrl}
 		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
