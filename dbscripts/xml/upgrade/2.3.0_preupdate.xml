@@ -24,4 +24,9 @@
 	<sql>
 		<rename table="groups" column="sched_conf_id" to="assoc_id" />
 	</sql>
+
+	<!-- Bug #3694: abstract user settings -->
+	<sql>
+		<rename table="user_settings" column="conference_id" to="assoc_id" />
+	</sql>
 </data>
