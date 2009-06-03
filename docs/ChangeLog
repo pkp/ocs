@@ -1,3 +1,30 @@
+2009-06-03 12:19  mj
+
+	* classes/core/String.inc.php: #4407# Calls to String::utf8Clean or
+	  String::utf8_bad_strip can hang indefinitely on valid UTF8
+	  content
+
+2009-06-03 11:18  asmecher
+
+	* plugins/generic/tinymce/TinyMCEPlugin.inc.php: #4406# Added
+	  comment fields to TinyMCE
+
+2009-06-03 10:30  mj
+
+	* classes/core/String.inc.php: #4407# Calls to String::utf8Clean or
+	  String::utf8_bad_strip can hang indefinitely on valid UTF8
+	  content
+
+2009-06-02 17:09  mj
+
+	* docs/: README, release-notes/README-2.1.2: Final commits for OCS
+	  2.1.2 (README updates)
+
+2009-06-02 14:42  mj
+
+	* docs/: ChangeLog, release-notes/ChangeLog-2.1.2: Final commits
+	  for OCS 2.1.2
+
 2009-06-02 14:16  asmecher
 
 	* styles/common.css, templates/about/organizingTeamBio.tpl,
