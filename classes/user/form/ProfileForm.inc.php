@@ -83,8 +83,8 @@ class ProfileForm extends Form {
 			$templateMgr->assign('roles', $roleNames);
 		}
 
-		import('i18n.TimeZone');
-		$timeZones = TimeZone::getTimeZones();
+		$timeZoneDao =& DAORegistry::getDAO('TimeZoneDAO');
+		$timeZones =& $timeZoneDao->getTimeZones();
 		$templateMgr->assign_by_ref('timeZones', $timeZones);
 
 		parent::display();
