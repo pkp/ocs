@@ -210,17 +210,23 @@ class TinyMCEPlugin extends GenericPlugin {
 				break;
 			case 'director/viewDirectorDecisionComments':
 			case 'director/postDirectorDecisionComment':
+			case 'director/editComment':
+			case 'director/saveComment':
+			case 'trackDirector/viewDirectorDecisionComments':
+			case 'trackDirector/postDirectorDecisionComment':
+			case 'trackDirector/editComment':
+			case 'trackDirector/saveComment':
+			case 'reviewer/viewPeerReviewComments':
+  			case 'reviewer/postPeerReviewComment':
+			case 'reviewer/editComment':
+			case 'reviewer/saveComment':
 				$fields[] = 'comments';
+				$fields[] = 'authorComments';
 				break;
 			case 'director/createReviewer':
 			case 'trackDirector/createReviewer':
 				$fields[] = 'mailingAddress';
 				$fields[] = 'biography';
-				break;
-			case 'reviewer/viewPeerReviewComments':
-  			case 'reviewer/postPeerReviewComment':
-				$fields[] = 'authorComments';
-				$fields[] = 'comments';
 				break;
 			case 'director/submissionNotes':
 			case 'trackDirector/submissionNotes':
