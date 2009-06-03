@@ -212,7 +212,7 @@ class String {
 	 */
 	function regexp_grep($pattern, $input) {
 		$pattern .= PCRE_UTF8;
-		$input = String::utf8Clean($input);
+		if (!String::isUTF8($input)) $input = String::utf8Clean($input);
 		return preg_grep($pattern, $input);
 	}
 
@@ -221,7 +221,7 @@ class String {
 	 */
 	function regexp_match($pattern, $subject) {
 		$pattern .= PCRE_UTF8;
-		$subject = String::utf8Clean($subject);
+		if (!String::isUTF8($subject)) $subject = String::utf8Clean($subject);
 		return preg_match($pattern, $subject);
 	}
 
@@ -231,7 +231,7 @@ class String {
 	function regexp_match_get($pattern, $subject, &$matches) {
 		// NOTE: This function was created since PHP < 5.x does not support optional reference parameters
 		$pattern .= PCRE_UTF8;
-		$subject = String::utf8Clean($subject);
+		if (!String::isUTF8($subject)) $subject = String::utf8Clean($subject);
 		return preg_match($pattern, $subject, $matches);
 	}
 
@@ -240,7 +240,7 @@ class String {
 	 */
 	function regexp_match_all($pattern, $subject, &$matches) {
 		$pattern .= PCRE_UTF8;
-		$subject = String::utf8Clean($subject);
+		if (!String::isUTF8($subject)) $subject = String::utf8Clean($subject);
 		return preg_match_all($pattern, $subject, $matches);
 	}
 
@@ -249,7 +249,7 @@ class String {
 	 */
 	function regexp_replace($pattern, $replacement, $subject, $limit = -1) {
 		$pattern .= PCRE_UTF8;
-		$subject = String::utf8Clean($subject);
+		if (!String::isUTF8($subject)) $subject = String::utf8Clean($subject);
 		return preg_replace($pattern, $replacement, $subject, $limit);
 	}
 
@@ -258,7 +258,7 @@ class String {
 	 */
 	function regexp_replace_callback($pattern, $callback, $subject, $limit = -1) {
 		$pattern .= PCRE_UTF8;
-		$subject = String::utf8Clean($subject);
+		if (!String::isUTF8($subject)) $subject = String::utf8Clean($subject);
 		return preg_replace_callback($pattern, $callback, $subject, $limit);
 	}
 
@@ -267,7 +267,7 @@ class String {
 	 */
 	function regexp_split($pattern, $subject, $limit = -1) {
 		$pattern .= PCRE_UTF8;
-		$subject = String::utf8Clean($subject);
+		if (!String::isUTF8($subject)) $subject = String::utf8Clean($subject);
 		return preg_split($pattern, $subject, $limit);
 	}
 
