@@ -1,0 +1,102 @@
+OCS 2.1.1-2 Release Notes
+CVS tag: ojs-2_1_1-2
+Release date: Oct 27, 2008
+=================================
+
+
+Configuration Changes
+---------------------
+
+See config.TEMPLATE.inc.php for a description and examples of all supported
+configuration parameters. There are no configuration file changes between OCS
+versions 2.1 and 2.1.1.
+
+New Features
+------------
+	#2181# Custom localization strings
+	#2900# Google Analytics plugin
+	#2906# phpMyVisites plugin
+	#2968# Add support for logo ALT tags
+	#3292# Announcements RSS plugin
+	#3293# User comments on a per-section/paper basis
+	#3378# Default filter for submissions based on editor assignment
+	#3435# Font sizer in article view
+	#3531# Add help for translator plugin
+	#3532# Add ability to style announcements listing
+	#3550# Add date posted to announcement display
+	#3551# Add search for subscriptions
+	#3560# Allow preview of abstracts for which papers are still being reviewed (sequential process)
+	#3592# Add Catalan support
+	#3602# Allow IPv6 IP addresses in sessions table
+	#3743# Add code to block prefetches from affecting admin/editorial areas
+
+Bug Fixes
+---------
+	#3160# Improvement on submission notes page
+	#3197# Refactor reports into plugin structure
+	#3298# Header image border style hard-coded in header template
+	#3301# Misc. XHTML markup errors
+	#3304# Hard-coded style for issue cover page, homepage image
+	#3315# miscellaneous stylesheet fixes
+	#3316# standalone < tag in abstract field stops text from displaying
+	#3417# 2.1.1 -> 2.2 upgrade assumes alternate locales set
+	#3446# locale keys not translated when app cache set to "none"
+	#3528# Remove broken schedConf setting inheritance from conferences
+	#3530# Reconcile import function against OJS
+	#3538# Add error to native import handling when upload fails
+	#3539# Import mislocates coverage & indexing nodes
+	#3541# TinyMCE adds problematic paragraph tags
+	#3542# Update to latest TinyMCE
+	#3544# Outside date calculation in timeline form not working
+	#3545# "Move to Layout" button doesn't appear to set galley locale
+	#3546# Author Bio not displayed
+	#3552# Empty stats page in About the Journal
+	#3554# not all reviewModes call assignDirector function
+	#3556# Event logs should use locale keys
+	#3559# Flex-width right sidebar spacing in IE6
+	#3561# Invalid UTF-8 sequences cause strings to become empty
+	#3570# Variable test inverted on email recipients count check
+	#3575# Prepare Doxygen API docs for publishing on pkp.sfu.ca
+	#3578# Parse error with String.inc.php
+	#3579# DB Error: Unknown column 'interests' in 'where clause'
+	#3581# Registrations may fall through pagination cracks
+	#3582# authorsArticleId should check published article state
+	#3587# RoleBlockPlugin still mentions journals
+	#3589# Import/export plugin tune-ups
+	#3596# RT add comment display
+	#3603# Paper email log not recording
+	#3606# problems validating Export Users XML
+	#3607# User settings primary key needs to include journal id
+	#3610# Site header image not completely deleted
+	#3611# CAST(... AS CHAR(1)) SQL syntax not allowed in MySQL < 4.1
+	#3617# Failure deleting galley on PostgreSQL install with XML Galleys plugin enabled
+	#3622# Multiple RT windows
+	#3624# Announcements not displayed on scheduled conference homepage
+	#3626# Conference log cannot be disabled
+	#3628# Sidebar in help spills over into contents
+	#3629# Remove <noscript> code from phpmyvisites page tag
+	#3630# Report plugins redirect to conference home
+	#3631# Can't install OJS (SQL errors)
+	#3633# Can't delete notes in Publisher Notes
+	#3635# Error in link to Section Editor
+	#3637# Problems with smaller screen resolution
+	#3640# Program settings not localized, but display assumes they are
+	#3656# Long journal title line spacing
+	#3662# Remove unused ConferenceReportIterator.inc.php
+	#3666# Journal setup heading titles don't align with numbers
+	#3667# Searching Presentations and Authors leads to DB error
+	#3674# Review form instructions need to be added to TinyMCE
+	#3676# Remove SimpleXML dependency
+	#3677# upgrade error from 2.2->2.2.1 when using Postgres
+	#3699# Track Director review summary list incorrect
+	#3716# missing parameter in delete methods of PluginSettingsDAO
+	#3722# Author can't view all files uploaded by the reviewer
+	#3729# PostgreSQL "SELECT DISTINCT" glitch
+	#3732# Accommodation page appears blank
+	#3735# Clean up whitespaces at top of templates
+	#3737# homepageImage setting not being localized on upgrade
+	#3739# Article view page missing announcements link
+	#3746# TinyMCE not enabled for manager/updateAnnouncement
+	#3754# Add ArrayItemIterator::fromRangeInfo method
+	#3755# Template manager calls non-existent $smarty->flush()
+	#3756# Reference glitch in scheduler form

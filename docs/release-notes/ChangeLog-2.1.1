@@ -1,0 +1,2490 @@
+2008-09-10 12:20  asmecher
+
+	* dbscripts/xml/: upgrade.xml, version.xml: #3529# Final commits
+
+2008-09-08 14:59  asmecher
+
+	* classes/manager/form/scheduler/: ScheduleForm.inc.php: #3756#
+	  Fixed reference bug
+
+2008-09-08 14:43  asmecher
+
+	* classes/template/TemplateManager.inc.php: #3755# Fixed flush bug
+
+2008-09-03 10:02  asmecher
+
+	* classes/submission/director/DirectorSubmissionDAO.inc.php: #3754#
+	  Refactored ArrayItemIterator creation
+
+2008-09-02 11:38  asmecher
+
+	* docs/dev/: ocs2.doxygen: #3191# Removed mcrider-specific parts
+
+2008-08-29 16:33  asmecher
+
+	* tools/dbXMLtoSQL.php: #3608# XML conversion tool abstracted
+
+2008-08-29 15:52  asmecher
+
+	* tools/runScheduledTasks.php: #3608# Refactored runScheduledTasks
+
+2008-08-29 15:46  asmecher
+
+	* docs/dev/RELEASE, tools/cvs2cl.pl: #3608# Moved cvs2cl into pkp
+
+2008-08-29 14:10  asmecher
+
+	* tools/upgrade.php: #3608# Refactored upgrade tool
+
+2008-08-29 13:41  asmecher
+
+	* tools/install.php: #3608# Refactored install tool
+
+2008-08-29 12:24  asmecher
+
+	* classes/core/Handler.inc.php,
+	  classes/core/OCSApplication.inc.php, tools/dbXMLtoSQL.php,
+	  tools/genTestLocale.php, tools/importExport.php,
+	  tools/install.php, tools/localeCheck.php, tools/migrate.php,
+	  tools/preCompile.php, tools/rebuildSearchIndex.php,
+	  tools/runScheduledTasks.php, tools/upgrade.php,
+	  tools/includes/cliTool.inc.php: #3608# Refactoring continues
+
+2008-08-27 20:27  jalperin
+
+	* classes/plugins/PluginSettingsDAO.inc.php: #3716# Fixed Doxygen
+	  documentation: added missing parameters
+
+2008-08-27 12:08  asmecher
+
+	* plugins/generic/tinymce/TinyMCEPlugin.inc.php: #3746# Added
+	  updateAnnouncement to TinyMCE
+
+2008-08-27 12:08  asmecher
+
+	* plugins/generic/tinymce/TinyMCEPlugin.inc.php: #3746# Added
+	  updateAnnouncement to TinyMCE list
+
+2008-08-26 16:39  asmecher
+
+	* templates/paper/paper.tpl: #3622# Fixed missing _parent targets
+
+2008-08-26 16:32  asmecher
+
+	* classes/submission/trackDirector/: TrackDirectorAction.inc.php:
+	  #3545# Fixed missing locale set
+
+2008-08-26 16:08  asmecher
+
+	* classes/plugins/ReportPlugin.inc.php: #3630# Fixed missing sched
+	  conf context check
+
+2008-08-26 16:06  asmecher
+
+	* classes/plugins/ReportPlugin.inc.php: #3630# Fixed sched conf
+	  context check
+
+2008-08-18 11:39  asmecher
+
+	* classes/core/OCSApplication.inc.php: #3743# Pre-fetch checks
+
+2008-08-18 11:28  asmecher
+
+	* includes/driver.inc.php: #3743# Fixed pre-fetching problems
+
+2008-08-13 12:17  asmecher
+
+	* classes/: install/Install.inc.php, plugins/Plugin.inc.php: #3608#
+	  Fixed typo
+
+2008-08-12 15:19  asmecher
+
+	* classes/install/Install.inc.php: #3608# Refactoring
+
+2008-08-12 13:14  asmecher
+
+	* templates/: common/header.tpl, paper/paper.tpl: #3739# Code
+	  syncing
+
+2008-08-12 09:18  asmecher
+
+	* classes/install/: Upgrade.inc.php: #3737# Fixed upgrade glitch
+
+2008-08-11 14:57  asmecher
+
+	* plugins/generic/announcementFeed/settingsForm.tpl,
+	  plugins/generic/customLocale/index.tpl,
+	  plugins/generic/customLocale/locale.tpl,
+	  plugins/generic/customLocale/localeFile.tpl,
+	  plugins/generic/googleAnalytics/settingsForm.tpl,
+	  plugins/generic/phpMyVisites/settingsForm.tpl,
+	  plugins/generic/translator/editEmail.tpl,
+	  plugins/generic/translator/editMiscFile.tpl,
+	  plugins/generic/translator/errors.tpl,
+	  plugins/generic/translator/index.tpl,
+	  plugins/generic/translator/locale.tpl,
+	  plugins/generic/translator/localeFile.tpl,
+	  plugins/importexport/mets/index.tpl,
+	  plugins/importexport/mets/schedConfs.tpl,
+	  plugins/importexport/native/importError.tpl,
+	  plugins/importexport/native/importSuccess.tpl,
+	  plugins/importexport/native/index.tpl,
+	  plugins/importexport/native/paperContext.tpl,
+	  plugins/importexport/native/papers.tpl,
+	  plugins/importexport/nlm/index.tpl,
+	  plugins/importexport/nlm/papers.tpl,
+	  plugins/importexport/users/importUsersConfirm.tpl,
+	  plugins/importexport/users/importUsersResults.tpl,
+	  plugins/importexport/users/index.tpl,
+	  plugins/paymethod/manual/templates/paymentForm.tpl,
+	  plugins/paymethod/paypal/templates/paymentForm.tpl,
+	  templates/about/aboutThisPublishingSystem.tpl,
+	  templates/about/contact.tpl,
+	  templates/about/editorialPolicies.tpl, templates/about/index.tpl,
+	  templates/about/organizingTeam.tpl,
+	  templates/about/organizingTeamBoard.tpl,
+	  templates/about/registration.tpl, templates/about/site.tpl,
+	  templates/about/siteMap.tpl, templates/about/statistics.tpl,
+	  templates/about/submissions.tpl,
+	  templates/admin/conferenceSettings.tpl,
+	  templates/admin/conferences.tpl,
+	  templates/admin/importConflicts.tpl,
+	  templates/admin/importOCS1.tpl, templates/admin/index.tpl,
+	  templates/admin/languages.tpl, templates/admin/settings.tpl,
+	  templates/admin/systemConfig.tpl,
+	  templates/admin/systemConfigUpdated.tpl,
+	  templates/admin/systemInfo.tpl,
+	  templates/admin/auth/sourceSettings.tpl,
+	  templates/admin/auth/sources.tpl,
+	  templates/announcement/index.tpl,
+	  templates/announcement/view.tpl, templates/comment/comment.tpl,
+	  templates/comment/comments.tpl, templates/common/error.tpl,
+	  templates/common/header.tpl, templates/common/message.tpl,
+	  templates/common/progress.tpl, templates/conference/archive.tpl,
+	  templates/conference/current.tpl, templates/conference/index.tpl,
+	  templates/director/index.tpl, templates/director/notifyUsers.tpl,
+	  templates/director/schedulingQueue.tpl,
+	  templates/director/selectTrackDirector.tpl,
+	  templates/director/submissions.tpl, templates/email/email.tpl,
+	  templates/help/helpToc.tpl, templates/help/searchResults.tpl,
+	  templates/help/view.tpl, templates/index/site.tpl,
+	  templates/information/information.tpl,
+	  templates/install/install.tpl,
+	  templates/install/installComplete.tpl,
+	  templates/install/upgrade.tpl,
+	  templates/install/upgradeComplete.tpl,
+	  templates/manager/accommodationSettings.tpl,
+	  templates/manager/conferenceEventLog.tpl,
+	  templates/manager/conferenceEventLogEntry.tpl,
+	  templates/manager/index.tpl,
+	  templates/manager/languageSettings.tpl,
+	  templates/manager/paymentSettingsForm.tpl,
+	  templates/manager/programSettings.tpl,
+	  templates/manager/schedConfSettings.tpl,
+	  templates/manager/schedConfs.tpl,
+	  templates/manager/timelineEdit.tpl,
+	  templates/manager/timelineView.tpl,
+	  templates/manager/announcement/announcementForm.tpl,
+	  templates/manager/announcement/announcementTypeForm.tpl,
+	  templates/manager/announcement/announcementTypes.tpl,
+	  templates/manager/announcement/announcements.tpl,
+	  templates/manager/emails/emailTemplateForm.tpl,
+	  templates/manager/emails/emails.tpl,
+	  templates/manager/files/index.tpl,
+	  templates/manager/groups/groupForm.tpl,
+	  templates/manager/groups/groups.tpl,
+	  templates/manager/groups/memberships.tpl,
+	  templates/manager/groups/selectUser.tpl,
+	  templates/manager/importexport/plugins.tpl,
+	  templates/manager/people/email.tpl,
+	  templates/manager/people/enrollSync.tpl,
+	  templates/manager/people/enrollment.tpl,
+	  templates/manager/people/searchUsers.tpl,
+	  templates/manager/people/selectMergeUser.tpl,
+	  templates/manager/people/userProfile.tpl,
+	  templates/manager/people/userProfileForm.tpl,
+	  templates/manager/plugins/plugins.tpl,
+	  templates/manager/schedConfSetup/index.tpl,
+	  templates/manager/schedConfSetup/setupHeader.tpl,
+	  templates/manager/scheduler/buildingForm.tpl,
+	  templates/manager/scheduler/buildings.tpl,
+	  templates/manager/scheduler/index.tpl,
+	  templates/manager/scheduler/roomForm.tpl,
+	  templates/manager/scheduler/rooms.tpl,
+	  templates/manager/scheduler/scheduleForm.tpl,
+	  templates/manager/scheduler/specialEventForm.tpl,
+	  templates/manager/scheduler/specialEvents.tpl,
+	  templates/manager/setup/index.tpl,
+	  templates/manager/setup/setupHeader.tpl,
+	  templates/manager/statistics/index.tpl,
+	  templates/manager/tracks/trackForm.tpl,
+	  templates/manager/tracks/tracks.tpl,
+	  templates/paper/accessDenied.tpl, templates/presenter/index.tpl,
+	  templates/presenter/submission.tpl,
+	  templates/presenter/submissionReview.tpl,
+	  templates/presenter/submit/complete.tpl,
+	  templates/presenter/submit/submitHeader.tpl,
+	  templates/registration/registrationForm.tpl,
+	  templates/registration/registrationPolicyForm.tpl,
+	  templates/registration/registrationTypeForm.tpl,
+	  templates/registration/registrationTypes.tpl,
+	  templates/registration/registrations.tpl,
+	  templates/registration/userRegistrationForm.tpl,
+	  templates/registration/users.tpl, templates/reviewer/index.tpl,
+	  templates/reviewer/submission.tpl, templates/rt/bio.tpl,
+	  templates/rt/captureCite.tpl, templates/rt/context.tpl,
+	  templates/rt/email.tpl, templates/rt/findingReferences.tpl,
+	  templates/rt/metadata.tpl, templates/rt/sent.tpl,
+	  templates/rt/suppFileView.tpl, templates/rt/suppFiles.tpl,
+	  templates/rtadmin/conferences.tpl, templates/rtadmin/context.tpl,
+	  templates/rtadmin/contexts.tpl, templates/rtadmin/index.tpl,
+	  templates/rtadmin/search.tpl, templates/rtadmin/searches.tpl,
+	  templates/rtadmin/settings.tpl, templates/rtadmin/validate.tpl,
+	  templates/rtadmin/version.tpl, templates/rtadmin/versions.tpl,
+	  templates/schedConf/accommodation.tpl,
+	  templates/schedConf/cfp.tpl, templates/schedConf/index.tpl,
+	  templates/schedConf/overview.tpl, templates/schedConf/papers.tpl,
+	  templates/schedConf/program.tpl,
+	  templates/schedConf/schedule.tpl,
+	  templates/schedConf/trackPolicies.tpl,
+	  templates/search/advancedSearch.tpl,
+	  templates/search/presenterDetails.tpl,
+	  templates/search/presenterIndex.tpl,
+	  templates/search/schedConfIndex.tpl,
+	  templates/search/searchResults.tpl,
+	  templates/search/titleIndex.tpl,
+	  templates/submission/comment/comment.tpl,
+	  templates/submission/comment/commentEmail.tpl,
+	  templates/submission/comment/directorDecisionComment.tpl,
+	  templates/submission/comment/directorDecisionEmail.tpl,
+	  templates/submission/comment/editComment.tpl,
+	  templates/submission/comment/peerReviewComment.tpl,
+	  templates/submission/layout/galleyForm.tpl,
+	  templates/submission/layout/galleyView.tpl,
+	  templates/submission/metadata/metadataEdit.tpl,
+	  templates/submission/metadata/metadataView.tpl,
+	  templates/submission/suppFile/suppFile.tpl,
+	  templates/submission/suppFile/suppFileView.tpl,
+	  templates/trackDirector/createReviewerForm.tpl,
+	  templates/trackDirector/index.tpl,
+	  templates/trackDirector/reviewerRecommendation.tpl,
+	  templates/trackDirector/searchUsers.tpl,
+	  templates/trackDirector/selectReviewer.tpl,
+	  templates/trackDirector/selectUser.tpl,
+	  templates/trackDirector/setDueDate.tpl,
+	  templates/trackDirector/submission.tpl,
+	  templates/trackDirector/submissionEmailLog.tpl,
+	  templates/trackDirector/submissionEmailLogEntry.tpl,
+	  templates/trackDirector/submissionEventLog.tpl,
+	  templates/trackDirector/submissionEventLogEntry.tpl,
+	  templates/trackDirector/submissionHistory.tpl,
+	  templates/trackDirector/submissionNotes.tpl,
+	  templates/trackDirector/submissionRegrets.tpl,
+	  templates/trackDirector/submissionReview.tpl,
+	  templates/trackDirector/userProfile.tpl,
+	  templates/user/changePassword.tpl,
+	  templates/user/createAccount.tpl,
+	  templates/user/createAccountConference.tpl,
+	  templates/user/createAccountSite.tpl, templates/user/index.tpl,
+	  templates/user/login.tpl, templates/user/loginChangePassword.tpl,
+	  templates/user/lostPassword.tpl, templates/user/profile.tpl:
+	  #3735# Whitespace overhaul
+
+2008-08-08 10:19  asmecher
+
+	* dbscripts/xml/dtd/install.dtd,
+	  dbscripts/xml/dtd/pluginSettings.dtd,
+	  dbscripts/xml/dtd/xmldata.dtd, dbscripts/xml/dtd/xmlschema.dtd,
+	  help/help.dtd, help/toc.dtd, help/topic.dtd,
+	  lib/adodb/CHANGED_FILES, lib/adodb/adodb-active-record.inc.php,
+	  lib/adodb/adodb-csvlib.inc.php, lib/adodb/adodb-datadict.inc.php,
+	  lib/adodb/adodb-error.inc.php,
+	  lib/adodb/adodb-errorhandler.inc.php,
+	  lib/adodb/adodb-errorpear.inc.php,
+	  lib/adodb/adodb-exceptions.inc.php,
+	  lib/adodb/adodb-iterator.inc.php, lib/adodb/adodb-lib.inc.php,
+	  lib/adodb/adodb-pager.inc.php, lib/adodb/adodb-pear.inc.php,
+	  lib/adodb/adodb-perf.inc.php, lib/adodb/adodb-php4.inc.php,
+	  lib/adodb/adodb-time.inc.php, lib/adodb/adodb-xmlschema.inc.php,
+	  lib/adodb/adodb-xmlschema03.inc.php, lib/adodb/adodb.inc.php,
+	  lib/adodb/license.txt, lib/adodb/pivottable.inc.php,
+	  lib/adodb/readme.txt, lib/adodb/rsfilter.inc.php,
+	  lib/adodb/toexport.inc.php, lib/adodb/tohtml.inc.php,
+	  lib/adodb/xmlschema.dtd, lib/adodb/xmlschema03.dtd,
+	  lib/adodb/datadict/datadict-access.inc.php,
+	  lib/adodb/datadict/datadict-db2.inc.php,
+	  lib/adodb/datadict/datadict-firebird.inc.php,
+	  lib/adodb/datadict/datadict-generic.inc.php,
+	  lib/adodb/datadict/datadict-ibase.inc.php,
+	  lib/adodb/datadict/datadict-informix.inc.php,
+	  lib/adodb/datadict/datadict-mssql.inc.php,
+	  lib/adodb/datadict/datadict-mysql.inc.php,
+	  lib/adodb/datadict/datadict-oci8.inc.php,
+	  lib/adodb/datadict/datadict-postgres.inc.php,
+	  lib/adodb/datadict/datadict-sapdb.inc.php,
+	  lib/adodb/datadict/datadict-sybase.inc.php,
+	  lib/adodb/diff/adodb-datadict.inc.php.diff,
+	  lib/adodb/diff/adodb-lib.inc.php.diff,
+	  lib/adodb/diff/adodb-mysql.inc.php.diff,
+	  lib/adodb/diff/adodb-postgres64.inc.php.diff,
+	  lib/adodb/diff/adodb-xmlschema.inc.php.diff,
+	  lib/adodb/diff/adodb.inc.php.diff,
+	  lib/adodb/diff/datadict-mysql.inc.php.diff,
+	  lib/adodb/diff/datadict-postgres.inc.php.diff,
+	  lib/adodb/diff/xmlschema.dtd.diff,
+	  lib/adodb/drivers/adodb-access.inc.php,
+	  lib/adodb/drivers/adodb-ado.inc.php,
+	  lib/adodb/drivers/adodb-ado5.inc.php,
+	  lib/adodb/drivers/adodb-ado_access.inc.php,
+	  lib/adodb/drivers/adodb-ado_mssql.inc.php,
+	  lib/adodb/drivers/adodb-borland_ibase.inc.php,
+	  lib/adodb/drivers/adodb-csv.inc.php,
+	  lib/adodb/drivers/adodb-db2.inc.php,
+	  lib/adodb/drivers/adodb-fbsql.inc.php,
+	  lib/adodb/drivers/adodb-firebird.inc.php,
+	  lib/adodb/drivers/adodb-ibase.inc.php,
+	  lib/adodb/drivers/adodb-informix.inc.php,
+	  lib/adodb/drivers/adodb-informix72.inc.php,
+	  lib/adodb/drivers/adodb-ldap.inc.php,
+	  lib/adodb/drivers/adodb-mssql.inc.php,
+	  lib/adodb/drivers/adodb-mssqlpo.inc.php,
+	  lib/adodb/drivers/adodb-mysql.inc.php,
+	  lib/adodb/drivers/adodb-mysqli.inc.php,
+	  lib/adodb/drivers/adodb-mysqlt.inc.php,
+	  lib/adodb/drivers/adodb-netezza.inc.php,
+	  lib/adodb/drivers/adodb-oci8.inc.php,
+	  lib/adodb/drivers/adodb-oci805.inc.php,
+	  lib/adodb/drivers/adodb-oci8po.inc.php,
+	  lib/adodb/drivers/adodb-odbc.inc.php,
+	  lib/adodb/drivers/adodb-odbc_db2.inc.php,
+	  lib/adodb/drivers/adodb-odbc_mssql.inc.php,
+	  lib/adodb/drivers/adodb-odbc_oracle.inc.php,
+	  lib/adodb/drivers/adodb-odbtp.inc.php,
+	  lib/adodb/drivers/adodb-odbtp_unicode.inc.php,
+	  lib/adodb/drivers/adodb-oracle.inc.php,
+	  lib/adodb/drivers/adodb-pdo.inc.php,
+	  lib/adodb/drivers/adodb-pdo_mssql.inc.php,
+	  lib/adodb/drivers/adodb-pdo_mysql.inc.php,
+	  lib/adodb/drivers/adodb-pdo_oci.inc.php,
+	  lib/adodb/drivers/adodb-pdo_pgsql.inc.php,
+	  lib/adodb/drivers/adodb-postgres.inc.php,
+	  lib/adodb/drivers/adodb-postgres64.inc.php,
+	  lib/adodb/drivers/adodb-postgres7.inc.php,
+	  lib/adodb/drivers/adodb-postgres8.inc.php,
+	  lib/adodb/drivers/adodb-proxy.inc.php,
+	  lib/adodb/drivers/adodb-sapdb.inc.php,
+	  lib/adodb/drivers/adodb-sqlanywhere.inc.php,
+	  lib/adodb/drivers/adodb-sqlite.inc.php,
+	  lib/adodb/drivers/adodb-sqlitepo.inc.php,
+	  lib/adodb/drivers/adodb-sybase.inc.php,
+	  lib/adodb/drivers/adodb-sybase_ase.inc.php,
+	  lib/adodb/drivers/adodb-vfp.inc.php,
+	  lib/adodb/lang/adodb-ar.inc.php, lib/adodb/lang/adodb-bg.inc.php,
+	  lib/adodb/lang/adodb-bgutf8.inc.php,
+	  lib/adodb/lang/adodb-ca.inc.php, lib/adodb/lang/adodb-cn.inc.php,
+	  lib/adodb/lang/adodb-cz.inc.php, lib/adodb/lang/adodb-da.inc.php,
+	  lib/adodb/lang/adodb-de.inc.php, lib/adodb/lang/adodb-en.inc.php,
+	  lib/adodb/lang/adodb-es.inc.php,
+	  lib/adodb/lang/adodb-esperanto.inc.php,
+	  lib/adodb/lang/adodb-fr.inc.php, lib/adodb/lang/adodb-hu.inc.php,
+	  lib/adodb/lang/adodb-it.inc.php, lib/adodb/lang/adodb-nl.inc.php,
+	  lib/adodb/lang/adodb-pl.inc.php,
+	  lib/adodb/lang/adodb-pt-br.inc.php,
+	  lib/adodb/lang/adodb-ro.inc.php,
+	  lib/adodb/lang/adodb-ru1251.inc.php,
+	  lib/adodb/lang/adodb-sv.inc.php,
+	  lib/adodb/lang/adodb-uk1251.inc.php,
+	  lib/adodb/perf/perf-db2.inc.php,
+	  lib/adodb/perf/perf-informix.inc.php,
+	  lib/adodb/perf/perf-mssql.inc.php,
+	  lib/adodb/perf/perf-mysql.inc.php,
+	  lib/adodb/perf/perf-oci8.inc.php,
+	  lib/adodb/perf/perf-postgres.inc.php, lib/smarty/CHANGED_FILES,
+	  lib/smarty/COPYING.lib, lib/smarty/Config_File.class.php,
+	  lib/smarty/Smarty.class.php,
+	  lib/smarty/Smarty_Compiler.class.php, lib/smarty/debug.tpl,
+	  lib/smarty/diff/Smarty.class.php.diff,
+	  lib/smarty/diff/Smarty_Compiler.class.php.diff,
+	  lib/smarty/diff/modifier.capitalize.php.diff,
+	  lib/smarty/internals/core.assemble_plugin_filepath.php,
+	  lib/smarty/internals/core.assign_smarty_interface.php,
+	  lib/smarty/internals/core.create_dir_structure.php,
+	  lib/smarty/internals/core.display_debug_console.php,
+	  lib/smarty/internals/core.get_include_path.php,
+	  lib/smarty/internals/core.get_microtime.php,
+	  lib/smarty/internals/core.get_php_resource.php,
+	  lib/smarty/internals/core.is_secure.php,
+	  lib/smarty/internals/core.is_trusted.php,
+	  lib/smarty/internals/core.load_plugins.php,
+	  lib/smarty/internals/core.load_resource_plugin.php,
+	  lib/smarty/internals/core.process_cached_inserts.php,
+	  lib/smarty/internals/core.process_compiled_include.php,
+	  lib/smarty/internals/core.read_cache_file.php,
+	  lib/smarty/internals/core.rm_auto.php,
+	  lib/smarty/internals/core.rmdir.php,
+	  lib/smarty/internals/core.run_insert_handler.php,
+	  lib/smarty/internals/core.smarty_include_php.php,
+	  lib/smarty/internals/core.write_cache_file.php,
+	  lib/smarty/internals/core.write_compiled_include.php,
+	  lib/smarty/internals/core.write_compiled_resource.php,
+	  lib/smarty/internals/core.write_file.php,
+	  lib/smarty/plugins/block.textformat.php,
+	  lib/smarty/plugins/compiler.assign.php,
+	  lib/smarty/plugins/function.assign_debug_info.php,
+	  lib/smarty/plugins/function.config_load.php,
+	  lib/smarty/plugins/function.counter.php,
+	  lib/smarty/plugins/function.cycle.php,
+	  lib/smarty/plugins/function.debug.php,
+	  lib/smarty/plugins/function.eval.php,
+	  lib/smarty/plugins/function.fetch.php,
+	  lib/smarty/plugins/function.html_checkboxes.php,
+	  lib/smarty/plugins/function.html_image.php,
+	  lib/smarty/plugins/function.html_options.php,
+	  lib/smarty/plugins/function.html_radios.php,
+	  lib/smarty/plugins/function.html_select_date.php,
+	  lib/smarty/plugins/function.html_select_time.php,
+	  lib/smarty/plugins/function.html_table.php,
+	  lib/smarty/plugins/function.mailto.php,
+	  lib/smarty/plugins/function.math.php,
+	  lib/smarty/plugins/function.popup.php,
+	  lib/smarty/plugins/function.popup_init.php,
+	  lib/smarty/plugins/modifier.capitalize.php,
+	  lib/smarty/plugins/modifier.cat.php,
+	  lib/smarty/plugins/modifier.count_characters.php,
+	  lib/smarty/plugins/modifier.count_paragraphs.php,
+	  lib/smarty/plugins/modifier.count_sentences.php,
+	  lib/smarty/plugins/modifier.count_words.php,
+	  lib/smarty/plugins/modifier.date_format.php,
+	  lib/smarty/plugins/modifier.debug_print_var.php,
+	  lib/smarty/plugins/modifier.default.php,
+	  lib/smarty/plugins/modifier.escape.php,
+	  lib/smarty/plugins/modifier.indent.php,
+	  lib/smarty/plugins/modifier.lower.php,
+	  lib/smarty/plugins/modifier.nl2br.php,
+	  lib/smarty/plugins/modifier.regex_replace.php,
+	  lib/smarty/plugins/modifier.replace.php,
+	  lib/smarty/plugins/modifier.spacify.php,
+	  lib/smarty/plugins/modifier.string_format.php,
+	  lib/smarty/plugins/modifier.strip.php,
+	  lib/smarty/plugins/modifier.strip_tags.php,
+	  lib/smarty/plugins/modifier.truncate.php,
+	  lib/smarty/plugins/modifier.upper.php,
+	  lib/smarty/plugins/modifier.wordwrap.php,
+	  lib/smarty/plugins/outputfilter.trimwhitespace.php,
+	  lib/smarty/plugins/shared.escape_special_chars.php,
+	  lib/smarty/plugins/shared.make_timestamp.php,
+	  lib/tinymce/changelog.txt, lib/tinymce/readme,
+	  lib/tinymce/examples/full.html, lib/tinymce/examples/index.html,
+	  lib/tinymce/examples/menu.html, lib/tinymce/examples/simple.html,
+	  lib/tinymce/examples/skins.html, lib/tinymce/examples/word.html,
+	  lib/tinymce/examples/css/content.css,
+	  lib/tinymce/examples/css/word.css,
+	  lib/tinymce/examples/lists/image_list.js,
+	  lib/tinymce/examples/lists/link_list.js,
+	  lib/tinymce/examples/lists/media_list.js,
+	  lib/tinymce/examples/lists/template_list.js,
+	  lib/tinymce/examples/media/logo.jpg,
+	  lib/tinymce/examples/media/logo_over.jpg,
+	  lib/tinymce/examples/media/sample.avi,
+	  lib/tinymce/examples/media/sample.dcr,
+	  lib/tinymce/examples/media/sample.mov,
+	  lib/tinymce/examples/media/sample.ram,
+	  lib/tinymce/examples/media/sample.rm,
+	  lib/tinymce/examples/media/sample.swf,
+	  lib/tinymce/examples/templates/layout1.htm,
+	  lib/tinymce/examples/templates/snippet1.htm,
+	  lib/tinymce/jscripts/tiny_mce/license.txt,
+	  lib/tinymce/jscripts/tiny_mce/tiny_mce.js,
+	  lib/tinymce/jscripts/tiny_mce/tiny_mce_gzip.js,
+	  lib/tinymce/jscripts/tiny_mce/tiny_mce_gzip.php,
+	  lib/tinymce/jscripts/tiny_mce/tiny_mce_popup.js,
+	  lib/tinymce/jscripts/tiny_mce/tiny_mce_src.js,
+	  lib/tinymce/jscripts/tiny_mce/langs/en.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advhr/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advhr/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advhr/rule.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advhr/css/advhr.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advhr/js/rule.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advhr/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advimage/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advimage/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advimage/image.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advimage/css/advimage.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advimage/img/sample.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advimage/js/image.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advimage/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advlink/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advlink/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advlink/link.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advlink/css/advlink.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advlink/js/advlink.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/advlink/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/autosave/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/autosave/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/bbcode/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/bbcode/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/compat2x/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/compat2x/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/contextmenu/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/contextmenu/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/directionality/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/directionality/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/emotions.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-cool.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-cry.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-embarassed.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-foot-in-mouth.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-frown.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-innocent.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-kiss.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-laughing.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-money-mouth.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-sealed.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-smile.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-surprised.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-tongue-out.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-undecided.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-wink.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/img/smiley-yell.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/js/emotions.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/emotions/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/example/dialog.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/example/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/example/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/example/img/example.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/example/js/dialog.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/example/langs/en.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/example/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/fullpage/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/fullpage/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/fullpage/fullpage.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/fullpage/css/fullpage.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/fullpage/js/fullpage.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/fullpage/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/fullscreen/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/fullscreen/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/fullscreen/fullscreen.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/iespell/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/iespell/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/inlinepopups/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/inlinepopups/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/inlinepopups/template.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/inlinepopups/skins/clearlooks2/window.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/inlinepopups/skins/clearlooks2/img/alert.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/inlinepopups/skins/clearlooks2/img/button.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/inlinepopups/skins/clearlooks2/img/buttons.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/inlinepopups/skins/clearlooks2/img/confirm.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/inlinepopups/skins/clearlooks2/img/corners.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/inlinepopups/skins/clearlooks2/img/horizontal.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/inlinepopups/skins/clearlooks2/img/vertical.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/insertdatetime/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/insertdatetime/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/layer/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/layer/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/media.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/css/content.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/css/media.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/img/flash.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/img/flv_player.swf,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/img/quicktime.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/img/realmedia.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/img/shockwave.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/img/trans.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/img/windowsmedia.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/js/embed.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/js/media.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/media/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/nonbreaking/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/nonbreaking/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/noneditable/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/noneditable/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/pagebreak/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/pagebreak/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/pagebreak/css/content.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/pagebreak/img/pagebreak.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/pagebreak/img/trans.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/paste/blank.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/paste/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/paste/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/paste/pastetext.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/paste/pasteword.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/paste/css/blank.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/paste/css/pasteword.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/paste/js/pastetext.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/paste/js/pasteword.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/paste/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/preview/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/preview/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/preview/example.html,
+	  lib/tinymce/jscripts/tiny_mce/plugins/preview/jscripts/embed.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/print/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/print/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/safari/blank.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/safari/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/safari/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/save/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/save/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/searchreplace/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/searchreplace/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/searchreplace/searchreplace.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/searchreplace/css/searchreplace.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/searchreplace/js/searchreplace.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/searchreplace/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/spellchecker/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/spellchecker/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/spellchecker/css/content.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/spellchecker/img/wline.gif,
+	  lib/tinymce/jscripts/tiny_mce/plugins/style/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/style/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/style/props.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/style/css/props.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/style/js/props.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/style/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/cell.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/merge_cells.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/row.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/table.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/css/cell.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/css/row.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/css/table.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/js/cell.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/js/merge_cells.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/js/row.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/js/table.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/table/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/template/blank.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/template/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/template/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/template/template.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/template/css/template.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/template/js/template.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/template/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/visualchars/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/visualchars/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/abbr.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/acronym.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/attributes.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/cite.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/del.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/editor_plugin.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/editor_plugin_src.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/ins.htm,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/css/attributes.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/css/popup.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/css/xhtmlxtras.css,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/js/abbr.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/js/acronym.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/js/attributes.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/js/cite.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/js/del.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/js/element_common.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/js/ins.js,
+	  lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/about.htm,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/anchor.htm,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/charmap.htm,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/color_picker.htm,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/editor_template.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/editor_template_src.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/image.htm,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/link.htm,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/source_editor.htm,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/img/colorpicker.jpg,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/img/icons.gif,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/js/about.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/js/anchor.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/js/charmap.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/js/color_picker.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/js/image.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/js/link.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/js/source_editor.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/langs/en.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/langs/en_dlg.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/default/content.css,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/default/dialog.css,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/default/ui.css,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/default/img/buttons.png,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/default/img/items.gif,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/default/img/menu_arrow.gif,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/default/img/menu_check.gif,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/default/img/progress.gif,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/default/img/tabs.gif,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/o2k7/content.css,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/o2k7/dialog.css,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/o2k7/ui.css,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/o2k7/ui_black.css,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/o2k7/ui_silver.css,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/o2k7/img/button_bg.png,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/o2k7/img/button_bg_black.png,
+	  lib/tinymce/jscripts/tiny_mce/themes/advanced/skins/o2k7/img/button_bg_silver.png,
+	  lib/tinymce/jscripts/tiny_mce/themes/simple/editor_template.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/simple/editor_template_src.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/simple/img/icons.gif,
+	  lib/tinymce/jscripts/tiny_mce/themes/simple/langs/en.js,
+	  lib/tinymce/jscripts/tiny_mce/themes/simple/skins/default/content.css,
+	  lib/tinymce/jscripts/tiny_mce/themes/simple/skins/default/ui.css,
+	  lib/tinymce/jscripts/tiny_mce/themes/simple/skins/o2k7/content.css,
+	  lib/tinymce/jscripts/tiny_mce/themes/simple/skins/o2k7/ui.css,
+	  lib/tinymce/jscripts/tiny_mce/themes/simple/skins/o2k7/img/button_bg.png,
+	  lib/tinymce/jscripts/tiny_mce/utils/editable_selects.js,
+	  lib/tinymce/jscripts/tiny_mce/utils/form_utils.js,
+	  lib/tinymce/jscripts/tiny_mce/utils/mctabs.js,
+	  lib/tinymce/jscripts/tiny_mce/utils/validate.js,
+	  locale/locale.dtd, rt/rt-version.dtd: #3608# Refactoring
+	  continues
+
+2008-08-08 09:22  asmecher
+
+	* classes/oai/OAI.inc.php, classes/rt/RT.inc.php,
+	  classes/rt/ocs/ConferenceRT.inc.php,
+	  classes/rt/ocs/RTDAO.inc.php, dbscripts/xml/ocs_schema.xml,
+	  locale/ca_ES/locale.xml, locale/de_DE/locale.xml,
+	  locale/en_US/locale.xml, locale/es_ES/locale.xml,
+	  locale/fr_CA/locale.xml, locale/fr_FR/locale.xml,
+	  locale/it_IT/locale.xml, locale/pt_BR/locale.xml,
+	  locale/zh_TW/locale.xml, pages/rt/RTHandler.inc.php,
+	  pages/rtadmin/RTSetupHandler.inc.php,
+	  templates/presenter/submission/metadata.tpl,
+	  templates/rt/bio.tpl, templates/rt/email.tpl,
+	  templates/rt/rt.tpl, templates/rtadmin/settings.tpl: #3608#
+	  Refactoring continues
+
+2008-08-07 10:51  asmecher
+
+	* templates/manager/: accommodationSettings.tpl: #3732# Fixed
+	  locale selector bug
+
+2008-08-06 16:19  asmecher
+
+	* classes/core/OCSApplication.inc.php, classes/help/Help.inc.php,
+	  classes/plugins/BlockPlugin.inc.php,
+	  pages/admin/AdminLanguagesHandler.inc.php: #3608# Refactoring
+	  continues
+
+2008-08-05 13:55  asmecher
+
+	* plugins/generic/tinymce/: TinyMCEPlugin.inc.php: #3674# Fixed
+	  TinyMCE typo
+
+2008-08-05 11:04  asmecher
+
+	* classes/submission/director/: DirectorSubmissionDAO.inc.php:
+	  #3729# Fixed PostgreSQL glitch
+
+2008-08-01 10:07  asmecher
+
+	* classes/submission/reviewAssignment/ReviewAssignmentDAO.inc.php,
+	  pages/presenter/TrackSubmissionHandler.inc.php: #3722# Code
+	  syncing
+
+2008-07-31 11:28  asmecher
+
+	* classes/core/OCSApplication.inc.php, classes/help/Help.inc.php,
+	  pages/help/HelpHandler.inc.php: #3608# Refactoring continues
+
+2008-07-30 16:04  asmecher
+
+	* classes/: conference/ConferenceSettingsDAO.inc.php,
+	  user/UserSettingsDAO.inc.php: #3608# Refactoring continues
+
+2008-07-30 15:11  asmecher
+
+	* classes/admin/form/SiteSettingsForm.inc.php,
+	  dbscripts/xml/ocs_schema.xml: #3608# Refactoring continues
+
+2008-07-30 11:01  asmecher
+
+	* classes/: admin/form/SiteSettingsForm.inc.php,
+	  paper/Paper.inc.php, plugins/Plugin.inc.php, user/User.inc.php,
+	  user/UserDAO.inc.php: #3608# Refactoring continues
+
+2008-07-28 11:39  asmecher
+
+	* js/general.js, js/sizer.js,
+	  templates/about/organizingTeamBio.tpl,
+	  templates/common/header.tpl, templates/common/sizer.tpl,
+	  templates/help/header.tpl, templates/paper/interstitial.tpl,
+	  templates/paper/paper.tpl, templates/paper/pdfInterstitial.tpl,
+	  templates/paper/view.tpl, templates/rt/header.tpl,
+	  templates/rt/printerFriendly.tpl, templates/rt/rt.tpl,
+	  templates/submission/instructions.tpl,
+	  templates/submission/comment/header.tpl,
+	  templates/submission/layout/proofGalley.tpl,
+	  templates/submission/layout/proofGalleyHTML.tpl,
+	  templates/submission/layout/proofGalleyTop.tpl: #3703# Extracted
+	  javascript
+
+2008-07-25 15:05  asmecher
+
+	* dbscripts/xml/: install.xml, ocs_schema.xml, upgrade.xml,
+	  version.xml: #3706# Centralized some of schema
+
+2008-07-25 15:02  asmecher
+
+	* dbscripts/xml/install.xml: #3710# Updated installer docs
+
+2008-07-25 14:05  asmecher
+
+	* classes/core/OCSApplication.inc.php,
+	  classes/install/Install.inc.php, classes/user/CountryDAO.inc.php,
+	  locale/en_US/locale.xml, templates/common/footer.tpl: #3608#
+	  Refactoring continues
+
+2008-07-20 14:13  asmecher
+
+	* templates/trackDirector/: submissionsInReview.tpl: #3699# Fixed
+	  TD "In Review" list
+
+2008-07-16 14:30  asmecher
+
+	* classes/: core/OCSApplication.inc.php, db/DAORegistry.inc.php:
+	  #3608# DAORegistry refactored
+
+2008-07-16 13:43  asmecher
+
+	* classes/user/User.inc.php: #3694# Abstracted user class
+
+2008-07-15 18:05  asmecher
+
+	* dbscripts/xml/ocs_schema.xml, tools/upgrade.php: #3608#
+	  Refactoring continued
+
+2008-07-15 18:01  asmecher
+
+	* classes/admin/form/SiteSettingsForm.inc.php,
+	  classes/cache/CacheManager.inc.php,
+	  classes/cache/FileCache.inc.php,
+	  classes/cache/GenericCache.inc.php,
+	  classes/cache/MemcacheCache.inc.php,
+	  classes/captcha/Captcha.inc.php,
+	  classes/captcha/CaptchaDAO.inc.php,
+	  classes/captcha/CaptchaManager.inc.php,
+	  classes/config/Config.inc.php,
+	  classes/config/ConfigParser.inc.php,
+	  classes/core/ArrayItemIterator.inc.php,
+	  classes/core/Core.inc.php, classes/core/DataObject.inc.php,
+	  classes/core/ItemIterator.inc.php,
+	  classes/core/OCSApplication.inc.php,
+	  classes/core/Registry.inc.php, classes/core/String.inc.php,
+	  classes/core/Transcoder.inc.php,
+	  classes/core/VirtualArrayIterator.inc.php,
+	  classes/db/DAO.inc.php, classes/db/DAOResultFactory.inc.php,
+	  classes/db/DBConnection.inc.php,
+	  classes/db/DBDataXMLParser.inc.php,
+	  classes/db/DBResultRange.inc.php,
+	  classes/db/DBRowIterator.inc.php, classes/db/SQLParser.inc.php,
+	  classes/db/XMLDAO.inc.php, classes/file/EditableFile.inc.php,
+	  classes/file/FileManager.inc.php,
+	  classes/file/FileWrapper.inc.php,
+	  classes/file/TemporaryFile.inc.php,
+	  classes/file/TemporaryFileDAO.inc.php, classes/form/Form.inc.php,
+	  classes/form/FormError.inc.php,
+	  classes/form/validation/FormValidator.inc.php,
+	  classes/form/validation/FormValidatorAlphaNum.inc.php,
+	  classes/form/validation/FormValidatorArray.inc.php,
+	  classes/form/validation/FormValidatorArrayCustom.inc.php,
+	  classes/form/validation/FormValidatorCaptcha.inc.php,
+	  classes/form/validation/FormValidatorCustom.inc.php,
+	  classes/form/validation/FormValidatorEmail.inc.php,
+	  classes/form/validation/FormValidatorInSet.inc.php,
+	  classes/form/validation/FormValidatorLength.inc.php,
+	  classes/form/validation/FormValidatorLocale.inc.php,
+	  classes/form/validation/FormValidatorLocaleEmail.inc.php,
+	  classes/form/validation/FormValidatorPost.inc.php,
+	  classes/form/validation/FormValidatorRegExp.inc.php,
+	  classes/form/validation/FormValidatorUrl.inc.php,
+	  classes/help/HelpMappingFile.inc.php,
+	  classes/help/HelpToc.inc.php, classes/help/HelpTocDAO.inc.php,
+	  classes/help/HelpTopic.inc.php,
+	  classes/help/HelpTopicDAO.inc.php,
+	  classes/help/HelpTopicSection.inc.php,
+	  classes/help/PluginHelpMappingFile.inc.php,
+	  classes/i18n/LocaleFile.inc.php, classes/install/Install.inc.php,
+	  classes/install/Installer.inc.php, classes/mail/Mail.inc.php,
+	  classes/mail/SMTPMailer.inc.php, classes/oai/OAIStruct.inc.php,
+	  classes/oai/format/OAIMetadataFormat_DC.inc.php,
+	  classes/oai/format/OAIMetadataFormat_MARC.inc.php,
+	  classes/oai/format/OAIMetadataFormat_MARC21.inc.php,
+	  classes/oai/format/OAIMetadataFormat_RFC1807.inc.php,
+	  classes/plugins/HookRegistry.inc.php,
+	  classes/plugins/PluginRegistry.inc.php,
+	  classes/rt/RTAdmin.inc.php, classes/rt/RTStruct.inc.php,
+	  classes/rt/RTXMLParser.inc.php,
+	  classes/scheduledTask/ScheduledTask.inc.php,
+	  classes/scheduledTask/ScheduledTaskDAO.inc.php,
+	  classes/search/SearchFileParser.inc.php,
+	  classes/search/SearchHTMLParser.inc.php,
+	  classes/search/SearchHelperParser.inc.php,
+	  classes/security/AccessKey.inc.php,
+	  classes/security/AccessKeyDAO.inc.php,
+	  classes/security/AccessKeyManager.inc.php,
+	  classes/security/AuthSource.inc.php,
+	  classes/security/AuthSourceDAO.inc.php,
+	  classes/session/Session.inc.php,
+	  classes/session/SessionDAO.inc.php,
+	  classes/session/SessionManager.inc.php,
+	  classes/site/Site.inc.php, classes/site/SiteDAO.inc.php,
+	  classes/site/SiteSettingsDAO.inc.php,
+	  classes/site/Version.inc.php, classes/site/VersionCheck.inc.php,
+	  classes/site/VersionDAO.inc.php,
+	  classes/xml/XMLCustomWriter.inc.php, classes/xml/XMLNode.inc.php,
+	  classes/xml/XMLParser.inc.php,
+	  classes/xml/XMLParserDOMHandler.inc.php,
+	  pages/index/IndexHandler.inc.php, tools/includes/cliTool.inc.php:
+	  #3608# Refactoring continued
+
+2008-07-15 17:30  asmecher
+
+	* classes/core/OCSApplication.inc.php,
+	  classes/i18n/TimeZone.inc.php,
+	  classes/template/TemplateManager.inc.php, registry/timezones.xml:
+	  #3608# Continued refactoring
+
+2008-07-15 16:46  asmecher
+
+	* classes/i18n/Locale.inc.php: #3608# Refactored Locale
+
+2008-07-15 16:37  asmecher
+
+	* classes/template/TemplateManager.inc.php: #3608# Refactored
+	  template manager
+
+2008-07-15 15:06  asmecher
+
+	* classes/core/OCSApplication.inc.php,
+	  classes/core/Request.inc.php, classes/db/DAORegistry.inc.php,
+	  classes/search/PaperSearch.inc.php,
+	  classes/search/PaperSearchDAO.inc.php,
+	  classes/submission/director/DirectorSubmissionDAO.inc.php,
+	  classes/template/TemplateManager.inc.php,
+	  classes/user/form/ProfileForm.inc.php,
+	  dbscripts/xml/data/locale/es_ES/email_templates_data.xml,
+	  includes/driver.inc.php, pages/about/AboutHandler.inc.php,
+	  pages/admin/AdminHandler.inc.php,
+	  pages/announcement/AnnouncementHandler.inc.php,
+	  pages/comment/CommentHandler.inc.php,
+	  pages/conference/ConferenceHandler.inc.php,
+	  pages/gateway/GatewayHandler.inc.php,
+	  pages/help/HelpHandler.inc.php, pages/index/IndexHandler.inc.php,
+	  pages/information/InformationHandler.inc.php,
+	  pages/install/InstallHandler.inc.php,
+	  pages/login/LoginHandler.inc.php,
+	  pages/manager/EmailHandler.inc.php,
+	  pages/manager/ManagerHandler.inc.php,
+	  pages/oai/OAIHandler.inc.php, pages/paper/PaperHandler.inc.php,
+	  pages/payment/PaymentHandler.inc.php,
+	  pages/presenter/PresenterHandler.inc.php,
+	  pages/reviewer/ReviewerHandler.inc.php,
+	  pages/rtadmin/RTAdminHandler.inc.php,
+	  pages/rtadmin/RTContextHandler.inc.php,
+	  pages/rtadmin/RTSearchHandler.inc.php,
+	  pages/schedConf/SchedConfHandler.inc.php,
+	  pages/schedConfs/SchedConfsHandler.inc.php,
+	  pages/search/SearchHandler.inc.php,
+	  pages/trackDirector/TrackDirectorHandler.inc.php,
+	  pages/user/UserHandler.inc.php,
+	  plugins/generic/customLocale/CustomLocaleHandler.inc.php,
+	  plugins/generic/translator/TranslatorHandler.inc.php,
+	  plugins/importexport/native/NativeImportExportPlugin.inc.php,
+	  plugins/importexport/nlm/NLMExportPlugin.inc.php,
+	  plugins/reports/papers/PaperReportDAO.inc.php,
+	  plugins/reports/registrants/RegistrantReportDAO.inc.php,
+	  plugins/reports/reviews/ReviewReportDAO.inc.php: #3608#
+	  Refactoring continues
+
+2008-07-14 16:31  asmecher
+
+	* index.php, classes/db/DAORegistry.inc.php,
+	  classes/registration/Currency.inc.php,
+	  classes/registration/CurrencyDAO.inc.php,
+	  classes/site/SiteSettingsDAO.inc.php,
+	  classes/template/TemplateManager.inc.php,
+	  dbscripts/xml/install.xml, dbscripts/xml/ocs_schema.xml,
+	  dbscripts/xml/ocs_schema_stage1.xml, dbscripts/xml/upgrade.xml,
+	  dbscripts/xml/data/currencies.xml,
+	  dbscripts/xml/data/email_templates.xml,
+	  dbscripts/xml/data/sample.xml,
+	  dbscripts/xml/data/locale/ca_ES/email_templates_data.xml,
+	  dbscripts/xml/data/locale/de_DE/email_templates_data.xml,
+	  dbscripts/xml/data/locale/en_US/email_templates_data.xml,
+	  dbscripts/xml/data/locale/en_US/sample.xml,
+	  dbscripts/xml/data/locale/es_ES/email_templates_data.xml,
+	  dbscripts/xml/data/locale/fr_CA/email_templates_data.xml,
+	  dbscripts/xml/data/locale/fr_FR/email_templates_data.xml,
+	  dbscripts/xml/data/locale/it_IT/email_templates_data.xml,
+	  dbscripts/xml/data/locale/pt_BR/email_templates_data.xml,
+	  dbscripts/xml/data/locale/zh_TW/email_templates_data.xml,
+	  dbscripts/xml/upgrade/2.1.0_localize.xml,
+	  dbscripts/xml/upgrade/2.1.0_preupdate.xml,
+	  dbscripts/xml/upgrade/2.1.0_update.xml,
+	  dbscripts/xml/upgrade/2.1.1_update.xml, help/help.xml,
+	  help/en_US/conference/toc/000000.xml,
+	  help/en_US/conference/toc/000001.xml,
+	  help/en_US/conference/toc/000002.xml,
+	  help/en_US/conference/toc/000003.xml,
+	  help/en_US/conference/toc/000004.xml,
+	  help/en_US/conference/toc/000005.xml,
+	  help/en_US/conference/toc/000009.xml,
+	  help/en_US/conference/toc/000014.xml,
+	  help/en_US/conference/topic/000000.xml,
+	  help/en_US/conference/topic/000001.xml,
+	  help/en_US/conference/topic/000002.xml,
+	  help/en_US/conference/topic/000003.xml,
+	  help/en_US/conference/topic/000004.xml,
+	  help/en_US/conference/topic/000005.xml,
+	  help/en_US/conference/topic/000006.xml,
+	  help/en_US/conference/topic/000007.xml,
+	  help/en_US/conference/topic/000008.xml,
+	  help/en_US/conference/topic/000009.xml,
+	  help/en_US/conference/topic/000010.xml,
+	  help/en_US/conference/topic/000011.xml,
+	  help/en_US/conference/topic/000012.xml,
+	  help/en_US/conference/topic/000013.xml,
+	  help/en_US/conference/topic/000014.xml,
+	  help/en_US/conference/topic/000015.xml,
+	  help/en_US/conference/topic/000016.xml,
+	  help/en_US/conference/topic/000017.xml,
+	  help/en_US/conference/topic/000018.xml,
+	  help/en_US/conference/topic/000019.xml,
+	  help/en_US/conference/topic/000020.xml,
+	  help/en_US/conference/topic/000021.xml,
+	  help/en_US/conference/topic/000022.xml,
+	  help/en_US/conference/topic/000023.xml,
+	  help/en_US/conference/topic/000024.xml,
+	  help/en_US/conference/topic/000025.xml,
+	  help/en_US/conference/topic/000026.xml,
+	  help/en_US/conference/topic/000027.xml,
+	  help/en_US/conference/topic/000028.xml,
+	  help/en_US/conference/topic/000029.xml,
+	  help/en_US/conference/topic/000030.xml,
+	  help/en_US/conference/topic/000031.xml,
+	  help/en_US/conference/topic/000032.xml,
+	  help/en_US/conference/topic/000033.xml,
+	  help/en_US/conference/topic/000034.xml,
+	  help/en_US/conference/topic/000035.xml,
+	  help/en_US/conference/topic/000036.xml,
+	  help/en_US/conference/topic/000037.xml,
+	  help/en_US/conference/topic/000038.xml,
+	  help/en_US/conference/topic/000039.xml,
+	  help/en_US/conference/topic/000040.xml,
+	  help/en_US/conference/topic/000041.xml,
+	  help/en_US/conference/topic/000042.xml,
+	  help/en_US/conference/topic/000043.xml,
+	  help/en_US/conference/topic/000044.xml,
+	  help/en_US/conference/topic/000045.xml,
+	  help/en_US/conference/topic/000046.xml,
+	  help/en_US/editorial/toc/000000.xml,
+	  help/en_US/editorial/toc/000001.xml,
+	  help/en_US/editorial/toc/000002.xml,
+	  help/en_US/editorial/toc/000003.xml,
+	  help/en_US/editorial/toc/000004.xml,
+	  help/en_US/editorial/toc/000005.xml,
+	  help/en_US/editorial/toc/000006.xml,
+	  help/en_US/editorial/toc/000011.xml,
+	  help/en_US/editorial/toc/000017.xml,
+	  help/en_US/editorial/topic/000000.xml,
+	  help/en_US/editorial/topic/000001.xml,
+	  help/en_US/editorial/topic/000002.xml,
+	  help/en_US/editorial/topic/000003.xml,
+	  help/en_US/editorial/topic/000004.xml,
+	  help/en_US/editorial/topic/000005.xml,
+	  help/en_US/editorial/topic/000006.xml,
+	  help/en_US/editorial/topic/000007.xml,
+	  help/en_US/editorial/topic/000008.xml,
+	  help/en_US/editorial/topic/000009.xml,
+	  help/en_US/editorial/topic/000010.xml,
+	  help/en_US/editorial/topic/000011.xml,
+	  help/en_US/editorial/topic/000012.xml,
+	  help/en_US/editorial/topic/000013.xml,
+	  help/en_US/editorial/topic/000014.xml,
+	  help/en_US/editorial/topic/000015.xml,
+	  help/en_US/editorial/topic/000016.xml,
+	  help/en_US/editorial/topic/000017.xml,
+	  help/en_US/editorial/topic/000018.xml,
+	  help/en_US/editorial/topic/000019.xml,
+	  help/en_US/editorial/topic/000020.xml,
+	  help/en_US/editorial/topic/000021.xml,
+	  help/en_US/editorial/topic/000022.xml,
+	  help/en_US/editorial/topic/000023.xml,
+	  help/en_US/editorial/topic/000024.xml,
+	  help/en_US/editorial/topic/000025.xml,
+	  help/en_US/editorial/topic/000026.xml,
+	  help/en_US/editorial/topic/000027.xml,
+	  help/en_US/editorial/topic/000028.xml,
+	  help/en_US/editorial/topic/000029.xml,
+	  help/en_US/index/toc/000000.xml,
+	  help/en_US/index/topic/000000.xml,
+	  help/en_US/intro/toc/000000.xml,
+	  help/en_US/intro/topic/000000.xml,
+	  help/en_US/intro/topic/000001.xml,
+	  help/en_US/publishing/toc/000000.xml,
+	  help/en_US/publishing/topic/000000.xml,
+	  help/en_US/site/toc/000000.xml, help/en_US/site/topic/000000.xml,
+	  help/en_US/site/topic/000001.xml,
+	  help/en_US/site/topic/000002.xml,
+	  help/en_US/site/topic/000003.xml,
+	  help/en_US/submission/toc/000000.xml,
+	  help/en_US/submission/topic/000000.xml,
+	  help/en_US/submission/topic/000001.xml,
+	  help/en_US/submission/topic/000002.xml,
+	  help/en_US/submission/topic/000003.xml,
+	  help/en_US/submission/topic/000004.xml,
+	  help/en_US/user/toc/000000.xml, help/en_US/user/topic/000000.xml,
+	  help/en_US/user/topic/000001.xml,
+	  help/en_US/user/topic/000002.xml,
+	  help/en_US/user/topic/000003.xml,
+	  help/en_US/user/topic/000004.xml,
+	  help/en_US/user/topic/000005.xml,
+	  help/en_US/user/topic/000006.xml,
+	  help/en_US/user/topic/000007.xml, includes/driver.inc.php,
+	  locale/ca_ES/currencies.xml, locale/ca_ES/locale.xml,
+	  locale/de_DE/locale.xml, locale/en_US/locale.xml,
+	  locale/es_ES/locale.xml, locale/fr_CA/locale.xml,
+	  locale/fr_FR/locale.xml, locale/it_IT/locale.xml,
+	  locale/pt_BR/locale.xml, locale/zh_TW/currencies.xml,
+	  locale/zh_TW/locale.xml, pages/gateway/GatewayHandler.inc.php,
+	  pages/gateway/index.php, plugins/blocks/developedBy/settings.xml,
+	  plugins/blocks/developedBy/locale/en_US/locale.xml,
+	  plugins/blocks/developedBy/locale/fr_CA/locale.xml,
+	  plugins/blocks/developedBy/locale/it_IT/locale.xml,
+	  plugins/blocks/developedBy/locale/pt_BR/locale.xml,
+	  plugins/blocks/fontSize/settings.xml,
+	  plugins/blocks/fontSize/locale/en_US/locale.xml,
+	  plugins/blocks/fontSize/locale/fr_CA/locale.xml,
+	  plugins/blocks/fontSize/locale/it_IT/locale.xml,
+	  plugins/blocks/fontSize/locale/pt_BR/locale.xml,
+	  plugins/blocks/help/settings.xml,
+	  plugins/blocks/help/locale/en_US/locale.xml,
+	  plugins/blocks/help/locale/fr_CA/locale.xml,
+	  plugins/blocks/help/locale/it_IT/locale.xml,
+	  plugins/blocks/help/locale/pt_BR/locale.xml,
+	  plugins/blocks/information/settings.xml,
+	  plugins/blocks/information/locale/en_US/locale.xml,
+	  plugins/blocks/information/locale/fr_CA/locale.xml,
+	  plugins/blocks/information/locale/it_IT/locale.xml,
+	  plugins/blocks/information/locale/pt_BR/locale.xml,
+	  plugins/blocks/languageToggle/settings.xml,
+	  plugins/blocks/languageToggle/locale/en_US/locale.xml,
+	  plugins/blocks/languageToggle/locale/fr_CA/locale.xml,
+	  plugins/blocks/languageToggle/locale/it_IT/locale.xml,
+	  plugins/blocks/languageToggle/locale/pt_BR/locale.xml,
+	  plugins/blocks/navigation/settings.xml,
+	  plugins/blocks/navigation/locale/en_US/locale.xml,
+	  plugins/blocks/navigation/locale/fr_CA/locale.xml,
+	  plugins/blocks/navigation/locale/it_IT/locale.xml,
+	  plugins/blocks/navigation/locale/pt_BR/locale.xml,
+	  plugins/blocks/role/settings.xml,
+	  plugins/blocks/role/locale/en_US/locale.xml,
+	  plugins/blocks/role/locale/fr_CA/locale.xml,
+	  plugins/blocks/role/locale/it_IT/locale.xml,
+	  plugins/blocks/role/locale/pt_BR/locale.xml,
+	  plugins/blocks/user/settings.xml,
+	  plugins/blocks/user/locale/en_US/locale.xml,
+	  plugins/blocks/user/locale/fr_CA/locale.xml,
+	  plugins/blocks/user/locale/it_IT/locale.xml,
+	  plugins/blocks/user/locale/pt_BR/locale.xml,
+	  plugins/citationFormats/abnt/locale/en_US/locale.xml,
+	  plugins/citationFormats/abnt/locale/fr_CA/locale.xml,
+	  plugins/citationFormats/abnt/locale/it_IT/locale.xml,
+	  plugins/citationFormats/abnt/locale/pt_BR/locale.xml,
+	  plugins/citationFormats/apa/locale/en_US/locale.xml,
+	  plugins/citationFormats/apa/locale/fr_CA/locale.xml,
+	  plugins/citationFormats/apa/locale/it_IT/locale.xml,
+	  plugins/citationFormats/apa/locale/pt_BR/locale.xml,
+	  plugins/citationFormats/bibtex/locale/en_US/locale.xml,
+	  plugins/citationFormats/bibtex/locale/fr_CA/locale.xml,
+	  plugins/citationFormats/bibtex/locale/it_IT/locale.xml,
+	  plugins/citationFormats/bibtex/locale/pt_BR/locale.xml,
+	  plugins/citationFormats/cbe/locale/en_US/locale.xml,
+	  plugins/citationFormats/cbe/locale/fr_CA/locale.xml,
+	  plugins/citationFormats/cbe/locale/it_IT/locale.xml,
+	  plugins/citationFormats/cbe/locale/pt_BR/locale.xml,
+	  plugins/citationFormats/endNote/locale/en_US/locale.xml,
+	  plugins/citationFormats/endNote/locale/fr_CA/locale.xml,
+	  plugins/citationFormats/endNote/locale/it_IT/locale.xml,
+	  plugins/citationFormats/endNote/locale/pt_BR/locale.xml,
+	  plugins/citationFormats/mla/locale/en_US/locale.xml,
+	  plugins/citationFormats/mla/locale/fr_CA/locale.xml,
+	  plugins/citationFormats/mla/locale/it_IT/locale.xml,
+	  plugins/citationFormats/mla/locale/pt_BR/locale.xml,
+	  plugins/citationFormats/proCite/locale/en_US/locale.xml,
+	  plugins/citationFormats/proCite/locale/fr_CA/locale.xml,
+	  plugins/citationFormats/proCite/locale/it_IT/locale.xml,
+	  plugins/citationFormats/proCite/locale/pt_BR/locale.xml,
+	  plugins/citationFormats/refMan/locale/en_US/locale.xml,
+	  plugins/citationFormats/refMan/locale/fr_CA/locale.xml,
+	  plugins/citationFormats/refMan/locale/it_IT/locale.xml,
+	  plugins/citationFormats/refMan/locale/pt_BR/locale.xml,
+	  plugins/citationFormats/refWorks/locale/en_US/locale.xml,
+	  plugins/citationFormats/refWorks/locale/fr_CA/locale.xml,
+	  plugins/citationFormats/refWorks/locale/it_IT/locale.xml,
+	  plugins/citationFormats/refWorks/locale/pt_BR/locale.xml,
+	  plugins/citationFormats/turabian/locale/en_US/locale.xml,
+	  plugins/citationFormats/turabian/locale/fr_CA/locale.xml,
+	  plugins/citationFormats/turabian/locale/it_IT/locale.xml,
+	  plugins/citationFormats/turabian/locale/pt_BR/locale.xml,
+	  plugins/generic/acron/locale/ca_ES/locale.xml,
+	  plugins/generic/acron/locale/en_US/locale.xml,
+	  plugins/generic/acron/locale/es_ES/locale.xml,
+	  plugins/generic/acron/locale/fr_CA/locale.xml,
+	  plugins/generic/acron/locale/fr_FR/locale.xml,
+	  plugins/generic/acron/locale/it_IT/locale.xml,
+	  plugins/generic/acron/locale/pt_BR/locale.xml,
+	  plugins/generic/acron/locale/zh_TW/locale.xml,
+	  plugins/generic/announcementFeed/AnnouncementFeedBlockPlugin.inc.php,
+	  plugins/generic/announcementFeed/AnnouncementFeedGatewayPlugin.inc.php,
+	  plugins/generic/announcementFeed/AnnouncementFeedPlugin.inc.php,
+	  plugins/generic/announcementFeed/SettingsForm.inc.php,
+	  plugins/generic/announcementFeed/index.php,
+	  plugins/generic/announcementFeed/settings.xml,
+	  plugins/generic/announcementFeed/settingsForm.tpl,
+	  plugins/generic/announcementFeed/locale/en_US/locale.xml,
+	  plugins/generic/announcementFeed/templates/atom.tpl,
+	  plugins/generic/announcementFeed/templates/block.tpl,
+	  plugins/generic/announcementFeed/templates/rss.tpl,
+	  plugins/generic/announcementFeed/templates/rss2.tpl,
+	  plugins/generic/customLocale/CustomLocaleAction.inc.php,
+	  plugins/generic/customLocale/CustomLocaleHandler.inc.php,
+	  plugins/generic/customLocale/CustomLocalePlugin.inc.php,
+	  plugins/generic/customLocale/index.php,
+	  plugins/generic/customLocale/index.tpl,
+	  plugins/generic/customLocale/locale.tpl,
+	  plugins/generic/customLocale/localeFile.tpl,
+	  plugins/generic/customLocale/locale/en_US/locale.xml,
+	  plugins/generic/googleAnalytics/GoogleAnalyticsPlugin.inc.php,
+	  plugins/generic/googleAnalytics/GoogleAnalyticsSettingsForm.inc.php,
+	  plugins/generic/googleAnalytics/index.php,
+	  plugins/generic/googleAnalytics/pageTagGa.tpl,
+	  plugins/generic/googleAnalytics/pageTagUrchin.tpl,
+	  plugins/generic/googleAnalytics/settingsForm.tpl,
+	  plugins/generic/googleAnalytics/locale/el_GR/locale.xml,
+	  plugins/generic/googleAnalytics/locale/en_US/locale.xml,
+	  plugins/generic/googleAnalytics/locale/es_ES/locale.xml,
+	  plugins/generic/googleAnalytics/locale/fr_CA/locale.xml,
+	  plugins/generic/googleAnalytics/locale/it_IT/locale.xml,
+	  plugins/generic/googleAnalytics/locale/ja_JP/locale.xml,
+	  plugins/generic/googleAnalytics/locale/pt_BR/locale.xml,
+	  plugins/generic/phpMyVisites/PhpMyVisitesPlugin.inc.php,
+	  plugins/generic/phpMyVisites/PhpMyVisitesSettingsForm.inc.php,
+	  plugins/generic/phpMyVisites/index.php,
+	  plugins/generic/phpMyVisites/pageTag.tpl,
+	  plugins/generic/phpMyVisites/settingsForm.tpl,
+	  plugins/generic/phpMyVisites/locale/el_GR/locale.xml,
+	  plugins/generic/phpMyVisites/locale/en_US/locale.xml,
+	  plugins/generic/phpMyVisites/locale/es_ES/locale.xml,
+	  plugins/generic/phpMyVisites/locale/fr_CA/locale.xml,
+	  plugins/generic/phpMyVisites/locale/it_IT/locale.xml,
+	  plugins/generic/phpMyVisites/locale/ja_JP/locale.xml,
+	  plugins/generic/phpMyVisites/locale/pt_BR/locale.xml,
+	  plugins/generic/tinymce/TinyMCEPlugin.inc.php,
+	  plugins/generic/tinymce/settings.xml,
+	  plugins/generic/tinymce/locale/de_DE/locale.xml,
+	  plugins/generic/tinymce/locale/en_US/locale.xml,
+	  plugins/generic/tinymce/locale/es_ES/locale.xml,
+	  plugins/generic/tinymce/locale/fr_CA/locale.xml,
+	  plugins/generic/tinymce/locale/fr_FR/locale.xml,
+	  plugins/generic/tinymce/locale/hr_HR/locale.xml,
+	  plugins/generic/tinymce/locale/it_IT/locale.xml,
+	  plugins/generic/tinymce/locale/ja_JP/locale.xml,
+	  plugins/generic/tinymce/locale/pt_BR/locale.xml,
+	  plugins/generic/tinymce/locale/ru_RU/locale.xml,
+	  plugins/generic/tinymce/locale/vi_VN/locale.xml,
+	  plugins/generic/tinymce/locale/zh_TW/locale.xml,
+	  plugins/generic/translator/TranslatorHandler.inc.php,
+	  plugins/generic/translator/help.xml,
+	  plugins/generic/translator/help/en_US/TranslatorPlugin/toc/000000.xml,
+	  plugins/generic/translator/help/en_US/TranslatorPlugin/topic/000000.xml,
+	  plugins/generic/translator/locale/en_US/locale.xml,
+	  plugins/generic/translator/locale/es_ES/locale.xml,
+	  plugins/generic/translator/locale/fr_CA/locale.xml,
+	  plugins/generic/translator/locale/fr_FR/locale.xml,
+	  plugins/generic/translator/locale/it_IT/locale.xml,
+	  plugins/generic/translator/locale/pt_BR/locale.xml,
+	  plugins/importexport/mets/MetsExportPlugin.inc.php,
+	  plugins/importexport/mets/locale/en_US/locale.xml,
+	  plugins/importexport/native/locale/en_US/locale.xml,
+	  plugins/importexport/native/locale/fr_CA/locale.xml,
+	  plugins/importexport/native/locale/pt_BR/locale.xml,
+	  plugins/importexport/nlm/locale/ca_ES/locale.xml,
+	  plugins/importexport/nlm/locale/en_US/locale.xml,
+	  plugins/importexport/nlm/locale/es_ES/locale.xml,
+	  plugins/importexport/nlm/locale/fr_CA/locale.xml,
+	  plugins/importexport/nlm/locale/fr_FR/locale.xml,
+	  plugins/importexport/nlm/locale/it_IT/locale.xml,
+	  plugins/importexport/nlm/locale/pt_BR/locale.xml,
+	  plugins/importexport/nlm/locale/zh_TW/locale.xml,
+	  plugins/importexport/users/locale/en_US/locale.xml,
+	  plugins/importexport/users/locale/fr_CA/locale.xml,
+	  plugins/importexport/users/locale/it_IT/locale.xml,
+	  plugins/importexport/users/locale/pt_BR/locale.xml,
+	  plugins/paymethod/manual/data.xml,
+	  plugins/paymethod/manual/locale/ca_ES/locale.xml,
+	  plugins/paymethod/manual/locale/de_DE/locale.xml,
+	  plugins/paymethod/manual/locale/en_US/locale.xml,
+	  plugins/paymethod/manual/locale/es_ES/locale.xml,
+	  plugins/paymethod/manual/locale/fr_CA/locale.xml,
+	  plugins/paymethod/manual/locale/fr_FR/locale.xml,
+	  plugins/paymethod/manual/locale/it_IT/locale.xml,
+	  plugins/paymethod/manual/locale/pt_BR/locale.xml,
+	  plugins/paymethod/manual/locale/zh_TW/locale.xml,
+	  plugins/paymethod/paypal/data.xml,
+	  plugins/paymethod/paypal/schema.xml,
+	  plugins/paymethod/paypal/locale/ca_ES/locale.xml,
+	  plugins/paymethod/paypal/locale/en_US/locale.xml,
+	  plugins/paymethod/paypal/locale/es_ES/locale.xml,
+	  plugins/paymethod/paypal/locale/fr_CA/locale.xml,
+	  plugins/paymethod/paypal/locale/fr_FR/locale.xml,
+	  plugins/paymethod/paypal/locale/it_IT/locale.xml,
+	  plugins/paymethod/paypal/locale/pt_BR/locale.xml,
+	  plugins/paymethod/paypal/locale/zh_TW/locale.xml,
+	  plugins/reports/papers/locale/en_US/locale.xml,
+	  plugins/reports/papers/locale/fr_CA/locale.xml,
+	  plugins/reports/papers/locale/it_IT/locale.xml,
+	  plugins/reports/papers/locale/pt_BR/locale.xml,
+	  plugins/reports/registrants/locale/en_US/locale.xml,
+	  plugins/reports/registrants/locale/fr_CA/locale.xml,
+	  plugins/reports/registrants/locale/it_IT/locale.xml,
+	  plugins/reports/registrants/locale/pt_BR/locale.xml,
+	  plugins/reports/reviews/locale/en_US/locale.xml,
+	  plugins/reports/reviews/locale/fr_CA/locale.xml,
+	  plugins/reports/reviews/locale/it_IT/locale.xml,
+	  plugins/reports/reviews/locale/pt_BR/locale.xml,
+	  registry/locales.xml, registry/locale/ca_ES/countries.xml,
+	  registry/locale/de_DE/countries.xml,
+	  registry/locale/en_US/countries.xml,
+	  registry/locale/es_ES/countries.xml,
+	  registry/locale/fr_CA/countries.xml,
+	  registry/locale/fr_FR/countries.xml,
+	  registry/locale/it_IT/countries.xml,
+	  registry/locale/pt_BR/countries.xml,
+	  registry/locale/zh_TW/countries.xml, rt/en_US/Agriculture.xml,
+	  rt/en_US/Art_Architecture.xml, rt/en_US/Astrophysics.xml,
+	  rt/en_US/Biology.xml, rt/en_US/Business.xml,
+	  rt/en_US/Chemistry.xml, rt/en_US/Cognitive_Science.xml,
+	  rt/en_US/Computer_Science.xml, rt/en_US/Economics.xml,
+	  rt/en_US/Education.xml, rt/en_US/Environment.xml,
+	  rt/en_US/General_Science.xml, rt/en_US/Generic.xml,
+	  rt/en_US/Humanities.xml, rt/en_US/Life_Sciences.xml,
+	  rt/en_US/Mathematics.xml, rt/en_US/Music.xml,
+	  rt/en_US/Physics.xml, rt/en_US/Social_Sciences.xml,
+	  templates/common/sizer.tpl, tools/dbXMLtoSQL.php,
+	  tools/genTestLocale.php: #3608# Refactoring begins
+
+2008-07-13 13:10  asmecher
+
+	* lib/adodb/datadict/datadict-postgres.inc.php: #3677# Fixed
+	  sequence recreate problem
+
+2008-07-11 18:23  asmecher
+
+	* classes/install/Upgrade.inc.php: #3676# Fixed role block plugin
+
+2008-07-11 17:17  asmecher
+
+	* classes/core/VirtualArrayIterator.inc.php: #3191# Fixed warning
+	  message
+
+2008-07-10 21:22  asmecher
+
+	* styles/common.css: #3666# Committed heading glitch
+
+2008-07-10 13:44  asmecher
+
+	* classes/paper/PublishedPaperDAO.inc.php: #3667# Fixed title
+	  search bug
+
+2008-07-09 09:30  asmecher
+
+	* classes/conference/ConferenceReportIterator.inc.php: #3662#
+	  Removed unused code
+
+2008-07-08 13:38  asmecher
+
+	* styles/common.css, plugins/themes/vanilla/vanilla.css: #3637# UI
+	  tweaks
+
+2008-07-07 12:46  asmecher
+
+	* styles/common.css: #3656# Fixed layout glitch (title leading)
+
+2008-07-07 11:08  asmecher
+
+	* classes/db/DAO.inc.php: #3617# Fixed namespace problem for hooks
+
+2008-07-07 10:05  asmecher
+
+	* classes/site/SiteSettingsDAO.inc.php: #3633# Fixed empty setting
+	  handling
+
+2008-07-04 10:52  asmecher
+
+	* pages/trackDirector/TrackDirectorHandler.inc.php: #3635# Backed
+	  off changes for bug 3635 (see comments there)
+
+2008-07-02 16:32  asmecher
+
+	* pages/trackDirector/TrackDirectorHandler.inc.php: #3635# Fixed
+	  breadcrumb
+
+2008-07-02 11:52  asmecher
+
+	* pages/schedConf/SchedConfHandler.inc.php: #3640# Fixed program
+	  display
+
+2008-07-02 11:17  asmecher
+
+	* dbscripts/xml/ocs_schema.xml: #3631# Fixed SQL typo
+
+2008-07-02 09:55  asmecher
+
+	* index.php, classes/admin/form/ConferenceSiteSettingsForm.inc.php,
+	  classes/admin/form/ImportOCS1Form.inc.php,
+	  classes/admin/form/SiteSettingsForm.inc.php,
+	  classes/announcement/Announcement.inc.php,
+	  classes/announcement/AnnouncementDAO.inc.php,
+	  classes/announcement/AnnouncementType.inc.php,
+	  classes/announcement/AnnouncementTypeDAO.inc.php,
+	  classes/cache/CacheManager.inc.php,
+	  classes/cache/FileCache.inc.php,
+	  classes/cache/GenericCache.inc.php,
+	  classes/cache/MemcacheCache.inc.php,
+	  classes/captcha/Captcha.inc.php,
+	  classes/captcha/CaptchaDAO.inc.php,
+	  classes/captcha/CaptchaManager.inc.php,
+	  classes/comment/Comment.inc.php,
+	  classes/comment/CommentDAO.inc.php,
+	  classes/comment/form/CommentForm.inc.php,
+	  classes/conference/Conference.inc.php,
+	  classes/conference/ConferenceDAO.inc.php,
+	  classes/conference/ConferenceReportIterator.inc.php,
+	  classes/conference/ConferenceSettingsDAO.inc.php,
+	  classes/conference/NotificationStatusDAO.inc.php,
+	  classes/conference/Track.inc.php,
+	  classes/conference/TrackDAO.inc.php,
+	  classes/conference/TrackDirectorsDAO.inc.php,
+	  classes/conference/log/ConferenceEventLogDAO.inc.php,
+	  classes/conference/log/ConferenceEventLogEntry.inc.php,
+	  classes/conference/log/ConferenceLog.inc.php,
+	  classes/config/Config.inc.php,
+	  classes/config/ConfigParser.inc.php,
+	  classes/core/ArrayItemIterator.inc.php,
+	  classes/core/Core.inc.php, classes/core/DataObject.inc.php,
+	  classes/core/Handler.inc.php, classes/core/ItemIterator.inc.php,
+	  classes/core/Registry.inc.php, classes/core/Request.inc.php,
+	  classes/core/String.inc.php, classes/core/Transcoder.inc.php,
+	  classes/core/VirtualArrayIterator.inc.php,
+	  classes/db/DAO.inc.php, classes/db/DAORegistry.inc.php,
+	  classes/db/DAOResultFactory.inc.php,
+	  classes/db/DBConnection.inc.php,
+	  classes/db/DBDataXMLParser.inc.php,
+	  classes/db/DBResultRange.inc.php,
+	  classes/db/DBRowIterator.inc.php, classes/db/SQLParser.inc.php,
+	  classes/db/SettingsDAO.inc.php, classes/db/XMLDAO.inc.php,
+	  classes/director/form/EmailTemplateForm.inc.php,
+	  classes/file/ConferenceFileManager.inc.php,
+	  classes/file/EditableFile.inc.php,
+	  classes/file/FileManager.inc.php,
+	  classes/file/FileWrapper.inc.php,
+	  classes/file/PaperFileManager.inc.php,
+	  classes/file/PublicFileManager.inc.php,
+	  classes/file/TemporaryFile.inc.php,
+	  classes/file/TemporaryFileDAO.inc.php,
+	  classes/file/TemporaryFileManager.inc.php,
+	  classes/form/Form.inc.php, classes/form/FormError.inc.php,
+	  classes/form/validation/FormValidator.inc.php,
+	  classes/form/validation/FormValidatorAlphaNum.inc.php,
+	  classes/form/validation/FormValidatorArray.inc.php,
+	  classes/form/validation/FormValidatorArrayCustom.inc.php,
+	  classes/form/validation/FormValidatorCaptcha.inc.php,
+	  classes/form/validation/FormValidatorCustom.inc.php,
+	  classes/form/validation/FormValidatorEmail.inc.php,
+	  classes/form/validation/FormValidatorInSet.inc.php,
+	  classes/form/validation/FormValidatorLength.inc.php,
+	  classes/form/validation/FormValidatorLocale.inc.php,
+	  classes/form/validation/FormValidatorLocaleEmail.inc.php,
+	  classes/form/validation/FormValidatorPost.inc.php,
+	  classes/form/validation/FormValidatorRegExp.inc.php,
+	  classes/form/validation/FormValidatorUrl.inc.php,
+	  classes/group/Group.inc.php, classes/group/GroupDAO.inc.php,
+	  classes/group/GroupMembership.inc.php,
+	  classes/group/GroupMembershipDAO.inc.php,
+	  classes/help/Help.inc.php, classes/help/HelpMappingFile.inc.php,
+	  classes/help/HelpToc.inc.php, classes/help/HelpTocDAO.inc.php,
+	  classes/help/HelpTopic.inc.php,
+	  classes/help/HelpTopicDAO.inc.php,
+	  classes/help/HelpTopicSection.inc.php,
+	  classes/help/OCSHelpMappingFile.inc.php,
+	  classes/help/PluginHelpMappingFile.inc.php,
+	  classes/i18n/EditableEmailFile.inc.php,
+	  classes/i18n/EditableLocaleFile.inc.php,
+	  classes/i18n/Locale.inc.php, classes/i18n/LocaleFile.inc.php,
+	  classes/i18n/TimeZone.inc.php, classes/install/Install.inc.php,
+	  classes/install/Installer.inc.php,
+	  classes/install/Upgrade.inc.php,
+	  classes/install/form/InstallForm.inc.php,
+	  classes/install/form/UpgradeForm.inc.php,
+	  classes/log/EventLogConstants.inc.php,
+	  classes/mail/EmailTemplate.inc.php,
+	  classes/mail/EmailTemplateDAO.inc.php, classes/mail/Mail.inc.php,
+	  classes/mail/MailTemplate.inc.php, classes/mail/MassMail.inc.php,
+	  classes/mail/PaperMailTemplate.inc.php,
+	  classes/mail/SMTPMailer.inc.php,
+	  classes/manager/form/AccommodationSettingsForm.inc.php,
+	  classes/manager/form/AnnouncementForm.inc.php,
+	  classes/manager/form/AnnouncementTypeForm.inc.php,
+	  classes/manager/form/EmailTemplateForm.inc.php,
+	  classes/manager/form/GroupForm.inc.php,
+	  classes/manager/form/LanguageSettingsForm.inc.php,
+	  classes/manager/form/PaymentSettingsForm.inc.php,
+	  classes/manager/form/ProgramSettingsForm.inc.php,
+	  classes/manager/form/SchedConfSettingsForm.inc.php,
+	  classes/manager/form/TimelineForm.inc.php,
+	  classes/manager/form/TrackForm.inc.php,
+	  classes/manager/form/UserManagementForm.inc.php,
+	  classes/manager/form/schedConfSetup/SchedConfSetupForm.inc.php,
+	  classes/manager/form/schedConfSetup/SchedConfSetupStep1Form.inc.php,
+	  classes/manager/form/schedConfSetup/SchedConfSetupStep2Form.inc.php,
+	  classes/manager/form/schedConfSetup/SchedConfSetupStep3Form.inc.php,
+	  classes/manager/form/scheduler/BuildingForm.inc.php,
+	  classes/manager/form/scheduler/RoomForm.inc.php,
+	  classes/manager/form/scheduler/ScheduleForm.inc.php,
+	  classes/manager/form/scheduler/SpecialEventForm.inc.php,
+	  classes/manager/form/setup/ConferenceSetupForm.inc.php,
+	  classes/manager/form/setup/ConferenceSetupStep1Form.inc.php,
+	  classes/manager/form/setup/ConferenceSetupStep2Form.inc.php,
+	  classes/manager/form/setup/ConferenceSetupStep3Form.inc.php,
+	  classes/manager/form/setup/ConferenceSetupStep4Form.inc.php,
+	  classes/manager/form/setup/ConferenceSetupStep5Form.inc.php,
+	  classes/manager/form/setup/ConferenceSetupStep6Form.inc.php,
+	  classes/oai/OAI.inc.php, classes/oai/OAIStruct.inc.php,
+	  classes/oai/format/OAIMetadataFormat_DC.inc.php,
+	  classes/oai/format/OAIMetadataFormat_MARC.inc.php,
+	  classes/oai/format/OAIMetadataFormat_MARC21.inc.php,
+	  classes/oai/format/OAIMetadataFormat_RFC1807.inc.php,
+	  classes/oai/ocs/ConferenceOAI.inc.php,
+	  classes/oai/ocs/OAIDAO.inc.php, classes/paper/Paper.inc.php,
+	  classes/paper/PaperComment.inc.php,
+	  classes/paper/PaperCommentDAO.inc.php,
+	  classes/paper/PaperDAO.inc.php, classes/paper/PaperFile.inc.php,
+	  classes/paper/PaperFileDAO.inc.php,
+	  classes/paper/PaperGalley.inc.php,
+	  classes/paper/PaperGalleyDAO.inc.php,
+	  classes/paper/PaperHTMLGalley.inc.php,
+	  classes/paper/PaperNote.inc.php,
+	  classes/paper/PaperNoteDAO.inc.php,
+	  classes/paper/Presenter.inc.php,
+	  classes/paper/PresenterDAO.inc.php,
+	  classes/paper/PublishedPaper.inc.php,
+	  classes/paper/PublishedPaperDAO.inc.php,
+	  classes/paper/SuppFile.inc.php,
+	  classes/paper/SuppFileDAO.inc.php,
+	  classes/paper/log/PaperEmailLogDAO.inc.php,
+	  classes/paper/log/PaperEmailLogEntry.inc.php,
+	  classes/paper/log/PaperEventLogDAO.inc.php,
+	  classes/paper/log/PaperEventLogEntry.inc.php,
+	  classes/paper/log/PaperLog.inc.php,
+	  classes/payment/PaymentManager.inc.php,
+	  classes/payment/QueuedPayment.inc.php,
+	  classes/payment/QueuedPaymentDAO.inc.php,
+	  classes/payment/ocs/OCSPaymentManager.inc.php,
+	  classes/payment/ocs/OCSQueuedPayment.inc.php,
+	  classes/plugins/AuthPlugin.inc.php,
+	  classes/plugins/BlockPlugin.inc.php,
+	  classes/plugins/CitationPlugin.inc.php,
+	  classes/plugins/GatewayPlugin.inc.php,
+	  classes/plugins/GenericPlugin.inc.php,
+	  classes/plugins/HookRegistry.inc.php,
+	  classes/plugins/ImportExportPlugin.inc.php,
+	  classes/plugins/PaymethodPlugin.inc.php,
+	  classes/plugins/Plugin.inc.php,
+	  classes/plugins/PluginRegistry.inc.php,
+	  classes/plugins/PluginSettingsDAO.inc.php,
+	  classes/plugins/ReportPlugin.inc.php,
+	  classes/plugins/ThemePlugin.inc.php,
+	  classes/presenter/form/submit/PresenterSubmitForm.inc.php,
+	  classes/presenter/form/submit/PresenterSubmitStep1Form.inc.php,
+	  classes/presenter/form/submit/PresenterSubmitStep2Form.inc.php,
+	  classes/presenter/form/submit/PresenterSubmitStep3Form.inc.php,
+	  classes/presenter/form/submit/PresenterSubmitStep4Form.inc.php,
+	  classes/presenter/form/submit/PresenterSubmitStep5Form.inc.php,
+	  classes/presenter/form/submit/PresenterSubmitSuppFileForm.inc.php,
+	  classes/registration/Currency.inc.php,
+	  classes/registration/CurrencyDAO.inc.php,
+	  classes/registration/Registration.inc.php,
+	  classes/registration/RegistrationDAO.inc.php,
+	  classes/registration/RegistrationType.inc.php,
+	  classes/registration/RegistrationTypeDAO.inc.php,
+	  classes/registration/form/RegistrationForm.inc.php,
+	  classes/registration/form/RegistrationPolicyForm.inc.php,
+	  classes/registration/form/RegistrationTypeForm.inc.php,
+	  classes/registration/form/UserRegistrationForm.inc.php,
+	  classes/rt/RT.inc.php, classes/rt/RTAdmin.inc.php,
+	  classes/rt/RTStruct.inc.php, classes/rt/RTXMLParser.inc.php,
+	  classes/rt/ocs/ConferenceRT.inc.php,
+	  classes/rt/ocs/ConferenceRTAdmin.inc.php,
+	  classes/rt/ocs/RTDAO.inc.php,
+	  classes/rt/ocs/form/ContextForm.inc.php,
+	  classes/rt/ocs/form/SearchForm.inc.php,
+	  classes/rt/ocs/form/VersionForm.inc.php,
+	  classes/schedConf/SchedConf.inc.php,
+	  classes/schedConf/SchedConfAction.inc.php,
+	  classes/schedConf/SchedConfDAO.inc.php,
+	  classes/schedConf/SchedConfSettingsDAO.inc.php,
+	  classes/schedConf/SchedConfStatisticsDAO.inc.php,
+	  classes/scheduledTask/ScheduledTask.inc.php,
+	  classes/scheduledTask/ScheduledTaskDAO.inc.php,
+	  classes/scheduler/Building.inc.php,
+	  classes/scheduler/BuildingDAO.inc.php,
+	  classes/scheduler/Room.inc.php,
+	  classes/scheduler/RoomDAO.inc.php,
+	  classes/scheduler/SpecialEvent.inc.php,
+	  classes/scheduler/SpecialEventDAO.inc.php,
+	  classes/search/PaperSearch.inc.php,
+	  classes/search/PaperSearchDAO.inc.php,
+	  classes/search/PaperSearchIndex.inc.php,
+	  classes/search/SearchFileParser.inc.php,
+	  classes/search/SearchHTMLParser.inc.php,
+	  classes/search/SearchHelperParser.inc.php,
+	  classes/security/AccessKey.inc.php,
+	  classes/security/AccessKeyDAO.inc.php,
+	  classes/security/AccessKeyManager.inc.php,
+	  classes/security/AuthSource.inc.php,
+	  classes/security/AuthSourceDAO.inc.php,
+	  classes/security/Role.inc.php, classes/security/RoleDAO.inc.php,
+	  classes/security/Validation.inc.php,
+	  classes/security/form/AuthSourceSettingsForm.inc.php,
+	  classes/session/Session.inc.php,
+	  classes/session/SessionDAO.inc.php,
+	  classes/session/SessionManager.inc.php,
+	  classes/site/ImportOCS1.inc.php, classes/site/Site.inc.php,
+	  classes/site/SiteDAO.inc.php, classes/site/Version.inc.php,
+	  classes/site/VersionCheck.inc.php,
+	  classes/site/VersionDAO.inc.php,
+	  classes/submission/common/Action.inc.php,
+	  classes/submission/director/DirectorAction.inc.php,
+	  classes/submission/director/DirectorSubmission.inc.php,
+	  classes/submission/director/DirectorSubmissionDAO.inc.php,
+	  classes/submission/editAssignment/EditAssignment.inc.php,
+	  classes/submission/editAssignment/EditAssignmentDAO.inc.php,
+	  classes/submission/form/MetadataForm.inc.php,
+	  classes/submission/form/PaperGalleyForm.inc.php,
+	  classes/submission/form/SuppFileForm.inc.php,
+	  classes/submission/form/comment/CommentForm.inc.php,
+	  classes/submission/form/comment/DirectorDecisionCommentForm.inc.php,
+	  classes/submission/form/comment/EditCommentForm.inc.php,
+	  classes/submission/form/comment/PeerReviewCommentForm.inc.php,
+	  classes/submission/presenter/PresenterAction.inc.php,
+	  classes/submission/presenter/PresenterSubmission.inc.php,
+	  classes/submission/presenter/PresenterSubmissionDAO.inc.php,
+	  classes/submission/reviewAssignment/ReviewAssignment.inc.php,
+	  classes/submission/reviewAssignment/ReviewAssignmentDAO.inc.php,
+	  classes/submission/reviewer/ReviewerAction.inc.php,
+	  classes/submission/reviewer/ReviewerSubmission.inc.php,
+	  classes/submission/reviewer/ReviewerSubmissionDAO.inc.php,
+	  classes/submission/trackDirector/TrackDirectorAction.inc.php,
+	  classes/submission/trackDirector/TrackDirectorSubmission.inc.php,
+	  classes/submission/trackDirector/TrackDirectorSubmissionDAO.inc.php,
+	  classes/tasks/RegistrationExpiryReminder.inc.php,
+	  classes/tasks/ReviewReminder.inc.php,
+	  classes/template/TemplateManager.inc.php,
+	  classes/trackDirector/form/CreateReviewerForm.inc.php,
+	  classes/user/CountryDAO.inc.php, classes/user/User.inc.php,
+	  classes/user/UserDAO.inc.php,
+	  classes/user/UserSettingsDAO.inc.php,
+	  classes/user/form/ChangePasswordForm.inc.php,
+	  classes/user/form/CreateAccountForm.inc.php,
+	  classes/user/form/LoginChangePasswordForm.inc.php,
+	  classes/user/form/ProfileForm.inc.php,
+	  classes/xml/XMLCustomWriter.inc.php, classes/xml/XMLNode.inc.php,
+	  classes/xml/XMLParser.inc.php,
+	  classes/xml/XMLParserDOMHandler.inc.php, docs/dev/ocs2.doxygen,
+	  includes/driver.inc.php, includes/functions.inc.php,
+	  pages/about/AboutHandler.inc.php, pages/about/index.php,
+	  pages/admin/AdminConferenceHandler.inc.php,
+	  pages/admin/AdminFunctionsHandler.inc.php,
+	  pages/admin/AdminHandler.inc.php,
+	  pages/admin/AdminLanguagesHandler.inc.php,
+	  pages/admin/AdminSettingsHandler.inc.php,
+	  pages/admin/AuthSourcesHandler.inc.php, pages/admin/index.php,
+	  pages/announcement/AnnouncementHandler.inc.php,
+	  pages/announcement/index.php,
+	  pages/comment/CommentHandler.inc.php, pages/comment/index.php,
+	  pages/conference/ConferenceHandler.inc.php,
+	  pages/conference/index.php,
+	  pages/director/ConferenceLanguagesHandler.inc.php,
+	  pages/director/DirectorHandler.inc.php, pages/director/index.php,
+	  pages/help/HelpHandler.inc.php, pages/help/index.php,
+	  pages/index/IndexHandler.inc.php, pages/index/index.php,
+	  pages/information/InformationHandler.inc.php,
+	  pages/information/index.php,
+	  pages/install/InstallHandler.inc.php, pages/install/index.php,
+	  pages/login/LoginHandler.inc.php, pages/login/index.php,
+	  pages/manager/AnnouncementHandler.inc.php,
+	  pages/manager/ConferenceHistoryHandler.inc.php,
+	  pages/manager/ConferenceLanguagesHandler.inc.php,
+	  pages/manager/EmailHandler.inc.php,
+	  pages/manager/FilesHandler.inc.php,
+	  pages/manager/GroupHandler.inc.php,
+	  pages/manager/ImportExportHandler.inc.php,
+	  pages/manager/ManagerAccommodationHandler.inc.php,
+	  pages/manager/ManagerHandler.inc.php,
+	  pages/manager/ManagerPaymentHandler.inc.php,
+	  pages/manager/ManagerProgramHandler.inc.php,
+	  pages/manager/ManagerSchedConfHandler.inc.php,
+	  pages/manager/ManagerSetupHandler.inc.php,
+	  pages/manager/PeopleHandler.inc.php,
+	  pages/manager/PluginHandler.inc.php,
+	  pages/manager/RegistrationHandler.inc.php,
+	  pages/manager/SchedConfSetupHandler.inc.php,
+	  pages/manager/SchedulerHandler.inc.php,
+	  pages/manager/StatisticsHandler.inc.php,
+	  pages/manager/TimelineHandler.inc.php,
+	  pages/manager/TrackHandler.inc.php, pages/manager/index.php,
+	  pages/oai/OAIHandler.inc.php, pages/oai/index.php,
+	  pages/paper/PaperHandler.inc.php, pages/paper/index.php,
+	  pages/payment/PaymentHandler.inc.php, pages/payment/index.php,
+	  pages/presenter/PresenterHandler.inc.php,
+	  pages/presenter/SubmissionCommentsHandler.inc.php,
+	  pages/presenter/SubmitHandler.inc.php,
+	  pages/presenter/TrackSubmissionHandler.inc.php,
+	  pages/presenter/index.php,
+	  pages/reviewer/ReviewerHandler.inc.php,
+	  pages/reviewer/SubmissionCommentsHandler.inc.php,
+	  pages/reviewer/SubmissionReviewHandler.inc.php,
+	  pages/reviewer/index.php, pages/rt/RTHandler.inc.php,
+	  pages/rt/index.php, pages/rtadmin/RTAdminHandler.inc.php,
+	  pages/rtadmin/RTContextHandler.inc.php,
+	  pages/rtadmin/RTSearchHandler.inc.php,
+	  pages/rtadmin/RTSetupHandler.inc.php,
+	  pages/rtadmin/RTVersionHandler.inc.php, pages/rtadmin/index.php,
+	  pages/schedConf/SchedConfHandler.inc.php,
+	  pages/schedConf/index.php,
+	  pages/schedConfs/SchedConfsHandler.inc.php,
+	  pages/schedConfs/index.php, pages/search/SearchHandler.inc.php,
+	  pages/search/index.php,
+	  pages/trackDirector/SubmissionCommentsHandler.inc.php,
+	  pages/trackDirector/SubmissionEditHandler.inc.php,
+	  pages/trackDirector/TrackDirectorHandler.inc.php,
+	  pages/trackDirector/index.php,
+	  pages/user/CreateAccountHandler.inc.php,
+	  pages/user/EmailHandler.inc.php,
+	  pages/user/ProfileHandler.inc.php,
+	  pages/user/UserHandler.inc.php, pages/user/index.php,
+	  plugins/blocks/developedBy/DevelopedByBlockPlugin.inc.php,
+	  plugins/blocks/developedBy/index.php,
+	  plugins/blocks/fontSize/FontSizeBlockPlugin.inc.php,
+	  plugins/blocks/fontSize/index.php,
+	  plugins/blocks/help/HelpBlockPlugin.inc.php,
+	  plugins/blocks/help/index.php,
+	  plugins/blocks/information/InformationBlockPlugin.inc.php,
+	  plugins/blocks/information/index.php,
+	  plugins/blocks/languageToggle/LanguageToggleBlockPlugin.inc.php,
+	  plugins/blocks/languageToggle/index.php,
+	  plugins/blocks/navigation/NavigationBlockPlugin.inc.php,
+	  plugins/blocks/navigation/index.php,
+	  plugins/blocks/role/RoleBlockPlugin.inc.php,
+	  plugins/blocks/role/index.php,
+	  plugins/blocks/user/UserBlockPlugin.inc.php,
+	  plugins/blocks/user/index.php,
+	  plugins/citationFormats/abnt/AbntCitationPlugin.inc.php,
+	  plugins/citationFormats/abnt/index.php,
+	  plugins/citationFormats/apa/ApaCitationPlugin.inc.php,
+	  plugins/citationFormats/apa/index.php,
+	  plugins/citationFormats/bibtex/BibtexCitationPlugin.inc.php,
+	  plugins/citationFormats/bibtex/index.php,
+	  plugins/citationFormats/cbe/CbeCitationPlugin.inc.php,
+	  plugins/citationFormats/cbe/index.php,
+	  plugins/citationFormats/endNote/EndNoteCitationPlugin.inc.php,
+	  plugins/citationFormats/endNote/index.php,
+	  plugins/citationFormats/mla/MlaCitationPlugin.inc.php,
+	  plugins/citationFormats/mla/index.php,
+	  plugins/citationFormats/proCite/ProCiteCitationPlugin.inc.php,
+	  plugins/citationFormats/proCite/index.php,
+	  plugins/citationFormats/refMan/RefManCitationPlugin.inc.php,
+	  plugins/citationFormats/refMan/index.php,
+	  plugins/citationFormats/refWorks/RefWorksCitationPlugin.inc.php,
+	  plugins/citationFormats/refWorks/index.php,
+	  plugins/citationFormats/turabian/TurabianCitationPlugin.inc.php,
+	  plugins/citationFormats/turabian/index.php,
+	  plugins/generic/acron/AcronPlugin.inc.php,
+	  plugins/generic/acron/index.php,
+	  plugins/generic/tinymce/TinyMCEPlugin.inc.php,
+	  plugins/generic/tinymce/index.php,
+	  plugins/generic/translator/TranslatorAction.inc.php,
+	  plugins/generic/translator/TranslatorHandler.inc.php,
+	  plugins/generic/translator/TranslatorPlugin.inc.php,
+	  plugins/generic/translator/index.php,
+	  plugins/importexport/mets/MetsExportDom.inc.php,
+	  plugins/importexport/mets/MetsExportPlugin.inc.php,
+	  plugins/importexport/mets/index.php,
+	  plugins/importexport/native/NativeExportDom.inc.php,
+	  plugins/importexport/native/NativeImportDom.inc.php,
+	  plugins/importexport/native/NativeImportExportPlugin.inc.php,
+	  plugins/importexport/native/index.php,
+	  plugins/importexport/nlm/NLMExportDom.inc.php,
+	  plugins/importexport/nlm/NLMExportPlugin.inc.php,
+	  plugins/importexport/nlm/index.php,
+	  plugins/importexport/users/UserExportDom.inc.php,
+	  plugins/importexport/users/UserImportExportPlugin.inc.php,
+	  plugins/importexport/users/UserXMLParser.inc.php,
+	  plugins/importexport/users/index.php,
+	  plugins/paymethod/manual/ManualPaymentPlugin.inc.php,
+	  plugins/paymethod/manual/index.php,
+	  plugins/paymethod/paypal/PayPalDAO.inc.php,
+	  plugins/paymethod/paypal/PayPalPaymentForm.inc.php,
+	  plugins/paymethod/paypal/PayPalPlugin.inc.php,
+	  plugins/paymethod/paypal/PayPalSettingsForm.inc.php,
+	  plugins/paymethod/paypal/index.php,
+	  plugins/reports/papers/PaperReportDAO.inc.php,
+	  plugins/reports/papers/PaperReportPlugin.inc.php,
+	  plugins/reports/papers/index.php,
+	  plugins/reports/registrants/RegistrantReportDAO.inc.php,
+	  plugins/reports/registrants/RegistrantReportPlugin.inc.php,
+	  plugins/reports/registrants/index.php,
+	  plugins/reports/reviews/ReviewReportDAO.inc.php,
+	  plugins/reports/reviews/ReviewReportPlugin.inc.php,
+	  plugins/reports/reviews/index.php,
+	  plugins/themes/classicBlue/ClassicBlueThemePlugin.inc.php,
+	  plugins/themes/classicBlue/index.php,
+	  plugins/themes/classicBrown/ClassicBrownThemePlugin.inc.php,
+	  plugins/themes/classicBrown/index.php,
+	  plugins/themes/classicGreen/ClassicGreenThemePlugin.inc.php,
+	  plugins/themes/classicGreen/index.php,
+	  plugins/themes/classicNavy/ClassicNavyThemePlugin.inc.php,
+	  plugins/themes/classicNavy/index.php,
+	  plugins/themes/classicRed/ClassicRedThemePlugin.inc.php,
+	  plugins/themes/classicRed/index.php,
+	  plugins/themes/desert/DesertThemePlugin.inc.php,
+	  plugins/themes/desert/index.php,
+	  plugins/themes/lilac/LilacThemePlugin.inc.php,
+	  plugins/themes/lilac/index.php,
+	  plugins/themes/night/NightThemePlugin.inc.php,
+	  plugins/themes/night/index.php,
+	  plugins/themes/redbar/RedbarThemePlugin.inc.php,
+	  plugins/themes/redbar/index.php,
+	  plugins/themes/steel/SteelThemePlugin.inc.php,
+	  plugins/themes/steel/index.php,
+	  plugins/themes/uncommon/UncommonThemePlugin.inc.php,
+	  plugins/themes/uncommon/index.php,
+	  plugins/themes/vanilla/VanillaThemePlugin.inc.php,
+	  plugins/themes/vanilla/index.php, tools/dbXMLtoSQL.php,
+	  tools/genTestLocale.php, tools/importExport.php,
+	  tools/install.php, tools/localeCheck.php, tools/migrate.php,
+	  tools/preCompile.php, tools/rebuildSearchIndex.php,
+	  tools/runScheduledTasks.php, tools/upgrade.php,
+	  tools/includes/cliTool.inc.php: #3529# Doxygen updates
+
+2008-07-01 17:09  michael
+
+	* plugins/generic/phpMyVisites/pageTag.tpl: #3629# Remove noscript
+	  code from phpmyvisites page tag
+
+2008-07-01 16:46  michael
+
+	* help/en_US/conference/topic/000028.xml,
+	  help/en_US/conference/topic/000036.xml,
+	  help/en_US/conference/topic/000045.xml,
+	  help/en_US/editorial/topic/000007.xml,
+	  help/en_US/editorial/topic/000009.xml,
+	  help/en_US/editorial/topic/000015.xml,
+	  help/en_US/editorial/topic/000016.xml,
+	  help/en_US/intro/topic/000000.xml, locale/en_US/locale.xml,
+	  plugins/generic/customLocale/localeFile.tpl,
+	  plugins/generic/translator/localeFile.tpl,
+	  templates/about/siteMap.tpl, templates/conference/current.tpl,
+	  templates/manager/accommodationSettings.tpl,
+	  templates/manager/index.tpl,
+	  templates/manager/paymentSettingsForm.tpl,
+	  templates/manager/programSettings.tpl,
+	  templates/manager/timelineEdit.tpl,
+	  templates/manager/timelineView.tpl,
+	  templates/manager/announcement/announcementForm.tpl,
+	  templates/manager/people/enrollment.tpl,
+	  templates/manager/people/userProfileForm.tpl,
+	  templates/manager/scheduler/scheduleForm.tpl,
+	  templates/manager/scheduler/specialEventForm.tpl,
+	  templates/manager/setup/step2.tpl,
+	  templates/manager/setup/step3.tpl,
+	  templates/manager/statistics/statistics.tpl,
+	  templates/registration/registrationForm.tpl,
+	  templates/registration/registrationPolicyForm.tpl,
+	  templates/registration/registrationTypeForm.tpl,
+	  templates/schedConf/accommodation.tpl,
+	  templates/schedConf/program.tpl,
+	  templates/search/searchResults.tpl, templates/user/index.tpl:
+	  #3301# Misc. XHTML markup errors
+
+2008-07-01 13:37  michael
+
+	*
+	  plugins/generic/translator/help/en_US/TranslatorPlugin/topic/000000.xml:
+	  #3531# Fix Conference Manager directions
+
+2008-07-01 13:26  michael
+
+	* styles/help.css: #3628# Sidebar in help spills over into contents
+
+2008-07-01 13:15  michael
+
+	* templates/schedConf/index.tpl: #3532# Add ability to style
+	  announcements listing
+
+2008-07-01 12:56  michael
+
+	* pages/paper/PaperHandler.inc.php,
+	  plugins/blocks/fontSize/FontSizeBlockPlugin.inc.php: #3435#
+	  Replace stripos with strpos
+
+2008-07-01 12:05  michael
+
+	* styles/common.css, templates/announcement/index.tpl,
+	  templates/announcement/list.tpl, templates/conference/index.tpl:
+	  #3532# Add ability to style announcements listing
+
+2008-07-01 11:46  michael
+
+	* classes/announcement/Announcement.inc.php,
+	  locale/en_US/locale.xml, templates/announcement/index.tpl,
+	  templates/announcement/list.tpl: #3550# Add date posted to
+	  announcement display
+
+2008-07-01 11:23  michael
+
+	* plugins/generic/translator/: help.xml,
+	  help/en_US/TranslatorPlugin/toc/000000.xml,
+	  help/en_US/TranslatorPlugin/topic/000000.xml: #3531# Add help for
+	  translator plugin
+
+2008-07-01 11:00  michael
+
+	* classes/registration/RegistrationDAO.inc.php,
+	  locale/en_US/locale.xml,
+	  pages/manager/RegistrationHandler.inc.php,
+	  templates/registration/registrations.tpl: #3551# Add search for
+	  registrations
+
+2008-06-30 17:06  michael
+
+	* js/sizer.js, locale/en_US/locale.xml,
+	  pages/paper/PaperHandler.inc.php,
+	  plugins/blocks/fontSize/FontSizeBlockPlugin.inc.php,
+	  plugins/blocks/fontSize/block.tpl,
+	  plugins/blocks/fontSize/header.tpl,
+	  plugins/blocks/fontSize/large.css,
+	  plugins/blocks/fontSize/large.gif,
+	  plugins/blocks/fontSize/medium.css,
+	  plugins/blocks/fontSize/medium.gif,
+	  plugins/blocks/fontSize/sizer.js,
+	  plugins/blocks/fontSize/small.css,
+	  plugins/blocks/fontSize/small.gif,
+	  plugins/blocks/fontSize/locale/en_US/locale.xml,
+	  plugins/blocks/fontSize/locale/fr_CA/locale.xml,
+	  plugins/blocks/fontSize/locale/it_IT/locale.xml,
+	  plugins/blocks/fontSize/locale/pt_BR/locale.xml,
+	  styles/fontLarge.css, styles/fontMedium.css,
+	  styles/fontSmall.css, styles/paperView.css,
+	  templates/common/sizer.tpl,
+	  templates/images/icons/font_large.gif,
+	  templates/images/icons/font_medium.gif,
+	  templates/images/icons/font_small.gif, templates/paper/paper.tpl:
+	  #3435# Font sizer in paper view
+
+2008-06-30 14:54  michael
+
+	* classes/mail/MailTemplate.inc.php,
+	  classes/manager/form/AccommodationSettingsForm.inc.php,
+	  classes/manager/form/UserManagementForm.inc.php,
+	  classes/presenter/form/submit/PresenterSubmitForm.inc.php,
+	  classes/schedConf/SchedConf.inc.php,
+	  classes/schedConf/SchedConfAction.inc.php,
+	  classes/schedConf/SchedConfSettingsDAO.inc.php,
+	  classes/site/ImportOCS1.inc.php,
+	  classes/submission/presenter/PresenterAction.inc.php,
+	  classes/submission/reviewer/ReviewerAction.inc.php,
+	  classes/submission/trackDirector/TrackDirectorAction.inc.php,
+	  classes/tasks/RegistrationExpiryReminder.inc.php,
+	  classes/tasks/ReviewReminder.inc.php,
+	  classes/template/TemplateManager.inc.php,
+	  classes/trackDirector/form/CreateReviewerForm.inc.php,
+	  classes/user/form/CreateAccountForm.inc.php,
+	  pages/about/AboutHandler.inc.php,
+	  pages/paper/PaperHandler.inc.php,
+	  pages/presenter/PresenterHandler.inc.php,
+	  pages/reviewer/ReviewerHandler.inc.php,
+	  pages/rt/RTHandler.inc.php,
+	  pages/trackDirector/SubmissionEditHandler.inc.php,
+	  templates/reviewer/submission.tpl: #3528# Remove broken schedConf
+	  setting inheritance from conferences
+
+2008-06-30 14:46  michael
+
+	* classes/conference/log/ConferenceLog.inc.php: #3626# Conference
+	  log cannot be disabled
+
+2008-06-30 14:15  michael
+
+	* pages/schedConf/SchedConfHandler.inc.php: #3624# Announcements
+	  not displayed on scheduled conference homepage
+
+2008-06-30 11:35  michael
+
+	* classes/comment/form/CommentForm.inc.php,
+	  classes/conference/Track.inc.php,
+	  classes/conference/TrackDAO.inc.php,
+	  classes/manager/form/TrackForm.inc.php,
+	  classes/paper/Paper.inc.php, classes/paper/PaperDAO.inc.php,
+	  classes/submission/trackDirector/TrackDirectorAction.inc.php,
+	  classes/submission/trackDirector/TrackDirectorSubmissionDAO.inc.php,
+	  dbscripts/xml/ocs_schema.xml,
+	  dbscripts/xml/upgrade/2.1.1_update.xml, locale/en_US/locale.xml,
+	  pages/comment/CommentHandler.inc.php,
+	  pages/paper/PaperHandler.inc.php,
+	  pages/trackDirector/SubmissionEditHandler.inc.php,
+	  pages/trackDirector/TrackDirectorHandler.inc.php,
+	  templates/comment/comments.tpl,
+	  templates/manager/tracks/trackForm.tpl, templates/rt/rt.tpl,
+	  templates/trackDirector/submission/status.tpl: #3293# Enable user
+	  comments on a per track/paper basis
+
+2008-06-27 15:05  michael
+
+	* classes/submission/director/DirectorSubmissionDAO.inc.php,
+	  classes/user/User.inc.php, locale/en_US/locale.xml,
+	  pages/director/DirectorHandler.inc.php,
+	  pages/trackDirector/TrackDirectorHandler.inc.php,
+	  styles/common.css, templates/director/submissions.tpl,
+	  templates/trackDirector/index.tpl: #3378# Default filter for
+	  submissions based on director assignment
+
+2008-06-27 13:32  michael
+
+	* plugins/generic/googleAnalytics/: GoogleAnalyticsPlugin.inc.php,
+	  GoogleAnalyticsSettingsForm.inc.php, index.php, pageTagGa.tpl,
+	  pageTagUrchin.tpl, settingsForm.tpl, locale/el_GR/locale.xml,
+	  locale/en_US/locale.xml, locale/es_ES/locale.xml,
+	  locale/fr_CA/locale.xml, locale/it_IT/locale.xml,
+	  locale/ja_JP/locale.xml, locale/pt_BR/locale.xml: #2900# Add
+	  Google Analytics plugin
+
+2008-06-27 13:17  michael
+
+	* plugins/generic/phpMyVisites/PhpMyVisitesPlugin.inc.php: #2906#
+	  Add phpMyVisites plugin
+
+2008-06-27 13:07  michael
+
+	* plugins/generic/phpMyVisites/PhpMyVisitesPlugin.inc.php,
+	  plugins/generic/phpMyVisites/PhpMyVisitesSettingsForm.inc.php,
+	  plugins/generic/phpMyVisites/index.php,
+	  plugins/generic/phpMyVisites/pageTag.tpl,
+	  plugins/generic/phpMyVisites/settingsForm.tpl,
+	  plugins/generic/phpMyVisites/locale/el_GR/locale.xml,
+	  plugins/generic/phpMyVisites/locale/en_US/locale.xml,
+	  plugins/generic/phpMyVisites/locale/es_ES/locale.xml,
+	  plugins/generic/phpMyVisites/locale/fr_CA/locale.xml,
+	  plugins/generic/phpMyVisites/locale/it_IT/locale.xml,
+	  plugins/generic/phpMyVisites/locale/ja_JP/locale.xml,
+	  plugins/generic/phpMyVisites/locale/pt_BR/locale.xml,
+	  templates/common/footer.tpl, templates/help/footer.tpl,
+	  templates/paper/interstitial.tpl, templates/paper/paper.tpl,
+	  templates/paper/pdfInterstitial.tpl, templates/rt/footer.tpl:
+	  #2906# Add phpMyVisites plugin
+
+2008-06-27 09:27  michael
+
+	* classes/announcement/Announcement.inc.php,
+	  classes/announcement/AnnouncementDAO.inc.php,
+	  classes/manager/form/AnnouncementForm.inc.php,
+	  classes/schedConf/SchedConf.inc.php,
+	  pages/gateway/GatewayHandler.inc.php, pages/gateway/index.php,
+	  plugins/generic/announcementFeed/AnnouncementFeedBlockPlugin.inc.php,
+	  plugins/generic/announcementFeed/AnnouncementFeedGatewayPlugin.inc.php,
+	  plugins/generic/announcementFeed/AnnouncementFeedPlugin.inc.php,
+	  plugins/generic/announcementFeed/SettingsForm.inc.php,
+	  plugins/generic/announcementFeed/index.php,
+	  plugins/generic/announcementFeed/settings.xml,
+	  plugins/generic/announcementFeed/settingsForm.tpl,
+	  plugins/generic/announcementFeed/locale/en_US/locale.xml,
+	  plugins/generic/announcementFeed/templates/atom.tpl,
+	  plugins/generic/announcementFeed/templates/block.tpl,
+	  plugins/generic/announcementFeed/templates/rss.tpl,
+	  plugins/generic/announcementFeed/templates/rss2.tpl,
+	  plugins/generic/announcementFeed/templates/images/atom10_logo.gif,
+	  plugins/generic/announcementFeed/templates/images/rss10_logo.gif,
+	  plugins/generic/announcementFeed/templates/images/rss20_logo.gif:
+	  #3292# Announcements RSS plugin
+
+2008-06-27 05:09  michael
+
+	* classes/file/EditableFile.inc.php,
+	  classes/i18n/EditableEmailFile.inc.php,
+	  classes/i18n/EditableLocaleFile.inc.php,
+	  classes/i18n/LocaleFile.inc.php,
+	  plugins/generic/customLocale/CustomLocaleAction.inc.php,
+	  plugins/generic/customLocale/CustomLocaleHandler.inc.php,
+	  plugins/generic/customLocale/CustomLocalePlugin.inc.php,
+	  plugins/generic/customLocale/index.php,
+	  plugins/generic/customLocale/index.tpl,
+	  plugins/generic/customLocale/locale.tpl,
+	  plugins/generic/customLocale/localeFile.tpl,
+	  plugins/generic/customLocale/locale/en_US/locale.xml,
+	  plugins/generic/translator/EditableEmailFile.inc.php,
+	  plugins/generic/translator/EditableFile.inc.php,
+	  plugins/generic/translator/EditableLocaleFile.inc.php,
+	  plugins/generic/translator/TranslatorHandler.inc.php: #2181#
+	  Custom localization strings
+
+2008-06-27 03:35  michael
+
+	* classes/admin/form/SiteSettingsForm.inc.php,
+	  classes/manager/form/setup/ConferenceSetupStep2Form.inc.php,
+	  classes/manager/form/setup/ConferenceSetupStep3Form.inc.php,
+	  locale/en_US/locale.xml,
+	  templates/about/aboutThisPublishingSystem.tpl,
+	  templates/admin/settings.tpl, templates/common/header.tpl,
+	  templates/conference/index.tpl,
+	  templates/manager/setup/step2.tpl,
+	  templates/manager/setup/step3.tpl,
+	  templates/registration/userRegistrationForm.tpl,
+	  templates/schedConf/index.tpl, templates/user/createAccount.tpl:
+	  #2968# Add support for logo ALT tags
+
+2008-06-27 01:17  michael
+
+	* styles/common.css, templates/conference/index.tpl: #3304#
+	  Hard-coded style for homepage image
+
+2008-06-27 01:03  michael
+
+	* templates/common/header.tpl: #3298# Header image border style
+	  hard-coded in header template
+
+2008-06-25 15:45  michael
+
+	* classes/db/DAORegistry.inc.php, classes/site/Site.inc.php,
+	  classes/site/SiteSettingsDAO.inc.php,
+	  pages/admin/AdminSettingsHandler.inc.php: #3610# Site header
+	  image not completely deleted
+
+2008-06-25 15:07  asmecher
+
+	* classes/paper/PresenterDAO.inc.php: #3611# Fixed cast for old
+	  MySQL
+
+2008-06-25 12:12  michael
+
+	* classes/manager/form/setup/ConferenceSetupForm.inc.php,
+	  pages/admin/AdminSettingsHandler.inc.php: #2968# Refresh header
+	  upon header image delete
+
+2008-06-24 18:12  michael
+
+	* classes/user/UserSettingsDAO.inc.php: #3607# User settings
+	  primary key needs to include conference id
+
+2008-06-24 17:46  michael
+
+	* classes/user/UserSettingsDAO.inc.php,
+	  dbscripts/xml/ocs_schema.xml,
+	  dbscripts/xml/upgrade/2.1.1_update.xml: #3607# User settings
+	  primary key needs to include conference id
+
+2008-06-24 13:41  asmecher
+
+	* plugins/importexport/: native/NativeImportExportPlugin.inc.php,
+	  users/UserExportDom.inc.php: #3606# Import/export corrections
+
+2008-06-23 15:26  asmecher
+
+	* pages/trackDirector/SubmissionEditHandler.inc.php: #3529#
+	  Indentation
+
+2008-06-23 15:22  asmecher
+
+	*
+	  classes/submission/trackDirector/TrackDirectorSubmissionDAO.inc.php:
+	  #3579# Fixed "interests" search
+
+2008-06-23 15:18  asmecher
+
+	* classes/template/TemplateManager.inc.php: #3556# Additional fix
+	  for log entry localization
+
+2008-06-23 15:12  asmecher
+
+	* classes/paper/log/PaperLog.inc.php: #3603# Fixed paper email log
+	  issue
+
+2008-06-23 08:44  asmecher
+
+	* dbscripts/xml/ocs_schema.xml: #3602# Allow IPv6 addresses in
+	  sessions
+
+2008-06-20 03:05  michael
+
+	* pages/paper/PaperHandler.inc.php, templates/rt/rt.tpl: #3596# Fix
+	  RT add comment display
+
+2008-06-18 17:12  asmecher
+
+	* dbscripts/xml/data/locale/ca_ES/email_templates_data.xml,
+	  locale/ca_ES/currencies.xml, locale/ca_ES/locale.xml,
+	  plugins/generic/acron/locale/ca_ES/locale.xml,
+	  plugins/importexport/nlm/locale/ca_ES/locale.xml,
+	  plugins/paymethod/manual/locale/ca_ES/locale.xml,
+	  plugins/paymethod/paypal/locale/ca_ES/locale.xml,
+	  registry/locales.xml, registry/locale/ca_ES/countries.xml: #3592#
+	  Added Catalan support
+
+2008-06-18 13:04  asmecher
+
+	* classes/conference/log/ConferenceEventLogDAO.inc.php,
+	  classes/conference/log/ConferenceEventLogEntry.inc.php,
+	  classes/paper/log/PaperEventLogDAO.inc.php,
+	  classes/paper/log/PaperEventLogEntry.inc.php,
+	  classes/submission/common/Action.inc.php,
+	  dbscripts/xml/ocs_schema.xml,
+	  pages/manager/ConferenceHistoryHandler.inc.php,
+	  templates/manager/conferenceEventLog.tpl,
+	  templates/manager/conferenceEventLogEntry.tpl,
+	  templates/trackDirector/submissionEventLog.tpl,
+	  templates/trackDirector/submissionEventLogEntry.tpl,
+	  templates/trackDirector/submissionHistory.tpl: #3556# Logs should
+	  use locale keys.
+
+2008-06-18 11:55  asmecher
+
+	* plugins/importexport/native/index.tpl: #3589# Title assignment
+	  tune-up
+
+2008-06-18 11:33  asmecher
+
+	* classes/site/VersionCheck.inc.php, docs/dev/RELEASE: #3529# Docs
+	  update; XML version descriptor location update
+
+2008-06-18 08:59  asmecher
+
+	* plugins/: blocks/role/RoleBlockPlugin.inc.php,
+	  generic/tinymce/TinyMCEPlugin.inc.php: #3587# Fixed journal
+	  references
+
+2008-06-17 16:26  asmecher
+
+	* classes/paper/Paper.inc.php, pages/user/EmailHandler.inc.php,
+	  pages/user/UserHandler.inc.php,
+	  templates/presenter/submission/summary.tpl,
+	  templates/trackDirector/submission/management.tpl,
+	  templates/trackDirector/submission/peerReview.tpl,
+	  templates/trackDirector/submission/summary.tpl: #3582# Fixed
+	  paper presenter authorship email param
+
+2008-06-17 13:56  asmecher
+
+	* classes/registration/RegistrationDAO.inc.php: #3581# Fixed wierd
+	  MySQL sort order glitch
+
+2008-06-16 18:54  asmecher
+
+	* classes/core/String.inc.php: #3578# Fixed typo
+
+2008-06-16 16:29  asmecher
+
+	* classes/core/ArrayItemIterator.inc.php,
+	  classes/core/String.inc.php, classes/core/Transcoder.inc.php,
+	  classes/core/VirtualArrayIterator.inc.php, docs/dev/ocs2.doxygen,
+	  plugins/importexport/mets/MetsExportPlugin.inc.php,
+	  plugins/importexport/native/NativeImportExportPlugin.inc.php,
+	  plugins/importexport/nlm/NLMExportPlugin.inc.php,
+	  plugins/importexport/users/UserImportExportPlugin.inc.php,
+	  plugins/reports/papers/PaperReportPlugin.inc.php,
+	  plugins/reports/registrants/RegistrantReportPlugin.inc.php,
+	  plugins/reports/reviews/ReviewReportPlugin.inc.php,
+	  tools/buildpkg.sh: #3575# Documentation changes
+
+2008-06-16 14:21  asmecher
+
+	* locale/es_ES/locale.xml: #3529# Spanish updates
+
+2008-06-16 12:06  asmecher
+
+	* templates/trackDirector/: submissionHistory.tpl,
+	  submissionNotes.tpl: #3160# Expand/collapse layout tune-ups
+
+2008-06-14 16:41  asmecher
+
+	* pages/user/EmailHandler.inc.php: #3570# Fixed email count check
+
+2008-06-13 09:23  asmecher
+
+	* plugins/themes/classicBlue/classicBlue.css,
+	  plugins/themes/classicBrown/classicBrown.css,
+	  plugins/themes/classicRed/classicRed.css,
+	  plugins/themes/lilac/lilac.css, plugins/themes/steel/steel.css,
+	  styles/bothSidebars.css, styles/help.css, styles/leftSidebar.css,
+	  styles/rightSidebar.css: #3315# #3559# CSS tune-ups
+
+2008-06-12 15:37  mj
+
+	* classes/core/String.inc.php: #3529# - backport of OJS #3561#
+	  (Update core string class to handle invalid UTF8 sequences)
+
+2008-06-11 16:36  asmecher
+
+	* plugins/reports/papers/PaperReportDAO.inc.php: #3197# Fixed
+	  report madness
+
+2008-06-11 16:01  asmecher
+
+	* templates/manager/statistics/reportGenerator.tpl: #3197# Removed
+	  report generator unused code.
+
+2008-06-11 15:24  asmecher
+
+	* classes/presenter/form/submit/PresenterSubmitStep5Form.inc.php:
+	  #3554# Fixed director auto-assign
+
+2008-06-11 13:47  asmecher
+
+	*
+	  classes/manager/form/schedConfSetup/SchedConfSetupStep2Form.inc.php,
+	  classes/paper/PublishedPaperDAO.inc.php, locale/en_US/locale.xml,
+	  pages/schedConf/SchedConfHandler.inc.php,
+	  templates/manager/schedConfSetup/step2.tpl,
+	  templates/schedConf/papers.tpl: #3560# Added abstract preview
+	  feature
+
+2008-06-10 16:01  asmecher
+
+	* templates/: comment/comments.tpl, paper/paper.tpl: #3529# Code
+	  reformatting
+
+2008-06-10 10:20  asmecher
+
+	* pages/manager/StatisticsHandler.inc.php: #3552# Fixed public
+	  stats page
+
+2008-06-09 16:05  mj
+
+	* classes/i18n/LocaleFile.inc.php: #3529# - backport of OJS #3446#
+	  (explicitly reload locale keys from XML when cache is set to
+	  'none')
+
+2008-06-09 15:12  mj
+
+	* classes/core/Core.inc.php: #3529# - pulled out previous changes
+	  from OJS backport #3316# (deferred)
+
+2008-06-06 15:08  asmecher
+
+	* classes/file/FileManager.inc.php,
+	  plugins/importexport/native/NativeImportExportPlugin.inc.php,
+	  plugins/importexport/native/locale/en_US/locale.xml: #3538# Fixed
+	  error message for native import
+
+2008-06-06 12:54  asmecher
+
+	* plugins/generic/tinymce/TinyMCEPlugin.inc.php: #3541# Fixed
+	  TinyMCE plugin
+
+2008-06-05 10:44  asmecher
+
+	* templates/submission/metadata/metadataView.tpl: #3546# Fixed bio
+	  view in metadata review page
+
+2008-06-04 10:21  asmecher
+
+	* lib/: libraries.txt, tinymce/jscripts/tiny_mce/tiny_mce.js,
+	  tinymce/jscripts/tiny_mce/tiny_mce_popup.js,
+	  tinymce/jscripts/tiny_mce/tiny_mce_src.js,
+	  tinymce/jscripts/tiny_mce/langs/en.js,
+	  tinymce/jscripts/tiny_mce/plugins/advhr/rule.htm,
+	  tinymce/jscripts/tiny_mce/plugins/advhr/js/rule.js,
+	  tinymce/jscripts/tiny_mce/plugins/advimage/image.htm,
+	  tinymce/jscripts/tiny_mce/plugins/advimage/css/advimage.css,
+	  tinymce/jscripts/tiny_mce/plugins/advimage/js/image.js,
+	  tinymce/jscripts/tiny_mce/plugins/advlink/link.htm,
+	  tinymce/jscripts/tiny_mce/plugins/bbcode/editor_plugin.js,
+	  tinymce/jscripts/tiny_mce/plugins/bbcode/editor_plugin_src.js,
+	  tinymce/jscripts/tiny_mce/plugins/compat2x/editor_plugin.js,
+	  tinymce/jscripts/tiny_mce/plugins/compat2x/editor_plugin_src.js,
+	  tinymce/jscripts/tiny_mce/plugins/contextmenu/editor_plugin.js,
+	  tinymce/jscripts/tiny_mce/plugins/contextmenu/editor_plugin_src.js,
+	  tinymce/jscripts/tiny_mce/plugins/emotions/emotions.htm,
+	  tinymce/jscripts/tiny_mce/plugins/example/dialog.htm,
+	  tinymce/jscripts/tiny_mce/plugins/fullpage/editor_plugin.js,
+	  tinymce/jscripts/tiny_mce/plugins/fullpage/editor_plugin_src.js,
+	  tinymce/jscripts/tiny_mce/plugins/fullpage/fullpage.htm,
+	  tinymce/jscripts/tiny_mce/plugins/fullpage/css/fullpage.css,
+	  tinymce/jscripts/tiny_mce/plugins/fullscreen/fullscreen.htm,
+	  tinymce/jscripts/tiny_mce/plugins/inlinepopups/editor_plugin.js,
+	  tinymce/jscripts/tiny_mce/plugins/inlinepopups/editor_plugin_src.js,
+	  tinymce/jscripts/tiny_mce/plugins/inlinepopups/template.htm,
+	  tinymce/jscripts/tiny_mce/plugins/media/media.htm,
+	  tinymce/jscripts/tiny_mce/plugins/media/css/media.css,
+	  tinymce/jscripts/tiny_mce/plugins/media/js/media.js,
+	  tinymce/jscripts/tiny_mce/plugins/paste/blank.htm,
+	  tinymce/jscripts/tiny_mce/plugins/paste/editor_plugin.js,
+	  tinymce/jscripts/tiny_mce/plugins/paste/editor_plugin_src.js,
+	  tinymce/jscripts/tiny_mce/plugins/paste/pastetext.htm,
+	  tinymce/jscripts/tiny_mce/plugins/paste/pasteword.htm,
+	  tinymce/jscripts/tiny_mce/plugins/save/editor_plugin.js,
+	  tinymce/jscripts/tiny_mce/plugins/save/editor_plugin_src.js,
+	  tinymce/jscripts/tiny_mce/plugins/searchreplace/searchreplace.htm,
+	  tinymce/jscripts/tiny_mce/plugins/style/props.htm,
+	  tinymce/jscripts/tiny_mce/plugins/table/cell.htm,
+	  tinymce/jscripts/tiny_mce/plugins/table/editor_plugin.js,
+	  tinymce/jscripts/tiny_mce/plugins/table/editor_plugin_src.js,
+	  tinymce/jscripts/tiny_mce/plugins/table/merge_cells.htm,
+	  tinymce/jscripts/tiny_mce/plugins/table/row.htm,
+	  tinymce/jscripts/tiny_mce/plugins/table/table.htm,
+	  tinymce/jscripts/tiny_mce/plugins/table/js/merge_cells.js,
+	  tinymce/jscripts/tiny_mce/plugins/table/js/table.js,
+	  tinymce/jscripts/tiny_mce/plugins/template/template.htm,
+	  tinymce/jscripts/tiny_mce/plugins/template/js/template.js,
+	  tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/abbr.htm,
+	  tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/acronym.htm,
+	  tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/attributes.htm,
+	  tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/cite.htm,
+	  tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/del.htm,
+	  tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/ins.htm,
+	  tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/js/element_common.js,
+	  tinymce/jscripts/tiny_mce/themes/advanced/about.htm,
+	  tinymce/jscripts/tiny_mce/themes/advanced/anchor.htm,
+	  tinymce/jscripts/tiny_mce/themes/advanced/charmap.htm,
+	  tinymce/jscripts/tiny_mce/themes/advanced/color_picker.htm,
+	  tinymce/jscripts/tiny_mce/themes/advanced/editor_template.js,
+	  tinymce/jscripts/tiny_mce/themes/advanced/editor_template_src.js,
+	  tinymce/jscripts/tiny_mce/themes/advanced/image.htm,
+	  tinymce/jscripts/tiny_mce/themes/advanced/link.htm,
+	  tinymce/jscripts/tiny_mce/themes/advanced/source_editor.htm,
+	  tinymce/jscripts/tiny_mce/themes/advanced/js/color_picker.js,
+	  tinymce/jscripts/tiny_mce/themes/advanced/js/image.js,
+	  tinymce/jscripts/tiny_mce/themes/advanced/skins/default/content.css,
+	  tinymce/jscripts/tiny_mce/themes/advanced/skins/o2k7/content.css:
+	  #3542# Updated to TinyMCE 3.09
+
+2008-06-04 09:34  asmecher
+
+	* classes/manager/form/TimelineForm.inc.php: #3544# Fixed timeline
+	  outside date calc
+
+2008-06-03 10:34  asmecher
+
+	* dbscripts/xml/upgrade/2.1.0_localize.xml: #3417# Fix for alt
+	  locale info for conferences that don't use alt locales
+
+2008-06-02 11:02  asmecher
+
+	* plugins/importexport/native/NativeImportDom.inc.php: #3539# Fixed
+	  import bug
+
+2008-05-24 11:36  asmecher
+
+	* includes/functions.inc.php: #3530# Reconciled against OJS
+
