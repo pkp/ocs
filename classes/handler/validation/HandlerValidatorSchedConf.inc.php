@@ -1,14 +1,14 @@
 <?php
 /**
- * @file classes/handler/HandlerValidatorConference.inc.php
+ * @file classes/handler/HandlerValidatorSchedConf.inc.php
  *
  * Copyright (c) 2000-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class HandlerValidator
- * @ingroup security
+ * @ingroup handler_validation
  *
- * @brief Class to represent a page validation check.
+ * @brief Class to validate that a sched conf exists
  */
 
 import('handler.validation.HandlerValidator');
@@ -18,7 +18,6 @@ class HandlerValidatorSchedConf extends HandlerValidator {
 	 * Constructor.
 	 * @param $handler Handler the associated form
 	 */
-	 
 	function HandlerValidatorSchedConf(&$handler) {
 		parent::HandlerValidator($handler);
 	}

@@ -61,17 +61,18 @@ class SubmissionCommentsHandler extends AuthorHandler {
 	 * Edit comment.
 	 */
 	function editComment($args) {
-		$this->validate();
-		$this->setupTemplate(true);
-
 		$paperId = $args[0];
 		$commentId = $args[1];
 
+		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
+		$this->validate();
+		$comment =& $this->comment;
+		
+		$this->setupTemplate(true);
+		
 		$trackSubmissionHandler =& new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
-		$this->validate($commentId);
-		$comment =& $this->comment;
 
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			// Cannot edit a director decision comment.
@@ -86,20 +87,21 @@ class SubmissionCommentsHandler extends AuthorHandler {
 	 * Save comment.
 	 */
 	function saveComment() {
-		$this->validate();
-		$this->setupTemplate(true);
-
 		$paperId = Request::getUserVar('paperId');
 		$commentId = Request::getUserVar('commentId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
+		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
+		$this->validate();
+		$comment =& $this->comment;
+		
+		$this->setupTemplate(true);
+		
 		$trackSubmissionHandler =& new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
-		$this->validate($commentId);
-		$comment =& $this->comment;
 
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			// Cannot edit a director decision comment.
@@ -121,59 +123,24 @@ class SubmissionCommentsHandler extends AuthorHandler {
 	 * Delete comment.
 	 */
 	function deleteComment($args) {
-		$this->validate();
-		$this->setupTemplate(true);
-
 		$paperId = $args[0];
 		$commentId = $args[1];
 
-		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
-		$comment =& $paperCommentDao->getPaperCommentById($commentId);
-
+		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId));
+		$this->validate();
+		$comment =& $this->comment;
+		
+		$this->setupTemplate(true);
+		
 		$trackSubmissionHandler =& new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
-		$this->validate($commentId);
-		$comment =& $this->comment;
 		AuthorAction::deleteComment($commentId);
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_DIRECTOR_DECISION) {
 			Request::redirect(null, null, null, 'viewDirectorDecisionComments', $paperId);
 		}
-	}
-
-
-	//
-	// Validation
-	//
-
-	/**
-	 * Validate that the user is the author of the comment.
-	 */
-	function validate($commentId) {
-		parent::validate();
-
-		$isValid = true;
-
-		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
-		$user =& Request::getUser();
-
-		$comment =& $paperCommentDao->getPaperCommentById($commentId);
-
-		if ($comment == null) {
-			$isValid = false;
-
-		} else if ($comment->getAuthorId() != $user->getId()) {
-			$isValid = false;
-		}
-
-		if (!$isValid) {
-			Request::redirect(null, null, Request::getRequestedPage());
-		}
-		
-		$this->comment =& $comment;
-		return true;
 	}
 }
 ?>

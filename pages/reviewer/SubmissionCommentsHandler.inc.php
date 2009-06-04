@@ -82,9 +82,11 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$submissionReviewHandler =& new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$user =& $submissionReviewHandler->user;
-		$this->validate($user, $commentId);
-		$comment =& $this->comment;
 
+		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId, $user));
+		$this->validate();
+		$comment =& $this->comment;
+		
 		$this->setupTemplate(true);
 
 		ReviewerAction::editComment($submission, $comment, $reviewId);
@@ -104,7 +106,9 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$submissionReviewHandler =& new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$user =& $submissionReviewHandler->user;
-		$this->validate($user, $commentId);
+
+		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId, $user));
+		$this->validate();
 		$comment =& $this->comment;
 		
 		// If the user pressed the "Save and email" button, then email the comment.
@@ -131,49 +135,22 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperId = $args[0];
 		$commentId = $args[1];
 		$reviewId = Request::getUserVar('reviewId');
-
+		
+		$this->setupTemplate(true);
+		
 		$submissionReviewHandler =& new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$user =& $submissionReviewHandler->user;
-		$this->validate($user, $commentId);
+
+		$this->addCheck(new HandlerValidatorSubmissionComment($this, $commentId, $user));
+		$this->validate();
 		$comment =& $this->comment;
-
-		$this->setupTemplate(true);
-
 		ReviewerAction::deleteComment($commentId, $user);
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW) {
 			Request::redirect(null, null, null, 'viewPeerReviewComments', array($paperId, $comment->getAssocId()));
 		}
-	}
-
-	//
-	// Validation
-	//
-
-	/**
-	 * Validate that the user is the author of the comment.
-	 */
-	function validate($user, $commentId) {
-		$isValid = true;
-
-		$paperCommentDao =& DAORegistry::getDAO('PaperCommentDAO');
-		$comment =& $paperCommentDao->getPaperCommentById($commentId);
-
-		if ($comment == null) {
-			$isValid = false;
-
-		} else if ($comment->getAuthorId() != $user->getId()) {
-			$isValid = false;
-		}
-
-		if (!$isValid) {
-			Request::redirect(null, null, Request::getRequestedPage());
-		}
-
-		$this->comment =& $comment;
-		return true;
 	}
 }
 ?>
