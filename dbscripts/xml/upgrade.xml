@@ -57,7 +57,7 @@
 		<code function="setReviewMode" />
 	</upgrade>
 
-	<upgrade minversion="2.0.0.0" maxversion="2.1.1.0">
+	<upgrade minversion="2.0.0.0" maxversion="2.1.1.2">
 		<data file="dbscripts/xml/upgrade/2.1.2_update.xml" />
 		<code function="localizeProgramSettings" />
 		<code function="updateReviewDeadlineSettings" />
