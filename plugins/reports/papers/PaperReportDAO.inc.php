@@ -72,7 +72,7 @@ class PaperReportDAO extends DAO {
 				papers p
 			WHERE	p.sched_conf_id = ? AND
 				p.paper_id = ed.paper_id
-			GROUP BY paper_id',
+			GROUP BY p.paper_id',
 			array($schedConfId)
 		);
 		$decisionDatesIterator =& new DBRowIterator($result);
