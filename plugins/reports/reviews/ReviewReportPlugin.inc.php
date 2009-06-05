@@ -113,19 +113,19 @@ class ReviewReportPlugin extends ReportPlugin {
 
 		while ($row =& $reviewsIterator->next()) {
 			foreach ($columns as $index => $junk) {
-				if (in_array($index, $yesNoArray)){
+				if (in_array($index, array('declined', 'cancelled'))) {
 					$columns[$index] = $yesnoMessages[$row[$index]];
-				}else if ($index == "reviewstage"){
+				} else if ($index == "reviewstage") {
 					$columns[$index] = $reviewTypes[$row[$index]];
-				}else if ($index == "recommendation"){
+				} else if ($index == "recommendation") {
 					$columns[$index] = (!isset($row[$index])) ? Locale::translate('common.none') : Locale::translate($recommendations[$row[$index]]);
-				}else if ($index == "comments"){
-					if ( isset($comments[$row['paperid']][$row['reviewerid']]) ){
+				} else if ($index == "comments") {
+					if (isset($comments[$row['paperid']][$row['reviewerid']])) {
 						$columns[$index] = $comments[$row['paperid']][$row['reviewerid']];
-					}else{
+					} else {
 						$columns[$index] = "";
 					}
-				}else{
+				} else {
 					$columns[$index] = $row[$index];
 				}
 			}
