@@ -114,7 +114,12 @@ class ReviewReportPlugin extends ReportPlugin {
 		while ($row =& $reviewsIterator->next()) {
 			foreach ($columns as $index => $junk) {
 				if (in_array($index, array('declined', 'cancelled'))) {
-					$columns[$index] = $yesnoMessages[(int) $row[$index]];
+					$yesNoIndex = $row[$index];
+					if (is_string($yesNoIndex)) {
+						// Accomodate Postgres boolean casting
+						$yesNoIndex = $yesNoIndex == "f" ? 0 : 1;
+					}
+					$columns[$index] = $yesnoMessages[$yesNoIndex];
 				} else if ($index == "reviewstage") {
 					$columns[$index] = $reviewTypes[$row[$index]];
 				} else if ($index == "recommendation") {
