@@ -25,7 +25,7 @@ class RegistrationOptionDAO extends DAO {
 	 * @return RegistrationOption
 	 */
 	function &getRegistrationOption($optionId, $code = null) {
-		$params = array($optionId);
+		$params = array((int) $optionId);
 		if ($code !== null) $params[] = $code;
 		$result =& $this->retrieve(
 			'SELECT * FROM registration_options WHERE option_id = ?' .
@@ -51,7 +51,7 @@ class RegistrationOptionDAO extends DAO {
 	 */
 	function getRegistrationOptionSchedConfId($optionId) {
 		$result =& $this->retrieve(
-			'SELECT sched_conf_id FROM registration_options WHERE option_id = ?', $optionId
+			'SELECT sched_conf_id FROM registration_options WHERE option_id = ?', (int) $optionId
 		);
 
 		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;	
@@ -97,8 +97,8 @@ class RegistrationOptionDAO extends DAO {
 				WHERE option_id = ?
 				AND   sched_conf_id = ?',
 			array(
-				$optionId,
-				$schedConfId
+				(int) $optionId,
+				(int) $schedConfId
 			)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] != 0 ? true : false;
@@ -127,8 +127,8 @@ class RegistrationOptionDAO extends DAO {
 				AND   closing_date > ' . $time . '
 				AND   pub = 1',
 			array(
-				$optionId,
-				$schedConfId
+				(int) $optionId,
+				(int) $schedConfId
 			)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] != 0 ? true : false;
@@ -154,8 +154,8 @@ class RegistrationOptionDAO extends DAO {
 				AND   sched_conf_id = ?
 				AND   code = ?',
 			array(
-				$optionId,
-				$schedConfId,
+				(int) $optionId,
+				(int) $schedConfId,
 				$code
 			)
 		);
@@ -221,9 +221,9 @@ class RegistrationOptionDAO extends DAO {
 				$this->dateToDB($registrationOption->getOpeningDate()),
 				$this->dateToDB($registrationOption->getClosingDate())
 			), array(
-				$registrationOption->getSchedConfId(),
-				$registrationOption->getPublic(),
-				$registrationOption->getSequence(),
+				(int) $registrationOption->getSchedConfId(),
+				(int) $registrationOption->getPublic(),
+				(float) $registrationOption->getSequence(),
 				$registrationOption->getCode()
 			)
 		);
@@ -240,7 +240,7 @@ class RegistrationOptionDAO extends DAO {
 	 */
 	function updateRegistrationOption(&$registrationOption) {
 		$returner = $this->update(
-			sprintf('UPDATE registration_options
+			sprintf('UPDATE	registration_options
 				SET
 					sched_conf_id = ?,
 					opening_date = %s,
@@ -248,15 +248,15 @@ class RegistrationOptionDAO extends DAO {
 					pub = ?,
 					seq = ?,
 					code = ?
-				WHERE option_id = ?',
+				WHERE	option_id = ?',
 				$this->dateToDB($registrationOption->getOpeningDate()),
 				$this->dateToDB($registrationOption->getClosingDate())
 			), array(
-				$registrationOption->getSchedConfId(),
-				$registrationOption->getPublic(),
-				$registrationOption->getSequence(),
+				(int) $registrationOption->getSchedConfId(),
+				(int) $registrationOption->getPublic(),
+				(float) $registrationOption->getSequence(),
 				$registrationOption->getCode(),
-				$registrationOption->getOptionId()
+				(int) (int) (int) (int) (int) (int) (int) (int) (int) $registrationOption->getOptionId()
 			)
 		);
 		$this->updateLocaleFields($registrationOption);
@@ -368,7 +368,7 @@ class RegistrationOptionDAO extends DAO {
 	function &getRegistrationOptionsBySchedConfId($schedConfId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
 			'SELECT * FROM registration_options WHERE sched_conf_id = ? ORDER BY seq',
-			$schedConfId, $rangeInfo
+			(int) $schedConfId, $rangeInfo
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnRegistrationOptionFromRow');
@@ -389,7 +389,7 @@ class RegistrationOptionDAO extends DAO {
 	function resequenceRegistrationOptions($schedConfId) {
 		$result =& $this->retrieve(
 			'SELECT option_id FROM registration_options WHERE sched_conf_id = ? ORDER BY seq',
-			$schedConfId
+			(int) $schedConfId
 		);
 
 		for ($i=1; !$result->EOF; $i++) {
@@ -397,8 +397,8 @@ class RegistrationOptionDAO extends DAO {
 			$this->update(
 				'UPDATE registration_options SET seq = ? WHERE option_id = ?',
 				array(
-					$i,
-					$registrationOptionId
+					(int) $i,
+					(int) $registrationOptionId
 				)
 			);
 

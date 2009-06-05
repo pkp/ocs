@@ -283,14 +283,14 @@ class RegistrationTypeDAO extends DAO {
 				$this->datetimeToDB($registrationType->getClosingDate()),
 				$expiryDate === null?'null':$this->datetimeToDB($expiryDate)
 			), array(
-				$registrationType->getSchedConfId(),
-				$registrationType->getCost(),
+				(int) $registrationType->getSchedConfId(),
+				(float) $registrationType->getCost(),
 				$registrationType->getCurrencyCodeAlpha(),
-				$registrationType->getAccess(),
-				$registrationType->getInstitutional(),
-				$registrationType->getMembership(),
-				$registrationType->getPublic(),
-				$registrationType->getSequence(),
+				(int) $registrationType->getAccess(),
+				(int) $registrationType->getInstitutional(),
+				(int) $registrationType->getMembership(),
+				(int) $registrationType->getPublic(),
+				(float) $registrationType->getSequence(),
 				$registrationType->getCode()
 			)
 		);
@@ -327,16 +327,16 @@ class RegistrationTypeDAO extends DAO {
 				$this->datetimeToDB($registrationType->getClosingDate()),
 				$expiryDate === null?'null':$this->datetimeToDB($expiryDate)
 			), array(
-				$registrationType->getSchedConfId(),
-				$registrationType->getCost(),
+				(int) $registrationType->getSchedConfId(),
+				(float) $registrationType->getCost(),
 				$registrationType->getCurrencyCodeAlpha(),
-				$registrationType->getAccess(),
-				$registrationType->getInstitutional(),
-				$registrationType->getMembership(),
-				$registrationType->getPublic(),
-				$registrationType->getSequence(),
+				(int) $registrationType->getAccess(),
+				(int) $registrationType->getInstitutional(),
+				(int) $registrationType->getMembership(),
+				(int) $registrationType->getPublic(),
+				(float) $registrationType->getSequence(),
 				$registrationType->getCode(),
-				$registrationType->getTypeId()
+				(int) $registrationType->getTypeId()
 			)
 		);
 		$this->updateLocaleFields($registrationType);
