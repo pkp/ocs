@@ -64,7 +64,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="paper.abstract"}</td>
-		<td class="value">{$abstract|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
+		<td class="value">{$abstract[$formLocale]|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
 </table>
 
