@@ -41,6 +41,7 @@
 	<upgrade minversion="2.0.0.0" maxversion="2.1.1.2">
 		<data file="upgrade/2.1.2_update.xml" />
 		<code function="localizeProgramSettings" />
+		<code function="clearDataCache" />
 		<note file="release-notes/README-2.1.2" />
 	</upgrade>
 </install>
