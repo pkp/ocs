@@ -205,13 +205,14 @@ class AuthorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$result =& $this->retrieveRange(
 			'SELECT	p.*,
-				ptl.setting_value AS submission_title,
+				COALESCE(ptl.setting_value, pptl.setting_value) AS submission_title,
 				pa.last_name AS author_name,
 				(SELECT SUM(g.views) FROM paper_galleys g WHERE (g.paper_id = p.paper_id AND g.locale = ?)) AS galley_views,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
 			FROM	papers p
 				LEFT JOIN paper_authors pa ON (pa.paper_id = p.paper_id AND pa.primary_contact = 1)
+				LEFT JOIN paper_settings pptl ON (p.paper_id = pptl.paper_id AND pptl.setting_name = ? AND pptl.locale = ?)
 				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND ptl.locale = ?)
 				LEFT JOIN tracks t ON (t.track_id = p.track_id)
 				LEFT JOIN track_settings ttpl ON (t.track_id = ttpl.track_id AND ttpl.setting_name = ? AND ttpl.locale = ?)
@@ -223,9 +224,11 @@ class AuthorSubmissionDAO extends DAO {
 				($active?(' AND p.status = ' . (int) SUBMISSION_STATUS_QUEUED):(
 					' AND ((p.status <> ' . (int) SUBMISSION_STATUS_QUEUED . ' AND p.submission_progress = 0) OR (p.status = ' . (int) SUBMISSION_STATUS_ARCHIVED . '))'
 				)) .
-				($sortBy?(' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
+				($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			array(
 				$locale,
+				'title',
+				$primaryLocale,
 				'title',
 				$locale,
 				'title',

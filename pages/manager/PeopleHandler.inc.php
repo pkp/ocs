@@ -77,7 +77,7 @@ class PeopleHandler extends ManagerHandler {
 		if ($roleId) {
 			while (true) {
 				$users =& $roleDao->getUsersByRoleId($roleId, $conference->getConferenceId(),
-					($schedConf? $schedConf->getSchedConfId() : null), $searchType, $search, $searchMatch, $rangeInfo, $roleDao->getSortMapping($sort), $sortDirection);
+					($schedConf? $schedConf->getSchedConfId() : null), $searchType, $search, $searchMatch, $rangeInfo, $sort, $sortDirection);
 				if ($users->isInBounds()) break;
 				unset($rangeInfo);
 				$rangeInfo =& $users->getLastPageRangeInfo();
@@ -108,7 +108,7 @@ class PeopleHandler extends ManagerHandler {
 					break;
 			}
 		} else {
-			$users =& $roleDao->getUsersByConferenceId($conference->getConferenceId(), $searchType, $search, $searchMatch, $rangeInfo, $roleDao->getSortMapping($sort), $sortDirection);
+			$users =& $roleDao->getUsersByConferenceId($conference->getConferenceId(), $searchType, $search, $searchMatch, $rangeInfo, $sort, $sortDirection);
 			$helpTopicId = 'conference.users.allUsers';
 		}
 
@@ -184,7 +184,7 @@ class PeopleHandler extends ManagerHandler {
 		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 
 		while (true) {
-			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo, $roleDao->getSortMapping($sort), $sortDirection);
+			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo, $sort, $sortDirection);
 			if ($users->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $users->getLastPageRangeInfo();

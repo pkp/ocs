@@ -280,6 +280,8 @@ class TrackDirectorSubmissionDAO extends DAO {
 			'abbrev',
 			$locale,
 			'title', // Paper title
+			'title', // Paper title
+			$primaryLocale,
 			$schedConfId,
 			$trackDirectorId
 		);
@@ -348,7 +350,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$sql = 'SELECT DISTINCT
 				p.*,
 				r2.review_revision,
-				ptl.setting_value AS submission_title,
+				COALESCE(ptl.setting_value, pptl.setting_value) AS submission_title,
 				pap.last_name AS author_name,
 				COALESCE(ttl.setting_value, ttpl.setting_value) AS track_title,
 				COALESCE(tal.setting_value, tapl.setting_value) AS track_abbrev
@@ -364,6 +366,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
 				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ?)
+				LEFT JOIN paper_settings pptl ON (p.paper_id = pptl.paper_id AND pptl.setting_name = ? AND pptl.locale = ?)
 			WHERE	p.sched_conf_id = ? AND
 				e.director_id = ?';
 
@@ -375,7 +378,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			$searchSql .= ' AND p.track_id = ?';
 		}
 
-		$result =& $this->retrieveRange($sql . ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
+		$result =& $this->retrieveRange($sql . ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			$params,
 			$rangeInfo
 		);

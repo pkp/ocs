@@ -52,7 +52,7 @@ class RegistrationHandler extends ManagerHandler {
 		if ($toDate !== null) $toDate = date('Y-m-d H:i:s', $toDate);
 
 		while (true) {
-			$registrations =& $registrationDao->getRegistrationsBySchedConfId($schedConf->getSchedConfId(), $searchField, $searchMatch, $search, $dateSearchField, $fromDate, $toDate, $rangeInfo, $registrationDao->getSortMapping($sort), $sortDirection);
+			$registrations =& $registrationDao->getRegistrationsBySchedConfId($schedConf->getSchedConfId(), $searchField, $searchMatch, $search, $dateSearchField, $fromDate, $toDate, $rangeInfo, $sort, $sortDirection);
 			if ($registrations->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $registrations->getLastPageRangeInfo();
@@ -218,7 +218,7 @@ class RegistrationHandler extends ManagerHandler {
 		$rangeInfo =& Handler::getRangeInfo('users', array((string) $search, (string) $searchMatch, (string) $searchType));
 
 		while (true) {
-			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo, $roleDao->getSortMapping($sort), $sortDirection);
+			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo, $sort, $sortDirection);
 			if ($users->isInBounds()) break;
 			unset($rangeInfo);
 			$rangeInfo =& $users->getLastPageRangeInfo();

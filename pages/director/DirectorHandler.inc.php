@@ -152,7 +152,7 @@ class DirectorHandler extends TrackDirectorHandler {
 				null,
 				null,
 				$rangeInfo,
-				$directorSubmissionDao->getSortMapping($sort),
+				$sort,
 				$sortDirection
 			);
 			if ($submissions->isInBounds()) break;
