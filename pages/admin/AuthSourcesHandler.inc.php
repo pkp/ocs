@@ -114,10 +114,9 @@ class AuthSourcesHandler extends AdminHandler {
 
 		$authId = (int)@$args[0];
 		$authDao =& DAORegistry::getDAO('AuthSourceDAO');
-		$authDao->deleteSource($authId);
+		$authDao->deleteObject($authId);
 		Request::redirect(null, null, null, 'auth');
 	}
-
 }
 
 ?>
