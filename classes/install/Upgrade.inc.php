@@ -580,6 +580,28 @@ class Upgrade extends Installer {
 
 		return true;
 	}
+	
+	/**
+	 * For 2.3 upgrade: Add clean titles for every article title so sorting by title ignores punctuation.
+	 * @return boolean
+	 */
+	function cleanTitles() {
+		$paperDao =& DAORegistry::getDAO('PaperDAO');
+		$punctuation = array ("\"", "\'", ",", ".", "!", "?", "-", "$", "(", ")");
+
+		$result =& $paperDao->retrieve('SELECT paperid, locale, setting_value FROM article_settings WHERE setting_name = ?', "title");
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			$cleanTitle = str_replace($punctuation, "", $row['setting_value']);
+			$paperDao->update('INSERT INTO paper_settings (paper_id, locale, setting_name, setting_value, setting_type) VALUES (?, ?, ?, ?, ?)', array((int) $row['paper_id'], $row['locale'], "cleanTitle", $cleanTitle, "string"));
+			$result->MoveNext();
+		}
+		$result->Close();
+		unset($result);
+		
+		
+		return true;
+	}
 }
 
 ?>

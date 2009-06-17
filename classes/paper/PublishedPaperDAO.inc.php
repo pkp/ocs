@@ -459,9 +459,9 @@ class PublishedPaperDAO extends DAO {
 	 */
 	function &getPublishedPaperIdsAlphabetizedByTitle($conferenceId = null, $schedConfId = null, $rangeInfo = null) {
 		$params = array(
-			'title',
+			'cleanTitle',
 			Locale::getLocale(),
-			'title',
+			'cleanTitle',
 			Locale::getPrimaryLocale()
 		);
 		if ($conferenceId) $params[] = $conferenceId;

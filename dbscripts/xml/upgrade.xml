@@ -70,5 +70,6 @@
 		<data file="dbscripts/xml/data/locale/{$installedLocale}/email_templates_data.xml"/>		
 		<code function="changePresenterInUserEmailTemplates" />
 		<code function="updateReviewDeadlineSettings" />
+		<code function="cleanTitles" />
 	</upgrade>
 </install>
