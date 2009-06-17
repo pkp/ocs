@@ -28,6 +28,16 @@
 
 {include file="common/formErrors.tpl"}
 
+	<script type="text/javascript">
+		{literal}
+		<!--
+			function toggleAllowNotifyPaymentEmail(form) {
+				form.notifyPaymentEmail.disabled = !form.notifyPaymentEmail.disabled;
+			}
+		// -->
+		{/literal}
+	</script>
+
 <table class="data" width="100%">
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="userId" required="true" key="manager.registration.form.userId"}</td>
@@ -101,7 +111,7 @@
 <tr valign="top">
 	<td class="label">{fieldLabel name="paid" key="manager.registration.form.payment"}</td>
 	<td class="value">
-		<input type="checkbox" id="paid" name="paid" value="1" {if $datePaid}checked="checked"{/if} />&nbsp;&nbsp;{html_select_date prefix="datePaid" time=$datePaid all_extra="class=\"selectMenu\"" start_year=$yearOffsetPast end_year=$yearOffsetFuture}
+		<input type="checkbox" id="paid" name="paid" value="1" {if $datePaid}checked="checked"{/if} onclick="toggleAllowNotifyPaymentEmail(this.form)"/>&nbsp;&nbsp;{html_select_date prefix="datePaid" time=$datePaid all_extra="class=\"selectMenu\"" start_year=$yearOffsetPast end_year=$yearOffsetFuture}
 		<br />
 		<span class="instruct">{translate key="manager.registration.form.payment.description"}</span>
 	</td>
@@ -111,7 +121,7 @@
 	<td class="value">
 		<table width="100%">
 			<tr valign="top">
-				<td width="5%"><input type="checkbox" name="notifyPaymentEmail" id="notifyPaymentEmail" value="1"{if $notifyPaymentEmail} checked="checked"{/if} /></td>
+				<td width="5%"><input type="checkbox" name="notifyPaymentEmail" id="notifyPaymentEmail" value="1"{if $notifyPaymentEmail} checked="checked"{/if} {if !$datePaid} disabled="true"{/if}/></td>
 				<td width="95%"><label for="notifyPaymentEmail">{translate key="manager.registration.form.notifyPaymentEmail"}</label></td>
 			</tr>
 		</table>
