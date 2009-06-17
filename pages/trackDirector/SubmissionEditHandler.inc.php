@@ -1049,7 +1049,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		TrackDirectorAction::deleteSuppFile($submission, $suppFileId);
 
-		Request::redirect(null, null, null, 'submission', $paperId);
+		Request::redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	function archiveSubmission($args) {
@@ -1325,7 +1325,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$suppFileForm->setData('title', Locale::translate('common.untitled'));
 		$suppFileId = $suppFileForm->execute($fileName);
 
-		Request::redirect(null, null, null, ($stage===null?'submission':'submissionReview'), array($paperId, $suppFileId, $stage));
+		Request::redirect(null, null, null, 'editSuppFile', array($paperId, $suppFileId));
 	}
 
 	/**
