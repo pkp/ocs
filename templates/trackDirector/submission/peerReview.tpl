@@ -112,7 +112,9 @@
 
 <div class="separator"></div>
 
-<a name="peerReview"></a>
+<div id="peerReview">
+
+{if $stage == REVIEW_STAGE_PRESENTATION && $submission->getCurrentStage() != REVIEW_STAGE_PRESENTATION} {assign var="isStageDisabled" value=true} {/if}
 
 {if $isStageDisabled}
 
@@ -353,3 +355,4 @@
 	{/foreach}
 
 {/if}
+</div>

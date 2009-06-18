@@ -180,15 +180,16 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormTitles = array();
 
-		foreach ($submission->getReviewAssignments($stage) as $reviewAssignment) {
-			$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId());
-			if ($reviewForm) {
-				$reviewFormTitles[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
+		if ($submission->getReviewAssignments($stage)) {
+			foreach ($submission->getReviewAssignments($stage) as $reviewAssignment) {
+				$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId());
+				if ($reviewForm) {
+					$reviewFormTitles[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
+				}
+				unset($reviewForm);
+				$reviewFormResponses[$reviewAssignment->getReviewId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getReviewId());
 			}
-			unset($reviewForm);
-			$reviewFormResponses[$reviewAssignment->getReviewId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getReviewId());
 		}
-
 
 		$templateMgr = &TemplateManager::getManager();
 
