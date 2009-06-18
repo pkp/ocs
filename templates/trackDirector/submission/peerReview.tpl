@@ -114,6 +114,9 @@
 </div>
 
 <div id="peerReview">
+
+{if $stage == REVIEW_STAGE_PRESENTATION && $submission->getCurrentStage() != REVIEW_STAGE_PRESENTATION} {assign var="isStageDisabled" value=true} {/if}
+
 {if $isStageDisabled}
 
 	<table class="data" width="100%">

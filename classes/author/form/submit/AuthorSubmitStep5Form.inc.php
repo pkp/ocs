@@ -58,7 +58,16 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		$paper->stampStatusModified();
 
 		// We've collected the paper now -- bump the review progress
-		$paper->setCurrentStage(REVIEW_STAGE_PRESENTATION);
+		switch($this->paper->getReviewMode()) {
+			case REVIEW_MODE_ABSTRACTS_ALONE:
+			case REVIEW_MODE_BOTH_SEQUENTIAL:
+				$this->paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
+				break;
+			case REVIEW_MODE_PRESENTATIONS_ALONE:
+			case REVIEW_MODE_BOTH_SIMULTANEOUS:
+				$this->paper->setCurrentStage(REVIEW_STAGE_PRESENTATION);
+				break;
+		}
 
 		$paperDao->updatePaper($paper);
 

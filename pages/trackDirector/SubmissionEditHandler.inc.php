@@ -207,15 +207,16 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormTitles = array();
 
-		foreach ($submission->getReviewAssignments($stage) as $reviewAssignment) {
-			$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId());
-			if ($reviewForm) {
-				$reviewFormTitles[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
+		if ($submission->getReviewAssignments($stage)) {
+			foreach ($submission->getReviewAssignments($stage) as $reviewAssignment) {
+				$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId());
+				if ($reviewForm) {
+					$reviewFormTitles[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
+				}
+				unset($reviewForm);
+				$reviewFormResponses[$reviewAssignment->getReviewId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getReviewId());
 			}
-			unset($reviewForm);
-			$reviewFormResponses[$reviewAssignment->getReviewId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getReviewId());
 		}
-
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -1187,7 +1188,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		TrackDirectorAction::deleteSuppFile($submission, $suppFileId);
 
-		Request::redirect(null, null, null, 'submission', $paperId);
+		Request::redirect(null, null, null, 'submissionReview', $paperId);
 	}
 
 	function archiveSubmission($args) {
@@ -1492,7 +1493,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$suppFileForm->setData('title', Locale::translate('common.untitled'));
 		$suppFileId = $suppFileForm->execute($fileName);
 
-		Request::redirect(null, null, null, ($stage===null?'submission':'submissionReview'), array($paperId, $suppFileId, $stage));
+		Request::redirect(null, null, null, 'editSuppFile', array($paperId, $suppFileId));
 	}
 
 	/**
