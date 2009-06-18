@@ -28,7 +28,7 @@
 </table>
 </div>
 {/if}
-<div id="title">
+<div id="titleInfo">
 <h3>1.1 {translate key="common.title"}</h3>
 
 <table width="100%" class="data">
@@ -39,7 +39,7 @@
 </table>
 </div>
 <div class="separator"></div>
-<div id="">
+<div id="descriptionInfo">
 <h3><label for="description">1.2 {translate key="manager.setup.aboutConference.conferenceDescription"}</label></h3>
 <span class="instruct">{translate key="manager.setup.aboutConference.conferenceDescription.description"}</span>
 
@@ -81,7 +81,7 @@
 </table>
 </div>
 <div class="separator"></div>
-<div id="copyrightNotice">
+<div id="copyrightNoticeInfo">
 <h3><label for="copyrightNotice">1.4 {translate key="manager.setup.aboutConference.copyrightNotice"}</label></h3>
 <p>{translate key="manager.setup.aboutConference.copyrightNotice.description"}</p>
 
@@ -91,7 +91,7 @@
 <input type="checkbox" name="postCreativeCommons" id="postCreativeCommons" value="1"{if $postCreativeCommons} checked="checked"{/if} /> <label for="postCreativeCommons">{translate key="manager.setup.aboutConference.postCreativeCommons"}</label><br/></p>
 </div>
 <div class="separator"></div>
-<div id="archiveAccessPolicy">
+<div id="archiveAccessPolicyInfo">
 <h3>1.5 {translate key="manager.setup.aboutConference.archiveAccessPolicy"}</h3>
 <p>{translate key="manager.setup.aboutConference.archiveAccessPolicy.description"}</p>
 
@@ -122,7 +122,7 @@
 </div>
 </div>
 <div class="separator"></div>
-<div id="privacyStatement">
+<div id="privacyStatementInfo">
 <h3>1.6 {translate key="manager.setup.aboutConference.privacyStatement"}</h3>
 
 <p><textarea name="privacyStatement[{$formLocale|escape}]" id="privacyStatement" rows="10" cols="60" class="textArea">{$privacyStatement[$formLocale]|escape}</textarea></p>

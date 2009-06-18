@@ -30,6 +30,7 @@ class EmailHandler extends ManagerHandler {
 	function emails() {
 		$this->validate();
 		$this->setupTemplate(true);
+		$conference =& Request::getConference();
 
 		$rangeInfo = Handler::getRangeInfo('emails', array());
 

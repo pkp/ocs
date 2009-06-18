@@ -15,7 +15,7 @@
 <input type="hidden" name="paperId" value="{$paperId|escape}" />
 {include file="common/formErrors.tpl"}
 
-<p>{translate key="author.submit.uploadInstructions"}</p>
+{translate key="author.submit.uploadInstructions"}
 {if $currentSchedConf->getSetting('supportPhone')}
 	{assign var="howToKeyName" value="author.submit.howToSubmit"}
 {else}
@@ -26,7 +26,7 @@
 
 <div class="separator"></div>
 
-<div id="submissionFile">
+<div id="submissionFileInfo">
 <h3>{translate key="author.submit.submissionFile"}</h3>
 <table class="data" width="100%">
 {if $submissionFile}

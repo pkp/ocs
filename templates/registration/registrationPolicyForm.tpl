@@ -80,7 +80,7 @@
 
 <div class="separator"></div>
 
-<div id="registrationAdditionalInformation">
+<div id="registrationAdditionalInformationInfo">
 <h3>{translate key="manager.registrationPolicies.registrationAdditionalInformation"}</h3>
 <p>{translate key="manager.registrationPolicies.registrationAdditionalInformationDescription"}</p>
 <p>

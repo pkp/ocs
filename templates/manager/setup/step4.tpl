@@ -145,6 +145,8 @@ function prepBlockFields() {
 			<select name="blockSelectLeftWidget" multiple="multiple" size="10" class="selectMenu" style="width: 130px; height:200px" >
 				{foreach from=$leftBlockPlugins item=block}
 					<option value="{$block->getName()|escape}">{$block->getDisplayName()|escape}</option>
+				{foreachelse}
+					<option value=""></option>
 				{/foreach}
 			</select><br/>
 			<input class="button defaultButton" style="width: 130px;" type="button" value="&darr;" onclick="moveDown(this.form.elements['blockSelectLeftWidget']);" />
@@ -159,6 +161,8 @@ function prepBlockFields() {
 			<select name="blockUnselectedWidget" multiple="multiple" size="10" class="selectMenu" style="width: 120px; height:180px;" >
 				{foreach from=$disabledBlockPlugins item=block}
 					<option value="{$block->getName()|escape}">{$block->getDisplayName()|escape}</option>
+				{foreachelse}
+					<option value=""></option>
 				{/foreach}
 			</select>
 		</td> 
@@ -172,6 +176,8 @@ function prepBlockFields() {
 			<select name="blockSelectRightWidget" multiple="multiple" size="10" class="selectMenu" style="width: 130px; height:200px" >
 				{foreach from=$rightBlockPlugins item=block}
 					<option value="{$block->getName()|escape}">{$block->getDisplayName()|escape}</option>
+				{foreachelse}
+					<option value=""></option>
 				{/foreach}
 			</select><br/>
 			<input class="button defaultButton" style="width: 130px;" type="button" value="&darr;" onclick="moveDown(this.form.elements['blockSelectRightWidget']);" />

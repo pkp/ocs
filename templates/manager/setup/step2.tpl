@@ -47,7 +47,7 @@
 </div>
 <div id="homepage">
 <h3>2.2 {translate key="manager.setup.additionalContent.homepage"}</h3>
-<div id="homepageImage">
+<div id="homepageImageInfo">
 <h4>{translate key="manager.setup.additionalContent.homepageImage"}</h4>
 
 <table width="100%" class="data">
@@ -129,7 +129,7 @@
 	</select>
 	{translate key="manager.setup.additionalContent.enableAnnouncementsHomepage2"}
 </p>
-<div id="announcementsIntroduction">
+<div id="announcementsIntroductionInfo">
 <h4>{translate key="manager.setup.additionalContent.announcementsIntroduction"}</h4>
 
 <p>{translate key="manager.setup.additionalContent.announcementsIntroductionDescription"}</p>

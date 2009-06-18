@@ -68,7 +68,7 @@
 <p>{translate key="admin.systemConfigurationDescription"}</p>
 
 {foreach from=$configData key=sectionName item=sectionData}
-<div id="sectionData">
+<div class="sectionData">
 {if !empty($sectionData)}{* Empty tables cause validation problems *}
 <h4>{$sectionName|escape}</h4>
 
@@ -91,12 +91,10 @@
 
 <table class="data" width="100%">
 {foreach from=$serverInfo key=settingName item=settingValue}
-<div id="setting">
 <tr valign="top">
 	<td width="30%" class="label">{translate key=$settingName|escape}</td>
 	<td width="70%" class="value">{$settingValue|escape}</td>
 </tr>
-</div>
 {/foreach}
 </table>
 

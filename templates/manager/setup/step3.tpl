@@ -32,7 +32,7 @@
 <h3>3.1 {translate key="manager.setup.layout.homepageHeader"}</h3>
 
 <p>{translate key="manager.setup.layout.homepageHeader.description"}</p>
-<div id="conferenceTitle">
+<div id="conferenceTitleInfo">
 <h4>{translate key="manager.setup.layout.conferenceTitle"}</h4>
 
 <table width="100%" class="data">
@@ -63,7 +63,7 @@
 </table>
 {/if}
 </div>
-<div id="conferenceLogo">
+<div id="conferenceLogoInfo">
 <h4>{translate key="manager.setup.layout.conferenceLogo"}</h4>
 
 <table width="100%" class="data">
@@ -170,7 +170,7 @@
 {if $conferenceFavicon[$formLocale]}
 {translate key="common.fileName"}: {$conferenceFavicon[$formLocale].name|escape} {$conferenceFavicon[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteConferenceFavicon" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicFilesDir}/{$conferenceFavicon[$formLocale].uploadName|escape:"url"}" width="16px" height="16px" style="border: 0;" />
+<img src="{$publicFilesDir}/{$conferenceFavicon[$formLocale].uploadName|escape:"url"}" width="16px" height="16px" style="border: 0;" alt="favicon" />
 {/if}
 </div>
 

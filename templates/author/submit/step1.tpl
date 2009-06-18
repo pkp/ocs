@@ -55,7 +55,7 @@
 		{foreach from=$sessionTypes item=sessionTypeObject}{/foreach}
 		<input type="hidden" name="sessionType" value="{$sessionTypeObject->getId()|escape}" />
 	{else}{* count($sessionTypes) > 1 *}
-		<h3>Session Information</h3>
+		<h3>{translate key="paper.sessionType"}</h3>
 
 		<table width="100%" class="data">
 			{assign var=firstSessionType value=1}

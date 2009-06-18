@@ -155,6 +155,7 @@ function sortSearch(heading, direction) {
 </table>
 
 <input type="submit" value="{translate key="manager.people.enrollSelected"}" class="button defaultButton" /> <input type="button" value="{translate key="common.selectAll"}" class="button" onclick="toggleChecked()" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="manager" escape=false}'" />
+</div>
 
 </form>
 
@@ -162,5 +163,5 @@ function sortSearch(heading, direction) {
 {if $backLink}
 <a href="{$backLink}">{translate key="$backLinkLabel"}</a>
 {/if}
-</div>
+
 {include file="common/footer.tpl"}

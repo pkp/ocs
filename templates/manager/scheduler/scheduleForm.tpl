@@ -170,7 +170,7 @@ function sortBy(sortName) {
 	</tr>
 	{/if}
 </table>
-
+</div>
 <p>
 	{translate key="common.sortBy"}
 	<a href="javascript:sortBy('startTime');">{translate key="manager.scheduler.startTime"}</a>&nbsp;|
@@ -185,5 +185,5 @@ function sortBy(sortName) {
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-</div>
+
 {include file="common/footer.tpl"}

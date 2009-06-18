@@ -91,7 +91,7 @@
 
 <br/>
 
-<table id="body" class="data" width="100%">
+<table id="emailBody" class="data" width="100%">
 <tr valign="top">
 	<td class="label">{translate key="email.from"}</td>
 	<td class="value">{$from|escape}</td>

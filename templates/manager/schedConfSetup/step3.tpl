@@ -59,11 +59,11 @@
 </script>
 
 <p>
-	<input type="radio" name="reviewDeadlineType" id="reviewDeadline-1" value={$smarty.const.REVIEW_DEADLINE_TYPE_RELATIVE} {if $reviewDeadlineType == $smarty.const.REVIEW_DEADLINE_TYPE_RELATIVE} checked="checked"{/if} />
+	<input type="radio" name="reviewDeadlineType" id="reviewDeadline-1" value="{$smarty.const.REVIEW_DEADLINE_TYPE_RELATIVE}" {if $reviewDeadlineType == $smarty.const.REVIEW_DEADLINE_TYPE_RELATIVE} checked="checked"{/if} />
 		{translate key="manager.schedConfSetup.review.numWeeksPerReview1"}&nbsp;
 		<input type="text" name="numWeeksPerReviewRelative" id="numWeeksPerReview" {if $numWeeksPerReviewRelative > 0} value="{$numWeeksPerReviewRelative|escape}" {/if} size="2" maxlength="8" class="textField" />&nbsp;
 		{translate key="manager.schedConfSetup.review.numWeeksPerReview2"}<br/>
-	<input type="radio" name="reviewDeadlineType" id="reviewDeadline-2" value={$smarty.const.REVIEW_DEADLINE_TYPE_ABSOLUTE} {if $reviewDeadlineType == $smarty.const.REVIEW_DEADLINE_TYPE_ABSOLUTE} checked="checked"{/if} />
+	<input type="radio" name="reviewDeadlineType" id="reviewDeadline-2" value="{$smarty.const.REVIEW_DEADLINE_TYPE_ABSOLUTE}" {if $reviewDeadlineType == $smarty.const.REVIEW_DEADLINE_TYPE_ABSOLUTE} checked="checked"{/if} />
 		{translate key="manager.schedConfSetup.review.numWeeksPerReview1b"}&nbsp;
 		{html_select_date prefix="numWeeksPerReviewAbsolute" time=$absoluteReviewDate all_extra="class=\"selectMenu\"" start_year=$firstYear end_year=$lastYear}
 		{translate key="manager.schedConfSetup.review.numWeeksPerReview2b"}<br/>
