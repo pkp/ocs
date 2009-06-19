@@ -280,7 +280,6 @@ class TrackDirectorSubmissionDAO extends DAO {
 			'abbrev',
 			$locale,
 			'cleanTitle', // Paper title
-			$locale,
 			'cleanTitle', // Paper title
 			$primaryLocale,
 			$schedConfId,
@@ -366,7 +365,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 				LEFT JOIN track_settings ttl ON (t.track_id = ttl.track_id AND ttl.setting_name = ? AND ttl.locale = ?)
 				LEFT JOIN track_settings tapl ON (t.track_id = tapl.track_id AND tapl.setting_name = ? AND tapl.locale = ?)
 				LEFT JOIN track_settings tal ON (t.track_id = tal.track_id AND tal.setting_name = ? AND tal.locale = ?)
-				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ? AND ptl.locale ?)
+				LEFT JOIN paper_settings ptl ON (p.paper_id = ptl.paper_id AND ptl.setting_name = ?)
 				LEFT JOIN paper_settings pptl ON (p.paper_id = pptl.paper_id AND pptl.setting_name = ? AND pptl.locale = ?)
 			WHERE	p.sched_conf_id = ? AND
 				e.director_id = ?';
