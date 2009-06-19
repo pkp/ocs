@@ -115,7 +115,9 @@
 
 <div id="peerReview">
 
-{if $stage == REVIEW_STAGE_PRESENTATION && $submission->getCurrentStage() != REVIEW_STAGE_PRESENTATION} {assign var="isStageDisabled" value=true} {/if}
+{if ($stage == REVIEW_STAGE_PRESENTATION && $submission->getCurrentStage() != REVIEW_STAGE_PRESENTATION) || ($stage == REVIEW_STAGE_PRESENTATION && $submission->getSubmissionFileId() == null)} 
+	{assign var="isStageDisabled" value=true} 
+{/if}
 
 {if $isStageDisabled}
 
