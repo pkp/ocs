@@ -1758,6 +1758,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$this->validate($paperId);
 		$this->setupTemplate(true, $paperId, 'history');
+		$submission =& $this->submission;
 
 		$paperNoteDao =& DAORegistry::getDAO('PaperNoteDAO');
 
