@@ -86,6 +86,8 @@ class CommentHandler extends Handler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$parentId = isset($args[2]) ? (int) $args[2] : 0;
 
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 		$this->validate($paperId);
 		$paper =& $this->paper;
 
@@ -172,6 +174,7 @@ class CommentHandler extends Handler {
 
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$paper =& $publishedPaperDao->getPublishedPaperByPaperId($paperId, $schedConf->getSchedConfId(), $schedConf->getSetting('previewAbstracts'));
+		$this->paper =& $paper;
 
 		if ($paper == null) {
 			Request::redirect(null, null, 'index');
@@ -198,6 +201,7 @@ class CommentHandler extends Handler {
 		parent::setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER));
 
 		$pageHierarchy = array(
 			array(

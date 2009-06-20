@@ -194,6 +194,8 @@ class SchedConfAction {
 	 * @return bool
 	 */
 	function registeredDomain(&$schedConf) {
+		$schedConf =& Request::getSchedConf();
+	
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		$result = $registrationDao->isValidRegistration(Request::getRemoteDomain(), Request::getRemoteAddr(), null, $schedConf->getSchedConfId());
 		HookRegistry::call('SchedConfAction::registeredDomain', array(&$schedConf, &$result));

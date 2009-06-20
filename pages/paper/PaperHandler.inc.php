@@ -133,6 +133,7 @@ class PaperHandler extends Handler {
 
 		$this->validate($paperId, $galleyId);
 		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
 		$paper =& $this->paper;
 		$this->setupTemplate();
 
@@ -357,6 +358,8 @@ class PaperHandler extends Handler {
 		$paperId = isset($args[0]) ? $args[0] : 0;
 		$suppId = isset($args[1]) ? $args[1] : 0;
 
+		$schedConf =& Request::getSchedConf();
+
 		$this->validate($paperId);
 		$paper =& $this->paper;
 
@@ -384,6 +387,9 @@ class PaperHandler extends Handler {
 	function validate($paperId, $galleyId = null) {
 		parent::validate();
 
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		
 		$conferenceId = $conference->getConferenceId();
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 
@@ -439,7 +445,7 @@ class PaperHandler extends Handler {
 
 	function setupTemplate() {
 		parent::setupTemplate();
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER));
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_PKP_SUBMISSION));
 	}
 }
 
