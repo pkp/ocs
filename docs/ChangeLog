@@ -1,3 +1,244 @@
+2009-06-19 17:16  mcrider
+
+	* classes/schedConf/SchedConfAction.inc.php,
+	  pages/comment/CommentHandler.inc.php,
+	  pages/paper/PaperHandler.inc.php: #4452# Errors with article
+	  comments
+
+2009-06-19 13:50  mcrider
+
+	*
+	  classes/submission/trackDirector/TrackDirectorSubmissionDAO.inc.php:
+	  #4163# Alphabetical ordering in Article list should ignore
+	  punctuation
+
+2009-06-19 13:15  mcrider
+
+	* templates/trackDirector/submission/: peerReview.tpl: #4433#
+	  Reviewer for abstract assigned as reviewer for paper
+
+2009-06-18 17:41  mcrider
+
+	* classes/paper/PaperDAO.inc.php,
+	  pages/trackDirector/SubmissionEditHandler.inc.php: #4448# Errors
+	  when view or creating submission notes
+
+2009-06-18 17:07  mcrider
+
+	* classes/presenter/form/submit/PresenterSubmitStep5Form.inc.php:
+	  #4433# Reviewer for abstract assigned as reviewer for paper
+
+2009-06-18 16:03  mcrider
+
+	* pages/trackDirector/SubmissionEditHandler.inc.php,
+	  templates/trackDirector/submission/peerReview.tpl: #4432#
+	  Submission aborts after step 2
+
+2009-06-18 15:39  mcrider
+
+	* classes/presenter/form/submit/PresenterSubmitStep5Form.inc.php,
+	  pages/trackDirector/SubmissionEditHandler.inc.php,
+	  templates/trackDirector/submission/peerReview.tpl: #4433#
+	  Reviewer for abstract assigned as reviewer for paper
+
+2009-06-18 11:03  mcrider
+
+	* pages/presenter/SubmitHandler.inc.php: #4432# Submission aborts
+	  after step 2
+
+2009-06-18 10:58  mcrider
+
+	* pages/manager/EmailHandler.inc.php,
+	  plugins/importexport/native/index.tpl,
+	  templates/admin/systemInfo.tpl,
+	  templates/director/notifyUsers.tpl,
+	  templates/director/submissionsUnassigned.tpl,
+	  templates/manager/people/enrollment.tpl,
+	  templates/manager/people/searchUsers.tpl,
+	  templates/manager/schedConfSetup/step3.tpl,
+	  templates/manager/scheduler/scheduleForm.tpl,
+	  templates/manager/setup/step1.tpl,
+	  templates/manager/setup/step2.tpl,
+	  templates/manager/setup/step3.tpl,
+	  templates/manager/setup/step4.tpl,
+	  templates/manager/statistics/index.tpl,
+	  templates/registration/registrationPolicyForm.tpl,
+	  templates/trackDirector/searchUsers.tpl,
+	  templates/trackDirector/selectUser.tpl: #1848# More W3C
+	  validation fixes
+
+2009-06-17 15:48  mcrider
+
+	* pages/trackDirector/SubmissionEditHandler.inc.php: #4434# Supp.
+	  file upload skips supp. file metadata form
+
+2009-06-17 11:43  mcrider
+
+	* classes/install/Upgrade.inc.php, classes/paper/PaperDAO.inc.php,
+	  classes/paper/PublishedPaperDAO.inc.php,
+	  classes/submission/director/DirectorSubmissionDAO.inc.php,
+	  classes/submission/trackDirector/TrackDirectorSubmissionDAO.inc.php,
+	  dbscripts/xml/upgrade.xml: #4163# Alphabetical ordering in
+	  Article list should ignore punctuation
+
+2009-06-17 05:20  mj
+
+	* templates/registration/registrationForm.tpl: #4431# CM can send
+	  registration payment notification email without marking payment
+	  received
+
+2009-06-17 04:33  mj
+
+	* templates/registration/registrationForm.tpl: #4431# CM can send
+	  registration payment notification email without marking payment
+	  received
+
+2009-06-11 09:58  mcrider
+
+	* templates/reviewer/submission.tpl: #4423# Untranslated key:
+	  submission.logType.review
+
+2009-06-09 16:27  mcrider
+
+	* classes/registration/RegistrationDAO.inc.php,
+	  classes/security/RoleDAO.inc.php,
+	  classes/submission/director/DirectorSubmissionDAO.inc.php,
+	  classes/submission/trackDirector/TrackDirectorSubmissionDAO.inc.php,
+	  pages/director/DirectorHandler.inc.php,
+	  pages/manager/PeopleHandler.inc.php,
+	  pages/manager/RegistrationHandler.inc.php,
+	  pages/trackDirector/SubmissionEditHandler.inc.php,
+	  pages/trackDirector/TrackDirectorHandler.inc.php: #3958# Fix
+	  Multi-locale sorting issue and moved getSortMapping call
+
+2009-06-09 16:08  asmecher
+
+	* docs/: UPGRADE: #3931# Documented missing binaries on upgrade
+
+2009-06-09 11:03  asmecher
+
+	* plugins/importexport/native/native.dtd: #4428# Made authors not
+	  required
+
+2009-06-09 07:42  asmecher
+
+	* classes/security/form/AuthSourceSettingsForm.inc.php,
+	  pages/admin/AuthSourcesHandler.inc.php: #4245# Update code
+	  pattern
+
+2009-06-08 17:31  asmecher
+
+	* classes/install/form/InstallForm.inc.php, locale/en_US/admin.xml,
+	  pages/admin/AdminLanguagesHandler.inc.php,
+	  templates/admin/languages.tpl: #4396# Added visual indicator for
+	  incomplete languages
+
+2009-06-05 15:56  mcrider
+
+	* plugins/reports/reviews/ReviewReportPlugin.inc.php: #4418#
+	  Reversing postgres workaround
+
+2009-06-05 15:49  mcrider
+
+	* plugins/reports/reviews/ReviewReportPlugin.inc.php: #4418# All
+	  reports produce errors
+
+2009-06-05 15:29  mcrider
+
+	* plugins/reports/: papers/PaperReportDAO.inc.php,
+	  registrants/RegistrantReportDAO.inc.php,
+	  reviews/ReviewReportPlugin.inc.php: #4418# All reports produce
+	  errors
+
+2009-06-05 14:59  asmecher
+
+	* classes/registration/RegistrationOptionDAO.inc.php,
+	  classes/registration/RegistrationTypeDAO.inc.php,
+	  dbscripts/xml/ocs_schema.xml, dbscripts/xml/upgrade.xml: #4416#
+	  Removed unused column
+
+2009-06-05 14:29  asmecher
+
+	* templates/submission/metadata/metadataView.tpl: #4421# Fixed
+	  metadata view abstract localization bug
+
+2009-06-05 14:29  asmecher
+
+	* templates/submission/metadata/metadataView.tpl: #4421# Corrected
+	  metadata view
+
+2009-06-05 14:22  asmecher
+
+	* plugins/reports/papers/: PaperReportDAO.inc.php: #4418# Fixed
+	  paper report
+
+2009-06-05 14:19  asmecher
+
+	* plugins/reports/reviews/: ReviewReportPlugin.inc.php: #4418#
+	  Reviewer report tune-up
+
+2009-06-05 11:43  mj
+
+	* dbscripts/xml/: install.xml, version.xml: #4413# Version
+	  descriptor dbscripts/xml/version.xml not updated
+
+2009-06-04 14:09  mcrider
+
+	* pages/presenter/TrackSubmissionHandler.inc.php: #4417# Validation
+	  fails when clicking on submission link on presenter home page
+
+2009-06-04 11:33  mcrider
+
+	* dbscripts/xml/upgrade.xml: #3555# Move absolute review deadline
+	  upgrade code to 2.3 upgrade
+
+2009-06-04 10:37  asmecher
+
+	* dbscripts/xml/upgrade.xml: #4415# Added cache flush
+
+2009-06-04 10:36  asmecher
+
+	* dbscripts/xml/upgrade.xml: #4414# Fix version numbers for upgrade
+
+2009-06-04 10:31  asmecher
+
+	* dbscripts/xml/upgrade.xml: #4414# Version number fix
+
+2009-06-04 08:16  asmecher
+
+	* docs/release-notes/: ChangeLog-2.1.1, ChangeLog-2.1.1-1,
+	  README-2.1.1: Re-adding from stable tree
+
+2009-06-04 07:38  jalperin
+
+	* pages/: reviewer/SubmissionCommentsHandler.inc.php,
+	  trackDirector/SubmissionCommentsHandler.inc.php: #4408#, #4205#
+	  moved comment validation to its own HandlerValidator Class
+
+2009-06-03 15:52  asmecher
+
+	* classes/user/form/ProfileForm.inc.php: #3697# Fixed timezone
+	  caching
+
+2009-06-03 15:24  asmecher
+
+	* tools/: buildpkg.sh, preCompile.php: #3932# Removed template
+	  precompile
+
+2009-06-03 14:07  asmecher
+
+	* classes/user/UserSettingsDAO.inc.php,
+	  dbscripts/xml/ocs_schema.xml,
+	  dbscripts/xml/upgrade/2.3.0_preupdate.xml,
+	  dbscripts/xml/upgrade/2.3.0_update.xml,
+	  templates/submission/comment/commentEmail.tpl: #3694# Abstracted
+	  user settings
+
+2009-06-03 12:28  mj
+
+	* docs/: ChangeLog, release-notes/ChangeLog-2.1.2,
+	  release-notes/README-2.1.2: Final commits for OCS 2.1.2rc1
+
 2009-06-03 12:19  mj
 
 	* classes/core/String.inc.php: #4407# Calls to String::utf8Clean or
