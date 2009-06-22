@@ -685,7 +685,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			WHERE	u.user_id = r.user_id AND
 				r.sched_conf_id = ? AND
 				r.role_id = ? ' . $searchSql . 'GROUP BY u.user_id, u.last_name, ar.review_id' .
-			($sortBy?(' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
+			($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			$paramArray, $rangeInfo
 		);
 
@@ -804,7 +804,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			case 'latest': return 'latest';
 			case 'active': return 'active';
 			case 'average': return 'average';
-	
+			case 'name': return 'u.last_name';
 			default: return null;
 		}
 	}
