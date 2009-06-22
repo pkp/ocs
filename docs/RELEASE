@@ -1,157 +1,95 @@
-OCS 2.1.0-1 Release Notes
-CVS tag: ojs-2_1_0-1
-Release date: May 23, 2008
+OCS 2.1.2 Release Notes
+CVS tag: ojs-2_1_2-0
+Release date: June 21, 2009
 =================================
-
 
 Configuration Changes
 ---------------------
 
 See config.TEMPLATE.inc.php for a description and examples of all supported
-configuration parameters.
-
-New config.inc.php parameters:
-	- i18n:charset_normalization - Enables or disables character set
-	  normalization to UTF-8.
-	- security:allowed_html - Defines the allowed HTML tags that may be
-	  used by non-privileged users (i.e. authors)
-	- email:time_between_emails - Sets a required amount of time that must
-	  pass between emails sent by non-privileged users
-	- email:max_recipients - Maximum number of recipients for a single email
-	  for non-privileged users
-	- require_validation - Whether or not to require email validation
-	  before an account can be used
-	- validation_timeout - The number of days before an unvalidated account
-	  expires
-	- captcha:captcha - Enables or disables CAPTCHA testing
-	- captcha:captcha_on_register - Enables or disables CAPTCHA testing on
-	  user registration
-	- captcha:captcha_on_comments - Enables or disables CAPTCHA testing on
-	  comment posting
-	- captcha:font_location - Allows configuration of a specific TrueType
-	  font for CAPTCHA testing
+configuration parameters. There are no configuration file changes between OCS
+versions 2.1.1 and 2.1.2.
 
 New Features
 ------------
-	- #2899# Port OJS user import/export plugin to OCS
-	- #2937# Complete CAPTCHA support in OCS 2.x
-	- #3014# Add/test support for mixed submission types
-	- #3176# Back-port TinyMCE plugin
-	- #3197# Refactor reports into plugin structure.
-	- #3208# Add Scheduler
-	- #3238# Add generic code to maintain page numbers
-	- #3261# Back-port native import/export tool to OCS
-	- #3274# Centralize reviewer options into a single function
-	- #3326# Add help
-	- #3358# No Navigation Bar Configuration Tool
-	- #3438# add the ability to re-order presentation list
-	- #3447# Allow Director to send "Notify Users" emails
-	- #3448# Director cannot undo clicking Complete button on paper re...
-	- #3463# Move to flex-width layout
-	- #3517# Australian METS profile export/gateway plugin
-	- #3511# Director cannot change submission type
-	- #2883# Back-ports from OJS / Harvester
+	#2960# Back-port and test LDAP plugin from OJS
+	#2937# Complete CAPTCHA support in OCS 2.x
+	#3241# Add supp files step to abstract-only submission
+	#3503# Notify registrant of payment being received
+	#3593# Add Select All button on enrollment page
+	#3641# Localize program settings
+	#3765# Back-port review forms to OCS
+	#3806# Add a la carte items to registration
+	#3833# Allow for easier control over Conference Information listing
+	#3915# Add "sort by track" to sorting options on Scheduler
+	#4036# Due date change logged when reviewer assigned
+	#4091# Merge users at site level
 
 Bug Fixes
 ---------
-	- #2878# Fix test locale generation tool
-	- #2911# Missing setup form locale keys
-	- #2923# One-click reviewer setting referenced in wrong context
-	- #2932# "Merge Users" not working
-	- #2946# Fix Director's galley function redirects
-	- #2967# Submission acks not working
-	- #2975# Clean up old QueuedPayments
-	- #2976# Orphaned setting openRegReader
-	- #3004# Not null "type" column in edit_decisions is never used.
-	- #3005# Check whether array is valid before calling foreach in Pr...
-	- #3010# OCS paypal return landing pad broken
-	- #3013# SUBMISSION_DEADLINE_WARN email template never used
-	- #3032# Saving metadata as author leads to doubled display of page
-	- #3035# Profile form shows disabled sched confs in notifications ...
-	- #3072# Submission confirmation sometimes comes through empty
-	- #3075# Typo in classes/schedConf/SchedConfAction.inc.php
-	- #3131# Automatically enrol non-authors when attempting to submit...
-	- #3143# Illegal table reference in OAI query
-	- #3154# Reason for disabled registration for types that are not y...
-	- #3155# Remove the need for an additional mouse click to get to s...
-	- #3157# no link back to the main site
-	- #3158# Non-admins are unable to Create Users in Conference Manag...
-	- #3164# Article comments access should not depend on paper fullte...
-	- #3165# Searching outside of schedConf context returns no results
-	- #3166# Allow multiple PayPal payment attempts
-	- #3170# Provide "you do not have access" message rather than redi...
-	- #3174# Scheduled task-dependent settings need configuration check
-	- #3187# Site-level User Home does not display roles
-	- #3188# paper_notifications table in XML descriptor is unused
-	- #3192# Editor decision email includes website go-live date rathe...
-	- #3193# Subject of director decision email needlessly set
-	- #3196# Program HTML should not be escaped.
-	- #3206# Unable to select previous year when editing conference ti...
-	- #3217# Checking box to omit conference track from track policies...
-	- #3218# Locale key typo for log.timeline.endDateChanged
-	- #3228# deleteQueuedPayment and queued_payments automatic cleanup
-	- #3229# Registration types in "About" only show if non-public and...
-	- #3230# Submission type only displayed conditionally
-	- #3233# Presenter can upload new review version and/or supplement...
-	- #3234# add the option for account confirmation email from User R...
-	- #3245# Conference event log contains invalid optimization
-	- #3248# DBError on queued_payments table due to not null constrai...
-	- #3260# submission notification emails not sent to primary contac...
-	- #3276# author can't view uploaded reviewer files after abstract ...
-	- #3282# Archived (previously published) papers still showing in A...
-	- #3307# Registration information on user registration page appear...
-	- #3314# "Special Requests" field on registration form is too shor...
-	- #3328# Update copyright dates
-	- #3333# Link to Conference Site Management page on final setup page
-	- #3350# PHP Fatal Error in admin/systemInfo.tpl
-	- #3352# active submissions page problem
-	- #3353# Reviewer Step 3 text
-	- #3354# No Schedule link
-	- #3356# Author's version uploading buttons
-	- #3368# paper review directs to abstract review
-	- #3369# date of submission and author registration closed
-	- #3370# no link in contact us
-	- #3371# style sidebar
-	- #3372# Error merge user
-	- #3382# Sidebar search textbox not working
-	- #3383# Calls to Validation::canAdminister may use wrong params
-	- #3384# "Log Out As User" should redirect to conference-level man...
-	- #3385# pages/manager/PeopleHandler.inc.php needs cleanup
-	- #3393# registered without a role
-	- #3397# "By Title" index should check paper status
-	- #3404# Issues with images in the site settings
-	- #3405# System information link does not work
-	- #3406# Path field in 'Scheduling a Conference' doesn't work
-	- #3408# Issues with creating announcements
-	- #3410# Issues with setting up a conference timeline
-	- #3411# Sending user email option when editing their registration...
-	- #3412# Error when there is no file in upload slot on accommodati...
-	- #3413# Cancel button doesn't work correctly when creating a new ...
-	- #3414# No links under the Submission header work, site map doesn...
-	- #3415# PHP errors loading before header on many parts of the con...
-	- #3416# Eorrors when sending emails to users
-	- #3418# Reviewer's response email
-	- #3419# Track Director labeled as Submission Director
-	- #3420# allow authors to edit submission data/metadata after init...
-	- #3421# Links to sponsors all go to 'About the Conference'
-	- #3425# Create New User page is missing TinyMCE functionality
-	- #3437# Titles browse cached data may lead to inconsistencies
-	- #3456# Presenter list needs to use country to disambiguate
-	- #3462# Custom track ordering not used & unnecessary
-	- #3464# Empy "Policies" header in About the Conference Page
-	- #3468# general UI inconsistency with saveRegistrationPolicies
-	- #3471# IP authentication doesn't seem to be working
-	- #3482# After recording an "Invite Presentation" decision, Direct...
-	- #3483# Error selecting a conference track for stats and reports
-	- #3485# Email icon confusion
-	- #3486# Email icon confusion in the Event Log
-	- #3490# Link names for Report plugins seem to be in error
-	- #3491# Error with Turabian citation plugin
-	- #3493# Reading tools error looking for cookie
-	- #3497# Link for 'Presentations and Authors' goes back to confere...
-	- #3499# Suggest a source link is a 404
-	- #3500# wording change for trackForm.tpl
-	- #3501# error when trying to resubmit 'Scheduling a conference' form
-	- #3505# Error syncing all user's enrollment
-	- #3508# incorrect breadcrumb and page header for "Schedule Presen...
-	- #3518# Exchange <b> and <i> for <strong> and <em>
+	#912# Registration deadline changes
+	#2873# Extra unnecessary spacing on scheduled conferences
+	#2876# Author Guidelines real hard to find
+	#3513# Breadcrumb corrections/suggestions for People pages
+	#3520# Request::redirectURL ignores anchors if used
+	#3521# OCS help file updates
+	#3524# Back-ports from OJS / Harvester
+	#3545# "Move to Layout" button doesn't appear to set galley locale
+	#3686# Using the Payments Plugin with language other than English results in blank email
+	#3815# Submission abandoned at first step are not deleted
+	#3823# Registration recorded message showed even if no data are stored
+	#3825# system should default to manual payment for registration
+	#3828# Conference Timeline: Schedule checkbox does nothing
+	#3832# Papers report only lists submitter, not authors
+	#3836# Program Title needed to create program file link
+	#3846# Site Administrator can't enroll users via Conference Management pages
+	#3853# Supplementary File form locale reload error
+	#3867# Managers can be enrolled at Sched Conf context, causing role to break
+	#3878# OAI DC Type and $track->getIdentifyType() never set
+	#3880# Registration policy form settings never localized
+	#3905# Uploading invalid site stylesheet displays locale key, not message
+	#3906# For single-track conferences, auto-assign track during submission
+	#3918# 'journal' should be 'conference' in a locale variable
+	#3921# Submission Step 3 file name link doesn't work
+	#3925# Terminology confusion: proposal vs. presentation
+	#3937# Loss of TinyMCE when authors reordered
+	#3991# Remove blank line from end of file
+	#4013# Notify Users shows no presenters
+	#4034# Trailing slash required for conference index
+	#4035# base_url[...] overrides in config.inc.php not working
+	#4041# Announcement feed RSS redirects to conf. home
+	#4053# Track Director referred to as "TE" in Director's interface
+	#4055# Track Director's submission assignment check not working
+	#4080# registration tables not created at installation
+	#4085# Review policies (& Guidelines) not appearing in About
+	#4090# Merge users does not merge roles
+	#4111# Director Unable to reverse director decision on abstract
+	#4140# Modify Native DTD URL link in exported XML
+	#4151# Extra column heading in trackDirector index template
+	#4165# Unassigned abstracts treated as reviewed in Presentations page
+	#4166# Directors trying to edit unassigned papers fail validation
+	#4182# Abstract accept email template mentions "paper" instead of "abstract" in title
+	#4183# Manager's email list does not include modified subjects, if available.
+	#4202# Checkbox behavior in scheduler
+	#4203# Month not saved correctly in scheduler
+	#4207# Registration type descriptions shouldn't escape HTML
+	#4221# setProgressFunction and smartyCallProgressFunction in Template Manager not compatible with all PHPs
+	#4262# Sort by presenter in scheduler uses first name, not last
+	#4264# "0" not allowed as value for required localized form field
+	#4383# Some "Notify Users" counts come out as blank instead of 0
+	#4384# "Notify Users" presenter count is wrong
+	#4389# Localization updates
+	#4407# Calls to String::utf8Clean or String::utf8_bad_strip can hang indefinitely on valid UTF8 content
+	#4410# dbscripts/xml/data/locale/es_AR/email_templates_data.xml missing
+	#4413# Version descriptor dbscripts/xml/version.xml not updated
+	#4414# Release notes not displayed on upgrade
+	#4415# Upgrade should flush data cache
+	#4416# DB error when saving new registration option
+	#4417# Validation fails when clicking on submission link on presenter home page
+	#4418# All reports produce errors
+	#4421# Abstract section on Reviewer's 'View Metadata' page is in error
+	#4423# Untranslated key: submission.logType.review
+	#4431# CM can send registration payment notification email without marking payment received
+	#4432# Submission aborts after step 2
+	#4433# Reviewer for abstract assigned as reviewer for paper
+	#4434# Supp. file upload skips supp. file metadata form

@@ -1,8 +1,95 @@
 OCS 2.1.2 Release Notes
-CVS tag: ocs-2_1_2-0
-Release date: Aug 26, 2008
+CVS tag: ojs-2_1_2-0
+Release date: June 21, 2009
 =================================
 
+Configuration Changes
+---------------------
+
+See config.TEMPLATE.inc.php for a description and examples of all supported
+configuration parameters. There are no configuration file changes between OCS
+versions 2.1.1 and 2.1.2.
+
+New Features
+------------
+	#2960# Back-port and test LDAP plugin from OJS
+	#2937# Complete CAPTCHA support in OCS 2.x
+	#3241# Add supp files step to abstract-only submission
+	#3503# Notify registrant of payment being received
+	#3593# Add Select All button on enrollment page
+	#3641# Localize program settings
+	#3765# Back-port review forms to OCS
+	#3806# Add a la carte items to registration
+	#3833# Allow for easier control over Conference Information listing
+	#3915# Add "sort by track" to sorting options on Scheduler
+	#4036# Due date change logged when reviewer assigned
+	#4091# Merge users at site level
 
 Bug Fixes
 ---------
+	#912# Registration deadline changes
+	#2873# Extra unnecessary spacing on scheduled conferences
+	#2876# Author Guidelines real hard to find
+	#3513# Breadcrumb corrections/suggestions for People pages
+	#3520# Request::redirectURL ignores anchors if used
+	#3521# OCS help file updates
+	#3524# Back-ports from OJS / Harvester
+	#3545# "Move to Layout" button doesn't appear to set galley locale
+	#3686# Using the Payments Plugin with language other than English results in blank email
+	#3815# Submission abandoned at first step are not deleted
+	#3823# Registration recorded message showed even if no data are stored
+	#3825# system should default to manual payment for registration
+	#3828# Conference Timeline: Schedule checkbox does nothing
+	#3832# Papers report only lists submitter, not authors
+	#3836# Program Title needed to create program file link
+	#3846# Site Administrator can't enroll users via Conference Management pages
+	#3853# Supplementary File form locale reload error
+	#3867# Managers can be enrolled at Sched Conf context, causing role to break
+	#3878# OAI DC Type and $track->getIdentifyType() never set
+	#3880# Registration policy form settings never localized
+	#3905# Uploading invalid site stylesheet displays locale key, not message
+	#3906# For single-track conferences, auto-assign track during submission
+	#3918# 'journal' should be 'conference' in a locale variable
+	#3921# Submission Step 3 file name link doesn't work
+	#3925# Terminology confusion: proposal vs. presentation
+	#3937# Loss of TinyMCE when authors reordered
+	#3991# Remove blank line from end of file
+	#4013# Notify Users shows no presenters
+	#4034# Trailing slash required for conference index
+	#4035# base_url[...] overrides in config.inc.php not working
+	#4041# Announcement feed RSS redirects to conf. home
+	#4053# Track Director referred to as "TE" in Director's interface
+	#4055# Track Director's submission assignment check not working
+	#4080# registration tables not created at installation
+	#4085# Review policies (& Guidelines) not appearing in About
+	#4090# Merge users does not merge roles
+	#4111# Director Unable to reverse director decision on abstract
+	#4140# Modify Native DTD URL link in exported XML
+	#4151# Extra column heading in trackDirector index template
+	#4165# Unassigned abstracts treated as reviewed in Presentations page
+	#4166# Directors trying to edit unassigned papers fail validation
+	#4182# Abstract accept email template mentions "paper" instead of "abstract" in title
+	#4183# Manager's email list does not include modified subjects, if available.
+	#4202# Checkbox behavior in scheduler
+	#4203# Month not saved correctly in scheduler
+	#4207# Registration type descriptions shouldn't escape HTML
+	#4221# setProgressFunction and smartyCallProgressFunction in Template Manager not compatible with all PHPs
+	#4262# Sort by presenter in scheduler uses first name, not last
+	#4264# "0" not allowed as value for required localized form field
+	#4383# Some "Notify Users" counts come out as blank instead of 0
+	#4384# "Notify Users" presenter count is wrong
+	#4389# Localization updates
+	#4407# Calls to String::utf8Clean or String::utf8_bad_strip can hang indefinitely on valid UTF8 content
+	#4410# dbscripts/xml/data/locale/es_AR/email_templates_data.xml missing
+	#4413# Version descriptor dbscripts/xml/version.xml not updated
+	#4414# Release notes not displayed on upgrade
+	#4415# Upgrade should flush data cache
+	#4416# DB error when saving new registration option
+	#4417# Validation fails when clicking on submission link on presenter home page
+	#4418# All reports produce errors
+	#4421# Abstract section on Reviewer's 'View Metadata' page is in error
+	#4423# Untranslated key: submission.logType.review
+	#4431# CM can send registration payment notification email without marking payment received
+	#4432# Submission aborts after step 2
+	#4433# Reviewer for abstract assigned as reviewer for paper
+	#4434# Supp. file upload skips supp. file metadata form
