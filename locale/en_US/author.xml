@@ -68,6 +68,7 @@
 	<message key="presenter.submit.form.authorRequired">At least one author is required.</message>
 	<message key="presenter.submit.form.authorRequiredFields">The first name, last name, and email address of each author is required.</message>
 	<message key="author.submit.form.titleRequired">Please enter the title of your paper.</message>
+	<message key="author.submit.form.wordCountAlert">You have exceeded the maximum word limit for abstracts in this conference's track.</message>
 	<message key="author.submit.submissionFile">Submission File</message>
 	<message key="author.submit.uploadSubmissionFile">Upload submission file</message>
 	<message key="author.submit.replaceSubmissionFile">Replace submission file</message>

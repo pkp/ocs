@@ -120,6 +120,7 @@ class TrackForm extends Form {
 					'policy' => $track->getPolicy(null), // Localized
 					'hideAbout' => $track->getHideAbout(),
 					'disableComments' => $track->getDisableComments(),
+					'wordCount' => $track->getAbstractWordCount()
 				);
 			}
 		} else {
@@ -134,7 +135,7 @@ class TrackForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'abbrev', 'metaNotReviewed', 'identifyType', 'directorRestriction', 'policy', 'hideAbout', 'disableComments'));
+		$this->readUserVars(array('title', 'abbrev', 'metaNotReviewed', 'identifyType', 'directorRestriction', 'policy', 'hideAbout', 'disableComments', 'wordCount'));
 	}
 
 	/**
@@ -163,6 +164,7 @@ class TrackForm extends Form {
 		$track->setPolicy($this->getData('policy'), null); // Localized
 		$track->setHideAbout($this->getData('hideAbout'));
 		$track->setDisableComments($this->getData('disableComments') ? 1 : 0);
+		$track->setAbstractWordCount($this->getData('wordCount'));
 
 		if ($track->getTrackId() != null) {
 			$trackDao->updateTrack($track);

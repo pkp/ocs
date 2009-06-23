@@ -655,5 +655,8 @@
 	<message key="manager.tracks.trackDirectorInstructions">Add a Track Director to this track to have submissions automatically assigned to the Track Director. (Otherwise, Track Directors can be assigned manually, after a submission comes in.) Track Directors are created by clicking Track Directors under Roles in Conference Management.</message>
 	<message key="manager.tracks.unassignDirector">Un-assign Director</message>
 	<message key="manager.tracks.unassigned">Available Track Directors</message>
+	<message key="manager.tracks.wordCount">Word Count</message>
+	<message key="manager.tracks.wordCountInstructions">Limit abstract word counts for this section (0 for no limit): </message>
 	<message key="manager.websiteManagement">Website Management</message>
+
 </locale>

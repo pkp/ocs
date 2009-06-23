@@ -148,6 +148,7 @@ class TrackDAO extends DAO {
 		$track->setDirectorRestricted($row['director_restricted']);
 		$track->setHideAbout($row['hide_about']);
 		$track->setDisableComments($row['disable_comments']);
+		$track->setAbstractWordCount($row['abstract_word_count']);
 
 		$this->getDataObjectSettings('track_settings', 'track_id', $row['track_id'], $track);
 
@@ -182,16 +183,17 @@ class TrackDAO extends DAO {
 	function insertTrack(&$track) {
 		$this->update(
 			'INSERT INTO tracks
-				(sched_conf_id, seq, meta_reviewed, director_restricted, hide_about, disable_comments)
+				(sched_conf_id, seq, meta_reviewed, director_restricted, hide_about, disable_comments, abstract_word_count)
 				VALUES
-				(?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?)',
 			array(
 				(int) $track->getSchedConfId(),
 				(int) $track->getSequence(),
 				$track->getMetaReviewed() ? 1 : 0,
 				$track->getDirectorRestricted() ? 1 : 0,
 				$track->getHideAbout() ? 1 : 0,
-				$track->getDisableComments() ? 1 : 0
+				$track->getDisableComments() ? 1 : 0,
+				(int) $track->getAbstractWordCount()
 			)
 		);
 
@@ -212,7 +214,8 @@ class TrackDAO extends DAO {
 					meta_reviewed = ?,
 					director_restricted = ?,
 					hide_about = ?,
-					disable_comments = ?
+					disable_comments = ?,
+					abstract_word_count = ?
 				WHERE track_id = ?',
 			array(
 				(int) $track->getSequence(),
@@ -220,6 +223,7 @@ class TrackDAO extends DAO {
 				$track->getDirectorRestricted()?1:0,
 				$track->getHideAbout()?1:0,
 				$track->getDisableComments()?1:0,
+				(int) $track->getAbstractWordCount(),
 				(int) $track->getTrackId()
 			)
 		);

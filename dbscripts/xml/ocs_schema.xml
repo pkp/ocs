@@ -426,6 +426,7 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
+		<field name="abstract_word_count" type="I8" />
 		<descr>Scheduled conference tracks.</descr>
 		<index name="tracks_sched_conf_id">
 			<col>sched_conf_id</col>
