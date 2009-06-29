@@ -103,6 +103,9 @@ class CreateAccountForm extends Form {
 		$templateMgr->assign_by_ref('countries', $countries);
 
 		import('schedConf.SchedConfAction');
+		
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 
 		$templateMgr->assign('privacyStatement', $conference->getLocalizedSetting('privacyStatement'));
 		$templateMgr->assign('enableOpenAccessNotification', $schedConf->getSetting('enableOpenAccessNotification')==1?1:0);

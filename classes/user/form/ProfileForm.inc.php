@@ -51,6 +51,7 @@ class ProfileForm extends Form {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');		
 
 		$schedConfs =& $schedConfDao->getEnabledSchedConfs();
 		$schedConfs =& $schedConfs->toArray();
@@ -65,6 +66,8 @@ class ProfileForm extends Form {
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
+		
+		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 
 		$templateMgr->assign_by_ref('schedConfs', $schedConfs);
 		$templateMgr->assign_by_ref('countries', $countries);
