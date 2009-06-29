@@ -1871,6 +1871,7 @@
 			<NOTNULL/>
 		</field>
 		<field name="code" type="C2" size="80" />
+		<field name="cost" type="F" />
 		<field name="currency_code_alpha" type="C2" size="3">
 			<NOTNULL/>
 		</field>
