@@ -56,6 +56,7 @@
 	<message key="author.submit.form.abstractRequired">Please enter an abstract for your submission.</message>
 	<message key="author.submit.privacyStatement">Conference's Privacy Statement</message>
 	<message key="author.submit.reorderInstructions">Reorder authors to appear in the order they will be listed on publication.</message>
+	<message key="author.submit.reorder">Reorder author's name</message>
 	<message key="author.submit.selectPrincipalContact">Principal contact for editorial correspondence.</message>
 	<message key="author.submit.addAuthor">Add Author</message>
 	<message key="author.submit.deleteAuthor">Delete Author</message>
