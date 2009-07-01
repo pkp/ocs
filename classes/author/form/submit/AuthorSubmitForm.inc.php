@@ -77,7 +77,7 @@ class AuthorSubmitForm extends Form {
 		$reviewMode = isset($this->paper)?$this->paper->getReviewMode():$schedConf->getSetting('reviewMode');
 
 		$showAbstractSteps = $progress == REVIEW_STAGE_ABSTRACT || $reviewMode != REVIEW_MODE_BOTH_SEQUENTIAL;
-		$showPaperSteps = $progress == REVIEW_STAGE_PRESENTATION || $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS;
+		$showPaperSteps = $progress == REVIEW_STAGE_PRESENTATION || $reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS || $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE;
 
 		$templateMgr->assign('showAbstractSteps', $showAbstractSteps);
 		$templateMgr->assign('showPaperSteps', $showPaperSteps);

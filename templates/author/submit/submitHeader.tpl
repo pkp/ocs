@@ -21,10 +21,17 @@
 			{translate key="author.submit.start"}{if $submitStep != 1 && $submissionProgress >= 1}</a>{/if}
 		</li>
 
-		<li{if $submitStep == 2} class="current"{/if}>
-			{if $submitStep != 2 && $submissionProgress >= 2}<a href="{url op="submit" path="2" paperId=$paperId}">{/if}
-			{translate key="author.submit.upload"}{if $submitStep != 2 && $submissionProgress >= 2}</a>{/if}
-		</li>
+		{if $showPaperSteps}
+			<li{if $submitStep == 2} class="current"{/if}>
+				{if $submitStep != 2 && $submissionProgress >= 2}<a href="{url op="submit" path="2" paperId=$paperId}">{/if}
+				{translate key="author.submit.upload"}{if $submitStep != 2 && $submissionProgress >= 2}</a>{/if}
+			</li>
+		{else}
+			<li{if $submitStep == 3} class="current"{/if}>
+				{if $submitStep != 3 && $submissionProgress >= 3}<a href="{url op="submit" path="3" paperId=$paperId}">{/if}
+				{translate key="author.submit.metadataOnly"}{if $submitStep != 3 && $submissionProgress >= 3}</a>{/if}
+			</li>
+		{/if}
 		
 		{if $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials') && !$showPaperSteps}
 			<li{if $submitStep == 4} class="current"{/if}>
@@ -40,10 +47,17 @@
 	{/if}
 
 	{if $showPaperSteps}
-		<li{if $submitStep == 3} class="current"{/if}>
-			{if $submitStep != 3 && $submissionProgress >= 3}<a href="{url op="submit" path="3" paperId=$paperId}">{/if}
-			{translate key="author.submit.metadata"}{if $submitStep != 3 && $submissionProgress >= 3}</a>{/if}
-		</li>
+		{if !$showAbstractSteps}
+			<li{if $submitStep == 2} class="current"{/if}>
+				{if $submitStep != 2 && $submissionProgress >= 2}<a href="{url op="submit" path="2" paperId=$paperId}">{/if}
+				{translate key="author.submit.uploadOnly"}{if $submitStep != 2 && $submissionProgress >= 2}</a>{/if}
+			</li>
+		{else}
+			<li{if $submitStep == 3} class="current"{/if}>
+				{if $submitStep != 3 && $submissionProgress >= 3}<a href="{url op="submit" path="3" paperId=$paperId}">{/if}
+				{translate key="author.submit.metadata"}{if $submitStep != 3 && $submissionProgress >= 3}</a>{/if}
+			</li>
+		{/if}
 
 		{if $currentSchedConf->getSetting('acceptSupplementaryReviewMaterials')}
 			<li{if $submitStep == 4} class="current"{/if}>

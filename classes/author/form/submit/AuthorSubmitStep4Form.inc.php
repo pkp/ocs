@@ -25,7 +25,7 @@ class AuthorSubmitStep4Form extends AuthorSubmitForm {
 		$schedConf =& Request::getSchedConf();
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
 			// If supplementary files are not allowed, redirect.
-			Request::redirect(null, null, null, null, '3');
+			Request::redirect(null, null, null, null, '5');
 		}
 	}
 

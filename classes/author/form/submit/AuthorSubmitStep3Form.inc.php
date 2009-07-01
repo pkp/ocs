@@ -199,7 +199,8 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 			// (for now)
 			$reviewMode = $this->paper->getReviewMode();
 			if($reviewMode == REVIEW_MODE_BOTH_SIMULTANEOUS || $reviewMode == REVIEW_MODE_PRESENTATIONS_ALONE) {
-				$paper->setSubmissionProgress($this->step + 1);
+				if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) $paper->setSubmissionProgress($this->step + 2); // Skip supp files
+				else $paper->setSubmissionProgress($this->step + 1);
 				// The line below is necessary to ensure that
 				// the paper upload goes in with the correct
 				// stage number (i.e. paper).

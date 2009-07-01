@@ -8,7 +8,11 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="author.submit.step4a"}
+{if $showAbstractSteps && !$showPaperSteps}
+	{assign var="pageTitle" value="author.submit.supplementaryFilesInfoAbstractOnly"}
+{else}
+		{assign var="pageTitle" value="author.submit.step4a"}
+{/if}
 {include file="author/submit/submitHeader.tpl"}
 
 <p><a href="{url op="submit" path=4 paperId=$paperId}">&lt;&lt; {translate key="author.submit.backToSupplementaryFiles"}</a></p>

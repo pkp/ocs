@@ -8,7 +8,11 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="author.submit.step3"}
+{if $showPaperSteps}
+	{assign var="pageTitle" value="author.submit.step3"}
+{else}
+	{assign var="pageTitle" value="author.submit.step3AbstOnly"}
+{/if}
 {include file="author/submit/submitHeader.tpl"}
 
 <div class="separator"></div>

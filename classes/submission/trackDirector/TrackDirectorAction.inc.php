@@ -124,7 +124,7 @@ class TrackDirectorAction extends Action {
 
 				// The paper itself needs to be collected. Flag it so the author
 				// may complete it.
-				$trackDirectorSubmission->setSubmissionProgress(3);
+				$trackDirectorSubmission->setSubmissionProgress(2);
 
 				// TODO: notify the author the submission must be completed.
 				// Q: should the director be given this option explicitly?

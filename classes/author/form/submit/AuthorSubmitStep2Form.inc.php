@@ -9,7 +9,7 @@
  * @class AuthorSubmitStep2Form
  * @ingroup author_form_submit
  *
- * @brief Form for Step 3 of author paper submission.
+ * @brief Form for Step 2 of author paper submission.
  */
 
 //$Id$
@@ -99,8 +99,12 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 			$schedConf =& Request::getSchedConf();
 
 			$paper->stampStatusModified();
-			if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) $paper->setSubmissionProgress($this->step + 2); // Skip supp files
-			else $paper->setSubmissionProgress($this->step + 1);
+			if ($paper->getReviewMode() == REVIEW_MODE_BOTH_SEQUENTIAL) {
+				$nextStep = $schedConf->getSetting('acceptSupplementaryReviewMaterials') ? 4:5;
+				$paper->setSubmissionProgress($nextStep);
+			} else {
+				$paper->setSubmissionProgress($this->step + 1);
+			}
 
 			$paperDao->updatePaper($paper);
 		}

@@ -176,9 +176,9 @@ class SubmitHandler extends AuthorHandler {
 
 			// For the "abstract only" or sequential review models, nothing else needs
 			// to be collected beyond page 2.
-			$reviewMode = $paper?$paper->getReviewMode():null;
-			if (($step == 2 && $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) || 
-					($step == 2 && $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) ||
+			$reviewMode = $paper?$paper->getReviewMode():$schedConf->getSetting('reviewMode');
+			if (($step == 3 && $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) || 
+					($step == 3 && $reviewMode == REVIEW_MODE_ABSTRACTS_ALONE && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) ||
 					($step == 5 )) {
 
 				// Send a notification to associated users
@@ -211,8 +211,11 @@ class SubmitHandler extends AuthorHandler {
 				$templateMgr->display('author/submit/complete.tpl');
 			} elseif ($step == 3 && !$schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
 				Request::redirect(null, null, null, 'submit', 5, array('paperId' => $paperId));
-			} elseif ($step == 2 && ($reviewMode == REVIEW_MODE_ABSTRACTS_ALONE|| $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL)) {
-				Request::redirect(null, null, null, 'submit', 4, array('paperId' => $paperId));
+			} elseif ($step == 1 && ($reviewMode == REVIEW_MODE_ABSTRACTS_ALONE || $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL)) {
+				Request::redirect(null, null, null, 'submit', 3, array('paperId' => $paperId));
+ 			} elseif ($step == 2 && $reviewMode == REVIEW_MODE_BOTH_SEQUENTIAL) {
+ 				$nextStep = $schedConf->getSetting('acceptSupplementaryReviewMaterials') ? 4:5;
+				Request::redirect(null, null, null, 'submit', $nextStep, array('paperId' => $paperId));
  			} else {
 				Request::redirect(null, null, null, 'submit', $step+1, array('paperId' => $paperId));
 			}
@@ -258,6 +261,7 @@ class SubmitHandler extends AuthorHandler {
 		$this->setupTemplate(true);
 
 		$paper =& $this->paper;
+		$schedConf =& Request::getSchedConf();
 
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 

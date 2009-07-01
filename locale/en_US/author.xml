@@ -18,6 +18,7 @@
 	<message key="author.submit.startHereLink">Step one of the submission process</message>
 	<message key="author.submit.step1">Step 1. Starting the Submission</message>
 	<message key="author.submit.step3">Step 3. Entering the Submission's Metadata</message>
+	<message key="author.submit.step3AbstOnly">Step 2. Entering the Submission's Metadata</message>
 	<message key="author.submit.step2">Step 2. Uploading the Submission</message>
 	<message key="author.submit.step4">Step 4. Uploading Supplementary Files</message>
 	<message key="author.submit.step4a">Step 4a. Add a Supplementary File</message>
@@ -25,9 +26,12 @@
 	<message key="author.submit.step5SkipSupp">Step 4. Confirming the Submission</message>
 	<message key="author.submit.start">1. Start</message>
 	<message key="author.submit.metadata">3. Enter Metadata</message>
+	<message key="author.submit.metadataOnly">2. Enter Metadata</message>
 	<message key="author.submit.upload">2. Upload Submission</message>
+	<message key="author.submit.uploadOnly">3. Upload Submission</message>
 	<message key="author.submit.supplementaryFiles">4. Upload Supplementary Files</message>
 	<message key="author.submit.supplementaryFilesAbstractOnly">3. Upload Supplementary Files</message>
+	<message key="author.submit.supplementaryFilesInfoAbstractOnly">Step 3a. Uploading Supplementary Files</message>
 	<message key="author.submit.confirmation">5. Confirmation</message>
 	<message key="author.submit.confirmationSkipSupp">4. Confirmation</message>
 	<message key="author.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>

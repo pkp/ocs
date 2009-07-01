@@ -93,13 +93,19 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 
 		if (isset($this->paper)) {
+			$reviewMode = $this->paper->getReviewMode();
 			// Update existing paper
 			$this->paper->setTrackId($this->getData('trackId'));
 			$this->paper->setCommentsToDirector($this->getData('commentsToDirector'));
 			$this->paper->setData('sessionType', $this->getData('sessionType'));
 			if ($this->paper->getSubmissionProgress() <= $this->step) {
 				$this->paper->stampStatusModified();
-				$this->paper->setSubmissionProgress($this->step + 1);
+				if($reviewMode == REVIEW_MODE_ABSTRACTS_ALONE) {
+					$this->paper->setSubmissionProgress($this->step + 2);
+				}
+				else {
+					$this->paper->setSubmissionProgress($this->step + 1);
+				}
 			}
 			$paperDao->updatePaper($this->paper);
 
@@ -114,18 +120,20 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->paper->setSchedConfId($schedConf->getSchedConfId());
 			$this->paper->setTrackId($this->getData('trackId'));
 			$this->paper->stampStatusModified();
-			$this->paper->setSubmissionProgress($this->step + 1);
+			$reviewMode = $schedConf->getSetting('reviewMode');
+			$this->paper->setReviewMode($reviewMode);
 			$this->paper->setLanguage(String::substr($conference->getPrimaryLocale(), 0, 2));
 			$this->paper->setCommentsToDirector($this->getData('commentsToDirector'));
-			$this->paper->setReviewMode($schedConf->getSetting('reviewMode'));
 
-			switch($this->paper->getReviewMode()) {
+			switch($reviewMode) {
 				case REVIEW_MODE_ABSTRACTS_ALONE:
 				case REVIEW_MODE_BOTH_SEQUENTIAL:
+					$this->paper->setSubmissionProgress($this->step + 2);
 					$this->paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
 					break;
 				case REVIEW_MODE_PRESENTATIONS_ALONE:
 				case REVIEW_MODE_BOTH_SIMULTANEOUS:
+					$this->paper->setSubmissionProgress($this->step + 1);
 					$this->paper->setCurrentStage(REVIEW_STAGE_PRESENTATION);
 					break;
 			}

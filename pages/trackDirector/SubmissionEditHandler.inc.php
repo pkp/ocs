@@ -165,7 +165,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$tracks =& $trackDao->getSchedConfTracks($schedConf->getSchedConfId());
 
-
 		$directorDecisions = $submission->getDecisions($stage);
 		$lastDecision = count($directorDecisions) >= 1 ? $directorDecisions[count($directorDecisions) - 1]['decision'] : null;
 
@@ -358,12 +357,18 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		$decision = Request::getUserVar('decision');
 
-		// If the director changes the decision from invite to revisions
-		// required or decline, roll back to abstract review stage
+		// If the director requires revisions for the presentation, reset reviews
 		if($submission->getCurrentStage() == REVIEW_STAGE_PRESENTATION &&
 				($decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS || $decision == SUBMISSION_DIRECTOR_DECISION_DECLINE)) {
-			$submission->setCurrentStage(REVIEW_STAGE_ABSTRACT);
+			$submission->setCurrentStage(REVIEW_STAGE_PRESENTATION);
 			$submission->setSubmissionProgress(2);
+			$stage = REVIEW_STAGE_PRESENTATION;
+
+			TrackDirectorAction::recordDecision($submission, $decision);
+		} else if($submission->getCurrentStage() == REVIEW_STAGE_ABSTRACT &&
+				($decision == SUBMISSION_DIRECTOR_DECISION_PENDING_REVISIONS || $decision == SUBMISSION_DIRECTOR_DECISION_DECLINE)) {
+			$submission->setCurrentStage(REVIEW_STAGE_ABSTRACT);
+			$submission->setSubmissionProgress(3);
 			$stage = REVIEW_STAGE_ABSTRACT;
 
 			// Now, unassign all reviewers from the paper review
