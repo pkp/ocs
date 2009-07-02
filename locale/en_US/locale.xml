@@ -1007,6 +1007,9 @@ Validation may fail on search URLs that require posted form data.]]></message>
 
 
 	<!-- Notification Types -->
+	<message key="notification.mailListDescription">Enter your email address to receive immediate notifications of important new content added to the conference.</message>
+	<message key="notification.notificationsPublicDescription">This page shows important updates associated with this conference such as new papers or announcements.  You may subscribe to these notifications through RSS feeds (by clicking on the images to the right), or <![CDATA[  <a href="{$emailUrl}">through email.</a>]]></message>
+
 	<message key="notification.type.paperSubmitted">A new paper, "{$param}", has been submitted.</message>
 	<message key="notification.type.editing">Editing Events</message>
 	<message key="notification.type.directorDecisionComment">A comment has been left on the editor decision for "{$param}".</message>
