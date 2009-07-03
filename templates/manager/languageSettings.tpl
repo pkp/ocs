@@ -22,25 +22,38 @@
 
 <table class="data" width="100%">
 <tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="primaryLocale" required="true" key="locale.primary"}</td>
-	<td width="80%" colspan="2" class="value"><select id="primaryLocale" name="primaryLocale" size="1" class="selectMenu">
-	{foreach from=$availableLocales key=localeKey item=localeName}
-		<option value="{$localeKey|escape}"{if $localeKey == $primaryLocale} selected="selected"{/if}>{$localeName|escape}</option>
-	{/foreach}
-	</select></td>
+	<td width="20%" rowspan="2" class="label">{fieldLabel name="primaryLocale" required="true" key="locale.primary"}</td>
+	<td width="80%" colspan="2" class="value">
+		<select id="primaryLocale" name="primaryLocale" size="1" class="selectMenu">
+			{html_options options=$availableLocales selected=$primaryLocale}
+		</select>
+	</td>
 </tr>
 <tr valign="top">
-	<td>&nbsp;</td>
 	<td colspan="2" class="value"><span class="instruct">{translate key="manager.languages.primaryLocaleInstructions"}</span></td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel suppressId="true" name="supportedLocales" key="locale.supported"}</td>
-	<td colspan="2" class="value">{foreach from=$availableLocales key=localeKey item=localeName}
-		<input type="checkbox" name="supportedLocales[]" id="supportedLocales-{$localeKey|escape}" value="{$localeKey|escape}"{if in_array($localeKey, $supportedLocales)} checked="checked"{/if}/> <label for="supportedLocales-{$localeKey|escape}">{$localeName|escape}</label><br />
-	{/foreach}</td>
+	<td class="label" rowspan="2">{fieldLabel suppressId="true" name="supportedLocales" key="locale.supported"}</td>
+	<td colspan="2" class="value">
+		<table class="data" width="100%">
+		<tr valign="top">
+			<td width="20%">&nbsp;</td>
+			<td align="center" width="10%">{translate key="manager.language.ui"}</td>
+			<td align="center" width="10%">{translate key="manager.language.forms"}</td>
+			<td>&nbsp;</td>
+		</tr>
+		{foreach from=$availableLocales key=localeKey item=localeName}
+			<tr>
+				<td>{$localeName|escape}</td>
+				<td align="center"><input type="checkbox" name="supportedLocales[]" value="{$localeKey|escape}"{if in_array($localeKey, $supportedLocales)} checked="checked"{/if}/></td>
+				<td align="center"><input type="checkbox" name="supportedFormLocales[]" value="{$localeKey|escape}"{if in_array($localeKey, $supportedFormLocales)} checked="checked"{/if}/></td>
+				<td>&nbsp;</td>
+			</tr>
+		{/foreach}
+		</table>
+	</td>
 </tr>
 <tr valign="top">
-	<td>&nbsp;</td>
 	<td colspan="2" class="value"><span class="instruct">{translate key="manager.languages.supportedLocalesInstructions"}</span></td>
 </tr>
 </table>
