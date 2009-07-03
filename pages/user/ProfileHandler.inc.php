@@ -49,6 +49,7 @@ class ProfileHandler extends UserHandler {
 	function saveProfile() {
 		$this->validate();
 		$this->setupTemplate();
+		$dataModified = false;
 
 		import('user.form.ProfileForm');
 
@@ -56,7 +57,17 @@ class ProfileHandler extends UserHandler {
 		$profileForm =& new ProfileForm();
 		$profileForm->readInputData();
 
-		if ($profileForm->validate()) {
+		if (Request::getUserVar('uploadProfileImage')) {
+			if (!$profileForm->uploadProfileImage()) {
+				$profileForm->addError('profileImage', Locale::translate('user.profile.form.profileImageInvalid'));
+			}
+			$dataModified = true;
+		} else if (Request::getUserVar('deleteProfileImage')) {
+			$profileForm->deleteProfileImage();
+			$dataModified = true;
+		}
+
+		if (!$dataModified && $profileForm->validate()) {
 			$profileForm->execute();
 			Request::redirect(null, null, Request::getRequestedPage());
 

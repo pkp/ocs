@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file ProfileForm.inc.php
+ * @file classes/user/form/ProfileForm.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -14,9 +14,14 @@
 
 //$Id$
 
+
 import('form.Form');
 
 class ProfileForm extends Form {
+
+	/** @var $user object */
+	var $user;
+
 	/**
 	 * Constructor.
 	 */
@@ -24,6 +29,7 @@ class ProfileForm extends Form {
 		parent::Form('user/profile.tpl');
 
 		$user =& Request::getUser();
+		$this->user =& $user;
 
 		$site =& Request::getSite();
 
@@ -34,6 +40,58 @@ class ProfileForm extends Form {
 		$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
 		$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.account.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array($user->getId(), true), true));
 		$this->addCheck(new FormValidatorPost($this));
+	}
+
+	/**
+	 * Deletes a profile image.
+	 */
+	function deleteProfileImage() {
+		$user =& Request::getUser();
+		$profileImage = $user->getSetting('profileImage');
+		if (!$profileImage) return false;
+
+		import('file.PublicFileManager');
+		$fileManager = new PublicFileManager();
+		if ($fileManager->removeSiteFile($profileImage['uploadName'])) {
+			return $user->updateSetting('profileImage', null);
+		} else {
+			return false;
+		}
+	}
+
+	function uploadProfileImage() {
+		import('file.PublicFileManager');
+		$fileManager = new PublicFileManager();
+
+		$user =& $this->user;
+
+		$type = $fileManager->getUploadedFileType('profileImage');
+		$extension = $fileManager->getImageExtension($type);
+		if (!$extension) return false;
+
+		$uploadName = 'profileImage-' . (int) $user->getId() . $extension;
+		if (!$fileManager->uploadSiteFile('profileImage', $uploadName)) return false;
+
+		$filePath = $fileManager->getSiteFilesPath();
+		list($width, $height) = getimagesize($filePath . '/' . $uploadName);
+
+		if ($width > 150 || $height > 150 || $width <= 0 || $height <= 0) {
+			$userSetting = null;
+			$user->updateSetting('profileImage', $userSetting);
+			$fileManager->removeSiteFile($filePath);
+			return false;
+		}
+
+		$userSetting = array(
+			'name' => $fileManager->getUploadedFileName('profileImage'),
+			'uploadName' => $uploadName,
+			'width' => $width,
+			'height' => $height,
+			'dateUploaded' => Core::getCurrentDate()
+		);
+
+		$user->updateSetting('profileImage', $userSetting);
+		return true;
 	}
 
 	/**
@@ -89,6 +147,8 @@ class ProfileForm extends Form {
 		$timeZoneDao =& DAORegistry::getDAO('TimeZoneDAO');
 		$timeZones =& $timeZoneDao->getTimeZones();
 		$templateMgr->assign_by_ref('timeZones', $timeZones);
+
+		$templateMgr->assign('profileImage', $user->getSetting('profileImage'));
 
 		parent::display();
 	}
