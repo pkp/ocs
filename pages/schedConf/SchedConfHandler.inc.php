@@ -61,6 +61,7 @@ class SchedConfHandler extends Handler {
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true)));
 		$templateMgr->assign('homepageImage', $conference->getLocalizedSetting('homepageImage'));
+		$templateMgr->assign('homepageImageAltText', $conference->getLocalizedSetting('homepageImageAltText'));
 		$templateMgr->assign('helpTopicId', 'user.currentArchives');
 		$templateMgr->display('schedConf/index.tpl');
 
@@ -524,7 +525,8 @@ class SchedConfHandler extends Handler {
 			// Assign header and content for home page
 			$templateMgr->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle(true));
 			$templateMgr->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo(true));
-
+			$templateMgr->assign('displayPageHeaderTitleAltText', $conference->getLocalizedSetting('homeHeaderTitleImageAltText'));
+			$templateMgr->assign('displayPageHeaderLogoAltText', $conference->getLocalizedSetting('homeHeaderLogoImageAltText'));
 			$templateMgr->assign_by_ref('schedConf', $schedConf);
 			$templateMgr->assign('additionalHomeContent', $conference->getLocalizedSetting('additionalHomeContent'));
 		} else {

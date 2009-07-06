@@ -79,6 +79,8 @@ class TemplateManager extends PKPTemplateManager {
 
 				$this->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle());
 				$this->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo());
+				$this->assign('displayPageHeaderTitleAltText', $conference->getLocalizedSetting('pageHeaderTitleImageAltText'));
+				$this->assign('displayPageHeaderLogoAltText', $conference->getLocalizedSetting('pageHeaderLogoImageAltText'));
 				$this->assign('displayFavicon', $conference->getLocalizedFavicon());
 				$this->assign('faviconDir', Request::getBaseUrl() . '/' . PublicFileManager::getConferenceFilesPath($conference->getConferenceId()));
 				$this->assign('alternatePageHeader', $conference->getLocalizedSetting('conferencePageHeader'));

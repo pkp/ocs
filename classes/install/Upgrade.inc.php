@@ -602,6 +602,38 @@ class Upgrade extends Installer {
 		
 		return true;
 	}
+
+	/**
+	 * For 2.3 upgrade: Move image alts for Conference Setup Step 2/3 from within the image
+	 * settings into their own settings. (Improves usability of setup forms and simplifies
+	 * the code considerably.)
+	 * @return boolean
+	 */
+	function cleanImageAlts() {
+		$imageSettings = array(
+			'homeHeaderTitleImage' => 'homeHeaderTitleImageAltText',
+			'homeHeaderLogoImage' => 'homeHeaderLogoImageAltText',
+			'homepageImage' => 'homepageImageAltText',
+			'pageHeaderTitleImage' => 'pageHeaderTitleImageAltText',
+			'pageHeaderLogoImage' => 'pageHeaderLogoImageAltText'
+		);
+		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
+		$conferences =& $conferenceDao->getConferences();
+		while ($conference =& $conferences->next()) {
+			foreach ($imageSettings as $imageSettingName => $newSettingName) {
+				$imageSetting = $conference->getSetting($imageSettingName);
+				$newSetting = array();
+				if ($imageSetting) foreach ($imageSetting as $locale => $setting) {
+					if (isset($setting['altText'])) $newSetting[$locale] = $setting['altText'];
+				}
+				if (!empty($newSetting)) {
+					$conference->updateSetting($newSettingName, $newSetting, 'string', true);
+				}
+			}
+			unset($conference);
+		}
+		return true;
+	}
 }
 
 ?>

@@ -44,8 +44,11 @@ class SchedConfsHandler extends Handler {
 		// Assign header and content for home page
 		$templateMgr->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle(true));
 		$templateMgr->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo(true));
+		$templateMgr->assign('displayPageHeaderTitleAltText', $conference->getLocalizedSetting('homeHeaderTitleImageAltText'));
+		$templateMgr->assign('displayPageHeaderLogoAltText', $conference->getLocalizedSetting('homeHeaderLogoImageAltText'));
 		$templateMgr->assign('additionalHomeContent', $conference->getLocalizedSetting('additionalHomeContent'));
 		$templateMgr->assign('homepageImage', $conference->getSetting('homepageImage'));
+		$templateMgr->assign('homepageImageAltText', $conference->getLocalizedSetting('homepageImageAltText'));
 		$templateMgr->assign('description', $conference->getSetting('description'));
 		$templateMgr->assign('conferenceTitle', $conference->getConferenceTitle());
 
@@ -75,8 +78,11 @@ class SchedConfsHandler extends Handler {
 		// Assign header and content for home page
 		$templateMgr->assign('displayPageHeaderTitle', $conference->getPageHeaderTitle(true));
 		$templateMgr->assign('displayPageHeaderLogo', $conference->getPageHeaderLogo(true));
+		$templateMgr->assign('displayPageHeaderTitleAltText', $conference->getLocalizedSetting('homeHeaderTitleImageAltText'));
+		$templateMgr->assign('displayPageHeaderLogoAltText', $conference->getLocalizedSetting('homeHeaderLogoImageAltText'));
 		$templateMgr->assign('additionalHomeContent', $conference->getLocalizedSetting('additionalHomeContent'));
 		$templateMgr->assign('homepageImage', $conference->getSetting('homepageImage'));
+		$templateMgr->assign('homepageImageAltText', $conference->getLocalizedSetting('homepageImageAltText'));
 		$templateMgr->assign('description', $conference->getSetting('description'));
 		$templateMgr->assign('conferenceTitle', $conference->getConferenceTitle());
 
