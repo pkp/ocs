@@ -472,7 +472,7 @@ class SchedConfHandler extends Handler {
 			$search = Request::getUserVar('search');
 
 			$searchInitial = Request::getUserVar('searchInitial');
-			if (isset($searchInitial)) {
+			if (!empty($searchInitial)) {
 				$searchField = SUBMISSION_FIELD_AUTHOR;
 				$searchMatch = 'initial';
 				$search = $searchInitial;

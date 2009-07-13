@@ -174,7 +174,7 @@ class RoleDAO extends DAO {
 			USER_FIELD_INTERESTS => 's.setting_value'
 		);
 
-		if (isset($search) && isset($searchTypeMap[$searchType])) {
+		if (!empty($search) && isset($searchTypeMap[$searchType])) {
 			$fieldName = $searchTypeMap[$searchType];
 			switch ($searchMatch) {
 				case 'is':
@@ -190,7 +190,7 @@ class RoleDAO extends DAO {
 					$paramArray[] = $search . '%';
 					break;
 			}
-		} elseif (isset($search)) switch ($searchType) {
+		} elseif (!empty($search)) switch ($searchType) {
 			case USER_FIELD_USERID:
 				$searchSql = 'AND u.user_id=?';
 				$paramArray[] = $search;
@@ -240,7 +240,7 @@ class RoleDAO extends DAO {
 			USER_FIELD_INTERESTS => 's.setting_value'
 		);
 
-		if (isset($search) && isset($searchTypeMap[$searchType])) {
+		if (!empty($search) && isset($searchTypeMap[$searchType])) {
 			$fieldName = $searchTypeMap[$searchType];
 			switch ($searchMatch) {
 				case 'is':
@@ -256,7 +256,7 @@ class RoleDAO extends DAO {
 					$paramArray[] = $search . '%';
 					break;
 			}
-		} elseif (isset($search)) switch ($searchType) {
+		} elseif (!empty($search)) switch ($searchType) {
 			case USER_FIELD_USERID:
 				$searchSql = 'AND u.user_id=?';
 				$paramArray[] = $search;
@@ -295,7 +295,7 @@ class RoleDAO extends DAO {
 		$paramArray = array('interests', (int) $schedConfId);
 		$searchSql = '';
 
-		if (isset($search)) switch ($searchType) {
+		if (!empty($search)) switch ($searchType) {
 			case USER_FIELD_USERID:
 				$searchSql = 'AND u.user_id=?';
 				$paramArray[] = $search;

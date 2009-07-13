@@ -637,7 +637,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 			USER_FIELD_INTERESTS => 's.setting_value'
 		);
 
-		if (isset($search) && isset($searchTypeMap[$searchType])) {
+		if (!empty($search) && isset($searchTypeMap[$searchType])) {
 			$fieldName = $searchTypeMap[$searchType];
 			switch ($searchMatch) {
 				case 'is':
@@ -653,7 +653,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 					$paramArray[] = $search . '%';
 					break;
 			}
-		} elseif (isset($search)) switch ($searchType) {
+		} elseif (!empty($search)) switch ($searchType) {
 			case USER_FIELD_USERID:
 				$searchSql = 'AND user_id=?';
 				$paramArray[] = $search;
