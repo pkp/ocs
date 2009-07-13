@@ -613,7 +613,7 @@ class TrackDirectorSubmissionDAO extends DAO {
 		$paramArray = array('interests', $paperId, $stage, $schedConfId, RoleDAO::getRoleIdFromPath('reviewer'));
 		$searchSql = '';
 
-		if (isset($search)) switch ($searchType) {
+		if (!empty($search)) switch ($searchType) {
 			case USER_FIELD_USERID:
 				$searchSql = 'AND user_id=?';
 				$paramArray[] = $search;

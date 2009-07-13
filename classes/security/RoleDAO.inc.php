@@ -165,7 +165,7 @@ class RoleDAO extends DAO {
 
 		$searchSql = '';
 
-		if (isset($search)) switch ($searchType) {
+		if (!empty($search)) switch ($searchType) {
 			case USER_FIELD_USERID:
 				$searchSql = 'AND u.user_id=?';
 				$paramArray[] = $search;
@@ -227,7 +227,7 @@ class RoleDAO extends DAO {
 		$paramArray = array('interests', (int) $conferenceId);
 		$searchSql = '';
 
-		if (isset($search)) switch ($searchType) {
+		if (!empty($search)) switch ($searchType) {
 			case USER_FIELD_USERID:
 				$searchSql = 'AND u.user_id=?';
 				$paramArray[] = $search;
@@ -286,7 +286,7 @@ class RoleDAO extends DAO {
 		$paramArray = array('interests', (int) $schedConfId);
 		$searchSql = '';
 
-		if (isset($search)) switch ($searchType) {
+		if (!empty($search)) switch ($searchType) {
 			case USER_FIELD_USERID:
 				$searchSql = 'AND u.user_id=?';
 				$paramArray[] = $search;
