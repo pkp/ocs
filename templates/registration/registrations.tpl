@@ -109,7 +109,7 @@ function sortSearch(heading, direction) {
 {else}
 	<tr>
 		<td colspan="2" align="left">{page_info iterator=$registrations}</td>
-		<td colspan="3" align="right">{page_links anchor="registrations" name="registrations" iterator=$registrations}</td>
+		<td colspan="3" align="right">{page_links anchor="registrations" name="registrations" iterator=$registrations searchField=$searchField searchMatch=$searchMatch search=$search dateSearchField=$dateSearchField dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth}</td>
 	</tr>
 {/if}
 </table>
