@@ -694,7 +694,7 @@ class OAI {
 			}
 		}
 
-		echo	">" . $this->config->baseUrl . "</request>\n" .
+		echo	">" . $this->prepOutput($this->config->baseUrl) . "</request>\n" .
 			$response .
 			"</OAI-PMH>\n";
 	}
