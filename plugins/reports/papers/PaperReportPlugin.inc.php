@@ -55,6 +55,7 @@ class PaperReportPlugin extends ReportPlugin {
 	function display(&$args) {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
 
 		header('content-type: text/comma-separated-values');
 		header('content-disposition: attachment; filename=report.csv');

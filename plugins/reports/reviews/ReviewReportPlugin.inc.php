@@ -55,6 +55,7 @@ class ReviewReportPlugin extends ReportPlugin {
 	function display(&$args) {
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_PKP_SUBMISSION));
 
 		header('content-type: text/comma-separated-values');
 		header('content-disposition: attachment; filename=report.csv');
@@ -111,7 +112,12 @@ class ReviewReportPlugin extends ReportPlugin {
 		while ($row =& $reviewsIterator->next()) {
 			foreach ($columns as $index => $junk) {
 				if (in_array($index, array('declined', 'cancelled'))) {
-					$columns[$index] = $yesnoMessages[$row[$index]];
+					$yesNoIndex = $row[$index];
+					if (is_string($yesNoIndex)) {
+						// Accomodate Postgres boolean casting
+						$yesNoIndex = $yesNoIndex == "f" ? 0 : 1;
+					}
+					$columns[$index] = $yesnoMessages[$yesNoIndex];
 				} elseif ($index == "reviewstage") {
 					$columns[$index] = $reviewTypes[$row[$index]];
 				} elseif ($index == "recommendation") {
