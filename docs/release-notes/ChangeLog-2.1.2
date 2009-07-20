@@ -1,3 +1,274 @@
+2009-07-17 13:26  asmecher
+
+	* index.php: #4531# Unhandled requests should go to 404s
+
+2009-07-16 16:20  mcrider
+
+	* classes/plugins/BlockPlugin.inc.php: #4528# Double slashes in
+	  BlockPlugin.inc.php
+
+2009-07-16 14:51  mcrider
+
+	* classes/install/Install.inc.php, classes/install/Upgrade.inc.php,
+	  classes/plugins/Plugin.inc.php, dbscripts/xml/upgrade.xml,
+	  pages/manager/PluginManagementHandler.inc.php,
+	  pages/manager/index.php, plugins/auth/ldap/version.xml,
+	  plugins/blocks/developedBy/version.xml,
+	  plugins/blocks/fontSize/version.xml,
+	  plugins/blocks/help/version.xml,
+	  plugins/blocks/information/version.xml,
+	  plugins/blocks/languageToggle/version.xml,
+	  plugins/blocks/navigation/version.xml,
+	  plugins/blocks/role/version.xml, plugins/blocks/user/version.xml,
+	  plugins/citationFormats/abnt/version.xml,
+	  plugins/citationFormats/apa/version.xml,
+	  plugins/citationFormats/bibtex/version.xml,
+	  plugins/citationFormats/cbe/version.xml,
+	  plugins/citationFormats/endNote/version.xml,
+	  plugins/citationFormats/mla/version.xml,
+	  plugins/citationFormats/proCite/version.xml,
+	  plugins/citationFormats/refMan/version.xml,
+	  plugins/citationFormats/refWorks/version.xml,
+	  plugins/citationFormats/turabian/version.xml,
+	  plugins/generic/announcementFeed/version.xml,
+	  plugins/generic/customLocale/version.xml,
+	  plugins/generic/googleAnalytics/version.xml,
+	  plugins/generic/phpMyVisites/version.xml,
+	  plugins/generic/tinymce/version.xml,
+	  plugins/generic/translator/version.xml,
+	  plugins/importexport/mets/version.xml,
+	  plugins/importexport/native/version.xml,
+	  plugins/importexport/users/version.xml,
+	  plugins/paymethod/manual/version.xml,
+	  plugins/paymethod/paypal/version.xml,
+	  plugins/reports/reviews/version.xml,
+	  plugins/themes/classicBlue/version.xml,
+	  plugins/themes/classicBrown/version.xml,
+	  plugins/themes/classicGreen/version.xml,
+	  plugins/themes/classicNavy/version.xml,
+	  plugins/themes/classicRed/version.xml,
+	  plugins/themes/desert/version.xml,
+	  plugins/themes/lilac/version.xml,
+	  plugins/themes/night/version.xml,
+	  plugins/themes/redbar/version.xml,
+	  plugins/themes/steel/version.xml,
+	  plugins/themes/uncommon/version.xml,
+	  plugins/themes/vanilla/version.xml,
+	  templates/manager/plugins/managePlugins.tpl,
+	  templates/manager/plugins/plugins.tpl: #3745# Add plugin install
+	  / management tool
+
+2009-07-15 16:38  asmecher
+
+	* classes/oai/OAI.inc.php: #4525# Fixed escaping problem
+
+2009-07-14 15:47  michael
+
+	* templates/registration/: registrations.tpl: #4521# Paging of
+	  registration search results
+
+2009-07-13 09:54  asmecher
+
+	* classes/security/RoleDAO.inc.php,
+	  classes/submission/director/DirectorSubmissionDAO.inc.php,
+	  classes/submission/trackDirector/TrackDirectorSubmissionDAO.inc.php,
+	  pages/admin/AdminPeopleHandler.inc.php,
+	  pages/director/DirectorHandler.inc.php,
+	  pages/manager/GroupHandler.inc.php,
+	  pages/manager/PeopleHandler.inc.php,
+	  pages/manager/RegistrationHandler.inc.php,
+	  pages/schedConf/SchedConfHandler.inc.php,
+	  pages/trackDirector/SubmissionEditHandler.inc.php,
+	  templates/admin/selectMergeUser.tpl,
+	  templates/director/selectTrackDirector.tpl,
+	  templates/manager/groups/selectUser.tpl,
+	  templates/manager/people/searchUsers.tpl,
+	  templates/manager/people/selectMergeUser.tpl,
+	  templates/registration/users.tpl,
+	  templates/trackDirector/searchUsers.tpl,
+	  templates/trackDirector/selectReviewer.tpl,
+	  templates/trackDirector/selectUser.tpl: #4515# Fixed paging issue
+	  with initials
+
+2009-07-13 09:45  asmecher
+
+	* classes/security/RoleDAO.inc.php,
+	  classes/submission/director/DirectorSubmissionDAO.inc.php,
+	  classes/submission/trackDirector/TrackDirectorSubmissionDAO.inc.php,
+	  pages/admin/AdminPeopleHandler.inc.php,
+	  pages/director/DirectorHandler.inc.php,
+	  pages/manager/GroupHandler.inc.php,
+	  pages/manager/PeopleHandler.inc.php,
+	  pages/manager/RegistrationHandler.inc.php,
+	  pages/schedConf/SchedConfHandler.inc.php,
+	  pages/trackDirector/SubmissionEditHandler.inc.php,
+	  templates/admin/selectMergeUser.tpl,
+	  templates/director/selectTrackDirector.tpl,
+	  templates/manager/groups/selectUser.tpl,
+	  templates/manager/people/searchUsers.tpl,
+	  templates/manager/people/selectMergeUser.tpl,
+	  templates/registration/users.tpl,
+	  templates/trackDirector/searchUsers.tpl,
+	  templates/trackDirector/selectReviewer.tpl,
+	  templates/trackDirector/selectUser.tpl: #4515# Fixed paging issue
+	  with initials
+
+2009-07-07 18:18  asmecher
+
+	* pages/manager/PluginHandler.inc.php: #1444# Fixed localization
+	  glitch
+
+2009-07-06 10:43  asmecher
+
+	* classes/install/Upgrade.inc.php,
+	  classes/manager/form/setup/ConferenceSetupStep2Form.inc.php,
+	  classes/manager/form/setup/ConferenceSetupStep3Form.inc.php,
+	  classes/template/TemplateManager.inc.php,
+	  dbscripts/xml/upgrade.xml,
+	  pages/conference/ConferenceHandler.inc.php,
+	  pages/schedConf/SchedConfHandler.inc.php,
+	  pages/schedConfs/SchedConfsHandler.inc.php,
+	  templates/conference/index.tpl,
+	  templates/manager/setup/step2.tpl,
+	  templates/manager/setup/step3.tpl, templates/schedConf/index.tpl:
+	  #4488# Fixed alt tags for images in setup
+
+2009-07-03 13:32  mcrider
+
+	* pages/admin/index.php: #4507# phpInfo link redirects to user home
+	  page
+
+2009-07-03 10:25  asmecher
+
+	* classes/template/TemplateManager.inc.php,
+	  classes/user/form/ProfileForm.inc.php,
+	  pages/user/ProfileHandler.inc.php,
+	  templates/about/organizingTeamBio.tpl,
+	  templates/user/profile.tpl: #3543# Profile pic tune-ups
+
+2009-07-03 09:56  asmecher
+
+	* styles/rt.css, templates/about/organizingTeamBio.tpl,
+	  templates/rt/header.tpl, templates/rt/rt.tpl: #3543# RT
+	  Abstraction
+
+2009-07-03 09:22  asmecher
+
+	* classes/file/PublicFileManager.inc.php: #4476# Public file
+	  manager abstraction#4476# Public file manager abstraction#4476#
+	  Public file manager abstraction#4476# Public file manager
+	  abstraction#4476# Public file manager abstraction
+
+2009-07-03 09:05  asmecher
+
+	* classes/conference/Conference.inc.php,
+	  classes/i18n/Locale.inc.php,
+	  classes/manager/form/LanguageSettingsForm.inc.php,
+	  locale/en_US/manager.xml, templates/manager/languageSettings.tpl:
+	  #3608# Improved language options
+
+2009-07-02 15:01  asmecher
+
+	* dbscripts/xml/: ocs_schema.xml: #4494# Removed unused column
+
+2009-07-02 14:29  mcrider
+
+	* locale/en_US/locale.xml: #4498# references to 'journal' in locale
+	  files need to be removed
+
+2009-06-30 17:50  mcrider
+
+	* classes/submission/trackDirector/TrackDirectorAction.inc.php,
+	  locale/en_US/author.xml,
+	  pages/trackDirector/SubmissionEditHandler.inc.php: #4481#
+	  Presentation submission workflow issues
+
+2009-06-30 12:42  mcrider
+
+	* pages/manager/index.php, templates/manager/plugins/plugins.tpl:
+	  #4496# plugin management urls not working
+
+2009-06-30 09:14  asmecher
+
+	* locale/en_US/author.xml,
+	  templates/submission/metadata/metadataEdit.tpl: #4497# Fixed
+	  hard-coded text
+
+2009-06-29 17:00  asmecher
+
+	* dbscripts/xml/ocs_schema.xml: #4494# Re-added removed column
+
+2009-06-29 16:59  asmecher
+
+	* dbscripts/xml/ocs_schema.xml: #4494# Re-added column
+
+2009-06-29 15:12  mcrider
+
+	* classes/manager/form/UserManagementForm.inc.php,
+	  classes/user/form/CreateAccountForm.inc.php,
+	  classes/user/form/ProfileForm.inc.php,
+	  templates/manager/people/userProfile.tpl,
+	  templates/manager/people/userProfileForm.tpl,
+	  templates/trackDirector/createReviewerForm.tpl,
+	  templates/trackDirector/userProfile.tpl,
+	  templates/user/createAccount.tpl, templates/user/profile.tpl:
+	  #4491# Added more gender selection options
+
+2009-06-26 09:35  michael
+
+	* help/en_US/: conference/topic/000028.xml, site/topic/000003.xml:
+	  #3652# Merge users should selectively transfer registration
+
+2009-06-26 08:54  jalperin
+
+	* pages/login/LoginHandler.inc.php,
+	  pages/manager/PeopleHandler.inc.php, pages/manager/index.php,
+	  plugins/blocks/user/block.tpl,
+	  plugins/importexport/users/importUsersResults.tpl,
+	  templates/manager/people/enrollment.tpl: #4445# moved
+	  signInAsUser and signOutAsUser to LoginHandler because of failing
+	  validation
+
+2009-06-23 15:21  mcrider
+
+	* classes/conference/Track.inc.php,
+	  classes/conference/TrackDAO.inc.php,
+	  classes/manager/form/TrackForm.inc.php,
+	  dbscripts/xml/ocs_schema.xml,
+	  dbscripts/xml/upgrade/2.3.0_update.xml, locale/en_US/author.xml,
+	  locale/en_US/manager.xml, templates/manager/tracks/trackForm.tpl:
+	  #4441# add word limit option for abstracts
+
+2009-06-22 14:47  mcrider
+
+	* classes/manager/form/TrackForm.inc.php: #4455# Saving track
+	  settings fails on setting track's review form ID
+
+2009-06-22 11:00  mj
+
+	* docs/: ChangeLog, README, RELEASE, release-notes/ChangeLog-2.1.2,
+	  release-notes/README-2.1.2: #4412# OCS 2.1.2 Development: updated
+	  Changelog, release information from 2.1.2
+
+2009-06-22 10:43  mcrider
+
+	*
+	  classes/submission/trackDirector/TrackDirectorSubmissionDAO.inc.php:
+	  #3958# Fixed DB error when selecting a reviewer
+
+2009-06-21 10:49  mj
+
+	* docs/RELEASE: #4412# OCS 2.1.2 Development
+
+2009-06-21 09:20  mj
+
+	* dbscripts/xml/version.xml: #4412# OCS 2.1.2 Development
+
+2009-06-21 08:51  mj
+
+	* docs/: ChangeLog, README, release-notes/ChangeLog-2.1.2,
+	  release-notes/README-2.1.2, RELEASE: #4412# OCS 2.1.2 Development
+
 2009-06-19 17:16  mcrider
 
 	* classes/schedConf/SchedConfAction.inc.php,

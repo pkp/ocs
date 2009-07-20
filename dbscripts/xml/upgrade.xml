@@ -12,7 +12,7 @@
   * $Id$
   -->
 
-<install version="2.1.2.0">
+<install version="2.1.2.1">
 	<!-- #2961: Stage 1 of 2.1 schema upgrade: Do not drop columns yet -->
 	<upgrade minversion="2.0.0.0" maxversion="2.0.0.1">
 		<data file="upgrade/2.1.0_preupdate.xml" />
