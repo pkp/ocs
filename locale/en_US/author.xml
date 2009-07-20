@@ -56,6 +56,8 @@
 	<message key="author.submit.copyrightNoticeAgreeRequired">You must agree to the terms of the Copyright Notice before continuing.</message>
 	<message key="author.submit.commentsForDirector">Comments for Conference Director</message>
 	<message key="author.submit.comments">Enter text (optional)</message>
+	<message key="author.submit.form.authorRequired">At least one author is required.</message>
+	<message key="author.submit.form.authorRequiredFields">The first name, last name, and email address of each author is required.</message>
 	<message key="author.submit.form.trackRequired">Please select an appropriate conference track for this submission.</message>
 	<message key="author.submit.form.abstractRequired">Please enter an abstract for your submission.</message>
 	<message key="author.submit.privacyStatement">Conference's Privacy Statement</message>
