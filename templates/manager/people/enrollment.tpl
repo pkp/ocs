@@ -111,9 +111,9 @@ function sortSearch(heading, direction) {
 	</tr>
 	<tr class="heading" valign="bottom">
 		<td width="5%">&nbsp;</td>
-		<td width="12%">{sort_search key="user.username" heading="username"}</td>
-		<td width="20%">{sort_search key="user.name" heading="name"}</td>
-		<td width="23%">{sort_search key="user.email" heading="email"}</td>
+		<td width="12%">{sort_search key="user.username" sort="username"}</td>
+		<td width="20%">{sort_search key="user.name" sort="name"}</td>
+		<td width="23%">{sort_search key="user.email" sort="email"}</td>
 		<td width="40%" align="right">{translate key="common.action"}</td>
 	</tr>
 	<tr>

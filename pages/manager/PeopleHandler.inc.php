@@ -177,7 +177,7 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 		
-		$sort = Request::getUserVar('heading');
+		$sort = Request::getUserVar('sort');
 		$sort = isset($sort) ? $sort : 'name';
 		$sortDirection = Request::getUserVar('sortDirection');
 		

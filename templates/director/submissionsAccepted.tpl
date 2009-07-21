@@ -15,12 +15,12 @@
 		<td colspan="6" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr class="heading" valign="bottom">
-		<td width="3%">{sort_search key="common.id" heading="id"}</td>
-		<td width="4%">{sort_search key="submissions.track" heading="submitDate"}</td>
-		<td width="15%">{sort_search key="paper.authors" heading="authors"}</td>
-		<td width="60%">{sort_search key="paper.title" heading="title"}</td>
+		<td width="3%">{sort_search key="common.id" sort="id"}</td>
+		<td width="4%">{sort_search key="submissions.track" sort="submitDate"}</td>
+		<td width="15%">{sort_search key="paper.authors" sort="authors"}</td>
+		<td width="60%">{sort_search key="paper.title" sort="title"}</td>
 		<td width="8%">{translate key="common.order"}</td>
-		<td width="10%" align="right">{sort_search key="common.status" heading="status"}</td>
+		<td width="10%" align="right">{sort_search key="common.status" sort="status"}</td>
 	</tr>
 	
 	{iterate from=submissions item=submission}

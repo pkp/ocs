@@ -12,12 +12,12 @@
 <table class="listing" width="100%">
 	<tr><td class="headseparator" colspan="6">&nbsp;</td></tr>
 	<tr valign="bottom" class="heading">
-		<td width="5%">{sort_heading key="common.id" heading="id"}</td>
-		<td width="5%"><span class="disabled">MM-DD</span><br />{sort_heading key="submissions.submit" heading="submitDate"}</td>
-		<td width="5%">{sort_heading key="submissions.track" heading="track"}</td>
-		<td width="25%">{sort_heading key="paper.authors" heading="authors"}</td>
-		<td width="35%">{sort_heading key="paper.title" heading="title"}</td>
-		<td width="25%" align="right">{sort_heading key="common.status" heading="status"}</td>
+		<td width="5%">{sort_heading key="common.id" sort="id"}</td>
+		<td width="5%"><span class="disabled">MM-DD</span><br />{sort_heading key="submissions.submit" sort="submitDate"}</td>
+		<td width="5%">{sort_heading key="submissions.track" sort="track"}</td>
+		<td width="25%">{sort_heading key="paper.authors" sort="authors"}</td>
+		<td width="35%">{sort_heading key="paper.title" sort="title"}</td>
+		<td width="25%" align="right">{sort_heading key="common.status" sort="status"}</td>
 	</tr>
 	<tr><td class="headseparator" colspan="6">&nbsp;</td></tr>
 {iterate from=submissions item=submission}
