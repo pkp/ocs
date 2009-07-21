@@ -102,6 +102,7 @@ class GroupHandler extends ManagerHandler {
 	function editGroup($args = array()) {
 		$groupId = isset($args[0])?(int)$args[0]:null;
 		$this->validate();
+		$schedConf =& Request::getSchedConf();
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
