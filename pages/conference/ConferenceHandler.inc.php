@@ -55,10 +55,12 @@ class ConferenceHandler extends Handler {
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
 		$currentSchedConfs =& $schedConfDao->getCurrentSchedConfs($conference->getConferenceId());
-//		$pastSchedConfs =& $schedConfDao->getEnabledSchedConfs($conference->getConferenceId());
-
+		if ($currentSchedConfs && $currentSchedConfs->getCount() == 1) {
+			// If only one sched conf exists, redirect to it.
+			$singleSchedConf =& $currentSchedConfs->next();
+			Request::redirect(null, $singleSchedConf->getPath());
+		}
 		$templateMgr->assign_by_ref('currentSchedConfs', $currentSchedConfs);
-//		$templateMgr->assign_by_ref('pastSchedConfs', $pastSchedConfs);
 
 		$enableAnnouncements = $conference->getSetting('enableAnnouncements');
 		if ($enableAnnouncements) {
