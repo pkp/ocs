@@ -105,7 +105,7 @@ class ManagerHandler extends Handler {
 	 */
 	function setupTemplate($subclass = false) {
 		parent::setupTemplate();
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OCS_MANAGER));
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OCS_MANAGER, LOCALE_COMPONENT_PKP_ADMIN));
 		$templateMgr =& TemplateManager::getManager();
 		$pageHierarchy = array();
 

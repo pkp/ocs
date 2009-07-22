@@ -105,7 +105,7 @@ class PluginHandler extends ManagerHandler {
 			),
 			array(
 				Request::url(null, null, 'manager'),
-				'manager.journalManagement',
+				'manager.conferenceSiteManagement',
 				false
 			)
 		);
