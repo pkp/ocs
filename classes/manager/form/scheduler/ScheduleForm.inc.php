@@ -38,8 +38,8 @@ class ScheduleForm extends Form {
 	}
 
 	function authorSort($a, $b) {
-		$authorA = $a->getFirstAuthor(true);
-		$authorB = $b->getFirstAuthor(true);
+		$authorA = $a->getFirstPresenter(true);
+		$authorB = $b->getFirstPresenter(true);
 
 		return strcmp($authorA, $authorB);
 	}
@@ -136,8 +136,8 @@ class ScheduleForm extends Form {
 		$sortFuncMap = array(
 			'author' => array(&$this, 'authorSort'),
 			'title' => array(&$this, 'titleSort'),
-			'startTime' => array(&$this, 'startTimeSort'),
 			'track' => array(&$this, 'trackSort'),
+			'startTime' => array(&$this, 'startTimeSort'),
 			'room' => array(&$this, 'roomSort')
 		);
 		if ($sort && isset($sortFuncMap[$sort])) {
@@ -167,6 +167,12 @@ class ScheduleForm extends Form {
 			unset($building);
 		}
 		$templateMgr->assign_by_ref('buildingsAndRooms', $buildingsAndRooms);
+
+		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+		$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getSchedConfId());
+		$timeBlocks =& $timeBlocks->toArray();
+		$templateMgr->assign_by_ref('timeBlocks', $timeBlocks);
+
 		parent::display();
 	}
 
@@ -201,6 +207,7 @@ class ScheduleForm extends Form {
 		}
 
 		// Apply any relevant changes to the current paper (sub)set
+		$schedConf =& Request::getSchedConf();
 		$publishedPapersArray = array();
 		while ($publishedPaper =& $publishedPapers->next()) {
 			$paperId = $publishedPaper->getPaperId();
@@ -257,6 +264,21 @@ class ScheduleForm extends Form {
 							)
 						)
 					);
+					break;
+				case 'timeBlock':
+					// It may be that we are unscheduling:
+					// if so, set start/end to null
+					if (!$newValue) {
+						$publishedPaper->setStartTime(null);
+						$publishedPaper->setEndTime(null);
+						break;
+					}
+					// Otherwise, a time block was chosen.
+					$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+					$timeBlock =& $timeBlockDao->getTimeBlock((int) $newValue);
+					if (!$timeBlock || $timeBlock->getSchedConfId() != $schedConf->getSchedConfId()) break;
+					$publishedPaper->setStartTime($timeBlock->getStartTime());
+					$publishedPaper->setEndTime($timeBlock->getEndTime());
 					break;
 			}
 			$publishedPapersArray[] =& $publishedPaper;

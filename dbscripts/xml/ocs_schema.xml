@@ -1887,6 +1887,68 @@
 
 	<!--
 	  *
+	  * TABLE time_blocks
+	  *
+	  -->
+	<table name="time_blocks">
+		<field name="time_block_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="sched_conf_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="start_time" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="end_time" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="assigned_colour" type="C2" size="6" />
+		<field name="unassigned_colour" type="C2" size="6" />
+		<descr>Blocks of time for event/presentation assignments.</descr>
+		<index name="time_block_unique">
+			<col>sched_conf_id</col>
+			<col>start_time</col>
+			<col>end_time</col>
+			<UNIQUE />
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE time_block_settings
+	  *
+	  -->
+	<table name="time_block_settings">
+		<field name="time_block_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+		</field>
+		<descr>Locale-specific time block data</descr>
+		<index name="time_block_settings_time_block_id">
+			<col>time_block_id</col>
+		</index>
+		<index name="time_block_settings_pkey">
+			<col>time_block_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
+		</index>
+	</table>
+
+	<!--
+	  *
 	  * TABLE special_events
 	  *
 	  -->

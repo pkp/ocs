@@ -37,6 +37,17 @@ class SchedulerHandler extends ManagerHandler {
 	}
 
 	/**
+	 * Save scheduler settings (time block enable/disable)
+	 */
+	function saveSchedulerSettings() {
+		parent::validate();
+		$enableTimeBlocks = Request::getUserVar('enableTimeBlocks');
+		$schedConf =& Request::getSchedConf();
+		$schedConf->updateSetting('enableTimeBlocks', $enableTimeBlocks);
+		Request::redirect(null, null, 'manager', 'scheduler');
+	}
+
+	/**
 	 * Display a list of buildings to manage.
 	 */
 	function buildings() {
@@ -559,6 +570,141 @@ class SchedulerHandler extends ManagerHandler {
 		} else {
 			$scheduleLayoutForm->display();
 		}
+	}
+
+	/**
+	 * Display a list of time blocks to manage.
+	 */
+	function timeBlocks() {
+		parent::validate();
+		SchedulerHandler::setupTemplate(true);
+
+		$schedConf =& Request::getSchedConf();
+		$rangeInfo =& Handler::getRangeInfo('timeBlocks', array());
+		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+		while (true) {
+			$timeBlocks =& $timeBlockDao->getTimeBlocksBySchedConfId($schedConf->getSchedConfId(), $rangeInfo);
+			if ($timeBlocks->isInBounds()) break;
+			unset($rangeInfo);
+			$rangeInfo =& $timeBlocks->getLastPageRangeInfo();
+			unset($timeBlocks);
+		}
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('timeBlocks', $timeBlocks);
+		$templateMgr->assign('helpTopicId', 'conference.managementPages.timeBlocks');
+		$templateMgr->display('manager/scheduler/timeBlocks.tpl');
+	}
+
+	/**
+	 * Delete a time block.
+	 * @param $args array first parameter is the ID of the time block to delete
+	 */
+	function deleteTimeBlock($args) {
+		parent::validate();
+		$timeBlockId = (int) array_shift($args);
+		$schedConf =& Request::getSchedConf();
+		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+
+		// Ensure time block is for this conference
+		if ($timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getSchedConfId()) {
+			$timeBlockDao->deleteTimeBlockById($timeBlockId);
+		}
+
+		Request::redirect(null, null, null, 'timeBlocks');
+	}
+
+	/**
+	 * Display form to create new time block.
+	 */
+	function createTimeBlock() {
+		SchedulerHandler::editTimeBlock();
+	}
+
+	/**
+	 * Display form to edit a time block.
+	 * @param $args array optional, first parameter is the ID of the time block to edit
+	 */
+	function editTimeBlock($args = array()) {
+		parent::validate();
+		SchedulerHandler::setupTemplate(true);
+
+		$schedConf =& Request::getSchedConf();
+		$timeBlockId = !isset($args) || empty($args) ? null : (int) $args[0];
+		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+
+		// Ensure time block is valid and for this conference
+		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getSchedConfId()) || ($timeBlockId == null)) {
+			import('manager.form.scheduler.TimeBlockForm');
+
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'timeBlocks'), 'manager.scheduler.timeBlocks'));
+
+			if ($timeBlockId == null) {
+				$templateMgr->assign('timeBlockTitle', 'manager.scheduler.timeBlock.createTimeBlockShort');
+			} else {
+				$templateMgr->assign('timeBlockTitle', 'manager.scheduler.timeBlock.editTimeBlockShort');
+			}
+
+			$timeBlockForm =& new TimeBlockForm($timeBlockId);
+			if ($timeBlockForm->isLocaleResubmit()) {
+				$timeBlockForm->readInputData();
+			} else {
+				$timeBlockForm->initData();
+			}
+			$timeBlockForm->display();
+
+		} else {
+				Request::redirect(null, null, null, 'timeBlocks');
+		}
+	}
+
+	/**
+	 * Save changes to a timeBlock.
+	 */
+	function updateTimeBlock() {
+		parent::validate();
+		SchedulerHandler::setupTemplate(true);
+
+		import('manager.form.scheduler.TimeBlockForm');
+
+		$schedConf =& Request::getSchedConf();
+		$timeBlockId = Request::getUserVar('timeBlockId') == null ? null : (int) Request::getUserVar('timeBlockId');
+		$timeBlockDao =& DAORegistry::getDAO('TimeBlockDAO');
+
+		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getSchedConfId()) || $timeBlockId == null) {
+
+			$timeBlockForm =& new TimeBlockForm($timeBlockId);
+			$timeBlockForm->readInputData();
+
+			if ($timeBlockForm->validate()) {
+				$timeBlockForm->execute();
+
+				if (Request::getUserVar('createAnother')) {
+					// Provide last block as template
+					return $timeBlockForm->display();
+				} else {
+					Request::redirect(null, null, null, 'timeBlocks');
+				}
+
+			} else {
+				SchedulerHandler::setupTemplate(true);
+
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'timeBlocks'), 'manager.scheduler.timeBlocks'));
+
+				if ($timeBlockId == null) {
+					$templateMgr->assign('timeBlockTitle', 'manager.scheduler.timeBlock.createTimeBlock');
+				} else {
+					$templateMgr->assign('timeBlockTitle', 'manager.scheduler.timeBlock.editTimeBlock');	
+				}
+
+				$timeBlockForm->display();
+			}
+
+		} else {
+				Request::redirect(null, null, null, 'timeBlocks');
+		}	
 	}
 
 	/**

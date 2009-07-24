@@ -137,6 +137,7 @@ class OCSApplication extends PKPApplication {
 			'SchedConfStatisticsDAO' => 'schedConf.SchedConfStatisticsDAO',
 			'SpecialEventDAO' => 'scheduler.SpecialEventDAO',
 			'SuppFileDAO' => 'paper.SuppFileDAO',
+			'TimeBlockDAO' => 'scheduler.TimeBlockDAO',
 			'TrackDAO' => 'conference.TrackDAO',
 			'TrackDirectorsDAO' => 'conference.TrackDirectorsDAO',
 			'TrackDirectorSubmissionDAO' => 'submission.trackDirector.TrackDirectorSubmissionDAO',

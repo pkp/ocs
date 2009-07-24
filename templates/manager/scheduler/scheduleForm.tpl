@@ -66,6 +66,23 @@ function changeDate(paperId) {
 	document.schedule.changes.value += "\n" + paperId + " date " + paperDate;
 }
 
+// Used to update the actions list when the time block of a paper is changed
+// or the corresponding checkbox is toggled. A time block ID of 0 indicates that
+// a time block has not been chosen for the presentation.
+function changeTimeBlock(paperId) {
+	var checkVarName = "paper" + paperId + "TimeBlockExists";
+	var isChecked = eval("document.schedule." + checkVarName + ".checked");
+
+	var timeBlockIdVarName = "paper" + paperId + "TimeBlock";
+	var timeBlockId = eval("document.schedule." + timeBlockIdVarName + ".value");
+
+	if (!isChecked) {
+		timeBlockId = 0;
+	}
+
+	document.schedule.changes.value += "\n" + paperId + " timeBlock " + timeBlockId;
+}
+
 // Used to update the actions list when the start or end time of a paper is
 // changed.
 function changeTime(paperId) {
@@ -98,6 +115,14 @@ function sortBy(sortName) {
 // -->
 </script>
 
+{assign var=enableTimeBlocks value=$currentSchedConf->getSetting('enableTimeBlocks')}
+{if $enableTimeBlocks}
+	<ul class="menu">
+		<li class="current"><a href="{url op="schedule"}">{translate key="manager.scheduler.schedule"}</a></li>
+		<li><a onclick="return (document.schedule.changes.value == ''?true:confirm('Are you sure you wish to leave the Scheduler? You will lose any changes you have made.'))" href="{url op="timeBlocks"}">{translate key="manager.scheduler.timeBlocks"}</a></li>
+	</ul>
+{/if}{* $enableTimeBlocks *}
+
 <br/>
 
 <form name="schedule" method="post" action="{url op="saveSchedule"}">
@@ -120,11 +145,13 @@ function sortBy(sortName) {
 		<td colspan="5" class="headseparator">&nbsp;</td>
 	</tr>
 	{foreach name=publishedPapers from=$publishedPapers item=publishedPaper}
+	{assign var=startTime value=$publishedPaper->getStartTime()}
+	{assign var=endTime value=$publishedPaper->getEndTime()}
 	<tr valign="top">
-		<td rowspan="4">{$publishedPaper->getPaperId()|escape}</td>
-		<td rowspan="4">
+		<td rowspan="{if $enableTimeBlocks}2{else}4{/if}">{$publishedPaper->getPaperId()|escape}</td>
+		<td rowspan="{if $enableTimeBlocks}2{else}4{/if}">
 			<input name="paperIds[]" type="hidden" value="{$publishedPaper->getPaperId()|escape}" />
-			{$publishedPaper->getLocalizedTitle()|escape}<br />
+			{$publishedPaper->getLocalizedTitle()|escape} ({$publishedPaper->getTrackTitle()|escape})<br />
 			<em>{$publishedPaper->getAuthorString()|escape}</em>
 		</td>
 		<td width="4%"><input id="paper{$publishedPaper->getPaperId()|escape}RoomExists" type="checkbox" {if $publishedPaper->getRoomId()}checked="checked" {/if}name="paper{$publishedPaper->getPaperId()|escape}RoomExists" onchange="changeLocation({$publishedPaper->getPaperId()|escape});" /></td>
@@ -140,23 +167,51 @@ function sortBy(sortName) {
 			</select>
 		</td>
 	</tr>
+{if $enableTimeBlocks}
 	<tr>
-		<td><input type="checkbox" {if $publishedPaper->getStartTime()}checked="checked" {/if}id="paper{$publishedPaper->getPaperId()|escape}DateExists" name="paper{$publishedPaper->getPaperId()|escape}DateExists" onchange="changeDate({$publishedPaper->getPaperId()|escape});" /></td>
+		<td><input type="checkbox" {if $startTime}checked="checked" {/if}id="paper{$publishedPaper->getPaperId()|escape}TimeBlockExists" name="paper{$publishedPaper->getPaperId()|escape}TimeBlockExists" onchange="changeTimeBlock({$publishedPaper->getPaperId()|escape});" /></td>
+		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`TimeBlockExists" key="common.date"}</td>
+		<td>
+			{* Kludge: Determine whether or not this is a
+			 * non-existent time block, and disable if needed.
+			 *}
+			{assign var=timeBlockFound value=0}
+			{foreach from=$timeBlocks item=timeBlock}
+				{if $timeBlock->getStartTime() == $startTime && $timeBlock->getEndTime() == $endTime}
+					{assign var=timeBlockFound value=1}
+				{/if}
+			{/foreach}
+
+			<select {if $startTime && !$timeBlockFound}disabled="disabled" {/if} id="paper{$publishedPaper->getPaperId()}TimeBlock" name="paper{$publishedPaper->getPaperId()}TimeBlock" onchange="document.schedule.paper{$publishedPaper->getPaperId()|escape}TimeBlockExists.checked = true; changeTimeBlock({$publishedPaper->getPaperId()|escape});" class="selectMenu">
+				{if $startTime && !$timeBlockFound}
+					{* Orphaned time without a time block *}
+					<option>{$startTime|date_format:$datetimeFormatShort} &mdash; {$endTime|date_format:$timeFormat}</option>
+				{/if}
+				{foreach from=$timeBlocks item=timeBlock}
+					<option {if $timeBlock->getStartTime() == $startTime && $timeBlock->getEndTime() == $endTime}selected="selected" {/if}value="{$timeBlock->getTimeBlockId()|escape}">{$timeBlock->getStartTime()|date_format:$datetimeFormatShort} &mdash; {$timeBlock->getEndTime()|date_format:$timeFormat}</option>
+				{/foreach}
+			</select>
+		</td>
+	</tr>
+{else}{* $enableTimeBlocks *}
+	<tr>
+		<td><input type="checkbox" {if $startTime}checked="checked" {/if}id="paper{$publishedPaper->getPaperId()|escape}DateExists" name="paper{$publishedPaper->getPaperId()|escape}DateExists" onchange="changeDate({$publishedPaper->getPaperId()|escape});" /></td>
 		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`DateExists" key="common.date"}</td>
-		<td>{html_select_date prefix="paper`$publishedPaper->getPaperId()`Date" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getPaperId()`); changeDate(`$publishedPaper->getPaperId()`);\"" time=$publishedPaper->getStartTime()|default:$defaultStartTime start_year=$firstYear end_year=$lastYear}</td>
+		<td>{html_select_date prefix="paper`$publishedPaper->getPaperId()`Date" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getPaperId()`); changeDate(`$publishedPaper->getPaperId()`);\"" time=$startTime|default:$defaultStartTime start_year=$firstYear end_year=$lastYear}</td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
 		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`StartTime" key="manager.scheduler.startTime"}</td>
-		<td id="{"paper`$publishedPaper->getPaperId()`StartTime"}">{html_select_time prefix="paper`$publishedPaper->getPaperId()`StartTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getPaperId()`); changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getStartTime()|default:$defaultStartTime}</td>
+		<td id="{"paper`$publishedPaper->getPaperId()`StartTime"}">{html_select_time prefix="paper`$publishedPaper->getPaperId()`StartTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getPaperId()`); changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$startTime|default:$defaultStartTime}</td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
 		<td>{fieldLabel name="paper`$publishedPaper->getPaperId()`EndTime" key="manager.scheduler.endTime"}</td>
 		<td id="{"paper`$publishedPaper->getPaperId()`EndTime"}">
-			{html_select_time prefix="paper`$publishedPaper->getPaperId()`EndTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getPaperId()`); changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$publishedPaper->getEndTime()|default:$defaultStartTime}
+			{html_select_time prefix="paper`$publishedPaper->getPaperId()`EndTime" all_extra="class=\"selectMenu\" onchange=\"checkScheduled(`$publishedPaper->getPaperId()`); changeTime(`$publishedPaper->getPaperId()`);\"" display_seconds=false display_meridian=true use_24_hours=false time=$endTime|default:$defaultStartTime}
 		</td>
 	</tr>
+{/if}{* $enableTimeBlocks *}
 	<tr>
 		<td colspan="5" class="{if $smarty.foreach.publishedPapers.last}end{/if}separator">&nbsp;</td>
 	</tr>

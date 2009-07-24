@@ -183,9 +183,16 @@ switch ($op) {
 	// Scheduler
 	//
 	case 'scheduler':
+	case 'saveSchedulerSettings':
 	case 'saveSchedule':
 	case 'scheduleLayout':
 	case 'saveScheduleLayout':
+	// Time Blocks
+	case 'timeBlocks':
+	case 'deleteTimeBlock':
+	case 'editTimeBlock':
+	case 'createTimeBlock':
+	case 'updateTimeBlock':
 	// Buildings
 	case 'buildings':
 	case 'deleteBuilding':
