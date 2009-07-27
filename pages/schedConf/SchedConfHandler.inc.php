@@ -28,7 +28,7 @@ class SchedConfHandler extends Handler {
 		parent::Handler();
 
 		$this->addCheck(new HandlerValidatorConference($this));
-		$this->addCheck(new HandlerValidatorSchedConf($this));		
+		$this->addCheck(new HandlerValidatorSchedConf($this));
 	}
 
 	/**
@@ -40,7 +40,7 @@ class SchedConfHandler extends Handler {
 
 		$conference =& Request::getConference();
 		$schedConf =& Request::getSchedConf();
-		
+
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate($conference, $schedConf);
 		$enableAnnouncements = $conference->getSetting('enableAnnouncements');
@@ -54,7 +54,7 @@ class SchedConfHandler extends Handler {
 				$templateMgr->assign('announcements', $announcements);
 				$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
 			}
-		} 
+		}
 
 		$templateMgr->assign('schedConf', $schedConf);
 
@@ -269,9 +269,9 @@ class SchedConfHandler extends Handler {
 			} else {
 				// Allow them to resubmit the form to change type or pay again.
 				$registrationDao->deleteRegistrationById($registrationId);
-			}			
+			}
 		}
-		
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
@@ -291,7 +291,7 @@ class SchedConfHandler extends Handler {
 					$templateMgr->assign('backLinkLabel', 'common.back');
 					$templateMgr->assign('backLink', Request::url(null, null, 'index'));
 					$templateMgr->display('common/message.tpl');
-				} elseif ($registrationError == REGISTRATION_NO_PAYMENT) {				
+				} elseif ($registrationError == REGISTRATION_NO_PAYMENT) {
 					// Automatic payment failed; display a generic
 					// "you will be contacted" message.
 					$templateMgr->assign('message', 'schedConf.registration.noPaymentMethodAvailable');
@@ -376,7 +376,7 @@ class SchedConfHandler extends Handler {
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPapers =& $publishedPaperDao->getPublishedPapers($schedConf->getSchedConfId(), PAPER_SORT_ORDER_TIME);
 		while ($paper =& $publishedPapers->next()) {
-			$startTime = $paper->getStartTime();
+			$startTime = strtotime($paper->getStartTime());
 			if ($startTime) $itemsByTime[$startTime][] =& $paper;
 			unset($paper);
 		}
@@ -385,12 +385,20 @@ class SchedConfHandler extends Handler {
 		$specialEventDao =& DAORegistry::getDAO('SpecialEventDAO');
 		$specialEvents =& $specialEventDao->getSpecialEventsBySchedConfId($schedConf->getSchedConfId());
 		while ($specialEvent =& $specialEvents->next()) {
-			$startTime = $specialEvent->getStartTime();
+			$startTime = strtotime($specialEvent->getStartTime());
 			if ($startTime) $itemsByTime[$startTime][] =& $specialEvent;
 			unset($specialEvent);
 		}
 		unset($specialEvents);
-		
+
+		// WARNING: $itemsByTime contains both PublishedPapers and
+		// SpecialEvents; both implement getStartTime() and
+		// getEndTime.
+		ksort($itemsByTime);
+		foreach ($itemsByTime as $startTime => $junk) {
+			uasort($itemsByTime[$startTime], create_function('$a, $b', 'return strtotime($a->getEndTime()) - strtotime($b->getEndTime());'));
+		}
+
 		// Read in schedule layout settings
 		if ($schedConf->getSetting('mergeSchedules')) {
 			ksort($itemsByTime);
@@ -399,11 +407,10 @@ class SchedConfHandler extends Handler {
 		$templateMgr->assign('showAuthors', $schedConf->getSetting('showAuthors'));
 		$templateMgr->assign('hideNav', $schedConf->getSetting('hideNav'));
 		$templateMgr->assign('hideLocations', $schedConf->getSetting('hideLocations'));
-		
-		
+
 		$templateMgr->assign_by_ref('itemsByTime', $itemsByTime);
 		$templateMgr->assign('conference.currentConferences.scheduler');
-		
+
 		if($schedConf->getSetting('layoutType') == SCHEDULE_LAYOUT_COMPACT) {
 			$templateMgr->display('schedConf/schedules/compact.tpl');
 		} else if($schedConf->getSetting('layoutType') == SCHEDULE_LAYOUT_EXPANDED || !$schedConf->getSetting('layoutType')) {
