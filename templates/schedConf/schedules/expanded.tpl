@@ -94,7 +94,7 @@
 					{assign var=room value=$allRooms[$roomId]}
 					{assign var=buildingId value=$room->getBuildingId()}
 					{assign var=building value=$buildingsAndRooms.$buildingId.building}
-					{if $building}<br/>{translate key="manager.scheduler.building"}:&nbsp;{$building->getBuildingName()|escape}{/if}
+					{if $building && $buildingsAndRooms|@count != 1}<br/>{translate key="manager.scheduler.building"}:&nbsp;{$building->getBuildingName()|escape}{/if}
 					<br/>{translate key="manager.scheduler.room"}:&nbsp;{$room->getRoomName()}
 				{/if}
 			</li>
