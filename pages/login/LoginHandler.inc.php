@@ -89,7 +89,7 @@ class LoginHandler extends PKPLoginHandler {
 			}
 		}
 
-		Request::redirect(null, 'index', 'manager');
+		Request::redirect(null, 'user');
 	}
 
 	/**
