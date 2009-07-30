@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2003-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="de_DE">
+	<email_text key="PASSWORD_RESET_CONFIRM">
+		<subject>Bestätigung der Anfrage nach neuem Passwort</subject>
+		<body>Wir haben eine Anfrage erhalten, dass Sie ein neues Passwort für die Webseite {$siteTitle} benötigen.
+
+Sollte diese Anfrage nicht von Ihnen stammen, ignorieren Sie bitte diese Email; Ihr Passwort wird dann nicht geändert. Stammt die Anfrage von Ihnen, klicken Sie auf die URL unterhalb.
+
+Neues Passwort:{$url}
+
+{$principalContactSignature}</body>
+		<description>Diese Email wird an angemeldete Benutzer verschickt, wenn diese angeben, Ihr Passwort vergessen zu haben oder sich nicht einloggen zu können. Sie enthält eine URL, über die ein neues Passwort erhalten werden kann.</description>
+	</email_text>
+	<email_text key="PASSWORD_RESET">
+		<subject>Neues Passwort</subject>
+		<body>Diese Email enthält Ihr neues Passwort für die Webseite {$siteTitle}.  Bitte bewahren Sie den Benutzernamen und das Passwort sorgfältig auf, da sie für jegliche die Konferenz betreffende Arbeit benötigt werden.
+
+Ihr Benutzername: {$username}
+Ihr neues Passwort: {$password}
+
+{$principalContactSignature}</body>
+		<description>Diese Email wird an einen angemeldeten Benutzer verschickt, sobald dieser sein Passwort über den Link in der Email PASSWORD_RESET_CONFIRM geändert hat.</description>
+	</email_text>
+	<email_text key="USER_REGISTER">
+		<subject>Anmeldung zu der Konferenz "{$conferenceName}"</subject>
+		<body>Vielen Dank, dass Sie ein Benutzerkonto für die Konferenz "{$conferenceName}" angemeldet haben. Bitte bewahren Sie den Benutzernamen und das Passwort sorgfältig auf, da sie für jegliche die Konferenz betreffende Arbeit benötigt werden.
+
+Benutzername: {$username}
+Passwort: {$password}
+
+Mit freundlichen Grüßen,
+{$principalContactSignature}</body>
+		<description>Diese Email wird an neu angemeldete Benutzer verschickt, um diese wilkommen zu heißen und ihren Benutzernamen und ihr Passwort noch einmal mitzuteilen.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ACK">
+		<subject>Ihre Einreichung an die Konferenz "{$conferenceName}"</subject>
+		<body>{$authorName}:
+
+Vielen Dank für die Einreichung Ihrer Arbeit "{$paperTitle}" an die Konferenz "{$conferenceName}". Mithilfe des Online-Konferenzverwaltungssystems, welches wir benutzen, sind Sie in der Lage, die Fortschritte der Einreichung durch den Bearbeitungsprozess nachzuverfolgen, indem Sie sich in die Konferenzwebseite einloggen:
+
+URL für die Einreichung: {$submissionUrl}
+Benutzername: {$authorUsername}
+
+Sollten Sie Fragen haben, wenden Sie sich bitte an mich. Vielen Dank, dass Sie diese Konferenz für eine Vorstellung Ihrer Arbeit in Erwägung ziehen.
+
+{$editorialContactSignature}</body>
+		<description>Ist diese automatische Email aktiviert, wird sie an einen Autor verschickt, sobald dieser den Vorgang der Einreichung eines Papers oder eines Abstracts an die Konferenz abgeschlossen hat. Sie informiert darüber, wie die Spur der Einreichung durch den Bearbeitungsprozess nachverfolgt werden kann und dankt dem Autor für die Einreichung.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UPLOAD_ACK">
+		<subject>Upload Ihrer Einreichung an die Konferenz "{$conferenceName}"</subject>
+		<body>{$authorName}:
+
+Vielen Dank, dass Sie Ihre Präsentation "{$paperTitle}" auf die Seite der Konferenz "{$conferenceName}" hochgeladen haben. Mithilfe des Online-Konferenzverwaltungssystems, welches wir benutzen, sind Sie in der Lage, die Fortschritte der Einreichung durch den Bearbeitungsprozess nachzuverfolgen, indem Sie sich in die Konferenzwebseite einloggen:
+
+URL für Einreichung: {$submissionUrl}
+Benutzername: {$authorUsername}
+
+Sollten Sie Fragen haben, wenden Sie sich bitte an mich. Vielen Dank, dass Sie diese Konferenz für eine Vorstellung Ihrer Arbeit in Erwägung ziehen.
+
+{$editorialContactSignature}</body>
+		<description>Ist diese automatische Email aktiviert, wird sie an einen Autor verschickt, sobald dieser den Vorgang der Einreichung eines Papers oder eines Abstracts an die Konferenz abgeschlossen hat. Sie informiert darüber, wie die Spur der Einreichung durch den Bearbeitungsprozess nachverfolgt werden kann und dankt dem Autor für die Einreichung.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UNSUITABLE">
+		<subject>Eignung Ihrer Einreichung</subject>
+		<body>{$authorName}:
+
+Bei der Erstbegutachtung Ihrer Arbeit "{$paperTitle}" wurde deutlich, dass die Einreichung nicht zu dem Themenbereich und den Schwerpunkten der Konferenz "{$conferenceName}" passt. Es empfiehlt sich, das Paper / den Abstract an eine andere, geeignetere Konferenz erneut einzureichen.Um Details darüber zu erfahren, welche Arten von Arbeiten wir annehmen, konsultieren Sie bitte die Beschreibung der Konferenz unter "Über die Konferenz" (sowie die Beschreibungen vergangener Konferenzen). 
+
+{$editorialContactSignature}</body>
+	</email_text>
+	<email_text key="SUBMISSION_COMMENT">
+		<subject>Kommentierung einer Einreichung</subject>
+		<body>{$name}:
+
+{$commentName} hat die an die Konferenz "{$conferenceName}" eingereichte Arbeit "{$paperTitle}"  kommentiert:
+
+{$comments}</body>
+		<description>Diese Email benachrichtigt die am Bearbeitungsprozess einer Einreichung beteiligten Personen über die Kommentierung dieser Einreichung.</description>
+	</email_text>
+	<email_text key="SUBMISSION_DECISION_REVIEWERS">
+		<subject>Gutachterliche Entscheidung über "{$paperTitle}"</subject>
+		<body>In meiner Funktion als Gutachter der an die Konferenz "{$conferenceName}" eingereichten Arbeit "{$paperTitle}" schicke ich Ihnen die Gutachten und die abschließende Entscheidung, welche an den Autor der Arbeit geschickt worden ist. Vielen Dank für den Beitrag, den Sie zu diesem Prozess beigetragen haben.
+ 
+{$editorialContactSignature}
+
+{$comments}</body>
+		<description>Diese Email benachrichtigt die Gutachter einer Einreichung darüber, dass der Begutachtungsprozess abgeschlossen ist. Sie enthält Informationen über das Paper sowie bezüglich der endgültigen Entscheidung und dankt den Gutachtern für ihre Beiträge.</description>
+	</email_text>
+	<email_text key="DIRECTOR_ASSIGN">
+		<subject>Zuteilung zu Einreichung</subject>
+		<body>{$editorialContactName}:
+
+In Ihrer Funktion als Track-Leiter wurde Ihnen die Beaufsichtigung des Bearbeitungsprozesses der Arbeit "{$paperTitle}," eingereicht an die Konferenz "{$conferenceName}" zugetragen.  
+
+URL der Einreichung: {$submissionUrl}
+Ihr Benutzername: {$directorUsername}
+
+Mit freundlichen Grüßen,
+{$editorialContactSignature}</body>
+		<description>Diese Email benachrichtigt einen Track-Leiter darüber, dass ihm die Beaufsichtigung des Bearbeitungsprozesses einer Einreichung durch den Konferenzleiter zugeteilt wurde. Sie enthält Informationen über die Einreichung und über den Zugang zur Konferenzwebseite.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST">
+		<subject>Anfrage nach Gutachten</subject>
+		<body>{$reviewerName}:
+
+Nach meiner Überzeugung wären Sie ein hervorragender Gutachter für die Arbeit "{$paperTitle}", welche an die Konferenz "{$conferenceName}" eingereicht wurde. Ein Auszug aus der Einreichung ist unterhalb eingefügt. Ich hoffe, Sie ziehen diese für uns bedeutsame Aufgabe in Erwägung.
+
+Bitte loggen Sie sich bis zum {$weekLaterDate} in die Konferenzwebseite ({$conferenceUrl}) ein, von wo aus Sie angeben können, ob Sie die Bitte nach dem Gutachten annehmen, und wo sie auf die Einreichung zugreifen und Ihr Gutachten / Ihre Empfehlung abgeben können. 
+
+Das Gutachten selbst würde bis {$reviewDueDate} fällig sein.
+
+Sollten Sie Ihren Benutzernamen und/oder Ihr Passwort für die Konferenz nicht zur Hand oder vergessen haben, verwenden Sie diesen Link, um Ihren Benutzernamen und ein neues Passwort per Email zu erhalten: {$passwordResetUrl}
+
+URL der Einreichung: {$submissionReviewUrl}
+
+Vielen Dank für die Erwägung unserer Anfrage,.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Abstract
+{$paperAbstract}</body>
+		<description>Diese Email vom Track-Leiter an einen Gutachter erbittet die Entscheidung, ein Gutachten durchzuführen oder nicht. Sie enthält Informationen über die Einreichung (Titel, Abstract...), das Fälligkeitsdatum für das Gutachten und den Zugang zu der Einreichung.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST_ONECLICK">
+		<subject>Anfrage nach Gutachten</subject>
+		<body>{$reviewerName}:
+
+Nach meiner Überzeugung wären Sie ein hervorragender Gutachter für die Arbeit "{$paperTitle}", welche an die Konferenz "{$conferenceName}" eingereicht wurde. Ein Auszug aus der Einreichung ist unterhalb eingefügt. Ich hoffe, Sie ziehen diese für uns bedeutsame Aufgabe in Erwägung.
+
+Bitte loggen Sie sich bis zum {$weekLaterDate} in die Konferenzwebseite ein, von wo aus Sie angeben können, ob Sie die Bitte nach dem Gutachten annehmen, und wo sie auf die Einreichung zugreifen und Ihr Gutachten / Ihre Empfehlung abgeben können.
+
+Das Gutachten selbst würde bis {$reviewDueDate} fällig sein.
+
+URL der Einreichung: {$submissionReviewUrl}
+
+Vielen Dank für die Erwägung unserer Anfrage,
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Abstract
+{$paperAbstract}</body>
+		<description>Diese Email vom Track-Leiter an einen Gutachter erbittet die Entscheidung, ein Gutachten durchzuführen oder nicht. Sie enthält Informationen über die Einreichung (Titel, Abstract...), das Fälligkeitsdatum für das Gutachten und den Zugang zu der Einreichung. Diese Nachricht wird verwendet, wenn im Konferenzsetup (2. Schritt) der Standardbegutachtungsprozess gewählt wurde und Ein-Klick-Zugang für Gutachter aktiviert ist.</description>
+	</email_text>
+	<email_text key="REVIEW_CANCEL">
+		<subject>Rücknahme der Anfrage nach Gutachten</subject>
+		<body>{$reviewerName}:
+
+Wir haben uns zu diesem Zeitpunkt entschieden, unsere an Sie gerichtete Anfrage nach Begutachtung der an die Konferenz "{$conferenceName}" eingereichten Arbeit "{$paperTitle}" zurückzuziehen. Wir bitten um Verzeihung für dadurch eventuell entstandene Unannehmlichkeiten und hoffen, später auf Ihre Hilfe bei der Begutachtungsprozedur für diese Konferenz zurückgreifen zu können.
+
+Sollten Sie Fragen haben, wenden Sie sich bitte an mich.
+
+{$editorialContactSignature}</body>
+		<description>Diese Email vom Track-Leiter an einen im Begutachtungsprozess stehenden Gutachter, benachrichtigt diesen über die Streichung des Gutachtens.</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM">
+		<subject>Annahme der Bitte nach Gutachten</subject>
+		<body>{$editorialContactName}:
+
+zu der Begutachtung der an die Konferenz "{$conferenceName}" eingereichten Arbeit "{$paperTitle}" erkläre ich mich bereit. Ich habe vor, dass Gutachten bis zum {$reviewDueDate} oder früher fertigzustellen und bedanke mich für meine Einbeziehung.
+
+{$reviewerName}</body>
+		<description>Diese Email von einem Gutachter an den Track-Leiter benachrichtigt diesen über die Annahme der Anfrage nach einem Gutachten und die Verpflichtung zur Fertigstellung bis zum Fälligkeitsdatum.</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM_ACK">
+		<subject>Durchführung des Gutachtens</subject>
+		<body>{$reviewerName}:
+
+Vielen Dank für Ihre Bereitschaft, die an die Konferenz "{$conferenceName}" eingereichte Arbeit "{$paperTitle}" bis zum {$reviewDueDate} zu begutachten.
+
+{$editorialContactSignature}</body>
+		<description>Diese Email vom Track-Leiter an den Gutachter dankt diesem für die Durchführung eines Gutachtens und erinnert an das Fälligkeitsdatum.</description>
+	</email_text>
+	<email_text key="REVIEW_DECLINE">
+		<subject>Ablehnung der Bitte nach Gutachten</subject>
+		<body>{$editorialContactName}:
+
+Leider bin ich zur Zeit nicht in der Lage, die an die Konferenz "{$conferenceName}" eingereichte Arbeit "{$paperTitle}" zu begutachten. Vielen Dank für meine Einbeziehung. Wenden Sie sich bei Bedarf jederzeit an mich.
+
+{$reviewerName}</body>
+		<description>Diese Email von einem Gutachter an den Track-Leiter benachrichtigt diesen über die Ablehnung der Anfrage nach einem Gutachten.</description>
+	</email_text>
+	<email_text key="REVIEW_COMPLETE">
+		<subject>Gutachten abgeschlossen</subject>
+		<body>{$editorialContactName}:
+
+das von mir durchgeführte Gutachten der an die Konferenz "{$conferenceName}" eingereichten Arbeit "{$paperTitle}" ist abgeschlossen und meine Empfehlung ("{$recommendation}") abgegeben.
+
+{$reviewerName}</body>
+		<description>Diese Email von einem Gutachter an den Track-Leiter benachrichtigt diesen über die Fertigstellung eines Gutachtens und darüber, dass die Anmerkungen und Empfehlungen auf der Konferenzwebseite festgehalten wurden.</description>
+	</email_text>
+	<email_text key="REVIEW_ACK">
+		<subject>Fertigstellung des Gutachtens</subject>
+		<body>{$reviewerName}:
+
+Vielen Dank, dass Sie das Gutachten der an die Konferenz "{$conferenceName}" eingereichten Arbeit "{$paperTitle}" abgeschlossen haben. Wir begrüßen und schätzen Ihren Beitrag zur Güte unserer Arbeit.
+
+{$editorialContactSignature}</body>
+		<description>Diese Email vom Track-Leiter an einen Gutachter nimmt die Fertigstellung eines Gutachtens zur Kenntnis und dankt dem Gutachter.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND">
+		<subject>Ihr Gutachten zu "{$paperTitle}"</subject>
+		<body>{$reviewerName}:
+
+Hiermit möchten wir Sie an unsere Bitte nach einem Gutachten zu der an die Konferenz "{$conferenceName}" eingereichten Arbeit "{$paperTitle}" erinnern. Wir hoffen, auf das Gutachten bis zum {$reviewDueDate} zurückgreifen zu können, und würden uns freuen, wenn Sie es uns zukommen lassen würden, sobald es Ihnen möglich ist.
+
+Sollten Sie Ihren Benutzernamen und/oder Ihr Passwort für die Konferenz nicht zur Hand oder vergessen haben, verwenden Sie diesen Link, um Ihren Benutzernamen und ein neues Passwort per Email zu erhalten: {$passwordResetUrl}
+
+URL der Einreichung: {$submissionReviewUrl}
+
+Bitte geben Sie uns darüber bescheid, ob Sie in der Lage sind, diesen wichtigen Beitrag zu der Konferenz zu leisten. Ich freue mich darauf, von Ihnen zu hören.
+
+{$editorialContactSignature}</body>
+		<description>Diese Email vom Track-Leiter an einen Gutachter erinnert an das Fälligkeitsdatum des Gutachtens.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_ONECLICK">
+		<subject>Ihr Gutachten zu "{$paperTitle}"</subject>
+		<body>{$reviewerName}:
+
+Hiermit möchten wir Sie an unsere Bitte nach einem Gutachten zu der an die Konferenz "{$conferenceName}"  eingereichten Arbeit "{$paperTitle}" erinnern. Wir hoffen, auf das Gutachten bis zum {$reviewDueDate} zurückgreifen zu können, und würden uns freuen, wenn Sie es uns zukommen lassen würden, sobald es Ihnen möglich ist.
+
+URL der Einreichung: {$submissionReviewUrl}
+
+Bitte geben Sie uns darüber bescheid, ob Sie in der Lage sind, diesen wichtigen Beitrag zu der Konferenz zu leisten. Ich freue mich darauf, von Ihnen zu hören.
+
+{$editorialContactSignature}</body>
+		<description>Diese Email vom Track-Leiter an einen Gutachter erinnert an das Fälligkeitsdatum des Gutachtens.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO">
+		<subject>Ihr Gutachten zu "{$paperTitle}"</subject>
+		<body>{$reviewerName}:
+
+Hiermit möchten wir Sie an unsere Bitte nach einem Gutachten zu der an die Konferenz "{$conferenceName}"  eingereichten Arbeit "{$paperTitle}" erinnern. Wir haben mit dem Erhalt des Gutachtens bis zum {$reviewDueDate} gerechnet; diese Email wird beim Verstreichen des Datums automatisch verschickt. Wir würden uns freuen, wenn Sie uns das Gutachten zukommen lassen würden, sobald es Ihnen möglich ist.
+
+Sollten Sie Ihren Benutzernamen und/oder Ihr Passwort für die Konferenz nicht zur Hand oder vergessen haben, verwenden Sie diesen Link, um Ihren Benutzernamen und ein neues Passwort per Email zu erhalten: {$passwordResetUrl}
+
+URL der Einreichung: {$submissionReviewUrl}
+
+Bitte geben Sie uns darüber bescheid, ob Sie in der Lage sind, diesen wichtigen Beitrag zu der Konferenz zu leisten. Ich freue mich darauf, von Ihnen zu hören.
+
+{$editorialContactSignature}</body>
+		<description>Diese Email wird automatisch verschickt, sobald das Fälligkeitsdatum für ein Gutachten verstreicht (vgl. Einstellungen zu Gutachten, Konferenzsetup, 2. Schritt; das Feature "Scheduled Tasks" muss hierfür über die OCS-Konfigurationsdatei aktiviert und entsprechend konfiguriert sein) und Ein-Klick-Zugang für Gutachter deaktiviert ist.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
+		<subject>Ihr Gutachten zu "{$paperTitle}"</subject>
+		<body>{$reviewerName}:
+
+Hiermit möchten wir Sie an unsere Bitte nach einem Gutachten zu der an die Konferenz "{$conferenceName}"  eingereichten Arbeit "{$paperTitle}" erinnern. Wir haben mit dem Erhalt des Gutachtens bis zum {$reviewDueDate}gerechnet; diese Email wird beim Verstreichen des Datums automatisch verschickt. Wir würden uns freuen, wenn Sie uns das Gutachten zukommen lassen würden, sobald es Ihnen möglich ist.
+
+URL der Einreichung: {$submissionReviewUrl}
+
+Bitte geben Sie uns darüber bescheid, ob Sie in der Lage sind, diesen wichtigen Beitrag zu der Konferenz zu leisten. Ich freue mich darauf, von Ihnen zu hören.
+
+{$editorialContactSignature}</body>
+		<description>Diese Email wird automatisch verschickt, sobald das Fälligkeitsdatum für ein Gutachten verstreicht (vgl. Einstellungen zu Gutachten, Konferenzsetup, 2. Schritt; das Feature "Scheduled Tasks" muss hierfür über die OCS-Konfigurationsdatei aktiviert und entsprechend konfiguriert sein) und Ein-Klick-Zugang für Gutachter aktiviert ist.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_ACCEPT">
+		<subject>Gutachterliche Entscheidung über Ihre Arbeit "{$paperTitle}"</subject>
+		<body>{$authorName}:
+
+Hiermit möchte ich Sie zu der Zulassung Ihrer Arbeit "{$paperTitle}" zur Vorstellung auf der Konferenz "{$conferenceTitle}" in {$locationCity} am {$conferenceDate} beglückwünschen.. 
+
+Ich bedanke mich herzlich und freue mich auf Ihre Teilnahme an dieser Veranstaltung,
+
+{$editorialContactSignature}</body>
+		<description>Diese Email vom Track-Leiter an den Autor einer Einreichung benachrichtigt diesen über die Entscheidung, welche hinsichtlich der Einreichung gefällt wurde.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_DECLINE">
+		<subject>Gutachterliche Entscheidung über Ihre Arbeit "{$paperTitle}"</subject>
+		<body>{$authorName}:
+
+Wir haben die Begutachtung Ihrer Einreichung "{$paperTitle}" abgeschlossen. Wir kamen zu dem Entschluss, ...{$editorialContactSignature}</body>
+		<description>Diese Email vom Track-Leiter an den Autor einer Einreichung benachrichtigt diesen über die Entscheidung, welche hinsichtlich der Einreichung gefällt wurde.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_REVISE">
+		<subject>Gutachterliche Entscheidung über Ihre Arbeit "{$paperTitle}"</subject>
+		<body>{$authorName}:
+
+Eine sorgfältige Begutachtung Ihrer Einreichung "{$paperTitle}" hat ergeben, dass folgende Änderungen notwendig sind, damit eine Zulassung zu der Konferenz "{$conferenceTitle}" erwogen werden kann:
+
+Ich bedanke mich herzlich und hoffe auf Ihre Teilnahme an der Veranstaltung,
+
+{$editorialContactSignature}</body>
+		<description>Diese Email vom Track-Leiter an den Autor einer Einreichung benachrichtigt diesen über die Entscheidung, welche hinsichtlich der Einreichung gefällt wurde.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_ACCEPT">
+		<subject>Gutachterliche Entscheidung über Ihre Arbeit "{$paperTitle}"</subject>
+		<body>{$authorName}:
+
+Hiermit möchte ich Sie zu der Zulassung Ihrer Arbeit "{$paperTitle}" zur Vorstellung auf der Konferenz "{$conferenceTitle}" in {$locationCity} am {$conferenceDate} beglückwünschen.
+
+Ich bedanke mich herzlich und freue mich auf Ihre Teilnahme an dieser Veranstaltung,
+
+{$editorialContactSignature}</body>
+		<description>Diese Email vom Track-Leiter an den Autor einer Einreichung benachrichtigt diesen über die Entscheidung, welche hinsichtlich der Einreichung gefällt wurde.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_DECLINE">
+		<subject>Gutachterliche Entscheidung über Ihre Arbeit "{$paperTitle}"</subject>
+		<body>{$authorName}:
+
+Wir haben die Begutachtung Ihrer Einreichung "{$paperTitle}" abgeschlossen. Wir kamen zu dem Entschluss, ...
+
+{$editorialContactSignature}</body>
+		<description>Diese Email vom Track-Leiter an den Autor einer Einreichung benachrichtigt diesen über die Entscheidung, welche hinsichtlich der Einreichung gefällt wurde.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_REVISE">
+		<subject>Gutachterliche Entscheidung über Ihre Arbeit "{$paperTitle}"</subject>
+		<body>{$authorName}:
+
+Eine sorgfältige Begutachtung Ihrer Einreichung "{$paperTitle}" hat ergeben, dass folgende Änderungen notwendig sind, damit eine Zulassung zu der Konferenz "{$conferenceTitle}" erwogen werden kann:
+
+Ich bedanke mich herzlich und hoffe auf Ihre Teilnahme an der Veranstaltung,
+
+{$editorialContactSignature}</body>
+		<description>Diese Email vom Track-Leiter an den Autor einer Einreichung benachrichtigt diesen über die Entscheidung, welche hinsichtlich der Einreichung gefällt wurde.</description>
+	</email_text>
+	<email_text key="REGISTRATION_NOTIFY">
+		<subject>Anmeldung zu {$conferenceName}</subject>
+		<body>{$registrantName}:
+
+Sie sind in unserem Online-Konferenzverwaltungssystem als Teilnehmer für die Konferenz "{$conferenceName}" angemeldet. Ihre Anmeldungsform ist:
+
+{$registrationType}
+
+Loggen Sie sich mit ihrem Benutzernamen, "{$username}", ins System ein, um auf Teilnehmern vorbehaltene Inhalte zuzugreifen.
+
+Sobald Sie eingeloggt sind, können Sie die Details Ihres Profils sowie Ihr Passwort jederzeit ändern.
+
+Sind Sie über eine Institution angemeldet und greifen von dort auf die Inhalte zu, wird kein Login benötigt, da eine automatische Authentifikation durch das System erfolgt.
+
+Sollten Sie Fragen haben, wenden Sie sich bitte an mich.
+
+{$registrationContactSignature}</body>
+		<description>Diese Email benachrichtigt einen angemeldeten Leser, dass die Anmeldung im System eingetragen ist. Sie enthält die URL der Konferenz und Informationen über den Zugang zu der Webseite.</description>
+	</email_text>
+	<email_text key="OPEN_ACCESS_NOTIFY">
+		<subject>Inhalte frei zugänglich</subject>
+		<body>Readers:
+
+Die Konferenz "{$conferenceName}" hat die folgenden Inhalte jetzt in einem Open Access-Format verfügbar gemacht. Wir laden Sie ein, einen Blick auf die Inhaltsangabe zu werfen und unsere Webseite ({$conferenceUrl}) zu besuchen, um Papers und andere Gegenstände von Interesse anzusehen.
+
+Herzlichen Dank für Ihr anhaltendes Interesse,
+
+{$editorialContactSignature}</body>
+		<description>Diese Email wird an angemeldete Leser verschickt, die wünschen, über den freien Zugang zu Inhalten informiert zu werden.</description>
+	</email_text>
+</email_texts>

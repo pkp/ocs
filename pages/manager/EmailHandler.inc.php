@@ -172,12 +172,7 @@ class EmailHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 		
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-
-		if(Request::isConferenceManager()) {
-			$emailTemplateDao->deleteEmailTemplatesByConference($conference->getConferenceId());
-		} else {
-			$emailTemplateDao->deleteEmailTemplatesBySchedConf($schedConf->getSchedConfId());
-		}
+		$emailTemplateDao->deleteEmailTemplatesByConference($conference->getConferenceId());
 
 		Request::redirect(null, null, null, 'emails');
 	}

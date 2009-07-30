@@ -39,6 +39,12 @@ If you have any questions, please feel free to contact me.
 		<query>UPDATE groups SET assoc_type = 257</query><!-- ASSOC_TYPE_SCHED_CONF -->
 	</sql>
 
+	<!-- Bug #4153: abstract email templates -->
+	<sql>
+		<query>UPDATE email_templates SET assoc_type = 256</query><!-- ASSOC_TYPE_CONFERENCE -->
+		<query>UPDATE email_templates_data SET assoc_type = 256</query><!-- ASSOC_TYPE_CONFERENCE -->
+	</sql>
+
 	<!-- Bug #3694: abstract groups -->
 	<sql>
 		<query>UPDATE user_settings SET assoc_type = 256</query><!-- ASSOC_TYPE_CONFERENCE -->

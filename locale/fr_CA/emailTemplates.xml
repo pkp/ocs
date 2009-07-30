@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2003-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="fr_CA">
+	<email_text key="PASSWORD_RESET_CONFIRM">
+		<subject>Confirmation de la réinitialisation du mot de passe</subject>
+		<body>Nous avons reçu une demande concernant la réinitialisation de votre mot de passe pour le site Web {$siteTitle}.
+
+Si vous n'avez pas fait cette demande, veuillez ne pas tenir compte du présent message; votre mot de passe restera le même. Si vous voulez réinitialiser votre mot de passe, cliquez sur l'URL et un nouveau mot de passe vous sera envoyé par courriel sous peu.
+
+Réinitialisation du mot de passe : {$url}
+
+{$principalContactSignature}</body>
+		<description>Ce courriel est envoyé aux utilisateurs qui nous informent d'un oubli de leur mot de passe, ou qui sont incapables d'ouvrir une session. Il fournit le lien URL pour réinitialiser leur mot de passe.</description>
+	</email_text>
+	<email_text key="PASSWORD_RESET">
+		<subject>Réinitialisation du mot de passe</subject>
+		<body>Votre mot de passe pour le site Web {$siteTitle} a été réinitialisé avec succès. Veuillez garder votre nom d'utilisateur et mot de passe, car vous en aurez besoin pour tout travail relié à la conférence.
+
+Votre nom d'utilisateur: {$username}
+Votre mot de passe: {$password}
+
+{$principalContactSignature}</body>
+		<description>Ce courriel est envoyé aux usagers inscrits lorsqu'ils ont réussi à réinitialiser leur mot de passe en ayant suivi la procédure décrite dans le courriel « Confirmation de la réinitialisation du mot de passe ».</description>
+	</email_text>
+	<email_text key="USER_REGISTER">
+		<subject>Inscription d'un nouvel usager</subject>
+		<body>Nous vous remercions de vous être inscrit en tant qu'utilisateur de {$conferenceName}. Veuillez garder votre nom d'utilisateur et mot de passe, car vous en aurez besoin pour tous les travaux liés à la conférence.
+
+Nom d'utilisateur: {$username}
+Mot de passe: {$password}
+
+Merci,
+{$principalContactSignature}</body>
+		<description>Ce courriel est envoyé aux utilisateurs nouvellement inscrits pour leur souhaiter la bienvenue à la conférence, et leur faire connaître leur nom d'utilisateur et leur mot de passe.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ACK">
+		<subject>Accusé de réception de la soumission</subject>
+		<body>{$authorName}:
+
+Nous vous remercions d'avoir soumis la communication intitulée "{$paperTitle}" à {$conferenceName}. Grâce à notre système de gestion en ligne, vous pourrez suivre votre soumission tout au long du processus éditorial en accédant au site Web de la conférence.
+
+URL de la soumission: {$submissionUrl}
+Nom d'utilisateur: {$authorUsername}
+
+Si vous avez des questions, veuillez me contacter. Merci d'avoir pensé à notre conférence pour la publication de vos travaux.
+
+{$editorialContactSignature}</body>
+		<description>Ce courriel, lorsqu'il est activé, est envoyé automatiquement à un auteur quand il a complété le processus de soumission d'une communication à la conférence. Il fournit les informations sur comment suivre la soumission à travers le processus éditorial, et remercie l'auteur de sa soumission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UPLOAD_ACK">
+		<subject>Accusé de réception du téléchargement de la soumission</subject>
+		<body>{$authorName}:
+
+Nous vous remercions d'avoir téléchargé vers le serveur la communication intitulée "{$paperTitle}" à {$conferenceName}. Grâce à notre système de gestion en ligne, vous pourrez suivre votre soumission tout au long du processus éditorial en accédant au site Web de la conférence.
+
+URL de la proposition: {$submissionUrl}
+Nom d'utilisateur: {$authorUsername}
+
+Si vous avez des questions, veuillez me contacter. Merci d'avoir pensé à notre conférence pour la publication de vos travaux.
+
+{$editorialContactSignature}</body>
+		<description>Ce courriel, lorsqu'il est activé, est envoyé automatiquement à un auteur quand il a complété le processus de soumission d'une communication à la conférence. Il fournit les informations sur comment suivre la soumission à travers le processus éditorial, et remercie l'auteur de sa soumission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UNSUITABLE">
+		<subject>Soumission inappropriée</subject>
+		<body>{$authorName}:
+
+Une évaluation initiale de "{$paperTitle}" a démontré clairement que cette soumission n'entre pas dans le domaine de {$conferenceName}. Je vous suggère de consulter la description de cette conférence en allant dans "À propos de la conférence", en plus de consulter toute conférence planifiée passée, afin d'en savoir plus sur les travaux que nous acceptons. Vous pourriez aussi songer à soumettre cette communication à une autre conférence plus appropriée.
+
+{$editorialContactSignature}</body>
+		<description/>
+	</email_text>
+	<email_text key="SUBMISSION_COMMENT">
+		<subject>Commentaire à la soumission</subject>
+		<body>{$name}:
+
+{$commentName} a ajouté un commentaire à la soumission, "{$paperTitle}" dans {$conferenceName}:
+
+{$comments}</body>
+		<description>Ce courriel avise diverses personnes impliquées dans le processus éditorial qu'un nouveau commentaire a été ajouté.</description>
+	</email_text>
+	<email_text key="SUBMISSION_DECISION_REVIEWERS">
+		<subject>Décision pour "{$paperTitle}"</subject>
+		<body>Puisque vous avez été l'un des évaluateurs du papier intitulé "{$paperTitle}," pour {$conferenceName}, je vous envoie les évaluations et la décision du responsable. Je vous remercie à nouveau de votre importante contribution dans ce processus.
+ 
+{$editorialContactSignature}
+
+{$comments}</body>
+		<description>Ce courriel avise les évaluateurs d'une soumission que le processus d'évaluation est complété. Il inclut des informations au sujet de l'article et de la décision prise, et remercie les évaluateurs de leur contribution.</description>
+	</email_text>
+	<email_text key="DIRECTOR_ASSIGN">
+		<subject>Attribution d'un engagement par le responsable</subject>
+		<body>{$editorialContactName}:
+
+La soumission "{$paperTitle}," à {$conferenceName} vous a été attribué. Vous êtes donc chargé, en tant que responsable de section, de suivre cette communication durant le processus d'évaluation.
+
+L'adresse URL de la soumission: {$submissionUrl}
+Nom d'utilisateur: {$directorUsername}
+
+Merci,
+{$editorialContactSignature}</body>
+		<description>Ce courriel avise un responsable de section que le responsable lui a assigné la tâche de suivre une soumission durant le processus éditorial. Il fournit des informations sur la soumission, et comment accéder au site Web de la conférence.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST">
+		<subject>Demande d'évaluation d'une communication</subject>
+		<body>{$reviewerName}:
+
+Je crois que pourriez être un excellent évaluateur pour la soumission "{$paperTitle}," qui a été proposée à {$conferenceName}. Vous trouverez un résumé de la soumission ci-dessous. J'espère que vous accepterez cet important travail pour la conférence.
+
+Veuillez accéder au site Web de la conférence avant le {$weekLaterDate} pour nous laisser savoir si vous effectuerez l'évaluation ou non. Vous pouvez également y consulter la soumission et y enregistrer votre évaluation et votre recommandation. Le site Web se trouve à l'adresse suivante : {$conferenceUrl}
+
+La date d'échéance de l'évaluation a été fixée au {$reviewDueDate}.
+
+Si vous n'avez pas de nom d'utilisateur ou de mot de passe pour le site Web de la conférence, cliquez sur le lien suivant : {$passwordResetUrl} Vous recevrez votre mot de passe et votre nom d'utilisateur par courriel.
+
+L'adresse URL de la soumission: {$submissionReviewUrl}
+
+Merci pour bien vouloir considérer cette demande,
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Résumé
+{$paperAbstract}</body>
+		<description>Ce courriel du reponsable de section à un évaluateur demande que l'évaluateur accepte ou refuse la tâche d'évaluer une soumission. Il donne de l'information au sujet de la soumission, tel son titre et un résumé, la date d'échéance pour l'évaluation, et comment accéder à la soumission elle-même.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST_ONECLICK">
+		<subject>Demande d'évaluation d'une communication</subject>
+		<body>{$reviewerName}:
+
+Je crois que pourriez être un excellent évaluateur pour la soumission "{$paperTitle}," qui a été proposée à {$conferenceName}. Vous trouverez un résumé de la soumission ci-dessous. J'espère que vous accepterez cet important travail pour la conférence.
+
+Veuillez accéder au site Web de la conférence avant le {$weekLaterDate} pour nous laisser savoir si vous effectuerez l'évaluation ou non. Vous pouvez également y consulter la soumission et y enregistrer votre évaluation et votre recommandation. 
+
+La date d'échéance de l'évaluation a été fixée au {$reviewDueDate}.
+
+L'adresse URL de la soumission: {$submissionReviewUrl}
+
+Merci pour bien vouloir considérer cette demande,
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Résumé
+{$paperAbstract}</body>
+		<description>Ce courriel d'un responsable de section à un évaluateur demande que l'évaluateur accepte ou décline la tâche d'évaluer une soumission. Il contient des informations sur la soumission tel que son titre et un résumé, la date d'échéance pour faire l'évaluation, et comment accéder à la soumission complète. Ce message est utilisé quand le "Processus d'évaluation régulier" a été sélectionné à l'étape 2  de la configuration initiale de la conférence, et que l'accès en un clic est activé pour l'évaluateur.</description>
+	</email_text>
+	<email_text key="REVIEW_CANCEL">
+		<subject>Annulation de la demande d'évaluation</subject>
+		<body>{$reviewerName}:
+
+Nous avons décidé d'annuler notre demande concernant l'évaluation de la communication intitulée "{$paperTitle}," pour {$conferenceName}. Nous sommes désolés de tout inconvénient que cela pourrait vous causer et nous espérons que nous pourrons compter sur votre collaboration pour un autre projet.
+
+Si vous avez des questions, n'hésitez pas à communiquer avec nous.
+
+{$editorialContactSignature}</body>
+		<description>Ce courriel est envoyé par le responsable de section à un évaluateur qui a une évaluation en cours, pour l'aviser que celle-ci est annulée.</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM">
+		<subject>Confirmation de l'évaluation</subject>
+		<body>{$editorialContactName}:
+
+Je suis en mesure d'évaluer la soumission intitulée "{$paperTitle}," pour {$conferenceName}. Je vous remercie d'avoir pensé à moi. Je devrais pouvoir compléter l'évaluation à la date d'échéance fixée au {$reviewDueDate}, si ce n'est avant.
+
+{$reviewerName}</body>
+		<description>Ce courriel est envoyé par l'évaluateur au responsable de section en réponse à la demande d'évaluation faite, pour aviser ce dernier que la demande a été acceptée et que l'évaluation sera complétée au plus tard à la date spécifiée.</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM_ACK">
+		<subject>Accusé de réception d'une évaluation en cours</subject>
+		<body>{$reviewerName}:
+
+Merci d'avoir accepté d'évaluer la communication intitulée "{$paperTitle}" pour {$conferenceName} avant le {$reviewDueDate}.
+
+{$editorialContactSignature}</body>
+		<description>Le responsable de section envoie ce courriel à l'évaluateur pour reconnaître son acceptation ou pour l'encourager à compléter l'évaluation.</description>
+	</email_text>
+	<email_text key="REVIEW_DECLINE">
+		<subject>Refus d'évaluation d'une soumission</subject>
+		<body>{$editorialContactName}:
+
+Pour le moment, il m'est impossible d'évaluer la soumission intitulée "{$paperTitle}", pour {$conferenceName}. N'hésitez pas à communiquer avec moi pour un autre projet.
+
+{$reviewerName}</body>
+		<description>Ce courriel est envoyé par l'évaluateur au responsable de section en réponse à la demande de faire une évaluation, pour aviser ce dernier qu'il ne peut faire l'évaluation.</description>
+	</email_text>
+	<email_text key="REVIEW_COMPLETE">
+		<subject>Évaluation de la communication terminée</subject>
+		<body>{$editorialContactName}:
+
+J'ai effectué l'évaluation de la soumission intitulée "{$paperTitle}" pour {$conferenceName}. Mes commentaires et ma recommandation sont sur le site Web de la conférence. "{$recommendation}."
+
+{$reviewerName}</body>
+		<description>Ce courriel est envoyé par l'évaluateur au responsable de section pour l'aviser que l'évaluation est terminée, et que les commentaires et la recommandation ont été enregistrés sur le site Web de la conférence.</description>
+	</email_text>
+	<email_text key="REVIEW_ACK">
+		<subject>Accusé de réception de l'évaluation d'une communication</subject>
+		<body>{$reviewerName}:
+
+Nous vous remercions d'avoir évalué la soumission intitulée "{$paperTitle}" pour {$conferenceName}. Nous vous sommes reconnaissants de votre contribution à la qualité des travaux que nous publions.
+
+{$editorialContactSignature}</body>
+		<description>Ce courriel est envoyé par le responsable de section, pour accuser réception de l'évaluation complétée et remercier l'évaluateur de sa contribution.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND">
+		<subject>Rappel concernant l'évaluation d'une soumission</subject>
+		<body>{$reviewerName}:
+
+Un rappel amical concernant notre demande d'évaluation de la soumission intitulée "{$paperTitle}" pour {$conferenceName}. Nous espérions recevoir votre évaluation avant le {$reviewDueDate}, et nous serions heureux de la recevoir dès qu'il vous sera possible de nous l'envoyer.
+
+Si vous n'avez pas de nom d'utilisateur ni de mot de passe pour le site Web de la conférence, cliquez sur le lien suivant: {$passwordResetUrl}. Vous recevrez votre mot de passe et votre nom d'utilisateur par courriel.
+
+L'adresse URL de la soumission: {$submissionReviewUrl}
+
+Veuillez nous confirmer que vous êtes bien en mesure de compléter cet important travail pour notre conférence. Espérant recevoir de vos nouvelles bientôt,
+
+{$editorialContactSignature}</body>
+		<description>Ce courriel est envoyé par le responsable de section pour rappeler a l'évaluateur que l'échéance de son évaluation est dépassée.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_ONECLICK">
+		<subject>Rappel concernant l'évaluation d'une soumission</subject>
+		<body>{$reviewerName}:
+
+Un rappel amical concernant notre demande d'évaluation de la soumission intitulée "{$paperTitle}" pour {$conferenceName}. Nous espérions recevoir votre évaluation avant le {$reviewDueDate}, et nous serions heureux de la recevoir dès qu'il vous sera possible de nous l'envoyer.
+
+L'adresse URL de la soumission: {$submissionReviewUrl}
+
+Veuillez nous confirmer que vous êtes bien en mesure de compléter cet important travail pour notre conférence. Espérant recevoir de vos nouvelles bientôt,
+
+{$editorialContactSignature}</body>
+		<description>Ce courriel est envoyé par le responsable de section pour rappeler a l'évaluateur que l'échéance de son évaluation est dépassée.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO">
+		<subject>Rappel automatisé d'évaluation d'une soumission</subject>
+		<body>{$reviewerName}:
+
+Un rappel amical concernant notre demande d'évaluation de la soumission intitulée "{$paperTitle}," pour {$conferenceName}. Nous espérions recevoir votre évaluation avant le {$reviewDueDate}, et ce courriel vous a été envoyé automatiquement parce que la date d'échéance est passée. Nous serions heureux de la recevoir dès qu'il vous sera possible de nous l'envoyer.
+
+Si vous n'avez pas de nom d'utilisateur ni de mot de passe pour le site Web de la conférence, cliquez sur le lien suivant : {$passwordResetUrl}. Vous recevrez votre mot de passe et nom d'utilisateur par courriel.
+
+L'adresse URL de la soumission: {$submissionReviewUrl}
+
+Veuillez nous confirmer que vous êtes bien en mesure de compléter cet important travail pour notre conférence. Espérant recevoir de vos nouvelles bientôt,
+
+{$editorialContactSignature}</body>
+		<description>Ce courriel est envoyé automatiquement quand la date d'échéance de l'évaluation est dépassée (Voir Options d'évaluation à l'étape 3 de la configuration de la conférence) et que l'accès en un seul clic pour l'évaluateur est  désactivé. Les tâches prévues doivent être activées et configurées. (Voir le fichier de configuration du site).</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
+		<subject>Rappel automatisé d'évaluation d'une soumission</subject>
+		<body>{$reviewerName}:
+
+Un rappel amical concernant notre demande d'évaluation de la soumission intitulé "{$paperTitle}," pour {$conferenceName}. Nous espérions recevoir votre évaluation avant le {$reviewDueDate}, et ce courriel vous a été envoyé automatiquement parce que la date d'échéance est passée. Nous serions heureux de la recevoir dès qu'il vous sera possible de nous l'envoyer.
+
+L'adresse URL de la soumission: {$submissionReviewUrl}
+
+Veuillez nous confirmer que vous êtes bien en mesure de compléter cet important travail pour notre conférence. Espérant recevoir de vos nouvelles bientôt,
+
+{$editorialContactSignature}</body>
+		<description>Ce courriel est envoyé automatiquement quand la date d'échéance de l'évaluation est dépassée (Voir Options d'évaluation à l'étape 3 de la configuration de la conférence) et que l'accès en un seul clic pour l'évaluateur est activé. Les tâches prévues doivent être activées et configurées. (Voir le fichier de configuration du site).</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_ACCEPT">
+		<subject>Décision éditoriale à propos de la communication</subject>
+		<body>{$authorName}:
+
+Félicitations, votre communication {$paperTitle} a été acceptée pour la présentation de {$conferenceTitle} tenue le {$conferenceDate} à {$locationCity}. 
+
+Merci, et nous serions ravis de vous voir participer à cet événement.
+{$editorialContactSignature}</body>
+		<description>Ce courriel est envoyé par un responsable de section à l'auteur d'une soumission pour l'aviser qu'une décision a été prise à l'égard de sa soumission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_DECLINE">
+		<subject>Décision éditoriale à propos de la communication</subject>
+		<body>{$authorName}:
+
+Nous avons terminé l'évaluation de votre soumission "{$paperTitle}." Et le résultat est...
+
+{$editorialContactSignature}</body>
+		<description>Ce courriel est envoyé par un responsable de section à l'auteur d'une soumission pour l'aviser qu'une décision a été prise à l'égard de sa soumission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_REVISE">
+		<subject>Décision éditoriale à propos de la communication</subject>
+		<body>{$authorName}:
+
+Après une évaluation attentive de votre communication, "{$paperTitle}" sera considéré pour une présentation à {$conferenceTitle} si les révisions suivantes sont effectuées.
+
+Merci, et nous serions ravis de vous voir participer à cet événement.
+
+{$editorialContactSignature}</body>
+		<description>Ce courriel est envoyé par un responsable de section à l'auteur d'une soumission pour l'aviser qu'une décision a été prise à l'égard de sa soumission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_ACCEPT">
+		<subject>Décision éditoriale à propos de la communication</subject>
+		<body>{$authorName}:
+
+Félicitations, votre soumission {$paperTitle} a été acceptée pour la présentation de {$conferenceTitle} tenue le {$conferenceDate} à {$locationCity}.  
+
+Merci, et nous serions ravis de vous voir participer à cet événement.
+{$editorialContactSignature}</body>
+		<description>Ce courriel est envoyé par un responsable de section à l'auteur d'une soumission pour l'aviser qu'une décision a été prise à l'égard de sa soumission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_DECLINE">
+		<subject>Décision éditoriale à propos de la communication</subject>
+		<body>{$authorName}:
+
+Nous avons terminé l'évaluation de votre soumission "{$paperTitle}." Et le résultat est...
+
+{$editorialContactSignature}</body>
+		<description>Ce courriel est envoyé par un responsable de section à l'auteur d'une soumission pour l'aviser qu'une décision a été prise à l'égard de sa soumission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_REVISE">
+		<subject>Décision éditoriale à propos de la communication</subject>
+		<body>{$authorName}:
+
+Après une évaluation attentive de votre communication, "{$paperTitle}" sera considérée pour une présentation à {$conferenceTitle} si les révisions suivantes sont effectuées.
+
+Merci, et nous serions ravis de vous voir participer à cet événement.
+
+{$editorialContactSignature}</body>
+		<description>Ce courriel est envoyé par un responsable de section à l'auteur d'une soumission pour l'aviser qu'une décision a été prise à l'égard de sa soumission.</description>
+	</email_text>
+	<email_text key="REGISTRATION_NOTIFY">
+		<subject>Avis d'inscription</subject>
+		<body>{$registrantName}:
+
+Vous êtes maintenant inscrit à notre système de gestion de conférence en ligne pour {$conferenceName}, avec le type d'abonnement suivant:
+
+{$registrationType}
+
+Pour accéder au contenu accessible uniquement aux abonnés, entrez dans le système à l'aide de votre nom d'utilisateur: "{$username}".
+
+Une fois dans le système, vous pouvez changer votre profil et votre mot de passe en tout temps.
+
+Veuillez prendre note que si vous avez une inscription institutionnelle, les utilisateurs de votre institution n'ont pas à entrer de nom d'utilisateur puisque le système authentifiera automatiquement les demandes.
+
+Si vous avez des questions, n'hésitez pas à communiquer avec moi.
+
+{$registrationContactSignature}</body>
+		<description>Ce courriel avise un lecteur inscrit que le responsable de la conférence a créé une inscription pour lui. Il fournit l'adresse URL de la conférence ainsi que les instructions pour y accéder.</description>
+	</email_text>
+	<email_text key="OPEN_ACCESS_NOTIFY">
+		<subject>Conférence en accès libre</subject>
+		<body>Chers lecteurs et lectrices:
+
+{$conferenceName} vient de rendre disponible en accès libre la conférence suivante. Nous vous invitons à consulter la Table des matières ici pour ensuite visiter notre site Web ({$conferenceUrl}) afin d'y lire les communications et autres textes qui pourraient vous intéresser.
+
+Merci de votre intérêt continu pour notre travail,
+{$editorialContactSignature}</body>
+		<description>Nous envoyons ce courriel aux lecteurs inscrits qui ont demandé à recevoir un avis par courriel quand une conférence devient disponible à accès libre.</description>
+	</email_text>
+	<email_text key="USER_VALIDATE">
+		<subject>Valider votre compte</subject>
+		<body>{$userFullName}
+
+Vous avez créé un compte avec {$conferenceName}, mais avant que vous puissiez commencer à l'utiliser, vous devez valider votre adresse de courriel. Pour ce faire, cliquez sur le lien ci-dessous&amp;#x00A0;:
+
+{$activateUrl}
+
+Merci,
+{$principalContactSignature}</body>
+		<description>Ce message est envoyé à un nouvel utilisateur pour lui souhaiter la bienvenue dans le système et lui fournir un enregistrement de ses nom d'utilisateur et mot de passe.</description>
+	</email_text>
+</email_texts>

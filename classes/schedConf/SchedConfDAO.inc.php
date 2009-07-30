@@ -200,9 +200,6 @@ class SchedConfDAO extends DAO {
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 		$trackDao->deleteTracksBySchedConf($schedConfId);
 
-		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplateDao->deleteEmailTemplatesBySchedConf($schedConfId);
-
 		$registrationDao =& DAORegistry::getDAO('RegistrationDAO');
 		$registrationDao->deleteRegistrationsBySchedConf($schedConfId);
 

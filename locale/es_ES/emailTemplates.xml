@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2003-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="es_ES">
+	<email_text key="PASSWORD_RESET_CONFIRM">
+		<subject>Confirmación de restablecimiento de contraseña</subject>
+		<body>Hemos recibido la solicitud de restablecimiento de su contraseña para el sitio web {$siteTitle}.
+
+Si usted no ha realizado esta petición, le rogamos que ignore este e-mail y su contraseña no será modificada. Si desea restablecer su contraseña, clique en la URL que aparece a continuación.
+
+Restablecer mi contraseña: {$url}
+
+{$principalContactSignature}</body>
+		<description>Este e-mail se envía a los usuarios registrados cuando estos indican que han olvidado su contraseña o no puede validarse en el sistema por alguna razón. Se facilita una URL que permite restablecer la contraseña.
+			</description>
+	</email_text>
+	<email_text key="PASSWORD_RESET">
+		<subject>Restablecer contraseña</subject>
+		<body>Su contraseña ha sido cambiada con éxito para ser usado en el sitio web {$siteTitle}. Le rogamos que recuerde el nuevo nombre de usuario y contraseña, dado que son necesarios para toda gestión de las conferencias.
+
+Su nombre de usuario: {$username}
+Su nueva contraseña: {$password}
+
+{$principalContactSignature}</body>
+		<description>Este e-mail se envía a los usuarios registrados cuando estos han restablecido su nueva contraseña siguiendo el proceso descrito en el e-mail: PASSWORD_RESET_CONFIRM.
+			</description>
+	</email_text>
+	<email_text key="USER_REGISTER">
+		<subject>Nuevo registro de usuario</subject>
+		<body>Gracias por registrarse como usuario en {$conferenceName}. Le rogamos que siga con su nombre de usuario y contraseña, dado que son necesarios para toda gestión de las conferencias
+						
+						Nombre de usuario: {$username}
+Contraseña: {$password}
+
+Gracias,
+{$principalContactSignature}</body>
+		<description> Este e-mail se envía a los usuarios recién registrados como bienvenida al sistema y para facilitarles su nombre de usuario y contraseña.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ACK">
+		<subject>Agradecimiento de envío</subject>
+		<body>{$authorName}:
+
+Gracias por el envío de "{$paperTitle}" a {$conferenceName}. Mediante el sistema de gestión de las conferencias con el que trabajamos, podrá seguir su progreso a través del proceso editorial validándoseen la web de las conferencias.
+
+URL del original: {$submissionUrl}
+Nombre de usuario: {$authorUsername}
+
+Si tiene cualquier duda, por favor contáctenos. Gracias por considerar estas conferencias el espacio para su trabajo.
+
+{$editorialContactSignature}</body>
+		<description>Este correo se envía al ponente cuando este completa el proceso de envío del original o resumen a las conferencias. Facilita información acerca del seguimiento del original a través del todo el proceso, a la vez que agradece al ponente su empeño.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UPLOAD_ACK">
+		<subject>Agradecimiento de envío de original</subject>
+		<body>{$authorName}:
+
+Gracias por envíar su [presentación], "{$paperTitle}" en {$conferenceName}. 
+
+Mediante el sistema de gestión de conferencias con el que trabajamos, podrá seguir su progreso a través del proceso editorial validándose en la web de las conferencias.
+
+URL del original: {$submissionUrl}
+Nombre de usuario: {$authorUsername}
+
+Si tiene cualquier duda, por favor contáctenos. Gracias por considerar estas conferencias el espacio para su trabajo.
+
+{$editorialContactSignature}</body>
+		<description>Este correo se envía automáticamente al ponente cuando este completa el proceso de envío del original o resumen a las conferencias. Facilita información acerca del seguimiento del original a través del todo el proceso, a la vez que agradece al ponente su empeño.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UNSUITABLE">
+		<subject>envío de original no apto</subject>
+		<body>{$authorName}:
+
+Una revisión inicial de "{$paperTitle}" indica claramente que este no se ajusta al enfoque y orientación de {$conferenceName}. Le recomendamos que consulte la descripción de las conferencias, así como otras ponencias ya propuestas en el programa, para conocer mas detalladamente el tipo de trabajos que se aceptan. Puede considerar el envío del original o resumen a otrass conferencia mas relativas a su ámbito.
+
+{$editorialContactSignature}</body>
+	</email_text>
+	<email_text key="SUBMISSION_COMMENT">
+		<subject>Comentario al envío del original </subject>
+		<body>{$name}:
+
+{$commentName} ha añadido un comentario a su envío del original, "{$paperTitle}" en {$conferenceName}:
+
+{$comments}</body>
+		<description>Este e-mail informa a las distintas personas involucradas en el proceso editorial del original recibido, que se ha creado un nuevo comentario.</description>
+	</email_text>
+	<email_text key="SUBMISSION_DECISION_REVIEWERS">
+		<subject>Resolución de "{$paperTitle}"</subject>
+		<body>En calidad de revisor de la propuesta, "{$paperTitle}," en {$conferenceName}, le envío las notas de revisión y la decisión editorial. Le agradecemos de nuevo su importante contribución al evento.
+			
+{$editorialContactSignature}
+
+{$comments}</body>
+		<description>Este e-mail informa a los revisores del original que el proceso de revisión ha sido completado. Incluye información sobre el trabajo y la decisión alcanzada, así como agradece a los revisores su contribución.</description>
+	</email_text>
+	<email_text key="SUBMISSION_DEADLINE_WARN">
+		<subject>Aviso de fecha límite para el envío de originales</subject>
+		<body>La fecha límite para su original, "{$paperTitle}," en {$conferenceName} termina en algunos días. De acuerdo con nuestra base de datos, los trámites de su envío no han sido todavía completados.
+
+Recuerde que deber completar el envío de su trabajo (mediante la subida de los ficheros completos o actualizando alguna información incompleta que le ha sido requerida) tan pronto como le sea posible, o su propuesta será descalificada de estas conferencias.
+
+Si tiene cualquier pregunta o duda, por favor póngase en contacto con nosotros.
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail informa al ponente que su propuesta incompleta será desestimada en una fecha próxima.</description>
+	</email_text>
+	<email_text key="DIRECTOR_ASSIGN">
+		<subject>Asignada tarea de Director</subject>
+		<body>{$editorialContactName}:
+
+La propuesta, "{$paperTitle}," en {$conferenceName} se le ha asignado en calidad de "Director de Seguimiento" en el proceso editorial.  
+
+URL del envío de la propuesta: {$submissionUrl}
+Nombre de usuario: {$directorUsername}
+
+Muchas gracias,
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail informa al "Director de Seguimiento" que la dirección de las conferencias le ha asignado la tarea de supervisión en la revisión de un original. A su vez ofrece información del propio envío y de como acceder al sitio web de las conferencias.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUestá">
+		<subject>Solicitud de Revisión de original</subject>
+		<body>{$reviewerName}:
+
+Consideramos que usted seria un/a revisor/a excelente para la propuesta: "{$paperTitle}," que ha sido enviada a {$conferenceName}. La información útil del original recibido estáadjuntada al presente e-mail, esperamos que considere positivamente encargarse de esta tarea tan importante para nosotros.
+
+Le rogamos que se valide en el sitio web antes de {$weekLaterDate} para indicar si podría asumir el encargo de revisar el original recibido o no, así como acceder a la mismo y aportar su notas de revisión y recomendaciones. El sitio web es {$conferenceUrl}
+
+La revisión finaliza el {$reviewDueDate}.
+
+Si no dispone de nombre de usuario y contraseña para acceder al sitio web de las conferencias, puede usar este enlace para registrarse (registro que le será enviado por e-mail). {$passwordResetUrl}
+
+URL del original: {$submissionReviewUrl}
+
+Gracias por considerar nuestra petición.
+
+{$editorialContactSignature}
+
+
+"{$paperTitle}"
+
+Abstract
+{$paperAbstract}</body>
+		<description>Este e-mail del "Director de Seguimiento" al revisor/es solicita que el revisor acepte o decline la tarea de revisar el original recibido. Facilita información sobre el original recibido, tales como el título y el abstact, la fecha límite de la revisión, o como acceder al propio documento.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST_ONECLICK">
+		<subject>Solicitud de revisió de orignal</subject>
+		<body>{$reviewerName}:
+
+Consideramos que usted seria un/a revisor/a excelente del original recibido: "{$paperTitle}," que ha sido enviado a {$conferenceName}. La información útil del original recibido está adjuntada al presente e-mail, esperamos que considere positivamente encargarse de esta tarea tan importante para nosotros.
+
+Le rogamos que se valide en el sitio web antes de {$weekLaterDate} para indicar si podría asumir el encargo de revisar el original recibido o no, así como acceder a la mismo y aportar su notas de revisión y recomendaciones. 
+
+La revisión finaliza el  {$reviewDueDate}.
+
+URL del original recibido: {$submissionReviewUrl}
+
+Gracias por considerar nuestra petición.
+
+{$editorialContactSignature}
+
+
+"{$paperTitle}"
+
+Abstract
+{$paperAbstract}</body>
+		<description>Este e-mail del "Director de Seguimiento" al revisor/es solicita que el revisor acepte o decline la tarea de revisar el original recibido. Facilita información sobre el original recibido, tales como el título y el abstact, la fecha límite de la revisión, o como acceder al propio documento. Este e-mail se usará cuando el proceso estándar de revisión sea seleccionado en "Configuración de Las Conferencias", Paso 2, y se ha activado el acceso de revisión "one-click".</description>
+	</email_text>
+	<email_text key="REVIEW_CANCEL">
+		<subject>Solicitud de revisión cancelada</subject>
+		<body>{$reviewerName}:
+
+Llegados a este punto hemos decidido cancelar nuestra solicitud de revisión del original, "{$paperTitle}," para {$conferenceName}. Reciba nuestras disculpas por cualquier inconveniente que le haya causado, esperamos poder contar con usted para tareas de revisión de este evento en el futuro.
+
+Si tiene usted alguna pregunta, no dude en contactarnos.
+
+{$editorialContactSignature}</body>
+		<description> Este e-mail es enviado por el "Director de Seguimiento" que tiene una revisión de originales en marcha para notificar al resto de revisores que se ha cancelado la revisión.</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM">
+		<subject>Confirmación de revisión</subject>
+		<body>{$editorialContactName}:
+
+Estoy encantado y dispuesto para hacer la revisión de el original, "{$paperTitle}," para {$conferenceName}. 
+Gracias por pensar en mi persona, tendré completado el proceso de revisión para la fecha límite, {$reviewDueDate}, o incluso antes.
+
+{$reviewerName}</body>
+		<description>Este e-mail es enviado por un "Revisor de originales" al "Director de seguimiento" como respuesta positiva a la solicitud de revisión de un trabajo, con el compromiso de completar el proceso en la fecha especificada.</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM_ACK">
+		<subject>Agradecimiento a la revisión en curso</subject>
+		<body>{$reviewerName}:
+
+Gracias por responder afirmativamente a la revisión del original "{$paperTitle}" en {$conferenceName} para el {$reviewDueDate}
+
+{$editorialContactSignature}</body>
+		<description>
+			Este e-mail se envía por el "Director de seguimiento" al "Revisor de originales" como aviso de su aceptación de revisar un trabajo, o para animarle a continuar y finalizar su tarea.</description>
+	</email_text>
+	<email_text key="REVIEW_DECLINE">
+		<subject>Revisión de original rechazada</subject>
+		<body>{$editorialContactName}:
+
+Lamento comunicarle que en este momento no estoy en disposición de revisar el trabajo, "{$paperTitle}," for {$conferenceName}. 
+Gracias por considerarme la persona adecuada, cuenten conmigo para una próxima ocasión.
+
+{$reviewerName}</body>
+		<description>Este e-mail es enviado por un "Revisor de originales" al "Director de seguimiento" en respuesta a una solicitud de revisión de original, para informar al "Director de seguimiento" que dicha tarea ha sido rechazada.</description>
+	</email_text>
+	<email_text key="REVIEW_COMPLETE">
+		<subject>Revisión de original completada</subject>
+		<body>{$editorialContactName}:
+
+He finalizado mi revisión de "{$paperTitle}" en {$conferenceName}, y propongo la recomendación: "{$recommendation}."
+
+{$reviewerName}</body>
+		<description>Este e-mail es enviado por un "Revisor de originales" al "Director de seguimiento" para informarle que ha completado la revisión y se ha aportado, en caso de ser necesario, comentarios y recomendaciones en el sitio web de las conferencias.</description>
+	</email_text>
+	<email_text key="REVIEW_ACK">
+		<subject>Agradecimiento a la revisión de original</subject>
+		<body>{$reviewerName}:
+
+Gracias por completar la revisión del original, "{$paperTitle}," en {$conferenceName}. Consideramos su contribución en el proceso parte de la calidad del trabajo del evento.
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail es enviado por un "Director de seguimiento" para confirmar la recepción de una revisión completada, así como para agradecer al revisor sus aportaciones.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND">
+		<subject>Recordatorio de revisión de un original</subject>
+		<body>{$reviewerName}:
+
+Este e-mail sirve para recordarle su compromiso de la tarea de revisión del original, "{$paperTitle}," en {$conferenceName}. Esperamos disponer del original revisado para el {$reviewDueDate}, y estaremos encantados de recibirlo tan pronto como considere finalizada la revisión.
+Si no dispone de nombre de usuario y contraseña para acceder al sitio web de las conferencias, puede usar este enlace para registrarse (registro que le será enviado por e-mail). {$passwordResetUrl}
+
+URL del original recibido: {$submissionReviewUrl}
+
+Le rogamos que confirme su disponibilidad para completar esta importante contribución para el desempeño de las conferencias. Esperamos recibir noticias suyas.
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail es enviado por el "Director de Seguimiento" a un revisor para recordar que tiene pendiente un original en proceso de revisión.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_ONECLICK">
+		<subject>Recordatorio de revisión de un original</subject>
+		<body>{$reviewerName}:
+
+Este e-mail sirve para recordarle su compromiso de la tarea de revisión del original, "{$paperTitle}," en {$conferenceName}. Esperamos disponer del original revisado para el {$reviewDueDate}, y estaremos encantados de recibirlo tan pronto como considere finalizada la revisión.
+
+URL del original recibido: {$submissionReviewUrl}
+
+Le rogamos que confirme su disponibilidad para completar esta importante contribución para el desempeño de las conferencias. Esperamos recibir noticias suyas.
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail es enviado por el "Director de Seguimiento" a un revisor para recordar que tiene pendiente un original en proceso de revisión.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO">
+		<subject>Recordatorio automático de revisión de un original</subject>
+		<body>{$reviewerName}:
+
+Este e-mail sirve para recordarle su compromiso de la tarea de revisión del original, "{$paperTitle}," en {$conferenceName}. Esperamos disponer del original revisado para el {$reviewDueDate}. Este e-mail se genera de forma automática cuando la revisión está fuera de plazo. Estamos a la espera de recibir su revisión tan pronto como pueda y la considere finalizada.
+
+Si no dispone de nombre de usuario y contraseña para acceder al sitio web de las conferencias, puede usar este enlace para registrarse (registro que le será enviado por e-mail). {$passwordResetUrl}
+
+URL del original recibido: {$submissionReviewUrl}
+
+Le rogamos que nos confirme su disponibilidad para completar esta vital tarea para el buen desarrollo de las conferencias. Esperamos recibir noticias suyas.
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail se envía de forma automática cuando un revisor sobrepasa la fecha límite (véase "Opciones de revisión : Review Options" en "Configuración de las conferencias", paso 2) y el acceso a la revisión "one-click" esta DESACTIVADO(??). Las tareas programadas deben estar habilitadas y configuradas (véase el fichero de configuración).
+			</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
+		<subject>Recordatorio automático de revisión de un original</subject>
+		<body>{$reviewerName}:
+
+Este e-mail sirve para recordarle su compromiso de la tarea de revisión del original, "{$paperTitle}," en {$conferenceName}. Esperamos disponer del original revisado para el {$reviewDueDate}. Este e-mail se genera de forma automática cuando la revisión está fuera de plazo. Estamos a la espera de recibir su revusión tan pronto como pueda y la considere finalizada.
+
+
+
+URL del original recibido: {$submissionReviewUrl}
+
+Le rogamos que nos confirme su disponibilidad para completar esta vital tarea para el buen desarrollo de las conferencias. Esperamos recibir noticias suyas.
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail se envía de forma automática cuando un revisor sobrepasa la fecha límite (véase "Opciones de revisión : Review Options" en "Configuración de las conferencias", paso 2) y el acceso a la revisión "one-click" esta activado. Las tareas programadas deben estar habilitadas y configuradas (véase el fichero de configuración).</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_ACCEPT">
+		<subject>Decisión editorial sobre el original</subject>
+		<body>{$authorName}:
+
+Felicidades, su trabajo "{$paperTitle}" ha sido aceptado para ser presentado en {$conferenceTitle} que tendrá lugar el {$conferenceDate} en {$locationCity}.
+
+Gracias por considerar su participación en este evento.
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail es enviado por el "Director de Seguimiento" al responsable/s de un original para notificarle que se ha alcanzado una decisión en relación a su envío de un original.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_DECLINE">
+		<subject>Decisión editorial sobre el original</subject>
+		<body>{$authorName}:
+
+Hemos completado la revisión de su original "{$paperTitle}." Con el resultado...
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail es enviado por el "Director de Seguimiento" al responsable/s de un original para notificarle que se ha alcanzado una decisión en relación a su envío de un original.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_REVISE">
+		<subject>Decisión editorial sobre el original</subject>
+		<body>{$authorName}:
+
+Después de una detenida revisión de su original, "{$paperTitle}" ha sido considerada positivamente en {$conferenceTitle} si se realizan las siguientes revisiones.
+
+Gracias por considerar su participación en este evento.
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail es enviado por el "Director de Seguimiento" al responsable/s de un original para notificarle que se ha alcanzado una decisión en relación a su envío de un original.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_ACCEPT">
+		<subject>Decisión editorial sobre el original</subject>
+		<body>{$authorName}:
+
+Felicidades, su trabajo "{$paperTitle}" ha sido aceptado para ser presentado en {$conferenceTitle} que tendrá lugar el {$conferenceDate} en {$locationCity}.
+
+Gracias por considerar su participación en este evento.
+
+{$editorialContactSignature}</body>
+		<description>
+			Este e-mail es enviado por el "Director de Seguimiento" al responsable/s de un original para notificarle que se ha alcanzado una decisión en relación a su envío de un original.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_DECLINE">
+		<subject>Decisión editorial sobre el original</subject>
+		<body>{$authorName}:
+
+Hemos finalizado la revisión de su original recibido: "{$paperTitle}." Con el resultado...
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail es enviado por el "Director de Seguimiento" al responsable/s de un original para notificarle que se ha alcanzado una decisión en relación a su envío de un original.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_REVISE">
+		<subject>Decisión editorial sobre el original</subject>
+		<body>{$authorName}:
+
+Después de una detenida revisión de su original, "{$paperTitle}" ha sido considerada positivamente en {$conferenceTitle} si se realizan las siguientes revisiones.
+
+
+Gracias por considerar su participación en este evento.
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail es enviado por el "Director de Seguimiento" al responsable/s de un original para notificarle que se ha alcanzado una decisión en relación a su envío de un original.</description>
+	</email_text>
+	<email_text key="REGISTRATION_NOTIFY">
+		<subject>Aviso de registro</subject>
+		<body>{$registrantName}:
+
+Se ha registrado usted como a las conferencias {$conferenceName} mediante el sistema electrónico, con los siguientes datos:
+
+{$registrationType}
+
+Para acceder al contenido reservado a los participantes simplemente valídese en el sistema con su nombre de usuario, "{$username}".
+
+Una vez validado/a en el sistema puede cambiar sus datos y su contraseña en cualquier momento.
+
+Por favor, recuerde que si disponen de un usuario institucional registrado, no es necesario que los usuarios individuales se validen, puesto las solicitudes para el registro de contenidos se identificaran de forma automática por el sistema.
+
+Si tiene cualquier pregunta o duda, por favor póngase en contacto con nosotros.
+
+{$registrationContactSignature}</body>
+		<description>
+			Este e-mail informa que a un ponente que el Gestor ha creado un registro para el/ella. Facilita la URL de las conferencias así como instrucciones de acceso.</description>
+	</email_text>
+	<email_text key="OPEN_ACCESS_NOTIFY">
+		<subject>Número ya disponible en "Open Access"</subject>
+		<body>Estimado/a ponente:
+
+{$conferenceName} pone a disposición en Open Access el siguiente número. Le invitamos a consultar los contenidos y a visitar nuestro sitio web ({$conferenceUrl}) donde podrá acceder a los trabajos y documentos de interés.
+
+Gracias por seguir interesado en nuestro trabajo,
+
+{$editorialContactSignature}</body>
+		<description>Este e-mail se envía a ponentes registrados	que han solicitado recibir información por e-mail cuando un número se publique en Open Access</description>
+	</email_text>
+</email_texts>

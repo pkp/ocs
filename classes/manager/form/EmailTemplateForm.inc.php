@@ -45,12 +45,10 @@ class EmailTemplateForm extends Form {
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
-
 		$conferenceId = $this->conference->getConferenceId();
-		$schedConfId = 0;
 
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplate =& $emailTemplateDao->getBaseEmailTemplate($this->emailKey, $conferenceId, $schedConfId);
+		$emailTemplate =& $emailTemplateDao->getBaseEmailTemplate($this->emailKey, $conferenceId);
 		$templateMgr->assign('canDisable', $emailTemplate?$emailTemplate->getCanDisable():false);
 		$templateMgr->assign('supportedLocales', $this->conference->getSupportedLocaleNames());
 		$templateMgr->assign('helpTopicId','conference.generalManagement.emails');
@@ -61,24 +59,11 @@ class EmailTemplateForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		$schedConfId = 0;
 		$conferenceId = $this->conference->getConferenceId();
-
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 
-		// If there's already a scheduled conference-level template, grab it. This will grab
-		// the conference-level template if no scheduled conference is specified.
-		$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId, $schedConfId, false);
+		$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId);
 
-		// If not, initialize with the conference template (if one exists). Note
-		// it's necessary to blank the ID field if it exists, since we don't want
-		// to overwrite the conference template with a scheduled conference template.
-		if(!$emailTemplate && $schedConfId !== 0) {
-			$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId, $schedConfId, true);
-			if($emailTemplate) {
-				$emailTemplate->setEmailId(null);
-			}
-		}
 		$thisLocale = Locale::getLocale();
 
 		if ($emailTemplate) {
@@ -110,18 +95,17 @@ class EmailTemplateForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('emailId', 'subject', 'body', 'enabled', 'conferenceId', 'schedConfId', 'emailKey'));
+		$this->readUserVars(array('emailId', 'subject', 'body', 'enabled', 'conferenceId', 'emailKey'));
 	}
 
 	/**
 	 * Save email template.
 	 */
 	function execute() {
-		$schedConfId = 0;
 		$conferenceId = $this->conference->getConferenceId();
 
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId, $schedConfId, false);
+		$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId);
 
 		if (!$emailTemplate) {
 			$emailTemplate = new LocaleEmailTemplate();
@@ -136,8 +120,8 @@ class EmailTemplateForm extends Form {
 			}
 		}
 
-		$emailTemplate->setConferenceId($conferenceId);
-		$emailTemplate->setSchedConfId($schedConfId);
+		$emailTemplate->setAssocType(ASSOC_TYPE_CONFERENCE);
+		$emailTemplate->setAssocId($conferenceId);
 
 		$supportedLocales = $this->conference->getSupportedLocaleNames();
 		if (!empty($supportedLocales)) {

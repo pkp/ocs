@@ -80,8 +80,12 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		$mail->send();
 	}
 
-	function getInstallDataFile() {
-		return ($this->getPluginPath() . DIRECTORY_SEPARATOR . 'data.xml');
+	function getInstallEmailTemplatesFile() {
+		return ($this->getPluginPath() . DIRECTORY_SEPARATOR . 'emailTemplates.xml');
+	}
+
+	function getInstallEmailTemplateDataFile() {
+		return ($this->getPluginPath() . '/locale/{$installedLocale}/emailTemplates.xml');
 	}
 }
 

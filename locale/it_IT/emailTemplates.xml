@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../lib/pkp/dtd/emailTemplateData.dtd">
+<!--
+  * emailTemplateData.xml
+  *
+  * Copyright (c) 2003-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized email templates XML file.
+  *
+  * $Id$
+  -->
+<email_texts locale="it_IT">
+	<email_text key="PASSWORD_RESET_CONFIRM">
+		<subject>Conferma di resettare la password</subject>
+		<body>Abbiamo ricevuto una richiesta di resettare la password per il sito web {$siteTitle}.
+
+Se non hai fatto questa richiesta, ignora per favore questa email e la password non sarà modificata. Se desideri resettare la password, clicca sulla URL in basso.
+
+Resetta la mia password: {$url}
+
+{$principalContactSignature}</body>
+		<description>Questa email viene mandata ad un utente registrato quando questi indica che ha dimenticato la sua password o non riesce a fare il log in. Questa fornisce una URL che potrà seguire per resettare la sua password.</description>
+	</email_text>
+	<email_text key="PASSWORD_RESET">
+		<subject>Resetta la password</subject>
+		<body>La tua password è stata resettata con successo per questo sito web {$siteTitle}. Si prega di ricordare questa username e password dato che è necessaria per tutto il lavoro nel convegno.
+
+La tua username: {$username}
+La tua nuova password: {$password}
+
+{$principalContactSignature}</body>
+		<description>Questa email viene mandata ad un utente registrato quando ha resettato la password seguendo il processo descritto nella email PASSWORD_RESETTA_CONFERMA.</description>
+	</email_text>
+	<email_text key="USER_REGISTER">
+		<subject>Registrazione nuovo utente</subject>
+		<body>Grazie per esserti registrato come utente a {$conferenceName}. Si prega di mantenere la username e password, che sono necessarie per tutto il lavoro in questo convegno.
+
+Username: {$username}
+Password: {$password}
+
+Grazie,
+{$principalContactSignature}</body>
+		<description>Questa email viene mandata agli utenti appena registrati per dar loro il benvenuto nel sistema e fornirgli una nota della loro username e password.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ACK">
+		<subject>Accettazione della submission</subject>
+		<body>{$authorName}:
+
+Grazie per la tua submission, "{$paperTitle}" a {$conferenceName}. Con il sistema online di gestione del convegno che stiamo usando, potrai seguire il suo sviluppo attraverso il processo registrandoti al sito web del convegno:
+
+Submission URL: {$submissionUrl}
+Username: {$authorUsername}
+
+Se hai qualche domanda, si prega di contattarmi. Grazie per aver considerato questo convegno come luogo d'incontro per il tuo lavoro.
+
+{$editorialContactSignature}</body>
+		<description>Questa email, quando abilitata, è automaticamente inviata a un relatore quando completa il procedimento di invio di una relazione o un abstract al convegno. Fornisce informazioni sul percorso della submission attraverso il processo e ringrazia il relatore per la submission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UPLOAD_ACK">
+		<subject>Accettazione del caricamento della submission</subject>
+		<body>{$authorName}:
+
+Grazie per aver caricato la tua presentazione, "{$paperTitle}" alla {$conferenceName}. Con il sistema online di gestione del convegno che stiamo usando, potrai seguire il suo sviluppo attraverso il processo registrandoti al sito web del convegno:
+
+Submission URL: {$submissionUrl}
+Username: {$authorUsername}
+
+Se hai qualche domanda, si prega di contattarmi. Grazie per aver considerato questo convegno come luogo per il tuo lavoro.
+
+{$editorialContactSignature}</body>
+		<description>Questa email, se abilitata, è spedita automaticamente a un relatore quando avrà completato il processo si invio al convegno di una relazione o di un abstract. Fornisce informazioni su come seguire la submission durante il processo e ringrazia il relatore per la submission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_UNSUITABLE">
+		<subject>Submission non idonea</subject>
+		<body>{$authorName}:
+
+Una prima revisione di "{$paperTitle}" ha reso evidente che questa submission non è adatta allo scopo e al focus della {$conferenceName}. Si raccomanda di consultare la descrizione di questo convegno in Riguardo al convegno, come anche qualsiasi precedente convegno programmato, per sapere di più sui lavori che vengono accettati. Potresti anche considerare di inviare questa relazione o abstract ad altri convegni più adatti.
+
+{$editorialContactSignature}</body>
+	</email_text>
+	<email_text key="SUBMISSION_COMMENT">
+		<subject>Commento alla submission</subject>
+		<body>{$name}:
+
+{$commentName} è stato aggiunto un commento alla submission, "{$paperTitle}" nella {$conferenceName}:
+
+{$comments}</body>
+		<description>Questa email notifica le varie persone coinvolte in un processo editoriale di una submission che un nuovo commento è stato inviato.</description>
+	</email_text>
+	<email_text key="SUBMISSION_DECISION_REVIEWERS">
+		<subject>Decisione su "{$paperTitle}"</subject>
+		<body>come uno dei revisori per la submission, "{$paperTitle}," a {$conferenceName}, ti sto mandando le revisioni e la decisione editoriale inviate al relatore di questo pezzo. Grazie ancora per il tuo importante contributo a questo processo.
+ 
+{$editorialContactSignature}
+
+{$comments}</body>
+		<description>Questa email notifica i revisori della submission che il processo di revisione è stato completato. Include le informazioni sulla relazione e la decisione ricevuta, e ringrazia i revisori per i loro contributi.</description>
+	</email_text>
+	<email_text key="DIRECTOR_ASSIGN">
+		<subject>Incarico dell'organizzatore</subject>
+		<body>{$editorialContactName}:
+
+La submission, "{$paperTitle}," a {$conferenceName} ti è stata assegnata per seguirla durante il processo editoriale nel tuo ruolo di organizzatore di sessione.  
+
+Submission URL: {$submissionUrl}
+Username: {$directorUsername}
+
+Grazie,
+{$editorialContactSignature}</body>
+		<description>Questa email notifica un organizzatore di sessione che l'organizzatore gli ha assegnato il compito di supervisionare una submission durante il processo editoriale. Fornisce le informazioni sulla submission e come accedere al sito del convegno.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST">
+		<subject>Richiesta di revisione della relazione</subject>
+		<body>{$reviewerName}:
+
+Spero che vorrai contribuire come eccellente revisore della proposta, "{$paperTitle}," che è stata inviata a ($conferenceName}. L'abstract della submission è inserito in basso, e spero che considererai di impegnarti per noi in questo importante compito.
+
+Per favore registrati al sito web del convegno al {$weekLaterDate} per indicare se ti impegnerai nella revisione o meno, ma anche per accedere alla submission e registrare la revisione e le raccomandazioni. Il sito web è {$conferenceUrl}
+
+La revisione è scaduta {$reviewDueDate}.
+
+Se non hai la username e password per il sito web del convegno, puoi usare questo link per resettare la tua password (che ti sarà poi spedita via email insieme alla tua username). {$passwordResetUrl}
+
+Submission URL: {$submissionReviewUrl}
+
+Grazie per aver considerato questa richiesta.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Abstract
+{$paperAbstract}</body>
+		<description>Questa email dall'organizzatore di sessione a un revisore chiede al revisore di accettare o rifutare il compito di revisionare una submission. Fornisce informazini sulla submission come il titolo e l'abstract, una data di scadenza della revisione, e come accedere alla submission stessa.</description>
+	</email_text>
+	<email_text key="REVIEW_REQUEST_ONECLICK">
+		<subject>Richiesta di revisione di una relazione</subject>
+		<body>{$reviewerName}:
+
+Spero che vorrai contribuire come eccellente revisore della submission, "{$paperTitle}," che è stata inviata a {$conferenceName}.  L'abstract della submission è inserito in basso, e spero che considererai di impegnarti per noi in questo importante compito.
+
+Per favore registrati al sito web del convegno al {$weekLaterDate} per indicare se ti impegnerai nella revisione o meno, ma anche per accedere alla submission e registrare la revisione e le raccomandazioni. 
+
+La revisione è scaduta {$reviewDueDate}.
+
+Submission URL: {$submissionReviewUrl}
+
+Grazie per aver considerato questa richiesta.
+
+{$editorialContactSignature}
+
+
+
+"{$paperTitle}"
+
+Abstract
+{$paperAbstract}</body>
+		<description>Questa email dall'organizzatore della sessione a un revisore richiede che il revisore accetti o declini il compito di revisionare una submission. Fornisce informazioni sulla submission come il titolo e l'abstract, una data di scadenza della revisione, e come accedere alla submission stessa. Questo messaggio è usato quando viene selezionato il processo di revisione standard nel Setup del convegno, fase 2, e viene abilitato l'accesso one-click al revisore.</description>
+	</email_text>
+	<email_text key="REVIEW_CANCEL">
+		<subject>Richiesta per revisione cancellata</subject>
+		<body>{$reviewerName}:
+
+Abbiamo deciso a questo punto di cancellare la nostra richiesta a te di revisionare la submission, "{$paperTitle}," per la {$conferenceName}. Ci scusiamo per qualsiasi inconvenienza questo possa causarti e speriamo di poter chiamarti per poter aiutarci nel processo di revisione di questo convegno in futuro.
+
+Se avessi qualche domanda, per favore contattami.
+
+{$editorialContactSignature}</body>
+		<description>Questa email è inviata dall'organizzatore della sessione a un revisore che ha in lavorazione una revisione di una submission per informarlo che la revisione è stata cancellata.</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM">
+		<subject>Disponibile per la revisione</subject>
+		<body>{$editorialContactName}:
+
+Posso e sono disponibile per revisionare la submission, "{$paperTitle}," per la {$conferenceName}. Grazie per avermi considerato, e penso di completare la revisione alla data di scadenza, {$reviewDueDate}, se non prima.
+
+{$reviewerName}</body>
+		<description>Questa email è inviata da un revisore all'organizzatore di sessione in risposta a una richiesta di revisione per informare l'organizzatore di sessione che la richiesta di revisione è stata accettata e sarà completata alla data specificata.</description>
+	</email_text>
+	<email_text key="REVIEW_CONFIRM_ACK">
+		<subject>Accettazione della revisione in corso</subject>
+		<body>{$reviewerName}:
+
+Grazie per acconsentire a revisionare la submission "{$paperTitle}" per la {$conferenceName} entro il {$reviewDueDate}.
+
+{$editorialContactSignature}</body>
+		<description>Questa email è inviata dall'organizzatore di sessione al revisore per informarlo del suo consenso su una revisione o incoraggiarlo a completare la revisione.</description>
+	</email_text>
+	<email_text key="REVIEW_DECLINE">
+		<subject>Non disponibile per la revisione</subject>
+		<body>{$editorialContactName}:
+
+Sono spiacente che in questo momento non sono disponibile per revisionare la submission, "{$paperTitle}," per la {$conferenceName}. Grazie per avermi considerato, e un'altra volta sentiti libero di contattarmi.
+
+{$reviewerName}</body>
+		<description>Questa email è inviata da un revisore all'organizzatore di sessione in risposta a una richiesta di revisione per informare l'organizzatore di sessione che la richiesta di revisione è stata rifiutata.</description>
+	</email_text>
+	<email_text key="REVIEW_COMPLETE">
+		<subject>Revisione della relazione completata</subject>
+		<body>{$editorialContactName}:
+
+Ora ho completato la mia revisione del "{$paperTitle}" oer la {$conferenceName}, e inviato le mie raccomandazioni, "{$recommendation}."
+
+{$reviewerName}</body>
+		<description>Questa email è inviata da un revisore all'organizzatore di sessione che una revisione è stata completata e i commenti e le raccomandazioni sono state registrate sul sito web del convegno.</description>
+	</email_text>
+	<email_text key="REVIEW_ACK">
+		<subject>Accettazione della revisione della relazione</subject>
+		<body>{$reviewerName}:
+
+Grazie per aver completato la revisione della submission, "{$paperTitle}," per la {$conferenceName}. Apprezziamo il tuo contributo alla qualità del alvoro che produciamo.
+
+{$editorialContactSignature}</body>
+		<description>Questa email è inviata da un organizzatore di sessione per confermare di aver ricevuto una revisione completata e per ringraziare il revisore per il suo contributo.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND">
+		<subject>Promemoria di revisione della submission</subject>
+		<body>{$reviewerName}:
+
+Solo un gentile promemoria sulla nostra richiesta di una tua revisione della submission, "{$paperTitle}," per la {$conferenceName}. Noi speravamo di avere questa revisione entro il {$reviewDueDate}, e saremmo lieti di riceverla non appena la potrai preparare.
+
+Se non possiedi il tuo nome utente e password per questo sito web del convegno, puoi utilizzare questo link per resettare la tua password (che ti verrà poi spedita via email insieme al tuo nome utente). {$passwordResetUrl}
+
+URL della submission: {$submissionReviewUrl}
+
+Per favore conferma la tua disponibilità a completare questo contributo vitale al lavoro del convegno. Rimango in attesa di tue notizie.
+
+{$editorialContactSignature}</body>
+		<description>Questa email è inviata da un organizzatore di sessione per ricordare a un revisore che la sua revisione è scaduta.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_ONECLICK">
+		<subject>Promemoria di revisione della submission</subject>
+		<body>{$reviewerName}:
+
+Solo un gentile promemoria sulla nostra richiesta di una tua revisione della submission, "{$paperTitle}," per la {$conferenceName}. Noi speravamo di avere questa revisione entro il {$reviewDueDate}, e saremmo lieti di riceverla non appena la potrai preparare.
+
+URL della submission: {$submissionReviewUrl}
+
+Per favore conferma la tua disponibilità a completare questo contributo vitale al lavoro del convegno. Rimango in attesa di tue notizie.
+
+{$editorialContactSignature}</body>
+		<description>Questa email è inviata da un organizzatore di sessione per ricordare a un revisore che la sua revisione è scaduta.</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO">
+		<subject>Promemoria di revisione della submission automatico</subject>
+		<body>{$reviewerName}:
+
+Solo un gentile promemoria sulla nostra richiesta di una tua revisione della submission, "{$paperTitle}," per la {$conferenceName}. Noi speravamo di avere questa revisione entro il {$reviewDueDate}, e questa email è stata generata automaticamente e spedita col passare di quella data. Saremmo ancora lieti di riceverla non appena la potrai preparare.
+
+Se non possiedi il tuo nome utente e password per questo sito web del convegno, puoi utilizzare questo link per resettare la tua password (che ti verrà poi spedita via email insieme al tuo nome utente). {$passwordResetUrl}
+
+URL della submission: {$submissionReviewUrl}
+
+Per favore conferma la tua disponibilità a completare questo contributo vitale al lavoro del convegno. Rimango in attesa di tue notizie.
+
+{$editorialContactSignature}</body>
+		<description>Questa email è spedita automaticamente quando la data di scadenza di un revisore è trascorsa (vedi le opzioni di revisione sotto il setup del convegno, Fase 2) e l'accesso one-click del revisore è disabilitato. Gli incarichi in programma devono essere abilitati e configurati (vedi il file di configurazione del sito).</description>
+	</email_text>
+	<email_text key="REVIEW_REMIND_AUTO_ONECLICK">
+		<subject>Promemoria di revisione della submission automatico</subject>
+		<body>{$reviewerName}:
+
+Solo un gentile promemoria sulla nostra richiesta di una tua revisione della submission, "{$paperTitle}," per la {$conferenceName}. Noi speravamo di avere questa revisione entro il {$reviewDueDate},  e questa email è stata generata automaticamente e spedita col passare di quella data. Saremmo ancora lieti di riceverla non appena la potrai preparare.
+
+URL della submission: {$submissionReviewUrl}
+
+Per favore conferma la tua disponibilità a completare questo contributo vitale al lavoro del convegno. Rimango in attesa di tue notizie.
+
+{$editorialContactSignature}</body>
+		<description>Questa email è spedita automaticamente quando la data di scadenza di un revisore è trascorsa (vedi le opzioni di revisione sotto il setup del convegno, Fase 2) e l'accesso one-click del revisore è disabilitato. Gli incarichi in programma devono essere abilitati e configurati (vedi il file di configurazione del sito).</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_ACCEPT">
+		<subject>Decisione editoriale sulla relazione</subject>
+		<body>{$authorName}:
+
+Congratulazioni, la tua submission {$paperTitle} è stata accettata per la presentazione alla {$conferenceTitle} che si terrà il {$conferenceDate} a {$locationCity}. 
+
+Ti ringraziamo e rimaniamo in attesa della tua partecipazione a quest'evento.
+{$editorialContactSignature}</body>
+		<description>Questa email è inviata dall'organizzatore di sessione al relatore della submission per informarlo che è stata raggiunta una decisione riguardo alla submission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_DECLINE">
+		<subject>Decisione editoriale sulla relazione</subject>
+		<body>{$authorName}:
+
+Ora abbiamo completato la revisione della tua submission "{$paperTitle}." Con risultato...
+
+{$editorialContactSignature}</body>
+		<description>Questa email è inviata dall'organizzatore di sessione al relatore della submission per informarlo che è stata raggiunta una decisione riguardo alla submission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_ABSTRACT_REVISE">
+		<subject>Decisione editoriale sulla relazione</subject>
+		<body>{$authorName}:
+
+Dopo un'attenta revisione della tua submission, "{$paperTitle}" sarà considerato per la presentazione alla {$conferenceTitle} se le seguenti revisioni verranno eseguite con successo.
+
+Ti ringraziamo e rimaniamo in attesa della tua partecipazione a quest'evento.
+
+{$editorialContactSignature}</body>
+		<description>Questa email è inviata dall'organizzatore di sessione al relatore della submission per informarlo che è stata raggiunta una decisione riguardo alla submission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_ACCEPT">
+		<subject>Decisione editoriale sulla relazione</subject>
+		<body>{$authorName}:
+
+Congratulazioni, la tua submission {$paperTitle}è stata accettata per la presentazione alla {$conferenceTitle} che si terrà il {$conferenceDate} a {$locationCity}. 
+
+Ti ringraziamo e rimaniamo in attesa della tua partecipazione a quest'evento.
+{$editorialContactSignature}</body>
+		<description>Questa email è inviata dall'organizzatore di sessione al relatore della submission per informarlo che è stata raggiunta una decisione riguardo alla submission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_DECLINE">
+		<subject>Decisione editoriale sulla relazione</subject>
+		<body>{$authorName}:
+
+Ora abbiamo completato la revisione della tua submission "{$paperTitle}." Con risultato...
+
+{$editorialContactSignature}</body>
+		<description>Questa email è inviata dall'organizzatore di sessione al relatore della submission per informarlo che è stata raggiunta una decisione riguardo alla submission.</description>
+	</email_text>
+	<email_text key="SUBMISSION_PAPER_REVISE">
+		<subject>Decisione editoriale sulla relazione</subject>
+		<body>{$authorName}:
+
+Dopo un'attenta revisione della tua submission, "{$paperTitle}" sarà considerato per la presentazione alla {$conferenceTitle} se le seguenti revisioni verranno eseguite con successo.
+
+Ti ringraziamo e rimaniamo in attesa della tua partecipazione a quest'evento.
+
+{$editorialContactSignature}</body>
+		<description>Questa email è inviata dall'organizzatore di sessione al relatore della submission per informarlo che è stata raggiunta una decisione riguardo alla submission.</description>
+	</email_text>
+	<email_text key="REGISTRATION_NOTIFY">
+		<subject>Notifica di registrazione</subject>
+		<body>{$registrantName}:
+
+Ora sei registrato al nostro sistema online di gestione di convegni per la {$conferenceName}, con la seguente registrazione:
+
+{$registrationType}
+
+Per accedere ai contenuti che sono disponibili solo a chi si registra, inserisci semplicemente nel sistema il tuo nome utente, "{$username}".
+
+Una volta che ti sei loggato nel sistema puoi modificare i dettagli del tuo profilo e la password in qualsiasi momento.
+
+Nota per favore che se hai una registrazione istituzionale, gli utenti della tua istituzione non hanno bisogno di loggarsi, visto che le richieste per il contenuto della registrazione saranno automaticamente autentificate dal sistema.
+
+Se avessi qualche domanda, per favore sentiti libero di contattarmi.
+
+{$registrationContactSignature}</body>
+		<description>Questa email notifica un lettore registrato reader l'amministratore ha creato una registrazione per lui. Fornisce l'URL del convegno insieme alle istruzioni per l'accesso.</description>
+	</email_text>
+	<email_text key="OPEN_ACCESS_NOTIFY">
+		<subject>Articolo ora ad accesso aperto</subject>
+		<body>Lettori:
+
+{$conferenceName} ha reso ora disponibile in formato ad accesso aperto il seguente articolo. Vi invitiamo a rivedere qui la tabella dei contenuti e visitare il nostro sito web ({$conferenceUrl}) per controllare le relazioni e gli articoli di interesse.
+
+Grazie per il continuo interesse per il nostro lavoro,
+{$editorialContactSignature}</body>
+		<description>Queata email viene mandata ai lettori registrati che hanno richiesto di ricevere una email di notifica quando un articolo diventa ad accesso aperto.</description>
+	</email_text>
+	<email_text key="USER_VALIDATE">
+		<subject>Valida il tuo account</subject>
+		<body>{$userFullName}
+
+Hai creato un account per {$conferenceName}, ma prima di poter iniziare a usarla, devi validare il tuo account dell'email. Per farlo, segui semplicemente il link sotto:
+
+{$activateUrl}
+
+Grazie,
+{$principalContactSignature}</body>
+		<description>Questa email viene spedita a un utente creato di recente per dargli il benvenuto nel sistema e per fornirgli un record del suo nome utente e password.</description>
+	</email_text>
+</email_texts>
