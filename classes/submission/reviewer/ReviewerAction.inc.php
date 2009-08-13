@@ -255,7 +255,7 @@ class ReviewerAction extends Action {
 	 * @param $fileId int
 	 * @param $revision int If null, then all revisions are deleted.
 	 */
-        function deleteReviewerVersion($reviewId, $fileId, $revision = null) {
+	function deleteReviewerVersion($reviewId, $fileId, $revision = null) {
 		import("file.PaperFileManager");
 
 		$paperId = Request::getUserVar('paperId');
@@ -266,7 +266,7 @@ class ReviewerAction extends Action {
 			$paperFileManager = new PaperFileManager($reviewAssignment->getPaperId());
 			$paperFileManager->deleteFile($fileId, $revision);
 		}
-        }
+	}
 
 	/**
 	 * View reviewer comments.

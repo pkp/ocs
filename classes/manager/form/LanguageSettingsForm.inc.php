@@ -62,7 +62,7 @@ class LanguageSettingsForm extends Form {
 	 */
 	function initData() {
 		$conference =& Request::getConference();
-                foreach (array_keys($this->settings) as $settingName) {
+		foreach (array_keys($this->settings) as $settingName) {
 			$this->_data[$settingName] = $conference->getSetting($settingName);
 		}
 

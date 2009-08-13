@@ -84,7 +84,7 @@ class AuthorAction extends Action {
 			foreach ($authorRevisions as $stage) {
 				foreach ($stage as $revision) {
 					if ($revision->getFileId() == $paperFile->getFileId() &&
-					    $revision->getRevision() == $paperFile->getRevision()) {
+						$revision->getRevision() == $paperFile->getRevision()) {
 						$paperFileManager->deleteFile($paperFile->getFileId(), $paperFile->getRevision());
 					}
 				}

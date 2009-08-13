@@ -54,7 +54,7 @@ class migrate extends CommandLineTool {
 		echo "OCS 1 -> OCS 2 migration tool (requires OCS >= 1.1.5 and OCS >= 2.0.1)\n"
 			. "Use this tool to import data from an OCS 1 system into an OCS 2 system\n\n"
 			. "Usage: {$this->scriptName} [conference_path] [ocs1_path] [options]\n"
-			. "conference_path      Conference path to create (E.g., \"ocs\")\n"
+			. "conference_path   Conference path to create (E.g., \"ocs\")\n"
 			. "                  If path already exists, all content except conference settings\n"
 			. "                  will be imported into the existing conference\n"
 			. "ocs1_path         Complete local filesystem path to the OCS 1 installation\n"

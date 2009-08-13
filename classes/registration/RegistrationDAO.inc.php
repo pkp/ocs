@@ -467,7 +467,7 @@ class RegistrationDAO extends DAO {
 		}
 
 		return false;
-    }
+	}
 
 	/**
 	 * Check whether user with ID has a valid registration for a given scheduled conference.

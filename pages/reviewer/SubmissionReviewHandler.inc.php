@@ -148,7 +148,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * Delete one of the reviewer's annotated versions of a paper.
 	 */
 	function deleteReviewerVersion($args) {		
-                $reviewId = isset($args[0]) ? (int) $args[0] : 0;
+		$reviewId = isset($args[0]) ? (int) $args[0] : 0;
 		$fileId = isset($args[1]) ? (int) $args[1] : 0;
 		$revision = isset($args[2]) ? (int) $args[2] : null;
 

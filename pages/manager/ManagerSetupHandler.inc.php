@@ -179,7 +179,7 @@ class ManagerSetupHandler extends ManagerHandler {
 						$delNavItem = (int) $delNavItem;
 						$navItems = $setupForm->getData('navItems');
 						if (is_array($navItems) && is_array($navItems[$formLocale])) {
-							array_splice($navItems[$formLocale], $delNavItem, 1);           
+							array_splice($navItems[$formLocale], $delNavItem, 1);
 							$setupForm->setData('navItems', $navItems);
 						}
 					}
