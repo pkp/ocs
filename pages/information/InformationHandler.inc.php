@@ -83,7 +83,7 @@ class InformationHandler extends Handler {
 	 * Initialize the template.
 	 */
 	function setupTemplate() {
-		$this->setupTemplate();
+		parent::setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 	}

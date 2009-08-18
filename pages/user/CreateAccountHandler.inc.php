@@ -81,6 +81,7 @@ class CreateAccountHandler extends UserHandler {
 	 */
 	function createAccount() {
 		$this->validate();
+		$this->setupTemplate(true);
 		import('user.form.CreateAccountForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
@@ -111,7 +112,6 @@ class CreateAccountHandler extends UserHandler {
 			else Request::redirect(null, null, 'login');
 
 		} else {
-			$this->setupTemplate(true);
 			$regForm->display();
 		}
 	}

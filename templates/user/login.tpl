@@ -10,7 +10,7 @@
  *}
 {strip}
 {assign var="helpTopicId" value="conference.users.index"}
+{assign var="registerOp" value="account"}
 {assign var="registerLocaleKey" value="user.login.createAccount"}
-{url|assign:"registerUrl" page="user" op="account" source=$source|escape requiresAuthor=$requiresAuthor|escape}
 {include file="core:user/login.tpl"}
 {/strip}
