@@ -102,25 +102,32 @@ class PaperReportDAO extends DAO {
 		$index = 1;
 		while ($paper =& $papers->next()) {
 			$result =& $this->retrieve(
-				'SELECT	pp.first_name AS fname,
-					pp.middle_name AS mname,
-					pp.last_name AS lname,
-					pp.email AS email,
-					pp.affiliation AS affiliation,
-					pp.country AS country,
-					pp.url AS url,
-					pps.setting_value AS biography
-				FROM paper_authors pp
-					LEFT JOIN papers p ON pp.paper_id=p.paper_id
-					LEFT JOIN paper_author_settings pps ON pp.author_id=pps.author_id
-				WHERE
-					p.sched_conf_id = ? AND
-					pp.paper_id = ? AND
-					pps.setting_name = \'biography\'',
-				array($schedConfId, $paper->getPaperId())
+				'SELECT	pa.first_name AS fname,
+					pa.middle_name AS mname,
+					pa.last_name AS lname,
+					pa.email AS email,
+					pa.affiliation AS affiliation,
+					pa.country AS country,
+					pa.url AS url,
+					COALESCE(pasl.setting_value, pas.setting_value) AS biography
+				FROM	paper_authors pa
+					LEFT JOIN papers p ON pa.paper_id=p.paper_id
+					LEFT JOIN paper_author_settings pas ON (pa.author_id=pas.author_id AND pas.setting_name = ? AND pas.locale = ?)
+					LEFT JOIN paper_author_settings pasl ON (pa.author_id=pasl.author_id AND pasl.setting_name = ? AND pasl.locale = ?)
+				WHERE	p.sched_conf_id = ? AND
+					pa.article_id = ?',
+				array(
+					'biography',
+					$primaryLocale,
+					'biography',
+					$locale,
+					$schedConfId,
+					$paper->getPaperId()
+				)
 			);
 			$authorIterator = new DBRowIterator($result);
-			$authorsReturner[] = $authorIterator;
+			$authorsReturner[$paper->getPaperId()] = $authorIterator;
+			unset($authorIterator);
 			$index++;
 			unset($paper);
 		}

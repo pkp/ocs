@@ -68,12 +68,13 @@ class PaperReportPlugin extends ReportPlugin {
 		$maxAuthors = $this->getMaxAuthorCount($authorsIterator);
 		
 		$decisions = array();
-		foreach ($decisionsIteratorsArray as $decisionsIterator){
+		foreach ($decisionsIteratorsArray as $decisionsIterator) {
 			while ($row =& $decisionsIterator->next()) {
 				$decisions[$row['paper_id']] = $row['decision'];
 			}
 		}
 
+		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR));
 		import('classes.paper.Paper');
 		$decisionMessages = array(
 			SUBMISSION_DIRECTOR_DECISION_INVITE => Locale::translate('director.paper.decision.invitePresentation'),
@@ -117,28 +118,28 @@ class PaperReportPlugin extends ReportPlugin {
 
 		$authorIndex = 0;
 		while ($row =& $papersIterator->next()) {
-			$authors = $this->mergeAuthors($authorsIterator[$authorIndex]->toArray());
-			foreach ($columns as $index => $junk) switch ($index) {
-				case 'director_decision':
+			$authors = $this->mergeAuthors($authorsIterator[$row['article_id']]->toArray());
+			foreach ($columns as $index => $junk) {
+				if ($index == 'director_decision') {
 					if (isset($decisions[$row['paper_id']])) {
 						$columns[$index] = $decisionMessages[$decisions[$row['paper_id']]];
 					} else {
 						$columns[$index] = $decisionMessages[null];
 					}
-					break;
-				case 'status':
+				} elseif ($index == 'status') {
 					$columns[$index] = Locale::translate($statusMap[$row[$index]]);
-					break;
-				case 'abstract':
-					$columns[$index] = strip_tags($row[$index]);
-					break;
-				default:
+				} elseif ($index == 'abstract') {
+					$columns[$index] = html_entity_decode(strip_tags($row[$index]));
+				} elseif (strstr($index, 'biography') !== false) {
+					// "Convert" HTML to text for export
+					$columns[$index] = html_entity_decode(strip_tags($authors[$index]));
+				} else {
 					if (isset($row[$index])) {
 						$columns[$index] = $row[$index];
 					} else if (isset($authors[$index])) {
 						$columns[$index] = $authors[$index];
 					} else $columns[$index] = '';
-					break;
+				}
 			}
 			String::fputcsv($fp, $columns);
 			$authorIndex++;
