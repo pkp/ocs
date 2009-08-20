@@ -200,6 +200,7 @@ class Request extends PKPRequest {
 			$roles =& $roleDao->getRolesByUserId($userId, $schedConf->getConferenceId(), $schedConf->getSchedConfId());
 			if(count($roles) == 1) {
 				$role = array_shift($roles);
+				if ($role->getRoleId() == ROLE_ID_READER) Request::redirect(null, 'index');
 				Request::redirect(null, null, $role->getRolePath());
 			} else {
 				Request::redirect(null, null, 'user');
@@ -217,7 +218,7 @@ class Request extends PKPRequest {
 					$schedConf = $schedConfDao->getSchedConf($role->getSchedConfId());
 					$schedConfPath = $schedConf->getPath();
 				}
-
+				if ($role->getRoleId() == ROLE_ID_READER) Request::redirect($confPath, $schedConfPath, 'index');
 				Request::redirect($confPath, $schedConfPath, $role->getRolePath());
 			} else {
 				Request::redirect(null, null,  'user');
