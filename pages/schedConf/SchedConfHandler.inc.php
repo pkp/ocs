@@ -376,8 +376,10 @@ class SchedConfHandler extends Handler {
 		$publishedPaperDao =& DAORegistry::getDAO('PublishedPaperDAO');
 		$publishedPapers =& $publishedPaperDao->getPublishedPapers($schedConf->getSchedConfId(), PAPER_SORT_ORDER_TIME);
 		while ($paper =& $publishedPapers->next()) {
-			$startTime = strtotime($paper->getStartTime());
-			if ($startTime) $itemsByTime[$startTime][] =& $paper;
+			if ($paper->getStartTime()) {
+				$startTime = strtotime($paper->getStartTime());
+				$itemsByTime[$startTime][] =& $paper;
+			}
 			unset($paper);
 		}
 		unset($publishedPapers);
