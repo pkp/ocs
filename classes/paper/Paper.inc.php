@@ -449,7 +449,7 @@ class Paper extends Submission {
 	 * Return boolean indicating if paper RT comments should be enabled.
 	 * Checks both the track and paper comments status. Paper status
 	 * overrides track status.
-	 * @return int 
+	 * @return int
 	 */
 	function getEnableComments() {
 		switch ($this->getCommentsStatus()) {
@@ -480,7 +480,7 @@ class Paper extends Submission {
 		);
 		return $commentsStatusOptions;
 	}
-	
+
 	/**
 	 * Get an array of user IDs associated with this paper
 	 * @param $authors boolean
@@ -491,22 +491,24 @@ class Paper extends Submission {
 	 */
 	function getAssociatedUserIds($authors = true, $reviewers = true, $trackDirectors = true, $directors = true) {
 		$paperId = $this->getPaperId();
-		
+
 		$userIds = array();
 
 		if($authors) {
 			$authorDao =& DAORegistry::getDAO('AuthorDAO');
 			$authors = $authorDao->getAuthorsByPaper($paperId);
 			foreach ($authors as $author) {
-				$userIds[] = array('id' => $author->getId(), 'role' => 'author');
+				$authorId = $author->getId();
+				if ($authorId) $userIds[] = array('id' => $authorId, 'role' => 'author');
 			}
 		}
-			
+
 		if($reviewers) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByPaperId($paperId);
 			foreach ($reviewAssignments as $reviewAssignment) {
-				$userIds[] = array('id' => $reviewAssignment->getReviewerId(), 'role' => 'reviewer');
+				$userId = $reviewAssignment->getReviewerId();
+				if ($userId) $userIds[] = array('id' => $userId, 'role' => 'reviewer');
 				unset($reviewAssignment);
 			}
 		}
@@ -516,7 +518,8 @@ class Paper extends Submission {
 		if($trackDirectors) {
 			$editAssignments =& $editAssignmentDao->getTrackDirectorAssignmentsByPaperId($paperId);
 			while ($editAssignment =& $editAssignments->next()) {
-				$userIds[] = array('id' => $editAssignment->getDirectorId(), 'role' => 'trackDirector');
+				$userId = $editAssignment->getDirectorId();
+				if ($userId) $userIds[] = array('id' => $userId, 'role' => 'trackDirector');
 				unset($editAssignment);
 			}
 		}
@@ -524,13 +527,13 @@ class Paper extends Submission {
 		if($directors) {
 			$editAssignments =& $editAssignmentDao->getDirectorAssignmentsByPaperId($paperId);
 			while ($editAssignment =& $editAssignments->next()) {
-				$userIds[] = array('id' =>  $editAssignment->getDirectorId(), 'role' => 'director');
+				$userId = $editAssignment->getDirectorId();
+				if ($userId) $userIds[] = array('id' =>  $userId, 'role' => 'director');
 			}
-		}	
+		}
 
 		return $userIds;
 	}
-
 }
 
 ?>
