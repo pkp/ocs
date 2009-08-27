@@ -43,6 +43,7 @@
 		
 	<ul id="plugins" class="plain">
 	{foreach from=$plugins item=plugin}
+		{if !$plugin->getHideManagement()}
 		{if $plugin->getCategory() != $category}
 			{assign var=category value=$plugin->getCategory()}
 			<div id="{$category|escape}">
@@ -67,6 +68,7 @@
 			<a class="action" href="{url op="managePlugins" path="delete"|to_array:$pluginInstallName}">{translate key="manager.plugins.delete"}</a>&nbsp;
 		{/if}
 		</p></li>
+		{/if}{* !$plugin->getHideManagement() *}
 	{/foreach}
 	</ul>
 {/if}
