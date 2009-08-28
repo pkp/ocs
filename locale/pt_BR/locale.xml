@@ -8,11 +8,13 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the pt_BR (Portuguese Brazilian) locale.
+  * Translation and updates by IBICT;
+  * some updates by bruno.beghelli@gmail.com
   *
   * $Id$
   -->
 
-<locale name="pt_BR" full_name="Português do Brasil">
+<locale name="pt_BR" full_name="Português (Brasil)">
 	<!--
 	 * This file is organized into several major sections, separated
 	 * by comments like this one. These sections are called:
@@ -371,7 +373,6 @@
 	<message key="submission.rejected">Rejeitado</message>
 	<message key="submission.acceptance">Concordou em realizar avaliação</message>
 	<message key="submission.due">Data de Conclusão</message>
-	<message key="submission.complete">Concluído</message>
 	<message key="submission.complete.description">Incluir submissão na lista de Apresentações aceitas</message>
 	<message key="submission.acknowledge">Agradecimento</message>
 	<message key="submission.done">Concluir</message>
@@ -853,7 +854,7 @@ e deve começar e terminar com um caractere alfanumérico.</message>
 	<message key="manager.websiteManagement">Administração da Área Web</message>
 	<message key="manager.currentConferences">Conferências Atuais</message>
 	<message key="manager.emails">E-mails Padrão</message>
-	<message key="manager.statistics">Estatísticas &amp; Relatórios</message>
+	<message key="manager.statistics"><![CDATA[Estatísticas & Relatórios]]></message>
 	<message key="manager.readingTools">Ferramentas de Leitura</message>
 	<message key="manager.people">Usuários</message>
 	<message key="manager.filesBrowser">Navegador de Documentos</message>
@@ -865,7 +866,7 @@ e deve começar e terminar com um caractere alfanumérico.</message>
 	<message key="manager.users">Usuários</message>
 	<message key="manager.roles">Papéis</message>
 	<message key="manager.registrationTypes">Tipos de Avaliação</message>
-	<message key="manager.registration">Inscrições</message>
+	<message key="manager.registration">Inscrição</message>
 	<message key="manager.registrationPolicies">Políticas de Inscrição</message>
 	<message key="manager.announcements">Avisos</message>
 	<message key="manager.announcementTypes">Tipos de Aviso</message>
@@ -1451,13 +1452,11 @@ Pode ser incluído o motivo para desabilitar a conta.</message>
 	<message key="manager.registrationTypes.access.both">Online e Presencial</message>
 
 	<!-- Registration Management -->
-	<message key="manager.registration">Registration</message>
 	<message key="manager.registration.createTitle">Criar</message>
 	<message key="manager.registration.create">Criar nova Inscrição</message>
 	<message key="manager.registration.select">Cadastrar Inscrito</message>
 	<message key="manager.registration.selectRegistrant">Escolher Inscrito</message>
-	<message key="manager.registration.selectRegistrant.desc">Registration access privileges are automatically granted to the conference's Conference Directors, Directors, and Track Directors.
-Gerentes Gerais, Diretores e Diretores de Modalidades terão acesso automático ao conteúdo para Inscritos.</message>
+	<message key="manager.registration.selectRegistrant.desc">Gerentes Gerais, Diretores e Diretores de Modalidades terão acesso automático ao conteúdo para Inscritos.</message>
 	<message key="manager.registration.enroll">Cadastrar</message>
 	<message key="manager.registration.confirmDelete">Deseja realmente excluir esta inscrição?</message>
 	<message key="manager.registration.noneCreated">Nenuma inscrição criada.</message>
@@ -1703,7 +1702,7 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<message key="presenter.submit.step3">Passo 3. Transferência do Manuscrito</message>
 	<message key="presenter.submit.step4">Passo 4. Transferência de Documentos Suplementares</message>
 	<message key="presenter.submit.step4a">Passo 4a. Incluir Documento Suplementar</message>
-	<message key="presenter.submit.step5">Passo 5. Confirming the Submission</message>
+	<message key="presenter.submit.step5">Passo 5. Confirmação da Submissão</message>
 	<message key="presenter.submit.step5SkipSupp">Passo 4. Confirmação da Submissão</message>
 	<message key="presenter.submit.start">1. Início</message>
 	<message key="presenter.submit.metadata">2. Inclusão de Metadados</message>
@@ -1997,7 +1996,7 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 	<message key="search.operator.or">OU</message>
 
 	<!-- Interstitial page for PDFs -->
-	<message key="paper.pdf.title">Portable Document Format (PDF)</message>
+	<message key="paper.pdf.title">Formato de Documento Portátil (PDF)</message>
 	<message key="paper.pdf.note"><![CDATA[O documento PDF escolhido deverá abrir no navegador, caso o plug-in de leitura de PDF tenha sido instalado (por exemplo, uma versão atualizada do <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>). Também é possível baixar o documento para o computador, onde pode ser lido através de um leitor de PDF. Para maiores informações sobre como imprimir, salvar e trabalhar com PDFs, o portal Highwire Press possui um <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">Frequently Asked Questions about PDFs</a>. Outro endereço para ajuda é <a href="http://www.baciotti.com.br/html/downloads_pdf_livre_faq.asp">portal Baciotti</a> em português.<br /><br />Caso o documento não seja baixado automaticamente, <a href="{$url}">clique aqui</a>.]]></message>
 
 	<!-- Interstitial page for non-PDF non-HTML galleys -->
@@ -2250,8 +2249,8 @@ O servidor atualmente tem suporte a mbstring: <strong>{$supportsMBString}</stron
 	<message key="log.review.reviewDeclined">{$reviewerName} não está disponível para avaliar o estágio {$stage} de avaliação da submissão {$paperId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} está disponível para o estágio {$stage} de avaliação da submissão {$paperId}.</message>
 	<message key="log.review.reviewAcceptedByProxy">{$userName} aceitou indicou disponibilidade para o estágio {$stage} da avaliação da submissão {$paperId} em nome de {$reviewerName}.</message>
-	<message key="log.review.reviewFileByProxy">The Director, {$userName}, has uploaded a review file for stage {$stage} of submission {$paperId} on behalf of the reviewer, {$reviewerName}.</message>
-	<message key="log.review.reviewerFile">Versão do avaliador envidada.</message>
+	<message key="log.review.reviewFileByProxy">O diretor, {$userName}, enviou um arquivo de avaliação para a fase {$stage} de submissão {$paperId} em nome do avaliador, {$reviewerName}.</message>
+	<message key="log.review.reviewerFile">Versão do avaliador enviada.</message>
 	<message key="log.director.decision">A decisão do diretor ({$decision}) sobre o documento {$paperId} foi registrada por {$directorName}.</message>
 	<message key="log.director.publish">Documento publicado</message>
 
@@ -2700,4 +2699,74 @@ Aguarde alguns minutos antes de enviar outra mensagem.</message>
 	<message key="icon.font_medium.alt">Médio</message>
 	<message key="icon.font_large.alt">Maior</message>
 	<message key="common.homePageHeaderLogo.altText">Logo de cabeçalho da página inicial</message>
+	<message key="common.copy">Copiar</message>
+	<message key="common.preview">Pré-visualizar</message>
+	<message key="common.activate">Ativar</message>
+	<message key="common.deactivate">Desativar</message>
+	<message key="schedConf.registration.failed">Seu registro falhou. Por favor tente novamente.</message>
+	<message key="schedConf.registration.options">Opções de Registro</message>
+	<message key="admin.mergeUsers">Unir Usuários</message>
+	<message key="admin.mergeUsers.mergeUser">Unir Usuário</message>
+	<message key="admin.mergeUsers.into.description">Selecione um usuário para receber os atributos (apresentação, edição, tarefa, etc.) do usuário anterior.</message>
+	<message key="schedConf.registration.optionCloses">(Fecha {$closingDate})</message>
+	<message key="schedConf.registration.optionClosed">(Inscrições Fechadas em {$closingDate})</message>
+	<message key="schedConf.registration.optionFuture">(Inscrições Abertas em {$openingDate})</message>
+	<message key="admin.mergeUsers.from.description">Selecione um usuário para unir à outra conta de usuário (ex., quando alguém tem duas contas de usuário). A primeira conta selecionada será deletada e suas submissões, tarefas, etc. serão transferidas para a segunda conta.</message>
+	<message key="admin.mergeUsers.allUsers">Todos Usuários Inscritos</message>
+	<message key="admin.mergeUsers.confirm">Você tem certeza que deseja unir a conta com o nome de usuário "{$oldUsername}" à conta com o nome de usuário "{$newUsername}"? A conta com o nome de usuário "{$oldUsername}" não existirá mais depois disso. Esta ação não é reversível.</message>
+	<message key="admin.mergerUsers.noneEnrolled">Sem Usuários Inscritos</message>
+	<message key="manager.registrationOptions">OPÇÕES DE INSCRIÇÃO</message>
+	<message key="manager.schedConfSetup.details.sponsors.noteDescription">Este texto vai aparecer abaixo do título das "Agências de Fomento" e acima da lista de nomes das Agências de Fomento. Poderá ser acessado através do link "Comitê Organizador" que se encontra na página "Sobre a Conferência".</message>
+	<message key="manager.schedConfSetup.details.contributors.noteDescription">Este texto irá aparecer abaixo do título "Fontes de Apoio" e acima da lista de nomes das fontes de apoio. Poderá ser acessado através do link "Comitê Organizador" que se encontra na página "Sobre a Conferência".</message>
+	<message key="manager.timeline.scheduleEvents">Agenda de Eventos</message>
+	<message key="manager.timeline.include">Mostrar no Cronograma da Conferência</message>
+	<message key="manager.timeline.postDate">Data de Postagem</message>
+	<message key="manager.timeline.postOverview">Visão Geral (incluído em Informações sobre a Conferência)</message>
+	<message key="manager.timeline.postCFP">Chamada para submissões (incluído em Informações sobre a Conferência)</message>
+	<message key="manager.timeline.postProposalSubmission">Submissão (incluído em Informações sobre a Conferência)</message>
+	<message key="manager.timeline.postTrackPolicies">Políticas das Modalidades (incluído em Informações sobre a Conferência)</message>
+	<message key="manager.timeline.postProgram">Programa (incluído em Informações sobre a Conferência)</message>
+	<message key="manager.timeline.postAccommodation">Acomodações (incluído em Informações sobre a Conferência)</message>
+	<message key="manager.timeline.postSupporters">Organização e Parceiros (incluído em Informações sobre a Conferência)</message>
+	<message key="manager.timeline.postRegistration">Inscrições (incluído em Informações sobre a Conferência)</message>
+	<message key="manager.registrationOptions.description">Opções de Inscrição são itens adicionais que podem ser incluídos a uma inscrição, como vale alimentação. A atribuição de preço para as Opções de Inscrição é definida como parte de cada Tipo de Inscrição.</message>
+	<message key="manager.registrationOptions.costs">Custo da Opção de Inscrição</message>
+	<message key="manager.registrationOptions.createTitle">Criar</message>
+	<message key="manager.registrationOptions.create">Criar Nova Opção de Inscrição</message>
+	<message key="manager.registrationOptions.confirmDelete">Atenção! Ao deletar esta opção todas as inscrições que a utilizam serão afetadas. Você tem certeza que deseja continuar e deletar esta opção de inscrição?</message>
+	<message key="manager.registrationOptions.noneCreated">Nenhuma opção de inscrição foi criada.</message>
+	<message key="manager.registrationOptions.name">Opção de Inscrição</message>
+	<message key="manager.registrationOptions.cost">Custo</message>
+	<message key="manager.registrationOptions.costSetInRegistrationType">O custo de todas as opções de inscrição deve ser definido unicamente em cada tipo de inscrição.</message>
+	<message key="manager.registrationOptions.currency">Moeda</message>
+	<message key="manager.registrationOptions.openDate">Disponível de</message>
+	<message key="manager.registrationOptions.closeDate">Disponível até</message>
+	<message key="manager.registrationOptions.registrationOptionCreatedSuccessfully">Opção de inscrição criada com sucesso.</message>
+	<message key="manager.registrationOptions.editTitle">Editar</message>
+	<message key="manager.registrationOptions.edit">Editar Opção de Inscrição</message>
+	<message key="manager.registrationOptions.form.optionNameRequired">É necessário um nome para a opção de inscrição.</message>
+	<message key="manager.registrationOptions.form.optionNameExists">Uma opção de inscrição com este nome já existe.</message>
+	<message key="manager.registrationOptions.form.costRequired">É necessário inserir um custo.</message>
+	<message key="manager.registrationOptions.form.costNumeric">O custo deve ser um valor numérico positivo.</message>
+	<message key="manager.registrationOptions.form.currencyRequired">É necessário definir uma moeda.</message>
+	<message key="manager.registrationOptions.form.currencyValid">Favor selecionar uma moeda válida.</message>
+	<message key="manager.registrationOptions.form.membershipValid">Favor utilize a caixa de seleção dada.</message>
+	<message key="manager.registrationOptions.form.notPublicValid">Favor utilize a caixa de seleção dada.</message>
+	<message key="manager.registrationOptions.form.optionName">Nome</message>
+	<message key="manager.registrationOptions.form.description">Descrição</message>
+	<message key="manager.registrationOptions.form.cost">Custo</message>
+	<message key="manager.registrationOptions.form.costInstructions">Entre um valor numérico (ex., 40 ou 40.00). Não inclua outro tipo de texto (ex., $).</message>
+	<message key="manager.registrationOptions.form.code">Código</message>
+	<message key="manager.registrationOptions.form.code.instructions">Entre um código (ex., 1234) se a inscrição nesta opção será restrita àqueles que utilizarem o código ao se registrarem (como convidados que podem se registrar sem custo).</message>
+	<message key="manager.registrationOptions.form.currency">Moeda</message>
+	<message key="manager.registrationOptions.form.openDate">Abrir para Inscrições</message>
+	<message key="manager.registrationOptions.form.closeDate">Fechar para Inscrições</message>
+	<message key="manager.registrationOptions.form.notPublic">Não disponibilizar esta opção de inscrição publicamente.</message>
+	<message key="manager.registrationOptions.form.saveAndCreateAnotherOption">Salvar e Criar Outro</message>
+	<message key="manager.registrationOptions.form.closeBeforeOpen">A data de abertura para esta opção de inscrição deve ser anterior à data de fechamento.</message>
+	<message key="manager.registration.form.notifyPaymentEmail">Enviar um email ao usuário de confirmação de recebimento do pagamento.</message>
+	<message key="director.notifyUsers.allPresenters">Todos os autores ({$count} usuários)</message>
+	<message key="presenter.submit.supplementaryFilesAbstractOnly">3. Enviar Documentos Suplementares</message>
+	<message key="presenter.submissions.queuedAbstractReviewRevisions">Resumo em avaliação: Revisões Necessárias</message>
+	<message key="presenter.submissions.queuedPaperReviewRevisions">Documento em avaliação: Revisões Necessárias</message>
 </locale>
