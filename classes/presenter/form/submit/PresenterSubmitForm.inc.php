@@ -89,7 +89,7 @@ class PresenterSubmitForm extends Form {
 		parent::display();
 	}
 
-	function confirmSubmission(&$paper, &$user, &$schedConf, &$conference, $mailTemplate = 'SUBMISSION_ACK', $trackDirectors = array()) {
+	function confirmSubmission(&$paper, &$user, &$schedConf, &$conference, $mailTemplate = 'SUBMISSION_ACK') {
 		// Update search index
 		import('search.PaperSearchIndex');
 		PaperSearchIndex::indexPaperMetadata($paper);
@@ -113,8 +113,11 @@ class PresenterSubmitForm extends Form {
 				if (!empty($copyAddress)) $mail->addBcc($copyAddress);
 			}
 
-			foreach ($trackDirectors as $trackDirector) {
-				$mail->addBcc($trackDirector->getEmail(), $trackDirector->getFullName());
+			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+			$editAssignments =& $editAssignmentDao->getEditAssignmentsByPaperId($paper->getPaperId());
+			while ($editAssignment =& $editAssignments->next()) {
+				$mail->addBcc($editAssignment->getDirectorEmail(), $editAssignment->getDirectorFullName());
+				unset($editAssignment);
 			}
 
 			$mail->assignParams(array(
