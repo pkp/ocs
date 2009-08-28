@@ -8,6 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the pt_BR (Portuguese Brazilian) locale.
+  * Translation and updates by IBICT;
+  * some updates by bruno.beghelli@gmail.com
   *
   * $Id$
   -->
@@ -226,7 +228,7 @@
 	<message key="schedConf.program">Programa</message>
 	<message key="schedConf.cfp">Chamada para submissões</message>
 	<message key="schedConf.discussion">Discussões</message>
-	<message key="schedConf.registration">Inscrições</message>
+	<message key="schedConf.registration">Inscrição</message>
 	<message key="schedConf.supporters">Organização e Parceiros</message>
 	<message key="schedConf.timeline">Cronograma</message>
 	<message key="schedConf.schedule">Agenda da Conferência</message>
@@ -677,7 +679,7 @@ com sinal positivo (+) indicando avaliação em andamento.]]></message>
 </ul>]]></message>
 
 	<!-- Interstitial page for PDFs -->
-	<message key="paper.pdf.title">Portable Document Format (PDF)</message>
+	<message key="paper.pdf.title">Formato de Documento Portátil (PDF)</message>
 	<message key="paper.pdf.note"><![CDATA[O documento PDF escolhido deverá abrir no navegador, caso o plug-in de leitura de PDF tenha sido instalado (por exemplo, uma versão atualizada do <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>). Também é possível baixar o documento para o computador, onde pode ser lido através de um leitor de PDF. Para maiores informações sobre como imprimir, salvar e trabalhar com PDFs, o portal Highwire Press possui um <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">Frequently Asked Questions about PDFs</a>. Outro endereço para ajuda é <a href="http://www.baciotti.com.br/html/downloads_pdf_livre_faq.asp">portal Baciotti</a> em português.<br /><br />Caso o documento não seja baixado automaticamente, <a href="{$url}">clique aqui</a>.]]></message>
 
 	<!-- Interstitial page for non-PDF non-HTML galleys -->
@@ -845,8 +847,8 @@ O servidor atualmente tem suporte a mbstring: <strong>{$supportsMBString}</stron
 	<message key="log.review.reviewDeclined">{$reviewerName} não está disponível para avaliar o estágio {$stage} de avaliação da submissão {$paperId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} está disponível para o estágio {$stage} de avaliação da submissão {$paperId}.</message>
 	<message key="log.review.reviewAcceptedByProxy">{$userName} aceitou indicou disponibilidade para o estágio {$stage} da avaliação da submissão {$paperId} em nome de {$reviewerName}.</message>
-	<message key="log.review.reviewFileByProxy">The Director, {$userName}, has uploaded a review file for stage {$stage} of submission {$paperId} on behalf of the reviewer, {$reviewerName}.</message>
-	<message key="log.review.reviewerFile">Versão do avaliador envidada.</message>
+	<message key="log.review.reviewFileByProxy">O diretor, {$userName}, enviou um arquivo de avaliação para a fase {$stage} de submissão {$paperId} em nome do avaliador, {$reviewerName}.</message>
+	<message key="log.review.reviewerFile">Versão do avaliador enviada.</message>
 	<message key="log.director.decision">A decisão do diretor ({$decision}) sobre o documento {$paperId} foi registrada por {$directorName}.</message>
 	<message key="log.director.publish">Documento publicado</message>
 
