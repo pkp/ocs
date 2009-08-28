@@ -209,13 +209,13 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 				$paper->setDateSubmitted(Core::getCurrentDate());
 				$paper->stampStatusModified();
 				$paper->setCurrentStage(REVIEW_STAGE_ABSTRACT);
-				$trackDirectors = $this->assignDirectors($paper);
+				$this->assignDirectors($paper);
 
 				if ($schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
 					$paper->setSubmissionProgress($this->step + 2);
 				} else {
 					$paper->setSubmissionProgress(0);
-					$this->confirmSubmission($paper, $user, $schedConf, $conference, 'SUBMISSION_ACK', $trackDirectors);
+					$this->confirmSubmission($paper, $user, $schedConf, $conference, 'SUBMISSION_ACK');
 				}
 			}
 		}
