@@ -48,9 +48,9 @@
 	<message key="manager.reviewForms.completed">Completed</message>
 	<message key="manager.reviewForms.inReview">In Review</message>
 	<message key="manager.reviewForms.confirmDeleteUnpublished">Are you sure you wish to delete this unpublished review form?</message>
-	
-	<message key="manager.reviewForms.form.titleRequired">A title is required for the review form.</message>	
-	
+
+	<message key="manager.reviewForms.form.titleRequired">A title is required for the review form.</message>
+
 	<message key="manager.reviewFormElements">Form Items</message>
 	<message key="manager.reviewFormElements.create">Create New Item</message>
 	<message key="manager.reviewFormElements.edit">Edit Form Item</message>
@@ -65,8 +65,8 @@
 	<message key="manager.reviewFormElements.chooseType">Choose item type</message>
 	<message key="manager.reviewFormElement.changeType">Warning: Changing the review form element type from a multiple-choice type to an open-ended type will result in the deletion of the multiple choice options.</message>
 
-	<message key="manager.reviewFormElements.form.questionRequired">A question is required for the form item.</message>	
-	<message key="manager.reviewFormElements.form.elementTypeRequired">An item type is required for the form item.</message>	
+	<message key="manager.reviewFormElements.form.questionRequired">A question is required for the form item.</message>
+	<message key="manager.reviewFormElements.form.elementTypeRequired">An item type is required for the form item.</message>
 
 	<message key="manager.reviewFormElements.smalltextfield">Single word text box</message>
 	<message key="manager.reviewFormElements.textfield">Single line text box</message>
@@ -79,14 +79,14 @@
 	<message key="submission.reviewForm">Review Form</message>
 	<message key="submission.reviewFormResponse">Review Form Response</message>
 
-	<message key="editor.paper.reviewForms">Review Forms</message>	
-	<message key="editor.paper.selectReviewForm">Select Review Form</message>	
-	<message key="editor.paper.clearReviewForm">Clear Review Form</message>	
-	<message key="editor.paper.confirmChangeReviewForm">Warning: Changing the review form will affect any answers reviewers have made using this form. Are you sure you wish to continue?</message>	
+	<message key="editor.paper.reviewForms">Review Forms</message>
+	<message key="editor.paper.selectReviewForm">Select Review Form</message>
+	<message key="editor.paper.clearReviewForm">Clear Review Form</message>
+	<message key="editor.paper.confirmChangeReviewForm">Warning: Changing the review form will affect any answers reviewers have made using this form. Are you sure you wish to continue?</message>
 
-	<message key="reviewer.paper.enterReviewForm">Click on icon to fill in the review form.</message>	
-	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Please fill in required fields.</message>	
-	
+	<message key="reviewer.paper.enterReviewForm">Click on icon to fill in the review form.</message>
+	<message key="reviewer.paper.reviewFormResponse.form.responseRequired">Please fill in required fields.</message>
+
 	<!-- review forms end -->
 
 	<!--
@@ -116,14 +116,6 @@
 	<message key="common.pageHeader.altText">Page Header Image</message>
 	<message key="common.homePageHeader.altText">Homepage Header Image</message>
 	<message key="common.conferenceHomepageImage.altText">Conference Homepage Image</message>
-
-	<!-- Common Form Messages -->
-
-	<!-- Common Email Messages -->
-
-	<!-- Common Localization Terms -->
-
-	<!-- Common Error Messages -->
 
 	<!-- Navigation -->
 	<message key="navigation.conferenceHelp">Conference Help</message>
@@ -240,10 +232,6 @@
 	<message key="submission.abstract">Abstract</message>
 	<message key="submission.paper">Paper</message>
 
-	<!-- Submission list search engine -->
-
-	<!-- Submission Notes -->
-
 	<!-- Common Conference Terms -->
 	<message key="conference.conferences">Conferences</message>
 	<message key="conference.conference">Conference</message>
@@ -297,7 +285,7 @@
 	<message key="schedConf.registration.typeFuture">(Registration Opening {$openingDate})</message>
 	<message key="schedConf.registration.optionCloses">(Closes {$closingDate})</message>
 	<message key="schedConf.registration.optionClosed">(Registration Closed {$closingDate})</message>
-	<message key="schedConf.registration.optionFuture">(Registration Opening {$openingDate})</message>	
+	<message key="schedConf.registration.optionFuture">(Registration Opening {$openingDate})</message>
 	<message key="schedConf.registration.feeCode">Fee Code</message>
 	<message key="schedConf.registration.feeCode.description">If you were given a secret code for registration, please enter it here and make sure you've chosen the correct registration type above. Otherwise, leave the Fee Code field blank.</message>
 	<message key="schedConf.registration.specialRequests">Special Requests</message>
@@ -338,7 +326,7 @@
 	 * LOG - This section contains entries related to log entries.
 	 *
 	-->
-	
+
 	<message key="event.logType.paper">Paper</message>
 	<message key="event.logType.author">Author</message>
 	<message key="event.logType.director">Director</message>
@@ -347,16 +335,16 @@
 
 	<message key="event.eventLog">Event Log</message>
 	<message key="event.logLevel">Level</message>
-	
+
 	<message key="event.logLevel.info">Info</message>
 	<message key="event.logLevel.notice">Notice</message>
 	<message key="event.logLevel.warning">Warning</message>
 	<message key="event.logLevel.error">Error</message>
 
 	<message key="event.general.defaultEvent">Submission event</message>
-	
+
 	<!-- Submission events -->
-	
+
 	<message key="submission.event.general.abstractSubmitted">Abstract submitted</message>
 	<message key="submission.event.general.presentationSubmitted">Presentation submitted</message>
 	<message key="submission.event.general.paperPublished">Paper published</message>
@@ -405,10 +393,6 @@
 <br /><br />
 Note that the OAI interface can be disabled for this site by editing the OCS system configuration. Future versions of OCS will allow the OAI interface to be enabled or disabled for individual conferences within the site.]]></message>
 
-
-
-	<!-- Languages -->
-
 	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Specifying a default authentication source other than OCS has the following effects:</p>
 <ul>
 	<li>If a user attempts to create a new account with this site with a username that exists on the authentication source (but not in the OCS database), the registration attempt is only allowed if the supplied password is valid for that user account.</li>
@@ -421,17 +405,7 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
 <p>The system could not automatically overwrite the configuration file. To apply your configuration changes you must open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
 
-
-	<!-- Registration Management -->
-
-	<!-- Scheduler -->
-
-
-
-
-
 	<!-- Payment Handling -->
-
 	<message key="payment.type.conferenceRegistration">Conference Registration; {$schedConfTitle}; {$registrationTypeName}</message>
 
 	<!-- Conference Event Log -->
@@ -443,110 +417,29 @@ Note that the OAI interface can be disabled for this site by editing the OCS sys
 	<message key="conference.history.clearLog">Clear Log</message>
 	<message key="conference.history.noLogEntries">No log entries.</message>
 
-	<!-- Scheduled Conference Management -->
-
-	<!-- Program settings -->
-
-	<!-- Accommodation settings -->
-
-	<!-- Conference Management -->
-
-	<!-- Statistics & Reports -->
-
-
-	<!-- Plugin Management -->
-
 	<!-- General plugin information -->
 	<message key="plugins.categories.generic.description">Generic plugins are used to extend Open Conference Systems in a variety of ways that are not supported by the other plugin categories.</message>
 	<message key="plugins.categories.auth.description">Authorization Plugins allow Open Conference Systems to delegate user authentication tasks to other systems, such as LDAP servers.</message>
-
-
-
-
 	<message key="plugins.categories.citationFormats.description">Citation format plugins provide users with various formats in which to access paper citations.</message>
- 
- 
- 
- 
-	<!-- Files Browser -->
 
-	<!--
-	     ***
-	     *** Generic setup locale keys
-	     ***
-	-->
+	<!-- Leftovers -->
 	<message key="manager.setup.finalStepSavedNotes"><![CDATA[
 			<p>Almost Done!</p>
 			<p>A conference has now been set up, which may entail a single scheduled conference, an annual conference, or a series of scheduled conferences, all of which can be managed from this conference site. In order to schedule a specific instance of this conference, go to <a href="{$schedConfSetupUrl}">Scheduled Conferences</a>. You may access this page at any time via the Conference Manager's homepage.</p>
 			<p>You can return to these six pages at any time by following the links to "User Home > Conference Manager > Setup".</p>
 			<p>You can manage scheduled conferences through "User Home > Conference Manager > Setup"</p>
 	]]></message>
+	<message key="manager.setup.citations">Allow authors to separately provide a formatted list of references (citations) as part of their submission.</message>
 
-
-
-	<!--
-	     ***
-	     *** Website Management (a.k.a. Conference Setup)
-	     ***
-	-->
-
-
-
-
-
-
-	<!-- Conference setup page 1 -->
-
-
-	<!-- Conference setup page 2 -->
-
-	<!-- Conference setup page 3 -->
-
-	<!-- Conference setup page 4 -->
-
-	<!-- Conference setup page 5 -->
-
-	<!-- Conference setup page 6 -->
 	<message key="manager.setup.indexing.registerConferenceForIndexing.description"><![CDATA[To have the contents of this conference indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your conference's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this conference, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
 Note that if your site administrator has already registered this site with the PKP Harvester, your conference will be indexed automatically and you do not need to register your conference.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
 
-	<!-- 
-	     ***
-	     *** Scheduled Conference Setup
-	     ***
-	-->
-
-
-
-
-	<!-- Scheduled Conference Setup Step 1 -->
-
 	<!-- Scheduled Conference Setup Step 2 -->
 	<message key="manager.schedConfSetup.submissions.subjectClassificationDescription"><![CDATA[[Conference will use a subject classification system available on the web.<br />
 Title of classification system]]></message>
-
-	<!-- Scheduled Conference Setup Step 3 -->
-
-	<!-- Languages -->
-
-
-	<!-- Track Management -->
-
-	<!-- Timeline management -->
-
-	
-
-
-	
-
-	<!-- Import/Export -->
-
-	<!-- Groups / Organizing Team -->
-
-
 
 	<!-- People Management -->
 	<message key="manager.people.confirmDisable">Disable this user? This will prevent the user from logging into the system.
@@ -560,32 +453,12 @@ You may optionally provide the user with a reason for disabling their account.</
 	This task must be performed by a site administrator.
 	]]></message>
 
-
-
-	<!-- Email Management -->
-
-	<!-- Registration Policy Management -->
-
-	<!-- Registration Type Management -->
-
-	<!-- Registration Management -->
-
-	<!-- Announcement Type Management -->
-
-	<!-- Announcements Management -->
-
-	<!-- Director -->
-
-	<!-- Navigation sidebar menu -->
-
 	<!-- Used by director in submission review / editing -->
 	<message key="director.paper.selectReviewerNotes"><![CDATA[Name links to reviewer's profile.<br/>
 Ratings is out of 5 (Excellent).<br/>
 Weeks refers to average period of time to complete a review.<br/>
 Latest is date of most recently accepted review.<br/>
 Active is how many reviews are currently being considered or underway.]]></message>
-
-
 
 	<!-- Track Director -->
 	<message key="trackDirector.author.confirmRenotify">Notifying this author again will restart their assignment. Are you sure you wish to do this?</message>
@@ -650,14 +523,6 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="reviewer.paper.confirmDecision">Once you have recorded a decision you will no longer be able to make changes to this review. Are you sure you wish to continue?</message>
 	<message key="reviewer.paper.ensuringBlindReview">Ensuring a Blind Review</message>
 
-	<!-- Presenter -->
-
-
-	<!-- Paper Submission Step 1 -->
-
-
-	<!-- Paper Submission Step 2 -->
-
 	<!-- Paper Submission Step 3 -->
 	<message key="author.submit.uploadInstructions"><![CDATA[
 <p>To upload a paper to this conference, complete the following steps.</p>
@@ -670,26 +535,8 @@ Active is how many reviews are currently being considered or underway.]]></messa
 <li>Once the submission is uploaded, click Save and Continue at the bottom of this page.</li>
 </ol>]]></message>
 
-	<!-- Paper Submission Step 4 -->
-
-
-	<!-- Paper Submission Step 4a: Supplementary Files -->
-
 	<!-- Paper Submission: upload file -->
 	<message key="submission.submissionFiles">Submission Files</message>
-
-	<!-- Paper Submission Step 5 -->
-
-	<!-- Used in submission review / editing -->
-
-	<!-- Submission Tracking - Layout Specific -->
-
-
-	<!-- Submission History -->
-
-	<!-- Submission Event Log -->
-
-	<!-- Submission Email Log -->
 
 	<!-- Submission Comments -->
 	<message key="submission.comments.directorAuthorCorrespondence">Director/Author Correspondence</message>
@@ -707,8 +554,6 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="user.login.createAccount">Not a user? Create an account with this site</message>
 	<message key="user.login.resetPasswordInstructions"><![CDATA[For security reasons, this system emails a reset password to registered users, rather than recalling the
 current password.<br /><br />Enter your email address below to reset your password. A confirmation will be sent to this email address.]]></message>
-
-	<!-- Profile -->
 
 	<!-- Registration -->
 	<message key="user.account.repeatPassword">Repeat password</message>
@@ -790,11 +635,11 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="presentations.notPermitted">You do not yet have access to this conference's presentations.</message>
 	<message key="presentations.trackEmpty">No papers are available in this track.</message>
 	<message key="presentations.schedConfEmpty">This conference's presentations are not yet available or no matching presentations were found.</message>
-	
+
 	<!-- Program page -->
 	<message key="schedConf.program.programFileInstructions">The program for this conference is available via the following link.</message>
 	<message key="schedConf.program.viewProgramFile">View the program</message>
-	
+
 	<!-- About The Conference -->
 	<message key="about.statistics">Statistics</message>
 	<message key="about.conferenceContact">Conference Contact</message>
@@ -946,7 +791,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.deadline.submissionDeadlinePassed">Submission deadline expired.</message>
 	<message key="log.deadline.presentationsReleasedToParticipants">Presentations have been released to participants.</message>
 	<message key="log.deadline.presentationsReleasedToPublic">Presentations have been released to the public.</message>
-		
+
 	<message key="log.timeline.publicationStateChanged">The publication state has been changed from {$oldPublicationState} to {$newPublicationState}.</message>
 	<message key="log.timeline.submissionStateChanged">The submission state has been changed from {$oldSubmissionState} to {$newSubmissionState}.</message>
 	<message key="log.timeline.startDateChanged">The conference start date changed from {$oldStartDate} to {$newStartDate}.</message>
@@ -968,7 +813,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.timeline.delayOpenAccessChanged">The delayed open access setting was changed from {$oldDelayOpenAccess} to {$newDelayOpenAccess}.</message>
 	<message key="log.timeline.closeCommentsDateChanged">The comments close date changed from {$oldCloseCommentsDate} to {$newCloseCommentsDate}.</message>
 	<message key="log.timeline.closeCommentsChanged">The close comments setting was changed from {$oldCloseComments} to {$newCloseComments}.</message>
-	
+
 	<!-- Reading Tools entries -->
 
 
@@ -983,28 +828,14 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 
 	<message key="rt.admin.settings.addComment">Add comment (enables readers to post comments, which Conference Directors can delete). Reader Comments must be enabled in Website Management, section 1.5).</message>
 
-	<!-- RT Versions -->
-
-	<!-- RT Contexts -->
-
-	<!-- RT Searches -->
-
 	<message key="rt.admin.validateUrls.description"><![CDATA[Possibly invalid URLs for search sites are displayed below.<br/>
 You should manually verify any URLs marked as invalid, as this test is not 100% accurate.<br/>
 Validation may fail on search URLs that require posted form data.]]></message>
-
-	<!-- RT Entities -->
-
-
-
 
 	<message key="rt.metadata.dublinCore.primaryAuthor">Creator</message>
 
 	<message key="rt.metadata.pkp.primaryAuthor">Author's name, affiliation, country</message>
 	<message key="rt.metadata.pkp.peerReviewed">Peer-reviewed Paper</message>
-
-
-
 
 	<!-- Notification Types -->
 	<message key="notification.mailListDescription">Enter your email address to receive immediate notifications of important new content added to the conference.</message>
@@ -1015,7 +846,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="notification.type.directorDecisionComment">A comment has been left on the editor decision for "{$param}".</message>
 	<message key="notification.type.galleyModified">A galley has been modified for "{$param}".</message>
 	<message key="notification.type.metadataModified">"{$param}'s" metadata has been modified.</message>
-	<message key="notification.type.newAnnouncement">A new announcement has been created.</message>	
+	<message key="notification.type.newAnnouncement">A new announcement has been created.</message>
 	<message key="notification.type.reviewerComment">A reviewer has commented on "{$param}".</message>
 	<message key="notification.type.reviewerFormComment">A review form review has been submitted for "{$param}".</message>
 	<message key="notification.type.reviewing">Reviewing Events</message>
