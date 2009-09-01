@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-	<div id="submissions">
+<div id="submissions">
 
 <table width="100%" class="listing">
 	<tr>
@@ -26,7 +26,7 @@
 	{iterate from=submissions item=submission}
 
 	<tr>
-		{if $lastTrackId == ''}
+		{if !$lastTrackId}
 			<td colspan="6" class="headseparator">&nbsp;</td>
 			{assign var=notFirst value=1}
 		{elseif $lastTrackId != $submission->getTrackId()}
@@ -61,6 +61,9 @@
 	</tr>
 {/iterate}
 {if $submissions->wasEmpty()}
+	<tr>
+		<td colspan="6" class="headseparator">&nbsp;</td>
+	</tr>
 	<tr>
 		<td colspan="6" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
