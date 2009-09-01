@@ -31,15 +31,6 @@
 	{* Display conference roles *}
 	
 	<table width="100%" class="info">
-		{if $isSiteAdmin && !$hasOtherConferences && $currentConference}
-			<tr>
-				<td>&#187; <a href="{url conference="index" schedConf="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		{/if}
 		{if $isValid.ConferenceManager.$conferenceId.0}
 			<tr>
 				<td>&#187; <a href="{url conference=$conferencePath page="manager"}">{translate key="user.role.manager"}</a></td>
