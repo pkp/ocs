@@ -22,43 +22,33 @@
 <table class="data" width="100%">
 	<tr valign="top">
 		<td width="5%" align="left">
-			<input type="checkbox" name="mergeSchedules" value="1"{if $mergeSchedules} checked="checked"{/if} />
+			<input type="checkbox" id="mergeSchedules" name="mergeSchedules" value="1"{if $mergeSchedules} checked="checked"{/if} />
 		</td>
-		<td>
-			<label for="mergeSchedules">{translate key="manager.scheduler.layout.mergeSchedulesDescription"}</label>
-		</td>
+		<td>{fieldLabel name="mergeSchedules" key="manager.scheduler.layout.mergeSchedulesDescription"}</td>
 	</tr>
 	<tr valign="top">
-		<td width="5%" align="left">
-			<input type="checkbox" name="showEndTime" value="1"{if $showEndTime} checked="checked"{/if} />
+		<td align="left">
+			<input type="checkbox" id="showEndTime" name="showEndTime" value="1"{if $showEndTime} checked="checked"{/if} />
 		</td>
-		<td>
-			<label for="showEndTime">{translate key="manager.scheduler.layout.showEndTime"}</label>
-		</td>
+		<td>{fieldLabel name="showEndTime" key="manager.scheduler.layout.showEndTime"}</td>
 	</tr>
 	<tr valign="top">
-		<td width="5%" align="left">
-			<input type="checkbox" name="showAuthors" value="1"{if $showAuthors} checked="checked"{/if} />
+		<td align="left">
+			<input type="checkbox" id="showAuthors" name="showAuthors" value="1"{if $showAuthors} checked="checked"{/if} />
 		</td>
-		<td>
-			<label for="showAuthors">{translate key="manager.scheduler.layout.showAuthors"}</label>
-		</td>
+		<td>{fieldLabel name="showAuthors" key="manager.scheduler.layout.showAuthors"}</td>
 	</tr>
 	<tr valign="top">
-		<td width="5%" align="left">
-			<input type="checkbox" name="hideNav" value="1"{if $hideNav} checked="checked"{/if} />
+		<td align="left">
+			<input type="checkbox" id="hideNav" name="hideNav" value="1"{if $hideNav} checked="checked"{/if} />
 		</td>
-		<td>
-			<label for="hideNav">{translate key="manager.scheduler.layout.hideNav"}</label>
-		</td>
+		<td>{fieldLabel name="hideNav" key="manager.scheduler.layout.hideNav"}</td>
 	</tr>
 	<tr valign="top">
-		<td width="5%" align="left">
-			<input type="checkbox" name="hideLocations" value="1"{if $hideLocations} checked="checked"{/if} />
+		<td align="left">
+			<input type="checkbox" id="hideLocations" name="hideLocations" value="1"{if $hideLocations} checked="checked"{/if} />
 		</td>
-		<td>
-			<label for="hideLocations">{translate key="manager.scheduler.layout.hideLocations"}</label>
-		</td>
+		<td>{fieldLabel name="hideLocations" key="manager.scheduler.layout.hideLocations"}</td>
 	</tr>
 </table>
 
@@ -71,17 +61,13 @@
 		<td width="5%" align="left">
 			<input type="radio" name="layoutType" id="layoutType-compact" value="{$smarty.const.SCHEDULE_LAYOUT_COMPACT}" {if $layoutType == $smarty.const.SCHEDULE_LAYOUT_COMPACT} checked="checked"{/if} />
 		</td>
-		<td>
-			<label for="layoutType">{translate key="manager.scheduler.layout.style.compact"}</label>
-		</td>
+		<td>{fieldLabel name="layoutType-compact" key="manager.scheduler.layout.style.compact"}</td>
 	</tr>
 	<tr valign="top">
-		<td width="5%" align="left">
+		<td align="left">
 			<input type="radio" name="layoutType" id="layoutType-expanded" value="{$smarty.const.SCHEDULE_LAYOUT_EXPANDED}" {if $layoutType == $smarty.const.SCHEDULE_LAYOUT_EXPANDED} checked="checked"{/if} />
 		</td>
-		<td>
-			<label for="layoutType">{translate key="manager.scheduler.layout.style.expanded"}</label>
-		</td>
+		<td>{fieldLabel name="layoutType-expanded" key="manager.scheduler.layout.style.expanded"}</td>
 	</tr>
 </table>
 
