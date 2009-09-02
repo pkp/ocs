@@ -459,6 +459,7 @@ class SchedConfHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		SchedConfHandler::setupTemplate($conference, $schedConf);
+		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_DIRECTOR)); // FIXME: director.allTracks
 
 		$templateMgr->assign('pageHierarchy', array(
 			array(Request::url(null, 'index', 'index'), $conference->getConferenceTitle(), true),
