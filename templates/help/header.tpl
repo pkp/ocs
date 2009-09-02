@@ -9,6 +9,6 @@
  * $Id$
  *}
 {strip}
-{translate|assign:applicationHelpTranslated key="help.ojsHelp"}
+{translate|assign:applicationHelpTranslated key="help.ocsHelp"}
 {include file="core:help/header.tpl"}
 {/strip}
