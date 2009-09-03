@@ -20,11 +20,6 @@
 		<rename table="paper_presenter_settings" to="paper_author_settings" />
 	</sql>
 
-	<!-- Bug #3694: abstract user settings -->
-	<sql>
-		<rename table="user_settings" column="conference_id" to="assoc_id" />
-	</sql>
-
 	<!-- Bug #3941: abstract groups -->
 	<sql>
 		<rename table="groups" column="sched_conf_id" to="assoc_id" />
