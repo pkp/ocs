@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="conference.conferences"}
 {include file="common/header.tpl"}
 {/strip}
-<script>
+<script type="text/javascript">
 {literal}
 $(document).ready(function() { setupTableDND("#adminConferences", "moveConference"); });
 {/literal}
@@ -38,8 +38,8 @@ $(document).ready(function() { setupTableDND("#adminConferences", "moveConferenc
 	<tr valign="top" id="conference-{$conference->getId()}" class="data">
 		<td class="drag"><a class="action" href="{url conference=$conference->getPath() page="manager"}">{$conference->getConferenceTitle()|escape}</a></td>
 		<td class="drag">{$conference->getPath()|escape}</td>
-		<td class="drag"><a href="{url op="moveConference" d=u id=$conference->getConferenceId()}">&uarr;</a> <a href="{url op="moveConference" d=d id=$conference->getConferenceId()}">&darr;</a></td>
-		<td class="drag" align="right"><a href="{url op="editConference" path=$conference->getConferenceId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a class="action" href="{url op="deleteConference" path=$conference->getConferenceId()}" onclick="return confirm('{translate|escape:"jsparam" key="admin.conferences.confirmDelete"}')">{translate key="common.delete"}</a></td>
+		<td><a href="{url op="moveConference" d=u id=$conference->getConferenceId()}">&uarr;</a> <a href="{url op="moveConference" d=d id=$conference->getConferenceId()}">&darr;</a></td>
+		<td align="right"><a href="{url op="editConference" path=$conference->getConferenceId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a class="action" href="{url op="deleteConference" path=$conference->getConferenceId()}" onclick="return confirm('{translate|escape:"jsparam" key="admin.conferences.confirmDelete"}')">{translate key="common.delete"}</a></td>
 	</tr>
 	{/iterate}
 	<tr>

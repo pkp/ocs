@@ -108,7 +108,8 @@ class SchedConf extends DataObject {
 	 * @return int
 	 */
 	function getSchedConfId() {
-		return $this->getData('schedConfId');
+		trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -116,7 +117,8 @@ class SchedConf extends DataObject {
 	 * @param $schedConfId int
 	 */
 	function setSchedConfId($schedConfId) {
-		return $this->setData('schedConfId', $schedConfId);
+		trigger_error('Deprecated function.');
+		return $this->setId($schedConfId);
 	}
 
 	/**
@@ -237,7 +239,7 @@ class SchedConf extends DataObject {
 	 */
 	function getSettings() {
 		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		return $schedConfSettingsDao->getSchedConfSettings($this->getData('schedConfId'));
+		return $schedConfSettingsDao->getSchedConfSettings($this->getId());
 	}
 
 	/**
@@ -262,7 +264,7 @@ class SchedConf extends DataObject {
 	 */
 	function &getSetting($name, $locale = null) {
 		$schedConfSettingsDao =& DAORegistry::getDAO('SchedConfSettingsDAO');
-		$setting =& $schedConfSettingsDao->getSetting($this->getData('schedConfId'), $name, $locale);
+		$setting =& $schedConfSettingsDao->getSetting($this->getId(), $name, $locale);
 		return $setting;
 	}
 

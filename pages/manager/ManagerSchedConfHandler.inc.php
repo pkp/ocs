@@ -159,15 +159,34 @@ class ManagerSchedConfHandler extends ManagerHandler {
 		$conference =& Request::getConference();
 
 		$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
-		$schedConf =& $schedConfDao->getSchedConf(Request::getUserVar('schedConfId'), $conference->getConferenceId());
+		$schedConf =& $schedConfDao->getSchedConf(Request::getUserVar('id'), $conference->getConferenceId());
+		$direction = Request::getUserVar('d');
 
 		if ($schedConf != null) {
-			$schedConf->setSequence($schedConf->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
+			if ($direction != null) {
+				// moving with up or down arrow
+				$schedConf->setSequence($schedConf->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
+			} else {
+				// Dragging and dropping onto another scheduled conference
+				$prevId = Request::getUserVar('prevId');
+				if ($prevId == null)
+					$prevSeq = 0;
+				else {
+					$prevSchedConf = $schedConfDao->getConference($prevId, $conference->getConferenceId());
+					$prevSeq = $prefSchedConf->getSequence();
+				}
+				$schedConf->setSequence($prevSeq + .5);
+			}
 			$schedConfDao->updateSchedConf($schedConf);
 			$schedConfDao->resequenceSchedConfs($conference->getConferenceId());
 		}
 
-		Request::redirect(null, null, null, 'schedConfs');
+		// Moving up or down with the arrows requires a page reload.
+		// In the case of a drag and drop move, the display has been
+		// updated on the client side, so no reload is necessary.
+		if ($direction != null) {
+			Request::redirect(null, null, null, 'schedConfs');
+		}
 	}
 }
 

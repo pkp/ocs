@@ -76,6 +76,7 @@ class JQueryPlugin extends GenericPlugin {
 		$scripts = array();
 		switch ("$page/$op") {
 			case 'admin/conferences':
+			case 'manager/schedConfs':
 			case 'manager/groupMembership':
 			case 'manager/groups':
 			case 'manager/reviewFormElements':

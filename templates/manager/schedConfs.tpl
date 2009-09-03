@@ -12,11 +12,16 @@
 {assign var="pageTitle" value="schedConf.scheduledConferences"}
 {include file="common/header.tpl"}
 {/strip}
+<script type="text/javascript">
+{literal}
+$(document).ready(function() { setupTableDND("#adminSchedConfs", "moveSchedConf"); });
+{/literal}
+</script>
 
 <br />
 
 <div id="schedConfs">
-<table width="100%" class="listing">
+<table width="100%" class="listing" id="adminSchedConfs">
 	<tr>
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
@@ -30,11 +35,10 @@
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
 	{iterate from=schedConfs item=schedConf}
-	<tr valign="top">
+	<tr valign="top" id="schedConf-{$schedConf->getId()}" class="data">
 		<td><a class="action" href="{url schedConf=$schedConf->getPath() page="manager"}">{$schedConf->getSchedConfTitle()|escape}</a></td>
-		<td>{$schedConf->getLocalizedSetting('acronym')|escape|default:"&mdash;"}</td>
-		<td><a href="{url op="moveSchedConf" d=u schedConfId=$schedConf->getSchedConfId()}">&uarr;</a> <a href="{url op="moveSchedConf" d=d schedConfId=$schedConf->getSchedConfId()}">&darr;</a></td>
-
+		<td class="drag">{$schedConf->getLocalizedSetting('acronym')|escape|default:"&mdash;"}</td>
+		<td><a href="{url op="moveSchedConf" d=u id=$schedConf->getSchedConfId()}">&uarr;</a> <a href="{url op="moveSchedConf" d=d id=$schedConf->getSchedConfId()}">&darr;</a></td>
 		<td align="right">
 			<a href="{url op="editSchedConf" path=$conference->getConferenceId()|to_array:$schedConf->getSchedConfId()}" class="action">{translate key="common.edit"}</a>
 			&nbsp;|&nbsp;
@@ -43,10 +47,10 @@
 			</a>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="4" class="{if $schedConfs->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
 	{/iterate}
+	<tr>
+		<td colspan="4" class="endseparator">&nbsp;</td>
+	</tr>
 	{if $schedConfs->wasEmpty()}
 	<tr>
 		<td colspan="4" class="nodata">{translate key="manager.schedConfs.noneCreated"}</td>
