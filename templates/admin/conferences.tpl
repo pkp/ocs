@@ -12,11 +12,16 @@
 {assign var="pageTitle" value="conference.conferences"}
 {include file="common/header.tpl"}
 {/strip}
+<script>
+{literal}
+$(document).ready(function() { setupTableDND("#adminConferences", "moveConference"); });
+{/literal}
+</script>
 
 <br />
 
 <div id="conferences">
-<table width="100%" class="listing">
+<table width="100%" class="listing" id="adminConferences">
 	<tr>
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
@@ -30,16 +35,16 @@
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
 	{iterate from=conferences item=conference}
-	<tr valign="top">
-		<td><a class="action" href="{url conference=$conference->getPath() page="manager"}">{$conference->getConferenceTitle()|escape}</a></td>
-		<td>{$conference->getPath()|escape}</td>
-		<td><a href="{url op="moveConference" d=u conferenceId=$conference->getConferenceId()}">&uarr;</a> <a href="{url op="moveConference" d=d conferenceId=$conference->getConferenceId()}">&darr;</a></td>
-		<td align="right"><a href="{url op="editConference" path=$conference->getConferenceId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a class="action" href="{url op="deleteConference" path=$conference->getConferenceId()}" onclick="return confirm('{translate|escape:"jsparam" key="admin.conferences.confirmDelete"}')">{translate key="common.delete"}</a></td>
-	</tr>
-	<tr>
-		<td colspan="4" class="{if $conferences->eof()}end{/if}separator">&nbsp;</td>
+	<tr valign="top" id="conference-{$conference->getId()}" class="data">
+		<td class="drag"><a class="action" href="{url conference=$conference->getPath() page="manager"}">{$conference->getConferenceTitle()|escape}</a></td>
+		<td class="drag">{$conference->getPath()|escape}</td>
+		<td class="drag"><a href="{url op="moveConference" d=u id=$conference->getConferenceId()}">&uarr;</a> <a href="{url op="moveConference" d=d id=$conference->getConferenceId()}">&darr;</a></td>
+		<td class="drag" align="right"><a href="{url op="editConference" path=$conference->getConferenceId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a class="action" href="{url op="deleteConference" path=$conference->getConferenceId()}" onclick="return confirm('{translate|escape:"jsparam" key="admin.conferences.confirmDelete"}')">{translate key="common.delete"}</a></td>
 	</tr>
 	{/iterate}
+	<tr>
+		<td colspan="4" class="endseparator">&nbsp;</td>
+	</tr>
 	{if $conferences->wasEmpty()}
 	<tr>
 		<td colspan="4" class="nodata">{translate key="admin.conferences.noneCreated"}</td>

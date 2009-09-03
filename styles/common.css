@@ -207,6 +207,15 @@ table.listing {
 	border-collapse: collapse;
 }
 
+table.listing tr.data td {
+	border-top: 1px dotted #DDDDD0;
+	border-bottom: 1px dotted #DDDDD0;
+}
+
+table.listing tr.data td.drag {
+	cursor: move;
+}
+
 
 /**
  * Other organizational elements
@@ -291,3 +300,4 @@ td.notificationFunction {
 	padding-right: 5px;
 	text-align: right;
 }
+

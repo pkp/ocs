@@ -84,9 +84,7 @@ class EmailHandler extends ManagerHandler {
 	function editEmail($args = array()) {
 		$this->validate();
 		$this->setupTemplate(true);
-
 		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->append('pageHierarchy', array(Request::url(null, null, null, 'emails'), 'manager.emails'));
@@ -96,7 +94,7 @@ class EmailHandler extends ManagerHandler {
 		import('manager.form.EmailTemplateForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$emailTemplateForm =& new EmailTemplateForm($emailKey, $conference, $schedConf);
+		$emailTemplateForm =& new EmailTemplateForm($emailKey, $conference);
 		$emailTemplateForm->initData();
 		$emailTemplateForm->display();
 	}
@@ -112,7 +110,8 @@ class EmailHandler extends ManagerHandler {
 		$emailKey = Request::getUserVar('emailKey');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$emailTemplateForm =& new EmailTemplateForm($emailKey, $conference, $schedConf);
+		$conference =& Request::getConference();
+		$emailTemplateForm =& new EmailTemplateForm($emailKey, $conference);
 		$emailTemplateForm->readInputData();
 
 		if ($emailTemplateForm->validate()) {
@@ -131,13 +130,11 @@ class EmailHandler extends ManagerHandler {
 	 */
 	function deleteCustomEmail($args) {
 		$this->validate();
-		$schedConf =& Request::getSchedConf();
 
 		$emailKey = array_shift($args);
-		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-		if ($emailTemplateDao->customTemplateExistsByKey($emailKey, $conference->getConferenceId(), $schedConfId)) {
-			$emailTemplateDao->deleteEmailTemplateByKey($emailKey, $conference->getConferenceId(), $schedConfId);
+		if ($emailTemplateDao->customTemplateExistsByKey($emailKey, $conference->getConferenceId())) {
+			$emailTemplateDao->deleteEmailTemplateByKey($emailKey, $conference->getConferenceId());
 		}
 
 		Request::redirect(null, null, null, 'emails');
@@ -149,14 +146,11 @@ class EmailHandler extends ManagerHandler {
 	 */
 	function resetEmail($args) {
 		$this->validate();
-		$schedConf =& Request::getSchedConf();
-		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
-
 		if (isset($args) && !empty($args)) {
 			$conference =& Request::getConference();
 
 			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-			$emailTemplateDao->deleteEmailTemplateByKey($args[0], $conference->getConferenceId(), $schedConfId);
+			$emailTemplateDao->deleteEmailTemplateByKey($args[0], $conference->getConferenceId());
 		}
 
 		Request::redirect(null, null, null, 'emails');
@@ -169,7 +163,6 @@ class EmailHandler extends ManagerHandler {
 		$this->validate();
 
 		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
 		
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplateDao->deleteEmailTemplatesByConference($conference->getConferenceId());
@@ -183,32 +176,21 @@ class EmailHandler extends ManagerHandler {
 	 */
 	function disableEmail($args) {
 		$this->validate();
-		$schedConf =& Request::getSchedConf();
-		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
 
 		if (isset($args) && !empty($args)) {
 			$conference =& Request::getConference();
 
 			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $conference->getConferenceId(), $schedConfId);
+			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $conference->getConferenceId());
 
 			if (isset($emailTemplate)) {
 				if ($emailTemplate->getCanDisable()) {
 					$emailTemplate->setEnabled(0);
-
-					if ($emailTemplate->getConferenceId() == null) {
-						$emailTemplate->setConferenceId($conference->getConferenceId());
-					}
-
-					if($emailTemplate->getSchedConfId() == null && $schedConf) {
-						$emailTemplate->setSchedConfId($schedConfId);
-					} else {
-						$emailTemplate->setSchedConfId(0);
-					}
-
 					if ($emailTemplate->getEmailId() != null) {
 						$emailTemplateDao->updateBaseEmailTemplate($emailTemplate);
 					} else {
+						$emailTemplate->setAssocType(ASSOC_TYPE_CONFERENCE);
+						$emailTemplate->setAssocId($conference->getConferenceId());
 						$emailTemplateDao->insertBaseEmailTemplate($emailTemplate);
 					}
 				}
@@ -224,12 +206,11 @@ class EmailHandler extends ManagerHandler {
 	 */
 	function enableEmail($args) {
 		$this->validate();
-		$schedConf =& Request::getSchedConf();
-		$schedConfId = ($schedConf ? $schedConf->getSchedConfId() : 0);
+		$conference =& Request::getConference();
 
 		if (isset($args) && !empty($args)) {
 			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $conference->getConferenceId(), $schedConfId);
+			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $conference->getConferenceId());
 
 			if (isset($emailTemplate)) {
 				if ($emailTemplate->getCanDisable()) {

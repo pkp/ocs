@@ -128,15 +128,34 @@ class AdminConferenceHandler extends AdminHandler {
 		$this->validate();
 
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
-		$conference =& $conferenceDao->getConference(Request::getUserVar('conferenceId'));
+		$conference =& $conferenceDao->getConference(Request::getUserVar('id'));
 
 		if ($conference != null) {
-			$conference->setSequence($conference->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
+			$direction = Request::getUserVar('d');
+			if ($direction != null) {
+				// moving with up or down arrow
+				$conference->setSequence($conference->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
+			} else {
+				// Dragging and dropping onto another conference
+				$prevId = Request::getUserVar('prevId');
+				if ($prevId == null)
+					$prevSeq = 0;
+				else {
+					$prevConference = $conferenceDao->getConference($prevId);
+					$prevSeq = $prevConference->getSequence();
+				}
+				$conference->setSequence($prevSeq + .5);
+			}
 			$conferenceDao->updateConference($conference);
 			$conferenceDao->resequenceConferences();
 		}
 
-		Request::redirect(null, null, null, 'conferences');
+		// Moving up or down with the arrows requires a page reload.
+		// In the case of a drag and drop move, the display has been
+		// updated on the client side, so no reload is necessary.
+		if ($direction != null) {
+			Request::redirect(null, null, null, 'conferences');
+		}
 	}
 
 	/**
