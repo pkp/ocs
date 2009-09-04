@@ -80,19 +80,41 @@ class GroupHandler extends ManagerHandler {
 	 * Change the sequence of a group.
 	 */
 	function moveGroup() {
-		$groupId = (int) Request::getUserVar('groupId');
+		$groupId = (int) Request::getUserVar('id');
 		$this->validate($groupId);
 
-		$conference =& Request::getConference();
-		$schedConf =& Request::getSchedConf();
 		$group =& $this->group;
-		
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
-		$group->setSequence($group->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
-		$groupDao->updateObject($group);
-		$groupDao->resequenceGroups(ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
+		$direction = Request::getUserVar('d');
+		
+		if ($direction != null) {
+			// moving with up or down arrow
+			$group->setSequence($group->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
+			
+		} else {
+			// Dragging and dropping
+			$prevId = Request::getUserVar('prevId');
+			if ($prevId == null)
+				$prevSeq = 0;
+			else {
+				$schedConf =& Request::getSchedConf();
+				$prevGroup =& $groupDao->getGroup($prevId, ASSOC_TYPE_SCHED_CONF, $schedConf->getId());
+				$prevSeq = $prevGroup->getSequence();
+			}
 
-		Request::redirect(null, null, null, 'groups');
+			$group->setSequence($prevSeq + .5);
+		}
+
+
+		$groupDao->updateObject($group);
+		$groupDao->resequenceGroups($group->getAssocType(), $group->getAssocId());
+
+		// Moving up or down with the arrows requires a page reload.
+		// In the case of a drag and drop move, the display has been
+		// updated on the client side, so no reload is necessary.
+		if ($direction != null) {
+			Request::redirect(null, null, null, 'groups');
+		}
 	}
 
 	/**
@@ -312,21 +334,39 @@ class GroupHandler extends ManagerHandler {
 	/**
 	 * Change the sequence of a group membership.
 	 */
-	function moveMembership() {
-		$groupId = (int) Request::getUserVar('groupId');
-		$userId = (int) Request::getUserVar('userId');
+	function moveMembership($args) {
+		$groupId = isset($args[0])?(int)$args[0]:0;
+		$userId = (int) Request::getUserVar('id');
 		$this->validate($groupId, $userId, true);
-		$schedConf =& Request::getSchedConf();
 		$group =& $this->group;
-		$user =& $this->user;
 		$groupMembership =& $this->groupMembership;
 
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-		$groupMembership->setSequence($groupMembership->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
+		$direction = Request::getUserVar('d');
+		if ($direction != null) {
+			// moving with up or down arrow
+			$groupMembership->setSequence($groupMembership->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
+		} else {
+			// drag and drop
+			$prevId = Request::getUserVar('prevId');
+			if ($prevId == null)
+				$prevSeq = 0;
+			else {
+				$prevMembership =& $groupMembershipDao->getMembership($groupId, $prevId);
+				$prevSeq = $prevMembership->getSequence();
+			}
+
+			$groupMembership->setSequence($prevSeq + .5);
+		}
 		$groupMembershipDao->updateObject($groupMembership);
 		$groupMembershipDao->resequenceMemberships($group->getId());
 
-		Request::redirect(null, null, null, 'groupMembership', $group->getId());
+		// Moving up or down with the arrows requires a page reload.
+		// In the case of a drag and drop move, the display has been
+		// updated on the client side, so no reload is necessary.
+		if ($direction != null) {
+			Request::redirect(null, null, null, 'groupMembership', $group->getId());
+		}
 	}
 
 	function setBoardEnabled($args) {
@@ -372,11 +412,8 @@ class GroupHandler extends ManagerHandler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_SCHED_CONF, $schedConf->getSchedConfId());
 
-			if (!$group) {
-				$passedValidation = false;
-			} else {
-				$this->group =& $group;
-			}
+			if (!$group) $passedValidation = false;
+			else $this->group =& $group;
 
 			if ($userId !== null) {
 				$userDao =& DAORegistry::getDAO('UserDAO');

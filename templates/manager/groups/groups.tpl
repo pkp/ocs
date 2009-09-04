@@ -14,6 +14,12 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script type="text/javascript">
+{literal}
+$(document).ready(function() { setupTableDND("#dragTable", "moveGroup"); });
+{/literal}
+</script>
+
 <br/>
 
 <form action="{url op="setBoardEnabled"}" method="post">
@@ -28,7 +34,7 @@
 <br />
 
 <div id="groups">
-<table width="100%" class="listing">
+<table width="100%" id="dragTable" class="listing">
 	<tr>
 		<td colspan="2" class="headseparator">&nbsp;</td>
 	</tr>
@@ -40,19 +46,19 @@
 		<td colspan="2" class="headseparator">&nbsp;</td>
 	</tr>
 {iterate from=groups item=group}
-	<tr valign="top">
-		<td>
+	<tr class="data" valign="top" id="group-{$group->getId()}">
+		<td class="drag">
 			{url|assign:"url" page="manager" op="email" toGroup=$group->getId()}
 			{$group->getLocalizedTitle()|escape}&nbsp;{icon name="mail" url=$url}
 		</td>
 		<td>
-			<a href="{url op="editGroup" path=$group->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="groupMembership" path=$group->getId() clearPageContext=1}" class="action">{translate key="manager.groups.membership"}</a>&nbsp;|&nbsp;<a href="{url op="deleteGroup" path=$group->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.groups.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveGroup" d=u groupId=$group->getId()}">&uarr;</a>&nbsp;<a href="{url op="moveGroup" d=d groupId=$group->getId()}">&darr;</a>
+			<a href="{url op="editGroup" path=$group->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="groupMembership" path=$group->getId() clearPageContext=1}" class="action">{translate key="manager.groups.membership"}</a>&nbsp;|&nbsp;<a href="{url op="deleteGroup" path=$group->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.groups.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveGroup" d=u id=$group->getId()}">&uarr;</a>&nbsp;<a href="{url op="moveGroup" d=d id=$group->getId()}">&darr;</a>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="2" class="{if $groups->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
 {/iterate}
+	<tr>
+		<td colspan="2" class="endseparator">&nbsp;</td>
+	</tr>
 {if $groups->wasEmpty()}
 	<tr>
 		<td colspan="2" class="nodata">{translate key="manager.groups.noneCreated"}</td>
