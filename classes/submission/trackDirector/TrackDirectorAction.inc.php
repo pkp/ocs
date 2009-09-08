@@ -87,6 +87,7 @@ class TrackDirectorAction extends Action {
 			// Add log
 			import('paper.log.PaperLog');
 			import('paper.log.PaperEventLogEntry');
+			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OCS_DIRECTOR));
 			PaperLog::logEvent($trackDirectorSubmission->getPaperId(), PAPER_LOG_DIRECTOR_DECISION, LOG_TYPE_DIRECTOR, $user->getId(), 'log.director.decision', array('directorName' => $user->getFullName(), 'paperId' => $trackDirectorSubmission->getPaperId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
 
