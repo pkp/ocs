@@ -147,7 +147,7 @@ function moveAuthor(dir, authorIndex) {
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="authors-0-affiliation" key="user.affiliation"}</td>
-		<td class="value"><input type="text" id="authors-0-affiliation" name="authors[0][affiliation]" size="30" maxlength="255" class="textField" /></td>
+		<td class="value"><textarea id="authors-0-affiliation" name="authors[0][affiliation]" rows="5" cols="40" class="textArea"></textarea></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="authors-0-email" required="true" key="user.email"}</td>
