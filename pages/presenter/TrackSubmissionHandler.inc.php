@@ -389,7 +389,7 @@ class TrackSubmissionHandler extends PresenterHandler {
 			if (!PresenterAction::mayEditPaper($presenterSubmission)) $isValid = false;
 		}
 
-		if (!$isValid && $isDeleting) {
+		if (!$isValid) {
 			Request::redirect(null, null, Request::getRequestedPage());
 		}
 
