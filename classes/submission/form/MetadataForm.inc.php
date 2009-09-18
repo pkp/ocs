@@ -132,6 +132,8 @@ class MetadataForm extends Form {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$trackDao =& DAORegistry::getDAO('TrackDAO');
 
+		Locale::requireComponents(array(LOCALE_COMPONENT_OCS_EDITOR)); // editor.cover.xxx locale keys; FIXME?
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('paperId', isset($this->paper)?$this->paper->getPaperId():null);
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
