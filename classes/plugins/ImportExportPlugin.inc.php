@@ -101,18 +101,6 @@ class ImportExportPlugin extends Plugin {
 	}
 
 	/**
-	 * Display verbs for the management interface.
-	 */
-	function getManagementVerbs() {
-		return array(
-			array(
-				'importexport',
-				Locale::translate('manager.importExport')
-			)
-		);
-	}
-
-	/**
 	 * Perform management functions
 	 */
 	function manage($verb, $args) {
