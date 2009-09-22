@@ -107,7 +107,7 @@ class RegistrationDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner =& new DAOResultFactory($result, $this, '_returnRegistrationFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnRegistrationFromRow');
 
 		return $returner;
 	}

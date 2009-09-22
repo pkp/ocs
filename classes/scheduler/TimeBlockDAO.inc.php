@@ -108,7 +108,7 @@ class TimeBlockDAO extends DAO {
 	 * @return TimeBlock
 	 */
 	function &_returnTimeBlockFromRow(&$row) {
-		$timeBlock =& new TimeBlock();
+		$timeBlock = new TimeBlock();
 		$timeBlock->setTimeBlockId($row['time_block_id']);
 		$timeBlock->setSchedConfId($row['sched_conf_id']);
 		$timeBlock->setStartTime($this->datetimeFromDB($row['start_time']));
@@ -226,7 +226,7 @@ class TimeBlockDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner =& new DAOResultFactory($result, $this, '_returnTimeBlockFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnTimeBlockFromRow');
 		return $returner;
 	}
 

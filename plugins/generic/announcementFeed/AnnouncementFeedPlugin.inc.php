@@ -151,8 +151,7 @@ class AnnouncementFeedPlugin extends GenericPlugin {
 				$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
 
 				$this->import('SettingsForm');
-				// FIXME: Need construction by reference or validation always fails on PHP 4.x
-				$form =& new SettingsForm($this, $conference->getConferenceId());
+				$form = new SettingsForm($this, $conference->getConferenceId());
 
 				if (Request::getUserVar('save')) {
 					$form->readInputData();

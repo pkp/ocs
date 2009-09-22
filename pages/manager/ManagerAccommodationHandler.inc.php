@@ -36,8 +36,7 @@ class ManagerAccommodationHandler extends ManagerHandler {
 
 		import('manager.form.AccommodationSettingsForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$settingsForm =& new AccommodationSettingsForm();
+		$settingsForm = new AccommodationSettingsForm();
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
 		} else {
@@ -58,8 +57,7 @@ class ManagerAccommodationHandler extends ManagerHandler {
 
 		import('manager.form.AccommodationSettingsForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$settingsForm =& new AccommodationSettingsForm();
+		$settingsForm = new AccommodationSettingsForm();
 		$settingsForm->readInputData();
 
 		$editData = false;

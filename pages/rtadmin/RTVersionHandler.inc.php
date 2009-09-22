@@ -33,8 +33,7 @@ class RTVersionHandler extends RTAdminHandler {
 		$conference = Request::getConference();
 
 		import('rt.ocs.form.VersionForm');
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$versionForm =& new VersionForm(null, $conference->getConferenceId());
+		$versionForm = new VersionForm(null, $conference->getConferenceId());
 
 		if (isset($args[0]) && $args[0]=='save') {
 			$versionForm->readInputData();
@@ -123,8 +122,7 @@ class RTVersionHandler extends RTAdminHandler {
 		if (isset($version)) {
 			import('rt.ocs.form.VersionForm');
 			$this->setupTemplate(true, $version);
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$versionForm =& new VersionForm($versionId, $conference->getConferenceId());
+			$versionForm = new VersionForm($versionId, $conference->getConferenceId());
 			$versionForm->initData();
 			$versionForm->display();
 		}
@@ -155,8 +153,7 @@ class RTVersionHandler extends RTAdminHandler {
 
 		if (isset($version)) {
 			import('rt.ocs.form.VersionForm');
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$versionForm =& new VersionForm($versionId, $conference->getConferenceId());
+			$versionForm = new VersionForm($versionId, $conference->getConferenceId());
 			$versionForm->readInputData();
 			$versionForm->execute();
 		}

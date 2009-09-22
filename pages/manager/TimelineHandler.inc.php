@@ -33,8 +33,7 @@ class TimelineHandler extends ManagerHandler {
 
 		import('manager.form.TimelineForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$timelineForm =& new TimelineForm(Request::getUserVar('overrideDates'));
+		$timelineForm = new TimelineForm(Request::getUserVar('overrideDates'));
 		$timelineForm->initData();
 		$timelineForm->display();
 
@@ -46,8 +45,7 @@ class TimelineHandler extends ManagerHandler {
 
 		import('manager.form.TimelineForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$timelineForm =& new TimelineForm(Request::getUserVar('overrideDates'));
+		$timelineForm = new TimelineForm(Request::getUserVar('overrideDates'));
 		$timelineForm->readInputData();
 
 		if ($timelineForm->validate()) {

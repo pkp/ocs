@@ -150,7 +150,7 @@ class StaticPagesPlugin extends GenericPlugin {
 				$conference =& Request::getConference();
 
 				$this->import('StaticPagesSettingsForm');
-				$form =& new StaticPagesSettingsForm($this, $conference->getConferenceId());
+				$form = new StaticPagesSettingsForm($this, $conference->getConferenceId());
 				
 				$templateMgr->assign('pageHierarchy', $pageCrumbs);
 				$form->initData();
@@ -163,7 +163,7 @@ class StaticPagesPlugin extends GenericPlugin {
 				$this->import('StaticPagesEditForm');
 
 				$staticPageId = isset($args[0])?(int)$args[0]:null;
-				$form =& new StaticPagesEditForm($this, $conference->getConferenceId(), $staticPageId);
+				$form = new StaticPagesEditForm($this, $conference->getConferenceId(), $staticPageId);
 
 				if ($form->isLocaleResubmit()) {					
 					$form->readInputData();
@@ -187,7 +187,7 @@ class StaticPagesPlugin extends GenericPlugin {
 				$this->import('StaticPagesEditForm');
 
 				$staticPageId = isset($args[0])?(int)$args[0]:null;
-				$form =& new StaticPagesEditForm($this, $conference->getConferenceId(), $staticPageId);
+				$form = new StaticPagesEditForm($this, $conference->getConferenceId(), $staticPageId);
 							
 				if (Request::getUserVar('edit')) {					
 					$form->readInputData();

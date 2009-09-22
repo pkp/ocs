@@ -114,8 +114,7 @@ class SchedulerHandler extends ManagerHandler {
 				$templateMgr->assign('buildingTitle', 'manager.scheduler.building.editBuildingShort');
 			}
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$buildingForm =& new BuildingForm($buildingId);
+			$buildingForm = new BuildingForm($buildingId);
 			if ($buildingForm->isLocaleResubmit()) {
 				$buildingForm->readInputData();
 			} else {
@@ -149,8 +148,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (($buildingId != null && $buildingDao->getBuildingSchedConfId($buildingId) == $schedConf->getSchedConfId()) || $buildingId == null) {
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$buildingForm =& new BuildingForm($buildingId);
+			$buildingForm = new BuildingForm($buildingId);
 			$buildingForm->readInputData();
 
 			if ($buildingForm->validate()) {
@@ -281,8 +279,7 @@ class SchedulerHandler extends ManagerHandler {
 				$templateMgr->assign('roomTitle', 'manager.scheduler.room.editRoomShort');
 			}
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$roomForm =& new RoomForm($roomId, $buildingId);
+			$roomForm = new RoomForm($roomId, $buildingId);
 			if ($roomForm->isLocaleResubmit()) {
 				$roomForm->readInputData();
 			} else {
@@ -328,8 +325,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (($roomId != null && $roomDao->getRoomBuildingId($roomId) == $buildingId) || $roomId == null) {
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$roomForm =& new RoomForm($roomId, $buildingId);
+			$roomForm = new RoomForm($roomId, $buildingId);
 			$roomForm->readInputData();
 
 			if ($roomForm->validate()) {
@@ -428,8 +424,7 @@ class SchedulerHandler extends ManagerHandler {
 				$templateMgr->assign('specialEventTitle', 'manager.scheduler.specialEvent.editSpecialEventShort');
 			}
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$specialEventForm =& new SpecialEventForm($specialEventId);
+			$specialEventForm = new SpecialEventForm($specialEventId);
 			if ($specialEventForm->isLocaleResubmit()) {
 				$specialEventForm->readInputData();
 			} else {
@@ -463,8 +458,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getSchedConfId()) || $specialEventId == null) {
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$specialEventForm =& new SpecialEventForm($specialEventId);
+			$specialEventForm = new SpecialEventForm($specialEventId);
 			$specialEventForm->readInputData();
 
 			if ($specialEventForm->validate()) {
@@ -506,8 +500,7 @@ class SchedulerHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 
 		import('manager.form.scheduler.ScheduleForm');
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$scheduleForm =& new ScheduleForm();
+		$scheduleForm = new ScheduleForm();
 
 		$scheduleForm->initData();
 		$scheduleForm->display();
@@ -523,8 +516,7 @@ class SchedulerHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 
 		import('manager.form.scheduler.ScheduleForm');
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$scheduleForm =& new ScheduleForm();
+		$scheduleForm = new ScheduleForm();
 
 		$scheduleForm->readInputData();
 		if ($scheduleForm->validate()) {
@@ -543,8 +535,7 @@ class SchedulerHandler extends ManagerHandler {
 		$this->setupTemplate(true);
 
 		import('manager.form.scheduler.ScheduleLayoutForm');
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$scheduleLayoutForm =& new ScheduleLayoutForm();
+		$scheduleLayoutForm = new ScheduleLayoutForm();
 
 		$scheduleLayoutForm->initData();
 		$scheduleLayoutForm->display();
@@ -560,8 +551,7 @@ class SchedulerHandler extends ManagerHandler {
 		$schedConf =& Request::getSchedConf();
 
 		import('manager.form.scheduler.ScheduleLayoutForm');
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$scheduleLayoutForm =& new ScheduleLayoutForm();
+		$scheduleLayoutForm = new ScheduleLayoutForm();
 
 		$scheduleLayoutForm->readInputData();
 		if ($scheduleLayoutForm->validate()) {
@@ -646,7 +636,7 @@ class SchedulerHandler extends ManagerHandler {
 				$templateMgr->assign('timeBlockTitle', 'manager.scheduler.timeBlock.editTimeBlockShort');
 			}
 
-			$timeBlockForm =& new TimeBlockForm($timeBlockId);
+			$timeBlockForm = new TimeBlockForm($timeBlockId);
 			if ($timeBlockForm->isLocaleResubmit()) {
 				$timeBlockForm->readInputData();
 			} else {
@@ -674,7 +664,7 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getSchedConfId()) || $timeBlockId == null) {
 
-			$timeBlockForm =& new TimeBlockForm($timeBlockId);
+			$timeBlockForm = new TimeBlockForm($timeBlockId);
 			$timeBlockForm->readInputData();
 
 			if ($timeBlockForm->validate()) {

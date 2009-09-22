@@ -503,8 +503,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 
 		import('trackDirector.form.CreateReviewerForm');
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$createReviewerForm =& new CreateReviewerForm($paperId);
+		$createReviewerForm = new CreateReviewerForm($paperId);
 		$this->setupTemplate(true, $paperId);
 
 		if (isset($args[1]) && $args[1] === 'create') {
@@ -1072,8 +1071,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		import('submission.form.SuppFileForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$submitForm =& new SuppFileForm($submission);
+		$submitForm = new SuppFileForm($submission);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -1096,8 +1094,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		import('submission.form.SuppFileForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$submitForm =& new SuppFileForm($submission, $suppFileId);
+		$submitForm = new SuppFileForm($submission, $suppFileId);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -1140,8 +1137,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		import('submission.form.SuppFileForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$submitForm =& new SuppFileForm($submission, $suppFileId);
+		$submitForm = new SuppFileForm($submission, $suppFileId);
 		$submitForm->readInputData();
 
 		if ($submitForm->validate()) {
@@ -1311,8 +1307,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		import('submission.form.PaperGalleyForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$galleyForm =& new PaperGalleyForm($paperId);
+		$galleyForm = new PaperGalleyForm($paperId);
 		$galleyId = $galleyForm->execute($fileName);
 
 		Request::redirect(null, null, null, 'editGalley', array($paperId, $galleyId, $stage));
@@ -1333,8 +1328,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		import('submission.form.PaperGalleyForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$submitForm =& new PaperGalleyForm($paperId, $galleyId, $stage);
+		$submitForm = new PaperGalleyForm($paperId, $galleyId, $stage);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -1357,8 +1351,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		import('submission.form.PaperGalleyForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$submitForm =& new PaperGalleyForm($paperId, $galleyId, $stage);
+		$submitForm = new PaperGalleyForm($paperId, $galleyId, $stage);
 		$submitForm->readInputData();
 
 		if ($submitForm->validate()) {
@@ -1493,8 +1486,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		import('submission.form.SuppFileForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$suppFileForm =& new SuppFileForm($submission);
+		$suppFileForm = new SuppFileForm($submission);
 		$suppFileForm->setData('title', Locale::translate('common.untitled'));
 		$suppFileId = $suppFileForm->execute($fileName);
 

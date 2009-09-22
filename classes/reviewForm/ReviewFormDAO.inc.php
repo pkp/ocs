@@ -75,7 +75,7 @@ class ReviewFormDAO extends DAO {
 	 * @return ReviewForm
 	 */
 	function &_returnReviewFormFromRow(&$row) {
-		$reviewForm =& new ReviewForm();
+		$reviewForm = new ReviewForm();
 		$reviewForm->setReviewFormId($row['review_form_id']);
 		$reviewForm->setConferenceId($row['conference_id']);
 		$reviewForm->setSequence($row['seq']);

@@ -34,7 +34,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperId = $args[0];
 		$reviewId = $args[1];
 
-		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
@@ -56,7 +56,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
@@ -79,7 +79,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission = $paperDao->getPaper($paperId);
 
-		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$user =& $submissionReviewHandler->user;
 
@@ -103,7 +103,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission = $paperDao->getPaper($paperId);
 
-		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$user =& $submissionReviewHandler->user;
 
@@ -138,7 +138,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		
 		$this->setupTemplate(true);
 		
-		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$user =& $submissionReviewHandler->user;
 

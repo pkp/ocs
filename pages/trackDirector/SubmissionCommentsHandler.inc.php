@@ -37,7 +37,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$paperId = $args[0];
 		$reviewId = $args[1];
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
@@ -58,7 +58,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
@@ -77,7 +77,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 
 		$paperId = $args[0];
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
@@ -97,7 +97,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
@@ -112,7 +112,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 */
 	function blindCcReviewsToReviewers($args = array()) {
 		$paperId = Request::getUserVar('paperId');
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
@@ -131,7 +131,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 	 */
 	function emailDirectorDecisionComment() {
 		$paperId = (int) Request::getUserVar('paperId');
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
@@ -153,7 +153,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$paperId = $args[0];
 		$commentId = $args[1];
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
@@ -189,7 +189,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 
 		$this->setupTemplate(true);
 		
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);
@@ -225,7 +225,7 @@ class SubmissionCommentsHandler extends TrackDirectorHandler {
 		$this->validate();
 		$comment =& $this->comment;
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 		$submission =& $paperDao->getPaper($paperId);

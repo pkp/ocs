@@ -103,7 +103,7 @@ class ProgramSettingsForm extends Form {
 		$schedConf =& Request::getSchedConf();
 
 		import('file.PublicFileManager');
-		$fileManager =& new PublicFileManager();
+		$fileManager = new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$oldName = $fileManager->getUploadedFileName('programFile');
 			$extension = $fileManager->getExtension($oldName);
@@ -138,7 +138,7 @@ class ProgramSettingsForm extends Form {
 		$setting = $schedConf->getSetting($settingName);
 
 		import('file.PublicFileManager');
-		$fileManager =& new PublicFileManager();
+		$fileManager = new PublicFileManager();
 		if ($fileManager->removeSchedConfFile($schedConf->getSchedConfId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
 			return $settingsDao->deleteSetting($schedConf->getSchedConfId(), $settingName, $locale);
 		} else {

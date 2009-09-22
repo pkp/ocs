@@ -84,7 +84,7 @@ class RegistrantReportDAO extends DAO {
 		
 		// Prepare an array of registration Options by registration Id
 		$registrationOptionDAO =& DAORegistry::getDAO('RegistrationOptionDAO');
-		$iterator =& new DBRowIterator($result);
+		$iterator = new DBRowIterator($result);
 		$registrationOptionReturner = array();
 		while ($row =& $iterator->next()) {
 			$registrationId = $row['registration_id'];

@@ -36,8 +36,7 @@ class ManagerProgramHandler extends ManagerHandler {
 
 		import('manager.form.ProgramSettingsForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$settingsForm =& new ProgramSettingsForm();
+		$settingsForm = new ProgramSettingsForm();
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
 		} else {
@@ -58,8 +57,7 @@ class ManagerProgramHandler extends ManagerHandler {
 
 		import('manager.form.ProgramSettingsForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$settingsForm =& new ProgramSettingsForm();
+		$settingsForm = new ProgramSettingsForm();
 		$settingsForm->readInputData();
 		$formLocale = $settingsForm->getFormLocale();
 		$programTitle = Request::getUserVar('programFileTitle');

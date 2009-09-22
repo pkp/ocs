@@ -157,7 +157,7 @@ class TimeBlockForm extends Form {
 		}
 
 		if (!isset($timeBlock)) {
-			$timeBlock =& new TimeBlock();
+			$timeBlock = new TimeBlock();
 		}
 
 		$timeBlock->setSchedConfId($schedConf->getSchedConfId());

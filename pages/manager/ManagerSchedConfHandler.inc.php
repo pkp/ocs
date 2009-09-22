@@ -84,8 +84,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		import('manager.form.SchedConfSettingsForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$settingsForm =& new SchedConfSettingsForm($args);
+		$settingsForm = new SchedConfSettingsForm($args);
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
 		} else {
@@ -102,8 +101,7 @@ class ManagerSchedConfHandler extends ManagerHandler {
 
 		import('manager.form.SchedConfSettingsForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$settingsForm =& new SchedConfSettingsForm(
+		$settingsForm = new SchedConfSettingsForm(
 			array(Request::getUserVar('conferenceId'), Request::getUserVar('schedConfId')));
 		$settingsForm->readInputData();
 

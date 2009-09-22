@@ -75,7 +75,7 @@ class ReviewFormHandler extends ManagerHandler {
 			}
 
 			import('manager.form.ReviewFormForm');
-			$reviewFormForm =& new ReviewFormForm($reviewFormId);
+			$reviewFormForm = new ReviewFormForm($reviewFormId);
 
 			if ($reviewFormForm->isLocaleResubmit()) {
 				$reviewFormForm->readInputData();
@@ -103,7 +103,7 @@ class ReviewFormHandler extends ManagerHandler {
 		}
 
 		import('manager.form.ReviewFormForm');
-		$reviewFormForm =& new ReviewFormForm($reviewFormId);
+		$reviewFormForm = new ReviewFormForm($reviewFormId);
 		$reviewFormForm->readInputData();
 
 		if ($reviewFormForm->validate()) {
@@ -349,7 +349,7 @@ class ReviewFormHandler extends ManagerHandler {
 		}
 
 		import('manager.form.ReviewFormElementForm');
-		$reviewFormElementForm =& new ReviewFormElementForm($reviewFormId, $reviewFormElementId);
+		$reviewFormElementForm = new ReviewFormElementForm($reviewFormId, $reviewFormElementId);
 		if ($reviewFormElementForm->isLocaleResubmit()) {
 			$reviewFormElementForm->readInputData();
 		} else {
@@ -377,7 +377,7 @@ class ReviewFormHandler extends ManagerHandler {
 		}
 
 		import('manager.form.ReviewFormElementForm');
-		$reviewFormElementForm =& new ReviewFormElementForm($reviewFormId, $reviewFormElementId);
+		$reviewFormElementForm = new ReviewFormElementForm($reviewFormId, $reviewFormElementId);
 		$reviewFormElementForm->readInputData();
 		$formLocale = $reviewFormElementForm->getFormLocale();
 

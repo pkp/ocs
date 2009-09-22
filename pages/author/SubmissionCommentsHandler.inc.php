@@ -36,7 +36,7 @@ class SubmissionCommentsHandler extends AuthorHandler {
 
 		$paperId = $args[0];
 
-		$trackSubmissionHandler =& new TrackSubmissionHandler();
+		$trackSubmissionHandler = new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
 		AuthorAction::viewDirectorDecisionComments($authorSubmission);
@@ -47,7 +47,7 @@ class SubmissionCommentsHandler extends AuthorHandler {
 	 */
 	function emailDirectorDecisionComment() {
 		$paperId = (int) Request::getUserVar('paperId');
-		$trackSubmissionHandler =& new TrackSubmissionHandler();
+		$trackSubmissionHandler = new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($paperId);
 		$submission =& $trackSubmissionHandler->submission;
 
@@ -70,7 +70,7 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		
 		$this->setupTemplate(true);
 		
-		$trackSubmissionHandler =& new TrackSubmissionHandler();
+		$trackSubmissionHandler = new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
 
@@ -99,7 +99,7 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		
 		$this->setupTemplate(true);
 		
-		$trackSubmissionHandler =& new TrackSubmissionHandler();
+		$trackSubmissionHandler = new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
 
@@ -132,7 +132,7 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		
 		$this->setupTemplate(true);
 		
-		$trackSubmissionHandler =& new TrackSubmissionHandler();
+		$trackSubmissionHandler = new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($paperId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
 		AuthorAction::deleteComment($commentId);
