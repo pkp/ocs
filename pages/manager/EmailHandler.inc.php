@@ -103,6 +103,7 @@ class EmailHandler extends ManagerHandler {
 	 */
 	function updateEmail() {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.EmailTemplateForm');
 
@@ -115,9 +116,7 @@ class EmailHandler extends ManagerHandler {
 		if ($emailTemplateForm->validate()) {
 			$emailTemplateForm->execute();
 			Request::redirect(null, null, null, 'emails');
-
 		} else {
-			parent::setupTemplate(true);
 			$emailTemplateForm->display();
 		}
 	}
@@ -128,6 +127,7 @@ class EmailHandler extends ManagerHandler {
 	 */
 	function deleteCustomEmail($args) {
 		$this->validate();
+		$conference =& Request::getConference();
 
 		$emailKey = array_shift($args);
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');

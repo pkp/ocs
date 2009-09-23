@@ -37,6 +37,7 @@ class EmailTemplateForm extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorArray($this, 'subject', 'required', 'manager.emails.form.subjectRequired'));
 		$this->addCheck(new FormValidatorArray($this, 'body', 'required', 'manager.emails.form.bodyRequired'));
+		$this->addCheck(new FormValidator($this, 'emailKey', 'required', 'manager.emails.form.emailKeyRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -96,6 +97,11 @@ class EmailTemplateForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array('emailId', 'subject', 'body', 'enabled', 'conferenceId', 'emailKey'));
+
+		$conferenceId = $this->conference->getConferenceId();
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $conferenceId);
+		if (!$emailTemplate) $this->_data['isNewTemplate'] = true;
 	}
 
 	/**
