@@ -525,7 +525,7 @@
 	<message key="manager.setup.additionalContent.information.forAuthors">For Authors</message>
 	<message key="manager.setup.additionalContent.information.forReaders">For Readers</message>
 	<message key="manager.setup.additionalContent.redirect">Scheduled Conference Redirect</message>
-	<message key="manager.setup.additionalContent.redirect.description">By selecting a Scheduled Conference below, it is possible to redirect users who visit the Conference page directly to that Scheduled Conference. This is useful if, for example, this Conference only contains a single Scheduled Conference.</message>
+	<message key="manager.setup.additionalContent.redirect.description">By selecting a Scheduled Conference below, it is possible to redirect users who visit the Conference page directly to that Scheduled Conference. This is useful if, for example, this Conference only contains a single Scheduled Conference. Scheduled Conferences are created under Scheduling a Conference.</message>
 	<message key="manager.setup.additionalContent.redirect.invalidSchedConf">An invalid scheduled conference was chosen for redirects. Please check the chosen scheduled conference and try again.</message>
 	<message key="manager.setup.additionalContent.redirect.noSchedConfRedirect">Do not redirect</message>
 	<message key="manager.setup.additionalContent.schedConfRedirect">Redirect</message>
