@@ -58,7 +58,7 @@ class SitemapHandler extends Handler {
 		$conferenceDao =& DAORegistry::getDAO('ConferenceDAO');
 		$schedConfDao = &DAORegistry::getDAO('SchedConfDAO');
 		
-		$doc =& XMLCustomWriter::createDocument('', null);
+		$doc =& XMLCustomWriter::createDocument();
 		$root =& XMLCustomWriter::createElement($doc, 'sitemapindex');
 		XMLCustomWriter::setAttribute($root, 'xmlns', SITEMAP_XSD_URL);
 
@@ -92,7 +92,7 @@ class SitemapHandler extends Handler {
 		$conference = &Request::getConference();
 		$conferenceId = $conference->getConferenceId();
 		
-		$doc =& XMLCustomWriter::createDocument('', null);
+		$doc =& XMLCustomWriter::createDocument();
 		$root =& XMLCustomWriter::createElement($doc, 'urlset');
 		XMLCustomWriter::setAttribute($root, 'xmlns', SITEMAP_XSD_URL);
 		
@@ -116,7 +116,7 @@ class SitemapHandler extends Handler {
 		$conferenceId = $conference->getConferenceId();
 		$schedConf = Request::getSchedConf();
 
-		$doc =& XMLCustomWriter::createDocument('', null);
+		$doc =& XMLCustomWriter::createDocument();
 		$root =& XMLCustomWriter::createElement($doc, 'urlset');
 		XMLCustomWriter::setAttribute($root, 'xmlns', SITEMAP_XSD_URL);
 

@@ -89,7 +89,7 @@ class METSExportPlugin extends ImportExportPlugin {
 
 	function exportSchedConf(&$conference, &$schedConf) {
 		$this->import('MetsExportDom');
-		$doc =& XMLCustomWriter::createDocument('', null);
+		$doc =& XMLCustomWriter::createDocument();
 		$root =& XMLCustomWriter::createElement($doc, 'METS:mets');
 		XMLCustomWriter::setAttribute($root, 'xmlns:METS', 'http://www.loc.gov/METS/');
 		XMLCustomWriter::setAttribute($root, 'xmlns:xlink', 'http://www.w3.org/TR/xlink');
@@ -122,7 +122,7 @@ class METSExportPlugin extends ImportExportPlugin {
 	function exportSchedConfs(&$conference, &$schedConfIdArray) {
 		$this->import('MetsExportDom');
 		$schedConfDAO =& DAORegistry::getDAO('SchedConfDAO');
-		$doc =& XMLCustomWriter::createDocument('', null);
+		$doc =& XMLCustomWriter::createDocument();
 		$root =& XMLCustomWriter::createElement($doc, 'METS:mets');
 		XMLCustomWriter::setAttribute($root, 'xmlns:METS', 'http://www.loc.gov/METS/');
 		XMLCustomWriter::setAttribute($root, 'xmlns:xlink', 'http://www.w3.org/TR/xlink');
