@@ -61,16 +61,22 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	}
 		
 	function _announcementIsValid($announcementId) {
-		if ( $announcementId == null ) return false;
+		if ($announcementId == null) return false;
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		switch ( $announcementDao->getAnnouncementAssocType($announcementId) ) {
+		switch ($announcementDao->getAnnouncementAssocType($announcementId)) {
 			case ASSOC_TYPE_CONFERENCE:
 				$conference =& Request::getConference();
-				return $announcementDao->getAnnouncementAssocId($announcementId) == $conference->getConferenceId();
+				return (
+					$conference &&
+					$announcementDao->getAnnouncementAssocId($announcementId) == $conference->getConferenceId()
+				);
 			case ASSOC_TYPE_SCHED_CONF:
 				$schedConf =& Request::getSchedConf(); 
-				return $schedConf && $announcementDao->getAnnouncementAssocId($announcementId) == $schedConf->getSchedConfId();
+				return (
+					$schedConf &&
+					$announcementDao->getAnnouncementAssocId($announcementId) == $schedConf->getSchedConfId()
+				);
 			default:
 				return false;
 		}

@@ -86,7 +86,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	 * @param Announcement the announcement to be modified
 	 */
 	function _setAnnouncementAssocId(&$announcement) {
-		if ( $this->getData('schedConfId') == 0 ) {
+		if ($this->getData('schedConfId') == 0) {
 			$conference =& Request::getConference();
 			$announcement->setAssocType(ASSOC_TYPE_CONFERENCE);
 			$announcement->setAssocId($conference->getConferenceId());
@@ -114,7 +114,18 @@ class AnnouncementForm extends PKPAnnouncementForm {
 			$notificationUsers[] = array('id' => $user->getId());
 			unset($user);
 		}
-		$url = Request::url(null, null, 'announcement', 'view', array(1));
+
+		$schedConfId = $this->getData('schedConfId');
+		if ($schedConfId == 0) {
+			// Associated with the conference as a whole.
+			$url = Request::url(null, 'index', 'announcement', 'view', array(1));
+		} else {
+			// Associated with a sched conf -- determine its path.
+			$schedConfDao =& DAORegistry::getDAO('SchedConfDAO');
+			$schedConf =& $schedConfDao->getSchedConf($schedConfId);
+			$url = Request::url(null, $schedConf->getPath(), 'announcement', 'view', array(1));
+		}
+
 		foreach ($notificationUsers as $user) {
 			Notification::createNotification($user['id'], "notification.type.newAnnouncement",
 				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT);
