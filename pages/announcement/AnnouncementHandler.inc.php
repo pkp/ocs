@@ -70,7 +70,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 				return $announcementDao->getAnnouncementAssocId($announcementId) == $conference->getConferenceId();
 			case ASSOC_TYPE_SCHED_CONF:
 				$schedConf =& Request::getSchedConf(); 
-				return $announcementDao->getAnnouncementAssocId($announcementId) == $schedConf->getSchedConfId();
+				return $schedConf && $announcementDao->getAnnouncementAssocId($announcementId) == $schedConf->getSchedConfId();
 			default:
 				return false;
 		}
