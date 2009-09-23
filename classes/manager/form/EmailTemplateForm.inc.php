@@ -28,7 +28,7 @@ class EmailTemplateForm extends Form {
 	 * Constructor.
 	 * @param $emailKey string
 	 */
-	function EmailTemplateForm($emailKey, $conference) {
+	function EmailTemplateForm($emailKey, &$conference) {
 		parent::Form('manager/emails/emailTemplateForm.tpl');
 
 		$this->conference =& $conference;
