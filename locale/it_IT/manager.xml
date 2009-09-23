@@ -510,7 +510,7 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">La data di fine del convegno deve essere successiva alla data di inizio del convegno.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">La data del sito web "Vedi dal vivo" deve essere antecedente alla data dell'inizio del convegno.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">Il convegno non pu&#x00F2; iniziare prima che le submission siano chiuse.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">La data d'inizio della registrazione dell'autore deve essere antecedente alla data di chiusura della registrazione dell'autore.</message>
+	<message key="manager.timeline.form.regAuthorCloseDateBeforeRegAuthorOpenDate">La data d'inizio della registrazione dell'autore deve essere antecedente alla data di chiusura della registrazione dell'autore.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">La data d'inizio della registrazione del revisore deve essere antecedente alla data di chiusura della registrazione del revisore.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">La data "Sposta nell'archivio del convegno" deve essere successiva all'ultimo giorno del convegno.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">Il sito del convegno non pu&#x00F2; essere spostato in archivio prima della data d'inizio del convegno.</message>

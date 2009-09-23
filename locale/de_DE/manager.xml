@@ -486,7 +486,7 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">Das Ende der Konferenz muss hinter ihrem Anfang liegen.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">Das Freischaltungsdatum der Webseite muss vor dem Konferenzbeginn liegen.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">Die Konferenz kann nicht beginnen, bevor der Einreichungszeitraum geschlossen ist.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">Die &#214;ffnung des Anmeldezeitraums f&#252;r Autoren muss vor der Schlie&#223;ung liegen.</message>
+	<message key="manager.timeline.form.regAuthorCloseDateBeforeRegAuthorOpenDate">Die &#214;ffnung des Anmeldezeitraums f&#252;r Autoren muss vor der Schlie&#223;ung liegen.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">Die &#214;ffnung des Anmeldezeitraums f&#252;r Gutachter muss vor der Schlie&#223;ung liegen.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">Das Archivierungsdatum muss hinter dem letzten Konferenztag liegen.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">Die Konferenzseite kann nicht vor dem Beginn der Konferenz archiviert werden.</message>

@@ -452,7 +452,7 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">研討會的截止時間必需在研討會開始時間之後.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">網站 "啟用上線" 日期必需在研討會開始日期之前.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">研討會不能在投截止日之前開始.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">作者開始註冊日期必需在作者註冊截止日期之前.</message>
+	<message key="manager.timeline.form.regAuthorCloseDateBeforeRegAuthorOpenDate">作者開始註冊日期必需在作者註冊截止日期之前.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">審查者開始註冊日期必需在審查者註冊截止日期之前.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">網站 "移動到檔案庫 (歸檔)" 日期必需在研討會結束日期之後.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">研討會網站在研討會開始日期之前不能進行歸檔動作.</message>

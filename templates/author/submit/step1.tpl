@@ -49,7 +49,7 @@
 	<div class="separator"></div>
 {/if}{* count($trackOptions) == 2 *}
 
-{if is_array($sessionTypes)}
+{if is_array($sessionTypes) && count($sessionTypes) != 0}
 	{if count($sessionTypes) == 1}
 		{* Only one session type available; force it. *}
 		{foreach from=$sessionTypes item=sessionTypeObject}{/foreach}

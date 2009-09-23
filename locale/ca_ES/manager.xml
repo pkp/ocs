@@ -423,7 +423,7 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">La data d'acabament de la conferència ha de ser després de la data en la qual comenci la conferència.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">La data que figura com "Posta en la Web" ha de ser abans de la data d'inici de la conferència.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">La conferència no pot començar abans que es tanqui el termini de tramesa d'originals.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">La data d'inici d'inscripció d'autors ha de ser abans de la data de tancament de la mateixa.</message>
+	<message key="manager.timeline.form.regAuthorCloseDateBeforeRegAuthorOpenDate">La data d'inici d'inscripció d'autors ha de ser abans de la data de tancament de la mateixa.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">La data d'inici d'inscripció dels avaluadors ha de ser abans del tancament de la mateixa.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">La data d'"Arxiu de la Conferència" ha de ser després de l'últim dia de la conferència.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">La web de conferència no s'ha d'arxivar abans que comenci la conferència.</message>

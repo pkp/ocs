@@ -507,7 +507,7 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">A data de fim deve ser posterior à data de abertura da Conferência.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">A data de "Lançar/Tornar Público" deve ser antes da data de abertura da Conferência.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">A conferência não pode iniciar antes do encerramento das submissões.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">A data de abertura de inscrições de autores deve ser anterior à data de encerramento de inscrições de autores.</message>
+	<message key="manager.timeline.form.regAuthorCloseDateBeforeRegAuthorOpenDate">A data de abertura de inscrições de autores deve ser anterior à data de encerramento de inscrições de autores.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">A data de abertura de inscrições de avaliadores deve ser anterior à data de encerramento de inscrições de avaliadores.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">A data de "Arquivar" deve ser após o último dia da conferência.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">A conferência não pode ser arquivada antes de sua data de abertura.</message>

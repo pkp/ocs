@@ -422,7 +422,7 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">La fecha de finalización de la conferencia debe ser después de la fecha en que comience la conferencia.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">La fecha que figura com "Puesta en la web" debe ser antes de la fecha de inicio de la conferencia.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">La conferencia no puede empezar antes de que se cierre el plazo de envío de originales.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">La fecha de inicio de inscripción de autores debe ser antes de la fecha de cierre de la misma.</message>
+	<message key="manager.timeline.form.regAuthorCloseDateBeforeRegAuthorOpenDate">La fecha de inicio de inscripción de autores debe ser antes de la fecha de cierre de la misma.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">La fecha de inicio de inscripción de los evaluadores debe ser antes del cierre de la misma.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">La fecha de "Archivar la Conferencia" debe ser después del último día de la conferencia.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">La web de conferencia no debe archivarse antes de que empiece la conferencia.</message>

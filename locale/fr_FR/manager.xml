@@ -428,7 +428,7 @@
 	<message key="manager.timeline.form.conferenceEndDateBeforeConferenceStart">La date de la fin de la conférence doit arriver après la date de début.</message>
 	<message key="manager.timeline.form.conferenceStartBeforeSiteStart">L'entrée en service sur site web doit arriver avant la date du début de la conférence.</message>
 	<message key="manager.timeline.form.conferenceStartDateBeforeSubmissionsClose">La conférence ne peut commencer avant la fermeture des propositions.</message>
-	<message key="manager.timeline.form.regPresenterCloseDateBeforeRegAuthorOpenDate">La date d'ouverture des inscriptions des auteurs doit arriver avant sa date de fermeture.</message>
+	<message key="manager.timeline.form.regAuthorCloseDateBeforeRegAuthorOpenDate">La date d'ouverture des inscriptions des auteurs doit arriver avant sa date de fermeture.</message>
 	<message key="manager.timeline.form.regReviewerCloseDateBeforeRegReviewerOpenDate">La date d'ouverture des inscriptions des évaluateurs doit arriver avant sa date de fermeture.</message>
 	<message key="manager.timeline.form.siteEndBeforeLastDay">La date d'Archivage doit arriver après le dernier jour de conférence.</message>
 	<message key="manager.timeline.form.siteEndDateBeforeConferenceStart">Le site de la conférence ne peut pas être déplacé aux archives avant la date de début.</message>
