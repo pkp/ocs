@@ -13,7 +13,7 @@
   *
   * $Id$
   -->
- 
+
 <locale name="pt_BR" full_name="Português (Brasil)">
 	<message key="plugins.auth.ldap.displayName">LDAP</message>
 	<message key="plugins.auth.ldap.description">Este plugin permite a autenticação e sincronização das contas de usuários através de uma fonte de dados externa LDAP.</message>

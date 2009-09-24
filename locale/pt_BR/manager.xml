@@ -132,7 +132,7 @@
 	<message key="manager.registration.registrationType">Tipo de Inscrição</message>
 	<message key="manager.registration.select">Cadastrar Inscrito</message>
 	<message key="manager.registration.selectRegistrant">Escolher Inscrito</message>
-	<message key="manager.registrationTypes">Tipos de Avaliação</message>
+	<message key="manager.registrationTypes">Tipos de Inscrição</message>
 	<message key="manager.registrationTypes.access">Acesso</message>
 	<message key="manager.registrationTypes.access.both">Online e Presencial</message>
 	<message key="manager.registrationTypes.access.online">Online</message>
@@ -164,9 +164,9 @@
 	<message key="manager.registrationTypes.form.expiryDate">Data de expiração de acesso ao conteúdo da conferência</message>
 	<message key="manager.registrationTypes.form.institutional">Inscritos podem ser validados através do domínio ou autenticação de IP.</message>
 	<message key="manager.registrationTypes.form.institutionalValid">Habilite a caixa de opção disponível.</message>
-	<message key="manager.registrationTypes.form.membership">Registrants must be members of a designated organization.</message>
+	<message key="manager.registrationTypes.form.membership">Inscritos tem que ser membros de uma associação, organização ou entidade de classe.</message>
 	<message key="manager.registrationTypes.form.membershipValid">Habilite a caixa de opção disponível.</message>
-	<message key="manager.registrationTypes.form.notPublic">Inscritos podem ser membros de uma associação, organização ou entidade de classe.</message>
+	<message key="manager.registrationTypes.form.notPublic">Não disponibilize esse tipo de inscrição em público.</message>
 	<message key="manager.registrationTypes.form.notPublicValid">Habilite a caixa de opção disponível.</message>
 	<message key="manager.registrationTypes.form.openDate">Abre para Inscrições</message>
 	<message key="manager.registrationTypes.form.saveAndCreateAnotherType">Salvar e criar outro</message>
