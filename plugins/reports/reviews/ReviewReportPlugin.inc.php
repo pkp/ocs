@@ -124,7 +124,7 @@ class ReviewReportPlugin extends ReportPlugin {
 					$columns[$index] = (!isset($row[$index])) ? Locale::translate('common.none') : Locale::translate($recommendations[$row[$index]]);
 				} elseif ($index == "comments") {
 					if (isset($comments[$row['paperid']][$row['reviewerid']])) {
-						$columns[$index] = $comments[$row['paperid']][$row['reviewerid']];
+						$columns[$index] = html_entity_decode(strip_tags($comments[$row['paperid']][$row['reviewerid']]));
 					} else {
 						$columns[$index] = "";
 					}
