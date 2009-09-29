@@ -1248,10 +1248,20 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 	function uploadLayoutFile() {
 		$layoutFileType = Request::getUserVar('layoutFileType');
 		$stage = (int) Request::getUserVar('stage');
-		if ($layoutFileType == 'submission') {
-			$this->uploadLayoutVersion($stage);
 
-		} else if ($layoutFileType == 'galley') {
+		import('file.FileManager');
+		$fileManager = new FileManager();
+		if ($fileManager->uploadError('layoutFile')) {
+			$templateMgr =& TemplateManager::getManager();
+			$this->setupTemplate(true);
+			$templateMgr->assign('pageTitle', 'submission.review');
+			$templateMgr->assign('message', 'common.uploadFailed');
+			$templateMgr->assign('backLink', Request::url(null, null, null, 'submissionReview', array(Request::getUserVar('paperId'))));
+			$templateMgr->assign('backLinkLabel', 'submission.review');
+			return $templateMgr->display('common/message.tpl');
+		}
+		
+		if ($layoutFileType == 'galley') {
 			$this->uploadGalley('layoutFile', $stage);
 
 		} else if ($layoutFileType == 'supp') {
@@ -1260,20 +1270,6 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 		} else {
 			Request::redirect(null, null, null, 'submission', Request::getUserVar('paperId'));
 		}
-	}
-
-	/**
-	 * Upload the layout version of the submission file
-	 * @var $stage int The current review stage to redirect back to
-	 */
-	function uploadLayoutVersion($stage) {
-		$paperId = Request::getUserVar('paperId');
-		$this->validate($paperId, TRACK_DIRECTOR_ACCESS_EDIT);
-		$submission =& $this->submission;
-
-		TrackDirectorAction::uploadLayoutVersion($submission);
-
-		Request::redirect(null, null, null, 'submissionReview', array($paperId, $stage));
 	}
 
 	/**

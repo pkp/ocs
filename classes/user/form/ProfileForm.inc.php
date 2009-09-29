@@ -70,6 +70,7 @@ class ProfileForm extends Form {
 		if (!$extension) return false;
 
 		$uploadName = 'profileImage-' . (int) $user->getId() . $extension;
+		if ($fileManager->uploadError('profileImage')) return false;
 		if (!$fileManager->uploadSiteFile('profileImage', $uploadName)) return false;
 
 		$filePath = $fileManager->getSiteFilesPath();

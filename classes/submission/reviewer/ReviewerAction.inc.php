@@ -205,48 +205,49 @@ class ReviewerAction extends Action {
 	 * @param $reviewId int
 	 */
 	function uploadReviewerVersion($reviewId) {
-		import("file.PaperFileManager");
+		import('file.PaperFileManager');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');		
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 		$paperFileManager = new PaperFileManager($reviewAssignment->getPaperId());
 
 		// Only upload the file if the reviewer has yet to submit a recommendation
-		if (($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation() === '') && !$reviewAssignment->getCancelled()) {
-			$fileName = 'upload';
-			if ($paperFileManager->uploadedFileExists($fileName)) {
-				HookRegistry::call('ReviewerAction::uploadReviewFile', array(&$reviewAssignment));
-				if ($reviewAssignment->getReviewerFileId() != null) {
-					$fileId = $paperFileManager->uploadReviewFile($fileName, $reviewAssignment->getReviewerFileId());
-				} else {
-					$fileId = $paperFileManager->uploadReviewFile($fileName);
-				}
-			}
+		if (!(($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation() === '') && !$reviewAssignment->getCancelled())) return false;
+
+		$fileName = 'upload';
+		if ($paperFileManager->uploadError($fileName)) return false;
+		if (!$paperFileManager->uploadedFileExists($fileName)) return false;
+		HookRegistry::call('ReviewerAction::uploadReviewFile', array(&$reviewAssignment));
+		if ($reviewAssignment->getReviewerFileId() != null) {
+			$fileId = $paperFileManager->uploadReviewFile($fileName, $reviewAssignment->getReviewerFileId());
+		} else {
+			$fileId = $paperFileManager->uploadReviewFile($fileName);
 		}
 
-		if (isset($fileId) && $fileId != 0) {
-			$reviewAssignment->setReviewerFileId($fileId);
-			$reviewAssignment->stampModified();
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+		if ($fileId == 0) return false;
 
-			// Add log
-			import('paper.log.PaperLog');
-			import('paper.log.PaperEventLogEntry');
+		$reviewAssignment->setReviewerFileId($fileId);
+		$reviewAssignment->stampModified();
+		$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
 
-			$userDao =& DAORegistry::getDAO('UserDAO');
-			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+		// Add log
+		import('paper.log.PaperLog');
+		import('paper.log.PaperEventLogEntry');
 
-			$entry = new PaperEventLogEntry();
-			$entry->setPaperId($reviewAssignment->getPaperId());
-			$entry->setUserId($reviewer->getId());
-			$entry->setDateLogged(Core::getCurrentDate());
-			$entry->setEventType(PAPER_LOG_REVIEW_FILE);
-			$entry->setLogMessage('log.review.reviewerFile');
-			$entry->setAssocType(LOG_TYPE_REVIEW);
-			$entry->setAssocId($reviewAssignment->getReviewId());
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 
-			PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
-		}
+		$entry = new PaperEventLogEntry();
+		$entry->setPaperId($reviewAssignment->getPaperId());
+		$entry->setUserId($reviewer->getId());
+		$entry->setDateLogged(Core::getCurrentDate());
+		$entry->setEventType(PAPER_LOG_REVIEW_FILE);
+		$entry->setLogMessage('log.review.reviewerFile');
+		$entry->setAssocType(LOG_TYPE_REVIEW);
+		$entry->setAssocId($reviewAssignment->getReviewId());
+
+		PaperLog::logEventEntry($reviewAssignment->getPaperId(), $entry);
+		return true;
 	}
 
 	/**

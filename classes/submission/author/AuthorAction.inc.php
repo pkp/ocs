@@ -97,31 +97,30 @@ class AuthorAction extends Action {
 	 * @param $authorSubmission object
 	 */
 	function uploadRevisedVersion($authorSubmission) {
-		import("file.PaperFileManager");
+		import('file.PaperFileManager');
 		$paperFileManager = new PaperFileManager($authorSubmission->getPaperId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		$fileName = 'upload';
-		if ($paperFileManager->uploadedFileExists($fileName)) {
-			HookRegistry::call('AuthorAction::uploadRevisedVersion', array(&$authorSubmission));
-			if ($authorSubmission->getRevisedFileId() != null) {
-				$fileId = $paperFileManager->uploadDirectorDecisionFile($fileName, $authorSubmission->getRevisedFileId());
-			} else {
-				$fileId = $paperFileManager->uploadDirectorDecisionFile($fileName);
-			}
+		if ($paperFileManager->uploadError($fileName)) return false;
+		if (!$paperFileManager->uploadedFileExists($fileName)) return false;
+
+		HookRegistry::call('AuthorAction::uploadRevisedVersion', array(&$authorSubmission));
+		if ($authorSubmission->getRevisedFileId() != null) {
+			$fileId = $paperFileManager->uploadDirectorDecisionFile($fileName, $authorSubmission->getRevisedFileId());
+		} else {
+			$fileId = $paperFileManager->uploadDirectorDecisionFile($fileName);
 		}
+		if (!$fileId) return false;
 
-		if (isset($fileId) && $fileId != 0) {
-			$authorSubmission->setRevisedFileId($fileId);
+		$authorSubmission->setRevisedFileId($fileId);
+		$authorSubmissionDao->updateAuthorSubmission($authorSubmission);
 
-			$authorSubmissionDao->updateAuthorSubmission($authorSubmission);
-
-			// Add log entry
-			$user =& Request::getUser();
-			import('paper.log.PaperLog');
-			import('paper.log.PaperEventLogEntry');
-			PaperLog::logEvent($authorSubmission->getPaperId(), PAPER_LOG_AUTHOR_REVISION, LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'paperId' => $authorSubmission->getPaperId()));
-		}
+		// Add log entry
+		$user =& Request::getUser();
+		import('paper.log.PaperLog');
+		import('paper.log.PaperEventLogEntry');
+		PaperLog::logEvent($authorSubmission->getPaperId(), PAPER_LOG_AUTHOR_REVISION, LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'paperId' => $authorSubmission->getPaperId()));
 	}
 
 	//

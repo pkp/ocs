@@ -249,7 +249,7 @@ function confirmSubmissionCheck() {
 	<tr valign="top">
 		<td>&nbsp;</td>
 		<td>
-			{translate key="submission.logType.review"} 
+			{translate key="event.logType.review"} 
 			{if $confirmedStatus and not $declined}
 				<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$paperId|to_array:$reviewId}');" class="icon">{icon name="comment"}</a>
 			{else}

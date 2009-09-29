@@ -72,12 +72,13 @@ class ManagerAccommodationHandler extends ManagerHandler {
 
 			import('file.PublicFileManager');
 			$fileManager = new PublicFileManager();
-			if ($fileManager->uploadedFileExists('accommodationFile')) {
+			$success = !$fileManager->uploadError('accommodationFile');
+			if ($success && $success = $fileManager->uploadedFileExists('accommodationFile')) {
 				$oldName = $fileManager->getUploadedFileName('accommodationFile');
 				$extension = $fileManager->getExtension($oldName);
 				if (!$extension) break;
 				$uploadName = 'accommodation-' . $thisFileKey . '.' . $extension;
-				if ($fileManager->uploadSchedConfFile($schedConf->getSchedConfId(), 'accommodationFile', $uploadName)) {
+				if ($success && $success = $fileManager->uploadSchedConfFile($schedConf->getSchedConfId(), 'accommodationFile', $uploadName)) {
 					$value = array(
 						'name' => $oldName,
 						'uploadName' => $uploadName,
@@ -89,6 +90,9 @@ class ManagerAccommodationHandler extends ManagerHandler {
 					$settingsForm->setData('accommodationFileTitle', '');
 					$schedConf->updateSetting('accommodationFiles', $accommodationFiles, 'object', true);
 				}
+			}
+			if (!$success) {
+				$settingsForm->addError('accommodationFiles', Locale::translate('common.uploadFailed'));
 			}
 			$editData = true;
 		} else {

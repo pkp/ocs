@@ -96,6 +96,7 @@ class ConferenceSetupForm extends Form {
 
 		import('file.PublicFileManager');
 		$fileManager = new PublicFileManager();
+		if ($fileManager->uploadError($settingName)) return false;
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$type = $fileManager->getUploadedFileType($settingName);
 			$extension = $fileManager->getImageExtension($type);

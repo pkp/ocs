@@ -66,7 +66,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$templateMgr->assign_by_ref('reviewGuidelines', $schedConf->getLocalizedSetting('reviewGuidelines'));
 
 		// The reviewer instructions differ depending on what is reviewed, and when.
-		if($reviewAssignment->getStage()==REVIEW_STAGE_ABSTRACT && $submission->getReviewMode() != REVIEW_MODE_BOTH_SIMULTANEOUS)
+		if($reviewAssignment->getStage()==REVIEW_STAGE_ABSTRACT && $reviewerSubmission->getReviewMode() != REVIEW_MODE_BOTH_SIMULTANEOUS)
 			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.downloadSubmissionAbstractOnly');
 		else
 			$templateMgr->assign('reviewerInstruction3', 'reviewer.paper.downloadSubmissionSubmission');
@@ -140,7 +140,14 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$this->validate($reviewId);
 		$this->setupTemplate(true);
 		
-		ReviewerAction::uploadReviewerVersion($reviewId);
+		if (!ReviewerAction::uploadReviewerVersion($reviewId)) {
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->assign('pageTitle', 'submission.uploadFile');
+			$templateMgr->assign('message', 'common.uploadFailed');
+			$templateMgr->assign('backLink', Request::url(null, null, null, 'submission', array($reviewId)));
+			$templateMgr->assign('backLinkLabel', 'common.back');
+			return $templateMgr->display('common/message.tpl');
+		}
 		Request::redirect(null, null, null, 'submission', $reviewId);
 	}
 

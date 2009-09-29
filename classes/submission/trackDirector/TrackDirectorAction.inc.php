@@ -882,24 +882,27 @@ class TrackDirectorAction extends Action {
 		$trackDirectorSubmissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
 
 		$fileName = 'upload';
-		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadReviewVersion', array(&$trackDirectorSubmission))) {
-			if ($trackDirectorSubmission->getReviewFileId() != null) {
-				$reviewFileId = $paperFileManager->uploadReviewFile($fileName, $trackDirectorSubmission->getReviewFileId());
-				// Increment the review revision.
-				$trackDirectorSubmission->setReviewRevision($trackDirectorSubmission->getReviewRevision()+1);
-			} else {
-				$reviewFileId = $paperFileManager->uploadReviewFile($fileName);
-				$trackDirectorSubmission->setReviewRevision(1);
-			}
-			$directorFileId = $paperFileManager->copyToDirectorFile($reviewFileId, $trackDirectorSubmission->getReviewRevision(), $trackDirectorSubmission->getDirectorFileId());
-		}
+		if ($paperFileManager->uploadError($fileName)) return false;
+		if (!$paperFileManager->uploadedFileExists($fileName)) return false;
+		if (HookRegistry::call('TrackDirectorAction::uploadReviewVersion', array(&$trackDirectorSubmission))) return true;
 
-		if (isset($reviewFileId) && $reviewFileId != 0 && isset($directorFileId) && $directorFileId != 0) {
+		if ($trackDirectorSubmission->getReviewFileId() != null) {
+			$reviewFileId = $paperFileManager->uploadReviewFile($fileName, $trackDirectorSubmission->getReviewFileId());
+			// Increment the review revision.
+			$trackDirectorSubmission->setReviewRevision($trackDirectorSubmission->getReviewRevision()+1);
+		} else {
+			$reviewFileId = $paperFileManager->uploadReviewFile($fileName);
+			$trackDirectorSubmission->setReviewRevision(1);
+		}
+		$directorFileId = $paperFileManager->copyToDirectorFile($reviewFileId, $trackDirectorSubmission->getReviewRevision(), $trackDirectorSubmission->getDirectorFileId());
+
+		if ($reviewFileId != 0 && isset($directorFileId) && $directorFileId != 0) {
 			$trackDirectorSubmission->setReviewFileId($reviewFileId);
 			$trackDirectorSubmission->setDirectorFileId($directorFileId);
 
 			$trackDirectorSubmissionDao->updateTrackDirectorSubmission($trackDirectorSubmission);
 		}
+		return true;
 	}
 
 	/**
@@ -913,6 +916,7 @@ class TrackDirectorAction extends Action {
 		$user =& Request::getUser();
 
 		$fileName = 'upload';
+		if ($paperFileManager->uploadError($fileName)) return false;
 		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadDirectorVersion', array(&$trackDirectorSubmission))) {
 			if ($trackDirectorSubmission->getDirectorFileId() != null) {
 				$fileId = $paperFileManager->uploadDirectorDecisionFile($fileName, $trackDirectorSubmission->getDirectorFileId());
@@ -1038,24 +1042,6 @@ class TrackDirectorAction extends Action {
 	//
 	// Layout Editing
 	//
-
-	/**
-	 * Upload the layout version of a paper.
-	 * @param $submission object
-	 */
-	function uploadLayoutVersion($submission) {
-		import('file.PaperFileManager');
-		$paperFileManager = new PaperFileManager($submission->getPaperId());
-		$submissionDao =& DAORegistry::getDAO('TrackDirectorSubmissionDAO');
-
-		$fileName = 'layoutFile';
-		if ($paperFileManager->uploadedFileExists($fileName) && !HookRegistry::call('TrackDirectorAction::uploadLayoutVersion', array(&$submission))) {
-			$layoutFileId = $paperFileManager->uploadLayoutFile($fileName, $submission->getLayoutFileId());
-
-			$submission->setLayoutFileId($layoutFileId);
-			$submissionDao->updateTrackDirectorSubmission($submission);
-		}
-	}
 
 	/**
 	 * Change the sequence order of a galley.
@@ -1200,6 +1186,7 @@ import('file.PaperFileManager');
 
 		if (!HookRegistry::call('TrackDirectorAction::addSubmissionNote', array(&$paperId, &$paperNote))) {
 			$paperFileManager = new PaperFileManager($paperId);
+			if ($paperFileManager->uploadError('upload')) return false;
 			if ($paperFileManager->uploadedFileExists('upload')) {
 				$fileId = $paperFileManager->uploadSubmissionNoteFile('upload');
 			} else {
@@ -1256,6 +1243,7 @@ import('file.PaperFileManager');
 
 		$paperFileManager = new PaperFileManager($paperId);
 
+		if ($paperFileManager->uploadError('upload')) return false;
 		// if there is a new file being uploaded
 		if ($paperFileManager->uploadedFileExists('upload')) {
 			// Attach the new file to the note, overwriting existing file if necessary
@@ -1669,6 +1657,7 @@ import('file.PaperFileManager');
 		// Only upload the file if the reviewer has yet to submit a recommendation
 		if (($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation() === '') && !$reviewAssignment->getCancelled()) {
 			$fileName = 'upload';
+			if ($paperFileManager->uploadError($fileName)) return false;
 			if ($paperFileManager->uploadedFileExists($fileName)) {
 				if ($reviewAssignment->getReviewerFileId() != null) {
 					$fileId = $paperFileManager->uploadReviewFile($fileName, $reviewAssignment->getReviewerFileId());

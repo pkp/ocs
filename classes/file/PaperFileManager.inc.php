@@ -470,6 +470,8 @@ class PaperFileManager extends FileManager {
 	 * @return int the file ID (false if upload failed)
 	 */
 	function handleUpload($fileName, $type, $fileId = null, $overwrite = false) {
+		if ($this->uploadError($fileName)) return false;
+
 		$paperFileDao =& DAORegistry::getDAO('PaperFileDAO');
 
 		$typePath = $this->typeToPath($type);

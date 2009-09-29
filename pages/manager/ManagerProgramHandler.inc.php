@@ -65,7 +65,9 @@ class ManagerProgramHandler extends ManagerHandler {
 		$editData = false;
 
 		if (Request::getUserVar('uploadProgramFile')) {
-			$settingsForm->uploadProgram('programFile', $formLocale);
+			if (!$settingsForm->uploadProgram('programFile', $formLocale)) {
+				$settingsForm->addError('programFile', Locale::translate('common.uploadFailed'));
+			}
 			$editData = true;
 		} elseif (Request::getUserVar('deleteProgramFile')) {
 			$settingsForm->deleteProgram('programFile', $formLocale);

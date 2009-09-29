@@ -104,6 +104,7 @@ class ProgramSettingsForm extends Form {
 
 		import('file.PublicFileManager');
 		$fileManager = new PublicFileManager();
+		if ($fileManager->uploadError($settingName)) return false;
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$oldName = $fileManager->getUploadedFileName('programFile');
 			$extension = $fileManager->getExtension($oldName);

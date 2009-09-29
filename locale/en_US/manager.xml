@@ -531,7 +531,7 @@
 	<message key="manager.setup.additionalContent.schedConfRedirect">Redirect</message>
 	<message key="manager.setup.additionalContent.title">Step 2. Additional Website Content</message>
 	<message key="manager.setup.conferenceSetupUpdated">Your conference setup has been updated.</message>
-	<message key="manager.setup.conferenceStyleSheetInvalid">Invalid conference stylesheet format. Accepted format is .css.</message>
+	<message key="manager.setup.conferenceStyleSheetInvalid">Invalid conference stylesheet format or upload failed. Accepted format is .css.</message>
 	<message key="manager.setup.conferenceTitle">Conference Title</message>
 	<message key="manager.setup.finalSchedConfStepSavedNotes"><![CDATA[<p>A scheduled conference has now been set up. Continue to Conference Management by <a href="{$conferenceManagementUrl}">clicking here</a>.</p>]]></message>
 	<message key="manager.setup.htmlSetupInstructions"><![CDATA[If using HTML in Setup text boxes (for font size, bold, color, etc.), note that "returns" in the text are automatically treated as <tt>&lt;br&gt;</tt>.]]></message>
@@ -559,7 +559,7 @@
 	<message key="manager.setup.layout.description">Titles and logos, headers, footers, etc.</message>
 	<message key="manager.setup.layout.favicon">Conference Favicon</message>
 	<message key="manager.setup.layout.faviconDescription">Add a favicon for this conference to display alongside the navigation bar when users are visiting your site.</message>
-	<message key="manager.setup.layout.faviconInvalid">Invalid favicon format. Accepted formats are .ico, .png, and .gif.</message>
+	<message key="manager.setup.layout.faviconInvalid">Invalid favicon format or upload failed. Accepted formats are .ico, .png, and .gif.</message>
 	<message key="manager.setup.layout.homepageHeader">Conference Homepage Header</message>
 	<message key="manager.setup.layout.homepageHeader.altText">Conference Homepage Header</message>
 	<message key="manager.setup.layout.homepageHeader.description">A graphic version of the conference's title and logo (as a .gif, .jpg, or .png file) can be uploaded for the homepage, which will replace the text version that otherwise appears.</message>

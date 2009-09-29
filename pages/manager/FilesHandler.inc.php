@@ -86,9 +86,19 @@ class FilesHandler extends ManagerHandler {
 
 		import('file.FileManager');
 		$fileMgr = new FileManager();
-		if ($fileMgr->uploadedFileExists('file')) {
+		if ($success = $fileMgr->uploadedFileExists('file')) {
 			$destPath = $currentPath . '/' . FilesHandler::cleanFileName($fileMgr->getUploadedFileName('file'));
-			@$fileMgr->uploadFile('file', $destPath);
+			$success = $fileMgr->uploadFile('file', $destPath);
+		}
+
+		if (!$success) {
+			$templateMgr =& TemplateManager::getManager();
+			$this->setupTemplate(true);
+			$templateMgr->assign('pageTitle', 'manager.filesBrowser');
+			$templateMgr->assign('message', 'common.uploadFailed');
+			$templateMgr->assign('backLink', Request::url(null, null, null, 'files', explode('/', $currentDir)));
+			$templateMgr->assign('backLinkLabel', 'manager.filesBrowser');
+			return $templateMgr->display('common/message.tpl');
 		}
 
 		Request::redirect(null, null, null, 'files', explode('/', $currentDir));

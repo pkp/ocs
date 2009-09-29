@@ -64,7 +64,6 @@ switch ($op) {
 	//
 	case 'deletePaperImage':
 	case 'uploadLayoutFile':
-	case 'uploadLayoutVersion':
 	case 'uploadGalley':
 	case 'editGalley':
 	case 'saveGalley':

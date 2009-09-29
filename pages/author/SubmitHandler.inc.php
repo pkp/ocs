@@ -95,7 +95,9 @@ class SubmitHandler extends AuthorHandler {
 			switch ($step) {
 				case 2:
 					if (Request::getUserVar('uploadSubmissionFile')) {
-						$submitForm->uploadSubmissionFile('submissionFile');
+						if (!$submitForm->uploadSubmissionFile('submissionFile')) {
+							$submitForm->addError('uploadSubmissionFile', Locale::translate('common.uploadFailed'));
+						}
 						$editData = true;
 					}
 					break;
@@ -161,8 +163,11 @@ class SubmitHandler extends AuthorHandler {
 
 				case 4:
 					if (Request::getUserVar('submitUploadSuppFile')) {
-						SubmitHandler::submitUploadSuppFile();
-						return;
+						if (SubmitHandler::submitUploadSuppFile()) {
+							Request::redirect(null, null, null, 'submitSuppFile', $suppFileId, array('paperId' => $paperId));
+						} else {
+							$submitForm->addError('uploadSubmissionFile', Locale::translate('common.uploadFailed'));
+						}
 					}
 					break;
 			}
@@ -230,21 +235,21 @@ class SubmitHandler extends AuthorHandler {
 	function submitUploadSuppFile() {
 		$paperId = Request::getUserVar('paperId');
 		$this->validate($paperId, 4);
-
-		$this->setupTemplate(true);
-
 		$paper =& $this->paper;
-
+		$this->setupTemplate(true);
 		$schedConf =& Request::getSchedConf();
 
-		if ($schedConf->getSetting('acceptSupplementaryReviewMaterials')) {
-			import("author.form.submit.AuthorSubmitSuppFileForm");
-			$submitForm = new AuthorSubmitSuppFileForm($paper);
-			$submitForm->setData('title', Locale::translate('common.untitled'));
-			$suppFileId = $submitForm->execute();
-		}
+		import('file.FileManager');
+		$fileManager = new FileManager();
+		if ($fileManager->uploadError('uploadSuppFile')) return false;
 
-		Request::redirect(null, null, null, 'submitSuppFile', $suppFileId, array('paperId' => $paperId));
+		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) return false;
+
+		import('author.form.submit.AuthorSubmitSuppFileForm');
+		$submitForm = new AuthorSubmitSuppFileForm($paper);
+		$submitForm->setData('title', Locale::translate('common.untitled'));
+		$suppFileId = $submitForm->execute();
+		return true;
 	}
 
 	/**
@@ -290,9 +295,15 @@ class SubmitHandler extends AuthorHandler {
 
 		if (!$schedConf->getSetting('acceptSupplementaryReviewMaterials')) Request::redirect(null, null, 'index');
 
-		import("author.form.submit.AuthorSubmitSuppFileForm");
+		import('author.form.submit.AuthorSubmitSuppFileForm');
 		$submitForm = new AuthorSubmitSuppFileForm($paper, $suppFileId);
 		$submitForm->readInputData();
+
+		import('file.FileManager');
+		$fileManager = new FileManager();
+		if ($fileManager->uploadError('uploadSuppFile')) {
+			$submitForm->addError('uploadSubmissionFile', Locale::translate('common.uploadFailed'));
+		}
 
 		if ($submitForm->validate()) {
 			$submitForm->execute();

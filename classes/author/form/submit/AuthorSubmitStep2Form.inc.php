@@ -72,6 +72,8 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		$paperFileManager = new PaperFileManager($this->paperId);
 		$paperDao =& DAORegistry::getDAO('PaperDAO');
 
+		if ($paperFileManager->uploadError($fileName)) return false;
+
 		if ($paperFileManager->uploadedFileExists($fileName)) {
 			// upload new submission file, overwriting previous if necessary
 			$submissionFileId = $paperFileManager->uploadSubmissionFile($fileName, $this->paper->getSubmissionFileId(), true);
@@ -79,8 +81,8 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 
 		if (isset($submissionFileId)) {
 			$this->paper->setSubmissionFileId($submissionFileId);
-			return $paperDao->updatePaper($this->paper);
-
+			$paperDao->updatePaper($this->paper);
+			return true;
 		} else {
 			return false;
 		}

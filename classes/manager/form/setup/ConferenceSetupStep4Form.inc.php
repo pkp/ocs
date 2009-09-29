@@ -82,6 +82,7 @@ class ConferenceSetupStep4Form extends ConferenceSetupForm {
 
 		import('file.PublicFileManager');
 		$fileManager = new PublicFileManager();
+		if ($fileManager->uploadError($settingName)) return false;
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$type = $fileManager->getUploadedFileType($settingName);
 			if ($type != 'text/plain' && $type != 'text/css') {
