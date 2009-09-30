@@ -295,6 +295,12 @@ class SchedConfHandler extends Handler {
 					$templateMgr->assign('backLinkLabel', 'common.back');
 					$templateMgr->assign('backLink', Request::url(null, null, 'index'));
 					$templateMgr->display('common/message.tpl');
+				} elseif ($registrationError == REGISTRATION_FREE) {
+					// Registration successful; no payment required (free)
+					$templateMgr->assign('message', 'schedConf.registration.free');
+					$templateMgr->assign('backLinkLabel', 'common.back');
+					$templateMgr->assign('backLink', Request::url(null, null, 'index'));
+					$templateMgr->display('common/message.tpl');
 				}
 			}
 			// Otherwise, payment is handled for us.

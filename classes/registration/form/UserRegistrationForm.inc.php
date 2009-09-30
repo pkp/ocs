@@ -16,9 +16,10 @@
 
 import('form.Form');
 
-define('REGISTRATION_SUCCESSFUL', 0x100000001);
-define('REGISTRATION_FAILED', 0x100000002);
-define('REGISTRATION_NO_PAYMENT', 0x100000003);
+define('REGISTRATION_SUCCESSFUL',	0x100000001);
+define('REGISTRATION_FAILED',		0x100000002);
+define('REGISTRATION_NO_PAYMENT',	0x100000003);
+define('REGISTRATION_FREE',		0x100000004);
 
 
 class UserRegistrationForm extends Form {
@@ -279,7 +280,12 @@ class UserRegistrationForm extends Form {
 		$queuedPayment =& $paymentManager->createQueuedPayment($schedConf->getConferenceId(), $schedConf->getSchedConfId(), QUEUED_PAYMENT_TYPE_REGISTRATION, $user->getId(), $registrationId, $cost, $registrationType->getCurrencyCodeAlpha());
 		$queuedPaymentId = $paymentManager->queuePayment($queuedPayment, time() + (60 * 60 * 24 * 30)); // 30 days to complete
 
-		$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
+		if ($cost == 0) {
+			$paymentManager->fulfillQueuedPayment($queuedPaymentId, $queuedPayment);
+			return REGISTRATION_FREE;
+		} else {
+			$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
+		}
 
 		return REGISTRATION_SUCCESSFUL;
 	}
