@@ -163,7 +163,7 @@ class SubmitHandler extends AuthorHandler {
 
 				case 4:
 					if (Request::getUserVar('submitUploadSuppFile')) {
-						if (SubmitHandler::submitUploadSuppFile()) {
+						if ($suppFileId = SubmitHandler::submitUploadSuppFile()) {
 							Request::redirect(null, null, null, 'submitSuppFile', $suppFileId, array('paperId' => $paperId));
 						} else {
 							$submitForm->addError('uploadSubmissionFile', Locale::translate('common.uploadFailed'));
@@ -248,8 +248,7 @@ class SubmitHandler extends AuthorHandler {
 		import('author.form.submit.AuthorSubmitSuppFileForm');
 		$submitForm = new AuthorSubmitSuppFileForm($paper);
 		$submitForm->setData('title', Locale::translate('common.untitled'));
-		$suppFileId = $submitForm->execute();
-		return true;
+		return $submitForm->execute();
 	}
 
 	/**
