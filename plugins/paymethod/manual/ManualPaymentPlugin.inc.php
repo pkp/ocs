@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file ManualPaymentPlugin.inc.php
+ * @file plugins/paymethod/manual/ManualPaymentPlugin.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -10,7 +10,10 @@
  * @ingroup plugins_paymethod_manual
  *
  * @brief Manual payment plugin class
+ *
  */
+
+//$Id$
 
 import('classes.plugins.PaymethodPlugin');
 
@@ -26,10 +29,10 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 
 	function getDescription() {
 		return Locale::translate('plugins.paymethod.manual.description');
-	}   
+	}
 
 	function register($category, $path) {
-		if (parent::register($category, $path)) {			
+		if (parent::register($category, $path)) {
 			$this->addLocaleData();
 			return true;
 		}
@@ -37,7 +40,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	}
 
 	function getSettingsFormFieldNames() {
-		return array();
+		return array('manualInstructions');
 	}
 
 	function isConfigured() {
@@ -49,6 +52,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 			$setting = $this->getSetting($schedConf->getConferenceId(), $schedConf->getSchedConfId(), $settingName);
 			if (empty($setting)) return false;
 		}
+
 		return true;
 	}
 
@@ -58,26 +62,66 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 		$templateMgr =& TemplateManager::getManager();
 		$user =& Request::getUser();
 
-		/* FIXME: This is too specific to registration payments. */
-		$templateMgr->assign('message', $schedConf->getLocalizedSetting('registrationAdditionalInformation'));
+		$templateMgr->assign('itemName', $queuedPayment->getName());
+		$templateMgr->assign('itemDescription', $queuedPayment->getDescription());
+		if ($queuedPayment->getAmount() > 0) {
+			$templateMgr->assign('itemAmount', $queuedPayment->getAmount());
+			$templateMgr->assign('itemCurrencyCode', $queuedPayment->getCurrencyCode());
+		}
+		$templateMgr->assign('manualInstructions', $this->getSetting($journal->getJournalId(), 'manualInstructions'));
+		$templateMgr->assign('queuedPaymentId', $queuedPaymentId);
 
 		$templateMgr->display($this->getTemplatePath() . 'paymentForm.tpl');
+	}
 
-		import('mail.MailTemplate');
-		$contactName = $schedConf->getSetting('registrationName');
-		$contactEmail = $schedConf->getSetting('registrationEmail');
-		$mail = new MailTemplate('MANUAL_PAYMENT_NOTIFICATION');
-		$mail->setFrom($contactEmail, $contactName);
-		$mail->addRecipient($contactEmail, $contactName);
-		$mail->assignParams(array(
-			'schedConfName' => $schedConf->getFullTitle(),
-			'userFullName' => $user?$user->getFullName():('(' . Locale::translate('common.none') . ')'),
-			'userName' => $user?$user->getUsername():('(' . Locale::translate('common.none') . ')'),
-			'itemDescription' => $queuedPayment->getDescription(),
-			'itemCost' => $queuedPayment->getAmount(),
-			'itemCurrencyCode' => $queuedPayment->getCurrencyCode()
-		));
-		$mail->send();
+	/**
+	 * Handle incoming requests/notifications
+	 */
+	function handle($args) {
+		$conference =& Request::getConference();
+		$schedConf =& Request::getSchedConf();
+		$templateMgr =& TemplateManager::getManager();
+		$user =& Request::getUser();
+		$op = isset($args[0])?$args[0]:null;
+		$queuedPaymentId = isset($args[1])?((int) $args[1]):0;
+
+		import('payment.ocs.OCSPaymentManager');
+		$ocsPaymentManager =& OCSPaymentManager::getManager();
+		$queuedPayment =& $ocsPaymentManager->getQueuedPayment($queuedPaymentId);
+		// if the queued payment doesn't exist, redirect away from payments
+		if ( !$queuedPayment ) Request::redirect(null, null, null, 'index');
+
+		switch ( $op ) {
+			case 'notify':
+				import('mail.MailTemplate');
+				Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+				$contactName = $schedConf->getSetting('registrationName');
+				$contactEmail = $schedConf->getSetting('registrationEmail');
+				$mail = new MailTemplate('MANUAL_PAYMENT_NOTIFICATION');
+				$mail->setFrom($contactEmail, $contactName);
+				$mail->addRecipient($contactEmail, $contactName);
+				$mail->assignParams(array(
+					'schedConfName' => $schedConf->getFullTitle(),
+					'userFullName' => $user?$user->getFullName():('(' . Locale::translate('common.none') . ')'),
+					'userName' => $user?$user->getUsername():('(' . Locale::translate('common.none') . ')'),
+					'itemName' => $queuedPayment->getName(),
+					'itemCost' => $queuedPayment->getAmount(),
+					'itemCurrencyCode' => $queuedPayment->getCurrencyCode()
+				));
+				$mail->send();
+
+				$templateMgr->assign(array(
+					'currentUrl' => Request::url(null, null, null, 'payment', 'plugin', array('notify', $queuedPaymentId)),
+					'pageTitle' => 'plugins.paymethod.manual.paymentNotification',
+					'message' => 'plugins.paymethod.manual.notificationSent',
+					'backLink' => $queuedPayment->getRequestUrl(),
+					'backLinkLabel' => 'common.continue'
+				));
+				$templateMgr->display('common/message.tpl');
+				exit();
+				break;
+		}
+		parent::handle($args); // Don't know what to do with it
 	}
 
 	function getInstallEmailTemplatesFile() {

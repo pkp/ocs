@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file OCSQueuedPayment.inc.php
+ * @file classes/payment/ocs/OCSQueuedPayment.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -10,6 +10,7 @@
  * @ingroup payment
  *
  * @brief Queued payment data structure for OCS
+ *
  */
 
 //$Id$
@@ -18,12 +19,9 @@ import('payment.QueuedPayment');
 
 class OCSQueuedPayment extends QueuedPayment {
 	var $conferenceId;
-
 	var $schedConfId;
-
-	var $paperId;
-
 	var $type;
+	var $requestUrl;
 
 	function setConferenceId($conferenceId) {
 		$this->conferenceId = $conferenceId;
@@ -41,14 +39,6 @@ class OCSQueuedPayment extends QueuedPayment {
 		return $this->schedConfId;
 	}
 
-	function setPaperId($paperId) {
-		$this->paperId = $paperId;
-	}
-
-	function getPaperId() {
-		return $this->paperId;
-	}
-
 	function setType($type) {
 		$this->type = $type;
 	}
@@ -57,6 +47,21 @@ class OCSQueuedPayment extends QueuedPayment {
 		return $this->type;
 	}
 
+	/**
+	 * Returns the name of the QueuedPayment.
+	 * @return string
+	 */
+	function getName() {
+		switch ($this->type) {
+			case QUEUED_PAYMENT_TYPE_REGISTRATION:
+				return Locale::translate('schedConf.registration');
+		}
+	}
+
+	/**
+	 * Returns the name of the QueuedPayment.
+	 * @return string
+	 */
 	function getDescription() {
 		switch ($this->type) {
 			case QUEUED_PAYMENT_TYPE_REGISTRATION:
@@ -86,6 +91,14 @@ class OCSQueuedPayment extends QueuedPayment {
 					'registrationTypeName' => ($registrationType?$registrationType->getRegistrationTypeName():Locale::translate('common.none')),
 				)) . $options;
 		}
+	}
+
+	function setRequestUrl($url) {
+		$this->requestUrl = $url;
+	}
+
+	function getRequestUrl() {
+		return $this->requestUrl;
 	}
 }
 

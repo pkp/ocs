@@ -413,6 +413,7 @@ class RegistrationHandler extends ManagerHandler {
 	 */
 	function updateRegistrationType() {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		import('registration.form.RegistrationTypeForm');
 
@@ -429,8 +430,6 @@ class RegistrationHandler extends ManagerHandler {
 				$registrationTypeForm->execute();
 
 				if (Request::getUserVar('createAnother')) {
-					$this->setupTemplate(true);
-
 					$templateMgr =& TemplateManager::getManager();
 					$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrationTypes'), 'manager.registrationTypes'));
 					$templateMgr->assign('registrationTypeTitle', 'manager.registrationTypes.createTitle');
@@ -443,10 +442,7 @@ class RegistrationHandler extends ManagerHandler {
 				} else {
 					Request::redirect(null, null, null, 'registrationTypes');
 				}
-
 			} else {
-				$this->setupTemplate(true);
-
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registrationTypes'), 'manager.registrationTypes'));
 
@@ -455,10 +451,8 @@ class RegistrationHandler extends ManagerHandler {
 				} else {
 					$templateMgr->assign('registrationTypeTitle', 'manager.registrationTypes.editTitle');	
 				}
-
 				$registrationTypeForm->display();
 			}
-
 		} else {
 				Request::redirect(null, null, null, 'registrationTypes');
 		}
@@ -684,7 +678,6 @@ class RegistrationHandler extends ManagerHandler {
 			$templateMgr->append('pageHierarchy', array(Request::url(null, null, 'manager', 'registration'), 'manager.registration'));
 		}
 	}
-
 }
 
 ?>

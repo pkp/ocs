@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file OCSPaymentManager.inc.php
+ * @file classes/payment/ocs/OCSPaymentManager.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -10,6 +10,7 @@
  * @ingroup payment
  *
  * @brief Provides payment management functions.
+ *
  */
 
 //$Id$
@@ -33,6 +34,7 @@ class OCSPaymentManager extends PaymentManager {
 		$payment->setConferenceId($conferenceId);
 		$payment->setSchedConfId($schedConfId);
 		$payment->setType($type);
+		$payment->setRequestUrl(Request::url(null, null, 'index')); // Only one type for now
 		return $payment;
 	}
 

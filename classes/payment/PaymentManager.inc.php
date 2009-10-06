@@ -1,10 +1,6 @@
 <?php
 
 /**
- * @defgroup payment
- */
- 
-/**
  * @file PaymentManager.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
@@ -14,6 +10,7 @@
  * @ingroup payment
  *
  * @brief Provides payment management functions.
+ *
  */
 
 //$Id$
