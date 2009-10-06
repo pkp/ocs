@@ -424,7 +424,11 @@ class SchedulerHandler extends ManagerHandler {
 				$templateMgr->assign('specialEventTitle', 'manager.scheduler.specialEvent.editSpecialEventShort');
 			}
 
-			$specialEventForm = new SpecialEventForm($specialEventId);
+			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
+				$specialEventForm = new SpecialEventForm($specialEventId);
+			} else {
+				$specialEventForm =& new SpecialEventForm($specialEventId);
+			}
 			if ($specialEventForm->isLocaleResubmit()) {
 				$specialEventForm->readInputData();
 			} else {
@@ -458,7 +462,11 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (($specialEventId != null && $specialEventDao->getSpecialEventSchedConfId($specialEventId) == $schedConf->getSchedConfId()) || $specialEventId == null) {
 
-			$specialEventForm = new SpecialEventForm($specialEventId);
+			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
+				$specialEventForm = new SpecialEventForm($specialEventId);
+			} else {
+				$specialEventForm =& new SpecialEventForm($specialEventId);
+			}
 			$specialEventForm->readInputData();
 
 			if ($specialEventForm->validate()) {
@@ -636,7 +644,11 @@ class SchedulerHandler extends ManagerHandler {
 				$templateMgr->assign('timeBlockTitle', 'manager.scheduler.timeBlock.editTimeBlockShort');
 			}
 
-			$timeBlockForm = new TimeBlockForm($timeBlockId);
+			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
+				$timeBlockForm = new TimeBlockForm($timeBlockId);
+			} else {
+				$timeBlockForm =& new TimeBlockForm($timeBlockId);
+			}
 			if ($timeBlockForm->isLocaleResubmit()) {
 				$timeBlockForm->readInputData();
 			} else {
@@ -664,7 +676,11 @@ class SchedulerHandler extends ManagerHandler {
 
 		if (($timeBlockId != null && $timeBlockDao->getTimeBlockSchedConfId($timeBlockId) == $schedConf->getSchedConfId()) || $timeBlockId == null) {
 
-			$timeBlockForm = new TimeBlockForm($timeBlockId);
+			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
+				$timeBlockForm = new TimeBlockForm($timeBlockId);
+			} else {
+				$timeBlockForm =& new TimeBlockForm($timeBlockId);
+			}
 			$timeBlockForm->readInputData();
 
 			if ($timeBlockForm->validate()) {
