@@ -20,8 +20,6 @@ import('search.SearchHTMLParser');
 import('search.SearchHelperParser');
 import('search.PaperSearch');
 
-define('SEARCH_STOPWORDS_FILE', 'registry/stopwords.txt');
-
 // Words are truncated to at most this length
 define('SEARCH_KEYWORD_MAX_LENGTH', 40);
 
@@ -143,7 +141,7 @@ class PaperSearchIndex {
 
 		if (!isset($searchStopwords)) {
 			// Load stopwords only once per request (FIXME Cache?)
-			$searchStopwords = array_count_values(array_filter(file(SEARCH_STOPWORDS_FILE), create_function('&$a', 'return ($a = trim($a)) && !empty($a) && $a[0] != \'#\';')));
+			$searchStopwords = array_count_values(array_filter(file(Config::getVar('general', 'registry_dir') . '/stopwords.txt'), create_function('&$a', 'return ($a = trim($a)) && !empty($a) && $a[0] != \'#\';')));
 			$searchStopwords[''] = 1;
 		}
 

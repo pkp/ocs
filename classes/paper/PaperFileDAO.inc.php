@@ -17,8 +17,6 @@
 
 import('paper.PaperFile');
 
-define('INLINEABLE_TYPES_FILE', 'registry/inlineTypes.txt');
-
 class PaperFileDAO extends DAO {
 	/**
 	 * Array of MIME types that can be displayed inline in a browser
@@ -347,7 +345,7 @@ class PaperFileDAO extends DAO {
 	 */
 	function isInlineable(&$paperFile) {
 		if (!isset($this->inlineableTypes)) {
-			$this->inlineableTypes = array_filter(file(INLINEABLE_TYPES_FILE), create_function('&$a', 'return ($a = trim($a)) && !empty($a) && $a[0] != \'#\';'));
+			$this->inlineableTypes = array_filter(file(Config::getVar('general', 'registry_dir') . '/inlineTypes.txt'), create_function('&$a', 'return ($a = trim($a)) && !empty($a) && $a[0] != \'#\';'));
 		}
 		return in_array($paperFile->getFileType(), $this->inlineableTypes);
 	}
