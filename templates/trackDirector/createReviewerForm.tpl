@@ -13,7 +13,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form method="post" action="{url op="createReviewer" path=$paperId|to_array:"create"}">
+<form name="reviewerForm" method="post" action="{url op="createReviewer" path=$paperId|to_array:"create"}">
 
 {include file="common/formErrors.tpl"}
 

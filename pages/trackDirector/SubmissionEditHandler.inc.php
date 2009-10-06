@@ -504,6 +504,7 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 
 		import('trackDirector.form.CreateReviewerForm');
 		$createReviewerForm = new CreateReviewerForm($paperId);
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 		$this->setupTemplate(true, $paperId);
 
 		if (isset($args[1]) && $args[1] === 'create') {
