@@ -1149,9 +1149,9 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$paperDao =& DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($paperId);
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
-			foreach ($notificationUsers as $user) {
-				$url = Request::url(null, null, $user['role'], 'submissionEditing', $paper->getPaperId(), null, 'layout');
-				Notification::createNotification($user['id'], "notification.type.suppFileModified",
+			foreach ($notificationUsers as $userRole) {
+				$url = Request::url(null, null, $userRole['role'], 'submissionEditing', $paper->getPaperId(), null, 'layout');
+				Notification::createNotification($userRole['id'], "notification.type.suppFileModified",
 					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUPP_FILE_MODIFIED);
 			}
 
@@ -1359,9 +1359,9 @@ class SubmissionEditHandler extends TrackDirectorHandler {
 			$paperDao =& DAORegistry::getDAO('PaperDAO');
 			$paper =& $paperDao->getPaper($paperId);
 			$notificationUsers = $paper->getAssociatedUserIds(true, false);
-			foreach ($notificationUsers as $user) {
-				$url = Request::url(null, null, $user['role'], 'submissionEditing', $paper->getPaperId(), null, 'layout');
-				Notification::createNotification($user['id'], "notification.type.galleyModified",
+			foreach ($notificationUsers as $userRole) {
+				$url = Request::url(null, null, $userRole['role'], 'submissionEditing', $paper->getPaperId(), null, 'layout');
+				Notification::createNotification($userRole['id'], "notification.type.galleyModified",
 					$paper->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED);
 			}
 
