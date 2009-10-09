@@ -57,6 +57,9 @@ class NativeExportDom {
 	function &generatePaperDom(&$doc, &$schedConf, &$track, &$paper) {
 		$root =& XMLCustomWriter::createElement($doc, 'paper');
 
+		/* --- PaperID --- */
+		XMLCustomWriter::createChildWithText($doc, $root, 'id', $paper->getPaperId());
+
 		/* --- Titles and Abstracts --- */
 		if (is_array($paper->getTitle(null))) foreach ($paper->getTitle(null) as $locale => $title) {
 			$titleNode =& XMLCustomWriter::createChildWithText($doc, $root, 'title', $title, false);
