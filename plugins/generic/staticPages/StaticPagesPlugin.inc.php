@@ -23,7 +23,7 @@ class StaticPagesPlugin extends GenericPlugin {
 
 	function getDisplayName() {
 		return Locale::translate('plugins.generic.staticPages.displayName');
-	} 		
+	}
 
 	function getDescription() {
 		$description = Locale::translate('plugins.generic.staticPages.description');
@@ -35,7 +35,7 @@ class StaticPagesPlugin extends GenericPlugin {
 	function isTinyMCEInstalled() {
 		$tinyMCEPlugin = &PluginRegistry::getPlugin('generic', 'TinyMCEPlugin');
 
-		if ( $tinyMCEPlugin ) 
+		if ( $tinyMCEPlugin )
 			return $tinyMCEPlugin->getEnabled();
 
 		return false;
@@ -48,13 +48,13 @@ class StaticPagesPlugin extends GenericPlugin {
 	 * @return boolean
 	 */
 	function register($category, $path) {
-		if (parent::register($category, $path)) {		
+		if (parent::register($category, $path)) {
 			$this->addLocaleData();
 			if ($this->getEnabled()) {
 				$this->import('StaticPagesDAO');
 				$staticPagesDAO = &new StaticPagesDAO();
 				$returner = &DAORegistry::registerDAO('StaticPagesDAO', $staticPagesDAO);
-				
+
 				HookRegistry::register('LoadHandler', array(&$this, 'callbackHandleContent'));
 			}
 			return true;
@@ -95,7 +95,7 @@ class StaticPagesPlugin extends GenericPlugin {
 		$conference =& Request::getConference();
 		$conferenceId = $conference?$conference->getConferenceId():0;
 		$this->updateSetting($conferenceId, 0, 'enabled', $enabled);
-		
+
 		return true;
 	}
 
@@ -111,7 +111,7 @@ class StaticPagesPlugin extends GenericPlugin {
 			);
 			if ( $this->isTinyMCEInstalled() ) {
 				$verbs[] = array(
-					'settings', 
+					'settings',
 					Locale::translate('plugins.generic.staticPages.editAddContent')
 				);
 			}
@@ -132,7 +132,7 @@ class StaticPagesPlugin extends GenericPlugin {
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
-		$templateMgr->assign('pagesPath', Request::url(null, null, 'pages', 'view'));
+		$templateMgr->assign('pagesPath', Request::url(null, null, 'pages', 'view', 'REPLACEME'));
 
 		$pageCrumbs = array(
 			array(
@@ -144,20 +144,20 @@ class StaticPagesPlugin extends GenericPlugin {
 				'user.role.manager'
 			)
 		);
-		
+
 		switch ($verb) {
 			case 'settings':
 				$conference =& Request::getConference();
 
 				$this->import('StaticPagesSettingsForm');
 				$form = new StaticPagesSettingsForm($this, $conference->getConferenceId());
-				
+
 				$templateMgr->assign('pageHierarchy', $pageCrumbs);
 				$form->initData();
-				$form->display();			
+				$form->display();
 				break;
 			case 'edit':
-			case 'add':			
+			case 'add':
 				$conference =& Request::getConference();
 
 				$this->import('StaticPagesEditForm');
@@ -165,13 +165,13 @@ class StaticPagesPlugin extends GenericPlugin {
 				$staticPageId = isset($args[0])?(int)$args[0]:null;
 				$form = new StaticPagesEditForm($this, $conference->getConferenceId(), $staticPageId);
 
-				if ($form->isLocaleResubmit()) {					
+				if ($form->isLocaleResubmit()) {
 					$form->readInputData();
 					$form->addTinyMCE();
 				} else {
 					$form->initData();
 				}
-				
+
 				$pageCrumbs[] = array(
 					Request::url(null, null,  'manager', 'plugin', array('generic', $this->getName(), 'settings')),
 					$this->getDisplayName(),
@@ -181,17 +181,17 @@ class StaticPagesPlugin extends GenericPlugin {
 				$form->display();
 				$returner = true;
 				break;
-			case 'save': 
+			case 'save':
 				$conference =& Request::getConference();
 
 				$this->import('StaticPagesEditForm');
 
 				$staticPageId = isset($args[0])?(int)$args[0]:null;
 				$form = new StaticPagesEditForm($this, $conference->getConferenceId(), $staticPageId);
-							
-				if (Request::getUserVar('edit')) {					
+
+				if (Request::getUserVar('edit')) {
 					$form->readInputData();
-					if ($form->validate()) {						
+					if ($form->validate()) {
 						$form->save();
 						$templateMgr->assign(array(
 							'currentUrl' => Request::url(null, null, null, null, array($this->getCategory(), $this->getName(), 'settings')),
@@ -217,7 +217,7 @@ class StaticPagesPlugin extends GenericPlugin {
 				$staticPageId = isset($args[0])?(int) $args[0]:null;
 				$staticPagesDAO =& DAORegistry::getDAO('StaticPagesDAO');
 				$staticPagesDAO->deleteStaticPageById($staticPageId);
-				
+
 				$templateMgr->assign(array(
 					'currentUrl' => Request::url(null, null, null, null, array($this->getCategory(), $this->getName(), 'settings')),
 					'pageTitle' => 'plugins.generic.staticPages.displayName',
@@ -225,9 +225,9 @@ class StaticPagesPlugin extends GenericPlugin {
 					'backLink' => Request::url(null, null, null, null, array($this->getCategory(), $this->getName(), 'settings')),
 					'backLinkLabel' => 'common.continue'
 				));
-				
+
 				$templateMgr->assign('pageHierarchy', $pageCrumbs);
-				$templateMgr->display('common/message.tpl');		
+				$templateMgr->display('common/message.tpl');
 				$returner = true;
 				break;
 			case 'enable':

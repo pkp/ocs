@@ -1,18 +1,19 @@
 {**
- * settingsForm.tpl
+ * plugins/generic/staticPages/settingsForm.tpl
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form for Static Pages plugin settings.
  *
+ * plugins/generic/staticPages/settingsForm.tpl
  *}
 {assign var="pageTitle" value="plugins.generic.staticPages.displayName"}
 {include file="common/header.tpl"}
 
 {translate key="plugins.generic.staticPages.settingInstructions"}
 <br />
-{translate key="plugins.generic.staticPages.viewInstructions" pagesPath=$pagesPath}
+{translate key="plugins.generic.staticPages.viewInstructions" pagesPath=$pagesPath|replace:"REPLACEME":"%PATH%"}
 
 <br />
 <br />
