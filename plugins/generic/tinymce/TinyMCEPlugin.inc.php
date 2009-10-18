@@ -102,6 +102,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				break;
 			case 'user/profile':
 			case 'user/account':
+			case 'user/saveProfile':
 			case 'manager/createUser':
 			case 'manager/updateUser':
 				$fields[] = 'mailingAddress';
@@ -132,8 +133,7 @@ class TinyMCEPlugin extends GenericPlugin {
 						$fields[] = 'archiveAccessPolicy';
 						$fields[] = 'privacyStatement';
 						$customAboutItems = $templateMgr->get_template_vars('customAboutItems');
-						$count = 1;
-						if (isset($customAboutItems[$formLocale])) $count = max(1, count($customAboutItems[$formLocale]));
+						$count = max(1, isset($customAboutItems[$formLocale])?count($customAboutItems[$formLocale]):0);
 						for ($i=0; $i<$count; $i++) {
 							$fields[] = "customAboutItems-$i-content";
 						}
