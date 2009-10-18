@@ -131,7 +131,9 @@ class TinyMCEPlugin extends GenericPlugin {
 						$fields[] = 'copyrightNotice';
 						$fields[] = 'archiveAccessPolicy';
 						$fields[] = 'privacyStatement';
-						$count = max(1, count($templateMgr->get_template_vars('customAboutItems')));
+						$customAboutItems = $templateMgr->get_template_vars('customAboutItems');
+						$count = 1;
+						if (isset($customAboutItems[$formLocale])) $count = max(1, count($customAboutItems[$formLocale]));
 						for ($i=0; $i<$count; $i++) {
 							$fields[] = "customAboutItems-$i-content";
 						}
