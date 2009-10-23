@@ -68,5 +68,36 @@ class ConferenceLanguagesHandler extends ManagerHandler {
 		}
 	}
 
+	function reloadLocalizedDefaultSettings() {
+		// make sure the locale is valid
+		$locale = Request::getUserVar('localeToLoad');
+		if ( !Locale::isLocaleValid($locale) ) {
+			Request::redirect(null, null, null, 'languages');
+		}
+
+		$this->validate();
+		$this->setupTemplate(true);
+					
+		$conference =& Request::getConference();
+		$conferenceSettingsDao =& DAORegistry::getDAO('ConferenceSettingsDAO');
+		$conferenceSettingsDao->reloadLocalizedDefaultSettings($conference->getConferenceId(), 'registry/conferenceSettings.xml', array(
+				'indexUrl' => Request::getIndexUrl(),
+				'conferencePath' => $conference->getData('path'),
+				'primaryLocale' => $conference->getPrimaryLocale(),
+				'conferenceName' => $conference->getTitle($conference->getPrimaryLocale())
+			),
+			$locale);
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign(array(
+			'currentUrl' => Request::url(null, null, null, 'languages'),
+			'pageTitle' => 'common.languages',
+			'message' => 'common.changesSaved',
+			'backLink' => Request::url(null, null, Request::getRequestedPage()),
+			'backLinkLabel' => 'manager.conferenceSiteManagement'
+		));
+		$templateMgr->display('common/message.tpl');
+	}
+
 }
 ?>

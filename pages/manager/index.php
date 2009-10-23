@@ -248,6 +248,7 @@ switch ($op) {
 	//
 	case 'languages':
 	case 'saveLanguageSettings':
+	case 'reloadLocalizedDefaultSettings':
 		define('HANDLER_CLASS', 'ConferenceLanguagesHandler');
 		import('pages.manager.ConferenceLanguagesHandler');
 		break;
