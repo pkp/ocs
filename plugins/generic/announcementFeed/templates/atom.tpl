@@ -11,14 +11,14 @@
 <?xml version="1.0" encoding="{$defaultCharset|escape}"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 	{* required elements *}
-	<id>{$selfUrl}</id>
+	<id>{$selfUrl|escape}</id>
 	<title>{if $schedConf}{$schedConf->getSchedConfTitle()|escape:"html"|strip}{else}{$conference->getConferenceTitle()|escape:"html"|strip}{/if}: {translate key="announcement.announcements"}</title>
 	<updated>{$dateUpdated|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</updated>
 
 	{* recommended elements *}
 	{* <author/> *}
 	<link rel="alternate" href="{if $schedConf}{$schedConf->getUrl()}{else}{$conference->getUrl()}{/if}" />
-	<link rel="self" type="application/atom+xml" href="{$selfUrl}" />
+	<link rel="self" type="application/atom+xml" href="{$selfUrl|escape}" />
 
 	{* optional elements *}
 	{* <category/> *}
