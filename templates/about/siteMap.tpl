@@ -39,7 +39,7 @@
 				<li>
 					{if $isUserLoggedIn}
 						<ul class="plain">
-							{assign var=currentConferenceId value=$currentConference->getConferenceId()}
+							{assign var=currentConferenceId value=$currentConference->getId()}
 							{foreach from=$rolesByConference[$currentConferenceId] item=role}
 								{translate|assign:"roleName" key=$role->getRoleName()}
 								<li><a href="{url conference=`$currentConference->getPath()` page=`$role->getRolePath()`}">{$roleName|escape}</a></li>

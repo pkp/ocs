@@ -25,7 +25,7 @@
 {assign var="hasRole" value=1}
 <div id="conference">
 <h4><a href="{url conference=$conference->getPath() page="user"}">{$conference->getConferenceTitle()|escape}</a></h4>
-	{assign var="conferenceId" value=$conference->getConferenceId()}
+	{assign var="conferenceId" value=$conference->getId()}
 	{assign var="conferencePath" value=$conference->getPath()}
 	{* Display conference roles *}
 	
@@ -44,7 +44,7 @@
 	{* Display scheduled conference roles *}
 	{foreach from=$userSchedConfs[$conferenceId] item=schedConf}
 		<div id="schedConf">
-		{assign var="schedConfId" value=$schedConf->getSchedConfId()}
+		{assign var="schedConfId" value=$schedConf->getId()}
 		{assign var="schedConfPath" value=$schedConf->getPath()}
 		<h5><a href="{url conference=$conference->getPath() schedConf=$schedConf->getPath() page="index"}">{$schedConf->getSchedConfTitle()|escape}</a></h5>
 

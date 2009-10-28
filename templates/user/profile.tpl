@@ -150,7 +150,7 @@
 {if $displayOpenAccessNotification}
 	{assign var=notFirstSchedConf value=0}
 	{foreach from=$schedConfs name=schedConfOpenAccessNotifications key=thisSchedConfId item=thisSchedConf}
-		{assign var=thisSchedConfId value=$thisSchedConf->getSchedConfId()}
+		{assign var=thisSchedConfId value=$thisSchedConf->getId()}
 		{assign var=enableOpenAccessNotification value=$thisSchedConf->getSetting('enableOpenAccessNotification')}
 		{assign var=notificationEnabled value=$user->getSetting('openAccessNotification', $thisSchedConfId)}
 		{if !$notFirstSchedConf}
