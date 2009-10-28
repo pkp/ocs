@@ -33,7 +33,7 @@
 			{assign var=editAssignments value=$submission->getEditAssignments()}
 			{foreach from=$editAssignments item=editAssignment}
 				{assign var=emailString value="`$editAssignment->getDirectorFullName()` <`$editAssignment->getDirectorEmail()`>"}
-				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags paperId=$submission->getPaperId()}
+				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags paperId=$submission->getPaperId()}
 				{$editAssignment->getDirectorFullName()|escape} {icon name="mail" url=$url}
 				<br/>
 			{foreachelse}
@@ -135,7 +135,7 @@
 	<table class="data" width="100%">
 		<tr valign="middle">
 			<td width="30%">
-				{if $submission->getReviewMode == $smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}
+				{if $submission->getReviewMode() == $smarty.const.REVIEW_MODE_BOTH_SIMULTANEOUS}
 					<h3>{translate key="submission.review"}</h3>
 				{elseif $stage == REVIEW_STAGE_ABSTRACT}
 					<h3>{translate key="submission.abstractReview"}</h3>
